@@ -2,148 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5513689F11
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 15:01:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4148189F49
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 15:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726568AbfHLNAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 09:00:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48904 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726502AbfHLNAy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 09:00:54 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A1FD820679;
-        Mon, 12 Aug 2019 13:00:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565614853;
-        bh=l/NqOpnPspQILd59aflIt0y7cwwaNcRzRIKE008vYdE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KqmyQ80VsIog146wi5cUzn2HG5COlNTsugile1trKaBUTE2JqEsWoT8fhHtTd8rD/
-         wSgba7byZOeiNK/R1FW/vZhMx3UpTUNaALg6UPMTQEhk0V4X8rQZ8DBs33LAdFCzTK
-         YJahHd8dX/xdrh0KKFcGJgG20kN5ixX6YkBdLVas=
-Date:   Mon, 12 Aug 2019 15:00:43 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Dong Aisheng <dongas86@gmail.com>
-Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, sboyd@kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 02/11] dt-bindings: clock: imx-lpcg: add support to
- parse clocks from device tree
-Message-ID: <20190812130041.GD27041@X250>
-References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
- <1563289265-10977-3-git-send-email-aisheng.dong@nxp.com>
- <20190803135048.GL8870@X250.getinternet.no>
- <CAA+hA=TVv8m2GZr0W-u+S6XzJUCYrFDF95iyUGyAsbYMwatyZg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA+hA=TVv8m2GZr0W-u+S6XzJUCYrFDF95iyUGyAsbYMwatyZg@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        id S1728917AbfHLNKg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 09:10:36 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40152 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbfHLNKF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 09:10:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=Q9qcnlkxDXzQ76coxQL/CdrXQ/CkPfBxp6V88YMLlQI=; b=LdlKbGc7EU4i
+        ze96X1m3Zp+EPrzGQLJ2Nho6DedV4JwLZGHGG76uyiUlIOpLiVkqRJHZQ4XK/WQMPPQFLI3ccZToJ
+        uWovDRVa9xJKbqXAiCW0b9zIBQW5pR/M+F1EfV1mbOvvXyzs4juE/0dhgQmfYLmA68Rtc0RxKTPXI
+        z91Nw=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1hxA59-0001M4-Ff; Mon, 12 Aug 2019 13:09:51 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id DBD082740CB7; Mon, 12 Aug 2019 14:09:50 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, festevam@gmail.com,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        Mark Brown <broonie@kernel.org>, mark.rutland@arm.com,
+        nicoleotsuka@gmail.com, Nicolin Chen <nicoleotsuka@gmail.com>,
+        robh+dt@kernel.org, timur@kernel.org, Xiubo.Lee@gmail.com
+Subject: Applied "ASoC: fsl_esai: Add new compatible string for imx6ull" to the asoc tree
+In-Reply-To: <1565346467-5769-2-git-send-email-shengjiu.wang@nxp.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190812130950.DBD082740CB7@ypsilon.sirena.org.uk>
+Date:   Mon, 12 Aug 2019 14:09:50 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 11:27:20AM +0800, Dong Aisheng wrote:
-> > > +- compatible:                Should be one of:
-> > > +                       "fsl,imx8qxp-lpcg"
-> > > +                       "fsl,imx8qm-lpcg" followed by "fsl,imx8qxp-lpcg".
-> > > +- reg:                       Address and length of the register set.
-> > > +- #clock-cells:              Should be 1. One LPCG supports multiple clocks.
-> > > +- clocks:            Input parent clocks phandle array for each clock.
-> > > +- bit-offset:                An integer array indicating the bit offset for each clock.
-> >
-> > I guess that the driver should be able to figure bit offset from
-> > 'clock-indices' property.
-> >
-> 
-> Yes, it can be done in theory.
-> Then the binding may look like:
-> sdhc0_lpcg: clock-controller@5b200000 {
->         ...
->         #clock-cells = <1>;
->         clocks = <&sdhc0_clk IMX_SC_PM_CLK_PER>,
->                  <&conn_ipg_clk>, <&conn_axi_clk>;
->         clock-indices = <0>, <16>, <20>;
->         clock-output-names = "sdhc0_lpcg_per_clk",
->                              "sdhc0_lpcg_ipg_clk",
->                              "sdhc0_lpcg_ahb_clk";
->         power-domains = <&pd IMX_SC_R_SDHC_0>;
-> };
-> 
-> usdhc1: mmc@5b010000 {
->         ...
->         clocks = <&sdhc0_lpcg 16>,
->                  <&sdhc0_lpcg 0>,
->                  <&sdhc0_lpcg 20>;
->         clock-names = "ipg", "per", "ahb";
-> };
-> 
-> However, after trying, i found  one limitation if using clock-indices
-> that users have to do a secondary search for the indices value from clock names
-> which is not very friendly.
-> 
-> Formerly from the clock output names, user can easily get the clock
-> index as they're
-> in fixed orders as output names, so very easily to use.
-> e.g.
-> clocks = <&sdhc0_lpcg 1>,
->          <&sdhc0_lpcg 0>,
->          <&sdhc0_lpcg 2>;
-> 
-> If using clock-indices, users have no way to know it's clock index
-> from clock output names order
-> unless they do a secondary search from the clock-indice array accordingly.
-> For example, for "sdhc0_lpcg_ahb_clk", user can easily know its
-> reference is <&sdhc0_lpcg 2>.
-> But if using clock-indice, we need search clock-indices array to find
-> its reference
-> becomes <&sdhc0_lpcg 20>. So this seems like a drawback if using clock-indices.
+The patch
 
-Shouldn't we have constant macro defined for those numbers, so that both
-'clock-indices' and 'clocks' of client device can use?
+   ASoC: fsl_esai: Add new compatible string for imx6ull
 
-> 
-> Therefore, personally i'm still a bit intend to the original way which
-> is more simple and
-> straightforward from user point of view, unless there's a strong
-> objections on define another
-> vendor private property.
-> 
-> Shawn,
-> How do you think?
-> Should we enforce the complexity to users?
-> 
-> > > +- hw-autogate:               Boolean array indicating whether supports HW autogate for
-> > > +                     each clock.
-> >
-> > Not sure why it needs to be a property in DT.  Or asking it different
-> > way, when it should be true and when false?
-> >
-> 
-> It is one LPCG feature.
-> For some specific device LPCGs, it may support clock auto gating. (depends on
-> IP's capability. e.g. uSDHC).
-> So we define this feature in DT as well in case if user may want to
-> use it in the future.
-> 
-> But AFAIK, there's still no one using it. Most drivers reply on runtime PM to do
-> clock management. Did not use LPCG auto gate off feature.
-> But the current LPCG driver API does support this parameter.
-> 
-> If you think it's unnecessary to define it in DT as there're still no
-> users, i can remove it
-> and disabling autogate in driver by default.
+has been applied to the asoc tree at
 
-I would suggest to drop it then.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
 
-Shawn
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 9ea08f2a6d27b6a26d33dae5c58e4099672d6bb3 Mon Sep 17 00:00:00 2001
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+Date: Fri, 9 Aug 2019 18:27:47 +0800
+Subject: [PATCH] ASoC: fsl_esai: Add new compatible string for imx6ull
+
+Add new compatible string "fsl,imx6ull-esai" in the binding document.
+
+Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+Link: https://lore.kernel.org/r/1565346467-5769-2-git-send-email-shengjiu.wang@nxp.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ Documentation/devicetree/bindings/sound/fsl,esai.txt | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/fsl,esai.txt b/Documentation/devicetree/bindings/sound/fsl,esai.txt
+index 5b9914367610..0e6e2166f76c 100644
+--- a/Documentation/devicetree/bindings/sound/fsl,esai.txt
++++ b/Documentation/devicetree/bindings/sound/fsl,esai.txt
+@@ -7,8 +7,11 @@ other DSPs. It has up to six transmitters and four receivers.
+ 
+ Required properties:
+ 
+-  - compatible		: Compatible list, must contain "fsl,imx35-esai" or
+-			  "fsl,vf610-esai"
++  - compatible		: Compatible list, should contain one of the following
++			  compatibles:
++			  "fsl,imx35-esai",
++			  "fsl,vf610-esai",
++			  "fsl,imx6ull-esai",
+ 
+   - reg			: Offset and length of the register set for the device.
+ 
+-- 
+2.20.1
+
