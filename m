@@ -2,78 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B10C28AAD5
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 00:55:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 828788AAE1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 00:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726978AbfHLWzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 18:55:22 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57056 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726681AbfHLWzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 18:55:21 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5A67C206A2;
-        Mon, 12 Aug 2019 22:55:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565650520;
-        bh=bzSVxn1O+XeeWY+2gZI6RE/G7J9stvLsMgc7wXKMLBY=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=2fFWNBju/NoA9EEEg6SgrC0ymxSRFlWH+/sXXpWVTbVoBuKIvJiA7w1IyG/Q5cfgN
-         gw3v0MRCJ48hdqHfIdIAFVkbP+9VeXqYGvbIjFkrUu6xwlZcEnR9KMfu3l/b+H0uED
-         iKs6Gza2xwnDfKRu3oYIOckfg2RYjnmKmEyi2wfI=
-Content-Type: text/plain; charset="utf-8"
+        id S1726236AbfHLW7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 18:59:55 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:39553 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725822AbfHLW7z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 18:59:55 -0400
+Received: by mail-ot1-f67.google.com with SMTP id r21so159453994otq.6;
+        Mon, 12 Aug 2019 15:59:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wfqkapTLzty9tIGiNjJX/GNLl3mKFpBX5RHcS25GDOc=;
+        b=uPJ1y5MMz2mXIb8UGO6iYhtl8ARHx2+N8Ird/VVvfN5NAwR5isbFlmtauAxMsCl2yH
+         lZwuybh/X7QHeL3GffIgiGa2blMtujG1TSthlcWOflHyXFhodCRoXd8TuhQtZA2jCyZh
+         ToqvcArwu6lpznpTiUPYsZIKucvTvcs4G7z04cNW8aipXAoaXk1bGO2sc+cdv734xwqO
+         9DlYzicg6tBzrtoTkloEG791nkXro+cozB6LAeBz1raOFQxx5J1KuXLQL09L6cxUPKtG
+         e5w+z6Ev7wODgKI2x7QsotO+aC+2QvjBzAhHhDzTMFMUZjjgia4CqNLgiPE0bQ9Z7jrF
+         S3Tw==
+X-Gm-Message-State: APjAAAUY9htEfasQos9FNmHlJdOXncmjagl94nCel7kPN+YYn6FbFvjY
+        J9IxWRVmsn4sZ48QakRCiw==
+X-Google-Smtp-Source: APXvYqwmEe/FyoKdinwwGB2N4dWJ7LVtCusVQVC4ngZudckeh8J0RW2j1KLcpC1O8ucq5RcQHumzMw==
+X-Received: by 2002:a02:4881:: with SMTP id p123mr13646129jaa.69.1565650794550;
+        Mon, 12 Aug 2019 15:59:54 -0700 (PDT)
+Received: from localhost ([64.188.179.254])
+        by smtp.gmail.com with ESMTPSA id p13sm19586044ioo.72.2019.08.12.15.59.53
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 12 Aug 2019 15:59:53 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 16:59:52 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Xia Jiang <xia.jiang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tfiga@chromium.org>, srv_heupstream@mediatek.com
+Subject: Re: [PATCH 1/5] media: dt-bindings: Add JPEG ENC device tree node
+ document
+Message-ID: <20190812225952.GA31298@bogus>
+References: <20190717093034.22826-1-xia.jiang@mediatek.com>
+ <20190717093034.22826-2-xia.jiang@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190812182421.141150-4-brendanhiggins@google.com>
-References: <20190812182421.141150-1-brendanhiggins@google.com> <20190812182421.141150-4-brendanhiggins@google.com>
-Subject: Re: [PATCH v12 03/18] kunit: test: add string_stream a std::stream like string builder
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com
-User-Agent: alot/0.8.1
-Date:   Mon, 12 Aug 2019 15:55:19 -0700
-Message-Id: <20190812225520.5A67C206A2@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190717093034.22826-2-xia.jiang@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-08-12 11:24:06)
-> +void string_stream_clear(struct string_stream *stream)
-> +{
-> +       struct string_stream_fragment *frag_container, *frag_container_sa=
-fe;
-> +
-> +       spin_lock(&stream->lock);
-> +       list_for_each_entry_safe(frag_container,
-> +                                frag_container_safe,
-> +                                &stream->fragments,
-> +                                node) {
-> +               list_del(&frag_container->node);
+On Wed, Jul 17, 2019 at 05:30:30PM +0800, Xia Jiang wrote:
+> add JPEG ENC device tree node document
+> 
+> Change-Id: I9f0a8aec7eced20c88acbc88d6ff179763f91246
 
-Shouldn't we free the allocation here? Otherwise, if some test is going
-to add, add, clear, add, it's going to leak until the test is over?
+Run checkpatch.pl. (Remove this)
 
-> +       }
-> +       stream->length =3D 0;
-> +       spin_unlock(&stream->lock);
-> +}
+> Signed-off-by: Xia Jiang <xia.jiang@mediatek.com>
+> ---
+>  .../bindings/media/mediatek-jpeg-encoder.txt  | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> new file mode 100644
+> index 000000000000..1231fedb70bc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-jpeg-encoder.txt
+> @@ -0,0 +1,33 @@
+> +* MediaTek JPEG Encoder
 > +
+> +MediaTek JPEG Encoder is the JPEG encode hardware present in MediaTek SoCs
+> +
+> +Required properties:
+> +- compatible : must be "mediatek,mtk-jpgenc"
+
+Needs an SoC specific compatible.
+
+> +- reg : physical base address of the JPEG encoder registers and length of
+> +  memory mapped region.
+> +- interrupts : interrupt number to the interrupt controller.
+> +- clocks: device clocks, see
+> +  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> +- clock-names: must contain "jpgenc". It is the clock of JPEG encoder.
+> +- power-domains: a phandle to the power domain, see
+> +  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> +- mediatek,larb: must contain the local arbiters in the current SoCs, see
+> +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> +  for details.
+> +- iommus: should point to the respective IOMMU block with master port as
+> +  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+> +  for details.
+> +
+> +Example:
+> +	jpegenc: jpegenc@1500a000 {
+> +		compatible = "mediatek,mtk-jpgenc";
+> +		reg = <0 0x1500a000 0 0x1000>;
+> +		interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_LOW>;
+> +		clocks =  <&imgsys CLK_IMG_VENC>;
+> +		clock-names = "jpgenc";
+> +		power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
+> +		mediatek,larb = <&larb2>;
+> +		iommus = <&iommu MT2701_M4U_PORT_JPGENC_RDMA>,
+> +			<&iommu MT2701_M4U_PORT_JPGENC_BSDMA>;
+> +	};
+> -- 
+> 2.18.0
+> 
