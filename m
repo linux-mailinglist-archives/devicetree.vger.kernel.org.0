@@ -2,90 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F65F8A363
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 18:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41CA48A38E
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 18:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726719AbfHLQbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 12:31:18 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:51842 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbfHLQbR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 12:31:17 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 207so138129wma.1
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 09:31:16 -0700 (PDT)
+        id S1726500AbfHLQme (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 12:42:34 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:35456 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726457AbfHLQme (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 12:42:34 -0400
+Received: by mail-lj1-f195.google.com with SMTP id l14so8966120lje.2;
+        Mon, 12 Aug 2019 09:42:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7j2F6czmvL1ihv3E7n7MMuOUAa5rNveJU7g593UBgYA=;
-        b=xSTOh9h2HX4eRr/sFVEwfbnUvN24DujY5BIcNJrS8ivVAR6KMTWJ/ODWqQXBloN/jK
-         z/XY2ixB+QMFtF0BLRbNSzSwRkyzcSXSXgWNBjcaF1mI9AaGtSexLw18VhF9X1SySAsY
-         wynbSdt/jvTDFZkKTDx6B/u1LupR6bRzT5md+cGGgrkRNhvEbiHdHwhsbQ/ylF7TPebN
-         gKiWtFddsM80lb1BkTKx++1N7O58a5UhkYM8AZjfqwnwm3Z/1SRF9fIkbeb5wrPkKy9W
-         DkstxnclguamE68bROEp5JsalTxz2zlCJTDuRzy6UJF/bYrYmzf80dRMcooY8DeHBCPN
-         bDGA==
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ozj3HWG6u6WFRMPDTuQbMffve34JSmH8p0q+ZkIw8XA=;
+        b=kdTrnznY0ezwmK90LkssxTwtB4Fd8Cx3FNt5PqxgtfkoAL7kGnyrNFj5LUUmqjMoY2
+         bLO3HJbyP+RuyCLuwIQK3TS4yblcNqm13U3EktOzREhNXejGO61zB5fmPQRwTjEtwjGT
+         aABoMMF7biT8hXhaaXsyRDwsP24ALrslfudwMx4uEAIYS3So5FZ0+sX1BPepvSfpvxaS
+         P3x2fQgTI/sPoIOS2NFigF5EJ7bEF2KinUM5+Exo+5fsjjXmdCGqmZMbNM5p/q7SNu+S
+         liVtytDJ+Aq1MokyqNCJPTRdUBR6RNQxV3xkek+uuEWkqsTNPdTx8d5+zwBugPpNtZoL
+         LCfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=7j2F6czmvL1ihv3E7n7MMuOUAa5rNveJU7g593UBgYA=;
-        b=uVWXqikYgzsmH8/Yi0toMFpAdfC47LU22y/kbOloPKG9z2YX91XTjx1I++ugTyiWPD
-         fKrCPWFTpTPA0839s577QeEhDLBs81YKh6grPpuUaHEOScwwPt5/9twtupzHQY8+edUC
-         A4QirvTyd1EV1n7bq464oWwB+1K4waBgN7SwxQS41TtwyuuF5/GXxxXdDDQgyh3t9mKc
-         IR0M0PWc7Jf/YmKXwrW2bOSoi098qcOngoh5yfNt02G7iYs7opj6EsoWjfZuu7O/wQh/
-         /mlezPuowGjVXkHUD53XqzGtZK2c8TildUHz9qTzJrvehNw0rpKybZJGSRGl2akRgjFM
-         B1BQ==
-X-Gm-Message-State: APjAAAX3QCZhvbi4A2fRd8nvDCTcW/7iPMYvPJcY/+BcN27Ip9B9U1Vm
-        0rr4FjrwEEkuqNS51QVa7K4vXdxYppySoSCABdlzCA==
-X-Google-Smtp-Source: APXvYqyBPrcQ6sKCBQ9GudU9fmlJm1BzQW1oNBg6A7HHuE1qGnnV3Lr+F7PfdpqBa1bRHlFWSF9yk1iPYMGg2B6knOM=
-X-Received: by 2002:a7b:c04f:: with SMTP id u15mr165779wmc.106.1565627476232;
- Mon, 12 Aug 2019 09:31:16 -0700 (PDT)
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ozj3HWG6u6WFRMPDTuQbMffve34JSmH8p0q+ZkIw8XA=;
+        b=LYpninqUpLvts+yLYumg5qPbY/rf3leH1Vtfi9xyt1lQI5o/jeg0r0evna1Z9gRB9y
+         0uAzEd0MabbKUhTAgZM7iyde4Lwq2H6Q3oaBeu2tUcjFq97Q5QEc8FbKGtO+sJanO2ns
+         X/OxDP/gvfJNmVmqUCYzEZDgNYDl2Sm3j6Vf2ONe7D5D88Y4Xjq2FzgWH+a/Wmls/Vpm
+         dMLlDYrJGmKvAXdMzAsFDKcxz0A2+yimI1VX5dqtc3m1M7b6wHB4Kfe7sxbicY95Dbtn
+         5W0zxILFni3VAUANNDVJb3/LJ0Cc/HLQpL3wuSt/9D+KfOFHlLKj0gGYWjKbsYotIJao
+         BGdQ==
+X-Gm-Message-State: APjAAAVGKnzG/xnpwSSOMG+pHgs5Xjc0QfdiO+uU8xaHlXvKh3wFKlpf
+        6QvgQFIr0CxU91QiYAvgwqaA1Eq2
+X-Google-Smtp-Source: APXvYqwrsiBom6sXbAvtUH5ZNer8hQ/6TRxY2p8vbUytdt+kTSF8r3G6P2ijhZEelRwijvd+3RbMnA==
+X-Received: by 2002:a2e:9819:: with SMTP id a25mr7054589ljj.99.1565628151275;
+        Mon, 12 Aug 2019 09:42:31 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.34.218])
+        by smtp.googlemail.com with ESMTPSA id e87sm24327081ljf.54.2019.08.12.09.42.29
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 12 Aug 2019 09:42:30 -0700 (PDT)
+Subject: Re: [PATCH v3] ARM: dts: tegra30: Connect SMMU with Video Decoder
+ Engine
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jonathan Hunter <jonathanh@nvidia.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        devel@driverdev.osuosl.org, linux-kernel@vger.kernel.org
+References: <20190623170730.5095-1-digetx@gmail.com>
+ <20190623170730.5095-2-digetx@gmail.com>
+Message-ID: <e2dbeed2-7596-d687-d200-8f08dc267c83@gmail.com>
+Date:   Mon, 12 Aug 2019 19:42:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <20190808085522.21950-1-narmstrong@baylibre.com> <20190808085522.21950-4-narmstrong@baylibre.com>
-In-Reply-To: <20190808085522.21950-4-narmstrong@baylibre.com>
-From:   Maxime Jourdan <mjourdan@baylibre.com>
-Date:   Mon, 12 Aug 2019 18:31:05 +0200
-Message-ID: <CAMO6naxDkpjLTaByYBhkgP6i1YE1F1ATBAp8gPuVjDy9DAUM7g@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] MAINTAINERS: Update with Amlogic DRM bindings
- converted as YAML
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190623170730.5095-2-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 8, 2019 at 10:55 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The amlogic,meson-dw-hdmi.txt and amlogic,meson-vpu.txt has been
-> converted to YAML schemas, update MAINTAINERS to match them again.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+23.06.2019 20:07, Dmitry Osipenko пишет:
+> Enable IOMMU support for the video decoder.
+> 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  MAINTAINERS | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 6426db5198f0..c55c18531cd1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -5318,8 +5318,8 @@ L:        linux-amlogic@lists.infradead.org
->  W:     http://linux-meson.com/
->  S:     Supported
->  F:     drivers/gpu/drm/meson/
-> -F:     Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
-> -F:     Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
-> +F:     Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> +F:     Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->  F:     Documentation/gpu/meson.rst
->  T:     git git://anongit.freedesktop.org/drm/drm-misc
->
-> --
-> 2.22.0
->
+> 
+> No changes since v1.
+> 
+>  arch/arm/boot/dts/tegra30.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
+> index 934caa83c8db..ce162125e7bf 100644
+> --- a/arch/arm/boot/dts/tegra30.dtsi
+> +++ b/arch/arm/boot/dts/tegra30.dtsi
+> @@ -424,6 +424,7 @@
+>  		clocks = <&tegra_car TEGRA30_CLK_VDE>;
+>  		reset-names = "vde", "mc";
+>  		resets = <&tegra_car 61>, <&mc TEGRA30_MC_RESET_VDE>;
+> +		iommus = <&mc TEGRA_SWGROUP_VDE>;
+>  	};
+>  
+>  	apbmisc@70000800 {
+> 
 
-Reviewed-by: Maxime Jourdan <mjourdan@baylibre.com>
+Hello Thierry,
+
+Will be awesome if you could pick up this and [1][2] for v5.4. The rest of the VDE patches
+are already applied by the media maintainers in linux-next, please note that [2] is required
+to avoid problems caused by the notorious implicit IOMMU backing. Thanks in advance!
+
+[1] http://patchwork.ozlabs.org/patch/1120864/
+[2] http://patchwork.ozlabs.org/project/linux-tegra/list/?series=115608
