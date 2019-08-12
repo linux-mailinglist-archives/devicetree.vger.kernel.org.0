@@ -2,102 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74A1D8A08C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 16:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 800778A097
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 16:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbfHLORe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 10:17:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44440 "EHLO mail.kernel.org"
+        id S1727497AbfHLOT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 10:19:58 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:53488 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726354AbfHLORe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 10:17:34 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7AAFE20679;
-        Mon, 12 Aug 2019 14:17:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565619453;
-        bh=29VUEDM2dmCIL10kGZLjVx43mBJDQtDwf0Ic1S1sTGo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=iPo9emimkCnzzzAxb2H8E560aYiHwJHh7Psl/fziDqjGoLkHs3vb6blwqkwcN46JF
-         b598yTAgaD/nRH7UskzS1p9KKlDV3iu8DQFYZcnUWXeBfEQC9MYMyAIR7vO3xjjOrB
-         eyhELkzHxw5Q82A/CMvAK9eCWpNLgKGgZfhpChH0=
-Date:   Mon, 12 Aug 2019 16:17:24 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Chuanhua Han <chuanhua.han@nxp.com>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/4] arm64: dts: ls1088a: Fix incorrect I2C clock divider
-Message-ID: <20190812141722.GJ27041@X250>
-References: <20190806084223.23543-1-chuanhua.han@nxp.com>
+        id S1727206AbfHLOT6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 10:19:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=v50gXxy0UcfFeBrMZIy3FtqZqPifqcZZR2bgm2dAuIo=; b=h84BwQy1LrMNOO8yJaW9C+VNJq
+        KW/ljM91Z/GUyUKeTsx34crAiF9KEsrEPyaKJle9NHlpZm1iDOJsHP5P/dWNLrJ3n0eMfUUK2x6qN
+        vMSILa+zvZAHUw3WsbeBLofilTAVSkd+XdemD5bcSXhd0/MpBPwZmzH0a9G7dCub3Vd4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hxBAw-0000mk-AP; Mon, 12 Aug 2019 16:19:54 +0200
+Date:   Mon, 12 Aug 2019 16:19:54 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com
+Subject: Re: [PATCH v4 10/14] net: phy: adin: implement PHY subsystem
+ software reset
+Message-ID: <20190812141954.GP14290@lunn.ch>
+References: <20190812112350.15242-1-alexandru.ardelean@analog.com>
+ <20190812112350.15242-11-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190806084223.23543-1-chuanhua.han@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190812112350.15242-11-alexandru.ardelean@analog.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 06, 2019 at 04:42:20PM +0800, Chuanhua Han wrote:
-> Ls1088a platform, the i2c input clock is actually platform pll CLK / 8
-> (this is the hardware connection), other clock divider can not get the
-> correct i2c clock, resulting in the output of SCL pin clock is not
-> accurate.
-> 
-> Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
+> +static int adin_reset(struct phy_device *phydev)
+> +{
+> +	/* If there is a reset GPIO just exit */
+> +	if (!IS_ERR_OR_NULL(phydev->mdio.reset_gpio))
+> +		return 0;
 
-@Leo, looks good?
+I'm not so happy with this.
 
-Shawn
+First off, there are two possible GPIO configurations. The GPIO can be
+applied to all PHYs on the MDIO bus. That GPIO is used when the bus is
+probed. There can also be a per PHY GPIO, which is what you are
+looking at here.
 
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 20f5ebd..30b760e 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -324,7 +324,7 @@
->  			#size-cells = <0>;
->  			reg = <0x0 0x2000000 0x0 0x10000>;
->  			interrupts = <0 34 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clockgen 4 3>;
-> +			clocks = <&clockgen 4 7>;
->  			status = "disabled";
->  		};
->  
-> @@ -334,7 +334,7 @@
->  			#size-cells = <0>;
->  			reg = <0x0 0x2010000 0x0 0x10000>;
->  			interrupts = <0 34 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clockgen 4 3>;
-> +			clocks = <&clockgen 4 7>;
->  			status = "disabled";
->  		};
->  
-> @@ -344,7 +344,7 @@
->  			#size-cells = <0>;
->  			reg = <0x0 0x2020000 0x0 0x10000>;
->  			interrupts = <0 35 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clockgen 4 3>;
-> +			clocks = <&clockgen 4 7>;
->  			status = "disabled";
->  		};
->  
-> @@ -354,7 +354,7 @@
->  			#size-cells = <0>;
->  			reg = <0x0 0x2030000 0x0 0x10000>;
->  			interrupts = <0 35 IRQ_TYPE_LEVEL_HIGH>;
-> -			clocks = <&clockgen 4 3>;
-> +			clocks = <&clockgen 4 7>;
->  			status = "disabled";
->  		};
->  
-> -- 
-> 2.9.5
-> 
+The idea of putting the GPIO handling in the core is that PHYs don't
+need to worry about it. How much of a difference does it make if the
+PHY is both reset via GPIO and then again in software? How slow is the
+software reset? Maybe just unconditionally do the reset, if it is not
+too slow.
+
+> +
+> +	/* Reset PHY core regs & subsystem regs */
+> +	return adin_subsytem_soft_reset(phydev);
+> +}
+> +
+> +static int adin_probe(struct phy_device *phydev)
+> +{
+> +	return adin_reset(phydev);
+> +}
+
+Why did you decide to do this as part of probe, and not use the
+.soft_reset member of phy_driver?
+
+> +
+>  static struct phy_driver adin_driver[] = {
+>  	{
+>  		PHY_ID_MATCH_MODEL(PHY_ID_ADIN1200),
+>  		.name		= "ADIN1200",
+>  		.config_init	= adin_config_init,
+> +		.probe		= adin_probe,
+>  		.config_aneg	= adin_config_aneg,
+>  		.read_status	= adin_read_status,
+>  		.ack_interrupt	= adin_phy_ack_intr,
+> @@ -461,6 +503,7 @@ static struct phy_driver adin_driver[] = {
+>  		PHY_ID_MATCH_MODEL(PHY_ID_ADIN1300),
+>  		.name		= "ADIN1300",
+>  		.config_init	= adin_config_init,
+> +		.probe		= adin_probe,
+>  		.config_aneg	= adin_config_aneg,
+>  		.read_status	= adin_read_status,
+>  		.ack_interrupt	= adin_phy_ack_intr,
+
+Thanks
+	Andrew
