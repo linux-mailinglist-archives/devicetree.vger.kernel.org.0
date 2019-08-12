@@ -2,108 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 868E28A60F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 20:25:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 988E28A68A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 20:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727225AbfHLSZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 14:25:30 -0400
-Received: from mail-yb1-f201.google.com ([209.85.219.201]:46108 "EHLO
-        mail-yb1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727221AbfHLSZa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 14:25:30 -0400
-Received: by mail-yb1-f201.google.com with SMTP id t18so79277916ybp.13
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 11:25:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=wKRiEgRg+/DU2DEnW3JXAo2ALm03Zt5EFSXAgxYeqSQ=;
-        b=nZnW3WMQCz05l6ICEKDk76hmQbTheMtNmdq6JZ/QeZtYLtrZAiLqFFk1eMlHLSI2Od
-         tokkC6/x0TWcLVC526+YvItwTB3ptDoHYp4j+cKEDqvfWUkOE8rrgMYMDQMcytdEnpVK
-         Javjy9SQgBLtDD2dU2xplDFS+oxT0Ga2sX3Ril4r8MutRMQa14VuakHxFBNsWNrIAS4h
-         DIRtjGVGWR9OjKG7snnTFLDSjqbzGtpfYXGEzsQCXJHzRILzFeuxO2G2H0dY4nW8xd59
-         l8IM2CEN0WEFxIOai8A1vQcyPfIG9qh+YILDCG39P1E9EDx0psdbHXaGAxoXDAVQ1+6l
-         UrzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=wKRiEgRg+/DU2DEnW3JXAo2ALm03Zt5EFSXAgxYeqSQ=;
-        b=XqRjZeXOW3V28i2KPSepALxkIC6dNk0kQoookWX0/YroE0td8QGC0SsjlQrfl6N7zt
-         hy8jjEF4kykUduWxLhBLNfyyLbRD97UMXJkl6FZdP1w+Rd9F3O2LGWWNTG5BNgmwng7r
-         KabEZ62zBEfLVBa27zlEKr2khcShsbpF78Gl4xwr4IvzQysPisBOj55V8Yjl5LqAKMi+
-         7lTa6cLP1NsLpJm3XRa4DApP0jqxSt2X5N9RahEM0MkNbNDULGEhIy9Fw34i+MjJ4qGT
-         XHaRZKL65wpe6Z2BeXmEKfkn8hAxSvt2XC2FSwQgeDLOL1gJA6TAJeHV4KCbwzFx4F3/
-         xp/w==
-X-Gm-Message-State: APjAAAUOt17mprm7CyqkJB7DjFFvM5IcQtQ1sxqHJ6veeVILCVFO4Chz
-        1HMBJYXMDrbXyuf/QCudOUOT7eL4nv+YC8DUznuUTQ==
-X-Google-Smtp-Source: APXvYqxpxYTLOV5V1kn9LOQBhsmrb/fq8obCcCZvetERJ23Gxs2qvszs3YbcjsnmIpYv/bSBR6DeRIUcOWhVdcSb2iYi7g==
-X-Received: by 2002:a0d:ea06:: with SMTP id t6mr22043435ywe.186.1565634328967;
- Mon, 12 Aug 2019 11:25:28 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 11:24:21 -0700
-In-Reply-To: <20190812182421.141150-1-brendanhiggins@google.com>
-Message-Id: <20190812182421.141150-19-brendanhiggins@google.com>
-Mime-Version: 1.0
-References: <20190812182421.141150-1-brendanhiggins@google.com>
-X-Mailer: git-send-email 2.23.0.rc1.153.gdeed80330f-goog
-Subject: [PATCH v12 18/18] MAINTAINERS: add proc sysctl KUnit test to PROC
- SYSCTL section
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>,
-        Iurii Zaikin <yzaikin@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726541AbfHLSt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 14:49:58 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51522 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726488AbfHLSt6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 14:49:58 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 49584200696;
+        Mon, 12 Aug 2019 20:49:55 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 31398200692;
+        Mon, 12 Aug 2019 20:49:55 +0200 (CEST)
+Received: from fsr-ub1864-112.ea.freescale.net (fsr-ub1864-112.ea.freescale.net [10.171.82.98])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id C3EC12060E;
+        Mon, 12 Aug 2019 20:49:53 +0200 (CEST)
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/7] PM / devfreq: Add initial imx support
+Date:   Mon, 12 Aug 2019 21:49:44 +0300
+Message-Id: <cover.1565633880.git.leonard.crestez@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for the new proc sysctl KUnit test to the PROC SYSCTL section,
-and add Iurii as a maintainer.
+This adds devfreq support for imx8mm, covering dynamic scaling of
+internal NOC and DDR Controller
 
-Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-Cc: Iurii Zaikin <yzaikin@google.com>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-Acked-by: Luis Chamberlain <mcgrof@kernel.org>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+Scaling for simple busses (NIC/NOC) is done through the clk framework
+while DRAM scaling is performed in firmware with an "imx-ddrc" wrapper
+for devfreq.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f0bd77e8a8a2f..0cac78807137b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12965,12 +12965,14 @@ F:	Documentation/filesystems/proc.txt
- PROC SYSCTL
- M:	Luis Chamberlain <mcgrof@kernel.org>
- M:	Kees Cook <keescook@chromium.org>
-+M:	Iurii Zaikin <yzaikin@google.com>
- L:	linux-kernel@vger.kernel.org
- L:	linux-fsdevel@vger.kernel.org
- S:	Maintained
- F:	fs/proc/proc_sysctl.c
- F:	include/linux/sysctl.h
- F:	kernel/sysctl.c
-+F:	kernel/sysctl-test.c
- F:	tools/testing/selftests/sysctl/
- 
- PS3 NETWORK SUPPORT
+Changes since RFCv3:
+ * Implement passive support and set NOC parent to DDRC
+ * Drop scaling AHB/AXI for now (NOC/DDRC use most power anyway)
+ * Split into two devreq drivers (and bindings) because the ddrc is
+really a distinct piece of hardware.
+ * Stop relying on clk_min_rate
+ * Fetch info about dram clk parents from firmware instead of
+hardcoding in driver. This can more easily support additional rates.
+ * Perform DRAM frequency inside devfreq instead of clk, mostly due to
+objections to earlier RFCs for "imx8m-dram-clk"
+ * Link: https://patchwork.kernel.org/cover/11056779/
+ * Link: https://patchwork.kernel.org/patch/11049429/
+
+Stephen: It would be very helpful if you could comment on the dram
+frequency switching code. I moved it outside of clk but now I have to
+use provider APIs outside of drivers/clk for parent manipulation. Few
+other drivers do that so maybe it's OK?
+
+Scaling buses can cause problems for devices with realtime bandwith
+requirements such as display, the intention is to use the interconnect
+framework to make DEV_PM_QOS_MIN_FREQUENCY to devfreq. There are
+separate patches for that:
+
+ * https://patchwork.kernel.org/patch/11084279/
+ * https://patchwork.kernel.org/cover/11078671/
+
+Leonard Crestez (7):
+  clk: imx8m: Set CLK_GET_RATE_NOCACHE on dram_alt/apb
+  dt-bindings: devfreq: Add bindings for generic imx buses
+  PM / devfreq: Add generic imx bus driver
+  dt-bindings: devfreq: Add bindings for imx ddr controller
+  PM / devfreq: Add dynamic scaling for imx ddr controller
+  PM / devfreq: imx-ddrc: Measure bandwidth with perf
+  arm64: dts: imx8mm: Add devfreq nodes
+
+ .../devicetree/bindings/devfreq/imx-ddrc.yaml |  53 ++
+ .../devicetree/bindings/devfreq/imx.yaml      |  50 ++
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  51 +-
+ drivers/clk/imx/clk-imx8mm.c                  |   6 +-
+ drivers/clk/imx/clk-imx8mn.c                  |   6 +-
+ drivers/clk/imx/clk-imx8mq.c                  |   7 +-
+ drivers/devfreq/Kconfig                       |  12 +
+ drivers/devfreq/Makefile                      |   1 +
+ drivers/devfreq/imx-ddrc.c                    | 511 ++++++++++++++++++
+ drivers/devfreq/imx-devfreq.c                 | 148 +++++
+ 10 files changed, 837 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/devfreq/imx-ddrc.yaml
+ create mode 100644 Documentation/devicetree/bindings/devfreq/imx.yaml
+ create mode 100644 drivers/devfreq/imx-ddrc.c
+ create mode 100644 drivers/devfreq/imx-devfreq.c
+
 -- 
-2.23.0.rc1.153.gdeed80330f-goog
+2.17.1
 
