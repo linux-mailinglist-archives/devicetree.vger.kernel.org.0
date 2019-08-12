@@ -2,86 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81ABE8A2AA
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63D598A2B4
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726185AbfHLPvj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 12 Aug 2019 11:51:39 -0400
-Received: from eu-smtp-delivery-151.mimecast.com ([207.82.80.151]:58480 "EHLO
-        eu-smtp-delivery-151.mimecast.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725901AbfHLPvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 11:51:39 -0400
-Received: from AcuMS.aculab.com (156.67.243.126 [156.67.243.126]) (Using
- TLS) by relay.mimecast.com with ESMTP id
- uk-mta-96-FR3q9SRhOcK_sOnXAhoHrg-1; Mon, 12 Aug 2019 16:51:36 +0100
-Received: from AcuMS.Aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) by
- AcuMS.aculab.com (fd9f:af1c:a25b:0:43c:695e:880f:8750) with Microsoft SMTP
- Server (TLS) id 15.0.1347.2; Mon, 12 Aug 2019 16:51:35 +0100
-Received: from AcuMS.Aculab.com ([fe80::43c:695e:880f:8750]) by
- AcuMS.aculab.com ([fe80::43c:695e:880f:8750%12]) with mapi id 15.00.1347.000;
- Mon, 12 Aug 2019 16:51:35 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Joe Burmeister' <joe.burmeister@devtank.co.uk>,
+        id S1725901AbfHLPyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 11:54:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53034 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725887AbfHLPyy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 11:54:54 -0400
+Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 02F5B20820;
+        Mon, 12 Aug 2019 15:54:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565625293;
+        bh=GqbIVxc3IQ9SeU60mFNZIC6Nb287EK7LtdRjU/Ufx7U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FLw9OfRUlzvUhEmRtEKfgvMkxE0PeWjjuY+1TQMisiwwx+YRhJ5AiokPZ1ZnOmMVS
+         /jV7XfO9GrRel6gy1O0jcCgWqAWnIAhhZaR6CsIoLY1b0vpErRfQ6NjeHDOMZrLiij
+         5HKbpaw3tryoGqsBC8WqkuO+z+XQEKAdz/gI+ELE=
+Date:   Mon, 12 Aug 2019 17:54:42 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Aisheng Dong <aisheng.dong@nxp.com>
+Cc:     Dong Aisheng <dongas86@gmail.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Srinivas Kandagatla" <srinivas.kandagatla@linaro.org>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH] Add optional chip erase functionality to AT25 EEPROM
- driver.
-Thread-Topic: [PATCH] Add optional chip erase functionality to AT25 EEPROM
- driver.
-Thread-Index: AQHVTrGNJIfDRfq0GECP/9557qPIG6b3q6Kw
-Date:   Mon, 12 Aug 2019 15:51:35 +0000
-Message-ID: <9f1c7d45020d482390737be22c885a9b@AcuMS.aculab.com>
-References: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
-In-Reply-To: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        devicetree <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v3 02/11] dt-bindings: clock: imx-lpcg: add support to
+ parse clocks from device tree
+Message-ID: <20190812155440.GA12237@X250>
+References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
+ <1563289265-10977-3-git-send-email-aisheng.dong@nxp.com>
+ <20190803135048.GL8870@X250.getinternet.no>
+ <CAA+hA=TVv8m2GZr0W-u+S6XzJUCYrFDF95iyUGyAsbYMwatyZg@mail.gmail.com>
+ <20190812130041.GD27041@X250>
+ <AM0PR04MB42117575E82B4B762FE2143880D30@AM0PR04MB4211.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-MC-Unique: FR3q9SRhOcK_sOnXAhoHrg-1
-X-Mimecast-Spam-Score: 0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM0PR04MB42117575E82B4B762FE2143880D30@AM0PR04MB4211.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Joe Burmeister
-> Sent: 09 August 2019 13:54
+On Mon, Aug 12, 2019 at 02:41:55PM +0000, Aisheng Dong wrote:
+> > From: Shawn Guo <shawnguo@kernel.org>
+> > Sent: Monday, August 12, 2019 9:01 PM 
+> > On Mon, Aug 05, 2019 at 11:27:20AM +0800, Dong Aisheng wrote:
+> > > > > +- compatible:                Should be one of:
+> > > > > +                       "fsl,imx8qxp-lpcg"
+> > > > > +                       "fsl,imx8qm-lpcg" followed by
+> > "fsl,imx8qxp-lpcg".
+> > > > > +- reg:                       Address and length of the register set.
+> > > > > +- #clock-cells:              Should be 1. One LPCG supports multiple
+> > clocks.
+> > > > > +- clocks:            Input parent clocks phandle array for each clock.
+> > > > > +- bit-offset:                An integer array indicating the bit offset
+> > for each clock.
+> > > >
+> > > > I guess that the driver should be able to figure bit offset from
+> > > > 'clock-indices' property.
+> > > >
+> > >
+> > > Yes, it can be done in theory.
+> > > Then the binding may look like:
+> > > sdhc0_lpcg: clock-controller@5b200000 {
+> > >         ...
+> > >         #clock-cells = <1>;
+> > >         clocks = <&sdhc0_clk IMX_SC_PM_CLK_PER>,
+> > >                  <&conn_ipg_clk>, <&conn_axi_clk>;
+> > >         clock-indices = <0>, <16>, <20>;
+> > >         clock-output-names = "sdhc0_lpcg_per_clk",
+> > >                              "sdhc0_lpcg_ipg_clk",
+> > >                              "sdhc0_lpcg_ahb_clk";
+> > >         power-domains = <&pd IMX_SC_R_SDHC_0>; };
+> > >
+> > > usdhc1: mmc@5b010000 {
+> > >         ...
+> > >         clocks = <&sdhc0_lpcg 16>,
+> > >                  <&sdhc0_lpcg 0>,
+> > >                  <&sdhc0_lpcg 20>;
+> > >         clock-names = "ipg", "per", "ahb"; };
+> > >
+> > > However, after trying, i found  one limitation if using clock-indices
+> > > that users have to do a secondary search for the indices value from
+> > > clock names which is not very friendly.
+> > >
+> > > Formerly from the clock output names, user can easily get the clock
+> > > index as they're in fixed orders as output names, so very easily to
+> > > use.
+> > > e.g.
+> > > clocks = <&sdhc0_lpcg 1>,
+> > >          <&sdhc0_lpcg 0>,
+> > >          <&sdhc0_lpcg 2>;
+> > >
+> > > If using clock-indices, users have no way to know it's clock index
+> > > from clock output names order unless they do a secondary search from
+> > > the clock-indice array accordingly.
+> > > For example, for "sdhc0_lpcg_ahb_clk", user can easily know its
+> > > reference is <&sdhc0_lpcg 2>.
+> > > But if using clock-indice, we need search clock-indices array to find
+> > > its reference becomes <&sdhc0_lpcg 20>. So this seems like a drawback
+> > > if using clock-indices.
+> > 
+> > Shouldn't we have constant macro defined for those numbers, so that both
+> > 'clock-indices' and 'clocks' of client device can use?
+> > 
 > 
-> Many, though not all, AT25s have an instruction for chip erase.
-> If there is one in the datasheet, it can be added to device tree.
-> Erase can then be done in userspace via the sysfs API with a new
-> "erase" device attribute. This matches the eeprom_93xx46 driver's
-> "erase".
+> I think we can do it.
+> Does below one look ok to you?
+> #define IMX_LPCG_ CLK_0	0
+> #define IMX_LPCG_ CLK_1	4
+> #define IMX_LPCG_ CLK_2	8
+> #define IMX_LPCG_ CLK_3	12
+> #define IMX_LPCG_ CLK_4	16
+> #define IMX_LPCG_ CLK_5	20
+> #define IMX_LPCG_ CLK_6	24
+> #define IMX_LPCG_ CLK_7	28
 
-Is it actually worth doing though?
+Looks fine to me, except the space in the middle of macro name, which
+compiler will complain anyway :)
 
-I'm guessing that device erase can easily take over a minute.
+Shawn
 
-When I looked at 'device erase' on an EEPROM it took just as long
-as erasing the sectors one at a time - but without the warm cosy
-feeling that progress was being made.
-
-Not only that you can't really interrupt the erase, so either
-the application has to sleep uninterruptibly for the duration
-or you have to have some kind of 'device busy' response while
-it is done asynchronously.
-
-	David
-
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
-
+> 
+> The usage will look like:
+> <&sdhc0_lpcg IMX_LPCG_CLK_5>
