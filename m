@@ -2,254 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74FD68A4AD
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 19:33:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 180FC8A539
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 20:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727033AbfHLRdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 13:33:53 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:38867 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726267AbfHLRdv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 13:33:51 -0400
-Received: by mail-wm1-f68.google.com with SMTP id m125so304136wmm.3
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 10:33:48 -0700 (PDT)
+        id S1726479AbfHLSCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 14:02:14 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38621 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726263AbfHLSCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 14:02:13 -0400
+Received: by mail-ot1-f67.google.com with SMTP id r20so12391194ota.5
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 11:02:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=cAgtYZHgV6xUR+yC/VEEeHLdtqd6juyZ2ABBZdUumQE=;
-        b=FkOMMl3g4RPI0502AjI9JhmjFGhx8iEHR6MXlhd7QQb38nkD5pmT0wlZ6B3cwjdfkR
-         a4w1WS5ORSm542pGKgVcQXmLXR4jP/kFGbW6sQYIOny5xVRPsj5D3HEidrrZ5iJVn8JP
-         u+CpTzQoxr5Pe+QSU9KvI1UUpxSr9VhDPwGOA=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=o5tzW8kWC8Wkh2FfueQgY1s7YWywf8RlckITjlgkEic=;
+        b=VdPjHoFrZ4jfoGKCpi6jtnLfU3Cx05Xx2VBgkat13H9jFouqUyflaIGs12Ib/ix8Dr
+         bfJN8qJ0yH58dtVc52QTOj81/IgUYsIRoXfmTBIoHbMkdwcA2HWxHZpUa1mh+Fu7rMMd
+         EUoV4oPjYCfT8q/iK2lBu2tr2b9oL9k3+yIyq0tHRD3zeezbcBspXJAgFaIwwP88lFAR
+         L3WAbbdn/Tiit4uCbtAklHWd3N2r0pxsLWMjeQ8xbIRXtEIREyLlOW5gh4PTlBWo5jRS
+         OkzJbtXas4jjmovX20ayEGF+EyfSoIQXgO7kIrI/fL14Ij3qUijKLnwzSglBmtMUvwl3
+         hztQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=cAgtYZHgV6xUR+yC/VEEeHLdtqd6juyZ2ABBZdUumQE=;
-        b=gKnsT0HoEno1P81ngot8n/Wr5wz0MtEbxvnTJ6GmCkOZEA4Sy/GnoDGUJjJNHvnA4p
-         RKdiNtkZnPFi9Uy+mmYm+J57XVgaoX6w25I4EK4S03XmknLHIqVlnUrmmhyCxWq6R23b
-         DMv0Gz6Xfe6mszvbEuwUXeYusBj39y+gagzCDC3e4I61wNs5TLxqLm0OrEPle2KcFkKR
-         5Y9rUEHB3iMLV0tzV+Q+psZavkfW7gaKzEq8IKF1OJ2LioyiGQeZae6HY0zKoMg9EAw+
-         nVlT2X/D70gp1PoHAeNO6lrASyjAZWPg6p8znFnDyp3yd7QEi5UyvGl+T/Gcw1FOYoqx
-         iK3w==
-X-Gm-Message-State: APjAAAVNTyXBor3M1DiMAPf4baUyjsKF2aoZVbI/rCNX/2xbn/15Czan
-        F+ZBKCQ1kQcStQpmRr9QRiaAAg==
-X-Google-Smtp-Source: APXvYqzl9ysVhJW+R47AyXAx8TEcPlPa5dLrHEwezvxULcJifU7LOO2WC9NW3PQshBaROW+6GP8lMw==
-X-Received: by 2002:a7b:c95a:: with SMTP id i26mr402521wml.175.1565631227782;
-        Mon, 12 Aug 2019 10:33:47 -0700 (PDT)
-Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id j10sm183930432wrd.26.2019.08.12.10.33.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Aug 2019 10:33:47 -0700 (PDT)
-Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
-To:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lori Hikichi <lori.hikichi@broadcom.com>,
-        Icarus Chau <icarus.chau@broadcom.com>,
-        Shivaraj Shetty <sshetty1@broadcom.com>
-References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
-From:   Ray Jui <ray.jui@broadcom.com>
-Message-ID: <a2b0ccc1-63d5-177d-2b54-d79c65057907@broadcom.com>
-Date:   Mon, 12 Aug 2019 10:33:42 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=o5tzW8kWC8Wkh2FfueQgY1s7YWywf8RlckITjlgkEic=;
+        b=WJ81wo1kad+e0ic5sbGIULhpgBfEa5ooWCqKmzfwlMI83W64J48NsirMuv7jD+SXeN
+         XFSKvh8M2QxZP1NVpRx0uSV5X2R01Vl12CKkJQin4YnYYcZq6yLgCgwOvu/N7oVCJH/f
+         bldN3N/D/z6QXetZNPHtOH9Zbru9yMsXtzvod/wH8oX8MonwP9RoqVecBCFo+Q1RqjiO
+         8EEqH/D0+0AKeip0tUl91pNLH3vKCag920VonUwv858dYNTAQvVHLDGYL0Kt1nexzyLA
+         aiCtLGDew6OL96Br8JXkYeWLg0Q1MMrAS5g1Rz3iLXXuJ6v/3FdtpM/Xu6c20CmTJNys
+         G4ww==
+X-Gm-Message-State: APjAAAXvgqNDXuEextZ9PZZh/gWBHVRCOv4HZKyGIZ4vDPX4IrlNrIwB
+        hTLiGXRchLtfd9xcW0x2ojJaR+UJb3Py1isp+LE=
+X-Google-Smtp-Source: APXvYqylOeO29qsPxIoTbp6EhFehanCfO4C18T009/RlumoIDIP8r3sL9VMcaoQUAiUD13UBVbUvIv/7+IgGpoqV+qI=
+X-Received: by 2002:aca:c40b:: with SMTP id u11mr267438oif.145.1565632932521;
+ Mon, 12 Aug 2019 11:02:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com> <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
+ <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at> <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
+ <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com> <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
+ <20190807115614.phm7sbyae6yajkug@flea> <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+ <20190808162628.pthvy3tgf3naj76s@flea> <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+ <20190812080420.saelmqb36vkelxn4@flea>
+In-Reply-To: <20190812080420.saelmqb36vkelxn4@flea>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Mon, 12 Aug 2019 11:01:51 -0700
+Message-ID: <CA+E=qVchsqOF_hVD-qBuKwi7PTMYtUR-LE2dD_mpptFJcWE_yw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Jared D . McNeill" <jmcneill@netbsd.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+On Mon, Aug 12, 2019 at 1:04 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Thu, Aug 08, 2019 at 12:59:07PM -0700, Vasily Khoruzhick wrote:
+> > On Thu, Aug 8, 2019 at 9:26 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick wrote:
+> > > > On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > >
+> > > > > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
+> > > > > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > > >
+> > > > > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
+> > > > > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
+> > > > > > > >>
+> > > > > > > >> Vasily Khoruzhick writes:
+> > > > > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > > > >>>>
+> > > > > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
+> > > > > > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
+> > > > > > > >>>>> as result 'perf top' shows no events.
+> > > > > > > >>>>
+> > > > > > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
+> > > > > > > >>>> It could well just be that the interrupt numbers are wrong...
+> > > > > > > >>>
+> > > > > > > >>> Looks like it does, at least result looks plausible:
+> > > > > > > >>
+> > > > > > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
+> > > > > > > >>
+> > > > > > > >> Unfortunately I wasn't aware that perf stat is a poor test for
+> > > > > > > >> the interrupts part of the node, when I added it. So I'm not too
+> > > > > > > >> surprised I got it wrong.
+> > > > > > > >>
+> > > > > > > >> However, it would be unfortunate if the node got removed completely,
+> > > > > > > >> because perf stat would not work anymore. Maybe we can only remove
+> > > > > > > >> the interrupts or just fix them even if the HW doesn't work?
+> > > > > > > >
+> > > > > > > > I'm not familiar with PMU driver. Is it possible to get it working
+> > > > > > > > without interrupts?
+> > > > > > >
+> > > > > > > Yup - you get a grumpy message from the driver, it will refuse sampling
+> > > > > > > events (the ones which weren't working anyway), and if you measure
+> > > > > > > anything for long enough that a counter overflows you'll get wonky
+> > > > > > > results. But for counting hardware events over relatively short periods
+> > > > > > > it'll still do the job.
+> > > > > >
+> > > > > > I tried to drop interrupts completely from the node but 'perf top' is
+> > > > > > still broken. Though now in different way: it complains "cycles: PMU
+> > > > > > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
+> > > > > > stat'"
+> > > > >
+> > > > > I have no idea if that's the culprit, but what is the state of the
+> > > > > 0x09010000 register?
+> > > >
+> > > > What register is that and how do I check it?
+> > >
+> > > It's in the CPUX Configuration block, and the bits are labelled as CPU
+> > > Debug Reset.
+> > >
+> > > And if you have busybox, you can use devmem.
+> >
+> > CPUX configuration block is at 0x01700000 according to A64 user
+> > manual, and particular register you're interested in is at 0x01700080,
+> > its value is 0x1110110F.
+> >
+> > Bits 16-19 are not defined in user manual and are not set.
+>
+> Sorry, I somehow thought this was for the H6...
+>
+> I don't have any idea then :/
 
-On 8/6/19 9:09 PM, Rayagonda Kokatanur wrote:
-> From: Lori Hikichi <lori.hikichi@broadcom.com>
-> 
-> Enable handling of i2c repeated start. The current code
-> handles a multi msg i2c transfer as separate i2c bus
-> transactions. This change will now handle this case
-> using the i2c repeated start protocol. The number of msgs
-> in a transfer is limited to two, and must be a write
-> followed by a read.
-> 
-> Signed-off-by: Lori Hikichi <lori.hikichi@broadcom.com>
-> Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
-> Signed-off-by: Icarus Chau <icarus.chau@broadcom.com>
-> Signed-off-by: Ray Jui <ray.jui@broadcom.com>
-> Signed-off-by: Shivaraj Shetty <sshetty1@broadcom.com>
-> ---
+OK, so what should we do? 'perf top'/'perf record' work fine if PMU
+node is dropped, but they don't work if PMU node is present (even with
+interrupts dropped). I'd prefer to have 'perf top' and 'perf record'
+working instead of 'perf stat'
 
-Note this patch has gone through internal review and testing on various 
-I2C slave devices. It is introduced to work around limitation of our I2C 
-controller and allows it to work on certain I2C slave devices that are 
-sensitive and requires repeated start between transactions instead of a 
-stop.
-
-Given that my name is also on the Signed-off-by since I helped to 
-rewrite part of the patch, I'm not going to add my Reviewed-by tag here.
-
-Please help to review.
-
-Thanks,
-
-Ray
-
->   drivers/i2c/busses/i2c-bcm-iproc.c | 70 +++++++++++++++++++++++++++++++-------
->   1 file changed, 57 insertions(+), 13 deletions(-)
-> 
-> diff --git a/drivers/i2c/busses/i2c-bcm-iproc.c b/drivers/i2c/busses/i2c-bcm-iproc.c
-> index d7fd76b..15fedcf 100644
-> --- a/drivers/i2c/busses/i2c-bcm-iproc.c
-> +++ b/drivers/i2c/busses/i2c-bcm-iproc.c
-> @@ -81,6 +81,7 @@
->   #define M_CMD_PROTOCOL_MASK          0xf
->   #define M_CMD_PROTOCOL_BLK_WR        0x7
->   #define M_CMD_PROTOCOL_BLK_RD        0x8
-> +#define M_CMD_PROTOCOL_PROCESS       0xa
->   #define M_CMD_PEC_SHIFT              8
->   #define M_CMD_RD_CNT_SHIFT           0
->   #define M_CMD_RD_CNT_MASK            0xff
-> @@ -675,13 +676,20 @@ static int bcm_iproc_i2c_xfer_wait(struct bcm_iproc_i2c_dev *iproc_i2c,
->   	return 0;
->   }
->   
-> -static int bcm_iproc_i2c_xfer_single_msg(struct bcm_iproc_i2c_dev *iproc_i2c,
-> -					 struct i2c_msg *msg)
-> +/*
-> + * If 'process_call' is true, then this is a multi-msg transfer that requires
-> + * a repeated start between the messages.
-> + * More specifically, it must be a write (reg) followed by a read (data).
-> + * The i2c quirks are set to enforce this rule.
-> + */
-> +static int bcm_iproc_i2c_xfer_internal(struct bcm_iproc_i2c_dev *iproc_i2c,
-> +					struct i2c_msg *msgs, bool process_call)
->   {
->   	int i;
->   	u8 addr;
->   	u32 val, tmp, val_intr_en;
->   	unsigned int tx_bytes;
-> +	struct i2c_msg *msg = &msgs[0];
->   
->   	/* check if bus is busy */
->   	if (!!(iproc_i2c_rd_reg(iproc_i2c,
-> @@ -707,14 +715,29 @@ static int bcm_iproc_i2c_xfer_single_msg(struct bcm_iproc_i2c_dev *iproc_i2c,
->   			val = msg->buf[i];
->   
->   			/* mark the last byte */
-> -			if (i == msg->len - 1)
-> -				val |= BIT(M_TX_WR_STATUS_SHIFT);
-> +			if (!process_call && (i == msg->len - 1))
-> +				val |= 1 << M_TX_WR_STATUS_SHIFT;
->   
->   			iproc_i2c_wr_reg(iproc_i2c, M_TX_OFFSET, val);
->   		}
->   		iproc_i2c->tx_bytes = tx_bytes;
->   	}
->   
-> +	/* Process the read message if this is process call */
-> +	if (process_call) {
-> +		msg++;
-> +		iproc_i2c->msg = msg;  /* point to second msg */
-> +
-> +		/*
-> +		 * The last byte to be sent out should be a slave
-> +		 * address with read operation
-> +		 */
-> +		addr = msg->addr << 1 | 1;
-> +		/* mark it the last byte out */
-> +		val = addr | (1 << M_TX_WR_STATUS_SHIFT);
-> +		iproc_i2c_wr_reg(iproc_i2c, M_TX_OFFSET, val);
-> +	}
-> +
->   	/* mark as incomplete before starting the transaction */
->   	if (iproc_i2c->irq)
->   		reinit_completion(&iproc_i2c->done);
-> @@ -733,7 +756,7 @@ static int bcm_iproc_i2c_xfer_single_msg(struct bcm_iproc_i2c_dev *iproc_i2c,
->   	 * underrun interrupt, which will be triggerred when the TX FIFO is
->   	 * empty. When that happens we can then pump more data into the FIFO
->   	 */
-> -	if (!(msg->flags & I2C_M_RD) &&
-> +	if (!process_call && !(msg->flags & I2C_M_RD) &&
->   	    msg->len > iproc_i2c->tx_bytes)
->   		val_intr_en |= BIT(IE_M_TX_UNDERRUN_SHIFT);
->   
-> @@ -743,6 +766,8 @@ static int bcm_iproc_i2c_xfer_single_msg(struct bcm_iproc_i2c_dev *iproc_i2c,
->   	 */
->   	val = BIT(M_CMD_START_BUSY_SHIFT);
->   	if (msg->flags & I2C_M_RD) {
-> +		u32 protocol;
-> +
->   		iproc_i2c->rx_bytes = 0;
->   		if (msg->len > M_RX_FIFO_MAX_THLD_VALUE)
->   			iproc_i2c->thld_bytes = M_RX_FIFO_THLD_VALUE;
-> @@ -758,7 +783,10 @@ static int bcm_iproc_i2c_xfer_single_msg(struct bcm_iproc_i2c_dev *iproc_i2c,
->   		/* enable the RX threshold interrupt */
->   		val_intr_en |= BIT(IE_M_RX_THLD_SHIFT);
->   
-> -		val |= (M_CMD_PROTOCOL_BLK_RD << M_CMD_PROTOCOL_SHIFT) |
-> +		protocol = process_call ?
-> +				M_CMD_PROTOCOL_PROCESS : M_CMD_PROTOCOL_BLK_RD;
-> +
-> +		val |= (protocol << M_CMD_PROTOCOL_SHIFT) |
->   		       (msg->len << M_CMD_RD_CNT_SHIFT);
->   	} else {
->   		val |= (M_CMD_PROTOCOL_BLK_WR << M_CMD_PROTOCOL_SHIFT);
-> @@ -774,17 +802,31 @@ static int bcm_iproc_i2c_xfer(struct i2c_adapter *adapter,
->   			      struct i2c_msg msgs[], int num)
->   {
->   	struct bcm_iproc_i2c_dev *iproc_i2c = i2c_get_adapdata(adapter);
-> -	int ret, i;
-> +	bool process_call = false;
-> +	int ret;
->   
-> -	/* go through all messages */
-> -	for (i = 0; i < num; i++) {
-> -		ret = bcm_iproc_i2c_xfer_single_msg(iproc_i2c, &msgs[i]);
-> -		if (ret) {
-> -			dev_dbg(iproc_i2c->device, "xfer failed\n");
-> -			return ret;
-> +	if (num > 2) {
-> +		dev_err(iproc_i2c->device,
-> +			"Only support up to 2 messages. Current msg count %d\n",
-> +			num);
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	if (num == 2) {
-> +		/* Repeated start, use process call */
-> +		process_call = true;
-> +		if (msgs[1].flags & I2C_M_NOSTART) {
-> +			dev_err(iproc_i2c->device, "Invalid repeated start\n");
-> +			return -EOPNOTSUPP;
->   		}
->   	}
->   
-> +	ret = bcm_iproc_i2c_xfer_internal(iproc_i2c, msgs, process_call);
-> +	if (ret) {
-> +		dev_dbg(iproc_i2c->device, "xfer failed\n");
-> +		return ret;
-> +	}
-> +
->   	return num;
->   }
->   
-> @@ -806,6 +848,8 @@ static uint32_t bcm_iproc_i2c_functionality(struct i2c_adapter *adap)
->   };
->   
->   static struct i2c_adapter_quirks bcm_iproc_i2c_quirks = {
-> +	.flags = I2C_AQ_COMB_WRITE_THEN_READ,
-> +	.max_comb_1st_msg_len = M_TX_RX_FIFO_SIZE,
->   	.max_read_len = M_RX_MAX_READ_LEN,
->   };
->   
-> 
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
