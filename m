@@ -2,155 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F238BAA3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 204548BAAA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729188AbfHMNoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 09:44:09 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45790 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728267AbfHMNoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 09:44:09 -0400
-Received: by mail-ot1-f67.google.com with SMTP id m24so19571554otp.12
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 06:44:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=G+G9l6sHBySdRwXOFFe8DEk9Xv/ufJQ2kG5hgA77tBk=;
-        b=oNyITElNlRS5IKoO27dbnlQeDTR3di9cBknbLl/TzRy0OfFrN7FrszKKF9RogU+82h
-         dh650Zy/aJ4tb2PDVCTCfpkkEtuK7CP6wyvhe59rsHuW4ArpqsV5CicnCSEDxJvq8knl
-         pxnMGex44S9+BkbN+5C35qqGSCMt3pRK06ciJuCeUc2AuQ1Gyy/RH5yzkEcWx2Zp0ykC
-         nP8+N08rETqiN+2n5IEgRGCOBFtUKkdarfGWJvBcf464iZJc5meuswLu6uVksgkDyLtR
-         I+FyVSHqKfTjSTFMaRiP0la+7BNZVziBcovbP5SIe7+1EiEDcVAHrjaSYDSusCvhisMx
-         6OTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=G+G9l6sHBySdRwXOFFe8DEk9Xv/ufJQ2kG5hgA77tBk=;
-        b=Clm6M0BFbzWex7QKxUu/H8bM179XaToL6FvmCF19zSQjrGbv6Zj10JK2vRpJR+zVfc
-         TYteYUJPqQuWUaotsUoV/1kga8pcbU70dFdcN2WfVLnqGRSHYwpLgp+8owRhmgdDwY0s
-         aMMkJX+JDxe4enhC76+pFiZbqrKUf0H5YVRPftJlLRQV2CbfKMTOZa7kmUANSJ7mXd43
-         Jhqfxf+vJwzCYkWhwGLYV4noik7sji5Y34RJ78PoptFnf5/ZO8tVxgukiwEu6/lBlrlC
-         DzBobh9jhFz0dZkCBXOR8AnTEa95nAJbkP1MjZ3SojId9cweOHToyQNXOdx0n6tdM9dV
-         rrrw==
-X-Gm-Message-State: APjAAAUszNIDe9JUSL8f/rYCp/O0aT3+UpPbYemp9C4GX7N1hhtMOA8I
-        UQpM6kEoD/ey8ZzyKnRWdWnaPiCAWSdRhi6GWLnUDA==
-X-Google-Smtp-Source: APXvYqxsl0OjYU2QpOHrN2OzlJzdHW5Wiwko6BTDqu1Xxe8c8ISrQKbzx5myTiJVU5yAF7c/V/QpovgcR7IAVS7lIKo=
-X-Received: by 2002:a9d:5c0c:: with SMTP id o12mr22258479otk.145.1565703848169;
- Tue, 13 Aug 2019 06:44:08 -0700 (PDT)
+        id S1728566AbfHMNqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 09:46:30 -0400
+Received: from mga02.intel.com ([134.134.136.20]:39193 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728430AbfHMNqa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 09:46:30 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Aug 2019 06:46:29 -0700
+X-IronPort-AV: E=Sophos;i="5.64,381,1559545200"; 
+   d="scan'208";a="167056582"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Aug 2019 06:46:29 -0700
+Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id E974721100;
+        Tue, 13 Aug 2019 16:45:19 +0300 (EEST)
+Received: from sailus by punajuuri.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@linux.intel.com>)
+        id 1hxX71-0001Tg-2n; Tue, 13 Aug 2019 16:45:19 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     devicetree@vger.kernel.org
+Cc:     linux-media@vger.kernel.org
+Subject: [PATCH 1/1] dt-bindings: smiapp: Align documentation with current practices
+Date:   Tue, 13 Aug 2019 16:45:18 +0300
+Message-Id: <20190813134518.5640-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
- <40127356a1acd1f2ff1be1d8a120b305a4e17af4.1565168564.git.baolin.wang@linaro.org>
- <20190809091013.vguj4wty7qiab64t@pengutronix.de> <CAMz4kuLQsrBWjta1s=ZRPgxUd0_+_f-GbJV138tccuMLg2XCLA@mail.gmail.com>
-In-Reply-To: <CAMz4kuLQsrBWjta1s=ZRPgxUd0_+_f-GbJV138tccuMLg2XCLA@mail.gmail.com>
-From:   Baolin Wang <baolin.wang@linaro.org>
-Date:   Tue, 13 Aug 2019 21:43:56 +0800
-Message-ID: <CAMz4kuL-YFpV-JxAq2cM2=vKo1AUU2uWzrfG6SXG0NFqzOnq3Q@mail.gmail.com>
-Subject: Re: [PATCH 2/2] pwm: sprd: Add Spreadtrum PWM support
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+- The clock-lanes property is not needed for the sensors do not support
+  lane reordering. (The information possibly present in existing clock-lane
+  properties is simply not used.)
 
-On Fri, 9 Aug 2019 at 18:06, Baolin Wang <baolin.wang@linaro.org> wrote:
->
->  Hi Uwe,
->
-> On Fri, 9 Aug 2019 at 17:10, Uwe Kleine-K=C3=B6nig
-> <u.kleine-koenig@pengutronix.de> wrote:
-> >
-> > On Thu, Aug 08, 2019 at 04:59:39PM +0800, Baolin Wang wrote:
-> > > From: Neo Hou <neo.hou@unisoc.com>
-> > >
-> > > This patch adds the Spreadtrum PWM support, which provides maximum 4
-> > > channels.
-> > >
-> > > Signed-off-by: Neo Hou <neo.hou@unisoc.com>
-> > > Co-developed-by: Baolin Wang <baolin.wang@linaro.org>
-> > > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
-> > > ---
-> > >  drivers/pwm/Kconfig    |   10 ++
-> > >  drivers/pwm/Makefile   |    1 +
-> > >  drivers/pwm/pwm-sprd.c |  311 ++++++++++++++++++++++++++++++++++++++=
-++++++++++
-> > >  3 files changed, 322 insertions(+)
-> > >  create mode 100644 drivers/pwm/pwm-sprd.c
-> > >
-> > > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > > index a7e5751..4963b4d 100644
-> > > --- a/drivers/pwm/Kconfig
-> > > +++ b/drivers/pwm/Kconfig
-> > > @@ -423,6 +423,16 @@ config PWM_SPEAR
-> > >         To compile this driver as a module, choose M here: the module
-> > >         will be called pwm-spear.
-> > >
-> > > +config PWM_SPRD
-> > > +     tristate "Spreadtrum PWM support"
-> > > +     depends on ARCH_SPRD || COMPILE_TEST
-> >
-> > I think you need
-> >
-> >         depends on HAS_IOMEM
->
-> OK.
->
-> >
-> > > +     help
-> > > +       Generic PWM framework driver for the PWM controller on
-> > > +       Spreadtrum SoCs.
-> > > +
-> > > +       To compile this driver as a module, choose M here: the module
-> > > +       will be called pwm-sprd.
-> > > +
-> > >  config PWM_STI
-> > >       tristate "STiH4xx PWM support"
-> > >       depends on ARCH_STI
-> > > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> > > index 76b555b..26326ad 100644
-> > > --- a/drivers/pwm/Makefile
-> > > +++ b/drivers/pwm/Makefile
-> > > @@ -41,6 +41,7 @@ obj-$(CONFIG_PWM_ROCKCHIP)  +=3D pwm-rockchip.o
-> > >  obj-$(CONFIG_PWM_SAMSUNG)    +=3D pwm-samsung.o
-> > >  obj-$(CONFIG_PWM_SIFIVE)     +=3D pwm-sifive.o
-> > >  obj-$(CONFIG_PWM_SPEAR)              +=3D pwm-spear.o
-> > > +obj-$(CONFIG_PWM_SPRD)               +=3D pwm-sprd.o
-> > >  obj-$(CONFIG_PWM_STI)                +=3D pwm-sti.o
-> > >  obj-$(CONFIG_PWM_STM32)              +=3D pwm-stm32.o
-> > >  obj-$(CONFIG_PWM_STM32_LP)   +=3D pwm-stm32-lp.o
-> > > diff --git a/drivers/pwm/pwm-sprd.c b/drivers/pwm/pwm-sprd.c
-> > > new file mode 100644
-> > > index 0000000..f6fc793
-> > > --- /dev/null
-> > > +++ b/drivers/pwm/pwm-sprd.c
-> > > @@ -0,0 +1,311 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +/*
-> > > + * Copyright (C) 2019 Spreadtrum Communications Inc.
-> >
-> > If there is a publicly available reference manual available, please add
-> > a link to it here.
->
-> Sure.
+- There's no need to refer to the sensor device in the DT example, thus
+  remove the label.
 
-Sorry, we have not supplied a publicly available reference manual now.
-So no change for this comment in next version.
+- Rename the "camera" device node as "camera-sensor".
 
---=20
-Baolin Wang
-Best Regards
+- Rename the endpoint label as "smiapp_ep" (was: "smiapp_1_1"). There is
+  in practice only one anyway.
+
+- Remove the remote-endpoint documentation (it is covered by
+  graph.txt to which video-interfaces.txt refers to).
+
+- Add a note on the port and endpoint nodes.
+
+These changes make the smiapp bindings a better example.
+
+Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+---
+ .../devicetree/bindings/media/i2c/nokia,smia.txt       | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt b/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt
+index 8ee7c7972ac79..c3c3479233c4a 100644
+--- a/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt
++++ b/Documentation/devicetree/bindings/media/i2c/nokia,smia.txt
+@@ -7,6 +7,9 @@ of that. These definitions are valid for both types of sensors.
+ More detailed documentation can be found in
+ Documentation/devicetree/bindings/media/video-interfaces.txt .
+ 
++The device node should contain a "port" node which may contain one or more
++endpoint nodes, in accordance with video interface bindings defined in
++Documentation/devicetree/bindings/media/video-interfaces.txt .
+ 
+ Mandatory properties
+ --------------------
+@@ -37,9 +40,7 @@ Optional properties
+ Endpoint node mandatory properties
+ ----------------------------------
+ 
+-- clock-lanes: <0>
+ - data-lanes: <1..n>
+-- remote-endpoint: A phandle to the bus receiver's endpoint node.
+ 
+ 
+ Example
+@@ -48,7 +49,7 @@ Example
+ &i2c2 {
+ 	clock-frequency = <400000>;
+ 
+-	smiapp_1: camera@10 {
++	camera-sensor@10 {
+ 		compatible = "nokia,smia";
+ 		reg = <0x10>;
+ 		reset-gpios = <&gpio3 20 0>;
+@@ -58,8 +59,7 @@ Example
+ 		nokia,nvm-size = <512>; /* 8 * 64 */
+ 		link-frequencies = /bits/ 64 <199200000 210000000 499200000>;
+ 		port {
+-			smiapp_1_1: endpoint {
+-				clock-lanes = <0>;
++			smiapp_ep: endpoint {
+ 				data-lanes = <1 2>;
+ 				remote-endpoint = <&csi2a_ep>;
+ 			};
+-- 
+2.20.1
+
