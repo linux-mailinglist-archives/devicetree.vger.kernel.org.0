@@ -2,239 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 978568B321
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:56:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F6108B352
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 11:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725869AbfHMI4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 04:56:14 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:55919 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726265AbfHMI4O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:56:14 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hxSbA-0000Vw-3g; Tue, 13 Aug 2019 10:56:08 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hxSb8-0005dI-UO; Tue, 13 Aug 2019 10:56:06 +0200
-Date:   Tue, 13 Aug 2019 10:56:06 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 06/13] media: dt-bindings: tvp5150: Add input port
- connectors DT bindings
-Message-ID: <20190813085606.hddsu4qjnju23kl4@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-7-m.felsch@pengutronix.de>
- <20190516180557.GR14820@pendragon.ideasonboard.com>
+        id S1727615AbfHMJE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 05:04:57 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:44935 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727312AbfHMJE5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 05:04:57 -0400
+Received: by mail-pl1-f195.google.com with SMTP id t14so48991120plr.11
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 02:04:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QiUXy9T56EDLZHgM/ghmiZZKu3jldBkP3AywgOf7WrE=;
+        b=MLD0OBKrmLSIMOt648B9mPAmsjWuHn6T9ywV6kHk53m2QAcx/5//33wzzGap97ISgd
+         1n1dPQTH2aqoshjF311lPPF9RyircKfegESJ2xxxn2TBZss5XJTQKDNllI8Lep9L/7SF
+         MM7idIRhDooM4kA4MSv9ueRH5hrjDJGGg0AgX0HqE87hvGQZOuRQRmqZQqIXAW5zi2XY
+         qx3rKtyNkDR1tJcjwneeXBeG+UkkSb8i3ocoTOXfuDYPqL5L4LUf+dq11gIkuMFV1by4
+         yd/+IqmaOAJsJPYvSatGT0S67lif/DCk+kAwLjTl1ZQp1oSabKWPVnDpLlDJM1jY/AYp
+         VtUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QiUXy9T56EDLZHgM/ghmiZZKu3jldBkP3AywgOf7WrE=;
+        b=O6ehwrB/1V36DWU5RUodpcNYhA+czPqWbSfl3jMr9P+3mCpx+ydGkXzVVf2zvIRiAM
+         Ycr+vPZwKtIbul5bOGVhy/SCCxQTPRUHCKgnaJe59pGisZ/ItFDPXvX+n1ABklt5K+6h
+         yUBHigZSE5S9zuMx6D7hd12XHInZ4MV1yqqLp7RRQD6nJBG50amdy0Jn+tTQe6ME8iX/
+         /4NVqpvpA3HvmakrH5INHnggeetunoTYzb3sh3kYY3xicJZd7sbeOsRyTM3QlsmpgAUC
+         0q/gRdT4w76mFTrlZC45Qtl1X2ddCzdKap2Do0Q7DL7cKGiRLl45PA+fISiWPOqc4A5L
+         7VOA==
+X-Gm-Message-State: APjAAAXtrr0PmtNFZa0p/h/4Hzs6G/kdIHoPV4CSiQMy7aLp3w2WSEyE
+        mv2uLN7vBJwu93RZzjl/xT1hb45BMiKEdRqmJtK8DQ==
+X-Google-Smtp-Source: APXvYqwG2gN8zpP7bhFAP1u+fXAsfwR8jNJUVHpIzT9G6iZ0jAKs6Cy6kBh6Os478yKmPUZiHWGohGqW0T9u2YI3MZY=
+X-Received: by 2002:a17:902:1024:: with SMTP id b33mr27760446pla.325.1565687095973;
+ Tue, 13 Aug 2019 02:04:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190516180557.GR14820@pendragon.ideasonboard.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:55:29 up 87 days, 15:13, 57 users,  load average: 0.50, 0.15,
- 0.04
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20190812182421.141150-1-brendanhiggins@google.com>
+ <20190812182421.141150-4-brendanhiggins@google.com> <20190812225520.5A67C206A2@mail.kernel.org>
+ <20190812233336.GA224410@google.com> <20190812235940.100842063F@mail.kernel.org>
+ <CAFd5g44xciLPBhH_J3zUcY3TedWTijdnWgF055qffF+dAguhPQ@mail.gmail.com>
+ <20190813045623.F3D9520842@mail.kernel.org> <CAFd5g46PJNTOUAA4GOOrW==74Zy7u1sRESTanL_BXBn6QykscA@mail.gmail.com>
+ <20190813053023.CC86120651@mail.kernel.org>
+In-Reply-To: <20190813053023.CC86120651@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 13 Aug 2019 02:04:44 -0700
+Message-ID: <CAFd5g47v7410QRAizPV8zaHrKrc95-Sk-GNzRRVngN741OKnvg@mail.gmail.com>
+Subject: Re: [PATCH v12 03/18] kunit: test: add string_stream a std::stream
+ like string builder
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On Mon, Aug 12, 2019 at 10:30 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-08-12 22:02:59)
+> > On Mon, Aug 12, 2019 at 9:56 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Quoting Brendan Higgins (2019-08-12 17:41:05)
+> > > > On Mon, Aug 12, 2019 at 4:59 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > > >
+> > > > > > kunit_resource_destroy (respective equivalents to devm_kfree, and
+> > > > > > devres_destroy) and use kunit_kfree here?
+> > > > > >
+> > > > >
+> > > > > Yes, or drop the API entirely? Does anything need this functionality?
+> > > >
+> > > > Drop the kunit_resource API? I would strongly prefer not to.
+> > >
+> > > No. I mean this API, string_stream_clear(). Does anything use it?
+> >
+> > Oh, right. No.
+> >
+> > However, now that I added the kunit_resource_destroy, I thought it
+> > might be good to free the string_stream after I use it in each call to
+> > kunit_assert->format(...) in which case I will be using this logic.
+> >
+> > So I think the right thing to do is to expose string_stream_destroy so
+> > kunit_do_assert can clean up when it's done, and then demote
+> > string_stream_clear to static. Sound good?
+>
+> Ok, sure. I don't really see how clearing it explicitly when the
+> assertion prints vs. never allocating it to begin with is really any
+> different. Maybe I've missed something though.
 
-On 19-05-16 21:05, Laurent Pinchart wrote:
-> Hi Marco,
-> 
-> Thank you for the patch.
-> 
-> On Mon, Apr 15, 2019 at 02:44:06PM +0200, Marco Felsch wrote:
-> > The TVP5150/1 decoders support different video input sources to their
-> > AIP1A/B pins.
-> > 
-> > Possible configurations are as follows:
-> >   - Analog Composite signal connected to AIP1A.
-> >   - Analog Composite signal connected to AIP1B.
-> >   - Analog S-Video Y (luminance) and C (chrominance)
-> >     signals connected to AIP1A and AIP1B respectively.
-> > 
-> > This patch extends the device tree bindings documentation to describe
-> > how the input connectors for these devices should be defined in a DT.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > ---
-> > Changelog:
-> > 
-> > v3:
-> > - remove examples for one and two inputs
-> > - replace space by tabs
-> > 
-> > v2:
-> > - adapt port layout in accordance with
-> >   https://www.spinics.net/lists/linux-media/msg138546.html with the
-> >   svideo-connector deviation (use only one endpoint)
-> 
-> As far as I understand the above link, you need two endpoints.
-> 
-> tvp-5150 port@0 (AIP1A)
-> 	endpoint@0 -----------> Comp0-Con  port
-> 	endpoint@1 -----+-----> Svideo-Con port
-> tvp-5150 port@1	(AIP1B) |
-> 	endpoint@1 -----+
-> 	endpoint@0 -----------> Comp1-Con  port
-> tvp-5150 port@2
-> 	endpoint (video bitstream output at YOUT[0-7] parallel bus)
-> 
-> The configuration below isn't accepted.
-
-You're right. I changed that.
-
-> 
-> >  .../devicetree/bindings/media/i2c/tvp5150.txt | 92 +++++++++++++++++--
-> >  1 file changed, 85 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/tvp5150.txt b/Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-> > index 8c0fc1a26bf0..bdd273d8b44d 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-> > +++ b/Documentation/devicetree/bindings/media/i2c/tvp5150.txt
-> > @@ -12,11 +12,31 @@ Optional Properties:
-> >  - pdn-gpios: phandle for the GPIO connected to the PDN pin, if any.
-> >  - reset-gpios: phandle for the GPIO connected to the RESETB pin, if any.
-> >  
-> > -The device node must contain one 'port' child node for its digital output
-> > -video port, in accordance with the video interface bindings defined in
-> > -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > +The device node must contain one 'port' child node per device physical input
-> > +and output port, in accordance with the video interface bindings defined in
-> > +Documentation/devicetree/bindings/media/video-interfaces.txt. The port nodes
-> > +are numbered as follows
-> >  
-> > -Required Endpoint Properties for parallel synchronization:
-> > +	  Name		Type		Port
-> > +	--------------------------------------
-> > +	  AIP1A		sink		0
-> > +	  AIP1B		sink		1
-> > +	  Y-OUT		src		2
-> > +
-> > +The device node must contain at least one sink port and the src port. Each input
-> > +port must be linked to an endpoint defined in
-> > +Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt. The
-> > +port/connector layout is as follows
-> > +
-> > +tvp-5150 port@0 (AIP1A)
-> > +	endpoint@0 -----------> Comp0-Con  port
-> > +	endpoint@1 -----------> Svideo-Con port
-> > +tvp-5150 port@1 (AIP1B)
-> > +	endpoint   -----------> Comp1-Con  port
-> > +tvp-5150 port@2
-> > +	endpoint (video bitstream output at YOUT[0-7] parallel bus)
-> > +
-> > +Required Endpoint Properties for parallel synchronization on output port:
-> >  
-> >  - hsync-active: active state of the HSYNC signal. Must be <1> (HIGH).
-> >  - vsync-active: active state of the VSYNC signal. Must be <1> (HIGH).
-> > @@ -26,17 +46,75 @@ Required Endpoint Properties for parallel synchronization:
-> >  If none of hsync-active, vsync-active and field-even-active is specified,
-> >  the endpoint is assumed to use embedded BT.656 synchronization.
-> >  
-> > -Example:
-> > +Example - three input sources:
-> > +
-> > +comp_connector_0 {
-> > +	compatible = "composite-video-connector";
-> > +	label = "Composite0";
-> > +
-> > +	port {
-> > +		composite0_to_tvp5150: endpoint {
-> > +			remote-endpoint = <&tvp5150_to_composite0>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +comp_connector_1 {
-> > +	compatible = "composite-video-connector";
-> > +	label = "Composite1";
-> > +
-> > +	port {
-> > +		composite1_to_tvp5150: endpoint {
-> > +			remote-endpoint = <&tvp5150_to_composite1>;
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +svid_connector {
-> > +	compatible = "svideo-connector";
-> > +	label = "S-Video";
-> > +
-> > +	port {
-> > +		svideo_to_tvp5150: endpoint {
-> > +			remote-endpoint = <&tvp5150_to_svideo>;
-> > +		};
-> > +	};
-> > +};
-> >  
-> >  &i2c2 {
-> > -	...
-> >  	tvp5150@5c {
-> >  		compatible = "ti,tvp5150";
-> >  		reg = <0x5c>;
-> >  		pdn-gpios = <&gpio4 30 GPIO_ACTIVE_LOW>;
-> >  		reset-gpios = <&gpio6 7 GPIO_ACTIVE_LOW>;
-> >  
-> > -		port {
-> > +		port@0 {
-> > +			#address-cells = <1>;
-> > +			#size-cells = <0>;
-> > +			reg = <0>;
-> > +
-> > +			tvp5150_to_composite0: endpoint@0 {
-> > +				reg = <0>;
-> > +				remote-endpoint = <&composite0_to_tvp5150>;
-> > +			};
-> > +
-> > +			tvp5150_to_svideo: endpoint@1 {
-> > +				reg = <1>;
-> > +				remote-endpoint = <&svideo_to_tvp5150>;
-> > +			};
-> > +		};
-> > +
-> > +		port@1 {
-> > +			reg = <1>;
-> > +
-> > +			tvp5150_to_composite1: endpoint {
-> > +                                remote-endpoint = <&composite1_to_tvp5150>;
-> > +			};
-> > +		};
-> > +
-> > +		port@2 {
-> > +			reg = <2>;
-> > +
-> >  			tvp5150_1: endpoint {
-> >  				remote-endpoint = <&ccdc_ep>;
-> >  			};
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+It's for the case that we *do* print something out. Once we are doing
+printing, we don't want the fragments anymore.
