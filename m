@@ -2,181 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD41A8BAC8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 593FD8BAD9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:54:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729312AbfHMNwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 09:52:20 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:33190 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729171AbfHMNwU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 09:52:20 -0400
-Received: by mail-pg1-f194.google.com with SMTP id n190so10490322pgn.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 06:52:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4omLmk4w6GxhJ6Ep/AGChVMuZmOFfkXmdaJYpOvWVdk=;
-        b=Jm8wdiOchfcFJ0gRIk1GejkC9wyb0VHkwgGVXz8gKdqL7fzLdNe4X+BSaGG9GuV7hq
-         7sD0rsng093Rsmzie0SdLHRA90thFE9fYj9WOv0ACjtbPytWctwLPNobjvwDlDrUm4jM
-         +RiB/SkxEIKpmhyQWtb2ylSHLydV8aBHuQApwmN8zntmaCpdalFNBJkSWHshpYyVFOaE
-         Qxc6xffuXBWRbS4E3gyJNLpoMCzlVb7s7hqB5moABRoHMHcPlrO7/sTM4WZowUZ3rGWX
-         ZoYV4s/si/3dn7P9hJev1D9DePTX2DxnvqcyFilWTIfI+RaWWt2/x4YIohOqR7cPbIrn
-         sc4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4omLmk4w6GxhJ6Ep/AGChVMuZmOFfkXmdaJYpOvWVdk=;
-        b=uA6gWuIZo58Dovu2eK7qPJee8gwkCOC/roEKg2YgJYxOLV4JZVUpEG/dr0XsrpUgA/
-         n9y9e+KkAAVWi9Rlu7ZL3rNNNS5/WsB8q4UxrnR1Ka7o+CH7/HItHqWIEGjWwiEAy+/2
-         SVNGX+fdQInxN6YXZgR8VgAW0uXVkfYgPN53FQtUB91gmUQFLSfKo4rHsRD89fhbpQdT
-         3z2wP3kc/pPMN/iGKLuy/ngclwnhRkOC+N+vki3S4L/I9qN2bTQQyQcdTrkbIiSNL+0O
-         3xZvV7MxjdJssC4qTPtgT61zvBq47asq9yEVMpVKVqQVZBzEQbpeiatrOpBPfLWBTl0d
-         5dJg==
-X-Gm-Message-State: APjAAAXN1ZZpk5AlUIkIK78/2MrWE3asysjCQ6i3wn1uIwv+X1L5y1kh
-        Wge/AovYy65TYpmGz16+RkXj
-X-Google-Smtp-Source: APXvYqwav0H6AVbnE2BwPov0OYBYEHoA+VkHR9bqs+s/y71GBF2NtI/p4j6/PJKhz+s8rgdAUXLynw==
-X-Received: by 2002:aa7:8b52:: with SMTP id i18mr41768736pfd.194.1565704339044;
-        Tue, 13 Aug 2019 06:52:19 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:649c:6ce0:9d44:669c:5d6c:bc5f])
-        by smtp.gmail.com with ESMTPSA id j9sm16595539pfe.103.2019.08.13.06.52.12
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 13 Aug 2019 06:52:18 -0700 (PDT)
-Date:   Tue, 13 Aug 2019 19:22:09 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: i2c: Add IMX290 CMOS sensor
- binding
-Message-ID: <20190813135209.GA30945@Mani-XPS-13-9360>
-References: <20190806130938.19916-1-manivannan.sadhasivam@linaro.org>
- <20190806130938.19916-2-manivannan.sadhasivam@linaro.org>
- <20190813094526.GG835@valkosipuli.retiisi.org.uk>
- <20190813113358.GA28877@Mani-XPS-13-9360>
- <20190813114643.GA2527@valkosipuli.retiisi.org.uk>
- <20190813121400.GA29378@Mani-XPS-13-9360>
- <20190813122212.GE2527@valkosipuli.retiisi.org.uk>
+        id S1729380AbfHMNx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 09:53:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34514 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729421AbfHMNx7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 09:53:59 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E44F521744
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 13:53:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565704438;
+        bh=mV2hMDdVWsgLNSwsnMycqNwQRfnzA2CaSgdj5JRuxek=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2jd3dJ7BhVS+IuwYR4cGWvfqZBTp+BrrpDrZ26oHsk+KoUQi6+UTRqaZcH64CZ9bZ
+         kvEmbm3gX3HFrdS3acO0Eu+JZir+KeGZXGl8mtZFmwkV3A+9Ufoc2x6AVkbz1n6g1/
+         btw5XOg7pMb1wV2SxtVFny/3BJQ1I+tchm+fNhp0=
+Received: by mail-qk1-f169.google.com with SMTP id r4so79565534qkm.13
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 06:53:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAXXXNXPmWv814F4in25Cq4aziSZiBUghk1a3QSTUU25TNAt2F8H
+        lgdBP4JGgm12udGCpJ52Vzl8u0G6fkUAcRkJbw==
+X-Google-Smtp-Source: APXvYqyxbaUwbmA/4Zv9EuQoRypRXf8X0Pi5SYOVGOb46NaHSbP4GIEa8rDtE5kJWBv6VjPYvmt5Pv1jZAo3jGEyFmo=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr27185024qkn.254.1565704437061;
+ Tue, 13 Aug 2019 06:53:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190813122212.GE2527@valkosipuli.retiisi.org.uk>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190723132658.5068-1-maxime.ripard@bootlin.com>
+ <20190723132658.5068-2-maxime.ripard@bootlin.com> <CAL_JsqJkTrCuscnWgm5cDmQj5RPGnd3qXkzR40XWKB2skZFwXA@mail.gmail.com>
+ <20190813054738.ge2jdu6qn2vaoasd@flea>
+In-Reply-To: <20190813054738.ge2jdu6qn2vaoasd@flea>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 13 Aug 2019 07:53:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLAA6v1BCFHGrDR7WzOE9ri6MNq6WCkvJ5NTDnhDcAqyg@mail.gmail.com>
+Message-ID: <CAL_JsqLAA6v1BCFHGrDR7WzOE9ri6MNq6WCkvJ5NTDnhDcAqyg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: irq: Convert Allwinner NMI Controller to
+ a schema
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>, maz@kernel.org,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Chen-Yu Tsai <wens@csie.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+On Mon, Aug 12, 2019 at 11:47 PM Maxime Ripard
+<maxime.ripard@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> On Tue, Jul 23, 2019 at 10:32:41AM -0600, Rob Herring wrote:
+> > On Tue, Jul 23, 2019 at 7:27 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > The Allwinner SoCs have an interrupt controller called NMI supported in
+> > > Linux, with a matching Device Tree binding.
+> > >
+> > > Now that we have the DT validation in place, let's convert the device tree
+> > > bindings for that controller over to a YAML schemas.
+> > >
+> > > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> > > ---
+> > >  .../allwinner,sun7i-a20-sc-nmi.yaml           | 83 +++++++++++++++++++
+> > >  .../allwinner,sunxi-nmi.txt                   | 29 -------
+> > >  2 files changed, 83 insertions(+), 29 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sunxi-nmi.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
+> > > new file mode 100644
+> > > index 000000000000..cb8077b0c8dd
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
+> > > @@ -0,0 +1,83 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Allwinner A20 Non-Maskable Interrupt Controller Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Chen-Yu Tsai <wens@csie.org>
+> > > +  - Maxime Ripard <maxime.ripard@bootlin.com>
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/interrupt-controller.yaml#
+> > > +
+> > > +select:
+> > > +  properties:
+> > > +    compatible:
+> > > +      contains:
+> > > +        enum:
+> > > +          - allwinner,sun6i-a31-r-intc
+> > > +          - allwinner,sun7i-a20-sc-nmi
+> > > +          - allwinner,sun9i-a80-sc-nmi
+> >
+> > This should have all the possible compatibles in case all are not
+> > listed.
+>
+> I'm sorry, but I'm not sure I understood what you meant here :/
 
-On Tue, Aug 13, 2019 at 03:22:12PM +0300, Sakari Ailus wrote:
-> Hi Manivannan,
-> 
-> On Tue, Aug 13, 2019 at 05:44:00PM +0530, Manivannan Sadhasivam wrote:
-> > Hi Sakari,
-> > 
-> > On Tue, Aug 13, 2019 at 02:46:43PM +0300, Sakari Ailus wrote:
-> > > Hi Manivannan,
-> > > 
-> > > On Tue, Aug 13, 2019 at 05:03:58PM +0530, Manivannan Sadhasivam wrote:
-> > > > Hi Sakari,
-> > > > 
-> > > > Thanks for the review!
-> > > > 
-> > > > On Tue, Aug 13, 2019 at 12:45:26PM +0300, Sakari Ailus wrote:
-> > > > > Hi Manivannan,
-> > > > > 
-> > > > > On Tue, Aug 06, 2019 at 06:39:36PM +0530, Manivannan Sadhasivam wrote:
-> > > > > > Add devicetree binding for IMX290 CMOS image sensor.
-> > > > > > 
-> > > > > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > > > ---
-> > > > > >  .../devicetree/bindings/media/i2c/imx290.txt  | 51 +++++++++++++++++++
-> > > > > >  1 file changed, 51 insertions(+)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx290.txt
-> > > > > > 
-> > > > > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx290.txt b/Documentation/devicetree/bindings/media/i2c/imx290.txt
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..7535b5b5b24b
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/media/i2c/imx290.txt
-> > > > > > @@ -0,0 +1,51 @@
-> > > > > > +* Sony IMX290 1/2.8-Inch CMOS Image Sensor
-> > > > > > +
-> > > > > > +The Sony IMX290 is a 1/2.8-Inch CMOS Solid-state image sensor with
-> > > > > > +Square Pixel for Color Cameras. It is programmable through I2C and 4-wire
-> > > > > > +interfaces. The sensor output is available via CMOS logic parallel SDR output,
-> > > > > > +Low voltage LVDS DDR output and CSI-2 serial data output.
-> > > > > 
-> > > > > If there are three to choose from, then you should specify which one is in
-> > > > > use. Given that I think chances remain slim we'd add support for the other
-> > > > > two (it's certainly not ruled out though), CSI-2 could be the default. But
-> > > > > this needs to be documented.
-> > > > > 
-> > > > 
-> > > > Hmm... I'm not sure here. Bindings should describe the hardware and not the
-> > > > limitations of the driver. Here as you said, the sensor can output frames
-> > > > in 3 different modes/formats but the driver only supports CSI2. I can add a
-> > > > note in the driver but not sure whether dt-binding is the right place or not!
-> > > 
-> > > I guess alternatively you could document the necessary bindings for the
-> > > other two busses.
-> > > 
-> > > But what I'm saying here is that it's highly unlikely they'll be ever
-> > > needed, and it'd be mostly a waste of time to implement that. (That said, I
-> > > have nothing against the use of these busses, but I've never seen anyone
-> > > using them.) Many other devices use defaults for more contentious settings.
-> > > 
-> > 
-> > Agree with you but my question was, whether I could document the supported
-> > mode in bindings or not! I have seen comments from Rob in the past that the
-> > binding should not document the limitations of the driver. But anyway, one
-> > can infer from the current binding that only CSI2 is supported for now, it's
-> > just stating it explicitly makes me doubtful!
-> 
-> I think it could be e.g.:
-> 
-> The CSI-2 bus is the default. No bindings have been defined for the other
-> busses.
-> 
+You are missing these from the list:
+allwinner,sun8i-a83t-r-intc
+allwinner,sun50i-a64-r-intc
+allwinner,sun50i-h6-r-intc
 
-Ack.
+We need them all to catch any DTs with only the above strings.
 
-> ...
-> 
-> > > > > I suppose you can't change the lane order, so clock-lanes is redundant
-> > > > > (don't use it in the example) and data-lanes should be monotonically
-> > > > > incrementing series from 1 to 4.
-> > > > > 
-> > > > 
-> > > > We can change the order and the example here illustrates how it has been
-> > > > wired in FRAMOS module. If I change the lane order like you said, it won't
-> > > > work.
-> > > 
-> > > I highly doubt that. Neither the driver nor the sensor uses the lane
-> > > ordering information.
-> > > 
-> > 
-> > Agree but CSI2 host will need this informtion, right? Please correct me if
-> > I'm wrong!
-> 
-> The CSI-2 receiver may need that configuration, but it's not addressed by a
-> sensor's binding documentation (it's configured in the endpoint on the
-> receiver's side).
-> 
+>
+> >
+> > > +
+> > > +          # Deprecated
+> > > +          - allwinner,sun6i-a31-sc-nmi
+> >
+> > I know we already did things this way before, but perhaps this should
+> > be listed below with the 'deprecated' property. The tools can include
+> > it in select, but then remove it from compatible property.
+>
+> Can we have more than just one of the choice for an enum?
+>
+> In this particular case, since we have oneOf it's not really too much
+> of an issue, but there's a significant amount of users of enum for the
+> compatibles.
 
-Yes but I thought that documenting the sensor lane configuration based on one
-example implementation might help interfacing w/ different hosts. Anyway, to be
-host agnostic, I can drop the clock lane and make data lane start from 1 as you
-suggested.
+I think we have to use oneOf here. There's not that many cases of
+deprecated compatibles.
 
-Thanks,
-Mani
-
-> -- 
-> Sakari Ailus
+Rob
