@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 922AC8C3B3
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 23:31:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0F8A8C3BA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 23:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726767AbfHMVbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 17:31:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57672 "EHLO mail.kernel.org"
+        id S1726690AbfHMVco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 17:32:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58274 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726631AbfHMVbF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 17:31:05 -0400
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        id S1726260AbfHMVco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 17:32:44 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0E5CE216F4;
-        Tue, 13 Aug 2019 21:31:04 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7E24320874;
+        Tue, 13 Aug 2019 21:32:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565731864;
-        bh=XkpRbJVll+516C+jJvJAyZYjkbPpLw3esxFYVJy/wTM=;
+        s=default; t=1565731963;
+        bh=ocGtIgTgq9tRn05MEA2AseiewpPV58nDV6Bz5EJeVWk=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BhKlEJ07K2sEEE5X4BQU8lEPMxeIpf0FdTFhXiajh0LjFw8bDbY3WzB2dNJ4vcMn3
-         UGtMwQUP93jw9omyNyPFpXjzVk9Hl234h1a8jhcbZevW85Qxd1ii4y5Fu06AyWI7Am
-         GHJYOHU67WvA4jTB6oS6YDAOleQ99BlwEqc6fckY=
-Received: by mail-qt1-f179.google.com with SMTP id e8so7422060qtp.7;
-        Tue, 13 Aug 2019 14:31:04 -0700 (PDT)
-X-Gm-Message-State: APjAAAVG9AITvDoE80FqxULHL+418M1t7jd0+2o5rB0rLoxzQGeIzM+u
-        7U6lL53Iov0isyDFvyhWWuIQfm1pzYs/it8yQA==
-X-Google-Smtp-Source: APXvYqxokdujfBE8cDSjy43/2Jcz08YFXVAXNp4Cx5lVzoxujubkxGKCo14iNFpW20deuL9aWMxvPVwsHCwUEklSXXc=
-X-Received: by 2002:ac8:7593:: with SMTP id s19mr27868839qtq.136.1565731863171;
- Tue, 13 Aug 2019 14:31:03 -0700 (PDT)
+        b=Ryp35nFyB4LnjvwmcCk+mgcBlhlO9BoGGEbJqCuysxgMYE3QrXhMpNU3pFzcephid
+         2eNvhTsz6fl6tXCc9h5oWhr8XJ2JVTIdVMNyhKFCFQNvMRXbeO3LBh7o0ekIv+8Jvk
+         RiHcWeAQT0plw55xtzmZyqe1cwYGYxCeQwnApwjo=
+Received: by mail-qt1-f178.google.com with SMTP id z4so108023057qtc.3;
+        Tue, 13 Aug 2019 14:32:43 -0700 (PDT)
+X-Gm-Message-State: APjAAAX8a7WihbC08SvvG/YBZisgrmqmBVGbcRu4RecmfWD96/PT5jEh
+        qHtxKQwPkFywDxZHSGXBvkq2tYhn7+iy/oDh3w==
+X-Google-Smtp-Source: APXvYqx48HpN2WmRdaQx2jqeMfSS99pR9DuL4bLmyJdzDJvvyzz7a7PeTjZtWFPiQUCpm5ztHYxh1a0HIsggmFI0ZZU=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr35482240qtc.143.1565731962734;
+ Tue, 13 Aug 2019 14:32:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190813124744.32614-1-mripard@kernel.org> <20190813124744.32614-2-mripard@kernel.org>
-In-Reply-To: <20190813124744.32614-2-mripard@kernel.org>
+References: <20190813124744.32614-1-mripard@kernel.org> <20190813124744.32614-3-mripard@kernel.org>
+In-Reply-To: <20190813124744.32614-3-mripard@kernel.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Aug 2019 15:30:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJa-_x+QKkuQ2ZTt+tOtJWJ0NhywZMKomQhtShYr7WbTA@mail.gmail.com>
-Message-ID: <CAL_JsqJa-_x+QKkuQ2ZTt+tOtJWJ0NhywZMKomQhtShYr7WbTA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: watchdog: Convert Allwinner watchdog to
- a schema
+Date:   Tue, 13 Aug 2019 15:32:31 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL5v1nd85FuuU1aHDDvojnWqs-4aDZAUDm0iCR0akhF9g@mail.gmail.com>
+Message-ID: <CAL_JsqL5v1nd85FuuU1aHDDvojnWqs-4aDZAUDm0iCR0akhF9g@mail.gmail.com>
+Subject: Re: [PATCH 3/5] dt-bindings: watchdog: sun4i: Add the watchdog interrupts
 To:     Maxime Ripard <mripard@kernel.org>
 Cc:     Guenter Roeck <linux@roeck-us.net>,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
@@ -59,62 +58,20 @@ On Tue, Aug 13, 2019 at 6:47 AM Maxime Ripard <mripard@kernel.org> wrote:
 >
 > From: Maxime Ripard <maxime.ripard@bootlin.com>
 >
-> The Allwinner SoCs have a watchdog supported in Linux, with a matching
-> Device Tree binding.
+> The Allwinner watchdog has an interrupt, either shared or dedicated
+> depending on the SoC, that has been described in some DT, but not all of
+> them.
 >
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for that controller over to a YAML schemas.
->
+> The binding is also completely missing that description. Let's add that
+> property to be consistent.
+
+I'm fine with fixing errors like this in the conversion patch.
+
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 > ---
->  .../watchdog/allwinner,sun4i-a10-wdt.yaml     | 50 +++++++++++++++++++
->  .../bindings/watchdog/sunxi-wdt.txt           | 22 --------
->  2 files changed, 50 insertions(+), 22 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/sunxi-wdt.txt
->
-> diff --git a/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> new file mode 100644
-> index 000000000000..93df27ec1664
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/allwinner,sun4i-a10-wdt.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/allwinner,sun4i-a10-wdt.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Allwinner A10 Watchdog Device Tree Bindings
-> +
-> +maintainers:
-> +  - Chen-Yu Tsai <wens@csie.org>
-> +  - Maxime Ripard <maxime.ripard@bootlin.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: allwinner,sun4i-a10-wdt
-> +      - const: allwinner,sun6i-a31-wdt
-> +      - items:
-> +          - const: allwinner,sun50i-a64-wdt
-> +          - const: allwinner,sun6i-a31-wdt
-> +      - items:
-> +          - const: allwinner,sun50i-h6-wdt
-> +          - const: allwinner,sun6i-a31-wdt
-> +      - items:
-> +          - const: allwinner,suniv-f1c100s-wdt
-> +          - const: allwinner,sun4i-a10-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  timeout-sec:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Contains the watchdog timeout in seconds.
+>  .../bindings/watchdog/allwinner,sun4i-a10-wdt.yaml           | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-Can you do a common watchdog schema to include with this and the node
-name at least.
+Either way:
 
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
