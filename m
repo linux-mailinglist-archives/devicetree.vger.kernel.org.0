@@ -2,100 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C2A8C0EC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 20:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C66298C13B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 21:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726267AbfHMSmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 14:42:51 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:45733 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726135AbfHMSmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 14:42:51 -0400
-Received: by mail-oi1-f193.google.com with SMTP id m206so69240253oib.12
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 11:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=JfFAdKP3yDSu1gNfDNgmsT7umfmkTpl2VNpXjzZ5xck=;
-        b=N5dR9jNnD0q+2lM6s+HP+eZYAg/eqdrBMuFa2aoycdfaRp6hPQ1r76mAmPA9WFtf7C
-         FVeX+9/vZLw/7uirWJK+AMswAYg5iSsrWBzwhZ4s75HM7IYVi9rVMfsEPAc//XbVAaf8
-         P+WZF4jW40HC3uAhSCjjp8x12iASCNKu2FLcEddXa+v0wRmGNBiT4Sh5rBulRPTEAKgS
-         OT58hSyX4FcyWN4oSmNp1Xcj6hswmOkgsLDGI00QZZwejiOS88qkfT3ZbtrOht9xzGsb
-         oBPcCqBkBH0qCvKOOP9lwPWh1OaVSmOI5pQh3+qYcbI7MV9MqxOih+k0PxzZ249JIrDh
-         +tHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=JfFAdKP3yDSu1gNfDNgmsT7umfmkTpl2VNpXjzZ5xck=;
-        b=E3syA2uRGDGa+gBwhazykq8rTtMKNgaCznoS7cPWSch/+MCnX4Efqc+CG5aDy18VVZ
-         Ywjiq0FggIG7pvlEX0R0yOkFHinRQ6X3cWP+z9x5BtyDGG+uo8xhZ3vRvIwT7jFGN/uc
-         FPY1v22bsEwjYRf+Eye/h2Pt99oCHGaQFfAx5M0DCcMgWfK4Iecfp0BhIW+dVDF7QZXw
-         oAH6ypHYiucjo/fskXhMwERkYDdBioy/A2KpezisFvi5B06M1GG+wEmhldaZG2FJaJhB
-         2fvj4eKrWQJONXgESp7YuE1CuIT3iz7tuk0XhhpFD1yJ+d6s6i630Dodls7lLgdnoe46
-         Cb5A==
-X-Gm-Message-State: APjAAAUJKbbn/1VGuiQgNoSjmMYnJdKytZHUH7gEhMS0bkzILHUe7yur
-        nfCACe9EqGh7Vh0DzEHeQ63HJA==
-X-Google-Smtp-Source: APXvYqyXdgJEdteZbftC+TJcIScPp+GF+ZzWtMuBywPHiEKat1r09dmv1SgHAm3azSTaqEwZv0TuMA==
-X-Received: by 2002:a02:9644:: with SMTP id c62mr39674483jai.45.1565721770066;
-        Tue, 13 Aug 2019 11:42:50 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id v10sm101180934iob.43.2019.08.13.11.42.49
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 13 Aug 2019 11:42:49 -0700 (PDT)
-Date:   Tue, 13 Aug 2019 11:42:49 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Nicolas Ferre <Nicolas.Ferre@microchip.com>,
-        David Miller <davem@davemloft.net>
-cc:     Yash Shah <yash.shah@sifive.com>, Rob Herring <robh+dt@kernel.org>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        =?ISO-8859-15?Q?Petr_=A6tetiar?= <ynezz@true.cz>,
-        Sachin Ghadi <sachin.ghadi@sifive.com>
-Subject: Re: [PATCH 2/3] macb: Update compatibility string for SiFive
- FU540-C000
-In-Reply-To: <CAJ2_jOEHoh+D76VpAoVq3XnpAZEQxdQtaVX5eiKw5X4r+ypKVw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.21.9999.1908131142150.5033@viisi.sifive.com>
-References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com> <1563534631-15897-2-git-send-email-yash.shah@sifive.com> <4075b955-a187-6fd7-a2e6-deb82b5d4fb6@microchip.com> <CAJ2_jOEHoh+D76VpAoVq3XnpAZEQxdQtaVX5eiKw5X4r+ypKVw@mail.gmail.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1726251AbfHMTIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 15:08:18 -0400
+Received: from mga07.intel.com ([134.134.136.100]:19500 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726195AbfHMTIS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 15:08:18 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Aug 2019 12:08:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,382,1559545200"; 
+   d="scan'208";a="176293507"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga008.fm.intel.com with ESMTP; 13 Aug 2019 12:08:17 -0700
+Received: from dalyrusx-mobl.amr.corp.intel.com (unknown [10.251.3.205])
+        by linux.intel.com (Postfix) with ESMTP id 410AE5800FE;
+        Tue, 13 Aug 2019 12:08:16 -0700 (PDT)
+Subject: Re: [PATCH v2 1/5] soundwire: Add compute_params callback
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        vkoul@kernel.org, broonie@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
+        plai@codeaurora.org, lgirdwood@gmail.com, robh+dt@kernel.org,
+        spapothi@codeaurora.org
+References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
+ <20190813083550.5877-2-srinivas.kandagatla@linaro.org>
+ <7e462330-a357-698a-b259-5ff136963a57@linux.intel.com>
+ <1a02f190-0aab-d512-ceb0-4a21014705e8@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <3fd3c98c-eb25-7040-3089-f5e5bc9d24ee@linux.intel.com>
+Date:   Tue, 13 Aug 2019 14:08:35 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <1a02f190-0aab-d512-ceb0-4a21014705e8@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dave, Nicolas,
-
-On Mon, 22 Jul 2019, Yash Shah wrote:
-
-> On Fri, Jul 19, 2019 at 5:36 PM <Nicolas.Ferre@microchip.com> wrote:
-> >
-> > On 19/07/2019 at 13:10, Yash Shah wrote:
-> > > Update the compatibility string for SiFive FU540-C000 as per the new
-> > > string updated in the binding doc.
-> > > Reference: https://lkml.org/lkml/2019/7/17/200
-> >
-> > Maybe referring to lore.kernel.org is better:
-> > https://lore.kernel.org/netdev/CAJ2_jOFEVZQat0Yprg4hem4jRrqkB72FKSeQj4p8P5KA-+rgww@mail.gmail.com/
+On 8/13/19 1:17 PM, Srinivas Kandagatla wrote:
 > 
-> Sure. Will keep that in mind for future reference.
 > 
-> >
-> > > Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> >
-> > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+> On 13/08/2019 15:34, Pierre-Louis Bossart wrote:
+>> On 8/13/19 3:35 AM, Srinivas Kandagatla wrote:
+>>> From: Vinod Koul <vkoul@kernel.org>
+>>>
+>>> This callback allows masters to compute the bus parameters required.
+>>
+>> This looks like a partial use of the patch ('soundwire: Add Intel 
+>> resource management algorithm')? see comments below
+>>
 > 
-> Thanks.
+> Yes it duplicate indeed!
+> 
+> I will use that patch!
 
-Am assuming you'll pick this up for the -net tree for v5.4-rc1 or earlier.
-If not, please let us know.
+Actually please don't...
+we found issues with the Intel allocation so I'd rather have the big 
+Intel patch split into two parts, with callbacks+prepare/deprepare 
+changes going in first. It'll be much faster/nicer for everyone.
 
-
-- Paul
