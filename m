@@ -2,91 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E0018B200
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 248BD8B25C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727342AbfHMIJB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Aug 2019 04:09:01 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:42606 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725981AbfHMIJB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:09:01 -0400
-Received: by mail-qt1-f196.google.com with SMTP id t12so16918005qtp.9;
-        Tue, 13 Aug 2019 01:09:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=3QYn8xVPbDnU8yCH5QG2DkGvPPJ9yAG+CBaSbT63l5s=;
-        b=iJneErmhHSA8ngZdte/oUIlKi1cEx3iAt6/kzCBDMCiaSipNogDSey8W6B4iGCRlyA
-         KFy+B4v1nZx5a9vJGASB5T2/ZWSlz8kzQPhvv6Q5ZtlHCHD731eh5zaOw1zb5l4Lri3p
-         YXHvyuR5DwwZ9f8dbL5ivYK7FrAngXHApqsQ37UzcJZNf4OSLMjoeFAorRC0khw8hO2i
-         dIeUK45MdzPXqEVWex2gWldGPy+DNrrNaR91PSo6WTvtA6MccaM5JhxXhaFLjmh/qQXu
-         h7SS2WQvcnCM/veU0ZZCvyntl5jOuH6UoJcx6728wYojyGenroTW/NqeM8Qb9i51rgWg
-         wMSQ==
-X-Gm-Message-State: APjAAAXPmfBwZRWcrCtTeC2+aBEcPuZdfpgpGYDfJtiQHlxa4XuBhEDa
-        PuQLdPwMZ1/tF06z8UnYRqGhsHOgw0QLTYuIpzY=
-X-Google-Smtp-Source: APXvYqzQY3jw5cidojWGquR6Ywd0UV4rVnIr4Q175ebPJlWm5I+ETbY/lAleI6WDMLSOu84QmW6hk+yfSbxvjbk+0xI=
-X-Received: by 2002:ac8:117:: with SMTP id e23mr17771674qtg.18.1565683740433;
- Tue, 13 Aug 2019 01:09:00 -0700 (PDT)
+        id S1727818AbfHMI0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 04:26:24 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:49292 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727452AbfHMI0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:26:24 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 8F10F609F3; Tue, 13 Aug 2019 08:26:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565684783;
+        bh=xzOhyFf1Lb46S8iAihNlSdA4LL0HPldY24aFh3YUK0o=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=TeOOay96bcbwlqWp+6qJ6shCorX7S6h6RJKWfoaXikBl9vI399ZUn7MSJH7zGL1tp
+         HxMvM7zDbl8BHQBXjEF9zaY4VcJSSSmlCGiPQCmsp5SqASOeFVQdpVXjOZztzh3Ie1
+         f5pJJoXBqL+DSFX8VZ8Rd11J5GIQKtjSsvdprcLs=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from mkshah-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkshah@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A289760A4E;
+        Tue, 13 Aug 2019 08:26:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565684780;
+        bh=xzOhyFf1Lb46S8iAihNlSdA4LL0HPldY24aFh3YUK0o=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=frBfUD6bqYpPrAXTVl7+FVgCxgJkq800lMJIBKph9xa7tOJKG9IUZpYDRyxYYiSl/
+         DGFC2vowty5hzFbo3sdYtaJia4K7iEgYyfOnzoHjn1uRQoNs+tjSAGkENMuP8cuJoy
+         0l872hgv7nLbRxWlzTBuz27/9hjrDRnQe371WGLU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A289760A4E
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     agross@kernel.org, david.brown@linaro.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org, rnayak@codeaurora.org,
+        ilina@codeaurora.org, lsrao@codeaurora.org, ulf.hansson@linaro.org,
+        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
+Subject: [PATCH 3/4] dt-bindings: soc: qcom: Add RSC power domain specifier
+Date:   Tue, 13 Aug 2019 13:54:41 +0530
+Message-Id: <20190813082442.25796-4-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190813082442.25796-1-mkshah@codeaurora.org>
+References: <20190813082442.25796-1-mkshah@codeaurora.org>
 MIME-Version: 1.0
-References: <cover.1565367567.git.agx@sigxcpu.org> <e0562d8bb4098dc4cdb4023b41fb75b312be22a5.1565367567.git.agx@sigxcpu.org>
-In-Reply-To: <e0562d8bb4098dc4cdb4023b41fb75b312be22a5.1565367567.git.agx@sigxcpu.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 13 Aug 2019 10:08:44 +0200
-Message-ID: <CAK8P3a3Vrd+sttJrQwD-jA9p_egG4x-hc41eGK8H-_aVm-uoYw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] arm64: imx8mq: add imx8mq iomux-gpr field defines
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 9, 2019 at 6:24 PM Guido Günther <agx@sigxcpu.org> wrote:
->
-> This adds all the gpr registers and the define needed for selecting
-> the input source in the imx-nwl drm bridge.
->
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> +
-> +#define IOMUXC_GPR0    0x00
-> +#define IOMUXC_GPR1    0x04
-> +#define IOMUXC_GPR2    0x08
-> +#define IOMUXC_GPR3    0x0c
-> +#define IOMUXC_GPR4    0x10
-> +#define IOMUXC_GPR5    0x14
-> +#define IOMUXC_GPR6    0x18
-> +#define IOMUXC_GPR7    0x1c
-(more of the same)
+In addition to transmitting resource state requests to the remote
+processor, the RSC is responsible for powering off/lowering the
+requirements from CPUs subsystem for the associated hardware like
+buses, clocks, and regulators when all CPUs and cluster is powered down.
 
-huh?
+The power domain is configured to a low power state and when all the
+CPUs are powered down, the RSC can lower resource state requirements
+and power down the rails that power the CPUs.
 
-> +/* i.MX8Mq iomux gpr register field defines */
-> +#define IMX8MQ_GPR13_MIPI_MUX_SEL              BIT(2)
+Add PM domain specifier property for RSC controller.
 
-I think this define should probably be local to the pinctrl driver, to
-ensure that no other drivers fiddle with the registers manually.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+---
+ Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-     Arnd
+diff --git a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
+index 9b86d1eff219..d0ab6e9b6745 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
++++ b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
+@@ -83,6 +83,13 @@ Properties:
+ 	Value type: <string>
+ 	Definition: Name for the RSC. The name would be used in trace logs.
+ 
++- #power-domain-cells:
++	Usage: optional
++	Value type: <u32>
++	Definition: Number of cells in power domain specifier. Optional for
++		    controllers that may be in 'solver' state where they can
++		    be in autonomous mode executing low power modes.
++
+ Drivers that want to use the RSC to communicate with RPMH must specify their
+ bindings as child nodes of the RSC controllers they wish to communicate with.
+ 
+@@ -112,6 +119,7 @@ TCS-OFFSET: 0xD00
+ 				  <SLEEP_TCS   3>,
+ 				  <WAKE_TCS    3>,
+ 				  <CONTROL_TCS 1>;
++		#power-domain-cells = <0>;
+ 	};
+ 
+ Example 2:
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by The Linux Foundation.
+
