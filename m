@@ -2,213 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A02E48B131
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 09:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB0488B170
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 09:52:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725820AbfHMHgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 03:36:08 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:30516 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727534AbfHMHgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 03:36:08 -0400
-X-UUID: f8670a268ace423fbf1e2c423b10ba10-20190813
-X-UUID: f8670a268ace423fbf1e2c423b10ba10-20190813
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <biao.huang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 1421947788; Tue, 13 Aug 2019 15:36:03 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 13 Aug 2019 15:36:00 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 13 Aug 2019 15:36:00 +0800
-From:   Biao Huang <biao.huang@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <yt.shen@mediatek.com>,
-        <biao.huang@mediatek.com>, <jianguo.zhang@mediatek.com>
-Subject: [PATCH] arm64: dts: mt2712: add ethernet device node
-Date:   Tue, 13 Aug 2019 15:35:42 +0800
-Message-ID: <20190813073542.6569-1-biao.huang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+        id S1727534AbfHMHwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 03:52:16 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:34522 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727249AbfHMHwQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 03:52:16 -0400
+Received: by mail-pf1-f194.google.com with SMTP id b24so613891pfp.1
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 00:52:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QRTz9Xji1GnKtiBfvHtH9s0qQk1TmYlPxSNoKQScUSU=;
+        b=d9yKr6zAnRu5DLLhnVYGTN713jhVE7qQb/8wlQF/PDbGT/kyDXdm8ubBG3qPavV6nZ
+         u8/FB1rvN8wMU0yFPzjHRFBN1hKKU7wA/8PY9ud7efhPQJtWF8cp3djkdljM/WA8V8gm
+         bqlhiw6x+7V27woDkusatGNHK7XmvCHrSVdLLnEw0A9+0fZm3mPG7SlHF0PJ/Lupaifz
+         L71DVEtMYTgQuS82s2biq6SM/r1tk7PeT+IKYJss0dEuDaiJyvwR70N87LLGLnE/iHvq
+         az6JJK9ulszSFJIw00Tx/0ArednhKrhXSaivVF1sQb8YUpZB4etPZYKA7SF43FRjwDOA
+         SQPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QRTz9Xji1GnKtiBfvHtH9s0qQk1TmYlPxSNoKQScUSU=;
+        b=s/aY4Mc1W3KstEmAxf4wb8DDQgIDtaQ/YXD3GTKp2o0GHIPGPKaHNCylHRT4tUj0pV
+         zcQ5Z3ScgFee1VPk3T/O+DLxfzTbuCgXCIgltWzhSzwgzh2e6KZ2Br66UxcOxcf2CiS7
+         eyzBD6COSE2pBknIpX28ytNl8IymIECdHYiFi3HQeFxNPRv5DfE7MskETwo2yfjub5g8
+         gSvQmzzpkfYnSIvnCTDvbBXAXqYz6r5RNNR62hEjHKkFRbFjRkDdnPSdxKneG+s3ji9D
+         grVs9DJmSJ65tDWiFlYupucGv2Z7qwz1M34RvH7Ly0a56l+HZ1jH84y8U+dXQo97Dfx5
+         7rfQ==
+X-Gm-Message-State: APjAAAVoDpHkMU5rYgdhb283FeQtr0kaeZvVlVpZiUc7wnVEkfvu6CWd
+        g/3Tmqa1HeCFxGdOQF+24MwETU2R0JGxaF5PDsq/rA==
+X-Google-Smtp-Source: APXvYqyGp5FRBIbLsTLczd2XTjqdRRlw2nloNXwwo2pdocKRPV3RlOKTfDT9Lww7NrP1xso9VQHgOv3E8oAazxyso+4=
+X-Received: by 2002:aa7:8f2e:: with SMTP id y14mr10342747pfr.113.1565682734344;
+ Tue, 13 Aug 2019 00:52:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20190812182421.141150-1-brendanhiggins@google.com>
+ <20190812182421.141150-10-brendanhiggins@google.com> <20190813042159.46814206C2@mail.kernel.org>
+ <CAFd5g44XyQi-oprPcdgx-EPboQYaHY6Ocz8Te6NX2SxV=mVhQA@mail.gmail.com> <20190813055615.CA787206C2@mail.kernel.org>
+In-Reply-To: <20190813055615.CA787206C2@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 13 Aug 2019 00:52:03 -0700
+Message-ID: <CAFd5g4415URtJBKPhsEw98GxiExJr-fstW6SQ6nmV9ts9ggK-g@mail.gmail.com>
+Subject: Re: [PATCH v12 09/18] kunit: test: add support for test abort
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add device node for mt2712 ethernet.
+On Mon, Aug 12, 2019 at 10:56 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-08-12 21:57:55)
+> > On Mon, Aug 12, 2019 at 9:22 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > > Quoting Brendan Higgins (2019-08-12 11:24:12)
+> > > > diff --git a/include/kunit/test.h b/include/kunit/test.h
+> > > > index 2625bcfeb19ac..93381f841e09f 100644
+> > > > --- a/include/kunit/test.h
+> > > > +++ b/include/kunit/test.h
+> > > > @@ -176,6 +178,11 @@ struct kunit {
+> > > >          */
+> > > >         bool success; /* Read only after test_case finishes! */
+> > > >         spinlock_t lock; /* Gaurds all mutable test state. */
+> > > > +       /*
+> > > > +        * death_test may be both set and unset from multiple threads in a test
+> > > > +        * case.
+> > > > +        */
+> > > > +       bool death_test; /* Protected by lock. */
+> > > >         /*
+> > > >          * Because resources is a list that may be updated multiple times (with
+> > > >          * new resources) from any thread associated with a test case, we must
+> > > > @@ -184,6 +191,13 @@ struct kunit {
+> > > >         struct list_head resources; /* Protected by lock. */
+> > > >  };
+> > > >
+> > > > +static inline void kunit_set_death_test(struct kunit *test, bool death_test)
+> > > > +{
+> > > > +       spin_lock(&test->lock);
+> > > > +       test->death_test = death_test;
+> > > > +       spin_unlock(&test->lock);
+> > > > +}
+> > >
+> > > These getters and setters are using spinlocks again. It doesn't make any
+> > > sense. It probably needs a rework like was done for the other bool
+> > > member, success.
+> >
+> > No, this is intentional. death_test can transition from false to true
+> > and then back to false within the same test. Maybe that deserves a
+> > comment?
+>
+> Yes. How does it transition from true to false again?
 
-Signed-off-by: Biao Huang <biao.huang@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt2712-evb.dts | 69 +++++++++++++++++++++
- arch/arm64/boot/dts/mediatek/mt2712e.dtsi   | 65 +++++++++++++++++++
- 2 files changed, 134 insertions(+)
+The purpose is to tell try_catch that it was expected for the test to
+bail out. Given the default implementation there is no way for this to
+happen aside from abort() being called, but in some implementations it
+is possible to implement a fault catcher which allows a test suite to
+recover from an unexpected failure.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-index 1353dad2f53c..3118f96706d9 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-@@ -107,7 +107,76 @@
- 	proc-supply = <&cpus_fixed_vproc1>;
- };
- 
-+&eth {
-+	phy-mode ="rgmii-rxid";
-+	phy-handle = <&ethernet_phy0>;
-+	mediatek,tx-delay-ps = <1530>;
-+	snps,reset-gpio = <&pio 87 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&eth_default>;
-+	pinctrl-1 = <&eth_sleep>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		ethernet_phy0: ethernet-phy@5 {
-+			compatible = "ethernet-phy-id0243.0d90";
-+			reg = <0x5>;
-+		};
-+	};
-+};
-+
- &pio {
-+	eth_default: eth_default {
-+		tx_pins {
-+			pinmux = <MT2712_PIN_71_GBE_TXD3__FUNC_GBE_TXD3>,
-+				 <MT2712_PIN_72_GBE_TXD2__FUNC_GBE_TXD2>,
-+				 <MT2712_PIN_73_GBE_TXD1__FUNC_GBE_TXD1>,
-+				 <MT2712_PIN_74_GBE_TXD0__FUNC_GBE_TXD0>,
-+				 <MT2712_PIN_75_GBE_TXC__FUNC_GBE_TXC>,
-+				 <MT2712_PIN_76_GBE_TXEN__FUNC_GBE_TXEN>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+		rx_pins {
-+			pinmux = <MT2712_PIN_78_GBE_RXD3__FUNC_GBE_RXD3>,
-+				 <MT2712_PIN_79_GBE_RXD2__FUNC_GBE_RXD2>,
-+				 <MT2712_PIN_80_GBE_RXD1__FUNC_GBE_RXD1>,
-+				 <MT2712_PIN_81_GBE_RXD0__FUNC_GBE_RXD0>,
-+				 <MT2712_PIN_82_GBE_RXDV__FUNC_GBE_RXDV>,
-+				 <MT2712_PIN_84_GBE_RXC__FUNC_GBE_RXC>;
-+		};
-+		mdio_pins {
-+			pinmux = <MT2712_PIN_85_GBE_MDC__FUNC_GBE_MDC>,
-+				 <MT2712_PIN_86_GBE_MDIO__FUNC_GBE_MDIO>;
-+			drive-strength = <MTK_DRIVE_8mA>;
-+		};
-+	};
-+
-+	eth_sleep: eth_sleep {
-+		tx_pins {
-+			pinmux = <MT2712_PIN_71_GBE_TXD3__FUNC_GPIO71>,
-+				 <MT2712_PIN_72_GBE_TXD2__FUNC_GPIO72>,
-+				 <MT2712_PIN_73_GBE_TXD1__FUNC_GPIO73>,
-+				 <MT2712_PIN_74_GBE_TXD0__FUNC_GPIO74>,
-+				 <MT2712_PIN_75_GBE_TXC__FUNC_GPIO75>,
-+				 <MT2712_PIN_76_GBE_TXEN__FUNC_GPIO76>;
-+		};
-+		rx_pins {
-+			pinmux = <MT2712_PIN_78_GBE_RXD3__FUNC_GPIO78>,
-+				 <MT2712_PIN_79_GBE_RXD2__FUNC_GPIO79>,
-+				 <MT2712_PIN_80_GBE_RXD1__FUNC_GPIO80>,
-+				 <MT2712_PIN_81_GBE_RXD0__FUNC_GPIO81>,
-+				 <MT2712_PIN_82_GBE_RXDV__FUNC_GPIO82>,
-+				 <MT2712_PIN_84_GBE_RXC__FUNC_GPIO84>;
-+		};
-+		mdio_pins {
-+			pinmux = <MT2712_PIN_85_GBE_MDC__FUNC_GPIO85>,
-+				 <MT2712_PIN_86_GBE_MDIO__FUNC_GPIO86>;
-+		};
-+	};
-+
- 	usb0_id_pins_float: usb0_iddig {
- 		pins_iddig {
- 			pinmux = <MT2712_PIN_12_IDDIG_P0__FUNC_IDDIG_A>;
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-index 43307bad3f0d..b2edec20c8da 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-@@ -632,6 +632,71 @@
- 		status = "disabled";
- 	};
- 
-+	stmmac_axi_setup: stmmac-axi-config {
-+		snps,wr_osr_lmt = <0x7>;
-+		snps,rd_osr_lmt = <0x7>;
-+		snps,blen = <0 0 0 0 16 8 4>;
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <1>;
-+		snps,rx-sched-sp;
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,priority = <0x0>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <3>;
-+		snps,tx-sched-wrr;
-+		queue0 {
-+			snps,weight = <0x10>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x0>;
-+		};
-+		queue1 {
-+			snps,weight = <0x11>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x1>;
-+		};
-+		queue2 {
-+			snps,weight = <0x12>;
-+			snps,dcb-algorithm;
-+			snps,priority = <0x2>;
-+		};
-+	};
-+
-+	eth: ethernet@1101c000 {
-+		compatible = "mediatek,mt2712-gmac";
-+		reg = <0 0x1101c000 0 0x1300>;
-+		interrupts = <GIC_SPI 237 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-names = "macirq";
-+		mac-address = [00 55 7b b5 7d f7];
-+		clock-names = "axi",
-+			      "apb",
-+			      "mac_main",
-+			      "ptp_ref";
-+		clocks = <&pericfg CLK_PERI_GMAC>,
-+			 <&pericfg CLK_PERI_GMAC_PCLK>,
-+			 <&topckgen CLK_TOP_ETHER_125M_SEL>,
-+			 <&topckgen CLK_TOP_ETHER_50M_SEL>;
-+		assigned-clocks = <&topckgen CLK_TOP_ETHER_125M_SEL>,
-+				  <&topckgen CLK_TOP_ETHER_50M_SEL>;
-+		assigned-clock-parents = <&topckgen CLK_TOP_ETHERPLL_125M>,
-+					 <&topckgen CLK_TOP_APLL1_D3>;
-+		power-domains = <&scpsys MT2712_POWER_DOMAIN_AUDIO>;
-+		mediatek,pericfg = <&pericfg>;
-+		snps,axi-config = <&stmmac_axi_setup>;
-+		snps,mtl-rx-config = <&mtl_rx_setup>;
-+		snps,mtl-tx-config = <&mtl_tx_setup>;
-+		snps,txpbl = <1>;
-+		snps,rxpbl = <1>;
-+		clk_csr = <0>;
-+		status = "disabled";
-+	};
-+
- 	mmc0: mmc@11230000 {
- 		compatible = "mediatek,mt2712-mmc";
- 		reg = <0 0x11230000 0 0x1000>;
--- 
-2.18.0
+Maybe it would be best to drop this until I add one of those
+alternative implementations.
 
+> Either way, having a spinlock around a read/write API doesn't make sense
+> because it just makes sure that two writes don't overlap, but otherwise
+> does nothing to keep things synchronized. For example a set to true
+> after a set to false when the two calls to set true or false aren't
+> synchronized means they can happen in any order. So I don't see how it
+> needs a spinlock. The lock needs to be one level higher.
+
+There shouldn't be any cases where one thread is trying to set it
+while another is trying to unset it. The thing I am worried about here
+is making sure all the cores see the write, and making sure no reads
+or writes get reordered before it. So I guess I just want a fence. So
+I take it I should probably have is a WRITE_ONCE here and READ_ONCE in
+the getter?
+
+> >
+> > > > +
+> > > >  void kunit_init_test(struct kunit *test, const char *name);
+> > > >
+> > > >  int kunit_run_tests(struct kunit_suite *suite);
+> > > > diff --git a/include/kunit/try-catch.h b/include/kunit/try-catch.h
+> > > > new file mode 100644
+> > > > index 0000000000000..8a414a9af0b64
+> > > > --- /dev/null
+> > > > +++ b/include/kunit/try-catch.h
+> [...]
+> > > > +
+> > > > +/*
+> > > > + * struct kunit_try_catch - provides a generic way to run code which might fail.
+> > > > + * @context: used to pass user data to the try and catch functions.
+> > > > + *
+> > > > + * kunit_try_catch provides a generic, architecture independent way to execute
+> > > > + * an arbitrary function of type kunit_try_catch_func_t which may bail out by
+> > > > + * calling kunit_try_catch_throw(). If kunit_try_catch_throw() is called, @try
+> > > > + * is stopped at the site of invocation and @catch is catch is called.
+> > > > + *
+> > > > + * struct kunit_try_catch provides a generic interface for the functionality
+> > > > + * needed to implement kunit->abort() which in turn is needed for implementing
+> > > > + * assertions. Assertions allow stating a precondition for a test simplifying
+> > > > + * how test cases are written and presented.
+> > > > + *
+> > > > + * Assertions are like expectations, except they abort (call
+> > > > + * kunit_try_catch_throw()) when the specified condition is not met. This is
+> > > > + * useful when you look at a test case as a logical statement about some piece
+> > > > + * of code, where assertions are the premises for the test case, and the
+> > > > + * conclusion is a set of predicates, rather expectations, that must all be
+> > > > + * true. If your premises are violated, it does not makes sense to continue.
+> > > > + */
+> > > > +struct kunit_try_catch {
+> > > > +       /* private: internal use only. */
+> > > > +       struct kunit *test;
+> > > > +       struct completion *try_completion;
+> > > > +       int try_result;
+> > > > +       kunit_try_catch_func_t try;
+> > > > +       kunit_try_catch_func_t catch;
+> > >
+> > > Can these other variables be documented in the kernel doc? And should
+> > > context be marked as 'public'?
+> >
+> > Sure, I can document them.
+> >
+> > But I don't think context should be public; it should only be accessed
+> > by kunit_try_catch_* functions. context should only be populated by
+> > *_init, and will be passed into *try and *catch when they are called
+> > internally.
+>
+> Ok. Then I guess just document them all but keep them all marked as
+> private.
+
+Will do.
+
+> >
+> > > > + */
+> > > > +void kunit_generic_try_catch_init(struct kunit_try_catch *try_catch);
+> > > > +
+> > > > +#endif /* _KUNIT_TRY_CATCH_H */
+> > > > diff --git a/kunit/test.c b/kunit/test.c
+> > > > index e5080a2c6b29c..995cb53fe4ee9 100644
+> > > > --- a/kunit/test.c
+> > > > +++ b/kunit/test.c
+> > > > @@ -158,6 +171,21 @@ static void kunit_fail(struct kunit *test, struct kunit_assert *assert)
+> > > >         kunit_print_string_stream(test, stream);
+> > > >  }
+> > > >
+> > > > +void __noreturn kunit_abort(struct kunit *test)
+> > > > +{
+> > > > +       kunit_set_death_test(test, true);
+> > > > +
+> > > > +       kunit_try_catch_throw(&test->try_catch);
+> > > > +
+> > > > +       /*
+> > > > +        * Throw could not abort from test.
+> > > > +        *
+> > > > +        * XXX: we should never reach this line! As kunit_try_catch_throw is
+> > > > +        * marked __noreturn.
+> > > > +        */
+> > > > +       WARN_ONCE(true, "Throw could not abort from test!\n");
+> > >
+> > > Should this just be a BUG_ON? It's supposedly impossible.
+> >
+> > It should be impossible; it will only reach this line if there is a
+> > bug in kunit_try_catch_throw. The reason I didn't use BUG_ON was
+> > because I previously got yelled at for having BUG_ON in this code
+> > path.
+> >
+> > Nevertheless, I think BUG_ON is more correct, so if you will stand by
+> > it, then that's what I will do.
+>
+> Yeah BUG_ON is appropriate here and self documenting so please use it.
+
+Cool, will do.
+
+> >
+> > > > +               return;
+> > > > +       }
+> > > > +
+> > > > +       if (kunit_get_death_test(test)) {
+> > > > +               /*
+> > > > +                * EXPECTED DEATH: kunit_run_case_internal encountered
+> > > > +                * anticipated fatal error. Everything should be in a safe
+> > > > +                * state.
+> > > > +                */
+> > > > +               kunit_run_case_cleanup(test, suite);
+> > > > +       } else {
+> > > > +               /*
+> > > > +                * UNEXPECTED DEATH: kunit_run_case_internal encountered an
+> > > > +                * unanticipated fatal error. We have no idea what the state of
+> > > > +                * the test case is in.
+> > > > +                */
+> > > > +               kunit_handle_test_crash(test, suite, test_case);
+> > > > +               kunit_set_failure(test);
+> > >
+> > > Like was done here.
+> >
+> > Sorry, like what?
+>
+> Just saying this has braces for the if-else.
+
+Ah, gotcha.
