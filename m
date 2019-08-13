@@ -2,88 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA8238C053
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 20:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E04A98C090
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 20:30:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727491AbfHMSRO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 14:17:14 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:37472 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728172AbfHMSRN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 14:17:13 -0400
-Received: by mail-wr1-f67.google.com with SMTP id z11so6699501wrt.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 11:17:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EPkqHFTT1KvxgsaHnKLv7VXPezcT4eKkPTs4jCtFfDM=;
-        b=IZr+C1IzDl55t6GTa2m5J043jUJjCECxfdNp4mzjhSWfxcBwii/qZ0rxBDRHviGetc
-         vPhWnCIpy/GOrFojZXDQB4CEG5UAaUJubJCrynkow/sMK/FSUC0SKDxJeTvazGezY5Z6
-         aCVmUkUD36h5qNQJ+sXABBJHsUBLceges1UNXbeURj4Uc9Oy3P5JmU/xwk3uQENa7RIj
-         AiAsBOefbWNRoty29pYp8bRktkiCUo0UnmLxt/k+qHLys8iXeUqIDB46oo3tSaLNpnru
-         SOa4UVLzZJ1tMC6Lu0LocylCkVpSt+tPuAe3qhWPBHv30A4V45nnQ1t7Bch8JVPdzT0X
-         C9UA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EPkqHFTT1KvxgsaHnKLv7VXPezcT4eKkPTs4jCtFfDM=;
-        b=WFWHJnZaPfDhCp+fwzoKhOV4G+OSZkjzpZJ8tu8apoz93We3Qu05cwhXmOIIR1PS3Q
-         Fv7vAye+dCyUXAEOGXWHTn5j39F2wAcNa3U2NdPeQd0jTgWN63XmbJtVHmj9OwLdRb8U
-         d7dU/D84r0sHXpcZaiTIh2fI2C9qA8gePO4OI307lg4/0ZJKWc2SUsHbsL+hUKG8Moh1
-         1PxIYEDr49MaVwajclQujwE5QsZOt2bdjB3ekANv/uL8qJu8dKbTYXEkGFtmzGN52eyZ
-         wBInR7zKK05/t8sfibamxjjFsaYgYko0ZRKSKFDga9ZVymmk+Q+pRxKz3SYDHpD965EQ
-         4IOQ==
-X-Gm-Message-State: APjAAAVzYGZ8zNkQchszgvvfQPsFaR23sAEKXFmocMB4NHGsO9UWM9Ql
-        IopIVlFox6+sweH9G/G+6ZkMqQ==
-X-Google-Smtp-Source: APXvYqxmRERDkAw8Vs6MjMd4K+FOgvlYItlA7RSbC053dvmaYrmvTDCtWuRg32Fud5EUiR4kYm0DYw==
-X-Received: by 2002:a05:6000:118a:: with SMTP id g10mr47193038wrx.175.1565720232097;
-        Tue, 13 Aug 2019 11:17:12 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id c6sm3191349wma.25.2019.08.13.11.17.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Aug 2019 11:17:11 -0700 (PDT)
-Subject: Re: [PATCH v2 1/5] soundwire: Add compute_params callback
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        vkoul@kernel.org, broonie@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
-        plai@codeaurora.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        spapothi@codeaurora.org
-References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
- <20190813083550.5877-2-srinivas.kandagatla@linaro.org>
- <7e462330-a357-698a-b259-5ff136963a57@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <1a02f190-0aab-d512-ceb0-4a21014705e8@linaro.org>
-Date:   Tue, 13 Aug 2019 19:17:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728169AbfHMSaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 14:30:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34044 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727665AbfHMSaG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 14:30:06 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EC13020665;
+        Tue, 13 Aug 2019 18:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565721006;
+        bh=AAcWpHX1c7OqZ19H2TdUwNCGoFLrr2xzn4NIMWe0y44=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=ZD4kJjWF9zQida/HMKAddKmuo9zEQdOPO37S8s5/sUd1LWthRKkIajhZ66u8bpanS
+         RTZrj8U5otptn0n9ai1fr0Hd/2lw8MGUsKmeZE5ThRjJxWxvRvNlbiNnrfw55zMPKO
+         SK5TtOJgU/kjcV+OlTJRCpEGozqo1BaX4DZt6nWI=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <7e462330-a357-698a-b259-5ff136963a57@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190812100216.34459-1-wen.he_1@nxp.com>
+References: <20190812100216.34459-1-wen.he_1@nxp.com>
+Subject: Re: [v1 2/3] dt/bindings: clk: Add DT bindings for LS1028A Display output interface
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     leoyang.li@nxp.com, liviu.dudau@arm.com, Wen He <wen.he_1@nxp.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+User-Agent: alot/0.8.1
+Date:   Tue, 13 Aug 2019 11:30:05 -0700
+Message-Id: <20190813183005.EC13020665@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Wen He (2019-08-12 03:02:16)
+> diff --git a/Documentation/devicetree/bindings/clock/fsl,plldig.txt b/Doc=
+umentation/devicetree/bindings/clock/fsl,plldig.txt
+> new file mode 100644
+> index 000000000000..29c5a6117809
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/fsl,plldig.txt
+> @@ -0,0 +1,26 @@
+> +NXP QorIQ Layerscape LS1028A Display output interface Clock
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
+Can you convert this to YAML?
 
-On 13/08/2019 15:34, Pierre-Louis Bossart wrote:
-> On 8/13/19 3:35 AM, Srinivas Kandagatla wrote:
->> From: Vinod Koul <vkoul@kernel.org>
->>
->> This callback allows masters to compute the bus parameters required.
-> 
-> This looks like a partial use of the patch ('soundwire: Add Intel 
-> resource management algorithm')? see comments below
-> 
+> +
+> +Required properties:
+> +    - compatible: shall contain "fsl,ls1028a-plldig"
+> +    - reg: Physical base address and size of the block registers
+> +    - #clock-cells: shall contain 1.
 
-Yes it duplicate indeed!
+As I said in the previous patch, this should probably be 0. Also, please
+order this before the driver in the patch series and thread your
+messages please. If you use git-send-email this is done for you pretty
+easily.
 
-I will use that patch!
-
---srini
+> +    - clocks: a phandle + clock-specifier pairs, here should be
+> +    specify the reference clock of the system
+> +
+> +
