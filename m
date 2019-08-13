@@ -2,96 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C58D48BF4D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 19:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2B538BF8E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 19:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726406AbfHMRHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 13:07:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40020 "EHLO mail.kernel.org"
+        id S1726783AbfHMRXK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 13:23:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44454 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726007AbfHMRHO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 13:07:14 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726094AbfHMRXK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 13:23:10 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C89CA20679;
-        Tue, 13 Aug 2019 17:07:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 970252085A;
+        Tue, 13 Aug 2019 17:23:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565716032;
-        bh=fgW6Va1LDRwdq/a+4YEJkeWaGkuqaoxvU1J721UrWZU=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=treWSrq2kr/VcJofxmrL4w25Mma1xe0c8v1GBc5/aXPXBX/Qh1u42KfGgRAMZ0E7B
-         JnDwwQ837FHdqo8RQtK1lGQzBKI6OSJ9LmUHBI9Mkjtg2i718ItycmKZiAhZvxCmXX
-         sM2LnPO88BoqSh26Dp8VQGdXD9L0EbFEm7nrZp44=
-Content-Type: text/plain; charset="utf-8"
+        s=default; t=1565716989;
+        bh=oEIyygQpeyc5lZgtguO481uQtwKNligWTCld8t/UPMM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pMsDao8Lhb4JfOY1tLFQq5Ki+A5JURQhuKVcQ63i/PvYhoxIo18eDqbP5YKmZLM9J
+         1878SYWfxEDBVeouUdV2EjM3gBEHanSuEO3CJqzrDA0fDqloDKxr0EJEpxZlJA/K1R
+         COr8q9noK7pTdlLQRxqEnBeFF+PzwdKaesbCuGWw=
+Received: by mail-qt1-f179.google.com with SMTP id b11so7342585qtp.10;
+        Tue, 13 Aug 2019 10:23:09 -0700 (PDT)
+X-Gm-Message-State: APjAAAVZoCMa6hwDadyvSfrmdFY9ZvuAIRP8ALP5cYySUP4Lu/QsGa/t
+        U+vFunGAr/ok+b0fwPBqjMQZCNyAmS5VHrPXLA==
+X-Google-Smtp-Source: APXvYqy2+6R8b2VmAb1mm1zXL0U2rDdmV0wVqEBWCEyUZTZp0W4z8AS8GmE6aw8CLPCiSVKucGkFVT4q+0lMBjKid1Y=
+X-Received: by 2002:ac8:44c4:: with SMTP id b4mr23403904qto.224.1565716988767;
+ Tue, 13 Aug 2019 10:23:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAFd5g44Es4emKyQSxUkqckGJ02_o3sAcDLwUCW8ZFGX14j5=xg@mail.gmail.com>
-References: <20190812182421.141150-1-brendanhiggins@google.com> <20190812182421.141150-13-brendanhiggins@google.com> <20190813043140.67FF320644@mail.kernel.org> <CAFd5g44Es4emKyQSxUkqckGJ02_o3sAcDLwUCW8ZFGX14j5=xg@mail.gmail.com>
-Subject: Re: [PATCH v12 12/18] kunit: test: add tests for KUnit managed resources
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        Theodore Ts'o <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Avinash Kondareddy <akndr41@gmail.com>
-To:     Brendan Higgins <brendanhiggins@google.com>
-User-Agent: alot/0.8.1
-Date:   Tue, 13 Aug 2019 10:07:12 -0700
-Message-Id: <20190813170712.C89CA20679@mail.kernel.org>
+References: <1565713248-4906-1-git-send-email-wahrenst@gmx.net> <1565713248-4906-10-git-send-email-wahrenst@gmx.net>
+In-Reply-To: <1565713248-4906-10-git-send-email-wahrenst@gmx.net>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 13 Aug 2019 11:22:56 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+01vXQpf_ZuAvetWvcGLhK4EiiB1qFqhRkM3PQWAzdsA@mail.gmail.com>
+Message-ID: <CAL_Jsq+01vXQpf_ZuAvetWvcGLhK4EiiB1qFqhRkM3PQWAzdsA@mail.gmail.com>
+Subject: Re: [PATCH V2 09/13] dt-bindings: arm: Convert BCM2835 board/soc
+ bindings to json-schema
+To:     Stefan Wahren <wahrenst@gmx.net>
+Cc:     Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-08-13 00:57:33)
-> On Mon, Aug 12, 2019 at 9:31 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > BTW, maybe kunit allocation APIs should
-> > fail the test if they fail to allocate in general. Unless we're unit
-> > testing failure to allocate problems.
->=20
-> Yeah, I thought about that. I wasn't sure how people would feel about
-> it, and I thought it would be a pain to tease out all the issues
-> arising from aborting in different contexts when someone might not
-> expect it.
->=20
-> I am thinking later we can have kunit_kmalloc_or_abort variants? And
-> then we can punt this issue to a later time?
->=20
+On Tue, Aug 13, 2019 at 10:21 AM Stefan Wahren <wahrenst@gmx.net> wrote:
+>
+> Convert the BCM2835/6/7 SoC bindings to DT schema format using json-schema.
+> All the other Broadcom boards are maintained by Florian Fainelli.
+>
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> Acked-by: Eric Anholt <eric@anholt.net>
+> ---
+>  .../devicetree/bindings/arm/bcm/bcm2835.yaml       | 46 +++++++++++++++
+>  .../devicetree/bindings/arm/bcm/brcm,bcm2835.txt   | 67 ----------------------
+>  2 files changed, 46 insertions(+), 67 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm2835.txt
+>
+> diff --git a/Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml b/Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
+> new file mode 100644
+> index 0000000..1a4be26
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/bcm/bcm2835.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/bcm/bcm2835.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Broadcom BCM2711/BCM2835 Platforms Device Tree Bindings
+> +
+> +maintainers:
+> +  - Eric Anholt <eric@anholt.net>
+> +  - Stefan Wahren <wahrenst@gmx.net>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: BCM2835 based Boards
+> +        items:
+> +          - enum:
+> +              - raspberrypi,model-a
+> +              - raspberrypi,model-a-plus
+> +              - raspberrypi,model-b
+> +              - raspberrypi,model-b-i2c0  # Raspberry Pi Model B (no P5)
+> +              - raspberrypi,model-b-rev2
+> +              - raspberrypi,model-b-plus
+> +              - raspberrypi,compute-module
+> +              - raspberrypi,model-zero
+> +              - raspberrypi,model-zero-w
+> +          - const: brcm,bcm2835
+> +
+> +      - description: BCM2836 based Boards
+> +        items:
+> +          - enum:
+> +              - raspberrypi,2-model-b
 
-Sure. Sounds good.
+Don't you need brcm,bcm2836 here?
 
+> +
+> +      - description: BCM2837 based Boards
+> +        items:
+> +          - enum:
+> +              - raspberrypi,3-model-a-plus
+> +              - raspberrypi,3-model-b
+> +              - raspberrypi,3-model-b-plus
+> +              - raspberrypi,3-compute-module
+> +              - raspberrypi,3-compute-module-lite
+
+Don't you need brcm,bcm2837 here?
+
+Please run 'dtbs_check' and make sure there aren't warnings (in the root node).
+
+Rob
