@@ -2,65 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D71998BA7C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10B588BA9E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729018AbfHMNhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 09:37:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58110 "EHLO mail.kernel.org"
+        id S1729240AbfHMNnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 09:43:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59676 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728413AbfHMNhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 09:37:45 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        id S1728095AbfHMNnN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 09:43:13 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 94028214C6;
-        Tue, 13 Aug 2019 13:37:44 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A97772084D;
+        Tue, 13 Aug 2019 13:43:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565703464;
-        bh=2qmLOtTpG/stA8TD7RCITB8xohNroN/LDsPV5fUMmHc=;
+        s=default; t=1565703792;
+        bh=tGhuTi6i8q70RtL03QHsvQiJD0U0K5cLD/inwbsXYcc=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BKQNSToq0wG1MBpTLk+RRUxQ4uNsuwaoMwmZbEyWaI/6sJxe1Akq2vvYwUtOUNgmY
-         KyBd+LJ3yn6pmssD0B6hUngaAs9Vs1wXNx7ieyCsytMepVKaCt9Kx23o+cm1XIOgAz
-         QWtdq0z2Tp0BIvZRZpYVYy5AzLzW44b3bMxrJqSM=
-Received: by mail-qt1-f172.google.com with SMTP id 44so75252855qtg.11;
-        Tue, 13 Aug 2019 06:37:44 -0700 (PDT)
-X-Gm-Message-State: APjAAAUVy7lHz2PsPB6UENEGYBHfXCwVoFpXvWs06HpdWohbJYvDlQRV
-        5eMiABWqTFFEgDBFkVjyzWTkJO9yw+cFaEelMg==
-X-Google-Smtp-Source: APXvYqxSiv8xmh6l0YTN5kHSwGreytmLW7ZJbNoD9AorAGSyRJwul03y4GR3v+y0oM8Lfhej25onLI9w87H77Qr4i5g=
-X-Received: by 2002:ac8:368a:: with SMTP id a10mr34107578qtc.143.1565703463817;
- Tue, 13 Aug 2019 06:37:43 -0700 (PDT)
+        b=Uo4UavNgFwTPrkrDxoQzIeexZ8KSCrVWgqozcIOdUTQaQijufQfVB2ixWpk9DEuUn
+         5e+wszlhwGOhVXV0p24BfuRUhhiNDlVRvQSFGwV/lc5gcy+idDp3GcQyqgmUm/gpDl
+         I+N5Xl39XMXX1aqi9llnNWdLstFASs7Sp7tR3oY4=
+Received: by mail-qk1-f174.google.com with SMTP id 201so79581358qkm.9;
+        Tue, 13 Aug 2019 06:43:12 -0700 (PDT)
+X-Gm-Message-State: APjAAAVCS/PKneNXjBJi7w6Mep/wDhudVlIcFnPmBwsZlJ6rtMDzYl8Z
+        y3ofMYECfigLgBTkZmoan1hL2ixA742nKAEqaw==
+X-Google-Smtp-Source: APXvYqyoMvVBG6NtFWAydUGiqe0lkRWftJ5OUD3LW861TSIDeNewDqAnlP+AxGAUPwMd7qokDO1L8NO/lTHTDeP0EKY=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr27142458qkn.254.1565703791883;
+ Tue, 13 Aug 2019 06:43:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190813130559.16936-1-sashal@kernel.org>
-In-Reply-To: <20190813130559.16936-1-sashal@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Aug 2019 07:37:32 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJaRmeV3Ne-HFTxMG_AZhaiGW_SKzgNrDMLJ5WGP0FXUQ@mail.gmail.com>
-Message-ID: <CAL_JsqJaRmeV3Ne-HFTxMG_AZhaiGW_SKzgNrDMLJ5WGP0FXUQ@mail.gmail.com>
-Subject: Re: [PATCH] tpm/tpm_ftpm_tee: trivial checkpatch fixes
-To:     Sasha Levin <sashal@kernel.org>
-Cc:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        Peter Huewe <peterhuewe@gmx.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
+References: <20190813130946.16448-1-govinds@codeaurora.org> <20190813130946.16448-2-govinds@codeaurora.org>
+In-Reply-To: <20190813130946.16448-2-govinds@codeaurora.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 13 Aug 2019 07:43:00 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK-GK8arfRu6sqP9UjNrwc0=aUWXymMRF5fQhg+M2TNng@mail.gmail.com>
+Message-ID: <CAL_JsqK-GK8arfRu6sqP9UjNrwc0=aUWXymMRF5fQhg+M2TNng@mail.gmail.com>
+Subject: Re: [v2 1/2] dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock
+ controller bindings
+To:     Govind Singh <govinds@codeaurora.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
+        Andy Gross <andy.gross@linaro.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 13, 2019 at 7:06 AM Sasha Levin <sashal@kernel.org> wrote:
+On Tue, Aug 13, 2019 at 7:10 AM Govind Singh <govinds@codeaurora.org> wrote:
 >
-> Fixes a few checkpatch warnings (and ignores some), mostly around
-> spaces/tabs and documentation.
+> Add devicetree binding for the Q6SSTOP clock controller found in QCS404.
+
+You need to test this with 'make dt_binding_check' and fix the errors.
+
 >
-> Signed-off-by: Sasha Levin <sashal@kernel.org>
+> Signed-off-by: Govind Singh <govinds@codeaurora.org>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml |  2 ++
+>  .../bindings/clock/qcom,q6sstopcc.yaml        | 45 +++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml b/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+> new file mode 100644
+> index 000000000000..861e9ba97ca3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: BSD-2-Clause
 
-Acked-by: Rob Herring <robh@kernel.org>
+GPL-2.0-only OR BSD-2-Clause
 
->  drivers/char/tpm/tpm_ftpm_tee.c                        | 10 +++++-----
->  3 files changed, 8 insertions(+), 6 deletions(-)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/interconnect/qcom,osm-l3.yaml#
+
+needs updating
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Q6SSTOP clock Controller
+> +
+> +maintainers:
+> +  - Govind Singh <govinds@codeaurora.org>
+> +
+> +description:
+> +   Q6SSTOP clock controller is used by WCSS remoteproc driver
+> +   to bring WDSP out of reset.
+> +
+> +properties:
+> +  compatible:
+> +    const: "qcom,qcs404-q6sstopcc"
+> +
+> +  reg:
+> +    maxItems: 2
+> +    description: Q6SSTOP clocks register region
+> +    description: Q6SSTOP_TCSR register region
+
+Not valid json-schema
+
+> +
+> +  clocks:
+> +    items:
+> +      - description: ahb clock for the q6sstopCC
+
+Single item just needs 'maxItems: 1'
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+
+Should have an 'additionalProperties: false' here.
+
+> +
+> +examples:
+> +  - |
+> +    q6sstopcc: clock-controller@7500000 {
+> +      compatible = "qcom,qcs404-q6sstopcc";
+> +      reg = <0x07500000 0x4e000>, <0x07550000 0x10000>;
+> +      clocks = <&gcc GCC_WCSS_Q6_AHB_CLK>;
+> +      #clock-cells = <1>;
+> +    };
+> --
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+>
