@@ -2,236 +2,555 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72B2D8AD14
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 05:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEC5A8AD6C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 06:22:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726941AbfHMDOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 23:14:46 -0400
-Received: from mail-eopbgr130059.outbound.protection.outlook.com ([40.107.13.59]:62827
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726516AbfHMDOq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 23:14:46 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=luHwXpT8zYSvcLmrpmE/Yn5OhLazSjN+JF3adrYPXOmOk5/IF2hLYmG7hiN4XAmEhsrrohBPeUfk5c7tzjbknPll3BwtdlLsMQ7GDk0Wl3Kn/naowy8N2TZwMrhuyLcRHihPwSvPQk20ZbTmp0kbeOx1ixRagdVaMEK2mdMHUzqrurKcFh+sYLJBpKFGRZNDVMnB3oOStaM+NGy2S7lGXkK7E1Gekn+2el0PsxM4fJZIZRGpYrQ+MrLLMzFZUOEtfGKn09F/LDRsiNF4hAhlumStqfDfh9qndsoTwtPuBtoKoWkKf22aC4r6QTjZTWtzQMsF4M6hfqMOco0wwSPEIA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rtyptiQMgMa//gpfr778ZpqjHJQK3XLTnFlJgP6Mn58=;
- b=grtPUIwWKOqdWdssUMuIIMDFVWpXb3Zcy4FZZEpNfx9az7QD/1yE4kWGuzI35YwcJ9DfsuWSvSgEe7K41vyBHSimW1tKVrMmn6wU6gLuRWNHRSkhcq2XLTHHGU9jMNGdcVRoo3G1l/dFzZn+8vsZ4geMbiJQt/q66lqV46VhPmVXPkZ1biHJxs6ngRpB3mDlSsjoAhv/ulGBbe/yd1gsWFc4oFMqdJ/Ss88YUOhw2DY6NGEe60teLoXKiTZ/hLLE+zCYnxL11J9IBFroKTHfiSMrc/lLjfpvJfj3CLg5Heujm03D+HPpVcdxbq+Iiv2/gBD+Ho6lJfzuu8vi4Pi6Kg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rtyptiQMgMa//gpfr778ZpqjHJQK3XLTnFlJgP6Mn58=;
- b=LHpKB6X6OvFNCpF3C4ckrdBV2t3Ka1YDKZz5de+gdkHI7sDkNQ76aI4ewk0FGUb3fMqbFaY+2W0g9Eqo3XBnIm2c2/+8JMdceJIwOA1RgXo/s375Hugdt2l/fsxTfzRUP2N7RPfdEEFxUE7SUBNKSXXeoKiC7E4bYUaItDi0voE=
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com (20.179.250.159) by
- DB8PR04MB5898.eurprd04.prod.outlook.com (20.179.12.91) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.15; Tue, 13 Aug 2019 03:14:40 +0000
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb]) by DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb%3]) with mapi id 15.20.2157.015; Tue, 13 Aug 2019
- 03:14:40 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     Andrew Murray <andrew.murray@arm.com>
-CC:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>
-Subject: RE: [PATCH 4/4] arm64: dts: fsl: Remove num-lanes property from PCIe
- nodes
-Thread-Topic: [PATCH 4/4] arm64: dts: fsl: Remove num-lanes property from PCIe
- nodes
-Thread-Index: AQHVUMWQPzBEI52VGku2HzYmow0ewKb3MFQAgAE4dxA=
-Date:   Tue, 13 Aug 2019 03:14:40 +0000
-Message-ID: <DB8PR04MB674726CDDA2F60FB0B86736684D20@DB8PR04MB6747.eurprd04.prod.outlook.com>
-References: <20190812042435.25102-1-Zhiqiang.Hou@nxp.com>
- <20190812042435.25102-5-Zhiqiang.Hou@nxp.com>
- <20190812083545.GV56241@e119886-lin.cambridge.arm.com>
-In-Reply-To: <20190812083545.GV56241@e119886-lin.cambridge.arm.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=zhiqiang.hou@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7444713a-9f65-4f37-0884-08d71f9c6163
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB8PR04MB5898;
-x-ms-traffictypediagnostic: DB8PR04MB5898:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB589808B39A345888112ADFC284D20@DB8PR04MB5898.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 01283822F8
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(346002)(396003)(39860400002)(376002)(136003)(13464003)(189003)(199004)(316002)(4326008)(54906003)(71200400001)(14444005)(256004)(71190400001)(8676002)(7416002)(53546011)(102836004)(86362001)(9686003)(6246003)(6506007)(7696005)(6436002)(76176011)(229853002)(186003)(52536014)(26005)(99286004)(478600001)(53936002)(6916009)(66476007)(66556008)(446003)(5660300002)(476003)(11346002)(66446008)(55016002)(486006)(81156014)(14454004)(64756008)(74316002)(66066001)(305945005)(25786009)(76116006)(3846002)(6116002)(2906002)(66946007)(8936002)(7736002)(33656002)(81166006);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB5898;H:DB8PR04MB6747.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: ohlI1dqyHIXxv5nRh+Zeby2JLBOTTJ/uE84qgcOLxXZxBX2qjPQFEbqvAZ3AI43cJEG2e/8cFqQwSFkNAKP/12vaRFbYjY88KTC9dY7tlEHPGq17jtYw994drBG6pfVi4xqksvmq9io66qgWgi0KutkVipxmD11yE3V7zZPNlDauMfz7Zlz9H8o7RkcBeC3glF20sTMDYW5pBmRaO6HQJ0KSthVl7MRBEsY0cZSbl0tyrabIziF0dQk6C7KM2FKkmhK12AvIilOdTwdxx7RqzEHDB5MjvnmeFkqOYaktqz4OjUAXpHib3hUAHTzNB7+48D+h099sRARJlj11WTqWeY5hGX/TQp2u1pJN/dm3eEYq7xGWRJMf9S/ngvb0I9wWXU6C2L131rVwFezPGxEdShf8lJ1GKsWa/hFutPiF0SU=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S1725903AbfHMEWB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 00:22:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54932 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725899AbfHMEWA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 00:22:00 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 46814206C2;
+        Tue, 13 Aug 2019 04:21:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565670119;
+        bh=2wsciK8EQNkiIDpIzT9gqNOBT1vFkTwhm0156mR8+vg=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=wecwCow5B+6BYtZFhLgSBtfBg3HYwUxRc7BK/brCT0tDKGApHgFlM+vfqd81P64X0
+         04JP0Nu9+FaPoa3LNBz2rHGjoJcRlNjXPSlwk78/5FIAJiFy49LChFOYIg/iHUwNr0
+         72imQjPEbEhZyBYzzpi7XEUQSlI3qDs3pOlrbs2w=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7444713a-9f65-4f37-0884-08d71f9c6163
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2019 03:14:40.3874
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: tCN+8rb/pAQXhZmMO+CNSE++K4sNO/EyJbZhOmQcOZ5zQOuCNnAvW6ag7edbMzoyTCUB5hXzfQm+rDu3Zo+y7g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5898
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190812182421.141150-10-brendanhiggins@google.com>
+References: <20190812182421.141150-1-brendanhiggins@google.com> <20190812182421.141150-10-brendanhiggins@google.com>
+Subject: Re: [PATCH v12 09/18] kunit: test: add support for test abort
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+User-Agent: alot/0.8.1
+Date:   Mon, 12 Aug 2019 21:21:58 -0700
+Message-Id: <20190813042159.46814206C2@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQpUaGFua3MgYSBsb3QgZm9yIHlvdXIgcmV2aWV3IQ0KDQpSZWdhcmRzLA0K
-WmhpcWlhbmcNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBBbmRyZXcg
-TXVycmF5IDxhbmRyZXcubXVycmF5QGFybS5jb20+DQo+IFNlbnQ6IDIwMTnE6jjUwjEyyNUgMTY6
-MzYNCj4gVG86IFoucS4gSG91IDx6aGlxaWFuZy5ob3VAbnhwLmNvbT4NCj4gQ2M6IGxpbnV4LXBj
-aUB2Z2VyLmtlcm5lbC5vcmc7IGRldmljZXRyZWVAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1r
-ZXJuZWxAdmdlci5rZXJuZWwub3JnOyBndXN0YXZvLnBpbWVudGVsQHN5bm9wc3lzLmNvbTsNCj4g
-amluZ29vaGFuMUBnbWFpbC5jb207IGJoZWxnYWFzQGdvb2dsZS5jb207IHJvYmgrZHRAa2VybmVs
-Lm9yZzsNCj4gbWFyay5ydXRsYW5kQGFybS5jb207IHNoYXduZ3VvQGtlcm5lbC5vcmc7IExlbyBM
-aQ0KPiA8bGVveWFuZy5saUBueHAuY29tPjsgbG9yZW56by5waWVyYWxpc2lAYXJtLmNvbTsgTS5o
-LiBMaWFuDQo+IDxtaW5naHVhbi5saWFuQG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0gg
-NC80XSBhcm02NDogZHRzOiBmc2w6IFJlbW92ZSBudW0tbGFuZXMgcHJvcGVydHkgZnJvbQ0KPiBQ
-Q0llIG5vZGVzDQo+IA0KPiBPbiBNb24sIEF1ZyAxMiwgMjAxOSBhdCAwNDoyMjozM0FNICswMDAw
-LCBaLnEuIEhvdSB3cm90ZToNCj4gPiBGcm9tOiBIb3UgWmhpcWlhbmcgPFpoaXFpYW5nLkhvdUBu
-eHAuY29tPg0KPiA+DQo+ID4gT24gRlNMIExheWVyc2NhcGUgU29DcywgdGhlIG51bWJlciBvZiBs
-YW5lcyBhc3NpZ25lZCB0byBQQ0llDQo+ID4gY29udHJvbGxlciBpcyBub3QgZml4ZWQsIGl0IGlz
-IGRldGVybWluZWQgYnkgdGhlIHNlbGVjdGVkIFNlckRlcw0KPiA+IHByb3RvY29sIGluIHRoZSBS
-Q1cgKFJlc2V0IENvbmZpZ3VyYXRpb24gV29yZCksIGFuZCB0aGUgUENJZSBsaW5rDQo+ID4gdHJh
-aW5pbmcgaXMgY29tcGxldGVkIGF1dG9tYXRpY2FsbHkgYmFzZSBvbiB0aGUgc2VsZWN0ZWQgU2Vy
-RGVzDQo+ID4gcHJvdG9jb2wsIGFuZCB0aGUgbGluayB3aWR0aCBzZXQtdXAgaXMgdXBkYXRlZCBi
-eSBoYXJkd2FyZS4gU28gdGhlDQo+ID4gbnVtLWxhbmVzIGlzIG5vdCBuZWVkZWQgdG8gc3BlY2lm
-eSB0aGUgbGluayB3aWR0aC4NCj4gPg0KPiA+IFRoZSBjdXJyZW50IG51bS1sYW5lcyBpbmRpY2F0
-ZXMgdGhlIG1heCBsYW5lcyBQQ0llIGNvbnRyb2xsZXIgY2FuDQo+ID4gc3VwcG9ydCB1cCB0bywg
-aW5zdGVhZCBvZiB0aGUgbGFuZXMgYXNzaWduZWQgdG8gdGhlIFBDSWUgY29udHJvbGxlci4NCj4g
-PiBUaGlzIGNhbiByZXN1bHQgaW4gUENJZSBsaW5rIHRyYWluaW5nIGZhaWwgYWZ0ZXIgaG90LXJl
-c2V0LiBTbyByZW1vdmUNCj4gPiB0aGUgbnVtLWxhbmVzIHRvIGF2b2lkIHNldC11cCB0byBpbmNv
-cnJlY3QgbGluayB3aWR0aC4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEhvdSBaaGlxaWFuZyA8
-WmhpcWlhbmcuSG91QG54cC5jb20+DQo+ID4gLS0tDQo+ID4gIGFyY2gvYXJtNjQvYm9vdC9kdHMv
-ZnJlZXNjYWxlL2ZzbC1sczEwMTJhLmR0c2kgfCAxIC0NCj4gPiBhcmNoL2FybTY0L2Jvb3QvZHRz
-L2ZyZWVzY2FsZS9mc2wtbHMxMDQzYS5kdHNpIHwgMyAtLS0NCj4gPiBhcmNoL2FybTY0L2Jvb3Qv
-ZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQ2YS5kdHNpIHwgNiAtLS0tLS0NCj4gPiBhcmNoL2FybTY0
-L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDg4YS5kdHNpIHwgMyAtLS0NCj4gPiBhcmNoL2Fy
-bTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMyMDh4YS5kdHNpIHwgNCAtLS0tDQo+ID4gIDUg
-ZmlsZXMgY2hhbmdlZCwgMTcgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvYXJj
-aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAxMmEuZHRzaQ0KPiA+IGIvYXJjaC9h
-cm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTAxMmEuZHRzaQ0KPiA+IGluZGV4IGVjNjI1
-N2E1YjI1MS4uMTE5YzU5N2NhODY3IDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9k
-dHMvZnJlZXNjYWxlL2ZzbC1sczEwMTJhLmR0c2kNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3Qv
-ZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDEyYS5kdHNpDQo+ID4gQEAgLTQ4Niw3ICs0ODYsNiBAQA0K
-PiA+ICAJCQkjYWRkcmVzcy1jZWxscyA9IDwzPjsNCj4gPiAgCQkJI3NpemUtY2VsbHMgPSA8Mj47
-DQo+ID4gIAkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gLQkJCW51bS1sYW5lcyA9IDw0PjsN
-Cj4gPiAgCQkJbnVtLXZpZXdwb3J0ID0gPDI+Ow0KPiA+ICAJCQlidXMtcmFuZ2UgPSA8MHgwIDB4
-ZmY+Ow0KPiA+ICAJCQlyYW5nZXMgPSA8MHg4MTAwMDAwMCAweDAgMHgwMDAwMDAwMCAweDQwIDB4
-MDAwMTAwMDAgMHgwDQo+IDB4MDAwMTAwMDAgICAvKiBkb3duc3RyZWFtIEkvTyAqLw0KPiA+IGRp
-ZmYgLS1naXQgYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQzYS5kdHNp
-DQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMxMDQzYS5kdHNpDQo+
-ID4gaW5kZXggNzFkOWVkOWZmOTg1Li5jMDg0YzdhNGI2YTYgMTAwNjQ0DQo+ID4gLS0tIGEvYXJj
-aC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMTA0M2EuZHRzaQ0KPiA+ICsrKyBiL2Fy
-Y2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwNDNhLmR0c2kNCj4gPiBAQCAtNjc3
-LDcgKzY3Nyw2IEBADQo+ID4gIAkJCSNzaXplLWNlbGxzID0gPDI+Ow0KPiA+ICAJCQlkZXZpY2Vf
-dHlwZSA9ICJwY2kiOw0KPiA+ICAJCQlkbWEtY29oZXJlbnQ7DQo+ID4gLQkJCW51bS1sYW5lcyA9
-IDw0PjsNCj4gPiAgCQkJbnVtLXZpZXdwb3J0ID0gPDY+Ow0KPiA+ICAJCQlidXMtcmFuZ2UgPSA8
-MHgwIDB4ZmY+Ow0KPiA+ICAJCQlyYW5nZXMgPSA8MHg4MTAwMDAwMCAweDAgMHgwMDAwMDAwMCAw
-eDQwIDB4MDAwMTAwMDAgMHgwDQo+IDB4MDAwMTAwMDAgICAvKiBkb3duc3RyZWFtIEkvTyAqLw0K
-PiA+IEBAIC03MDQsNyArNzAzLDYgQEANCj4gPiAgCQkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4g
-IAkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gIAkJCWRtYS1jb2hlcmVudDsNCj4gPiAtCQkJ
-bnVtLWxhbmVzID0gPDI+Ow0KPiA+ICAJCQludW0tdmlld3BvcnQgPSA8Nj47DQo+ID4gIAkJCWJ1
-cy1yYW5nZSA9IDwweDAgMHhmZj47DQo+ID4gIAkJCXJhbmdlcyA9IDwweDgxMDAwMDAwIDB4MCAw
-eDAwMDAwMDAwIDB4NDggMHgwMDAxMDAwMCAweDANCj4gMHgwMDAxMDAwMCAgIC8qIGRvd25zdHJl
-YW0gSS9PICovDQo+ID4gQEAgLTczMSw3ICs3MjksNiBAQA0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9
-IDwyPjsNCj4gPiAgCQkJZGV2aWNlX3R5cGUgPSAicGNpIjsNCj4gPiAgCQkJZG1hLWNvaGVyZW50
-Ow0KPiA+IC0JCQludW0tbGFuZXMgPSA8Mj47DQo+ID4gIAkJCW51bS12aWV3cG9ydCA9IDw2PjsN
-Cj4gPiAgCQkJYnVzLXJhbmdlID0gPDB4MCAweGZmPjsNCj4gPiAgCQkJcmFuZ2VzID0gPDB4ODEw
-MDAwMDAgMHgwIDB4MDAwMDAwMDAgMHg1MCAweDAwMDEwMDAwIDB4MA0KPiAweDAwMDEwMDAwICAg
-LyogZG93bnN0cmVhbSBJL08gKi8NCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm02NC9ib290L2R0
-cy9mcmVlc2NhbGUvZnNsLWxzMTA0NmEuZHRzaQ0KPiA+IGIvYXJjaC9hcm02NC9ib290L2R0cy9m
-cmVlc2NhbGUvZnNsLWxzMTA0NmEuZHRzaQ0KPiA+IGluZGV4IGIwZWYwOGIwOTBkZC4uZDRjMWRh
-M2Q0YmRlIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2Zz
-bC1sczEwNDZhLmR0c2kNCj4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9m
-c2wtbHMxMDQ2YS5kdHNpDQo+ID4gQEAgLTY0OSw3ICs2NDksNiBAQA0KPiA+ICAJCQkjc2l6ZS1j
-ZWxscyA9IDwyPjsNCj4gPiAgCQkJZGV2aWNlX3R5cGUgPSAicGNpIjsNCj4gPiAgCQkJZG1hLWNv
-aGVyZW50Ow0KPiA+IC0JCQludW0tbGFuZXMgPSA8ND47DQo+ID4gIAkJCW51bS12aWV3cG9ydCA9
-IDw4PjsNCj4gPiAgCQkJYnVzLXJhbmdlID0gPDB4MCAweGZmPjsNCj4gPiAgCQkJcmFuZ2VzID0g
-PDB4ODEwMDAwMDAgMHgwIDB4MDAwMDAwMDAgMHg0MCAweDAwMDEwMDAwIDB4MA0KPiAweDAwMDEw
-MDAwICAgLyogZG93bnN0cmVhbSBJL08gKi8NCj4gPiBAQCAtNjcxLDcgKzY3MCw2IEBADQo+ID4g
-IAkJCXJlZy1uYW1lcyA9ICJyZWdzIiwgImFkZHJfc3BhY2UiOw0KPiA+ICAJCQludW0taWItd2lu
-ZG93cyA9IDw2PjsNCj4gPiAgCQkJbnVtLW9iLXdpbmRvd3MgPSA8OD47DQo+ID4gLQkJCW51bS1s
-YW5lcyA9IDwyPjsNCj4gPiAgCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiAgCQl9Ow0KPiA+
-DQo+ID4gQEAgLTY4Nyw3ICs2ODUsNiBAQA0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4g
-PiAgCQkJZGV2aWNlX3R5cGUgPSAicGNpIjsNCj4gPiAgCQkJZG1hLWNvaGVyZW50Ow0KPiA+IC0J
-CQludW0tbGFuZXMgPSA8Mj47DQo+ID4gIAkJCW51bS12aWV3cG9ydCA9IDw4PjsNCj4gPiAgCQkJ
-YnVzLXJhbmdlID0gPDB4MCAweGZmPjsNCj4gPiAgCQkJcmFuZ2VzID0gPDB4ODEwMDAwMDAgMHgw
-IDB4MDAwMDAwMDAgMHg0OCAweDAwMDEwMDAwIDB4MA0KPiAweDAwMDEwMDAwICAgLyogZG93bnN0
-cmVhbSBJL08gKi8NCj4gPiBAQCAtNzA5LDcgKzcwNiw2IEBADQo+ID4gIAkJCXJlZy1uYW1lcyA9
-ICJyZWdzIiwgImFkZHJfc3BhY2UiOw0KPiA+ICAJCQludW0taWItd2luZG93cyA9IDw2PjsNCj4g
-PiAgCQkJbnVtLW9iLXdpbmRvd3MgPSA8OD47DQo+ID4gLQkJCW51bS1sYW5lcyA9IDwyPjsNCj4g
-PiAgCQkJc3RhdHVzID0gImRpc2FibGVkIjsNCj4gPiAgCQl9Ow0KPiA+DQo+ID4gQEAgLTcyNSw3
-ICs3MjEsNiBAQA0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPiAgCQkJZGV2aWNlX3R5
-cGUgPSAicGNpIjsNCj4gPiAgCQkJZG1hLWNvaGVyZW50Ow0KPiA+IC0JCQludW0tbGFuZXMgPSA8
-Mj47DQo+ID4gIAkJCW51bS12aWV3cG9ydCA9IDw4PjsNCj4gPiAgCQkJYnVzLXJhbmdlID0gPDB4
-MCAweGZmPjsNCj4gPiAgCQkJcmFuZ2VzID0gPDB4ODEwMDAwMDAgMHgwIDB4MDAwMDAwMDAgMHg1
-MCAweDAwMDEwMDAwIDB4MA0KPiAweDAwMDEwMDAwICAgLyogZG93bnN0cmVhbSBJL08gKi8NCj4g
-PiBAQCAtNzQ3LDcgKzc0Miw2IEBADQo+ID4gIAkJCXJlZy1uYW1lcyA9ICJyZWdzIiwgImFkZHJf
-c3BhY2UiOw0KPiA+ICAJCQludW0taWItd2luZG93cyA9IDw2PjsNCj4gPiAgCQkJbnVtLW9iLXdp
-bmRvd3MgPSA8OD47DQo+ID4gLQkJCW51bS1sYW5lcyA9IDwyPjsNCj4gPiAgCQkJc3RhdHVzID0g
-ImRpc2FibGVkIjsNCj4gPiAgCQl9Ow0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwODhhLmR0c2kNCj4gPiBiL2FyY2gvYXJtNjQvYm9v
-dC9kdHMvZnJlZXNjYWxlL2ZzbC1sczEwODhhLmR0c2kNCj4gPiBpbmRleCBkZmJlYWQ0MDU3ODMu
-Ljc2Yzg3YWZlYmExZSAxMDA2NDQNCj4gPiAtLS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVz
-Y2FsZS9mc2wtbHMxMDg4YS5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
-c2NhbGUvZnNsLWxzMTA4OGEuZHRzaQ0KPiA+IEBAIC00NTYsNyArNDU2LDYgQEANCj4gPiAgCQkJ
-I3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gIAkJCWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gIAkJ
-CWRtYS1jb2hlcmVudDsNCj4gPiAtCQkJbnVtLWxhbmVzID0gPDQ+Ow0KPiA+ICAJCQludW0tdmll
-d3BvcnQgPSA8MjU2PjsNCj4gPiAgCQkJYnVzLXJhbmdlID0gPDB4MCAweGZmPjsNCj4gPiAgCQkJ
-cmFuZ2VzID0gPDB4ODEwMDAwMDAgMHgwIDB4MDAwMDAwMDAgMHgyMCAweDAwMDEwMDAwIDB4MA0K
-PiAweDAwMDEwMDAwICAgLyogZG93bnN0cmVhbSBJL08gKi8NCj4gPiBAQCAtNDgyLDcgKzQ4MSw2
-IEBADQo+ID4gIAkJCSNzaXplLWNlbGxzID0gPDI+Ow0KPiA+ICAJCQlkZXZpY2VfdHlwZSA9ICJw
-Y2kiOw0KPiA+ICAJCQlkbWEtY29oZXJlbnQ7DQo+ID4gLQkJCW51bS1sYW5lcyA9IDw0PjsNCj4g
-PiAgCQkJbnVtLXZpZXdwb3J0ID0gPDY+Ow0KPiA+ICAJCQlidXMtcmFuZ2UgPSA8MHgwIDB4ZmY+
-Ow0KPiA+ICAJCQlyYW5nZXMgPSA8MHg4MTAwMDAwMCAweDAgMHgwMDAwMDAwMCAweDI4IDB4MDAw
-MTAwMDAgMHgwDQo+IDB4MDAwMTAwMDAgICAvKiBkb3duc3RyZWFtIEkvTyAqLw0KPiA+IEBAIC01
-MDgsNyArNTA2LDYgQEANCj4gPiAgCQkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gIAkJCWRldmlj
-ZV90eXBlID0gInBjaSI7DQo+ID4gIAkJCWRtYS1jb2hlcmVudDsNCj4gPiAtCQkJbnVtLWxhbmVz
-ID0gPDg+Ow0KPiA+ICAJCQludW0tdmlld3BvcnQgPSA8Nj47DQo+ID4gIAkJCWJ1cy1yYW5nZSA9
-IDwweDAgMHhmZj47DQo+ID4gIAkJCXJhbmdlcyA9IDwweDgxMDAwMDAwIDB4MCAweDAwMDAwMDAw
-IDB4MzAgMHgwMDAxMDAwMCAweDANCj4gMHgwMDAxMDAwMCAgIC8qIGRvd25zdHJlYW0gSS9PICov
-DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczIw
-OHhhLmR0c2kNCj4gPiBiL2FyY2gvYXJtNjQvYm9vdC9kdHMvZnJlZXNjYWxlL2ZzbC1sczIwOHhh
-LmR0c2kNCj4gPiBpbmRleCA2NDEwMWM5OTYyY2UuLjdhMGJlOGVhYTg0YSAxMDA2NDQNCj4gPiAt
-LS0gYS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9mc2wtbHMyMDh4YS5kdHNpDQo+ID4g
-KysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvZnNsLWxzMjA4eGEuZHRzaQ0KPiA+
-IEBAIC02MzksNyArNjM5LDYgQEANCj4gPiAgCQkJI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4gIAkJ
-CWRldmljZV90eXBlID0gInBjaSI7DQo+ID4gIAkJCWRtYS1jb2hlcmVudDsNCj4gPiAtCQkJbnVt
-LWxhbmVzID0gPDQ+Ow0KPiA+ICAJCQludW0tdmlld3BvcnQgPSA8Nj47DQo+ID4gIAkJCWJ1cy1y
-YW5nZSA9IDwweDAgMHhmZj47DQo+ID4gIAkJCW1zaS1wYXJlbnQgPSA8Jml0cz47DQo+ID4gQEAg
-LTY2MSw3ICs2NjAsNiBAQA0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPiAgCQkJZGV2
-aWNlX3R5cGUgPSAicGNpIjsNCj4gPiAgCQkJZG1hLWNvaGVyZW50Ow0KPiA+IC0JCQludW0tbGFu
-ZXMgPSA8ND47DQo+ID4gIAkJCW51bS12aWV3cG9ydCA9IDw2PjsNCj4gPiAgCQkJYnVzLXJhbmdl
-ID0gPDB4MCAweGZmPjsNCj4gPiAgCQkJbXNpLXBhcmVudCA9IDwmaXRzPjsNCj4gPiBAQCAtNjgz
-LDcgKzY4MSw2IEBADQo+ID4gIAkJCSNzaXplLWNlbGxzID0gPDI+Ow0KPiA+ICAJCQlkZXZpY2Vf
-dHlwZSA9ICJwY2kiOw0KPiA+ICAJCQlkbWEtY29oZXJlbnQ7DQo+ID4gLQkJCW51bS1sYW5lcyA9
-IDw4PjsNCj4gPiAgCQkJbnVtLXZpZXdwb3J0ID0gPDI1Nj47DQo+ID4gIAkJCWJ1cy1yYW5nZSA9
-IDwweDAgMHhmZj47DQo+ID4gIAkJCW1zaS1wYXJlbnQgPSA8Jml0cz47DQo+ID4gQEAgLTcwNSw3
-ICs3MDIsNiBAQA0KPiA+ICAJCQkjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPiAgCQkJZGV2aWNlX3R5
-cGUgPSAicGNpIjsNCj4gPiAgCQkJZG1hLWNvaGVyZW50Ow0KPiA+IC0JCQludW0tbGFuZXMgPSA8
-ND47DQo+ID4gIAkJCW51bS12aWV3cG9ydCA9IDw2PjsNCj4gPiAgCQkJYnVzLXJhbmdlID0gPDB4
-MCAweGZmPjsNCj4gPiAgCQkJbXNpLXBhcmVudCA9IDwmaXRzPjsNCj4gDQo+IFJldmlld2VkLWJ5
-OiBBbmRyZXcgTXVycmF5IDxhbmRyZXcubXVycmF5QGFybS5jb20+DQo+IA0KPiA+IC0tDQo+ID4g
-Mi4xNy4xDQo+ID4NCg==
+Quoting Brendan Higgins (2019-08-12 11:24:12)
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> index 2625bcfeb19ac..93381f841e09f 100644
+> --- a/include/kunit/test.h
+> +++ b/include/kunit/test.h
+> @@ -13,6 +13,7 @@
+>  #include <linux/types.h>
+>  #include <linux/slab.h>
+>  #include <kunit/assert.h>
+> +#include <kunit/try-catch.h>
+> =20
+>  struct kunit_resource;
+> =20
+> @@ -167,6 +168,7 @@ struct kunit {
+> =20
+>         /* private: internal use only. */
+>         const char *name; /* Read only after initialization! */
+> +       struct kunit_try_catch try_catch;
+>         /*
+>          * success starts as true, and may only be set to false during a =
+test
+>          * case; thus, it is safe to update this across multiple threads =
+using
+> @@ -176,6 +178,11 @@ struct kunit {
+>          */
+>         bool success; /* Read only after test_case finishes! */
+>         spinlock_t lock; /* Gaurds all mutable test state. */
+> +       /*
+> +        * death_test may be both set and unset from multiple threads in =
+a test
+> +        * case.
+> +        */
+> +       bool death_test; /* Protected by lock. */
+>         /*
+>          * Because resources is a list that may be updated multiple times=
+ (with
+>          * new resources) from any thread associated with a test case, we=
+ must
+> @@ -184,6 +191,13 @@ struct kunit {
+>         struct list_head resources; /* Protected by lock. */
+>  };
+> =20
+> +static inline void kunit_set_death_test(struct kunit *test, bool death_t=
+est)
+> +{
+> +       spin_lock(&test->lock);
+> +       test->death_test =3D death_test;
+> +       spin_unlock(&test->lock);
+> +}
+
+These getters and setters are using spinlocks again. It doesn't make any
+sense. It probably needs a rework like was done for the other bool
+member, success.
+
+> +
+>  void kunit_init_test(struct kunit *test, const char *name);
+> =20
+>  int kunit_run_tests(struct kunit_suite *suite);
+> diff --git a/include/kunit/try-catch.h b/include/kunit/try-catch.h
+> new file mode 100644
+> index 0000000000000..8a414a9af0b64
+> --- /dev/null
+> +++ b/include/kunit/try-catch.h
+> @@ -0,0 +1,69 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * An API to allow a function, that may fail, to be executed, and recove=
+r in a
+> + * controlled manner.
+> + *
+> + * Copyright (C) 2019, Google LLC.
+> + * Author: Brendan Higgins <brendanhiggins@google.com>
+> + */
+> +
+> +#ifndef _KUNIT_TRY_CATCH_H
+> +#define _KUNIT_TRY_CATCH_H
+> +
+> +#include <linux/types.h>
+> +
+> +typedef void (*kunit_try_catch_func_t)(void *);
+> +
+> +struct kunit;
+
+Forward declare struct completion?
+
+> +
+> +/*
+> + * struct kunit_try_catch - provides a generic way to run code which mig=
+ht fail.
+> + * @context: used to pass user data to the try and catch functions.
+> + *
+> + * kunit_try_catch provides a generic, architecture independent way to e=
+xecute
+> + * an arbitrary function of type kunit_try_catch_func_t which may bail o=
+ut by
+> + * calling kunit_try_catch_throw(). If kunit_try_catch_throw() is called=
+, @try
+> + * is stopped at the site of invocation and @catch is catch is called.
+> + *
+> + * struct kunit_try_catch provides a generic interface for the functiona=
+lity
+> + * needed to implement kunit->abort() which in turn is needed for implem=
+enting
+> + * assertions. Assertions allow stating a precondition for a test simpli=
+fying
+> + * how test cases are written and presented.
+> + *
+> + * Assertions are like expectations, except they abort (call
+> + * kunit_try_catch_throw()) when the specified condition is not met. Thi=
+s is
+> + * useful when you look at a test case as a logical statement about some=
+ piece
+> + * of code, where assertions are the premises for the test case, and the
+> + * conclusion is a set of predicates, rather expectations, that must all=
+ be
+> + * true. If your premises are violated, it does not makes sense to conti=
+nue.
+> + */
+> +struct kunit_try_catch {
+> +       /* private: internal use only. */
+> +       struct kunit *test;
+> +       struct completion *try_completion;
+> +       int try_result;
+> +       kunit_try_catch_func_t try;
+> +       kunit_try_catch_func_t catch;
+
+Can these other variables be documented in the kernel doc? And should
+context be marked as 'public'?
+
+> +       void *context;
+> +};
+> +
+> +void kunit_try_catch_init(struct kunit_try_catch *try_catch,
+> +                         struct kunit *test,
+> +                         kunit_try_catch_func_t try,
+> +                         kunit_try_catch_func_t catch);
+> +
+> +void kunit_try_catch_run(struct kunit_try_catch *try_catch, void *contex=
+t);
+> +
+> +void __noreturn kunit_try_catch_throw(struct kunit_try_catch *try_catch);
+> +
+> +static inline int kunit_try_catch_get_result(struct kunit_try_catch *try=
+_catch)
+> +{
+> +       return try_catch->try_result;
+> +}
+> +
+> +/*
+> + * Exposed for testing only.
+
+Ugh that's sad. I hope we don't expose more functions just for testing
+in other cases.
+
+> + */
+> +void kunit_generic_try_catch_init(struct kunit_try_catch *try_catch);
+> +
+> +#endif /* _KUNIT_TRY_CATCH_H */
+> diff --git a/kunit/test.c b/kunit/test.c
+> index e5080a2c6b29c..995cb53fe4ee9 100644
+> --- a/kunit/test.c
+> +++ b/kunit/test.c
+> @@ -7,13 +7,26 @@
+>   */
+> =20
+>  #include <linux/kernel.h>
+> +#include <linux/sched/debug.h>
+>  #include <kunit/test.h>
+> +#include <kunit/try-catch.h>
+> =20
+>  static void kunit_set_failure(struct kunit *test)
+>  {
+>         WRITE_ONCE(test->success, false);
+>  }
+> =20
+> +static bool kunit_get_death_test(struct kunit *test)
+> +{
+> +       bool death_test;
+> +
+> +       spin_lock(&test->lock);
+> +       death_test =3D test->death_test;
+> +       spin_unlock(&test->lock);
+> +
+> +       return death_test;
+> +}
+> +
+>  static int kunit_vprintk_emit(int level, const char *fmt, va_list args)
+>  {
+>         return vprintk_emit(0, level, NULL, 0, fmt, args);
+> @@ -158,6 +171,21 @@ static void kunit_fail(struct kunit *test, struct ku=
+nit_assert *assert)
+>         kunit_print_string_stream(test, stream);
+>  }
+> =20
+> +void __noreturn kunit_abort(struct kunit *test)
+> +{
+> +       kunit_set_death_test(test, true);
+> +
+> +       kunit_try_catch_throw(&test->try_catch);
+> +
+> +       /*
+> +        * Throw could not abort from test.
+> +        *
+> +        * XXX: we should never reach this line! As kunit_try_catch_throw=
+ is
+> +        * marked __noreturn.
+> +        */
+> +       WARN_ONCE(true, "Throw could not abort from test!\n");
+
+Should this just be a BUG_ON? It's supposedly impossible.
+
+> +}
+> +
+>  void kunit_do_assertion(struct kunit *test,
+>                         struct kunit_assert *assert,
+>                         bool pass,
+> @@ -176,6 +204,9 @@ void kunit_do_assertion(struct kunit *test,
+>         kunit_fail(test, assert);
+> =20
+>         va_end(args);
+> +
+> +       if (assert->type =3D=3D KUNIT_ASSERTION)
+> +               kunit_abort(test);
+>  }
+> =20
+>  void kunit_init_test(struct kunit *test, const char *name)
+> @@ -184,36 +215,154 @@ void kunit_init_test(struct kunit *test, const cha=
+r *name)
+>         INIT_LIST_HEAD(&test->resources);
+>         test->name =3D name;
+>         test->success =3D true;
+> +       test->death_test =3D false;
+>  }
+> =20
+>  /*
+> - * Performs all logic to run a test case.
+> + * Initializes and runs test case. Does not clean up or do post validati=
+ons.
+>   */
+> -static void kunit_run_case(struct kunit_suite *suite,
+> -                          struct kunit_case *test_case)
+> +static void kunit_run_case_internal(struct kunit *test,
+> +                                   struct kunit_suite *suite,
+> +                                   struct kunit_case *test_case)
+>  {
+> -       struct kunit test;
+> -
+> -       kunit_init_test(&test, test_case->name);
+> -
+>         if (suite->init) {
+>                 int ret;
+> =20
+> -               ret =3D suite->init(&test);
+> +               ret =3D suite->init(test);
+>                 if (ret) {
+> -                       kunit_err(&test, "failed to initialize: %d\n", re=
+t);
+> -                       kunit_set_failure(&test);
+> -                       test_case->success =3D test.success;
+> +                       kunit_err(test, "failed to initialize: %d\n", ret=
+);
+> +                       kunit_set_failure(test);
+>                         return;
+>                 }
+>         }
+> =20
+> -       test_case->run_case(&test);
+> +       test_case->run_case(test);
+> +}
+> +
+> +static void kunit_case_internal_cleanup(struct kunit *test)
+> +{
+> +       kunit_cleanup(test);
+> +}
+> =20
+> +/*
+> + * Performs post validations and cleanup after a test case was run.
+> + * XXX: Should ONLY BE CALLED AFTER kunit_run_case_internal!
+> + */
+> +static void kunit_run_case_cleanup(struct kunit *test,
+> +                                  struct kunit_suite *suite)
+> +{
+>         if (suite->exit)
+> -               suite->exit(&test);
+> +               suite->exit(test);
+> +
+> +       kunit_case_internal_cleanup(test);
+> +}
+> +
+> +/*
+> + * Handles an unexpected crash in a test case.
+> + */
+> +static void kunit_handle_test_crash(struct kunit *test,
+> +                                  struct kunit_suite *suite,
+> +                                  struct kunit_case *test_case)
+> +{
+> +       kunit_err(test, "kunit test case crashed!");
+
+Does this need a newline?
+
+> +       /*
+> +        * TODO(brendanhiggins@google.com): This prints the stack trace up
+> +        * through this frame, not up to the frame that caused the crash.
+> +        */
+> +       show_stack(NULL, NULL);
+> +
+> +       kunit_case_internal_cleanup(test);
+> +}
+> +
+> +struct kunit_try_catch_context {
+> +       struct kunit *test;
+> +       struct kunit_suite *suite;
+> +       struct kunit_case *test_case;
+> +};
+> +
+> +static void kunit_try_run_case(void *data)
+> +{
+> +       struct kunit_try_catch_context *ctx =3D data;
+> +       struct kunit *test =3D ctx->test;
+> +       struct kunit_suite *suite =3D ctx->suite;
+> +       struct kunit_case *test_case =3D ctx->test_case;
+> +
+> +       /*
+> +        * kunit_run_case_internal may encounter a fatal error; if it doe=
+s,
+> +        * abort will be called, this thread will exit, and finally the p=
+arent
+> +        * thread will resume control and handle any necessary clean up.
+> +        */
+> +       kunit_run_case_internal(test, suite, test_case);
+> +       /* This line may never be reached. */
+> +       kunit_run_case_cleanup(test, suite);
+> +}
+> +
+> +static void kunit_catch_run_case(void *data)
+> +{
+> +       struct kunit_try_catch_context *ctx =3D data;
+> +       struct kunit *test =3D ctx->test;
+> +       struct kunit_suite *suite =3D ctx->suite;
+> +       struct kunit_case *test_case =3D ctx->test_case;
+> +       int try_exit_code =3D kunit_try_catch_get_result(&test->try_catch=
+);
+> +
+> +       if (try_exit_code) {
+> +               kunit_set_failure(test);
+> +               /*
+> +                * Test case could not finish, we have no idea what state=
+ it is
+> +                * in, so don't do clean up.
+> +                */
+> +               if (try_exit_code =3D=3D -ETIMEDOUT)
+> +                       kunit_err(test, "test case timed out\n");
+> +               /*
+> +                * Unknown internal error occurred preventing test case f=
+rom
+> +                * running, so there is nothing to clean up.
+> +                */
+> +               else
+> +                       kunit_err(test, "internal error occurred preventi=
+ng test case from running: %d\n",
+> +                                 try_exit_code);
+
+Nitpick: I would add braces here because you make the if statement into
+multi-line arms for each case.
+
+> +               return;
+> +       }
+> +
+> +       if (kunit_get_death_test(test)) {
+> +               /*
+> +                * EXPECTED DEATH: kunit_run_case_internal encountered
+> +                * anticipated fatal error. Everything should be in a safe
+> +                * state.
+> +                */
+> +               kunit_run_case_cleanup(test, suite);
+> +       } else {
+> +               /*
+> +                * UNEXPECTED DEATH: kunit_run_case_internal encountered =
+an
+> +                * unanticipated fatal error. We have no idea what the st=
+ate of
+> +                * the test case is in.
+> +                */
+> +               kunit_handle_test_crash(test, suite, test_case);
+> +               kunit_set_failure(test);
+
+Like was done here.
+
+> +       }
+> +}
+> +
+> +/*
+> + * Performs all logic to run a test case. It also catches most errors th=
+at
+> + * occurs in a test case and reports them as failures.
+
+s/occurs/occur/
+
+> + */
+> +static void kunit_run_case_catch_errors(struct kunit_suite *suite,
+[...]
+> diff --git a/kunit/try-catch.c b/kunit/try-catch.c
+> new file mode 100644
+> index 0000000000000..de580f074387b
+> --- /dev/null
+> +++ b/kunit/try-catch.c
+> @@ -0,0 +1,95 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * An API to allow a function, that may fail, to be executed, and recove=
+r in a
+> + * controlled manner.
+> + *
+> + * Copyright (C) 2019, Google LLC.
+> + * Author: Brendan Higgins <brendanhiggins@google.com>
+> + */
+> +
+> +#include <kunit/try-catch.h>
+> +#include <kunit/test.h>
+> +#include <linux/completion.h>
+> +#include <linux/kthread.h>
+> +
+> +void __noreturn kunit_try_catch_throw(struct kunit_try_catch *try_catch)
+> +{
+> +       try_catch->try_result =3D -EFAULT;
+> +       complete_and_exit(try_catch->try_completion, -EFAULT);
+> +}
+> +
+> +static int kunit_generic_run_threadfn_adapter(void *data)
+> +{
+> +       struct kunit_try_catch *try_catch =3D data;
+> +
+> +       try_catch->try(try_catch->context);
+> +
+> +       complete_and_exit(try_catch->try_completion, 0);
+> +}
+> +
+> +void kunit_try_catch_run(struct kunit_try_catch *try_catch, void *contex=
+t)
+> +{
+> +       DECLARE_COMPLETION_ONSTACK(try_completion);
+> +       struct kunit *test =3D try_catch->test;
+> +       struct task_struct *task_struct;
+> +       int exit_code, status;
+> +
+> +       try_catch->context =3D context;
+> +       try_catch->try_completion =3D &try_completion;
+> +       try_catch->try_result =3D 0;
+> +       task_struct =3D kthread_run(kunit_generic_run_threadfn_adapter,
+> +                                 try_catch,
+> +                                 "kunit_try_catch_thread");
+> +       if (IS_ERR(task_struct)) {
+> +               try_catch->catch(try_catch->context);
+> +               return;
+> +       }
+> +
+> +       /*
+> +        * TODO(brendanhiggins@google.com): We should probably have some =
+type of
+> +        * variable timeout here. The only question is what that timeout =
+value
+> +        * should be.
+> +        *
+> +        * The intention has always been, at some point, to be able to la=
+bel
+> +        * tests with some type of size bucket (unit/small, integration/m=
+edium,
+> +        * large/system/end-to-end, etc), where each size bucket would ge=
+t a
+> +        * default timeout value kind of like what Bazel does:
+> +        * https://docs.bazel.build/versions/master/be/common-definitions=
+.html#test.size
+> +        * There is still some debate to be had on exactly how we do this=
+. (For
+> +        * one, we probably want to have some sort of test runner level
+> +        * timeout.)
+> +        *
+> +        * For more background on this topic, see:
+> +        * https://mike-bland.com/2011/11/01/small-medium-large.html
+> +        */
+> +       status =3D wait_for_completion_timeout(&try_completion,
+> +                                            300 * MSEC_PER_SEC); /* 5 mi=
+n */
+> +       if (status < 0) {
+
+wait_for_completion_timeout() doesn't return a negative value on
+timeout. It returns 0. Please rename 'status' to 'time_remaining' and
+test with if (!time_remaining) instead or some other suitably named
+variable name indicating that the return value is the time remaining
+before the timeout.
+
+May also want to clamp this to the hung task timeout value, which is
+typically less than 5 minutes. Otherwise, the hung task detector may
+find the problem first before this timeout happens.
+
+> +               kunit_err(test, "try timed out\n");
+> +               try_catch->try_result =3D -ETIMEDOUT;
+> +       }
