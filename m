@@ -2,185 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DEC48B1D9
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 09:59:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E0018B200
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:09:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727623AbfHMH7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 03:59:30 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:28424 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726986AbfHMH7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 03:59:30 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x7D7wkVX015820;
-        Tue, 13 Aug 2019 02:59:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=drWtMvMOAVnhK8sSftAQV6/8V0+8UJy3F8iMkB2QTgk=;
- b=BuR1tuqDlRal7QIiMhpyfz40pfaoc+tN9CYekkRSsIbfdERQZXrEgMF8AVMipZ0dreSh
- rZNJ8eC5IrQaA9WpGgPbY8Idwo33n39NdCYG7hEtNImzsH1oE8Hm0SLGbsXjTI28RfAe
- J/Me83MaLYbghlvtmQiIhcM5WT/T+hP9B2U5xox18bBNXPCo3I6Qwwf5RUKbxiAqQvVL
- y+UQXLthLDjzBHI599FLCUyUixcEQJWJa6/tVghreZpBgEQ4TjWT4wL1FRRoNUkLagTH
- vIfC3QGIK9kDgL2Hjxs/BlS7PR6FoQrP1z+JJ1z4BuWIVZdaaqF1JTTPmtu26RzmJCMC oQ== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 2ubf9brmee-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 13 Aug 2019 02:59:25 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 13 Aug
- 2019 08:59:23 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Tue, 13 Aug 2019 08:59:23 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1D51345;
-        Tue, 13 Aug 2019 08:59:23 +0100 (BST)
-Date:   Tue, 13 Aug 2019 08:59:23 +0100
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: Re: [PATCH 2/2] mfd: madera: Add support for requesting the supply
- clocks
-Message-ID: <20190813075923.GN54126@ediswmail.ad.cirrus.com>
-References: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
- <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
- <20190812103853.GM26727@dell>
- <20190812160937.GM54126@ediswmail.ad.cirrus.com>
- <20190813071814.GY26727@dell>
+        id S1727342AbfHMIJB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Aug 2019 04:09:01 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:42606 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbfHMIJB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:09:01 -0400
+Received: by mail-qt1-f196.google.com with SMTP id t12so16918005qtp.9;
+        Tue, 13 Aug 2019 01:09:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=3QYn8xVPbDnU8yCH5QG2DkGvPPJ9yAG+CBaSbT63l5s=;
+        b=iJneErmhHSA8ngZdte/oUIlKi1cEx3iAt6/kzCBDMCiaSipNogDSey8W6B4iGCRlyA
+         KFy+B4v1nZx5a9vJGASB5T2/ZWSlz8kzQPhvv6Q5ZtlHCHD731eh5zaOw1zb5l4Lri3p
+         YXHvyuR5DwwZ9f8dbL5ivYK7FrAngXHApqsQ37UzcJZNf4OSLMjoeFAorRC0khw8hO2i
+         dIeUK45MdzPXqEVWex2gWldGPy+DNrrNaR91PSo6WTvtA6MccaM5JhxXhaFLjmh/qQXu
+         h7SS2WQvcnCM/veU0ZZCvyntl5jOuH6UoJcx6728wYojyGenroTW/NqeM8Qb9i51rgWg
+         wMSQ==
+X-Gm-Message-State: APjAAAXPmfBwZRWcrCtTeC2+aBEcPuZdfpgpGYDfJtiQHlxa4XuBhEDa
+        PuQLdPwMZ1/tF06z8UnYRqGhsHOgw0QLTYuIpzY=
+X-Google-Smtp-Source: APXvYqzQY3jw5cidojWGquR6Ywd0UV4rVnIr4Q175ebPJlWm5I+ETbY/lAleI6WDMLSOu84QmW6hk+yfSbxvjbk+0xI=
+X-Received: by 2002:ac8:117:: with SMTP id e23mr17771674qtg.18.1565683740433;
+ Tue, 13 Aug 2019 01:09:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190813071814.GY26727@dell>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 lowpriorityscore=0
- clxscore=1015 spamscore=0 adultscore=0 suspectscore=0 mlxscore=0
- priorityscore=1501 malwarescore=0 phishscore=0 mlxlogscore=999
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1906280000 definitions=main-1908130088
+References: <cover.1565367567.git.agx@sigxcpu.org> <e0562d8bb4098dc4cdb4023b41fb75b312be22a5.1565367567.git.agx@sigxcpu.org>
+In-Reply-To: <e0562d8bb4098dc4cdb4023b41fb75b312be22a5.1565367567.git.agx@sigxcpu.org>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 13 Aug 2019 10:08:44 +0200
+Message-ID: <CAK8P3a3Vrd+sttJrQwD-jA9p_egG4x-hc41eGK8H-_aVm-uoYw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] arm64: imx8mq: add imx8mq iomux-gpr field defines
+To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 13, 2019 at 08:18:14AM +0100, Lee Jones wrote:
-> On Mon, 12 Aug 2019, Charles Keepax wrote:
-> > On Mon, Aug 12, 2019 at 11:38:53AM +0100, Lee Jones wrote:
-> > > On Tue, 06 Aug 2019, Charles Keepax wrote:
-> > > 
-> > > > Add the ability to get the clock for each clock input pin of the chip
-> > > > and enable MCLK2 since that is expected to be a permanently enabled
-> > > > 32kHz clock.
-> > > > 
-> > > > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> > > > ---
-> > > >  int madera_dev_init(struct madera *madera)
-> > > >  {
-> > > > +	static const char * const mclk_name[] = { "mclk1", "mclk2", "mclk3" };
-> > > >  	struct device *dev = madera->dev;
-> > > >  	unsigned int hwid;
-> > > >  	int (*patch_fn)(struct madera *) = NULL;
-> > > > @@ -450,6 +451,17 @@ int madera_dev_init(struct madera *madera)
-> > > >  		       sizeof(madera->pdata));
-> > > >  	}
-> > > >  
-> > > > +	BUILD_BUG_ON(ARRAY_SIZE(madera->mclk) != ARRAY_SIZE(mclk_name));
-> > > 
-> > > Not sure how this could happen.  Surely we don't need it.
-> > > 
-> > 
-> > mclk_name is defined locally in this function and the mclk array in
-> > include/linux/mfd/madera/core.h. This is to guard against one of
-> > them being updated but not the other. It is by no means essential
-> > but it feels like a good trade off given there is really limited
-> > downside.
-> 
-> It's fine in general I guess.  How likely would it be for anyone to
-> update either of the definitions?  Can there be more/less clocks on a
-> supported platform?
-> 
+On Fri, Aug 9, 2019 at 6:24 PM Guido Günther <agx@sigxcpu.org> wrote:
+>
+> This adds all the gpr registers and the define needed for selecting
+> the input source in the imx-nwl drm bridge.
+>
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> +
+> +#define IOMUXC_GPR0    0x00
+> +#define IOMUXC_GPR1    0x04
+> +#define IOMUXC_GPR2    0x08
+> +#define IOMUXC_GPR3    0x0c
+> +#define IOMUXC_GPR4    0x10
+> +#define IOMUXC_GPR5    0x14
+> +#define IOMUXC_GPR6    0x18
+> +#define IOMUXC_GPR7    0x1c
+(more of the same)
 
-It's not super likely but if the hardware guys make a new spin
-out chip with an extra clock pin which is possible. But my
-problem here is there really is no down side to this check, we
-have two things that need to be in sync and if the compiler can
-warn me if they are not in sync that is clearly a win.
+huh?
 
-> > > > +	for (i = 0; i < ARRAY_SIZE(madera->mclk); i++) {
-> > > > +		madera->mclk[i] = devm_clk_get_optional(madera->dev,
-> > > > +							mclk_name[i]);
-> > > > +		if (IS_ERR(madera->mclk[i])) {
-> > > > +			dev_warn(madera->dev, "Failed to get %s: %ld\n",
-> > > > +				 mclk_name[i], PTR_ERR(madera->mclk[i]));
-> > > 
-> > > Do we even want to warn on the non-acquisition of an optional clock?
-> > > 
-> > > Especially with a message that looks like something actually failed.
-> > > 
-> > 
-> > devm_clk_get_optional will return NULL if the clock was not
-> > specified, so this is silent in that case. A warning in the case
-> > something actually went wrong seems reasonable even if the clock
-> > is optional as the user tried to do something and it didn't
-> > behave as they intended.
-> 
-> If something actually went wrong, then doesn't then become and error
-> and should be reported (returned)?
-> 
+> +/* i.MX8Mq iomux gpr register field defines */
+> +#define IMX8MQ_GPR13_MIPI_MUX_SEL              BIT(2)
 
-Yeah I guess its a judgement call but there is not really any
-reason we need to proceed in the case of an error. I will update
-to fail probe here.
+I think this define should probably be local to the pinctrl driver, to
+ensure that no other drivers fiddle with the registers manually.
 
-> > > > +			madera->mclk[i] = NULL;
-> > > > +		}
-> > > > +	}
-> > > > +
-> > > >  	ret = madera_get_reset_gpio(madera);
-> > > >  	if (ret)
-> > > >  		return ret;
-> > > > @@ -660,13 +672,19 @@ int madera_dev_init(struct madera *madera)
-> > > >  	}
-> > > >  
-> > > >  	/* Init 32k clock sourced from MCLK2 */
-> > > > +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2]);
-> > > > +	if (ret != 0) {
-> > > > +		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
-> > > > +		goto err_reset;
-> > > > +	}
-> > > 
-> > > What happened to this being optional?
-> > > 
-> > 
-> > The device needs the clock but specifying it through DT is
-> > optional (the clock framework functions are no-ops and return
-> > success if the clock pointer is NULL). Normally the 32kHz
-> > clock is always on, and more importantly no existing users of
-> > the driver will be specifying one.
-> > 
-> > We could remove the optional status for MCLK2, but it could break
-> > existing users who don't yet specify the clock until they update
-> > their DT and it will complicate the code as the other clocks are
-> > definitely optional, so MCLK2 will need special handling.
-> 
-> I'd prefer the code to reflect the actual situation.  If the clock is
-> not optional it doesn't sound correct to specify it as such.  Maybe as
-> an intermediary step we attempt to obtain it, but ignore missing
-> clocks (with a message and comment) if it is not yet specified.  We
-> can look to change the behaviour once users have had the chance to
-> update their DTs.
-> 
-
-Ok I will add a print for a missing MCLK2.
-
-Thanks,
-Charles
+     Arnd
