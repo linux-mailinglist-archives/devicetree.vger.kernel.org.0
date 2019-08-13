@@ -2,110 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 248BD8B25C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 500778B290
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:33:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727818AbfHMI0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 04:26:24 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:49292 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727452AbfHMI0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:26:24 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 8F10F609F3; Tue, 13 Aug 2019 08:26:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565684783;
-        bh=xzOhyFf1Lb46S8iAihNlSdA4LL0HPldY24aFh3YUK0o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TeOOay96bcbwlqWp+6qJ6shCorX7S6h6RJKWfoaXikBl9vI399ZUn7MSJH7zGL1tp
-         HxMvM7zDbl8BHQBXjEF9zaY4VcJSSSmlCGiPQCmsp5SqASOeFVQdpVXjOZztzh3Ie1
-         f5pJJoXBqL+DSFX8VZ8Rd11J5GIQKtjSsvdprcLs=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mkshah-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A289760A4E;
-        Tue, 13 Aug 2019 08:26:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565684780;
-        bh=xzOhyFf1Lb46S8iAihNlSdA4LL0HPldY24aFh3YUK0o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=frBfUD6bqYpPrAXTVl7+FVgCxgJkq800lMJIBKph9xa7tOJKG9IUZpYDRyxYYiSl/
-         DGFC2vowty5hzFbo3sdYtaJia4K7iEgYyfOnzoHjn1uRQoNs+tjSAGkENMuP8cuJoy
-         0l872hgv7nLbRxWlzTBuz27/9hjrDRnQe371WGLU=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A289760A4E
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
-From:   Maulik Shah <mkshah@codeaurora.org>
-To:     agross@kernel.org, david.brown@linaro.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        bjorn.andersson@linaro.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org, rnayak@codeaurora.org,
-        ilina@codeaurora.org, lsrao@codeaurora.org, ulf.hansson@linaro.org,
-        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
-Subject: [PATCH 3/4] dt-bindings: soc: qcom: Add RSC power domain specifier
-Date:   Tue, 13 Aug 2019 13:54:41 +0530
-Message-Id: <20190813082442.25796-4-mkshah@codeaurora.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190813082442.25796-1-mkshah@codeaurora.org>
-References: <20190813082442.25796-1-mkshah@codeaurora.org>
+        id S1728176AbfHMIdw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 04:33:52 -0400
+Received: from unicom145.biz-email.net ([210.51.26.145]:3859 "EHLO
+        unicom145.biz-email.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727429AbfHMIdw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:33:52 -0400
+Received: from ([60.208.111.195])
+        by unicom145.biz-email.net (Antispam) with ASMTP (SSL) id EQU82748;
+        Tue, 13 Aug 2019 16:33:48 +0800
+Received: from localhost (10.100.1.52) by Jtjnmail201618.home.langchao.com
+ (10.100.2.18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 13 Aug
+ 2019 16:33:47 +0800
+From:   John Wang <wangzqbj@inspur.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <trivial@kernel.org>,
+        <linux@roeck-us.net>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
+        <duanzhijia01@inspur.com>, <mine260309@gmail.com>, <joel@jms.id.au>
+Subject: [PATCH v4 1/2] dt-bindings: Add ipsps1 as a trivial device
+Date:   Tue, 13 Aug 2019 16:33:46 +0800
+Message-ID: <20190813083346.8558-1-wangzqbj@inspur.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.100.1.52]
+X-ClientProxiedBy: jtjnmail201601.home.langchao.com (10.100.2.1) To
+ Jtjnmail201618.home.langchao.com (10.100.2.18)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In addition to transmitting resource state requests to the remote
-processor, the RSC is responsible for powering off/lowering the
-requirements from CPUs subsystem for the associated hardware like
-buses, clocks, and regulators when all CPUs and cluster is powered down.
+The ipsps1 is an Inspur Power System power supply unit
 
-The power domain is configured to a low power state and when all the
-CPUs are powered down, the RSC can lower resource state requirements
-and power down the rails that power the CPUs.
-
-Add PM domain specifier property for RSC controller.
-
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Signed-off-by: John Wang <wangzqbj@inspur.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt | 8 ++++++++
- 1 file changed, 8 insertions(+)
+v4:
+    - Rebased on 5.3-rc4 instead of 5.2, No changes
+v3:
+    - Fix adding entry to the inappropriate line
+v2:
+    - No changes.
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
-index 9b86d1eff219..d0ab6e9b6745 100644
---- a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
-+++ b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
-@@ -83,6 +83,13 @@ Properties:
- 	Value type: <string>
- 	Definition: Name for the RSC. The name would be used in trace logs.
- 
-+- #power-domain-cells:
-+	Usage: optional
-+	Value type: <u32>
-+	Definition: Number of cells in power domain specifier. Optional for
-+		    controllers that may be in 'solver' state where they can
-+		    be in autonomous mode executing low power modes.
-+
- Drivers that want to use the RSC to communicate with RPMH must specify their
- bindings as child nodes of the RSC controllers they wish to communicate with.
- 
-@@ -112,6 +119,7 @@ TCS-OFFSET: 0xD00
- 				  <SLEEP_TCS   3>,
- 				  <WAKE_TCS    3>,
- 				  <CONTROL_TCS 1>;
-+		#power-domain-cells = <0>;
- 	};
- 
- Example 2:
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 2e742d399e87..870ac52d2225 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -104,6 +104,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
++            # Inspur Power System power supply unit version 1
++          - inspur,ipsps1
+             # Intersil ISL29028 Ambient Light and Proximity Sensor
+           - isil,isl29028
+             # Intersil ISL29030 Ambient Light and Proximity Sensor
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by The Linux Foundation.
+2.17.1
 
