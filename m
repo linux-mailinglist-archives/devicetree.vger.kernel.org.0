@@ -2,91 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA78F8C25C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 22:55:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CA3F8C377
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 23:19:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726298AbfHMUzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 16:55:31 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:46942 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725903AbfHMUzb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 16:55:31 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t24so654240oij.13;
-        Tue, 13 Aug 2019 13:55:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=vRcjRzXsLYZcKkMeLECf7vG301P7B0XZvNn+RUsuARg=;
-        b=jbslUDlcqZaPMbf8V3k6oJIBCiDezD1vvng9FHtTyLQ10mJlOgqTIj3K+okxas0hsG
-         XLV2NgqbMREtHwh+cq3F5wmFyQ0iKUA7iUbWeXz6WBgIZ3PmCUmaUPylR6vQ64zop59c
-         nVT3XpvlEsNLN0umtREfrP55c3797Dbhby+u9d7D1RM3DDOh72Z72uGm+P8cfMvt+Grg
-         ZauJHSNZGJDvxCN/+5T1MWqmwW9w+T6UxduW4GzGRK4lKObuUA2UDCYjyAtawDYLNTPA
-         K7lrqU60OhpAkTkCPtuELIbGfY+H5mOZYHrVC2hJxADIlSCEcP0iaL1GQBVmsQpu2usT
-         indQ==
-X-Gm-Message-State: APjAAAWwTJw9k3gBJAVDsccvBJYnKVEU3/0VVtEq8qjyShK5+qXO1jKa
-        vQNLBB3qIxofvRWwnyH7JczqDZo=
-X-Google-Smtp-Source: APXvYqxjYk48K/xApN8bRzF+K+cyfVT+7GZOGNiswrJt4E2UxIRabfgvTQ/6FwmQTxYes48I9p8I+g==
-X-Received: by 2002:a02:7121:: with SMTP id n33mr45263919jac.19.1565729730148;
-        Tue, 13 Aug 2019 13:55:30 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.254])
-        by smtp.googlemail.com with ESMTPSA id m10sm204917375ioj.75.2019.08.13.13.55.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2019 13:55:29 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        linux-gpio@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: pinctrl: stm32: Fix 'st,syscfg' schema
-Date:   Tue, 13 Aug 2019 14:55:28 -0600
-Message-Id: <20190813205528.16651-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1726560AbfHMVTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 17:19:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53830 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726579AbfHMVTQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 17:19:16 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6BC1020842;
+        Tue, 13 Aug 2019 21:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565731155;
+        bh=JBsXkG9yjV9pbDty8DqzOGotTUIFrOYtaCE16hbum0E=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=crdeyHeUCm2qAB/OFjwFqysrHfSLR+UetxBzbXV/OkhxIzZfVtCcy8QUXWO3fAxFd
+         2KmAbggtL+55hUlR84ISmfdKkirvhsBnEQBoP/uxSi32b2CwTR1v2IV+trggF1jN+B
+         8eECl3mkn8psCrRYD3Xw2D9PO80/YYBYHiSRZJFw=
+Received: by mail-qt1-f169.google.com with SMTP id d17so28957848qtj.8;
+        Tue, 13 Aug 2019 14:19:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAUyIjDiiCsezqewY84HQlrASvCaByVgvYt7uZjb1u8k/D+Ie+xj
+        hJ+lkwKE8FxBYaDkugqG6ro5Ayp7FESZLYwMuA==
+X-Google-Smtp-Source: APXvYqyYbgP4TBRZegMhEKfIghK9abGk/VBtufyF+J98q6CTeTofBSY0orANz1i3T/gclh3hbfmdnJ7cT6pao2tVfEA=
+X-Received: by 2002:a0c:acef:: with SMTP id n44mr228291qvc.39.1565731154671;
+ Tue, 13 Aug 2019 14:19:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190808085139.21438-1-narmstrong@baylibre.com>
+In-Reply-To: <20190808085139.21438-1-narmstrong@baylibre.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 13 Aug 2019 15:19:03 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+rBUWCBo0CnhnJX91o+8QF4gO5cJYqFgKEJeekAeuVxg@mail.gmail.com>
+Message-ID: <CAL_Jsq+rBUWCBo0CnhnJX91o+8QF4gO5cJYqFgKEJeekAeuVxg@mail.gmail.com>
+Subject: Re: [PATCH 0/9] dt-bindings: first tentative of conversion to yaml format
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The proper way to add additional contraints to an existing json-schema
-is using 'allOf' to reference the base schema. Using just '$ref' doesn't
-work. Fix this for the 'st,syscfg' property.
+On Thu, Aug 8, 2019 at 2:51 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> This is a first tentative to convert some of the simplest Amlogic
+> dt-bindings to the yaml format.
+>
+> All have been tested using :
+> $ make ARCH=arm64 dtbs_check
+>
+> Issues with the amlogic arm64 DTs has already been identified thanks
+> to the validation scripts. The DT fixes will be pushed once these yaml
+> bindings are acked.
+>
+> Changes since rfc v2:
+> - Collected Rob's, Martin's, Philipp's and Guenter's tags
+> - Removed mhu maxItems: 3 to leave only minItems
+> - Fixed flash@0 in spifc example
+>
+> Changes since rfc v1:
+> - Fixed bindings according to Rob's comments
+> - Added commit log
+> - renamed yaml files using amlogic prefix
+>
+> Neil Armstrong (9):
+>   dt-bindings: mailbox: meson-mhu: convert to yaml
+>   dt-bindings: rng: amlogic,meson-rng: convert to yaml
+>   dt-bindings: spi: meson: convert to yaml
+>   dt-bindings: reset: amlogic,meson-reset: convert to yaml
+>   dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
+>   dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
+>   dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
+>   dt-bindings: serial: meson-uart: convert to yaml
+>   dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
 
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc: Alexandre Torgue <alexandre.torgue@st.com>
-Cc: linux-gpio@vger.kernel.org
-Cc: linux-stm32@st-md-mailman.stormreply.com
-Cc: linux-arm-kernel@lists.infradead.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-I've got some other fixes queued up and can take this via the DT tree.
+Series applied.
 
 Rob
-
- .../devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml          | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-index 91d3e78b3395..400df2da018a 100644
---- a/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/st,stm32-pinctrl.yaml
-@@ -37,7 +37,8 @@ properties:
-   hwlocks: true
- 
-   st,syscfg:
--    $ref: "/schemas/types.yaml#/definitions/phandle-array"
-+    allOf:
-+      - $ref: "/schemas/types.yaml#/definitions/phandle-array"
-     description: Should be phandle/offset/mask
-     items:
-       - description: Phandle to the syscon node which includes IRQ mux selection.
--- 
-2.20.1
-
