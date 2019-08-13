@@ -2,93 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CA3F8C377
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 23:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2048C38D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 23:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726560AbfHMVTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 17:19:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53830 "EHLO mail.kernel.org"
+        id S1726527AbfHMVW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 17:22:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54670 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726579AbfHMVTQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 17:19:16 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        id S1726102AbfHMVW3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 17:22:29 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6BC1020842;
-        Tue, 13 Aug 2019 21:19:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5EA2E20844;
+        Tue, 13 Aug 2019 21:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565731155;
-        bh=JBsXkG9yjV9pbDty8DqzOGotTUIFrOYtaCE16hbum0E=;
+        s=default; t=1565731348;
+        bh=61BEBiism8+ah6KfYnPIAoueUmImP8BoQp3cWp1WYxw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=crdeyHeUCm2qAB/OFjwFqysrHfSLR+UetxBzbXV/OkhxIzZfVtCcy8QUXWO3fAxFd
-         2KmAbggtL+55hUlR84ISmfdKkirvhsBnEQBoP/uxSi32b2CwTR1v2IV+trggF1jN+B
-         8eECl3mkn8psCrRYD3Xw2D9PO80/YYBYHiSRZJFw=
-Received: by mail-qt1-f169.google.com with SMTP id d17so28957848qtj.8;
-        Tue, 13 Aug 2019 14:19:15 -0700 (PDT)
-X-Gm-Message-State: APjAAAUyIjDiiCsezqewY84HQlrASvCaByVgvYt7uZjb1u8k/D+Ie+xj
-        hJ+lkwKE8FxBYaDkugqG6ro5Ayp7FESZLYwMuA==
-X-Google-Smtp-Source: APXvYqyYbgP4TBRZegMhEKfIghK9abGk/VBtufyF+J98q6CTeTofBSY0orANz1i3T/gclh3hbfmdnJ7cT6pao2tVfEA=
-X-Received: by 2002:a0c:acef:: with SMTP id n44mr228291qvc.39.1565731154671;
- Tue, 13 Aug 2019 14:19:14 -0700 (PDT)
+        b=QO927A/DHs15dKgl0uKA8E/PQY35yt2Fo1OFYfRmf998P122pPT5lvN4KSBMGd4sM
+         XEaopRMIrtZESspUSyXgCBciNM/mvRbOqVtaLvj030AuZRit3cEVm7YYH6AGG3pYMK
+         Ri24fFbSGjzGbbGIUswMvcQNC80RaWVAunXzAklM=
+Received: by mail-qt1-f178.google.com with SMTP id 44so76852554qtg.11;
+        Tue, 13 Aug 2019 14:22:28 -0700 (PDT)
+X-Gm-Message-State: APjAAAXV46AhZD6lAPNH1c4lzajlB9Y7AbZAH7+MSCU1uyD8tXKGvN1V
+        c6P6A4r/BQ6uE4TtozEkgxgOY923/VrObRkJDQ==
+X-Google-Smtp-Source: APXvYqxSBfgtU0Qq0DmuHIKF4215omaq3x32du27czWIrPeuK1YLiDC7YDd/MNctQx5C2gGeVR82JMJ4pAiB4fPkMXY=
+X-Received: by 2002:ac8:7593:: with SMTP id s19mr27846131qtq.136.1565731347578;
+ Tue, 13 Aug 2019 14:22:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190808085139.21438-1-narmstrong@baylibre.com>
-In-Reply-To: <20190808085139.21438-1-narmstrong@baylibre.com>
+References: <20190813125147.29605-1-dafna.hirschfeld@collabora.com> <20190813125147.29605-2-dafna.hirschfeld@collabora.com>
+In-Reply-To: <20190813125147.29605-2-dafna.hirschfeld@collabora.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Aug 2019 15:19:03 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+rBUWCBo0CnhnJX91o+8QF4gO5cJYqFgKEJeekAeuVxg@mail.gmail.com>
-Message-ID: <CAL_Jsq+rBUWCBo0CnhnJX91o+8QF4gO5cJYqFgKEJeekAeuVxg@mail.gmail.com>
-Subject: Re: [PATCH 0/9] dt-bindings: first tentative of conversion to yaml format
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+Date:   Tue, 13 Aug 2019 15:22:16 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJxQu1CYG3ZTFDME13cUwWgCt7hkQg41bdJKvY27JcCZQ@mail.gmail.com>
+Message-ID: <CAL_JsqJxQu1CYG3ZTFDME13cUwWgCt7hkQg41bdJKvY27JcCZQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: imx: add imx8mq nitrogen support
+To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
+        <linux-arm-kernel@lists.infradead.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>, kernel@collabora.com,
+        Gary Bisson <gary.bisson@boundarydevices.com>,
+        Troy Kisky <troy.kisky@boundarydevices.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 8, 2019 at 2:51 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Tue, Aug 13, 2019 at 6:51 AM Dafna Hirschfeld
+<dafna.hirschfeld@collabora.com> wrote:
 >
-> This is a first tentative to convert some of the simplest Amlogic
-> dt-bindings to the yaml format.
+> From: Gary Bisson <gary.bisson@boundarydevices.com>
 >
-> All have been tested using :
-> $ make ARCH=arm64 dtbs_check
+> The Nitrogen8M is an ARM based single board computer (SBC)
+> designed to leverage the full capabilities of NXP=E2=80=99s i.MX8M
+> Quad processor.
 >
-> Issues with the amlogic arm64 DTs has already been identified thanks
-> to the validation scripts. The DT fixes will be pushed once these yaml
-> bindings are acked.
->
-> Changes since rfc v2:
-> - Collected Rob's, Martin's, Philipp's and Guenter's tags
-> - Removed mhu maxItems: 3 to leave only minItems
-> - Fixed flash@0 in spifc example
->
-> Changes since rfc v1:
-> - Fixed bindings according to Rob's comments
-> - Added commit log
-> - renamed yaml files using amlogic prefix
->
-> Neil Armstrong (9):
->   dt-bindings: mailbox: meson-mhu: convert to yaml
->   dt-bindings: rng: amlogic,meson-rng: convert to yaml
->   dt-bindings: spi: meson: convert to yaml
->   dt-bindings: reset: amlogic,meson-reset: convert to yaml
->   dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
->   dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
->   dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
->   dt-bindings: serial: meson-uart: convert to yaml
->   dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
+> Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
+> Signed-off-by: Troy Kisky <troy.kisky@boundarydevices.com>
+> [Dafna: porting vendor's code to mainline]
+> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Series applied.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
