@@ -2,132 +2,257 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6108B352
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 11:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46E7B8B367
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 11:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727615AbfHMJE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 05:04:57 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:44935 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727312AbfHMJE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 05:04:57 -0400
-Received: by mail-pl1-f195.google.com with SMTP id t14so48991120plr.11
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 02:04:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QiUXy9T56EDLZHgM/ghmiZZKu3jldBkP3AywgOf7WrE=;
-        b=MLD0OBKrmLSIMOt648B9mPAmsjWuHn6T9ywV6kHk53m2QAcx/5//33wzzGap97ISgd
-         1n1dPQTH2aqoshjF311lPPF9RyircKfegESJ2xxxn2TBZss5XJTQKDNllI8Lep9L/7SF
-         MM7idIRhDooM4kA4MSv9ueRH5hrjDJGGg0AgX0HqE87hvGQZOuRQRmqZQqIXAW5zi2XY
-         qx3rKtyNkDR1tJcjwneeXBeG+UkkSb8i3ocoTOXfuDYPqL5L4LUf+dq11gIkuMFV1by4
-         yd/+IqmaOAJsJPYvSatGT0S67lif/DCk+kAwLjTl1ZQp1oSabKWPVnDpLlDJM1jY/AYp
-         VtUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QiUXy9T56EDLZHgM/ghmiZZKu3jldBkP3AywgOf7WrE=;
-        b=O6ehwrB/1V36DWU5RUodpcNYhA+czPqWbSfl3jMr9P+3mCpx+ydGkXzVVf2zvIRiAM
-         Ycr+vPZwKtIbul5bOGVhy/SCCxQTPRUHCKgnaJe59pGisZ/ItFDPXvX+n1ABklt5K+6h
-         yUBHigZSE5S9zuMx6D7hd12XHInZ4MV1yqqLp7RRQD6nJBG50amdy0Jn+tTQe6ME8iX/
-         /4NVqpvpA3HvmakrH5INHnggeetunoTYzb3sh3kYY3xicJZd7sbeOsRyTM3QlsmpgAUC
-         0q/gRdT4w76mFTrlZC45Qtl1X2ddCzdKap2Do0Q7DL7cKGiRLl45PA+fISiWPOqc4A5L
-         7VOA==
-X-Gm-Message-State: APjAAAXtrr0PmtNFZa0p/h/4Hzs6G/kdIHoPV4CSiQMy7aLp3w2WSEyE
-        mv2uLN7vBJwu93RZzjl/xT1hb45BMiKEdRqmJtK8DQ==
-X-Google-Smtp-Source: APXvYqwG2gN8zpP7bhFAP1u+fXAsfwR8jNJUVHpIzT9G6iZ0jAKs6Cy6kBh6Os478yKmPUZiHWGohGqW0T9u2YI3MZY=
-X-Received: by 2002:a17:902:1024:: with SMTP id b33mr27760446pla.325.1565687095973;
- Tue, 13 Aug 2019 02:04:55 -0700 (PDT)
+        id S1726986AbfHMJKh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 05:10:37 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:36319 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726516AbfHMJKh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 05:10:37 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hxSp5-0002TQ-4A; Tue, 13 Aug 2019 11:10:31 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hxSp4-0006S1-DC; Tue, 13 Aug 2019 11:10:30 +0200
+Date:   Tue, 13 Aug 2019 11:10:30 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH v6 12/13] media: tvp5150: add support to limit tv norms
+ on connector
+Message-ID: <20190813091030.wyjjd2heoh5pk7rj@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-13-m.felsch@pengutronix.de>
+ <20190516180753.GS14820@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-References: <20190812182421.141150-1-brendanhiggins@google.com>
- <20190812182421.141150-4-brendanhiggins@google.com> <20190812225520.5A67C206A2@mail.kernel.org>
- <20190812233336.GA224410@google.com> <20190812235940.100842063F@mail.kernel.org>
- <CAFd5g44xciLPBhH_J3zUcY3TedWTijdnWgF055qffF+dAguhPQ@mail.gmail.com>
- <20190813045623.F3D9520842@mail.kernel.org> <CAFd5g46PJNTOUAA4GOOrW==74Zy7u1sRESTanL_BXBn6QykscA@mail.gmail.com>
- <20190813053023.CC86120651@mail.kernel.org>
-In-Reply-To: <20190813053023.CC86120651@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 13 Aug 2019 02:04:44 -0700
-Message-ID: <CAFd5g47v7410QRAizPV8zaHrKrc95-Sk-GNzRRVngN741OKnvg@mail.gmail.com>
-Subject: Re: [PATCH v12 03/18] kunit: test: add string_stream a std::stream
- like string builder
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190516180753.GS14820@pendragon.ideasonboard.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:57:30 up 87 days, 15:15, 57 users,  load average: 0.15, 0.13,
+ 0.04
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 10:30 PM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Brendan Higgins (2019-08-12 22:02:59)
-> > On Mon, Aug 12, 2019 at 9:56 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > Quoting Brendan Higgins (2019-08-12 17:41:05)
-> > > > On Mon, Aug 12, 2019 at 4:59 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> > > > >
-> > > > > > kunit_resource_destroy (respective equivalents to devm_kfree, and
-> > > > > > devres_destroy) and use kunit_kfree here?
-> > > > > >
-> > > > >
-> > > > > Yes, or drop the API entirely? Does anything need this functionality?
-> > > >
-> > > > Drop the kunit_resource API? I would strongly prefer not to.
-> > >
-> > > No. I mean this API, string_stream_clear(). Does anything use it?
-> >
-> > Oh, right. No.
-> >
-> > However, now that I added the kunit_resource_destroy, I thought it
-> > might be good to free the string_stream after I use it in each call to
-> > kunit_assert->format(...) in which case I will be using this logic.
-> >
-> > So I think the right thing to do is to expose string_stream_destroy so
-> > kunit_do_assert can clean up when it's done, and then demote
-> > string_stream_clear to static. Sound good?
->
-> Ok, sure. I don't really see how clearing it explicitly when the
-> assertion prints vs. never allocating it to begin with is really any
-> different. Maybe I've missed something though.
+Hi Laurent,
 
-It's for the case that we *do* print something out. Once we are doing
-printing, we don't want the fragments anymore.
+On 19-05-16 21:07, Laurent Pinchart wrote:
+> Hi Marco,
+> 
+> Thank you for the patch.
+> 
+> On Mon, Apr 15, 2019 at 02:44:12PM +0200, Marco Felsch wrote:
+> > The tvp5150 accepts NTSC(M,J,4.43), PAL (B,D,G,H,I,M,N) and SECAM video
+> > data and is able to auto-detect the input signal. The auto-detection
+> > does not work if the connector does not receive an input signal and the
+> > tvp5150 might not be configured correctly. This misconfiguration leads
+> > into wrong decoded video streams if the tvp5150 gets powered on before
+> > the video signal is present.
+> > 
+> > Limit the supported tv norms according to the actual selected connector
+> > to avoid a misconfiguration.
+> 
+> This seems a bit of a hack to me. In particular, on what grounds would
+> you specify a particular configuration in DT ? Also, this issue affects
+> non-DT systems, and should be solved globally.
+
+Why is this a hack? Imagine a hardware which supports PAL signals only.
+Then it should be forbidden for the user space to configure it to SECAM
+or any NTSC. Since the hardware makes the limitation it should be
+abstracted on DT level.
+
+Regards,
+  Marco
+
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> > [1] https://patchwork.kernel.org/cover/10794703/
+> > 
+> > v5:
+> > - probe() initialize supported tv-norms according the given connectors
+> >   if they are available.
+> > - check if media-controller is used. Don't limit the norm if it isn't
+> >   used.
+> > - add more logic to be smarter during connector changing so it is
+> >   intuitiver for the user space.
+> > 
+> > v2-v4:
+> > - nothing since the patch was squashed from series [1] into this
+> >   series.
+> > 
+> >  drivers/media/i2c/tvp5150.c | 69 +++++++++++++++++++++++++++++++++++--
+> >  1 file changed, 67 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+> > index cd54715eb641..c0ee08546643 100644
+> > --- a/drivers/media/i2c/tvp5150.c
+> > +++ b/drivers/media/i2c/tvp5150.c
+> > @@ -32,6 +32,13 @@
+> >  #define TVP5150_MBUS_FMT	MEDIA_BUS_FMT_UYVY8_2X8
+> >  #define TVP5150_FIELD		V4L2_FIELD_ALTERNATE
+> >  #define TVP5150_COLORSPACE	V4L2_COLORSPACE_SMPTE170M
+> > +#define TVP5150_STD_MASK	(V4L2_STD_NTSC     | \
+> > +				 V4L2_STD_NTSC_443 | \
+> > +				 V4L2_STD_PAL      | \
+> > +				 V4L2_STD_PAL_M    | \
+> > +				 V4L2_STD_PAL_N    | \
+> > +				 V4L2_STD_PAL_Nc   | \
+> > +				 V4L2_STD_SECAM)
+> >  
+> >  MODULE_DESCRIPTION("Texas Instruments TVP5150A/TVP5150AM1/TVP5151 video decoder driver");
+> >  MODULE_AUTHOR("Mauro Carvalho Chehab");
+> > @@ -66,6 +73,7 @@ struct tvp5150 {
+> >  	/* media-ctl properties */
+> >  	struct media_pad pads[TVP5150_NUM_PADS];
+> >  	struct tvp5150_connector *connectors;
+> > +	struct tvp5150_connector *cur_connector;
+> >  	int connectors_num;
+> >  
+> >  	struct v4l2_ctrl_handler hdl;
+> > @@ -785,17 +793,28 @@ static int tvp5150_g_std(struct v4l2_subdev *sd, v4l2_std_id *std)
+> >  static int tvp5150_s_std(struct v4l2_subdev *sd, v4l2_std_id std)
+> >  {
+> >  	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	struct tvp5150_connector *cur_con = decoder->cur_connector;
+> > +	v4l2_std_id supported_norms = cur_con ?
+> > +		cur_con->base.connector.analog.supported_tvnorms : V4L2_STD_ALL;
+> >  
+> >  	if (decoder->norm == std)
+> >  		return 0;
+> >  
+> > +	/*
+> > +	 * check if requested std or group of std's is/are supported by the
+> > +	 * connector
+> > +	 */
+> > +	if ((supported_norms & std) == 0)
+> > +		return -EINVAL;
+> > +
+> >  	/* Change cropping height limits */
+> >  	if (std & V4L2_STD_525_60)
+> >  		decoder->rect.height = TVP5150_V_MAX_525_60;
+> >  	else
+> >  		decoder->rect.height = TVP5150_V_MAX_OTHERS;
+> >  
+> > -	decoder->norm = std;
+> > +	/* set only the specific supported std in case of group of std's */
+> > +	decoder->norm = supported_norms & std;
+> >  
+> >  	return tvp5150_set_std(sd, std);
+> >  }
+> > @@ -1347,6 +1366,8 @@ static int tvp5150_link_setup(struct media_entity *entity,
+> >  			  TVP5150_BLACK_SCREEN, 0);
+> >  
+> >  	if (flags & MEDIA_LNK_FL_ENABLED) {
+> > +		u32 new_norm;
+> > +
+> >  		/*
+> >  		 * S-Video connector is conneted to both ports AIP1A and AIP1B.
+> >  		 * Both links must be enabled in one-shot regardless which link
+> > @@ -1358,6 +1379,26 @@ static int tvp5150_link_setup(struct media_entity *entity,
+> >  			if (err)
+> >  				return err;
+> >  		}
+> > +
+> > +		/* Update the current connector */
+> > +		decoder->cur_connector =
+> > +			container_of(remote, struct tvp5150_connector, pad);
+> > +
+> > +		/*
+> > +		 * Do nothing if the new connector supports the same tv-norms as
+> > +		 * the old one.
+> > +		 */
+> > +		new_norm = decoder->norm &
+> > +			decoder->cur_connector->base.connector.analog.supported_tvnorms;
+> > +		if (decoder->norm == new_norm)
+> > +			return 0;
+> > +
+> > +		/*
+> > +		 * Fallback to the new connector tv-norms if we can't find any
+> > +		 * common between the current tv-norm and the new one.
+> > +		 */
+> > +		tvp5150_s_std(sd, new_norm ? new_norm :
+> > +			decoder->cur_connector->base.connector.analog.supported_tvnorms);
+> >  	}
+> >  
+> >  	return 0;
+> > @@ -1576,6 +1617,9 @@ static int tvp5150_registered(struct v4l2_subdev *sd)
+> >  				TVP5150_COMPOSITE1;
+> >  
+> >  			tvp5150_selmux(sd);
+> > +			decoder->cur_connector = &decoder->connectors[i];
+> > +			tvp5150_s_std(sd,
+> > +				decoder->connectors[i].base.connector.analog.supported_tvnorms);
+> >  		}
+> >  	}
+> >  #endif
+> > @@ -1903,6 +1947,11 @@ static int tvp5150_parse_dt(struct tvp5150 *decoder, struct device_node *np)
+> >  				ret = -EINVAL;
+> >  				goto err;
+> >  			}
+> > +			if (!(c.connector.analog.supported_tvnorms &
+> > +			    TVP5150_STD_MASK))
+> > +				dev_warn(dev,
+> > +					"Unsupported tv-norm on connector %s.\n",
+> > +					c.label);
+> >  			in++;
+> >  			break;
+> >  		case TVP5150_PAD_VID_OUT:
+> > @@ -2011,7 +2060,23 @@ static int tvp5150_probe(struct i2c_client *c,
+> >  	if (res < 0)
+> >  		goto err_cleanup_dt;
+> >  
+> > -	core->norm = V4L2_STD_ALL;	/* Default is autodetect */
+> > +	/*
+> > +	 * Iterate over all available connectors in case they are supported and
+> > +	 * successfully parsed. Fallback to default autodetect in case they
+> > +	 * aren't supported.
+> > +	 */
+> > +	if (core->connectors) {
+> > +		struct v4l2_fwnode_connector *con;
+> > +		int i;
+> > +
+> > +		for (i = 0; i < core->connectors_num; i++) {
+> > +			con = &core->connectors[i].base;
+> > +			core->norm |= con->connector.analog.supported_tvnorms;
+> > +		}
+> > +	} else {
+> > +		core->norm = V4L2_STD_ALL;
+> > +	}
+> > +
+> >  	core->detected_norm = V4L2_STD_UNKNOWN;
+> >  	core->input = TVP5150_COMPOSITE1;
+> >  	core->enable = true;
+> > -- 
+> > 2.20.1
+> > 
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
