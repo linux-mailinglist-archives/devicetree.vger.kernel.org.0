@@ -2,72 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CB868BA6E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:36:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D71998BA7C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728229AbfHMNgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 09:36:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57698 "EHLO mail.kernel.org"
+        id S1729018AbfHMNhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 09:37:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58110 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728708AbfHMNgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 09:36:18 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        id S1728413AbfHMNhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 09:37:45 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 088C020874
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 13:36:18 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 94028214C6;
+        Tue, 13 Aug 2019 13:37:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565703378;
-        bh=nmpFtbTjb19ZTZT87e6AK+s+viettF7zvqv/K1p9Cqo=;
+        s=default; t=1565703464;
+        bh=2qmLOtTpG/stA8TD7RCITB8xohNroN/LDsPV5fUMmHc=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vt2BSmoJyNKKO4SI79tFbjUy9/WOXV2QfUzcAPKajEJZcYc+UcI+oa4Lj+wIagFTz
-         DCboRDh1ophSN4YWPMnMSEMCu1otITfmZSuLLji8o4e+CA/5gzFYc/A2UiYCjN3Xxo
-         Cn/zrtF6bLCO1cGjz5WnzEOmTb5KaS4UEwTSusGk=
-Received: by mail-qk1-f177.google.com with SMTP id 125so6596726qkl.6
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 06:36:17 -0700 (PDT)
-X-Gm-Message-State: APjAAAWdiDye/OM48uWSuZ7VERNN+rebEOiMTVOYMd2Ea6GdKaC9bZ23
-        l7G61iP02O7r50qJLktOi5HscJSuOrydIPadcg==
-X-Google-Smtp-Source: APXvYqwpfh5bMhHyB6vB1pzd7n1Vwqw30R85w02ibqi4bz0YGLZcgMCRWKhBC91fIfnr0Z0e1jVizuPMSMNcsYw+qBg=
-X-Received: by 2002:a37:6944:: with SMTP id e65mr31258993qkc.119.1565703377198;
- Tue, 13 Aug 2019 06:36:17 -0700 (PDT)
+        b=BKQNSToq0wG1MBpTLk+RRUxQ4uNsuwaoMwmZbEyWaI/6sJxe1Akq2vvYwUtOUNgmY
+         KyBd+LJ3yn6pmssD0B6hUngaAs9Vs1wXNx7ieyCsytMepVKaCt9Kx23o+cm1XIOgAz
+         QWtdq0z2Tp0BIvZRZpYVYy5AzLzW44b3bMxrJqSM=
+Received: by mail-qt1-f172.google.com with SMTP id 44so75252855qtg.11;
+        Tue, 13 Aug 2019 06:37:44 -0700 (PDT)
+X-Gm-Message-State: APjAAAUVy7lHz2PsPB6UENEGYBHfXCwVoFpXvWs06HpdWohbJYvDlQRV
+        5eMiABWqTFFEgDBFkVjyzWTkJO9yw+cFaEelMg==
+X-Google-Smtp-Source: APXvYqxSiv8xmh6l0YTN5kHSwGreytmLW7ZJbNoD9AorAGSyRJwul03y4GR3v+y0oM8Lfhej25onLI9w87H77Qr4i5g=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr34107578qtc.143.1565703463817;
+ Tue, 13 Aug 2019 06:37:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190813133311.26441-1-laurent.pinchart@ideasonboard.com> <20190813133311.26441-4-laurent.pinchart@ideasonboard.com>
-In-Reply-To: <20190813133311.26441-4-laurent.pinchart@ideasonboard.com>
+References: <20190813130559.16936-1-sashal@kernel.org>
+In-Reply-To: <20190813130559.16936-1-sashal@kernel.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Aug 2019 07:36:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLaUrYOrn2hq8Lhb-7muf5rQOTMo=CgHPrM=LDHodPHWA@mail.gmail.com>
-Message-ID: <CAL_JsqLaUrYOrn2hq8Lhb-7muf5rQOTMo=CgHPrM=LDHodPHWA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/9] dt-bindings: display: panel: Add bindings for NEC
- NL8048HL11 panel
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org
+Date:   Tue, 13 Aug 2019 07:37:32 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJaRmeV3Ne-HFTxMG_AZhaiGW_SKzgNrDMLJ5WGP0FXUQ@mail.gmail.com>
+Message-ID: <CAL_JsqJaRmeV3Ne-HFTxMG_AZhaiGW_SKzgNrDMLJ5WGP0FXUQ@mail.gmail.com>
+Subject: Re: [PATCH] tpm/tpm_ftpm_tee: trivial checkpatch fixes
+To:     Sasha Levin <sashal@kernel.org>
+Cc:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+        Peter Huewe <peterhuewe@gmx.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 13, 2019 at 7:33 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
+On Tue, Aug 13, 2019 at 7:06 AM Sasha Levin <sashal@kernel.org> wrote:
 >
-> The NEC NL8048HL11 is a 10.4cm WVGA (800x480) panel with a 24-bit RGB
-> parallel data interface and an SPI control interface.
+> Fixes a few checkpatch warnings (and ignores some), mostly around
+> spaces/tabs and documentation.
 >
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Sasha Levin <sashal@kernel.org>
 > ---
-> Changes since v2:
->
-> - Add reg and spi-max-frequency properties
-> - Make the example pass the checks
->
-> Changes since v1:
->
-> - Convert to YAML
-> ---
->  .../display/panel/nec,nl8048hl11.yaml         | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml |  2 ++
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
+
+>  drivers/char/tpm/tpm_ftpm_tee.c                        | 10 +++++-----
+>  3 files changed, 8 insertions(+), 6 deletions(-)
