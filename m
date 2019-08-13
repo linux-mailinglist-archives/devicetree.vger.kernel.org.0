@@ -2,104 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DB558BE3B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 18:21:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CD048BEA8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 18:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728501AbfHMQVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 12:21:23 -0400
-Received: from mout.gmx.net ([212.227.15.19]:58787 "EHLO mout.gmx.net"
+        id S1727029AbfHMQd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 12:33:26 -0400
+Received: from foss.arm.com ([217.140.110.172]:40390 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728267AbfHMQVT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 12:21:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1565713263;
-        bh=mk1t8axBSu7Iis10B+6pFBh8hZLr+xH3FZwDc1byKUc=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=DlHq/dgfHdubCcFkek5nvmD+0IXDcWxMBesB/Jm8s/xZyl771PE757O/MWlJ6IuFZ
-         ZIdL3Vgxm4ME4Kr7+hCLDFs5C4/ISLxawzLRKn3ck3qjI/ZwOPHO+7C1cshCiwo+FA
-         ie1dCFmx9v+2gEHAof2Mk40hEX23TaqzHGFZsCko=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from localhost.localdomain ([37.4.249.106]) by mail.gmx.com
- (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1Mr9Bk-1ibZFo47eA-00oGiA; Tue, 13 Aug 2019 18:21:03 +0200
-From:   Stefan Wahren <wahrenst@gmx.net>
-To:     Eric Anholt <eric@anholt.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
-Subject: [PATCH V2 13/13] MAINTAINERS: Add BCM2711 to BCM2835 ARCH
-Date:   Tue, 13 Aug 2019 18:20:48 +0200
-Message-Id: <1565713248-4906-14-git-send-email-wahrenst@gmx.net>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1565713248-4906-1-git-send-email-wahrenst@gmx.net>
-References: <1565713248-4906-1-git-send-email-wahrenst@gmx.net>
-X-Provags-ID: V03:K1:cayvR/uheIWNxYHm5e3pr7PKq9+WmnbRouCP3lNLUJCKQ3k6XG0
- /WefPCwMSh9iL5GYsHo5zipRtHFrg/Y1etR0jeGC/jLrdXLKxpA3DomoG19bFJBzokBa8Eu
- pPTQdhQgLzzfaqmgAvjAhNxQxV3WaFRz5jwCJkvhn1VvTtjkoOFsTKrrcY3ZWvNfRwb6Rbx
- zB84wH6ALdi8C+jjW9K9A==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:L0YbU3sLpSo=:OeI70LLcBh0CDJzTaHVBO1
- tjhK+J5B193bRTAVTtYaooTH1xXMikebb4tDhlJrME1FusXgayqOVnST3vq1FNTVtBFaV02J6
- pTJTCs8xKYjDdXoII0dBs0FpdQs/aI2zIRU5bdjLA422CV7+KMbeBBGzvkB5BkuoHxUZC/HSV
- Zd6fhYRY3lcItpE0dHAuoOWwnn+c9Faa4Xldm+9jGheU5/rwA8shxgiu6oCI/N7lBSUqmnYoG
- +n/YoGFfRCYc1MnQtQo4QWhoornVujNjol7Kn07h/iVzyEq2f1uUqdcFNw7JTirlBLwuXC0ON
- M++U0fiBdeEGzSK7Z5jDyeSBg8D+gMMYO+QT7RtuIHH0rGCiHfwzlOnnhxVIpZP+XbMfvYJq8
- MDtePnsKPXXgaaWzi3jnMobp0WM8vKA63XHkBmRxpnQE7htAXnu7qsTjYYidSjdyiQP7FThxe
- m3sKVd9OAO+s1fflgK9xpZRUOl7f3lENJplPHe43fdcJ1Ob7+FswR3vhlR1sdSUwwcz3f4Jsx
- J0K3/3Ib3ztoxYAeu3XmZjhfpv7OAN9KzR3D4KILqSuYB1enhW1yBH+h5/p/7SEyzRLqEhuYm
- tvjmjkNjsiQC/jOQAJPDeNJF8DcP18FAcy8BT+DPXXyqHPaeMBpPVk/h1pd0+EWjpRrgbgtIA
- l2SwlqcL9gj/4TeNKRz1zYxLcudkBiyQB3yWfm3d0TSley+fhQNoHCHv4ew4UKHbwEh/FM1zw
- qoP+Or3ug6JpHNWGQ9jsWwTAgZd/e+cezTM4DoKBwzu2NyDG5JAO99FM0uS5wGmzdZ9vUkc65
- inutHqbA5Pwk6/KT2ZAMoxEaW07bUPACc9DfUGhU+q2QL7mQECWdkKYPws8GILzoXuLQy0WnV
- NAawSGyo90BjtPlBgn0S8QUudCXqlu4KOKlUm2MKJUJYOjuH88jYCXMuz4j8o3+9YxZtFfuCD
- cIRjHxaE0LZIK7HANFmP5bBAMdP/fcZwiI07ph0oGLm1jsHLYH5i6b3IddruDg7VnkeH9eBGt
- 3NjDGEO0X86iBbZ/z6PgrH5M/fELSvUDZBb0UTjZ6pW7cFmV1od3lpIE5TRdBEe6h939+K4+s
- cDDLK9b4mLpFGGWF5pBrfK4GHevfUT4buYSv9Qhu2234td7+O8Wc1GOCw==
-Content-Transfer-Encoding: quoted-printable
+        id S1726637AbfHMQd0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 12:33:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5AFD3337;
+        Tue, 13 Aug 2019 09:33:23 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C64A03F706;
+        Tue, 13 Aug 2019 09:33:20 -0700 (PDT)
+Date:   Tue, 13 Aug 2019 17:33:18 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, digetx@gmail.com,
+        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V16 00/13] PCI: tegra: Add Tegra194 PCIe support
+Message-ID: <20190813163318.GB5070@e121166-lin.cambridge.arm.com>
+References: <20190813113627.27251-1-vidyas@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190813113627.27251-1-vidyas@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Clarify that BCM2711 belongs to the BCM2835 ARCH.
+On Tue, Aug 13, 2019 at 05:06:14PM +0530, Vidya Sagar wrote:
+> Tegra194 has six PCIe controllers based on Synopsys DesignWare core.
+> There are two Universal PHY (UPHY) blocks with each supporting 12(HSIO:
+> Hisg Speed IO) and 8(NVHS: NVIDIA High Speed) lanes respectively.
+> Controllers:0~4 use UPHY lanes from HSIO brick whereas Controller:5 uses
+> UPHY lanes from NVHS brick. Lane mapping in HSIO UPHY brick to each PCIe
+> controller (0~4) is controlled in XBAR module by BPMP-FW. Since PCIe
+> core has PIPE interface, a glue module called PIPE-to-UPHY (P2U) is used
+> to connect each UPHY lane (applicable to both HSIO and NVHS UPHY bricks)
+> to PCIe controller
+> This patch series
+> - Adds support for P2U PHY driver
+> - Adds support for PCIe host controller
+> - Adds device tree nodes each PCIe controllers
+> - Enables nodes applicable to p2972-0000 platform
+> - Adds helper APIs in Designware core driver to get capability regs offset
+> - Adds defines for new feature registers of PCIe spec revision 4
+> - Makes changes in DesignWare core driver to get Tegra194 PCIe working
+> 
+> Testing done on P2972-0000 platform
+> - Able to get PCIe link up with on-board Marvel eSATA controller
+> - Able to get PCIe link up with NVMe cards connected to M.2 Key-M slot
+> - Able to do data transfers with both SATA drives and NVMe cards
+> - Able to perform suspend-resume sequence
+> 
+> Note
+> - Enabling x8 slot on P2972-0000 platform requires pinmux driver for Tegra194.
+>   It is being worked on currently and hence Controller:5 (i.e. x8 slot) is
+>   disabled in this patch series. A future patch series would enable this.
+> - This series is based on top of the following series
+>   Jisheng's patches to add support to .remove() in Designware sub-system
+>   https://patchwork.kernel.org/project/linux-pci/list/?series=98559
+>   (Update: Jisheng's patches are now accepted and applied for v5.2)
+>   My patches made on top of Jisheng's patches to export various symbols
+>   http://patchwork.ozlabs.org/project/linux-pci/list/?series=115671
+>   (Update: My above patch series is accepted and applied for v5.3)
+>   Another patch of mine to enable BPMP-FW resume in noirq phase
+>   http://patchwork.ozlabs.org/patch/1140973/
+>   (This is already accepted)
+> 
+> V16:
+> * Added empty lines (cosmetic changes) where required in pcie-tegra194.c file
+>   to address Lorenzo's review comments.
+> 
+> V15:
+> * Refactored pcie-tegra194.c code to call only tegra_bpmp_transfer() API
+>   in both .probe() path and .resume_noirq() path.
+> 
+> V14:
+> * Addressed Lorenzo's review comments in pcie-tegra194.c file (Patch 13/13)
+> * Added a new patch to export dw_pcie_wait_for_link() API
+> 
+> V13:
+> * Addressed Bjorn's review comments for adding Gen-4 specific defines to pci_regs.h header file
+> 
+> V12:
+> * Modified the commit message of patch-3 in this series to address review
+>   comments from Lorenzo
+> 
+> V11:
+> * Removed device-tree patches from the series as they are applied to relevant
+>   Tegra specific trees by Thierry Reding.
+> * Included older Tegra chips to extend quirk that disables MSI interrupt being
+>   used for Tegra PCIe root ports.
+> * Addressed review comments in P2U driver file.
+> 
+> V10:
+> * Used _relaxed() versions of readl() & writel()
+> 
+> V9:
+> * Made the drivers dependent on ARCH_TEGRA_194_SOC directly
+> * Addressed review comments from Dmitry
+> 
+> V8:
+> * Changed P2U driver file name from pcie-p2u-tegra194.c to phy-tegra194-p2u.c
+> * Addressed review comments from Thierry and Rob
+> 
+> V7:
+> * Took care of review comments from Rob
+> * Added a quirk to disable MSI for root ports
+> * Removed using pcie_pme_disable_msi() API in host controller driver
+> 
+> V6:
+> * Removed patch that exports pcie_bus_config symbol
+> * Took care of review comments from Thierry and Rob
+> 
+> V5:
+> * Removed redundant APIs in pcie-designware-ep.c file after moving them
+>   to pcie-designware.c file based on Bjorn's review comments
+> 
+> V4:
+> * Rebased on top of linux-next top of the tree
+> * Addressed Gustavo's comments and added his Ack for some of the changes.
+> 
+> V3:
+> * Addressed review comments from Thierry
+> 
+> V2:
+> * Addressed review comments from Bjorn, Thierry, Jonathan, Rob & Kishon
+> * Added more patches in v2 series
+> 
+> Vidya Sagar (13):
+>   PCI: Add #defines for some of PCIe spec r4.0 features
+>   PCI: Disable MSI for Tegra root ports
+>   PCI: dwc: Perform dbi regs write lock towards the end
+>   PCI: dwc: Move config space capability search API
+>   PCI: dwc: Add ext config space capability search API
+>   PCI: dwc: Export dw_pcie_wait_for_link() API
+>   dt-bindings: PCI: designware: Add binding for CDM register check
+>   PCI: dwc: Add support to enable CDM register check
+>   dt-bindings: Add PCIe supports-clkreq property
+>   dt-bindings: PCI: tegra: Add device tree support for Tegra194
+>   dt-bindings: PHY: P2U: Add Tegra194 P2U block
+>   phy: tegra: Add PCIe PIPE2UPHY support
+>   PCI: tegra: Add Tegra194 PCIe support
+> 
+>  .../bindings/pci/designware-pcie.txt          |    5 +
+>  .../bindings/pci/nvidia,tegra194-pcie.txt     |  155 ++
+>  Documentation/devicetree/bindings/pci/pci.txt |    5 +
+>  .../bindings/phy/phy-tegra194-p2u.txt         |   28 +
+>  drivers/pci/controller/dwc/Kconfig            |   10 +
+>  drivers/pci/controller/dwc/Makefile           |    1 +
+>  .../pci/controller/dwc/pcie-designware-ep.c   |   37 +-
+>  .../pci/controller/dwc/pcie-designware-host.c |   14 +-
+>  drivers/pci/controller/dwc/pcie-designware.c  |   88 +
+>  drivers/pci/controller/dwc/pcie-designware.h  |   12 +
+>  drivers/pci/controller/dwc/pcie-tegra194.c    | 1631 +++++++++++++++++
+>  drivers/pci/quirks.c                          |   53 +
+>  drivers/phy/tegra/Kconfig                     |    7 +
+>  drivers/phy/tegra/Makefile                    |    1 +
+>  drivers/phy/tegra/phy-tegra194-p2u.c          |  120 ++
+>  include/uapi/linux/pci_regs.h                 |   14 +-
+>  16 files changed, 2139 insertions(+), 42 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+>  create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+>  create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+>  create mode 100644 drivers/phy/tegra/phy-tegra194-p2u.c
+> 
 
-Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-Acked-by: Eric Anholt <eric@anholt.net>
-=2D--
- MAINTAINERS | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I have applied it to pci/tegra, subject to kbuild test validation,
+for v5.4.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6426db5..13c7c64 100644
-=2D-- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3168,7 +3168,7 @@ N:	bcm216*
- N:	kona
- F:	arch/arm/mach-bcm/
-
--BROADCOM BCM2835 ARM ARCHITECTURE
-+BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE
- M:	Eric Anholt <eric@anholt.net>
- M:	Stefan Wahren <wahrenst@gmx.net>
- L:	bcm-kernel-feedback-list@broadcom.com
-@@ -3176,6 +3176,7 @@ L:	linux-rpi-kernel@lists.infradead.org (moderated f=
-or non-subscribers)
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- T:	git git://github.com/anholt/linux
- S:	Maintained
-+N:	bcm2711
- N:	bcm2835
- F:	drivers/staging/vc04_services
-
-=2D-
-2.7.4
-
+Thanks,
+Lorenzo
