@@ -2,152 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B2E88AF38
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 08:08:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 756FA8AFB4
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 08:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726808AbfHMGH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 02:07:57 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:1276 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725815AbfHMGH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 02:07:56 -0400
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7D62sAp027716;
-        Tue, 13 Aug 2019 02:07:47 -0400
-Received: from nam01-by2-obe.outbound.protection.outlook.com (mail-by2nam01lp2058.outbound.protection.outlook.com [104.47.34.58])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2u9tj5y8fp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Tue, 13 Aug 2019 02:07:47 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NuTIrEFy8b6jNkhILf7t+6kP4xEmRgBIab2Gt56eKlWvb0n2coqxLz9LV9vPN3J5UAZfpwCMYvSOqcDiXgd1ZxlTX1mvIatHO6wvLBeWWhVVhntSb1CDWj1/Fubz7qHXReouZZEuHOo75OC0z6OJ6nMQCJGihin9doLHbpx75w8He/Bs1S0lYGOHSpSuV99orwU4B7N833ssgil7s1v4Ek+UkN8+5nN9eO6vOcGkJ8y7nZWiO3DvX3Mj4q9l1/sjnsUiVEnRPEAFinbrcARxFQTdRfh3NgHq/DUl/TDSVK1Upv5PIE41vk2PtkA4Ib2YmK5GmfBSUgZoS9WYR6wGEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0B+Ew7GmyxOp5jRdm7XGKPoJKSq6BMme89mdT5ndIoY=;
- b=ZJbs1QpdqA1vFXQ5T8TcrcHLwkXRxKVmSc1d6NgsRrKjLyIwLf3y4k+XiOCXmKlwtB345SyHvmZgH4ZjvPc5OEpbhnEE/JsfB7+AB4/DBFDlGiGdseC7uoEALOQRmp2bSWd7U6eVKDFjcnRrsK6VljFrH4qS3w9yZ1hSyaOIFx79YmwmTFnuIUbuY2CXawpejUpzjpcuoY9HV3qG5N6XYI/5uTEMP+VJ07tr66BnL0AiOpUNp4ecw0WhDQW2SVdbbOGFDikkSkYUsQIKc9XyUXTatMF+yQ4CUZiv7XR1cz46cWHPucGwSs6PHtOv7lKxAWQ8DRV4l9q7yjmbvrh0Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 137.71.25.57) smtp.rcpttodomain=kernel.org smtp.mailfrom=analog.com;
- dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0B+Ew7GmyxOp5jRdm7XGKPoJKSq6BMme89mdT5ndIoY=;
- b=qOCgDTyjCKsR2PkrCkrjxsxKKYcJGquN/SHMj4q/lEMqiKk2YpMarKhR0ErCPzDVoA/iSm47b5hOeRA/aOD2kyfOZsOw74awU6BbmLuGFJPLRp798P0bbDvIB1+IOnf1zm2WRxmIHvMhy8NV8VPF8UzaqhW2vtImRvYPiU7qdY8=
-Received: from BN3PR03CA0116.namprd03.prod.outlook.com (2603:10b6:400:4::34)
- by SN6PR03MB3693.namprd03.prod.outlook.com (2603:10b6:805:42::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2157.18; Tue, 13 Aug
- 2019 06:07:45 +0000
-Received: from CY1NAM02FT027.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::204) by BN3PR03CA0116.outlook.office365.com
- (2603:10b6:400:4::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2157.15 via Frontend
- Transport; Tue, 13 Aug 2019 06:07:45 +0000
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- CY1NAM02FT027.mail.protection.outlook.com (10.152.75.159) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2157.15
- via Frontend Transport; Tue, 13 Aug 2019 06:07:44 +0000
-Received: from NWD2HUBCAS9.ad.analog.com (nwd2hubcas9.ad.analog.com [10.64.69.109])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x7D67hdA022694
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Mon, 12 Aug 2019 23:07:43 -0700
-Received: from NWD2MBX7.ad.analog.com ([fe80::190e:f9c1:9a22:9663]) by
- NWD2HUBCAS9.ad.analog.com ([fe80::44a2:871b:49ab:ea47%12]) with mapi id
- 14.03.0415.000; Tue, 13 Aug 2019 02:07:43 -0400
-From:   "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-To:     "andrew@lunn.ch" <andrew@lunn.ch>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH v4 13/14] net: phy: adin: add ethtool get_stats support
-Thread-Topic: [PATCH v4 13/14] net: phy: adin: add ethtool get_stats support
-Thread-Index: AQHVUQB9ToIHSOhtHEuH64MPKOTzBKb31POAgAEG7IA=
-Date:   Tue, 13 Aug 2019 06:07:42 +0000
-Message-ID: <3d020fd22f253f32622b6d150a4387ed0707f587.camel@analog.com>
-References: <20190812112350.15242-1-alexandru.ardelean@analog.com>
-         <20190812112350.15242-14-alexandru.ardelean@analog.com>
-         <20190812142637.GR14290@lunn.ch>
-In-Reply-To: <20190812142637.GR14290@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.48.65.113]
-x-adiroutedonprem: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <5D338A71FCC7B44D874882A971DDBE26@analog.com>
-Content-Transfer-Encoding: base64
+        id S1727517AbfHMGNt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 02:13:49 -0400
+Received: from mailout4.samsung.com ([203.254.224.34]:38618 "EHLO
+        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726808AbfHMGNt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 02:13:49 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20190813061347epoutp04e04167822b71b4153efdfbbe88a4575f~6Zsd2Gouz1615616156epoutp04Q
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 06:13:47 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20190813061347epoutp04e04167822b71b4153efdfbbe88a4575f~6Zsd2Gouz1615616156epoutp04Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1565676827;
+        bh=Xwj0sV5zR7XRN9JsppcP+03CQuzpX+VyXv5U3/Qahdw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=t8tB56C0LVWph7/uYpYyCO2569fT0+RmWVZlLghkU77NNtBBsncvxKQSqJu+wd3iv
+         oBqyLylOzH5yLKuJ3gYhlE4nvps16zzRLed/vjwIsvbXSgrpTrygTbQkzbmem29zG8
+         1SviHyp6JuNOSz8cirwHB54xPS8wpN6En6BdEFhg=
+Received: from epsnrtp6.localdomain (unknown [182.195.42.167]) by
+        epcas1p4.samsung.com (KnoxPortal) with ESMTP id
+        20190813061346epcas1p4dd6a6b6d56622b5d4c0b0cb19d0e8b14~6ZsdTkDF00949109491epcas1p4g;
+        Tue, 13 Aug 2019 06:13:46 +0000 (GMT)
+Received: from epsmges1p5.samsung.com (unknown [182.195.40.157]) by
+        epsnrtp6.localdomain (Postfix) with ESMTP id 4672Th37xtzMqYkc; Tue, 13 Aug
+        2019 06:13:44 +0000 (GMT)
+Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
+        epsmges1p5.samsung.com (Symantec Messaging Gateway) with SMTP id
+        C8.B7.04085.815525D5; Tue, 13 Aug 2019 15:13:44 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
+        20190813061343epcas1p3bb333a7ccbb59c83c9b53d2b3f19ed3a~6ZsarhEst0550605506epcas1p3f;
+        Tue, 13 Aug 2019 06:13:43 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190813061343epsmtrp15a3de5ec4bba0edf932904ec3adb5909~6Zsaqtnf82809428094epsmtrp1y;
+        Tue, 13 Aug 2019 06:13:43 +0000 (GMT)
+X-AuditID: b6c32a39-cebff70000000ff5-24-5d5255187eb4
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        DF.D3.03638.715525D5; Tue, 13 Aug 2019 15:13:43 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190813061343epsmtip10738a981ac385fbd3d6c7a7ff029371c~6ZsaTwK5n2339723397epsmtip1G;
+        Tue, 13 Aug 2019 06:13:43 +0000 (GMT)
+Subject: Re: [RFC PATCH 00/11] Simple QoS for exynos-bus driver using
+ interconnect
+To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     krzk@kernel.org, myungjoo.ham@samsung.com, inki.dae@samsung.com,
+        sw0312.kim@samsung.com, georgi.djakov@linaro.org,
+        m.szyprowski@samsung.com
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <6be31199-a93d-c440-e0cd-7453e3ac1648@samsung.com>
+Date:   Tue, 13 Aug 2019 15:17:29 +0900
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(39860400002)(346002)(136003)(376002)(2980300002)(189003)(199004)(2351001)(426003)(316002)(436003)(8676002)(118296001)(54906003)(336012)(1730700003)(486006)(126002)(106002)(2906002)(11346002)(7636002)(6116002)(2616005)(476003)(3846002)(446003)(305945005)(76176011)(86362001)(7736002)(6916009)(229853002)(478600001)(4326008)(5640700003)(23676004)(2486003)(14454004)(47776003)(2501003)(26005)(70586007)(5660300002)(70206006)(186003)(356004)(50466002)(7696005)(246002)(36756003)(14444005)(6246003)(102836004)(8936002);DIR:OUT;SFP:1101;SCL:1;SRVR:SN6PR03MB3693;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;MX:1;A:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 7f8608b7-bc66-4c22-c428-08d71fb48ee2
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328)(7193020);SRVR:SN6PR03MB3693;
-X-MS-TrafficTypeDiagnostic: SN6PR03MB3693:
-X-Microsoft-Antispam-PRVS: <SN6PR03MB36935B65BA9289D118F131ABF9D20@SN6PR03MB3693.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
-X-Forefront-PRVS: 01283822F8
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: G2WoUbkOIWvI3F2jkO+bsVuASV5va8+StfBkpD5vMvFNGy3vGyNfoWnT6h9T7+cioahXHM5gX0UxxmVQD6L7XdAOV3/7Y2sAG8YR35IH3OwOGWasHrSWmPWQI/o5lK0M/G2AFwYiWOTnXp9fI69rJ8XWehgPMQ9hYKqm8Q2QjBu8oIlff0fO9ZoyWhJGjbhaoBSV95FMkR7u8JlAV9tcr9NJwzBRLV8apwl7ZF9nUyrJ9fNIZTkNrKbymLn8yGuB6D4DCrQdz0lZfEZs6BBsXuZzf0vvgOVIKLshudpUf4xjJ/riBi3FZuqne6BdOjkH+f6zf38/ZCVIBxUcq14jfmnd0Tc+GFFXUy9RZzNe2gjnPmD7TPt+/XsjPzLb/Nsu0oWfYG/al3PYijK/eRWBzhSUV0cS5oo7i7cdg6aLV+I=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2019 06:07:44.2490
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f8608b7-bc66-4c22-c428-08d71fb48ee2
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR03MB3693
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-13_01:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908130066
+In-Reply-To: <20190723122016.30279-1-a.swigon@partner.samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDJsWRmVeSWpSXmKPExsWy7bCmga5EaFCsQec7MYtDx7ayW8w/co7V
+        4srX92wW0/duYrOYdH8Ci8X58xvYLTY9vsZqcXnXHDaLz71HGC1mnN/HZLH2yF12i9uNK9gs
+        Zkx+yebA67FpVSebx51re9g87ncfZ/LYvKTe4+C7PUwefVtWMXp83iQXwB6VbZORmpiSWqSQ
+        mpecn5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkDdK2SQlliTilQKCCxuFhJ
+        386mKL+0JFUhI7+4xFYptSAlp8CyQK84Mbe4NC9dLzk/18rQwMDIFKgwITtjUsNtxoK7chXz
+        p+xla2B8L9HFyMkhIWAise7BIqYuRi4OIYEdjBKzZ/xhB0kICXxilNh8QRwi8Y1RovfmLqAE
+        B1hH+yF/iPheRol3T34yQjjvGSVez9rKAtItLBAicXzzV0YQW0SgnUmieaMDSBGzwERGiefH
+        /zOBJNgEtCT2v7jBBmLzCyhKXP3xGKyBV8BO4nHPWVYQm0VAVeL4nFtg9aICERKfHhxmhagR
+        lDg58wnYMk4BJ4muo+1gc5gFxCVuPZnPBGHLSzRvnc0MslhCYB27xPPJy1ggnnaRuP65jxHC
+        FpZ4dXwLO4QtJfGyvw3KrpZYefIIG0RzB6PElv0XWCESxhL7l05mAoUFs4CmxPpd+hBhRYmd
+        v+cyQizmk3j3tYcVEly8Eh1tQhAlyhKXH9xlgrAlJRa3d7JNYFSaheSdWUhemIXkhVkIyxYw
+        sqxiFEstKM5NTy02LDBFju1NjOCUrGW5g/HYOZ9DjAIcjEo8vBUJgbFCrIllxZW5hxglOJiV
+        RHgvmQTFCvGmJFZWpRblxxeV5qQWH2I0BYb2RGYp0eR8YL7IK4k3NDUyNja2MDE0MzU0VBLn
+        XfjDIlZIID2xJDU7NbUgtQimj4mDU6qBUcPOy2rX8/XCm7mznU/qen+ysJ11c7LCkds8H170
+        Nixcv+oga9aP2V9ufOGe9O9s1veJT9vmmk3JCNvObvvN+W7ik/6IBo76eR2e4dfDYy19Xv9f
+        LPImpmKKkc9dl0UhRZE/HnVOOZhUtH7Ov9oGp66iG4GdZ+tPrK//sff016dqnX1vH3Pc8lVi
+        Kc5INNRiLipOBAC9LmVj3wMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsWy7bCSnK54aFCswcouY4tDx7ayW8w/co7V
+        4srX92wW0/duYrOYdH8Ci8X58xvYLTY9vsZqcXnXHDaLz71HGC1mnN/HZLH2yF12i9uNK9gs
+        Zkx+yebA67FpVSebx51re9g87ncfZ/LYvKTe4+C7PUwefVtWMXp83iQXwB7FZZOSmpNZllqk
+        b5fAlTGp4TZjwV25ivlT9rI1ML6X6GLk4JAQMJFoP+TfxcjFISSwm1Hi1N+rbF2MnEBxSYlp
+        F48yQ9QISxw+XAxR85ZRYlHTNbAaYYEQieObvzKCJEQE2pkkulu3gjnMAhMZJR4fXssM0TKV
+        UWL9z9ssIC1sAloS+1/cAGvnF1CUuPrjMSOIzStgJ/G45ywriM0ioCpxfM4tJhBbVCBC4vCO
+        WVA1ghInZz4Bm8Mp4CTRdbQdbA6zgLrEn3mXmCFscYlbT+YzQdjyEs1bZzNPYBSehaR9FpKW
+        WUhaZiFpWcDIsopRMrWgODc9t9iwwCgvtVyvODG3uDQvXS85P3cTIzg+tbR2MJ44EX+IUYCD
+        UYmHtyIhMFaINbGsuDL3EKMEB7OSCO8lk6BYId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rzy+cci
+        hQTSE0tSs1NTC1KLYLJMHJxSDYwFfMvemAiVGrdavxZylUg4NqOEQyc0OiqjppY/fkLQba4f
+        CsKMj640/u9+UOzqpfBC4s2NTW7F1nF3bc++Yev59mPG5HzPa2kWqnuebF3Dfqy0c9r5mMSf
+        0qczsqbM/q4dEP3y5a2LF2+fi10hvOvGiztyy/gcp4iu/3FavihMdMf3Dxec799UYinOSDTU
+        Yi4qTgQAsaEb6ssCAAA=
+X-CMS-MailID: 20190813061343epcas1p3bb333a7ccbb59c83c9b53d2b3f19ed3a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5
+References: <CGME20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5@eucas1p2.samsung.com>
+        <20190723122016.30279-1-a.swigon@partner.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDE5LTA4LTEyIGF0IDE2OjI2ICswMjAwLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
-W0V4dGVybmFsXQ0KPiANCj4gPiArLyogTmFtZWQganVzdCBsaWtlIGluIHRoZSBkYXRhc2hlZXQg
-Ki8NCj4gPiArc3RhdGljIHN0cnVjdCBhZGluX2h3X3N0YXQgYWRpbl9od19zdGF0c1tdID0gew0K
-PiA+ICsJeyAiUnhFcnJDbnQiLAkJMHgwMDE0LAl9LA0KPiA+ICsJeyAiTXNlQSIsCQkweDg0MDIs
-CTAsCXRydWUgfSwNCj4gPiArCXsgIk1zZUIiLAkJMHg4NDAzLAkwLAl0cnVlIH0sDQo+ID4gKwl7
-ICJNc2VDIiwJCTB4ODQwNCwJMCwJdHJ1ZSB9LA0KPiA+ICsJeyAiTXNlRCIsCQkweDg0MDUsCTAs
-CXRydWUgfSwNCj4gPiArCXsgIkZjRnJtQ250IiwJCTB4OTQwQSwgMHg5NDBCIH0sIC8qIEZjRnJt
-Q250SCArIEZjRnJtQ250TCAqLw0KPiA+ICsJeyAiRmNMZW5FcnJDbnQiLAkweDk0MEMgfSwNCj4g
-PiArCXsgIkZjQWxnbkVyckNudCIsCTB4OTQwRCB9LA0KPiA+ICsJeyAiRmNTeW1iRXJyQ250IiwJ
-MHg5NDBFIH0sDQo+ID4gKwl7ICJGY09zekNudCIsCQkweDk0MEYgfSwNCj4gPiArCXsgIkZjVXN6
-Q250IiwJCTB4OTQxMCB9LA0KPiA+ICsJeyAiRmNPZGRDbnQiLAkJMHg5NDExIH0sDQo+ID4gKwl7
-ICJGY09kZFByZUNudCIsCTB4OTQxMiB9LA0KPiA+ICsJeyAiRmNEcmliYmxlQml0c0NudCIsCTB4
-OTQxMyB9LA0KPiA+ICsJeyAiRmNGYWxzZUNhcnJpZXJDbnQiLAkweDk0MTQgfSwNCj4gDQo+IEkg
-c2VlIHNvbWUgdmFsdWUgaW4gdXNpbmcgdGhlIG5hbWVzIGZyb20gdGhlIGRhdGFzaGVldC4gSG93
-ZXZlciwgaQ0KPiBmb3VuZCBpdCBxdWl0ZSBoYXJkIHRvIG5vdyB3aGF0IHRoZXNlIGNvdW50ZXJz
-IHJlcHJlc2VudCBnaXZlbiB0aGVyZQ0KPiBjdXJyZW50IG5hbWUuIFdoYXQgaXMgTXNlPyBIb3cg
-ZG9lcyBNc2VBIGRpZmZlciBmcm9tIE1zZUI/IFlvdSBoYXZlIHVwDQo+IHRvIEVUSF9HU1RSSU5H
-X0xFTiBjaGFyYWN0ZXJzLCBzbyBtYXliZSBsb25nZXIgbmFtZXMgd291bGQgYmUgYmV0dGVyPw0K
-DQpJJ2xsIGV4cGFuZCB0aGUgbmFtZXMuDQoNClJlZ2FyZGluZyBNc2VBL0IvQy9ELCBJJ2xsIGFk
-bWl0IEkgYW0gYWxzbyBhIGJpdCBmdXp6eSBhYm91dCB0aGVtLg0KVGhleSBkZXNjcmliZSBsaW5r
-LXF1YWxpdHkgc2V0dGluZ3MsIGFuZCB0aGUgdmFsdWVzIGhhdmUgc29tZSBtZWFuaW5nIHRvIHRo
-ZSBjaGlwIGd1eXMgW3doZW4gSSB0YWxrZWQgd2l0aHQgdGhlbSBhYm91dA0KaXRdLCBidXQgSSBk
-aWQgbm90IGluc2lzdCBvbiBnZXR0aW5nIGEgZGVlcCBleHBsYW5hdGlvbiBhYm91dCB0aGVtIFth
-bmQgd2hhdCB0aGVpciB2YWx1ZXMgcmVwcmVzZW50XS4NCkkgZ3Vlc3MgZm9yIHRoaXMgUEhZIGRy
-aXZlciwgd2UgY291bGQgZHJvcCB0aGVtLCBhbmQgaWYgdGhleSdyZSBuZWVkZWQgdGhleSBjYW4g
-YmUgYWNjZXNzZWQgdmlhIHBoeXRvb2wsIGFuZCBpZiB0aGV5J3JlDQpyZWFsbHkgbmVlZGVkLCBJ
-IGNhbiB0cnkgdG8gYWRkIHRoZW0gbGF0ZXIgd2l0aCBtb3JlIGNvbXBsZXRlIGRldGFpbCBbYWJv
-dXQgdGhlbSBhbmQgdGhlaXIgdXNlL3ZhbHVlXS4NCg0KSSBpbmNsdWRlZCB0aGVtIGhlcmUsIGJl
-Y2F1c2UgdGhleSBhcmUgbGlzdGVkIGluIHRoZSBlcnJvci1jb3VudGVyIHJlZ2lzdGVyICJncm91
-cCIgW2luIHRoZSBkYXRhc2hlZXRdLCBhbmQgSSBpbmVydGlhbGx5DQphZGRlZCB0aGVtLg0KDQo+
-IA0KPiAgICBBbmRyZXcNCg==
+Hi Artur.
+
+The patch1-4 in this series depend on other patches[1] on mainline.
+On next v2 version, please make some patches based on patches[1]
+in order to prevent the merge conflict. 
+
+[1] [RESEND PATCH v5 0/4] add coupled regulators for Exynos5422/5800
+- https://lkml.org/lkml/2019/8/8/217
+
+Also, as I commented, we better to discuss it before sending the v2.
+
+On 19. 7. 23. 오후 9:20, Artur Świgoń wrote:
+> The following patchset adds interconnect[1][2] framework support to the
+> exynos-bus devfreq driver. Extending the devfreq driver with interconnect
+> capabilities started as a response to the issue referenced in [3]. The
+> patches can be subdivided into four logical groups:
+> 
+> (a) Refactoring the existing devfreq driver in order to improve readability
+> and accommodate for adding new code (patches 01--04/11).
+> 
+> (b) Tweaking the interconnect framework to support the exynos-bus use case
+> (patches 05--07/11). Exporting of_icc_get_from_provider() allows us to
+> avoid hardcoding every single graph edge in the DT or driver source, and
+> relaxing the requirement contained in that function removes the need to
+> provide dummy node IDs in the DT. Adjusting the logic in
+> apply_constraints() (drivers/interconnect/core.c) accounts for the fact
+> that every bus is a separate entity and therefore a separate interconnect
+> provider, albeit constituting a part of a larger hierarchy.
+> 
+> (c) Implementing interconnect providers in the exynos-bus devfreq driver
+> and adding required DT properties for one selected platform, namely
+> Exynos4412 (patches 08--09/11). Due to the fact that this aims to be a
+> generic driver for various Exynos SoCs, node IDs are generated dynamically
+> rather than hardcoded. This has been determined to be a simpler approach,
+> but depends on changes described in (b).
+> 
+> (d) Implementing a sample interconnect consumer for exynos-mixer targeted
+> at the issue referenced in [3], again with DT info only for Exynos4412
+> (patches 10--11/11).
+> 
+> Integration of devfreq and interconnect functionalities comes down to one
+> extra line in the devfreq target() callback, which selects either the
+> frequency calculated by the devfreq governor, or the one requested with the
+> interconnect API, whichever is higher. All new code works equally well when
+> CONFIG_INTERCONNECT is 'n' (as in exynos_defconfig) in which case all
+> interconnect API functions are no-ops.
+> 
+> ---
+> Artur Świgoń
+> Samsung R&D Institute Poland
+> Samsung Electronics
+> 
+> ---
+> References:
+> [1] Documentation/interconnect/interconnect.rst
+> [2] Documentation/devicetree/bindings/interconnect/interconnect.txt
+> [3] https://patchwork.kernel.org/patch/10861757
+> 
+> Artur Świgoń (10):
+>   devfreq: exynos-bus: Extract exynos_bus_profile_init()
+>   devfreq: exynos-bus: Extract exynos_bus_profile_init_passive()
+>   devfreq: exynos-bus: Change goto-based logic to if-else logic
+>   devfreq: exynos-bus: Clean up code
+>   icc: Export of_icc_get_from_provider()
+>   icc: Relax requirement in of_icc_get_from_provider()
+>   icc: Relax condition in apply_constraints()
+>   arm: dts: exynos: Add parents and #interconnect-cells to Exynos4412
+>   devfreq: exynos-bus: Add interconnect functionality to exynos-bus
+>   arm: dts: exynos: Add interconnects to Exynos4412 mixer
+> 
+> Marek Szyprowski (1):
+>   drm: exynos: mixer: Add interconnect support
+> 
+>  .../boot/dts/exynos4412-odroid-common.dtsi    |   1 +
+>  arch/arm/boot/dts/exynos4412.dtsi             |  10 +
+>  drivers/devfreq/exynos-bus.c                  | 296 ++++++++++++++----
+>  drivers/gpu/drm/exynos/exynos_mixer.c         |  68 +++-
+>  drivers/interconnect/core.c                   |  12 +-
+>  include/linux/interconnect-provider.h         |   6 +
+>  6 files changed, 314 insertions(+), 79 deletions(-)
+> 
+
+
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
