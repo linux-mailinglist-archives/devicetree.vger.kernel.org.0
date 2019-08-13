@@ -2,178 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38AC98B4CC
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 12:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC5F8B4DB
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 12:02:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728708AbfHMKAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 06:00:33 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:51578 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728434AbfHMKAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 06:00:32 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7D9uvqx019950;
-        Tue, 13 Aug 2019 12:00:21 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=Ew0jpCMbOhB8LJL0i2smq1Jsu/IjtJ4+t0EckSDmj7s=;
- b=vb/ucef+X+hg73LkawoYQfoCed3ejnD4d/mbq55LGlU4sWrxvvDUJIstPrhovBdrbS9I
- SrNkhWIIaM/LRJMD4WGd7LC4TacuSPc/8MBsF4VvSKy4Dh4OBTvHGMeZVqoiSR/TBJF6
- FSXXFFJ04FRNIQKEGtywQYRtwrTs/hHyrY99Q+A6sbt/HsnTxuFDN7QDHo+hoPoTzQXb
- k3GJFr2VHTJ3zgfnvlPSIEVt/YzjOT4VMoCmEm7hcerchypN349F/8Vw1uBBH0qMCy3V
- wK3FR6twZS3la5n1cEpn3eeg4W+8G1ePoU4XhPmW8YNecF6xEs9eFRy/OlJKE57ciLy3 1w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2u9mtky9vp-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Tue, 13 Aug 2019 12:00:21 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1041234;
-        Tue, 13 Aug 2019 10:00:20 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id EC7F32CC9D3;
-        Tue, 13 Aug 2019 12:00:19 +0200 (CEST)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas22.st.com
- (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 13 Aug
- 2019 12:00:19 +0200
-Received: from lmecxl0923.lme.st.com (10.48.0.237) by webmail-ga.st.com
- (10.75.90.48) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 13 Aug
- 2019 12:00:18 +0200
-From:   Ludovic Barre <ludovic.Barre@st.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        Ludovic Barre <ludovic.barre@st.com>
-Subject: [PATCH V5 3/3] mmc: mmci: sdmmc: add busy_complete callback
-Date:   Tue, 13 Aug 2019 11:59:51 +0200
-Message-ID: <20190813095951.26275-4-ludovic.Barre@st.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190813095951.26275-1-ludovic.Barre@st.com>
-References: <20190813095951.26275-1-ludovic.Barre@st.com>
+        id S1728700AbfHMKCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 06:02:00 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:59160 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728761AbfHMKCA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 06:02:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1565690517; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=ZbzHVM6ENaR4P/6+oOoubZ60cH5LA2N4J6V2DJChuP0=;
+        b=pFFfezQjKuJRCyCrZ9/ijjroaefD35Husngjhtv0sS9eRbULkJZieHwFjjUUwZHaOSMVhv
+        Jym9DJW3vwQNxQw4SI21TSkg5AYgp4PLMnIjtp7Fi2rteFN9o2S3rSBW+rrUXddKsUjfoL
+        iN4pdyxvhjsec4lYAWRoFxESQB5CuEc=
+Date:   Tue, 13 Aug 2019 12:01:48 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 10/11] mfd: Drop obsolete JZ4740 driver
+To:     Philippe =?iso-8859-1?q?Mathieu-Daud=E9?= <f4bug@amsat.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, od@zcrc.me,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        Artur Rojek <contact@artur-rojek.eu>
+Message-Id: <1565690508.1856.0@crapouillou.net>
+In-Reply-To: <4b48e597-951e-45fd-dfb2-4a1292a8b067@amsat.org>
+References: <20190725220215.460-1-paul@crapouillou.net>
+        <20190725220215.460-11-paul@crapouillou.net> <20190812081640.GA26727@dell>
+        <4b48e597-951e-45fd-dfb2-4a1292a8b067@amsat.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.48.0.237]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-13_04:,,
- signatures=0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ludovic Barre <ludovic.barre@st.com>
+Hi Philippe,
 
-This patch adds a specific busy_complete callback for sdmmc variant.
 
-sdmmc has 2 status flags:
--busyd0: This is a hardware status flag (inverted value of d0 line).
-it does not generate an interrupt.
--busyd0end: This indicates only end of busy following a CMD response.
-On busy to Not busy changes, an interrupt is generated (if unmask)
-and BUSYD0END status flag is set. Status flag is cleared by writing
-corresponding interrupt clear bit in MMCICLEAR.
+Le mar. 13 ao=FBt 2019 =E0 10:44, Philippe=20
+=3D?iso-8859-1?q?Mathieu-Daud=3DE9?=3D <f4bug@amsat.org> a =E9crit :
+> Hi Lee,
+>=20
+> On 8/12/19 10:16 AM, Lee Jones wrote:
+>>  On Thu, 25 Jul 2019, Paul Cercueil wrote:
+>>=20
+>>>  It has been replaced with the ingenic-iio driver for the ADC.
+>>>=20
+>>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>>  Tested-by: Artur Rojek <contact@artur-rojek.eu>
+>>>  ---
+>>>   drivers/mfd/Kconfig      |   9 --
+>>>   drivers/mfd/Makefile     |   1 -
+>>>   drivers/mfd/jz4740-adc.c | 324=20
+>>> ---------------------------------------
+>>>   3 files changed, 334 deletions(-)
+>>>   delete mode 100644 drivers/mfd/jz4740-adc.c
+>>=20
+>>  Applied, thanks.
+>=20
+> It seems the replacement is done in "MIPS: qi_lb60: Migrate to
+> devicetree" which is not yet merged.
 
-The legacy busy completion monitors step by step the busy progression
-start/in-progress/end. On sdmmc variant, the monitoring of busy steps
-is difficult and not adapted (the software can miss a step and locks
-the monitoring), the sdmmc has just need to wait the busyd0end bit
-without monitoring all the changes.
+It's merged in the MIPS tree, though, so it'll blend together just
+fine in linux-next.
 
-Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
----
- drivers/mmc/host/mmci.c             |  3 +++
- drivers/mmc/host/mmci.h             |  1 +
- drivers/mmc/host/mmci_stm32_sdmmc.c | 38 +++++++++++++++++++++++++++++
- 3 files changed, 42 insertions(+)
+>=20
+> Probably easier if this patch goes thru the MIPS tree as part of the
+> "JZ4740 SoC cleanup" series.
+>=20
+> Regards,
+>=20
+> Phil.
 
-diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-index 9eac3f482119..9bec82d2dbf7 100644
---- a/drivers/mmc/host/mmci.c
-+++ b/drivers/mmc/host/mmci.c
-@@ -260,6 +260,9 @@ static struct variant_data variant_stm32_sdmmc = {
- 	.datalength_bits	= 25,
- 	.datactrl_blocksz	= 14,
- 	.stm32_idmabsize_mask	= GENMASK(12, 5),
-+	.busy_timeout		= true,
-+	.busy_detect_flag	= MCI_STM32_BUSYD0,
-+	.busy_detect_mask	= MCI_STM32_BUSYD0ENDMASK,
- 	.init			= sdmmc_variant_init,
- };
- 
-diff --git a/drivers/mmc/host/mmci.h b/drivers/mmc/host/mmci.h
-index 733f9a035b06..841c5281beb5 100644
---- a/drivers/mmc/host/mmci.h
-+++ b/drivers/mmc/host/mmci.h
-@@ -164,6 +164,7 @@
- #define MCI_ST_CARDBUSY		(1 << 24)
- /* Extended status bits for the STM32 variants */
- #define MCI_STM32_BUSYD0	BIT(20)
-+#define MCI_STM32_BUSYD0END	BIT(21)
- 
- #define MMCICLEAR		0x038
- #define MCI_CMDCRCFAILCLR	(1 << 0)
-diff --git a/drivers/mmc/host/mmci_stm32_sdmmc.c b/drivers/mmc/host/mmci_stm32_sdmmc.c
-index 8e83ae6920ae..bb5499cc9e81 100644
---- a/drivers/mmc/host/mmci_stm32_sdmmc.c
-+++ b/drivers/mmc/host/mmci_stm32_sdmmc.c
-@@ -282,6 +282,43 @@ static u32 sdmmc_get_dctrl_cfg(struct mmci_host *host)
- 	return datactrl;
- }
- 
-+bool sdmmc_busy_complete(struct mmci_host *host, u32 status, u32 err_msk)
-+{
-+	void __iomem *base = host->base;
-+	u32 busy_d0, busy_d0end, mask;
-+
-+	mask = readl_relaxed(base + MMCIMASK0);
-+	busy_d0end = readl_relaxed(base + MMCISTATUS) & MCI_STM32_BUSYD0END;
-+	busy_d0 = readl_relaxed(base + MMCISTATUS) & MCI_STM32_BUSYD0;
-+
-+	/* complete if there is an error or busy_d0end */
-+	if ((status & err_msk) || busy_d0end)
-+		goto complete;
-+
-+	/*
-+	 * On response the busy signaling is reflected in the BUSYD0 flag.
-+	 * if busy_d0 is in-progress we must activate busyd0end interrupt
-+	 * to wait this completion. Else this request has no busy step.
-+	 */
-+	if (busy_d0) {
-+		if (!host->busy_status) {
-+			writel_relaxed(mask | host->variant->busy_detect_mask,
-+				       base + MMCIMASK0);
-+			host->busy_status = status &
-+				(MCI_CMDSENT | MCI_CMDRESPEND);
-+		}
-+		return false;
-+	}
-+
-+complete:
-+	writel_relaxed(mask & ~host->variant->busy_detect_mask,
-+		       base + MMCIMASK0);
-+	writel_relaxed(host->variant->busy_detect_mask, base + MMCICLEAR);
-+	host->busy_status = 0;
-+
-+	return true;
-+}
-+
- static struct mmci_host_ops sdmmc_variant_ops = {
- 	.validate_data = sdmmc_idma_validate_data,
- 	.prep_data = sdmmc_idma_prep_data,
-@@ -292,6 +329,7 @@ static struct mmci_host_ops sdmmc_variant_ops = {
- 	.dma_finalize = sdmmc_idma_finalize,
- 	.set_clkreg = mmci_sdmmc_set_clkreg,
- 	.set_pwrreg = mmci_sdmmc_set_pwrreg,
-+	.busy_complete = sdmmc_busy_complete,
- };
- 
- void sdmmc_variant_init(struct mmci_host *host)
--- 
-2.17.1
+=
 
