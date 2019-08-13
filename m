@@ -2,133 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D758B1E8
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 09:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DEC48B1D9
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 09:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727948AbfHMH7k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 03:59:40 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:34873 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727326AbfHMH7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 03:59:30 -0400
-Received: by mail-pl1-f196.google.com with SMTP id w24so48947119plp.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 00:59:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5R0Mn+kXy6miNBPjF2nukdlARFsEwajrrqyvCbZs0pA=;
-        b=ElNxu9XWCw3bi/ATpZFZYjmD1lNIywxKKFS5/SHJ+NwUixjR7oQpJwrCG6C82nHfPy
-         YE8W4U4AeTrAMqQ2pXMKDLv0qv25tWwlR4csBdCEP98WPeUFvsBeDL1m4hdGu9A+ggXq
-         rIp38mmbymsY1BBKpvxm+hERpjOI6axxwbcZj1V8AikaF+Z1aQ1dWRUa9wjwGG01d9h8
-         sKGT9tDrSb5EvJwPrCnDwx2/CHTHsgoyEks8OTr6XOvgVMfyBNDjqNOfEiBRGJ6z8hZW
-         ZIB+cqqvARstSDttQQKSBm5mxEfD8wl+hAodt9NBsSLUg9+gEPC8zU5ZICyW930HwyEc
-         VCXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5R0Mn+kXy6miNBPjF2nukdlARFsEwajrrqyvCbZs0pA=;
-        b=sXD9HVajx2vPvbGKN0Ajntq/3VqqEF573oqXxiuZDE2O7K7yJ72tdY+pfB7I+jHrAU
-         TbFl+tCzJUUt3rDmddDb6GqRBDmKHE4InJu6nxlQU2L309nNn5NMuxFd5SGEYbSuU+ls
-         JpnhJ6MBsT87K7fbALIKOOXEsWecszLCkiMB4UYd2lMOHymSiTowiIBUTw6XcH90PocL
-         UIGb60rDIwKSdY+CMCnT/x4qjcbxowb/Wbx4lAKZcpRWk6WAd1BHZ1OCUSOifAuRfbzF
-         wRjRWbk9QUIBup0KFSlOCohBy0RFW5A42264rws6slKUWTOo1aPgwd+C1mUUUKWbFrmH
-         Af5g==
-X-Gm-Message-State: APjAAAWCuYuvI+Ju8FCgiWyN0J1vwgkXgKrg+2uGurj1JOwcQFv99JxE
-        3MOs76PnLmYu6MlsSdYuxexNxUE7XoPGYmdZVDi/SQ==
-X-Google-Smtp-Source: APXvYqyvbUK5kDHossVyHcMfS13gJpm82JS1lGa4QkU7lNSWK1exa+MkZF0H451Y+v9ozGPzr6jJly+0fJd6rna7v9Y=
-X-Received: by 2002:a17:902:169:: with SMTP id 96mr23827974plb.297.1565683169131;
- Tue, 13 Aug 2019 00:59:29 -0700 (PDT)
+        id S1727623AbfHMH7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 03:59:30 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:28424 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726986AbfHMH7a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 03:59:30 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x7D7wkVX015820;
+        Tue, 13 Aug 2019 02:59:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=drWtMvMOAVnhK8sSftAQV6/8V0+8UJy3F8iMkB2QTgk=;
+ b=BuR1tuqDlRal7QIiMhpyfz40pfaoc+tN9CYekkRSsIbfdERQZXrEgMF8AVMipZ0dreSh
+ rZNJ8eC5IrQaA9WpGgPbY8Idwo33n39NdCYG7hEtNImzsH1oE8Hm0SLGbsXjTI28RfAe
+ J/Me83MaLYbghlvtmQiIhcM5WT/T+hP9B2U5xox18bBNXPCo3I6Qwwf5RUKbxiAqQvVL
+ y+UQXLthLDjzBHI599FLCUyUixcEQJWJa6/tVghreZpBgEQ4TjWT4wL1FRRoNUkLagTH
+ vIfC3QGIK9kDgL2Hjxs/BlS7PR6FoQrP1z+JJ1z4BuWIVZdaaqF1JTTPmtu26RzmJCMC oQ== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2ubf9brmee-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 13 Aug 2019 02:59:25 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 13 Aug
+ 2019 08:59:23 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Tue, 13 Aug 2019 08:59:23 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 1D51345;
+        Tue, 13 Aug 2019 08:59:23 +0100 (BST)
+Date:   Tue, 13 Aug 2019 08:59:23 +0100
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: Re: [PATCH 2/2] mfd: madera: Add support for requesting the supply
+ clocks
+Message-ID: <20190813075923.GN54126@ediswmail.ad.cirrus.com>
+References: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
+ <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
+ <20190812103853.GM26727@dell>
+ <20190812160937.GM54126@ediswmail.ad.cirrus.com>
+ <20190813071814.GY26727@dell>
 MIME-Version: 1.0
-References: <20190812182421.141150-1-brendanhiggins@google.com>
- <20190812182421.141150-15-brendanhiggins@google.com> <20190813043859.661F82054F@mail.kernel.org>
-In-Reply-To: <20190813043859.661F82054F@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 13 Aug 2019 00:59:18 -0700
-Message-ID: <CAFd5g44wUOhmxr3r+-LR_igePMjtaRrtT5jGdqPJgb0xPdf+Ag@mail.gmail.com>
-Subject: Re: [PATCH v12 14/18] kunit: defconfig: add defconfigs for building
- KUnit tests
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20190813071814.GY26727@dell>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 lowpriorityscore=0
+ clxscore=1015 spamscore=0 adultscore=0 suspectscore=0 mlxscore=0
+ priorityscore=1501 malwarescore=0 phishscore=0 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1906280000 definitions=main-1908130088
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 9:39 PM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Brendan Higgins (2019-08-12 11:24:17)
-> > diff --git a/arch/um/configs/kunit_defconfig b/arch/um/configs/kunit_defconfig
-> > new file mode 100644
-> > index 0000000000000..bfe49689038f1
-> > --- /dev/null
-> > +++ b/arch/um/configs/kunit_defconfig
-> > @@ -0,0 +1,8 @@
-> > +CONFIG_OF=y
-> > +CONFIG_OF_UNITTEST=y
-> > +CONFIG_OF_OVERLAY=y
-> > +CONFIG_I2C=y
-> > +CONFIG_I2C_MUX=y
-> > +CONFIG_KUNIT=y
-> > +CONFIG_KUNIT_TEST=y
-> > +CONFIG_KUNIT_EXAMPLE_TEST=y
-> > diff --git a/tools/testing/kunit/configs/all_tests.config b/tools/testing/kunit/configs/all_tests.config
-> > new file mode 100644
-> > index 0000000000000..bfe49689038f1
-> > --- /dev/null
-> > +++ b/tools/testing/kunit/configs/all_tests.config
-> > @@ -0,0 +1,8 @@
-> > +CONFIG_OF=y
-> > +CONFIG_OF_UNITTEST=y
-> > +CONFIG_OF_OVERLAY=y
-> > +CONFIG_I2C=y
-> > +CONFIG_I2C_MUX=y
->
-> Are these above config options necessary? I don't think they're part of
-> the patch series anymore so it looks odd to enable the OF unittests and
-> i2c configs.
+On Tue, Aug 13, 2019 at 08:18:14AM +0100, Lee Jones wrote:
+> On Mon, 12 Aug 2019, Charles Keepax wrote:
+> > On Mon, Aug 12, 2019 at 11:38:53AM +0100, Lee Jones wrote:
+> > > On Tue, 06 Aug 2019, Charles Keepax wrote:
+> > > 
+> > > > Add the ability to get the clock for each clock input pin of the chip
+> > > > and enable MCLK2 since that is expected to be a permanently enabled
+> > > > 32kHz clock.
+> > > > 
+> > > > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > > > ---
+> > > >  int madera_dev_init(struct madera *madera)
+> > > >  {
+> > > > +	static const char * const mclk_name[] = { "mclk1", "mclk2", "mclk3" };
+> > > >  	struct device *dev = madera->dev;
+> > > >  	unsigned int hwid;
+> > > >  	int (*patch_fn)(struct madera *) = NULL;
+> > > > @@ -450,6 +451,17 @@ int madera_dev_init(struct madera *madera)
+> > > >  		       sizeof(madera->pdata));
+> > > >  	}
+> > > >  
+> > > > +	BUILD_BUG_ON(ARRAY_SIZE(madera->mclk) != ARRAY_SIZE(mclk_name));
+> > > 
+> > > Not sure how this could happen.  Surely we don't need it.
+> > > 
+> > 
+> > mclk_name is defined locally in this function and the mclk array in
+> > include/linux/mfd/madera/core.h. This is to guard against one of
+> > them being updated but not the other. It is by no means essential
+> > but it feels like a good trade off given there is really limited
+> > downside.
+> 
+> It's fine in general I guess.  How likely would it be for anyone to
+> update either of the definitions?  Can there be more/less clocks on a
+> supported platform?
+> 
 
-Oh whoops, I forgot that we dropped the OF_UNITTEST from this
-patchset. Will fix.
+It's not super likely but if the hardware guys make a new spin
+out chip with an extra clock pin which is possible. But my
+problem here is there really is no down side to this check, we
+have two things that need to be in sync and if the compiler can
+warn me if they are not in sync that is clearly a win.
 
-> > +CONFIG_KUNIT=y
-> > +CONFIG_KUNIT_TEST=y
-> > +CONFIG_KUNIT_EXAMPLE_TEST=y
+> > > > +	for (i = 0; i < ARRAY_SIZE(madera->mclk); i++) {
+> > > > +		madera->mclk[i] = devm_clk_get_optional(madera->dev,
+> > > > +							mclk_name[i]);
+> > > > +		if (IS_ERR(madera->mclk[i])) {
+> > > > +			dev_warn(madera->dev, "Failed to get %s: %ld\n",
+> > > > +				 mclk_name[i], PTR_ERR(madera->mclk[i]));
+> > > 
+> > > Do we even want to warn on the non-acquisition of an optional clock?
+> > > 
+> > > Especially with a message that looks like something actually failed.
+> > > 
+> > 
+> > devm_clk_get_optional will return NULL if the clock was not
+> > specified, so this is silent in that case. A warning in the case
+> > something actually went wrong seems reasonable even if the clock
+> > is optional as the user tried to do something and it didn't
+> > behave as they intended.
+> 
+> If something actually went wrong, then doesn't then become and error
+> and should be reported (returned)?
+> 
+
+Yeah I guess its a judgement call but there is not really any
+reason we need to proceed in the case of an error. I will update
+to fail probe here.
+
+> > > > +			madera->mclk[i] = NULL;
+> > > > +		}
+> > > > +	}
+> > > > +
+> > > >  	ret = madera_get_reset_gpio(madera);
+> > > >  	if (ret)
+> > > >  		return ret;
+> > > > @@ -660,13 +672,19 @@ int madera_dev_init(struct madera *madera)
+> > > >  	}
+> > > >  
+> > > >  	/* Init 32k clock sourced from MCLK2 */
+> > > > +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2]);
+> > > > +	if (ret != 0) {
+> > > > +		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
+> > > > +		goto err_reset;
+> > > > +	}
+> > > 
+> > > What happened to this being optional?
+> > > 
+> > 
+> > The device needs the clock but specifying it through DT is
+> > optional (the clock framework functions are no-ops and return
+> > success if the clock pointer is NULL). Normally the 32kHz
+> > clock is always on, and more importantly no existing users of
+> > the driver will be specifying one.
+> > 
+> > We could remove the optional status for MCLK2, but it could break
+> > existing users who don't yet specify the clock until they update
+> > their DT and it will complicate the code as the other clocks are
+> > definitely optional, so MCLK2 will need special handling.
+> 
+> I'd prefer the code to reflect the actual situation.  If the clock is
+> not optional it doesn't sound correct to specify it as such.  Maybe as
+> an intermediary step we attempt to obtain it, but ignore missing
+> clocks (with a message and comment) if it is not yet specified.  We
+> can look to change the behaviour once users have had the chance to
+> update their DTs.
+> 
+
+Ok I will add a print for a missing MCLK2.
+
+Thanks,
+Charles
