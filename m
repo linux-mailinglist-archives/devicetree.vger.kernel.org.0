@@ -2,191 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40E7F8ACE7
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 05:00:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A5298ACE8
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 05:02:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbfHMC75 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 22:59:57 -0400
-Received: from mail-eopbgr50046.outbound.protection.outlook.com ([40.107.5.46]:22317
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        id S1726483AbfHMDCh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 23:02:37 -0400
+Received: from mail-eopbgr130041.outbound.protection.outlook.com ([40.107.13.41]:38464
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726296AbfHMC75 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 22:59:57 -0400
+        id S1726296AbfHMDCh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 23:02:37 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gkpG0LBTjd0vv+HMeW9oRi9t6rnGcernwkF2g3OqU4OAcGhMA98cDxye0thpglrZxdt7y674w6vtChZkwbss+QcTZqoqgbavLd2eK8HDR+azEswIef5kTZhJip1V2SoyzyUc//v/cNRm5diOPXqUd3nq/OtYY7raD0/bhjUJv5X3kOAjo0ZWz5FnY/7gJdrtpsGFeY88hPALKo/hYr9t08fmKnzm/9JKqCC/QFDIa/w3q/57BnZy8Csoke3SWNuvE/ekpAhHElKukRUt1o3Jb0Z3Wy8/OpkYqrSJD2A4MLHa+aBco0WwhadLLqOK6v2ctgJHed0cr4Z4tphX9cfIqg==
+ b=i+PGLgAZXB53PYrZ1HGtCKWUJAfMyP/fxoPgjXwNRjDIGI2SXpaoWcPxKTuR8BjsgTRES/CZWnBDTfpSqmmU5Qd1lnQF3jreb2xpW6xUYE4VYLFnnT7vMV5MKC0eetZ4LUWDiUI2QzbE8qQWNOkkqT3WnothRwsj4l5+vuLg7YGhQ57qs07fy/CjL44zZIpat/6Rhgj76GMOQMLz5uCSIE0CEeMuc1VyvnGlHpbbeSQfNyEExzpl9qFZawbXx0oL+SZMQNLV9Y5ERLgb7+WWHPQZZ3NhTRCWxrMoAcKYPHHLFPdCVpiF5bCB+kCdr0NbcpRrE/LX5xiPxlDMTFEH8w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ktLi3U1M/UA0gRzIwQ4W2dILEd6MFuJYv56LjmR/190=;
- b=BwfUXezIcfrDkyArnFvwHp7GZXqMSgP2QFjE8SFscGnTUU7Ft26RFo8FhrJaNoxwir5pYOOzpGl2lonivfNtMuV2G7DNCHM0nBTvLAbg4v0CsyEFaGl3Zo79wPnrIbOyVVWzmu+YTD4rLDbkiWkM1c4pd3td0qMzpxPPoQ10WpHSw9tghowhrQAhp4TIASNKYcD4Foi5OFsxqwva42gH9Zx4e6/RYrzQcD/cl0RvMzooYsPQdjo5IFmyg51MI0aaLcexoYSMcDCtkh1pTZGlB2QJ1O3XKPmkMmzdcissXmlPwxt17mr2lKa1BlVXbaMtQH679STbBm/EAmsopcVqVA==
+ bh=amZvjLJBrshvm4Udxpp/gtStDQG++4jpFLEWjjBh5Lk=;
+ b=fJojtRXU0kSOkwHfEL638o2uW9GbbSI8ZFUvJkwo+1MFc7EF/0vM8kxEdD1+aoLxxmP4rPxUXf7ta2PUGjOqywd2vnfUbAuVfB0Jq+vv34lWCQjfpUrd4qeMzRS108kBJKgAM8QSFL4dOJe2wEwB76+ZoSCrZCjyJic3AZyPNmuL1RBRYLi/nN4d+HHs5lBTbm+1BZkBo5GAPZg1fRUMTF4SbCZfYNz3jCI9g9kt02Am32rtaKYpevNLsI2NjnjDOeIisdBPfA1N8NXQ74eevZx2wFBQoKta9wrPnWhv6YKroUAY/V6zvh242VkCvOa9NvcMAtnmLquFNmggpf776Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ktLi3U1M/UA0gRzIwQ4W2dILEd6MFuJYv56LjmR/190=;
- b=iX+b0DpbK9m9PzFF2ZRmH8umh1UgNqdzCDtULVGWrz5pA+O8woEGWTJfYynP+zXCEiy5pZa+deFwsjvby0OZbApTGhCnvP2eCG9fuy6pcQ9dSgpbAbLePmZyERTui8ol8JTlCa9iU9F780MQZgoTtud+8xet3n+ely7n8p1GLmA=
-Received: from DB7PR04MB4490.eurprd04.prod.outlook.com (52.135.138.150) by
- DB7PR04MB4538.eurprd04.prod.outlook.com (52.135.134.146) with Microsoft SMTP
+ bh=amZvjLJBrshvm4Udxpp/gtStDQG++4jpFLEWjjBh5Lk=;
+ b=Y+mFz0LiS0Cxp6PX7eYHPgI1Cizo5ZxghziWlkxgY4+Kdyp/UmFaCWg3rzk1+/VUa3EUg1nsTEPZg9fWGvAP50lUndEEQoPT/IJ9C09AtkZnIfpnb1Y0ROb6X4l0ccDF+mL9CVS/zjgOvNJeOago6f+scXmv1lP3n9PjBp+l9wo=
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
+ VI1PR04MB4445.eurprd04.prod.outlook.com (20.177.55.161) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.16; Tue, 13 Aug 2019 02:59:12 +0000
-Received: from DB7PR04MB4490.eurprd04.prod.outlook.com
- ([fe80::ccc8:8:c071:8283]) by DB7PR04MB4490.eurprd04.prod.outlook.com
- ([fe80::ccc8:8:c071:8283%5]) with mapi id 15.20.2157.022; Tue, 13 Aug 2019
- 02:59:12 +0000
-From:   Biwen Li <biwen.li@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        Leo Li <leoyang.li@nxp.com>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Xiaobo Xie <xiaobo.xie@nxp.com>,
-        Jiafei Pan <jiafei.pan@nxp.com>, Ran Wang <ran.wang_1@nxp.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [EXT] Re: [v6,2/2] dt-bindings: rtc: add bindings for FlexTimer
- Module
-Thread-Topic: [EXT] Re: [v6,2/2] dt-bindings: rtc: add bindings for FlexTimer
- Module
-Thread-Index: AQHVPecFX9yQ0MbGjkaiba1BfL3oHab4TAiAgAA9dOA=
-Date:   Tue, 13 Aug 2019 02:59:12 +0000
-Message-ID: <DB7PR04MB44902C6FDEC187F11B6E98718FD20@DB7PR04MB4490.eurprd04.prod.outlook.com>
-References: <20190719035400.9800-1-biwen.li@nxp.com>
- <20190719035400.9800-2-biwen.li@nxp.com> <20190812231607.GA21242@bogus>
-In-Reply-To: <20190812231607.GA21242@bogus>
-Accept-Language: zh-CN, en-US
+ 15.20.2157.14; Tue, 13 Aug 2019 03:02:32 +0000
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::e53d:e6a9:79bd:f970]) by VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::e53d:e6a9:79bd:f970%2]) with mapi id 15.20.2157.022; Tue, 13 Aug 2019
+ 03:02:32 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     "myungjoo.ham@samsung.com" <myungjoo.ham@samsung.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Artur Swigon <a.swigon@partner.samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Will Deacon <will@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 3/7] PM / devfreq: Add generic imx bus driver
+Thread-Topic: [PATCH 3/7] PM / devfreq: Add generic imx bus driver
+Thread-Index: AQHVUT6/NClFZjcCl0WOnsdNWPX55A==
+Date:   Tue, 13 Aug 2019 03:02:31 +0000
+Message-ID: <VI1PR04MB7023485353FCBBD7F8BEE8F3EED20@VI1PR04MB7023.eurprd04.prod.outlook.com>
+References: <dbdd1ae60993d5fe73ce5b446b2c7d559c981cf1.1565633880.git.leonard.crestez@nxp.com>
+ <cover.1565633880.git.leonard.crestez@nxp.com>
+ <CGME20190812185005epcas3p10a9a3dbb90489534222e093c63f27900@epcms1p3>
+ <20190813023338epcms1p307caf6727399e9f3e320b965fb95a603@epcms1p3>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=biwen.li@nxp.com; 
-x-originating-ip: [119.31.174.73]
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [82.144.34.2]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 57db3446-87c4-4d0d-d1a2-08d71f9a3877
+x-ms-office365-filtering-correlation-id: 2a3bf337-1683-4c9a-9b11-08d71f9aaf51
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4538;
-x-ms-traffictypediagnostic: DB7PR04MB4538:
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4445;
+x-ms-traffictypediagnostic: VI1PR04MB4445:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB453872DFA8296FE55048DAD28FD20@DB7PR04MB4538.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-microsoft-antispam-prvs: <VI1PR04MB4445582CCC325D2E79ACE7F5EED20@VI1PR04MB4445.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
 x-forefront-prvs: 01283822F8
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(39860400002)(366004)(376002)(136003)(346002)(189003)(199004)(5660300002)(14454004)(52536014)(478600001)(76116006)(66946007)(66476007)(66556008)(64756008)(66446008)(74316002)(316002)(3846002)(33656002)(6116002)(8676002)(54906003)(186003)(229853002)(8936002)(81156014)(6506007)(7736002)(102836004)(305945005)(7696005)(446003)(76176011)(99286004)(81166006)(26005)(66066001)(14444005)(53936002)(4326008)(71200400001)(71190400001)(25786009)(44832011)(256004)(86362001)(6246003)(2906002)(6436002)(9686003)(11346002)(55016002)(486006)(476003)(6916009);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4538;H:DB7PR04MB4490.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(4636009)(346002)(136003)(376002)(39860400002)(396003)(366004)(189003)(199004)(66946007)(53936002)(71200400001)(478600001)(81156014)(110136005)(71190400001)(7416002)(81166006)(99286004)(316002)(64756008)(76116006)(91956017)(66446008)(54906003)(9686003)(229853002)(6246003)(66556008)(66476007)(5660300002)(55016002)(6436002)(8936002)(86362001)(2906002)(52536014)(4326008)(26005)(102836004)(4744005)(256004)(74316002)(14454004)(305945005)(7736002)(186003)(33656002)(6506007)(25786009)(2501003)(7696005)(6116002)(76176011)(3846002)(476003)(66066001)(8676002)(486006)(44832011)(53546011)(446003)(41533002)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4445;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
 received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: XvTr0WzkCuPb8rOLGWu7YMh93V2G0RW+Wicj62xOCJvX5nvZ4ffhRWaxW+2r1f6TWyFwvMhvzpXMA2PYEod4utqZWjObhXKtUHlwen1quUnEm7/UNTX3M/aZ84LSsq9Yg5GMbIphYjaPkNOBkLA9F/Ja+c19WTe5zn9Tji885TdDqsSpws/MZX1GkWjQhZaBucf1tUYjcpgH/j5CCC74loUhdjdSWuyZoL5TmZsM00lxK/reZjH2+P6jiaKpfld/dyB6Sq3R//aOeQafqPzwEkwTZbBBF8L4oOi3GCzmKDiIIH/5EC4vK9ZNKuWvHuc9KRcAPXiZkiO7Vo1BhUPPZzpZ1f0Rbu+c7GyZE6lUunLVwhwU5IVKxNyGKHHqMnbwLfRSmUXJSKI8e971go/BV7xT5/fi+pyu0wE91Ljrjp8=
+x-microsoft-antispam-message-info: lqUfeRrqDsAxKEiiS9w0zrHbWgVbH2wqp7WEk+hQq5h2CmZigGFFG+vB0gdECWiHBCdu0egnWtZdse3oPXgQF2YVSaAOipmzfZVqECfi6KcMbV/dyjiLf4JqdWcnJ0/NGadoWni8BCobix70vqKrR1Nu/Ry5FDiOSYepadMwJJhLBaYDx+T6kvKvphF+ihSnMP9k8YBUA78l2I8RTz+psu97s8/m59srp8sveE+MIDgNK1breRzUawWYwxJXy81hz5c6d/4vYJaa82gdHJOiK4C8PdjMRpExv/FJbKIYYDFpROBbXnV1tPaDvAmZqMc35G4Oc8fTAv9Ec8BL3tLMgXhxmGEzR8p4osNhaS+n393Z+f3XGr6lmUCy52CqCkW7CwUUMJ69QXQ6HFemREl5gX98M5xaf18ZE3ugjod/11s=
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57db3446-87c4-4d0d-d1a2-08d71f9a3877
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2019 02:59:12.7576
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a3bf337-1683-4c9a-9b11-08d71f9aaf51
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Aug 2019 03:02:31.9667
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zzpvoOq4LCYbjno03gyN/6+/aHyDQXdmj9+rCGVrG+lDx3GmCXXNFZQ0Cdb2CDfkflob68m+O0aRk3UsZiAgkw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4538
+X-MS-Exchange-CrossTenant-userprincipalname: W0aHh/Ym4ijfXC6hOmdtcAflDZmettUtAPPm9ioVNRXECQPYEsEx5IyLnjNFTz5s7a1wCHHZnBkL9rlT9XOiBA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4445
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->=20
-> On Fri, Jul 19, 2019 at 11:54:00AM +0800, Biwen Li wrote:
-> > The patch adds bindings for FlexTimer Module
-> >
-> > Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> > ---
-> > Change in v6:
-> >     - correct subject
-> >     - delete note
-> >     - remove reg property about IP Powerdown exception register
-> >
-> > Change in v5:
-> >     - None
-> >
-> > Change in v4:
-> >     - add note about dts and kernel options
-> >     - add aliases in example
-> >
-> > Change in v3:
-> >       - remove reg-names property
-> >       - correct cells number
-> >
-> > Change in v2:
-> >       - replace ls1043a with ls1088a as example
-> >       - add rcpm node and fsl,rcpm-wakeup property
-> >
-> >  .../bindings/rtc/rtc-fsl-ftm-alarm.txt        | 41 +++++++++++++++++++
-> >  1 file changed, 41 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> >
-> > diff --git
-> > a/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> > b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> > new file mode 100644
-> > index 000000000000..9291b022ffc7
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/rtc-fsl-ftm-alarm.txt
-> > @@ -0,0 +1,41 @@
-> > +Freescale FlexTimer Module (FTM) Alarm
-> > +
-> > +Required properties:
-> > +- compatible : Should be "fsl,<chip>-ftm-alarm", the
-> > +            supported chips include
-> > +            "fsl,ls1012a-ftm-alarm"
-> > +            "fsl,ls1021a-ftm-alarm"
-> > +            "fsl,ls1028a-ftm-alarm"
-> > +            "fsl,ls1043a-ftm-alarm"
-> > +            "fsl,ls1046a-ftm-alarm"
-> > +            "fsl,ls1088a-ftm-alarm"
-> > +            "fsl,ls208xa-ftm-alarm"
-> > +- reg : Specifies base physical address and size of the register sets
-> > +for the
-> > +  FlexTimer Module.
-> > +- interrupts : Should be the FlexTimer Module interrupt.
-> > +- fsl,rcpm-wakeup property and rcpm node : Please refer
-> > +     Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > +
-> > +Optional properties:
-> > +- big-endian: If the host controller is big-endian mode, specify this =
-property.
-> > +  The default endian mode is little-endian.
-> > +
-> > +Example:
-> > +aliases {
-> > +     ...
-> > +     rtc1 =3D ftm_alarm0; // Use FlexTimer Module as /dev/rtc1
-> > +     ...
-> > +};
->=20
-> As I said before, drop this. It's not going to work when this is converte=
-d to
-> schema and the example is compiled. Feel free to convert this to schema a=
-nd
-> see...
-Ok, got it. I will drop this in v7.
->=20
-> > +
-> > +rcpm: rcpm@1e34040 {
-> > +     compatible =3D "fsl,ls1088a-rcpm", "fsl,qoriq-rcpm-2.1+";
-> > +     reg =3D <0x0 0x1e34040 0x0 0x18>;
-> > +     #fsl,rcpm-wakeup-cells =3D <6>;
-> > +};
-> > +
-> > +ftm_alarm0: timer@2800000 {
->=20
-> If this is an RTC, then rtc@...
-This is not an RTC.
->=20
-> > +     compatible =3D "fsl,ls1088a-ftm-alarm";
-> > +     reg =3D <0x0 0x2800000 0x0 0x10000>;
-> > +     fsl,rcpm-wakeup =3D <&rcpm 0x0 0x0 0x0 0x0 0x4000 0x0>;
-> > +     interrupts =3D <0 44 4>;
-> > +};
-> > --
-> > 2.17.1
-> >
+On 8/13/2019 5:33 AM, MyungJoo Ham wrote:=0A=
+=0A=
+>> Add initial support for dynamic frequency switching on pieces of the imx=
+=0A=
+>> interconnect fabric.=0A=
+>>=0A=
+>> All this driver actually does is set a clk rate based on an opp table.=
+=0A=
+>>=0A=
+>> +config ARM_IMX_DEVFREQ=0A=
+>> +	tristate "i.MX DEVFREQ Driver"=0A=
+>> +	depends on ARCH_MXC || COMPILE_TEST=0A=
+>> +	select DEVFREQ_GOV_PASSIVE=0A=
+>> +	select DEVFREQ_GOV_SIMPLE_ONDEMAND=0A=
+>> +	select DEVFREQ_GOV_USERSPACE=0A=
+>> +	select PM_OPP=0A=
+> =0A=
+> Does it support ALL ARCH_MXC SoCs?=0A=
+=0A=
+Only imx8m currently but out of tree we support bus+dram frequency =0A=
+switching for ~10 imx6/7 SOCs, all other than imx7ulp.=0A=
+=0A=
+When imx8 was upstreamed as the first 64-bit imx chip the arm64 =0A=
+maintainers told us to drop stuff like ARCH_FSL_IMX8MM so there is no =0A=
+per-soc kconfig more specific than "ARCH_MXC".=0A=
+=0A=
+I guess we could make it depend on (ARCH_MXC && ARM64) but the ARM64 =0A=
+would eventually be dropped anyway.=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
