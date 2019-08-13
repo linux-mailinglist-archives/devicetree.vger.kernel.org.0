@@ -2,128 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA7098B976
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:06:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5298B997
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727829AbfHMNGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 09:06:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42440 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727425AbfHMNGH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 09:06:07 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B68DA206C2;
-        Tue, 13 Aug 2019 13:06:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565701565;
-        bh=/XgDq0Sg1Ifb1GFIIHjqV+Hu7HputWWafjIl43pcTZ4=;
-        h=From:To:Cc:Subject:Date:From;
-        b=PhStlNDon4n1IlaA0NJHILAJUbaSV58XyxhA9I53Buw1zRzQn5gzGT5BOpXdDJ9n+
-         bwokpELD0QnRaAT6IaGFNNM16Dwxu+xylQ/sDg5VAkhxHkETOBLBkHBfkdNzGlUy6y
-         ea3V0D3QRPy8AfqfuH2rRlNCDt1TU5ocXhrzH7nQ=
-From:   Sasha Levin <sashal@kernel.org>
-To:     jarkko.sakkinen@linux.intel.com, peterhuewe@gmx.de
-Cc:     mark.rutland@arm.com, robh+dt@kernel.org, jgg@ziepe.ca,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, Sasha Levin <sashal@kernel.org>
-Subject: [PATCH] tpm/tpm_ftpm_tee: trivial checkpatch fixes
-Date:   Tue, 13 Aug 2019 09:05:59 -0400
-Message-Id: <20190813130559.16936-1-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1728511AbfHMNJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 09:09:49 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:57320 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727311AbfHMNJs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 09:09:48 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 356452B2;
+        Tue, 13 Aug 2019 15:09:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1565701786;
+        bh=QYHmqFs2TTOoZVXKNm0ZlqOIRnSvZEPCKRYSJNgUsdk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rXBlLmILFa5H++fneGurs6ZDZqY5uS58kfgoZEdLVHKsl+zaC4sNm62B0QXEdz57g
+         2r5LwKcxRt9oWaTXkwlCAqdae+0CCYaPV9xpXbO+csV34IWFiWDGkQai+CG5jBPZqS
+         /69s7+vnu73d1G97/mAiLO6FcsDKLLfeKmQRLAYw=
+Date:   Tue, 13 Aug 2019 16:09:43 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/9] dt-bindings: display: panel: Add bindings for NEC
+ NL8048HL11 panel
+Message-ID: <20190813130943.GF5009@pendragon.ideasonboard.com>
+References: <20190810231048.1921-1-laurent.pinchart@ideasonboard.com>
+ <20190810231048.1921-4-laurent.pinchart@ideasonboard.com>
+ <CAL_Jsq+NO+s1Wz5AYKzVqC=ki0mHtK8dr3namdt82DvnDebeyw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+NO+s1Wz5AYKzVqC=ki0mHtK8dr3namdt82DvnDebeyw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fixes a few checkpatch warnings (and ignores some), mostly around
-spaces/tabs and documentation.
+Hi Rob,
 
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- Documentation/devicetree/bindings/vendor-prefixes.yaml |  2 ++
- drivers/char/tpm/Kconfig                               |  2 +-
- drivers/char/tpm/tpm_ftpm_tee.c                        | 10 +++++-----
- 3 files changed, 8 insertions(+), 6 deletions(-)
+On Mon, Aug 12, 2019 at 01:18:39PM -0600, Rob Herring wrote:
+> On Sat, Aug 10, 2019 at 5:10 PM Laurent Pinchart wrote:
+> >
+> > The NEC NL8048HL11 is a 10.4cm WVGA (800x480) panel with a 24-bit RGB
+> > parallel data interface and an SPI control interface.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> > Changes since v1:
+> >
+> > - Convert to YAML
+> > ---
+> >  .../display/panel/nec,nl8048hl11.yaml         | 49 +++++++++++++++++++
+> >  1 file changed, 49 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
+> > new file mode 100644
+> > index 000000000000..cc3d40975828
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
+> > @@ -0,0 +1,49 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/panel/nec,nl8048hl11.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NEC NL8048HL11 4.1" WVGA TFT LCD panel
+> > +
+> > +description:
+> > +  The NEC NL8048HL11 is a 4.1" WVGA TFT LCD panel with a 24-bit RGB parallel
+> > +  data interface and an SPI control interface.
+> > +
+> > +maintainers:
+> > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > +
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nec,nl8048hl11
+> > +
+> > +  label: true
+> > +  reset-gpios: true
+> > +  port: true
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reset-gpios
+> > +  - port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> 
+> Your example will fail on 'make dt_binding_check'...
 
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 6992bbbbffab6..d61a203138cbe 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -575,6 +575,8 @@ patternProperties:
-     description: Micro Crystal AG
-   "^micron,.*":
-     description: Micron Technology Inc.
-+  "^microsoft,.*":
-+    description: Microsoft Corporation
-   "^mikroe,.*":
-     description: MikroElektronika d.o.o.
-   "^miniand,.*":
-diff --git a/drivers/char/tpm/Kconfig b/drivers/char/tpm/Kconfig
-index 17bfbf9f572fc..9c37047f4b562 100644
---- a/drivers/char/tpm/Kconfig
-+++ b/drivers/char/tpm/Kconfig
-@@ -167,7 +167,7 @@ config TCG_VTPM_PROXY
- config TCG_FTPM_TEE
- 	tristate "TEE based fTPM Interface"
- 	depends on TEE && OPTEE
--	---help---
-+	help
- 	  This driver proxies for firmware TPM running in TEE.
- 
- source "drivers/char/tpm/st33zp24/Kconfig"
-diff --git a/drivers/char/tpm/tpm_ftpm_tee.c b/drivers/char/tpm/tpm_ftpm_tee.c
-index 5679a5af9a96a..6640a14dbe48c 100644
---- a/drivers/char/tpm/tpm_ftpm_tee.c
-+++ b/drivers/char/tpm/tpm_ftpm_tee.c
-@@ -38,7 +38,7 @@ static const uuid_t ftpm_ta_uuid =
-  * @count:	the number of bytes to read.
-  *
-  * Return:
-- * 	In case of success the number of bytes received.
-+ *	In case of success the number of bytes received.
-  *	On failure, -errno.
-  */
- static int ftpm_tee_tpm_op_recv(struct tpm_chip *chip, u8 *buf, size_t count)
-@@ -67,7 +67,7 @@ static int ftpm_tee_tpm_op_recv(struct tpm_chip *chip, u8 *buf, size_t count)
-  * @len:	the number of bytes to send.
-  *
-  * Return:
-- * 	In case of success, returns 0.
-+ *	In case of success, returns 0.
-  *	On failure, -errno
-  */
- static int ftpm_tee_tpm_op_send(struct tpm_chip *chip, u8 *buf, size_t len)
-@@ -212,7 +212,7 @@ static int ftpm_tee_match(struct tee_ioctl_version_data *ver, const void *data)
-  * @pdev: the platform_device description.
-  *
-  * Return:
-- * 	On success, 0. On failure, -errno.
-+ *	On success, 0. On failure, -errno.
-  */
- static int ftpm_tee_probe(struct platform_device *pdev)
- {
-@@ -302,7 +302,7 @@ static int ftpm_tee_probe(struct platform_device *pdev)
-  * @pdev: the platform_device description.
-  *
-  * Return:
-- * 	0 always.
-+ *	0 always.
-  */
- static int ftpm_tee_remove(struct platform_device *pdev)
- {
-@@ -323,7 +323,7 @@ static int ftpm_tee_remove(struct platform_device *pdev)
- 	/* close the context with TEE driver */
- 	tee_client_close_context(pvt_data->ctx);
- 
--        /* memory allocated with devm_kzalloc() is freed automatically */
-+	/* memory allocated with devm_kzalloc() is freed automatically */
- 
- 	return 0;
- }
+I wasn't aware of this. I've now read writing-schema.md and will make
+sure to submit bindings that pass the checks. I'll address the issues
+your pointed out below for the next version.
+
+> > +  - |
+> > +    lcd_panel: panel {
+> 
+> SPI devices have to have a minimal SPI controller parent. Primarily
+> just #size-cells and #address-cells are needed.
+> 
+> 'reg' is missing here too.
+> 
+> > +      compatible = "nec,nl8048hl11";
+> > +      spi-max-frequency = <10000000>;
+> 
+> This needs to be listed in properties ideally with some constraints.
+> 
+> > +
+> > +      reset-gpios = <&gpio7 7 GPIO_ACTIVE_LOW>;
+> 
+> And GPIO_ACTIVE_LOW. You have to add includes you need.
+> 
+> > +
+> > +      port {
+> > +        lcd_in: endpoint {
+> > +          remote-endpoint = <&dpi_out>;
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+
 -- 
-2.20.1
+Regards,
 
+Laurent Pinchart
