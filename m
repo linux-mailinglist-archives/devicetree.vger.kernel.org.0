@@ -2,72 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C66298C13B
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 21:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7E038C151
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 21:12:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726251AbfHMTIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 15:08:18 -0400
-Received: from mga07.intel.com ([134.134.136.100]:19500 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726195AbfHMTIS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 15:08:18 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Aug 2019 12:08:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,382,1559545200"; 
-   d="scan'208";a="176293507"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga008.fm.intel.com with ESMTP; 13 Aug 2019 12:08:17 -0700
-Received: from dalyrusx-mobl.amr.corp.intel.com (unknown [10.251.3.205])
-        by linux.intel.com (Postfix) with ESMTP id 410AE5800FE;
-        Tue, 13 Aug 2019 12:08:16 -0700 (PDT)
-Subject: Re: [PATCH v2 1/5] soundwire: Add compute_params callback
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        vkoul@kernel.org, broonie@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
-        plai@codeaurora.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        spapothi@codeaurora.org
-References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
- <20190813083550.5877-2-srinivas.kandagatla@linaro.org>
- <7e462330-a357-698a-b259-5ff136963a57@linux.intel.com>
- <1a02f190-0aab-d512-ceb0-4a21014705e8@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <3fd3c98c-eb25-7040-3089-f5e5bc9d24ee@linux.intel.com>
-Date:   Tue, 13 Aug 2019 14:08:35 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
- Gecko/20100101 Thunderbird/60.8.0
+        id S1726497AbfHMTL4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 15:11:56 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:40786 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726365AbfHMTLz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 15:11:55 -0400
+Received: by mail-pf1-f196.google.com with SMTP id p184so52137529pfp.7
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 12:11:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OUQw1gzY+2u1O9xiTfFMM+UyeEs+TCFLOE05raHDrEk=;
+        b=FDJPC7ypuE9mls/enQE4a/f5cvsRt5EgFgfdHAFW7EbY0yOkFxAY56g3jBNt72xTYy
+         RB5xl/ko8wqEtGBZN50hgF+AwhGON6FD7+YkCFI1j3x65J86h1ouy6kq6/IiVdsohlfh
+         7FxMs60Yco75c8f3sjMePu4pW79u9l6J7fBaM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OUQw1gzY+2u1O9xiTfFMM+UyeEs+TCFLOE05raHDrEk=;
+        b=gyLsKDMgb3qGqSGb5rVrepU5D4f8JYEUghQL0cwQaiALmt5rOJeSOmxI5DyxQDWvhd
+         kCkGxeykz5z3oR755kz44D/MppsAt8IamHnqxU+5tes3lEgDvXKiU5BjEo0lGWuSBfUo
+         bDk3/l8Z/mdqs2clMAUUsF1AyLBSBr3mM76YR2tF0fPUx5O/TAGtfnhT1qF2eKfxqVas
+         CKpwlfKnZR1EFbj6/q30DniQYHotoRUbifea36vHF8nBeGjrZwyll9Y4YxLtiIkY2m8O
+         fw60dHzVddNBhbCEoIvLPd4KnnjgQBIAI4YK++htSQxWHAVYDZZXmZQ8Nz4118FT9WX2
+         36TQ==
+X-Gm-Message-State: APjAAAXAQEcAmNlnY/aEpJ+2+5VCLGYt/bBv6EEn4rEbwzgHGL4cSzyN
+        R2OCvkq+E6qE2L2PVI+xXoxONA==
+X-Google-Smtp-Source: APXvYqzlu/F8V1w3r2GIwuoeaxUHJxJy7XCMy3Xw/LHRtkB/82GTcqpB5crY4+VYjjUXwn46miSYIw==
+X-Received: by 2002:aa7:91cc:: with SMTP id z12mr42474700pfa.76.1565723515189;
+        Tue, 13 Aug 2019 12:11:55 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id z63sm84970326pfb.98.2019.08.13.12.11.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 13 Aug 2019 12:11:54 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v6 0/4] net: phy: Add support for DT configuration of PHY LEDs and use it for RTL8211E
+Date:   Tue, 13 Aug 2019 12:11:43 -0700
+Message-Id: <20190813191147.19936-1-mka@chromium.org>
+X-Mailer: git-send-email 2.23.0.rc1.153.gdeed80330f-goog
 MIME-Version: 1.0
-In-Reply-To: <1a02f190-0aab-d512-ceb0-4a21014705e8@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/13/19 1:17 PM, Srinivas Kandagatla wrote:
-> 
-> 
-> On 13/08/2019 15:34, Pierre-Louis Bossart wrote:
->> On 8/13/19 3:35 AM, Srinivas Kandagatla wrote:
->>> From: Vinod Koul <vkoul@kernel.org>
->>>
->>> This callback allows masters to compute the bus parameters required.
->>
->> This looks like a partial use of the patch ('soundwire: Add Intel 
->> resource management algorithm')? see comments below
->>
-> 
-> Yes it duplicate indeed!
-> 
-> I will use that patch!
+This series adds a generic binding to configure PHY LEDs through
+the device tree, and phylib support for reading the information
+from the DT. PHY drivers that support the generic binding should
+implement the new hook .config_led.
 
-Actually please don't...
-we found issues with the Intel allocation so I'd rather have the big 
-Intel patch split into two parts, with callbacks+prepare/deprepare 
-changes going in first. It'll be much faster/nicer for everyone.
+Enable DT configuration of the RTL8211E LEDs by implementing the
+.config_led hook of the driver. Certain registers of the RTL8211E
+can only be accessed through a vendor specific extended page
+mechanism. Extended pages need to be accessed for the LED
+configuration. This series adds helpers to facilitate accessing
+extended pages.
+
+Matthias Kaehlcke (4):
+  dt-bindings: net: phy: Add subnode for LED configuration
+  net: phy: Add support for generic LED configuration through the DT
+  net: phy: realtek: Add helpers for accessing RTL8211x extension pages
+  net: phy: realtek: Add LED configuration support for RTL8211E
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |  59 ++++++++
+ drivers/net/phy/phy_device.c                  |  72 +++++++++
+ drivers/net/phy/realtek.c                     | 137 ++++++++++++++++--
+ include/linux/phy.h                           |  22 +++
+ 4 files changed, 275 insertions(+), 15 deletions(-)
+
+-- 
+2.23.0.rc1.153.gdeed80330f-goog
 
