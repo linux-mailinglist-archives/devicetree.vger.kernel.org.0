@@ -2,28 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A01F8B50D
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 12:10:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DC438B51A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 12:11:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728048AbfHMKKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 06:10:11 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:51972 "EHLO honk.sigxcpu.org"
+        id S1728736AbfHMKLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 06:11:00 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:52062 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727097AbfHMKKL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 06:10:11 -0400
+        id S1727466AbfHMKLA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 06:11:00 -0400
 Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 4D013FB03;
-        Tue, 13 Aug 2019 12:10:08 +0200 (CEST)
+        by honk.sigxcpu.org (Postfix) with ESMTP id 030BEFB03;
+        Tue, 13 Aug 2019 12:10:59 +0200 (CEST)
 X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
 Received: from honk.sigxcpu.org ([127.0.0.1])
         by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id qBv1tHLBoCNN; Tue, 13 Aug 2019 12:10:06 +0200 (CEST)
+        with ESMTP id j52cSuWGG3AI; Tue, 13 Aug 2019 12:10:57 +0200 (CEST)
 Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 0825F416CC; Tue, 13 Aug 2019 12:10:05 +0200 (CEST)
-Date:   Tue, 13 Aug 2019 12:10:05 +0200
+        id B21FD416CC; Tue, 13 Aug 2019 12:10:57 +0200 (CEST)
+Date:   Tue, 13 Aug 2019 12:10:57 +0200
 From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Rob Herring <robh+dt@kernel.org>
+To:     Arnd Bergmann <arnd@arndb.de>
 Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
@@ -37,256 +38,71 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         Lee Jones <lee.jones@linaro.org>,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Robert Chiras <robert.chiras@nxp.com>,
         Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH v2 2/3] dt-bindings: display/bridge: Add binding for NWL
- mipi dsi host controller
-Message-ID: <20190813101005.GA10751@bogon.m.sigxcpu.org>
+Subject: Re: [PATCH v2 1/3] arm64: imx8mq: add imx8mq iomux-gpr field defines
+Message-ID: <20190813101057.GB10751@bogon.m.sigxcpu.org>
 References: <cover.1565367567.git.agx@sigxcpu.org>
- <9c906bb6592424acdb1a67447a482e010a113b49.1565367567.git.agx@sigxcpu.org>
- <CAL_JsqK-5=WMZgNuJDTJ3Dm3YOJNw_9QCrPOOSe7MQzMV26pHw@mail.gmail.com>
+ <e0562d8bb4098dc4cdb4023b41fb75b312be22a5.1565367567.git.agx@sigxcpu.org>
+ <CAK8P3a3Vrd+sttJrQwD-jA9p_egG4x-hc41eGK8H-_aVm-uoYw@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqK-5=WMZgNuJDTJ3Dm3YOJNw_9QCrPOOSe7MQzMV26pHw@mail.gmail.com>
+In-Reply-To: <CAK8P3a3Vrd+sttJrQwD-jA9p_egG4x-hc41eGK8H-_aVm-uoYw@mail.gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-thanks for having a look!
-
-On Fri, Aug 09, 2019 at 02:41:03PM -0600, Rob Herring wrote:
-> On Fri, Aug 9, 2019 at 10:24 AM Guido Günther <agx@sigxcpu.org> wrote:
+Hi Arnd,
+On Tue, Aug 13, 2019 at 10:08:44AM +0200, Arnd Bergmann wrote:
+> On Fri, Aug 9, 2019 at 6:24 PM Guido Günther <agx@sigxcpu.org> wrote:
 > >
-> > The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
+> > This adds all the gpr registers and the define needed for selecting
+> > the input source in the imx-nwl drm bridge.
 > >
 > > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> > ---
-> >  .../bindings/display/bridge/nwl-dsi.yaml      | 155 ++++++++++++++++++
-> >  1 file changed, 155 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> > new file mode 100644
-> > index 000000000000..5ed8bc4a4d18
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> > @@ -0,0 +1,155 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/bridge/imx-nwl-dsi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +title: Northwest Logic MIPI-DSI on imx SoCs
-> > +
-> > +maintainers:
-> > +  - Guido Gúnther <agx@sigxcpu.org>
-> > +  - Robert Chiras <robert.chiras@nxp.com>
-> > +
-> > +description: |
-> > +  NWL MIPI-DSI host controller found on i.MX8 platforms. This is a dsi bridge for
-> > +  the SOCs NWL MIPI-DSI host controller.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +        - const: fsl,imx8mq-nwl-dsi
+> > +#define IOMUXC_GPR0    0x00
+> > +#define IOMUXC_GPR1    0x04
+> > +#define IOMUXC_GPR2    0x08
+> > +#define IOMUXC_GPR3    0x0c
+> > +#define IOMUXC_GPR4    0x10
+> > +#define IOMUXC_GPR5    0x14
+> > +#define IOMUXC_GPR6    0x18
+> > +#define IOMUXC_GPR7    0x1c
+> (more of the same)
 > 
-> Don't need oneOf nor items here for a single possible value:
+> huh?
 
-I wanted to prepare for adding other SoCs so there's less diff noise
-(other imx8 SoCs will be rather simple) but let's go with 'const' for
-now then.
+These are the names from the imx8MQ reference manual (general purpose
+registers, they lump together all sorts of things), it's the same on
+imx6/imx7):
 
-> compatible:
->   const: fsl,imx8mq-nwl-dsi
+    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/mfd/syscon/imx6q-iomuxc-gpr.h
+    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/mfd/syscon/imx7-iomuxc-gpr.h     
+
+> > +/* i.MX8Mq iomux gpr register field defines */
+> > +#define IMX8MQ_GPR13_MIPI_MUX_SEL              BIT(2)
 > 
-> Or go ahead and add other compatibles because the 'if' below seems to
-> indicate you'll have more.
+> I think this define should probably be local to the pinctrl driver, to
+> ensure that no other drivers fiddle with the registers manually.
 
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: DSI core clock
-> > +      - description: RX_ESC clock (used in escape mode)
-> > +      - description: TX_ESC clock (used in escape mode)
-> > +      - description: PHY_REF clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: core
-> > +      - const: rx_esc
-> > +      - const: tx_esc
-> > +      - const: phy_ref
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +    description:
-> > +      A phandle to the phy module representing the DPHY
-> > +
-> > +  phy-names:
-> > +    items:
-> > +      - const: dphy
-> > +
-> > +  power-domains:
-> > +    maxItems: 1
-> > +    description:
-> > +      A phandle to the power domain
-> > +
-> > +  resets:
-> > +    maxItems: 4
-> > +    description:
-> > +      A phandle to the reset controller
-> 
-> Sounds like 4 phandles... This should look similar to 'clocks'.
+The purpose of these bits is for a driver to fiddle with them to select
+the input source. Similar on imx7 it's already used for e.g. the phy
+refclk in the pci controller:
 
-Added them individually, will be soc specific too later on.
+    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pci-imx6.c#n638
 
-> 
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: byte
-> > +      - const: dpi
-> > +      - const: esc
-> > +      - const: pclk
-> > +
-> > +  mux-sel:
-> 
-> Needs a vendor prefix and will need a $ref to the type.
+The GPRs are not about pad configuration but gather all sorts of things
+(section 8.2.4 of the imx8mq reference manual): pcie setup, dsi related
+bits so I don't think this should be done via a pinctrl
+driver. Should we handle that differently than on imx6/7?
 
-Made that fsl,mux-sel. This require me to add '$ref:
-/schemas/types.yaml#definitions/phandle' as well which
-I hope is correct.
-
-> > +    maxItems: 1
-> > +    description:
-> > +      A phandle to the MUX register set
-> > +
-> > +  port:
-> > +    type: object
-> > +    description:
-> > +      A input put or output port node.
-> > +
-> > +  ports:
-> > +    type: object
-> > +    description:
-> > +      A node containing DSI input & output port nodes with endpoint
-> > +      definitions as documented in
-> > +      Documentation/devicetree/bindings/graph.txt.
-> 
-> You need to define what port@0 and port@1 are.
-
-Added.
-
-> 
-> > +
-> > +patternProperties:
-> > +  "^panel@[0-9]+$": true
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - fsl,imx8mq-nwl-dsi
-> 
-> This conditional isn't needed until you have more than one compatible.
-
-Again intended for other upcoming SoCs but dropped for now.
-
-> > +      required:
-> > +        - resets
-> > +        - reset-names
-> > +        - mux-sel
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - clocks
-> > +  - clock-names
-> > +  - phys
-> > +  - phy-names
-> 
-> ports should be required.
-
-Added.
-
-> > +
-> > +examples:
-> > + - |
-> > +
-> > +   mipi_dsi: mipi_dsi@30a00000 {
-> > +              #address-cells = <1>;
-> > +              #size-cells = <0>;
-> > +              compatible = "fsl,imx8mq-nwl-dsi";
-> > +              reg = <0x30A00000 0x300>;
-> > +              clocks = <&clk 163>, <&clk 244>, <&clk 245>, <&clk 164>;
-> > +              clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
-> > +              interrupts = <0 34 4>;
-> > +              power-domains = <&pgc_mipi>;
-> > +              resets = <&src 0>, <&src 1>, <&src 2>, <&src 3>;
-> > +              reset-names = "byte", "dpi", "esc", "pclk";
-> > +              mux-sel = <&iomuxc_gpr>;
-> > +              phys = <&dphy>;
-> > +              phy-names = "dphy";
-> > +
-> > +              panel@0 {
-> > +                      compatible = "...";
-> 
-> Needs to be a valid compatible. Also need 'reg' here or drop the
-> unit-address.
-
-Fixed.
-
-> 
-> 
-> > +                      port@0 {
-> > +                           panel_in: endpoint {
-> > +                                     remote-endpoint = <&mipi_dsi_out>;
-> > +                           };
-> > +                      };
-> > +              };
-> > +
-> > +              ports {
-> > +                    #address-cells = <1>;
-> > +                    #size-cells = <0>;
-> > +
-> > +                    port@0 {
-> > +                           reg = <0>;
-> > +                           mipi_dsi_in: endpoint {
-> > +                                        remote-endpoint = <&lcdif_mipi_dsi>;
-> > +                           };
-> > +                    };
-> > +                    port@1 {
-> > +                           reg = <1>;
-> > +                           mipi_dsi_out: endpoint {
-> > +                                         remote-endpoint = <&panel_in>;
-> > +                           };
-> > +                    };
-> > +              };
-> > +      };
-> > --
-> > 2.20.1
-> >
-> 
-
-Cheers and thanks again for having a look!
+Cheers,
  -- Guido
