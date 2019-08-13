@@ -2,432 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 743198C220
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 22:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6918C22B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 22:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726188AbfHMUcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 16:32:47 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:41458 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726186AbfHMUcr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 16:32:47 -0400
-Received: by mail-lj1-f193.google.com with SMTP id m24so320342ljg.8
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 13:32:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XDeds+3TjUGvvF1FUJPjkIvF6WB5JF89hFtXrGTRS24=;
-        b=QUH+Zc6UjgK9ptWnVJwsrCsf6HxQgzmiivRe9vSbbbr4XsnWfFW/qwoJ/4aeW2cy2W
-         liimVUpkeLeQjleTqcTTmAvz98SsRs3iHIRPgLCMiqzzolu62NO0wwTCprKJWvoRjrmg
-         mT6A3gfTnNxBCbv5FTa6tbqJTN/PGSwGOLwxk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XDeds+3TjUGvvF1FUJPjkIvF6WB5JF89hFtXrGTRS24=;
-        b=mqoQQTjfzFuuJk/v5jkXx9kAb1Md6aUvhMSnibcqirllu9xeAUFqYsCqX8bFhtg5UZ
-         80XQHjJCdtyKnFNCXS4rZ9x1VMge7g55d7ROK3WP/r6tfUPUWsMIhg2QqskFznrfjEy/
-         mdhhwHA97JN8D4KlVonQlZUpq+isYNmhpD9/Y9IKAo1M/mkK2nicUlpP1YSb+FWcaO9I
-         E6KdDyxspyLJP6byWJ+Mx9iZ4AEXU2MJqwUPJ5F2KRxPrSzKnDgJx+msVCLDj8Fb3I4v
-         FhhFUb07KVgpZ4pcR1cek8ci0p7IAgjdGZkp4sIwblEWy3iDtcobUYyMOByCJI9MXZI5
-         AhLg==
-X-Gm-Message-State: APjAAAUWDdOOxEUaowGVBNTETPnvlwnHYXboP5x39BDZYpffJZ+AEKMW
-        WQYQO4HELpjFHH57BO3UkGAdawOd3kQ=
-X-Google-Smtp-Source: APXvYqwaSSIEX5y1EDV/cDtdpz/RSOBsd5F58GlkZ7lad2p+TBepBXhw5gSW1YRJuV1Lp4Ho/1Qjvg==
-X-Received: by 2002:a2e:b00b:: with SMTP id y11mr460106ljk.159.1565728363272;
-        Tue, 13 Aug 2019 13:32:43 -0700 (PDT)
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com. [209.85.208.170])
-        by smtp.gmail.com with ESMTPSA id q17sm6839077lfb.26.2019.08.13.13.32.42
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Aug 2019 13:32:42 -0700 (PDT)
-Received: by mail-lj1-f170.google.com with SMTP id t14so515105lji.4
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 13:32:42 -0700 (PDT)
-X-Received: by 2002:a2e:9117:: with SMTP id m23mr22962061ljg.134.1565728361423;
- Tue, 13 Aug 2019 13:32:41 -0700 (PDT)
+        id S1725944AbfHMUhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 16:37:32 -0400
+Received: from smtp.220.in.ua ([89.184.67.205]:58730 "EHLO smtp.220.in.ua"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726457AbfHMUhb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 16:37:31 -0400
+Received: from [192.168.202.100] (unknown [95.67.115.55])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by smtp.220.in.ua (Postfix) with ESMTPSA id 421651A20AC5;
+        Tue, 13 Aug 2019 23:37:28 +0300 (EEST)
+Subject: Re: [PATCH v4 2/2] leds: add LED driver for EL15203000 board
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+References: <20190808203204.8614-1-oleg@kaa.org.ua>
+ <20190808203204.8614-2-oleg@kaa.org.ua>
+ <c2b006bb-2bb6-98b0-c907-190fd9fc41c7@gmail.com>
+From:   Oleh Kravchenko <oleg@kaa.org.ua>
+Openpgp: preference=signencrypt
+Autocrypt: addr=oleg@kaa.org.ua; prefer-encrypt=mutual; keydata=
+ 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
+ WVdfrwbus0lVCELNSvCIW2IktSytUxjQfmjBMw==
+Message-ID: <260f8b69-3f4a-d911-88f8-d6de59e79bc3@kaa.org.ua>
+Date:   Tue, 13 Aug 2019 23:37:18 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190807112432.26521-1-sibis@codeaurora.org> <20190807112432.26521-3-sibis@codeaurora.org>
-In-Reply-To: <20190807112432.26521-3-sibis@codeaurora.org>
-From:   Evan Green <evgreen@chromium.org>
-Date:   Tue, 13 Aug 2019 13:32:03 -0700
-X-Gmail-Original-Message-ID: <CAE=gft45QSLyTG0Vi-ZHjbtu4d7vY51-trfLQhswVVrS3NNHew@mail.gmail.com>
-Message-ID: <CAE=gft45QSLyTG0Vi-ZHjbtu4d7vY51-trfLQhswVVrS3NNHew@mail.gmail.com>
-Subject: Re: [PATCH 2/2] interconnect: qcom: Add OSM L3 interconnect provider support
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        agross@kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        David Dai <daidavid1@codeaurora.org>,
-        Saravana Kannan <saravanak@google.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <c2b006bb-2bb6-98b0-c907-190fd9fc41c7@gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="pxTZfILcL1OqbLiypwg5rh1boQLSlBMfp"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sibi,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--pxTZfILcL1OqbLiypwg5rh1boQLSlBMfp
+Content-Type: multipart/mixed; boundary="MO1kBPu8JOD6InQBs0iyLQdEjvw5gWmio";
+ protected-headers="v1"
+From: Oleh Kravchenko <oleg@kaa.org.ua>
+To: Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+ devicetree@vger.kernel.org, linux-leds@vger.kernel.org
+Message-ID: <260f8b69-3f4a-d911-88f8-d6de59e79bc3@kaa.org.ua>
+Subject: Re: [PATCH v4 2/2] leds: add LED driver for EL15203000 board
+References: <20190808203204.8614-1-oleg@kaa.org.ua>
+ <20190808203204.8614-2-oleg@kaa.org.ua>
+ <c2b006bb-2bb6-98b0-c907-190fd9fc41c7@gmail.com>
+In-Reply-To: <c2b006bb-2bb6-98b0-c907-190fd9fc41c7@gmail.com>
 
-On Wed, Aug 7, 2019 at 4:24 AM Sibi Sankar <sibis@codeaurora.org> wrote:
->
-> On some Qualcomm SoCs, Operating State Manager (OSM) controls the
-> resources of scaling L3 caches. Add a driver to handle bandwidth
-> requests to OSM L3 from CPU/GPU.
->
-> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
+--MO1kBPu8JOD6InQBs0iyLQdEjvw5gWmio
+Content-Type: text/plain; charset=utf-8
+Content-Language: uk-UA
+Content-Transfer-Encoding: quoted-printable
 
-This looks good to me, just a couple minor comments below.
+Hello Jacek,
 
-> ---
->  drivers/interconnect/qcom/Kconfig  |   7 +
->  drivers/interconnect/qcom/Makefile |   2 +
->  drivers/interconnect/qcom/osm-l3.c | 292 +++++++++++++++++++++++++++++
->  3 files changed, 301 insertions(+)
->  create mode 100644 drivers/interconnect/qcom/osm-l3.c
->
-> diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
-> index d5e70ebc24108..f6c2a11a1a2c9 100644
-> --- a/drivers/interconnect/qcom/Kconfig
-> +++ b/drivers/interconnect/qcom/Kconfig
-> @@ -5,6 +5,13 @@ config INTERCONNECT_QCOM
->         help
->           Support for Qualcomm's Network-on-Chip interconnect hardware.
->
-> +config INTERCONNECT_QCOM_OSM_L3
-> +       tristate "Qualcomm OSM L3 interconnect driver"
-> +       depends on INTERCONNECT_QCOM || COMPILE_TEST
-> +       help
-> +         Say y here to support the Operating State Manager (OSM) interconnect
-> +         driver which controls the scaling of L3 caches on Qualcomm SoCs.
-> +
->  config INTERCONNECT_QCOM_SDM845
->         tristate "Qualcomm SDM845 interconnect driver"
->         depends on INTERCONNECT_QCOM
-> diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
-> index 1c1cea690f922..9078af5fed109 100644
-> --- a/drivers/interconnect/qcom/Makefile
-> +++ b/drivers/interconnect/qcom/Makefile
-> @@ -1,5 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->
-> +icc-osm-l3-objs                                := osm-l3.o
->  qnoc-sdm845-objs                       := sdm845.o
->
-> +obj-$(CONFIG_INTERCONNECT_QCOM_OSM_L3) += icc-osm-l3.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) += qnoc-sdm845.o
-> diff --git a/drivers/interconnect/qcom/osm-l3.c b/drivers/interconnect/qcom/osm-l3.c
-> new file mode 100644
-> index 0000000000000..1e7dfce6f4f9b
-> --- /dev/null
-> +++ b/drivers/interconnect/qcom/osm-l3.c
-> @@ -0,0 +1,292 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2019, The Linux Foundation. All rights reserved.
-> + *
-> + */
-> +
-> +#include <dt-bindings/interconnect/qcom,osm-l3.h>
-> +#include <dt-bindings/interconnect/qcom,sdm845.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/interconnect-provider.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_platform.h>
-> +#include <linux/platform_device.h>
-> +
-> +#define LUT_MAX_ENTRIES                        40U
-> +#define LUT_SRC                                GENMASK(31, 30)
-> +#define LUT_L_VAL                      GENMASK(7, 0)
-> +#define LUT_ROW_SIZE                   32
-> +#define CLK_HW_DIV                     2
-> +
-> +/* Register offsets */
-> +#define REG_ENABLE                     0x0
-> +#define REG_FREQ_LUT                   0x110
-> +#define REG_PERF_STATE                 0x920
-> +
-> +#define OSM_L3_MAX_LINKS               1
-> +
-> +#define to_qcom_provider(_provider) \
-> +       container_of(_provider, struct qcom_icc_provider, provider)
-> +
-> +enum {
-> +       SDM845_MASTER_OSM_L3_APPS = SLAVE_TCU + 1,
-> +       SDM845_MASTER_OSM_L3_GPU,
-> +       SDM845_SLAVE_OSM_L3,
-> +};
-> +
-> +struct qcom_icc_provider {
+Thank you for your useful review,
 
-Maybe we should rename this and the ones below to avoid collisions
-with drivers/interconnect/qcom/sdm845.c, even though those structures
-are currently local.
+13.08.19 23:28, Jacek Anaszewski =D0=BF=D0=B8=D1=88=D0=B5:
+> Hi Oleh,
+>=20
+> Thank you for the patch set.
+>=20
+> On 8/8/19 10:32 PM, Oleh Kravchenko wrote:
+>> +++ b/Documentation/ABI/testing/sysfs-class-led-driver-el15203000
+>> @@ -0,0 +1,22 @@
+>> +What:		/sys/class/leds/<led>/hw_pattern
+>> +Date:		August 2019
+>> +KernelVersion:	5.3
+>> +Description:
+>> +		Specify a hardware pattern for the EL15203000 LED.
+>> +		The LEDs board supports only predefined patterns by firmware
+>> +		for specific LEDs.
+>> +
+>> +		Breathing mode for Screen frame light tube:
+>> +		"0 4000 1 4000"
+>> +
+>> +		Cascade mode for Pipe LED:
+>> +		"1 800 2 800 4 800 8 800 16 800 1 800 2 800 4 800 8 800 16 800"
+>=20
+> Why the sequence "1 800 2 800 4 800 8 800 16 800" is duplicated here?
+> It seems redundant. But aside of that - aren't the timings modifiable?
+> In other words - are these all patterns somehow configurable or they ar=
+e
+> pre-programmed?
+>=20
 
-> +       void __iomem *base;
-> +       unsigned int max_state;
-> +       unsigned long lut_tables[LUT_MAX_ENTRIES];
-> +       struct icc_provider provider;
-> +};
-> +
-> +/**
-> + * struct qcom_icc_node - Qualcomm specific interconnect nodes
-> + * @name: the node name used in debugfs
-> + * @links: an array of nodes where we can go next while traversing
-> + * @id: a unique node identifier
-> + * @num_links: the total number of @links
-> + * @buswidth: width of the interconnect between a node and the bus
-> + */
-> +struct qcom_icc_node {
-> +       const char *name;
-> +       u16 links[OSM_L3_MAX_LINKS];
-> +       u16 id;
-> +       u16 num_links;
-> +       u16 buswidth;
-> +};
-> +
-> +struct qcom_icc_desc {
-> +       struct qcom_icc_node **nodes;
-> +       size_t num_nodes;
-> +};
-> +
-> +#define DEFINE_QNODE(_name, _id, _buswidth, ...)                       \
-> +               static struct qcom_icc_node _name = {                   \
-> +               .name = #_name,                                         \
-> +               .id = _id,                                              \
-> +               .buswidth = _buswidth,                                  \
-> +               .num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),      \
-> +               .links = { __VA_ARGS__ },                               \
-> +       }
-> +
-> +DEFINE_QNODE(osm_apps_l3, SDM845_MASTER_OSM_L3_APPS, 16, SDM845_SLAVE_OSM_L3);
-> +DEFINE_QNODE(osm_gpu_l3, SDM845_MASTER_OSM_L3_GPU, 16, SDM845_SLAVE_OSM_L3);
-> +DEFINE_QNODE(osm_l3, SDM845_SLAVE_OSM_L3, 16);
-> +
-> +static struct qcom_icc_node *sdm845_osm_l3_nodes[] = {
-> +       [MASTER_OSM_L3_APPS] = &osm_apps_l3,
-> +       [MASTER_OSM_L3_GPU] = &osm_gpu_l3,
-> +       [SLAVE_OSM_L3] = &osm_l3,
-> +};
-> +
-> +static struct qcom_icc_desc sdm845_osm_l3 = {
-> +       .nodes = sdm845_osm_l3_nodes,
-> +       .num_nodes = ARRAY_SIZE(sdm845_osm_l3_nodes),
-> +};
-> +
-> +static int qcom_icc_aggregate(struct icc_node *node, u32 avg_bw,
-> +                             u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
-> +{
-> +       *agg_avg += avg_bw;
-> +       *agg_peak = max_t(u32, *agg_peak, peak_bw);
-> +
-> +       return 0;
-> +}
-> +
-> +static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
-> +{
-> +       struct icc_provider *provider;
-> +       struct qcom_icc_provider *qp;
-> +       struct qcom_icc_node *qn;
-> +       struct icc_node *n;
-> +       unsigned int index;
-> +       u32 agg_peak = 0;
-> +       u32 agg_avg = 0;
-> +       u64 rate;
-> +
-> +       qn = src->data;
-> +       provider = src->provider;
-> +       qp = to_qcom_provider(provider);
-> +
-> +       list_for_each_entry(n, &provider->nodes, node_list)
-> +               qcom_icc_aggregate(n, n->avg_bw, n->peak_bw,
-> +                                  &agg_avg, &agg_peak);
-> +
-> +       rate = max(agg_avg, agg_peak);
-> +       rate = icc_units_to_bps(rate);
-> +       do_div(rate, qn->buswidth);
-> +
-> +       for (index = 0; index < qp->max_state; index++) {
-> +               if (qp->lut_tables[index] >= rate)
-> +                       break;
-> +       }
-> +
-> +       writel_relaxed(index, qp->base + REG_PERF_STATE);
-> +
-> +       return 0;
-> +}
-> +
-> +static int qcom_osm_l3_probe(struct platform_device *pdev)
-> +{
-> +       u32 info, src, lval, i, prev_freq = 0, freq;
-> +       static unsigned long hw_rate, xo_rate;
-> +       const struct qcom_icc_desc *desc;
-> +       struct icc_onecell_data *data;
-> +       struct icc_provider *provider;
-> +       struct qcom_icc_node **qnodes;
-> +       struct qcom_icc_provider *qp;
-> +       struct icc_node *node;
-> +       size_t num_nodes;
-> +       struct clk *clk;
-> +       int ret;
-> +
-> +       clk = clk_get(&pdev->dev, "xo");
-> +       if (IS_ERR(clk))
-> +               return PTR_ERR(clk);
-> +
-> +       xo_rate = clk_get_rate(clk);
-> +       clk_put(clk);
-> +
-> +       clk = clk_get(&pdev->dev, "alternate");
-> +       if (IS_ERR(clk))
-> +               return PTR_ERR(clk);
-> +
-> +       hw_rate = clk_get_rate(clk) / CLK_HW_DIV;
-> +       clk_put(clk);
-> +
-> +       qp = devm_kzalloc(&pdev->dev, sizeof(*qp), GFP_KERNEL);
-> +       if (!qp)
-> +               return -ENOMEM;
-> +
-> +       qp->base = devm_platform_ioremap_resource(pdev, 0);
-> +       if (IS_ERR(qp->base))
-> +               return PTR_ERR(qp->base);
-> +
-> +       /* HW should be in enabled state to proceed */
-> +       if (!(readl_relaxed(qp->base + REG_ENABLE) & 0x1)) {
-> +               dev_err(&pdev->dev, "error hardware not enabled\n");
-> +               return -ENODEV;
-> +       }
-> +
-> +       for (i = 0; i < LUT_MAX_ENTRIES; i++) {
-> +               info = readl_relaxed(qp->base + REG_FREQ_LUT +
-> +                                    i * LUT_ROW_SIZE);
-> +               src = FIELD_GET(LUT_SRC, info);
-> +               lval = FIELD_GET(LUT_L_VAL, info);
-> +               if (src)
-> +                       freq = xo_rate * lval;
-> +               else
-> +                       freq = hw_rate;
-> +
-> +               /*
-> +                * Two of the same frequencies with the same core counts means
-> +                * end of table
-> +                */
-> +               if (i > 0 && prev_freq == freq)
-> +                       break;
-> +
-> +               qp->lut_tables[i] = freq;
-> +               prev_freq = freq;
-> +       }
-> +       qp->max_state = i;
-> +
-> +       desc = of_device_get_match_data(&pdev->dev);
-> +       if (!desc)
-> +               return -EINVAL;
-> +
-> +       qnodes = desc->nodes;
-> +       num_nodes = desc->num_nodes;
-> +
-> +       data = devm_kcalloc(&pdev->dev, num_nodes, sizeof(*node), GFP_KERNEL);
-> +       if (!data)
-> +               return -ENOMEM;
-> +
-> +       provider = &qp->provider;
-> +       provider->dev = &pdev->dev;
-> +       provider->set = qcom_icc_set;
-> +       provider->aggregate = qcom_icc_aggregate;
-> +       provider->xlate = of_icc_xlate_onecell;
-> +       INIT_LIST_HEAD(&provider->nodes);
-> +       provider->data = data;
-> +
-> +       ret = icc_provider_add(provider);
-> +       if (ret) {
-> +               dev_err(&pdev->dev, "error adding interconnect provider\n");
-> +               return ret;
-> +       }
-> +
-> +       for (i = 0; i < num_nodes; i++) {
-> +               size_t j;
-> +
-> +               node = icc_node_create(qnodes[i]->id);
-> +               if (IS_ERR(node)) {
-> +                       ret = PTR_ERR(node);
-> +                       goto err;
-> +               }
-> +
-> +               node->name = qnodes[i]->name;
-> +               node->data = qnodes[i];
-> +               icc_node_add(node, provider);
-> +
-> +               dev_dbg(&pdev->dev, "registered node %p %s %d\n", node,
-> +                       qnodes[i]->name, node->id);
-> +
-> +               /* populate links */
-> +               for (j = 0; j < qnodes[i]->num_links; j++)
-> +                       icc_link_create(node, qnodes[i]->links[j]);
-> +
-> +               data->nodes[i] = node;
-> +       }
-> +       data->num_nodes = num_nodes;
-> +
-> +       platform_set_drvdata(pdev, qp);
-> +
-> +       return ret;
-> +err:
-> +       list_for_each_entry(node, &provider->nodes, node_list) {
-> +               icc_node_del(node);
-> +               icc_node_destroy(node->id);
-> +       }
-> +
-> +       icc_provider_del(provider);
+All pattern is predefined, you can't change them at all.
+I just tried to describe real things what happened in LED board.
+It's ticks every 800 milliseconds for Pipe LEDs.
 
-I looks like you could just call qcom_osm_l3_remove() here instead of the above.
+>> +
+>> +		Inverted cascade mode for Pipe LED:
+>> +		"30 800 29 800 27 800 23 800 15 800 30 800 29 800 27 800 23 800 15 =
+800"
+>=20
+> Similar duplication here.
+>=20
+>> +
+>> +		Bounce mode for Pipe LED:
+>> +		"1 800 2 800 4 800 8 800 16 800 16 800 8 800 4 800 2 800 1 800"
+>=20
+> Instead of two repeating "16 800" you could provide "16 1600".
+> But here again is the question whether these values are configurable.
+> From what I can see in your driver implementation you're expecting
+> exactly the values provided in these examples to enable given hardware
+> pattern (led_pattern_cmp()).
+>=20
+>> +
+>> +		Inverted bounce mode for Pipe LED:
+>> +		"30 800 29 800 27 800 23 800 15 800 15 800 23 800 27 800 29 800 30 =
+800"
+>=20
+
+Should I cut this patterns to smaller? Or let keep it?
+
+--=20
+Best regards,
+Oleh Kravchenko
 
 
-> +       return ret;
-> +}
-> +
-> +static int qcom_osm_l3_remove(struct platform_device *pdev)
-> +{
-> +       struct qcom_icc_provider *qp = platform_get_drvdata(pdev);
-> +       struct icc_provider *provider = &qp->provider;
-> +       struct icc_node *n;
-> +
-> +       list_for_each_entry(n, &provider->nodes, node_list) {
-> +               icc_node_del(n);
-> +               icc_node_destroy(n->id);
-> +       }
-> +
-> +       return icc_provider_del(provider);
-> +}
-> +
-> +static const struct of_device_id osm_l3_of_match[] = {
-> +       { .compatible = "qcom,sdm845-osm-l3", .data = &sdm845_osm_l3 },
-> +       { },
-> +};
-> +MODULE_DEVICE_TABLE(of, osm_l3_of_match);
-> +
-> +static struct platform_driver osm_l3_driver = {
-> +       .probe = qcom_osm_l3_probe,
-> +       .remove = qcom_osm_l3_remove,
-> +       .driver = {
-> +               .name = "osm-l3",
-> +               .of_match_table = osm_l3_of_match,
-> +       },
-> +};
-> +module_platform_driver(osm_l3_driver);
-> +
-> +MODULE_DESCRIPTION("Qualcomm OSM L3 interconnect driver");
-> +MODULE_LICENSE("GPL v2");
-> --
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
->
+--MO1kBPu8JOD6InQBs0iyLQdEjvw5gWmio--
+
+--pxTZfILcL1OqbLiypwg5rh1boQLSlBMfp
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEC/TM5t+2NenFhW0Q0xNJm20pl4wFAl1TH4EACgkQ0xNJm20p
+l4xK6w//eUtTVjVdlD3HV1/IUN82psdKUdqKz1ioqQ3BXZhJn20hffZhHNWetNE1
+rMQtdQ19OXTs+6njvFTtJFFgealCo8y9aTu5sLwM/OQWC//fY3KTD/QayiXOJbPB
+ConNMOz+fklZoiZYgNLjFFzQXrWHE86Nbhwz4xH3bhfBpUc5Sq4G0YG6TofwiACp
+4257b7cxpYt/bCnRnQpsIZK21xWC/8m1jRaP8uPFO4ul35R9RaSv/bIXipiuTPcz
+etCxZ3SnV7132eIj/g53woChEXhKIBt+D6PtOD++rXGutKdA3tVAr4ORAItD6pCR
+d2hVA/3Pn1Iui2Cz1AwXh+9VtRu3GxOmpGZoNa78k9KgD4rcZ/opFPLCXMJbJHL1
+OFWlI2RwDkIaCzlQ5YdfUF/dg004qR7evPzTTW+1WHjJ/X8R0ZtRC/JUGcuTevCc
+Mls0nUi788OUeztfBstTNvzjrYX0gNxAr8sqNZVILBDmf5ZupcRGlWThBL7SRYoW
+5S4tH1ryBwIgQDnsJJUT2suibNda7hxYJKh8fX0VyH5IjAmTw54z3aCabMTsX2mm
+jmCHL52/H0Q1qBb6GxRw2cry7jfTgf2iruXPaZH2nVf1PeGteo5X7Huvc2V8CgEk
+RStGGhizmqL7ej87zV51vHS+/uzv4dK8OisZg8vdTWxBmrw7w34=
+=xIoc
+-----END PGP SIGNATURE-----
+
+--pxTZfILcL1OqbLiypwg5rh1boQLSlBMfp--
