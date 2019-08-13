@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC1F8B299
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:36:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B15F8B2A2
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:36:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728189AbfHMIf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 04:35:58 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40935 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727868AbfHMIf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:35:57 -0400
-Received: by mail-wm1-f68.google.com with SMTP id v19so689708wmj.5
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 01:35:56 -0700 (PDT)
+        id S1728283AbfHMIgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 04:36:15 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34848 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727843AbfHMIf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:35:59 -0400
+Received: by mail-wr1-f66.google.com with SMTP id k2so21102619wrq.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 01:35:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=47pjUZtlYEQsWYFM2ZKdkX9DO8aXhwyKbVTpMW5dD0M=;
-        b=mtkkTc2za4MBew4vaNmst2IsNgchFGrls0sMOvN2UhPHs9lHa2U93xFQ5xAKx0CpfE
-         KQlsxsYeHq6f4pzn2C0P8AycDtTJr1i+m6XGHohquv8ndV8JTM3VNYq0pGDIajQ4ipsp
-         42RTztSe+QkgPim00XYgEC6UFfNpm4kgA5SN5/Gv4/os+EoUuhFvpQ6y2GZD2cvhh8yB
-         dAA3XpTMCufeDzI2CUEuBRrZoFpTGbWzg0gn7m/qLDh/Lezo4c0raD++1ElZhdyecGSP
-         v1G+d5N5+NKrl8INbMURU99BWGpg1TderUW+X/jciZtLZSi85m9oImE1ogDDEbMFmepC
-         i8Ig==
+        bh=yY3j+tzAidsewEpOKH7pvngWyOrXZYN1znzf8G8c2/o=;
+        b=z1KFlnpe7m6oruIQ8cwwyUe0xYtx70XatCj0QTT3fQG0wWPqOetxuINiLncLjFTWTm
+         99H1BtzfFj+UnuZcErc7bAJTBHGV4j1+4Z5/JyC7VOEUNZIcuuvAzstG9O1gv1RCckId
+         TzAMy2Yy5ely6dY38GSWw68qaAwxhYG8sqLPPCksZXgXydyiUuJ0K3sGK/2ut4K19N5Y
+         1RF8aEmiY8gLCqkR3QzdAwpqB9f7CbTOvf5THnii6yVLwT6BZA0ObfQ3ZdJYT2W8rKoY
+         ZD6dc/JtTu+Oukif2+WVSMwzax90gO1e/MjO1I4Phxk/93Ispzxbp3zCuDhM3ZTKwCEt
+         bcFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=47pjUZtlYEQsWYFM2ZKdkX9DO8aXhwyKbVTpMW5dD0M=;
-        b=K4TK0cCD0DvSXrssF8EZ/rIRQ3KvhM6rMfMCvVfq/nC18kpTKSKdQYg9IJO4EZxzll
-         f+9F7XRwecLSm6MbL1NUAKcBvRYdOmrJElG5guONwUKlWkCTtGLvKLNgLXYrvCi9twRo
-         e17ihdeSIqKdWhnFi5SLGL6CttW6CDIS8s73/QC/MQej3gkqa+OWL6/f7+qmIBgkLvq9
-         /I8Q2BQEHAdU7E/Ndc7yuRwkCScsS/+f55s6aUW/DVpbPRgsmdUWSnII+I2SAcWylC4e
-         vd8F8/euZQ0wyWvwpqvoyJMInPt4dKUNdVPMaFiwN8JAtiX9auq9TywLFXvx12qhLAC7
-         HLUg==
-X-Gm-Message-State: APjAAAX9iTrV0GO1KRWtXz4NUheJtKrE/OfcuE89lKWzSOrwy0uOQGTs
-        Ir/BmVfs2JxJGH+IhAVjpkhHvw==
-X-Google-Smtp-Source: APXvYqy7DQnahHv4WYLvvV3qcT2SkUUHTBk00iCKoTTLBlhFu6Xsp5qL9efPIajKTBxlJAkv8lkmFw==
-X-Received: by 2002:a05:600c:2292:: with SMTP id 18mr1755383wmf.156.1565685355813;
-        Tue, 13 Aug 2019 01:35:55 -0700 (PDT)
+        bh=yY3j+tzAidsewEpOKH7pvngWyOrXZYN1znzf8G8c2/o=;
+        b=n+AMgOUNTlb1PPkBe+U4Liq1dm8wLa+b/YcPvcIiPd53IEIEp1XDgq//XmFK6xBQNU
+         EBkjVfLo1b6mr7JmDJhILm4Iy9uutGQ/8NWeueCOKNF+4mPZhti9tA+8qC1Eb97ef+nv
+         aGQJl2+8z0LRLLA3nTdaDChKp3MGwXdEJHGSpNHF9OUYtao0raM6vrHv69goaJ95iWD4
+         PCIkTRglipNJp4jdZxcoZq/k08p0JFy4BxjiMEtTDwvdgCe/LQaBECn6/nO2hV5k8zAm
+         TeaVWHY1cLIuk00+RwuK1lRCx3I2Xr+h1zYlDZxzoSRVXS3xZQMlQ39fClrelLc0Q+jm
+         v3vA==
+X-Gm-Message-State: APjAAAVvdegByZnupQDAC0NakdKgefCj54iAU97FcHNUic9l5iy2+x9G
+        R3dIUtifO8UiVK4CUEATFjrHNQ==
+X-Google-Smtp-Source: APXvYqySdA0FxJMGYIhbPWPNlaaNMqY14nOQdlvcbZOf6sDtJJSN0OFSBC4FzOtGc7e8Ynj8q0FmxA==
+X-Received: by 2002:adf:dc51:: with SMTP id m17mr47047026wrj.256.1565685356898;
+        Tue, 13 Aug 2019 01:35:56 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id o11sm8651822wrw.19.2019.08.13.01.35.54
+        by smtp.gmail.com with ESMTPSA id o11sm8651822wrw.19.2019.08.13.01.35.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2019 01:35:55 -0700 (PDT)
+        Tue, 13 Aug 2019 01:35:56 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     vkoul@kernel.org, broonie@kernel.org
 Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
@@ -52,9 +52,9 @@ Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         spapothi@codeaurora.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 1/5] soundwire: Add compute_params callback
-Date:   Tue, 13 Aug 2019 09:35:46 +0100
-Message-Id: <20190813083550.5877-2-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 2/5] soundwire: stream: make stream name a const pointer
+Date:   Tue, 13 Aug 2019 09:35:47 +0100
+Message-Id: <20190813083550.5877-3-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
 References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
@@ -65,58 +65,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vinod Koul <vkoul@kernel.org>
+Make stream name const pointer
 
-This callback allows masters to compute the bus parameters required.
-
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- drivers/soundwire/stream.c    | 10 ++++++++++
- include/linux/soundwire/sdw.h |  2 ++
- 2 files changed, 12 insertions(+)
+ drivers/soundwire/stream.c    | 2 +-
+ include/linux/soundwire/sdw.h | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/soundwire/stream.c b/drivers/soundwire/stream.c
-index a0476755a459..60bc2fe42928 100644
+index 60bc2fe42928..49ce21320f52 100644
 --- a/drivers/soundwire/stream.c
 +++ b/drivers/soundwire/stream.c
-@@ -1483,6 +1483,16 @@ static int _sdw_prepare_stream(struct sdw_stream_runtime *stream)
- 		bus->params.bandwidth += m_rt->stream->params.rate *
- 			m_rt->ch_count * m_rt->stream->params.bps;
+@@ -863,7 +863,7 @@ EXPORT_SYMBOL(sdw_release_stream);
+  * sdw_alloc_stream should be called only once per stream. Typically
+  * invoked from ALSA/ASoC machine/platform driver.
+  */
+-struct sdw_stream_runtime *sdw_alloc_stream(char *stream_name)
++struct sdw_stream_runtime *sdw_alloc_stream(const char *stream_name)
+ {
+ 	struct sdw_stream_runtime *stream;
  
-+		/* Compute params */
-+		if (bus->compute_params) {
-+			ret = bus->compute_params(bus);
-+			if (ret < 0) {
-+				dev_err(bus->dev, "Compute params failed: %d",
-+					ret);
-+				return ret;
-+			}
-+		}
-+
- 		/* Program params */
- 		ret = sdw_program_params(bus);
- 		if (ret < 0) {
 diff --git a/include/linux/soundwire/sdw.h b/include/linux/soundwire/sdw.h
-index bea46bd8b6ce..aac68e879fae 100644
+index aac68e879fae..5e61ad065d32 100644
 --- a/include/linux/soundwire/sdw.h
 +++ b/include/linux/soundwire/sdw.h
-@@ -718,6 +718,7 @@ struct sdw_master_ops {
-  * Bit set implies used number, bit clear implies unused number.
-  * @bus_lock: bus lock
-  * @msg_lock: message lock
-+ * @compute_params: points to Bus resource management implementation
-  * @ops: Master callback ops
-  * @port_ops: Master port callback ops
-  * @params: Current bus parameters
-@@ -739,6 +740,7 @@ struct sdw_bus {
- 	DECLARE_BITMAP(assigned, SDW_MAX_DEVICES);
- 	struct mutex bus_lock;
- 	struct mutex msg_lock;
-+	int (*compute_params)(struct sdw_bus *bus);
- 	const struct sdw_master_ops *ops;
- 	const struct sdw_master_port_ops *port_ops;
- 	struct sdw_bus_params params;
+@@ -830,7 +830,7 @@ struct sdw_stream_params {
+  * @m_rt_count: Count of Master runtime(s) in this stream
+  */
+ struct sdw_stream_runtime {
+-	char *name;
++	const char *name;
+ 	struct sdw_stream_params params;
+ 	enum sdw_stream_state state;
+ 	enum sdw_stream_type type;
+@@ -838,7 +838,7 @@ struct sdw_stream_runtime {
+ 	int m_rt_count;
+ };
+ 
+-struct sdw_stream_runtime *sdw_alloc_stream(char *stream_name);
++struct sdw_stream_runtime *sdw_alloc_stream(const char *stream_name);
+ void sdw_release_stream(struct sdw_stream_runtime *stream);
+ int sdw_stream_add_master(struct sdw_bus *bus,
+ 		struct sdw_stream_config *stream_config,
 -- 
 2.21.0
 
