@@ -2,143 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D423B8B4AE
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 11:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 897E68B4CA
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 12:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728306AbfHMJzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 05:55:37 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:34207 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728504AbfHMJzg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 05:55:36 -0400
-Received: by mail-wm1-f68.google.com with SMTP id e8so694388wme.1;
-        Tue, 13 Aug 2019 02:55:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=pli52NBy/OMsSqsnASCGrhls+/JLogpdAS1ylOATsQU=;
-        b=dWT81dlFP1Rz6wHB1smXEGLQ7bSN0BUlypMEnVI66yLgTlDL6gjgprLvmOsuxPDfJv
-         Z8TTmuHwe7J+VSGwmxzMLGgVyEq7lkAXfKsEMBYPkFVFFDQjyPg+RkWACR18IhByJwRs
-         OJfaAaww2Iqf5auoVMKuB0kPctNYaIHJ+e63LgkUGtjexJLbcZ7zOm1/G02bQR+qoJlT
-         F2jPzLaVQ+KPHjUAXI/tshf5ziZutIwTAY7QTVMQjF3LaXMyRX1zmOKh1WTPNPZk+dLc
-         ctYbcBfnWoxlddFw7MtFS6+sSMfZk0HrN7W1lqSA9gRFNnT3TOivQhQRyBctJfJkU63y
-         GY1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=pli52NBy/OMsSqsnASCGrhls+/JLogpdAS1ylOATsQU=;
-        b=oZqA8LDxqvz3y63wBY4+3OLx+B/87WXX0SoWmIiksW+WWUVsQVvtgq1yLQHUyf0bSF
-         S2h9MQ8NRU1+fYnxFPdTsTata9hm3fpARCoVWgmH8RA9TSJYShJZa8n+IwVwoIrCu3Yo
-         UvpFPPWfV1nMm5ZZcYkhA4aTxKqKAA8wHUkGtD+iK5rrHistWwoAeE4forAgZ2K1Yb6H
-         dXqD6JRwlhxBOOvX5CwwHBi0893a16zod6jAwZovTOV3cfkLj8M6zoMA8X/H4omBuo7p
-         xq53WFzAekduPR+2S4EWps24fvVHmEw5lipqPnnHCJq/5uz3cEEWxa3tzudI4OONA2Pc
-         WfjQ==
-X-Gm-Message-State: APjAAAXqK7B2S1UHObO9vcjJk8I8u8aZGxtCm1WfGuCxszCj3qFwpcHi
-        eUdMnLxONK7GROZM1+mMq4M=
-X-Google-Smtp-Source: APXvYqxIhr3gIFWeFwigD1Tmfv24IOqVfVxzCMUsomct0kWqMTUD5Wo5Ln3bt360aD3DZ5s5yuTH1g==
-X-Received: by 2002:a7b:c933:: with SMTP id h19mr2063842wml.177.1565690133459;
-        Tue, 13 Aug 2019 02:55:33 -0700 (PDT)
-Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
-        by smtp.gmail.com with ESMTPSA id t19sm955025wmi.29.2019.08.13.02.55.31
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 13 Aug 2019 02:55:32 -0700 (PDT)
-Date:   Tue, 13 Aug 2019 11:55:31 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Krishna Yarlagadda <kyarlagadda@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, jonathanh@nvidia.com, ldewangan@nvidia.com,
-        jslaby@suse.com, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 07/14] serial: tegra: add compatible for new chips
-Message-ID: <20190813095531.GL1137@ulmo>
-References: <1565609303-27000-1-git-send-email-kyarlagadda@nvidia.com>
- <1565609303-27000-8-git-send-email-kyarlagadda@nvidia.com>
+        id S1728715AbfHMKAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 06:00:33 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:7120 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728472AbfHMKAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 06:00:32 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7D9vEqw021952;
+        Tue, 13 Aug 2019 12:00:12 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=aoyRokR5kzUkomjm7Ywbps3L0Afaxia9MCls/Ada1gA=;
+ b=Cs9uCuurKtt/S7y9CqRY/NdQTCF7vinymf4wbVL/pujdLkggXqyEmfaCYq7NlKa7vieG
+ 3m6H9UQdeNE2MjSEf6fM1OTqS3pNFAi20VJfo6vaCO0lH6CySonZqnccBEfz2cSmRgLq
+ v9wFE4fod6B5bJUJBlieoZWe+9paVL+Xgu2jj2ktY5HpVK32l9NGMA0ko4ACjC0LMMMn
+ mz04VOllLb2iq5m/0V7iVvkPLLO3557lDgQl7PnX95nYzbrz6O3VxWnmp89+FtxRyIul
+ MDDnmiUQqQc8+/a6h+B2KveWZQlN5kIg9awAseoBtv1RflULRJ1GmaPqzxHsP52K9kME GA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2u9kpuqdd0-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Tue, 13 Aug 2019 12:00:12 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2B79C42;
+        Tue, 13 Aug 2019 10:00:11 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 163D52CC9D1;
+        Tue, 13 Aug 2019 12:00:11 +0200 (CEST)
+Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 13 Aug
+ 2019 12:00:10 +0200
+Received: from lmecxl0923.lme.st.com (10.48.0.237) by webmail-ga.st.com
+ (10.75.90.48) with Microsoft SMTP Server (TLS) id 14.3.439.0; Tue, 13 Aug
+ 2019 12:00:07 +0200
+From:   Ludovic Barre <ludovic.Barre@st.com>
+To:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <srinivas.kandagatla@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        Ludovic Barre <ludovic.barre@st.com>
+Subject: [PATCH V5 0/3] mmc: mmci: add busy detect for stm32 sdmmc variant
+Date:   Tue, 13 Aug 2019 11:59:48 +0200
+Message-ID: <20190813095951.26275-1-ludovic.Barre@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="TnYVF1hk1c8rpHiF"
-Content-Disposition: inline
-In-Reply-To: <1565609303-27000-8-git-send-email-kyarlagadda@nvidia.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain
+X-Originating-IP: [10.48.0.237]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-13_04:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Ludovic Barre <ludovic.barre@st.com>
 
---TnYVF1hk1c8rpHiF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch series adds busy detect for stm32 sdmmc variant.
+Some adaptations are required:
+-On sdmmc the data timer is started on data transfert
+and busy state, so we must add hardware busy timeout support.
+-Add busy_complete callback at mmci_host_ops to allow to define
+a specific busy completion by variant.
+-Add sdmmc busy_complete calback.
 
-On Mon, Aug 12, 2019 at 04:58:16PM +0530, Krishna Yarlagadda wrote:
-> Add new compatible string for Tegra186. It differs from earlier chips
-> as it has fifo mode enable check and 8 byte dma buffer.
-> Add new compatible string for Tegra194. Tegra194 has different error
-> tolerance levels for baud rate compared to older chips.
->=20
-> Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt | 3 +=
-+-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+V5:
+-Replaces !cmd->data to !host->mrq->data to avoid overwrite
+ of datatimer register by the first command (cmd23, without data) of
+ SBC request.
 
-I think device tree binding patches are supposed to start with
-"dt-binding: ...".
+V4:
+-Re-work with busy_complete callback
+-In series, move "mmc: mmci: add hardware busy timeout feature" in
+first to simplify busy_complete prototype with err_msk parameter.
 
-Also: "fifo" -> "FIFO" and "dma" -> "DMA" in the commit message.
+V3:
+-rebase on latest mmc next
+-replace re-read by status parameter. 
 
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsua=
-rt.txt b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-> index d7edf73..187ec78 100644
-> --- a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-> +++ b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
-> @@ -1,7 +1,8 @@
->  NVIDIA Tegra20/Tegra30 high speed (DMA based) UART controller driver.
-> =20
->  Required properties:
-> -- compatible : should be "nvidia,tegra30-hsuart", "nvidia,tegra20-hsuart=
-".
-> +- compatible : should be "nvidia,tegra30-hsuart", "nvidia,tegra20-hsuart=
-",
-> +  nvidia,tegra186-hsuart, nvidia,tegra194-hsuart.
+V2:
+-mmci_cmd_irq cleanup in separate patch.
+-simplify the busy_detect_flag exclude
+-replace sdmmc specific comment in
+"mmc: mmci: avoid fake busy polling in mmci_irq"
+to focus on common behavior
 
-Please use quotes around the compatible strings like the existing ones.
-Also, I think it might be better to list these explicitly rather than
-just give a list of potential values. As it is right now, it's
-impossible to tell whether this is meant to say "should be all of these"
-or whether it is meant to say "should be one of these".
+Ludovic Barre (3):
+  mmc: mmci: add hardware busy timeout feature
+  mmc: mmci: add busy_complete callback
+  mmc: mmci: sdmmc: add busy_complete callback
 
-Thierry
+ drivers/mmc/host/mmci.c             | 178 +++++++++++++++++-----------
+ drivers/mmc/host/mmci.h             |   7 +-
+ drivers/mmc/host/mmci_stm32_sdmmc.c |  38 ++++++
+ 3 files changed, 151 insertions(+), 72 deletions(-)
 
->  - reg: Should contain UART controller registers location and length.
->  - interrupts: Should contain UART controller interrupts.
->  - clocks: Must contain one entry, for the module clock.
-> --=20
-> 2.7.4
->=20
+-- 
+2.17.1
 
---TnYVF1hk1c8rpHiF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1SiRMACgkQ3SOs138+
-s6EJYw//YTnH42F/vn19weuxjELgdmwZkWjkvGeZf5gO2hiWgy5oR6J74ACsr87G
-7IK6eQxszcqOsXXu/f5bX3XiTG8Xpz/6dyfutm9xP0/slRtpHJSLHHKuUofs8HQL
-bHBAf9/ZG2mnrkWxm9q18AcZX4b9S7jAqnTI1gxMMZ+FvS2I8jL61dx+2S5bH9Jw
-mp4JErcdf+ofxhM7o39q6jHlWhZBRj/3KwauW9sKyiQCKm4b/Lj9JePyeXjiz0Bv
-Qs/H/k5GMqo5PqP6G1rw8m40V6hJtkUIdzKskOZJt94he1ULdMAFnXMlYwnK0OJU
-MlSfuEhbJajQ4yOSXH+ShUw2j+p/zn+fXpPyWGH/4ckhNQS03T5QRedmpTGUYrkV
-XlUyB9V26mYdyMtlNgozoWCHrkhSrmOCkPWDe0j9+F0LcoDNQGj4xvDT2wTAtmSu
-wEMQQ47JmPP2rZ5dJi+rEeEVEOBv6VOBiwNgywL+aXV6o/jV71gHICKe6c6PFGnU
-vqiRYWedvDtPhSFR9r6JCn7mZ77vgJfnkpSyQON1zupTAGXY+9dy/2m7no835gxe
-7nvl072qH3b8GRytLuETp7sAcKNvJvL9Zb1Zjsa4XlJJZ/5M9xKPOVXfajXxLtQU
-iEFehu7/BaMdggncN67Kb4s76xszM435j02l5m7aCxGM7eB65PU=
-=/lhB
------END PGP SIGNATURE-----
-
---TnYVF1hk1c8rpHiF--
