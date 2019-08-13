@@ -2,171 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAA6A8BB24
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 16:06:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A83858BB36
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 16:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729545AbfHMOGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 10:06:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40262 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729438AbfHMOGN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 10:06:13 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 47CFA21744;
-        Tue, 13 Aug 2019 14:06:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565705172;
-        bh=O/fCUAPwaNaOOD9s9pkmueTj8itaAZFGU/uvEuU6kgc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HpR0kTzh0L+1HCy1Trd3qsQrbjZn52IPfyQt3g5Y8VCr7jeQ4xAJGXgARJUR1xzUP
-         klqdwHVZdgDWaLEyuO5irst9vm8D+yBfjbDxpDfpaPy5IwtXu8xDHljvjkBzTYqGfd
-         9qbk3phoAnuJjqVtWEPfHlqqv0nRh2ShRjc21dNs=
-Received: by mail-qt1-f171.google.com with SMTP id u34so7135061qte.2;
-        Tue, 13 Aug 2019 07:06:12 -0700 (PDT)
-X-Gm-Message-State: APjAAAXWSLkjYplKz83m4/rtfRd83t72UPnqLi2i1FSIFIglA+ftSRwb
-        TY/ddRLswAsRTdo5BU1McNXHPadD/MCzqie/jA==
-X-Google-Smtp-Source: APXvYqx3FMdHhwFr0AVbpQ+Lxot0AwypTnxtWq13JJOC5ylQw8YnX1DEfhh/V+OPrUwvGuTcbKUoILzXiL4zskKDN5g=
-X-Received: by 2002:aed:24f4:: with SMTP id u49mr6124643qtc.110.1565705171397;
- Tue, 13 Aug 2019 07:06:11 -0700 (PDT)
+        id S1728267AbfHMONB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 10:13:01 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:48499 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727462AbfHMONB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 10:13:01 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hxXXl-000410-Ce; Tue, 13 Aug 2019 16:12:57 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hxXXk-0007lN-Mu; Tue, 13 Aug 2019 16:12:56 +0200
+Date:   Tue, 13 Aug 2019 16:12:56 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        orsonzhai@gmail.com, zhang.lyra@gmail.com,
+        vincent.guittot@linaro.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM
+ documentation
+Message-ID: <20190813141256.jnbrfld42rtigek3@pengutronix.de>
+References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
 MIME-Version: 1.0
-References: <cover.1565633880.git.leonard.crestez@nxp.com> <97b0bff95ddb85b06ef3d2f8079faa36562a956d.1565633880.git.leonard.crestez@nxp.com>
- <CAL_JsqJWpQN2oTm8Q2_Gzd0GJ+YZoc9j-zh-U1s4eGhMxDEmEA@mail.gmail.com> <VI1PR04MB702300C8C78BC033D16EDB85EED20@VI1PR04MB7023.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB702300C8C78BC033D16EDB85EED20@VI1PR04MB7023.eurprd04.prod.outlook.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Aug 2019 08:06:00 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+BDO-J12BddWw-KbhjTx95p58qqpUhhKzUHED6vFK2TA@mail.gmail.com>
-Message-ID: <CAL_Jsq+BDO-J12BddWw-KbhjTx95p58qqpUhhKzUHED6vFK2TA@mail.gmail.com>
-Subject: Re: [PATCH 2/7] dt-bindings: devfreq: Add bindings for generic imx buses
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     Stephen Boyd <sboyd@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 7:32 PM Leonard Crestez <leonard.crestez@nxp.com> wrote:
->
-> On 8/12/2019 10:47 PM, Rob Herring wrote:
-> > On Mon, Aug 12, 2019 at 12:49 PM Leonard Crestez <leonard.crestez@nxp.com> wrote:
->
-> >> Add initial dt bindings for the interconnects inside i.MX chips.
-> >> Multiple external IPs are involved but SOC integration means the
-> >> software controllable interfaces are very similar.
-> >>
-> >> +description: |
-> >> +  The i.MX SoC family has multiple buses for which clock frequency (and sometimes
-> >> +  voltage) can be adjusted.
-> >> +
-> >> +  Some of those buses expose register areas mentioned in the memory maps as GPV
-> >> +  ("Global Programmers View") but not all. Access to this area might be denied for
-> >> +  normal world.
-> >> +
-> >> +  The buses are based on externally licensed IPs such as ARM NIC-301 and Arteris
-> >> +  FlexNOC but DT bindings are specific to the integration of these bus
-> >> +  interconnect IPs into imx SOCs.
-> >
-> > No need to use the interconnect binding?
->
-> Separate RFC: https://patchwork.kernel.org/patch/11078673/
->
-> The interconnect is represented by a separate "virtual" node which might
-> not be OK. There was also a recent RFC from samsung which turns devfreq
-> nodes into interconnect providers:
->      https://patchwork.kernel.org/cover/11054417/
->
-> Is that preferable?
+On Tue, Aug 13, 2019 at 09:46:40PM +0800, Baolin Wang wrote:
+> Add Spreadtrum PWM controller documentation.
+> 
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> ---
+> Changes from v1:
+>  - Use assigned-clock-parents and assigned-clocks to set PWM clock parent.
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-sprd.txt |   38 ++++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sprd.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-sprd.txt b/Documentation/devicetree/bindings/pwm/pwm-sprd.txt
+> new file mode 100644
+> index 0000000..e6cf312
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-sprd.txt
+> @@ -0,0 +1,38 @@
+> +Spreadtrum PWM controller
+> +
+> +Spreadtrum SoCs PWM controller provides 4 PWM channels.
+> +
+> +Required porperties:
 
-Virtual nodes are not OK.
+s/porperties/properties/
 
->
-> >> +required:
-> >> +  - compatible
-> >> +  - clocks
-> >
-> > reg?
->
-> This is deliberately optional: for some NICs the GPV register area is
-> not exposed in the memory map. This is unusual but an accurate
-> description of the hardware.
+> +- compatible : Should be "sprd,ums512-pwm".
+> +- reg: Physical base address and length of the controller's registers.
+> +- clocks: The phandle and specifier referencing the controller's clocks.
+> +- clock-names: Should contain following entries:
+> +  "pwmn": used to derive the functional clock for PWM channel n (n range: 0 ~ 3).
+> +  "enablen": for PWM channel n enable clock (n range: 0 ~ 3).
+> +- assigned-clocks: Reference to the PWM clock entroes.
 
-Different h/w blocks should have different compatibles. GPV is an Arm
-thing and I'd expect FlexNOC to be different.
+s/entroes/entries/
 
-> The current driver doesn't even attempt to map registers, it only
-> adjusts the clock.
+> +- assigned-clock-parents: The phandle of the parent clock of PWM clock.
 
-Irrelevant to the binding...
+I'm not sure you need to point out assigned-clocks and
+assigned-clock-parents as this is general clk stuff. Also I wonder if
+these should be "required properties".
 
->
-> >> +examples:
-> >> +  - |
-> >> +    #include <dt-bindings/clock/imx8mm-clock.h>
-> >> +    noc: noc@32700000 {
-> >> +            compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
-> >
-> > Doesn't match the schema. (Well, it does with 'contains', but
-> > fsl,imx8mm-noc is not documented.)
->
-> I'm confused about how per-SOC compatible strings works with validation.
-> There is a rule that every SOC dtsi needs to add soc prefix to all
-> device nodes but of_device_id in driver code doesn't need to be updated.
->
-> Without using "contains" on the "compatible" property then all
-> SOC-specific compatible strings would need to be mentioned in every yaml
-> files. Unless I'm missing something this means updating update every
-> binding file for each new SOC?
+> +- #pwm-cells: Should be 2. See pwm.txt in this directory for a description of
+> +  the cells format.
 
-Yes. The main exception is if various SoCs are just packaging,
-binning, or fuse differences.
+Best regards
+Uwe
 
->
-> I guess it can be useful because it also validates the compatible
-> sequence itself.
-
-Right. Order matters.
-
->
-> For this current example something like this seems to work:
->
->    compatible:
->      oneOf:
->        - items:
->          - enum:
->            - fsl,imx8mm-nic
->            - fsl,imx8mq-nic
->          - const: fsl,imx8m-nic
->        - items:
->          - enum:
->            - fsl,imx8mm-noc
->            - fsl,imx8mq-noc
->          - const: fsl,imx8m-noc
-
-Looks correct.
-
-Rob
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
