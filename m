@@ -2,318 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE6AA8AF27
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 08:05:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B2E88AF38
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 08:08:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727232AbfHMGFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 02:05:09 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:35933 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725842AbfHMGFI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 02:05:08 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 95673FF806;
-        Tue, 13 Aug 2019 06:05:03 +0000 (UTC)
-Date:   Tue, 13 Aug 2019 08:05:02 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for
- PLL_MIPI
-Message-ID: <20190813060502.teeevudz6cjn35tl@flea>
-References: <20190703114933.u3x4ej3v7ocewvif@flea>
- <CAOf5uw=ZEvMV1hFQE986rNG_ctpReGbjbZzv0m=OzKPdBh57uQ@mail.gmail.com>
- <20190711100100.cty3s6rs3w27low6@flea>
- <CAOf5uw=3fiMuhcj3kDtCaGNTsxHKRrYb79MXZ+yUZtmf0jU10A@mail.gmail.com>
- <20190720065830.zn3txpyduakywcva@flea>
- <CAMty3ZDE1xiNgHVLihH378dY5szzkr14V-fwLZdvPs12tY+G1A@mail.gmail.com>
- <20190720093202.6fn6xmhvsgawscnu@flea>
- <CAMty3ZDpOA1mD77t3RB6hEG7o3+ws8y64m1DU8=3HdZ4zy4AUw@mail.gmail.com>
- <20190724090513.vqnlmya3nqkl6pmu@flea>
- <CAOf5uwkvCs62zHcUoFuJwau_ZZFdnVf8ua6JY_wzUb9m8rLTTw@mail.gmail.com>
+        id S1726808AbfHMGH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 02:07:57 -0400
+Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:1276 "EHLO
+        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725815AbfHMGH4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 02:07:56 -0400
+Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
+        by mx0b-00128a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7D62sAp027716;
+        Tue, 13 Aug 2019 02:07:47 -0400
+Received: from nam01-by2-obe.outbound.protection.outlook.com (mail-by2nam01lp2058.outbound.protection.outlook.com [104.47.34.58])
+        by mx0b-00128a01.pphosted.com with ESMTP id 2u9tj5y8fp-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Tue, 13 Aug 2019 02:07:47 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NuTIrEFy8b6jNkhILf7t+6kP4xEmRgBIab2Gt56eKlWvb0n2coqxLz9LV9vPN3J5UAZfpwCMYvSOqcDiXgd1ZxlTX1mvIatHO6wvLBeWWhVVhntSb1CDWj1/Fubz7qHXReouZZEuHOo75OC0z6OJ6nMQCJGihin9doLHbpx75w8He/Bs1S0lYGOHSpSuV99orwU4B7N833ssgil7s1v4Ek+UkN8+5nN9eO6vOcGkJ8y7nZWiO3DvX3Mj4q9l1/sjnsUiVEnRPEAFinbrcARxFQTdRfh3NgHq/DUl/TDSVK1Upv5PIE41vk2PtkA4Ib2YmK5GmfBSUgZoS9WYR6wGEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0B+Ew7GmyxOp5jRdm7XGKPoJKSq6BMme89mdT5ndIoY=;
+ b=ZJbs1QpdqA1vFXQ5T8TcrcHLwkXRxKVmSc1d6NgsRrKjLyIwLf3y4k+XiOCXmKlwtB345SyHvmZgH4ZjvPc5OEpbhnEE/JsfB7+AB4/DBFDlGiGdseC7uoEALOQRmp2bSWd7U6eVKDFjcnRrsK6VljFrH4qS3w9yZ1hSyaOIFx79YmwmTFnuIUbuY2CXawpejUpzjpcuoY9HV3qG5N6XYI/5uTEMP+VJ07tr66BnL0AiOpUNp4ecw0WhDQW2SVdbbOGFDikkSkYUsQIKc9XyUXTatMF+yQ4CUZiv7XR1cz46cWHPucGwSs6PHtOv7lKxAWQ8DRV4l9q7yjmbvrh0Ag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 137.71.25.57) smtp.rcpttodomain=kernel.org smtp.mailfrom=analog.com;
+ dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0B+Ew7GmyxOp5jRdm7XGKPoJKSq6BMme89mdT5ndIoY=;
+ b=qOCgDTyjCKsR2PkrCkrjxsxKKYcJGquN/SHMj4q/lEMqiKk2YpMarKhR0ErCPzDVoA/iSm47b5hOeRA/aOD2kyfOZsOw74awU6BbmLuGFJPLRp798P0bbDvIB1+IOnf1zm2WRxmIHvMhy8NV8VPF8UzaqhW2vtImRvYPiU7qdY8=
+Received: from BN3PR03CA0116.namprd03.prod.outlook.com (2603:10b6:400:4::34)
+ by SN6PR03MB3693.namprd03.prod.outlook.com (2603:10b6:805:42::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2157.18; Tue, 13 Aug
+ 2019 06:07:45 +0000
+Received: from CY1NAM02FT027.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e45::204) by BN3PR03CA0116.outlook.office365.com
+ (2603:10b6:400:4::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2157.15 via Frontend
+ Transport; Tue, 13 Aug 2019 06:07:45 +0000
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
+Received: from nwd2mta2.analog.com (137.71.25.57) by
+ CY1NAM02FT027.mail.protection.outlook.com (10.152.75.159) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2157.15
+ via Frontend Transport; Tue, 13 Aug 2019 06:07:44 +0000
+Received: from NWD2HUBCAS9.ad.analog.com (nwd2hubcas9.ad.analog.com [10.64.69.109])
+        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x7D67hdA022694
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Mon, 12 Aug 2019 23:07:43 -0700
+Received: from NWD2MBX7.ad.analog.com ([fe80::190e:f9c1:9a22:9663]) by
+ NWD2HUBCAS9.ad.analog.com ([fe80::44a2:871b:49ab:ea47%12]) with mapi id
+ 14.03.0415.000; Tue, 13 Aug 2019 02:07:43 -0400
+From:   "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
+To:     "andrew@lunn.ch" <andrew@lunn.ch>
+CC:     "davem@davemloft.net" <davem@davemloft.net>,
+        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v4 13/14] net: phy: adin: add ethtool get_stats support
+Thread-Topic: [PATCH v4 13/14] net: phy: adin: add ethtool get_stats support
+Thread-Index: AQHVUQB9ToIHSOhtHEuH64MPKOTzBKb31POAgAEG7IA=
+Date:   Tue, 13 Aug 2019 06:07:42 +0000
+Message-ID: <3d020fd22f253f32622b6d150a4387ed0707f587.camel@analog.com>
+References: <20190812112350.15242-1-alexandru.ardelean@analog.com>
+         <20190812112350.15242-14-alexandru.ardelean@analog.com>
+         <20190812142637.GR14290@lunn.ch>
+In-Reply-To: <20190812142637.GR14290@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.48.65.113]
+x-adiroutedonprem: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <5D338A71FCC7B44D874882A971DDBE26@analog.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAOf5uwkvCs62zHcUoFuJwau_ZZFdnVf8ua6JY_wzUb9m8rLTTw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(39860400002)(346002)(136003)(376002)(2980300002)(189003)(199004)(2351001)(426003)(316002)(436003)(8676002)(118296001)(54906003)(336012)(1730700003)(486006)(126002)(106002)(2906002)(11346002)(7636002)(6116002)(2616005)(476003)(3846002)(446003)(305945005)(76176011)(86362001)(7736002)(6916009)(229853002)(478600001)(4326008)(5640700003)(23676004)(2486003)(14454004)(47776003)(2501003)(26005)(70586007)(5660300002)(70206006)(186003)(356004)(50466002)(7696005)(246002)(36756003)(14444005)(6246003)(102836004)(8936002);DIR:OUT;SFP:1101;SCL:1;SRVR:SN6PR03MB3693;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;MX:1;A:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7f8608b7-bc66-4c22-c428-08d71fb48ee2
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328)(7193020);SRVR:SN6PR03MB3693;
+X-MS-TrafficTypeDiagnostic: SN6PR03MB3693:
+X-Microsoft-Antispam-PRVS: <SN6PR03MB36935B65BA9289D118F131ABF9D20@SN6PR03MB3693.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-Forefront-PRVS: 01283822F8
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: G2WoUbkOIWvI3F2jkO+bsVuASV5va8+StfBkpD5vMvFNGy3vGyNfoWnT6h9T7+cioahXHM5gX0UxxmVQD6L7XdAOV3/7Y2sAG8YR35IH3OwOGWasHrSWmPWQI/o5lK0M/G2AFwYiWOTnXp9fI69rJ8XWehgPMQ9hYKqm8Q2QjBu8oIlff0fO9ZoyWhJGjbhaoBSV95FMkR7u8JlAV9tcr9NJwzBRLV8apwl7ZF9nUyrJ9fNIZTkNrKbymLn8yGuB6D4DCrQdz0lZfEZs6BBsXuZzf0vvgOVIKLshudpUf4xjJ/riBi3FZuqne6BdOjkH+f6zf38/ZCVIBxUcq14jfmnd0Tc+GFFXUy9RZzNe2gjnPmD7TPt+/XsjPzLb/Nsu0oWfYG/al3PYijK/eRWBzhSUV0cS5oo7i7cdg6aLV+I=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Aug 2019 06:07:44.2490
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7f8608b7-bc66-4c22-c428-08d71fb48ee2
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR03MB3693
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-13_01:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908130066
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 08:59:04AM +0200, Michael Nazzareno Trimarchi wrote:
-> Hi
->
-> On Wed, Jul 24, 2019 at 11:05 AM Maxime Ripard
-> <maxime.ripard@bootlin.com> wrote:
-> >
-> > On Mon, Jul 22, 2019 at 03:51:04PM +0530, Jagan Teki wrote:
-> > > Hi Maxime,
-> > >
-> > > On Sat, Jul 20, 2019 at 3:02 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > >
-> > > > On Sat, Jul 20, 2019 at 12:46:27PM +0530, Jagan Teki wrote:
-> > > > > On Sat, Jul 20, 2019 at 12:28 PM Maxime Ripard
-> > > > > <maxime.ripard@bootlin.com> wrote:
-> > > > > >
-> > > > > > On Thu, Jul 11, 2019 at 07:43:16PM +0200, Michael Nazzareno Trimarchi wrote:
-> > > > > > > > > tcon-pixel clock is the rate that you want to achive on display side
-> > > > > > > > > and if you have 4 lanes 32bit or lanes and different bit number that
-> > > > > > > > > you need to have a clock that is able to put outside bits and speed
-> > > > > > > > > equal to pixel-clock * bits / lanes. so If you want a pixel-clock of
-> > > > > > > > > 40 mhz and you have 32bits and 4 lanes you need to have a clock of
-> > > > > > > > > 40 * 32 / 4 in no-burst mode. I think that this is done but most of
-> > > > > > > > > the display.
-> > > > > > > >
-> > > > > > > > So this is what the issue is then?
-> > > > > > > >
-> > > > > > > > This one does make sense, and you should just change the rate in the
-> > > > > > > > call to clk_set_rate in sun4i_tcon0_mode_set_cpu.
-> > > > > > > >
-> > > > > > > > I'm still wondering why that hasn't been brought up in either the
-> > > > > > > > discussion or the commit log before though.
-> > > > > > > >
-> > > > > > > Something like this?
-> > > > > > >
-> > > > > > > drivers/gpu/drm/sun4i/sun4i_tcon.c     | 20 +++++++++++---------
-> > > > > > >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  2 --
-> > > > > > >  2 files changed, 11 insertions(+), 11 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > > > > > > b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > > > > > > index 64c43ee6bd92..42560d5c327c 100644
-> > > > > > > --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > > > > > > +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > > > > > > @@ -263,10 +263,11 @@ static int sun4i_tcon_get_clk_delay(const struct
-> > > > > > > drm_display_mode *mode,
-> > > > > > >  }
-> > > > > > >
-> > > > > > >  static void sun4i_tcon0_mode_set_common(struct sun4i_tcon *tcon,
-> > > > > > > -                                       const struct drm_display_mode *mode)
-> > > > > > > +                                       const struct drm_display_mode *mode,
-> > > > > > > +                                       u32 tcon_mul)
-> > > > > > >  {
-> > > > > > >         /* Configure the dot clock */
-> > > > > > > -       clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
-> > > > > > > +       clk_set_rate(tcon->dclk, mode->crtc_clock * tcon_mul * 1000);
-> > > > > > >
-> > > > > > >         /* Set the resolution */
-> > > > > > >         regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
-> > > > > > > @@ -335,12 +336,13 @@ static void sun4i_tcon0_mode_set_cpu(struct
-> > > > > > > sun4i_tcon *tcon,
-> > > > > > >         u8 bpp = mipi_dsi_pixel_format_to_bpp(device->format);
-> > > > > > >         u8 lanes = device->lanes;
-> > > > > > >         u32 block_space, start_delay;
-> > > > > > > -       u32 tcon_div;
-> > > > > > > +       u32 tcon_div, tcon_mul;
-> > > > > > >
-> > > > > > > -       tcon->dclk_min_div = SUN6I_DSI_TCON_DIV;
-> > > > > > > -       tcon->dclk_max_div = SUN6I_DSI_TCON_DIV;
-> > > > > > > +       tcon->dclk_min_div = 4;
-> > > > > > > +       tcon->dclk_max_div = 127;
-> > > > > > >
-> > > > > > > -       sun4i_tcon0_mode_set_common(tcon, mode);
-> > > > > > > +       tcon_mul = bpp / lanes;
-> > > > > > > +       sun4i_tcon0_mode_set_common(tcon, mode, tcon_mul);
-> > > > > > >
-> > > > > > >         /* Set dithering if needed */
-> > > > > > >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
-> > > > > > > @@ -366,7 +368,7 @@ static void sun4i_tcon0_mode_set_cpu(struct
-> > > > > > > sun4i_tcon *tcon,
-> > > > > > >          */
-> > > > > > >         regmap_read(tcon->regs, SUN4I_TCON0_DCLK_REG, &tcon_div);
-> > > > > > >         tcon_div &= GENMASK(6, 0);
-> > > > > > > -       block_space = mode->htotal * bpp / (tcon_div * lanes);
-> > > > > > > +       block_space = mode->htotal * tcon_div * tcon_mul;
-> > > > > > >         block_space -= mode->hdisplay + 40;
-> > > > > > >
-> > > > > > >         regmap_write(tcon->regs, SUN4I_TCON0_CPU_TRI0_REG,
-> > > > > > > @@ -408,7 +410,7 @@ static void sun4i_tcon0_mode_set_lvds(struct
-> > > > > > > sun4i_tcon *tcon,
-> > > > > > >
-> > > > > > >         tcon->dclk_min_div = 7;
-> > > > > > >         tcon->dclk_max_div = 7;
-> > > > > > > -       sun4i_tcon0_mode_set_common(tcon, mode);
-> > > > > > > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
-> > > > > > >
-> > > > > > >         /* Set dithering if needed */
-> > > > > > >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
-> > > > > > > @@ -487,7 +489,7 @@ static void sun4i_tcon0_mode_set_rgb(struct
-> > > > > > > sun4i_tcon *tcon,
-> > > > > > >
-> > > > > > >         tcon->dclk_min_div = 6;
-> > > > > > >         tcon->dclk_max_div = 127;
-> > > > > > > -       sun4i_tcon0_mode_set_common(tcon, mode);
-> > > > > > > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
-> > > > > > >
-> > > > > > >         /* Set dithering if needed */
-> > > > > > >         sun4i_tcon0_mode_set_dithering(tcon, connector);
-> > > > > > > diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > > > > > > b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > > > > > > index 5c3ad5be0690..a07090579f84 100644
-> > > > > > > --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > > > > > > +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > > > > > > @@ -13,8 +13,6 @@
-> > > > > > >  #include <drm/drm_encoder.h>
-> > > > > > >  #include <drm/drm_mipi_dsi.h>
-> > > > > > >
-> > > > > > > -#define SUN6I_DSI_TCON_DIV     4
-> > > > > > > -
-> > > > > > >  struct sun6i_dsi {
-> > > > > > >         struct drm_connector    connector;
-> > > > > > >         struct drm_encoder      encoder;
-> > > > > >
-> > > > > > I had more something like this in mind:
-> > > > > > http://code.bulix.org/nlp5a4-803511
-> > > > >
-> > > > > Worth to look at it. was it working on your panel? meanwhile I will check it.
-> > > >
-> > > > I haven't tested it.
-> > > >
-> > > > > We have updated with below change [1], seems working on but is
-> > > > > actually checking the each divider as before start with 4... till 127.
-> > > > >
-> > > > > This new approach, is start looking the best divider from 4.. based on
-> > > > > the idea vs rounded it will ended up best divider like [2]
-> > > >
-> > > > But why?
-> > > >
-> > > > I mean, it's not like it's the first time I'm asking this...
-> > > >
-> > > > If the issue is what Micheal described, then the divider has nothing
-> > > > to do with it. We've had that discussion over and over again.
-> > >
-> > > This is what Michael is mentioned in above mail "tcon-pixel clock is
-> > > the rate that you want to achive on display side and if you have 4
-> > > lanes 32bit or lanes and different bit number that you need to have
-> > > a clock that is able to put outside bits and speed equal to
-> > > pixel-clock * bits / lanes. so If you want a pixel-clock of 40 mhz
-> > > and you have 32bits and 4 lanes you need to have a clock of 40 * 32
-> > > / 4 in no-burst mode. "
-> >
-> > Yeah, so we need to change the clock rate.
-> >
-> > > He is trying to manage the bpp/lanes into dclk_mul (in last mail)
-> > > and it can multiply with pixel clock which is rate argument in
-> > > sun4i_dclk_round_rate.
-> > >
-> > > The solution I have mentioned in dclk_min, max is bpp/lanes also
-> > > multiple rate in dotclock sun4i_dclk_round_rate.
-> > >
-> > > In both cases the overall pll_rate depends on dividers, the one that I
-> > > have on this patch is based on BSP and the Michael one is more generic
-> > > way so-that it can not to touch other functionalities and looping
-> > > dividers to find the best one.
-> > >
-> > > If dclk_min/max is bpp/lanes then dotclock directly using divider 6
-> > > (assuming 24-bit and 4 lanes) and return the pll_rate and divider 6
-> > > associated.
-> > >
-> > > if dclk_mul is bpp/lanes, on Michael new change, the dividers start
-> > > with 4 and end with 127 but the constant ideal rate which rate *
-> > > bpp/lanes but the loop from sun4i_dclk_round_rate computed the divider
-> > > as 6 only, ie what I'm mentioned on the above mail.
-> >
-> > We've been over this a couple of times already.
-> >
-> > The clock is generated like this:
-> >
-> > PLL -> TCON Module Clock -> TCON DCLK
-> >
-> > You want the TCON DCLK to be at the pixel clock rate * bpp /
-> > lanes. Fine, that makes sense.
-> >
-> > Except that the patch you've sent, instead of changing the rate
-> > itself, changes the ratio between the module clock and DCLK.
-> >
-> > And this is where the issue lies. First, from a logical viewpoint, it
-> > doesn't make sense. If you want to change the clock rate, then just do
-> > it. Don't hack around the multipliers trying to fall back to something
-> > that works for you.
-> >
-> > Then, the ratio itself needs to be set to 4. This is the part that
-> > we've discussed way too many times already, but in the Allwinner BSP,
-> > that ratio is hardcoded to 4, and we've had panels that need it at
-> > that value.
-> >
-> > So, what you want to do is to have:
-> >
-> > TCON DCLK = pixel clock * bpp / lanes
-> > TCON Module Clock = DCLK * 4
-> > PLL = Module Clock * Module Clock Divider (which I believe is 1 in most cases)
->
->   pll-mipi                       1        1        1   178200000
->    0     0  50000
->           tcon0                       2        2        1   178200000
->         0     0  50000
->              tcon-pixel-clock         1        1        1    29700000
->         0     0  50000
-
-Is this before or after your patches?
-
-> This is an english problem from my side:
-> tcon-pixel-clock is DCLK
-> tcon0 must be tcon-pixel-clock * bpp / lanes, because the logic need to
-> put a bit every cycle.
-
-Again, I'm not saying this is wrong, but each time I've looked at it
-the BSP was using a 4 divider between the tcon module clock and the
-dotclock.
-
-So, please prove me wrong here.
-
-> One solution can be:
-> - set_rate_exclusive to tcon0 and calculate as display pixel clock *
-> bpp  / lanes
-
-I'm not sure what set_rate_exclusive has to do with it. I mean, it's a
-good idea to use it, but it shouldn't really change anything to the
-discussion.
-
-> - calculate the tcon-pixel-clock using all divider
-
-I'm not sure what you mean by that.
-
-> Problem is that the function that calculate tcon-pixel-clock does not
-> have any constrain on the ideal value.
-
-It does have constraints, but you're right that it will not try to
-find an exact match and bail out if it can't do it, but will find the
-closest match.
-
-> What you are suggesting is not correct in my opinion or I'm not
-> following your suggesstion.
-
-Then prove me wrong.
-
-> What I know is that if we have a pixel-clock of dvi display of 50Mhz
-> and we have 4 lanes 32bit we need a clock in the logic of 400Mhz
-> (this is the ideal throughtput).
-> So tcon-pixel-clock is 50mhz and tcon0 is 400Mhz.
-
-There's one thing to keep in mind though. The TCON dotclock in the
-MIPI-DSI case isn't directly tied to the Bit Clock, it's simply an
-internal clock in the pipeline to feed the FIFO of the MIPI-DSI
-controller. The MIPI-DSI controller itself will generate that clock,
-and only that one will have those constraints.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+T24gTW9uLCAyMDE5LTA4LTEyIGF0IDE2OjI2ICswMjAwLCBBbmRyZXcgTHVubiB3cm90ZToNCj4g
+W0V4dGVybmFsXQ0KPiANCj4gPiArLyogTmFtZWQganVzdCBsaWtlIGluIHRoZSBkYXRhc2hlZXQg
+Ki8NCj4gPiArc3RhdGljIHN0cnVjdCBhZGluX2h3X3N0YXQgYWRpbl9od19zdGF0c1tdID0gew0K
+PiA+ICsJeyAiUnhFcnJDbnQiLAkJMHgwMDE0LAl9LA0KPiA+ICsJeyAiTXNlQSIsCQkweDg0MDIs
+CTAsCXRydWUgfSwNCj4gPiArCXsgIk1zZUIiLAkJMHg4NDAzLAkwLAl0cnVlIH0sDQo+ID4gKwl7
+ICJNc2VDIiwJCTB4ODQwNCwJMCwJdHJ1ZSB9LA0KPiA+ICsJeyAiTXNlRCIsCQkweDg0MDUsCTAs
+CXRydWUgfSwNCj4gPiArCXsgIkZjRnJtQ250IiwJCTB4OTQwQSwgMHg5NDBCIH0sIC8qIEZjRnJt
+Q250SCArIEZjRnJtQ250TCAqLw0KPiA+ICsJeyAiRmNMZW5FcnJDbnQiLAkweDk0MEMgfSwNCj4g
+PiArCXsgIkZjQWxnbkVyckNudCIsCTB4OTQwRCB9LA0KPiA+ICsJeyAiRmNTeW1iRXJyQ250IiwJ
+MHg5NDBFIH0sDQo+ID4gKwl7ICJGY09zekNudCIsCQkweDk0MEYgfSwNCj4gPiArCXsgIkZjVXN6
+Q250IiwJCTB4OTQxMCB9LA0KPiA+ICsJeyAiRmNPZGRDbnQiLAkJMHg5NDExIH0sDQo+ID4gKwl7
+ICJGY09kZFByZUNudCIsCTB4OTQxMiB9LA0KPiA+ICsJeyAiRmNEcmliYmxlQml0c0NudCIsCTB4
+OTQxMyB9LA0KPiA+ICsJeyAiRmNGYWxzZUNhcnJpZXJDbnQiLAkweDk0MTQgfSwNCj4gDQo+IEkg
+c2VlIHNvbWUgdmFsdWUgaW4gdXNpbmcgdGhlIG5hbWVzIGZyb20gdGhlIGRhdGFzaGVldC4gSG93
+ZXZlciwgaQ0KPiBmb3VuZCBpdCBxdWl0ZSBoYXJkIHRvIG5vdyB3aGF0IHRoZXNlIGNvdW50ZXJz
+IHJlcHJlc2VudCBnaXZlbiB0aGVyZQ0KPiBjdXJyZW50IG5hbWUuIFdoYXQgaXMgTXNlPyBIb3cg
+ZG9lcyBNc2VBIGRpZmZlciBmcm9tIE1zZUI/IFlvdSBoYXZlIHVwDQo+IHRvIEVUSF9HU1RSSU5H
+X0xFTiBjaGFyYWN0ZXJzLCBzbyBtYXliZSBsb25nZXIgbmFtZXMgd291bGQgYmUgYmV0dGVyPw0K
+DQpJJ2xsIGV4cGFuZCB0aGUgbmFtZXMuDQoNClJlZ2FyZGluZyBNc2VBL0IvQy9ELCBJJ2xsIGFk
+bWl0IEkgYW0gYWxzbyBhIGJpdCBmdXp6eSBhYm91dCB0aGVtLg0KVGhleSBkZXNjcmliZSBsaW5r
+LXF1YWxpdHkgc2V0dGluZ3MsIGFuZCB0aGUgdmFsdWVzIGhhdmUgc29tZSBtZWFuaW5nIHRvIHRo
+ZSBjaGlwIGd1eXMgW3doZW4gSSB0YWxrZWQgd2l0aHQgdGhlbSBhYm91dA0KaXRdLCBidXQgSSBk
+aWQgbm90IGluc2lzdCBvbiBnZXR0aW5nIGEgZGVlcCBleHBsYW5hdGlvbiBhYm91dCB0aGVtIFth
+bmQgd2hhdCB0aGVpciB2YWx1ZXMgcmVwcmVzZW50XS4NCkkgZ3Vlc3MgZm9yIHRoaXMgUEhZIGRy
+aXZlciwgd2UgY291bGQgZHJvcCB0aGVtLCBhbmQgaWYgdGhleSdyZSBuZWVkZWQgdGhleSBjYW4g
+YmUgYWNjZXNzZWQgdmlhIHBoeXRvb2wsIGFuZCBpZiB0aGV5J3JlDQpyZWFsbHkgbmVlZGVkLCBJ
+IGNhbiB0cnkgdG8gYWRkIHRoZW0gbGF0ZXIgd2l0aCBtb3JlIGNvbXBsZXRlIGRldGFpbCBbYWJv
+dXQgdGhlbSBhbmQgdGhlaXIgdXNlL3ZhbHVlXS4NCg0KSSBpbmNsdWRlZCB0aGVtIGhlcmUsIGJl
+Y2F1c2UgdGhleSBhcmUgbGlzdGVkIGluIHRoZSBlcnJvci1jb3VudGVyIHJlZ2lzdGVyICJncm91
+cCIgW2luIHRoZSBkYXRhc2hlZXRdLCBhbmQgSSBpbmVydGlhbGx5DQphZGRlZCB0aGVtLg0KDQo+
+IA0KPiAgICBBbmRyZXcNCg==
