@@ -2,135 +2,436 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07A238BC8C
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 17:09:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E508BCD1
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 17:15:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729982AbfHMPJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 11:09:20 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:45928 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729996AbfHMPJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 11:09:03 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190813150902euoutp0117d38b743bf9fbed56c70b7adb40ecd7~6g-zwnb1_2748427484euoutp01J
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 15:09:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190813150902euoutp0117d38b743bf9fbed56c70b7adb40ecd7~6g-zwnb1_2748427484euoutp01J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1565708942;
-        bh=RSuWB2xKQuhROQTDhZij7BzEdzlLgFlLbdhuBzwZOp4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=FNnU6/LNKWK9Fxz/Eeylw0hL3enUfb1V/kax3zEvxV7KO3CUQlv31gE2+pFsUqXRv
-         nrsYcKPDlvD4NtMUJYpF92TdC3KrcXjIF/RJ4MV0lmUXt12VQ9BIVx2ZMSeVulCubk
-         JYndVcNqx2Q2BLZYJpCEk9wrpcpre52ARtun/qwE=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190813150902eucas1p1f5ce8352c88dcb2283b5d575b316a36c~6g-zCwXJZ2552325523eucas1p1I;
-        Tue, 13 Aug 2019 15:09:02 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 0D.9E.04309.D82D25D5; Tue, 13
-        Aug 2019 16:09:01 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190813150900eucas1p12fbf753613c727d8cb6992b6f77aca80~6g-x4xntO0107601076eucas1p1I;
-        Tue, 13 Aug 2019 15:09:00 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190813150900eusmtrp1ef12e9ff19451c11121bb092049a0cd6~6g-xo0_cP1601316013eusmtrp1_;
-        Tue, 13 Aug 2019 15:09:00 +0000 (GMT)
-X-AuditID: cbfec7f4-ae1ff700000010d5-01-5d52d28d84ff
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id B1.D1.04166.C82D25D5; Tue, 13
-        Aug 2019 16:09:00 +0100 (BST)
-Received: from AMDC3061.DIGITAL.local (unknown [106.120.51.75]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190813150859eusmtip204ac58fffdac289ffdfa45d6d91ec1f8~6g-xDo-_d1702317023eusmtip2E;
-        Tue, 13 Aug 2019 15:08:59 +0000 (GMT)
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-To:     krzk@kernel.org
-Cc:     robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
-        kgene@kernel.org, pankaj.dubey@samsung.com,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, b.zolnierkie@samsung.com,
-        m.szyprowski@samsung.com,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: [PATCH v3 9/9] ARM: dts: Add samsung,asv-bin property for
- odroidxu3-lite
-Date:   Tue, 13 Aug 2019 17:08:27 +0200
-Message-Id: <20190813150827.31972-10-s.nawrocki@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190813150827.31972-1-s.nawrocki@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprCKsWRmVeSWpSXmKPExsWy7djP87q9l4JiDZavMLDYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vFpsfXWC0u75rDZvG59wijxYzz+5gs1h65y26xaOsXdovWvUfYLQ6/aWe1
-        2PzgGJsDr8emVZ1sHpuX1Hv0bVnF6PF5k1wASxSXTUpqTmZZapG+XQJXxsqr5gXf2Cp29t5g
-        bGC8wdrFyMkhIWAicb7rCGMXIxeHkMAKRokZH06yQThfGCUav9xlh3A+M0r0HZoK17Jow21W
-        iMRyRon9LXMY4VomLXkIVsUmYCjRe7SPEcQWERCWuLd0OdgoZoF7TBKnn55lAkkICwRL7Ghv
-        AmtgEVCVuLPuAVgDr4CNxPqLGxgh1slLrN5wgBnE5gSK75z+Hmy1hMBkdolTky8wQxS5SDT9
-        bYSyhSVeHd/CDmHLSJye3MMC0dDMKNGz+zY7hDOBUeL+8QVQK6wlDh+/CDSWA+g+TYn1u/RB
-        TAkBR4krXfwQJp/EjbeCIMXMQOakbdOZIcK8Eh1tQhAzVCR+r5rOBGFLSXQ/+c8CYXtINH76
-        Dw2tfmAwHtnEPIFRfhbCrgWMjKsYxVNLi3PTU4uN8lLL9YoTc4tL89L1kvNzNzEC08rpf8e/
-        7GDc9SfpEKMAB6MSD2/AlqBYIdbEsuLK3EOMEhzMSiK8Ey4ChXhTEiurUovy44tKc1KLDzFK
-        c7AoifNWMzyIFhJITyxJzU5NLUgtgskycXBKNTAKbhW4ZfN6bcvNYsPOqvm/G0271bZ+sq+Z
-        J/9nukh+VvLEvwxBpWx9t7f3sE/Qy0hqiH3Lwvz8dWsg+6VZZYKvr97t6Fq3pVXguW3lhvBV
-        S7r0I+bdmP+Iby9X6eoTd4uORPk3u6QLe7SdL0rdl7DurF2Y2ZrVpRPrGQO4/iZs/LTtqTpj
-        fboSS3FGoqEWc1FxIgDctfmmJwMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrCLMWRmVeSWpSXmKPExsVy+t/xe7o9l4JiDZ5PUbLYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vFpsfXWC0u75rDZvG59wijxYzz+5gs1h65y26xaOsXdovWvUfYLQ6/aWe1
-        2PzgGJsDr8emVZ1sHpuX1Hv0bVnF6PF5k1wAS5SeTVF+aUmqQkZ+cYmtUrShhZGeoaWFnpGJ
-        pZ6hsXmslZGpkr6dTUpqTmZZapG+XYJexsqr5gXf2Cp29t5gbGC8wdrFyMkhIWAisWjDbSCb
-        i0NIYCmjxNObZ5i6GDmAElIS81uUIGqEJf5c62KDqPnEKDF/eSdYM5uAoUTv0T5GEFsEqOje
-        0uXsIEXMAq+YJG7P+88EkhAWCJQ4s2UuC4jNIqAqcWfdA7AGXgEbifUXNzBCbJCXWL3hADOI
-        zQkU3zn9PdgCIQFriafv1jNPYORbwMiwilEktbQ4Nz232FCvODG3uDQvXS85P3cTIzDEtx37
-        uXkH46WNwYcYBTgYlXh4A7YExQqxJpYVV+YeYpTgYFYS4Z1wESjEm5JYWZValB9fVJqTWnyI
-        0RToqInMUqLJ+cD4yyuJNzQ1NLewNDQ3Njc2s1AS5+0QOBgjJJCeWJKanZpakFoE08fEwSnV
-        wJh54eb3R/aLPeUWFdSVbe8MDWfw+8zmOVWPvTvwTcIRputzzTe/uNWv3sJ1fdL/otaqm8lr
-        khcpKBgtbxP7F8Ly3iz12uZtp6bsW8j5bvqtAxo3l7EKqwQfnzl/oveDmC058qLRB0y41hi7
-        T521bmlIUOAx29CoOM+E+/v3sSxZlNQn3aIm2KLEUpyRaKjFXFScCADlvQxshwIAAA==
-X-CMS-MailID: 20190813150900eucas1p12fbf753613c727d8cb6992b6f77aca80
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190813150900eucas1p12fbf753613c727d8cb6992b6f77aca80
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190813150900eucas1p12fbf753613c727d8cb6992b6f77aca80
-References: <20190813150827.31972-1-s.nawrocki@samsung.com>
-        <CGME20190813150900eucas1p12fbf753613c727d8cb6992b6f77aca80@eucas1p1.samsung.com>
+        id S1729941AbfHMPPt convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 13 Aug 2019 11:15:49 -0400
+Received: from foss.arm.com ([217.140.110.172]:38976 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729676AbfHMPPt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 11:15:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 80C3528;
+        Tue, 13 Aug 2019 08:15:47 -0700 (PDT)
+Received: from big-swifty.misterjones.org (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A3B93F706;
+        Tue, 13 Aug 2019 08:15:41 -0700 (PDT)
+Date:   Tue, 13 Aug 2019 16:15:35 +0100
+Message-ID: <868srxnlk8.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Aleix Roca Nonell <kernelrocks@gmail.com>
+Cc:     Andreas =?UTF-8?B?RsOkcmJlcg==?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/6] irqchip: Add Realtek RTD129x intc driver
+In-Reply-To: <20190812082648.GA3694@rocks>
+References: <20190707132256.GC13340@arks.localdomain>
+        <5efa2ccb-9659-443c-7986-8ceb01aa64b9@arm.com>
+        <20190812082648.GA3694@rocks>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+Organization: Approximate
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Exynos5422 SoC used on Odroid XU3 Lite boards belongs to
-a special ASV bin but this information cannot be read from the
-CHIPID block registers. Add samsung,asv-bin property for XU3
-Lite to ensure the ASV bin is properly determined.
+On Mon, 12 Aug 2019 09:26:48 +0100,
+Aleix Roca Nonell <kernelrocks@gmail.com> wrote:
+> 
+> Hi Mark and everyone! Sorry for the large delay, I'm doing this in my
+> free time, which is not that abundant. In this mail, I'm focusing only
+> on the largest change mentioned by Mark. I will answer the rest later.
+> 
+> On Mon, Jul 08, 2019 at 10:36:14AM +0100, Marc Zyngier wrote:
+> > On 07/07/2019 14:22, Aleix Roca Nonell wrote:
+> > > This driver adds support for the RTD1296 and RTD1295 interrupt
+> > > controller (intc). It is based on both the BPI-SINOVOIP project and
+> > > Andreas Färber's previous attempt to submit a similar driver.
+> > > 
+> > > There is currently no publicly available datasheet on this SoC and the
+> > > exact behaviour of the registers controlling the intc remain uncertain.
+> > > 
+> > > This driver controls two intcs: "iso" and "misc". Each intc has its own
+> > > Interrupt Enable Register (IER) and Interrupt Status Resgister (ISR).
+> > 
+> > Register
+> > 
+> > > However, not all "misc" intc irqs have the same offsets for both ISR and
+> > > IER. For this reason an ISR to IER offsets table is defined.
+> > > 
+> > > The driver catches the IER value to reduce accesses to the table inside the
+> > > interrupt handler. Actually, the driver stores the ISR offsets of currently
+> > > enabled interrupts in a variable.
+> > > 
+> > > Signed-off-by: Aleix Roca Nonell <kernelrocks@gmail.com>
+> > 
+> > I expect Andreas and you to sort the attribution issue. I'm certainly
+> > not going to take this in if things are unclear.
+> > 
+> > > ---
+> > >  drivers/irqchip/Makefile      |   1 +
+> > >  drivers/irqchip/irq-rtd129x.c | 371 ++++++++++++++++++++++++++++++++++
+> > >  2 files changed, 372 insertions(+)
+> > >  create mode 100644 drivers/irqchip/irq-rtd129x.c
+> > > 
+> > > diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> > > index 606a003a0000..0689c3956250 100644
+> > > --- a/drivers/irqchip/Makefile
+> > > +++ b/drivers/irqchip/Makefile
+> > > @@ -100,3 +100,4 @@ obj-$(CONFIG_MADERA_IRQ)		+= irq-madera.o
+> > >  obj-$(CONFIG_LS1X_IRQ)			+= irq-ls1x.o
+> > >  obj-$(CONFIG_TI_SCI_INTR_IRQCHIP)	+= irq-ti-sci-intr.o
+> > >  obj-$(CONFIG_TI_SCI_INTA_IRQCHIP)	+= irq-ti-sci-inta.o
+> > > +obj-$(CONFIG_ARCH_REALTEK)		+= irq-rtd129x.o
+> > > diff --git a/drivers/irqchip/irq-rtd129x.c b/drivers/irqchip/irq-rtd129x.c
+> > > new file mode 100644
+> > > index 000000000000..76358ca50f10
+> > > --- /dev/null
+> > > +++ b/drivers/irqchip/irq-rtd129x.c
+> > > @@ -0,0 +1,371 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +
+> > > +#include <linux/irqchip.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/of_address.h>
+> > > +#include <linux/of_irq.h>
+> > > +#include <linux/irqdomain.h>
+> > > +#include <linux/io.h>
+> > > +#include <linux/spinlock.h>
+> > > +#include <linux/irqchip.h>
+> > > +#include <linux/bits.h>
+> > > +#include <linux/irqchip/chained_irq.h>
+> > > +
+> > > +#define RTD129X_INTC_NR_IRQS 32
+> > > +#define DEV_NAME "RTD1296_INTC"
+> > > +
+> > > +/*
+> > > + * This interrupt controller (hereinafter intc) driver controls two intcs: "iso"
+> > > + * and "misc". Each intc has its own Interrupt Enable Register (IER) and
+> > > + * Interrupt Status Resgister (ISR). However, not all "misc" intc irqs have the
+> > > + * same offsets for both ISR and IER. For this reason an ISR to IER offsets
+> > > + * table is defined. Also, to reduce accesses to this table in the interrupt
+> > > + * handler, the driver stores the ISR offsets of currently enabled interrupts in
+> > > + * a variable.
+> > > + */
+> > > +
+> > > +enum misc_int_en {
+> > > +	MISC_INT_FAIL		= 0xFF,
+> > > +	MISC_INT_RVD		= 0xFE,
+> > > +	MISC_INT_EN_FAN		= 29,
+> > > +	MISC_INT_EN_I2C3	= 28,
+> > > +	MISC_INT_EN_GSPI	= 27,
+> > > +	MISC_INT_EN_I2C2	= 26,
+> > > +	MISC_INT_EN_SC0		= 24,
+> > > +	MISC_INT_EN_LSADC1	= 22,
+> > > +	MISC_INT_EN_LSADC0	= 21,
+> > > +	MISC_INT_EN_GPIODA	= 20,
+> > > +	MISC_INT_EN_GPIOA	= 19,
+> > > +	MISC_INT_EN_I2C4	= 15,
+> > > +	MISC_INT_EN_I2C5	= 14,
+> > > +	MISC_INT_EN_RTC_DATA	= 12,
+> > > +	MISC_INT_EN_RTC_HOUR	= 11,
+> > > +	MISC_INT_EN_RTC_MIN	= 10,
+> > > +	MISC_INT_EN_UR2		= 7,
+> > > +	MISC_INT_EN_UR2_TO	= 6,
+> > > +	MISC_INT_EN_UR1_TO	= 5,
+> > > +	MISC_INT_EN_UR1		= 3,
+> > > +};
+> > > +
+> > > +enum iso_int_en {
+> > > +	ISO_INT_FAIL		= 0xFF,
+> > > +	ISO_INT_RVD		= 0xFE,
+> > > +	ISO_INT_EN_I2C1_REQ	= 31,
+> > > +	ISO_INT_EN_GPHY_AV	= 30,
+> > > +	ISO_INT_EN_GPHY_DV	= 29,
+> > > +	ISO_INT_EN_GPIODA	= 20,
+> > > +	ISO_INT_EN_GPIOA	= 19,
+> > > +	ISO_INT_EN_RTC_ALARM	= 13,
+> > > +	ISO_INT_EN_RTC_HSEC	= 12,
+> > > +	ISO_INT_EN_I2C1		= 11,
+> > > +	ISO_INT_EN_I2C0		= 8,
+> > > +	ISO_INT_EN_IRDA		= 5,
+> > > +	ISO_INT_EN_UR0		= 2,
+> > > +};
+> > > +
+> > > +unsigned char rtd129x_intc_enable_map_misc[RTD129X_INTC_NR_IRQS] = {
+> > > +	MISC_INT_FAIL,		/* Bit0 */
+> > > +	MISC_INT_FAIL,		/* Bit1 */
+> > > +	MISC_INT_RVD,		/* Bit2 */
+> > > +	MISC_INT_EN_UR1,	/* Bit3 */
+> > > +	MISC_INT_FAIL,		/* Bit4 */
+> > > +	MISC_INT_EN_UR1_TO,	/* Bit5 */
+> > > +	MISC_INT_RVD,		/* Bit6 */
+> > > +	MISC_INT_RVD,		/* Bit7 */
+> > > +	MISC_INT_EN_UR2,	/* Bit8 */
+> > > +	MISC_INT_RVD,		/* Bit9 */
+> > > +	MISC_INT_EN_RTC_MIN,	/* Bit10 */
+> > > +	MISC_INT_EN_RTC_HOUR,	/* Bit11 */
+> > > +	MISC_INT_EN_RTC_DATA,	/* Bit12 */
+> > > +	MISC_INT_EN_UR2_TO,	/* Bit13 */
+> > > +	MISC_INT_EN_I2C5,	/* Bit14 */
+> > > +	MISC_INT_EN_I2C4,	/* Bit15 */
+> > > +	MISC_INT_FAIL,		/* Bit16 */
+> > > +	MISC_INT_FAIL,		/* Bit17 */
+> > > +	MISC_INT_FAIL,		/* Bit18 */
+> > > +	MISC_INT_EN_GPIOA,	/* Bit19 */
+> > > +	MISC_INT_EN_GPIODA,	/* Bit20 */
+> > > +	MISC_INT_EN_LSADC0,	/* Bit21 */
+> > > +	MISC_INT_EN_LSADC1,	/* Bit22 */
+> > > +	MISC_INT_EN_I2C3,	/* Bit23 */
+> > > +	MISC_INT_EN_SC0,	/* Bit24 */
+> > > +	MISC_INT_FAIL,		/* Bit25 */
+> > > +	MISC_INT_EN_I2C2,	/* Bit26 */
+> > > +	MISC_INT_EN_GSPI,	/* Bit27 */
+> > > +	MISC_INT_FAIL,		/* Bit28 */
+> > > +	MISC_INT_EN_FAN,	/* Bit29 */
+> > > +	MISC_INT_FAIL,		/* Bit30 */
+> > > +	MISC_INT_FAIL		/* Bit31 */
+> > > +};
+> > > +
+> > > +unsigned char rtd129x_intc_enable_map_iso[RTD129X_INTC_NR_IRQS] = {
+> > > +	ISO_INT_FAIL,		/* Bit0 */
+> > > +	ISO_INT_RVD,		/* Bit1 */
+> > > +	ISO_INT_EN_UR0,		/* Bit2 */
+> > > +	ISO_INT_FAIL,		/* Bit3 */
+> > > +	ISO_INT_FAIL,		/* Bit4 */
+> > > +	ISO_INT_EN_IRDA,	/* Bit5 */
+> > > +	ISO_INT_FAIL,		/* Bit6 */
+> > > +	ISO_INT_RVD,		/* Bit7 */
+> > > +	ISO_INT_EN_I2C0,	/* Bit8 */
+> > > +	ISO_INT_RVD,		/* Bit9 */
+> > > +	ISO_INT_FAIL,		/* Bit10 */
+> > > +	ISO_INT_EN_I2C1,	/* Bit11 */
+> > > +	ISO_INT_EN_RTC_HSEC,	/* Bit12 */
+> > > +	ISO_INT_EN_RTC_ALARM,	/* Bit13 */
+> > > +	ISO_INT_FAIL,		/* Bit14 */
+> > > +	ISO_INT_FAIL,		/* Bit15 */
+> > > +	ISO_INT_FAIL,		/* Bit16 */
+> > > +	ISO_INT_FAIL,		/* Bit17 */
+> > > +	ISO_INT_FAIL,		/* Bit18 */
+> > > +	ISO_INT_EN_GPIOA,	/* Bit19 */
+> > > +	ISO_INT_EN_GPIODA,	/* Bit20 */
+> > > +	ISO_INT_RVD,		/* Bit21 */
+> > > +	ISO_INT_RVD,		/* Bit22 */
+> > > +	ISO_INT_RVD,		/* Bit23 */
+> > > +	ISO_INT_RVD,		/* Bit24 */
+> > > +	ISO_INT_FAIL,		/* Bit25 */
+> > > +	ISO_INT_FAIL,		/* Bit26 */
+> > > +	ISO_INT_FAIL,		/* Bit27 */
+> > > +	ISO_INT_FAIL,		/* Bit28 */
+> > > +	ISO_INT_EN_GPHY_DV,	/* Bit29 */
+> > > +	ISO_INT_EN_GPHY_AV,	/* Bit30 */
+> > > +	ISO_INT_EN_I2C1_REQ	/* Bit31 */
+> > > +};
+> > > +
+> > > +struct rtd129x_intc_data {
+> > > +	void __iomem		*unmask;
+> > > +	void __iomem		*isr;
+> > > +	void __iomem		*ier;
+> > > +	u32			ier_cached;
+> > > +	u32			isr_en;
+> > > +	raw_spinlock_t		lock;
+> > > +	unsigned int		parent_irq;
+> > > +	const unsigned char	*en_map;
+> > > +};
+> > > +
+> > > +static struct irq_domain *rtd129x_intc_domain;
+> > > +
+> > > +static void rtd129x_intc_irq_handle(struct irq_desc *desc)
+> > > +{
+> > > +	struct rtd129x_intc_data *priv = irq_desc_get_handler_data(desc);
+> > > +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> > > +	unsigned int local_irq;
+> > > +	u32 status;
+> > > +	int i;
+> > > +
+> > > +	chained_irq_enter(chip, desc);
+> > > +
+> > > +	raw_spin_lock(&priv->lock);
+> > > +	status = readl_relaxed(priv->isr);
+> > > +	status &= priv->isr_en;
+> > > +	raw_spin_unlock(&priv->lock);
+> > 
+> > What is this lock protecting? isr_en?
+> > 
+> > > +
+> > > +	while (status) {
+> > > +		i = __ffs(status);
+> > > +		status &= ~BIT(i);
+> > > +
+> > > +		local_irq = irq_find_mapping(rtd129x_intc_domain, i);
+> > > +		if (likely(local_irq)) {
+> > > +			if (!generic_handle_irq(local_irq))
+> > > +				writel_relaxed(BIT(i), priv->isr);
+> > 
+> > What are the write semantics of the ISR register? Hot bit clear? How
+> > does it work since mask() does the same thing? Clearly, something is
+> > wrong here.
+> 
+> Sorry but I have not been able to found the definition of "hot bit
+> clear", could you explain it? Anyways, you were right, apparently the
+> mask/unmask code were doing nothing useful. More on this below.
 
-Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
----
-Changes since v2:
- - none
+A hot-bit clear (or set) is a register where to write the bits that
+you want to clear (or set), leaving alone the bits that are written as
+zero. For example:
 
-Changes since v1 (RFC):
- - new patch
----
- arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+REG = 0xFFFF
+clear_reg(0x1001)
+REG = 0x7FFE
+set_reg(0x1000)
+REG = 0xFFFE
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts b/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts
-index c19b5a51ca44..a31ca2ef750f 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts
-@@ -26,6 +26,10 @@
- 	status = "disabled";
- };
- 
-+&chipid {
-+	samsung,asv-bin = <2>;
-+};
-+
- &pwm {
- 	/*
- 	 * PWM 0 -- fan
+It is extremely useful for registers that need to be accessed
+concurrently (the GIC uses that a lot, for example).
+
+> 
+> > 
+> > > +		} else {
+> > > +			handle_bad_irq(desc);
+> > > +		}
+> > > +	}
+> > > +
+> > > +	chained_irq_exit(chip, desc);
+> > > +}
+> > > +
+> > > +static void rtd129x_intc_mask(struct irq_data *data)
+> > > +{
+> > > +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> > > +
+> > > +	writel_relaxed(BIT(data->hwirq), priv->isr);
+> > > +}
+> > > +
+> > > +static void rtd129x_intc_unmask(struct irq_data *data)
+> > > +{
+> > > +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> > > +
+> > > +	writel_relaxed(BIT(data->hwirq), priv->unmask);
+> > 
+> > What effect does this have on the isr register? The whole mask/unmask
+> > thing seems to be pretty dodgy...
+> > 
+> > > +}
+> > > +
+> > > +static void rtd129x_intc_enable(struct irq_data *data)
+> > > +{
+> > > +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> > > +	unsigned long flags;
+> > > +	u8 en_offset;
+> > > +
+> > > +	en_offset = priv->en_map[data->hwirq];
+> > > +
+> > > +	if ((en_offset != MISC_INT_RVD) && (en_offset != MISC_INT_FAIL)) {
+> > > +		raw_spin_lock_irqsave(&priv->lock, flags);
+> > > +
+> > > +		priv->isr_en |= BIT(data->hwirq);
+> > > +		priv->ier_cached |= BIT(en_offset);
+> > > +		writel_relaxed(priv->ier_cached, priv->ier);
+> > > +
+> > > +		raw_spin_unlock_irqrestore(&priv->lock, flags);
+> > > +	} else if (en_offset == MISC_INT_FAIL) {
+> > > +		pr_err("[%s] Enable irq(%lu) failed\n", DEV_NAME, data->hwirq);
+> > > +	}
+> > > +}
+> > > +
+> > > +static void rtd129x_intc_disable(struct irq_data *data)
+> > > +{
+> > > +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> > > +	unsigned long flags;
+> > > +	u8 en_offset;
+> > > +
+> > > +	en_offset = priv->en_map[data->hwirq];
+> > > +
+> > > +	if ((en_offset != MISC_INT_RVD) && (en_offset != MISC_INT_FAIL)) {
+> > > +		raw_spin_lock_irqsave(&priv->lock, flags);
+> > > +
+> > > +		priv->isr_en &= ~BIT(data->hwirq);
+> > > +		priv->ier_cached &= ~BIT(en_offset);
+> > > +		writel_relaxed(priv->ier_cached, priv->ier);
+> > > +
+> > > +		raw_spin_unlock_irqrestore(&priv->lock, flags);
+> > > +	} else if (en_offset == MISC_INT_FAIL) {
+> > > +		pr_err("[%s] Disable irq(%lu) failed\n", DEV_NAME, data->hwirq);
+> > > +	}
+> > > +}
+> > 
+> > So here's a thought: Why do we need all of this? If mask/unmask do their
+> > job correctly, we could just enable all interrupts in one go (just a
+> > 32bit write) at probe time, and leave all interrupts masked until they
+> > are in use. You could then drop all these silly tables that don't bring
+> > much...
+> 
+> The idea of dropping all those tables look really good to me, that
+> would greatly simplify the code! I have been trying to mask all
+> interrupts on the probe function using the ISR register but while
+> doing so, I realized that it does not work. Writing to ISR does not
+> mask interrupts, apparently it only acknowledges them once they have
+> been triggered. On the scarse available documentation of this Soc I
+> cannot find a mask-like register. It seems interrupts are managed with
+> an ISR and an IER register. So it should be posible to use the enable
+> register to maks/unmask instead. These do work. However, that would
+> mean that we have to keep those ugly tables.
+> 
+> Nonetheless we might still be able to do something else. Please,
+> correct me if I'm wrong, but do we really need to mask/unamsk in this
+> scenario? This is the devised board layout:
+> 
+>            +------+       +----------+       +---------+
+>            |      |       |          |       |         |
+>            | UART |-------|2  INTC   |-------|c  GIC   |
+>            |      |  +----|1         |  +----|b        |
+>            +------+  | +--|0         |  | +--|a        |
+>                      | |  |          |  | |  |         |
+>                      | |  +----------+  | |  +---------+
+>                      |                  |
+> 
+> Once the UART generates an interrupt it passes through the line 2 of
+> the custom realtek interrupt contoller before reaching the GIC's line
+> "c". On the INTC interrupt handler, we call chained_irq_enter/exit
+> to mask/unmask the GIC's "c" line. Because all of this realtek INTC
+> interrupt lines (2,1,0,...) are muxed on the GIC's line "c", this
+> means that while on the INTC interrupt handler it is not possible to
+> send further interrupts on the CPU. Given that interrupts are masked
+> on the GIC, it seems safe to just remove INTC's mask/unmask functions.
+
+No, that's not true. If you cannot mask an individual interrupt at the
+INTC level, it means that the only way to stop a screaming interrupt
+(because the endpoint has crashed or that the kernel doesn't have a
+driver for it) is to disable the interrupt at the GIC level, killing
+all users of the INTC. Also, because the core code doesn't really know
+that the INTC is behind the GIC, it cannot do that automatically.
+
+So if you get into that situation, your system is dead. Believe it or
+not, that's not something I want to see. An irqchip driver without a
+mask callback is a lose grenade, and the pin is in your pocket.
+
+> Therefore, the only work that this INTC handler would needs to do is
+> to acknowledge the interrupt by writing to the ISR, which it could be
+> done in the respective irq_ack callback of struct irq_chip instead of
+> in the handler body.
+> 
+> I have implemented this solution and it seems to work. What do you
+> think? I'm missing something crucial?
+
+See above. Your system is terribly unsafe. Now, I'm pretty sure the
+Realtek folks could help you there. Or you could start trying to
+reverse engineer the thing, which shouldn't really hard (try poking at
+the registers next to the ones you already have).
+
+Thanks,
+
+	M.
+
 -- 
-2.17.1
-
+Jazz is not dead, it just smells funny.
