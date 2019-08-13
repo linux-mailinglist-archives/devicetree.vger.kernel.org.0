@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98BA98B2A0
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 637238B29F
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 10:36:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728235AbfHMIgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 04:36:00 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38301 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728207AbfHMIgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:36:00 -0400
-Received: by mail-wm1-f66.google.com with SMTP id m125so693713wmm.3
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 01:35:58 -0700 (PDT)
+        id S1727974AbfHMIgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 04:36:11 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34852 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728216AbfHMIgC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 04:36:02 -0400
+Received: by mail-wr1-f66.google.com with SMTP id k2so21102724wrq.2
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 01:35:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=B9rsr1/dgfaWkUD61V9rwU3U5jz+C8FjG7cuo0AJp/Q=;
-        b=NIbQsuQ2GpNnu739xoBeBF5FbMINwGQO+uIiIC0oSLND+QmbFVEfIMFPovy+35DF/K
-         wg++6jFE3Z9x5YLYZzPdq3Td/haqQlmOjOe2kkrJEYAeG2DEXu1cUrNyCr8UXuRtNjJ2
-         M8cpQ+NGVZzfmBjrrbQVSi09Fk1hcLN0wTa2gbd8aT6C4hJ/bV1Ty/wgvnZIzTzLNq1C
-         GMCi/GaYWG04/R8YjyoIM97doonDiD9mxrNim+ql2pMM+zsPLw2Il2hxXPIg5EMx5Sva
-         4N/VaFxQyREtZdPogXXXuqNfJn5TUJyO7KtYv/4svBoYj4qUzg1iZ2KBR5awYOXaAwFI
-         NSeg==
+        bh=z0kO6qx1UAc/uP1SKgjN6XAyjR6GuCSBuxXXjXMIpxU=;
+        b=S6PR9JzXSPICGc9iX7ScIdI+yvEgDwS07KOePIvb4JNCloS52ZiFkiLkD0SrbfSAlr
+         tx+/bexwbgnzgqHPM1NMAbmla6cWVfq2lIQn4vIURLvrZI2DNMbE+E+Eo0Ozhz2z7Nww
+         19hwZyd2ta+oIAZrZ7C1Za8PfHj7+xiKLRngp9xGfXtitOnq2aXayuAZ/e+lPUJe8Xvb
+         ucVaLMhkE0mn/Ehdnhut6Wb9yDDiGmLIuH89xPc/Qc97HWuqcLLazqUq2qiFPJsrl+ZD
+         RXfVcnR9j2nd0RoRoibqQU8tc4a+UcOSR13GQ5I7ySC3EaUZu+FIOidQ4xASL32v2XD2
+         FAFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=B9rsr1/dgfaWkUD61V9rwU3U5jz+C8FjG7cuo0AJp/Q=;
-        b=uR/10/CLxNQ20jgKr7rps+dsjtiZZnZaz+vkhj8Sjt4BpW2jy1xvilJcOCs10xYie1
-         51SB+uhkfrQtrtdIgUPQhuK5GDdA/gPIqWjGnXr1l0RVN9/wIjmVmgMjuDyfBz/uQfzq
-         raMLjbv+FAR2DAIzwAU1jZYJ00iTB1dN4OJy8XVkYc1+ClF+DCNMQsCyxQZPSvAU9ZRd
-         Uhb5FZ91ROIxKivDJJHD/7/c5WvANkBPmf/UD8QlgIByiAHyJEhCjeg5Na8YZ4sIUYNb
-         UiGI8/IYzZkTpzuSo6S1PBWMgmdViJxCxh2yNfKWD3/WYzSqV7oPl7jtqq4O06eBnrMW
-         aoaQ==
-X-Gm-Message-State: APjAAAVUkjSa4cYD1eeLdUqTnJH2LSdFDSjfS+VEbE/F2Yx8Qgj26OLr
-        lN8cjyKpuYD7NBfY/IAx7OAJiw==
-X-Google-Smtp-Source: APXvYqwP5gWmgCWzPHvhUEOHEmYJug9XD6Ru09g/P4GV8esa71ue0cYftUlFH20psboRMPK85MePTg==
-X-Received: by 2002:a1c:7a12:: with SMTP id v18mr1765791wmc.56.1565685358047;
-        Tue, 13 Aug 2019 01:35:58 -0700 (PDT)
+        bh=z0kO6qx1UAc/uP1SKgjN6XAyjR6GuCSBuxXXjXMIpxU=;
+        b=cS//OrKVzOrwXuIShtqokjWsoQjKwHaIZ5YBlra3xvRrzYXdXxaz4OkLvWp8SVmedJ
+         xPkhXziASLfgrstmZX1STp19g5IVrLrdqa7mzHyWNPWbrZ2XgZBdSm22e5tcWRI6x13n
+         oetITvj+WQ36X/RtLRzg26YkbCjcRNcJT3RdLBLuMzPC+qOwzkwGkcaaSSOG/DV30mow
+         m/TOnmOKelXsKV5Apk9hC9FO4JtbMnDZaLArAxgJ78LccjkbG0SrMin4AiqqmytgST2z
+         OJ6mGUZImvhmnWIo2R/GkwDm/18cdxojT9o5hjN06e4x2Q8qTkRKQb7Y9AG7tfY5+4SO
+         RakA==
+X-Gm-Message-State: APjAAAVZ86I7hBjJjEiMowmrFy3uxjX5qjVE+GSyr9aJMCe7KJYWMx1e
+        DTRXIU7EixxTHmqAPeXHPyk7Fw==
+X-Google-Smtp-Source: APXvYqzryFuY/yYvY9Bi/UWEKsrJGOSCpHTG6jbT/+Tvs3ztNRpM/e4wYRAimK3JrkwgZtSKRkRoLw==
+X-Received: by 2002:adf:90e7:: with SMTP id i94mr42458207wri.224.1565685359159;
+        Tue, 13 Aug 2019 01:35:59 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id o11sm8651822wrw.19.2019.08.13.01.35.56
+        by smtp.gmail.com with ESMTPSA id o11sm8651822wrw.19.2019.08.13.01.35.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2019 01:35:57 -0700 (PDT)
+        Tue, 13 Aug 2019 01:35:58 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     vkoul@kernel.org, broonie@kernel.org
 Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
@@ -52,9 +52,9 @@ Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         spapothi@codeaurora.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 3/5] ASoC: core: add support to snd_soc_dai_get_sdw_stream()
-Date:   Tue, 13 Aug 2019 09:35:48 +0100
-Message-Id: <20190813083550.5877-4-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 4/5] dt-bindings: soundwire: add bindings for Qcom controller
+Date:   Tue, 13 Aug 2019 09:35:49 +0100
+Message-Id: <20190813083550.5877-5-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
 References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
@@ -65,45 +65,191 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On platforms which have smart speaker amplifiers connected via
-soundwire and modeled as aux devices in ASoC, in such usecases machine
-driver should be able to get sdw master stream from dai so that it can
-use the runtime stream to setup slave streams.
+This patch adds bindings for Qualcomm soundwire controller.
 
-soundwire already as a set function, get function would provide more
-flexibility to above configurations.
+Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
+either integrated as part of WCD audio codecs via slimbus or
+as part of SOC I/O.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- include/sound/soc-dai.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../bindings/soundwire/qcom,sdw.txt           | 167 ++++++++++++++++++
+ 1 file changed, 167 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
 
-diff --git a/include/sound/soc-dai.h b/include/sound/soc-dai.h
-index dc48fe081a20..1e01f4a302e0 100644
---- a/include/sound/soc-dai.h
-+++ b/include/sound/soc-dai.h
-@@ -202,6 +202,7 @@ struct snd_soc_dai_ops {
- 
- 	int (*set_sdw_stream)(struct snd_soc_dai *dai,
- 			void *stream, int direction);
-+	void *(*get_sdw_stream)(struct snd_soc_dai *dai, int direction);
- 	/*
- 	 * DAI digital mute - optional.
- 	 * Called by soc-core to minimise any pops.
-@@ -410,4 +411,13 @@ static inline int snd_soc_dai_set_sdw_stream(struct snd_soc_dai *dai,
- 		return -ENOTSUPP;
- }
- 
-+static inline void *snd_soc_dai_get_sdw_stream(struct snd_soc_dai *dai,
-+					       int direction)
-+{
-+	if (dai->driver->ops->get_sdw_stream)
-+		return dai->driver->ops->get_sdw_stream(dai, direction);
-+	else
-+		return ERR_PTR(-ENOTSUPP);
-+}
+diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+new file mode 100644
+index 000000000000..436547f3b155
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
+@@ -0,0 +1,167 @@
++Qualcomm SoundWire Controller Bindings
 +
- #endif
++
++This binding describes the Qualcomm SoundWire Controller along with its
++board specific bus parameters.
++
++- compatible:
++	Usage: required
++	Value type: <stringlist>
++	Definition: must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
++		    Example:
++			"qcom,soundwire-v1.3.0"
++			"qcom,soundwire-v1.5.0"
++			"qcom,soundwire-v1.6.0"
++- reg:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: the base address and size of SoundWire controller
++		    address space.
++
++- interrupts:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: should specify the SoundWire Controller IRQ
++
++- clock-names:
++	Usage: required
++	Value type: <stringlist>
++	Definition: should be "iface" for SoundWire Controller interface clock
++
++- clocks:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: should specify the SoundWire Controller interface clock
++
++- #sound-dai-cells:
++	Usage: required
++	Value type: <u32>
++	Definition: must be 1 for digital audio interfaces on the controller.
++
++- qcom,dout-ports:
++	Usage: required
++	Value type: <u32>
++	Definition: must be count of data out ports
++
++- qcom,din-ports:
++	Usage: required
++	Value type: <u32>
++	Definition: must be count of data in ports
++
++- qcom,ports-offset1:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: should specify payload transport window offset1 of each
++		    data port. Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-offset2:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: should specify payload transport window offset2 of each
++		    data port. Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-sinterval-low:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: should be sample interval low of each data port.
++		    Out ports followed by In ports. Used for Sample Interval
++		    calculation.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-word-length:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be size of payload channel sample.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-block-pack-mode:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be 0 or 1 to indicate the block packing mode.
++		    0 to indicate Blocks are per Channel
++		    1 to indicate Blocks are per Port.
++		    Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-block-group-count:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be in range 1 to 4 to indicate how many sample
++		    intervals are combined into a payload.
++		    Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-lane-control:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be in range 0 to 7 to identify which	data lane
++		    the data port uses.
++		    Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-hstart:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be number identifying lowerst numbered coloum in
++		    SoundWire Frame, i.e. left edge of the Transport sub-frame
++		    for each port. Values between 0 and 15 are valid.
++		    Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,ports-hstop:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be number identifying highest numbered coloum in
++		    SoundWire Frame, i.e. the right edge of the Transport
++		    sub-frame for each port. Values between 0 and 15 are valid.
++		    Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++- qcom,dports-type:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: should be one of the following types
++		    0 for reduced port
++		    1 for simple ports
++		    2 for full port
++		    Out ports followed by In ports.
++		    More info in MIPI Alliance SoundWire 1.0 Specifications.
++
++Note:
++	More Information on detail of encoding of these fields can be
++found in MIPI Alliance SoundWire 1.0 Specifications.
++
++= SoundWire devices
++Each subnode of the bus represents SoundWire device attached to it.
++The properties of these nodes are defined by the individual bindings.
++
++= EXAMPLE
++The following example represents a SoundWire controller on DB845c board
++which has controller integrated inside WCD934x codec on SDM845 SoC.
++
++soundwire: soundwire@c85 {
++	compatible = "qcom,soundwire-v1.3.0";
++	reg = <0xc85 0x20>;
++	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
++	clocks = <&wcc>;
++	clock-names = "iface";
++	#sound-dai-cells = <1>;
++	qcom,dports-type = <0>;
++	qcom,dout-ports	= <6>;
++	qcom,din-ports	= <2>;
++	qcom,ports-sinterval-low = /bits/ 8  <0x07 0x1F 0x3F 0x7 0x1F 0x3F 0x0F 0x0F>;
++	qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0C 0x6 0x12 0x0D 0x07 0x0A >;
++	qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1F 0x00 0x00 0x1F 0x00 0x00>;
++
++	/* Left Speaker */
++	left{
++		....
++	};
++
++	/* Right Speaker */
++	right{
++		....
++	};
++};
 -- 
 2.21.0
 
