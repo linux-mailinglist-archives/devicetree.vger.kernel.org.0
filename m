@@ -2,142 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5298B997
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:09:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D61178B99E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 15:10:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728511AbfHMNJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 09:09:49 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:57320 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727311AbfHMNJs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 09:09:48 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 356452B2;
-        Tue, 13 Aug 2019 15:09:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1565701786;
-        bh=QYHmqFs2TTOoZVXKNm0ZlqOIRnSvZEPCKRYSJNgUsdk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rXBlLmILFa5H++fneGurs6ZDZqY5uS58kfgoZEdLVHKsl+zaC4sNm62B0QXEdz57g
-         2r5LwKcxRt9oWaTXkwlCAqdae+0CCYaPV9xpXbO+csV34IWFiWDGkQai+CG5jBPZqS
-         /69s7+vnu73d1G97/mAiLO6FcsDKLLfeKmQRLAYw=
-Date:   Tue, 13 Aug 2019 16:09:43 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/9] dt-bindings: display: panel: Add bindings for NEC
- NL8048HL11 panel
-Message-ID: <20190813130943.GF5009@pendragon.ideasonboard.com>
-References: <20190810231048.1921-1-laurent.pinchart@ideasonboard.com>
- <20190810231048.1921-4-laurent.pinchart@ideasonboard.com>
- <CAL_Jsq+NO+s1Wz5AYKzVqC=ki0mHtK8dr3namdt82DvnDebeyw@mail.gmail.com>
+        id S1728759AbfHMNKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 09:10:00 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:43780 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728656AbfHMNKA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 09:10:00 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 763F260735; Tue, 13 Aug 2019 13:09:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565701798;
+        bh=mPbUj3mPtBw6yrfnFjd57S426CyxYQNJUAv5tkVT2Vg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=WdmUK8Uk/0egRI62210qTAA9lSSfmhxsq8srHgzf3Pj7/80GyapvFZCYEA5KS0Ycz
+         PLBGWWkxPLJG6H2m3C9wOCVIfrGgxKBnZSw459aBndGcNUxdIpAPVkQOrt8gpW/FWT
+         eeAIlYjLUlaB5L2wy7TXcxMq4bIClyJT0ZsuEjpo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from govinds-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: govinds@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 342D760ACA;
+        Tue, 13 Aug 2019 13:09:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565701797;
+        bh=mPbUj3mPtBw6yrfnFjd57S426CyxYQNJUAv5tkVT2Vg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TMFE3oweB6V9Y9H4JdyT543YeyYQMTf2EH0ghIWZuf1a+Nj6rCZLA2b9D+Mc+oM+Y
+         a1KnNblB3JimVui+0uJbw/+Ri5uhO6S8H8y2KZ7mBvpbwPrW7nJJLPwJd095Dzm7Cn
+         j3uxKOBAWTln3k5yhl+1oWOydbkFDQCrZJXC/MfI=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 342D760ACA
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=govinds@codeaurora.org
+From:   Govind Singh <govinds@codeaurora.org>
+To:     sboyd@kernel.org
+Cc:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-soc@vger.kernel.org, andy.gross@linaro.org,
+        linux-remoteproc@vger.kernel.org,
+        Govind Singh <govinds@codeaurora.org>
+Subject: [v2 0/2] Add Q6SSTOP clock controller for QCS404
+Date:   Tue, 13 Aug 2019 18:39:44 +0530
+Message-Id: <20190813130946.16448-1-govinds@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+NO+s1Wz5AYKzVqC=ki0mHtK8dr3namdt82DvnDebeyw@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Add support for the Q6SSTOP clock control used on qcs404
+based devices. This would allow wcss remoteproc driver to
+control the required WCSS Q6SSTOP clock/reset controls to
+bring the subsystem out of reset and shutdown the WCSS Q6DSP.
 
-On Mon, Aug 12, 2019 at 01:18:39PM -0600, Rob Herring wrote:
-> On Sat, Aug 10, 2019 at 5:10 PM Laurent Pinchart wrote:
-> >
-> > The NEC NL8048HL11 is a 10.4cm WVGA (800x480) panel with a 24-bit RGB
-> > parallel data interface and an SPI control interface.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> > Changes since v1:
-> >
-> > - Convert to YAML
-> > ---
-> >  .../display/panel/nec,nl8048hl11.yaml         | 49 +++++++++++++++++++
-> >  1 file changed, 49 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-> > new file mode 100644
-> > index 000000000000..cc3d40975828
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-> > @@ -0,0 +1,49 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/nec,nl8048hl11.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NEC NL8048HL11 4.1" WVGA TFT LCD panel
-> > +
-> > +description:
-> > +  The NEC NL8048HL11 is a 4.1" WVGA TFT LCD panel with a 24-bit RGB parallel
-> > +  data interface and an SPI control interface.
-> > +
-> > +maintainers:
-> > +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: nec,nl8048hl11
-> > +
-> > +  label: true
-> > +  reset-gpios: true
-> > +  port: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reset-gpios
-> > +  - port
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> 
-> Your example will fail on 'make dt_binding_check'...
+Govind Singh (2):
+  dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock controller bindings
+  clk: qcom: Add Q6SSTOP clock controller for QCS404
 
-I wasn't aware of this. I've now read writing-schema.md and will make
-sure to submit bindings that pass the checks. I'll address the issues
-your pointed out below for the next version.
-
-> > +  - |
-> > +    lcd_panel: panel {
-> 
-> SPI devices have to have a minimal SPI controller parent. Primarily
-> just #size-cells and #address-cells are needed.
-> 
-> 'reg' is missing here too.
-> 
-> > +      compatible = "nec,nl8048hl11";
-> > +      spi-max-frequency = <10000000>;
-> 
-> This needs to be listed in properties ideally with some constraints.
-> 
-> > +
-> > +      reset-gpios = <&gpio7 7 GPIO_ACTIVE_LOW>;
-> 
-> And GPIO_ACTIVE_LOW. You have to add includes you need.
-> 
-> > +
-> > +      port {
-> > +        lcd_in: endpoint {
-> > +          remote-endpoint = <&dpi_out>;
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +...
+ .../bindings/clock/qcom,q6sstopcc.yaml        |  45 ++++
+ drivers/clk/qcom/Kconfig                      |   8 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/q6sstop-qcs404.c             | 223 ++++++++++++++++++
+ .../dt-bindings/clock/qcom,q6sstopcc-qcs404.h |  18 ++
+ 5 files changed, 295 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+ create mode 100644 drivers/clk/qcom/q6sstop-qcs404.c
+ create mode 100644 include/dt-bindings/clock/qcom,q6sstopcc-qcs404.h
 
 -- 
-Regards,
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-Laurent Pinchart
