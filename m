@@ -2,114 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C178C168
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 21:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C85F28C19B
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 21:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726295AbfHMTT6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 15:19:58 -0400
-Received: from mail-wm1-f100.google.com ([209.85.128.100]:36695 "EHLO
-        mail-wm1-f100.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726074AbfHMTT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 15:19:58 -0400
-Received: by mail-wm1-f100.google.com with SMTP id g67so2411476wme.1
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 12:19:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=kdNXJ8hZlcNjicps4RuD0AxoaO5Tr3w7XkkUVNHMbRc=;
-        b=DVzJWWc/3ht9z3Y394q6h+EkDbCw4AUpYa2lTe3U/7WvYVyT3a89Zrpu18RuCSkaRa
-         B1n84WkqJCQZ9xpGtlU+uK/dVlEKLQc1c0m/MSneaS9TH4b6QlhY65agbcmcEdRni7LY
-         KgL9dgbxV7sTYl9gH3+nBST93hdoT2TRNT065/YjoBCG1kBIuYUGJ+33XI/cwWlFIjSm
-         MaJliIgmc7cKDesBYdFPAckiR7YBj7kqC+mag4e78qEysNDdEUBtcMT1hnl0zsvH3vga
-         k9vihQGF6W1/QcrSllTZkFTfL3ECrbFmQkMITCMsT0lBnmFjO21Gj2oFrUtqbCL1MC4z
-         bjGg==
-X-Gm-Message-State: APjAAAUyTbpeaHxQP6dZbVbvxR7JSneB7tMuxBqv6q3kb8o9heJF9MDm
-        bhKHCbZaPfM7IAoN+8rrq9NnEm98nKjVPKZXrFr3JaND9ZJnQFJWw+CTEuFpTXOKsA==
-X-Google-Smtp-Source: APXvYqxDXmnQpbTfnKHxwWKEHiAnm5HDPFf0Na5cPMw/tFx5BP6wBOsl5jdt0xMls7c23haoHM3VhwNlwb22
-X-Received: by 2002:a7b:cd84:: with SMTP id y4mr4601088wmj.62.1565723996474;
-        Tue, 13 Aug 2019 12:19:56 -0700 (PDT)
-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
-        by smtp-relay.gmail.com with ESMTPS id q2sm1473920wre.51.2019.08.13.12.19.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 13 Aug 2019 12:19:56 -0700 (PDT)
-X-Relaying-Domain: sirena.org.uk
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hxcKq-0000z7-1L; Tue, 13 Aug 2019 19:19:56 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 659F92742B44; Tue, 13 Aug 2019 20:19:55 +0100 (BST)
-Date:   Tue, 13 Aug 2019 20:19:55 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Cezary Rojewski <cezary.rojewski@intel.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        vkoul@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
-        spapothi@codeaurora.org
-Subject: Re: [PATCH v2 3/5] ASoC: core: add support to
+        id S1726007AbfHMTih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 15:38:37 -0400
+Received: from mga02.intel.com ([134.134.136.20]:5176 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725944AbfHMTih (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 15:38:37 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Aug 2019 12:38:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,382,1559545200"; 
+   d="scan'208";a="183972065"
+Received: from linux.intel.com ([10.54.29.200])
+  by FMSMGA003.fm.intel.com with ESMTP; 13 Aug 2019 12:38:35 -0700
+Received: from dalyrusx-mobl.amr.corp.intel.com (unknown [10.251.3.205])
+        by linux.intel.com (Postfix) with ESMTP id 361CD580372;
+        Tue, 13 Aug 2019 12:38:34 -0700 (PDT)
+Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
  snd_soc_dai_get_sdw_stream()
-Message-ID: <20190813191955.GJ5093@sirena.co.uk>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        vkoul@kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, bgoswami@codeaurora.org,
+        plai@codeaurora.org, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        spapothi@codeaurora.org
 References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
  <20190813083550.5877-4-srinivas.kandagatla@linaro.org>
- <95c517ab-7c63-5d13-a03a-1db01812bb69@intel.com>
- <71fb21d0-3083-e590-db83-dbe489a4357e@linaro.org>
- <34a1a317-ac6b-bb1e-6b1b-08209f0d1923@intel.com>
+ <ba88e0f9-ae7d-c26e-d2dc-83bf910c2c01@linux.intel.com>
+ <c2eecd44-f06a-7287-2862-0382bf697f8d@linaro.org>
+ <d2b7773b-d52a-7769-aa5b-ef8c8845d447@linux.intel.com>
+ <d7c1fdb2-602f-ecb1-9b32-91b893e7f408@linaro.org>
+ <f0228cb4-0a6f-17f3-fe03-9be7f5f2e59d@linux.intel.com>
+ <20190813191827.GI5093@sirena.co.uk>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
+Date:   Tue, 13 Aug 2019 14:38:53 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fmEUq8M7S0s+Fl0V"
-Content-Disposition: inline
-In-Reply-To: <34a1a317-ac6b-bb1e-6b1b-08209f0d1923@intel.com>
-X-Cookie: Poverty begins at home.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190813191827.GI5093@sirena.co.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 8/13/19 2:18 PM, Mark Brown wrote:
+> On Tue, Aug 13, 2019 at 02:15:18PM -0500, Pierre-Louis Bossart wrote:
+>> On 8/13/19 1:06 PM, Srinivas Kandagatla wrote:
+> 
+>>> sorry for the confusion. It was too quick reply. :-)
+>>> I was suppose to say sdw_stream_add_slave() instead of set_sdw_stream().
+> 
+>> ok, so get_sdw_stream() and set_sdw_stream() are not meant to be mirrors or
+>> both implemented. It's just a helper to respectively get a context or set a
+>> context but a get-modify-set type of operation is not expected.
+> 
+>> Do I get this right?
+> 
+> This seems like it's going to be confusing...
 
---fmEUq8M7S0s+Fl0V
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Indeed. I don't have a full understanding of that part to be honest, nor 
+why we need something SoundWire-specific. We already abused the 
+set_tdm_slot API to store an HDaudio stream, now we have a rather 
+confusing stream information for SoundWire and I have about 3 other 
+'stream' contexts in SOF... I am still doing basic cleanups but this has 
+been on my radar for a while.
 
-On Tue, Aug 13, 2019 at 07:29:50PM +0200, Cezary Rojewski wrote:
-> On 2019-08-13 18:52, Srinivas Kandagatla wrote:
-> > On 13/08/2019 17:03, Cezary Rojewski wrote:
-> > > On 2019-08-13 10:35, Srinivas Kandagatla wrote:
 
-> > > > +=A0=A0=A0 if (dai->driver->ops->get_sdw_stream)
-> > > > +=A0=A0=A0=A0=A0=A0=A0 return dai->driver->ops->get_sdw_stream(dai,=
- direction);
-> > > > +=A0=A0=A0 else
-> > > > +=A0=A0=A0=A0=A0=A0=A0 return ERR_PTR(-ENOTSUPP);
-
-> > > Drop redundant else.
-
-> > Not all the dai drivers would implement this function, I guess else is
-> > not redundant here!
-
-> Eh. By that I meant dropping "else" keyword and reducing indentation for
-> "return ERR_PTR(-ENOTSUPP);"
-
-The above is the idiom used throughout the rest of the file.
-
---fmEUq8M7S0s+Fl0V
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1TDVoACgkQJNaLcl1U
-h9Bc/Qf+N4icKyyTDGlB5i1IOi6wDoQsSE1SgcAlrHFKoE0fOmNhKrhSQvskWPhS
-4k6/x6JLxBu8CH9ZJAq8njVhSJ6BdfPkPM7H6Nd0tA29DaUCwHR4IDeZ9iIuAMOi
-pX+z060wwGKdMbQUbYMOR4P1eLL1LYlxVZx1zWjXSxsDoYQYvhg8lMkeNDc6xLFI
-smVcoYd0fRYsLRZtZXfSRQORdKdlYh34z7uLXkSTQpQIJtLH3Okb3U6pdOhkD1fu
-steqUnEf89sHiHNuXZ506xZP8iUlLK13pzSfizTyI/Zl6Qp9PrQuMtN3KW5P2ZBT
-kdXtRZSolgTjhJT5CgVHQUA8yneXgQ==
-=vuyE
------END PGP SIGNATURE-----
-
---fmEUq8M7S0s+Fl0V--
