@@ -2,119 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AA878BF00
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 18:52:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E32B8BF44
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 19:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727221AbfHMQwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 12:52:25 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33137 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726810AbfHMQwZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 12:52:25 -0400
-Received: by mail-wm1-f67.google.com with SMTP id p77so1468653wme.0
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 09:52:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qLtqPAsEGfnUp7CDjhn/8fwHbe2P4gxMdN6KrPmONdo=;
-        b=mW5YUm5wvdISB+s0lKeJ43zd9eGbsQWF9DRWounfZBtWcu4JLOB8EQRlfB/rDhjSgr
-         DKFYgTyZvuGRIpRyo7qQJiookhVDTq8mKof/6PoFQpMuAM+rvAYNuvYwnDTgRkzkbdyU
-         l8Ig2cdjFoG1SQZcfNSo37LhmGznPEbjJ1q+DnJbjMlS87365uyRdL1U7wa/OvK5KjYT
-         Bfd5R1xpzaiOA8rPWtkmfraEvd+7lDXCVRvYHzjyC4ajwXRgI/RSEA6IZGu/HhYzuW99
-         TK+Gqiy54WUYpU20s7CUL6nkjGvhth9kyeBHhMX+SUBxOI6HHqyzPJ6B0TrpYWy7HA6K
-         0B5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=qLtqPAsEGfnUp7CDjhn/8fwHbe2P4gxMdN6KrPmONdo=;
-        b=GfJTYbuqee3vRcTpXeFnvib0wKzxvU/4u0SuSVWtQEpB9snRlXv/ZmYkaZbYPOP22T
-         15OEBIaxSubodjdUkZZv/RnRyTRvFscevE3qOwykip7zjvozvPFABaF0kR3wUfiDdMyw
-         Mz6lkq+wpjc8lktLVLO92j9oi6eOH8p1eFokK/tAShzctLisRXUyEjABYZf5s2W8Azw6
-         YCGQs94517RNTbFzLDY9iuKCBEMar6YEUJ3XWuqCJwBdiJFXgPyRTCaRLcQ4n8RgkTfv
-         setiM0IIaxWd4vq9eecSZPBb1OD5kArwDfeIevSbUYVKmw+D75PBRobMsHJ8V+1mjqn6
-         eRqg==
-X-Gm-Message-State: APjAAAVAk0GFMAcXZJYz76e2f4tSuJxHOWJsykFfzSTPfWMUWpEavqzR
-        2DTWV4DLf+J1HlUhgGqk+uvhWw==
-X-Google-Smtp-Source: APXvYqyDTslYtT+nos0C9th5ic6vn8MyRNZrZ/a7bFDyc53Tg0MzTNOzv1OYn9FBo/c6bVTFIpy9QQ==
-X-Received: by 2002:a7b:c947:: with SMTP id i7mr4274787wml.77.1565715142658;
-        Tue, 13 Aug 2019 09:52:22 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id z8sm25678055wru.13.2019.08.13.09.52.21
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Aug 2019 09:52:22 -0700 (PDT)
-Subject: Re: [PATCH v2 3/5] ASoC: core: add support to
- snd_soc_dai_get_sdw_stream()
-To:     Cezary Rojewski <cezary.rojewski@intel.com>
-Cc:     vkoul@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
-        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, spapothi@codeaurora.org
-References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
- <20190813083550.5877-4-srinivas.kandagatla@linaro.org>
- <95c517ab-7c63-5d13-a03a-1db01812bb69@intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <71fb21d0-3083-e590-db83-dbe489a4357e@linaro.org>
-Date:   Tue, 13 Aug 2019 17:52:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726116AbfHMRGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 13:06:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39696 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726000AbfHMRGa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 13:06:30 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B0912067D;
+        Tue, 13 Aug 2019 17:06:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565715988;
+        bh=mXleQo1BfGDF4Gvt8gwvemAiKY2B7AKwDPdsZQzGEig=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=2YP/hufKMPeHV9Iqtm97Hg+EE9Q7yk3dpGfTYo+YIFuTd+znybtuf6QsdhYKGv2OL
+         bffgiZjbx8+MzDPbg9zNDOCLOmmjE13s1gxUgB6nndEdwsA+9gYRAddFBIlqnsF3wh
+         t+HdplopKKhd7nK05G6fCJXNmNCfRN1TXzWpMoO0=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <95c517ab-7c63-5d13-a03a-1db01812bb69@intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAFd5g4415URtJBKPhsEw98GxiExJr-fstW6SQ6nmV9ts9ggK-g@mail.gmail.com>
+References: <20190812182421.141150-1-brendanhiggins@google.com> <20190812182421.141150-10-brendanhiggins@google.com> <20190813042159.46814206C2@mail.kernel.org> <CAFd5g44XyQi-oprPcdgx-EPboQYaHY6Ocz8Te6NX2SxV=mVhQA@mail.gmail.com> <20190813055615.CA787206C2@mail.kernel.org> <CAFd5g4415URtJBKPhsEw98GxiExJr-fstW6SQ6nmV9ts9ggK-g@mail.gmail.com>
+Subject: Re: [PATCH v12 09/18] kunit: test: add support for test abort
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        Theodore Ts'o <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+To:     Brendan Higgins <brendanhiggins@google.com>
+User-Agent: alot/0.8.1
+Date:   Tue, 13 Aug 2019 10:06:27 -0700
+Message-Id: <20190813170628.9B0912067D@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the review,
+Quoting Brendan Higgins (2019-08-13 00:52:03)
+> On Mon, Aug 12, 2019 at 10:56 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Quoting Brendan Higgins (2019-08-12 21:57:55)
+> > > On Mon, Aug 12, 2019 at 9:22 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > >
+> > > > Quoting Brendan Higgins (2019-08-12 11:24:12)
+> > > > > diff --git a/include/kunit/test.h b/include/kunit/test.h
+> > > > > index 2625bcfeb19ac..93381f841e09f 100644
+> > > > > --- a/include/kunit/test.h
+> > > > > +++ b/include/kunit/test.h
+> > > > > @@ -184,6 +191,13 @@ struct kunit {
+> > > > >         struct list_head resources; /* Protected by lock. */
+> > > > >  };
+> > > > >
+> > > > > +static inline void kunit_set_death_test(struct kunit *test, bool=
+ death_test)
+> > > > > +{
+> > > > > +       spin_lock(&test->lock);
+> > > > > +       test->death_test =3D death_test;
+> > > > > +       spin_unlock(&test->lock);
+> > > > > +}
+> > > >
+> > > > These getters and setters are using spinlocks again. It doesn't mak=
+e any
+> > > > sense. It probably needs a rework like was done for the other bool
+> > > > member, success.
+> > >
+> > > No, this is intentional. death_test can transition from false to true
+> > > and then back to false within the same test. Maybe that deserves a
+> > > comment?
+> >
+> > Yes. How does it transition from true to false again?
+>=20
+> The purpose is to tell try_catch that it was expected for the test to
+> bail out. Given the default implementation there is no way for this to
+> happen aside from abort() being called, but in some implementations it
+> is possible to implement a fault catcher which allows a test suite to
+> recover from an unexpected failure.
+>=20
+> Maybe it would be best to drop this until I add one of those
+> alternative implementations.
 
-On 13/08/2019 17:03, Cezary Rojewski wrote:
-> On 2019-08-13 10:35, Srinivas Kandagatla wrote:
->> On platforms which have smart speaker amplifiers connected via
->> soundwire and modeled as aux devices in ASoC, in such usecases machine
->> driver should be able to get sdw master stream from dai so that it can
->> use the runtime stream to setup slave streams.
->>
->> soundwire already as a set function, get function would provide more
->> flexibility to above configurations.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   include/sound/soc-dai.h | 10 ++++++++++
->>   1 file changed, 10 insertions(+)
->>
->> diff --git a/include/sound/soc-dai.h b/include/sound/soc-dai.h
->> index dc48fe081a20..1e01f4a302e0 100644
->> --- a/include/sound/soc-dai.h
->> +++ b/include/sound/soc-dai.h
->> @@ -202,6 +202,7 @@ struct snd_soc_dai_ops {
->>       int (*set_sdw_stream)(struct snd_soc_dai *dai,
->>               void *stream, int direction);
->> +    void *(*get_sdw_stream)(struct snd_soc_dai *dai, int direction);
->>       /*
->>        * DAI digital mute - optional.
->>        * Called by soc-core to minimise any pops.
->> @@ -410,4 +411,13 @@ static inline int 
->> snd_soc_dai_set_sdw_stream(struct snd_soc_dai *dai,
->>           return -ENOTSUPP;
->>   }
->> +static inline void *snd_soc_dai_get_sdw_stream(struct snd_soc_dai *dai,
->> +                           int direction)
->> +{
->> +    if (dai->driver->ops->get_sdw_stream)
->> +        return dai->driver->ops->get_sdw_stream(dai, direction);
->> +    else
->> +        return ERR_PTR(-ENOTSUPP);
->> +}
-> 
-> Drop redundant else.
-Not all the dai drivers would implement this function, I guess else is 
-not redundant here!
+Ok.
 
---srini
-> 
+>=20
+> > Either way, having a spinlock around a read/write API doesn't make sense
+> > because it just makes sure that two writes don't overlap, but otherwise
+> > does nothing to keep things synchronized. For example a set to true
+> > after a set to false when the two calls to set true or false aren't
+> > synchronized means they can happen in any order. So I don't see how it
+> > needs a spinlock. The lock needs to be one level higher.
+>=20
+> There shouldn't be any cases where one thread is trying to set it
+> while another is trying to unset it. The thing I am worried about here
+> is making sure all the cores see the write, and making sure no reads
+> or writes get reordered before it. So I guess I just want a fence. So
+> I take it I should probably have is a WRITE_ONCE here and READ_ONCE in
+> the getter?
+>=20
+
+Are the gets and sets in program order? If so, WRITE_ONCE and READ_ONCE
+aren't required. Otherwise, if it's possible for one thread to write it
+and another to read it but the threads are ordered with some other
+barrier like a completion or lock, then again the macros aren't needed.
+It would be good to read memory-barriers.txt to understand when to use
+the read/write macros.
+
