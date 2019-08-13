@@ -2,133 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A93D98C3F2
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 23:50:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC99F8C427
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 00:14:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726465AbfHMVuL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 17:50:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35822 "EHLO mail.kernel.org"
+        id S1726774AbfHMWOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 18:14:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40616 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726066AbfHMVuL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 13 Aug 2019 17:50:11 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        id S1726155AbfHMWOf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 13 Aug 2019 18:14:35 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 03A8A20842;
-        Tue, 13 Aug 2019 21:50:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 368582070D;
+        Tue, 13 Aug 2019 22:14:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565733010;
-        bh=qZlws6v+N8kI1UKOVdpEHH2UF31aMI5gwG/rOfFqHzw=;
+        s=default; t=1565734474;
+        bh=6wCizBaaZT2k/09mFrNXRExfBAwJv2YLSMnChPGtw4g=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sqrnJ/m/lZjwrQjDTqlrzGi1anuWpCof3q1L4UIhTXIXaYkQySPbMoiC5CnzVwWWc
-         9148vWRJwV4fBbIZRDHWDqWS4brABGhBzsHkksdoqSgu5KWedwbYeyOfL7UBBRyoJR
-         Bz5WUcSlul2NfHeUcZ1jzK8ApAkBqsJYaJLA/Zfo=
-Received: by mail-qk1-f177.google.com with SMTP id s145so80982484qke.7;
-        Tue, 13 Aug 2019 14:50:09 -0700 (PDT)
-X-Gm-Message-State: APjAAAU5X3DWyr5I4q02Mjg0VEzG1I5wYL4UzGnYxWx3SnylrQ+6hVUW
-        BS2B8dVgUTWTDJsdvhL+A7ev9Hy3z6pqQbicnQ==
-X-Google-Smtp-Source: APXvYqzMYP4+7zj4XfcIegLbEaqHi41gyoiH8MyCXiN9EIcjrt64BloYhGN0yKxe/9u4lsm4KPn2KKl8nfimpDdfVJk=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr34676994qke.393.1565733009197;
- Tue, 13 Aug 2019 14:50:09 -0700 (PDT)
+        b=0uaRXv8D5HRtmKK3R9sZVd0gtdGEAJy9OAYrUbynXlMjib/y//8/8b1GMIl0koAge
+         zvdeq5RXKS0RUpLgqM+wsU8tmSLaxzBvsjGnlrjpFHlq8frKD/7T7Y1NciVDfSwTpC
+         34kSkZyb8+4NWRxQuPpvthHnzOYQkdnd6haJ4Kwc=
+Received: by mail-qk1-f178.google.com with SMTP id r4so80901244qkm.13;
+        Tue, 13 Aug 2019 15:14:34 -0700 (PDT)
+X-Gm-Message-State: APjAAAUmVma8FonAfubrxl1pv6qK7mtjv2TnRGvqIaf5bBr5R15kfheQ
+        ObUnbYYi5KqWJY4GJBP6fGEGgMVef9/axznA9g==
+X-Google-Smtp-Source: APXvYqwk126OivmGjH6r+ni/zAgOht3m3QXJodkzCFH+TUHs2iVPGSLnoqVVTdkeSVJkGVzE/d/O+3TNCBaPTI7BGz4=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr36131378qke.223.1565734473435;
+ Tue, 13 Aug 2019 15:14:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190808140153.9156-1-dinguyen@kernel.org>
-In-Reply-To: <20190808140153.9156-1-dinguyen@kernel.org>
+References: <20190807003629.2974-1-andrew@aj.id.au> <20190807003629.2974-2-andrew@aj.id.au>
+In-Reply-To: <20190807003629.2974-2-andrew@aj.id.au>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 13 Aug 2019 15:49:58 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLJN3n6A3NWX=pEYSPfnvQFsdBYwqr9iREHWGFwL2wHYQ@mail.gmail.com>
-Message-ID: <CAL_JsqLJN3n6A3NWX=pEYSPfnvQFsdBYwqr9iREHWGFwL2wHYQ@mail.gmail.com>
-Subject: Re: [PATCHv3] drivers/amba: add reset control to amba bus probe
-To:     Dinh Nguyen <dinguyen@kernel.org>,
-        Russell King <linux@armlinux.org.uk>
-Cc:     devicetree@vger.kernel.org,
+Date:   Tue, 13 Aug 2019 16:14:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKXda7f43=ZdtTsyrdhdqn+H4L=7zQXtB_EEfHdi=rHLg@mail.gmail.com>
+Message-ID: <CAL_JsqKXda7f43=ZdtTsyrdhdqn+H4L=7zQXtB_EEfHdi=rHLg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mmc: Document Aspeed SD controller
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>
+        Ryan Chen <ryanchen.aspeed@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Russell
-
-On Thu, Aug 8, 2019 at 8:02 AM Dinh Nguyen <dinguyen@kernel.org> wrote:
+On Tue, Aug 6, 2019 at 6:38 PM Andrew Jeffery <andrew@aj.id.au> wrote:
 >
-> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-> default. Until recently, the DMA controller was brought out of reset by the
-> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals that
-> are not used are held in reset and are left to Linux to bring them out of
-> reset.
+> The ASPEED SD/SDIO/MMC controller exposes two slots implementing the
+> SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> data bus if only a single slot is enabled.
 >
-> Add a mechanism for getting the reset property and de-assert the primecell
-> module from reset if found. This is a not a hard fail if the reset property
-> is not present in the device tree node, so the driver will continue to probe.
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 >
-> Because there are different variants of the controller that may have multiple
-> reset signals, the code will find all reset(s) specified and de-assert them.
->
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 > ---
-> v3: add a reset_control_put()
->     add error handling for -EPROBE_DEFER
-> v2: move reset control to bus code
->     find all reset properties and de-assert them
+> v4:
+> * Make use of mmc-controller.yaml
+> * Document sdhci,auto-cmd12
+>
+> v2:
+> * Fix compatible enums
+> * Add AST2600 compatibles
+> * Describe #address-cells / #size-cells
 > ---
->  drivers/amba/bus.c | 23 +++++++++++++++++++++++
->  1 file changed, 23 insertions(+)
->
-> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-> index 100e798a5c82..00e68ea416ca 100644
-> --- a/drivers/amba/bus.c
-> +++ b/drivers/amba/bus.c
-> @@ -18,6 +18,7 @@
->  #include <linux/limits.h>
->  #include <linux/clk/clk-conf.h>
->  #include <linux/platform_device.h>
-> +#include <linux/reset.h>
->
->  #include <asm/irq.h>
->
-> @@ -401,6 +402,28 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
->         ret = amba_get_enable_pclk(dev);
->         if (ret == 0) {
->                 u32 pid, cid;
-> +               int count;
-> +               struct reset_control *rstc;
-> +
-> +               /*
-> +                * Find reset control(s) of the amba bus and de-assert them.
-> +                */
-> +               count = reset_control_get_count(&dev->dev);
-> +               while (count > 0) {
-> +                       rstc = of_reset_control_get_shared_by_index(dev->dev.of_node, count - 1);
-> +                       if (IS_ERR(rstc)) {
-> +                               if (PTR_ERR(rstc) == -EPROBE_DEFER) {
-> +                                       ret = -EPROBE_DEFER;
-> +                               } else {
-> +                                       dev_err(&dev->dev, "Can't get amba reset!\n");
-> +                               }
-> +                               break;
-> +                       } else {
-
-You can remove the else here and save some indentation on the rest.
-
-Otherwise,
+>  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
 
 Reviewed-by: Rob Herring <robh@kernel.org>
-
-
-> +                               reset_control_deassert(rstc);
-> +                               reset_control_put(rstc);
-> +                               count--;
-> +                       }
-> +               }
->
->                 /*
->                  * Read pid and cid based on size of resource
-> --
-> 2.20.0
->
