@@ -2,262 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB2708B6B4
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 13:28:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E17518B6FE
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 13:34:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727614AbfHML1v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 07:27:51 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:22871 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727582AbfHML1u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 07:27:50 -0400
-X-UUID: b14ffb0e84e44058a6ea3d827c563e34-20190813
-X-UUID: b14ffb0e84e44058a6ea3d827c563e34-20190813
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 773372573; Tue, 13 Aug 2019 19:27:44 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 13 Aug 2019 19:27:38 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 13 Aug 2019 19:27:41 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das@bp.renesas.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nagarjuna Kristam <nkristam@nvidia.com>
-Subject: [PATCH next v9 11/11] usb: mtu3: register a USB Role Switch for dual role mode
-Date:   Tue, 13 Aug 2019 19:27:14 +0800
-Message-ID: <1565695634-9711-12-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1565695634-9711-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1565695634-9711-1-git-send-email-chunfeng.yun@mediatek.com>
+        id S1727342AbfHMLeJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 07:34:09 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:37792 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727111AbfHMLeI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 07:34:08 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 129so4537020pfa.4
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 04:34:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=aqKzsId2hKvcmQF7fGKO1YK1h2GnFRh9+uXig4ZlhlI=;
+        b=qIM74CehEWqpruIVCMxZ1SU6H+bafjp4CnsZA1QUPeAuSeAXNz0eJuPF1cvKYzNPrB
+         Urm06rTx/UJ10JMASVZP7ORYWict6oCGdi8OT1E2aX8Bmx2GqZsjr6TemvVAU+g1KHjr
+         XJV88ycQnQ9nqtp2YkULT9jrRkG7Xb/QMehenAgC+HxOSsfOJ1pc5rEu5YgN3/c/dhuP
+         0x4VToIoFdcK6KsaZKVf2eTz52vHeh3UDKxpe768xMZHZB88ySoKj4PV38tA7ZDTqfvV
+         0q+76Tfv0+ULGbjk7PkKRYbaMNqCPrP4086Tq5UuMSccQGKdDl01hven962hEj4XK0JI
+         5EHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=aqKzsId2hKvcmQF7fGKO1YK1h2GnFRh9+uXig4ZlhlI=;
+        b=bcuguMQhhwWNI23TV+FHXYHTSpnDOnAkIZ39/hH/bF5pkoT443Nk5Id2GvRT4K9nnj
+         p8DZR9awynth+fSWAH82RppnIy/gWXIVn4uBY3HAPfikXB8sAhHZHBFW24d7Idfq7v9C
+         IOq/l2WurN499WOBEBUf4hYmOVMKYCtNHwmW0O3RLmlCmgreHv8WcK/FgTW2UDtt+KYM
+         ihvotP9sYUHHsKnJvkm09CwXiY6x6pqpETVgGSSpdz/HkUDtvBWpLGlKVTdGkTgYoZGf
+         nkGaMdpGs3Izy+jm1R2utUVHvY7xfm/N7h1iPhbuf1BHIu8NzZbmltRecgtswNt4zr5R
+         f9/Q==
+X-Gm-Message-State: APjAAAVTtVJxZQllMsyWE7Iuqx2bEZGeplIIISLcrEavGGhbY1hFchGO
+        78trba/TiwD/p9TiNbrJLc6H
+X-Google-Smtp-Source: APXvYqxFqGvvALogO0qGnnxAWwPceWM61LYF6yJdHePWaHoUBIRZ6KPZx+AQ7CTcd9g3uFciYU6ehg==
+X-Received: by 2002:a17:90a:bc42:: with SMTP id t2mr1777337pjv.121.1565696047695;
+        Tue, 13 Aug 2019 04:34:07 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:649c:6ce0:9d44:669c:5d6c:bc5f])
+        by smtp.gmail.com with ESMTPSA id o24sm199536009pfp.135.2019.08.13.04.34.01
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 13 Aug 2019 04:34:07 -0700 (PDT)
+Date:   Tue, 13 Aug 2019 17:03:58 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        c.barrett@framos.com, a.brela@framos.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: i2c: Add IMX290 CMOS sensor
+ binding
+Message-ID: <20190813113358.GA28877@Mani-XPS-13-9360>
+References: <20190806130938.19916-1-manivannan.sadhasivam@linaro.org>
+ <20190806130938.19916-2-manivannan.sadhasivam@linaro.org>
+ <20190813094526.GG835@valkosipuli.retiisi.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: C5CC4587325D6A5B81E86289BA0E5C4742A903809814E4220486C44FD595D5332000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190813094526.GG835@valkosipuli.retiisi.org.uk>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Because extcon is not allowed for new bindings, and the
-dual role switch is supported by USB Role Switch,
-especially for Type-C drivers, so register a USB Role
-Switch to support the new way
+Hi Sakari,
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v5~v9 no changes
+Thanks for the review!
 
-v4 changes:
-  1. assign fwnode member of usb_role_switch struct suggested by Heikki
+On Tue, Aug 13, 2019 at 12:45:26PM +0300, Sakari Ailus wrote:
+> Hi Manivannan,
+> 
+> On Tue, Aug 06, 2019 at 06:39:36PM +0530, Manivannan Sadhasivam wrote:
+> > Add devicetree binding for IMX290 CMOS image sensor.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> >  .../devicetree/bindings/media/i2c/imx290.txt  | 51 +++++++++++++++++++
+> >  1 file changed, 51 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx290.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/imx290.txt b/Documentation/devicetree/bindings/media/i2c/imx290.txt
+> > new file mode 100644
+> > index 000000000000..7535b5b5b24b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/imx290.txt
+> > @@ -0,0 +1,51 @@
+> > +* Sony IMX290 1/2.8-Inch CMOS Image Sensor
+> > +
+> > +The Sony IMX290 is a 1/2.8-Inch CMOS Solid-state image sensor with
+> > +Square Pixel for Color Cameras. It is programmable through I2C and 4-wire
+> > +interfaces. The sensor output is available via CMOS logic parallel SDR output,
+> > +Low voltage LVDS DDR output and CSI-2 serial data output.
+> 
+> If there are three to choose from, then you should specify which one is in
+> use. Given that I think chances remain slim we'd add support for the other
+> two (it's certainly not ruled out though), CSI-2 could be the default. But
+> this needs to be documented.
+> 
 
-v3 changes:
-  1. select USB_ROLE_SWITCH in Kconfig suggested by Heikki
-  2. rename ssusb_mode_manual_switch() to ssusb_mode_switch()
+Hmm... I'm not sure here. Bindings should describe the hardware and not the
+limitations of the driver. Here as you said, the sensor can output frames
+in 3 different modes/formats but the driver only supports CSI2. I can add a
+note in the driver but not sure whether dt-binding is the right place or not!
 
-v2 no changes
----
- drivers/usb/mtu3/Kconfig        |  1 +
- drivers/usb/mtu3/mtu3.h         |  5 ++++
- drivers/usb/mtu3/mtu3_debugfs.c |  4 +--
- drivers/usb/mtu3/mtu3_dr.c      | 48 ++++++++++++++++++++++++++++++++-
- drivers/usb/mtu3/mtu3_dr.h      |  6 ++---
- drivers/usb/mtu3/mtu3_plat.c    |  3 ++-
- 6 files changed, 60 insertions(+), 7 deletions(-)
+> > +
+> > +Required Properties:
+> > +- compatible: Should be "sony,imx290"
+> > +- reg: I2C bus address of the device
+> > +- clocks: Reference to the xclk clock.
+> > +- clock-names: Should be "xclk".
+> > +- clock-frequency: Frequency of the xclk clock.
+> 
+> ...in Hz.
+> 
 
-diff --git a/drivers/usb/mtu3/Kconfig b/drivers/usb/mtu3/Kconfig
-index 928c2cd6fc00..bf98fd36341d 100644
---- a/drivers/usb/mtu3/Kconfig
-+++ b/drivers/usb/mtu3/Kconfig
-@@ -44,6 +44,7 @@ config USB_MTU3_DUAL_ROLE
- 	bool "Dual Role mode"
- 	depends on ((USB=y || USB=USB_MTU3) && (USB_GADGET=y || USB_GADGET=USB_MTU3))
- 	depends on (EXTCON=y || EXTCON=USB_MTU3)
-+	select USB_ROLE_SWITCH
- 	help
- 	  This is the default mode of working of MTU3 controller where
- 	  both host and gadget features are enabled.
-diff --git a/drivers/usb/mtu3/mtu3.h b/drivers/usb/mtu3/mtu3.h
-index 76ecf12fdf62..6087be236a35 100644
---- a/drivers/usb/mtu3/mtu3.h
-+++ b/drivers/usb/mtu3/mtu3.h
-@@ -199,6 +199,9 @@ struct mtu3_gpd_ring {
- * @id_nb : notifier for iddig(idpin) detection
- * @id_work : work of iddig detection notifier
- * @id_event : event of iddig detecion notifier
-+* @role_sw : use USB Role Switch to support dual-role switch, can't use
-+*		extcon at the same time, and extcon is deprecated.
-+* @role_sw_used : true when the USB Role Switch is used.
- * @is_u3_drd: whether port0 supports usb3.0 dual-role device or not
- * @manual_drd_enabled: it's true when supports dual-role device by debugfs
- *		to switch host/device modes depending on user input.
-@@ -212,6 +215,8 @@ struct otg_switch_mtk {
- 	struct notifier_block id_nb;
- 	struct work_struct id_work;
- 	unsigned long id_event;
-+	struct usb_role_switch *role_sw;
-+	bool role_sw_used;
- 	bool is_u3_drd;
- 	bool manual_drd_enabled;
- };
-diff --git a/drivers/usb/mtu3/mtu3_debugfs.c b/drivers/usb/mtu3/mtu3_debugfs.c
-index 62c57ddc554e..c96e5dab0a48 100644
---- a/drivers/usb/mtu3/mtu3_debugfs.c
-+++ b/drivers/usb/mtu3/mtu3_debugfs.c
-@@ -453,9 +453,9 @@ static ssize_t ssusb_mode_write(struct file *file, const char __user *ubuf,
- 		return -EFAULT;
- 
- 	if (!strncmp(buf, "host", 4) && !ssusb->is_host) {
--		ssusb_mode_manual_switch(ssusb, 1);
-+		ssusb_mode_switch(ssusb, 1);
- 	} else if (!strncmp(buf, "device", 6) && ssusb->is_host) {
--		ssusb_mode_manual_switch(ssusb, 0);
-+		ssusb_mode_switch(ssusb, 0);
- 	} else {
- 		dev_err(ssusb->dev, "wrong or duplicated setting\n");
- 		return -EINVAL;
-diff --git a/drivers/usb/mtu3/mtu3_dr.c b/drivers/usb/mtu3/mtu3_dr.c
-index 5fcb71af875a..08e18448e8b8 100644
---- a/drivers/usb/mtu3/mtu3_dr.c
-+++ b/drivers/usb/mtu3/mtu3_dr.c
-@@ -7,6 +7,8 @@
-  * Author: Chunfeng Yun <chunfeng.yun@mediatek.com>
-  */
- 
-+#include <linux/usb/role.h>
-+
- #include "mtu3.h"
- #include "mtu3_dr.h"
- #include "mtu3_debug.h"
-@@ -280,7 +282,7 @@ static int ssusb_extcon_register(struct otg_switch_mtk *otg_sx)
-  * This is useful in special cases, such as uses TYPE-A receptacle but also
-  * wants to support dual-role mode.
-  */
--void ssusb_mode_manual_switch(struct ssusb_mtk *ssusb, int to_host)
-+void ssusb_mode_switch(struct ssusb_mtk *ssusb, int to_host)
- {
- 	struct otg_switch_mtk *otg_sx = &ssusb->otg_switch;
- 
-@@ -318,6 +320,47 @@ void ssusb_set_force_mode(struct ssusb_mtk *ssusb,
- 	mtu3_writel(ssusb->ippc_base, SSUSB_U2_CTRL(0), value);
- }
- 
-+static int ssusb_role_sw_set(struct device *dev, enum usb_role role)
-+{
-+	struct ssusb_mtk *ssusb = dev_get_drvdata(dev);
-+	bool to_host = false;
-+
-+	if (role == USB_ROLE_HOST)
-+		to_host = true;
-+
-+	if (to_host ^ ssusb->is_host)
-+		ssusb_mode_switch(ssusb, to_host);
-+
-+	return 0;
-+}
-+
-+static enum usb_role ssusb_role_sw_get(struct device *dev)
-+{
-+	struct ssusb_mtk *ssusb = dev_get_drvdata(dev);
-+	enum usb_role role;
-+
-+	role = ssusb->is_host ? USB_ROLE_HOST : USB_ROLE_DEVICE;
-+
-+	return role;
-+}
-+
-+static int ssusb_role_sw_register(struct otg_switch_mtk *otg_sx)
-+{
-+	struct usb_role_switch_desc role_sx_desc = { 0 };
-+	struct ssusb_mtk *ssusb =
-+		container_of(otg_sx, struct ssusb_mtk, otg_switch);
-+
-+	if (!otg_sx->role_sw_used)
-+		return 0;
-+
-+	role_sx_desc.set = ssusb_role_sw_set;
-+	role_sx_desc.get = ssusb_role_sw_get;
-+	role_sx_desc.fwnode = dev_fwnode(ssusb->dev);
-+	otg_sx->role_sw = usb_role_switch_register(ssusb->dev, &role_sx_desc);
-+
-+	return PTR_ERR_OR_ZERO(otg_sx->role_sw);
-+}
-+
- int ssusb_otg_switch_init(struct ssusb_mtk *ssusb)
- {
- 	struct otg_switch_mtk *otg_sx = &ssusb->otg_switch;
-@@ -328,6 +371,8 @@ int ssusb_otg_switch_init(struct ssusb_mtk *ssusb)
- 
- 	if (otg_sx->manual_drd_enabled)
- 		ssusb_dr_debugfs_init(ssusb);
-+	else if (otg_sx->role_sw_used)
-+		ret = ssusb_role_sw_register(otg_sx);
- 	else
- 		ret = ssusb_extcon_register(otg_sx);
- 
-@@ -340,4 +385,5 @@ void ssusb_otg_switch_exit(struct ssusb_mtk *ssusb)
- 
- 	cancel_work_sync(&otg_sx->id_work);
- 	cancel_work_sync(&otg_sx->vbus_work);
-+	usb_role_switch_unregister(otg_sx->role_sw);
- }
-diff --git a/drivers/usb/mtu3/mtu3_dr.h b/drivers/usb/mtu3/mtu3_dr.h
-index ba6fe357ce29..5e58c4dbd54a 100644
---- a/drivers/usb/mtu3/mtu3_dr.h
-+++ b/drivers/usb/mtu3/mtu3_dr.h
-@@ -71,7 +71,7 @@ static inline void ssusb_gadget_exit(struct ssusb_mtk *ssusb)
- #if IS_ENABLED(CONFIG_USB_MTU3_DUAL_ROLE)
- int ssusb_otg_switch_init(struct ssusb_mtk *ssusb);
- void ssusb_otg_switch_exit(struct ssusb_mtk *ssusb);
--void ssusb_mode_manual_switch(struct ssusb_mtk *ssusb, int to_host);
-+void ssusb_mode_switch(struct ssusb_mtk *ssusb, int to_host);
- int ssusb_set_vbus(struct otg_switch_mtk *otg_sx, int is_on);
- void ssusb_set_force_mode(struct ssusb_mtk *ssusb,
- 			  enum mtu3_dr_force_mode mode);
-@@ -86,8 +86,8 @@ static inline int ssusb_otg_switch_init(struct ssusb_mtk *ssusb)
- static inline void ssusb_otg_switch_exit(struct ssusb_mtk *ssusb)
- {}
- 
--static inline void
--ssusb_mode_manual_switch(struct ssusb_mtk *ssusb, int to_host) {}
-+static inline void ssusb_mode_switch(struct ssusb_mtk *ssusb, int to_host)
-+{}
- 
- static inline int ssusb_set_vbus(struct otg_switch_mtk *otg_sx, int is_on)
- {
-diff --git a/drivers/usb/mtu3/mtu3_plat.c b/drivers/usb/mtu3/mtu3_plat.c
-index fd0f6c5dfbc1..9c256ea3cdf5 100644
---- a/drivers/usb/mtu3/mtu3_plat.c
-+++ b/drivers/usb/mtu3/mtu3_plat.c
-@@ -299,8 +299,9 @@ static int get_ssusb_rscs(struct platform_device *pdev, struct ssusb_mtk *ssusb)
- 	otg_sx->is_u3_drd = of_property_read_bool(node, "mediatek,usb3-drd");
- 	otg_sx->manual_drd_enabled =
- 		of_property_read_bool(node, "enable-manual-drd");
-+	otg_sx->role_sw_used = of_property_read_bool(node, "usb-role-switch");
- 
--	if (of_property_read_bool(node, "extcon")) {
-+	if (!otg_sx->role_sw_used && of_property_read_bool(node, "extcon")) {
- 		otg_sx->edev = extcon_get_edev_by_phandle(ssusb->dev, 0);
- 		if (IS_ERR(otg_sx->edev)) {
- 			dev_err(ssusb->dev, "couldn't get extcon device\n");
--- 
-2.22.0
+Ack.
 
+> > +- vdddo-supply: Sensor digital IO regulator.
+> > +- vdda-supply: Sensor analog regulator.
+> > +- vddd-supply: Sensor digital core regulator.
+> > +
+> > +Optional Properties:
+> > +- reset-gpios: Sensor reset GPIO
+> > +
+> > +The imx290 device node should contain one 'port' child node with
+> > +an 'endpoint' subnode. For further reading on port node refer to
+> > +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> 
+> Which other properties are relevant for the device?
+
+Not much other than, clock/data lanes.
+
+> I suppose you can't change the lane order, so clock-lanes is redundant
+> (don't use it in the example) and data-lanes should be monotonically
+> incrementing series from 1 to 4.
+> 
+
+We can change the order and the example here illustrates how it has been
+wired in FRAMOS module. If I change the lane order like you said, it won't
+work.
+
+> > +
+> > +Example:
+> > +	&i2c1 {
+> > +		...
+> > +		imx290: imx290@1a {
+> 
+> imx290: camera-sensor@1a {
+
+Ack.
+
+Thanks,
+Mani
+
+> 
+> > +			compatible = "sony,imx290";
+> > +			reg = <0x1a>;
+> > +
+> > +			reset-gpios = <&msmgpio 35 GPIO_ACTIVE_LOW>;
+> > +			pinctrl-names = "default";
+> > +			pinctrl-0 = <&camera_rear_default>;
+> > +
+> > +			clocks = <&gcc GCC_CAMSS_MCLK0_CLK>;
+> > +			clock-names = "xclk";
+> > +			clock-frequency = <37125000>;
+> > +
+> > +			vdddo-supply = <&camera_vdddo_1v8>;
+> > +			vdda-supply = <&camera_vdda_2v8>;
+> > +			vddd-supply = <&camera_vddd_1v5>;
+> > +
+> > +			port {
+> > +				imx290_ep: endpoint {
+> > +					clock-lanes = <1>;
+> > +					data-lanes = <0 2 3 4>;
+> > +					remote-endpoint = <&csiphy0_ep>;
+> > +				};
+> > +			};
+> > +		};
+> 
+> -- 
+> Regards,
+> 
+> Sakari Ailus
