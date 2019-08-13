@@ -2,131 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 364D68B02E
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 08:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559DD8B08E
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 09:18:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726963AbfHMGyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 02:54:17 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:33909 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726950AbfHMGyQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 02:54:16 -0400
-Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
-  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-  envelope-from="Ludovic.Desroches@microchip.com";
-  x-sender="Ludovic.Desroches@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa1.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-  envelope-from="Ludovic.Desroches@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa1.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: S50QYZScpAZMoH8zbv+WueYONP6hoGpU0ZY5iduS0funkDaq8LbBCBaq3g6xGLAlgaLK0rPbFD
- XGihs5BCXQNENv2UpXkKFEbhC+kvpjbSwtRrCbBrBjLLL5CLZsAdQyUPL2LNsOJ9v3pf4J6RqL
- 7cTM/Vka8bhO+uMVEfFaEc3e8E7H7pwThJpgs+XViFAMhccbCau1lUd0pcAF2gbvt0fohEj5aH
- tBDDlAChrQIFzrL57gn7scHL8l+q7ScrlDUbNbuqBhsEP+wO0buWIOIWvnvVvDYJ3LRk2QAViC
- TBM=
-X-IronPort-AV: E=Sophos;i="5.64,380,1559545200"; 
-   d="scan'208";a="46314422"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Aug 2019 23:54:15 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 12 Aug 2019 23:54:15 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Mon, 12 Aug 2019 23:54:14 -0700
-Date:   Tue, 13 Aug 2019 08:53:06 +0200
-From:   Ludovic Desroches <ludovic.desroches@microchip.com>
-To:     <Eugen.Hristev@microchip.com>
-CC:     <adrian.hunter@intel.com>, <Nicolas.Ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <ulf.hansson@linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>
-Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d27_som1_ek: add mmc
- capabilities for SDMMC0
-Message-ID: <20190813065306.tqz57hqeiofofbnz@M43218.corp.atmel.com>
-Mail-Followup-To: Eugen.Hristev@microchip.com, adrian.hunter@intel.com,
-        Nicolas.Ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ulf.hansson@linaro.org, linux-arm-kernel@lists.infradead.org,
+        id S1727471AbfHMHSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 03:18:20 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:50606 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726282AbfHMHSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 03:18:20 -0400
+Received: by mail-wm1-f68.google.com with SMTP id v15so499670wml.0
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 00:18:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=E5kLOsNd1JoC/tKYPvjF5AM6FnpgT5H8QJRpzp0JJDo=;
+        b=quDyGfVg17WZgsvg84lAvoSBSSAaK7/qCT9HoIg0NOW/nqt+fq7VXq5V+Ll8BTn49W
+         +W5HfbUwZnv4kN/XOFhFYLlvvG/+iio5q31Dsq7fbTXUXwCGQFKMpbuERXq/krJT3PAs
+         IKq/pfChBU0Bah64rtHB4i1kQ0cINrKriwIaWiCbO+JpFFlGC/KnXfisx9biSstSHQR1
+         lrlQbioJbsGwPwXX2yrL4MD0flN4zMkmgLLKm9Y1+Tf5ALrAwaCbgm8+Gf3E01I6OdEr
+         XSnGxirb4N7rdIN2CVsLkFH79FpFcgM9pJkPPwnb7pNLSCs8l8cuk83YSIrH5bdasYue
+         SDfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=E5kLOsNd1JoC/tKYPvjF5AM6FnpgT5H8QJRpzp0JJDo=;
+        b=jSYQ/DVykGiSuYA+w1wFlzIlYDnboQ7yvwarwymvLkvTqw5MA5T7Eyi58ur6qPT7GY
+         S+5HeQ2ZcvucvEJEbCBp6SVjLPWR7cnlQFvfRbOPlR3+9Hdnxz0TLYL3uaRUFHGoInEc
+         HTnz3HZ1sa3Xh5AEyo4IwZRPJyyvA1e4wH+blyrWFTU2Pkosa50tN9mzynVLoR1UPcY5
+         q8wNTEXsy9XCVwwA9T4HLeiALIDnWpucwGzG7zwTDlv24GFPbaHEC2Cx0BloXdLsseVP
+         7ScKi5KooM7im9jSpLiqP7d4kC0VdOiiPU1cvmSqKuSzRvCJxiWoB7R7c5mTB8ofbArq
+         VCOg==
+X-Gm-Message-State: APjAAAVGhb2LiZtAUc8GZXlP93OZ/PxrnJVPpgk8zKvVnApstLmMt9t4
+        gUzzjBDrq80VxaUC7i+pDznWwA==
+X-Google-Smtp-Source: APXvYqxGG3JbfgborY+YIpwmjK4Y2TbKpsdVmQdDEsDRXsBTsyOxNr+gLpuglnv0VYJ/MYFIWlB5/g==
+X-Received: by 2002:a1c:be11:: with SMTP id o17mr1344165wmf.115.1565680696953;
+        Tue, 13 Aug 2019 00:18:16 -0700 (PDT)
+Received: from dell ([2.27.35.255])
+        by smtp.gmail.com with ESMTPSA id r11sm170287114wre.14.2019.08.13.00.18.15
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 13 Aug 2019 00:18:15 -0700 (PDT)
+Date:   Tue, 13 Aug 2019 08:18:14 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mmc@vger.kernel.org
-References: <1565252928-28994-1-git-send-email-eugen.hristev@microchip.com>
- <1565252928-28994-2-git-send-email-eugen.hristev@microchip.com>
- <20190808124217.wrmcxohw5i6ju2qe@M43218.corp.atmel.com>
- <04fd74c3-a828-1064-b77b-f3de07a26190@intel.com>
- <20190809062322.syuieymdqjs4e7lh@M43218.corp.atmel.com>
- <fa0debbb-b84c-1f74-f8b8-8fdd7812aaee@microchip.com>
+        patches@opensource.cirrus.com
+Subject: Re: [PATCH 2/2] mfd: madera: Add support for requesting the supply
+ clocks
+Message-ID: <20190813071814.GY26727@dell>
+References: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
+ <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
+ <20190812103853.GM26727@dell>
+ <20190812160937.GM54126@ediswmail.ad.cirrus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <fa0debbb-b84c-1f74-f8b8-8fdd7812aaee@microchip.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190812160937.GM54126@ediswmail.ad.cirrus.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 03:38:34PM +0000, Eugen.Hristev@microchip.com wrote:
-> On 09.08.2019 09:23, Ludovic Desroches wrote:
-> > On Thu, Aug 08, 2019 at 03:57:30PM +0300, Adrian Hunter wrote:
-> >> On 8/08/19 3:42 PM, Ludovic Desroches wrote:
-> >>> On Thu, Aug 08, 2019 at 10:35:43AM +0200, Eugen Hristev - M18282 wrote:
-> >>>> From: Eugen Hristev <eugen.hristev@microchip.com>
-> >>>>
-> >>>> Add mmc capabilities for SDMMC0 for this board.
-> >>>> With this enabled, eMMC connected card is detected as:
-> >>>>
-> >>>> mmc0: new DDR MMC card at address 0001
-> >>>>
-> >>>> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> >>> Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
-> >>>
-> >>> I am interested to have the some insights about the use of sd-uhs-*
-> >>> properties.
-> >>>
-> >>> Our IP can't deal with 1V8 by itself. It has a 1V8SEL signal which can
-> >>> be used as the logic control input of a mux. So even if the IP claims
-> >>> to support UHS modes, it depends on the board.
-> >>>
-> >>> Are the sd-uhs-* properties a way to deal with this? I tend to think no
-> >>> as sdhci_setup_host() will set the caps depending on the content of the
-> >>> capabilities register. Do we have to use the SDHCI_QUIRK_MISSING_CAPS
-> >>> quirk or sdhci-caps/sdhci-caps-mask?
-> >>
-> >> There is "no-1-8-v" which it looks like sdhci-of-at91.c already supports:
-> >>
-> >>    sdhci_at91_probe() -> sdhci_get_of_property() -> sdhci_get_property()
-> >>
-> >>      	if (device_property_present(dev, "no-1-8-v"))
-> >> 		host->quirks2 |= SDHCI_QUIRK2_NO_1_8_V;
-> >>
-> > 
-> > Right, I forgot this property. Thanks.
-> > 
-> > Eugen, do you see cases we can't cover with this property?
-> 
-> Hi,
-> 
-> For current requirements and driver support, this should be enough.
-> 
-> I noticed one thing regarding SD-Cards, if I add property sd-uhs-sdr104 
-> the class 10 uhs1 cards are detected as SDR104 . Without this property 
-> they are detected as DDR50. Any idea why the difference ? The controller 
-> does not claim to have SDR104 support ?  We should add it ?
+On Mon, 12 Aug 2019, Charles Keepax wrote:
 
-With the mainline, our tree or both? In our tree, SDR104 is removed from
-the capabilities.
+> On Mon, Aug 12, 2019 at 11:38:53AM +0100, Lee Jones wrote:
+> > On Tue, 06 Aug 2019, Charles Keepax wrote:
+> > 
+> > > Add the ability to get the clock for each clock input pin of the chip
+> > > and enable MCLK2 since that is expected to be a permanently enabled
+> > > 32kHz clock.
+> > > 
+> > > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > > ---
+> > >  int madera_dev_init(struct madera *madera)
+> > >  {
+> > > +	static const char * const mclk_name[] = { "mclk1", "mclk2", "mclk3" };
+> > >  	struct device *dev = madera->dev;
+> > >  	unsigned int hwid;
+> > >  	int (*patch_fn)(struct madera *) = NULL;
+> > > @@ -450,6 +451,17 @@ int madera_dev_init(struct madera *madera)
+> > >  		       sizeof(madera->pdata));
+> > >  	}
+> > >  
+> > > +	BUILD_BUG_ON(ARRAY_SIZE(madera->mclk) != ARRAY_SIZE(mclk_name));
+> > 
+> > Not sure how this could happen.  Surely we don't need it.
+> > 
+> 
+> mclk_name is defined locally in this function and the mclk array in
+> include/linux/mfd/madera/core.h. This is to guard against one of
+> them being updated but not the other. It is by no means essential
+> but it feels like a good trade off given there is really limited
+> downside.
 
-Ludovic
+It's fine in general I guess.  How likely would it be for anyone to
+update either of the definitions?  Can there be more/less clocks on a
+supported platform?
+
+> > > +	for (i = 0; i < ARRAY_SIZE(madera->mclk); i++) {
+> > > +		madera->mclk[i] = devm_clk_get_optional(madera->dev,
+> > > +							mclk_name[i]);
+> > > +		if (IS_ERR(madera->mclk[i])) {
+> > > +			dev_warn(madera->dev, "Failed to get %s: %ld\n",
+> > > +				 mclk_name[i], PTR_ERR(madera->mclk[i]));
+> > 
+> > Do we even want to warn on the non-acquisition of an optional clock?
+> > 
+> > Especially with a message that looks like something actually failed.
+> > 
+> 
+> devm_clk_get_optional will return NULL if the clock was not
+> specified, so this is silent in that case. A warning in the case
+> something actually went wrong seems reasonable even if the clock
+> is optional as the user tried to do something and it didn't
+> behave as they intended.
+
+If something actually went wrong, then doesn't then become and error
+and should be reported (returned)?
+
+> > > +			madera->mclk[i] = NULL;
+> > > +		}
+> > > +	}
+> > > +
+> > >  	ret = madera_get_reset_gpio(madera);
+> > >  	if (ret)
+> > >  		return ret;
+> > > @@ -660,13 +672,19 @@ int madera_dev_init(struct madera *madera)
+> > >  	}
+> > >  
+> > >  	/* Init 32k clock sourced from MCLK2 */
+> > > +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2]);
+> > > +	if (ret != 0) {
+> > > +		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
+> > > +		goto err_reset;
+> > > +	}
+> > 
+> > What happened to this being optional?
+> > 
+> 
+> The device needs the clock but specifying it through DT is
+> optional (the clock framework functions are no-ops and return
+> success if the clock pointer is NULL). Normally the 32kHz
+> clock is always on, and more importantly no existing users of
+> the driver will be specifying one.
+> 
+> We could remove the optional status for MCLK2, but it could break
+> existing users who don't yet specify the clock until they update
+> their DT and it will complicate the code as the other clocks are
+> definitely optional, so MCLK2 will need special handling.
+
+I'd prefer the code to reflect the actual situation.  If the clock is
+not optional it doesn't sound correct to specify it as such.  Maybe as
+an intermediary step we attempt to obtain it, but ignore missing
+clocks (with a message and comment) if it is not yet specified.  We
+can look to change the behaviour once users have had the chance to
+update their DTs.
+
+> > >  	ret = regmap_update_bits(madera->regmap,
+> > >  			MADERA_CLOCK_32K_1,
+> > >  			MADERA_CLK_32K_ENA_MASK | MADERA_CLK_32K_SRC_MASK,
+> > >  			MADERA_CLK_32K_ENA | MADERA_32KZ_MCLK2);
+> > >  	if (ret) {
+> > >  		dev_err(madera->dev, "Failed to init 32k clock: %d\n", ret);
+> > > -		goto err_reset;
+> > > +		goto err_clock;
+> > >  	}
+> > >  
+> > >  	pm_runtime_set_active(madera->dev);
+> > > @@ -687,6 +705,8 @@ int madera_dev_init(struct madera *madera)
+> > >  
+> > >  err_pm_runtime:
+> > >  	pm_runtime_disable(madera->dev);
+> > > +err_clock:
+> > > +	clk_disable_unprepare(madera->mclk[MADERA_MCLK2]);
+> > 
+> > Where are the other clocks consumed?
+> 
+> Other clocks will be consumed by the ASoC part of the driver for
+> clocking the audio functionality and running the FLLs. I haven't
+> sent those patches yet, but was planning on doing so once this
+> was merged.
+
+Okay.
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
