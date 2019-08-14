@@ -2,90 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF628D609
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 16:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8CD28D665
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 16:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728164AbfHNOaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 10:30:07 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35802 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728232AbfHNO3f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 10:29:35 -0400
-Received: by mail-wr1-f67.google.com with SMTP id k2so25458474wrq.2
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 07:29:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=pwx9hW1o2Gq2PergB5v8yAwMnz0OCKYudbljjiRvXYk=;
-        b=Eb7EDaqtXhqzBiYSbdt5nj7cUJOesBGZQXjQGx8P5z8JqtF3ycxq2N+m6+TbPXN7RY
-         Fng0SarDUOEMF1v7x00LxuTin02vm50+HH0qQ67TsSGiIxIG1Dk2AJIVWDz7aFG4XmgN
-         horDmB4Ho4CRvX6FQGvnLZ2D2jm0i+BNfOSGRs2M6UkLZUyaiPmzVQaNQ0ezskEWjNbE
-         rk0zBi5o3XmLPtWH6R06MFqjvCvlXV8yFY+g5HN7pGBi+dTSaCR+7qZDhoNpaRR6zEcA
-         vs+Ib0qH8ApzA+VamZxKkLT6qh0yr03mhaVTq8EKLaKTN0X9wz13zPbobRvSF0yvN0Kb
-         1rpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=pwx9hW1o2Gq2PergB5v8yAwMnz0OCKYudbljjiRvXYk=;
-        b=nBSqmIGu8b6q8UrqWNK6VY2dUhOWMbQaDONisQDR1P9NA7L9aO3vPJIiV2539kLqff
-         tvYd0NQKGRRoy3oeiwjrnHXwfFvP599L+Gxx7alC/5hNM7J6RlHpht4mN0xEqV/gwSHc
-         vt8p1ixDmq623+yPSrMNNqzmlw+BD+TgU/owJniClIpDFGTps9wmEc69Rkz3jyfWZpiF
-         MnvcYZQxSPI+dU8Fdj2Vo5qRJaG4DcBR4ZadFU2EsG5S/CrxfN383O9WuszdU/khQSdS
-         1Rs3ij+ymViZrVDk3fHRA3NIPyr0uCz30iP6vx0vjkk8RfcdeBNvxfh+Tw1Kp1ltfs7W
-         h9WQ==
-X-Gm-Message-State: APjAAAVlT+YIzOHylXvu5XdHD5U6o1Osi5g6V0f0Sf/d17dhrTdjH3ZX
-        GX/gJ7pzWveuwQa7WdNjPzepDA==
-X-Google-Smtp-Source: APXvYqwFlZqG2iV08FiE4OCohyI3fIgKZcqD8f1isbMX17aYIR7vsElvrXVqtTUDDib5F7ms/LyrVg==
-X-Received: by 2002:a5d:4b83:: with SMTP id b3mr48215449wrt.104.1565792973471;
-        Wed, 14 Aug 2019 07:29:33 -0700 (PDT)
-Received: from bender.baylibre.local (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id o7sm4202908wmc.36.2019.08.14.07.29.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Aug 2019 07:29:32 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 10/14] arm64: dts: meson-g12a: fix reset controller compatible
-Date:   Wed, 14 Aug 2019 16:29:14 +0200
-Message-Id: <20190814142918.11636-11-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190814142918.11636-1-narmstrong@baylibre.com>
-References: <20190814142918.11636-1-narmstrong@baylibre.com>
+        id S1727900AbfHNOlI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 10:41:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36248 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727558AbfHNOlI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 10:41:08 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8C5A12084F;
+        Wed, 14 Aug 2019 14:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565793666;
+        bh=jqAmDB/DdtSMeWfimuoJggpnAk0RJ3WaU75jDeIn5oo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rNsmFWWNEtepwSspPVPQj7tCrKE+6ilVhN23rjhA7f8T2B2i69Zs85I3qpC/pDSEY
+         rqWqwiQfS1y9E4hWMQdJM/K+pyYE6AQ9CMK9ek75MNFaUo5/+LkNcKP4ySo17uqG16
+         tpBkanURK0WmMPwYRrDuqri3s8x6EsmrAO4LX/AQ=
+Date:   Wed, 14 Aug 2019 15:41:00 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, cui.zhang@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com
+Subject: Re: [PATCH v9 08/21] iommu/io-pgtable-arm-v7s: Extend MediaTek 4GB
+ Mode
+Message-ID: <20190814144059.ruyc45yoqkwpbuga@willie-the-truck>
+References: <1565423901-17008-1-git-send-email-yong.wu@mediatek.com>
+ <1565423901-17008-9-git-send-email-yong.wu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1565423901-17008-9-git-send-email-yong.wu@mediatek.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the following DT schemas check errors:
-meson-g12a-u200.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
-meson-g12a-sei510.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
+Hi Yong Wu,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+Sorry, but I'm still deeply confused by this patch.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-index 465106d37289..74c587411306 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
-@@ -2215,8 +2215,7 @@
- 			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x100000>;
+On Sat, Aug 10, 2019 at 03:58:08PM +0800, Yong Wu wrote:
+> MediaTek extend the arm v7s descriptor to support the dram over 4GB.
+> 
+> In the mt2712 and mt8173, it's called "4GB mode", the physical address
+> is from 0x4000_0000 to 0x1_3fff_ffff, but from EMI point of view, it
+> is remapped to high address from 0x1_0000_0000 to 0x1_ffff_ffff, the
+> bit32 is always enabled. thus, in the M4U, we always enable the bit9
+> for all PTEs which means to enable bit32 of physical address. Here is
+> the detailed remap relationship in the "4GB mode":
+> CPU PA         ->    HW PA
+> 0x4000_0000          0x1_4000_0000 (Add bit32)
+> 0x8000_0000          0x1_8000_0000 ...
+> 0xc000_0000          0x1_c000_0000 ...
+> 0x1_0000_0000        0x1_0000_0000 (No change)
+
+So in this example, there are no PAs below 0x4000_0000 yet you later
+add code to deal with that:
+
+> +	/* Workaround for MTK 4GB Mode: Add BIT32 only when PA < 0x4000_0000.*/
+> +	if (cfg->oas == ARM_V7S_MTK_4GB_OAS && paddr < 0x40000000UL)
+> +		paddr |= BIT_ULL(32);
+
+Why? Mainline currently doesn't do anything like this for the "4gb mode"
+support as far as I can tell. In fact, we currently unconditionally set
+bit 32 in the physical address returned by iova_to_phys() which wouldn't
+match your CPU PAs listed above, so I'm confused about how this is supposed
+to work.
+
+The way I would like this quirk to work is that the io-pgtable code
+basically sets bit 9 in the pte when bit 32 is set in the physical address,
+and sets bit 4 in the pte when bit 33 is set in the physical address. It
+would then do the opposite when converting a pte to a physical address.
+
+That way, your driver can call the page table code directly with the high
+addresses and we don't have to do any manual offsetting or range checking
+in the page table code.
+
+Please can you explain to me why the diff below doesn't work on top of
+this series? I'm happy to chat on IRC if you think it would be easier,
+because I have a horrible feeling that we've been talking past each other
+and I'd like to see this support merged for 5.4.
+
+Will
+
+--->8
+
+diff --git a/drivers/iommu/io-pgtable-arm-v7s.c b/drivers/iommu/io-pgtable-arm-v7s.c
+index ab12ef5f8b03..d8d84617c822 100644
+--- a/drivers/iommu/io-pgtable-arm-v7s.c
++++ b/drivers/iommu/io-pgtable-arm-v7s.c
+@@ -184,7 +184,7 @@ static arm_v7s_iopte paddr_to_iopte(phys_addr_t paddr, int lvl,
+ 	arm_v7s_iopte pte = paddr & ARM_V7S_LVL_MASK(lvl);
  
- 			reset: reset-controller@1004 {
--				compatible = "amlogic,meson-g12a-reset",
--					     "amlogic,meson-axg-reset";
-+				compatible = "amlogic,meson-axg-reset";
- 				reg = <0x0 0x1004 0x0 0x9c>;
- 				#reset-cells = <1>;
- 			};
--- 
-2.22.0
-
+ 	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
+-		if ((paddr & BIT_ULL(32)) || cfg->oas == ARM_V7S_MTK_4GB_OAS)
++		if (paddr & BIT_ULL(32))
+ 			pte |= ARM_V7S_ATTR_MTK_PA_BIT32;
+ 		if (paddr & BIT_ULL(33))
+ 			pte |= ARM_V7S_ATTR_MTK_PA_BIT33;
+@@ -206,17 +206,14 @@ static phys_addr_t iopte_to_paddr(arm_v7s_iopte pte, int lvl,
+ 		mask = ARM_V7S_LVL_MASK(lvl);
+ 
+ 	paddr = pte & mask;
+-	if (cfg->oas == 32 || !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT))
+-		return paddr;
+ 
+-	if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
+-		paddr |= BIT_ULL(33);
++	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
++		if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
++			paddr |= BIT_ULL(32);
++		if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
++			paddr |= BIT_ULL(33);
++	}
+ 
+-	/* Workaround for MTK 4GB Mode: Add BIT32 only when PA < 0x4000_0000.*/
+-	if (cfg->oas == ARM_V7S_MTK_4GB_OAS && paddr < 0x40000000UL)
+-		paddr |= BIT_ULL(32);
+-	else if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+-		paddr |= BIT_ULL(32);
+ 	return paddr;
+ }
+ 
+diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+index d5b9454352fd..3ae54dedede0 100644
+--- a/drivers/iommu/mtk_iommu.c
++++ b/drivers/iommu/mtk_iommu.c
+@@ -286,7 +286,7 @@ static int mtk_iommu_domain_finalise(struct mtk_iommu_domain *dom)
+ 	if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
+ 		dom->cfg.oas = 32;
+ 	else if (data->enable_4GB)
+-		dom->cfg.oas = ARM_V7S_MTK_4GB_OAS;
++		dom->cfg.oas = 33;
+ 	else
+ 		dom->cfg.oas = 34;
+ 
+diff --git a/include/linux/io-pgtable.h b/include/linux/io-pgtable.h
+index 27337395bd42..a2a52c349fe4 100644
+--- a/include/linux/io-pgtable.h
++++ b/include/linux/io-pgtable.h
+@@ -113,8 +113,6 @@ struct io_pgtable_cfg {
+ 	};
+ };
+ 
+-#define ARM_V7S_MTK_4GB_OAS			33
+-
+ /**
+  * struct io_pgtable_ops - Page table manipulation API for IOMMU drivers.
+  *
