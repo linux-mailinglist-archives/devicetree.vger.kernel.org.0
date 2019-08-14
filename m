@@ -2,102 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CED278DB24
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7A918DBE7
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730223AbfHNRXD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 13:23:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45684 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729276AbfHNRXC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 13:23:02 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9246520665;
-        Wed, 14 Aug 2019 17:23:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565803381;
-        bh=FN7svZ/+iXMULArgYt1oBNGNoJcD+bkl47j+nxOdq5Y=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=U2k+Omw28LwRRoFmVtodT07PV6nxV/NjO0n84ZnQwJqJzPx0vkjnq79bp1wEvklFG
-         VMEVAJLqqexfV8yMpJeyrQSBTfCgZag1WzGsv1E4V8fP+esmsvW+CqJy/MmWeHrA/1
-         KqbEgb8F4a9wCCJHNpBFKV7UIh0krHKOR86fwJ8w=
-Content-Type: text/plain; charset="utf-8"
+        id S1728488AbfHNRcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 13:32:01 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:38299 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728482AbfHNRcA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 13:32:00 -0400
+Received: by mail-ed1-f68.google.com with SMTP id r12so7761181edo.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 10:31:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=sender:date:from:to:cc:subject:message-id:mail-followup-to
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Qm6tCEyYHljYJCx+l7YOn3eiOVSI2Q6xsqKk/Szr8xk=;
+        b=k/gxraMcIYfFKbabTJ1uwZwJ8VES3yQLUNViHQMA+d1o/fXBUmn8Xlra/WXeXV9OK6
+         oIRMcB4HXQV1z1V493ABRs1dndtGFVbP9eicDVkQRWohVqSbxdWxsF3LaxECADogDqgb
+         PIOsIK/y/ZmlDZ6O+dGhdkqTrvL9DfZPgNEz8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to:user-agent;
+        bh=Qm6tCEyYHljYJCx+l7YOn3eiOVSI2Q6xsqKk/Szr8xk=;
+        b=AY9SqL+GsOdGOI1M7bzjLw7LH2razClo8UbMyHTnG0pkldbW/RulTuMPG9Vnb0k8Bv
+         kKtc8nvGgBd1IHLWeMTizNjL7p8TkTby8kd+0+J+e2DWmUjBUfTq8/lx4HQ07woN6mlT
+         Gh4+MDUkkkIoSq195mdAhXHfVMJR5OkAV0LNID43eofElTZvEA31eL5/L6kzhqZJ9FQT
+         PoLJS60oz3D4CBj0R/4Y9BqHyGTkqyBLMxGCXNuSrZAfAQ4YZjFfNnKvt6xvNpfipaFR
+         SMPBtW3PDOXOAgsYj/xj63cmorhoPqKHKjQ69TeQf5R3SxBHr/7M05H4CKkj6/o1RYHD
+         eQMQ==
+X-Gm-Message-State: APjAAAW8piYBDEHVT023R0YUdgORvsCyKXTcIdtgUqtH7mvzGmaP2vr3
+        wi4xyXmafaBPRzcb+FQn/0KpYA==
+X-Google-Smtp-Source: APXvYqwRn9v1KmyAl7iLql4TVsuC4BlSbySrQOJ2/+/4v8L1EDdXOOJ8MyXwatv64FQ4zcha8koF8Q==
+X-Received: by 2002:aa7:c353:: with SMTP id j19mr858899edr.292.1565803918776;
+        Wed, 14 Aug 2019 10:31:58 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
+        by smtp.gmail.com with ESMTPSA id f6sm74361edn.63.2019.08.14.10.31.57
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 14 Aug 2019 10:31:58 -0700 (PDT)
+Date:   Wed, 14 Aug 2019 19:31:55 +0200
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 07/15] drm/mxsfb: Fix the vblank events
+Message-ID: <20190814173155.GR7444@phenom.ffwll.local>
+Mail-Followup-To: Robert Chiras <robert.chiras@nxp.com>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@linux.ie>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <1565779731-1300-1-git-send-email-robert.chiras@nxp.com>
+ <1565779731-1300-8-git-send-email-robert.chiras@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAFd5g45NdQEcP0JQpZc3HYYgNZfsBsHL+ByXRK+OupWObwMuqg@mail.gmail.com>
-References: <20190814055108.214253-1-brendanhiggins@google.com> <CAFd5g45NdQEcP0JQpZc3HYYgNZfsBsHL+ByXRK+OupWObwMuqg@mail.gmail.com>
-Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit testing framework
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Bjorn Helgaas <bhelgaas@google.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Theodore Ts'o <tytso@mit.edu>,
-        shuah <shuah@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Wed, 14 Aug 2019 10:23:00 -0700
-Message-Id: <20190814172301.9246520665@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1565779731-1300-8-git-send-email-robert.chiras@nxp.com>
+X-Operating-System: Linux phenom 4.19.0-5-amd64 
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-08-14 03:03:47)
-> On Tue, Aug 13, 2019 at 10:52 PM Brendan Higgins
-> <brendanhiggins@google.com> wrote:
-> >
-> > ## TL;DR
-> >
-> > This revision addresses comments from Stephen and Bjorn Helgaas. Most
-> > changes are pretty minor stuff that doesn't affect the API in anyway.
-> > One significant change, however, is that I added support for freeing
-> > kunit_resource managed resources before the test case is finished via
-> > kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
-> > KUnit on certain configurations (like the default one for x86, whoops).
-> >
-> > Based on Stephen's feedback on the previous change, I think we are
-> > pretty close. I am not expecting any significant changes from here on
-> > out.
->=20
-> Stephen, it looks like you have just replied with "Reviewed-bys" on
-> all the remaining emails that you looked at. Is there anything else
-> that we are missing? Or is this ready for Shuah to apply?
->=20
+On Wed, Aug 14, 2019 at 01:48:43PM +0300, Robert Chiras wrote:
+> Currently, the vblank support is not correctly implemented in MXSFB_DRM
+> driver. The call to drm_vblank_init is made with mode_config.num_crtc
+> which at that time is 0. Because of this, vblank is not activated, so
+> there won't be any vblank event submitted.
+> For example, when running modetest with the '-v' parameter will result
+> in an astronomical refresh rate (10000+ Hz), because of that.
 
-I think it's good to go! Thanks for the persistence.
+Uh, that sounds a bit like a bug somewhere. If vblank doesn't work, we
+should give userspace an error back.
 
+Maybe we need more checks in drm_vblank_init()? Can you pls look into
+that?
+
+> 
+> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+> ---
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> index 2743975..829abec 100644
+> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
+> @@ -38,6 +38,9 @@
+>  #include "mxsfb_drv.h"
+>  #include "mxsfb_regs.h"
+>  
+> +/* The eLCDIF max possible CRTCs */
+> +#define MAX_CRTCS 1
+> +
+>  enum mxsfb_devtype {
+>  	MXSFB_V3,
+>  	MXSFB_V4,
+> @@ -138,6 +141,8 @@ static void mxsfb_pipe_enable(struct drm_simple_display_pipe *pipe,
+>  		mxsfb->connector = &mxsfb->panel_connector;
+>  	}
+>  
+> +	drm_crtc_vblank_on(&pipe->crtc);
+> +
+>  	pm_runtime_get_sync(drm->dev);
+>  	drm_panel_prepare(mxsfb->panel);
+>  	mxsfb_crtc_enable(mxsfb);
+> @@ -164,6 +169,8 @@ static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
+>  	}
+>  	spin_unlock_irq(&drm->event_lock);
+>  
+> +	drm_crtc_vblank_off(&pipe->crtc);
+> +
+>  	if (mxsfb->connector != &mxsfb->panel_connector)
+>  		mxsfb->connector = NULL;
+>  }
+> @@ -246,7 +253,7 @@ static int mxsfb_load(struct drm_device *drm, unsigned long flags)
+>  
+>  	pm_runtime_enable(drm->dev);
+>  
+> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
+> +	ret = drm_vblank_init(drm, MAX_CRTCS);
+>  	if (ret < 0) {
+>  		dev_err(drm->dev, "Failed to initialise vblank\n");
+>  		goto err_vblank;
+> @@ -269,6 +276,8 @@ static int mxsfb_load(struct drm_device *drm, unsigned long flags)
+>  		goto err_vblank;
+>  	}
+>  
+> +	drm_crtc_vblank_off(&mxsfb->pipe.crtc);
+
+Are you sure you need this one here? vblanks should be off after
+drm_vblank_init() is called.
+
+Thanks, Daniel
+
+> +
+>  	/*
+>  	 * Attach panel only if there is one.
+>  	 * If there is no panel attach, it must be a bridge. In this case, we
+> -- 
+> 2.7.4
+> 
+
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
