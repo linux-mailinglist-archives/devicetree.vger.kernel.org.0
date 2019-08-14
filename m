@@ -2,84 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 894E08CC2D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 09:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AD468CC59
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 09:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727021AbfHNHB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 03:01:28 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:37443 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726575AbfHNHB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 03:01:28 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hxnHf-0001Go-1r; Wed, 14 Aug 2019 09:01:23 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hxnHd-0008VU-W0; Wed, 14 Aug 2019 09:01:21 +0200
-Date:   Wed, 14 Aug 2019 09:01:21 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Baolin Wang <baolin.wang@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM
- documentation
-Message-ID: <20190814070121.o53tj2mtky4hcy3n@pengutronix.de>
-References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
- <20190813141256.jnbrfld42rtigek3@pengutronix.de>
- <CAMz4kuJA+a=nzFRja4wRkfJu3Gzb0wnvaM8H4Ek9X5u8CNegPg@mail.gmail.com>
+        id S1726986AbfHNHQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 03:16:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50976 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726880AbfHNHQ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 03:16:59 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 066412054F;
+        Wed, 14 Aug 2019 07:16:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565767018;
+        bh=XDAYAIHKx15cbm4MLaeL2uyl4aIQnIOMeL1b9sGwwNE=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=BivEU2xIZL82EeTgEkm0YeMoEaLJDpoEO7a2zS5hiA9cs3kvwHPeOwoR5hLAFoCSs
+         QN7vT/TulxQAdD2w0+cnf1mdxQEv+C8FQSllITsMUv0YH0f9tH2JKqFwShfbEex0li
+         PW40DSG+Nh81h9qArVWE/xPTvIfUmbeV1PbKJ/WE=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMz4kuJA+a=nzFRja4wRkfJu3Gzb0wnvaM8H4Ek9X5u8CNegPg@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190814055108.214253-10-brendanhiggins@google.com>
+References: <20190814055108.214253-1-brendanhiggins@google.com> <20190814055108.214253-10-brendanhiggins@google.com>
+Subject: Re: [PATCH v13 09/18] kunit: test: add support for test abort
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+User-Agent: alot/0.8.1
+Date:   Wed, 14 Aug 2019 00:16:57 -0700
+Message-Id: <20190814071658.066412054F@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Baolin,
+Quoting Brendan Higgins (2019-08-13 22:50:59)
+> Add support for aborting/bailing out of test cases, which is needed for
+> implementing assertions.
+>=20
+> An assertion is like an expectation, but bails out of the test case
+> early if the assertion is not met. The idea with assertions is that you
+> use them to state all the preconditions for your test. Logically
+> speaking, these are the premises of the test case, so if a premise isn't
+> true, there is no point in continuing the test case because there are no
+> conclusions that can be drawn without the premises. Whereas, the
+> expectation is the thing you are trying to prove.
+>=20
+> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> ---
 
-On Wed, Aug 14, 2019 at 09:51:34AM +0800, Baolin Wang wrote:
-> On Tue, 13 Aug 2019 at 22:13, Uwe Kleine-König
-> <u.kleine-koenig@pengutronix.de> wrote:
-> > On Tue, Aug 13, 2019 at 09:46:40PM +0800, Baolin Wang wrote:
-> > > +- assigned-clock-parents: The phandle of the parent clock of PWM clock.
-> >
-> > I'm not sure you need to point out assigned-clocks and
-> > assigned-clock-parents as this is general clk stuff. Also I wonder if
-> > these should be "required properties".
-> 
-> I think I should describe any properties used by PWM node, like
-> 'clocks' and 'clock-names' properties, though they are common clock
-> properties.
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
 
-Then you might want to describe also "status", "assigned-clock-rates",
-"pinctrl-$n", "pinctrl-names", "power-domains", "power-domain-names" and
-probably another dozen I'm not aware of.
-
-> Yes, they are required. Thanks for your comments.
-
-required in which sense? Why can a Spreadtrum PWM not work when the
-clock parents are unspecified?
-
-Best regards
-Uwe
-
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
