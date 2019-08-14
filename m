@@ -2,238 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60FAD8C9C9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 05:01:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7F038C9D5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 05:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726776AbfHNDBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 13 Aug 2019 23:01:37 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:42061 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726692AbfHNDBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 23:01:37 -0400
-Received: by mail-oi1-f196.google.com with SMTP id o6so1718570oic.9;
-        Tue, 13 Aug 2019 20:01:36 -0700 (PDT)
+        id S1726992AbfHNDJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 13 Aug 2019 23:09:47 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:37918 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726896AbfHNDJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 13 Aug 2019 23:09:47 -0400
+Received: by mail-pg1-f194.google.com with SMTP id e11so1750938pga.5
+        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 20:09:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=JldLSgRtBBxHBWQOR9/Op7zdWxFQRoEO7eprbvicojY=;
-        b=WlTw0X+lDDkK3OWwBjw3XGwcyn83zxhuFTx1C/dPTO5g+56M2cE6hQKZhECyG/8qfE
-         4M1kEwcEFUUGt0nf+SZzgScOOf4nQPkxsyy8K6TXtBOTo7gbDTWjipJMV8icLdkfVYfh
-         PKWr9Fl6HA4bwv6pjv3W9GbIp7I8RKNUgumURAl8T1a2Bicojt3+SU/hLzh/nwykhS+8
-         5mqvP7BMag9DSTBxoqRpq59LZAl593xM5xU5FO1M2zpWotESM04EjuEQwGtrYeto3Fx4
-         yRk2oi5LSieYgI+hRfX4q7PGx8EOhmxIf1sClE9E7VvGFmn2BYlEnbjk/xi8Dv2dViC0
-         suhw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=HT5agnFB9Ua1f+HiJVMbjVMLi62oFKHY9sExG5RcmRA=;
+        b=iolgrg+yXRNATYsbEOlu9D72Y6cuxWB1oF5q6TXekIkX8mRpEK69FdqiNFv7XLjA+t
+         FcGQ/WsyRg41D/BOnJQYjxSQgmko05AoDrQP8l7PRwVl3zym4hrqsRdFf/C5NJdKmsX7
+         GZ2P20Urso3DH3FtiPIJArW43M2VOidJwP1fvmpZusTymGcOa/i60G3smXH+F1/miznf
+         3QsZV4UthI9GdIyw26ruyfIBbZ0N/faj+B/5VeUhED07B+AhHEdLce+Nzuahj7O4xDG8
+         Ff1sKUAeEmJL2mQ+1/OMUBZSm4fHnJw2ydQ1XD5QzHBVi1DI4NPaFbhBCeCAO6AQvivo
+         v6HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=JldLSgRtBBxHBWQOR9/Op7zdWxFQRoEO7eprbvicojY=;
-        b=d8FvJmLEbVg2wr6uxVZfzq5t0m+Oju9YInwtnN3XyMTNnkvKgw8TASnJtw8mpCPoLy
-         RtZzLdg6012fIE4p0z8lFKjI11HpVm4/IJozSZ0Lgqzajwjf/TCJTRudaxdkvl/3mbw9
-         X6lhFRvcwxi5dsdoFA/SpzKm/l2OmGEl2nkW4BKKgW7BwmkGICIcHEsrZNKc78ABD4eN
-         oss5VpP9wQuS5KLIBPTgMm3g4GqFFW7A9N7xW436eY4lv/ucHnjFdT1+SA8B3dexg06M
-         LK4k9R/IwhnNg8ZwpncT535Dd5/gMR1j7OYe4Zq13sEWI3SgTaf/D3FrZlOat1IkVgCu
-         WGXQ==
-X-Gm-Message-State: APjAAAXvBFHZu8dlULtR5QqiVWpQC0erINdtZ1qQ7nJQ5mz93qTR0Tl3
-        SMkpkLO428xyCLhq24jw82XYtHe/Rp/ifpnCYI8=
-X-Google-Smtp-Source: APXvYqw9bx/8nkPjqknF7XY6B80tyPcjrTS+9WAO4WSz9iIwcoATg7FP7VyXf60IQz9sfC9Rqxz4I5A7ykIbv8yDURI=
-X-Received: by 2002:a54:4e95:: with SMTP id c21mr3197457oiy.145.1565751696231;
- Tue, 13 Aug 2019 20:01:36 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190810052829.6032-1-tiny.windzz@gmail.com> <20190810052829.6032-9-tiny.windzz@gmail.com>
- <CA+E=qVfp-rProxOwX__J6jM-pZ9g_SmeuOCOgvC_5DJVQw4OGw@mail.gmail.com>
- <CAEExFWubLqtPZ=ZKJTCb6x2-PeYebXb3sr-t-XvtrLJTRiUU1A@mail.gmail.com>
- <CA+E=qVf9V9iTvCfXXyjqKeviCJOvYpKUO8qw6cQsKqoaRmdKYQ@mail.gmail.com> <20190813200623.2dmxcwibuyolnuhh@core.my.home>
-In-Reply-To: <20190813200623.2dmxcwibuyolnuhh@core.my.home>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Tue, 13 Aug 2019 20:01:10 -0700
-Message-ID: <CA+E=qVd-hz68VhL0n+3-HDNua2QsT0dOVY9mRjhb5e5+tBW5Fg@mail.gmail.com>
-Subject: Re: [PATCH v5 08/18] thermal: sun8i: support mod clocks
-To:     Vasily Khoruzhick <anarsoul@gmail.com>,
-        Frank Lee <tiny.windzz@gmail.com>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=HT5agnFB9Ua1f+HiJVMbjVMLi62oFKHY9sExG5RcmRA=;
+        b=WPoRkNS0lMX6AoDRpN8a9p8CxVqPzbyJbi3YqEWZT68alQCGiekxaP6hLoVgALKHrx
+         EhNf1vw/17ExwQjDjT5grW2gX7cZn5i9ycXHR7LkmAObEaPin4AIPyYFZ6/1QiEeB2TU
+         PJh5Gf89cSOsJ5zT4OblANBgoOJ9tlARzfwIwL2TrRov91lgZr7QjHO7Vd/w9kBYgeLC
+         0DWIUNzb5p/i4i+90sXIfgN9OlVy4T73/O7G1D5nbcVqfDB9zHgDW9DgdgWpFdt4Tb4a
+         hK25oPGHV5DjoPxZhQjFP4pEowXIlTDK2bctTWoL6Dc5mpqmCwVHJDeZazeJAyREcYx2
+         od6g==
+X-Gm-Message-State: APjAAAXwVudtGIrQGwRLMMteTw94op0YjrIGkKtNY9n/Va9QmXoYqtJb
+        prFFhyfWXogvO12Azbzgfskr4A==
+X-Google-Smtp-Source: APXvYqyF1tE3QKOyyK7LvQGdigD6LOt/gywd4f3eQFSrL0cCzGCl9LSpCTeL5FSziRSrw3Bo/+rhjw==
+X-Received: by 2002:a63:e948:: with SMTP id q8mr35922012pgj.93.1565752186336;
+        Tue, 13 Aug 2019 20:09:46 -0700 (PDT)
+Received: from localhost.localdomain (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id u1sm106170929pgi.28.2019.08.13.20.09.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 13 Aug 2019 20:09:45 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan.Cameron@huawei.com,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        rui.zhang@intel.com, "David S. Miller" <davem@davemloft.net>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: qcs404-evb: Mark WCSS clocks protected
+Date:   Tue, 13 Aug 2019 20:09:42 -0700
+Message-Id: <20190814030942.2638-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 13, 2019 at 1:06 PM Ond=C5=99ej Jirman <megous@megous.com> wrot=
-e:
->
-> On Mon, Aug 12, 2019 at 04:54:15PM -0700, Vasily Khoruzhick wrote:
-> > On Mon, Aug 12, 2019 at 4:46 PM Frank Lee <tiny.windzz@gmail.com> wrote=
-:
-> > >
-> > > HI Vasily,
-> > >
-> > > On Sat, Aug 10, 2019 at 2:17 PM Vasily Khoruzhick <anarsoul@gmail.com=
-> wrote:
-> > > >
-> > > > On Fri, Aug 9, 2019 at 10:31 PM Yangtao Li <tiny.windzz@gmail.com> =
-wrote:
-> > > > >
-> > > > > H3 has extra clock, so introduce something in ths_thermal_chip/th=
-s_device
-> > > > > and adds the process of the clock.
-> > > > >
-> > > > > This is pre-work for supprt it.
-> > > > >
-> > > > > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> > > > > ---
-> > > > >  drivers/thermal/sun8i_thermal.c | 17 ++++++++++++++++-
-> > > > >  1 file changed, 16 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/su=
-n8i_thermal.c
-> > > > > index b934bc81eba7..6f4294c2aba7 100644
-> > > > > --- a/drivers/thermal/sun8i_thermal.c
-> > > > > +++ b/drivers/thermal/sun8i_thermal.c
-> > > > > @@ -54,6 +54,7 @@ struct tsensor {
-> > > > >  };
-> > > > >
-> > > > >  struct ths_thermal_chip {
-> > > > > +       bool            has_mod_clk;
-> > > > >         int             sensor_num;
-> > > > >         int             offset;
-> > > > >         int             scale;
-> > > > > @@ -69,6 +70,7 @@ struct ths_device {
-> > > > >         struct regmap                           *regmap;
-> > > > >         struct reset_control                    *reset;
-> > > > >         struct clk                              *bus_clk;
-> > > > > +       struct clk                              *mod_clk;
-> > > > >         struct tsensor                          sensor[MAX_SENSOR=
-_NUM];
-> > > > >  };
-> > > > >
-> > > > > @@ -274,6 +276,12 @@ static int sun8i_ths_resource_init(struct th=
-s_device *tmdev)
-> > > > >         if (IS_ERR(tmdev->bus_clk))
-> > > > >                 return PTR_ERR(tmdev->bus_clk);
-> > > > >
-> > > > > +       if (tmdev->chip->has_mod_clk) {
-> > > > > +               tmdev->mod_clk =3D devm_clk_get(&pdev->dev, "mod"=
-);
-> > > > > +               if (IS_ERR(tmdev->mod_clk))
-> > > > > +                       return PTR_ERR(tmdev->mod_clk);
-> > > > > +       }
-> > > > > +
-> > > > >         ret =3D reset_control_deassert(tmdev->reset);
-> > > > >         if (ret)
-> > > > >                 return ret;
-> > > > > @@ -282,12 +290,18 @@ static int sun8i_ths_resource_init(struct t=
-hs_device *tmdev)
-> > > > >         if (ret)
-> > > > >                 goto assert_reset;
-> > > > >
-> > > > > -       ret =3D sun50i_ths_calibrate(tmdev);
-> > > > > +       ret =3D clk_prepare_enable(tmdev->mod_clk);
-> > > >
-> > > > You have to set rate of modclk before enabling it since you can't r=
-ely
-> > > > on whatever bootloader left for you.
-> > > >
-> > > > Also I found that parameters you're using for PC_TEMP_PERIOD, ACQ0 =
-and
-> > > > ACQ1 are too aggressive and may result in high interrupt rate to th=
-e
-> > > > point when it may stall RCU. I changed driver a bit to use params f=
-rom
-> > > > Philipp Rossak's work (modclk set to 4MHz, PC_TEMP_PERIOD is 7, ACQ=
-0
-> > > > is 255, ACQ1 is 63) and it fixed RCU stalls for me, see [1] for
-> > > > details.
-> > >
-> > > Why is the RCU stall happening, is it caused by a deadlock?
-> > > Can you provide log information and your configuration?
-> > > I am a bit curious.
-> >
-> > It's not deadlock, I believe it just can't handle that many interrupts
-> > when running at lowest CPU frequency. Even with Philipp's settings
-> > there's ~20 interrupts a second from ths. I don't remember how many
-> > interrupts were there with your settings.
-> >
-> > Unfortunately there's nothing interesting in backtraces, I'm using
-> > Pine64-LTS board.
->
-> Recently there was a similar issue, with buggy CCU driver that caused
-> CIR interrupts being fired constantly, and it also resulted in RCU
-> stalls. Looks like a comon cause of RCU stalls.
->
-> THS timing settings probably need to be made specific to the SoC, because
-> I noticed that the same settings lead to wildly different timings on
-> different SoCs.
->
-> It would be good to measure how often ths interrupt fires with this drive=
-r
-> on various SoCs.
->
-> 20 times a second and more sounds like overkill. I'd expect a useful
-> range to be at most 5-10 times a second. That should be enough to stop
-> overheating the SoC due to suddenly increased load, even without a
-> heatsink.
+'7d0c76bdf227 ("clk: qcom: Add WCSS gcc clock control for QCS404")'
+introduces two new clocks to gcc. These are not used before
+clk_disable_unused() and as such the clock framework tries to disable
+them.
 
-Note that A64 has 3 sensors and each sensor has individual interrupt,
-so technically it's 6-7 interrupts per sensor per second
+But on the EVB these registers are only accessible through TrustZone, so
+these clocks must be marked as "protected" to prevent the clock code
+from touching them.
 
-> regards,
->         o.
->
-> > > Thx,
-> > > Yangtao
-> > >
-> > > >
-> > > > [1] https://github.com/anarsoul/linux-2.6/commit/46b8bb0fe2ccd1cd88=
-fa9181a2ecbf79e8d513b2
-> > > >
-> > > >
-> > > > >         if (ret)
-> > > > >                 goto bus_disable;
-> > > > >
-> > > > > +       ret =3D sun50i_ths_calibrate(tmdev);
-> > > > > +       if (ret)
-> > > > > +               goto mod_disable;
-> > > > > +
-> > > > >         return 0;
-> > > > >
-> > > > > +mod_disable:
-> > > > > +       clk_disable_unprepare(tmdev->mod_clk);
-> > > > >  bus_disable:
-> > > > >         clk_disable_unprepare(tmdev->bus_clk);
-> > > > >  assert_reset:
-> > > > > @@ -395,6 +409,7 @@ static int sun8i_ths_remove(struct platform_d=
-evice *pdev)
-> > > > >  {
-> > > > >         struct ths_device *tmdev =3D platform_get_drvdata(pdev);
-> > > > >
-> > > > > +       clk_disable_unprepare(tmdev->mod_clk);
-> > > > >         clk_disable_unprepare(tmdev->bus_clk);
-> > > > >         reset_control_assert(tmdev->reset);
-> > > > >
-> > > > > --
-> > > > > 2.17.1
-> > > > >
-> > > > >
-> > > > > _______________________________________________
-> > > > > linux-arm-kernel mailing list
-> > > > > linux-arm-kernel@lists.infradead.org
-> > > > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> >
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Numerical values are used as the constants are not yet available in a
+common tree.
+
+Reported-by: Mark Brown <broonie@kernel.org>
+Reported-by: Niklas Cassel <niklas.cassel@linaro.org>
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+index 2289b01ee9f0..501a7330dbc8 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+@@ -61,7 +61,9 @@
+ 	protected-clocks = <GCC_BIMC_CDSP_CLK>,
+ 			   <GCC_CDSP_CFG_AHB_CLK>,
+ 			   <GCC_CDSP_BIMC_CLK_SRC>,
+-			   <GCC_CDSP_TBU_CLK>;
++			   <GCC_CDSP_TBU_CLK>,
++			   <141>, /* GCC_WCSS_Q6_AHB_CLK */
++			   <142>; /* GCC_WCSS_Q6_AXIM_CLK */
+ };
+ 
+ &pms405_spmi_regulators {
+-- 
+2.18.0
+
