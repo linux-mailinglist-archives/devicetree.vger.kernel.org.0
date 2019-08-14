@@ -2,126 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9228C8D00A
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B803E8D01D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725800AbfHNJtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 05:49:33 -0400
-Received: from mail-eopbgr60085.outbound.protection.outlook.com ([40.107.6.85]:42150
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725280AbfHNJtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 05:49:33 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lQn3jyUnFvezQgC5EGFX4MXEUJHPryr/ZZuySrDlFcT9ynccvLYRgi7UUdjRsE7tqXgulEa0UhLW6L2fmTBxOhijuWs892hb40xejccOgGVQuqaYfzhqaEtlO0pEzDZyesIvpC0ZH/wQ2S/VsHcvjsPl1gnjAbmswVWZ4wL8OEDaj24mfN5HGGH3MvOaa3HAuGh7hGRcVC6+0Z02lAgXgPYnTlqe+p4XpTDSn+YFJ8hVS7k7tId5h3xAlO1gRovqm7JW0Lk0OQU+Kymo++pjPEsAryX8BJKs6a1dnu1arW6p87LnpbM1kRqnLpHxkn0909m4eaWp38py81RWoGZIBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zRd/psKjwplic+EWLadb0xRsxO4dZLXyZ+s3ZTAi2eg=;
- b=eRKAv1CYzYKAVmpjWskQjN7OTc2yvGUMt+sWArhtveRfUe4gEGMfafNPYe4JWwLjNSkfND3tstV3x+eC32AK/9fBtpI29aNRjTCkSOSVQP9ojPemU+T31RzWzqdpY4idCiT4Vwa4QZ0NcbYH6tbHfKtxcABwIdhYeDsZSy7zE2aOObyJqdVGP/P5EcKuokFn5OniZsCJsiuulqmSzYmjwualyjjxkRTDrBoeWOYYQdQd8rdw39x8PrR7fmXFyf3KRdr+b1IkxnKSgPVku3l/JeX7k1XIUwG1Li8OKXMjDxNIrZd/Uwk+shMpfgvzMJHmdWyeP49jpZU3YASm5JhBVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zRd/psKjwplic+EWLadb0xRsxO4dZLXyZ+s3ZTAi2eg=;
- b=H9qn7WjEcqw29PHsf4ldWQTbh2Dyoj2/Mf956qQst0cx7nId1g4O4XW9xRRd3r9FIOU3mEgwoufknzJf7/i8lFRYz5+Np73dCTYQehnvb7Hy66s0nJH59AUqZurOqmk9m//0dZQpD/raip9hWdJJxYZbPCjdb76fbDDuKI/lmDs=
-Received: from DB7PR04MB5195.eurprd04.prod.outlook.com (20.176.236.27) by
- DB7PR04MB4700.eurprd04.prod.outlook.com (20.176.233.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.13; Wed, 14 Aug 2019 09:49:29 +0000
-Received: from DB7PR04MB5195.eurprd04.prod.outlook.com
- ([fe80::e854:ffa9:a285:88a4]) by DB7PR04MB5195.eurprd04.prod.outlook.com
- ([fe80::e854:ffa9:a285:88a4%5]) with mapi id 15.20.2157.022; Wed, 14 Aug 2019
- 09:49:29 +0000
-From:   Wen He <wen.he_1@nxp.com>
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     Leo Li <leoyang.li@nxp.com>,
-        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
-Subject: RE: [EXT] Re: [v1 2/3] dt/bindings: clk: Add DT bindings for LS1028A
- Display output interface
-Thread-Topic: [EXT] Re: [v1 2/3] dt/bindings: clk: Add DT bindings for LS1028A
- Display output interface
-Thread-Index: AQHVUPZmmHsvouKPJkueVWpL5KhirKb5aFSAgAD9yfA=
-Date:   Wed, 14 Aug 2019 09:49:29 +0000
-Message-ID: <DB7PR04MB51950A726D59F17EE269F2F3E2AD0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-References: <20190812100216.34459-1-wen.he_1@nxp.com>
- <20190813183005.EC13020665@mail.kernel.org>
-In-Reply-To: <20190813183005.EC13020665@mail.kernel.org>
-Accept-Language: en-US, zh-CN
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=wen.he_1@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6c28a252-6c56-4cbc-e367-08d7209cb3a2
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4700;
-x-ms-traffictypediagnostic: DB7PR04MB4700:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB7PR04MB4700D0FFE0E582F9E56DBB80E2AD0@DB7PR04MB4700.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
-x-forefront-prvs: 01294F875B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(39860400002)(346002)(396003)(366004)(136003)(13464003)(189003)(199004)(76116006)(186003)(66476007)(81156014)(99286004)(446003)(66946007)(102836004)(66556008)(256004)(6506007)(53546011)(7696005)(26005)(9686003)(8936002)(64756008)(2906002)(14444005)(3846002)(76176011)(33656002)(81166006)(66446008)(2501003)(6116002)(476003)(14454004)(11346002)(478600001)(486006)(55016002)(52536014)(110136005)(6436002)(66066001)(7736002)(54906003)(71190400001)(71200400001)(74316002)(53936002)(316002)(305945005)(5660300002)(2201001)(86362001)(6246003)(8676002)(4326008)(25786009)(229853002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4700;H:DB7PR04MB5195.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: K8IcF9Kz6ZcsOSRXi9JE2lWloEWXLQ4Tu3hZWCp9qsTyw61rza/hSn+HcHwaD430zJaUSLxwFrkP+Bw0IQ6Jh/E/H/z/wo28kMojGZyBEinlZNMmpp8TZ/Dkv1VhWKDZDuHGrrg3BB5KIe94j0ZEzRBVHT4B3RV5DRAA2uZd0ajtMZL8G9/l9ytwJUd7KQNK4QNK4tPrXACfLXqMPPtC5hc2AowgWMkfWq+0y4VSShoXAaBF8OFkqpAcTKAceR+I0uJYL0ABp4xIkD013qI79fLLF84DXjLtIwlMC6VcYnME4rcR168AZ6LFx/iUQqt2FoMicL469znNwekF6fi3CMh/ri+Prtt14lpEQmeaxvz2B1fgsBCqQ0gbBWb7XjcCXvpGGCzfry38NC0x+ErhZQwgBKdaH7KLefYTHNpsO7U=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1725280AbfHNJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 05:54:50 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:39963 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725861AbfHNJyt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 05:54:49 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v19so3885300wmj.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 02:54:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=S0qffjmHFNR1Sy40wwuOSColl5UwNxzdHwfmzhDqELM=;
+        b=LdX9bmgt4s6x4/ZP8x1+XQ1L/RBYjEzeAtDRH+YjIDi7FU2dlfebUcjRayATdNpdc+
+         pBKu9KPx/kywff4EGdq9oFicNv4Ym9AWl5I7dx553hKs+kTV0lNMNdeUsRHp7FMNf3yN
+         THmCOz4Iykn8dwZ6CVZwEWHA65tjYGB21WPDXTWXVq+Jei1JuK1HQ2i0G0v9x8jykoar
+         j8c/ma/RGKiKE7Hi1nmndGuSMaZCDpJGTPR5g3is8qtDI+g8dYgTtgV/VnA87pih0ZVc
+         lNUIfogH6qSdvw0FDzqgaViM4onT/T7zZxurTAFaI14OkBfgOhfq5SUch3OsuYOrzheA
+         DI7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=S0qffjmHFNR1Sy40wwuOSColl5UwNxzdHwfmzhDqELM=;
+        b=leLN9OFo/bvnkLO3lRE2Tds0/Irc8qH4aDesHHB19e/+L5SuOWb0tkaq8orJW+b2TJ
+         4ajlVQfG9BY6moPkIYfFpSOqTfav+lru5dw+JqCQ0rhmHQ/kjuu3F+UUyT+b3c6voYvV
+         4r5BC+ef4l/ODRI+ad6wLMCrEQ5tTuqdqJtUFN0JGCTtgwJ0ktELXD/3iA5yRexyURTP
+         Lk1BqWVSmATJcOdMV5VLlOOqPXRXjQIMaK41os9Ba3jtVKSu4w+u/OIyTc7LcxYWjee0
+         w6VvMRQWIJ9oh15tnOgSDWZP5QcxQZv5ZhJ7bvgf6G9KqsWtq3ewGkfpGfr3SvxJWU4V
+         SESA==
+X-Gm-Message-State: APjAAAWjwPivNZ0At8SeDdi3cAtGT5G4rgoXatqrykvOzs9g8UnBxWai
+        wm9iRpALljVS/AN5hs4DO0+Xevgta6yGhw==
+X-Google-Smtp-Source: APXvYqw/xCXZ/ntaYTSZDBFoiPx5UEcHFMETlTLRVVK72L8nHQhjC0Jv/k7Nj/gzbl6rVG1TmR1okg==
+X-Received: by 2002:a1c:2ec6:: with SMTP id u189mr7423263wmu.67.1565776486644;
+        Wed, 14 Aug 2019 02:54:46 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id y7sm2789491wmm.19.2019.08.14.02.54.45
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 14 Aug 2019 02:54:46 -0700 (PDT)
+Subject: Re: [PATCH v3 0/3] drm/meson: convert bindings to YAML schemas
+To:     robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20190808085522.21950-1-narmstrong@baylibre.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <b0363e6e-4d73-a483-41b7-7849f48a9ff3@baylibre.com>
+Date:   Wed, 14 Aug 2019 11:54:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c28a252-6c56-4cbc-e367-08d7209cb3a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2019 09:49:29.5878
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8wdMlI0NuOBpFMJfWwB4WcR+m7rD9o0OfFxtTnhvbCVWcla2/cjtBcBxzpWgW9Fc3AClDubhOH33WWgd4ZCRzw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4700
+In-Reply-To: <20190808085522.21950-1-narmstrong@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU3RlcGhlbiBCb3lkIDxz
-Ym95ZEBrZXJuZWwub3JnPg0KPiBTZW50OiAyMDE55bm0OOaciDE05pelIDI6MzANCj4gVG86IE1h
-cmsgUnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+OyBNaWNoYWVsIFR1cnF1ZXR0ZQ0KPiA8
-bXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb20+OyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3Jn
-PjsgU2hhd24gR3VvDQo+IDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgV2VuIEhlIDx3ZW4uaGVfMUBu
-eHAuY29tPjsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWNsa0B2Z2VyLmtl
-cm5lbC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IExlbyBMaSA8
-bGVveWFuZy5saUBueHAuY29tPjsgbGl2aXUuZHVkYXVAYXJtLmNvbTsgV2VuIEhlDQo+IDx3ZW4u
-aGVfMUBueHAuY29tPg0KPiBTdWJqZWN0OiBbRVhUXSBSZTogW3YxIDIvM10gZHQvYmluZGluZ3M6
-IGNsazogQWRkIERUIGJpbmRpbmdzIGZvciBMUzEwMjhBDQo+IERpc3BsYXkgb3V0cHV0IGludGVy
-ZmFjZQ0KPiANCj4gQ2F1dGlvbjogRVhUIEVtYWlsDQo+IA0KPiBRdW90aW5nIFdlbiBIZSAoMjAx
-OS0wOC0xMiAwMzowMjoxNikNCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL2Nsb2NrL2ZzbCxwbGxkaWcudHh0DQo+ID4gYi9Eb2N1bWVudGF0aW9uL2Rl
-dmljZXRyZWUvYmluZGluZ3MvY2xvY2svZnNsLHBsbGRpZy50eHQNCj4gPiBuZXcgZmlsZSBtb2Rl
-IDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMjljNWE2MTE3ODA5DQo+ID4gLS0tIC9k
-ZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9j
-ay9mc2wscGxsZGlnLnR4dA0KPiA+IEBAIC0wLDAgKzEsMjYgQEANCj4gPiArTlhQIFFvcklRIExh
-eWVyc2NhcGUgTFMxMDI4QSBEaXNwbGF5IG91dHB1dCBpbnRlcmZhY2UgQ2xvY2sNCj4gPiArPT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0N
-Cj4gDQo+IENhbiB5b3UgY29udmVydCB0aGlzIHRvIFlBTUw/DQoNClN1cmUsIG5vIHByb2JsZW0u
-DQoNCj4gDQo+ID4gKw0KPiA+ICtSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgLSBjb21w
-YXRpYmxlOiBzaGFsbCBjb250YWluICJmc2wsbHMxMDI4YS1wbGxkaWciDQo+ID4gKyAgICAtIHJl
-ZzogUGh5c2ljYWwgYmFzZSBhZGRyZXNzIGFuZCBzaXplIG9mIHRoZSBibG9jayByZWdpc3RlcnMN
-Cj4gPiArICAgIC0gI2Nsb2NrLWNlbGxzOiBzaGFsbCBjb250YWluIDEuDQo+IA0KPiBBcyBJIHNh
-aWQgaW4gdGhlIHByZXZpb3VzIHBhdGNoLCB0aGlzIHNob3VsZCBwcm9iYWJseSBiZSAwLiBBbHNv
-LCBwbGVhc2Ugb3JkZXINCj4gdGhpcyBiZWZvcmUgdGhlIGRyaXZlciBpbiB0aGUgcGF0Y2ggc2Vy
-aWVzIGFuZCB0aHJlYWQgeW91ciBtZXNzYWdlcyBwbGVhc2UuIElmDQo+IHlvdSB1c2UgZ2l0LXNl
-bmQtZW1haWwgdGhpcyBpcyBkb25lIGZvciB5b3UgcHJldHR5IGVhc2lseS4NCg0KVW5kZXJzdGFu
-ZCwgV2lsbCBwcmVwYXJlIGFuZCBzZW5kIG5leHQgdmVyc2lvbiBwYXRjaC4NCg0KQmVzdCBSZWdh
-cmRzLA0KV2VuDQoNCj4gDQo+ID4gKyAgICAtIGNsb2NrczogYSBwaGFuZGxlICsgY2xvY2stc3Bl
-Y2lmaWVyIHBhaXJzLCBoZXJlIHNob3VsZCBiZQ0KPiA+ICsgICAgc3BlY2lmeSB0aGUgcmVmZXJl
-bmNlIGNsb2NrIG9mIHRoZSBzeXN0ZW0NCj4gPiArDQo+ID4gKw0K
+On 08/08/2019 10:55, Neil Armstrong wrote:
+> This patchset converts the existing text bindings to YAML schemas.
+> 
+> Those bindings have a lot of texts, thus is interesting to convert.
+> 
+> All have been tested using :
+> $ make ARCH=arm64 dtbs_check
+> 
+> Issues with the amlogic arm64 DTs has already been identified thanks
+> to the validation scripts. The DT fixes will be pushed once these yaml
+> bindings are acked.
+> 
+> Changes since v2:
+> - Added review tag on amlogic,meson-dw-hdmi.yaml
+> - Removed power-domains type from amlogic,meson-vpu.yaml
+> 
+> Neil Armstrong (3):
+>   dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
+>   dt-bindings: display: amlogic,meson-vpu: convert to yaml
+>   MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
+> 
+>  .../display/amlogic,meson-dw-hdmi.txt         | 119 --------------
+>  .../display/amlogic,meson-dw-hdmi.yaml        | 150 ++++++++++++++++++
+>  .../bindings/display/amlogic,meson-vpu.txt    | 121 --------------
+>  .../bindings/display/amlogic,meson-vpu.yaml   | 137 ++++++++++++++++
+>  MAINTAINERS                                   |   4 +-
+>  5 files changed, 289 insertions(+), 242 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+> 
+
+Applied to drm-misc-next
