@@ -2,94 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DEE18DF99
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 23:03:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7960F8E09A
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 00:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729434AbfHNVDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 17:03:18 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:40482 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728896AbfHNVDS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 17:03:18 -0400
-Received: by mail-oi1-f195.google.com with SMTP id h21so69299oie.7
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 14:03:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fQvw6+Cysy9DNZAaud1joF+LzoMS/HD7HFa+/9L4GG0=;
-        b=jPBf3uDulUcoKNAc5FGbcIPpld5MB7MguGlABvefio2QnWvJq/obtoqu6LpahFZIkQ
-         rM/GMVkfcRxE3U1bulrtw0Zs/k9utF6dZSbCwlX6WycAAjJgYMSbiXmThaLHRA6xThco
-         HZWYFDFuZtVUJTvJgk524nTNZRqlxLibSrVV+70Nyx4Ob47dkyLqrBabX24h5YgReC+W
-         t0UblEXnsWwaot5BRaD5GakbpFUgKWjS0dCY/pj1V7gaFj+wT35TLpg0S7O+vFDCztih
-         CI9HH/dfo1Rjqicz02DtjCrRt8heoR+3fKr4BErk1UwzCeCQ4BdkjzhheZqxAUuD1PVj
-         0IEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fQvw6+Cysy9DNZAaud1joF+LzoMS/HD7HFa+/9L4GG0=;
-        b=Ak8QXBiq53mjyPZFJDCcPAaI6vRJd/p+qrE9DH+b7Wo3I5petq2L0mcfoWXKOaMVw1
-         tgcikcjybS/Ro1Kx/Pkm8CpThA0BIUWFxvFyN+gr5XaQKxgNRnKGPDaHhsSMulkbp//v
-         EhM88OTYOt7F3puPhlG/aFjb+I6kqkQc2tZZks+A23mYNkq9R2CJSwM5fxR6AbU0suJl
-         O7ps0GVVxxufNYSwFS4ielCKGAguNgB3eooukd9t95O4xyU7JXXUZ4bOVqfGYQABBrFv
-         V98fZVyjGKcsRgPBSkTvaBqk72EgrIPGsiXGmVoZuydQ5MGqoyuOv8bZvzskqolfsKZC
-         tYMg==
-X-Gm-Message-State: APjAAAVyN/zLQlIVmDYI5Lth0KCax1xsgqTnukci15NVR8Qkx1xdunLZ
-        9hhUdiptNZ2kpoNPQL5iCJFqA5AiybYI0NYuft8ATg==
-X-Google-Smtp-Source: APXvYqx3dcBMnUheir3gSBs9xUQOcTyId+C2d3MDO2QXd53RNomRiQfCtM0IPYyzSOLbYGH7WOVy7saGs2fKzMZzluQ=
-X-Received: by 2002:aca:6104:: with SMTP id v4mr1341676oib.172.1565816597247;
- Wed, 14 Aug 2019 14:03:17 -0700 (PDT)
+        id S1727558AbfHNWUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 18:20:43 -0400
+Received: from foss.arm.com ([217.140.110.172]:34456 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726221AbfHNWUn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 18:20:43 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DF4B9344;
+        Wed, 14 Aug 2019 15:20:41 -0700 (PDT)
+Received: from [10.1.196.61] (tuskha01.cambridge.arm.com [10.1.196.61])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BA56B3F718;
+        Wed, 14 Aug 2019 15:20:40 -0700 (PDT)
+Subject: Re: [PATCH 1/4] mailbox: arm_mhuv2: add device tree binding
+ documentation
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Morten Borup Petersen <morten_bp@live.dk>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "tushar.2nov@gmail.com" <tushar.2nov@gmail.com>,
+        "nd@arm.com" <nd@arm.com>,
+        Morten Borup Petersen <morten.petersen@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>
+References: <20190717192616.1731-1-tushar.khandelwal@arm.com>
+ <20190717192616.1731-2-tushar.khandelwal@arm.com>
+ <CABb+yY04vW-i35N6P57KSKgmMAYkrA2CDyUvA-bLCZMxiZaocw@mail.gmail.com>
+ <CABb+yY1SeHTgZQNAHJW+dZG=khah5c5igtKy+MrjADnZF29Aow@mail.gmail.com>
+ <VI1PR0601MB21113C48E719B2C79EC2FE508FC20@VI1PR0601MB2111.eurprd06.prod.outlook.com>
+ <CABb+yY3yMWbUiQnJgfQhwnW1OM3aoFL3ZFc018E-fxGichi-4Q@mail.gmail.com>
+ <VI1PR0601MB2111A5A4E951F011D389A8978FD90@VI1PR0601MB2111.eurprd06.prod.outlook.com>
+ <CABb+yY3Ni7wV+ui1LO7TERWQH_BoakZbPq961wdRPB4X-nwS2A@mail.gmail.com>
+From:   "tushar.khandelwal@arm.com" <tushar.khandelwal@arm.com>
+Message-ID: <685d5c73-42e6-3de4-f607-e8c7f5678bf2@arm.com>
+Date:   Wed, 14 Aug 2019 23:20:39 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190806192654.138605-1-saravanak@google.com> <20190806192654.138605-2-saravanak@google.com>
- <CAL_Jsq+BwHSj1XUNp_eY362XnNoOqVTNHqAkvnbgece8ZQE3Qw@mail.gmail.com> <CAGETcx8+EETv6nSu+BEBStKvbmBs+tZZgo1u_Pw8SNu+7Urq1Q@mail.gmail.com>
-In-Reply-To: <CAGETcx8+EETv6nSu+BEBStKvbmBs+tZZgo1u_Pw8SNu+7Urq1Q@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 14 Aug 2019 14:02:41 -0700
-Message-ID: <CAGETcx89sjoT0OWjhJyWtCfB_dBFTzwS9+bSSSXEbTUFygmuvw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of/platform: Disable generic device linking code for PowerPC
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CABb+yY3Ni7wV+ui1LO7TERWQH_BoakZbPq961wdRPB4X-nwS2A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 6, 2019 at 3:04 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Tue, Aug 6, 2019 at 2:27 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Tue, Aug 6, 2019 at 1:27 PM Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > PowerPC platforms don't use the generic of/platform code to populate the
-> > > devices from DT.
-> >
-> > Yes, they do.
->
-> No they don't. My wording could be better, but they don't use
-> of_platform_default_populate_init()
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/of/platform.c#n511
->
-> >
-> > > Therefore the generic device linking code is never used
-> > > in PowerPC.  Compile it out to avoid warning about unused functions.
-> >
-> > I'd prefer this get disabled on PPC using 'if (IS_ENABLED(CONFIG_PPC))
-> > return' rather than #ifdefs.
->
-> I'm just moving the existing ifndef some lines above. I don't want to
-> go change existing #ifndef in this patch. Maybe that should be a
-> separate patch series that goes and fixes all such code in drivers/of/
-> or driver/
 
-Bump. Thoughts? I don't think changing the existing if(n)defs should
-be part of this patch series.
 
--Saravana
+On 13/08/2019 17:36, Jassi Brar wrote:
+> On Fri, Aug 2, 2019 at 5:41 AM Morten Borup Petersen <morten_bp@live.dk> wrote:
+>>
+>>
+>>
+>> On 7/31/19 9:31 AM, Jassi Brar wrote:
+>>> On Sun, Jul 28, 2019 at 4:28 PM Morten Borup Petersen <morten_bp@live.dk> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 7/25/19 7:49 AM, Jassi Brar wrote:
+>>>>> On Sun, Jul 21, 2019 at 4:58 PM Jassi Brar <jassisinghbrar@gmail.com> wrote:
+>>>>>>
+>>>>>> On Wed, Jul 17, 2019 at 2:26 PM Tushar Khandelwal
+>>>>>> <tushar.khandelwal@arm.com> wrote:
+>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..3a05593414bc
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+>>>>>>> @@ -0,0 +1,108 @@
+>>>>>>> +Arm MHUv2 Mailbox Driver
+>>>>>>> +========================
+>>>>>>> +
+>>>>>>> +The Arm Message-Handling-Unit (MHU) Version 2 is a mailbox controller that has
+>>>>>>> +between 1 and 124 channel windows to provide unidirectional communication with
+>>>>>>> +remote processor(s).
+>>>>>>> +
+>>>>>>> +Given the unidirectional nature of the device, an MHUv2 mailbox may only be
+>>>>>>> +written to or read from. If a pair of MHU devices is implemented between two
+>>>>>>> +processing elements to provide bidirectional communication, these must be
+>>>>>>> +specified as two separate mailboxes.
+>>>>>>> +
+>>>>>>> +A device tree node for an Arm MHUv2 device must specify either a receiver frame
+>>>>>>> +or a sender frame, indicating which end of the unidirectional MHU device which
+>>>>>>> +the device node entry describes.
+>>>>>>> +
+>>>>>>> +An MHU device must be specified with a transport protocol. The transport
+>>>>>>> +protocol of an MHU device determines the method of data transmission as well as
+>>>>>>> +the number of provided mailboxes.
+>>>>>>> +Following are the possible transport protocol types:
+>>>>>>> +- Single-word: An MHU device implements as many mailboxes as it
+>>>>>>> +               provides channel windows. Data is transmitted through
+>>>>>>> +               the MHU registers.
+>>>>>>> +- Multi-word:  An MHU device implements a single mailbox. All channel windows
+>>>>>>> +               will be used during transmission. Data is transmitted through
+>>>>>>> +               the MHU registers.
+>>>>>>> +- Doorbell:    An MHU device implements as many mailboxes as there are flag
+>>>>>>> +               bits available in its channel windows. Optionally, data may
+>>>>>>> +               be transmitted through a shared memory region, wherein the MHU
+>>>>>>> +               is used strictly as an interrupt generation mechanism.
+>>>>>>> +
+>>>>>>> +Mailbox Device Node:
+>>>>>>> +====================
+>>>>>>> +
+>>>>>>> +Required properties:
+>>>>>>> +--------------------
+>>>>>>> +- compatible:  Shall be "arm,mhuv2" & "arm,primecell"
+>>>>>>> +- reg:         Contains the mailbox register address range (base
+>>>>>>> +               address and length)
+>>>>>>> +- #mbox-cells  Shall be 1 - the index of the channel needed.
+>>>>>>> +- mhu-frame    Frame type of the device.
+>>>>>>> +               Shall be either "sender" or "receiver"
+>>>>>>> +- mhu-protocol Transport protocol of the device. Shall be one of the
+>>>>>>> +               following: "single-word", "multi-word", "doorbell"
+>>>>>>> +
+>>>>>>> +Required properties (receiver frame):
+>>>>>>> +-------------------------------------
+>>>>>>> +- interrupts:  Contains the interrupt information corresponding to the
+>>>>>>> +               combined interrupt of the receiver frame
+>>>>>>> +
+>>>>>>> +Example:
+>>>>>>> +--------
+>>>>>>> +
+>>>>>>> +       mbox_mw_tx: mhu@10000000 {
+>>>>>>> +               compatible = "arm,mhuv2","arm,primecell";
+>>>>>>> +               reg = <0x10000000 0x1000>;
+>>>>>>> +               clocks = <&refclk100mhz>;
+>>>>>>> +               clock-names = "apb_pclk";
+>>>>>>> +               #mbox-cells = <1>;
+>>>>>>> +               mhu-protocol = "multi-word";
+>>>>>>> +               mhu-frame = "sender";
+>>>>>>> +       };
+>>>>>>> +
+>>>>>>> +       mbox_sw_tx: mhu@10000000 {
+>>>>>>> +               compatible = "arm,mhuv2","arm,primecell";
+>>>>>>> +               reg = <0x11000000 0x1000>;
+>>>>>>> +               clocks = <&refclk100mhz>;
+>>>>>>> +               clock-names = "apb_pclk";
+>>>>>>> +               #mbox-cells = <1>;
+>>>>>>> +               mhu-protocol = "single-word";
+>>>>>>> +               mhu-frame = "sender";
+>>>>>>> +       };
+>>>>>>> +
+>>>>>>> +       mbox_db_rx: mhu@10000000 {
+>>>>>>> +               compatible = "arm,mhuv2","arm,primecell";
+>>>>>>> +               reg = <0x12000000 0x1000>;
+>>>>>>> +               clocks = <&refclk100mhz>;
+>>>>>>> +               clock-names = "apb_pclk";
+>>>>>>> +               #mbox-cells = <1>;
+>>>>>>> +               interrupts = <0 45 4>;
+>>>>>>> +               interrupt-names = "mhu_rx";
+>>>>>>> +               mhu-protocol = "doorbell";
+>>>>>>> +               mhu-frame = "receiver";
+>>>>>>> +       };
+>>>>>>> +
+>>>>>>> +       mhu_client: scb@2e000000 {
+>>>>>>> +       compatible = "fujitsu,mb86s70-scb-1.0";
+>>>>>>> +       reg = <0 0x2e000000 0x4000>;
+>>>>>>> +       mboxes =
+>>>>>>> +               // For multi-word frames, client may only instantiate a single
+>>>>>>> +               // mailbox for a mailbox controller
+>>>>>>> +               <&mbox_mw_tx 0>,
+>>>>>>> +
+>>>>>>> +               // For single-word frames, client may instantiate as many
+>>>>>>> +               // mailboxes as there are channel windows in the MHU
+>>>>>>> +                <&mbox_sw_tx 0>,
+>>>>>>> +                <&mbox_sw_tx 1>,
+>>>>>>> +                <&mbox_sw_tx 2>,
+>>>>>>> +                <&mbox_sw_tx 3>,
+>>>>>>> +
+>>>>>>> +               // For doorbell frames, client may instantiate as many mailboxes
+>>>>>>> +               // as there are bits available in the combined number of channel
+>>>>>>> +               // windows ((channel windows * 32) mailboxes)
+>>>>>>> +                <mbox_db_rx 0>,
+>>>>>>> +                <mbox_db_rx 1>,
+>>>>>>> +                ...
+>>>>>>> +                <mbox_db_rx 17>;
+>>>>>>> +       };
+>>>>>>
+>>>>>> If the mhuv2 instance implements, say, 3 channel windows between
+>>>>>> sender (linux) and receiver (firmware), and Linux runs two protocols
+>>>>>> each requiring 1 and 2-word sized messages respectively. The hardware
+>>>>>> supports that by assigning windows [0] and [1,2] to each protocol.
+>>>>>> However, I don't think the driver can support that. Or does it?
+>>>>>>
+>>>>> Thinking about it, IMO, the mbox-cell should carry a 128 (4x32) bit
+>>>>> mask specifying the set of windows (corresponding to the bits set in
+>>>>> the mask) associated with the channel.
+>>>>> And the controller driver should see any channel as associated with
+>>>>> variable number of windows 'N', where N is [0,124]
+>>>>>
+>>>>> mhu_client1: proto1@2e000000 {
+>>>>>         .....
+>>>>>         mboxes = <&mbox 0x0 0x0 0x0 0x1>
+>>>>> }
+>>>>>
+>>>>> mhu_client2: proto2@2f000000 {
+>>>>>         .....
+>>>>>         mboxes = <&mbox 0x0 0x0 0x0 0x6>
+>>>>> }
+>>>>>
+>>>>> Cheers!
+>>>>>
+>>>>
+>>>> As mentioned in the response to your initial comment, the driver does
+>>>> not currently support mixing protocols.
+>>>>
+>>> Thanks for acknowledging that limitation. But lets also address it.
+>>>
+>>
+>> We are hesitant to dedicate time to developing mixing protocols given
+>> that we don't have any current usecase nor any current platform which
+>> would support this.
+>>
+> Can you please share the client code against which you tested this driver?
+>  From my past experience, I realise it is much more efficient to tidyup
+> the code myself, than endlessly trying to explain the benefits.
+> 
+
+Yes, I will share that soon.
+
+> Thanks
+> 
