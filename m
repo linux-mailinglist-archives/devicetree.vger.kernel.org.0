@@ -2,88 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1317B8D42B
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57F5E8D436
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:07:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727817AbfHNNEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 09:04:25 -0400
-Received: from sauhun.de ([88.99.104.3]:48802 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726865AbfHNNEY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 09:04:24 -0400
-Received: from localhost (p54B33326.dip0.t-ipconnect.de [84.179.51.38])
-        by pokefinder.org (Postfix) with ESMTPSA id C003A2C311C;
-        Wed, 14 Aug 2019 15:04:22 +0200 (CEST)
-Date:   Wed, 14 Aug 2019 15:04:22 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] dt-bindings: i2c: renesas: Rename bindings
- documentation files
-Message-ID: <20190814130422.GE9716@ninjato>
-References: <20190809213004.31181-1-horms+renesas@verge.net.au>
+        id S1726934AbfHNNH5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 09:07:57 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:41956 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726365AbfHNNH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 09:07:57 -0400
+Received: by mail-wr1-f65.google.com with SMTP id j16so8766781wrr.8;
+        Wed, 14 Aug 2019 06:07:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=bUiJlyywrd9qOeHggGnBEMrvx4sujv2K9Nz5ZSaq2dU=;
+        b=GKYtsfjiL1JCWXffB51v6DlU4Hf4CGt0TzUfD+DWd6krHAm/AGEbDjx4V6lg8DmUxM
+         SGcxSQNTDAM5N97o6/T7xde8i4lkyy4/thacoLxGDFZTPbX3TObXcipXS9eizikgW+mq
+         AHBj+DSxOiFhDMxsMAf6DAdPOq2C5k4UaqUn9TgaUNlT+Vr2zzCBnyV1d6xCxyHAg+mg
+         zP+LgDrsGQEXp80G8rFl8+9UPhHX/Q3TOWCn9zETrIKcb3EM1yLXUewgs1q1Mx4tQu7p
+         LG4VZ3dDhNc53CgM7rydsjj0fCJ2fWXBH3l4b3P4TVt8xiR4Xz6GbsQXskNkEoIdpQNm
+         kyMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=bUiJlyywrd9qOeHggGnBEMrvx4sujv2K9Nz5ZSaq2dU=;
+        b=qt0If+7DESJHnelyx3fESZDo1Hqlc1gw5Vqjuka9ZE5E2gQs32K9aZvTmG4q+Ce6aw
+         CCGewTpItyjWAfIK2E8iAAl5xmxa13Fv2rNZfG+qg15wg5zNe6tvkwx+gIL1+yDlhAfD
+         T4IMmTvthTAl2W9SOfxrh46qHxZ+louVTbxqng/39OLgCkEJZdajpY1d4ASqKqFIwsIL
+         Wzs2xpLAgWDLy2Bd6W4JsbZErbNP5EV0A62vrcbra8zPIWj9t1PyDt9S8hDsJIUVRlMl
+         qf1QXH7kl0Lc95xnpOlDST1HXe+sS2eZHriC2BXf3AlzA0Xj8pC0neFaiiKeaHrNWO/i
+         kmrQ==
+X-Gm-Message-State: APjAAAUFfCnLNfFNTgVIjtYCttd1tWWpzy+xrO5uAUetw20U69sdqBVW
+        uc8wx3icsrq4rUNa/wPyRQE=
+X-Google-Smtp-Source: APXvYqx5ozZfahRF9YtaP48lH4QJdsRI2C/SN0gyU2YSeYzTMX4cfhjZV8NYIPqRwSY6ofdZoF83wQ==
+X-Received: by 2002:adf:9e09:: with SMTP id u9mr4308277wre.169.1565788075028;
+        Wed, 14 Aug 2019 06:07:55 -0700 (PDT)
+Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id g15sm24674256wrp.29.2019.08.14.06.07.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 14 Aug 2019 06:07:54 -0700 (PDT)
+Date:   Wed, 14 Aug 2019 15:07:52 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, mripard@kernel.org,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [linux-sunxi] [PATCH] ARM64: dts: allwinner: Add devicetree for
+ pine H64 modelA evaluation board
+Message-ID: <20190814130752.GA24324@Red>
+References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+ <CAJiuCccEQFvKemTodJbuEDzDy9j6-M4SYskxPFJ5DpsbQDnvkA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="BZaMRJmqxGScZ8Mx"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190809213004.31181-1-horms+renesas@verge.net.au>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJiuCccEQFvKemTodJbuEDzDy9j6-M4SYskxPFJ5DpsbQDnvkA@mail.gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Aug 08, 2019 at 04:50:35PM +0200, Clément Péron wrote:
+> Hi,
+> 
+> On Thu, 8 Aug 2019 at 10:42, Corentin Labbe <clabbe.montjoie@gmail.com> wrote:
+> >
+> > This patch adds the evaluation variant of the model A of the PineH64.
+> > The model A has the same size of the pine64 and has a PCIE slot.
+> >
+> > The only devicetree difference with current pineH64, is the PHY
+> > regulator.
+> 
+> You also need to add the board in
+> "Documentation/devicetree/bindings/arm/sunxi.yaml"
+> 
+> Regards,
+> Clément
+> 
 
---BZaMRJmqxGScZ8Mx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Done, thanks
 
-On Fri, Aug 09, 2019 at 02:30:00PM -0700, Simon Horman wrote:
-> Rename the bindings documentation file for Renesas I2C controllers.
->=20
-> This is part of an ongoing effort to name bindings documentation files for
-> Renesas IP blocks consistently, in line with the compat strings they
-> document.
->=20
-> Based on v5.3-rc1
->=20
-> Changes since v1
-> * Accumulate review tags
-> * Correct changelogs
->=20
-> Simon Horman (4):
->   dt-bindings: i2c: sh_mobile: Rename bindings documentation file
->   dt-bindings: i2c: rcar: Rename bindings documentation file
->   dt-bindings: i2c: riic: Rename bindings documentation file
->   dt-bindings: i2c: i2c-emev2: Rename bindings documentation file
-
-Applied to for-next, thanks!
-
-
---BZaMRJmqxGScZ8Mx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1UBtYACgkQFA3kzBSg
-KbZF3RAAl3ti2HXADvpla2dqsgWXkmDKC3k8d6+HXzP7VnACAM3PkJg6NMLd6fGB
-nERGlCdW16qN7mdWVUv5P1C+Heo6wz+qDqL/uB2+3c4gz5IRfpKsEOSqYXrMMWdu
-dVRyIAztADedcf5aX2Nf3VMdUV7r7UBuvyC3wjmC9LO/e1vOJP3Hyd64RIdF9raj
-JAn4dzAgTOavBvYPLwvxYnOubEwWxB7fO7BvNbrt4zpKaI4G98TLDjTDoaC47wE1
-3TyABC4JAkT3k/uQ6KKxgMo+SLl+nGKpTN66MzxuG9+f77RuHNsk0xnn8Jf4bMNc
-wXrkJxnhDNgb5t+wG2Ot9Q/areD6Fy5CoT3eGlcp43CwULd3E+cNoobviLXpOjkI
-btgOm5wNaUsAV+iCaFfhgZ+vE6ysEwMWlrQOhi29OlIvjiNmEtmTnhU3Qd+V08SY
-H5sSwJhLF63XKqW3UJd+LiNsFyJ63skRvLKQlyPHS0tSPMu0qHuc8VhGFKAch3ks
-QCimcp+KebzTw0yEbOq+sxrk//6Q4w1guPP2Tkhu5LL9tyzB4VSCAEVSxUnzp/KV
-90xqccXKL8U/oE9QfM4R8T+5/yRaG15HOcvjOc1FXKEBG2xT84hdHeNmTzgXHiW+
-XUsA4uepS/snDg6b6QsiwrorHMfcYqN66/DSZjpGKXlIcf4LKM4=
-=SXyW
------END PGP SIGNATURE-----
-
---BZaMRJmqxGScZ8Mx--
+Regards
