@@ -2,91 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 296038D479
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:20:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65CCD8D4AE
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:29:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727898AbfHNNUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 09:20:06 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:44493 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726575AbfHNNUG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 09:20:06 -0400
-Received: by mail-wr1-f66.google.com with SMTP id p17so111051514wrf.11;
-        Wed, 14 Aug 2019 06:20:05 -0700 (PDT)
+        id S1727980AbfHNN3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 09:29:06 -0400
+Received: from mail-yb1-f196.google.com ([209.85.219.196]:37494 "EHLO
+        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726551AbfHNN3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 09:29:06 -0400
+Received: by mail-yb1-f196.google.com with SMTP id t5so7681773ybt.4;
+        Wed, 14 Aug 2019 06:29:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=EIBOABIhW8p4vzMRIEIDWwrsBhpWXDFAybGkjCNWRKQ=;
-        b=FSUetHQY6NRHgTkY0+nBdWFJhmFzuUxs2z5T3kR2+7DfEMmcxcbkaQAaG/MLjdK2Jx
-         W3pN2sZcErE2CpzPS/mBfXv7yBsAinrTX22+sqg+ev9kQMb3PT/+YHWt8V0PDmNJrkEN
-         C0mCY6/4cjaPJ/i+JOLKIUD3DNn5FR+W82rhROSX46F7wheZfQ00+PTTYVQRuDYotIWY
-         nHIQ95J1Km9b67RHKI76D8tQ22pTJyAdhqQgjTMhXxu9wG6HotCsTQtonuyR679Z2Eze
-         bQAEKrHNV7J0xc/EJmcpfdY2U5vphstL9ERZJrJItotY7bcSGvVpsDyN/wkRbyB4d3NX
-         odlw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=feHFiHeHvTpFde0tn91rp6H0MBIr1sa1sTvgeV402JM=;
+        b=ac6RBWFxnGnpiZqQA/EYd//8dG4n8myv7wQGfVHqiBTTGPRbII9ak3Bp7Uu3XUlkdr
+         85xhvuyQ5gR0apLrD1GDoHYw7xLKKr8sq8n5JixRq6kv89QGu2+dnhoaW1896Rk7R1yV
+         LlymwQSaAtL3yaPo3MiAM4mAsXeULIqyhk9sCUJ54d3a/s1kR/Tkd55oWfc4fza3kbDe
+         ZBZx+RlHTH6yhNR92OVxL2UEhSG4tMuB7uESR8P+DxZNzoDfWH30MCSzmUm2DCL4noCQ
+         DfPDKTa4NIO3TcXsWtc6QVxjJdutnyur5T7BLkORpKL4RFpXjTk1kzcQNYO5z5h5dyVB
+         6m0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=EIBOABIhW8p4vzMRIEIDWwrsBhpWXDFAybGkjCNWRKQ=;
-        b=lFTjql8HrK+wfG4ZedRXiSBDpEAe/+Lcwaet3m8OYrxC5fChWxgOtO8bLD2r4UbeDp
-         MhuI3gxPoCCWYyobpXmk7sbDfZxVsX+x9mFg+/08wPH3Nnqehrv9Coz7DRnkieVL4WV3
-         TsMKWjemZuPWYCGUmyC1uth7ylxGDFzhclsetRS2kiRmOD1Vt6zAxJdwm8Y/BoTTZqew
-         Y8ddqwB8V+FhvWrIYiBCSuw923PuMpxH6OmOKBWE9HeM8lJfbXAJ4CEQY+5HuKMA3A1y
-         LzHapEyyhn86Vjhu/ekNB2nOQziXZ2R9QYKdD2KOvV/rE37gdekELE/jajNZOOXjwejY
-         ns7A==
-X-Gm-Message-State: APjAAAUra1jYhuD/Cq1PiEHjCPRSaW3WORzCBfWBGGJaG87tTlkIDfw4
-        vjprS0ogW+VFraZ7mqM9DS4=
-X-Google-Smtp-Source: APXvYqxPxJNpFq7yShoBZbT8+30pBidnt6vzd5XarUfPJG8vd8rhksyYc2DlG70mMUr/6xJy/kvXCw==
-X-Received: by 2002:a5d:528d:: with SMTP id c13mr51924177wrv.247.1565788804469;
-        Wed, 14 Aug 2019 06:20:04 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id 39sm30148509wrc.45.2019.08.14.06.20.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Aug 2019 06:20:04 -0700 (PDT)
-Date:   Wed, 14 Aug 2019 15:20:01 +0200
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi@googlegroups.com, mark.rutland@arm.com,
-        mripard@kernel.org, robh+dt@kernel.org, wens@csie.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=feHFiHeHvTpFde0tn91rp6H0MBIr1sa1sTvgeV402JM=;
+        b=kD4N+IlujKXuZ6Iz0TQfOWGEYhOyydZloLS4mknU1d4hGyXeNfOXmXehr5vJKGg/8G
+         a8O91B7lRyFUNAVor3vklg0n0Lj6p+iMMdOhfWh6YE3QaoXv4aBjPkuP6CvmMMqRDUHI
+         T+EcZSItqJPXWU146SEPefEqLUvesAuWCNz/Nmsr3HnaoUU10GS5cl692vA9kVCtPmB9
+         31IgiZ5doM4fZF1JHpej+tILbJjerCzXKhKNj/bH+9WV6ctjhdMniiP1otlgN2A7LaFH
+         8GfFLLZyM4V9TP2kaBefwxz8UlDRaW365OFL6Ak29bUMEnYc1mW8W2MWxVEK6zaCHfMG
+         7CEw==
+X-Gm-Message-State: APjAAAWJ005S4VGFjNie9JP9xw8RAOqBJfIQ46T+zm6iByl7OrcLG/Q8
+        +yff1e0EionnGgLHp3H9ElqdwT25JJ4MV4f0efE=
+X-Google-Smtp-Source: APXvYqy3AqQMungyg/xB+l2qARditdM8VXFFojcSBu1UaUOjytXLxcZJavyaAwTWZx/3F8rjkKQpTLcSWn/ANfaZArk=
+X-Received: by 2002:a25:790a:: with SMTP id u10mr29982888ybc.379.1565789345382;
+ Wed, 14 Aug 2019 06:29:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+ <1648748.TWHgARQioU@jernej-laptop> <20190814132001.GC24324@Red>
+In-Reply-To: <20190814132001.GC24324@Red>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Wed, 14 Aug 2019 15:28:53 +0200
+Message-ID: <CAJiuCcfASQriPLMuwuDCn9bU=_8q4jL+KkPo8NmMrrYpOqy2qA@mail.gmail.com>
 Subject: Re: [linux-sunxi] [PATCH] ARM64: dts: allwinner: Add devicetree for
  pine H64 modelA evaluation board
-Message-ID: <20190814132001.GC24324@Red>
-References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
- <1648748.TWHgARQioU@jernej-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1648748.TWHgARQioU@jernej-laptop>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+To:     clabbe.montjoie@gmail.com
+Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 12:56:56PM +0200, Jernej Škrabec wrote:
-> Dne četrtek, 08. avgust 2019 ob 10:42:53 CEST je Corentin Labbe napisal(a):
-> > This patch adds the evaluation variant of the model A of the PineH64.
-> > The model A has the same size of the pine64 and has a PCIE slot.
-> > 
-> > The only devicetree difference with current pineH64, is the PHY
-> > regulator.
-> 
-> I have Model A board which also needs ddc-en-gpios property for HDMI connector 
-> in order for HDMI to work correctly. Otherwise it will just use 1024x768 
-> resolution. Can you confirm that?
-> 
-> Best regards,
-> Jernej
-> 
+Hi,
 
-Sorry I didnt use at all video stuff (like HDMI), so I cannot answer now.
+On Wed, 14 Aug 2019 at 15:20, Corentin Labbe <clabbe.montjoie@gmail.com> wr=
+ote:
+>
+> On Mon, Aug 12, 2019 at 12:56:56PM +0200, Jernej =C5=A0krabec wrote:
+> > Dne =C4=8Detrtek, 08. avgust 2019 ob 10:42:53 CEST je Corentin Labbe na=
+pisal(a):
+> > > This patch adds the evaluation variant of the model A of the PineH64.
+> > > The model A has the same size of the pine64 and has a PCIE slot.
+> > >
+> > > The only devicetree difference with current pineH64, is the PHY
+> > > regulator.
+> >
+> > I have Model A board which also needs ddc-en-gpios property for HDMI co=
+nnector
+> > in order for HDMI to work correctly. Otherwise it will just use 1024x76=
+8
+> > resolution. Can you confirm that?
 
-Could you send me a patch against my future v2 and I could test with/without.
+Schematics Rev A:
+http://files.pine64.org/doc/Pine%20H64/Pine%20H64%20Ver1.1-20180104.pdf
 
-Regards
+Rev B:
+http://files.pine64.org/doc/Pine%20H64/PINE-H6-model-B-20181212-schematic.p=
+df
+
+There is a DDC_EN on REV A not on REV B
+
+Regards,
+Cl=C3=A9ment
+
+> >
+> > Best regards,
+> > Jernej
+> >
+>
+> Sorry I didnt use at all video stuff (like HDMI), so I cannot answer now.
+>
+> Could you send me a patch against my future v2 and I could test with/with=
+out.
+>
+> Regards
+>
+> --
+> You received this message because you are subscribed to the Google Groups=
+ "linux-sunxi" group.
+> To unsubscribe from this group and stop receiving emails from it, send an=
+ email to linux-sunxi+unsubscribe@googlegroups.com.
+> To view this discussion on the web, visit https://groups.google.com/d/msg=
+id/linux-sunxi/20190814132001.GC24324%40Red.
