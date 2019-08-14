@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A23C08D5F8
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 16:29:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 688E38D61D
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 16:30:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728230AbfHNO3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 10:29:40 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:38480 "EHLO
+        id S1725955AbfHNOaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 10:30:35 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:54018 "EHLO
         mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728265AbfHNO3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 10:29:39 -0400
-Received: by mail-wm1-f65.google.com with SMTP id m125so4655687wmm.3
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 07:29:38 -0700 (PDT)
+        with ESMTP id S1726551AbfHNO30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 10:29:26 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 10so4782354wmp.3
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 07:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=eKf63k5ZzfhTMMYCTSbq1U6f7Ok37Q6OPm4zZHqG5IQ=;
-        b=m7rlRl9VVYUH7uBh9VdxgG7muPhtM+x2sau3ZJuGRQIJncruQuy9PDf0w4XWhtf3xY
-         jHRUSPtSqseokyPnjB/nZHk9wm5TgwU9k4QcbTJB0BnkZet63rXNYTNUs7HSaFLgTYHc
-         fbP2NjWD7KJu5wU2OyDKLVgPrjjptzq771y+PWdfqQ9tMZtC/jQZohiEg76DiYcpayU/
-         7uBuoASkqIzYuRpJJge7GHkbQs3rdw7DI6YjV56XfHKWV79fcYKTVy6O1IaX1Gfu1pmS
-         Ahljt/4qNby1S8oa+BwSEEhrm1v7lH+V1JYRDeg125sR3vHW0yrSuC5UW5Y0H9tdVqhl
-         FjAg==
+        bh=I7YNeFtjeLzj2ZP9RpFGGR+B2jpIWWxMTHTrjexUO1g=;
+        b=IqI94GTGPdf2nsFVn/NaqhSNgaLWaaNXfva4TMtTbghi5rmmed/neyPAG12guX3hgn
+         OgJnnT+YECRo7t8BaNVHm+UoKdfQJ7iVxUmhEI+HeuE0cu/eQYzUja4iJZA4QwbPqtbM
+         iTxXj2TpNLXzWxNOCza13xIcgidwbcVwdmuP4kzJic0bfQXN/gPYZhpHtxm1z/H02dWS
+         3x3sNkme8gT2p88S+bce2cadVd9nnYGJUVMtDlbIuNI16G62WIkYgJevByfqXhzbQznl
+         s8vBLlba/qd+xjD9Tn4hBV1CGEY4fsbkKYiqstn4Esn+TNGM4iHcZm/UftUP6fsm1Ysx
+         MxeA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=eKf63k5ZzfhTMMYCTSbq1U6f7Ok37Q6OPm4zZHqG5IQ=;
-        b=rfzfYZRyZJKSlnQB0sRqbDGVyOHHL5wAYJxIHnYx0UJJclx3laCSG0uvyqQzqhZ63K
-         1h9sQzYbt8p81+rTeXSHw5Wsdhj1hXjAWMWqK0QPdta+3hkZMMvdJyeIA0ih1dMY/gg4
-         JvJpEj2R8q/rz06wuCCVD5GFoIQc900oitz0yYQwVeZ6my47kwWCONg/r5K4T0tvijla
-         yec7dT5V9vHNaHri+Q2f74nlkvWsMumrGuaHikyn+z82OfftG39e99pMqgKiJ62sI4+A
-         4XEHZ+NKzx5hf8MbRoCFqSJ6ldIu/DB1I3oDNx47IKzpnBqsrVTgcXsKFJQ/h4Gz753S
-         K95Q==
-X-Gm-Message-State: APjAAAW1pk6ViiH5kT8byWG664ytFuIh9ui0SUwSiYiVobcJw/RXvWsd
-        cItX91R917e8XPx+ym4gO+TeUA==
-X-Google-Smtp-Source: APXvYqwP2b1y8c70/R+6CDk6PhHb7/sJVbC9ksE6SNWt+TI2t7CE55A8E7wrHpY802PJ9HdiBASSVg==
-X-Received: by 2002:a1c:ed0a:: with SMTP id l10mr8872681wmh.156.1565792977644;
-        Wed, 14 Aug 2019 07:29:37 -0700 (PDT)
+        bh=I7YNeFtjeLzj2ZP9RpFGGR+B2jpIWWxMTHTrjexUO1g=;
+        b=XNEl5ynYow2Z5I2pyGY5c5CC5fMfQ8EHjwwK0jbE0Fz4DhmfJtxs9qi0pkrp2/5+n1
+         YD+tdHj8AZ+rlPVGUcqU7qWOER+p0UzDsxY+V6HtPXPj6d5o6UBLhw7JHOxHUw5JyIaV
+         Jb0AIFf9iOUazCn9lFr07Y/p5tPu8q23K9YCuaz+ITYMIrwVryuiy5TePutkEMePrCM9
+         2oEhVJHJCzs6exET6VEY2i/bXXOpCEJFcd2BrAChNYgoRAhIVgIWebSoXd0VeKEL4Q5r
+         WmAPv6jpUIrwwrSSg40cBWk4ZIvoB2T8WmlKdrYVkeavyCa1mOMptbE3EpZwu7VNtJVv
+         ziNA==
+X-Gm-Message-State: APjAAAVkjoxMqCiijjkyqmsiw4l4wanOu8K5scUzvJ3zm6lHaGkLonjn
+        e2A01EoL4RoWgZodo1sgTF1j3A==
+X-Google-Smtp-Source: APXvYqzEG9vlt4nb60z8dSoEcbqG0CeS9wVZUb0NXzJLu7/9wK5u+UmsjQi5pe9uBCsgDDoedOTp5g==
+X-Received: by 2002:a05:600c:23d1:: with SMTP id p17mr3470755wmb.175.1565792963898;
+        Wed, 14 Aug 2019 07:29:23 -0700 (PDT)
 Received: from bender.baylibre.local (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id o7sm4202908wmc.36.2019.08.14.07.29.36
+        by smtp.gmail.com with ESMTPSA id o7sm4202908wmc.36.2019.08.14.07.29.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Aug 2019 07:29:37 -0700 (PDT)
+        Wed, 14 Aug 2019 07:29:23 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     khilman@baylibre.com
 Cc:     linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 14/14] arm64: dts: meson: fix boards regulators states format
-Date:   Wed, 14 Aug 2019 16:29:18 +0200
-Message-Id: <20190814142918.11636-15-narmstrong@baylibre.com>
+Subject: [PATCH 01/14] arm64: dts: meson: fix ethernet mac reg format
+Date:   Wed, 14 Aug 2019 16:29:05 +0200
+Message-Id: <20190814142918.11636-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190814142918.11636-1-narmstrong@baylibre.com>
 References: <20190814142918.11636-1-narmstrong@baylibre.com>
@@ -64,121 +64,80 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 This fixes the following DT schemas check errors:
-meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
-meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
-meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
-meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
-meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+meson-axg-s400.dt.yaml: soc: ethernet@ff3f0000:reg:0: [0, 4282318848, 0, 65536, 0, 4284695872, 0, 8] is too long
+meson-axg-s400.dt.yaml: ethernet@ff3f0000: reg: [[0, 4282318848, 0, 65536, 0, 4284695872, 0, 8]] is too short
+meson-g12a-u200.dt.yaml: soc: ethernet@ff3f0000:reg:0: [0, 4282318848, 0, 65536, 0, 4284695872, 0, 8] is too long
+meson-g12a-u200.dt.yaml: ethernet@ff3f0000: reg: [[0, 4282318848, 0, 65536, 0, 4284695872, 0, 8]] is too short
+meson-gxbb-nanopi-k2.dt.yaml: soc: ethernet@c9410000:reg:0: [0, 3376480256, 0, 65536, 0, 3364046144, 0, 4] is too long
+meson-gxl-s805x-libretech-ac.dt.yaml: soc: ethernet@c9410000:reg:0: [0, 3376480256, 0, 65536, 0, 3364046144, 0, 4] is too lon
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts          | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts        | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts           | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi              | 4 ++--
- .../arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts   | 4 ++--
- 6 files changed, 12 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 4 ++--
+ arch/arm64/boot/dts/amlogic/meson-gxl.dtsi  | 3 ---
+ 4 files changed, 6 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-index 81780ffcc7f0..dc35e2982c71 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -65,8 +65,8 @@
- 		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <0>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+index 6219337033a0..4a134d29491d 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-axg.dtsi
+@@ -174,8 +174,8 @@
+ 			compatible = "amlogic,meson-axg-dwmac",
+ 				     "snps,dwmac-3.70a",
+ 				     "snps,dwmac";
+-			reg = <0x0 0xff3f0000 0x0 0x10000
+-			       0x0 0xff634540 0x0 0x8>;
++			reg = <0x0 0xff3f0000 0x0 0x10000>,
++			      <0x0 0xff634540 0x0 0x8>;
+ 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
+ 			clocks = <&clkc CLKID_ETH>,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+index f8d43e3dcf20..465106d37289 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -141,8 +141,8 @@
+ 			compatible = "amlogic,meson-axg-dwmac",
+ 				     "snps,dwmac-3.70a",
+ 				     "snps,dwmac";
+-			reg = <0x0 0xff3f0000 0x0 0x10000
+-			       0x0 0xff634540 0x0 0x8>;
++			reg = <0x0 0xff3f0000 0x0 0x10000>,
++			      <0x0 0xff634540 0x0 0x8>;
+ 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
+ 			clocks = <&clkc CLKID_ETH>,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+index 74d03fc706be..faff77175486 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+@@ -489,8 +489,8 @@
+ 			compatible = "amlogic,meson-gxbb-dwmac",
+ 				     "snps,dwmac-3.70a",
+ 				     "snps,dwmac";
+-			reg = <0x0 0xc9410000 0x0 0x10000
+-			       0x0 0xc8834540 0x0 0x4>;
++			reg = <0x0 0xc9410000 0x0 0x10000>,
++			      <0x0 0xc8834540 0x0 0x4>;
+ 			interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+ 			interrupt-names = "macirq";
+ 			status = "disabled";
+diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+index c959456bacc6..ee1ecdbcc958 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
+@@ -80,9 +80,6 @@
+ };
  
--		states = <3300000 0
--			  1800000 1>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
- 	};
- 
- 	flash_1v8: regulator-flash_1v8 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-index b636912a2715..afcf8a9f667b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-@@ -75,8 +75,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 9972b1515da6..6039adda12ee 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -77,8 +77,8 @@
- 		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <0>;
- 
--		states = <3300000 0
--			  1800000 1>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
- 	};
- 
- 	vcc1v8: regulator-vcc1v8 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index e8f925871edf..89f7b41b0e9e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -46,8 +46,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 
- 		regulator-settling-time-up-us = <10000>;
- 		regulator-settling-time-down-us = <150000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-index 796baea7a0bf..c8d74e61dec1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-@@ -38,8 +38,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-index 26907ac82930..c433a031841f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-@@ -38,8 +38,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
+ &ethmac {
+-	reg = <0x0 0xc9410000 0x0 0x10000
+-	       0x0 0xc8834540 0x0 0x4>;
+-
+ 	clocks = <&clkc CLKID_ETH>,
+ 		 <&clkc CLKID_FCLK_DIV2>,
+ 		 <&clkc CLKID_MPLL2>;
 -- 
 2.22.0
 
