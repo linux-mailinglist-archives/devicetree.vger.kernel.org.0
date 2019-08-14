@@ -2,105 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E16708D4B9
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43C9E8D4CF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727691AbfHNNau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 09:30:50 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:33901 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727685AbfHNNau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 09:30:50 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hxtMU-00068E-KA; Wed, 14 Aug 2019 15:30:46 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hxtMR-0005bv-RB; Wed, 14 Aug 2019 15:30:43 +0200
-Date:   Wed, 14 Aug 2019 15:30:43 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Baolin Wang <baolin.wang@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
-Subject: Re: [PATCH v2 2/2] pwm: sprd: Add Spreadtrum PWM support
-Message-ID: <20190814133043.peh63lwngujjuo5d@pengutronix.de>
-References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
- <4f6e3110b4d7e0a2f7ab317bba98a933de12e5da.1565703607.git.baolin.wang@linaro.org>
- <20190813151612.v6x6e6kzxflkpu7b@pengutronix.de>
- <CAMz4kuJURx=fPE6+0gP4ukzMcXr_z3t1ZH0K3Gv6=o4Od4uc7w@mail.gmail.com>
- <20190814092339.73ybj5mycklvpnrq@pengutronix.de>
- <CAMz4ku+3txx5kO-u_+_pxFwoovnX81WFF-moNBasUUgEpvQb+Q@mail.gmail.com>
- <20190814105535.svslc57qp3wx5lub@pengutronix.de>
- <CAMz4ku+H1++pzZ9pAw2N6Z342j3NMBwfRj9VZTdsihtZYzuFOw@mail.gmail.com>
+        id S1728185AbfHNNd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 09:33:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60824 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728181AbfHNNd0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 09:33:26 -0400
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E2E20206C2;
+        Wed, 14 Aug 2019 13:33:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565789605;
+        bh=zlMOkJBdmi2gPUlrd7C9NUTOKbMwTG3hN1hXwIzYsG0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dWebABrtTutybc0F50w0sWkki47iTK1/wE4Cv9q0a1SkaYz7qNFdogv25dQKDBorx
+         ByU+RzvCcwRYMVJwauL36kt1byP5goGenSWlw0WxX+XqnwPVce8hjVewrnFeczxBPV
+         AwGe0/9w3MyqW8gu2zUSb5bjhPtFBikSlUEo+Z+o=
+Date:   Wed, 14 Aug 2019 15:33:22 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64
+ modelA evaluation board
+Message-ID: <20190814133322.dawzv3ityakxtqs4@flea>
+References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+ <20190812094000.ebdmhyxx7xzbevef@flea>
+ <20190814131741.GB24324@Red>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pnw3csfbr4joiprs"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMz4ku+H1++pzZ9pAw2N6Z342j3NMBwfRj9VZTdsihtZYzuFOw@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20190814131741.GB24324@Red>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-On Wed, Aug 14, 2019 at 08:23:37PM +0800, Baolin Wang wrote:
-> On Wed, 14 Aug 2019 at 18:55, Uwe Kleine-König
-> <u.kleine-koenig@pengutronix.de> wrote:
-> > On Wed, Aug 14, 2019 at 06:01:50PM +0800, Baolin Wang wrote:
-> > > On Wed, 14 Aug 2019 at 17:23, Uwe Kleine-König
-> > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > > On Wed, Aug 14, 2019 at 04:42:28PM +0800, Baolin Wang wrote:
-> > > > > On Tue, 13 Aug 2019 at 23:16, Uwe Kleine-König
-> > > > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > > > > On Tue, Aug 13, 2019 at 09:46:41PM +0800, Baolin Wang wrote:
-> > > > > > [...]
-> > > > > Not really, our hardware's method is, when you changed a new
-> > > > > configuration (MOD or duty is changed) , the hardware will wait for a
-> > > > > while to complete current period, then change to the new period.
-> > > >
-> > > > Can you describe that in more detail? This doesn't explain why MOD must be
-> > > > configured before DUTY. Is there another reason for that?
+--pnw3csfbr4joiprs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Aug 14, 2019 at 03:17:41PM +0200, Corentin Labbe wrote:
+> On Mon, Aug 12, 2019 at 11:40:00AM +0200, Maxime Ripard wrote:
+> > On Thu, Aug 08, 2019 at 10:42:53AM +0200, Corentin Labbe wrote:
+> > > This patch adds the evaluation variant of the model A of the PineH64.
+> > > The model A has the same size of the pine64 and has a PCIE slot.
 > > >
-> > > Sorry, I did not explain this explicitly. When we change a new PWM
-> > > configuration, the PWM controller will make sure the current period is
-> > > completed before changing to a new period. Once setting the MOD
-> > > register (since we always set MOD firstly), that will tell the
-> > > hardware that a new period need to change.
+> > > The only devicetree difference with current pineH64, is the PHY
+> > > regulator.
+> > >
+> > > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+> > >  .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
+> > >  2 files changed, 27 insertions(+)
+> > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> > > index f6db0611cb85..9a02166cbf72 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > > @@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
+> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA-eval.dtb
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > new file mode 100644
+> > > index 000000000000..d8ff02747efe
+> > > --- /dev/null
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > @@ -0,0 +1,26 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > > +/*
+> > > + * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
+> > > + */
+> > > +
+> > > +#include "sun50i-h6-pine-h64.dts"
+> > > +
+> > > +/ {
+> > > +	model = "Pine H64 model A evaluation board";
+> > > +	compatible = "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
+> > > +
+> > > +	reg_gmac_3v3: gmac-3v3 {
+> > > +		compatible = "regulator-fixed";
+> > > +		regulator-name = "vcc-gmac-3v3";
+> > > +		regulator-min-microvolt = <3300000>;
+> > > +		regulator-max-microvolt = <3300000>;
+> > > +		startup-delay-us = <100000>;
+> > > +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
+> > > +		enable-active-high;
+> > > +	};
+> > > +
+> > > +};
+> > > +
+> > > +&emac {
+> > > +	phy-supply = <&reg_gmac_3v3>;
+> > > +};
 > >
-> > So if the current period just ended after you reconfigured MOD but
-> > before you wrote to DUTY we'll see a bogus period, right? I assume the
-> > same holds true for writing the prescale value?
-> 
-> I confirmed again, I am sorry I missed something before. Yes, like you
-> said before, writing DUTY triggers the hardware to actually apply the
-> values written to MOD and DUTY to the output. So write DUTY last. I
-> will update the comments and change the PWM configure like:
-> 
-> sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PRESCALE, prescale);
-> sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_MOD, SPRD_PWM_MOD_MAX);
-> sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_DUTY, duty);
+> > I might be missing some context here, but I'm pretty sure that the
+> > initial intent of the pine h64 DTS was to support the model A all
+> > along.
+> >
+>
+> The regulator changed between modelA and B.
+> See this old patchset (supporting modelA) https://patchwork.kernel.org/patch/10539149/ for example.
 
-So PRESCALE is independent and it can still happen that writing PRESCALE
-affects the output before MOD and DUTY do?
+I'm not sure what your point is, but mine is that everything about the
+model A should be in sun50i-h6-pine-h64.dts.
 
-Best regards
-Uwe
+Maxime
 
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--pnw3csfbr4joiprs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVQNogAKCRDj7w1vZxhR
+xT3OAP4oNFqLOfs3vnBPuOIi+wCdRxEWrgoK0NnCtdFdQ/WijwD/b3IA7ktlzjkW
+QWsPV6u/3hNUu1l1GBxa8MRTSnkLbgQ=
+=Tdd5
+-----END PGP SIGNATURE-----
+
+--pnw3csfbr4joiprs--
