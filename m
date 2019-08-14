@@ -2,68 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A45ED8CE52
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 212F78CE68
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:29:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727273AbfHNIY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 04:24:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37652 "EHLO mail.kernel.org"
+        id S1726575AbfHNI3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 04:29:15 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:48156 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726530AbfHNIY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 04:24:26 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AF69120843;
-        Wed, 14 Aug 2019 08:24:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565771065;
-        bh=dOIAznLWxzP0u+OSBAYPKB0yVmhsjJLY8I+qEiU4L9U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RG1qK+Pt18ss2tHX2RNIruXp2UeFxF2bDhRkagJoZReWFhDZXfEow8U4TKl/u2GxN
-         FENR3KwZzH+xJs6V8b8E+Ohi9E8ucLSz+ossd+rc+oGgpJmG4CckHXL9yVuGjvDcgq
-         xabdFyMBFyhejTyori5x2p9Mwh+6uhFGWeunN1hU=
-Date:   Wed, 14 Aug 2019 09:24:20 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Joerg Roedel <joro@8bytes.org>
-Cc:     Yong Wu <yong.wu@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
-        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
-        Matthias Kaehlcke <mka@chromium.org>, cui.zhang@mediatek.com,
-        chao.hao@mediatek.com, ming-fan.chen@mediatek.com
-Subject: Re: [PATCH v9 00/21] MT8183 IOMMU SUPPORT
-Message-ID: <20190814082419.tppi3o4x27qotkn6@willie-the-truck>
-References: <1565423901-17008-1-git-send-email-yong.wu@mediatek.com>
- <20190814081825.GA22669@8bytes.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190814081825.GA22669@8bytes.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
+        id S1725306AbfHNI3P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 04:29:15 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 35F7C1A0142;
+        Wed, 14 Aug 2019 10:29:13 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2993D1A006B;
+        Wed, 14 Aug 2019 10:29:13 +0200 (CEST)
+Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 4E29C2060E;
+        Wed, 14 Aug 2019 10:29:12 +0200 (CEST)
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     broonie@kernel.org
+Cc:     Xiubo.Lee@gmail.com, nicoleotsuka@gmail.com, perex@perex.cz,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        festevam@gmail.com, devicetree@vger.kernel.org, robh+dt@kernel.org,
+        shengjiu.wang@nxp.com, viorel.suman@nxp.com, linux-imx@nxp.com,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH 0/2] Add support for i.MX8QM
+Date:   Wed, 14 Aug 2019 11:29:09 +0300
+Message-Id: <20190814082911.665-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 10:18:25AM +0200, Joerg Roedel wrote:
-> On Sat, Aug 10, 2019 at 03:58:00PM +0800, Yong Wu wrote:
-> > Change notes:
-> > v9:
-> >    1) rebase on v5.3-rc1.
-> >    2) In v7s, Use oas to implement MTK 4GB mode. It nearly reconstruct the
-> >       patch, so I don't keep the R-b.
-> 
-> Okay, this looks close to being ready, just the io-pgtable patches still
-> need review.
+i.MX8QM SOC integrates 6 SAI instances. Register map is similar with
+i.MX6 series.
 
-On my list for today :) (Today is SMMU day for me. Send coffee.)
+Daniel Baluta (2):
+  ASoC: fsl_sai: Add support for imx8qm
+  ASoC: dt-bindings: Introduce compatible string for imx8qm
 
-Will
+ Documentation/devicetree/bindings/sound/fsl-sai.txt | 3 ++-
+ sound/soc/fsl/fsl_sai.c                             | 7 +++++++
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+-- 
+2.17.1
+
