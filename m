@@ -2,53 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 116128D421
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F36F8D425
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726721AbfHNNCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 09:02:52 -0400
-Received: from muru.com ([72.249.23.125]:57584 "EHLO muru.com"
+        id S1727524AbfHNNDX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 09:03:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41774 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727850AbfHNNCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 09:02:52 -0400
-Received: from hillo.muru.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTP id 3834181DD;
-        Wed, 14 Aug 2019 13:03:20 +0000 (UTC)
-From:   Tony Lindgren <tony@atomide.com>
-To:     linux-omap@vger.kernel.org
-Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 5/5] bus: ti-sysc: Detect d2d when debug is enabled
-Date:   Wed, 14 Aug 2019 06:02:40 -0700
-Message-Id: <20190814130240.56202-6-tony@atomide.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190814130240.56202-1-tony@atomide.com>
-References: <20190814130240.56202-1-tony@atomide.com>
+        id S1726865AbfHNNDX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 09:03:23 -0400
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 70CFC206C2;
+        Wed, 14 Aug 2019 13:03:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565787801;
+        bh=3OUlSHJn0lTrnJ5fKTpkrRdkhD4r845rbCuZ5nFCWHQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EDCnd1iWrMYY5eTCyl2C4OcbbG7hwyR/yBNNl1DEgM7rxl2JhllcRp+qc1n1e3wQn
+         5m9Cif0BRl33bPWPSpZjlT1ETGRv6XhqJe/99+FqhpGmSNPd3P9/Fkl2Pv/6NY/aJ+
+         36HbweNwXt3W5499mCcC2xN0FGArisPikhNobVWE=
+Received: by mail-lf1-f44.google.com with SMTP id b29so72023750lfq.1;
+        Wed, 14 Aug 2019 06:03:21 -0700 (PDT)
+X-Gm-Message-State: APjAAAU84prkwE67YXO9KMSNCfUEUL5OEuW2YWcNB+6G54CcRK09v+pN
+        5hZNHDBJJADedFmKc4qS1fbNOJ54BovJan1OSkc=
+X-Google-Smtp-Source: APXvYqz10vuC20rP+LQQhwdjZM0MrWzEZ/evwZm1M1ZsrA4lt+zFV303rcMeni4yzkxrQ0voupVR/up/rPG64KZGaEE=
+X-Received: by 2002:a19:f512:: with SMTP id j18mr21053059lfb.159.1565787799622;
+ Wed, 14 Aug 2019 06:03:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CGME20190813150842eucas1p2c248537d9cd593073e12abeac2cacab5@eucas1p2.samsung.com>
+ <20190813150827.31972-1-s.nawrocki@samsung.com>
+In-Reply-To: <20190813150827.31972-1-s.nawrocki@samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 14 Aug 2019 15:03:08 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdm2qj_GDR4NQriuOjPFyAxf_CdH_hXEsQNDp4qGHaUZA@mail.gmail.com>
+Message-ID: <CAJKOXPdm2qj_GDR4NQriuOjPFyAxf_CdH_hXEsQNDp4qGHaUZA@mail.gmail.com>
+Subject: Re: [PATCH v3 0/9] Exynos Adaptive Supply Voltage support
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We want to see what modules probe when debug is enabled.
+On Tue, 13 Aug 2019 at 17:08, Sylwester Nawrocki <s.nawrocki@samsung.com> w=
+rote:
+>
+> This is third iteration of my patch series adding ASV (Adaptive Supply
+> Voltage) support for Exynos SoCs. The previous one can be found at:
+> https://lore.kernel.org/lkml/20190718143044.25066-1-s.nawrocki@samsung.co=
+m
+>
+> There is no major changes in this series comparing to v2, only minor
+> corrections addressing review comments.
+>
+> I was not sure it was a good idea to try to extend the OPP binding
+> so as to include the ASV data tables in DT, so the tables are left
+> in the driver.
+>
+> This patch set includes Exynos CHIPID driver posted by Pankaj Dubey and
+> futher improved by Bart=C5=82omiej =C5=BBo=C5=82nierkiewicz [1].
+>
+> Tested on Odroid XU3, XU3 Lite, XU4.
+>
+> One of the things on TODO list is support for the Adaptive Body Bias.
+> This will require modifications on the cpufreq driver side in order to
+> support multiple voltage regulators and changes in the OPP framework
+> to support adding OPPs with multiple voltages.
+>
+> [1] https://lkml.org/lkml/2018/11/15/908
+>
+> Pankaj Dubey (3):
+>   soc: samsung: Add exynos chipid driver support
+>   ARM: EXYNOS: enable exynos_chipid for ARCH_EXYNOS
+>   ARM64: EXYNOS: enable exynos_chipid for ARCH_EXYNOS
+>
+> Sylwester Nawrocki (6):
+>   soc: samsung: Convert exynos-chipid driver to use the regmap API
+>   soc: samsung: Add Exynos Adaptive Supply Voltage driver
+>   ARM: EXYNOS: Enable exynos-asv driver for ARCH_EXYNOS
+>   soc: samsung: Update the CHIP ID DT binding documentation
+>   ARM: dts: Add "syscon" compatible string to chipid node
+>   ARM: dts: Add samsung,asv-bin property for odroidxu3-lite
 
-Signed-off-by: Tony Lindgren <tony@atomide.com>
----
- drivers/bus/ti-sysc.c | 2 ++
- 1 file changed, 2 insertions(+)
+All look good to me but I need acks for bindings before applying.
 
-diff --git a/drivers/bus/ti-sysc.c b/drivers/bus/ti-sysc.c
---- a/drivers/bus/ti-sysc.c
-+++ b/drivers/bus/ti-sysc.c
-@@ -1266,6 +1266,8 @@ static const struct sysc_revision_quirk sysc_revision_quirks[] = {
- 	SYSC_QUIRK("dcan", 0, 0x20, -1, -1, 0x4edb1902, 0xffffffff, 0),
- 	SYSC_QUIRK("dmic", 0, 0, 0x10, -1, 0x50010000, 0xffffffff, 0),
- 	SYSC_QUIRK("dwc3", 0, 0, 0x10, -1, 0x500a0200, 0xffffffff, 0),
-+	SYSC_QUIRK("d2d", 0x4a0b6000, 0, 0x10, 0x14, 0x00000010, 0xffffffff, 0),
-+	SYSC_QUIRK("d2d", 0x4a0cd000, 0, 0x10, 0x14, 0x00000010, 0xffffffff, 0),
- 	SYSC_QUIRK("epwmss", 0, 0, 0x4, -1, 0x47400001, 0xffffffff, 0),
- 	SYSC_QUIRK("gpu", 0, 0x1fc00, 0x1fc10, -1, 0, 0, 0),
- 	SYSC_QUIRK("hsi", 0, 0, 0x10, 0x14, 0x50043101, 0xffffffff, 0),
--- 
-2.21.0
+Best regards,
+Krzysztof
