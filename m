@@ -2,95 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D1A5B8CF27
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:18:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D3818CF30
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725888AbfHNJSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 05:18:37 -0400
-Received: from albert.telenet-ops.be ([195.130.137.90]:48852 "EHLO
-        albert.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725861AbfHNJSg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 05:18:36 -0400
-Received: from ramsan ([84.194.98.4])
-        by albert.telenet-ops.be with bizsmtp
-        id oxJZ2000J05gfCL06xJZtd; Wed, 14 Aug 2019 11:18:35 +0200
-Received: from rox.of.borg ([192.168.97.57])
-        by ramsan with esmtp (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1hxpQP-0003Ri-Bb; Wed, 14 Aug 2019 11:18:33 +0200
-Received: from geert by rox.of.borg with local (Exim 4.90_1)
-        (envelope-from <geert@linux-m68k.org>)
-        id 1hxpQP-0003Jh-AD; Wed, 14 Aug 2019 11:18:33 +0200
-From:   Geert Uytterhoeven <geert+renesas@glider.be>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH v2] scripts/dtc: dtx_diff - add color output support
-Date:   Wed, 14 Aug 2019 11:18:32 +0200
-Message-Id: <20190814091832.12707-1-geert+renesas@glider.be>
-X-Mailer: git-send-email 2.17.1
+        id S1726119AbfHNJVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 05:21:46 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:65140 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725828AbfHNJVq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 05:21:46 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x7E9JrfR026966;
+        Wed, 14 Aug 2019 04:21:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type;
+ s=PODMain02222019; bh=IzKF79/Odm6zkND5ag+ETCbJaByQviF0ZvwcTy7724M=;
+ b=diXOWSNMEUA7zYj8FPp9gA1u6xVV1ZEzgV+oKuLVE9x6zvWcn7shDu6iRyWJI0k3NZ7W
+ LYk1dm83OG/IPmM5OINvY9Aoy0VcoyNlLv3fK5YMuh6PYQeQFIz6lP2TGA/wlMi07gaJ
+ XDtGZx3BqxEzXWvkN1tZZfsfCPdmox6WnBC23hPFFBBwJd0bpjZ3YVXjfq7HOxuLBDKY
+ 7IbuyIHN1+kQSBnrw003V27p+875OrUKD++tv/EjNYl/lvpwl11P7rmpJUIwFCJ6TvTl
+ ux8Q7K443OX+GerZiMGvTvauufmKcoG0a5B6WhgsNy+1b1ydCFxWuXJXgtUAkjpZ1iTZ iA== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2ubf9btdfu-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 14 Aug 2019 04:21:41 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 14 Aug
+ 2019 10:21:40 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Wed, 14 Aug 2019 10:21:40 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 2244345;
+        Wed, 14 Aug 2019 10:21:40 +0100 (BST)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <lee.jones@linaro.org>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH v2 1/2] mfd: madera: Update DT binding document to support clock supplies
+Date:   Wed, 14 Aug 2019 10:21:39 +0100
+Message-ID: <20190814092140.30995-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 lowpriorityscore=0
+ clxscore=1015 spamscore=0 adultscore=0 suspectscore=1 mlxscore=0
+ priorityscore=1501 malwarescore=0 phishscore=0 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1906280000 definitions=main-1908140094
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new -c/--color options, to enhance the diff output with color, and
-improve the user's experience.
+Add the 3 input clock sources for the chip into the device tree binding
+document.
 
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
-v2:
-  - Document that -c/--color requires a diff command with color support,
-  - Ignore -c/--color if diff command lacks color support.
----
- scripts/dtc/dtx_diff | 12 +++++++++++-
- 1 file changed, 11 insertions(+), 1 deletion(-)
 
-diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
-index e9ad7834a22d9459..d3422ee15e300bc7 100755
---- a/scripts/dtc/dtx_diff
-+++ b/scripts/dtc/dtx_diff
-@@ -20,6 +20,8 @@ Usage:
+No changes since v1.
+
+Thanks,
+Charles
+
+ Documentation/devicetree/bindings/mfd/madera.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mfd/madera.txt b/Documentation/devicetree/bindings/mfd/madera.txt
+index cad0f28005027..47e2b8bc60519 100644
+--- a/Documentation/devicetree/bindings/mfd/madera.txt
++++ b/Documentation/devicetree/bindings/mfd/madera.txt
+@@ -67,6 +67,14 @@ Optional properties:
+     As defined in bindings/gpio.txt.
+     Although optional, it is strongly recommended to use a hardware reset
  
- 
-       --annotate    synonym for -T
-+      --color       synonym for -c (requires diff with --color support)
-+       -c           enable colored output
-        -f           print full dts in diff (--unified=99999)
-        -h           synonym for --help
-        -help        synonym for --help
-@@ -178,6 +180,7 @@ compile_to_dts() {
- annotate=""
- cmd_diff=0
- diff_flags="-u"
-+diff_color=""
- dtx_file_1=""
- dtx_file_2=""
- dtc_sort="-s"
-@@ -189,6 +192,13 @@ while [ $# -gt 0 ] ; do
- 
- 	case $1 in
- 
-+	-c | --color )
-+		if diff --color /dev/null /dev/null 2>/dev/null ; then
-+			diff_color="--color=always"
-+		fi
-+		shift
-+		;;
++  - clocks: Should reference the clocks supplied on MCLK1, MCLK2 and MCLK3
++  - clock-names: May contain up to three strings:
++      "mclk1" for the clock supplied on MCLK1, recommended to be a high
++      quality audio reference clock
++      "mclk2" for the clock supplied on MCLK2, required to be an always on
++      32k clock
++      "mclk3" for the clock supplied on MCLK3
 +
- 	-f )
- 		diff_flags="--unified=999999"
- 		shift
-@@ -344,7 +354,7 @@ DTC="\
- 
- if (( ${cmd_diff} )) ; then
- 
--	diff ${diff_flags} --label "${dtx_file_1}" --label "${dtx_file_2}" \
-+	diff ${diff_flags} ${diff_color} --label "${dtx_file_1}" --label "${dtx_file_2}" \
- 		<(compile_to_dts "${dtx_file_1}" "${dtx_path_1_dtc_include}") \
- 		<(compile_to_dts "${dtx_file_2}" "${dtx_path_2_dtc_include}")
- 
+   - MICBIASx : Initial data for the MICBIAS regulators, as covered in
+     Documentation/devicetree/bindings/regulator/regulator.txt.
+     One for each MICBIAS generator (MICBIAS1, MICBIAS2, ...)
 -- 
-2.17.1
+2.11.0
 
