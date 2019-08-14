@@ -2,33 +2,33 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B960F8DBB5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:27:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39C888DB7C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728890AbfHNR1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 13:27:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52548 "EHLO mail.kernel.org"
+        id S1729424AbfHNRFX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 13:05:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54232 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729041AbfHNRDu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 13:03:50 -0400
+        id S1729409AbfHNRFT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 13:05:19 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7E4462173E;
-        Wed, 14 Aug 2019 17:03:49 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9D0EB2084D;
+        Wed, 14 Aug 2019 17:05:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565802229;
-        bh=9q+dnxmp7wlV9CyGTOF8w+3RUc997Kz+VeFrAqoo1tk=;
+        s=default; t=1565802318;
+        bh=p2S5wxtRdlEoyTTI5d4Kr1BQjkHIIs2t54IZ3SRvnZ4=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=QgoMpwiOu8Em+B3wWDGgiVe0zWh6Nq+QgA1d5Y+2JLobHvV5ksMTQ894+QDuoF/ps
-         rYKLazrbDKqvQ5AYc350+yPlZMmJel+Skb52/iI3T1rb8KkHbUxNzKay9LSZVQUMGP
-         4h+Og4goilMJCZWPCbwIepZnpDsyI/Ha+pxCCDvk=
+        b=TFGKIjo6bCqSThrxmIMbuYC4Ps+IyPRDXCdOfQTEdUXA6nb7EmVE5+bKhKc7TKS3U
+         TRFbyUfkDIyRQZF0+qzflnsnJM/SQtjPqvnh1iS2v3pSnN/kBM+kS5hfhkxfarz50Y
+         1dp/A2FjLNbt51y+ZAh/JPA0v+zLSBPw48GjTScI=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190814125012.8700-8-vkoul@kernel.org>
-References: <20190814125012.8700-1-vkoul@kernel.org> <20190814125012.8700-8-vkoul@kernel.org>
-Subject: Re: [PATCH 07/22] arm64: dts: qcom: pm8150: Add pon and rtc nodes
+In-Reply-To: <20190814125012.8700-9-vkoul@kernel.org>
+References: <20190814125012.8700-1-vkoul@kernel.org> <20190814125012.8700-9-vkoul@kernel.org>
+Subject: Re: [PATCH 08/22] arm64: dts: qcom: pm8150: Add vadc node
 From:   Stephen Boyd <sboyd@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -38,54 +38,56 @@ Cc:     linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 To:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>
 User-Agent: alot/0.8.1
-Date:   Wed, 14 Aug 2019 10:03:48 -0700
-Message-Id: <20190814170349.7E4462173E@mail.kernel.org>
+Date:   Wed, 14 Aug 2019 10:05:17 -0700
+Message-Id: <20190814170518.9D0EB2084D@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Vinod Koul (2019-08-14 05:49:57)
-> PM8150 PMIC contains pon and rtc devices so add nodes for these.
->=20
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
-
-Squash this with the other patch?
-
-> @@ -12,6 +13,25 @@
->                 #address-cells =3D <1>;
->                 #size-cells =3D <0>;
+Quoting Vinod Koul (2019-08-14 05:49:58)
+> @@ -25,6 +26,33 @@
+>                         };
+>                 };
 > =20
-> +               pon: pon@800 {
-> +                       compatible =3D "qcom,pm8916-pon";
-> +                       reg =3D <0x0800>;
-> +                       pwrkey {
-> +                               compatible =3D "qcom,pm8941-pwrkey";
-> +                               interrupts =3D <0x0 0x8 0 IRQ_TYPE_EDGE_B=
-OTH>;
-> +                               debounce =3D <15625>;
-> +                               bias-pull-up;
-> +                               linux,code =3D <KEY_POWER>;
+> +               pm8150_adc: adc@3100 {
+> +                       compatible =3D "qcom,spmi-adc5";
+> +                       reg =3D <0x3100>;
+> +                       #address-cells =3D <1>;
+> +                       #size-cells =3D <0>;
+> +                       #io-channel-cells =3D <1>;
+> +                       interrupts =3D <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING=
+>;
 
-status =3D "disabled"?
+status =3D "disabled"? I imagine there are cases where some board doesn't
+want to use the ADC for anything.
 
+> +
+> +                       ref-gnd@0 {
+> +                               reg =3D <ADC5_REF_GND>;
+> +                               qcom,pre-scaling =3D <1 1>;
+> +                               label =3D "ref_gnd";
 > +                       };
+> +
+> +                       vref-1p25@1 {
+> +                               reg =3D <ADC5_1P25VREF>;
+> +                               qcom,pre-scaling =3D <1 1>;
+> +                               label =3D "vref_1p25";
+> +                       };
+> +
+> +                       die-temp@6 {
+> +                               reg =3D <ADC5_DIE_TEMP>;
+> +                               qcom,pre-scaling =3D <1 1>;
+> +                               label =3D "die_temp";
+> +                       };
+
+Are these board level details?
+
 > +               };
 > +
-> +               rtc@6000 {
-> +                       compatible =3D "qcom,pm8941-rtc";
-> +                       reg =3D <0x6000>;
-> +                       reg-names =3D "rtc", "alarm";
-> +                       interrupts =3D <0x0 0x61 0x1 IRQ_TYPE_NONE>;
-
-status =3D "disabled"?
-
-> +               };
-> +
->                 pm8150_gpios: gpio@c000 {
->                         compatible =3D "qcom,pm8150-gpio";
->                         reg =3D <0xc000>;
+>                 rtc@6000 {
+>                         compatible =3D "qcom,pm8941-rtc";
+>                         reg =3D <0x6000>;
 > --=20
 > 2.20.1
 >=20
