@@ -2,170 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7A918DBE7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF0D8DC1C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728488AbfHNRcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 13:32:01 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:38299 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728482AbfHNRcA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 13:32:00 -0400
-Received: by mail-ed1-f68.google.com with SMTP id r12so7761181edo.5
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 10:31:59 -0700 (PDT)
+        id S1727303AbfHNRon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 13:44:43 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:46350 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728169AbfHNRon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 13:44:43 -0400
+Received: by mail-pg1-f193.google.com with SMTP id w3so16240470pgt.13
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 10:44:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=sender:date:from:to:cc:subject:message-id:mail-followup-to
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Qm6tCEyYHljYJCx+l7YOn3eiOVSI2Q6xsqKk/Szr8xk=;
-        b=k/gxraMcIYfFKbabTJ1uwZwJ8VES3yQLUNViHQMA+d1o/fXBUmn8Xlra/WXeXV9OK6
-         oIRMcB4HXQV1z1V493ABRs1dndtGFVbP9eicDVkQRWohVqSbxdWxsF3LaxECADogDqgb
-         PIOsIK/y/ZmlDZ6O+dGhdkqTrvL9DfZPgNEz8=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=8TCzd3zFiDX85xywn7ChohopRVZ50w25juT6dtizlkE=;
+        b=oe2SbrDsxV5qofbDmFkBqA/UP9LedTWCuoTlB0Dudr7XbzPEYuUN6J4RPjYPhUydZK
+         rXBGXeY5571WEWKzj9B1jVJ1S1lWxSwZUuUWFA2XtkHd0d+zQxMnATh3qY331FncYDrq
+         +1dAf/OvSZAbb/D1dqBPTQB4T+/q12M1m+juWLZ63EEgRUQ3ZhrIWM+3haIFRknl2R9W
+         am3nxtCWziF1Anpf4Sq4xKlgKXOiyl2aYOtwtPpJcRlPKjmsP2EsyzTVQtWoDkvEaSh+
+         XANVlK78HhARtfEdjzjSHCrufUqXl1/IOcJD/qBd6rf5XlxkWBWR2KxBMfgVl+KHRHKK
+         EU+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=Qm6tCEyYHljYJCx+l7YOn3eiOVSI2Q6xsqKk/Szr8xk=;
-        b=AY9SqL+GsOdGOI1M7bzjLw7LH2razClo8UbMyHTnG0pkldbW/RulTuMPG9Vnb0k8Bv
-         kKtc8nvGgBd1IHLWeMTizNjL7p8TkTby8kd+0+J+e2DWmUjBUfTq8/lx4HQ07woN6mlT
-         Gh4+MDUkkkIoSq195mdAhXHfVMJR5OkAV0LNID43eofElTZvEA31eL5/L6kzhqZJ9FQT
-         PoLJS60oz3D4CBj0R/4Y9BqHyGTkqyBLMxGCXNuSrZAfAQ4YZjFfNnKvt6xvNpfipaFR
-         SMPBtW3PDOXOAgsYj/xj63cmorhoPqKHKjQ69TeQf5R3SxBHr/7M05H4CKkj6/o1RYHD
-         eQMQ==
-X-Gm-Message-State: APjAAAW8piYBDEHVT023R0YUdgORvsCyKXTcIdtgUqtH7mvzGmaP2vr3
-        wi4xyXmafaBPRzcb+FQn/0KpYA==
-X-Google-Smtp-Source: APXvYqwRn9v1KmyAl7iLql4TVsuC4BlSbySrQOJ2/+/4v8L1EDdXOOJ8MyXwatv64FQ4zcha8koF8Q==
-X-Received: by 2002:aa7:c353:: with SMTP id j19mr858899edr.292.1565803918776;
-        Wed, 14 Aug 2019 10:31:58 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
-        by smtp.gmail.com with ESMTPSA id f6sm74361edn.63.2019.08.14.10.31.57
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 14 Aug 2019 10:31:58 -0700 (PDT)
-Date:   Wed, 14 Aug 2019 19:31:55 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=8TCzd3zFiDX85xywn7ChohopRVZ50w25juT6dtizlkE=;
+        b=QEFejzjDwrQ18wkhzZ+rKr7W+juegLpI7aKTfEWR3EAZjxKUDmyXgWAUCoJMv6DzRD
+         bptteUwLR6fl/0qXdBFYHlzZ7JBLq8E2jY0SQ/uoXPJ2CRgeTIu2B/QTHIoeC8CknMOg
+         BatZ6k7MHBOrRs5tMOQgbHMRICKpZEC4nn2kM8Fp9UfaYWmZz56VXjayBW4cXLGqrGwb
+         Z9KBpiDVE/ehnC/nj4UWTyLJrV36N2DCsWH571zu8k+mX81YWFNwvppFYms9biAIkXaS
+         PqHEOlbdrsEcHVsHBTw8rC41Tt7XHttRjJ3JZztA2Z/0HihiR5vmmlIvrvecs9WJkDtH
+         pauA==
+X-Gm-Message-State: APjAAAVknZYA6NlNdkcn1n4LIiVW32fyxEZAeOvNzXeiuRocncQpyrvV
+        5kmj+i4k/D4Jfl8iZWQKqgyq0A==
+X-Google-Smtp-Source: APXvYqz7MavHYdq/g7PveGK4Yap8TGnFicPUAMqpQBASUNRsOeDUdM0OR1O6eb/HCjCED+9QnKCHhg==
+X-Received: by 2002:a62:58c4:: with SMTP id m187mr1104043pfb.147.1565804682598;
+        Wed, 14 Aug 2019 10:44:42 -0700 (PDT)
+Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id e13sm438363pff.181.2019.08.14.10.44.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Aug 2019 10:44:41 -0700 (PDT)
+Date:   Wed, 14 Aug 2019 10:44:39 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        linux-arm-msm@vger.kernel.org, sibis@codeaurora.org,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 07/15] drm/mxsfb: Fix the vblank events
-Message-ID: <20190814173155.GR7444@phenom.ffwll.local>
-Mail-Followup-To: Robert Chiras <robert.chiras@nxp.com>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@linux.ie>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <1565779731-1300-1-git-send-email-robert.chiras@nxp.com>
- <1565779731-1300-8-git-send-email-robert.chiras@nxp.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/22] arm64: dts: qcom: sm8150: add base dts file
+Message-ID: <20190814174439.GE6167@minitux>
+References: <20190814125012.8700-1-vkoul@kernel.org>
+ <20190814125012.8700-2-vkoul@kernel.org>
+ <20190814165855.098FD2063F@mail.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1565779731-1300-8-git-send-email-robert.chiras@nxp.com>
-X-Operating-System: Linux phenom 4.19.0-5-amd64 
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190814165855.098FD2063F@mail.kernel.org>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 01:48:43PM +0300, Robert Chiras wrote:
-> Currently, the vblank support is not correctly implemented in MXSFB_DRM
-> driver. The call to drm_vblank_init is made with mode_config.num_crtc
-> which at that time is 0. Because of this, vblank is not activated, so
-> there won't be any vblank event submitted.
-> For example, when running modetest with the '-v' parameter will result
-> in an astronomical refresh rate (10000+ Hz), because of that.
+On Wed 14 Aug 09:58 PDT 2019, Stephen Boyd wrote:
 
-Uh, that sounds a bit like a bug somewhere. If vblank doesn't work, we
-should give userspace an error back.
-
-Maybe we need more checks in drm_vblank_init()? Can you pls look into
-that?
-
+> Quoting Vinod Koul (2019-08-14 05:49:51)
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+[..]
+> > +       clocks {
+> > +               xo_board: xo-board {
+> > +                       compatible = "fixed-clock";
+> > +                       #clock-cells = <0>;
+> > +                       clock-frequency = <19200000>;
 > 
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> ---
->  drivers/gpu/drm/mxsfb/mxsfb_drv.c | 11 ++++++++++-
->  1 file changed, 10 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/mxsfb/mxsfb_drv.c b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> index 2743975..829abec 100644
-> --- a/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> +++ b/drivers/gpu/drm/mxsfb/mxsfb_drv.c
-> @@ -38,6 +38,9 @@
->  #include "mxsfb_drv.h"
->  #include "mxsfb_regs.h"
->  
-> +/* The eLCDIF max possible CRTCs */
-> +#define MAX_CRTCS 1
-> +
->  enum mxsfb_devtype {
->  	MXSFB_V3,
->  	MXSFB_V4,
-> @@ -138,6 +141,8 @@ static void mxsfb_pipe_enable(struct drm_simple_display_pipe *pipe,
->  		mxsfb->connector = &mxsfb->panel_connector;
->  	}
->  
-> +	drm_crtc_vblank_on(&pipe->crtc);
-> +
->  	pm_runtime_get_sync(drm->dev);
->  	drm_panel_prepare(mxsfb->panel);
->  	mxsfb_crtc_enable(mxsfb);
-> @@ -164,6 +169,8 @@ static void mxsfb_pipe_disable(struct drm_simple_display_pipe *pipe)
->  	}
->  	spin_unlock_irq(&drm->event_lock);
->  
-> +	drm_crtc_vblank_off(&pipe->crtc);
-> +
->  	if (mxsfb->connector != &mxsfb->panel_connector)
->  		mxsfb->connector = NULL;
->  }
-> @@ -246,7 +253,7 @@ static int mxsfb_load(struct drm_device *drm, unsigned long flags)
->  
->  	pm_runtime_enable(drm->dev);
->  
-> -	ret = drm_vblank_init(drm, drm->mode_config.num_crtc);
-> +	ret = drm_vblank_init(drm, MAX_CRTCS);
->  	if (ret < 0) {
->  		dev_err(drm->dev, "Failed to initialise vblank\n");
->  		goto err_vblank;
-> @@ -269,6 +276,8 @@ static int mxsfb_load(struct drm_device *drm, unsigned long flags)
->  		goto err_vblank;
->  	}
->  
-> +	drm_crtc_vblank_off(&mxsfb->pipe.crtc);
-
-Are you sure you need this one here? vblanks should be off after
-drm_vblank_init() is called.
-
-Thanks, Daniel
-
-> +
->  	/*
->  	 * Attach panel only if there is one.
->  	 * If there is no panel attach, it must be a bridge. In this case, we
-> -- 
-> 2.7.4
+> Is it 19.2 or 38.4 MHz? It seems like lately there are dividers, but I
+> guess it doesn't really matter in the end.
 > 
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+As with previous platforms, the board's XO feeds the PMIC at 38.4MHz and
+the SoC's CXO_IN pin (i.e. bi_tcxo) is fed from the PMIC's LNBBCLK1,
+which is ticking at 19.2MHz.
+
+[..]
+> > +               gcc: clock-controller@100000 {
+> > +                       compatible = "qcom,gcc-sm8150";
+> > +                       reg = <0x00100000 0x1f0000>;
+> > +                       #clock-cells = <1>;
+> > +                       #reset-cells = <1>;
+> > +                       #power-domain-cells = <1>;
+> > +                       clock-names = "bi_tcxo", "sleep_clk";
+> > +                       clocks = <&xo_board>, <&sleep_clk>;
+
+So this first one should actually be <&rpmhcc LNBBCLK1>.
+
+But while we now should handle this gracefully in the clock driver I
+think we still have problems with the cascading probe deferral that
+follows - last time I tried to do this the serial driver probe deferred
+past user space initialization and the system crashed as we didn't have
+a /dev/console.
+
+
+So, I think we should s/xo_board/lnbbclk1/ (at 19.2MHz) to make it
+represent the schematics and then once we have rpmhcc and validated that
+the system handles this gracefully we can switch it out.
+
+Regards,
+Bjorn
