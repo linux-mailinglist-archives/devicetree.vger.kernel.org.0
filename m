@@ -2,152 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B803E8D01D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CB248D031
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 12:02:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725280AbfHNJyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 05:54:50 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:39963 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725861AbfHNJyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 05:54:49 -0400
-Received: by mail-wm1-f67.google.com with SMTP id v19so3885300wmj.5
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 02:54:47 -0700 (PDT)
+        id S1725280AbfHNKCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 06:02:04 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:40579 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726157AbfHNKCE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 06:02:04 -0400
+Received: by mail-oi1-f196.google.com with SMTP id h21so2896828oie.7
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 03:02:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=S0qffjmHFNR1Sy40wwuOSColl5UwNxzdHwfmzhDqELM=;
-        b=LdX9bmgt4s6x4/ZP8x1+XQ1L/RBYjEzeAtDRH+YjIDi7FU2dlfebUcjRayATdNpdc+
-         pBKu9KPx/kywff4EGdq9oFicNv4Ym9AWl5I7dx553hKs+kTV0lNMNdeUsRHp7FMNf3yN
-         THmCOz4Iykn8dwZ6CVZwEWHA65tjYGB21WPDXTWXVq+Jei1JuK1HQ2i0G0v9x8jykoar
-         j8c/ma/RGKiKE7Hi1nmndGuSMaZCDpJGTPR5g3is8qtDI+g8dYgTtgV/VnA87pih0ZVc
-         lNUIfogH6qSdvw0FDzqgaViM4onT/T7zZxurTAFaI14OkBfgOhfq5SUch3OsuYOrzheA
-         DI7Q==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=jTwlo3HfpzwBbLjZdlYNR7XMc3lGAwn/CGtf8DP+Tqk=;
+        b=rtpr4bWGyZLiQk4iGaAs4o8pz6SokjlDum0l8s2GJ+6G/M0kbIjrJG8JsxY79jCDLg
+         Z01xW6gfihVhjFb+JEZORo2Oykezoo6J5Uvvx+e2LdA6GEoGSFDBliqdcuObCboFpcur
+         qNJDiaWdS7N8B038fOqYFYkZnRN0ohkjP5C8j8sTUyE+Nx5E7yeHqyBHW9aMEcyp7PzN
+         mgbmB5cbk2eN82yH99kiADVtiX3MHzMmIgZqLdsoDOdvKvsBxc4lONRAjg+FogK3joTF
+         AO12YDOLB/aYEvSeKyKMd5DZk4W24W5+GGSEpuAlFjGGLy9VRnFtZ1UjBQT/9igGKQwT
+         4OGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=S0qffjmHFNR1Sy40wwuOSColl5UwNxzdHwfmzhDqELM=;
-        b=leLN9OFo/bvnkLO3lRE2Tds0/Irc8qH4aDesHHB19e/+L5SuOWb0tkaq8orJW+b2TJ
-         4ajlVQfG9BY6moPkIYfFpSOqTfav+lru5dw+JqCQ0rhmHQ/kjuu3F+UUyT+b3c6voYvV
-         4r5BC+ef4l/ODRI+ad6wLMCrEQ5tTuqdqJtUFN0JGCTtgwJ0ktELXD/3iA5yRexyURTP
-         Lk1BqWVSmATJcOdMV5VLlOOqPXRXjQIMaK41os9Ba3jtVKSu4w+u/OIyTc7LcxYWjee0
-         w6VvMRQWIJ9oh15tnOgSDWZP5QcxQZv5ZhJ7bvgf6G9KqsWtq3ewGkfpGfr3SvxJWU4V
-         SESA==
-X-Gm-Message-State: APjAAAWjwPivNZ0At8SeDdi3cAtGT5G4rgoXatqrykvOzs9g8UnBxWai
-        wm9iRpALljVS/AN5hs4DO0+Xevgta6yGhw==
-X-Google-Smtp-Source: APXvYqw/xCXZ/ntaYTSZDBFoiPx5UEcHFMETlTLRVVK72L8nHQhjC0Jv/k7Nj/gzbl6rVG1TmR1okg==
-X-Received: by 2002:a1c:2ec6:: with SMTP id u189mr7423263wmu.67.1565776486644;
-        Wed, 14 Aug 2019 02:54:46 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id y7sm2789491wmm.19.2019.08.14.02.54.45
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Aug 2019 02:54:46 -0700 (PDT)
-Subject: Re: [PATCH v3 0/3] drm/meson: convert bindings to YAML schemas
-To:     robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190808085522.21950-1-narmstrong@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <b0363e6e-4d73-a483-41b7-7849f48a9ff3@baylibre.com>
-Date:   Wed, 14 Aug 2019 11:54:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=jTwlo3HfpzwBbLjZdlYNR7XMc3lGAwn/CGtf8DP+Tqk=;
+        b=bh+gQSgewsfjnxx3AVnEtBYUED4Hq3BLMicYhZCfsjeFfd4qB1PD0uaz+l91UxN6SN
+         p+91PKgm51q1JBDN5lMnmqxBXYLy4yTIanG5OAtKUtwZJgMYmUY7t/y+NhAhV/jFOR2z
+         hnlu5h3K5gu0sPuGcItupj5bz7Z5rZH5f1heHw6/4po7RIszy1bpKgMFhwUrQCVg4Ee1
+         WMfSXQCgHHZ72HaMRiOKzEedVnrWpaacRx5QwTNWO3f1aoWz14gxTj+l2v21dXi6bdwA
+         G+AhlauLmK7pIO4ow2ylEvRH6UWSoKE1GKFoZCRzyju8dZpwp/BDWpXzBgfZyjtgIUql
+         KlaA==
+X-Gm-Message-State: APjAAAXMHS+5s07yUeYbEcHQ6tD3WONDRzINIc7At6bfgMllwcZQN9pW
+        2w3u+c4wzwcUz0dbHR2Faw3+I2n796v8E5HMm4j7+Q==
+X-Google-Smtp-Source: APXvYqwdNNqld3DanaeusS2W1477dJnsaSjW0fOGh2rhi3wBxakJwBAH2jGLtU439DOoTxW4H4D4h+/A+Agv5kIlN84=
+X-Received: by 2002:aca:52c2:: with SMTP id g185mr4855081oib.33.1565776922537;
+ Wed, 14 Aug 2019 03:02:02 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190808085522.21950-1-narmstrong@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
+ <4f6e3110b4d7e0a2f7ab317bba98a933de12e5da.1565703607.git.baolin.wang@linaro.org>
+ <20190813151612.v6x6e6kzxflkpu7b@pengutronix.de> <CAMz4kuJURx=fPE6+0gP4ukzMcXr_z3t1ZH0K3Gv6=o4Od4uc7w@mail.gmail.com>
+ <20190814092339.73ybj5mycklvpnrq@pengutronix.de>
+In-Reply-To: <20190814092339.73ybj5mycklvpnrq@pengutronix.de>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Wed, 14 Aug 2019 18:01:50 +0800
+Message-ID: <CAMz4ku+3txx5kO-u_+_pxFwoovnX81WFF-moNBasUUgEpvQb+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] pwm: sprd: Add Spreadtrum PWM support
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2019 10:55, Neil Armstrong wrote:
-> This patchset converts the existing text bindings to YAML schemas.
-> 
-> Those bindings have a lot of texts, thus is interesting to convert.
-> 
-> All have been tested using :
-> $ make ARCH=arm64 dtbs_check
-> 
-> Issues with the amlogic arm64 DTs has already been identified thanks
-> to the validation scripts. The DT fixes will be pushed once these yaml
-> bindings are acked.
-> 
-> Changes since v2:
-> - Added review tag on amlogic,meson-dw-hdmi.yaml
-> - Removed power-domains type from amlogic,meson-vpu.yaml
-> 
-> Neil Armstrong (3):
->   dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
->   dt-bindings: display: amlogic,meson-vpu: convert to yaml
->   MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
-> 
->  .../display/amlogic,meson-dw-hdmi.txt         | 119 --------------
->  .../display/amlogic,meson-dw-hdmi.yaml        | 150 ++++++++++++++++++
->  .../bindings/display/amlogic,meson-vpu.txt    | 121 --------------
->  .../bindings/display/amlogic,meson-vpu.yaml   | 137 ++++++++++++++++
->  MAINTAINERS                                   |   4 +-
->  5 files changed, 289 insertions(+), 242 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
->  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
->  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> 
+Hi Uwe,
 
-Applied to drm-misc-next
+On Wed, 14 Aug 2019 at 17:23, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello Baolin,
+>
+> On Wed, Aug 14, 2019 at 04:42:28PM +0800, Baolin Wang wrote:
+> > On Tue, 13 Aug 2019 at 23:16, Uwe Kleine-K=C3=B6nig
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> > > On Tue, Aug 13, 2019 at 09:46:41PM +0800, Baolin Wang wrote:
+> > > [...]
+> > Not really, our hardware's method is, when you changed a new
+> > configuration (MOD or duty is changed) , the hardware will wait for a
+> > while to complete current period, then change to the new period.
+>
+> Can you describe that in more detail? This doesn't explain why MOD must b=
+e
+> configured before DUTY. Is there another reason for that?
+
+Sorry, I did not explain this explicitly. When we change a new PWM
+configuration, the PWM controller will make sure the current period is
+completed before changing to a new period. Once setting the MOD
+register (since we always set MOD firstly), that will tell the
+hardware that a new period need to change.
+
+The reason MOD must be configured before DUTY is that, if we
+configured DUTY firstly, the PWM can work abnormally if the current
+DUTY is larger than previous MOD. That is also our hardware's
+limitation.
+
+>
+> > > > +static int sprd_pwm_apply(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> > > > +                       struct pwm_state *state)
+> > > > +{
+> > > > +     struct sprd_pwm_chip *spc =3D
+> > > > +             container_of(chip, struct sprd_pwm_chip, chip);
+> > > > +     struct sprd_pwm_chn *chn =3D &spc->chn[pwm->hwpwm];
+> > > > +     struct pwm_state cstate;
+> > > > +     int ret;
+> > > > +
+> > > > +     pwm_get_state(pwm, &cstate);
+> > >
+> > > I don't like it when pwm drivers call pwm_get_state(). If ever
+> > > pwm_get_state would take a lock, this would deadlock as the lock is
+> > > probably already taken when your .apply() callback is running. Moreov=
+er
+> > > the (expensive) calculations are not used appropriately. See below.
+> >
+> > I do not think so, see:
+> >
+> > static inline void pwm_get_state(const struct pwm_device *pwm, struct
+> > pwm_state *state)
+> > {
+> >         *state =3D pwm->state;
+> > }
+>
+> OK, the PWM framework currently caches this for you. Still I would
+> prefer if you didn't call PWM API functions in your lowlevel driver.
+> There is (up to now) nothing bad that will happen if you do it anyhow,
+> but when the PWM framework evolves it might (and I want to work on such
+> an evolution). You must not call clk_get_rate() in a .set_rate()
+> callback of a clock either.
+
+Make sense, I will change to:
+
+struct pwm_state *cstate =3D pwm->state;
+
+>
+> > > > +     if (state->enabled) {
+> > > > +             if (!cstate.enabled) {
+> > >
+> > > To just know the value of cstate.enabled you only need to read the
+> > > register with the ENABLE flag. That is cheaper than calling get_state=
+.
+> > >
+> > > > +                     /*
+> > > > +                      * The clocks to PWM channel has to be enable=
+d first
+> > > > +                      * before writing to the registers.
+> > > > +                      */
+> > > > +                     ret =3D clk_bulk_prepare_enable(SPRD_PWM_NUM_=
+CLKS,
+> > > > +                                                   chn->clks);
+> > > > +                     if (ret) {
+> > > > +                             dev_err(spc->dev,
+> > > > +                                     "failed to enable pwm%u clock=
+s\n",
+> > > > +                                     pwm->hwpwm);
+> > > > +                             return ret;
+> > > > +                     }
+> > > > +             }
+> > > > +
+> > > > +             if (state->period !=3D cstate.period ||
+> > > > +                 state->duty_cycle !=3D cstate.duty_cycle) {
+> > >
+> > > This is a coarse check. If state->period and cstate.period only diffe=
+r
+> > > by one calling sprd_pwm_config(spc, pwm, state->duty_cycle,
+> > > state->period) probably results in a noop. So you're doing an expensi=
+ve
+> > > division to get an unreliable check. It would be better to calculate =
+the
+> > > register values from the requested state and compare the register
+> > > values. The costs are more or less the same than calling .get_state a=
+nd
+> > > the check is reliable. And you don't need to spend another division t=
+o
+> > > calculate the new register values.
+> >
+> > Same as above comment.
+>
+> When taking the caching into account (which I wouldn't) the check is
+> still incomplete. OK, you could argue avoiding the recalculation in 90%
+> (to just say some number) of the cases where it is unnecessary is good.
+
+Yes :)
+
+>
+> > >
+> > > > +                     ret =3D sprd_pwm_config(spc, pwm, state->duty=
+_cycle,
+> > > > +                                           state->period);
+> > > > +                     if (ret)
+> > > > +                             return ret;
+> > > > +             }
+> > > > +
+> > > > +             sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_ENABLE, 1);
+> > > > +     } else if (cstate.enabled) {
+> > > > +             sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_ENABLE, 0);
+> > > > +
+> > > > +             clk_bulk_disable_unprepare(SPRD_PWM_NUM_CLKS, chn->cl=
+ks);
+> > >
+> > > Assuming writing SPRD_PWM_ENABLE =3D 0 to the hardware completes the
+> > > currently running period and the write doesn't block that long: Does
+> > > disabling the clocks interfere with completing the period?
+> >
+> > Writing SPRD_PWM_ENABLE =3D 0 will stop the PWM immediately, will not
+> > waiting for completing the currently period.
+>
+> The currently active period is supposed to be completed. If you cannot
+> implement this please point this out as limitation at the top of the
+> driver.
+
+Sure.
+
+>
+> Honestly I think most pwm users won't mind and they should get the
+> possibility to tell they prefer pwm_apply_state to return immediately
+> even if this could result in a spike. But we're not there yet.
+> (Actually there are three things a PWM consumer might want:
+>
+>  a) stop immediately;
+>  b) complete the currently running period, then stop and return only
+>     when the period is completed; or
+>  c) complete the currently running period and then stop, return immediate=
+ly if
+>     possible.
+>
+> Currently the expected semantic is b).
+
+Make sense.
+
+>
+> > > > +static int sprd_pwm_remove(struct platform_device *pdev)
+> > > > +{
+> > > > +     struct sprd_pwm_chip *spc =3D platform_get_drvdata(pdev);
+> > > > +     int ret, i;
+> > > > +
+> > > > +     ret =3D pwmchip_remove(&spc->chip);
+> > > > +
+> > > > +     for (i =3D 0; i < spc->num_pwms; i++) {
+> > > > +             struct sprd_pwm_chn *chn =3D &spc->chn[i];
+> > > > +
+> > > > +             clk_bulk_disable_unprepare(SPRD_PWM_NUM_CLKS, chn->cl=
+ks);
+> > >
+> > > If a PWM was still running you're effectively stopping it here, right=
+?
+> > > Are you sure you don't disable once more than you enabled?
+> >
+> > Yes, you are right. I should check current enable status of the PWM cha=
+nnel.
+> > Thanks for your comments.
+>
+> I didn't recheck, but I think the right approach is to not fiddle with
+> the clocks at all and rely on the PWM framework to not let someone call
+> sprd_pwm_remove when a PWM is still in use.
+
+So you mean just return pwmchip_remove(&spc->chip); ?
+
+--=20
+Baolin Wang
+Best Regards
