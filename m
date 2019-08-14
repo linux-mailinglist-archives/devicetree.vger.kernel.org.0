@@ -2,83 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B215A8DC95
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 20:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 695F88DCD3
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 20:19:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727815AbfHNSCJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 14:02:09 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:37197 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728809AbfHNSCJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 14:02:09 -0400
-Received: by mail-pf1-f195.google.com with SMTP id 129so7114464pfa.4
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 11:02:09 -0700 (PDT)
+        id S1728309AbfHNSTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 14:19:02 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:32988 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726585AbfHNSTC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 14:19:02 -0400
+Received: by mail-wr1-f65.google.com with SMTP id u16so32178wrr.0;
+        Wed, 14 Aug 2019 11:18:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:from:cc:to:user-agent:date;
-        bh=WfxA1A737XoI5ZZ/Hf4Cr2tS9xoxZFvNR1WhcJSUChE=;
-        b=nbuuCGGLRs2jIpwx5obA8WHvJ1rd4HSPNnsO6jd7X4i8etCRuSwgpoU5UUSuHhgGmB
-         yxxNkVHq72XrgE08a6AU6gQV0mgSYgifC1WnkUrRYPLW5PZa3h88lqtpphXfdJX9HwCP
-         r/KDowHHZ6yYZvOXVfENrcjMJZBXe1xYx6Uso=
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=HyYLCFIxXWGrhsmJH7pKeknaG0UBeMIWQDVnCGCH8J4=;
+        b=j9gcUBnQXTR4Wh91RLUlnlujvWzTsoeF+4OJ0ocfL/D9lh520aFTk+vaXzokC/dpVo
+         qK08Bzi3j+k9SdaMMhuj2aTKv82fuZEnKNS1Umybz94mudqnLXVoS0FRatUQEEtVeC89
+         fkgqy5dIH7dOMf3Ey+nFLtFnX/2tBSP0SBXrVom5uMMVC7hW2V3dYp3N3z9OxhvezGUT
+         CKHVoUX5MCjMz+2zlr+7Tj0kESs2of/KxQeu0mcyYSnb+sQDRHaRsVxnlEW1lbIgj9gD
+         Z12NO4TyWqaqjh6PSfurwbj4OfJFHly5DHp6TblK0ubT1/e4PRgE2NZ+voE6C0cmPp6q
+         sMvg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
-         :user-agent:date;
-        bh=WfxA1A737XoI5ZZ/Hf4Cr2tS9xoxZFvNR1WhcJSUChE=;
-        b=YG0cPBFBu+dBeSrrXMLTZeRlLTNWMwNvvZdEogRZscj7HaA/f76famvB0rz6i/940p
-         oxSODWJ+CPb0GXCmWGNpbIvoSLdR0i6IK58E0oGkWPrY3t0pVWOc0H2l1uGVDc1QWNAr
-         I2Wv6T0iuKLvjqG2mtodFwoldC7EuPxaSenmUESxhYLhovaGDXn8F0sqrhfGBrt3z3Sv
-         xzWkkGbc6lsx7h7HmjPQrMqQv4L6T9Y68f0hUwTFZdn2m/LHmCqSXoEJtjp7klHUDid1
-         XstRUhczQjLwlZzIkdl8VPEdlSmipKx/rs0crcmJjPnTkls+tngUHRxukhD2OLXKH1P1
-         lPXg==
-X-Gm-Message-State: APjAAAU67vvRkgCpzCfz0c4X6ib2MRUckmgIEIYx5GONwHvb4B9fc03b
-        4MB4SbsFn1Yui4HMAdUjwkRd4Q==
-X-Google-Smtp-Source: APXvYqwk4DMeNeDAM10WFbJ0Wxfbl3zzpawQoDzKGmcpMx0DkwBbVOGhCtuG5YmdXcz2nCdcgwAyTQ==
-X-Received: by 2002:a17:90b:14c:: with SMTP id em12mr971132pjb.28.1565805728996;
-        Wed, 14 Aug 2019 11:02:08 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id 185sm601094pff.54.2019.08.14.11.02.08
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 14 Aug 2019 11:02:08 -0700 (PDT)
-Message-ID: <5d544ca0.1c69fb81.a98a7.19e1@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=HyYLCFIxXWGrhsmJH7pKeknaG0UBeMIWQDVnCGCH8J4=;
+        b=s9YhS7Zsljf7A7uGlVeA3SaX78IH0DoB5qR3qsXfxU62l1h0dX9LJV11id1T+rKRPG
+         /z3+aJJj+JzdkLyCJryNJME97iylqBENVZoIh9v2yLg9d0FXB57U+dTBFaFg5na2yuQu
+         vzP7et2tNPRFgnXrwgoTFwtZ80pXQDDEGzclIsd0p/+p428VzE373i8mPGxoUWjaEIBc
+         kiuEw5JqHLwZ+sfRd90iJ84XQ7PXYxdydRDJ83y+PV8OIWfIRhDYFp7wak33Qixqzzkf
+         K7zDFm1Rv1JlLdHBYJm/5ayBqyhTlz4tp8UBRvL8FJh4Gj+qrO7lat3629JEc91Sxmn+
+         9eiQ==
+X-Gm-Message-State: APjAAAUqVwcrRqQnOCI89ptDR0cK0vgVx9PfXSpSs62ISiC5sWmM1y/v
+        I4Jv2bc5+NoSY+SeUizxFxUYR4iK
+X-Google-Smtp-Source: APXvYqzDlreUT8vNQkxd8Kbk5FUTUcWez7m7QjspwnW5/WeWYqwMYBAbNkJYkddlMqz326HXm9aIEg==
+X-Received: by 2002:adf:cd11:: with SMTP id w17mr1140733wrm.297.1565806738854;
+        Wed, 14 Aug 2019 11:18:58 -0700 (PDT)
+Received: from [192.168.1.19] (bky210.neoplus.adsl.tpnet.pl. [83.28.192.210])
+        by smtp.gmail.com with ESMTPSA id o11sm328387wmh.46.2019.08.14.11.18.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 14 Aug 2019 11:18:58 -0700 (PDT)
+Subject: Re: [PATCH v4 2/2] leds: add LED driver for EL15203000 board
+To:     Oleh Kravchenko <oleg@kaa.org.ua>, devicetree@vger.kernel.org,
+        linux-leds@vger.kernel.org
+References: <20190808203204.8614-1-oleg@kaa.org.ua>
+ <20190808203204.8614-2-oleg@kaa.org.ua>
+ <c2b006bb-2bb6-98b0-c907-190fd9fc41c7@gmail.com>
+ <260f8b69-3f4a-d911-88f8-d6de59e79bc3@kaa.org.ua>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=jacek.anaszewski@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <56fa6881-2af6-71ec-160c-7712075756be@gmail.com>
+Date:   Wed, 14 Aug 2019 20:18:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190813082442.25796-4-mkshah@codeaurora.org>
-References: <20190813082442.25796-1-mkshah@codeaurora.org> <20190813082442.25796-4-mkshah@codeaurora.org>
-Subject: Re: [PATCH 3/4] dt-bindings: soc: qcom: Add RSC power domain specifier
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        bjorn.andersson@linaro.org, evgreen@chromium.org,
-        dianders@chromium.org, rnayak@codeaurora.org, ilina@codeaurora.org,
-        lsrao@codeaurora.org, ulf.hansson@linaro.org,
-        Maulik Shah <mkshah@codeaurora.org>, devicetree@vger.kernel.org
-To:     Maulik Shah <mkshah@codeaurora.org>, agross@kernel.org,
-        david.brown@linaro.org, linux-arm-msm@vger.kernel.org
-User-Agent: alot/0.8.1
-Date:   Wed, 14 Aug 2019 11:02:07 -0700
+In-Reply-To: <260f8b69-3f4a-d911-88f8-d6de59e79bc3@kaa.org.ua>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maulik Shah (2019-08-13 01:24:41)
-> In addition to transmitting resource state requests to the remote
-> processor, the RSC is responsible for powering off/lowering the
-> requirements from CPUs subsystem for the associated hardware like
-> buses, clocks, and regulators when all CPUs and cluster is powered down.
->=20
-> The power domain is configured to a low power state and when all the
-> CPUs are powered down, the RSC can lower resource state requirements
-> and power down the rails that power the CPUs.
->=20
-> Add PM domain specifier property for RSC controller.
->=20
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-> ---
+Hi Oleh,
 
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+On 8/13/19 10:37 PM, Oleh Kravchenko wrote:
+> Hello Jacek,
+> 
+> Thank you for your useful review,
+> 
+> 13.08.19 23:28, Jacek Anaszewski пише:
+>> Hi Oleh,
+>>
+>> Thank you for the patch set.
+>>
+>> On 8/8/19 10:32 PM, Oleh Kravchenko wrote:
+>>> +++ b/Documentation/ABI/testing/sysfs-class-led-driver-el15203000
+>>> @@ -0,0 +1,22 @@
+>>> +What:		/sys/class/leds/<led>/hw_pattern
+>>> +Date:		August 2019
+>>> +KernelVersion:	5.3
+>>> +Description:
+>>> +		Specify a hardware pattern for the EL15203000 LED.
+>>> +		The LEDs board supports only predefined patterns by firmware
+>>> +		for specific LEDs.
+>>> +
+>>> +		Breathing mode for Screen frame light tube:
+>>> +		"0 4000 1 4000"
+>>> +
+>>> +		Cascade mode for Pipe LED:
+>>> +		"1 800 2 800 4 800 8 800 16 800 1 800 2 800 4 800 8 800 16 800"
+>>
+>> Why the sequence "1 800 2 800 4 800 8 800 16 800" is duplicated here?
+>> It seems redundant. But aside of that - aren't the timings modifiable?
+>> In other words - are these all patterns somehow configurable or they are
+>> pre-programmed?
+>>
+> 
+> All pattern is predefined, you can't change them at all.
+> I just tried to describe real things what happened in LED board.
+> It's ticks every 800 milliseconds for Pipe LEDs.
 
+It makes me wonder how you figured out the values? If you have
+a documentation for this controller, could you share how the pattern
+settings are documented?
+
+>>> +
+>>> +		Inverted cascade mode for Pipe LED:
+>>> +		"30 800 29 800 27 800 23 800 15 800 30 800 29 800 27 800 23 800 15 800"
+>>
+>> Similar duplication here.
+>>
+>>> +
+>>> +		Bounce mode for Pipe LED:
+>>> +		"1 800 2 800 4 800 8 800 16 800 16 800 8 800 4 800 2 800 1 800"
+>>
+>> Instead of two repeating "16 800" you could provide "16 1600".
+>> But here again is the question whether these values are configurable.
+>> From what I can see in your driver implementation you're expecting
+>> exactly the values provided in these examples to enable given hardware
+>> pattern (led_pattern_cmp()).
+>>
+>>> +
+>>> +		Inverted bounce mode for Pipe LED:
+>>> +		"30 800 29 800 27 800 23 800 15 800 15 800 23 800 27 800 29 800 30 800"
+>>
+> 
+> Should I cut this patterns to smaller? Or let keep it?
+> 
+
+For the first two we could do without sequence duplication.
+
+-- 
+Best regards,
+Jacek Anaszewski
