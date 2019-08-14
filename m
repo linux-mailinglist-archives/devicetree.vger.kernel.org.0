@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B3FC8D274
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 13:46:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA2D68D27C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 13:47:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727273AbfHNLq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 07:46:29 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:40428 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726722AbfHNLq3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 07:46:29 -0400
-Received: by mail-lj1-f193.google.com with SMTP id e27so9352828ljb.7
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 04:46:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fooishbar-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HVIUs4ZIQVm7b7SR1n38pcFhXz6C3M2CIhWpAxdt8LQ=;
-        b=OV6v4RpJEGTSaeN9WjacjemHo7ZUtwknpaHLLy+MEre+zyB39wCwfeJtTg+FZ8IZ+B
-         OcJGOV/93rJokdOIQwig6ROI8s46ddhjgNFjuNQIRHDFv0ccHr12uxB9mmYTVVx67gy1
-         s8hLywCYXHwDkDbFXcF0V4TeSFIfT3tVWiVJTVB7XNHhkoelxy83LEM1tJcaxshNsR7G
-         nbvYUYuPB2OPUjvHesf9PtA8fp6EqjxvwKx+GijgH5csPsIWsi1CddxxpdnawisyZMAF
-         G1GvqKTt8QXGUkeS0wAZzBsBRXx6kryesDbVbLTprqrHNM3bOGm2jgMnuynRAAZzCWXS
-         SI9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HVIUs4ZIQVm7b7SR1n38pcFhXz6C3M2CIhWpAxdt8LQ=;
-        b=tw9QC5uTTPoCdFK90la1H6HI1nm+P9lNH+digDeV6D2bqU8CzEmY5UrwwAqtSJDllo
-         l8LYeavEVGPHFyLysi33QGLIxw+8AgAo4qkBkt2ygTgnzdb5+T8j6HCkVH/gSvPL4Le7
-         vq/AVt7aHBWMK/EeEUxkTETn2Wsr84rl7XTBRCvKtJFemz3vW/x97m8TFdviv0MkD8y0
-         eAjdimXSH4WlCFh6SAk8Nf3Mz+y+sbCho+5ScTCjGqOXaG/dxkhdDvep6V+wH2HBqtep
-         bYEwecGSi2nvEbaXN8hAoJu5xdBCN2N+LiquWWRtOovT9ZV8oagAVCTE9FMzz12oNbIW
-         Wyfw==
-X-Gm-Message-State: APjAAAWFt9nA/QPJFWx7zHYZM2PbonUP1/9Mxzawgs4XmzGwoGwq5ft6
-        WYdgvlSZUWJhRsvTxngE1BAlGYII/YsoixqAIMc1tQ==
-X-Google-Smtp-Source: APXvYqx8H8wf2cUfndKRitBxUVt4PunZZn7bV5z50HzDJV5mvhAjxp+vVMjixTxwiL4xvtZ+Nynqmt1s1BQ2RX367ts=
-X-Received: by 2002:a2e:b4e6:: with SMTP id s6mr11087965ljm.169.1565783187372;
- Wed, 14 Aug 2019 04:46:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <1565779731-1300-1-git-send-email-robert.chiras@nxp.com> <1565779731-1300-7-git-send-email-robert.chiras@nxp.com>
-In-Reply-To: <1565779731-1300-7-git-send-email-robert.chiras@nxp.com>
-From:   Daniel Stone <daniel@fooishbar.org>
-Date:   Wed, 14 Aug 2019 12:44:34 +0100
-Message-ID: <CAPj87rMFG=RGmfVnawbE7qX4zU7vdYxLJB__K4E3B8jcJ764KQ@mail.gmail.com>
-Subject: Re: [PATCH v2 06/15] drm/mxsfb: Update mxsfb with additional pixel formats
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727010AbfHNLru (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 07:47:50 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:44361 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726704AbfHNLru (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 07:47:50 -0400
+X-UUID: 0aca0be003ce4a548dc1c3e69108f274-20190814
+X-UUID: 0aca0be003ce4a548dc1c3e69108f274-20190814
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <ryder.lee@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 184143578; Wed, 14 Aug 2019 19:47:41 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 14 Aug 2019 19:47:44 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 14 Aug 2019 19:47:44 +0800
+Message-ID: <1565783263.7006.3.camel@mtkswgap22>
+Subject: Re: [PATCH v2 10/10] arm: dts: mediatek: add mt7629 pwm support
+From:   Ryder Lee <ryder.lee@mediatek.com>
+To:     Sam Shih <sam.shih@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 14 Aug 2019 19:47:43 +0800
+In-Reply-To: <1565779497-23621-3-git-send-email-sam.shih@mediatek.com>
+References: <621e49c01b943edb6ddac9182f34719eb0727f01.1548313019.git.ryder.lee@mediatek.com>
+         <1565779497-23621-3-git-send-email-sam.shih@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
+On Wed, 2019-08-14 at 18:43 +0800, Sam Shih wrote:
+> From: sam shih <sam.shih@mediatek.com>
+> 
+> This adds pwm support for MT7629.
+> 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> ---
+>  arch/arm/boot/dts/mt7629.dtsi | 14 ++++++++++++++
+>  drivers/pwm/pwm-mediatek.c    |  7 +++++++
+>  2 files changed, 21 insertions(+)
 
-On Wed, 14 Aug 2019 at 11:49, Robert Chiras <robert.chiras@nxp.com> wrote:
-> +       case DRM_FORMAT_BGR565: /* BG16 */
-> +               if (mxsfb->devdata->ipversion < 4)
-> +                       goto err;
-> +               writel(CTRL2_ODD_LINE_PATTERN(CTRL2_LINE_PATTERN_BGR) |
-> +                       CTRL2_EVEN_LINE_PATTERN(CTRL2_LINE_PATTERN_BGR),
-> +                       mxsfb->base + LCDC_V4_CTRL2 + REG_SET);
-> +               /* Fall through */
-> +       case DRM_FORMAT_RGB565: /* RG16 */
-> +               ctrl |= CTRL_SET_WORD_LENGTH(0);
-> +               ctrl &= ~CTRL_DF16;
-> +               ctrl1 |= CTRL1_SET_BYTE_PACKAGING(0xf);
-> +               break;
+Split dts and driver into different patches.
+ 
+> diff --git a/arch/arm/boot/dts/mt7629.dtsi b/arch/arm/boot/dts/mt7629.dtsi
+> index 9608bc2ccb3f..352df8d61788 100644
+> --- a/arch/arm/boot/dts/mt7629.dtsi
+> +++ b/arch/arm/boot/dts/mt7629.dtsi
+> @@ -241,6 +241,18 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		pwm: pwm@11006000 {
+> +			compatible = "mediatek,mt7629-pwm";
+> +			reg = <0 0x11006000 0 0x1000>;
+> +			interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_LOW>;
+> +			clocks = <&topckgen CLK_TOP_PWM_SEL>,
+> +				 <&pericfg CLK_PERI_PWM_PD>,
+> +				 <&pericfg CLK_PERI_PWM1_PD>;
+> +			clock-names = "top", "main", "pwm1";
+> +			num-pwms = <1>;
+> +			status = "disabled";
+> +		};
+> +
+>  		i2c: i2c@11007000 {
+>  			compatible = "mediatek,mt7629-i2c",
+>  				     "mediatek,mt2712-i2c";
+> diff --git a/drivers/pwm/pwm-mediatek.c b/drivers/pwm/pwm-mediatek.c
+> index 922a7543a2b1..d2352ca7792e 100644
+> --- a/drivers/pwm/pwm-mediatek.c
+> +++ b/drivers/pwm/pwm-mediatek.c
+> @@ -327,11 +327,18 @@ static const struct pwm_mediatek_of_data mt7628_pwm_data = {
+>  	.has_clks = false,
+>  };
+>  
+> +static const struct pwm_mediatek_of_data mt7629_pwm_data = {
+> +	.fallback_npwms = 1,
+> +	.pwm45_fixup = false,
+> +	.has_clks = true,
+> +};
+> +
+>  static const struct of_device_id pwm_mediatek_of_match[] = {
+>  	{ .compatible = "mediatek,mt2712-pwm", .data = &mt2712_pwm_data },
+>  	{ .compatible = "mediatek,mt7622-pwm", .data = &mt7622_pwm_data },
+>  	{ .compatible = "mediatek,mt7623-pwm", .data = &mt7623_pwm_data },
+>  	{ .compatible = "mediatek,mt7628-pwm", .data = &mt7628_pwm_data },
+> +	{ .compatible = "mediatek,mt7629-pwm", .data = &mt7629_pwm_data },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, pwm_mediatek_of_match);
 
-For non-BGR formats, do you need to write RGB line-pattern back to the
-CTRL2 register? Otherwise, if you start with BGR565 then switch back
-to RGB565, presumably CTRL2 would still be programmed for BGR so you
-would display inverted channels.
+It's odd. You fallback to use mt7622 compatible here: 
+[PATCH v2 7/10] dt-bindings: pwm: update bindings for MT7629 SoC.
 
-Same goes for all the other BGR/RGB format pairs below.
 
-Cheers,
-Daniel
+Ryder
+
