@@ -2,105 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CACC8E0A3
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 00:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 830728E0E8
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 00:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727750AbfHNWWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 18:22:40 -0400
-Received: from foss.arm.com ([217.140.110.172]:34496 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725895AbfHNWWk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 18:22:40 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ABC72344;
-        Wed, 14 Aug 2019 15:22:39 -0700 (PDT)
-Received: from [10.1.196.61] (tuskha01.cambridge.arm.com [10.1.196.61])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 70C7C3F718;
-        Wed, 14 Aug 2019 15:22:38 -0700 (PDT)
-Subject: Re: [PATCH 1/4] mailbox: arm_mhuv2: add device tree binding
- documentation
-To:     Sudeep Holla <sudeep.holla@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Morten Borup Petersen <morten_bp@live.dk>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "tushar.2nov@gmail.com" <tushar.2nov@gmail.com>,
-        "nd@arm.com" <nd@arm.com>,
-        Morten Borup Petersen <morten.petersen@arm.com>,
+        id S1727558AbfHNWkn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 18:40:43 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:57898 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725895AbfHNWkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 18:40:42 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 27ED32B2;
+        Thu, 15 Aug 2019 00:40:40 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1565822440;
+        bh=pP48/D76g4ScH0kk0XJHtcKoUrGy09hdCLB/Efv1QiU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FyDcEDET6W4/tAkHMNA9RJuBnW0RvT250HZ6TRe//NvVCe034O/sPxVQZ1DYvdfRf
+         gzYa1pDVK3RcT1ks5LNswXYnj8AClA46XRjYM1EbG+sY6drPCQxh4kjcJrovmdrzrN
+         9hnkpYDI403yKnHHVopeAoGyXuF7FGEKPY8RWzus=
+Date:   Thu, 15 Aug 2019 01:40:28 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Devicetree List <devicetree@vger.kernel.org>
-References: <20190717192616.1731-1-tushar.khandelwal@arm.com>
- <20190717192616.1731-2-tushar.khandelwal@arm.com>
- <CABb+yY04vW-i35N6P57KSKgmMAYkrA2CDyUvA-bLCZMxiZaocw@mail.gmail.com>
- <CABb+yY1SeHTgZQNAHJW+dZG=khah5c5igtKy+MrjADnZF29Aow@mail.gmail.com>
- <VI1PR0601MB21113C48E719B2C79EC2FE508FC20@VI1PR0601MB2111.eurprd06.prod.outlook.com>
- <CABb+yY3yMWbUiQnJgfQhwnW1OM3aoFL3ZFc018E-fxGichi-4Q@mail.gmail.com>
- <VI1PR0601MB2111A5A4E951F011D389A8978FD90@VI1PR0601MB2111.eurprd06.prod.outlook.com>
- <CABb+yY3Ni7wV+ui1LO7TERWQH_BoakZbPq961wdRPB4X-nwS2A@mail.gmail.com>
- <20190814100518.GA21898@e107155-lin>
- <CABb+yY1jZs0OU-oi86iNNHiqBTjaY6ixFPMoUPkU6MCH_YrwLg@mail.gmail.com>
- <20190814165133.GA8346@e107155-lin>
-From:   "tushar.khandelwal@arm.com" <tushar.khandelwal@arm.com>
-Message-ID: <55dcfe02-8c2c-4f9a-b467-bcac0d6b0fd7@arm.com>
-Date:   Wed, 14 Aug 2019 23:22:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC 1/5] media: dt-bindings: Document 'location' property
+Message-ID: <20190814224028.GC5015@pendragon.ideasonboard.com>
+References: <20190814202815.32491-1-jacopo@jmondi.org>
+ <20190814202815.32491-2-jacopo@jmondi.org>
 MIME-Version: 1.0
-In-Reply-To: <20190814165133.GA8346@e107155-lin>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190814202815.32491-2-jacopo@jmondi.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jacopo,
 
+Thank you for the patch.
 
-On 14/08/2019 17:51, Sudeep Holla wrote:
-> On Wed, Aug 14, 2019 at 09:52:25AM -0500, Jassi Brar wrote:
->> On Wed, Aug 14, 2019 at 5:05 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
->>>
->>> On Tue, Aug 13, 2019 at 11:36:56AM -0500, Jassi Brar wrote:
->>> [...]
->>>
->>>>>>>
->>>>>>> As mentioned in the response to your initial comment, the driver does
->>>>>>> not currently support mixing protocols.
->>>>>>>
->>>>>> Thanks for acknowledging that limitation. But lets also address it.
->>>>>>
->>>>>
->>>>> We are hesitant to dedicate time to developing mixing protocols given
->>>>> that we don't have any current usecase nor any current platform which
->>>>> would support this.
->>>>>
->>>> Can you please share the client code against which you tested this driver?
->>>>  From my past experience, I realise it is much more efficient to tidyup
->>>> the code myself, than endlessly trying to explain the benefits.
->>>>
->>>
->>> Thanks for the patience and offer.
->>>
->> Ok, but the offer is to Morten for MHUv2 driver.
->>
->>> Can we try the same with MHUv1 and SCMI
->>> upstream driver.
->>>
->> MHUv1 driver is fine as it is.
->> I did try my best to keep you from messing the SCMI driver, without success
->> https://lkml.org/lkml/2017/8/7/924
+On Wed, Aug 14, 2019 at 10:28:11PM +0200, Jacopo Mondi wrote:
+> Add the 'location' device property, used to specify the camera device
+> mounting position. The property is particularly meaningful for mobile
+> devices with a well defined usage orientation.
 > 
-> I disagree, you haven't told me how to address the usecase which I mentioned
-> with the abstraction/multiplexer on top of MHU as you have been suggesting.
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> ---
+>  Documentation/devicetree/bindings/media/video-interfaces.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> I am sure MHUv2 will have the same usecase.
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> index f884ada0bffc..819077b2649c 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> @@ -89,6 +89,10 @@ Optional properties
+>    but a number of degrees counter clockwise. Typical values are 0 and 180
+>    (upside down).
 > 
+> +- location: The camera device mounting position, relative to the device
+> +  usage orientation. Possible values are:
 
-MHUv2 driver is addressing existing (door-bell) use case as well as new 
-(multi-word) use case using new IP features.
+I would mention "camera sensor" explicitly here, as well as clearly
+stating that the property applies to camera sensors only.
 
-> --
-> Regards,
-> Sudeep
+> +  0 - Front camera. The image sensor is mounted on the front side of the device.
+> +  1 - Back camera. The image sensor is mounted on the back side of the device.
+
+An additional paragraph explained what "device usage orientation" means
+would be useful. In particular I would give examples for phones, tablets
+and laptops.
+
 > 
+>  Optional endpoint properties
+>  ----------------------------
+
+-- 
+Regards,
+
+Laurent Pinchart
