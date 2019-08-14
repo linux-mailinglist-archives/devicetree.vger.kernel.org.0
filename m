@@ -2,140 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43C9E8D4CF
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:33:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B0D28D565
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728185AbfHNNd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 09:33:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60824 "EHLO mail.kernel.org"
+        id S1727964AbfHNNve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 09:51:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41720 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728181AbfHNNd0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 09:33:26 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726551AbfHNNve (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 09:51:34 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E2E20206C2;
-        Wed, 14 Aug 2019 13:33:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 843A02083B;
+        Wed, 14 Aug 2019 13:51:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565789605;
-        bh=zlMOkJBdmi2gPUlrd7C9NUTOKbMwTG3hN1hXwIzYsG0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dWebABrtTutybc0F50w0sWkki47iTK1/wE4Cv9q0a1SkaYz7qNFdogv25dQKDBorx
-         ByU+RzvCcwRYMVJwauL36kt1byP5goGenSWlw0WxX+XqnwPVce8hjVewrnFeczxBPV
-         AwGe0/9w3MyqW8gu2zUSb5bjhPtFBikSlUEo+Z+o=
-Date:   Wed, 14 Aug 2019 15:33:22 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc:     mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64
- modelA evaluation board
-Message-ID: <20190814133322.dawzv3ityakxtqs4@flea>
-References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
- <20190812094000.ebdmhyxx7xzbevef@flea>
- <20190814131741.GB24324@Red>
+        s=default; t=1565790693;
+        bh=5au+uySpHKMUgQfB6f0HCtqCGXnnNO/toEwWtCgwQRU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uiOtBSWig10yz+nCoVHu1if2OzdDV4ch9JMoPw/VNHRPt2QVN+cjR3yw23yu7Nk0k
+         n4D4OupfIZWb0Yr/4pEZsqvU/mCDaDVbjwPIlSZqiA+rJIroAd6hE5Cx9npR8da1BE
+         gpCVMkJlH1DrUn4oHZerUB2yp/Qg0rb4jJcPITqo=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+        linux@armlinux.org.uk, frowand.list@gmail.com,
+        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
+        tony.luck@intel.com
+Subject: [PATCHv4] drivers/amba: add reset control to amba bus probe
+Date:   Wed, 14 Aug 2019 08:51:16 -0500
+Message-Id: <20190814135116.10123-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="pnw3csfbr4joiprs"
-Content-Disposition: inline
-In-Reply-To: <20190814131741.GB24324@Red>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+default. Until recently, the DMA controller was brought out of reset by the
+bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
+that are not used are held in reset and are left to Linux to bring them
+out of reset.
 
---pnw3csfbr4joiprs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Add a mechanism for getting the reset property and de-assert the primecell
+module from reset if found. This is a not a hard fail if the reset properti
+is not present in the device tree node, so the driver will continue to
+probe.
 
-On Wed, Aug 14, 2019 at 03:17:41PM +0200, Corentin Labbe wrote:
-> On Mon, Aug 12, 2019 at 11:40:00AM +0200, Maxime Ripard wrote:
-> > On Thu, Aug 08, 2019 at 10:42:53AM +0200, Corentin Labbe wrote:
-> > > This patch adds the evaluation variant of the model A of the PineH64.
-> > > The model A has the same size of the pine64 and has a PCIE slot.
-> > >
-> > > The only devicetree difference with current pineH64, is the PHY
-> > > regulator.
-> > >
-> > > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
-> > >  .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
-> > >  2 files changed, 27 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> > > index f6db0611cb85..9a02166cbf72 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > > @@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
-> > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
-> > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA-eval.dtb
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> > > new file mode 100644
-> > > index 000000000000..d8ff02747efe
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> > > @@ -0,0 +1,26 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > > +/*
-> > > + * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
-> > > + */
-> > > +
-> > > +#include "sun50i-h6-pine-h64.dts"
-> > > +
-> > > +/ {
-> > > +	model = "Pine H64 model A evaluation board";
-> > > +	compatible = "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
-> > > +
-> > > +	reg_gmac_3v3: gmac-3v3 {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "vcc-gmac-3v3";
-> > > +		regulator-min-microvolt = <3300000>;
-> > > +		regulator-max-microvolt = <3300000>;
-> > > +		startup-delay-us = <100000>;
-> > > +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
-> > > +		enable-active-high;
-> > > +	};
-> > > +
-> > > +};
-> > > +
-> > > +&emac {
-> > > +	phy-supply = <&reg_gmac_3v3>;
-> > > +};
-> >
-> > I might be missing some context here, but I'm pretty sure that the
-> > initial intent of the pine h64 DTS was to support the model A all
-> > along.
-> >
->
-> The regulator changed between modelA and B.
-> See this old patchset (supporting modelA) https://patchwork.kernel.org/patch/10539149/ for example.
+Because there are different variants of the controller that may have
+multiple reset signals, the code will find all reset(s) specified and
+de-assert them.
 
-I'm not sure what your point is, but mine is that everything about the
-model A should be in sun50i-h6-pine-h64.dts.
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v4: cleaned up indentation in loop
+    fix up a few checkpatch warnings
+    add Reviewed-by:
+v3: add a reset_control_put()
+    add error handling
+v2: move reset control to bus code
+    find all reset properties and de-assert them
+---
+ drivers/amba/bus.c | 21 +++++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Maxime
+diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+index 100e798a5c82..76a1cd56a1ab 100644
+--- a/drivers/amba/bus.c
++++ b/drivers/amba/bus.c
+@@ -18,6 +18,7 @@
+ #include <linux/limits.h>
+ #include <linux/clk/clk-conf.h>
+ #include <linux/platform_device.h>
++#include <linux/reset.h>
+ 
+ #include <asm/irq.h>
+ 
+@@ -401,6 +402,26 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+ 	ret = amba_get_enable_pclk(dev);
+ 	if (ret == 0) {
+ 		u32 pid, cid;
++		int count;
++		struct reset_control *rstc;
++
++		/*
++		 * Find reset control(s) of the amba bus and de-assert them.
++		 */
++		count = reset_control_get_count(&dev->dev);
++		while (count > 0) {
++			rstc = of_reset_control_get_shared_by_index(dev->dev.of_node, count - 1);
++			if (IS_ERR(rstc)) {
++				if (PTR_ERR(rstc) == -EPROBE_DEFER)
++					ret = -EPROBE_DEFER;
++				else
++					dev_err(&dev->dev, "Can't get amba reset!\n");
++				break;
++			}
++			reset_control_deassert(rstc);
++			reset_control_put(rstc);
++			count--;
++		}
+ 
+ 		/*
+ 		 * Read pid and cid based on size of resource
+-- 
+2.20.0
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---pnw3csfbr4joiprs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVQNogAKCRDj7w1vZxhR
-xT3OAP4oNFqLOfs3vnBPuOIi+wCdRxEWrgoK0NnCtdFdQ/WijwD/b3IA7ktlzjkW
-QWsPV6u/3hNUu1l1GBxa8MRTSnkLbgQ=
-=Tdd5
------END PGP SIGNATURE-----
-
---pnw3csfbr4joiprs--
