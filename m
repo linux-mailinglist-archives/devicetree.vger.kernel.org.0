@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D62E8CEC6
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B32F38CEC5
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726512AbfHNIrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726530AbfHNIrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 14 Aug 2019 04:47:31 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:44592 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726383AbfHNIra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 04:47:30 -0400
-Received: by mail-wr1-f67.google.com with SMTP id p17so110275003wrf.11
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 01:47:28 -0700 (PDT)
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38796 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726488AbfHNIrb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 04:47:31 -0400
+Received: by mail-wr1-f66.google.com with SMTP id g17so110296812wrr.5
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 01:47:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=nhBTzPiAh76rFSqD3RgV5Fc/Rc/js7/1NHg4vASXBMw=;
-        b=vZG6kJJ57lN/wuH9pOAVOXk04wI6MnyqYfsOWZjtX01M20m3Pt7sQFUq73ecyR9Ze6
-         EalGx44GFSlcYL1VritONa3K38M7p+vNRMSHgdb1qZGJ5nF20L8VpBGwMTBep20Buxqr
-         ruNDytF+bHPXedIrJA8X7LDb2aVRZn7EHeuCenZkjETpIWEMtekULk8VWAZn7BuvCdRw
-         OiPHd2itYiP/NstLtIdG3E5g0Kd4S+IMUyJXzqCYCeiJPOkdPWaHFgY9ePXL+uhpyqqd
-         MOfWzCs0NvGaH+Qj6lSet8GdemyThteinc/u3hmiecjoe6oQWIG2uEV+njXEwElA2bq0
-         W/+A==
+        bh=G0a6gblQbbIzUwDe3eeqwGYgG4v78FyPDrriBQXOIMg=;
+        b=XvAJi7R+VJgktQ0Y82Eu13fxn0IhgnzTdR1XAVRk0J8aHkA3iRirsKSBrJswDtvYeR
+         rp9rzEDjOTd52FqmXnDCmfSGxQSywri/wVFzQ0uORjEmQ54etjzyfIvNZ90oFTznREbd
+         Zd2126UNTD0kqADU9JNleOQewo6FgmVzphll1AwAV8KzdNrHWhGxAFZPBpi5netMnRKl
+         KjLUwGWrstW/0S8BsnFwOuaLU+rrs6eMhu81X04wwcFzxizG+GFBB5Zqb01i2giQkjSJ
+         yJ05Zz5CNY2Hi2d6nqLvIuupt+twnnXDRN78kn8fP09GQJGiwns770ChGFo0dRVK9unw
+         nBQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=nhBTzPiAh76rFSqD3RgV5Fc/Rc/js7/1NHg4vASXBMw=;
-        b=R2+gG5KDPKhS3pK1m+WVTUhmxI3QtE8HaUAl4x5hZu451hacTWNOrCiFBYo5RNeknW
-         UA1Jwa+U+ZGHL+SBtITSlerMKDDyD89dGkbsEOPYkgiqayOAXfWAWSfqqGHOiP8IxrU0
-         IJJQzuZU8NLCwLu6a6AFKThSuf2G2Yfgg/3f/39qKwCgsuoxInxRsG6Qo+yJRwbsHvu7
-         w6TmES4OtGhmevepwYII/qrQY/gHvTWbmZuL8MsjipesToW2+mOMPPMK0z7usgG5ge48
-         mKIMml1a/Rf+TRC2h+8TqU8CHKM4t4xMhtLgi28Dxu8FcBg0si1VacbStTu+h6Az50yu
-         Kjqg==
-X-Gm-Message-State: APjAAAUl0XWJ+H8h0tL+JwK8BJKt4CVEwgc11853JqAay8RB4/IFgIwr
-        dkNoscSNM9VFGbM/JdapgLTcCg==
-X-Google-Smtp-Source: APXvYqwPy4/nNnF/P2QPC+b7hW+35G1ZNbv+yyUXYj8aXF5TDYG3p7yq3+9AENWy012wYSU5tnJ+tA==
-X-Received: by 2002:adf:e4c3:: with SMTP id v3mr50762638wrm.107.1565772447225;
-        Wed, 14 Aug 2019 01:47:27 -0700 (PDT)
+        bh=G0a6gblQbbIzUwDe3eeqwGYgG4v78FyPDrriBQXOIMg=;
+        b=I3kXMoP3FgWiALB2sHr+abQ86l6S2mLZ11ttcpuaE5GZlVgbPWHJYN92FrtQo0YD7U
+         Han8lQheITLpCdazuMZDiuzCniWmOLR0M+xapC0ahvAwzxBXI531eqSGk07JyYiGMrxb
+         xP6u/5r8avWCDYDoVtku/f50o3t2p5pqH1suwss8bEWRhXUImT9ZKygsfSBgsQplwx1f
+         H/neAcPN5cxxUxoKaLybmg0zmkruMhzZnOMLKklJpeBiGJSIyys3AzjcfoMrQT2o2LDY
+         efZh3WdzolZORCWZLNn+doeFijlOYMTIFWJ/n0YQwT0VKqDSgSDCiMg3rJagD6FS0FJK
+         fW/g==
+X-Gm-Message-State: APjAAAXb7au09elHnZEjr0dSjw2BP2vPxqM4itPvbYK2oP09Xb1ykkIF
+        /yfljd33qJInCNUQgDnt2jk9ng==
+X-Google-Smtp-Source: APXvYqwBgH3qKuhjUwo1Y6dzBQGw2rtTihnsDDilzjf99lxoRerVHH8y6aEAN78D/IO91ALE4FU9Bw==
+X-Received: by 2002:a5d:4206:: with SMTP id n6mr51359543wrq.110.1565772449309;
+        Wed, 14 Aug 2019 01:47:29 -0700 (PDT)
 Received: from mms-0440.qualcomm.mm-sol.com ([37.157.136.206])
-        by smtp.gmail.com with ESMTPSA id u186sm7176141wmu.26.2019.08.14.01.47.26
+        by smtp.gmail.com with ESMTPSA id u186sm7176141wmu.26.2019.08.14.01.47.28
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 14 Aug 2019 01:47:26 -0700 (PDT)
+        Wed, 14 Aug 2019 01:47:28 -0700 (PDT)
 From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
 To:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
@@ -50,9 +50,9 @@ Cc:     Vikash Garodia <vgarodia@codeaurora.org>,
         Andy Gross <agross@kernel.org>,
         Aniket Masule <amasule@codeaurora.org>,
         Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Subject: [PATCH 1/2] venus: use on-chip interconnect API
-Date:   Wed, 14 Aug 2019 11:47:00 +0300
-Message-Id: <20190814084701.25455-2-stanimir.varbanov@linaro.org>
+Subject: [PATCH 2/2] arm64: dts: sdm845: Add interconnect properties for Venus
+Date:   Wed, 14 Aug 2019 11:47:01 +0300
+Message-Id: <20190814084701.25455-3-stanimir.varbanov@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
 References: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
@@ -61,225 +61,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This aims to add a requests for bandwidth scaling depending
-on the resolution and framerate (macroblocks per second). The
-exact value ff the requested bandwidth is get from a
-pre-calculated tables for encoder and decoder.
+Populate Venus DT node with interconnect properties.
 
 Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
 ---
- drivers/media/platform/qcom/venus/core.c    | 34 +++++++++++
- drivers/media/platform/qcom/venus/core.h    | 14 +++++
- drivers/media/platform/qcom/venus/helpers.c | 67 ++++++++++++++++++++-
- 3 files changed, 114 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-index 0acc7576cc58..19cbe9d5d028 100644
---- a/drivers/media/platform/qcom/venus/core.c
-+++ b/drivers/media/platform/qcom/venus/core.c
-@@ -5,6 +5,7 @@
-  */
- #include <linux/clk.h>
- #include <linux/init.h>
-+#include <linux/interconnect.h>
- #include <linux/ioctl.h>
- #include <linux/list.h>
- #include <linux/module.h>
-@@ -239,6 +240,14 @@ static int venus_probe(struct platform_device *pdev)
- 	if (IS_ERR(core->base))
- 		return PTR_ERR(core->base);
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index 0323e3da190a..567bfc89bd77 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -2039,6 +2039,9 @@
+ 			iommus = <&apps_smmu 0x10a0 0x8>,
+ 				 <&apps_smmu 0x10b0 0x0>;
+ 			memory-region = <&venus_mem>;
++			interconnects = <&rsc_hlos MASTER_VIDEO_P0 &rsc_hlos SLAVE_EBI1>,
++					<&rsc_hlos MASTER_APPSS_PROC &rsc_hlos SLAVE_VENUS_CFG>;
++			interconnect-names = "video-mem", "cpu-cfg";
  
-+	core->video_path = of_icc_get(dev, "video-mem");
-+	if (IS_ERR(core->video_path))
-+		return PTR_ERR(core->video_path);
-+
-+	core->cpucfg_path = of_icc_get(dev, "cpu-cfg");
-+	if (IS_ERR(core->cpucfg_path))
-+		return PTR_ERR(core->cpucfg_path);
-+
- 	core->irq = platform_get_irq(pdev, 0);
- 	if (core->irq < 0)
- 		return core->irq;
-@@ -273,6 +282,10 @@ static int venus_probe(struct platform_device *pdev)
- 	if (ret)
- 		return ret;
- 
-+	ret = icc_set_bw(core->cpucfg_path, 0, kbps_to_icc(1000));
-+	if (ret)
-+		return ret;
-+
- 	ret = hfi_create(core, &venus_core_ops);
- 	if (ret)
- 		return ret;
-@@ -355,6 +368,9 @@ static int venus_remove(struct platform_device *pdev)
- 	pm_runtime_put_sync(dev);
- 	pm_runtime_disable(dev);
- 
-+	icc_put(core->video_path);
-+	icc_put(core->cpucfg_path);
-+
- 	v4l2_device_unregister(&core->v4l2_dev);
- 
- 	return ret;
-@@ -464,9 +480,27 @@ static const struct freq_tbl sdm845_freq_table[] = {
- 	{  244800, 100000000 },	/* 1920x1080@30 */
- };
- 
-+static const struct bw_tbl sdm845_bw_table_enc[] = {
-+	{ 1944000, 1612000, 0, 2416000, 0 },	/* 3840x2160@60 */
-+	{  972000,  951000, 0, 1434000, 0 },	/* 3840x2160@30 */
-+	{  489600,  723000, 0,  973000, 0 },	/* 1920x1080@60 */
-+	{  244800,  370000, 0,	495000, 0 },	/* 1920x1080@30 */
-+};
-+
-+static const struct bw_tbl sdm845_bw_table_dec[] = {
-+	{ 2073600, 3929000, 0, 5551000, 0 },	/* 4096x2160@60 */
-+	{ 1036800, 1987000, 0, 2797000, 0 },	/* 4096x2160@30 */
-+	{  489600, 1040000, 0, 1298000, 0 },	/* 1920x1080@60 */
-+	{  244800,  530000, 0,  659000, 0 },	/* 1920x1080@30 */
-+};
-+
- static const struct venus_resources sdm845_res = {
- 	.freq_tbl = sdm845_freq_table,
- 	.freq_tbl_size = ARRAY_SIZE(sdm845_freq_table),
-+	.bw_tbl_enc = sdm845_bw_table_enc,
-+	.bw_tbl_enc_size = ARRAY_SIZE(sdm845_bw_table_enc),
-+	.bw_tbl_dec = sdm845_bw_table_dec,
-+	.bw_tbl_dec_size = ARRAY_SIZE(sdm845_bw_table_dec),
- 	.clks = {"core", "iface", "bus" },
- 	.clks_num = 3,
- 	.max_load = 3110400,	/* 4096x2160@90 */
-diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
-index 959eaa550f4e..4b0eb4627ba0 100644
---- a/drivers/media/platform/qcom/venus/core.h
-+++ b/drivers/media/platform/qcom/venus/core.h
-@@ -26,10 +26,22 @@ struct reg_val {
- 	u32 value;
- };
- 
-+struct bw_tbl {
-+	u32 mbs_per_sec;
-+	u32 avg;
-+	u32 peak;
-+	u32 avg_10bit;
-+	u32 peak_10bit;
-+};
-+
- struct venus_resources {
- 	u64 dma_mask;
- 	const struct freq_tbl *freq_tbl;
- 	unsigned int freq_tbl_size;
-+	const struct bw_tbl *bw_tbl_enc;
-+	unsigned int bw_tbl_enc_size;
-+	const struct bw_tbl *bw_tbl_dec;
-+	unsigned int bw_tbl_dec_size;
- 	const struct reg_val *reg_tbl;
- 	unsigned int reg_tbl_size;
- 	const char * const clks[VIDC_CLKS_NUM_MAX];
-@@ -114,6 +126,8 @@ struct venus_core {
- 	struct clk *core1_clk;
- 	struct clk *core0_bus_clk;
- 	struct clk *core1_bus_clk;
-+	struct icc_path *video_path;
-+	struct icc_path *cpucfg_path;
- 	struct video_device *vdev_dec;
- 	struct video_device *vdev_enc;
- 	struct v4l2_device v4l2_dev;
-diff --git a/drivers/media/platform/qcom/venus/helpers.c b/drivers/media/platform/qcom/venus/helpers.c
-index 1ad96c25ab09..f18458921f5d 100644
---- a/drivers/media/platform/qcom/venus/helpers.c
-+++ b/drivers/media/platform/qcom/venus/helpers.c
-@@ -5,6 +5,7 @@
-  */
- #include <linux/clk.h>
- #include <linux/iopoll.h>
-+#include <linux/interconnect.h>
- #include <linux/list.h>
- #include <linux/mutex.h>
- #include <linux/pm_runtime.h>
-@@ -388,6 +389,65 @@ static u32 load_per_type(struct venus_core *core, u32 session_type)
- 	return mbs_per_sec;
- }
- 
-+static void mbs_to_bw(struct venus_inst *inst, u32 mbs, u32 *avg, u32 *peak)
-+{
-+	const struct venus_resources *res = inst->core->res;
-+	const struct bw_tbl *bw_tbl;
-+	unsigned int num_rows, i;
-+
-+	*avg = 0;
-+	*peak = 0;
-+
-+	if (mbs == 0)
-+		return;
-+
-+	if (inst->session_type == VIDC_SESSION_TYPE_ENC) {
-+		num_rows = res->bw_tbl_enc_size;
-+		bw_tbl = res->bw_tbl_enc;
-+	} else if (inst->session_type == VIDC_SESSION_TYPE_DEC) {
-+		num_rows = res->bw_tbl_dec_size;
-+		bw_tbl = res->bw_tbl_dec;
-+	} else {
-+		return;
-+	}
-+
-+	if (!bw_tbl || num_rows == 0)
-+		return;
-+
-+	for (i = 0; i < num_rows; i++) {
-+		if (mbs > bw_tbl[i].mbs_per_sec)
-+			break;
-+
-+		if (inst->dpb_fmt & HFI_COLOR_FORMAT_10_BIT_BASE) {
-+			*avg = bw_tbl[i].avg_10bit;
-+			*peak = bw_tbl[i].peak_10bit;
-+		} else {
-+			*avg = bw_tbl[i].avg;
-+			*peak = bw_tbl[i].peak;
-+		}
-+	}
-+}
-+
-+static int load_scale_bw(struct venus_core *core)
-+{
-+	struct venus_inst *inst = NULL;
-+	u32 mbs_per_sec, avg, peak, total_avg = 0, total_peak = 0;
-+
-+	mutex_lock(&core->lock);
-+	list_for_each_entry(inst, &core->instances, list) {
-+		mbs_per_sec = load_per_instance(inst);
-+		mbs_to_bw(inst, mbs_per_sec, &avg, &peak);
-+		total_avg += avg;
-+		total_peak += peak;
-+	}
-+	mutex_unlock(&core->lock);
-+
-+	dev_dbg(core->dev, "total: avg_bw: %u, peak_bw: %u\n",
-+		total_avg, total_peak);
-+
-+	return icc_set_bw(core->video_path, total_avg, total_peak);
-+}
-+
- int venus_helper_load_scale_clocks(struct venus_core *core)
- {
- 	const struct freq_tbl *table = core->res->freq_tbl;
-@@ -431,10 +491,15 @@ int venus_helper_load_scale_clocks(struct venus_core *core)
- 	if (ret)
- 		goto err;
- 
-+	ret = load_scale_bw(core);
-+	if (ret)
-+		goto err;
-+
- 	return 0;
- 
- err:
--	dev_err(dev, "failed to set clock rate %lu (%d)\n", freq, ret);
-+	dev_err(dev, "failed to set clock rate %lu or bandwidth (%d)\n",
-+		freq, ret);
- 	return ret;
- }
- EXPORT_SYMBOL_GPL(venus_helper_load_scale_clocks);
+ 			video-core0 {
+ 				compatible = "venus-decoder";
 -- 
 2.17.1
 
