@@ -2,108 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A69D8CB27
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 07:53:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8940F8CBD1
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 08:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727841AbfHNFxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 01:53:02 -0400
-Received: from mail-pl1-f202.google.com ([209.85.214.202]:35453 "EHLO
-        mail-pl1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727831AbfHNFxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 01:53:01 -0400
-Received: by mail-pl1-f202.google.com with SMTP id s21so64107424plr.2
-        for <devicetree@vger.kernel.org>; Tue, 13 Aug 2019 22:53:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=wKRiEgRg+/DU2DEnW3JXAo2ALm03Zt5EFSXAgxYeqSQ=;
-        b=e8FnE4mzksKwKvHVDlhEsFZll89sGvciMN+IkbM+27IPEZvPiJyQZInF8yV9NhMYq5
-         vs+LUwYUb20DCcYCn6SgBoTbY0tfpRpCJoQOagxYzblakC9sr9JOvrg2Z+ToMmRMwvzh
-         W+3DTHzK7xnkQZVQ6KUpVxkAPxTGGt6gMvmYWcNyb4TdDD2AZp6DkCO9LxTIB6gc2NkR
-         bYLd8E3VZQ28b+NnVnfDxgRPMzHrRVicrIjbAMBpySYF0hIPz5mX7m0RgEkpsqWHBtlN
-         y2eydwtd5RoWffNSECN7w7xvCO4q2ycFf/Ue1TR7mmJyNY9xmsOr5bUS2NW6Xg+zMMY4
-         HQXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=wKRiEgRg+/DU2DEnW3JXAo2ALm03Zt5EFSXAgxYeqSQ=;
-        b=PRZu2ZnLa+uPXDe+9MZbXTn6eHYU7f1TUHDGjIiXKcQ5i5djSLDkUojhvJ//Cgg9ME
-         +sC/CxUSSEsn9/7QtjFgckMjFrvqCWd9S8SGTDVyX286nbd9uW5ZeY9HA15yT8sLeNed
-         JbfsQ12cWIqnwXwtUDctHmJBKDeDsTfSbdieHlPjfE2jvpIjmofFF+IMGIQ8/q06GHgX
-         4CapQ+v8Sacwn9BjPz1336eA99gpfBpI5zFinIH3vuZi5TlyvVKpJ7co0673DqaAXYIW
-         SYqENgBuRz/saCo7SZKLd9ph3McgAKNb/6YdWtj6N4yVJg1Ytln661t589elgZhrZzis
-         Awzw==
-X-Gm-Message-State: APjAAAXtlwPsClGL1GwG9PM2Vozrogv1MxSiRIUKVW+lkQd0LnzqgRsv
-        XNiBbKTMjnPYi1i+gs+Fn3YvPr5Lv2QZtH5TjO4aRg==
-X-Google-Smtp-Source: APXvYqx8XUDmNFB1JCe6JK97kDtNg7kpWNPeo7m6HD2zKnDH3s9T3hzazsfNitBEdvd+5JAN+R311UbpJ0stRAJs22yoRQ==
-X-Received: by 2002:a63:be0d:: with SMTP id l13mr568158pgf.357.1565761980273;
- Tue, 13 Aug 2019 22:53:00 -0700 (PDT)
-Date:   Tue, 13 Aug 2019 22:51:08 -0700
-In-Reply-To: <20190814055108.214253-1-brendanhiggins@google.com>
-Message-Id: <20190814055108.214253-19-brendanhiggins@google.com>
-Mime-Version: 1.0
-References: <20190814055108.214253-1-brendanhiggins@google.com>
-X-Mailer: git-send-email 2.23.0.rc1.153.gdeed80330f-goog
-Subject: [PATCH v13 18/18] MAINTAINERS: add proc sysctl KUnit test to PROC
- SYSCTL section
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>,
-        Iurii Zaikin <yzaikin@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1725306AbfHNGRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 02:17:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41928 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725265AbfHNGRU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 02:17:20 -0400
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4CCBF208C2;
+        Wed, 14 Aug 2019 06:17:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565763439;
+        bh=h2Zmuq1LzTEeDVfRxuk635BAG8HwjEFsXKfbcLtx4qA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KjIf6IYYK3XD0qhY4dWTgaz08i4vPb0oCS7yDb8DUiQXXCKW4u27PtNeMAmi6DS0Q
+         /1FvUfCfsn/mKzfRCXWUxzuwMnT06sCQUHrRnDNWWqtqQ0qPkLewBL4ZGTicqJxdUA
+         oOmBqSgqlTYbHiwF95rB3yxemzEn/TQ7B7jzHmlA=
+Date:   Wed, 14 Aug 2019 08:17:17 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Chen-Yu Tsai <wens@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sunxi: Add mdio bus sub-node to GMAC
+Message-ID: <20190814061717.54uuat3cypxjucfq@flea>
+References: <20190814042208.9646-1-wens@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ca47qifq3uyu2lgr"
+Content-Disposition: inline
+In-Reply-To: <20190814042208.9646-1-wens@kernel.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for the new proc sysctl KUnit test to the PROC SYSCTL section,
-and add Iurii as a maintainer.
 
-Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-Cc: Iurii Zaikin <yzaikin@google.com>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-Acked-by: Luis Chamberlain <mcgrof@kernel.org>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+--ca47qifq3uyu2lgr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f0bd77e8a8a2f..0cac78807137b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12965,12 +12965,14 @@ F:	Documentation/filesystems/proc.txt
- PROC SYSCTL
- M:	Luis Chamberlain <mcgrof@kernel.org>
- M:	Kees Cook <keescook@chromium.org>
-+M:	Iurii Zaikin <yzaikin@google.com>
- L:	linux-kernel@vger.kernel.org
- L:	linux-fsdevel@vger.kernel.org
- S:	Maintained
- F:	fs/proc/proc_sysctl.c
- F:	include/linux/sysctl.h
- F:	kernel/sysctl.c
-+F:	kernel/sysctl-test.c
- F:	tools/testing/selftests/sysctl/
- 
- PS3 NETWORK SUPPORT
--- 
-2.23.0.rc1.153.gdeed80330f-goog
+On Wed, Aug 14, 2019 at 12:22:08PM +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
+>
+> The DWMAC binding never supported having the Ethernet PHY node as a
+> direct child to the controller, nor did it support the "phy" property
+> as a way to specify which Ethernet PHY to use. What seemed to work
+> was simply the implementation ignoring the "phy" property and instead
+> probing all addresses on the MDIO bus and using the first available
+> one.
+>
+> The recent switch from "phy" to "phy-handle" breaks the assumptions
+> of the implementation, and does not match what the binding requires.
+> The binding requires that if an MDIO bus is described, it shall be
+> a sub-node with the "snps,dwmac-mdio" compatible string.
+>
+> Add a device node for the MDIO bus, and move the Ethernet PHY node
+> under it. Also fix up the #address-cells and #size-cells properties
+> where needed.
+>
+> Fixes: de332de26d19 ("ARM: dts: sunxi: Switch from phy to phy-handle")
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 
+Applied, thanks!
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--ca47qifq3uyu2lgr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVOnbQAKCRDj7w1vZxhR
+xdDUAQCnpVdT3KpOHMNy0ph4E404oIUBtZ6WuuLwZ9M2kNjwgQEAlByupn0xScxl
+omeoaNbOWFWe22TFHJ0najT2LdaC2Q0=
+=LPlq
+-----END PGP SIGNATURE-----
+
+--ca47qifq3uyu2lgr--
