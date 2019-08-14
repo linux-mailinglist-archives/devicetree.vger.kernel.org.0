@@ -2,117 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65CCD8D4AE
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:29:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16708D4B9
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 15:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727980AbfHNN3G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 09:29:06 -0400
-Received: from mail-yb1-f196.google.com ([209.85.219.196]:37494 "EHLO
-        mail-yb1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726551AbfHNN3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 09:29:06 -0400
-Received: by mail-yb1-f196.google.com with SMTP id t5so7681773ybt.4;
-        Wed, 14 Aug 2019 06:29:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=feHFiHeHvTpFde0tn91rp6H0MBIr1sa1sTvgeV402JM=;
-        b=ac6RBWFxnGnpiZqQA/EYd//8dG4n8myv7wQGfVHqiBTTGPRbII9ak3Bp7Uu3XUlkdr
-         85xhvuyQ5gR0apLrD1GDoHYw7xLKKr8sq8n5JixRq6kv89QGu2+dnhoaW1896Rk7R1yV
-         LlymwQSaAtL3yaPo3MiAM4mAsXeULIqyhk9sCUJ54d3a/s1kR/Tkd55oWfc4fza3kbDe
-         ZBZx+RlHTH6yhNR92OVxL2UEhSG4tMuB7uESR8P+DxZNzoDfWH30MCSzmUm2DCL4noCQ
-         DfPDKTa4NIO3TcXsWtc6QVxjJdutnyur5T7BLkORpKL4RFpXjTk1kzcQNYO5z5h5dyVB
-         6m0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=feHFiHeHvTpFde0tn91rp6H0MBIr1sa1sTvgeV402JM=;
-        b=kD4N+IlujKXuZ6Iz0TQfOWGEYhOyydZloLS4mknU1d4hGyXeNfOXmXehr5vJKGg/8G
-         a8O91B7lRyFUNAVor3vklg0n0Lj6p+iMMdOhfWh6YE3QaoXv4aBjPkuP6CvmMMqRDUHI
-         T+EcZSItqJPXWU146SEPefEqLUvesAuWCNz/Nmsr3HnaoUU10GS5cl692vA9kVCtPmB9
-         31IgiZ5doM4fZF1JHpej+tILbJjerCzXKhKNj/bH+9WV6ctjhdMniiP1otlgN2A7LaFH
-         8GfFLLZyM4V9TP2kaBefwxz8UlDRaW365OFL6Ak29bUMEnYc1mW8W2MWxVEK6zaCHfMG
-         7CEw==
-X-Gm-Message-State: APjAAAWJ005S4VGFjNie9JP9xw8RAOqBJfIQ46T+zm6iByl7OrcLG/Q8
-        +yff1e0EionnGgLHp3H9ElqdwT25JJ4MV4f0efE=
-X-Google-Smtp-Source: APXvYqy3AqQMungyg/xB+l2qARditdM8VXFFojcSBu1UaUOjytXLxcZJavyaAwTWZx/3F8rjkKQpTLcSWn/ANfaZArk=
-X-Received: by 2002:a25:790a:: with SMTP id u10mr29982888ybc.379.1565789345382;
- Wed, 14 Aug 2019 06:29:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
- <1648748.TWHgARQioU@jernej-laptop> <20190814132001.GC24324@Red>
-In-Reply-To: <20190814132001.GC24324@Red>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Wed, 14 Aug 2019 15:28:53 +0200
-Message-ID: <CAJiuCcfASQriPLMuwuDCn9bU=_8q4jL+KkPo8NmMrrYpOqy2qA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH] ARM64: dts: allwinner: Add devicetree for
- pine H64 modelA evaluation board
-To:     clabbe.montjoie@gmail.com
-Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
+        id S1727691AbfHNNau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 09:30:50 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:33901 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727685AbfHNNau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 09:30:50 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hxtMU-00068E-KA; Wed, 14 Aug 2019 15:30:46 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hxtMR-0005bv-RB; Wed, 14 Aug 2019 15:30:43 +0200
+Date:   Wed, 14 Aug 2019 15:30:43 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH v2 2/2] pwm: sprd: Add Spreadtrum PWM support
+Message-ID: <20190814133043.peh63lwngujjuo5d@pengutronix.de>
+References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
+ <4f6e3110b4d7e0a2f7ab317bba98a933de12e5da.1565703607.git.baolin.wang@linaro.org>
+ <20190813151612.v6x6e6kzxflkpu7b@pengutronix.de>
+ <CAMz4kuJURx=fPE6+0gP4ukzMcXr_z3t1ZH0K3Gv6=o4Od4uc7w@mail.gmail.com>
+ <20190814092339.73ybj5mycklvpnrq@pengutronix.de>
+ <CAMz4ku+3txx5kO-u_+_pxFwoovnX81WFF-moNBasUUgEpvQb+Q@mail.gmail.com>
+ <20190814105535.svslc57qp3wx5lub@pengutronix.de>
+ <CAMz4ku+H1++pzZ9pAw2N6Z342j3NMBwfRj9VZTdsihtZYzuFOw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMz4ku+H1++pzZ9pAw2N6Z342j3NMBwfRj9VZTdsihtZYzuFOw@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello,
 
-On Wed, 14 Aug 2019 at 15:20, Corentin Labbe <clabbe.montjoie@gmail.com> wr=
-ote:
->
-> On Mon, Aug 12, 2019 at 12:56:56PM +0200, Jernej =C5=A0krabec wrote:
-> > Dne =C4=8Detrtek, 08. avgust 2019 ob 10:42:53 CEST je Corentin Labbe na=
-pisal(a):
-> > > This patch adds the evaluation variant of the model A of the PineH64.
-> > > The model A has the same size of the pine64 and has a PCIE slot.
+On Wed, Aug 14, 2019 at 08:23:37PM +0800, Baolin Wang wrote:
+> On Wed, 14 Aug 2019 at 18:55, Uwe Kleine-König
+> <u.kleine-koenig@pengutronix.de> wrote:
+> > On Wed, Aug 14, 2019 at 06:01:50PM +0800, Baolin Wang wrote:
+> > > On Wed, 14 Aug 2019 at 17:23, Uwe Kleine-König
+> > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > On Wed, Aug 14, 2019 at 04:42:28PM +0800, Baolin Wang wrote:
+> > > > > On Tue, 13 Aug 2019 at 23:16, Uwe Kleine-König
+> > > > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > > > On Tue, Aug 13, 2019 at 09:46:41PM +0800, Baolin Wang wrote:
+> > > > > > [...]
+> > > > > Not really, our hardware's method is, when you changed a new
+> > > > > configuration (MOD or duty is changed) , the hardware will wait for a
+> > > > > while to complete current period, then change to the new period.
+> > > >
+> > > > Can you describe that in more detail? This doesn't explain why MOD must be
+> > > > configured before DUTY. Is there another reason for that?
 > > >
-> > > The only devicetree difference with current pineH64, is the PHY
-> > > regulator.
+> > > Sorry, I did not explain this explicitly. When we change a new PWM
+> > > configuration, the PWM controller will make sure the current period is
+> > > completed before changing to a new period. Once setting the MOD
+> > > register (since we always set MOD firstly), that will tell the
+> > > hardware that a new period need to change.
 > >
-> > I have Model A board which also needs ddc-en-gpios property for HDMI co=
-nnector
-> > in order for HDMI to work correctly. Otherwise it will just use 1024x76=
-8
-> > resolution. Can you confirm that?
+> > So if the current period just ended after you reconfigured MOD but
+> > before you wrote to DUTY we'll see a bogus period, right? I assume the
+> > same holds true for writing the prescale value?
+> 
+> I confirmed again, I am sorry I missed something before. Yes, like you
+> said before, writing DUTY triggers the hardware to actually apply the
+> values written to MOD and DUTY to the output. So write DUTY last. I
+> will update the comments and change the PWM configure like:
+> 
+> sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PRESCALE, prescale);
+> sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_MOD, SPRD_PWM_MOD_MAX);
+> sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_DUTY, duty);
 
-Schematics Rev A:
-http://files.pine64.org/doc/Pine%20H64/Pine%20H64%20Ver1.1-20180104.pdf
+So PRESCALE is independent and it can still happen that writing PRESCALE
+affects the output before MOD and DUTY do?
 
-Rev B:
-http://files.pine64.org/doc/Pine%20H64/PINE-H6-model-B-20181212-schematic.p=
-df
+Best regards
+Uwe
 
-There is a DDC_EN on REV A not on REV B
-
-Regards,
-Cl=C3=A9ment
-
-> >
-> > Best regards,
-> > Jernej
-> >
->
-> Sorry I didnt use at all video stuff (like HDMI), so I cannot answer now.
->
-> Could you send me a patch against my future v2 and I could test with/with=
-out.
->
-> Regards
->
-> --
-> You received this message because you are subscribed to the Google Groups=
- "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an=
- email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msg=
-id/linux-sunxi/20190814132001.GC24324%40Red.
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
