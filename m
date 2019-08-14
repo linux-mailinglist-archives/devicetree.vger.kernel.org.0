@@ -2,112 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF0D8DC1C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:44:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA2FD8DC2B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 19:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727303AbfHNRon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 13:44:43 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:46350 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728169AbfHNRon (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 13:44:43 -0400
-Received: by mail-pg1-f193.google.com with SMTP id w3so16240470pgt.13
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 10:44:43 -0700 (PDT)
+        id S1728734AbfHNRrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 13:47:31 -0400
+Received: from mail-pf1-f178.google.com ([209.85.210.178]:43035 "EHLO
+        mail-pf1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727791AbfHNRra (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 13:47:30 -0400
+Received: by mail-pf1-f178.google.com with SMTP id v12so6213746pfn.10;
+        Wed, 14 Aug 2019 10:47:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=8TCzd3zFiDX85xywn7ChohopRVZ50w25juT6dtizlkE=;
-        b=oe2SbrDsxV5qofbDmFkBqA/UP9LedTWCuoTlB0Dudr7XbzPEYuUN6J4RPjYPhUydZK
-         rXBGXeY5571WEWKzj9B1jVJ1S1lWxSwZUuUWFA2XtkHd0d+zQxMnATh3qY331FncYDrq
-         +1dAf/OvSZAbb/D1dqBPTQB4T+/q12M1m+juWLZ63EEgRUQ3ZhrIWM+3haIFRknl2R9W
-         am3nxtCWziF1Anpf4Sq4xKlgKXOiyl2aYOtwtPpJcRlPKjmsP2EsyzTVQtWoDkvEaSh+
-         XANVlK78HhARtfEdjzjSHCrufUqXl1/IOcJD/qBd6rf5XlxkWBWR2KxBMfgVl+KHRHKK
-         EU+g==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=CCSrBSX7IQ2xxBVP3hmlei8pJXx43OzdA6dFKjJ2gHU=;
+        b=u8hTQDywSt89aTs/QwC9DaOHMlSKvwhLozmjlU41t8YDFprKEWWarY2xStTo/0YXgW
+         0AGEIqqBIhCOYR3txYPORce7cXecJWQ3C65glTyA51/Dz+x2KDpHIGCEUkWuIcqRMVPh
+         jDBqAGqBFvpLJ1PDO4GaA4g30VbpxvG3H8brE6rxT/RkVuNzT+girw/O97arUcG0YPGA
+         rwNzJlfTDfGXiRoH1fqKSeQwIaB0uidO0rU1AAVDUjMV7PKU1RM6PNxtKQ8OJc8q6hoA
+         euvtFAiSt5zK9vviufuPiwr2kdXEO40JBNSwhDwbwTq3anOxZvihNlKiJKnh9QH/jyQ5
+         92uQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8TCzd3zFiDX85xywn7ChohopRVZ50w25juT6dtizlkE=;
-        b=QEFejzjDwrQ18wkhzZ+rKr7W+juegLpI7aKTfEWR3EAZjxKUDmyXgWAUCoJMv6DzRD
-         bptteUwLR6fl/0qXdBFYHlzZ7JBLq8E2jY0SQ/uoXPJ2CRgeTIu2B/QTHIoeC8CknMOg
-         BatZ6k7MHBOrRs5tMOQgbHMRICKpZEC4nn2kM8Fp9UfaYWmZz56VXjayBW4cXLGqrGwb
-         Z9KBpiDVE/ehnC/nj4UWTyLJrV36N2DCsWH571zu8k+mX81YWFNwvppFYms9biAIkXaS
-         PqHEOlbdrsEcHVsHBTw8rC41Tt7XHttRjJ3JZztA2Z/0HihiR5vmmlIvrvecs9WJkDtH
-         pauA==
-X-Gm-Message-State: APjAAAVknZYA6NlNdkcn1n4LIiVW32fyxEZAeOvNzXeiuRocncQpyrvV
-        5kmj+i4k/D4Jfl8iZWQKqgyq0A==
-X-Google-Smtp-Source: APXvYqz7MavHYdq/g7PveGK4Yap8TGnFicPUAMqpQBASUNRsOeDUdM0OR1O6eb/HCjCED+9QnKCHhg==
-X-Received: by 2002:a62:58c4:: with SMTP id m187mr1104043pfb.147.1565804682598;
-        Wed, 14 Aug 2019 10:44:42 -0700 (PDT)
-Received: from minitux (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id e13sm438363pff.181.2019.08.14.10.44.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Aug 2019 10:44:41 -0700 (PDT)
-Date:   Wed, 14 Aug 2019 10:44:39 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        linux-arm-msm@vger.kernel.org, sibis@codeaurora.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 01/22] arm64: dts: qcom: sm8150: add base dts file
-Message-ID: <20190814174439.GE6167@minitux>
-References: <20190814125012.8700-1-vkoul@kernel.org>
- <20190814125012.8700-2-vkoul@kernel.org>
- <20190814165855.098FD2063F@mail.kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CCSrBSX7IQ2xxBVP3hmlei8pJXx43OzdA6dFKjJ2gHU=;
+        b=W/cdBWbPQoBCObFtNEHRK5MKSPIzVyJiqhfFFE0ydvJk2Jv2s1kUSf+v7N+6Fd7CI0
+         KiW0+u4u4wD7gbIYjCZUP2oTOJlAbad88TGlD3cw9tkAolpsTqM4KY0fxmlT0TMBS6AN
+         0C8AponwCwv4iqzrM6QtSFeI4nq7HvmKkV7xIdk0RiEoF1R+jfGtFEk9Vi+uQSBZyeTZ
+         Kkp2Yzb4NZIUD504OY/ohUNavmEsQbtzJR9EluRA2HvYHCOPzRDrUwtY3RiTr6PHiL+g
+         /1gRMJr1E4wuCOtNBAlupqup7qjlqVfLeshONl2VCQp4m2wrH1SA+KTKbsYfcylwW+8k
+         Lp9A==
+X-Gm-Message-State: APjAAAUQfmSVBgNY9IbRs+SGLXvaDXrUt4qWc8dkezdeTmm4Su+yNq2j
+        UNnVs3A89dI9d9Dh+jFOjhw=
+X-Google-Smtp-Source: APXvYqzKsieWLirBEkQptXH2tQ5lBWKzQqGdQYuYBNU2y56nrw4EPOGJQz5bPTV4Ki//Sk2Ezj2FkA==
+X-Received: by 2002:a63:3006:: with SMTP id w6mr313117pgw.440.1565804849676;
+        Wed, 14 Aug 2019 10:47:29 -0700 (PDT)
+Received: from [10.69.78.41] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 10sm499867pfv.63.2019.08.14.10.47.25
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 14 Aug 2019 10:47:28 -0700 (PDT)
+Subject: Re: [PATCH v4 01/14] net: phy: adin: add support for Analog Devices
+ PHYs
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        hkallweit1@gmail.com, andrew@lunn.ch
+References: <20190812112350.15242-1-alexandru.ardelean@analog.com>
+ <20190812112350.15242-2-alexandru.ardelean@analog.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Openpgp: preference=signencrypt
+Message-ID: <06de7e05-e3b5-6003-acc5-63f45d8ce9e8@gmail.com>
+Date:   Wed, 14 Aug 2019 10:47:24 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190814165855.098FD2063F@mail.kernel.org>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+In-Reply-To: <20190812112350.15242-2-alexandru.ardelean@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 14 Aug 09:58 PDT 2019, Stephen Boyd wrote:
 
-> Quoting Vinod Koul (2019-08-14 05:49:51)
-> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-[..]
-> > +       clocks {
-> > +               xo_board: xo-board {
-> > +                       compatible = "fixed-clock";
-> > +                       #clock-cells = <0>;
-> > +                       clock-frequency = <19200000>;
+
+On 8/12/2019 4:23 AM, Alexandru Ardelean wrote:
+> This change adds support for Analog Devices Industrial Ethernet PHYs.
+> Particularly the PHYs this driver adds support for:
+>  * ADIN1200 - Robust, Industrial, Low Power 10/100 Ethernet PHY
+>  * ADIN1300 - Robust, Industrial, Low Latency 10/100/1000 Gigabit
+>    Ethernet PHY
 > 
-> Is it 19.2 or 38.4 MHz? It seems like lately there are dividers, but I
-> guess it doesn't really matter in the end.
+> The 2 chips are register compatible with one another. The main difference
+> being that ADIN1200 doesn't operate in gigabit mode.
 > 
+> The chips can be operated by the Generic PHY driver as well via the
+> standard IEEE PHY registers (0x0000 - 0x000F) which are supported by the
+> kernel as well. This assumes that configuration of the PHY has been done
+> completely in HW, according to spec.
+> 
+> Configuration can also be done via registers, which will be supported by
+> this driver.
+> 
+> Datasheets:
+>   https://www.analog.com/media/en/technical-documentation/data-sheets/ADIN1300.pdf
+>   https://www.analog.com/media/en/technical-documentation/data-sheets/ADIN1200.pdf
+> 
+> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 
-As with previous platforms, the board's XO feeds the PMIC at 38.4MHz and
-the SoC's CXO_IN pin (i.e. bi_tcxo) is fed from the PMIC's LNBBCLK1,
-which is ticking at 19.2MHz.
-
-[..]
-> > +               gcc: clock-controller@100000 {
-> > +                       compatible = "qcom,gcc-sm8150";
-> > +                       reg = <0x00100000 0x1f0000>;
-> > +                       #clock-cells = <1>;
-> > +                       #reset-cells = <1>;
-> > +                       #power-domain-cells = <1>;
-> > +                       clock-names = "bi_tcxo", "sleep_clk";
-> > +                       clocks = <&xo_board>, <&sleep_clk>;
-
-So this first one should actually be <&rpmhcc LNBBCLK1>.
-
-But while we now should handle this gracefully in the clock driver I
-think we still have problems with the cascading probe deferral that
-follows - last time I tried to do this the serial driver probe deferred
-past user space initialization and the system crashed as we didn't have
-a /dev/console.
-
-
-So, I think we should s/xo_board/lnbbclk1/ (at 19.2MHz) to make it
-represent the schematics and then once we have rpmhcc and validated that
-the system handles this gracefully we can switch it out.
-
-Regards,
-Bjorn
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
