@@ -2,134 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B03668D049
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 12:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2074E8D08E
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 12:20:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726951AbfHNKHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 06:07:00 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:53505 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726121AbfHNKG7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 06:06:59 -0400
-X-UUID: b6fe7958dc7e4710af101f9b1029e17d-20190814
-X-UUID: b6fe7958dc7e4710af101f9b1029e17d-20190814
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <michael.kao@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 220725746; Wed, 14 Aug 2019 18:06:52 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 14 Aug 2019 18:06:53 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 14 Aug 2019 18:06:53 +0800
-From:   Michael Kao <michael.kao@mediatek.com>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <hsinyi@chromium.org>
-CC:     <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Michael Kao <michael.kao@mediatek.com>
-Subject: [PATCH 4/4] arm64: dts: mt8183: Configure CPU cooling
-Date:   Wed, 14 Aug 2019 18:06:49 +0800
-Message-ID: <1565777209-21869-5-git-send-email-michael.kao@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1565777209-21869-1-git-send-email-michael.kao@mediatek.com>
-References: <1565777209-21869-1-git-send-email-michael.kao@mediatek.com>
+        id S1726496AbfHNKUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 06:20:00 -0400
+Received: from muru.com ([72.249.23.125]:57520 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725800AbfHNKUA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 06:20:00 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id A6F0580C8;
+        Wed, 14 Aug 2019 10:20:27 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>,
+        Keerthy <j-keerthy@ti.com>
+Subject: [PATCH 0/3] Drop platform data for cpsw for am3/4 and dra7
+Date:   Wed, 14 Aug 2019 03:19:46 -0700
+Message-Id: <20190814101949.50006-1-tony@atomide.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-TM-SNTS-SMTP: 6B35072D115418BD62FDFB3A8FCC7BF1CA3916877D76B820D34241335E752A382000:8
-X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Kaehlcke <mka@chromium.org>
+Hi all,
 
-Add SoC temperature threshold at 68°C and target at 80°C.
-Add trip points and cooling maps for big and litter clusters.
+Here are changes to drop legacy platform data for cpsw for am3, am4
+and dra7. Please review and test, I was not able to boot my beagle
+x15 as it seems to have a power supply problem and have only tested
+on am3 and 4.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Signed-off-by: Michael Kao <michael.kao@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 55 ++++++++++++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
+Regards,
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index bc42b82..6611d29 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -411,6 +411,61 @@
- 				polling-delay = <500>;
- 				thermal-sensors = <&thermal 0>;
- 				sustainable-power = <4500>;
-+
-+				trips {
-+					threshold: trip-point@0 {
-+						temperature = <68000>;
-+						hysteresis = <2000>;
-+						type = "passive";
-+					};
-+
-+					target: trip-point@1 {
-+						temperature = <80000>;
-+						hysteresis = <2000>;
-+						type = "passive";
-+					};
-+
-+					cpu_crit: cpu-crit {
-+						temperature = <115000>;
-+						hysteresis = <2000>;
-+						type = "critical";
-+					};
-+				};
-+
-+				cooling-maps {
-+					map0 {
-+						trip = <&target>;
-+						cooling-device = <&cpu0
-+							THERMAL_NO_LIMIT
-+							THERMAL_NO_LIMIT>,
-+								 <&cpu1
-+							THERMAL_NO_LIMIT
-+							THERMAL_NO_LIMIT>,
-+								 <&cpu2
-+							THERMAL_NO_LIMIT
-+							THERMAL_NO_LIMIT>,
-+								 <&cpu3
-+							THERMAL_NO_LIMIT
-+							THERMAL_NO_LIMIT>;
-+						contribution = <3072>;
-+					};
-+					map1 {
-+						trip = <&target>;
-+						cooling-device = <&cpu4
-+							THERMAL_NO_LIMIT
-+							14>,
-+								 <&cpu5
-+							THERMAL_NO_LIMIT
-+							14>,
-+								 <&cpu6
-+							THERMAL_NO_LIMIT
-+							14>,
-+								 <&cpu7
-+							THERMAL_NO_LIMIT
-+							14>;
-+						contribution = <1024>;
-+					};
-+				};
- 			};
- 
- 			/* The tzts1 ~ tzts6 don't need to polling */
+Tony
+
+
+Tony Lindgren (3):
+  ARM: dts: Add fck for cpsw mdio for omap variants
+  ARM: OMAP2+: Drop legacy platform data for cpsw on am3 and am4
+  ARM: OMAP2+: Drop legacy platform data for cpsw on dra7
+
+ arch/arm/boot/dts/am33xx-l4.dtsi              |  4 +-
+ arch/arm/boot/dts/am437x-l4.dtsi              |  6 +-
+ arch/arm/boot/dts/dra7-l4.dtsi                |  4 +-
+ .../omap_hwmod_33xx_43xx_common_data.h        |  3 -
+ .../omap_hwmod_33xx_43xx_interconnect_data.c  |  6 --
+ .../omap_hwmod_33xx_43xx_ipblock_data.c       | 50 --------------
+ arch/arm/mach-omap2/omap_hwmod_33xx_data.c    |  9 ---
+ arch/arm/mach-omap2/omap_hwmod_43xx_data.c    |  9 ---
+ arch/arm/mach-omap2/omap_hwmod_7xx_data.c     | 65 -------------------
+ 9 files changed, 6 insertions(+), 150 deletions(-)
+
 -- 
-1.9.1
-
+2.21.0
