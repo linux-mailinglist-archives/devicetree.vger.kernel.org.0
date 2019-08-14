@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 976028CE83
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F178CE91
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725928AbfHNIcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 04:32:41 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:44191 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725265AbfHNIcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 04:32:41 -0400
-Received: by mail-lj1-f196.google.com with SMTP id e24so7322806ljg.11
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 01:32:40 -0700 (PDT)
+        id S1726875AbfHNIdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 04:33:54 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:37734 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726585AbfHNIdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 04:33:53 -0400
+Received: by mail-lf1-f66.google.com with SMTP id c9so78681346lfh.4
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 01:33:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Qprk97I1dFe+WA8kDtJTqkPzn2PSILy5kREIC5Uixm4=;
-        b=qMdw+xMV024LAbvccUI3jC70aaEEO5YWomLZhuABCdzO2cL+7TrxzWBaQItupTGIe5
-         V5iI287R6yEzuK4400Xf11LNmZT5SP6D3BpwXIiP0REHYCp8lEccJQsiTnSQK7+qJw5c
-         Adf6kT0NahAxCaB61a4PDzWh0bZsvpdye0vrJeeZ3SE9yW+n4tXTOd0BO1uq9rjGvYuB
-         5Nnv5m31Aj9HkD49sGMjQwz//29/ywzsTipoA+S2vbv/e5ERHrl6TQtuGZhTkqDX2q/6
-         Bt86uvuXeQ6/przYNgkxiJfzspWLBBF/cOGwWI6Nx23yadkF0Xae3G66sAVLnvA6hs3F
-         KrJA==
+        bh=E5fo4g4+jTzEPPS8NQRIYLI3z/B0HGMqXSSYS0pphEc=;
+        b=M7fDqA2ev3AaD0nQWyOj2IILz7JS+CusJowE3rw2HWWxQWP5bTn4JIVf4EXeU+h2VV
+         dNtGZicyTPIW+AroFdMrISmo0K7Wa/Ry0A/A0Hov7yo6P3Kvm/XUFQKbuFgPiI4BeFed
+         xyE4+85JhfoCDyLi69SCvuKDP9eMzv6vGULq3NopmDYKw0PL7FWkIJEr+vHFTQHOEGwm
+         jsCPQlZIEWncomumM9JEmluiIhGX9EI1ZmzgqrHNkU6nqj+AkNv7VSxgtcgo9dzyXToM
+         K7hfIA0czHnYUSSKNV+yrrwZCUvtTzXRKjgfW2gj2OmBE+1fxZxrjFX/iIzWKEAU8eT3
+         pUgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Qprk97I1dFe+WA8kDtJTqkPzn2PSILy5kREIC5Uixm4=;
-        b=PgVpKUyi4xMiiMqkoUX9ClGFoe96E0FFX5xcyCvnU0YJ5UqYTr8dypVnMApLZBtTNS
-         DsAdz74CUkx7I0+caaNMzfx1Lfufky1K4P9EoLuhtbeQ7XBAw/wTsD2XVjKP9LHin1Ct
-         1ulabo1qWttMtZ/qJQPPkPFtmu0XD33/VsxAEK8gQf7nIVhO8HxLj2eSb+7OcRpRF91I
-         ydUUPFTQuZDBhXwq+UK7os0jiXCSX5amcsaWZ5iGEt/jqiKEz1+qIfFdMpuMl5OErM0Y
-         /rcAsQqwHgDa4LQ1roj+tHF6oZukF6c90HNKIdTbD2Ew3lsrxaEjfEcQuE+03D4b87xg
-         Q2RA==
-X-Gm-Message-State: APjAAAXwffJj4dhlGoes7P3XFiNALzBi/Cg831+U+cg2YPVZqdYUlQ5G
-        g//ev6MTE2LJBB2XvFRB+DcfavAfuTZ++gNz8Ps9xQ==
-X-Google-Smtp-Source: APXvYqx+fft1SOz2IQDyCGJ15XAqb3Zjb5OEqzoV7vIlggjkoFNfsMZU8eWQaIcFkhj1gV1hUfaGOfz43NWpoIBxdXE=
-X-Received: by 2002:a2e:9f0f:: with SMTP id u15mr14722764ljk.54.1565771559322;
- Wed, 14 Aug 2019 01:32:39 -0700 (PDT)
+        bh=E5fo4g4+jTzEPPS8NQRIYLI3z/B0HGMqXSSYS0pphEc=;
+        b=Y/ELSmOg3Y2lo/WrDv8dfv4Z0ZJmOPb/Ul8WfjAmBuM6CZQq3cwSbuhffiB/Fop/pW
+         +KdSqjFwwn0EcwU/pMLrIKnqFOgDWQIufExT2EkvhkZ6YFgknPWWxvQ2pDVCPAXzwxt/
+         sVBPV0A0GQdG19ZNIAebgK03p3qAsan9RScvbzWidsgKm9va5UjejgNd8GBTk4uVhuG9
+         OUK/paAx24MvHHjbgmItwfYMzzCnFaCeEMS1+7vUpHy+oCAuY1TH57R/BvGlCYflnyw4
+         u+dQnARUcT4U7a/awbS6qij4trK37IQfCIHIMi7tBtuvuX3dIkSJ/S5iMOBDVv4G2Gd7
+         VFCg==
+X-Gm-Message-State: APjAAAUPWU+AKyfZdx94bUoSbzsWYy2LI9B5dWkowD8OOOZ0PD12sDKl
+        AxC8+yNRk4a6UOQuK45AFf3d5AFaWOP02VjcgbYiog==
+X-Google-Smtp-Source: APXvYqzvtd7+XwTL/eQMqN1AuBlMWDwk28758OmtF4qoQrqmv1Bq47tZFUSl03jCW/t21U3acG+NN+hoacaPwYJsMyw=
+X-Received: by 2002:ac2:4c07:: with SMTP id t7mr22869417lfq.152.1565771631899;
+ Wed, 14 Aug 2019 01:33:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com> <1565308020-31952-2-git-send-email-skomatineni@nvidia.com>
-In-Reply-To: <1565308020-31952-2-git-send-email-skomatineni@nvidia.com>
+References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com> <1565308020-31952-3-git-send-email-skomatineni@nvidia.com>
+In-Reply-To: <1565308020-31952-3-git-send-email-skomatineni@nvidia.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 14 Aug 2019 10:32:28 +0200
-Message-ID: <CACRpkdasx8AooB_bhUpVhU9ig_ztri3hbryiO_FEGEO+eUXwkg@mail.gmail.com>
-Subject: Re: [PATCH v8 01/21] pinctrl: tegra: Fix write barrier placement in pmx_writel
+Date:   Wed, 14 Aug 2019 10:33:39 +0200
+Message-ID: <CACRpkdZ6--v6bdmn7=fjPDxiza0cbuHQN93_fyu+fTCkJpq_Gg@mail.gmail.com>
+Subject: Re: [PATCH v8 02/21] pinctrl: tegra: Add write barrier after all
+ pinctrl register writes
 To:     Sowjanya Komatineni <skomatineni@nvidia.com>
 Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
         Jon Hunter <jonathanh@nvidia.com>,
@@ -80,12 +81,8 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Fri, Aug 9, 2019 at 1:47 AM Sowjanya Komatineni
 <skomatineni@nvidia.com> wrote:
 
-> pmx_writel uses writel which inserts write barrier before the
-> register write rather.
->
-> This patch has fix to replace writel with writel_relaxed followed
-> by a write barrier to ensure write operation before the barrier
-> is completed for successful pinctrl change.
+> This patch adds write barrier after all pinctrl register writes
+> during resume to make sure all pinctrl changes are complete.
 >
 > Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 
