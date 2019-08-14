@@ -2,166 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B5698CFF7
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9228C8D00A
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbfHNJqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 05:46:15 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:58919 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726047AbfHNJqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 05:46:15 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hxpr8-0004OO-DB; Wed, 14 Aug 2019 11:46:10 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hxpr7-0005BZ-BS; Wed, 14 Aug 2019 11:46:09 +0200
-Date:   Wed, 14 Aug 2019 11:46:09 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Baolin Wang <baolin.wang@linaro.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1725800AbfHNJtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 05:49:33 -0400
+Received: from mail-eopbgr60085.outbound.protection.outlook.com ([40.107.6.85]:42150
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725280AbfHNJtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 05:49:33 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lQn3jyUnFvezQgC5EGFX4MXEUJHPryr/ZZuySrDlFcT9ynccvLYRgi7UUdjRsE7tqXgulEa0UhLW6L2fmTBxOhijuWs892hb40xejccOgGVQuqaYfzhqaEtlO0pEzDZyesIvpC0ZH/wQ2S/VsHcvjsPl1gnjAbmswVWZ4wL8OEDaj24mfN5HGGH3MvOaa3HAuGh7hGRcVC6+0Z02lAgXgPYnTlqe+p4XpTDSn+YFJ8hVS7k7tId5h3xAlO1gRovqm7JW0Lk0OQU+Kymo++pjPEsAryX8BJKs6a1dnu1arW6p87LnpbM1kRqnLpHxkn0909m4eaWp38py81RWoGZIBw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zRd/psKjwplic+EWLadb0xRsxO4dZLXyZ+s3ZTAi2eg=;
+ b=eRKAv1CYzYKAVmpjWskQjN7OTc2yvGUMt+sWArhtveRfUe4gEGMfafNPYe4JWwLjNSkfND3tstV3x+eC32AK/9fBtpI29aNRjTCkSOSVQP9ojPemU+T31RzWzqdpY4idCiT4Vwa4QZ0NcbYH6tbHfKtxcABwIdhYeDsZSy7zE2aOObyJqdVGP/P5EcKuokFn5OniZsCJsiuulqmSzYmjwualyjjxkRTDrBoeWOYYQdQd8rdw39x8PrR7fmXFyf3KRdr+b1IkxnKSgPVku3l/JeX7k1XIUwG1Li8OKXMjDxNIrZd/Uwk+shMpfgvzMJHmdWyeP49jpZU3YASm5JhBVQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zRd/psKjwplic+EWLadb0xRsxO4dZLXyZ+s3ZTAi2eg=;
+ b=H9qn7WjEcqw29PHsf4ldWQTbh2Dyoj2/Mf956qQst0cx7nId1g4O4XW9xRRd3r9FIOU3mEgwoufknzJf7/i8lFRYz5+Np73dCTYQehnvb7Hy66s0nJH59AUqZurOqmk9m//0dZQpD/raip9hWdJJxYZbPCjdb76fbDDuKI/lmDs=
+Received: from DB7PR04MB5195.eurprd04.prod.outlook.com (20.176.236.27) by
+ DB7PR04MB4700.eurprd04.prod.outlook.com (20.176.233.29) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.13; Wed, 14 Aug 2019 09:49:29 +0000
+Received: from DB7PR04MB5195.eurprd04.prod.outlook.com
+ ([fe80::e854:ffa9:a285:88a4]) by DB7PR04MB5195.eurprd04.prod.outlook.com
+ ([fe80::e854:ffa9:a285:88a4%5]) with mapi id 15.20.2157.022; Wed, 14 Aug 2019
+ 09:49:29 +0000
+From:   Wen He <wen.he_1@nxp.com>
+To:     Stephen Boyd <sboyd@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM
- documentation
-Message-ID: <20190814094609.pm7ulg57e37pphrs@pengutronix.de>
-References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
- <20190813141256.jnbrfld42rtigek3@pengutronix.de>
- <CAMz4kuJA+a=nzFRja4wRkfJu3Gzb0wnvaM8H4Ek9X5u8CNegPg@mail.gmail.com>
- <20190814070121.o53tj2mtky4hcy3n@pengutronix.de>
- <CAMz4ku+55O6ORVM9xDv4R954QG4PXV8EkcGypSTB5wKni+Dq+Q@mail.gmail.com>
- <20190814073939.ubgzysmkmmel5h4y@pengutronix.de>
- <CAMz4ku+Q7CV+0dP1P0hAPJR7KiG0HOkZbT_LPXY4Q03hMuvS8A@mail.gmail.com>
- <20190814084929.q3uy7cpf4ullpevo@pengutronix.de>
- <CAMz4kuLFeg2OyzgxZLp4Ks5ucTptOBTrxod5yVFXQ+q8ttKjcw@mail.gmail.com>
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     Leo Li <leoyang.li@nxp.com>,
+        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
+Subject: RE: [EXT] Re: [v1 2/3] dt/bindings: clk: Add DT bindings for LS1028A
+ Display output interface
+Thread-Topic: [EXT] Re: [v1 2/3] dt/bindings: clk: Add DT bindings for LS1028A
+ Display output interface
+Thread-Index: AQHVUPZmmHsvouKPJkueVWpL5KhirKb5aFSAgAD9yfA=
+Date:   Wed, 14 Aug 2019 09:49:29 +0000
+Message-ID: <DB7PR04MB51950A726D59F17EE269F2F3E2AD0@DB7PR04MB5195.eurprd04.prod.outlook.com>
+References: <20190812100216.34459-1-wen.he_1@nxp.com>
+ <20190813183005.EC13020665@mail.kernel.org>
+In-Reply-To: <20190813183005.EC13020665@mail.kernel.org>
+Accept-Language: en-US, zh-CN
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=wen.he_1@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6c28a252-6c56-4cbc-e367-08d7209cb3a2
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4700;
+x-ms-traffictypediagnostic: DB7PR04MB4700:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB7PR04MB4700D0FFE0E582F9E56DBB80E2AD0@DB7PR04MB4700.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 01294F875B
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(39860400002)(346002)(396003)(366004)(136003)(13464003)(189003)(199004)(76116006)(186003)(66476007)(81156014)(99286004)(446003)(66946007)(102836004)(66556008)(256004)(6506007)(53546011)(7696005)(26005)(9686003)(8936002)(64756008)(2906002)(14444005)(3846002)(76176011)(33656002)(81166006)(66446008)(2501003)(6116002)(476003)(14454004)(11346002)(478600001)(486006)(55016002)(52536014)(110136005)(6436002)(66066001)(7736002)(54906003)(71190400001)(71200400001)(74316002)(53936002)(316002)(305945005)(5660300002)(2201001)(86362001)(6246003)(8676002)(4326008)(25786009)(229853002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4700;H:DB7PR04MB5195.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: K8IcF9Kz6ZcsOSRXi9JE2lWloEWXLQ4Tu3hZWCp9qsTyw61rza/hSn+HcHwaD430zJaUSLxwFrkP+Bw0IQ6Jh/E/H/z/wo28kMojGZyBEinlZNMmpp8TZ/Dkv1VhWKDZDuHGrrg3BB5KIe94j0ZEzRBVHT4B3RV5DRAA2uZd0ajtMZL8G9/l9ytwJUd7KQNK4QNK4tPrXACfLXqMPPtC5hc2AowgWMkfWq+0y4VSShoXAaBF8OFkqpAcTKAceR+I0uJYL0ABp4xIkD013qI79fLLF84DXjLtIwlMC6VcYnME4rcR168AZ6LFx/iUQqt2FoMicL469znNwekF6fi3CMh/ri+Prtt14lpEQmeaxvz2B1fgsBCqQ0gbBWb7XjcCXvpGGCzfry38NC0x+ErhZQwgBKdaH7KLefYTHNpsO7U=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMz4kuLFeg2OyzgxZLp4Ks5ucTptOBTrxod5yVFXQ+q8ttKjcw@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c28a252-6c56-4cbc-e367-08d7209cb3a2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Aug 2019 09:49:29.5878
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 8wdMlI0NuOBpFMJfWwB4WcR+m7rD9o0OfFxtTnhvbCVWcla2/cjtBcBxzpWgW9Fc3AClDubhOH33WWgd4ZCRzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-
-On Wed, Aug 14, 2019 at 05:33:25PM +0800, Baolin Wang wrote:
-> On Wed, 14 Aug 2019 at 16:49, Uwe Kleine-König
-> <u.kleine-koenig@pengutronix.de> wrote:
-> > On Wed, Aug 14, 2019 at 03:52:08PM +0800, Baolin Wang wrote:
-> > > On 14/08/2019, Uwe Kleine-König <u.kleine-koenig@pengutronix.de> wrote:
-> > > > On Wed, Aug 14, 2019 at 03:25:53PM +0800, Baolin Wang wrote:
-> > > >> On Wed, 14 Aug 2019 at 15:01, Uwe Kleine-König
-> > > >> <u.kleine-koenig@pengutronix.de> wrote:
-> > > >> > On Wed, Aug 14, 2019 at 09:51:34AM +0800, Baolin Wang wrote:
-> > > >> > > On Tue, 13 Aug 2019 at 22:13, Uwe Kleine-König
-> > > >> > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > >> > > > On Tue, Aug 13, 2019 at 09:46:40PM +0800, Baolin Wang wrote:
-> > > >> > > > > +- assigned-clock-parents: The phandle of the parent clock of PWM
-> > > >> > > > > clock.
-> > > >> > > >
-> > > >> > > > I'm not sure you need to point out assigned-clocks and
-> > > >> > > > assigned-clock-parents as this is general clk stuff. Also I wonder if
-> > > >> > > > these should be "required properties".
-> > > >> > >
-> > > >> > > I think I should describe any properties used by PWM node, like
-> > > >> > > 'clocks' and 'clock-names' properties, though they are common clock
-> > > >> > > properties.
-> > > >> >
-> > > >> > Then you might want to describe also "status", "assigned-clock-rates",
-> > > >> > "pinctrl-$n", "pinctrl-names", "power-domains", "power-domain-names"
-> > > >> > and
-> > > >> > probably another dozen I'm not aware of.
-> > > >>
-> > > >> We usually do not describe 'status', but if your device node used
-> > > >> "pinctrl-$n", "pinctrl-names" ... common properties, yes, you should
-> > > >> describe them to let users know what is the purpose of these
-> > > >> properties. That's also asked by DT maintainer Rob.
-> > > >
-> > > > Does this convince you that you should also describe "pinctrl-$n" and
-> > > > the others? If not, why not? We also usually don't describe
-> > >
-> > > Our PWM device node did not use "pinctrl-$n" things, why I should
-> > > describe "pinctrl-$n"?
-> >
-> > The binding you implemented supports "pinctrl-$n". And this is described
-> > somewhere in the generic pinctrl binding docs. The same applies to
-> > "assigned-clock-parents".
-> >
-> > That you happen to use assigned-clock-parents but not pinctrl-$n on the
-> > board you used to develop your driver is a detail that IMHO shouldn't
-> > decide about being listed in the binding doc for your PWM type.
-> >
-> > > If some devices use pinctrl, yes, they should describe what is the
-> > > purpose of pinctrl, see:
-> > > https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
-> >
-> > I agree that if the driver assumes special pinctrl names this is worth
-> > mentioning. If however there is nothing special and just some generic
-> > stuff is used that is described in some other location then I'd chose to
-> > not add this redundant information to the binding document. So if I
-> > reviewed the patch that created
-> > Documentation/devicetree/bindings/mmc/sdhci-sprd.txt I would have
-> > suggested to drop "assigned-clocks" and "assigned-clock-parents" there,
-> > too.
-> >
-> > > > assigned-clock-parents. For me these are all in the same catagory:
-> > >
-> > > Lots of dt bindings describe 'assigned-clock-parents',:
-> > > ./Documentation/devicetree/bindings/display/msm/dsi.txt
-> > > ./Documentation/devicetree/bindings/display/msm/dsi.txt
-> > > ./Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
-> > > ./Documentation/devicetree/bindings/rtc/st,stm32-rtc.txt
-> > > ./Documentation/devicetree/bindings/rtc/st,stm32-rtc.txt
-> > > ./Documentation/devicetree/bindings/rtc/st,stm32-rtc.txt
-> > > ./Documentation/devicetree/bindings/pci/rockchip-pcie-host.txt
-> > > ./Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
-> > > ./Documentation/devicetree/bindings/sound/brcm,cygnus-audio.txt
-> > > ./Documentation/devicetree/bindings/sound/brcm,cygnus-audio.txt
-> > > ......
-> >
-> > I didn't check each of them, but I assume the same applies here, too.
-> > Please don't copy blindly but think before using other people's stuff as
-> 
-> I did not  copy blindly.
-
-OK, there was no offence intended.
-
-> > reference. Even in the Linux kernel where reviews seem and are told to
-> > catch non-optimal stuff, there are places where this doesn't work. IMHO
-> > the key question is: Does it add value to describe "assigned-clocks" in
-> > the binding for your PWM device given that you're only using this
-> > generic and well documented construct?
-> 
-> I just want to remind users that they should set the parent clock for
-> PWMs, otherwise the PWM source clock can be not available.
-
-Probably it is just subjective where to draw the line here. There are a
-thousand and one things that can go wrong when the PWM should be used.
-To me it seems artificial to pick one of these and mention it in a
-document that is supposed to describe how to formalize such a device.
-
-But given that we're going in cycles, I will stop trying to convince you
-now.
-
-Best regards
-Uwe
-
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU3RlcGhlbiBCb3lkIDxz
+Ym95ZEBrZXJuZWwub3JnPg0KPiBTZW50OiAyMDE55bm0OOaciDE05pelIDI6MzANCj4gVG86IE1h
+cmsgUnV0bGFuZCA8bWFyay5ydXRsYW5kQGFybS5jb20+OyBNaWNoYWVsIFR1cnF1ZXR0ZQ0KPiA8
+bXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb20+OyBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3Jn
+PjsgU2hhd24gR3VvDQo+IDxzaGF3bmd1b0BrZXJuZWwub3JnPjsgV2VuIEhlIDx3ZW4uaGVfMUBu
+eHAuY29tPjsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWNsa0B2Z2VyLmtl
+cm5lbC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IExlbyBMaSA8
+bGVveWFuZy5saUBueHAuY29tPjsgbGl2aXUuZHVkYXVAYXJtLmNvbTsgV2VuIEhlDQo+IDx3ZW4u
+aGVfMUBueHAuY29tPg0KPiBTdWJqZWN0OiBbRVhUXSBSZTogW3YxIDIvM10gZHQvYmluZGluZ3M6
+IGNsazogQWRkIERUIGJpbmRpbmdzIGZvciBMUzEwMjhBDQo+IERpc3BsYXkgb3V0cHV0IGludGVy
+ZmFjZQ0KPiANCj4gQ2F1dGlvbjogRVhUIEVtYWlsDQo+IA0KPiBRdW90aW5nIFdlbiBIZSAoMjAx
+OS0wOC0xMiAwMzowMjoxNikNCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2Nsb2NrL2ZzbCxwbGxkaWcudHh0DQo+ID4gYi9Eb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvY2xvY2svZnNsLHBsbGRpZy50eHQNCj4gPiBuZXcgZmlsZSBtb2Rl
+IDEwMDY0NA0KPiA+IGluZGV4IDAwMDAwMDAwMDAwMC4uMjljNWE2MTE3ODA5DQo+ID4gLS0tIC9k
+ZXYvbnVsbA0KPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jbG9j
+ay9mc2wscGxsZGlnLnR4dA0KPiA+IEBAIC0wLDAgKzEsMjYgQEANCj4gPiArTlhQIFFvcklRIExh
+eWVyc2NhcGUgTFMxMDI4QSBEaXNwbGF5IG91dHB1dCBpbnRlcmZhY2UgQ2xvY2sNCj4gPiArPT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0N
+Cj4gDQo+IENhbiB5b3UgY29udmVydCB0aGlzIHRvIFlBTUw/DQoNClN1cmUsIG5vIHByb2JsZW0u
+DQoNCj4gDQo+ID4gKw0KPiA+ICtSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgLSBjb21w
+YXRpYmxlOiBzaGFsbCBjb250YWluICJmc2wsbHMxMDI4YS1wbGxkaWciDQo+ID4gKyAgICAtIHJl
+ZzogUGh5c2ljYWwgYmFzZSBhZGRyZXNzIGFuZCBzaXplIG9mIHRoZSBibG9jayByZWdpc3RlcnMN
+Cj4gPiArICAgIC0gI2Nsb2NrLWNlbGxzOiBzaGFsbCBjb250YWluIDEuDQo+IA0KPiBBcyBJIHNh
+aWQgaW4gdGhlIHByZXZpb3VzIHBhdGNoLCB0aGlzIHNob3VsZCBwcm9iYWJseSBiZSAwLiBBbHNv
+LCBwbGVhc2Ugb3JkZXINCj4gdGhpcyBiZWZvcmUgdGhlIGRyaXZlciBpbiB0aGUgcGF0Y2ggc2Vy
+aWVzIGFuZCB0aHJlYWQgeW91ciBtZXNzYWdlcyBwbGVhc2UuIElmDQo+IHlvdSB1c2UgZ2l0LXNl
+bmQtZW1haWwgdGhpcyBpcyBkb25lIGZvciB5b3UgcHJldHR5IGVhc2lseS4NCg0KVW5kZXJzdGFu
+ZCwgV2lsbCBwcmVwYXJlIGFuZCBzZW5kIG5leHQgdmVyc2lvbiBwYXRjaC4NCg0KQmVzdCBSZWdh
+cmRzLA0KV2VuDQoNCj4gDQo+ID4gKyAgICAtIGNsb2NrczogYSBwaGFuZGxlICsgY2xvY2stc3Bl
+Y2lmaWVyIHBhaXJzLCBoZXJlIHNob3VsZCBiZQ0KPiA+ICsgICAgc3BlY2lmeSB0aGUgcmVmZXJl
+bmNlIGNsb2NrIG9mIHRoZSBzeXN0ZW0NCj4gPiArDQo+ID4gKw0K
