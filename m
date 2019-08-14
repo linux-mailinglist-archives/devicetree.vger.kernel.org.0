@@ -2,69 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B87E78CC8D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 09:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FB7F8CCB0
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 09:26:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727466AbfHNHTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 03:19:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51934 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727447AbfHNHTB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 03:19:01 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EB2312084F;
-        Wed, 14 Aug 2019 07:18:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565767140;
-        bh=CgAKQPDJ39jdFLM0nBvPd2yB9ynIfZDmD15ru0dJ7Os=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=xaHZ0IYch7m/jbb9TEOjTqeFLiP9rjxW2XvyKLTklDuQ9VCWvHmVQLVD1vQiu2rnn
-         cOw3uwlSbmBaV+/CauuBCa6G8Ycn0SjO7DHdkifs3BC5XJgnHS80jI2+9Un3NHt0B8
-         RdlAMWFb7XoCTlu2ZRn/MyMMRRqi3LC5q4DnDaVA=
-Content-Type: text/plain; charset="utf-8"
+        id S1727099AbfHNH0G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 03:26:06 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41405 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727017AbfHNH0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 03:26:05 -0400
+Received: by mail-oi1-f193.google.com with SMTP id g7so71526047oia.8
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 00:26:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=olhS25dpAXpeU0ZvOtkBvW+ClqVt1x4RdJvEXREO/pM=;
+        b=PQPmRWR5gZp7mzNL5oK4V7JWl+aObCQ514py2raT6sWBvoDpoDhuhxyizxfGl2XDNP
+         UdsBhgl9sEiDrvP0H8ET+8rIEoPFqY6R1sm9YoFL86uC2rfA6bUw+PV8xE7CK2lySd5m
+         ZNBGAwbUtKuUMQWtxa0+IWsAFm8tUM8ypG9BxebjDxqKA0dIeupfD0FzbrZH2TCifaTu
+         CXyk57FMxJ+e0lk8uxDEfwiEONa4tZCtX3RT9CFvTMiJd5Wdf+K5M72jTGZ3kdRnDTi7
+         QhaxqQDtcl0A1omOHnRG3sSxc8/pfu9CrbwFznkMPVZ+6pLAWZQco9/JqGyRqH5OC2Gu
+         1srw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=olhS25dpAXpeU0ZvOtkBvW+ClqVt1x4RdJvEXREO/pM=;
+        b=fqpZ/l+CqLsHPrSeAbaTjko1vc9g17oiOzZiSe9vjM/Yt13eiZLELHjQrunmF7idv3
+         +aIZTBS3c2R+hxf8JQlP9wsVq4TvyE1Y14h5PRFKCgyCTg5p25omq0muvesvLFm7z3KU
+         islMjoi7FiP7iHJ2Txyy0AFzy7gi/2ERm+z3JDkQxwGKZljRkVKZ7PnAiTGgfD2k8ivI
+         T7I10AUzdlfwEQH0jPz8Roqe+A9Eq+3/z6Rwd2P3vo3B2xWMTPsPp3VaSuuddayaXTQw
+         Vy3A164goVQGjnrUB0bW5jIz6raiTuEER818g+zAGNeqzZ+p5/PxWY5IP2anmH16WKow
+         3dkg==
+X-Gm-Message-State: APjAAAXoTyrcLiaJRW2OR8HJJr/Tf2gJBEv0U4DxKjXITfXEP6knhcSp
+        zV/n0ogWdLMEQTEMdrIYLBWVKCGfxFWgT2EO6f30Hg==
+X-Google-Smtp-Source: APXvYqw5nOr78y7pKXN0vQAd6beatsPQcxL4mjFV1POgeeN9zP3ZACVssAXIMIfMHPLrY/8lYDNt3otHDUbe5BNSK4s=
+X-Received: by 2002:aca:4255:: with SMTP id p82mr4392410oia.6.1565767564780;
+ Wed, 14 Aug 2019 00:26:04 -0700 (PDT)
 MIME-Version: 1.0
+References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
+ <20190813141256.jnbrfld42rtigek3@pengutronix.de> <CAMz4kuJA+a=nzFRja4wRkfJu3Gzb0wnvaM8H4Ek9X5u8CNegPg@mail.gmail.com>
+ <20190814070121.o53tj2mtky4hcy3n@pengutronix.de>
+In-Reply-To: <20190814070121.o53tj2mtky4hcy3n@pengutronix.de>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Wed, 14 Aug 2019 15:25:53 +0800
+Message-ID: <CAMz4ku+55O6ORVM9xDv4R954QG4PXV8EkcGypSTB5wKni+Dq+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM documentation
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190814055108.214253-15-brendanhiggins@google.com>
-References: <20190814055108.214253-1-brendanhiggins@google.com> <20190814055108.214253-15-brendanhiggins@google.com>
-Subject: Re: [PATCH v13 14/18] kunit: defconfig: add defconfigs for building KUnit tests
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com
-User-Agent: alot/0.8.1
-Date:   Wed, 14 Aug 2019 00:18:59 -0700
-Message-Id: <20190814071859.EB2312084F@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-08-13 22:51:04)
-> Add defconfig for UML and a fragment that can be used to configure other
-> architectures for building KUnit tests. Add option to kunit_tool to use
-> a defconfig to create the kunitconfig.
->=20
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> ---
+Hi Uwe,
 
-Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+On Wed, 14 Aug 2019 at 15:01, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello Baolin,
+>
+> On Wed, Aug 14, 2019 at 09:51:34AM +0800, Baolin Wang wrote:
+> > On Tue, 13 Aug 2019 at 22:13, Uwe Kleine-K=C3=B6nig
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> > > On Tue, Aug 13, 2019 at 09:46:40PM +0800, Baolin Wang wrote:
+> > > > +- assigned-clock-parents: The phandle of the parent clock of PWM c=
+lock.
+> > >
+> > > I'm not sure you need to point out assigned-clocks and
+> > > assigned-clock-parents as this is general clk stuff. Also I wonder if
+> > > these should be "required properties".
+> >
+> > I think I should describe any properties used by PWM node, like
+> > 'clocks' and 'clock-names' properties, though they are common clock
+> > properties.
+>
+> Then you might want to describe also "status", "assigned-clock-rates",
+> "pinctrl-$n", "pinctrl-names", "power-domains", "power-domain-names" and
+> probably another dozen I'm not aware of.
 
+We usually do not describe 'status', but if your device node used
+"pinctrl-$n", "pinctrl-names" ... common properties, yes, you should
+describe them to let users know what is the purpose of these
+properties. That's also asked by DT maintainer Rob.
+
+>
+> > Yes, they are required. Thanks for your comments.
+>
+> required in which sense? Why can a Spreadtrum PWM not work when the
+> clock parents are unspecified?
+
+On some Spreadtrum platforms, the default source clock of PWM may not
+be enabled, so we should force users to select one available source
+clock for PWM output clock.
+
+--=20
+Baolin Wang
+Best Regards
