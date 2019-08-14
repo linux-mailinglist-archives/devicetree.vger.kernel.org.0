@@ -2,83 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9710A8D34D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 14:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C6BC8D367
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 14:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727954AbfHNMgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 08:36:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57072 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726721AbfHNMgx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 08:36:53 -0400
-Received: from localhost.localdomain (unknown [171.76.115.97])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C3DC8214DA;
-        Wed, 14 Aug 2019 12:36:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565786212;
-        bh=iw7/VOdW7KyurNi2mN9MCaftt4mJsQIbhD4ac/JMS08=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iYMGZ4F2C016+yIxESrvTfcGGu1G3m80KFPKMkBm585htPG2zIwAAQxEhwMpr7Vdx
-         +1d28PXinWL+jnEdnJhsYMIRySOyt+o2y4ApGXuay/XlakUuKk31olwS4ticd+OGBo
-         dx3zNuvBaI7MagLWcEEhDxOt9q9mVJ17arK2zlQY=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm8150l support
-Date:   Wed, 14 Aug 2019 18:05:12 +0530
-Message-Id: <20190814123512.6017-3-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190814123512.6017-1-vkoul@kernel.org>
-References: <20190814123512.6017-1-vkoul@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726951AbfHNMqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 08:46:39 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:40888 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727425AbfHNMqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 08:46:38 -0400
+Received: by mail-pg1-f196.google.com with SMTP id w10so53034729pgj.7
+        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 05:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=/Tqal4DPxUyG798nTPcd+FwAY4NlPgoJZ1fPKoHBaLM=;
+        b=OEfzoBAXJBnlenOgnIcN8ObmapGd6oOPot2HHn8w7llFh28KD6us6MkjkNc0ASFRqW
+         rzl9HZQsKOvImk9AcBnVBAx7qfqDsXeXfpKJnk1ZBu/iJCuqXOt8kNZxvsueMGF+f3Df
+         M0GvGYxMRT87H2rdA3V9lQ0vlG8+dPLuxdl6MMjutpxG2Ogi8ecSJYuzzXIUpqrzN957
+         t5rzWoFXBSv1uRt6I45S697CkHsE2J2vFVeS2IGyTKgRLZZaDdtCtppwstwzqmonZyP1
+         brigO+/FywrRqkeVKQYrHngQYUwIMmRZd/rbjUhdQbuYEhkoeOf0utq/HxmGUHZRG9XW
+         kaZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=/Tqal4DPxUyG798nTPcd+FwAY4NlPgoJZ1fPKoHBaLM=;
+        b=VYg8f5VY96K/tTI+IoshqYHdwDo+0JHtbfdsIkBR1J2BZwIY6gsx79ftrzUKABfyz6
+         QeFl+VDmwm8fcYDL3sECpuNCEv8nWlE5q3QnlDPFJ2cV6OA/QGttR7PwLYRwikj3U3mR
+         Bs6xIYmd76KsxZraXKmC/IuHxp+4P7SVUS/A4YJem464lQRevAMVrJ3cnqs4WvK2ig9f
+         WTbwGhSWVqyK/+ma2ZAa3DjOeMUPxewqCk2COu+klAL77uzcVtPZdLnS8v3YQag9CBkS
+         K4KKfDJPrQEid8bg89D0SGLgwsv2DiQZYaTFbrqdrsAxXw8iqsRsEpZttAFLlN7mXWaw
+         OtrQ==
+X-Gm-Message-State: APjAAAVuEEM8U57seUjyoQXm8y3vuJ1sJ9kyPxmV5wNXsQl2gYFSieKl
+        9lvNNvuhPNwRrvyDsynp5Esv5w==
+X-Google-Smtp-Source: APXvYqzL6b8vhXNvL0RHogtvtcYwvvjP+B6NIIxmH5sFu0RZbQLilxXQnvdUcLuKpK4kFQZs8fsYdA==
+X-Received: by 2002:a63:f13:: with SMTP id e19mr38944881pgl.132.1565786797051;
+        Wed, 14 Aug 2019 05:46:37 -0700 (PDT)
+Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id e5sm40753099pgt.91.2019.08.14.05.46.34
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 14 Aug 2019 05:46:36 -0700 (PDT)
+From:   Baolin Wang <baolin.wang@linaro.org>
+To:     thierry.reding@gmail.com, robh+dt@kernel.org
+Cc:     u.kleine-koenig@pengutronix.de, mark.rutland@arm.com,
+        orsonzhai@gmail.com, zhang.lyra@gmail.com, baolin.wang@linaro.org,
+        vincent.guittot@linaro.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM documentation
+Date:   Wed, 14 Aug 2019 20:46:10 +0800
+Message-Id: <65a34dd943b0260bfe45ec76dcf414a67e5d8343.1565785291.git.baolin.wang@linaro.org>
+X-Mailer: git-send-email 1.7.9.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the PM8150l GPIO support to the Qualcomm PMIC GPIO
-binding.
+Add Spreadtrum PWM controller documentation.
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
 ---
- Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt | 1 +
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c                     | 2 ++
- 2 files changed, 3 insertions(+)
+Changes from v2:
+ - Fix some typos.
+ - Move assigned-clocks to be optional.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-index 457459d17e79..c32bf3237545 100644
---- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.txt
-@@ -99,6 +99,7 @@ to specify in a pin configuration subnode:
- 		    gpio1-gpio10 for pm8150 (holes on gpio2, gpio5, gpio7
- 					     and gpio8)
- 		    gpio1-gpio12 for pm8150b (holes on gpio3, gpio4, gpio7)
-+		    gpio1-gpio12 for pm8150l (hole on gpio7)
- 
- - function:
- 	Usage: required
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index 931c9349f145..6f935e46f12c 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1159,6 +1159,8 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	{ .compatible = "qcom,pm8150-gpio", .data = (void *) 10 },
- 	/* pm8150b has 12 GPIOs with holes on 3, r and 7 */
- 	{ .compatible = "qcom,pm8150b-gpio", .data = (void *) 12 },
-+	/* pm8150l has 12 GPIOs with holes on 7 */
-+	{ .compatible = "qcom,pm8150l-gpio", .data = (void *) 12 },
- 	{ },
- };
- 
+Changes from v1:
+ - Use assigned-clock-parents and assigned-clocks to set PWM clock parent.
+---
+ Documentation/devicetree/bindings/pwm/pwm-sprd.txt |   40 ++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sprd.txt
+
+diff --git a/Documentation/devicetree/bindings/pwm/pwm-sprd.txt b/Documentation/devicetree/bindings/pwm/pwm-sprd.txt
+new file mode 100644
+index 0000000..16fa5a0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/pwm-sprd.txt
+@@ -0,0 +1,40 @@
++Spreadtrum PWM controller
++
++Spreadtrum SoCs PWM controller provides 4 PWM channels.
++
++Required properties:
++- compatible : Should be "sprd,ums512-pwm".
++- reg: Physical base address and length of the controller's registers.
++- clocks: The phandle and specifier referencing the controller's clocks.
++- clock-names: Should contain following entries:
++  "pwmn": used to derive the functional clock for PWM channel n (n range: 0 ~ 3).
++  "enablen": for PWM channel n enable clock (n range: 0 ~ 3).
++- #pwm-cells: Should be 2. See pwm.txt in this directory for a description of
++  the cells format.
++
++Optional properties:
++- assigned-clocks: Reference to the PWM clock entries.
++- assigned-clock-parents: The phandle of the parent clock of PWM clock.
++
++Example:
++	pwms: pwm@32260000 {
++		compatible = "sprd,ums512-pwm";
++		reg = <0 0x32260000 0 0x10000>;
++		clock-names = "pwm0", "enable0",
++			"pwm1", "enable1",
++			"pwm2", "enable2",
++			"pwm3", "enable3";
++		clocks = <&aon_clk CLK_PWM0>, <&aonapb_gate CLK_PWM0_EB>,
++		       <&aon_clk CLK_PWM1>, <&aonapb_gate CLK_PWM1_EB>,
++		       <&aon_clk CLK_PWM2>, <&aonapb_gate CLK_PWM2_EB>,
++		       <&aon_clk CLK_PWM3>, <&aonapb_gate CLK_PWM3_EB>;
++		assigned-clocks = <&aon_clk CLK_PWM0>,
++			<&aon_clk CLK_PWM1>,
++			<&aon_clk CLK_PWM2>,
++			<&aon_clk CLK_PWM3>;
++		assigned-clock-parents = <&ext_26m>,
++			<&ext_26m>,
++			<&ext_26m>,
++			<&ext_26m>;
++		#pwm-cells = <2>;
++	};
 -- 
-2.20.1
+1.7.9.5
 
