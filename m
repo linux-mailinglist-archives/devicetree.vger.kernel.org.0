@@ -2,117 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92B7B8CF0D
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:09:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53EAE8CF24
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 11:17:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726548AbfHNJJB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 05:09:01 -0400
-Received: from mail-wr1-f97.google.com ([209.85.221.97]:43921 "EHLO
-        mail-wr1-f97.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725954AbfHNJJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 05:09:00 -0400
-Received: by mail-wr1-f97.google.com with SMTP id y8so4413188wrn.10
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 02:08:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nm3AZYQqg9bViUcvgRl1pV30pLA1C+5Glu61dF/KaxE=;
-        b=YFWOyd9HIxLVC1FdKDl/fHuemnU4B7sGRjgTvocTpJtzMXvunR8LQubshaVt/jgzZ5
-         t0j9wlxRbt4R9VlNHT9yhMonhkv4YVc5ATOgUh0nC/48TVwgbErLFuMibk+qbM8Jxfnf
-         YGnqjLStJljhZr7d3XiPhqJN+DkA9fIzdVi1FZJ8w1DVfDiej++zKg5sK/UsYmdsS+DK
-         mFYax9cFOeQsQC3+pyiNNqyirszD4clM/SYDTxPMC0fYVHB1KBXkHRfF6oeuVF3W1GDV
-         fFSxS3vWsUv9YvNYkAHb0IhuisG7Tt8MOB+iQNY4UReTViJjewBilqB76sj9KHawxQiq
-         K+kw==
-X-Gm-Message-State: APjAAAU+KBltUyGxBKNo/oNK1PZsSPB/3wZhqoX0QYWssSWHLmlE1MLR
-        lSj19w7Z3sBGvsMkidez428RLwmhV07A38AMo2nqyZen9CMlHQcuLb1Kp1hHuEw2bg==
-X-Google-Smtp-Source: APXvYqx09Vp6TVCKEOGeRGp2vPm76Veya96vzaDAvRDLPlwS7Ifbhnu0U5u4Sf7upuzG27awVEJE32T0GmlR
-X-Received: by 2002:adf:e2c1:: with SMTP id d1mr53838825wrj.283.1565773738885;
-        Wed, 14 Aug 2019 02:08:58 -0700 (PDT)
-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
-        by smtp-relay.gmail.com with ESMTPS id y196sm36316wmd.41.2019.08.14.02.08.58
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 14 Aug 2019 02:08:58 -0700 (PDT)
-X-Relaying-Domain: sirena.org.uk
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hxpH8-0004cl-7R; Wed, 14 Aug 2019 09:08:58 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id D9C112742B4F; Wed, 14 Aug 2019 10:08:56 +0100 (BST)
-Date:   Wed, 14 Aug 2019 10:08:56 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, plai@codeaurora.org, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        spapothi@codeaurora.org
-Subject: Re: [alsa-devel] [PATCH v2 3/5] ASoC: core: add support to
- snd_soc_dai_get_sdw_stream()
-Message-ID: <20190814090856.GA4640@sirena.co.uk>
-References: <20190813083550.5877-4-srinivas.kandagatla@linaro.org>
- <ba88e0f9-ae7d-c26e-d2dc-83bf910c2c01@linux.intel.com>
- <c2eecd44-f06a-7287-2862-0382bf697f8d@linaro.org>
- <d2b7773b-d52a-7769-aa5b-ef8c8845d447@linux.intel.com>
- <d7c1fdb2-602f-ecb1-9b32-91b893e7f408@linaro.org>
- <f0228cb4-0a6f-17f3-fe03-9be7f5f2e59d@linux.intel.com>
- <20190813191827.GI5093@sirena.co.uk>
- <cc360858-571a-6a46-1789-1020bcbe4bca@linux.intel.com>
- <20190813195804.GL5093@sirena.co.uk>
- <20190814041142.GU12733@vkoul-mobl.Dlink>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SUOF0GtieIMvvwua"
-Content-Disposition: inline
-In-Reply-To: <20190814041142.GU12733@vkoul-mobl.Dlink>
-X-Cookie: Bridge ahead.  Pay troll.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1725996AbfHNJRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 05:17:47 -0400
+Received: from laurent.telenet-ops.be ([195.130.137.89]:60564 "EHLO
+        laurent.telenet-ops.be" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725828AbfHNJRr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 05:17:47 -0400
+Received: from ramsan ([84.194.98.4])
+        by laurent.telenet-ops.be with bizsmtp
+        id oxHl2000605gfCL01xHlN4; Wed, 14 Aug 2019 11:17:45 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1hxpPd-0003RW-7H; Wed, 14 Aug 2019 11:17:45 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1hxpPd-0003Hb-5D; Wed, 14 Aug 2019 11:17:45 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH v2] scripts/dtc: dtx_diff - make help text formatting consistent
+Date:   Wed, 14 Aug 2019 11:17:43 +0200
+Message-Id: <20190814091743.12577-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+None of the help texts use capitalization, except the one for the -T
+option.  Drop the capitalization for consistency.
+Split the single long line that doesn't fit in 80 characters.
 
---SUOF0GtieIMvvwua
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
+---
+v2:
+  - Add Reviewed-by.
+---
+ scripts/dtc/dtx_diff | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-On Wed, Aug 14, 2019 at 09:41:42AM +0530, Vinod Koul wrote:
-> On 13-08-19, 20:58, Mark Brown wrote:
+diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+index 00fd4738a5877948..e9ad7834a22d9459 100755
+--- a/scripts/dtc/dtx_diff
++++ b/scripts/dtc/dtx_diff
+@@ -27,7 +27,8 @@ Usage:
+        -s SRCTREE   linux kernel source tree is at path SRCTREE
+                         (default is current directory)
+        -S           linux kernel source tree is at root of current git repo
+-       -T           Annotate output .dts with input source file and line (-T -T for more details)
++       -T           annotate output .dts with input source file and line
++                        (-T -T for more details)
+        -u           unsorted, do not sort DTx
+ 
+ 
+-- 
+2.17.1
 
-> > There is something to be said for not abusing the TDM slot API if it can
-> > make things clearer by using bus-idiomatic mechanisms, but it does mean
-> > everything needs to know about each individual bus :/ .
-
-> Here ASoC doesn't need to know about sdw bus. As Srini explained, this
-> helps in the case for him to get the stream context and set the stream
-> context from the machine driver.
-
-Other drivers interoperating with the Soundwire DAI might want to do
-something, it looks like that's the case for SOF.
-
-> Nothing else is expected to be done from this API. We already do a set
-> using snd_soc_dai_set_sdw_stream(). Here we add the snd_soc_dai_get_sdw_stream() to query
-
-Well, if the API is not expected to do anything we can optimize it and
-just remove it!
-
---SUOF0GtieIMvvwua
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1Tz6UACgkQJNaLcl1U
-h9B7fgf+PvYlFGtuBj37wZOpu/dVlS5vmQbNkNVdhUbDbjO5oYTemRTIB5PukA4R
-tO6idhVUsIlMWCvN6MZKJXPGgZfB7Heu84YAn3GvBmIFmY3J4c3QwsD1pIf1gmGH
-X+xV//bbiewRLrA7LvbQalQanUpCVVlCrjsJ8FeDg+PFs4wPO9gE2N7pevVhzknu
-tIaB6HO88+eAx0FfUUvXjWKo5qov/1LjhsI8Z2DJuKfpi9zfBatUz+/Q75d2WEJS
-0G8ATi/5aZueU+YB1T6xdQtkS/lPIFRYN7dyMZrLyidtwkttiii8UzStBh64F6QO
-MSoasP9IToaTUPdzqxcH3bIYBg2R3Q==
-=pxWA
------END PGP SIGNATURE-----
-
---SUOF0GtieIMvvwua--
