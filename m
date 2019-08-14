@@ -2,86 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B32F38CEC5
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5626F8CECF
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 10:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726530AbfHNIrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 04:47:31 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:38796 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726488AbfHNIrb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 04:47:31 -0400
-Received: by mail-wr1-f66.google.com with SMTP id g17so110296812wrr.5
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 01:47:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=G0a6gblQbbIzUwDe3eeqwGYgG4v78FyPDrriBQXOIMg=;
-        b=XvAJi7R+VJgktQ0Y82Eu13fxn0IhgnzTdR1XAVRk0J8aHkA3iRirsKSBrJswDtvYeR
-         rp9rzEDjOTd52FqmXnDCmfSGxQSywri/wVFzQ0uORjEmQ54etjzyfIvNZ90oFTznREbd
-         Zd2126UNTD0kqADU9JNleOQewo6FgmVzphll1AwAV8KzdNrHWhGxAFZPBpi5netMnRKl
-         KjLUwGWrstW/0S8BsnFwOuaLU+rrs6eMhu81X04wwcFzxizG+GFBB5Zqb01i2giQkjSJ
-         yJ05Zz5CNY2Hi2d6nqLvIuupt+twnnXDRN78kn8fP09GQJGiwns770ChGFo0dRVK9unw
-         nBQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=G0a6gblQbbIzUwDe3eeqwGYgG4v78FyPDrriBQXOIMg=;
-        b=I3kXMoP3FgWiALB2sHr+abQ86l6S2mLZ11ttcpuaE5GZlVgbPWHJYN92FrtQo0YD7U
-         Han8lQheITLpCdazuMZDiuzCniWmOLR0M+xapC0ahvAwzxBXI531eqSGk07JyYiGMrxb
-         xP6u/5r8avWCDYDoVtku/f50o3t2p5pqH1suwss8bEWRhXUImT9ZKygsfSBgsQplwx1f
-         H/neAcPN5cxxUxoKaLybmg0zmkruMhzZnOMLKklJpeBiGJSIyys3AzjcfoMrQT2o2LDY
-         efZh3WdzolZORCWZLNn+doeFijlOYMTIFWJ/n0YQwT0VKqDSgSDCiMg3rJagD6FS0FJK
-         fW/g==
-X-Gm-Message-State: APjAAAXb7au09elHnZEjr0dSjw2BP2vPxqM4itPvbYK2oP09Xb1ykkIF
-        /yfljd33qJInCNUQgDnt2jk9ng==
-X-Google-Smtp-Source: APXvYqwBgH3qKuhjUwo1Y6dzBQGw2rtTihnsDDilzjf99lxoRerVHH8y6aEAN78D/IO91ALE4FU9Bw==
-X-Received: by 2002:a5d:4206:: with SMTP id n6mr51359543wrq.110.1565772449309;
-        Wed, 14 Aug 2019 01:47:29 -0700 (PDT)
-Received: from mms-0440.qualcomm.mm-sol.com ([37.157.136.206])
-        by smtp.gmail.com with ESMTPSA id u186sm7176141wmu.26.2019.08.14.01.47.28
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 14 Aug 2019 01:47:28 -0700 (PDT)
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-To:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Vikash Garodia <vgarodia@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Aniket Masule <amasule@codeaurora.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: sdm845: Add interconnect properties for Venus
-Date:   Wed, 14 Aug 2019 11:47:01 +0300
-Message-Id: <20190814084701.25455-3-stanimir.varbanov@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
-References: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
+        id S1726307AbfHNIte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 04:49:34 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57511 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725888AbfHNIte (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 04:49:34 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hxoyI-0004sN-5W; Wed, 14 Aug 2019 10:49:30 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hxoyH-0003Dm-D5; Wed, 14 Aug 2019 10:49:29 +0200
+Date:   Wed, 14 Aug 2019 10:49:29 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
+Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM
+ documentation
+Message-ID: <20190814084929.q3uy7cpf4ullpevo@pengutronix.de>
+References: <f9d2c7cb01cbf31bf75c4160611fa1d37d99f355.1565703607.git.baolin.wang@linaro.org>
+ <20190813141256.jnbrfld42rtigek3@pengutronix.de>
+ <CAMz4kuJA+a=nzFRja4wRkfJu3Gzb0wnvaM8H4Ek9X5u8CNegPg@mail.gmail.com>
+ <20190814070121.o53tj2mtky4hcy3n@pengutronix.de>
+ <CAMz4ku+55O6ORVM9xDv4R954QG4PXV8EkcGypSTB5wKni+Dq+Q@mail.gmail.com>
+ <20190814073939.ubgzysmkmmel5h4y@pengutronix.de>
+ <CAMz4ku+Q7CV+0dP1P0hAPJR7KiG0HOkZbT_LPXY4Q03hMuvS8A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMz4ku+Q7CV+0dP1P0hAPJR7KiG0HOkZbT_LPXY4Q03hMuvS8A@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate Venus DT node with interconnect properties.
+Hello,
 
-Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+On Wed, Aug 14, 2019 at 03:52:08PM +0800, Baolin Wang wrote:
+> On 14/08/2019, Uwe Kleine-König <u.kleine-koenig@pengutronix.de> wrote:
+> > On Wed, Aug 14, 2019 at 03:25:53PM +0800, Baolin Wang wrote:
+> >> On Wed, 14 Aug 2019 at 15:01, Uwe Kleine-König
+> >> <u.kleine-koenig@pengutronix.de> wrote:
+> >> > On Wed, Aug 14, 2019 at 09:51:34AM +0800, Baolin Wang wrote:
+> >> > > On Tue, 13 Aug 2019 at 22:13, Uwe Kleine-König
+> >> > > <u.kleine-koenig@pengutronix.de> wrote:
+> >> > > > On Tue, Aug 13, 2019 at 09:46:40PM +0800, Baolin Wang wrote:
+> >> > > > > +- assigned-clock-parents: The phandle of the parent clock of PWM
+> >> > > > > clock.
+> >> > > >
+> >> > > > I'm not sure you need to point out assigned-clocks and
+> >> > > > assigned-clock-parents as this is general clk stuff. Also I wonder if
+> >> > > > these should be "required properties".
+> >> > >
+> >> > > I think I should describe any properties used by PWM node, like
+> >> > > 'clocks' and 'clock-names' properties, though they are common clock
+> >> > > properties.
+> >> >
+> >> > Then you might want to describe also "status", "assigned-clock-rates",
+> >> > "pinctrl-$n", "pinctrl-names", "power-domains", "power-domain-names"
+> >> > and
+> >> > probably another dozen I'm not aware of.
+> >>
+> >> We usually do not describe 'status', but if your device node used
+> >> "pinctrl-$n", "pinctrl-names" ... common properties, yes, you should
+> >> describe them to let users know what is the purpose of these
+> >> properties. That's also asked by DT maintainer Rob.
+> >
+> > Does this convince you that you should also describe "pinctrl-$n" and
+> > the others? If not, why not? We also usually don't describe
+> 
+> Our PWM device node did not use "pinctrl-$n" things, why I should
+> describe "pinctrl-$n"?
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 0323e3da190a..567bfc89bd77 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2039,6 +2039,9 @@
- 			iommus = <&apps_smmu 0x10a0 0x8>,
- 				 <&apps_smmu 0x10b0 0x0>;
- 			memory-region = <&venus_mem>;
-+			interconnects = <&rsc_hlos MASTER_VIDEO_P0 &rsc_hlos SLAVE_EBI1>,
-+					<&rsc_hlos MASTER_APPSS_PROC &rsc_hlos SLAVE_VENUS_CFG>;
-+			interconnect-names = "video-mem", "cpu-cfg";
- 
- 			video-core0 {
- 				compatible = "venus-decoder";
+The binding you implemented supports "pinctrl-$n". And this is described
+somewhere in the generic pinctrl binding docs. The same applies to
+"assigned-clock-parents".
+
+That you happen to use assigned-clock-parents but not pinctrl-$n on the
+board you used to develop your driver is a detail that IMHO shouldn't
+decide about being listed in the binding doc for your PWM type.
+
+> If some devices use pinctrl, yes, they should describe what is the
+> purpose of pinctrl, see:
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/Documentation/devicetree/bindings/mmc/sdhci-sprd.txt
+
+I agree that if the driver assumes special pinctrl names this is worth
+mentioning. If however there is nothing special and just some generic
+stuff is used that is described in some other location then I'd chose to
+not add this redundant information to the binding document. So if I
+reviewed the patch that created
+Documentation/devicetree/bindings/mmc/sdhci-sprd.txt I would have
+suggested to drop "assigned-clocks" and "assigned-clock-parents" there,
+too.
+
+> > assigned-clock-parents. For me these are all in the same catagory:
+> 
+> Lots of dt bindings describe 'assigned-clock-parents',:
+> ./Documentation/devicetree/bindings/display/msm/dsi.txt
+> ./Documentation/devicetree/bindings/display/msm/dsi.txt
+> ./Documentation/devicetree/bindings/display/mediatek/mediatek,hdmi.txt
+> ./Documentation/devicetree/bindings/rtc/st,stm32-rtc.txt
+> ./Documentation/devicetree/bindings/rtc/st,stm32-rtc.txt
+> ./Documentation/devicetree/bindings/rtc/st,stm32-rtc.txt
+> ./Documentation/devicetree/bindings/pci/rockchip-pcie-host.txt
+> ./Documentation/devicetree/bindings/sound/mt2701-afe-pcm.txt
+> ./Documentation/devicetree/bindings/sound/brcm,cygnus-audio.txt
+> ./Documentation/devicetree/bindings/sound/brcm,cygnus-audio.txt
+> ......
+
+I didn't check each of them, but I assume the same applies here, too.
+Please don't copy blindly but think before using other people's stuff as
+reference. Even in the Linux kernel where reviews seem and are told to
+catch non-optimal stuff, there are places where this doesn't work. IMHO
+the key question is: Does it add value to describe "assigned-clocks" in
+the binding for your PWM device given that you're only using this
+generic and well documented construct?
+
+> > Common properties supported for each devicetree node that represents a
+> > device. The only difference is that on your board you make use of some
+> > but not some others.
+> 
+> Fine, let's decide this by PWM maintainer or DT maintainer Rob.
+
+Fine for me.
+
+> >> > > Yes, they are required. Thanks for your comments.
+> >> >
+> >> > required in which sense? Why can a Spreadtrum PWM not work when the
+> >> > clock parents are unspecified?
+> >>
+> >> On some Spreadtrum platforms, the default source clock of PWM may not
+> >> be enabled, so we should force users to select one available source
+> >> clock for PWM output clock.
+> >
+> > Sounds like a bug in the clk tree of your SoC that shouldn't affect how
+> > the PWM is described in the device tree. After all a parent of a clock
+> > is supposed to become enabled when the clock gets enabled.
+> 
+> That's not a bug, that's like a MUX, the default source clock of PWM
+> can be disabled, since we usually do not use the default source clock.
+> Then we can select a available source clock by the MUX.
+
+In my eyes there is a difference between a) The way the clocks are
+implemented in the XZ SoC implies that to actually use the PWM you need
+to reparent some clock; and b) Each "sprd,ums512-pwm" device really
+needs an "assigned-clock" property, otherwise it cannot work.
+
+If you write "required" in the binding doc the semantic should be b) but
+the motivation here seems to be a). Legal questions aside someone could
+implement a PWM that has the same register layout and behaviour as the
+PWM in your SoC but with a different clock tree. Should they use a
+different compatible just because they don't need "assigned-clock"?
+
+Best regards
+Uwe
+
 -- 
-2.17.1
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
