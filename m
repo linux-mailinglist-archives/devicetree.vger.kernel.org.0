@@ -2,116 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52D988D03C
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 12:04:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89E8F8D044
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 12:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbfHNKEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 06:04:01 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:37350 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725996AbfHNKEB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 06:04:01 -0400
-Received: by mail-pg1-f193.google.com with SMTP id d1so20020494pgp.4
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 03:04:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=A8hpxCTzvYAcZn9UvY3kAbimH8cB/wVPQT2NUqi4FTg=;
-        b=mX9zQWTJ21YVDsg/IO/lw3vK/5gRG1WKeYfq5hAVfRdrbxBQb/LOP7585An8TcS5uX
-         tQfD//4o9HuUJa0OuyeBf0yYOxvzPAaOMjQC0e2XsG/XzCmrU1JU4X/cHR16Fl4JFHLe
-         Zi0Tt+GUrI9Wq+kCxNmISk1ZO0HC18yrn6Nwe48kfT9CiA+xyYq2zY+VKjPraHI0VO+y
-         z/s0hx02KzWhdnSkkt85Mam6mmVNYQ/kS61kWPXi/v/57imnYMdAPEqFsVlbDExrl+Ld
-         2hdI8g4c1e8Cjj/bm8uvF1dfC8bBYtWFJT7eA1eUTgYFQ5SiQc/BI8jH+SCjQE2t4VrR
-         5trQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A8hpxCTzvYAcZn9UvY3kAbimH8cB/wVPQT2NUqi4FTg=;
-        b=CZa8fiZCevge5q/U11Xv2VBdY2X7vO07lZ/IgpHAShQmF2YBwWtj8MXszxIGZPfzec
-         twhWCgc2cot3nVmQMU/jg6ZRiD12ttMfHKygS0O7TIXrCuhGJV9K+AqM7Nw3G5+n6ZSH
-         Ogag+pbH64gIyqdHYt9x7RFzhaG2Lp/La9v+yV+deimTwzgEVxHPTeqYW1E+gBgv3heh
-         miRZkDEhHxCWZQVsASdDveBh4UEs+hBvjuiPtLL/RYu1ji1baZLaDrh7rCMZjIKIlHRF
-         HJLDDpcGEtHCwjTWM0gxf9ffPkMAIOiYnqKhNTgKc0D/CjpoFNLp8q/88tcDfPSPPkeK
-         Chqg==
-X-Gm-Message-State: APjAAAUL/V3lwCOHD4KoaiRiXSWrxz8Pbh2HlPicXhOf5WQkhQ+73SwW
-        pGCGUuvuly22wf4vgMmfqESDMtnqhy4rwTidWpFawg==
-X-Google-Smtp-Source: APXvYqxyXqiNwjdTK3oFKny5yM7CmoKjVDpDDnZBrvH4fSE28h1/JfZ1mGpG1xfSCFWK+kgS1gJNI6SNjgBRmNUJeQM=
-X-Received: by 2002:a63:205f:: with SMTP id r31mr36074127pgm.159.1565777039574;
- Wed, 14 Aug 2019 03:03:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814055108.214253-1-brendanhiggins@google.com>
-In-Reply-To: <20190814055108.214253-1-brendanhiggins@google.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Wed, 14 Aug 2019 03:03:47 -0700
-Message-ID: <CAFd5g45NdQEcP0JQpZc3HYYgNZfsBsHL+ByXRK+OupWObwMuqg@mail.gmail.com>
-Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        id S1726221AbfHNKF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 06:05:27 -0400
+Received: from foss.arm.com ([217.140.110.172]:51364 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725280AbfHNKF1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 06:05:27 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7D7D6344;
+        Wed, 14 Aug 2019 03:05:26 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E96B3F694;
+        Wed, 14 Aug 2019 03:05:24 -0700 (PDT)
+Date:   Wed, 14 Aug 2019 11:05:18 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Morten Borup Petersen <morten_bp@live.dk>,
+        Tushar Khandelwal <tushar.khandelwal@arm.com>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
+        "tushar.2nov@gmail.com" <tushar.2nov@gmail.com>,
+        "nd@arm.com" <nd@arm.com>,
+        Morten Borup Petersen <morten.petersen@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH 1/4] mailbox: arm_mhuv2: add device tree binding
+ documentation
+Message-ID: <20190814100518.GA21898@e107155-lin>
+References: <20190717192616.1731-1-tushar.khandelwal@arm.com>
+ <20190717192616.1731-2-tushar.khandelwal@arm.com>
+ <CABb+yY04vW-i35N6P57KSKgmMAYkrA2CDyUvA-bLCZMxiZaocw@mail.gmail.com>
+ <CABb+yY1SeHTgZQNAHJW+dZG=khah5c5igtKy+MrjADnZF29Aow@mail.gmail.com>
+ <VI1PR0601MB21113C48E719B2C79EC2FE508FC20@VI1PR0601MB2111.eurprd06.prod.outlook.com>
+ <CABb+yY3yMWbUiQnJgfQhwnW1OM3aoFL3ZFc018E-fxGichi-4Q@mail.gmail.com>
+ <VI1PR0601MB2111A5A4E951F011D389A8978FD90@VI1PR0601MB2111.eurprd06.prod.outlook.com>
+ <CABb+yY3Ni7wV+ui1LO7TERWQH_BoakZbPq961wdRPB4X-nwS2A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CABb+yY3Ni7wV+ui1LO7TERWQH_BoakZbPq961wdRPB4X-nwS2A@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 13, 2019 at 10:52 PM Brendan Higgins
-<brendanhiggins@google.com> wrote:
->
-> ## TL;DR
->
-> This revision addresses comments from Stephen and Bjorn Helgaas. Most
-> changes are pretty minor stuff that doesn't affect the API in anyway.
-> One significant change, however, is that I added support for freeing
-> kunit_resource managed resources before the test case is finished via
-> kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
-> KUnit on certain configurations (like the default one for x86, whoops).
->
-> Based on Stephen's feedback on the previous change, I think we are
-> pretty close. I am not expecting any significant changes from here on
-> out.
-
-Stephen, it looks like you have just replied with "Reviewed-bys" on
-all the remaining emails that you looked at. Is there anything else
-that we are missing? Or is this ready for Shuah to apply?
-
+On Tue, Aug 13, 2019 at 11:36:56AM -0500, Jassi Brar wrote:
 [...]
 
-Cheers!
+> > >>
+> > >> As mentioned in the response to your initial comment, the driver does
+> > >> not currently support mixing protocols.
+> > >>
+> > > Thanks for acknowledging that limitation. But lets also address it.
+> > >
+> >
+> > We are hesitant to dedicate time to developing mixing protocols given
+> > that we don't have any current usecase nor any current platform which
+> > would support this.
+> >
+> Can you please share the client code against which you tested this driver?
+> From my past experience, I realise it is much more efficient to tidyup
+> the code myself, than endlessly trying to explain the benefits.
+>
+
+Thanks for the patience and offer. Can we try the same with MHUv1 and SCMI
+upstream driver.
+
+The firmware just uses High Priority physical channel bit 0 and 2 as Tx
+and bit 1 and 3 as Rx. Bit 2 and 3 are for perf which shouldn't get blocked
+by bit 0 and 1. I mean I can have 10 requests covering clocks/sensors and
+others on bit 0 and 1, but the bits 2 and 3 are dedicated for DVFS and
+shouldn't be blocked because of other non DVFS requests.
+
+The DT looks something like this(modified MHU binding for 2 cells)
+
+	mailbox: mhu@2b1f0000 {
+		compatible = "arm,primecell";
+		reg = <0x0 0x2b1f0000 0x0 0x1000>;
+		interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>,
+			     <GIC_SPI 35 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "mhu_lpri_rx",
+				  "mhu_hpri_rx";
+		#mbox-cells = <2>;
+		mbox-name = "ARM-MHU";
+		clocks = <&soc_refclk100mhz>;
+		clock-names = "apb_pclk";
+	};
+	firmware {
+		scmi {
+			compatible = "arm,scmi";
+			mbox-names = "tx", "rx";
+			mboxes = <&mailbox 0 0 &mailbox 0 1>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			scmi_devpd: protocol@11 {
+				reg = <0x11>;
+				#power-domain-cells = <1>;
+			};
+
+			scmi_dvfs: protocol@13 {
+				reg = <0x13>;
+				#clock-cells = <1>;
+				mbox-names = "tx", "rx";
+				mboxes = <&mailbox 0 2 &mailbox 0 3>;
+			};
+
+			scmi_clk: protocol@14 {
+				reg = <0x14>;
+				#clock-cells = <1>;
+			};
+
+			scmi_sensors0: protocol@15 {
+				reg = <0x15>;
+				#thermal-sensor-cells = <1>;
+			};
+		};
+	};
+
+--
+Regards,
+Sudeep
+
