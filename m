@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B89A48CA74
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 06:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43A2F8CA7C
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 06:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726875AbfHNEjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 00:39:07 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:38358 "EHLO
+        id S1727201AbfHNEoQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 00:44:16 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:39965 "EHLO
         mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726818AbfHNEjH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 00:39:07 -0400
-Received: by mail-ed1-f65.google.com with SMTP id r12so5913563edo.5;
-        Tue, 13 Aug 2019 21:39:06 -0700 (PDT)
+        with ESMTP id S1725262AbfHNEoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 00:44:16 -0400
+Received: by mail-ed1-f65.google.com with SMTP id h8so20616930edv.7;
+        Tue, 13 Aug 2019 21:44:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tOFzth/1t3h2J4LDht3H6+aj/CXIWQiypTJlHhUjEtg=;
-        b=irPlJWYku41mghSOVpE88PjPtRisvjHWxIuP8ANpDyWgwCULm0MMnEbRrKBFDbARBA
-         RmM+s+mUYqtWuRhXFyXMR7CcqE4APdu6pae4ACEhIzMhSg8duDrU1uztS//gk7rkMVVI
-         ED2dNiDLTS+S6SOYb6hyOPGeNORXLTc4yY61Za++9Wei5vP1XwVibFtXE/oVLFmsjsQG
-         paR3uiaT/kVjVkZLuNEgRShz5mP0x30gSopd8MlIpro80EWhKrHJspdu9k4hO2HX7Y9B
-         Jy35Jen7z7KI2C2Ayi+k4WiDrUdC826UfPd1c90XFF4dByQNPHTc4KcTqI/WnwpBMucN
-         9RFA==
-X-Gm-Message-State: APjAAAU0HiSU+shvk21gZbONKiMOxbuzsQylbwXIjAuNGxHeBjCfvQiP
-        JXOcwtcvjigOrrmp8V8Y4jLB8ywncdI=
-X-Google-Smtp-Source: APXvYqwILgQ9HiR8qxeH5kOeSHE7enK0H3ZeprQqO73aeEOsjuN0iNPZUhpytJ2GGNy13sOThClfeQ==
-X-Received: by 2002:a50:c19a:: with SMTP id m26mr16395223edf.184.1565757545257;
-        Tue, 13 Aug 2019 21:39:05 -0700 (PDT)
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com. [209.85.128.50])
-        by smtp.gmail.com with ESMTPSA id r19sm2540152edy.52.2019.08.13.21.39.04
+        bh=9Z6D8IiynDoonRo+cCux5+ugmeKBsc4T5KOeVrjO/y0=;
+        b=ohS3F0ckexhD0grG5/EApQQuSU8Hfrk8riSZ2PkJQzDDdiLJIzHkL5DG9DD/4QTsOk
+         w9sSNGeah+IpPxPzOfgqZ7vql6b3dpSFmpjTIG5BiZk4iAa5IYOov69U0o8W098u+nAY
+         NWUdZOvEL03XheMBzJpjg5mA1PK9IPjjw8inuGgM7jnyixuY66gziAIFqpJr6pYBZnu9
+         H6LLzZNzQQzn9gjFYhhYtCfHorDafPfCh4RqW56vY5LHoljLVwlnLRlKTyEJJar4yNTz
+         pXZHjkjG1EfOSUt+MoRHNEJm4s3qY7kVDbgsat86FI4uEhN6x7YuraXXdOtHR40vq6e0
+         RXaQ==
+X-Gm-Message-State: APjAAAVJtHc5iHi2tONF1DG0SOV7j3cs8PyM1A7uyVFkMKCVWksfRhZQ
+        u7YtdCC/8INOo9qS2peLuhZhd/GhbpQ=
+X-Google-Smtp-Source: APXvYqwCDlJlJQTBrjnpXRQJf4d8oHwRMFDgP4pWLMb04RmDK0zl6A+ZY82TSUXZLRT4qa4iv4Ciag==
+X-Received: by 2002:a17:906:1dcb:: with SMTP id v11mr38833182ejh.218.1565757854556;
+        Tue, 13 Aug 2019 21:44:14 -0700 (PDT)
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com. [209.85.221.41])
+        by smtp.gmail.com with ESMTPSA id b17sm1856923edy.43.2019.08.13.21.44.14
         (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 13 Aug 2019 21:39:04 -0700 (PDT)
-Received: by mail-wm1-f50.google.com with SMTP id l2so3223603wmg.0;
-        Tue, 13 Aug 2019 21:39:04 -0700 (PDT)
-X-Received: by 2002:a7b:c21a:: with SMTP id x26mr5533924wmi.61.1565757543807;
- Tue, 13 Aug 2019 21:39:03 -0700 (PDT)
+        Tue, 13 Aug 2019 21:44:14 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id z11so7834876wrt.4;
+        Tue, 13 Aug 2019 21:44:14 -0700 (PDT)
+X-Received: by 2002:adf:eb0f:: with SMTP id s15mr49717223wrn.324.1565757853951;
+ Tue, 13 Aug 2019 21:44:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190813124744.32614-1-mripard@kernel.org> <20190813124744.32614-4-mripard@kernel.org>
-In-Reply-To: <20190813124744.32614-4-mripard@kernel.org>
+References: <20190813124744.32614-1-mripard@kernel.org> <20190813124744.32614-5-mripard@kernel.org>
+In-Reply-To: <20190813124744.32614-5-mripard@kernel.org>
 From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Wed, 14 Aug 2019 12:38:51 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66mp-=T=-zDYMf6Qw-vaiR3OB5Xhxie39jeKWS+Kvmecw@mail.gmail.com>
-Message-ID: <CAGb2v66mp-=T=-zDYMf6Qw-vaiR3OB5Xhxie39jeKWS+Kvmecw@mail.gmail.com>
-Subject: Re: [PATCH 4/5] ARM: dts: sun8i: a83t: Remove the watchdog clock
+Date:   Wed, 14 Aug 2019 12:44:02 +0800
+X-Gmail-Original-Message-ID: <CAGb2v66C-Mqdo-xWm4RAw33sFk-gLy-L_YWQ__6BjYU9gcpYug@mail.gmail.com>
+Message-ID: <CAGb2v66C-Mqdo-xWm4RAw33sFk-gLy-L_YWQ__6BjYU9gcpYug@mail.gmail.com>
+Subject: Re: [PATCH 5/5] ARM: dts: sunxi: Add missing watchdog interrupts
 To:     Maxime Ripard <mripard@kernel.org>
 Cc:     Guenter Roeck <linux@roeck-us.net>,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
@@ -61,44 +61,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 13, 2019 at 8:47 PM Maxime Ripard <mripard@kernel.org> wrote:
+On Tue, Aug 13, 2019 at 8:48 PM Maxime Ripard <mripard@kernel.org> wrote:
 >
 > From: Maxime Ripard <maxime.ripard@bootlin.com>
 >
-> The watchdog binding doesn't define a clock, and it indeed looks like
-> there's no explicit clock feeding it.
-
-The diagram on page 133 of the manual shows OSC24M / 750 feeding the watchdog.
-
-Other manuals, such as the A10 one, mention:
-
-    Watchdog clock source is OSC24M. if the OSC24M is turned off, the watchdog
-    will not work.
-
-So in fact it does use a clock signal. It's just that we've been lazy, since
-the clock rate is fixed and is always on.
-
-ChenYu
-
-> Let's remove it from our DT.
+> The watchdog has an interrupt on all our SoCs, but it wasn't always listed.
+> Add it to the devicetree where it's missing.
 >
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  arch/arm/boot/dts/sun8i-a83t.dtsi | 1 -
->  1 file changed, 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/sun8i-a83t.dtsi b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> index 523be6611c50..15f8c80f69a5 100644
-> --- a/arch/arm/boot/dts/sun8i-a83t.dtsi
-> +++ b/arch/arm/boot/dts/sun8i-a83t.dtsi
-> @@ -817,7 +817,6 @@
->                         compatible = "allwinner,sun6i-a31-wdt";
->                         reg = <0x01c20ca0 0x20>;
->                         interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-> -                       clocks = <&osc24M>;
->                 };
->
->                 spdif: spdif@1c21000 {
-> --
-> 2.21.0
->
+
+Acked-by: Chen-Yu Tsai <wens@csie.org>
+
+On a separate note, the A31 has four watchdogs in the timer block, and
+one interrupt for each watchdog. Should we expand the node to encompass
+all of them, or add separate nodes for each additional one?
+
+Thanks
