@@ -2,136 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 484BB8D303
-	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 14:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 893358D31B
+	for <lists+devicetree@lfdr.de>; Wed, 14 Aug 2019 14:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726619AbfHNMY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 08:24:57 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:34085 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725888AbfHNMY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 08:24:57 -0400
-Received: by mail-wm1-f67.google.com with SMTP id e8so3224848wme.1;
-        Wed, 14 Aug 2019 05:24:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=qvNyqHPxqM17Hgwfx7q6qGcw30LiEL2kP6HeS6GNFVk=;
-        b=TqzSu3r+JKdRwqwXMxKNEjktlIzFuuB5McOF228N/8JIw1F4JBLqzzcwneQE0o/cKd
-         5wICaY7S25HNHsrXXue6xGmC/UviD83CsaZUd5bmETUNFATYt+hI3S4aWmBtSy/tfrti
-         mLWrd/+elniaPpb8c2fO8Pacmccxbwnyj1zAT6xIhqUABTnFzaEyj5vUVry4ox1btx48
-         tZ07Sy+405SyHtQ836cmoYhbMr11W7XVn2IN28dRLJXmcMHcsRklcyxI3km9skDhRESw
-         7Kgu4fYoqdNCbWNoSslPkVJic79u2dD57kRyyGJg3Ru0/JWungE8E8+oing9AgfoHDIk
-         lmpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-         :content-transfer-encoding:message-id:references:to;
-        bh=qvNyqHPxqM17Hgwfx7q6qGcw30LiEL2kP6HeS6GNFVk=;
-        b=XHXeIxApr10EKBelFAkbWrj3u2N2cqKW2+C7+yucFizkGQxx+fryj6ROmikB03k7YK
-         t4Wsi3Um6IY1vXRY3gHg4hMF3op4e5Yy5kR9W6Qhx/MeaiYWHqnwakXlbekzeLKaDAED
-         YSCs4e1eiPwo1oJxFZHaWXbZQEVgiVfwubQYewf9Jai8wQcAaQZsfk82eXgIcOVlqbA1
-         uzzV8QFz2kWuZXKS5PqXGSfuSPKTCy8pPH/Sfw+J2FyBpABl4siefU38Q1qCFS6IKFqh
-         pXxhU8zEutNWk0VNGHhfXIXuUoUj9OM2N+96ZxIQkkoD9+yCaRPwMJFgYoehM4T5WzWM
-         Wb5Q==
-X-Gm-Message-State: APjAAAURbE7sdhe+QE+skrjkz/2z7nXCEFNR8J6wbq1CmGpxt59fOsUU
-        RrZqCUzWR/yyuLgeaXcK/44=
-X-Google-Smtp-Source: APXvYqzkK3WQL9KYB1TyBBzuH6MQ5nCwZyYjF7EGNKE+AniVd85uZ9BfFF8sWaTFPPOyfIqxvfmzrg==
-X-Received: by 2002:a1c:e90d:: with SMTP id q13mr8649524wmc.89.1565785495404;
-        Wed, 14 Aug 2019 05:24:55 -0700 (PDT)
-Received: from [192.168.1.169] ([87.201.30.26])
-        by smtp.gmail.com with ESMTPSA id l62sm4544230wml.13.2019.08.14.05.24.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 14 Aug 2019 05:24:54 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
-Subject: Re: [PATCH v3 0/6] Add support of New Amlogic temperature sensor for
- G12 SoCs
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20190806130506.8753-1-glaroque@baylibre.com>
-Date:   Wed, 14 Aug 2019 16:24:51 +0400
-Cc:     daniel.lezcano@linaro.org, khilman@baylibre.com,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <357FACA6-6EAC-4E9D-B6F7-4D8D0D59A20A@gmail.com>
-References: <20190806130506.8753-1-glaroque@baylibre.com>
-To:     Guillaume La Roque <glaroque@baylibre.com>
-X-Mailer: Apple Mail (2.3445.104.11)
+        id S1725888AbfHNMba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 08:31:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53910 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725800AbfHNMba (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 08:31:30 -0400
+Received: from localhost.localdomain (unknown [171.76.115.97])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 15E8D2084D;
+        Wed, 14 Aug 2019 12:31:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565785889;
+        bh=w9HQPoZIgpONwPkioEJV5bg1Lcnny8iuloWY0frHzRo=;
+        h=From:To:Cc:Subject:Date:From;
+        b=L1693v/RQ38L2/soaB+G6KsLFJMf8wYLVrLOFmBnx3vYkKOTVkOwh2lMeEMOpCsUl
+         mnLmkXkPNWCRxhhh+YHB89VXypUhbEhpIDA/n/3sRTyPudeyJl1lofNTq2ilCIKR5T
+         eF6lV6OFKbrdoYZXNhBs4H9hmRVWDt20RGNW1k44=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clock: Document SM8150 rpmh-clock compatible
+Date:   Wed, 14 Aug 2019 17:59:57 +0530
+Message-Id: <20190814122958.4981-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6 Aug 2019, at 5:05 pm, Guillaume La Roque <glaroque@baylibre.com> =
-wrote:
->=20
-> This patchs series add support of New Amlogic temperature sensor and =
-minimal
-> thermal zone for SEI510 and ODROID-N2 boards.
->=20
-> First implementation was doing on IIO[1] but after comments i move on =
-thermal framework.
-> Formulas and calibration values come from amlogic.
->=20
-> Changes since v2:
->  - fix yaml documention=20
->  - remove unneeded status variable for temperature-sensor node
->  - rework driver after Martin review
->  - add some information in commit message
->=20
-> Changes since v1:
->  - fix enum vs const in documentation
->  - fix error with thermal-sensor-cells value set to 1 instead of 0
->  - add some dependencies needed to add cooling-maps
->=20
-> Dependencies :
-> - patch 3,4 & 5: depends on Neil's patch and series :
->              - missing dwc2 phy-names[2]
->              - patchsets to add DVFS on G12a[3] which have deps on [4] =
-and [5]
->=20
-> [1] =
-https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@bayli=
-bre.com/
-> [2] =
-https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@ba=
-ylibre.com/
-> [3] =
-https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@bay=
-libre.com/
-> [4] =
-https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@bay=
-libre.com/
-> [5] =
-https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@bay=
-libre.com/
->=20
-> Guillaume La Roque (6):
->  dt-bindings: thermal: Add DT bindings documentation for Amlogic
->    Thermal
->  thermal: amlogic: Add thermal driver to support G12 SoCs
->  arm64: dts: amlogic: g12: add temperature sensor
->  arm64: dts: meson: sei510: Add minimal thermal zone
->  arm64: dts: amlogic: odroid-n2: add minimal thermal zone
->  MAINTAINERS: add entry for Amlogic Thermal driver
+Document the SM8150 rpmh-clock compatible for rpmh clock controller
+found on SM8150 platforms.
 
-Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
+---
+ Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-I=E2=80=99ve tested this series with Odroid N2 and Khadas VIM3, X96-Max. =
-Patches to add
-support for VIM3/X96-max will be submitted once the driver is merged.
+diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt b/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt
+index 3c007653da31..82dee80cdbf3 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt
++++ b/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt
+@@ -6,7 +6,9 @@ some Qualcomm Technologies Inc. SoCs. It accepts clock requests from
+ other hardware subsystems via RSC to control clocks.
+ 
+ Required properties :
+-- compatible : shall contain "qcom,sdm845-rpmh-clk"
++- compatible : must be one of:
++	       "qcom,sdm845-rpmh-clk"
++	       "qcom,sm8150-rpmh-clk"
+ 
+ - #clock-cells : must contain 1
+ 
+-- 
+2.20.1
 
-VIM3:~ # dmesg | grep thermal
-[    0.046375] thermal_sys: Registered thermal governor 'step_wise'
-
-VIM3:~ # cat /sys/devices/virtual/thermal/thermal_zone0/temp
-51300
-
-VIM3:~ # cat /sys/devices/virtual/thermal/thermal_zone1/temp
-52800
-
-Christian=
