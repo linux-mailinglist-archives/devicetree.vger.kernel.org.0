@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B5CD8F1BE
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 19:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDEE8F1C5
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 19:15:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731831AbfHOROh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 13:14:37 -0400
-Received: from mail-wr1-f99.google.com ([209.85.221.99]:33348 "EHLO
-        mail-wr1-f99.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731779AbfHOROg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 13:14:36 -0400
-Received: by mail-wr1-f99.google.com with SMTP id u16so2890914wrr.0
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 10:14:35 -0700 (PDT)
+        id S1731889AbfHOROo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 13:14:44 -0400
+Received: from mail-ed1-f100.google.com ([209.85.208.100]:41906 "EHLO
+        mail-ed1-f100.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731604AbfHOROh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 13:14:37 -0400
+Received: by mail-ed1-f100.google.com with SMTP id w5so2693423edl.8
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 10:14:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:message-id:date;
-        bh=ySpgobJR5bj4Xkb3PdeTkzIbBwuG8mGjmRLvJCEofTc=;
-        b=HMOtIcD0bChaKVInJtHfrlVmkbJ2EmZAby2D/UdH5SncOARgnhQg8jf9SezrOMLBd+
-         4dzGDxmwjmOuZ/Vj1v+fYw/cR5y/NU3r3oRAtKDK9nP5DBh67fN2doXx17F6GFne5xtD
-         V0Lk5UP2cphuOG43awwIIjoxyb6rqvEtSCz4WMRE6ty6hTG1AJbGB8cZbMKcaIKKCKGC
-         3/r9wr5Zzd8tIRDjQNKJi1mv9+atJWWLxYnMjwZkkCMUf2Ndj5Tvol7mlhGBpht99Hxz
-         JYbIiMcwHUP3e3Eec7Q26UOZfIuMqMT6Xm707MaJqh5m6mZVRj/Igiqf0Rl97gxDhdHn
-         Y18w==
-X-Gm-Message-State: APjAAAWfj0uBDgNABnUTgLDd4ihRLnXsu2Gz6cgrp1MioWVWFLErVp/q
-        85vGiMKjjEY5jIn8y40EV9p+6OeIglU+dpYiT1apITTr894NomJWb3Vc1cQO5efqHQ==
-X-Google-Smtp-Source: APXvYqwtMysVdYskzvMOV85slj/0NfBByAhnxSu/8L2/jUmAQ6wO16GiTZtHF4dbwP0rFEb32eLYnsVRgZj6
-X-Received: by 2002:adf:e782:: with SMTP id n2mr6427390wrm.1.1565889274755;
-        Thu, 15 Aug 2019 10:14:34 -0700 (PDT)
+        bh=Z7ZxsDgfWU46Ybcjy2/C5BgvQB81y4GKF7sm31CzdrM=;
+        b=DxLlsyhuYUMeZgK8CTeczGQnfbyByzhYE/2WDuIKqXbOLhhkssDKuc94FNnTtklPhm
+         EQO5uTmDDmTJVEA9ZZGpWNxoSrJtazJ0leY2hzdLZoV8YLOdUoaCHfbznqTf0RR58rlD
+         uUu2EzFyEVF7rhQJQhsusroT/xY0RuGtl2eqKJ5tlOe1aylvn4OZN/9DebbGmZW9pkxI
+         rxsAAURlq/VQHrZqbceOAOFcpsixlmwOcfyaKr4AA1BP2XolBiAw7U5To2b5KrPKHOQP
+         M4th2DLMH48a0kXP6g6DbQ9epSx8/Tohv/zZN1XFVhT/SSmSABFCleWd4dGWnXQjcbu5
+         +Ciw==
+X-Gm-Message-State: APjAAAVk3nS9zenff3XiinR8igCu6+pLxz/yjSkN5SCpjspIneEwnH0N
+        +/ojESuzSn7+yLJn4bUF5tIn9OT7ifyEFVyblVPg1/sPJQLOPBiYlJ+QR9VYPLPI6Q==
+X-Google-Smtp-Source: APXvYqzi4mE6JEqoZ4pkdHHrkjGFjr3tCHkQB1uiMMh1QmQ6fxIcRujGg6T/odlByK8WT3k/pcQ2CowbXPyk
+X-Received: by 2002:a50:d1c6:: with SMTP id i6mr6519505edg.110.1565889275471;
+        Thu, 15 Aug 2019 10:14:35 -0700 (PDT)
 Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
-        by smtp-relay.gmail.com with ESMTPS id w13sm46868wrp.62.2019.08.15.10.14.34
+        by smtp-relay.gmail.com with ESMTPS id me22sm13772ejb.69.2019.08.15.10.14.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 15 Aug 2019 10:14:34 -0700 (PDT)
+        Thu, 15 Aug 2019 10:14:35 -0700 (PDT)
 X-Relaying-Domain: sirena.org.uk
 Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1hyJKc-00052o-CW; Thu, 15 Aug 2019 17:14:34 +0000
+        id 1hyJKd-00052t-5K; Thu, 15 Aug 2019 17:14:35 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id E2AC82742B9E; Thu, 15 Aug 2019 18:14:33 +0100 (BST)
+        id A604C2742B9E; Thu, 15 Aug 2019 18:14:34 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
 To:     Raag Jadav <raagjadav@gmail.com>
 Cc:     devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
         linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>
-Subject: Applied "regulator: act8865: operating mode and suspend state support" to the regulator tree
-In-Reply-To: <1565721176-8955-2-git-send-email-raagjadav@gmail.com>
+Subject: Applied "regulator: act8865 regulator modes and suspend states" to the regulator tree
+In-Reply-To: <1565721176-8955-3-git-send-email-raagjadav@gmail.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190815171433.E2AC82742B9E@ypsilon.sirena.org.uk>
-Date:   Thu, 15 Aug 2019 18:14:33 +0100 (BST)
+Message-Id: <20190815171434.A604C2742B9E@ypsilon.sirena.org.uk>
+Date:   Thu, 15 Aug 2019 18:14:34 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -58,7 +58,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   regulator: act8865: operating mode and suspend state support
+   regulator: act8865 regulator modes and suspend states
 
 has been applied to the regulator tree at
 
@@ -83,283 +83,118 @@ to this mail.
 Thanks,
 Mark
 
-From 955741a5120bb1ed19d3b12da90bb947d3a0cb99 Mon Sep 17 00:00:00 2001
+From ff461ebfd4b7051d9b79ca023741e6c2d960a912 Mon Sep 17 00:00:00 2001
 From: Raag Jadav <raagjadav@gmail.com>
-Date: Wed, 14 Aug 2019 00:02:55 +0530
-Subject: [PATCH] regulator: act8865: operating mode and suspend state support
+Date: Wed, 14 Aug 2019 00:02:56 +0530
+Subject: [PATCH] regulator: act8865 regulator modes and suspend states
 
-Implement ->set_mode(), ->get_mode() and ->set_suspend_xx() hooks
-for act8865 with unlocked expert registers.
-
-Based on work done by Borris Brezillon on [1].
-[1] https://www.spinics.net/lists/kernel/msg2942960.html
+Add documentation for act8865 regulator modes and suspend states.
+Add active-semi,8865-regulator.h file for device tree binding constants
+for act8865 regulators.
 
 Signed-off-by: Raag Jadav <raagjadav@gmail.com>
-Link: https://lore.kernel.org/r/1565721176-8955-2-git-send-email-raagjadav@gmail.com
+Link: https://lore.kernel.org/r/1565721176-8955-3-git-send-email-raagjadav@gmail.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- drivers/regulator/act8865-regulator.c | 187 +++++++++++++++++++++++++-
- 1 file changed, 186 insertions(+), 1 deletion(-)
+ .../bindings/regulator/act8865-regulator.txt  | 27 ++++++++++++++++--
+ .../regulator/active-semi,8865-regulator.h    | 28 +++++++++++++++++++
+ 2 files changed, 53 insertions(+), 2 deletions(-)
+ create mode 100644 include/dt-bindings/regulator/active-semi,8865-regulator.h
 
-diff --git a/drivers/regulator/act8865-regulator.c b/drivers/regulator/act8865-regulator.c
-index 6a90d3c7a452..0fa97f934df4 100644
---- a/drivers/regulator/act8865-regulator.c
-+++ b/drivers/regulator/act8865-regulator.c
-@@ -19,6 +19,7 @@
- #include <linux/power_supply.h>
- #include <linux/regulator/of_regulator.h>
- #include <linux/regmap.h>
+diff --git a/Documentation/devicetree/bindings/regulator/act8865-regulator.txt b/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
+index 3ae9f1088845..b9f58e480349 100644
+--- a/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
++++ b/Documentation/devicetree/bindings/regulator/act8865-regulator.txt
+@@ -34,6 +34,9 @@ Optional input supply properties:
+   - inl67-supply: The input supply for LDO_REG3 and LDO_REG4
+ 
+ Any standard regulator properties can be used to configure the single regulator.
++regulator-initial-mode, regulator-allowed-modes and regulator-mode could be specified
++for act8865 using mode values from dt-bindings/regulator/active-semi,8865-regulator.h
++file.
+ 
+ The valid names for regulators are:
+ 	- for act8846:
+@@ -47,6 +50,8 @@ The valid names for regulators are:
+ Example:
+ --------
+ 
 +#include <dt-bindings/regulator/active-semi,8865-regulator.h>
++
+ 		i2c1: i2c@f0018000 {
+ 			pmic: act8865@5b {
+ 				compatible = "active-semi,act8865";
+@@ -65,9 +70,19 @@ Example:
+ 						regulator-name = "VCC_1V2";
+ 						regulator-min-microvolt = <1100000>;
+ 						regulator-max-microvolt = <1300000>;
+-						regulator-suspend-mem-microvolt = <1150000>;
+-						regulator-suspend-standby-microvolt = <1150000>;
+ 						regulator-always-on;
++
++						regulator-allowed-modes = <ACT8865_REGULATOR_MODE_FIXED>,
++									  <ACT8865_REGULATOR_MODE_LOWPOWER>;
++						regulator-initial-mode = <ACT8865_REGULATOR_MODE_FIXED>;
++
++						regulator-state-mem {
++							regulator-on-in-suspend;
++							regulator-suspend-min-microvolt = <1150000>;
++							regulator-suspend-max-microvolt = <1150000>;
++							regulator-changeable-in-suspend;
++							regulator-mode = <ACT8865_REGULATOR_MODE_LOWPOWER>;
++						};
+ 					};
  
- /*
-  * ACT8600 Global Register Map.
-@@ -90,23 +91,31 @@
-  */
- #define	ACT8865_SYS_MODE	0x00
- #define	ACT8865_SYS_CTRL	0x01
-+#define	ACT8865_SYS_UNLK_REGS	0x0b
- #define	ACT8865_DCDC1_VSET1	0x20
- #define	ACT8865_DCDC1_VSET2	0x21
- #define	ACT8865_DCDC1_CTRL	0x22
-+#define	ACT8865_DCDC1_SUS	0x24
- #define	ACT8865_DCDC2_VSET1	0x30
- #define	ACT8865_DCDC2_VSET2	0x31
- #define	ACT8865_DCDC2_CTRL	0x32
-+#define	ACT8865_DCDC2_SUS	0x34
- #define	ACT8865_DCDC3_VSET1	0x40
- #define	ACT8865_DCDC3_VSET2	0x41
- #define	ACT8865_DCDC3_CTRL	0x42
-+#define	ACT8865_DCDC3_SUS	0x44
- #define	ACT8865_LDO1_VSET	0x50
- #define	ACT8865_LDO1_CTRL	0x51
-+#define	ACT8865_LDO1_SUS	0x52
- #define	ACT8865_LDO2_VSET	0x54
- #define	ACT8865_LDO2_CTRL	0x55
-+#define	ACT8865_LDO2_SUS	0x56
- #define	ACT8865_LDO3_VSET	0x60
- #define	ACT8865_LDO3_CTRL	0x61
-+#define	ACT8865_LDO3_SUS	0x62
- #define	ACT8865_LDO4_VSET	0x64
- #define	ACT8865_LDO4_CTRL	0x65
-+#define	ACT8865_LDO4_SUS	0x66
- #define	ACT8865_MSTROFF		0x20
+ 					vcc_3v3_reg: DCDC_REG3 {
+@@ -82,6 +97,14 @@ Example:
+ 						regulator-min-microvolt = <3300000>;
+ 						regulator-max-microvolt = <3300000>;
+ 						regulator-always-on;
++
++						regulator-allowed-modes = <ACT8865_REGULATOR_MODE_NORMAL>,
++									  <ACT8865_REGULATOR_MODE_LOWPOWER>;
++						regulator-initial-mode = <ACT8865_REGULATOR_MODE_NORMAL>;
++
++						regulator-state-mem {
++							regulator-off-in-suspend;
++						};
+ 					};
  
- /*
-@@ -225,6 +234,171 @@ static const struct regulator_linear_range act8600_sudcdc_voltage_ranges[] = {
- 	REGULATOR_LINEAR_RANGE(41400000, 248, 255, 0),
- };
- 
-+static int act8865_set_suspend_state(struct regulator_dev *rdev, bool enable)
-+{
-+	struct regmap *regmap = rdev->regmap;
-+	int id = rdev->desc->id, reg, val;
+ 					vddfuse_reg: LDO_REG2 {
+diff --git a/include/dt-bindings/regulator/active-semi,8865-regulator.h b/include/dt-bindings/regulator/active-semi,8865-regulator.h
+new file mode 100644
+index 000000000000..15473dbeaf38
+--- /dev/null
++++ b/include/dt-bindings/regulator/active-semi,8865-regulator.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Device Tree binding constants for the ACT8865 PMIC regulators
++ */
 +
-+	switch (id) {
-+	case ACT8865_ID_DCDC1:
-+		reg = ACT8865_DCDC1_SUS;
-+		val = 0xa8;
-+		break;
-+	case ACT8865_ID_DCDC2:
-+		reg = ACT8865_DCDC2_SUS;
-+		val = 0xa8;
-+		break;
-+	case ACT8865_ID_DCDC3:
-+		reg = ACT8865_DCDC3_SUS;
-+		val = 0xa8;
-+		break;
-+	case ACT8865_ID_LDO1:
-+		reg = ACT8865_LDO1_SUS;
-+		val = 0xe8;
-+		break;
-+	case ACT8865_ID_LDO2:
-+		reg = ACT8865_LDO2_SUS;
-+		val = 0xe8;
-+		break;
-+	case ACT8865_ID_LDO3:
-+		reg = ACT8865_LDO3_SUS;
-+		val = 0xe8;
-+		break;
-+	case ACT8865_ID_LDO4:
-+		reg = ACT8865_LDO4_SUS;
-+		val = 0xe8;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
++#ifndef _DT_BINDINGS_REGULATOR_ACT8865_H
++#define _DT_BINDINGS_REGULATOR_ACT8865_H
 +
-+	if (enable)
-+		val |= BIT(4);
++/*
++ * These constants should be used to specify regulator modes in device tree for
++ * ACT8865 regulators as follows:
++ * ACT8865_REGULATOR_MODE_FIXED:	It is specific to DCDC regulators and it
++ *					specifies the usage of fixed-frequency
++ *					PWM.
++ *
++ * ACT8865_REGULATOR_MODE_NORMAL:	It is specific to LDO regulators and it
++ *					specifies the usage of normal mode.
++ *
++ * ACT8865_REGULATOR_MODE_LOWPOWER:	For DCDC and LDO regulators; it specify
++ *					the usage of proprietary power-saving
++ *					mode.
++ */
 +
-+	/*
-+	 * Ask the PMIC to enable/disable this output when entering hibernate
-+	 * mode.
-+	 */
-+	return regmap_write(regmap, reg, val);
-+}
++#define ACT8865_REGULATOR_MODE_FIXED		1
++#define ACT8865_REGULATOR_MODE_NORMAL		2
++#define ACT8865_REGULATOR_MODE_LOWPOWER	3
 +
-+static int act8865_set_suspend_enable(struct regulator_dev *rdev)
-+{
-+	return act8865_set_suspend_state(rdev, true);
-+}
-+
-+static int act8865_set_suspend_disable(struct regulator_dev *rdev)
-+{
-+	return act8865_set_suspend_state(rdev, false);
-+}
-+
-+static unsigned int act8865_of_map_mode(unsigned int mode)
-+{
-+	switch (mode) {
-+	case ACT8865_REGULATOR_MODE_FIXED:
-+		return REGULATOR_MODE_FAST;
-+	case ACT8865_REGULATOR_MODE_NORMAL:
-+		return REGULATOR_MODE_NORMAL;
-+	case ACT8865_REGULATOR_MODE_LOWPOWER:
-+		return REGULATOR_MODE_STANDBY;
-+	default:
-+		return REGULATOR_MODE_INVALID;
-+	}
-+}
-+
-+static int act8865_set_mode(struct regulator_dev *rdev, unsigned int mode)
-+{
-+	struct regmap *regmap = rdev->regmap;
-+	int id = rdev_get_id(rdev);
-+	int reg, val = 0;
-+
-+	switch (id) {
-+	case ACT8865_ID_DCDC1:
-+		reg = ACT8865_DCDC1_CTRL;
-+		break;
-+	case ACT8865_ID_DCDC2:
-+		reg = ACT8865_DCDC2_CTRL;
-+		break;
-+	case ACT8865_ID_DCDC3:
-+		reg = ACT8865_DCDC3_CTRL;
-+		break;
-+	case ACT8865_ID_LDO1:
-+		reg = ACT8865_LDO1_CTRL;
-+		break;
-+	case ACT8865_ID_LDO2:
-+		reg = ACT8865_LDO2_CTRL;
-+		break;
-+	case ACT8865_ID_LDO3:
-+		reg = ACT8865_LDO3_CTRL;
-+		break;
-+	case ACT8865_ID_LDO4:
-+		reg = ACT8865_LDO4_CTRL;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (mode) {
-+	case REGULATOR_MODE_FAST:
-+	case REGULATOR_MODE_NORMAL:
-+		if (id <= ACT8865_ID_DCDC3)
-+			val = BIT(5);
-+		break;
-+	case REGULATOR_MODE_STANDBY:
-+		if (id > ACT8865_ID_DCDC3)
-+			val = BIT(5);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(regmap, reg, BIT(5), val);
-+}
-+
-+static unsigned int act8865_get_mode(struct regulator_dev *rdev)
-+{
-+	struct regmap *regmap = rdev->regmap;
-+	int id = rdev_get_id(rdev);
-+	int reg, ret, val = 0;
-+
-+	switch (id) {
-+	case ACT8865_ID_DCDC1:
-+		reg = ACT8865_DCDC1_CTRL;
-+		break;
-+	case ACT8865_ID_DCDC2:
-+		reg = ACT8865_DCDC2_CTRL;
-+		break;
-+	case ACT8865_ID_DCDC3:
-+		reg = ACT8865_DCDC3_CTRL;
-+		break;
-+	case ACT8865_ID_LDO1:
-+		reg = ACT8865_LDO1_CTRL;
-+		break;
-+	case ACT8865_ID_LDO2:
-+		reg = ACT8865_LDO2_CTRL;
-+		break;
-+	case ACT8865_ID_LDO3:
-+		reg = ACT8865_LDO3_CTRL;
-+		break;
-+	case ACT8865_ID_LDO4:
-+		reg = ACT8865_LDO4_CTRL;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_read(regmap, reg, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (id <= ACT8865_ID_DCDC3 && (val & BIT(5)))
-+		return REGULATOR_MODE_FAST;
-+	else if	(id > ACT8865_ID_DCDC3 && !(val & BIT(5)))
-+		return REGULATOR_MODE_NORMAL;
-+	else
-+		return REGULATOR_MODE_STANDBY;
-+}
-+
- static const struct regulator_ops act8865_ops = {
- 	.list_voltage		= regulator_list_voltage_linear_range,
- 	.map_voltage		= regulator_map_voltage_linear_range,
-@@ -232,7 +406,11 @@ static const struct regulator_ops act8865_ops = {
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.enable			= regulator_enable_regmap,
- 	.disable		= regulator_disable_regmap,
-+	.set_mode		= act8865_set_mode,
-+	.get_mode		= act8865_get_mode,
- 	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_enable	= act8865_set_suspend_enable,
-+	.set_suspend_disable	= act8865_set_suspend_disable,
- };
- 
- static const struct regulator_ops act8865_ldo_ops = {
-@@ -242,7 +420,11 @@ static const struct regulator_ops act8865_ldo_ops = {
- 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
- 	.enable			= regulator_enable_regmap,
- 	.disable		= regulator_disable_regmap,
-+	.set_mode		= act8865_set_mode,
-+	.get_mode		= act8865_get_mode,
- 	.is_enabled		= regulator_is_enabled_regmap,
-+	.set_suspend_enable	= act8865_set_suspend_enable,
-+	.set_suspend_disable	= act8865_set_suspend_disable,
- 	.set_pull_down		= regulator_set_pull_down_regmap,
- };
- 
-@@ -256,6 +438,7 @@ static const struct regulator_ops act8865_fixed_ldo_ops = {
- 	[_family##_ID_##_id] = {					\
- 		.name			= _name,			\
- 		.of_match		= of_match_ptr(_name),		\
-+		.of_map_mode		= act8865_of_map_mode,		\
- 		.regulators_node	= of_match_ptr("regulators"),	\
- 		.supply_name		= _supply,			\
- 		.id			= _family##_ID_##_id,		\
-@@ -590,7 +773,9 @@ static int act8865_pmic_probe(struct i2c_client *client,
- 
- 	i2c_set_clientdata(client, act8865);
- 
--	return 0;
-+	/* Unlock expert registers for ACT8865. */
-+	return type != ACT8865 ? 0 : regmap_write(act8865->regmap,
-+						  ACT8865_SYS_UNLK_REGS, 0xef);
- }
- 
- static const struct i2c_device_id act8865_ids[] = {
++#endif
 -- 
 2.20.1
 
