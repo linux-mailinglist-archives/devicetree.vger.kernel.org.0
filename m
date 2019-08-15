@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AA4F8E60D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4C6B8E615
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:18:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730862AbfHOISM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 04:18:12 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:40424 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730859AbfHOISM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:18:12 -0400
-Received: by mail-lj1-f193.google.com with SMTP id e27so1521415ljb.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:18:11 -0700 (PDT)
+        id S1730012AbfHOISm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 04:18:42 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:46630 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726105AbfHOISl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:18:41 -0400
+Received: by mail-lf1-f66.google.com with SMTP id n19so1093496lfe.13
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:18:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=W7xfr16BH5ZJjmVp0865t1tdCv0TJfQQ8MOvl0IA0RI=;
-        b=h/iE0ACwRL8YZpox9tiry6Y6F9AtQ6fulXq/U4nRshmUS5LIgMjgsMcGGCCmgSfY0J
-         nglNTBQxeLzOt23t5VWv3b16qAW7RU72nYgfDHIc6rn/87aL9AlP5VRxR1gOtdNN2rzJ
-         CE8Oaxl6PzFKEDehEhvT9xMnQ2BuRQKgGSacBPydzgzfPTcdrYIriDbFD0KYhisx/fYQ
-         TfxHkfwUUu+WzgWKIvWBuJerhIihKrkXphGv+H3J2ktph4Au4Vf7P8one0DBq1AYscNq
-         Ya5pxqW6o6aiYu+tmytDC5UQsm+gOAXmFAltlAlJRfVa6YAKIB8IWmHbMqFum5Xh0C62
-         Y8KQ==
+        bh=n93Dng/Ji8MdS4CMyB8lWHjceWaq72wrZdpqfUie2jw=;
+        b=n917679wlyShUhrE5Ig3CFfBox9eY1vDh5kRoK7P3mDg7njrsuDaJ4qJSjP0n0hbvN
+         6XifsLDIS3pWYVy7ZekSuZ95mPYr4uznZ084qrwwJW9GSUwY02fmoiMMGjcPWsPLiNYJ
+         BJt4KywfKUnhrIVLnU600Uws2yZ9Et0XWqrlcCzH7U6LxN7OD1HNTr293DBvwy30Q1cs
+         11+aPHS28sOkmSS/L2JI9Bmr2f3qQsIvSylZyRF9Pv2QANJ0oTZ7TKwfE6F/SM1L/Nyw
+         XBCZnmBV99kF3Gb8iTlXZgSaY1JtoKpN45vN06DanE0j0nSsx191aIGKHyhj6a+FPHth
+         etVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=W7xfr16BH5ZJjmVp0865t1tdCv0TJfQQ8MOvl0IA0RI=;
-        b=jRL20l+wyghXauk+Z4RP4BSglkhi8Y/tdoq8d+TtqBmOhnWMUF5sqUSKIuBDV3zU9A
-         hV6DHn+Ixx5RaAMX/Z5f+jTugMzOH4eMgIPTNKLkDKcP2Mn7XeoXe+cwDU0v4YWapj84
-         Upn8cPIMsF2R6FoJwo4PpHj/Ht0wZ9yAMZanshAhCkCzRYvWvONInPptML4n7aHep0ab
-         Du1rUI6v1UJWAuLrkee9WUmviLDp36SHvmp5PWs/tjDxpX/SrDxchTAS0aFk52LhM0NJ
-         rmvdEFHcPQln7NWESdIt2CRxb7sGr90YJSeRXciPRTaVQg+DJJdQAtoh10W+5Yx6/9f2
-         23Qg==
-X-Gm-Message-State: APjAAAVXCgiF0wFMQzQ9RJoqDmtvKu6rreQOWdlkPlY/58xultVWE87S
-        NjNPsSAY+CYqAWLWF3vhYfq1yDrrtwWYNjdbWbaUJA==
-X-Google-Smtp-Source: APXvYqwlNuGYnM4syJ7wAaplZofwwfNvfLAdOC0xu1V73tUg0jS10SDexNQ4wMU3AxJ+Dtlu9zFGYve/VAiy/marM2E=
-X-Received: by 2002:a05:651c:28c:: with SMTP id b12mr2044788ljo.69.1565857090860;
- Thu, 15 Aug 2019 01:18:10 -0700 (PDT)
+        bh=n93Dng/Ji8MdS4CMyB8lWHjceWaq72wrZdpqfUie2jw=;
+        b=PgKzJOVycKPWwzKxEsLlyRA8JDABSUZsDdZ91yImQ36/UxIuWf9rC0gQ2wvPbRf0MS
+         En/yg2k9zn9rgM0MX2qgaQ/GS0dQz/I8gLwEIVXrw4/K6IwJMifvbchA11icasYaEo8R
+         6tk5SLtmlE5T5jV7Iy8AaV8pHxuMunbn/mQyACCH/YY5YsawSt8NII9D2Fb0fzagQAN+
+         EBA6ctV0uvtJPldSwBUBInPTDKmhr201hMof9SsofNgO2eCfxWQDjCNxijSNegI0rO9E
+         yKjcN0O5yyzxFubyb0e0rD5KeatWfWehWmHqEi6j980cdRIR+y1yRF+mAIpw9VkEU0UH
+         HyWw==
+X-Gm-Message-State: APjAAAVft/FqBZtuzAT7UUyUGVmnFp1UR2253uVMxKAY7bPfUisUrABv
+        KMrybMV6+pyvX9AFkf4oHQHc2gq18X+tBMZbeD4wKA==
+X-Google-Smtp-Source: APXvYqz+3m9CpHTiryHGgaHMtDawA41PP43UTCZWzylvPS7O0bar1RDoxUlI3ihahWRnC9SzzajOeS5xqZGxmVYZE8o=
+X-Received: by 2002:ac2:59d0:: with SMTP id x16mr1883275lfn.60.1565857119990;
+ Thu, 15 Aug 2019 01:18:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-3-masneyb@onstation.org>
-In-Reply-To: <20190815004854.19860-3-masneyb@onstation.org>
+References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-5-masneyb@onstation.org>
+In-Reply-To: <20190815004854.19860-5-masneyb@onstation.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 15 Aug 2019 10:17:59 +0200
-Message-ID: <CACRpkdaDHoJvoH93Amzv2gSDGbgAsF-iNLiEFA3Fuov3D4uh5Q@mail.gmail.com>
-Subject: Re: [PATCH 02/11] drm/bridge: analogix-anx78xx: add new variants
+Date:   Thu, 15 Aug 2019 10:18:28 +0200
+Message-ID: <CACRpkdbj10yneOP4JKFGXyiY4e1vS6-oB=W2vs6nj_X2uAY=pQ@mail.gmail.com>
+Subject: Re: [PATCH 04/11] drm/bridge: analogix-anx78xx: convert to i2c_new_dummy_device
 To:     Brian Masney <masneyb@onstation.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -76,8 +76,10 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Aug 15, 2019 at 2:49 AM Brian Masney <masneyb@onstation.org> wrote:
 
-> Add support for the 7808 variant. While we're here, the of match table
-> was missing support for the 7812 and 7818 variants, so add them as well.
+> The i2c_new_dummy() function is deprecated since it returns NULL on
+> error. Change this to use the recommended replacement
+> i2c_new_dummy_device() that returns an error code that can be read with
+> PTR_ERR() and friends.
 >
 > Signed-off-by: Brian Masney <masneyb@onstation.org>
 
