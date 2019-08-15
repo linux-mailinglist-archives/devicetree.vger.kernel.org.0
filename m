@@ -2,105 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F21C68E2F7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 04:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 429748E316
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 05:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728128AbfHOC7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 22:59:43 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:46862 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728014AbfHOC7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 22:59:42 -0400
-Received: by mail-pl1-f194.google.com with SMTP id c2so514768plz.13;
-        Wed, 14 Aug 2019 19:59:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id;
-        bh=jtcbQSdvzy5cT1Z921sK+U6eJuTaITvB/5Row+mcI0c=;
-        b=VPyImWLVUBR+YJhKD3akvkpU0i5ENU919XA+N261pXNLUFFifIFgh984CAi1BGK4vs
-         lsmnqso8RLiJ5hSxAWHUja3jeCIOxoGHPfWnJrn/ovMXJpj1WRuNX3c75AJSx0/FKszp
-         hJAAFWhE0XnpJm7uZ9mmm2LOPKDYV/PtMHUuZa6siu7IYpg/BQ8eGkZAbHfGeNJXuSpJ
-         qZeRdMNSciFbNM8VytVYUqIkSC0J+/9HhlcbAEmm69zb06ksFXU42GNGPno9eAHvtbYJ
-         ImoEBwmnFdXq0/QO62cuWxg+JxAHIe9UZFsxbrod04OUUk9CQAXBMJN8OsJE7pXhtlp8
-         G/Yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
-        bh=jtcbQSdvzy5cT1Z921sK+U6eJuTaITvB/5Row+mcI0c=;
-        b=ii6svZe9OAQ1mb0C1TYhIpCM/F2AfWjPtn81myySO0d41jkMh0Yam2eSJCjU2b2huL
-         MBcyi3jLXBeWYx4uOVCpsBmBWW7ku1IK7WAP50/udFzVENF1CuUvFBMNmeiU3cxi4u/o
-         pneanLxXxaZ6/qVJZpn3xkNamSdftHYBb6LLYSqViVOyw1Snccf0OIbf2ehhjdxFsZrc
-         2+lmOK+xQ86IxaCgqKDhfgOc+TLt8y5Egpx99ZPcG+75zGqC+56eZe8MgYFZA1SW5P5c
-         NmTYY6Y7UpNkckm1xLwVvZRDgamFNR7n6ogVg/q56vGwkXOApXiSyAeqIv9lzel9uYGN
-         T7lQ==
-X-Gm-Message-State: APjAAAWlzJ7qVCt027O19bypMSb54+CWp7KfVxV5kPloh9i2aC7y78vn
-        cYNEL5TAO4aRDt0BKCZMvHs=
-X-Google-Smtp-Source: APXvYqwQlvrnAQc0lPUHt/zfuAZ+tW3qd3Tcao4Wz1WqTtmVKnHjXDaxSx8tYi4gb6lsRg/sGGftXQ==
-X-Received: by 2002:a17:902:d715:: with SMTP id w21mr2413435ply.261.1565837982100;
-        Wed, 14 Aug 2019 19:59:42 -0700 (PDT)
-Received: from localhost.localdomain ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id k5sm954439pgo.45.2019.08.14.19.59.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 14 Aug 2019 19:59:41 -0700 (PDT)
-From:   Kever Yang <kever.yang@rock-chips.com>
-To:     heiko@sntech.de
-Cc:     linux-rockchip@lists.infradead.org,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Chen-Yu Tsai <wens@csie.org>, Jonas Karlman <jonas@kwiboo.se>,
-        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomohiro Mayama <parly-gh@iris.mystia.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm: dts: rockchip: fix vcc_host_5v regulator for usb3 host
-Date:   Thu, 15 Aug 2019 10:59:19 +0800
-Message-Id: <20190815025919.5194-1-kever.yang@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
+        id S1728517AbfHODP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 23:15:56 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:51018 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728464AbfHODP4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 23:15:56 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 221171A0063;
+        Thu, 15 Aug 2019 05:15:54 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id D234D1A0266;
+        Thu, 15 Aug 2019 05:15:47 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id EFCE0402A2;
+        Thu, 15 Aug 2019 11:15:39 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        leonard.crestez@nxp.com, abel.vesa@nxp.com, daniel.baluta@nxp.com,
+        jun.li@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] arm64: dts: imx8mn: Add gpio-ranges property
+Date:   Wed, 14 Aug 2019 22:57:30 -0400
+Message-Id: <1565837850-1373-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to rock64 schemetic V2 and V3, the VCC_HOST_5V output is
-controlled by USB_20_HOST_DRV, which is the same as VCC_HOST1_5V.
+From: Anson Huang <Anson.Huang@nxp.com>
 
-Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+Add "gpio-ranges" property to establish connections between GPIOs
+and PINs on i.MX8MN pinctrl driver.
+
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
- arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 10 ++--------
- 1 file changed, 2 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index 7cfd5ca6cc85..bd4ad1635e0b 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -35,9 +35,9 @@
- 	vcc_host_5v: vcc-host-5v-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&usb30_host_drv>;
-+		pinctrl-0 = <&usb20_host_drv>;
- 		regulator-name = "vcc_host_5v";
- 		regulator-always-on;
- 		regulator-boot-on;
-@@ -320,12 +320,6 @@
- 			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
--
--	usb3 {
--		usb30_host_drv: usb30-host-drv {
--			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
--		};
--	};
- };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+index f5eff35..1d8899b 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
+@@ -173,6 +173,7 @@
+ 				#gpio-cells = <2>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
++				gpio-ranges = <&iomuxc 0 10 30>;
+ 			};
  
- &sdmmc {
+ 			gpio2: gpio@30210000 {
+@@ -185,6 +186,7 @@
+ 				#gpio-cells = <2>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
++				gpio-ranges = <&iomuxc 0 40 21>;
+ 			};
+ 
+ 			gpio3: gpio@30220000 {
+@@ -197,6 +199,7 @@
+ 				#gpio-cells = <2>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
++				gpio-ranges = <&iomuxc 0 61 26>;
+ 			};
+ 
+ 			gpio4: gpio@30230000 {
+@@ -209,6 +212,7 @@
+ 				#gpio-cells = <2>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
++				gpio-ranges = <&iomuxc 21 108 11>;
+ 			};
+ 
+ 			gpio5: gpio@30240000 {
+@@ -221,6 +225,7 @@
+ 				#gpio-cells = <2>;
+ 				interrupt-controller;
+ 				#interrupt-cells = <2>;
++				gpio-ranges = <&iomuxc 0 119 30>;
+ 			};
+ 
+ 			wdog1: watchdog@30280000 {
 -- 
-2.17.1
+2.7.4
 
