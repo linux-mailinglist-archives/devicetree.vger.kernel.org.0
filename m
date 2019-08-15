@@ -2,61 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCAF48F666
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 23:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE218F719
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 00:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732639AbfHOV2W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 17:28:22 -0400
-Received: from mail.bugwerft.de ([46.23.86.59]:36394 "EHLO mail.bugwerft.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730302AbfHOV2V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Aug 2019 17:28:21 -0400
-Received: from localhost.localdomain (pD95EF8C6.dip0.t-ipconnect.de [217.94.248.198])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id B914029B85B;
-        Thu, 15 Aug 2019 21:24:17 +0000 (UTC)
-From:   Daniel Mack <daniel@zonque.org>
-To:     gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Daniel Mack <daniel@zonque.org>
-Subject: [PATCH v2 2/2] uio: Documentation: Add information on using uio_pdrv_genirq with DT
-Date:   Thu, 15 Aug 2019 23:28:07 +0200
-Message-Id: <20190815212807.25058-2-daniel@zonque.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190815212807.25058-1-daniel@zonque.org>
-References: <20190815212807.25058-1-daniel@zonque.org>
+        id S1726835AbfHOWkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 18:40:24 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:46534 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726357AbfHOWkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 18:40:24 -0400
+Received: by mail-oi1-f193.google.com with SMTP id t24so3404677oij.13;
+        Thu, 15 Aug 2019 15:40:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5N0BrmR1Tjy4UAxxe/8xM6uCYUxnCI+4Zt+Yt4/wBa0=;
+        b=d0AlVKdcuc8e7USj1p+njHyS5CIXk+ViENs9nRRjJqjKRbGNze1Wlk6uyf0hrSpfEY
+         PfePUGshj2edu0rm5Q35HKCsgMoUpYBpyAzg2q9bUqDHJYPj78N8DmXE0yGUDNk41XxA
+         X02BMykh80mMpWr0aWqRlL/0G2KHo/UFHLJ6sm1rTpy/hTnt0D00upf7idRGrPdpbj4p
+         +3HlzQo9fgIyc2IyKqXU/OlF6oeYRODNq2OoKQdYgnEQZ96d4asYtHimFEHNtpx09UtV
+         OYP+9temn5sv696CCFMs/qKfaS/V/aw4gy1wQpaZWesPaoA3p8kcAPsue3aYpiqobVGp
+         YFrw==
+X-Gm-Message-State: APjAAAV7u7PtzF7xLDoIAKrSrKrgJq8S/LnBv9UMa1wx8s8MFjVkSg5D
+        w/Iph15ghbucuOQnOlxSXgz93c90LZM=
+X-Google-Smtp-Source: APXvYqwYW4D/hTHIhZmRg6kF45XejlNLGsR7+EHYaCi+BY2j30kZLJbhDCf93qyLpBI2Gl4BqjLJvw==
+X-Received: by 2002:aca:f593:: with SMTP id t141mr3194805oih.76.1565908822733;
+        Thu, 15 Aug 2019 15:40:22 -0700 (PDT)
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com. [209.85.167.170])
+        by smtp.gmail.com with ESMTPSA id a22sm1486121otr.3.2019.08.15.15.40.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 15 Aug 2019 15:40:21 -0700 (PDT)
+Received: by mail-oi1-f170.google.com with SMTP id p124so3440362oig.5;
+        Thu, 15 Aug 2019 15:40:21 -0700 (PDT)
+X-Received: by 2002:a54:4191:: with SMTP id 17mr2851640oiy.175.1565908820908;
+ Thu, 15 Aug 2019 15:40:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190814072649.8237-1-yinbo.zhu@nxp.com> <20190814072649.8237-2-yinbo.zhu@nxp.com>
+In-Reply-To: <20190814072649.8237-2-yinbo.zhu@nxp.com>
+From:   Li Yang <leoyang.li@nxp.com>
+Date:   Thu, 15 Aug 2019 17:40:09 -0500
+X-Gmail-Original-Message-ID: <CADRPPNSW4A0gkbzcPD=y-J_YHSnbAgP7p=RQnS6i0U-Ze=L6qA@mail.gmail.com>
+Message-ID: <CADRPPNSW4A0gkbzcPD=y-J_YHSnbAgP7p=RQnS6i0U-Ze=L6qA@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] soc: fsl: guts: Add definition for LS1028A
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Amit Jain <amit.jain_1@nxp.com>, Yangbo Lu <yangbo.lu@nxp.com>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>,
+        Rajesh Bhagat <rajesh.bhagat@nxp.com>,
+        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>, linux-mmc@vger.kernel.org,
+        Xiaobo Xie <xiaobo.xie@nxp.com>,
+        Jiafei Pan <jiafei.pan@nxp.com>,
+        Alison Wang <alison.wang@nxp.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Catalin Horghidan <catalin.horghidan@nxp.com>,
+        Rajat Srivastava <rajat.srivastava@nxp.com>,
+        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a paragraph to describe the use of the "of_id" module parameter,
-along with the new DT property.
+On Wed, Aug 14, 2019 at 2:26 AM Yinbo Zhu <yinbo.zhu@nxp.com> wrote:
+>
+> Adding compatible string "ls1028a-dcfg" to initialize guts driver
+> for ls1028 and SoC die attribute definition for LS1028A
+>
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
 
-Signed-off-by: Daniel Mack <daniel@zonque.org>
----
- Documentation/driver-api/uio-howto.rst | 7 +++++++
- 1 file changed, 7 insertions(+)
+Applied for next.
 
-diff --git a/Documentation/driver-api/uio-howto.rst b/Documentation/driver-api/uio-howto.rst
-index 25f50eace28b..b9f28641ddf0 100644
---- a/Documentation/driver-api/uio-howto.rst
-+++ b/Documentation/driver-api/uio-howto.rst
-@@ -408,6 +408,13 @@ handler code. You also do not need to know anything about the chip's
- internal registers to create the kernel part of the driver. All you need
- to know is the irq number of the pin the chip is connected to.
- 
-+When used in a device-tree enabled system, the driver needs to be
-+probed with the ``"of_id"`` module parameter set to the ``"compatible"``
-+string of the node the driver is supposed to handle. By default, the
-+node's name (without the unit address) is exposed as name for the
-+UIO device in userspace. To set a custom name, a property named
-+``"linux,uio-name"`` may be specified in the DT node.
-+
- Using uio_dmem_genirq for platform devices
- ------------------------------------------
- 
--- 
-2.21.0
-
+> ---
+>  drivers/soc/fsl/guts.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/drivers/soc/fsl/guts.c b/drivers/soc/fsl/guts.c
+> index 1ef8068c8dd3..34810f9bb2ee 100644
+> --- a/drivers/soc/fsl/guts.c
+> +++ b/drivers/soc/fsl/guts.c
+> @@ -102,6 +102,11 @@ static const struct fsl_soc_die_attr fsl_soc_die[] = {
+>           .svr          = 0x87360000,
+>           .mask         = 0xff3f0000,
+>         },
+> +       /* Die: LS1028A, SoC: LS1028A */
+> +       { .die          = "LS1028A",
+> +         .svr          = 0x870b0000,
+> +         .mask         = 0xff3f0000,
+> +       },
+>         { },
+>  };
+>
+> @@ -224,6 +229,7 @@ static const struct of_device_id fsl_guts_of_match[] = {
+>         { .compatible = "fsl,ls1012a-dcfg", },
+>         { .compatible = "fsl,ls1046a-dcfg", },
+>         { .compatible = "fsl,lx2160a-dcfg", },
+> +       { .compatible = "fsl,ls1028a-dcfg", },
+>         {}
+>  };
+>  MODULE_DEVICE_TABLE(of, fsl_guts_of_match);
+> --
+> 2.17.1
+>
