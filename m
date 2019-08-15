@@ -2,116 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DAE218F719
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 00:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57FD68F729
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 00:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726835AbfHOWkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 18:40:24 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:46534 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726357AbfHOWkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 18:40:24 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t24so3404677oij.13;
-        Thu, 15 Aug 2019 15:40:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5N0BrmR1Tjy4UAxxe/8xM6uCYUxnCI+4Zt+Yt4/wBa0=;
-        b=d0AlVKdcuc8e7USj1p+njHyS5CIXk+ViENs9nRRjJqjKRbGNze1Wlk6uyf0hrSpfEY
-         PfePUGshj2edu0rm5Q35HKCsgMoUpYBpyAzg2q9bUqDHJYPj78N8DmXE0yGUDNk41XxA
-         X02BMykh80mMpWr0aWqRlL/0G2KHo/UFHLJ6sm1rTpy/hTnt0D00upf7idRGrPdpbj4p
-         +3HlzQo9fgIyc2IyKqXU/OlF6oeYRODNq2OoKQdYgnEQZ96d4asYtHimFEHNtpx09UtV
-         OYP+9temn5sv696CCFMs/qKfaS/V/aw4gy1wQpaZWesPaoA3p8kcAPsue3aYpiqobVGp
-         YFrw==
-X-Gm-Message-State: APjAAAV7u7PtzF7xLDoIAKrSrKrgJq8S/LnBv9UMa1wx8s8MFjVkSg5D
-        w/Iph15ghbucuOQnOlxSXgz93c90LZM=
-X-Google-Smtp-Source: APXvYqwYW4D/hTHIhZmRg6kF45XejlNLGsR7+EHYaCi+BY2j30kZLJbhDCf93qyLpBI2Gl4BqjLJvw==
-X-Received: by 2002:aca:f593:: with SMTP id t141mr3194805oih.76.1565908822733;
-        Thu, 15 Aug 2019 15:40:22 -0700 (PDT)
-Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com. [209.85.167.170])
-        by smtp.gmail.com with ESMTPSA id a22sm1486121otr.3.2019.08.15.15.40.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 15 Aug 2019 15:40:21 -0700 (PDT)
-Received: by mail-oi1-f170.google.com with SMTP id p124so3440362oig.5;
-        Thu, 15 Aug 2019 15:40:21 -0700 (PDT)
-X-Received: by 2002:a54:4191:: with SMTP id 17mr2851640oiy.175.1565908820908;
- Thu, 15 Aug 2019 15:40:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814072649.8237-1-yinbo.zhu@nxp.com> <20190814072649.8237-2-yinbo.zhu@nxp.com>
-In-Reply-To: <20190814072649.8237-2-yinbo.zhu@nxp.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Thu, 15 Aug 2019 17:40:09 -0500
-X-Gmail-Original-Message-ID: <CADRPPNSW4A0gkbzcPD=y-J_YHSnbAgP7p=RQnS6i0U-Ze=L6qA@mail.gmail.com>
-Message-ID: <CADRPPNSW4A0gkbzcPD=y-J_YHSnbAgP7p=RQnS6i0U-Ze=L6qA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] soc: fsl: guts: Add definition for LS1028A
-To:     Yinbo Zhu <yinbo.zhu@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1733056AbfHOWoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 18:44:20 -0400
+Received: from onstation.org ([52.200.56.107]:49656 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731244AbfHOWoU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Aug 2019 18:44:20 -0400
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id B4B0B3E998;
+        Thu, 15 Aug 2019 22:44:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1565909059;
+        bh=czM1Vfno+UFHpzvoNlZgvzbIsi/W/guZt8ysTusqBg8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Z707lNUjzuIsbtPXSccR8bANmWJFP6d0utJUK+yc8rOPnV4fltz0acMoPYc0Gth9O
+         9UmsjR4gMyWahWR+mUwz0JP9vIZHWTzezy6ZO8awAhHdaSSFZsP5nzvVceVqRxtZ6G
+         FF0g1ay6/KWQatmMJPp2UFMvfQyb5QJEn8UXok28=
+Date:   Thu, 15 Aug 2019 18:44:17 -0400
+From:   Brian Masney <masneyb@onstation.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        Amit Jain <amit.jain_1@nxp.com>, Yangbo Lu <yangbo.lu@nxp.com>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Rajesh Bhagat <rajesh.bhagat@nxp.com>,
-        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>, linux-mmc@vger.kernel.org,
-        Xiaobo Xie <xiaobo.xie@nxp.com>,
-        Jiafei Pan <jiafei.pan@nxp.com>,
-        Alison Wang <alison.wang@nxp.com>,
-        Alex Marginean <alexandru.marginean@nxp.com>,
-        Catalin Horghidan <catalin.horghidan@nxp.com>,
-        Rajat Srivastava <rajat.srivastava@nxp.com>,
-        linuxppc-dev <linuxppc-dev@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Subject: Re: [PATCH 09/11] ARM: dts: qcom: pm8941: add 5vs2 regulator node
+Message-ID: <20190815224417.GA32072@onstation.org>
+References: <20190815004854.19860-1-masneyb@onstation.org>
+ <20190815004854.19860-10-masneyb@onstation.org>
+ <CACRpkdYU-6LvFKRkj0yMMCmAnX0XtGe7rMwbXbhf2GCp77Ciyw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdYU-6LvFKRkj0yMMCmAnX0XtGe7rMwbXbhf2GCp77Ciyw@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 2:26 AM Yinbo Zhu <yinbo.zhu@nxp.com> wrote:
->
-> Adding compatible string "ls1028a-dcfg" to initialize guts driver
-> for ls1028 and SoC die attribute definition for LS1028A
->
-> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
+On Thu, Aug 15, 2019 at 10:34:17AM +0200, Linus Walleij wrote:
+> On Thu, Aug 15, 2019 at 2:49 AM Brian Masney <masneyb@onstation.org> wrote:
+> 
+> > pm8941 is missing the 5vs2 regulator node so let's add it since its
+> > needed to get the external display working. This regulator was already
+> > configured in the interrupts property on the parent node.
+> >
+> > Note that this regulator is referred to as mvs2 in the downstream MSM
+> > kernel sources.
+> 
+> When I looked at it it seemed like this convention is used for power
+> supplies that appear on both the main PMIC and the "extra (boot? basic?
+> low power?) PMIC that the main 80xx PMIC has mvs1 and the
+> other 89xx PMIC has mvs2.
 
-Applied for next.
+According to the downstream MSM sources, the 5vs1 and 5vs2 rails are
+both on the second pm8941 PMIC:
 
-> ---
->  drivers/soc/fsl/guts.c | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/drivers/soc/fsl/guts.c b/drivers/soc/fsl/guts.c
-> index 1ef8068c8dd3..34810f9bb2ee 100644
-> --- a/drivers/soc/fsl/guts.c
-> +++ b/drivers/soc/fsl/guts.c
-> @@ -102,6 +102,11 @@ static const struct fsl_soc_die_attr fsl_soc_die[] = {
->           .svr          = 0x87360000,
->           .mask         = 0xff3f0000,
->         },
-> +       /* Die: LS1028A, SoC: LS1028A */
-> +       { .die          = "LS1028A",
-> +         .svr          = 0x870b0000,
-> +         .mask         = 0xff3f0000,
-> +       },
->         { },
->  };
->
-> @@ -224,6 +229,7 @@ static const struct of_device_id fsl_guts_of_match[] = {
->         { .compatible = "fsl,ls1012a-dcfg", },
->         { .compatible = "fsl,ls1046a-dcfg", },
->         { .compatible = "fsl,lx2160a-dcfg", },
-> +       { .compatible = "fsl,ls1028a-dcfg", },
->         {}
->  };
->  MODULE_DEVICE_TABLE(of, fsl_guts_of_match);
-> --
-> 2.17.1
->
+https://github.com/AICP/kernel_lge_hammerhead/blob/n7.1/arch/arm/boot/dts/msm8974-regulator.dtsi#L18
+
+> I suppose it is named "mvs" on both PMICs and this is just a rail
+> name so as not to confuse the schematic?
+
+That sounds reasonable.
+
+> > Signed-off-by: Brian Masney <masneyb@onstation.org>
+> 
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Thank you!
+
+Brian
