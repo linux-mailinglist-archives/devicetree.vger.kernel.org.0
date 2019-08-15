@@ -2,148 +2,364 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 253CC8F184
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 19:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B5CD8F1BE
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 19:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730017AbfHOREK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 13:04:10 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45378 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726098AbfHOREK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 13:04:10 -0400
-Received: by mail-io1-f68.google.com with SMTP id t3so535705ioj.12;
-        Thu, 15 Aug 2019 10:04:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Scr9HNWKaHgDEj49CvsDMxRjjWP6o7f0Yc7vVj9GTHw=;
-        b=WuHM2rVQu3+MPHlL2fGa2cC3RUDLRjkVtyxLv6R7YHG9U7EL2FiDM2uhgHoEEYg2ug
-         z/heB4Urx0ddEn1H+VQ23Ri3Tkt3RHt8Ivur898gxVEJ8AAdq46bJtbjPagy0sTm0uM3
-         x9jrgjn/VkB7EnR8hdQhDL0MajIie1h66MykhWIm26ZC52xtF0idglf+9RH7/Qj4mq3z
-         7ALeQvrXXJeePgyjO/vmRp5dKVpUYv0AGHLqbPfXH5LtjWhajHMPIbXTkfAGVNtNb4qx
-         i7SJZPQdvM0VOtZZ4MaAEUzjY5FgV2d+0vRaOwSik6xqv59uZaVrxYO0zico8zzRs9gB
-         I9fw==
+        id S1731831AbfHOROh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 13:14:37 -0400
+Received: from mail-wr1-f99.google.com ([209.85.221.99]:33348 "EHLO
+        mail-wr1-f99.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731779AbfHOROg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 13:14:36 -0400
+Received: by mail-wr1-f99.google.com with SMTP id u16so2890914wrr.0
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 10:14:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Scr9HNWKaHgDEj49CvsDMxRjjWP6o7f0Yc7vVj9GTHw=;
-        b=LULFz+To27ykV22mdfkJkb1bWFjSrvVlqDqTvpMR+3uazbILc53jLKIJW522YdojaN
-         7yWec22VhDTzUTsytWo/TW8oMD69M06wxWwXBxAWMNNCm73KwTw81NsYl/PVGDwjKDTj
-         wI5q36jsJVPlkF2yfkebK6CnB/D2gF/DiMrzw8UPekxnGxWoh/dDr5JSwrWAZVjPI2QV
-         lnnZ/EmPXY/zvgNqU2IzXThDQaFVtu9XFPJbyKzakgLm5CyU/lkAmEReCX6bU0M2YLZW
-         gFRyoNJWDHi4Y8EH5+AFLRpjW9wu29MV7HQZTpMpE/r9n/LOQ4eccECbY83zxJXdNc5o
-         JYJA==
-X-Gm-Message-State: APjAAAVMyZFPYHzILpiuK7nDmQG+OHOjrBRq7BAl2g4h9o0W+sRfniCj
-        tOTwsjNP7TiqZMXyuQj3cJG5AZxxiWTcrfkMBOc=
-X-Google-Smtp-Source: APXvYqzaFudHgRVLW6Mzv0uHaWX4YlnmXvI8gAaKyPb/u8XrZtklw2lfHgT0MCd4Wh8b5eskXodrKUO0atVMOz4aJJc=
-X-Received: by 2002:a5d:8352:: with SMTP id q18mr6177548ior.154.1565888649021;
- Thu, 15 Aug 2019 10:04:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
- <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
- <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com> <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
- <45603af2fc8374a90ef9e81a67083395cc9c7190.camel@linux.intel.com>
- <6e7ff1b958d84f6e8e585fd3273ef295@NTILML02.nuvoton.com> <CAP6Zq1hPo9dG71YFyr7z9rjmi-DvoUZJOme4+2uqsfO+7nH+HQ@mail.gmail.com>
- <20190715094541.zjqxainggjuvjxd2@linux.intel.com> <9c8e216dbc4f43dbaa1701dc166b05e0@NTILML02.nuvoton.com>
- <548d3727-4a8f-38d4-2193-8a09cbae1e64@infineon.com>
-In-Reply-To: <548d3727-4a8f-38d4-2193-8a09cbae1e64@infineon.com>
-From:   Oshri Alkobi <oshrialkoby85@gmail.com>
-Date:   Thu, 15 Aug 2019 20:03:56 +0300
-Message-ID: <CAM9mBwL=5+pGTYUKbSdw5F6soR=tW-cqfbEQ9_NmCQTO=fSVZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
-To:     Alexander Steffen <Alexander.Steffen@infineon.com>
-Cc:     Eyal.Cohen@nuvoton.com,
-        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        tmaimon77@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        peterhuewe@gmx.de, jgg@ziepe.ca, arnd@arndb.de,
-        gregkh@linuxfoundation.org, oshri.alkoby@nuvoton.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, gcwilson@us.ibm.com,
-        kgoldman@us.ibm.com, nayna@linux.vnet.ibm.com,
-        Dan.Morav@nuvoton.com, oren.tanami@nuvoton.com,
-        amir.mizinski@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:message-id:date;
+        bh=ySpgobJR5bj4Xkb3PdeTkzIbBwuG8mGjmRLvJCEofTc=;
+        b=HMOtIcD0bChaKVInJtHfrlVmkbJ2EmZAby2D/UdH5SncOARgnhQg8jf9SezrOMLBd+
+         4dzGDxmwjmOuZ/Vj1v+fYw/cR5y/NU3r3oRAtKDK9nP5DBh67fN2doXx17F6GFne5xtD
+         V0Lk5UP2cphuOG43awwIIjoxyb6rqvEtSCz4WMRE6ty6hTG1AJbGB8cZbMKcaIKKCKGC
+         3/r9wr5Zzd8tIRDjQNKJi1mv9+atJWWLxYnMjwZkkCMUf2Ndj5Tvol7mlhGBpht99Hxz
+         JYbIiMcwHUP3e3Eec7Q26UOZfIuMqMT6Xm707MaJqh5m6mZVRj/Igiqf0Rl97gxDhdHn
+         Y18w==
+X-Gm-Message-State: APjAAAWfj0uBDgNABnUTgLDd4ihRLnXsu2Gz6cgrp1MioWVWFLErVp/q
+        85vGiMKjjEY5jIn8y40EV9p+6OeIglU+dpYiT1apITTr894NomJWb3Vc1cQO5efqHQ==
+X-Google-Smtp-Source: APXvYqwtMysVdYskzvMOV85slj/0NfBByAhnxSu/8L2/jUmAQ6wO16GiTZtHF4dbwP0rFEb32eLYnsVRgZj6
+X-Received: by 2002:adf:e782:: with SMTP id n2mr6427390wrm.1.1565889274755;
+        Thu, 15 Aug 2019 10:14:34 -0700 (PDT)
+Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
+        by smtp-relay.gmail.com with ESMTPS id w13sm46868wrp.62.2019.08.15.10.14.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 15 Aug 2019 10:14:34 -0700 (PDT)
+X-Relaying-Domain: sirena.org.uk
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1hyJKc-00052o-CW; Thu, 15 Aug 2019 17:14:34 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id E2AC82742B9E; Thu, 15 Aug 2019 18:14:33 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Raag Jadav <raagjadav@gmail.com>
+Cc:     devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Applied "regulator: act8865: operating mode and suspend state support" to the regulator tree
+In-Reply-To: <1565721176-8955-2-git-send-email-raagjadav@gmail.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190815171433.E2AC82742B9E@ypsilon.sirena.org.uk>
+Date:   Thu, 15 Aug 2019 18:14:33 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 18, 2019 at 8:10 PM Alexander Steffen
-<Alexander.Steffen@infineon.com> wrote:
->
-> On 18.07.2019 14:51, Eyal.Cohen@nuvoton.com wrote:
-> > Hi Jarkko and Alexander,
-> >
-> > We have made an additional code review on the TPM TIS core driver, it looks quite good and we can connect our new I2C driver to this layer.
->
-> Great :) In the meantime, I've done some experiments creating an I2C
-> driver based on tpm_tis_core, see
-> https://patchwork.kernel.org/patch/11049363/ Please have a look at that
-> and provide your feedback (and/or use it as a basis for further
-> implementations).
->
+The patch
 
-Sorry for the late response.
+   regulator: act8865: operating mode and suspend state support
 
-Thanks Alexander, indeed it looks much simpler.
-I've checked it with Nuvoton's TPM - basic TPM commands work, I only
-had to remove the first msg from the read/write I2C transmitting
-(from/to TPM_LOC_SEL), the TPM couldn't handle two register writes in
-a sequence.
-Actually it is more efficient to set TPM_LOC_SEL only before locality
-check/request/relinquish - it is sticky.
-I still didn't manage to work with interrupts, will debug it.
+has been applied to the regulator tree at
 
-We weren't aware to the implementation of Christophe/ST which looks
-good and can be complement to yours.
-If no one is currently working on that, we can prepare a new patch
-that is based on both.
-Please let us know.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.4
 
-> > However, there are several differences between the SPI interface and the I2C interface that will require changes to the TIS core.
-> > At a minimum we thought of:
-> > 1. Handling TPM Localities in I2C is different
->
-> It turned out not to be that different in the end, see the code
-> mentioned above and my comment here:
-> https://patchwork.kernel.org/cover/11049365/
->
-> > 2. Handling I2C CRC - relevant only to I2C bus hence not supported today by TIS core
->
-> That is completely optional, so there is no need to implement it in the
-> beginning. Also, do you expect a huge benefit from that functionality?
-> Are bit flips that much more likely on I2C compared to SPI, which has no
-> CRC at all, but still works fine?
->
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
-I2C is noisy bus with potentially more devices with larger variety
-than SPI. I2C may have more than one master and may have collisions
-and/or arbitration.
-Still we can start w/o CRC for the first stage and add it later.
-BTW, Christophe already did most of the work
-(https://patchwork.kernel.org/patch/8628661/)
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-> > 3. Handling Chip specific issues, since I2C implementation might be slightly different across the various TPM vendors
->
-> Right, that seems similar to the cr50 issues
-> (https://lkml.org/lkml/2019/7/17/677), so there should probably be a
-> similar way to do it.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-Got it. We hope things will work for us without having another driver,
-but it's an option.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
->
-> > 4. Modify tpm_tis_send_data and tpm_tis_recv_data to work according the TCG Device Driver Guide (optimization on TPM_STS access and send/recv retry)
->
-> Optimizations are always welcome, but I'd expect basic communication to
-> work already with the current code (though maybe not as efficiently as
-> possible).
->
-> > Besides this, during development we might encounter additional differences between SPI and I2C.
-> >
-> > We currently target to allocate an eng. to work on this on the second half of August with a goal to have the driver ready for the next kernel merge window.
-> >
-> > Regards,
-> > Eyal.
+Thanks,
+Mark
+
+From 955741a5120bb1ed19d3b12da90bb947d3a0cb99 Mon Sep 17 00:00:00 2001
+From: Raag Jadav <raagjadav@gmail.com>
+Date: Wed, 14 Aug 2019 00:02:55 +0530
+Subject: [PATCH] regulator: act8865: operating mode and suspend state support
+
+Implement ->set_mode(), ->get_mode() and ->set_suspend_xx() hooks
+for act8865 with unlocked expert registers.
+
+Based on work done by Borris Brezillon on [1].
+[1] https://www.spinics.net/lists/kernel/msg2942960.html
+
+Signed-off-by: Raag Jadav <raagjadav@gmail.com>
+Link: https://lore.kernel.org/r/1565721176-8955-2-git-send-email-raagjadav@gmail.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ drivers/regulator/act8865-regulator.c | 187 +++++++++++++++++++++++++-
+ 1 file changed, 186 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/regulator/act8865-regulator.c b/drivers/regulator/act8865-regulator.c
+index 6a90d3c7a452..0fa97f934df4 100644
+--- a/drivers/regulator/act8865-regulator.c
++++ b/drivers/regulator/act8865-regulator.c
+@@ -19,6 +19,7 @@
+ #include <linux/power_supply.h>
+ #include <linux/regulator/of_regulator.h>
+ #include <linux/regmap.h>
++#include <dt-bindings/regulator/active-semi,8865-regulator.h>
+ 
+ /*
+  * ACT8600 Global Register Map.
+@@ -90,23 +91,31 @@
+  */
+ #define	ACT8865_SYS_MODE	0x00
+ #define	ACT8865_SYS_CTRL	0x01
++#define	ACT8865_SYS_UNLK_REGS	0x0b
+ #define	ACT8865_DCDC1_VSET1	0x20
+ #define	ACT8865_DCDC1_VSET2	0x21
+ #define	ACT8865_DCDC1_CTRL	0x22
++#define	ACT8865_DCDC1_SUS	0x24
+ #define	ACT8865_DCDC2_VSET1	0x30
+ #define	ACT8865_DCDC2_VSET2	0x31
+ #define	ACT8865_DCDC2_CTRL	0x32
++#define	ACT8865_DCDC2_SUS	0x34
+ #define	ACT8865_DCDC3_VSET1	0x40
+ #define	ACT8865_DCDC3_VSET2	0x41
+ #define	ACT8865_DCDC3_CTRL	0x42
++#define	ACT8865_DCDC3_SUS	0x44
+ #define	ACT8865_LDO1_VSET	0x50
+ #define	ACT8865_LDO1_CTRL	0x51
++#define	ACT8865_LDO1_SUS	0x52
+ #define	ACT8865_LDO2_VSET	0x54
+ #define	ACT8865_LDO2_CTRL	0x55
++#define	ACT8865_LDO2_SUS	0x56
+ #define	ACT8865_LDO3_VSET	0x60
+ #define	ACT8865_LDO3_CTRL	0x61
++#define	ACT8865_LDO3_SUS	0x62
+ #define	ACT8865_LDO4_VSET	0x64
+ #define	ACT8865_LDO4_CTRL	0x65
++#define	ACT8865_LDO4_SUS	0x66
+ #define	ACT8865_MSTROFF		0x20
+ 
+ /*
+@@ -225,6 +234,171 @@ static const struct regulator_linear_range act8600_sudcdc_voltage_ranges[] = {
+ 	REGULATOR_LINEAR_RANGE(41400000, 248, 255, 0),
+ };
+ 
++static int act8865_set_suspend_state(struct regulator_dev *rdev, bool enable)
++{
++	struct regmap *regmap = rdev->regmap;
++	int id = rdev->desc->id, reg, val;
++
++	switch (id) {
++	case ACT8865_ID_DCDC1:
++		reg = ACT8865_DCDC1_SUS;
++		val = 0xa8;
++		break;
++	case ACT8865_ID_DCDC2:
++		reg = ACT8865_DCDC2_SUS;
++		val = 0xa8;
++		break;
++	case ACT8865_ID_DCDC3:
++		reg = ACT8865_DCDC3_SUS;
++		val = 0xa8;
++		break;
++	case ACT8865_ID_LDO1:
++		reg = ACT8865_LDO1_SUS;
++		val = 0xe8;
++		break;
++	case ACT8865_ID_LDO2:
++		reg = ACT8865_LDO2_SUS;
++		val = 0xe8;
++		break;
++	case ACT8865_ID_LDO3:
++		reg = ACT8865_LDO3_SUS;
++		val = 0xe8;
++		break;
++	case ACT8865_ID_LDO4:
++		reg = ACT8865_LDO4_SUS;
++		val = 0xe8;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	if (enable)
++		val |= BIT(4);
++
++	/*
++	 * Ask the PMIC to enable/disable this output when entering hibernate
++	 * mode.
++	 */
++	return regmap_write(regmap, reg, val);
++}
++
++static int act8865_set_suspend_enable(struct regulator_dev *rdev)
++{
++	return act8865_set_suspend_state(rdev, true);
++}
++
++static int act8865_set_suspend_disable(struct regulator_dev *rdev)
++{
++	return act8865_set_suspend_state(rdev, false);
++}
++
++static unsigned int act8865_of_map_mode(unsigned int mode)
++{
++	switch (mode) {
++	case ACT8865_REGULATOR_MODE_FIXED:
++		return REGULATOR_MODE_FAST;
++	case ACT8865_REGULATOR_MODE_NORMAL:
++		return REGULATOR_MODE_NORMAL;
++	case ACT8865_REGULATOR_MODE_LOWPOWER:
++		return REGULATOR_MODE_STANDBY;
++	default:
++		return REGULATOR_MODE_INVALID;
++	}
++}
++
++static int act8865_set_mode(struct regulator_dev *rdev, unsigned int mode)
++{
++	struct regmap *regmap = rdev->regmap;
++	int id = rdev_get_id(rdev);
++	int reg, val = 0;
++
++	switch (id) {
++	case ACT8865_ID_DCDC1:
++		reg = ACT8865_DCDC1_CTRL;
++		break;
++	case ACT8865_ID_DCDC2:
++		reg = ACT8865_DCDC2_CTRL;
++		break;
++	case ACT8865_ID_DCDC3:
++		reg = ACT8865_DCDC3_CTRL;
++		break;
++	case ACT8865_ID_LDO1:
++		reg = ACT8865_LDO1_CTRL;
++		break;
++	case ACT8865_ID_LDO2:
++		reg = ACT8865_LDO2_CTRL;
++		break;
++	case ACT8865_ID_LDO3:
++		reg = ACT8865_LDO3_CTRL;
++		break;
++	case ACT8865_ID_LDO4:
++		reg = ACT8865_LDO4_CTRL;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	switch (mode) {
++	case REGULATOR_MODE_FAST:
++	case REGULATOR_MODE_NORMAL:
++		if (id <= ACT8865_ID_DCDC3)
++			val = BIT(5);
++		break;
++	case REGULATOR_MODE_STANDBY:
++		if (id > ACT8865_ID_DCDC3)
++			val = BIT(5);
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return regmap_update_bits(regmap, reg, BIT(5), val);
++}
++
++static unsigned int act8865_get_mode(struct regulator_dev *rdev)
++{
++	struct regmap *regmap = rdev->regmap;
++	int id = rdev_get_id(rdev);
++	int reg, ret, val = 0;
++
++	switch (id) {
++	case ACT8865_ID_DCDC1:
++		reg = ACT8865_DCDC1_CTRL;
++		break;
++	case ACT8865_ID_DCDC2:
++		reg = ACT8865_DCDC2_CTRL;
++		break;
++	case ACT8865_ID_DCDC3:
++		reg = ACT8865_DCDC3_CTRL;
++		break;
++	case ACT8865_ID_LDO1:
++		reg = ACT8865_LDO1_CTRL;
++		break;
++	case ACT8865_ID_LDO2:
++		reg = ACT8865_LDO2_CTRL;
++		break;
++	case ACT8865_ID_LDO3:
++		reg = ACT8865_LDO3_CTRL;
++		break;
++	case ACT8865_ID_LDO4:
++		reg = ACT8865_LDO4_CTRL;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	ret = regmap_read(regmap, reg, &val);
++	if (ret)
++		return ret;
++
++	if (id <= ACT8865_ID_DCDC3 && (val & BIT(5)))
++		return REGULATOR_MODE_FAST;
++	else if	(id > ACT8865_ID_DCDC3 && !(val & BIT(5)))
++		return REGULATOR_MODE_NORMAL;
++	else
++		return REGULATOR_MODE_STANDBY;
++}
++
+ static const struct regulator_ops act8865_ops = {
+ 	.list_voltage		= regulator_list_voltage_linear_range,
+ 	.map_voltage		= regulator_map_voltage_linear_range,
+@@ -232,7 +406,11 @@ static const struct regulator_ops act8865_ops = {
+ 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
+ 	.enable			= regulator_enable_regmap,
+ 	.disable		= regulator_disable_regmap,
++	.set_mode		= act8865_set_mode,
++	.get_mode		= act8865_get_mode,
+ 	.is_enabled		= regulator_is_enabled_regmap,
++	.set_suspend_enable	= act8865_set_suspend_enable,
++	.set_suspend_disable	= act8865_set_suspend_disable,
+ };
+ 
+ static const struct regulator_ops act8865_ldo_ops = {
+@@ -242,7 +420,11 @@ static const struct regulator_ops act8865_ldo_ops = {
+ 	.set_voltage_sel	= regulator_set_voltage_sel_regmap,
+ 	.enable			= regulator_enable_regmap,
+ 	.disable		= regulator_disable_regmap,
++	.set_mode		= act8865_set_mode,
++	.get_mode		= act8865_get_mode,
+ 	.is_enabled		= regulator_is_enabled_regmap,
++	.set_suspend_enable	= act8865_set_suspend_enable,
++	.set_suspend_disable	= act8865_set_suspend_disable,
+ 	.set_pull_down		= regulator_set_pull_down_regmap,
+ };
+ 
+@@ -256,6 +438,7 @@ static const struct regulator_ops act8865_fixed_ldo_ops = {
+ 	[_family##_ID_##_id] = {					\
+ 		.name			= _name,			\
+ 		.of_match		= of_match_ptr(_name),		\
++		.of_map_mode		= act8865_of_map_mode,		\
+ 		.regulators_node	= of_match_ptr("regulators"),	\
+ 		.supply_name		= _supply,			\
+ 		.id			= _family##_ID_##_id,		\
+@@ -590,7 +773,9 @@ static int act8865_pmic_probe(struct i2c_client *client,
+ 
+ 	i2c_set_clientdata(client, act8865);
+ 
+-	return 0;
++	/* Unlock expert registers for ACT8865. */
++	return type != ACT8865 ? 0 : regmap_write(act8865->regmap,
++						  ACT8865_SYS_UNLK_REGS, 0xef);
+ }
+ 
+ static const struct i2c_device_id act8865_ids[] = {
+-- 
+2.20.1
+
