@@ -2,50 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 488A98E2C0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 04:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 720DA8E2D0
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 04:39:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727722AbfHOCeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 22:34:50 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:39978 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbfHOCeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 22:34:50 -0400
-Received: by mail-qt1-f196.google.com with SMTP id e8so944260qtp.7;
-        Wed, 14 Aug 2019 19:34:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=UvlpKIEKzdLNWsDOs0SJoKEMJzb7R21bNGBtN9YQupI=;
-        b=K9B12o/Yk2y89tU5fX97Xxbj7+PKroF6OTW+/7iukW5ZkrqtUIYRCDFTmKFWq0dA7J
-         dBDrHA9PQQRdgHGrrc5K9BM102yHCRlWO2j7iMu5Z55fIQwhnDRCG5JqPFyBaJ7L2ftI
-         ly52UtUychblOGnZZRfGlMCiXCrf0tW68i3ib8r8At5RfwPydwQLVRW+86Tx2WzjhwEU
-         amZjwP3WM3ESFobEHCy6KnNd0QRt1IEhUTFydH5oFyQ8VYRAoRlsTZ81b2zpyMVtHEYc
-         TTewAtBkkXRXg4VK1V7LIngtKpa4YX/Zcb04KTf961N6IHRlwf4BpfxDsa4u1XbIJVft
-         FOCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=UvlpKIEKzdLNWsDOs0SJoKEMJzb7R21bNGBtN9YQupI=;
-        b=ZOr7em0VxAXVDMoOOha01xQhVObGQR+owbas9ZvHI9KCy7TQtxzcX5Heg082t2jPmd
-         YLG3sPB4YCZcf7GslkI1vDFFQBT0EaYJm/AEc/HI8LvAfmdg34k5UcSiwfsV/BazF3Yi
-         X+iG9oGVOyyRm9mJfwfBTwy8WFeSSXhWzwrUHVt/wJgt8AjvktHK8FX/fDr3w+apl1xz
-         ciwKE6gYCw5RakTNm1PdTlN8pdGFOUvhAjsnkDPIuTbXjN4JKDPYBKQIo2UFPpm+Hu77
-         UVBWbwCHBcC1826T2Z/r9zusXB7Rk7ALDxJ6+TCg2GweL6fZpzfg5lqGDAon+C4ALWW1
-         Glow==
-X-Gm-Message-State: APjAAAXyt7Fo/h1eEdrKILsE/w/zLtYLy5fCJdwjs+41CAy4XYSzCIsf
-        rpJVBQSTcPUPsd7uliPR9HvE6oIQoa2E/19i6Q==
-X-Google-Smtp-Source: APXvYqyCgBZijuxiTiA6Ykjy5y3SBRER44fM5dusRcWlJHLBF8cB3s/O0u7LwJN6OQs5ElV+jL+J/Yy3PZiiMG4DeE4=
-X-Received: by 2002:a0c:9782:: with SMTP id l2mr1911229qvd.72.1565836488982;
- Wed, 14 Aug 2019 19:34:48 -0700 (PDT)
+        id S1728539AbfHOCjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 22:39:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56976 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726496AbfHOCjR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 22:39:17 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7B6FD216F4;
+        Thu, 15 Aug 2019 02:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565836756;
+        bh=6QbandalLnAk7UTLMfGCysXOvMZVD8zDiXVztaTkPvM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RSkuKlm0NGGu8APyg6jy9o40Z1GL5PDioKvTTmrex2ngWcAfSwaqqWhLdUzWmdLnj
+         FCqCB23jZjq+fQ52yCvopkjQDq9yjnmAiKyiArsa5D+Ge0uCmV9dKeEWUvhdHYdL5H
+         wo2RFawVbhBV8ymWz3Wj+DR8D0Zq93/KI15G/CnE=
+Received: by mail-qt1-f178.google.com with SMTP id y26so974455qto.4;
+        Wed, 14 Aug 2019 19:39:16 -0700 (PDT)
+X-Gm-Message-State: APjAAAWu0YdL4095pudP9m7riRw6zPz3UIHnjCMf3oSgYes05+kr7Trk
+        nugsbe2d00vMn0Sv0XnA8y42aNRH1Y7GF/bxvg==
+X-Google-Smtp-Source: APXvYqy720b+TBPiY3xSErK/uPvy00ygrhACFau+Inlb5PS4ZryBu4TZuITCQtM7YmMF5mIDTHqb7h7I0JYxps+k0mk=
+X-Received: by 2002:ac8:386f:: with SMTP id r44mr2221226qtb.300.1565836755669;
+ Wed, 14 Aug 2019 19:39:15 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robherring2@gmail.com>
-Date:   Wed, 14 Aug 2019 20:34:37 -0600
-Message-ID: <CAL_JsqJRJp8a_sytr2C_18muxt4ehGQRdfu8n8J70HdRz-gFHw@mail.gmail.com>
-Subject: [GIT PULL] Devicetree fixes for 5.3-rc, take 3
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+References: <20190814073150.4602-1-mircea.caprioru@analog.com> <20190814073150.4602-4-mircea.caprioru@analog.com>
+In-Reply-To: <20190814073150.4602-4-mircea.caprioru@analog.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 14 Aug 2019 20:39:04 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKONxFbS-nUMc1c=-9HcXCrOVmOOfn9htKOJOjAS6HCKg@mail.gmail.com>
+Message-ID: <CAL_JsqKONxFbS-nUMc1c=-9HcXCrOVmOOfn9htKOJOjAS6HCKg@mail.gmail.com>
+Subject: Re: [PATCH V3 4/4] dt-bindings: iio: adc: ad7192: Add binding
+ documentation for AD7192
+To:     Mircea Caprioru <mircea.caprioru@analog.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
         devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
@@ -53,55 +54,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+On Wed, Aug 14, 2019 at 1:32 AM Mircea Caprioru
+<mircea.caprioru@analog.com> wrote:
+>
+> This patch add device tree binding documentation for AD7192 adc in YAML
+> format.
+>
+> Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
+> ---
+> Changelog V2:
+> - remove description from spi and interrupt properties
+> - changed the name of the device from ad7192 to adc in the example
+>
+> Changelog V3:
+> - added semicolon at the end of the dt example
+>
+>  .../bindings/iio/adc/adi,ad7192.yaml          | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
 
-Please pull DT fixes for 5.3.
-
-Rob
-
-The following changes since commit 609488bc979f99f805f34e9a32c1e3b71179d10b:
-
-  Linux 5.3-rc2 (2019-07-28 12:47:02 -0700)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-tags/devicetree-fixes-for-5.3-3
-
-for you to fetch changes up to 83f82d7a42583e93d0f0dde3d61ed10f75c0f4d8:
-
-  of: irq: fix a trivial typo in a doc comment (2019-08-14 20:12:16 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for 5.3:
-
-- Fix building DT binding examples for in tree builds
-
-- Correct some refcounting in adjust_local_phandle_references()
-
-- Update FSL FEC binding with deprecated properties
-
-- Schema fix in stm32 pinctrl
-
-- Fix typo in of_irq_parse_one docbook comment
-
-----------------------------------------------------------------
-Lubomir Rintel (1):
-      of: irq: fix a trivial typo in a doc comment
-
-Nishka Dasgupta (1):
-      of: resolver: Add of_node_put() before return and break
-
-Rob Herring (2):
-      dt-bindings: Fix generated example files getting added to schemas
-      dt-bindings: pinctrl: stm32: Fix 'st,syscfg' schema
-
-Sven Van Asbroeck (1):
-      dt-bindings: fec: explicitly mark deprecated properties
-
- Documentation/devicetree/bindings/Makefile         |  4 ++-
- Documentation/devicetree/bindings/net/fsl-fec.txt  | 30 ++++++++++++----------
- .../bindings/pinctrl/st,stm32-pinctrl.yaml         |  3 ++-
- drivers/of/irq.c                                   |  2 +-
- drivers/of/resolver.c                              | 12 ++++++---
- 5 files changed, 32 insertions(+), 19 deletions(-)
+Reviewed-by: Rob Herring <robh@kernel.org>
