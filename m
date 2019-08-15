@@ -2,94 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19DF98EBA4
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 14:38:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79BAA8EBA9
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 14:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730124AbfHOMiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 08:38:20 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:37481 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725977AbfHOMiU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 08:38:20 -0400
-Received: by mail-pl1-f194.google.com with SMTP id bj8so1039177plb.4;
-        Thu, 15 Aug 2019 05:38:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=1ee2WC7wFUitxl0VhlNk/I0IaNSildZhX3LeEHVWcaU=;
-        b=bU7F69OaIb5ke+Qt0qr7HlZwNfbiYKkzBNNDd8WzOHgsvEfE1khSOgq2w7EpiRuWPh
-         uTqfEiRYLy6fq3vEnJnH7/iPX37E1FVbVulx7Vv4U18g2VLI86sei7DpxGqKZDZ96V8+
-         rSoDO6VJthK6lxxQXoyz0eywkCeUmf/HVebo2WM0qgyPW9iHxjb5jXIwCH/78l9samiB
-         m2STME5iKjiocHcUzIBq5wqyuPgAlKn7Cq1b3FOToXEt7XIEjowRnd3jV3pH+WCgbrwb
-         y/wg7L3zNnBb2BOCFeUQahe99n0O2JYWx17ui9xB37TfI3KFvJtxA92FplWroT1DsaAR
-         LHVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1ee2WC7wFUitxl0VhlNk/I0IaNSildZhX3LeEHVWcaU=;
-        b=ovbZ5cY9Trf6ZwcGv1tYn/TZUTd+r7paJG4+Q5oFgYBYbVsvoewwFhgpB4eNPFlTxI
-         jC9jY0iNn7t7e74onD8L0NcWQQFnmHwPF10gIIoKS1ijpZ5vpjI31Gmhnd2616ZwhO/D
-         +hSDlydnoBQceM8gm9y3+0Y2E5jAX37hF+uKWCIbvSo6sE1FbQUl8bfZPrYVlctdnM5J
-         6MLCJeLG3TTRS9pD2Il8x3sXkQNsm3riUVG5lJ22bFoRs/eZyWWxa6w5G9SkR2/x8hbo
-         a95v+VwN4FeDcteDIJSd5QzxGFd92DllBoHg06K3IL3xe/EPNKrCEQezfy+DA28eh8n3
-         VwTg==
-X-Gm-Message-State: APjAAAW4Q1sF4cJSddhaYGVhTutcImjlbyFSSC+7b+p3BbND4I/mSz3L
-        Tk6BajHMEOfijOLvFgXpwkk=
-X-Google-Smtp-Source: APXvYqwacwndMgsXukx1fTNdcEaTu+xtzJYP9eajJDSzmxObARVKtVJS5xCwgo93gUEa6Hu2wopekQ==
-X-Received: by 2002:a17:902:e60c:: with SMTP id cm12mr2573361plb.304.1565872699079;
-        Thu, 15 Aug 2019 05:38:19 -0700 (PDT)
-Received: from icarus ([2001:268:c146:4483:71c4:4d14:b4c7:2693])
-        by smtp.gmail.com with ESMTPSA id t4sm2836798pfd.109.2019.08.15.05.38.13
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 15 Aug 2019 05:38:17 -0700 (PDT)
-Date:   Thu, 15 Aug 2019 21:37:58 +0900
-From:   William Breathitt Gray <vilhelm.gray@gmail.com>
-To:     David Lechner <david@lechnology.com>
-Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
-Subject: Re: [PATCH v2 3/5] counter: new TI eQEP driver
-Message-ID: <20190815123758.GA646493@icarus>
-References: <20190807194023.15318-1-david@lechnology.com>
- <20190807194023.15318-4-david@lechnology.com>
+        id S1731863AbfHOMiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 08:38:24 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:44976 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725977AbfHOMiY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 08:38:24 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id DA9CA2AF;
+        Thu, 15 Aug 2019 14:38:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1565872702;
+        bh=YRJnmv2XykB9/Bf3g+Kqjz6ifwFR0kAEhtIl0NbIsss=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JfavTIMxcU8Bj+mqssTcIl4ieqtsp6OFeRozsUMCWwfUtDeB34v57hlvaHG+yKRdR
+         TbbqvnLxPa+m1JPt+1lmt3PnVEzsdF+LjgSBKyGtOQ35hoAhRznbU047YScnFSP+eI
+         y8jjHGGSf6j8V9cBGfQPkVY/zC70xGYv3bs+SYEE=
+Date:   Thu, 15 Aug 2019 15:38:10 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
+Message-ID: <20190815123810.GC13823@pendragon.ideasonboard.com>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-3-m.felsch@pengutronix.de>
+ <20190516163632.GO14820@pendragon.ideasonboard.com>
+ <20190809075536.pukp444dmb7haoxj@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190807194023.15318-4-david@lechnology.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190809075536.pukp444dmb7haoxj@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 07, 2019 at 02:40:21PM -0500, David Lechner wrote:
-> +static struct counter_synapse ti_eqep_position_synapses[] = {
-> +	{
-> +		.action		= TI_EQEP_SYNAPSE_ACTION_BOTH_EDGES,
-> +		.actions_list	= ti_eqep_position_synapse_actions,
-> +		.num_actions	= ARRAY_SIZE(ti_eqep_position_synapse_actions),
-> +		.signal		= &ti_eqep_signals[TI_EQEP_SIGNAL_QEPA],
-> +	},
-> +	{
-> +		.action		= TI_EQEP_SYNAPSE_ACTION_BOTH_EDGES,
-> +		.actions_list	= ti_eqep_position_synapse_actions,
-> +		.num_actions	= ARRAY_SIZE(ti_eqep_position_synapse_actions),
-> +		.signal		= &ti_eqep_signals[TI_EQEP_SIGNAL_QEPB],
-> +	},
-> +};
+Hi Marco,
 
-Hi David,
+On Fri, Aug 09, 2019 at 09:55:36AM +0200, Marco Felsch wrote:
+> On 19-05-16 19:36, Laurent Pinchart wrote:
+> > On Mon, Apr 15, 2019 at 02:44:02PM +0200, Marco Felsch wrote:
+> > > Currently every driver needs to parse the connector endpoints by it self.
+> > 
+> > s/it self/itself/
+> > 
+> > > This is the initial work to make this generic. The generic connector has
+> > > some common fields and some connector specific parts. The generic one
+> > > includes:
+> > >   - type
+> > >   - label
+> > >   - remote_port (the port where the connector is connected to)
+> > >   - remote_id   (the endpoint where the connector is connected to)
+> > 
+> > This assumes a single connection between a connector and a remote port,
+> > and a single port on the connector side. Is this guaranteed ? For the
+> > mini-DIN-4 connectors (often used for S-Video) for instance, I recall
+> > from the extensive discussions we had in the past that they should be
+> > modeled with two pins, one for the Y component and one for C components.
+> > The rationale for this is to support systems where such a connector
+> > could be used to carry S-Video, but also two composite video signals
+> > (usually through an external adapter from 2 RCA female connectors to one
+> > S-Video male connector) that would be routed to two separate video
+> > decoders (or two different inputs of the same video decoder). Other
+> > topologies may be possible too.
+> 
+> I got your concerns and I also remember the tvp5150 port bindings
+> myself in the past. Do you know how often such a setup you described
+> above happens these days? I would rather add more documentation to the
+> bindings [1] and add a check to v4l2_fwnode_parse_connector() to
+> guarantee that one port has only one endpoint. Because I don't think
+> that analog connectors has a bright future these days.
+> 
+> [1] Documentation/devicetree/bindings/display/connector/ \
+>     analog-tv-connector.txt
 
-Just a minor suggestion for your v3: you don't need to initialize
-"action" here since it'll be automatically updated in the core
-counter_action_show function to the value returned by your action_get
-callback function. So you can safely delete those two ".action =" lines.
+I have seen it on older hardware, I don't know about more recent
+systems. For the S-Video case at least, you need to support two DT
+ports, even if you don't support connecting them to two different
+devices yet.
 
-William Breathitt Gray
+In any case, I'm fine if those topologies are not supported yet, but it
+should be possible to support them in a backward-compatible way. In
+particular, in this case, we should make sure the DT bindings will allow
+such topologies, and the DT parsing API should make it possible to
+support them without fugure changes to drivers that use the API from
+this patch for "simple" topologies.
+
+> > > The specific fields are within a union, since only one of them can be
+> > > available at the time. Since this is the initial support the patch adds
+> > > only the analog-connector specific ones.
+> > > 
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> > > ---
+> > > [1] https://patchwork.kernel.org/cover/10794703/
+> > > 
+> > > v6:
+> > > - fix some spelling and style issues
+> > > - rm unnecessary comments
+> > > - drop vga and dvi connector
+> > > 
+> > > v2-v4:
+> > > - nothing since the patch was squashed from series [1] into this
+> > >   series.
+> > > 
+> > >  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
+> > >  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
+> > >  2 files changed, 63 insertions(+)
+> > >  create mode 100644 include/media/v4l2-connector.h
+> > > 
+> > > diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
+> > > new file mode 100644
+> > > index 000000000000..3a951c54f50e
+> > > --- /dev/null
+> > > +++ b/include/media/v4l2-connector.h
+> > > @@ -0,0 +1,30 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > > +/*
+> > > + * v4l2-connector.h
+> > > + *
+> > > + * V4L2 connector types.
+> > > + *
+> > > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > > + */
+> > > +
+> > > +#ifndef V4L2_CONNECTOR_H
+> > > +#define V4L2_CONNECTOR_H
+> > > +
+> > > +#define V4L2_CONNECTOR_MAX_LABEL 41
+> > 
+> > Hans pointed out this was a weird number. Should you turn the label
+> > field into a pointer to make this more generic (with a
+> > v4l2_fwnode_connector_cleanup() function then) ?
+> 
+> Yes, that would be the better approach. I will change that.
+> 
+> > > +
+> > > +/**
+> > > + * enum v4l2_connector_type - connector type
+> > > + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration
+> > > + * @V4L2_CON_COMPOSITE: analog composite connector
+> > > + * @V4L2_CON_SVIDEO:    analog svideo connector
+> > > + * @V4L2_CON_HDMI:      digital hdmi connector
+> > > + */
+> > > +enum v4l2_connector_type {
+> > > +	V4L2_CON_UNKNOWN,
+> > > +	V4L2_CON_COMPOSITE,
+> > > +	V4L2_CON_SVIDEO,
+> > > +	V4L2_CON_HDMI,
+> > > +};
+> > > +
+> > > +#endif /* V4L2_CONNECTOR_H */
+> > > +
+> > > diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> > > index 6c07825e18b9..f4df1b95c5ef 100644
+> > > --- a/include/media/v4l2-fwnode.h
+> > > +++ b/include/media/v4l2-fwnode.h
+> > > @@ -22,6 +22,7 @@
+> > >  #include <linux/list.h>
+> > >  #include <linux/types.h>
+> > >  
+> > > +#include <media/v4l2-connector.h>
+> > >  #include <media/v4l2-mediabus.h>
+> > >  #include <media/v4l2-subdev.h>
+> > >  
+> > > @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
+> > >  	unsigned int remote_port;
+> > >  };
+> > >  
+> > > +/**
+> > > + * struct v4l2_fwnode_connector_analog - analog connector data structure
+> > > + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
+> > > + *                     if no restrictions are specified.
+> > > + */
+> > > +struct v4l2_fwnode_connector_analog {
+> > > +	v4l2_std_id supported_tvnorms;
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct v4l2_fwnode_connector - the connector data structure
+> > > + * @remote_port: identifier of the remote endpoint port the connector connects
+> > > + *		 to
+> > > + * @remote_id: identifier of the remote endpoint the connector connects to
+> > > + * @label: connetor label
+> > > + * @type: connector type
+> > > + * @connector: connector configuration
+> > > + * @connector.analog: analog connector configuration
+> > > + *                    &struct v4l2_fwnode_connector_analog
+> > > + */
+> > > +struct v4l2_fwnode_connector {
+> > > +	unsigned int remote_port;
+> > > +	unsigned int remote_id;
+> > > +	char label[V4L2_CONNECTOR_MAX_LABEL];
+> > > +	enum v4l2_connector_type type;
+> > > +
+> > > +	union {
+> > > +		struct v4l2_fwnode_connector_analog analog;
+> > > +		/* future connectors */
+> > > +	} connector;
+> > > +};
+> > > +
+> > >  /**
+> > >   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
+> > >   * @fwnode: pointer to the endpoint's fwnode handle
+
+-- 
+Regards,
+
+Laurent Pinchart
