@@ -2,285 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16FA78E331
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 05:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4CDD8E336
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 05:36:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728786AbfHODel (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 23:34:41 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:37860 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728283AbfHODel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 23:34:41 -0400
-Received: by mail-oi1-f195.google.com with SMTP id a21so326257oie.4
-        for <devicetree@vger.kernel.org>; Wed, 14 Aug 2019 20:34:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=0JIQRQ+xNbbHKLeC4kEeQF0KjMCRGExp2a+6cMV/Yzs=;
-        b=D6xWg31eAx37dbBFh2UHPoO7jB0Tj7vTtasYLZ0gi3iI06sjjzXJC4DyDWnCz4kCv7
-         y/TyN35MAbuMvqjy/NElFecs5Mokai3s2vydtylLX3adVdeV+EKVR5Dmh7anWNvtt9p6
-         nAdEx7zhH0wdDkuF0QbggALjJK0UGBmg8GawwnGk14xA8mp4AyaS7NKtRSuSgWJAKi/9
-         kXUu/229gpfmb3SSAHpmQwFUvn8SzhAc0ZyZTQ9O7r8GKvBCTdeGZgs6Cj8rQlzFJJte
-         b59lJI6LYNXvAFrm/MQMn/VAJiR9zjBcGUNP5AD25l5fhu0zvsOAUgV6ZaXewIpT1DOb
-         23rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0JIQRQ+xNbbHKLeC4kEeQF0KjMCRGExp2a+6cMV/Yzs=;
-        b=c6jx94WHQk2AwsBu3K5rPpwe1Z4dKMaWTrqokljVOdlX59Dz321c5yXAgqdUHm9RpF
-         ma71RJtGb7wpwCK6PAc0Ibp3h6GHtJGVa93jBTvYo9cIyc21L5/hetI3zm46LDAMyAhA
-         Reak2FIEa1IVCGS+eU92YzQN/DSjyAfCeHq8yMDi3Vnf65HcTHcysUvu+kOMeLJ8jiHM
-         lGvCfocPx6/Bm+i2TjZ9cZWIfQusDFdz8d7g1mdSUPWRL2Ls0kOK9gTY2xvLLV5QX0fN
-         muAw6m8jSm/hsBMUxWePzx5jn+zoVNp5b2gvwtMUL2h/P2+wqCe3sRDoogAvC7iPIOtj
-         YZrQ==
-X-Gm-Message-State: APjAAAVIOcbN8qT6aDS05DLSdEsm+qelRngp3yltySMlWbxOggMKX8iS
-        hvbAFM3PdoW++R4wm0yNXaeQ06dpWY8ZR245ZtHVdg==
-X-Google-Smtp-Source: APXvYqz2WW/ZUZs3f9DE3/5TOF72f8NVhhdHDWXWLqGs3GshPIHar7YD+ZZAObNfFBIbBv2aGU+AZ1O4ADcHpCaMGWM=
-X-Received: by 2002:aca:6056:: with SMTP id u83mr255579oib.27.1565840079545;
- Wed, 14 Aug 2019 20:34:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <65a34dd943b0260bfe45ec76dcf414a67e5d8343.1565785291.git.baolin.wang@linaro.org>
- <446eb284a096a1fd8998765669b1c9a2f78d7d22.1565785291.git.baolin.wang@linaro.org>
- <20190814150304.x44lalde3cwp67ge@pengutronix.de>
-In-Reply-To: <20190814150304.x44lalde3cwp67ge@pengutronix.de>
-From:   Baolin Wang <baolin.wang@linaro.org>
-Date:   Thu, 15 Aug 2019 11:34:27 +0800
-Message-ID: <CAMz4kuLiS=cGTA=uEi9ABOVAOb1M0Pcd2a_xU5VsdLo1DGd0Hg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] pwm: sprd: Add Spreadtrum PWM support
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        id S1728905AbfHODgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 23:36:44 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:40284 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728320AbfHODgo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 14 Aug 2019 23:36:44 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3FCE120041A;
+        Thu, 15 Aug 2019 05:36:42 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BD0EA2001A0;
+        Thu, 15 Aug 2019 05:36:36 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C2696402A2;
+        Thu, 15 Aug 2019 11:36:29 +0800 (SGT)
+From:   Yinbo Zhu <yinbo.zhu@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     yinbo.zhu@nxp.com, xiaobo.xie@nxp.com, jiafei.pan@nxp.com,
+        yangbo.lu@nxp.com, Ashish Kumar <Ashish.Kumar@nxp.com>
+Subject: [PATCH v5] arm64: dts: ls1028a: Add esdhc node in dts
+Date:   Thu, 15 Aug 2019 11:39:01 +0800
+Message-Id: <20190815033901.18696-1-yinbo.zhu@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Uwe,
+From: Ashish Kumar <Ashish.Kumar@nxp.com>
 
-On Wed, 14 Aug 2019 at 23:03, Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> On Wed, Aug 14, 2019 at 08:46:11PM +0800, Baolin Wang wrote:
+This patch is to add esdhc node and enable SD UHS-I,
+eMMC HS200 for ls1028ardb/ls1028aqds board.
 
-> > +
-> > +     /*
-> > +      * The hardware provides a counter that is feed by the source clo=
-ck.
-> > +      * The period length is (PRESCALE + 1) * MOD counter steps.
-> > +      * The duty cycle length is (PRESCALE + 1) * DUTY counter steps.
-> > +      * Thus the period_ns and duty_ns calculation formula should be:
-> > +      * period_ns =3D NSEC_PER_SEC * (prescale + 1) * mod / clk_rate
-> > +      * duty_ns =3D NSEC_PER_SEC * (prescale + 1) * duty / clk_rate
-> > +      */
-> > +     val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE);
-> > +     prescale =3D val & SPRD_PWM_PRESCALE_MSK;
-> > +     tmp =3D (prescale + 1) * NSEC_PER_SEC * SPRD_PWM_MOD_MAX;
-> > +     state->period =3D DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rate);
-> > +
-> > +     val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY);
-> > +     duty =3D val & SPRD_PWM_DUTY_MSK;
-> > +     tmp =3D (prescale + 1) * NSEC_PER_SEC * duty;
-> > +     state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rate);
-> > +
-> > +     /* Disable PWM clocks if the PWM channel is not in enable state. =
-*/
-> > +     if (!state->enabled)
-> > +             clk_bulk_disable_unprepare(SPRD_PWM_CHN_CLKS_NUM, chn->cl=
-ks);
-> > +}
-> > +
-> > +static int sprd_pwm_config(struct sprd_pwm_chip *spc, struct pwm_devic=
-e *pwm,
-> > +                        int duty_ns, int period_ns)
-> > +{
-> > +     struct sprd_pwm_chn *chn =3D &spc->chn[pwm->hwpwm];
-> > +     u32 prescale, duty;
-> > +     u64 tmp;
-> > +
-> > +     /*
-> > +      * The hardware provides a counter that is feed by the source clo=
-ck.
-> > +      * The period length is (PRESCALE + 1) * MOD counter steps.
-> > +      * The duty cycle length is (PRESCALE + 1) * DUTY counter steps.
-> > +      *
-> > +      * To keep the maths simple we're always using MOD =3D SPRD_PWM_M=
-OD_MAX.
->
-> Did you spend some thoughts about how wrong your period can get because
-> of that "lazyness"?
->
-> Let's assume a clk rate of 100/3 MHz. Then the available period lengths
-> are:
->
->         PRESCALE =3D  0  ->  period =3D   7.65 =C2=B5s
->         PRESCALE =3D  1  ->  period =3D  15.30 =C2=B5s
->         ...
->         PRESCALE =3D 17  ->  period =3D 137.70 =C2=B5s
->         PRESCALE =3D 18  ->  period =3D 145.35 =C2=B5s
->
-> So the error can be up to (nearly) 7.65 =C2=B5s (or in general
+Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
+Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
+Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
+---
+Change in v5:
+		Fix indent.
 
-Yes, but for our use case (pwm backlight), the precision can meet our
-requirement. Moreover, we usually do not change the period, just
-adjust the duty to change the back light.
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts |  8 +++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts | 13 +++++++++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    | 27 +++++++++++++++++++++++
+ 3 files changed, 48 insertions(+)
 
-> 255 / clk_rate) because if 145.34 =C2=B5s is requested you configure
-> PRESCALE =3D 17 and so yield a period of 137.70 =C2=B5s. If however you'd=
- pick
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+index de6ef39..5e14e5a 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+@@ -95,6 +95,14 @@
+ 	status = "okay";
+ };
+ 
++&esdhc {
++	status = "okay";
++};
++
++&esdhc1 {
++	status = "okay";
++};
++
+ &i2c0 {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+index 9fb9113..1a69221 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+@@ -83,6 +83,19 @@
+ 	};
+ };
+ 
++&esdhc {
++	sd-uhs-sdr104;
++	sd-uhs-sdr50;
++	sd-uhs-sdr25;
++	sd-uhs-sdr12;
++	status = "okay";
++};
++
++&esdhc1 {
++	mmc-hs200-1_8v;
++	status = "okay";
++};
++
+ &i2c0 {
+ 	status = "okay";
+ 
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 7975519..f299075 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -245,6 +245,33 @@
+ 			status = "disabled";
+ 		};
+ 
++		esdhc: mmc@2140000 {
++			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
++			reg = <0x0 0x2140000 0x0 0x10000>;
++			interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
++			clock-frequency = <0>; /* fixed up by bootloader */
++			clocks = <&clockgen 2 1>;
++			voltage-ranges = <1800 1800 3300 3300>;
++			sdhci,auto-cmd12;
++			little-endian;
++			bus-width = <4>;
++			status = "disabled";
++		};
++
++		esdhc1: mmc@2150000 {
++			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
++			reg = <0x0 0x2150000 0x0 0x10000>;
++			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
++			clock-frequency = <0>; /* fixed up by bootloader */
++			clocks = <&clockgen 2 1>;
++			voltage-ranges = <1800 1800 3300 3300>;
++			sdhci,auto-cmd12;
++			broken-cd;
++			little-endian;
++			bus-width = <4>;
++			status = "disabled";
++		};
++
+ 		duart0: serial@21c0500 {
+ 			compatible = "fsl,ns16550", "ns16550a";
+ 			reg = <0x00 0x21c0500 0x0 0x100>;
+-- 
+2.9.5
 
-I did not get you here, if period is 145.34, we still get the
-corresponding PRESCALE =3D 18 by below formula:
-
-tmp =3D (u64)chn->clk_rate * period_ns;
-do_div(tmp, NSEC_PER_SEC);
-prescale =3D DIV_ROUND_CLOSEST_ULL(tmp, SPRD_PWM_MOD_MAX) - 1;
-
-> PRESCALE =3D 18 and MOD =3D 254 you get a period of 144.78 =C2=B5s and so=
- the
-> error is only 0.56 =C2=B5s which is a factor of 13 better.
->
-> Hmm.
->
-> > +      * The value for PRESCALE is selected such that the resulting per=
-iod
-> > +      * gets the maximal length not bigger than the requested one with=
- the
-> > +      * given settings (MOD =3D SPRD_PWM_MOD_MAX and input clock).
-> > +      */
-> > +     duty =3D duty_ns * SPRD_PWM_MOD_MAX / period_ns;
->
-> I wonder if you loose some precision here as you use period_ns but might
-> actually implement a shorter period.
->
-> Quick example, again consider clk_rate =3D 100 / 3 MHz,
-> period_ns =3D 145340, duty_ns =3D 72670. Then you end up with
->
->         PRESCALE =3D 17
->         MOD =3D 255
->         DUTY =3D 127
-
-Incorrect, we will get PRESCALE =3D 18,  MOD =3D 255, DUTY =3D 127.
-
-> That corresponds to period_ns =3D 137700, duty_ns =3D 68580. With DUTY =
-=3D 134
-> you get 72360 ns which is still smaller than the requested 72670 ns.
-
-Incorrect, with DUTY =3D 134 (PRESCALE =3D 18  ->  period =3D 145.35 =C2=B5=
-s),
-duty_ns =3D 76380ns
-
-> (But then again it is not obvious which of the two is the "better"
-> approximation because Thierry doesn't seem to see the necessity to
-> discuss or define a policy here.)
-
-Like I said, this is the simple calculation formula which can meet our
-requirement (we limit our DUTY value can only be 0 - 254).
-duty =3D duty_ns * SPRD_PWM_MOD_MAX / period_ns;
-
->
-> (And to pick up the thoughts about not using SPRD_PWM_MOD_MAX
-> unconditionally, you could also use
->
->         PRESCALE =3D 18
->         MOD =3D 254
->         DUTY =3D 127
->
-> yielding period_ns =3D 144780 and duty_ns =3D 72390. Summary:
->
->         Request:                 72670 / 145340
->         your result:             68580 / 137700
->         also possible:           72390 / 144780
->
-> Judge yourself.)
->
-> > +     tmp =3D (u64)chn->clk_rate * period_ns;
-> > +     do_div(tmp, NSEC_PER_SEC);
-> > +     prescale =3D DIV_ROUND_CLOSEST_ULL(tmp, SPRD_PWM_MOD_MAX) - 1;
->
-> Now that you use DIV_ROUND_CLOSEST_ULL the comment is wrong because you
-> might provide a period bigger than the requested one. Also you divide
-
-Again, that's the precision can meet our requirement.
-
-> twice instead of once before. (I don't know what architecture your SoC
-> uses, but compared to a multiplication a division is usually expensive.)
-> Also the math is more complicated now as you have a round-down div and a
-> round-closest div.
->
-> My preference for how to fix that is to restore the behaviour of v2 that
-> matches the comment and adapt .get_state() instead.
-
-Using DIV_ROUND_CLOSEST_ULL can get a same prescale which matches with
-.get_state().
-
->
-> For .get_state() this should then be:
->
->         val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE);
->         prescale =3D FIELD_GET(SPRD_PWM_PRESCALE_MSK, val);
->
->         tmp =3D (prescale + 1) * NSEC_PER_SEC * SPRD_PWM_MOD_MAX;
->         state->period =3D DIV_ROUND_UP_ULL(tmp, chn->clk_rate);
->
-> > +     if (prescale > SPRD_PWM_PRESCALE_MSK)
-> > +             prescale =3D SPRD_PWM_PRESCALE_MSK;
-> > +
-> > +     /*
-> > +      * Note: Writing DUTY triggers the hardware to actually apply the
-> > +      * values written to MOD and DUTY to the output, so must keep wri=
-ting
-> > +      * DUTY last.
-> > +      *
-> > +      * The hardware can ensures that current running period is comple=
-ted
-> > +      * before changing a new configuration to avoid mixed settings.
->
-> I'm not a native English speaker, but I would write:
->
->         * The hardware ensures that currently running period is
->         * completed before changing to the new configuration to avoid
->         * mixed settings.
-
-Sure
-
->
-> Does this mechanism also apply to PRESCALE? If yes, please include it in
-
-Yes.
-
-> your description. If not there is still a possibility for a wrong
-> period.
->
-> > +      */
-> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PRESCALE, prescale);
-> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_MOD, SPRD_PWM_MOD_MAX);
-> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_DUTY, duty);
-> > +
-> > +     return 0;
-> > +}
->
-> Best regards
-> Uwe
->
-> --
-> Pengutronix e.K.                           | Uwe Kleine-K=C3=B6nig       =
-     |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  =
-|
-
-
-
---=20
-Baolin Wang
-Best Regards
