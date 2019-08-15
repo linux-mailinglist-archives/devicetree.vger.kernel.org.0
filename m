@@ -2,210 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED968E639
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E5E68E632
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730168AbfHOIZd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 04:25:33 -0400
-Received: from mga05.intel.com ([192.55.52.43]:48394 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729838AbfHOIZd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Aug 2019 04:25:33 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Aug 2019 01:25:33 -0700
-X-IronPort-AV: E=Sophos;i="5.64,388,1559545200"; 
-   d="scan'208";a="184561788"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Aug 2019 01:25:28 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 7CD1B20BCA; Thu, 15 Aug 2019 11:24:22 +0300 (EEST)
-Date:   Thu, 15 Aug 2019 11:24:22 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Helen Koike <helen.koike@collabora.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        eddie.cai.linux@gmail.com, mchehab@kernel.org, heiko@sntech.de,
-        jacob2.chen@rock-chips.com, jeffy.chen@rock-chips.com,
-        zyc@rock-chips.com, linux-kernel@vger.kernel.org,
-        tfiga@chromium.org, hans.verkuil@cisco.com,
-        laurent.pinchart@ideasonboard.com, kernel@collabora.com,
-        ezequiel@collabora.com, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
-        Jacob Chen <cc@rock-chips.com>,
-        Allon Huang <allon.huang@rock-chips.com>
-Subject: Re: [PATCH v8 05/14] media: rkisp1: add Rockchip ISP1 subdev driver
-Message-ID: <20190815082422.GM6133@paasikivi.fi.intel.com>
-References: <20190730184256.30338-1-helen.koike@collabora.com>
- <20190730184256.30338-6-helen.koike@collabora.com>
- <20190808091406.GQ21370@paasikivi.fi.intel.com>
- <da6c1d01-e3f6-ad73-db55-145d7832a665@collabora.com>
+        id S1730333AbfHOIZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 04:25:19 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:37916 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730213AbfHOIZT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:25:19 -0400
+Received: by mail-lf1-f67.google.com with SMTP id h28so1134362lfj.5
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:25:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=P02BSDCRijPbd9yK/6Voa9R/D56p990RHfEVvViY/Bo=;
+        b=VwGU6RQs7iolsd3xhQ/RkLbxvAo8VLkErvnXtuEhQmdWmK+++AzDqwQcuwgE0X927k
+         Xk1vn5vYXh3iYZc1Ah5SkL8Dn0uUnfO+jYr1jwuAmBphIqlCxmDSCATpGnl27Ai5CXWm
+         YD4wkOLZrBYoyhR4aN8RpI18MKGPkk/YYbjfPEW9G4/iO/Kbz/73F0C5g9LIiZM+7NW+
+         SWMSaC74D0zgMt6U1z7UYiWvzxRj+tYEBacypVR9VrNjLFL2Uy/AVDacXEKsfVm9BBZ7
+         DjX2KwkQOk7M498JD3EVo4RSmkCSboE7ziaIIdobStjnVp99VmOZudUnn/aaxrywezgs
+         OKHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=P02BSDCRijPbd9yK/6Voa9R/D56p990RHfEVvViY/Bo=;
+        b=rI87uusaoISmnE4+3PxgmfSST3V9p1wb9OUhu7RPJl8nwui87uuXt4t7x2OEbq7dcm
+         kToOAzzDTpUwaIZco8eX3FaCDtwRFXecgTTq/lZvXHU/5Osll7bvoUl+UYXOg8sVmNjC
+         0wSfRYH8e2cJNr8z7hOEJcumww3zCqfZYD+JSZbRWiNOOswoJui9gpIYyzXVNQKjNIoW
+         Ba1ND1N25vg6s9q+3FqDl+jmkUAqGFok9WNoAFs67e8G/WtJxg+1rvYx+m/OjRoZuNyd
+         SSO1EG45Lm2Va4MKFZSteeVPvNiyj6RUBArn2xATDpv9NAFsEMzQ1qp/FSzVeGU+jint
+         D4tA==
+X-Gm-Message-State: APjAAAXxfSlmXUX8tAtuX6bFRLIUF0q98SwuypFVXI4eQ12yI6Pxl+GU
+        VVdP1ia9k109trvItiIPv95+IUlNo+kjNRs0nhlfzg==
+X-Google-Smtp-Source: APXvYqwuz6gUlIPqwTv4NphE9CuB8QLz9uvS26JNUXQ4p8UjA/NuXYuyNh1rl3LRryriamcIaIyf7prYAZZock0AxlY=
+X-Received: by 2002:ac2:4c07:: with SMTP id t7mr1613650lfq.152.1565857518224;
+ Thu, 15 Aug 2019 01:25:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <da6c1d01-e3f6-ad73-db55-145d7832a665@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-11-masneyb@onstation.org>
+In-Reply-To: <20190815004854.19860-11-masneyb@onstation.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 15 Aug 2019 10:25:06 +0200
+Message-ID: <CACRpkdYkmLXOJHGy5S55r60zZVY9dg5m9j87S3wx=banFxx6aQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 10/11] ARM: dts: qcom: msm8974: add HDMI nodes
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Helen,
+On Thu, Aug 15, 2019 at 2:49 AM Brian Masney <masneyb@onstation.org> wrote:
 
-On Wed, Aug 14, 2019 at 09:58:05PM -0300, Helen Koike wrote:
+> Add HDMI tx and phy nodes to support an external display that can be
+> connected over the SlimPort. This is based on work from Jonathan Marek.
+>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
 
-...
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-> >> +static int rkisp1_isp_sd_set_fmt(struct v4l2_subdev *sd,
-> >> +				 struct v4l2_subdev_pad_config *cfg,
-> >> +				 struct v4l2_subdev_format *fmt)
-> >> +{
-> >> +	struct rkisp1_device *isp_dev = sd_to_isp_dev(sd);
-> >> +	struct rkisp1_isp_subdev *isp_sd = &isp_dev->isp_sdev;
-> >> +	struct v4l2_mbus_framefmt *mf = &fmt->format;
-> >> +
-> > 
-> > Note that for sub-device nodes, the driver is itself responsible for
-> > serialising the access to its data structures.
-> 
-> But looking at subdev_do_ioctl_lock(), it seems that it serializes the
-> ioctl calls for subdevs, no? Or I'm misunderstanding something (which is
-> most probably) ?
-
-Good question. I had missed this change --- subdev_do_ioctl_lock() is
-relatively new. But setting that lock is still not possible as the struct
-is allocated in the framework and the device is registered before the
-driver gets hold of it. It's a good idea to provide the same serialisation
-for subdevs as well.
-
-I'll get back to this later.
-
-...
-
-> >> +static int rkisp1_isp_sd_s_power(struct v4l2_subdev *sd, int on)
-> > 
-> > If you support runtime PM, you shouldn't implement the s_power op.
-> 
-> Is is ok to completly remove the usage of runtime PM then?
-> Like this http://ix.io/1RJb ?
-
-Please use runtime PM instead. In the long run we should get rid of the
-s_power op. Drivers themselves know better when the hardware they control
-should be powered on or off.
-
-> 
-> tbh I'm not that familar with runtime PM and I'm not sure what is the
-> difference of it and using s_power op (and Documentation/power/runtime_pm.rst
-> is not being that helpful tbh).
-
-You can find a simple example e.g. in
-drivers/media/platform/atmel/atmel-isi.c .
-
-> 
-> > 
-> > You'll still need to call s_power on external subdevs though.
-> > 
-> >> +{
-> >> +	struct rkisp1_device *isp_dev = sd_to_isp_dev(sd);
-> >> +	int ret;
-> >> +
-> >> +	v4l2_dbg(1, rkisp1_debug, &isp_dev->v4l2_dev, "s_power: %d\n", on);
-> >> +
-> >> +	if (on) {
-> >> +		ret = pm_runtime_get_sync(isp_dev->dev);
-> 
-> If this is not ok to remove suport for runtime PM, then where should I put
-> the call to pm_runtime_get_sync() if not in this s_power op ?
-
-Basically the runtime_resume and runtime_suspend callbacks are where the
-device power state changes are implemented, and pm_runtime_get_sync and
-pm_runtime_put are how the driver controls the power state.
-
-So you no longer need the s_power() op at all. The op needs to be called on
-the pipeline however, as there are drivers that still use it.
-
-> 
-> >> +		if (ret < 0)
-> >> +			return ret;
-> >> +
-> >> +		rkisp1_config_clk(isp_dev);
-> >> +	} else {
-> >> +		ret = pm_runtime_put(isp_dev->dev);
-> >> +		if (ret < 0)
-> >> +			return ret;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static int rkisp1_subdev_link_validate(struct media_link *link)
-> >> +{
-> >> +	if (link->source->index == RKISP1_ISP_PAD_SINK_PARAMS)
-> > 
-> > Is this test correct? The source is the source end of the link, i.e. the
-> > video node.
-> 
-> Ah yes, it should be link->sink->index (and not source), thanks for spotting this.
-> 
-> > 
-> > How about the links that end in a video node?
-> 
-> I thought that the only possibilities were sensor->isp1 and params->isp1 (where params
-> is an output video node that should be catched by the corrected version of the if
-> statement above.
-> 
-> Or do you mean another thing?
-
-The link_validate of the sink entity will be called only, for the knowledge
-what is possible is generally in that end.
-
-So you'll need this for all the sink pads this driver is in control of.
-I suppose this means the sub-devices as well as capture video nodes in
-practice.
-
-> 
-> > 
-> >> +		return 0;
-> >> +
-> >> +	return v4l2_subdev_link_validate(link);
-> >> +}
-> >> +
-> >> +static int rkisp1_subdev_fmt_link_validate(struct v4l2_subdev *sd,
-> >> +					struct media_link *link,
-> >> +					struct v4l2_subdev_format *source_fmt,
-> >> +					struct v4l2_subdev_format *sink_fmt)
-> >> +{
-> >> +	if (source_fmt->format.code != sink_fmt->format.code)
-> >> +		return -EINVAL;
-> 
-> ops, should be -EPIPE
-> 
-> >> +
-> >> +	/* Crop is available */
-> >> +	if (source_fmt->format.width < sink_fmt->format.width ||
-> >> +	    source_fmt->format.height < sink_fmt->format.height)
-> >> +		return -EINVAL;
-> 
-> -EPIPE
-> 
-> >> +
-> > 
-> > Could you use v4l2_subdev_link_validate_default()?
-> 
-> v4l2_subdev_link_validate_default() only allows for an exact width/height match,
-> but here we allow the sink to be smaller then the source for cropping, no?
-
-The width and height generally must match over a link. But cropping takes
-place inside a sub-device, it is not a concern in link validation as such.
-
-> 
-> Thanks again for your review!
-
-You're welcome!
-
--- 
-Kind regards,
-
-Sakari Ailus
-sakari.ailus@linux.intel.com
+Yours,
+Linus Walleij
