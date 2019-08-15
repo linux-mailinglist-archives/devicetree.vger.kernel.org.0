@@ -2,75 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 720DA8E2D0
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 04:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21C68E2F7
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 04:59:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728539AbfHOCjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 14 Aug 2019 22:39:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56976 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726496AbfHOCjR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 14 Aug 2019 22:39:17 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7B6FD216F4;
-        Thu, 15 Aug 2019 02:39:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565836756;
-        bh=6QbandalLnAk7UTLMfGCysXOvMZVD8zDiXVztaTkPvM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RSkuKlm0NGGu8APyg6jy9o40Z1GL5PDioKvTTmrex2ngWcAfSwaqqWhLdUzWmdLnj
-         FCqCB23jZjq+fQ52yCvopkjQDq9yjnmAiKyiArsa5D+Ge0uCmV9dKeEWUvhdHYdL5H
-         wo2RFawVbhBV8ymWz3Wj+DR8D0Zq93/KI15G/CnE=
-Received: by mail-qt1-f178.google.com with SMTP id y26so974455qto.4;
-        Wed, 14 Aug 2019 19:39:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAWu0YdL4095pudP9m7riRw6zPz3UIHnjCMf3oSgYes05+kr7Trk
-        nugsbe2d00vMn0Sv0XnA8y42aNRH1Y7GF/bxvg==
-X-Google-Smtp-Source: APXvYqy720b+TBPiY3xSErK/uPvy00ygrhACFau+Inlb5PS4ZryBu4TZuITCQtM7YmMF5mIDTHqb7h7I0JYxps+k0mk=
-X-Received: by 2002:ac8:386f:: with SMTP id r44mr2221226qtb.300.1565836755669;
- Wed, 14 Aug 2019 19:39:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814073150.4602-1-mircea.caprioru@analog.com> <20190814073150.4602-4-mircea.caprioru@analog.com>
-In-Reply-To: <20190814073150.4602-4-mircea.caprioru@analog.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 14 Aug 2019 20:39:04 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKONxFbS-nUMc1c=-9HcXCrOVmOOfn9htKOJOjAS6HCKg@mail.gmail.com>
-Message-ID: <CAL_JsqKONxFbS-nUMc1c=-9HcXCrOVmOOfn9htKOJOjAS6HCKg@mail.gmail.com>
-Subject: Re: [PATCH V3 4/4] dt-bindings: iio: adc: ad7192: Add binding
- documentation for AD7192
-To:     Mircea Caprioru <mircea.caprioru@analog.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1728128AbfHOC7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 14 Aug 2019 22:59:43 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:46862 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728014AbfHOC7m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 14 Aug 2019 22:59:42 -0400
+Received: by mail-pl1-f194.google.com with SMTP id c2so514768plz.13;
+        Wed, 14 Aug 2019 19:59:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id;
+        bh=jtcbQSdvzy5cT1Z921sK+U6eJuTaITvB/5Row+mcI0c=;
+        b=VPyImWLVUBR+YJhKD3akvkpU0i5ENU919XA+N261pXNLUFFifIFgh984CAi1BGK4vs
+         lsmnqso8RLiJ5hSxAWHUja3jeCIOxoGHPfWnJrn/ovMXJpj1WRuNX3c75AJSx0/FKszp
+         hJAAFWhE0XnpJm7uZ9mmm2LOPKDYV/PtMHUuZa6siu7IYpg/BQ8eGkZAbHfGeNJXuSpJ
+         qZeRdMNSciFbNM8VytVYUqIkSC0J+/9HhlcbAEmm69zb06ksFXU42GNGPno9eAHvtbYJ
+         ImoEBwmnFdXq0/QO62cuWxg+JxAHIe9UZFsxbrod04OUUk9CQAXBMJN8OsJE7pXhtlp8
+         G/Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+        bh=jtcbQSdvzy5cT1Z921sK+U6eJuTaITvB/5Row+mcI0c=;
+        b=ii6svZe9OAQ1mb0C1TYhIpCM/F2AfWjPtn81myySO0d41jkMh0Yam2eSJCjU2b2huL
+         MBcyi3jLXBeWYx4uOVCpsBmBWW7ku1IK7WAP50/udFzVENF1CuUvFBMNmeiU3cxi4u/o
+         pneanLxXxaZ6/qVJZpn3xkNamSdftHYBb6LLYSqViVOyw1Snccf0OIbf2ehhjdxFsZrc
+         2+lmOK+xQ86IxaCgqKDhfgOc+TLt8y5Egpx99ZPcG+75zGqC+56eZe8MgYFZA1SW5P5c
+         NmTYY6Y7UpNkckm1xLwVvZRDgamFNR7n6ogVg/q56vGwkXOApXiSyAeqIv9lzel9uYGN
+         T7lQ==
+X-Gm-Message-State: APjAAAWlzJ7qVCt027O19bypMSb54+CWp7KfVxV5kPloh9i2aC7y78vn
+        cYNEL5TAO4aRDt0BKCZMvHs=
+X-Google-Smtp-Source: APXvYqwQlvrnAQc0lPUHt/zfuAZ+tW3qd3Tcao4Wz1WqTtmVKnHjXDaxSx8tYi4gb6lsRg/sGGftXQ==
+X-Received: by 2002:a17:902:d715:: with SMTP id w21mr2413435ply.261.1565837982100;
+        Wed, 14 Aug 2019 19:59:42 -0700 (PDT)
+Received: from localhost.localdomain ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id k5sm954439pgo.45.2019.08.14.19.59.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 14 Aug 2019 19:59:41 -0700 (PDT)
+From:   Kever Yang <kever.yang@rock-chips.com>
+To:     heiko@sntech.de
+Cc:     linux-rockchip@lists.infradead.org,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Chen-Yu Tsai <wens@csie.org>, Jonas Karlman <jonas@kwiboo.se>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomohiro Mayama <parly-gh@iris.mystia.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm: dts: rockchip: fix vcc_host_5v regulator for usb3 host
+Date:   Thu, 15 Aug 2019 10:59:19 +0800
+Message-Id: <20190815025919.5194-1-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 1:32 AM Mircea Caprioru
-<mircea.caprioru@analog.com> wrote:
->
-> This patch add device tree binding documentation for AD7192 adc in YAML
-> format.
->
-> Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
-> ---
-> Changelog V2:
-> - remove description from spi and interrupt properties
-> - changed the name of the device from ad7192 to adc in the example
->
-> Changelog V3:
-> - added semicolon at the end of the dt example
->
->  .../bindings/iio/adc/adi,ad7192.yaml          | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+According to rock64 schemetic V2 and V3, the VCC_HOST_5V output is
+controlled by USB_20_HOST_DRV, which is the same as VCC_HOST1_5V.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+---
+
+ arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+index 7cfd5ca6cc85..bd4ad1635e0b 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+@@ -35,9 +35,9 @@
+ 	vcc_host_5v: vcc-host-5v-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+-		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&usb30_host_drv>;
++		pinctrl-0 = <&usb20_host_drv>;
+ 		regulator-name = "vcc_host_5v";
+ 		regulator-always-on;
+ 		regulator-boot-on;
+@@ -320,12 +320,6 @@
+ 			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+ 		};
+ 	};
+-
+-	usb3 {
+-		usb30_host_drv: usb30-host-drv {
+-			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
+-		};
+-	};
+ };
+ 
+ &sdmmc {
+-- 
+2.17.1
+
