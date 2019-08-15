@@ -2,127 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F0C38E47D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 07:37:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC82B8E4D3
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 08:15:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730288AbfHOFh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 01:37:57 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:51167 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730240AbfHOFh4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Aug 2019 01:37:56 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id C34372DFF;
-        Thu, 15 Aug 2019 01:37:55 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Thu, 15 Aug 2019 01:37:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=5zsQDb8xUp+LgDRGio1PmqyOCn5+LVk
-        X68USrKI2P1I=; b=f7SS+NngSiN2MY8ZVfjtKzTX/WdFhVuem59D8+tBGrODWzK
-        0XFfg8rSDDfWrYCDmCkuD0OXzcPTx3rKyBFaEN9YOElltnhgGSO19zx93gUWQ69a
-        /kvo75Le7nnshw7K6OUaqswfHGj+SNif2UBjMcMXDGpUdMBvaZISOHEVfthbIbrJ
-        iuwnwT+0TG9M2JXResQJ39I2NRkU5JNdn0KLZDWR9EEIBq5fGGjtLv8MYJKW1+tQ
-        X4l0/oVjNitjJBs+tGcLvTNwUrL7Yot4lSDkx2it4crriCORiMG2u/HCIxi1ICwn
-        ztSUEXv5Mvf9c2n4EimmDAnTzVjqvh1H5J+RCvA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=5zsQDb
-        8xUp+LgDRGio1PmqyOCn5+LVkX68USrKI2P1I=; b=zt8Uh/pJpoj61NZsNQnvEg
-        MlsVP6A4kxWb/LIsMK0edIwb5QODzedzq2O+voUTByOjTGmhnsNOnqSAcO/iTLlx
-        BlomLDsYocRxwDYdFsU7fujadg5Ed9havpyiG8NwYhyvokCtTMpWwvumY45wiCpX
-        ByokDpteFFZmT+aNFBP0iO8FzJYV9lzOqyGUVmNDaDuBQInukP0KKQTgaxclTBSA
-        am0DfrALmhc8uyU2rAbhh+urmh0Te2sup+78O9nFIFvz81KYDB2rP39dRrF92rei
-        MzLb+uSC1/p4PN+Hzp/mehtC1TTscZSoxovVqN6fy2cn4i9yIWGS8h82xmxyhWAg
-        ==
-X-ME-Sender: <xms:su9UXUAW21DLb-w8jMydQFPfwgNAwS9zj8W8LDYH2d9pWPk6GN4i8A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudeftddgieekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
-    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
-    rhfuihiivgeptd
-X-ME-Proxy: <xmx:su9UXaDeB60dyQ98Gp1LGhakQt2wYK3LrSfhMoK8X4W7KqX83dEG8w>
-    <xmx:su9UXQEx739iNbtcoK-xFIbATPfw7RbYxP9Lwd29yFrpiqZ_rwif4g>
-    <xmx:su9UXdlfxTeYvBADe5OwKlLOTp7gzbU4vMyyd_lyHlYey_6iArZDOQ>
-    <xmx:s-9UXc0H-Dg-LhOuQV81L2q2oCwrlLKoGs-9EEAB1vUYeQ98OIbogA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 52037E00A4; Thu, 15 Aug 2019 01:37:54 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-869-g2d94aad-fmstable-20190814v1
-Mime-Version: 1.0
-Message-Id: <6c94aada-9c4a-4f55-9a43-349282ad12af@www.fastmail.com>
-In-Reply-To: <CACPK8Xe6Zp1uOqEffEc0b6oGa7portEAifGPRqb876HmA+oZeg@mail.gmail.com>
-References: <20190807003629.2974-1-andrew@aj.id.au>
- <20190807003629.2974-2-andrew@aj.id.au>
- <CACPK8Xe6Zp1uOqEffEc0b6oGa7portEAifGPRqb876HmA+oZeg@mail.gmail.com>
-Date:   Thu, 15 Aug 2019 15:08:24 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Ryan Chen" <ryanchen.aspeed@gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mmc: Document Aspeed SD controller
-Content-Type: text/plain
+        id S1730058AbfHOGPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 02:15:48 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:34265 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729796AbfHOGPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 02:15:48 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hy931-00019U-1I; Thu, 15 Aug 2019 08:15:43 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hy92y-0005UX-UC; Thu, 15 Aug 2019 08:15:40 +0200
+Date:   Thu, 15 Aug 2019 08:15:40 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] pwm: sprd: Add Spreadtrum PWM support
+Message-ID: <20190815061540.763ue2ogkvuyhzcu@pengutronix.de>
+References: <65a34dd943b0260bfe45ec76dcf414a67e5d8343.1565785291.git.baolin.wang@linaro.org>
+ <446eb284a096a1fd8998765669b1c9a2f78d7d22.1565785291.git.baolin.wang@linaro.org>
+ <20190814150304.x44lalde3cwp67ge@pengutronix.de>
+ <CAMz4kuLiS=cGTA=uEi9ABOVAOb1M0Pcd2a_xU5VsdLo1DGd0Hg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMz4kuLiS=cGTA=uEi9ABOVAOb1M0Pcd2a_xU5VsdLo1DGd0Hg@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello Baolin,
 
-
-On Thu, 15 Aug 2019, at 15:06, Joel Stanley wrote:
-> On Wed, 7 Aug 2019 at 00:38, Andrew Jeffery <andrew@aj.id.au> wrote:
+On Thu, Aug 15, 2019 at 11:34:27AM +0800, Baolin Wang wrote:
+> On Wed, 14 Aug 2019 at 23:03, Uwe Kleine-König
+> <u.kleine-koenig@pengutronix.de> wrote:
 > >
-> > The ASPEED SD/SDIO/MMC controller exposes two slots implementing the
-> > SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
-> > data bus if only a single slot is enabled.
+> > On Wed, Aug 14, 2019 at 08:46:11PM +0800, Baolin Wang wrote:
+> 
+> > > +
+> > > +     /*
+> > > +      * The hardware provides a counter that is feed by the source clock.
+> > > +      * The period length is (PRESCALE + 1) * MOD counter steps.
+> > > +      * The duty cycle length is (PRESCALE + 1) * DUTY counter steps.
+> > > +      * Thus the period_ns and duty_ns calculation formula should be:
+> > > +      * period_ns = NSEC_PER_SEC * (prescale + 1) * mod / clk_rate
+> > > +      * duty_ns = NSEC_PER_SEC * (prescale + 1) * duty / clk_rate
+> > > +      */
+> > > +     val = sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE);
+> > > +     prescale = val & SPRD_PWM_PRESCALE_MSK;
+> > > +     tmp = (prescale + 1) * NSEC_PER_SEC * SPRD_PWM_MOD_MAX;
+> > > +     state->period = DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rate);
+> > > +
+> > > +     val = sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY);
+> > > +     duty = val & SPRD_PWM_DUTY_MSK;
+> > > +     tmp = (prescale + 1) * NSEC_PER_SEC * duty;
+> > > +     state->duty_cycle = DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rate);
+> > > +
+> > > +     /* Disable PWM clocks if the PWM channel is not in enable state. */
+> > > +     if (!state->enabled)
+> > > +             clk_bulk_disable_unprepare(SPRD_PWM_CHN_CLKS_NUM, chn->clks);
+> > > +}
+> > > +
+> > > +static int sprd_pwm_config(struct sprd_pwm_chip *spc, struct pwm_device *pwm,
+> > > +                        int duty_ns, int period_ns)
+> > > +{
+> > > +     struct sprd_pwm_chn *chn = &spc->chn[pwm->hwpwm];
+> > > +     u32 prescale, duty;
+> > > +     u64 tmp;
+> > > +
+> > > +     /*
+> > > +      * The hardware provides a counter that is feed by the source clock.
+> > > +      * The period length is (PRESCALE + 1) * MOD counter steps.
+> > > +      * The duty cycle length is (PRESCALE + 1) * DUTY counter steps.
+> > > +      *
+> > > +      * To keep the maths simple we're always using MOD = SPRD_PWM_MOD_MAX.
 > >
-> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> > Did you spend some thoughts about how wrong your period can get because
+> > of that "lazyness"?
+> >
+> > Let's assume a clk rate of 100/3 MHz. Then the available period lengths
+> > are:
+> >
+> >         PRESCALE =  0  ->  period =   7.65 µs
+> >         PRESCALE =  1  ->  period =  15.30 µs
+> >         ...
+> >         PRESCALE = 17  ->  period = 137.70 µs
+> >         PRESCALE = 18  ->  period = 145.35 µs
+> >
+> > So the error can be up to (nearly) 7.65 µs (or in general
 > 
-> Reviewed-by: Joel Stanley <joel@jms.id.au>
-> 
-> Two minor comments below.
-> 
-> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > @@ -0,0 +1,105 @@
-> > +# SPDX-License-Identifier: GPL-2.0-or-later
-> 
-> No "Copyright IBM" ?
+> Yes, but for our use case (pwm backlight), the precision can meet our
+> requirement. Moreover, we usually do not change the period, just
+> adjust the duty to change the back light.
 
-I'm going rogue.
+Is this a license requirement for you SoC to only drive a backlight with
+the PWM? The idea of having a PWM driver on your platform is that it can
+also be used to control a step motor or a laser.
 
-That reminds me I should chase up where we got to with the binding
-licensing.
-
+> > 255 / clk_rate) because if 145.34 µs is requested you configure
+> > PRESCALE = 17 and so yield a period of 137.70 µs. If however you'd pick
 > 
-> > +%YAML 1.2
-> > +---
+> I did not get you here, if period is 145.34, we still get the
+> corresponding PRESCALE = 18 by below formula:
 > 
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/clock/aspeed-clock.h>
-> > +    sdc@1e740000 {
-> > +            compatible = "aspeed,ast2500-sd-controller";
-> > +            reg = <0x1e740000 0x100>;
-> > +            #address-cells = <1>;
-> > +            #size-cells = <1>;
-> > +            ranges = <0 0x1e740000 0x10000>;
+> tmp = (u64)chn->clk_rate * period_ns;
+> do_div(tmp, NSEC_PER_SEC);
+> prescale = DIV_ROUND_CLOSEST_ULL(tmp, SPRD_PWM_MOD_MAX) - 1;
+
+I assumed you switch back to rounding down to match your comment and
+which is how I think a pwm should behave. With rounding down we get
+PRESCALE = 17 as I claimed. 
+
+> > PRESCALE = 18 and MOD = 254 you get a period of 144.78 µs and so the
+> > error is only 0.56 µs which is a factor of 13 better.
+> >
+> > Hmm.
+> >
+> > > +      * The value for PRESCALE is selected such that the resulting period
+> > > +      * gets the maximal length not bigger than the requested one with the
+> > > +      * given settings (MOD = SPRD_PWM_MOD_MAX and input clock).
+> > > +      */
+> > > +     duty = duty_ns * SPRD_PWM_MOD_MAX / period_ns;
+> >
+> > I wonder if you loose some precision here as you use period_ns but might
+> > actually implement a shorter period.
+> >
+> > Quick example, again consider clk_rate = 100 / 3 MHz,
+> > period_ns = 145340, duty_ns = 72670. Then you end up with
+> >
+> >         PRESCALE = 17
+> >         MOD = 255
+> >         DUTY = 127
 > 
-> According to the datasheet this could be 0x20000. It does not matter
-> though, as there's nothing in it past 0x300.
+> Incorrect, we will get PRESCALE = 18,  MOD = 255, DUTY = 127.
+> 
+> > That corresponds to period_ns = 137700, duty_ns = 68580. With DUTY = 134
+> > you get 72360 ns which is still smaller than the requested 72670 ns.
+> 
+> Incorrect, with DUTY = 134 (PRESCALE = 18  ->  period = 145.35 µs),
+> duty_ns = 76380ns
 
-Good catch.
+Yes, as above. When using rounding-closest your error is not in [0, 7.65
+µs] but in [-3.825 µs, 3.825 µs]. Doesn't make it better.
+ 
+> > (But then again it is not obvious which of the two is the "better"
+> > approximation because Thierry doesn't seem to see the necessity to
+> > discuss or define a policy here.)
+> 
+> Like I said, this is the simple calculation formula which can meet our
+> requirement (we limit our DUTY value can only be 0 - 254).
+> duty = duty_ns * SPRD_PWM_MOD_MAX / period_ns;
 
-Andrew
+simple is often good but sometimes different from correct. And even with
+rounding closest instead of rounding down you're giving away precision
+here and the size of the error interval is the same, it is just centered
+around 0 instead of only positive. If I hadn't spend so much time with
+pwm reviews this week I'd try to come up with an example.
+
+> > (And to pick up the thoughts about not using SPRD_PWM_MOD_MAX
+> > unconditionally, you could also use
+> >
+> >         PRESCALE = 18
+> >         MOD = 254
+> >         DUTY = 127
+> >
+> > yielding period_ns = 144780 and duty_ns = 72390. Summary:
+> >
+> >         Request:                 72670 / 145340
+> >         your result:             68580 / 137700
+> >         also possible:           72390 / 144780
+> >
+> > Judge yourself.)
+> >
+> > > +     tmp = (u64)chn->clk_rate * period_ns;
+> > > +     do_div(tmp, NSEC_PER_SEC);
+> > > +     prescale = DIV_ROUND_CLOSEST_ULL(tmp, SPRD_PWM_MOD_MAX) - 1;
+> >
+> > Now that you use DIV_ROUND_CLOSEST_ULL the comment is wrong because you
+> > might provide a period bigger than the requested one. Also you divide
+> 
+> Again, that's the precision can meet our requirement.
+
+If you go back to rounding down, use the matching rounding up in
+.get_state and adapt your comment describing you're sticking to MOD=255
+to say explicitly that you're loosing precision I can live with that. I
+even did the math for .get_state in my previous mail for you.
+
+The idea of the requirement to round down is that I want to introduce
+this as policy for the PWM framework to get some uniform behaviour from
+all lowlevel drivers. If you do this now I won't bother you later when
+the requirement is implemented in your driver. And the comment helps
+someone who evaluates your SoC to judge if there is still work to do if
+they have higher requirements for the PWM.
+
+> > twice instead of once before. (I don't know what architecture your SoC
+> > uses, but compared to a multiplication a division is usually expensive.)
+> > Also the math is more complicated now as you have a round-down div and a
+> > round-closest div.
+> >
+> > My preference for how to fix that is to restore the behaviour of v2 that
+> > matches the comment and adapt .get_state() instead.
+> 
+> Using DIV_ROUND_CLOSEST_ULL can get a same prescale which matches with
+> .get_state().
+
+I don't get you here. Do you say that with DIV_ROUND_CLOSEST_ULL you get
+the same result but DIV_ROUND_CLOSEST_ULL matches .get_state while
+rounding down doesn't? I cannot follow.
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
