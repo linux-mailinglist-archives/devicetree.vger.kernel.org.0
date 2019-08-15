@@ -2,231 +2,380 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22EBA8EC6C
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 15:10:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 458BD8EC84
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 15:14:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732106AbfHONKM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 09:10:12 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:45558 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730635AbfHONKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 09:10:12 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CEF802AF;
-        Thu, 15 Aug 2019 15:10:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1565874611;
-        bh=LWrDI9+ghBcTxyqgXMgchqp+daVyo+wAKx7ssfYgwr8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lmwSlcQ3T4rI9zjoBhcu0FX/0JtvK+zXWC+/dt8musZ2lOF7aSz3P+Y0pZjbGWDfh
-         ruA2G7u6IkkZE9nCwhoG+JLE6Q9AJk4zw+Zc3CFypsEf1fkd9+RDM5kIhXo89wol9M
-         gCleMLpJlhAwYzFee0xuEaGfWw+35fu6c/QcRV0k=
-Date:   Thu, 15 Aug 2019 16:10:07 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
-Message-ID: <20190815131007.GN5011@pendragon.ideasonboard.com>
+        id S1732079AbfHONO3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 09:14:29 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:50445 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732048AbfHONO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 09:14:29 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hyFa8-000639-M9; Thu, 15 Aug 2019 15:14:20 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hyFa8-00037Q-7Q; Thu, 15 Aug 2019 15:14:20 +0200
+Date:   Thu, 15 Aug 2019 15:14:20 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v6 03/13] media: v4l2-fwnode: add initial connector
+ parsing support
+Message-ID: <20190815131420.u7ybx22avgvx6u2r@pengutronix.de>
 References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-3-m.felsch@pengutronix.de>
- <20190516163632.GO14820@pendragon.ideasonboard.com>
- <20190809075536.pukp444dmb7haoxj@pengutronix.de>
- <20190815123810.GC13823@pendragon.ideasonboard.com>
- <20190815130437.fmmq6a7aw4fauqkh@pengutronix.de>
+ <20190415124413.18456-4-m.felsch@pengutronix.de>
+ <67f45a50-1eef-89d7-c008-17f085940eb2@xs4all.nl>
+ <20190514152004.30d7838b@coco.lan>
+ <20190516165114.GP14820@pendragon.ideasonboard.com>
+ <20190809121606.pv3ieak5f2ffpj3x@pengutronix.de>
+ <20190815124810.GD13823@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190815130437.fmmq6a7aw4fauqkh@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190815124810.GD13823@pendragon.ideasonboard.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:08:30 up 89 days, 19:26, 59 users,  load average: 0.06, 0.09,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Hi Laurent,
 
-On Thu, Aug 15, 2019 at 03:04:37PM +0200, Marco Felsch wrote:
-> On 19-08-15 15:38, Laurent Pinchart wrote:
-> > On Fri, Aug 09, 2019 at 09:55:36AM +0200, Marco Felsch wrote:
-> >> On 19-05-16 19:36, Laurent Pinchart wrote:
-> >>> On Mon, Apr 15, 2019 at 02:44:02PM +0200, Marco Felsch wrote:
-> >>>> Currently every driver needs to parse the connector endpoints by it self.
-> >>> 
-> >>> s/it self/itself/
-> >>> 
-> >>>> This is the initial work to make this generic. The generic connector has
-> >>>> some common fields and some connector specific parts. The generic one
-> >>>> includes:
-> >>>>   - type
-> >>>>   - label
-> >>>>   - remote_port (the port where the connector is connected to)
-> >>>>   - remote_id   (the endpoint where the connector is connected to)
-> >>> 
-> >>> This assumes a single connection between a connector and a remote port,
-> >>> and a single port on the connector side. Is this guaranteed ? For the
-> >>> mini-DIN-4 connectors (often used for S-Video) for instance, I recall
-> >>> from the extensive discussions we had in the past that they should be
-> >>> modeled with two pins, one for the Y component and one for C components.
-> >>> The rationale for this is to support systems where such a connector
-> >>> could be used to carry S-Video, but also two composite video signals
-> >>> (usually through an external adapter from 2 RCA female connectors to one
-> >>> S-Video male connector) that would be routed to two separate video
-> >>> decoders (or two different inputs of the same video decoder). Other
-> >>> topologies may be possible too.
-> >> 
-> >> I got your concerns and I also remember the tvp5150 port bindings
-> >> myself in the past. Do you know how often such a setup you described
-> >> above happens these days? I would rather add more documentation to the
-> >> bindings [1] and add a check to v4l2_fwnode_parse_connector() to
-> >> guarantee that one port has only one endpoint. Because I don't think
-> >> that analog connectors has a bright future these days.
-> >> 
-> >> [1] Documentation/devicetree/bindings/display/connector/ \
-> >>     analog-tv-connector.txt
+On 19-08-15 15:48, Laurent Pinchart wrote:
+> Hi Marco,
+> 
+> On Fri, Aug 09, 2019 at 02:16:06PM +0200, Marco Felsch wrote:
+> > On 19-05-16 19:51, Laurent Pinchart wrote:
+> > > On Tue, May 14, 2019 at 03:20:04PM -0300, Mauro Carvalho Chehab wrote:
+> > >> Em Mon, 6 May 2019 12:10:41 +0200 Hans Verkuil escreveu:
+> > >>> On 4/15/19 2:44 PM, Marco Felsch wrote:
+> > >>>> The patch adds the initial connector parsing code, so we can move from a
+> > >>>> driver specific parsing code to a generic one. Currently only the
+> > >>>> generic fields and the analog-connector specific fields are parsed. Parsing
+> > >>>> the other connector specific fields can be added by a simple callbacks.
+> > >>>> 
+> > >>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > >>>> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> > >>>> ---
+> > >>>> [1] https://patchwork.kernel.org/cover/10794703/
+> > >>>> 
+> > >>>> v6:
+> > >>>> - use 'unsigned int' count var
+> > >>>> - fix comment and style issues
+> > >>>> - place '/* fall through */' to correct places
+> > >>>> - fix error handling and cleanup by releasing fwnode
+> > >>>> - drop vga and dvi parsing support as those connectors are rarely used
+> > >>>>   these days
+> > >>>> 
+> > >>>> v5:
+> > >>>> - s/strlcpy/strscpy/
+> > >>>> 
+> > >>>> v2-v4:
+> > >>>> - nothing since the patch was squashed from series [1] into this
+> > >>>>   series.
+> > >>>> 
+> > >>>>  drivers/media/v4l2-core/v4l2-fwnode.c | 111 ++++++++++++++++++++++++++
+> > >>>>  include/media/v4l2-fwnode.h           |  16 ++++
+> > >>>>  2 files changed, 127 insertions(+)
+> > >>>> 
+> > >>>> diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
+> > >>>> index 20571846e636..f1cca95c8fef 100644
+> > >>>> --- a/drivers/media/v4l2-core/v4l2-fwnode.c
+> > >>>> +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+> > >>>> @@ -592,6 +592,117 @@ void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link)
+> > >>>>  }
+> > >>>>  EXPORT_SYMBOL_GPL(v4l2_fwnode_put_link);
+> > >>>>  
+> > >>>> +static const struct v4l2_fwnode_connector_conv {
+> > >>>> +	enum v4l2_connector_type type;
+> > >>>> +	const char *name;
+> > > 
+> > > Maybe compatible instead of name ?
 > > 
-> > I have seen it on older hardware, I don't know about more recent
-> > systems. For the S-Video case at least, you need to support two DT
-> > ports, even if you don't support connecting them to two different
-> > devices yet.
+> > Okay, I can change that.
+> > 
+> > >>>> +} connectors[] = {
+> > >>>> +	{
+> > >>>> +		.type = V4L2_CON_COMPOSITE,
+> > >>>> +		.name = "composite-video-connector",
+> > >>>> +	}, {
+> > >>>> +		.type = V4L2_CON_SVIDEO,
+> > >>>> +		.name = "svideo-connector",
+> > >>>> +	}, {
+> > >>>> +		.type = V4L2_CON_HDMI,
+> > >>>> +		.name = "hdmi-connector",
+> > >>>> +	},
+> > >>>> +};
+> > >>>> +
+> > >>>> +static enum v4l2_connector_type
+> > >>>> +v4l2_fwnode_string_to_connector_type(const char *con_str)
+> > >>>> +{
+> > >>>> +	unsigned int i;
+> > >>>> +
+> > >>>> +	for (i = 0; i < ARRAY_SIZE(connectors); i++)
+> > >>>> +		if (!strcmp(con_str, connectors[i].name))
+> > >>>> +			return connectors[i].type;
+> > >>>> +
+> > >>>> +	/* no valid connector found */
+> > > 
+> > > The usual comment style in this file is to start with a capital letter
+> > > and end sentences with a period. I would however drop this comment, it's
+> > > not very useful. The other comments should be updated accordingly.
+> > 
+> > I will change my comments and drop this one.
+> > 
+> > >>>> +	return V4L2_CON_UNKNOWN;
+> > >>>> +}
+> > >>>> +
+> > >>>> +static int
+> > >>>> +v4l2_fwnode_connector_parse_analog(struct fwnode_handle *fwnode,
+> > >>>> +				   struct v4l2_fwnode_connector *vc)
+> > >>>> +{
+> > >>>> +	u32 tvnorms;
+> > >>>> +	int ret;
+> > >>>> +
+> > >>>> +	ret = fwnode_property_read_u32(fwnode, "tvnorms", &tvnorms);
+> > >>>> +
+> > >>>> +	/* tvnorms is optional */
+> > >>>> +	vc->connector.analog.supported_tvnorms = ret ? V4L2_STD_ALL : tvnorms;
+> > >>>> +
+> > >>>> +	return 0;
+> > >>>> +}
+> > >>>> +
+> > > 
+> > > Please document all exported functions with kerneldoc.
+> > 
+> > It is documented within the header file. To be aligned with the other
+> > functions I wouldn't change that.
 > 
-> Can you take a look on the v7 I send a few minutes ago? I changed the
-> layout ;)
+> It's not your fault, but this policy REALLY makes review painful and is
+> EXTREMELY annoying.
 
-I'll try to get to that ASAP, but I have a Rockchip driver to review
-first :-)
+I'm with you..
 
-> > In any case, I'm fine if those topologies are not supported yet, but it
-> > should be possible to support them in a backward-compatible way. In
-> > particular, in this case, we should make sure the DT bindings will allow
-> > such topologies, and the DT parsing API should make it possible to
-> > support them without fugure changes to drivers that use the API from
-> > this patch for "simple" topologies.
+> > >>>> +int v4l2_fwnode_parse_connector(struct fwnode_handle *__fwnode,
+> > >>>> +				struct v4l2_fwnode_connector *connector)
+> > >>>> +{
+> > >>>> +	struct fwnode_handle *fwnode;
+> > >>>> +	struct fwnode_endpoint __ep;
+> > >>>> +	const char *c_type_str, *label;
+> > >>>> +	int ret;
+> > >>>> +
+> > >>>> +	memset(connector, 0, sizeof(*connector));
+> > >>>> +
+> > >>>> +	fwnode = fwnode_graph_get_remote_port_parent(__fwnode);
+> > > 
+> > > I would rename the argument __fwnode to fwnode, and rename the fwnode
+> > > variable to remote (or similar) to make this clearer.
+> > 
+> > Okay.
+> > 
+> > >>>> +	if (!fwnode)
+> > >>>> +		return -EINVAL;
+> > > 
+> > > Is EINVAL the right error here ? Wouldn't it be useful for the caller to
+> > > differentiate between unconnected connector nodes and invalid ones ?
+> > 
+> > Yes it would. Should I return ENOLINK instead?
 > 
-> You're right. I adapted the struct to be more extendible.
+> Good idea.
+
+Good because I used it in my v7 :-)
+
+> > >>>> +
+> > >>>> +	/* parse all common properties first */
+> > >>>> +	/* connector-type is stored within the compatible string */
+> > >>>> +	ret = fwnode_property_read_string(fwnode, "compatible", &c_type_str);
+> > > 
+> > > Prefixing or postfixing names with types is usually frowned upon. You
+> > > could rename this to type_name for instance.
+> > 
+> > Okay.
+> > 
+> > >>>> +	if (ret) {
+> > >>>> +		fwnode_handle_put(fwnode);
+> > >>>> +		return -EINVAL;
+> > >>>> +	}
+> > >>>> +
+> > >>>> +	connector->type = v4l2_fwnode_string_to_connector_type(c_type_str);
+> > >>>> +
+> > >>>> +	fwnode_graph_parse_endpoint(__fwnode, &__ep);
+> > >>>> +	connector->remote_port = __ep.port;
+> > >>>> +	connector->remote_id = __ep.id;
+> > >>>> +
+> > >>>> +	ret = fwnode_property_read_string(fwnode, "label", &label);
+> > >>>> +	if (!ret) {
+> > >>>> +		/* ensure label doesn't exceed V4L2_CONNECTOR_MAX_LABEL size */
+> > >>>> +		strscpy(connector->label, label, V4L2_CONNECTOR_MAX_LABEL);
+> > >>>> +	} else {
+> > >>>> +		/*
+> > >>>> +		 * labels are optional, if none is given create one:
+> > >>>> +		 * <connector-type-string>@port<endpoint_port>/ep<endpoint_id>
+> > >>>> +		 */
+> > >>>> +		snprintf(connector->label, V4L2_CONNECTOR_MAX_LABEL,
+> > >>>> +			 "%s@port%u/ep%u", c_type_str, connector->remote_port,
+> > >>>> +			 connector->remote_id);
+> > > 
+> > > Should we really try to create labels when none is available ? If so
+> > > this needs much more careful thoughts, we need to think about what the
+> > > label will be used for, and create a good naming scheme accordingly. If
+> > > the label will be displayed to the end-user I don't think the above name
+> > > would be very useful, it would be best to leave it empty and let
+> > > applications create a name based on the connector type and other
+> > > information they have at their disposal.
+> > 
+> > Hm.. I don't have a strong opinion on that. If the others are with you I
+> > will leave it empty.
+> > 
+> > >>>> +	}
+> > >>>> +
+> > >>>> +	/* now parse the connector specific properties */
+> > >>>> +	switch (connector->type) {
+> > >>>> +	case V4L2_CON_COMPOSITE:
+> > >>>> +		/* fall through */
+> > > 
+> > > I don't think you need a fall-through comment when the two cases are
+> > > adjacent with no line in-between.
+> > 
+> > Hm.. I don't know the compiler behaviour. According the official
+> > gcc documentation [1] I would not leave that.
 > 
-> >>>> The specific fields are within a union, since only one of them can be
-> >>>> available at the time. Since this is the initial support the patch adds
-> >>>> only the analog-connector specific ones.
-> >>>> 
-> >>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> >>>> Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-> >>>> ---
-> >>>> [1] https://patchwork.kernel.org/cover/10794703/
-> >>>> 
-> >>>> v6:
-> >>>> - fix some spelling and style issues
-> >>>> - rm unnecessary comments
-> >>>> - drop vga and dvi connector
-> >>>> 
-> >>>> v2-v4:
-> >>>> - nothing since the patch was squashed from series [1] into this
-> >>>>   series.
-> >>>> 
-> >>>>  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
-> >>>>  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
-> >>>>  2 files changed, 63 insertions(+)
-> >>>>  create mode 100644 include/media/v4l2-connector.h
-> >>>> 
-> >>>> diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
-> >>>> new file mode 100644
-> >>>> index 000000000000..3a951c54f50e
-> >>>> --- /dev/null
-> >>>> +++ b/include/media/v4l2-connector.h
-> >>>> @@ -0,0 +1,30 @@
-> >>>> +/* SPDX-License-Identifier: GPL-2.0-only */
-> >>>> +/*
-> >>>> + * v4l2-connector.h
-> >>>> + *
-> >>>> + * V4L2 connector types.
-> >>>> + *
-> >>>> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> >>>> + */
-> >>>> +
-> >>>> +#ifndef V4L2_CONNECTOR_H
-> >>>> +#define V4L2_CONNECTOR_H
-> >>>> +
-> >>>> +#define V4L2_CONNECTOR_MAX_LABEL 41
-> >>> 
-> >>> Hans pointed out this was a weird number. Should you turn the label
-> >>> field into a pointer to make this more generic (with a
-> >>> v4l2_fwnode_connector_cleanup() function then) ?
-> >> 
-> >> Yes, that would be the better approach. I will change that.
-> >> 
-> >>>> +
-> >>>> +/**
-> >>>> + * enum v4l2_connector_type - connector type
-> >>>> + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration
-> >>>> + * @V4L2_CON_COMPOSITE: analog composite connector
-> >>>> + * @V4L2_CON_SVIDEO:    analog svideo connector
-> >>>> + * @V4L2_CON_HDMI:      digital hdmi connector
-> >>>> + */
-> >>>> +enum v4l2_connector_type {
-> >>>> +	V4L2_CON_UNKNOWN,
-> >>>> +	V4L2_CON_COMPOSITE,
-> >>>> +	V4L2_CON_SVIDEO,
-> >>>> +	V4L2_CON_HDMI,
-> >>>> +};
-> >>>> +
-> >>>> +#endif /* V4L2_CONNECTOR_H */
-> >>>> +
-> >>>> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
-> >>>> index 6c07825e18b9..f4df1b95c5ef 100644
-> >>>> --- a/include/media/v4l2-fwnode.h
-> >>>> +++ b/include/media/v4l2-fwnode.h
-> >>>> @@ -22,6 +22,7 @@
-> >>>>  #include <linux/list.h>
-> >>>>  #include <linux/types.h>
-> >>>>  
-> >>>> +#include <media/v4l2-connector.h>
-> >>>>  #include <media/v4l2-mediabus.h>
-> >>>>  #include <media/v4l2-subdev.h>
-> >>>>  
-> >>>> @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
-> >>>>  	unsigned int remote_port;
-> >>>>  };
-> >>>>  
-> >>>> +/**
-> >>>> + * struct v4l2_fwnode_connector_analog - analog connector data structure
-> >>>> + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
-> >>>> + *                     if no restrictions are specified.
-> >>>> + */
-> >>>> +struct v4l2_fwnode_connector_analog {
-> >>>> +	v4l2_std_id supported_tvnorms;
-> >>>> +};
-> >>>> +
-> >>>> +/**
-> >>>> + * struct v4l2_fwnode_connector - the connector data structure
-> >>>> + * @remote_port: identifier of the remote endpoint port the connector connects
-> >>>> + *		 to
-> >>>> + * @remote_id: identifier of the remote endpoint the connector connects to
-> >>>> + * @label: connetor label
-> >>>> + * @type: connector type
-> >>>> + * @connector: connector configuration
-> >>>> + * @connector.analog: analog connector configuration
-> >>>> + *                    &struct v4l2_fwnode_connector_analog
-> >>>> + */
-> >>>> +struct v4l2_fwnode_connector {
-> >>>> +	unsigned int remote_port;
-> >>>> +	unsigned int remote_id;
-> >>>> +	char label[V4L2_CONNECTOR_MAX_LABEL];
-> >>>> +	enum v4l2_connector_type type;
-> >>>> +
-> >>>> +	union {
-> >>>> +		struct v4l2_fwnode_connector_analog analog;
-> >>>> +		/* future connectors */
-> >>>> +	} connector;
-> >>>> +};
-> >>>> +
-> >>>>  /**
-> >>>>   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
-> >>>>   * @fwnode: pointer to the endpoint's fwnode handle
+> Not leave the fall-through comment, and thus remove it ? :-) I really
+> think it's not needed (otherwise imagine how the big switch-case in
+> v4l2-ctrls.c would look like for instance).
+
+Yes you're right. I dopped that in my v7.
+
+> 
+> > [1] https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+> > 
+> > >>>> +	case V4L2_CON_SVIDEO:
+> > >>>> +		ret = v4l2_fwnode_connector_parse_analog(fwnode, connector);
+> > >>>> +		break;
+> > >>>> +	case V4L2_CON_HDMI:
+> > >>>> +		pr_warn("Connector specific parsing is currently not supported for %s\n",
+> > >>>> +			c_type_str);  
+> > >>> 
+> > >>> Why warn? Just drop this.
+> > >> 
+> > >> good point. I would prefer to have some warning here, in order to warn a
+> > >> developer that might be using it that this part of the code would require 
+> > >> some change.
+> > >> 
+> > >> perhaps pr_warn_once()?
+> > >>
+> > >>>> +		ret = 0;
+> > >>>> +		break;
+> > > 
+> > > If it's not supported we should warn and return an error. Otherwise we
+> > > should be silent and return success. Combining a warning with success
+> > > isn't a good idea, this is either a normal case or an error, not both.
+> > 
+> > The generic part still applies and is valid. That was the reason why I
+> > did return success.
+> 
+> But the HDMI-specific part won't work, so the code will likely not
+> operate correctly. I'd rather make it an error to for developers using
+> HDMI connectors to fix it.
+
+Hm.. Since you and Hans have your concerns about it I can change that
+behaviour.
+
+Regards,
+  Marco
+
+> > >>>> +	case V4L2_CON_UNKNOWN:
+> > >>>> +		/* fall through */
+> > >>>> +	default:
+> > >>>> +		pr_err("Unknown connector type\n");
+> > >>>> +		ret = -EINVAL;
+> > >>>> +	};
+> > >>>> +
+> > >>>> +	fwnode_handle_put(fwnode);
+> > >>>> +
+> > >>>> +	return ret;
+> > >>>> +}
+> > >>>> +EXPORT_SYMBOL_GPL(v4l2_fwnode_parse_connector);
+> > >>>> +
+> > >>>>  static int
+> > >>>>  v4l2_async_notifier_fwnode_parse_endpoint(struct device *dev,
+> > >>>>  					  struct v4l2_async_notifier *notifier,
+> > >>>> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> > >>>> index f4df1b95c5ef..e072f2915ddb 100644
+> > >>>> --- a/include/media/v4l2-fwnode.h
+> > >>>> +++ b/include/media/v4l2-fwnode.h
+> > >>>> @@ -269,6 +269,22 @@ int v4l2_fwnode_parse_link(struct fwnode_handle *fwnode,
+> > >>>>   */
+> > >>>>  void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link);
+> > >>>>  
+> > > 
+> > > And I see here that the function is documented. One more reason to move
+> > > kerneldoc to the .c files...
+> > 
+> > Please check my comment above.
+> 
+> I know, it's not your fault, I was complaining about the state of the
+> universe in general :-)
+> 
+> > >>>> +/**
+> > >>>> + * v4l2_fwnode_parse_connector() - parse the connector on endpoint
+> > >>>> + * @fwnode: pointer to the endpoint's fwnode handle where the connector is
+> > >>>> + *          connected to
+> > > 
+> > > This is very unclear, I would interpret that as the remote endpoint, not
+> > > the local endpoint. Could you please try to clarify the documentation ?
+> > 
+> > Hm.. I have no good idea how I should describe it..
+> > 
+> > """
+> > The device (local) endpoint fwnode handle on which the connector is
+> > connected to using the remote-enpoint property.
+> > """
+> > 
+> > >>>> + * @connector: pointer to the V4L2 fwnode connector data structure
+> > >>>> + *
+> > >>>> + * Fill the connector data structure with the connector type, label and the
+> > >>>> + * endpoint id and port where the connector belongs to. If no label is present
+> > >>>> + * a unique one will be created. Labels with more than 40 characters are cut.
+> > >>>> + *
+> > >>>> + * Return: %0 on success or a negative error code on failure:
+> > >>>> + *	   %-EINVAL on parsing failure
+> > >>>> + */
+> > >>>> +int v4l2_fwnode_parse_connector(struct fwnode_handle *fwnode,
+> > >>>> +				struct v4l2_fwnode_connector *connector);
+> > >>>> +
+> > >>>>  /**
+> > >>>>   * typedef parse_endpoint_func - Driver's callback function to be called on
+> > >>>>   *	each V4L2 fwnode endpoint.
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
 
 -- 
-Regards,
-
-Laurent Pinchart
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
