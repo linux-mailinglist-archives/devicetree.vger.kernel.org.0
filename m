@@ -2,55 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4A6B8F094
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 18:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C68128F11B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 18:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731072AbfHOQZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 12:25:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57572 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729274AbfHOQZF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Aug 2019 12:25:05 -0400
-Subject: Re: [GIT PULL] Devicetree fixes for 5.3-rc, take 3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565886305;
-        bh=9/lOd+65RW8ZAu7Yw5/MTMHV6Kx4Opl8+KAGfcZ1Tro=;
-        h=From:In-Reply-To:References:Date:To:Cc:From;
-        b=m9To6Szz1QEXaLLXWS/KGkwjRZGlbvfUoROIJS177Fy82C4CdI7uuFsY06Ez/AFDs
-         0coXrgqEF/RiknDacCwOaxs7q3ld32GLTRvv0KQctmtnObHxrEN89DBm7fecPMPw2v
-         KIG+++VZfZItIJ4gjNPAczKvs4n44YFhQdF3yHo0=
-From:   pr-tracker-bot@kernel.org
-In-Reply-To: <CAL_JsqJRJp8a_sytr2C_18muxt4ehGQRdfu8n8J70HdRz-gFHw@mail.gmail.com>
-References: <CAL_JsqJRJp8a_sytr2C_18muxt4ehGQRdfu8n8J70HdRz-gFHw@mail.gmail.com>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <CAL_JsqJRJp8a_sytr2C_18muxt4ehGQRdfu8n8J70HdRz-gFHw@mail.gmail.com>
-X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
- tags/devicetree-fixes-for-5.3-3
-X-PR-Tracked-Commit-Id: 83f82d7a42583e93d0f0dde3d61ed10f75c0f4d8
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 2b245b8b033a90c6373400a29ec93a8713601eff
-Message-Id: <156588630528.19165.11370971071369925979.pr-tracker-bot@kernel.org>
-Date:   Thu, 15 Aug 2019 16:25:05 +0000
-To:     Rob Herring <robherring2@gmail.com>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
+        id S1729627AbfHOQoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 12:44:11 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:57598 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729507AbfHOQoL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 12:44:11 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7FGi7wb041029;
+        Thu, 15 Aug 2019 11:44:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1565887447;
+        bh=Q2LA4WgXXnzLDlIwPubU7pcCUDBXSzcN38GFsB1+k1w=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=GUQqCzupypXXC+OdNDlNjDhBaKiYZIxInu1qN8TY//Mbny+wNpFiiPWmVhfU0ztJg
+         y1eLf/u0YwQC9RUaS9WVwgaFug47HsHxO4Cm6f9L7da0ku+OXMvy9QC7Gcxj+C1VkM
+         kaRbCpldKaGXcT9q8rOJe8yRlyPJpEVdhpRTj2j4=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7FGi7Jk062908
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 15 Aug 2019 11:44:07 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 15
+ Aug 2019 11:44:06 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 15 Aug 2019 11:44:06 -0500
+Received: from [10.250.98.116] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7FGi45E113579;
+        Thu, 15 Aug 2019 11:44:05 -0500
+Subject: Re: [PATCH 0/3] Drop platform data for cpsw for am3/4 and dra7
+To:     Tony Lindgren <tony@atomide.com>, <linux-omap@vger.kernel.org>
+CC:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        <devicetree@vger.kernel.org>,
+        Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>,
+        Keerthy <j-keerthy@ti.com>
+References: <20190814101949.50006-1-tony@atomide.com>
+From:   grygorii <grygorii.strashko@ti.com>
+Message-ID: <a4467e6c-88f3-eac8-322a-c0e40360ba36@ti.com>
+Date:   Thu, 15 Aug 2019 19:44:03 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190814101949.50006-1-tony@atomide.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pull request you sent on Wed, 14 Aug 2019 20:34:37 -0600:
+Hi Tony,
 
-> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.3-3
+On 14/08/2019 13:19, Tony Lindgren wrote:
+> Hi all,
+> 
+> Here are changes to drop legacy platform data for cpsw for am3, am4
+> and dra7. Please review and test, I was not able to boot my beagle
+> x15 as it seems to have a power supply problem and have only tested
+> on am3 and 4.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/2b245b8b033a90c6373400a29ec93a8713601eff
 
-Thank you!
+Thank you.
+Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+
+> 
+> 
+> Tony Lindgren (3):
+>    ARM: dts: Add fck for cpsw mdio for omap variants
+>    ARM: OMAP2+: Drop legacy platform data for cpsw on am3 and am4
+>    ARM: OMAP2+: Drop legacy platform data for cpsw on dra7
+> 
+>   arch/arm/boot/dts/am33xx-l4.dtsi              |  4 +-
+>   arch/arm/boot/dts/am437x-l4.dtsi              |  6 +-
+>   arch/arm/boot/dts/dra7-l4.dtsi                |  4 +-
+>   .../omap_hwmod_33xx_43xx_common_data.h        |  3 -
+>   .../omap_hwmod_33xx_43xx_interconnect_data.c  |  6 --
+>   .../omap_hwmod_33xx_43xx_ipblock_data.c       | 50 --------------
+>   arch/arm/mach-omap2/omap_hwmod_33xx_data.c    |  9 ---
+>   arch/arm/mach-omap2/omap_hwmod_43xx_data.c    |  9 ---
+>   arch/arm/mach-omap2/omap_hwmod_7xx_data.c     | 65 -------------------
+>   9 files changed, 6 insertions(+), 150 deletions(-)
+> 
 
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.wiki.kernel.org/userdoc/prtracker
+Best regards,
+grygorii
