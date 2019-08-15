@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5B878E663
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B1458E672
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:34:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731003AbfHOIba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 04:31:30 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:34773 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730988AbfHOIb2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:31:28 -0400
-Received: by mail-lj1-f194.google.com with SMTP id x18so1589476ljh.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:31:26 -0700 (PDT)
+        id S1725977AbfHOIea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 04:34:30 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:39232 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730510AbfHOIea (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:34:30 -0400
+Received: by mail-lf1-f65.google.com with SMTP id x3so1147887lfn.6
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:34:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=i/yfx5NeV3piU61gQdhfpnzlq/6GHBCfJ8yX0HleDDU=;
-        b=rild4YlbRJU5wL1IgqlE2vanKqYTSRQWlpn+ut7lNDUUlySGDV7+Y8nqmVm+tCwfxP
-         fF1pS/jvkhsXhDQfovqqUYoMMEuBrEOoaEvG9VehZ0mOPwEwFthyG/8t4T9NhYyj+9z7
-         FzROK9y8F90mbOlCBpBB3Cs0Wsy2z2VXmF2A6AIthCV1UjCJy3cWW4NUevVl6c7gzRFE
-         lhuLhtLiW5z6R3PgaVYhzlPmCe/GYpAoE3SKp03R8Th06dkcUEhoaSCZMhVg87OOSPKi
-         C2YXbDeXfFo9O6FWqdUSAYbCNXAkpH48L0fivxYoziaZy8TFVo0Sel5vSyvt7y6cgRW6
-         L1UA==
+        bh=7i16DpGe/WrEnWRFWrw6WDyR2YmJ49EsxY0UWyxcbfk=;
+        b=TVUoUOIaS51Agv5l0PMa3o6r7lDWfkGGfAKJhDlNLIl7488xPFjP4Zc62E1GcUW1VV
+         o0tMKL+wXnt1XdSF1KbK0Lt2NPVz37E6SBBibznbqskqTNxpsTEGO/IN8IWSuP8NEn+L
+         YweJ7nuU+lmreFBFY/Jygo7zNIKriXEtK9XOLtxp1wnYaEzcfK6K91ZsV5tKqCLz0pji
+         +j+VLUGXtDrQ6JvziL1YCvfd7+ThtaWoW8fly7i71IZV69lt92FEoue8vUkPf1PR+fIT
+         BuuAkU61fn6Twlw0EMMwqgfTgHrOwgjtkdqRSq+SUTWsfkxUHCcsuL1aUGE1euu6qHxW
+         QxwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=i/yfx5NeV3piU61gQdhfpnzlq/6GHBCfJ8yX0HleDDU=;
-        b=Sd/JVH7K1KBImXEcRS1/6UImy4lnGXlBz4L1d7vPI2mBBhryKzchORKz/8KgR9Su5S
-         ztcYxhQx+spxU/LC7aGQ8PR4vCvJOVA1lwx3WjR1JORyyO41HRLoURLmli4+sddaV5p+
-         xTHvjOSIwvyBUEi9BTJMNLTQYDfiKkXei4mz1ZTh6Vd+WOufbNiI8dc8Feg56x2Orj4J
-         +Q3Up/BdY2lJvI8feo0Xt29Op6I3DVWQOpP1unOhvuRcF/fg6QhrKVOQnL57uW8mTggb
-         TN9hYdSzXoWDRVH801QYSxQ77E9powjMPe0IfBCftWrsCbnlh07CmUT+FseOt3q3Id+/
-         4M9g==
-X-Gm-Message-State: APjAAAXuDztAMCmut/9T9zcAJJ0lyHEHj86f/g1r07JuumJD2QSdqpl6
-        rReE/XSbV3ABOOknQQXTu6W1MtQovNLit9472zXp8g==
-X-Google-Smtp-Source: APXvYqzsrobqE4nMFnjhW6qVN2v/WuS6+a4azs9xd0z0wQrNczcpbiWvts190l19juTT3G+lBBGs1PS8c9qSK1SDMvQ=
-X-Received: by 2002:a2e:3a0e:: with SMTP id h14mr2084652lja.180.1565857886156;
- Thu, 15 Aug 2019 01:31:26 -0700 (PDT)
+        bh=7i16DpGe/WrEnWRFWrw6WDyR2YmJ49EsxY0UWyxcbfk=;
+        b=IvaGEfsVzShbRayCtdSj980Ul0A4Hwuh4t4yAQh4iLtoSLtfZOp6vCYEEWuiNzjKwH
+         5kuJFlmT1P7IJ0sQcCwPkdzjYtO1zAT31SPnJ0mFf9MNlZ2T/zACXuQx51+TqlVn7mZf
+         pya52D5xKgJaBMOQLbLVtMzk8pOSk/lK8MhGXTz4dJttJNZZ+12iAZqef+n7eRcfHQz1
+         k+8V0YONbYs6xeetSbIlv8ilwXJz44LnepUNLw1hUijuSxjVUFVYKPZOxjN+jNBML+KY
+         kR/DiZbRsZL7z62+bVEtUZpw3n9iWSUYfte/v+DLblcQ4bAntiX5EAiG07hMblukXfyD
+         o+XQ==
+X-Gm-Message-State: APjAAAV3Yeqr005kwiy4MWEpCLIWSVKheSvg1t2rx/TGDeNCkoFLOB3t
+        amMjiuoF/XJu+zrd71oc4ayyPSRPilFeQtd3qKIbCw==
+X-Google-Smtp-Source: APXvYqxb0UB6/giI18HHjmcKPLqMYP0VUKp7BEJ9Az/O76XbGpUEV3T+utaGsTe3hzjxU1rcsCu+m7ocZF57FmoUKmk=
+X-Received: by 2002:ac2:4c07:: with SMTP id t7mr1629302lfq.152.1565858068523;
+ Thu, 15 Aug 2019 01:34:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-12-masneyb@onstation.org>
-In-Reply-To: <20190815004854.19860-12-masneyb@onstation.org>
+References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-10-masneyb@onstation.org>
+In-Reply-To: <20190815004854.19860-10-masneyb@onstation.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 15 Aug 2019 10:31:14 +0200
-Message-ID: <CACRpkdYSHHqY50=3yo0QDinTaXbO9GzHoOFqMS4K3SiNghssGA@mail.gmail.com>
-Subject: Re: [PATCH RFC 11/11] ARM: dts: qcom: msm8974-hammerhead: add support
- for external display
+Date:   Thu, 15 Aug 2019 10:34:17 +0200
+Message-ID: <CACRpkdYU-6LvFKRkj0yMMCmAnX0XtGe7rMwbXbhf2GCp77Ciyw@mail.gmail.com>
+Subject: Re: [PATCH 09/11] ARM: dts: qcom: pm8941: add 5vs2 regulator node
 To:     Brian Masney <masneyb@onstation.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -77,9 +76,21 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Aug 15, 2019 at 2:49 AM Brian Masney <masneyb@onstation.org> wrote:
 
-> Add HDMI nodes and other supporting infrastructure in order to support
-> the external display. This is based on work from Jonathan Marek.
+> pm8941 is missing the 5vs2 regulator node so let's add it since its
+> needed to get the external display working. This regulator was already
+> configured in the interrupts property on the parent node.
 >
+> Note that this regulator is referred to as mvs2 in the downstream MSM
+> kernel sources.
+
+When I looked at it it seemed like this convention is used for power
+supplies that appear on both the main PMIC and the "extra (boot? basic?
+low power?) PMIC that the main 80xx PMIC has mvs1 and the
+other 89xx PMIC has mvs2.
+
+I suppose it is named "mvs" on both PMICs and this is just a rail
+name so as not to confuse the schematic?
+
 > Signed-off-by: Brian Masney <masneyb@onstation.org>
 
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
