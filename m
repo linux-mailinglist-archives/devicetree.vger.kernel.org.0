@@ -2,131 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF31F8F2F7
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 20:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74BAA8F311
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 20:18:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730444AbfHOSOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 14:14:20 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:51612 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726001AbfHOSOU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 14:14:20 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 71DDB2AF;
-        Thu, 15 Aug 2019 20:14:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1565892857;
-        bh=PywuWClfJh3Sq1lkgyHqHLet8t64SevKcOFacHlNbNo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XSaAqhgyTXoRy4Ne5hd+JH48p6twbV+RWWuhcrrGbHEAPxB+p+arrDgJtFnpRyOVj
-         gQclbHy+09zseRLnoNSglCm9r3Yr6Fme88FQ5wyPhMC/97JikIbdngJR7t1rVgFhTG
-         65N0VxzrsTWu9FqSH/6LxlqNaDE/M/edOovgxdqs=
-Date:   Thu, 15 Aug 2019 21:14:13 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Helen Koike <helen.koike@collabora.com>
-Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        eddie.cai.linux@gmail.com, mchehab@kernel.org, heiko@sntech.de,
-        jacob2.chen@rock-chips.com, jeffy.chen@rock-chips.com,
-        zyc@rock-chips.com, linux-kernel@vger.kernel.org,
-        tfiga@chromium.org, hans.verkuil@cisco.com,
-        sakari.ailus@linux.intel.com, kernel@collabora.com,
-        ezequiel@collabora.com, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v8 11/14] dt-bindings: Document the Rockchip MIPI RX
- D-PHY bindings
-Message-ID: <20190815181413.GZ5011@pendragon.ideasonboard.com>
-References: <20190730184256.30338-1-helen.koike@collabora.com>
- <20190730184256.30338-12-helen.koike@collabora.com>
+        id S1732744AbfHOSSx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 14:18:53 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36371 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728283AbfHOSSx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 14:18:53 -0400
+Received: by mail-wm1-f68.google.com with SMTP id g67so2019670wme.1;
+        Thu, 15 Aug 2019 11:18:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5leAgXssmuJq/e90a7MyYuV3K+kXUHUhhkOK+kGTeCI=;
+        b=BnnimLP4qlW5AnZuZHBLi6MSPvT+eQNFFh81qGkSRNGZ4JluQDg+Yi9I4xpi6ns8yH
+         r58eWqh1mX6B5QBq9eDcGBUqU+JD76Je0iSidlbSfNheIlaAQvlwKTnlm6WP4ioh4y7/
+         +Sh133iZ4Yhc25P6ubrYTHmzgGGVVi6cJEb+dnPRAFdmsuKcCH+y5eUstX2GxnmwsRAY
+         4xNSrtXCu/yLCszeloTI3BhxfioLxDYPWyllGvxdWLkty1rdAIeX819VOOG/iiEl4fVA
+         LtaCXNZLW7onrL4/mmWsmKwLrNdDWEcAb4VmbK3p20tiG9mazREaF93U+9C1hAHdMuhr
+         VNaA==
+X-Gm-Message-State: APjAAAV9cD4czObNnB5nZmhV/DKT6+Pup0YA38Lwsy2ZWQaNNzBoxvtQ
+        9x+KyvsggXE3vQvxbiS6mHk=
+X-Google-Smtp-Source: APXvYqzE6ItclCocP3PgZPG+mo57YgFsf9InExOzUcHhgjzT41/UMFtc8ufAeRAqH3HuEm/VsIuTiA==
+X-Received: by 2002:a1c:7e85:: with SMTP id z127mr4016971wmc.95.1565893130728;
+        Thu, 15 Aug 2019 11:18:50 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.124])
+        by smtp.googlemail.com with ESMTPSA id v65sm2874829wme.31.2019.08.15.11.18.49
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 15 Aug 2019 11:18:50 -0700 (PDT)
+Date:   Thu, 15 Aug 2019 20:18:48 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v3 1/9] soc: samsung: Add exynos chipid driver support
+Message-ID: <20190815181848.GB14360@kozik-lap>
+References: <20190813150827.31972-1-s.nawrocki@samsung.com>
+ <CGME20190813150850eucas1p2aff64b5edb49ffb6626433de1c9e58ec@eucas1p2.samsung.com>
+ <20190813150827.31972-2-s.nawrocki@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190730184256.30338-12-helen.koike@collabora.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190813150827.31972-2-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Helen,
-
-Thank you for the patch.
-
-On Tue, Jul 30, 2019 at 03:42:53PM -0300, Helen Koike wrote:
-> From: Jacob Chen <jacob2.chen@rock-chips.com>
+On Tue, Aug 13, 2019 at 05:08:19PM +0200, Sylwester Nawrocki wrote:
+> From: Pankaj Dubey <pankaj.dubey@samsung.com>
 > 
-> Add DT bindings documentation for Rockchip MIPI D-PHY RX
+> Exynos SoCs have Chipid, for identification of product IDs and SoC
+> revisions. This patch intends to provide initialization code for all
+> these functionalities, at the same time it provides some sysfs entries
+> for accessing these information to user-space.
 > 
-> Signed-off-by: Jacob Chen <jacob2.chen@rock-chips.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> [update for upstream]
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> 
-> ---
-> 
-> Changes in v8: None
-> Changes in v7:
-> - updated doc with new design and tested example
-> 
->  .../bindings/media/rockchip-mipi-dphy.txt     | 38 +++++++++++++++++++
 
-Shouldn't this go to bindings/phy/ ?
+Thanks, applied.
 
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/rockchip-mipi-dphy.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip-mipi-dphy.txt b/Documentation/devicetree/bindings/media/rockchip-mipi-dphy.txt
-> new file mode 100644
-> index 000000000000..2305d44d92db
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip-mipi-dphy.txt
-> @@ -0,0 +1,38 @@
-> +Rockchip SoC MIPI RX D-PHY
-> +-------------------------------------------------------------
+Best regards,
+Krzysztof
 
-How about already converting the bindings to yaml ? There's one example
-in bindings/phy/ that looks quite similar to what you need here. Make
-sure to have a look at Documentation/devicetree/writing-schema.md, and
-in particular to run make dt_binding_check.
-
-> +
-> +Required properties:
-> +- compatible: value should be one of the following
-> +	"rockchip,rk3288-mipi-dphy"
-> +	"rockchip,rk3399-mipi-dphy"
-> +- clocks : list of clock specifiers, corresponding to entries in
-> +	clock-names property;
-> +- clock-names: required clock name.
-> +- #phy-cells: Number of cells in a PHY specifier; Should be 0.
-> +
-> +MIPI RX D-PHY use registers in "general register files", it
-> +should be a child of the GRF.
-> +
-> +Optional properties:
-> +- reg: offset and length of the register set for the device.
-> +- rockchip,grf: MIPI TX1RX1 D-PHY not only has its own register but also
-> +		the GRF, so it is only necessary for MIPI TX1RX1 D-PHY.
-> +
-> +Device node example
-> +-------------------
-> +
-> +grf: syscon@ff770000 {
-> +	compatible = "rockchip,rk3399-grf", "syscon", "simple-mfd";
-> +
-> +...
-> +
-> +	dphy: mipi-dphy {
-> +		compatible = "rockchip,rk3399-mipi-dphy";
-> +		clocks = <&cru SCLK_MIPIDPHY_REF>,
-> +			<&cru SCLK_DPHY_RX0_CFG>,
-> +			<&cru PCLK_VIO_GRF>;
-> +		clock-names = "dphy-ref", "dphy-cfg", "grf";
-> +		power-domains = <&power RK3399_PD_VIO>;
-> +		#phy-cells = <0>;
-> +	};
-> +};
-
--- 
-Regards,
-
-Laurent Pinchart
