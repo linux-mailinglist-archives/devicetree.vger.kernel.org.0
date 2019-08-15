@@ -2,416 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6DCD8E85B
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 11:34:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B6868E897
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 11:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730379AbfHOJeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 05:34:17 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40832 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731438AbfHOJeR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 05:34:17 -0400
-Received: by mail-ot1-f65.google.com with SMTP id c34so4560597otb.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 02:34:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=9bBW+LmeP7t3ROk2eIR0EEdJtUJnHLjhtpzCkxFqhdE=;
-        b=Flbat27RtyhY5cFaN+7lKvmiMWHqiM578DhXfApH/ROScd5vBv7ZQhvClUDXUrxW8C
-         LQyDum7k0ES1XjktouCOsPUNovlUAG2vNScBG6HO3LgSxKMTXDH98Xd+I2Z/reCRQaMk
-         TUgX4eBJnDJRlVWnIcEKDZ2d+/pj2OfGkXHa/Hp5P4tk4gujYGqNarGz+PaFjQaywHS3
-         LHhCsXDuYQ+7gt5GC99ZPu7rniO9EROIDLq2GWY7nJUVF7bBQHGOj9o4zIIq4HvlznNU
-         kVBnCCQog03gubxuQOebre0Ta12IUwiHFV0QuBnbqc+dIVhiUO0a/mfAzBpEwBz/KV2g
-         EnYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=9bBW+LmeP7t3ROk2eIR0EEdJtUJnHLjhtpzCkxFqhdE=;
-        b=a93COSHhY9ffMGmOUdbELG9ASO0kq5VU8VbilrwccKldZvcCpvGg2MT88+QHRNOe6D
-         K2apECYoMFhtlaiYiJrRfB4//sGPeik+POySulVn5tyGsT0jRbbD4rJWZSow9P4AS02g
-         vxKWnsfi3dZtFI9JIDdYt1JBeVFOkvYfyrQQZodOe12OlN630af8Ds1Z/fhM+MDhAyam
-         DBym6e4l9Uj+AXA2YVmW2JmsabBiD5SpBTheSv3jAW5j/SamTV7CdKglwhbhtYxK6C6u
-         zp/wCooQXqqpVgkLk68+o/BDghPfIfCI0quXfKOev3JTKLll8ZNABVs/BkF/Tc6Ibrp4
-         nlpw==
-X-Gm-Message-State: APjAAAVXNRhw2wJl4RuMCVa5tEhSvoCYbSqeowTPCOAikEDNo+cuxWKg
-        p+c5SLYAdvPfVaz/wcoxRIu05GP14kmro7Ye9Wv1KA==
-X-Google-Smtp-Source: APXvYqzk7V74K5R9GbwWjknRZRC4WP82GPWOpQTp27uCvmWbbdbT02PTAaTloh/FGVj5NHyV14GA1mgWMxAryZOaYOo=
-X-Received: by 2002:a05:6830:42:: with SMTP id d2mr2841132otp.123.1565861655445;
- Thu, 15 Aug 2019 02:34:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <65a34dd943b0260bfe45ec76dcf414a67e5d8343.1565785291.git.baolin.wang@linaro.org>
- <446eb284a096a1fd8998765669b1c9a2f78d7d22.1565785291.git.baolin.wang@linaro.org>
- <20190814150304.x44lalde3cwp67ge@pengutronix.de> <CAMz4kuLiS=cGTA=uEi9ABOVAOb1M0Pcd2a_xU5VsdLo1DGd0Hg@mail.gmail.com>
- <20190815061540.763ue2ogkvuyhzcu@pengutronix.de> <CAMz4kuL_74V3M-8Zo99GnLaYbmgfQXO-h0Yz5qeXLQQ0ZR3TkA@mail.gmail.com>
- <20190815085452.2cipewq3l3krnwzv@pengutronix.de>
-In-Reply-To: <20190815085452.2cipewq3l3krnwzv@pengutronix.de>
-From:   Baolin Wang <baolin.wang@linaro.org>
-Date:   Thu, 15 Aug 2019 17:34:02 +0800
-Message-ID: <CAMz4kuJs7pCXWyWd_WMK24JeLOzdVC8zPacRTp91nyTYDDdk5g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] pwm: sprd: Add Spreadtrum PWM support
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        id S1730833AbfHOJvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 05:51:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49884 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730801AbfHOJvc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Aug 2019 05:51:32 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6AD79206C1;
+        Thu, 15 Aug 2019 09:51:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565862691;
+        bh=a1hqZBHdq1hu1xUpLskbyQKgoPJV36S4RRERlFP5ysc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XiXltRI2jc9WC/RckSTqTgumGsudQCuUvuAzQGuVxcu3CzTMInr6pbBJWo21250U/
+         /f5wg7TLzsV31LzRoaI17ge5Q22WeYksihXQd3IrqkRPRUqqnHvk7Q5QMDnMC4+1Ny
+         4Xac+mCJhBX5nO3/MAPTN6llyO4DShnxedjl7Ee4=
+Date:   Thu, 15 Aug 2019 10:51:24 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, cui.zhang@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com
+Subject: Re: [PATCH v9 08/21] iommu/io-pgtable-arm-v7s: Extend MediaTek 4GB
+ Mode
+Message-ID: <20190815095123.rzgtpklvhtjlqir4@willie-the-truck>
+References: <1565423901-17008-1-git-send-email-yong.wu@mediatek.com>
+ <1565423901-17008-9-git-send-email-yong.wu@mediatek.com>
+ <20190814144059.ruyc45yoqkwpbuga@willie-the-truck>
+ <1565858869.12818.51.camel@mhfsdcap03>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1565858869.12818.51.camel@mhfsdcap03>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Aug 2019 at 16:54, Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> Hello Baolin,
->
-> On Thu, Aug 15, 2019 at 04:16:32PM +0800, Baolin Wang wrote:
-> > On Thu, 15 Aug 2019 at 14:15, Uwe Kleine-K=C3=B6nig
-> > <u.kleine-koenig@pengutronix.de> wrote:
-> > > On Thu, Aug 15, 2019 at 11:34:27AM +0800, Baolin Wang wrote:
-> > > > On Wed, 14 Aug 2019 at 23:03, Uwe Kleine-K=C3=B6nig
-> > > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > > > On Wed, Aug 14, 2019 at 08:46:11PM +0800, Baolin Wang wrote:
-> > > > > > +     /*
-> > > > > > +      * The hardware provides a counter that is feed by the so=
-urce clock.
-> > > > > > +      * The period length is (PRESCALE + 1) * MOD counter step=
-s.
-> > > > > > +      * The duty cycle length is (PRESCALE + 1) * DUTY counter=
- steps.
-> > > > > > +      * Thus the period_ns and duty_ns calculation formula sho=
-uld be:
-> > > > > > +      * period_ns =3D NSEC_PER_SEC * (prescale + 1) * mod / cl=
-k_rate
-> > > > > > +      * duty_ns =3D NSEC_PER_SEC * (prescale + 1) * duty / clk=
-_rate
-> > > > > > +      */
-> > > > > > +     val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE)=
-;
-> > > > > > +     prescale =3D val & SPRD_PWM_PRESCALE_MSK;
-> > > > > > +     tmp =3D (prescale + 1) * NSEC_PER_SEC * SPRD_PWM_MOD_MAX;
-> > > > > > +     state->period =3D DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rat=
-e);
-> > > > > > +
-> > > > > > +     val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY);
-> > > > > > +     duty =3D val & SPRD_PWM_DUTY_MSK;
-> > > > > > +     tmp =3D (prescale + 1) * NSEC_PER_SEC * duty;
-> > > > > > +     state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL(tmp, chn->clk=
-_rate);
-> > > > > > +
-> > > > > > +     /* Disable PWM clocks if the PWM channel is not in enable=
- state. */
-> > > > > > +     if (!state->enabled)
-> > > > > > +             clk_bulk_disable_unprepare(SPRD_PWM_CHN_CLKS_NUM,=
- chn->clks);
-> > > > > > +}
-> > > > > > +
-> > > > > > +static int sprd_pwm_config(struct sprd_pwm_chip *spc, struct p=
-wm_device *pwm,
-> > > > > > +                        int duty_ns, int period_ns)
-> > > > > > +{
-> > > > > > +     struct sprd_pwm_chn *chn =3D &spc->chn[pwm->hwpwm];
-> > > > > > +     u32 prescale, duty;
-> > > > > > +     u64 tmp;
-> > > > > > +
-> > > > > > +     /*
-> > > > > > +      * The hardware provides a counter that is feed by the so=
-urce clock.
-> > > > > > +      * The period length is (PRESCALE + 1) * MOD counter step=
-s.
-> > > > > > +      * The duty cycle length is (PRESCALE + 1) * DUTY counter=
- steps.
-> > > > > > +      *
-> > > > > > +      * To keep the maths simple we're always using MOD =3D SP=
-RD_PWM_MOD_MAX.
-> > > > >
-> > > > > Did you spend some thoughts about how wrong your period can get b=
-ecause
-> > > > > of that "lazyness"?
-> > > > >
-> > > > > Let's assume a clk rate of 100/3 MHz. Then the available period l=
-engths
-> > > > > are:
-> > > > >
-> > > > >         PRESCALE =3D  0  ->  period =3D   7.65 =C2=B5s
-> > > > >         PRESCALE =3D  1  ->  period =3D  15.30 =C2=B5s
-> > > > >         ...
-> > > > >         PRESCALE =3D 17  ->  period =3D 137.70 =C2=B5s
-> > > > >         PRESCALE =3D 18  ->  period =3D 145.35 =C2=B5s
-> > > > >
-> > > > > So the error can be up to (nearly) 7.65 =C2=B5s (or in general
-> > > >
-> > > > Yes, but for our use case (pwm backlight), the precision can meet o=
-ur
-> > > > requirement. Moreover, we usually do not change the period, just
-> > > > adjust the duty to change the back light.
-> > >
-> > > Is this a license requirement for you SoC to only drive a backlight w=
-ith
-> > > the PWM? The idea of having a PWM driver on your platform is that it =
-can
-> > > also be used to control a step motor or a laser.
-> >
-> > Not a license requirement. Until now we have not got any higher
-> > precision requirements, and we've run this driver for many years in
-> > our downstream kernel.
->
-> I understood that you're not ambitious to do something better than "it
-> worked for years".
+On Thu, Aug 15, 2019 at 04:47:49PM +0800, Yong Wu wrote:
+> On Wed, 2019-08-14 at 15:41 +0100, Will Deacon wrote:
+> > On Sat, Aug 10, 2019 at 03:58:08PM +0800, Yong Wu wrote:
+> > > MediaTek extend the arm v7s descriptor to support the dram over 4GB.
+> > > 
+> > > In the mt2712 and mt8173, it's called "4GB mode", the physical address
+> > > is from 0x4000_0000 to 0x1_3fff_ffff, but from EMI point of view, it
+> > > is remapped to high address from 0x1_0000_0000 to 0x1_ffff_ffff, the
+> > > bit32 is always enabled. thus, in the M4U, we always enable the bit9
+> > > for all PTEs which means to enable bit32 of physical address. Here is
+> > > the detailed remap relationship in the "4GB mode":
+> > > CPU PA         ->    HW PA
+> > > 0x4000_0000          0x1_4000_0000 (Add bit32)
+> > > 0x8000_0000          0x1_8000_0000 ...
+> > > 0xc000_0000          0x1_c000_0000 ...
+> > > 0x1_0000_0000        0x1_0000_0000 (No change)
+> > 
+> > So in this example, there are no PAs below 0x4000_0000 yet you later
+> > add code to deal with that:
+> > 
+> > > +	/* Workaround for MTK 4GB Mode: Add BIT32 only when PA < 0x4000_0000.*/
+> > > +	if (cfg->oas == ARM_V7S_MTK_4GB_OAS && paddr < 0x40000000UL)
+> > > +		paddr |= BIT_ULL(32);
+> > 
+> > Why? Mainline currently doesn't do anything like this for the "4gb mode"
+> > support as far as I can tell. In fact, we currently unconditionally set
+> > bit 32 in the physical address returned by iova_to_phys() which wouldn't
+> > match your CPU PAs listed above, so I'm confused about how this is supposed
+> > to work.
+> 
+> Actually current mainline have a bug for this. So I tried to use another
+> special patch[1] for it in v8.
 
-How do you know that? If there are some cases expect a higher
-precision, then we can analyze how precision asked by the user, then
-we have a goal to improve it, even improve the hardware. But now, I
-said there are no these use cases, why I should add more mathematics
-to increase load and complication.
+If you're fixing a bug in mainline, I'd prefer to see that as a separate
+patch.
 
-> > > > > PRESCALE =3D 18 and MOD =3D 254 you get a period of 144.78 =C2=B5=
-s and so the
-> > > > > error is only 0.56 =C2=B5s which is a factor of 13 better.
-> > > > >
-> > > > > Hmm.
-> > > > >
-> > > > > > +      * The value for PRESCALE is selected such that the resul=
-ting period
-> > > > > > +      * gets the maximal length not bigger than the requested =
-one with the
-> > > > > > +      * given settings (MOD =3D SPRD_PWM_MOD_MAX and input clo=
-ck).
-> > > > > > +      */
-> > > > > > +     duty =3D duty_ns * SPRD_PWM_MOD_MAX / period_ns;
-> > > > >
-> > > > > I wonder if you loose some precision here as you use period_ns bu=
-t might
-> > > > > actually implement a shorter period.
-> > > > >
-> > > > > Quick example, again consider clk_rate =3D 100 / 3 MHz,
-> > > > > period_ns =3D 145340, duty_ns =3D 72670. Then you end up with
-> > > > >
-> > > > >         PRESCALE =3D 17
-> > > > >         MOD =3D 255
-> > > > >         DUTY =3D 127
-> > > >
-> > > > Incorrect, we will get PRESCALE =3D 18,  MOD =3D 255, DUTY =3D 127.
-> > > >
-> > > > > That corresponds to period_ns =3D 137700, duty_ns =3D 68580. With=
- DUTY =3D 134
-> > > > > you get 72360 ns which is still smaller than the requested 72670 =
-ns.
-> > > >
-> > > > Incorrect, with DUTY =3D 134 (PRESCALE =3D 18  ->  period =3D 145.3=
-5 =C2=B5s),
-> > > > duty_ns =3D 76380ns
-> > >
-> > > Yes, as above. When using rounding-closest your error is not in [0, 7=
-.65
-> > > =C2=B5s] but in [-3.825 =C2=B5s, 3.825 =C2=B5s]. Doesn't make it bett=
-er.
-> >
-> > Actually our use case really dose not care about this error.
->
-> I assume that Thierry will apply your patch anyhow. But be prepared that
-> you get a patch from me then to improve precision. It would be a waste
-> of resources not to do that after doing all the necessary math already.
+> But the issue is not critical since MediaTek multimedia consumer(v4l2
+> and drm) don't call iommu_iova_to_phys currently.
+> 
+> > 
+> > The way I would like this quirk to work is that the io-pgtable code
+> > basically sets bit 9 in the pte when bit 32 is set in the physical address,
+> > and sets bit 4 in the pte when bit 33 is set in the physical address. It
+> > would then do the opposite when converting a pte to a physical address.
+> > 
+> > That way, your driver can call the page table code directly with the high
+> > addresses and we don't have to do any manual offsetting or range checking
+> > in the page table code.
+> 
+> In this case, the mt8183 can work successfully while the "4gb
+> mode"(mt8173/mt2712) can not.
+> 
+> In the "4gb mode", As the remap relationship above, we should always add
+> bit32 in pte as we did in [2]. and need add bit32 in the
+> "iova_to_phys"(Not always add.). That means the "4gb mode" has a special
+> flow:
+> a. Always add bit32 in paddr_to_iopte.
+> b. Add bit32 only when PA < 0x40000000 in iopte_to_paddr.
 
-Glad to see your improvement without introducing complicated and more
-mathematics.
+I think this is probably at the heart of my misunderstanding. What is so
+special about PAs (is this HW PA or CPU PA?) below 0x40000000? Is this RAM
+or something else?
 
->
-> > > > > (But then again it is not obvious which of the two is the "better=
-"
-> > > > > approximation because Thierry doesn't seem to see the necessity t=
-o
-> > > > > discuss or define a policy here.)
-> > > >
-> > > > Like I said, this is the simple calculation formula which can meet =
-our
-> > > > requirement (we limit our DUTY value can only be 0 - 254).
-> > > > duty =3D duty_ns * SPRD_PWM_MOD_MAX / period_ns;
-> > >
-> > > simple is often good but sometimes different from correct. And even w=
-ith
-> >
-> > I do not think this is incorrect.
->
-> Well, "correct" is probably not the right term. The problem is that my
-> efforts to improve the PWM framework are not going forward. And so the
-> suggestions I made here are not normative (yet) and undocumented.
+> > Please can you explain to me why the diff below doesn't work on top of
+> > this series?
+> 
+> The diff below is just I did in v8[3]. The different is that I move the
+> "4gb mode" special flow in the mtk_iommu.c in v8, the code is like
+> [4]below. When I sent v9, I found that I can distinguish the "4gb mode"
+> with "oas == 33" in v7s. then I can "simply" add the 4gb special flow[5]
+> based on your diff.
+> 
+> 
+> >  I'm happy to chat on IRC if you think it would be easier,
+> > because I have a horrible feeling that we've been talking past each other
+> > and I'd like to see this support merged for 5.4.
+> 
+> Thanks very much for your view, I'm sorry that I don't have IRC. I will
+> send the next version quickly if we have a conclusion here. Then Which
+> way is better? If you'd like keep the pagetable code clean, I will add
+> the "4gb mode" special flow into mtk_iommu.c.
 
-OK.
+I mean, we could even talk on the phone if necessary because I can't accept
+this code unless I understand how it works!
 
->
-> > > rounding closest instead of rounding down you're giving away precisio=
-n
-> > > here and the size of the error interval is the same, it is just cente=
-red
-> > > around 0 instead of only positive. If I hadn't spend so much time wit=
-h
-> > > pwm reviews this week I'd try to come up with an example.
-> >
-> > I am very appreciated for your comments.
-> >
-> > > > > (And to pick up the thoughts about not using SPRD_PWM_MOD_MAX
-> > > > > unconditionally, you could also use
-> > > > >
-> > > > >         PRESCALE =3D 18
-> > > > >         MOD =3D 254
-> > > > >         DUTY =3D 127
-> > > > >
-> > > > > yielding period_ns =3D 144780 and duty_ns =3D 72390. Summary:
-> > > > >
-> > > > >         Request:                 72670 / 145340
-> > > > >         your result:             68580 / 137700
-> > > > >         also possible:           72390 / 144780
-> > > > >
-> > > > > Judge yourself.)
-> > > > >
-> > > > > > +     tmp =3D (u64)chn->clk_rate * period_ns;
-> > > > > > +     do_div(tmp, NSEC_PER_SEC);
-> > > > > > +     prescale =3D DIV_ROUND_CLOSEST_ULL(tmp, SPRD_PWM_MOD_MAX)=
- - 1;
-> > > > >
-> > > > > Now that you use DIV_ROUND_CLOSEST_ULL the comment is wrong becau=
-se you
-> > > > > might provide a period bigger than the requested one. Also you di=
-vide
-> > > >
-> > > > Again, that's the precision can meet our requirement.
-> > >
-> > > If you go back to rounding down, use the matching rounding up in
-> > > .get_state and adapt your comment describing you're sticking to MOD=
-=3D255
-> > > to say explicitly that you're loosing precision I can live with that.=
- I
-> > > even did the math for .get_state in my previous mail for you.
-> > >
-> > > The idea of the requirement to round down is that I want to introduce
-> > > this as policy for the PWM framework to get some uniform behaviour fr=
-om
-> >
-> > Have you made a consensus about this? Documented it?
->
-> I tried. Check the pwm patchwork, there are uncommented patches that
-> first try to document the current status quo. When these are "in" I
-> intend to discuss the improvements I have in mind. But don't expect this
-> to be quickly done as even the (AFAICT) noncontroversial documentation
-> patches[1] fail to get applied.
+To be blunt, I'd like to avoid the io-pgtable changes looking different to
+what I suggested:
 
-OK.
+> > diff --git a/drivers/iommu/io-pgtable-arm-v7s.c b/drivers/iommu/io-pgtable-arm-v7s.c
+> > index ab12ef5f8b03..d8d84617c822 100644
+> > --- a/drivers/iommu/io-pgtable-arm-v7s.c
+> > +++ b/drivers/iommu/io-pgtable-arm-v7s.c
+> > @@ -184,7 +184,7 @@ static arm_v7s_iopte paddr_to_iopte(phys_addr_t paddr, int lvl,
+> >  	arm_v7s_iopte pte = paddr & ARM_V7S_LVL_MASK(lvl);
+> >  
+> >  	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
+> > -		if ((paddr & BIT_ULL(32)) || cfg->oas == ARM_V7S_MTK_4GB_OAS)
+> > +		if (paddr & BIT_ULL(32))
+> >  			pte |= ARM_V7S_ATTR_MTK_PA_BIT32;
+> >  		if (paddr & BIT_ULL(33))
+> >  			pte |= ARM_V7S_ATTR_MTK_PA_BIT33;
+> > @@ -206,17 +206,14 @@ static phys_addr_t iopte_to_paddr(arm_v7s_iopte pte, int lvl,
+> >  		mask = ARM_V7S_LVL_MASK(lvl);
+> >  
+> >  	paddr = pte & mask;
+> > -	if (cfg->oas == 32 || !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT))
+> > -		return paddr;
+> >  
+> > -	if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
+> > -		paddr |= BIT_ULL(33);
+> > +	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
+> > +		if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+> > +			paddr |= BIT_ULL(32);
+> > +		if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
+> > +			paddr |= BIT_ULL(33);
+> > +	}
+> >  
+> > -	/* Workaround for MTK 4GB Mode: Add BIT32 only when PA < 0x4000_0000.*/
+> > -	if (cfg->oas == ARM_V7S_MTK_4GB_OAS && paddr < 0x40000000UL)
+> > -		paddr |= BIT_ULL(32);
+> > -	else if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+> > -		paddr |= BIT_ULL(32);
+> >  	return paddr;
+> >  }
 
->
-> > > all lowlevel drivers. If you do this now I won't bother you later whe=
-n
-> > > the requirement is implemented in your driver. And the comment helps
-> > > someone who evaluates your SoC to judge if there is still work to do =
-if
-> > > they have higher requirements for the PWM.
-> >
-> > So what you asked is something like below, right?
-> > diff --git a/drivers/pwm/pwm-sprd.c b/drivers/pwm/pwm-sprd.c
-> > index 96f8aa0..1d3db94 100644
-> > --- a/drivers/pwm/pwm-sprd.c
-> > +++ b/drivers/pwm/pwm-sprd.c
-> > @@ -103,12 +103,12 @@ static void sprd_pwm_get_state(struct pwm_chip
-> > *chip, struct pwm_device *pwm,
-> >         val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE);
-> >         prescale =3D val & SPRD_PWM_PRESCALE_MSK;
-> >         tmp =3D (prescale + 1) * NSEC_PER_SEC * SPRD_PWM_MOD_MAX;
-> > -       state->period =3D DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rate);
-> > +       state->period =3D DIV_ROUND_UP_ULL(tmp, chn->clk_rate);
-> >
-> >         val =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY);
-> >         duty =3D val & SPRD_PWM_DUTY_MSK;
-> >         tmp =3D (prescale + 1) * NSEC_PER_SEC * duty;
-> > -       state->duty_cycle =3D DIV_ROUND_CLOSEST_ULL(tmp, chn->clk_rate)=
-;
-> > +       state->duty_cycle =3D DIV_ROUND_UP_ULL(tmp, chn->clk_rate);
-> >
-> >         /* Disable PWM clocks if the PWM channel is not in enable state=
-. */
-> >         if (!state->enabled)
-> > @@ -135,8 +135,8 @@ static int sprd_pwm_config(struct sprd_pwm_chip
-> > *spc, struct pwm_device *pwm,
-> >         duty =3D duty_ns * SPRD_PWM_MOD_MAX / period_ns;
-> >
-> >         tmp =3D (u64)chn->clk_rate * period_ns;
-> > -       do_div(tmp, NSEC_PER_SEC);
-> > -       prescale =3D DIV_ROUND_CLOSEST_ULL(tmp, SPRD_PWM_MOD_MAX) - 1;
-> > +       div =3D 1000000000ULL * SPRD_PWM_MOD_MAX;
-> > +       prescale =3D div64_u64(tmp, div) - 1;
-> >         if (prescale > SPRD_PWM_PRESCALE_MSK)
-> >                 prescale =3D SPRD_PWM_PRESCALE_MSK;
->
-> This goes in the right direction for sure.
->
-> Without taking paper and pencil I wouldn't be surprised if the
-> calculation of duty_cycle in .get_state didn't match the calculation of
-> DUTY in .apply yet though.
->
-> > But our MOD is constant, it did not help to improve the precision.
-> > Instead, like you said, when period_ns =3D 145340, we will set PRESCALE
-> > =3D 17, so in .get_state(), user will get period_ns =3D 137700 (error
-> > is145340 -  137700).
-> >
-> > But if we use DIV_ROUND_CLOSEST, in .get_state(), user will get
-> > period_ns =3D 145350 (error is 145350 -  145340).
->
-> In this case DIV_ROUND_CLOSEST seems to get nearer to the requested
-> value than when rounding down. But this example was constructed to show
-> your original algorithm to be bad, and just because you modify your
-> algorithm to perform better on that constructed example doesn't imply
-> the new one is better. Moreover you implement a bigger period than
-> requested which is something I intend to forbid in the future.
->
-> And note that with PWMs there is no "objective" metric that can tell you
-> which of two implementable outputs better match a given request. It
-> depends on the use case, so the best we can do is to tell our users our
-> metric and with that in mind they can create a request that then fits
-> their needs.
+so anything else should ideally go in the driver. The change above gives
+the driver control over bits 4 and 9 in the pte, which I hope should be
+sufficient. That said, yet another thing I don't understand is how the
+IOMMU page table walker views physical addresses :/
 
-Yes, that should be asked by the use case, some cases do not care a
-little bigger period than requested.
+Anyway, in your diff here...
 
-As you said, what you asked did not get a consensus yet, so I'd like
-to wait for Thierry's suggestion.
+> [5]:
+> =========================================================
+> diff --git a/drivers/iommu/io-pgtable-arm-v7s.c
+> b/drivers/iommu/io-pgtable-arm-v7s.c
+> index 78fd11e..8e974a5 100644
+> --- a/drivers/iommu/io-pgtable-arm-v7s.c
+> +++ b/drivers/iommu/io-pgtable-arm-v7s.c
+> @@ -184,7 +184,7 @@ static arm_v7s_iopte paddr_to_iopte(phys_addr_t
+> paddr, int lvl,
+>  	arm_v7s_iopte pte = paddr & ARM_V7S_LVL_MASK(lvl);
+>  
+>  	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_4GB) {
+> -		if (paddr & BIT_ULL(32))
+> +		if (paddr & BIT_ULL(32) || cfg->oas == 33)
+>  			pte |= ARM_V7S_ATTR_MTK_PA_BIT32;
 
-> > > > > twice instead of once before. (I don't know what architecture you=
-r SoC
-> > > > > uses, but compared to a multiplication a division is usually expe=
-nsive.)
-> > > > > Also the math is more complicated now as you have a round-down di=
-v and a
-> > > > > round-closest div.
-> > > > >
-> > > > > My preference for how to fix that is to restore the behaviour of =
-v2 that
-> > > > > matches the comment and adapt .get_state() instead.
-> > > >
-> > > > Using DIV_ROUND_CLOSEST_ULL can get a same prescale which matches w=
-ith
-> > > > .get_state().
-> > >
-> > > I don't get you here. Do you say that with DIV_ROUND_CLOSEST_ULL you =
-get
-> > > the same result but DIV_ROUND_CLOSEST_ULL matches .get_state while
-> > > rounding down doesn't? I cannot follow.
-> >
-> > Yes, that's what I mean.
->
-> But that is logically broken. If both approaches yield the same
-> results it cannot be true that exactly one of them matches the inverse
-> of .get_state.
+... I'd like to drop the oas check, because the driver should be passing
+in physical addresses with bit 32 set in this case, and...
 
-What I mean is use DIV_ROUND_CLOSEST_ULL we can get a nearer value to
-the requested like above example.
+>  		if (paddr & BIT_ULL(33))
+>  			pte |= ARM_V7S_ATTR_MTK_PA_BIT33;
+> @@ -207,7 +207,9 @@ static phys_addr_t iopte_to_paddr(arm_v7s_iopte pte,
+> int lvl,
+>  
+>  	paddr = pte & mask;
+>  	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_4GB) {
+> -		if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+> +		if (cfg->oas == 33 && paddr < 0x40000000UL)
+> +			paddr |= BIT_ULL(32);
 
---=20
-Baolin Wang
-Best Regards
+... here I simply don't understand the significance of 0x40000000.
+
+Will
