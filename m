@@ -2,186 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49EEF8F03D
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 18:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C74598F050
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 18:19:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728956AbfHOQMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 12:12:55 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:40763 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728128AbfHOQMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 12:12:55 -0400
-Received: by mail-wr1-f66.google.com with SMTP id c3so2687781wrd.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 09:12:53 -0700 (PDT)
+        id S1728979AbfHOQTw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 12:19:52 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:46849 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728329AbfHOQTw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 12:19:52 -0400
+Received: by mail-lf1-f66.google.com with SMTP id n19so1993857lfe.13
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 09:19:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lqiqYNpMEwE3vp9HpU1QGUTltN60oHlM1/c3puuxpJk=;
-        b=eiC7bBGVZ39pEFW/EDFlf9ynLuq1YbN9SoqgXB+7p7+riposGCbB9b0vGUohZImO+8
-         8PA6q0hgVUjO8eExZoXTf2qa7OVQjqKnCqtJk1+Wg15mclOqMrWU95i3XrPztxbcgkSK
-         0yNTH4AujaQCyxFRKYxi4m1FaWoyuq80WCI2aDZfTVVuUXdkS2Nm36BHS3QwUTeT+WYu
-         X9DUSGYRtYvZZcHDl8cAuLBS+6rsBHxvqn5e5A2zDNTXOfNs9uLGqYIlnSKfGwE5qnI/
-         YM4so0pb9EOr8VI/v3l8hi8hDDjJkFbpEdW81efIx3VitriFyq3ov+x1pHA65G/rdi9F
-         0GAA==
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=sRy0HGkkwueoNntrvDsZNILMk3C4/I8h6a3uq64hOBI=;
+        b=ydMINYfpYUGZbA9ACQan1VPtHfcdEg+Eww++zFwxCu/4Oo6Q56sPdMh88RK8Lkbtji
+         x+QfheLZoqaNk+LuLQXcblUSyc2BzPM222BFXpnIXzEPciqrUJQSfZpZ15umLFHD+muz
+         y8tHSdcINQV/WMLMQjGvKjCcF8yVEGKx+CJla/p9H4229ECvVuDs31bEf9pCHyZ6r7CS
+         VrUYumiERxsm2GkmrKULXDYlDJCUVLwcR1uZ1bjtdp72PT4Ij2vv6uslklUWtFga5BzS
+         bBdF1FYvRAQuqFvlfLFth6IFhagFZ9kD9hN1uT3O7qsH5PD9nhVJH8/pMhfOXvP7Jw0F
+         PLHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=lqiqYNpMEwE3vp9HpU1QGUTltN60oHlM1/c3puuxpJk=;
-        b=snBYyywmDT3qAGGLlR75Qvu+CDAGHHnQY0icWpmq8G4cFI7e1PaH+Ejo+quvO8SXDt
-         Nt5sKGTSykRRtlJOiSrNKn5GcG4z5D7mUykKWY/bqjc/V97Jt7w/pNKiGilx+0dmaxj0
-         7CV9VcfBo9ouQx+eBuWkUoahbFE4FwAAj6yX2kqfVS3vLuueiBpIiK8pjhGBIWTlxJQ8
-         WbiFv1fAA4l7yGfiIWwLZ8Diq1GOnvbZSnJ4bVQ1IhJtqkwRlK3SWjYwplKigtg0nx3j
-         bbZnm0Gb5qVwZGmZXS9TqhoolthGFkFPvfjeDu1NpwGWAkWMeFwcQGa6oYlKhCfsgzPP
-         fk6A==
-X-Gm-Message-State: APjAAAWxirgqgXR09mj7Clb0CEad2sKChz8bgVwh3dM1MzrfHJI1ERsF
-        4r194cPGrQsrA8bbsBt3vz/zRuri1A0=
-X-Google-Smtp-Source: APXvYqyoeSWzfMHJxYuIR0JuauY1YoJyaqepJYnL78QPvsTh/t3747HGVi+MWLA6qCvGIC2pnXqVdA==
-X-Received: by 2002:adf:e4c6:: with SMTP id v6mr5944264wrm.315.1565885572647;
-        Thu, 15 Aug 2019 09:12:52 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:d199:47e7:7c84:8d62? ([2a01:e34:ed2f:f020:d199:47e7:7c84:8d62])
-        by smtp.googlemail.com with ESMTPSA id e4sm5392184wrh.39.2019.08.15.09.12.50
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=sRy0HGkkwueoNntrvDsZNILMk3C4/I8h6a3uq64hOBI=;
+        b=NXD+OFBkviAzdo6xWYGOAUHSQImkeJyVdmmRdQOC0Ot/BxhGrBhV8kJD3B0jpByDsM
+         QLhIrn2GqgXKm+STpczk3jry+uSwMvD2S1IXfAU1KsXMSI8mIuMxYmMI7QJYCsTFt3I7
+         gZlRmrs2GtQEMjXfJoJmuhZsHKf7gZ4FAbvnlOQQIOUoQnD7GGyS6/QdCZwKHI/Iv+yw
+         3iQEXnFSAPeXxzzx0pruySSH4OD4YAvRXHozo/NU93RgTyDNR+5Di7tzR+iwO2p4gwVw
+         7JcbH94GyV53AS0A50h7FfTo8hJW3UcyUSvrWDjcIyfAm5dSVQ7CMQIPdLDzP8VKNjnq
+         CedQ==
+X-Gm-Message-State: APjAAAWACwES1AoSQlJPxyHPHIBEPb5XN/OFiwxFh+v8R5QFKYQlYeFn
+        WM40fZvhiH0+ZO5GJZ8Uo/J6Aw==
+X-Google-Smtp-Source: APXvYqzr+unM1x8AG+bUo1brUXtoWu76G6a4YxVfXpyjHb+cqnX3+LQRYm9IpfUgdBLvaMy/a5BxFw==
+X-Received: by 2002:ac2:428d:: with SMTP id m13mr2755522lfh.52.1565885989674;
+        Thu, 15 Aug 2019 09:19:49 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id d21sm515144lfc.73.2019.08.15.09.19.46
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 15 Aug 2019 09:12:52 -0700 (PDT)
-Subject: Re: [PATCH V5 5/5] arm64: dts: imx8mm: Enable cpu-idle driver
-To:     Anson.Huang@nxp.com, catalin.marinas@arm.com, will@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, tglx@linutronix.de, leonard.crestez@nxp.com,
-        aisheng.dong@nxp.com, daniel.baluta@nxp.com, ping.bai@nxp.com,
-        l.stach@pengutronix.de, abel.vesa@nxp.com,
-        andrew.smirnov@gmail.com, ccaione@baylibre.com, angus@akkea.ca,
-        agx@sigxcpu.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20190710063056.35689-1-Anson.Huang@nxp.com>
- <20190710063056.35689-5-Anson.Huang@nxp.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+        Thu, 15 Aug 2019 09:19:48 -0700 (PDT)
+Subject: Re: [PATCH v5 0/3] Introduce Bandwidth OPPs for interconnects
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, adharmap@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190807223111.230846-1-saravanak@google.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
 Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <34c03d76-ae61-63b4-153f-3f9911cc962e@linaro.org>
-Date:   Thu, 15 Aug 2019 18:12:50 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <b8a6020f-eda5-0c3d-b365-a294c28b9650@linaro.org>
+Date:   Thu, 15 Aug 2019 19:19:44 +0300
 MIME-Version: 1.0
-In-Reply-To: <20190710063056.35689-5-Anson.Huang@nxp.com>
+In-Reply-To: <20190807223111.230846-1-saravanak@google.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-Hi Anson,
+On 8/8/19 01:31, Saravana Kannan wrote:
+> Interconnects and interconnect paths quantify their performance levels in
+> terms of bandwidth and not in terms of frequency. So similar to how we have
+> frequency based OPP tables in DT and in the OPP framework, we need
+> bandwidth OPP table support in DT and in the OPP framework.
+> 
+> So with the DT bindings added in this patch series, the DT for a GPU
+> that does bandwidth voting from GPU to Cache and GPU to DDR would look
+> something like this:
+> 
+> gpu_cache_opp_table: gpu_cache_opp_table {
+> 	compatible = "operating-points-v2";
+> 
+> 	gpu_cache_3000: opp-3000 {
+> 		opp-peak-KBps = <3000000>;
+> 		opp-avg-KBps = <1000000>;
+> 	};
+> 	gpu_cache_6000: opp-6000 {
+> 		opp-peak-KBps = <6000000>;
+> 		opp-avg-KBps = <2000000>;
+> 	};
+> 	gpu_cache_9000: opp-9000 {
+> 		opp-peak-KBps = <9000000>;
+> 		opp-avg-KBps = <9000000>;
+> 	};
+> };
+> 
+> gpu_ddr_opp_table: gpu_ddr_opp_table {
+> 	compatible = "operating-points-v2";
+> 
+> 	gpu_ddr_1525: opp-1525 {
+> 		opp-peak-KBps = <1525000>;
+> 		opp-avg-KBps = <452000>;
+> 	};
+> 	gpu_ddr_3051: opp-3051 {
+> 		opp-peak-KBps = <3051000>;
+> 		opp-avg-KBps = <915000>;
+> 	};
+> 	gpu_ddr_7500: opp-7500 {
+> 		opp-peak-KBps = <7500000>;
+> 		opp-avg-KBps = <3000000>;
+> 	};
+> };
+> 
+> gpu_opp_table: gpu_opp_table {
+> 	compatible = "operating-points-v2";
+> 	opp-shared;
+> 
+> 	opp-200000000 {
+> 		opp-hz = /bits/ 64 <200000000>;
+> 	};
+> 	opp-400000000 {
+> 		opp-hz = /bits/ 64 <400000000>;
+> 	};
+> };
+> 
+> gpu@7864000 {
+> 	...
+> 	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
+> 	...
+> };
+> 
+> v1 -> v3:
+> - Lots of patch additions that were later dropped
+> v3 -> v4:
+> - Fixed typo bugs pointed out by Sibi.
+> - Fixed bug that incorrectly reset rate to 0 all the time
+> - Added units documentation
+> - Dropped interconnect-opp-table property and related changes
+> v4->v5:
+> - Replaced KBps with kBps
+> - Minor documentation fix
+> 
+> Cheers,
+> Saravana
+> 
+> Saravana Kannan (3):
+>   dt-bindings: opp: Introduce opp-peak-kBps and opp-avg-kBps bindings
+>   OPP: Add support for bandwidth OPP tables
+>   OPP: Add helper function for bandwidth OPP tables
+> 
+>  Documentation/devicetree/bindings/opp/opp.txt | 15 ++++--
+>  .../devicetree/bindings/property-units.txt    |  4 ++
+>  drivers/opp/core.c                            | 51 +++++++++++++++++++
+>  drivers/opp/of.c                              | 41 +++++++++++----
+>  drivers/opp/opp.h                             |  4 +-
+>  include/linux/pm_opp.h                        | 19 +++++++
+>  6 files changed, 121 insertions(+), 13 deletions(-)
+> 
 
-sorry for the late review, I've been pretty busy.
+For the series:
+Acked-by: Georgi Djakov <georgi.djakov@linaro.org>
 
-If Shawn is ok, I can pick the patches 1-4 in my tree and then this one
-after you fix the comments below.
-
-On 10/07/2019 08:30, Anson.Huang@nxp.com wrote:
-
-[ ... ]
-
-> +		idle-states {
-> +			entry-method = "psci";
-> +
-> +			cpu_sleep_wait: cpu-sleep-wait {
-
-Is that a retention state or a powerdown? It is preferable to change the
-name to the idle state naming convention given in the PSCI documentation
-[1] page 16-17
-
-
-> +				compatible = "arm,idle-state";
-> +				arm,psci-suspend-param = <0x0010033>;
-> +				local-timer-stop;
-> +				entry-latency-us = <1000>;
-> +				exit-latency-us = <700>;
-> +				min-residency-us = <2700>;
-> +				wakeup-latency-us = <1500>;
-
-It is pointless to specify the entry + exit *and* the wakeup-latency [2].
-
-Thanks
-
-  -- Daniel
-
-[1]
-http://infocenter.arm.com/help/topic/com.arm.doc.den0022d/Power_State_Coordination_Interface_PDD_v1_1_DEN0022D.pdf
-
-[2]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/cpuidle/dt_idle_states.c#n41
-
-
-
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+Thanks,
+Georgi
