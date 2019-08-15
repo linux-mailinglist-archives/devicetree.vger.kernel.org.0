@@ -2,157 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAD9D8EA9A
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 13:47:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C51C68EAAC
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 13:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730442AbfHOLr0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 07:47:26 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:43608 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729668AbfHOLr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 07:47:26 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E32B2B2;
-        Thu, 15 Aug 2019 13:47:23 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1565869643;
-        bh=7YHIexGsypHKPBrHkKhWFogXO6dZbIw8bhIG8muuOqI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=d5M6DY0HUEV5MQtRh5Vn9NcRMQ4In57gkO1EnrM4iMjn/aX7onIcfXLuV3h5mEqFR
-         CV1YluX1JPfiNsIUYD///aVF/Hu4JXSMkF1m7k/LzushWEVVK5R8v7xjI1HtQl/hXb
-         Xfb4p1TAEnYx4/Wm2xWhNTeNdsrTGSDAGlFvwmmM=
-Date:   Thu, 15 Aug 2019 14:47:19 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1729986AbfHOLuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 07:50:17 -0400
+Received: from mga06.intel.com ([134.134.136.31]:58978 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726120AbfHOLuR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Aug 2019 07:50:17 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Aug 2019 04:50:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,389,1559545200"; 
+   d="scan'208";a="184601005"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.122]) ([10.237.72.122])
+  by FMSMGA003.fm.intel.com with ESMTP; 15 Aug 2019 04:50:00 -0700
+Subject: Re: [PATCH v1 4/4] mmc: sdhci-of-esdhc: add erratum A011334 support
+ in ls1028a 1.0 SoC
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>
-Subject: Re: [PATCH v2 2/9] dt-bindings: display: Add bindings for Advantech
- IDK-2121WR
-Message-ID: <20190815114719.GI5011@pendragon.ideasonboard.com>
-References: <1565867073-24746-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1565867073-24746-3-git-send-email-fabrizio.castro@bp.renesas.com>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Li Yang <leoyang.li@nxp.com>,
+        Claudiu Manoil <claudiu.manoil@nxp.com>,
+        Amit Jain <amit.jain_1@nxp.com>, Yangbo Lu <yangbo.lu@nxp.com>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>,
+        Rajesh Bhagat <rajesh.bhagat@nxp.com>,
+        Ashish Kumar <Ashish.Kumar@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org
+Cc:     xiaobo.xie@nxp.com, jiafei.pan@nxp.com,
+        Alison Wang <alison.wang@nxp.com>,
+        Alex Marginean <alexandru.marginean@nxp.com>,
+        Catalin Horghidan <catalin.horghidan@nxp.com>,
+        Rajat Srivastava <rajat.srivastava@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org
+References: <20190814072649.8237-1-yinbo.zhu@nxp.com>
+ <20190814072649.8237-4-yinbo.zhu@nxp.com>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <eeaf2862-8f05-e813-917b-a8358e6d90ab@intel.com>
+Date:   Thu, 15 Aug 2019 14:48:51 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190814072649.8237-4-yinbo.zhu@nxp.com>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1565867073-24746-3-git-send-email-fabrizio.castro@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+On 14/08/19 10:26 AM, Yinbo Zhu wrote:
+> This patch is to add erratum A011334 support in ls1028a 1.0 SoC
+> 
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
 
-On Thu, Aug 15, 2019 at 12:04:26PM +0100, Fabrizio Castro wrote:
-> This panel is handled through the generic lvds-panel bindings,
-> so only needs its additional compatible specified.
-> 
-> Some panel-specific documentation can be found here:
-> https://buy.advantech.eu/Displays/Embedded-LCD-Kits-High-Brightness/model-IDK-2121WR-K2FHA2E.htm
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> 
+Acked-by: Adrian Hunter <adrian.hunter@intel.com>
+
 > ---
-> v1->v2:
-> * Reworked according to Laurent's feedback
-> * Renamed lvds0_panel_in to panel_in0
-> * Renamed lvds1_panel_in to panel_in1
+>  drivers/mmc/host/sdhci-of-esdhc.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Laurent,
-> 
-> Should this be a .yaml file already?
-
-It's not a strict requirement, but I'm sure Rob would really appreciate.
-I've converted a DT binding to yaml recently (for a panel too), and I
-have to say I'm impressed by the validation yaml brings, both for DT
-sources and for DT bindings. It even validates the example in the
-bindings, which is great. Documentation/devicetree/writing-schema.md
-should give you a few pointers to get started (in particular make sure
-you run make dt_binding_check for your new bindings).
-
->  .../display/panel/advantech,idk-2121wr.txt         | 56 ++++++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt b/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
-> new file mode 100644
-> index 0000000..6ee1d1b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
-> @@ -0,0 +1,56 @@
-> +Advantech Co., Ltd. IDK-2121WR 21.5" LVDS panel
-> +===============================================
-> +
-> +Required properties:
-> +- compatible: should be "advantech,idk-2121wr" followed by "panel-lvds"
-> +
-> +This binding is compatible with the lvds-panel binding, which is specified
-> +in panel-lvds.txt in this directory.
-> +The panel operates in dual-link mode and thus requires two port nodes,
-> +the first port node expects odd pixels (1, 3, 5, etc.) and the second port
-> +expects even pixels (0, 2, 4, etc.).
-> +
-> +Example
-> +-------
-> +
-> +	panel {
-> +		compatible = "advantech,idk-2121wr", "panel-lvds";
-> +
-> +		width-mm = <476>;
-> +		height-mm = <268>;
-> +
-> +		data-mapping = "vesa-24";
-> +
-> +		panel-timing {
-> +			clock-frequency = <148500000>;
-> +			hactive = <1920>;
-> +			vactive = <1080>;
-> +			hsync-len = <44>;
-> +			hfront-porch = <88>;
-> +			hback-porch = <148>;
-> +			vfront-porch = <4>;
-> +			vback-porch = <36>;
-> +			vsync-len = <5>;
-> +		};
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				/* Odd pixels */
-> +				reg = <0>;
-> +				panel_in0: endpoint {
-> +					remote-endpoint = <&lvds0_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				/* Even pixels */
-> +				reg = <1>;
-> +				panel_in1: endpoint {
-> +					remote-endpoint = <&lvds1_out>;
-> +				};
-> +			};
-> +		};
-> +	};
-> -- 
-> 2.7.4
+> diff --git a/drivers/mmc/host/sdhci-of-esdhc.c b/drivers/mmc/host/sdhci-of-esdhc.c
+> index b16f7d440f78..eb2b290447fc 100644
+> --- a/drivers/mmc/host/sdhci-of-esdhc.c
+> +++ b/drivers/mmc/host/sdhci-of-esdhc.c
+> @@ -1006,6 +1006,7 @@ static struct soc_device_attribute soc_incorrect_hostver[] = {
+>  static struct soc_device_attribute soc_fixup_sdhc_clkdivs[] = {
+>  	{ .family = "QorIQ LX2160A", .revision = "1.0", },
+>  	{ .family = "QorIQ LX2160A", .revision = "2.0", },
+> +	{ .family = "QorIQ LS1028A", .revision = "1.0", },
+>  	{ },
+>  };
+>  
 > 
 
--- 
-Regards,
-
-Laurent Pinchart
