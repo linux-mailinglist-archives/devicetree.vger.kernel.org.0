@@ -2,115 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5537C8F651
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 23:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7339E8F661
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 23:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731638AbfHOVUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 17:20:09 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:40108 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726008AbfHOVUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 17:20:09 -0400
-Received: by mail-pf1-f195.google.com with SMTP id w16so1953774pfn.7
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 14:20:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=9btH7gObuB7NSQ1wmgbhVZL9CQC9MoVtAlUTgmdlp/M=;
-        b=ldOQ1g85IZyn6tEYhDDDtoDQkL5oBt1ZjAFMcZGTsaB7jPGcdGzXIak3YLLZaTR0c8
-         qyOas6sL+nx6Bo4hMFou+zcTNTEyIkvEgzdUyR+Tz8+g8VWDmT63g4ErRX971OaPAEOu
-         LNTOuzynSiCWRzi4OWMXx//YvU1rCchuwhVAiI4HE3gPmqYVWfDuhDBrq8dSZvafE2VW
-         EB5z1lE6MyIhBvHUTIjDm6sUY5s7Qj5cvND4xW7k0oyiTPoRcJPzQ5CGwSo+wvRPAQhX
-         zPoirYx3EgGyiqGIoT8sf7B5zYIoTunjTrvVKpNGzhWJbLric8x7VPfldcCljayK+DI+
-         iicw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=9btH7gObuB7NSQ1wmgbhVZL9CQC9MoVtAlUTgmdlp/M=;
-        b=jFgwujB6GPrNl+2YL1kOGcLG14gUoF/dtCzgz127rusny4u/2iq4N/Hrov1ZoDZDGT
-         CnjjefVAbMFwynVfeKPY3liaTNhB7OOrGh/bz1A2nNlxlPuBXLYzHq1mAMtqNK6aY+fl
-         x/h6+Q+PJzEIOXBGyVHasqSInUykMIjKKXAFTMO4bIQugcGOX4koQ1T8DLSF0uCBiYWW
-         TKFdeQ8NBCrrKJdjtqnCSmOebR00ZWjtXQFSjdQjpkLMBKBFqY4eaiRnzXQCykJDWt5I
-         eBUwEIslrAs115jvYhr9GJ1kLoptQ5gKaAvU8K/wU7YlFIwWAiDxN6tXftmTRghGySN8
-         9Gfw==
-X-Gm-Message-State: APjAAAUcWZS08ul+HWPkIsDOwTQbvJX9/w+3lgynfcF/mQEeOQMEz11v
-        6yHTanPmkU0fOZvZdKCg3rdwaQ==
-X-Google-Smtp-Source: APXvYqwMBqMHkTvOrHQeYUS4WkFo34Kt5c0X1L9kzdWXYp9P9JmoS5s7mD4im0y2s/z3WEE8BbiNWQ==
-X-Received: by 2002:a17:90a:858c:: with SMTP id m12mr4020145pjn.129.1565904008258;
-        Thu, 15 Aug 2019 14:20:08 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:35:cf9b:bad:702c])
-        by smtp.gmail.com with ESMTPSA id y23sm4193386pfr.86.2019.08.15.14.20.07
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 15 Aug 2019 14:20:07 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     robh+dt@kernel.org, devicetree@vger.kernel.org
-Cc:     Carlo Caione <ccaione@baylibre.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        srinivas.kandagatla@linaro.org, narmstrong@baylibre.com,
-        tglx@linutronix.de, jbrunet@baylibre.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor phandle
-In-Reply-To: <20190731082339.20163-3-ccaione@baylibre.com>
-References: <20190731082339.20163-1-ccaione@baylibre.com> <20190731082339.20163-3-ccaione@baylibre.com>
-Date:   Thu, 15 Aug 2019 14:20:06 -0700
-Message-ID: <7hk1bew2gp.fsf@baylibre.com>
+        id S1730540AbfHOV1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 17:27:46 -0400
+Received: from mail.bugwerft.de ([46.23.86.59]:36378 "EHLO mail.bugwerft.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730742AbfHOV1q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 15 Aug 2019 17:27:46 -0400
+Received: from [192.168.178.170] (pD95EF8C6.dip0.t-ipconnect.de [217.94.248.198])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id 4F58529B849;
+        Thu, 15 Aug 2019 21:23:43 +0000 (UTC)
+Subject: Re: [PATCH] uio: uio_pdrv_genirq: Make UIO name controllable via DT
+ node property
+To:     Greg KH <gregkh@linuxfoundation.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190811110213.5537-1-daniel@zonque.org>
+ <20190815205618.GA11877@kroah.com>
+From:   Daniel Mack <daniel@zonque.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel@zonque.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <366c9fd3-c497-f0e7-e7b4-c668f4edcb84@zonque.org>
+Date:   Thu, 15 Aug 2019 23:27:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20190815205618.GA11877@kroah.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
+On 15/8/2019 10:56 PM, Greg KH wrote:
+> On Sun, Aug 11, 2019 at 01:02:13PM +0200, Daniel Mack wrote:
+>> When probed via DT, the uio_pdrv_genirq driver currently uses the name
+>> of the node and exposes that as name of the UIO device to userspace.
+>>
+>> This doesn't work for systems where multiple nodes with the same name
+>> (but different unit addresses) are present, or for systems where the
+>> node names are auto-generated by a third-party tool.
+>>
+>> This patch adds the possibility to read the UIO name from the optional
+>> "linux,uio-name" property.
+> 
+> Does that need to be documented anywhere?
 
-Carlo Caione <ccaione@baylibre.com> writes:
+This driver does not have a match table and is special in other ways
+too, which is why I believe it isn't documented in
+Documentation/devicetree/bindings.
 
-> Add a new property to link the nvmem driver to the secure-monitor. The
-> nvmem driver needs to access the secure-monitor to be able to access the
-> fuses.
->
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> index 2e0723ab3384..f7b3ed74db54 100644
-> --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> @@ -4,6 +4,7 @@ Required properties:
->  - compatible: should be "amlogic,meson-gxbb-efuse"
->  - clocks: phandle to the efuse peripheral clock provided by the
->  	  clock controller.
-> +- secure-monitor: phandle to the secure-monitor node
->  
->  = Data cells =
->  Are child nodes of eFuse, bindings of which as described in
-> @@ -16,6 +17,7 @@ Example:
->  		clocks = <&clkc CLKID_EFUSE>;
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> +		secure-monitor = <&sm>;
->  
->  		sn: sn@14 {
->  			reg = <0x14 0x10>;
-> @@ -30,6 +32,10 @@ Example:
->  		};
->  	};
->  
-> +	sm: secure-monitor {
-> +		compatible = "amlogic,meson-gxbb-sm";
-> +	};
-> +
->  = Data consumers =
->  Are device nodes which consume nvmem data cells.
->  
+I'll cook up a patch to describe how the probing works right now, and
+also add a word on the newly introduced property.
 
-With your review/ack, I'll take this through with the driver changes.
 
 Thanks,
-
-Kevin
+Daniel
