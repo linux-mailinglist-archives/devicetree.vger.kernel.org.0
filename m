@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB528E625
-	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 108248E62B
+	for <lists+devicetree@lfdr.de>; Thu, 15 Aug 2019 10:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730464AbfHOIXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 04:23:44 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:46068 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729668AbfHOIXn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:23:43 -0400
-Received: by mail-lj1-f196.google.com with SMTP id t3so1509744ljj.12
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:23:42 -0700 (PDT)
+        id S1730451AbfHOIYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 04:24:20 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:44292 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730480AbfHOIYT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 04:24:19 -0400
+Received: by mail-lf1-f67.google.com with SMTP id v16so1106927lfg.11
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 01:24:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=t0NopUkqBTLA90SLW4pHyzSS/xf0ZSXYWDKGwtJAIsY=;
-        b=XfZzDLa/pb4I6O618ihMETOAk22ZCfhPAN12JvjQDq86genpOOd9UIrjs1jDPfXHKv
-         C4XbzbKfduo6gxH7+9d535juc4lDa3KVomsptlT5IuBLZAjjZa9RDW+DaFQ5jw+Hd6qz
-         mvNDo2UoQAGTnFAb/z0MOQcgu+YNlE2gKQ/YaLvbGyKa55lgeWkOqmclOig+Qaw/vlFe
-         cNlUE6ev+m2Z4fhHUkF3Fc5Qp0FShH4ZtRp0bE3Vz4mlR/Xl4QSWA+RxNjkVmDlNnU3c
-         M9PVoAFWM/0SAqsGo/gmz/i8D6JE8b5LUjHeOHZCBhzPxG4uQmcxIyE7hoOUmdnT/gLF
-         SnCg==
+        bh=OQ0EE8KBKUB2wnGR7WI4DHIvan4LQMsfKVjPNCbJp30=;
+        b=BtMASVRwCxEESb39swhUi6eKRj6LJ+hlNA4zpwGR2CrCnj90lLF4XUtzeSbcFnkIeH
+         Rua8own1u82bzcCfXFA2g1OhlZ09we6lALghTOQaf28IZJU+IPkngEhprVhE11a/ALd/
+         FuPpbfhwYsCQ3+XtIUgBR2+NG0zT8OR8sq4KMqI6xllCpkCgmH+NjXOfcYu1jRvB5m2t
+         zy7HTL11dzTNin51nsoF+SKMm9VCxW4mlbsGJqLxFdi4VqZNclku0cU3xi/43cIPB0u2
+         BjqKpwqDoRkDO4NFdAkrngy7sLiHI2K27UgsJ3yGyv+9WI/hB4kP+K7lDNZOSCG/kSyb
+         jKbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=t0NopUkqBTLA90SLW4pHyzSS/xf0ZSXYWDKGwtJAIsY=;
-        b=WBi3MTjb9qJZYMZXi2SoyUesn2ay7S6CInMBzpu5kuFexIeHnaGviUNueYqJ1WcegV
-         powt8c3YvS+hGTXKgzt7fDJAsEY6iP0N64uPNHXQ1nqcIUkoI3Z2YrCDBTJW96ToBoTj
-         F88L6Yv4MQBFZxFKESh6H3xsGfCJMwubF8sf7YDk9REH6KeHCeieRUAbTHdWvkjC7/5T
-         XlkyCER1Dvsz65LVwNpzlddN7NYaAco7HDwCAZEjE1A1SXvTnPnmUe4SqqlPhEcGkXu8
-         OcGlvw0FZ/dEFKZKzUfILk4dm7DD9/q2loFg+qJnSL6TLkjAomkwOqgRoQDxCBnDOb1e
-         PvHg==
-X-Gm-Message-State: APjAAAXRR32aT4CzJumX0vXEEnWSpYZSot5wu/37PBLGI2Za001DSmbu
-        iCOWX9mtIC3TZBr5x+JM/d0vVf2OYXi9Jos3VmsPwg==
-X-Google-Smtp-Source: APXvYqzE4/aMh5whMI0MclqVZfrD6ndHr/RkELyc9WknR09MC3TLKaJoB0cexdnz/NmuFUXRKZuieK+MZxg1NivzFuo=
-X-Received: by 2002:a2e:80da:: with SMTP id r26mr200669ljg.62.1565857421866;
- Thu, 15 Aug 2019 01:23:41 -0700 (PDT)
+        bh=OQ0EE8KBKUB2wnGR7WI4DHIvan4LQMsfKVjPNCbJp30=;
+        b=JmyTNx8/51CBk8F6g/8skJNdZ0WFfMzjNhsFTMFYlMQKZ/7NYHFAbbAD2EKCl1M6QI
+         eU9tAAFaxd9H94vmzeprfDAp48c2z3oNbBoVjTecUr3du0wSXI/EQX+6bb48CEybh5vD
+         YPpUw5ja6WC3nbeOoU7QQ11MehgiTwgLKIAJuVQt2/GS4mZq+tXDg6+9H6mZpWb/bnUM
+         Uug/0BXcrihf0WcdWFd6temtbfbldqCq7NiZb/3COtJLah4S7vhuVcOFg2T3nU0ZUJJ3
+         PHqQkIYmoyLaLzsrcL8KJ8vEAz6+j5vSNkOJJ/wtntCB2CLsOe014bVbk2A7LYhBpGwI
+         mnJw==
+X-Gm-Message-State: APjAAAX4y4y7JhTDJpZ7/oRuyNbHA57WmO3CEc2x9ncH7zo5kTcCNxVc
+        d8LjWJnGKAiVA4Cn4iFYXvXDf4wBzLjIBiMnxN67IQ==
+X-Google-Smtp-Source: APXvYqwLnc3C4Y4Uj9ggAwakGzpIWkkpLBmK9Z2FcyUqoiL21SA+0DNibnPbsKNQqp+zQbxvlbBPxLQn3oxhDsqLDWY=
+X-Received: by 2002:ac2:59d0:: with SMTP id x16mr1894686lfn.60.1565857457973;
+ Thu, 15 Aug 2019 01:24:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-8-masneyb@onstation.org>
-In-Reply-To: <20190815004854.19860-8-masneyb@onstation.org>
+References: <20190815004854.19860-1-masneyb@onstation.org> <20190815004854.19860-6-masneyb@onstation.org>
+In-Reply-To: <20190815004854.19860-6-masneyb@onstation.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 15 Aug 2019 10:23:30 +0200
-Message-ID: <CACRpkda3uCk05FNfeesa6ZgL4MPcQPwjv506jMNmvMkvwCnLdg@mail.gmail.com>
-Subject: Re: [PATCH 07/11] ARM: qcom_defconfig: add CONFIG_DRM_ANALOGIX_ANX78XX
+Date:   Thu, 15 Aug 2019 10:24:05 +0200
+Message-ID: <CACRpkdbZ09+pS+AchWLcxyA9MHgQ2ytL2qN77V3_gKmtw9yFog@mail.gmail.com>
+Subject: Re: [PATCH 05/11] drm/bridge: analogix-anx78xx: correct value of TX_P0
 To:     Brian Masney <masneyb@onstation.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -76,8 +76,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Thu, Aug 15, 2019 at 2:49 AM Brian Masney <masneyb@onstation.org> wrote:
 
-> Add CONFIG_DRM_ANALOGIX_ANX78XX as a module so that the external display
-> can be used on the Nexus 5 phones.
+> When attempting to configure this driver on a Nexus 5 phone (msm8974),
+> setting up the dummy i2c bus for TX_P0 would fail due to an -EBUSY
+> error. The downstream MSM kernel sources [1] shows that the proper value
+> for TX_P0 is 0x78, not 0x70, so correct the value to allow device
+> probing to succeed.
+>
+> [1] https://github.com/AICP/kernel_lge_hammerhead/blob/n7.1/drivers/video/slimport/slimport_tx_reg.h
 >
 > Signed-off-by: Brian Masney <masneyb@onstation.org>
 
