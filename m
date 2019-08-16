@@ -2,60 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD67390733
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 19:47:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AFB390775
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726571AbfHPRrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 13:47:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57984 "EHLO mail.kernel.org"
+        id S1727490AbfHPSGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 14:06:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33528 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726469AbfHPRrZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 13:47:25 -0400
+        id S1727466AbfHPSGC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 14:06:02 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5CD5B205F4;
-        Fri, 16 Aug 2019 17:47:24 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 427BC20665;
+        Fri, 16 Aug 2019 18:06:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565977644;
-        bh=ZQTka4AK12egDIr2nKoEw6cy762BJxPfN0PZ5PqXjSc=;
+        s=default; t=1565978761;
+        bh=QASmlY4ON4/9px2oPd+HIdAz8Fff0k2LsKxJXsxM21Q=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=GqQnTgtqB0r0jj5XwhlQtVLCS3CxeEaK46hHSnlmTflisbkMPZOc7RqQ98oUJnmLe
-         4fNI9iq0B1kCb+7lOcT4hlTOMjBQPtU13nK6JkDjjtRTUJaSPoRBfEqNFhKdThoPE2
-         TGNk5B7EUk8QMUOxMeXblp71w435G3Y3bMwvKj6I=
+        b=oKyvzPF6SEO2Hyb1P31lHqJQ0RCDAW+ExZE524oWyY0eKm+1NEzXvsO+IJEtgKxKX
+         WEcmUyALJDXuQ0z+TucDNe0xcEUxTtoeHBDp4YFE+GX+Jed3ElDBZrWaA2ID+Ha8vo
+         MZSAC6QdFQSS5l8finFeul3EEp5TdM3Zawk10oxY=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190815101613.22872-1-wen.he_1@nxp.com>
-References: <20190815101613.22872-1-wen.he_1@nxp.com>
-Subject: Re: [v2 1/3] dt/bindings: clk: Add YAML schemas for LS1028A Display Clock bindings
+In-Reply-To: <20190809093158.7969-15-lkundrak@v3.sk>
+References: <20190809093158.7969-1-lkundrak@v3.sk> <20190809093158.7969-15-lkundrak@v3.sk>
+Subject: Re: [PATCH 14/19] ARM: mmp: add support for MMP3 SoC
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     leoyang.li@nxp.com, liviu.dudau@arm.com, Wen He <wen.he_1@nxp.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
         Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-devel@linux.nxdi.nxp.com, linux-kernel@vger.kernel.org
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Lubomir Rintel <lkundrak@v3.sk>
+To:     Lubomir Rintel <lkundrak@v3.sk>, Olof Johansson <olof@lixom.net>
 User-Agent: alot/0.8.1
-Date:   Fri, 16 Aug 2019 10:47:23 -0700
-Message-Id: <20190816174724.5CD5B205F4@mail.kernel.org>
+Date:   Fri, 16 Aug 2019 11:06:00 -0700
+Message-Id: <20190816180601.427BC20665@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Wen He (2019-08-15 03:16:11)
-> LS1028A has a clock domain PXLCLK0 used for provide pixel clocks to Displ=
-ay
-> output interface. Add a YAML schema for this.
->=20
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
-> ---
+Quoting Lubomir Rintel (2019-08-09 02:31:53)
+> diff --git a/drivers/clk/mmp/Makefile b/drivers/clk/mmp/Makefile
+> index 7bc7ac69391e3..deb069a4e4215 100644
+> --- a/drivers/clk/mmp/Makefile
+> +++ b/drivers/clk/mmp/Makefile
+> @@ -9,6 +9,7 @@ obj-$(CONFIG_RESET_CONTROLLER) +=3D reset.o
+> =20
+>  obj-$(CONFIG_MACH_MMP_DT) +=3D clk-of-pxa168.o clk-of-pxa910.o
+>  obj-$(CONFIG_MACH_MMP2_DT) +=3D clk-of-mmp2.o
+> +obj-$(CONFIG_MACH_MMP3_DT) +=3D clk-of-mmp2.o
+> =20
 
-Patch looks good. Please send multi-patch series with a cover letter
-next time when you resend and pick up Rob's review.
+Maybe make a Kconfig variable in drivers/clk/mmp/Kconfig that builds
+clk-of-mmp2.c and is selected by MACH_MMP*_DT?
 
-> change in v2:
->         - Convert bindings to YAML format
->=20
+>  obj-$(CONFIG_CPU_PXA168) +=3D clk-pxa168.o
+>  obj-$(CONFIG_CPU_PXA910) +=3D clk-pxa910.o
