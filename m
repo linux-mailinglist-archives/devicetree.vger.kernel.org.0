@@ -2,165 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0216D90101
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 13:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78D7190176
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 14:27:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727134AbfHPL54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 07:57:56 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:36025 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727092AbfHPL54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 07:57:56 -0400
-Received: by mail-wr1-f68.google.com with SMTP id r3so1305702wrt.3;
-        Fri, 16 Aug 2019 04:57:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3owt7CIcSpc8cBZykFrs5XYNVBKRHnGIaWwBA3IAOUg=;
-        b=n+RGjsXkn7qujRTwk8aiu8/bBhtBcZVb/be6IIAS5tuj2MIO/85uX4jq+zNdIjO/8t
-         PmrK2Au1oQGF1N7EmhiyitWkXjrebzls+6qiEUcOmAzaYVnolRiZqcmkhkbhhZZI1M1C
-         J/56uGjaQGmHyPBVeOZ5ie9Zb1wmUBMIp7TQCv8twj5jTx7X68e0SfgHJyS63hVsVFUn
-         wgKACA86RZg89Lvt2WsJBOAmV52zl63pbTFpqHn90pZZpyZMmiygdDj4pDfRvU7ExiZz
-         RHzQBU8lfuTBKjOiSJRAzmI2/dNyxNeaJtE0TPFB2WV4XYuM+/jklpHDu7ygWiqKkq3y
-         0O0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3owt7CIcSpc8cBZykFrs5XYNVBKRHnGIaWwBA3IAOUg=;
-        b=KP/4Eb0AGotntVsynrxtBMaqd3kvLR0BYfuYt2wc+RA1mjDsZTIBnZwdN3C5fYBkHF
-         5rJbmPi0akRiiWzicbDZ3hPdTmiMI0Ic9ZL9xuyDcdcTJIRmAxnMrRXMfR5cEw+4JwaE
-         QVmzgYV8P9nmMzXZci58QjjoNQoNpyBWxorL4ifWFJIC8RjQ9HI02sqL4wfJXkrJ6Ege
-         A7hv3iEMdyPgL194IuKidQ0rH3hJ/zJX6F9MjvkjfaADVbF2v9iDWFL0xHvtoqG4KedF
-         XGCW5uE42wSie0xghmm4QCwYaVILQuT3emW3upB05JZn4vnCKWUFEt7GDS2LcEoFoGJO
-         Fe9g==
-X-Gm-Message-State: APjAAAWaksIHgTPyB4goEq3K7yHtKmFGhZAhQ9a6fjjAhZV6hogD1xvv
-        D8297rizw3xTeAisUZcuARw=
-X-Google-Smtp-Source: APXvYqxTNqwHq0WVu2D09lrdzA/RLQGrmdozZ6J5eBdQXu18+f9N8PeAwHj98h+nMUCQawcD2DuQ6Q==
-X-Received: by 2002:a5d:4bc1:: with SMTP id l1mr10864468wrt.259.1565956673248;
-        Fri, 16 Aug 2019 04:57:53 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id m23sm7291053wml.41.2019.08.16.04.57.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Aug 2019 04:57:52 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 13:57:50 +0200
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        id S1727195AbfHPMZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 08:25:46 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:60144 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727266AbfHPMYm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 08:24:42 -0400
+Received: from [88.128.80.55] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hybHM-0000UE-Ke; Fri, 16 Aug 2019 14:24:25 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Kever Yang <kever.yang@rock-chips.com>
+Cc:     linux-rockchip@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Katsuhiro Suzuki <katsuhiro@katsuster.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomohiro Mayama <parly-gh@iris.mystia.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64
- modelA evaluation board
-Message-ID: <20190816115750.GA24545@Red>
-References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
- <20190812094000.ebdmhyxx7xzbevef@flea>
- <20190814131741.GB24324@Red>
- <20190814133322.dawzv3ityakxtqs4@flea>
- <20190816093513.GA25042@Red>
- <20190816113650.hstbi5ntstx3wh4a@flea>
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm: dts: rockchip: fix vcc_host_5v regulator for usb3 host
+Date:   Fri, 16 Aug 2019 14:24:06 +0200
+Message-ID: <2932927.UJgUFA1Pmh@phil>
+In-Reply-To: <20190815081252.27405-1-kever.yang@rock-chips.com>
+References: <20190815081252.27405-1-kever.yang@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190816113650.hstbi5ntstx3wh4a@flea>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 16, 2019 at 01:36:50PM +0200, Maxime Ripard wrote:
-> On Fri, Aug 16, 2019 at 11:35:13AM +0200, Corentin Labbe wrote:
-> > On Wed, Aug 14, 2019 at 03:33:22PM +0200, Maxime Ripard wrote:
-> > > On Wed, Aug 14, 2019 at 03:17:41PM +0200, Corentin Labbe wrote:
-> > > > On Mon, Aug 12, 2019 at 11:40:00AM +0200, Maxime Ripard wrote:
-> > > > > On Thu, Aug 08, 2019 at 10:42:53AM +0200, Corentin Labbe wrote:
-> > > > > > This patch adds the evaluation variant of the model A of the PineH64.
-> > > > > > The model A has the same size of the pine64 and has a PCIE slot.
-> > > > > >
-> > > > > > The only devicetree difference with current pineH64, is the PHY
-> > > > > > regulator.
-> > > > > >
-> > > > > > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> > > > > > ---
-> > > > > >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
-> > > > > >  .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
-> > > > > >  2 files changed, 27 insertions(+)
-> > > > > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
-> > > > > > index f6db0611cb85..9a02166cbf72 100644
-> > > > > > --- a/arch/arm64/boot/dts/allwinner/Makefile
-> > > > > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> > > > > > @@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
-> > > > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
-> > > > > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA-eval.dtb
-> > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..d8ff02747efe
-> > > > > > --- /dev/null
-> > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> > > > > > @@ -0,0 +1,26 @@
-> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> > > > > > +/*
-> > > > > > + * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
-> > > > > > + */
-> > > > > > +
-> > > > > > +#include "sun50i-h6-pine-h64.dts"
-> > > > > > +
-> > > > > > +/ {
-> > > > > > +	model = "Pine H64 model A evaluation board";
-> > > > > > +	compatible = "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
-> > > > > > +
-> > > > > > +	reg_gmac_3v3: gmac-3v3 {
-> > > > > > +		compatible = "regulator-fixed";
-> > > > > > +		regulator-name = "vcc-gmac-3v3";
-> > > > > > +		regulator-min-microvolt = <3300000>;
-> > > > > > +		regulator-max-microvolt = <3300000>;
-> > > > > > +		startup-delay-us = <100000>;
-> > > > > > +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
-> > > > > > +		enable-active-high;
-> > > > > > +	};
-> > > > > > +
-> > > > > > +};
-> > > > > > +
-> > > > > > +&emac {
-> > > > > > +	phy-supply = <&reg_gmac_3v3>;
-> > > > > > +};
-> > > > >
-> > > > > I might be missing some context here, but I'm pretty sure that the
-> > > > > initial intent of the pine h64 DTS was to support the model A all
-> > > > > along.
-> > > > >
-> > > >
-> > > > The regulator changed between modelA and B.
-> > > > See this old patchset (supporting modelA) https://patchwork.kernel.org/patch/10539149/ for example.
-> > >
-> > > I'm not sure what your point is, but mine is that everything about the
-> > > model A should be in sun50i-h6-pine-h64.dts.
-> > >
-> >
-> > model A and B are different enough for distinct dtb, (see sub-thread
-> > on HDMI difference for an other difference than PHY regulator)
-> 
-> I don't mind having separate DTBs for model A and model B.
-> 
-> > And clearly, the current dtb is for model B.
-> 
-> That DTS was added almost a year before the model B was announced, and
-> no commit to that file mention the model B, so it's definitely not
-> clear.
+Hi Kever, TL,
 
-Normal it was added for model A (without any ethernet/HDMI support, so nothing distinct from model B), and the modelB ethernet/HDMI support cames after.
+[added TL Lim for clarification]
+
+Am Donnerstag, 15. August 2019, 10:12:52 CEST schrieb Kever Yang:
+> According to rock64 schemetic V2 and V3, the VCC_HOST_5V output is
+> controlled by USB_20_HOST_DRV, which is the same as VCC_HOST1_5V.
+
+The v1 schematics I have do reference the GPIO0_A0 as controlling this
+supply, so the big question would be how to handle the different versions.
+
+Because adding this would probably break v1 boards in this function.
+
+@TL: where v1 boards also sold or were they only used during development?
+If this were the case, we could just apply the patch, not caring about
+v1 boards, but if v1 boards were also sold to customers there would be
+more of a problem.
+
+Thanks
+Heiko
+
 
 > 
-> > So do you mean that we need to create a new dtb for model B ? (and
-> > hack the current back to model A ?)
+> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+> ---
 > 
-> I'd prefer not to hack anything, but yes
+> Changes in v2:
+> - remove enable-active-high property
+> 
+>  arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 11 ++---------
+>  1 file changed, 2 insertions(+), 9 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+> index 7cfd5ca6cc85..62936b432f9a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+> @@ -34,10 +34,9 @@
+>  
+>  	vcc_host_5v: vcc-host-5v-regulator {
+>  		compatible = "regulator-fixed";
+> -		enable-active-high;
+> -		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;
+> +		gpio = <&gpio0 RK_PA2 GPIO_ACTIVE_LOW>;
+>  		pinctrl-names = "default";
+> -		pinctrl-0 = <&usb30_host_drv>;
+> +		pinctrl-0 = <&usb20_host_drv>;
+>  		regulator-name = "vcc_host_5v";
+>  		regulator-always-on;
+>  		regulator-boot-on;
+> @@ -320,12 +319,6 @@
+>  			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
+>  		};
+>  	};
+> -
+> -	usb3 {
+> -		usb30_host_drv: usb30-host-drv {
+> -			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
+> -		};
+> -	};
+>  };
+>  
+>  &sdmmc {
 > 
 
-Since model A is not public (only evaluations boards exists), the probability of a production model A is low and the current dtb is perfect for model B , could you reconsider this ?
+
+
 
