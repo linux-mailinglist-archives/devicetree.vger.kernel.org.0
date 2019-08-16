@@ -2,108 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C4CC9055C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 18:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D321D9056D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 18:08:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727474AbfHPQEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 12:04:06 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:34558 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727391AbfHPQEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 12:04:06 -0400
-Received: by mail-pl1-f193.google.com with SMTP id d3so765588plr.1;
-        Fri, 16 Aug 2019 09:04:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=BrRMkjc2qGWCZLIX9694c7JW7Gvf0FMcBkwT0dY+kis=;
-        b=hcp099JLXcAtr20hVTLWgVQYFXbhVo4XXLQW1gdi3X8wRO/iMDfVRxkZdA5NU7sAQh
-         voXm3CvwWdBYwGJz329n7nQ8rE8+eLKw/vWJpi8Vovk6mb3R8BEURRIiFAo9gYUrP5OU
-         bPQkYgp6sSWijbk+aWW8MqL9P2yCokXbfiOzbpgVJ/T3OaYnbYTg3JrwH0ELewheo8Op
-         ArXIuD2xkn+/ugivUTwZGh4XmqUo89Feh6zy5EIJ6BvpS3OQ80lWi/FFPmDleMc4gu0g
-         jBkFdbXQFne1ffs23n8Yt6XafDq894mNsogG9+FL7rU0hfCNzuDO2ClfSF8v/MYWG5/e
-         AV1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=BrRMkjc2qGWCZLIX9694c7JW7Gvf0FMcBkwT0dY+kis=;
-        b=j7yR5AqyJjqtrU5mCyQkQZ980SxNNEUrdfttTZN+q6WmwOQ2pJ7Dv8/SEf9neZuKFX
-         V/vtUpt4KOysdswwcjKdfEMhuEDp+T42ctSeGiGLMRE7vTeQ8dfT/g952qECWRPMjTbZ
-         G+uj+x2QH8bZ3H4HAxRlbcFSqTutnH9ZX8TmjZZ/KuBLiUgjACP6oF61k3BhsItJllpZ
-         JVqBHkfXdUjCUW1G7t1pltt7HyP494U1IYhFlmf1ks1V5XfHcmM87hybdzl/I72i4Xlv
-         3bHYoRnEgCBh6oUhGWLlC1aGLwXrFMbeUuBu75fWqbARIbiHuYBhVpoIURXks0J28g41
-         LQ9w==
-X-Gm-Message-State: APjAAAWFk0cYIeQHJr0vudOJXblbP0beDOVQVZQLTJo5ZG8zkvcsB/h6
-        ng1rFQTzIY2aYOiHjIcnS38=
-X-Google-Smtp-Source: APXvYqxiGn8dbBBUwz6+A3QeDJEhGVLcHKlXkwSQ70P6UKBPE5EgJgZ0TGRQnwNFfsCB+8cciHU9ng==
-X-Received: by 2002:a17:902:a01:: with SMTP id 1mr10269948plo.278.1565971445900;
-        Fri, 16 Aug 2019 09:04:05 -0700 (PDT)
-Received: from localhost.localdomain ([45.124.203.19])
-        by smtp.gmail.com with ESMTPSA id m20sm7578607pff.79.2019.08.16.09.04.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2019 09:04:05 -0700 (PDT)
-From:   Joel Stanley <joel@jms.id.au>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Ryan Chen <ryan_chen@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Subject: [PATCH 2/2] watchdog: aspeed: Add support for AST2600
-Date:   Sat, 17 Aug 2019 01:33:47 +0930
-Message-Id: <20190816160347.23393-3-joel@jms.id.au>
-X-Mailer: git-send-email 2.23.0.rc1
-In-Reply-To: <20190816160347.23393-1-joel@jms.id.au>
-References: <20190816160347.23393-1-joel@jms.id.au>
+        id S1727401AbfHPQIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 12:08:18 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:33322 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727300AbfHPQIS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 12:08:18 -0400
+Received: from [88.128.80.55] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1hyels-0001Qb-P9; Fri, 16 Aug 2019 18:08:10 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Justin Swartz <justin.swartz@risingedge.co.za>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: add device tree for Mecer Xtreme Mini S6
+Date:   Fri, 16 Aug 2019 18:07:45 +0200
+Message-ID: <1853641.gZJFEyITmz@phil>
+In-Reply-To: <20190811230015.28349-1-justin.swartz@risingedge.co.za>
+References: <20190811230015.28349-1-justin.swartz@risingedge.co.za>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Chen <ryan_chen@aspeedtech.com>
+Am Montag, 12. August 2019, 01:00:13 CEST schrieb Justin Swartz:
+> The Mecer Xtreme Mini S6 features a Rockchip RK3229 SoC,
+> 1GB DDR3 RAM, 8GB eMMC, MicroSD port, 10/100Mbps Ethernet,
+> Realtek 8723BS WLAN module, 2 x USB 2.0 ports, HDMI output,
+> and S/PDIF output.
+> 
+> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
 
-The ast2600 can be supported by the same code as the ast2500.
+applied for 5.4
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
- drivers/watchdog/aspeed_wdt.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+Thanks
+Heiko
 
-diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-index cc71861e033a..94f73796ba9d 100644
---- a/drivers/watchdog/aspeed_wdt.c
-+++ b/drivers/watchdog/aspeed_wdt.c
-@@ -31,9 +31,14 @@ static const struct aspeed_wdt_config ast2500_config = {
- 	.ext_pulse_width_mask = 0xfffff,
- };
- 
-+static const struct aspeed_wdt_config ast2600_config = {
-+	.ext_pulse_width_mask = 0xfffff,
-+};
-+
- static const struct of_device_id aspeed_wdt_of_table[] = {
- 	{ .compatible = "aspeed,ast2400-wdt", .data = &ast2400_config },
- 	{ .compatible = "aspeed,ast2500-wdt", .data = &ast2500_config },
-+	{ .compatible = "aspeed,ast2600-wdt", .data = &ast2600_config },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
-@@ -259,7 +264,8 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 		set_bit(WDOG_HW_RUNNING, &wdt->wdd.status);
- 	}
- 
--	if (of_device_is_compatible(np, "aspeed,ast2500-wdt")) {
-+	if ((of_device_is_compatible(np, "aspeed,ast2500-wdt")) ||
-+		(of_device_is_compatible(np, "aspeed,ast2600-wdt"))) {
- 		u32 reg = readl(wdt->base + WDT_RESET_WIDTH);
- 
- 		reg &= config->ext_pulse_width_mask;
--- 
-2.23.0.rc1
 
