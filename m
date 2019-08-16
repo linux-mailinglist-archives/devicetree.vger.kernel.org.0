@@ -2,95 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7515890A41
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC5EB90A4A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:31:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727711AbfHPV1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 17:27:33 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:41981 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727687AbfHPV1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:27:32 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 196so3743294pfz.8
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2019 14:27:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=5+ZQXsiG4dFvJZO/CtCADlk+/s2HQcVxge7ZEsZ75MA=;
-        b=JwsVzigeqeonkzmA6qGereNHoD3N+KunzR2inoTOrf+8mfyhAQmFS/WPodBY/Zr/Zx
-         ZifH3DBLqLFUHgYIveyE0T8rvkv5PM/vc8Rs8Xj+bDUdLC7EKLj9a6ZqNbJdcPFbVrfC
-         DYUG7UXtae/wvzcFeipGvQq7qgjrrSNA4OMtA=
+        id S1727693AbfHPVbO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 17:31:14 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45141 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727684AbfHPVbN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:31:13 -0400
+Received: by mail-oi1-f196.google.com with SMTP id v12so2155144oic.12;
+        Fri, 16 Aug 2019 14:31:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5+ZQXsiG4dFvJZO/CtCADlk+/s2HQcVxge7ZEsZ75MA=;
-        b=Qnm7NGUPS2lf6n8WKu3P50HIcn0al8Z9bLzaK6HmtoiydxZqKum0QrqK4b2+ipM5Vd
-         mCcrLCaN43VMprSusrp3ZrooJNnkcD9X8FmMhNRoXXE6xjkFSHX7HJDunBU8lNMaCfVU
-         wXDewrd+rbV1TaszKMvnX2/CLUmDqRa0b34BqHoBH/wNcfG+seYyRm7/x6Ry4c9CQUGi
-         aSGDKjtse7Buprm1Dox3pKpZU2vGXCOy1DOn4dy7d5j+046G+Ry5AWniS9+Z4F8TwFkk
-         bjdLD3ABBQiJYYvIbRKOWI4mi5bZuJtfxoA0r+0Wz8v+q23k0U4/2Qog4zG/AKybR01b
-         yPvA==
-X-Gm-Message-State: APjAAAX+xEh944zERsL8ilRH4d9aITgL+yuBNi12KVYVybI8nOAvYYaV
-        i1Fk8nQxctzKe10t5UbGo/EYfw==
-X-Google-Smtp-Source: APXvYqzbeuEjhrZHzS2dfMcNDL91d/TEzw4enwa88Gi11sQXjvhfKaU/LEFoIDh62jfymEIREP68+g==
-X-Received: by 2002:a63:6904:: with SMTP id e4mr9352982pgc.321.1565990852019;
-        Fri, 16 Aug 2019 14:27:32 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id 136sm10761162pfz.123.2019.08.16.14.27.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Aug 2019 14:27:30 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 14:27:28 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        bh=cSkX6HP4edadRsvUTh8Dt4dFym0rz2BKxLaGaU9X7YM=;
+        b=ZgUmVKfdwWwhiTQ2EErxp+cuevIMxDs5Nomwxj25zHdlAysAW9KDjh7TapJNbGWQMR
+         MjXmGTNwO03D4vL6pLgf9SC7bGfTuAGDHuEo4mH3dCUi0feYYVgiA5HRo1QGXUrU1H5A
+         uCWsFb2sdotKmqiDt1hCLCFkSBqgtJjaOdllMv5RZjO6wrYvFMv/7hFYaGmGm4jQEfyv
+         05VBfXXALmc+kSVZTCAIfUgIpoFFj/c0u5bL7aSwSV1EUgHlVL1VXl1stZyuJleSb5ZS
+         7i4F61EKjWoYrSy15fK082NwgXEulel53HMZ67EcyYWBNI2bpcYtU/4OUyE3SmzXbdvx
+         fpjA==
+X-Gm-Message-State: APjAAAVo5e2QMtm1ZoKBKDdktwKZxM4EL1xQmSAOWXAPhYCfFm7KXact
+        eGe3vIqH6qOICCCYHJZ4Gg==
+X-Google-Smtp-Source: APXvYqwDR1yRX3MltSlvOjGpTB3EIJ6urfPfNJ66nUknHQOqKgdVOdgii6jtPM4lhLFSAfXNMXxzrA==
+X-Received: by 2002:aca:fc14:: with SMTP id a20mr6589631oii.156.1565991072842;
+        Fri, 16 Aug 2019 14:31:12 -0700 (PDT)
+Received: from localhost ([2607:fb90:1cdf:eef6:c125:340:5598:396e])
+        by smtp.gmail.com with ESMTPSA id q9sm1802485oij.5.2019.08.16.14.31.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Aug 2019 14:31:11 -0700 (PDT)
+Date:   Fri, 16 Aug 2019 16:31:10 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Piotr Sroka <piotrs@cadence.com>
+Cc:     linux-kernel@vger.kernel.org,
+        David Woodhouse <dwmw2@infradead.org>,
+        BrianNorris <computersforpeace@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v6 4/4] net: phy: realtek: Add LED configuration support
- for RTL8211E
-Message-ID: <20190816212728.GW250418@google.com>
-References: <20190813191147.19936-1-mka@chromium.org>
- <20190813191147.19936-5-mka@chromium.org>
- <20190816201342.GB1646@bug>
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Kazuhiro Kasai <kasai.kazuhiro@socionext.com>
+Subject: Re: [v5 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
+Message-ID: <20190816213110.GA31192@bogus>
+References: <20190725145804.8886-1-piotrs@cadence.com>
+ <20190725145955.13951-1-piotrs@cadence.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190816201342.GB1646@bug>
+In-Reply-To: <20190725145955.13951-1-piotrs@cadence.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 16, 2019 at 10:13:42PM +0200, Pavel Machek wrote:
-> On Tue 2019-08-13 12:11:47, Matthias Kaehlcke wrote:
-> > Add a .config_led hook which is called by the PHY core when
-> > configuration data for a PHY LED is available. Each LED can be
-> > configured to be solid 'off, solid 'on' for certain (or all)
-> > link speeds or to blink on RX/TX activity.
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+On Thu, Jul 25, 2019 at 03:59:55PM +0100, Piotr Sroka wrote:
+> Document the bindings used by Cadence NAND controller driver
 > 
-> THis really needs to go through the LED subsystem,
+> Signed-off-by: Piotr Sroka <piotrs@cadence.com>
+> ---
+> Changes for v5:
+> - replace "_" by "-" in all properties
+> - change compatible name from cdns,hpnfc to cdns,hp-nfc
+> Changes for v4:
+> - add commit message
+> Changes for v3:
+> - add unit suffix for board_delay 
+> - move child description to proper place
+> - remove prefix cadence_ for reg and sdma fields
+> Changes for v2:
+> - remove chip dependends parameters from dts bindings
+> - add names for register ranges in dts bindings
+> - add generic bindings to describe NAND chip representation
+> ---
+>  .../bindings/mtd/cadence-nand-controller.txt       | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> new file mode 100644
+> index 000000000000..423547a3f993
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> @@ -0,0 +1,50 @@
+> +* Cadence NAND controller
+> +
+> +Required properties:
+> +  - compatible : "cdns,hp-nfc"
+> +  - reg : Contains two entries, each of which is a tuple consisting of a
+> +	  physical address and length. The first entry is the address and
+> +	  length of the controller register set. The second entry is the
+> +	  address and length of the Slave DMA data port.
+> +  - reg-names: should contain "reg" and "sdma"
+> +  - interrupts : The interrupt number.
+> +  - clocks: phandle of the controller core clock (nf_clk).
+> +
+> +Optional properties:
+> +  - dmas: shall reference DMA channel associated to the NAND controller
+> +  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
+> +    round trip delay for the signals and is used for deciding on values
+> +    associated with data read capture. The example formula for SDR mode is
+> +    the following:
+> +    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
+> +    + DQ PAD delay
+> +
+> +Child nodes represent the available NAND chips.
+> +
+> +Required properties of NAND chips:
+> +  - reg: shall contain the native Chip Select ids from 0 to max supported by
+> +    the cadence nand flash controller
+> +
+> +
+> +See Documentation/devicetree/bindings/mtd/nand.txt for more details on
+> +generic bindings.
+> +
+> +Example:
+> +
+> +nand_controller: nand-controller @60000000 {
 
-Sorry, I used what get_maintainers.pl threw at me, I should have
-manually cc-ed the LED list.
+space                              ^
 
-> and use the same userland interfaces as the rest of the system.
+> +	  compatible = "cdns,hp-nfc";
+> +	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
+> +	  reg-names = "reg", "sdma";
+> +	  clocks = <&nf_clk>;
+> +	  cdns,board-delay-ps = <4830>;
+> +	  interrupts = <2 0>;
 
-With the PHY maintainers we discussed to define a binding that is
-compatible with that of the LED one, to have the option to integrate
-it with the LED subsystem later. The integration itself is beyond the
-scope of this patchset.
+You need #address-cells and #size-cells here.
 
-The PHY LED configuration is a low priority for the project I'm
-working on. I wanted to make an attempt to upstream it and spent
-already significantly more time on it than planned, if integration
-with the LED framework now is a requirement please consider this
-series abandonded.
+With those fixes,
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+> +	  nand@0 {
+> +	      reg = <0>;
+> +	      label = "nand-1";
+> +	  };
+> +	  nand@1 {
+> +	      reg = <1>;
+> +	      label = "nand-2";
+> +	  };
+> +
+> +};
+> -- 
+> 2.15.0
+> 
