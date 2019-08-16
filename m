@@ -2,69 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9556690A89
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40ED190AA8
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 00:02:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727701AbfHPV4g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 17:56:36 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37912 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727696AbfHPV4g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:56:36 -0400
-Received: by mail-oi1-f193.google.com with SMTP id p124so5867161oig.5;
-        Fri, 16 Aug 2019 14:56:36 -0700 (PDT)
+        id S1727753AbfHPWCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 18:02:21 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:45765 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727715AbfHPWCV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 18:02:21 -0400
+Received: by mail-qk1-f194.google.com with SMTP id m2so5935310qki.12
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2019 15:02:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cIdFGwAFSrX7ZRwqgTTFqmzXANmZBCVeaNYXvQ0ZoyU=;
+        b=dUJONrVPTpPrPScArOmcSXk2K3n6gMPUME0lg/JAo05DH5KjPKEObft+IvMnsF54PC
+         cdlSN+TqqDKcX8H/y0wGj7aYiFj5o+97V7xlnGGJjySN8HgwdAFlhcdn+RzcwrpAj3oE
+         6f37nXrGs5jWjp2vUtdD8Erckv9FzWgr1b192uQujyK171boGIJ98LdDYXsi+rOSnEwg
+         aNh5aLncqA3uQ4PD29IYKUMqA45Sji2ad3iGhgDEVIKSYSlJD+0sdJUXgbIAWg1XZCdt
+         jmtv16rt6wEphtlRbGW8D5coFLmUKNj0lGwCTQfJ5Qqp9/yXMHi5TIcUF/fOtu8M8JTO
+         bjiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=MLNRFFmpTvrqSDHiMfXO3TRwp39rLs8A8Qp25LwfFUY=;
-        b=XFXdufDui0ZS3nM2gvUQ7XRHYnXMGZ2biX1oKVcuM5zfhXLelkjbEt/crRgFTewqAy
-         yerbC3vKSR6ZhupkprzWtBUTbf+AhQwMlQVCbrWAkYAeSBHqV8TKHTFcH3sT17leQp1l
-         +xGvmNKx3pnUplgwQ0vMr7DA/s0V2BnY9/nFlQ8fzUS+8D3wZ3THcLXR7ZafdGbhi9nJ
-         3EoMXBOJVw2c9lUSxv1XuNihzM/ce57DRlp7QmDS4X4va1i9HYkGYku0uNRQxyhyqLYU
-         YPaITbE3NFC30mrM1zx+Urb5YnXl2jX/1NN/3XRGGQ3iMxbEMMo/h3S9RHEfhOetRwBN
-         eKZA==
-X-Gm-Message-State: APjAAAVTBugvtBXR1e02qElZhV3XqQ+z2rKOsxfh7PTyRTmN64i7pAH4
-        mwyULL5+2CboFHDTSHX/cw==
-X-Google-Smtp-Source: APXvYqzlznvCGz1N4E1Fpj7MifRqPLUCf6KBStqQYaMHY4iD8GX4e7vLPMkqy9YRZXPTtKDG6QXJYw==
-X-Received: by 2002:aca:c008:: with SMTP id q8mr6452653oif.135.1565992595767;
-        Fri, 16 Aug 2019 14:56:35 -0700 (PDT)
-Received: from localhost ([2607:fb90:1cdf:eef6:c125:340:5598:396e])
-        by smtp.gmail.com with ESMTPSA id p11sm2451178oto.4.2019.08.16.14.56.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2019 14:56:35 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 16:56:34 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Bin Meng <bmeng.cn@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] dt-bindings: pci: pci-msi: Correct the unit-address
- of the pci node name
-Message-ID: <20190816215634.GA10885@bogus>
-References: <1564306219-17439-1-git-send-email-bmeng.cn@gmail.com>
- <1564306219-17439-2-git-send-email-bmeng.cn@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cIdFGwAFSrX7ZRwqgTTFqmzXANmZBCVeaNYXvQ0ZoyU=;
+        b=tSRn5S8KTp0EFwBPZLE87xNmB1inJOxcJpSugbwSXZsqNAllDTgOvOVUnWOtKIYOGb
+         7qGWnZxfoIOMBz+rPsY59drsMQeFpAnI9NTfuzR+0wB/Z/uIHqRvUR+p89ikJqjsO3ZN
+         2QburDsA6c1MkjN5LpM5Ik136Mf7huz4KyTvSy6wRQkNLxvFqPXdiDrhi591Fi49bwth
+         nlF5ommyYLmymVCt+jX/aoQ33BjSZvhhJEfPRP64DvHTLja0H255Yo+sA3gh7X0vZys8
+         LKmdhIQeIgwH3REK4iL71rQRphdiAYVRUp2NkU2nW3wBDWLvew3ck1+39ntDiSwXzoZk
+         Va1Q==
+X-Gm-Message-State: APjAAAUzjf9tTJl23a+gMLir8ExmqavreswaLUv7QXcT+HVcHz79Pk5e
+        lZPNs3lkLkr3dU14WtXJNsORQrlDpK/Y7gGqaGMjfg==
+X-Google-Smtp-Source: APXvYqypnd3g6pObymvX1ggP+t1mK2WV/HTF38MOuIt/cN09z3g8TKh79RVWmSC6hH79TdcEYkJ2tm6koOa/IBMyAOw=
+X-Received: by 2002:a05:620a:5f7:: with SMTP id z23mr10726778qkg.106.1565992939659;
+ Fri, 16 Aug 2019 15:02:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1564306219-17439-2-git-send-email-bmeng.cn@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <cover.1564091601.git.amit.kucheria@linaro.org>
+ <72bce036fa8cba3db6e5ba82249837ee46e9c077.1564091601.git.amit.kucheria@linaro.org>
+ <20190816213648.GA10244@bogus>
+In-Reply-To: <20190816213648.GA10244@bogus>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Sat, 17 Aug 2019 03:32:08 +0530
+Message-ID: <CAP245DVUKRxvU3wWygOFtZuwbvCxfW=wUH=xArOKmYiRZf+EXA@mail.gmail.com>
+Subject: Re: [PATCH 07/15] dt: thermal: tsens: Document interrupt support in
+ tsens driver
+To:     Rob Herring <robh@kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Andy Gross <andy.gross@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 28 Jul 2019 02:30:19 -0700, Bin Meng wrote:
-> The unit-address must match the first address specified in the
-> reg property of the node.
-> 
-> Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
-> ---
-> 
->  Documentation/devicetree/bindings/pci/pci-msi.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+On Sat, Aug 17, 2019 at 3:06 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Jul 26, 2019 at 03:48:42AM +0530, Amit Kucheria wrote:
+> > Define two new required properties to define interrupts and
+> > interrupt-names for tsens.
+> >
+> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/thermal/qcom-tsens.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > index 673cc1831ee9..3d3dd5dc6d36 100644
+> > --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > @@ -22,6 +22,8 @@ Required properties:
+> >
+> >  - #thermal-sensor-cells : Should be 1. See ./thermal.txt for a description.
+> >  - #qcom,sensors: Number of sensors in tsens block
+> > +- interrupts: Interrupts generated from Always-On subsystem (AOSS)
+> > +- interrupt-names: The name of the interrupt e.g. "tsens0", "tsens1"
+>
+> How many interrupts? A name with just indices isn't too useful.
 
-Applied, thanks.
+Depending on the version of the tsens IP, there can be 1 (upper/lower
+threshold), 2 (upper/lower + critical threshold) or 3 (upper/lower +
+critical + zero degree) interrupts. This patch series only introduces
+support for a single interrupt (upper/lower).
 
-Rob
+I used the names tsens0, tsens1 to encapsulate the controller instance
+since some SoCs have 1 controller, others have two. So we'll end up
+with something like the following in DT:
+
+tsens0: thermal-sensor@c263000 {
+                        compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
+                        reg = <0 0x0c263000 0 0x1ff>, /* TM */
+                              <0 0x0c222000 0 0x1ff>; /* SROT */
+                        #qcom,sensors = <13>;
+                        interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+                                     <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
+                        interrupt-names = "tsens0", "tsens0-critical";
+                        #thermal-sensor-cells = <1>;
+};
+
+tsens1: thermal-sensor@c265000 {
+                        compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
+                        reg = <0 0x0c265000 0 0x1ff>, /* TM */
+                              <0 0x0c223000 0 0x1ff>; /* SROT */
+                        #qcom,sensors = <8>;
+                        interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+                                     <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
+                        interrupt-names = "tsens1", "tsens1-critical";
+                        #thermal-sensor-cells = <1>;
+}
+
+Does that work?
+
+Regards,
+Amit
+
+> >  - Refer to Documentation/devicetree/bindings/nvmem/nvmem.txt to know how to specify
+> >  nvmem cells
+> >
+> > @@ -40,6 +42,9 @@ tsens0: thermal-sensor@c263000 {
+> >               reg = <0xc263000 0x1ff>, /* TM */
+> >                       <0xc222000 0x1ff>; /* SROT */
+> >               #qcom,sensors = <13>;
+> > +             interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
+> > +             interrupt-names = "tsens0";
+> > +
+> >               #thermal-sensor-cells = <1>;
+> >       };
+> >
+> > --
+> > 2.17.1
+> >
