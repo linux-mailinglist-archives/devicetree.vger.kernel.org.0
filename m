@@ -2,145 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D46F8FE73
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 10:45:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6CCD8FE7E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 10:49:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727110AbfHPIoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 04:44:22 -0400
-Received: from letterbox.kde.org ([46.43.1.242]:39534 "EHLO letterbox.kde.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727035AbfHPIoW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 04:44:22 -0400
-Received: from archbox.localdomain (unknown [203.187.238.17])
-        (Authenticated sender: bshah)
-        by letterbox.kde.org (Postfix) with ESMTPSA id 44D8E2809BC;
-        Fri, 16 Aug 2019 09:44:19 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
-        t=1565945059; bh=sAbIIO25DFg96Y7To2es2ueSVMDPNv0p6SZWhrXB2FI=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=Br0y0a6vew+9OIPXxe4HVf75OTvlvAQOWBlv42czZM1VT8G9CTdhCSFc+ETQDTXmj
-         E12KzdzF72kObah17DUTIyOg0wOVn6fB9O/Qe4wnpwtbhdw5CxqSIuN3/S9UfbMimj
-         KQpRQ1cfGw5oR2ESsu+KDTGm5DJWB+qO+uo+De3f7nope/OHfT7Yjwn8KY3KzLfBwH
-         vrXN8Y5SQQG7g19be6ybba2QIqSNWfnfdMJJviQrWOSQt+cxRa0MnDZ9qZiExrq1uG
-         1C+A6Y0ltffihQ3iRhDPUXbZAFM4tgNIZEEqG7hMRRxeeW/g29VcL8e0drtr85R2j4
-         iJ9IWE/XVY4VQ==
-From:   Bhushan Shah <bshah@kde.org>
-To:     Icenowy Zheng <icenowy@aosc.io>, Rob Herring <robh+dt@kernel.org>,
+        id S1726947AbfHPIta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 04:49:30 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:33133 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726836AbfHPIta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 04:49:30 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hyXvE-0003CT-N3; Fri, 16 Aug 2019 10:49:20 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hyXvD-0002GK-0J; Fri, 16 Aug 2019 10:49:19 +0200
+Date:   Fri, 16 Aug 2019 10:49:18 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Sam Shih <sam.shih@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Wolfram Sang <wsa@the-dreams.de>, Bhushan Shah <bshah@kde.org>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 2/2] arm64: allwinner: h6: add I2C nodes
-Date:   Fri, 16 Aug 2019 14:13:09 +0530
-Message-Id: <20190816084309.27440-3-bshah@kde.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190816084309.27440-1-bshah@kde.org>
-References: <20190816064710.18280-1-bshah@kde.org>
- <20190816084309.27440-1-bshah@kde.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 2/10] pwm: mediatek: allocate the clks array
+ dynamically
+Message-ID: <20190816084918.gnpeosid2uqb6cgb@pengutronix.de>
+References: <1565940088-845-1-git-send-email-sam.shih@mediatek.com>
+ <1565940088-845-3-git-send-email-sam.shih@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1565940088-845-3-git-send-email-sam.shih@mediatek.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device-tree nodes for i2c0 to i2c2, and also add relevant pinctrl
-nodes.
+Hello,
 
-Suggested-by: Icenowy Zheng <icenowy@aosc.io>
-Signed-off-by: Bhushan Shah <bshah@kde.org>
----
-Changes in v3:
-  - fix compatible for the i2c
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 60 +++++++++++++++++++-
- 1 file changed, 59 insertions(+), 1 deletion(-)
+On Fri, Aug 16, 2019 at 03:21:20PM +0800, Sam Shih wrote:
+> @@ -119,9 +104,9 @@ static void mtk_pwm_clk_disable(struct pwm_chip *chip, struct pwm_device *pwm)
+>  	if (!pc->soc->has_clks)
+>  		return;
+>  
+> -	clk_disable_unprepare(pc->clks[MTK_CLK_PWM1 + pwm->hwpwm]);
+> -	clk_disable_unprepare(pc->clks[MTK_CLK_MAIN]);
+> -	clk_disable_unprepare(pc->clks[MTK_CLK_TOP]);
+> +	clk_disable_unprepare(pc->clk_pwms[pwm->hwpwm]);
+> +	clk_disable_unprepare(pc->clk_main);
+> +	clk_disable_unprepare(pc->clk_top);
+>  }
+>  
+>  static inline u32 mtk_pwm_readl(struct mtk_pwm_chip *chip, unsigned int num,
+> @@ -141,7 +126,7 @@ static int mtk_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
+>  			  int duty_ns, int period_ns)
+>  {
+>  	struct mtk_pwm_chip *pc = to_mtk_pwm_chip(chip);
+> -	struct clk *clk = pc->clks[MTK_CLK_PWM1 + pwm->hwpwm];
+> +	struct clk *clk = pc->soc->has_clks ? pc->clk_pwms[pwm->hwpwm] : NULL;
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index db71807255ef..5dc174715311 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -332,6 +332,21 @@
- 				function = "hdmi";
- 			};
- 
-+			i2c0_pins: i2c0-pins {
-+				pins = "PD25", "PD26";
-+				function = "i2c0";
-+			};
-+
-+			i2c1_pins: i2c1-pins {
-+				pins = "PH5", "PH6";
-+				function = "i2c1";
-+			};
-+
-+			i2c2_pins: i2c2-pins {
-+				pins = "PD23", "PD24";
-+				function = "i2c2";
-+			};
-+
- 			mmc0_pins: mmc0-pins {
- 				pins = "PF0", "PF1", "PF2", "PF3",
- 				       "PF4", "PF5";
-@@ -467,6 +482,48 @@
- 			status = "disabled";
- 		};
- 
-+		i2c0: i2c@5002000 {
-+			compatible = "allwinner,sun50i-h6-i2c",
-+				     "allwinner,sun6i-a31-i2c";
-+			reg = <0x05002000 0x400>;
-+			interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2C0>;
-+			resets = <&ccu RST_BUS_I2C0>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&i2c0_pins>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c1: i2c@5002400 {
-+			compatible = "allwinner,sun50i-h6-i2c",
-+				     "allwinner,sun6i-a31-i2c";
-+			reg = <0x05002400 0x400>;
-+			interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2C1>;
-+			resets = <&ccu RST_BUS_I2C1>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&i2c1_pins>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		i2c2: i2c@5002800 {
-+			compatible = "allwinner,sun50i-h6-i2c",
-+				     "allwinner,sun6i-a31-i2c";
-+			reg = <0x05002800 0x400>;
-+			interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2C2>;
-+			resets = <&ccu RST_BUS_I2C2>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&i2c2_pins>;
-+			status = "disabled";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
- 		emac: ethernet@5020000 {
- 			compatible = "allwinner,sun50i-h6-emac",
- 				     "allwinner,sun50i-a64-emac";
-@@ -798,7 +855,8 @@
- 		};
- 
- 		r_i2c: i2c@7081400 {
--			compatible = "allwinner,sun6i-a31-i2c";
-+			compatible = "allwinner,sun50i-h6-i2c",
-+				     "allwinner,sun6i-a31-i2c";
- 			reg = <0x07081400 0x400>;
- 			interrupts = <GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&r_ccu CLK_R_APB2_I2C>;
+iff pc->soc->has_clks is false, pc->clk_pwms is NULL, right? Checking
+the latter would be cheaper. (One pointer dereference that you then
+reuse compared to two pointer dereferences.)
+
+>  	u32 clkdiv = 0, cnt_period, cnt_duty, reg_width = PWMDWIDTH,
+>  	    reg_thres = PWMTHRES;
+>  	u64 resolution;
+> @@ -229,7 +214,7 @@ static int mtk_pwm_probe(struct platform_device *pdev)
+>  	struct device_node *np = pdev->dev.of_node;
+>  	struct mtk_pwm_chip *pc;
+>  	struct resource *res;
+> -	unsigned int i, npwms;
+> +	unsigned int npwms;
+>  	int ret;
+>  
+>  	pc = devm_kzalloc(&pdev->dev, sizeof(*pc), GFP_KERNEL);
+> @@ -255,12 +240,29 @@ static int mtk_pwm_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	for (i = 0; i < npwms + 2 && pc->soc->has_clks; i++) {
+> -		pc->clks[i] = devm_clk_get(&pdev->dev, mtk_pwm_clk_name[i]);
+> -		if (IS_ERR(pc->clks[i])) {
+> -			dev_err(&pdev->dev, "clock: %s fail: %ld\n",
+> -				mtk_pwm_clk_name[i], PTR_ERR(pc->clks[i]));
+> -			return PTR_ERR(pc->clks[i]);
+> +	if (pc->soc->has_clks) {
+> +		int i;
+> +
+> +		pc->clk_pwms = devm_kcalloc(&pdev->dev, npwms,
+> +					    sizeof(*pc->clk_pwms), GFP_KERNEL);
+> +		if (!pc->clk_pwms)
+> +			return -ENOMEM;
+> +
+> +		pc->clk_top = devm_clk_get(&pdev->dev, "top");
+> +		if (IS_ERR(pc->clk_top))
+> +			return PTR_ERR(pc->clk_top);
+> +
+> +		pc->clk_main = devm_clk_get(&pdev->dev, "main");
+> +		if (IS_ERR(pc->clk_main))
+> +			return PTR_ERR(pc->clk_main);
+> +
+> +		for (i = 0; i < npwms; i++) {
+> +			char name[8];
+> +
+> +			snprintf(name, sizeof(name), "pwm%d", i + 1);
+> +			pc->clk_pwms[i] = devm_clk_get(&pdev->dev, name);
+> +			if (IS_ERR(pc->clk_pwms[i]))
+> +				return PTR_ERR(pc->clk_pwms[i]);
+
+You dropped the error message here.
+
+Best regards
+Uwe
+
 -- 
-2.17.1
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
