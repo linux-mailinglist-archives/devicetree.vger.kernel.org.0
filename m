@@ -2,69 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 968B5909F6
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:05:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB57090A0A
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:11:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727743AbfHPVFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 17:05:41 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41484 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727548AbfHPVFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:05:41 -0400
-Received: by mail-oi1-f195.google.com with SMTP id g7so5770069oia.8;
-        Fri, 16 Aug 2019 14:05:40 -0700 (PDT)
+        id S1727777AbfHPVLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 17:11:44 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:33835 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727748AbfHPVLo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:11:44 -0400
+Received: by mail-oi1-f193.google.com with SMTP id l12so5813460oil.1;
+        Fri, 16 Aug 2019 14:11:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6kp+ij4N1iYYKyYuo9EunRtogi2ASQGFtI485lqWlls=;
-        b=XFS2vleIjNfu0rejmhhjuIrFErSW/p6pxj/xZ0f1Eynn9Dp1GmcAaBjfSHAuOhpj/z
-         WiMAGfMZeRAIhfFFtXp0UG9QAQQMCqnbxZjtIJmw2MQGeGbLaudM6RuJDNBse5gqvtsT
-         exTs6SWUqRi+m0iqfF3+6mZy8kT1mws277RU48dOUStUB60dEPPl24ViwWnhy5afioPe
-         IXMZYWixOAjz+F1jUbxqjXEMDzI0ERJeV7H7egFPjKdQhvDYqjignfcUb6wm8Hozx58q
-         QHQeHDBJkjsKqxw1tdZODAVh+YcHKPkGFxcKtD7i3FV4VZBWdDLMv35SiMMBFwwTyWkA
-         5OZg==
-X-Gm-Message-State: APjAAAVzMidwv/5req+liPzPKeVG65wNEyMm1MkUenSrFkrA2oPR896p
-        ygDIkhthy/zvghZQr5Zj5Q==
-X-Google-Smtp-Source: APXvYqw+eETBOOyhsRthMA4bW8QoOXtxOLorHNA4vbW23rMawYntr/qdLwx77Vpq/O2pTtew0gQhRQ==
-X-Received: by 2002:aca:5f03:: with SMTP id t3mr6465798oib.18.1565989540442;
-        Fri, 16 Aug 2019 14:05:40 -0700 (PDT)
+        bh=0gC4sb2j3RWTm9xjuIK9kqivJqH0u782yHSmQQjFy/g=;
+        b=ZcN4oCeWfbQ8IuIbiJvX+uHyg1YUAnJlV3kFmXAKGTavk+exyLe7ff2VjFiXkDTygM
+         ifb682dWQdfQ1icKhTm6rP2nA8+yruA3hhwkUI1r9EeANqdGB32E8Tl46oSQ+BgdG6lh
+         FN0MhfYbVuM/65A+FVlc2KZclUUt9M2r/XsMFGouGqBpyO1m2bstqJsvz5VuWOh9qt+i
+         HnhcBiB9nQGEQ8qFWOIoSfFxfsLrMGS2Z4+bjkz3NIFTpjnSzbPM8TVgXs4fYEhcBMrs
+         sZKepC884dLnmUSSbvGTLcxU33HfYcbVNJOuvgS5ojY2wJrJqQqaJzJAl/IC8K9kXo+w
+         Pd2g==
+X-Gm-Message-State: APjAAAV/6MYS2rOa4vYc0l337p3Sha7zEzSK+ZcSoa9mJYbeT2/7XP2X
+        5ozNB/uLMnKzxPgDbaYKmA==
+X-Google-Smtp-Source: APXvYqxVNGZP55OO2DAvkxQON330c/WkMGGQCA7UZMyjdZKYVNzMAVMjLidQg+yRLMzc0LHLCzRN0Q==
+X-Received: by 2002:aca:5106:: with SMTP id f6mr6355037oib.69.1565989903418;
+        Fri, 16 Aug 2019 14:11:43 -0700 (PDT)
 Received: from localhost (ip-173-126-47-137.ftwttx.spcsdns.net. [173.126.47.137])
-        by smtp.gmail.com with ESMTPSA id 132sm1818607oid.47.2019.08.16.14.05.39
+        by smtp.gmail.com with ESMTPSA id z26sm1648410oih.16.2019.08.16.14.11.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2019 14:05:39 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 16:05:38 -0500
+        Fri, 16 Aug 2019 14:11:42 -0700 (PDT)
+Date:   Fri, 16 Aug 2019 16:11:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Mischa Jonker <Mischa.Jonker@synopsys.com>
-Cc:     Alexey.Brodkin@synopsys.com, Vineet.Gupta1@synopsys.com,
-        kstewart@linuxfoundation.org, tglx@linutronix.de,
-        robh+dt@kernel.org, linux-snps-arc@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Mischa Jonker <Mischa.Jonker@synopsys.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: IDU-intc: Add support for
- edge-triggered interrupts
-Message-ID: <20190816210538.GA30424@bogus>
-References: <CY4PR1201MB0120EDD4173511912A9FC99EA1C60@CYPR1201MB0120.namprd12.prod.outlook.com>
- <20190724120436.8537-1-mischa.jonker@synopsys.com>
- <20190724120436.8537-3-mischa.jonker@synopsys.com>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ath10k@lists.infradead.org, stable@vger.kernel.org
+Subject: Re: [PATCH] ath10k: Fix HOST capability QMI incompatibility
+Message-ID: <20190816211141.GA4468@bogus>
+References: <20190725063108.15790-1-bjorn.andersson@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190724120436.8537-3-mischa.jonker@synopsys.com>
+In-Reply-To: <20190725063108.15790-1-bjorn.andersson@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 24 Jul 2019 14:04:36 +0200, Mischa Jonker wrote:
-> This updates the documentation for supporting an optional extra interrupt
-> cell to specify edge vs level triggered.
+On Wed, Jul 24, 2019 at 11:31:08PM -0700, Bjorn Andersson wrote:
+> The introduction of 768ec4c012ac ("ath10k: update HOST capability QMI
+> message") served the purpose of supporting the new and extended HOST
+> capability QMI message.
 > 
-> Signed-off-by: Mischa Jonker <mischa.jonker@synopsys.com>
+> But while the new message adds a slew of optional members it changes the
+> data type of the "daemon_support" member, which means that older
+> versions of the firmware will fail to decode the incoming request
+> message.
+> 
+> There is no way to detect this breakage from Linux and there's no way to
+> recover from sending the wrong message (i.e. we can't just try one
+> format and then fallback to the other), so a quirk is introduced in
+> DeviceTree to indicate to the driver that the firmware requires the 8bit
+> version of this message.
+> 
+> Cc: stable@vger.kernel.org
+> Fixes: 768ec4c012ac ("ath10k: update HOST capability qmi message")
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  .../interrupt-controller/snps,archs-idu-intc.txt      | 19 ++++++++++++++-----
->  1 file changed, 14 insertions(+), 5 deletions(-)
-> 
+>  .../bindings/net/wireless/qcom,ath10k.txt     |  6 +++++
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
+
+>  drivers/net/wireless/ath/ath10k/qmi.c         | 13 ++++++++---
+>  .../net/wireless/ath/ath10k/qmi_wlfw_v01.c    | 22 +++++++++++++++++++
+>  .../net/wireless/ath/ath10k/qmi_wlfw_v01.h    |  1 +
+>  drivers/net/wireless/ath/ath10k/snoc.c        | 11 ++++++++++
+>  drivers/net/wireless/ath/ath10k/snoc.h        |  1 +
+>  6 files changed, 51 insertions(+), 3 deletions(-)
