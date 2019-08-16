@@ -2,114 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00FD88F8B1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 04:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A32878F8D1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 04:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726354AbfHPCEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 22:04:53 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36837 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726295AbfHPCEw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 22:04:52 -0400
-Received: by mail-ot1-f67.google.com with SMTP id k18so8331573otr.3
-        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 19:04:52 -0700 (PDT)
+        id S1726364AbfHPCZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 22:25:57 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36901 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726329AbfHPCZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 22:25:57 -0400
+Received: by mail-io1-f66.google.com with SMTP id q22so3307099iog.4;
+        Thu, 15 Aug 2019 19:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=6pfybPHYgQpVnLP31HUT6Rq04rce/4KRW2qmC2QL+zw=;
-        b=ZQOEKNXRhZo9Y4S1z9YzupCiWd8wCHyjva9WWCpYVGxSWXgmhUX/PgczqLUjfQAz8I
-         fa5yB9DzjRrzGZ/2oE31G9bhzfR38WrRiF6yv1CtLG4oqV4c0zUOBCAc7U/ZT0O9Ilrl
-         /15sJJC+2aovaMGtM+jpZMFcyOuX7EWX1OFr4XgXyIwDFhlDkOkgGnzv6AAlqx1D5FKw
-         8ycYSSoLLLjiXdz4vHgG074h6mTgN8HANJ3ARLkjJyXBsWL/vDYyRYMI8CqdeMRFUtxn
-         XkZyTb9hNn4V284yXUPS+Lqfyu1BofbuLb0dayf+DYtzjQEjn1gnRutY3aLqKKkT0LXn
-         0sxA==
+        bh=/fibelXvW+1LdGP+tmxyfYovRPGaPOb71lYeqEJPE9w=;
+        b=LvvLFypJqUtGcuZAf7ZZQjdIPS/eQWQeafYVUPKL0TI7ZJ3ta88iENF7vQ0U3UtOEe
+         02YnSNW4M8rIg/utVyCb8+KAtzniL/7SQyZEBFlXCM+D+B1v7XrbE7hlJ6TE98z40BJD
+         ZBIKgVBaJqaiq+sqCWlRDoXRmy8DkG6FuBGG6RHONt919JykRE3qnSXyUj3KOgJ4BmD2
+         /+nmFsNnn/93bVI0P1voTaMAxIwmhLKwdryt9Xp+UVBlGoVMWEMHR7yf7nMuJBr4q7PB
+         5Lyczt7kyUz9eR9fMBILvzTKdPYDd3AtHTXBKo+ijHKr5r6GuVgInnjZTmPvy0TYxAYg
+         F/cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6pfybPHYgQpVnLP31HUT6Rq04rce/4KRW2qmC2QL+zw=;
-        b=crfQvMembOdsHoLZn7HbTi5SAkj9ssLJrmzKx87s/AZxzO7D5f205DRK0wmWJomaUl
-         cWOOnYYow/7Hvl5LwqvDfS+KS/nUZGUKfX5OGJn9mgwHDEZs3HcmU48vmLSMf/aeJW5Z
-         Ufedul6Z0669ow5vkSYwV9S/vJoJG3lPeAKRHMUylcmo7MkHFjWarr+rtZiHgc1egmec
-         hQC1rpPAHjLiIWahIxYp+RL1u8qAzEGeB7SnVxBoMJUzhBspj208paDZcKdwJnVRoorF
-         QisbmXIThwdXZzYMLOPbuKo0xDC0kaElJG8Xe0Dvv6AE6fC9i3jFPBEVJgb17OlfTqeM
-         iepQ==
-X-Gm-Message-State: APjAAAWxtXu8SYInbNJu7ZJqmsvR70UEznSaG2x2aGETk7cjUe3wjabB
-        ++A8r1tNu9D5JOu+vTCtYUnx0KJioIcXv9wxXGMvlQ==
-X-Google-Smtp-Source: APXvYqwuILMgx6RAYZp8/lXzEQQH9dExGmGGIjywFZyq1MtjF7y+Jdoz2WbmvtTdoPvkM9TgVowsk0UXBREVo/Xstt8=
-X-Received: by 2002:a9d:6b1a:: with SMTP id g26mr5980166otp.195.1565921091613;
- Thu, 15 Aug 2019 19:04:51 -0700 (PDT)
+        bh=/fibelXvW+1LdGP+tmxyfYovRPGaPOb71lYeqEJPE9w=;
+        b=otcjsziFZo+yxVUXINuDRuYcvRHz60rBxH6jcC3c9Ts8HvrXj65pLRW9jpQPoLe+4R
+         kFX0FrNccEP5MKddfoTfHmCNGiaR7ylW5orfJ+em78AjcdFCy6bqrHqoNoLJPObjPNdg
+         tAOOilP+PmuFDCPIkwLM1boZi5Vbch8igudzrFLJJRDy/FY0yVoaSFL/MguFkO+9l8IY
+         3+12872h3OAUwci3ec6abFvXi28Wz3+/smL+OJUf41P2TLPtOpIoBnZspkr2tiOQmKtA
+         JciP045UBUMNqCQ6T6rmRdXIA6hiuQk+jP7Fnh6PnWBXa+p3fRXW27BTrXKL/wm7qL5X
+         1jaQ==
+X-Gm-Message-State: APjAAAXkcSjg6X9miI61+UDANCCsZAOo6Dnr7yZXiZwIdWuBUBWGaB+c
+        cPb3EUViHAXulCE2NGAHl7e2ZrMhRSPz0Bsqxu0=
+X-Google-Smtp-Source: APXvYqyfmapAZhacZLbg2eN8uGz/g14h/u54c3qPjhPxRzsQXwC5ZPILLOCDagZSKqk7giCm7DH7ECRbNI8H/GXpZjk=
+X-Received: by 2002:a02:8387:: with SMTP id z7mr1847813jag.117.1565922355684;
+ Thu, 15 Aug 2019 19:25:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190806192654.138605-1-saravanak@google.com> <20190806192654.138605-2-saravanak@google.com>
- <CAL_Jsq+BwHSj1XUNp_eY362XnNoOqVTNHqAkvnbgece8ZQE3Qw@mail.gmail.com>
- <CAGETcx8+EETv6nSu+BEBStKvbmBs+tZZgo1u_Pw8SNu+7Urq1Q@mail.gmail.com> <CAL_JsqLdcn5aZdenLs3RSVCOE1PRNK_qYNmQR=fXPV+ZOQ9+PQ@mail.gmail.com>
-In-Reply-To: <CAL_JsqLdcn5aZdenLs3RSVCOE1PRNK_qYNmQR=fXPV+ZOQ9+PQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 15 Aug 2019 19:04:15 -0700
-Message-ID: <CAGETcx8K2Ob7f7wchP6Z7Y=XGgX3h535ty62x6b-13-giGyZgA@mail.gmail.com>
-Subject: Re: [PATCH 2/2] of/platform: Disable generic device linking code for PowerPC
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190613005109.1867-1-jassisinghbrar@gmail.com>
+ <20190613005247.2048-1-jassisinghbrar@gmail.com> <20190624064442.GW2962@vkoul-mobl>
+In-Reply-To: <20190624064442.GW2962@vkoul-mobl>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Thu, 15 Aug 2019 21:25:44 -0500
+Message-ID: <CABb+yY3pLBA=Y_4kUZ-E_VWOiJsofung2bMA5HqkNeNJkOOZxQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dmaengine: milbeaut-hdmac: Add HDMAC driver for
+ Milbeaut platforms
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     dmaengine@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, orito.takao@socionext.com,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        kasai.kazuhiro@socionext.com,
+        Jassi Brar <jaswinder.singh@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 4:41 PM Rob Herring <robh+dt@kernel.org> wrote:
+On Mon, Jun 24, 2019 at 1:47 AM Vinod Koul <vkoul@kernel.org> wrote:
 >
-> On Tue, Aug 6, 2019 at 4:04 PM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Tue, Aug 6, 2019 at 2:27 PM Rob Herring <robh+dt@kernel.org> wrote:
-> > >
-> > > On Tue, Aug 6, 2019 at 1:27 PM Saravana Kannan <saravanak@google.com> wrote:
-> > > >
-> > > > PowerPC platforms don't use the generic of/platform code to populate the
-> > > > devices from DT.
-> > >
-> > > Yes, they do.
-> >
-> > No they don't. My wording could be better, but they don't use
-> > of_platform_default_populate_init()
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/of/platform.c#n511
+> On 12-06-19, 19:52, jassisinghbrar@gmail.com wrote:
 >
-> Right, but the rest of the of/platform code is used (guess where it
-> got moved here from?).
+> > +#include <linux/bits.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/dma-mapping.h>
+> > +#include <linux/dmaengine.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/list.h>
+> > +#include <linux/module.h>
+> > +#include <linux/of.h>
+> > +#include <linux/of_dma.h>
 >
-> > > > Therefore the generic device linking code is never used
-> > > > in PowerPC.  Compile it out to avoid warning about unused functions.
-> > >
-> > > I'd prefer this get disabled on PPC using 'if (IS_ENABLED(CONFIG_PPC))
-> > > return' rather than #ifdefs.
-> >
-> > I'm just moving the existing ifndef some lines above. I don't want to
-> > go change existing #ifndef in this patch. Maybe that should be a
-> > separate patch series that goes and fixes all such code in drivers/of/
-> > or driver/
+> Do we need both, IIRC of_dma.h does include of.h!
 >
-> So the initcall was originally just supposed to call
-> of_platform_default_populate(), but it's grown beyond that. That could
-> make things fragile as it is possible for platforms to call
-> of_platform_populate() (directly or indirectly) before
-> of_platform_default_populate_init(). That was supposed to work, but
-> now I think it's getting more fragile.
+OK
 
-Can you clarify what's wrong with of_platfrom_populate() being called
-before of_platform_default_populate_init()? If that's what a platform
-wants to do, they can do it? I have some thoughts of my own, but I
-want to hear yours.
-In any case, I'd be happy to help  clean up this initcall if you can
-give me a direction to take it in.
+> > +/* mc->vc.lock must be held by caller */
+> > +static void milbeaut_chan_start(struct milbeaut_hdmac_chan *mc,
+> > +                             struct milbeaut_hdmac_desc *md)
+> > +{
+> > +     struct scatterlist *sg;
+> > +     u32  cb, ca, src_addr, dest_addr, len;
+>            ^^
+> double space
+>
+OK
 
-> Anyways, I guess this patch is fine for now.
+> > +static irqreturn_t milbeaut_hdmac_interrupt(int irq, void *dev_id)
+> > +{
+> > +     struct milbeaut_hdmac_chan *mc = dev_id;
+> > +     struct milbeaut_hdmac_desc *md;
+> > +     irqreturn_t ret = IRQ_HANDLED;
+> > +     u32 val;
+> > +
+> > +     spin_lock(&mc->vc.lock);
+> > +
+> > +     /* Ack and Disable irqs */
+> > +     val = readl_relaxed(mc->reg_ch_base + MLB_HDMAC_DMACB);
+> > +     val &= ~(FIELD_PREP(MLB_HDMAC_SS, 0x7));
+>                                          ^^^^
+> Magic ..?
+>
+OK, will define a macro for 7
 
-Thanks.
+> > +static int milbeaut_hdmac_chan_pause(struct dma_chan *chan)
+> > +{
+> > +     struct virt_dma_chan *vc = to_virt_chan(chan);
+> > +     struct milbeaut_hdmac_chan *mc = to_milbeaut_hdmac_chan(vc);
+> > +     u32 val;
+> > +
+> > +     spin_lock(&mc->vc.lock);
+> > +     val = readl_relaxed(mc->reg_ch_base + MLB_HDMAC_DMACA);
+> > +     val |= MLB_HDMAC_PB;
+> > +     writel_relaxed(val, mc->reg_ch_base + MLB_HDMAC_DMACA);
+>
+> We really should have an updatel() and friends in kernel, feel free to
+> add in your driver though!
+>
+I'll pass on that for now.
 
--Saravana
+> > +static int milbeaut_hdmac_chan_init(struct platform_device *pdev,
+> > +                                 struct milbeaut_hdmac_device *mdev,
+> > +                                 int chan_id)
+> > +{
+> > +     struct device *dev = &pdev->dev;
+> > +     struct milbeaut_hdmac_chan *mc = &mdev->channels[chan_id];
+> > +     char *irq_name;
+> > +     int irq, ret;
+> > +
+> > +     irq = platform_get_irq(pdev, chan_id);
+> > +     if (irq < 0) {
+> > +             dev_err(&pdev->dev, "failed to get IRQ number for ch%d\n",
+> > +                     chan_id);
+> > +             return irq;
+> > +     }
+> > +
+> > +     irq_name = devm_kasprintf(dev, GFP_KERNEL, "milbeaut-hdmac-%d",
+> > +                               chan_id);
+> > +     if (!irq_name)
+> > +             return -ENOMEM;
+> > +
+> > +     ret = devm_request_irq(dev, irq, milbeaut_hdmac_interrupt,
+> > +                            IRQF_SHARED, irq_name, mc);
+>
+> I tend to dislike using devm_request_irq(), we have no control over when
+> the irq is freed and what is a spirious irq is running while we are
+> unrolling, so IMHO it make sense to free up and ensure all tasklets are
+> quiesced when remove returns
+>
+If the code is written clean and tight we need not be so paranoid.
+
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     mc->mdev = mdev;
+> > +     mc->reg_ch_base = mdev->reg_base + MLB_HDMAC_CH_STRIDE * (chan_id + 1);
+> > +     mc->vc.desc_free = milbeaut_hdmac_desc_free;
+> > +     vchan_init(&mc->vc, &mdev->ddev);
+>
+> who kills the vc->task?
+>
+vchan_synchronize() called from milbeaut_hdmac_synchronize()
+
+> > +static int milbeaut_hdmac_remove(struct platform_device *pdev)
+> > +{
+> > +     struct milbeaut_hdmac_device *mdev = platform_get_drvdata(pdev);
+> > +     struct dma_chan *chan;
+> > +     int ret;
+> > +
+> > +     /*
+> > +      * Before reaching here, almost all descriptors have been freed by the
+> > +      * ->device_free_chan_resources() hook. However, each channel might
+> > +      * be still holding one descriptor that was on-flight at that moment.
+> > +      * Terminate it to make sure this hardware is no longer running. Then,
+> > +      * free the channel resources once again to avoid memory leak.
+> > +      */
+> > +     list_for_each_entry(chan, &mdev->ddev.channels, device_node) {
+> > +             ret = dmaengine_terminate_sync(chan);
+> > +             if (ret)
+> > +                     return ret;
+> > +             milbeaut_hdmac_free_chan_resources(chan);
+> > +     }
+> > +
+> > +     of_dma_controller_free(pdev->dev.of_node);
+> > +     dma_async_device_unregister(&mdev->ddev);
+> > +     clk_disable_unprepare(mdev->clk);
+>
+> And as suspected we have active tasklets and irq at this time :(
+>
+Not sure how is that....
+
+thanks.
