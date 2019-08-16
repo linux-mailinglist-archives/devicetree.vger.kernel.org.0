@@ -2,129 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E557290B16
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 00:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C86290B4B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 01:06:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727782AbfHPWkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 18:40:15 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:36970 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727753AbfHPWkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 18:40:14 -0400
-Received: by mail-pg1-f194.google.com with SMTP id d1so3026811pgp.4
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2019 15:40:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4isWOpXxrzUvNme/KCgMCxUh6xJ4ndIEmHXD23Gkt60=;
-        b=VPlnuRvnp4Gy3Kcy4Aa01BccZtnwXkpsFKyQtfLlkt8r5BLx1mqm3OUNzv1S1MCVr8
-         kMAPwdTQeUwIdVopqKrH2e38F7ZChox4T0C7YWND7ZZrSl8Hk2qBiVCQgYVup4W3iJjc
-         J8iXwOx114xHwEVVzn5UUt/qY9hoUFQrOMJbs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4isWOpXxrzUvNme/KCgMCxUh6xJ4ndIEmHXD23Gkt60=;
-        b=PFc6MdTvudZzYY4qkHLypcCTTi9Dxe4SrgeLyHSN3kGMH5I0XJ7D+e1oH3QXgtDcTc
-         qENIZtTlPecFKcrXR1XZnbC9GqIb5w3auRDnPLm25WZzgpnGf4CyEeVZQUVPc5BBh1Ah
-         aIbPY1WZJAY7J8ZiN9swIv5feB0Vl/b+coIhj69is9gf8kKnoGTIuSu7awl+IKS9zZ/+
-         bQGyQf6jWql27rZvOsh+jmOmJIELJxRUz1uxYr3Dgdb4ap+Y5cLZD8pLeOQn82RL6bs7
-         YkxyUrMRUKAbWEMuKyOLR3e3FGastnQk7YS3uG8abkvqKYze/uk41kwFGZjC8mOgQUQy
-         6WOA==
-X-Gm-Message-State: APjAAAVIJ/VBhdIcEwKDIK1jeSSCsSROAe4PgMYU9zEOBB9UTimyXYsy
-        Z7mzwZ65H0qDB3arMIkEE9c/MQ==
-X-Google-Smtp-Source: APXvYqwPZMpFzJcNDgtXSglJwyeoPaqBu5+IeIbMG0rnKOkYBqlA3hM1tNAHo+48LQZW0UAQnXzd4A==
-X-Received: by 2002:a17:90a:30ad:: with SMTP id h42mr9234947pjb.31.1565995214058;
-        Fri, 16 Aug 2019 15:40:14 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id p5sm7395219pfg.184.2019.08.16.15.40.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Aug 2019 15:40:13 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 15:40:11 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Pavel Machek <pavel@ucw.cz>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v6 4/4] net: phy: realtek: Add LED configuration support
- for RTL8211E
-Message-ID: <20190816224011.GY250418@google.com>
-References: <20190813191147.19936-1-mka@chromium.org>
- <20190813191147.19936-5-mka@chromium.org>
- <20190816201342.GB1646@bug>
- <20190816212728.GW250418@google.com>
- <31dc724d-77ba-3400-6abe-4cf2e3c2a20a@gmail.com>
+        id S1727757AbfHPXGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 19:06:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57378 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727726AbfHPXGf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 19:06:35 -0400
+Received: from mail.kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9FAB82086C;
+        Fri, 16 Aug 2019 22:56:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565996219;
+        bh=ycCLJTX/dUWk5n58zNCglbYBSFR/d2QiQCc8LceTGik=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SFRqdTTvIDqYugaueqTPxqBlVtU0FhEAD43VMLaXnUC0QrXrjhJM9hk1CTZBvU5gW
+         SNmWzwpgFKPa8l0s27YEfO5oFaxJAava5mcOYx2LQqR4Scrl6uUuiHxwNzPjfIgLyy
+         wssZetN7hhsbFEw7TUYcghnrKa1fvroeX3YY84Ao=
+From:   Stephen Boyd <sboyd@kernel.org>
+To:     git@vger.kernel.org
+Cc:     Adrian Johnson <ajohnson@redneon.com>,
+        William Duclot <william.duclot@ensimag.grenoble-inp.fr>,
+        Johannes Sixt <j6t@kdbg.org>,
+        Matthieu Moy <matthieu.moy@grenoble-inp.fr>,
+        devicetree@vger.kernel.org, Alban Gruin <alban.gruin@gmail.com>,
+        Junio C Hamano <gitster@pobox.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2] userdiff: Add a builtin pattern for dts files
+Date:   Fri, 16 Aug 2019 15:56:58 -0700
+Message-Id: <20190816225658.8946-1-sboyd@kernel.org>
+X-Mailer: git-send-email 2.23.0.rc1.153.gdeed80330f-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <31dc724d-77ba-3400-6abe-4cf2e3c2a20a@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 16, 2019 at 03:12:47PM -0700, Florian Fainelli wrote:
-> On 8/16/19 2:27 PM, Matthias Kaehlcke wrote:
-> > On Fri, Aug 16, 2019 at 10:13:42PM +0200, Pavel Machek wrote:
-> >> On Tue 2019-08-13 12:11:47, Matthias Kaehlcke wrote:
-> >>> Add a .config_led hook which is called by the PHY core when
-> >>> configuration data for a PHY LED is available. Each LED can be
-> >>> configured to be solid 'off, solid 'on' for certain (or all)
-> >>> link speeds or to blink on RX/TX activity.
-> >>>
-> >>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> >>
-> >> THis really needs to go through the LED subsystem,
-> > 
-> > Sorry, I used what get_maintainers.pl threw at me, I should have
-> > manually cc-ed the LED list.
-> > 
-> >> and use the same userland interfaces as the rest of the system.
-> > 
-> > With the PHY maintainers we discussed to define a binding that is
-> > compatible with that of the LED one, to have the option to integrate
-> > it with the LED subsystem later. The integration itself is beyond the
-> > scope of this patchset.
-> > 
-> > The PHY LED configuration is a low priority for the project I'm
-> > working on. I wanted to make an attempt to upstream it and spent
-> > already significantly more time on it than planned, if integration
-> > with the LED framework now is a requirement please consider this
-> > series abandonded.
-> 
-> While I have an appreciation for how hard it can be to work in a
-> corporate environment while doing upstream first and working with
-> virtually unbounded goals (in time or scope) due to maintainers and
-> reviewers, that kind of statement can hinder your ability to establish
-> trust with peers in the community as it can be read as take it or leave it.
+The Linux kernel receives many patches to the devicetree files each
+release. The hunk header for those patches typically show nothing,
+making it difficult to figure out what node is being modified without
+applying the patch or opening the file and seeking to the context. Let's
+add a builtin 'dts' pattern to git so that users can get better diff
+output on dts files when they use the diff=dts driver.
 
-I'm really just stating the reality here. We strongly prefer landing
-patches upstream over doing custom hacks, and depending on the
-priority of a given feature/sub-system and impact on schedule we can
-allocate more time on it or less. In some cases/at some point a
-downstream patch is just good enough.
+The regex has been constructed based on the spec at devicetree.org[1]
 
-I definitely don't intend to get a patchset landed if it isn't deemed
-ready or suitable at all. In this case I just can't justify to spend
-significantly more time on it. IMO it is better to be clear on this,
-not to pressure maintainers to take a patch, but so people know what
-to expect. This information can also help if someone comes across this
-patchset in the future and wonders about its status.
+[1] https://github.com/devicetree-org/devicetree-specification/releases/latest
 
-btw, a birdie told me there will be a talk next week at ELC in San
-Diego on how Chrome OS works with upstream, discussing pros and
-cons for both the project and upstream. For those who are intersted
-in the topic but can't make it to the conference, the slides are
-already online and IMO have good information:
-https://static.sched.com/hosted_files/ossna19/9c/ELC19_ChromeOSAndUpstream.pdf
+Cc: Rob Herring <robh+dt@kernel.org>
+Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+---
 
-Cheers
+Sending this again after getting feedback and it getting stuck in
+review[1]. I'm not sure what happened with the meta question from Junio
+to add a way for various projects to introduce their own patterns, but
+I'd still prefer to have this in git proper because the kernel uses git
+extensively and we rely on git formatted patches in our workflow. I
+recently reviewed a dts change and remembered this never got accepted.
 
-Matthias
+Changes from v1:
+ * Updated regex to handle anything after node names instead of
+   requiring a '{'
+ * Updated test for boolean relation operators
+ * Sent out a patch to devicetree spec to document % operator
+
+[1] Feedback was in 16335abe-5e7e-fd7a-25f4-373f94e176e1@gmail.com
+
+ Documentation/gitattributes.txt |  2 ++
+ t/t4018-diff-funcname.sh        |  1 +
+ t/t4018/dts-labels              |  8 +++++++
+ t/t4018/dts-node-unitless       |  8 +++++++
+ t/t4018/dts-nodes               |  8 +++++++
+ t/t4018/dts-reference           |  8 +++++++
+ t/t4034-diff-words.sh           |  1 +
+ t/t4034/dts/expect              | 37 +++++++++++++++++++++++++++++++++
+ t/t4034/dts/post                | 32 ++++++++++++++++++++++++++++
+ t/t4034/dts/pre                 | 32 ++++++++++++++++++++++++++++
+ userdiff.c                      |  9 ++++++++
+ 11 files changed, 146 insertions(+)
+ create mode 100644 t/t4018/dts-labels
+ create mode 100644 t/t4018/dts-node-unitless
+ create mode 100644 t/t4018/dts-nodes
+ create mode 100644 t/t4018/dts-reference
+ create mode 100644 t/t4034/dts/expect
+ create mode 100644 t/t4034/dts/post
+ create mode 100644 t/t4034/dts/pre
+
+diff --git a/Documentation/gitattributes.txt b/Documentation/gitattributes.txt
+index fb1d188d440c..c5a528c667b6 100644
+--- a/Documentation/gitattributes.txt
++++ b/Documentation/gitattributes.txt
+@@ -810,6 +810,8 @@ patterns are available:
+ 
+ - `css` suitable for cascading style sheets.
+ 
++- `dts` suitable for devicetree (DTS) files.
++
+ - `fortran` suitable for source code in the Fortran language.
+ 
+ - `fountain` suitable for Fountain documents.
+diff --git a/t/t4018-diff-funcname.sh b/t/t4018-diff-funcname.sh
+index 9261d6d3a000..6f5ef0035e92 100755
+--- a/t/t4018-diff-funcname.sh
++++ b/t/t4018-diff-funcname.sh
+@@ -31,6 +31,7 @@ diffpatterns="
+ 	cpp
+ 	csharp
+ 	css
++	dts
+ 	fortran
+ 	fountain
+ 	golang
+diff --git a/t/t4018/dts-labels b/t/t4018/dts-labels
+new file mode 100644
+index 000000000000..27cd4921cfb6
+--- /dev/null
++++ b/t/t4018/dts-labels
+@@ -0,0 +1,8 @@
++/ {
++	label_1: node1@ff00 {
++		label2: RIGHT {
++			vendor,some-property;
++			ChangeMe = <0x45-30>;
++		};
++	};
++};
+diff --git a/t/t4018/dts-node-unitless b/t/t4018/dts-node-unitless
+new file mode 100644
+index 000000000000..c5287d91416e
+--- /dev/null
++++ b/t/t4018/dts-node-unitless
+@@ -0,0 +1,8 @@
++/ {
++	label_1: node1 {
++		RIGHT {
++			prop-array = <1>, <4>;
++			ChangeMe = <0xffeedd00>;
++		};
++	};
++};
+diff --git a/t/t4018/dts-nodes b/t/t4018/dts-nodes
+new file mode 100644
+index 000000000000..5a4334bb1645
+--- /dev/null
++++ b/t/t4018/dts-nodes
+@@ -0,0 +1,8 @@
++/ {
++	label_1: node1@ff00 {
++		RIGHT@deadf00,4000 {
++			#size-cells = <1>;
++			ChangeMe = <0xffeedd00>;
++		};
++	};
++};
+diff --git a/t/t4018/dts-reference b/t/t4018/dts-reference
+new file mode 100644
+index 000000000000..f115d4291d25
+--- /dev/null
++++ b/t/t4018/dts-reference
+@@ -0,0 +1,8 @@
++&label_1 {
++	TEST = <455>;
++};
++
++&RIGHT {
++	vendor,some-property;
++	ChangeMe = <0x45-30>;
++};
+diff --git a/t/t4034-diff-words.sh b/t/t4034-diff-words.sh
+index 912df91226f2..9a93c2a3e0dd 100755
+--- a/t/t4034-diff-words.sh
++++ b/t/t4034-diff-words.sh
+@@ -303,6 +303,7 @@ test_language_driver bibtex
+ test_language_driver cpp
+ test_language_driver csharp
+ test_language_driver css
++test_language_driver dts
+ test_language_driver fortran
+ test_language_driver html
+ test_language_driver java
+diff --git a/t/t4034/dts/expect b/t/t4034/dts/expect
+new file mode 100644
+index 000000000000..560fc9918476
+--- /dev/null
++++ b/t/t4034/dts/expect
+@@ -0,0 +1,37 @@
++<BOLD>diff --git a/pre b/post<RESET>
++<BOLD>index b6a9051..7803aee 100644<RESET>
++<BOLD>--- a/pre<RESET>
++<BOLD>+++ b/post<RESET>
++<CYAN>@@ -1,32 +1,32 @@<RESET>
++/ {<RESET>
++	<RED>this_handle<RESET><GREEN>HANDLE_2<RESET>: <RED>node<RESET><GREEN>new-node<RESET>@<RED>f00<RESET><GREEN>eeda<RESET> {
++		compatible = "<RED>mydev<RESET><GREEN>vendor,compat<RESET>";
++		string-prop = <RED>start<RESET><GREEN>end<RESET>: "hello <RED>world!<RESET><GREEN>world?<RESET>" <RED>end<RESET><GREEN>start<RESET>: ;
++		<RED>#size-cells<RESET><GREEN>#address-cells<RESET> = <<RED>0+0<RESET><GREEN>0+40<RESET>>;
++		reg = <<RED>0xf00<RESET><GREEN>0xeeda<RESET>>;
++		prop = <<GREEN>(<RESET>1<GREEN>)<RESET>>;
++		prop = <<GREEN>(<RESET>-1e10<GREEN>)<RESET>>;
++		prop = <(!<RED>3<RESET><GREEN>1<RESET>)>;
++		prop = <(~<RED>3<RESET><GREEN>1<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>*<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>&<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>*<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>/<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>%<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3+4<RESET><GREEN>1+2<RESET>)>;
++		prop = <(<RED>3-4<RESET><GREEN>1-2<RESET>)>;
++		prop = /bits/ <RED>64<RESET><GREEN>32<RESET> <(<RED>3<RESET><GREEN>1<RESET><<<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>>><RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>&<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>^<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>|<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>&&<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>3<RESET><GREEN>1<RESET>||<RED>4<RESET><GREEN>2<RESET>)>;
++		prop = <(<RED>4?5<RESET><GREEN>1?2<RESET>:3)>;
++		list = <&<RED>this_handle<RESET><GREEN>HANDLE_2<RESET>>, <0 0 0 <RED>0<RESET><GREEN>1<RESET>>;
++	};<RESET>
++
++	&<RED>phandle<RESET><GREEN>phandle2<RESET> {
++		<RED>pre-phandle<RESET><GREEN>prop_handle<RESET> = <&<RED>this_handle<RESET><GREEN>HANDLE_2<RESET>>;
++	};<RESET>
++};<RESET>
+diff --git a/t/t4034/dts/post b/t/t4034/dts/post
+new file mode 100644
+index 000000000000..7803aee28093
+--- /dev/null
++++ b/t/t4034/dts/post
+@@ -0,0 +1,32 @@
++/ {
++	HANDLE_2: new-node@eeda {
++		compatible = "vendor,compat";
++		string-prop = end: "hello world?" start: ;
++		#address-cells = <0+40>;
++		reg = <0xeeda>;
++		prop = <(1)>;
++		prop = <(-1e10)>;
++		prop = <(!1)>;
++		prop = <(~1)>;
++		prop = <(1*2)>;
++		prop = <(1&2)>;
++		prop = <(1*2)>;
++		prop = <(1/2)>;
++		prop = <(1%2)>;
++		prop = <(1+2)>;
++		prop = <(1-2)>;
++		prop = /bits/ 32 <(1<<2)>;
++		prop = <(1>>2)>;
++		prop = <(1&2)>;
++		prop = <(1^2)>;
++		prop = <(1|2)>;
++		prop = <(1&&2)>;
++		prop = <(1||2)>;
++		prop = <(1?2:3)>;
++		list = <&HANDLE_2>, <0 0 0 1>;
++	};
++
++	&phandle2 {
++		prop_handle = <&HANDLE_2>;
++	};
++};
+diff --git a/t/t4034/dts/pre b/t/t4034/dts/pre
+new file mode 100644
+index 000000000000..b6a905113c22
+--- /dev/null
++++ b/t/t4034/dts/pre
+@@ -0,0 +1,32 @@
++/ {
++	this_handle: node@f00 {
++		compatible = "mydev";
++		string-prop = start: "hello world!" end: ;
++		#size-cells = <0+0>;
++		reg = <0xf00>;
++		prop = <1>;
++		prop = <-1e10>;
++		prop = <(!3)>;
++		prop = <(~3)>;
++		prop = <(3*4)>;
++		prop = <(3&4)>;
++		prop = <(3*4)>;
++		prop = <(3/4)>;
++		prop = <(3%4)>;
++		prop = <(3+4)>;
++		prop = <(3-4)>;
++		prop = /bits/ 64 <(3<<4)>;
++		prop = <(3>>4)>;
++		prop = <(3&4)>;
++		prop = <(3^4)>;
++		prop = <(3|4)>;
++		prop = <(3&&4)>;
++		prop = <(3||4)>;
++		prop = <(4?5:3)>;
++		list = <&this_handle>, <0 0 0 0>;
++	};
++
++	&phandle {
++		pre-phandle = <&this_handle>;
++	};
++};
+diff --git a/userdiff.c b/userdiff.c
+index e74a6d402255..1db5d30aaebe 100644
+--- a/userdiff.c
++++ b/userdiff.c
+@@ -23,6 +23,15 @@ IPATTERN("ada",
+ 	 "[a-zA-Z][a-zA-Z0-9_]*"
+ 	 "|[-+]?[0-9][0-9#_.aAbBcCdDeEfF]*([eE][+-]?[0-9_]+)?"
+ 	 "|=>|\\.\\.|\\*\\*|:=|/=|>=|<=|<<|>>|<>"),
++PATTERNS("dts",
++	 /* Node name with optional label and unit address */
++	 "^[ \t]*((([a-zA-Z_][a-zA-Z0-9_]*:[ \t]*)?[a-zA-Z][a-zA-Z0-9,._+-]*(@[a-zA-Z0-9,._+-]+)?"
++	 /* Reference */
++	 "|&[a-zA-Z_][a-zA-Z0-9_]*)[ \t]*[^;]*)$",
++	 /* -- */
++	 /* Property names and math operators */
++	 "[a-zA-Z0-9,._+?#-]+"
++	 "|[-+*/%&^|!~]|>>|<<|&&|\\|\\|"),
+ IPATTERN("fortran",
+ 	 "!^([C*]|[ \t]*!)\n"
+ 	 "!^[ \t]*MODULE[ \t]+PROCEDURE[ \t]\n"
+-- 
+Sent by a computer through tubes
+
