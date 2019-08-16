@@ -2,97 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A56F9092A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 22:09:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC9429093C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 22:13:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727572AbfHPUJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 16:09:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56760 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726527AbfHPUJ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 16:09:29 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0150321743;
-        Fri, 16 Aug 2019 20:09:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565986169;
-        bh=dBKRpCb+TdtFesGpn6eSh3quFn1tVcWVH4LK3WLPRRs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=PtnUD++jqV+GjQkcWEZ+e4I5qc7dX8ApeEQuQ5RPADy3+0Wh1L58LyRxHnp7n/dwG
-         u8xxXcJqUYgwBXtQenTqknzJjgAjJzbALa+WLVgp5UxTncf5y2u6uCRcBVekBKOfCJ
-         YTNIIy7OjyC8NtM6E+yEKW9/X4yG2fk174HpcGAM=
-Received: by mail-qt1-f176.google.com with SMTP id q4so7453070qtp.1;
-        Fri, 16 Aug 2019 13:09:28 -0700 (PDT)
-X-Gm-Message-State: APjAAAVxOlkUp1fKRdI6HGvsyWId+ozkEsX1/fES1ED732RVxJHzOHhc
-        Cv7iA4PYH9UblnBCYRsUOsZ9bFbPH9oQiBKUFg==
-X-Google-Smtp-Source: APXvYqwebIs+I5l3D3YNa890IMkRQs6Czk1XXOPRicSteg8JjjQ6x/E6bhhzrgOT4keRPpNwkXj4uLugSyFeEGtAOs8=
-X-Received: by 2002:ac8:368a:: with SMTP id a10mr10274315qtc.143.1565986168088;
- Fri, 16 Aug 2019 13:09:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190816100424.5366-1-wen.he_1@nxp.com>
-In-Reply-To: <20190816100424.5366-1-wen.he_1@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 16 Aug 2019 14:09:16 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLPZ+hCGd=J3MU83saHJJ-yx6k+X0Y7-2ECu5yT8PxF4w@mail.gmail.com>
-Message-ID: <CAL_JsqLPZ+hCGd=J3MU83saHJJ-yx6k+X0Y7-2ECu5yT8PxF4w@mail.gmail.com>
-Subject: Re: [v3 1/2] dt/bindings: display: Add optional property node for
- Mali DP500
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     linux-devel@linux.nxdi.nxp.com, Liviu Dudau <liviu.dudau@arm.com>,
-        Brian Starkey <brian.starkey@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1727545AbfHPUNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 16:13:41 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:36783 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726527AbfHPUNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 16:13:41 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id A115581055; Fri, 16 Aug 2019 22:13:26 +0200 (CEST)
+Date:   Fri, 16 Aug 2019 22:13:38 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Yang-Leo Li <leoyang.li@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: net: phy: Add subnode for LED
+ configuration
+Message-ID: <20190816201338.GA1646@bug>
+References: <20190813191147.19936-1-mka@chromium.org>
+ <20190813191147.19936-2-mka@chromium.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190813191147.19936-2-mka@chromium.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 16, 2019 at 4:14 AM Wen He <wen.he_1@nxp.com> wrote:
->
-> Add optional property node 'arm,malidp-arqos-value' for the Mali DP500.
-> This property describe the ARQoS levels of DP500's QoS signaling.
->
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
-> ---
-> change in v3:
->         - correction the describe of the node
->
->  Documentation/devicetree/bindings/display/arm,malidp.txt | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.txt b/Documentation/devicetree/bindings/display/arm,malidp.txt
-> index 2f7870983ef1..1f711d32f235 100644
-> --- a/Documentation/devicetree/bindings/display/arm,malidp.txt
-> +++ b/Documentation/devicetree/bindings/display/arm,malidp.txt
-> @@ -37,6 +37,8 @@ Optional properties:
->      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
->      to be used for the framebuffer; if not present, the framebuffer may
->      be located anywhere in memory.
-> +  - arm,malidp-arqos-high-level: phandle to describing the ARQoS levels of DP500's
-> +    QoS signaling.
+Hi!
 
-The driver is reading a u32... Did you test this?
+Please Cc led mailing lists on led issues.
 
 
->
->
->  Example:
-> @@ -54,6 +56,7 @@ Example:
->                 clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
->                 clock-names = "pxlclk", "mclk", "aclk", "pclk";
->                 arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
-> +               arm,malidp-arqos-high-level = <&rqosvalue>;
->                 port {
->                         dp0_output: endpoint {
->                                 remote-endpoint = <&tda998x_2_input>;
-> --
-> 2.17.1
->
+On Tue 2019-08-13 12:11:44, Matthias Kaehlcke wrote:
+> The LED behavior of some Ethernet PHYs is configurable. Add an
+> optional 'leds' subnode with a child node for each LED to be
+> configured. The binding aims to be compatible with the common
+> LED binding (see devicetree/bindings/leds/common.txt).
+> 
+> A LED can be configured to be:
+> 
+> - 'on' when a link is active, some PHYs allow configuration for
+>   certain link speeds
+>   speeds
+> - 'off'
+> - blink on RX/TX activity, some PHYs allow configuration for
+>   certain link speeds
+> 
+> For the configuration to be effective it needs to be supported by
+> the hardware and the corresponding PHY driver.
+> 
+> Suggested-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+
+> @@ -173,5 +217,20 @@ examples:
+>              reset-gpios = <&gpio1 4 1>;
+>              reset-assert-us = <1000>;
+>              reset-deassert-us = <2000>;
+> +
+> +            leds {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led@0 {
+> +                    reg = <0>;
+> +                    linux,default-trigger = "phy-link-1g";
+> +                };
+
+Because this affects us.
+
+Is the LED software controllable? Or can it do limited subset of triggers you listed?
+
+									Pavel
+-- 
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
