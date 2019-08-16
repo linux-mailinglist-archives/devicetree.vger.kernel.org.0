@@ -2,139 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72FC7907D5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:41:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FCB907F4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727551AbfHPSld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 14:41:33 -0400
-Received: from shell.v3.sk ([90.176.6.54]:59047 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727067AbfHPSld (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 14:41:33 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 985F7D6E09;
-        Fri, 16 Aug 2019 20:41:28 +0200 (CEST)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id O5hE6RKEUtMU; Fri, 16 Aug 2019 20:41:24 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 3AB24D6E29;
-        Fri, 16 Aug 2019 20:41:24 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id ZWVEJzeSC459; Fri, 16 Aug 2019 20:41:23 +0200 (CEST)
-Received: from belphegor (nat-pool-brq-t.redhat.com [213.175.37.10])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 2D1ABD6E09;
-        Fri, 16 Aug 2019 20:41:23 +0200 (CEST)
-Message-ID: <e0c0cf62a1f087fd6c1d7307e5e2a65603148341.camel@v3.sk>
-Subject: Re: [PATCH 05/19] irqchip/mmp: do not use of_address_to_resource()
- to get mux regs
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, Pavel Machek <pavel@ucw.cz>
-Date:   Fri, 16 Aug 2019 20:41:22 +0200
-In-Reply-To: <16d77ca3-7ad1-3af2-650e-722cf6a931ed@kernel.org>
-References: <20190809093158.7969-1-lkundrak@v3.sk>
-         <20190809093158.7969-6-lkundrak@v3.sk>
-         <16d77ca3-7ad1-3af2-650e-722cf6a931ed@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+        id S1727493AbfHPSzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 14:55:20 -0400
+Received: from esa6.hgst.iphmx.com ([216.71.154.45]:37435 "EHLO
+        esa6.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727490AbfHPSzU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 14:55:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1565981720; x=1597517720;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=EP7D8dLGMksDUznalFCyjN0yhbWtiDz+9nroUKJi+LE=;
+  b=TTwfUtw9xq0CIjzFB9897sovc33UlVS0yOzsPCyigzaAC4NBqtF3TQVf
+   y8hWx+L48SRaVB6s4dVuEEV3RIlJRFWQgM58CkvNx9miW41toDFFOKl0l
+   lzUeShF0kxAd9Hj+QwND7b7uUnLE1YsMBUVG+FBCE67zglBaMAIu9M6mD
+   YloJ9f4WxxpVRxjHsWcJJ42HtX9dok7IWYKhzTk72/Aonvv5yg6ip/m45
+   pEulA11XxH6sISFu8r6D5pl4zI18upLnBOWa581Vhw3IBhL2syLLmGjby
+   bk2bIQFbLeZA6HpLk5kBnzDHnOa2FJKdskxSAhqfp7JtfzP5LWOwSjfk7
+   A==;
+IronPort-SDR: JE3c9BCIMiIDrmcvS31iH+mUpWS5dveO5xqY5dBwECJN6ji7A/eEiOX+phULi3VvysEOJa5bx7
+ NFZlxXfOTysZU1F5qepSmuomDQYa7klCHFN/cQtaL7AeloBF+8dR1d8Z5z/xXGmAKsaSP0uANr
+ zA0I5Ma8LNS6TTB0TFrKuuLBgiJOycilUQLtdj1hLoiQhB1dJW0gNxkY6YK1AVVzg6rEyQ8iPK
+ lyya2aOLK+O7aI65x8jlffiN9qj0rATlUm8IFveBd9k/qG6MIPPFQNHVrcxfxigh2Qwf8TEYy5
+ rh8=
+X-IronPort-AV: E=Sophos;i="5.64,394,1559491200"; 
+   d="scan'208";a="117618533"
+Received: from mail-bn3nam04lp2050.outbound.protection.outlook.com (HELO NAM04-BN3-obe.outbound.protection.outlook.com) ([104.47.46.50])
+  by ob1.hgst.iphmx.com with ESMTP; 17 Aug 2019 02:55:16 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bg0DFy99WSjwbJHn3MKj5h6pf7tWTEdtCTqkU0XzBqXR3nM5r0T/7vKIUccTx9VwfWIbifB2Whnu0qK+kUxoXQzbKw37OHbTmZVh2FgKfTqVTNzcCmm3pJdHN5vNSg7UINrmbcEqMU+xk/puR9a5+xR8gcmtcNvsqFsLwBPJJ+cis64g0C2l0hMwxzmpEZB33x8Gh0ggZ5bp0IkqdB2Ykcmqn20bb/z7pkCjEtF7l58bAlPNNkDuRo+ioJl8Fyb2Xfy1J+ABnskm+DSKtN7J7iisUKWujx+4WfOPVPnbCh2y4DazAYV+IThIiBpsysisnXKek0Y5RgSNbt31fns9/w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EP7D8dLGMksDUznalFCyjN0yhbWtiDz+9nroUKJi+LE=;
+ b=F68RU+VmV7GSVfvdIhTf9XRuR357flkNB6ZhqRPlFRtWXWcsYTDHlor2Szu97wcu/vQkCbgDZC/R9uYux2x2UQCZPNIhTYAM1BTiALGMXTzRC4IBKt/2S67BEzZlU4mmmzEJPjYrBJU8L+qW39UmNqWz7Wlfbo0VdOHIvl5MnmqeBE/bYmXRshs5tsnaA9T6CpxIzzvBN+YERndksEGuWvnAVtRhJUYmT/BtwvWrUQHk3izQtfD8dIB3AdDC1SfiYfrL36Qcr51B80lZ0Y3g7SDCGKgd50OCY3v2buWj/ifagnijRmWY911g06Mz7i3Um8px8NZU6avAoondzl1i8g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wdc.com; dmarc=pass action=none header.from=wdc.com; dkim=pass
+ header.d=wdc.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EP7D8dLGMksDUznalFCyjN0yhbWtiDz+9nroUKJi+LE=;
+ b=KwxmVmK3AOHV2bY05iQ9GO0YJ+3tdsxP3NUvWboMs4sMoU5tYfnENgWcTKUMRKN91NM80VG5RyJlMJhKOuGREUqcP7KjesZE7tr+cGYQ0jGWXRNuSjngeJb1K3HhQg0VHtcrPBAFl+gDs9YOFN6dU+imC7FD7mYOegUnkgpxohQ=
+Received: from BYAPR04MB3990.namprd04.prod.outlook.com (52.135.215.29) by
+ BYAPR04MB5687.namprd04.prod.outlook.com (20.179.57.82) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.23; Fri, 16 Aug 2019 18:55:14 +0000
+Received: from BYAPR04MB3990.namprd04.prod.outlook.com
+ ([fe80::d89b:cb55:d563:79e9]) by BYAPR04MB3990.namprd04.prod.outlook.com
+ ([fe80::d89b:cb55:d563:79e9%6]) with mapi id 15.20.2157.022; Fri, 16 Aug 2019
+ 18:55:14 +0000
+From:   Atish Patra <Atish.Patra@wdc.com>
+To:     "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "palmer@sifive.com" <palmer@sifive.com>
+CC:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "info@metux.net" <info@metux.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "allison@lohutok.net" <allison@lohutok.net>,
+        "johan@kernel.org" <johan@kernel.org>,
+        "alexios.zavras@intel.com" <alexios.zavras@intel.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 1/5] RISC-V: Remove per cpu clocksource
+Thread-Topic: [PATCH v2 1/5] RISC-V: Remove per cpu clocksource
+Thread-Index: AQHVRz65fC3jo+jL5k+gKVmQfc/Feab9+puAgAA/LIA=
+Date:   Fri, 16 Aug 2019 18:55:14 +0000
+Message-ID: <089a5ee46759074af391c50f5e9d28344b429de4.camel@wdc.com>
+References: <20190731012418.24565-1-atish.patra@wdc.com>
+         <20190731012418.24565-2-atish.patra@wdc.com>
+         <6ba37c45-2d9b-c01e-5f17-3ab919da4de8@linaro.org>
+In-Reply-To: <6ba37c45-2d9b-c01e-5f17-3ab919da4de8@linaro.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Atish.Patra@wdc.com; 
+x-originating-ip: [199.255.44.175]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 91821217-9a93-4693-c3a1-08d7227b45ec
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB5687;
+x-ms-traffictypediagnostic: BYAPR04MB5687:
+x-ms-exchange-purlcount: 2
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR04MB568716BCF2CE159C5F78C326FAAF0@BYAPR04MB5687.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:4125;
+x-forefront-prvs: 0131D22242
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(189003)(199004)(4326008)(5660300002)(2906002)(66066001)(11346002)(76116006)(2201001)(64756008)(229853002)(102836004)(66946007)(6436002)(66476007)(66446008)(66556008)(2501003)(25786009)(99286004)(54906003)(53936002)(486006)(110136005)(256004)(316002)(36756003)(6246003)(476003)(2616005)(446003)(86362001)(6486002)(478600001)(6306002)(8936002)(81166006)(3846002)(76176011)(118296001)(71190400001)(7416002)(81156014)(8676002)(14454004)(7736002)(6116002)(71200400001)(186003)(6506007)(305945005)(6512007)(53546011)(26005)(966005);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB5687;H:BYAPR04MB3990.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 48ViOSj15fVdY5IiizhJ+DGgM+6Oe1jxlDZR4p+iTKTCS/pI5UwtqwotyOyy+y6urMSjKOK/Gx73HTN9XYUiZOeKgUCh58JR/2JxA/Kj0mc3MO58Mr/EzJpwN/ebFH0f39GmnfkFDeN5787rPPIrGNvD5IbTJsqLPf8LgCpu6buXBY2inC5CYf67viREBqho0Xw1P3raN1QOr+wGVS2CpCwvHxpL9bm8Xbi2FY69bmtWQsuLx3c82rvy0c9JHiQQuy4coaKTgAtNf+wJWdEHrWdCuTip7OzlM9w4GnWZ8Tohq+s/DYwDvaZz7wJdohv6EmowzYH8SvZJYPkKRI3RsTKgV2J/R2U9/ioIaVFzLsW79MDus6mLvwhvhYSoxOjZ0o6HQTVzIqauHybG1vU8COedr8m+gIhdbC4p9VTFdRs=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EFC2111BBC7AEE47B65ACD5C5909EF48@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 91821217-9a93-4693-c3a1-08d7227b45ec
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2019 18:55:14.3961
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: wdmaUROIGtxIxVdUl0fuR5jDt9qudKlCh8B2AH/bM3KQ5HzV6qYD4EIMtcLARm4uzEx2f1A1HrA8QYRa8F1abw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB5687
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-08-09 at 13:12 +0100, Marc Zyngier wrote:
-> On 09/08/2019 10:31, Lubomir Rintel wrote:
-> > The "regs" property of the "mrvl,mmp2-mux-intc" devices are silly. They
-> > are offsets from intc's base, not addresses on the parent bus. At this
-> > point it probably can't be fixed.
-> > 
-> > On an OLPC XO-1.75 machine, the muxes are children of the intc, not the
-> > axi bus, and thus of_address_to_resource() won't work. We should treat
-> > the values as mere integers as opposed to bus addresses.
-> > 
-> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > Acked-by: Pavel Machek <pavel@ucw.cz>
-> > 
-> > ---
-> >  drivers/irqchip/irq-mmp.c | 20 +++++++++++---------
-> >  1 file changed, 11 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/irqchip/irq-mmp.c b/drivers/irqchip/irq-mmp.c
-> > index 14618dc0bd396..af9cba4a51c2e 100644
-> > --- a/drivers/irqchip/irq-mmp.c
-> > +++ b/drivers/irqchip/irq-mmp.c
-> > @@ -424,9 +424,9 @@ IRQCHIP_DECLARE(mmp2_intc, "mrvl,mmp2-intc", mmp2_of_init);
-> >  static int __init mmp2_mux_of_init(struct device_node *node,
-> >  				   struct device_node *parent)
-> >  {
-> > -	struct resource res;
-> >  	int i, ret, irq, j = 0;
-> >  	u32 nr_irqs, mfp_irq;
-> > +	u32 reg[4];
-> >  
-> >  	if (!parent)
-> >  		return -ENODEV;
-> > @@ -438,18 +438,20 @@ static int __init mmp2_mux_of_init(struct device_node *node,
-> >  		pr_err("Not found mrvl,intc-nr-irqs property\n");
-> >  		return -EINVAL;
-> >  	}
-> > -	ret = of_address_to_resource(node, 0, &res);
-> > +
-> > +	/*
-> > +	 * For historical reasonsm, the "regs" property of the
-> > +	 * mrvl,mmp2-mux-intc is not a regular * "regs" property containing
-> > +	 * addresses on the parent bus, but offsets from the intc's base.
-> > +	 * That is why we can't use of_address_to_resource() here.
-> > +	 */
-> > +	ret = of_property_read_u32_array(node, "reg", reg, ARRAY_SIZE(reg));
-> 
-> This will return 0 even if you've read less than your expected 4 u32s.
-> You may want to try of_property_read_variable_u32_array instead.
-
-Will it? Unless I'm reading the of_property_read_u32_array()
-documentation wrong, it suggests that would return -EOVERFLOW in that
-case.
-
-It ignores the extra values it the property is larger. I guess that is
-not a good thing and we still want to use
-of_property_read_variable_u32_array() though.
-
-> >  	if (ret < 0) {
-> >  		pr_err("Not found reg property\n");
-> >  		return -EINVAL;
-> >  	}
-> > -	icu_data[i].reg_status = mmp_icu_base + res.start;
-> > -	ret = of_address_to_resource(node, 1, &res);
-> > -	if (ret < 0) {
-> > -		pr_err("Not found reg property\n");
-> > -		return -EINVAL;
-> > -	}
-> > -	icu_data[i].reg_mask = mmp_icu_base + res.start;
-> > +	icu_data[i].reg_status = mmp_icu_base + reg[0];
-> > +	icu_data[i].reg_mask = mmp_icu_base + reg[2];
-> >  	icu_data[i].cascade_irq = irq_of_parse_and_map(node, 0);
-> >  	if (!icu_data[i].cascade_irq)
-> >  		return -EINVAL;
-> > 
-> 
-> Thanks,
-> 
-> 	M.
-
-Thanks
-Lubo
-
+T24gRnJpLCAyMDE5LTA4LTE2IGF0IDE3OjA5ICswMjAwLCBEYW5pZWwgTGV6Y2FubyB3cm90ZToN
+Cj4gT24gMzEvMDcvMjAxOSAwMzoyNCwgQXRpc2ggUGF0cmEgd3JvdGU6DQo+ID4gVGhlcmUgaXMg
+b25seSBvbmUgY2xvY2tzb3VyY2UgaW4gUklTQy1WLiBUaGUgYm9vdCBjcHUgaW5pdGlhbGl6ZXMN
+Cj4gPiB0aGF0IGNsb2Nrc291cmNlLiBObyBuZWVkIHRvIGtlZXAgYSBwZXJjcHUgZGF0YSBzdHJ1
+Y3R1cmUuDQo+IA0KPiBUaGF0IGlzIG5vdCB3aGF0IGlzIHN0YXRlZCBpbiB0aGUgaW5pdGlhbCBw
+YXRjaCBbMV0uDQo+IA0KPiBDYW4geW91IGNsYXJpZnkgdGhhdCA/DQo+IA0KDQpJIHRoaW5rIHdo
+YXQgSSBtZWFudCB0byBzYXkgd2FzICJUaGVyZSBpcyBvbmx5IG9uZSBjbG9ja3NvdXJjZSB1c2Vk
+IGluDQpSSVNDLVYgTGludXgiIGFzIGl0IGlzIGd1cmFudGVlZCB0aGF0IGFsbCB0aGUgdGltZXJz
+IGFjcm9zcyBhbGwgdGhlDQpoYXJ0cyBhcmUgc3luY2hyb25pemVkIHdpdGhpbiBvbmUgdGljayBv
+ZiBlYWNoIG90aGVyIFsyXS4gDQpBcG9sb2dpZXMgZm9yIG5vdCBiZWluZyB2ZXJib3NlIGhlcmUu
+DQoNCkhvd2V2ZXIsIHJlYWRpbmcgdGhlIHByaXZpbGVnZSBzcGVjaWZpY2F0aW9uKDEuMTItZHJh
+ZnQpIA0KDQpTZWN0aW9uLiAzLjEuMTAgc3RhdGVzIHRoYXQgDQoNCiJBY2N1cmF0ZSByZWFsLXRp
+bWUgY2xvY2tzIChSVENzKSBhcmUgcmVsYXRpdmVseSBleHBlbnNpdmUgdG8gcHJvdmlkZQ0KKHJl
+cXVpcmluZyBhIGNyeXN0YWwgb3IgTUVNUyBvc2NpbGxhdG9yKSBhbmQgaGF2ZSB0byBydW4gZXZl
+biB3aGVuIHRoZQ0KcmVzdCBvZiBzeXN0ZW0gaXMgcG93ZXJlZCBkb3duLCBhbmQgc28gdGhlcmUg
+aXMgdXN1YWxseSBvbmx5IG9uZSBpbiBhDQpzeXN0ZW0gbG9jYXRlZCBpbiBhIGRpZmZlcmVudCBm
+cmVxdWVuY3kvdm9sdGFnZSBkb21haW4gZnJvbSB0aGUNCnByb2Nlc3NvcnMuIEhlbmNlLCB0aGUg
+UlRDIG11c3QgYmUgc2hhcmVkIGJ5IGFsbCB0aGUgaGFydHMgaW4gYSBzeXN0ZW0iDQoNClRoaXMg
+aXMgZGlmZmVyZW50IGZyb20gdGhlIGNvbW1pdCB0ZXh0IGluIFsxXS4NCg0KUGVyaGFwcyBJIG1p
+c3VuZGVyc3Rvb2Qgc29tZXRoaW5nLiBAUGFsbWVyID8NCg0KDQpbMl0gDQpodHRwczovL2VsaXhp
+ci5ib290bGluLmNvbS9saW51eC92NS4zLXJjNC9zb3VyY2UvZHJpdmVycy9jbG9ja3NvdXJjZS90
+aW1lci1yaXNjdi5jI0w0NA0KDQo+IFRoYW5rcw0KPiANCj4gICAtLSBEYW5pZWwNCj4gDQo+IFsx
+XSBodHRwczovL2xrbWwub3JnL2xrbWwvMjAxOC84LzQvNTENCj4gDQo+IA0KPiA+IFNpZ25lZC1v
+ZmYtYnk6IEF0aXNoIFBhdHJhIDxhdGlzaC5wYXRyYUB3ZGMuY29tPg0KPiA+IC0tLQ0KPiA+ICBk
+cml2ZXJzL2Nsb2Nrc291cmNlL3RpbWVyLXJpc2N2LmMgfCA2ICsrLS0tLQ0KPiA+ICAxIGZpbGUg
+Y2hhbmdlZCwgMiBpbnNlcnRpb25zKCspLCA0IGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2Nsb2Nrc291cmNlL3RpbWVyLXJpc2N2LmMNCj4gPiBiL2RyaXZlcnMv
+Y2xvY2tzb3VyY2UvdGltZXItcmlzY3YuYw0KPiA+IGluZGV4IDVlNjAzOGZiZjExNS4uMDllMDMx
+MTc2YmM2IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvY2xvY2tzb3VyY2UvdGltZXItcmlzY3Yu
+Yw0KPiA+ICsrKyBiL2RyaXZlcnMvY2xvY2tzb3VyY2UvdGltZXItcmlzY3YuYw0KPiA+IEBAIC01
+NSw3ICs1NSw3IEBAIHN0YXRpYyB1NjQgcmlzY3Zfc2NoZWRfY2xvY2sodm9pZCkNCj4gPiAgCXJl
+dHVybiBnZXRfY3ljbGVzNjQoKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAtc3RhdGljIERFRklORV9Q
+RVJfQ1BVKHN0cnVjdCBjbG9ja3NvdXJjZSwgcmlzY3ZfY2xvY2tzb3VyY2UpID0gew0KPiA+ICtz
+dGF0aWMgc3RydWN0IGNsb2Nrc291cmNlIHJpc2N2X2Nsb2Nrc291cmNlID0gew0KPiA+ICAJLm5h
+bWUJCT0gInJpc2N2X2Nsb2Nrc291cmNlIiwNCj4gPiAgCS5yYXRpbmcJCT0gMzAwLA0KPiA+ICAJ
+Lm1hc2sJCT0gQ0xPQ0tTT1VSQ0VfTUFTSyg2NCksDQo+ID4gQEAgLTkyLDcgKzkyLDYgQEAgdm9p
+ZCByaXNjdl90aW1lcl9pbnRlcnJ1cHQodm9pZCkNCj4gPiAgc3RhdGljIGludCBfX2luaXQgcmlz
+Y3ZfdGltZXJfaW5pdF9kdChzdHJ1Y3QgZGV2aWNlX25vZGUgKm4pDQo+ID4gIHsNCj4gPiAgCWlu
+dCBjcHVpZCwgaGFydGlkLCBlcnJvcjsNCj4gPiAtCXN0cnVjdCBjbG9ja3NvdXJjZSAqY3M7DQo+
+ID4gIA0KPiA+ICAJaGFydGlkID0gcmlzY3Zfb2ZfcHJvY2Vzc29yX2hhcnRpZChuKTsNCj4gPiAg
+CWlmIChoYXJ0aWQgPCAwKSB7DQo+ID4gQEAgLTExMiw4ICsxMTEsNyBAQCBzdGF0aWMgaW50IF9f
+aW5pdCByaXNjdl90aW1lcl9pbml0X2R0KHN0cnVjdA0KPiA+IGRldmljZV9ub2RlICpuKQ0KPiA+
+ICANCj4gPiAgCXByX2luZm8oIiVzOiBSZWdpc3RlcmluZyBjbG9ja3NvdXJjZSBjcHVpZCBbJWRd
+IGhhcnRpZCBbJWRdXG4iLA0KPiA+ICAJICAgICAgIF9fZnVuY19fLCBjcHVpZCwgaGFydGlkKTsN
+Cj4gPiAtCWNzID0gcGVyX2NwdV9wdHIoJnJpc2N2X2Nsb2Nrc291cmNlLCBjcHVpZCk7DQo+ID4g
+LQllcnJvciA9IGNsb2Nrc291cmNlX3JlZ2lzdGVyX2h6KGNzLCByaXNjdl90aW1lYmFzZSk7DQo+
+ID4gKwllcnJvciA9IGNsb2Nrc291cmNlX3JlZ2lzdGVyX2h6KCZyaXNjdl9jbG9ja3NvdXJjZSwN
+Cj4gPiByaXNjdl90aW1lYmFzZSk7DQo+ID4gIAlpZiAoZXJyb3IpIHsNCj4gPiAgCQlwcl9lcnIo
+IlJJU0NWIHRpbWVyIHJlZ2lzdGVyIGZhaWxlZCBbJWRdIGZvciBjcHUgPQ0KPiA+IFslZF1cbiIs
+DQo+ID4gIAkJICAgICAgIGVycm9yLCBjcHVpZCk7DQo+ID4gDQo+IA0KPiANCg0K
