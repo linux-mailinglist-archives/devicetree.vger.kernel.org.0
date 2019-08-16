@@ -2,116 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 232C990594
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 18:15:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A00190646
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 18:58:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726807AbfHPQPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 12:15:25 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:40540 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726741AbfHPQPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 12:15:25 -0400
-Received: by mail-pl1-f194.google.com with SMTP id a93so2640550pla.7;
-        Fri, 16 Aug 2019 09:15:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=hCoByiGuId6oRoUOKH9JltqEdAI/w+EDZR7ajwPu6Eg=;
-        b=cEY+U4e9trgXyTjSEt9vrxrwlEj6etSwe8plNjb5q28w+Wxur+kCTmIF226UIgzk75
-         dvPoTVJMRci3+YUoOFEBhnmPFKJWKXWQYi78uuYCC4gO3XWUoBq8L8m3OJF0iSy0z/0b
-         fOrNu1ZIeDNAgu/++i71X8rIk6UWS7hrAmik3Fb1VfxRK6qRFS8/LBHOcLADPdHqmDBf
-         nUSpPGyXinAFNpx+NMt59xxGH/sP9TBP+3a0nrez4KxiHw0nv8OGC3gcSBL63R41w7M0
-         j4yynVIgTUUGsAl3YjT0hVhsXLDfXJ+9hX3K5lKIL7hCg4CvT94Ujts5O2T+YVPMdLqk
-         ZyeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=hCoByiGuId6oRoUOKH9JltqEdAI/w+EDZR7ajwPu6Eg=;
-        b=R3YVYA7QKc8e7IVugRxhHj3Kp2JrKdQBWdYjTUikYI3EkLmcOus2Q0AV49PPtPf9I7
-         KBQSxX6AQno1dUyJWaDmTS6/21T/IEsvToYsJVxS3oMwXEi9nuUHAxEo5z50FhrgfK1s
-         VoeFZwy+b7tU++QfqwsRDBTVUPbzsT8rgl7VwWVLPXoM34dFyzqKGE59s3wfWXn2sHqP
-         0VEzKdK9aweAQRA9CuO2oJ7OFJCLonLOyhT/f48Bfsey5tAK8ROb2O3r7gB08xxq+qMO
-         tJwkLGcn1FHBgXDVSg/LSNvSM88LtPUuErie2dopYrpgKgiukQHxJPcybe3yeyMnJweB
-         cYwA==
-X-Gm-Message-State: APjAAAW6kdvAu5hosXVZoGkQp+RYSpLn2iwxeF5wXrrhSdV3xcVFcFRw
-        YWD9X/+l5vqVSkPkAl2kTIU=
-X-Google-Smtp-Source: APXvYqw+LolKRAdIcj6iyMrq3orXbq1VOEpKjI2WhIQf3CZL5CeFaTHUCj2rnQbX09fALyYKmfk+xg==
-X-Received: by 2002:a17:902:b110:: with SMTP id q16mr155147plr.273.1565972124591;
-        Fri, 16 Aug 2019 09:15:24 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u69sm5262143pgu.77.2019.08.16.09.15.23
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Aug 2019 09:15:24 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 09:15:23 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Subject: Re: [PATCH 2/2] watchdog: aspeed: Add support for AST2600
-Message-ID: <20190816161523.GB5396@roeck-us.net>
-References: <20190816160347.23393-1-joel@jms.id.au>
- <20190816160347.23393-3-joel@jms.id.au>
+        id S1727127AbfHPQ6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 12:58:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41570 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726497AbfHPQ6O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 12:58:14 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BC64B2077C;
+        Fri, 16 Aug 2019 16:58:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565974692;
+        bh=xk9mbri+sSP2Ako0+cU4IDTi1rBEvLPjA67uzQhKM9o=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=hxKsVunl58y8c5edThB0D+ZiNMYsKJ/yM6d+OQj43gRG9jpFVjSAk50PLSCpmeBnh
+         GUU/F7/+xO9Z2ifpfXGprqDDH56sFu6IoUZw+0WG/W9aH5dR1XTuFGHDHj/A+4GLv1
+         aayoMBs6PhUWbGj5MptlxV5K9UG9dJAEJk1+xQlw=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190816160347.23393-3-joel@jms.id.au>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190816042440.GY12733@vkoul-mobl.Dlink>
+References: <20190814122958.4981-1-vkoul@kernel.org> <20190814122958.4981-2-vkoul@kernel.org> <20190814171946.E9E8D20665@mail.kernel.org> <20190816042440.GY12733@vkoul-mobl.Dlink>
+Subject: Re: [PATCH 2/2] clk: qcom: clk-rpmh: Add support for SM8150
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Vinod Koul <vkoul@kernel.org>
+User-Agent: alot/0.8.1
+Date:   Fri, 16 Aug 2019 09:58:11 -0700
+Message-Id: <20190816165812.BC64B2077C@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 17, 2019 at 01:33:47AM +0930, Joel Stanley wrote:
-> From: Ryan Chen <ryan_chen@aspeedtech.com>
-> 
-> The ast2600 can be supported by the same code as the ast2500.
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> ---
->  drivers/watchdog/aspeed_wdt.c | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-> index cc71861e033a..94f73796ba9d 100644
-> --- a/drivers/watchdog/aspeed_wdt.c
-> +++ b/drivers/watchdog/aspeed_wdt.c
-> @@ -31,9 +31,14 @@ static const struct aspeed_wdt_config ast2500_config = {
->  	.ext_pulse_width_mask = 0xfffff,
->  };
->  
-> +static const struct aspeed_wdt_config ast2600_config = {
-> +	.ext_pulse_width_mask = 0xfffff,
-> +};
-> +
+Quoting Vinod Koul (2019-08-15 21:24:40)
+> On 14-08-19, 10:19, Stephen Boyd wrote:
+> > Quoting Vinod Koul (2019-08-14 05:29:58)
+> > > Add support for rpmh clocks found in SM8150
+> > >=20
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> >=20
+> > Patch looks OK, but can you convert this driver to use the new parent
+> > style and then update the binding to handle it? We can fix the other
+> > platforms and dts files that use this driver in parallel, but sm8150
+> > will be forward looking.
+>=20
+> Yes but that would also impact sdm845 as it uses this driver, so I
+> wanted to get this one done so that we have support for rpm clock and
+> then do the conversion.
+>=20
+> Would that be okay with you to get this in and then I convert this?
+>=20
 
-Why not just reuse ast2500_config ?
+How does it impact sdm845? The new way of specifying parents supports
+fallback to legacy string matching.
 
-Guenter
-
->  static const struct of_device_id aspeed_wdt_of_table[] = {
->  	{ .compatible = "aspeed,ast2400-wdt", .data = &ast2400_config },
->  	{ .compatible = "aspeed,ast2500-wdt", .data = &ast2500_config },
-> +	{ .compatible = "aspeed,ast2600-wdt", .data = &ast2600_config },
->  	{ },
->  };
->  MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
-> @@ -259,7 +264,8 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
->  		set_bit(WDOG_HW_RUNNING, &wdt->wdd.status);
->  	}
->  
-> -	if (of_device_is_compatible(np, "aspeed,ast2500-wdt")) {
-> +	if ((of_device_is_compatible(np, "aspeed,ast2500-wdt")) ||
-> +		(of_device_is_compatible(np, "aspeed,ast2600-wdt"))) {
->  		u32 reg = readl(wdt->base + WDT_RESET_WIDTH);
->  
->  		reg &= config->ext_pulse_width_mask;
-> -- 
-> 2.23.0.rc1
-> 
