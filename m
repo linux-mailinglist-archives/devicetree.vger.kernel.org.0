@@ -2,73 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 178E9903C3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 16:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E06790462
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 17:09:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727360AbfHPORF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 10:17:05 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:50745 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727291AbfHPORF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 10:17:05 -0400
-X-Originating-IP: 87.5.130.64
-Received: from uno.homenet.telecomitalia.it (host64-130-dynamic.5-87-r.retail.telecomitalia.it [87.5.130.64])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id AFFDCFF80B;
-        Fri, 16 Aug 2019 14:17:01 +0000 (UTC)
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
-        (V4L/DVB)), linux-kernel@vger.kernel.org (open list),
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/6] media: dt-bindings: Document 'location' property
-Date:   Fri, 16 Aug 2019 16:18:17 +0200
-Message-Id: <20190816141822.7582-2-jacopo@jmondi.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190816141822.7582-1-jacopo@jmondi.org>
-References: <20190816141822.7582-1-jacopo@jmondi.org>
+        id S1727245AbfHPPJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 11:09:13 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:51850 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727430AbfHPPJM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 11:09:12 -0400
+Received: by mail-wm1-f66.google.com with SMTP id 207so4318916wma.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2019 08:09:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=dQHxruTjdFPZOFnWpprDaQA7ydA7B14CSh8CNyClXAY=;
+        b=YZji864o0zoh6dmobJeceUSN8xsYjt5qHzn5i32uB5CPEm3uR6UTTm9+0s5zrjk/+5
+         NVU7c2PRCcheqfyhLnhX9aE69NfKZYcN5yo+FfDWt9TdgxnUekW90C74jEYPHaimqvxD
+         hMT/2zCdwkevTxmAN7E1ar0sAb8SXCEWRRkLdI8uIv66EUkvr3/zpTK/pnQLrPvcwlDY
+         gbsAe7bvykZ34QgHNAjgpCw/CmhxCLS66l/c0ie/Uz/EtPMnfwW2Ba/I6sfveYQUaDPE
+         h9QKBmIpQwqiLqfx0FArSZM1oN/Tovy1UbSBX4FKpdHnC5K+/TMsokH1AQbJeaosSiuc
+         gM/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=dQHxruTjdFPZOFnWpprDaQA7ydA7B14CSh8CNyClXAY=;
+        b=ZKAF2vsOHhCQTrcF6LDSYLzWx2kjiwdXt7gmMcmNpzgCxvadXMX5Dj9ayYdjYarAOu
+         cF98kLi3CGHy0lHUaqVIK8FKcEUbaCiqHazvWtU59Cd+D+NBVlkxP6+i4UCS+CVWgaCq
+         nskbnxFqX5n0KRhBcgtTaoRrH2ONQ6Jv9ydARntWQZaGvSJHmsaAx8BHIi66VNScT338
+         G/KcHzU9B6xRD6EvrjavcF0uLOjBkAjOR7O37TfDEqe0mJTdHoCxzN3nFY7Ws2fQHapZ
+         Ydi26XMojicN/btK1LBQHOslzrrq6HbiNC1SEmdoOctYIW7dNMh8O5ezl9IgcFBq2v97
+         ybow==
+X-Gm-Message-State: APjAAAV0zvI//bCYCTXYVqiT4+B1BYMRD5mYsYRthXTTAZRiWUlh62vb
+        Wg+ryNsKtyE7MqpIjE7+a6zmnA==
+X-Google-Smtp-Source: APXvYqy631R2ItoH2nwsj4ygQOohcysyq6yj1L7ZZtBjY6dxlj4RAMclqu5TzcnfyE4bflh32r1mEA==
+X-Received: by 2002:a05:600c:d9:: with SMTP id u25mr8166044wmm.26.1565968149512;
+        Fri, 16 Aug 2019 08:09:09 -0700 (PDT)
+Received: from ?IPv6:2a01:e34:ed2f:f020:d4e8:1742:2f00:abef? ([2a01:e34:ed2f:f020:d4e8:1742:2f00:abef])
+        by smtp.googlemail.com with ESMTPSA id a19sm18399286wra.2.2019.08.16.08.09.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 16 Aug 2019 08:09:08 -0700 (PDT)
+Subject: Re: [PATCH v2 1/5] RISC-V: Remove per cpu clocksource
+To:     Atish Patra <atish.patra@wdc.com>, linux-kernel@vger.kernel.org
+Cc:     Albert Ou <aou@eecs.berkeley.edu>,
+        Alexios Zavras <alexios.zavras@intel.com>,
+        Allison Randal <allison@lohutok.net>,
+        Anup Patel <anup.patel@wdc.com>, devicetree@vger.kernel.org,
+        Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Johan Hovold <johan@kernel.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+References: <20190731012418.24565-1-atish.patra@wdc.com>
+ <20190731012418.24565-2-atish.patra@wdc.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <6ba37c45-2d9b-c01e-5f17-3ab919da4de8@linaro.org>
+Date:   Fri, 16 Aug 2019 17:09:07 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190731012418.24565-2-atish.patra@wdc.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the 'location' device property, used to specify the camera device
-mounting position. The property is particularly meaningful for mobile
-devices with a well defined usage orientation.
+On 31/07/2019 03:24, Atish Patra wrote:
+> There is only one clocksource in RISC-V. The boot cpu initializes
+> that clocksource. No need to keep a percpu data structure.
 
-Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
----
- .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+That is not what is stated in the initial patch [1].
 
-diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-index f884ada0bffc..865f4142f432 100644
---- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-+++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-@@ -89,6 +89,16 @@ Optional properties
-   but a number of degrees counter clockwise. Typical values are 0 and 180
-   (upside down).
+Can you clarify that ?
 
-+- location: The camera sensor mounting location, expressed as a position
-+  relative to the usage orientation of the device the sensor is installed on.
-+  Possible values are:
-+  0 - Front. The image sensor is mounted on the front facing side of the device.
-+  For mobile devices such as smartphones, tablets and laptops the front side is
-+  the user facing side of the device.
-+  1 - Back. The image sensor is mounted on the back side of the device, which is
-+  defined as the opposite side of the front facing one.
-+  2 - External. The image sensor is connected to the device by extension cables,
-+  and can be freely moved, regardless of the device position.
+Thanks
 
- Optional endpoint properties
- ----------------------------
---
-2.22.0
+  -- Daniel
+
+[1] https://lkml.org/lkml/2018/8/4/51
+
+
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> ---
+>  drivers/clocksource/timer-riscv.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/clocksource/timer-riscv.c b/drivers/clocksource/timer-riscv.c
+> index 5e6038fbf115..09e031176bc6 100644
+> --- a/drivers/clocksource/timer-riscv.c
+> +++ b/drivers/clocksource/timer-riscv.c
+> @@ -55,7 +55,7 @@ static u64 riscv_sched_clock(void)
+>  	return get_cycles64();
+>  }
+>  
+> -static DEFINE_PER_CPU(struct clocksource, riscv_clocksource) = {
+> +static struct clocksource riscv_clocksource = {
+>  	.name		= "riscv_clocksource",
+>  	.rating		= 300,
+>  	.mask		= CLOCKSOURCE_MASK(64),
+> @@ -92,7 +92,6 @@ void riscv_timer_interrupt(void)
+>  static int __init riscv_timer_init_dt(struct device_node *n)
+>  {
+>  	int cpuid, hartid, error;
+> -	struct clocksource *cs;
+>  
+>  	hartid = riscv_of_processor_hartid(n);
+>  	if (hartid < 0) {
+> @@ -112,8 +111,7 @@ static int __init riscv_timer_init_dt(struct device_node *n)
+>  
+>  	pr_info("%s: Registering clocksource cpuid [%d] hartid [%d]\n",
+>  	       __func__, cpuid, hartid);
+> -	cs = per_cpu_ptr(&riscv_clocksource, cpuid);
+> -	error = clocksource_register_hz(cs, riscv_timebase);
+> +	error = clocksource_register_hz(&riscv_clocksource, riscv_timebase);
+>  	if (error) {
+>  		pr_err("RISCV timer register failed [%d] for cpu = [%d]\n",
+>  		       error, cpuid);
+> 
+
+
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
