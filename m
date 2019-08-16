@@ -2,138 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F0828F84B
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 03:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 597378F896
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 03:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726312AbfHPBEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 21:04:30 -0400
-Received: from mail-eopbgr50051.outbound.protection.outlook.com ([40.107.5.51]:14375
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725983AbfHPBE3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Aug 2019 21:04:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FoOFpuZJV2eWz9LOXlbR8g5tRoBQv03GeHegnU1dXrLQHk66/NET2dofYkO6aWOZXX+cLdAjJekuaeAb1BDRg1FTceOnQR1iu7H2Xv0gWpzq/3cOGpN9YI5QfilfZkV8vOXO/zGGUbV+Y1Jm8pgjYUv3ignopinOjP4lV8/mnZm7tRgei8ePW3teOLUoh1K5WArq9bd8J8ivvxB63x8zxlsCE8BiIagylkvhh5WR7drU8khY/1sqlVHnvQ8/i/vhKojR3PJxCO5VCuNCw7cnZy7LQJsIRkwLeRkhO6FO9smP8dIIpFckGLGuagSWg9P72sruxoxjHtvIgRp+/Tw2Ig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GARQSXyQChu24RT84zo5tONi7LFmHT7AJreQt9UeVMI=;
- b=gGL/+LZ7rX3pA6n7/3Trljl/nN7pQRRMsgJEhGQLTIpiXljz9kuPUhYhLcUokvsVVXsz5Sd7/lb0iK8CmIKm4opRG4FKEUaGlLJiWSvO2rqYcH90dXCpm5bsH/mAyRcjE/MhnEigNLAn5UE7OpHLlYf/2cyDwiCtTSkejt6gzQBMXARSXfivvQHLN3w2CAyHoYH8XFfI49tgbjfeZ8G82HVaFXzOt9hpuFzP+NWWuKuEhfjpffbSqr/jJJxDn2pem46WU6vmWTJlBXXzSl4q0K8R0HWme17p4hx7q8NHehTfFuYl7l9vkr3J62I10HCUWYnA+irUmbYR7PPRobwKiQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GARQSXyQChu24RT84zo5tONi7LFmHT7AJreQt9UeVMI=;
- b=XjGeF/ChOXP/BIf9vA0tlOdv+kd0UGn5LqlgOrGLWOMtW98+DfGbmTwkzVlndBcAknaMndv3XZYi5HnNg6SbUp95AxsZlDQAe5jkGkQOI9FSIPLGvN+LaSGYEqeQZ1pV36SZGyJiblnlUVF7rs9+n5yaQ+wR3bF7EVf5Tm8tTd4=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3660.eurprd04.prod.outlook.com (52.134.70.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.18; Fri, 16 Aug 2019 01:03:45 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::7cdf:bddc:212c:f77e]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::7cdf:bddc:212c:f77e%4]) with mapi id 15.20.2178.016; Fri, 16 Aug 2019
- 01:03:45 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH V5 5/5] arm64: dts: imx8mm: Enable cpu-idle driver
-Thread-Topic: [PATCH V5 5/5] arm64: dts: imx8mm: Enable cpu-idle driver
-Thread-Index: AQHVNupfPchyCELhWUGTZyEOvBMD5ab8mrwAgACSYaA=
-Date:   Fri, 16 Aug 2019 01:03:45 +0000
-Message-ID: <DB3PR0402MB39160C450FC99A359B2366BDF5AF0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190710063056.35689-1-Anson.Huang@nxp.com>
- <20190710063056.35689-5-Anson.Huang@nxp.com>
- <34c03d76-ae61-63b4-153f-3f9911cc962e@linaro.org>
-In-Reply-To: <34c03d76-ae61-63b4-153f-3f9911cc962e@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d5a0b319-5a50-480b-f7c4-08d721e59676
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3660;
-x-ms-traffictypediagnostic: DB3PR0402MB3660:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB3660114E3AD7B707265686D1F5AF0@DB3PR0402MB3660.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0131D22242
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(366004)(136003)(346002)(39860400002)(376002)(189003)(199004)(7736002)(478600001)(66066001)(53936002)(74316002)(305945005)(102836004)(81166006)(8936002)(486006)(81156014)(8676002)(7416002)(26005)(14454004)(316002)(186003)(25786009)(76176011)(7696005)(6506007)(53546011)(52536014)(6246003)(5660300002)(44832011)(6116002)(2906002)(110136005)(2501003)(256004)(76116006)(6436002)(3846002)(66556008)(55016002)(66476007)(9686003)(86362001)(71200400001)(2201001)(66446008)(64756008)(14444005)(229853002)(33656002)(66946007)(99286004)(446003)(476003)(71190400001)(11346002)(921003)(32563001)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3660;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: ExPN7JdVLUfaHoFzdrRwNdHZOKk0CJSw4ErHeJ9Jru1eP7liQINFmoDy1XvDP8Pwdco469xcsmCZQec+AzBzxwV84BkfVaKcFCAjCQT15NsygILmMhQIvm3fJ+PxMswm9GZrln1PGuA8x4y7zNEiMSpAr/Yy/UZRDoAxYX8mqcvQbJUAtx1i1sjNY3i55283fEEq2mqmoKNi8qW/qD8Zy/t8lKi/J2IsOeh3ECdZTjlom+UFVQ+JHPuP+dbeIjkTRX9nsNrLQO8K1g7oYOfKBT234EMcqCWucgT1WzHnITbGsHDk0IyiFH1GjPtSgRbJj2DUcqgIZBvG+7GFQugjYofNZqIJDMEdF1AST+8MZRAhrOzYZFmN0H3+7ORjXkWQZyNdgy99A1c9TJTLm5pAEkPIhPCU1IMyMnmQ0Wq64nU=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726215AbfHPBvD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 21:51:03 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35956 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726193AbfHPBvD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 21:51:03 -0400
+Received: by mail-ot1-f68.google.com with SMTP id k18so8308785otr.3
+        for <devicetree@vger.kernel.org>; Thu, 15 Aug 2019 18:51:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=o9NU7HcknVz/HqwVtJuvmbgSez9Bt2QNTH8TWaCx5Rc=;
+        b=qniNgwpy2X5OOw8pdbzL8Rp+hPpWipGI2uvT8v+EoBZ4u91C0W0vvlasn/zh/6A45b
+         3nj16JfS7cM7dUcWYM3ffLSplsAPgaiblkBxtv8VqlNUEX6/YSRHf+JD1Pf2MUvMS7H3
+         3k23XQjBfdLU6Ve8w4fTj6z03VTomQm69FDQUyvFDoCJyln/gWm9esu9pyMe+qq6Auq9
+         kVnZk1RVtvZNPCbznkgsolQVSXbW+fRdek0JJWeRXRuSTI5jpI/TrT024U19XxjVP5Qb
+         kDY9XAcqwzam/h8GmX9HPiELdiC3V0TbSeQ2xIvw1vVW+BbApCpC7TzRNPdKo/fkbkae
+         4vcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=o9NU7HcknVz/HqwVtJuvmbgSez9Bt2QNTH8TWaCx5Rc=;
+        b=cTdA9kxryHJSdPhdHwRm/dexhCDHLbeiXgWx0jmoR8wzHFbgn7MF0kNl3XDv6/mALt
+         SjL0cSsFwIuaa3W2JLDDinXQIJxqm/eR9dl8KY86nZB0Z9VPbdijtm5rPxubrC1lKhg8
+         NeAPB94E3b+3ITreOSYKaqXU4nazuSdsnzQ2PiH1aLqwEUEqOUN1m5H7zmXpmrWHLv/M
+         tz9ZXPffszK5AXfXeZUDOhgGha1UJYtkFu+mx+E15mBBC9dKZKGJKbNR5kjzUfZTKf34
+         Y0MTbbt6FxFsF2wbmik1TG+aREm8SzFyo76Q7mNcAH5V3X5GHJnT736TYQtBVdCeBRXn
+         grbg==
+X-Gm-Message-State: APjAAAUgQZmX3M+kNigT7O85gSyzkrEK4EULT3Gz1F+V/Awov56nuYa+
+        E830MqbtFk4KEB2KAaUMWM0VKpYFeUs3sadab7UDvQ==
+X-Google-Smtp-Source: APXvYqwlCWT51OaDRl2VOd03bODXapHcsplc+iKh3g38gAw7/ZYVqYbsptx+6hGMlj9Et22XBQW5rr9bHLivNZKjn6U=
+X-Received: by 2002:a05:6830:158:: with SMTP id j24mr5425168otp.236.1565920261211;
+ Thu, 15 Aug 2019 18:51:01 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d5a0b319-5a50-480b-f7c4-08d721e59676
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2019 01:03:45.0571
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5AIWr60vIPfjAW+5asl9JtGF1DlNblInOjcHEUdy9jgsarxPmJH5ye93KfDYxJMwDGr7o4//b5YewGUCwJZNlQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3660
+References: <20190731221721.187713-1-saravanak@google.com> <919b66e9-9708-de34-41cd-e448838b130c@gmail.com>
+ <CAGETcx8LqeOXD5zPsLuxoG5pR9VZ_v=PQfRf-aFwCSaW4kwoxA@mail.gmail.com> <7a0ee940-f81f-36b9-93e7-2b4c242360c9@gmail.com>
+In-Reply-To: <7a0ee940-f81f-36b9-93e7-2b4c242360c9@gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 15 Aug 2019 18:50:25 -0700
+Message-ID: <CAGETcx_UxNV_Qk79es0SJ3L0yAtFRpOjPcU7e5Cje6UPbp5adQ@mail.gmail.com>
+Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize probe ordering
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIERhbmllbA0KDQo+IEhpIEFuc29uLA0KPiANCj4gc29ycnkgZm9yIHRoZSBsYXRlIHJldmll
-dywgSSd2ZSBiZWVuIHByZXR0eSBidXN5Lg0KDQpUaGF0IGlzIE9LIGZvciBzdXJlLg0KDQo+IA0K
-PiBJZiBTaGF3biBpcyBvaywgSSBjYW4gcGljayB0aGUgcGF0Y2hlcyAxLTQgaW4gbXkgdHJlZSBh
-bmQgdGhlbiB0aGlzIG9uZSBhZnRlcg0KPiB5b3UgZml4IHRoZSBjb21tZW50cyBiZWxvdy4NCg0K
-U2hhd24gc2hvdWxkIGJlIE9LIGZvciBpdCwgYW5kIGhlIGFscmVhZHkgdG9vayBwYXRjaCBbUEFU
-Q0ggVjUgMi81XSBhcm02NDogRW5hYmxlIFRJTUVSX0lNWF9TWVNfQ1RSIGZvciBBUkNIX01YQyBw
-bGF0Zm9ybXMNCnNpbmNlIEkgZXZlciBzZW50IGl0IGJlZm9yZSBpbiBvdGhlciBzZXJpZXMgd2hl
-biBzeXN0ZW0gY291bnRlciBkcml2ZXIgaXMgTk9UIGxhbmRpbmcgb24gbWFpbiBsaW5lLCBub3cg
-aXQgbGFuZGVkLCBTaGF3biBqdXN0IGFwcGx5DQp0aGF0IG9sZCBwYXRjaCwgc28gaW4gVjYgcGF0
-Y2ggSSBqdXN0IHNlbnQsIEkgZGlkIE5PVCBpbmNsdWRlIHRoaXMgcGF0Y2gsIHlvdSBjYW4ganVz
-dCBhcHBseSB0aGUgNCBwYXRjaGVzIGluIFY2Lg0KDQpIaSwgU2hhd24NCglEYW5pZWwgd2lsbCBw
-aWNrIHRoaXMgd2hvbGUgcGF0Y2ggc2VyaWVzLCBwbGVhc2UgcmFpc2UgaWYgeW91IGhhdmUgYW55
-IGNvbmNlcm4sIHRoYW5rcy4NCg0KPiANCj4gT24gMTAvMDcvMjAxOSAwODozMCwgQW5zb24uSHVh
-bmdAbnhwLmNvbSB3cm90ZToNCj4gDQo+IFsgLi4uIF0NCj4gDQo+ID4gKwkJaWRsZS1zdGF0ZXMg
-ew0KPiA+ICsJCQllbnRyeS1tZXRob2QgPSAicHNjaSI7DQo+ID4gKw0KPiA+ICsJCQljcHVfc2xl
-ZXBfd2FpdDogY3B1LXNsZWVwLXdhaXQgew0KPiANCj4gSXMgdGhhdCBhIHJldGVudGlvbiBzdGF0
-ZSBvciBhIHBvd2VyZG93bj8gSXQgaXMgcHJlZmVyYWJsZSB0byBjaGFuZ2UgdGhlIG5hbWUNCj4g
-dG8gdGhlIGlkbGUgc3RhdGUgbmFtaW5nIGNvbnZlbnRpb24gZ2l2ZW4gaW4gdGhlIFBTQ0kgZG9j
-dW1lbnRhdGlvbiBbMV0gcGFnZQ0KPiAxNi0xNw0KDQpUaGFua3MgZm9yIHlvdXIgZGV0YWlsIHJl
-ZmVyZW5jZSwgaXQgaXMgYSBwb3dlciBkb3duIHN0YXRlIHdpdGggU29DIGVudGVyaW5nIFdBSVQg
-bW9kZSwNCnNvIGluIFY2LCBJIGNoYW5nZSB0aGUgbmFtZSB0byAiY3B1X3BkX3dhaXQ6Y3B1LXBk
-LXdhaXQiLg0KDQo+IA0KPiANCj4gPiArCQkJCWNvbXBhdGlibGUgPSAiYXJtLGlkbGUtc3RhdGUi
-Ow0KPiA+ICsJCQkJYXJtLHBzY2ktc3VzcGVuZC1wYXJhbSA9IDwweDAwMTAwMzM+Ow0KPiA+ICsJ
-CQkJbG9jYWwtdGltZXItc3RvcDsNCj4gPiArCQkJCWVudHJ5LWxhdGVuY3ktdXMgPSA8MTAwMD47
-DQo+ID4gKwkJCQlleGl0LWxhdGVuY3ktdXMgPSA8NzAwPjsNCj4gPiArCQkJCW1pbi1yZXNpZGVu
-Y3ktdXMgPSA8MjcwMD47DQo+ID4gKwkJCQl3YWtldXAtbGF0ZW5jeS11cyA9IDwxNTAwPjsNCj4g
-DQo+IEl0IGlzIHBvaW50bGVzcyB0byBzcGVjaWZ5IHRoZSBlbnRyeSArIGV4aXQgKmFuZCogdGhl
-IHdha2V1cC1sYXRlbmN5IFsyXS4NCg0KQWgsIHllcywgdGhpcyBpcyBuZXcgdG8gbWUsIEkgd2ls
-bCBqdXN0IHJlbW92ZSB0aGUg4oCcd2FrZXVwLWxhdGVuY3ktdXPigJ0gcHJvcGVydHkuDQoNClRo
-YW5rcywNCkFuc29uLg0KDQo=
+On Fri, Aug 9, 2019 at 10:20 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 8/9/19 10:00 PM, Saravana Kannan wrote:
+> > On Fri, Aug 9, 2019 at 7:57 PM Frank Rowand <frowand.list@gmail.com> wrote:
+> >>
+> >> Hi Saravana,
+> >>
+> >> On 7/31/19 3:17 PM, Saravana Kannan wrote:
+> >>> Add device-links to track functional dependencies between devices
+> >>> after they are created (but before they are probed) by looking at
+> >>> their common DT bindings like clocks, interconnects, etc.
+> >>>
+> >>> Having functional dependencies automatically added before the devices
+> >>> are probed, provides the following benefits:
+> >>>
+> >>> - Optimizes device probe order and avoids the useless work of
+> >>>   attempting probes of devices that will not probe successfully
+> >>>   (because their suppliers aren't present or haven't probed yet).
+> >>>
+> >>>   For example, in a commonly available mobile SoC, registering just
+> >>>   one consumer device's driver at an initcall level earlier than the
+> >>>   supplier device's driver causes 11 failed probe attempts before the
+> >>>   consumer device probes successfully. This was with a kernel with all
+> >>>   the drivers statically compiled in. This problem gets a lot worse if
+> >>>   all the drivers are loaded as modules without direct symbol
+> >>>   dependencies.
+> >>>
+> >>> - Supplier devices like clock providers, interconnect providers, etc
+> >>>   need to keep the resources they provide active and at a particular
+> >>>   state(s) during boot up even if their current set of consumers don't
+> >>>   request the resource to be active. This is because the rest of the
+> >>>   consumers might not have probed yet and turning off the resource
+> >>>   before all the consumers have probed could lead to a hang or
+> >>>   undesired user experience.
+> >>>
+> >>>   Some frameworks (Eg: regulator) handle this today by turning off
+> >>>   "unused" resources at late_initcall_sync and hoping all the devices
+> >>>   have probed by then. This is not a valid assumption for systems with
+> >>>   loadable modules. Other frameworks (Eg: clock) just don't handle
+> >>>   this due to the lack of a clear signal for when they can turn off
+> >>>   resources. This leads to downstream hacks to handle cases like this
+> >>>   that can easily be solved in the upstream kernel.
+> >>>
+> >>>   By linking devices before they are probed, we give suppliers a clear
+> >>>   count of the number of dependent consumers. Once all of the
+> >>>   consumers are active, the suppliers can turn off the unused
+> >>>   resources without making assumptions about the number of consumers.
+> >>>
+> >>> By default we just add device-links to track "driver presence" (probe
+> >>> succeeded) of the supplier device. If any other functionality provided
+> >>> by device-links are needed, it is left to the consumer/supplier
+> >>> devices to change the link when they probe.
+> >>>
+> >>> v1 -> v2:
+> >>> - Drop patch to speed up of_find_device_by_node()
+> >>> - Drop depends-on property and use existing bindings
+> >>>
+> >>> v2 -> v3:
+> >>> - Refactor the code to have driver core initiate the linking of devs
+> >>> - Have driver core link consumers to supplier before it's probed
+> >>> - Add support for drivers to edit the device links before probing
+> >>>
+> >>> v3 -> v4:
+> >>> - Tested edit_links() on system with cyclic dependency. Works.
+> >>> - Added some checks to make sure device link isn't attempted from
+> >>>   parent device node to child device node.
+> >>> - Added way to pause/resume sync_state callbacks across
+> >>>   of_platform_populate().
+> >>> - Recursively parse DT node to create device links from parent to
+> >>>   suppliers of parent and all child nodes.
+> >>>
+> >>> v4 -> v5:
+> >>> - Fixed copy-pasta bugs with linked list handling
+> >>> - Walk up the phandle reference till I find an actual device (needed
+> >>>   for regulators to work)
+> >>> - Added support for linking devices from regulator DT bindings
+> >>> - Tested the whole series again to make sure cyclic dependencies are
+> >>>   broken with edit_links() and regulator links are created properly.
+> >>>
+> >>> v5 -> v6:
+> >>> - Split, squashed and reordered some of the patches.
+> >>> - Refactored the device linking code to follow the same code pattern for
+> >>>   any property.
+> >>>
+> >>> v6 -> v7:
+> >>> - No functional changes.
+> >>> - Renamed i to index
+> >>> - Added comment to clarify not having to check property name for every
+> >>>   index
+> >>> - Added "matched" variable to clarify code. No functional change.
+> >>> - Added comments to include/linux/device.h for add_links()
+> >>>
+> >>> v7 -> v8:
+> >>> - Rebased on top of linux-next to handle device link changes in [1]
+> >>>
+> >>
+> >>
+> >>> v8 -> v9:
+> >>> - Fixed kbuild test bot reported errors (docs and const)
+> >>
+> >> Some maintainers have strong opinions about whether change logs should be:
+> >>
+> >>   (1) only in patch 0
+> >>   (2) only in the specific patches that are changed
+> >>   (3) both in patch 0 and in the specific patches that are changed.
+> >>
+> >> I can adapt to any of the three styles.  But for style "(1)" please
+> >> list which specific patch has changed for each item in the change list.
+> >>
+> >
+> > Thanks for the context Frank. I'm okay with (1) or (2) but I'll stick
+> > with (1) for this series. Didn't realize there were options (2) and
+> > (3). Since you started reviewing from v7, I'll do that in the future
+> > updates? Also, I haven't forgotten your emails. Just tied up with
+> > something else for a few days. I'll get to your emails next week.
+>
+> Yes, starting with future updates is fine, no need to redo the v9
+> change logs.
+>
+> No problem on the timing.  I figured you were busy or away from the
+> internet.
+
+I'm replying to your comments on the other 3 patches. Okay with a
+majority of them. I'll wait for your reply to see where we settle for
+some of the points before I send out any patches though.
+
+For now I'm thinking of sending them as separate clean up patches so
+that Greg doesn't have to deal with reverts in his "next" branch. We
+can squash them later if we really need to rip out what's in there and
+push it again.
+
+-Saravana
