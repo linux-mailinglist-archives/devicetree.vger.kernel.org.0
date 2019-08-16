@@ -2,86 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F2A90A15
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:14:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63A3890A32
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727753AbfHPVOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 17:14:33 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:40761 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727649AbfHPVOd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:14:33 -0400
-Received: by mail-oi1-f194.google.com with SMTP id h21so5794998oie.7;
-        Fri, 16 Aug 2019 14:14:32 -0700 (PDT)
+        id S1727684AbfHPVSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 17:18:05 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:45374 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727572AbfHPVSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:18:05 -0400
+Received: by mail-oi1-f195.google.com with SMTP id v12so2132787oic.12;
+        Fri, 16 Aug 2019 14:18:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4gRR6HvBg6u5veUlkvaSp6+HCcvQCdmIeBVhPgvLg/I=;
-        b=NLghpoLPSElcRSsklqLLctbkIfqC6ZkjLvrSvw60ruskZmUsNtHJ551HeTCg1Pw785
-         UgBb81J34MpcvYUj/YyXgh5X16p9EM+FUvkIh2aPBjOLePmGDHFQfUHAnY6Jia0t627B
-         rjoa/ARNU/U7/0oXkDjPLSz6UrILJQfVZAl9e3nY9olUbwKFSpb0xVoEHDTRQ0yNkpaZ
-         tX9tcTrIOUQVsco6qsakLyEGJpWtyDacswN9pqFvK2WLpG/9VjYZClX9UDnCCuv/I5uZ
-         LIpNJosHsZqJ+1MN3wbyPqZreezLeCddfyuSCAn8ROlyLzOPGzF6X4NNiXW1IWOvM/Ti
-         GO2g==
-X-Gm-Message-State: APjAAAWNgVR7c97BLfUmy8rs+tWBtpiw7S5iAee+EwfNZxRe1jYBsRzz
-        zTsqzC4g4M0smm78sj4WKNMv57M=
-X-Google-Smtp-Source: APXvYqyGpQgU9LoPcwD1U3cdu93f8C8iY9sv3eSKzx9WuZ10PDu6m4tPQlcQpTQ6ajbc+Hs+/Zam7A==
-X-Received: by 2002:a05:6808:903:: with SMTP id w3mr5765893oih.119.1565990071859;
-        Fri, 16 Aug 2019 14:14:31 -0700 (PDT)
+        bh=ac94VtdzfeI7thgY2mCAS/x3VlOC++V3yHeJ0VOA7+o=;
+        b=VH4ZboBTUNDtT8T23ixQulJxKEUrV6dWp5t09LGAGs67+780RY0xupQorBFe3yS4EV
+         S6dmOyoDxzRz71efm+iVGtMG41nL8Nnyxtix9JSPlMKQsC6zlq4hsvxEbMkYBA/ZameZ
+         qG0Fwztr336jtfSe9P2z7R/2no+dGR2Prv3H/kK7ATKZ9nKvDHl9/VZnAXbOndIgawm5
+         Mq3urXvF4YS8cyJxSQVojN0I47oHGXAMQobr3/63+koWw62IwZ4AYWUUrm7nVEjXnB5d
+         UzJKRFIw4U2PiaM9lJhYrzYr5NFhAEFtROnc8PHAEEhSpmG2qwL43mhUlftHY5fkkdKs
+         kxCg==
+X-Gm-Message-State: APjAAAU2B0/yKMNGKWrErGihuKuSuvFQrqbueu6yDQ2n3Wb0kuIShLAq
+        ZWDZqQN7CONoJ6UnnC/EY45Af8Y=
+X-Google-Smtp-Source: APXvYqzVzx2M+M4luk3nUx+OIDyTYPSI/rW7hHhdaz9oyNtBvJg0f0jbZiOETI+PBiQ5Ploco6tfpA==
+X-Received: by 2002:aca:50cb:: with SMTP id e194mr5839166oib.48.1565990284206;
+        Fri, 16 Aug 2019 14:18:04 -0700 (PDT)
 Received: from localhost (ip-173-126-47-137.ftwttx.spcsdns.net. [173.126.47.137])
-        by smtp.gmail.com with ESMTPSA id c11sm1095758otr.54.2019.08.16.14.14.30
+        by smtp.gmail.com with ESMTPSA id c11sm1100476otr.54.2019.08.16.14.18.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2019 14:14:31 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 16:14:30 -0500
+        Fri, 16 Aug 2019 14:18:03 -0700 (PDT)
+Date:   Fri, 16 Aug 2019 16:18:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Richard Tresidder <rtresidd@electromag.com.au>
-Cc:     sre@kernel.org, mark.rutland@arm.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: power/supply/sbs_sbs-battery: Addition
- of force_load binding Add device tree binding documentation for addition of
- force_load boolean value to allow loading a battery during boot even if not
- present at that time.
-Message-ID: <20190816211430.GA8175@bogus>
-References: <1564037445-22936-1-git-send-email-rtresidd@electromag.com.au>
+To:     Jan Kotas <jank@cadence.com>
+Cc:     maxime.ripard@bootlin.com, mchehab@kernel.org,
+        mark.rutland@arm.com, rafalc@cadence.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] media: dt-bindings: Update bindings for Cadence
+ CSI2RX version 2.1
+Message-ID: <20190816211802.GA12657@bogus>
+References: <20190725102648.13445-1-jank@cadence.com>
+ <20190725102648.13445-2-jank@cadence.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1564037445-22936-1-git-send-email-rtresidd@electromag.com.au>
+In-Reply-To: <20190725102648.13445-2-jank@cadence.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 02:50:45PM +0800, Richard Tresidder wrote:
-> Signed-off-by: Richard Tresidder <rtresidd@electromag.com.au>
+On Thu, Jul 25, 2019 at 11:26:46AM +0100, Jan Kotas wrote:
+> This patch adds a DT bindings documentation for
+> Cadence CSI2RX v2.1 controller.
+
+And 1.3?
+
+> 
+> Signed-off-by: Jan Kotas <jank@cadence.com>
 > ---
-> 
-> Notes:
->     Add device tree binding documentation for addition of force_load
->     boolean value to allow loading a battery during boot even if not
->     present at that time.
->     Accompanying patch to drivers/power/supply/sbs-battery.c submitted to linux-pm@vger.kernel.org
-> 
->  Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt | 4 +++-
+>  Documentation/devicetree/bindings/media/cdns,csi2rx.txt | 4 +++-
 >  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt b/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
-> index 4e78e51..187d7bb 100644
-> --- a/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
-> +++ b/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
-> @@ -15,7 +15,8 @@ Optional properties :
->     after an external change notification.
->   - sbs,battery-detect-gpios : The gpio which signals battery detection and
->     a flag specifying its polarity.
-> -
-> + - sbs,force-load : Allow loading of a hot-pluggable battery when there is no
-> +   GPIO detect available and the module is statically built.
+> diff --git a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> index 6b02a0657..a35bb0aed 100644
+> --- a/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> +++ b/Documentation/devicetree/bindings/media/cdns,csi2rx.txt
+> @@ -5,7 +5,9 @@ The Cadence MIPI-CSI2 RX controller is a CSI-2 bridge supporting up to 4 CSI
+>  lanes in input, and 4 different pixel streams in output.
+>  
+>  Required properties:
+> -  - compatible: must be set to "cdns,csi2rx" and an SoC-specific compatible
+> +  - compatible: must be set to "cdns,csi2rx" or "cdns,csi2rx-1.3"
+> +    for version 1.3 of the controller, "cdns,csi2rx-2.1" for v2.1
+> +    and an SoC-specific compatible
 
-What's a module? That's Linux specific and nothing to do with the 
-binding. 
+This wording is now not clear that an SoC-specific compatible is always 
+required or just for 2.1. Please format one compatible per line.
 
-Can't you just force load if sbs,battery-detect-gpios is not present?
-
-Rob
+>    - reg: base address and size of the memory mapped region
+>    - clocks: phandles to the clocks driving the controller
+>    - clock-names: must contain:
+> -- 
+> 2.15.0
+> 
