@@ -2,117 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 148ED907A9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:23:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FC7907D5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727581AbfHPSXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 14:23:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46108 "EHLO mail.kernel.org"
+        id S1727551AbfHPSld (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 14:41:33 -0400
+Received: from shell.v3.sk ([90.176.6.54]:59047 "EHLO shell.v3.sk"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727500AbfHPSXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 14:23:00 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 538532077C;
-        Fri, 16 Aug 2019 18:22:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565979779;
-        bh=Os7RmwFmk/bvYTsc+erxUvNygEZaIVYpIKLZnm5tJQ8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=Adjba4SejZEIRO+Ov9Lzdodd3sqIArS0Iry4f3BQyWM2DQroF9Z+U11Pbs1d/Aru1
-         qPxAzwjzPc5OUdkL2N6Mn5Fz4HTfMF0fh0d/R0QFfLjrWELMYOfgbsCcOieyJkPtIs
-         IaRzYp/utbr1y9t+DUUcp8A1vEpDgVyuhnbdWEg0=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190807223111.230846-4-saravanak@google.com>
-References: <20190807223111.230846-1-saravanak@google.com> <20190807223111.230846-4-saravanak@google.com>
-Subject: Re: [PATCH v5 3/3] OPP: Add helper function for bandwidth OPP tables
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
-        daidavid1@codeaurora.org, adharmap@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
-        bjorn.andersson@linaro.org, evgreen@chromium.org,
-        kernel-team@android.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        id S1727067AbfHPSld (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 14:41:33 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 985F7D6E09;
+        Fri, 16 Aug 2019 20:41:28 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id O5hE6RKEUtMU; Fri, 16 Aug 2019 20:41:24 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 3AB24D6E29;
+        Fri, 16 Aug 2019 20:41:24 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id ZWVEJzeSC459; Fri, 16 Aug 2019 20:41:23 +0200 (CEST)
+Received: from belphegor (nat-pool-brq-t.redhat.com [213.175.37.10])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 2D1ABD6E09;
+        Fri, 16 Aug 2019 20:41:23 +0200 (CEST)
+Message-ID: <e0c0cf62a1f087fd6c1d7307e5e2a65603148341.camel@v3.sk>
+Subject: Re: [PATCH 05/19] irqchip/mmp: do not use of_address_to_resource()
+ to get mux regs
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Viresh Kumar <vireshk@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Fri, 16 Aug 2019 11:22:58 -0700
-Message-Id: <20190816182259.538532077C@mail.kernel.org>
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, Pavel Machek <pavel@ucw.cz>
+Date:   Fri, 16 Aug 2019 20:41:22 +0200
+In-Reply-To: <16d77ca3-7ad1-3af2-650e-722cf6a931ed@kernel.org>
+References: <20190809093158.7969-1-lkundrak@v3.sk>
+         <20190809093158.7969-6-lkundrak@v3.sk>
+         <16d77ca3-7ad1-3af2-650e-722cf6a931ed@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Saravana Kannan (2019-08-07 15:31:11)
-> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
-> index 3b7ffd0234e9..22dcf22f908f 100644
-> --- a/drivers/opp/core.c
-> +++ b/drivers/opp/core.c
-> @@ -127,6 +127,29 @@ unsigned long dev_pm_opp_get_freq(struct dev_pm_opp =
-*opp)
->  }
->  EXPORT_SYMBOL_GPL(dev_pm_opp_get_freq);
-> =20
-> +/**
-> + * dev_pm_opp_get_bw() - Gets the bandwidth corresponding to an availabl=
-e opp
-> + * @opp:       opp for which frequency has to be returned for
+On Fri, 2019-08-09 at 13:12 +0100, Marc Zyngier wrote:
+> On 09/08/2019 10:31, Lubomir Rintel wrote:
+> > The "regs" property of the "mrvl,mmp2-mux-intc" devices are silly. They
+> > are offsets from intc's base, not addresses on the parent bus. At this
+> > point it probably can't be fixed.
+> > 
+> > On an OLPC XO-1.75 machine, the muxes are children of the intc, not the
+> > axi bus, and thus of_address_to_resource() won't work. We should treat
+> > the values as mere integers as opposed to bus addresses.
+> > 
+> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> > Acked-by: Pavel Machek <pavel@ucw.cz>
+> > 
+> > ---
+> >  drivers/irqchip/irq-mmp.c | 20 +++++++++++---------
+> >  1 file changed, 11 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/irqchip/irq-mmp.c b/drivers/irqchip/irq-mmp.c
+> > index 14618dc0bd396..af9cba4a51c2e 100644
+> > --- a/drivers/irqchip/irq-mmp.c
+> > +++ b/drivers/irqchip/irq-mmp.c
+> > @@ -424,9 +424,9 @@ IRQCHIP_DECLARE(mmp2_intc, "mrvl,mmp2-intc", mmp2_of_init);
+> >  static int __init mmp2_mux_of_init(struct device_node *node,
+> >  				   struct device_node *parent)
+> >  {
+> > -	struct resource res;
+> >  	int i, ret, irq, j = 0;
+> >  	u32 nr_irqs, mfp_irq;
+> > +	u32 reg[4];
+> >  
+> >  	if (!parent)
+> >  		return -ENODEV;
+> > @@ -438,18 +438,20 @@ static int __init mmp2_mux_of_init(struct device_node *node,
+> >  		pr_err("Not found mrvl,intc-nr-irqs property\n");
+> >  		return -EINVAL;
+> >  	}
+> > -	ret = of_address_to_resource(node, 0, &res);
+> > +
+> > +	/*
+> > +	 * For historical reasonsm, the "regs" property of the
+> > +	 * mrvl,mmp2-mux-intc is not a regular * "regs" property containing
+> > +	 * addresses on the parent bus, but offsets from the intc's base.
+> > +	 * That is why we can't use of_address_to_resource() here.
+> > +	 */
+> > +	ret = of_property_read_u32_array(node, "reg", reg, ARRAY_SIZE(reg));
+> 
+> This will return 0 even if you've read less than your expected 4 u32s.
+> You may want to try of_property_read_variable_u32_array instead.
 
-s/frequency/bandwidth/ ?
+Will it? Unless I'm reading the of_property_read_u32_array()
+documentation wrong, it suggests that would return -EOVERFLOW in that
+case.
 
-> + * @avg_bw:    Pointer where the corresponding average bandwidth is stor=
-ed.
-> + *             Can be NULL.
-> + *
-> + * Return: Peak bandwidth in kBps corresponding to the opp, else
-> + * return 0
-> + */
-> +unsigned long dev_pm_opp_get_bw(struct dev_pm_opp *opp, unsigned long *a=
-vg_bw)
-> +{
-> +       if (IS_ERR_OR_NULL(opp) || !opp->available) {
-> +               pr_err("%s: Invalid parameters\n", __func__);
-> +               return 0;
-> +       }
-> +
-> +       if (avg_bw)
-> +               *avg_bw =3D opp->avg_bw;
-> +
-> +       return opp->rate;
+It ignores the extra values it the property is larger. I guess that is
+not a good thing and we still want to use
+of_property_read_variable_u32_array() though.
 
-It deserves a comment if it stays named 'rate'. At a glance it looks
-like a bug.
+> >  	if (ret < 0) {
+> >  		pr_err("Not found reg property\n");
+> >  		return -EINVAL;
+> >  	}
+> > -	icu_data[i].reg_status = mmp_icu_base + res.start;
+> > -	ret = of_address_to_resource(node, 1, &res);
+> > -	if (ret < 0) {
+> > -		pr_err("Not found reg property\n");
+> > -		return -EINVAL;
+> > -	}
+> > -	icu_data[i].reg_mask = mmp_icu_base + res.start;
+> > +	icu_data[i].reg_status = mmp_icu_base + reg[0];
+> > +	icu_data[i].reg_mask = mmp_icu_base + reg[2];
+> >  	icu_data[i].cascade_irq = irq_of_parse_and_map(node, 0);
+> >  	if (!icu_data[i].cascade_irq)
+> >  		return -EINVAL;
+> > 
+> 
+> Thanks,
+> 
+> 	M.
 
-> +}
-> +EXPORT_SYMBOL_GPL(dev_pm_opp_get_bw);
-> +
->  /**
->   * dev_pm_opp_get_level() - Gets the level corresponding to an available=
- opp
->   * @opp:       opp for which level value has to be returned for
-> @@ -299,6 +322,34 @@ unsigned long dev_pm_opp_get_suspend_opp_freq(struct=
- device *dev)
->  }
->  EXPORT_SYMBOL_GPL(dev_pm_opp_get_suspend_opp_freq);
-> =20
-> +/**
-> + * dev_pm_opp_get_suspend_opp_bw() - Get peak bandwidth of suspend opp i=
-n kBps
-> + * @dev:       device for which we do this operation
-> + * @avg_bw:    Pointer where the corresponding average bandwidth is stor=
-ed.
-> + *             Can be NULL.
-> + *
-> + * Return: This function returns the peak bandwidth of the OPP marked as
-> + * suspend_opp if one is available, else returns 0;
-
-Why a semicolon instead a full stop?
+Thanks
+Lubo
 
