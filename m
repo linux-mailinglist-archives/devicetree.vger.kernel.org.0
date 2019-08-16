@@ -2,141 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CCD8FFD9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:14:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 348238FFC3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727007AbfHPKOZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 06:14:25 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:54858 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727117AbfHPKOY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 06:14:24 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 316C81A0042;
-        Fri, 16 Aug 2019 12:14:22 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 74EB01A0027;
-        Fri, 16 Aug 2019 12:14:16 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id DC3184030F;
-        Fri, 16 Aug 2019 18:14:09 +0800 (SGT)
-From:   Wen He <wen.he_1@nxp.com>
-To:     linux-devel@linux.nxdi.nxp.com, Liviu Dudau <liviu.dudau@arm.com>,
-        Brian Starkey <brian.starkey@arm.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, leoyang.li@nxp.com
-Cc:     Wen He <wen.he_1@nxp.com>
-Subject: [v3 2/2] drm/arm/mali-dp: Add display QoS interface configuration for Mali DP500
-Date:   Fri, 16 Aug 2019 18:04:24 +0800
-Message-Id: <20190816100424.5366-2-wen.he_1@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190816100424.5366-1-wen.he_1@nxp.com>
-References: <20190816100424.5366-1-wen.he_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727008AbfHPKKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 06:10:55 -0400
+Received: from twhmllg4.macronix.com ([122.147.135.202]:30902 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726918AbfHPKKz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 06:10:55 -0400
+Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
+        by TWHMLLG4.macronix.com with ESMTP id x7GAAlgZ014816;
+        Fri, 16 Aug 2019 18:10:47 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id E5D22AEB545531923567;
+        Fri, 16 Aug 2019 18:10:47 +0800 (CST)
+In-Reply-To: <20190801082233.759f6ae9@collabora.com>
+References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw> <1564631710-30276-2-git-send-email-masonccyang@mxic.com.tw> <20190801082233.759f6ae9@collabora.com>
+To:     "Boris Brezillon" <boris.brezillon@collabora.com>
+Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
+        christophe.kerello@st.com, computersforpeace@gmail.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org,
+        juliensu@mxic.com.tw, lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, mark.rutland@arm.com,
+        miquel.raynal@bootlin.com, paul@crapouillou.net,
+        paul.burton@mips.com, richard@nod.at, robh+dt@kernel.org,
+        stefan@agner.ch, vigneshr@ti.com
+Subject: Re: [PATCH v6 1/2] mtd: rawnand: Add Macronix raw NAND controller driver
+MIME-Version: 1.0
+X-KeepSent: E8EA3122:5F3A0829-48258458:00375F0F;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OFE8EA3122.5F3A0829-ON48258458.00375F0F-48258458.0037EBA6@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Fri, 16 Aug 2019 18:10:47 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/08/16 PM 06:10:47,
+        Serialize complete at 2019/08/16 PM 06:10:47
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG4.macronix.com x7GAAlgZ014816
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the display Quality of service (QoS) levels priority if the
-optional property node "arm,malidp-aqros-value" is defined in DTS file.
 
-QoS signaling using AQROS and AWQOS AXI interface signals, the AQROS is
-driven from the "RQOS" register, so needed to program the RQOS register
-to avoid the high resolutions flicker issue on the LS1028A platform.
+Hi Boris, 
 
-Signed-off-by: Wen He <wen.he_1@nxp.com>
----
-change in v3:
-        - after testing more resolutions, if pixelclock > 148.5MHz will
-        get the flickering
+> > +
+> > +static int  mxic_nfc_wait_ready(struct nand_chip *chip)
+> > +{
+> > +   struct mxic_nand_ctlr *nfc = nand_get_controller_data(chip);
+> > +   u32 sts;
+> > +
+> > +   return readl_poll_timeout(nfc->regs + INT_STS, sts,
+> > +              sts & INT_RDY_PIN, 0, USEC_PER_SEC);
+> 
+> You're not using interrupts at all? For things like R/B wait it's
+> usually a good thing to rely on interrupts instead of status-polling.
+> 
 
- drivers/gpu/drm/arm/malidp_drv.c  |  6 ++++++
- drivers/gpu/drm/arm/malidp_hw.c   | 13 +++++++++++++
- drivers/gpu/drm/arm/malidp_hw.h   |  3 +++
- drivers/gpu/drm/arm/malidp_regs.h | 10 ++++++++++
- 4 files changed, 32 insertions(+)
+Have updated it and I will patch using interrupts instead of polling.
 
-diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
-index c27ff456eddc..80e8d15760ac 100644
---- a/drivers/gpu/drm/arm/malidp_drv.c
-+++ b/drivers/gpu/drm/arm/malidp_drv.c
-@@ -815,6 +815,12 @@ static int malidp_bind(struct device *dev)
- 
- 	malidp->core_id = version;
- 
-+	ret = of_property_read_u32(dev->of_node,
-+					"arm,malidp-arqos-value",
-+					&hwdev->arqos_value);
-+	if (ret)
-+		hwdev->arqos_value = 0x0;
-+
- 	/* set the number of lines used for output of RGB data */
- 	ret = of_property_read_u8_array(dev->of_node,
- 					"arm,malidp-output-port-lines",
-diff --git a/drivers/gpu/drm/arm/malidp_hw.c b/drivers/gpu/drm/arm/malidp_hw.c
-index 380be66d4c6e..f90a367a5bc9 100644
---- a/drivers/gpu/drm/arm/malidp_hw.c
-+++ b/drivers/gpu/drm/arm/malidp_hw.c
-@@ -374,6 +374,19 @@ static void malidp500_modeset(struct malidp_hw_device *hwdev, struct videomode *
- 		malidp_hw_setbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
- 	else
- 		malidp_hw_clearbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
-+
-+	/*
-+	 * Program the RQoS register to avoid high resolutions flicker
-+	 * issue on the LS1028A.
-+	 */
-+	if (hwdev->arqos_value) {
-+		val = hwdev->arqos_value;
-+
-+		if (mode->pixelclock > 148500000)
-+			malidp_hw_setbits(hwdev, val, MALIDP500_RQOS_QUALITY);
-+		else
-+			malidp_hw_clearbits(hwdev, val, MALIDP500_RQOS_QUALITY);
-+	}
- }
- 
- int malidp_format_get_bpp(u32 fmt)
-diff --git a/drivers/gpu/drm/arm/malidp_hw.h b/drivers/gpu/drm/arm/malidp_hw.h
-index 968a65eed371..e4c36bc90bda 100644
---- a/drivers/gpu/drm/arm/malidp_hw.h
-+++ b/drivers/gpu/drm/arm/malidp_hw.h
-@@ -251,6 +251,9 @@ struct malidp_hw_device {
- 
- 	/* size of memory used for rotating layers, up to two banks available */
- 	u32 rotation_memory[2];
-+
-+	/* priority level of RQOS register used for driven the ARQOS signal */
-+	u32 arqos_value;
- };
- 
- static inline u32 malidp_hw_read(struct malidp_hw_device *hwdev, u32 reg)
-diff --git a/drivers/gpu/drm/arm/malidp_regs.h b/drivers/gpu/drm/arm/malidp_regs.h
-index 993031542fa1..514c50dcb74d 100644
---- a/drivers/gpu/drm/arm/malidp_regs.h
-+++ b/drivers/gpu/drm/arm/malidp_regs.h
-@@ -210,6 +210,16 @@
- #define MALIDP500_CONFIG_VALID		0x00f00
- #define MALIDP500_CONFIG_ID		0x00fd4
- 
-+/*
-+ * The quality of service (QoS) register on the DP500. RQOS register values
-+ * are driven by the ARQOS signal, using AXI transacations, dependent on the
-+ * FIFO input level.
-+ * The RQOS register can also set QoS levels for:
-+ *    - RED_ARQOS   @ A 4-bit signal value for close to underflow conditions
-+ *    - GREEN_ARQOS @ A 4-bit signal value for normal conditions
-+ */
-+#define MALIDP500_RQOS_QUALITY          0x00500
-+
- /* register offsets and bits specific to DP550/DP650 */
- #define MALIDP550_ADDR_SPACE_SIZE	0x10000
- #define MALIDP550_DE_CONTROL		0x00010
--- 
-2.17.1
+thanks for your comments.
+
+best regards,
+Mason
+
+
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
