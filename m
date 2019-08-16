@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 838F7902DA
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 15:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44828902E7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 15:24:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727263AbfHPNXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 09:23:36 -0400
-Received: from mx2.mailbox.org ([80.241.60.215]:11150 "EHLO mx2.mailbox.org"
+        id S1727226AbfHPNYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 09:24:38 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:37502 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727246AbfHPNXf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 09:23:35 -0400
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:105:465:1:1:0])
-        (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
-        (No client certificate requested)
-        by mx2.mailbox.org (Postfix) with ESMTPS id 521E2A01B6;
-        Fri, 16 Aug 2019 15:23:33 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-        by hefe.heinlein-support.de (hefe.heinlein-support.de [91.198.250.172]) (amavisd-new, port 10030)
-        with ESMTP id DnvGyrnD9G4l; Fri, 16 Aug 2019 15:23:26 +0200 (CEST)
-From:   Stefan Roese <sr@denx.de>
-To:     netdev@vger.kernel.org, linux-mediatek@lists.infradead.org
-Cc:     =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
-        Daniel Golle <daniel@makrotopia.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        John Crispin <john@phrozen.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH net-next 1/4 v3] dt-bindings: net: mediatek: Add support for MediaTek MT7628/88 SoC
-Date:   Fri, 16 Aug 2019 15:23:22 +0200
-Message-Id: <20190816132325.28426-1-sr@denx.de>
+        id S1727218AbfHPNYi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 09:24:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=V0t3yFIwsNCVgU5rBbHlcdi/HDX0m2vdrvjJwq1wt0U=; b=GpNHp+6PpQYwov4Agh0M1Mw1j7
+        ZU930WqBAIRVw1kRS0sI4Q5G9CO7rD0VYYmVsRrAD1c5qrP1zL4zQ6yFbHPgCiZ2S/JaXzwtQFJIj
+        OaZpFqwI7LZzeCf61gGl6FHjwkYC3jzCat6xN6/1xJ0TI5V4GBwkkOjNAhsZ/4/QUCHQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hycDa-0000CA-Ut; Fri, 16 Aug 2019 15:24:34 +0200
+Date:   Fri, 16 Aug 2019 15:24:34 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com
+Subject: Re: [PATCH v5 12/13] net: phy: adin: add ethtool get_stats support
+Message-ID: <20190816132434.GB307@lunn.ch>
+References: <20190816131011.23264-1-alexandru.ardelean@analog.com>
+ <20190816131011.23264-13-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190816131011.23264-13-alexandru.ardelean@analog.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible for the ethernet IP core on MT7628/88 SoCs. Its
-compatible with the older Ralink Rt5350F SoC. And OpenWrt already
-uses this compatible string for the MT76x8.
+On Fri, Aug 16, 2019 at 04:10:10PM +0300, Alexandru Ardelean wrote:
+> This change implements retrieving all the error counters from the PHY.
+> 
+> The counters require that the RxErrCnt register (0x0014) be read first,
+> after which copies of the counters are latched into the registers. This
+> ensures that all registers read after RxErrCnt are synchronized at the
+> moment that they are read.
+> 
+> The counter values need to be accumulated by the driver, as each time that
+> RxErrCnt is read, the values that are latched are the ones that have
+> incremented from the last read.
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+ 
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-Signed-off-by: Stefan Roese <sr@denx.de>
-Cc: René van Dorst <opensource@vdorst.com>
-Cc: Daniel Golle <daniel@makrotopia.org>
-Cc: Sean Wang <sean.wang@mediatek.com>
-Cc: John Crispin <john@phrozen.org>
-Cc: devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>
----
-v3:
-- No change
-
-v2:
-- New patch - bindings description moved to separate patch
-
- Documentation/devicetree/bindings/net/mediatek-net.txt | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/net/mediatek-net.txt b/Documentation/devicetree/bindings/net/mediatek-net.txt
-index 770ff98d4524..72d03e07cf7c 100644
---- a/Documentation/devicetree/bindings/net/mediatek-net.txt
-+++ b/Documentation/devicetree/bindings/net/mediatek-net.txt
-@@ -12,6 +12,7 @@ Required properties:
- 		"mediatek,mt7623-eth", "mediatek,mt2701-eth": for MT7623 SoC
- 		"mediatek,mt7622-eth": for MT7622 SoC
- 		"mediatek,mt7629-eth": for MT7629 SoC
-+		"ralink,rt5350-eth": for Ralink Rt5350F and MT7628/88 SoC
- - reg: Address and length of the register set for the device
- - interrupts: Should contain the three frame engines interrupts in numeric
- 	order. These are fe_int0, fe_int1 and fe_int2.
--- 
-2.22.1
-
+    Andrew
