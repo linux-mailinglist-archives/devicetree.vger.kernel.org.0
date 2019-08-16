@@ -2,86 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB57090A0A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8F2A90A15
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 23:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727777AbfHPVLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 17:11:44 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:33835 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727748AbfHPVLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:11:44 -0400
-Received: by mail-oi1-f193.google.com with SMTP id l12so5813460oil.1;
-        Fri, 16 Aug 2019 14:11:43 -0700 (PDT)
+        id S1727753AbfHPVOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 17:14:33 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:40761 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727649AbfHPVOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 17:14:33 -0400
+Received: by mail-oi1-f194.google.com with SMTP id h21so5794998oie.7;
+        Fri, 16 Aug 2019 14:14:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0gC4sb2j3RWTm9xjuIK9kqivJqH0u782yHSmQQjFy/g=;
-        b=ZcN4oCeWfbQ8IuIbiJvX+uHyg1YUAnJlV3kFmXAKGTavk+exyLe7ff2VjFiXkDTygM
-         ifb682dWQdfQ1icKhTm6rP2nA8+yruA3hhwkUI1r9EeANqdGB32E8Tl46oSQ+BgdG6lh
-         FN0MhfYbVuM/65A+FVlc2KZclUUt9M2r/XsMFGouGqBpyO1m2bstqJsvz5VuWOh9qt+i
-         HnhcBiB9nQGEQ8qFWOIoSfFxfsLrMGS2Z4+bjkz3NIFTpjnSzbPM8TVgXs4fYEhcBMrs
-         sZKepC884dLnmUSSbvGTLcxU33HfYcbVNJOuvgS5ojY2wJrJqQqaJzJAl/IC8K9kXo+w
-         Pd2g==
-X-Gm-Message-State: APjAAAV/6MYS2rOa4vYc0l337p3Sha7zEzSK+ZcSoa9mJYbeT2/7XP2X
-        5ozNB/uLMnKzxPgDbaYKmA==
-X-Google-Smtp-Source: APXvYqxVNGZP55OO2DAvkxQON330c/WkMGGQCA7UZMyjdZKYVNzMAVMjLidQg+yRLMzc0LHLCzRN0Q==
-X-Received: by 2002:aca:5106:: with SMTP id f6mr6355037oib.69.1565989903418;
-        Fri, 16 Aug 2019 14:11:43 -0700 (PDT)
+        bh=4gRR6HvBg6u5veUlkvaSp6+HCcvQCdmIeBVhPgvLg/I=;
+        b=NLghpoLPSElcRSsklqLLctbkIfqC6ZkjLvrSvw60ruskZmUsNtHJ551HeTCg1Pw785
+         UgBb81J34MpcvYUj/YyXgh5X16p9EM+FUvkIh2aPBjOLePmGDHFQfUHAnY6Jia0t627B
+         rjoa/ARNU/U7/0oXkDjPLSz6UrILJQfVZAl9e3nY9olUbwKFSpb0xVoEHDTRQ0yNkpaZ
+         tX9tcTrIOUQVsco6qsakLyEGJpWtyDacswN9pqFvK2WLpG/9VjYZClX9UDnCCuv/I5uZ
+         LIpNJosHsZqJ+1MN3wbyPqZreezLeCddfyuSCAn8ROlyLzOPGzF6X4NNiXW1IWOvM/Ti
+         GO2g==
+X-Gm-Message-State: APjAAAWNgVR7c97BLfUmy8rs+tWBtpiw7S5iAee+EwfNZxRe1jYBsRzz
+        zTsqzC4g4M0smm78sj4WKNMv57M=
+X-Google-Smtp-Source: APXvYqyGpQgU9LoPcwD1U3cdu93f8C8iY9sv3eSKzx9WuZ10PDu6m4tPQlcQpTQ6ajbc+Hs+/Zam7A==
+X-Received: by 2002:a05:6808:903:: with SMTP id w3mr5765893oih.119.1565990071859;
+        Fri, 16 Aug 2019 14:14:31 -0700 (PDT)
 Received: from localhost (ip-173-126-47-137.ftwttx.spcsdns.net. [173.126.47.137])
-        by smtp.gmail.com with ESMTPSA id z26sm1648410oih.16.2019.08.16.14.11.42
+        by smtp.gmail.com with ESMTPSA id c11sm1095758otr.54.2019.08.16.14.14.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Aug 2019 14:11:42 -0700 (PDT)
-Date:   Fri, 16 Aug 2019 16:11:41 -0500
+        Fri, 16 Aug 2019 14:14:31 -0700 (PDT)
+Date:   Fri, 16 Aug 2019 16:14:30 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ath10k@lists.infradead.org, stable@vger.kernel.org
-Subject: Re: [PATCH] ath10k: Fix HOST capability QMI incompatibility
-Message-ID: <20190816211141.GA4468@bogus>
-References: <20190725063108.15790-1-bjorn.andersson@linaro.org>
+To:     Richard Tresidder <rtresidd@electromag.com.au>
+Cc:     sre@kernel.org, mark.rutland@arm.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: power/supply/sbs_sbs-battery: Addition
+ of force_load binding Add device tree binding documentation for addition of
+ force_load boolean value to allow loading a battery during boot even if not
+ present at that time.
+Message-ID: <20190816211430.GA8175@bogus>
+References: <1564037445-22936-1-git-send-email-rtresidd@electromag.com.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190725063108.15790-1-bjorn.andersson@linaro.org>
+In-Reply-To: <1564037445-22936-1-git-send-email-rtresidd@electromag.com.au>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 24, 2019 at 11:31:08PM -0700, Bjorn Andersson wrote:
-> The introduction of 768ec4c012ac ("ath10k: update HOST capability QMI
-> message") served the purpose of supporting the new and extended HOST
-> capability QMI message.
-> 
-> But while the new message adds a slew of optional members it changes the
-> data type of the "daemon_support" member, which means that older
-> versions of the firmware will fail to decode the incoming request
-> message.
-> 
-> There is no way to detect this breakage from Linux and there's no way to
-> recover from sending the wrong message (i.e. we can't just try one
-> format and then fallback to the other), so a quirk is introduced in
-> DeviceTree to indicate to the driver that the firmware requires the 8bit
-> version of this message.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 768ec4c012ac ("ath10k: update HOST capability qmi message")
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+On Thu, Jul 25, 2019 at 02:50:45PM +0800, Richard Tresidder wrote:
+> Signed-off-by: Richard Tresidder <rtresidd@electromag.com.au>
 > ---
->  .../bindings/net/wireless/qcom,ath10k.txt     |  6 +++++
+> 
+> Notes:
+>     Add device tree binding documentation for addition of force_load
+>     boolean value to allow loading a battery during boot even if not
+>     present at that time.
+>     Accompanying patch to drivers/power/supply/sbs-battery.c submitted to linux-pm@vger.kernel.org
+> 
+>  Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt b/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
+> index 4e78e51..187d7bb 100644
+> --- a/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
+> +++ b/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
+> @@ -15,7 +15,8 @@ Optional properties :
+>     after an external change notification.
+>   - sbs,battery-detect-gpios : The gpio which signals battery detection and
+>     a flag specifying its polarity.
+> -
+> + - sbs,force-load : Allow loading of a hot-pluggable battery when there is no
+> +   GPIO detect available and the module is statically built.
 
-Acked-by: Rob Herring <robh@kernel.org>
+What's a module? That's Linux specific and nothing to do with the 
+binding. 
 
->  drivers/net/wireless/ath/ath10k/qmi.c         | 13 ++++++++---
->  .../net/wireless/ath/ath10k/qmi_wlfw_v01.c    | 22 +++++++++++++++++++
->  .../net/wireless/ath/ath10k/qmi_wlfw_v01.h    |  1 +
->  drivers/net/wireless/ath/ath10k/snoc.c        | 11 ++++++++++
->  drivers/net/wireless/ath/ath10k/snoc.h        |  1 +
->  6 files changed, 51 insertions(+), 3 deletions(-)
+Can't you just force load if sbs,battery-detect-gpios is not present?
+
+Rob
