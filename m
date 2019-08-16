@@ -2,166 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E373F8FF8D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F44D8FFBA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726994AbfHPKAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 06:00:09 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:43777 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726952AbfHPKAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 06:00:08 -0400
-Received: by mail-wr1-f66.google.com with SMTP id y8so977744wrn.10
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2019 03:00:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=vpBkKVWPZxTFgjcL9mw5lOn36S0jprd/tkaa79IktSE=;
-        b=V4zEgQ1CpsVR2tUXwgLpnQecPtMuZKTG8SVaYdORhxBixBFM+LOqVkMliC/ZHA2nig
-         cTbqqOBHf9AOM9rq5o7mT/E9NYmMeib2M7pr3FS/mfMAPdfGRMDnhbiiU68MIMmmU9Qv
-         Q/1d7H10MUR2xPcNYtBiN9N9Wb9XilPsO+yRGwhKXgMbn/I30Dr6KgRNhEyAnrzgwHjg
-         L0wRTJ+H6UMbBKJARoaigqTqH7hsnsQXDndQQYMpSeH+q3I3SiUe/16IXQ37ucV23D+X
-         0mNhNMOgNnhDjGjI7Fdvv+qFTsFOJOBWKg2JWJj8anvfBx8di6EGads/glx0nTcdxcoe
-         Md7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=vpBkKVWPZxTFgjcL9mw5lOn36S0jprd/tkaa79IktSE=;
-        b=e6UzWMczGcgQV6dn8yzwD8S8rrM9iV2pY9I/UtUHNyRGZflOyA1m9KjcPU4Z08ek13
-         1gnopiYhhbiLD/+P5JzCKWIMsdBW/orOISgM1WkwuRx5EfKZLazb92Yox6d/EY8sYlfc
-         x9b/M1HnwsT5lvDD5HUL+50rK0orp5M1dV73sX36A/Xjt6oT+hHF5/Ot1M3ka/93oMH2
-         oKNXTrDyUA9dfxBczj4F9OCJzzN3XASpwC+J1LcaKrKINyKqmLQFvu6agfI2Gjz87j9m
-         KshSafbeNfaDsZ84t5SJS9DY+S33f4ue9RkRQeIWhC0Kb3fklAjdMPEBYzG8U1AkoX3p
-         GHKQ==
-X-Gm-Message-State: APjAAAWb2IsGXx+oNgo7U40RX2tebtZiK6pQ+ch/BviNGOrPxNzBJ37D
-        UQwlfR4GwKM2eQ0GPKmvGiLeEw==
-X-Google-Smtp-Source: APXvYqyAKoHBIbrrr6VHcb6dxUn6rsNJohqk4WfrbruLQ4VTZc1/VfagEUud9Os/2bRvz2ZRijXSZg==
-X-Received: by 2002:a05:6000:12c5:: with SMTP id l5mr9812107wrx.122.1565949605473;
-        Fri, 16 Aug 2019 03:00:05 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:d199:47e7:7c84:8d62? ([2a01:e34:ed2f:f020:d199:47e7:7c84:8d62])
-        by smtp.googlemail.com with ESMTPSA id 91sm15549988wrp.3.2019.08.16.03.00.00
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 16 Aug 2019 03:00:04 -0700 (PDT)
-Subject: Re: [PATCH V6 4/4] arm64: dts: imx8mm: Enable cpu-idle driver
-To:     Anson Huang <Anson.Huang@nxp.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, tglx@linutronix.de,
-        leonard.crestez@nxp.com, daniel.baluta@nxp.com, ping.bai@nxp.com,
-        jun.li@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
-        ccaione@baylibre.com, andrew.smirnov@gmail.com, angus@akkea.ca,
-        agx@sigxcpu.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
+        id S1726985AbfHPKIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 06:08:49 -0400
+Received: from mail-eopbgr30074.outbound.protection.outlook.com ([40.107.3.74]:57198
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726952AbfHPKIt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 06:08:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G1Ow1zzUunnCOctsNUE1ZNSh/8i1sM+sa06FWr3UaiZ3B2/Lykayf/iklkZVy2XDweZBN12z8cic/4ojF92eYganC2/gp4IN+aEHifa3YUTUC8d6ThGsTwuzOVeqjl2YE66jBV3pYZuoKiq1lwqIKKJ/NnnGIr1Y5YohYCgvKfn6iJAiZTRkwRMqjHjQl+Y1kWbqOPytYsWNAjNhABSjZSfcT1WpCTYQdKfABdLdhlOHPNC6L5WZRmOUuU31MycvvcjUboPQ63wKvheqiGW2sb0nGzujix52/Z1iFd6mTEbKFL9muUUmQ9WZOJu5QPTToEEEKNQbEwutzJb8s0oeTQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MwwETmB8aLqb0AEB2ENlSiDWD/sITnifXYYDH7q9LFM=;
+ b=HGtBgBQdp/fhDOQ4ijP2JNqUFfFCp0xDZV9cKzip/LYhG44BAcH1Tx7gC6/rlYMYr6DYHYouyP9y+naFtcan/MyJWvswwN4L2qG0AG/hkM1cGahFrC9GjFHWudWI8FBtXaHXIkeVcIAHcFViQQj0c8ikJOxBVv1oRtZyfar9NJD17mLgXSZ00tdbIZwalZHp9TvsZj56c0TOY4uJRgphP7ijj/fgkYA16tV6tLsBjsAZHEG/4JRQrLCOxUvvt6r2bfJ6ijYAyOKfuU6Ij1DtAHAqif+7yFGFqT+uIusYPkM03weQUJ23i9AUtjMDFW9tnt6lUcigoxEaEOINP1NzEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MwwETmB8aLqb0AEB2ENlSiDWD/sITnifXYYDH7q9LFM=;
+ b=Y8Qjc9QVC6QQU/z2XaeJUdKECmygVMZUrzrBrlj+wPEgyNXvWO0HPz/XMcj8AUxZ5VGq3wL93mnBW1vBrzWL1zDHjS05m0a+MlsenDe/LPaB6k1asgfuzfyB3v3Hebn+U4yksacLUBhTHOYWNJnPVGkyCYqj+xxnmG9AuvwBwOw=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3708.eurprd04.prod.outlook.com (52.134.70.139) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.15; Fri, 16 Aug 2019 10:08:44 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::7cdf:bddc:212c:f77e]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::7cdf:bddc:212c:f77e%4]) with mapi id 15.20.2178.016; Fri, 16 Aug 2019
+ 10:08:44 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>, Jun Li <jun.li@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V6 4/4] arm64: dts: imx8mm: Enable cpu-idle driver
+Thread-Topic: [PATCH V6 4/4] arm64: dts: imx8mm: Enable cpu-idle driver
+Thread-Index: AQHVU82SFvIqTYVX002fkrtVdPy2g6b9ix+AgAABRwA=
+Date:   Fri, 16 Aug 2019 10:08:44 +0000
+Message-ID: <DB3PR0402MB3916E469219C7CC68D55C90AF5AF0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
 References: <1565915925-21009-1-git-send-email-Anson.Huang@nxp.com>
  <1565915925-21009-4-git-send-email-Anson.Huang@nxp.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <e62d26b9-8c9b-644f-d2b3-485586e07e35@linaro.org>
-Date:   Fri, 16 Aug 2019 11:59:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1565915925-21009-4-git-send-email-Anson.Huang@nxp.com>
-Content-Type: text/plain; charset=utf-8
+ <e62d26b9-8c9b-644f-d2b3-485586e07e35@linaro.org>
+In-Reply-To: <e62d26b9-8c9b-644f-d2b3-485586e07e35@linaro.org>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8ece5082-5b29-42b5-dba7-08d72231b906
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB3PR0402MB3708;
+x-ms-traffictypediagnostic: DB3PR0402MB3708:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB3PR0402MB3708F6C733A4B8E140C1238CF5AF0@DB3PR0402MB3708.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 0131D22242
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(346002)(136003)(39860400002)(376002)(396003)(199004)(189003)(446003)(53936002)(4326008)(6246003)(74316002)(3846002)(99286004)(26005)(9686003)(66066001)(7696005)(25786009)(2201001)(102836004)(53546011)(55016002)(76176011)(4744005)(6506007)(110136005)(478600001)(71200400001)(71190400001)(14454004)(2906002)(66476007)(52536014)(64756008)(486006)(8936002)(186003)(316002)(6436002)(256004)(33656002)(66556008)(66446008)(8676002)(66946007)(76116006)(6116002)(5660300002)(2501003)(7416002)(44832011)(11346002)(476003)(86362001)(305945005)(7736002)(81156014)(81166006)(229853002)(921003)(32563001)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3708;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 6ce8yJ+uWyRi3I2LPljSTL9r+TH79tJrnMAmuFzQQafrJ3Kj7w8Ts8IcolNQNcclQkxq7OxJtmbJIuCNuIDC1ZRP3jnIdgf+30NaRz0JBcFXGYBz76kPRGq067kikthdQATof8FKX7s9sje086jF7GtOkXhPL64YpFxcL5l7ndAW188mVU9PMzcmO9joIBfePF5JiZ34tyJ2TAQLbtIcvCMFIT4SnWlCNt7uoKw93AD3eaRE7KWrbMSXwUTHXYX4zgX8JdOJJQtnEPUWI5JYzBOQ/ZSg297plO056pqny1exah9wXr2VPKYtri7s3CJ8VFw/zZ11WVpXLqVLGur0Htq/B7W6cbGtyXGZJiEbBorKkSJSA0POra17vIuWP88MS4+s/WdOCJMPt9SFkspDKnI0erKQC7LMnDCB5dSPiu0=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ece5082-5b29-42b5-dba7-08d72231b906
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2019 10:08:44.7421
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AJxymtZefIEW+o+BHutOn2kY/uTrDuxdz5gwpiCnFpr9irLA/CGHQ0MqMxX/l1/6qa58xXalSM+l+OPSDGmctA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3708
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/08/2019 02:38, Anson Huang wrote:
-> Enable i.MX8MM cpu-idle using generic ARM cpu-idle driver, 2 states
-> are supported, details as below:
-> 
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state0/name
-> WFI
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state0/usage
-> 3973
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state1/name
-> cpu-pd-wait
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state1/usage
-> 6647
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-
-Hi Anson,
-
-I've applied the patches 1-3 but this one does not apply.
-
-You can either respin it against tip/timers/core and take it through
-Shawn's tree. If the later, you can add my Acked-by.
-
-  -- Daniel
-
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
-
+SGksIERhbmllbC9TaGF3bg0KDQo+IE9uIDE2LzA4LzIwMTkgMDI6MzgsIEFuc29uIEh1YW5nIHdy
+b3RlOg0KPiA+IEVuYWJsZSBpLk1YOE1NIGNwdS1pZGxlIHVzaW5nIGdlbmVyaWMgQVJNIGNwdS1p
+ZGxlIGRyaXZlciwgMiBzdGF0ZXMNCj4gPiBhcmUgc3VwcG9ydGVkLCBkZXRhaWxzIGFzIGJlbG93
+Og0KPiA+DQo+ID4gcm9vdEBpbXg4bW1ldms6fiMgY2F0DQo+IC9zeXMvZGV2aWNlcy9zeXN0ZW0v
+Y3B1L2NwdTAvY3B1aWRsZS9zdGF0ZTAvbmFtZQ0KPiA+IFdGSQ0KPiA+IHJvb3RAaW14OG1tZXZr
+On4jIGNhdA0KPiA+IC9zeXMvZGV2aWNlcy9zeXN0ZW0vY3B1L2NwdTAvY3B1aWRsZS9zdGF0ZTAv
+dXNhZ2UNCj4gPiAzOTczDQo+ID4gcm9vdEBpbXg4bW1ldms6fiMgY2F0DQo+IC9zeXMvZGV2aWNl
+cy9zeXN0ZW0vY3B1L2NwdTAvY3B1aWRsZS9zdGF0ZTEvbmFtZQ0KPiA+IGNwdS1wZC13YWl0DQo+
+ID4gcm9vdEBpbXg4bW1ldms6fiMgY2F0DQo+ID4gL3N5cy9kZXZpY2VzL3N5c3RlbS9jcHUvY3B1
+MC9jcHVpZGxlL3N0YXRlMS91c2FnZQ0KPiA+IDY2NDcNCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6
+IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiANCj4gSGkgQW5zb24sDQo+IA0K
+PiBJJ3ZlIGFwcGxpZWQgdGhlIHBhdGNoZXMgMS0zIGJ1dCB0aGlzIG9uZSBkb2VzIG5vdCBhcHBs
+eS4NCg0KVGhhbmtzLg0KDQo+IA0KPiBZb3UgY2FuIGVpdGhlciByZXNwaW4gaXQgYWdhaW5zdCB0
+aXAvdGltZXJzL2NvcmUgYW5kIHRha2UgaXQgdGhyb3VnaCBTaGF3bidzDQo+IHRyZWUuIElmIHRo
+ZSBsYXRlciwgeW91IGNhbiBhZGQgbXkgQWNrZWQtYnkuDQoNCkhpLCBTaGF3bg0KCUNhbiB5b3Ug
+dGFrZSB0aGlzIHBhdGNoIGFuZCBhZGQgYmVsb3cgQWNrZWQtYnk/IEl0IHNob3VsZCBjYW4gYmUg
+YXBwbGllZCB0byB5b3VyIHRyZWUgZGlyZWN0bHkuDQoNCglBY2tlZC1ieTogRGFuaWVsIExlemNh
+bm8gPGRhbmllbC5sZXpjYW5vQGxpbmFyby5vcmc+DQoNClRoYW5rcywNCkFuc29uDQoNCg0K
