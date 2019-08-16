@@ -2,221 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61CC690794
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA410907A5
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 20:21:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727200AbfHPSQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 14:16:15 -0400
-Received: from shell.v3.sk ([90.176.6.54]:58637 "EHLO shell.v3.sk"
+        id S1727569AbfHPSVc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 14:21:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45602 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727437AbfHPSQO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 14:16:14 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 019F2D6DCD;
-        Fri, 16 Aug 2019 20:15:57 +0200 (CEST)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id lcjr_n3cdX7b; Fri, 16 Aug 2019 20:15:50 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 1AF27D6DCE;
-        Fri, 16 Aug 2019 20:15:50 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id xJOvBvIactQL; Fri, 16 Aug 2019 20:15:49 +0200 (CEST)
-Received: from belphegor (nat-pool-brq-t.redhat.com [213.175.37.10])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id A8F80D6DCD;
-        Fri, 16 Aug 2019 20:15:48 +0200 (CEST)
-Message-ID: <4aa480578d4711645f6a1617d9218812f0af4cac.camel@v3.sk>
-Subject: Re: [PATCH 07/19] irqchip/mmp: mask off interrupts from other cores
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, Andres Salomon <dilinger@queued.net>
-Date:   Fri, 16 Aug 2019 20:15:47 +0200
-In-Reply-To: <19a21c54-93ac-19dc-d679-8d376d44e68c@kernel.org>
-References: <20190809093158.7969-1-lkundrak@v3.sk>
-         <20190809093158.7969-8-lkundrak@v3.sk>
-         <19a21c54-93ac-19dc-d679-8d376d44e68c@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+        id S1727568AbfHPSVc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 14:21:32 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A692E206C1;
+        Fri, 16 Aug 2019 18:21:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565979691;
+        bh=SdLfbqllEBIl5x50TrX3UxG8XOSW2YtXDHKp5IStfXM=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=e53ZOCk/X9G2cDNOl0Z73k7huakI07VBl7FdYFhOLpShZfOzZ+5coj70+uwihDuvk
+         z9s6x8bIEepalcIsgxfqA417KLs5rwMzixF/i/iCjCs5hEETPYowz8ThkXLhea1b2B
+         9fE9gRvCpr7m3PE9EV05zdCL1YPGNixTRhMdfNS4=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190807223111.230846-3-saravanak@google.com>
+References: <20190807223111.230846-1-saravanak@google.com> <20190807223111.230846-3-saravanak@google.com>
+Subject: Re: [PATCH v5 2/3] OPP: Add support for bandwidth OPP tables
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, adharmap@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Viresh Kumar <vireshk@kernel.org>
+User-Agent: alot/0.8.1
+Date:   Fri, 16 Aug 2019 11:21:30 -0700
+Message-Id: <20190816182131.A692E206C1@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-08-09 at 13:18 +0100, Marc Zyngier wrote:
-> On 09/08/2019 10:31, Lubomir Rintel wrote:
-> > From: Andres Salomon <dilinger@queued.net>
-> > 
-> > On mmp3, there's an extra set of ICU registers (ICU2) that handle
-> > interrupts on the extra cores.  When masking off interrupts on MP1,
-> > these should be masked as well.
-> > 
-> > We add a new interrupt controller via device tree to identify when we're
-> > looking at an mmp3 machine via compatible field of "marvell,mmp3-intc".
-> > 
-> > [lkundrak@v3.sk: Changed "mrvl,mmp3-intc" compatible strings to
-> > "marvell,mmp3-intc". Tidied up the subject line a bit.]
-> > 
-> > Signed-off-by: Andres Salomon <dilinger@queued.net>
-> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > 
-> > ---
-> >  arch/arm/mach-mmp/regs-icu.h |  3 +++
-> >  drivers/irqchip/irq-mmp.c    | 51 ++++++++++++++++++++++++++++++++++++
-> >  2 files changed, 54 insertions(+)
-> > 
-> > diff --git a/arch/arm/mach-mmp/regs-icu.h b/arch/arm/mach-mmp/regs-icu.h
-> > index 0375d5a7fcb2b..410743d2b4020 100644
-> > --- a/arch/arm/mach-mmp/regs-icu.h
-> > +++ b/arch/arm/mach-mmp/regs-icu.h
-> > @@ -11,6 +11,9 @@
-> >  #define ICU_VIRT_BASE	(AXI_VIRT_BASE + 0x82000)
-> >  #define ICU_REG(x)	(ICU_VIRT_BASE + (x))
-> >  
-> > +#define ICU2_VIRT_BASE	(AXI_VIRT_BASE + 0x84000)
-> > +#define ICU2_REG(x)	(ICU2_VIRT_BASE + (x))
-> > +
-> >  #define ICU_INT_CONF(n)		ICU_REG((n) << 2)
-> >  #define ICU_INT_CONF_MASK	(0xf)
-> >  
-> > diff --git a/drivers/irqchip/irq-mmp.c b/drivers/irqchip/irq-mmp.c
-> > index cd8d2253f56d1..25497c75cc861 100644
-> > --- a/drivers/irqchip/irq-mmp.c
-> > +++ b/drivers/irqchip/irq-mmp.c
-> > @@ -44,6 +44,7 @@ struct icu_chip_data {
-> >  	unsigned int		conf_enable;
-> >  	unsigned int		conf_disable;
-> >  	unsigned int		conf_mask;
-> > +	unsigned int		conf2_mask;
-> >  	unsigned int		clr_mfp_irq_base;
-> >  	unsigned int		clr_mfp_hwirq;
-> >  	struct irq_domain	*domain;
-> > @@ -53,9 +54,11 @@ struct mmp_intc_conf {
-> >  	unsigned int	conf_enable;
-> >  	unsigned int	conf_disable;
-> >  	unsigned int	conf_mask;
-> > +	unsigned int	conf2_mask;
-> >  };
-> >  
-> >  static void __iomem *mmp_icu_base;
-> > +static void __iomem *mmp_icu2_base;
-> >  static struct icu_chip_data icu_data[MAX_ICU_NR];
-> >  static int max_icu_nr;
-> >  
-> > @@ -98,6 +101,16 @@ static void icu_mask_irq(struct irq_data *d)
-> >  		r &= ~data->conf_mask;
-> >  		r |= data->conf_disable;
-> >  		writel_relaxed(r, mmp_icu_base + (hwirq << 2));
-> > +
-> > +		if (data->conf2_mask) {
-> > +			/*
-> > +			 * ICU1 (above) only controls PJ4 MP1; if using SMP,
-> > +			 * we need to also mask the MP2 and MM cores via ICU2.
-> > +			 */
-> > +			r = readl_relaxed(mmp_icu2_base + (hwirq << 2));
-> > +			r &= ~data->conf2_mask;
-> > +			writel_relaxed(r, mmp_icu2_base + (hwirq << 2));
-> > +		}
-> >  	} else {
-> >  		r = readl_relaxed(data->reg_mask) | (1 << hwirq);
-> >  		writel_relaxed(r, data->reg_mask);
-> > @@ -201,6 +214,14 @@ static const struct mmp_intc_conf mmp2_conf = {
-> >  			  MMP2_ICU_INT_ROUTE_PJ4_FIQ,
-> >  };
-> >  
-> > +static struct mmp_intc_conf mmp3_conf = {
-> > +	.conf_enable	= 0x20,
-> > +	.conf_disable	= 0x0,
-> > +	.conf_mask	= MMP2_ICU_INT_ROUTE_PJ4_IRQ |
-> > +			  MMP2_ICU_INT_ROUTE_PJ4_FIQ,
-> > +	.conf2_mask	= 0xf0,
-> > +};
-> > +
-> >  static void __exception_irq_entry mmp_handle_irq(struct pt_regs *regs)
-> >  {
-> >  	int hwirq;
-> > @@ -364,6 +385,14 @@ static int __init mmp_init_bases(struct device_node *node)
-> >  		pr_err("Failed to get interrupt controller register\n");
-> >  		return -ENOMEM;
-> >  	}
-> > +	if (of_device_is_compatible(node, "marvell,mmp3-intc")) {
-> 
-> Instead of harcoding the compatible property once more, why don't you
-> simply pass a flag from mmpx_of_init()?
+Quoting Saravana Kannan (2019-08-07 15:31:10)
+> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+> index 1813f5ad5fa2..e1750033fef9 100644
+> --- a/drivers/opp/of.c
+> +++ b/drivers/opp/of.c
+> @@ -523,6 +523,35 @@ void dev_pm_opp_of_remove_table(struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
+> =20
+> +static int _read_opp_key(struct dev_pm_opp *new_opp, struct device_node =
+*np)
+> +{
+> +       int ret;
+> +       u64 rate;
+> +       u32 bw;
+> +
+> +       ret =3D of_property_read_u64(np, "opp-hz", &rate);
+> +       if (!ret) {
+> +               /*
+> +                * Rate is defined as an unsigned long in clk API, and so
+> +                * casting explicitly to its type. Must be fixed once rat=
+e is 64
+> +                * bit guaranteed in clk API.
+> +                */
+> +               new_opp->rate =3D (unsigned long)rate;
+> +               return 0;
+> +       }
+> +
+> +       ret =3D of_property_read_u32(np, "opp-peak-kBps", &bw);
+> +       if (ret)
+> +               return ret;
+> +       new_opp->rate =3D (unsigned long) bw;
+> +
+> +       ret =3D of_property_read_u32(np, "opp-avg-kBps", &bw);
+> +       if (!ret)
 
-Will do so in next version.
+I would write this as=20
 
-> > +		mmp_icu2_base = of_iomap(node, 1);
-> > +		if (!mmp_icu2_base) {
-> > +			pr_err("Failed to get interrupt controller register #2\n");
-> > +			iounmap(mmp_icu_base);
-> > +			return -ENOMEM;
-> > +		}
-> > +	}
-> >  
-> >  	icu_data[0].virq_base = 0;
-> >  	icu_data[0].domain = irq_domain_add_linear(node, nr_irqs,
-> > @@ -386,6 +415,8 @@ static int __init mmp_init_bases(struct device_node *node)
-> >  			irq_dispose_mapping(icu_data[0].virq_base + i);
-> >  	}
-> >  	irq_domain_remove(icu_data[0].domain);
-> > +	if (of_device_is_compatible(node, "marvell,mmp3-intc"))
-> > +		iounmap(mmp_icu2_base);
-> >  	iounmap(mmp_icu_base);
-> >  	return -EINVAL;
-> >  }
-> > @@ -428,6 +459,26 @@ static int __init mmp2_of_init(struct device_node *node,
-> >  }
-> >  IRQCHIP_DECLARE(mmp2_intc, "mrvl,mmp2-intc", mmp2_of_init);
-> >  
-> > +static int __init mmp3_of_init(struct device_node *node,
-> > +			       struct device_node *parent)
-> > +{
-> > +	int ret;
-> > +
-> > +	ret = mmp_init_bases(node);
-> > +	if (ret < 0)
-> > +		return ret;
-> > +
-> > +	icu_data[0].conf_enable = mmp3_conf.conf_enable;
-> > +	icu_data[0].conf_disable = mmp3_conf.conf_disable;
-> > +	icu_data[0].conf_mask = mmp3_conf.conf_mask;
-> > +	icu_data[0].conf2_mask = mmp3_conf.conf2_mask;
-> > +	irq_set_default_host(icu_data[0].domain);
-> 
-> Why do you need this? On a fully DT-ified platform, there should be no
-> notion of a default domain.
+	if (!of_property_read_u32(np, "opp-avg-kBps", &bw))
+		new_opp->avg_bw =3D (unsigned long) bw;
 
-I didn't know. Pretty sure this was cargo-culted, because it's done
-elsewhere too and also unnecessary. Will remove those cases too.
+because you don't care about the return value.
 
-> > +	set_handle_irq(mmp2_handle_irq);
-> > +	max_icu_nr = 1;
-> > +	return 0;
-> > +}
-> > +IRQCHIP_DECLARE(mmp3_intc, "marvell,mmp3-intc", mmp3_of_init);
-> > +
-> >  static int __init mmp2_mux_of_init(struct device_node *node,
-> >  				   struct device_node *parent)
-> >  {
-> > 
-> 
-> Thanks,
-> 
-> 	M.
+> +               new_opp->avg_bw =3D (unsigned long) bw;
+> +
+> +       return 0;
+> +}
+> +
+>  /**
+>   * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT bindings)
+>   * @opp_table: OPP table
+> diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
+> index 01a500e2c40a..6bb238af9cac 100644
+> --- a/drivers/opp/opp.h
+> +++ b/drivers/opp/opp.h
+> @@ -56,7 +56,8 @@ extern struct list_head opp_tables;
+>   * @turbo:     true if turbo (boost) OPP
+>   * @suspend:   true if suspend OPP
+>   * @pstate: Device's power domain's performance state.
+> - * @rate:      Frequency in hertz
+> + * @rate:      Frequency in hertz OR Peak bandwidth in kilobytes per sec=
+ond
 
-Thanks
-Lubo
+Why is Peak capitalized?
 
+> + * @avg_bw:    Average bandwidth in kilobytes per second
+>   * @level:     Performance level
+>   * @supplies:  Power supplies voltage/current values
+>   * @clock_latency_ns: Latency (in nanoseconds) of switching to this OPP's
+> @@ -78,6 +79,7 @@ struct dev_pm_opp {
+>         bool suspend;
+>         unsigned int pstate;
+>         unsigned long rate;
+
+If you're trying to save space why not make an anonymous union here of
+'rate' and 'bandwidth'? Then the code doesn't read all weird.
+
+> +       unsigned long avg_bw;
+>         unsigned int level;
+> =20
+>         struct dev_pm_opp_supply *supplies;
