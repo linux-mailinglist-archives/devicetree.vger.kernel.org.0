@@ -2,210 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 591B68FEB9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 11:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0398B8FF1B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 11:35:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726872AbfHPJLB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 05:11:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46424 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726839AbfHPJLA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 05:11:00 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ABE4E206C2;
-        Fri, 16 Aug 2019 09:10:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565946659;
-        bh=XbNO7UJc3MQPqHVpzgOYL7MCdSjBajRwYqZfcE7WP7o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1nBEuwuK74aeMJgErkmgk7w5CHihAPmaEwzFO8WEFJpGp6/11OmxvtE9JPOWvNXpB
-         oTL0ApfXSniYoHAHHLX8OB2N2+WL8HdyBBneeHV1TXLitzJVUhcuVQZor0EhPQNQQi
-         gn7slz1AoKSV6w7cEGu0dZ8OQYeR+hN+znu5B8fI=
-Date:   Fri, 16 Aug 2019 11:10:56 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
-Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize
- probe ordering
-Message-ID: <20190816091056.GA15703@kroah.com>
-References: <20190731221721.187713-1-saravanak@google.com>
- <919b66e9-9708-de34-41cd-e448838b130c@gmail.com>
- <CAGETcx8LqeOXD5zPsLuxoG5pR9VZ_v=PQfRf-aFwCSaW4kwoxA@mail.gmail.com>
- <7a0ee940-f81f-36b9-93e7-2b4c242360c9@gmail.com>
- <CAGETcx_UxNV_Qk79es0SJ3L0yAtFRpOjPcU7e5Cje6UPbp5adQ@mail.gmail.com>
- <183eab70-0eda-f30e-ae25-74355b8b84c9@gmail.com>
+        id S1726828AbfHPJfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 05:35:19 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:38263 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726879AbfHPJfT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 05:35:19 -0400
+Received: by mail-wm1-f66.google.com with SMTP id m125so3531027wmm.3;
+        Fri, 16 Aug 2019 02:35:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=rbr1jopCtEP3uUBd65SxG5GDcmjxQ0jQZ9rlFzdVGBM=;
+        b=EuBdvrGE0ubQvEt+M3mSAC0JjzxeRNOmdv7mzpRm5xWy0VsOxsWBMe6IjzBJhIY2B4
+         NgYq1kWWWRv0GJU7LSbwUx3z8/Kc9Bw4Q/SHgQeOeGLYKbEhPu4mbifvO9xB5+6w4NQr
+         s+5yAmQJzhdBEqOiPPNdl1HSGg1nbOI5uSKak28gr34lHJuT9s9PxROhSELUvP0dnIbx
+         1ggO5FAm9aPTkHMi7VqbekutqvJJvckN/l9niEeJHmIHfZpJlrDdQZ8etFuQrNSiAYu+
+         ecJJizw/qv/yQSifb5PBIhDeKc9fn/5w73217/H6g0iPdrK2IbdwUqb+o0kY/u2meNpv
+         QR+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rbr1jopCtEP3uUBd65SxG5GDcmjxQ0jQZ9rlFzdVGBM=;
+        b=EE/nI4n+NlYUeMA5MIFLtZIWlVgHjT6UbJXRvROe/iwvqGGb31Pk1IkOf4BggAaTbe
+         1DIpWIjPs2wLGjUV5uxDFXcK+sPuOaGOfxlrhllITUWknc/xGPzUVsBnyvFs47qVCmFj
+         94iNXHiZGkzeNW0GvB2fhtG9h9NUXynZgOPV1AW592QxbNXKmVZM/hML95O1mNQB70qA
+         Z9THUwhsjA71QYCoj5nF+t/hmEQa3EqJPgvH92LDynd5AfBEsAbACOY6SNsUB8Q8UyEI
+         x/iSLWu7xl1j3szP9Fam4S6Ss+NaQWDP2NY0i8nqhrz/oHck/S4aejAp5KuEoyDAIZFR
+         pliw==
+X-Gm-Message-State: APjAAAUywobLHwOXQLFMvGtlVPaKQzFKMrTQNFrrLvlOWpP3YZwBdmHg
+        YT4XOwzVWVSKonSkfc5P7tA=
+X-Google-Smtp-Source: APXvYqy2Ze5R7JhzotwLUUfhPTfgK7a1GBPQV3583GsixouocQNDNqD3jX9If6rReradtPZ+4oRZuw==
+X-Received: by 2002:a7b:c091:: with SMTP id r17mr5916128wmh.74.1565948116827;
+        Fri, 16 Aug 2019 02:35:16 -0700 (PDT)
+Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id m23sm6600892wml.41.2019.08.16.02.35.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 16 Aug 2019 02:35:16 -0700 (PDT)
+Date:   Fri, 16 Aug 2019 11:35:13 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64
+ modelA evaluation board
+Message-ID: <20190816093513.GA25042@Red>
+References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+ <20190812094000.ebdmhyxx7xzbevef@flea>
+ <20190814131741.GB24324@Red>
+ <20190814133322.dawzv3ityakxtqs4@flea>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <183eab70-0eda-f30e-ae25-74355b8b84c9@gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190814133322.dawzv3ityakxtqs4@flea>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 15, 2019 at 08:09:19PM -0700, Frank Rowand wrote:
-> Hi Saravana,
+On Wed, Aug 14, 2019 at 03:33:22PM +0200, Maxime Ripard wrote:
+> On Wed, Aug 14, 2019 at 03:17:41PM +0200, Corentin Labbe wrote:
+> > On Mon, Aug 12, 2019 at 11:40:00AM +0200, Maxime Ripard wrote:
+> > > On Thu, Aug 08, 2019 at 10:42:53AM +0200, Corentin Labbe wrote:
+> > > > This patch adds the evaluation variant of the model A of the PineH64.
+> > > > The model A has the same size of the pine64 and has a PCIE slot.
+> > > >
+> > > > The only devicetree difference with current pineH64, is the PHY
+> > > > regulator.
+> > > >
+> > > > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+> > > >  .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
+> > > >  2 files changed, 27 insertions(+)
+> > > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> > > > index f6db0611cb85..9a02166cbf72 100644
+> > > > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > > > @@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
+> > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
+> > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
+> > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+> > > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA-eval.dtb
+> > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > > new file mode 100644
+> > > > index 000000000000..d8ff02747efe
+> > > > --- /dev/null
+> > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > > @@ -0,0 +1,26 @@
+> > > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > > > +/*
+> > > > + * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
+> > > > + */
+> > > > +
+> > > > +#include "sun50i-h6-pine-h64.dts"
+> > > > +
+> > > > +/ {
+> > > > +	model = "Pine H64 model A evaluation board";
+> > > > +	compatible = "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
+> > > > +
+> > > > +	reg_gmac_3v3: gmac-3v3 {
+> > > > +		compatible = "regulator-fixed";
+> > > > +		regulator-name = "vcc-gmac-3v3";
+> > > > +		regulator-min-microvolt = <3300000>;
+> > > > +		regulator-max-microvolt = <3300000>;
+> > > > +		startup-delay-us = <100000>;
+> > > > +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
+> > > > +		enable-active-high;
+> > > > +	};
+> > > > +
+> > > > +};
+> > > > +
+> > > > +&emac {
+> > > > +	phy-supply = <&reg_gmac_3v3>;
+> > > > +};
+> > >
+> > > I might be missing some context here, but I'm pretty sure that the
+> > > initial intent of the pine h64 DTS was to support the model A all
+> > > along.
+> > >
+> >
+> > The regulator changed between modelA and B.
+> > See this old patchset (supporting modelA) https://patchwork.kernel.org/patch/10539149/ for example.
 > 
-> On 8/15/19 6:50 PM, Saravana Kannan wrote:
-> > On Fri, Aug 9, 2019 at 10:20 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>
-> >> On 8/9/19 10:00 PM, Saravana Kannan wrote:
-> >>> On Fri, Aug 9, 2019 at 7:57 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >>>>
-> >>>> Hi Saravana,
-> >>>>
-> >>>> On 7/31/19 3:17 PM, Saravana Kannan wrote:
-> >>>>> Add device-links to track functional dependencies between devices
-> >>>>> after they are created (but before they are probed) by looking at
-> >>>>> their common DT bindings like clocks, interconnects, etc.
-> >>>>>
-> >>>>> Having functional dependencies automatically added before the devices
-> >>>>> are probed, provides the following benefits:
-> >>>>>
-> >>>>> - Optimizes device probe order and avoids the useless work of
-> >>>>>   attempting probes of devices that will not probe successfully
-> >>>>>   (because their suppliers aren't present or haven't probed yet).
-> >>>>>
-> >>>>>   For example, in a commonly available mobile SoC, registering just
-> >>>>>   one consumer device's driver at an initcall level earlier than the
-> >>>>>   supplier device's driver causes 11 failed probe attempts before the
-> >>>>>   consumer device probes successfully. This was with a kernel with all
-> >>>>>   the drivers statically compiled in. This problem gets a lot worse if
-> >>>>>   all the drivers are loaded as modules without direct symbol
-> >>>>>   dependencies.
-> >>>>>
-> >>>>> - Supplier devices like clock providers, interconnect providers, etc
-> >>>>>   need to keep the resources they provide active and at a particular
-> >>>>>   state(s) during boot up even if their current set of consumers don't
-> >>>>>   request the resource to be active. This is because the rest of the
-> >>>>>   consumers might not have probed yet and turning off the resource
-> >>>>>   before all the consumers have probed could lead to a hang or
-> >>>>>   undesired user experience.
-> >>>>>
-> >>>>>   Some frameworks (Eg: regulator) handle this today by turning off
-> >>>>>   "unused" resources at late_initcall_sync and hoping all the devices
-> >>>>>   have probed by then. This is not a valid assumption for systems with
-> >>>>>   loadable modules. Other frameworks (Eg: clock) just don't handle
-> >>>>>   this due to the lack of a clear signal for when they can turn off
-> >>>>>   resources. This leads to downstream hacks to handle cases like this
-> >>>>>   that can easily be solved in the upstream kernel.
-> >>>>>
-> >>>>>   By linking devices before they are probed, we give suppliers a clear
-> >>>>>   count of the number of dependent consumers. Once all of the
-> >>>>>   consumers are active, the suppliers can turn off the unused
-> >>>>>   resources without making assumptions about the number of consumers.
-> >>>>>
-> >>>>> By default we just add device-links to track "driver presence" (probe
-> >>>>> succeeded) of the supplier device. If any other functionality provided
-> >>>>> by device-links are needed, it is left to the consumer/supplier
-> >>>>> devices to change the link when they probe.
-> >>>>>
-> >>>>> v1 -> v2:
-> >>>>> - Drop patch to speed up of_find_device_by_node()
-> >>>>> - Drop depends-on property and use existing bindings
-> >>>>>
-> >>>>> v2 -> v3:
-> >>>>> - Refactor the code to have driver core initiate the linking of devs
-> >>>>> - Have driver core link consumers to supplier before it's probed
-> >>>>> - Add support for drivers to edit the device links before probing
-> >>>>>
-> >>>>> v3 -> v4:
-> >>>>> - Tested edit_links() on system with cyclic dependency. Works.
-> >>>>> - Added some checks to make sure device link isn't attempted from
-> >>>>>   parent device node to child device node.
-> >>>>> - Added way to pause/resume sync_state callbacks across
-> >>>>>   of_platform_populate().
-> >>>>> - Recursively parse DT node to create device links from parent to
-> >>>>>   suppliers of parent and all child nodes.
-> >>>>>
-> >>>>> v4 -> v5:
-> >>>>> - Fixed copy-pasta bugs with linked list handling
-> >>>>> - Walk up the phandle reference till I find an actual device (needed
-> >>>>>   for regulators to work)
-> >>>>> - Added support for linking devices from regulator DT bindings
-> >>>>> - Tested the whole series again to make sure cyclic dependencies are
-> >>>>>   broken with edit_links() and regulator links are created properly.
-> >>>>>
-> >>>>> v5 -> v6:
-> >>>>> - Split, squashed and reordered some of the patches.
-> >>>>> - Refactored the device linking code to follow the same code pattern for
-> >>>>>   any property.
-> >>>>>
-> >>>>> v6 -> v7:
-> >>>>> - No functional changes.
-> >>>>> - Renamed i to index
-> >>>>> - Added comment to clarify not having to check property name for every
-> >>>>>   index
-> >>>>> - Added "matched" variable to clarify code. No functional change.
-> >>>>> - Added comments to include/linux/device.h for add_links()
-> >>>>>
-> >>>>> v7 -> v8:
-> >>>>> - Rebased on top of linux-next to handle device link changes in [1]
-> >>>>>
-> >>>>
-> >>>>
-> >>>>> v8 -> v9:
-> >>>>> - Fixed kbuild test bot reported errors (docs and const)
-> >>>>
-> >>>> Some maintainers have strong opinions about whether change logs should be:
-> >>>>
-> >>>>   (1) only in patch 0
-> >>>>   (2) only in the specific patches that are changed
-> >>>>   (3) both in patch 0 and in the specific patches that are changed.
-> >>>>
-> >>>> I can adapt to any of the three styles.  But for style "(1)" please
-> >>>> list which specific patch has changed for each item in the change list.
-> >>>>
-> >>>
-> >>> Thanks for the context Frank. I'm okay with (1) or (2) but I'll stick
-> >>> with (1) for this series. Didn't realize there were options (2) and
-> >>> (3). Since you started reviewing from v7, I'll do that in the future
-> >>> updates? Also, I haven't forgotten your emails. Just tied up with
-> >>> something else for a few days. I'll get to your emails next week.
-> >>
-> >> Yes, starting with future updates is fine, no need to redo the v9
-> >> change logs.
-> >>
-> >> No problem on the timing.  I figured you were busy or away from the
-> >> internet.
-> > 
-> > I'm replying to your comments on the other 3 patches. Okay with a
-> > majority of them. I'll wait for your reply to see where we settle for
-> > some of the points before I send out any patches though.
-> > 
-> > For now I'm thinking of sending them as separate clean up patches so
-> > that Greg doesn't have to deal with reverts in his "next" branch. We
-> > can squash them later if we really need to rip out what's in there and
-> > push it again.
-> > 
-> > -Saravana
-> > 
+> I'm not sure what your point is, but mine is that everything about the
+> model A should be in sun50i-h6-pine-h64.dts.
 > 
-> Please do not do separate clean up patches.  The series that Greg has is
-> not ready for acceptance and I am going to ask him to revert it as we
-> work through the needed changes.
-> 
-> I suspect there will be at least two more versions of the series.  The
-> first is to get the patches I commented in good shape.  Then I will
-> look at the patches later in the series to see how they fit into the
-> big picture.
-> 
-> In the end, there should be one coherent patch series that implements
-> the feature.
 
-Incremental patches to fix up the comments and documentation is fine, no
-need to respin the whole mess.
+model A and B are different enough for distinct dtb, (see sub-thread on HDMI difference for an other difference than PHY regulator)
+And clearly, the current dtb is for model B.
 
-thanks,
+So do you mean that we need to create a new dtb for model B ? (and hack the current back to model A ?)
 
-greg k-h
+Regards
