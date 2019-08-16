@@ -2,102 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 348238FFC3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E6628FFF4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:23:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727008AbfHPKKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 06:10:55 -0400
-Received: from twhmllg4.macronix.com ([122.147.135.202]:30902 "EHLO
-        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726918AbfHPKKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 06:10:55 -0400
-Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
-        by TWHMLLG4.macronix.com with ESMTP id x7GAAlgZ014816;
-        Fri, 16 Aug 2019 18:10:47 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
-        by Forcepoint Email with ESMTP id E5D22AEB545531923567;
-        Fri, 16 Aug 2019 18:10:47 +0800 (CST)
-In-Reply-To: <20190801082233.759f6ae9@collabora.com>
-References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw> <1564631710-30276-2-git-send-email-masonccyang@mxic.com.tw> <20190801082233.759f6ae9@collabora.com>
-To:     "Boris Brezillon" <boris.brezillon@collabora.com>
-Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
-        christophe.kerello@st.com, computersforpeace@gmail.com,
-        devicetree@vger.kernel.org, dwmw2@infradead.org,
-        juliensu@mxic.com.tw, lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        marek.vasut@gmail.com, mark.rutland@arm.com,
-        miquel.raynal@bootlin.com, paul@crapouillou.net,
-        paul.burton@mips.com, richard@nod.at, robh+dt@kernel.org,
-        stefan@agner.ch, vigneshr@ti.com
-Subject: Re: [PATCH v6 1/2] mtd: rawnand: Add Macronix raw NAND controller driver
+        id S1726981AbfHPKXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 06:23:16 -0400
+Received: from vip.corpemail.net ([162.243.126.186]:41429 "EHLO
+        vip.corpemail.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727020AbfHPKXQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 06:23:16 -0400
+Received: from ([60.208.111.195])
+        by ssh248.corpemail.net (Antispam) with ASMTP (SSL) id HSG47528;
+        Fri, 16 Aug 2019 18:16:28 +0800
+Received: from localhost (10.100.1.52) by Jtjnmail201618.home.langchao.com
+ (10.100.2.18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 16 Aug
+ 2019 18:16:31 +0800
+From:   John Wang <wangzqbj@inspur.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <trivial@kernel.org>,
+        <linux@roeck-us.net>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
+        <duanzhijia01@inspur.com>, <mine260309@gmail.com>, <joel@jms.id.au>
+Subject: [PATCH v5 1/2] dt-bindings: Add ipsps1 as a trivial device
+Date:   Fri, 16 Aug 2019 18:16:31 +0800
+Message-ID: <20190816101631.3077-1-wangzqbj@inspur.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-KeepSent: E8EA3122:5F3A0829-48258458:00375F0F;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OFE8EA3122.5F3A0829-ON48258458.00375F0F-48258458.0037EBA6@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Fri, 16 Aug 2019 18:10:47 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/08/16 PM 06:10:47,
-        Serialize complete at 2019/08/16 PM 06:10:47
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG4.macronix.com x7GAAlgZ014816
+Content-Type: text/plain
+X-Originating-IP: [10.100.1.52]
+X-ClientProxiedBy: jtjnmail201605.home.langchao.com (10.100.2.5) To
+ Jtjnmail201618.home.langchao.com (10.100.2.18)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The ipsps1 is an Inspur Power System power supply unit
 
-Hi Boris, 
+Signed-off-by: John Wang <wangzqbj@inspur.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v5:
+    - No changes
+v4:
+    - Rebased on 5.3-rc4 instead of 5.2, No changes
+v3:
+    - Fix adding entry to the inappropriate line
+v2:
+    - No changes.
+---
+ Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> > +
-> > +static int  mxic_nfc_wait_ready(struct nand_chip *chip)
-> > +{
-> > +   struct mxic_nand_ctlr *nfc = nand_get_controller_data(chip);
-> > +   u32 sts;
-> > +
-> > +   return readl_poll_timeout(nfc->regs + INT_STS, sts,
-> > +              sts & INT_RDY_PIN, 0, USEC_PER_SEC);
-> 
-> You're not using interrupts at all? For things like R/B wait it's
-> usually a good thing to rely on interrupts instead of status-polling.
-> 
-
-Have updated it and I will patch using interrupts instead of polling.
-
-thanks for your comments.
-
-best regards,
-Mason
-
-
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 2e742d399e87..870ac52d2225 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -104,6 +104,8 @@ properties:
+           - infineon,slb9645tt
+             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+           - infineon,tlv493d-a1b6
++            # Inspur Power System power supply unit version 1
++          - inspur,ipsps1
+             # Intersil ISL29028 Ambient Light and Proximity Sensor
+           - isil,isl29028
+             # Intersil ISL29030 Ambient Light and Proximity Sensor
+-- 
+2.17.1
 
