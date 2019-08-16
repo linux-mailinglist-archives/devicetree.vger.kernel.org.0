@@ -2,181 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C51F18F954
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 05:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDAC68F95C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 05:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726509AbfHPDAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 15 Aug 2019 23:00:18 -0400
-Received: from mail-eopbgr50068.outbound.protection.outlook.com ([40.107.5.68]:46254
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726506AbfHPDAR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 15 Aug 2019 23:00:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lMxrSfVuK+vkhBJuE+ZrivJJraaHNnUL5nTsaL3iegk+oKOG5sYhPNcKUkppM8lDVO5wJMjX2FdF/MStUHWp5/cqKlMCEO1NwzMzxYFYnnE/wUT+/orhhqnb22VRMD8Zn4AvQWDQoNlrJb92oEmm2rkgvnHfADZ7jpRT4/bXYG6cwm78GnSzrO+UhO4sxChevg4FVl9z/BjWpsjX1k1yWDk8fMGFqKvy6mfNZauf3x2JEmdvrFKV6s2kSLLZ6VMl9BqIH7y+gryf8M3pSSGP1IWX3ZkTq3YMj4mIIrfjq8J41lu5S33str/mko+PXRrJB/pbZHjSuN08PfauydGvyg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FtoX3Cb93PK95hcN2zFTwZhzoT08rLIhdLK3eDaRh7E=;
- b=TldLOIt59dylZ003dzl2GSHVKdbNI0nPB4YRI8qrs2q/9j7LEODcFkrR7L/Htp9AlL0QTN2liFa7BgJS1Z/ZZsJ01lzyypwSB2iwoDryYEwzRuN+rxpa/xd46VlDYekgJlzVcbHJu4EBB0vdIZtZ9F/xQSP+axnGDFpAXJMOR8sXL3O+jJrbpVKdc+lt1/ZRwz11Az5H/zmTH+0HPgnEU1XDhAygvGWrtj2CVr18T6MuBUsUxeLC8ovmWxAu2cQXf8OJUs/N+KeFVujl3196b7NoTB00BBvJ8RqF6cWv0stIbOnM9T3TjRk25ZmqSMJ8Ykr99HRZYY5Dyy/Z1Tl8Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FtoX3Cb93PK95hcN2zFTwZhzoT08rLIhdLK3eDaRh7E=;
- b=TvopJkDYbU6sKent3HB4AV3BTghrBxC6veaA4cpt9FQhX/qiEUNbfXHLWL+3ob120ZRBeG7wvR2hGErlTTtf8W7HL1k54Kuj1B2bIeXgczehoKUtSaouqsCqQd4n6ZzmnYFgkDwYa61p0HjUDvhtarlW7wDGVL/FkAgUKafT7/k=
-Received: from AM5PR04MB3299.eurprd04.prod.outlook.com (10.173.255.158) by
- AM5PR04MB3282.eurprd04.prod.outlook.com (10.167.168.146) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.14; Fri, 16 Aug 2019 03:00:00 +0000
-Received: from AM5PR04MB3299.eurprd04.prod.outlook.com
- ([fe80::5012:d47a:1f5d:9b84]) by AM5PR04MB3299.eurprd04.prod.outlook.com
- ([fe80::5012:d47a:1f5d:9b84%5]) with mapi id 15.20.2157.022; Fri, 16 Aug 2019
- 03:00:00 +0000
-From:   Xiaowei Bao <xiaowei.bao@nxp.com>
-To:     Andrew Murray <andrew.murray@arm.com>
-CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Subject: RE: [PATCH 05/10] PCI: layerscape: Modify the way of getting
- capability with different PEX
-Thread-Topic: [PATCH 05/10] PCI: layerscape: Modify the way of getting
- capability with different PEX
-Thread-Index: AQHVU0Yf1dFxsptJWkSb+ZGFXdO2C6b8KaSAgADs2oA=
-Date:   Fri, 16 Aug 2019 03:00:00 +0000
-Message-ID: <AM5PR04MB329966792C66E9AAB6C0B30DF5AF0@AM5PR04MB3299.eurprd04.prod.outlook.com>
-References: <20190815083716.4715-1-xiaowei.bao@nxp.com>
- <20190815083716.4715-5-xiaowei.bao@nxp.com>
- <20190815125103.GH43882@e119886-lin.cambridge.arm.com>
-In-Reply-To: <20190815125103.GH43882@e119886-lin.cambridge.arm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=xiaowei.bao@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5d46b043-bb47-45f7-7cce-08d721f5d415
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM5PR04MB3282;
-x-ms-traffictypediagnostic: AM5PR04MB3282:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM5PR04MB32829AC07E4FA19185D4F2B3F5AF0@AM5PR04MB3282.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0131D22242
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(346002)(136003)(39860400002)(396003)(376002)(189003)(199004)(13464003)(26005)(7416002)(316002)(74316002)(7736002)(6916009)(305945005)(66066001)(7696005)(86362001)(76176011)(25786009)(54906003)(478600001)(8936002)(99286004)(102836004)(53546011)(6506007)(476003)(486006)(6246003)(81156014)(53936002)(66946007)(3846002)(11346002)(55016002)(44832011)(446003)(64756008)(8676002)(81166006)(256004)(9686003)(33656002)(6436002)(2906002)(71200400001)(229853002)(71190400001)(52536014)(4326008)(5660300002)(66446008)(66556008)(6116002)(66476007)(76116006)(14454004)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM5PR04MB3282;H:AM5PR04MB3299.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 96Qh7b+Wff6VLecSKFtgA9zDS0vu1Ss3tz4eDrNeUd0E+v2aO+a2cpRdxQKVuziIbCXVhn4C1WPsgaPmeAdPSKThIaLX1ieqvLWKE+GSqsyVpUQlE/nKDEAZQH8WdiLcx2bowNBOukn1th+lKhQel+cXBwZPVVjP+vJcQqsphdcLWx1kByq9VDsfRxfoqOuqlQhewJqZRvYike4uYH2f6wXeVJLg7ZdF/kg53ubOTitfE08axre8tt27mEhBDiHiornElaJEmFnDA5dZb/b3g/VUoCgmqMXhyAmuGjEoa5Yt8KT/OfrUfRv4ukuuGJx33PtaCvwOPOIg7ZPfzAl1uzfscKNUOKXk84VuWULZkFioOQk4RA75YLfvz7YDy98uf4Jgihk2TEN9ON2N7FgQqaVamXSKl6/QF37l1MCqdQg=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S1726462AbfHPDJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 15 Aug 2019 23:09:24 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35333 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726437AbfHPDJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 15 Aug 2019 23:09:23 -0400
+Received: by mail-io1-f68.google.com with SMTP id i22so3455743ioh.2;
+        Thu, 15 Aug 2019 20:09:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hpMP1ex6qyNBe14A9uU8mGZxJBea/KVrBcdVIhi73YY=;
+        b=gMLx4Ozna4t4yqSmMVeOXPIdrzY2Oq7vaLt8XZ6/IqVW9ggIjhzxV1Mu4/ppDpjzVq
+         q2Y/IF8V9XFqRBNGg9vHXBfJTrWb8PTpzu+lxxDSFlGDbwynqeNkiRMQAfLEFbuhE5jE
+         uXV9VWntrLxPuQkpuI189bPCaDwnQ9M52mGDyAkBxUvKBv/khnntvbHg7CiVL+B7+3q8
+         luKRU5MtiMQPnLykV4UnxlemMTc4VEXA5nldwXTSqK0xPnva+vYwqRzQpFHWSwSvOGLt
+         wBHRkVynxtThqGLm1M3Lp5JSH1diSwqJ+74T+dmTJxQBkYiw0DViL2OULI5t5YVErMt+
+         rw0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hpMP1ex6qyNBe14A9uU8mGZxJBea/KVrBcdVIhi73YY=;
+        b=jiQuhB4BW8QZxYW/OfvdZTjDE/kSoPOuHszqm2+6Q8eLblJphE1NAer7Flu/HZnVnH
+         shQOVXjRqewBOyjWX6bsjw1AdMlFTos2wVmr7ndo/Ve0IZ9E76liaorplJVeQHADoFmS
+         4EDVh7Ol9W2DRJwI8edAfvrnAD7MZIASTXIGsuap7KAVXbdd92bmW+bMsy/ywSVnTB2z
+         JLfF//vaXQKq1hsvhCV7HcKxSFW3pyCK1/JAC6Kxbh5c5essxSPwaWWzrfFhtNegpsRd
+         lXoDv1F8BOJb4CFzHkNaqBMoMJsD9n8gsYfSKQXOWxAiNcvGuve3QSygNNKGkmyBe2hN
+         ZvFg==
+X-Gm-Message-State: APjAAAXQZQictcSwGlt8xjw46OyYKjkQVAQBIn/3sHiDLrx3i+6VeJwN
+        qsl/cNW1uiNjhOh2KlFWEgA=
+X-Google-Smtp-Source: APXvYqznEYwbCdz7mCg34fx554/O8bmdiNwAtiPSgYgy12A42J2xlrY6UjB/f9hUWcnQdTMkHWedHw==
+X-Received: by 2002:a6b:4107:: with SMTP id n7mr8302272ioa.12.1565924962561;
+        Thu, 15 Aug 2019 20:09:22 -0700 (PDT)
+Received: from [192.168.43.210] (mobile-166-177-58-16.mycingular.net. [166.177.58.16])
+        by smtp.gmail.com with ESMTPSA id a21sm6834674ioe.27.2019.08.15.20.09.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 15 Aug 2019 20:09:21 -0700 (PDT)
+Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize probe
+ ordering
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>
+References: <20190731221721.187713-1-saravanak@google.com>
+ <919b66e9-9708-de34-41cd-e448838b130c@gmail.com>
+ <CAGETcx8LqeOXD5zPsLuxoG5pR9VZ_v=PQfRf-aFwCSaW4kwoxA@mail.gmail.com>
+ <7a0ee940-f81f-36b9-93e7-2b4c242360c9@gmail.com>
+ <CAGETcx_UxNV_Qk79es0SJ3L0yAtFRpOjPcU7e5Cje6UPbp5adQ@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <183eab70-0eda-f30e-ae25-74355b8b84c9@gmail.com>
+Date:   Thu, 15 Aug 2019 20:09:19 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5d46b043-bb47-45f7-7cce-08d721f5d415
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2019 03:00:00.2887
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: DPPeMUrth7cwivZDTEO5I7LuEZtVpL3YehQTHQScY6wmfZCZGWpIsWaqbfRsgmS0OO5PLpB62FOp0LpyHAGPmw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR04MB3282
+In-Reply-To: <CAGETcx_UxNV_Qk79es0SJ3L0yAtFRpOjPcU7e5Cje6UPbp5adQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmV3IE11cnJheSA8
-YW5kcmV3Lm11cnJheUBhcm0uY29tPg0KPiBTZW50OiAyMDE5xOo41MIxNcjVIDIwOjUxDQo+IFRv
-OiBYaWFvd2VpIEJhbyA8eGlhb3dlaS5iYW9AbnhwLmNvbT4NCj4gQ2M6IGppbmdvb2hhbjFAZ21h
-aWwuY29tOyBndXN0YXZvLnBpbWVudGVsQHN5bm9wc3lzLmNvbTsNCj4gYmhlbGdhYXNAZ29vZ2xl
-LmNvbTsgcm9iaCtkdEBrZXJuZWwub3JnOyBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsNCj4gc2hhd25n
-dW9Aa2VybmVsLm9yZzsgTGVvIExpIDxsZW95YW5nLmxpQG54cC5jb20+OyBraXNob25AdGkuY29t
-Ow0KPiBsb3JlbnpvLnBpZXJhbGlzaUBhcm0uY29tOyBhcm5kQGFybmRiLmRlOyBncmVna2hAbGlu
-dXhmb3VuZGF0aW9uLm9yZzsNCj4gTS5oLiBMaWFuIDxtaW5naHVhbi5saWFuQG54cC5jb20+OyBN
-aW5na2FpIEh1IDxtaW5na2FpLmh1QG54cC5jb20+Ow0KPiBSb3kgWmFuZyA8cm95LnphbmdAbnhw
-LmNvbT47IGxpbnV4LXBjaUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGRldmljZXRyZWVAdmdlci5rZXJu
-ZWwub3JnOyBsaW51eC1rZXJuZWxAdmdlci5rZXJuZWwub3JnOw0KPiBsaW51eC1hcm0ta2VybmVs
-QGxpc3RzLmluZnJhZGVhZC5vcmc7IGxpbnV4cHBjLWRldkBsaXN0cy5vemxhYnMub3JnDQo+IFN1
-YmplY3Q6IFJlOiBbUEFUQ0ggMDUvMTBdIFBDSTogbGF5ZXJzY2FwZTogTW9kaWZ5IHRoZSB3YXkg
-b2YgZ2V0dGluZw0KPiBjYXBhYmlsaXR5IHdpdGggZGlmZmVyZW50IFBFWA0KPiANCj4gT24gVGh1
-LCBBdWcgMTUsIDIwMTkgYXQgMDQ6Mzc6MTFQTSArMDgwMCwgWGlhb3dlaSBCYW8gd3JvdGU6DQo+
-ID4gVGhlIGRpZmZlcmVudCBQQ0llIGNvbnRyb2xsZXIgaW4gb25lIGJvYXJkIG1heSBiZSBoYXZl
-IGRpZmZlcmVudA0KPiA+IGNhcGFiaWxpdHkgb2YgTVNJIG9yIE1TSVgsIHNvIGNoYW5nZSB0aGUg
-d2F5IG9mIGdldHRpbmcgdGhlIE1TSQ0KPiA+IGNhcGFiaWxpdHksIG1ha2UgaXQgbW9yZSBmbGV4
-aWJsZS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFhpYW93ZWkgQmFvIDx4aWFvd2VpLmJhb0Bu
-eHAuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbGF5
-ZXJzY2FwZS1lcC5jIHwgMjgNCj4gPiArKysrKysrKysrKysrKysrKysrLS0tLS0tLQ0KPiA+ICAx
-IGZpbGUgY2hhbmdlZCwgMjEgaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbGF5ZXJzY2FwZS1l
-cC5jDQo+ID4gYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ktbGF5ZXJzY2FwZS1lcC5j
-DQo+ID4gaW5kZXggYmU2MWQ5Ni4uOTQwNGNhMCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3Bj
-aS9jb250cm9sbGVyL2R3Yy9wY2ktbGF5ZXJzY2FwZS1lcC5jDQo+ID4gKysrIGIvZHJpdmVycy9w
-Y2kvY29udHJvbGxlci9kd2MvcGNpLWxheWVyc2NhcGUtZXAuYw0KPiA+IEBAIC0yMiw2ICsyMiw3
-IEBADQo+ID4NCj4gPiAgc3RydWN0IGxzX3BjaWVfZXAgew0KPiA+ICAJc3RydWN0IGR3X3BjaWUJ
-CSpwY2k7DQo+ID4gKwlzdHJ1Y3QgcGNpX2VwY19mZWF0dXJlcwkqbHNfZXBjOw0KPiA+ICB9Ow0K
-PiA+DQo+ID4gICNkZWZpbmUgdG9fbHNfcGNpZV9lcCh4KQlkZXZfZ2V0X2RydmRhdGEoKHgpLT5k
-ZXYpDQo+ID4gQEAgLTQwLDI1ICs0MSwyNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2Rldmlj
-ZV9pZA0KPiBsc19wY2llX2VwX29mX21hdGNoW10gPSB7DQo+ID4gIAl7IH0sDQo+ID4gIH07DQo+
-ID4NCj4gPiAtc3RhdGljIGNvbnN0IHN0cnVjdCBwY2lfZXBjX2ZlYXR1cmVzIGxzX3BjaWVfZXBj
-X2ZlYXR1cmVzID0gew0KPiA+IC0JLmxpbmt1cF9ub3RpZmllciA9IGZhbHNlLA0KPiA+IC0JLm1z
-aV9jYXBhYmxlID0gdHJ1ZSwNCj4gPiAtCS5tc2l4X2NhcGFibGUgPSBmYWxzZSwNCj4gPiAtfTsN
-Cj4gPiAtDQo+ID4gIHN0YXRpYyBjb25zdCBzdHJ1Y3QgcGNpX2VwY19mZWF0dXJlcyogIGxzX3Bj
-aWVfZXBfZ2V0X2ZlYXR1cmVzKHN0cnVjdA0KPiA+IGR3X3BjaWVfZXAgKmVwKSAgew0KPiA+IC0J
-cmV0dXJuICZsc19wY2llX2VwY19mZWF0dXJlczsNCj4gPiArCXN0cnVjdCBkd19wY2llICpwY2kg
-PSB0b19kd19wY2llX2Zyb21fZXAoZXApOw0KPiA+ICsJc3RydWN0IGxzX3BjaWVfZXAgKnBjaWUg
-PSB0b19sc19wY2llX2VwKHBjaSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIHBjaWUtPmxzX2VwYzsN
-Cj4gPiAgfQ0KPiA+DQo+ID4gIHN0YXRpYyB2b2lkIGxzX3BjaWVfZXBfaW5pdChzdHJ1Y3QgZHdf
-cGNpZV9lcCAqZXApICB7DQo+ID4gIAlzdHJ1Y3QgZHdfcGNpZSAqcGNpID0gdG9fZHdfcGNpZV9m
-cm9tX2VwKGVwKTsNCj4gPiArCXN0cnVjdCBsc19wY2llX2VwICpwY2llID0gdG9fbHNfcGNpZV9l
-cChwY2kpOw0KPiA+ICAJZW51bSBwY2lfYmFybm8gYmFyOw0KPiA+DQo+ID4gIAlmb3IgKGJhciA9
-IEJBUl8wOyBiYXIgPD0gQkFSXzU7IGJhcisrKQ0KPiA+ICAJCWR3X3BjaWVfZXBfcmVzZXRfYmFy
-KHBjaSwgYmFyKTsNCj4gPiArDQo+ID4gKwlwY2llLT5sc19lcGMtPm1zaV9jYXBhYmxlID0gZXAt
-Pm1zaV9jYXAgPyB0cnVlIDogZmFsc2U7DQo+ID4gKwlwY2llLT5sc19lcGMtPm1zaXhfY2FwYWJs
-ZSA9IGVwLT5tc2l4X2NhcCA/IHRydWUgOiBmYWxzZTsNCj4gPiAgfQ0KPiA+DQo+ID4gIHN0YXRp
-YyBpbnQgbHNfcGNpZV9lcF9yYWlzZV9pcnEoc3RydWN0IGR3X3BjaWVfZXAgKmVwLCB1OCBmdW5j
-X25vLCBAQA0KPiA+IC0xMTgsNiArMTIwLDcgQEAgc3RhdGljIGludCBfX2luaXQgbHNfcGNpZV9l
-cF9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlDQo+ICpwZGV2KQ0KPiA+ICAJc3RydWN0IGRl
-dmljZSAqZGV2ID0gJnBkZXYtPmRldjsNCj4gPiAgCXN0cnVjdCBkd19wY2llICpwY2k7DQo+ID4g
-IAlzdHJ1Y3QgbHNfcGNpZV9lcCAqcGNpZTsNCj4gPiArCXN0cnVjdCBwY2lfZXBjX2ZlYXR1cmVz
-ICpsc19lcGM7DQo+ID4gIAlzdHJ1Y3QgcmVzb3VyY2UgKmRiaV9iYXNlOw0KPiA+ICAJaW50IHJl
-dDsNCj4gPg0KPiA+IEBAIC0xMjksNiArMTMyLDEwIEBAIHN0YXRpYyBpbnQgX19pbml0IGxzX3Bj
-aWVfZXBfcHJvYmUoc3RydWN0DQo+IHBsYXRmb3JtX2RldmljZSAqcGRldikNCj4gPiAgCWlmICgh
-cGNpKQ0KPiA+ICAJCXJldHVybiAtRU5PTUVNOw0KPiA+DQo+ID4gKwlsc19lcGMgPSBkZXZtX2t6
-YWxsb2MoZGV2LCBzaXplb2YoKmxzX2VwYyksIEdGUF9LRVJORUwpOw0KPiA+ICsJaWYgKCFsc19l
-cGMpDQo+ID4gKwkJcmV0dXJuIC1FTk9NRU07DQo+ID4gKw0KPiA+ICAJZGJpX2Jhc2UgPSBwbGF0
-Zm9ybV9nZXRfcmVzb3VyY2VfYnluYW1lKHBkZXYsIElPUkVTT1VSQ0VfTUVNLA0KPiAicmVncyIp
-Ow0KPiA+ICAJcGNpLT5kYmlfYmFzZSA9IGRldm1fcGNpX3JlbWFwX2NmZ19yZXNvdXJjZShkZXYs
-IGRiaV9iYXNlKTsNCj4gPiAgCWlmIChJU19FUlIocGNpLT5kYmlfYmFzZSkpDQo+ID4gQEAgLTEz
-OSw2ICsxNDYsMTMgQEAgc3RhdGljIGludCBfX2luaXQgbHNfcGNpZV9lcF9wcm9iZShzdHJ1Y3QN
-Cj4gcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiA+ICAJcGNpLT5vcHMgPSAmbHNfcGNpZV9lcF9v
-cHM7DQo+ID4gIAlwY2llLT5wY2kgPSBwY2k7DQo+ID4NCj4gPiArCWxzX2VwYy0+bGlua3VwX25v
-dGlmaWVyID0gZmFsc2UsDQo+ID4gKwlsc19lcGMtPm1zaV9jYXBhYmxlID0gdHJ1ZSwNCj4gPiAr
-CWxzX2VwYy0+bXNpeF9jYXBhYmxlID0gdHJ1ZSwNCj4gDQo+IEFzIFttc2ksbXNpeF1fY2FwYWJs
-ZSBpcyBzaG9ydGx5IHNldCBmcm9tIGxzX3BjaWVfZXBfaW5pdCAtIGlzIHRoZXJlIGFueSByZWFz
-b24NCj4gdG8gc2V0IHRoZW0gaGVyZSAodG8gcG90ZW50aWFsbHkgaW5jb3JyZWN0IHZhbHVlcyk/
-DQpUaGlzIGlzIGEgSU5JVCB2YWx1ZSwgbWF5YmUgZmFsc2UgaXMgYmV0dGVyIGZvciBtc2lfY2Fw
-YWJsZSBhbmQgbXNpeF9jYXBhYmxlLCANCm9mIGNvdXJzZSwgd2UgZG9uJ3QgbmVlZCB0byBzZXQg
-aXQuDQo+IA0KPiBUaGFua3MsDQo+IA0KPiBBbmRyZXcgTXVycmF5DQo+IA0KPiA+ICsJbHNfZXBj
-LT5iYXJfZml4ZWRfNjRiaXQgPSAoMSA8PCBCQVJfMikgfCAoMSA8PCBCQVJfNCksDQo+ID4gKw0K
-PiA+ICsJcGNpZS0+bHNfZXBjID0gbHNfZXBjOw0KPiA+ICsNCj4gPiAgCXBsYXRmb3JtX3NldF9k
-cnZkYXRhKHBkZXYsIHBjaWUpOw0KPiA+DQo+ID4gIAlyZXQgPSBsc19hZGRfcGNpZV9lcChwY2ll
-LCBwZGV2KTsNCj4gPiAtLQ0KPiA+IDIuOS41DQo+ID4NCg==
+Hi Saravana,
+
+On 8/15/19 6:50 PM, Saravana Kannan wrote:
+> On Fri, Aug 9, 2019 at 10:20 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 8/9/19 10:00 PM, Saravana Kannan wrote:
+>>> On Fri, Aug 9, 2019 at 7:57 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>>>
+>>>> Hi Saravana,
+>>>>
+>>>> On 7/31/19 3:17 PM, Saravana Kannan wrote:
+>>>>> Add device-links to track functional dependencies between devices
+>>>>> after they are created (but before they are probed) by looking at
+>>>>> their common DT bindings like clocks, interconnects, etc.
+>>>>>
+>>>>> Having functional dependencies automatically added before the devices
+>>>>> are probed, provides the following benefits:
+>>>>>
+>>>>> - Optimizes device probe order and avoids the useless work of
+>>>>>   attempting probes of devices that will not probe successfully
+>>>>>   (because their suppliers aren't present or haven't probed yet).
+>>>>>
+>>>>>   For example, in a commonly available mobile SoC, registering just
+>>>>>   one consumer device's driver at an initcall level earlier than the
+>>>>>   supplier device's driver causes 11 failed probe attempts before the
+>>>>>   consumer device probes successfully. This was with a kernel with all
+>>>>>   the drivers statically compiled in. This problem gets a lot worse if
+>>>>>   all the drivers are loaded as modules without direct symbol
+>>>>>   dependencies.
+>>>>>
+>>>>> - Supplier devices like clock providers, interconnect providers, etc
+>>>>>   need to keep the resources they provide active and at a particular
+>>>>>   state(s) during boot up even if their current set of consumers don't
+>>>>>   request the resource to be active. This is because the rest of the
+>>>>>   consumers might not have probed yet and turning off the resource
+>>>>>   before all the consumers have probed could lead to a hang or
+>>>>>   undesired user experience.
+>>>>>
+>>>>>   Some frameworks (Eg: regulator) handle this today by turning off
+>>>>>   "unused" resources at late_initcall_sync and hoping all the devices
+>>>>>   have probed by then. This is not a valid assumption for systems with
+>>>>>   loadable modules. Other frameworks (Eg: clock) just don't handle
+>>>>>   this due to the lack of a clear signal for when they can turn off
+>>>>>   resources. This leads to downstream hacks to handle cases like this
+>>>>>   that can easily be solved in the upstream kernel.
+>>>>>
+>>>>>   By linking devices before they are probed, we give suppliers a clear
+>>>>>   count of the number of dependent consumers. Once all of the
+>>>>>   consumers are active, the suppliers can turn off the unused
+>>>>>   resources without making assumptions about the number of consumers.
+>>>>>
+>>>>> By default we just add device-links to track "driver presence" (probe
+>>>>> succeeded) of the supplier device. If any other functionality provided
+>>>>> by device-links are needed, it is left to the consumer/supplier
+>>>>> devices to change the link when they probe.
+>>>>>
+>>>>> v1 -> v2:
+>>>>> - Drop patch to speed up of_find_device_by_node()
+>>>>> - Drop depends-on property and use existing bindings
+>>>>>
+>>>>> v2 -> v3:
+>>>>> - Refactor the code to have driver core initiate the linking of devs
+>>>>> - Have driver core link consumers to supplier before it's probed
+>>>>> - Add support for drivers to edit the device links before probing
+>>>>>
+>>>>> v3 -> v4:
+>>>>> - Tested edit_links() on system with cyclic dependency. Works.
+>>>>> - Added some checks to make sure device link isn't attempted from
+>>>>>   parent device node to child device node.
+>>>>> - Added way to pause/resume sync_state callbacks across
+>>>>>   of_platform_populate().
+>>>>> - Recursively parse DT node to create device links from parent to
+>>>>>   suppliers of parent and all child nodes.
+>>>>>
+>>>>> v4 -> v5:
+>>>>> - Fixed copy-pasta bugs with linked list handling
+>>>>> - Walk up the phandle reference till I find an actual device (needed
+>>>>>   for regulators to work)
+>>>>> - Added support for linking devices from regulator DT bindings
+>>>>> - Tested the whole series again to make sure cyclic dependencies are
+>>>>>   broken with edit_links() and regulator links are created properly.
+>>>>>
+>>>>> v5 -> v6:
+>>>>> - Split, squashed and reordered some of the patches.
+>>>>> - Refactored the device linking code to follow the same code pattern for
+>>>>>   any property.
+>>>>>
+>>>>> v6 -> v7:
+>>>>> - No functional changes.
+>>>>> - Renamed i to index
+>>>>> - Added comment to clarify not having to check property name for every
+>>>>>   index
+>>>>> - Added "matched" variable to clarify code. No functional change.
+>>>>> - Added comments to include/linux/device.h for add_links()
+>>>>>
+>>>>> v7 -> v8:
+>>>>> - Rebased on top of linux-next to handle device link changes in [1]
+>>>>>
+>>>>
+>>>>
+>>>>> v8 -> v9:
+>>>>> - Fixed kbuild test bot reported errors (docs and const)
+>>>>
+>>>> Some maintainers have strong opinions about whether change logs should be:
+>>>>
+>>>>   (1) only in patch 0
+>>>>   (2) only in the specific patches that are changed
+>>>>   (3) both in patch 0 and in the specific patches that are changed.
+>>>>
+>>>> I can adapt to any of the three styles.  But for style "(1)" please
+>>>> list which specific patch has changed for each item in the change list.
+>>>>
+>>>
+>>> Thanks for the context Frank. I'm okay with (1) or (2) but I'll stick
+>>> with (1) for this series. Didn't realize there were options (2) and
+>>> (3). Since you started reviewing from v7, I'll do that in the future
+>>> updates? Also, I haven't forgotten your emails. Just tied up with
+>>> something else for a few days. I'll get to your emails next week.
+>>
+>> Yes, starting with future updates is fine, no need to redo the v9
+>> change logs.
+>>
+>> No problem on the timing.  I figured you were busy or away from the
+>> internet.
+> 
+> I'm replying to your comments on the other 3 patches. Okay with a
+> majority of them. I'll wait for your reply to see where we settle for
+> some of the points before I send out any patches though.
+> 
+> For now I'm thinking of sending them as separate clean up patches so
+> that Greg doesn't have to deal with reverts in his "next" branch. We
+> can squash them later if we really need to rip out what's in there and
+> push it again.
+> 
+> -Saravana
+> 
+
+Please do not do separate clean up patches.  The series that Greg has is
+not ready for acceptance and I am going to ask him to revert it as we
+work through the needed changes.
+
+I suspect there will be at least two more versions of the series.  The
+first is to get the patches I commented in good shape.  Then I will
+look at the patches later in the series to see how they fit into the
+big picture.
+
+In the end, there should be one coherent patch series that implements
+the feature.
+
+-Frank
