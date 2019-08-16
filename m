@@ -2,70 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A00190646
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 18:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35B0890715
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 19:39:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727127AbfHPQ6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 12:58:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41570 "EHLO mail.kernel.org"
+        id S1727381AbfHPRjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 13:39:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54930 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726497AbfHPQ6O (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 12:58:14 -0400
+        id S1727347AbfHPRjf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 13:39:35 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BC64B2077C;
-        Fri, 16 Aug 2019 16:58:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 60509205F4;
+        Fri, 16 Aug 2019 17:39:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565974692;
-        bh=xk9mbri+sSP2Ako0+cU4IDTi1rBEvLPjA67uzQhKM9o=;
+        s=default; t=1565977174;
+        bh=Hkql629r7jMcpDCSxxQyeYY9VUfj+ahusqlu9yDMvrc=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=hxKsVunl58y8c5edThB0D+ZiNMYsKJ/yM6d+OQj43gRG9jpFVjSAk50PLSCpmeBnh
-         GUU/F7/+xO9Z2ifpfXGprqDDH56sFu6IoUZw+0WG/W9aH5dR1XTuFGHDHj/A+4GLv1
-         aayoMBs6PhUWbGj5MptlxV5K9UG9dJAEJk1+xQlw=
+        b=VEUKX1woF1+HKNWJy9m1xpe3/2wVZkOVt6mzeKpwGagd4EEyDFFQ5aIFPPYudf/u9
+         WI2YjhZvHidzvy2iHc7gwEzPwnYeshMTHPpS6vQTqDNKa9bvgvUbXaZ201A9ru/0LT
+         SnNpM1nc4HKDqE1dego2rca6fTLJ1bh6niL07Rho=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190816042440.GY12733@vkoul-mobl.Dlink>
-References: <20190814122958.4981-1-vkoul@kernel.org> <20190814122958.4981-2-vkoul@kernel.org> <20190814171946.E9E8D20665@mail.kernel.org> <20190816042440.GY12733@vkoul-mobl.Dlink>
-Subject: Re: [PATCH 2/2] clk: qcom: clk-rpmh: Add support for SM8150
+In-Reply-To: <1565713248-4906-7-git-send-email-wahrenst@gmx.net>
+References: <1565713248-4906-1-git-send-email-wahrenst@gmx.net> <1565713248-4906-7-git-send-email-wahrenst@gmx.net>
+Subject: Re: [PATCH V2 06/13] clk: bcm2835: Mark PLLD_PER as CRITICAL
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, Stefan Wahren <wahrenst@gmx.net>
+To:     Eric Anholt <eric@anholt.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Vinod Koul <vkoul@kernel.org>
+        Ray Jui <rjui@broadcom.com>, Rob Herring <robh+dt@kernel.org>,
+        Scott Branden <sbranden@broadcom.com>,
+        Stefan Wahren <wahrenst@gmx.net>,
+        Wolfram Sang <wsa@the-dreams.de>
 User-Agent: alot/0.8.1
-Date:   Fri, 16 Aug 2019 09:58:11 -0700
-Message-Id: <20190816165812.BC64B2077C@mail.kernel.org>
+Date:   Fri, 16 Aug 2019 10:39:33 -0700
+Message-Id: <20190816173934.60509205F4@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Vinod Koul (2019-08-15 21:24:40)
-> On 14-08-19, 10:19, Stephen Boyd wrote:
-> > Quoting Vinod Koul (2019-08-14 05:29:58)
-> > > Add support for rpmh clocks found in SM8150
-> > >=20
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > ---
-> >=20
-> > Patch looks OK, but can you convert this driver to use the new parent
-> > style and then update the binding to handle it? We can fix the other
-> > platforms and dts files that use this driver in parallel, but sm8150
-> > will be forward looking.
+Quoting Stefan Wahren (2019-08-13 09:20:41)
+> The VPU firmware assume that the PLLD_PER isn't modified by the ARM core.
+> Otherwise this could cause firmware lookups. So mark the clock as critical
+> to avoid this.
 >=20
-> Yes but that would also impact sdm845 as it uses this driver, so I
-> wanted to get this one done so that we have support for rpm clock and
-> then do the conversion.
+> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+> ---
+>  drivers/clk/bcm/clk-bcm2835.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> Would that be okay with you to get this in and then I convert this?
->=20
+> diff --git a/drivers/clk/bcm/clk-bcm2835.c b/drivers/clk/bcm/clk-bcm2835.c
+> index fdf672a..b62052e 100644
+> --- a/drivers/clk/bcm/clk-bcm2835.c
+> +++ b/drivers/clk/bcm/clk-bcm2835.c
+> @@ -1785,7 +1785,7 @@ static const struct bcm2835_clk_desc clk_desc_array=
+[] =3D {
+>                 .load_mask =3D CM_PLLD_LOADPER,
+>                 .hold_mask =3D CM_PLLD_HOLDPER,
+>                 .fixed_divider =3D 1,
+> -               .flags =3D CLK_SET_RATE_PARENT),
+> +               .flags =3D CLK_IS_CRITICAL | CLK_SET_RATE_PARENT),
 
-How does it impact sdm845? The new way of specifying parents supports
-fallback to legacy string matching.
+Please add a comment in the code to the effect that is in the commit
+text so we don't have to dig through commits to figure out why this
+special CLK_IS_CRITICAL flag is here.
 
+>         [BCM2835_PLLD_DSI0]     =3D REGISTER_PLL_DIV(
+>                 SOC_ALL,
+>                 .name =3D "plld_dsi0",
