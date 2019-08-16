@@ -2,542 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0D90900EB
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 13:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0216D90101
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 13:57:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727143AbfHPLor (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 07:44:47 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:42669 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726981AbfHPLoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 07:44:46 -0400
-Received: by mail-pl1-f194.google.com with SMTP id y1so2350609plp.9
-        for <devicetree@vger.kernel.org>; Fri, 16 Aug 2019 04:44:45 -0700 (PDT)
+        id S1727134AbfHPL54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 07:57:56 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36025 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727092AbfHPL54 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 07:57:56 -0400
+Received: by mail-wr1-f68.google.com with SMTP id r3so1305702wrt.3;
+        Fri, 16 Aug 2019 04:57:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=J3crdqEwB33aj7HWecSWYeN/dCr6hNrApJcl74wGcdg=;
-        b=Yj5yi77LRElTJKXbIKhtLM4quE/lRimNj1WmSdzv6UKma8n4YyroGxk9+MNTODfNmU
-         Y9z+lDx//8VltjXej8V0qr4Dp1XFr7zjyovkr1mtV3eVPIeHT9S5vuJZCQbm63qYNsMX
-         w0/PNYgRYdkyw4ciRi4riOM/WHevsNYcLo9q+iU7ppnmj/B9sU8qN/jdS7NeH71+4ens
-         cP7eUgkVi0ojK6OETPG5kFuf6rbvLBs8CmzE9UxDqUG0zpthPFcDDUjuKICzRVSJ6N0/
-         XTgrCVJDeoYGc/CPShCyB4QauWbY7UxsfEFKAHXq+qcqBzyPiwSsjontBJdA6/CGMLFu
-         eEZg==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=3owt7CIcSpc8cBZykFrs5XYNVBKRHnGIaWwBA3IAOUg=;
+        b=n+RGjsXkn7qujRTwk8aiu8/bBhtBcZVb/be6IIAS5tuj2MIO/85uX4jq+zNdIjO/8t
+         PmrK2Au1oQGF1N7EmhiyitWkXjrebzls+6qiEUcOmAzaYVnolRiZqcmkhkbhhZZI1M1C
+         J/56uGjaQGmHyPBVeOZ5ie9Zb1wmUBMIp7TQCv8twj5jTx7X68e0SfgHJyS63hVsVFUn
+         wgKACA86RZg89Lvt2WsJBOAmV52zl63pbTFpqHn90pZZpyZMmiygdDj4pDfRvU7ExiZz
+         RHzQBU8lfuTBKjOiSJRAzmI2/dNyxNeaJtE0TPFB2WV4XYuM+/jklpHDu7ygWiqKkq3y
+         0O0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=J3crdqEwB33aj7HWecSWYeN/dCr6hNrApJcl74wGcdg=;
-        b=qQVIqq0QtFvsfwNNFs/i+05MpUbL1dRWGXet51q1SeTWiacKDgFRqe8Hi1KVa37aiy
-         rHQqoV+1lFOczEwfkZX7lZlctwbzZtmtoN1h1BCEpFT53Bml45/B0etbaZdI6BpIx/60
-         GZNyxgtX1dwddRBCz5+sdk0M0pJ/9ckyCareEqgU63yQrBwMPbPmBscuBKZXv10PU/Kj
-         IVAKOascvpwxChRwPnGS9PJp83LuddQQdvWaG79Fpe84msBp8YNuvBvWBKIWoTUHlDKO
-         YvOmT97GrNj8T2jg5xOuNT0GtyU7blefx9MTtFFUndM2d2K9lQRk6/7VnhF14UqdFAto
-         cjbg==
-X-Gm-Message-State: APjAAAXL9wqgbTo8eLCNAcWcDfNAgEvoWICQNvfdb7auonKJr2XEM1aq
-        X+5u1m0nN4CQzJnP9+Y/qWuGQw==
-X-Google-Smtp-Source: APXvYqyJbeqtEcp34QzBJPbQzUnHhF7gAysL//hcBT2l7b6zdfifBYvqLTc9qUHoRKCQSeUlVmevVA==
-X-Received: by 2002:a17:902:9a07:: with SMTP id v7mr8989474plp.245.1565955885105;
-        Fri, 16 Aug 2019 04:44:45 -0700 (PDT)
-Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id v22sm4693952pgk.69.2019.08.16.04.44.42
-        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 16 Aug 2019 04:44:44 -0700 (PDT)
-From:   Baolin Wang <baolin.wang@linaro.org>
-To:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     orsonzhai@gmail.com, zhang.lyra@gmail.com, baolin.wang@linaro.org,
-        freeman.liu@unisoc.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] nvmem: sprd: Add Spreadtrum SoCs eFuse support
-Date:   Fri, 16 Aug 2019 19:44:17 +0800
-Message-Id: <8f83a5f0fa66d9e0a601458f9ba01ce582215a46.1565955745.git.baolin.wang@linaro.org>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <80b6cf41d2dc2660a710e611e06faae753e2e09a.1565955745.git.baolin.wang@linaro.org>
-References: <80b6cf41d2dc2660a710e611e06faae753e2e09a.1565955745.git.baolin.wang@linaro.org>
-In-Reply-To: <80b6cf41d2dc2660a710e611e06faae753e2e09a.1565955745.git.baolin.wang@linaro.org>
-References: <80b6cf41d2dc2660a710e611e06faae753e2e09a.1565955745.git.baolin.wang@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3owt7CIcSpc8cBZykFrs5XYNVBKRHnGIaWwBA3IAOUg=;
+        b=KP/4Eb0AGotntVsynrxtBMaqd3kvLR0BYfuYt2wc+RA1mjDsZTIBnZwdN3C5fYBkHF
+         5rJbmPi0akRiiWzicbDZ3hPdTmiMI0Ic9ZL9xuyDcdcTJIRmAxnMrRXMfR5cEw+4JwaE
+         QVmzgYV8P9nmMzXZci58QjjoNQoNpyBWxorL4ifWFJIC8RjQ9HI02sqL4wfJXkrJ6Ege
+         A7hv3iEMdyPgL194IuKidQ0rH3hJ/zJX6F9MjvkjfaADVbF2v9iDWFL0xHvtoqG4KedF
+         XGCW5uE42wSie0xghmm4QCwYaVILQuT3emW3upB05JZn4vnCKWUFEt7GDS2LcEoFoGJO
+         Fe9g==
+X-Gm-Message-State: APjAAAWaksIHgTPyB4goEq3K7yHtKmFGhZAhQ9a6fjjAhZV6hogD1xvv
+        D8297rizw3xTeAisUZcuARw=
+X-Google-Smtp-Source: APXvYqxTNqwHq0WVu2D09lrdzA/RLQGrmdozZ6J5eBdQXu18+f9N8PeAwHj98h+nMUCQawcD2DuQ6Q==
+X-Received: by 2002:a5d:4bc1:: with SMTP id l1mr10864468wrt.259.1565956673248;
+        Fri, 16 Aug 2019 04:57:53 -0700 (PDT)
+Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id m23sm7291053wml.41.2019.08.16.04.57.51
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 16 Aug 2019 04:57:52 -0700 (PDT)
+Date:   Fri, 16 Aug 2019 13:57:50 +0200
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org, wens@csie.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64
+ modelA evaluation board
+Message-ID: <20190816115750.GA24545@Red>
+References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+ <20190812094000.ebdmhyxx7xzbevef@flea>
+ <20190814131741.GB24324@Red>
+ <20190814133322.dawzv3ityakxtqs4@flea>
+ <20190816093513.GA25042@Red>
+ <20190816113650.hstbi5ntstx3wh4a@flea>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190816113650.hstbi5ntstx3wh4a@flea>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Freeman Liu <freeman.liu@unisoc.com>
+On Fri, Aug 16, 2019 at 01:36:50PM +0200, Maxime Ripard wrote:
+> On Fri, Aug 16, 2019 at 11:35:13AM +0200, Corentin Labbe wrote:
+> > On Wed, Aug 14, 2019 at 03:33:22PM +0200, Maxime Ripard wrote:
+> > > On Wed, Aug 14, 2019 at 03:17:41PM +0200, Corentin Labbe wrote:
+> > > > On Mon, Aug 12, 2019 at 11:40:00AM +0200, Maxime Ripard wrote:
+> > > > > On Thu, Aug 08, 2019 at 10:42:53AM +0200, Corentin Labbe wrote:
+> > > > > > This patch adds the evaluation variant of the model A of the PineH64.
+> > > > > > The model A has the same size of the pine64 and has a PCIE slot.
+> > > > > >
+> > > > > > The only devicetree difference with current pineH64, is the PHY
+> > > > > > regulator.
+> > > > > >
+> > > > > > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
+> > > > > > ---
+> > > > > >  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+> > > > > >  .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
+> > > > > >  2 files changed, 27 insertions(+)
+> > > > > >  create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > > > >
+> > > > > > diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+> > > > > > index f6db0611cb85..9a02166cbf72 100644
+> > > > > > --- a/arch/arm64/boot/dts/allwinner/Makefile
+> > > > > > +++ b/arch/arm64/boot/dts/allwinner/Makefile
+> > > > > > @@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
+> > > > > >  dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
+> > > > > > +dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA-eval.dtb
+> > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..d8ff02747efe
+> > > > > > --- /dev/null
+> > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+> > > > > > @@ -0,0 +1,26 @@
+> > > > > > +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
+> > > > > > +/*
+> > > > > > + * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
+> > > > > > + */
+> > > > > > +
+> > > > > > +#include "sun50i-h6-pine-h64.dts"
+> > > > > > +
+> > > > > > +/ {
+> > > > > > +	model = "Pine H64 model A evaluation board";
+> > > > > > +	compatible = "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
+> > > > > > +
+> > > > > > +	reg_gmac_3v3: gmac-3v3 {
+> > > > > > +		compatible = "regulator-fixed";
+> > > > > > +		regulator-name = "vcc-gmac-3v3";
+> > > > > > +		regulator-min-microvolt = <3300000>;
+> > > > > > +		regulator-max-microvolt = <3300000>;
+> > > > > > +		startup-delay-us = <100000>;
+> > > > > > +		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
+> > > > > > +		enable-active-high;
+> > > > > > +	};
+> > > > > > +
+> > > > > > +};
+> > > > > > +
+> > > > > > +&emac {
+> > > > > > +	phy-supply = <&reg_gmac_3v3>;
+> > > > > > +};
+> > > > >
+> > > > > I might be missing some context here, but I'm pretty sure that the
+> > > > > initial intent of the pine h64 DTS was to support the model A all
+> > > > > along.
+> > > > >
+> > > >
+> > > > The regulator changed between modelA and B.
+> > > > See this old patchset (supporting modelA) https://patchwork.kernel.org/patch/10539149/ for example.
+> > >
+> > > I'm not sure what your point is, but mine is that everything about the
+> > > model A should be in sun50i-h6-pine-h64.dts.
+> > >
+> >
+> > model A and B are different enough for distinct dtb, (see sub-thread
+> > on HDMI difference for an other difference than PHY regulator)
+> 
+> I don't mind having separate DTBs for model A and model B.
+> 
+> > And clearly, the current dtb is for model B.
+> 
+> That DTS was added almost a year before the model B was announced, and
+> no commit to that file mention the model B, so it's definitely not
+> clear.
 
-The Spreadtrum eFuse controller is widely used to dump chip ID,
-configuration setting, function select and so on, as well as
-supporting one-time programming.
+Normal it was added for model A (without any ethernet/HDMI support, so nothing distinct from model B), and the modelB ethernet/HDMI support cames after.
 
-Signed-off-by: Freeman Liu <freeman.liu@unisoc.com>
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
----
- drivers/nvmem/Kconfig      |   11 ++
- drivers/nvmem/Makefile     |    2 +
- drivers/nvmem/sprd-efuse.c |  424 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 437 insertions(+)
- create mode 100644 drivers/nvmem/sprd-efuse.c
+> 
+> > So do you mean that we need to create a new dtb for model B ? (and
+> > hack the current back to model A ?)
+> 
+> I'd prefer not to hack anything, but yes
+> 
 
-diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-index c2ec750..8fd425d 100644
---- a/drivers/nvmem/Kconfig
-+++ b/drivers/nvmem/Kconfig
-@@ -230,4 +230,15 @@ config NVMEM_ZYNQMP
- 
- 	  If sure, say yes. If unsure, say no.
- 
-+config SPRD_EFUSE
-+	tristate "Spreadtrum SoC eFuse Support"
-+	depends on ARCH_SPRD || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	help
-+	  This is a simple driver to dump specified values of Spreadtrum
-+	  SoCs from eFuse.
-+
-+	  This driver can also be built as a module. If so, the module
-+	  will be called nvmem-sprd-efuse.
-+
- endif
-diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-index e5c153d..7c19870 100644
---- a/drivers/nvmem/Makefile
-+++ b/drivers/nvmem/Makefile
-@@ -50,3 +50,5 @@ obj-$(CONFIG_SC27XX_EFUSE)	+= nvmem-sc27xx-efuse.o
- nvmem-sc27xx-efuse-y		:= sc27xx-efuse.o
- obj-$(CONFIG_NVMEM_ZYNQMP)	+= nvmem_zynqmp_nvmem.o
- nvmem_zynqmp_nvmem-y		:= zynqmp_nvmem.o
-+obj-$(CONFIG_SPRD_EFUSE)	+= nvmem_sprd_efuse.o
-+nvmem_sprd_efuse-y		:= sprd-efuse.o
-diff --git a/drivers/nvmem/sprd-efuse.c b/drivers/nvmem/sprd-efuse.c
-new file mode 100644
-index 0000000..2f1e0fb
---- /dev/null
-+++ b/drivers/nvmem/sprd-efuse.c
-@@ -0,0 +1,424 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (C) 2019 Spreadtrum Communications Inc.
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/hwspinlock.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/nvmem-provider.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+
-+#define SPRD_EFUSE_ENABLE		0x20
-+#define SPRD_EFUSE_ERR_FLAG		0x24
-+#define SPRD_EFUSE_ERR_CLR		0x28
-+#define SPRD_EFUSE_MAGIC_NUM		0x2c
-+#define SPRD_EFUSE_FW_CFG		0x50
-+#define SPRD_EFUSE_PW_SWT		0x54
-+#define SPRD_EFUSE_MEM(val)		(0x1000 + ((val) << 2))
-+
-+#define SPRD_EFUSE_VDD_EN		BIT(0)
-+#define SPRD_EFUSE_AUTO_CHECK_EN	BIT(1)
-+#define SPRD_EFUSE_DOUBLE_EN		BIT(2)
-+#define SPRD_EFUSE_MARGIN_RD_EN		BIT(3)
-+#define SPRD_EFUSE_LOCK_WR_EN		BIT(4)
-+
-+#define SPRD_EFUSE_ERR_CLR_MASK		GENMASK(13, 0)
-+
-+#define SPRD_EFUSE_ENK1_ON		BIT(0)
-+#define SPRD_EFUSE_ENK2_ON		BIT(1)
-+#define SPRD_EFUSE_PROG_EN		BIT(2)
-+
-+#define SPRD_EFUSE_MAGIC_NUMBER		0x8810
-+
-+/* Block width (bytes) definitions */
-+#define SPRD_EFUSE_BLOCK_WIDTH		4
-+
-+/*
-+ * The Spreadtrum AP efuse contains 2 parts: normal efuse and secure efuse,
-+ * and we can only access the normal efuse in kernel. So define the normal
-+ * block offset index and normal block numbers.
-+ */
-+#define SPRD_EFUSE_NORMAL_BLOCK_NUMS	24
-+#define SPRD_EFUSE_NORMAL_BLOCK_OFFSET	72
-+
-+/* Timeout (ms) for the trylock of hardware spinlocks */
-+#define SPRD_EFUSE_HWLOCK_TIMEOUT	5000
-+
-+/*
-+ * Since different Spreadtrum SoC chip can have different normal block numbers
-+ * and offset. And some SoC can support block double feature, which means
-+ * when reading or writing data to efuse memory, the controller can save double
-+ * data in case one data become incorrect after a long period.
-+ *
-+ * Thus we should save them in the device data structure.
-+ */
-+struct sprd_efuse_variant_data {
-+	u32 blk_nums;
-+	u32 blk_offset;
-+	bool blk_double;
-+};
-+
-+struct sprd_efuse {
-+	struct device *dev;
-+	struct clk *clk;
-+	struct hwspinlock *hwlock;
-+	struct mutex mutex;
-+	void __iomem *base;
-+	const struct sprd_efuse_variant_data *data;
-+};
-+
-+static const struct sprd_efuse_variant_data ums312_data = {
-+	.blk_nums = SPRD_EFUSE_NORMAL_BLOCK_NUMS,
-+	.blk_offset = SPRD_EFUSE_NORMAL_BLOCK_OFFSET,
-+	.blk_double = false,
-+};
-+
-+/*
-+ * On Spreadtrum platform, we have multi-subsystems will access the unique
-+ * efuse controller, so we need one hardware spinlock to synchronize between
-+ * the multiple subsystems.
-+ */
-+static int sprd_efuse_lock(struct sprd_efuse *efuse)
-+{
-+	int ret;
-+
-+	mutex_lock(&efuse->mutex);
-+
-+	ret = hwspin_lock_timeout_raw(efuse->hwlock,
-+				      SPRD_EFUSE_HWLOCK_TIMEOUT);
-+	if (ret) {
-+		dev_err(efuse->dev, "timeout get the hwspinlock\n");
-+		mutex_unlock(&efuse->mutex);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void sprd_efuse_unlock(struct sprd_efuse *efuse)
-+{
-+	hwspin_unlock_raw(efuse->hwlock);
-+	mutex_unlock(&efuse->mutex);
-+}
-+
-+static void sprd_efuse_set_prog_power(struct sprd_efuse *efuse, bool en)
-+{
-+	u32 val = readl(efuse->base + SPRD_EFUSE_PW_SWT);
-+
-+	if (en)
-+		val &= ~SPRD_EFUSE_ENK2_ON;
-+	else
-+		val &= ~SPRD_EFUSE_ENK1_ON;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_PW_SWT);
-+
-+	/* Open or close efuse power need wait 1000us to make power stable. */
-+	usleep_range(1000, 1200);
-+
-+	if (en)
-+		val |= SPRD_EFUSE_ENK1_ON;
-+	else
-+		val |= SPRD_EFUSE_ENK2_ON;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_PW_SWT);
-+
-+	/* Open or close efuse power need wait 1000us to make power stable. */
-+	usleep_range(1000, 1200);
-+}
-+
-+static void sprd_efuse_set_read_power(struct sprd_efuse *efuse, bool en)
-+{
-+	u32 val = readl(efuse->base + SPRD_EFUSE_ENABLE);
-+
-+	if (en)
-+		val |= SPRD_EFUSE_VDD_EN;
-+	else
-+		val &= ~SPRD_EFUSE_VDD_EN;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_ENABLE);
-+
-+	/* Open or close efuse power need wait 1000us to make power stable. */
-+	usleep_range(1000, 1200);
-+}
-+
-+static void sprd_efuse_set_prog_lock(struct sprd_efuse *efuse, bool en)
-+{
-+	u32 val = readl(efuse->base + SPRD_EFUSE_ENABLE);
-+
-+	if (en)
-+		val |= SPRD_EFUSE_LOCK_WR_EN;
-+	else
-+		val &= ~SPRD_EFUSE_LOCK_WR_EN;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_ENABLE);
-+}
-+
-+static void sprd_efuse_set_auto_check(struct sprd_efuse *efuse, bool en)
-+{
-+	u32 val = readl(efuse->base + SPRD_EFUSE_ENABLE);
-+
-+	if (en)
-+		val |= SPRD_EFUSE_AUTO_CHECK_EN;
-+	else
-+		val &= ~SPRD_EFUSE_AUTO_CHECK_EN;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_ENABLE);
-+}
-+
-+static void sprd_efuse_set_data_double(struct sprd_efuse *efuse, bool en)
-+{
-+	u32 val = readl(efuse->base + SPRD_EFUSE_ENABLE);
-+
-+	if (en)
-+		val |= SPRD_EFUSE_DOUBLE_EN;
-+	else
-+		val &= ~SPRD_EFUSE_DOUBLE_EN;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_ENABLE);
-+}
-+
-+static void sprd_efuse_set_prog_en(struct sprd_efuse *efuse, bool en)
-+{
-+	u32 val = readl(efuse->base + SPRD_EFUSE_PW_SWT);
-+
-+	if (en)
-+		val |= SPRD_EFUSE_PROG_EN;
-+	else
-+		val &= ~SPRD_EFUSE_PROG_EN;
-+
-+	writel(val, efuse->base + SPRD_EFUSE_PW_SWT);
-+}
-+
-+static int sprd_efuse_raw_prog(struct sprd_efuse *efuse, u32 blk, bool doub,
-+			       bool lock, u32 *data)
-+{
-+	u32 status;
-+	int ret = 0;
-+
-+	/*
-+	 * We need set the correct magic number before writing the efuse to
-+	 * allow programming, and block other programming until we clear the
-+	 * magic number.
-+	 */
-+	writel(SPRD_EFUSE_MAGIC_NUMBER,
-+	       efuse->base + SPRD_EFUSE_MAGIC_NUM);
-+
-+	/*
-+	 * Power on the efuse, enable programme and enable double data
-+	 * if asked.
-+	 */
-+	sprd_efuse_set_prog_power(efuse, true);
-+	sprd_efuse_set_prog_en(efuse, true);
-+	sprd_efuse_set_data_double(efuse, doub);
-+
-+	/*
-+	 * Enable the auto-check function to validate if the programming is
-+	 * successful.
-+	 */
-+	sprd_efuse_set_auto_check(efuse, true);
-+
-+	writel(*data, efuse->base + SPRD_EFUSE_MEM(blk));
-+
-+	/* Disable auto-check and data double after programming */
-+	sprd_efuse_set_auto_check(efuse, false);
-+	sprd_efuse_set_data_double(efuse, false);
-+
-+	/*
-+	 * Check the efuse error status, if the programming is successful,
-+	 * we should lock this efuse block to avoid programming again.
-+	 */
-+	status = readl(efuse->base + SPRD_EFUSE_ERR_FLAG);
-+	if (status) {
-+		dev_err(efuse->dev,
-+			"write error status %d of block %d\n", ret, blk);
-+
-+		writel(SPRD_EFUSE_ERR_CLR_MASK,
-+		       efuse->base + SPRD_EFUSE_ERR_CLR);
-+		ret = -EBUSY;
-+	} else {
-+		sprd_efuse_set_prog_lock(efuse, lock);
-+		writel(*data, efuse->base + SPRD_EFUSE_MEM(blk));
-+		sprd_efuse_set_prog_lock(efuse, false);
-+	}
-+
-+	sprd_efuse_set_prog_power(efuse, false);
-+	writel(0, efuse->base + SPRD_EFUSE_MAGIC_NUM);
-+
-+	return ret;
-+}
-+
-+static int sprd_efuse_raw_read(struct sprd_efuse *efuse, int blk, u32 *val,
-+			       bool doub)
-+{
-+	u32 status;
-+
-+	/*
-+	 * Need power on the efuse before reading data from efuse, and will
-+	 * power off the efuse after reading process.
-+	 */
-+	sprd_efuse_set_read_power(efuse, true);
-+
-+	/* Enable double data if asked */
-+	sprd_efuse_set_data_double(efuse, doub);
-+
-+	/* Start to read data from efuse block */
-+	*val = readl(efuse->base + SPRD_EFUSE_MEM(blk));
-+
-+	/* Disable double data */
-+	sprd_efuse_set_data_double(efuse, false);
-+
-+	/* Power off the efuse */
-+	sprd_efuse_set_read_power(efuse, false);
-+
-+	/*
-+	 * Check the efuse error status and clear them if there are some
-+	 * errors occurred.
-+	 */
-+	status = readl(efuse->base + SPRD_EFUSE_ERR_FLAG);
-+	if (status) {
-+		dev_err(efuse->dev,
-+			"read error status %d of block %d\n", status, blk);
-+
-+		writel(SPRD_EFUSE_ERR_CLR_MASK,
-+		       efuse->base + SPRD_EFUSE_ERR_CLR);
-+		return -EBUSY;
-+	}
-+
-+	return 0;
-+}
-+
-+static int sprd_efuse_read(void *context, u32 offset, void *val, size_t bytes)
-+{
-+	struct sprd_efuse *efuse = context;
-+	bool blk_double = efuse->data->blk_double;
-+	u32 index = offset / SPRD_EFUSE_BLOCK_WIDTH + efuse->data->blk_offset;
-+	u32 blk_offset = (offset % SPRD_EFUSE_BLOCK_WIDTH) * BITS_PER_BYTE;
-+	u32 data;
-+	int ret;
-+
-+	ret = sprd_efuse_lock(efuse);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(efuse->clk);
-+	if (ret)
-+		goto unlock;
-+
-+	ret = sprd_efuse_raw_read(efuse, index, &data, blk_double);
-+	if (!ret) {
-+		data >>= blk_offset;
-+		memcpy(val, &data, bytes);
-+	}
-+
-+	clk_disable_unprepare(efuse->clk);
-+
-+unlock:
-+	sprd_efuse_unlock(efuse);
-+	return ret;
-+}
-+
-+static int sprd_efuse_write(void *context, u32 offset, void *val, size_t bytes)
-+{
-+	struct sprd_efuse *efuse = context;
-+	int ret;
-+
-+	ret = sprd_efuse_lock(efuse);
-+	if (ret)
-+		return ret;
-+
-+	ret = clk_prepare_enable(efuse->clk);
-+	if (ret)
-+		goto unlock;
-+
-+	ret = sprd_efuse_raw_prog(efuse, offset, false, false, val);
-+
-+	clk_disable_unprepare(efuse->clk);
-+
-+unlock:
-+	sprd_efuse_unlock(efuse);
-+	return ret;
-+}
-+
-+static int sprd_efuse_probe(struct platform_device *pdev)
-+{
-+	struct device_node *np = pdev->dev.of_node;
-+	struct nvmem_device *nvmem;
-+	struct nvmem_config econfig = { };
-+	struct sprd_efuse *efuse;
-+	const struct sprd_efuse_variant_data *pdata;
-+	int ret;
-+
-+	pdata = of_device_get_match_data(&pdev->dev);
-+	if (!pdata) {
-+		dev_err(&pdev->dev, "No matching driver data found\n");
-+		return -EINVAL;
-+	}
-+
-+	efuse = devm_kzalloc(&pdev->dev, sizeof(*efuse), GFP_KERNEL);
-+	if (!efuse)
-+		return -ENOMEM;
-+
-+	efuse->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (!efuse->base)
-+		return -ENOMEM;
-+
-+	ret = of_hwspin_lock_get_id(np, 0);
-+	if (ret < 0) {
-+		dev_err(&pdev->dev, "failed to get hwlock id\n");
-+		return ret;
-+	}
-+
-+	efuse->hwlock = devm_hwspin_lock_request_specific(&pdev->dev, ret);
-+	if (!efuse->hwlock) {
-+		dev_err(&pdev->dev, "failed to request hwlock\n");
-+		return -ENXIO;
-+	}
-+
-+	efuse->clk = devm_clk_get(&pdev->dev, "enable");
-+	if (IS_ERR(efuse->clk)) {
-+		dev_err(&pdev->dev, "failed to get enable clock\n");
-+		return PTR_ERR(efuse->clk);
-+	}
-+
-+	mutex_init(&efuse->mutex);
-+	efuse->dev = &pdev->dev;
-+	efuse->data = pdata;
-+
-+	econfig.stride = 1;
-+	econfig.word_size = 1;
-+	econfig.read_only = false;
-+	econfig.name = "sprd-efuse";
-+	econfig.size = efuse->data->blk_nums * SPRD_EFUSE_BLOCK_WIDTH;
-+	econfig.reg_read = sprd_efuse_read;
-+	econfig.reg_write = sprd_efuse_write;
-+	econfig.priv = efuse;
-+	econfig.dev = &pdev->dev;
-+	nvmem = devm_nvmem_register(&pdev->dev, &econfig);
-+	if (IS_ERR(nvmem)) {
-+		dev_err(&pdev->dev, "failed to register nvmem\n");
-+		return PTR_ERR(nvmem);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id sprd_efuse_of_match[] = {
-+	{ .compatible = "sprd,ums312-efuse", .data = &ums312_data },
-+	{ }
-+};
-+
-+static struct platform_driver sprd_efuse_driver = {
-+	.probe = sprd_efuse_probe,
-+	.driver = {
-+		.name = "sprd-efuse",
-+		.of_match_table = sprd_efuse_of_match,
-+	},
-+};
-+
-+module_platform_driver(sprd_efuse_driver);
-+
-+MODULE_AUTHOR("Freeman Liu <freeman.liu@spreadtrum.com>");
-+MODULE_DESCRIPTION("Spreadtrum AP efuse driver");
-+MODULE_LICENSE("GPL v2");
--- 
-1.7.9.5
+Since model A is not public (only evaluations boards exists), the probability of a production model A is low and the current dtb is perfect for model B , could you reconsider this ?
 
