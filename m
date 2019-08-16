@@ -2,160 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6911A90046
-	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0E7890060
+	for <lists+devicetree@lfdr.de>; Fri, 16 Aug 2019 12:59:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727153AbfHPKwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 06:52:10 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:50056 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727110AbfHPKwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 06:52:09 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7GApdHN004849;
-        Fri, 16 Aug 2019 05:51:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1565952699;
-        bh=hn8fy2leOOJ2v5vDgwq8C00AfqgX3leZ0vhsRcjx8Kc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=D58NfWon6bgolsIr719N63cAQowNbSydh3J9Dt6vskmGUNY9McMH6xZEFtYU9Y/jE
-         qoCCFFrtaTIcdYpaXFj7CjGEoLDXrQRX9u58x+iEOvDnyh9mHsFQ2aY5gVb/NWhB+1
-         r2AVDLGnnEqvOkAaq8NvlRSISc/GpIWJZcYskhM8=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7GApdDJ001483
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 16 Aug 2019 05:51:39 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 16
- Aug 2019 05:51:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 16 Aug 2019 05:51:39 -0500
-Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7GApXr5015579;
-        Fri, 16 Aug 2019 05:51:34 -0500
-Subject: Re: [PATCH 02/10] PCI: designware-ep: Add the doorbell mode of MSI-X
- in EP mode
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>,
-        Andrew Murray <andrew.murray@arm.com>
-CC:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>
-References: <20190815083716.4715-1-xiaowei.bao@nxp.com>
- <20190815083716.4715-2-xiaowei.bao@nxp.com>
- <20190815115340.GG43882@e119886-lin.cambridge.arm.com>
- <AM5PR04MB329973845D6396624AFDE547F5AF0@AM5PR04MB3299.eurprd04.prod.outlook.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <02cf2f3d-336c-85bb-1fb5-a141c5a9cf79@ti.com>
-Date:   Fri, 16 Aug 2019 16:19:37 +0530
+        id S1727020AbfHPK7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 06:59:47 -0400
+Received: from lb3-smtp-cloud7.xs4all.net ([194.109.24.31]:56085 "EHLO
+        lb3-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726261AbfHPK7r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 16 Aug 2019 06:59:47 -0400
+Received: from [IPv6:2001:420:44c1:2579:f038:4b04:f67a:276f] ([IPv6:2001:420:44c1:2579:f038:4b04:f67a:276f])
+        by smtp-cloud7.xs4all.net with ESMTPA
+        id yZxKhmt3tThuuyZxNhK6U1; Fri, 16 Aug 2019 12:59:45 +0200
+Subject: Re: [PATCH v7 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
+To:     Marco Felsch <m.felsch@pengutronix.de>, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
+        laurent.pinchart@ideasonboard.com
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+References: <20190815115747.24018-1-m.felsch@pengutronix.de>
+ <20190815115747.24018-3-m.felsch@pengutronix.de>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <eb395727-c1d1-685f-623a-aebf7ba474ea@xs4all.nl>
+Date:   Fri, 16 Aug 2019 12:59:37 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ Thunderbird/60.5.1
 MIME-Version: 1.0
-In-Reply-To: <AM5PR04MB329973845D6396624AFDE547F5AF0@AM5PR04MB3299.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="gbk"
+In-Reply-To: <20190815115747.24018-3-m.felsch@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfJFesj2vHkvgEKm0D0WN4hvIZp7sBLpXN5WTOiYXAMHSg7JkLZIa1P0Njjpjzg4eUW/ChOLZlCVpzKeWhrDVTcLjvbTUVrIzJBwZgZsr8+SM2NO7JUdO
+ p6D75dyWk5i7hCqSTxGoUsIec4OesEWakDh1bAuziOdJ6axGww3HrA4oyvUrsaPyrPxVyr5oM1H9e7Q4h0iBy9OZS4txJ53HJGOjV7NvCj9Ak4VpD9+OSWZy
+ uX0pSHTAwXf2S2u/CarT+CuVyHd6RFixEI3uqp4rWAhlHkipUQHe0MM2ec8DLRiHs4WmOENYPhTX5qIx4jPBvO0Wr6cphnVr3iBEv9wEmecgArj+f1XuxWMC
+ KTTqEKnM54JE2LKNCPvXsJDEUcCYBtuKPhx9GYxyWK+dpoOPEZ5ID6AX5ptPxsGQtzxf3xZgUWMmgEprajElCkWqR2DRHbcPAV5GEk0IBIQTuCjuo0nwcL0Z
+ trVcke6ocGOP9oD1xM/H0caHLnlnJGwbZSkHPwrmL2QhnzpCZIoLbiX+MZWWyXz0IdzQE46cQ2Ozjbb3P8Dn4uB4jFTuqBIvgeGoRH9M90D9TSVlq/QfNODS
+ 1ziF06nIGn5UMcgAfs5r1VPaCAPY7nZb/4PF2UU/KUHlIg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 16/08/19 8:28 AM, Xiaowei Bao wrote:
+On 8/15/19 1:57 PM, Marco Felsch wrote:
+> Currently every driver needs to parse the connector endpoints by it self.
+> This is the initial work to make this generic. A generic connector has
+> common members and connector specific members. The common members are:
+>   - type
+>   - label (optional)
+>   - links
+>   - nr_of_links
 > 
+> The specific members are stored within a union, since only one of them
+> can be available at the time. Since this is the initial support the
+> patch adds only the analog-connector specific ones.
 > 
->> -----Original Message-----
->> From: Andrew Murray <andrew.murray@arm.com>
->> Sent: 2019Äê8ÔÂ15ÈÕ 19:54
->> To: Xiaowei Bao <xiaowei.bao@nxp.com>
->> Cc: jingoohan1@gmail.com; gustavo.pimentel@synopsys.com;
->> bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
->> shawnguo@kernel.org; Leo Li <leoyang.li@nxp.com>; kishon@ti.com;
->> lorenzo.pieralisi@arm.com; arnd@arndb.de; gregkh@linuxfoundation.org;
->> M.h. Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>;
->> Roy Zang <roy.zang@nxp.com>; linux-pci@vger.kernel.org;
->> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->> linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org
->> Subject: Re: [PATCH 02/10] PCI: designware-ep: Add the doorbell mode of
->> MSI-X in EP mode
->>
->> On Thu, Aug 15, 2019 at 04:37:08PM +0800, Xiaowei Bao wrote:
->>> Add the doorbell mode of MSI-X in EP mode.
->>>
->>> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
->>> ---
->>>  drivers/pci/controller/dwc/pcie-designware-ep.c | 14 ++++++++++++++
->>>  drivers/pci/controller/dwc/pcie-designware.h    | 14 ++++++++++++++
->>>  2 files changed, 28 insertions(+)
->>>
->>> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c
->>> b/drivers/pci/controller/dwc/pcie-designware-ep.c
->>> index 75e2955..e3a7cdf 100644
->>> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
->>> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
->>> @@ -454,6 +454,20 @@ int dw_pcie_ep_raise_msi_irq(struct dw_pcie_ep
->> *ep, u8 func_no,
->>>  	return 0;
->>>  }
->>>
->>> +int dw_pcie_ep_raise_msix_irq_doorbell(struct dw_pcie_ep *ep, u8
->> func_no,
->>> +				       u16 interrupt_num)
->>> +{
->>> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->>> +	u32 msg_data;
->>> +
->>> +	msg_data = (func_no << PCIE_MSIX_DOORBELL_PF_SHIFT) |
->>> +		   (interrupt_num - 1);
->>> +
->>> +	dw_pcie_writel_dbi(pci, PCIE_MSIX_DOORBELL, msg_data);
->>> +
->>> +	return 0;
->>> +}
->>> +
->>>  int dw_pcie_ep_raise_msix_irq(struct dw_pcie_ep *ep, u8 func_no,
->>>  			      u16 interrupt_num)
->>
->> Have I understood correctly that the hardware provides an alternative
->> mechanism that allows for raising MSI-X interrupts without the bother of
->> reading the capabilities registers?
-> Yes, the hardware provide two way to MSI-X, please check the page 492 of 
-> DWC_pcie_dm_registers_4.30 Menu.
-> MSIX_DOORBELL_OFF on page 492 0x948 Description: MSI-X Doorbell Register....>
->>
->> If so is there any good reason to keep dw_pcie_ep_raise_msix_irq? (And thus
->> use it in dw_plat_pcie_ep_raise_irq also)?
-> I am not sure, but I think the dw_pcie_ep_raise_msix_irq function is not correct, 
-> because I think we can't get the MSIX table from the address ep->phys_base + tbl_addr, 
-> but I also don't know where I can get the correct MSIX table.
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> [1] https://patchwork.kernel.org/cover/10794703/
+> 
+> v7:
+> - fix spelling issues
+> - constify label
+> - support variable label size
+> - replace single remote_port/id members by links member of variable
+>   size
+> - squash v4l2-connector into v4l2-fwnode
+> 
+> @Jacopo: I dropped your r b tag because I changed the port/id logic.
+> 
+> v6:
+> - fix some spelling and style issues
+> - rm unnecessary comments
+> - drop vga and dvi connector
+> - fix misspelt connector
+> 
+> v2-v4:
+> - nothing since the patch was squashed from series [1] into this
+>   series.
+> ---
+>  include/media/v4l2-fwnode.h | 45 +++++++++++++++++++++++++++++++++++++
+>  1 file changed, 45 insertions(+)
+> 
+> diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> index f6a7bcd13197..e39c198882fc 100644
+> --- a/include/media/v4l2-fwnode.h
+> +++ b/include/media/v4l2-fwnode.h
+> @@ -123,6 +123,51 @@ struct v4l2_fwnode_link {
+>  	unsigned int remote_port;
+>  };
+>  
+> +/**
+> + * enum v4l2_connector_type - connector type
+> + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connector configuration
+> + * @V4L2_CON_COMPOSITE: analog composite connector
+> + * @V4L2_CON_SVIDEO:    analog svideo connector
+> + * @V4L2_CON_HDMI:      digital hdmi connector
+> + */
+> +enum v4l2_connector_type {
+> +	V4L2_CON_UNKNOWN,
+> +	V4L2_CON_COMPOSITE,
+> +	V4L2_CON_SVIDEO,
+> +	V4L2_CON_HDMI,
 
-Sometime back when I tried raising MSI-X from EP, it was failing. It's quite
-possible dw_pcie_ep_raise_msix_irq function is not correct.
+Please use CONN instead of CON. CONN is the traditional abbreviation
+used for connectors. 'CON' is too generic (there are many words that
+start with 'con').
 
-MSI-X table can be obtained from the inbound ATU corresponding to the MSIX bar.
-IMO MSI-X support in EP mode needs rework. For instance set_msix should also
-take BAR number as input to be configured in the MSI-X capability. The function
-driver (pci-epf-test.c) should allocate memory taking into account the MSI-X table.
+Regards,
 
-Thanks
-Kishon
+	Hans
+
+> +};
+> +
+> +/**
+> + * struct v4l2_fwnode_connector_analog - analog connector data structure
+> + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
+> + *                     if no restrictions are specified.
+> + */
+> +struct v4l2_fwnode_connector_analog {
+> +	v4l2_std_id supported_tvnorms;
+> +};
+> +
+> +/**
+> + * struct v4l2_fwnode_connector - the connector data structure
+> + * @label: optional connector label
+> + * @type: connector type
+> + * @links: list of &struct v4l2_fwnode_link links the connector is connected to
+> + * @nr_of_links: total number of links
+> + * @connector: connector configuration
+> + * @connector.analog: analog connector configuration
+> + *                    &struct v4l2_fwnode_connector_analog
+> + */
+> +struct v4l2_fwnode_connector {
+> +	const char *label;
+> +	enum v4l2_connector_type type;
+> +	struct v4l2_fwnode_link *links;
+> +	unsigned int nr_of_links;
+> +
+> +	union {
+> +		struct v4l2_fwnode_connector_analog analog;
+> +		/* future connectors */
+> +	} connector;
+> +};
+> +
+>  /**
+>   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
+>   * @fwnode: pointer to the endpoint's fwnode handle
+> 
+
