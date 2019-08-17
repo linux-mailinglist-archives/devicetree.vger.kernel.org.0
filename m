@@ -2,126 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BBF29129A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 21:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F47F912B0
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 21:25:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725929AbfHQTBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Aug 2019 15:01:48 -0400
-Received: from inca-roads.misterjones.org ([213.251.177.50]:45300 "EHLO
-        inca-roads.misterjones.org" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725945AbfHQTBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sat, 17 Aug 2019 15:01:48 -0400
-X-Greylist: delayed 2660 seconds by postgrey-1.27 at vger.kernel.org; Sat, 17 Aug 2019 15:01:48 EDT
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why)
-        by cheepnis.misterjones.org with esmtpsa (TLSv1.2:AES256-GCM-SHA384:256)
-        (Exim 4.80)
-        (envelope-from <maz@kernel.org>)
-        id 1hz3GL-0002bG-LD; Sat, 17 Aug 2019 20:17:13 +0200
-Date:   Sat, 17 Aug 2019 19:17:10 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Olof Johansson <olof@lixom.net>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH 05/19] irqchip/mmp: do not use of_address_to_resource()
- to get mux regs
-Message-ID: <20190817191710.539daa01@why>
-In-Reply-To: <e0c0cf62a1f087fd6c1d7307e5e2a65603148341.camel@v3.sk>
-References: <20190809093158.7969-1-lkundrak@v3.sk>
-        <20190809093158.7969-6-lkundrak@v3.sk>
-        <16d77ca3-7ad1-3af2-650e-722cf6a931ed@kernel.org>
-        <e0c0cf62a1f087fd6c1d7307e5e2a65603148341.camel@v3.sk>
-Organization: Approximate
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726082AbfHQTZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Aug 2019 15:25:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47570 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725929AbfHQTZu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Aug 2019 15:25:50 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DCC2121773;
+        Sat, 17 Aug 2019 19:25:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566069950;
+        bh=0NanKliApozmuL7V6nL8uKH5LTiliTZ9hOPreXVS068=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bgGST+iX4UmnS3RqbOu/FfRSnf0c7+mYCCB8xVHjEcod3//fj+6o2zG1MpR2/BmIF
+         wQgcm5O3WBckm7FwnV0gomnJn/VVVXFl/zHj2WWkecLSu901qGNgM7znj7t4gDjMEx
+         ihM+ds/w+EeZDUEPWQqQH/13p80Go2CjQigV0YE0=
+Received: by mail-qk1-f178.google.com with SMTP id m10so7619127qkk.1;
+        Sat, 17 Aug 2019 12:25:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAVM193W5zvF+74UATNxRYAo8cYYAiTyj5bRv1WdvYwDLSC0/0ds
+        setRVhg6U1zJf36nx9uAgVI0xxyEx518GARHow==
+X-Google-Smtp-Source: APXvYqyv7XInpncxlHnUpAoRjR6KiBVMpFQYJtiz5LwyqLgNtnlZCWotwsrOV9MPpCCDbso+5ciSPlsOWp3IGl53e/A=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr13539239qkn.254.1566069949063;
+ Sat, 17 Aug 2019 12:25:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: lkundrak@v3.sk, olof@lixom.net, robh+dt@kernel.org, mark.rutland@arm.com, tglx@linutronix.de, jason@lakedaemon.net, kishon@ti.com, linux@armlinux.org.uk, mturquette@baylibre.com, sboyd@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, pavel@ucw.cz
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on cheepnis.misterjones.org); SAEximRunCond expanded to false
+References: <cover.1564091601.git.amit.kucheria@linaro.org>
+ <72bce036fa8cba3db6e5ba82249837ee46e9c077.1564091601.git.amit.kucheria@linaro.org>
+ <20190816213648.GA10244@bogus> <CAP245DVUKRxvU3wWygOFtZuwbvCxfW=wUH=xArOKmYiRZf+EXA@mail.gmail.com>
+In-Reply-To: <CAP245DVUKRxvU3wWygOFtZuwbvCxfW=wUH=xArOKmYiRZf+EXA@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Sat, 17 Aug 2019 14:25:36 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+bymJXY-ffeuCc-15Vkmh88AsUAj5znBN+b-3YWP-Kqg@mail.gmail.com>
+Message-ID: <CAL_Jsq+bymJXY-ffeuCc-15Vkmh88AsUAj5znBN+b-3YWP-Kqg@mail.gmail.com>
+Subject: Re: [PATCH 07/15] dt: thermal: tsens: Document interrupt support in
+ tsens driver
+To:     Amit Kucheria <amit.kucheria@linaro.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Andy Gross <andy.gross@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Aug 2019 20:41:22 +0200
-Lubomir Rintel <lkundrak@v3.sk> wrote:
-
-> On Fri, 2019-08-09 at 13:12 +0100, Marc Zyngier wrote:
-> > On 09/08/2019 10:31, Lubomir Rintel wrote:  
-> > > The "regs" property of the "mrvl,mmp2-mux-intc" devices are silly. They
-> > > are offsets from intc's base, not addresses on the parent bus. At this
-> > > point it probably can't be fixed.
-> > > 
-> > > On an OLPC XO-1.75 machine, the muxes are children of the intc, not the
-> > > axi bus, and thus of_address_to_resource() won't work. We should treat
-> > > the values as mere integers as opposed to bus addresses.
-> > > 
-> > > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > > Acked-by: Pavel Machek <pavel@ucw.cz>
-> > > 
+On Fri, Aug 16, 2019 at 5:02 PM Amit Kucheria <amit.kucheria@linaro.org> wrote:
+>
+> On Sat, Aug 17, 2019 at 3:06 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Fri, Jul 26, 2019 at 03:48:42AM +0530, Amit Kucheria wrote:
+> > > Define two new required properties to define interrupts and
+> > > interrupt-names for tsens.
+> > >
+> > > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 > > > ---
-> > >  drivers/irqchip/irq-mmp.c | 20 +++++++++++---------
-> > >  1 file changed, 11 insertions(+), 9 deletions(-)
-> > > 
-> > > diff --git a/drivers/irqchip/irq-mmp.c b/drivers/irqchip/irq-mmp.c
-> > > index 14618dc0bd396..af9cba4a51c2e 100644
-> > > --- a/drivers/irqchip/irq-mmp.c
-> > > +++ b/drivers/irqchip/irq-mmp.c
-> > > @@ -424,9 +424,9 @@ IRQCHIP_DECLARE(mmp2_intc, "mrvl,mmp2-intc", mmp2_of_init);
-> > >  static int __init mmp2_mux_of_init(struct device_node *node,
-> > >  				   struct device_node *parent)
-> > >  {
-> > > -	struct resource res;
-> > >  	int i, ret, irq, j = 0;
-> > >  	u32 nr_irqs, mfp_irq;
-> > > +	u32 reg[4];
-> > >  
-> > >  	if (!parent)
-> > >  		return -ENODEV;
-> > > @@ -438,18 +438,20 @@ static int __init mmp2_mux_of_init(struct device_node *node,
-> > >  		pr_err("Not found mrvl,intc-nr-irqs property\n");
-> > >  		return -EINVAL;
-> > >  	}
-> > > -	ret = of_address_to_resource(node, 0, &res);
+> > >  Documentation/devicetree/bindings/thermal/qcom-tsens.txt | 5 +++++
+> > >  1 file changed, 5 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > > index 673cc1831ee9..3d3dd5dc6d36 100644
+> > > --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > > +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > > @@ -22,6 +22,8 @@ Required properties:
+> > >
+> > >  - #thermal-sensor-cells : Should be 1. See ./thermal.txt for a description.
+> > >  - #qcom,sensors: Number of sensors in tsens block
+> > > +- interrupts: Interrupts generated from Always-On subsystem (AOSS)
+> > > +- interrupt-names: The name of the interrupt e.g. "tsens0", "tsens1"
+> >
+> > How many interrupts? A name with just indices isn't too useful.
+>
+> Depending on the version of the tsens IP, there can be 1 (upper/lower
+> threshold), 2 (upper/lower + critical threshold) or 3 (upper/lower +
+> critical + zero degree) interrupts. This patch series only introduces
+> support for a single interrupt (upper/lower).
+
+I would expect a different compatible for each possibility.
+
+> I used the names tsens0, tsens1 to encapsulate the controller instance
+> since some SoCs have 1 controller, others have two. So we'll end up
+> with something like the following in DT:
+
+That's not really how *-names is supposed to work. The name is for
+identifying what is at each index. Or to put it another way, a driver
+should be able to use platform_get_irq_by_name(). So 'critical',
+'zero' and something for the first one.
+
+> tsens0: thermal-sensor@c263000 {
+>                         compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
+>                         reg = <0 0x0c263000 0 0x1ff>, /* TM */
+>                               <0 0x0c222000 0 0x1ff>; /* SROT */
+>                         #qcom,sensors = <13>;
+>                         interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
+>                                      <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
+>                         interrupt-names = "tsens0", "tsens0-critical";
+>                         #thermal-sensor-cells = <1>;
+> };
+>
+> tsens1: thermal-sensor@c265000 {
+>                         compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
+>                         reg = <0 0x0c265000 0 0x1ff>, /* TM */
+>                               <0 0x0c223000 0 0x1ff>; /* SROT */
+>                         #qcom,sensors = <8>;
+>                         interrupts = <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
+>                                      <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
+>                         interrupt-names = "tsens1", "tsens1-critical";
+>                         #thermal-sensor-cells = <1>;
+> }
+>
+> Does that work?
+>
+> Regards,
+> Amit
+>
+> > >  - Refer to Documentation/devicetree/bindings/nvmem/nvmem.txt to know how to specify
+> > >  nvmem cells
+> > >
+> > > @@ -40,6 +42,9 @@ tsens0: thermal-sensor@c263000 {
+> > >               reg = <0xc263000 0x1ff>, /* TM */
+> > >                       <0xc222000 0x1ff>; /* SROT */
+> > >               #qcom,sensors = <13>;
+> > > +             interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
+> > > +             interrupt-names = "tsens0";
 > > > +
-> > > +	/*
-> > > +	 * For historical reasonsm, the "regs" property of the
-> > > +	 * mrvl,mmp2-mux-intc is not a regular * "regs" property containing
-> > > +	 * addresses on the parent bus, but offsets from the intc's base.
-> > > +	 * That is why we can't use of_address_to_resource() here.
-> > > +	 */
-> > > +	ret = of_property_read_u32_array(node, "reg", reg, ARRAY_SIZE(reg));  
-> > 
-> > This will return 0 even if you've read less than your expected 4 u32s.
-> > You may want to try of_property_read_variable_u32_array instead.  
-> 
-> Will it? Unless I'm reading the of_property_read_u32_array()
-> documentation wrong, it suggests that would return -EOVERFLOW in that
-> case.
-
-You're appear to be right, and I read it wrong.
-
-> 
-> It ignores the extra values it the property is larger. I guess that is
-> not a good thing and we still want to use
-> of_property_read_variable_u32_array() though.
-
-It doesn't hurt to check for all possible problems, specially given
-that this machine doesn't appear to have a mainline DT (and its OF
-implementation looks a bit buggy).
-
-Thanks,
-
-	M.
--- 
-Without deviation from the norm, progress is not possible.
+> > >               #thermal-sensor-cells = <1>;
+> > >       };
+> > >
+> > > --
+> > > 2.17.1
+> > >
