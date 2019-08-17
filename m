@@ -2,93 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE3F90CB5
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 06:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D065190D05
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 07:03:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725840AbfHQEKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Aug 2019 00:10:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44446 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725832AbfHQEKG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 17 Aug 2019 00:10:06 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C56FD21019;
-        Sat, 17 Aug 2019 04:10:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566015005;
-        bh=17g7BfaMmHq30WUcz3+b9tVZ/imTY1C0pBnfPfxS7cs=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=mv/IQMFCwqZvuNX0TFvREpAUmWNti9NodB6yjXZjh1bx1e7V1AiOMLcnDtLiYxSw9
-         gwYsIhMIDll1sm1WUeZ/rO5moGRPj9p3n5qTDqyKjVpXYtkXStBCyl5RpkLHplCkIA
-         5iEVM7HmBPj622VzENZ5L9kUDwuIv2uBs7ijN7hY=
-Content-Type: text/plain; charset="utf-8"
+        id S1725877AbfHQFDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Aug 2019 01:03:48 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:41245 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725562AbfHQFDr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Aug 2019 01:03:47 -0400
+X-UUID: ecc1830c8ecd4958ac5df51f25475e52-20190817
+X-UUID: ecc1830c8ecd4958ac5df51f25475e52-20190817
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 2014780734; Sat, 17 Aug 2019 13:03:43 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 17 Aug
+ 2019 13:03:41 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 17 Aug 2019 13:03:40 +0800
+Message-ID: <1566018219.21623.18.camel@mhfsdcap03>
+Subject: Re: [RFC,V2,1/2] media: dt-bindings: media: i2c: Add bindings for
+ OV02A10
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <matthias.bgg@gmail.com>, <bingbu.cao@intel.com>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <menghui.lin@mediatek.com>,
+        <shengnan.wang@mediatek.com>, <tfiga@google.com>,
+        <drinkcat@chromium.org>, Sakari Ailus <sakari.ailus@iki.fi>
+Date:   Sat, 17 Aug 2019 13:03:39 +0800
+In-Reply-To: <5d5d644af9334609bb7c3ff745b2e754@mtkmbs02n1.mediatek.inc>
+References: <20190704084651.3105-1-dongchun.zhu@mediatek.com>
+         <20190704084651.3105-2-dongchun.zhu@mediatek.com>
+         <20190722234924.GA22604@bogus>
+         <5d5d644af9334609bb7c3ff745b2e754@mtkmbs02n1.mediatek.inc>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAP245DVUKRxvU3wWygOFtZuwbvCxfW=wUH=xArOKmYiRZf+EXA@mail.gmail.com>
-References: <cover.1564091601.git.amit.kucheria@linaro.org> <72bce036fa8cba3db6e5ba82249837ee46e9c077.1564091601.git.amit.kucheria@linaro.org> <20190816213648.GA10244@bogus> <CAP245DVUKRxvU3wWygOFtZuwbvCxfW=wUH=xArOKmYiRZf+EXA@mail.gmail.com>
-Subject: Re: [PATCH 07/15] dt: thermal: tsens: Document interrupt support in tsens driver
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Andy Gross <andy.gross@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>,
-        Rob Herring <robh@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Fri, 16 Aug 2019 21:10:04 -0700
-Message-Id: <20190817041005.C56FD21019@mail.kernel.org>
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 99049D467F5009BFBF475616B3B2A033809B34DAE95E200D350CC41481287DB52000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Amit Kucheria (2019-08-16 15:02:08)
->=20
-> Depending on the version of the tsens IP, there can be 1 (upper/lower
-> threshold), 2 (upper/lower + critical threshold) or 3 (upper/lower +
-> critical + zero degree) interrupts. This patch series only introduces
-> support for a single interrupt (upper/lower).
->=20
-> I used the names tsens0, tsens1 to encapsulate the controller instance
-> since some SoCs have 1 controller, others have two. So we'll end up
-> with something like the following in DT:
->=20
-> tsens0: thermal-sensor@c263000 {
->                         compatible =3D "qcom,sdm845-tsens", "qcom,tsens-v=
-2";
->                         reg =3D <0 0x0c263000 0 0x1ff>, /* TM */
->                               <0 0x0c222000 0 0x1ff>; /* SROT */
->                         #qcom,sensors =3D <13>;
->                         interrupts =3D <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
->                                      <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
->                         interrupt-names =3D "tsens0", "tsens0-critical";
->                         #thermal-sensor-cells =3D <1>;
-> };
->=20
-> tsens1: thermal-sensor@c265000 {
->                         compatible =3D "qcom,sdm845-tsens", "qcom,tsens-v=
-2";
->                         reg =3D <0 0x0c265000 0 0x1ff>, /* TM */
->                               <0 0x0c223000 0 0x1ff>; /* SROT */
->                         #qcom,sensors =3D <8>;
->                         interrupts =3D <GIC_SPI 507 IRQ_TYPE_LEVEL_HIGH>,
->                                      <GIC_SPI 509 IRQ_TYPE_LEVEL_HIGH>;
->                         interrupt-names =3D "tsens1", "tsens1-critical";
->                         #thermal-sensor-cells =3D <1>;
-> }
->=20
-> Does that work?
->=20
 
-Can you convert this binding to YAML? Then it looks like we can enforce
-the number of interrupts based on the compatible string.
+Hi Rob,
+
+On Mon, 2019-07-22 at 18:49 -0500, Rob Herring wrote:
+> 
+> On Thu, Jul 04, 2019 at 04:46:50PM +0800, dongchun.zhu@mediatek.com wrote:
+> > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> >
+> > Add device tree binding documentation for the OV02A10 camera sensor.
+> >
+> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/ov02a10.txt      | 43 ++++++++++++++++++++++
+> >  MAINTAINERS                                        |  7 ++++
+> >  2 files changed, 50 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > new file mode 100644
+> > index 0000000..d40aa87
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > @@ -0,0 +1,43 @@
+> > +* Omnivision OV02A10 MIPI CSI-2 sensor
+> > +
+> > +Required Properties:
+> > +- compatible: shall be "ovti,ov02a10"
+> > +- clocks: reference to the xvclk input clock
+> > +- clock-names: shall be "xvclk"
+> > +- avdd-supply: Analog voltage supply, 2.8 volts
+> > +- dovdd-supply: Digital I/O voltage supply, 1.8 volts
+> > +- dvdd-supply: Digital core voltage supply, 1.8 volts
+> > +- reset-gpios: Low active reset gpio
+> > +
+> > +The device node shall contain one 'port' child node with an
+> > +'endpoint' subnode for its digital output video port, in accordance
+> > +with the video interface bindings defined in
+> > +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > +The endpoint optional property 'data-lanes' shall be "<1>".
+> > +
+> > +Example:
+> > +&i2c4 {
+> > +ov02a10: camera-sensor@3d {
+> > +compatible = "ovti,ov02a10";
+> > +reg = <0x3d>;
+> > +pinctrl-names = "default";
+> > +pinctrl-0 = <&camera_pins_cam1_mclk_on>;
+> > +
+> > +clocks = <&topckgen CLK_TOP_MUX_CAMTG2>,
+> > +<&topckgen CLK_TOP_UNIVP_192M_D8>;
+> > +clock-names = "xvclk", "freq_mux";
+> > +
+> > +avdd-supply = <&mt6358_vcama1_reg>;
+> > +dvdd-supply = <&mt6358_vcn18_reg>;
+> > +dovdd-supply = <&mt6358_vcamio_reg>;
+> > +pwdn-gpios = <&pio 107 1>;
+> 
+> Not documented. If you need this, use 'powerdown-gpios' instead.
+> 
+
+Fixed in next release.
+
+> > +reset-gpios = <&pio 109 1>;
+> > +
+> > +port {
+> > +   ov02a10_core: endpoint {
+> > +       remote-endpoint = <&ov02a10_0>;
+> > +   data-lanes = <1>;
+> > +};
+> > +};
+> > +};
+> > +};
+> > diff --git a/MAINTAINERS b/MAINTAINERS index 5cfbea4..62b81ff 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11571,6 +11571,13 @@ T:git git://linuxtv.org/media_tree.git
+> >  S:Maintained
+> >  F:drivers/media/i2c/ov13858.c
+> >
+> > +OMNIVISION OV02A10 SENSOR DRIVER
+> > +M:Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > +L:linux-media@vger.kernel.org
+> > +T:git git://linuxtv.org/media_tree.git
+> > +S:Maintained
+> > +F:Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > +
+> >  OMNIVISION OV2680 SENSOR DRIVER
+> >  M:Rui Miguel Silva <rmfrfs@gmail.com>
+> >  L:linux-media@vger.kernel.org
+> > --
+> > 2.9.2
+> >
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> *********************MEDIATEK Confidential/Internal Use*********************
+
 
