@@ -2,60 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C974090C8D
-	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 05:52:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EA2C90C92
+	for <lists+devicetree@lfdr.de>; Sat, 17 Aug 2019 05:53:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725832AbfHQDwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Aug 2019 23:52:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42756 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725829AbfHQDwU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 16 Aug 2019 23:52:20 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 268F32173B;
-        Sat, 17 Aug 2019 03:52:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566013940;
-        bh=4oxw9KmagPq4gSAaCNa0UfIBjp21fF7APgvTtgAbfh8=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=DcdqOF0UOe9NLgUEeGC/MOUbnT5TQ1k6ns/TnlozI+tFXSveq3eVKqnk4wiQ2O6jZ
-         W73j0LpAqXjrYw95uxe7Yrps6KzmDkAayy5sFqqZ08rEd6bj1LY4wYaspvhxwM1IVH
-         UYaYJaZczeJrg1PfGnYj4SklLdB80/ZCh2Pmbj2w=
-Content-Type: text/plain; charset="utf-8"
+        id S1725988AbfHQDxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Aug 2019 23:53:16 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:49033 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725829AbfHQDxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Aug 2019 23:53:16 -0400
+X-UUID: 7a5ffd59a7b94a3fa676b8e7829e81cc-20190817
+X-UUID: 7a5ffd59a7b94a3fa676b8e7829e81cc-20190817
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 968920771; Sat, 17 Aug 2019 11:53:10 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 17 Aug
+ 2019 11:53:08 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 17 Aug 2019 11:53:07 +0800
+Message-ID: <1566013985.21623.9.camel@mhfsdcap03>
+Subject: Re: [RFC,V2,1/2] media: dt-bindings: media: i2c: Add bindings for
+ OV02A10
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     <sakari.ailus@iki.fi>
+CC:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <matthias.bgg@gmail.com>, <bingbu.cao@intel.com>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <menghui.lin@mediatek.com>,
+        <shengnan.wang@mediatek.com>, <tfiga@google.com>,
+        <drinkcat@chromium.org>
+Date:   Sat, 17 Aug 2019 11:53:05 +0800
+In-Reply-To: <ef65288c523f405396991bd6d757bba0@mtkmbs02n1.mediatek.inc>
+References: <20190704084651.3105-1-dongchun.zhu@mediatek.com>
+         <20190704084651.3105-2-dongchun.zhu@mediatek.com>
+         <20190723074153.GA4606@paasikivi.fi.intel.com>
+         <ef65288c523f405396991bd6d757bba0@mtkmbs02n1.mediatek.inc>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1565866783-19672-5-git-send-email-Anson.Huang@nxp.com>
-References: <1565866783-19672-1-git-send-email-Anson.Huang@nxp.com> <1565866783-19672-5-git-send-email-Anson.Huang@nxp.com>
-Subject: Re: [PATCH 5/6] clk: imx8mn: Add necessary frequency support for ARM PLL table
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Linux-imx@nxp.com
-To:     Anson.Huang@nxp.com, abel.vesa@nxp.com, devicetree@vger.kernel.org,
-        festevam@gmail.com, kernel@pengutronix.de, leonard.crestez@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        mark.rutland@arm.com, mturquette@baylibre.com, rjw@rjwysocki.net,
-        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
-        viresh.kumar@linaro.org
-User-Agent: alot/0.8.1
-Date:   Fri, 16 Aug 2019 20:52:19 -0700
-Message-Id: <20190817035220.268F32173B@mail.kernel.org>
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 4774094677F93A251C0A435CD09B88B2EBA9C5713E4CDF9174222B5ED8EA93A72000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Anson.Huang@nxp.com (2019-08-15 03:59:42)
-> diff --git a/drivers/clk/imx/clk-imx8mn.c b/drivers/clk/imx/clk-imx8mn.c
-> index ecd1062..3f1239a 100644
-> --- a/drivers/clk/imx/clk-imx8mn.c
-> +++ b/drivers/clk/imx/clk-imx8mn.c
-> @@ -82,6 +84,7 @@ static struct imx_pll14xx_clk imx8mn_dram_pll =3D {
->  static struct imx_pll14xx_clk imx8mn_arm_pll =3D {
->                 .type =3D PLL_1416X,
->                 .rate_table =3D imx8mn_pll1416x_tbl,
-> +               .rate_count =3D ARRAY_SIZE(imx8mn_pll1416x_tbl),
 
-Why is rate_count added? That's not described in the commit text.
+Hi Sakari,
+
+On Tue, 2019-07-23 at 10:41 +0300, Sakari Ailus wrote:
+> 
+> Hi Dongchun,
+> 
+> On Thu, Jul 04, 2019 at 04:46:50PM +0800, dongchun.zhu@mediatek.com wrote:
+> > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> >
+> > Add device tree binding documentation for the OV02A10 camera sensor.
+> >
+> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/media/i2c/ov02a10.txt      | 43 ++++++++++++++++++++++
+> >  MAINTAINERS                                        |  7 ++++
+> >  2 files changed, 50 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > new file mode 100644
+> > index 0000000..d40aa87
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > @@ -0,0 +1,43 @@
+> > +* Omnivision OV02A10 MIPI CSI-2 sensor
+> > +
+> > +Required Properties:
+> > +- compatible: shall be "ovti,ov02a10"
+> > +- clocks: reference to the xvclk input clock
+> > +- clock-names: shall be "xvclk"
+> > +- avdd-supply: Analog voltage supply, 2.8 volts
+> > +- dovdd-supply: Digital I/O voltage supply, 1.8 volts
+> > +- dvdd-supply: Digital core voltage supply, 1.8 volts
+> > +- reset-gpios: Low active reset gpio
+> > +
+> > +The device node shall contain one 'port' child node with an
+> > +'endpoint' subnode for its digital output video port, in accordance
+> > +with the video interface bindings defined in
+> > +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > +The endpoint optional property 'data-lanes' shall be "<1>".
+> 
+> How many lanes does the module (or the sensor) have?
+> 
+
+From sensor datasheet, OV02A10 supports 1-lane MIPI interface.
+
+> > +
+> > +Example:
+> > +&i2c4 {
+> > +ov02a10: camera-sensor@3d {
+> > +compatible = "ovti,ov02a10";
+> > +reg = <0x3d>;
+> > +pinctrl-names = "default";
+> > +pinctrl-0 = <&camera_pins_cam1_mclk_on>;
+> > +
+> > +clocks = <&topckgen CLK_TOP_MUX_CAMTG2>,
+> > +<&topckgen CLK_TOP_UNIVP_192M_D8>;
+> > +clock-names = "xvclk", "freq_mux";
+> > +
+> > +avdd-supply = <&mt6358_vcama1_reg>;
+> > +dvdd-supply = <&mt6358_vcn18_reg>;
+> > +dovdd-supply = <&mt6358_vcamio_reg>;
+> > +pwdn-gpios = <&pio 107 1>;
+> > +reset-gpios = <&pio 109 1>;
+> > +
+> > +port {
+> > +   ov02a10_core: endpoint {
+> > +       remote-endpoint = <&ov02a10_0>;
+> 
+> Indentation is still wrong. :-(
+> 
+
+Fixed in next release.
+
+> > +   data-lanes = <1>;
+> > +};
+> > +};
+> > +};
+> > +};
+> > diff --git a/MAINTAINERS b/MAINTAINERS index 5cfbea4..62b81ff 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -11571,6 +11571,13 @@ T:git git://linuxtv.org/media_tree.git
+> >  S:Maintained
+> >  F:drivers/media/i2c/ov13858.c
+> >
+> > +OMNIVISION OV02A10 SENSOR DRIVER
+> > +M:Dongchun Zhu <dongchun.zhu@mediatek.com>
+> > +L:linux-media@vger.kernel.org
+> > +T:git git://linuxtv.org/media_tree.git
+> > +S:Maintained
+> > +F:Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+> > +
+> >  OMNIVISION OV2680 SENSOR DRIVER
+> >  M:Rui Miguel Silva <rmfrfs@gmail.com>
+> >  L:linux-media@vger.kernel.org
+> 
+> --
+> Kind regards,
+> 
+> Sakari Ailus
+> sakari.ailus@linux.intel.com
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> *********************MEDIATEK Confidential/Internal Use*********************
+
 
