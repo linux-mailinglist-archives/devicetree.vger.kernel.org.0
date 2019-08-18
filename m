@@ -2,82 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C66913E9
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2019 03:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AD02913F2
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2019 03:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726261AbfHRBLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Aug 2019 21:11:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44780 "EHLO mail.kernel.org"
+        id S1726208AbfHRBQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Aug 2019 21:16:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46254 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726045AbfHRBLf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 17 Aug 2019 21:11:35 -0400
+        id S1726045AbfHRBQY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 17 Aug 2019 21:16:24 -0400
 Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE6F52173B;
-        Sun, 18 Aug 2019 01:11:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B78062173B;
+        Sun, 18 Aug 2019 01:16:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566090693;
-        bh=HEk8XIpEA4mKu9ETPAtTenyB9qoVj6YJR6owDZIimHs=;
+        s=default; t=1566090983;
+        bh=4Z5FMvZ3Dd1AcSMTl6HMiSj36xZqZf8iR0d7FqyfLc0=;
         h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=sK9Zf/ugbsO75h1nHUNXz44KUjY5aEA9MnyjFVsDNwQTo4GWK7FXrVcl8buP+RkpQ
-         IKARSoCV5i/ZRLTSA7Vx7M11YUQKMWzMqPd4RQkrPe05z/EE9Ib+ZloogrWcWnN5cW
-         u/2QgfCMRzjgHcPCupHFUaAQ6csiw5Muyoa2MIyY=
+        b=EC9HcxgbR/+ucY5Ge17R3C2/NR8Uoj65U9yAWfZbtHaxepIxGj46cwAcmjJsSq7yI
+         DrbNq9JCAT03liX4cbdDPG9zmx6Lr6Tbu+/OalIF6GMYPb8kfbOAapwrdAnG9grE4P
+         fQBGRfYKr7jkNEZjGmW4D7pI/A7lKkG3QBEjFSUY=
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <DB3PR0402MB3916D320EB51B2D9E28D55E1F5AE0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1565866783-19672-1-git-send-email-Anson.Huang@nxp.com> <1565866783-19672-5-git-send-email-Anson.Huang@nxp.com> <20190817035220.268F32173B@mail.kernel.org> <DB3PR0402MB3916D320EB51B2D9E28D55E1F5AE0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-Subject: RE: [PATCH 5/6] clk: imx8mn: Add necessary frequency support for ARM PLL table
+In-Reply-To: <20190817035845.GD14652@Mani-XPS-13-9360>
+References: <20190705151440.20844-1-manivannan.sadhasivam@linaro.org> <20190705151440.20844-2-manivannan.sadhasivam@linaro.org> <20190808050128.E3DA52186A@mail.kernel.org> <20190817033422.GB14652@Mani-XPS-13-9360> <20190817034612.6DA7E21721@mail.kernel.org> <20190817035845.GD14652@Mani-XPS-13-9360>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add Bitmain BM1880 SoC clock controller binding
 From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     dl-linux-imx <linux-imx@nxp.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "rjw@rjwysocki.net" <rjw@rjwysocki.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
+        fisher.cheng@bitmain.com, alec.lin@bitmain.com
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 User-Agent: alot/0.8.1
-Date:   Sat, 17 Aug 2019 18:11:33 -0700
-Message-Id: <20190818011133.CE6F52173B@mail.kernel.org>
+Date:   Sat, 17 Aug 2019 18:16:22 -0700
+Message-Id: <20190818011623.B78062173B@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Anson Huang (2019-08-17 15:22:01)
-> Hi, Stephen
->=20
-> > Quoting Anson.Huang@nxp.com (2019-08-15 03:59:42)
-> > > diff --git a/drivers/clk/imx/clk-imx8mn.c
-> > > b/drivers/clk/imx/clk-imx8mn.c index ecd1062..3f1239a 100644
-> > > --- a/drivers/clk/imx/clk-imx8mn.c
-> > > +++ b/drivers/clk/imx/clk-imx8mn.c
-> > > @@ -82,6 +84,7 @@ static struct imx_pll14xx_clk imx8mn_dram_pll =3D {
-> > > static struct imx_pll14xx_clk imx8mn_arm_pll =3D {
-> > >                 .type =3D PLL_1416X,
-> > >                 .rate_table =3D imx8mn_pll1416x_tbl,
-> > > +               .rate_count =3D ARRAY_SIZE(imx8mn_pll1416x_tbl),
+Quoting Manivannan Sadhasivam (2019-08-16 20:58:45)
+> On Fri, Aug 16, 2019 at 08:46:11PM -0700, Stephen Boyd wrote:
+> > Quoting Manivannan Sadhasivam (2019-08-16 20:34:22)
+> > > On Wed, Aug 07, 2019 at 10:01:28PM -0700, Stephen Boyd wrote:
+> > > > Quoting Manivannan Sadhasivam (2019-07-05 08:14:36)
+> > > > > +It is expected that it is defined using standard clock bindings =
+as "osc".
+> > > > > +
+> > > > > +Example:=20
+> > > > > +
+> > > > > +        clk: clock-controller@800 {
+> > > > > +                compatible =3D "bitmain,bm1880-clk";
+> > > > > +                reg =3D <0xe8 0x0c>,<0x800 0xb0>;
+> > > >=20
+> > > > It looks weird still. What hardware module is this actually part of?
+> > > > Some larger power manager block?
+> > > >=20
+> > >=20
+> > > These are all part of the sysctrl block (clock + pinctrl + reset) and=
+ the
+> > > register domains got split between system and pll.
+> > >=20
 > >=20
-> > Why is rate_count added? That's not described in the commit text.
+> > And that can't be one node that probes the clk, pinctrl, and reset
+> > drivers from C code?
 >=20
-> rate_count is necessary for table search during set_rate, it was missed p=
-reviously,
-> I will add it into commit text in V2.
+> It is not a MFD for sure. It's just grouping of the register domains toge=
+ther.
 >=20
 
-Right, isn't that a more critical fix to make by itself instead of
-rolling into this change that adds a few more frequencies?
+Are there datasheets? I'm not saying it's an "MFD", just saying that
+it's one hardware IP block delivered by the SoC integrator. It's
+already odd that there are two register properties.
 
