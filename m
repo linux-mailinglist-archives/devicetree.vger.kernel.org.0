@@ -2,86 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C82C91901
-	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2019 20:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F280891918
+	for <lists+devicetree@lfdr.de>; Sun, 18 Aug 2019 20:59:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726945AbfHRSqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Aug 2019 14:46:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52844 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726927AbfHRSqd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 18 Aug 2019 14:46:33 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B3BA7206C1;
-        Sun, 18 Aug 2019 18:46:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566153992;
-        bh=fQMh+y+VvLmh0mVYWuKBZ8MFRC6Z4rUi+KbsYjoEQX4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=HxBqBuWx6oj0XEKw1ZTGd88jnkGkmOq18hrCF1Y5HvcqQzhed2dFCA2BE63MRUTqr
-         qDh542bAGuE6x06Sn1JUG1iMymBG8eR/yCUNAgm7RTpRNMic0U5VFxQIr4MALytwuE
-         Tiz7PkaXA+CcYLR4NOD+LJTQHgnvL/4paHNRnUp0=
-Date:   Sun, 18 Aug 2019 19:46:27 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mircea Caprioru <mircea.caprioru@analog.com>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Stefan Popa <stefan.popa@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH V3 4/4] dt-bindings: iio: adc: ad7192: Add binding
- documentation for AD7192
-Message-ID: <20190818194627.4bc9571a@archlinux>
-In-Reply-To: <CAL_JsqKONxFbS-nUMc1c=-9HcXCrOVmOOfn9htKOJOjAS6HCKg@mail.gmail.com>
-References: <20190814073150.4602-1-mircea.caprioru@analog.com>
-        <20190814073150.4602-4-mircea.caprioru@analog.com>
-        <CAL_JsqKONxFbS-nUMc1c=-9HcXCrOVmOOfn9htKOJOjAS6HCKg@mail.gmail.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726247AbfHRS7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Aug 2019 14:59:49 -0400
+Received: from mailoutvs8.siol.net ([185.57.226.199]:49736 "EHLO mail.siol.net"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726925AbfHRS7t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 18 Aug 2019 14:59:49 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTP id DD634523A82;
+        Sun, 18 Aug 2019 20:59:45 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta11.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta11.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id 2HPR71-A2-_F; Sun, 18 Aug 2019 20:59:45 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Postfix) with ESMTPS id 88748523A8A;
+        Sun, 18 Aug 2019 20:59:45 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-86-58-59-25.static.triera.net [86.58.59.25])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Postfix) with ESMTPA id 9A39B523A83;
+        Sun, 18 Aug 2019 20:59:43 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     kbuild test robot <lkp@intel.com>
+Cc:     kbuild-all@01.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        mripard@kernel.org, wens@csie.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: dts: allwinner: h6: Introduce Tanix TX6 board
+Date:   Sun, 18 Aug 2019 20:59:42 +0200
+Message-ID: <7640522.c0V0aH5rf2@jernej-laptop>
+In-Reply-To: <201908190222.ZdIp2gT1%lkp@intel.com>
+References: <20190816205342.29552-3-jernej.skrabec@siol.net> <201908190222.ZdIp2gT1%lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Aug 2019 20:39:04 -0600
-Rob Herring <robh+dt@kernel.org> wrote:
-
-> On Wed, Aug 14, 2019 at 1:32 AM Mircea Caprioru
-> <mircea.caprioru@analog.com> wrote:
-> >
-> > This patch add device tree binding documentation for AD7192 adc in YAML
-> > format.
-> >
-> > Signed-off-by: Mircea Caprioru <mircea.caprioru@analog.com>
-> > ---
-> > Changelog V2:
-> > - remove description from spi and interrupt properties
-> > - changed the name of the device from ad7192 to adc in the example
-> >
-> > Changelog V3:
-> > - added semicolon at the end of the dt example
-> >
-> >  .../bindings/iio/adc/adi,ad7192.yaml          | 121 ++++++++++++++++++
-> >  1 file changed, 121 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml  
+Dne nedelja, 18. avgust 2019 ob 20:42:49 CEST je kbuild test robot napisal(a):
+> Hi Jernej,
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on linus/master]
+> [cannot apply to v5.3-rc4 next-20190816]
+> [if your patch is applied to the wrong git tree, please drop us a note to
+> help improve the system]
+> 
+> url:   
+> https://github.com/0day-ci/linux/commits/Jernej-Skrabec/dt-bindings-arm-sun
+> xi-Add-compatible-for-Tanix-TX6-board/20190819-002034 config:
+> arm64-defconfig (attached as .config)
+> compiler: aarch64-linux-gcc (GCC) 7.4.0
+> reproduce:
+>         wget
+> https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O
+> ~/bin/make.cross chmod +x ~/bin/make.cross
+>         # save the attached .config to linux build tree
+>         GCC_VERSION=7.4.0 make.cross ARCH=arm64
+> 
+> If you fix the issue, kindly add following tag
+> Reported-by: kbuild test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> >> Error: arch/arm64/boot/dts/allwinner/sun50i-h6-tanix-tx6.dts:83.1-6 Label
+> >> or path r_ir not found FATAL ERROR: Syntax error parsing input tree
 
-For some reason, this patch gave me a git error based on encoding. 
-I applied it by hand instead and all seemed fine.  Not sure why
-that happened!
+Strange, Allwinner tree has commit, which introduces r_ir node:
+https://git.kernel.org/pub/scm/linux/kernel/git/sunxi/linux.git/commit/?
+h=sunxi/dt-for-5.4&id=9267811aad3524c857cf2e16bbadd8c569e15ab9
 
-Applied to the togreg branch of iio.git and pushed out as testing
-so the autobuilders can play with it.
+Maybe kbuild test robot tree doesn't have it?
 
-Thanks,
+Best regards,
+Jernej
 
-Jonathan
+> 
+> ---
+> 0-DAY kernel test infrastructure                Open Source Technology
+> Center https://lists.01.org/pipermail/kbuild-all                   Intel
+> Corporation
+
+
+
 
