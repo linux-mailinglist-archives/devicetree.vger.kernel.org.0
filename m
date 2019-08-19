@@ -2,54 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54C429245C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:09:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38D8592465
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:10:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727584AbfHSNJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 09:09:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43854 "EHLO mail.kernel.org"
+        id S1727332AbfHSNKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 09:10:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44288 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727424AbfHSNJo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 09:09:44 -0400
+        id S1727301AbfHSNKs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 09:10:48 -0400
 Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C61C720843;
-        Mon, 19 Aug 2019 13:09:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0416C2086C;
+        Mon, 19 Aug 2019 13:10:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566220184;
-        bh=WNIq2PRwEGgUzdRSpB8DEXjutvanCvj07VyhRwkg7Rc=;
+        s=default; t=1566220247;
+        bh=efgMIFqbDub5AwYwoCwk6l2PFpmusRxRiQTqU1CB5XE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=yOpeK4QjF8DvEY5sIvrWacbakhKKqR+RjgEEc+YDrgNbC08Ac7X8ZfGQMgH5ZhunU
-         Ys7VKIS7cPP8KT3ZozILOUDZaMyoHUOwcYCBwdpj+nZ2eP7B5TQkcu68Ht5wuaWN0W
-         /rhK5za9uAgSwcIv6B1x4YWpd2uw34gluM2TV32A=
-Date:   Mon, 19 Aug 2019 15:09:30 +0200
+        b=GZyi85pST9l8iaCgZUCUoS2J5F5RXdWTLtK/ebZtddL0C53Hgr9mw0Fjh8fXHOweN
+         mJlCAxk706p3+QtP8GMgHJ2IQmu+JHVI6WT/FZPxADhkQJLQpJkXqjEm62Tt7J9cPj
+         AM5eeH0z1Fni93ZYLW4fXEeARzf9ZMmuLcdJXCU8=
+Date:   Mon, 19 Aug 2019 15:10:35 +0200
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson.Huang@nxp.com
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, leonard.crestez@nxp.com,
-        abel.vesa@nxp.com, daniel.baluta@nxp.com, jun.li@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH] arm64: dts: imx8mn: Add gpio-ranges property
-Message-ID: <20190819130929.GG5999@X250>
-References: <1565837850-1373-1-git-send-email-Anson.Huang@nxp.com>
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, xiaobo.xie@nxp.com,
+        jiafei.pan@nxp.com, yangbo.lu@nxp.com,
+        Ashish Kumar <Ashish.Kumar@nxp.com>
+Subject: Re: [PATCH v5] arm64: dts: ls1028a: Add esdhc node in dts
+Message-ID: <20190819131033.GH5999@X250>
+References: <20190815033901.18696-1-yinbo.zhu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1565837850-1373-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <20190815033901.18696-1-yinbo.zhu@nxp.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 10:57:30PM -0400, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
+On Thu, Aug 15, 2019 at 11:39:01AM +0800, Yinbo Zhu wrote:
+> From: Ashish Kumar <Ashish.Kumar@nxp.com>
 > 
-> Add "gpio-ranges" property to establish connections between GPIOs
-> and PINs on i.MX8MN pinctrl driver.
+> This patch is to add esdhc node and enable SD UHS-I,
+> eMMC HS200 for ls1028ardb/ls1028aqds board.
 > 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
+> Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
 
 Applied, thanks.
