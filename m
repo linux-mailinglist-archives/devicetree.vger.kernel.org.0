@@ -2,62 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4ED2791E07
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 09:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF15791E21
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 09:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726464AbfHSHjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 03:39:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58120 "EHLO mail.kernel.org"
+        id S1726174AbfHSHl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 03:41:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60298 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725790AbfHSHjC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 03:39:02 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726211AbfHSHl2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 03:41:28 -0400
+Received: from localhost.localdomain (unknown [122.182.221.154])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CFC272184D;
-        Mon, 19 Aug 2019 07:38:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id CB99920989;
+        Mon, 19 Aug 2019 07:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566200341;
-        bh=rrlGxLwD24pbPAWMAYLMfKb9jCofaz3kzP33VDcGfuM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Rowz5XfLc4FWdlA1ScNEAQYEWicKr270PcCqlq5wC3pxj56lmuLvfcttVw99iMImK
-         b6zASiu/SyveubCvzvsLjFohvgzTevGQdrArGZSYiRdDIw6C7AooZYmSr6MRMKmtlQ
-         8GeRfgdZjfmlWKCSe+F5nronj/AHQM/ZLiSDLWso=
-Date:   Mon, 19 Aug 2019 09:38:48 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>
-Cc:     Rui Miguel Silva <rmfrfs@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        s=default; t=1566200488;
+        bh=gSE+SJifgMYnoJwAFhNDWjp0CXgY/NibVpypk5/o80w=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZCguwiU0jt0xDPn6xGFzUvKsCze/65szxaTXtsvzmaKd4g4rZ+bPwdcfeTfG6RPFq
+         NnyZewQAtfbovqsHV1LbvKD17p02uVaf66Sy+zvHlbUtcvuQ/VEoFoyrPPWFAa5Xq0
+         5bz2YI3kKrXLZ0PQw+yUPaMvcO3iOHHPWigCdetc=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devel@driverdev.osuosl.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] ARM: dts: imx6ul: Add csi node
-Message-ID: <20190819073847.GB5999@X250>
-References: <20190731163257.32448-1-sebastien.szymanski@armadeus.com>
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/4] clk: qcom: Add support for SM8150
+Date:   Mon, 19 Aug 2019 13:09:43 +0530
+Message-Id: <20190819073947.17258-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190731163257.32448-1-sebastien.szymanski@armadeus.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 06:32:57PM +0200, Sébastien Szymanski wrote:
-> Add csi node for i.MX6UL SoC.
-> 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+Add support for rpm clock controller found in SM8150 and while at it update
+the driver to support parent data clock scheme as suggested by Stephen.
 
-Applied, thanks.
+Changes since v2:
+ - Describe parent clocks for rpmhcc
+ - Add support for parent data scheme for rpmhcc
+
+Vinod Koul (4):
+  dt-bindings: clock: Document the parent clocks
+  clk: qcom: clk-rpmh: Convert to parent data scheme
+  dt-bindings: clock: Document SM8150 rpmh-clock compatible
+  clk: qcom: clk-rpmh: Add support for SM8150
+
+ .../bindings/clock/qcom,rpmh-clk.txt          |  7 +++-
+ drivers/clk/qcom/clk-rpmh.c                   | 37 ++++++++++++++++++-
+ 2 files changed, 41 insertions(+), 3 deletions(-)
+
+-- 
+2.20.1
+
