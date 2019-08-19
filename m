@@ -2,138 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFFEB94F40
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 22:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F39A94F56
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 22:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727988AbfHSUow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 16:44:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41616 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727980AbfHSUow (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 16:44:52 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 522D422CEB;
-        Mon, 19 Aug 2019 20:44:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566247491;
-        bh=Xt49zo8krwmoOazMCCO/tRxFxp3arfb575NmsUMT2PI=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=M5hh0gBONwL0+FsNv5RDvueMkVTzxpvkKSnJIPH1ByMVIznjEK2YxxbnCLT5HzRbm
-         N0IYZECTsXgANKA60LnOY2jagNhETo5tyyo+0FT90gkdMZJ3jNnZ8lOKRsV/eHbS+9
-         kYQb5S61lJl93YOo3CLN2xekvLykd5RpgYjxJyks=
-Content-Type: text/plain; charset="utf-8"
+        id S1728358AbfHSUtr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 16:49:47 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:40288 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728245AbfHSUtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 16:49:46 -0400
+Received: by mail-oi1-f196.google.com with SMTP id h21so2390859oie.7
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 13:49:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qJ9ugW0VcpBtWnTjpGs9NEf6Ynixa6UaLJj3OPptk5g=;
+        b=q+P0sD17vIM+mtMUIp1fUF4hdbm3kEwLyQ81ukyHKo+cbSU3vVZMFDoIo37Yhm8U4+
+         q61m4hNpNKA5EmOy2jOKzCnqNYwZOU2okR0EmEdv/VxGpnmjpHJ5C/MAarilBOR6rEiK
+         W3jIcFWkYG9VwqvOLNOteA8qnGNwKHMYcMhux3m85YR3tYqTYUuUWBDlYaHsQj6y0zFX
+         ufgjDRFh2mOozKEpRLsO33nJ6RWj7TqdSwcg5+iIADwuLFANB12x4QuVWAES7h1aIyUX
+         rl6m8aMO9ZtBmsNdyBOQOXb2ATTpi0Mify0eKo9fh3x14GUVHxc6m7xGbkxNDUmqKH0i
+         2Vtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qJ9ugW0VcpBtWnTjpGs9NEf6Ynixa6UaLJj3OPptk5g=;
+        b=jv8Q9Yww9fSZDj1Ymt2y3JvGniDmi44zdg2a5G0HRUpniZBX5FusRwmb7XlqaAKWGy
+         1T5wQeXpPdRYF3Nc3+k9wguqZyiyEddxEyTJs5OwE45wHHMaUNwUjffshiwtBh7jBmEH
+         3CSPI6K4l4gRk1gx3NMPawbcfjhFGER0Iy81c3JXIRbOo0qf9WYo/V81Fny4TKlYCcHt
+         3BarjxMh+zlmcEgoAF9IEUaceF2KcG5HpPADckFdiUju9CFpoOcLirhKhQr7MB6bCETb
+         V+q840iOlyT52IUxqxxdoZkDPeaZRG9fUdSW9IsHVOJu26bk8pb2m2CbN4GhDG6K0oTD
+         iM3w==
+X-Gm-Message-State: APjAAAXfGsju5eA5Hsq9r0oSULT3mnJNALbXoOa8xzUj59kxkWG231eh
+        PQPoA1nG23OMtyATWlY/lj8xr/pcfA4+Fgetr00s2Q==
+X-Google-Smtp-Source: APXvYqwLgJm79P1VG9mvKLUJli6+cr3P6CNXHG9JdeNFWtwqzalSYpHIofZHk4CrOA+HJ58jgecRJwwKnPqN9EQMkyI=
+X-Received: by 2002:aca:5106:: with SMTP id f6mr15062569oib.69.1566247785258;
+ Mon, 19 Aug 2019 13:49:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <98f9cdc2-fa9b-b639-b906-44b17f0efd76@kdbg.org>
-References: <20190816225658.8946-1-sboyd@kernel.org> <98f9cdc2-fa9b-b639-b906-44b17f0efd76@kdbg.org>
-Subject: Re: [PATCH v2] userdiff: Add a builtin pattern for dts files
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     git@vger.kernel.org, Adrian Johnson <ajohnson@redneon.com>,
-        William Duclot <william.duclot@ensimag.grenoble-inp.fr>,
-        Matthieu Moy <matthieu.moy@grenoble-inp.fr>,
-        devicetree@vger.kernel.org, Alban Gruin <alban.gruin@gmail.com>,
-        Junio C Hamano <gitster@pobox.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-To:     Johannes Sixt <j6t@kdbg.org>
-User-Agent: alot/0.8.1
-Date:   Mon, 19 Aug 2019 13:44:50 -0700
-Message-Id: <20190819204451.522D422CEB@mail.kernel.org>
+References: <20190724001100.133423-1-saravanak@google.com> <20190724001100.133423-4-saravanak@google.com>
+ <141d2e16-26cc-1f05-1ac0-6784bab5ae88@gmail.com> <CAGETcx-dVnLCRA+1CX47gtZgtwTcrN5KefpjMzh9OJB-BEnqyg@mail.gmail.com>
+ <19c99a6e-51c3-68d7-d1d6-640aae754c14@gmail.com>
+In-Reply-To: <19c99a6e-51c3-68d7-d1d6-640aae754c14@gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 19 Aug 2019 13:49:09 -0700
+Message-ID: <CAGETcx-XcXZq7YFHsFdzBDniQku9cxFUJL_vBoEKKhCH+cDKRw@mail.gmail.com>
+Subject: Re: [PATCH v7 3/7] of/platform: Add functional dependency link from
+ DT bindings
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Johannes Sixt (2019-08-19 11:40:47)
-> Am 17.08.19 um 00:56 schrieb Stephen Boyd:
-> > The Linux kernel receives many patches to the devicetree files each
-> > release. The hunk header for those patches typically show nothing,
-> > making it difficult to figure out what node is being modified without
-> > applying the patch or opening the file and seeking to the context. Let's
-> > add a builtin 'dts' pattern to git so that users can get better diff
-> > output on dts files when they use the diff=3Ddts driver.
-> >=20
-> > The regex has been constructed based on the spec at devicetree.org[1]
-> >=20
-> > [1] https://github.com/devicetree-org/devicetree-specification/releases=
-/latest
-> >=20
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> > ---
-> >=20
-> > Sending this again after getting feedback and it getting stuck in
-> > review[1]. I'm not sure what happened with the meta question from Junio
-> > to add a way for various projects to introduce their own patterns, but
-> > I'd still prefer to have this in git proper because the kernel uses git
-> > extensively and we rely on git formatted patches in our workflow. I
-> > recently reviewed a dts change and remembered this never got accepted.
-> >=20
-> > Changes from v1:
-> >  * Updated regex to handle anything after node names instead of
-> >    requiring a '{'
-> >  * Updated test for boolean relation operators
-> >  * Sent out a patch to devicetree spec to document % operator
-> >=20
-> > [1] Feedback was in 16335abe-5e7e-fd7a-25f4-373f94e176e1@gmail.com
->=20
-> Thanks. I've a few suggestions below.
->=20
-> > diff --git a/t/t4018/dts-labels b/t/t4018/dts-labels
-> > new file mode 100644
-> > index 000000000000..27cd4921cfb6
-> > --- /dev/null
-> > +++ b/t/t4018/dts-labels
-> > @@ -0,0 +1,8 @@
-> > +/ {
-> > +     label_1: node1@ff00 {
-> > +             label2: RIGHT {
-> > +                     vendor,some-property;
-> > +                     ChangeMe =3D <0x45-30>;
->=20
-> In these tests, it would be worthwhile to leave another (possibly blank)
-> line before the ChangeMe line in order to demonstrate that lines
-> beginning with a word, such as the 'vendor,some-property;' line, are
-> _not_ picked up when they are not in the hunk context.
+On Mon, Aug 19, 2019 at 10:16 AM Frank Rowand <frowand.list@gmail.com> wrote:
+>
+> On 8/15/19 6:50 PM, Saravana Kannan wrote:
+> > On Wed, Aug 7, 2019 at 7:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
+> >>
+> >> On 7/23/19 5:10 PM, Saravana Kannan wrote:
+> >>> Add device-links after the devices are created (but before they are
+> >>> probed) by looking at common DT bindings like clocks and
+> >>> interconnects.
+>
+>
+> < very big snip (lots of comments that deserve answers) >
+>
+>
+> >>
+> >> /**
+> >>  * of_link_property - TODO:
+> >>  * dev:
+> >>  * con_np:
+> >>  * prop:
+> >>  *
+> >>  * TODO...
+> >>  *
+> >>  * Any failed attempt to create a link will NOT result in an immediate return.
+> >>  * of_link_property() must create all possible links even when one of more
+> >>  * attempts to create a link fail.
+> >>
+> >> Why?  isn't one failure enough to prevent probing this device?
+> >> Continuing to scan just results in extra work... which will be
+> >> repeated every time device_link_check_waiting_consumers() is called
+> >
+> > Context:
+> > As I said in the cover letter, avoiding unnecessary probes is just one
+> > of the reasons for this patch. The other (arguably more important)
+>
+> Agree that it is more important.
+>
+>
+> > reason for this patch is to make sure suppliers know that they have
+> > consumers that are yet to be probed. That way, suppliers can leave
+> > their resource on AND in the right state if they were left on by the
+> > bootloader. For example, if a clock was left on and at 200 MHz, the
+> > clock provider needs to keep that clock ON and at 200 MHz till all the
+> > consumers are probed.
+> >
+> > Answer: Let's say a consumer device Z has suppliers A, B and C. If the
+> > linking fails at A and you return immediately, then B and C could
+> > probe and then figure that they have no more consumers (they don't see
+> > a link to Z) and turn off their resources. And Z could fail
+> > catastrophically.
+>
+> Then I think that this approach is fatally flawed in the current implementation.
 
-Sure. I can add a blank line. Did you want it on all the tests or just
-some of them?
+I'm waiting to hear how it is fatally flawed. But maybe this is just a
+misunderstanding of the problem?
 
-> > diff --git a/userdiff.c b/userdiff.c
-> > index e74a6d402255..1db5d30aaebe 100644
-> > --- a/userdiff.c
-> > +++ b/userdiff.c
-> > @@ -23,6 +23,15 @@ IPATTERN("ada",
-> >        "[a-zA-Z][a-zA-Z0-9_]*"
-> >        "|[-+]?[0-9][0-9#_.aAbBcCdDeEfF]*([eE][+-]?[0-9_]+)?"
-> >        "|=3D>|\\.\\.|\\*\\*|:=3D|/=3D|>=3D|<=3D|<<|>>|<>"),
-> > +PATTERNS("dts",
-> > +      /* Node name with optional label and unit address */
-> > +      "^[ \t]*((([a-zA-Z_][a-zA-Z0-9_]*:[ \t]*)?[a-zA-Z][a-zA-Z0-9,._+=
--]*(@[a-zA-Z0-9,._+-]+)?"
->=20
-> From the examples I see in this patch, it looks like lines ending in a
-> ';' are not candidates, everything that begins with 'word' or '&word'
-> is. Wouldn't that greatly simplify these patterns?
->=20
->         "!;\n"
->         /* lines beginning with a word optionally preceded by '&' */
->         "^[ \t]*(&?([a-zA-Z_].*)"
+In the text below, I'm not sure if you mixing up two different things
+or just that your wording it a bit ambiguous. So pardon my nitpick to
+err on the side of clarity.
 
-Right. I was stuck with my old regex ways where it wasn't considering
-lines that didn't end in a semicolon. This looks like it will work.
+> A device can be added by a module that is loaded.
 
->=20
-> > +      /* Reference */
-> > +      "|&[a-zA-Z_][a-zA-Z0-9_]*)[ \t]*[^;]*)$",
->=20
-> Note that you don't have to replicate the syntax faithfully in the
-> patterns because you can assume that files adhere to the correct syntax.
-> You could merge this into the former pattern by just matching "&?" after
-> the initial whitespace.
+No, in the example I gave, of_platform_default_populate_init() would
+add all 3 of those devices during arch_initcall_sync().
 
-Ok. Thanks for simplifying by providing the regex above. I'll rework and
-resend.
+>  In that case the device
+> was not present at late boot when the suppliers may turn off their resources.
 
+In that case, the _drivers_ for those devices aren't present at late
+boot. So that they can't request to keep the resources on for their
+consumer devices. Since there are no consumer requests on resources,
+the suppliers turn off their resources at late boot (since there isn't
+a better location as of today). The sync_state() call back added in a
+subsequent patche in this series will provide the better location.
+
+> (I am assuming the details since I have not reviewed the patches later in
+> the series that implement this part.)
+>
+> Am I missing something?
+
+I think you are mixing up devices getting added/populated with drivers
+getting loaded as modules?
+
+> If I am wrong, then I'll have more comments for your review replies for
+> patches 2 and 3.
+
+I'll wait for more review replies?
+
+Thanks,
+Saravana
