@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FBE91DA0
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 09:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FCFF91DA2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 09:16:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726851AbfHSHQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 03:16:25 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:36886 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726845AbfHSHQY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 03:16:24 -0400
-Received: by mail-pf1-f195.google.com with SMTP id 129so641216pfa.4
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 00:16:24 -0700 (PDT)
+        id S1726842AbfHSHQh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 03:16:37 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:36556 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726828AbfHSHQh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 03:16:37 -0400
+Received: by mail-pf1-f196.google.com with SMTP id w2so643173pfi.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 00:16:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=E4I0nwbB40pqeWHoV/798x9f0gje8qISbA2ysVwPz/g=;
-        b=nKH8wqmjGSa2ybP1nrMEitKF8FD0nmeXRfyTNl2aWZ9u6orHOZerLfF6cVI8dyN53/
-         ns2EXlCQSbt15jD3SyExGoFAU3mP0Ug5IEksWy9KuNTa7ImbdIVT7foykXMHqH7dzpBE
-         oMEaq6R/1HyNCKI9vL5mKiZOm/BJbj3bFOj6c=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=9cx5J3qJM1mKUm+2sKo6b0vnmeXJUlAVQcqbQi11PCo=;
+        b=Nkd7rmP6tZfSZFEVomx+qLhiw//GX1Qn9kJ0y5HoW6q/VKI5A16Y4A0g2PyH95yU/g
+         yuXsJyZ6jQ3N7/gNbpjjnKaX3NlTYJksu3zsygI/GtEFSkQABxNwdQwz9b71psMyxnOb
+         JgxY6XJYqn+kgdDa5jtlBtAeGSltNwDOfgfyE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=E4I0nwbB40pqeWHoV/798x9f0gje8qISbA2ysVwPz/g=;
-        b=n4ooVdMBz19kwjXh6a0PRzOE3aTbk4PIiqS/E1ehHZqMp5/88ARSMFItMQu2mt3zGC
-         j9JjWzJ+GLHHTilCjdTla9G7vx5NguAp0Baim1uLbBOtmYSSsACOciJURBYL3roUJd9b
-         s7ZHQxaqSOzs7ikftpWnWafnGF7gTAA4CfRv8PFVSeSXfJjxz5gNjcYuzlrsVt3DQa5r
-         H+oH/3jiCOhak5hncuUM4wKXGK1o/lbhpBcjixBoCNmxSNDTXjHwnrPxsa+/lYW59Ac2
-         f6vqweAXAWx0uHmjispijsiJ1w/Zr+GyWkCoytboBGuE148+FPAMNgcAIGzrJ253EbsA
-         pjYw==
-X-Gm-Message-State: APjAAAWt70guinnx2NpuBu8LaqFylGfZc5iGSO/ATSFheh0t66xlGxsH
-        RwLUHQTyR5N4a2wN1KG2nTCJPw==
-X-Google-Smtp-Source: APXvYqzQ5bCb1eZQOlrkKJIooCdpG5H+MgNCs58SYiUsllABkx5wib5s+woQ+/e0gQTMuER2i7x9AQ==
-X-Received: by 2002:a62:5883:: with SMTP id m125mr22570389pfb.248.1566198984026;
-        Mon, 19 Aug 2019 00:16:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=9cx5J3qJM1mKUm+2sKo6b0vnmeXJUlAVQcqbQi11PCo=;
+        b=SZUQfaCF4EXbXLrPq3eYd6dGWG0X9gtjs5xPdsms7msZo5ELxX5V7gdotHsU2z4+kG
+         /ig61POB5PvwyGjM/uwDeQL7o8v3M06TNGri1mV147+XWNOEU5x+Mgyx9dBKlfeobj/0
+         v/GVjd38oc3+8hYnWWjF4jj898JmElx5XRmfuCbfuVdLTywS2rGD6dSpibc2z+78R5ln
+         v7TI1lN/HAam5wzSZc5Vg9N8ec3tGTsaWaBgNc5GVGTtgXOHYnhzHByJLv4bMFG34Gv1
+         kL53dZnoJcDkopq5mnCDIrNkrABTvQdheMVjG/aSBOf/yF+ixwzubaGPdfqMH26oJIsQ
+         OhPw==
+X-Gm-Message-State: APjAAAV/Zpn+9SFLOT0MFVyeesZzPbKG/FawHkDxJsH632wqXzjINj2n
+        i2SqEXrUS7LbbO98k/0/p+IEsA==
+X-Google-Smtp-Source: APXvYqyXcN/sT3MB06+Iu4VEbQf7G7zGXFXTOMO580qtc7olomGN/Wy8CDcp2kJ5H0aVodXZ0FaiKQ==
+X-Received: by 2002:a65:5cca:: with SMTP id b10mr19137680pgt.365.1566198996064;
+        Mon, 19 Aug 2019 00:16:36 -0700 (PDT)
 Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:b852:bd51:9305:4261])
-        by smtp.gmail.com with ESMTPSA id y9sm14691341pfn.152.2019.08.19.00.16.20
+        by smtp.gmail.com with ESMTPSA id y9sm14691341pfn.152.2019.08.19.00.16.32
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 19 Aug 2019 00:16:23 -0700 (PDT)
+        Mon, 19 Aug 2019 00:16:35 -0700 (PDT)
 From:   Hsin-Yi Wang <hsinyi@chromium.org>
 To:     linux-arm-kernel@lists.infradead.org
 Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
@@ -61,10 +61,12 @@ Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Laura Abbott <labbott@redhat.com>,
         Stephen Boyd <swboyd@chromium.org>,
         Kees Cook <keescook@chromium.org>
-Subject: [PATCH v8 0/3] add support for rng-seed
-Date:   Mon, 19 Aug 2019 15:16:00 +0800
-Message-Id: <20190819071602.139014-1-hsinyi@chromium.org>
+Subject: [PATCH v8 1/3] arm64: map FDT as RW for early_init_dt_scan()
+Date:   Mon, 19 Aug 2019 15:16:02 +0800
+Message-Id: <20190819071602.139014-2-hsinyi@chromium.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190819071602.139014-1-hsinyi@chromium.org>
+References: <20190819071602.139014-1-hsinyi@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -72,24 +74,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introducing a chosen node, rng-seed, which is an entropy that can be
-passed to kernel called very early to increase initial device
-randomness. This can be used for adding sufficient initial entropy
-for stack canary. Especially architectures that lack per-stack canary.
+Currently in arm64, FDT is mapped to RO before it's passed to
+early_init_dt_scan(). However, there might be some codes
+(eg. commit "fdt: add support for rng-seed") that need to modify FDT
+during init. Map FDT to RO after early fixups are done.
 
-Hsin-Yi Wang (3):
-  arm64: map FDT as RW for early_init_dt_scan()
-  fdt: add support for rng-seed
-  arm64: kexec_file: add rng-seed support
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+Reviewed-by: Mike Rapoport <rppt@linux.ibm.com>
+---
+No change from v7.
+---
+ arch/arm64/include/asm/mmu.h |  2 +-
+ arch/arm64/kernel/kaslr.c    |  5 +----
+ arch/arm64/kernel/setup.c    |  9 ++++++++-
+ arch/arm64/mm/mmu.c          | 15 +--------------
+ 4 files changed, 11 insertions(+), 20 deletions(-)
 
- arch/arm64/include/asm/mmu.h           |  2 +-
- arch/arm64/kernel/kaslr.c              |  5 +----
- arch/arm64/kernel/machine_kexec_file.c | 18 +++++++++++++++++-
- arch/arm64/kernel/setup.c              |  9 ++++++++-
- arch/arm64/mm/mmu.c                    | 15 +--------------
- drivers/of/fdt.c                       | 14 ++++++++++++--
- 6 files changed, 40 insertions(+), 23 deletions(-)
-
+diff --git a/arch/arm64/include/asm/mmu.h b/arch/arm64/include/asm/mmu.h
+index fd6161336653..f217e3292919 100644
+--- a/arch/arm64/include/asm/mmu.h
++++ b/arch/arm64/include/asm/mmu.h
+@@ -126,7 +126,7 @@ extern void init_mem_pgprot(void);
+ extern void create_pgd_mapping(struct mm_struct *mm, phys_addr_t phys,
+ 			       unsigned long virt, phys_addr_t size,
+ 			       pgprot_t prot, bool page_mappings_only);
+-extern void *fixmap_remap_fdt(phys_addr_t dt_phys);
++extern void *fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot);
+ extern void mark_linear_text_alias_ro(void);
+ 
+ #define INIT_MM_CONTEXT(name)	\
+diff --git a/arch/arm64/kernel/kaslr.c b/arch/arm64/kernel/kaslr.c
+index 5a59f7567f9c..416f537bf614 100644
+--- a/arch/arm64/kernel/kaslr.c
++++ b/arch/arm64/kernel/kaslr.c
+@@ -62,9 +62,6 @@ static __init const u8 *kaslr_get_cmdline(void *fdt)
+ 	return default_cmdline;
+ }
+ 
+-extern void *__init __fixmap_remap_fdt(phys_addr_t dt_phys, int *size,
+-				       pgprot_t prot);
+-
+ /*
+  * This routine will be executed with the kernel mapped at its default virtual
+  * address, and if it returns successfully, the kernel will be remapped, and
+@@ -93,7 +90,7 @@ u64 __init kaslr_early_init(u64 dt_phys)
+ 	 * attempt at mapping the FDT in setup_machine()
+ 	 */
+ 	early_fixmap_init();
+-	fdt = __fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL);
++	fdt = fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL);
+ 	if (!fdt)
+ 		return 0;
+ 
+diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+index 57ff38600828..56f664561754 100644
+--- a/arch/arm64/kernel/setup.c
++++ b/arch/arm64/kernel/setup.c
+@@ -170,9 +170,13 @@ static void __init smp_build_mpidr_hash(void)
+ 
+ static void __init setup_machine_fdt(phys_addr_t dt_phys)
+ {
+-	void *dt_virt = fixmap_remap_fdt(dt_phys);
++	int size;
++	void *dt_virt = fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL);
+ 	const char *name;
+ 
++	if (dt_virt)
++		memblock_reserve(dt_phys, size);
++
+ 	if (!dt_virt || !early_init_dt_scan(dt_virt)) {
+ 		pr_crit("\n"
+ 			"Error: invalid device tree blob at physical address %pa (virtual address 0x%p)\n"
+@@ -184,6 +188,9 @@ static void __init setup_machine_fdt(phys_addr_t dt_phys)
+ 			cpu_relax();
+ 	}
+ 
++	/* Early fixups are done, map the FDT as read-only now */
++	fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
++
+ 	name = of_flat_dt_get_machine_name();
+ 	if (!name)
+ 		return;
+diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+index e67bab4d613e..1586d7fbf26a 100644
+--- a/arch/arm64/mm/mmu.c
++++ b/arch/arm64/mm/mmu.c
+@@ -877,7 +877,7 @@ void __set_fixmap(enum fixed_addresses idx,
+ 	}
+ }
+ 
+-void *__init __fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot)
++void *__init fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot)
+ {
+ 	const u64 dt_virt_base = __fix_to_virt(FIX_FDT);
+ 	int offset;
+@@ -930,19 +930,6 @@ void *__init __fixmap_remap_fdt(phys_addr_t dt_phys, int *size, pgprot_t prot)
+ 	return dt_virt;
+ }
+ 
+-void *__init fixmap_remap_fdt(phys_addr_t dt_phys)
+-{
+-	void *dt_virt;
+-	int size;
+-
+-	dt_virt = __fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
+-	if (!dt_virt)
+-		return NULL;
+-
+-	memblock_reserve(dt_phys, size);
+-	return dt_virt;
+-}
+-
+ int __init arch_ioremap_p4d_supported(void)
+ {
+ 	return 0;
 -- 
 2.20.1
 
