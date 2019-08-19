@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EF7F92214
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 13:21:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E00492222
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 13:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727308AbfHSLVj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 07:21:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34082 "EHLO mail.kernel.org"
+        id S1727510AbfHSLWd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 07:22:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34612 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726776AbfHSLVj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 07:21:39 -0400
+        id S1727503AbfHSLWc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 07:22:32 -0400
 Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 97E352085A;
-        Mon, 19 Aug 2019 11:21:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 875672086C;
+        Mon, 19 Aug 2019 11:22:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566213699;
-        bh=rbe0ZJX0S7ZC9cn7XqBdlwI52Gljn2EhY1w3k/I2IDU=;
+        s=default; t=1566213752;
+        bh=jcfwe8RBMpvwSqfd/qn//fInobCO8g6/22CazOxRl0s=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hLRQkbiZ6pcBq+kZyNNrEKS3av5RqmLttMJtMZVdRGpaNFrOIMT1o2Q2FfN8/sI4W
-         xbVKqXeVVwkMJhH6UzXEztEsfJhpkyuOqep68cq4GUIGdkpVbi2eOB0N5X4Z6eqj+k
-         ELUJui8xxI0izBklsJizC1ulI2wtWENH8qNb9CFI=
-Date:   Mon, 19 Aug 2019 13:21:26 +0200
+        b=vXUIuE1GKuM8F3wLXfV7caE/N3S7TUbh6kEZ3G/rawiLlFJ/HFZyd0kqhvx37rdUj
+         s1YuJjGCLr13eRgAe5fQ0HfeYCQgtV45drST70VoAJKIcPMnMdrxvX/duuR0lUaFpN
+         zwpV6g/W3yyXjZiD4/XPSQyX6G7ooaPrvPSMRxfo=
+Date:   Mon, 19 Aug 2019 13:22:19 +0200
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Philippe Schenker <philippe.schenker@toradex.com>
 Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
@@ -40,86 +40,27 @@ Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v4 08/21] ARM: dts: imx7-colibri: Add touch controllers
-Message-ID: <20190819112124.GR5999@X250>
+Subject: Re: [PATCH v4 09/21] ARM: dts: imx6qdl-colibri: add phy to fec
+Message-ID: <20190819112218.GS5999@X250>
 References: <20190812142105.1995-1-philippe.schenker@toradex.com>
- <20190812142105.1995-9-philippe.schenker@toradex.com>
+ <20190812142105.1995-10-philippe.schenker@toradex.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190812142105.1995-9-philippe.schenker@toradex.com>
+In-Reply-To: <20190812142105.1995-10-philippe.schenker@toradex.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 02:21:26PM +0000, Philippe Schenker wrote:
-> Add touch controller that is connected over an I2C bus.
+On Mon, Aug 12, 2019 at 02:21:28PM +0000, Philippe Schenker wrote:
+> Add the phy-node and mdio bus to the fec-node, represented as is on
+> hardware.
+> This commit includes micrel,led-mode that is set to the default
+> value, prepared for someone who wants to change this.
 > 
 > Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 > Acked-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
-> 
-> ---
-> 
-> Changes in v4:
-> - Add Marcel Ziswiler's Ack
-> 
-> Changes in v3:
-> - Fix commit message
-> 
-> Changes in v2:
-> - Deleted touchrevolution downstream stuff
-> - Use generic node name
-> - Better comment
-> 
->  arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi | 24 +++++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-> index d4dbc4fc1adf..576dec9ff81c 100644
-> --- a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-> +++ b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-> @@ -145,6 +145,21 @@
->  &i2c4 {
->  	status = "okay";
->  
-> +	/*
-> +	 * Touchscreen is using SODIMM 28/30, also used for PWM<B>, PWM<C>,
-> +	 * aka pwm2, pwm3. so if you enable touchscreen, disable the pwms
-> +	 */
-> +	touchscreen@4a {
-> +		compatible = "atmel,maxtouch";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpiotouch>;
-> +		reg = <0x4a>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;		/* SODIMM 28 */
-> +		reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>;	/* SODIMM 30 */
-> +		status = "disabled";
 
-Why disabled?
-
-Shawn
-
-> +	};
-> +
->  	/* M41T0M6 real time clock on carrier board */
->  	rtc: m41t0m6@68 {
->  		compatible = "st,m41t0";
-> @@ -200,3 +215,12 @@
->  	vmmc-supply = <&reg_3v3>;
->  	status = "okay";
->  };
-> +
-> +&iomuxc {
-> +	pinctrl_gpiotouch: touchgpios {
-> +		fsl,pins = <
-> +			MX7D_PAD_GPIO1_IO09__GPIO1_IO9		0x74
-> +			MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x14
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.22.0
-> 
+Applied, thanks.
