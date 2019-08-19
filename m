@@ -2,100 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A4B94CE2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 20:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C3E694CEB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 20:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728430AbfHSS1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 14:27:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52592 "EHLO mail.kernel.org"
+        id S1728237AbfHSS3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 14:29:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53130 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728322AbfHSS1b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 14:27:31 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        id S1728067AbfHSS3p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 14:29:45 -0400
+Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8E14B22CF5;
-        Mon, 19 Aug 2019 18:27:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4AEAB22CF5;
+        Mon, 19 Aug 2019 18:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566239249;
-        bh=T6MbYST0Y+M3UBooFmVzIiLfpDqy4T6s/zqDGdFpXGc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=b4iLOurdcx7gNRxvezPCn8jFlaNZg/a4tNzAUYh/EkweINiaQAot3V/puHFFG5veu
-         Eb/ltmyrJm35BhR+xTTuZ04fiqwD4hKie7ZBE3X02oAQnfaSMcfILzn3JpGt1Kg4YX
-         pewyCCuwIouHrwCI1g1Hb3GTfP1S96kpHXGY7Nrw=
-Date:   Mon, 19 Aug 2019 20:27:26 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: mfd: Convert Allwinner GPADC bindings
- to a schema
-Message-ID: <20190819182726.7se7vexlftybsqlz@flea>
-References: <20190813124744.32614-1-mripard@kernel.org>
- <CAL_Jsq+QxsxxCsaJ8GjSQhKVHnas3WqjOPnv86=-fWs143CUQg@mail.gmail.com>
+        s=default; t=1566239384;
+        bh=9KJGx4BFkLMtrPddjIKIua8/xZfK4VKXBzqHl/frVIw=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=vObOdoZKBzOLrl+OrfoUeLAklcAUefsz/QYIMD+BcxP8U/tKL8PrRLfKRvwIke1it
+         bKOK0sgBpBpB/vR1zPMm15U3fXNnhL2qvD4McWE+3CuzpONZyhAlXnemnO1a0sBD3q
+         1+jtq4C2psjvM4Wk9hKu2hyqvShaQ1VYqPg6ciM0=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="cqozu4ph2avfiavn"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+QxsxxCsaJ8GjSQhKVHnas3WqjOPnv86=-fWs143CUQg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <DB7PR04MB51952DF4E1EE7FF10A947347E2A80@DB7PR04MB5195.eurprd04.prod.outlook.com>
+References: <20190815101613.22872-1-wen.he_1@nxp.com> <20190815101613.22872-2-wen.he_1@nxp.com> <20190816174624.115FC205F4@mail.kernel.org> <DB7PR04MB51952DF4E1EE7FF10A947347E2A80@DB7PR04MB5195.eurprd04.prod.outlook.com>
+Subject: RE: [EXT] Re: [v2 2/3] clk: ls1028a: Add clock driver for Display output interface
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Leo Li <leoyang.li@nxp.com>,
+        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>
+User-Agent: alot/0.8.1
+Date:   Mon, 19 Aug 2019 11:29:43 -0700
+Message-Id: <20190819182944.4AEAB22CF5@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Wen He (2019-08-19 00:30:49)
+> > Quoting Wen He (2019-08-15 03:16:12)
+> > > diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig index
+> > > 801fa1cd0321..3c95d8ec31d4 100644
+> > > --- a/drivers/clk/Kconfig
+> > > +++ b/drivers/clk/Kconfig
+> > > @@ -223,6 +223,16 @@ config CLK_QORIQ
+> > >           This adds the clock driver support for Freescale QorIQ plat=
+forms
+> > >           using common clock framework.
+> > >
+> > > +config CLK_LS1028A_PLLDIG
+> > > +        bool "Clock driver for LS1028A Display output"
+> > > +       depends on (ARCH_LAYERSCAPE || COMPILE_TEST) && OF
+> >=20
+> > Where is the OF dependency to build anything? Doesn't this still compile
+> > without CONFIG_OF set?
+>=20
+> Yes, current included some APIs of the OF, like of_get_parent_name()
 
---cqozu4ph2avfiavn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+And there isn't a stub API for of_get_parent_name when OF isn't defined?
 
-On Tue, Aug 13, 2019 at 03:28:01PM -0600, Rob Herring wrote:
-> On Tue, Aug 13, 2019 at 6:47 AM Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > From: Maxime Ripard <maxime.ripard@bootlin.com>
-> >
-> > The Allwinner SoCs have an embedded GPADC that is doing thermal reading as
-> > well, supported in Linux, with a matching Device Tree binding.
-> >
-> > Now that we have the DT validation in place, let's convert the device tree
-> > bindings for that controller over to a YAML schemas.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > ---
-> >  .../iio/adc/allwinner,sun8i-a33-ths.yaml      | 43 +++++++++++
-> >  .../bindings/mfd/allwinner,sun4i-a10-ts.yaml  | 76 +++++++++++++++++++
-> >  .../devicetree/bindings/mfd/sun4i-gpadc.txt   | 59 --------------
-> >  3 files changed, 119 insertions(+), 59 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun8i-a33-ths.yaml
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/allwinner,sun4i-a10-ts.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/sun4i-gpadc.txt
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> > > +
+> > > +static int plldig_clk_probe(struct platform_device *pdev) {
+> > > +       struct clk_plldig *data;
+> > > +       struct resource *mem;
+> > > +       const char *parent_name;
+> > > +       struct clk_init_data init =3D {};
+> > > +       struct device *dev =3D &pdev->dev;
+> > > +       int ret;
+> > > +
+> > > +       data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> > > +       if (!data)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       mem =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > > +       data->regs =3D devm_ioremap_resource(dev, mem);
+> > > +       if (IS_ERR(data->regs))
+> > > +               return PTR_ERR(data->regs);
+> > > +
+> > > +       init.name =3D dev->of_node->name;
+> > > +       init.ops =3D &plldig_clk_ops;
+> > > +       parent_name =3D of_clk_get_parent_name(dev->of_node, 0);
+> > > +       init.parent_names =3D &parent_name;
+> >=20
+> > Can you use the new way of specifying clk parents with the parent_data
+> > member of clk_init?
+>=20
+> Of course, but I don't understand why need recommend to use this member?
+> Is that the member parent_names will be discard in future?
+>=20
+> Here are definition of the clk-provider.h
+> /* Only one of the following three should be assigned */
+> const char              * const *parent_names;
+> const struct clk_parent_data    *parent_data;
+> const struct clk_hw             **parent_hws;
+>=20
+> For PLLDIG, it only has one parent.
 
-Applied, thanks
+Yes. Can you use clk_parent_data array and specify a DT index of 0 and
+some name that would go into "clock-names" in the .fw_name member?
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---cqozu4ph2avfiavn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVrqDgAKCRDj7w1vZxhR
-xe/QAQCdjHYyPT1sbZs3doytGQ893nBVcEEfzd/iGm9+jIBxGQD/QEk4vLmUXEEu
-fopc6mLQNzKp3ZMuCE3WzEnc5wQU+Qc=
-=yYiT
------END PGP SIGNATURE-----
-
---cqozu4ph2avfiavn--
