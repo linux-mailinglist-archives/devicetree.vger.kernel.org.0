@@ -2,104 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EFE391C52
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 07:17:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E5C491CA0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 07:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726186AbfHSFR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 01:17:57 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:38956 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725768AbfHSFR5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 01:17:57 -0400
-Received: by mail-pf1-f196.google.com with SMTP id f17so459135pfn.6;
-        Sun, 18 Aug 2019 22:17:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=DyOkWXbip/sFDtzCMcgt9fKortz6cn0pIstBPgx8f+A=;
-        b=Wa4gXkppzwM0+r04OH6+s7lLvWAhrUF/5j+fyU8uox4gov+ZJgzHhjmS2Crg475wh6
-         68fYVRmc09jA4Dt4DUHcmv7z3UY5O0jDLHnoffxGIO6RMhray7o9zzx1tC4XSJmKckfV
-         Hjj53K0p3SiK5nJUfmDDzsy7egJ4dIKXoRs+7XyUHgv4bXyygwYHd+uclWOlihp7j/3B
-         wnxMbOPM/xDiv41AqwKcsgUcvD4hq+BbLf1dpSixl9G9UNA+A0kXpREoWFiFqgqA7KJ8
-         GNCYMEn88qAvZMIXVBKT4CK/y8vH+tgaLYq77mLsLH4VULjISsY0i6qEQaHEJ3KA3Q5G
-         MiHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=DyOkWXbip/sFDtzCMcgt9fKortz6cn0pIstBPgx8f+A=;
-        b=mVFYnj1jttMDjPnd1b3TwIuusbLdrsV3qFSpK+qRk41j+O2okdy5dBjZs9spqhm3qO
-         sE8uWBc5xMjjCGJLYgT1R7FVG9jDOVbZ82FcWl9CHkTNzOknrRqfLXk1j22kJTiUVk5A
-         bYrs4Giv+IvLoXpmkZAUn7gdrCA68UTk86TveZ9mEbB1e+MDmZwyC0+KauqtRTPGRYEv
-         sxbCjw6+wwFnNRvEkfzG8eHo7QiErJSGkYwqGE5nzswQn3nCy/AfP2y9iV5bGU8cAL3W
-         MYLMWMg8ViSdLAaytJcfp9nRvIJuibmmN61RVaYvlC3qHctpQE1OV6eowc7tLOgMT9Ho
-         IxYA==
-X-Gm-Message-State: APjAAAVxWMjYDpoAh2kbZfpfEpldxyczR7YXoaWyPiftP0uht+hIankU
-        9q5XoHiYjR027S2mPU0B5Dw=
-X-Google-Smtp-Source: APXvYqxmKIFDHCNwPUL7Pa2AYZQ57N6+X/NXdnMruTHlp+98Fjja2C1q0M4BwqahIM1AvA03PmrVSw==
-X-Received: by 2002:a65:528d:: with SMTP id y13mr18906968pgp.120.1566191876456;
-        Sun, 18 Aug 2019 22:17:56 -0700 (PDT)
-Received: from voyager.ibm.com ([36.255.48.244])
-        by smtp.gmail.com with ESMTPSA id o3sm19010087pje.1.2019.08.18.22.17.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Aug 2019 22:17:55 -0700 (PDT)
-From:   Joel Stanley <joel@jms.id.au>
-To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Ryan Chen <ryan_chen@aspeedtech.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
-Subject: [PATCH v2 2/2] watchdog: aspeed: Add support for AST2600
-Date:   Mon, 19 Aug 2019 14:47:38 +0930
-Message-Id: <20190819051738.17370-3-joel@jms.id.au>
-X-Mailer: git-send-email 2.23.0.rc1
-In-Reply-To: <20190819051738.17370-1-joel@jms.id.au>
-References: <20190819051738.17370-1-joel@jms.id.au>
+        id S1726538AbfHSFjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 01:39:53 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:13798 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725768AbfHSFjw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 01:39:52 -0400
+X-UUID: 663142ec0b6440d5921048f23debae01-20190819
+X-UUID: 663142ec0b6440d5921048f23debae01-20190819
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1037830993; Mon, 19 Aug 2019 13:39:33 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 19 Aug
+ 2019 13:39:30 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 19 Aug 2019 13:39:29 +0800
+Message-ID: <1566193170.21623.46.camel@mhfsdcap03>
+Subject: Re: [RFC,V2,1/2] media: dt-bindings: media: i2c: Add bindings for
+ OV02A10
+From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+CC:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <matthias.bgg@gmail.com>, <bingbu.cao@intel.com>,
+        <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <tfiga@google.com>, <drinkcat@chromium.org>
+Date:   Mon, 19 Aug 2019 13:39:30 +0800
+In-Reply-To: <20190817213207.GC3504@valkosipuli.retiisi.org.uk>
+References: <20190704084651.3105-1-dongchun.zhu@mediatek.com>
+         <20190704084651.3105-2-dongchun.zhu@mediatek.com>
+         <20190723074153.GA4606@paasikivi.fi.intel.com>
+         <ef65288c523f405396991bd6d757bba0@mtkmbs02n1.mediatek.inc>
+         <1566013985.21623.9.camel@mhfsdcap03>
+         <20190817213207.GC3504@valkosipuli.retiisi.org.uk>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 1FFD33D17A9099ABE642A276F2E703E2656BAF1550E1FEDA5DAA451D829739DB2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ryan Chen <ryan_chen@aspeedtech.com>
+Hi Sakari,
 
-The ast2600 can be supported by the same code as the ast2500.
-
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
-v2:
- Reuse ast2500 config structure
----
- drivers/watchdog/aspeed_wdt.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
-index cc71861e033a..5b64bc2e8788 100644
---- a/drivers/watchdog/aspeed_wdt.c
-+++ b/drivers/watchdog/aspeed_wdt.c
-@@ -34,6 +34,7 @@ static const struct aspeed_wdt_config ast2500_config = {
- static const struct of_device_id aspeed_wdt_of_table[] = {
- 	{ .compatible = "aspeed,ast2400-wdt", .data = &ast2400_config },
- 	{ .compatible = "aspeed,ast2500-wdt", .data = &ast2500_config },
-+	{ .compatible = "aspeed,ast2600-wdt", .data = &ast2500_config },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
-@@ -259,7 +260,8 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
- 		set_bit(WDOG_HW_RUNNING, &wdt->wdd.status);
- 	}
- 
--	if (of_device_is_compatible(np, "aspeed,ast2500-wdt")) {
-+	if ((of_device_is_compatible(np, "aspeed,ast2500-wdt")) ||
-+		(of_device_is_compatible(np, "aspeed,ast2600-wdt"))) {
- 		u32 reg = readl(wdt->base + WDT_RESET_WIDTH);
- 
- 		reg &= config->ext_pulse_width_mask;
--- 
-2.23.0.rc1
+On Sun, 2019-08-18 at 00:32 +0300, Sakari Ailus wrote:
+> Hi Dongchun,
+> 
+> On Sat, Aug 17, 2019 at 11:53:05AM +0800, Dongchun Zhu wrote:
+> ...
+> > > > +
+> > > > +The device node shall contain one 'port' child node with an
+> > > > +'endpoint' subnode for its digital output video port, in accordance
+> > > > +with the video interface bindings defined in
+> > > > +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > > > +The endpoint optional property 'data-lanes' shall be "<1>".
+> > > 
+> > > How many lanes does the module (or the sensor) have?
+> > > 
+> > 
+> > From sensor datasheet, OV02A10 supports 1-lane MIPI interface.
+> 
+> If only one lane is supported, the property should be omitted: there's
+> nothing that the driver needs to know here.
+> 
+Thanks for the suggestion.
+But sorry that I didn't read this message this morning, so this issue
+still remains unsettled in v3.
+https://patchwork.kernel.org/patch/11100219/
+I would fix this point in v4.
 
