@@ -2,280 +2,301 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 862F691F7F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 10:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F8A191F96
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 11:01:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726661AbfHSI6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 04:58:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33446 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726168AbfHSI6c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 04:58:32 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B85C42086C;
-        Mon, 19 Aug 2019 08:58:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566205111;
-        bh=dvHPVhvUax2+B3bDV3fweqBjG7vvPVh6dCKZsep59Pw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KiLkiCT8nfWpjVu1iC54rmDHnjngi43bXYjsRRKC79q410E2fqlD6BUOcKlmXkQ8k
-         hOcHYlDT3r7pjhk3Af/LeKPsdNsFdTLLg4ku+Bs+MnuqV6hkzvO6P0GtrVG6ZlLOM6
-         vpc03XVU/OIyr5Nmv9U3xE70ZJudAW4z5er7DAcg=
-Date:   Mon, 19 Aug 2019 10:58:17 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Dan Nica <dan.nica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v2 3/6] arm64: dts: fsl: Add device tree for S32V234-EVB
-Message-ID: <20190819085816.GI5999@X250>
-References: <20190809112853.15846-1-stefan-gabriel.mirea@nxp.com>
- <20190809112853.15846-4-stefan-gabriel.mirea@nxp.com>
+        id S1726594AbfHSJB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 05:01:57 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:53441 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725536AbfHSJB5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 05:01:57 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hzdXx-0005fw-Dz; Mon, 19 Aug 2019 11:01:49 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hzdXu-00026i-Nn; Mon, 19 Aug 2019 11:01:46 +0200
+Date:   Mon, 19 Aug 2019 11:01:46 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v7 01/13] dt-bindings: connector: analog: add tv norms
+ property
+Message-ID: <20190819090146.dguqzy7w7clk67ny@pengutronix.de>
+References: <20190815115747.24018-1-m.felsch@pengutronix.de>
+ <20190815115747.24018-2-m.felsch@pengutronix.de>
+ <76aeaa4e-4a29-5abe-1af6-fc82958e9530@xs4all.nl>
+ <20190819080904.ch3e3by5seha5ca7@pengutronix.de>
+ <14e1593c-0d90-f242-9ab9-598a1005dbb8@xs4all.nl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190809112853.15846-4-stefan-gabriel.mirea@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <14e1593c-0d90-f242-9ab9-598a1005dbb8@xs4all.nl>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:59:31 up 93 days, 15:17, 58 users,  load average: 0.19, 0.17,
+ 0.26
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 09, 2019 at 11:29:12AM +0000, Stefan-gabriel Mirea wrote:
-> From: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
+On 19-08-19 10:39, Hans Verkuil wrote:
+> On 8/19/19 10:09 AM, Marco Felsch wrote:
+> > Hi Hans,
+> > 
+> > On 19-08-16 13:11, Hans Verkuil wrote:
+> >> On 8/15/19 1:57 PM, Marco Felsch wrote:
+> >>> Some connectors no matter if in- or output supports only a limited
+> >>> range of tv norms. It doesn't matter if the hardware behind that
+> >>> connector supports more than the listed formats since the users are
+> >>> restriced by a label e.g. to plug only a camera into this connector
+> >>> which uses the PAL format.
+> >>>
+> >>> This patch adds the capability to describe such limitation within the
+> >>> firmware. There are no format restrictions if the property isn't
+> >>> present, so it's completely backward compatible.
+> >>>
+> >>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> >>> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>> ---
+> >>> [1] https://patchwork.kernel.org/cover/10794703/
+> >>>
+> >>> v7:
+> >>> I kept Robs r b tag because I only changed the example and extended
+> >>> TVNORM_* macros.
+> >>>
+> >>> - fix some style issues
+> >>> - add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
+> >>>
+> >>> v6:
+> >>> - tvnorms.h: use tabs instead of spaces
+> >>> - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> >>> - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+> >>>
+> >>> v2-v4:
+> >>> - nothing since the patch was squashed from series [1] into this
+> >>>   series.
+> >>> ---
+> >>>  .../display/connector/analog-tv-connector.txt |  4 ++
+> >>>  include/dt-bindings/media/tvnorms.h           | 72 +++++++++++++++++++
+> >>>  2 files changed, 76 insertions(+)
+> >>>  create mode 100644 include/dt-bindings/media/tvnorms.h
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> >>> index 0c0970c210ab..434e8aa0398b 100644
+> >>> --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> >>> +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> >>> @@ -6,6 +6,9 @@ Required properties:
+> >>>  
+> >>>  Optional properties:
+> >>>  - label: a symbolic name for the connector
+> >>> +- tvnorms: limit the supported tv norms on a connector to the given ones else
+> >>
+> >> tv -> TV
+> >>
+> >>> +           all tv norms are allowed. Possible video standards are defined in
+> >>
+> >> tv -> TV
+> > 
+> > Changed both thanks.
+> > 
+> >> And a more high-level question: I think tvnorm is a very vague name. It's a term
+> >> used in media, but what does 'norm' mean anyway? 'tv_standards' or 'video_standards'
+> >> would be a lot more descriptive.
+> > 
+> > I'm with you *_standards would be more descriptive. Now the question is:
+> > is it a video or a tv standard? Wikipedia says that SECAM, PAL, NTSC is
+> > a television standard. So I prefer the 'tv_standards' or better the
+> > 'tv-standards' approach.
 > 
-> Add initial version of device tree for S32V234-EVB, including nodes for the
-> 4 Cortex-A53 cores, AIPS bus with UART modules, ARM architected timer and
-> Generic Interrupt Controller (GIC).
+> It's a bit of both, actually. But in the context of S-Video and Composite connectors
+> it is a video standard. In the context of a tuner/modulator it would be a TV standard.
 > 
-> Keep SoC level separate from board level to let future boards with this SoC
-> share common properties, while the dts files will keep board-dependent
-> properties.
+> I.e. there is no difference between PAL_B and PAL_[GHIDJ] when it comes to S-Video and
+> Composite connectors, but in the context of a tuner/modulator these defines give
+> additional information about transmission bands, etc.
 > 
-> Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-> Signed-off-by: Mihaela Martinas <Mihaela.Martinas@freescale.com>
-> Signed-off-by: Dan Nica <dan.nica@nxp.com>
-> Signed-off-by: Larisa Grigore <Larisa.Grigore@nxp.com>
-> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/Makefile        |   2 +
->  .../boot/dts/freescale/fsl-s32v234-evb.dts    |  24 ++++
+> That said, I think video-standards is too vague, but so is tv-standards. How about
+> sdtv-standards? I think that makes a lot of sense since this is really just for SDTV.
 
-The 'fsl-' prefix can be saved here, so that we can distinguish three
-families by starting string: imx??? for i.MX, fsl-??? for LayerScape,
-and s32??? for S32.
+Yes, thats a good name.
 
->  .../arm64/boot/dts/freescale/fsl-s32v234.dtsi | 130 ++++++++++++++++++
->  3 files changed, 156 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-s32v234-evb.dts
->  create mode 100644 arch/arm64/boot/dts/freescale/fsl-s32v234.dtsi
+> So tvnorms.h becomes sdtv-standards.h.
+
+Of course.
+
+> > 
+> >> 'tvnorm' is, I think, a term used only internally in the media subsystem for no
+> >> clear reason. In the V4L2 spec it talks about 'video standard'.
+> >>
+> >> Sorry for being so late with raising this issue.
+> >>
+> >>> +           include/dt-bindings/media/tvnorms.h.
+> >>>  
+> >>>  Required nodes:
+> >>>  - Video port for TV input
+> >>> @@ -16,6 +19,7 @@ Example
+> >>>  tv: connector {
+> >>>  	compatible = "composite-video-connector";
+> >>>  	label = "tv";
+> >>> +	tvnorms = <(TVNORM_PAL | TVNORM_NTSC)>;
+> >>>  
+> >>>  	port {
+> >>>  		tv_connector_in: endpoint {
+> >>> diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
+> >>> new file mode 100644
+> >>> index 000000000000..e1275673c4d6
+> >>> --- /dev/null
+> >>> +++ b/include/dt-bindings/media/tvnorms.h
+> >>> @@ -0,0 +1,72 @@
+> >>> +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
+> >>> +/*
+> >>> + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> >>> + */
+> >>> +
+> >>> +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
+> >>> +#define _DT_BINDINGS_MEDIA_TVNORMS_H
+> >>> +
+> >>> +/* One bit for each standard */
+> >>
+> >> I would add a comment here and in videodev2.h where you mention that
+> >> the two headers should remain in sync.
+> > 
+> > Yes, good point.
+> > 
+> >>> +#define TVNORM_PAL_B		0x00000001
+> >>> +#define TVNORM_PAL_B1		0x00000002
+> >>> +#define TVNORM_PAL_G		0x00000004
+> >>> +#define TVNORM_PAL_H		0x00000008
+> >>> +#define TVNORM_PAL_I		0x00000010
+> >>> +#define TVNORM_PAL_D		0x00000020
+> >>> +#define TVNORM_PAL_D1		0x00000040
+> >>> +#define TVNORM_PAL_K		0x00000080
+> >>> +
+> >>> +#define TVNORM_PAL		(TVNORM_PAL_B		| \
+> >>> +				 TVNORM_PAL_B1		| \
+> >>> +				 TVNORM_PAL_G		| \
+> >>> +				 TVNORM_PAL_H		| \
+> >>> +				 TVNORM_PAL_I		| \
+> >>> +				 TVNORM_PAL_D		| \
+> >>> +				 TVNORM_PAL_D1		| \
+> >>> +				 TVNORM_PAL_K)
+> >>> +
+> >>> +#define TVNORM_PAL_M		0x00000100
+> >>> +#define TVNORM_PAL_N		0x00000200
+> >>> +#define TVNORM_PAL_Nc		0x00000400
+> >>> +#define TVNORM_PAL_60		0x00000800
+> >>> +
+> >>> +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
+> >>> +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
+> >>> +#define TVNORM_NTSC_443		0x00004000
+> >>> +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
+> >>> +
+> >>> +#define TVNORM_NTSC		(TVNORM_NTSC_M		|\
+> >>> +				 TVNORM_NTSC_M_JP	|\
+> >>
+> >> Add space before \
+> >>
+> >>> +				 TVNORM_NTSC_M_KR)
+> >>> +
+> >>> +#define TVNORM_SECAM_B		0x00010000
+> >>> +#define TVNORM_SECAM_D		0x00020000
+> >>> +#define TVNORM_SECAM_G		0x00040000
+> >>> +#define TVNORM_SECAM_H		0x00080000
+> >>> +#define TVNORM_SECAM_K		0x00100000
+> >>> +#define TVNORM_SECAM_K1		0x00200000
+> >>> +#define TVNORM_SECAM_L		0x00400000
+> >>> +#define TVNORM_SECAM_LC		0x00800000
+> >>> +
+> >>> +#define TVNORM_SECAM		(TVNORM_SECAM_B		| \
+> >>> +				 TVNORM_SECAM_D		| \
+> >>> +				 TVNORM_SECAM_G		| \
+> >>> +				 TVNORM_SECAM_H		| \
+> >>> +				 TVNORM_SECAM_K		| \
+> >>> +				 TVNORM_SECAM_K1	| \
+> >>> +				 TVNORM_SECAM_L		| \
+> >>> +				 TVNORM_SECAM_LC)
+> >>> +
+> >>> +/* Standards for Countries with 60Hz Line frequency */
+> >>> +#define TVNORM_525_60		(TVNORM_PAL_M		| \
+> >>> +				 TVNORM_PAL_60		| \
+> >>> +				 TVNORM_NTSC		| \
+> >>> +				 TVNORM_NTSC_443)
+> >>> +
+> >>> +/* Standards for Countries with 50Hz Line frequency */
+> >>> +#define TVNORM_625_50		(TVNORM_PAL		|\
+> >>> +				 TVNORM_PAL_N		|\
+> >>> +				 TVNORM_PAL_Nc		|\
+> >>
+> >> Add space before \
+> > 
+> > Both space errors fixed.
+> > 
+> >>> +				 TVNORM_SECAM)
+> >>> +
+> >>> +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
+> >>>
+> >>
+> >> I was also wondering if this header shouldn't be in include/dt-bindings/display/
+> >> since the bindings are also described in 'display'.
+> > 
+> > That's a good one and I really don't know which is the 'right' place for
+> > it. Since the standard has nothing to do with a display I would keep it
+> > within media. But the radeon [1] gpu uses the stds too. So I really
+> > don't know which place is better.
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index c043aca66572..3af29b58a833 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -26,3 +26,5 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-> +
-> +dtb-$(CONFIG_ARCH_S32) += fsl-s32v234-evb.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-s32v234-evb.dts b/arch/arm64/boot/dts/freescale/fsl-s32v234-evb.dts
-> new file mode 100644
-> index 000000000000..92bf6c5563a3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-s32v234-evb.dts
-> @@ -0,0 +1,24 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright 2015-2016 Freescale Semiconductor, Inc.
-> + * Copyright 2016-2017 NXP
-> + */
-> +
-> +/dts-v1/;
-> +#include "fsl-s32v234.dtsi"
-> +
-> +/ {
-> +	compatible = "fsl,s32v234-evb", "fsl,s32v234";
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&uart0 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-s32v234.dtsi b/arch/arm64/boot/dts/freescale/fsl-s32v234.dtsi
-> new file mode 100644
-> index 000000000000..6d686d3ba997
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/fsl-s32v234.dtsi
-> @@ -0,0 +1,130 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright 2015-2016 Freescale Semiconductor, Inc.
-> + * Copyright 2016-2018 NXP
-> + */
-> +
-> +/memreserve/ 0x80000000 0x00010000;
-> +
-> +/ {
-> +	model = "Freescale S32V234";
+> Move it to display: that matches where the documentation is.
 
-The 'model' is usually used in board level DTS to describe the board.
+Okay.
 
-> +	compatible = "fsl,s32v234";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		serial1 = &uart1;
-> +	};
-> +
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x80000000>;
-> +			next-level-cache = <&cluster0_l2_cache>;
-> +		};
-
-Please have a newline between nodes.
-
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x80000000>;
-> +			next-level-cache = <&cluster0_l2_cache>;
-> +		};
-> +		cpu2: cpu@100 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x100>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x80000000>;
-> +			next-level-cache = <&cluster1_l2_cache>;
-> +		};
-> +		cpu3: cpu@101 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x101>;
-> +			enable-method = "spin-table";
-> +			cpu-release-addr = <0x0 0x80000000>;
-> +			next-level-cache = <&cluster1_l2_cache>;
-> +		};
-> +
-> +		cluster0_l2_cache: l2-cache0 {
-> +			compatible = "cache";
-> +		};
-> +
-> +		cluster1_l2_cache: l2-cache1 {
-> +			compatible = "cache";
-> +		};
-> +	};
-> +
-> +	soc {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		compatible = "simple-bus";
-> +		interrupt-parent = <&gic>;
-> +		ranges;
-> +
-> +		aips0: aips-bus@40000000 {
-> +			compatible = "simple-bus";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			reg = <0x0 0x40000000 0x0 0x7D000>;
-> +			ranges;
-> +
-> +			uart0: serial@40053000 {
-> +				compatible = "fsl,s32-linflexuart";
-> +				reg = <0x0 0x40053000 0x0 0x1000>;
-> +				interrupts = <0 59 1>;
-
-Please use GIC_SPI and IRQ_TYPE_xxx defines to make it more readable.
-
-> +				status = "disabled";
-> +			};
-> +		};
-> +
-> +		aips1: aips-bus@40080000 {
-> +			compatible = "simple-bus";
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			interrupt-parent = <&gic>;
-> +			reg = <0x0 0x40080000 0x0 0x70000>;
-> +			ranges;
-> +
-> +			uart1: serial@400bc000 {
-> +				compatible = "fsl,s32-linflexuart";
-> +				reg = <0x0 0x400bc000 0x0 0x1000>;
-> +				interrupts = <0 60 1>;
-> +				status = "disabled";
-> +			};
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <1 13 0xf08>,
-> +			     <1 14 0xf08>,
-> +			     <1 11 0xf08>,
-> +			     <1 10 0xf08>;
-> +		/* clock-frequency might be modified by u-boot, depending on the
-> +		 * chip version.
-> +		 */
-> +		clock-frequency = <10000000>;
-> +	};
-> +
-> +	gic: interrupt-controller@7d001000 {
-> +		compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
-> +		#interrupt-cells = <3>;
-> +		#address-cells = <0>;
-> +		interrupt-controller;
-> +		reg = <0 0x7d001000 0 0x1000>,
-> +		      <0 0x7d002000 0 0x2000>,
-> +		      <0 0x7d004000 0 0x2000>,
-> +		      <0 0x7d006000 0 0x2000>;
-> +		interrupts = <1 9 0xf04>;
-> +	};
-
-We usually put these core platform devices prior to 'soc' node.
-
-Shawn
-
-> +};
-> -- 
-> 2.22.0
 > 
+> Note that this means that _DT_BINDINGS_MEDIA_TVNORMS_H also becomes
+> _DT_BINDINGS_DISPLAY_TVNORMS_H (or DISPLAY_SDTV_STANDARDS_H).
+
+Yes.
+
+Last question. I replaced TVNORM_* by TV_STD_*. Should I move to
+SDTV_STD_* too?
+
+Regards,
+  Marco
+
+> Regards,
+> 
+> 	Hans
+> 
+> > 
+> > [1] drivers/gpu/drm/radeon/radeon_mode.h. 
+> > 
+> > Regards,
+> >   Marco
+> > 
+> >> Regards,
+> >>
+> >> 	Hans
+> >>
+> > 
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
