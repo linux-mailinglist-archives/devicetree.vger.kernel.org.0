@@ -2,74 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD92294C09
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:52:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABE4B94C1C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727865AbfHSRvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 13:51:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41866 "EHLO mail.kernel.org"
+        id S1727835AbfHSR43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 13:56:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44792 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727794AbfHSRvt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 13:51:49 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        id S1727744AbfHSR43 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 13:56:29 -0400
+Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B705D218BA;
-        Mon, 19 Aug 2019 17:51:47 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6914A22CEB;
+        Mon, 19 Aug 2019 17:56:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566237108;
-        bh=+7QKYeUbcMCxsQX0oH5oA7FEOb5oKVFMAqNXEf6W2fs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=E7bVdM3yw8O8alVxWgFO84DzblNWStlq5JeZ/F5MZafxNcyO/zdzqv9tXe7ZC63gZ
-         eMzO9bLaWrkbKMvQB+kjfCMy3vZkQIq9o1AAI24yFUxUtLPbT/aUHUU9+bsAnNgSgc
-         ddjMA6H66raGskUeHeDROSDKxKezHS67GlmxX/Zo=
-Date:   Mon, 19 Aug 2019 19:51:43 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 5/5] ARM: dts: sunxi: Add missing watchdog interrupts
-Message-ID: <20190819175143.g5hilveoeubkbfpk@flea>
-References: <20190813124744.32614-1-mripard@kernel.org>
- <20190813124744.32614-5-mripard@kernel.org>
- <CAGb2v66C-Mqdo-xWm4RAw33sFk-gLy-L_YWQ__6BjYU9gcpYug@mail.gmail.com>
+        s=default; t=1566237388;
+        bh=deVsaTjQnypxRs2qbJ2IINUn03R/PdcxaWt6Wb5Udf8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=afLO4CenJg4a50JRRNcFfRvghNpLxJeV8HpLhcOG+zVt15Tlw4w508zBZYVfIMlGr
+         7YW1P5O9xpUdbkKep3iynAkGB4rayiGOGAyli0L2icwGeRa0tN8D0FsNUr75AwhmS6
+         mH5mpmBZHULXIoJu4yZ11QR5NGAFvyHtVKqCWys4=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGb2v66C-Mqdo-xWm4RAw33sFk-gLy-L_YWQ__6BjYU9gcpYug@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190819174331.GN12733@vkoul-mobl.Dlink>
+References: <20190814125012.8700-1-vkoul@kernel.org> <20190814125012.8700-11-vkoul@kernel.org> <20190814170803.DEFCC214DA@mail.kernel.org> <20190819174331.GN12733@vkoul-mobl.Dlink>
+Subject: Re: [PATCH 10/22] arm64: dts: qcom: pm8150b: Add pon and adc nodes
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        sibis@codeaurora.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Vinod Koul <vkoul@kernel.org>
+User-Agent: alot/0.8.1
+Date:   Mon, 19 Aug 2019 10:56:27 -0700
+Message-Id: <20190819175628.6914A22CEB@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 12:44:02PM +0800, Chen-Yu Tsai wrote:
-> On Tue, Aug 13, 2019 at 8:48 PM Maxime Ripard <mripard@kernel.org> wrote:
-> >
-> > From: Maxime Ripard <maxime.ripard@bootlin.com>
-> >
-> > The watchdog has an interrupt on all our SoCs, but it wasn't always listed.
-> > Add it to the devicetree where it's missing.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> Acked-by: Chen-Yu Tsai <wens@csie.org>
->
-> On a separate note, the A31 has four watchdogs in the timer block, and
-> one interrupt for each watchdog. Should we expand the node to encompass
-> all of them, or add separate nodes for each additional one?
+Quoting Vinod Koul (2019-08-19 10:43:31)
+> On 14-08-19, 10:08, Stephen Boyd wrote:
+> >=20
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/=
+dts/qcom/pm8150b.dtsi
+> > > index c0a678b0f159..846197bd65cd 100644
+> > > --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> > > @@ -2,6 +2,7 @@
+> > >  // Copyright (c) 2017-2019, The Linux Foundation. All rights reserve=
+d.
+> > >  // Copyright (c) 2019, Linaro Limited
+> > > =20
+> > > +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> > >  #include <dt-bindings/interrupt-controller/irq.h>
+> > >  #include <dt-bindings/spmi/spmi.h>
+> > > =20
+> > > @@ -11,6 +12,59 @@
+> > >                 reg =3D <0x2 SPMI_USID>;
+> > >                 #address-cells =3D <1>;
+> > >                 #size-cells =3D <0>;
+> > > +
+> > > +               pon@800 {
+> >=20
+> > Maybe pon node name should be 'key' or 'power-on'?
+>=20
+> pon stands for power on device. See Documentation/devicetree/bindings/pow=
+er/reset/qcom,pon.txt
+>=20
 
-Yep, I guess that's the idea considering the register range.
+Right. I was hoping for a more standard node name vs. an acronym that's
+SoC specific.
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
