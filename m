@@ -2,95 +2,274 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2545191EA3
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 10:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07B3691EBB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 10:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726627AbfHSIPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 04:15:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41304 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726390AbfHSIPL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 04:15:11 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 40BF12085A;
-        Mon, 19 Aug 2019 08:15:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566202510;
-        bh=O4e325kx7cwySscV/ilDWSUX2qJy3pR9jyuhGb1Ccws=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XXHcbaH2UEQ6efRbP60vzBrmInpr9EOJhViVbpdsMcI0VM6YbXqdvZIxlA4d/bn4C
-         I08CSCbhtK2rHRxDXtwnf0u9kGCfGAxBzLZcbsifvEnjJtRSzbvwBttE+W1UjtYdgG
-         TqK3bb2f7N8xwmPuEspZVwEGUvdOERwVn99JW5NM=
-Date:   Mon, 19 Aug 2019 10:14:58 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>
-Subject: Re: [PATCH v2 2/6] arm64: Introduce config for S32
-Message-ID: <20190819081457.GH5999@X250>
-References: <20190809112853.15846-1-stefan-gabriel.mirea@nxp.com>
- <20190809112853.15846-3-stefan-gabriel.mirea@nxp.com>
+        id S1727204AbfHSITB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 04:19:01 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:35695 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727077AbfHSITB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 04:19:01 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hzcsN-0000ji-C1; Mon, 19 Aug 2019 10:18:51 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hzcsM-0000Xo-E8; Mon, 19 Aug 2019 10:18:50 +0200
+Date:   Mon, 19 Aug 2019 10:18:50 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Rob Herring <robh@kernel.org>, robh+dt@kernel.org,
+        jacopo+renesas@jmondi.org, laurent.pinchart@ideasonboard.com,
+        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
+        mchehab@kernel.org, linux-media@vger.kernel.org
+Subject: Re: [PATCH v7 01/13] dt-bindings: connector: analog: add tv norms
+ property
+Message-ID: <20190819081850.e3v7yyjx7onpp3al@pengutronix.de>
+References: <20190815115747.24018-1-m.felsch@pengutronix.de>
+ <20190815115747.24018-2-m.felsch@pengutronix.de>
+ <76aeaa4e-4a29-5abe-1af6-fc82958e9530@xs4all.nl>
+ <20190819080904.ch3e3by5seha5ca7@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190809112853.15846-3-stefan-gabriel.mirea@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190819080904.ch3e3by5seha5ca7@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 10:17:47 up 93 days, 14:35, 57 users,  load average: 0.11, 0.40,
+ 0.33
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 09, 2019 at 11:29:10AM +0000, Stefan-gabriel Mirea wrote:
-> From: Mihaela Martinas <Mihaela.Martinas@freescale.com>
+Hi,
+
+On 19-08-19 10:09, Marco Felsch wrote:
+> Hi Hans,
 > 
-> Add configuration option for the Freescale S32 platform family in
-> Kconfig.platforms. For starters, the only SoC supported will be Treerunner
-> (S32V234), with a single execution target: the S32V234-EVB (rev 29288)
-> board.
+> On 19-08-16 13:11, Hans Verkuil wrote:
+> > On 8/15/19 1:57 PM, Marco Felsch wrote:
+> > > Some connectors no matter if in- or output supports only a limited
+> > > range of tv norms. It doesn't matter if the hardware behind that
+> > > connector supports more than the listed formats since the users are
+> > > restriced by a label e.g. to plug only a camera into this connector
+> > > which uses the PAL format.
+> > > 
+> > > This patch adds the capability to describe such limitation within the
+> > > firmware. There are no format restrictions if the property isn't
+> > > present, so it's completely backward compatible.
+> > > 
+> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > > ---
+> > > [1] https://patchwork.kernel.org/cover/10794703/
+> > > 
+> > > v7:
+> > > I kept Robs r b tag because I only changed the example and extended
+> > > TVNORM_* macros.
+> > > 
+> > > - fix some style issues
+> > > - add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
+> > > 
+> > > v6:
+> > > - tvnorms.h: use tabs instead of spaces
+> > > - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> > > - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+> > > 
+> > > v2-v4:
+> > > - nothing since the patch was squashed from series [1] into this
+> > >   series.
+> > > ---
+> > >  .../display/connector/analog-tv-connector.txt |  4 ++
+> > >  include/dt-bindings/media/tvnorms.h           | 72 +++++++++++++++++++
+> > >  2 files changed, 76 insertions(+)
+> > >  create mode 100644 include/dt-bindings/media/tvnorms.h
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > > index 0c0970c210ab..434e8aa0398b 100644
+> > > --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > > +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > > @@ -6,6 +6,9 @@ Required properties:
+> > >  
+> > >  Optional properties:
+> > >  - label: a symbolic name for the connector
+> > > +- tvnorms: limit the supported tv norms on a connector to the given ones else
+> > 
+> > tv -> TV
+> > 
+> > > +           all tv norms are allowed. Possible video standards are defined in
+> > 
+> > tv -> TV
 > 
-> Signed-off-by: Mihaela Martinas <Mihaela.Martinas@freescale.com>
-> Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> ---
->  arch/arm64/Kconfig.platforms | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changed both thanks.
 > 
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index 4778c775de1b..a9a6152d37eb 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -210,6 +210,11 @@ config ARCH_ROCKCHIP
->  	  This enables support for the ARMv8 based Rockchip chipsets,
->  	  like the RK3368.
->  
-> +config ARCH_S32
-> +	bool "Freescale S32 SoC Family"
+> > And a more high-level question: I think tvnorm is a very vague name. It's a term
+> > used in media, but what does 'norm' mean anyway? 'tv_standards' or 'video_standards'
+> > would be a lot more descriptive.
+> 
+> I'm with you *_standards would be more descriptive. Now the question is:
+> is it a video or a tv standard? Wikipedia says that SECAM, PAL, NTSC is
+> a television standard. So I prefer the 'tv_standards' or better the
+> 'tv-standards' approach.
 
-So you still want to use 'Freescale' than 'NXP' here?
+While on it I noticed that the v4l_std_id is u64. Should we add the
+support for u64 here too?
 
-> +	help
-> +	  This enables support for the Freescale S32 family of processors.
+Regards,
+  Marco
 
-Shawn
-
-> +
->  config ARCH_SEATTLE
->  	bool "AMD Seattle SoC Family"
->  	help
+> > 'tvnorm' is, I think, a term used only internally in the media subsystem for no
+> > clear reason. In the V4L2 spec it talks about 'video standard'.
+> > 
+> > Sorry for being so late with raising this issue.
+> > 
+> > > +           include/dt-bindings/media/tvnorms.h.
+> > >  
+> > >  Required nodes:
+> > >  - Video port for TV input
+> > > @@ -16,6 +19,7 @@ Example
+> > >  tv: connector {
+> > >  	compatible = "composite-video-connector";
+> > >  	label = "tv";
+> > > +	tvnorms = <(TVNORM_PAL | TVNORM_NTSC)>;
+> > >  
+> > >  	port {
+> > >  		tv_connector_in: endpoint {
+> > > diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
+> > > new file mode 100644
+> > > index 000000000000..e1275673c4d6
+> > > --- /dev/null
+> > > +++ b/include/dt-bindings/media/tvnorms.h
+> > > @@ -0,0 +1,72 @@
+> > > +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
+> > > +/*
+> > > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > > + */
+> > > +
+> > > +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
+> > > +#define _DT_BINDINGS_MEDIA_TVNORMS_H
+> > > +
+> > > +/* One bit for each standard */
+> > 
+> > I would add a comment here and in videodev2.h where you mention that
+> > the two headers should remain in sync.
+> 
+> Yes, good point.
+> 
+> > > +#define TVNORM_PAL_B		0x00000001
+> > > +#define TVNORM_PAL_B1		0x00000002
+> > > +#define TVNORM_PAL_G		0x00000004
+> > > +#define TVNORM_PAL_H		0x00000008
+> > > +#define TVNORM_PAL_I		0x00000010
+> > > +#define TVNORM_PAL_D		0x00000020
+> > > +#define TVNORM_PAL_D1		0x00000040
+> > > +#define TVNORM_PAL_K		0x00000080
+> > > +
+> > > +#define TVNORM_PAL		(TVNORM_PAL_B		| \
+> > > +				 TVNORM_PAL_B1		| \
+> > > +				 TVNORM_PAL_G		| \
+> > > +				 TVNORM_PAL_H		| \
+> > > +				 TVNORM_PAL_I		| \
+> > > +				 TVNORM_PAL_D		| \
+> > > +				 TVNORM_PAL_D1		| \
+> > > +				 TVNORM_PAL_K)
+> > > +
+> > > +#define TVNORM_PAL_M		0x00000100
+> > > +#define TVNORM_PAL_N		0x00000200
+> > > +#define TVNORM_PAL_Nc		0x00000400
+> > > +#define TVNORM_PAL_60		0x00000800
+> > > +
+> > > +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
+> > > +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
+> > > +#define TVNORM_NTSC_443		0x00004000
+> > > +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
+> > > +
+> > > +#define TVNORM_NTSC		(TVNORM_NTSC_M		|\
+> > > +				 TVNORM_NTSC_M_JP	|\
+> > 
+> > Add space before \
+> > 
+> > > +				 TVNORM_NTSC_M_KR)
+> > > +
+> > > +#define TVNORM_SECAM_B		0x00010000
+> > > +#define TVNORM_SECAM_D		0x00020000
+> > > +#define TVNORM_SECAM_G		0x00040000
+> > > +#define TVNORM_SECAM_H		0x00080000
+> > > +#define TVNORM_SECAM_K		0x00100000
+> > > +#define TVNORM_SECAM_K1		0x00200000
+> > > +#define TVNORM_SECAM_L		0x00400000
+> > > +#define TVNORM_SECAM_LC		0x00800000
+> > > +
+> > > +#define TVNORM_SECAM		(TVNORM_SECAM_B		| \
+> > > +				 TVNORM_SECAM_D		| \
+> > > +				 TVNORM_SECAM_G		| \
+> > > +				 TVNORM_SECAM_H		| \
+> > > +				 TVNORM_SECAM_K		| \
+> > > +				 TVNORM_SECAM_K1	| \
+> > > +				 TVNORM_SECAM_L		| \
+> > > +				 TVNORM_SECAM_LC)
+> > > +
+> > > +/* Standards for Countries with 60Hz Line frequency */
+> > > +#define TVNORM_525_60		(TVNORM_PAL_M		| \
+> > > +				 TVNORM_PAL_60		| \
+> > > +				 TVNORM_NTSC		| \
+> > > +				 TVNORM_NTSC_443)
+> > > +
+> > > +/* Standards for Countries with 50Hz Line frequency */
+> > > +#define TVNORM_625_50		(TVNORM_PAL		|\
+> > > +				 TVNORM_PAL_N		|\
+> > > +				 TVNORM_PAL_Nc		|\
+> > 
+> > Add space before \
+> 
+> Both space errors fixed.
+> 
+> > > +				 TVNORM_SECAM)
+> > > +
+> > > +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
+> > > 
+> > 
+> > I was also wondering if this header shouldn't be in include/dt-bindings/display/
+> > since the bindings are also described in 'display'.
+> 
+> That's a good one and I really don't know which is the 'right' place for
+> it. Since the standard has nothing to do with a display I would keep it
+> within media. But the radeon [1] gpu uses the stds too. So I really
+> don't know which place is better.
+> 
+> [1] drivers/gpu/drm/radeon/radeon_mode.h. 
+> 
+> Regards,
+>   Marco
+> 
+> > Regards,
+> > 
+> > 	Hans
+> > 
+> 
 > -- 
-> 2.22.0
+> Pengutronix e.K.                           |                             |
+> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 > 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
