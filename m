@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 85F7792414
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03BDE92416
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:02:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727656AbfHSNCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727655AbfHSNCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 19 Aug 2019 09:02:03 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:35101 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727172AbfHSNB7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 09:01:59 -0400
-Received: by mail-pg1-f194.google.com with SMTP id n4so1199751pgv.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 06:01:59 -0700 (PDT)
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:37921 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727444AbfHSNCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 09:02:03 -0400
+Received: by mail-pl1-f195.google.com with SMTP id m12so950241plt.5
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 06:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=ro8NKFkgruYUmO3tKNMvPEE1StisH9qvZFC7x6V6Dyo=;
-        b=uhcA35N59KiYak0FvJjaWA0JqdakHYRgV6udX5bKaVu2FDZ/jyGdZf/xD07iEIzxPr
-         Rek11IDX2I/K530tekaf8eUX26/KRrB2BxoSdpym84viDhBcmw5C7LwHhPGOLRLypYhZ
-         mHOzkzjnk4RLJh1pJa4wDOaY/8kK6XMfeTzN0ymvzEsIkCj0GqCr+36J6S4izQ/qeB3g
-         +H08Pv2/SBzDAJccPaJ7St511RS7JB1ZuPmjhHSy4BQUswfxndPWftka8HBiVjmUwq2k
-         yzIL21ejhxM+sU0E6ss7bxhu7BGfcS3U2O6os7QSuIN2nCJsU6FdDWCZgmkkWP/WqSvE
-         9tMw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=70nxwZafCYlFjcUnZixCqBC0Lk3FuIHCQ+uw4WwvqpE=;
+        b=kRbdUQecsr5QHKl+P1TtO20EsX7vl6bofQEVYRamOy0xxhn52UCo7x6pVlYA+v5drN
+         JR7JzqrTUlQ24hee8AyQWh17A1leKgseAR8xY1wCUm0aZtEJcXA5L7R69e6JRyJyBsJg
+         FbEJ1SZvSA/WAFK5CU3kNaZDiR2OzlY/DW9cXB5Ko81ryQCR4yhGUxKz2eHR1OJJYZ/U
+         y5gcc5hXtrBpVRE158eZCRBL49iepq+au58cuvL7eA45tUJ57r5y7RIRS/7X+3ZDVQ8V
+         y7eLpNQD6QX/WqLB/jVeRO3d6hy4cXRX/avlYmDdAB+ySxi77djSiDnPrd1LeAXyvzFy
+         xRCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=ro8NKFkgruYUmO3tKNMvPEE1StisH9qvZFC7x6V6Dyo=;
-        b=s6gKQ4eJ+bk6Mz0MHcFWL2Qcf/liuLX+MWXXXK0oHfxC8B+fuhq4DUQShf4ZG64gPp
-         rw4PzeuIU+Zj9u/FOANVrFnQs3HfQcZN6DUKJRIjQgfEY8mwE5L/7X7Qj2J0EnHfZK6j
-         rnLWLbDkJiAy4IFS2kOf1hTCka7DcmkHsKoIDhRe/5IcfM8oZCvddf+3wdHgk4UVqBn7
-         Ui37OXrV8tqi2u2Sj4OpGxQGegNAEBWMnwwvZGMaQFZj4uMzxGC4HLTBdVcsZUKln6Ae
-         /t7H1cGY9tLT9Mvr7CB+f1mQ2rnVS71FmDUtYGahvlx9Gp9T6L8lfcHmw1SlGz+bCsVC
-         Nibg==
-X-Gm-Message-State: APjAAAXK6FFbo/KsSjI4k562pp6E6TOFdbV6BQfEWN/xkAk53LzD0yRZ
-        zrFxfjFmM17tcyXYNswuxYO8
-X-Google-Smtp-Source: APXvYqzsUBOFxMEmt52Se2k/zQQ92PZSTwH/Xijj4LZlyCnpj925m8T8I5xgjlepjNv5jH4kugl9Cw==
-X-Received: by 2002:a63:5b52:: with SMTP id l18mr19716563pgm.21.1566219718474;
-        Mon, 19 Aug 2019 06:01:58 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=70nxwZafCYlFjcUnZixCqBC0Lk3FuIHCQ+uw4WwvqpE=;
+        b=EGr4nqM30vAE6kjqUqiSwJTcP+uOQfIMHaociQzGnkz2eqsq44SPlwwrDzLQeaHSSI
+         hVDJTvEErNXb2JyL2QnrPfVAJLzWdy0Tqd9meiwkrpcafD8eP8pr9A3AzW4ZhoXN23+8
+         3Oc85hieMwdUvGpWXXr+BFpSePx8FY/DdusHBapffYbGjYSruj/5ZAqyqb/EWVZA4pZJ
+         EvYM3Vmr6B25a1WhpRz7+MSHIG9ka0/PLsbdxq4d50LF5KUTHLoGn3thfd0D+pn6Asy1
+         r4S2hkaJbGY9bj+R1S1gJT2z+Jgh1RWKgu4oyVKz6eNQGkEfQmpVoVXfxL2atCCuuAc3
+         upSA==
+X-Gm-Message-State: APjAAAWPD3zrZhBqnPXNfKLMdqWMAmCUpnjmk5SmfQ14MLyQLsNZOMhV
+        twiUzHt2D2edR8c+eWlfi/0H
+X-Google-Smtp-Source: APXvYqzIJeKTT2sTPwuWm/ZOaSwja3rS2vyAc3OwiPxIxqONpU/2Nq1Q0YRO6tWZsc9Der/3EdjrvQ==
+X-Received: by 2002:a17:902:a40d:: with SMTP id p13mr7460089plq.92.1566219722377;
+        Mon, 19 Aug 2019 06:02:02 -0700 (PDT)
 Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.googlemail.com with ESMTPSA id l123sm20626464pfl.9.2019.08.19.06.01.50
+        by smtp.googlemail.com with ESMTPSA id l123sm20626464pfl.9.2019.08.19.06.01.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2019 06:01:57 -0700 (PDT)
+        Mon, 19 Aug 2019 06:02:01 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
 Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -49,69 +50,95 @@ Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         haitao.suo@bitmain.com, darren.tsao@bitmain.com,
         fisher.cheng@bitmain.com, alec.lin@bitmain.com,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 0/8] Add Bitmain BM1880 clock driver
-Date:   Mon, 19 Aug 2019 18:31:35 +0530
-Message-Id: <20190819130143.18778-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 1/8] clk: Zero init clk_init_data in helpers
+Date:   Mon, 19 Aug 2019 18:31:36 +0530
+Message-Id: <20190819130143.18778-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190819130143.18778-1-manivannan.sadhasivam@linaro.org>
+References: <20190819130143.18778-1-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+The clk_init_data struct needs to be initialized to zero for the new
+parent_map implementation to work correctly. Otherwise, the member which
+is available first will get processed.
 
-This patchset adds common clock driver for Bitmain BM1880 SoC clock
-controller. The clock controller consists of gate, divider, mux
-and pll clocks with different compositions. Hence, the driver uses
-composite clock structure in place where multiple clocking units are
-combined together.
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ drivers/clk/clk-composite.c  | 2 +-
+ drivers/clk/clk-divider.c    | 2 +-
+ drivers/clk/clk-fixed-rate.c | 2 +-
+ drivers/clk/clk-gate.c       | 2 +-
+ drivers/clk/clk-mux.c        | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-This patchset also removes UART fixed clock and sources clocks from clock
-controller for Sophon Edge board where the driver has been validated.
-
-Thanks,
-Mani
-
-Changes in v3:
-
-* Switched to clk_hw_{register/unregister} APIs
-* Returned clk_hw from the in-driver registration helpers
-
-Changes in v2:
-
-* Converted the dt binding to YAML
-* Incorporated review comments from Stephen (majority of change is switching
-  to new way of specifying clk parents)
-
-Manivannan Sadhasivam (8):
-  clk: Zero init clk_init_data in helpers
-  clk: Warn if clk_init_data is not zero initialized
-  clk: Add clk_hw_unregister_composite helper function definition
-  dt-bindings: clock: Add devicetree binding for BM1880 SoC
-  arm64: dts: bitmain: Add clock controller support for BM1880 SoC
-  arm64: dts: bitmain: Source common clock for UART controllers
-  clk: Add common clock driver for BM1880 SoC
-  MAINTAINERS: Add entry for BM1880 SoC clock driver
-
- .../bindings/clock/bitmain,bm1880-clk.yaml    |  83 ++
- MAINTAINERS                                   |   2 +
- .../boot/dts/bitmain/bm1880-sophon-edge.dts   |   9 -
- arch/arm64/boot/dts/bitmain/bm1880.dtsi       |  28 +
- drivers/clk/Kconfig                           |   6 +
- drivers/clk/Makefile                          |   1 +
- drivers/clk/clk-bm1880.c                      | 966 ++++++++++++++++++
- drivers/clk/clk-composite.c                   |  13 +-
- drivers/clk/clk-divider.c                     |   2 +-
- drivers/clk/clk-fixed-rate.c                  |   2 +-
- drivers/clk/clk-gate.c                        |   2 +-
- drivers/clk/clk-mux.c                         |   2 +-
- drivers/clk/clk.c                             |   8 +
- include/dt-bindings/clock/bm1880-clock.h      |  82 ++
- 14 files changed, 1192 insertions(+), 14 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
- create mode 100644 drivers/clk/clk-bm1880.c
- create mode 100644 include/dt-bindings/clock/bm1880-clock.h
-
+diff --git a/drivers/clk/clk-composite.c b/drivers/clk/clk-composite.c
+index b06038b8f658..4d579f9d20f6 100644
+--- a/drivers/clk/clk-composite.c
++++ b/drivers/clk/clk-composite.c
+@@ -208,7 +208,7 @@ struct clk_hw *clk_hw_register_composite(struct device *dev, const char *name,
+ 			unsigned long flags)
+ {
+ 	struct clk_hw *hw;
+-	struct clk_init_data init;
++	struct clk_init_data init = { NULL };
+ 	struct clk_composite *composite;
+ 	struct clk_ops *clk_composite_ops;
+ 	int ret;
+diff --git a/drivers/clk/clk-divider.c b/drivers/clk/clk-divider.c
+index 3f9ff78c4a2a..65dd8137f9ec 100644
+--- a/drivers/clk/clk-divider.c
++++ b/drivers/clk/clk-divider.c
+@@ -471,7 +471,7 @@ static struct clk_hw *_register_divider(struct device *dev, const char *name,
+ {
+ 	struct clk_divider *div;
+ 	struct clk_hw *hw;
+-	struct clk_init_data init;
++	struct clk_init_data init = { NULL };
+ 	int ret;
+ 
+ 	if (clk_divider_flags & CLK_DIVIDER_HIWORD_MASK) {
+diff --git a/drivers/clk/clk-fixed-rate.c b/drivers/clk/clk-fixed-rate.c
+index a7e4aef7a376..746c3ecdc5b3 100644
+--- a/drivers/clk/clk-fixed-rate.c
++++ b/drivers/clk/clk-fixed-rate.c
+@@ -58,7 +58,7 @@ struct clk_hw *clk_hw_register_fixed_rate_with_accuracy(struct device *dev,
+ {
+ 	struct clk_fixed_rate *fixed;
+ 	struct clk_hw *hw;
+-	struct clk_init_data init;
++	struct clk_init_data init = { NULL };
+ 	int ret;
+ 
+ 	/* allocate fixed-rate clock */
+diff --git a/drivers/clk/clk-gate.c b/drivers/clk/clk-gate.c
+index 1b99fc962745..8ed83ec730cb 100644
+--- a/drivers/clk/clk-gate.c
++++ b/drivers/clk/clk-gate.c
+@@ -141,7 +141,7 @@ struct clk_hw *clk_hw_register_gate(struct device *dev, const char *name,
+ {
+ 	struct clk_gate *gate;
+ 	struct clk_hw *hw;
+-	struct clk_init_data init;
++	struct clk_init_data init = { NULL };
+ 	int ret;
+ 
+ 	if (clk_gate_flags & CLK_GATE_HIWORD_MASK) {
+diff --git a/drivers/clk/clk-mux.c b/drivers/clk/clk-mux.c
+index 66e91f740508..2caa6b2a9ee5 100644
+--- a/drivers/clk/clk-mux.c
++++ b/drivers/clk/clk-mux.c
+@@ -153,7 +153,7 @@ struct clk_hw *clk_hw_register_mux_table(struct device *dev, const char *name,
+ {
+ 	struct clk_mux *mux;
+ 	struct clk_hw *hw;
+-	struct clk_init_data init;
++	struct clk_init_data init = { NULL };
+ 	u8 width = 0;
+ 	int ret;
+ 
 -- 
 2.17.1
 
