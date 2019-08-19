@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 464E99223F
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 13:25:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F9D92252
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 13:28:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727434AbfHSLZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 07:25:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36276 "EHLO mail.kernel.org"
+        id S1727585AbfHSL2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 07:28:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36900 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726755AbfHSLZy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 07:25:54 -0400
+        id S1727584AbfHSL2I (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 07:28:08 -0400
 Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EC1DA2086C;
-        Mon, 19 Aug 2019 11:25:49 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 32BA320851;
+        Mon, 19 Aug 2019 11:28:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566213953;
-        bh=clRxM38BHjVRnHIlDBTCGrVwSVY/3cgF0Ls2MuBJJaQ=;
+        s=default; t=1566214087;
+        bh=2eCWogtyvjtgXycwn80iAAqkLyoGmWRMPImaEfrwOnk=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LCGerm8fY3g/P04NCRoiEKuYqX+8276xlU14NIbB5sZrNFwl+7icni9zUmmh0LxdG
-         37ons1mvTwKrsMrKh3RTIysDDUzYp7fjGuTFok/rbm0Ytu8wSICvDKSdlNBADa5KVY
-         rjiyUbOuG+EfIER+zg6Bau0BESopAPSbXGyrarFE=
-Date:   Mon, 19 Aug 2019 13:25:40 +0200
+        b=yE2pVYkfMReaD9Zs7Yh3YsDcK89YDq2o3CQ11Vnj07BvPLBhPwvzmSM82BSxdYfQQ
+         wfWJry5lVUOsaBtcplTxrEAP44nl5jBNfxk7M9+mEKh2UNYdPUG31j/VdzIntKNdGn
+         yHJPBEbHM66PCg9z3nFPayRINtIvBToHQIDWepfY=
+Date:   Mon, 19 Aug 2019 13:27:55 +0200
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Philippe Schenker <philippe.schenker@toradex.com>
 Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
@@ -40,24 +40,25 @@ Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v4 10/21] ARM: dts: imx6qdl-colibri: Add missing pin
- declaration in iomuxc
-Message-ID: <20190819112539.GT5999@X250>
+Subject: Re: [PATCH v4 11/21] ARM: dts: imx6qdl-apalis: Add sleep state to
+ can interfaces
+Message-ID: <20190819112754.GU5999@X250>
 References: <20190812142105.1995-1-philippe.schenker@toradex.com>
- <20190812142105.1995-11-philippe.schenker@toradex.com>
+ <20190812142105.1995-12-philippe.schenker@toradex.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190812142105.1995-11-philippe.schenker@toradex.com>
+In-Reply-To: <20190812142105.1995-12-philippe.schenker@toradex.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 02:21:29PM +0000, Philippe Schenker wrote:
-> This adds the muxing for the optional pins usb-oc (overcurrent) and
-> usb-id.
+On Mon, Aug 12, 2019 at 02:21:31PM +0000, Philippe Schenker wrote:
+> This patch prepares the devicetree for the new Ixora V1.2 where we are
+> able to turn off the supply of the can transceiver. This implies to use
+> a sleep state on transmission pins in order to prevent backfeeding.
 > 
 > Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 > Acked-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
@@ -68,55 +69,80 @@ On Mon, Aug 12, 2019 at 02:21:29PM +0000, Philippe Schenker wrote:
 > - Add Marcel Ziswiler's Ack
 > 
 > Changes in v3: None
-> Changes in v2: None
+> Changes in v2:
+> - Changed commit title to '...imx6qdl-apalis:...'
 > 
->  arch/arm/boot/dts/imx6qdl-colibri.dtsi | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  arch/arm/boot/dts/imx6qdl-apalis.dtsi | 27 +++++++++++++++++++++------
+>  1 file changed, 21 insertions(+), 6 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl-colibri.dtsi b/arch/arm/boot/dts/imx6qdl-colibri.dtsi
-> index 019dda6b88ad..9a63debab0b5 100644
-> --- a/arch/arm/boot/dts/imx6qdl-colibri.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-colibri.dtsi
-> @@ -615,6 +615,13 @@
+> diff --git a/arch/arm/boot/dts/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
+> index 7c4ad541c3f5..59ed2e4a1fd1 100644
+> --- a/arch/arm/boot/dts/imx6qdl-apalis.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
+> @@ -148,14 +148,16 @@
+>  };
+>  
+>  &can1 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_flexcan1>;
+
+This line doesn't need to be changed.
+
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_flexcan1_default>;
+> +	pinctrl-1 = <&pinctrl_flexcan1_sleep>;
+>  	status = "disabled";
+>  };
+>  
+>  &can2 {
+> -	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_flexcan2>;
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&pinctrl_flexcan2_default>;
+> +	pinctrl-1 = <&pinctrl_flexcan2_sleep>;
+>  	status = "disabled";
+>  };
+>  
+> @@ -599,19 +601,32 @@
 >  		>;
 >  	};
 >  
-> +	pinctrl_usbh_oc_1: usbh_oc-1 {
+> -	pinctrl_flexcan1: flexcan1grp {
 
-Please name it consistently in the way like:
-
-	pinctrl_xxx: xxxgrp {
-		...
-	};
-
-Also, it doesn't need to be separate patch but can just be added
-together with the device referring to it.
+Ditto.  I take them as unnecessary changes.
 
 Shawn
 
-> +		fsl,pins = <
-> +			/* USBH_OC */
-> +			MX6QDL_PAD_EIM_D30__GPIO3_IO30		0x1b0b0
-> +		>;
-> +	};
-> +
->  	pinctrl_spdif: spdifgrp {
+> +	pinctrl_flexcan1_default: flexcan1defgrp {
 >  		fsl,pins = <
->  			MX6QDL_PAD_GPIO_17__SPDIF_OUT 0x1b0b0
-> @@ -681,6 +688,13 @@
+>  			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
+>  			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
 >  		>;
 >  	};
 >  
-> +	pinctrl_usbc_id_1: usbc_id-1 {
+> -	pinctrl_flexcan2: flexcan2grp {
+> +	pinctrl_flexcan1_sleep: flexcan1slpgrp {
 > +		fsl,pins = <
-> +			/* USBC_ID */
-> +			MX6QDL_PAD_NANDF_D2__GPIO2_IO02		0x1b0b0
+> +			MX6QDL_PAD_GPIO_7__GPIO1_IO07 0x0
+> +			MX6QDL_PAD_GPIO_8__GPIO1_IO08 0x0
 > +		>;
 > +	};
 > +
->  	pinctrl_usdhc1: usdhc1grp {
+> +	pinctrl_flexcan2_default: flexcan2defgrp {
 >  		fsl,pins = <
->  			MX6QDL_PAD_SD1_CMD__SD1_CMD	0x17071
+>  			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
+>  			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
+>  		>;
+>  	};
+> +	pinctrl_flexcan2_sleep: flexcan2slpgrp {
+> +		fsl,pins = <
+> +			MX6QDL_PAD_KEY_COL4__GPIO4_IO14 0x0
+> +			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15 0x0
+> +		>;
+> +	};
+>  
+>  	pinctrl_gpio_bl_on: gpioblon {
+>  		fsl,pins = <
 > -- 
 > 2.22.0
 > 
