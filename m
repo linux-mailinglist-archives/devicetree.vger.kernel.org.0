@@ -2,63 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 789DC924E9
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0862792504
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727466AbfHSNZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 09:25:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727391AbfHSNZh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 09:25:37 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 41C9E2085A;
-        Mon, 19 Aug 2019 13:25:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566221136;
-        bh=6r1/vyEsP1XDK18vZbK7ergEOexctMBSCUjVwG/OuV8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=17e7Jjs9xizwLvMtiPB8x61b1RM3ss0gRAoFj+3cPgyKgkQv/azXq3hqC/+cL4R53
-         Un1MjUEBoSfJgjbG/uJR26Pmh0iz4aGoGrJ4htSVkLG2eNeOiURrC+xHRxJzNzTgKB
-         2HqeNipJxkP2Egx1ZkDyw12kd16G0FHFMwpaK5CA=
-Date:   Mon, 19 Aug 2019 15:25:21 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, leonard.crestez@nxp.com,
-        abel.vesa@nxp.com, ping.bai@nxp.com, jun.li@nxp.com,
-        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH] arm64: dts: imx8mm: Enable cpu-idle driver
-Message-ID: <20190819132520.GK5999@X250>
-References: <1565950383-589-1-git-send-email-Anson.Huang@nxp.com>
+        id S1727525AbfHSNbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 09:31:01 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:47783 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727487AbfHSNbB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 09:31:01 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 8E1D5240008;
+        Mon, 19 Aug 2019 13:30:58 +0000 (UTC)
+Date:   Mon, 19 Aug 2019 15:30:58 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>, tglx@linutronix.de,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 03/11] clocksource: sun4i: Add missing compatibles
+Message-ID: <20190819133058.bujcawpw5rgsfp4g@flea>
+References: <20190722081229.22422-1-maxime.ripard@bootlin.com>
+ <20190722081229.22422-3-maxime.ripard@bootlin.com>
+ <9df53981-d1b2-433c-e61f-7c000c71bc55@linaro.org>
+ <20190812091631.j2pr7i2zeput3hrc@flea>
+ <42ee55ee-258c-7588-fea3-db3c661a0156@linaro.org>
+ <20190812112411.ty3npkq6ztbushhm@flea>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="u5prx2f64eoqygbx"
 Content-Disposition: inline
-In-Reply-To: <1565950383-589-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190812112411.ty3npkq6ztbushhm@flea>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 16, 2019 at 06:13:03AM -0400, Anson Huang wrote:
-> Enable i.MX8MM cpu-idle using generic ARM cpu-idle driver, 2 states
-> are supported, details as below:
-> 
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state0/name
-> WFI
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state0/usage
-> 3973
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state1/name
-> cpu-pd-wait
-> root@imx8mmevk:~# cat /sys/devices/system/cpu/cpu0/cpuidle/state1/usage
-> 6647
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-Applied, thanks.
+--u5prx2f64eoqygbx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Mon, Aug 12, 2019 at 01:24:11PM +0200, Maxime Ripard wrote:
+> On Mon, Aug 12, 2019 at 11:21:50AM +0200, Daniel Lezcano wrote:
+> > On 12/08/2019 11:16, Maxime Ripard wrote:
+> > > Hi,
+> > >
+> > > On Mon, Aug 12, 2019 at 10:59:51AM +0200, Daniel Lezcano wrote:
+> > >> On 22/07/2019 10:12, Maxime Ripard wrote:
+> > >>> Newer Allwinner SoCs have different number of interrupts, let's add
+> > >>> different compatibles for all of them to deal with this properly.
+> > >>>
+> > >>> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> > >>
+> > >> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > >
+> > > Thanks!
+> > >
+> > > Can you merge this through your tree (along with the bindings)? I'll
+> > > merge the DT patches
+> >
+> > patches 1-4 then ?
+>
+> Yep, thanks!
+
+Ping?
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--u5prx2f64eoqygbx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVqkkgAKCRDj7w1vZxhR
+xbepAQCWHgrNba54ySml5bNd587ZvZnP5TK5AjUaKHVhUVTzUAD+Li7sWvaQd0cZ
+RqB2LELzNfW2VyjKXWSRctv1YsjZ6g4=
+=fn3W
+-----END PGP SIGNATURE-----
+
+--u5prx2f64eoqygbx--
