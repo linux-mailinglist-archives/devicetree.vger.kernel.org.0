@@ -2,70 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7107391A7D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 02:38:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC5F991AA0
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 03:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726141AbfHSAiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Aug 2019 20:38:06 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:40316 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726103AbfHSAiG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 18 Aug 2019 20:38:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=BrMXY7EIAyVUBAzvqXeIobS9TRD0sVX9w0IwUrcpffM=; b=PE3/GP8p/ed33a+Wk6aGB3xX+E
-        c+IsGouiSzIwdwhHyMf3Beb+NbiyrdVlH4YtE6zTbwMdBj6lf29TplWtFf39rMMfYOevXfCBxJNnz
-        3iiFlEWu+C0ar56VsqIe0nprfyahzC1IE6Yb+KppQu3O0g33HGQjlt2ssdW7v775+9+Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hzVgL-0002VI-CB; Mon, 19 Aug 2019 02:37:57 +0200
-Date:   Mon, 19 Aug 2019 02:37:57 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Matthias Kaehlcke <mka@chromium.org>, jacek.anaszewski@gmail.com,
-        linux-leds@vger.kernel.org, dmurphy@ti.com,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v6 4/4] net: phy: realtek: Add LED configuration support
- for RTL8211E
-Message-ID: <20190819003757.GB8981@lunn.ch>
-References: <20190813191147.19936-1-mka@chromium.org>
- <20190813191147.19936-5-mka@chromium.org>
- <20190816201342.GB1646@bug>
- <20190816212728.GW250418@google.com>
- <20190817140502.GA5878@amd>
+        id S1726139AbfHSBVQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Aug 2019 21:21:16 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:38344 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726132AbfHSBVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Aug 2019 21:21:15 -0400
+Received: by mail-pf1-f196.google.com with SMTP id o70so152438pfg.5
+        for <devicetree@vger.kernel.org>; Sun, 18 Aug 2019 18:21:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wpNHDiBsPQfjsuPxY6tIXP/eXINl3q0q9powu7/VsCo=;
+        b=etCP12mCvmieXUam7fkPMiqemJxZRkhn67k6OELQ/x8jWBEgJEqA4N0OhiApHMAvTB
+         C7yNAETpKfLlavC/jtqoXswYb3FHJqx/KiaZ7AWPOB/oDBtijvu8Q4aQF69sJrBLU8b3
+         Wgj+3ZlxIanEmVHYR7Sa+uJVmVDcR5UBpVh5RprQOoh1eIogbhvlnlyWqbLNmdaFM4cd
+         3XsfecNHdJ32iPxZifaEPCrG7dB7BPEuiROjbHo2pWADjavWmo9HPVtiy5lCXN7JtLwL
+         +At9yDMwBppmmhJbA+JZVZj3jMpG7pAoXGmf/cTWvT5iAZcl2v2HKcLb0BgKAOKutWJV
+         NyhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wpNHDiBsPQfjsuPxY6tIXP/eXINl3q0q9powu7/VsCo=;
+        b=iSebe/ePLyweQGQYSsLxlsAwafEFz2UkMEmm7vxxMioceBJR6/0FemqYzl+4XrOJz8
+         hKW+8Bf/3VZef1Y9A1aWrU7wAKjz6Ff+3un3B0b3gglc6hqlPQ6odAitdbVe0DNKomTb
+         iKWwT7iBRpd36j6TXSrTCLfSBQQYhpkvWPVOycaHjLjzvhKNDrN7Lxf+2lyGywVWYYHy
+         1RnyVPjJQgqyktza0jawxXuZ8lv/0M+9an3kakFoplA1qfVLuxyWi97eUzR7uv9vMEh4
+         ct5FCNdFVg+EINfBJZR3bQ3eV7WLPEkxV4BFCinAprgcfV/mU3JYXyVfBOHsBhRG89Xg
+         eieA==
+X-Gm-Message-State: APjAAAXvzxJyj7QptPRJP7XrnJrV5h8meRL/lBgwntGerhnBLotQKq5y
+        BUmWthp937283/m3RNOmd6s=
+X-Google-Smtp-Source: APXvYqwjrXTuRlXFqy01dR7XYqEJ6GOivuynEgJHqZUix6pOdB3jE0Bh7EDbUHwNGLw7CXaZfZd+SQ==
+X-Received: by 2002:a17:90a:e2d2:: with SMTP id fr18mr8523562pjb.98.1566177674994;
+        Sun, 18 Aug 2019 18:21:14 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id r4sm15857729pfl.127.2019.08.18.18.21.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 18 Aug 2019 18:21:14 -0700 (PDT)
+Subject: Re: [PATCH v2] scripts/dtc: dtx_diff - add color output support
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org
+References: <20190814091832.12707-1-geert+renesas@glider.be>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <ac9e99c9-1f31-16c0-c7d9-e9206a7bde34@gmail.com>
+Date:   Sun, 18 Aug 2019 18:21:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190817140502.GA5878@amd>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20190814091832.12707-1-geert+renesas@glider.be>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Yes, I believe the integration is neccessary. Using same binding is
-> neccessary for that, but not sufficient. For example, we need
-> compatible trigger names, too.
+On 8/14/19 2:18 AM, Geert Uytterhoeven wrote:
+> Add new -c/--color options, to enhance the diff output with color, and
+> improve the user's experience.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> v2:
+>   - Document that -c/--color requires a diff command with color support,
+>   - Ignore -c/--color if diff command lacks color support.
+> ---
+>  scripts/dtc/dtx_diff | 12 +++++++++++-
+>  1 file changed, 11 insertions(+), 1 deletion(-)
+> 
+> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+> index e9ad7834a22d9459..d3422ee15e300bc7 100755
+> --- a/scripts/dtc/dtx_diff
+> +++ b/scripts/dtc/dtx_diff
+> @@ -20,6 +20,8 @@ Usage:
+>  
+>  
+>        --annotate    synonym for -T
+> +      --color       synonym for -c (requires diff with --color support)
+> +       -c           enable colored output
+>         -f           print full dts in diff (--unified=99999)
+>         -h           synonym for --help
+>         -help        synonym for --help
+> @@ -178,6 +180,7 @@ compile_to_dts() {
+>  annotate=""
+>  cmd_diff=0
+>  diff_flags="-u"
+> +diff_color=""
+>  dtx_file_1=""
+>  dtx_file_2=""
+>  dtc_sort="-s"
+> @@ -189,6 +192,13 @@ while [ $# -gt 0 ] ; do
+>  
+>  	case $1 in
+>  
+> +	-c | --color )
+> +		if diff --color /dev/null /dev/null 2>/dev/null ; then
+> +			diff_color="--color=always"
+> +		fi
+> +		shift
+> +		;;
+> +
+>  	-f )
+>  		diff_flags="--unified=999999"
+>  		shift
+> @@ -344,7 +354,7 @@ DTC="\
+>  
+>  if (( ${cmd_diff} )) ; then
+>  
+> -	diff ${diff_flags} --label "${dtx_file_1}" --label "${dtx_file_2}" \
+> +	diff ${diff_flags} ${diff_color} --label "${dtx_file_1}" --label "${dtx_file_2}" \
+>  		<(compile_to_dts "${dtx_file_1}" "${dtx_path_1_dtc_include}") \
+>  		<(compile_to_dts "${dtx_file_2}" "${dtx_path_2_dtc_include}")
+>  
+> 
 
-Hi Pavel
+Thanks Geert.
 
-Please could you explain what you mean by compatible trigger names?
 
-> So... I'd really like to see proper integration is possible before we
-> merge this.
+Reviewed-by: Frank Rowand <frank.rowand@sony.com>
 
-Please let me turn that around. What do you see as being impossible at
-the moment? What do we need to convince you about?
+Tested-by: Frank Rowand <frank.rowand@sony.com>
 
-    Thanks
-	Andrew
+Tested on a system where diff does not have the --color option.
+Tested on a system where diff does have the --color option.
