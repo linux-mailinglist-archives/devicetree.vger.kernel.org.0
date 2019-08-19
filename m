@@ -2,108 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B27FA94B99
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F73894B9E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:29:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727835AbfHSRZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 13:25:06 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:2633 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727524AbfHSRZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 13:25:05 -0400
-X-UUID: f1b610a2e0bc412f9c946eff53863dbb-20190820
-X-UUID: f1b610a2e0bc412f9c946eff53863dbb-20190820
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <houlong.wei@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1131272664; Tue, 20 Aug 2019 01:24:51 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 20 Aug
- 2019 01:24:39 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 20 Aug 2019 01:24:38 +0800
-Message-ID: <1566235480.24117.13.camel@mhfsdcap03>
-Subject: Re: [PATCH v12 11/12] soc: mediatek: cmdq: add
- cmdq_dev_get_client_reg function
-From:   houlong wei <houlong.wei@mediatek.com>
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?= 
-        <ck.hu@mediatek.com>, "Daniel Kurtz" <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Nicolas Boichat" <drinkcat@chromium.org>,
-        YT Shen =?UTF-8?Q?=28=E6=B2=88=E5=B2=B3=E9=9C=86=29?= 
-        <Yt.Shen@mediatek.com>,
-        Daoyuan Huang =?UTF-8?Q?=28=E9=BB=83=E9=81=93=E5=8E=9F=29?= 
-        <Daoyuan.Huang@mediatek.com>,
-        Jiaguang Zhang =?UTF-8?Q?=28=E5=BC=A0=E5=8A=A0=E5=B9=BF=29?= 
-        <Jiaguang.Zhang@mediatek.com>,
-        Dennis-YC Hsieh =?UTF-8?Q?=28=E8=AC=9D=E5=AE=87=E5=93=B2=29?= 
-        <Dennis-YC.Hsieh@mediatek.com>,
-        Ginny Chen =?UTF-8?Q?=28=E9=99=B3=E6=B2=BB=E5=82=91=29?= 
-        <ginny.chen@mediatek.com>, <houlon.wei@mediatek.com>
-Date:   Tue, 20 Aug 2019 01:24:40 +0800
-In-Reply-To: <20190819025359.11381-12-bibby.hsieh@mediatek.com>
-References: <20190819025359.11381-1-bibby.hsieh@mediatek.com>
-         <20190819025359.11381-12-bibby.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727998AbfHSR0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 13:26:13 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:55250 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727524AbfHSR0N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 13:26:13 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dafna)
+        with ESMTPSA id 7F62F28B120
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+To:     dafna.hirschfeld@collabora.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, ezequiel@collabora.com,
+        kernel@collabora.com
+Subject: [PATCH v4 0/2] add imx8mq nitrogen support - changes since v3
+Date:   Mon, 19 Aug 2019 19:26:04 +0200
+Message-Id: <20190819172606.6410-1-dafna.hirschfeld@collabora.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 5172E3F03F0FDA5D1EE4963F131F68BC41EF5B5A656F52E8E658C6FC655C1B422000:8
-X-MTK:  N
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-08-19 at 10:53 +0800, Bibby Hsieh wrote:
-> GCE cannot know the register base address, this function
-> can help cmdq client to get the cmdq_client_reg structure.
-> 
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-cmdq-helper.c | 29 ++++++++++++++++++++++++++
->  include/linux/soc/mediatek/mtk-cmdq.h  | 21 +++++++++++++++++++
->  2 files changed, 50 insertions(+)
-> 
-[...]
->  
-> +/**
-> + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device
-> + *			       node of CMDQ client
-> + * @dev:	device of CMDQ mailbox clienti
+change log:
+patch 1: no changes
+patch 2:
+- gpio-key,wakeup -> source-wakeup
+- newline between property list and child nodes.
+- settting pinctrl nodes names to: "pinctrl_xxx: xxxgrp {"
 
-'clienti' looks like a typo, 'client'?
+Gary Bisson (2):
+  dt-bindings: arm: imx: add imx8mq nitrogen support
+  arm64: dts: imx: Add i.mx8mq nitrogen8m basic dts support
 
-> + * @client_reg: CMDQ client reg pointer
-> + * @idx:	the index of desired reg
-> + *
-> + * Return: 0 for success; else the error code is returned
-> + *
-> + * Help CMDQ client pasing the cmdq client reg
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8mq-nitrogen.dts    | 405 ++++++++++++++++++
+ 3 files changed, 407 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-nitrogen.dts
 
-'pasing' looks like a typo, 'parsing'?
-
-> + * from the device node of CMDQ client.
-> + */
-> +int cmdq_dev_get_client_reg(struct device *dev,
-> +			    struct cmdq_client_reg *client_reg, int idx);
-> +
->  /**
->   * cmdq_mbox_create() - create CMDQ mailbox client and channel
->   * @dev:	device of CMDQ mailbox client
-
+-- 
+2.20.1
 
