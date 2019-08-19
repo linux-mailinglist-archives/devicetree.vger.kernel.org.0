@@ -2,148 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CD494B7B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:16:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B27FA94B99
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:29:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728115AbfHSRQ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 13:16:28 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:33551 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727094AbfHSRQ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 13:16:28 -0400
-Received: by mail-pf1-f194.google.com with SMTP id g2so1543191pfq.0;
-        Mon, 19 Aug 2019 10:16:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=B594JSWSVAK5cSvz2jxLmvYlIr8hDspAxcGfnCZxVuQ=;
-        b=e+A81wcFIo0p5+zsGvEa6VEEhK2nSH+8tLEdkygViusIVNadsxe6YNoM0ps0btYU5h
-         NoQCp/8YO47fWk1/7A//pzzKvylIegvJMZ27hg9R1Noh997YuJZJ6t6/HBUWtyF69h1N
-         4I+pfc75HVXQFfIt2vgfOUf2gVMHqOqAhZXhXEhn94PPRokNnQjTreKNfaJc058WXodY
-         19RLQEajSlgzGDFaOkMedzuvZ9znYak9Rskyg1TbP5kPq1J0IBpMHh673hs3mw4JHQVS
-         ccXC6rCxm5DacelS/Je7qEdZ192mbeuLRGGWqeYVjZDp7m5M/4uXHDNH1Ca2b9HDCbZt
-         Xf1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=B594JSWSVAK5cSvz2jxLmvYlIr8hDspAxcGfnCZxVuQ=;
-        b=KRzimvzXUVjwJVAXPIWy8EqeIpZ8GVmyi0zWO+mVFjT/V5jJ9Hj7Z3JaQD788IAvTE
-         l6nfs0pRUq61f9TzBHOfW8DTOT4GSfDh7lRGsQDATTkeg9p8AeEZR+T0/2KCNn5wjFof
-         4Z4JZkV19effG0wHFEUvXe5r4tDfSpZlIFNMUM0tu8w0o0F4me0juwLyaJvsV86iYf0l
-         QB168ri3Xq0/wTyDKboL3TCdRR9ujFKjPFMNHXqUphv5ECcE475QTw5d+ZgKAa/J3Jb1
-         wo2m5n3vukpSQ2hK++Q6d4NhN5rcLMkMrXyLKMZtZhI86upMz0vYi+RemKhRnd2DNgtf
-         K7hQ==
-X-Gm-Message-State: APjAAAXOJ1CtmG27yGki+gBaJmXoS3sPzAvxkQM39K/DFj6ckhtyVqpn
-        IGiwWU5yUzbc9ZEipbuAtf0=
-X-Google-Smtp-Source: APXvYqw3afHwjaZV1PHagRMNtuQluFZ49zBxUg2asWpktEmkXIpf4KQ5IQ3nZ3xyu3/x7X9GVz6NEA==
-X-Received: by 2002:a17:90a:234f:: with SMTP id f73mr22254911pje.130.1566234987802;
-        Mon, 19 Aug 2019 10:16:27 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id l4sm12867067pjq.9.2019.08.19.10.16.26
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 19 Aug 2019 10:16:27 -0700 (PDT)
-Subject: Re: [PATCH v7 3/7] of/platform: Add functional dependency link from
- DT bindings
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
-References: <20190724001100.133423-1-saravanak@google.com>
- <20190724001100.133423-4-saravanak@google.com>
- <141d2e16-26cc-1f05-1ac0-6784bab5ae88@gmail.com>
- <CAGETcx-dVnLCRA+1CX47gtZgtwTcrN5KefpjMzh9OJB-BEnqyg@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <19c99a6e-51c3-68d7-d1d6-640aae754c14@gmail.com>
-Date:   Mon, 19 Aug 2019 10:16:25 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727835AbfHSRZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 13:25:06 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:2633 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727524AbfHSRZF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 13:25:05 -0400
+X-UUID: f1b610a2e0bc412f9c946eff53863dbb-20190820
+X-UUID: f1b610a2e0bc412f9c946eff53863dbb-20190820
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <houlong.wei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1131272664; Tue, 20 Aug 2019 01:24:51 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Tue, 20 Aug
+ 2019 01:24:39 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 20 Aug 2019 01:24:38 +0800
+Message-ID: <1566235480.24117.13.camel@mhfsdcap03>
+Subject: Re: [PATCH v12 11/12] soc: mediatek: cmdq: add
+ cmdq_dev_get_client_reg function
+From:   houlong wei <houlong.wei@mediatek.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?= 
+        <ck.hu@mediatek.com>, "Daniel Kurtz" <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Nicolas Boichat" <drinkcat@chromium.org>,
+        YT Shen =?UTF-8?Q?=28=E6=B2=88=E5=B2=B3=E9=9C=86=29?= 
+        <Yt.Shen@mediatek.com>,
+        Daoyuan Huang =?UTF-8?Q?=28=E9=BB=83=E9=81=93=E5=8E=9F=29?= 
+        <Daoyuan.Huang@mediatek.com>,
+        Jiaguang Zhang =?UTF-8?Q?=28=E5=BC=A0=E5=8A=A0=E5=B9=BF=29?= 
+        <Jiaguang.Zhang@mediatek.com>,
+        Dennis-YC Hsieh =?UTF-8?Q?=28=E8=AC=9D=E5=AE=87=E5=93=B2=29?= 
+        <Dennis-YC.Hsieh@mediatek.com>,
+        Ginny Chen =?UTF-8?Q?=28=E9=99=B3=E6=B2=BB=E5=82=91=29?= 
+        <ginny.chen@mediatek.com>, <houlon.wei@mediatek.com>
+Date:   Tue, 20 Aug 2019 01:24:40 +0800
+In-Reply-To: <20190819025359.11381-12-bibby.hsieh@mediatek.com>
+References: <20190819025359.11381-1-bibby.hsieh@mediatek.com>
+         <20190819025359.11381-12-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx-dVnLCRA+1CX47gtZgtwTcrN5KefpjMzh9OJB-BEnqyg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 5172E3F03F0FDA5D1EE4963F131F68BC41EF5B5A656F52E8E658C6FC655C1B422000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/15/19 6:50 PM, Saravana Kannan wrote:
-> On Wed, Aug 7, 2019 at 7:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> On 7/23/19 5:10 PM, Saravana Kannan wrote:
->>> Add device-links after the devices are created (but before they are
->>> probed) by looking at common DT bindings like clocks and
->>> interconnects.
-
-
-< very big snip (lots of comments that deserve answers) >
-
-
->>
->> /**
->>  * of_link_property - TODO:
->>  * dev:
->>  * con_np:
->>  * prop:
->>  *
->>  * TODO...
->>  *
->>  * Any failed attempt to create a link will NOT result in an immediate return.
->>  * of_link_property() must create all possible links even when one of more
->>  * attempts to create a link fail.
->>
->> Why?  isn't one failure enough to prevent probing this device?
->> Continuing to scan just results in extra work... which will be
->> repeated every time device_link_check_waiting_consumers() is called
+On Mon, 2019-08-19 at 10:53 +0800, Bibby Hsieh wrote:
+> GCE cannot know the register base address, this function
+> can help cmdq client to get the cmdq_client_reg structure.
 > 
-> Context:
-> As I said in the cover letter, avoiding unnecessary probes is just one
-> of the reasons for this patch. The other (arguably more important)
-
-Agree that it is more important.
-
-
-> reason for this patch is to make sure suppliers know that they have
-> consumers that are yet to be probed. That way, suppliers can leave
-> their resource on AND in the right state if they were left on by the
-> bootloader. For example, if a clock was left on and at 200 MHz, the
-> clock provider needs to keep that clock ON and at 200 MHz till all the
-> consumers are probed.
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-cmdq-helper.c | 29 ++++++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-cmdq.h  | 21 +++++++++++++++++++
+>  2 files changed, 50 insertions(+)
 > 
-> Answer: Let's say a consumer device Z has suppliers A, B and C. If the
-> linking fails at A and you return immediately, then B and C could
-> probe and then figure that they have no more consumers (they don't see
-> a link to Z) and turn off their resources. And Z could fail
-> catastrophically.
+[...]
+>  
+> +/**
+> + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device
+> + *			       node of CMDQ client
+> + * @dev:	device of CMDQ mailbox clienti
 
-Then I think that this approach is fatally flawed in the current implementation.
+'clienti' looks like a typo, 'client'?
 
-A device can be added by a module that is loaded.  In that case the device
-was not present at late boot when the suppliers may turn off their resources.
-(I am assuming the details since I have not reviewed the patches later in
-the series that implement this part.)
+> + * @client_reg: CMDQ client reg pointer
+> + * @idx:	the index of desired reg
+> + *
+> + * Return: 0 for success; else the error code is returned
+> + *
+> + * Help CMDQ client pasing the cmdq client reg
 
-Am I missing something?
+'pasing' looks like a typo, 'parsing'?
 
-If I am wrong, then I'll have more comments for your review replies for
-patches 2 and 3.
+> + * from the device node of CMDQ client.
+> + */
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +			    struct cmdq_client_reg *client_reg, int idx);
+> +
+>  /**
+>   * cmdq_mbox_create() - create CMDQ mailbox client and channel
+>   * @dev:	device of CMDQ mailbox client
 
-> 
 
-< another snip >
-
-> Thanks,
-> Saravana
-> 
-
--Frank
