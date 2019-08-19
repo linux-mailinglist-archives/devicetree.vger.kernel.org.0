@@ -2,84 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E5C491CA0
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 07:39:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5273591CF1
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 08:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726538AbfHSFjx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 01:39:53 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:13798 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725768AbfHSFjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 01:39:52 -0400
-X-UUID: 663142ec0b6440d5921048f23debae01-20190819
-X-UUID: 663142ec0b6440d5921048f23debae01-20190819
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <dongchun.zhu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1037830993; Mon, 19 Aug 2019 13:39:33 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 19 Aug
- 2019 13:39:30 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 19 Aug 2019 13:39:29 +0800
-Message-ID: <1566193170.21623.46.camel@mhfsdcap03>
-Subject: Re: [RFC,V2,1/2] media: dt-bindings: media: i2c: Add bindings for
- OV02A10
-From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-CC:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <matthias.bgg@gmail.com>, <bingbu.cao@intel.com>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
-        <tfiga@google.com>, <drinkcat@chromium.org>
-Date:   Mon, 19 Aug 2019 13:39:30 +0800
-In-Reply-To: <20190817213207.GC3504@valkosipuli.retiisi.org.uk>
-References: <20190704084651.3105-1-dongchun.zhu@mediatek.com>
-         <20190704084651.3105-2-dongchun.zhu@mediatek.com>
-         <20190723074153.GA4606@paasikivi.fi.intel.com>
-         <ef65288c523f405396991bd6d757bba0@mtkmbs02n1.mediatek.inc>
-         <1566013985.21623.9.camel@mhfsdcap03>
-         <20190817213207.GC3504@valkosipuli.retiisi.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726541AbfHSGSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 02:18:44 -0400
+Received: from conssluserg-03.nifty.com ([210.131.2.82]:17677 "EHLO
+        conssluserg-03.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725790AbfHSGSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 02:18:44 -0400
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50]) (authenticated)
+        by conssluserg-03.nifty.com with ESMTP id x7J6Iagv004121;
+        Mon, 19 Aug 2019 15:18:36 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-03.nifty.com x7J6Iagv004121
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1566195517;
+        bh=mdvVTv3n82OSRycPvJ85qAq0gYB/fIX4CdCh4wVf4wU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ohePG+XrOEPALXPBRFYCdboBGdtXD5/QyU5+0N0V8doa2luVnv5O0Oq7+M2erekaj
+         dTAQXgcGDUtGIT9McHuO2Ts4PZL3Qpl8BDcN30PEc2LqL/NtGrpefCQlJUj+jo17/x
+         fukbx5MosWL4V12eXBKWFQbyqQa5MzYPwv9yRW10RP0Igcb4NvLmPvXgOduwyKW7a0
+         nWcUnzwfDjnjchry0/gKMabRmPLHie6QQ+Y/tCNKdVARrXBWCQHzuljkToyvGrcTmV
+         sSlFn52BgebpLSdD2Zz776Poo/ELq5wTaUL0L7aHnDForC0pO77JGH21YQkuiI2hX7
+         vbt8r2MvmhC6g==
+X-Nifty-SrcIP: [209.85.217.50]
+Received: by mail-vs1-f50.google.com with SMTP id b187so450674vsc.9;
+        Sun, 18 Aug 2019 23:18:36 -0700 (PDT)
+X-Gm-Message-State: APjAAAWRW0FmlcVMQjYxYk43hAKs0K3YDbpMCf/MkezhNyf7Ac0mzV1I
+        aUF4nkeRkkXqlAmFEX+sROW2wHgs3ZsBWKIS21E=
+X-Google-Smtp-Source: APXvYqypMbATPlyP1E6U0jX2apM4bwEbu+0F1IzcNo8Wg2XfSUc01fPlXGWMcGBZSfT+K7IwPTyid93NELceB+uKN0s=
+X-Received: by 2002:a05:6102:20c3:: with SMTP id i3mr13217030vsr.155.1566195515660;
+ Sun, 18 Aug 2019 23:18:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 1FFD33D17A9099ABE642A276F2E703E2656BAF1550E1FEDA5DAA451D829739DB2000:8
-X-MTK:  N
+References: <20190621112306.17769-1-yamada.masahiro@socionext.com> <0e357fa8-3241-4ce4-fae7-d0ad36fb14c6@kernel.org>
+In-Reply-To: <0e357fa8-3241-4ce4-fae7-d0ad36fb14c6@kernel.org>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Mon, 19 Aug 2019 15:17:59 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASrdNwFEEFoy8mH4CnWHN5d8qCw_LeU1St0x1oa9jRNFQ@mail.gmail.com>
+Message-ID: <CAK7LNASrdNwFEEFoy8mH4CnWHN5d8qCw_LeU1St0x1oa9jRNFQ@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: socfpga: update to new Denali NAND binding
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sakari,
+On Tue, Jun 25, 2019 at 12:39 AM Dinh Nguyen <dinguyen@kernel.org> wrote:
+>
+>
+>
+> On 6/21/19 6:23 AM, Masahiro Yamada wrote:
+> > With commit d8e8fd0ebf8b ("mtd: rawnand: denali: decouple controller
+> > and NAND chips"), the Denali NAND controller driver migrated to the
+> > new controller/chip representation.
+> >
+> > Update DT for it.
+> >
+> > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> > ---
+> >
+> >  arch/arm/boot/dts/socfpga.dtsi                |  2 +-
+> >  arch/arm/boot/dts/socfpga_arria10.dtsi        |  2 +-
+> >  .../boot/dts/socfpga_arria10_socdk_nand.dts   | 20 ++++++++++++-------
+> >  3 files changed, 15 insertions(+), 9 deletions(-)
+> >
+>
+> Applied! Thanks!
+>
+> Dinh
 
-On Sun, 2019-08-18 at 00:32 +0300, Sakari Ailus wrote:
-> Hi Dongchun,
-> 
-> On Sat, Aug 17, 2019 at 11:53:05AM +0800, Dongchun Zhu wrote:
-> ...
-> > > > +
-> > > > +The device node shall contain one 'port' child node with an
-> > > > +'endpoint' subnode for its digital output video port, in accordance
-> > > > +with the video interface bindings defined in
-> > > > +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > > > +The endpoint optional property 'data-lanes' shall be "<1>".
-> > > 
-> > > How many lanes does the module (or the sensor) have?
-> > > 
-> > 
-> > From sensor datasheet, OV02A10 supports 1-lane MIPI interface.
-> 
-> If only one lane is supported, the property should be omitted: there's
-> nothing that the driver needs to know here.
-> 
-Thanks for the suggestion.
-But sorry that I didn't read this message this morning, so this issue
-still remains unsettled in v3.
-https://patchwork.kernel.org/patch/11100219/
-I would fix this point in v4.
 
+You did not send this to upstream for v5.3-rc1.
+
+Which version is this aiming for?
+
+
+
+
+
+-- 
+Best Regards
+Masahiro Yamada
