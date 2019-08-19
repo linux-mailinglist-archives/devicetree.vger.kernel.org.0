@@ -2,81 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A2791D17
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 08:31:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B5591D65
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 08:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725946AbfHSG3o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 02:29:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33106 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725872AbfHSG3o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 02:29:44 -0400
-Received: from localhost (unknown [122.182.221.154])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1351520851;
-        Mon, 19 Aug 2019 06:29:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566196183;
-        bh=ZWpAO8QSDtl6+Jkb5PfpmEgOiBWyUwySwH5wx/nV7b0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Z2eZOcRAIUnvXsUrfpOrZPFzDOBpiYH569dKoyLea3syk6QKVRNI3PMD1NhDjhBFt
-         oBVmW3MPXJO0dCKVD1ZIJljxsWF060pNlQXvw9hHm0YY9pxOB5QuEfCssgG0cYw4K+
-         N9PUF9Jv/oMCDDF6AjTKuH1N0n6whphyHZeRFNzo=
-Date:   Mon, 19 Aug 2019 11:58:21 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] clk: qcom: clk-rpmh: Add support for SM8150
-Message-ID: <20190819062821.GF12733@vkoul-mobl.Dlink>
-References: <20190814122958.4981-1-vkoul@kernel.org>
- <20190814122958.4981-2-vkoul@kernel.org>
- <20190814171946.E9E8D20665@mail.kernel.org>
- <20190816042440.GY12733@vkoul-mobl.Dlink>
- <20190816165812.BC64B2077C@mail.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190816165812.BC64B2077C@mail.kernel.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+        id S1726149AbfHSG4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 02:56:14 -0400
+Received: from twhmllg4.macronix.com ([211.75.127.132]:59787 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725872AbfHSG4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 02:56:13 -0400
+Received: from localhost.localdomain ([172.17.195.96])
+        by TWHMLLG4.macronix.com with ESMTP id x7J6sIRI002951;
+        Mon, 19 Aug 2019 14:54:18 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+From:   Mason Yang <masonccyang@mxic.com.tw>
+To:     miquel.raynal@bootlin.com, richard@nod.at, marek.vasut@gmail.com,
+        dwmw2@infradead.org, bbrezillon@kernel.org,
+        computersforpeace@gmail.com, vigneshr@ti.com, robh+dt@kernel.org,
+        stefan@agner.ch, mark.rutland@arm.com
+Cc:     lee.jones@linaro.org, juliensu@mxic.com.tw,
+        linux-kernel@vger.kernel.org, paul.burton@mips.com,
+        liang.yang@amlogic.com, linux-mtd@lists.infradead.org,
+        masonccyang@mxic.com.tw, anders.roxell@linaro.org,
+        christophe.kerello@st.com, paul@crapouillou.net,
+        devicetree@vger.kernel.org
+Subject: [PATCH v7 0/2] Add Macronix raw NAND controller driver
+Date:   Mon, 19 Aug 2019 15:19:07 +0800
+Message-Id: <1566199149-5669-1-git-send-email-masonccyang@mxic.com.tw>
+X-Mailer: git-send-email 1.9.1
+X-MAIL: TWHMLLG4.macronix.com x7J6sIRI002951
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-08-19, 09:58, Stephen Boyd wrote:
-> Quoting Vinod Koul (2019-08-15 21:24:40)
-> > On 14-08-19, 10:19, Stephen Boyd wrote:
-> > > Quoting Vinod Koul (2019-08-14 05:29:58)
-> > > > Add support for rpmh clocks found in SM8150
-> > > > 
-> > > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > > ---
-> > > 
-> > > Patch looks OK, but can you convert this driver to use the new parent
-> > > style and then update the binding to handle it? We can fix the other
-> > > platforms and dts files that use this driver in parallel, but sm8150
-> > > will be forward looking.
-> > 
-> > Yes but that would also impact sdm845 as it uses this driver, so I
-> > wanted to get this one done so that we have support for rpm clock and
-> > then do the conversion.
-> > 
-> > Would that be okay with you to get this in and then I convert this?
-> > 
-> 
-> How does it impact sdm845? The new way of specifying parents supports
-> fallback to legacy string matching.
+Hello,
 
-Yes it does, I have managed to convert this as well as sdm845 and test.
-I will send updates shortly
+v7 patch including:
+1. compatible rename to "mxic,multi-itfc-v009-nand-controller"
+2. using interrupts instead of polling RY/#BS pin
+3. removed sdr timing setup in mxic_nfc_hw_init().
+4. And other patches based on Boris comments.
 
-Thanks
+v6 patch including:
+1. compatible rename to "mxicy,multi-itfc-v009-nand-morph"
+2. remove xxx_clk to xxx in DTS and driver.
+3. patch mxic_nfc_data_xfer()
+
+v5 patch including:
+1. compatible rename to "macronix,nand-controller"
+2. handle three clock in one
+3. other minor patches
+
+v4 patch back to only raw NAND controller driver instead of MFD,
+raw NAND and SPI driver. This is based on MFD maintainer, Lee Jones
+comments:
+MFD is for registering child devices of chips which offer genuine
+cross-subsystem functionality.
+It is not designed for mode selecting, or as a place to shove shared code 
+just because a better location doesn't appear to exist. 
+
+v3 patch is to rename the title of SPI controller driver.
+"Patch Macronix SPI controller driver according to MX25F0A MFD driver"
+
+v2s patches is to support Macronix MX25F0A MFD driver 
+for raw nand and spi controller which is separated 
+form previous patchset:
+
+https://patchwork.kernel.org/patch/10874679/
+
+thanks for your review.
+
+best regards,
+Mason
+
+Mason Yang (2):
+  mtd: rawnand: Add Macronix raw NAND controller driver
+  dt-bindings: mtd: Document Macronix raw NAND controller bindings
+
+ .../devicetree/bindings/mtd/mxic-nand.txt          |  36 ++
+ drivers/mtd/nand/raw/Kconfig                       |   6 +
+ drivers/mtd/nand/raw/Makefile                      |   1 +
+ drivers/mtd/nand/raw/mxic_nand.c                   | 584 +++++++++++++++++++++
+ 4 files changed, 627 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/mxic-nand.txt
+ create mode 100644 drivers/mtd/nand/raw/mxic_nand.c
+
 -- 
-~Vinod
+1.9.1
+
