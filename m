@@ -2,42 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA64D94D4C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 20:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3A6594D76
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 21:05:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728214AbfHSS5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 14:57:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60330 "EHLO mail.kernel.org"
+        id S1727769AbfHSTE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 15:04:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34238 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727957AbfHSS5F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 14:57:05 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        id S1726959AbfHSTE6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 15:04:58 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F1ABA22CF4;
-        Mon, 19 Aug 2019 18:57:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 655E122CEC;
+        Mon, 19 Aug 2019 19:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566241024;
-        bh=PpzftFy+vdiatOV+exGKaz9N/3u/KbCTsM0d09Za0es=;
+        s=default; t=1566241497;
+        bh=g+l2+zh4XmFO/8rBiCLB79CWSua+bEB7GY7mMkA0vfY=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HZQ6yz5NGksGii9M1i5p7wjUL7g8sLBJxRBKY5eopCEtPHL3Ik4FxqTrAXLTdGD51
-         whAWTJqe40JDFzOs2spq+afA1cpJhacz8H2SU/BaA9k0zfEsU67d6ehiAsW3FsCLqQ
-         y1qY5NGFRE6M02bsXI3DQ46CiB4n6Ezxt5lG1Bq4=
-Received: by mail-qt1-f181.google.com with SMTP id y26so3091296qto.4;
-        Mon, 19 Aug 2019 11:57:03 -0700 (PDT)
-X-Gm-Message-State: APjAAAUVy2jzOcVhJr+7/D9hnb5zEFgvQFRuli6uZtbviOp/9Ex05gD7
-        VbJmerdk+zLLctZWXI1f9nicUfx56+j/a22Hvw==
-X-Google-Smtp-Source: APXvYqyem9usStmeAj3X3lcl6uuICrDQDfmec0Vvyrcebdi+L8pRqRmBajRkKgyiE/FrM7aOJG7WZwyRe3W8Eaubi6I=
-X-Received: by 2002:ac8:7593:: with SMTP id s19mr22505378qtq.136.1566241023152;
- Mon, 19 Aug 2019 11:57:03 -0700 (PDT)
+        b=Zb6DGbwP1Y5p9aufmWC7I/NvG/liUM04r4ChEz3Z1PEPWxgJ2GkzaxHnqPJJtnclj
+         hnRiu9+1BXePWtrJoTEG93wG1o4FOuBF1aFb3lpZI4bjUXew9iF24UnHGBVPBG77Gb
+         v/lHDWjcmkJ0fwDJUJHCjzbALTkE3SsrpQ8NtL68=
+Received: by mail-qk1-f178.google.com with SMTP id 125so2362410qkl.6;
+        Mon, 19 Aug 2019 12:04:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAX+Gh+On1Xxn/tu0BNB5HCMFJHXvgleKadhU8diVOACT7KrpeVN
+        zh/MCKt4du2SHztlFCwX8CcWugmNd3h9uAKdDA==
+X-Google-Smtp-Source: APXvYqwA2SjNSoVoQTjKoWrws6Xv9owHy2CJpILgSiuSxS3tYOqCq0Hh+e2lXIQ4Qhqn6fxIUQ08R2wQZn7Rxv135B8=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr21480176qkn.254.1566241496563;
+ Mon, 19 Aug 2019 12:04:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190819182039.24892-1-mripard@kernel.org> <20190819182039.24892-4-mripard@kernel.org>
-In-Reply-To: <20190819182039.24892-4-mripard@kernel.org>
+References: <20190819182039.24892-1-mripard@kernel.org>
+In-Reply-To: <20190819182039.24892-1-mripard@kernel.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 19 Aug 2019 13:56:52 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+wd=z3e72VUP1rkEagrrQu+Cg2Ypqo_ZmBFaZ1LOkRvw@mail.gmail.com>
-Message-ID: <CAL_Jsq+wd=z3e72VUP1rkEagrrQu+Cg2Ypqo_ZmBFaZ1LOkRvw@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: watchdog: sun4i: Add the watchdog clock
+Date:   Mon, 19 Aug 2019 14:04:45 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+jb+jVLuXeEDVwu19_4YinZEyD9Q5-=-ZGS7YoCrf=2Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+jb+jVLuXeEDVwu19_4YinZEyD9Q5-=-ZGS7YoCrf=2Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: watchdog: Add YAML schemas for the
+ generic watchdog bindings
 To:     Maxime Ripard <mripard@kernel.org>
 Cc:     Guenter Roeck <linux@roeck-us.net>,
         Wim Van Sebroeck <wim@linux-watchdog.org>,
@@ -58,11 +59,8 @@ On Mon, Aug 19, 2019 at 1:20 PM Maxime Ripard <mripard@kernel.org> wrote:
 >
 > From: Maxime Ripard <maxime.ripard@bootlin.com>
 >
-> The Allwinner watchdog has a clock that has been described in some DT, but
-> not all of them.
->
-> The binding is also completely missing that description. Let's add that
-> property to be consistent.
+> The watchdogs have a bunch of generic properties that are needed in a
+> device tree. Add a YAML schemas for those.
 >
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 >
@@ -71,7 +69,8 @@ On Mon, Aug 19, 2019 at 1:20 PM Maxime Ripard <mripard@kernel.org> wrote:
 > Changes from v1:
 >   - New patch
 > ---
->  .../bindings/watchdog/allwinner,sun4i-a10-wdt.yaml           | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/watchdog/watchdog.yaml           | 26 +++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/watchdog/watchdog.yaml
 
 Reviewed-by: Rob Herring <robh@kernel.org>
