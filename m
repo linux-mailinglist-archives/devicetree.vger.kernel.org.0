@@ -2,111 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 241D391C19
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 06:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59A8591C4D
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 07:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726483AbfHSEhG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 00:37:06 -0400
-Received: from conssluserg-01.nifty.com ([210.131.2.80]:48130 "EHLO
-        conssluserg-01.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725536AbfHSEhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 00:37:05 -0400
-Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46]) (authenticated)
-        by conssluserg-01.nifty.com with ESMTP id x7J4apVX023610;
-        Mon, 19 Aug 2019 13:36:52 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-01.nifty.com x7J4apVX023610
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1566189412;
-        bh=92O1pFReptltud0H5j530dBG+Ho3Yo+hz2c5cCYEwYY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=E4BNM2p/a0lvhptox5aS626n/uqm4oFpqQlwNJXZZpMIBKTMbbeZuFvyk3ZuKd9Ix
-         ZTiHxv1XE8aH3jZzmsFfHkpdPoqflbFt/NEM/xvUMNdr3Jwic+NmWQ/jxc+gLJW9qx
-         GoE/Vfpf6DU7oEM+P+n/wMJPIpaGggpxIUNRcpTYlXAHwcR+MrSTCCfso84jb9L4n3
-         Kz3lLJOg5raysC3ryNgVw15rLdT8x0NMFynN+bOqCHopw036s2hcL/eue/zRPl3Yy0
-         S4xLvSBvoCvKPa1Zui0BXnFuzx5T9a016PJqIu/72Iz4AAXqGHcuiSPQ6q+Y9qLyzE
-         9i7p0n+79LQPQ==
-X-Nifty-SrcIP: [209.85.222.46]
-Received: by mail-ua1-f46.google.com with SMTP id j21so195206uap.2;
-        Sun, 18 Aug 2019 21:36:52 -0700 (PDT)
-X-Gm-Message-State: APjAAAVpMttBn1Cb4vLd0WA+LJsG/TH1QIYGClTILU+uwNz4Jf95ge01
-        22lItCh6ZbqQOOoEeiA9OcOiw3JDr6iPJecjhI8=
-X-Google-Smtp-Source: APXvYqzxv6FoJWVgfO/JQFAnDKIT3YPH9cijYI+soh1aReHi9LTjxSce9ZlMxE89kupNwhGFNJaGx/GIP++DDRDsmeo=
-X-Received: by 2002:ab0:6608:: with SMTP id r8mr12223136uam.25.1566189411225;
- Sun, 18 Aug 2019 21:36:51 -0700 (PDT)
+        id S1725958AbfHSFRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 01:17:49 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:33982 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725871AbfHSFRt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 01:17:49 -0400
+Received: by mail-pf1-f195.google.com with SMTP id b24so468305pfp.1;
+        Sun, 18 Aug 2019 22:17:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=TGwG/YSLZYRVL+vJAKs5Bcm3MpdJbEenYZGdWxEpLBk=;
+        b=nvB93+LIMhdoi2CaaDpCzS7o1dOMNM+3A21WKpAKWBnuWmftjA+IkGp1UzjUoGvPt2
+         +j2EkS5G6ZY46CUxngO27FKFUsqU8w3ReyRRX3UkR+1drtyCLepHPwcN5KW09jab+Zhb
+         GScQZ2FStl1PJZ2tDHm4H4BfYEB0YVkzx5LUaREW/9sLMPuMubqY+IalqiR/AXhQrMKp
+         0432fj4jPoYILRdkyfhjSr0lR0ICE1fNNzAfcNzye9ffj+BHbqpe9901MBV2oVN3VOC2
+         Cfjpn+91AGskyGX4QGYBSsI3t/aGs34xkui9kVhCZQ9SWmY/yoCefRSpaDeVNXe00XKq
+         LmHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=TGwG/YSLZYRVL+vJAKs5Bcm3MpdJbEenYZGdWxEpLBk=;
+        b=kRXcXR7U3gsxcqSQ4ANJXRLrc47cB5LUwqG1cr7VoCgE6v1eIwGNST7kD3+l7SQcRR
+         zW+2LAaNgnqhYb3mchQTCzr5AG8q6EUHpK4coNK0LEq7WqOZ00W+3LxtUZEgakeStudG
+         JsTuaTc7w5HaS8Vr4G3PUQiL52UXyXhjYUNt+7hL9ypZFIj7etjozzzRGn6sGFrIS6cQ
+         MCoxH63KKNR6vTyroFzmZ575SGLZ2AWMvNNghPiz3ByItqD2AVdPbn1SY8YT44KXoPC9
+         xLxualfv1DptmX2z60Xi03mpX5Z28libVSkq7RZF7H+9yi36xyehNoDjGQ8K48CAlzEU
+         oSXQ==
+X-Gm-Message-State: APjAAAVjURN0mPDb0eVjga9nmOv5u1HrWF03w416YXwqOUwsnQFLvK/b
+        PRDqRfJntc+L6XL1WBbxYmXQkq7VwXI=
+X-Google-Smtp-Source: APXvYqxEgQ3FMUcGf8WGHJW4wXZcDWRMRgUVb9y2dWwhkvXh49b+GxwAQ3nXnVqyKo2MlegRrqcf2A==
+X-Received: by 2002:a63:ec03:: with SMTP id j3mr18981805pgh.325.1566191867962;
+        Sun, 18 Aug 2019 22:17:47 -0700 (PDT)
+Received: from voyager.ibm.com ([36.255.48.244])
+        by smtp.gmail.com with ESMTPSA id o3sm19010087pje.1.2019.08.18.22.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Aug 2019 22:17:47 -0700 (PDT)
+From:   Joel Stanley <joel@jms.id.au>
+To:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Andrew Jeffery <andrew@aj.id.au>, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, Ryan Chen <ryan_chen@aspeedtech.com>
+Subject: [PATCH v2 0/2] watchdog: aspeed: Add support for ast2600
+Date:   Mon, 19 Aug 2019 14:47:36 +0930
+Message-Id: <20190819051738.17370-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-References: <20190617162123.24920-1-yamada.masahiro@socionext.com> <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
-In-Reply-To: <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-Date:   Mon, 19 Aug 2019 13:36:15 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
-Message-ID: <CAK7LNASMwqy0ZUZ=kTJ7MJ6OJNa=+vbj5444xzmubJ8+6vO=sg@mail.gmail.com>
-Subject: Re: [PATCH] libfdt: reduce the number of headers included from libfdt_env.h
-To:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        DTML <devicetree@vger.kernel.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 1, 2019 at 11:30 AM Masahiro Yamada
-<yamada.masahiro@socionext.com> wrote:
->
-> On Tue, Jun 18, 2019 at 1:21 AM Masahiro Yamada
-> <yamada.masahiro@socionext.com> wrote:
-> >
-> > Currently, libfdt_env.h includes <linux/kernel.h> just for INT_MAX.
-> >
-> > <linux/kernel.h> pulls in a lots of broat.
-> >
-> > Thanks to commit 54d50897d544 ("linux/kernel.h: split *_MAX and *_MIN
-> > macros into <linux/limits.h>"), <linux/kernel.h> can be replaced with
-> > <linux/limits.h>.
-> >
-> > This saves including dozens of headers.
-> >
-> > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-> > ---
->
-> ping?
+Hello,
 
-ping x2.
+Here's a small patch series to enable the ast2600 watchdog.
 
+v2 addresses Guenter's review.
 
+Joel Stanley (1):
+  dt-bindings: watchdog: Add ast2600 compatible
 
+Ryan Chen (1):
+  watchdog: aspeed: Add support for AST2600
 
->
->
-> >  include/linux/libfdt_env.h | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/include/linux/libfdt_env.h b/include/linux/libfdt_env.h
-> > index edb0f0c30904..2231eb855e8f 100644
-> > --- a/include/linux/libfdt_env.h
-> > +++ b/include/linux/libfdt_env.h
-> > @@ -2,7 +2,7 @@
-> >  #ifndef LIBFDT_ENV_H
-> >  #define LIBFDT_ENV_H
-> >
-> > -#include <linux/kernel.h>      /* For INT_MAX */
-> > +#include <linux/limits.h>      /* For INT_MAX */
-> >  #include <linux/string.h>
-> >
-> >  #include <asm/byteorder.h>
-> > --
-> > 2.17.1
-> >
->
->
-> --
-> Best Regards
-> Masahiro Yamada
-
-
+ Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 1 +
+ drivers/watchdog/aspeed_wdt.c                             | 4 +++-
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
 -- 
-Best Regards
-Masahiro Yamada
+2.23.0.rc1
+
