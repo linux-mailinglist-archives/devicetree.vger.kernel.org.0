@@ -2,83 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B236B94C34
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 19:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2420094C6B
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 20:14:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728099AbfHSR7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 13:59:38 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:46952 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728008AbfHSR7i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 13:59:38 -0400
-Received: by mail-pg1-f196.google.com with SMTP id m3so1628532pgv.13
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 10:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:from:cc:to:user-agent:date;
-        bh=SJOOj6olxFQRqjrRfjeJgYnys/AXxatkSyB1FQQ9L/Q=;
-        b=XR6mmmgNNI2WavLy9/anETqmroNgKCK8LiC4+iFowHiVpZgmWbqyiEYy9IPM1CcHDK
-         bHb3Kgtya/1X7BARqYZEzum94Cj+ENuckx2Ja7F71V9iahCof6NgLEyzxBnu3Ia0hFeH
-         IGHW1m15ZLmZdnJmziTSdGSEmVpcxmMARdMdE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
-         :user-agent:date;
-        bh=SJOOj6olxFQRqjrRfjeJgYnys/AXxatkSyB1FQQ9L/Q=;
-        b=e7I5WZj4EN3Frih27TmElMVFKdKkuMGhFkDLWxTEsMnJP/RiY3hEEHE9VoDLlWVT8t
-         rqRBzJAqtFzHyu39NTTnqHigv9cZLzkeGEBZQFtEUt9FQz5D17OcmBjQdDNxCOgZNFfw
-         MqSKD6eeQ9M+E2U8fU4PrXgn0W4yd2odo6p4JnYXgb1wrIg2kvuLiTlAjKxs7jgwWoZJ
-         gdiQuBUxy+jpfvljM3unahrVzW7oItiK/hbaPvwHfIUsQzSgZyKfaolZS2FSIs17CZxd
-         7Ctu24aAJvN//XWeD6fhIe3M6spcSMhIWB0lAHNFWT+9tI1gRk9LYhthtLoh+enXvdjT
-         twtA==
-X-Gm-Message-State: APjAAAW/sJOZH26nqvh9tOD09nfSfCZqW3iVeCGXhdr8dTYRrLllwzJV
-        AKg/5S3Eggq2s33A/DZnu7OyhQ==
-X-Google-Smtp-Source: APXvYqzTOYVM7Zk78xk9eKa8c8LP/wSZ2lxqVDb2CVkjo0gNjyjiFXmm7q3184wtTzkvQK+Otp9tCw==
-X-Received: by 2002:a17:90a:c20e:: with SMTP id e14mr23074735pjt.0.1566237578018;
-        Mon, 19 Aug 2019 10:59:38 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id ck8sm13839498pjb.25.2019.08.19.10.59.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2019 10:59:37 -0700 (PDT)
-Message-ID: <5d5ae389.1c69fb81.cb730.3225@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1727769AbfHSSOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 14:14:23 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:42728 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726987AbfHSSOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 14:14:23 -0400
+Received: from callcc.thunk.org (wsip-184-188-36-2.sd.sd.cox.net [184.188.36.2])
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x7JIDpoj023205
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 19 Aug 2019 14:13:53 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id 86F16420843; Mon, 19 Aug 2019 14:13:49 -0400 (EDT)
+Date:   Mon, 19 Aug 2019 14:13:49 -0400
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Subject: Re: [PATCH v8 2/3] fdt: add support for rng-seed
+Message-ID: <20190819181349.GE10349@mit.edu>
+Mail-Followup-To: "Theodore Y. Ts'o" <tytso@mit.edu>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+References: <20190819071602.139014-1-hsinyi@chromium.org>
+ <20190819071602.139014-3-hsinyi@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190819100957.17095-1-niklas.cassel@linaro.org>
-References: <20190725104144.22924-7-niklas.cassel@linaro.org> <20190819100957.17095-1-niklas.cassel@linaro.org>
-Subject: Re: [PATCH v3 06/14] dt-bindings: cpufreq: qcom-nvmem: Support pstates provided by a power domain
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
-        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
-        Niklas Cassel <niklas.cassel@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Andy Gross <agross@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
-        Niklas Cassel <niklas.cassel@linaro.org>,
-        Nishanth Menon <nm@ti.com>, Viresh Kumar <vireshk@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Mon, 19 Aug 2019 10:59:36 -0700
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190819071602.139014-3-hsinyi@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Niklas Cassel (2019-08-19 03:09:57)
-> +
-> +soc {
-> +....
-> +       cprpd: cpr@b018000 {
+On Mon, Aug 19, 2019 at 03:16:04PM +0800, Hsin-Yi Wang wrote:
+> Introducing a chosen node, rng-seed, which is an entropy that can be
+> passed to kernel called very early to increase initial device
+> randomness. Bootloader should provide this entropy and the value is
+> read from /chosen/rng-seed in DT.
 
-Maybe node name should be 'avs' for the industry standard adaptive
-voltage scaling acronym?
+So it's really cool that you've sent out this patch set.  I've been
+wanting this for all platforms / architectures for quite a while.
+Question --- are you willing to guarantee that the booloader can be
+trusted enough that you *know* the entropy being provided by the
+bootloader to be secure?
 
+If so, we could let fdt.c use a different interface, perhaps
+add_hwgenerator_randomness(), which allows the bootloader to transfer
+trusted entropy for the purposes of initializing the crng and entropy
+accounting for /dev/random.
 
-> +               compatible =3D "qcom,qcs404-cpr", "qcom,cpr";
-> +               reg =3D <0x0b018000 0x1000>;
-> +               ....
-> +               vdd-apc-supply =3D <&pms405_s3>;
-> +               #power-domain-cells =3D <0>;
+One of the questions is how do we make sure the boot loader is
+actually secure, but given that we have to trust the boot loader for
+various trusted boot use cases, it seems reasonable to do that.
+
+What do you think?
+
+					- Ted
