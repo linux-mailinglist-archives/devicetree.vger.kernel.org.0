@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F9D92252
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 13:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C29BC9226A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 13:31:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727585AbfHSL2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 07:28:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36900 "EHLO mail.kernel.org"
+        id S1727162AbfHSLa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 07:30:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37686 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727584AbfHSL2I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 07:28:08 -0400
+        id S1726477AbfHSLa5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 07:30:57 -0400
 Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 32BA320851;
-        Mon, 19 Aug 2019 11:28:04 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 10E7620851;
+        Mon, 19 Aug 2019 11:30:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566214087;
-        bh=2eCWogtyvjtgXycwn80iAAqkLyoGmWRMPImaEfrwOnk=;
+        s=default; t=1566214256;
+        bh=FQV5Xq+K1NWQNMFPHHsWUc0BPzvLcSph101rqifwyH4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=yE2pVYkfMReaD9Zs7Yh3YsDcK89YDq2o3CQ11Vnj07BvPLBhPwvzmSM82BSxdYfQQ
-         wfWJry5lVUOsaBtcplTxrEAP44nl5jBNfxk7M9+mEKh2UNYdPUG31j/VdzIntKNdGn
-         yHJPBEbHM66PCg9z3nFPayRINtIvBToHQIDWepfY=
-Date:   Mon, 19 Aug 2019 13:27:55 +0200
+        b=oHRaYVkEPNlPMj4BCnrKc6YmDgIsFLRpJHkQpRy9IGiFzivMTPza12JJcCziPko5C
+         hOczRt3zVCJZxnfE9sBOX+Hiku+dpIFSqB6GgFTLUf5u1rcuGJMgD1p5A6pmwLOb1o
+         F+2BGNF1E7E0R4t60gtXvdfpE3U/GP7q+n2pfIZQ=
+Date:   Mon, 19 Aug 2019 13:30:44 +0200
 From:   Shawn Guo <shawnguo@kernel.org>
 To:     Philippe Schenker <philippe.schenker@toradex.com>
 Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
@@ -40,25 +40,23 @@ Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v4 11/21] ARM: dts: imx6qdl-apalis: Add sleep state to
- can interfaces
-Message-ID: <20190819112754.GU5999@X250>
+Subject: Re: [PATCH v4 12/21] ARM: dts: imx6-apalis: Add touchscreens used on
+ Toradex eval boards
+Message-ID: <20190819113042.GV5999@X250>
 References: <20190812142105.1995-1-philippe.schenker@toradex.com>
- <20190812142105.1995-12-philippe.schenker@toradex.com>
+ <20190812142105.1995-13-philippe.schenker@toradex.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190812142105.1995-12-philippe.schenker@toradex.com>
+In-Reply-To: <20190812142105.1995-13-philippe.schenker@toradex.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 02:21:31PM +0000, Philippe Schenker wrote:
-> This patch prepares the devicetree for the new Ixora V1.2 where we are
-> able to turn off the supply of the can transceiver. This implies to use
-> a sleep state on transmission pins in order to prevent backfeeding.
+On Mon, Aug 12, 2019 at 02:21:33PM +0000, Philippe Schenker wrote:
+> This commit adds the touchscreens from Toradex so one can enable it.
 > 
 > Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 > Acked-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
@@ -68,81 +66,150 @@ On Mon, Aug 12, 2019 at 02:21:31PM +0000, Philippe Schenker wrote:
 > Changes in v4:
 > - Add Marcel Ziswiler's Ack
 > 
-> Changes in v3: None
+> Changes in v3:
+> - Fix commit title to "...imx6-apalis:..."
+> 
 > Changes in v2:
-> - Changed commit title to '...imx6qdl-apalis:...'
+> - Deleted touchrevolution downstream stuff
+> - Use generic node name
+> - Put a better comment in there
 > 
->  arch/arm/boot/dts/imx6qdl-apalis.dtsi | 27 +++++++++++++++++++++------
->  1 file changed, 21 insertions(+), 6 deletions(-)
+>  arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts  | 31 +++++++++++++++++++
+>  arch/arm/boot/dts/imx6q-apalis-eval.dts       | 13 ++++++++
+>  arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts | 13 ++++++++
+>  arch/arm/boot/dts/imx6q-apalis-ixora.dts      | 13 ++++++++
+>  4 files changed, 70 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> index 7c4ad541c3f5..59ed2e4a1fd1 100644
-> --- a/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> @@ -148,14 +148,16 @@
->  };
+> diff --git a/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts b/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
+> index 9a5d6c94cca4..763fb5e90bd3 100644
+> --- a/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
+> +++ b/arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts
+> @@ -168,6 +168,21 @@
+>  &i2c3 {
+>  	status = "okay";
 >  
->  &can1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_flexcan1>;
+> +	/*
+> +	 * Touchscreen is using SODIMM 28/30, also used for PWM<B>, PWM<C>,
+> +	 * aka pwm2, pwm3. so if you enable touchscreen, disable the pwms
+> +	 */
+> +	touchscreen@4a {
+> +		compatible = "atmel,maxtouch";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pcap_1>;
+> +		reg = <0x4a>;
+> +		interrupt-parent = <&gpio1>;
+> +		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;		/* SODIMM 28 */
+> +		reset-gpios = <&gpio2 10 GPIO_ACTIVE_HIGH>;	/* SODIMM 30 */
+> +		status = "disabled";
 
-This line doesn't need to be changed.
+If you have a reason to keep this disabled, please comment or state in
+the commit log.
 
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_flexcan1_default>;
-> +	pinctrl-1 = <&pinctrl_flexcan1_sleep>;
->  	status = "disabled";
->  };
->  
->  &can2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_flexcan2_default>;
-> +	pinctrl-1 = <&pinctrl_flexcan2_sleep>;
->  	status = "disabled";
->  };
->  
-> @@ -599,19 +601,32 @@
->  		>;
+> +	};
+> +
+>  	/* M41T0M6 real time clock on carrier board */
+>  	rtc_i2c: rtc@68 {
+>  		compatible = "st,m41t0";
+> @@ -175,6 +190,22 @@
 >  	};
+>  };
 >  
-> -	pinctrl_flexcan1: flexcan1grp {
+> +&iomuxc {
+> +	pinctrl_pcap_1: pcap-1 {
 
-Ditto.  I take them as unnecessary changes.
+Name pinctrl node more consistently like pinctrl_xxx: xxxgrp.
 
 Shawn
 
-> +	pinctrl_flexcan1_default: flexcan1defgrp {
->  		fsl,pins = <
->  			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
->  			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
->  		>;
->  	};
->  
-> -	pinctrl_flexcan2: flexcan2grp {
-> +	pinctrl_flexcan1_sleep: flexcan1slpgrp {
 > +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_7__GPIO1_IO07 0x0
-> +			MX6QDL_PAD_GPIO_8__GPIO1_IO08 0x0
+> +			MX6QDL_PAD_GPIO_9__GPIO1_IO09	0x1b0b0 /* SODIMM 28 */
+> +			MX6QDL_PAD_SD4_DAT2__GPIO2_IO10	0x1b0b0 /* SODIMM 30 */
 > +		>;
 > +	};
 > +
-> +	pinctrl_flexcan2_default: flexcan2defgrp {
->  		fsl,pins = <
->  			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
->  			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
->  		>;
->  	};
-> +	pinctrl_flexcan2_sleep: flexcan2slpgrp {
+> +	pinctrl_mxt_ts: mxt-ts {
 > +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_COL4__GPIO4_IO14 0x0
-> +			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15 0x0
+> +			MX6QDL_PAD_EIM_CS1__GPIO2_IO24	0x130b0 /* SODIMM 107 */
+> +			MX6QDL_PAD_SD2_DAT1__GPIO1_IO14	0x130b0 /* SODIMM 106 */
 > +		>;
 > +	};
+> +};
+> +
+>  &ipu1_di0_disp0 {
+>  	remote-endpoint = <&lcd_display_in>;
+>  };
+> diff --git a/arch/arm/boot/dts/imx6q-apalis-eval.dts b/arch/arm/boot/dts/imx6q-apalis-eval.dts
+> index 0edd3043d9c1..4665e15b196d 100644
+> --- a/arch/arm/boot/dts/imx6q-apalis-eval.dts
+> +++ b/arch/arm/boot/dts/imx6q-apalis-eval.dts
+> @@ -167,6 +167,19 @@
+>  &i2c1 {
+>  	status = "okay";
 >  
->  	pinctrl_gpio_bl_on: gpioblon {
->  		fsl,pins = <
+> +	/*
+> +	 * Touchscreen is using SODIMM 28/30, also used for PWM<B>, PWM<C>,
+> +	 * aka pwm2, pwm3. so if you enable touchscreen, disable the pwms
+> +	 */
+> +	touchscreen@4a {
+> +		compatible = "atmel,maxtouch";
+> +		reg = <0x4a>;
+> +		interrupt-parent = <&gpio6>;
+> +		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio6 9 GPIO_ACTIVE_HIGH>; /* SODIMM 13 */
+> +		status = "disabled";
+> +	};
+> +
+>  	pcie-switch@58 {
+>  		compatible = "plx,pex8605";
+>  		reg = <0x58>;
+> diff --git a/arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts b/arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts
+> index b94bb687be6b..a3fa04a97d81 100644
+> --- a/arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts
+> +++ b/arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts
+> @@ -172,6 +172,19 @@
+>  &i2c1 {
+>  	status = "okay";
+>  
+> +	/*
+> +	 * Touchscreen is using SODIMM 28/30, also used for PWM<B>, PWM<C>,
+> +	 * aka pwm2, pwm3. so if you enable touchscreen, disable the pwms
+> +	 */
+> +	touchscreen@4a {
+> +		compatible = "atmel,maxtouch";
+> +		reg = <0x4a>;
+> +		interrupt-parent = <&gpio6>;
+> +		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio6 9 GPIO_ACTIVE_HIGH>; /* SODIMM 13 */
+> +		status = "disabled";
+> +	};
+> +
+>  	/* M41T0M6 real time clock on carrier board */
+>  	rtc_i2c: rtc@68 {
+>  		compatible = "st,m41t0";
+> diff --git a/arch/arm/boot/dts/imx6q-apalis-ixora.dts b/arch/arm/boot/dts/imx6q-apalis-ixora.dts
+> index 302fd6adc8a7..5ba49d0f4880 100644
+> --- a/arch/arm/boot/dts/imx6q-apalis-ixora.dts
+> +++ b/arch/arm/boot/dts/imx6q-apalis-ixora.dts
+> @@ -171,6 +171,19 @@
+>  &i2c1 {
+>  	status = "okay";
+>  
+> +	/*
+> +	 * Touchscreen is using SODIMM 28/30, also used for PWM<B>, PWM<C>,
+> +	 * aka pwm2, pwm3. so if you enable touchscreen, disable the pwms
+> +	 */
+> +	touchscreen@4a {
+> +		compatible = "atmel,maxtouch";
+> +		reg = <0x4a>;
+> +		interrupt-parent = <&gpio6>;
+> +		interrupts = <10 IRQ_TYPE_EDGE_FALLING>;
+> +		reset-gpios = <&gpio6 9 GPIO_ACTIVE_HIGH>; /* SODIMM 13 */
+> +		status = "disabled";
+> +	};
+> +
+>  	eeprom@50 {
+>  		compatible = "atmel,24c02";
+>  		reg = <0x50>;
 > -- 
 > 2.22.0
 > 
