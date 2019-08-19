@@ -2,78 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7827894DCD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 21:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6400994DD9
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 21:24:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728218AbfHSTV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 15:21:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40210 "EHLO mail.kernel.org"
+        id S1728316AbfHSTYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 15:24:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40728 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728021AbfHSTV4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 15:21:56 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1728315AbfHSTYn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 15:24:43 -0400
+Received: from localhost (unknown [69.71.4.100])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3156B2087E;
-        Mon, 19 Aug 2019 19:21:55 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 09FF1206C1;
+        Mon, 19 Aug 2019 19:24:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566242515;
-        bh=ZnqWddNa7Rz+t2BiSJ6GxPgyyCMa9QmktYNfzRHXveI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0PqPUCX/5rAahyjp2+wMnTU1KMuIi8N50pI0o/yTankh4WaSJSUlDPThE5a477H98
-         hTjg3Bvg+xEew88kmWrNPeCarrrBCk+dfQOyYTMAj9ei5FQG+k8TxyhVbcaf3N779h
-         cw9VGm314vA31G7Dx3Ir5T0E5gOEhDp6J56Kk/yU=
-Received: by mail-qt1-f176.google.com with SMTP id y26so3181237qto.4;
-        Mon, 19 Aug 2019 12:21:55 -0700 (PDT)
-X-Gm-Message-State: APjAAAVNlRS/5DvrFLmj+kvcX0gi5y00d2rJrCW78w7poVCGaRyQqvFy
-        V9FD4tHAqE8rNYAPDXLd0N9HONNRjPW6gnbSWg==
-X-Google-Smtp-Source: APXvYqx9XuvRiV2Apgg4lwgIvKoE2Nklh9cbFOgdE0XW6cxtwo8T75kyR2R5r1nXiQF1fSxb2DxbmmBvu5nb+yGMf2Q=
-X-Received: by 2002:ac8:368a:: with SMTP id a10mr22391797qtc.143.1566242514433;
- Mon, 19 Aug 2019 12:21:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <1566199149-5669-1-git-send-email-masonccyang@mxic.com.tw> <1566199149-5669-3-git-send-email-masonccyang@mxic.com.tw>
-In-Reply-To: <1566199149-5669-3-git-send-email-masonccyang@mxic.com.tw>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 19 Aug 2019 14:21:43 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJB7JgSTcp9oVhnqxp7Xq4P1wj_sxggN-r7RXd8pOQ2xQ@mail.gmail.com>
-Message-ID: <CAL_JsqJB7JgSTcp9oVhnqxp7Xq4P1wj_sxggN-r7RXd8pOQ2xQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] dt-bindings: mtd: Document Macronix raw NAND
- controller bindings
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        =?UTF-8?B?TWFyZWsgVmHFoXV0?= <marek.vasut@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Brian Norris <computersforpeace@gmail.com>,
-        Vignesh R <vigneshr@ti.com>, Stefan Agner <stefan@agner.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Julien Su <juliensu@mxic.com.tw>,
+        s=default; t=1566242682;
+        bh=AP7Vdzra3NcppB0agbt0hGNputzUIfBO2Q8KFiwaX2Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=f4SO6OUPDs3akkK6X0jKRt3/uQXiwFsXxa+QmJFy+HqxrMbrbXzZCGeiE187Fjc+Z
+         u7QhIt5LWmeR8hfrNg28WBiPEh6LJQjvi51U2/H5U+q03iWVOIINDqtXaL/7StXi6h
+         Z8ieypqUVtUvhZW20m3AoFVdqdgsUPEKRtFA3CdQ=
+Date:   Mon, 19 Aug 2019 14:24:40 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Paul Burton <paul.burton@mips.com>,
-        Liang Yang <liang.yang@amlogic.com>,
-        MTD Maling List <linux-mtd@lists.infradead.org>,
-        anders.roxell@linaro.org,
-        Christophe Kerello <christophe.kerello@st.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>
+Subject: Re: [PATCH 3/4] ARM: dts: ls1021a: Remove num-lanes property from
+ PCIe nodes
+Message-ID: <20190819192440.GT253360@google.com>
+References: <20190812042435.25102-1-Zhiqiang.Hou@nxp.com>
+ <20190812042435.25102-4-Zhiqiang.Hou@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190812042435.25102-4-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 19, 2019 at 1:55 AM Mason Yang <masonccyang@mxic.com.tw> wrote:
->
-> Document the bindings used by the Macronix raw NAND controller.
->
-> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+On Mon, Aug 12, 2019 at 04:22:27AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> On FSL Layerscape SoCs, the number of lanes assigned to PCIe
+> controller is not fixed, it is determined by the selected
+> SerDes protocol in the RCW (Reset Configuration Word), and
+> the PCIe link training is completed automatically base on
+> the selected SerDes protocol, and the link width set-up is
+> updated by hardware. So the num-lanes is not needed to
+> specify the link width.
+> 
+> The current num-lanes indicates the max lanes PCIe controller
+> can support up to, instead of the lanes assigned to the PCIe
+> controller. This can result in PCIe link training fail after
+> hot-reset. So remove the num-lanes to avoid set-up to incorrect
+> link width.
+
+It would be useful to explain *why* "num-lanes" in DT causes a link
+training failure.  Maybe the code programs "num-lanes" somewhere,
+overriding what hardware automatically sensed?  Maybe the code tries
+to bring up exactly "num-lanes" lanes even if not all are present?
+
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 > ---
->  .../devicetree/bindings/mtd/mxic-nand.txt          | 36 ++++++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/mxic-nand.txt
-
-I would ask for this to use DT schema, but given it is v7 already:
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+>  arch/arm/boot/dts/ls1021a.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
+> index 464df4290ffc..2f6977ada447 100644
+> --- a/arch/arm/boot/dts/ls1021a.dtsi
+> +++ b/arch/arm/boot/dts/ls1021a.dtsi
+> @@ -874,7 +874,6 @@
+>  			#address-cells = <3>;
+>  			#size-cells = <2>;
+>  			device_type = "pci";
+> -			num-lanes = <4>;
+>  			num-viewport = <6>;
+>  			bus-range = <0x0 0xff>;
+>  			ranges = <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   /* downstream I/O */
+> @@ -899,7 +898,6 @@
+>  			#address-cells = <3>;
+>  			#size-cells = <2>;
+>  			device_type = "pci";
+> -			num-lanes = <4>;
+>  			num-viewport = <6>;
+>  			bus-range = <0x0 0xff>;
+>  			ranges = <0x81000000 0x0 0x00000000 0x48 0x00010000 0x0 0x00010000   /* downstream I/O */
+> -- 
+> 2.17.1
+> 
