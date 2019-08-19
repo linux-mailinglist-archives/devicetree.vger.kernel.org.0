@@ -2,113 +2,320 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77E3E92103
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 12:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 105CD92186
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 12:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726805AbfHSKMo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 06:12:44 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:34333 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726343AbfHSKMo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 06:12:44 -0400
-Received: by mail-lj1-f193.google.com with SMTP id x18so1213722ljh.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 03:12:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Savk0VYlvDVd8eWat8ONZ2W99qSJkuIV6aH6MqvKuRs=;
-        b=Pn1xLF84280o45HYFvVYs53zFRnFDqCTewkxRBsk/zLFhGHmdZhWYM+fkAW20o5JvJ
-         kg2UPhDaKJKkkTVLdffVMsBwbSM3k7bqW7UXJ3iSnp/uBcu/Wygj4MT0DEK5u7QovJdI
-         SQJf1/GC9Ep3wJo95A6vXTe7/SViCmAvGzuao9YM/NoQsXIw1+A++CDy5O5l0tyv4fJA
-         MJ9706V+L9Rx13D77Pbqxxl/Ufx027B2Aj67DJvE+FZWB5BiIZB4FGg7XupGhQRJ9sRN
-         fuVTyVS0M+0czwoPZLxCzSSsbpIQOeNL47QTqoc6pWaFQRnN6O/UgrV/4wSo2NXemEq6
-         06nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Savk0VYlvDVd8eWat8ONZ2W99qSJkuIV6aH6MqvKuRs=;
-        b=ieNq9HMyE2nMPH8bCfDdwvzhrIRuAXsxYmPAXN5JQ6ZYoA4DOcgl225gVga08D7HPG
-         5VoYrOV7AU4susW0/iplt75X0mpv2wLFgYlftoCbTg2QEbQlDosAfgwyY/wR7kR9Yzq0
-         g4LTruaP+ywpHHD6OPlPNUip+UC31lb8KfoUoNrnmilBb7rZ9SUxVEybDUHTp5DHYsz9
-         fa7B5pJpi+pcUbG/rJ39SHp1PCNj8zxBU7cmjuxQguxzfgIfuf/LmcjfGcaTUdX8qqQd
-         tza9hWD8Zbrl7pzlIy72IRU4n9O+QZYTr7OQSbF3HkwG6Ca24/m51pHmjGfwUfsHMXog
-         CTog==
-X-Gm-Message-State: APjAAAV2gQRV6m7khT5CDkdKWvkbUZrJ7r2VczwsCARiLDs4xKL6qOXq
-        h78z+ylUrGFsRbktgJIvVbcWJQ==
-X-Google-Smtp-Source: APXvYqyiFcQNQzdX10h9XrrGAfeF6gl9PikY/S5BBKh8HJ8rjKXvFjkCPrfJ7k9zHYsC/rPLEYjIMw==
-X-Received: by 2002:a2e:87d5:: with SMTP id v21mr12053322ljj.191.1566209562409;
-        Mon, 19 Aug 2019 03:12:42 -0700 (PDT)
-Received: from localhost.localdomain (ua-84-219-138-247.bbcust.telenor.se. [84.219.138.247])
-        by smtp.gmail.com with ESMTPSA id t4sm2512368ljh.9.2019.08.19.03.12.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Aug 2019 03:12:41 -0700 (PDT)
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Andy Gross <agross@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
-        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
-        Niklas Cassel <niklas.cassel@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 09/14] dt-bindings: opp: Add qcom-opp bindings with properties needed for CPR
-Date:   Mon, 19 Aug 2019 12:12:38 +0200
-Message-Id: <20190819101238.17335-1-niklas.cassel@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190725104144.22924-10-niklas.cassel@linaro.org>
-References: <20190725104144.22924-10-niklas.cassel@linaro.org>
+        id S1726703AbfHSKkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 06:40:25 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:44763 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726550AbfHSKkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 06:40:25 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hzf58-0007Vw-65; Mon, 19 Aug 2019 12:40:10 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hzf55-0004m3-8J; Mon, 19 Aug 2019 12:40:07 +0200
+Date:   Mon, 19 Aug 2019 12:40:07 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v7 07/13] media: tvp5150: add FORMAT_TRY support for
+ get/set selection handlers
+Message-ID: <20190819104007.gxawo7byuhvwsvcc@pengutronix.de>
+References: <20190815115747.24018-1-m.felsch@pengutronix.de>
+ <20190815115747.24018-8-m.felsch@pengutronix.de>
+ <3086ad98-664e-bb7b-bbb0-8c59b5c38b35@xs4all.nl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3086ad98-664e-bb7b-bbb0-8c59b5c38b35@xs4all.nl>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:23:11 up 93 days, 16:41, 56 users,  load average: 0.79, 0.27,
+ 0.13
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add qcom-opp bindings with properties needed for Core Power Reduction
-(CPR).
+On 19-08-16 13:27, Hans Verkuil wrote:
+> On 8/15/19 1:57 PM, Marco Felsch wrote:
+> > Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
+> > the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
+> > no way to try different selections. The patch adds a helper function to
+> > select the correct selection memory space (sub-device file handle or
+> > driver state) which will be set/returned.
+> > 
+> > The TVP5150 AVID will be updated if the 'which' field is FORMAT_ACTIVE
+> > and the requested selection rectangle differs from the already set one.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > 
+> > ---
+> > Changelog:
+> > 
+> > v7:
+> > - __tvp5150_get_pad_crop(): return error on default case
+> > - simplify __tvp5150_get_pad_crop() error handling
+> > - tvp5150_set_selection() squash __tvp5150_set_selection() execution
+> >   conditions
+> > v6:
+> > nothing
+> > v5:
+> >  - handle stub for v4l2_subdev_get_try_crop() internal since commit
+> >    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
+> >    isn't anymore part of this series.
+> >  - add error handling of __tvp5150_get_pad_crop()
+> > v4:
+> >  - fix merge conflict due to rebase on top of media-tree/master
+> >  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
+> > ---
+> >  drivers/media/i2c/tvp5150.c | 118 +++++++++++++++++++++++++-----------
+> >  1 file changed, 84 insertions(+), 34 deletions(-)
+> > 
+> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+> > index dfbf5bbc307c..ad59e65e6771 100644
+> > --- a/drivers/media/i2c/tvp5150.c
+> > +++ b/drivers/media/i2c/tvp5150.c
+> > @@ -19,6 +19,7 @@
+> >  #include <media/v4l2-ctrls.h>
+> >  #include <media/v4l2-fwnode.h>
+> >  #include <media/v4l2-mc.h>
+> > +#include <media/v4l2-rect.h>
+> >  
+> >  #include "tvp5150_reg.h"
+> >  
+> > @@ -994,20 +995,44 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
+> >  		crop->height = TVP5150_V_MAX_OTHERS;
+> >  }
+> >  
+> > +static struct v4l2_rect *
+> > +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
+> > +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
+> > +		       enum v4l2_subdev_format_whence which)
+> > +{
+> > +	switch (which) {
+> > +	case V4L2_SUBDEV_FORMAT_TRY:
+> > +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
+> > +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
+> > +#else
+> > +		return ERR_PTR(-ENOTTY);
+> 
+> That should be ERR_PTR(-EINVAL). Just because V4L2_SUBDEV_API is undefined, that
+> doesn't mean that the whole functionality is not implemented! Just the TRY
+> is not available.
 
-CPR is included in a great variety of Qualcomm SoCs, e.g. msm8916 and
-msm8996. CPR was first introduced in msm8974.
+Okay.. The patch was made before you changed that for the other i2c
+devices. I will change that.
 
-Co-developed-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
----
-Changes since V2:
-qcom,opp-fuse-level is really a required property and not an optional
-property, so properly define it as such.
+> 
+> > +#endif
+> > +	case V4L2_SUBDEV_FORMAT_ACTIVE:
+> > +		return &decoder->rect;
+> > +	default:
+> > +		return ERR_PTR(-EINVAL);
+> > +	}
+> > +}
+> > +
+> >  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+> >  			    struct v4l2_subdev_pad_config *cfg,
+> >  			    struct v4l2_subdev_format *format)
+> >  {
+> >  	struct v4l2_mbus_framefmt *f;
+> > +	struct v4l2_rect *__crop;
+> >  	struct tvp5150 *decoder = to_tvp5150(sd);
+> >  
+> >  	if (!format || (format->pad != TVP5150_PAD_VID_OUT))
+> >  		return -EINVAL;
+> >  
+> >  	f = &format->format;
+> > +	__crop = __tvp5150_get_pad_crop(decoder, cfg, format->pad,
+> > +					format->which);
+> > +	if (IS_ERR(__crop))
+> > +		return PTR_ERR(__crop);
+> >  
+> > -	f->width = decoder->rect.width;
+> > -	f->height = decoder->rect.height / 2;
+> > +	f->width = __crop->width;
+> > +	f->height = __crop->height / 2;
+> >  
+> >  	f->code = TVP5150_MBUS_FMT;
+> >  	f->field = TVP5150_FIELD;
+> > @@ -1018,17 +1043,51 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+> >  	return 0;
+> >  }
+> >  
+> > +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
+> > +{
+> > +	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	v4l2_std_id std;
+> > +
+> > +	/* Calculate height based on current standard */
+> > +	if (decoder->norm == V4L2_STD_ALL)
+> > +		std = tvp5150_read_std(sd);
+> > +	else
+> > +		std = decoder->norm;
+> > +
+> > +	return (std & V4L2_STD_525_60) ?
+> > +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
+> > +}
+> > +
+> > +static inline void
+> > +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect rect)
+> > +{
+> > +	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	unsigned int hmax = tvp5150_get_hmax(sd);
+> > +
+> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> > +		     rect.top + rect.height - hmax);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> > +		     rect.left >> TVP5150_CROP_SHIFT);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> > +		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> > +		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> > +		     TVP5150_CROP_SHIFT);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> > +		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> > +}
+> > +
+> >  static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  				 struct v4l2_subdev_pad_config *cfg,
+> >  				 struct v4l2_subdev_selection *sel)
+> >  {
+> >  	struct tvp5150 *decoder = to_tvp5150(sd);
+> >  	struct v4l2_rect rect = sel->r;
+> > -	v4l2_std_id std;
+> > -	int hmax;
+> > +	struct v4l2_rect *__crop;
+> 
+> No need for __ prefix.
 
- .../devicetree/bindings/opp/qcom-opp.txt      | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/opp/qcom-opp.txt
+I dropped the __ prefix for all local crop vars.
 
-diff --git a/Documentation/devicetree/bindings/opp/qcom-opp.txt b/Documentation/devicetree/bindings/opp/qcom-opp.txt
-new file mode 100644
-index 000000000000..32eb0793c7e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/opp/qcom-opp.txt
-@@ -0,0 +1,19 @@
-+Qualcomm OPP bindings to describe OPP nodes
-+
-+The bindings are based on top of the operating-points-v2 bindings
-+described in Documentation/devicetree/bindings/opp/opp.txt
-+Additional properties are described below.
-+
-+* OPP Table Node
-+
-+Required properties:
-+- compatible: Allow OPPs to express their compatibility. It should be:
-+  "operating-points-v2-qcom-level"
-+
-+* OPP Node
-+
-+Required properties:
-+- qcom,opp-fuse-level: A positive value representing the fuse corner/level
-+  associated with this OPP node. Sometimes several corners/levels shares
-+  a certain fuse corner/level. A fuse corner/level contains e.g. ref uV,
-+  min uV, and max uV.
+> > +	unsigned int hmax;
+> >  
+> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
+> > -	    sel->target != V4L2_SEL_TGT_CROP)
+> > +	if (sel->target != V4L2_SEL_TGT_CROP)
+> >  		return -EINVAL;
+> >  
+> >  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
+> > @@ -1037,17 +1096,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  	/* tvp5150 has some special limits */
+> >  	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
+> >  	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
+> > -
+> > -	/* Calculate height based on current standard */
+> > -	if (decoder->norm == V4L2_STD_ALL)
+> > -		std = tvp5150_read_std(sd);
+> > -	else
+> > -		std = decoder->norm;
+> > -
+> > -	if (std & V4L2_STD_525_60)
+> > -		hmax = TVP5150_V_MAX_525_60;
+> > -	else
+> > -		hmax = TVP5150_V_MAX_OTHERS;
+> > +	hmax = tvp5150_get_hmax(sd);
+> >  
+> >  	/*
+> >  	 * alignments:
+> > @@ -1060,20 +1109,19 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
+> >  			      hmax - rect.top, 0, 0);
+> >  
+> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> > -		     rect.top + rect.height - hmax);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> > -		     rect.left >> TVP5150_CROP_SHIFT);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> > -		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> > -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> > -		     TVP5150_CROP_SHIFT);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> > -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> > +	__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
+> 
+> If SUBDEV_API is not defined, then just set *__crop = rect and return 0;
+> 
+> See also the commit log of commit fa564e90257e.
+
+Applies this to the set/get_selection() too?
+
+Regards,
+  Marco
+
+
+> > +	if (IS_ERR(__crop))
+> > +		return PTR_ERR(__crop);
+> >  
+> > -	decoder->rect = rect;
+> > +	/*
+> > +	 * Update output image size if the selection (crop) rectangle size or
+> > +	 * position has been modified.
+> > +	 */
+> > +	if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
+> > +	    !v4l2_rect_equal(&rect, __crop))
+> > +		__tvp5150_set_selection(sd, rect);
+> > +
+> > +	*__crop = rect;
+> >  
+> >  	return 0;
+> >  }
+> > @@ -1083,11 +1131,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+> >  				 struct v4l2_subdev_selection *sel)
+> >  {
+> >  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
+> > +	struct v4l2_rect *__crop;
+> >  	v4l2_std_id std;
+> >  
+> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> > -		return -EINVAL;
+> > -
+> >  	switch (sel->target) {
+> >  	case V4L2_SEL_TGT_CROP_BOUNDS:
+> >  		sel->r.left = 0;
+> > @@ -1105,7 +1151,11 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+> >  			sel->r.height = TVP5150_V_MAX_OTHERS;
+> >  		return 0;
+> >  	case V4L2_SEL_TGT_CROP:
+> > -		sel->r = decoder->rect;
+> > +		__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
+> > +						sel->which);
+> > +		if (IS_ERR(__crop))
+> > +			return PTR_ERR(__crop);
+> > +		sel->r = *__crop;
+> >  		return 0;
+> >  	default:
+> >  		return -EINVAL;
+> > 
+> 
+> Regards,
+> 
+> 	Hans
+> 
+
 -- 
-2.21.0
-
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
