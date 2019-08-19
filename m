@@ -2,274 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07B3691EBB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 10:19:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E17F091EC3
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 10:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727204AbfHSITB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 04:19:01 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:35695 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727077AbfHSITB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 04:19:01 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hzcsN-0000ji-C1; Mon, 19 Aug 2019 10:18:51 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hzcsM-0000Xo-E8; Mon, 19 Aug 2019 10:18:50 +0200
-Date:   Mon, 19 Aug 2019 10:18:50 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Rob Herring <robh@kernel.org>, robh+dt@kernel.org,
-        jacopo+renesas@jmondi.org, laurent.pinchart@ideasonboard.com,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        mchehab@kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v7 01/13] dt-bindings: connector: analog: add tv norms
- property
-Message-ID: <20190819081850.e3v7yyjx7onpp3al@pengutronix.de>
-References: <20190815115747.24018-1-m.felsch@pengutronix.de>
- <20190815115747.24018-2-m.felsch@pengutronix.de>
- <76aeaa4e-4a29-5abe-1af6-fc82958e9530@xs4all.nl>
- <20190819080904.ch3e3by5seha5ca7@pengutronix.de>
+        id S1726857AbfHSIUY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 04:20:24 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:35517 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726627AbfHSIUX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 04:20:23 -0400
+Received: by mail-ot1-f66.google.com with SMTP id g17so908983otl.2;
+        Mon, 19 Aug 2019 01:20:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xS8pnTXr+3PwEje+y6dB7oMHpWB4o5rNXOdh/Rkk++Q=;
+        b=Bh00pV3P2Tc1HHvbUwcmcyHK7qdEFnNeS6c007CgKYO/XFQ/4AgjFEZpYLqGcszjlQ
+         7mTj+4p9AtuKr2cxXYxoEwn4W+wRVb6Kgf11wr//5Exm7ERuD7x+cWqN738/ZR/2X+1/
+         fKMB6imCQxkbSfAhCTumTC65XYuUMJS+xQ2ZTtHGwAUNNB/9qr5+tb6evgUFg/5nIG09
+         qmOrrSGHvA4tfJJB51iPvF5KXQZF/XmeluahA5Wa1plGRDSnzkvJikFJ0EaZmyWI9ism
+         YgEI+lo23U0QkR32t9r4ZGPEK8PSb0q48jmZT8aWltS/shmZF44vQBEp5nXJqQ2eK1dy
+         OBZQ==
+X-Gm-Message-State: APjAAAWeKojBLxvADFXLcJQRGquIS687sM0XvJSj4kHA5QUnfjd3seQ5
+        /YoNzvaNQsz5yCLc6X6hjOVef7vrAXClwZ0JEYY=
+X-Google-Smtp-Source: APXvYqzWpuiaz71ScmIyZbNRmxlq1ByZY1iRfxME8FhAce0Jv5HInimy281JwzZBnuDa9m2zO5ABaIRP6MB3pyYh/eI=
+X-Received: by 2002:a9d:674c:: with SMTP id w12mr13640118otm.118.1566202822686;
+ Mon, 19 Aug 2019 01:20:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190819080904.ch3e3by5seha5ca7@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:17:47 up 93 days, 14:35, 57 users,  load average: 0.11, 0.40,
- 0.33
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20190724074722.12270-1-ran.wang_1@nxp.com> <4158639.B12JYek7R7@kreacher>
+ <DB8PR04MB682632A586827032F8D6EA2DF1A80@DB8PR04MB6826.eurprd04.prod.outlook.com>
+In-Reply-To: <DB8PR04MB682632A586827032F8D6EA2DF1A80@DB8PR04MB6826.eurprd04.prod.outlook.com>
+From:   "Rafael J. Wysocki" <rafael@kernel.org>
+Date:   Mon, 19 Aug 2019 10:20:11 +0200
+Message-ID: <CAJZ5v0i58p-GsswzMGEsgD5OXDqJ_G5zXDYf8jq8JJbWxZv+nQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/3] PM: wakeup: Add routine to help fetch wakeup
+ source object.
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>, Biwen Li <biwen.li@nxp.com>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 19-08-19 10:09, Marco Felsch wrote:
-> Hi Hans,
-> 
-> On 19-08-16 13:11, Hans Verkuil wrote:
-> > On 8/15/19 1:57 PM, Marco Felsch wrote:
-> > > Some connectors no matter if in- or output supports only a limited
-> > > range of tv norms. It doesn't matter if the hardware behind that
-> > > connector supports more than the listed formats since the users are
-> > > restriced by a label e.g. to plug only a camera into this connector
-> > > which uses the PAL format.
-> > > 
-> > > This patch adds the capability to describe such limitation within the
-> > > firmware. There are no format restrictions if the property isn't
-> > > present, so it's completely backward compatible.
-> > > 
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Aug 19, 2019 at 10:15 AM Ran Wang <ran.wang_1@nxp.com> wrote:
+>
+> Hi Rafael,
+>
+> On Monday, August 05, 2019 17:59, Rafael J. Wysocki wrote:
+> >
+> > On Wednesday, July 24, 2019 9:47:20 AM CEST Ran Wang wrote:
+> > > Some user might want to go through all registered wakeup sources and
+> > > doing things accordingly. For example, SoC PM driver might need to do
+> > > HW programming to prevent powering down specific IP which wakeup
+> > > source depending on. So add this API to help walk through all
+> > > registered wakeup source objects on that list and return them one by one.
+> > >
+> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 > > > ---
-> > > [1] https://patchwork.kernel.org/cover/10794703/
-> > > 
-> > > v7:
-> > > I kept Robs r b tag because I only changed the example and extended
-> > > TVNORM_* macros.
-> > > 
-> > > - fix some style issues
-> > > - add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
-> > > 
-> > > v6:
-> > > - tvnorms.h: use tabs instead of spaces
-> > > - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
-> > > - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
-> > > 
-> > > v2-v4:
-> > > - nothing since the patch was squashed from series [1] into this
-> > >   series.
-> > > ---
-> > >  .../display/connector/analog-tv-connector.txt |  4 ++
-> > >  include/dt-bindings/media/tvnorms.h           | 72 +++++++++++++++++++
-> > >  2 files changed, 76 insertions(+)
-> > >  create mode 100644 include/dt-bindings/media/tvnorms.h
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > > index 0c0970c210ab..434e8aa0398b 100644
-> > > --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > > +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > > @@ -6,6 +6,9 @@ Required properties:
-> > >  
-> > >  Optional properties:
-> > >  - label: a symbolic name for the connector
-> > > +- tvnorms: limit the supported tv norms on a connector to the given ones else
-> > 
-> > tv -> TV
-> > 
-> > > +           all tv norms are allowed. Possible video standards are defined in
-> > 
-> > tv -> TV
-> 
-> Changed both thanks.
-> 
-> > And a more high-level question: I think tvnorm is a very vague name. It's a term
-> > used in media, but what does 'norm' mean anyway? 'tv_standards' or 'video_standards'
-> > would be a lot more descriptive.
-> 
-> I'm with you *_standards would be more descriptive. Now the question is:
-> is it a video or a tv standard? Wikipedia says that SECAM, PAL, NTSC is
-> a television standard. So I prefer the 'tv_standards' or better the
-> 'tv-standards' approach.
-
-While on it I noticed that the v4l_std_id is u64. Should we add the
-support for u64 here too?
-
-Regards,
-  Marco
-
-> > 'tvnorm' is, I think, a term used only internally in the media subsystem for no
-> > clear reason. In the V4L2 spec it talks about 'video standard'.
-> > 
-> > Sorry for being so late with raising this issue.
-> > 
-> > > +           include/dt-bindings/media/tvnorms.h.
-> > >  
-> > >  Required nodes:
-> > >  - Video port for TV input
-> > > @@ -16,6 +19,7 @@ Example
-> > >  tv: connector {
-> > >  	compatible = "composite-video-connector";
-> > >  	label = "tv";
-> > > +	tvnorms = <(TVNORM_PAL | TVNORM_NTSC)>;
-> > >  
-> > >  	port {
-> > >  		tv_connector_in: endpoint {
-> > > diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
-> > > new file mode 100644
-> > > index 000000000000..e1275673c4d6
-> > > --- /dev/null
-> > > +++ b/include/dt-bindings/media/tvnorms.h
-> > > @@ -0,0 +1,72 @@
-> > > +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
-> > > +/*
-> > > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > > Change in v5:
+> > >     - Update commit message, add decription of walk through all wakeup
+> > >     source objects.
+> > >     - Add SCU protection in function wakeup_source_get_next().
+> > >     - Rename wakeup_source member 'attached_dev' to 'dev' and move it
+> > up
+> > >     (before wakeirq).
+> > >
+> > > Change in v4:
+> > >     - None.
+> > >
+> > > Change in v3:
+> > >     - Adjust indentation of *attached_dev;.
+> > >
+> > > Change in v2:
+> > >     - None.
+> > >
+> > >  drivers/base/power/wakeup.c | 24 ++++++++++++++++++++++++
+> > >  include/linux/pm_wakeup.h   |  3 +++
+> > >  2 files changed, 27 insertions(+)
+> > >
+> > > diff --git a/drivers/base/power/wakeup.c b/drivers/base/power/wakeup.c
+> > > index ee31d4f..2fba891 100644
+> > > --- a/drivers/base/power/wakeup.c
+> > > +++ b/drivers/base/power/wakeup.c
+> > > @@ -14,6 +14,7 @@
+> > >  #include <linux/suspend.h>
+> > >  #include <linux/seq_file.h>
+> > >  #include <linux/debugfs.h>
+> > > +#include <linux/of_device.h>
+> > >  #include <linux/pm_wakeirq.h>
+> > >  #include <trace/events/power.h>
+> > >
+> > > @@ -226,6 +227,28 @@ void wakeup_source_unregister(struct
+> > wakeup_source *ws)
+> > >     }
+> > >  }
+> > >  EXPORT_SYMBOL_GPL(wakeup_source_unregister);
+> > > +/**
+> > > + * wakeup_source_get_next - Get next wakeup source from the list
+> > > + * @ws: Previous wakeup source object, null means caller want first one.
 > > > + */
+> > > +struct wakeup_source *wakeup_source_get_next(struct wakeup_source
+> > > +*ws) {
+> > > +   struct list_head *ws_head = &wakeup_sources;
+> > > +   struct wakeup_source *next_ws = NULL;
+> > > +   int idx;
 > > > +
-> > > +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
-> > > +#define _DT_BINDINGS_MEDIA_TVNORMS_H
+> > > +   idx = srcu_read_lock(&wakeup_srcu);
+> > > +   if (ws)
+> > > +           next_ws = list_next_or_null_rcu(ws_head, &ws->entry,
+> > > +                           struct wakeup_source, entry);
+> > > +   else
+> > > +           next_ws = list_entry_rcu(ws_head->next,
+> > > +                           struct wakeup_source, entry);
+> > > +   srcu_read_unlock(&wakeup_srcu, idx);
 > > > +
-> > > +/* One bit for each standard */
-> > 
-> > I would add a comment here and in videodev2.h where you mention that
-> > the two headers should remain in sync.
-> 
-> Yes, good point.
-> 
-> > > +#define TVNORM_PAL_B		0x00000001
-> > > +#define TVNORM_PAL_B1		0x00000002
-> > > +#define TVNORM_PAL_G		0x00000004
-> > > +#define TVNORM_PAL_H		0x00000008
-> > > +#define TVNORM_PAL_I		0x00000010
-> > > +#define TVNORM_PAL_D		0x00000020
-> > > +#define TVNORM_PAL_D1		0x00000040
-> > > +#define TVNORM_PAL_K		0x00000080
-> > > +
-> > > +#define TVNORM_PAL		(TVNORM_PAL_B		| \
-> > > +				 TVNORM_PAL_B1		| \
-> > > +				 TVNORM_PAL_G		| \
-> > > +				 TVNORM_PAL_H		| \
-> > > +				 TVNORM_PAL_I		| \
-> > > +				 TVNORM_PAL_D		| \
-> > > +				 TVNORM_PAL_D1		| \
-> > > +				 TVNORM_PAL_K)
-> > > +
-> > > +#define TVNORM_PAL_M		0x00000100
-> > > +#define TVNORM_PAL_N		0x00000200
-> > > +#define TVNORM_PAL_Nc		0x00000400
-> > > +#define TVNORM_PAL_60		0x00000800
-> > > +
-> > > +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
-> > > +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
-> > > +#define TVNORM_NTSC_443		0x00004000
-> > > +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
-> > > +
-> > > +#define TVNORM_NTSC		(TVNORM_NTSC_M		|\
-> > > +				 TVNORM_NTSC_M_JP	|\
-> > 
-> > Add space before \
-> > 
-> > > +				 TVNORM_NTSC_M_KR)
-> > > +
-> > > +#define TVNORM_SECAM_B		0x00010000
-> > > +#define TVNORM_SECAM_D		0x00020000
-> > > +#define TVNORM_SECAM_G		0x00040000
-> > > +#define TVNORM_SECAM_H		0x00080000
-> > > +#define TVNORM_SECAM_K		0x00100000
-> > > +#define TVNORM_SECAM_K1		0x00200000
-> > > +#define TVNORM_SECAM_L		0x00400000
-> > > +#define TVNORM_SECAM_LC		0x00800000
-> > > +
-> > > +#define TVNORM_SECAM		(TVNORM_SECAM_B		| \
-> > > +				 TVNORM_SECAM_D		| \
-> > > +				 TVNORM_SECAM_G		| \
-> > > +				 TVNORM_SECAM_H		| \
-> > > +				 TVNORM_SECAM_K		| \
-> > > +				 TVNORM_SECAM_K1	| \
-> > > +				 TVNORM_SECAM_L		| \
-> > > +				 TVNORM_SECAM_LC)
-> > > +
-> > > +/* Standards for Countries with 60Hz Line frequency */
-> > > +#define TVNORM_525_60		(TVNORM_PAL_M		| \
-> > > +				 TVNORM_PAL_60		| \
-> > > +				 TVNORM_NTSC		| \
-> > > +				 TVNORM_NTSC_443)
-> > > +
-> > > +/* Standards for Countries with 50Hz Line frequency */
-> > > +#define TVNORM_625_50		(TVNORM_PAL		|\
-> > > +				 TVNORM_PAL_N		|\
-> > > +				 TVNORM_PAL_Nc		|\
-> > 
-> > Add space before \
-> 
-> Both space errors fixed.
-> 
-> > > +				 TVNORM_SECAM)
-> > > +
-> > > +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
-> > > 
-> > 
-> > I was also wondering if this header shouldn't be in include/dt-bindings/display/
-> > since the bindings are also described in 'display'.
-> 
-> That's a good one and I really don't know which is the 'right' place for
-> it. Since the standard has nothing to do with a display I would keep it
-> within media. But the radeon [1] gpu uses the stds too. So I really
-> don't know which place is better.
-> 
-> [1] drivers/gpu/drm/radeon/radeon_mode.h. 
-> 
-> Regards,
->   Marco
-> 
-> > Regards,
-> > 
-> > 	Hans
-> > 
-> 
-> -- 
-> Pengutronix e.K.                           |                             |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-> 
-> 
+> >
+> > This is incorrect.
+> >
+> > The SRCU cannot be unlocked until the caller of this is done with the object
+> > returned by it, or that object can be freed while it is still being accessed.
+>
+> Thanks for the comment. Looks like I was not fully understanding your point on
+> v4 discussion. So I will implement 3 APIs by referring wakeup_sources_stats_seq_start/next/stop()
+>
+> > Besides, this patch conflicts with some general wakeup sources changes in the
+> > works, so it needs to be deferred and rebased on top of those changes.
+>
+> Could you please tell me which is the right code base I should developing on?
+> I just tried applying v5 patch on latest git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git branch master (d1abaeb Linux 5.3-rc5)
+> and no conflict encountered.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+It is better to use the most recent -rc from Linus (5.3-rc5 as of
+today) as the base unless your patches depend on some changes that are
+not in there.
