@@ -2,121 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A85292049
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 11:28:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C5B792058
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 11:31:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726366AbfHSJ2j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 05:28:39 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50662 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726211AbfHSJ2j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 05:28:39 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7J9ST5v094267;
-        Mon, 19 Aug 2019 04:28:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566206909;
-        bh=HGtxFvyXr5k21k3Vw4hs+J3eZoXEfv8iPVT8Ir7Om78=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Y+52lKgTCMut3kxNLKxT6noSbLG2YBlV2PI1gz+1x9wffhvj8p8flSv2TSf4KmKI9
-         4FInvdAAKRZ/8pbWPhodsjKzXqkLDovwYDg2KrD9rmPmfYA8AS5WJpdSTGYe1iQ60G
-         Mo4aSO/v3dJD/0bECQuPqjf0/IFxZx/SIwnBjf/A=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7J9STpQ077641
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 19 Aug 2019 04:28:29 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 19
- Aug 2019 04:28:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 19 Aug 2019 04:28:28 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7J9SQGj017750;
-        Mon, 19 Aug 2019 04:28:26 -0500
-Subject: Re: [PATCH 1/8] dt-bindings: omap: add new binding for PRM instances
-To:     Keerthy <j-keerthy@ti.com>, <ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <s-anna@ti.com>, <devicetree@vger.kernel.org>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
- <1565164139-21886-2-git-send-email-t-kristo@ti.com>
- <6bf4194b-23c0-2de0-3f9c-e99195336dc7@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <aa5538ae-76b4-942b-dc98-6e55628cf36a@ti.com>
-Date:   Mon, 19 Aug 2019 12:28:25 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726703AbfHSJbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 05:31:03 -0400
+Received: from mail.skyhub.de ([5.9.137.197]:39784 "EHLO mail.skyhub.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726842AbfHSJbD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 05:31:03 -0400
+Received: from zn.tnic (p200300EC2F04B7001DE01AE6C2F731B7.dip0.t-ipconnect.de [IPv6:2003:ec:2f04:b700:1de0:1ae6:c2f7:31b7])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E999F1EC0B07;
+        Mon, 19 Aug 2019 11:31:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
+        t=1566207062;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
+        bh=tNYqVxZOI4B4YC2lrHxCTcuCtzHSepwsdy73xSCZc0I=;
+        b=KfUSIee3hppbIpUeGdON4+xK8tHIudXJtWEIExqzvM0c7bBxsL75CCcfpkJ0BzpEcM8A76
+        +9Mxaf8tLNcbfSvj5z4NSqpIbdR+65G9S32QQHB2iT99yR7OpFGN/bHefbdFXSrYS9EkP9
+        YHi4W3S3GPAFxtJK58XKTGWQ2YJv9tA=
+Date:   Mon, 19 Aug 2019 11:31:47 +0200
+From:   Borislav Petkov <bp@alien8.de>
+To:     Lei Wang <leiwang_git@outlook.com>
+Cc:     "james.morse@arm.com" <james.morse@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "sashal@kernel.org" <sashal@kernel.org>,
+        "hangl@microsoft.com" <hangl@microsoft.com>,
+        "lewan@microsoft.com" <lewan@microsoft.com>,
+        "ruizhao@microsoft.com" <ruizhao@microsoft.com>
+Subject: Re: [PATCH v5 2/2] EDAC: add EDAC driver for DMC520
+Message-ID: <20190819093147.GE4841@zn.tnic>
+References: <BN6PR04MB1107CE3C2D666A806E62851B86C10@BN6PR04MB1107.namprd04.prod.outlook.com>
+ <20190807144016.GA24328@zn.tnic>
+ <BY5PR04MB659914AC91EBB3EAF72977BD86D20@BY5PR04MB6599.namprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <6bf4194b-23c0-2de0-3f9c-e99195336dc7@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <BY5PR04MB659914AC91EBB3EAF72977BD86D20@BY5PR04MB6599.namprd04.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/08/2019 07:35, Keerthy wrote:
+On Tue, Aug 13, 2019 at 01:05:02AM +0000, Lei Wang wrote:
+> Added some more comments for the file:
 > 
-> 
-> On 07/08/19 1:18 PM, Tero Kristo wrote:
->> Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
->> of these will act as a power domain controller and potentially as a reset
->> provider.
->>
->> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->> ---
->>   .../devicetree/bindings/arm/omap/prm-inst.txt      | 24 
->> ++++++++++++++++++++++
->>   1 file changed, 24 insertions(+)
->>   create mode 100644 
->> Documentation/devicetree/bindings/arm/omap/prm-inst.txt
->>
->> diff --git a/Documentation/devicetree/bindings/arm/omap/prm-inst.txt 
->> b/Documentation/devicetree/bindings/arm/omap/prm-inst.txt
->> new file mode 100644
->> index 0000000..e0ae87b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/omap/prm-inst.txt
->> @@ -0,0 +1,24 @@
->> +OMAP PRM instance bindings
->> +
->> +Power and Reset Manager is an IP block on OMAP family of devices which
->> +handle the power domains and their current state, and provide reset
->> +handling for the domains and/or separate IP blocks under the power 
->> domain
->> +hierarchy.
->> +
->> +Required properties:
->> +- compatible:    Must be one of:
->> +        "ti,am3-prm-inst"
->> +        "ti,am4-prm-inst"
->> +        "ti,omap4-prm-inst"
->> +        "ti,omap5-prm-inst"
->> +        "ti,dra7-prm-inst"
->> +- reg:        Contains PRM instance register address range
->> +        (base address and length)
-> 
-> How about reset-cells property, Isn't that a mandatory property?
+> /*
+>   * dmc520_edac.c, EDAC driver for DMC-520 memory controller
+      ^^^^^^^^^^^^^
 
-It is optional, but you are right, should be added to this.
+Filename is redundant.
 
--Tero
+> These comments tell how to potentially expand the driver functions to 
+> support more interrupts besides what are already here.
 
-> 
->> +
->> +Example:
->> +
->> +prm_dsp2: prm@1b00 {
->> +    compatible = "ti,dra7-prm-inst";
->> +    reg = <0x1b00 0x40>;
->> +    #reset-cells = <1>;
->> +};
->>
+I can read that - the question is why are they there and for whom? For
+your future colleagues who'll take over this driver or what is those
+comments' purpose?
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> As above comments, this comment is to guide potential future adding to 
+> this driver to support other interrupts.
+
+See question above.
+
+> After edac_mc_alloc(), if succeeds, the above code updates dmc520_edac 
+> struct data. If moving edac_mc_alloc as suggested, I will need to use 
+> local variables to store the data,
+
+Yes, do that pls.
+
+> Do you mean having an array to keep all the irq_id, and then only 
+> devm_request_irq on them if all of the platform_get_irq are success?
+
+No, move it before edac_mc_alloc().
+
+In general, do *all* initialization of your hardware first and only
+then, when it succeeds, allocate the EDAC structures.
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+Good mailing practices for 400: avoid top-posting and trim the reply.
