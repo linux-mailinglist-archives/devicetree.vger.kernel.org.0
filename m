@@ -2,93 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0862792504
-	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:31:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB1CE9250E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Aug 2019 15:32:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727525AbfHSNbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 09:31:01 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:47783 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727487AbfHSNbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Aug 2019 09:31:01 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 8E1D5240008;
-        Mon, 19 Aug 2019 13:30:58 +0000 (UTC)
-Date:   Mon, 19 Aug 2019 15:30:58 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 03/11] clocksource: sun4i: Add missing compatibles
-Message-ID: <20190819133058.bujcawpw5rgsfp4g@flea>
-References: <20190722081229.22422-1-maxime.ripard@bootlin.com>
- <20190722081229.22422-3-maxime.ripard@bootlin.com>
- <9df53981-d1b2-433c-e61f-7c000c71bc55@linaro.org>
- <20190812091631.j2pr7i2zeput3hrc@flea>
- <42ee55ee-258c-7588-fea3-db3c661a0156@linaro.org>
- <20190812112411.ty3npkq6ztbushhm@flea>
+        id S1727466AbfHSNcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 09:32:32 -0400
+Received: from mga14.intel.com ([192.55.52.115]:64780 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727332AbfHSNcc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 09:32:32 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Aug 2019 06:32:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,405,1559545200"; 
+   d="scan'208";a="261845643"
+Received: from jsakkine-mobl1.tm.intel.com (HELO localhost) ([10.237.50.125])
+  by orsmga001.jf.intel.com with ESMTP; 19 Aug 2019 06:32:28 -0700
+Date:   Mon, 19 Aug 2019 16:32:28 +0300
+From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Sasha Levin <sashal@kernel.org>, Peter Huewe <peterhuewe@gmx.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jason Gunthorpe <jgg@ziepe.ca>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-integrity@vger.kernel.org
+Subject: Re: [PATCH] tpm/tpm_ftpm_tee: trivial checkpatch fixes
+Message-ID: <20190819133228.lg62qeuugmygpsmd@linux.intel.com>
+References: <20190813130559.16936-1-sashal@kernel.org>
+ <CAL_JsqJaRmeV3Ne-HFTxMG_AZhaiGW_SKzgNrDMLJ5WGP0FXUQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="u5prx2f64eoqygbx"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190812112411.ty3npkq6ztbushhm@flea>
+In-Reply-To: <CAL_JsqJaRmeV3Ne-HFTxMG_AZhaiGW_SKzgNrDMLJ5WGP0FXUQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---u5prx2f64eoqygbx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Aug 12, 2019 at 01:24:11PM +0200, Maxime Ripard wrote:
-> On Mon, Aug 12, 2019 at 11:21:50AM +0200, Daniel Lezcano wrote:
-> > On 12/08/2019 11:16, Maxime Ripard wrote:
-> > > Hi,
-> > >
-> > > On Mon, Aug 12, 2019 at 10:59:51AM +0200, Daniel Lezcano wrote:
-> > >> On 22/07/2019 10:12, Maxime Ripard wrote:
-> > >>> Newer Allwinner SoCs have different number of interrupts, let's add
-> > >>> different compatibles for all of them to deal with this properly.
-> > >>>
-> > >>> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > >>
-> > >> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > >
-> > > Thanks!
-> > >
-> > > Can you merge this through your tree (along with the bindings)? I'll
-> > > merge the DT patches
+On Tue, Aug 13, 2019 at 07:37:32AM -0600, Rob Herring wrote:
+> On Tue, Aug 13, 2019 at 7:06 AM Sasha Levin <sashal@kernel.org> wrote:
 > >
-> > patches 1-4 then ?
->
-> Yep, thanks!
+> > Fixes a few checkpatch warnings (and ignores some), mostly around
+> > spaces/tabs and documentation.
+> >
+> > Signed-off-by: Sasha Levin <sashal@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml |  2 ++
+> 
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Ping?
+Reviewed-by: Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---u5prx2f64eoqygbx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVqkkgAKCRDj7w1vZxhR
-xbepAQCWHgrNba54ySml5bNd587ZvZnP5TK5AjUaKHVhUVTzUAD+Li7sWvaQd0cZ
-RqB2LELzNfW2VyjKXWSRctv1YsjZ6g4=
-=fn3W
------END PGP SIGNATURE-----
-
---u5prx2f64eoqygbx--
+/Jarkko
