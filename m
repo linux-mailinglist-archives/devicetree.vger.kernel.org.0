@@ -2,221 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B5D8C96103
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 987E6961AB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:56:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730523AbfHTNod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 09:44:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38684 "EHLO mail.kernel.org"
+        id S1729203AbfHTN4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 09:56:06 -0400
+Received: from mga01.intel.com ([192.55.52.88]:56683 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730770AbfHTNnF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 09:43:05 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 813CC22DD6;
-        Tue, 20 Aug 2019 13:43:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566308583;
-        bh=uOe278BjeSCVm0Yvei9g6yy3Td/QVwv+YDoMYSyE7WI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lSKbMSq0zejsWFJB1YSbXkWt+wsyx6hcibSOB+QrXjLDEZe3NefjzgvbnvtzXva5i
-         r+3h/HqS1Z1FhE29o+ORgaO9bsvYJH0IlyWcY+v6KOmbra+KbIzZHeOf4nZTD7ctNA
-         /Ed6ObdmQCBjAU4kWIwbyzEVCPsUUQpDMT81DJMU=
-Received: by mail-qk1-f172.google.com with SMTP id w18so4502334qki.0;
-        Tue, 20 Aug 2019 06:43:03 -0700 (PDT)
-X-Gm-Message-State: APjAAAWPwI11cDuSS5vWVLFLUfrKFeWFZ9zWwQdzEgg40HvCX8lRCwzC
-        CeSs0oyYadUAZzZcYsD1yuJ+Sj2qHiqU8EXBBA==
-X-Google-Smtp-Source: APXvYqxwnJs7OpFe00kgqK1JKcgVrR8tZM4OnOWTaEasRUoo9hbARCNCIplqORq2OIAVk3yZ6vHkZYPL4FHNsyPWpMQ=
-X-Received: by 2002:a37:6944:: with SMTP id e65mr23792510qkc.119.1566308582630;
- Tue, 20 Aug 2019 06:43:02 -0700 (PDT)
+        id S1728248AbfHTN4G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 09:56:06 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 20 Aug 2019 06:56:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,408,1559545200"; 
+   d="scan'208";a="195775716"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by fmsmga001.fm.intel.com with ESMTP; 20 Aug 2019 06:56:04 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i04cE-0003zo-6B; Tue, 20 Aug 2019 16:56:02 +0300
+Date:   Tue, 20 Aug 2019 16:56:02 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     kishon@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, peter.harliman.liem@intel.com
+Subject: Re: [PATCH v2 2/2] phy: intel-lgm-emmc: Add support for eMMC PHY
+Message-ID: <20190820135602.GN30120@smile.fi.intel.com>
+References: <20190820103133.53776-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190820103133.53776-2-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-References: <cover.1566208109.git.eswara.kota@linux.intel.com> <5e6ee1245ee53a7726103a8de7c11a37ad99fbd6.1566208109.git.eswara.kota@linux.intel.com>
-In-Reply-To: <5e6ee1245ee53a7726103a8de7c11a37ad99fbd6.1566208109.git.eswara.kota@linux.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 20 Aug 2019 08:42:51 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+pvKHtw-ARRbNW-xReQ2MVNan8z3tfJbx4taGDCvEr5g@mail.gmail.com>
-Message-ID: <CAL_Jsq+pvKHtw-ARRbNW-xReQ2MVNan8z3tfJbx4taGDCvEr5g@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: PCI: intel: Add YAML schemas for the
- PCIe RC controller
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        linux-pci@vger.kernel.org, Christoph Hellwig <hch@infradead.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820103133.53776-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 4:40 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
->
-> The Intel PCIe RC controller is Synopsys Designware
-> based PCIe core. Add YAML schemas for PCIe in RC mode
-> present in Intel Universal Gateway soc.
+On Tue, Aug 20, 2019 at 06:31:33PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> 
+> Add support for eMMC PHY on Intel's Lightning Mountain SoC.
 
-Run 'make dt_binding_check' and fix all the warnings.
+Thanks for an update.
+Looks better though several minor comments below.
 
->
-> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
-> ---
->  .../devicetree/bindings/pci/intel-pcie.yaml        | 133 +++++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/intel-pcie.yaml
->
-> diff --git a/Documentation/devicetree/bindings/pci/intel-pcie.yaml b/Documentation/devicetree/bindings/pci/intel-pcie.yaml
-> new file mode 100644
-> index 000000000000..80caaaba5e2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/intel-pcie.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: GPL-2.0
 
-(GPL-2.0-only OR BSD-2-Clause) is preferred for new bindings.
+> +/* eMMC phy register definitions */
+> +#define EMMC_PHYCTRL0_REG	0xa8
+> +#define DR_TY_MASK		GENMASK(30, 28)
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/intel-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel AXI bus based PCI express root complex
-> +
-> +maintainers:
-> +  - Dilip Kota <eswara.kota@linux.intel.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: intel,lgm-pcie
-> +
-> +  device_type:
-> +    const: pci
-> +
-> +  "#address-cells":
-> +    const: 3
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  reg:
-> +    items:
-> +      - description: Controller control and status registers.
-> +      - description: PCIe configuration registers.
-> +      - description: Controller application registers.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: config
-> +      - const: app
-> +
-> +  ranges:
-> +    description: Ranges for the PCI memory and I/O regions.
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: PCIe registers interface clock.
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    const: phy
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +
-> +  num-lanes:
-> +    description: Number of lanes to use for this port.
-> +
-> +  linux,pci-domain:
-> +    description: PCI domain ID.
-> +
-> +  interrupts:
-> +    description: PCIe core integrated miscellaneous interrupt.
-> +
-> +  interrupt-map-mask:
-> +    description: Standard PCI IRQ mapping properties.
-> +
-> +  interrupt-map:
-> +    description: Standard PCI IRQ mapping properties.
-> +
-> +  max-link-speed:
-> +    description: Specify PCI Gen for link capability.
-> +
-> +  bus-range:
-> +    description: Range of bus numbers associated with this controller.
-> +
-> +  intel,rst-interval:
+> +#define DR_TY_50OHM(x)		((~(x) << 28) & DR_TY_MASK)
 
-Use 'reset-assert-us'
+For consistency it should be
 
-> +    description: |
-> +      Device reset interval in ms. Some devices need an interval upto 500ms.
-> +      By default it is 100ms.
-> +
-> +required:
-> +  - compatible
-> +  - device_type
-> +  - reg
-> +  - reg-names
-> +  - ranges
-> +  - resets
-> +  - clocks
-> +  - phys
-> +  - phy-names
-> +  - reset-gpios
-> +  - num-lanes
-> +  - linux,pci-domain
-> +  - interrupts
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +
-> +examples:
-> +  - |
-> +    pcie10:pcie@d0e00000 {
-> +      compatible = "intel,lgm-pcie";
-> +      device_type = "pci";
-> +      #address-cells = <3>;
-> +      #size-cells = <2>;
-> +      reg = <
-> +            0xd0e00000 0x1000
-> +            0xd2000000 0x800000
-> +            0xd0a41000 0x1000
-> +            >;
-> +      reg-names = "dbi", "config", "app";
-> +      linux,pci-domain = <0>;
-> +      max-link-speed = <4>;
-> +      bus-range = <0x00 0x08>;
-> +      interrupt-parent = <&ioapic1>;
-> +      interrupts = <67 1>;
-> +      interrupt-map-mask = <0 0 0 0x7>;
-> +      interrupt-map = <0 0 0 1 &ioapic1 27 1>,
-> +                      <0 0 0 2 &ioapic1 28 1>,
-> +                      <0 0 0 3 &ioapic1 29 1>,
-> +                      <0 0 0 4 &ioapic1 30 1>;
-> +      ranges = <0x02000000 0 0xd4000000 0xd4000000 0 0x04000000>;
-> +      resets = <&rcu0 0x50 0>;
-> +      clocks = <&cgu0 LGM_GCLK_PCIE10>;
-> +      phys = <&cb0phy0>;
-> +      phy-names = "phy";
-> +    };
-> +
-> +    &pcie10 {
+#define DR_TY_SHIFT(x)		(((x) << 28) & DR_TY_MASK)
 
-Don't show this soc/board split in examples. Just combine to one node.
+with explanation about 50 Ohm in the code below.
 
-> +      status = "okay";
-> +      intel,rst-interval = <100>;
-> +      reset-gpios = <&gpio0 3 GPIO_ACTIVE_LOW>;
-> +      num-lanes = <2>;
-> +    };
-> --
-> 2.11.0
->
+> +#define OTAPDLYENA		BIT(14)
+> +#define OTAPDLYSEL_MASK		GENMASK(13, 10)
+> +#define OTAPDLYSEL_SHIFT(x)	(((x) << 10) & OTAPDLYSEL_MASK)
+> +
+> +#define EMMC_PHYCTRL1_REG	0xac
+> +#define PDB_MASK		BIT(0)
+> +#define ENDLL_MASK		BIT(7)
+
+> +#define ENDLL_VAL		BIT(7)
+
+Again, inconsistency here,
+
+#define ENDLL_SHIFT(x)		(((x) << 7) & ENDLL_MASK)
+
+> +#define EMMC_PHYCTRL2_REG	0xb0
+> +#define FRQSEL_25M		0
+> +#define FRQSEL_150M		3
+> +#define FRQSEL_MASK		GENMASK(24, 22)
+
+> +#define FRQSEL_SHIFT(x)		((x) << 22)
+
+And here
+
+#define FRQSEL_SHIFT(x)		(((x) << 22) & FRQSEL_MASK)
+
+> +	/*
+> +	 * According to the user manual, calpad calibration
+> +	 * cycle takes more than 2us without the minimal recommended
+> +	 * value, so we may need a little margin here
+> +	 */
+
+> +	usleep_range(3, 6);
+
+Actually for this low values it's recommended to use udelay() disregard to
+context.
+
+	udelay(5);
+
+> +	regmap_update_bits(priv->syscfg, EMMC_PHYCTRL1_REG, PDB_MASK, 1);
+
+1 looks like a magic that has to be changed in the same way as for the rest, i.e.
+
+#define PDB_SHIFT(x)	(((x) << 0) & PDB_MASK)
+
+	..., PDB_MASK, PDB_SHIFT(1)...
+
+> +static int intel_emmc_phy_power_on(struct phy *phy)
+> +{
+> +	struct intel_emmc_phy *priv = phy_get_drvdata(phy);
+> +	int ret;
+> +
+> +	/* Drive impedance: 50 Ohm */
+
+Nice, you have already a comment here. Just use DR_TY_SHIFT(1)
+
+> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL0_REG, DR_TY_MASK,
+> +				 DR_TY_50OHM(1));
+
+> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL0_REG, OTAPDLYENA,
+> +				 0x0);
+
+0x0 -> 0
+
+> +static int intel_emmc_phy_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct intel_emmc_phy *priv;
+> +	struct phy *generic_phy;
+> +	struct phy_provider *phy_provider;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	/* Get eMMC phy (accessed via chiptop) regmap */
+
+> +	priv->syscfg = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						       "intel,syscon");
+
+Perhaps
+
+	struct device_node *np = dev->of_node;
+	...
+	priv->syscfg = syscon_regmap_lookup_by_phandle(np, "intel,syscon");
+
+> +	generic_phy = devm_phy_create(dev, dev->of_node, &ops);
+
+And here.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
