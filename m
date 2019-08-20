@@ -2,96 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB3C99596D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 10:28:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C89BE9598B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 10:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729345AbfHTI1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 04:27:55 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:44141 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726049AbfHTI1z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 04:27:55 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 19956240009;
-        Tue, 20 Aug 2019 08:27:51 +0000 (UTC)
-Date:   Tue, 20 Aug 2019 10:27:51 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 04/10] mailbox: sunxi-msgbox: Add a new mailbox driver
-Message-ID: <20190820082751.nfn76nlgl3ivphff@flea>
-References: <20190820032311.6506-1-samuel@sholland.org>
- <20190820032311.6506-5-samuel@sholland.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gkmhex6scyynmxz2"
-Content-Disposition: inline
-In-Reply-To: <20190820032311.6506-5-samuel@sholland.org>
-User-Agent: NeoMutt/20180716
+        id S1729389AbfHTI3I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 04:29:08 -0400
+Received: from mga07.intel.com ([134.134.136.100]:22631 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726049AbfHTI3H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 04:29:07 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 20 Aug 2019 01:29:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,408,1559545200"; 
+   d="scan'208";a="202608731"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga004.fm.intel.com with ESMTP; 20 Aug 2019 01:29:04 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, mark.rutland@arm.com,
+        linux-serial@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, andriy.shevchenko@intel.com,
+        qi-ming.wu@intel.com, cheol.yong.kim@intel.com,
+        rahul.tanwar@intel.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v2 0/2] dt-bindings: serial: lantiq: Convert to YAML & add support for new SoC
+Date:   Tue, 20 Aug 2019 16:29:00 +0800
+Message-Id: <cover.1566288689.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+There is a new product which reuses Lantiq serial controller IP. Patch 1 in this
+series converts existing lantiq dt bindings to YAML schema and Patch 2 updates
+it to support newer product.
 
---gkmhex6scyynmxz2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+These patches are baselined upon Linux 5.3-rc4 at below Git tree:
+git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git
 
-Hi,
+v2:
+* Update license to GPL-2.0-only.
+* Fix trailing whitespace error.
 
-On Mon, Aug 19, 2019 at 10:23:05PM -0500, Samuel Holland wrote:
-> Allwinner sun8i, sun9i, and sun50i SoCs contain a hardware message box
-> used for communication between the ARM CPUs and the ARISC management
-> coprocessor. The hardware contains 8 unidirectional 4-message FIFOs.
->
-> Add a driver for it, so it can be used for SCPI or other communication
-> protocols.
->
-> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> ---
->  drivers/mailbox/Kconfig        |  10 +
->  drivers/mailbox/Makefile       |   2 +
->  drivers/mailbox/sunxi-msgbox.c | 323 +++++++++++++++++++++++++++++++++
->  3 files changed, 335 insertions(+)
->  create mode 100644 drivers/mailbox/sunxi-msgbox.c
+Rahul Tanwar (2):
+  dt-bindings: serial: lantiq: Convert to YAML schema
+  dt-bindings: lantiq: Update for new SoC
 
-It's pretty much the same remark than for the name of the binding
-file, but sunxi in itself is pretty confusing, it covers a range of
-SoCs going from armv5 to armv8, some with a single CPU and some with
-more, and some with an OpenRISC core and some without.
+ .../devicetree/bindings/serial/lantiq_asc.txt      | 31 --------
+ .../devicetree/bindings/serial/lantiq_asc.yaml     | 87 ++++++++++++++++++++++
+ 2 files changed, 87 insertions(+), 31 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/lantiq_asc.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/lantiq_asc.yaml
 
-It would be less confusing (albeit not perfect) to use sun6i there,
-the family that IP was first introduced in.
+-- 
+2.11.0
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---gkmhex6scyynmxz2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVuvBwAKCRDj7w1vZxhR
-xV7WAQCXdOhK3aygWsBU1Ob0okTJbPWhSiAl4T7XZhHH/36ZiQEA6pZ/KLw9KS1c
-2kVKRLeNf7nMSDrNt/PPkrb11elNcgA=
-=KJoz
------END PGP SIGNATURE-----
-
---gkmhex6scyynmxz2--
