@@ -2,95 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 129ED9650A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B163396514
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728682AbfHTPrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:47:17 -0400
-Received: from vps.xff.cz ([195.181.215.36]:34058 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727006AbfHTPrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 11:47:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566316035; bh=+WetNuZhgsPVrJpioXtAn4eK1dq+iJ2qVlbpblbtjW4=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=hP54zVonCSbd4zXVtywOUAO5skboSj0IERBMVv++b8InA7BK9VB27HeH7mYCTQuH2
-         4Le6mzzhSoXaVM6Dr/19kjLEesxX8WweIzbVQu0I2k75qcV+BB2m//1C81g4tlSYw1
-         aCtfMtwX+imflszImRWYPRPZENIcBTQ1VAySnfxU=
-Date:   Tue, 20 Aug 2019 17:47:14 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/6] net: stmmac: sun8i: Use devm_regulator_get for PHY
- regulator
-Message-ID: <20190820154714.2rt4ctovil5ol3u2@core.my.home>
-Mail-Followup-To: Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20190820145343.29108-1-megous@megous.com>
- <20190820145343.29108-4-megous@megous.com>
- <20190820153939.GL29991@lunn.ch>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190820153939.GL29991@lunn.ch>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+        id S1730088AbfHTPsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 11:48:22 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:38152 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726981AbfHTPsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:48:22 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id A8731611FC; Tue, 20 Aug 2019 15:48:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566316100;
+        bh=kcLnG6SGOwAqgcRa444jSfftWABKGfz3WrSI6wuaJgw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Kbf+kMP61wd6RAxyyZtzE7svfOmLPS9l+MRmXiVtffFHJ+OzgqIz+r93dbL2RMZgZ
+         7nSf5A/mCT51MCDwSETueHTI87GSMl9H8snMcNvaXaKQBzS1V5DDjlCj8/+nSVFg1n
+         qdyE15UGbXC2XoN0gSvsM6zllTiY//8LPiRwUCB0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C0A0660A42;
+        Tue, 20 Aug 2019 15:48:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566316099;
+        bh=kcLnG6SGOwAqgcRa444jSfftWABKGfz3WrSI6wuaJgw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gIqIv9Uv1qCvEAKJ+KSMlnl1CBrAcYd//uv8LxUW9ouWtqmoMTcJtpGg8kNB/NATL
+         DiPBvI2PTVdZePfbnkdkQWQlecglDuREJ1GD033fZaHli4x3/84moyKmgo9UWoTuWT
+         dAjy9cAhhJvov/nEhHdOjmheur5eGGKs/6CilaTI=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C0A0660A42
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     linux-wireless@vger.kernel.org
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH 00/49] ath11k: driver for Qualcomm IEEE 802.11ax devices
+Date:   Tue, 20 Aug 2019 18:47:26 +0300
+Message-Id: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+ath11k is a new driver for Qualcomm IEEE 802.11ax devices, first
+supporting only IPQ8074 SoC using the shared memory AHB bus. ath11k
+uses mac80211 and supports AP, Station and Mesh modes.
 
-On Tue, Aug 20, 2019 at 05:39:39PM +0200, Andrew Lunn wrote:
-> On Tue, Aug 20, 2019 at 04:53:40PM +0200, megous@megous.com wrote:
-> > From: Ondrej Jirman <megous@megous.com>
-> > 
-> > Use devm_regulator_get instead of devm_regulator_get_optional and rely
-> > on dummy supply. This avoids NULL checks before regulator_enable/disable
-> > calls.
-> 
-> Hi Ondrej
-> 
-> What do you mean by a dummy supply? I'm just trying to make sure you
-> are not breaking backwards compatibility.
+Even though ath11k has some similar code as with ath10k (especially
+the WMI layer) it was concluded to be simpler to have a "clean start"
+for ath11k code base and not try to share the code with ath10k. This
+makes maintenance easier and avoids major changes in ath10k, which
+would have significantly increased the risk of regressions in existing
+setups.
 
-Sorry, I mean dummy regulator. See:
+Even though the driver is very similar with ath10k but there are major
+differences as well. The datapath is completely different. ath11k
+supports multiple MACs, called "soc" in the firmware interface. And
+there's only one WMI interface to support.
 
-https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L1874
+Currently ath11k supports only IEEE 802.11ac mode, but patches for
+802.11ax are available and they will be submitted after ath11k is
+accepted to upstream.
 
-On systems that use DT (i.e. have_full_constraints() == true), when the
-regulator is not found (ENODEV, not specified in DT), regulator_get will return
-a fake dummy regulator that can be enabled/disabled, but doesn't do anything
-real.
+The firmware images are available from ath11k-firmware repository but
+they will be also submitted to linux-firmware:
 
-This can be used to avoid NULL checks and make the code simpler.
+https://github.com/kvalo/ath11k-firmware
 
-regards,
-	Ondrej
+The driver has had multiple authors who are listed in alphabetical
+order below.
 
->      Thanks
-> 	Andrew
+Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Signed-off-by: Bhagavathi Perumal S <bperumal@codeaurora.org>
+Signed-off-by: Ganesh Sesetti <gseset@codeaurora.org>
+Signed-off-by: Govindaraj Saminathan <gsamin@codeaurora.org>
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Julia Lawall <julia.lawall@lip6.fr>
+Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
+Signed-off-by: Karthikeyan Periyasamy <periyasa@codeaurora.org>
+Signed-off-by: kbuild test robot <lkp@intel.com>
+Signed-off-by: Maharaja Kennadyrajan <mkenna@codeaurora.org>
+Signed-off-by: Manikanta Pubbisetty <mpubbise@codeaurora.org>
+Signed-off-by: Miles Hu <milehu@codeaurora.org>
+Signed-off-by: Muna Sinada <msinada@codeaurora.org>
+Signed-off-by: Pradeep Kumar Chitrapu <pradeepc@codeaurora.org>
+Signed-off-by: Rajkumar Manoharan <rmanohar@codeaurora.org>
+Signed-off-by: Sathishkumar Muruganandam <murugana@codeaurora.org>
+Signed-off-by: Shashidhar Lakkavalli <slakkavalli@datto.com>
+Signed-off-by: Sriram R <srirrama@codeaurora.org>
+Signed-off-by: Sven Eckelmann <seckelmann@datto.com>
+Signed-off-by: Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Signed-off-by: Venkateswara Naralasetty <vnaralas@codeaurora.org>
+
+--------------[cut]-------------------[cut]-----------------
+
+I have split the driver into multiple patches for easier review, but
+the final commit will be one big patch and the commit log being the
+text before the cut line above.
+
+This version is based on commit b05c1a55a3a566893e15cfc2dc2cc20d476af0d6
+from ath11k-bringup branch on my ath.git tree:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git/log/?h=ath11k-bringup
+
+This patch applies to wireless-drivers-next but needs
+CONFIG_COMPILE_TEST, CONFIG_REMOTEPROC AND CONFIG_QCOM_QMI_HELPERS to
+be able to compile on x86.
+
+Please review and comment.
+
+Kalle
+
+
