@@ -2,187 +2,442 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 034909669D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82465966B7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:47:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729409AbfHTQjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 12:39:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58640 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725983AbfHTQjm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 12:39:42 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CB5F022DD3;
-        Tue, 20 Aug 2019 16:39:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566319180;
-        bh=veCX3JRCfSZHvEnItISPv2HdfktZ61+FPhofkrQuQUA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=DElMqDuDa0Ao7h8uyG4MMeOdMC48rGY0ZtAT8ieDY32nxAnK60GGzIiGEqEWxRG32
-         /w5xGLBTfniHaeOr13JNUb6kySAnslvYedWh4sws8favcIU9VbK0RrzrCbH1wVkVoJ
-         1lU2aaHBPaEwM/GHNeDMGV2/QXGdLezsapQC3yzM=
-Received: by mail-qk1-f174.google.com with SMTP id m2so5027896qkd.10;
-        Tue, 20 Aug 2019 09:39:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAUbA7HewrJNLVO7voIQup5vu91NVtYCBoc3CHwkh0vWxjfu42Rg
-        wDQ25Hip95trQK0xa61sbVGriNceE7/Dq/1EWw==
-X-Google-Smtp-Source: APXvYqyx6OvdT6TDRMtiI2lfROTf9ZgiR7UCZ0cxnhU/fiTNmsagpbspZVrkYUA46h3HgvDPrHZjwM57aBclImmXIg0=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr26455136qke.393.1566319180031;
- Tue, 20 Aug 2019 09:39:40 -0700 (PDT)
+        id S1728770AbfHTQrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 12:47:53 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:56278 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725971AbfHTQrw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 12:47:52 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7KGlbqC121448;
+        Tue, 20 Aug 2019 11:47:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566319657;
+        bh=5sVk1fkouXDyUnQTqANlBQOvqssnGb5odk+97r2i4TA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=JG/J3+uy1OoBGh91jk+BVkQi8TqRuktskkds4+RIaoTHLxg6SuGvHl1y46I/eelBu
+         5UxL9tNYYogFSrWKJfdN3l7T+4c8GZIYN+aYe91Z88UYk98CcwxPLSTBDf6wa0EQM5
+         IgCd3whuA2Tyt8fW6mkmE8dnfL8E2PgCIaDJeVTM=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7KGlb3R094128
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Aug 2019 11:47:37 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 20
+ Aug 2019 11:47:37 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 20 Aug 2019 11:47:37 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7KGlbZp100254;
+        Tue, 20 Aug 2019 11:47:37 -0500
+Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
+ support
+To:     Tero Kristo <t-kristo@ti.com>, Keerthy <j-keerthy@ti.com>,
+        <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+ <1565164139-21886-3-git-send-email-t-kristo@ti.com>
+ <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
+ <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
+ <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
+ <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
+Date:   Tue, 20 Aug 2019 11:47:37 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190820152511.15307-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20190820152511.15307-1-u.kleine-koenig@pengutronix.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 20 Aug 2019 11:39:27 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLg19883syn66P6zUkLPpQ8FYpeFj2QYvSp1UsWOhVKyQ@mail.gmail.com>
-Message-ID: <CAL_JsqLg19883syn66P6zUkLPpQ8FYpeFj2QYvSp1UsWOhVKyQ@mail.gmail.com>
-Subject: Re: [PATCH RFC] dt-bindings: regulator: define a mux regulator
-To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 10:25 AM Uwe Kleine-K=C3=B6nig
-<u.kleine-koenig@pengutronix.de> wrote:
->
-> A mux regulator is used to provide current on one of several outputs. It
-> might look as follows:
->
->       ,------------.
->     --<OUT0     A0 <--
->     --<OUT1     A1 <--
->     --<OUT2     A2 <--
->     --<OUT3        |
->     --<OUT4     EN <--
->     --<OUT5        |
->     --<OUT6     IN <--
->     --<OUT7        |
->       `------------'
->
-> Depending on which address is encoded on the three address inputs A0, A1
-> and A2 the current provided on IN is provided on one of the eight
-> outputs.
->
-> What is new here is that the binding makes use of a #regulator-cells
-> property. This uses the approach known from other bindings (e.g. gpio)
-> to allow referencing all eight outputs with phandle arguments. This
-> requires an extention in of_get_regulator to use a new variant of
-> of_parse_phandle_with_args that has a cell_count_default parameter that
-> is used in absence of a $cell_name property. Even if we'd choose to
-> update all regulator-bindings to add #regulator-cells =3D <0>; we still
-> needed something to implement compatibility to the currently defined
-> bindings.
->
-> Signed-off-by: Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutronix.de>
-> ---
-> Hello,
->
-> the obvious alternative is to add (here) eight subnodes to represent the
-> eight outputs. This is IMHO less pretty, but wouldn't need to introduce
-> #regulator-cells.
+On 8/20/19 2:37 AM, Tero Kristo wrote:
+> On 20.8.2019 2.01, Suman Anna wrote:
+>> Hi Tero,
+>>
+>> On 8/19/19 4:32 AM, Tero Kristo wrote:
+>>> On 08/08/2019 08:26, Keerthy wrote:
+>>>>
+>>>>
+>>>> On 07/08/19 1:18 PM, Tero Kristo wrote:
+>>>>> Add initial PRM (Power and Reset Management) driver for TI OMAP class
+>>>>> SoCs. Initially this driver only supports reset control, but can be
+>>>>> extended to support rest of the functionality, like powerdomain
+>>>>> control, PRCM irq support etc.
+>>>>>
+>>>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>>>>> ---
+>>>>>    arch/arm/mach-omap2/Kconfig |   1 +
+>>>>>    drivers/soc/ti/Makefile     |   1 +
+>>>>>    drivers/soc/ti/omap_prm.c   | 216
+>>>>> ++++++++++++++++++++++++++++++++++++++++++++
+>>>>>    3 files changed, 218 insertions(+)
+>>>>>    create mode 100644 drivers/soc/ti/omap_prm.c
+>>>>>
+>>>>> diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+>>>>> index fdb6743..42ad063 100644
+>>>>> --- a/arch/arm/mach-omap2/Kconfig
+>>>>> +++ b/arch/arm/mach-omap2/Kconfig
+>>>>> @@ -109,6 +109,7 @@ config ARCH_OMAP2PLUS
+>>>>>        select TI_SYSC
+>>>>>        select OMAP_IRQCHIP
+>>>>>        select CLKSRC_TI_32K
+>>>>> +    select RESET_CONTROLLER
+>>
+>> Use ARCH_HAS_RESET_CONTROLLER instead.
+> 
+> Ok.
+> 
+>>
+>>>>>        help
+>>>>>          Systems based on OMAP2, OMAP3, OMAP4 or OMAP5
+>>>>> diff --git a/drivers/soc/ti/Makefile b/drivers/soc/ti/Makefile
+>>>>> index b3868d3..788b5cd 100644
+>>>>> --- a/drivers/soc/ti/Makefile
+>>>>> +++ b/drivers/soc/ti/Makefile
+>>>>> @@ -6,6 +6,7 @@ obj-$(CONFIG_KEYSTONE_NAVIGATOR_QMSS)    +=
+>>>>> knav_qmss.o
+>>>>>    knav_qmss-y := knav_qmss_queue.o knav_qmss_acc.o
+>>>>>    obj-$(CONFIG_KEYSTONE_NAVIGATOR_DMA)    += knav_dma.o
+>>>>>    obj-$(CONFIG_AMX3_PM)            += pm33xx.o
+>>>>> +obj-$(CONFIG_ARCH_OMAP2PLUS)        += omap_prm.o
+>>>>>    obj-$(CONFIG_WKUP_M3_IPC)        += wkup_m3_ipc.o
+>>>>>    obj-$(CONFIG_TI_SCI_PM_DOMAINS)        += ti_sci_pm_domains.o
+>>>>>    obj-$(CONFIG_TI_SCI_INTA_MSI_DOMAIN)    += ti_sci_inta_msi.o
+>>>>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
+>>>>> new file mode 100644
+>>>>> index 0000000..7c89eb8
+>>>>> --- /dev/null
+>>>>> +++ b/drivers/soc/ti/omap_prm.c
+>>>>> @@ -0,0 +1,216 @@
+>>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>>> +/*
+>>>>> + * OMAP2+ PRM driver
+>>>>> + *
+>>>>> + * Copyright (C) 2019 Texas Instruments Incorporated -
+>>>>> http://www.ti.com/
+>>>>> + *    Tero Kristo <t-kristo@ti.com>
+>>>>> + */
+>>>>> +
+>>>>> +#include <linux/kernel.h>
+>>>>> +#include <linux/module.h>
+>>>>> +#include <linux/device.h>
+>>>>> +#include <linux/io.h>
+>>>>> +#include <linux/of.h>
+>>>>> +#include <linux/of_device.h>
+>>>>> +#include <linux/platform_device.h>
+>>>>> +#include <linux/reset-controller.h>
+>>>>> +#include <linux/delay.h>
+>>>>> +
+>>>>> +struct omap_rst_map {
+>>>>> +    s8 rst;
+>>>>> +    s8 st;
+>>>>> +};
+>>>>> +
+>>>>> +struct omap_prm_data {
+>>>>> +    u32 base;
+>>>>> +    const char *name;
+>>>>> +    u16 pwstctrl;
+>>>>> +    u16 pwstst;
+>>>>> +    u16 rstctl;
+>>
+>> Minor nit, can you use rstctrl instead here so that it is in sync with
+>> the other variables and with the register names used in TRM.
+> 
+> Ok.
+> 
+>>
+>>>>> +    u16 rstst;
+>>>>> +    struct omap_rst_map *rstmap;
+>>>>> +    u8 flags;
+>>>>> +};
+>>>>> +
+>>>>> +struct omap_prm {
+>>>>> +    const struct omap_prm_data *data;
+>>>>> +    void __iomem *base;
+>>>>> +};
+>>>>> +
+>>>>> +struct omap_reset_data {
+>>>>> +    struct reset_controller_dev rcdev;
+>>>>> +    struct omap_prm *prm;
+>>>>> +};
+>>>>> +
+>>>>> +#define to_omap_reset_data(p) container_of((p), struct
+>>>>> omap_reset_data, rcdev)
+>>>>> +
+>>>>> +#define OMAP_MAX_RESETS        8
+>>>>> +#define OMAP_RESET_MAX_WAIT    10000
+>>>>> +
+>>>>> +#define OMAP_PRM_NO_RSTST    BIT(0)
+>>>>> +
+>>>>> +static const struct of_device_id omap_prm_id_table[] = {
+>>>>> +    { },
+>>>>> +};
+>>>>
+>>>> This table is blank and we are doing of_match_device against it.
+>>>
+>>> Yes, it gets populated with other patches in series, one entry per soc.
+>>>
+>>>>
+>>>>> +
+>>>>> +static int omap_reset_status(struct reset_controller_dev *rcdev,
+>>>>> +                 unsigned long id)
+>>>>> +{
+>>>>> +    struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+>>>>> +    u32 v;
+>>>>> +
+>>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
+>>>>> +    v &= 1 << id;
+>>>>> +    v >>= id;
+>>>>> +
+>>>>> +    return v;
+>>>>> +}
+>>>>> +
+>>>>> +static int omap_reset_assert(struct reset_controller_dev *rcdev,
+>>>>> +                 unsigned long id)
+>>>>> +{
+>>>>> +    struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+>>>>> +    u32 v;
+>>>>> +
+>>>>> +    /* assert the reset control line */
+>>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstctl);
+>>>>> +    v |= 1 << id;
+>>>>> +    writel_relaxed(v, reset->prm->base + reset->prm->data->rstctl);
+>>>>> +
+>>>>> +    return 0;
+>>>>> +}
+>>>>> +
+>>>>> +static int omap_reset_get_st_bit(struct omap_reset_data *reset,
+>>>>> +                 unsigned long id)
+>>>>> +{
+>>>>> +    struct omap_rst_map *map = reset->prm->data->rstmap;
+>>>>> +
+>>>>> +    while (map && map->rst >= 0) {
+>>>>> +        if (map->rst == id)
+>>>>> +            return map->st;
+>>>>> +
+>>>>> +        map++;
+>>>>> +    }
+>>>>> +
+>>>>> +    return id;
+>>>>> +}
+>>>>> +
+>>>>> +/*
+>>>>> + * Note that status will not change until clocks are on, and clocks
+>>>>> cannot be
+>>>>> + * enabled until reset is deasserted. Consumer drivers must check
+>>>>> status
+>>>>> + * separately after enabling clocks.
+>>>>> + */
+>>>>> +static int omap_reset_deassert(struct reset_controller_dev *rcdev,
+>>>>> +                   unsigned long id)
+>>>>> +{
+>>>>> +    struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+>>>>> +    u32 v;
+>>>>> +    int st_bit = id;
+>>
+>> No need to initialize this, will always get overwritten below.
+> 
+> Hmm right, must be a leftover from some earlier code.
+> 
+>>
+>>>>> +    bool has_rstst;
+>>>>> +
+>>>>> +    /* check the current status to avoid de-asserting the line
+>>>>> twice */
+>>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstctl);
+>>>>> +    if (!(v & BIT(id)))
+>>>>> +        return -EEXIST;
+>>>>> +
+>>>>> +    has_rstst = !(reset->prm->data->flags & OMAP_PRM_NO_RSTST);
+>>>>> +
+>>>>> +    if (has_rstst) {
+>>>>> +        st_bit = omap_reset_get_st_bit(reset, id);
+>>>>> +
+>>>>> +        /* Clear the reset status by writing 1 to the status bit */
+>>>>> +        v = readl_relaxed(reset->prm->base +
+>>>>> reset->prm->data->rstst);
+>>>>> +        v |= 1 << st_bit;
+>>>>> +        writel_relaxed(v, reset->prm->base +
+>>>>> reset->prm->data->rstst);
+>>>>> +    }
+>>>>> +
+>>>>> +    /* de-assert the reset control line */
+>>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstctl);
+>>>>> +    v &= ~(1 << id);
+>>>>> +    writel_relaxed(v, reset->prm->base + reset->prm->data->rstctl);
+>>>>> +
+>>>>> +    return 0;
+>>>>> +}
+>>>>> +
+>>>>> +static const struct reset_control_ops omap_reset_ops = {
+>>>>> +    .assert        = omap_reset_assert,
+>>>>> +    .deassert    = omap_reset_deassert,
+>>>>> +    .status        = omap_reset_status,
+>>>>> +};
+>>>>> +
+>>>>> +static int omap_prm_reset_probe(struct platform_device *pdev,
+>>>>> +                struct omap_prm *prm)
+>>
+>> Call this omap_prm_reset_init or something similar to avoid confusion.
+> 
+> Ok, can change this.
+> 
+>>
+>>>>> +{
+>>>>> +    struct omap_reset_data *reset;
+>>>>> +
+>>>>> +    /*
+>>>>> +     * Check if we have resets. If either rstctl or rstst is
+>>>>> +     * non-zero, we have reset registers in place. Additionally
+>>>>> +     * the flag OMAP_PRM_NO_RSTST implies that we have resets.
+>>>>> +     */
+>>>>> +    if (!prm->data->rstctl && !prm->data->rstst &&
+>>>>> +        !(prm->data->flags & OMAP_PRM_NO_RSTST))
+>>>>> +        return 0;
+>>>>> +
+>>>>> +    reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
+>>>>> +    if (!reset)
+>>>>> +        return -ENOMEM;
+>>>>> +
+>>>>> +    reset->rcdev.owner = THIS_MODULE;
+>>>>> +    reset->rcdev.ops = &omap_reset_ops;
+>>>>> +    reset->rcdev.of_node = pdev->dev.of_node;
+>>>>> +    reset->rcdev.nr_resets = OMAP_MAX_RESETS;
+>>
+>> Suggest adding a number of resets to prm->data, and using it so that we
+>> don't even entertain any resets beyond the actual number of resets.
+> 
+> Hmm why bother? Accessing a stale reset bit will just cause access to a
+> reserved bit in the reset register, doing basically nothing. Also, this
+> would not work for am3/am4 wkup, as there is a single reset bit at an
+> arbitrary position.
 
-I'm okay with #regulator-cells approach.
+The generic convention seems to be defining a reset id value defined
+from include/dt-bindings/reset/ that can be used to match between the
+dt-nodes and the reset-controller driver.
 
->
-> Apart from reg =3D <..> and a phandle there is (I think) nothing that
-> needs to be specified in the subnodes because all properties of an
-> output (apart from the address) apply to all outputs.
->
-> What do you think?
->
-> Best regards
-> Uwe
->
->  .../bindings/regulator/mux-regulator.yaml     | 52 +++++++++++++++++++
->  1 file changed, 52 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mux-regul=
-ator.yaml
->
-> diff --git a/Documentation/devicetree/bindings/regulator/mux-regulator.ya=
-ml b/Documentation/devicetree/bindings/regulator/mux-regulator.yaml
-> new file mode 100644
-> index 000000000000..f06dbb969090
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mux-regulator.yaml
-> @@ -0,0 +1,52 @@
-> +# SPDX-License-Identifier: GPL-2.0
+Philipp,
+Any comments?
 
-(GPL-2.0-only OR BSD-2-Clause) is preferred.
+regards
+Suman
 
+> 
+>>
+>> You actually seem to be using the bit-position directly in client data
+>> instead of a reset number. I am not sure if this is accepted practice
+>> with reset controllers, do you incur any memory wastage?
+> 
+> Reset numbering almost always seems to start from 0, I think the only
+> exception to this is wkup_m3 on am3/am4. Introducing an additional
+> arbitrary mapping for this doesn't seem to make any sense.
+> 
+> Also, resets are allocated on-need-basis, so it only allocates one
+> instance for the reset control whatever the index is.
+> 
+>>
+>>>>> +
+>>>>> +    reset->prm = prm;
+>>>>> +
+>>>>> +    return devm_reset_controller_register(&pdev->dev, &reset->rcdev);
+>>>>> +}
+>>>>> +
+>>>>> +static int omap_prm_probe(struct platform_device *pdev)
+>>>>> +{
+>>>>> +    struct resource *res;
+>>>>> +    const struct omap_prm_data *data;
+>>>>> +    struct omap_prm *prm;
+>>>>> +    const struct of_device_id *match;
+>>>>> +
+>>>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>>>> +    if (!res)
+>>>>> +        return -ENODEV;
+>>>>> +
+>>>>> +    match = of_match_device(omap_prm_id_table, &pdev->dev);
+>>>>> +    if (!match)
+>>>>> +        return -ENOTSUPP;
+>>
+>> Use of_device_get_match_data() instead to do both match and get the
+>> data. That can perhaps be the first block.
+>>
+>>>>> +
+>>>>> +    prm = devm_kzalloc(&pdev->dev, sizeof(*prm), GFP_KERNEL);
+>>>>> +    if (!prm)
+>>>>> +        return -ENOMEM;
+>>
+>> Perhaps move the allocate after the match check to streamline.
+> 
+> Ok, will check these two out.
+> 
+>>
+>>>>> +
+>>>>> +    data = match->data;
+>>>>> +
+>>>>> +    while (data->base != res->start) {
+>>>>> +        if (!data->base)
+>>>>> +            return -EINVAL;
+>>>>> +        data++;
+>>>>> +    }
+>>>>> +
+>>>>> +    prm->data = data;
+>>>>> +
+>>>>> +    prm->base = devm_ioremap_resource(&pdev->dev, res);
+>>>>> +    if (!prm->base)
+>>>>> +        return -ENOMEM;
+>>>>> +
+>>>>> +    return omap_prm_reset_probe(pdev, prm);
+>>>>> +}
+>>>>> +
+>>>>> +static struct platform_driver omap_prm_driver = {
+>>>>> +    .probe = omap_prm_probe,
+>>>>> +    .driver = {
+>>>>> +        .name        = KBUILD_MODNAME,
+>>>>> +        .of_match_table    = omap_prm_id_table,
+>>>>> +    },
+>>>>> +};
+>>>>> +builtin_platform_driver(omap_prm_driver);
+>>>>> +
+>>>>> +MODULE_ALIAS("platform:prm");
+>>
+>> Drop this and use MODULE_DEVICE_TABLE instead on omap_prm_id_table if
+>> retaining, but I don't think these need to be defined.
+> 
+> Ok, will ditch them.
+> 
+> -Tero
+> 
+>>
+>> regards
+>> Suman
+>>
+>>>>> +MODULE_LICENSE("GPL v2");
+>>>>> +MODULE_DESCRIPTION("omap2+ prm driver");
+>>>>
+>>>> It is a builtin_platform_driver so do we need the MODULE*?
+>>>
+>>> Well, thats debatable, however some existing drivers do introduce this
+>>> even if they are builtin.
+>>>
+>>> -Tero
+>>> -- 
+>>
+> 
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mux-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MUX regulators
-> +
-> +properties:
-> +  compatible:
-> +    const: XXX,adb708
-
-? I assume you will split this into a common and specific schemas. I
-suppose there could be differing ways to control the mux just like all
-other muxes.
-
-> +
-> +  enable-gpios:
-> +    maxItems: 1
-> +
-> +  address-gpios:
-> +    description: Array of typically three GPIO pins used to select the
-> +      regulator's output. The least significant address GPIO must be lis=
-ted
-> +      first. The others follow in order of significance.
-> +    minItems: 1
-> +
-> +  "#regulator-cells":
-
-How is this not required?
-
-> +    const: 1
-> +
-> +  regulator-name:
-> +    description: A string used to construct the sub regulator's names
-> +    $ref: "/schemas/types.yaml#/definitions/string"
-> +
-> +  supply:
-> +    description: input supply
-> +
-> +required:
-> +  - compatible
-> +  - regulator-name
-> +  - supply
-> +
-> +
-> +examples:
-> +  - |
-> +    mux-regulator {
-> +      compatible =3D "regulator-mux";
-> +
-> +      regulator-name =3D "blafasel";
-> +
-> +      supply =3D <&muxin_regulator>;
-> +
-> +      enable-gpios =3D <&gpio2 5 GPIO_ACTIVE_HIGH>;
-> +      address-gpios =3D <&gpio2 2 GPIO_ACTIVE_HIGH>,
-> +                        <&gpio2 3 GPIO_ACTIVE_HIGH>,
-> +                        <&gpio2 4 GPIO_ACTIVE_HIGH>,
-> +    };
-> +...
-> --
-> 2.20.1
->
