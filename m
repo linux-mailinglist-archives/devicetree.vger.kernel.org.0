@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A93796A2D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EFB596A60
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:25:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730330AbfHTUXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:23:46 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:45008 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729833AbfHTUXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:23:46 -0400
-Received: by mail-ot1-f68.google.com with SMTP id w4so6277330ote.11;
-        Tue, 20 Aug 2019 13:23:45 -0700 (PDT)
+        id S1730430AbfHTUZi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:25:38 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:40578 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730930AbfHTUZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:25:34 -0400
+Received: by mail-oi1-f194.google.com with SMTP id h21so5157888oie.7;
+        Tue, 20 Aug 2019 13:25:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=GbUoCPU7dhXf7N3yPBPfTHh406LSiW+lJWVrE8Nq7yk=;
-        b=OGAbSMzOjAbjHAbArYLwGOOBuIe1MwU/DH+/1Vbsw4e+kllSEenQzS2cZArmeVohAE
-         CU43oYPAQ6BjsZPPrI5mxNcdRN6bJT2HT00jCo72QgokrkYVLHZXX0drcM0HnFroIqPm
-         dVo7kCSPcC9nuz6R37G4BkMXvX+yZQ5ipvGeDGq/ZWgMzS0AO+kB/5L+w9pwkSGoXYVU
-         iP5f/26eR4VdKNiy+RYYC4TRb1WEGQctHFo1XNgq+lmdGHpVk6GacSHraqOmXDoJfNt/
-         8tFFTOVt+ZjLWTUuvpU78i1Pq3LUVFn6MgX6sLYfkl3UrA93+GahMO5w81QOQ7VjwPJc
-         X+eQ==
+        bh=fc34abKerT0nPG4qWNGEOV2EVuAycG0riw7i2ox9yUk=;
+        b=fBkJ88s3Sl7hR+LtD4mnyE9oZ8hFiNp+F82w7KlKpL+WVEQI7PbprE1o1IdqxF20DD
+         9ethXaUt++4J/MSknm0LfoFpFz6ohOgVu5OGErdkm7ebnwY0iiKNiVRaJd+62Xb+4wKw
+         h4Vp3dbaJzV61BQ1eyVK7tP8IPCzVBCg/kjrdfmcEj/1wM7wO6syhJFsabY1J7g8MaRY
+         ulLhBPFe68b3qtaiGHwDPtd7eAv8ofxLidTnefTEit8njByNJyC2pl5Tgxrk+YobaC9h
+         ghA9JjzIJnMpQjLai2jhM0RZK6Tt86viJDXCb4hDOEObm8oW6UpjQ5dJSW/KZ2sk+ZGA
+         gBUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=GbUoCPU7dhXf7N3yPBPfTHh406LSiW+lJWVrE8Nq7yk=;
-        b=O1d5ej9+5mPY3EIgXB5S0puhDc8d2USfVK7C4D4uH/1a0FSkntjsxpxMm9gpcvZQ/b
-         d0F3QmdbksdWBoKiR54QCVfAt2PuNvHWlO1l3HV3L8ZUNViMpljVa3ortFdZwnGHCJsF
-         GozPYtL6HUcn0bw5rUqoGEHtgykQFWHZZ4yrv52jeSrBYDuaGSkbil7xxzFs5ir+e20Y
-         SrbG+lmQ+cBfZWvk1PyCbGzlANNDEtmeKlZliqzLIh0+kgdI3x99QwV/6FHY1oRnN6dR
-         kJNzr2PtZxwHaf4SEcSlGqphCYCSyAPsbNDKCW+2ec1LpBT8FfA0a2nL9DDvwLcwYTaS
-         2rDA==
-X-Gm-Message-State: APjAAAVzQC42rZ+IsDHuqu64Esv4Cvsm3cIOtGj7r2eJE3kNNQwrzYCe
-        WUYa41Hhzn6jV/J4bjGyhwkGB6lLIy7d/bvHdHArbUkP
-X-Google-Smtp-Source: APXvYqwlEZEWByUwf102QXdWmV49xzyNpn8RmWiw+ptTx1FS1uGyVOZLkcZ3upU00U++IgKBTHK9rcUxJIz24/UHbNM=
-X-Received: by 2002:a9d:6c0e:: with SMTP id f14mr22570884otq.6.1566332625047;
- Tue, 20 Aug 2019 13:23:45 -0700 (PDT)
+        bh=fc34abKerT0nPG4qWNGEOV2EVuAycG0riw7i2ox9yUk=;
+        b=njhsjsmB3B7tN0ZZMGyAH0i5v20hQn6Zc82UNTXet0hceIZDcKNzeMHYaRt3zQ0jXl
+         ASA/H58NjgeOZxh0d/fhwiVveqzGN878FPMoENoGbgfd4K4nLnpCg2fIt/jWdP8bvdV8
+         9c86aehOWJVIMTVZo4uo+BFjpd9myMpcuI4vrzrdcHGW6fn7/5Ia4bP+KQr4DHE6pBM7
+         rZ5duUyCx29TDgZTYdB4/QhY3RveOhen1Xyrh35cW6OuqWwR59Bj29UjAGzYO8sPYR4A
+         2aNSjGiI4+Q1JW4GvUOpQjY+61+TYxhjBl2HRpl1o/Hmcr2da6nAM6stiUgsiq26Ac2V
+         xpsQ==
+X-Gm-Message-State: APjAAAWm0WkD205I/8iFpyifFm6jPyt66AJEVflfUpUBD7hfXbrzkp49
+        1B8F9QgkK8JlxUfNHRbusIHw2gJlUuK1g40dXqlWs0VG
+X-Google-Smtp-Source: APXvYqxo1sZ3HBbbN4X+uoYcquUBFmZBWM+y+N7/M8IBj5mi9mXhFK+scq1wTO0nilDocSU6lZHQGQnDlc1YSx2p0MI=
+X-Received: by 2002:aca:d650:: with SMTP id n77mr1406061oig.129.1566332732940;
+ Tue, 20 Aug 2019 13:25:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-14-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-14-narmstrong@baylibre.com>
+References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-13-narmstrong@baylibre.com>
+In-Reply-To: <20190814142918.11636-13-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:23:34 +0200
-Message-ID: <CAFBinCBPebpiKtMv3KuKRHsp3puZqAUeR0+V6d3k6gAX2ZNO5Q@mail.gmail.com>
-Subject: Re: [PATCH 13/14] arm64: dts: meson-gxbb-p201: fix snps,
- reset-delays-us format
+Date:   Tue, 20 Aug 2019 22:25:22 +0200
+Message-ID: <CAFBinCCJPm+FjMTK+-Qik4x-UtLibH3FTozHG8gMet0e5Rf9bg@mail.gmail.com>
+Subject: Re: [PATCH 12/14] arm64: dts: meson-gxbb-nanopi-k2: add missing model
 To:     Neil Armstrong <narmstrong@baylibre.com>
 Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -61,7 +60,21 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > This fixes the following DT schemas check errors:
-> meson-gxbb-p201.dt.yaml: ethernet@c9410000: snps,reset-delays-us: [[0, 10000, 1000000]] is too short
+> meson-gxbb-nanopi-k2.dt.yaml: /: 'model' is a required property
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> index c34c1c90ccb6..1a36d2bd2d21 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+> @@ -10,6 +10,7 @@
+>
+>  / {
+>         compatible = "friendlyarm,nanopi-k2", "amlogic,meson-gxbb";
+> +       model = "Nanopi K2";
+this should be "FriendlyARM NanoPi K2" to be consistent with other
+boards (for example meson-gxbb-odroidc2.dts)
