@@ -2,103 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 681C2969F1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EBA8969F3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730430AbfHTUFM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:05:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54940 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729950AbfHTUFM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 16:05:12 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A505022DD3;
-        Tue, 20 Aug 2019 20:05:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566331510;
-        bh=wPpvb7w4ZKK6Za329CALdlZ/QeVsFqPOrpteemAh5kU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pDduHfGNGtlYNON8kaipkj6CjpJTHzUl4j/Z8xrp47pWhQUJEAiq4JiwKgWXRLadR
-         /DG87Exz4v3At1yOpMtqkAnAASL7WI+QyVfW0/qZkkPO8jK06bjkJavInnGpQYCTY2
-         bxijbHo3Vt5y68ol8NpyW7FobeIhWKBpEOhxcHlo=
-Received: by mail-qk1-f169.google.com with SMTP id s145so5602209qke.7;
-        Tue, 20 Aug 2019 13:05:10 -0700 (PDT)
-X-Gm-Message-State: APjAAAXN1MnHNLEqZQJQTMw7V/qWBPT4/fWoyblMzLPDnNZHXa5nimnG
-        KaGdfMRDhOGZuRO8Nvh2rIBE2FZqI3B5BzWxOw==
-X-Google-Smtp-Source: APXvYqwpre99OTn6TP/Lj9LeoHcq3KGHlCF+SFWyD+78wdOZa/nObGtCvRvNm/ywPu1TCCL4dplsSFSV0hb534aL8dE=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr27280264qke.393.1566331509857;
- Tue, 20 Aug 2019 13:05:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <1566315318-30320-1-git-send-email-krzk@kernel.org>
- <1566315318-30320-3-git-send-email-krzk@kernel.org> <CAL_JsqJLSZ50tdFcdPFc2ifcDoFZFuw=SoKsunzjtAhZ-11fBg@mail.gmail.com>
- <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
-In-Reply-To: <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 20 Aug 2019 15:04:57 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKAH6n1sMoWOhfiHKxgREr-EN1tw0QtC1H8Fm=a7PNzOA@mail.gmail.com>
-Message-ID: <CAL_JsqKAH6n1sMoWOhfiHKxgREr-EN1tw0QtC1H8Fm=a7PNzOA@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] dt-bindings: arm: fsl: Add Kontron i.MX6UL N6310 compatibles
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
+        id S1730430AbfHTUGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:06:02 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:42808 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729833AbfHTUGC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:06:02 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1i0AOD-0007Om-8M; Tue, 20 Aug 2019 22:05:57 +0200
+Message-ID: <8c791df54a831f32fddd634e71e5e91342532535.camel@sipsolutions.net>
+Subject: Re: [PATCH 04/49] ath11k: add ahb.c
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Tue, 20 Aug 2019 22:05:55 +0200
+In-Reply-To: <1566316095-27507-5-git-send-email-kvalo@codeaurora.org> (sfid-20190820_175156_108502_D7159DB2)
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+         <1566316095-27507-5-git-send-email-kvalo@codeaurora.org>
+         (sfid-20190820_175156_108502_D7159DB2)
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 1:36 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, 20 Aug 2019 at 18:59, Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Tue, Aug 20, 2019 at 10:35 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >
-> > > Add the compatibles for Kontron i.MX6UL N6310 SoM and boards.
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > >
-> > > ---
-> > >
-> > > Changes since v5:
-> > > New patch
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > index 7294ac36f4c0..d07b3c06d7cf 100644
-> > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > @@ -161,6 +161,9 @@ properties:
-> > >          items:
-> > >            - enum:
-> > >                - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
-> > > +              - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
-> > > +              - kontron,imx6ul-n6310-s    # Kontron N6310 S Board
-> > > +              - kontron,imx6ul-n6310-s-43 # Kontron N6310 S 43 Board
-> >
-> > This doesn't match what is in your dts files. Run 'make dtbs_check' and see.
->
-> You mean the name does not match? I thought that '#' is a comment in YAML...
+On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
+> 
+> +static const struct service_to_pipe target_service_to_ce_map_wlan[] = {
+> +	{
+> +		__cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
+> +		__cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
+> +		__cpu_to_le32(3),
+> +	},
 
-No, the number of compatible strings is the problem.
+this might be nicer as C99 initializers as well? It's a struct of some
+sort, after all.
 
-> The dtbs_check fail on missing dt-mk-schema. Any reason why it is not
-> in the scripts?
+> +	{ /* must be last */
+> +		__cpu_to_le32(0),
+> +		__cpu_to_le32(0),
+> +		__cpu_to_le32(0),
+> +	},
 
-Because it is not just that script, but the whole project of scripts,
-schemas and meta-schemas. Read the instructions in
-Documentation/devicetree/writing-schema.md(.rst in next).
+You don't need endian conversion for 0, even sparse will not complain,
+but I'd argue it should anyway be something like
 
-Rob
+	{ /* terminator entry */ }
+
+since that's why it's there I guess?
+
+> +#define ATH11K_TX_RING_MASK_3 0x0
+
+You have a LOT of masks here that are 0, that seems odd?
+
+> +/* enum ext_irq_num - irq nubers that can be used by external modules
+
+typo ("numbers")
+
+> +inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
+> +{
+> +	return ioread32(ab->mem + offset);
+> +}
+> +
+> +inline void ath11k_ahb_write32(struct ath11k_base *ab, u32 offset, u32 value)
+> +{
+> +	iowrite32(value, ab->mem + offset);
+> +}
+
+Just "inline" doesn't seem to make that much sense? If it's only used
+here then I guess it should be static, otherwise not inline? Or maybe
+you want it to be inlined *in this file* but available out-of-line
+otherwise? I'm not sure that actually is guaranteed to work right in C?
+
+> +		val = ath11k_ahb_read32(ab, CE_HOST_IE_ADDRESS);
+> +		val |= BIT(ce_id);
+> +		ath11k_ahb_write32(ab, CE_HOST_IE_ADDRESS, val);
+
+You could perhaps benefit from ath11k_ahb_setbit32() or something like
+that, this repeats a few times?
+
+> +	if (__le32_to_cpu(ce_config->pipedir) & PIPEDIR_OUT) {
+> +		val = ath11k_ahb_read32(ab, CE_HOST_IE_ADDRESS);
+> +		val &= ~BIT(ce_id);
+> +		ath11k_ahb_write32(ab, CE_HOST_IE_ADDRESS, val);
+
+and clearbit32() maybe. Dunno, I saw only 3 instances of each here I
+guess, but still, feels repetitive.
+
+> +int ath11k_ahb_start(struct ath11k_base *ab)
+> +{
+> +	ath11k_ahb_ce_irqs_enable(ab);
+> +	ath11k_ce_rx_post_buf(ab);
+> +
+> +	/* Bring up other components as appropriate */
+
+Hmm. What would be appropriate? It's not really doing anything else?
+
+> +void ath11k_ahb_stop(struct ath11k_base *ab)
+> +{
+> +	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
+> +		ath11k_ahb_ce_irqs_disable(ab);
+> +	ath11k_ahb_sync_ce_irqs(ab);
+> +	ath11k_ahb_kill_tasklets(ab);
+> +	del_timer_sync(&ab->rx_replenish_retry);
+> +	ath11k_ce_cleanup_pipes(ab);
+> +	/* Shutdown other components as appropriate */
+
+likewise, it's not doing anything else?
+
+johannes
+
