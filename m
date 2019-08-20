@@ -2,109 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E4C895DD8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 13:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8444E95E12
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:05:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729712AbfHTLvp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 07:51:45 -0400
-Received: from smtp2.goneo.de ([85.220.129.33]:51996 "EHLO smtp2.goneo.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729556AbfHTLvp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 07:51:45 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by smtp2.goneo.de (Postfix) with ESMTP id 9E30123EF71;
-        Tue, 20 Aug 2019 13:51:42 +0200 (CEST)
-X-Virus-Scanned: by goneo
-X-Spam-Flag: NO
-X-Spam-Score: -3.135
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.135 tagged_above=-999 tests=[ALL_TRUSTED=-1,
-        AWL=-0.235, BAYES_00=-1.9] autolearn=ham
-Received: from smtp2.goneo.de ([127.0.0.1])
-        by localhost (smtp2.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 5wG0cnB6T3_e; Tue, 20 Aug 2019 13:51:39 +0200 (CEST)
-Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
-        by smtp2.goneo.de (Postfix) with ESMTPA id 7F18723F2CA;
-        Tue, 20 Aug 2019 13:51:39 +0200 (CEST)
-From:   Lars Poeschel <poeschel@lemonage.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "GitAuthor: Lars Poeschel" <poeschel@lemonage.de>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Cc:     Rob Herring <robh@kernel.org>, Johan Hovold <johan@kernel.org>
-Subject: [PATCH v6 2/7] nfc: pn532_uart: Add NXP PN532 to devicetree docs
-Date:   Tue, 20 Aug 2019 14:03:39 +0200
-Message-Id: <20190820120345.22593-2-poeschel@lemonage.de>
-X-Mailer: git-send-email 2.23.0.rc1
-In-Reply-To: <20190820120345.22593-1-poeschel@lemonage.de>
-References: <20190820120345.22593-1-poeschel@lemonage.de>
+        id S1728657AbfHTMFv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 08:05:51 -0400
+Received: from mail-ed1-f99.google.com ([209.85.208.99]:37564 "EHLO
+        mail-ed1-f99.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728366AbfHTMFv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:05:51 -0400
+Received: by mail-ed1-f99.google.com with SMTP id f22so6025364edt.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 05:05:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=eE6gZQF2ER9hZ6A9hgkSkDoNLmLgYWTJNw8Y60IMAz4=;
+        b=hCM5zGSOzPO+9vpRZxjlGa3/se37IB5TbndACraZTXoTttyGo0Ey4mdyoJPCH0409Y
+         srNvjs6ZvD7Y+z3BSr/psaw0EHcbLKaNhhAaN4Wv+qcC7eoQ2kwst4JY+VpIImo1F5Wu
+         /fjGHS3TshAt4+vMqyVwWq8g+aTziafN5tp0TMXzLNoTIKNao+r+BsGC3Mvd7E4SSUan
+         cdrxD4xtMNB12CxzA1VmhDCteITlao2wS2GGI3jI1M6FWeKJ/Ejv7wwkOVxwikgjZJaA
+         0mJA1mdOJlPiAta3b0J+1nhkvGKFtu96zVz0pc7Dh0laXEAEJmqZnoYw1MwRRi3bIxjs
+         r5xg==
+X-Gm-Message-State: APjAAAUaRbPpkciozIsNkCgaNaoFMrClXBMcutvO0CBBgeukPda7PQl/
+        AbdaNRj68dfQDiM/GVsl2SOALIK/GeAW3HB4AA62zZWyqnzBfiURNZVKxoLVFnvr0A==
+X-Google-Smtp-Source: APXvYqxUHm8nkJ6hG/35gl6LaLISAhEaymUX6Aha2ZOpAibGjBsVDnsokSZ84fJuax4F9OI9v4NdIcGzfzXX
+X-Received: by 2002:a50:f4c3:: with SMTP id v3mr30525317edm.115.1566302749969;
+        Tue, 20 Aug 2019 05:05:49 -0700 (PDT)
+Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
+        by smtp-relay.gmail.com with ESMTPS id n20sm97522ejr.72.2019.08.20.05.05.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Aug 2019 05:05:49 -0700 (PDT)
+X-Relaying-Domain: sirena.org.uk
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1i02tZ-00020I-GQ; Tue, 20 Aug 2019 12:05:49 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id BCED5274314C; Tue, 20 Aug 2019 13:05:47 +0100 (BST)
+Date:   Tue, 20 Aug 2019 13:05:47 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     robh+dt@kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: spi: Fix the number of CS lines documented
+ as an example
+Message-ID: <20190820120547.GA4738@sirena.co.uk>
+References: <20190820115000.32041-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="uAKRQypu60I7Lcqm"
+Content-Disposition: inline
+In-Reply-To: <20190820115000.32041-1-manivannan.sadhasivam@linaro.org>
+X-Cookie: It's the thought, if any, that counts!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a simple binding doc for the pn532.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>
-Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
----
-Changes in v6:
-- Rebased the patch series on v5.3-rc5
-- Picked up Rob's Reviewed-By
+--uAKRQypu60I7Lcqm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Changes in v4:
-- Add documentation about reg property in case of i2c
+On Tue, Aug 20, 2019 at 05:20:00PM +0530, Manivannan Sadhasivam wrote:
+> The number of CS lines is mentioned as 2 in the spi-controller binding
+> but however in the example, 4 cs-gpios are used. Hence fix that to
+> mention 4.
 
-Changes in v3:
-- seperate binding doc instead of entry in trivial-devices.txt
+Please use subject lines matching the style for the subsystem.  This
+makes it easier for people to identify relevant patches.
 
- .../devicetree/bindings/nfc/pn532.txt         | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nfc/pn532.txt
+--uAKRQypu60I7Lcqm
+Content-Type: application/pgp-signature; name="signature.asc"
 
-diff --git a/Documentation/devicetree/bindings/nfc/pn532.txt b/Documentation/devicetree/bindings/nfc/pn532.txt
-new file mode 100644
-index 000000000000..d5aaa588073d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nfc/pn532.txt
-@@ -0,0 +1,33 @@
-+NXP PN532 NFC Chip
-+
-+Required properties:
-+- compatible: Should be
-+    - "nxp,pn532" Place a node with this inside the devicetree node of the bus
-+                  where the NFC chip is connected to.
-+                  Currently the kernel has phy bindings for uart and i2c.
-+    - "nxp,pn532-i2c" (DEPRECATED) only works for the i2c binding.
-+    - "nxp,pn533-i2c" (DEPRECATED) only works for the i2c binding.
-+
-+Required properties if connected on i2c:
-+- reg: for the i2c bus address. This is fixed at 0x48 for the PN532.
-+
-+Example uart:
-+
-+uart4: serial@49042000 {
-+        compatible = "ti,omap3-uart";
-+
-+        pn532: nfc {
-+                compatible = "nxp,pn532";
-+        };
-+};
-+
-+Example i2c:
-+
-+i2c1: i2c@0 {
-+        compatible = "ti,omap3-i2c";
-+
-+        pn532: nfc {
-+                compatible = "nxp,pn532";
-+                reg = <0x48>;
-+        };
-+};
--- 
-2.23.0.rc1
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1b4hgACgkQJNaLcl1U
+h9CaTAf+NDDtCxFNPDyqiudCbpGsmAOBaem3UqwpTZRbK9vy7b0ePoD9WJKWG+2O
+1VxpcQp243Ardj1r8k9gZPYeWpolHmFen00GoakMDJiP7HLfjUIj/qReHkvbY23k
+6f0+DWwWlW6dNYOTzunzeqihVNB8Ca+IRADgp6S89o9fMD/2KbIAsNrSKOJwuhAG
+qtELaiaIKSFFbibjD1kLAjhcvcSZ6kYeF6sA6dNXvgvH9VgAuoWxcJTR092lPPDd
+3f1T/MKZQyo3yal/0WJ9O5rKdUe7HAinhnc8ptUm11hvog21k+sWQkMFgELcJ3Ci
+tVI+DaUHu+fv61YcaPMmvHPb8hITEA==
+=qfh+
+-----END PGP SIGNATURE-----
+
+--uAKRQypu60I7Lcqm--
