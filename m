@@ -2,129 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8EC49659F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28D07965A8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:56:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730026AbfHTPy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:54:56 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:45625 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727246AbfHTPy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:54:56 -0400
-Received: by mail-pg1-f195.google.com with SMTP id o13so3475845pgp.12;
-        Tue, 20 Aug 2019 08:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oKRxdUPEqx182AGsFYC1FZNnJTIkLhG2zitRB8VXskY=;
-        b=EF96vaXIKSJqXkEQ+iKjKVxtUoKoMAu+x4HM+r2PftVEkhJ0IX1sPAboufpFgvzhvZ
-         Lx+vxJ3MlNqgsYplkTfIzRKqr0YW321a3A0bPHWCbwPxhqjZ14R6LD2Dlgg3FZ2J9C+G
-         45dyKwseoRQuhJZQSMtqwyCqJJYy7LzKCPsci7rrVprv5SaUNrQ+UXGwHFAFXU0kccLM
-         mOX2CuMyDgvMoOrd6bEvJ6U+leMuAbd4VHTc7rXLqx9xa8TmMuH64nxeg8BBtUVO/DIt
-         xd+ghgEDijtJYXvCeTA87FYY9I6VjXFELZ1fVrRib1vmJB9IiNbpemnww78rxMPJThMm
-         vY8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oKRxdUPEqx182AGsFYC1FZNnJTIkLhG2zitRB8VXskY=;
-        b=ne+8HeDHYZ+CSU7LnCHCCux8xXEoZR2Ywe37jz9SSSoxRq+hLNLV8VqkDNEKMjM3Rr
-         zBii428wRoDIoGrb8GUDGIG1fkKdr1op0zKUcMLGCRxcPIyQu4GhuI2890uHUKYo4q+n
-         h5oEs/JMZxOLzV7OOslJsunysI3hvvNgQ8K9xtZNEROuLydKywNtRvZulOfh1OW9VbHv
-         QIQjRZxRtUGTjjjEe2P9GtQjJ6yVYk//TE+TP+CsT+Nngd3CoAZUlo+1RAZ0bCIJZmyD
-         HMsTYqMSPBGb68782OF8oYG+LQ3s0Urv+Qpc00MKy1XRKslcunJAOnaqTGhoCN/qlcpa
-         pfQg==
-X-Gm-Message-State: APjAAAUmt9xVooL6q6eXvz9w1aOSpl4rK2vB8zfYC7vjQzCzQeZoFNzC
-        u/bqmLLNUQd1EGlNWWNVfcQ=
-X-Google-Smtp-Source: APXvYqwT6p/B3nVNF9dkl92avzPLIXO+NgzJ9fT0X+D8I222afrN3om41gfv7AR8PrYHKtWYHCgUwQ==
-X-Received: by 2002:a63:31c1:: with SMTP id x184mr26182258pgx.128.1566316495255;
-        Tue, 20 Aug 2019 08:54:55 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id e7sm21147062pfn.72.2019.08.20.08.54.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Aug 2019 08:54:54 -0700 (PDT)
-Subject: Re: [PATCH v2 1/6] dt-bindings: watchdog: Add YAML schemas for the
- generic watchdog bindings
-To:     Maxime Ripard <mripard@kernel.org>, wim@linux-watchdog.org
-Cc:     linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1729933AbfHTP4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 11:56:51 -0400
+Received: from vps.xff.cz ([195.181.215.36]:34466 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729888AbfHTP4v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 11:56:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566316609; bh=bzutuiNbq00ksO2iXVNczWC4eQDfbf7nWDBun27IPTA=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=QvkxWzpkR3zBxqvUP9rNQO6X8E5gVtIfMMfz2ijXAbFX3kIjf/mrTpR7rh+3CdgeI
+         oe+sdUivzOqXUPUin5nznYyGKPIRvPsJcUzSPOWRPWzbZBQT0sOgVdZ0jnizQrrEHz
+         y/R5S8RhcZBWM/ByYYZn9tfxpzmBzeUBwErXr224=
+Date:   Tue, 20 Aug 2019 17:56:48 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-References: <20190819182039.24892-1-mripard@kernel.org>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <ada53037-898f-7b8c-8a96-b80414563fa7@roeck-us.net>
-Date:   Tue, 20 Aug 2019 08:54:53 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/6] net: stmmac: sun8i: Use devm_regulator_get for PHY
+ regulator
+Message-ID: <20190820155648.hjr5mlmsc6krecby@core.my.home>
+Mail-Followup-To: Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20190820145343.29108-1-megous@megous.com>
+ <20190820145343.29108-4-megous@megous.com>
+ <20190820153939.GL29991@lunn.ch>
 MIME-Version: 1.0
-In-Reply-To: <20190819182039.24892-1-mripard@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820153939.GL29991@lunn.ch>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/19/19 11:20 AM, Maxime Ripard wrote:
-> From: Maxime Ripard <maxime.ripard@bootlin.com>
+On Tue, Aug 20, 2019 at 05:39:39PM +0200, Andrew Lunn wrote:
+> On Tue, Aug 20, 2019 at 04:53:40PM +0200, megous@megous.com wrote:
+> > From: Ondrej Jirman <megous@megous.com>
+> > 
+> > Use devm_regulator_get instead of devm_regulator_get_optional and rely
+> > on dummy supply. This avoids NULL checks before regulator_enable/disable
+> > calls.
 > 
-> The watchdogs have a bunch of generic properties that are needed in a
-> device tree. Add a YAML schemas for those.
+> Hi Ondrej
 > 
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> What do you mean by a dummy supply? I'm just trying to make sure you
+> are not breaking backwards compatibility.
 
-What is the target subsystem for this series ? You didn't copy the watchdog
-mailing list, so I assume it won't be the watchdog subsystem.
+I have tested it on Orange Pi PC 2, that uses only phy-supply, but not
+phy-io-supply, and the kernel now prints:
 
-Thanks,
-Guenter
+[    1.410137] dwmac-sun8i 1c30000.ethernet: 1c30000.ethernet supply phy-io not found, using dummy regulator
 
-> 
-> ---
-> 
-> Changes from v1:
->    - New patch
-> ---
->   .../bindings/watchdog/watchdog.yaml           | 26 +++++++++++++++++++
->   1 file changed, 26 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> new file mode 100644
-> index 000000000000..187bf6cb62bf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
-> @@ -0,0 +1,26 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/watchdog/watchdog.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Watchdog Generic Bindings
-> +
-> +maintainers:
-> +  - Guenter Roeck <linux@roeck-us.net>
-> +  - Wim Van Sebroeck <wim@linux-watchdog.org>
-> +
-> +description: |
-> +  This document describes generic bindings which can be used to
-> +  describe watchdog devices in a device tree.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^watchdog(@.*|-[0-9a-f])?$"
-> +
-> +  timeout-sec:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Contains the watchdog timeout in seconds.
-> +
-> +...
-> 
+I have also tested it on Orange Pi PC, that doesn't use external phy, and
+instead of:
 
+[    1.081378] dwmac-sun8i 1c30000.ethernet: No regulator found
+
+The kernel now prints:
+
+[    1.112752] dwmac-sun8i 1c30000.ethernet: 1c30000.ethernet supply phy not found, using dummy regulator
+[    1.112814] dwmac-sun8i 1c30000.ethernet: 1c30000.ethernet supply phy-io not found, using dummy regulator
+
+Ethernet works in both cases, so that should cover all existing combinations. :)
+
+regards,
+	Ondrej
+
+
+>      Thanks
+> 	Andrew
