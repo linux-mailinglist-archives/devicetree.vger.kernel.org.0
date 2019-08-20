@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6AD96A8F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:30:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47FB596AA7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730931AbfHTUaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:30:04 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41122 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730930AbfHTUaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:30:03 -0400
-Received: by mail-ot1-f68.google.com with SMTP id o101so6302785ota.8;
-        Tue, 20 Aug 2019 13:30:03 -0700 (PDT)
+        id S1730863AbfHTUcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:32:32 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:37066 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730515AbfHTUcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:32:32 -0400
+Received: by mail-ot1-f67.google.com with SMTP id f17so6318033otq.4;
+        Tue, 20 Aug 2019 13:32:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=nrGQupHWTyriQoaaHMHBYejqwnStP0bo0yYGdWFV+8Y=;
-        b=edBJe8t3FW/Ho/MATx/w0v1bez6U7GmZnIcPcVp9+mW+Tzq86GVrTaSENPffngf6jb
-         9HDiD6txhBfdHAwt9VN0/XwirDey+5QP5tCWAo0j22c8TCaK8ttiyoDOVwlfjqt3M6wC
-         LidmZUfjey5NtpxfZMBvlYjPH1tg+pxIMZLqXYJN3oqfPNi+Br5wpSgSlFJku/EJRDyF
-         Wm+T2nacUB3igFUJUGJofvMR9uRHxPDFIdJrruUoNx8Ot71WCS0egiKRP/AwV1J9tDUJ
-         QJejL3RBsONA5pWHr72npq2v7Al90GangRz5kCzdwW5hW7auR8JgA9j8G/2CtdYn3coQ
-         2ncA==
+        bh=w4HEgBYUNMjs7TCGrEWBfpxm+fwdeijgHXxiJ5I4qeg=;
+        b=n+cxQw3r9VdoH9z0HdR0eilm17osw9+QEpFNwmZyyZFQyLtKBjk5ogmKv1iVsFoxFs
+         UXgLHSU19Xa67oICY4zD7N27i4et6wEO1NrslqYR9VlQ4oq6UFjPSsAWTMUkrCNGjnD/
+         0xQYZXJvbb3wgElE6Cb2YXgKtRwBnOX9gLFFEBu2t0ePNg8ysube6AjuGP3wTjq8RPyA
+         vUj5AvC4fySAKFJ0gJXAXdZN69OkaMqoj7TAZpVRHsT9/e37iXrJ7NggT1ZknqeYmDUk
+         vaIAe4lJcC1bISZQCqGRRH8putI5R60egJIKazx3OjZpsCCgEBBGfwI2YtXcD4JJ6fVd
+         UaDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=nrGQupHWTyriQoaaHMHBYejqwnStP0bo0yYGdWFV+8Y=;
-        b=sCAq3HBcTZ1AWUUALuop4OqMbErHb4qYkUdaGkROIF5gl+o9DuPwodwMz5Scwq14im
-         nSkGcODCfeI/QcsiJXcEcgqOC3YFbOVa+1+1G7ffhPi/4G7j+Hs0Bp+bni4qvTiIdsjQ
-         ev2t03EEKdZnGrbeyA6JPgU70djmm6ftljE8eeOJN1EUaAhC/dZ96NlLG6DLmkixJnFa
-         m50Ftxs1qjSMFU8+CasoNrSw9RhvBdVJ56Souapccsgo+qHgQ4imKY+xwlx0/RnhbFk+
-         WkrpbZnOn63GF93U8J0lqpBcMig07AbKtb1bR8wk1aYd7s8yS2huFL1hqgLVEJsbyqTk
-         7VTw==
-X-Gm-Message-State: APjAAAWVHvxUM40xnPOWAfn5To39dD/vWnIp6BXI9ToTrHLMC3/yh98W
-        Kqp4WApmp+BxRjHBzRGu+XwhSyRbsvxA2LxNOeQ=
-X-Google-Smtp-Source: APXvYqy1Lo7z783U1wJS86qYzKMOflQXpO+kzDeScKysRwtKbWufBka5KHmUWv08D7nxtFGp2IQwNA1COCLc+oBL5gY=
-X-Received: by 2002:a9d:604a:: with SMTP id v10mr23610019otj.274.1566333002946;
- Tue, 20 Aug 2019 13:30:02 -0700 (PDT)
+        bh=w4HEgBYUNMjs7TCGrEWBfpxm+fwdeijgHXxiJ5I4qeg=;
+        b=ukSx25PHkQtmuCDuzRa686xoxHEtDWGD5FmsUXDKsN3rMbHokqlVWiq+T0w32eGVYb
+         XhySEjGUAd+fyT1QW97Mv7J8+EyK7hSfq+K6imbgE1CaSPVCbTs3NBKSk4RvSXzPZkpH
+         sRFHJRpv9Kg6t6L5sVtSq7Fl6PSPG90IsnCDz1+CHoU68bp3a81S6EXc9kMSmzmoD2Nd
+         UFBK04AoVi3E0Utx7m1jOAI6G4Bc3npUdDRsMJqsB2DTQ7yy1Sej1JexHTjwwpv+kYft
+         OCSw2zzj6KtVooWeicKO1sTa1psddjBbz0Ciq9u3R63Q+8pchShWqVWadsLjZvA7hIMc
+         6kqw==
+X-Gm-Message-State: APjAAAX2YR0N17Cy4VrSyIuXeqql2EUNQERygozNE7NpSCGnFI/u/uQt
+        LwSzQVHawMLcRqJufCVoP/2ipopmYf0h2KOW+vQ=
+X-Google-Smtp-Source: APXvYqxlvVNpQ+FUnoPDePRzlt/lxOoZg375AfFU3rjHLbAwedqV9QU2sqj3xfsgHWhpAmkjk6c5OkDmuYet9+FYRHE=
+X-Received: by 2002:a05:6830:1e5a:: with SMTP id e26mr17408901otj.96.1566333151468;
+ Tue, 20 Aug 2019 13:32:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-5-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-5-narmstrong@baylibre.com>
+References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-12-narmstrong@baylibre.com>
+In-Reply-To: <20190814142918.11636-12-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:29:51 +0200
-Message-ID: <CAFBinCA73WmyzmwY8uooMFdRCP4iGGZjaHjTU4q_6oNnZrkWqQ@mail.gmail.com>
-Subject: Re: [PATCH 04/14] arm64: dts: meson-gx: fix spifc compatible
+Date:   Tue, 20 Aug 2019 22:32:20 +0200
+Message-ID: <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
+Subject: Re: [PATCH 11/14] arm64: dts: meson-g12a-x96-max: fix compatible
 To:     Neil Armstrong <narmstrong@baylibre.com>
 Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
@@ -57,10 +57,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 4:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > This fixes the following DT schemas check errors:
-> meson-gxl-s805x-libretech-ac.dt.yaml: spi@8c80: compatible:0: 'amlogic,meson-gx-spifc' is not one of ['amlogic,meson6-spifc', 'amlogic,meson-gxbb-spifc']
+> meson-g12a-x96-max.dt.yaml: /: compatible: ['amediatech,x96-max', 'amlogic,u200', 'amlogic,g12a'] is not valid under any of the given schemas
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+
+[...]
+> -       compatible = "amediatech,x96-max", "amlogic,u200", "amlogic,g12a";
+> +       compatible = "amediatech,x96-max", "amlogic,g12a";
+only partially related: I wonder if we should add a s905x2 compatible
+string here and to the .dts filename (just like we separate the GXL
+variants s905x, s905d, s905w, ...)
