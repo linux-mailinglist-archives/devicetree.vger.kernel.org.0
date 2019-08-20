@@ -2,135 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC2E996AD8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DB696AE5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729887AbfHTUqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:46:45 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:43796 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729156AbfHTUqp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:46:45 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1i0B1b-0008Pt-4r; Tue, 20 Aug 2019 22:46:39 +0200
-Message-ID: <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
-Date:   Tue, 20 Aug 2019 22:46:37 +0200
-In-Reply-To: <1566316095-27507-32-git-send-email-kvalo@codeaurora.org> (sfid-20190820_181539_894705_E3B317D0)
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-         <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
-         (sfid-20190820_181539_894705_E3B317D0)
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S1729887AbfHTUur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:50:47 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34176 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729833AbfHTUuq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:50:46 -0400
+Received: by mail-ot1-f65.google.com with SMTP id c7so15527otp.1;
+        Tue, 20 Aug 2019 13:50:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=eLoUGZm6D8m9/EJ/SkCyN6iwOIcb5VgQEWDNQI8zDKE=;
+        b=fZ5enmOvP91Ks5N45qztcaExa/OV3qFg5xEjg1ZNEW9/SAUcW2OdgW1NzE0JOTyDDr
+         Xe63+mza8LUupQ9448hVAGa4IUhoO2mHt66crid/XPUDcqLLW3+H0nlnHs+hew7J8D9W
+         jqXIrbCu3ILavDy0DT4b/SYuvF0hUSkDOhCJTPYwMsmKJtfHDF8oc5txPbcC6QIRvcpS
+         LgEdpKc6NZOy8mQv+0CJN8+zBDWSjza6i00ksagzMSbR+U7gi1jGgKewPd6U6AFfZ0x4
+         3VhafMY3Vsfb0EjHLYSj4zGHDBNfwrDaeYqrSZxsqarNaenwd43UvF9jBOJ2t1pbifO9
+         5NOw==
+X-Gm-Message-State: APjAAAUOUv9WnPr4Msg0ncDLQZ/HGVFaSsQNDTu8AAR7+4IQJ9OjF7NE
+        tGRn5eCBAY+1BLKszXgo2kwVKLk=
+X-Google-Smtp-Source: APXvYqxtgnb5L4TBNkOwQTLKE63x8Ly0s6rJRJ76zgwVqBO3fZBKGhbNwbaaDrxl5C/q/AFZvQhQhA==
+X-Received: by 2002:a05:6830:15cc:: with SMTP id j12mr23049070otr.64.1566334245580;
+        Tue, 20 Aug 2019 13:50:45 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s24sm7220113otd.81.2019.08.20.13.50.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Aug 2019 13:50:44 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 15:50:44 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>, od@zcrc.me,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: Document JZ47xx VPU auxiliary
+ processor
+Message-ID: <20190820205044.GA1223@bogus>
+References: <20190729183109.18283-1-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190729183109.18283-1-paul@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
-
-> +static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
-> +{
-> +	struct ath11k *ar = hw->priv;
-> +	int ret = 0;
-> +
-> +	/* mac80211 requires this op to be present and that's why
-> +	 * there's an empty function, this can be extended when
-> +	 * required.
-> +	 */
-
-Well, oops. Maybe it shouldn't be required?
-
-> +	mutex_lock(&ar->conf_mutex);
-> +
-> +	/* TODO: Handle configuration changes as appropriate */
-> +
-> +	mutex_unlock(&ar->conf_mutex);
-
-It's not actually empty though - why bother locking the mutex for
-nothing?
-
-> +	if (sta->mfp) {
-> +		/* TODO: Need to check if FW supports PMF? */
-
-Probably not? shouldn't get a sta with MFP unless you advertised support
-for it. At least I'd think so, and consider it a mac80211 bug if you
-still did.
-
-> +	/* This is a workaround for HT-enabled STAs which break the spec
-> +	 * and have no HT capabilities RX mask (no HT RX MCS map).
-> +	 *
-> +	 * As per spec, in section 20.3.5 Modulation and coding scheme (MCS),
-> +	 * MCS 0 through 7 are mandatory in 20MHz with 800 ns GI at all STAs.
-
-Wouldn't that better be in mac80211?
-
-> +	ampdu_factor = (vht_cap->cap &
-> +			IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_MASK) >>
-> +		       IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_SHIFT;
-
-consider u32_get_bits() or something like that from bitfield.h
-
-> +	/* Workaround: Some Netgear/Linksys 11ac APs set Rx A-MPDU factor to
-> +	 * zero in VHT IE. Using it would result in degraded throughput.
-> +	 * arg->peer_max_mpdu at this point contains HT max_mpdu so keep
-> +	 * it if VHT max_mpdu is smaller.
-> +	 */
-> +	arg->peer_max_mpdu = max(arg->peer_max_mpdu,
-> +				 (1U << (IEEE80211_HT_MAX_AMPDU_FACTOR +
-> +					ampdu_factor)) - 1);
-
-Wait, that seems familiar. Again, put it into mac80211?
-
-> +static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
-> +				     struct peer_assoc_params *arg)
-> +{
-> +	const struct ieee80211_sta_ht_cap *ht_cap = &sta->ht_cap;
-> +	int smps;
-> +
-> +	if (!ht_cap->ht_supported)
-> +		return;
-> +
-> +	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
-> +	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
-
-also here, u*_get_bits() or something might be nicer
-
-(and yes, I've written tons of code like this myself before that
-existed, which is why I'm pointing it out - it's much nicer)
-
-> +void ath11k_mac_drain_tx(struct ath11k *ar)
-> +{
-> +	/* make sure rcu-protected mac80211 tx path itself is drained */
-> +	synchronize_net();
-
-Doesn't mac80211 ensure that in the relevant places like flush()? But
-then again, not sure where you call this.
-
-> +	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac set fixed rate params vdev %i rate 0x%02hhx nss %hhu sgi %hhu\n",
-> +		   arvif->vdev_id, rate, nss, sgi);
-
-nit: that could use a line-break
-
-> +	vdev_param = WMI_VDEV_PARAM_FIXED_RATE;
-> +	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
-> +					    vdev_param, rate);
-> +	if (ret) {
-> +		ath11k_warn(ar->ab, "failed to set fixed rate param 0x%02x: %d\n",
+On Mon, Jul 29, 2019 at 02:31:07PM -0400, Paul Cercueil wrote:
+> Inside the Video Processing Unit (VPU) of the recent JZ47xx SoCs from
+> Ingenic is a second Xburst MIPS CPU very similar to the main core.
+> This document describes the devicetree bindings for this auxiliary
+> processor.
 > 
-> +	/* TODO: Check if HT capability advertised from firmware is different
-> +	 * for each band for a dual band capable radio. It will be tricky to
-> +	 * handle it when the ht capability different for each band.
-> +	 */
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+> 
+> Notes:
+>     v2: Update TCSM0 address in example
+> 
+>  .../bindings/remoteproc/ingenic,vpu.txt       | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/ingenic,vpu.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.txt b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.txt
+> new file mode 100644
+> index 000000000000..576f9e582780
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/ingenic,vpu.txt
+> @@ -0,0 +1,36 @@
+> +* Ingenic JZ47xx auxiliary processor
+> +
+> +Inside the Video Processing Unit (VPU) of the recent JZ47xx SoCs from Ingenic
+> +is a second Xburst MIPS CPU very similar to the main core.
+> +This document describes the devicetree bindings for this auxiliary processor.
+> +
+> +Required properties:
+> +- compatible: Should be "ingenic,jz4770-vpu-rproc"
+> +- reg: Must contain the registers location and length for:
+> +  * the auxiliary processor,
+> +  * the Tightly Coupled Shared Memory 0 (TCSM0),
+> +  * the Tightly Coupled Shared Memory 1 (TCSM1),
+> +  * the shared SRAM.
+> +- reg-names: Must contain "aux", "tcsm0", "tcsm1", "sram".
+> +- clocks: Clock specifier for the AUX and VPU clocks.
+> +- clock-names: Must contain "aux", "vpu".
+> +- interrupts: Interrupt specifier for the VPU hardware block.
+> +
+> +Example:
+> +
+> +vpu: cpu@132a0000 {
 
-For each band shouldn't really be that tricky?
+cpu is reserved for CPUs under /cpus/. Use video-codec or video-decoder 
+or ?? It's not clear what type of video processing this does.
 
-johannes
-
+> +	compatible = "ingenic,jz4770-vpu-rproc";
+> +
+> +	reg = <0x132a0000 0x20 /* AUX */
+> +		   0x132b0000 0x4000 /* TCSM0 */
+> +		   0x132c0000 0xc000 /* TCSM1 */
+> +		   0x132f0000 0x7000 /* SRAM */
+> +	>;
+> +	reg-names = "aux", "tcsm0", "tcsm1", "sram";
+> +
+> +	clocks = <&cgu JZ4770_CLK_AUX>, <&cgu JZ4770_CLK_VPU>;
+> +	clock-names = "aux", "vpu";
+> +
+> +	interrupt-parent = <&cpuintc>;
+> +	interrupts = <3>;
+> +};
+> -- 
+> 2.21.0.593.g511ec345e18
+> 
