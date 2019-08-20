@@ -2,93 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 589B696679
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 526CC96694
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730063AbfHTQef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 12:34:35 -0400
-Received: from vps.xff.cz ([195.181.215.36]:35884 "EHLO vps.xff.cz"
+        id S1730433AbfHTQiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 12:38:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57822 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729888AbfHTQef (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 12:34:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566318873; bh=3EWCt3iq/B/vjAGtGo7IXhuRxxDcIZbWkjIAdRe7UbM=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=py9/BlWS5YpsBC+Ob1OADS/v6gNrFJh+2R35taWE4l0I08LKPhR6sIH0qcyRfrwtM
-         D+LAbXmPoRgIIHlVbnEhG9sWzKZjHzCiCDJvoT0n1SFpumVjMj9nJcsicSkkJYd2KT
-         z9lPeAk6WE7kRV2NWjKB/Q62TU5tZqBALJK8kweQ=
-Date:   Tue, 20 Aug 2019 18:34:33 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
+        id S1725983AbfHTQip (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 12:38:45 -0400
+Received: from localhost (unknown [106.201.62.126])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BF1BD214DA;
+        Tue, 20 Aug 2019 16:38:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566319124;
+        bh=6FYRS/A1SglxEqTNiCzN/bAF4NCGfJyUGVqo/rmqsTY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=rU6LK+CgwJBjiBIqmo831Zzigy347iRqQ9FxvGZEGMOMnym65QRqUQkJ91HgmVhga
+         h/9qIpDuFuLjhSSUnAYOwQr7G86qdFxBaAoCPFINGF2bA1QDsNeUY7Ms2w8kBA/BwJ
+         6k/ar9RSJ9hM+ovIFUzEGCwmH+mq71vVk2Qg0IZk=
+Date:   Tue, 20 Aug 2019 22:07:32 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Amit Kucheria <amit.kucheria@verdurent.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/6] dt-bindings: net: sun8i-a83t-emac: Add phy-io-supply
- property
-Message-ID: <20190820163433.sr4lvjxmmhjtbtcb@core.my.home>
-Mail-Followup-To: Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20190820145343.29108-1-megous@megous.com>
- <20190820145343.29108-3-megous@megous.com>
- <CAL_JsqLHeA6A_+ZgmCzC42Y6yJrEq6+D3vKn8ETh2D7LJ+1_-g@mail.gmail.com>
+        Stephen Boyd <sboyd@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/8] arm64: dts: qcom: sm8150: add base dts file
+Message-ID: <20190820163732.GF12733@vkoul-mobl.Dlink>
+References: <20190820064216.8629-1-vkoul@kernel.org>
+ <20190820064216.8629-2-vkoul@kernel.org>
+ <CAHLCerOBbaOuPf+WfsG8gKzAxs+9kTMbW7k4MAkmciwyWyeQww@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqLHeA6A_+ZgmCzC42Y6yJrEq6+D3vKn8ETh2D7LJ+1_-g@mail.gmail.com>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+In-Reply-To: <CAHLCerOBbaOuPf+WfsG8gKzAxs+9kTMbW7k4MAkmciwyWyeQww@mail.gmail.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 11:20:22AM -0500, Rob Herring wrote:
-> On Tue, Aug 20, 2019 at 9:53 AM <megous@megous.com> wrote:
+On 20-08-19, 19:03, Amit Kucheria wrote:
+> On Tue, Aug 20, 2019 at 12:14 PM Vinod Koul <vkoul@kernel.org> wrote:
 > >
-> > From: Ondrej Jirman <megous@megous.com>
+> > This add base DTS file with cpu, psci, firmware, clock, tlmm and
+> > spmi nodes which enables boot to console
 > >
-> > Some PHYs require separate power supply for I/O pins in some modes
-> > of operation. Add phy-io-supply property, to allow enabling this
-> > power supply.
-> 
-> Perhaps since this is new, such phys should have *-supply in their nodes.
-
-Yes, I just don't understand, since external ethernet phys are so common,
-and they require power, how there's no fairly generic mechanism for this
-already in the PHY subsystem, or somewhere?
-
-It looks like other ethernet mac drivers also implement supplies on phys
-on the EMAC nodes. Just grep phy-supply through dt-bindings/net.
-
-Historical reasons, or am I missing something? It almost seems like I must
-be missing something, since putting these properties to phy nodes
-seems so obvious.
-
-thank you and regards,
-	Ondrej
-
-> >
-> > Signed-off-by: Ondrej Jirman <megous@megous.com>
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > > ---
-> >  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 4 ++++
-> >  1 file changed, 4 insertions(+)
+> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 305 +++++++++++++++++++++++++++
+> >  1 file changed, 305 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > new file mode 100644
+> > index 000000000000..d9dc95f851b7
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> > @@ -0,0 +1,305 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> 
+> This is fine.
+> 
+> > +// Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+> > +// Copyright (c) 2019, Linaro Limited
+> 
+> These two lines should be in /* */
+
+Yeah I made it same as previous, lets do right style.
+
+> > +       timer {
+> > +               compatible = "arm,armv8-timer";
+> > +               interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
+> > +                            <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
+> > +                            <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
+> > +                            <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
+> 
+> Any particular reason why these are defined in this order - 1, 2, 3, 0?
+
+Copied from downstream :)
+
+-- 
+~Vinod
