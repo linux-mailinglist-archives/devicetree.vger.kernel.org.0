@@ -2,177 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A17CA95D43
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 13:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98F5B95D60
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 13:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729826AbfHTLYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 07:24:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40970 "EHLO mail.kernel.org"
+        id S1729693AbfHTLcE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 07:32:04 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55446 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729814AbfHTLYx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 07:24:53 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A965622DCB;
-        Tue, 20 Aug 2019 11:24:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566300292;
-        bh=eJ2fT9qPT1MZojyE8YRJ+MPqTXCenhQSEjXtDahZR6w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Al2hFWOsVE/DLSsKD7oyn290PEDDUyej1ASyjM7kRdDzkeMmQWR5xFPB5RAqm/hjS
-         9DGZQ2OrxT+Gz6B9jnjkWLj0hmf9Cxkt8/0dHKUhZA5FAXyOxjixlzBcuBMxszTfu9
-         TpRKTgVK2RxCYX5594c5JHUXe03oaQ70S3VSdfno=
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: [PATCH v7 5/5] DO NOT MERGE: ARM: dts: bananapi: Add Camera support
-Date:   Tue, 20 Aug 2019 13:24:36 +0200
-Message-Id: <44a0d31330ea355b44e744f9b63cc96ae645e8db.1566300265.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.b695c63cf668192aff5574a3005d483c601e77f6.1566300265.git-series.maxime.ripard@bootlin.com>
-References: <cover.b695c63cf668192aff5574a3005d483c601e77f6.1566300265.git-series.maxime.ripard@bootlin.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729428AbfHTLcE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 07:32:04 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1D0F81A0186;
+        Tue, 20 Aug 2019 13:32:03 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CE7CC1A0040;
+        Tue, 20 Aug 2019 13:31:57 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5BBDA40314;
+        Tue, 20 Aug 2019 19:31:51 +0800 (SGT)
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     linux-clk@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, sboyd@kernel.org,
+        mturquette@baylibre.com, shawnguo@kernel.org,
+        fabio.estevam@nxp.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH V4 01/11] dt-bindings: firmware: imx-scu: new binding to parse clocks from device tree
+Date:   Tue, 20 Aug 2019 07:13:15 -0400
+Message-Id: <1566299605-15641-2-git-send-email-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1566299605-15641-1-git-send-email-aisheng.dong@nxp.com>
+References: <1566299605-15641-1-git-send-email-aisheng.dong@nxp.com>
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maxime Ripard <maxime.ripard@bootlin.com>
+There's a few limitations on the original one cell clock binding
+(#clock-cells = <1>) that we have to define some SW clock IDs for device
+tree to reference. This may cause troubles if we want to use common
+clock IDs for multi platforms support when the clock of those platforms
+are mostly the same.
+e.g. Current clock IDs name are defined with SS prefix.
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+However the device may reside in different SS across CPUs, that means the
+SS prefix may not valid anymore for a new SoC. Furthermore, the device
+availability of those clocks may also vary a bit.
+
+For such situation, we want to eliminate the using of SW Clock IDs and
+change to use a more close to HW one instead.
+For SCU clocks usage, only two params required: Resource id + Clock Type.
+Both parameters are platform independent. So we could use two cells binding
+to pass those parameters,
+
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <kernel@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
 ---
- arch/arm/boot/dts/sun7i-a20-bananapi.dts | 87 +++++++++++++++++++++++++-
- 1 file changed, 87 insertions(+)
+ChangeLog:
+v3->v4:
+ * add some comments for various clock types
+v2->v3:
+ * Changed to two cells binding and register all clocks in driver
+   instead of parse from device tree.
+v1->v2:
+ * changed to one cell binding inspired by arm,scpi.txt
+   Documentation/devicetree/bindings/arm/arm,scpi.txt
+   Resource ID is encoded in 'reg' property.
+   Clock type is encoded in generic clock-indices property.
+   Then we don't have to search all the DT nodes to fetch
+   those two value to construct clocks which is relatively
+   low efficiency.
+ * Add required power-domain property as well.
+---
+ .../devicetree/bindings/arm/freescale/fsl,scu.txt  | 12 ++++++-----
+ include/dt-bindings/firmware/imx/rsrc.h            | 23 ++++++++++++++++++++++
+ 2 files changed, 30 insertions(+), 5 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-bananapi.dts b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
-index c5730b30a15d..d3f23ce041b2 100644
---- a/arch/arm/boot/dts/sun7i-a20-bananapi.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
-@@ -54,6 +54,9 @@
- 	compatible = "lemaker,bananapi", "allwinner,sun7i-a20";
+diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+index a575e42..8cee5bf 100644
+--- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
++++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+@@ -89,7 +89,10 @@ Required properties:
+ 			  "fsl,imx8qm-clock"
+ 			  "fsl,imx8qxp-clock"
+ 			followed by "fsl,scu-clk"
+-- #clock-cells:		Should be 1. Contains the Clock ID value.
++- #clock-cells:		Should be either
++			2: Contains the Resource and Clock ID value.
++			or
++			1: Contains the Clock ID value. (DEPRECATED)
+ - clocks:		List of clock specifiers, must contain an entry for
+ 			each required entry in clock-names
+ - clock-names:		Should include entries "xtal_32KHz", "xtal_24MHz"
+@@ -184,7 +187,7 @@ firmware {
  
- 	aliases {
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
- 		serial0 = &uart0;
- 		serial1 = &uart3;
- 		serial2 = &uart7;
-@@ -63,6 +66,41 @@
- 		stdout-path = "serial0:115200n8";
- 	};
+ 		clk: clk {
+ 			compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+-			#clock-cells = <1>;
++			#clock-cells = <2>;
+ 		};
  
-+	reg_cam: cam {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_vcc5v0>;
-+		gpio = <&pio 7 16 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+        reg_cam_avdd: cam-avdd {
-+                compatible = "regulator-fixed";
-+                regulator-name = "cam500b-avdd";
-+                regulator-min-microvolt = <2800000>;
-+                regulator-max-microvolt = <2800000>;
-+                vin-supply = <&reg_cam>;
-+        };
-+
-+        reg_cam_dovdd: cam-dovdd {
-+                compatible = "regulator-fixed";
-+                regulator-name = "cam500b-dovdd";
-+                regulator-min-microvolt = <1800000>;
-+                regulator-max-microvolt = <1800000>;
-+                vin-supply = <&reg_cam>;
-+        };
-+
-+        reg_cam_dvdd: cam-dvdd {
-+                compatible = "regulator-fixed";
-+                regulator-name = "cam500b-dvdd";
-+                regulator-min-microvolt = <1500000>;
-+                regulator-max-microvolt = <1500000>;
-+                vin-supply = <&reg_cam>;
-+        };
-+
- 	hdmi-connector {
- 		compatible = "hdmi-connector";
- 		type = "a";
-@@ -116,6 +154,23 @@
- 		>;
+ 		iomuxc {
+@@ -229,8 +232,7 @@ serial@5a060000 {
+ 	...
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_lpuart0>;
+-	clocks = <&clk IMX8QXP_UART0_CLK>,
+-		 <&clk IMX8QXP_UART0_IPG_CLK>;
+-	clock-names = "per", "ipg";
++	clocks = <&uart0_clk IMX_SC_R_UART_0 IMX_SC_PM_CLK_PER>;
++	clock-names = "ipg";
+ 	power-domains = <&pd IMX_SC_R_UART_0>;
  };
+diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
+index 4e61f64..24c153d 100644
+--- a/include/dt-bindings/firmware/imx/rsrc.h
++++ b/include/dt-bindings/firmware/imx/rsrc.h
+@@ -547,4 +547,27 @@
+ #define IMX_SC_R_ATTESTATION		545
+ #define IMX_SC_R_LAST			546
  
-+&csi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&csi0_8bits_pins>;
-+	status = "okay";
++/*
++ * Defines for SC PM CLK
++ */
 +
-+	port {
-+		csi_from_ov5640: endpoint {
-+                        remote-endpoint = <&ov5640_to_csi>;
-+                        bus-width = <8>;
-+                        hsync-active = <1>; /* Active high */
-+                        vsync-active = <0>; /* Active low */
-+                        data-active = <1>;  /* Active high */
-+                        pclk-sample = <1>;  /* Rising */
-+                };
-+	};
-+};
++/* Normal device resource clock */
++#define IMX_SC_PM_CLK_SLV_BUS		0	/* Slave bus clock */
++#define IMX_SC_PM_CLK_MST_BUS		1	/* Master bus clock */
++#define IMX_SC_PM_CLK_PER		2	/* Peripheral clock */
++#define IMX_SC_PM_CLK_PHY		3	/* Phy clock */
++#define IMX_SC_PM_CLK_MISC		4	/* Misc clock */
 +
- &de {
- 	status = "okay";
- };
-@@ -161,6 +216,38 @@
- 	};
- };
- 
-+&i2c1 {
-+	status = "okay";
++/* Special clock types which do not belong to above normal clock types */
++#define IMX_SC_PM_CLK_MISC0		0	/* Misc 0 clock */
++#define IMX_SC_PM_CLK_MISC1		1	/* Misc 1 clock */
++#define IMX_SC_PM_CLK_MISC2		2	/* Misc 2 clock */
++#define IMX_SC_PM_CLK_MISC3		3	/* Misc 3 clock */
++#define IMX_SC_PM_CLK_MISC4		4	/* Misc 4 clock */
 +
-+	camera: camera@21 {
-+		compatible = "ovti,ov5640";
-+		reg = <0x21>;
-+		clocks = <&ccu CLK_CSI0>;
-+		clock-names = "xclk";
-+		assigned-clocks = <&ccu CLK_CSI0>;
-+		assigned-clock-rates = <24000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&csi0_clk_pin>;
++/* Special clock types for CPU/PLL/BYPASS only */
++#define IMX_SC_PM_CLK_CPU		2	/* CPU clock */
++#define IMX_SC_PM_CLK_PLL		4	/* PLL */
++#define IMX_SC_PM_CLK_BYPASS		4	/* Bypass clock */
 +
-+		reset-gpios = <&pio 7 14 GPIO_ACTIVE_LOW>;
-+		powerdown-gpios = <&pio 7 19 GPIO_ACTIVE_HIGH>;
-+		AVDD-supply = <&reg_cam_avdd>;
-+		DOVDD-supply = <&reg_cam_dovdd>;
-+		DVDD-supply = <&reg_cam_dvdd>;
-+
-+		port {
-+			ov5640_to_csi: endpoint {
-+				remote-endpoint = <&csi_from_ov5640>;
-+				bus-width = <8>;
-+				hsync-active = <1>; /* Active high */
-+				vsync-active = <0>; /* Active low */
-+				data-active = <1>;  /* Active high */
-+				pclk-sample = <1>;  /* Rising */
-+			};
-+		};
-+	};
-+};
-+
- &i2c2 {
- 	status = "okay";
- };
+ #endif /* __DT_BINDINGS_RSCRC_IMX_H */
 -- 
-git-series 0.9.1
+2.7.4
+
