@@ -2,164 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C135696B5A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 23:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB4A96B6D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 23:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729887AbfHTVXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 17:23:06 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:42027 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727358AbfHTVXG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 17:23:06 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i0Bap-0003EB-OR; Tue, 20 Aug 2019 23:23:03 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i0Bap-0001UJ-3l; Tue, 20 Aug 2019 23:23:03 +0200
-Date:   Tue, 20 Aug 2019 23:23:03 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH RFC] dt-bindings: regulator: define a mux regulator
-Message-ID: <20190820212303.dhdo7g7kvisgeb3h@pengutronix.de>
-References: <20190820152511.15307-1-u.kleine-koenig@pengutronix.de>
- <CAL_JsqLg19883syn66P6zUkLPpQ8FYpeFj2QYvSp1UsWOhVKyQ@mail.gmail.com>
+        id S1730501AbfHTV0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 17:26:44 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:39822 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729887AbfHTV0o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 17:26:44 -0400
+Received: by mail-pg1-f196.google.com with SMTP id u17so35436pgi.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 14:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kfF4vdGcFJm/Wf6JQ1wcuplxthXZW1HNbOa1JyPqpZg=;
+        b=YezYmx2WChZMi1DRr1XoN8XfZITumH+PgqY3JQdS5w4u2vwKLbtcH66ah2vjoQnnog
+         QyUxcFY+vLpiQeDhK9KTH5U7uOLNo0vnuD4a52N1MJjkiOZI294BDWFVvwrEEKdhPBaO
+         XVT2+i53gVsOodGBAl0E+xI0gCcD/lVNo3bqvB93NFaE/xG/irV6qGiYAx5Sa0TgkhIz
+         Derb91GymDQKbZ5lMgnZKtNSZMjrGXdFpCsjUGQOYWWslojKah3JT/incq30S9xuCblQ
+         rssihHZxJUKUKjpEGuvFLm+OHFk0eFFOuKdMDTyPyJe4rypnj3lPr/tiL1vR+LS2dnzq
+         EaFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kfF4vdGcFJm/Wf6JQ1wcuplxthXZW1HNbOa1JyPqpZg=;
+        b=MXeHcBpRCNXlTuwFWkOF/c1Ve2JPJ2Ymr7CTWsi++E9Aq1ge0EF+M15Mbu5p51gK6m
+         9Dl5WYdSMf4cR5oG7M3rZHAw6KcDJMCRu+sTjmh82SWVFyEgPdwmzT86K5eSTskKOifG
+         72r4ChbHxiO+Y+DryCA/vad/t9gLF1TtplVwxxbDYrWt/6Yj2ND1IpjB7F292yqZCp/a
+         1jbgQVgA4zVUsFIdtPglnXMVTmWh6zWO1JPwr5T43k45EZRLHeerN558aZX/G3LQ6ubD
+         MeDKQLZGt/XcrKbr72Rxpyd/wh69mibtFu0zb6PjR07XA5BpE9r6Y36Yoavgu4P3SdBI
+         x4jw==
+X-Gm-Message-State: APjAAAWylp+kkixZPDPIxyGWrOD4HJLW/4kyv5+ERGDwAptQRmTH5Iqt
+        yms3/rQNoXZgenSSKUdJy9JtSfA5dNRmwoGcYpX2GA==
+X-Google-Smtp-Source: APXvYqzLsasEUUNlQqQQsMBDlcH+Tp5YqnFlWE8k2udTHXgEapZH91qiWX0NVeTeH8163H7ZgTGtPG9Wj/vODuCC5PA=
+X-Received: by 2002:aa7:8f2e:: with SMTP id y14mr32322000pfr.113.1566336403144;
+ Tue, 20 Aug 2019 14:26:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqLg19883syn66P6zUkLPpQ8FYpeFj2QYvSp1UsWOhVKyQ@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20190814055108.214253-1-brendanhiggins@google.com>
+ <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org> <20190820182450.GA38078@google.com>
+ <e8eaf28e-75df-c966-809a-2e3631353cc9@kernel.org>
+In-Reply-To: <e8eaf28e-75df-c966-809a-2e3631353cc9@kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 20 Aug 2019 14:26:32 -0700
+Message-ID: <CAFd5g44JT_KQ+OxjVdG0qMWuaEB0Zq5x=r6tLsqJdncwZ_zbGA@mail.gmail.com>
+Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     shuah <shuah@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
+        Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
+On Tue, Aug 20, 2019 at 12:08 PM shuah <shuah@kernel.org> wrote:
+>
+> On 8/20/19 12:24 PM, Brendan Higgins wrote:
+> > On Tue, Aug 20, 2019 at 11:24:45AM -0600, shuah wrote:
+> >> On 8/13/19 11:50 PM, Brendan Higgins wrote:
+> >>> ## TL;DR
+> >>>
+> >>> This revision addresses comments from Stephen and Bjorn Helgaas. Most
+> >>> changes are pretty minor stuff that doesn't affect the API in anyway.
+> >>> One significant change, however, is that I added support for freeing
+> >>> kunit_resource managed resources before the test case is finished via
+> >>> kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
+> >>> KUnit on certain configurations (like the default one for x86, whoops).
+> >>>
+> >>> Based on Stephen's feedback on the previous change, I think we are
+> >>> pretty close. I am not expecting any significant changes from here on
+> >>> out.
+> >>>
+> >>
+> >> Hi Brendan,
+> >>
+> >> I found checkpatch errors in one or two patches. Can you fix those and
+> >> send v14.
+> >
+> > Hi Shuah,
+> >
+> > Are you refering to the following errors?
+> >
+> > ERROR: Macros with complex values should be enclosed in parentheses
+> > #144: FILE: include/kunit/test.h:456:
+> > +#define KUNIT_BINARY_CLASS \
+> > +       kunit_binary_assert, KUNIT_INIT_BINARY_ASSERT_STRUCT
+> >
+> > ERROR: Macros with complex values should be enclosed in parentheses
+> > #146: FILE: include/kunit/test.h:458:
+> > +#define KUNIT_BINARY_PTR_CLASS \
+> > +       kunit_binary_ptr_assert, KUNIT_INIT_BINARY_PTR_ASSERT_STRUCT
+> >
+> > These values should *not* be in parentheses. I am guessing checkpatch is
+> > getting confused and thinks that these are complex expressions, when
+> > they are not.
+> >
+> > I ignored the errors since I figured checkpatch was complaining
+> > erroneously.
+> >
+> > I could refactor the code to remove these macros entirely, but I think
+> > the code is cleaner with them.
+> >
+>
+> Please do. I am not veru sure what value these macros add.
 
-On Tue, Aug 20, 2019 at 11:39:27AM -0500, Rob Herring wrote:
-> On Tue, Aug 20, 2019 at 10:25 AM Uwe Kleine-König
-> <u.kleine-koenig@pengutronix.de> wrote:
-> >
-> > A mux regulator is used to provide current on one of several outputs. It
-> > might look as follows:
-> >
-> >       ,------------.
-> >     --<OUT0     A0 <--
-> >     --<OUT1     A1 <--
-> >     --<OUT2     A2 <--
-> >     --<OUT3        |
-> >     --<OUT4     EN <--
-> >     --<OUT5        |
-> >     --<OUT6     IN <--
-> >     --<OUT7        |
-> >       `------------'
-> >
-> > Depending on which address is encoded on the three address inputs A0, A1
-> > and A2 the current provided on IN is provided on one of the eight
-> > outputs.
-> >
-> > What is new here is that the binding makes use of a #regulator-cells
-> > property. This uses the approach known from other bindings (e.g. gpio)
-> > to allow referencing all eight outputs with phandle arguments. This
-> > requires an extention in of_get_regulator to use a new variant of
-> > of_parse_phandle_with_args that has a cell_count_default parameter that
-> > is used in absence of a $cell_name property. Even if we'd choose to
-> > update all regulator-bindings to add #regulator-cells = <0>; we still
-> > needed something to implement compatibility to the currently defined
-> > bindings.
-> >
-> > Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > ---
-> > Hello,
-> >
-> > the obvious alternative is to add (here) eight subnodes to represent the
-> > eight outputs. This is IMHO less pretty, but wouldn't need to introduce
-> > #regulator-cells.
-> 
-> I'm okay with #regulator-cells approach.
-
-OK, then I will look into that in more detail; unless the regulator guys
-don't agree with this approach of course.
-
-> > Apart from reg = <..> and a phandle there is (I think) nothing that
-> > needs to be specified in the subnodes because all properties of an
-> > output (apart from the address) apply to all outputs.
-> >
-> > What do you think?
-> >
-> > Best regards
-> > Uwe
-> >
-> >  .../bindings/regulator/mux-regulator.yaml     | 52 +++++++++++++++++++
-> >  1 file changed, 52 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/regulator/mux-regulator.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/regulator/mux-regulator.yaml b/Documentation/devicetree/bindings/regulator/mux-regulator.yaml
-> > new file mode 100644
-> > index 000000000000..f06dbb969090
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/regulator/mux-regulator.yaml
-> > @@ -0,0 +1,52 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> 
-> (GPL-2.0-only OR BSD-2-Clause) is preferred.
-
-OK.
-
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/regulator/mux-regulator.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: MUX regulators
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: XXX,adb708
-> 
-> ? I assume you will split this into a common and specific schemas. I
-> suppose there could be differing ways to control the mux just like all
-> other muxes.
-
-Not sure if a specific schema is necessary. I wrote XXX because I was
-offline while I authored the binding and so couldn't determine the right
-vendor to use.
-
-> > +  enable-gpios:
-> > +    maxItems: 1
-> > +
-> > +  address-gpios:
-> > +    description: Array of typically three GPIO pins used to select the
-> > +      regulator's output. The least significant address GPIO must be listed
-> > +      first. The others follow in order of significance.
-> > +    minItems: 1
-> > +
-> > +  "#regulator-cells":
-> 
-> How is this not required?
-
-It should. For the RFC patch I didn't took the time to iron all the
-details. My main concern was/is how the binding should look like and if
-an #regulator-cells with a default would be acceptable.
- 
-Best regards and thanks for your feedback,
-Uwe
-
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Alright, I will have something for you later today.
