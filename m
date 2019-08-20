@@ -2,87 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0842F95EC8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:35:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC70495EA1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730066AbfHTMfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 08:35:18 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:40084 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729850AbfHTMfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:35:18 -0400
-Received: by mail-wr1-f67.google.com with SMTP id c3so12229466wrd.7
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 05:35:16 -0700 (PDT)
+        id S1729137AbfHTMdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 08:33:37 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:36463 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728366AbfHTMdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:33:37 -0400
+Received: by mail-pf1-f194.google.com with SMTP id w2so3318293pfi.3;
+        Tue, 20 Aug 2019 05:33:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=f0GMZ30YIFAvd4BpzkWj3t3CsrOU2xIx+D0MV3qKWwM=;
-        b=HD7yEtENDDCyJ+cTYqoAme6M2J6NtjGhq3AGudkN57sTS1uopnxxw53ihlT7+XQbad
-         G0b8SvorSPr4kQJuFsmCTOhR85ICveNvh11HAO9OU8S5Wz+/tkj/pS5wucxjNWbO88Xv
-         Yy/G6oJj+9ZYe61x+QPhpQ80+3p6OoL/xE8cxWKtaDJaB68e+QF1hZhtTSPdP3ydrwHp
-         qbcS9Xh6Pj06txoXkIAid4SNhHjSKQVwpdrYW13DD4UC3BoPvBECBdHoDc7qBUn6kf20
-         O5H0+oA/DsxyyAYvX4QqjC2mr4tOQKHza0WP75F9hL3lbAnv0+v6csDHodJDSSqhP6/n
-         SLeg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:date:message-id:in-reply-to:references:subject;
+        bh=QXHTiA9+lmYaDV1fP1jTKDbQnYtFZzu5gMQ/7TlFQJU=;
+        b=obkg4fpBVG5ro1EO4LITiU/m1X2OSkp1Jqt3lqRGQnF6E+muAWGWwofa8FoKRLii8H
+         +lJLJ/3ChfytPIpDTKuRjaICN1tjTdoBIYUvUpImPdOhpxN1yhxinor7EQHNlX1+ajS0
+         m4nLvC6a/6q9/aNvFg9YkDuDsnK4EwXTgabq+FKPTMgLg31ACYu3aSwxnDCiUT6aWSLW
+         Akp+Vwvv/lAq+GTQEwNR/eGw1WWrVLp3QWIsMYx6pLitgbmT2VUUToMQt/YefwxgqZgJ
+         ZlCg7zYEyzcYNafpnyG4clpMQ8m0UnV4cPVBaWM1AW8236IpIaBWeT2NcghplTFMAXxH
+         jt+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=f0GMZ30YIFAvd4BpzkWj3t3CsrOU2xIx+D0MV3qKWwM=;
-        b=ugSKip7+Rcpuh1bKlO+W9mCj2r5wCt/DqMpoPb4uW379HdAfqUxJu63KoDDNl1Xa13
-         l1elIt4IhDIPEaPJrqG9//3i3HIlIB8ssXpiUA48rzsZU0ZyHB7ht0RiVHpVmvTS8wqa
-         l2U4At0peV6aMMsRCvaT41ZFu65m7TQMde3igY0WU0cC9PQOjVEkQvm6v4g9OyHfoRys
-         fiW8EogalFVUlKiRMlDr6wB/hzKXa9YZuwo1SQE0VGxQrYED7bZ5IgHsZPXnbVUTJ7rK
-         TTYooafYvtDtbCiN+OKEkgMTBbLDiTxCxlWsXnUJu+gYP/87XQ3CIbJDHzkY4AOlLQZf
-         vWsg==
-X-Gm-Message-State: APjAAAWP8wY4wiuphbr2BSYJU4g+kbFiWXxZWt+78/shRZ/XhzYViinX
-        DBBGw3nJYkSPnw07GBbIQgcoTA==
-X-Google-Smtp-Source: APXvYqx2gGA189ZOi44f1fTFmoVy+zzWIEPmaIN3RmlvE4ZjcSTl6+IoA4dhS0VzFiEIp/piWYqVWw==
-X-Received: by 2002:a5d:610d:: with SMTP id v13mr7166603wrt.249.1566304516138;
-        Tue, 20 Aug 2019 05:35:16 -0700 (PDT)
-Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id m23sm29661097wml.41.2019.08.20.05.35.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2019 05:35:15 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] ASoC: meson: g12a-tohdmitx: require regmap mmio
-Date:   Tue, 20 Aug 2019 14:35:10 +0200
-Message-Id: <20190820123510.22491-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:date:message-id:in-reply-to
+         :references:subject;
+        bh=QXHTiA9+lmYaDV1fP1jTKDbQnYtFZzu5gMQ/7TlFQJU=;
+        b=hUCrNaThh7tbSjpmSuwLUXwSIFbOgHxlwo/hxdmR/GWuXhPzgL5DmfwkhgaJ3dbS5i
+         aLuX3iygAdF4n+yhK45YUzA4prAcOIGKx2wwcW2ZrmpUwOKddcQdtzFkzoaTpE+4PGmV
+         i24u9W1RwWHN8c7dXwZFGMJr0+HwkcUJVnRIE38Sw2HonbERMaz4IR0FnqNcK+EHYOBA
+         2+NeickR2XOICm1AqcI5EimGMGee/aLgiQZz5/VHxsrMV/uw5GaUNuWYWdL5zAiUYhJD
+         HOe7ybc31UcHiXWw/6TKtu7z92cts9dQESMmVBIcJNR4/XLYP6FogsOSH4V+V+VPY2gN
+         UL3w==
+X-Gm-Message-State: APjAAAXzmjvdbw7xg9U2BWGZfVQKEmDb45ighfniCUfUmcweu+AT+EIZ
+        5tA6N3jF3NTivDDJ+2PlPflhkZNO
+X-Google-Smtp-Source: APXvYqzQM2xZaPte6AlJ0W8J1aMmeqDzFAH1+gH4ueTSYoeJbwg+2558qF0KANLsGENF5sYynlrygA==
+X-Received: by 2002:a17:90a:17ab:: with SMTP id q40mr26456985pja.106.1566304416127;
+        Tue, 20 Aug 2019 05:33:36 -0700 (PDT)
+Received: from [127.0.0.1] (l193216.ppp.asahi-net.or.jp. [218.219.193.216])
+        by smtp.gmail.com with ESMTPSA id o24sm38726945pfp.135.2019.08.20.05.33.32
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 20 Aug 2019 05:33:35 -0700 (PDT)
+From:   Magnus Damm <magnus.damm@gmail.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        geert+renesas@glider.be, daniel.lezcano@linaro.org,
+        linux-renesas-soc@vger.kernel.org, robh+dt@kernel.org,
+        horms+renesas@verge.net.au, Magnus Damm <magnus.damm@gmail.com>,
+        tglx@linutronix.de
+Date:   Tue, 20 Aug 2019 21:35:14 +0900
+Message-Id: <156630451480.17444.3045034693349256156.sendpatchset@octo>
+In-Reply-To: <156630449239.17444.11157306180861080402.sendpatchset@octo>
+References: <156630449239.17444.11157306180861080402.sendpatchset@octo>
+Subject: [PATCH v2 2/7] dt-bindings: timer: renesas, cmt: Update CMT1 on sh73a0 and r8a7740
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The tohdmitx glue uses regmap MMIO so it should require it.
+From: Magnus Damm <damm+renesas@opensource.se>
 
-Fixes: c8609f3870f7 ("ASoC: meson: add g12a tohdmitx control")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+This patch reworks the DT binding documentation for the 6-channel
+48-bit CMTs known as CMT1 on r8a7740 and sh73a0.
+
+After the update the same style of DT binding as the rest of the upstream
+SoCs will now also be used by r8a7740 and sh73a0. The DT binding "cmt-48"
+is removed from the DT binding documentation, however software support for
+this deprecated binding will still remain in the CMT driver for some time.
+
+Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
 ---
- sound/soc/meson/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index 63b38c123103..2e3676147cea 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -87,6 +87,7 @@ config SND_MESON_AXG_PDM
+ Documentation/devicetree/bindings/timer/renesas,cmt.txt |   10 ++--------
+ 1 file changed, 2 insertions(+), 8 deletions(-)
+
+--- 0002/Documentation/devicetree/bindings/timer/renesas,cmt.txt
++++ work/Documentation/devicetree/bindings/timer/renesas,cmt.txt	2019-07-18 18:21:59.453309074 +0900
+@@ -12,17 +12,10 @@ datasheets.
+ Required Properties:
  
- config SND_MESON_G12A_TOHDMITX
- 	tristate "Amlogic G12A To HDMI TX Control Support"
-+	select REGMAP_MMIO
- 	imply SND_SOC_HDMI_CODEC
- 	help
- 	  Select Y or M to add support for HDMI audio on the g12a SoC
--- 
-2.21.0
-
+   - compatible: must contain one or more of the following:
+-    - "renesas,cmt-48-sh73a0" for the sh73A0 48-bit CMT
+-		(CMT1)
+-    - "renesas,cmt-48-r8a7740" for the r8a7740 48-bit CMT
+-		(CMT1)
+-    - "renesas,cmt-48" for all non-second generation 48-bit CMT
+-		(CMT1 on sh73a0 and r8a7740)
+-		This is a fallback for the above renesas,cmt-48-* entries.
+-
+     - "renesas,r8a73a4-cmt0" for the 32-bit CMT0 device included in r8a73a4.
+     - "renesas,r8a73a4-cmt1" for the 48-bit CMT1 device included in r8a73a4.
+     - "renesas,r8a7740-cmt0" for the 32-bit CMT0 device included in r8a7740.
++    - "renesas,r8a7740-cmt1" for the 48-bit CMT1 device included in r8a7740.
+     - "renesas,r8a7740-cmt2" for the 32-bit CMT2 device included in r8a7740.
+     - "renesas,r8a7740-cmt3" for the 32-bit CMT3 device included in r8a7740.
+     - "renesas,r8a7740-cmt4" for the 32-bit CMT4 device included in r8a7740.
+@@ -59,6 +52,7 @@ Required Properties:
+     - "renesas,r8a77990-cmt0" for the 32-bit CMT0 device included in r8a77990.
+     - "renesas,r8a77990-cmt1" for the 48-bit CMT1 device included in r8a77990.
+     - "renesas,sh73a0-cmt0" for the 32-bit CMT0 device included in sh73a0.
++    - "renesas,sh73a0-cmt1" for the 48-bit CMT1 device included in sh73a0.
+     - "renesas,sh73a0-cmt2" for the 32-bit CMT2 device included in sh73a0.
+     - "renesas,sh73a0-cmt3" for the 32-bit CMT3 device included in sh73a0.
+     - "renesas,sh73a0-cmt4" for the 32-bit CMT4 device included in sh73a0.
