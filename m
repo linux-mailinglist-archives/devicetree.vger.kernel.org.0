@@ -2,131 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 393B49688A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 20:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5075968A7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 20:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730589AbfHTSY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 14:24:58 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:37710 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730484AbfHTSY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 14:24:58 -0400
-Received: by mail-pf1-f196.google.com with SMTP id 129so3873535pfa.4
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 11:24:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=54TsZDfDW3TriN1nqx27Ow/a4BBsLJIgLp0TtrQghOk=;
-        b=ETn6ov6vEQVZ6Z8d+QOJIR5ZdOHT4ZDivDB2VkpQ0qnDIs9MQrQ638udwnr/9nsV39
-         Q9CE1bjJjQqBou8vTO6RAPzU8X9Tiq1MLFyQK2/DJWm5diN99WuwayJaLt2azZswGQO6
-         PgJRFVxL4YQGtCWP5gy6mT//u52PocvwVbmI1tMnbwHSew1qhj9G4kLkgm0cfOXOG/+z
-         KBuOacguM7Ku15bvGQe9U+2RVhwBdPlfoBEveO5qY2aaNvMSGTBP0IPNRwdL5M9uwBLI
-         rRbk5djqLbCbCvoJbmUcAx9Gb5ONtUGkfOKYOiRtBndtwfw3IyR9R3OQOevfv1X/iVGx
-         ii2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=54TsZDfDW3TriN1nqx27Ow/a4BBsLJIgLp0TtrQghOk=;
-        b=UFWxc/BY009hmWyj1PJlziefO/mj2MGi6UcHB9k9hWlsBND9H+wwWkxXYpyTRZyFtj
-         mn1SXWS4pK5XSYateRgGJcLp9oBKP8JLgAS77Z6K92mhZjCYz6GEIiMm5VqV8rDXl3gs
-         ziidd3yDWC1+BL09xagUDH1VruoFSLlyd+8yVDVBqxHxVbsRXT4uDwAXYUHoHIFyFGf2
-         CZQ+aI6q8Oi0+ZWiSE1ExtWVUmezyA6IaQHy0gdsNbYlIEcbri14iRio9EaJHm3Gg80r
-         fSA/DaU2gW2CHkABZ+1a3Vkal7N/AL67KZ1M9RtyO4VXKbvk+C9ORVSKKG4+PFFXoLEj
-         itLw==
-X-Gm-Message-State: APjAAAVjVSqpEz6xa+uE+PyStof9jlKSmq7KljPcMiNrm3pcBzxwa8st
-        G0DbtPCBMNE76mGy2ErmYAHcgg==
-X-Google-Smtp-Source: APXvYqz6e4UEkK1ofDpL52W0zxkSIj5ZMAzgsILYeZML13HEn/+04ibT+w1ZAtBgHDGP+VY3TZZ4jA==
-X-Received: by 2002:a17:90a:3aaf:: with SMTP id b44mr1312628pjc.87.1566325496873;
-        Tue, 20 Aug 2019 11:24:56 -0700 (PDT)
-Received: from google.com ([2620:15c:2cb:1:e90c:8e54:c2b4:29e7])
-        by smtp.gmail.com with ESMTPSA id u16sm20305376pgm.83.2019.08.20.11.24.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2019 11:24:55 -0700 (PDT)
-Date:   Tue, 20 Aug 2019 11:24:50 -0700
-From:   Brendan Higgins <brendanhiggins@google.com>
-To:     shuah <shuah@kernel.org>
-Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Bjorn Helgaas <bhelgaas@google.com>
-Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-Message-ID: <20190820182450.GA38078@google.com>
-References: <20190814055108.214253-1-brendanhiggins@google.com>
- <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org>
+        id S1730092AbfHTSgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 14:36:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57584 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727358AbfHTSgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 14:36:31 -0400
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C5E4F2332B;
+        Tue, 20 Aug 2019 18:36:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566326190;
+        bh=UTdkO2l4tPFINQmlJSerTiL5tNVb9F4/4iYSa397hmI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qOaiEb7IB0HufL7/7QaAGGU/xcEbqY5IamuzeEMhK4WNkpqk7cdPk4FYtd3wC7dRA
+         77JL7E45B6juyKSDFgD1Ofr/ruYobSSUzuXeZpTgUj6B/q73QVwWukfYJbCd8StauF
+         ziPTt475wmy6pYAcGdtkUvc7auSWBTar4Ey1Wl/k=
+Received: by mail-lf1-f47.google.com with SMTP id b17so4888172lff.7;
+        Tue, 20 Aug 2019 11:36:29 -0700 (PDT)
+X-Gm-Message-State: APjAAAVS5Yh72gLYw6KrIRxmpn8VIeCsD8049yIm54RZFBqiYi7E8smu
+        A46HI2C9YJ9eZL59Va536/cja93NUVHoGNkxkLo=
+X-Google-Smtp-Source: APXvYqzvVamLIjWXUxlWADgmMIlUpyP1fbFcul5EmSzOfEWv7O1u03JIq8m2JVq3MtS953n2z6XOXFeqqqNRUXqkRAg=
+X-Received: by 2002:a19:f007:: with SMTP id p7mr1105313lfc.24.1566326187939;
+ Tue, 20 Aug 2019 11:36:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1566315318-30320-1-git-send-email-krzk@kernel.org>
+ <1566315318-30320-3-git-send-email-krzk@kernel.org> <CAL_JsqJLSZ50tdFcdPFc2ifcDoFZFuw=SoKsunzjtAhZ-11fBg@mail.gmail.com>
+In-Reply-To: <CAL_JsqJLSZ50tdFcdPFc2ifcDoFZFuw=SoKsunzjtAhZ-11fBg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 20 Aug 2019 20:36:16 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
+Message-ID: <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] dt-bindings: arm: fsl: Add Kontron i.MX6UL N6310 compatibles
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 11:24:45AM -0600, shuah wrote:
-> On 8/13/19 11:50 PM, Brendan Higgins wrote:
-> > ## TL;DR
-> > 
-> > This revision addresses comments from Stephen and Bjorn Helgaas. Most
-> > changes are pretty minor stuff that doesn't affect the API in anyway.
-> > One significant change, however, is that I added support for freeing
-> > kunit_resource managed resources before the test case is finished via
-> > kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
-> > KUnit on certain configurations (like the default one for x86, whoops).
-> > 
-> > Based on Stephen's feedback on the previous change, I think we are
-> > pretty close. I am not expecting any significant changes from here on
-> > out.
-> > 
-> 
-> Hi Brendan,
-> 
-> I found checkpatch errors in one or two patches. Can you fix those and
-> send v14.
+On Tue, 20 Aug 2019 at 18:59, Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Tue, Aug 20, 2019 at 10:35 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > Add the compatibles for Kontron i.MX6UL N6310 SoM and boards.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >
+> > ---
+> >
+> > Changes since v5:
+> > New patch
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 3 +++
+> >  1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > index 7294ac36f4c0..d07b3c06d7cf 100644
+> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > @@ -161,6 +161,9 @@ properties:
+> >          items:
+> >            - enum:
+> >                - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
+> > +              - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
+> > +              - kontron,imx6ul-n6310-s    # Kontron N6310 S Board
+> > +              - kontron,imx6ul-n6310-s-43 # Kontron N6310 S 43 Board
+>
+> This doesn't match what is in your dts files. Run 'make dtbs_check' and see.
 
-Hi Shuah,
+You mean the name does not match? I thought that '#' is a comment in YAML...
 
-Are you refering to the following errors?
+The dtbs_check fail on missing dt-mk-schema. Any reason why it is not
+in the scripts?
 
-ERROR: Macros with complex values should be enclosed in parentheses
-#144: FILE: include/kunit/test.h:456:
-+#define KUNIT_BINARY_CLASS \
-+       kunit_binary_assert, KUNIT_INIT_BINARY_ASSERT_STRUCT
-
-ERROR: Macros with complex values should be enclosed in parentheses
-#146: FILE: include/kunit/test.h:458:
-+#define KUNIT_BINARY_PTR_CLASS \
-+       kunit_binary_ptr_assert, KUNIT_INIT_BINARY_PTR_ASSERT_STRUCT
-
-These values should *not* be in parentheses. I am guessing checkpatch is
-getting confused and thinks that these are complex expressions, when
-they are not.
-
-I ignored the errors since I figured checkpatch was complaining
-erroneously.
-
-I could refactor the code to remove these macros entirely, but I think
-the code is cleaner with them.
-
-What would you prefer I do?
-
-NB: These macros are introduced in: "[PATCH v13 05/18] kunit: test: add
-the concept of expectations"
-
-Thanks!
+Best regards,
+Krzysztof
