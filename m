@@ -2,265 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81DB395617
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 06:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29A9895664
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 07:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729060AbfHTE0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 00:26:16 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:37675 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726049AbfHTE0Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 00:26:16 -0400
-Received: by mail-pg1-f193.google.com with SMTP id d1so2440022pgp.4;
-        Mon, 19 Aug 2019 21:26:15 -0700 (PDT)
+        id S1729060AbfHTFEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 01:04:47 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:34915 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729024AbfHTFEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 01:04:47 -0400
+Received: by mail-pg1-f196.google.com with SMTP id n4so2498132pgv.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Aug 2019 22:04:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=BOAs8YQrpkx9LCbclh4zUa+NNlVulxSWv8zZAn7Gcts=;
-        b=goMxEvOUrJ34v2kj05/3O0ot1oh0hOgppqKF2ngXdFnxsJcIQTS8C0dq7QskKohqTF
-         HmKCOyxOjbky3y7Cej5Y7rBTMZVqvsIZhsPhRre9fFESjIUILi6yRY1lefEEru9y//VL
-         ofd+2ch9sFPUtNq8HVhl7A7JTDkz2AHRz+IL3XkRnHffIEHpGLx48dNjWPbGPwlqd8Kz
-         bwKTy0JGa+IsTolalFkiMz9C73jHvVrmnoR0lBJWzn5SfRbbqzJMV0hu9pdFiyZr9TiY
-         HNI/Eg8xRP1tlu6cVmjm2enlyA6K8zj1b50rnb58qBUY3VdxZ2QF9V3iQ73Ut592pQ/X
-         dAkw==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=J5jmxPECEtlkSClh6kdjYePWOqswhvSklEpB5MKVT2Y=;
+        b=pGeoQ2K6G50W9ZHfxskCOsB70zYcEDk3+0sg6mf3aj26fQVNcSwz9vG3Q5kcD9V2vB
+         wgSYF8Gcnkl8SXlHpT3XNfFsXNdVR9l6mSAlxf8qIfFIEm+tOQaClKUBMtSrrvb6EBGc
+         nWJu4SumKg0eSOtk0EORJuaZNYK9lPNs9gZ8j1MRxgSXKMSCy9tuSaaFSg49zFAWkuKX
+         9NG7xsanhuzJInrKpC7u4ZFiQWfpXEir+zG31vlNKQ4go6IoFVHP6Vnv86fpe5dduqQ8
+         DBYPhiISQXQUW2EwZ8hoZBAQNfZ8Da84tL+2zOm7Mo0+34Iu6JU+Dc00NPrI2GfUjHw1
+         rhbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BOAs8YQrpkx9LCbclh4zUa+NNlVulxSWv8zZAn7Gcts=;
-        b=idc9CGJngDQumd2BAqiQKLq+rKVQRS6X2SQas46cEG5eoag2PfFTSpQC8MxEZP706h
-         CKqv4w/4XFcgQ20DwKURWxF3TRLI8QUsZQZKfSyaTZbG7As7Ha+wfgn3NEFNVQcsMysY
-         GwT/JlTQKpYY6W8WnVlKRzIvzwqOAMdpyKa/ycXPlWWd413kfImk/sfzKEFhC1tbiMVg
-         tjgfGyVKEdGSdNxFhLIiS5MOojoaXUY58M/55+H8hGWIotr5wzPckcykYmoVV+g2eDHk
-         wsO7pSKnhDlBaf4G0cx1P6d27ySaxv3lPfM+tH9Ov91aDVzcN/Ix8v78WNk5DEhknoFU
-         JDvw==
-X-Gm-Message-State: APjAAAUQnj6RqVMUcpJGe2cBYLicCbUmi3mce8ITO4jx85Wcdh5w5oVl
-        qr73qQE0huVxHFLZe17siMs=
-X-Google-Smtp-Source: APXvYqwxsvdQU8SH1HHVjCfzsbvZ/8Jyeac7UK684Qnmk7ZdKIDhsbWD6B+xCj1Dv4jiG2ltIQ1Y+g==
-X-Received: by 2002:a17:90a:bf0e:: with SMTP id c14mr23071202pjs.140.1566275175170;
-        Mon, 19 Aug 2019 21:26:15 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id j5sm17940322pfi.104.2019.08.19.21.26.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 19 Aug 2019 21:26:14 -0700 (PDT)
-Subject: Re: [PATCH v7 3/7] of/platform: Add functional dependency link from
- DT bindings
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
-References: <20190724001100.133423-1-saravanak@google.com>
- <20190724001100.133423-4-saravanak@google.com>
- <141d2e16-26cc-1f05-1ac0-6784bab5ae88@gmail.com>
- <CAGETcx-dVnLCRA+1CX47gtZgtwTcrN5KefpjMzh9OJB-BEnqyg@mail.gmail.com>
- <19c99a6e-51c3-68d7-d1d6-640aae754c14@gmail.com>
- <CAGETcx-XcXZq7YFHsFdzBDniQku9cxFUJL_vBoEKKhCH+cDKRw@mail.gmail.com>
- <74931824-f8a1-0435-e00a-5b5cdbe8a8a2@gmail.com>
- <CAGETcx8UHA9kNkjjnBXcf_OYXaaPO9ky60M01Cfz3NFb1c1FZw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <15ab4fb0-7e69-9cc1-4a79-cff06767f7d9@gmail.com>
-Date:   Mon, 19 Aug 2019 21:26:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=J5jmxPECEtlkSClh6kdjYePWOqswhvSklEpB5MKVT2Y=;
+        b=jPyz3I+XEiU6JvUydcuI6LqgsAWhHJScmu6nA6jX5OfKP+959h7VC88aWWvDKUiqlH
+         Ns80SVQutpK6y/faHFR+Wkmn2wF9a1zgJVfJD2RTtWkMt1T6E24HJghTc+G2Dr57sHnK
+         SeAtjyPjOCy1KYlRZRdxMxVUmJaUi52CtWAAE89EoA3o4VhxM1R2Uk61oPQIX0XMsXVN
+         3v9PdZMoz6AjYbXHt+C8izoPyN8EAGJi9HES5MiaOSbCIJEUchRUSc12SdipHS8II/5V
+         6uUfYdbBDZndNlOpD7Mqjw6tTzEx6NKU45/9JA5/wEfTrjZZczRvKV3eMx6FXYhima3A
+         iIeQ==
+X-Gm-Message-State: APjAAAWcbAhtfcNDXB5e7mFZS39r4LuVkpzQ5/tbNlqMq7VtAqsm7szL
+        kJxURak7rjEOthwMxzchrrMiaQ==
+X-Google-Smtp-Source: APXvYqz1mx/jDQWX30lQ9e88jbA/Mq4fclvAAYQEup4fkkADK+YsB/Y8B+YuEW8GnHCulPOX3NsCug==
+X-Received: by 2002:aa7:8611:: with SMTP id p17mr28252702pfn.41.1566277486139;
+        Mon, 19 Aug 2019 22:04:46 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id t6sm16419128pgu.23.2019.08.19.22.04.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Aug 2019 22:04:45 -0700 (PDT)
+Date:   Mon, 19 Aug 2019 22:06:23 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: Document the parent clocks
+Message-ID: <20190820050623.GI26807@tuxbook-pro>
+References: <20190819073947.17258-1-vkoul@kernel.org>
+ <20190819073947.17258-2-vkoul@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx8UHA9kNkjjnBXcf_OYXaaPO9ky60M01Cfz3NFb1c1FZw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190819073947.17258-2-vkoul@kernel.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/19/19 5:09 PM, Saravana Kannan wrote:
-> On Mon, Aug 19, 2019 at 2:30 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> On 8/19/19 1:49 PM, Saravana Kannan wrote:
->>> On Mon, Aug 19, 2019 at 10:16 AM Frank Rowand <frowand.list@gmail.com> wrote:
->>>>
->>>> On 8/15/19 6:50 PM, Saravana Kannan wrote:
->>>>> On Wed, Aug 7, 2019 at 7:06 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>>>>>
->>>>>> On 7/23/19 5:10 PM, Saravana Kannan wrote:
->>>>>>> Add device-links after the devices are created (but before they are
->>>>>>> probed) by looking at common DT bindings like clocks and
->>>>>>> interconnects.
->>>>
->>>>
->>>> < very big snip (lots of comments that deserve answers) >
->>>>
->>>>
->>>>>>
->>>>>> /**
->>>>>>  * of_link_property - TODO:
->>>>>>  * dev:
->>>>>>  * con_np:
->>>>>>  * prop:
->>>>>>  *
->>>>>>  * TODO...
->>>>>>  *
->>>>>>  * Any failed attempt to create a link will NOT result in an immediate return.
->>>>>>  * of_link_property() must create all possible links even when one of more
->>>>>>  * attempts to create a link fail.
->>>>>>
->>>>>> Why?  isn't one failure enough to prevent probing this device?
->>>>>> Continuing to scan just results in extra work... which will be
->>>>>> repeated every time device_link_check_waiting_consumers() is called
->>>>>
->>>>> Context:
->>>>> As I said in the cover letter, avoiding unnecessary probes is just one
->>>>> of the reasons for this patch. The other (arguably more important)
->>>>
->>>> Agree that it is more important.
->>>>
->>>>
->>>>> reason for this patch is to make sure suppliers know that they have
->>>>> consumers that are yet to be probed. That way, suppliers can leave
->>>>> their resource on AND in the right state if they were left on by the
->>>>> bootloader. For example, if a clock was left on and at 200 MHz, the
->>>>> clock provider needs to keep that clock ON and at 200 MHz till all the
->>>>> consumers are probed.
->>>>>
->>>>> Answer: Let's say a consumer device Z has suppliers A, B and C. If the
->>>>> linking fails at A and you return immediately, then B and C could
->>>>> probe and then figure that they have no more consumers (they don't see
->>>>> a link to Z) and turn off their resources. And Z could fail
->>>>> catastrophically.
->>>>
->>>> Then I think that this approach is fatally flawed in the current implementation.
->>>
->>> I'm waiting to hear how it is fatally flawed. But maybe this is just a
->>> misunderstanding of the problem?
->>
->> Fatally flawed because it does not handle modules that add a consumer
->> device when the module is loaded.
-> 
-> If you are talking about modules adding child devices of the device
-> they are managing, then that's handled correctly later in the series.
+On Mon 19 Aug 00:39 PDT 2019, Vinod Koul wrote:
 
-They may or they may not.  I do not know.  I am not going to audit all
-current cases of devices being added to check that relationship and I am
-not going to monitor all future patches that add devices.  Adding devices
-is an existing pattern of behavior that the new feature must be able to
-handle.
-
-I have not looked at patch 6 yet (the place where modules adding child
-devices is handled).  I am guessing that patch 6 could be made more
-general to remove the parent child relationship restriction.
-
-> 
-> If you are talking about modules adding devices that aren't defined in
-> DT, then right, I'm not trying to handle that. The module needs to
-> make sure it keeps the resources needed for new devices it's adding
-> are in the right state or need to add the right device links.
-
-I am not talking about devices that are not defined in the devicetree.
-
-
-> 
->>> In the text below, I'm not sure if you mixing up two different things
->>> or just that your wording it a bit ambiguous. So pardon my nitpick to
->>> err on the side of clarity.
->>
->> Please do nitpick.  Clarity is good.
->>
->>
->>>
->>>> A device can be added by a module that is loaded.
->>>
->>> No, in the example I gave, of_platform_default_populate_init() would
->>> add all 3 of those devices during arch_initcall_sync().
->>
->> The example you gave does not cover all use cases.
->>
->> There are modules that add devices when the module is loaded.  You can not
->> ignore systems using such modules.
-> 
-> I'll have to agree to disagree on that. While I understand that the
-> design should be good and I'm happy to work on that, you can't insist
-> that a patch series shouldn't be allowed because it's only improving
-> 99% of the cases and leaves the other 1% in the status quo. You are
-> just going to bring the kernel development to a grinding halt.
-
-No, you do not get to disagree on that.  And you are presenting a straw
-man argument.
-
-You are proposing a new feature that contributes fragility and complexity
-to the house of cards that device instantiation and driver probing already
-is.
-
-The feature is clever but it is intertwined into an area that is already
-complex and in many cases difficult to work within.
-
-I had hoped that the feature was robust enough and generic enough to
-accept.  The proposed feature is a hack to paper over a specific problem
-that you are facing.  I had hoped that the feature would appear generic
-enough that I would not have to regard it as an attempt to paper over
-the real problem.  I have not given up this hope yet but I still am
-quite cautious about this approach to addressing your use case.
-
-You have a real bug.  I have told you how to fix the real bug.  And you
-have ignored my suggestion.  (To be honest, I do not know for sure that
-my suggestion is feasible, but on the surface it appears to be.)  Again,
-my suggestion is to have the boot loader pass information to the kernel
-(via a chosen property) telling the kernel which devices the bootloader
-has enabled power to.  The power subsystem would use that information
-early in boot to do a "get" on the power supplier (I am not using precise
-power subsystem terminology, but it should be obvious what I mean).
-The consumer device driver would also have to be aware of the information
-passed via the chosen property because the power subsystem has done the
-"get" on the consumer devices behalf (exactly how the consumer gets
-that information is an implementation detail).  This approach is
-more direct, less subtle, less fragile.
-
-
-> 
->>>
->>>>  In that case the device
->>>> was not present at late boot when the suppliers may turn off their resources.
->>>
->>> In that case, the _drivers_ for those devices aren't present at late
->>> boot. So that they can't request to keep the resources on for their
->>> consumer devices. Since there are no consumer requests on resources,
->>> the suppliers turn off their resources at late boot (since there isn't
->>> a better location as of today). The sync_state() call back added in a
->>> subsequent patche in this series will provide the better location.
->>
->> And the sync_state() call back will not deal with modules that add consumer
->> devices when the module is loaded, correct?
-> 
-> Depends. If it's just more devices from DT, then it'll be fine. If
-> it's not, then the module needs to take care of the needs of devices
-> it's adding.> 
->>>
->>>> (I am assuming the details since I have not reviewed the patches later in
->>>> the series that implement this part.)
->>>>
->>>> Am I missing something?
->>>
->>> I think you are mixing up devices getting added/populated with drivers
->>> getting loaded as modules?
->>
->> Only some modules add devices when they are loaded.  But these modules do
->> exist.
-> 
-> Out of the billions of Android devices, how many do you see this happening in?
-
-The Linux kernel is not just used by Android devices.
-
--Frank
-
-> 
-> Thanks,
-> Saravana
+> With clock parent data scheme we must specify the parent clocks for the
+> rpmhcc nodes. So describe the parent clock for rpmhcc in the bindings.
 > 
 
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt b/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt
+> index 3c007653da31..8b97968f9c88 100644
+> --- a/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt
+> +++ b/Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt
+> @@ -9,6 +9,9 @@ Required properties :
+>  - compatible : shall contain "qcom,sdm845-rpmh-clk"
+>  
+>  - #clock-cells : must contain 1
+> +- clocks: a list of phandles and clock-specifier pairs,
+> +	  one for each entry in clock-names.
+> +- clock-names: Parent board clock: "xo".
+>  
+>  Example :
+>  
+> -- 
+> 2.20.1
+> 
