@@ -2,77 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1F5D9683B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 20:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 393B49688A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 20:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729351AbfHTSAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 14:00:18 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:35932 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727006AbfHTSAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 14:00:18 -0400
-Received: by mail-oi1-f196.google.com with SMTP id n1so2396090oic.3;
-        Tue, 20 Aug 2019 11:00:17 -0700 (PDT)
+        id S1730589AbfHTSY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 14:24:58 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:37710 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730484AbfHTSY6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 14:24:58 -0400
+Received: by mail-pf1-f196.google.com with SMTP id 129so3873535pfa.4
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 11:24:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=54TsZDfDW3TriN1nqx27Ow/a4BBsLJIgLp0TtrQghOk=;
+        b=ETn6ov6vEQVZ6Z8d+QOJIR5ZdOHT4ZDivDB2VkpQ0qnDIs9MQrQ638udwnr/9nsV39
+         Q9CE1bjJjQqBou8vTO6RAPzU8X9Tiq1MLFyQK2/DJWm5diN99WuwayJaLt2azZswGQO6
+         PgJRFVxL4YQGtCWP5gy6mT//u52PocvwVbmI1tMnbwHSew1qhj9G4kLkgm0cfOXOG/+z
+         KBuOacguM7Ku15bvGQe9U+2RVhwBdPlfoBEveO5qY2aaNvMSGTBP0IPNRwdL5M9uwBLI
+         rRbk5djqLbCbCvoJbmUcAx9Gb5ONtUGkfOKYOiRtBndtwfw3IyR9R3OQOevfv1X/iVGx
+         ii2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Q1gvNC9FakNN70iNTlLfpOxXe43hETiV8DaUowjuk4k=;
-        b=qUAMqzpRFw2L6Fcsm7gYUp4B9TblbORRvAuoXoQE1BkkuoBOoyXNJf+4xXYuOAcnI8
-         o+cB5TwxHn4HNj+BfQT3P9HMdhcOyMq0n2lvho344G3jgP4bY+7RQNrmYByWw/RP1ayw
-         bAMiHhiYHTFBmiLDvvic9bY1IitIvDmbjUr6+j7Mm2Z6423r4dxEXcO6bR6w/RsH0b1d
-         eqXd9SwGaoI07VS/6WD1ixQrxnv7ws7Rw5ccVyOX/DEcpagKN/jKQPEAu4Ee2ag+JS04
-         6M/jESB8tEMJf7PIuq7XFVw6sTtZUKmecpmISKm9od7AUz377ESTwCJ6D0+ANn4cLQFF
-         JOxA==
-X-Gm-Message-State: APjAAAXBUcbw/D2L43Yzbj71ylO9JI6hAvlCnZuudJtnBH+rZNasfdxw
-        KCCV+TVpsUB3B3UeNA8hTQ==
-X-Google-Smtp-Source: APXvYqwS6vfSL5GG6Hy6vUEP0afiI29iW09/eMOV/jj9QtbvAKZYhgHCM2xtDsPdntbHcHfBhRBbOg==
-X-Received: by 2002:aca:3509:: with SMTP id c9mr900141oia.179.1566324016813;
-        Tue, 20 Aug 2019 11:00:16 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o26sm6431165otl.34.2019.08.20.11.00.16
+        bh=54TsZDfDW3TriN1nqx27Ow/a4BBsLJIgLp0TtrQghOk=;
+        b=UFWxc/BY009hmWyj1PJlziefO/mj2MGi6UcHB9k9hWlsBND9H+wwWkxXYpyTRZyFtj
+         mn1SXWS4pK5XSYateRgGJcLp9oBKP8JLgAS77Z6K92mhZjCYz6GEIiMm5VqV8rDXl3gs
+         ziidd3yDWC1+BL09xagUDH1VruoFSLlyd+8yVDVBqxHxVbsRXT4uDwAXYUHoHIFyFGf2
+         CZQ+aI6q8Oi0+ZWiSE1ExtWVUmezyA6IaQHy0gdsNbYlIEcbri14iRio9EaJHm3Gg80r
+         fSA/DaU2gW2CHkABZ+1a3Vkal7N/AL67KZ1M9RtyO4VXKbvk+C9ORVSKKG4+PFFXoLEj
+         itLw==
+X-Gm-Message-State: APjAAAVjVSqpEz6xa+uE+PyStof9jlKSmq7KljPcMiNrm3pcBzxwa8st
+        G0DbtPCBMNE76mGy2ErmYAHcgg==
+X-Google-Smtp-Source: APXvYqz6e4UEkK1ofDpL52W0zxkSIj5ZMAzgsILYeZML13HEn/+04ibT+w1ZAtBgHDGP+VY3TZZ4jA==
+X-Received: by 2002:a17:90a:3aaf:: with SMTP id b44mr1312628pjc.87.1566325496873;
+        Tue, 20 Aug 2019 11:24:56 -0700 (PDT)
+Received: from google.com ([2620:15c:2cb:1:e90c:8e54:c2b4:29e7])
+        by smtp.gmail.com with ESMTPSA id u16sm20305376pgm.83.2019.08.20.11.24.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2019 11:00:16 -0700 (PDT)
-Date:   Tue, 20 Aug 2019 13:00:15 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Sam Shih <sam.shih@mediatek.com>
-Subject: Re: [PATCH v4 9/10] dt-bindings: pwm: update bindings for MT7629 SoC
-Message-ID: <20190820180015.GA12975@bogus>
-References: <1566265225-27452-1-git-send-email-sam.shih@mediatek.com>
- <1566265225-27452-10-git-send-email-sam.shih@mediatek.com>
+        Tue, 20 Aug 2019 11:24:55 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 11:24:50 -0700
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     shuah <shuah@kernel.org>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Bjorn Helgaas <bhelgaas@google.com>
+Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+Message-ID: <20190820182450.GA38078@google.com>
+References: <20190814055108.214253-1-brendanhiggins@google.com>
+ <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1566265225-27452-10-git-send-email-sam.shih@mediatek.com>
+In-Reply-To: <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Aug 2019 09:40:24 +0800, Sam Shih wrote:
-> From: Ryder Lee <ryder.lee@mediatek.com>
+On Tue, Aug 20, 2019 at 11:24:45AM -0600, shuah wrote:
+> On 8/13/19 11:50 PM, Brendan Higgins wrote:
+> > ## TL;DR
+> > 
+> > This revision addresses comments from Stephen and Bjorn Helgaas. Most
+> > changes are pretty minor stuff that doesn't affect the API in anyway.
+> > One significant change, however, is that I added support for freeing
+> > kunit_resource managed resources before the test case is finished via
+> > kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
+> > KUnit on certain configurations (like the default one for x86, whoops).
+> > 
+> > Based on Stephen's feedback on the previous change, I think we are
+> > pretty close. I am not expecting any significant changes from here on
+> > out.
+> > 
 > 
-> This updates bindings for MT7629 pwm controller.
+> Hi Brendan,
 > 
-> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> ---
->  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> I found checkpatch errors in one or two patches. Can you fix those and
+> send v14.
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Hi Shuah,
 
-If a tag was not added on purpose, please state why and what changed.
+Are you refering to the following errors?
+
+ERROR: Macros with complex values should be enclosed in parentheses
+#144: FILE: include/kunit/test.h:456:
++#define KUNIT_BINARY_CLASS \
++       kunit_binary_assert, KUNIT_INIT_BINARY_ASSERT_STRUCT
+
+ERROR: Macros with complex values should be enclosed in parentheses
+#146: FILE: include/kunit/test.h:458:
++#define KUNIT_BINARY_PTR_CLASS \
++       kunit_binary_ptr_assert, KUNIT_INIT_BINARY_PTR_ASSERT_STRUCT
+
+These values should *not* be in parentheses. I am guessing checkpatch is
+getting confused and thinks that these are complex expressions, when
+they are not.
+
+I ignored the errors since I figured checkpatch was complaining
+erroneously.
+
+I could refactor the code to remove these macros entirely, but I think
+the code is cleaner with them.
+
+What would you prefer I do?
+
+NB: These macros are introduced in: "[PATCH v13 05/18] kunit: test: add
+the concept of expectations"
+
+Thanks!
