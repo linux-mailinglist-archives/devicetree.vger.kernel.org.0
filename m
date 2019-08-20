@@ -2,103 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D911996B26
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 23:09:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C135696B5A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 23:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730618AbfHTVJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 17:09:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45204 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729833AbfHTVJI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 17:09:08 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9745D22DD6;
-        Tue, 20 Aug 2019 21:09:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566335347;
-        bh=H64XkBuRAcQnYzn8+CQCDtiy52IhIiaYr4GOLtsnSNQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iW94QW+j9onF8Mv6031/1TMLrkZk5qiLJUBBEqWri0F1pxjrP7ODbDb3ECH1UOqnC
-         VxMViU7dJ/vXi+K6AP6UjeTQgigHstinZWfNQswKBB18pJX6bcTJcOeYpYSFiO9+2G
-         A2foQ/g7cxWAeDdu14JV2Ofrd0a33u6w2QnsZ8Rw=
-Received: by mail-qk1-f171.google.com with SMTP id r21so5799738qke.2;
-        Tue, 20 Aug 2019 14:09:07 -0700 (PDT)
-X-Gm-Message-State: APjAAAX/qA6Afz+H504gNP4/NoMfzjqMa/fnu2xSTWMh5cJva+cbKHMh
-        4bqt7gWU3q4uDbC9lADlqcuZ9HTh0t6c6XOgZg==
-X-Google-Smtp-Source: APXvYqxb3w4zXk/DIn9EJdy3Q+mAWLKI3wo84JlGLi5KtN1pUPJIrh6lt3WrhOwoEjq/jq2EW1VFeYyeEN233aMYmVw=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr28828151qke.223.1566335346826;
- Tue, 20 Aug 2019 14:09:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190726181108.GA17767@Red>
-In-Reply-To: <20190726181108.GA17767@Red>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 20 Aug 2019 16:08:55 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLNZF7eXN=YCZP9vS0_mG50v9WRTJadniBiyD0KDNf1NQ@mail.gmail.com>
-Message-ID: <CAL_JsqLNZF7eXN=YCZP9vS0_mG50v9WRTJadniBiyD0KDNf1NQ@mail.gmail.com>
-Subject: Re: How to add multiple example with conflicting includes
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
+        id S1729887AbfHTVXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 17:23:06 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:42027 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727358AbfHTVXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 17:23:06 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1i0Bap-0003EB-OR; Tue, 20 Aug 2019 23:23:03 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1i0Bap-0001UJ-3l; Tue, 20 Aug 2019 23:23:03 +0200
+Date:   Tue, 20 Aug 2019 23:23:03 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>
 Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH RFC] dt-bindings: regulator: define a mux regulator
+Message-ID: <20190820212303.dhdo7g7kvisgeb3h@pengutronix.de>
+References: <20190820152511.15307-1-u.kleine-koenig@pengutronix.de>
+ <CAL_JsqLg19883syn66P6zUkLPpQ8FYpeFj2QYvSp1UsWOhVKyQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqLg19883syn66P6zUkLPpQ8FYpeFj2QYvSp1UsWOhVKyQ@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 1:11 PM Corentin Labbe
-<clabbe.montjoie@gmail.com> wrote:
->
-> Hello
->
-> When I try to check the following examples of a devicetree schema:
-> examples:
->   - |
->     #include <dt-bindings/interrupt-controller/arm-gic.h>
->     #include <dt-bindings/clock/sun50i-a64-ccu.h>
->     #include <dt-bindings/reset/sun50i-a64-ccu.h>
->
->     crypto: crypto@1c15000 {
->       compatible = "allwinner,sun8i-h3-crypto";
->       reg = <0x01c15000 0x1000>;
->       interrupts = <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH>;
->       clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>;
->       clock-names = "ahb", "mod";
->       resets = <&ccu RST_BUS_CE>;
->       reset-names = "ahb";
->     };
->
->   - |
->     #include <dt-bindings/interrupt-controller/arm-gic.h>
->     #include <dt-bindings/clock/sun50i-h6-ccu.h>
->     #include <dt-bindings/reset/sun50i-h6-ccu.h>
->
->     crypto: crypto@1904000 {
->       compatible = "allwinner,sun50i-h6-crypto";
->       reg = <0x01904000 0x1000>;
->       interrupts = <GIC_SPI 87 IRQ_TYPE_LEVEL_HIGH>;
->       clocks = <&ccu CLK_BUS_CE>, <&ccu CLK_CE>, <&ccu CLK_MBUS_CE>;
->       clock-names = "ahb", "mod", "mbus";
->       resets = <&ccu RST_BUS_CE>;
->       reset-names = "ahb";
->     };
->
-> I get:
-> In file included from Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.example.dts:42:
-> /linux-next/scripts/dtc/include-prefixes/dt-bindings/clock/sun50i-h6-ccu.h:9: warning: "CLK_PLL_PERIPH0" redefined
->  #define CLK_PLL_PERIPH0  3
-> [...]
->
-> So how can I add multiple examples which need somes conflicting #include to be validated.
+Hello Rob,
 
-2 clocks versus 3 clocks hardly seems like a reason for a 2nd example
-and I would just drop it IMO.
+On Tue, Aug 20, 2019 at 11:39:27AM -0500, Rob Herring wrote:
+> On Tue, Aug 20, 2019 at 10:25 AM Uwe Kleine-König
+> <u.kleine-koenig@pengutronix.de> wrote:
+> >
+> > A mux regulator is used to provide current on one of several outputs. It
+> > might look as follows:
+> >
+> >       ,------------.
+> >     --<OUT0     A0 <--
+> >     --<OUT1     A1 <--
+> >     --<OUT2     A2 <--
+> >     --<OUT3        |
+> >     --<OUT4     EN <--
+> >     --<OUT5        |
+> >     --<OUT6     IN <--
+> >     --<OUT7        |
+> >       `------------'
+> >
+> > Depending on which address is encoded on the three address inputs A0, A1
+> > and A2 the current provided on IN is provided on one of the eight
+> > outputs.
+> >
+> > What is new here is that the binding makes use of a #regulator-cells
+> > property. This uses the approach known from other bindings (e.g. gpio)
+> > to allow referencing all eight outputs with phandle arguments. This
+> > requires an extention in of_get_regulator to use a new variant of
+> > of_parse_phandle_with_args that has a cell_count_default parameter that
+> > is used in absence of a $cell_name property. Even if we'd choose to
+> > update all regulator-bindings to add #regulator-cells = <0>; we still
+> > needed something to implement compatibility to the currently defined
+> > bindings.
+> >
+> > Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > ---
+> > Hello,
+> >
+> > the obvious alternative is to add (here) eight subnodes to represent the
+> > eight outputs. This is IMHO less pretty, but wouldn't need to introduce
+> > #regulator-cells.
+> 
+> I'm okay with #regulator-cells approach.
 
-You could rename your defines to not collide, but that's kind of painful.
+OK, then I will look into that in more detail; unless the regulator guys
+don't agree with this approach of course.
 
-The 3rd option is getting dt-extract-example to spit out N example
-files and then build each one separately. That was more complicated
-than I cared to figure out with kbuild, so I went the simple route.
+> > Apart from reg = <..> and a phandle there is (I think) nothing that
+> > needs to be specified in the subnodes because all properties of an
+> > output (apart from the address) apply to all outputs.
+> >
+> > What do you think?
+> >
+> > Best regards
+> > Uwe
+> >
+> >  .../bindings/regulator/mux-regulator.yaml     | 52 +++++++++++++++++++
+> >  1 file changed, 52 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/regulator/mux-regulator.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/regulator/mux-regulator.yaml b/Documentation/devicetree/bindings/regulator/mux-regulator.yaml
+> > new file mode 100644
+> > index 000000000000..f06dbb969090
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/regulator/mux-regulator.yaml
+> > @@ -0,0 +1,52 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> 
+> (GPL-2.0-only OR BSD-2-Clause) is preferred.
 
-Rob
+OK.
+
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/regulator/mux-regulator.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MUX regulators
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: XXX,adb708
+> 
+> ? I assume you will split this into a common and specific schemas. I
+> suppose there could be differing ways to control the mux just like all
+> other muxes.
+
+Not sure if a specific schema is necessary. I wrote XXX because I was
+offline while I authored the binding and so couldn't determine the right
+vendor to use.
+
+> > +  enable-gpios:
+> > +    maxItems: 1
+> > +
+> > +  address-gpios:
+> > +    description: Array of typically three GPIO pins used to select the
+> > +      regulator's output. The least significant address GPIO must be listed
+> > +      first. The others follow in order of significance.
+> > +    minItems: 1
+> > +
+> > +  "#regulator-cells":
+> 
+> How is this not required?
+
+It should. For the RFC patch I didn't took the time to iron all the
+details. My main concern was/is how the binding should look like and if
+an #regulator-cells with a default would be acceptable.
+ 
+Best regards and thanks for your feedback,
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
