@@ -2,131 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1DC496758
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 19:24:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1659675C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 19:24:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728360AbfHTRYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 13:24:05 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:43428 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727006AbfHTRYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 13:24:05 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7KHNwPl037361;
-        Tue, 20 Aug 2019 12:23:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566321839;
-        bh=3coPamp12U7rOrX0gGA1OOmWrMsb4FMbc1a7GqoR5iE=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=P8CNwPEiQWKjL/gi/Aj422xAUWGW+SQMQHjVg7N+wGNwmzkoOaVM863qC8UcvVFg1
-         NWJRkXQOf+TseRQjGZ6Zd9+ZgLGASBBESnmb3/vK9ayyRvsXifBlUG0dX3+drZ4o8z
-         Y9Ov7CixACl8H6DcHWF5R7uLZL5cYWoebJFBL/zM=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7KHNwrl061587
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Aug 2019 12:23:58 -0500
-Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 20
- Aug 2019 12:23:58 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 20 Aug 2019 12:23:58 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7KHNwgv020020;
-        Tue, 20 Aug 2019 12:23:58 -0500
-Subject: Re: [PATCH 5/8] soc: ti: omap-prm: add omap4 PRM data
-To:     Tero Kristo <t-kristo@ti.com>, <ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
- <1565164139-21886-6-git-send-email-t-kristo@ti.com>
- <04bc6773-dbd4-e1ab-ce31-d93e99dafb33@ti.com>
- <9d684bdc-28b8-0772-2957-93e01c55aae4@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <ed0ec707-ddea-cbfa-ecdf-99faeb770f3f@ti.com>
-Date:   Tue, 20 Aug 2019 12:23:58 -0500
+        id S1727006AbfHTRYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 13:24:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47980 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725971AbfHTRYu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 13:24:50 -0400
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4D3702054F;
+        Tue, 20 Aug 2019 17:24:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566321889;
+        bh=32bftUSKN3Wtl2ZUSwOigociAvrqIpLWLd4sbLVVuNs=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=mNf7pt3nluqjn7wPRl9oxtXsVnuSZaSCBUZomyCyPzzn86pMm1C66eV2ovN537fzs
+         twDIX2TwIIhksR2hUFeG2rerO7ZyNg5kILiIjocQMh8JrJt3TqkiQ7ehTmVji22V5G
+         ZtcCI3OBDRsHFfQ2uCdN2ixEmqYcj9rmuODIJfnw=
+Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Bjorn Helgaas <bhelgaas@google.com>,
+        shuah <shuah@kernel.org>
+References: <20190814055108.214253-1-brendanhiggins@google.com>
+From:   shuah <shuah@kernel.org>
+Message-ID: <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org>
+Date:   Tue, 20 Aug 2019 11:24:45 -0600
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <9d684bdc-28b8-0772-2957-93e01c55aae4@ti.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20190814055108.214253-1-brendanhiggins@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/20/19 2:52 AM, Tero Kristo wrote:
-> On 20.8.2019 2.08, Suman Anna wrote:
->> On 8/7/19 2:48 AM, Tero Kristo wrote:
->>> Add PRM data for omap4 family of SoCs.
->>>
->>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->>> ---
->>>   drivers/soc/ti/omap_prm.c | 20 ++++++++++++++++++++
->>>   1 file changed, 20 insertions(+)
->>>
->>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
->>> index 870515e3..9b8d5945 100644
->>> --- a/drivers/soc/ti/omap_prm.c
->>> +++ b/drivers/soc/ti/omap_prm.c
->>> @@ -54,7 +54,27 @@ struct omap_reset_data {
->>>     #define OMAP_PRM_NO_RSTST    BIT(0)
->>>   +struct omap_prm_data omap4_prm_data[] = {
->>
->> static const
+On 8/13/19 11:50 PM, Brendan Higgins wrote:
+> ## TL;DR
 > 
-> Will fix this and rest of the similar comments.
+> This revision addresses comments from Stephen and Bjorn Helgaas. Most
+> changes are pretty minor stuff that doesn't affect the API in anyway.
+> One significant change, however, is that I added support for freeing
+> kunit_resource managed resources before the test case is finished via
+> kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
+> KUnit on certain configurations (like the default one for x86, whoops).
 > 
-> -Tero
+> Based on Stephen's feedback on the previous change, I think we are
+> pretty close. I am not expecting any significant changes from here on
+> out.
 > 
->>
->> regards
->> Suman
->>
->>> +    { .name = "mpu", .base = 0x4a306300, .pwstst = 0x4 },
->>> +    { .name = "tesla", .base = 0x4a306400, .pwstst = 0x4, .rstctl =
->>> 0x10, .rstst = 0x14 },
->>> +    { .name = "abe", .base = 0x4a306500, .pwstst = 0x4 },
->>> +    { .name = "always_on_core", .base = 0x4a306600, .pwstst = 0x4 },
->>> +    { .name = "core", .base = 0x4a306700, .pwstst = 0x4, .rstctl =
->>> 0x210, .rstst = 0x214 },
->>> +    { .name = "ivahd", .base = 0x4a306f00, .pwstst = 0x4, .rstctl =
->>> 0x10, .rstst = 0x14 },
->>> +    { .name = "cam", .base = 0x4a307000, .pwstst = 0x4 },
->>> +    { .name = "dss", .base = 0x4a307100, .pwstst = 0x4 },
->>> +    { .name = "gfx", .base = 0x4a307200, .pwstst = 0x4 },
->>> +    { .name = "l3init", .base = 0x4a307300, .pwstst = 0x4 },
->>> +    { .name = "l4per", .base = 0x4a307400, .pwstst = 0x4 },
->>> +    { .name = "cefuse", .base = 0x4a307600, .pwstst = 0x4 },
->>> +    { .name = "wkup", .base = 0x4a307700, .pwstst = 0x4 },
->>> +    { .name = "emu", .base = 0x4a307900, .pwstst = 0x4 },
->>> +    { .name = "device", .base = 0x4a307b00, .rstctl = 0x0, .rstst =
->>> 0x4 },
 
-So, looks like you are using pwstctrl as 0 by default, but some of them
-will neither have pwstctrl or pwstst like "device" PRM here. Is the plan
-to use -1 for the fields, or a flags field?
+Hi Brendan,
 
-regards
-Suman
+I found checkpatch errors in one or two patches. Can you fix those and
+send v14.
 
->>> +    { },
->>> +};
->>> +
->>>   static const struct of_device_id omap_prm_id_table[] = {
->>> +    { .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
->>>       { },
->>>   };
->>>  
->>
-> 
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+thanks,
+-- Shuah
