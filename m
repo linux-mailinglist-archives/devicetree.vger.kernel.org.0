@@ -2,72 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47FB596AA7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:32:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E2A896AB0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:33:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730863AbfHTUcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:32:32 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37066 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730515AbfHTUcc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:32:32 -0400
-Received: by mail-ot1-f67.google.com with SMTP id f17so6318033otq.4;
-        Tue, 20 Aug 2019 13:32:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=w4HEgBYUNMjs7TCGrEWBfpxm+fwdeijgHXxiJ5I4qeg=;
-        b=n+cxQw3r9VdoH9z0HdR0eilm17osw9+QEpFNwmZyyZFQyLtKBjk5ogmKv1iVsFoxFs
-         UXgLHSU19Xa67oICY4zD7N27i4et6wEO1NrslqYR9VlQ4oq6UFjPSsAWTMUkrCNGjnD/
-         0xQYZXJvbb3wgElE6Cb2YXgKtRwBnOX9gLFFEBu2t0ePNg8ysube6AjuGP3wTjq8RPyA
-         vUj5AvC4fySAKFJ0gJXAXdZN69OkaMqoj7TAZpVRHsT9/e37iXrJ7NggT1ZknqeYmDUk
-         vaIAe4lJcC1bISZQCqGRRH8putI5R60egJIKazx3OjZpsCCgEBBGfwI2YtXcD4JJ6fVd
-         UaDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=w4HEgBYUNMjs7TCGrEWBfpxm+fwdeijgHXxiJ5I4qeg=;
-        b=ukSx25PHkQtmuCDuzRa686xoxHEtDWGD5FmsUXDKsN3rMbHokqlVWiq+T0w32eGVYb
-         XhySEjGUAd+fyT1QW97Mv7J8+EyK7hSfq+K6imbgE1CaSPVCbTs3NBKSk4RvSXzPZkpH
-         sRFHJRpv9Kg6t6L5sVtSq7Fl6PSPG90IsnCDz1+CHoU68bp3a81S6EXc9kMSmzmoD2Nd
-         UFBK04AoVi3E0Utx7m1jOAI6G4Bc3npUdDRsMJqsB2DTQ7yy1Sej1JexHTjwwpv+kYft
-         OCSw2zzj6KtVooWeicKO1sTa1psddjBbz0Ciq9u3R63Q+8pchShWqVWadsLjZvA7hIMc
-         6kqw==
-X-Gm-Message-State: APjAAAX2YR0N17Cy4VrSyIuXeqql2EUNQERygozNE7NpSCGnFI/u/uQt
-        LwSzQVHawMLcRqJufCVoP/2ipopmYf0h2KOW+vQ=
-X-Google-Smtp-Source: APXvYqxlvVNpQ+FUnoPDePRzlt/lxOoZg375AfFU3rjHLbAwedqV9QU2sqj3xfsgHWhpAmkjk6c5OkDmuYet9+FYRHE=
-X-Received: by 2002:a05:6830:1e5a:: with SMTP id e26mr17408901otj.96.1566333151468;
- Tue, 20 Aug 2019 13:32:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-12-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-12-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:32:20 +0200
-Message-ID: <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
-Subject: Re: [PATCH 11/14] arm64: dts: meson-g12a-x96-max: fix compatible
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
+        id S1730764AbfHTUcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:32:52 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:43574 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730501AbfHTUcw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:32:52 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1i0AoB-00084G-HX; Tue, 20 Aug 2019 22:32:47 +0200
+Message-ID: <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
+Subject: Re: [PATCH 08/49] ath11k: add core.c
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Tue, 20 Aug 2019 22:32:45 +0200
+In-Reply-To: <1566316095-27507-9-git-send-email-kvalo@codeaurora.org> (sfid-20190820_175156_803421_4FF79584)
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+         <1566316095-27507-9-git-send-email-kvalo@codeaurora.org>
+         (sfid-20190820_175156_803421_4FF79584)
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> This fixes the following DT schemas check errors:
-> meson-g12a-x96-max.dt.yaml: /: compatible: ['amediatech,x96-max', 'amlogic,u200', 'amlogic,g12a'] is not valid under any of the given schemas
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-[...]
-> -       compatible = "amediatech,x96-max", "amlogic,u200", "amlogic,g12a";
-> +       compatible = "amediatech,x96-max", "amlogic,g12a";
-only partially related: I wonder if we should add a s905x2 compatible
-string here and to the .dts filename (just like we separate the GXL
-variants s905x, s905d, s905w, ...)
+> +module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
+> +
+> +MODULE_PARM_DESC(debug_mask, "Debugging mask");
+> +
+> +static const struct ath11k_hw_params ath11k_hw_params = {
+> +			.name = "ipq8074",
+
+indentation here seems a bit too much
+
+> +MODULE_LICENSE("Dual BSD/GPL");
+
+All your files state "ISC", shouldn't that be reflected here?
+
+johannes
+
