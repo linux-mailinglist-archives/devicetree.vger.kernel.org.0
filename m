@@ -2,67 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36412966D0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F8EC966E1
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726981AbfHTQwv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 12:52:51 -0400
-Received: from nbd.name ([46.4.11.11]:60572 "EHLO nbd.name"
+        id S1730212AbfHTQ5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 12:57:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37856 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726345AbfHTQwv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 12:52:51 -0400
-Received: from pd95fd754.dip0.t-ipconnect.de ([217.95.215.84] helo=[192.168.45.104])
-        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <john@phrozen.org>)
-        id 1i07NJ-0006bl-RF; Tue, 20 Aug 2019 18:52:49 +0200
-Subject: Re: [PATCH 02/49] ath11k: add Kconfig
-To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
- <1566316095-27507-3-git-send-email-kvalo@codeaurora.org>
-From:   John Crispin <john@phrozen.org>
-Message-ID: <f5af5ff4-63d6-6b94-6c04-8436f955985a@phrozen.org>
-Date:   Tue, 20 Aug 2019 18:52:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726345AbfHTQ5T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 12:57:19 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A33212339F;
+        Tue, 20 Aug 2019 16:57:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566320238;
+        bh=XXjiYxQkert7CQKwnQYwS/DJ9k/U3UTDnEKYjjCX/3Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:From;
+        b=2jX2Ag8APIFwCLyU4kAtKBfXXb5lV2endNabWcuWxLvWLoywws5J1NWZ3jhvOolz1
+         21Gyotmv1EcMF9cr0YZwBagfs2iDSHfxsTScMZfVVdQ13/8sSyk2/8nrJPCz54HUIF
+         Ggt4fV6axtAZrFH7DH3IG0RL35pbuGbZLHiApFbY=
+Received: by mail-qt1-f182.google.com with SMTP id t12so6823609qtp.9;
+        Tue, 20 Aug 2019 09:57:18 -0700 (PDT)
+X-Gm-Message-State: APjAAAX2Ayouk88Kft7Ye6hgRvPSET1S5McaDKjP4897FKhw+7g6X9pj
+        YSys8mp7nvWG1UJD7CobcpHClWVPLTZ7kzoBOg==
+X-Google-Smtp-Source: APXvYqyXzp+QqhlPh4ms6hvrPcB1uD6IRBalVujsZrtIEmK/kh6+PbQH7E0GTYlHODGJjOvZfk0fqz3SyXtNfugq1Q4=
+X-Received: by 2002:ac8:386f:: with SMTP id r44mr27730593qtb.300.1566320237772;
+ Tue, 20 Aug 2019 09:57:17 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1566316095-27507-3-git-send-email-kvalo@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <20190820145343.29108-1-megous@megous.com> <20190820145343.29108-3-megous@megous.com>
+ <CAL_JsqLHeA6A_+ZgmCzC42Y6yJrEq6+D3vKn8ETh2D7LJ+1_-g@mail.gmail.com> <20190820163433.sr4lvjxmmhjtbtcb@core.my.home>
+In-Reply-To: <20190820163433.sr4lvjxmmhjtbtcb@core.my.home>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 20 Aug 2019 11:57:06 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJHNL91KMAP5ya97eiyTypGniCJ+tbP=NchPJK502i5FQ@mail.gmail.com>
+Message-ID: <CAL_JsqJHNL91KMAP5ya97eiyTypGniCJ+tbP=NchPJK502i5FQ@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: net: sun8i-a83t-emac: Add phy-io-supply property
+To:     Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 20/08/2019 17:47, Kalle Valo wrote:
-> ---
->   drivers/net/wireless/ath/ath11k/Kconfig | 34 +++++++++++++++++++++++++++++++++
->   1 file changed, 34 insertions(+)
+On Tue, Aug 20, 2019 at 11:34 AM Ond=C5=99ej Jirman <megous@megous.com> wro=
+te:
 >
-> diff --git a/drivers/net/wireless/ath/ath11k/Kconfig b/drivers/net/wireless/ath/ath11k/Kconfig
-> new file mode 100644
-> index 000000000000..26bf98fa648e
-> --- /dev/null
-> +++ b/drivers/net/wireless/ath/ath11k/Kconfig
-> @@ -0,0 +1,34 @@
-> +config ATH11K
-> +        tristate "Qualcomm Technologies 802.11ax chipset support"
-> +        depends on MAC80211 && HAS_DMA
+> On Tue, Aug 20, 2019 at 11:20:22AM -0500, Rob Herring wrote:
+> > On Tue, Aug 20, 2019 at 9:53 AM <megous@megous.com> wrote:
+> > >
+> > > From: Ondrej Jirman <megous@megous.com>
+> > >
+> > > Some PHYs require separate power supply for I/O pins in some modes
+> > > of operation. Add phy-io-supply property, to allow enabling this
+> > > power supply.
+> >
+> > Perhaps since this is new, such phys should have *-supply in their node=
+s.
+>
+> Yes, I just don't understand, since external ethernet phys are so common,
+> and they require power, how there's no fairly generic mechanism for this
+> already in the PHY subsystem, or somewhere?
 
-    ^^ space vs tab here
+Because generic mechanisms for this don't work. For example, what
+happens when the 2 supplies need to be turned on in a certain order
+and with certain timings? And then add in reset or control lines into
+the mix... You can see in the bindings we already have some of that.
 
-     John
+> It looks like other ethernet mac drivers also implement supplies on phys
+> on the EMAC nodes. Just grep phy-supply through dt-bindings/net.
+>
+> Historical reasons, or am I missing something? It almost seems like I mus=
+t
+> be missing something, since putting these properties to phy nodes
+> seems so obvious.
 
-> +	depends on REMOTEPROC
-> +	depends on ARCH_QCOM || COMPILE_TEST
-> +	select ATH_COMMON
-> +	select QCOM_QMI_HELPERS
-> +        help
-> +          This module adds support for Qualcomm Technologies 802.11ax family of
-> +	  chipsets.
-> +
-> +          If you choose to build a module, it'll be called ath11k.
-> +
+Things get added one by one and one new property isn't that
+controversial. We've generally learned the lesson and avoid this
+pattern now, but ethernet phys are one of the older bindings.
+
+Rob
