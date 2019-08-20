@@ -2,87 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7EEE9640A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BA419640C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730101AbfHTPTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:19:35 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:37124 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729137AbfHTPTe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:19:34 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 6B98F25AD84;
-        Wed, 21 Aug 2019 01:19:32 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 4AD419403FF; Tue, 20 Aug 2019 17:19:30 +0200 (CEST)
-Date:   Tue, 20 Aug 2019 17:19:30 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1730440AbfHTPTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 11:19:37 -0400
+Received: from vps.xff.cz ([195.181.215.36]:32796 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729137AbfHTPTh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 11:19:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566314375; bh=3n0q7CBc9P4bQG/G0hfq9MsM1NWknDFFdma8+IRC/cg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RqPDvgDPVzlnaRwp8M3IghFK1wQglwVFc5+QYKZLLecgLDG5Wil2dozlnMco/EYls
+         /tTRCmZRHy22lpoHwy9E9Fr/ySqpCuyc55Qs9fnt0P+1UVmbOrWTAtsc86mOFmndqh
+         t3CYfwOjHBGp7SjGsGvlX8D7XF7SfRw54iJgeEMc=
+From:   megous@megous.com
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sh-mobile-ceu: Rename bindings
- documentation file
-Message-ID: <20190820151930.pwi42cewslkchssf@verge.net.au>
-References: <20190819140544.19294-1-horms+renesas@verge.net.au>
- <20190820095205.xnthl7d7cpy7myq2@uno.localdomain>
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>
+Cc:     Ondrej Jirman <megous@megous.com>, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: [PATCH v2 0/3] Add basic support for RTC on Allwinner H6 SoC
+Date:   Tue, 20 Aug 2019 17:19:31 +0200
+Message-Id: <20190820151934.3860-1-megous@megous.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190820095205.xnthl7d7cpy7myq2@uno.localdomain>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 11:52:05AM +0200, Jacopo Mondi wrote:
-> Hi Simon,
-> 
-> On Mon, Aug 19, 2019 at 04:05:44PM +0200, Simon Horman wrote:
-> > Renesas media binding documentation files uses a naming schema of
-> > 'renesas,<module>.txt'. Rename the SH Mobile CEU file to match this pattern.
-> >
-> 
-> The old soc-camera based sh-mobile-ceu driver has been removed one
-> year ago and replaced by driver/media/platform/renesas-ceu.c whose
-> bindings are described at
-> Documentation/devicetree/bindings/media/renesas,ceu.txt
-> 
-> Should this file be removed instead of renamed?
+From: Ondrej Jirman <megous@megous.com>
 
-Thanks,
+I went through the datasheets for H6 and H5, and compared the differences.
+RTCs are largely similar, but not entirely compatible. Incompatibilities
+are in details not yet implemented by the rtc driver though.
 
-I thought I had checked that but clearly I did not.
-I agree the file should be removed and I'll send a revised patch
-accordingly.
+I also corrected the clock tree in H6 DTSI.
 
-> 
-> Thanks
->   j
-> 
-> > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> > ---
-> > Based on v5.3-rc1
-> > ---
-> >  .../bindings/media/{sh_mobile_ceu.txt => renesas,sh-mobile-ceu.txt}       | 0
-> >  1 file changed, 0 insertions(+), 0 deletions(-)
-> >  rename Documentation/devicetree/bindings/media/{sh_mobile_ceu.txt => renesas,sh-mobile-ceu.txt} (100%)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/sh_mobile_ceu.txt b/Documentation/devicetree/bindings/media/renesas,sh-mobile-ceu.txt
-> > similarity index 100%
-> > rename from Documentation/devicetree/bindings/media/sh_mobile_ceu.txt
-> > rename to Documentation/devicetree/bindings/media/renesas,sh-mobile-ceu.txt
-> > --
-> > 2.11.0
-> >
+This patchset is necessary for implementing the WiFi/Bluetooth support
+on boards using H6 SoC.
 
+There was some discussion previously of describing HOSC, DCXO and XO
+oscillators and clocks as part of RTC in DT, but I decided against it
+because it's not necessary, becuse information that would be provided
+as a part of DT can already be determined at runtime from RTC registers,
+so this woudn't add any value and would only introduce complications
+to the driver. See: https://patchwork.kernel.org/cover/10898083/
+
+Please take a look.
+
+
+Thank you and regards,
+  Ondrej Jirman
+
+
+Changes in v2:
+- bindings converted to yaml
+- added reviewed by tags
+
+Ondrej Jirman (3):
+  dt-bindings: Add compatible for H6 RTC
+  rtc: sun6i: Add support for H6 RTC
+  arm64: dts: sun50i-h6: Add support for RTC and fix the clock tree
+
+ .../bindings/rtc/allwinner,sun6i-a31-rtc.yaml | 13 ++++++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 30 +++++++-------
+ drivers/rtc/rtc-sun6i.c                       | 40 ++++++++++++++++++-
+ 3 files changed, 67 insertions(+), 16 deletions(-)
+
+-- 
+2.22.1
 
