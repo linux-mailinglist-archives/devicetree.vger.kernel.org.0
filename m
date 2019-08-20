@@ -2,136 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3234795BF2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 12:04:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9097595C1D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 12:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729761AbfHTKEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 06:04:37 -0400
-Received: from mail-eopbgr60045.outbound.protection.outlook.com ([40.107.6.45]:38905
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728414AbfHTKEg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 06:04:36 -0400
+        id S1729689AbfHTKRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 06:17:04 -0400
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:25089 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728545AbfHTKRD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 06:17:03 -0400
+Received-SPF: Pass (esa4.microchip.iphmx.com: domain of
+  Nicolas.Ferre@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  envelope-from="Nicolas.Ferre@microchip.com";
+  x-sender="Nicolas.Ferre@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa4.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  envelope-from="Nicolas.Ferre@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa4.microchip.iphmx.com; spf=Pass smtp.mailfrom=Nicolas.Ferre@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: ZGTbEEY+aI+WKlbYpD5ycmwultfFf1rrRGTTC0UOIvgUj1seW4d9QEPk9TqYl+ayAMqDmlA6MC
+ T8mvev5nr298kzPbNSuD3pVGLUnQX9h/0IS6AX6//cZgxkT5OvHVOUSG2w79A+DxOYOV1/qR3t
+ ZFViicjFTQ1g1HjJvSTsA07RLoHVpPCnGq1qNgcjYLUmgQ2AD/9QVswloOSZFRnz0XkBIE7sPu
+ ckSWgeDieZcguyyxNCgPKkGvGK8kxhU892UwRTKeGNm9anO6I3QtNSyNgHznvRHUnUYwR2Uac6
+ AWQ=
+X-IronPort-AV: E=Sophos;i="5.64,408,1559545200"; 
+   d="scan'208";a="44908227"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 20 Aug 2019 03:17:02 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 20 Aug 2019 03:17:00 -0700
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 20 Aug 2019 03:17:00 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R9379zKZKFO6jhCLEAF0Kt9SLHA2NxAYSz7hAk9aQlc0aBh4SYXb/d/I78ghYlQEx/YFSnGcgTRdjM/D+62y+XGqca+ltN4Aj68/VUS+F+A04OHULd4uEJyfDnp7o4UC1u/MuBwun9kSAfc55Zm+xSJR53xrFWYm617oUuXmRdF1XMxUUiCdlci7gPBxmuJZxptsZ5DHBz930miUaySADPkhEHNcmnKgi1/qHHk4fXYnM7GOH5RWmCNUyhHS48VzB0gBcvt2dij3AC/BPKNXTClndzx0cN0x9yVToqOdWxZPC6fsfpbxNE49YkdzHfUQUwrEl9NKpwTq2W7vZ6sMTQ==
+ b=Qg1vY2qsULAmh0y6Sa7UYKQ6gGnMcde7FvgwHjv6HGYfrcC8VEiukuPywMKS48x81xVWVh0jGwsUr+FVRDU9lqpOofezjHI5N6Pkz+iaLyyPhZ6WjcU/4rw+Ye4GhUmpvo93ObC+Tt/lIBOtN62SL/+/Vqg82+y4OLeLaHcUXHvFst/JwfDHHa1trGjoN+LCyqwNMtPT6DArGIV+VAtLQpsW27CP+ErqUcdKhDJoBLadHiMMKtMQ2Zcs2oRVXIhCuAcpgUsuM42SPQYZmdXnf6Ap6nstd5twTBRiyr44wEghJrk41Pe9S3uB+Wi5NDJmWLMk2KCaeOsqhEh+Uvx0KQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xUkkHLdkPYjkT3+IceX3OfRMUvJFriToSzqQ6I4MFM8=;
- b=Km2vArAuOCX8z64TcXtLRHf0ASl9EksZSF2CAbXCXAfeY40PoTYTqb+zrLHq1vkf7yWMRk8SstHjsIg1jwNC/aDWmWRx/ML9Uy4aIRgtmYzRiEJZBzLI8NghgppOwceQtiWu721bCHSFxkvbzgtTpEFpROgoiC++I8pSO/QnYqz7YEX1LVZQ6aazSTdfSRChwa0VNgvS1CbJiFKerkwPcUbciTAHtlj/+HE8t/mO/T8bqUsQlB7J/FxKaRP4W6XxZtIa2qGoYRaxM2fA8OA+cRgkKX0ApWgwnO8Sjo9ZCTW04t6SZ34krl1bme/jlQ2Uw1oIRgr8CI29oo81yP833w==
+ bh=aEIMYzzWkSSNcvtr2qol2Ykt2ssfx0bRv8oWR/ba6nA=;
+ b=BZ92G/yApSHWuPX226xkBHPqkhtJCuw30lYngPPABt/OyfKDLyWdAm8x8cavQMEvM2wmolBAe/Yp+XVz96oXHWKpjLtDOFtH6EJtpTO4nY3r8vfXs56zvK0mKW9YU6TJvBmCzXdCAvgqfGtvztu9S2RFjaqceEC4UPZ+V82/R+uTw9v/3PrLCLQkoGab4R9y4vYcWRE5WsOiPZMSUKt0SxrXSHrmUkPn21RXAdbmFg8VT011c9t2ir5vA34ewFGX30eXBEswtTNwCzN2IeDE3bTgJcKt0eh0PS3QWC4+4W41t3E0KYLQDRd7xsmv0wLi823WCvJNLtnDw+OicyEnoA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xUkkHLdkPYjkT3+IceX3OfRMUvJFriToSzqQ6I4MFM8=;
- b=ZpAapkEMJXU8Ww7Fh2M8NqhHNnh8nEu5wQmevIkpqgk7VetzIRX6W1mujd/XXVO6yqmljGwEuwE5d5ZiPTE8axSW1cQjUDgVVk6OE5IYguLWFx0qC0OQ1GV0CjCvNGNIvlJWLy3tmOKm6kxGBpyIM1Ymn8DUb+5hjtPgutMV71U=
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com (20.179.250.159) by
- DB8PR04MB6714.eurprd04.prod.outlook.com (20.179.251.79) with Microsoft SMTP
+ bh=aEIMYzzWkSSNcvtr2qol2Ykt2ssfx0bRv8oWR/ba6nA=;
+ b=uzVwJ0u/9k25vmfaHCkSDjAz/2kKIUNJ1Tk6NdjjdTQM3ZmrbLQn5+kqB0LEVTdqw7MSu3U7C7cjXUb5FED7oZPSxoBntKCEILa+R353RidbaFUDCeXAwJQsIL770kcFAAQtyBgY6RsWf/hK1H2FgyUlHXNP6TN9lF4HEtIOTXI=
+Received: from MWHPR11MB1662.namprd11.prod.outlook.com (10.172.55.15) by
+ MWHPR11MB1374.namprd11.prod.outlook.com (10.169.234.8) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2178.16; Tue, 20 Aug 2019 10:04:29 +0000
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb]) by DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb%3]) with mapi id 15.20.2178.018; Tue, 20 Aug 2019
- 10:04:29 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     Andrew Murray <andrew.murray@arm.com>
-CC:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>
-Subject: RE: [PATCHv2 1/4] dt-bindings: PCI: designware: Remove the num-lanes
- from Required properties
-Thread-Topic: [PATCHv2 1/4] dt-bindings: PCI: designware: Remove the num-lanes
- from Required properties
-Thread-Index: AQHVVyjlrdLaxDNDsUGTjgUCHNzTaacDw1wAgAALe3A=
-Date:   Tue, 20 Aug 2019 10:04:29 +0000
-Message-ID: <DB8PR04MB6747E55FD982EE4C856DF30D84AB0@DB8PR04MB6747.eurprd04.prod.outlook.com>
-References: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
- <20190820073022.24217-2-Zhiqiang.Hou@nxp.com>
- <20190820092251.GE23903@e119886-lin.cambridge.arm.com>
-In-Reply-To: <20190820092251.GE23903@e119886-lin.cambridge.arm.com>
-Accept-Language: zh-CN, en-US
+ 15.20.2178.16; Tue, 20 Aug 2019 10:16:59 +0000
+Received: from MWHPR11MB1662.namprd11.prod.outlook.com
+ ([fe80::410a:9d4b:b1df:2134]) by MWHPR11MB1662.namprd11.prod.outlook.com
+ ([fe80::410a:9d4b:b1df:2134%12]) with mapi id 15.20.2178.018; Tue, 20 Aug
+ 2019 10:16:59 +0000
+From:   <Nicolas.Ferre@microchip.com>
+To:     <schwab@suse.de>, <paul.walmsley@sifive.com>,
+        <davem@davemloft.net>, <jakub.kicinski@netronome.com>
+CC:     <yash.shah@sifive.com>, <robh+dt@kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <mark.rutland@arm.com>, <palmer@sifive.com>,
+        <aou@eecs.berkeley.edu>, <ynezz@true.cz>, <sachin.ghadi@sifive.com>
+Subject: Re: [PATCH 2/3] macb: Update compatibility string for SiFive
+ FU540-C000
+Thread-Topic: [PATCH 2/3] macb: Update compatibility string for SiFive
+ FU540-C000
+Thread-Index: AQHVPiKzEWVX87W+rUadJIz70Teg7KbR2FcAgDIZnv2AABKIAA==
+Date:   Tue, 20 Aug 2019 10:16:58 +0000
+Message-ID: <0b50622a-1145-3637-082f-c4edaccbbaa1@microchip.com>
+References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
+ <1563534631-15897-2-git-send-email-yash.shah@sifive.com>
+ <4075b955-a187-6fd7-a2e6-deb82b5d4fb6@microchip.com>
+ <CAJ2_jOEHoh+D76VpAoVq3XnpAZEQxdQtaVX5eiKw5X4r+ypKVw@mail.gmail.com>
+ <alpine.DEB.2.21.9999.1908131142150.5033@viisi.sifive.com>
+ <mvm5zmskxs3.fsf@suse.de>
+In-Reply-To: <mvm5zmskxs3.fsf@suse.de>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=zhiqiang.hou@nxp.com; 
-x-originating-ip: [119.31.174.73]
+x-clientproxiedby: PR1PR01CA0003.eurprd01.prod.exchangelabs.com
+ (2603:10a6:102::16) To MWHPR11MB1662.namprd11.prod.outlook.com
+ (2603:10b6:301:e::15)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [213.41.198.74]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 011e555e-4751-4824-3849-08d72555ca4c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB8PR04MB6714;
-x-ms-traffictypediagnostic: DB8PR04MB6714:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB671406C16F3421F99FDD8CB384AB0@DB8PR04MB6714.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-ms-office365-filtering-correlation-id: 167aa7df-a634-4e92-2da0-08d725578907
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:MWHPR11MB1374;
+x-ms-traffictypediagnostic: MWHPR11MB1374:
+x-ms-exchange-purlcount: 2
+x-microsoft-antispam-prvs: <MWHPR11MB1374FADB3A23A27432C3563FE0AB0@MWHPR11MB1374.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 013568035E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(39860400002)(346002)(136003)(396003)(376002)(199004)(13464003)(54534003)(189003)(7416002)(6916009)(478600001)(76176011)(7696005)(4326008)(74316002)(86362001)(52536014)(5660300002)(33656002)(6116002)(66066001)(6246003)(14444005)(7736002)(256004)(305945005)(14454004)(53936002)(64756008)(71200400001)(71190400001)(55016002)(8936002)(76116006)(9686003)(316002)(81166006)(2906002)(3846002)(81156014)(6436002)(446003)(102836004)(54906003)(11346002)(26005)(186003)(486006)(476003)(25786009)(66476007)(229853002)(66446008)(66556008)(99286004)(66946007)(8676002)(6506007)(53546011);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB6714;H:DB8PR04MB6747.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(6029001)(396003)(376002)(346002)(39860400002)(136003)(366004)(199004)(189003)(25786009)(54906003)(53546011)(386003)(36756003)(31686004)(53936002)(6116002)(3846002)(229853002)(81156014)(66446008)(2906002)(6512007)(6486002)(66476007)(4326008)(2501003)(81166006)(8676002)(6246003)(6306002)(6436002)(5660300002)(8936002)(15650500001)(966005)(14444005)(186003)(66066001)(52116002)(76176011)(256004)(14454004)(26005)(31696002)(7736002)(66946007)(305945005)(66556008)(71200400001)(64756008)(476003)(2616005)(486006)(478600001)(316002)(446003)(11346002)(102836004)(7416002)(110136005)(6506007)(71190400001)(99286004)(86362001);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR11MB1374;H:MWHPR11MB1662.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: microchip.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 7h3dGIif/DSXPtreM+T+Fs4V/iFRAXBlpj4XvscP/xKAsxHOU4Z3S7O0AUTbrf6ck4JiJn/ZGedTWoXc4MLen272VCf4cgPACNrnZ+1E7ey8gYqTPylA4bo91i5jC6IteMOZhRnVpKvmRCEdIOQ8g7/l2MXW4kSn235NMoI4Lsm6VF8akUHn/vdJoRFsoBeLTo4GKhJzm8FJv7dnwP6APGi4upoyGmN2SChpgV0hV87v4fL1/WY7XXhmwRxLwehW4qKuxO5AfWUnVvpM4+FMYSPQg4Cu33fxIlApm52OeO5esi3ZcvrISHwCPXLw84hEzS5i/dMjgB+VOAvuExFd7V+BEkczyLvTSs0GVJd1aNF6gLsXaRlEuAZKKz/0nLEVmvp8Wt+DdrWpnr0PK1NiGDJQnOJluNlCO4P/tL954Vo=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: KICwnLLISOxrOv/0JEy2xHyajJhufVGsGsO8qRvqnCCU10roIs47seYEi/V9BCptrrSyhNK6OIJRapeSIP67WY2h4e8TqVPnyn2Bro1otWx0ZJy6wgEeZXRXo05R3I7GY+sU+2fmvxIYxhkv3xMFWSxHb4mgXGYjDKkty0la0YVDKfxe03T46YxKdrejsZRCdIE9qRqEntk/Qtt6WzHonvfpjX0o0OBqb53d6rxoBNTuxVAVBUurJlw4r/HD69PI8J0GrozL7fFLOE38Xx3RDdztmmvQHWK5EltE3Y05thzl7q3ku/7m6sWLFPkTLwqm/1DOPkUEv2U6tMRPkXoQBTTYdStH87TqudadYOsnKOw9E+5496gp3Ns8ZRm+ni5iK0KtY9OWPVqws7+UCpTtp82YSlH7SfrnzflMLUF9ApM=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <44B36E30E59D7841828B2F7738A2E610@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 011e555e-4751-4824-3849-08d72555ca4c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Aug 2019 10:04:29.1425
+X-MS-Exchange-CrossTenant-Network-Message-Id: 167aa7df-a634-4e92-2da0-08d725578907
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Aug 2019 10:16:58.9305
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jjFBG2YJ6R8FluCwj0KSZuC59wzmFTfXrRAK2oCDQ/jE4UguoTnlGEEgkCAMuGvwuv9ckiV0JcoJ3vUr/630HQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6714
+X-MS-Exchange-CrossTenant-userprincipalname: 90njDbk/ipZduyIUYuv7+WpfMOHEdh/Xr6IZsEBclylYmtnHoEwc3ZIuznS/4mOV3/VmC/alzFLxzz7abWkQLSbPNArIbiZ8R8evW9J4KTw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1374
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQW5kcmV3LA0KDQpUaGFua3MgYSBsb3QgZm9yIHlvdXIgcmV2aWV3IQ0KDQpUaGFua3MsDQpa
-aGlxaWFuZw0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEFuZHJldyBN
-dXJyYXkgPGFuZHJldy5tdXJyYXlAYXJtLmNvbT4NCj4gU2VudDogMjAxOcTqONTCMjDI1SAxNzoy
-Mw0KPiBUbzogWi5xLiBIb3UgPHpoaXFpYW5nLmhvdUBueHAuY29tPg0KPiBDYzogbGludXgtcGNp
-QHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWtl
-cm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGd1c3Rhdm8ucGltZW50ZWxAc3lub3BzeXMuY29tOw0KPiBq
-aW5nb29oYW4xQGdtYWlsLmNvbTsgYmhlbGdhYXNAZ29vZ2xlLmNvbTsgcm9iaCtkdEBrZXJuZWwu
-b3JnOw0KPiBtYXJrLnJ1dGxhbmRAYXJtLmNvbTsgc2hhd25ndW9Aa2VybmVsLm9yZzsgTGVvIExp
-DQo+IDxsZW95YW5nLmxpQG54cC5jb20+OyBsb3JlbnpvLnBpZXJhbGlzaUBhcm0uY29tOyBNLmgu
-IExpYW4NCj4gPG1pbmdodWFuLmxpYW5AbnhwLmNvbT4NCj4gU3ViamVjdDogUmU6IFtQQVRDSHYy
-IDEvNF0gZHQtYmluZGluZ3M6IFBDSTogZGVzaWdud2FyZTogUmVtb3ZlIHRoZQ0KPiBudW0tbGFu
-ZXMgZnJvbSBSZXF1aXJlZCBwcm9wZXJ0aWVzDQo+IA0KPiBPbiBUdWUsIEF1ZyAyMCwgMjAxOSBh
-dCAwNzoyODo0M0FNICswMDAwLCBaLnEuIEhvdSB3cm90ZToNCj4gPiBGcm9tOiBIb3UgWmhpcWlh
-bmcgPFpoaXFpYW5nLkhvdUBueHAuY29tPg0KPiA+DQo+ID4gVGhlIG51bS1sYW5lcyBpcyBub3Qg
-YSBtYW5kYXRvcnkgcHJvcGVydHksIGUuZy4gb24gRlNMIExheWVyc2NhcGUNCj4gPiBTb0NzLCB0
-aGUgUENJZSBsaW5rIHRyYWluaW5nIGlzIGNvbXBsZXRlZCBhdXRvbWF0aWNhbGx5IGJhc2Ugb24g
-dGhlDQo+ID4gc2VsZWN0ZWQgU2VyRGVzIHByb3RvY29sLCBpdCBkb2Vzbid0IG5lZWQgdGhlIG51
-bS1sYW5lcyB0byBzZXQtdXAgdGhlDQo+ID4gbGluayB3aWR0aC4NCj4gPg0KPiA+IEl0IGlzIHBy
-ZXZpb3VzbHkgaW4gYm90aCBSZXF1aXJlZCBhbmQgT3B0aW9uYWwgcHJvcGVydGllcywgbGV0J3MN
-Cj4gPiByZW1vdmUgaXQgZnJvbSB0aGUgUmVxdWlyZWQgcHJvcGVydGllcy4NCj4gPg0KPiA+IFNp
-Z25lZC1vZmYtYnk6IEhvdSBaaGlxaWFuZyA8WmhpcWlhbmcuSG91QG54cC5jb20+DQo+ID4gLS0t
-DQo+IA0KPiBSZXZpZXdlZC1ieTogQW5kcmV3IE11cnJheSA8YW5kcmV3Lm11cnJheUBhcm0uY29t
-Pg0KPiANCj4gDQo+ID4gVjI6DQo+ID4gIC0gUmV3b3JkZWQgdGhlIGNoYW5nZSBsb2cgYW5kIHN1
-YmplY3QuDQo+ID4gIC0gRml4ZWQgYSB0eXBvIGluIHN1YmplY3QuDQo+ID4NCj4gPiAgRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9kZXNpZ253YXJlLXBjaWUudHh0IHwgMSAt
-DQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxIGRlbGV0aW9uKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0
-IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9kZXNpZ253YXJlLXBjaWUu
-dHh0DQo+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL2Rlc2lnbndh
-cmUtcGNpZS50eHQNCj4gPiBpbmRleCA1NTYxYTFjMDYwZDAuLmJkODgwZGYzOWE3OSAxMDA2NDQN
-Cj4gPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcGNpL2Rlc2lnbndh
-cmUtcGNpZS50eHQNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
-cGNpL2Rlc2lnbndhcmUtcGNpZS50eHQNCj4gPiBAQCAtMTEsNyArMTEsNiBAQCBSZXF1aXJlZCBw
-cm9wZXJ0aWVzOg0KPiA+ICAJICAgICB0aGUgQVRVIGFkZHJlc3Mgc3BhY2UuDQo+ID4gICAgICAo
-VGhlIG9sZCB3YXkgb2YgZ2V0dGluZyB0aGUgY29uZmlndXJhdGlvbiBhZGRyZXNzIHNwYWNlIGZy
-b20NCj4gInJhbmdlcyINCj4gPiAgICAgIGlzIGRlcHJlY2F0ZWQgYW5kIHNob3VsZCBiZSBhdm9p
-ZGVkLikNCj4gPiAtLSBudW0tbGFuZXM6IG51bWJlciBvZiBsYW5lcyB0byB1c2UNCj4gPiAgUkMg
-bW9kZToNCj4gPiAgLSAjYWRkcmVzcy1jZWxsczogc2V0IHRvIDwzPg0KPiA+ICAtICNzaXplLWNl
-bGxzOiBzZXQgdG8gPDI+DQo+ID4gLS0NCj4gPiAyLjE3LjENCj4gPg0K
+On 20/08/2019 at 11:10, Andreas Schwab wrote:
+> External E-Mail
+>=20
+>=20
+> On Aug 13 2019, Paul Walmsley <paul.walmsley@sifive.com> wrote:
+>=20
+>> Dave, Nicolas,
+>>
+>> On Mon, 22 Jul 2019, Yash Shah wrote:
+>>
+>>> On Fri, Jul 19, 2019 at 5:36 PM <Nicolas.Ferre@microchip.com> wrote:
+>>>>
+>>>> On 19/07/2019 at 13:10, Yash Shah wrote:
+>>>>> Update the compatibility string for SiFive FU540-C000 as per the new
+>>>>> string updated in the binding doc.
+>>>>> Reference: https://lkml.org/lkml/2019/7/17/200
+>>>>
+>>>> Maybe referring to lore.kernel.org is better:
+>>>> https://lore.kernel.org/netdev/CAJ2_jOFEVZQat0Yprg4hem4jRrqkB72FKSeQj4=
+p8P5KA-+rgww@mail.gmail.com/
+>>>
+>>> Sure. Will keep that in mind for future reference.
+>>>
+>>>>
+>>>>> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+>>>>
+>>>> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
+>>>
+>>> Thanks.
+>>
+>> Am assuming you'll pick this up for the -net tree for v5.4-rc1 or earlie=
+r.
+>> If not, please let us know.
+>=20
+> This is still missing in v5.4-rc5, which means that networking is broken.
+
+Andreas, Paul,
+
+The patchwork state for the 2 first patches of this series is "Changes=20
+Requested". It's probably due to my advice of using lore.kernel.org (or=20
+something else).
+
+I'm perfectly fine in accepting the patches are they are today but can't=20
+change their patchwork state myself. We would need Dave or Jakub to take=20
+them.
+
+Dave, Jakub,
+
+All tags are collected in patchwork and all should be fine on DT (Rob)=20
+side as well.
+Please tell me if you're waiting some sign from me.
+
+Best regards,
+--=20
+Nicolas Ferre
