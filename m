@@ -2,160 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB71B965B3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63FB9965CC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:01:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725971AbfHTP6F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:58:05 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:38603 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730033AbfHTP6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:58:05 -0400
-Received: by mail-wm1-f67.google.com with SMTP id m125so3118400wmm.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 08:58:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=1/YmrgEPUrwGQtAezrJUQUWG/f9Upi15vWYJgMwCPLc=;
-        b=GS9g6xF7veKyWTADssGe9mR5DQi4JssJTUPczrOxNyJ5W3gN8tL1gXdGYtR2dXlUEf
-         K78u/+/wLhYnW9UV4Hm0s60p4um2xMVZdJx06VnQEhjXDcA8ZJgdWhX2QQoEeUqvF54y
-         tQ/h/5muYtc2+N15fjsXrc05/orwtJV8UL87CxiZ6rra9AYU8U1GjRrOdq8JGPmgKIzM
-         HZJPU26BAoPtOz7PKMgXweSVGEBWt2t9f81i1knIv7F4g/V/k2JXm41BPfPJB/OS9Ggl
-         Ji2tLzlg5pZ3qHRLQnYG9rvcsNrBs60Z5kQvGMntbxEzU1Qex6bEnPTfHN1rmU8FCvMu
-         TjRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=1/YmrgEPUrwGQtAezrJUQUWG/f9Upi15vWYJgMwCPLc=;
-        b=CVYvGzB0/Ak0OBGwqrsjqyFgA9gsYo+OX2Vyi9Ab27CapVepwEyKYEFrOtSI5lrzDH
-         IE2mx+uFv4+arhXJ1TLPu+7DRTJ4aOSWGkLBWopkoXyHj/3uNSmkbQkX0xI5o9Dr1OXQ
-         YmhfLDiegKCsirOuTXkBjXn2+FmlyhOOuQQjErKHMzRUIoR9NFimEJMLnVFv0TKNm8LD
-         XyFKw5t0bTwK+KNgZYNhZQ4SRr2rFMETf5/SZTcjf/UZNxYdTwxPZxly2xlQMh4w+qoB
-         Tp3JiijH32ldIvuCQCqCNH14cpOH+Bejm0KUeeFx4+Lin45nE8oavGLpUfVFkVa6N9sm
-         QyGg==
-X-Gm-Message-State: APjAAAWUwXkEdErCN7cQwRXN0kpGfbNVexC1v5D/MrfJzXjE7iJDJJko
-        Ihh2qosO+jHWj9zb9mw9QpPr5A==
-X-Google-Smtp-Source: APXvYqxDGXqyR8DBgTsZliBd1x78ESd2JtWImg3i35oBoTeWCwNaoZ722f0+PRCBQCmmgg742+NwwQ==
-X-Received: by 2002:a1c:6087:: with SMTP id u129mr731005wmb.108.1566316682808;
-        Tue, 20 Aug 2019 08:58:02 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id r4sm13892535wrq.82.2019.08.20.08.58.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2019 08:58:02 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] reset: meson-audio-arb: add sm1 support
-In-Reply-To: <1566315581.3030.18.camel@pengutronix.de>
-References: <20190820094625.13455-1-jbrunet@baylibre.com> <20190820094625.13455-3-jbrunet@baylibre.com> <1566315581.3030.18.camel@pengutronix.de>
-Date:   Tue, 20 Aug 2019 17:58:01 +0200
-Message-ID: <1jlfvnomly.fsf@starbuckisacylon.baylibre.com>
+        id S1729639AbfHTQBE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 12:01:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36770 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727006AbfHTQBE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 12:01:04 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EAC572070B;
+        Tue, 20 Aug 2019 16:01:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566316863;
+        bh=nV5YN+hmMYKRrONNn5xNuCElpNdG1gIN8RzDCyYXJ+c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p4ggRT+LXmFWLmCmW75AlCneVYEg4PSEY3RLFQ2CBVr5Olub9Fo3MtE+90qPcaNUT
+         S0aIj+QEAnVigb1RCG2PtNyCIjol2FilotWn7w9RIjAAdDlcfSwY8rPBOFHrntQHDQ
+         hw7CqMEz2DUQXgrGESH8AQSle1APxJFjuU7LNR+4=
+Received: by mail-qt1-f170.google.com with SMTP id t12so6601176qtp.9;
+        Tue, 20 Aug 2019 09:01:02 -0700 (PDT)
+X-Gm-Message-State: APjAAAVav/4tGMkn3Dct1O/9fxz8/jaPVKIjULYVLZ7qb7r5VLjK59n0
+        hpa1X8cReNki7gFRJzr/LyNRbIzv6o5G1VCH0g==
+X-Google-Smtp-Source: APXvYqz2zveglNg8JwmfSLq5hdaazZoQ5IFKBOJiEArUfGI9j75aOKNBEA55KOZ26U75HZiyOnkCY/yfaMokX0z7Qqg=
+X-Received: by 2002:ad4:4301:: with SMTP id c1mr12131156qvs.138.1566316862075;
+ Tue, 20 Aug 2019 09:01:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <cover.1566288689.git.rahul.tanwar@linux.intel.com> <fa6b20015dc6bfe247e1b2a07bdc5c727595a04b.1566288689.git.rahul.tanwar@linux.intel.com>
+In-Reply-To: <fa6b20015dc6bfe247e1b2a07bdc5c727595a04b.1566288689.git.rahul.tanwar@linux.intel.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 20 Aug 2019 11:00:50 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJK=TFsAt4kegGs2ymnWpY4tuDXNJF0RFpvZJmuPHJMYA@mail.gmail.com>
+Message-ID: <CAL_JsqJK=TFsAt4kegGs2ymnWpY4tuDXNJF0RFpvZJmuPHJMYA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: lantiq: Update for new SoC
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        qi-ming.wu@intel.com, cheol.yong.kim@intel.com,
+        rahul.tanwar@intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 20 Aug 2019 at 17:39, Philipp Zabel <p.zabel@pengutronix.de> wrote:
+On Tue, Aug 20, 2019 at 3:29 AM Rahul Tanwar
+<rahul.tanwar@linux.intel.com> wrote:
+>
+> Intel Lightning Mountain(LGM) SoC reuses Lantiq ASC serial controller IP.
+> Update the dt bindings to support LGM as well.
+>
+> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> ---
+>  .../devicetree/bindings/serial/lantiq_asc.yaml          | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/serial/lantiq_asc.yaml b/Documentation/devicetree/bindings/serial/lantiq_asc.yaml
+> index 54b90490f4fb..92807b59b024 100644
+> --- a/Documentation/devicetree/bindings/serial/lantiq_asc.yaml
+> +++ b/Documentation/devicetree/bindings/serial/lantiq_asc.yaml
+> @@ -17,6 +17,7 @@ properties:
+>      oneOf:
+>        items:
+>          - const: lantiq,asc
+> +        - const: intel,lgm-asc
 
-> Hi Jerome,
->
-> thank you for the patch. Just one nitpick and one real issue below:
->
-> On Tue, 2019-08-20 at 11:46 +0200, Jerome Brunet wrote:
->> Add the new arb reset lines of the SM1 SoC family
->> 
->> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
->> ---
->>  drivers/reset/reset-meson-audio-arb.c | 28 ++++++++++++++++++++++++---
->>  1 file changed, 25 insertions(+), 3 deletions(-)
->> 
->> diff --git a/drivers/reset/reset-meson-audio-arb.c b/drivers/reset/reset-meson-audio-arb.c
->> index c53a2185a039..72d29dbca45a 100644
->> --- a/drivers/reset/reset-meson-audio-arb.c
->> +++ b/drivers/reset/reset-meson-audio-arb.c
->> @@ -30,6 +30,17 @@ static const unsigned int axg_audio_arb_reset_bits[] = {
->>  	[AXG_ARB_FRDDR_C]	= 6,
->>  };
->>  
->> +static const unsigned int sm1_audio_arb_reset_bits[] = {
->> +	[AXG_ARB_TODDR_A]	= 0,
->> +	[AXG_ARB_TODDR_B]	= 1,
->> +	[AXG_ARB_TODDR_C]	= 2,
->> +	[AXG_ARB_FRDDR_A]	= 4,
->> +	[AXG_ARB_FRDDR_B]	= 5,
->> +	[AXG_ARB_FRDDR_C]	= 6,
->> +	[AXG_ARB_TODDR_D]	= 3,
->> +	[AXG_ARB_FRDDR_D]	= 7,
->> +};
->> +
->>  static int meson_audio_arb_update(struct reset_controller_dev *rcdev,
->>  				  unsigned long id, bool assert)
->>  {
->> @@ -82,8 +93,14 @@ static const struct reset_control_ops meson_audio_arb_rstc_ops = {
->>  };
->>  
->>  static const struct of_device_id meson_audio_arb_of_match[] = {
->> -	{ .compatible = "amlogic,meson-axg-audio-arb", },
->> -	{}
->> +	{
->> +		.compatible = "amlogic,meson-axg-audio-arb",
->> +		.data = axg_audio_arb_reset_bits,
->> +	},
->> +	{
->> +		.compatible = "amlogic,meson-sm1-audio-arb",
->> +		.data = sm1_audio_arb_reset_bits
->> +	}, {}
->
-> Only slight preference, I would keep the sentinel on a separate line.
-> Your choice.
+Better expressed as:
 
-Agreed.
+compatible:
+  enum:
+    - intel,lgm-asc
+    - lantiq,asc
 
 >
->>  };
->>  MODULE_DEVICE_TABLE(of, meson_audio_arb_of_match);
->>  
->> @@ -104,10 +121,15 @@ static int meson_audio_arb_remove(struct platform_device *pdev)
->>  static int meson_audio_arb_probe(struct platform_device *pdev)
->>  {
->>  	struct device *dev = &pdev->dev;
->> +	const unsigned int *data;
->>  	struct meson_audio_arb_data *arb;
->>  	struct resource *res;
->>  	int ret;
->>  
->> +	data = of_device_get_match_data(dev);
->> +	if (!data)
->> +		return -EINVAL;
->> +
->>  	arb = devm_kzalloc(dev, sizeof(*arb), GFP_KERNEL);
->>  	if (!arb)
->>  		return -ENOMEM;
->> @@ -126,7 +148,7 @@ static int meson_audio_arb_probe(struct platform_device *pdev)
->>  		return PTR_ERR(arb->regs);
->>  
->>  	spin_lock_init(&arb->lock);
->> -	arb->reset_bits = axg_audio_arb_reset_bits;
->> +	arb->reset_bits = data;
->>  	arb->rstc.nr_resets = ARRAY_SIZE(axg_audio_arb_reset_bits);
->
-> Since SM1 has two more resets, this needs to come from device match data
-> as well, or the last two resets will be unusable.
+>    reg:
+>      maxItems: 1
+> @@ -28,6 +29,12 @@ properties:
+>        - description: tx or combined interrupt
+>        - description: rx interrupt
+>        - description: err interrupt
+> +    description:
+> +      For lantiq,asc compatible, it supports 3 separate
+> +      interrupts for tx rx & err. Whereas, for intel,lgm-asc
+> +      compatible, it supports combined single interrupt for
+> +      all of tx, rx & err interrupts.
 
-Absolutely. Sorry about that.
-We are still a bit early in process of adding the support for this SoC.
+This can be expressed with an if/then schema. There's some examples in
+the tree how to do that.
 
-I'll wait until I can do more complete tests to send a v2.
-
+> +
 >
->>  	arb->rstc.ops = &meson_audio_arb_rstc_ops;
->>  	arb->rstc.of_node = dev->of_node;
+>    clocks:
+>      description:
+> @@ -67,4 +74,14 @@ examples:
+>              interrupts = <112 113 114>;
+>      };
 >
-> regards
-> Philipp
+> +  - |
+> +    asc0: serial@e0a00000 {
+> +            compatible = "intel,lgm-asc";
+> +            reg = <0xe0a00000 0x1000>;
+> +            interrupt-parent = <&ioapic1>;
+> +            interrupts = <128 1>;
+> +            clocks = <&cgu0 LGM_CLK_NOC4>, <&cgu0 LGM_GCLK_ASC0>;
+> +            clock-names = "freq", "asc";
+> +    };
+> +
+>  ...
+> --
+> 2.11.0
+>
