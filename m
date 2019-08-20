@@ -2,89 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D57A95EB8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 724B395EB2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728366AbfHTMed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 08:34:33 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:44718 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730001AbfHTMec (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:34:32 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p17so12199492wrf.11
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 05:34:31 -0700 (PDT)
+        id S1729762AbfHTMe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 08:34:27 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:38476 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728366AbfHTMe1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:34:27 -0400
+Received: by mail-wm1-f65.google.com with SMTP id m125so2499050wmm.3;
+        Tue, 20 Aug 2019 05:34:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=C4Mb2956O3FRxXwLE7go2npN/BtpK8pSn0FcezT5G7k=;
-        b=QX2ousUiVBfSy/6wp/ndiWEdieYpT86MhekZPf558vtyY6ounj3GNb8xDtX9fTyjQ+
-         H/6hrMlgDpF8KLQyFos/ukJ65U/LNDR7fJnxuDhLDn1bGgRO8MXmO0eK33ILYpduu0zw
-         PH7iRrywrKqO32ZGY/nGOPR5JhMKqUlQTJMaTqoY80etoh8RIpC9EP8D/A7O5miCYyfo
-         7+e98l/N4Aza0s8osWdP+wb3iG/Bbfm/OJWyWCMWTn12NuvnNrrKnQaWhTmxYi8IAdak
-         obVglZAWVmeNpHBrzeIHVtmM6+SoypHInqmkKexdMhfmznhWEdkeASFDSPBPeMvgtkhJ
-         6CCA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xa07j27CudydjRpMZ106HsEb06gJp/wN03S1cLbpmTQ=;
+        b=ZDrqG7EdEka57QuU+p7FwChFS6PiBSZPU4k9m0CBOU2pyzYSTBT+3gBsaYkN7v6FPQ
+         9FQkvi+8nZDIcClqJfc/LaCjQdS8RUFLOAdZ8MtW5iAvt3s3qUh/vLHQ90qFq32qwowD
+         NRYPkIHnY/MTCr1GwuW8/2jcnfcrA73KpKjaAjw/h+OEnrDhIi28zoiNexo/0IK/qVUV
+         zzfjvmLwuvpvXefs7cWvhPt9Mvw6SE8DzzYFp7VWEW99No6Tf5J2SvxP9/gfHlqVTQXf
+         zzNpiRs1z3M2FhVVPZBE+V1SXmDd8bRMfiSgvHR3zWrGAUeFbhdiXhWentP7OnlNsdL+
+         FcFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=C4Mb2956O3FRxXwLE7go2npN/BtpK8pSn0FcezT5G7k=;
-        b=fXXAzAxMBvxp0Pkpwp6udb4eEhlq0DKrUO7ttkg4xG2Mge3jfWPnhpC0yg/fmbmizX
-         pQ40AoMEMmgMbPK3fL/r0a/a2qS3QoV/N/J9F9VO0mdlAWYb2m767IPYNlTDCOR54m0E
-         WSISNcrLrwcooHfl2MWc1Ywslgy9oBWUxfCxWw9xObObJAXuTx6b1BykQnXxANP68g2s
-         07/OzbfVTG6/jx0Vrmv8UZ6hE7ZP7gdO3HlC2Ct1dbw6XbPYkkPydleBvDbFT80YHeZq
-         5KO2a7cOXrGBKgMw2fcWU8B3PhbUD0z2e0MIqHcyreQFjp0gW/+bs/iZDLLmB4/kmTTc
-         tGMA==
-X-Gm-Message-State: APjAAAUOC8OHdGivvyU36HqbxM9qcrA482wCWE/IfV+sgn897Ioiv0N0
-        FTdo7GNtoeRW5BIUcXGIEB0JCg==
-X-Google-Smtp-Source: APXvYqyfMx9psJcHwdQJaV1Gfgogu/f2ULTJSwrbGBvr+1926NVQ0lmFBoo5xeAkyfipxmA98WqE2Q==
-X-Received: by 2002:adf:a2cd:: with SMTP id t13mr31996957wra.251.1566304470874;
-        Tue, 20 Aug 2019 05:34:30 -0700 (PDT)
-Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id 39sm59456442wrc.45.2019.08.20.05.34.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2019 05:34:30 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH] ASoC: meson: axg-tdm-formatter: free reset on device removal
-Date:   Tue, 20 Aug 2019 14:34:13 +0200
-Message-Id: <20190820123413.22249-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xa07j27CudydjRpMZ106HsEb06gJp/wN03S1cLbpmTQ=;
+        b=Jata6+jJhUQz7svtNWrI+BQbaMYtgB6Xln5kCm2OIWrDgkrSaevjrHFQUct9oDVKPQ
+         bcFOW9A4k4qlvXfd3v5DctIc/23dYwgsIwzUxzy/Yv4k4d1HH71dx7keil1hq9UHX0wE
+         InI3ajSvhxh65qI0h8sQSAV8kb1L7LKyI+RnVN2hl5aoUuOWIhnMs0FJ/1m0HWW+ToUN
+         9lZv79b6YNR3gJewPeTqdGaZcqlbX1TAr6y3KUMmwiW8s+qYzatcuJmL6AScFPtpMmmc
+         Hqj3x7sM6MYwJZkd7Muw16QihhOex8OWj1rCyyU1dEBV+Yg1vFdHbbaWvAsYiODHQ7x8
+         w3jA==
+X-Gm-Message-State: APjAAAUt6gHICrrPr5CA0iW3JKNRz06Crw65LOwoHW8RamzZ7SlY0izz
+        sD1uYgjZbOtVDBue6n411DB1xa5CkwHn1gpQtCW9SQ==
+X-Google-Smtp-Source: APXvYqzpLw62X1lQkUKh9feSfGHBguEYlMo/8dLhOPZPDUGsRCN74drQ6d4X8vb8lq3jOO7aauUmUmOazv66wZFCqYs=
+X-Received: by 2002:a1c:5453:: with SMTP id p19mr26516638wmi.120.1566304465489;
+ Tue, 20 Aug 2019 05:34:25 -0700 (PDT)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+References: <156345023791.5307.6113391102648394591.sendpatchset@octo>
+ <156345032407.5307.16702422867507502597.sendpatchset@octo> <20190724111227.qaeq3d5mkeyvlkq3@verge.net.au>
+In-Reply-To: <20190724111227.qaeq3d5mkeyvlkq3@verge.net.au>
+From:   Magnus Damm <magnus.damm@gmail.com>
+Date:   Tue, 20 Aug 2019 21:34:13 +0900
+Message-ID: <CANqRtoTN3Ea6LK2BwdUevWOPRiquBWmw=foEDPMzsRut08QcPA@mail.gmail.com>
+Subject: Re: [PATCH 6/7] clocksource/drivers/sh_cmt: r8a7740 and sh73a0
+ SoC-specific match
+To:     Simon Horman <horms@verge.net.au>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the devm variant to get the formatter reset so it is properly freed
-on device removal
+Hi Simon,
 
-Fixes: 751bd5db5260 ("ASoC: meson: axg-tdm-formatter: add reset")
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- sound/soc/meson/axg-tdm-formatter.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Wed, Jul 24, 2019 at 8:12 PM Simon Horman <horms@verge.net.au> wrote:
+>
+> On Thu, Jul 18, 2019 at 08:45:24PM +0900, Magnus Damm wrote:
+> > From: Magnus Damm <damm+renesas@opensource.se>
+> >
+> > Add SoC-specific matching for CMT1 on r8a7740 and sh73a0.
+> >
+> > This allows us to move away from the old DT bindings such as
+> >  - "renesas,cmt-48-sh73a0"
+> >  - "renesas,cmt-48-r8a7740"
+> >  - "renesas,cmt-48"
+> > in favour for the now commonly used format "renesas,<soc>-<device>"
+> >
+> > Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
+>
+> Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
 
-diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
-index 21c735afab35..358c8c0d861c 100644
---- a/sound/soc/meson/axg-tdm-formatter.c
-+++ b/sound/soc/meson/axg-tdm-formatter.c
-@@ -325,7 +325,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
- 	}
- 
- 	/* Formatter dedicated reset line */
--	formatter->reset = reset_control_get_optional_exclusive(dev, NULL);
-+	formatter->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
- 	if (IS_ERR(formatter->reset)) {
- 		ret = PTR_ERR(formatter->reset);
- 		if (ret != -EPROBE_DEFER)
--- 
-2.21.0
+Thanks!
 
+> > ---
+> >
+> >  drivers/clocksource/sh_cmt.c |    8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > --- 0001/drivers/clocksource/sh_cmt.c
+> > +++ work/drivers/clocksource/sh_cmt.c 2019-07-18 19:29:06.005414716 +0900
+> > @@ -928,6 +928,14 @@ static const struct of_device_id sh_cmt_
+> >               .data = &sh_cmt_info[SH_CMT0_RCAR_GEN2]
+> >       },
+> >       {
+> > +             .compatible = "renesas,r8a7740-cmt1",
+> > +             .data = &sh_cmt_info[SH_CMT_48BIT]
+>
+> Perhaps as a follow-up SH_CMT_48BIT could be renamed.
+
+I was actually considering implementing proper 48-bit support, and
+reworking those names might be a good idea at that point.
+
+Cheers,
+
+/ magnus
