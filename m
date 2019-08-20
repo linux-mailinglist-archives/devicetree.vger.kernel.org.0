@@ -2,81 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F195196A0A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:18:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FA0D96A1C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:22:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730680AbfHTUSB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:18:01 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:41956 "EHLO
+        id S1730718AbfHTUVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:21:53 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38579 "EHLO
         mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727358AbfHTUSA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:18:00 -0400
-Received: by mail-oi1-f194.google.com with SMTP id g7so5151682oia.8;
-        Tue, 20 Aug 2019 13:18:00 -0700 (PDT)
+        with ESMTP id S1730092AbfHTUVx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:21:53 -0400
+Received: by mail-oi1-f194.google.com with SMTP id p124so5153206oig.5;
+        Tue, 20 Aug 2019 13:21:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Do7rgk/e6SkhLJFZ//u+bS6ASixL3x/VgaGx7XQsINQ=;
-        b=P2NLC74e2Xs4De0rALlzIE89sgPJa7ppZiJEI9MWLGs0qL2LH2HICwhHdHB3ZKksYB
-         rB6zdVMTZjDHASjONz8yzVN77nDdxdKc68tT0WSOQFhMIuG2OB2yUqpPpz+QNIuAdSLl
-         ZW3vPXRtqZMk2lcw3bykA/IjHi/b1+p78uzKpcFWqHMXLEz+JiumEsaUigTCdHzW6mZY
-         qo557pm2wEkp3Cc/LqJpTnXLEFXbAv186VF1dX+wtWCOh+QjUTdZ41a5jsY9JttG/NdV
-         1HJs7dGhKckeqyro77ZmRwnT3C911pJxRwMUir9fM1+tFMWjaoOhXStFjjuh6RkVduln
-         JN3w==
+        bh=aFhIFMNnaJwO0FsKXVLZvfaKji7ksglDhoULj5vQdP0=;
+        b=iB5LViSb7jTNNAhbtywPQFBv6ZPrntg54tPB6pWu+y3tEHXrW7lYgsKIlNvuqpdIDY
+         A6B+eG4uTHPV20yAS9qAJ00Bx+uswKRvzE/CX1VGFZz+DB9sW3fNz7Ya7HLIETaNWdUB
+         1c38CQ/KAap3kDkN4BwGg/H+8YsAodptASj+i+clz3oW9we85GjL9/Pgoq71mBWzShwD
+         rZTYaRflJoWKbU2harz4XQ6VMnF1r2flEb0YXRX9xxs3UPwlWHghLYqpaapbe1WqUYXO
+         Qiqba40Nrkj5ijVPIt9Tro8fZm19OsNHcAPkXuoLXx8jzeGlCvI2PUHDu1eLhzz6Xjvb
+         6J5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Do7rgk/e6SkhLJFZ//u+bS6ASixL3x/VgaGx7XQsINQ=;
-        b=j5hGR+C6dkGWuE2uDmJVRf4A1w1FAW7c9LJpMsqB+0nMPS/TBsDZa+RzH3lyVFpU4l
-         6mz1FC4oSUdca4Ev2lb2WFQNPaF5OPYd4PcdEICslH61P8jdO/TrnYLJqw6k98eOZB1l
-         ZeIep9NjwczKLyqKG0B/vLefjCvwuMVSFAIcDFGicGG5bJZszGN+go1UeWloxawsc3xU
-         Bri6wzYU+oJb8yPUFQ2gklIN+eCSIjVEySmVcDBHkKqUY0QqORCahRxNqtb+ZTVgaDQ8
-         dst8e+t+D3mDAFrG8HHGm4MDRT/4b2eVdK8rTwdPt4T9E5qkdGzJQR5EYhebHPq8WkW3
-         TBSQ==
-X-Gm-Message-State: APjAAAXO35dhkB6u9dqauIR9SG9WvyqWCvaoZIkSaxYKDv0vuf5Qu7ag
-        8R92bGgc1JFW6Ps3lLHIpYUXj7zF3j1bIUvI+VSOLsFW
-X-Google-Smtp-Source: APXvYqz8QBrUZytquR+jcvW5t0XCKEchKH1yCSzPctu/Wl30VX0pR70g4FhY1GPwzBppfd5C5vdN/whftMemITke8kg=
-X-Received: by 2002:a05:6808:b14:: with SMTP id s20mr1332830oij.15.1566332279621;
- Tue, 20 Aug 2019 13:17:59 -0700 (PDT)
+        bh=aFhIFMNnaJwO0FsKXVLZvfaKji7ksglDhoULj5vQdP0=;
+        b=bohJD8BAji/1GxEnijJMCcqDSt/QrmZXikdteEx/+sICSym4RjSIvxhqLKyO+9pgxY
+         2QWUVfZrGbfca8c1B6QhL1jqlAFgOjbs5kAlvqBbjLSBZuaQ5mOJZq5rXWg3P140GGwd
+         8ODFyD+kcv7Ji3dcR5eufPmFTMO12NShiHIscZLsGPeL8d+/j+O1OSOc1xU8Sjet+TXe
+         bBYrLFIFKaDowQU7TEG1/MWEgiQuX2bzVQdaRZ5LNptJM9MxdLCL2Bllq0PJ0XeSAoCZ
+         GJeKo4wpG1zzRTK9rJzjoTuGqHMRNjslcl/8IYTw1OKm28F5M7B06eylQK8TzrDToqRH
+         HhSg==
+X-Gm-Message-State: APjAAAUQHngA/r3CmTPTBlt3ktaBWgOePUxgCMyswiHOWJHTSM1hrZ5s
+        MoKa6QzqPXtDaNacS/8KPx7QW0UDBlzs4c4jPP8=
+X-Google-Smtp-Source: APXvYqzkLHh9E1pIvB0Iyz/FjsJ1I1eYHA9pMWw8yy94lIIDALmtN9giwzYeTUuWmVtTnhzpd0zUMimezCzBcmqBq20=
+X-Received: by 2002:a05:6808:8e2:: with SMTP id d2mr1367608oic.47.1566332512616;
+ Tue, 20 Aug 2019 13:21:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190820075742.14857-1-narmstrong@baylibre.com> <20190820075742.14857-2-narmstrong@baylibre.com>
-In-Reply-To: <20190820075742.14857-2-narmstrong@baylibre.com>
+References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-2-narmstrong@baylibre.com>
+In-Reply-To: <20190814142918.11636-2-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:17:48 +0200
-Message-ID: <CAFBinCDP898fhoqh8wApfrsqAuv1dEQSoxy0yDA2hHKxoFsr+g@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: snps,dwmac: update reg
- minItems maxItems
+Date:   Tue, 20 Aug 2019 22:21:41 +0200
+Message-ID: <CAFBinCA5dPztTZ6kUBWK1XgjQPDY6FVsLHytMdncThHnf4Z+8g@mail.gmail.com>
+Subject: Re: [PATCH 01/14] arm64: dts: meson: fix ethernet mac reg format
 To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     davem@davemloft.net, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 9:57 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Wed, Aug 14, 2019 at 4:30 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> The Amlogic Meson DWMAC glue bindings needs a second reg cells for the
-> glue registers, thus update the reg minItems/maxItems to allow more
-> than a single reg cell.
->
-> Also update the allwinner,sun7i-a20-gmac.yaml derivative schema to specify
-> maxItems to 1.
-this looks good to me because:
-- allwinner,sun7i-a20-gmac.yaml now restricts reg to maxItems 1
-- allwinner,sun8i-a83t-emac.yaml already restricts reg to maxItems 1
-- amlogic,meson-dwmac.yaml (introduced in patch 2 from this series)
-will need maxItems 2
-- (these are all yaml based schemas for DWMAC IP)
+> This fixes the following DT schemas check errors:
+> meson-axg-s400.dt.yaml: soc: ethernet@ff3f0000:reg:0: [0, 4282318848, 0, 65536, 0, 4284695872, 0, 8] is too long
+> meson-axg-s400.dt.yaml: ethernet@ff3f0000: reg: [[0, 4282318848, 0, 65536, 0, 4284695872, 0, 8]] is too short
+> meson-g12a-u200.dt.yaml: soc: ethernet@ff3f0000:reg:0: [0, 4282318848, 0, 65536, 0, 4284695872, 0, 8] is too long
+> meson-g12a-u200.dt.yaml: ethernet@ff3f0000: reg: [[0, 4282318848, 0, 65536, 0, 4284695872, 0, 8]] is too short
+> meson-gxbb-nanopi-k2.dt.yaml: soc: ethernet@c9410000:reg:0: [0, 3376480256, 0, 65536, 0, 3364046144, 0, 4] is too long
+> meson-gxl-s805x-libretech-ac.dt.yaml: soc: ethernet@c9410000:reg:0: [0, 3376480256, 0, 65536, 0, 3364046144, 0, 4] is too lon
+if you have to re-send it for whatever reason I would appreciate if
+you could add:
+"while here, also drop the redundant reg property from meson-gxl.dtsi
+because it had the same value as meson-gx.dtsi from which it inherits"
 
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
