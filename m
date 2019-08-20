@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AE5095F99
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E679A95FA9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729024AbfHTNOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 09:14:23 -0400
-Received: from mail-ed1-f99.google.com ([209.85.208.99]:36944 "EHLO
-        mail-ed1-f99.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728248AbfHTNOX (ORCPT
+        id S1729851AbfHTNOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 09:14:24 -0400
+Received: from mail-wm1-f97.google.com ([209.85.128.97]:53354 "EHLO
+        mail-wm1-f97.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728731AbfHTNOX (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 09:14:23 -0400
-Received: by mail-ed1-f99.google.com with SMTP id f22so6269143edt.4
+Received: by mail-wm1-f97.google.com with SMTP id 10so2586133wmp.3
         for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 06:14:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:message-id:date;
-        bh=BYoaNoNja4u98w2kXvMP/MUDpoHYTxfFi7Q/oIlgrlE=;
-        b=TOkySMb5P4TDZGT4b7IPZ+px7K04MPerftAqWKmicns/coHF2h4Fm7Wwy84nPtWEH6
-         UAmyoerymyJVzkhDXocWRGoDhx/m4CBkCwbb+qtPW15OrUS5Hyma1rMmXA/Dd7klSEL2
-         ABcO9Kx68a6UzCTyIfV2Vz/8OUfduiddiIvUSocZ4/5EJ1hxxJzLIUrX6vi3HVY/n0rs
-         eu4seLKdnJNtRoXfz9xnr/Pv38qlFZhYciN7cjJXpy7uinmmGaDFBnsvvjq0VIClvBPo
-         SrAh+r/eBZlYNzx5Deih7r2xUeEQM8nRphX1tmo3evGTe/yknqG9LwDjye1jkVdoQNW+
-         K4yg==
-X-Gm-Message-State: APjAAAVFJdk5xQ8KVnBANqVCbJh6p+E9brIYuodcJP3N0zolvxuA+nI7
-        dfwE44v8w3CeQF4AJvbGwZ3DCCblVaTx2v6b24O/Tch+MEcljNdh+YCHgO4HAym2iA==
-X-Google-Smtp-Source: APXvYqyKcpevus3kXrnRv6TSHjIyqj7wzbZAyoOcm4ZjncAzX0Hy3PuyrSNpVfCDjh0XWWTjGorhykMqdITu
-X-Received: by 2002:a17:906:244c:: with SMTP id a12mr25500765ejb.288.1566306861396;
+        bh=cXZ1tHQdDxSofQjcKdrjJTywasB4IlhStZwyyxo9TFM=;
+        b=HaGVwU18twmLKCMCAtFvtl2eBKIe1IPgYSSeAeI+gl/ryN/Zw6f7wSEAzZ30j5x9VP
+         zVl37Yk1YlJeXWI5X9NOTvV/dDqr+waWszJwDSAAMYHyreJ/i/Vvg38f4RoPzVMekDqu
+         PtRGkwzbaapDfx2tajsxDys/0qisR8jEVBeF0YrQUZ2/N8nfhZsFVg4eJZAmLi4Rkh5d
+         2ndxgKO2jlNabvPssjUuisFFlNEIKaE8QfN/dkZ5x9pXhqj6Y0C0tAMkRYFtb28sAFWB
+         OJB/FoUusvTKb0XftMG6P2AmVuUpXkfp3IWNnR61nDKQSjoNL7nFV8spyR10nHSh9XxT
+         zTew==
+X-Gm-Message-State: APjAAAXYMtEb9tAd696rA1SdNJtmAtKAyAAjOzs7E1MKg+TG2mmDcBVP
+        2ksX4dpHO11ywT82F25jSfjtux7aleM8XXVCYTCQpuX0Kdkut6hU7c8SsBkMhVYB4w==
+X-Google-Smtp-Source: APXvYqxbIWlIIY6vy6Hz/M5p3K6g8eUuS/jQgXheRopkkCtxO9zXJuYdqyXbbvWI7Lk8cz3eUMoOjQivwHMY
+X-Received: by 2002:a1c:be15:: with SMTP id o21mr25428618wmf.140.1566306861563;
         Tue, 20 Aug 2019 06:14:21 -0700 (PDT)
 Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
-        by smtp-relay.gmail.com with ESMTPS id x21sm104334ejs.98.2019.08.20.06.14.21
+        by smtp-relay.gmail.com with ESMTPS id j11sm372426wrb.64.2019.08.20.06.14.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Tue, 20 Aug 2019 06:14:21 -0700 (PDT)
 X-Relaying-Domain: sirena.org.uk
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1i03xt-0002LU-00; Tue, 20 Aug 2019 13:14:21 +0000
+        id 1i03xt-0002LW-7M; Tue, 20 Aug 2019 13:14:21 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 5E336274314C; Tue, 20 Aug 2019 14:14:20 +0100 (BST)
+        id 8F31F274314E; Tue, 20 Aug 2019 14:14:20 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
 To:     Jerome Brunet <jbrunet@baylibre.com>
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
@@ -47,10 +47,10 @@ Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         Liam Girdwood <lgirdwood@gmail.com>,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: meson: g12a-tohdmitx: require regmap mmio" to the asoc tree
-In-Reply-To: <20190820123510.22491-1-jbrunet@baylibre.com>
+Subject: Applied "ASoC: meson: axg-tdm-formatter: free reset on device removal" to the asoc tree
+In-Reply-To: <20190820123413.22249-1-jbrunet@baylibre.com>
 X-Patchwork-Hint: ignore
-Message-Id: <20190820131420.5E336274314C@ypsilon.sirena.org.uk>
+Message-Id: <20190820131420.8F31F274314E@ypsilon.sirena.org.uk>
 Date:   Tue, 20 Aug 2019 14:14:20 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -59,7 +59,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   ASoC: meson: g12a-tohdmitx: require regmap mmio
+   ASoC: meson: axg-tdm-formatter: free reset on device removal
 
 has been applied to the asoc tree at
 
@@ -84,33 +84,35 @@ to this mail.
 Thanks,
 Mark
 
-From 351b31002c1853af078ebfffd4b67bfc3d19e3dd Mon Sep 17 00:00:00 2001
+From 18dd62ae3bc31baa0473e4a09e46c02e0bdc57a0 Mon Sep 17 00:00:00 2001
 From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Tue, 20 Aug 2019 14:35:10 +0200
-Subject: [PATCH] ASoC: meson: g12a-tohdmitx: require regmap mmio
+Date: Tue, 20 Aug 2019 14:34:13 +0200
+Subject: [PATCH] ASoC: meson: axg-tdm-formatter: free reset on device removal
 
-The tohdmitx glue uses regmap MMIO so it should require it.
+Use the devm variant to get the formatter reset so it is properly freed
+on device removal
 
-Fixes: c8609f3870f7 ("ASoC: meson: add g12a tohdmitx control")
+Fixes: 751bd5db5260 ("ASoC: meson: axg-tdm-formatter: add reset")
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190820123510.22491-1-jbrunet@baylibre.com
+Link: https://lore.kernel.org/r/20190820123413.22249-1-jbrunet@baylibre.com
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- sound/soc/meson/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+ sound/soc/meson/axg-tdm-formatter.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/sound/soc/meson/Kconfig b/sound/soc/meson/Kconfig
-index 63b38c123103..2e3676147cea 100644
---- a/sound/soc/meson/Kconfig
-+++ b/sound/soc/meson/Kconfig
-@@ -87,6 +87,7 @@ config SND_MESON_AXG_PDM
+diff --git a/sound/soc/meson/axg-tdm-formatter.c b/sound/soc/meson/axg-tdm-formatter.c
+index 2e498201139f..1a0bf9d3836d 100644
+--- a/sound/soc/meson/axg-tdm-formatter.c
++++ b/sound/soc/meson/axg-tdm-formatter.c
+@@ -327,7 +327,7 @@ int axg_tdm_formatter_probe(struct platform_device *pdev)
+ 	}
  
- config SND_MESON_G12A_TOHDMITX
- 	tristate "Amlogic G12A To HDMI TX Control Support"
-+	select REGMAP_MMIO
- 	imply SND_SOC_HDMI_CODEC
- 	help
- 	  Select Y or M to add support for HDMI audio on the g12a SoC
+ 	/* Formatter dedicated reset line */
+-	formatter->reset = reset_control_get_optional_exclusive(dev, NULL);
++	formatter->reset = devm_reset_control_get_optional_exclusive(dev, NULL);
+ 	if (IS_ERR(formatter->reset)) {
+ 		ret = PTR_ERR(formatter->reset);
+ 		if (ret != -EPROBE_DEFER)
 -- 
 2.20.1
 
