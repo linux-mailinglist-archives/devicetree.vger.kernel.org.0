@@ -2,398 +2,471 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC37896026
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E6B196030
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:34:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729929AbfHTNeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 09:34:02 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:34851 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729858AbfHTNeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 09:34:01 -0400
-Received: by mail-ed1-f67.google.com with SMTP id t50so3384006edd.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 06:33:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=X7I9XkKCkJzckWKRm8Ai5gNTXxx/8tWasqutjoNl4gM=;
-        b=ByHIVk8svnYLo5vzbdwRxydXQmh66vA7iG/ociwFlFTj7U3EeQl/ZBJzlKBDhpC01U
-         FYOgMf+WIP8I3N07Jt7de6SLERyRerjXwMDiajPrlo1b+uLJiCPkTnvJFRtXJtQ6aG8W
-         ErgwYwn5fidtHObrk2zr91hwuGtI3SZe9ugCH46RQYzgSorBGgA6tewEUFnmKqmBRv6F
-         nCuhhEEAQnEp0LewdNIqCTIRlQAUgFF/7CEYVtzLdp7/v7QRlsk4dXGBlCtTUsQ0jNws
-         Roy7qIy/vAQL9g5r3fWWiLDnxjIkdFgCEF56MA7aze5V5P8GFLM/TMEJG2/KO/o09hUD
-         0fFg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=X7I9XkKCkJzckWKRm8Ai5gNTXxx/8tWasqutjoNl4gM=;
-        b=jXEmPp4QCarBqk3+oA3a+7r7HqaeWqm7bnpCMX0ETQGbLF9S999A1L0TRgxIA1RZ9b
-         VSwnuYjMnFhTupatyoEpUq8CbnwlvGRek6QwXXkqd0O7BYR/kjT43eFXozIJn4YrzlVD
-         fqDdfnXml5NKODf/Lq7cYyJ5UZ2RJcLENd7Zpgi+1WSD7hSP+O8dj0zcKJ2B9YP1ospY
-         DWreUKx/Sv/UZyzK7a/se59O2t0BeEhqEb+PPhFqC9iICbPMuTEB3MTi/yC6qpLR90Fh
-         IzdAyCmd2pmkMEciiAQQaPNc4zQToHysJHYMYcpqZfJ2RoY+oj6Qp0cXeSfGu7Cjjsz5
-         yFqQ==
-X-Gm-Message-State: APjAAAW3xyY0Dj2Dz5zTcpgehdlVOhRb/POp/UrGHdvTyhj2wDne+5mK
-        3rA4zYXZ7oaE8cgyaEY6e3fxWCs8rR3TxULqzmvsXA==
-X-Google-Smtp-Source: APXvYqyVrQdszz8nvsZqBhmZS/9Cpk5ZDmkRY9Xzmwh5TSTNqfWgJloNxmvFy3Vj8VJTzKic0nr7fPOW3C15n6Cq7dI=
-X-Received: by 2002:a17:906:6dc1:: with SMTP id j1mr2090631ejt.85.1566308039080;
- Tue, 20 Aug 2019 06:33:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190820064216.8629-1-vkoul@kernel.org> <20190820064216.8629-2-vkoul@kernel.org>
-In-Reply-To: <20190820064216.8629-2-vkoul@kernel.org>
-From:   Amit Kucheria <amit.kucheria@verdurent.com>
-Date:   Tue, 20 Aug 2019 19:03:47 +0530
-Message-ID: <CAHLCerOBbaOuPf+WfsG8gKzAxs+9kTMbW7k4MAkmciwyWyeQww@mail.gmail.com>
-Subject: Re: [PATCH v2 1/8] arm64: dts: qcom: sm8150: add base dts file
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1729927AbfHTNep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 09:34:45 -0400
+Received: from vps.xff.cz ([195.181.215.36]:58756 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729762AbfHTNeo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 09:34:44 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566308081; bh=epDoDcu9vV/+qVSbBiiLAnXsmtqh1AFCqKWEoP5d07Y=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=B+Ejfd/XKihqEtbkxkoyT0kdsF5I8XhFqI/jCO8VMuS4w1ARNugt6H0uJ0KQAiyP2
+         CpBKx0FSqhwLw7Ksw5mMkRXfzPPyx5VB5zTQHWwB1lifgMOzep1TZMd4Us2vMUq96J
+         ZlONOB2560B/t4xr4jN2Mm3Lh1UxLr0aQLOfnEEg=
+Date:   Tue, 20 Aug 2019 15:34:41 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 04/10] mailbox: sunxi-msgbox: Add a new mailbox driver
+Message-ID: <20190820133441.g56apl2oclioi4ts@core.my.home>
+Mail-Followup-To: Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190820032311.6506-1-samuel@sholland.org>
+ <20190820032311.6506-5-samuel@sholland.org>
+ <20190820111825.2w55fleehrnon27u@core.my.home>
+ <bc09e14c-1cf5-8124-fc34-c651b78577ce@sholland.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bc09e14c-1cf5-8124-fc34-c651b78577ce@sholland.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 12:14 PM Vinod Koul <vkoul@kernel.org> wrote:
->
-> This add base DTS file with cpu, psci, firmware, clock, tlmm and
-> spmi nodes which enables boot to console
->
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 305 +++++++++++++++++++++++++++
->  1 file changed, 305 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8150.dtsi
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> new file mode 100644
-> index 000000000000..d9dc95f851b7
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -0,0 +1,305 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
+Hi,
 
-This is fine.
+On Tue, Aug 20, 2019 at 08:07:53AM -0500, Samuel Holland wrote:
+> On 8/20/19 6:18 AM, Ondřej Jirman wrote:
+> > Hi Samuel,
+> > 
+> > On Mon, Aug 19, 2019 at 10:23:05PM -0500, Samuel Holland wrote:
+> >> Allwinner sun8i, sun9i, and sun50i SoCs contain a hardware message box
+> >> used for communication between the ARM CPUs and the ARISC management
+> >> coprocessor. The hardware contains 8 unidirectional 4-message FIFOs.
+> >>
+> >> Add a driver for it, so it can be used for SCPI or other communication
+> >> protocols.
+> >>
+> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> >> ---
+> >>  drivers/mailbox/Kconfig        |  10 +
+> >>  drivers/mailbox/Makefile       |   2 +
+> >>  drivers/mailbox/sunxi-msgbox.c | 323 +++++++++++++++++++++++++++++++++
+> >>  3 files changed, 335 insertions(+)
+> >>  create mode 100644 drivers/mailbox/sunxi-msgbox.c
+> >>
+> >> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
+> >> index ab4eb750bbdd..57d12936175e 100644
+> >> --- a/drivers/mailbox/Kconfig
+> >> +++ b/drivers/mailbox/Kconfig
+> >> @@ -227,4 +227,14 @@ config ZYNQMP_IPI_MBOX
+> >>  	  message to the IPI buffer and will access the IPI control
+> >>  	  registers to kick the other processor or enquire status.
+> >>  
+> >> +config SUNXI_MSGBOX
+> >> +	tristate "Allwinner sunxi Message Box"
+> >> +	depends on ARCH_SUNXI || COMPILE_TEST
+> >> +	default ARCH_SUNXI
+> >> +	help
+> >> +	  Mailbox implementation for the hardware message box present in
+> >> +	  Allwinner sun8i, sun9i, and sun50i SoCs. The hardware message box is
+> >> +	  used for communication between the application CPUs and the power
+> >> +	  management coprocessor.
+> >> +
+> >>  endif
+> >> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> >> index c22fad6f696b..bec2d50b0976 100644
+> >> --- a/drivers/mailbox/Makefile
+> >> +++ b/drivers/mailbox/Makefile
+> >> @@ -48,3 +48,5 @@ obj-$(CONFIG_STM32_IPCC) 	+= stm32-ipcc.o
+> >>  obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
+> >>  
+> >>  obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
+> >> +
+> >> +obj-$(CONFIG_SUNXI_MSGBOX)	+= sunxi-msgbox.o
+> >> diff --git a/drivers/mailbox/sunxi-msgbox.c b/drivers/mailbox/sunxi-msgbox.c
+> >> new file mode 100644
+> >> index 000000000000..29a5101a5390
+> >> --- /dev/null
+> >> +++ b/drivers/mailbox/sunxi-msgbox.c
+> >> @@ -0,0 +1,323 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +//
+> >> +// Copyright (c) 2017-2019 Samuel Holland <samuel@sholland.org>
+> >> +
+> >> +#include <linux/bitops.h>
+> >> +#include <linux/clk.h>
+> >> +#include <linux/device.h>
+> >> +#include <linux/err.h>
+> >> +#include <linux/interrupt.h>
+> >> +#include <linux/io.h>
+> >> +#include <linux/kernel.h>
+> >> +#include <linux/mailbox_controller.h>
+> >> +#include <linux/module.h>
+> >> +#include <linux/of.h>
+> >> +#include <linux/of_irq.h>
+> >> +#include <linux/platform_device.h>
+> >> +#include <linux/reset.h>
+> >> +#include <linux/spinlock.h>
+> >> +
+> >> +#define NUM_CHANS		8
+> >> +
+> >> +#define CTRL_REG(n)		(0x0000 + 0x4 * ((n) / 4))
+> >> +#define CTRL_RX(n)		BIT(0 + 8 * ((n) % 4))
+> >> +#define CTRL_TX(n)		BIT(4 + 8 * ((n) % 4))
+> >> +
+> >> +#define REMOTE_IRQ_EN_REG	0x0040
+> >> +#define REMOTE_IRQ_STAT_REG	0x0050
+> >> +#define LOCAL_IRQ_EN_REG	0x0060
+> >> +#define LOCAL_IRQ_STAT_REG	0x0070
+> >> +
+> >> +#define RX_IRQ(n)		BIT(0 + 2 * (n))
+> >> +#define RX_IRQ_MASK		0x5555
+> >> +#define TX_IRQ(n)		BIT(1 + 2 * (n))
+> >> +#define TX_IRQ_MASK		0xaaaa
+> >> +
+> >> +#define FIFO_STAT_REG(n)	(0x0100 + 0x4 * (n))
+> >> +#define FIFO_STAT_MASK		GENMASK(0, 0)
+> >> +
+> >> +#define MSG_STAT_REG(n)		(0x0140 + 0x4 * (n))
+> >> +#define MSG_STAT_MASK		GENMASK(2, 0)
+> >> +
+> >> +#define MSG_DATA_REG(n)		(0x0180 + 0x4 * (n))
+> >> +
+> >> +#define mbox_dbg(mbox, ...)	dev_dbg((mbox)->controller.dev, __VA_ARGS__)
+> >> +
+> >> +struct sunxi_msgbox {
+> >> +	struct mbox_controller controller;
+> >> +	struct clk *clk;
+> >> +	spinlock_t lock;
+> >> +	void __iomem *regs;
+> >> +};
+> >> +
+> >> +static bool sunxi_msgbox_last_tx_done(struct mbox_chan *chan);
+> >> +static bool sunxi_msgbox_peek_data(struct mbox_chan *chan);
+> >> +
+> >> +static inline int channel_number(struct mbox_chan *chan)
+> >> +{
+> >> +	return chan - chan->mbox->chans;
+> >> +}
+> >> +
+> >> +static inline struct sunxi_msgbox *channel_to_msgbox(struct mbox_chan *chan)
+> >> +{
+> >> +	return chan->con_priv;
+> >> +}
+> >> +
+> >> +static irqreturn_t sunxi_msgbox_irq(int irq, void *dev_id)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = dev_id;
+> >> +	uint32_t status;
+> >> +	int n;
+> >> +
+> >> +	/* Only examine channels that are currently enabled. */
+> >> +	status = readl(mbox->regs + LOCAL_IRQ_EN_REG) &
+> >> +		 readl(mbox->regs + LOCAL_IRQ_STAT_REG);
+> >> +
+> >> +	if (!(status & RX_IRQ_MASK))
+> >> +		return IRQ_NONE;
+> >> +
+> >> +	for (n = 0; n < NUM_CHANS; ++n) {
+> >> +		struct mbox_chan *chan = &mbox->controller.chans[n];
+> >> +
+> >> +		if (!(status & RX_IRQ(n)))
+> >> +			continue;
+> >> +
+> >> +		while (sunxi_msgbox_peek_data(chan)) {
+> >> +			uint32_t msg = readl(mbox->regs + MSG_DATA_REG(n));
+> >> +
+> >> +			mbox_dbg(mbox, "Channel %d received 0x%08x\n", n, msg);
+> >> +			mbox_chan_received_data(chan, &msg);
+> >> +		}
+> >> +
+> >> +		/* The IRQ can be cleared only once the FIFO is empty. */
+> >> +		writel(RX_IRQ(n), mbox->regs + LOCAL_IRQ_STAT_REG);
+> >> +	}
+> >> +
+> >> +	return IRQ_HANDLED;
+> >> +}
+> >> +
+> >> +static int sunxi_msgbox_send_data(struct mbox_chan *chan, void *data)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = channel_to_msgbox(chan);
+> >> +	int n = channel_number(chan);
+> >> +	uint32_t msg = *(uint32_t *)data;
+> >> +
+> >> +	/* Using a channel backwards gets the hardware into a bad state. */
+> >> +	if (WARN_ON_ONCE(!(readl(mbox->regs + CTRL_REG(n)) & CTRL_TX(n))))
+> >> +		return 0;
+> >> +
+> >> +	/* We cannot post a new message if the FIFO is full. */
+> >> +	if (readl(mbox->regs + FIFO_STAT_REG(n)) & FIFO_STAT_MASK) {
+> >> +		mbox_dbg(mbox, "Channel %d busy sending 0x%08x\n", n, msg);
+> >> +		return -EBUSY;
+> >> +	}
+> >> +
+> >> +	writel(msg, mbox->regs + MSG_DATA_REG(n));
+> >> +	mbox_dbg(mbox, "Channel %d sent 0x%08x\n", n, msg);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static int sunxi_msgbox_startup(struct mbox_chan *chan)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = channel_to_msgbox(chan);
+> >> +	int n = channel_number(chan);
+> >> +
+> >> +	/* The coprocessor is responsible for setting channel directions. */
+> >> +	if (readl(mbox->regs + CTRL_REG(n)) & CTRL_RX(n)) {
+> >> +		/* Flush the receive FIFO. */
+> >> +		while (sunxi_msgbox_peek_data(chan))
+> >> +			readl(mbox->regs + MSG_DATA_REG(n));
+> >> +		writel(RX_IRQ(n), mbox->regs + LOCAL_IRQ_STAT_REG);
+> >> +
+> >> +		/* Enable the receive IRQ. */
+> >> +		spin_lock(&mbox->lock);
+> >> +		writel(readl(mbox->regs + LOCAL_IRQ_EN_REG) | RX_IRQ(n),
+> >> +		       mbox->regs + LOCAL_IRQ_EN_REG);
+> >> +		spin_unlock(&mbox->lock);
+> >> +	}
+> >> +
+> >> +	mbox_dbg(mbox, "Channel %d startup complete\n", n);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static void sunxi_msgbox_shutdown(struct mbox_chan *chan)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = channel_to_msgbox(chan);
+> >> +	int n = channel_number(chan);
+> >> +
+> >> +	if (readl(mbox->regs + CTRL_REG(n)) & CTRL_RX(n)) {
+> >> +		/* Disable the receive IRQ. */
+> >> +		spin_lock(&mbox->lock);
+> >> +		writel(readl(mbox->regs + LOCAL_IRQ_EN_REG) & ~RX_IRQ(n),
+> >> +		       mbox->regs + LOCAL_IRQ_EN_REG);
+> >> +		spin_unlock(&mbox->lock);
+> >> +
+> >> +		/* Attempt to flush the FIFO until the IRQ is cleared. */
+> >> +		do {
+> >> +			while (sunxi_msgbox_peek_data(chan))
+> >> +				readl(mbox->regs + MSG_DATA_REG(n));
+> >> +			writel(RX_IRQ(n), mbox->regs + LOCAL_IRQ_STAT_REG);
+> >> +		} while (readl(mbox->regs + LOCAL_IRQ_STAT_REG) & RX_IRQ(n));
+> >> +	}
+> >> +
+> >> +	mbox_dbg(mbox, "Channel %d shutdown complete\n", n);
+> >> +}
+> >> +
+> >> +static bool sunxi_msgbox_last_tx_done(struct mbox_chan *chan)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = channel_to_msgbox(chan);
+> >> +	int n = channel_number(chan);
+> >> +
+> >> +	/*
+> >> +	 * The hardware allows snooping on the remote user's IRQ statuses.
+> >> +	 * We consider a message to be acknowledged only once the receive IRQ
+> >> +	 * for that channel is cleared. Since the receive IRQ for a channel
+> >> +	 * cannot be cleared until the FIFO for that channel is empty, this
+> >> +	 * ensures that the message has actually been read. It also gives the
+> >> +	 * recipient an opportunity to perform minimal processing before
+> >> +	 * acknowledging the message.
+> >> +	 */
+> >> +	return !(readl(mbox->regs + REMOTE_IRQ_STAT_REG) & RX_IRQ(n));
+> >> +}
+> >> +
+> >> +static bool sunxi_msgbox_peek_data(struct mbox_chan *chan)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = channel_to_msgbox(chan);
+> >> +	int n = channel_number(chan);
+> >> +
+> >> +	return readl(mbox->regs + MSG_STAT_REG(n)) & MSG_STAT_MASK;
+> >> +}
+> >> +
+> >> +static const struct mbox_chan_ops sunxi_msgbox_chan_ops = {
+> >> +	.send_data    = sunxi_msgbox_send_data,
+> >> +	.startup      = sunxi_msgbox_startup,
+> >> +	.shutdown     = sunxi_msgbox_shutdown,
+> >> +	.last_tx_done = sunxi_msgbox_last_tx_done,
+> >> +	.peek_data    = sunxi_msgbox_peek_data,
+> >> +};
+> >> +
+> >> +static int sunxi_msgbox_probe(struct platform_device *pdev)
+> >> +{
+> >> +	struct device *dev = &pdev->dev;
+> >> +	struct mbox_chan *chans;
+> >> +	struct reset_control *reset;
+> >> +	struct resource *res;
+> >> +	struct sunxi_msgbox *mbox;
+> >> +	int i, ret;
+> >> +
+> >> +	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
+> >> +	if (!mbox)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	chans = devm_kcalloc(dev, NUM_CHANS, sizeof(*chans), GFP_KERNEL);
+> >> +	if (!chans)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	for (i = 0; i < NUM_CHANS; ++i)
+> >> +		chans[i].con_priv = mbox;
+> >> +
+> >> +	mbox->clk = devm_clk_get(dev, NULL);
+> >> +	if (IS_ERR(mbox->clk)) {
+> >> +		ret = PTR_ERR(mbox->clk);
+> >> +		dev_err(dev, "Failed to get clock: %d\n", ret);
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	ret = clk_prepare_enable(mbox->clk);
+> >> +	if (ret) {
+> >> +		dev_err(dev, "Failed to enable clock: %d\n", ret);
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	reset = devm_reset_control_get(dev, NULL);
+> >> +	if (IS_ERR(reset)) {
+> >> +		ret = PTR_ERR(reset);
+> >> +		dev_err(dev, "Failed to get reset control: %d\n", ret);
+> >> +		goto err_disable_unprepare;
+> >> +	}
+> >> +
+> >> +	ret = reset_control_deassert(reset);
+> >> +	if (ret) {
+> >> +		dev_err(dev, "Failed to deassert reset: %d\n", ret);
+> >> +		goto err_disable_unprepare;
+> >> +	}
+> > 
+> > You need to assert the reset again from now on, in error paths. devm
+> > will not do that for you.
+> 
+> I know, and that's intentional. This same message box device is used for ATF to
+> communicate with SCP firmware (on a different channel). This could be happening
+> on a different core while Linux is running. So Linux is not allowed to deassert
+> the reset. clk_disable_unprepare() is only okay because the clock is marked as
+> critical.
 
-> +// Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
-> +// Copyright (c) 2019, Linaro Limited
+Okay. It needs to be docummented here though, so that someone will
+not "fix" it in the future, after finding this with coccinelle or
+something.
 
-These two lines should be in /* */
+regards,
+	o.
 
-
-> +
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/soc/qcom,rpmh-rsc.h>
-> +#include <dt-bindings/clock/qcom,rpmh.h>
-> +
-> +/ {
-> +       interrupt-parent = <&intc>;
-> +
-> +       #address-cells = <2>;
-> +       #size-cells = <2>;
-> +
-> +       chosen { };
-> +
-> +       clocks {
-> +               xo_board: xo-board {
-> +                       compatible = "fixed-clock";
-> +                       #clock-cells = <0>;
-> +                       clock-frequency = <38400000>;
-> +                       clock-output-names = "xo_board";
-> +               };
-> +
-> +               sleep_clk: sleep-clk {
-> +                       compatible = "fixed-clock";
-> +                       #clock-cells = <0>;
-> +                       clock-frequency = <32764>;
-> +                       clock-output-names = "sleep_clk";
-> +               };
-> +       };
-> +
-> +       cpus {
-> +               #address-cells = <2>;
-> +               #size-cells = <0>;
-> +
-> +               CPU0: cpu@0 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x0>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_0>;
-> +                       L2_0: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                               L3_0: l3-cache {
-> +                                     compatible = "cache";
-> +                               };
-> +                       };
-> +               };
-> +
-> +               CPU1: cpu@100 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x100>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_100>;
-> +                       L2_100: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +
-> +               };
-> +
-> +               CPU2: cpu@200 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x200>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_200>;
-> +                       L2_200: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +               };
-> +
-> +               CPU3: cpu@300 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x300>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_300>;
-> +                       L2_300: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +               };
-> +
-> +               CPU4: cpu@400 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x400>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_400>;
-> +                       L2_400: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +               };
-> +
-> +               CPU5: cpu@500 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x500>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_500>;
-> +                       L2_500: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +               };
-> +
-> +               CPU6: cpu@600 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x600>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_600>;
-> +                       L2_600: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +               };
-> +
-> +               CPU7: cpu@700 {
-> +                       device_type = "cpu";
-> +                       compatible = "qcom,kryo485";
-> +                       reg = <0x0 0x700>;
-> +                       enable-method = "psci";
-> +                       next-level-cache = <&L2_700>;
-> +                       L2_700: l2-cache {
-> +                               compatible = "cache";
-> +                               next-level-cache = <&L3_0>;
-> +                       };
-> +               };
-> +       };
-> +       firmware {
-> +               scm: scm {
-> +                       compatible = "qcom,scm-sm8150", "qcom,scm";
-> +                       #reset-cells = <1>;
-> +               };
-> +       };
-> +
-> +       memory@80000000 {
-> +               device_type = "memory";
-> +               /* We expect the bootloader to fill in the size */
-> +               reg = <0 0x80000000 0 0>;
-> +       };
-> +
-> +       psci {
-> +               compatible = "arm,psci-1.0";
-> +               method = "smc";
-> +       };
-> +
-> +       soc: soc@0 {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               ranges = <0 0 0 0xffffffff>;
-> +               compatible = "simple-bus";
-> +
-> +               gcc: clock-controller@100000 {
-> +                       compatible = "qcom,gcc-sm8150";
-> +                       reg = <0x00100000 0x1f0000>;
-> +                       #clock-cells = <1>;
-> +                       #reset-cells = <1>;
-> +                       #power-domain-cells = <1>;
-> +                       clock-names = "bi_tcxo",
-> +                                     "sleep_clk";
-> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +                                <&sleep_clk>;
-> +               };
-> +
-> +               qupv3_id_1: geniqup@ac0000 {
-> +                       compatible = "qcom,geni-se-qup";
-> +                       reg = <0x00ac0000 0x6000>;
-> +                       clock-names = "m-ahb", "s-ahb";
-> +                       clocks = <&gcc 123>,
-> +                                <&gcc 124>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges;
-> +                       status = "disabled";
-> +
-> +                       uart2: serial@a90000 {
-> +                               compatible = "qcom,geni-debug-uart";
-> +                               reg = <0x00a90000 0x4000>;
-> +                               clock-names = "se";
-> +                               clocks = <&gcc 105>;
-> +                               interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
-> +                               status = "disabled";
-> +                       };
-> +               };
-> +
-> +               tlmm: pinctrl@3100000 {
-> +                       compatible = "qcom,sm8150-pinctrl";
-> +                       reg = <0x03100000 0x300000>,
-> +                             <0x03500000 0x300000>,
-> +                             <0x03900000 0x300000>,
-> +                             <0x03d00000 0x300000>;
-> +                       reg-names = "west", "east", "north", "south";
-> +                       interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-> +                       gpio-ranges = <&tlmm 0 0 175>;
-> +                       gpio-controller;
-> +                       #gpio-cells = <2>;
-> +                       interrupt-controller;
-> +                       #interrupt-cells = <2>;
-> +               };
-> +
-> +               intc: interrupt-controller@17a00000 {
-> +                       compatible = "arm,gic-v3";
-> +                       interrupt-controller;
-> +                       #interrupt-cells = <3>;
-> +                       reg = <0x17a00000 0x10000>,     /* GICD */
-> +                             <0x17a60000 0x100000>;    /* GICR * 8 */
-> +                       interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +               };
-> +
-> +               timer@17c20000 {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges;
-> +                       compatible = "arm,armv7-timer-mem";
-> +                       reg = <0x17c20000 0x1000>;
-> +                       clock-frequency = <19200000>;
-> +
-> +                       frame@17c21000{
-> +                               frame-number = <0>;
-> +                               interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                                            <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c21000 0x1000>,
-> +                                     <0x17c22000 0x1000>;
-> +                       };
-> +
-> +                       frame@17c23000 {
-> +                               frame-number = <1>;
-> +                               interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c23000 0x1000>;
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       frame@17c25000 {
-> +                               frame-number = <2>;
-> +                               interrupts = <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c25000 0x1000>;
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       frame@17c27000 {
-> +                               frame-number = <3>;
-> +                               interrupts = <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c26000 0x1000>;
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       frame@17c29000 {
-> +                               frame-number = <4>;
-> +                               interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c29000 0x1000>;
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       frame@17c2b000 {
-> +                               frame-number = <5>;
-> +                               interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c2b000 0x1000>;
-> +                               status = "disabled";
-> +                       };
-> +
-> +                       frame@17c2d000 {
-> +                               frame-number = <6>;
-> +                               interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-> +                               reg = <0x17c2d000 0x1000>;
-> +                               status = "disabled";
-> +                       };
-> +               };
-> +
-> +               spmi_bus: spmi@c440000 {
-> +                       compatible = "qcom,spmi-pmic-arb";
-> +                       reg = <0x0c440000 0x0001100>,
-> +                             <0x0c600000 0x2000000>,
-> +                             <0x0e600000 0x0100000>,
-> +                             <0x0e700000 0x00a0000>,
-> +                             <0x0c40a000 0x0026000>;
-> +                       reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
-> +                       interrupt-names = "periph_irq";
-> +                       interrupts = <GIC_SPI 481 IRQ_TYPE_LEVEL_HIGH>;
-> +                       qcom,ee = <0>;
-> +                       qcom,channel = <0>;
-> +                       #address-cells = <2>;
-> +                       #size-cells = <0>;
-> +                       interrupt-controller;
-> +                       #interrupt-cells = <4>;
-> +                       cell-index = <0>;
-> +               };
-> +       };
-> +
-> +       timer {
-> +               compatible = "arm,armv8-timer";
-> +               interrupts = <GIC_PPI 1 IRQ_TYPE_LEVEL_LOW>,
-> +                            <GIC_PPI 2 IRQ_TYPE_LEVEL_LOW>,
-> +                            <GIC_PPI 3 IRQ_TYPE_LEVEL_LOW>,
-> +                            <GIC_PPI 0 IRQ_TYPE_LEVEL_LOW>;
-
-Any particular reason why these are defined in this order - 1, 2, 3, 0?
-
-> +       };
-> +};
-> --
-> 2.20.1
->
+> >> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >> +	if (!res) {
+> >> +		ret = -ENODEV;
+> >> +		goto err_disable_unprepare;
+> >> +	}
+> >> +
+> >> +	mbox->regs = devm_ioremap_resource(&pdev->dev, res);
+> >> +	if (IS_ERR(mbox->regs)) {
+> >> +		ret = PTR_ERR(mbox->regs);
+> >> +		dev_err(dev, "Failed to map MMIO resource: %d\n", ret);
+> >> +		goto err_disable_unprepare;
+> >> +	}
+> >> +
+> >> +	/* Disable all IRQs for this end of the msgbox. */
+> >> +	writel(0, mbox->regs + LOCAL_IRQ_EN_REG);
+> >> +
+> >> +	ret = devm_request_irq(dev, irq_of_parse_and_map(dev->of_node, 0),
+> >> +			       sunxi_msgbox_irq, 0, dev_name(dev), mbox);
+> >> +	if (ret) {
+> >> +		dev_err(dev, "Failed to register IRQ handler: %d\n", ret);
+> >> +		goto err_disable_unprepare;
+> >> +	}
+> >> +
+> >> +	mbox->controller.dev           = dev;
+> >> +	mbox->controller.ops           = &sunxi_msgbox_chan_ops;
+> >> +	mbox->controller.chans         = chans;
+> >> +	mbox->controller.num_chans     = NUM_CHANS;
+> >> +	mbox->controller.txdone_irq    = false;
+> >> +	mbox->controller.txdone_poll   = true;
+> >> +	mbox->controller.txpoll_period = 5;
+> >> +
+> >> +	spin_lock_init(&mbox->lock);
+> >> +	platform_set_drvdata(pdev, mbox);
+> >> +
+> >> +	ret = mbox_controller_register(&mbox->controller);
+> >> +	if (ret) {
+> >> +		dev_err(dev, "Failed to register controller: %d\n", ret);
+> >> +		goto err_disable_unprepare;
+> >> +	}
+> >> +
+> >> +	return 0;
+> >> +
+> >> +err_disable_unprepare:
+> >> +	clk_disable_unprepare(mbox->clk);
+> >> +
+> >> +	return ret;
+> >> +}
+> >> +
+> >> +static int sunxi_msgbox_remove(struct platform_device *pdev)
+> >> +{
+> >> +	struct sunxi_msgbox *mbox = platform_get_drvdata(pdev);
+> >> +
+> >> +	mbox_controller_unregister(&mbox->controller);
+> >> +	clk_disable_unprepare(mbox->clk);
+> > 
+> > Also, assert the reset here.
+> 
+> Same comment as above. This is intentional.
+> 
+> Thanks,
+> Samuel
+> 
+> >> +	return 0;
+> >> +}
+> >> +
+> >> +static const struct of_device_id sunxi_msgbox_of_match[] = {
+> >> +	{ .compatible = "allwinner,sun6i-a31-msgbox", },
+> >> +	{},
+> >> +};
+> >> +MODULE_DEVICE_TABLE(of, sunxi_msgbox_of_match);
+> >> +
+> >> +static struct platform_driver sunxi_msgbox_driver = {
+> >> +	.driver = {
+> >> +		.name = "sunxi-msgbox",
+> >> +		.of_match_table = sunxi_msgbox_of_match,
+> >> +	},
+> >> +	.probe  = sunxi_msgbox_probe,
+> >> +	.remove = sunxi_msgbox_remove,
+> >> +};
+> >> +module_platform_driver(sunxi_msgbox_driver);
+> >> +
+> >> +MODULE_AUTHOR("Samuel Holland <samuel@sholland.org>");
+> >> +MODULE_DESCRIPTION("Allwinner sunxi Message Box");
+> >> +MODULE_LICENSE("GPL v2");
+> >> -- 
+> >> 2.21.0
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
