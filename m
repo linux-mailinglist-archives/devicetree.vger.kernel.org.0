@@ -2,51 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E2A896AB0
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:33:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B78396AB6
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730764AbfHTUcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:32:52 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:43574 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730501AbfHTUcw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:32:52 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1i0AoB-00084G-HX; Tue, 20 Aug 2019 22:32:47 +0200
-Message-ID: <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
-Subject: Re: [PATCH 08/49] ath11k: add core.c
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
-Date:   Tue, 20 Aug 2019 22:32:45 +0200
-In-Reply-To: <1566316095-27507-9-git-send-email-kvalo@codeaurora.org> (sfid-20190820_175156_803421_4FF79584)
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-         <1566316095-27507-9-git-send-email-kvalo@codeaurora.org>
-         (sfid-20190820_175156_803421_4FF79584)
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S1727358AbfHTUfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:35:25 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:36584 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729156AbfHTUfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:35:25 -0400
+Received: by mail-oi1-f195.google.com with SMTP id n1so2779611oic.3;
+        Tue, 20 Aug 2019 13:35:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=shZI82Zl0a1vHkFKOP8kqC8vGCDr5oXp88gXw96LLYA=;
+        b=NFpxjJ+Fr7xKPu3L0zKJ8v8AUa/bW/d1wEprP+UsRX34exWwlqD7IpKtKOqqKpQD9+
+         CfCw2hunvnMRDynay6NI5pDYSfExI7YCTLtUdE1Kn9DcBZHZDAcRYq/5jySavs1ez1eC
+         v38+8pNMorc+ONtthB95+DHcpErr/pfWwNbC8OV42t1NeCRxEIH2O73XEmTzXvGknZYf
+         r1GcrhNJi4G1wfFgRPaL0GzTQDm8j9c6fFXIerxDaqhuMzlcJB51WTHVFXQIMX2/f98B
+         25E3zfJwxlMkAE7WtjR/w2bVwPNcbDvC6rzZm04oEqhg6LF9METLL4MhipTAUBt9HM5d
+         oxJA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=shZI82Zl0a1vHkFKOP8kqC8vGCDr5oXp88gXw96LLYA=;
+        b=mOVVRo53c3THRPqq577/XLlEPLgXZiwnBnEub0RMnnZcuPVfzzWhmOZexqrux8Z8V3
+         qx4zgbc0Oqp2g04iur4HEPvUd4NKEYlgYVIoiOp1EpkZLhQIgog1B0hUxtVBBnj0gzan
+         /lIpTEu/cvG6YHXH0b7tA7L6nxR9BiWLJYCBakiNQJ44owm0uzskYkOWvvHxa1kNpIjF
+         w37gkG7LeMzpPrROSFsdvXM8D6Or7TnEO7fT9hM8CyfgaTMA2DyIBiu3rP8ltMZnDLui
+         LA42F5U4ixoluW0uejBSAqkBZDMchJZlPBz0US8vFyb6fNYz0ZxGJJJFexPK8x73teA5
+         L4ZQ==
+X-Gm-Message-State: APjAAAUscdMKOzs7GYCEqgon/cc8sYHhoqrKk73WbT8OoI1qQ/Plw6rC
+        D6V0F2KB9YT6tLeBttVri8ipXkUnBBc9Nosb6Dg=
+X-Google-Smtp-Source: APXvYqwF+wqaQaOhsdA099YOhLAMF4+0X9jZXZ57p3A1tskhIG+Cq5/F0EEgHWGCTE9OmycZu1wV62qbVj5Bs+q55M0=
+X-Received: by 2002:a05:6808:8e2:: with SMTP id d2mr1400869oic.47.1566333323830;
+ Tue, 20 Aug 2019 13:35:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-15-narmstrong@baylibre.com>
+In-Reply-To: <20190814142918.11636-15-narmstrong@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 20 Aug 2019 22:35:12 +0200
+Message-ID: <CAFBinCApsk7VhfUBB9Gs5_k1p3-q5RQgfFO_6yjij=kALh9AJg@mail.gmail.com>
+Subject: Re: [PATCH 14/14] arm64: dts: meson: fix boards regulators states format
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Aug 14, 2019 at 4:34 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> This fixes the following DT schemas check errors:
+> meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
+> meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
+> meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+> meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+> meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+> meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+> meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+> meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+> meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+> meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+> meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
+> meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
+> meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
+> meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-> +module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
-> +
-> +MODULE_PARM_DESC(debug_mask, "Debugging mask");
-> +
-> +static const struct ath11k_hw_params ath11k_hw_params = {
-> +			.name = "ipq8074",
-
-indentation here seems a bit too much
-
-> +MODULE_LICENSE("Dual BSD/GPL");
-
-All your files state "ISC", shouldn't that be reflected here?
-
-johannes
-
+note to self: NanoPi K2 and the Le Potato board .dts are already doing
+it "right"
