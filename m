@@ -2,80 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D223A96589
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D135C96553
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:50:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730592AbfHTPvj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:51:39 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:53010 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730372AbfHTPvj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:51:39 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id E7CF761CEA; Tue, 20 Aug 2019 15:50:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1566316298;
-        bh=vpIUBg/nANIwPhSup/mTfrmjsi5diYXgvESg6ENuay0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=i/KFSsnplFCC02jpa2f/FpKgtzFJiPSj5hZdlKYz9kF4oV7ft1QmSDtHe7Acg7sFL
-         O5hz/Je3379HGWmEJ4jBYKN0L9GomXg3PfX9aNR4Yf4SKCqkAH1BYyO2kcUL8AlVKl
-         zQ751WgtAr+OSGe0MduPIXsgWn+gt8/oV+t+O91U=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7A3C461CB7;
-        Tue, 20 Aug 2019 15:50:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1566316233;
-        bh=vpIUBg/nANIwPhSup/mTfrmjsi5diYXgvESg6ENuay0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=oQwU4pRtC+633zhI/4jifVifbbqJhkw8tJ91W+abupyi1WQl6cDwXBXs9OYS+g9TJ
-         mFYC37ZTddFMujDftEksD3mkpq0ZKuHN+ZD4R3yHJuvK9Utrcjsd+KgqjN0fdK2LwN
-         Y78Ef/8tEdpNQCKBxmUFaMLWdvABb/fEAarYnK4M=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7A3C461CB7
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     linux-wireless@vger.kernel.org
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH 49/49] MAINTAINERS: add ath11k
-Date:   Tue, 20 Aug 2019 18:48:15 +0300
-Message-Id: <1566316095-27507-50-git-send-email-kvalo@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+        id S1729672AbfHTPuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 11:50:13 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:44581 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729820AbfHTPuN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:50:13 -0400
+Received: by mail-pf1-f194.google.com with SMTP id c81so3623023pfc.11;
+        Tue, 20 Aug 2019 08:50:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=lYiV05ocruj81X/Vth9fboH+MCkm6RCCkzLgC1xVrmw=;
+        b=fNasBHccmJLzP/62U4MV9sBWbQm7OW+UP4o3L47p/QOfrEwB12oFGN1SUeDNxTesTG
+         oFVXAGPB/0yKLhB93KvtK39OGt91m5yjXxqiOI+Ne/g4PgiHtP6CnP+emNtm0S5AvRms
+         wgLB3LlUTYNcu+oBWwl0mANSxbB8JPDz87T+ueLDw0vAvDTOpKYRKCXog9R0fmkLFIPi
+         xzQou+UdcpRw5UdaAiachGeHx8UiMO5DSO/+NrOHHqD3BqcTTUABMqZt3SgFTXKwTSba
+         S8dz/yisSiv/DmwTMJJoBD3YdQ0WsmL+fLh8i0MgTfW7wG4rpT5ju3QIDkhGNtSNHAG1
+         7vmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lYiV05ocruj81X/Vth9fboH+MCkm6RCCkzLgC1xVrmw=;
+        b=r8kTu+ocQIORktg5m+Py1UDWIdyXI5959ethvRI9YaRJK5jaOwJGaCvEoCARv/OLvs
+         qpsmhjrd6l4zrVaZUtdhRqwQ8VOgYt6gz9lkAgiodX08+Wg3rZgJcirIifShd+L1L6r9
+         mFBaLbNUR53fceZJHOpZeML3TMjttkKQduldRqxmy/NhY1ohKq4u4zMdkrNbcdISpe0v
+         IG0QGPPeA7WAIVy5mbG1kAAuORIWhcH0Lt0zVEijJ3w64mrtOC/bCdnQb4bQVsK1gDX3
+         BWGmiWzNRDygnGfE2xhvb6UQEZOG4iapq9cToESqPzfiXiGnA9hZZbvdp/G0YgKouHO4
+         HzRA==
+X-Gm-Message-State: APjAAAX+y0op+vrIdmwj09jiS68aW4l5q/XMPaqyiyFPK4UjTZAls6g0
+        X5J8i1uEUSrt00pU3R8Tz+4=
+X-Google-Smtp-Source: APXvYqzcVZHhyB9DOXrMXzkr2BAV66JOb9oS1kaW6MbhIGd5s+OPyrNHhQiJmgISgBG2USF+eV4rvg==
+X-Received: by 2002:a62:f204:: with SMTP id m4mr31653953pfh.7.1566316212404;
+        Tue, 20 Aug 2019 08:50:12 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id a6sm399723pjv.30.2019.08.20.08.50.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 20 Aug 2019 08:50:11 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 08:50:10 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v2 2/2] watchdog: aspeed: Add support for AST2600
+Message-ID: <20190820155010.GA20408@roeck-us.net>
+References: <20190819051738.17370-1-joel@jms.id.au>
+ <20190819051738.17370-3-joel@jms.id.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190819051738.17370-3-joel@jms.id.au>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Mon, Aug 19, 2019 at 02:47:38PM +0930, Joel Stanley wrote:
+> From: Ryan Chen <ryan_chen@aspeedtech.com>
+> 
+> The ast2600 can be supported by the same code as the ast2500.
+> 
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 677ef41cb012..ae00b2c443b6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13028,6 +13028,13 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
- S:	Supported
- F:	drivers/net/wireless/ath/ath10k/
- 
-+QUALCOMM ATHEROS ATH11K WIRELESS DRIVER
-+M:	Kalle Valo <kvalo@codeaurora.org>
-+L:	ath11k@lists.infradead.org
-+T:	git git://git.kernel.org/pub/scm/linux/kernel/git/kvalo/ath.git
-+S:	Supported
-+F:	drivers/net/wireless/ath/ath11k/
-+
- QUALCOMM ATHEROS ATH9K WIRELESS DRIVER
- M:	QCA ath9k Development <ath9k-devel@qca.qualcomm.com>
- L:	linux-wireless@vger.kernel.org
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
+> ---
+> v2:
+>  Reuse ast2500 config structure
+> ---
+>  drivers/watchdog/aspeed_wdt.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/watchdog/aspeed_wdt.c b/drivers/watchdog/aspeed_wdt.c
+> index cc71861e033a..5b64bc2e8788 100644
+> --- a/drivers/watchdog/aspeed_wdt.c
+> +++ b/drivers/watchdog/aspeed_wdt.c
+> @@ -34,6 +34,7 @@ static const struct aspeed_wdt_config ast2500_config = {
+>  static const struct of_device_id aspeed_wdt_of_table[] = {
+>  	{ .compatible = "aspeed,ast2400-wdt", .data = &ast2400_config },
+>  	{ .compatible = "aspeed,ast2500-wdt", .data = &ast2500_config },
+> +	{ .compatible = "aspeed,ast2600-wdt", .data = &ast2500_config },
+>  	{ },
+>  };
+>  MODULE_DEVICE_TABLE(of, aspeed_wdt_of_table);
+> @@ -259,7 +260,8 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>  		set_bit(WDOG_HW_RUNNING, &wdt->wdd.status);
+>  	}
+>  
+> -	if (of_device_is_compatible(np, "aspeed,ast2500-wdt")) {
+> +	if ((of_device_is_compatible(np, "aspeed,ast2500-wdt")) ||
+> +		(of_device_is_compatible(np, "aspeed,ast2600-wdt"))) {
+>  		u32 reg = readl(wdt->base + WDT_RESET_WIDTH);
+>  
+>  		reg &= config->ext_pulse_width_mask;
