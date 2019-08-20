@@ -2,165 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 02C7E964F6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129ED9650A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:47:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730455AbfHTPpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:45:31 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:41452 "EHLO inva020.nxp.com"
+        id S1728682AbfHTPrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 11:47:17 -0400
+Received: from vps.xff.cz ([195.181.215.36]:34058 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730307AbfHTPpa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 11:45:30 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5882A1A0111;
-        Tue, 20 Aug 2019 17:45:28 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 36FDA1A0100;
-        Tue, 20 Aug 2019 17:45:28 +0200 (CEST)
-Received: from fsr-ub1864-112.ea.freescale.net (fsr-ub1864-112.ea.freescale.net [10.171.82.98])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 3444720612;
-        Tue, 20 Aug 2019 17:45:27 +0200 (CEST)
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Stephen Boyd <sboyd@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Kyungmin Park <kyungmin.park@samsung.com>,
+        id S1727006AbfHTPrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 11:47:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566316035; bh=+WetNuZhgsPVrJpioXtAn4eK1dq+iJ2qVlbpblbtjW4=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=hP54zVonCSbd4zXVtywOUAO5skboSj0IERBMVv++b8InA7BK9VB27HeH7mYCTQuH2
+         4Le6mzzhSoXaVM6Dr/19kjLEesxX8WweIzbVQu0I2k75qcV+BB2m//1C81g4tlSYw1
+         aCtfMtwX+imflszImRWYPRPZENIcBTQ1VAySnfxU=
+Date:   Tue, 20 Aug 2019 17:47:14 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Abel Vesa <abel.vesa@nxp.com>, Jacky Bai <ping.bai@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 7/7] arm64: dts: imx8mm: Add devfreq nodes
-Date:   Tue, 20 Aug 2019 18:45:12 +0300
-Message-Id: <71f9ecb1152b1860399e59aacb22c467d519b0f5.1566315740.git.leonard.crestez@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1566315740.git.leonard.crestez@nxp.com>
-References: <cover.1566315740.git.leonard.crestez@nxp.com>
-In-Reply-To: <cover.1566315740.git.leonard.crestez@nxp.com>
-References: <cover.1566315740.git.leonard.crestez@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/6] net: stmmac: sun8i: Use devm_regulator_get for PHY
+ regulator
+Message-ID: <20190820154714.2rt4ctovil5ol3u2@core.my.home>
+Mail-Followup-To: Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20190820145343.29108-1-megous@megous.com>
+ <20190820145343.29108-4-megous@megous.com>
+ <20190820153939.GL29991@lunn.ch>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820153939.GL29991@lunn.ch>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support for bus scaling on imx8m, starting with noc and ddrc
-because they're the biggest power hogs.
+Hi Andrew,
 
-Add a devfreq-event link to the PMU in order to support on-demand
-scaling of ddrc based on measured dram bandwith usage. Make ddrc a
-parent of the NOC because all traffic to ddrc goes through
+On Tue, Aug 20, 2019 at 05:39:39PM +0200, Andrew Lunn wrote:
+> On Tue, Aug 20, 2019 at 04:53:40PM +0200, megous@megous.com wrote:
+> > From: Ondrej Jirman <megous@megous.com>
+> > 
+> > Use devm_regulator_get instead of devm_regulator_get_optional and rely
+> > on dummy supply. This avoids NULL checks before regulator_enable/disable
+> > calls.
+> 
+> Hi Ondrej
+> 
+> What do you mean by a dummy supply? I'm just trying to make sure you
+> are not breaking backwards compatibility.
 
-Support for proactive scaling via interconnect and support for scaling
-additional NICs will come later. The high-performance bus masters which
-need that (display, vpu, gpu) are not yet enabled in upstream anyway.
+Sorry, I mean dummy regulator. See:
 
-Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 53 ++++++++++++++++++++++-
- 1 file changed, 52 insertions(+), 1 deletion(-)
+https://elixir.bootlin.com/linux/latest/source/drivers/regulator/core.c#L1874
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 5f9d0da196e1..5474c50784c2 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -139,10 +139,38 @@
- 			clock-latency-ns = <150000>;
- 			opp-suspend;
- 		};
- 	};
- 
-+	ddrc_opp_table: ddrc-opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-25M {
-+			opp-hz = /bits/ 64 <25000000>;
-+		};
-+		opp-100M {
-+			opp-hz = /bits/ 64 <100000000>;
-+		};
-+		opp-750M {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
-+
-+	noc_opp_table: noc-opp-table {
-+		compatible = "operating-points-v2";
-+
-+		opp-150M {
-+			opp-hz = /bits/ 64 <150000000>;
-+		};
-+		opp-375M {
-+			opp-hz = /bits/ 64 <375000000>;
-+		};
-+		opp-750M {
-+			opp-hz = /bits/ 64 <750000000>;
-+		};
-+	};
-+
- 	memory@40000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x40000000 0 0x80000000>;
- 	};
- 
-@@ -773,10 +801,18 @@
- 				status = "disabled";
- 			};
- 
- 		};
- 
-+		noc: noc@32700000 {
-+			compatible = "fsl,imx8mm-noc", "fsl,imx8m-noc";
-+			reg = <0x32700000 0x100000>;
-+			clocks = <&clk IMX8MM_CLK_NOC>;
-+			devfreq = <&ddrc>;
-+			operating-points-v2 = <&noc_opp_table>;
-+		};
-+
- 		aips4: bus@32c00000 {
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0x32c00000 0x32c00000 0x400000>;
-@@ -857,11 +893,26 @@
- 			#interrupt-cells = <3>;
- 			interrupt-controller;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
--		ddr-pmu@3d800000 {
-+		ddrc: dram-controller@3d400000 {
-+			compatible = "fsl,imx8mm-ddrc", "fsl,imx8m-ddrc";
-+			reg = <0x3d400000 0x400000>;
-+			clock-names = "dram_core",
-+				      "dram_pll",
-+				      "dram_alt",
-+				      "dram_apb";
-+			clocks = <&clk IMX8MM_CLK_DRAM_CORE>,
-+				 <&clk IMX8MM_DRAM_PLL>,
-+				 <&clk IMX8MM_CLK_DRAM_ALT>,
-+				 <&clk IMX8MM_CLK_DRAM_APB>;
-+			devfreq-events = <&ddr_pmu>;
-+			operating-points-v2 = <&ddrc_opp_table>;
-+		};
-+
-+		ddr_pmu: ddr-pmu@3d800000 {
- 			compatible = "fsl,imx8mm-ddr-pmu", "fsl,imx8m-ddr-pmu";
- 			reg = <0x3d800000 0x400000>;
- 			interrupt-parent = <&gic>;
- 			interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
- 		};
--- 
-2.17.1
+On systems that use DT (i.e. have_full_constraints() == true), when the
+regulator is not found (ENODEV, not specified in DT), regulator_get will return
+a fake dummy regulator that can be enabled/disabled, but doesn't do anything
+real.
 
+This can be used to avoid NULL checks and make the code simpler.
+
+regards,
+	Ondrej
+
+>      Thanks
+> 	Andrew
