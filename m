@@ -2,160 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC45954EC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 05:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5995895518
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 05:23:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728777AbfHTDPu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Aug 2019 23:15:50 -0400
-Received: from mga07.intel.com ([134.134.136.100]:64291 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728338AbfHTDPu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 19 Aug 2019 23:15:50 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Aug 2019 20:15:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,407,1559545200"; 
-   d="scan'208";a="183056988"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga006.jf.intel.com with ESMTP; 19 Aug 2019 20:15:49 -0700
-Received: from [10.226.38.19] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.19])
-        by linux.intel.com (Postfix) with ESMTP id 056BA58050C;
-        Mon, 19 Aug 2019 20:15:47 -0700 (PDT)
-Subject: Re: [PATCH v1 1/2] dt-bindings: phy: intel-emmc-phy: Add new
- compatible for LGM eMMC PHY
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        peter.harliman.liem@intel.com
-References: <20190819034416.45192-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <CAL_JsqL2m-3BJHCSg2pwogyPDbp6yADUP1MQEV6QyZMpgta4xw@mail.gmail.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <a5930a65-9ee5-7dd9-9a16-eac6808ecfed@linux.intel.com>
-Date:   Tue, 20 Aug 2019 11:15:46 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1729241AbfHTDXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Aug 2019 23:23:48 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:56153 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728734AbfHTDXO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 19 Aug 2019 23:23:14 -0400
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 893FA3510;
+        Mon, 19 Aug 2019 23:23:12 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute5.internal (MEProxy); Mon, 19 Aug 2019 23:23:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        from:to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=9DYoy8NT9Ve7hFzyo3H6iPPmEA
+        CpZOYKDnCzHCSrpbQ=; b=4M37PdQBCN/w6RTxxDoqh8EXYO5p4e3lRIbFwuRFpx
+        xFN2vbw5G1DuPYMDJ1SKOpVrLfHxkdl3X1G93HgwHSVioOg63/micK86dWFRw0jE
+        vaqJYzCDGdu+x39wFXjpqrOiR/NhEn20fAr4IK8z8hlRx+f5QLvyaimyef1UIiHJ
+        dmtFD/e7m1BT+Rskj6EmHduJcxLiF/6ROGf6EZvhY8/s4iF2a7crTfu2jEKVQPTy
+        LfxHV7DHBzGcaf7yaAw5+spV95x/NMnvnr04a1llb7nDlU8lQdtBh5Ma4D/yv8U5
+        Sm4cPMmg8HVQCHsaGSTe4KbOUnxaf+MoHkF2RWnNdPMQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=9DYoy8NT9Ve7hFzyo
+        3H6iPPmEACpZOYKDnCzHCSrpbQ=; b=Ygys0yOa27lYONkNyUqaJ0xRhBRCmHouO
+        ms0Y9NviXXDmwmyFFRZtHxj2stQLzwDLXHdkRhvQmNjmQamB9Lt/GmYGWFSCuGt5
+        n2uZvPm6IL2dgWkpoWHFpa1pyt23On0FQqzm+ThHUznjz1WSUZDd6AhEISvd06aH
+        AB4xiqmXfMYfRm+6JyS9FnQ8Kkwjdg4NAAL/VPhriLCaFQosPXnT3raPYR9OEGGi
+        EEb7BWIHHLSB7U7dPeYO7fSYKrXp1R1d/bsbwGAKRn6DSyWMtRM102ZOh5hQOz1z
+        Iqo+agaukFYVOBs9FA9WhZRB/oNzv4KMBILau1z4OW/kkfkLthW+w==
+X-ME-Sender: <xms:n2dbXXEsXSS3x9kPpQyV5o-MSjkYRIZ7XSamxV-ILJqOTLVT1lRI6Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudegtddgjeegucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffoggfgsedtkeertdertddtnecuhfhrohhmpefurghmuhgvlhcu
+    jfholhhlrghnugcuoehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgqeenucffohhmrg
+    hinhepghhithhhuhgsrdgtohhmnecukfhppeejtddrudefhedrudegkedrudehudenucfr
+    rghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrghenuc
+    evlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:n2dbXYln6shx_YGrmWhxqsz81-p18uZ7tYpm7TgAYtv8kuOGZxR23A>
+    <xmx:n2dbXUIYyiaFSA3_N0Wwa1XupWFv3RvXEnr4yh08WP97zQPaz_HUBA>
+    <xmx:n2dbXZaprr3dAZARO1jWYZSAVXq4JIY_y51SyJn4LhIn5vayVF31-A>
+    <xmx:oGdbXYmoo9G4d1TqUl-0LKunnaY7WbhJIp0i1S3cgTwMYlpCcHdeYQ>
+Received: from titanium.stl.sholland.net (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 38A688005C;
+        Mon, 19 Aug 2019 23:23:10 -0400 (EDT)
+From:   Samuel Holland <samuel@sholland.org>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
+Subject: [PATCH v4 00/10] Allwinner sunxi message box support
+Date:   Mon, 19 Aug 2019 22:23:01 -0500
+Message-Id: <20190820032311.6506-1-samuel@sholland.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqL2m-3BJHCSg2pwogyPDbp6yADUP1MQEV6QyZMpgta4xw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/8/2019 3:27 AM, Rob Herring wrote:
-> On Sun, Aug 18, 2019 at 10:44 PM Ramuthevar,Vadivel MuruganX
-> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> Add a new compatible to use the host controller driver with the
->> eMMC PHY on Intel's Lightning Mountain SoC.
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->>   .../bindings/phy/intel-lgm-emmc-phy.yaml           | 70 ++++++++++++++++++++++
->>   1 file changed, 70 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/phy/intel-lgm-emmc-phy.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/phy/intel-lgm-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel-lgm-emmc-phy.yaml
->> new file mode 100644
->> index 000000000000..52156ff091ad
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/intel-lgm-emmc-phy.yaml
->> @@ -0,0 +1,70 @@
->> +# SPDX-License-Identifier: GPL-2.0
-> Preference for new bindings is (GPL-2.0-only OR BSD-2-Clause)
-Thanks a lot for the review comments, agreed, will update in the next 
-patch version.
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/intel-lgm-emmc-phy.yaml#
-> Preferred filename is the compatible string (plus .yaml).
-Agreed!
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Intel LGM e-MMC PHY Device Tree Bindings
-> LGM is what?
-Intel's Lightning Mountain(LGM) SoC.
->> +
->> +maintainers:
->> +  - Rob Herring <robh+dt@kernel.org>
->> +  - Mark Rutland <mark.rutland@arm.com>
-> I don't know anything about this h/w. Please put yourself here.
-Agreed, will update.
->> +
->> +intel,syscon:
-> This will throw an error with 'make dt_binding_check'...
-agreed, will remove
->> +   $ref: /schemas/types.yaml#definitions/phandle
->> +   description:
->> +    - |
->> +      e-MMC phy module connected through chiptop. Phandle to a node that can
->> +      contain the following properties
->> +        * reg, Access the e-MMC, get the base address from syscon.
->> +        * reset, reset the e-MMC module.
->> +
->> +properties:
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +  compatible:
->> +    const: intel,lgm-emmc-phy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    items:
->> +      - description: e-MMC phy module clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: emmcclk
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +required:
->> +  - "#phy-cells"
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    sysconf: chiptop@e0020000 {
->> +        compatible = "intel,chiptop-lgm", "syscon";
->> +        reg = <0xe0020000 0x100>;
->> +        #reset-cells = <1>;
->> +     };
->> +
->> +  - |
-> Looks like 1 example to me, not 2.
-Agreed, I will keep the below one example.
+This series adds support for the "hardware message box" in sun8i, sun9i,
+and sun50i SoCs, used for communication with the ARISC management
+processor (the platform's equivalent of the ARM SCP). The end goal is to
+use the arm_scpi driver as a client, communicating with firmware running
+on the AR100 CPU, or to use the mailbox to forward NMIs that the
+firmware picks up from R_INTC.
 
-Best Regards
-Vadivel
->> +    emmc_phy: emmc_phy {
->> +        compatible = "intel,lgm-emmc-phy";
->> +        intel,syscon = <&sysconf>;
->> +        clocks = <&emmc>;
->> +        clock-names = "emmcclk";
->> +        #phy-cells = <0>;
->> +    };
->> +
->> +...
->> --
->> 2.11.0
->>
+Unfortunately, the ARM SCPI client no longer works with this driver
+since it now exposes all 8 hardware FIFOs individually. The SCPI client
+could be made to work (and I posted proof-of-concept code to that effect
+with v1 of this series), but that is a low priority, as Linux does not
+directly use SCPI with the current firmware version; all SCPI use goes
+through ATF via PSCI.
+
+As requested in the comments to v3 of this patchset, a demo client is
+provided in the final patch. This demo goes along with a toy firmware
+which shows that the driver does indeed work for two-way communication
+on all channels. To build the firmware component, run:
+
+  git clone https://github.com/crust-firmware/meta meta
+  git clone -b mailbox-demo https://github.com/crust-firmware/crust meta/crust
+  cd meta
+  make
+
+That will by default produce a U-Boot + ATF + SCP firmware image in
+[meta/]build/pinebook/u-boot-sunxi-with-spl.bin. See the top-level
+README.md for more information, such as cross-compiler setup.
+
+I've now used this driver with three separate clients over the past two
+years, and they all work. If there are no remaining concerns with the
+driver, I'd like it to get merged.
+
+Even without the driver, the clock patches (1-2) can go in at any time.
+
+Changes from v3:
+  - Rebased on sunxi-next
+  - Added Rob's Reviewed-by for patch 3
+  - Fixed a crash when receiving a message on a disabled channel
+  - Cleaned up some comments/formatting in the driver
+  - Fixed #mbox-cells in sunxi-h3-h5.dtsi (patch 7)
+  - Removed the irqchip example (no longer relevant to the fw design)
+  - Added a demo/example client that uses the driver and a toy firmware
+
+Changes from v2:
+  - Merge patches 1-3
+  - Add a comment in the code explaining the CLK_IS_CRITICAL usage
+  - Add a patch to mark the AR100 clocks as critical
+  - Use YAML for the device tree binding
+  - Include a not-for-merge example usage of the mailbox
+
+Changes from v1:
+  - Marked message box clocks as critical instead of hacks in the driver
+  - 8 unidirectional channels instead of 4 bidirectional pairs
+  - Use per-SoC compatible strings and an A31 fallback compatible
+  - Dropped the mailbox framework patch
+  - Include DT patches for SoCs that document the message box
+
+Samuel Holland (10):
+  clk: sunxi-ng: Mark msgbox clocks as critical
+  clk: sunxi-ng: Mark AR100 clocks as critical
+  dt-bindings: mailbox: Add a sunxi message box binding
+  mailbox: sunxi-msgbox: Add a new mailbox driver
+  ARM: dts: sunxi: a80: Add msgbox node
+  ARM: dts: sunxi: a83t: Add msgbox node
+  ARM: dts: sunxi: h3/h5: Add msgbox node
+  arm64: dts: allwinner: a64: Add msgbox node
+  arm64: dts: allwinner: h6: Add msgbox node
+  [DO NOT MERGE] drivers: firmware: msgbox demo
+
+ .../mailbox/allwinner,sunxi-msgbox.yaml       |  79 +++++
+ arch/arm/boot/dts/sun8i-a83t.dtsi             |  10 +
+ arch/arm/boot/dts/sun9i-a80.dtsi              |  10 +
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  10 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  34 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |  24 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  10 +
+ drivers/clk/sunxi-ng/ccu-sun50i-a64.c         |   3 +-
+ drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c        |   2 +-
+ drivers/clk/sunxi-ng/ccu-sun50i-h6.c          |   3 +-
+ drivers/clk/sunxi-ng/ccu-sun8i-a23.c          |   3 +-
+ drivers/clk/sunxi-ng/ccu-sun8i-a33.c          |   3 +-
+ drivers/clk/sunxi-ng/ccu-sun8i-a83t.c         |   3 +-
+ drivers/clk/sunxi-ng/ccu-sun8i-h3.c           |   3 +-
+ drivers/clk/sunxi-ng/ccu-sun8i-r.c            |   2 +-
+ drivers/clk/sunxi-ng/ccu-sun9i-a80.c          |   3 +-
+ drivers/firmware/Kconfig                      |   6 +
+ drivers/firmware/Makefile                     |   1 +
+ drivers/firmware/sunxi_msgbox_demo.c          | 307 +++++++++++++++++
+ drivers/mailbox/Kconfig                       |  10 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/sunxi-msgbox.c                | 323 ++++++++++++++++++
+ 22 files changed, 842 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/allwinner,sunxi-msgbox.yaml
+ create mode 100644 drivers/firmware/sunxi_msgbox_demo.c
+ create mode 100644 drivers/mailbox/sunxi-msgbox.c
+
+-- 
+2.21.0
