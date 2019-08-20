@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 387E896653
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 589B696679
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:34:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729900AbfHTQ1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 12:27:44 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39422 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726981AbfHTQ1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 12:27:44 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: dafna)
-        with ESMTPSA id 686E4283D55
-Message-ID: <26b78fe57106f47d34f14bec2f81732af40c3d8d.camel@collabora.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: imx: add imx8mq nitrogen
- support
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+        id S1730063AbfHTQef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 12:34:35 -0400
+Received: from vps.xff.cz ([195.181.215.36]:35884 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729888AbfHTQef (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 12:34:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566318873; bh=3EWCt3iq/B/vjAGtGo7IXhuRxxDcIZbWkjIAdRe7UbM=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=py9/BlWS5YpsBC+Ob1OADS/v6gNrFJh+2R35taWE4l0I08LKPhR6sIH0qcyRfrwtM
+         D+LAbXmPoRgIIHlVbnEhG9sWzKZjHzCiCDJvoT0n1SFpumVjMj9nJcsicSkkJYd2KT
+         z9lPeAk6WE7kRV2NWjKB/Q62TU5tZqBALJK8kweQ=
+Date:   Tue, 20 Aug 2019 18:34:33 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
 To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>, kernel@collabora.com,
-        Gary Bisson <gary.bisson@boundarydevices.com>,
-        Troy Kisky <troy.kisky@boundarydevices.com>
-Date:   Tue, 20 Aug 2019 18:27:39 +0200
-In-Reply-To: <CAL_JsqJx6pTw7Pr=7f0jkC81JF+EDkyhHrvFehSWZV=0wy+YXQ@mail.gmail.com>
-References: <20190819172606.6410-1-dafna.hirschfeld@collabora.com>
-         <20190819172606.6410-2-dafna.hirschfeld@collabora.com>
-         <CAL_JsqJx6pTw7Pr=7f0jkC81JF+EDkyhHrvFehSWZV=0wy+YXQ@mail.gmail.com>
-Organization: Collabora
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH 2/6] dt-bindings: net: sun8i-a83t-emac: Add phy-io-supply
+ property
+Message-ID: <20190820163433.sr4lvjxmmhjtbtcb@core.my.home>
+Mail-Followup-To: Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com
+References: <20190820145343.29108-1-megous@megous.com>
+ <20190820145343.29108-3-megous@megous.com>
+ <CAL_JsqLHeA6A_+ZgmCzC42Y6yJrEq6+D3vKn8ETh2D7LJ+1_-g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLHeA6A_+ZgmCzC42Y6yJrEq6+D3vKn8ETh2D7LJ+1_-g@mail.gmail.com>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-08-19 at 14:08 -0500, Rob Herring wrote:
-> On Mon, Aug 19, 2019 at 12:26 PM Dafna Hirschfeld
-> <dafna.hirschfeld@collabora.com> wrote:
-> > From: Gary Bisson <gary.bisson@boundarydevices.com>
-> > 
-> > The Nitrogen8M is an ARM based single board computer (SBC)
-> > designed to leverage the full capabilities of NXP’s i.MX8M
-> > Quad processor.
-> > 
-> > Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
-> > Signed-off-by: Troy Kisky <troy.kisky@boundarydevices.com>
-> > [Dafna: porting vendor's code to mainline]
-> > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+On Tue, Aug 20, 2019 at 11:20:22AM -0500, Rob Herring wrote:
+> On Tue, Aug 20, 2019 at 9:53 AM <megous@megous.com> wrote:
+> >
+> > From: Ondrej Jirman <megous@megous.com>
+> >
+> > Some PHYs require separate power supply for I/O pins in some modes
+> > of operation. Add phy-io-supply property, to allow enabling this
+> > power supply.
+> 
+> Perhaps since this is new, such phys should have *-supply in their nodes.
+
+Yes, I just don't understand, since external ethernet phys are so common,
+and they require power, how there's no fairly generic mechanism for this
+already in the PHY subsystem, or somewhere?
+
+It looks like other ethernet mac drivers also implement supplies on phys
+on the EMAC nodes. Just grep phy-supply through dt-bindings/net.
+
+Historical reasons, or am I missing something? It almost seems like I must
+be missing something, since putting these properties to phy nodes
+seems so obvious.
+
+thank you and regards,
+	Ondrej
+
+> >
+> > Signed-off-by: Ondrej Jirman <megous@megous.com>
 > > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> 
-> Please add acks/reviewed-bys when posting new versions.
-> 
-Hi,
-Thank you for the remark, I forgot to add it. I will add it in the
-next.
-Regards,
-Dafna Hirschfeld
-
-> Rob
-
+> >  .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml    | 4 ++++
+> >  1 file changed, 4 insertions(+)
