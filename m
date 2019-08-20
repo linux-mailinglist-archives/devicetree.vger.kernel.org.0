@@ -2,148 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB4A96B6D
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 23:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E34196B94
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 23:39:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730501AbfHTV0o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 17:26:44 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:39822 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729887AbfHTV0o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 17:26:44 -0400
-Received: by mail-pg1-f196.google.com with SMTP id u17so35436pgi.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 14:26:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kfF4vdGcFJm/Wf6JQ1wcuplxthXZW1HNbOa1JyPqpZg=;
-        b=YezYmx2WChZMi1DRr1XoN8XfZITumH+PgqY3JQdS5w4u2vwKLbtcH66ah2vjoQnnog
-         QyUxcFY+vLpiQeDhK9KTH5U7uOLNo0vnuD4a52N1MJjkiOZI294BDWFVvwrEEKdhPBaO
-         XVT2+i53gVsOodGBAl0E+xI0gCcD/lVNo3bqvB93NFaE/xG/irV6qGiYAx5Sa0TgkhIz
-         Derb91GymDQKbZ5lMgnZKtNSZMjrGXdFpCsjUGQOYWWslojKah3JT/incq30S9xuCblQ
-         rssihHZxJUKUKjpEGuvFLm+OHFk0eFFOuKdMDTyPyJe4rypnj3lPr/tiL1vR+LS2dnzq
-         EaFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kfF4vdGcFJm/Wf6JQ1wcuplxthXZW1HNbOa1JyPqpZg=;
-        b=MXeHcBpRCNXlTuwFWkOF/c1Ve2JPJ2Ymr7CTWsi++E9Aq1ge0EF+M15Mbu5p51gK6m
-         9Dl5WYdSMf4cR5oG7M3rZHAw6KcDJMCRu+sTjmh82SWVFyEgPdwmzT86K5eSTskKOifG
-         72r4ChbHxiO+Y+DryCA/vad/t9gLF1TtplVwxxbDYrWt/6Yj2ND1IpjB7F292yqZCp/a
-         1jbgQVgA4zVUsFIdtPglnXMVTmWh6zWO1JPwr5T43k45EZRLHeerN558aZX/G3LQ6ubD
-         MeDKQLZGt/XcrKbr72Rxpyd/wh69mibtFu0zb6PjR07XA5BpE9r6Y36Yoavgu4P3SdBI
-         x4jw==
-X-Gm-Message-State: APjAAAWylp+kkixZPDPIxyGWrOD4HJLW/4kyv5+ERGDwAptQRmTH5Iqt
-        yms3/rQNoXZgenSSKUdJy9JtSfA5dNRmwoGcYpX2GA==
-X-Google-Smtp-Source: APXvYqzLsasEUUNlQqQQsMBDlcH+Tp5YqnFlWE8k2udTHXgEapZH91qiWX0NVeTeH8163H7ZgTGtPG9Wj/vODuCC5PA=
-X-Received: by 2002:aa7:8f2e:: with SMTP id y14mr32322000pfr.113.1566336403144;
- Tue, 20 Aug 2019 14:26:43 -0700 (PDT)
+        id S1730649AbfHTViL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 17:38:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52190 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730773AbfHTViK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 17:38:10 -0400
+Received: from [192.168.0.26] (89-70-52-201.dynamic.chello.pl [89.70.52.201])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DC0BF22D6D;
+        Tue, 20 Aug 2019 21:38:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566337089;
+        bh=gLlIXUezQ3H0zuhcdhL9pLDm+sYyFfXAb5ejydPRRmo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=YSKysIziONSdYqDaBp1ouXGTLLHWaQibOh262t4q8PqwcS1xHNYPe/dQwWYeTWl6A
+         mVEskQ4pZhKpl0mK5B/28GUIIVpvfdjEH60nAHGv3fSCz434vvwZyCNxJDnDUxhTja
+         /1OxRfvJm9udJI/sh3ViWVKapHq8bT4gSwBQ+bvE=
+Subject: Re: [PATCH v3 2/9] soc: samsung: Convert exynos-chipid driver to use
+ the regmap API
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+References: <20190813150827.31972-1-s.nawrocki@samsung.com>
+ <CGME20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c@eucas1p2.samsung.com>
+ <20190813150827.31972-3-s.nawrocki@samsung.com>
+ <b5359603-b337-dcd8-b025-ca7dff5f4a06@nvidia.com>
+ <CAJKOXPf597CMx=M2JmSTWe2GzBfcHFefgzSJbJ+njZGp-WfR1A@mail.gmail.com>
+From:   Sylwester Nawrocki <snawrocki@kernel.org>
+Message-ID: <1e428c8e-f4b5-0810-77f9-2c899c040fc7@kernel.org>
+Date:   Tue, 20 Aug 2019 23:38:02 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190814055108.214253-1-brendanhiggins@google.com>
- <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org> <20190820182450.GA38078@google.com>
- <e8eaf28e-75df-c966-809a-2e3631353cc9@kernel.org>
-In-Reply-To: <e8eaf28e-75df-c966-809a-2e3631353cc9@kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 20 Aug 2019 14:26:32 -0700
-Message-ID: <CAFd5g44JT_KQ+OxjVdG0qMWuaEB0Zq5x=r6tLsqJdncwZ_zbGA@mail.gmail.com>
-Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
- testing framework
-To:     shuah <shuah@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Bjorn Helgaas <bhelgaas@google.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAJKOXPf597CMx=M2JmSTWe2GzBfcHFefgzSJbJ+njZGp-WfR1A@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 12:08 PM shuah <shuah@kernel.org> wrote:
->
-> On 8/20/19 12:24 PM, Brendan Higgins wrote:
-> > On Tue, Aug 20, 2019 at 11:24:45AM -0600, shuah wrote:
-> >> On 8/13/19 11:50 PM, Brendan Higgins wrote:
-> >>> ## TL;DR
-> >>>
-> >>> This revision addresses comments from Stephen and Bjorn Helgaas. Most
-> >>> changes are pretty minor stuff that doesn't affect the API in anyway.
-> >>> One significant change, however, is that I added support for freeing
-> >>> kunit_resource managed resources before the test case is finished via
-> >>> kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
-> >>> KUnit on certain configurations (like the default one for x86, whoops).
-> >>>
-> >>> Based on Stephen's feedback on the previous change, I think we are
-> >>> pretty close. I am not expecting any significant changes from here on
-> >>> out.
-> >>>
-> >>
-> >> Hi Brendan,
-> >>
-> >> I found checkpatch errors in one or two patches. Can you fix those and
-> >> send v14.
-> >
-> > Hi Shuah,
-> >
-> > Are you refering to the following errors?
-> >
-> > ERROR: Macros with complex values should be enclosed in parentheses
-> > #144: FILE: include/kunit/test.h:456:
-> > +#define KUNIT_BINARY_CLASS \
-> > +       kunit_binary_assert, KUNIT_INIT_BINARY_ASSERT_STRUCT
-> >
-> > ERROR: Macros with complex values should be enclosed in parentheses
-> > #146: FILE: include/kunit/test.h:458:
-> > +#define KUNIT_BINARY_PTR_CLASS \
-> > +       kunit_binary_ptr_assert, KUNIT_INIT_BINARY_PTR_ASSERT_STRUCT
-> >
-> > These values should *not* be in parentheses. I am guessing checkpatch is
-> > getting confused and thinks that these are complex expressions, when
-> > they are not.
-> >
-> > I ignored the errors since I figured checkpatch was complaining
-> > erroneously.
-> >
-> > I could refactor the code to remove these macros entirely, but I think
-> > the code is cleaner with them.
-> >
->
-> Please do. I am not veru sure what value these macros add.
+On 8/20/19 21:37, Krzysztof Kozlowski wrote:
+>>> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
 
-Alright, I will have something for you later today.
+>>> @@ -51,29 +48,24 @@ static const char * __init product_id_to_soc_id(unsigned int product_id)
+>>>   int __init exynos_chipid_early_init(void)
+>>>   {
+>>>        struct soc_device_attribute *soc_dev_attr;
+>>> -     void __iomem *exynos_chipid_base;
+>>>        struct soc_device *soc_dev;
+>>>        struct device_node *root;
+>>> -     struct device_node *np;
+>>> +     struct regmap *regmap;
+>>>        u32 product_id;
+>>>        u32 revision;
+>>> +     int ret;
+>>>
+>>> -     /* look up for chipid node */
+>>> -     np = of_find_compatible_node(NULL, NULL, "samsung,exynos4210-chipid");
+>>> -     if (!np)
+>>> -             return -ENODEV;
+>>> -
+>>> -     exynos_chipid_base = of_iomap(np, 0);
+>>> -     of_node_put(np);
+>>> -
+>>> -     if (!exynos_chipid_base) {
+>>> -             pr_err("Failed to map SoC chipid\n");
+>>> -             return -ENXIO;
+>>> +     regmap = syscon_regmap_lookup_by_compatible("samsung,exynos4210-chipid");
+>>> +     if (IS_ERR(regmap)) {
+>>> +             pr_err("Failed to get CHIPID regmap\n");
+>>> +             return PTR_ERR(regmap);
+>>>        }
+>> Following this change, I am now seeing the above error on our Tegra
+>> boards where this driver is enabled. This is triggering a kernel
+>> warnings test we have to fail. Hence, I don't think that you can remove
+>> the compatible node test here, unless you have a better way to determine
+>> if this is a samsung device.
+>
+> Right, this is really wrong... I missed that it is not a probe but
+> early init. And this init will be called on every board... Probably it
+> should be converted to a regular driver.
+
+I'm also inclined to have it converted to a regular driver.  We already
+have "exynos-asv" driver matching on the chipid node (patch 3/9). 
+The ASV patches will not be merged soon anyway, all this needs some more
+thought. Krzysztof, can we abandon the chipid patches for now? Your
+pull request doesn't appear to be merged to arm-soc yet. Sorry about
+that.
+
+--
+Regards,
+Sylwester
+
