@@ -2,113 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78BB595FCC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018BE95FED
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 15:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728248AbfHTNRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 09:17:53 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:35975 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727006AbfHTNRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 09:17:53 -0400
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E18FC19FC;
-        Tue, 20 Aug 2019 09:17:51 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Tue, 20 Aug 2019 09:17:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=q
-        1zMCHP9N5dVVFnUfRVs/+hK9HwHAxsq2830Gk8Otsg=; b=TKnHxb30U2xLo5RnR
-        KlEyBBAb+ChXyncMtNVmDnLF3EhbIBW6zwW4BUbMpJA8iBZ5R1EfCY5gtOhqtvbN
-        7cnfPLR/vxNLffoxJrjRxpkon7yCCkCPK1pyhjplXtX4I8Jq9HA/+rIQid+SIh7i
-        A2/n3pj7quWpytyiSvRWasKIAPB7/7sKnGG203xhTbkOOJX1TpVTkt+ZujqmlSTl
-        nBi7/kKyP/ed8hP6NA8Fq9NDTD9LNEKmMtyO1TYWA3HAyvoJrISpLW+qEAnF8K7T
-        Lcf8nAneMs1AF5g4iPiM1R7CnwgYbAJI3F4Dg/nhGenlRm1Y9bROVXSxH7pYqxyD
-        3F0rg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=q1zMCHP9N5dVVFnUfRVs/+hK9HwHAxsq2830Gk8Ot
-        sg=; b=P566rOuk25uZ8kvW2Qcy7xPqQAvYpqGna+vaACB0COl254I6sG+rJM8tV
-        og8Fq/f/OM9udD0D3TzgO1xxeOc+GBLa8IUnAYiezLITXVA+SNtOZdbZqX6qYxlp
-        TMLh9jNmz9Mam7DExzTC6n5C4l6ZSOQelzMDaKVrhPu2F4VwIoG5yXX1c5w1u7Pt
-        nX/UC/VAeN3bT0vm31KpIlpZw/o7H/EJ+EcJ+nvNiMKQyBx1SoplMIWhKq+m7rw6
-        gr3qOWX7lGJQXGRyA7AudPZcBGSWp0IfNAuSd8CcUf9nPJ24P9hQqER06VOWXLu0
-        sBNel/sEsBdSWzh3uZrhNZM+IMagg==
-X-ME-Sender: <xms:_vJbXQ5RO5O9O1Rczy5smOCcSkohwcFzrAUqNdmYYmKfsUWO1G3zkA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudeguddgieduucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    goufhprghmkfhpqdhouhhtucdlhedttddmnecujfgurhepuffvfhfhkffffgggjggtgfes
-    thejredttdefjeenucfhrhhomhepufgrmhhuvghlucfjohhllhgrnhguuceoshgrmhhuvg
-    hlsehshhholhhlrghnugdrohhrgheqnecukfhppeejtddrudefhedrudegkedrudehuden
-    ucfrrghrrghmpehmrghilhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-    enucevlhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:_vJbXQLP4-G8J52XBWp3Oa34_OhDPDoTAN1cAfUR217WjvVuk-9gJw>
-    <xmx:_vJbXclwYk_iWxKdsVVnmGdYi1LS2aMU48Q4RjV-T4EW3k6R1X5sXQ>
-    <xmx:_vJbXX_maJBFjW-7ggTBO5hZDoiWM227wr87IFn7VVbempcryJfYRg>
-    <xmx:__JbXWfxxQEm5aSfIkZCk4bK5_ro-AT2199PORzHo8kYpsHUbVPJ2q1jzw4>
-Received: from [192.168.50.162] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C09B1380075;
-        Tue, 20 Aug 2019 09:17:49 -0400 (EDT)
-Subject: Re: [PATCH v4 05/10] ARM: dts: sunxi: a80: Add msgbox node
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-References: <20190820032311.6506-1-samuel@sholland.org>
- <20190820032311.6506-6-samuel@sholland.org>
- <20190820081528.7g2lo4njkut5lanu@flea>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <f3e3420e-450a-7d41-edf8-776c0cd5a320@sholland.org>
-Date:   Tue, 20 Aug 2019 08:17:49 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1729819AbfHTNW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 09:22:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58748 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728248AbfHTNW4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 09:22:56 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CE9D4230F2;
+        Tue, 20 Aug 2019 13:22:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566307374;
+        bh=1rIuBeM0IKRvdxc6b3vVTRd4MHIEw3Zx6tXCfzXBOSg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QXM0kFthGloCUwKOn6dugqf5hkxzFjGs8/hVqkmCPXzPSWHg4rqs24kTAZvq0N/iM
+         qQ5FfkfHuZ6f8jKZRFce1YCkYOgf/AYFA9AMIxneISXaVEc58bqH6zYfbhTN1SYRZW
+         VbjXYYrnTjz/pCEmjFpTzACDhwifbFP6FDDfUYFU=
+Received: by mail-qt1-f173.google.com with SMTP id v38so5952492qtb.0;
+        Tue, 20 Aug 2019 06:22:54 -0700 (PDT)
+X-Gm-Message-State: APjAAAXFxFb4Pa45fvMxwpe1GOoRFhnQ3w1Tm/2JVFpIrAZ/lzA673MV
+        H9PimIu12thUsOvfKmaonv0RmsY3kvKGkbBUOA==
+X-Google-Smtp-Source: APXvYqwoF+4NBHbc+mh4/cjAOzetDrnx/H6ki3UR8XHIUfmV3E4baxFQHmkTVztJFcWEl8hMkWIGS/6m5JfOpGYIGhc=
+X-Received: by 2002:ad4:4050:: with SMTP id r16mr14444599qvp.200.1566307373963;
+ Tue, 20 Aug 2019 06:22:53 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190820081528.7g2lo4njkut5lanu@flea>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190819234840.37786-1-john.stultz@linaro.org>
+In-Reply-To: <20190819234840.37786-1-john.stultz@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 20 Aug 2019 08:22:41 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+oxy0z283FO8D9FV7xsEX+AsonUx2Feqk8AiDAOmy9=w@mail.gmail.com>
+Message-ID: <CAL_Jsq+oxy0z283FO8D9FV7xsEX+AsonUx2Feqk8AiDAOmy9=w@mail.gmail.com>
+Subject: Re: [PATCH 0/3] dt-bindings for lima support on HiKey
+To:     John Stultz <john.stultz@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Peter Griffin <peter.griffin@linaro.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Aug 19, 2019 at 6:48 PM John Stultz <john.stultz@linaro.org> wrote:
+>
+> Peter sent a patchset out back in April to enable Lima support
+> on HiKey, but there's not been much action on it since since.
+>
+> I've been carrying the patchset in my tree, and figured I'd send
+> out just these three dt-bindings changes just so hopefully they
+> can go in and the dependent driver changes can be more easily
+> pushed later on.
 
-On 8/20/19 3:15 AM, Maxime Ripard wrote:
-> On Mon, Aug 19, 2019 at 10:23:06PM -0500, Samuel Holland wrote:
->> The A80 SoC contains a message box that can be used to send messages and
->> interrupts back and forth between the ARM application CPUs and the ARISC
->> coprocessor. Add a device tree node for it.
->>
->> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> 
-> I think you mentionned that crust has been tested only on the A64 and
-> the H3/H5, did you test the mailbox on those other SoCs as well?
+As it's all binding changes, I've applied them to the DT tree.
 
-No, I only have A64/H3/H5, and recently H6, hardware to test. I've looked
-through the manuals to verify that the registers are all the same, but I haven't
-run the driver on earlier SoCs.
-
-On 32-bit SoCs, where there's no other user of SRAM A2, it should be easy to get
-the toy firmware running. All you should need to do is:
-  1) Update the MMIO base/clock addresses in drivers/msgbox/sunxi-msgbox.c
-  2) Update the load address in platform/sun50i/include/platform/memory.h
-  3) Load the firmware to SRAM A2 (can be done from a U-Boot shell)
-  4) Initialize the reset vector (algorithm is in tools/test.c:109)
-  5) Deassert AR100 reset (again, these last two steps can be done from U-Boot)
-
-Thanks,
-Samuel
+Rob
