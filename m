@@ -2,70 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C54D79662F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 387E896653
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 18:27:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727358AbfHTQWT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 12:22:19 -0400
-Received: from gofer.mess.org ([88.97.38.141]:50407 "EHLO gofer.mess.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726742AbfHTQWT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 12:22:19 -0400
-Received: by gofer.mess.org (Postfix, from userid 1000)
-        id AA2A961074; Tue, 20 Aug 2019 17:22:16 +0100 (BST)
-Date:   Tue, 20 Aug 2019 17:22:16 +0100
-From:   Sean Young <sean@mess.org>
+        id S1729900AbfHTQ1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 12:27:44 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:39422 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726981AbfHTQ1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 12:27:44 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: dafna)
+        with ESMTPSA id 686E4283D55
+Message-ID: <26b78fe57106f47d34f14bec2f81732af40c3d8d.camel@collabora.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: imx: add imx8mq nitrogen
+ support
+From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
 To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: Add YAML schemas for the
- generic RC bindings
-Message-ID: <20190820162216.7uol2jy5i3swhxi5@gofer.mess.org>
-References: <20190819182619.29065-1-mripard@kernel.org>
- <20190820081525.celdosrgcvwoq6e7@gofer.mess.org>
- <20190820095028.l74sfvipwjjla6kq@flea>
- <CAL_JsqJaH5wWCHScNZwN4jxqY5Q_UDZLnq+fghecBgYY752Lnw@mail.gmail.com>
+        <linux-arm-kernel@lists.infradead.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>, kernel@collabora.com,
+        Gary Bisson <gary.bisson@boundarydevices.com>,
+        Troy Kisky <troy.kisky@boundarydevices.com>
+Date:   Tue, 20 Aug 2019 18:27:39 +0200
+In-Reply-To: <CAL_JsqJx6pTw7Pr=7f0jkC81JF+EDkyhHrvFehSWZV=0wy+YXQ@mail.gmail.com>
+References: <20190819172606.6410-1-dafna.hirschfeld@collabora.com>
+         <20190819172606.6410-2-dafna.hirschfeld@collabora.com>
+         <CAL_JsqJx6pTw7Pr=7f0jkC81JF+EDkyhHrvFehSWZV=0wy+YXQ@mail.gmail.com>
+Organization: Collabora
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJaH5wWCHScNZwN4jxqY5Q_UDZLnq+fghecBgYY752Lnw@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 10:52:29AM -0500, Rob Herring wrote:
-> On Tue, Aug 20, 2019 at 4:50 AM Maxime Ripard <mripard@kernel.org> wrote:
-> > On Tue, Aug 20, 2019 at 09:15:26AM +0100, Sean Young wrote:
-> > > On Mon, Aug 19, 2019 at 08:26:18PM +0200, Maxime Ripard wrote:
-> > > > From: Maxime Ripard <maxime.ripard@bootlin.com>
-> > > >
-> > > > The RC controllers have a bunch of generic properties that are needed in a
-> > > > device tree. Add a YAML schemas for those.
-> > > >
-> > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > >
-> > > For the series (both 1/2 and 2.2):
-> > >
-> > > Reviewed-by: Sean Young <sean@mess.org>
-> > >
-> > > How's tree should this go through?
-> >
-> > Either yours or Rob's, I guess?
+On Mon, 2019-08-19 at 14:08 -0500, Rob Herring wrote:
+> On Mon, Aug 19, 2019 at 12:26 PM Dafna Hirschfeld
+> <dafna.hirschfeld@collabora.com> wrote:
+> > From: Gary Bisson <gary.bisson@boundarydevices.com>
+> > 
+> > The Nitrogen8M is an ARM based single board computer (SBC)
+> > designed to leverage the full capabilities of NXP’s i.MX8M
+> > Quad processor.
+> > 
+> > Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
+> > Signed-off-by: Troy Kisky <troy.kisky@boundarydevices.com>
+> > [Dafna: porting vendor's code to mainline]
+> > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
 > 
-> Sean's because there are other changes to
-> Documentation/devicetree/bindings/media/sunxi-ir.txt in -next.
+> Please add acks/reviewed-bys when posting new versions.
+> 
+Hi,
+Thank you for the remark, I forgot to add it. I will add it in the
+next.
+Regards,
+Dafna Hirschfeld
 
-Good point, I'll take them.
+> Rob
 
-Thanks
-Sean
