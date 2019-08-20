@@ -2,115 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0157895ADA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:21:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F5AB95AE2
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:23:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729396AbfHTJVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 05:21:17 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:43447 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729395AbfHTJVR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 05:21:17 -0400
-Received: by mail-pg1-f194.google.com with SMTP id k3so2872508pgb.10
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 02:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=fNqn8jt+Eu/y3WAdZBc6pAlsOtl2wpEF2Ezb9uPuzFs=;
-        b=bm7qZSrIUp7yfrt8m+6HQ+L0yN+04ev62t82CQ5xfoJbY9ugfFikx3iuSAvbmhTpFg
-         1rxCbeHAR9Yu74VEgkJ/NCLgBT+vvo46ilJ0GSi92qPvxRlB4whvjXoc0KTkpOWQQgth
-         qHRZAzKAHBUuasKjsfEeXe8lbZldF4DJ8J4+fVY3UScx6BERp1etA4IXQR7Ty7i4yvGe
-         GG5Y8GAYJjCuT2VFdOToY7CULRMaHMOvOwvCYmaP3dd0e6/JUxXu0My+AxDtBeAUHgA4
-         HIeSRSxc5fq+Q31UyD5zpQ+J3dGEIHWJy22zqGq1wz+N5seTYf3befQt64QvzxF46OLw
-         Va/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fNqn8jt+Eu/y3WAdZBc6pAlsOtl2wpEF2Ezb9uPuzFs=;
-        b=Fjy3lBDdvMc9WyyMb0C7hjdBtx+yfyNTZRUd7IMyhk7H9+qwUavyOXnEhVecF3iKyM
-         XlwVvClT+8OhzsELyl99zXq0qstkhZ2yGtRfJU69qak7f0JjsfCuxTWxMdersoMWovnC
-         ZJ4K3mfCDpr/iO2/OA5jm/U+1drwe7TxYC8yOaQDUduejAO3BMO15Fpx8CntApWfDv53
-         xdUUFckGdD+H6WnYXTv9cllgJppbrqiPeu4b9HcorCWT2uxxPOFEvFPQS29iIUAtAVJd
-         8BChlBWRkjj7wMxFhyl7iCLBftkPcyxZdhwDsCYoLqmpiM7DlhSWObj4jbymX9KGKeSN
-         Hexw==
-X-Gm-Message-State: APjAAAWDq37n53yygZoohzfCf3wuVuxA89b/f4Vqf+fegbbDnA2Qsvfj
-        GpX1ZmbF1+AkamxCaEEAE187xw==
-X-Google-Smtp-Source: APXvYqx3NGkLs8NsqtiC35VhZLducwJHY2iFYVWb66LyAIkzov9xYbt/7XwPAuKAdHf72ZcfwGfM/g==
-X-Received: by 2002:aa7:991a:: with SMTP id z26mr24899786pff.43.1566292876575;
-        Tue, 20 Aug 2019 02:21:16 -0700 (PDT)
-Received: from localhost ([122.172.76.219])
-        by smtp.gmail.com with ESMTPSA id 5sm17229250pgh.93.2019.08.20.02.21.15
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Aug 2019 02:21:15 -0700 (PDT)
-Date:   Tue, 20 Aug 2019 14:51:13 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>, krzk@kernel.org,
-        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
-        kgene@kernel.org, pankaj.dubey@samsung.com,
-        linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, b.zolnierkie@samsung.com
-Subject: Re: [PATCH v2 0/9] Exynos Adaptive Supply Voltage support
-Message-ID: <20190820092113.gojhe3romdnvm7eu@vireshk-i7>
-References: <20190723020450.z2pqwetkn2tfhacq@vireshk-i7>
- <5ef302a4-5bbf-483d-dfdf-cf76f6f69cee@samsung.com>
- <20190725022343.p7lqalrh5svxvtu2@vireshk-i7>
- <562dd2e7-2b24-8492-d1c1-2dc4973f07be@samsung.com>
- <20190819090928.pke6cov52n4exlbp@vireshk-i7>
- <b831d7c5-c830-fd65-20cf-02e209889c28@samsung.com>
- <20190819112533.bvfyinw7fsebkufr@vireshk-i7>
- <b7093aaf-ea56-c390-781f-6f9d0780bd8e@samsung.com>
- <20190820030114.6flnn2omeys3lih3@vireshk-i7>
- <06ccff05-2152-4bcc-7537-8f24da75f163@samsung.com>
+        id S1729374AbfHTJWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 05:22:55 -0400
+Received: from foss.arm.com ([217.140.110.172]:37246 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729291AbfHTJWz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 05:22:55 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7D302344;
+        Tue, 20 Aug 2019 02:22:54 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F1C893F706;
+        Tue, 20 Aug 2019 02:22:53 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 10:22:52 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>
+Subject: Re: [PATCHv2 1/4] dt-bindings: PCI: designware: Remove the num-lanes
+ from Required properties
+Message-ID: <20190820092251.GE23903@e119886-lin.cambridge.arm.com>
+References: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
+ <20190820073022.24217-2-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <06ccff05-2152-4bcc-7537-8f24da75f163@samsung.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20190820073022.24217-2-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20-08-19, 11:03, Sylwester Nawrocki wrote:
-> On 8/20/19 05:01, Viresh Kumar wrote:
-> > Sorry but I am unable to understand the difficulty you are facing now. So what I
-> > suggest is something like this.
+On Tue, Aug 20, 2019 at 07:28:43AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 > 
-> The difficulty was about representing data from tables asv_{arm,kfc}_table[][]
-> added in patch 3/9 of the series in devicetree.  If you have no objections
-> about keeping those tables in the driver then I can't see any difficulties. 
-
-The problem with keeping such tables in kernel is that they contain too much
-magic values which very few people understand. And after some amount of time,
-even they don't remember any of it.
-
-What I was expecting was to remove as much of these tables as possible and do
-the calculations to get them at runtime with some logical code which people can
-understand later on.
-
-> > - Use DT to get a frequency and voltage for each frequency.
+> The num-lanes is not a mandatory property, e.g. on FSL
+> Layerscape SoCs, the PCIe link training is completed
+> automatically base on the selected SerDes protocol, it
+> doesn't need the num-lanes to set-up the link width.
 > 
-> Yes, this is what happens now, we have common OPPs in DT that work for each SoC
-> revision. 
+> It is previously in both Required and Optional properties,
+> let's remove it from the Required properties.
 > 
-> > - At runtime, based on SoC, registers, efuses, etc, update the voltage of the
-> >   OPPs.
-> > - This algo can be different for each SoC, no one is stopping you from doing
-> >   that.
-> > 
-> > Am I missing something ?
-> 
-> Not really, this is basically what happens in the $subject patch series. 
-> 
-> Then IIUC what I would need to change is to modify exynos_asv_update_cpu_opps() 
-> function in patch 3/9 to use dev_pm_opp_adjust_voltage() rather than 
-> dev_pm_opp_remove(), dev_pm_opp_add().
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> ---
 
-That and somehow add code to get those tables if possible.
+Reviewed-by: Andrew Murray <andrew.murray@arm.com>
 
--- 
-viresh
+
+> V2:
+>  - Reworded the change log and subject.
+>  - Fixed a typo in subject.
+> 
+>  Documentation/devicetree/bindings/pci/designware-pcie.txt | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/designware-pcie.txt b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> index 5561a1c060d0..bd880df39a79 100644
+> --- a/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/designware-pcie.txt
+> @@ -11,7 +11,6 @@ Required properties:
+>  	     the ATU address space.
+>      (The old way of getting the configuration address space from "ranges"
+>      is deprecated and should be avoided.)
+> -- num-lanes: number of lanes to use
+>  RC mode:
+>  - #address-cells: set to <3>
+>  - #size-cells: set to <2>
+> -- 
+> 2.17.1
+> 
