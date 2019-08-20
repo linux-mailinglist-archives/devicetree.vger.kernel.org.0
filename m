@@ -2,66 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D79396A25
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 162C596A2B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:23:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730761AbfHTUWZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:22:25 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36840 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729887AbfHTUWZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:22:25 -0400
-Received: by mail-ot1-f66.google.com with SMTP id k18so6285935otr.3;
-        Tue, 20 Aug 2019 13:22:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6O3nF6OsIezS3m94/FyyV74f4w1BQyF9b2ftz/OG11g=;
-        b=hrQo4lV2skKSXv8CtS6ag3XtN8M9PayYvljEnc7WxrhkY09nskwWr52OHiPXLlac/p
-         JYYske9tLSwYCj7fKXR9ASj1nickrFwjy7/UUffeXRcRuv7kHgWy+zyk5Uk8wYhVKL3B
-         OU+CqtU0ePFWo5Agui14q6YGolD28BEvzq5mnoEqVm5bv/BiF8gJS7cJH8hwEzjVrs+Z
-         et7XHucKD362BCEzf202AbmP5JCpJHc4d6pgE97JaAyjQaQDnDxCcex0s3ONoftF3sCe
-         Hghp7DgWk0/YUFJVeTs4VxTehrVte52Odt5PhDrNfRSntGPSXa3q30t67CZRzVR0oCoo
-         JVUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6O3nF6OsIezS3m94/FyyV74f4w1BQyF9b2ftz/OG11g=;
-        b=QNDvEjM/DOZKq5ae+qo3wTPesj5/T9by8nkLSSfkuT30HUk+JkwZlhuyF6GQ49nEzE
-         Ix80EsUKqCqPDfNzopH/e8X6Ix4eHt3yjAfTYWxXoOVZoKPn5VIWJbLMDg2/DiutNrnN
-         I243b2oFNbmxpRnLcQWLXDNhunstiKKrT2PfoiABH0FY0M20KyAn2RIfYWDogxAxd4u1
-         wIUhzUZHG17INc6slCjN++vaVQUe3qhisXHs5lwRbZGfJE7e4kqVVxXaOXszWKqVsbAN
-         JaoOdmKWzit+oiJ3nDSvjEzX68STPu/ns+GCm1XKfxNG5/nGxeIWNtJ1ztQJfgDgLVYm
-         HQtA==
-X-Gm-Message-State: APjAAAWnH1WekNuNfv+Zp9V0bBqTef5d60EopnFcR7x5G022ytGBvViu
-        dR9G2/Uh3KPVPAQoR6Q0J/rMxljhrCJxjRIrFyU=
-X-Google-Smtp-Source: APXvYqx0K7h6tbDRl+C7T3XrBX8gwsSfp6tP2WE6DpcngUbYzTfI6pPfbkaRk0FBWUCRTaMk0XJuqy8HU08MhXtXY88=
-X-Received: by 2002:a9d:6303:: with SMTP id q3mr18030706otk.81.1566332544240;
- Tue, 20 Aug 2019 13:22:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-6-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-6-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:22:13 +0200
-Message-ID: <CAFBinCB1fRP8-JaUN4sgwFpinUkQiXvo6COdP54-H9CYkmRKzQ@mail.gmail.com>
-Subject: Re: [PATCH 05/14] arm64: dts: meson-gx: fix watchdog compatible
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
+        id S1729887AbfHTUXk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:23:40 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:43280 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729833AbfHTUXk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:23:40 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1i0AfG-0007nu-IY; Tue, 20 Aug 2019 22:23:35 +0200
+Message-ID: <54d8d4600d53bac855b19a26fa744ed16be09bf0.camel@sipsolutions.net>
+Subject: Re: [PATCH 06/49] ath11k: add ce.c
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Tue, 20 Aug 2019 22:23:32 +0200
+In-Reply-To: <1566316095-27507-7-git-send-email-kvalo@codeaurora.org> (sfid-20190820_175153_878417_8C2C389B)
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+         <1566316095-27507-7-git-send-email-kvalo@codeaurora.org>
+         (sfid-20190820_175153_878417_8C2C389B)
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 4:30 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> This fixes the following DT schemas check errors:
-> meson-gxbb-nanopi-k2.dt.yaml: watchdog@98d0: compatible:0: 'amlogic,meson-gx-wdt' is not one of ['amlogic,meson-gxbb-wdt']
-> meson-gxl-s805x-libretech-ac.dt.yaml: watchdog@98d0: compatible:0: 'amlogic,meson-gx-wdt' is not one of ['amlogic,meson-gxbb-wdt']
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
+> +static const struct ce_attr host_ce_config_wlan[] = {
+> +	/* CE0: host->target HTC control and raw streams */
+> +	{
+> +		.flags = CE_ATTR_FLAGS,
+> +		.src_nentries = 16,
+> +		.src_sz_max = 2048,
+> +		.dest_nentries = 0,
+> +	},
+> 
+Curious - this looks a lot like a similar thing in AHB, but there you
+did it all in little endian? Totally different really, just looks
+similar, or what's the reason?
+
+> +	ring->skb[write_index] = skb;
+> +	write_index = CE_RING_IDX_INCR(nentries_mask, write_index);
+> +	ring->write_index = write_index;
+> +
+> +	ath11k_hal_srng_access_end(ab, srng);
+> +
+> +	spin_unlock_bh(&srng->lock);
+> +
+> +	pipe->rx_buf_needed--;
+> +
+> +	return 0;
+> +
+> +err:
+> +	ath11k_hal_srng_access_end(ab, srng);
+> +
+> +	spin_unlock_bh(&srng->lock);
+
+Seems like you could unify those unlock paths, the rx_buf_needed-- can
+almost certainly be before the access_end/unlock, and then just set
+ret=0?
+
+> +static int ath11k_ce_completed_send_next(struct ath11k_ce_pipe *pipe,
+> +					 struct sk_buff **skb)
+
+Personally, I'd have preferred to have the *skb as the return value, and
+use ERR_PTR()/IS_ERR() etc. to encode the error values, rather than the
+double pointer.
+
+> +{
+> +	struct ath11k_base *ab = pipe->ab;
+> +	struct hal_srng *srng;
+> +	unsigned int sw_index;
+> +	unsigned int nentries_mask;
+> +	u32 *desc;
+> +	int ret = 0;
+
+Maybe don't initialize that to a success value, just for robustness? You
+don't actually need to initialize it at all though if you set ret=0 when
+you actually succeed, which might be even nicer given that the function
+is simple enough for the compiler to figure out if you used 'ret'
+uninitialized or not.
+
+> +static struct ath11k_ce_ring *
+> +ath11k_ce_alloc_ring(struct ath11k_base *ab, int nentries, int desc_sz)
+> +{
+> +	struct ath11k_ce_ring *ce_ring;
+> +	dma_addr_t base_addr;
+> +
+> +	ce_ring = kzalloc(sizeof(*ce_ring) + (nentries * sizeof(*ce_ring->skb)),
+> +			  GFP_KERNEL);
+
+You should probably use struct_size().
+
+johannes
+
