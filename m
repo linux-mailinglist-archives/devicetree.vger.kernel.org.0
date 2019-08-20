@@ -2,104 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CD64958FA
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 09:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C8E0958FE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 09:58:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729337AbfHTHyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 03:54:39 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:48206 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726049AbfHTHyj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 03:54:39 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7K7sWTY010494;
-        Tue, 20 Aug 2019 02:54:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566287672;
-        bh=LLKSwXu5VhPkmzRL+pt5vGy/EZsLOlV9BLQ3mc2dnBM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=jLsin4fD+U2kmE3VebIddL9F6b9L30cHVJ/XsEvHmAc0GlzviDhLNamCntD6XZh+I
-         5N5pnYOvoXGSKmdLmvydLUmroFErWj8u84dch1Jk5iYZTxypfNui/qSK63sVO53+YE
-         qLijh3qa3aBaM40lS5Ja42DSIV685s8pdTpwJLH8=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7K7sWta073072
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Aug 2019 02:54:32 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 20
- Aug 2019 02:54:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 20 Aug 2019 02:54:31 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7K7sTff005351;
-        Tue, 20 Aug 2019 02:54:30 -0500
-Subject: Re: [PATCH 0/8] soc: ti: Add OMAP PRM driver
-To:     Suman Anna <s-anna@ti.com>, <ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
- <432a70fc-2683-42ca-3ac7-9775efa3ca41@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <b991f374-9e2a-5f1d-d48d-5f50a3c41756@ti.com>
-Date:   Tue, 20 Aug 2019 10:54:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1729284AbfHTH5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 03:57:51 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36765 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729194AbfHTH5v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 03:57:51 -0400
+Received: by mail-wr1-f68.google.com with SMTP id r3so11346426wrt.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 00:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Tchdtmk5F7h2SP8mzdRtJmsq+fYnHuGWtMSSIw89WGE=;
+        b=QBVD7UH61GHuPXpXQft/phCUoJkwNJ8e6e3nCTfc/1NqFxhFr4j7SeAnWxYD0GG1eH
+         FxbH5XW57kDWs3fnFMongqoQ1DlvaP2HEF+QwPAVQ/lQo5GFUKwp/SVwc4BFQeTPD30K
+         o0Miqmc2rj+PSNaKUrMIA2jxslfSsGPhlViWXng4HVm9przmpP98RN6ezcruNCRjDdFs
+         FIoIFAwbfyjYsS9y6w/9wA7wyz/s/Rtmx2PuomRK8+nMZRr9Ege32OHBeVjZ7cegbc/z
+         vKkrszkEVli6JHEU2P4bj0/hG/Ov8R38U/z0nQYeqal47JFkGa9XWbk9pl/x0gSf+6B/
+         IsrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Tchdtmk5F7h2SP8mzdRtJmsq+fYnHuGWtMSSIw89WGE=;
+        b=uJcJ8OluDtgjU0uGyr7/lFl2PHwDQJQgPIrwDMgBclqCRrKochAAymTRTU5cjOJ3MR
+         p5tR6UKD/vj8g8eeFFpjRSeUi5Y4pzb6tNXn1vLyewkUkztlpylpiywvFxDtICsZLsbu
+         kOwKVLzZVz/XNlIBfYre+t6KPXE0BYTuhqXzTSBXToOLz6iCjIvy3YAJHMRvBGy87Q2G
+         926+HiO5N7bVrPGI+L6vB3tCygm9MzlFExTxRBHuRbPBfJ1XeFXZNHsLVvilZBmj3e5T
+         v+DnFXRltsuC0LWRCtccsvpr7oxlX3O/480QsgHUjmubskHv8VJQLt+VKUxDwZl4bMx8
+         J7Ww==
+X-Gm-Message-State: APjAAAXolha1BjCKJERk2abIWhjJPqc3NXyveGYqdJo9FhgY51rhk8YZ
+        hjLMad7CZBwT9JgIWpJ6Q4KxotkD80RA3A==
+X-Google-Smtp-Source: APXvYqz35DSpTf0iX8quJPKfw+8fSiZAcN4YJ2/eier/D7uQL2HGvfnfx43BsLej8/27j+Tkzhst0Q==
+X-Received: by 2002:adf:dfc5:: with SMTP id q5mr33919384wrn.142.1566287869291;
+        Tue, 20 Aug 2019 00:57:49 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id q24sm1506467wmc.3.2019.08.20.00.57.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Aug 2019 00:57:48 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     davem@davemloft.net, robh+dt@kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v4 0/2] dt-bindings: net: meson-dwmac: convert to yaml
+Date:   Tue, 20 Aug 2019 09:57:40 +0200
+Message-Id: <20190820075742.14857-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <432a70fc-2683-42ca-3ac7-9775efa3ca41@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.8.2019 2.20, Suman Anna wrote:
-> Hi Tero,
-> 
-> On 8/7/19 2:48 AM, Tero Kristo wrote:
->> Hi,
->>
->> This series adds OMAP PRM driver which initially supports only reset
->> handling. Later on, power domain support can be added to this to get
->> rid of the current OMAP power domain handling code which resides
->> under the mach-omap2 platform directory. Initially, reset data is
->> added for AM3, OMAP4 and DRA7 SoCs.
-> 
-> Wakeup M3 remoteproc driver is fully upstream, so we should be able to
-> test that driver as well if you can add the AM4 data. That will also
-> unblock my PRUSS.
-> 
-> If you can add the data to others as well, it will help in easier
-> migration of the individual drivers, otherwise the ti-sysc interconnect,
-> hwmod, and hwmod reset data combinations will all have to be supported
-> in code.
+This patchsets converts the Amlogic Meson DWMAC glue bindings over to
+YAML schemas using the already converted dwmac bindings.
 
-Ok, so you are saying you would need the PRM data for am4 in addition? I 
-can generate that one also.
+The first patch is needed because the Amlogic glue needs a supplementary
+reg cell to access the DWMAC glue registers.
 
--Tero
+Changes since v3:
+- Specified net-next target tree
 
-> 
-> regards
-> Suman
-> 
->>
->> I've been testing the reset handling logic with OMAP remoteproc
->> driver which has been converted to use generic reset framework. This
->> part is a work in progress, so will be posting patches from that part
->> later on.
->>
->> -Tero
->>
->> --
->>
-> 
+Changes since v2:
+- Added review tags
+- Updated allwinner,sun7i-a20-gmac.yaml reg maxItems
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Neil Armstrong (2):
+  dt-bindings: net: snps,dwmac: update reg minItems maxItems
+  dt-bindings: net: meson-dwmac: convert to yaml
+
+ .../net/allwinner,sun7i-a20-gmac.yaml         |   3 +
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
+ .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   8 +-
+ 4 files changed, 123 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
+
+-- 
+2.22.0
+
