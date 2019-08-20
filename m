@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7C2C95F23
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:49:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A594C95F29
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729351AbfHTMtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 08:49:13 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:43074 "EHLO
+        id S1728993AbfHTMuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 08:50:17 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43252 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727006AbfHTMtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:49:13 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7KCnA1A090372;
-        Tue, 20 Aug 2019 07:49:10 -0500
+        with ESMTP id S1728657AbfHTMuR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:50:17 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7KCoDYo090597;
+        Tue, 20 Aug 2019 07:50:13 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566305350;
-        bh=3fUnEN0H3s51amtQv3+SO1Lvv3iqz4+LFptcuvwFBs8=;
+        s=ti-com-17Q1; t=1566305413;
+        bh=TTUbTTO8Oz2gmPpNVFF7lRenTwYKzmiJumlpetD3DdA=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=GVwR5w0fj3pbBxeVgCVxYPjvBmLi18PfkHGprk+iUj90S6cVJXeDtb/BKAlYFsRnU
-         VIjFcgs9sVGYIONTtH123coJuGulfux2wNFjdEwB14KdaHYPs/fgN2cqPAoLb1oLG/
-         6x+qdcgnw3h1J2yqg+gdHHyzwjJFyPF4ur/6O09E=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7KCnASY100487
+        b=Fy9I3tMThgHqk/HibtGCr+QgW0XF5pVHyST++0k5sCn4rXKBm4Ou/gKHzkEbRz/lk
+         aB2t4+ef8+aBx7pTJC/ZdneCMggApA86BHuI5rtFX0/07X3SuI9/eu6Nyqv/GbDYq3
+         JYKY5vS5W6jKmOP8bjWgbcpKEuAuy0303SY0kB6M=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7KCoDhY103456
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Aug 2019 07:49:10 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 20 Aug 2019 07:50:13 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 20
- Aug 2019 07:49:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2019 07:50:13 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 20 Aug 2019 07:49:09 -0500
+ Frontend Transport; Tue, 20 Aug 2019 07:50:13 -0500
 Received: from [172.24.190.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7KCn7RX110334;
-        Tue, 20 Aug 2019 07:49:07 -0500
-Subject: Re: [PATCH v5 0/2] arm64: dts: ti: k3: Update the power-domain cells
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190729123023.32702-1-lokeshvutla@ti.com>
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7KCo9Mn111307;
+        Tue, 20 Aug 2019 07:50:10 -0500
+Subject: Re: [PATCH 0/6] arm64: dts: ti: k3-j721e: Add gpio nodes
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        <linus.walleij@linaro.org>
+CC:     Keerthy <j-keerthy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+References: <20190809082947.30590-1-lokeshvutla@ti.com>
 From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <9aa7eeaf-36ee-3d5f-9654-d8fa37577877@ti.com>
-Date:   Tue, 20 Aug 2019 18:18:24 +0530
+Message-ID: <65efe3c5-8551-546f-5de6-0d9038cea757@ti.com>
+Date:   Tue, 20 Aug 2019 18:19:26 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20190729123023.32702-1-lokeshvutla@ti.com>
+In-Reply-To: <20190809082947.30590-1-lokeshvutla@ti.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -60,14 +60,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Tero,
 
-
-On 29/07/19 6:00 PM, Lokesh Vutla wrote:
-> Update the power-domains cells on all K3 based devices to reflect
-> exclusive and shared permissions in each device.
-
-Gentle Ping on this series.
+On 09/08/19 1:59 PM, Lokesh Vutla wrote:
+> This series adds gpio nodes for J721E SoC and enable gpio keys
+> in J72E common process board.
+> 
+> Tested Boot log: https://pastebin.ubuntu.com/p/P6QqmZYtSC/
+> 
+> This series depends on Power-domain cells update series:
+> https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=15210
+Can you merge the patches 2-6?
 
 Thanks and regards,
 Lokesh
-
