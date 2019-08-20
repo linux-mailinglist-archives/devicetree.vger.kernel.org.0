@@ -2,98 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5838968F9
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 21:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67CE89690D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 21:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730671AbfHTTGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 15:06:44 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:45150 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730657AbfHTTGn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 15:06:43 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id DF4DE60F3C; Tue, 20 Aug 2019 19:06:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1566328002;
-        bh=zzjtL5wslsQS8yWsr2CKph8GttmF/LKM4t/Yy33PQbM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JmGGSHOGPovm0LqZtDwvxCWxW+kXqIdyBZeTz8qZK9g7OlcX1ZUWJAhzeOIweqfkO
-         XlV2UzEXl5V6DDYEix+Z3dKV9mzm5uj3gkCfedr2nbksxAa/A7uCElMOPWiXDW0ExQ
-         SD7/BFxrRmppyV76P9SUo1xRdmVNyjYguVR4/qVw=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from jcrouse1-lnx.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1730088AbfHTTIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 15:08:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36644 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728185AbfHTTIe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 15:08:34 -0400
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: jcrouse@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C9FEB60E40;
-        Tue, 20 Aug 2019 19:06:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1566328001;
-        bh=zzjtL5wslsQS8yWsr2CKph8GttmF/LKM4t/Yy33PQbM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Qg0TuwlYiNw6G05Dy5nOOSnh4PuCp/NgTjhzAREkbQU0ac+BrGd9PGFZygmo85kQe
-         C5rXdpyWGH4ojSU1ynbdTZOJweG81C5ZS5HeLIPtAFFh9Xb5U7dEGDwMv5646bE3CJ
-         bwi9cwYDHojU/JleqC8XYl2s89+adAx2Fa7YPbTA=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C9FEB60E40
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jcrouse@codeaurora.org
-From:   Jordan Crouse <jcrouse@codeaurora.org>
-To:     freedreno@lists.freedesktop.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joerg Roedel <joro@8bytes.org>
-Subject: [PATCH 2/7] dt-bindings: arm-smmu: Add Adreno GPU variant
-Date:   Tue, 20 Aug 2019 13:06:27 -0600
-Message-Id: <1566327992-362-3-git-send-email-jcrouse@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1566327992-362-1-git-send-email-jcrouse@codeaurora.org>
-References: <1566327992-362-1-git-send-email-jcrouse@codeaurora.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id EDF8A2082F;
+        Tue, 20 Aug 2019 19:08:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566328112;
+        bh=EQcE7jgODYPqBxFha4axxuVZtCHbZv+lyg0wG/vxuqE=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=V//JOo/nBlns1BIGxHPsWcL0jiR9TJx2KmCu8eYP4YNIYAdhdLuzoIx3vOjLgJOWf
+         qywhT+G/ZqWkgzBVmgCpi40PPee/iCkXqnClTUaQ9H817cboZ6rQYsqsdhOXzkxXEe
+         SSvE0tF9mSLKe15z7ad2lgpjVB8OR8ObBpC4AYuQ=
+Subject: Re: [PATCH v13 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Bjorn Helgaas <bhelgaas@google.com>,
+        shuah <shuah@kernel.org>
+References: <20190814055108.214253-1-brendanhiggins@google.com>
+ <5b880f49-0213-1a6e-9c9f-153e6ab91eeb@kernel.org>
+ <20190820182450.GA38078@google.com>
+From:   shuah <shuah@kernel.org>
+Message-ID: <e8eaf28e-75df-c966-809a-2e3631353cc9@kernel.org>
+Date:   Tue, 20 Aug 2019 13:08:28 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190820182450.GA38078@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a compatible string to identify SMMUs that are attached
-to Adreno GPU devices that wish to support split pagetables.
+On 8/20/19 12:24 PM, Brendan Higgins wrote:
+> On Tue, Aug 20, 2019 at 11:24:45AM -0600, shuah wrote:
+>> On 8/13/19 11:50 PM, Brendan Higgins wrote:
+>>> ## TL;DR
+>>>
+>>> This revision addresses comments from Stephen and Bjorn Helgaas. Most
+>>> changes are pretty minor stuff that doesn't affect the API in anyway.
+>>> One significant change, however, is that I added support for freeing
+>>> kunit_resource managed resources before the test case is finished via
+>>> kunit_resource_destroy(). Additionally, Bjorn pointed out that I broke
+>>> KUnit on certain configurations (like the default one for x86, whoops).
+>>>
+>>> Based on Stephen's feedback on the previous change, I think we are
+>>> pretty close. I am not expecting any significant changes from here on
+>>> out.
+>>>
+>>
+>> Hi Brendan,
+>>
+>> I found checkpatch errors in one or two patches. Can you fix those and
+>> send v14.
+> 
+> Hi Shuah,
+> 
+> Are you refering to the following errors?
+> 
+> ERROR: Macros with complex values should be enclosed in parentheses
+> #144: FILE: include/kunit/test.h:456:
+> +#define KUNIT_BINARY_CLASS \
+> +       kunit_binary_assert, KUNIT_INIT_BINARY_ASSERT_STRUCT
+> 
+> ERROR: Macros with complex values should be enclosed in parentheses
+> #146: FILE: include/kunit/test.h:458:
+> +#define KUNIT_BINARY_PTR_CLASS \
+> +       kunit_binary_ptr_assert, KUNIT_INIT_BINARY_PTR_ASSERT_STRUCT
+> 
+> These values should *not* be in parentheses. I am guessing checkpatch is
+> getting confused and thinks that these are complex expressions, when
+> they are not.
+> 
+> I ignored the errors since I figured checkpatch was complaining
+> erroneously.
+> 
+> I could refactor the code to remove these macros entirely, but I think
+> the code is cleaner with them.
+> 
 
-Signed-off-by: Jordan Crouse <jcrouse@codeaurora.org>
----
+Please do. I am not veru sure what value these macros add.
 
- Documentation/devicetree/bindings/iommu/arm,smmu.txt | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.txt b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-index 3133f3b..3b07896 100644
---- a/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-+++ b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-@@ -18,6 +18,7 @@ conditions.
-                         "arm,mmu-500"
-                         "cavium,smmu-v2"
-                         "qcom,smmu-v2"
-+			"qcom,adreno-smmu-v2"
- 
-                   depending on the particular implementation and/or the
-                   version of the architecture implemented.
-@@ -31,6 +32,12 @@ conditions.
-                   as below, SoC-specific compatibles:
-                   "qcom,sdm845-smmu-500", "arm,mmu-500"
- 
-+		  "qcom,adreno-smmu-v2" is a special implementation for
-+		  SMMU devices attached to the Adreno GPU on Qcom devices.
-+		  If selected, this will enable split pagetable (TTBR1)
-+		  support. Only use this if the GPU target is capable of
-+		  supporting 64 bit addresses.
-+
- - reg           : Base address and size of the SMMU.
- 
- - #global-interrupts : The number of global interrupts exposed by the
--- 
-2.7.4
-
+thanks,
+-- Shuah
