@@ -2,307 +2,422 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F2F595867
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 09:30:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2B4958A7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 09:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729281AbfHTH3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 03:29:10 -0400
-Received: from mail-eopbgr50068.outbound.protection.outlook.com ([40.107.5.68]:9604
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729370AbfHTH3K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 03:29:10 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jZMGgW2TJf9w8CvWWjOn0dJFKTgfhsmN+WQ5AmPfVpIamqVDyZG8T7w2hL2r/cH21rtcsjhi3sB4V2Aq/eBuK3HxKoKlr8PcSFnbNbLhvH11bvqZ9s9UBe+GF6sHgVj09VMCaIB0V9nR6PDUln+e6S/WtK4DxGPKMKJCQKc1uyeKt0bhy2H10GSqYVNlYBc3SRkpiXyLHp+mfnSjDEIriKMB923BCyVKd8GWMeWZac1IfD7x52LZuEG6CN27Paxlair4ybIMosfpEoj6v2MxPijVEHCUt36MJrRmHXiCpylNU19+JwCUqHGYCt5Se/tcjUhq69uZ6K+cL9qjjDKOiQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=itONfAUrGuB7eUoK8cPM+8Znp6POpWJtYeGelEbDSP8=;
- b=fmqDdqoNMDiqNL5y4Z2hX0pZE7C674GmpzglyJGVhazv1pmQmIPP8Sv11zY3DWc8xJ8bU2ex+eYpw2MvSGllcqYSLemasdv6Nitz2NJ6lAZOFmm78OXHNZFUB8B80aenK5I4AXpNfx7UyWG8uSBr4wnWOswm18tRWbPXW4e6+s+8ygE+qh5S2B3hCeANROcMj0OnfM1dBlZyRGar0myCbxdD7ysOf4UB/L4etIE5Yx802x+E8OHqK4GMg/fOXjqXonlzpREzA3lemn0JP7zYi0YOOkftJ5ggI70zpM448D4wp8pe/1oPK6musAFHABXOTDzkvFSD2gxy9E4ZtngCtA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=itONfAUrGuB7eUoK8cPM+8Znp6POpWJtYeGelEbDSP8=;
- b=ZY0nVW9YjNrbpNQUi9vJ6QHAepctv3Ce3BzDPrlS94ltJnEqFG+HXOFk/VaPiP2kSuG/X/iY0s60NTEZuJqEVXgqT3zizRi6SKuh/onTd+w60dBa9R/MSV01wIUXkrMJCSHkFW4HjttYVzu4J+1/BMOcbLTMZ7rrzHuQsrPNUhc=
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com (20.179.250.159) by
- DB8PR04MB5627.eurprd04.prod.outlook.com (20.179.9.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2178.18; Tue, 20 Aug 2019 07:29:01 +0000
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb]) by DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb%3]) with mapi id 15.20.2178.018; Tue, 20 Aug 2019
- 07:29:01 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>
-CC:     "M.h. Lian" <minghuan.lian@nxp.com>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Subject: [PATCHv2 4/4] arm64: dts: fsl: Remove num-lanes property from PCIe
- nodes
-Thread-Topic: [PATCHv2 4/4] arm64: dts: fsl: Remove num-lanes property from
- PCIe nodes
-Thread-Index: AQHVVyjwu5SFuscGyUqNOLDq4djSqA==
-Date:   Tue, 20 Aug 2019 07:29:01 +0000
-Message-ID: <20190820073022.24217-5-Zhiqiang.Hou@nxp.com>
-References: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
-In-Reply-To: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK0P153CA0030.APCP153.PROD.OUTLOOK.COM
- (2603:1096:203:17::18) To DB8PR04MB6747.eurprd04.prod.outlook.com
- (2603:10a6:10:10b::31)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=zhiqiang.hou@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c90fea8b-44b6-4ae3-1f55-08d725401268
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB8PR04MB5627;
-x-ms-traffictypediagnostic: DB8PR04MB5627:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB5627498D6D1078DF5C3F986084AB0@DB8PR04MB5627.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 013568035E
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(4636009)(376002)(346002)(396003)(366004)(39860400002)(136003)(199004)(189003)(54534003)(2616005)(4326008)(6512007)(1076003)(66446008)(66476007)(476003)(76176011)(99286004)(66066001)(6436002)(478600001)(71200400001)(81156014)(66946007)(71190400001)(52116002)(66556008)(54906003)(110136005)(81166006)(7736002)(14454004)(305945005)(8676002)(316002)(8936002)(7416002)(25786009)(3846002)(6486002)(14444005)(486006)(256004)(64756008)(53936002)(86362001)(386003)(186003)(6506007)(6116002)(2906002)(5660300002)(446003)(2501003)(102836004)(26005)(2201001)(36756003)(11346002)(50226002)(921003)(1121003)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB5627;H:DB8PR04MB6747.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 7MAo5o3+oVGnbSMn/abC0N8jppA2S9Ipk7kIispRM5/BE1+bIgtQIAtU2C+RYmanuIGvNIzFUVovEHFWn3TsT6IVbSN9Ek96hA5VByE+7j36pGukyXUzxlKk46NQLUWxO4OPrMoApi4LF+c0gfze9miHbg1kRRHPXhqA+xdJVdQ+eeDYbh8uhi7QHs/wtCtqdjqg/LZXERfxgZfsHXXZnv+XfetzIGwD1331m3UM+7msigOcuhxqmfZxZahAv1SfXrAGztthPhPMbEEbt4+HNgDevkFig1s6A84+7Pvya3r/Pn33QD3WD/8s7AoPxfE34xk/8z4czmr5mxGPe+jg6NnnQXu118yBAnyOM2FE71N3bNuHUEcHn5wd+eE+7QivAemK/SK6QTnwg+jJbu8/2VkmbXX8Vapff7zvLzH8J6Y=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S1729246AbfHTHkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 03:40:22 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:34920 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729198AbfHTHkW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 03:40:22 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7K7c28F039724;
+        Tue, 20 Aug 2019 02:38:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566286682;
+        bh=sSLd16KQDmQNrCCFx/PYQZu8tBr7TDRvqq6x4coC0EE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=i/5kh4qPhecOzBOHXsFILUNfmngCaRMkztIwSChMAOenTUketvETNA9SFq0xWAY74
+         ZXwxzM7xbR40m7ubVxqTZsVBSCHPpW+FWlfEzc/L/nCYBFVNEAAKo/SKjlsKiiOZQ/
+         zVxu60pi8j1SVdzi+2Mn58QNgDzc4IyuperM77pw=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7K7c2cp105304
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Aug 2019 02:38:02 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 20
+ Aug 2019 02:38:00 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 20 Aug 2019 02:38:01 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7K7bw6A034017;
+        Tue, 20 Aug 2019 02:37:59 -0500
+Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
+ support
+To:     Suman Anna <s-anna@ti.com>, Keerthy <j-keerthy@ti.com>,
+        <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+ <1565164139-21886-3-git-send-email-t-kristo@ti.com>
+ <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
+ <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
+ <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
+Date:   Tue, 20 Aug 2019 10:37:58 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c90fea8b-44b6-4ae3-1f55-08d725401268
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Aug 2019 07:29:01.5761
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6TWmpL61g4vsy3P0QLR5dzTsj4eJXig7hFsaIuNlNz4mqfaPQRMuM5nPuYCTlDcf1rG7TRTDeJ4oA0mBQ8vidQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5627
+In-Reply-To: <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+On 20.8.2019 2.01, Suman Anna wrote:
+> Hi Tero,
+> 
+> On 8/19/19 4:32 AM, Tero Kristo wrote:
+>> On 08/08/2019 08:26, Keerthy wrote:
+>>>
+>>>
+>>> On 07/08/19 1:18 PM, Tero Kristo wrote:
+>>>> Add initial PRM (Power and Reset Management) driver for TI OMAP class
+>>>> SoCs. Initially this driver only supports reset control, but can be
+>>>> extended to support rest of the functionality, like powerdomain
+>>>> control, PRCM irq support etc.
+>>>>
+>>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>>>> ---
+>>>>    arch/arm/mach-omap2/Kconfig |   1 +
+>>>>    drivers/soc/ti/Makefile     |   1 +
+>>>>    drivers/soc/ti/omap_prm.c   | 216
+>>>> ++++++++++++++++++++++++++++++++++++++++++++
+>>>>    3 files changed, 218 insertions(+)
+>>>>    create mode 100644 drivers/soc/ti/omap_prm.c
+>>>>
+>>>> diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+>>>> index fdb6743..42ad063 100644
+>>>> --- a/arch/arm/mach-omap2/Kconfig
+>>>> +++ b/arch/arm/mach-omap2/Kconfig
+>>>> @@ -109,6 +109,7 @@ config ARCH_OMAP2PLUS
+>>>>        select TI_SYSC
+>>>>        select OMAP_IRQCHIP
+>>>>        select CLKSRC_TI_32K
+>>>> +    select RESET_CONTROLLER
+> 
+> Use ARCH_HAS_RESET_CONTROLLER instead.
 
-Remove the num-lanes to avoid the driver setting the link width.
+Ok.
 
-On FSL Layerscape SoCs, the number of lanes assigned to PCIe
-controller is not fixed, it is determined by the selected SerDes
-protocol in the RCW (Reset Configuration Word), and the PCIe link
-training is completed automatically base on the selected SerDes
-protocol, and the link width set-up is updated by hardware after
-power on reset. So the num-lanes is not needed for Layerscape PCIe.
+> 
+>>>>        help
+>>>>          Systems based on OMAP2, OMAP3, OMAP4 or OMAP5
+>>>> diff --git a/drivers/soc/ti/Makefile b/drivers/soc/ti/Makefile
+>>>> index b3868d3..788b5cd 100644
+>>>> --- a/drivers/soc/ti/Makefile
+>>>> +++ b/drivers/soc/ti/Makefile
+>>>> @@ -6,6 +6,7 @@ obj-$(CONFIG_KEYSTONE_NAVIGATOR_QMSS)    += knav_qmss.o
+>>>>    knav_qmss-y := knav_qmss_queue.o knav_qmss_acc.o
+>>>>    obj-$(CONFIG_KEYSTONE_NAVIGATOR_DMA)    += knav_dma.o
+>>>>    obj-$(CONFIG_AMX3_PM)            += pm33xx.o
+>>>> +obj-$(CONFIG_ARCH_OMAP2PLUS)        += omap_prm.o
+>>>>    obj-$(CONFIG_WKUP_M3_IPC)        += wkup_m3_ipc.o
+>>>>    obj-$(CONFIG_TI_SCI_PM_DOMAINS)        += ti_sci_pm_domains.o
+>>>>    obj-$(CONFIG_TI_SCI_INTA_MSI_DOMAIN)    += ti_sci_inta_msi.o
+>>>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
+>>>> new file mode 100644
+>>>> index 0000000..7c89eb8
+>>>> --- /dev/null
+>>>> +++ b/drivers/soc/ti/omap_prm.c
+>>>> @@ -0,0 +1,216 @@
+>>>> +// SPDX-License-Identifier: GPL-2.0
+>>>> +/*
+>>>> + * OMAP2+ PRM driver
+>>>> + *
+>>>> + * Copyright (C) 2019 Texas Instruments Incorporated -
+>>>> http://www.ti.com/
+>>>> + *    Tero Kristo <t-kristo@ti.com>
+>>>> + */
+>>>> +
+>>>> +#include <linux/kernel.h>
+>>>> +#include <linux/module.h>
+>>>> +#include <linux/device.h>
+>>>> +#include <linux/io.h>
+>>>> +#include <linux/of.h>
+>>>> +#include <linux/of_device.h>
+>>>> +#include <linux/platform_device.h>
+>>>> +#include <linux/reset-controller.h>
+>>>> +#include <linux/delay.h>
+>>>> +
+>>>> +struct omap_rst_map {
+>>>> +    s8 rst;
+>>>> +    s8 st;
+>>>> +};
+>>>> +
+>>>> +struct omap_prm_data {
+>>>> +    u32 base;
+>>>> +    const char *name;
+>>>> +    u16 pwstctrl;
+>>>> +    u16 pwstst;
+>>>> +    u16 rstctl;
+> 
+> Minor nit, can you use rstctrl instead here so that it is in sync with
+> the other variables and with the register names used in TRM.
 
-The current num-lanes was added erroneously, which actually indicates
-the max lanes PCIe controller can support up to, instead of the lanes
-assigned to the PCIe controller. And the link width set by SerDes
-protocol will be overridden by the num-lanes, hence the subsequent
-re-taining will fail when the assigned lanes does not equal to
-num-lanes.
+Ok.
 
-Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
----
-V2:
- - Reworded the change log.
+> 
+>>>> +    u16 rstst;
+>>>> +    struct omap_rst_map *rstmap;
+>>>> +    u8 flags;
+>>>> +};
+>>>> +
+>>>> +struct omap_prm {
+>>>> +    const struct omap_prm_data *data;
+>>>> +    void __iomem *base;
+>>>> +};
+>>>> +
+>>>> +struct omap_reset_data {
+>>>> +    struct reset_controller_dev rcdev;
+>>>> +    struct omap_prm *prm;
+>>>> +};
+>>>> +
+>>>> +#define to_omap_reset_data(p) container_of((p), struct
+>>>> omap_reset_data, rcdev)
+>>>> +
+>>>> +#define OMAP_MAX_RESETS        8
+>>>> +#define OMAP_RESET_MAX_WAIT    10000
+>>>> +
+>>>> +#define OMAP_PRM_NO_RSTST    BIT(0)
+>>>> +
+>>>> +static const struct of_device_id omap_prm_id_table[] = {
+>>>> +    { },
+>>>> +};
+>>>
+>>> This table is blank and we are doing of_match_device against it.
+>>
+>> Yes, it gets populated with other patches in series, one entry per soc.
+>>
+>>>
+>>>> +
+>>>> +static int omap_reset_status(struct reset_controller_dev *rcdev,
+>>>> +                 unsigned long id)
+>>>> +{
+>>>> +    struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+>>>> +    u32 v;
+>>>> +
+>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
+>>>> +    v &= 1 << id;
+>>>> +    v >>= id;
+>>>> +
+>>>> +    return v;
+>>>> +}
+>>>> +
+>>>> +static int omap_reset_assert(struct reset_controller_dev *rcdev,
+>>>> +                 unsigned long id)
+>>>> +{
+>>>> +    struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+>>>> +    u32 v;
+>>>> +
+>>>> +    /* assert the reset control line */
+>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstctl);
+>>>> +    v |= 1 << id;
+>>>> +    writel_relaxed(v, reset->prm->base + reset->prm->data->rstctl);
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static int omap_reset_get_st_bit(struct omap_reset_data *reset,
+>>>> +                 unsigned long id)
+>>>> +{
+>>>> +    struct omap_rst_map *map = reset->prm->data->rstmap;
+>>>> +
+>>>> +    while (map && map->rst >= 0) {
+>>>> +        if (map->rst == id)
+>>>> +            return map->st;
+>>>> +
+>>>> +        map++;
+>>>> +    }
+>>>> +
+>>>> +    return id;
+>>>> +}
+>>>> +
+>>>> +/*
+>>>> + * Note that status will not change until clocks are on, and clocks
+>>>> cannot be
+>>>> + * enabled until reset is deasserted. Consumer drivers must check
+>>>> status
+>>>> + * separately after enabling clocks.
+>>>> + */
+>>>> +static int omap_reset_deassert(struct reset_controller_dev *rcdev,
+>>>> +                   unsigned long id)
+>>>> +{
+>>>> +    struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+>>>> +    u32 v;
+>>>> +    int st_bit = id;
+> 
+> No need to initialize this, will always get overwritten below.
 
- arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 1 -
- arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 3 ---
- arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 6 ------
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 3 ---
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 4 ----
- 5 files changed, 17 deletions(-)
+Hmm right, must be a leftover from some earlier code.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1012a.dtsi
-index ec6257a5b251..119c597ca867 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-@@ -486,7 +486,6 @@
- 			#address-cells =3D <3>;
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
--			num-lanes =3D <4>;
- 			num-viewport =3D <2>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1043a.dtsi
-index 71d9ed9ff985..c084c7a4b6a6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-@@ -677,7 +677,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -704,7 +703,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x48 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -731,7 +729,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x50 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1046a.dtsi
-index b0ef08b090dd..d4c1da3d4bde 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -649,7 +649,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <8>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -671,7 +670,6 @@
- 			reg-names =3D "regs", "addr_space";
- 			num-ib-windows =3D <6>;
- 			num-ob-windows =3D <8>;
--			num-lanes =3D <2>;
- 			status =3D "disabled";
- 		};
-=20
-@@ -687,7 +685,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <8>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x48 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -709,7 +706,6 @@
- 			reg-names =3D "regs", "addr_space";
- 			num-ib-windows =3D <6>;
- 			num-ob-windows =3D <8>;
--			num-lanes =3D <2>;
- 			status =3D "disabled";
- 		};
-=20
-@@ -725,7 +721,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <8>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x50 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -747,7 +742,6 @@
- 			reg-names =3D "regs", "addr_space";
- 			num-ib-windows =3D <6>;
- 			num-ob-windows =3D <8>;
--			num-lanes =3D <2>;
- 			status =3D "disabled";
- 		};
-=20
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1088a.dtsi
-index dfbead405783..76c87afeba1e 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -456,7 +456,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <256>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x20 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -482,7 +481,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x28 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -508,7 +506,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <8>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x30 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls208xa.dtsi
-index 64101c9962ce..7a0be8eaa84a 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -639,7 +639,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
-@@ -661,7 +660,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
-@@ -683,7 +681,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <8>;
- 			num-viewport =3D <256>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
-@@ -705,7 +702,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
---=20
-2.17.1
+> 
+>>>> +    bool has_rstst;
+>>>> +
+>>>> +    /* check the current status to avoid de-asserting the line twice */
+>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstctl);
+>>>> +    if (!(v & BIT(id)))
+>>>> +        return -EEXIST;
+>>>> +
+>>>> +    has_rstst = !(reset->prm->data->flags & OMAP_PRM_NO_RSTST);
+>>>> +
+>>>> +    if (has_rstst) {
+>>>> +        st_bit = omap_reset_get_st_bit(reset, id);
+>>>> +
+>>>> +        /* Clear the reset status by writing 1 to the status bit */
+>>>> +        v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
+>>>> +        v |= 1 << st_bit;
+>>>> +        writel_relaxed(v, reset->prm->base + reset->prm->data->rstst);
+>>>> +    }
+>>>> +
+>>>> +    /* de-assert the reset control line */
+>>>> +    v = readl_relaxed(reset->prm->base + reset->prm->data->rstctl);
+>>>> +    v &= ~(1 << id);
+>>>> +    writel_relaxed(v, reset->prm->base + reset->prm->data->rstctl);
+>>>> +
+>>>> +    return 0;
+>>>> +}
+>>>> +
+>>>> +static const struct reset_control_ops omap_reset_ops = {
+>>>> +    .assert        = omap_reset_assert,
+>>>> +    .deassert    = omap_reset_deassert,
+>>>> +    .status        = omap_reset_status,
+>>>> +};
+>>>> +
+>>>> +static int omap_prm_reset_probe(struct platform_device *pdev,
+>>>> +                struct omap_prm *prm)
+> 
+> Call this omap_prm_reset_init or something similar to avoid confusion.
 
+Ok, can change this.
+
+> 
+>>>> +{
+>>>> +    struct omap_reset_data *reset;
+>>>> +
+>>>> +    /*
+>>>> +     * Check if we have resets. If either rstctl or rstst is
+>>>> +     * non-zero, we have reset registers in place. Additionally
+>>>> +     * the flag OMAP_PRM_NO_RSTST implies that we have resets.
+>>>> +     */
+>>>> +    if (!prm->data->rstctl && !prm->data->rstst &&
+>>>> +        !(prm->data->flags & OMAP_PRM_NO_RSTST))
+>>>> +        return 0;
+>>>> +
+>>>> +    reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
+>>>> +    if (!reset)
+>>>> +        return -ENOMEM;
+>>>> +
+>>>> +    reset->rcdev.owner = THIS_MODULE;
+>>>> +    reset->rcdev.ops = &omap_reset_ops;
+>>>> +    reset->rcdev.of_node = pdev->dev.of_node;
+>>>> +    reset->rcdev.nr_resets = OMAP_MAX_RESETS;
+> 
+> Suggest adding a number of resets to prm->data, and using it so that we
+> don't even entertain any resets beyond the actual number of resets.
+
+Hmm why bother? Accessing a stale reset bit will just cause access to a 
+reserved bit in the reset register, doing basically nothing. Also, this 
+would not work for am3/am4 wkup, as there is a single reset bit at an 
+arbitrary position.
+
+> 
+> You actually seem to be using the bit-position directly in client data
+> instead of a reset number. I am not sure if this is accepted practice
+> with reset controllers, do you incur any memory wastage?
+
+Reset numbering almost always seems to start from 0, I think the only 
+exception to this is wkup_m3 on am3/am4. Introducing an additional 
+arbitrary mapping for this doesn't seem to make any sense.
+
+Also, resets are allocated on-need-basis, so it only allocates one 
+instance for the reset control whatever the index is.
+
+> 
+>>>> +
+>>>> +    reset->prm = prm;
+>>>> +
+>>>> +    return devm_reset_controller_register(&pdev->dev, &reset->rcdev);
+>>>> +}
+>>>> +
+>>>> +static int omap_prm_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +    struct resource *res;
+>>>> +    const struct omap_prm_data *data;
+>>>> +    struct omap_prm *prm;
+>>>> +    const struct of_device_id *match;
+>>>> +
+>>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>>> +    if (!res)
+>>>> +        return -ENODEV;
+>>>> +
+>>>> +    match = of_match_device(omap_prm_id_table, &pdev->dev);
+>>>> +    if (!match)
+>>>> +        return -ENOTSUPP;
+> 
+> Use of_device_get_match_data() instead to do both match and get the
+> data. That can perhaps be the first block.
+> 
+>>>> +
+>>>> +    prm = devm_kzalloc(&pdev->dev, sizeof(*prm), GFP_KERNEL);
+>>>> +    if (!prm)
+>>>> +        return -ENOMEM;
+> 
+> Perhaps move the allocate after the match check to streamline.
+
+Ok, will check these two out.
+
+> 
+>>>> +
+>>>> +    data = match->data;
+>>>> +
+>>>> +    while (data->base != res->start) {
+>>>> +        if (!data->base)
+>>>> +            return -EINVAL;
+>>>> +        data++;
+>>>> +    }
+>>>> +
+>>>> +    prm->data = data;
+>>>> +
+>>>> +    prm->base = devm_ioremap_resource(&pdev->dev, res);
+>>>> +    if (!prm->base)
+>>>> +        return -ENOMEM;
+>>>> +
+>>>> +    return omap_prm_reset_probe(pdev, prm);
+>>>> +}
+>>>> +
+>>>> +static struct platform_driver omap_prm_driver = {
+>>>> +    .probe = omap_prm_probe,
+>>>> +    .driver = {
+>>>> +        .name        = KBUILD_MODNAME,
+>>>> +        .of_match_table    = omap_prm_id_table,
+>>>> +    },
+>>>> +};
+>>>> +builtin_platform_driver(omap_prm_driver);
+>>>> +
+>>>> +MODULE_ALIAS("platform:prm");
+> 
+> Drop this and use MODULE_DEVICE_TABLE instead on omap_prm_id_table if
+> retaining, but I don't think these need to be defined.
+
+Ok, will ditch them.
+
+-Tero
+
+> 
+> regards
+> Suman
+> 
+>>>> +MODULE_LICENSE("GPL v2");
+>>>> +MODULE_DESCRIPTION("omap2+ prm driver");
+>>>
+>>> It is a builtin_platform_driver so do we need the MODULE*?
+>>
+>> Well, thats debatable, however some existing drivers do introduce this
+>> even if they are builtin.
+>>
+>> -Tero
+>> -- 
+> 
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
