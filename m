@@ -2,103 +2,424 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25FB195B9C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:51:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499BD95BEA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 12:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729667AbfHTJum (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 05:50:42 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:41713 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728842AbfHTJul (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 05:50:41 -0400
-X-Originating-IP: 87.18.63.98
-Received: from uno.localdomain (unknown [87.18.63.98])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id BF83D1C0014;
-        Tue, 20 Aug 2019 09:50:36 +0000 (UTC)
-Date:   Tue, 20 Aug 2019 11:52:05 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1728545AbfHTKER (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 06:04:17 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:41024 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728414AbfHTKER (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 06:04:17 -0400
+Received: by mail-pg1-f195.google.com with SMTP id x15so2944644pgg.8;
+        Tue, 20 Aug 2019 03:04:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id;
+        bh=bLqrk/tJ6HaSh5Kqmkrfo1Vko3U+KTsZ4BRq0qQ1+uo=;
+        b=qyt85IqhDUjVtIu682MQf+etR/KFHpWtTLiY2UTvXNkX//7ZSBAG7tJm85T22Idmf0
+         rKv8tXT2HFMew9UWc3eXSJMERhlrumbUc5jYv8enIeuq4mqmqV7ePYsc7I0upOvOEMGQ
+         X1P84ZMkQhBa10CI3I/qhpvnHBLkSwH5rNhcz/fOu5roaFWkmubiEBIbb1chNeWIzRXT
+         ptaupjzTx8mwyat9R8IeGY+HMQzvQHGIYXdWaZNdyqmtm0OctcmiPKkHk/m8TgyuL7wF
+         PUdBF89cKTd3LziZ53WKVcBSKBL3Qioq0UR1AS+sdJ/gw4/LcetqDcICYA+Huoxhh4wA
+         22ZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+        bh=bLqrk/tJ6HaSh5Kqmkrfo1Vko3U+KTsZ4BRq0qQ1+uo=;
+        b=Wa9q2LgDvXjo2K9H4Tupul+P54zz5DvGjBAuAm+buNFI52iUmz0/7A4Ko7aX0EIgCb
+         EfhtVlZ1JdmWVU0BPPHJCUuuMHz3ertD4MyGlaM9xPJlW7HlmT+F+vvzbiky7vzaspIw
+         dWLdjri/lCzwWAgM4KFhcVeM8hfcELRqoQRu9XWyjmzEgEi0AEv2ZyBCiBXlxcutwb1H
+         dVavc1BAskKYj7EFye5HKUb6+wlWNAAqo6gzBxhdmjMFs4J1zzXUBmIaRHuY5uxSXiGz
+         jt5b2+dHGp+pjHcK0I3gKidHNyDUF71R4DqeQ6dLd9CFPjdAeVjhOqztiTnFtv2MAEHx
+         RIXA==
+X-Gm-Message-State: APjAAAXWnqJUjS5RsELNaiZK/D3vRF6y9ed5sYzMSHM6x9/mviYqtDMS
+        HUxdvhw6vFZK6Rc1g4/x6XsaEISy4OY=
+X-Google-Smtp-Source: APXvYqzGHuah8Q9VFmyIGiCJeAc0oVaDOw73AdbDrnxMcij4g77NMYNidARDSdHog3APp7wNza/6+w==
+X-Received: by 2002:aa7:8dcc:: with SMTP id j12mr29320651pfr.137.1566295456791;
+        Tue, 20 Aug 2019 03:04:16 -0700 (PDT)
+Received: from localhost.localdomain ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id n185sm17912855pga.16.2019.08.20.03.04.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Aug 2019 03:04:16 -0700 (PDT)
+From:   Kever Yang <kever.yang@rock-chips.com>
+To:     heiko@sntech.de
+Cc:     linux-rockchip@lists.infradead.org,
+        Kever Yang <kever.yang@rock-chips.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sh-mobile-ceu: Rename bindings
- documentation file
-Message-ID: <20190820095205.xnthl7d7cpy7myq2@uno.localdomain>
-References: <20190819140544.19294-1-horms+renesas@verge.net.au>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="s545u3qgtcd2uv4a"
-Content-Disposition: inline
-In-Reply-To: <20190819140544.19294-1-horms+renesas@verge.net.au>
-User-Agent: NeoMutt/20180716
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: rockchip: remove rk3288 fennec board support
+Date:   Tue, 20 Aug 2019 18:03:52 +0800
+Message-Id: <20190820100353.17728-1-kever.yang@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Since there is no one using this board, remove it.
 
---s545u3qgtcd2uv4a
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
+---
 
-Hi Simon,
+ arch/arm/boot/dts/rk3288-fennec.dts | 347 ----------------------------
+ 1 file changed, 347 deletions(-)
+ delete mode 100644 arch/arm/boot/dts/rk3288-fennec.dts
 
-On Mon, Aug 19, 2019 at 04:05:44PM +0200, Simon Horman wrote:
-> Renesas media binding documentation files uses a naming schema of
-> 'renesas,<module>.txt'. Rename the SH Mobile CEU file to match this pattern.
->
+diff --git a/arch/arm/boot/dts/rk3288-fennec.dts b/arch/arm/boot/dts/rk3288-fennec.dts
+deleted file mode 100644
+index 4847cf902a15..000000000000
+--- a/arch/arm/boot/dts/rk3288-fennec.dts
++++ /dev/null
+@@ -1,347 +0,0 @@
+-// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+-
+-/dts-v1/;
+-
+-#include "rk3288.dtsi"
+-
+-/ {
+-	model = "Rockchip RK3288 Fennec Board";
+-	compatible = "rockchip,rk3288-fennec", "rockchip,rk3288";
+-
+-	memory@0 {
+-		reg = <0x0 0x0 0x0 0x80000000>;
+-		device_type = "memory";
+-	};
+-
+-	ext_gmac: external-gmac-clock {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <125000000>;
+-		clock-output-names = "ext_gmac";
+-	};
+-
+-	vcc_sys: vsys-regulator {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vcc_sys";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		regulator-always-on;
+-		regulator-boot-on;
+-	};
+-};
+-
+-&cpu0 {
+-	cpu0-supply = <&vdd_cpu>;
+-};
+-
+-&emmc {
+-	bus-width = <8>;
+-	cap-mmc-highspeed;
+-	non-removable;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_pwr &emmc_bus8>;
+-	status = "okay";
+-};
+-
+-&gmac {
+-	assigned-clocks = <&cru SCLK_MAC>;
+-	assigned-clock-parents = <&ext_gmac>;
+-	clock_in_out = "input";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&rgmii_pins>, <&phy_rst>, <&phy_pmeb>, <&phy_int>;
+-	phy-supply = <&vcc_lan>;
+-	phy-mode = "rgmii";
+-	snps,reset-active-low;
+-	snps,reset-delays-us = <0 10000 1000000>;
+-	snps,reset-gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_LOW>;
+-	tx_delay = <0x30>;
+-	rx_delay = <0x10>;
+-	status = "okay";
+-};
+-
+-&gpu {
+-	mali-supply = <&vdd_gpu>;
+-	status = "okay";
+-};
+-
+-&hdmi {
+-	status = "okay";
+-};
+-
+-&i2c0 {
+-	status = "okay";
+-	clock-frequency = <400000>;
+-
+-	rk808: pmic@1b {
+-		compatible = "rockchip,rk808";
+-		reg = <0x1b>;
+-		interrupt-parent = <&gpio0>;
+-		interrupts = <RK_PA4 IRQ_TYPE_LEVEL_LOW>;
+-		#clock-cells = <1>;
+-		clock-output-names = "xin32k", "rk808-clkout2";
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pmic_int &global_pwroff>;
+-		rockchip,system-power-controller;
+-		wakeup-source;
+-
+-		vcc1-supply = <&vcc_sys>;
+-		vcc2-supply = <&vcc_sys>;
+-		vcc3-supply = <&vcc_sys>;
+-		vcc4-supply = <&vcc_sys>;
+-		vcc6-supply = <&vcc_sys>;
+-		vcc7-supply = <&vcc_sys>;
+-		vcc8-supply = <&vcc_io>;
+-		vcc9-supply = <&vcc_io>;
+-		vcc10-supply = <&vcc_io>;
+-		vcc11-supply = <&vcc_io>;
+-		vcc12-supply = <&vcc_io>;
+-		vddio-supply = <&vcc_io>;
+-
+-		regulators {
+-			vdd_cpu: DCDC_REG1 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <750000>;
+-				regulator-max-microvolt = <1350000>;
+-				regulator-name = "vdd_arm";
+-				regulator-state-mem {
+-					regulator-off-in-suspend;
+-				};
+-			};
+-
+-			vdd_gpu: DCDC_REG2 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <850000>;
+-				regulator-max-microvolt = <1250000>;
+-				regulator-name = "vdd_gpu";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <1000000>;
+-				};
+-			};
+-
+-			vcc_ddr: DCDC_REG3 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-name = "vcc_ddr";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-				};
+-			};
+-
+-			vcc_io: DCDC_REG4 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-name = "vcc_io";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <3300000>;
+-				};
+-			};
+-
+-			vccio_pmu: LDO_REG1 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-name = "vccio_pmu";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <3300000>;
+-				};
+-			};
+-
+-			vcca_33: LDO_REG2 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <3300000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-name = "vcca_33";
+-				regulator-state-mem {
+-					regulator-off-in-suspend;
+-				};
+-			};
+-
+-			vdd_10: LDO_REG3 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <1000000>;
+-				regulator-name = "vdd_10";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <1000000>;
+-				};
+-			};
+-
+-			vcc_wl: LDO_REG4 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-name = "vcc_wl";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <1800000>;
+-				};
+-			};
+-
+-			vccio_sd: LDO_REG5 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <3300000>;
+-				regulator-name = "vccio_sd";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <3300000>;
+-				};
+-			};
+-
+-			vdd10_lcd: LDO_REG6 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <1000000>;
+-				regulator-max-microvolt = <1000000>;
+-				regulator-name = "vdd10_lcd";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <1000000>;
+-				};
+-			};
+-
+-			vcc_18: LDO_REG7 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-name = "vcc_18";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <1800000>;
+-				};
+-			};
+-
+-			vcc18_lcd: LDO_REG8 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-min-microvolt = <1800000>;
+-				regulator-max-microvolt = <1800000>;
+-				regulator-name = "vcc18_lcd";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-					regulator-suspend-microvolt = <1800000>;
+-				};
+-			};
+-
+-			vcc_sd: SWITCH_REG1 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-name = "vcc_sd";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-				};
+-			};
+-
+-			vcc_lan: SWITCH_REG2 {
+-				regulator-always-on;
+-				regulator-boot-on;
+-				regulator-name = "vcc_lan";
+-				regulator-state-mem {
+-					regulator-on-in-suspend;
+-				};
+-			};
+-		};
+-	};
+-};
+-
+-&pinctrl {
+-	pcfg_output_high: pcfg-output-high {
+-		output-high;
+-	};
+-
+-	pcfg_output_low: pcfg-output-low {
+-		output-low;
+-	};
+-
+-	pcfg_pull_none_drv_8ma: pcfg-pull-none-drv-8ma {
+-		drive-strength = <8>;
+-	};
+-
+-	pcfg_pull_up_drv_8ma: pcfg-pull-up-drv-8ma {
+-		bias-pull-up;
+-		drive-strength = <8>;
+-	};
+-
+-	gmac {
+-		phy_int: phy-int {
+-			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>;
+-		};
+-
+-		phy_pmeb: phy-pmeb {
+-			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>;
+-		};
+-
+-		phy_rst: phy-rst {
+-			rockchip,pins = <4 RK_PB0 RK_FUNC_GPIO &pcfg_output_high>;
+-		};
+-	};
+-
+-	pmic {
+-		pmic_int: pmic-int {
+-			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_up>;
+-		};
+-	};
+-
+-	usbphy {
+-		host_drv: host-drv {
+-			rockchip,pins = <0 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+-		};
+-	};
+-};
+-
+-&uart2 {
+-	status = "okay";
+-};
+-
+-&usbphy {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&host_drv>;
+-	vbus_drv-gpios = <&gpio0 RK_PB6 GPIO_ACTIVE_HIGH>;
+-	status = "okay";
+-};
+-
+-&usb_host0_ehci {
+-	status = "okay";
+-};
+-
+-&usb_host1 {
+-	status = "okay";
+-};
+-
+-&usb_otg {
+-	status = "okay";
+-};
+-
+-&usb_hsic {
+-	status = "okay";
+-};
+-
+-&vopb {
+-	status = "okay";
+-};
+-
+-&vopb_mmu {
+-	status = "okay";
+-};
+-
+-&vopl {
+-	status = "okay";
+-};
+-
+-&vopl_mmu {
+-	status = "okay";
+-};
+-- 
+2.17.1
 
-The old soc-camera based sh-mobile-ceu driver has been removed one
-year ago and replaced by driver/media/platform/renesas-ceu.c whose
-bindings are described at
-Documentation/devicetree/bindings/media/renesas,ceu.txt
-
-Should this file be removed instead of renamed?
-
-Thanks
-  j
-
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> ---
-> Based on v5.3-rc1
-> ---
->  .../bindings/media/{sh_mobile_ceu.txt => renesas,sh-mobile-ceu.txt}       | 0
->  1 file changed, 0 insertions(+), 0 deletions(-)
->  rename Documentation/devicetree/bindings/media/{sh_mobile_ceu.txt => renesas,sh-mobile-ceu.txt} (100%)
->
-> diff --git a/Documentation/devicetree/bindings/media/sh_mobile_ceu.txt b/Documentation/devicetree/bindings/media/renesas,sh-mobile-ceu.txt
-> similarity index 100%
-> rename from Documentation/devicetree/bindings/media/sh_mobile_ceu.txt
-> rename to Documentation/devicetree/bindings/media/renesas,sh-mobile-ceu.txt
-> --
-> 2.11.0
->
-
---s545u3qgtcd2uv4a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1bwsUACgkQcjQGjxah
-VjyPUg//ThVI0x+SJ7Y34qsLEZs0SgzopAtZefvap9z9/MAUuTbIV6qBA5/BaLqT
-O1VQOg//KN/apqfVVcIPI83X1rn1IzIEEznGCKHmKxmehuL4iry+VTWPrJw3EH4y
-FPxeKrOZ76GMPsQFX7xBrSGwdfZgNWzmkccFjWM2RtdYC0tDC8fgh6/uKi9XYmRe
-lyy8zU4OxVLj1G0Uoqp1o5MX57jgKJ5NWs48FhgCkT+R0Yf01d9b3vwjRZF5C6tO
-FTvOSJfSnoP+xaao/GyH5zudiv6LOa5cTohxfUYdEXjiQg9JjNEbWRw35Cmel92U
-h/qVboanowTIBPiAlLqMtK0esWe4moGbDlKpsoivae2n53hx47UJElvo3Hu2LhHC
-4bAFhpT3MRZB3i8Oqw94yl9JuCwVMc0kzzdG7xcuMQimzuijhmdgNxesxDJJk2gn
-FiTt6UrTek4r8E9595/66AT9nN2UB4FnkY79dT1oxT2QJF/FKEh6sFEf6uVgUJDv
-f9km+Mnw2JnssBPf+VZI06yyr24aVfhWnt5vxKi0EqIEr9c5g3NYXk15VFRM/Rqb
-EG8uGkIpifriE1Ccu1G+A0pb9wPdDqQIuReZjEA0JS7K1YaaZ36ebCaudC5hjZJ2
-n7wdqkhOGHzgDQ+vF127kr+ukdEjlkeTC62raHmrU+0pjPH7v64=
-=lZjl
------END PGP SIGNATURE-----
-
---s545u3qgtcd2uv4a--
