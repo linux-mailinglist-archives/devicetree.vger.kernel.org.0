@@ -2,139 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5440B9640E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F351596428
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 17:21:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730501AbfHTPTi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 11:19:38 -0400
-Received: from vps.xff.cz ([195.181.215.36]:32850 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730430AbfHTPTi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 11:19:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566314376; bh=P46Ks+pSwFh8evjNR4bT2iq74D9QpPdX+LOP4bcJrNU=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=S0zEwvsraRLL0ynpgWwffXnzhAvK37c2ssuZ1jfScVV5/W/7DvdbJ9nEYAiW5Fpbe
-         yNcm7wJWYtw9eK2ZU69+TU6nxJ6YCFBmeEEJuBU03A2Kx2uWma0OiQ0ib2NGHf6YwM
-         PkDZleYTPeFKpkCHOkfBo3lLRsf/s/t7kmrQyt6w=
-From:   megous@megous.com
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>
-Cc:     Ondrej Jirman <megous@megous.com>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: [PATCH v2 3/3] arm64: dts: sun50i-h6: Add support for RTC and fix the clock tree
-Date:   Tue, 20 Aug 2019 17:19:34 +0200
-Message-Id: <20190820151934.3860-4-megous@megous.com>
-In-Reply-To: <20190820151934.3860-1-megous@megous.com>
-References: <20190820151934.3860-1-megous@megous.com>
+        id S1728277AbfHTPVm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 11:21:42 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:33143 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726345AbfHTPVm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 11:21:42 -0400
+Received: by mail-pf1-f195.google.com with SMTP id g2so3589931pfq.0;
+        Tue, 20 Aug 2019 08:21:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:mime-version
+         :content-disposition:user-agent;
+        bh=MJt24EPy43Ti5EtCu4AqEKxniVOrhxVv02Gleo5IXyE=;
+        b=SrtCqF9pPnng7ehiqNQgq73kEhqLuhCwqieKSAEaSvgM23Ld7sPB5E1MwQCM6rBqBE
+         nqmNgyz4x/nxY4sF9m29OUz7Q8LcQesHeXcjY5dDR/poJ+uuGoar38LR4oSXQQbNi7h8
+         NC2Gmvd7gVALP/tUWbPViXAR+Q0UMpmmYgw8Ifjl1MPhUE+f4LAio38eFt3bo7fid0jk
+         DuuI61zdjgYUyQuD/Fbs/mNe1ZXXj5DtM9P1PH6dtY10xMKyWCGV1DKpj1cizs/ndrTQ
+         BLWALERkRMpKMX4SP267bTOSwNXQI1JFEtEj/4LVICaNPpCOiKJdchjzLRYBdjqovWE3
+         K8ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :mime-version:content-disposition:user-agent;
+        bh=MJt24EPy43Ti5EtCu4AqEKxniVOrhxVv02Gleo5IXyE=;
+        b=qDBwPtbN8i7DKHq/9ljuodPuSgl9Cq1vNSwCWbBvcRQ3+sU9XgElRdfOgrdFiTw7yb
+         G1nvrQxXDvYb5/Bi6K/N/sRsSmz6Mf50SftJ3BYEKeolAJFgo+rxEcoiSR5R97G/k70O
+         WU+zApSwSpfa/9xxEuxRGxnuLIrUko5Y/oDEvp8klXZHEI1lrUuWzzE0b/CbaEGh4bYR
+         eR29OekIN+uu52h5xkccR3zvFYs+YerX3aUFh9k0OEr5HW86pONB812UuAcKcvfA7gN1
+         VyvS8m7howi2qCQ0dBECfxcpBiVjftOvgDUEB0Z4wghh+gp7W7nfBJs/67lZdS9Aoczh
+         BSFg==
+X-Gm-Message-State: APjAAAX/JNYjcQWGJtrwmoohhi6ADW8H+kTEIMYS1Xzs2sb5aF+0Mg6f
+        06wZ0bNQM4y0d7cr2jM5wsQ=
+X-Google-Smtp-Source: APXvYqyye+f2ZvNPRYjsHLx9yEZsbjtsiD/vrXS+OvTR4qsU+Ap8Rb5ttF0FQamv2w/cdmS4Sjesdg==
+X-Received: by 2002:a63:b20f:: with SMTP id x15mr25966808pge.453.1566314501422;
+        Tue, 20 Aug 2019 08:21:41 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id w2sm513828pjr.27.2019.08.20.08.21.40
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 20 Aug 2019 08:21:40 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 08:21:40 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     John Wang <wangzqbj@inspur.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, trivial@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, duanzhijia01@inspur.com,
+        mine260309@gmail.com, joel@jms.id.au
+Subject: Re: [PATCH v6 1/2] dt-bindings: Add ipsps1 as a trivial device
+Message-ID: <20190820152140.GA13677@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megous@megous.com>
+On Mon, Aug 19, 2019 at 05:14:25PM +0800, John Wang wrote:
+> The ipsps1 is an Inspur Power System power supply unit
+> 
+> Signed-off-by: John Wang <wangzqbj@inspur.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-This patch adds RTC node and fixes the clock properties and nodes
-to reflect the real clock tree.
+Aplied to hwmon-next. If someone else wants to take it, please
+let me know and I'll drop it.
 
-The device nodes for the internal oscillator and osc32k are removed,
-as these clocks are now provided by the RTC device. Clock references
-are fixed accordingly, too.
+Thanks,
+Guenter
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 30 +++++++++++---------
- 1 file changed, 16 insertions(+), 14 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 67b732e34091..67f920e0fc33 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -56,14 +56,6 @@
- 		status = "disabled";
- 	};
- 
--	iosc: internal-osc-clk {
--		#clock-cells = <0>;
--		compatible = "fixed-clock";
--		clock-frequency = <16000000>;
--		clock-accuracy = <300000000>;
--		clock-output-names = "iosc";
--	};
--
- 	osc24M: osc24M_clk {
- 		#clock-cells = <0>;
- 		compatible = "fixed-clock";
-@@ -71,11 +63,11 @@
- 		clock-output-names = "osc24M";
- 	};
- 
--	osc32k: osc32k_clk {
-+	ext_osc32k: ext_osc32k_clk {
- 		#clock-cells = <0>;
- 		compatible = "fixed-clock";
- 		clock-frequency = <32768>;
--		clock-output-names = "osc32k";
-+		clock-output-names = "ext_osc32k";
- 	};
- 
- 	psci {
-@@ -197,7 +189,7 @@
- 		ccu: clock@3001000 {
- 			compatible = "allwinner,sun50i-h6-ccu";
- 			reg = <0x03001000 0x1000>;
--			clocks = <&osc24M>, <&osc32k>, <&iosc>;
-+			clocks = <&osc24M>, <&rtc 0>, <&rtc 2>;
- 			clock-names = "hosc", "losc", "iosc";
- 			#clock-cells = <1>;
- 			#reset-cells = <1>;
-@@ -236,7 +228,7 @@
- 				     <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&ccu CLK_APB1>, <&osc24M>, <&osc32k>;
-+			clocks = <&ccu CLK_APB1>, <&osc24M>, <&rtc 0>;
- 			clock-names = "apb", "hosc", "losc";
- 			gpio-controller;
- 			#gpio-cells = <3>;
-@@ -710,10 +702,20 @@
- 			};
- 		};
- 
-+		rtc: rtc@7000000 {
-+			compatible = "allwinner,sun50i-h6-rtc";
-+			reg = <0x07000000 0x400>;
-+			interrupts = <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>;
-+			clock-output-names = "osc32k", "osc32k-out", "iosc";
-+			clocks = <&ext_osc32k>;
-+			#clock-cells = <1>;
-+		};
-+
- 		r_ccu: clock@7010000 {
- 			compatible = "allwinner,sun50i-h6-r-ccu";
- 			reg = <0x07010000 0x400>;
--			clocks = <&osc24M>, <&osc32k>, <&iosc>,
-+			clocks = <&osc24M>, <&rtc 0>, <&rtc 2>,
- 				 <&ccu CLK_PLL_PERIPH0>;
- 			clock-names = "hosc", "losc", "iosc", "pll-periph";
- 			#clock-cells = <1>;
-@@ -741,7 +743,7 @@
- 			reg = <0x07022000 0x400>;
- 			interrupts = <GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 111 IRQ_TYPE_LEVEL_HIGH>;
--			clocks = <&r_ccu CLK_R_APB1>, <&osc24M>, <&osc32k>;
-+			clocks = <&r_ccu CLK_R_APB1>, <&osc24M>, <&rtc 0>;
- 			clock-names = "apb", "hosc", "losc";
- 			gpio-controller;
- 			#gpio-cells = <3>;
--- 
-2.22.1
-
+> ---
+> v6:
+>     - No changes
+> v5:
+>     - No changes
+> v4:
+>     - Rebased on 5.3-rc4 instead of 5.2, No changes
+> v3:
+>     - Fix adding entry to the inappropriate line
+> v2:
+>     - No changes.
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 2e742d399e87..870ac52d2225 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -104,6 +104,8 @@ properties:
+>            - infineon,slb9645tt
+>              # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>            - infineon,tlv493d-a1b6
+> +            # Inspur Power System power supply unit version 1
+> +          - inspur,ipsps1
+>              # Intersil ISL29028 Ambient Light and Proximity Sensor
+>            - isil,isl29028
+>              # Intersil ISL29030 Ambient Light and Proximity Sensor
+> -- 
+> 2.17.1
+> 
