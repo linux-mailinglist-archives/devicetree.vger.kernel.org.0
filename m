@@ -2,71 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD97196ACE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC2E996AD8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:47:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730174AbfHTUmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:42:13 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:39095 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729156AbfHTUmN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:42:13 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 16so5198455oiq.6;
-        Tue, 20 Aug 2019 13:42:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VtWPczm67CwBeu0M0TFGverK4/MDIuIxxwNeQ9S1vic=;
-        b=E3ArLV08QNk9L8LKJkIYGZl0DVDrokXHwB0vK/zDj9e6nIVu9k5BFrMf+kqHc8h0Pn
-         +lvOjcitC6Kd8udiShWwkBPzaeVjGAGlh5ptJav6c0MfzzkQQjxaTgCYdspnmNEs0W/E
-         0rVKb1yrsux6dU602RR/AyuRcq+MtuSzIvYWI7UWscpnspsah1vma5T+cT2i667idEi1
-         EI6egM+KNFL4qj4kH/BiK0YAnQAdiiFSV59fNHldRTL47sHlxq82rFyWVSGxEgEkiV64
-         OlNoQGdRbLG5MvqoK6H6ROBNqZrwJOxuQWncK1e4VuHo6ZhPKaM5KhcKBqGAb+mHOJO2
-         HtJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VtWPczm67CwBeu0M0TFGverK4/MDIuIxxwNeQ9S1vic=;
-        b=fl5PyG4Y66zBjioFtHkzOFh5xHxriaHYwc1tM/oU8U4MV0ZONtaSoWG6ZUNNeJnBpF
-         KzIaazT7WsYYFHZXgtbN8QglpJjrmJhkgWlrmTaiPCUZga80W/9TJRLuY3ajxDT8wPI5
-         RcwoD7NMC2YDUZ2KMWlNQXiplJ5oPeonP0jQV35HGBmDsvUyq6MA/RrzwJnHvDlH6Zd1
-         bvZXyM4DjBxyBypRS16lKtFr0BvK/iunqXypuorx6QJ4vXi/snN9A/ieqLPF643Lqczs
-         9fcZLEYr9BqBtRCBKxi2BRiOVN96VEerynNeKQxKEppjkzZthlAN1G4vj/+tdeVoPlyL
-         WIig==
-X-Gm-Message-State: APjAAAUOQPcYQQ0TFj7OYybCZp706T2jsZFA8ROfmbbafSh5fgqR9yyH
-        DC892ZlShaDjAPiQBzFNIGHhqmtDCw/AzfpLBUY=
-X-Google-Smtp-Source: APXvYqzRHZsEZywX6PGgcnI3U8bBt1UQySc3ErcGAntuVNC98xdGIfDMOtYZ9Vh3M4F1lTu7dXuxyT52H7ClOJeIK6I=
-X-Received: by 2002:aca:d650:: with SMTP id n77mr1448561oig.129.1566333732518;
- Tue, 20 Aug 2019 13:42:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-11-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-11-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:42:01 +0200
-Message-ID: <CAFBinCB=kMELC94MUQt_n3QagsjNn0YjDfcZ1qk5tghCxjmtJg@mail.gmail.com>
-Subject: Re: [PATCH 10/14] arm64: dts: meson-g12a: fix reset controller compatible
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
+        id S1729887AbfHTUqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:46:45 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:43796 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729156AbfHTUqp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:46:45 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1i0B1b-0008Pt-4r; Tue, 20 Aug 2019 22:46:39 +0200
+Message-ID: <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Tue, 20 Aug 2019 22:46:37 +0200
+In-Reply-To: <1566316095-27507-32-git-send-email-kvalo@codeaurora.org> (sfid-20190820_181539_894705_E3B317D0)
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+         <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+         (sfid-20190820_181539_894705_E3B317D0)
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 4:32 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> This fixes the following DT schemas check errors:
-> meson-g12a-u200.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
-> meson-g12a-sei510.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
-note to self: reference where the decision against a g12a reset
-compatible string was made -> [0]
+On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
+> +{
+> +	struct ath11k *ar = hw->priv;
+> +	int ret = 0;
+> +
+> +	/* mac80211 requires this op to be present and that's why
+> +	 * there's an empty function, this can be extended when
+> +	 * required.
+> +	 */
 
+Well, oops. Maybe it shouldn't be required?
 
-[0] https://lkml.org/lkml/2019/2/7/358
+> +	mutex_lock(&ar->conf_mutex);
+> +
+> +	/* TODO: Handle configuration changes as appropriate */
+> +
+> +	mutex_unlock(&ar->conf_mutex);
+
+It's not actually empty though - why bother locking the mutex for
+nothing?
+
+> +	if (sta->mfp) {
+> +		/* TODO: Need to check if FW supports PMF? */
+
+Probably not? shouldn't get a sta with MFP unless you advertised support
+for it. At least I'd think so, and consider it a mac80211 bug if you
+still did.
+
+> +	/* This is a workaround for HT-enabled STAs which break the spec
+> +	 * and have no HT capabilities RX mask (no HT RX MCS map).
+> +	 *
+> +	 * As per spec, in section 20.3.5 Modulation and coding scheme (MCS),
+> +	 * MCS 0 through 7 are mandatory in 20MHz with 800 ns GI at all STAs.
+
+Wouldn't that better be in mac80211?
+
+> +	ampdu_factor = (vht_cap->cap &
+> +			IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_MASK) >>
+> +		       IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_SHIFT;
+
+consider u32_get_bits() or something like that from bitfield.h
+
+> +	/* Workaround: Some Netgear/Linksys 11ac APs set Rx A-MPDU factor to
+> +	 * zero in VHT IE. Using it would result in degraded throughput.
+> +	 * arg->peer_max_mpdu at this point contains HT max_mpdu so keep
+> +	 * it if VHT max_mpdu is smaller.
+> +	 */
+> +	arg->peer_max_mpdu = max(arg->peer_max_mpdu,
+> +				 (1U << (IEEE80211_HT_MAX_AMPDU_FACTOR +
+> +					ampdu_factor)) - 1);
+
+Wait, that seems familiar. Again, put it into mac80211?
+
+> +static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
+> +				     struct peer_assoc_params *arg)
+> +{
+> +	const struct ieee80211_sta_ht_cap *ht_cap = &sta->ht_cap;
+> +	int smps;
+> +
+> +	if (!ht_cap->ht_supported)
+> +		return;
+> +
+> +	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
+> +	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
+
+also here, u*_get_bits() or something might be nicer
+
+(and yes, I've written tons of code like this myself before that
+existed, which is why I'm pointing it out - it's much nicer)
+
+> +void ath11k_mac_drain_tx(struct ath11k *ar)
+> +{
+> +	/* make sure rcu-protected mac80211 tx path itself is drained */
+> +	synchronize_net();
+
+Doesn't mac80211 ensure that in the relevant places like flush()? But
+then again, not sure where you call this.
+
+> +	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac set fixed rate params vdev %i rate 0x%02hhx nss %hhu sgi %hhu\n",
+> +		   arvif->vdev_id, rate, nss, sgi);
+
+nit: that could use a line-break
+
+> +	vdev_param = WMI_VDEV_PARAM_FIXED_RATE;
+> +	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
+> +					    vdev_param, rate);
+> +	if (ret) {
+> +		ath11k_warn(ar->ab, "failed to set fixed rate param 0x%02x: %d\n",
+> 
+> +	/* TODO: Check if HT capability advertised from firmware is different
+> +	 * for each band for a dual band capable radio. It will be tricky to
+> +	 * handle it when the ht capability different for each band.
+> +	 */
+
+For each band shouldn't really be that tricky?
+
+johannes
+
