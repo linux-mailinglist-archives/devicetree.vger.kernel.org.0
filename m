@@ -2,73 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AE2E96A84
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:29:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9322596A89
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727358AbfHTU3E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:29:04 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:44783 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728283AbfHTU3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:29:04 -0400
-Received: by mail-oi1-f196.google.com with SMTP id k22so5154844oiw.11;
-        Tue, 20 Aug 2019 13:29:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=j6E1lyHDsgDU8DiTt3vegXCDVprFaiy8n8sbPdFHGho=;
-        b=tj0pYCCsetgnZSZRPyv4P8EZfHeUJz7Oq8sYze0pLvO5MNR/8KfKlfjvm9LnjZtdMm
-         0RMWONs9gPFVr72LH7qMEQaEahe0nxLAEmcZK4hT7DbaqF3ExCtLpAUcIPePe4dsVL08
-         InHaq+2NNvkD1PvM3BFhNrUF6owR6q7I8EHUsxO1iMoFI0OzCfCT7MX5tOM6rtC/eaNy
-         yflsKa6NMo2TrgHCdqfo6WkirtzOMWWRGc/OqEEAcfE1T1skJEklkJlH+x9BBsYITb6N
-         +vj1lFUy2wLbIMeXdS3Rvx9h1lDOX20owB9/qpH7wPO6FuWYUhsE2muoOAF1Ea+xnyjd
-         7HiA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=j6E1lyHDsgDU8DiTt3vegXCDVprFaiy8n8sbPdFHGho=;
-        b=Ap3ImWEOAIHo8E8PdUAIdXtqc2pkzv/eB0OFl6wez3fVPSMgNk92VfC0US6OtKVbUz
-         KmNOlAdPXg7GXXu9JJuOlqzSyNGkM2W0goQDRNb7SSkM85mjWWBLPsNq0cYBhVGc4GwE
-         yDYHDz/aq0hxQbkor54Mt2KKhj4nDGWJ1aQQi6aQSHq257XYDI76SEdFBBzkxPXzBGc9
-         dQXioKm0P+LwreZyEFwbWgfOBE2r7115RZFK2Y19mZg089gBJEbx9pdUMNOvUNs8Ed+O
-         jZKGACaAqm5o+C8R+/8VS0/40v958XN9a7RvYDkr4WvLyELbKeX0CLstoQTruJOxSyu9
-         M0Uw==
-X-Gm-Message-State: APjAAAWU+IKxGsrQYkLZjWQ8CNCtohDIVnrbqO2BkaFLPapxTfufSu1S
-        pOaEWjvwpzxloix5ODMB14HmnHv9aEaPdrZIfToknNBC
-X-Google-Smtp-Source: APXvYqw0L67k2dTpl+TcYZzMhdPd+8VdAypm5lktacA1LHAmxmKNHY2j19AbzoOhGAoriRZFeI/NEDh66fA5zXBXjEM=
-X-Received: by 2002:aca:4f17:: with SMTP id d23mr1354353oib.154.1566332943483;
- Tue, 20 Aug 2019 13:29:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-3-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-3-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:28:52 +0200
-Message-ID: <CAFBinCBQwsoO1dGKzzkE4Jh9VeqDhiy__m96X=CZBKSDRrHDOw@mail.gmail.com>
-Subject: Re: [PATCH 02/14] arm64: dts: meson-gx: drop the vpu dmc memory cell
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
+        id S1730466AbfHTU3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:29:47 -0400
+Received: from s3.sipsolutions.net ([144.76.43.62]:43536 "EHLO
+        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727358AbfHTU3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:29:47 -0400
+Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <johannes@sipsolutions.net>)
+        id 1i0AlC-0007yy-UV; Tue, 20 Aug 2019 22:29:43 +0200
+Message-ID: <c60afe716cc9ce3b511d8be0b04958342dfea908.camel@sipsolutions.net>
+Subject: Re: [PATCH 46/49] ath11k: add wmi.h
+From:   Johannes Berg <johannes@sipsolutions.net>
+To:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Tue, 20 Aug 2019 22:29:41 +0200
+In-Reply-To: <1566316095-27507-47-git-send-email-kvalo@codeaurora.org> (sfid-20190820_181541_270184_9285B240)
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+         <1566316095-27507-47-git-send-email-kvalo@codeaurora.org>
+         (sfid-20190820_181541_270184_9285B240)
 Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 4:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> This fixes the following DT schemas check errors:
-> meson-gxl-s805x-libretech-ac.dt.yaml: vpu@d0100000: reg-names: Additional items are not allowed ('dmc' was unexpected)
-> meson-gxl-s805x-libretech-ac.dt.yaml: vpu@d0100000: reg-names: ['vpu', 'hhi', 'dmc'] is too long
-if you have to re-send it for whatever reason I would add:
-"
-The 'dmc' register area was replaced by the amlogic,canvas property
-which was introduced in commit f1726043426c73 ("arm64: dts: meson-gx:
-add dmcbus and canvas nodes.") and commit cf34287986d0b6 ("arm64: dts:
-meson-gx: Add canvas provider node to the vpu")
-"
+On Tue, 2019-08-20 at 18:48 +0300, Kalle Valo wrote:
+> 
+> +enum wmi_cmd_group {
+> +	/* 0 to 2 are reserved */
+> +	WMI_GRP_START = 0x3,
+> +	WMI_GRP_SCAN = WMI_GRP_START, /* 0x3 */
+> +	WMI_GRP_PDEV,           /* 0x4 */
 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+If you're going to spell out the numbers anyway, why not do it in C
+rather than a comment?
+
+	WMI_GRP_PDEV		= 0x4,
+
+would tell you just as much, and be much less error-prone.
+
+> +struct wmi_pdev_set_hw_mode_cmd_param {
+> +	u32 tlv_header;
+> +	u32 pdev_id;
+> +	u32 hw_mode_index;
+> +	u32 num_band_to_mac;
+> +} __packed;
+
+Does it really makes sense for something to be using "u32" (i.e. host
+endian) but then __packed (kinda tagging it as "I am using this with the
+hardware, don't change the layout")?
+
+That really applies to a lot of the things here.
+
+> +struct channel_param {
+> +	u8 chan_id;
+> +	u8 pwr;
+> +	u32 mhz;
+> +	u32 half_rate:1,
+> +	    quarter_rate:1,
+> +	    dfs_set:1,
+> +	    dfs_set_cfreq2:1,
+> +	    is_chan_passive:1,
+> +	    allow_ht:1,
+> +	    allow_vht:1,
+> +	    set_agile:1;
+> +	u32 phy_mode;
+> +	u32 cfreq1;
+> +	u32 cfreq2;
+> +	char   maxpower;
+> +	char   minpower;
+> +	char   maxregpower;
+> +	u8  antennamax;
+> +	u8  reg_class_id;
+> +} __packed;
+
+Bitfields in FW structs are even less likely to work right, I'd avoid
+that.
+
+(and if you have this copy engine do endian conversion, then the u8
+fields won't work right since that ending seems to be working on u32s?)
+
+That probably all applies elsewhere too, but the file is pretty long ;-)
+
+Personally, I'd also consider splitting internal driver usage stuff and
+FW API into different files, but that's your decision. I just find it
+lets me understand it better even when I'm looking at it myself.
+
+johannes
+
