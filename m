@@ -2,175 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0093A96785
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 19:27:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1DC496758
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 19:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730685AbfHTRZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 13:25:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48956 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730638AbfHTRZx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 13:25:53 -0400
-Received: from localhost.localdomain (unknown [106.201.62.126])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BEC4E22DD6;
-        Tue, 20 Aug 2019 17:25:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566321952;
-        bh=SxyONdR/tM8eQiXxR1+O2jh66XLn8xoBHmSLNiEyJoU=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UH+hRYuxA/8xHKRYzDhDM/7FW60RBTQIcUJ2AScBxRu22Ysq1iHx42YqT6mmVuWfK
-         UM9IQzU32ImfYlEjZcKLMKUFgjSm0TKf0PJS6uT54OtVZ23otlEunbao3py/G81fyu
-         sEQEpuzGjxrsVhQlV9FYZnhxCgHkSeT91AeHPO0w=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 8/8] arm64: dts: qcom: sm8150: Add apps shared nodes
-Date:   Tue, 20 Aug 2019 22:53:51 +0530
-Message-Id: <20190820172351.24145-10-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190820172351.24145-1-vkoul@kernel.org>
-References: <20190820172351.24145-1-vkoul@kernel.org>
+        id S1728360AbfHTRYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 13:24:05 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:43428 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727006AbfHTRYF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 13:24:05 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7KHNwPl037361;
+        Tue, 20 Aug 2019 12:23:58 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566321839;
+        bh=3coPamp12U7rOrX0gGA1OOmWrMsb4FMbc1a7GqoR5iE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=P8CNwPEiQWKjL/gi/Aj422xAUWGW+SQMQHjVg7N+wGNwmzkoOaVM863qC8UcvVFg1
+         NWJRkXQOf+TseRQjGZ6Zd9+ZgLGASBBESnmb3/vK9ayyRvsXifBlUG0dX3+drZ4o8z
+         Y9Ov7CixACl8H6DcHWF5R7uLZL5cYWoebJFBL/zM=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7KHNwrl061587
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 20 Aug 2019 12:23:58 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 20
+ Aug 2019 12:23:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 20 Aug 2019 12:23:58 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7KHNwgv020020;
+        Tue, 20 Aug 2019 12:23:58 -0500
+Subject: Re: [PATCH 5/8] soc: ti: omap-prm: add omap4 PRM data
+To:     Tero Kristo <t-kristo@ti.com>, <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+ <1565164139-21886-6-git-send-email-t-kristo@ti.com>
+ <04bc6773-dbd4-e1ab-ce31-d93e99dafb33@ti.com>
+ <9d684bdc-28b8-0772-2957-93e01c55aae4@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <ed0ec707-ddea-cbfa-ecdf-99faeb770f3f@ti.com>
+Date:   Tue, 20 Aug 2019 12:23:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
+In-Reply-To: <9d684bdc-28b8-0772-2957-93e01c55aae4@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add hwlock, pmu, smem, tcsr_mutex_regs, apss_shared mailbox, apps_rsc
-including the rpmhcc child nodes to the SM8150 DTSI
+On 8/20/19 2:52 AM, Tero Kristo wrote:
+> On 20.8.2019 2.08, Suman Anna wrote:
+>> On 8/7/19 2:48 AM, Tero Kristo wrote:
+>>> Add PRM data for omap4 family of SoCs.
+>>>
+>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>>> ---
+>>>   drivers/soc/ti/omap_prm.c | 20 ++++++++++++++++++++
+>>>   1 file changed, 20 insertions(+)
+>>>
+>>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
+>>> index 870515e3..9b8d5945 100644
+>>> --- a/drivers/soc/ti/omap_prm.c
+>>> +++ b/drivers/soc/ti/omap_prm.c
+>>> @@ -54,7 +54,27 @@ struct omap_reset_data {
+>>>     #define OMAP_PRM_NO_RSTST    BIT(0)
+>>>   +struct omap_prm_data omap4_prm_data[] = {
+>>
+>> static const
+> 
+> Will fix this and rest of the similar comments.
+> 
+> -Tero
+> 
+>>
+>> regards
+>> Suman
+>>
+>>> +    { .name = "mpu", .base = 0x4a306300, .pwstst = 0x4 },
+>>> +    { .name = "tesla", .base = 0x4a306400, .pwstst = 0x4, .rstctl =
+>>> 0x10, .rstst = 0x14 },
+>>> +    { .name = "abe", .base = 0x4a306500, .pwstst = 0x4 },
+>>> +    { .name = "always_on_core", .base = 0x4a306600, .pwstst = 0x4 },
+>>> +    { .name = "core", .base = 0x4a306700, .pwstst = 0x4, .rstctl =
+>>> 0x210, .rstst = 0x214 },
+>>> +    { .name = "ivahd", .base = 0x4a306f00, .pwstst = 0x4, .rstctl =
+>>> 0x10, .rstst = 0x14 },
+>>> +    { .name = "cam", .base = 0x4a307000, .pwstst = 0x4 },
+>>> +    { .name = "dss", .base = 0x4a307100, .pwstst = 0x4 },
+>>> +    { .name = "gfx", .base = 0x4a307200, .pwstst = 0x4 },
+>>> +    { .name = "l3init", .base = 0x4a307300, .pwstst = 0x4 },
+>>> +    { .name = "l4per", .base = 0x4a307400, .pwstst = 0x4 },
+>>> +    { .name = "cefuse", .base = 0x4a307600, .pwstst = 0x4 },
+>>> +    { .name = "wkup", .base = 0x4a307700, .pwstst = 0x4 },
+>>> +    { .name = "emu", .base = 0x4a307900, .pwstst = 0x4 },
+>>> +    { .name = "device", .base = 0x4a307b00, .rstctl = 0x0, .rstst =
+>>> 0x4 },
 
-Co-developed-by: Sibi Sankar <sibis@codeaurora.org>
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 63 ++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+So, looks like you are using pwstctrl as 0 by default, but some of them
+will neither have pwstctrl or pwstst like "device" PRM here. Is the plan
+to use -1 for the fields, or a flags field?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 3bed04d60dea..781905e9977a 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -144,12 +144,23 @@
- 		};
- 	};
- 
-+	tcsr_mutex: hwlock {
-+		compatible = "qcom,tcsr-mutex";
-+		syscon = <&tcsr_mutex_regs 0 0x1000>;
-+		#hwlock-cells = <1>;
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		/* We expect the bootloader to fill in the size */
- 		reg = <0x0 0x80000000 0x0 0x0>;
- 	};
- 
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
-@@ -266,6 +277,12 @@
- 		};
- 	};
- 
-+	smem {
-+		compatible = "qcom,smem";
-+		memory-region = <&smem_mem>;
-+		hwlocks = <&tcsr_mutex 3>;
-+	};
-+
- 	soc: soc@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -305,6 +322,11 @@
- 			};
- 		};
- 
-+		tcsr_mutex_regs: syscon@1f40000 {
-+			compatible = "syscon";
-+			reg = <0x01f40000 0x40000>;
-+		};
-+
- 		tlmm: pinctrl@3100000 {
- 			compatible = "qcom,sm8150-pinctrl";
- 			reg = <0x03100000 0x300000>,
-@@ -320,6 +342,16 @@
- 			#interrupt-cells = <2>;
- 		};
- 
-+		aoss_qmp: power-controller@c300000 {
-+			compatible = "qcom,sm8150-aoss-qmp";
-+			reg = <0x0c300000 0x100000>;
-+			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
-+			mboxes = <&apss_shared 0>;
-+
-+			#clock-cells = <0>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		intc: interrupt-controller@17a00000 {
- 			compatible = "arm,gic-v3";
- 			interrupt-controller;
-@@ -329,6 +361,12 @@
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		apss_shared: mailbox@17c00000 {
-+			compatible = "qcom,sm8150-apss-shared";
-+			reg = <0x17c00000 0x1000>;
-+			#mbox-cells = <1>;
-+		};
-+
- 		timer@17c20000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -388,6 +426,31 @@
- 			};
- 		};
- 
-+		apps_rsc: rsc@18200000 {
-+			label = "apps_rsc";
-+			compatible = "qcom,rpmh-rsc";
-+			reg = <0x18200000 0x10000>,
-+			      <0x18210000 0x10000>,
-+			      <0x18220000 0x10000>;
-+			reg-names = "drv-0", "drv-1", "drv-2";
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+			qcom,tcs-offset = <0xd00>;
-+			qcom,drv-id = <2>;
-+			qcom,tcs-config = <ACTIVE_TCS  2>,
-+					  <SLEEP_TCS   1>,
-+					  <WAKE_TCS    1>,
-+					  <CONTROL_TCS 0>;
-+
-+			rpmhcc: clock-controller {
-+				compatible = "qcom,sm8150-rpmh-clk";
-+				#clock-cells = <1>;
-+				clock-names = "xo";
-+				clocks = <&xo_board>;
-+			};
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0c440000 0x0001100>,
--- 
-2.20.1
+regards
+Suman
+
+>>> +    { },
+>>> +};
+>>> +
+>>>   static const struct of_device_id omap_prm_id_table[] = {
+>>> +    { .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
+>>>       { },
+>>>   };
+>>>  
+>>
+> 
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
