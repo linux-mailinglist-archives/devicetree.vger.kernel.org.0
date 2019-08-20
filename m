@@ -2,145 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5EDA96C72
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 00:37:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 350AF96D38
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 01:21:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730755AbfHTWgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 18:36:51 -0400
-Received: from vps.xff.cz ([195.181.215.36]:47996 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730273AbfHTWgv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 18:36:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566340607; bh=uO4kjYw8eB31sD3ScgjYOEeWdoCbwJKmQbVJ8Gl4dXA=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=IftA8aves13TnC73lV44LsdRpB+WM1z5DbPR9sKEE0wpwYniJBHO24p0/pqcqfo25
-         hEm6tnj57PULGtClE7RjsDcPw0UkOMVpUuA5zVdFG/o+XPEPHNtI/pd6/OTrMAQ1Om
-         B7Zx6T5OvA32ApNOziJ88cyVi19SfdFutjpj/p7I=
-Date:   Wed, 21 Aug 2019 00:36:47 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH 2/6] dt-bindings: net: sun8i-a83t-emac: Add phy-io-supply
- property
-Message-ID: <20190820223647.n3a2mtdzigkbpc6x@core.my.home>
-Mail-Followup-To: Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
-References: <20190820145343.29108-1-megous@megous.com>
- <20190820145343.29108-3-megous@megous.com>
- <CAL_JsqLHeA6A_+ZgmCzC42Y6yJrEq6+D3vKn8ETh2D7LJ+1_-g@mail.gmail.com>
- <20190820163433.sr4lvjxmmhjtbtcb@core.my.home>
- <CAL_JsqJHNL91KMAP5ya97eiyTypGniCJ+tbP=NchPJK502i5FQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJHNL91KMAP5ya97eiyTypGniCJ+tbP=NchPJK502i5FQ@mail.gmail.com>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+        id S1726462AbfHTXUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 19:20:54 -0400
+Received: from mail-vk1-f201.google.com ([209.85.221.201]:46101 "EHLO
+        mail-vk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726427AbfHTXUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 19:20:54 -0400
+Received: by mail-vk1-f201.google.com with SMTP id j63so218244vkc.13
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 16:20:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=d/yRotIqofKL6ivNLT0spFL8C+ImKotVaARxIwjjT6U=;
+        b=AVw2bVu+4NwiDCTMe7ctCvAsytyWg/rXh1qSlFIYcZ34MZ2W4zFBX61usfUDXKDI+U
+         6mkzeHkKvCm3jsXc7ellvdvzMZ/yYq5pQYIgEJEeej2GmzjldUwbhas7sVL0y1BF9R5Q
+         aeLd89FDK15SPfbl+SuyrbqBs3o2uiag6LIW+dn6YgaIXzRVfITYu/qa+PVnh2pu0la1
+         EgwkQGeMgeft4WVs3y+cr1sGSCDFeF0e6bPs6wefJLtZGnA3fREotyJnv1WY33ED8Kos
+         PZta1YwDrJCXLZftQ0jdf7GzZQX+uUMqkEw7bGquy+vwd3aApIC+kCto7n+WJu4zEbsw
+         +lOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=d/yRotIqofKL6ivNLT0spFL8C+ImKotVaARxIwjjT6U=;
+        b=mF24EmAQUSgSOnqYZdzSXYUuXCAsgFNBL90UOnKxizNmQY59ztBIKAsYUNrkIWcvkz
+         +sVdjGEAgvYPoJLp5K4g9fvnYMYFgoH+4qY7xcfHi5CROZp1pVWnth1oUfviYsQ/JkI6
+         umodg0Z6A8VDRdVjuhDAM7Hp6JhSR8YKTifHL7DtSHQ67uf1h/2kYOx5IJTpgv7RhnFJ
+         FjEgHR8aSuUxKW2NGum9jWFUADMZAgJAfTF01R9tei0goFJe6H7EK4Yzsq6U4i+nuKDh
+         DNVO5LHZbPT7Nkb7GupdXP9GqKkG/khCWbaKx+NJEvuAAy1ly9okTQl3hMqaKG0xxHJQ
+         MWVg==
+X-Gm-Message-State: APjAAAVKBrZ4FgsrZ8XarVOrZU5SPG83yaRc+VFpN6R+naB/Hcz5jw3l
+        ZtLlGuRl3LnGKcMLK70n0ZOeynHYMsHsTikXLscKsg==
+X-Google-Smtp-Source: APXvYqxI/nPId+DHfk6D741GOqFrVhdMCpaqnV+6xqhMReBcYshk3sm1bvTSqco2NKWiElhS3+UgytqYYzLVwPw9MVYXZA==
+X-Received: by 2002:a67:2605:: with SMTP id m5mr19353609vsm.120.1566343253112;
+ Tue, 20 Aug 2019 16:20:53 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 16:20:28 -0700
+Message-Id: <20190820232046.50175-1-brendanhiggins@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.rc1.153.gdeed80330f-goog
+Subject: [PATCH v14 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 11:57:06AM -0500, Rob Herring wrote:
-> On Tue, Aug 20, 2019 at 11:34 AM Ondřej Jirman <megous@megous.com> wrote:
-> >
-> > On Tue, Aug 20, 2019 at 11:20:22AM -0500, Rob Herring wrote:
-> > > On Tue, Aug 20, 2019 at 9:53 AM <megous@megous.com> wrote:
-> > > >
-> > > > From: Ondrej Jirman <megous@megous.com>
-> > > >
-> > > > Some PHYs require separate power supply for I/O pins in some modes
-> > > > of operation. Add phy-io-supply property, to allow enabling this
-> > > > power supply.
-> > >
-> > > Perhaps since this is new, such phys should have *-supply in their nodes.
-> >
-> > Yes, I just don't understand, since external ethernet phys are so common,
-> > and they require power, how there's no fairly generic mechanism for this
-> > already in the PHY subsystem, or somewhere?
-> 
-> Because generic mechanisms for this don't work. For example, what
-> happens when the 2 supplies need to be turned on in a certain order
-> and with certain timings? And then add in reset or control lines into
-> the mix... You can see in the bindings we already have some of that.
+## TL;DR
 
-I've looked at the emac bindings that have phy-supply, and don't see reason
-why this can't be generic for the phy. Just like there's generic reset
-properties for phys, now. Some bindings, like fsl-fec.txt even list
-custom reset properties for phy as deprecated, and recommend using
-generic ones.
+This revision addresses comments from Shuah by removing two macros that
+were causing checkpatch errors. No API or major structual changes have
+been made since v13.
 
-From the point of the view of the emac driver, it just wants to power on/power
-off the phy, and wait until it's ready to be communicated with.
+## Background
 
-It's probably better to have power supplies of the phy covered by generic
-phy code, because then you don't have to duplicate all this special power
-up logic in every emac driver, whenever a HW designer decides to combine
-such emac with external phy that requires some special hadnling on powerup.
+This patch set proposes KUnit, a lightweight unit testing and mocking
+framework for the Linux kernel.
 
-At the moment, this lack of flexibility is hacked around by adding multiple
-regulators to the DTS, and making them dependent on each other (even if one
-doesn't supply the other), just because this makes the regulator core driver
-enable them all. Power up delays for the PHY are described as enable-ramp-delays
-on the regulators (actual regulator ramp delay + wait time for PHY to initialize).
+Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+it does not require installing the kernel on a test machine or in a VM
+(however, KUnit still allows you to run tests on test machines or in VMs
+if you want[1]) and does not require tests to be written in userspace
+running on a host kernel. Additionally, KUnit is fast: From invocation
+to completion KUnit can run several dozen tests in about a second.
+Currently, the entire KUnit test suite for KUnit runs in under a second
+from the initial invocation (build time excluded).
 
-Basically just hacking the DT so that the Linux kernel in the end does what's
-necessary, instead of DT describing the actual HW.
+KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+Googletest/Googlemock for C++. KUnit provides facilities for defining
+unit test cases, grouping related test cases into test suites, providing
+common infrastructure for running tests, mocking, spying, and much more.
 
-Adding a single supply property to the phy node, as you suggest will do nothing
-to help this situation. It will just result in a more complicated dwmac-sun8i
-driver and will not help anyone in the future.
+### What's so special about unit testing?
 
-So I think, maybe phy powerup should be moved to generic code, just like the
-phy reset code was. Generic code can have multiple supplies and some generic
-way to specify power up order and timings.
+A unit test is supposed to test a single unit of code in isolation,
+hence the name. There should be no dependencies outside the control of
+the test; this means no external dependencies, which makes tests orders
+of magnitudes faster. Likewise, since there are no external dependencies,
+there are no hoops to jump through to run the tests. Additionally, this
+makes unit tests deterministic: a failing unit test always indicates a
+problem. Finally, because unit tests necessarily have finer granularity,
+they are able to test all code paths easily solving the classic problem
+of difficulty in exercising error handling code.
 
-But I guess, this patch series is a dead end.
+### Is KUnit trying to replace other testing frameworks for the kernel?
 
-> > It looks like other ethernet mac drivers also implement supplies on phys
-> > on the EMAC nodes. Just grep phy-supply through dt-bindings/net.
-> >
-> > Historical reasons, or am I missing something? It almost seems like I must
-> > be missing something, since putting these properties to phy nodes
-> > seems so obvious.
-> 
-> Things get added one by one and one new property isn't that
-> controversial. We've generally learned the lesson and avoid this
-> pattern now, but ethernet phys are one of the older bindings.
+No. Most existing tests for the Linux kernel are end-to-end tests, which
+have their place. A well tested system has lots of unit tests, a
+reasonable number of integration tests, and some end-to-end tests. KUnit
+is just trying to address the unit test space which is currently not
+being addressed.
 
-Understood. So maybe the solution suggested above would improve the situation
-eventually?
+### More information on KUnit
 
-regards,
-	o.
+There is a bunch of documentation near the end of this patch set that
+describes how to use KUnit and best practices for writing unit tests.
+For convenience I am hosting the compiled docs here[2].
 
-> Rob
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Additionally for convenience, I have applied these patches to a
+branch[3]. The repo may be cloned with:
+git clone https://kunit.googlesource.com/linux
+This patchset is on the kunit/rfc/v5.3/v14 branch.
+
+## Changes Since Last Version
+
+- Removed to macros which helped define expectation and assertion
+  macros; these values are now just copied and pasted. Change was made
+  to fix checkpatch error, as suggested by Shuah.
+
+[1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+[2] https://google.github.io/kunit-docs/third_party/kernel/docs/
+[3] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.3/v14
+
+-- 
+2.23.0.rc1.153.gdeed80330f-goog
+
