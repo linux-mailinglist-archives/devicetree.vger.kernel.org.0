@@ -2,94 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F066295EB6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:34:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E10495EF9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:38:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729991AbfHTMea (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 08:34:30 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:46267 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728366AbfHTMea (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:34:30 -0400
-Received: by mail-pl1-f196.google.com with SMTP id c2so2685844plz.13;
-        Tue, 20 Aug 2019 05:34:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:date:message-id:in-reply-to:references:subject;
-        bh=VvukjUY7yhh1mplnuU0GBYTFIC/QRKOm4rOEw/3nSUA=;
-        b=QtvAZcslZsb3YgxB3Sj3yEhNi5/efLxNzCNroLsr7WgbWDAaiXEsyKWXwNFoqvBVb4
-         D6XeDlKWLc4YhwO5ngEkyMAVv26w55aUM/wMRfCDtZ4gPjLZ5bE9QjtXDTeAfibYZYkv
-         719vVeOG5NROCmxaERsw6JE0bgxYe64HG6cAaXfOLWpbSrx04T6zL0GyE1hmnsby9RkT
-         MCwWhUbPkayXJH3PQjNlHe47OPsQECMycxZU4kf7a8xp1wXZcgDwxR3BPV2xB8+wkXiV
-         jUGrNbdIKslkwNuUfQ0paJva6enwDphiyZzAcJ7woUd1XdWEoaNN945g8S50NJ6NweVt
-         +sTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:date:message-id:in-reply-to
-         :references:subject;
-        bh=VvukjUY7yhh1mplnuU0GBYTFIC/QRKOm4rOEw/3nSUA=;
-        b=uQvVbYfolojxceWW8fJceN5PW73Z6ANzxoMKdnFPnypovqt2q2PRL4iUcVFVg/a7Z4
-         QY6JMgYtpVAWz8tYG62fM4lKmQ78uyKdsw2nXY2rlYIU+yNDgDk7uaMCisoFmUPghjRJ
-         92GcIvxIlhnDyIByxkkSB2T4KUhUm6iO1fpd9rDpXs5YV6mLaOprugipEPVEpCoSdKWq
-         L1CQD/U26ktz9EDH4XCPH63W3fEq3Ss3aAOUqug1fIpJkKLjiqfomxZ2WFAXoY6BtkuY
-         Au+uyIrUbh75RCFhXL4L3WMNpJMzhiwcJyziIUrAy10fUNsQ7YahOy5K3arYngnKVDht
-         OkmQ==
-X-Gm-Message-State: APjAAAUN5QGEo4kGxkPmpHd21xwsG+mH1HppjNKKBfYph3fS5fCyUW7M
-        wiIxQjdJO4sIaAZcXPCgQpM1OgvU
-X-Google-Smtp-Source: APXvYqy4E2YYJ4bEXvIkA7jnUAYC58RuMccVQk/GnVbuRj6M4HygK8Pgt9JTX7vBHz56zHSU5X58+w==
-X-Received: by 2002:a17:902:1e8:: with SMTP id b95mr6254023plb.28.1566304469216;
-        Tue, 20 Aug 2019 05:34:29 -0700 (PDT)
-Received: from [127.0.0.1] (l193216.ppp.asahi-net.or.jp. [218.219.193.216])
-        by smtp.gmail.com with ESMTPSA id s3sm17522204pgq.17.2019.08.20.05.34.25
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Aug 2019 05:34:28 -0700 (PDT)
-From:   Magnus Damm <magnus.damm@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        geert+renesas@glider.be, daniel.lezcano@linaro.org,
-        linux-renesas-soc@vger.kernel.org, robh+dt@kernel.org,
-        horms+renesas@verge.net.au, Magnus Damm <magnus.damm@gmail.com>,
-        tglx@linutronix.de
-Date:   Tue, 20 Aug 2019 21:36:07 +0900
-Message-Id: <156630456771.17444.15687151782258703992.sendpatchset@octo>
-In-Reply-To: <156630449239.17444.11157306180861080402.sendpatchset@octo>
-References: <156630449239.17444.11157306180861080402.sendpatchset@octo>
-Subject: [PATCH v2 7/7] clocksource/drivers/sh_cmt: Document "cmt-48" as deprecated
+        id S1728366AbfHTMhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 08:37:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39508 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729383AbfHTMhq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 08:37:46 -0400
+Received: from localhost (unknown [106.201.62.126])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 14F3B22CF7;
+        Tue, 20 Aug 2019 12:37:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566304665;
+        bh=KVRO40K8LpJzjIGn+3A2o1Q+Qh1PnUhVIwtYsn2qK/8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=NO3vUFDUX463WH6brpjs4dLrAldhlu8dziuly8uDtxpA7StcPFZjE7HXWTr+ZOnhh
+         KtyA+D+Yml7EpqdI8GFWw1g9zbgdh6Ck+vawGicsbReK+9JfSC/DZl/S3+9WVFTAZP
+         MlxoJASXKv4NrGoNpMQWZ8Cw7BPAfjiGWs/rZ4H8=
+Date:   Tue, 20 Aug 2019 18:06:33 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 5/8] arm64: dts: qcom: sm8150-mtp: add base dts file
+Message-ID: <20190820123633.GC12733@vkoul-mobl.Dlink>
+References: <20190820064216.8629-1-vkoul@kernel.org>
+ <20190820064216.8629-6-vkoul@kernel.org>
+ <20190820122645.GB31261@centauri>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820122645.GB31261@centauri>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Magnus Damm <damm+renesas@opensource.se>
+On 20-08-19, 14:26, Niklas Cassel wrote:
+> On Tue, Aug 20, 2019 at 12:12:13PM +0530, Vinod Koul wrote:
+> > This add base DTS file for sm8150-mtp and enables boot to console, adds
+> > tlmm reserved range, resin node, volume down key and also includes pmic
+> > file.
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile       |  1 +
+> >  arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 48 +++++++++++++++++++++++++
+> >  2 files changed, 49 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 0a7e5dfce6f7..1964dacaf19b 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-mtp.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> > new file mode 100644
+> > index 000000000000..80b15f4f07c8
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> > @@ -0,0 +1,48 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +// Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+> > +// Copyright (c) 2019, Linaro Limited
+> > +
+> > +/dts-v1/;
+> > +
+> > +#include "sm8150.dtsi"
+> > +#include "pm8150.dtsi"
+> > +#include "pm8150b.dtsi"
+> > +#include "pm8150l.dtsi"
+> > +
+> > +/ {
+> > +	model = "Qualcomm Technologies, Inc. SM8150 MTP";
+> > +	compatible = "qcom,sm8150-mtp";
+> > +
+> > +	aliases {
+> > +		serial0 = &uart2;
+> > +	};
+> > +
+> > +	chosen {
+> > +		stdout-path = "serial0:115200n8";
+> > +	};
+> > +};
+> > +
+> > +&qupv3_id_1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&pon {
+> > +	pwrkey {
+> > +		status = "okay";
+> > +	};
+> > +
+> > +	resin {
+> > +		compatible = "qcom,pm8941-resin";
+> > +		interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_BOTH>;
+> > +		debounce = <15625>;
+> > +		bias-pull-up;
+> > +		linux,code = <KEY_VOLUMEDOWN>;
+> > +	};
+> > +};
+> 
+> Missing a newline here.
 
-Update the CMT driver to mark "renesas,cmt-48" as deprecated.
+Yup will updated
 
-Instead of documenting a theoretical hardware device based on current software
-support level, define DT bindings top-down based on available data sheet
-information and make use of part numbers in the DT compat string.
-
-In case of the only in-tree users r8a7740 and sh73a0 the compat strings
-"renesas,r8a7740-cmt1" and "renesas,sh73a0-cmt1" may be used instead.
-
-Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
----
-
- drivers/clocksource/sh_cmt.c |    6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
-
---- 0011/drivers/clocksource/sh_cmt.c
-+++ work/drivers/clocksource/sh_cmt.c	2019-07-18 19:31:01.917491800 +0900
-@@ -921,7 +921,11 @@ static const struct platform_device_id s
- MODULE_DEVICE_TABLE(platform, sh_cmt_id_table);
- 
- static const struct of_device_id sh_cmt_of_table[] __maybe_unused = {
--	{ .compatible = "renesas,cmt-48", .data = &sh_cmt_info[SH_CMT_48BIT] },
-+	{
-+		/* deprecated, preserved for backward compatibility */
-+		.compatible = "renesas,cmt-48",
-+		.data = &sh_cmt_info[SH_CMT_48BIT]
-+	},
- 	{
- 		/* deprecated, preserved for backward compatibility */
- 		.compatible = "renesas,cmt-48-gen2",
+-- 
+~Vinod
