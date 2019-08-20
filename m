@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B70496ABE
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD97196ACE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 22:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730006AbfHTUiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 16:38:25 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:45348 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728283AbfHTUiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:38:25 -0400
-Received: by mail-oi1-f195.google.com with SMTP id v12so5173507oic.12;
-        Tue, 20 Aug 2019 13:38:24 -0700 (PDT)
+        id S1730174AbfHTUmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 16:42:13 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:39095 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729156AbfHTUmN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 16:42:13 -0400
+Received: by mail-oi1-f196.google.com with SMTP id 16so5198455oiq.6;
+        Tue, 20 Aug 2019 13:42:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7VmI4UR9rm/Jfd08uHYSrv3Ihas2nSA2EW/A7sAlzUk=;
-        b=NZz+Q/nQp5XIJDHqOuZKxrlqHsz7DlKqAGfPwQw+ZIWoVvVirJzUdKy0D3SePNTrbi
-         oXJX70Ubh1xaczVNx+RqFnM4ehZhrWqs6cyhbFGPJYkfP+9qkx8d2UAX4YrkB5+wZu3A
-         4yw2J4s1M6UaUjgkRsTWqHXrKW42tpKV8kYRmUiMdOwuiQ7ZZqHiK0JvRZN6ZL4Gpkly
-         f1JsPfx180hyjBqpXHSZ5AyYsVvXw6SBTUshGwLW+4f9koeQjhk5poS15zAmTPQnKdDj
-         x/Iwnd1YkEaOFvt+MhMNZRoFS46Q8sT6d1sqjO+j9Kjcr/OBkkm29odhltz1HBO/suVP
-         5NhA==
+        bh=VtWPczm67CwBeu0M0TFGverK4/MDIuIxxwNeQ9S1vic=;
+        b=E3ArLV08QNk9L8LKJkIYGZl0DVDrokXHwB0vK/zDj9e6nIVu9k5BFrMf+kqHc8h0Pn
+         +lvOjcitC6Kd8udiShWwkBPzaeVjGAGlh5ptJav6c0MfzzkQQjxaTgCYdspnmNEs0W/E
+         0rVKb1yrsux6dU602RR/AyuRcq+MtuSzIvYWI7UWscpnspsah1vma5T+cT2i667idEi1
+         EI6egM+KNFL4qj4kH/BiK0YAnQAdiiFSV59fNHldRTL47sHlxq82rFyWVSGxEgEkiV64
+         OlNoQGdRbLG5MvqoK6H6ROBNqZrwJOxuQWncK1e4VuHo6ZhPKaM5KhcKBqGAb+mHOJO2
+         HtJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7VmI4UR9rm/Jfd08uHYSrv3Ihas2nSA2EW/A7sAlzUk=;
-        b=E99JNDHaioKtJ7cpLvIYt4LFYBjoiinPeu7zmMrW/LmQrtr0WcHVL2nnNE8EzrMBrZ
-         VefOSN4pmysh9gvFmgg1AjzE4GxsFH8U11ef5sd4dOfI1uxpaniHCBSFa3ePi/XleOfw
-         EyKBiekm9Pv9RF6tWSuvnSwItxnTchBtN5kFRnkd99aQJ/Cn57JpHUXFpSQTSGShWRIv
-         PWrC1gj06NABUTadxA0QL83xlz0LhYX2WO9kOPhNtvZwdqPoFR5al3YcHJ+aNjWnKqob
-         Ru8Fav69+ctaG97B6UK9N75sRZjzvUNx7Tyh+xatespf4ZNsJS3GhdDyxxPlMkZJDoty
-         EwDQ==
-X-Gm-Message-State: APjAAAUwTgq1+1RwwCy/OCrnjDqHK32/HyuhEnUQ7z+PguBbPaIRGe17
-        yM429ugQl+fpUvXbEgaCFyWyshSMPIVVgnaMHaMe7g==
-X-Google-Smtp-Source: APXvYqxrzFrQ+g2QEmNNouNemvPcTmQHcQR4X6WXqzrbCBDuYyrd6w2oQ7citF3f2pm6VSFkWc7jHwI34ndZ7LUVb4I=
-X-Received: by 2002:a05:6808:b14:: with SMTP id s20mr1380498oij.15.1566333504047;
- Tue, 20 Aug 2019 13:38:24 -0700 (PDT)
+        bh=VtWPczm67CwBeu0M0TFGverK4/MDIuIxxwNeQ9S1vic=;
+        b=fl5PyG4Y66zBjioFtHkzOFh5xHxriaHYwc1tM/oU8U4MV0ZONtaSoWG6ZUNNeJnBpF
+         KzIaazT7WsYYFHZXgtbN8QglpJjrmJhkgWlrmTaiPCUZga80W/9TJRLuY3ajxDT8wPI5
+         RcwoD7NMC2YDUZ2KMWlNQXiplJ5oPeonP0jQV35HGBmDsvUyq6MA/RrzwJnHvDlH6Zd1
+         bvZXyM4DjBxyBypRS16lKtFr0BvK/iunqXypuorx6QJ4vXi/snN9A/ieqLPF643Lqczs
+         9fcZLEYr9BqBtRCBKxi2BRiOVN96VEerynNeKQxKEppjkzZthlAN1G4vj/+tdeVoPlyL
+         WIig==
+X-Gm-Message-State: APjAAAUOQPcYQQ0TFj7OYybCZp706T2jsZFA8ROfmbbafSh5fgqR9yyH
+        DC892ZlShaDjAPiQBzFNIGHhqmtDCw/AzfpLBUY=
+X-Google-Smtp-Source: APXvYqzRHZsEZywX6PGgcnI3U8bBt1UQySc3ErcGAntuVNC98xdGIfDMOtYZ9Vh3M4F1lTu7dXuxyT52H7ClOJeIK6I=
+X-Received: by 2002:aca:d650:: with SMTP id n77mr1448561oig.129.1566333732518;
+ Tue, 20 Aug 2019 13:42:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-9-narmstrong@baylibre.com>
-In-Reply-To: <20190814142918.11636-9-narmstrong@baylibre.com>
+References: <20190814142918.11636-1-narmstrong@baylibre.com> <20190814142918.11636-11-narmstrong@baylibre.com>
+In-Reply-To: <20190814142918.11636-11-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 20 Aug 2019 22:38:13 +0200
-Message-ID: <CAFBinCAyhfk1wq0ejXazTWQ=eNqDROauB_Kbc80+ekPQ7oB9Ww@mail.gmail.com>
-Subject: Re: [PATCH 08/14] arm64: dts: meson-gxl: fix internal phy compatible
-To:     Neil Armstrong <narmstrong@baylibre.com>, jbrunet@baylibre.com
+Date:   Tue, 20 Aug 2019 22:42:01 +0200
+Message-ID: <CAFBinCB=kMELC94MUQt_n3QagsjNn0YjDfcZ1qk5tghCxjmtJg@mail.gmail.com>
+Subject: Re: [PATCH 10/14] arm64: dts: meson-g12a: fix reset controller compatible
+To:     Neil Armstrong <narmstrong@baylibre.com>
 Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
@@ -57,37 +57,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-adding Jerome
-
-On Wed, Aug 14, 2019 at 4:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Wed, Aug 14, 2019 at 4:32 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > This fixes the following DT schemas check errors:
-> meson-gxl-s805x-libretech-ac.dt.yaml: ethernet-phy@8: compatible: ['ethernet-phy-id0181.4400', 'ethernet-phy-ieee802.3-c22'] is not valid under any of the given schemas
->
+> meson-g12a-u200.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
+> meson-g12a-sei510.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
+note to self: reference where the decision against a g12a reset
+compatible string was made -> [0]
+
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> index ee1ecdbcc958..43eb158bee24 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
-> @@ -709,7 +709,7 @@
->                         #size-cells = <0>;
->
->                         internal_phy: ethernet-phy@8 {
-> -                               compatible = "ethernet-phy-id0181.4400", "ethernet-phy-ieee802.3-c22";
-> +                               compatible = "ethernet-phy-id0181.4400";
-on G12A there was a specific reason (iirc it was because the PHY ID
-can be any arbitrary value programmed into some register) why we added
-it with a compatible string
-Jerome, do we have the same situation on GXL/GXM as well?
-
-if not I prefer to drop the compatible string because it's probably
-from a time where the PHY dt-bindings stated "add the PHY ID
-compatible string if you know it" while the actual suggestion was
-"only add it if reading the ID doesn't work for some reason"
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
 
-Martin
+[0] https://lkml.org/lkml/2019/2/7/358
