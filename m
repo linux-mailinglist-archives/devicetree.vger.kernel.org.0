@@ -2,108 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 724B395EB2
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D85E95ECB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 14:36:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729762AbfHTMe1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 08:34:27 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:38476 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728366AbfHTMe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 08:34:27 -0400
-Received: by mail-wm1-f65.google.com with SMTP id m125so2499050wmm.3;
-        Tue, 20 Aug 2019 05:34:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xa07j27CudydjRpMZ106HsEb06gJp/wN03S1cLbpmTQ=;
-        b=ZDrqG7EdEka57QuU+p7FwChFS6PiBSZPU4k9m0CBOU2pyzYSTBT+3gBsaYkN7v6FPQ
-         9FQkvi+8nZDIcClqJfc/LaCjQdS8RUFLOAdZ8MtW5iAvt3s3qUh/vLHQ90qFq32qwowD
-         NRYPkIHnY/MTCr1GwuW8/2jcnfcrA73KpKjaAjw/h+OEnrDhIi28zoiNexo/0IK/qVUV
-         zzfjvmLwuvpvXefs7cWvhPt9Mvw6SE8DzzYFp7VWEW99No6Tf5J2SvxP9/gfHlqVTQXf
-         zzNpiRs1z3M2FhVVPZBE+V1SXmDd8bRMfiSgvHR3zWrGAUeFbhdiXhWentP7OnlNsdL+
-         FcFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xa07j27CudydjRpMZ106HsEb06gJp/wN03S1cLbpmTQ=;
-        b=Jata6+jJhUQz7svtNWrI+BQbaMYtgB6Xln5kCm2OIWrDgkrSaevjrHFQUct9oDVKPQ
-         bcFOW9A4k4qlvXfd3v5DctIc/23dYwgsIwzUxzy/Yv4k4d1HH71dx7keil1hq9UHX0wE
-         InI3ajSvhxh65qI0h8sQSAV8kb1L7LKyI+RnVN2hl5aoUuOWIhnMs0FJ/1m0HWW+ToUN
-         9lZv79b6YNR3gJewPeTqdGaZcqlbX1TAr6y3KUMmwiW8s+qYzatcuJmL6AScFPtpMmmc
-         Hqj3x7sM6MYwJZkd7Muw16QihhOex8OWj1rCyyU1dEBV+Yg1vFdHbbaWvAsYiODHQ7x8
-         w3jA==
-X-Gm-Message-State: APjAAAUt6gHICrrPr5CA0iW3JKNRz06Crw65LOwoHW8RamzZ7SlY0izz
-        sD1uYgjZbOtVDBue6n411DB1xa5CkwHn1gpQtCW9SQ==
-X-Google-Smtp-Source: APXvYqzpLw62X1lQkUKh9feSfGHBguEYlMo/8dLhOPZPDUGsRCN74drQ6d4X8vb8lq3jOO7aauUmUmOazv66wZFCqYs=
-X-Received: by 2002:a1c:5453:: with SMTP id p19mr26516638wmi.120.1566304465489;
- Tue, 20 Aug 2019 05:34:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <156345023791.5307.6113391102648394591.sendpatchset@octo>
- <156345032407.5307.16702422867507502597.sendpatchset@octo> <20190724111227.qaeq3d5mkeyvlkq3@verge.net.au>
-In-Reply-To: <20190724111227.qaeq3d5mkeyvlkq3@verge.net.au>
-From:   Magnus Damm <magnus.damm@gmail.com>
-Date:   Tue, 20 Aug 2019 21:34:13 +0900
-Message-ID: <CANqRtoTN3Ea6LK2BwdUevWOPRiquBWmw=foEDPMzsRut08QcPA@mail.gmail.com>
-Subject: Re: [PATCH 6/7] clocksource/drivers/sh_cmt: r8a7740 and sh73a0
- SoC-specific match
-To:     Simon Horman <horms@verge.net.au>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        id S1728993AbfHTMfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 08:35:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38096 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727006AbfHTMfz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 08:35:55 -0400
+Received: from localhost (unknown [106.201.62.126])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 51B3222DA7;
+        Tue, 20 Aug 2019 12:35:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566304555;
+        bh=nJ0mcbMfylwac8G88uFjWYi2IIkTy/0t3muFG+48Pwo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=eo5zTxquyKft1fh7Dl1i0gfO749DVg6E05GBvwPBx6Bhjs434sfYJN+6g5kMyzihI
+         ioENbddmBvHJKd7HzIIUPkSg6TFJkg8Yi/9yPOMlCSqok+HisyEC5R4QzOOiDRv78f
+         T6igoogdaQtVfX0wn7HN7TMbfPtP/qdu6bmFnAFk=
+Date:   Tue, 20 Aug 2019 18:04:43 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/8] arm64: dts: qcom: pm8150: Add Base DTS file
+Message-ID: <20190820123443.GA12733@vkoul-mobl.Dlink>
+References: <20190820064216.8629-1-vkoul@kernel.org>
+ <20190820064216.8629-3-vkoul@kernel.org>
+ <20190820122719.GD31261@centauri>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820122719.GD31261@centauri>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
-
-On Wed, Jul 24, 2019 at 8:12 PM Simon Horman <horms@verge.net.au> wrote:
->
-> On Thu, Jul 18, 2019 at 08:45:24PM +0900, Magnus Damm wrote:
-> > From: Magnus Damm <damm+renesas@opensource.se>
-> >
-> > Add SoC-specific matching for CMT1 on r8a7740 and sh73a0.
-> >
-> > This allows us to move away from the old DT bindings such as
-> >  - "renesas,cmt-48-sh73a0"
-> >  - "renesas,cmt-48-r8a7740"
-> >  - "renesas,cmt-48"
-> > in favour for the now commonly used format "renesas,<soc>-<device>"
-> >
-> > Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
->
-> Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
-
-Thanks!
-
+On 20-08-19, 14:27, Niklas Cassel wrote:
+> On Tue, Aug 20, 2019 at 12:12:10PM +0530, Vinod Koul wrote:
+> > Add base DTS file for pm8150 along with GPIOs, power-on, rtc and vadc
+> > nodes
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
 > > ---
-> >
-> >  drivers/clocksource/sh_cmt.c |    8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > --- 0001/drivers/clocksource/sh_cmt.c
-> > +++ work/drivers/clocksource/sh_cmt.c 2019-07-18 19:29:06.005414716 +0900
-> > @@ -928,6 +928,14 @@ static const struct of_device_id sh_cmt_
-> >               .data = &sh_cmt_info[SH_CMT0_RCAR_GEN2]
-> >       },
-> >       {
-> > +             .compatible = "renesas,r8a7740-cmt1",
-> > +             .data = &sh_cmt_info[SH_CMT_48BIT]
->
-> Perhaps as a follow-up SH_CMT_48BIT could be renamed.
+> >  arch/arm64/boot/dts/qcom/pm8150.dtsi | 95 ++++++++++++++++++++++++++++
+> >  1 file changed, 95 insertions(+)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/pm8150.dtsi
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> > new file mode 100644
+> > index 000000000000..4a678be46d37
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> > @@ -0,0 +1,95 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +// Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+> > +// Copyright (c) 2019, Linaro Limited
+> > +
+> > +#include <dt-bindings/input/input.h>
+> > +#include <dt-bindings/interrupt-controller/irq.h>
+> > +#include <dt-bindings/spmi/spmi.h>
+> > +#include <dt-bindings/iio/qcom,spmi-vadc.h>
+> > +
+> > +&spmi_bus {
+> > +	pm8150_0: pmic@0 {
+> > +		compatible = "qcom,pm8150", "qcom,spmi-pmic";
+> > +		reg = <0x0 SPMI_USID>;
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +
+> > +		pon: power-on@800 {
+> > +			compatible = "qcom,pm8916-pon";
+> > +			reg = <0x0800>;
+> > +			pwrkey {
+> > +				compatible = "qcom,pm8941-pwrkey";
+> > +				interrupts = <0x0 0x8 0 IRQ_TYPE_EDGE_BOTH>;
+> 
+> Here you use 0 for 3rd cell
+> 
+> > +				debounce = <15625>;
+> > +				bias-pull-up;
+> > +				linux,code = <KEY_POWER>;
+> > +
+> > +				status = "disabled";
+> > +			};
+> > +		};
+> > +
+> > +		pm8150_adc: adc@3100 {
+> > +			compatible = "qcom,spmi-adc5";
+> > +			reg = <0x3100>;
+> > +			#address-cells = <1>;
+> > +			#size-cells = <0>;
+> > +			#io-channel-cells = <1>;
+> > +			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+> 
+> Here you use 0x0 for 3rd cell, be consistent.
 
-I was actually considering implementing proper 48-bit support, and
-reworking those names might be a good idea at that point.
+Will make it either at this and other places, thanks for pointing!
 
-Cheers,
-
-/ magnus
+-- 
+~Vinod
