@@ -2,68 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A58895AB4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0157895ADA
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:21:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729418AbfHTJLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 05:11:05 -0400
-Received: from first.geanix.com ([116.203.34.67]:33080 "EHLO first.geanix.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729194AbfHTJLF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 05:11:05 -0400
-Received: from [192.168.100.95] (unknown [95.138.208.137])
-        by first.geanix.com (Postfix) with ESMTPSA id 4CD5826D;
-        Tue, 20 Aug 2019 09:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=geanix.com; s=first;
-        t=1566292259; bh=dmvxfghRb+CluZgXEcNklhxE/ZtMdJJHUrKJYR+0P3A=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=Sq6ZPs1MPczAYn78teDURij3Vgq2btC93C3H942O4VmblwtDZKXPGr4LQyN1vbNtp
-         W0XV0QhdKXeuwcBOkY+cZsBC0qC49hhQKp4IDwvSWeI2vbnNbLvUKqp4nuNOuH4S4w
-         IkRjpTref7oDKrHRsWCBktWnQ1zzpO08bzG/sDItHfrwmXAhphffN0nzxjlnHxOfpJ
-         NZz3l+sAxJkbJH8Vj5O3S9LF7xxe8hbsVfAhA0goKPQp/ejLQnnK6Tgf/GbYMTTyut
-         19TjBDF+vXzF00nLT8xZihI7SVC4Wh44uuK/vDxlFSr3wUwfC+32C9nMjKzplAc4pp
-         C0Cw/h7UnxzUA==
-Subject: Re: [PATCH 2/2] dt-bindings: can: flexcan: add can wakeup property
-To:     linux-can@vger.kernel.org, mkl@pengutronix.de
-Cc:     Rob Herring <robh@kernel.org>, netdev@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <20190409083949.27917-1-sean@geanix.com>
- <20190409083949.27917-2-sean@geanix.com> <20190429173930.GA11283@bogus>
-From:   Sean Nyekjaer <sean@geanix.com>
-Message-ID: <9e152f0d-fd1c-cb6f-2d9a-730804f8ec41@geanix.com>
-Date:   Tue, 20 Aug 2019 11:10:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1729396AbfHTJVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 05:21:17 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:43447 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729395AbfHTJVR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 05:21:17 -0400
+Received: by mail-pg1-f194.google.com with SMTP id k3so2872508pgb.10
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 02:21:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=fNqn8jt+Eu/y3WAdZBc6pAlsOtl2wpEF2Ezb9uPuzFs=;
+        b=bm7qZSrIUp7yfrt8m+6HQ+L0yN+04ev62t82CQ5xfoJbY9ugfFikx3iuSAvbmhTpFg
+         1rxCbeHAR9Yu74VEgkJ/NCLgBT+vvo46ilJ0GSi92qPvxRlB4whvjXoc0KTkpOWQQgth
+         qHRZAzKAHBUuasKjsfEeXe8lbZldF4DJ8J4+fVY3UScx6BERp1etA4IXQR7Ty7i4yvGe
+         GG5Y8GAYJjCuT2VFdOToY7CULRMaHMOvOwvCYmaP3dd0e6/JUxXu0My+AxDtBeAUHgA4
+         HIeSRSxc5fq+Q31UyD5zpQ+J3dGEIHWJy22zqGq1wz+N5seTYf3befQt64QvzxF46OLw
+         Va/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=fNqn8jt+Eu/y3WAdZBc6pAlsOtl2wpEF2Ezb9uPuzFs=;
+        b=Fjy3lBDdvMc9WyyMb0C7hjdBtx+yfyNTZRUd7IMyhk7H9+qwUavyOXnEhVecF3iKyM
+         XlwVvClT+8OhzsELyl99zXq0qstkhZ2yGtRfJU69qak7f0JjsfCuxTWxMdersoMWovnC
+         ZJ4K3mfCDpr/iO2/OA5jm/U+1drwe7TxYC8yOaQDUduejAO3BMO15Fpx8CntApWfDv53
+         xdUUFckGdD+H6WnYXTv9cllgJppbrqiPeu4b9HcorCWT2uxxPOFEvFPQS29iIUAtAVJd
+         8BChlBWRkjj7wMxFhyl7iCLBftkPcyxZdhwDsCYoLqmpiM7DlhSWObj4jbymX9KGKeSN
+         Hexw==
+X-Gm-Message-State: APjAAAWDq37n53yygZoohzfCf3wuVuxA89b/f4Vqf+fegbbDnA2Qsvfj
+        GpX1ZmbF1+AkamxCaEEAE187xw==
+X-Google-Smtp-Source: APXvYqx3NGkLs8NsqtiC35VhZLducwJHY2iFYVWb66LyAIkzov9xYbt/7XwPAuKAdHf72ZcfwGfM/g==
+X-Received: by 2002:aa7:991a:: with SMTP id z26mr24899786pff.43.1566292876575;
+        Tue, 20 Aug 2019 02:21:16 -0700 (PDT)
+Received: from localhost ([122.172.76.219])
+        by smtp.gmail.com with ESMTPSA id 5sm17229250pgh.93.2019.08.20.02.21.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 20 Aug 2019 02:21:15 -0700 (PDT)
+Date:   Tue, 20 Aug 2019 14:51:13 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>, krzk@kernel.org,
+        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, b.zolnierkie@samsung.com
+Subject: Re: [PATCH v2 0/9] Exynos Adaptive Supply Voltage support
+Message-ID: <20190820092113.gojhe3romdnvm7eu@vireshk-i7>
+References: <20190723020450.z2pqwetkn2tfhacq@vireshk-i7>
+ <5ef302a4-5bbf-483d-dfdf-cf76f6f69cee@samsung.com>
+ <20190725022343.p7lqalrh5svxvtu2@vireshk-i7>
+ <562dd2e7-2b24-8492-d1c1-2dc4973f07be@samsung.com>
+ <20190819090928.pke6cov52n4exlbp@vireshk-i7>
+ <b831d7c5-c830-fd65-20cf-02e209889c28@samsung.com>
+ <20190819112533.bvfyinw7fsebkufr@vireshk-i7>
+ <b7093aaf-ea56-c390-781f-6f9d0780bd8e@samsung.com>
+ <20190820030114.6flnn2omeys3lih3@vireshk-i7>
+ <06ccff05-2152-4bcc-7537-8f24da75f163@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <20190429173930.GA11283@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US-large
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-3.1 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,URIBL_BLOCKED
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on 77834cc0481d
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <06ccff05-2152-4bcc-7537-8f24da75f163@samsung.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 29/04/2019 19.39, Rob Herring wrote:
-> On Tue,  9 Apr 2019 10:39:49 +0200, Sean Nyekjaer wrote:
->> add wakeup-source boolean property.
->>
->> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
->> ---
->>   Documentation/devicetree/bindings/net/can/fsl-flexcan.txt | 2 ++
->>   1 file changed, 2 insertions(+)
->>
+On 20-08-19, 11:03, Sylwester Nawrocki wrote:
+> On 8/20/19 05:01, Viresh Kumar wrote:
+> > Sorry but I am unable to understand the difficulty you are facing now. So what I
+> > suggest is something like this.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
->
-This doesn't seem to be applied. PATCH 1/2 in this series is applied.
+> The difficulty was about representing data from tables asv_{arm,kfc}_table[][]
+> added in patch 3/9 of the series in devicetree.  If you have no objections
+> about keeping those tables in the driver then I can't see any difficulties. 
 
-In any case which repo does this patch belong to?
+The problem with keeping such tables in kernel is that they contain too much
+magic values which very few people understand. And after some amount of time,
+even they don't remember any of it.
 
-/Sean
+What I was expecting was to remove as much of these tables as possible and do
+the calculations to get them at runtime with some logical code which people can
+understand later on.
+
+> > - Use DT to get a frequency and voltage for each frequency.
+> 
+> Yes, this is what happens now, we have common OPPs in DT that work for each SoC
+> revision. 
+> 
+> > - At runtime, based on SoC, registers, efuses, etc, update the voltage of the
+> >   OPPs.
+> > - This algo can be different for each SoC, no one is stopping you from doing
+> >   that.
+> > 
+> > Am I missing something ?
+> 
+> Not really, this is basically what happens in the $subject patch series. 
+> 
+> Then IIUC what I would need to change is to modify exynos_asv_update_cpu_opps() 
+> function in patch 3/9 to use dev_pm_opp_adjust_voltage() rather than 
+> dev_pm_opp_remove(), dev_pm_opp_add().
+
+That and somehow add code to get those tables if possible.
+
+-- 
+viresh
