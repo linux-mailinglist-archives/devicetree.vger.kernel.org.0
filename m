@@ -2,175 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FD4A9578B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 08:44:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B63F957E8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 09:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729000AbfHTGok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 02:44:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40302 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729273AbfHTGok (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 02:44:40 -0400
-Received: from localhost.localdomain (unknown [106.201.62.126])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F29AF2082F;
-        Tue, 20 Aug 2019 06:44:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566283479;
-        bh=avgQr0nAKi9Nm14cJjqVKLyuHxantFYztUHzrSX7h0w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XjS884YCr3suQERr1OV2u+BcFisAgMI5L9RPSlPLLDrmPAmCmW1gvfuXeiqg/Bomx
-         A1huOWd9tzGWaI4PPyZIFtw1hWHaMDZcb39CDPT0xCUZlKidksbXDhhahKWnCzU/Dw
-         dI2mhyK1p6TUgkYZFxNGfifLwT3cpnlD4iQ72ENs=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S1728947AbfHTHLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 03:11:46 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:50919 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728777AbfHTHLq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 03:11:46 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id A19A340002;
+        Tue, 20 Aug 2019 07:11:42 +0000 (UTC)
+Date:   Tue, 20 Aug 2019 09:11:42 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 8/8] arm64: dts: qcom: sm8150: Add apps shared nodes
-Date:   Tue, 20 Aug 2019 12:12:16 +0530
-Message-Id: <20190820064216.8629-9-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190820064216.8629-1-vkoul@kernel.org>
-References: <20190820064216.8629-1-vkoul@kernel.org>
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v4 02/10] clk: sunxi-ng: Mark AR100 clocks as critical
+Message-ID: <20190820071142.2bgfsnt75xfeyusp@flea>
+References: <20190820032311.6506-1-samuel@sholland.org>
+ <20190820032311.6506-3-samuel@sholland.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="i7cnfwqz3x4wuuzw"
+Content-Disposition: inline
+In-Reply-To: <20190820032311.6506-3-samuel@sholland.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add apss_shared and apps_rsc including the rpmhcc child node, pmu, SMEM
-nodes
 
-Co-developed-by: Sibi Sankar <sibis@codeaurora.org>
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sm8150.dtsi | 63 ++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+--i7cnfwqz3x4wuuzw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-index 8bf4b4c17ae0..cf58b367df28 100644
---- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-@@ -142,12 +142,23 @@
- 		};
- 	};
- 
-+	tcsr_mutex: hwlock {
-+		compatible = "qcom,tcsr-mutex";
-+		syscon = <&tcsr_mutex_regs 0 0x1000>;
-+		#hwlock-cells = <1>;
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		/* We expect the bootloader to fill in the size */
- 		reg = <0 0x80000000 0 0>;
- 	};
- 
-+	pmu {
-+		compatible = "arm,armv8-pmuv3";
-+		interrupts = <GIC_PPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+
- 	psci {
- 		compatible = "arm,psci-1.0";
- 		method = "smc";
-@@ -264,6 +275,12 @@
- 		};
- 	};
- 
-+	smem {
-+		compatible = "qcom,smem";
-+		memory-region = <&smem_mem>;
-+		hwlocks = <&tcsr_mutex 3>;
-+	};
-+
- 	soc: soc@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
-@@ -303,6 +320,11 @@
- 			};
- 		};
- 
-+		tcsr_mutex_regs: syscon@1f40000 {
-+			compatible = "syscon";
-+			reg = <0x01f40000 0x40000>;
-+		};
-+
- 		tlmm: pinctrl@3100000 {
- 			compatible = "qcom,sm8150-pinctrl";
- 			reg = <0x03100000 0x300000>,
-@@ -318,6 +340,16 @@
- 			#interrupt-cells = <2>;
- 		};
- 
-+		aoss_qmp: power-controller@c300000 {
-+			compatible = "qcom,sm8150-aoss-qmp";
-+			reg = <0x0c300000 0x100000>;
-+			interrupts = <GIC_SPI 389 IRQ_TYPE_EDGE_RISING>;
-+			mboxes = <&apss_shared 0>;
-+
-+			#clock-cells = <0>;
-+			#power-domain-cells = <1>;
-+		};
-+
- 		intc: interrupt-controller@17a00000 {
- 			compatible = "arm,gic-v3";
- 			interrupt-controller;
-@@ -327,6 +359,12 @@
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		apss_shared: mailbox@17c00000 {
-+			compatible = "qcom,sm8150-apss-shared";
-+			reg = <0x17c00000 0x1000>;
-+			#mbox-cells = <1>;
-+		};
-+
- 		timer@17c20000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
-@@ -386,6 +424,31 @@
- 			};
- 		};
- 
-+		apps_rsc: rsc@18200000 {
-+			label = "apps_rsc";
-+			compatible = "qcom,rpmh-rsc";
-+			reg = <0x18200000 0x10000>,
-+			      <0x18210000 0x10000>,
-+			      <0x18220000 0x10000>;
-+			reg-names = "drv-0", "drv-1", "drv-2";
-+			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-+			qcom,tcs-offset = <0xd00>;
-+			qcom,drv-id = <2>;
-+			qcom,tcs-config = <ACTIVE_TCS  2>,
-+					  <SLEEP_TCS   1>,
-+					  <WAKE_TCS    1>,
-+					  <CONTROL_TCS 0>;
-+
-+			rpmhcc: clock-controller {
-+				compatible = "qcom,sm8150-rpmh-clk";
-+				#clock-cells = <1>;
-+				clock-names = "xo";
-+				clocks = <&xo_board>;
-+			};
-+		};
-+
- 		spmi_bus: spmi@c440000 {
- 			compatible = "qcom,spmi-pmic-arb";
- 			reg = <0x0c440000 0x0001100>,
--- 
-2.20.1
+Hi,
 
+On Mon, Aug 19, 2019 at 10:23:03PM -0500, Samuel Holland wrote:
+> On sun8i, sun9i, and sun50i SoCs, system suspend/resume support requires
+> firmware running on the AR100 coprocessor (the "SCP"). Such firmware can
+> provide additional features, such as thermal monitoring and poweron/off
+> support for boards without a PMIC.
+>
+> Since the AR100 may be running critical firmware, even if Linux does not
+> know about it or directly interact with it (all requests may go through
+> an intermediary interface such as PSCI), Linux must not turn off its
+> clock.
+>
+> At this time, such power management firmware only exists for the A64 and
+> H5 SoCs.  However, it makes sense to take care of all CCU drivers now
+> for consistency, and to ease the transition in the future once firmware
+> is ported to the other SoCs.
+>
+> Leaving the clock running is safe even if no firmware is present, since
+> the AR100 stays in reset by default. In most cases, the AR100 clock is
+> kept enabled by Linux anyway, since it is the parent of all APB0 bus
+> peripherals. This change only prevents Linux from turning off the AR100
+> clock in the rare case that no peripherals are in use.
+>
+> Signed-off-by: Samuel Holland <samuel@sholland.org>
+
+So I'm not really sure where you want to go with this.
+
+That clock is only useful where you're having a firmware running on
+the AR100, and that firmware would have a device tree node of its own,
+where we could list the clocks needed for the firmware to keep
+running, if it ever runs. If the driver has not been compiled in /
+loaded, then we don't care either.
+
+But more fundamentally, if we're going to use SCPI, then those clocks
+will not be handled by that driver anyway, but by the firmware, right?
+
+So I'm not really sure that we should do it statically this way, and
+that we should do it at all.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--i7cnfwqz3x4wuuzw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVudLgAKCRDj7w1vZxhR
+xUA2AP9aAfcTGshTf2qlHF7BN2TrmF218A9337dfKfbyq+0aCAD7Bcox3Vtd+uUp
+V0EntkOUoyN+OLRb+3kD0UVgB/gcBwM=
+=xm76
+-----END PGP SIGNATURE-----
+
+--i7cnfwqz3x4wuuzw--
