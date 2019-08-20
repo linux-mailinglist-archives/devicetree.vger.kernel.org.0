@@ -2,58 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F6D095B68
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514BA95B6C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 11:46:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729568AbfHTJqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 05:46:32 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:39558 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728545AbfHTJqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 05:46:31 -0400
-Received: by mail-wr1-f67.google.com with SMTP id t16so11672171wra.6
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 02:46:30 -0700 (PDT)
+        id S1728426AbfHTJqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 05:46:33 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:39560 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729553AbfHTJqc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Aug 2019 05:46:32 -0400
+Received: by mail-wr1-f65.google.com with SMTP id t16so11672213wra.6
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 02:46:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M8ToaxucjQlogdMowFdkWR4IXJJ6iFaHGB902RHdk/E=;
-        b=PV+jCn5O0GP3lMpzRKJ+dTfqwwE4XtQgfuEpI54AC4CvTC850JS4o5NLOct67iouHE
-         A32sxWArxSA3FhY7BhgfkbcjaSYOtgPISE1Ote0/9d54jaABzpD9SprjMrMUQtDlOfjs
-         D3q/xsgO64/aWwii7jU7JJcfDRwkcKUn65q8BGa3depykDfLotzazu6I8ewvAJUGiFGx
-         c3p7WC64jTJCFusWmvl3ubXuFsiuv4xpr3cYbBd9h31/FXEL+5FS4FWNVCK237TZ5KGd
-         3KUNzFmXqXrfP9aiK5OxttInGX+2KAGjG54GI4Eb3WWrkxY5DVew94gLB1GavL5SrzWR
-         lI9g==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Wu+Hc1WycBhYeKR1pHbRQ6nVmuPzQ42/00GPF9ACS0U=;
+        b=skd+6wLZFaGGAnwwAVlawhB0YB3fgyzkrfNxyIbQmuSYzcxK1m5LRcV3YMhTHl6xnT
+         WQqyOczqznGQEwtngKkgVihlcWs6C+BPd2XjqYCCBde1YcFH7Ju+HioxY4GbB/T3TldC
+         4/mI7j1o3rv8VLZFhgDYPIHlj5zH/Wt0FcRcXvzoMYw0br9N/d/GrnjfUsUgFsJHpw4s
+         1zOFffK4RCWzi2hPVSHMbacYWjw2IHnt56AP0qZnWpzopOBzLMlna1tkorQWvv817zOw
+         g+PzR3AE/PwtO4klH7y1MkabhZFOhE5XHJsk02tpaym8JiNbkZx8t6dZxllpdtgfTp2/
+         wI9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M8ToaxucjQlogdMowFdkWR4IXJJ6iFaHGB902RHdk/E=;
-        b=bP0bqtQT6a0gs3Xm0E5kLRRe0WNJrnmZIVA28laZmJHocDLNJ+tKG/SZQs4q+iNZ2s
-         H/JkvhNSJDVHCNimFK1pCyn3IVB2iywNK8jmnwb6v7KYcNfgBAz1lHXwuAcPCDXQnqIR
-         Bm44XYAynUDNt32xhkn2de9xYNDar/YI21mhkpUdLG5TeVPqX0fWKbV4BP1UEbiKU8qO
-         XfX3dOGbQSuKgZfXvfX3r7pq6yKWKfQMYre7aXx+6sd/ZHWpN2vrNc6C621Hm1Z334mZ
-         Dum73UEEvsBCwULZmJKlvSzW4u+ysHV8XLHKL0H2ul0tYpc32nfNyCT/fKMLw10ch3fl
-         cSDg==
-X-Gm-Message-State: APjAAAVswP6TXkP7wz0UWnezGlfhB+/95hp8xyFReN8NCXQUhIVjDqWv
-        hdQbVSoEOajuytVZfwxsDvWqmA==
-X-Google-Smtp-Source: APXvYqwgS/FwkAFLZrPF2zgs8yyNuMS58TcflpUB/WQwtaG9GH2QdJ048e4dmWTG8/aAQ+l5TgI7oA==
-X-Received: by 2002:adf:ecc7:: with SMTP id s7mr34218122wro.215.1566294389556;
-        Tue, 20 Aug 2019 02:46:29 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Wu+Hc1WycBhYeKR1pHbRQ6nVmuPzQ42/00GPF9ACS0U=;
+        b=B/Mk/AaP513DLIq6UJ7v6MYAJx0QRl7McnHqhS7NoA54kbm0X2XBdEH/oMLP56Vpl/
+         GawHaFmMgI3lk4uPxpUu9vp2Y6UJ0TYxlId1WpN6cxntp8sf8fMWu4p111TSGcbNbXfG
+         MuLSWbaOJVK/XEzurkb3iAjmni/vnu8S1e558lPbg4t0pUkUKkr563DcXb2sJcGWIInL
+         n+UYBmnuTmG7LiIC/JIs7s6nRS3tIrBgESUwJwFimlexuAr2+AoyJFp3FzhWhuha2/ZS
+         FwASXH7fZ3+oRWJY04ygfFwvkWBDZLXsam91XOpiduiMk8jlrckqzauLcAwnQB93D6Wu
+         hyjQ==
+X-Gm-Message-State: APjAAAXa4Iq8Mwv7vLx+b1eA8aTZbkzE5sEglVaFjEVsdegMcLZA54dH
+        /DbsdEYo1llv9CyBFMt/eb5Dew==
+X-Google-Smtp-Source: APXvYqys9kYkJyg6KnuwR/NfvkRSehLjMhdFPI1tUm2CTUkxzTfLEICnt5NyKEOMcUoSGn2YjsoEjw==
+X-Received: by 2002:adf:f386:: with SMTP id m6mr32999738wro.313.1566294390507;
+        Tue, 20 Aug 2019 02:46:30 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id o17sm15958305wrx.60.2019.08.20.02.46.28
+        by smtp.googlemail.com with ESMTPSA id o17sm15958305wrx.60.2019.08.20.02.46.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Aug 2019 02:46:29 -0700 (PDT)
+        Tue, 20 Aug 2019 02:46:30 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Philipp Zabel <p.zabel@pengutronix.de>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] reset: meson-audio-arb: add sm1 support
-Date:   Tue, 20 Aug 2019 11:46:23 +0200
-Message-Id: <20190820094625.13455-1-jbrunet@baylibre.com>
+Subject: [PATCH 1/2] reset: dt-bindings: meson: update arb bindings for sm1
+Date:   Tue, 20 Aug 2019 11:46:24 +0200
+Message-Id: <20190820094625.13455-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190820094625.13455-1-jbrunet@baylibre.com>
+References: <20190820094625.13455-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
@@ -62,17 +64,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds the new arb reset lines for the sm1 SoC family
+SM1 SoC family adds two new audio FIFOs with the related arb reset lines
 
-Jerome Brunet (2):
-  reset: dt-bindings: meson: update arb bindings for sm1
-  reset: meson-audio-arb: add sm1 support
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt  | 3 ++-
+ include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h        | 2 ++
+ 2 files changed, 4 insertions(+), 1 deletion(-)
 
- .../reset/amlogic,meson-axg-audio-arb.txt     |  3 +-
- drivers/reset/reset-meson-audio-arb.c         | 28 +++++++++++++++++--
- .../reset/amlogic,meson-axg-audio-arb.h       |  2 ++
- 3 files changed, 29 insertions(+), 4 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+index 26e542eb96df..43e580ef64ba 100644
+--- a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
++++ b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
+@@ -4,7 +4,8 @@ The Amlogic Audio ARB is a simple device which enables or
+ disables the access of Audio FIFOs to DDR on AXG based SoC.
+ 
+ Required properties:
+-- compatible: 'amlogic,meson-axg-audio-arb'
++- compatible: 'amlogic,meson-axg-audio-arb' or
++	      'amlogic,meson-sm1-audio-arb'
+ - reg: physical base address of the controller and length of memory
+        mapped region.
+ - clocks: phandle to the fifo peripheral clock provided by the audio
+diff --git a/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h b/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
+index 05c36367875c..1ef807856cb8 100644
+--- a/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
++++ b/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
+@@ -13,5 +13,7 @@
+ #define AXG_ARB_FRDDR_A	3
+ #define AXG_ARB_FRDDR_B	4
+ #define AXG_ARB_FRDDR_C	5
++#define AXG_ARB_TODDR_D	6
++#define AXG_ARB_FRDDR_D	7
+ 
+ #endif /* _DT_BINDINGS_AMLOGIC_MESON_AXG_AUDIO_ARB_H */
 -- 
 2.21.0
 
