@@ -2,40 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0FC296316
-	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 16:53:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 647C89637A
+	for <lists+devicetree@lfdr.de>; Tue, 20 Aug 2019 16:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730450AbfHTOxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Aug 2019 10:53:50 -0400
-Received: from vps.xff.cz ([195.181.215.36]:60112 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728283AbfHTOxt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 20 Aug 2019 10:53:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566312827; bh=/wCPaAVAhM9jkrpOgFjJQndvFQSZ3vor/dhJP6G9DqM=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=pr0wChX5ZN4OrzzMX3Txai82qwcOk2weMbp798hGCqayc02tBmkgal0EJDif4lKiO
-         0Z5ZyF08kJhi3AKPIG1VQOkAsPGnlq1Ffa9zqT3kRxYLJPaLRGt+jqjuSwbMnK0NXU
-         NDc9zrMaKXcYD+Jlu6URuc8eMVTnKofwFD/p2/Bo=
-From:   megous@megous.com
-To:     "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>
-Cc:     Ondrej Jirman <megous@megous.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: [PATCH 6/6] arm64: dts: allwinner: orange-pi-3: Enable ethernet
-Date:   Tue, 20 Aug 2019 16:53:43 +0200
-Message-Id: <20190820145343.29108-7-megous@megous.com>
-In-Reply-To: <20190820145343.29108-1-megous@megous.com>
-References: <20190820145343.29108-1-megous@megous.com>
+        id S1729827AbfHTO6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Aug 2019 10:58:32 -0400
+Received: from mx2.suse.de ([195.135.220.15]:59630 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726345AbfHTO6b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 20 Aug 2019 10:58:31 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 3DB25AE42;
+        Tue, 20 Aug 2019 14:58:29 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     catalin.marinas@arm.com, hch@lst.de, wahrenst@gmx.net,
+        marc.zyngier@arm.com, robh+dt@kernel.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arch@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-mm@kvack.org, linux-riscv@lists.infradead.org
+Cc:     phill@raspberryi.org, f.fainelli@gmail.com, will@kernel.org,
+        nsaenzjulienne@suse.de, linux-kernel@vger.kernel.org,
+        eric@anholt.net, mbrugger@suse.com,
+        linux-rpi-kernel@lists.infradead.org, akpm@linux-foundation.org,
+        frowand.list@gmail.com, m.szyprowski@samsung.com,
+        linuxppc-dev@lists.ozlabs.org, linux-s390@vger.kernel.org
+Subject: [PATCH v2 00/11] Raspberry Pi 4 DMA addressing support
+Date:   Tue, 20 Aug 2019 16:58:08 +0200
+Message-Id: <20190820145821.27214-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -43,105 +39,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megous@megous.com>
+Hi all,
+this series attempts to address some issues we found while bringing up
+the new Raspberry Pi 4 in arm64 and it's intended to serve as a follow
+up of these discussions:
+v1: https://lkml.org/lkml/2019/7/31/922
+RFC: https://lkml.org/lkml/2019/7/17/476
 
-Orange Pi 3 has two regulators that power the Realtek RTL8211E
-PHY. According to the datasheet, both regulators need to be enabled
-at the same time, or that "phy-io" should be enabled slightly earlier
-than "phy" regulator.
+The new Raspberry Pi 4 has up to 4GB of memory but most peripherals can
+only address the first GB: their DMA address range is
+0xc0000000-0xfc000000 which is aliased to the first GB of physical
+memory 0x00000000-0x3c000000. Note that only some peripherals have these
+limitations: the PCIe, V3D, GENET, and 40-bit DMA channels have a wider
+view of the address space by virtue of being hooked up trough a second
+interconnect.
 
-RTL8211E/RTL8211EG datasheet says:
+Part of this is solved in arm32 by setting up the machine specific
+'.dma_zone_size = SZ_1G', which takes care of reserving the coherent
+memory area at the right spot. That said no buffer bouncing (needed for
+dma streaming) is available at the moment, but that's a story for
+another series.
 
-  Note 4: 2.5V (or 1.8/1.5V) RGMII power should be risen simultaneously
-  or slightly earlier than 3.3V power. Rising 2.5V (or 1.8/1.5V) power
-  later than 3.3V power may lead to errors.
+Unfortunately there is no such thing as 'dma_zone_size' in arm64. Only
+ZONE_DMA32 is created which is interpreted by dma-direct and the arm64
+arch code as if all peripherals where be able to address the first 4GB
+of memory.
 
-The driver ensures the regulator enable ordering. The timing is set
-in DT via startup-delay-us.
+In the light of this, the series implements the following changes:
 
-We also need to wait at least 30ms after power-up/reset, before
-accessing the PHY registers.
+- Create generic 'dma_zone_size' in order for hardware description code
+  to set it up when needed.
 
-All values of RX/TX delay were tested exhaustively and a middle one
-of the range of working values was chosen.
+- Add a function in early_init_dt_scan() to setup 'dma_zone_size' for
+  the RPi4.
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
+- Create both DMA zones in arm64, ZONE_DMA will contain the area
+  addressable by all peripherals and ZONE_DMA32 the rest of the 32 bit
+  addressable memory. ZONE_DMA32 might be left empty.
+
+- Reserve the CMA area in a place suitable for all peripherals.
+
+- Inform dma-direct of the new runtime calculated min_mask.
+
+This series has been tested on multiple devices both by checking the
+zones setup matches the expectations and by double-checking physical
+addresses on pages allocated on the three relevant areas GFP_DMA,
+GFP_DMA32, GFP_KERNEL:
+
+- On an RPi4 with variations on the ram memory size. But also forcing
+  the situation where all three memory zones are nonempty by setting a 3G
+  ZONE_DMA32 ceiling on a 4G setup. Both with and without NUMA support.
+
+- On a Synquacer box[1] with 32G of memory.
+
+- On an ACPI based Huawei TaiShan server[2] with 256G of memory.
+
+- On a QEMU virtual machine running arm64's OpenSUSE Tumbleweed.
+
+That's all.
+
+Regards,
+Nicolas
+
+[1] https://www.96boards.org/product/developerbox/
+[2] https://e.huawei.com/en/products/cloud-computing-dc/servers/taishan-server/taishan-2280-v2
+
 ---
- .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 40 +++++++++++++++++++
- 1 file changed, 40 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index eda9d5f640b9..18349e60b8c6 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -15,6 +15,7 @@
- 
- 	aliases {
- 		serial0 = &uart0;
-+		ethernet0 = &emac;
- 	};
- 
- 	chosen {
-@@ -56,6 +57,15 @@
- 		regulator-max-microvolt = <5000000>;
- 		regulator-always-on;
- 	};
-+
-+	reg_gmac_2v5: gmac-2v5 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "gmac-2v5";
-+		regulator-min-microvolt = <2500000>;
-+		regulator-max-microvolt = <2500000>;
-+		enable-active-high;
-+		gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-+	};
- };
- 
- &cpu0 {
-@@ -74,6 +84,35 @@
- 	status = "okay";
- };
- 
-+&emac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&ext_rgmii_pins>;
-+	phy-mode = "rgmii";
-+	phy-handle = <&ext_rgmii_phy>;
-+	/*
-+	 * The board uses 2.5V RGMII signalling. Power sequence to enable
-+	 * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-+	 * at the same time and to wait 100ms. The driver enables phy-io
-+	 * first. Delay is achieved with enable-ramp-delay on reg_aldo2.
-+	 */
-+	phy-supply = <&reg_aldo2>;
-+	phy-io-supply = <&reg_gmac_2v5>;
-+	allwinner,rx-delay-ps = <1500>;
-+	allwinner,tx-delay-ps = <700>;
-+	status = "okay";
-+};
-+
-+&mdio {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+
-+		reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
-+		reset-assert-us = <15000>;
-+		reset-deassert-us = <40000>;
-+	};
-+};
-+
- &hdmi {
- 	status = "okay";
- };
-@@ -136,6 +175,7 @@
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
- 				regulator-name = "vcc33-audio-tv-ephy-mac";
-+				regulator-enable-ramp-delay = <100000>;
- 			};
- 
- 			/* ALDO3 is shorted to CLDO1 */
+Changes in v2:
+- More in depth testing.
+- Create new global 'dma_zone_size'.
+- New approach to getting the dma_zone_size, instead of parsing the dts
+  we hardcode it conditionally to the machine compatible name.
+- Fix ZONE_DMA and ZONE_DMA32 split, now ZONE_DMA32 remains empty if
+  ZONE_DMA fits the whole 32 bit addressable space.
+- Take into account devices with DMA offset.
+- Rename new dma-direct variable to zone_dma_bits.
+- Try new approach by merging both ZONE_DMA and ZONE_DMA32 comments
+  in mmzone.h, add new up to date examples.
+
+Nicolas Saenz Julienne (11):
+  asm-generic: add dma_zone_size
+  arm: use generic dma_zone_size
+  of/fdt: add of_fdt_machine_is_compatible function
+  of/fdt: add early_init_dt_get_dma_zone_size()
+  arm64: mm: use arm64_dma_phys_limit instead of calling
+    max_zone_dma_phys()
+  arm64: rename variables used to calculate ZONE_DMA32's size
+  arm64: re-introduce max_zone_dma_phys()
+  arm64: use both ZONE_DMA and ZONE_DMA32
+  dma-direct: turn ARCH_ZONE_DMA_BITS into a variable
+  arm64: edit zone_dma_bits to fine tune dma-direct min mask
+  mm: refresh ZONE_DMA and ZONE_DMA32 comments in 'enum zone_type'
+
+ arch/arm/include/asm/dma.h      |  8 ++--
+ arch/arm/mm/init.c              | 12 ++----
+ arch/arm64/Kconfig              |  4 ++
+ arch/arm64/mm/init.c            | 73 +++++++++++++++++++++++++--------
+ arch/powerpc/include/asm/page.h |  9 ----
+ arch/powerpc/mm/mem.c           | 16 +++++---
+ arch/s390/include/asm/page.h    |  2 -
+ arch/s390/mm/init.c             |  1 +
+ drivers/of/fdt.c                | 15 +++++++
+ include/asm-generic/dma.h       |  8 +++-
+ include/linux/dma-direct.h      |  2 +
+ include/linux/mmzone.h          | 46 ++++++++++++---------
+ kernel/dma/direct.c             | 13 +++---
+ mm/page_alloc.c                 |  3 ++
+ 14 files changed, 140 insertions(+), 72 deletions(-)
+
 -- 
-2.22.1
+2.22.0
 
