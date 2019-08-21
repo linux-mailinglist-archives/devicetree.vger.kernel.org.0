@@ -2,91 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0351298732
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 00:24:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 314C098783
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 00:48:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731186AbfHUWYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 18:24:35 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38785 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731166AbfHUWYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 18:24:32 -0400
-Received: by mail-wr1-f65.google.com with SMTP id g17so3493110wrr.5
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 15:24:31 -0700 (PDT)
+        id S1729835AbfHUWsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 18:48:46 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:38141 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729090AbfHUWsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 18:48:46 -0400
+Received: by mail-pg1-f194.google.com with SMTP id e11so2214243pga.5
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 15:48:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=60yWYtJLk0Xp9SLelz+MaI60GmV6Utt18fBkUyG2qxM=;
-        b=KJG2eemyCR3ZMbuekyI3MbIiJ81wrfp8NRjrwX0zZ7oMU2Tkk8yLrW3jJTGbAl/5k2
-         Sm69ZxmQP0OqEps0eURzAy9Ian/sT322RExh+edk4NxWuBzMSUuwcDptsNtfsEKgPk2d
-         ZB2R9eUNlO7qSm0ZNdV48+p/qivyjeW6rkY9LpWv0xsGpo01wPiPsRkkuO5xobtg9rHm
-         qw7P00OFPIldzDSTTMtWryFtEyScZ0a276vYE+SqPzFM82tubBrakI/AYpizDrZcN2Fh
-         tfGTvH+0bZEtkvXH3H7B9OYgmcs9pieyPM1aTXPJos47Imcr1a94Ze4xHd4liyWt35u9
-         5qSg==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=teKoEoZBkGuWM1am+bLxrzg6jS/TPSFr7t15zPBCNd0=;
+        b=fn83oNtnI1C2eL/2sCStFsle3PKFMa1Tz57GE6Dkhr7A7QS4lH9XiGvffGi10XTFKV
+         UsdNPY7I+LpQATbTGIgv7S0LftxvcXeDTKQffKaWrtb9vVR4wU7TNoHVG9WeC+HwjzJI
+         ehriVN2QCZnH5FkGXbZeAx8QYXrakhPnYv9qBGrdxpVcW/tfmSVS/FYsKRbPfDglqMzN
+         eJ44IDYR6NuXCBuB+dxB347ZfCQ2qbmNR+Tl6X6FSUASKblhb4KeDqVFDxY/vvnyFFVL
+         WNyAX1XfPO3sD473CoaKkJaYn05hbRcw9nOyI3JOnVaIYLdm1qyvwWDqaLnUhH0pvsto
+         F4AA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=60yWYtJLk0Xp9SLelz+MaI60GmV6Utt18fBkUyG2qxM=;
-        b=O+mfCk75RIYqQfoPHsbOzUVtU7EkeDt+h+iQYfT6/NozNXxhYuJcM/smyYDY1efLe6
-         g6vNhdFP8P89Ms8uwFMd0IffO90rbkQV0ytjBbDXBl3lrDKQuCysjTAXNNOjSVaaXL4W
-         ovLKOw3lpqIc5u5Lyf2PF6MIRQT/xyNJGi9dJSyKG7EiUYkvx+ByYzoadJg9V0cszGWU
-         h/RbUR1w7eeC1yZ8rkZTU7ZGTbxj4aftkEB8U59DYXmc00XvnYPj1TzHbLN0JSKVdPdt
-         oJem0YmHISeObVdgrPpoK9cdNIEx+J9jg1zBntqBs/8aZWrz1HezWqloOlBX8SSZWR3l
-         zz5g==
-X-Gm-Message-State: APjAAAVKHMafxBhDtpvD1DQOpoLKLJ2jK+uRipXbT4YldRr/xvyQjp+l
-        LUkETdf76X/xJVEOK6MXlf25SQ==
-X-Google-Smtp-Source: APXvYqwht9LxVlp9IlMJVSETg91KaKJdV8dNDW+36WtFIIU2sF1g0DYgdyCLqNQoYIb7xJh8BnZBXg==
-X-Received: by 2002:adf:c7cb:: with SMTP id y11mr36896014wrg.281.1566426270465;
-        Wed, 21 Aug 2019 15:24:30 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
-        by smtp.gmail.com with ESMTPSA id f197sm3548549wme.22.2019.08.21.15.24.29
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=teKoEoZBkGuWM1am+bLxrzg6jS/TPSFr7t15zPBCNd0=;
+        b=FMzcXp7mqDGlfqNqUlkSgHziCyYb+4oH5gO/i/0rHkxyNoXseZlum+Z7CnVLiG37GY
+         WeD9Rzzv6ws90bnYEmPJ0CBwZlL52BQRcRbyCh/2/W5Eq5Mh/et+ZltBC5ySg6lS3vV5
+         8zhysV3PNWofyAUwpQwczD70FaRR8Ph3lFhhNj6gfQHV3W7aygv9gHlR0KB/HdGyaqqY
+         37/5PGeueWrTVQQCHT5cTs2rIX2uvwm/WFXR4RnYxZwBOzlzooGoC0tIbSfbT+WVDKeN
+         9v8F244PD7kwLWGUX87pPYvrKVXXd0vPsaBFSxQiy+JTUuk4RoDpuwy4c7jvQyGLNXzd
+         beVQ==
+X-Gm-Message-State: APjAAAXI80HnZfVoNbSFX9rUnYhP5S8IqONcYfS6trGwpCEFyH7EOkp8
+        27y7PWuc7sBgID/4Fswxb2JiJw==
+X-Google-Smtp-Source: APXvYqze4CscdkpN+NmoXK9M3820ciVP/ebbyCnpT1BSOyOKbjJX/1IXyEnQhdqXoEY4Czkz9iK+jw==
+X-Received: by 2002:a63:e54f:: with SMTP id z15mr30949865pgj.4.1566427725453;
+        Wed, 21 Aug 2019 15:48:45 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id 5sm21909049pgh.93.2019.08.21.15.48.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 15:24:30 -0700 (PDT)
-From:   Guillaume La Roque <glaroque@baylibre.com>
-To:     rui.zhang@intel.com, edubezval@gmail.com, daniel.lezcano@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH v4 6/6] MAINTAINERS: add entry for Amlogic Thermal driver
-Date:   Thu, 22 Aug 2019 00:24:21 +0200
-Message-Id: <20190821222421.30242-7-glaroque@baylibre.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190821222421.30242-1-glaroque@baylibre.com>
-References: <20190821222421.30242-1-glaroque@baylibre.com>
+        Wed, 21 Aug 2019 15:48:44 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 15:50:31 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     robh+dt@kernel.org, vkoul@kernel.org, aneela@codeaurora.org,
+        mark.rutland@arm.com, agross@kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
+        clew@codeaurora.org
+Subject: Re: [PATCH v2 5/7] mailbox: qcom: Add support for Qualcomm SM8150
+ and SC7180 SoCs
+Message-ID: <20190821225031.GA1892@tuxbook-pro>
+References: <20190807070957.30655-1-sibis@codeaurora.org>
+ <20190807070957.30655-6-sibis@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190807070957.30655-6-sibis@codeaurora.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as maintainer for Amlogic Thermal driver.
+On Wed 07 Aug 00:09 PDT 2019, Sibi Sankar wrote:
 
-Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> Add the corresponding APSS shared offset for SM8150 and SC7180 SoCs.
+> 
+> Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fb2b12f75c37..299f27d11058 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -15910,6 +15910,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
- F:	drivers/thermal/cpu_cooling.c
- F:	include/linux/cpu_cooling.h
- 
-+THERMAL DRIVER FOR AMLOGIC SOCS
-+M:	Guillaume La Roque <glaroque@baylibre.com>
-+L:	linux-pm@vger.kernel.org
-+L:	linux-amlogic@lists.infradead.org
-+W:	http://linux-meson.com/
-+S:	Supported
-+F:	drivers/thermal/amlogic_thermal.c
-+F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-+
- THINKPAD ACPI EXTRAS DRIVER
- M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
- L:	ibm-acpi-devel@lists.sourceforge.net
--- 
-2.17.1
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
+> ---
+>  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> index 705e17a5479cc..2dfd288fe720d 100644
+> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+> @@ -118,7 +118,9 @@ static const struct of_device_id qcom_apcs_ipc_of_match[] = {
+>  	{ .compatible = "qcom,msm8996-apcs-hmss-global", .data = (void *)16 },
+>  	{ .compatible = "qcom,msm8998-apcs-hmss-global", .data = (void *)8 },
+>  	{ .compatible = "qcom,qcs404-apcs-apps-global", .data = (void *)8 },
+> +	{ .compatible = "qcom,sc7180-apss-shared", .data = (void *)12 },
+>  	{ .compatible = "qcom,sdm845-apss-shared", .data = (void *)12 },
+> +	{ .compatible = "qcom,sm8150-apss-shared", .data = (void *)12 },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, qcom_apcs_ipc_of_match);
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
