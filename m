@@ -2,92 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CC3A97D11
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:33:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7CCB97D34
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:38:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729023AbfHUOdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:33:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35388 "EHLO mail.kernel.org"
+        id S1729417AbfHUOii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:38:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38110 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728964AbfHUOdV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 10:33:21 -0400
+        id S1728724AbfHUOii (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 10:38:38 -0400
 Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B31EB21655;
-        Wed, 21 Aug 2019 14:33:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4E833206BA;
+        Wed, 21 Aug 2019 14:38:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566398000;
-        bh=QO+p1/85LdqTXyI9zUBJ/aIY/wCtPQIJief+RWd2UrY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PHZnmkn9zAYlpVwUC319SBmftvtX2tizMVRp2zk2k3EriOA8NLI+X3BAJWW30wuza
-         sSunp5GHpstIb3ekTNyky5M7w8XNsyYD4r0idsCwXcCOqD1EtGNerIFaGgZdsNdnjP
-         w/ON98/gqARUdfEixQZj25NBbsXVSOG8Tm4VOaUw=
-Date:   Wed, 21 Aug 2019 16:33:17 +0200
+        s=default; t=1566398317;
+        bh=bpvKrS4xjqV8MEvCfqz1VDqPz4Adz4s3wbNsncnxpkY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=wj3piKtzc7YjEGap2/eQeyeo2oaQNmjEcEc+Rvvy5t+402fgWQLymblGmGp/Hc8Wf
+         Le9aKUL5EYLmOOYojmaWn4mUa9XdHH0VQHiOXyo8FgcOu0vSRn/RpplR3x7sSy8Oka
+         /hK9V/wqVzoIB7eXn4cb+dB7XNiwxZpM13yiIcXY=
 From:   Maxime Ripard <mripard@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
+To:     linux@roeck-us.net, wim@linux-watchdog.org
+Cc:     linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/6] dt-bindings: watchdog: Add YAML schemas for the
- generic watchdog bindings
-Message-ID: <20190821143317.dkahpwjvgrtqtx4d@flea>
-References: <20190819182039.24892-1-mripard@kernel.org>
- <ada53037-898f-7b8c-8a96-b80414563fa7@roeck-us.net>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-watchdog@vger.kernel.org
+Subject: [PATCH RESEND v2 1/6] dt-bindings: watchdog: Add YAML schemas for the generic watchdog bindings
+Date:   Wed, 21 Aug 2019 16:38:30 +0200
+Message-Id: <20190821143835.7294-1-mripard@kernel.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="3o66cqpsjmmmmqh3"
-Content-Disposition: inline
-In-Reply-To: <ada53037-898f-7b8c-8a96-b80414563fa7@roeck-us.net>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Maxime Ripard <maxime.ripard@bootlin.com>
 
---3o66cqpsjmmmmqh3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The watchdogs have a bunch of generic properties that are needed in a
+device tree. Add a YAML schemas for those.
 
-Hi Guenter,
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-On Tue, Aug 20, 2019 at 08:54:53AM -0700, Guenter Roeck wrote:
-> On 8/19/19 11:20 AM, Maxime Ripard wrote:
-> > From: Maxime Ripard <maxime.ripard@bootlin.com>
-> >
-> > The watchdogs have a bunch of generic properties that are needed in a
-> > device tree. Add a YAML schemas for those.
-> >
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> What is the target subsystem for this series ? You didn't copy the watchdog
-> mailing list, so I assume it won't be the watchdog subsystem.
+---
 
-Sorry for that :/
+Changes from v1:
+  - New patch
+---
+ .../bindings/watchdog/watchdog.yaml           | 26 +++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/watchdog.yaml
 
-It can either go through the DT or watchdog tree. I'll resend it and
-let you and Rob figure it out :)
+diff --git a/Documentation/devicetree/bindings/watchdog/watchdog.yaml b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+new file mode 100644
+index 000000000000..187bf6cb62bf
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/watchdog.yaml
+@@ -0,0 +1,26 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/watchdog.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Watchdog Generic Bindings
++
++maintainers:
++  - Guenter Roeck <linux@roeck-us.net>
++  - Wim Van Sebroeck <wim@linux-watchdog.org>
++
++description: |
++  This document describes generic bindings which can be used to
++  describe watchdog devices in a device tree.
++
++properties:
++  $nodename:
++    pattern: "^watchdog(@.*|-[0-9a-f])?$"
++
++  timeout-sec:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      Contains the watchdog timeout in seconds.
++
++...
+-- 
+2.21.0
 
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---3o66cqpsjmmmmqh3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV1WLQAKCRDj7w1vZxhR
-xV7MAP9eNJQeheprjz1a/+LmmPM8s1A06SHcgrdDWaIdjrnr9AEA3opx310odS8e
-IIcinBLkTGCtVyqZQn99Bq1LeOvEPgA=
-=W2rw
------END PGP SIGNATURE-----
-
---3o66cqpsjmmmmqh3--
