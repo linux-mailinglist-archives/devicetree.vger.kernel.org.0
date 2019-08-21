@@ -2,116 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC509975F9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 11:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65CD197612
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 11:26:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbfHUJX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 05:23:58 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:45682 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726648AbfHUJX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 05:23:58 -0400
-Received: by mail-pg1-f195.google.com with SMTP id o13so960309pgp.12
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 02:23:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=WXbOIV/PPnZXH5Oc2xbiQaU6gpzCgh5LD6kBid8zVsA=;
-        b=k6ZdTrjOyX6/Zkg+v/eumDTkOMoX0cDzEk/+N+cSipXCBUg5Ewl+I/0l4ynujhqCze
-         N4ohG9Ii1D8knSNi6L0Ec6olYpTIHsnQTKQwMgrD0IF4x91LPIAsOqVVYi3zOqB18jbH
-         wrSyWUytB6HonPktkMHa2K9hd9dELtUJrBdEsxUVFu+JhUjBkXx9RENqcp2ncHHI06Hl
-         DdL7PXSKO2tu5z9HmL2agE6Ktw1i6OMSMeOFUC2L/L1JrpISjas4YAoRJNS1rjsm6+v2
-         CpjdbO2zACkVLoREccR+o0Y98SummfnKh258G9S0vOkRxtpKcp6oCjOfzn6NKlCJiHAP
-         NV0Q==
+        id S1726386AbfHUJ0J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 05:26:09 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:38284 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726317AbfHUJ0J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 05:26:09 -0400
+Received: by mail-oi1-f195.google.com with SMTP id q8so797563oij.5;
+        Wed, 21 Aug 2019 02:26:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=WXbOIV/PPnZXH5Oc2xbiQaU6gpzCgh5LD6kBid8zVsA=;
-        b=HC2XmIQdAR5rAZNy6r0Z82lctygHtaqi+z/4pNEY8wb8L7CJ8KKwJonkYdnJ2ClMhS
-         g0u9kcU5k6PI4YqRZQmV5qShrViI6DBdrvVlnGSk+0E9/1R6j7R0NfMzS45kDuYgcm3f
-         VUBB6MG+i5UvpIw+FGtoXJix6tjS1ESYRwskaO6D4iUFkVUb+ssfjJm2AsGGym7oVG25
-         PJT2Bb559f17aKWbzI9WI19F2oCBN/O6ZAEjpm+ebYVXVJh41534UxnovyEyiyfsHIWr
-         Q4S2IBB8l61PhBR2/Jb9jMPb5q/v0vXGrWUuAUY7z0IcUgGlHxV3QjSicl2FRk9KuLRO
-         pUrA==
-X-Gm-Message-State: APjAAAUwL4bEARc3CZa2b68/7ZsfVG8vW67bpMrQendua2SjVlzJpFWw
-        ipTZJ4AE3fK8CFOlB+WimOzuvA==
-X-Google-Smtp-Source: APXvYqzunXgF31zpY1az1veH6ySJAQHsK32XBPJ//0IqOBTv828KbyMMDM8C1V6Iwrp5vB7Bf2/XWg==
-X-Received: by 2002:a62:fb15:: with SMTP id x21mr35726157pfm.233.1566379437943;
-        Wed, 21 Aug 2019 02:23:57 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id s7sm25721327pfb.138.2019.08.21.02.23.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 21 Aug 2019 02:23:57 -0700 (PDT)
-From:   Yash Shah <yash.shah@sifive.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, paul.walmsley@sifive.com
-Cc:     palmer@sifive.com, aou@eecs.berkeley.edu, bmeng.cn@gmail.com,
-        sagar.kadam@sifive.com, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH] riscv: dts: Add DT support for SiFive FU540 PWM driver
-Date:   Wed, 21 Aug 2019 14:53:40 +0530
-Message-Id: <1566379420-26762-1-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 1.9.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=O8XvB0zHNxZrlyVSQdX3PAdkXmvUD1MSe7DEMRpMBmU=;
+        b=frOOQiHmUZg0QOkcoJK7LLoclMHUo8zKp5FyfXtI2g1YX+rfENFH0mwlDSmV/QS0pu
+         98N48MBSHfDDm+4te97RE9vdNg87nMKS2MmewM/41oNMH6KeL525+naE5H63n3XeeVyr
+         /Aa9ggZZbyrnV3m0jRK+Casjc+48PqtF3dfw5LnhXVHSLKxjUC3eQtkLTIcgc/UNCus1
+         COBr/OB3a1NOzdPYlaUWY/ehe9eiEsdmMKkrmuKRQfEOO2nUxDJoBI7QFwgmYa5Vhef5
+         Ih8m9hW1tsQ8HpTgWjYt0R8YmMIlwE6OR3nMkYYpqlKk/fq8xf7FENsqKSADDQcrG+p/
+         NyYg==
+X-Gm-Message-State: APjAAAV/rZf9sQwZG5n87js6GcVvZZOHGaaTf8jixnmwkkwUYZoxPW7/
+        CXVIrh3M+YKndBllI75/yYgFjbXMxgrHAp2/2Y2diw==
+X-Google-Smtp-Source: APXvYqwdT8hnfIhQqIN2QFlt+KwRsITJKoK9EXpt7808Kwag4yAhC/VoMkeUXmSvEOJBy0DDg6NG9lz3tCRnoiYDE/U=
+X-Received: by 2002:aca:f4ca:: with SMTP id s193mr2879695oih.131.1566379568403;
+ Wed, 21 Aug 2019 02:26:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190821091516.16372-1-horms+renesas@verge.net.au>
+In-Reply-To: <20190821091516.16372-1-horms+renesas@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 21 Aug 2019 11:25:57 +0200
+Message-ID: <CAMuHMdWdnWh_BPJ1vqKAn71bzZTQqAzBvaJENDWmm5n9gPxc9w@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: clk: emev2: Rename bindings documentation file
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the PWM DT node in SiFive FU540 soc-specific DT file.
-Enable the PWM nodes in HiFive Unleashed board-specific DT file.
+On Wed, Aug 21, 2019 at 11:15 AM Simon Horman
+<horms+renesas@verge.net.au> wrote:
+> Rename the device tree clock bindings for Renesas EMMA Mobile EV2
+> from emev2-clock.txt to renesas,emev2-smu.txt.
+>
+> This is part of an ongoing effort to name bindings documentation files for
+> Renesas IP blocks consistently, in line with the compat strings they
+> document.
+>
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 19 +++++++++++++++++++
- arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  8 ++++++++
- 2 files changed, 27 insertions(+)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in clk-renesas-for-v5.4.
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 42b5ec2..bb422db 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -230,6 +230,25 @@
- 			#size-cells = <0>;
- 			status = "disabled";
- 		};
-+		pwm0: pwm@10020000 {
-+			compatible = "sifive,pwm0";
-+			reg = <0x0 0x10020000 0x0 0x1000>;
-+			interrupt-parent = <&plic0>;
-+			interrupts = <42 43 44 45>;
-+			clocks = <&prci PRCI_CLK_TLCLK>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
-+		pwm1: pwm@10021000 {
-+			compatible = "sifive,pwm0";
-+			reg = <0x0 0x10021000 0x0 0x1000>;
-+			interrupt-parent = <&plic0>;
-+			interrupts = <46 47 48 49>;
-+			reg-names = "control";
-+			clocks = <&prci PRCI_CLK_TLCLK>;
-+			#pwm-cells = <3>;
-+			status = "disabled";
-+		};
- 
- 	};
- };
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 93d68cb..104d334 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -85,3 +85,11 @@
- 		reg = <0>;
- 	};
- };
-+
-+&pwm0 {
-+	status = "okay";
-+};
-+
-+&pwm1 {
-+	status = "okay";
-+};
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-1.9.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
