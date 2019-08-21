@@ -2,130 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5073198616
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 22:58:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5369A9862E
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:02:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729303AbfHUU4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 16:56:52 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:34394 "EHLO
+        id S1730683AbfHUVCf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 17:02:35 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:44458 "EHLO
         mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726828AbfHUU4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 16:56:52 -0400
-Received: by mail-ot1-f67.google.com with SMTP id c7so3428031otp.1;
-        Wed, 21 Aug 2019 13:56:51 -0700 (PDT)
+        with ESMTP id S1728428AbfHUVCe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:02:34 -0400
+Received: by mail-ot1-f67.google.com with SMTP id w4so3389703ote.11;
+        Wed, 21 Aug 2019 14:02:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cw5zVFDgnti+9h09SHubCz/1zUqdZG2/3ACA1Sozj6M=;
-        b=W+8fXbGV11r0GfVfolnorGu/FhbVPww2UW+KreQOVjd31gcedivq5XjBsRWIFVo4dM
-         sZBZWCuH+zF9gTecnVyMQHmuNKed/EORt2B+0SFfTpnQYPENONEJST4kOc4EdpbQy/Y1
-         Lsn3OunwaMq594mpksRzFQGB7uUb40m8Kexy8fAhdKwrRlXhvH+TBPJDZuGltEd6CqWd
-         W5Yr+wfVMCMo7O1QC6/iqH1CuUy07KiSAOya1+GZkImpYcwdr2W7Y8PUnUQd/CTnBAN0
-         CXz6/B5dS1iiUju7FJxelKh9rzn5ZatJnQmFaeo2lf10SYQpYnaPkjZ1CzJBcHA4xP7Z
-         iwlQ==
-X-Gm-Message-State: APjAAAWawkQCZ/2hWSnYFvjAY7h4876jaFhV3sh4Pzf64VIAELi4uBuf
-        ZXH5FZ7NmcH0G1OxG79Ze1bbDCc=
-X-Google-Smtp-Source: APXvYqwkzyR5k2lVn9jQ7SWqN03g1X/p1BcvTAz47w4p4sCmgewK0YLxZltsj/wiQTiBJlsmcwM1OA==
-X-Received: by 2002:a05:6830:1657:: with SMTP id h23mr6886407otr.222.1566421011342;
-        Wed, 21 Aug 2019 13:56:51 -0700 (PDT)
+        bh=qeldRNnrKJ6n4nBoYRhi7qGMwnjGqI0qiOR/k4DQ+G0=;
+        b=dErylmymL/cdPXUTD4Fl977fElu9afRvA8ZC0q+hr1G6KyZUINk3X0wKWC+eXdXjWv
+         es5xPCcEh5rEN+IWMwgn8dbarum10/mhNLRkEiNVAX0DgxPm4xpT57uYY0RJ1NZh/4+7
+         vLW2sYT2nGoRkgKk0qd3t1uVlClE5YlnZ0V+7e5JrQPo0huLkPP28SvYpktgdbUkqtNT
+         tgwqkTaqoVl9/X4sKnAts1NzCCIlnpEAgptP+U17p7jxHlIszD1I6mhKsGxW41HnecHq
+         COd/plInMt0QcvwqBOLzZj2iApdUsBdAkymi/JCzE3J660pcjHBTHKjftilxy8zaMW0H
+         0qjA==
+X-Gm-Message-State: APjAAAW8WO6Wn4ytjQW37rwPZB0qt+DkNNFsOvSzNl6N3QvwKNwTImms
+        7IzvpD4lylgdfIk/pWLXIQ==
+X-Google-Smtp-Source: APXvYqyRJsdPlJBUmlZSY3uPEIBvI3RM6nnZGMr1ukyS82VcusB4lOcfeVYUcWuho5QRGbPVjA0/Jw==
+X-Received: by 2002:a05:6830:1e79:: with SMTP id m25mr22039139otr.109.1566421353755;
+        Wed, 21 Aug 2019 14:02:33 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m7sm8447750otm.5.2019.08.21.13.56.50
+        by smtp.gmail.com with ESMTPSA id v5sm8176751otk.64.2019.08.21.14.02.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 13:56:50 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 15:56:50 -0500
+        Wed, 21 Aug 2019 14:02:32 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 16:02:32 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     broonie@kernel.org, mark.rutland@arm.com, vigneshr@ti.com,
-        bbrezillon@kernel.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-binding: spi: add NPCM FIU controller
-Message-ID: <20190821205650.GA14884@bogus>
-References: <20190808131448.349161-1-tmaimon77@gmail.com>
- <20190808131448.349161-2-tmaimon77@gmail.com>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+Cc:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        linus.walleij@linaro.org, Keerthy <j-keerthy@ti.com>,
+        linux-gpio@vger.kernel.org,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 5/6] dt-bindings: pinctrl: k3: Introduce pinmux
+ definitions for J721E
+Message-ID: <20190821210232.GA22578@bogus>
+References: <20190809082947.30590-1-lokeshvutla@ti.com>
+ <20190809082947.30590-6-lokeshvutla@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190808131448.349161-2-tmaimon77@gmail.com>
+In-Reply-To: <20190809082947.30590-6-lokeshvutla@ti.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 08, 2019 at 04:14:47PM +0300, Tomer Maimon wrote:
-> Added device tree binding documentation for Nuvoton BMC
-> NPCM Flash Interface Unit(FIU) SPI master controller
-> using SPI-MEM interface.
+On Fri, Aug 09, 2019 at 01:59:46PM +0530, Lokesh Vutla wrote:
+> Add pinctrl macros for J721E SoC. These macro definitions are
+> similar to that of AM6, but adding new definitions to avoid
+> any naming confusions in the soc dts files.
 > 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> Acked-by: Nishanth Menon <nm@ti.com>
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
 > ---
->  .../bindings/spi/nuvoton,npcm-fiu.txt         | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
+>  include/dt-bindings/pinctrl/k3.h | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt b/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
-> new file mode 100644
-> index 000000000000..ab37aae91d19
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
-> @@ -0,0 +1,47 @@
-> +* Nuvoton FLASH Interface Unit (FIU) SPI Controller
-> +
-> +NPCM FIU supports single, dual and quad communication interface.
-> +
-> +The NPCM7XX supports three FIU modules,
-> +FIU0 and FIUx supports two chip selects,
-> +FIU3 support four chip select.
-> +
-> +Required properties:
-> +  - compatible : "nuvoton,npcm750-fiu" for the NPCM7XX BMC
-> +  - #address-cells : should be 1.
-> +  - #size-cells : should be 0.
-> +  - reg : the first contains the register location and length,
-> +          the second contains the memory mapping address and length
-> +  - reg-names: Should contain the reg names "control" and "memory"
-> +  - clocks : phandle of FIU reference clock.
-> +
-> +Required properties in case the pins can be muxed:
-> +  - pinctrl-names : a pinctrl state named "default" must be defined.
-> +  - pinctrl-0 : phandle referencing pin configuration of the device.
-> +
-> +Optional property:
-> +  - spix-mode: enable spix-mode for an expansion bus to an ASIC or CPLD.
+> diff --git a/include/dt-bindings/pinctrl/k3.h b/include/dt-bindings/pinctrl/k3.h
+> index 45e11b6170ca..499de6216581 100644
+> --- a/include/dt-bindings/pinctrl/k3.h
+> +++ b/include/dt-bindings/pinctrl/k3.h
+> @@ -32,4 +32,7 @@
+>  #define AM65X_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+>  #define AM65X_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
+>  
+> +#define J721E_IOPAD(pa, val, muxmode)		(((pa) & 0x1fff)) ((val) | (muxmode))
+> +#define J721E_WKUP_IOPAD(pa, val, muxmode)	(((pa) & 0x1fff)) ((val) | (muxmode))
 
-Is this something standard? If not, add a vendor prefix.
+checkpatch reports a parentheses error:         (((pa) & 0x1fff) ((val) | (muxmode)))
 
 > +
-> +Aliases:
-> +- All the FIU controller nodes should be represented in the aliases node using
-> +  the following format 'fiu{n}' where n is a unique number for the alias.
-> +  In the NPCM7XX BMC:
-> +  		fiu0 represent fiu 0 controller
-> +  		fiu1 represent fiu 3 controller
-> +  		fiu2 represent fiu x controller
-> +
-> +Example:
-> +fiu3: fiu@c00000000 {
-
-spi@...
-
-> +	compatible = "nuvoton,npcm750-fiu";
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	reg = <0xfb000000 0x1000>, <0x80000000 0x10000000>;
-> +	reg-names = "control", "memory";
-> +	clocks = <&clk NPCM7XX_CLK_AHB>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&spi3_pins>;
-> +	spi-nor@0 {
-> +			...
-> +	};
-> +};
-> +
+>  #endif
 > -- 
-> 2.18.0
+> 2.22.0
 > 
