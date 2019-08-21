@@ -2,104 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ACF2A977B4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 13:06:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A2CC9781D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 13:42:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727314AbfHULGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 07:06:44 -0400
-Received: from mail-ed1-f97.google.com ([209.85.208.97]:41120 "EHLO
-        mail-ed1-f97.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727297AbfHULGo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 07:06:44 -0400
-Received: by mail-ed1-f97.google.com with SMTP id w5so2448727edl.8
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 04:06:43 -0700 (PDT)
+        id S1727270AbfHULl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 07:41:28 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:40027 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727038AbfHULl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 07:41:27 -0400
+Received: by mail-wr1-f65.google.com with SMTP id c3so1707525wrd.7
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 04:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=D1u4gvIq92+l9UN39NQGf5w4S9my0cBtD/bsMBZYOmg=;
+        b=lrgRsmYjCIm52WMis8wi6DcYESWvbMcnBj9yzcPWC21tBdekAqJtxoMW0KCjyCkHUA
+         qoikOarcC+GhcuKJvfBSj4br/L6o4kXpNVRP+xQmjBVKR7NxHt5hNEl8llJ20BXa+s1O
+         JP3Su2jc0JB07cU6DVYA01/r5C+GOLRJXcqpBlBJlDkDd/wOxY3npzPc7+nwZhSsMvrI
+         NqntFtXLcBgOvP+H3g7+bUB4a6bCO5Uv/M3sp4M613lJ8AUJSvqbG2vjC3iiMW1C8L3w
+         lpX99lMbXYY+Q2yI26H268RZqSVy/XTIpxMDSX7dKRUAwX1RbXCSFp8y8VD1j+W5r42Q
+         WKSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=JdC8uw0uj+2D4USeHUjKzyTJis80DRjvckbMjZCqJZU=;
-        b=lqjV+RtPPIdOdcO0f/sspbmPVIdhMIL3TS5IdesynoJYKuwqXeYAJSeX2siUnjMkTO
-         b85J/6eD5Jm6pWrAQHLdTidtHQvm2apCjlJOPQWs4lI7kpqKcCcKZI7WcFQjavDoc1s5
-         wWX0Fkt4ouspo04o8wvvtjPf+KNVvHHLOv53lrfsgcfZcMHW2/GToT5bE14E6g6CEH+a
-         IK3nzd/su0a13xjRgn1/uAhzhB/yCxe0vMO9Ftk5x4oQMhcu35RVTiUb4B9hiWqHApYX
-         CPIJegclrxsfC0PIQNG/u7qCVCD3guvopgaZpindW0uSOdNkKP6+ghKbNJcGnavVvpQP
-         8EZA==
-X-Gm-Message-State: APjAAAXnfh446y8cxRoCVPX6FIfU/OCFyUNFqx2uNJjdVldI2qjqATpJ
-        +EV5qTBaUr0eUlRZO/7qr1dmbl/v0XvcWB5Bi9Nfi4fLHTv3Nhln/pWOloUN29/J0Q==
-X-Google-Smtp-Source: APXvYqzxZ6O37/xYSKYIxfdvbs0bwiNGnIyS/izFkelzB/fpWN/Cr7FdRS9QI1MfboTK9+6aaXQew6qfNGyZ
-X-Received: by 2002:a17:906:1911:: with SMTP id a17mr30218337eje.290.1566385602798;
-        Wed, 21 Aug 2019 04:06:42 -0700 (PDT)
-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
-        by smtp-relay.gmail.com with ESMTPS id i17sm106024ejv.82.2019.08.21.04.06.42
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=D1u4gvIq92+l9UN39NQGf5w4S9my0cBtD/bsMBZYOmg=;
+        b=a41UhCfmj7RSjnId6z0H/BDLo+B222CcTqNTuB+F79zrwTPzG8kCohMDJTabhC+JSZ
+         OQF3EgX4knT4zTLLKDTeoSGrQltnPTDZ0HVigXdey5kxIFD2CHDbWCA1gatIo0qzx22y
+         5jcyoxGMjgjZHhr0U6ejdQ/S0kkCy6t25K9Yh/UfVqMjEBZFDQSeeR5MvZfvt0HZmh8h
+         B5X3sdySiMwC+FqRKwoKOVhmEnqFVueKdQlktryHeWvw8V/4NMV1pAea1QBUHqxjhA6S
+         yfHLS00ZoA8Ctpcm7CTbrs3Sz8B8k8e2UOxBkjEvG5pHz+daWYnESBu098nOZuqxY60Z
+         8EPg==
+X-Gm-Message-State: APjAAAVDZYilIpc9AFBneGrYzGMKmHo8RN+Vw5Pb2DA43kRQlmvsNKZk
+        6ee8idPVC7pzw3E14rVSb/K0i9WGIgVVcQ==
+X-Google-Smtp-Source: APXvYqyGANLYRpKOxx+tQ4FS3NoDVT0lTkzn0ovo5WczQZcl/zN3BVoXzCJGSiE0O24CT1VV7PtORA==
+X-Received: by 2002:adf:a55d:: with SMTP id j29mr38250450wrb.275.1566387684468;
+        Wed, 21 Aug 2019 04:41:24 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id g12sm24049686wrv.9.2019.08.21.04.41.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 04:06:42 -0700 (PDT)
-X-Relaying-Domain: sirena.org.uk
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i0ORu-0006pv-97; Wed, 21 Aug 2019 11:06:42 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 137C52742B66; Wed, 21 Aug 2019 12:06:40 +0100 (BST)
-Date:   Wed, 21 Aug 2019 12:06:40 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Ashish Kumar <Ashish.Kumar@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-next@vger.kernel.org,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: Re: [Patch v4 1/3] dt-bindings: spi: spi-fsl-qspi: Add ls2080a
- compatibility string to bindings
-Message-ID: <20190821110640.GC5128@sirena.co.uk>
-References: <1565691791-26167-1-git-send-email-Ashish.Kumar@nxp.com>
+        Wed, 21 Aug 2019 04:41:24 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>, linux-pm@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/5] dt-bindings: power: add Amlogic Everything-Else power domains bindings
+Date:   Wed, 21 Aug 2019 13:41:17 +0200
+Message-Id: <20190821114121.10430-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190821114121.10430-1-narmstrong@baylibre.com>
+References: <20190821114121.10430-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7qSK/uQB79J36Y4o"
-Content-Disposition: inline
-In-Reply-To: <1565691791-26167-1-git-send-email-Ashish.Kumar@nxp.com>
-X-Cookie: Sic transit gloria Monday!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the bindings for the Amlogic Everything-Else power domains,
+controlling the Everything-Else peripherals power domains.
 
---7qSK/uQB79J36Y4o
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The bindings targets the Amlogic G12A and SM1 compatible SoCs,
+support for earlier SoCs will be added later.
 
-On Tue, Aug 13, 2019 at 03:53:09PM +0530, Ashish Kumar wrote:
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml | 93 +++++++++++++++++++
+ include/dt-bindings/power/meson-g12a-power.h  | 13 +++
+ include/dt-bindings/power/meson-sm1-power.h   | 18 ++++
+ 3 files changed, 124 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+ create mode 100644 include/dt-bindings/power/meson-g12a-power.h
+ create mode 100644 include/dt-bindings/power/meson-sm1-power.h
 
-> There are 2 version of QSPI-IP, according to which controller registers s=
-ets
-> can be big endian or little endian.There are some other minor changes like
-> RX fifo depth etc.
->=20
-> The big endian version uses driver compatible "fsl,ls1021a-qspi" and
-> little endian version uses driver compatible "fsl,ls2080a-qspi"
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+new file mode 100644
+index 000000000000..aab70e8b681e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+@@ -0,0 +1,93 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/amlogic,meson-ee-pwrc.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic Meson Everything-Else Power Domains
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |+
++  The Everything-Else Power Domains node should be the child of a syscon
++  node with the required property:
++
++  - compatible: Should be the following:
++                "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
++
++  Refer to the the bindings described in
++  Documentation/devicetree/bindings/mfd/syscon.txt
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-g12a-pwrc
++      - amlogic,meson-sm1-pwrc
++
++  clocks:
++    minItems: 2
++
++  clock-names:
++    items:
++      - const: vpu
++      - const: vapb
++
++  resets:
++    minItems: 11
++
++  reset-names:
++    items:
++      - const: viu
++      - const: venc
++      - const: vcbus
++      - const: bt656
++      - const: rdma
++      - const: venci
++      - const: vencp
++      - const: vdac
++      - const: vdi6
++      - const: vencl
++      - const: vid_lock
++
++  "#power-domain-cells":
++    const: 1
++
++  amlogic,ao-sysctrl:
++    description: phandle to the AO sysctrl node
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/phandle
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - "#power-domain-cells"
++  - amlogic,ao-sysctrl
++
++examples:
++  - |
++    pwrc: power-controller {
++          compatible = "amlogic,meson-sm1-pwrc";
++          #power-domain-cells = <1>;
++          amlogic,ao-sysctrl = <&rti>;
++          resets = <&reset_viu>,
++                   <&reset_venc>,
++                   <&reset_vcbus>,
++                   <&reset_bt656>,
++                   <&reset_rdma>,
++                   <&reset_venci>,
++                   <&reset_vencp>,
++                   <&reset_vdac>,
++                   <&reset_vdi6>,
++                   <&reset_vencl>,
++                   <&reset_vid_lock>;
++          reset-names = "viu", "venc", "vcbus", "bt656",
++                        "rdma", "venci", "vencp", "vdac",
++                        "vdi6", "vencl", "vid_lock";
++          clocks = <&clk_vpu>, <&clk_vapb>;
++          clock-names = "vpu", "vapb";
++    };
+diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
+new file mode 100644
+index 000000000000..bb5e67a842de
+--- /dev/null
++++ b/include/dt-bindings/power/meson-g12a-power.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/*
++ * Copyright (c) 2019 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_MESON_G12A_POWER_H
++#define _DT_BINDINGS_MESON_G12A_POWER_H
++
++#define PWRC_G12A_VPU_ID		0
++#define PWRC_G12A_ETH_ID		1
++
++#endif
+diff --git a/include/dt-bindings/power/meson-sm1-power.h b/include/dt-bindings/power/meson-sm1-power.h
+new file mode 100644
+index 000000000000..a020ab00c134
+--- /dev/null
++++ b/include/dt-bindings/power/meson-sm1-power.h
+@@ -0,0 +1,18 @@
++/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/*
++ * Copyright (c) 2019 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_MESON_SM1_POWER_H
++#define _DT_BINDINGS_MESON_SM1_POWER_H
++
++#define PWRC_SM1_VPU_ID		0
++#define PWRC_SM1_NNA_ID		1
++#define PWRC_SM1_USB_ID		2
++#define PWRC_SM1_PCIE_ID	3
++#define PWRC_SM1_GE2D_ID	4
++#define PWRC_SM1_AUDIO_ID	5
++#define PWRC_SM1_ETH_ID		6
++
++#endif
+-- 
+2.22.0
 
-I'm not seeing the corresponding code changes anywhere?  I'd at least
-expect to see the compatibles added, and it sounds like some actual code
-updates are needed.
-
-Please use subject lines matching the style for the subsystem.  This
-makes it easier for people to identify relevant patches.
-
---7qSK/uQB79J36Y4o
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1dJcAACgkQJNaLcl1U
-h9ALWAf9FuOa4W9/UQrIJZeOZ/BujLFsH5QKFVBvWEBDKZF/EXSWLrYORXZxko35
-l4tKWlUnJd4XbiikYKCJF+d3HWK8f6ZBgPKKMi5PYX9HeUtBF6fJ8mjn2Tz/xh6h
-sG7ZNP9OCu+i7HviwHWORMPBCeOplTwNShinPGIAMxCqM92AppySQfbSbFXl2u5i
-dDwGHh6zPt7raw0Jetq8zjOePmNxwgb8MyF4htJv/W62zF6InmY0XoXeAH3pVNpU
-e0R8Mp/hbYHKEql5s5GTgiBd1toZ5RiSsxWj0it+J66/nWKzQTsihCv0HVJUlGNu
-rdUYox05ntwGBCd4uTGuECa8E4cwrQ==
-=E1Em
------END PGP SIGNATURE-----
-
---7qSK/uQB79J36Y4o--
