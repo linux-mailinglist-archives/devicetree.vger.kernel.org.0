@@ -2,116 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01A8F971D1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 07:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97FF697230
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 08:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727721AbfHUF5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 01:57:33 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:45258 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726907AbfHUF5d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 01:57:33 -0400
-Received: by mail-qk1-f194.google.com with SMTP id m2so813450qki.12
-        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 22:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t6gYotOZasUlghj+5miHn6itbPw1Xxo5qoWX2c4AJZ0=;
-        b=fRkSaGl8rcNZIMIyKlWAiXym9k7PM2Njj2vuF5xfVsWAvvzvhYS7QuzqjU8iNsynLW
-         xjKCE0oaS2TZzsErSCZ+bXBoJshE2B6JY9ANXMpLIOzFkshoyNCGPE5lODc42z3c8AYn
-         6EA+e6LSO18ss01/caCZqVLCqS5xyEzO+wHRw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t6gYotOZasUlghj+5miHn6itbPw1Xxo5qoWX2c4AJZ0=;
-        b=uJ3i3TS+PlPC3rkzcyiMnfk0iIrWVB/qhKMs+Yf1yLndXHm7SDFGSCHsCvIDcYHcxL
-         o/4NtFVRTVUZalShPSJ2yvmSKg+staNjCE4n8YYtkbqwEyA4BIytrfC+TgngJFTLNtC8
-         sC+ZNKWSBO4xGAiAfiO13g8g7Do5IcIR5auN9VvUIpS0afwu289brntbasWrY30z/fmE
-         h4lSbXnUiZSfKOav8hJUC1Wl78wh90L+cMFZGbNQDkBevBWjqqTj01lt5K+LTgD0Djwq
-         6fzrZFOQrAoogntbtBX/SB0Vo/b8Oung8tpqPXAgmpBVSB1SyUMpC7KymyhmkwuNZn0E
-         1wuw==
-X-Gm-Message-State: APjAAAVJUTFOjyl4Y97Najdb0UtMA94eqlEuWeX4VuG74N1gu2YVSyuH
-        BHJSbi482n3H1/4IFizdVl+gE68gudfmWisSFWjQUQ==
-X-Google-Smtp-Source: APXvYqxC6HcxP1uepjmB3Azy4g3yRYVzUlDR2q/OUNQULPHyMxoFB38jRqS6lWI2lvQ0KTTrE5fN1aakFroOXkZTJWc=
-X-Received: by 2002:a05:620a:16c3:: with SMTP id a3mr28335159qkn.315.1566367052074;
- Tue, 20 Aug 2019 22:57:32 -0700 (PDT)
+        id S1726872AbfHUGVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 02:21:47 -0400
+Received: from dvalin.narfation.org ([213.160.73.56]:51842 "EHLO
+        dvalin.narfation.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726484AbfHUGVr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 02:21:47 -0400
+X-Greylist: delayed 314 seconds by postgrey-1.27 at vger.kernel.org; Wed, 21 Aug 2019 02:21:45 EDT
+Received: from bentobox.localnet (p200300C5971038EC000000000000063E.dip0.t-ipconnect.de [IPv6:2003:c5:9710:38ec::63e])
+        by dvalin.narfation.org (Postfix) with ESMTPSA id 20AB51FDA5;
+        Wed, 21 Aug 2019 06:16:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+        s=20121; t=1566368190;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=k4//DVBJlSXUGTW5ZqV7kGgLVyVIxoMGbLM0K+vEU0s=;
+        b=RC+wAhiPSvtbwpyeAG2ZTtBjr/OjQxdWTZ6uDwKtmgGk/1PDpT6VdH5wghM758ejn1Lp6t
+        7xzxVdl5O2PSmP/RvSOpB6DSisypMl8/Tw5pMVctTenw9jO6bl7WzvBLA+brGMy0y+tJyu
+        mOAv3H9O1wZKuPoCZl1NRS0NXTyzebo=
+From:   Sven Eckelmann <sven@narfation.org>
+To:     ath11k@lists.infradead.org
+Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+Date:   Wed, 21 Aug 2019 08:16:27 +0200
+Message-ID: <1635460.phzPRRphLd@bentobox>
+In-Reply-To: <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org> <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
 MIME-Version: 1.0
-References: <20190819071602.139014-1-hsinyi@chromium.org> <20190819071602.139014-3-hsinyi@chromium.org>
- <20190819181349.GE10349@mit.edu> <CAJMQK-ghQ8weMerXW7t0DFZTAg_c5M80Yp5DTAtyY2LA7YpS1A@mail.gmail.com>
- <CAKv+Gu_qJUU2hRujjv6e5yPqPQXRXokBU_2mSGD3civ2d2+xhw@mail.gmail.com>
-In-Reply-To: <CAKv+Gu_qJUU2hRujjv6e5yPqPQXRXokBU_2mSGD3civ2d2+xhw@mail.gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Wed, 21 Aug 2019 13:57:05 +0800
-Message-ID: <CAJMQK-hdYz+pW5QL41nXkZAX1qiRynaWg7cne48qCaQsuPrSCg@mail.gmail.com>
-Subject: Re: [PATCH v8 2/3] fdt: add support for rng-seed
-To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Cc:     "Theodore Y. Ts'o" <tytso@mit.edu>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="nextPart2661494.foTVnLV1sx"; micalg="pgp-sha512"; protocol="application/pgp-signature"
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=narfation.org;
+        s=20121; t=1566368190;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=k4//DVBJlSXUGTW5ZqV7kGgLVyVIxoMGbLM0K+vEU0s=;
+        b=s6tBhDL6MOTBzrc7Nob2aQpCEYHBKeTuhP/Vh01hxjEPhF+fyPVrfClgEdHVHmpwHzPI9A
+        F8S5naZNTdvOkEV0Qz4BVfDGRJkyvhGAd8/R/EOxxbv1a5aVqqaNvY3tRhaCKph4XvKsTZ
+        1TznsXH+FKbpDQzWhvQMe+qh12ti6Bw=
+ARC-Seal: i=1; s=20121; d=narfation.org; t=1566368190; a=rsa-sha256;
+        cv=none;
+        b=A2muYssPS2gHpC7ZUulw62vCxEty0lZbBCorb1sBT2IK8VJ/qLwTfw3aHr8xHiXvveBtB8
+        DTRVXnFQpNv8RF02ikaS2mHsE6Mczct72+YxpjYVFmSDognVUhcKYwRdpVSBhenIsspnr8
+        NOvIMuUkcNS/Ll/+41b762BqU1vm/CE=
+ARC-Authentication-Results: i=1;
+        dvalin.narfation.org;
+        auth=pass smtp.auth=sven smtp.mailfrom=sven@narfation.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Then we'd still use add_device_randomness() in case that bootloader
-provides weak entropy.
+--nextPart2661494.foTVnLV1sx
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, Aug 20, 2019 at 7:14 PM Ard Biesheuvel
-<ard.biesheuvel@linaro.org> wrote:
->
-> On Tue, 20 Aug 2019 at 10:43, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
-> >
-> > Hi Ted,
-> >
-> > Thanks for raising this question.
-> >
-> > For UEFI based system, they have a config table that carries rng seed
-> > and can be passed to device randomness. However, they also use
-> > add_device_randomness (not sure if it's the same reason that they
-> > can't guarantee _all_ bootloader can be trusted)
->
-> The config table is actually a Linux invention: it is populated by the
-> EFI stub code (which is part of the kernel) based on the output of a
-> call into the EFI_RNG_PROTOCOL, which is defined in the UEFI spec, but
-> optional and not widely available.
->
-> I have opted for add_device_randomness() since there is no way to
-> establish the quality level of the output of EFI_RNG_PROTOCOL, and so
-> it is currently only used to prevent the bootup state of the entropy
-> pool to be too predictable, and the output does not contribute to the
-> entropy estimate kept by the RNG core.
->
->
-> > This patch is to let DT based system also have similar features, which
-> > can make initial random number stronger. (We only care initial
-> > situation here, since more entropy would be added to kernel as time
-> > goes on )
-> >
-> > Conservatively, we can use add_device_randomness() as well, which
-> > would pass buffer to crng_slow_load() instead of crng_fast_load().
-> > But I think we should trust bootloader here. Whoever wants to use this
-> > feature should make sure their bootloader can pass valid (random
-> > enough) seeds. If they are not sure, they can just don't add the
-> > property to DT.
->
-> It is the firmware that adds the property to the DT, not the user.
+On Tuesday, 20 August 2019 17:47:57 CEST Kalle Valo wrote:
+> +static void ath11k_peer_assoc_h_rates(struct ath11k *ar,
+> +                                     struct ieee80211_vif *vif,
+> +                                     struct ieee80211_sta *sta,
+> +                                     struct peer_assoc_params *arg)
+> +{
+> +       struct ath11k_vif *arvif = (void *)vif->drv_priv;
+> +       struct wmi_rate_set_arg *rateset = &arg->peer_legacy_rates;
+> +       struct cfg80211_chan_def def;
+> +       const struct ieee80211_supported_band *sband;
+> +       const struct ieee80211_rate *rates;
+> +       enum nl80211_band band;
+> +       u32 ratemask;
+> +       u8 rate;
+
+rate has to be u32 [1].
+
+Kind regards,
+	Sven
+
+[1] https://patchwork.kernel.org/patch/11089507/
+--nextPart2661494.foTVnLV1sx
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEF10rh2Elc9zjMuACXYcKB8Eme0YFAl1c4bsACgkQXYcKB8Em
+e0aLmBAAhoE9lMj0hnfUTO5uRdRLBjgzTR+CAV2Bc72Q4TRzRnt/7NoWfTrViIXW
+Q0MepQ/3Hs6bZc0s+IOqIEduGCGRNrJcbc6q6HlkmcYQmqfkC7cbfnZyzhDZFOLM
+0HbG2wTomoKEJqshc0aDMjaV3N4i6Tj5em590kUktfYTLHoZFJs4G7AdAnIC9nB7
+Kij4lbg6zmOemuenkT0LV/6D3RVjJr0MkcGNd3jsRFgdtCZCJf/5EtVu5goMASSz
+yGwcnTBrp9kaXRp2XRw4j5FO8oogMxXl77neGvnrUHG9mUF23ke+5Dr6X9wOrnpe
+m6zd2RI/2L1E8tKUMUnm7BaJhmqOtJaE6Jd8jcFjptHo8EUe6tr1ZkC7E46xFCER
+fhOqsULieRZDBDLpuhTWCTYip7OO8E842GDTvyD3SWUCbaFVOzF9ttolvvqLKMfB
+V5ntQ5KfyWB9q+3NMNMvqCQqVZnUnTVK2QvDt3JHC6uhqoZiyFGTy3RVFdBVr06x
+g24bg/lEXSTV4nMFUzMlJ+9upRZ3q0H1l6x4bPfWdZNdow/jzuhejvyXv/NTQujR
+iGCb9BPWictQ8QAfZI/FJdrJehlsUe68pQIstiKXVSGKGUzuhYnOhmr4q+yfuYsj
+vC7uBwgqDsGEH2mzGYATTcU04cE2W7XOCckFk9pGO2UOaQIcMrY=
+=8elU
+-----END PGP SIGNATURE-----
+
+--nextPart2661494.foTVnLV1sx--
+
+
+
