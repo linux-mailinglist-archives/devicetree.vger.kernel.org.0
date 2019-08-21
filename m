@@ -2,225 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2CC9781D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 13:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D4497854
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 13:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727270AbfHULl2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 07:41:28 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:40027 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727038AbfHULl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 07:41:27 -0400
-Received: by mail-wr1-f65.google.com with SMTP id c3so1707525wrd.7
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 04:41:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=D1u4gvIq92+l9UN39NQGf5w4S9my0cBtD/bsMBZYOmg=;
-        b=lrgRsmYjCIm52WMis8wi6DcYESWvbMcnBj9yzcPWC21tBdekAqJtxoMW0KCjyCkHUA
-         qoikOarcC+GhcuKJvfBSj4br/L6o4kXpNVRP+xQmjBVKR7NxHt5hNEl8llJ20BXa+s1O
-         JP3Su2jc0JB07cU6DVYA01/r5C+GOLRJXcqpBlBJlDkDd/wOxY3npzPc7+nwZhSsMvrI
-         NqntFtXLcBgOvP+H3g7+bUB4a6bCO5Uv/M3sp4M613lJ8AUJSvqbG2vjC3iiMW1C8L3w
-         lpX99lMbXYY+Q2yI26H268RZqSVy/XTIpxMDSX7dKRUAwX1RbXCSFp8y8VD1j+W5r42Q
-         WKSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=D1u4gvIq92+l9UN39NQGf5w4S9my0cBtD/bsMBZYOmg=;
-        b=a41UhCfmj7RSjnId6z0H/BDLo+B222CcTqNTuB+F79zrwTPzG8kCohMDJTabhC+JSZ
-         OQF3EgX4knT4zTLLKDTeoSGrQltnPTDZ0HVigXdey5kxIFD2CHDbWCA1gatIo0qzx22y
-         5jcyoxGMjgjZHhr0U6ejdQ/S0kkCy6t25K9Yh/UfVqMjEBZFDQSeeR5MvZfvt0HZmh8h
-         B5X3sdySiMwC+FqRKwoKOVhmEnqFVueKdQlktryHeWvw8V/4NMV1pAea1QBUHqxjhA6S
-         yfHLS00ZoA8Ctpcm7CTbrs3Sz8B8k8e2UOxBkjEvG5pHz+daWYnESBu098nOZuqxY60Z
-         8EPg==
-X-Gm-Message-State: APjAAAVDZYilIpc9AFBneGrYzGMKmHo8RN+Vw5Pb2DA43kRQlmvsNKZk
-        6ee8idPVC7pzw3E14rVSb/K0i9WGIgVVcQ==
-X-Google-Smtp-Source: APXvYqyGANLYRpKOxx+tQ4FS3NoDVT0lTkzn0ovo5WczQZcl/zN3BVoXzCJGSiE0O24CT1VV7PtORA==
-X-Received: by 2002:adf:a55d:: with SMTP id j29mr38250450wrb.275.1566387684468;
-        Wed, 21 Aug 2019 04:41:24 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id g12sm24049686wrv.9.2019.08.21.04.41.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 04:41:24 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, ulf.hansson@linaro.org,
-        devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>, linux-pm@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/5] dt-bindings: power: add Amlogic Everything-Else power domains bindings
-Date:   Wed, 21 Aug 2019 13:41:17 +0200
-Message-Id: <20190821114121.10430-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190821114121.10430-1-narmstrong@baylibre.com>
-References: <20190821114121.10430-1-narmstrong@baylibre.com>
+        id S1727120AbfHULvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 07:51:42 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:59542 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726835AbfHULvl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 07:51:41 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190821115140euoutp022956242504161e9133a09ed057c72b3b~87dworY1a0823708237euoutp02o
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 11:51:40 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190821115140euoutp022956242504161e9133a09ed057c72b3b~87dworY1a0823708237euoutp02o
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1566388300;
+        bh=yBUfjQ3nbvD06XyHTq2L/29JP/gh9G+IfMlftFMxlxw=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=IM6rtdtePLhd+o/hEJEbCru8yapgntN3Ok8U6EAh2Ij9+rgx2IkTQwCzlvyoaogje
+         mNa7+KxlA7PzhCsi2/cwiwSki5SdTjg2iiWihaJA3I04NKfmulfdb1It5nTWae+Kz1
+         V3Ta66QFmICvgUJS+5UpLzIgL7gHkkjXpirgUiKQ=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190821115139eucas1p2b64dcab05491e1fcc9b9db48c7562a28~87dvzbRyS2160221602eucas1p2_;
+        Wed, 21 Aug 2019 11:51:39 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 62.7F.04374.B403D5D5; Wed, 21
+        Aug 2019 12:51:39 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190821115138eucas1p1d5934e448f84b6c0ae1f76636e64ade4~87du-2Vee2007520075eucas1p1N;
+        Wed, 21 Aug 2019 11:51:38 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190821115138eusmtrp1985e650b0806b83f355f9f80b5c968fa~87du9sOmS3221232212eusmtrp1z;
+        Wed, 21 Aug 2019 11:51:38 +0000 (GMT)
+X-AuditID: cbfec7f5-92d689c000001116-3e-5d5d304bf851
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id D9.30.04117.A403D5D5; Wed, 21
+        Aug 2019 12:51:38 +0100 (BST)
+Received: from [106.120.51.71] (unknown [106.120.51.71]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190821115137eusmtip171d2e3bfcf321ec53b4221eaec8b2998~87duRUGk22315023150eusmtip1i;
+        Wed, 21 Aug 2019 11:51:37 +0000 (GMT)
+Subject: Re: [PATCH v3 2/9] soc: samsung: Convert exynos-chipid driver to
+ use the regmap API
+To:     Sylwester Nawrocki <snawrocki@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+From:   Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Message-ID: <72eea1ea-2433-2f76-6265-5851554e845d@samsung.com>
+Date:   Wed, 21 Aug 2019 13:51:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <1e428c8e-f4b5-0810-77f9-2c899c040fc7@kernel.org>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0iTYRTHfXzfvXsdTp5m4cmicF3oQmoY9lAiSn0Y+CUIorRpM1/UvG9q
+        WkqmlWmZa9LFqVhRXhbVmrc0stKhieGKtJuZlpc0XSiusryQ26vkt98553/O+R84LCXpFriy
+        kbGJnDJWES1lRHRty5+ObQGecrnnsyKazGpahKTU2CEgZ7S3aJLfP0oRk0kvJIb+twLypqGY
+        IZN5RkSumxrtSY5Fy5B7xh4huVVjEZKzT4xC0jyWLSDZgyMUqeprYfywbPqvBskMuhxGVnX7
+        lCwv6wcju1StQ7JJw5p9TKDIJ4yLjkzmlB6+R0QRmTVdTPwMpAwPP6Qy0JhzLnJgAe+AF22j
+        glwkYiW4AsG4umghsCDIqh5lrCoJnkTQ82rlYsf77gs0LypHMFGTyfCBGUHXY7W9VeWMg+Gz
+        scjWvRwfgDsDalsHhfNpKGsaF1oLDN4Fl7N1yMpi7Av6ggnKyjTeAIbBD7SVV+CD0NuiF/Ca
+        ZdBWOGDLO8zrBztnbXMo7AIfB0rteV4LdeZiird6moUpzX6e98Iv/d2FvDN8b60W8rwa2gsu
+        2swBvo9g9vwwxQd1CMoL5hhetRuaW1/Pu2DnN2yGBw0eVgTsD53PvXh0gvfmZbwFJ9DUXqP4
+        tBjOn5PwMzaCvkzPLG7Nra+k1EiqXXKYdskx2iXHaP+vvYFoHXLhklQx4ZzKK5Y77q5SxKiS
+        YsPdj8bFGND8y7XPtf58hBpnQpsQZpHUUazeJpdLBIpkVWpMEwKWki4XpxQHyiXiMEXqCU4Z
+        F6JMiuZUTWgVS0tdxCft+oIkOFyRyEVxXDynXKzasw6uGWi1xl39UnTN21F2Bqd7lXjr1sR7
+        b5WkDimn64nfN9NIJ1PiGeATmnahcF1QQNSxCnNvWsWHsCnLzrEyO7PbJ9P6B4fNCZ9+5Pjd
+        LBkKOaQoUs8kZqV3CyLc9jhdLbTzb40SOaLk4B6PYeHXlKc+m74csfzuupLwztVN99Wzku53
+        ldKqCMX2LZRSpfgH/Kvpcm4DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRmVeSWpSXmKPExsVy+t/xu7peBrGxBieOSFr8nXSM3WL+kXOs
+        Fi2zFrFY9D9+zWxx/vwGdotNj6+xWlzeNYfN4nPvEUaLGef3MVl0fpnFZrH2yF12i0Vbv7Bb
+        tO49wm5x+E07q0X705fMFpsfHGNzEPD4/WsSo8emVZ1sHpuX1Hv0Nr9j8+jbsorR4/MmuQC2
+        KD2bovzSklSFjPziElulaEMLIz1DSws9IxNLPUNj81grI1MlfTublNSczLLUIn27BL2Mpq1X
+        2Qr+SFS8eLGRuYHxjXAXIyeHhICJxI3b3SxdjFwcQgJLGSVWzt3A1sXIAZSQkTi+vgyiRlji
+        z7UuNoia14wSdzeeYQZJCAvESSy7/4wdxBYRCJPYNPEq2CBmgYksEn1zNjOCJIQEPjBJXFpY
+        CWKzCVhJTGxfBRbnFbCT2DD5I9ggFgFViU1Pb7KA2KICERJn3q9ggagRlDg58wmYzQlU//TK
+        X7BlzALqEn/mXWKGsMUlbj2ZzwRhy0tsfzuHeQKj0Cwk7bOQtMxC0jILScsCRpZVjCKppcW5
+        6bnFRnrFibnFpXnpesn5uZsYgXG97djPLTsYu94FH2IU4GBU4uGdoBsbK8SaWFZcmXuIUYKD
+        WUmEt2JOVKwQb0piZVVqUX58UWlOavEhRlOg5yYyS4km5wNTTl5JvKGpobmFpaG5sbmxmYWS
+        OG+HwMEYIYH0xJLU7NTUgtQimD4mDk6pBsbqmAnvo6aLGKyP3WkbaKdyiD+A2Zvv+tV5C8vF
+        //jJFMbOvNzGPCUk9LBn2vVMldLJ38/NZrihfuldajrv/g1X+F9On/FQI+uMuMJ757MOmukc
+        D5K3edcdYXy36BPzMlXWhVJ51jNTTX/VFVZKmWSU7Jt/VyP36upg4bCnUw7XHmrLfTDlygol
+        luKMREMt5qLiRACNWWY6AQMAAA==
+X-CMS-MailID: 20190821115138eucas1p1d5934e448f84b6c0ae1f76636e64ade4
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c
+References: <20190813150827.31972-1-s.nawrocki@samsung.com>
+        <CGME20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c@eucas1p2.samsung.com>
+        <20190813150827.31972-3-s.nawrocki@samsung.com>
+        <b5359603-b337-dcd8-b025-ca7dff5f4a06@nvidia.com>
+        <CAJKOXPf597CMx=M2JmSTWe2GzBfcHFefgzSJbJ+njZGp-WfR1A@mail.gmail.com>
+        <1e428c8e-f4b5-0810-77f9-2c899c040fc7@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bindings for the Amlogic Everything-Else power domains,
-controlling the Everything-Else peripherals power domains.
 
-The bindings targets the Amlogic G12A and SM1 compatible SoCs,
-support for earlier SoCs will be added later.
+Hi,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/power/amlogic,meson-ee-pwrc.yaml | 93 +++++++++++++++++++
- include/dt-bindings/power/meson-g12a-power.h  | 13 +++
- include/dt-bindings/power/meson-sm1-power.h   | 18 ++++
- 3 files changed, 124 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
- create mode 100644 include/dt-bindings/power/meson-g12a-power.h
- create mode 100644 include/dt-bindings/power/meson-sm1-power.h
+On 8/20/19 11:38 PM, Sylwester Nawrocki wrote:
+> On 8/20/19 21:37, Krzysztof Kozlowski wrote:
+>>>> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+> 
+>>>> @@ -51,29 +48,24 @@ static const char * __init product_id_to_soc_id(unsigned int product_id)
+>>>>   int __init exynos_chipid_early_init(void)
+>>>>   {
+>>>>        struct soc_device_attribute *soc_dev_attr;
+>>>> -     void __iomem *exynos_chipid_base;
+>>>>        struct soc_device *soc_dev;
+>>>>        struct device_node *root;
+>>>> -     struct device_node *np;
+>>>> +     struct regmap *regmap;
+>>>>        u32 product_id;
+>>>>        u32 revision;
+>>>> +     int ret;
+>>>>
+>>>> -     /* look up for chipid node */
+>>>> -     np = of_find_compatible_node(NULL, NULL, "samsung,exynos4210-chipid");
+>>>> -     if (!np)
+>>>> -             return -ENODEV;
+>>>> -
+>>>> -     exynos_chipid_base = of_iomap(np, 0);
+>>>> -     of_node_put(np);
+>>>> -
+>>>> -     if (!exynos_chipid_base) {
+>>>> -             pr_err("Failed to map SoC chipid\n");
+>>>> -             return -ENXIO;
+>>>> +     regmap = syscon_regmap_lookup_by_compatible("samsung,exynos4210-chipid");
+>>>> +     if (IS_ERR(regmap)) {
+>>>> +             pr_err("Failed to get CHIPID regmap\n");
+>>>> +             return PTR_ERR(regmap);
+>>>>        }
+>>> Following this change, I am now seeing the above error on our Tegra
+>>> boards where this driver is enabled. This is triggering a kernel
+>>> warnings test we have to fail. Hence, I don't think that you can remove
+>>> the compatible node test here, unless you have a better way to determine
+>>> if this is a samsung device.
+>>
+>> Right, this is really wrong... I missed that it is not a probe but
+>> early init. And this init will be called on every board... Probably it
+>> should be converted to a regular driver.
 
-diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-new file mode 100644
-index 000000000000..aab70e8b681e
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/power/amlogic,meson-ee-pwrc.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic Meson Everything-Else Power Domains
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+description: |+
-+  The Everything-Else Power Domains node should be the child of a syscon
-+  node with the required property:
-+
-+  - compatible: Should be the following:
-+                "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
-+
-+  Refer to the the bindings described in
-+  Documentation/devicetree/bindings/mfd/syscon.txt
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,meson-g12a-pwrc
-+      - amlogic,meson-sm1-pwrc
-+
-+  clocks:
-+    minItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: vpu
-+      - const: vapb
-+
-+  resets:
-+    minItems: 11
-+
-+  reset-names:
-+    items:
-+      - const: viu
-+      - const: venc
-+      - const: vcbus
-+      - const: bt656
-+      - const: rdma
-+      - const: venci
-+      - const: vencp
-+      - const: vdac
-+      - const: vdi6
-+      - const: vencl
-+      - const: vid_lock
-+
-+  "#power-domain-cells":
-+    const: 1
-+
-+  amlogic,ao-sysctrl:
-+    description: phandle to the AO sysctrl node
-+    allOf:
-+      - $ref: /schemas/types.yaml#/definitions/phandle
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - resets
-+  - reset-names
-+  - "#power-domain-cells"
-+  - amlogic,ao-sysctrl
-+
-+examples:
-+  - |
-+    pwrc: power-controller {
-+          compatible = "amlogic,meson-sm1-pwrc";
-+          #power-domain-cells = <1>;
-+          amlogic,ao-sysctrl = <&rti>;
-+          resets = <&reset_viu>,
-+                   <&reset_venc>,
-+                   <&reset_vcbus>,
-+                   <&reset_bt656>,
-+                   <&reset_rdma>,
-+                   <&reset_venci>,
-+                   <&reset_vencp>,
-+                   <&reset_vdac>,
-+                   <&reset_vdi6>,
-+                   <&reset_vencl>,
-+                   <&reset_vid_lock>;
-+          reset-names = "viu", "venc", "vcbus", "bt656",
-+                        "rdma", "venci", "vencp", "vdac",
-+                        "vdi6", "vencl", "vid_lock";
-+          clocks = <&clk_vpu>, <&clk_vapb>;
-+          clock-names = "vpu", "vapb";
-+    };
-diff --git a/include/dt-bindings/power/meson-g12a-power.h b/include/dt-bindings/power/meson-g12a-power.h
-new file mode 100644
-index 000000000000..bb5e67a842de
---- /dev/null
-+++ b/include/dt-bindings/power/meson-g12a-power.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_MESON_G12A_POWER_H
-+#define _DT_BINDINGS_MESON_G12A_POWER_H
-+
-+#define PWRC_G12A_VPU_ID		0
-+#define PWRC_G12A_ETH_ID		1
-+
-+#endif
-diff --git a/include/dt-bindings/power/meson-sm1-power.h b/include/dt-bindings/power/meson-sm1-power.h
-new file mode 100644
-index 000000000000..a020ab00c134
---- /dev/null
-+++ b/include/dt-bindings/power/meson-sm1-power.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
-+/*
-+ * Copyright (c) 2019 BayLibre, SAS
-+ * Author: Neil Armstrong <narmstrong@baylibre.com>
-+ */
-+
-+#ifndef _DT_BINDINGS_MESON_SM1_POWER_H
-+#define _DT_BINDINGS_MESON_SM1_POWER_H
-+
-+#define PWRC_SM1_VPU_ID		0
-+#define PWRC_SM1_NNA_ID		1
-+#define PWRC_SM1_USB_ID		2
-+#define PWRC_SM1_PCIE_ID	3
-+#define PWRC_SM1_GE2D_ID	4
-+#define PWRC_SM1_AUDIO_ID	5
-+#define PWRC_SM1_ETH_ID		6
-+
-+#endif
--- 
-2.22.0
+Early initialization is needed for SoC driver to be used from within
+arch/arm/mach-exynos/ and _initcall() usage is the usual way for SoC
+drivers to be initialized:
 
+drivers/soc/amlogic/meson-gx-socinfo.c
+drivers/soc/amlogic/meson-mx-socinfo.c
+drivers/soc/atmel/soc.c
+drivers/soc/bcm/brcmstb/common.c
+drivers/soc/imx/soc-imx-scu.c
+drivers/soc/imx/soc-imx8.c
+drivers/soc/renesas/renesas-soc.c
+drivers/soc/tegra/fuse/fuse-tegra.c
+drivers/soc/ux500/ux500-soc-id.c
+drivers/soc/versatile/soc-integrator.c
+drivers/soc/versatile/soc-integrator.c
+
+The only SoC drivers that are regular drivers are:
+
+drivers/soc/fsl/guts.c
+drivers/soc/versatile/soc-realview.c
+
+> I'm also inclined to have it converted to a regular driver.  We already
+> have "exynos-asv" driver matching on the chipid node (patch 3/9). 
+> The ASV patches will not be merged soon anyway, all this needs some more
+> thought. Krzysztof, can we abandon the chipid patches for now? Your
+
+chipid driver is good and useful on its own. The preferred solution
+IMHO would be to just revert "soc: samsung: Convert exynos-chipid
+driver to use the regmap API" commit.
+
+> pull request doesn't appear to be merged to arm-soc yet. Sorry about
+> that.
+Best regards,
+--
+Bartlomiej Zolnierkiewicz
+Samsung R&D Institute Poland
+Samsung Electronics
