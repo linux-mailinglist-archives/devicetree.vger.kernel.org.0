@@ -2,111 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C43549869D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:30:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5AFE986BC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728724AbfHUVaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 17:30:19 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:44268 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727953AbfHUVaT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:30:19 -0400
-Received: by mail-pf1-f196.google.com with SMTP id c81so2282769pfc.11
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 14:30:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=JamKzvdT5n0JRFMyDQS1FT/k6bVQThWvvzDjprEJ6CY=;
-        b=iMJnFRHDKKfY2TVix6Kg7QyOZkDIj5MTwOzwwrn9Yh0Quv6TKjoaBAZkhZHd1kOHee
-         LXYDawRhFHEgBNVxflMeMS/vKJFbK02GEskP/b6ppziRxRi71zF0RENhjAVb7LQCWOtV
-         CHhrElk4aIvJMy7kf/RDsJ3S7caNHIVvHYd+xe2R1sU6oYZpkGVwZCAfBXtXXFTrXwvg
-         AVFLU7xkUCQi9Uk9PR83GQaRgRbRYRgV+B9KFifQie13IcraLry4MNr3OCU0avrjxreC
-         K2PcHaPYxhKddpS94bCbVgYQ2dv1df8KAJmlVi0wYxdGfp48vGlzZyybK6pyDqhS7qmA
-         HZ4Q==
+        id S1730913AbfHUVoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 17:44:39 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:44460 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727923AbfHUVoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:44:39 -0400
+Received: by mail-oi1-f195.google.com with SMTP id k22so2774556oiw.11;
+        Wed, 21 Aug 2019 14:44:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=JamKzvdT5n0JRFMyDQS1FT/k6bVQThWvvzDjprEJ6CY=;
-        b=TFbEjTeGWKeSUmP5FKv+UVRFxBSciWTqoQ4K6V9vzqTvVoH74TW8srw6AOCoZsFUDG
-         I4exCf6THhN+WKoNi9feNIbBeZxBdGP23fJEqEpVFf+7R3XHd0wn9PP21lOJ/BZ8f5fp
-         gL0gi42JpjhXmiQinpTUUMkuuqF3LnHr0c77xDLNRBZlCKujeFTeqWojZjMwbiIUQzpj
-         E+lQzFxnUpteGLKEWLKiSNC44hOiroCQajIVupVVdXu2e9HNslyHR1V1o+d8f5/tTp1j
-         1YmC4gwFO3vD3H3T1HVf72bGRqFCbrcNX1HpVtjLCeIDCOL5IZcjVy6/9JJHgFbPjQl5
-         yvFA==
-X-Gm-Message-State: APjAAAUdlSLS5JytJGHLXeLrAf+mO6ajtRUpjUIRoGHnCtrJqx+ZWpJN
-        2GmIjgMu/B1UOPrfL41daUoTAQ==
-X-Google-Smtp-Source: APXvYqxJgS3AGYB65QX2eSGKbfHabg/mZAuaZCmr2wu/yKCdqUmPctixFz2Q12im4wy2hl85+1FtNA==
-X-Received: by 2002:a63:5a4d:: with SMTP id k13mr30104074pgm.174.1566423018409;
-        Wed, 21 Aug 2019 14:30:18 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id a128sm24706235pfb.185.2019.08.21.14.30.17
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Aug 2019 14:30:17 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Guillaume La Roque <glaroque@baylibre.com>,
-        daniel.lezcano@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 0/6] Add support of New Amlogic temperature sensor for G12 SoCs
-In-Reply-To: <7hd0hd3mme.fsf@baylibre.com>
-References: <20190806130506.8753-1-glaroque@baylibre.com> <7hd0hd3mme.fsf@baylibre.com>
-Date:   Wed, 21 Aug 2019 14:30:17 -0700
-Message-ID: <7himqq9pg6.fsf@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=RLnoMCGg4aZAXQG/7EhE1lAx/LE1YZXQ51HizQcuuSk=;
+        b=DPLHpQg7mRC2yS3q/NPwCXTstMe5AHbZuZlhHgVMKwTqH5+7wyAi+FA5d8LDckWJAK
+         9QoeALiocFFBAXgYZr+4QIaLjdT/1qlV8w2qr15SWNArAsYJFcAYgqyeTTA+xAO2ZZdm
+         vCPRyBUre0VXrf8kQjMgcOcTlTdL2ybS1/bzj2KF5q+0cmbj+Oy0bOnA/IiJ4YfblM3N
+         7wHqpJXKf4CNb/A+hkr5niMwozmNo8/I9WN4RygEDGLqXW7CsQcyruSQc6LBVY2g1+DN
+         RiQLgGPaZSE06Q3XfefI/zwY2toKeApqfq2tCPJUvDbTxDKkdoChMA0OPMzcfRwaTakO
+         Gmog==
+X-Gm-Message-State: APjAAAVBgRvvB7FoiDIZ/Ar9pTegauddPueUjcA3R5CnGlUIIc8D87Xu
+        LzG+exD5ScyxUONc1wWjGw==
+X-Google-Smtp-Source: APXvYqwHMvNmtkabfkRrV911VbE74YYZKFohSjzXpV0vzc4tBsAYOT28isHK4N/rXNz29ZFzUCPLIA==
+X-Received: by 2002:a54:4f09:: with SMTP id e9mr1583851oiy.89.1566423877964;
+        Wed, 21 Aug 2019 14:44:37 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 65sm7881807otw.2.2019.08.21.14.44.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2019 14:44:37 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 16:44:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     vkoul@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
+        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
+Message-ID: <20190821214436.GA13936@bogus>
+References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
+ <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Kevin Hilman <khilman@baylibre.com> writes:
+On Fri, Aug 09, 2019 at 02:34:04PM +0100, Srinivas Kandagatla wrote:
+> This patch adds bindings for Soundwire Slave devices that includes how
+> SoundWire enumeration address and Link ID are used to represented in
+> SoundWire slave device tree nodes.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../devicetree/bindings/soundwire/slave.txt   | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
 
-> Guillaume La Roque <glaroque@baylibre.com> writes:
->
->> This patchs series add support of New Amlogic temperature sensor and minimal
->> thermal zone for SEI510 and ODROID-N2 boards.
->>
->> First implementation was doing on IIO[1] but after comments i move on thermal framework.
->> Formulas and calibration values come from amlogic.
->>
->> Changes since v2:
->>   - fix yaml documention 
->>   - remove unneeded status variable for temperature-sensor node
->>   - rework driver after Martin review
->>   - add some information in commit message
->>
->> Changes since v1:
->>   - fix enum vs const in documentation
->>   - fix error with thermal-sensor-cells value set to 1 instead of 0
->>   - add some dependencies needed to add cooling-maps
->>
->> Dependencies :
->> - patch 3,4 & 5: depends on Neil's patch and series :
->>               - missing dwc2 phy-names[2]
->>               - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
->>
->> [1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
->> [2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
->> [3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
->> [4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
->> [5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
->
-> Thank you for the detailed list of dependencies!  Much appreciated.
->
-> With all the deps, I tested this on sei510 and odroid-n2, and basic
-> functionality seems to work.
->
-> As discussed off-list: it would be nice to have an example of how
-> cpufreq could be used as a cooling device for hot temperatures.  The
-> vendor kernel has some trip points that could be included as examples,
-> or even included as extra patches.
->
-> Also the driver patch is missing the two main thermal maintainers, so
-> please resend at least the driver and bindings including them.
+Can you convert this to DT schema given it is a common binding.
 
-Forgot to add...
+What does the host controller look like? You need to define the node 
+hierarchy. Bus controller schemas should then include the bus schema. 
+See spi-controller.yaml.
 
-Tested-by: Kevin Hilman <khilman@baylibre.com>
+> 
+> diff --git a/Documentation/devicetree/bindings/soundwire/slave.txt b/Documentation/devicetree/bindings/soundwire/slave.txt
+> new file mode 100644
+> index 000000000000..201f65d2fafa
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soundwire/slave.txt
+> @@ -0,0 +1,51 @@
+> +SoundWire slave device bindings.
+> +
+> +SoundWire is a 2-pin multi-drop interface with data and clock line.
+> +It facilitates development of low cost, efficient, high performance systems.
+> +
+> +SoundWire slave devices:
+> +Every SoundWire controller node can contain zero or more child nodes
+> +representing slave devices on the bus. Every SoundWire slave device is
+> +uniquely determined by the enumeration address containing 5 fields:
+> +SoundWire Version, Instance ID, Manufacturer ID, Part ID
+> +and Class ID for a device. Addition to below required properties,
+> +child nodes can have device specific bindings.
+> +
+> +Required properties:
+> +- compatible:	 "sdw<LinkID><VersionID><InstanceID><MFD><PID><CID>".
+> +		  Is the textual representation of SoundWire Enumeration
+> +		  address along with Link ID. compatible string should contain
+> +		  SoundWire Link ID, SoundWire Version ID, Instance ID,
+> +		  Manufacturer ID, Part ID and Class ID in order
+> +		  represented as above and shall be in lower-case hexadecimal
+> +		  with leading zeroes. Vaild sizes of these fields are
+> +		  LinkID is 1 nibble,
+> +		  Version ID is 1 nibble
+> +		  Instance ID in 1 nibble
+> +		  MFD in 4 nibbles
+> +		  PID in 4 nibbles
+> +		  CID is 2 nibbles
+> +
+> +		  Version number '0x1' represents SoundWire 1.0
+> +		  Version number '0x2' represents SoundWire 1.1
+
+This can all be a regex.
+
+> +		  ex: "sdw0110217201000" represents 0 LinkID,
+> +		  SoundWire 1.0 version slave with Instance ID 1.
+> +		  More Information on detail of encoding of these fields can be
+> +		  found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
+> +
+> +SoundWire example for Qualcomm's SoundWire controller:
+> +
+> +soundwire@c2d0000 {
+> +	compatible = "qcom,soundwire-v1.5.0"
+> +	reg = <0x0c2d0000 0x2000>;
+> +
+> +	spkr_left:wsa8810-left{
+> +		compatible = "sdw0110217201000";
+> +		...
+> +	};
+> +
+> +	spkr_right:wsa8810-right{
+> +		compatible = "sdw0120217201000";
+
+The normal way to distinguish instances is with 'reg'. So I think you 
+need 'reg' with Instance ID moved there at least. Just guessing, but 
+perhaps Link ID, too? And for 2 different classes of device is that 
+enough? 
+
+Rob
