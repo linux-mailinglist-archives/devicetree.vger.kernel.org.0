@@ -2,156 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D5397F5C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E164697FE7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:22:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729040AbfHUPtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 11:49:33 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45350 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728357AbfHUPtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 11:49:33 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7LFnP2r027548;
-        Wed, 21 Aug 2019 10:49:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566402565;
-        bh=Ly74aUdlsn8TYmM0ZxccMxi0tgZheiDmSFdlBw2ORmg=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=L3NQMhdIy8sgi6xjTdNQ2blzPJIrPyaf0vTZcrAvdLIvYj3VKlwxAaNoD3DkkifuY
-         MRdgysxdYaZ9eS37T+2EGMhJiBUDc1vwcy3G+PRmUjxWQkSK39pHvCkbd2gAwiF3j0
-         QOnvNKtqpndvwN2NhmmwwZL2cvV0iIuv9ozzALmk=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7LFnPHh039370
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Aug 2019 10:49:25 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 21
- Aug 2019 10:49:24 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 21 Aug 2019 10:49:24 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7LFnOTk114132;
-        Wed, 21 Aug 2019 10:49:24 -0500
-Subject: Re: [PATCH 6/8] soc: ti: omap_prm: add data for am33xx
-To:     Tero Kristo <t-kristo@ti.com>, <ssantosh@kernel.org>,
+        id S1727041AbfHUQWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 12:22:11 -0400
+Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:56373 "EHLO
+        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727975AbfHUQWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 12:22:11 -0400
+Received: from callcc.thunk.org (75-104-87-59.mobility.exede.net [75.104.87.59] (may be forged))
+        (authenticated bits=0)
+        (User authenticated as tytso@ATHENA.MIT.EDU)
+        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x7LGLQaP017370
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 21 Aug 2019 12:21:33 -0400
+Received: by callcc.thunk.org (Postfix, from userid 15806)
+        id 2CA8742049E; Wed, 21 Aug 2019 12:21:26 -0400 (EDT)
+Date:   Wed, 21 Aug 2019 12:21:26 -0400
+From:   "Theodore Y. Ts'o" <tytso@mit.edu>
+To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
- <1565164139-21886-7-git-send-email-t-kristo@ti.com>
- <ebb6e240-1252-5a4f-39a2-403ee699d8aa@ti.com>
- <8f5f86db-270a-7278-9d9c-e84c0fa9b73c@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <ca2c21c9-ddcd-e378-ca2b-435e91c87700@ti.com>
-Date:   Wed, 21 Aug 2019 10:49:24 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Rob Herring <robh+dt@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Subject: Re: [PATCH v8 2/3] fdt: add support for rng-seed
+Message-ID: <20190821162126.GA2713@mit.edu>
+Mail-Followup-To: "Theodore Y. Ts'o" <tytso@mit.edu>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+References: <20190819071602.139014-1-hsinyi@chromium.org>
+ <20190819071602.139014-3-hsinyi@chromium.org>
+ <20190819181349.GE10349@mit.edu>
+ <CAJMQK-ghQ8weMerXW7t0DFZTAg_c5M80Yp5DTAtyY2LA7YpS1A@mail.gmail.com>
+ <CAKv+Gu_qJUU2hRujjv6e5yPqPQXRXokBU_2mSGD3civ2d2+xhw@mail.gmail.com>
+ <CAJMQK-hdYz+pW5QL41nXkZAX1qiRynaWg7cne48qCaQsuPrSCg@mail.gmail.com>
+ <CAKv+Gu-kp-LqCCx=h2TJxzns4KpM-UEjz3md0u3hbVOyp+iFtA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <8f5f86db-270a-7278-9d9c-e84c0fa9b73c@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKv+Gu-kp-LqCCx=h2TJxzns4KpM-UEjz3md0u3hbVOyp+iFtA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/21/19 2:23 AM, Tero Kristo wrote:
-> On 20.8.2019 21.48, Suman Anna wrote:
->> Hi Tero,
->>
->> On 8/7/19 2:48 AM, Tero Kristo wrote:
->>> Add PRM instance data for AM33xx SoC. Includes some basic register
->>> definitions and reset data for now.
->>>
->>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->>> ---
->>>   drivers/soc/ti/omap_prm.c | 17 +++++++++++++++++
->>>   1 file changed, 17 insertions(+)
->>>
->>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
->>> index 9b8d5945..fadfc7f 100644
->>> --- a/drivers/soc/ti/omap_prm.c
->>> +++ b/drivers/soc/ti/omap_prm.c
->>> @@ -73,8 +73,25 @@ struct omap_prm_data omap4_prm_data[] = {
->>>       { },
->>>   };
->>>   +struct omap_rst_map am3_wkup_rst_map[] = {
->>> +    { .rst = 3, .st = 5 },
->>> +    { .rst = -1 },
->>> +};
->>> +
->>> +struct omap_prm_data am3_prm_data[] = {
->>> +    { .name = "per", .base = 0x44e00c00, .pwstctrl = 0xc, .pwstst =
->>> 0x8, .flags = OMAP_PRM_NO_RSTST },
->>> +    { .name = "wkup", .base = 0x44e00d00, .pwstctrl = 0x4, .pwstst =
->>> 0x8, .rstst = 0xc, .rstmap = am3_wkup_rst_map },
->>> +    { .name = "mpu", .base = 0x44e00e00, .pwstst = 0x4 },
->>
->> Has a rstst but no rstctrl, but your registration logic takes care of
->> this. Somewhat confusing, when you just look at the data. Should you
->> limit the check to only rstctrl and OMAP_PRM_NO_RSTST?
+On Wed, Aug 21, 2019 at 09:39:28AM +0300, Ard Biesheuvel wrote:
 > 
-> I think its probably better I invert the flags and explicitly state
-> OMAP_PRM_HAS_RSTST | OMAP_PRM_HAS_RSTCTRL, in case any zero value is
-> used for these.
+> Whether to trust the firmware provided entropy is a policy decision,
+> and typically, we try to avoid dictating policy in the kernel, and
+> instead, we try to provide a sane default but give the user control
+> over it.
+> 
+> So in this case, we should probably introduce
+> add_firmware_randomness() with a Kconfig/cmdline option pair to decide
+> whether it should be trusted or not (or reuse the one we have for
+> trusting RDRAND etc)
 
-Yeah, something similar to HWMOD_OMAP4_ZERO_CLKCTRL_OFFSET in current
-hwmod code.
+I'd call it add_bootloader_randomness(), since we are trusting the
+*bootloader*; it's the bootloader which is vouching for the security /
+validity of the passed-in entropy.  Furthermore, the bootloader on
+some architectures might be fetching directly from some secure
+element.
 
-> 
->>
->>> +    { .name = "device", .base = 0x44e00f00, .rstctl = 0x0, .rstst =
->>> 0x8 },
->>
->> No pwrstctrl and pwrstst registers, so same comment as on OMAP4 data.
-> 
-> I should probably add some flag for this in future once the support for
-> power domains is added.
-> 
-> Anyway, I'll ditch all pwstctrl / pwstst data for now as it seems to
-> bother you too much.
+And for that reason, I'd use a different Kconfig/cmdline option pair
+than the one used for trusting CPU-provided randomness.
 
-OK, that's probably cleaner, and the code and data can be handled when
-you implement the power-domain pieces.
-
-regards
-Suman
-
-> 
-> -Tero
-> 
->>
->>> +    { .name = "rtc", .base = 0x44e01000, .pwstst = 0x4 },
->>> +    { .name = "gfx", .base = 0x44e01100, .pwstst = 0x10, .rstctl =
->>> 0x4, .rstst = 0x14 },
->>> +    { .name = "cefuse", .base = 0x44e01200, .pwstst = 0x4 },
->>
->> I am not sure if it is better to explicitly list the registers at 0
->> offset rather than using the implied value of 0, since there are some
->> registers that do not exist on some PRM instances which are also not
->> defined.
->>
->> regards
->> Suman
->>
->>> +    { },
->>> +};
->>> +
->>>   static const struct of_device_id omap_prm_id_table[] = {
->>>       { .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
->>> +    { .compatible = "ti,am3-prm-inst", .data = am3_prm_data },
->>>       { },
->>>   };
->>>  
->>
-> 
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+						- Ted
