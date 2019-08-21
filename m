@@ -2,197 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91BCC98053
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB4659807C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:46:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728970AbfHUQjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 12:39:16 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:46290 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727037AbfHUQjQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 12:39:16 -0400
-Received: by mail-pl1-f194.google.com with SMTP id c2so1602563plz.13;
-        Wed, 21 Aug 2019 09:39:15 -0700 (PDT)
+        id S1728806AbfHUQqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 12:46:10 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:36737 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726252AbfHUQqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 12:46:10 -0400
+Received: by mail-wr1-f67.google.com with SMTP id r3so2698830wrt.3;
+        Wed, 21 Aug 2019 09:46:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JZz/nKJ1cJgQ4UieOexo+ZC6Ak4tiKQMyw5MEe0fvdc=;
-        b=T6I8yJx6Ol98caKaIAK43tRitnI5lMhslocmESeYjtEgWaIz4oTvloNAssYOyKMYYq
-         ckrGFxXooK39YM2uBUtS9p7FtzwYvGg0Q0bVSgwPW2FH1NYq2bgGfem2MmK7NsKjeHUU
-         UL/ax2yCTVNCnSXuGd1e7YToLx6v9q0P12cEwBYCEl64gwgvtlvR1+qJKZ3igLAbrhJP
-         syv6HjEB9esrvkB0GI5jCxKtCwNOyCJCn1t6dguZCfxp+aStN2wsMdoo4hHdvgeegKFG
-         0SVIekvRJMdt6DNtWO+jkRIv7E2gJCD0LcBBkSqz8IopShLtR38B0kVlgZnCOzXiOuD3
-         MvFg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=wLVvXyvgXB6Ocn+szDhvQ/g84MWsWYjn4vzDej1qGVo=;
+        b=SKUk6eMqTMq1/i5AqIDWbmfilcH0myvGVJaYn5H2fjL7t85w6H0SuEUBvR/QDp0caB
+         mv3oH7WMaRrQljjgkKIYwJBmuvPcgwfs9GS5iLim7qaoWIe8eLdgtPKDxgLP5JGD3c0D
+         yG1/v8X9xF9HWOWRGKOsD5cqHA4UICTIo+A4grQ4LoJkPKuv5WCmtAHs8kmM5n1yvBQm
+         +uUlGGn/IXqRiG54kYAWeuBSDOnUXtuYhkiLVnJDL/bC20KpRi8TLrk+A2MuVizLsJRm
+         MUxvgeg+fO0+LS0UxHzP/ydLCzYzC7G5BZlcefAzqC/R1Znr0W0iD6egaVdyRyc6CjOe
+         H/JQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JZz/nKJ1cJgQ4UieOexo+ZC6Ak4tiKQMyw5MEe0fvdc=;
-        b=bDKNqK8GfD1iuQs5AWGBwX6nsJMC6su4l3SDS5gO2RegF6SWYfDMOwoEFarQpNz3bj
-         09ExqWTjiOzi+Ho8hUdKTOh8UJYrvmFZv3Zvr7+5AHPevH9WVAO2LsoxqFkRSvf9oe9t
-         eDtygxkyIJeyAVedYrn4+jIDZlv8GO8bAl/qsDHvwlm+5Jy/Sd84bXoTXqaEBNtcG+oC
-         S3wPijmIte6k50NSpHzElTtwcE9vLgEzhb4R/MDGcR9bpRpbfhw3IA+vPFflse1EuYa7
-         uPZmNk4kooRQzEpRqmjGbnU5873PfSEVtDqhYcZcVzbdkImfDbnBUoQWtPH1bgj99aIi
-         SDXw==
-X-Gm-Message-State: APjAAAUEK/MWP2fcYLXD1JZeBFvSSpUNKAHychPPZqavB6jsRe/KQ77d
-        PfBH6dRTB+y7/Ccvk0p6I/0=
-X-Google-Smtp-Source: APXvYqziKRUcRBP7nEElJtM5f5gF1qT0vWwx+4WrLduJb/cf4W7woU9T9ThcHFROzOpv0Ia8+R8zww==
-X-Received: by 2002:a17:902:74ca:: with SMTP id f10mr4975086plt.264.1566405555151;
-        Wed, 21 Aug 2019 09:39:15 -0700 (PDT)
-Received: from [192.168.43.210] (mobile-166-137-176-042.mycingular.net. [166.137.176.42])
-        by smtp.gmail.com with ESMTPSA id q10sm29424466pfl.8.2019.08.21.09.39.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 09:39:14 -0700 (PDT)
-Subject: Re: [PATCH v7 3/7] of/platform: Add functional dependency link from
- DT bindings
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
-References: <20190724001100.133423-1-saravanak@google.com>
- <20190724001100.133423-4-saravanak@google.com>
- <141d2e16-26cc-1f05-1ac0-6784bab5ae88@gmail.com>
- <CAGETcx-dVnLCRA+1CX47gtZgtwTcrN5KefpjMzh9OJB-BEnqyg@mail.gmail.com>
- <19c99a6e-51c3-68d7-d1d6-640aae754c14@gmail.com>
- <CAGETcx-XcXZq7YFHsFdzBDniQku9cxFUJL_vBoEKKhCH+cDKRw@mail.gmail.com>
- <74931824-f8a1-0435-e00a-5b5cdbe8a8a2@gmail.com>
- <CAGETcx8UHA9kNkjjnBXcf_OYXaaPO9ky60M01Cfz3NFb1c1FZw@mail.gmail.com>
- <15ab4fb0-7e69-9cc1-4a79-cff06767f7d9@gmail.com>
- <CAGETcx-F7VoQsDihvJ1FY=Pw8Rhu69zh6pBzkV4nSabwYRvbZw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <983bb329-7bb4-7401-a9f1-2b8dfe87c1b7@gmail.com>
-Date:   Wed, 21 Aug 2019 09:39:12 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=wLVvXyvgXB6Ocn+szDhvQ/g84MWsWYjn4vzDej1qGVo=;
+        b=WTfrl5zLrNRZG9UCd3Rp4uaJThUVBvS2yJsgda90NwvkIJ8qIwRLCpkjE7UqMb5Ilk
+         hIZYmU2n4VMMAypdagIPQgRtexdAYQCsh97UPKSaBM9mjGESGtD9f0ukFQcCr3Vlut2E
+         bAXERoq4K+bBRP6gs3HPs4NqjG/AAYnRI7ymhq19mFfUQyXVYfkb/WbO/b0uHuTDr9tk
+         CFu8E6YLanLc33LGbUi81Xw9WS+fb3EVAuwjogEjQVGOVgAj81Lh5Y5fbM4d7qDziAPB
+         slwsrn2+RanLpBrsBSVhlxG9oC0D4PNoBAZ1FiuZ+nnQYsRo8h9orTdYD7UUE0HkCuV9
+         VgvQ==
+X-Gm-Message-State: APjAAAU/4vATlLRyLcXXz90txxsUQOBqp00Dax+qYZVQXaURmmKG34tl
+        3i209J8bBZHYmrVw4Z6OFdg=
+X-Google-Smtp-Source: APXvYqxodKNIKoQwnEnC2ZcZhLe1lTiEUtStwmw0bPl3BZ3tfKUugVkE2YhWNYsG9v3IlkjXjrSn4g==
+X-Received: by 2002:a05:6000:cb:: with SMTP id q11mr41943965wrx.50.1566405968082;
+        Wed, 21 Aug 2019 09:46:08 -0700 (PDT)
+Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
+        by smtp.gmail.com with ESMTPSA id k13sm19246411wro.97.2019.08.21.09.46.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2019 09:46:06 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 18:46:05 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     =?utf-8?B?TWljaGHFgsKgTWlyb3PFgmF3?= <mirq-linux@rere.qmqm.pl>,
+        Rob Herring <robh-dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 01/15] clk: tegra20/30: Add custom EMC clock
+ implementation
+Message-ID: <20190821164605.GA31425@ulmo>
+References: <20190811210043.20122-1-digetx@gmail.com>
+ <20190811210043.20122-2-digetx@gmail.com>
+ <20190812231258.GA31836@qmqm.qmqm.pl>
+ <8369884e-1bd7-063f-e053-5152378078e9@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx-F7VoQsDihvJ1FY=Pw8Rhu69zh6pBzkV4nSabwYRvbZw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="BXVAT5kNtrzKuDFl"
+Content-Disposition: inline
+In-Reply-To: <8369884e-1bd7-063f-e053-5152378078e9@gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/20/19 3:09 PM, Saravana Kannan wrote:
-> On Mon, Aug 19, 2019 at 9:26 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
 
+--BXVAT5kNtrzKuDFl
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-< snip - the stuff I snipped deserves reply, but I want to focus on just
-  one topic for this reply >
+On Tue, Aug 13, 2019 at 05:36:41AM +0300, Dmitry Osipenko wrote:
+> 13.08.2019 2:12, Micha=C5=82=C2=A0Miros=C5=82aw =D0=BF=D0=B8=D1=88=D0=B5=
+=D1=82:
+> > On Mon, Aug 12, 2019 at 12:00:29AM +0300, Dmitry Osipenko wrote:
+> >> A proper External Memory Controller clock rounding and parent selection
+> >> functionality is required by the EMC drivers, it is not available using
+> >> the generic clock implementation because only the Memory Controller dr=
+iver
+> >> is aware of what clock rates are actually available for a particular
+> >> device. EMC drivers will have to register a Tegra-specific CLK-API
+> >> callback which will perform rounding of a requested rate. EMC clock us=
+ers
+> >> won't be able to request EMC clock by getting -EPROBE_DEFER until EMC
+> >> driver is probed and the callback is set up.
+> > [...]
+> >> diff --git a/drivers/clk/tegra/Makefile b/drivers/clk/tegra/Makefile
+> >> index 4812e45c2214..df966ca06788 100644
+> >> --- a/drivers/clk/tegra/Makefile
+> >> +++ b/drivers/clk/tegra/Makefile
+> >> @@ -17,7 +17,9 @@ obj-y					+=3D clk-tegra-fixed.o
+> >>  obj-y					+=3D clk-tegra-super-gen4.o
+> >>  obj-$(CONFIG_TEGRA_CLK_EMC)		+=3D clk-emc.o
+> >>  obj-$(CONFIG_ARCH_TEGRA_2x_SOC)         +=3D clk-tegra20.o
+> >> +obj-$(CONFIG_ARCH_TEGRA_2x_SOC)		+=3D clk-tegra20-emc.o
+> >>  obj-$(CONFIG_ARCH_TEGRA_3x_SOC)         +=3D clk-tegra30.o
+> >> +obj-$(CONFIG_ARCH_TEGRA_3x_SOC)		+=3D clk-tegra20-emc.o
+> >>  obj-$(CONFIG_ARCH_TEGRA_114_SOC)	+=3D clk-tegra114.o
+> >>  obj-$(CONFIG_ARCH_TEGRA_124_SOC)	+=3D clk-tegra124.o
+> >>  obj-$(CONFIG_TEGRA_CLK_DFLL)		+=3D clk-tegra124-dfll-fcpu.o
+> >=20
+> > Doesn't it complain when both CONFIG_ARCH_TEGRA_2x_SOC and
+> > CONFIG_ARCH_TEGRA_3x_SOC are enabled at the same time?
+>=20
+> No, at least not with my toolchain setup. Are you getting some warning?
 
->> You have a real bug.  I have told you how to fix the real bug.  And you
->> have ignored my suggestion.  (To be honest, I do not know for sure that
->> my suggestion is feasible, but on the surface it appears to be.)
-> 
-> I'd actually say that your proposal is what's trying to paper over a
-> generic problem by saying it's specific to one or a few set of
-> resources. And it looks feasible to you because you haven't dove deep
-> into this issue.
+Kbuild actually filters out duplicates to facilitate this kind of
+construct.
 
-Not saying it is specific to one or a few sets of resources.  The
-proposal suggests handling every single consumer supplier relationship
-for which the bootloader has enabled a supplier resource via an
-explicit message communicating the enabled resources.  And directly
-handling those exact resources.
+Thierry
 
-Think about the definition of "paper over" vs "directly address".
+--BXVAT5kNtrzKuDFl
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-> 
->> Again,
->> my suggestion is to have the boot loader pass information to the kernel
->> (via a chosen property) telling the kernel which devices the bootloader
->> has enabled power to.  The power subsystem would use that information
->> early in boot to do a "get" on the power supplier (I am not using precise
->> power subsystem terminology, but it should be obvious what I mean).
->> The consumer device driver would also have to be aware of the information
->> passed via the chosen property because the power subsystem has done the
->> "get" on the consumer devices behalf (exactly how the consumer gets
->> that information is an implementation detail).  This approach is
->> more direct, less subtle, less fragile.
-> 
-> I'll have to disagree on your claim. You are adding unnecessary
-> bootloader dependency when the kernel is completely capable of
-> handling this on its own. You are requiring explicit "gets" by
-> suppliers and then hoping all the consumers do the corresponding
-> "puts" to balance it out. Somehow the consumers need to know which
-> suppliers have parsed which bootloader input. And it's barely
-> scratching the surface of the problem.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1ddUcACgkQ3SOs138+
+s6E9BA//Xc4iJjeuJwcEDaXEv4kRmc52uoWzk8G3rIeI5nT1pnoejRqiJ9w+F53Q
+gAnGlW+EWJ87KTlnnFixhrgAPfdV8SiipLgzU4ZMUAgEkkzhH4Szs85AwW0tFBGy
+crYvsCqQ7i7xGA+1MotmZvOtKLQ22nvIMBR8QEF3dllDxd2w2MIXcYSgWJI6KcC+
+cVt3pUGGoHIPwV1U2qrcr0LXcazHw4CJZ18OZsm/Z8pgy91ztfSgwKmu9trvfKk+
+ipcFOaLShCDcDg3/1fkDHTXEoOLxiUA6HOnCJGTBW6jE01dqW6oX9p330cuwdw0U
+FGFTkwc23pHU86AdgSkJkqrNLLKHOtCotcTH/zeJRR8Z9yLG7VvMzVjBVOR/RPLs
+zMcJDvn1w4y2I76YBDbs6fhg13sJgmI2yzbsNyJMpSDSxoVUWIJHdhWdNcczHF7f
+o4C/gqwQd2yQzv/lVJH/4ZZ/QXymh3JCb3DnVSB2cnwxbSuLBszMgxnZWqVia3Jr
+32yumWP5a6rcW7krC2hnUpNC8ynIP9JC4yKa3fn1kng96rMFntAYuCwZ5XuZCycY
+hB0JR1K+qSB7ns8VcXaWqwookBC0wEQoKEc2PwOwAluvkp3IYX9bGNsiEw82sFEH
+/GiZeFmVA3wKVgEayu/gDsgfCcAJoFtt3zOZNmfBiX2XSfjSKzQ=
+=E+B6
+-----END PGP SIGNATURE-----
 
-OK, let me flesh out a possible implementation just a little bit.
-
-This is focused on devicetree, as is your patch series.  For ACPI
-a parallel implementation would exist.
-
-The bootloader chosen property could be a list of tuples, each tuple
-containing: consumer phandle, supplier phandle.  Each tuple could
-contain more data if the implementation demands, but I'm trying to
-keep it simple to illustrate the concept.
-
-In early-ish boot a core function processes the chosen property.  For
-each consumer / supplier pair, the supplier compatible could be used
-to determine the supplier type.  (This might not be enough info to
-determine the supplier type - maybe the consumer property that points
-to the supplier will also have to be specified in the chosen property
-tuple, or maybe a supplier type could be added to the tuple.)  Given
-the consumer, supplier, and resource type the appropriate "get"
-would be done.
-
-Late in boot, and possible repeated after modules are loaded, a core
-function would scan the chosen property tuples, and for each
-consumer / supplier pair, if both the consumer and the supplier
-drivers are bound, it would be ASSUMED that it is ok to do the
-appropriate type of "put", and the "put" would be done.
-
-
-> 
-> You are assuming this has to do with just power when it can be clocks,
-> interconnects, etc. Why solve this repeated for each framework when
-> you can have a generic solution?
-
-No such assumption.
-
-
-> 
-> Also, while I understand what you mean by "get" it's not going to be
-> as simple as a reference count to keep the resource on. In reality
-> you'll need more complex handling. For example, having to keep a
-> voltage rail at or above X mV because one consumer might fail if the
-> voltage is < X mV. Or making sure a clock never goes about the
-> bootloader set frequency before all the consumer drivers are probed to
-> avoid overclocking one of the consumers. Trying to have this
-> explicitly coordinated across multiple drivers would be a nightmare.
-> It gets even more complicated with interconnects.
-> 
-> With my patch series, the consumers don't need to do anything. They
-> just probe as usual. The suppliers don't need to track or coordinate
-> with any consumers. For example, regulator suppliers just need to keep
-> the voltage rail at (or above) the level that the boot loader left it
-> on at and then apply the aggregated requests from their APIs once they
-> get the sync_state() callback. And it actually works -- tested for
-> regulators and clocks (and maybe even interconnects -- I forgot) in a
-> device I have.
-> 
-
-And same for the possible implementation I sketched above.  The equivalent
-of the sync_state() callback would be done by the end of boot (potentially
-repeated after each module loads) core function making a similar call.
-Hand waving here about what suppliers to call.
-
-Of course this is not the only way to implement my concept, just an
-example to suggest that it might be feasible and it might work.
-
-< snip >
-
--Frank
+--BXVAT5kNtrzKuDFl--
