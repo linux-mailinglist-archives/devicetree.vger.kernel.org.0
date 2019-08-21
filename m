@@ -2,117 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FEC978FB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A01D89790B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:17:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727222AbfHUMPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 08:15:41 -0400
-Received: from mail-ed1-f98.google.com ([209.85.208.98]:33266 "EHLO
-        mail-ed1-f98.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726973AbfHUMPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 08:15:35 -0400
-Received: by mail-ed1-f98.google.com with SMTP id s15so2727459edx.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 05:15:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:message-id:date;
-        bh=or+cvsSg6ceM9i70D6UPLNnCbWB/HWcr9PNQOtNGKXI=;
-        b=HpQ6xYyRod8YsnmwfuDGk9dEeElEI1hQihv+exdNU2gtNDNTWirU8CH0ZzkLaeT1py
-         gPd/J6LqbgEugJPbctWFHcwiyq2gr+DyjK71bUi/JEFN4IOQF11XmrMqF26z2Ha716fN
-         SS5bcCCyqIXNFoCz4Ri+LSbJhmkSi4pMmLXb9OaA2sbORXBax/7Soesyxnzkrtm4D31x
-         EHCeUGNY6TqZO+474Fr/h56y0/8uGps/QDp7QhZA9nmYBU2Vy3yUPPk67iIL/sh4IsDc
-         tQUIfxwmGgDqTOeRSGRba1n23WBESb44Mq2l5vZZDABkU5i2YD7aJ3gld8iJ3ahw9nlr
-         T1vQ==
-X-Gm-Message-State: APjAAAXbS7ng9nAWxcRCIAbm9xYcN0cTZ05iMegq499bMC0iQx2kjC6f
-        ODCn+iYNq+w8uOV/gExQ6CzPPi6y8dHZtGXJh4b0eSem04Ocx9SFYWSC5gad/OLmLQ==
-X-Google-Smtp-Source: APXvYqwnL6a2+Wqqe4N5q5Qp5yJbqPQ85mdzWn2tird1yFrGVdQAYor3bqrwIaYpo5lJWM5SLTNhALLptlV9
-X-Received: by 2002:a17:906:6c90:: with SMTP id s16mr31271826ejr.62.1566389733773;
-        Wed, 21 Aug 2019 05:15:33 -0700 (PDT)
-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
-        by smtp-relay.gmail.com with ESMTPS id n20sm115894ejr.72.2019.08.21.05.15.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 05:15:33 -0700 (PDT)
-X-Relaying-Domain: sirena.org.uk
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i0PWX-00077D-F7; Wed, 21 Aug 2019 12:15:33 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id B2DC62742FCD; Wed, 21 Aug 2019 13:15:32 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        nicoleotsuka@gmail.com, perex@perex.cz, robh+dt@kernel.org,
-        shengjiu.wang@nxp.com, viorel.suman@nxp.com, Xiubo.Lee@gmail.com
-Subject: Applied "ASoC: dt-bindings: Introduce compatible string for imx8qm" to the asoc tree
-In-Reply-To: <20190814082911.665-3-daniel.baluta@nxp.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190821121532.B2DC62742FCD@ypsilon.sirena.org.uk>
-Date:   Wed, 21 Aug 2019 13:15:32 +0100 (BST)
+        id S1726785AbfHUMQ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 08:16:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58684 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727346AbfHUMQ7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 08:16:59 -0400
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3933923401;
+        Wed, 21 Aug 2019 12:16:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566389817;
+        bh=uynG4lj2NFKmPKucYZd6LWpEU0LW0PqM8k6juv4kk6Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=n5XzPGno2q7GDr4k8K4aFDxr1MHVuArZuIuRAba8kHNpJ3sIFhzq0MGouM4G0xett
+         ITlIE91yd6uf4r08BfyR7p6rw8W8m28KdhSeQpG+ed04AI7T3ZhrCorMo4CtXgG8be
+         u/EA4VZ1s5JbIepDqrjmk4ocsLQh22dVof1FpxHg=
+Received: by mail-lj1-f169.google.com with SMTP id t14so1928129lji.4;
+        Wed, 21 Aug 2019 05:16:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAW4kegqaqZgggo1ygGRP7UcCdgmzMrOYF+vdu3cnpzTmSXd/CEi
+        JC4bZrx4P3ETJJXUmq051S1Ds2JezB/tz21RCcc=
+X-Google-Smtp-Source: APXvYqylX2rUmIlELH4D93bM3e4TXvEwUkh5Y4r23cXAhB6gAMzrPtx7w1O/W8NsexFVtpfI5op4YqTOQY/zJHbWoqA=
+X-Received: by 2002:a2e:9b13:: with SMTP id u19mr14134020lji.40.1566389815350;
+ Wed, 21 Aug 2019 05:16:55 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190813150827.31972-1-s.nawrocki@samsung.com>
+ <CGME20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c@eucas1p2.samsung.com>
+ <20190813150827.31972-3-s.nawrocki@samsung.com> <b5359603-b337-dcd8-b025-ca7dff5f4a06@nvidia.com>
+ <CAJKOXPf597CMx=M2JmSTWe2GzBfcHFefgzSJbJ+njZGp-WfR1A@mail.gmail.com>
+ <1e428c8e-f4b5-0810-77f9-2c899c040fc7@kernel.org> <72eea1ea-2433-2f76-6265-5851554e845d@samsung.com>
+In-Reply-To: <72eea1ea-2433-2f76-6265-5851554e845d@samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 21 Aug 2019 14:16:44 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdh9eHrAuCxHkQBvJMqEnUCeU2xwkK=9yyiJ6BuTLJ+_A@mail.gmail.com>
+Message-ID: <CAJKOXPdh9eHrAuCxHkQBvJMqEnUCeU2xwkK=9yyiJ6BuTLJ+_A@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] soc: samsung: Convert exynos-chipid driver to use
+ the regmap API
+To:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Cc:     Sylwester Nawrocki <snawrocki@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Wed, 21 Aug 2019 at 13:51, Bartlomiej Zolnierkiewicz
+<b.zolnierkie@samsung.com> wrote:
+> >>> Following this change, I am now seeing the above error on our Tegra
+> >>> boards where this driver is enabled. This is triggering a kernel
+> >>> warnings test we have to fail. Hence, I don't think that you can remove
+> >>> the compatible node test here, unless you have a better way to determine
+> >>> if this is a samsung device.
+> >>
+> >> Right, this is really wrong... I missed that it is not a probe but
+> >> early init. And this init will be called on every board... Probably it
+> >> should be converted to a regular driver.
+>
+> Early initialization is needed for SoC driver to be used from within
+> arch/arm/mach-exynos/ and _initcall() usage is the usual way for SoC
+> drivers to be initialized:
+>
+> drivers/soc/amlogic/meson-gx-socinfo.c
+> drivers/soc/amlogic/meson-mx-socinfo.c
+> drivers/soc/atmel/soc.c
+> drivers/soc/bcm/brcmstb/common.c
+> drivers/soc/imx/soc-imx-scu.c
+> drivers/soc/imx/soc-imx8.c
+> drivers/soc/renesas/renesas-soc.c
+> drivers/soc/tegra/fuse/fuse-tegra.c
+> drivers/soc/ux500/ux500-soc-id.c
+> drivers/soc/versatile/soc-integrator.c
+> drivers/soc/versatile/soc-integrator.c
+>
+> The only SoC drivers that are regular drivers are:
+>
+> drivers/soc/fsl/guts.c
+> drivers/soc/versatile/soc-realview.c
 
-   ASoC: dt-bindings: Introduce compatible string for imx8qm
+Thanks for pointing it out.
 
-has been applied to the asoc tree at
+Indeed, the initcall was needed in your set of patches here:
+https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=43565&state=*
+but this work was not continued here. Maybe it will be later
+resubmitted... maybe not... who knows? Therefore I would prefer proper
+solution for current case (driver), unless patches for mach are being
+brought back to life now.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+> > I'm also inclined to have it converted to a regular driver.  We already
+> > have "exynos-asv" driver matching on the chipid node (patch 3/9).
+> > The ASV patches will not be merged soon anyway, all this needs some more
+> > thought. Krzysztof, can we abandon the chipid patches for now? Your
+>
+> chipid driver is good and useful on its own. The preferred solution
+> IMHO would be to just revert "soc: samsung: Convert exynos-chipid
+> driver to use the regmap API" commit.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+I queued the chipid as a dependency for ASV but ASV requires the
+regmap. What would be left after reverting the regmap part? Simple
+unused printk driver? No need for such. If reverting, then let's drop
+entire driver and rework it offline.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From c1fe93581ae9d85c3a783b5fad21912bb88a0f34 Mon Sep 17 00:00:00 2001
-From: Daniel Baluta <daniel.baluta@nxp.com>
-Date: Wed, 14 Aug 2019 11:29:11 +0300
-Subject: [PATCH] ASoC: dt-bindings: Introduce compatible string for imx8qm
-
-Register map for i.MX8QM is similar with i.MX6 series. Integration
-of SAI IP into i.MX8QM SOC features a FIFO size of 64 X 32 bits samples.
-
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-Link: https://lore.kernel.org/r/20190814082911.665-3-daniel.baluta@nxp.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/sound/fsl-sai.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
-index e61c0dc1fc0b..0dc83cc4a236 100644
---- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
-+++ b/Documentation/devicetree/bindings/sound/fsl-sai.txt
-@@ -9,7 +9,8 @@ Required properties:
- 
-   - compatible		: Compatible list, contains "fsl,vf610-sai",
- 			  "fsl,imx6sx-sai", "fsl,imx6ul-sai",
--			  "fsl,imx7ulp-sai" or "fsl,imx8mq-sai".
-+			  "fsl,imx7ulp-sai", "fsl,imx8mq-sai" or
-+			  "fsl,imx8qm-sai".
- 
-   - reg			: Offset and length of the register set for the device.
- 
--- 
-2.20.1
-
+Best regards,
+Krzysztof
