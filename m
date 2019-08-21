@@ -2,105 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E164697FE7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5ECD97FEF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:23:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727041AbfHUQWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 12:22:11 -0400
-Received: from outgoing-auth-1.mit.edu ([18.9.28.11]:56373 "EHLO
-        outgoing.mit.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727975AbfHUQWL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 12:22:11 -0400
-Received: from callcc.thunk.org (75-104-87-59.mobility.exede.net [75.104.87.59] (may be forged))
-        (authenticated bits=0)
-        (User authenticated as tytso@ATHENA.MIT.EDU)
-        by outgoing.mit.edu (8.14.7/8.12.4) with ESMTP id x7LGLQaP017370
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 21 Aug 2019 12:21:33 -0400
-Received: by callcc.thunk.org (Postfix, from userid 15806)
-        id 2CA8742049E; Wed, 21 Aug 2019 12:21:26 -0400 (EDT)
-Date:   Wed, 21 Aug 2019 12:21:26 -0400
-From:   "Theodore Y. Ts'o" <tytso@mit.edu>
-To:     Ard Biesheuvel <ard.biesheuvel@linaro.org>
-Cc:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        id S1728481AbfHUQXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 12:23:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51846 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726857AbfHUQXb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 12:23:31 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C9B6522DA7
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:23:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566404610;
+        bh=Fu6zfOBX3AI5KWtTSZafuQQAF8bGSK3gF/is0kKpuAY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=EXSAnRTsFyt636veuN7y3dcdM14MYPogEK42gLTn6TVUoAnELfOOq5OOjQ0xOtDAy
+         jEb3tu8xEBFiv29JH2m786j89ZQOK24emPViB6cAZ27SrybQ8J+RSAxzATOq6A8OLP
+         EZ4l62u174ej53LeBy5vGlPTEVC/qfGMZ4N7vPQw=
+Received: by mail-qk1-f171.google.com with SMTP id u190so2352529qkh.5
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 09:23:30 -0700 (PDT)
+X-Gm-Message-State: APjAAAU2Ax75b1zIl7NZl1qHqs5tzXVWPxQGkuqsYgx4t9yY12cnPvMp
+        Lqz803lCyFV6xit8017Pegi2Iv0vUUQYP/NLTg==
+X-Google-Smtp-Source: APXvYqx7jliLwl32fZb5QjZU335HexP3hY8IwcnBzHIqSH45RRHoAYAe7+oJIjM94Ra+S4ayKwHMV4e1XUsgY6mOtIk=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr31383435qkn.254.1566404610034;
+ Wed, 21 Aug 2019 09:23:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190821055530.8720-1-joel@jms.id.au> <20190821055530.8720-2-joel@jms.id.au>
+In-Reply-To: <20190821055530.8720-2-joel@jms.id.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 21 Aug 2019 11:23:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKXUsBdZ3x+zsJdn-2yLEJSCvLFjtUdRzUwU1vi6iiHfQ@mail.gmail.com>
+Message-ID: <CAL_JsqKXUsBdZ3x+zsJdn-2yLEJSCvLFjtUdRzUwU1vi6iiHfQ@mail.gmail.com>
+Subject: Re: [PATCH 1/7] dt-bindings: arm: cpus: Add ASPEED SMP
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-Subject: Re: [PATCH v8 2/3] fdt: add support for rng-seed
-Message-ID: <20190821162126.GA2713@mit.edu>
-Mail-Followup-To: "Theodore Y. Ts'o" <tytso@mit.edu>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Miles Chen <miles.chen@mediatek.com>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-References: <20190819071602.139014-1-hsinyi@chromium.org>
- <20190819071602.139014-3-hsinyi@chromium.org>
- <20190819181349.GE10349@mit.edu>
- <CAJMQK-ghQ8weMerXW7t0DFZTAg_c5M80Yp5DTAtyY2LA7YpS1A@mail.gmail.com>
- <CAKv+Gu_qJUU2hRujjv6e5yPqPQXRXokBU_2mSGD3civ2d2+xhw@mail.gmail.com>
- <CAJMQK-hdYz+pW5QL41nXkZAX1qiRynaWg7cne48qCaQsuPrSCg@mail.gmail.com>
- <CAKv+Gu-kp-LqCCx=h2TJxzns4KpM-UEjz3md0u3hbVOyp+iFtA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAKv+Gu-kp-LqCCx=h2TJxzns4KpM-UEjz3md0u3hbVOyp+iFtA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        linux-aspeed@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 09:39:28AM +0300, Ard Biesheuvel wrote:
-> 
-> Whether to trust the firmware provided entropy is a policy decision,
-> and typically, we try to avoid dictating policy in the kernel, and
-> instead, we try to provide a sane default but give the user control
-> over it.
-> 
-> So in this case, we should probably introduce
-> add_firmware_randomness() with a Kconfig/cmdline option pair to decide
-> whether it should be trusted or not (or reuse the one we have for
-> trusting RDRAND etc)
+On Wed, Aug 21, 2019 at 12:55 AM Joel Stanley <joel@jms.id.au> wrote:
+>
+> The AST2600 SoC contains two CPUs and requires the operating system to
+> bring the second one out of firmware.
+>
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-I'd call it add_bootloader_randomness(), since we are trusting the
-*bootloader*; it's the bootloader which is vouching for the security /
-validity of the passed-in entropy.  Furthermore, the bootloader on
-some architectures might be fetching directly from some secure
-element.
-
-And for that reason, I'd use a different Kconfig/cmdline option pair
-than the one used for trusting CPU-provided randomness.
-
-						- Ted
+Acked-by: Rob Herring <robh@kernel.org>
