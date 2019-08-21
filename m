@@ -2,78 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74B9C974A2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 10:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D2D197497
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 10:21:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727110AbfHUIWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 04:22:41 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:56395 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727107AbfHUIWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 04:22:41 -0400
-X-Originating-IP: 86.250.200.211
+        id S1726362AbfHUIVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 04:21:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44094 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726252AbfHUIVo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 04:21:44 -0400
 Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 628481BF206;
-        Wed, 21 Aug 2019 08:22:39 +0000 (UTC)
-Date:   Wed, 21 Aug 2019 09:31:54 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] dt-bindings: Convert Arm Mali GPUs to DT schema
-Message-ID: <20190821073154.jnqv4sysoyorv7vo@flea>
-References: <20190820195959.6126-1-robh@kernel.org>
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7A3792339E;
+        Wed, 21 Aug 2019 08:21:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566375703;
+        bh=LOhB69dIe9oA37I5L0XwPEM++IcwFc8nRsjX+Z8kArU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ey17y3EjS1WfjQAWDsfcI3Me8Xh6HMT8RdCQMA9v3OEs7BcGAbQkitY0xEY6dB4Mz
+         L2Dmoi7/e+euFQXzK3MlEBJH9PCl4yXXK4GEd2L+H84JgES4fi7cxCNSLrlLXNBa23
+         PkxyS4/1OUHILOrrDrQWBhA7jO0eRfvAFCZLQMWA=
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, tglx@linutronix.de,
+        jason@lakedaemon.net, maz@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: [PATCH v2 1/2] dt-bindings: irq: Convert Allwinner IRQ Controller to a schema
+Date:   Wed, 21 Aug 2019 10:21:37 +0200
+Message-Id: <20190821082138.11049-1-mripard@kernel.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ye7watdg3ithuyxt"
-Content-Disposition: inline
-In-Reply-To: <20190820195959.6126-1-robh@kernel.org>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Maxime Ripard <maxime.ripard@bootlin.com>
 
---ye7watdg3ithuyxt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The Allwinner SoCs have an interrupt controller supported in Linux, with a
+matching Device Tree binding.
 
-Hi Rob,
+Now that we have the DT validation in place, let's convert the device tree
+bindings for that controller over to a YAML schemas.
 
-On Tue, Aug 20, 2019 at 02:59:56PM -0500, Rob Herring wrote:
-> This series converts the various Arm Mali GPU bindings to use the DT
-> schema format.
->
-> The Midgard and Bifrost bindings generate warnings on 'interrupt-names'
-> because there's all different ordering. The Utgard binding generates
-> warnings on Rockchip platforms because 'clock-names' order is reversed.
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-Thank for taking care of that one, it was on my radar but I didn't
-really want to actually do it :)
+---
 
-Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
+Changes from v1:
+  - Remove Fixme and add additionalProperties to false
+  - Add unit address for the example
+---
+ .../allwinner,sun4i-a10-ic.yaml               | 47 +++++++++++++++++++
+ .../allwinner,sun4i-ic.txt                    | 20 --------
+ 2 files changed, 47 insertions(+), 20 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-ic.txt
 
-Maxime
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+new file mode 100644
+index 000000000000..23a202d24e43
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/allwinner,sun4i-a10-ic.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner A10 Interrupt Controller Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++properties:
++  "#interrupt-cells":
++    const: 1
++
++  compatible:
++    enum:
++      - allwinner,sun4i-a10-ic
++      - allwinner,suniv-f1c100s-ic
++
++  reg:
++    maxItems: 1
++
++  interrupt-controller: true
++
++required:
++  - "#interrupt-cells"
++  - compatible
++  - reg
++  - interrupt-controller
++
++additionalProperties: false
++
++examples:
++  - |
++    intc: interrupt-controller@1c20400 {
++        compatible = "allwinner,sun4i-a10-ic";
++        reg = <0x01c20400 0x400>;
++        interrupt-controller;
++        #interrupt-cells = <1>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-ic.txt b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-ic.txt
+deleted file mode 100644
+index 404352524c3a..000000000000
+--- a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-ic.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-Allwinner Sunxi Interrupt Controller
+-
+-Required properties:
+-
+-- compatible : should be one of the following:
+-              "allwinner,sun4i-a10-ic"
+-              "allwinner,suniv-f1c100s-ic"
+-- reg : Specifies base physical address and size of the registers.
+-- interrupt-controller : Identifies the node as an interrupt controller
+-- #interrupt-cells : Specifies the number of cells needed to encode an
+-  interrupt source. The value shall be 1.
+-
+-Example:
+-
+-intc: interrupt-controller {
+-	compatible = "allwinner,sun4i-a10-ic";
+-	reg = <0x01c20400 0x400>;
+-	interrupt-controller;
+-	#interrupt-cells = <1>;
+-};
+-- 
+2.21.0
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---ye7watdg3ithuyxt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVzzagAKCRDj7w1vZxhR
-xeOoAP0fDHwGDG+Pp7I7jUWueHcugddYVgoBEitC7+EXWXCGywD/cyBgtgtPE19N
-g0eZSCfigQtpIBBde4Gqm9+94pYLnwI=
-=UmRS
------END PGP SIGNATURE-----
-
---ye7watdg3ithuyxt--
