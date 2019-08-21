@@ -2,59 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31E9E97C0F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:07:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BD1297C17
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:08:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728673AbfHUOHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:07:11 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:51699 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728641AbfHUOHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:07:10 -0400
-Received: by mail-wm1-f68.google.com with SMTP id k1so2292579wmi.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 07:07:09 -0700 (PDT)
+        id S1728985AbfHUOIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:08:10 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:55252 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728303AbfHUOIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:08:10 -0400
+Received: by mail-wm1-f65.google.com with SMTP id p74so2271160wme.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 07:08:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=oUhjfRkjOGkm9ELzvijHUs/x1QUpKZ8wRrXOGiFDrl8=;
-        b=C+heZauLukh60cWDzfa0hZEScY0R5vbFGyajHX7r+rrvVZ8x3xOq5KVn68h30idUA8
-         tYXFdcCsZWufZSKVaXmgKNKsuQL2ZA4/A82Y9dJ6hQdosvFI6A6Vsh3DoaF2aCfc8PBp
-         0huL2JdO2CwxqSwE+kRkRLjOKdyFnOC1ZFx/xSboA7aR1cGtA1cRev8qX9s+qrfI7jc4
-         IgC7uB/kHu4lY+iyq0nanNeNCv07SJauPqYr/WtFnw394RusIssBK6BDEkFuBUL//Tu8
-         1FzuYopdojlLU41ywE7CUxPhpqVvhXb6sR8RUlF0+/caXO0M7RvoppcHXSuCt2OHOgf7
-         s+TQ==
+        bh=eVloRIjpVIeY57SWMpzWuRot/YPT8cIpveh1AqGjZWI=;
+        b=BhfIP0wB/c4MlGuXrCaP2zeCCyEMDwthOx7UBYQ89t+Cd64hm/TIoJWCEvywn8pHhf
+         JQquZKjk6VEPxKgx+teUzjK8dbqBPdrgeuHj6R7Olei6gvK+gdRia9TSDKlYKENbjIvr
+         iYnIMdJQy/EhY31gIfyplVo8v9yMUuQni7JbQjDtZtUwd90RIdsdo1hN5V7TiG8vLWO/
+         tESuwxXkR2IVS1jBrHfZJBhV9qkYKScgWimn4o4Cwoh5mCXyU1VEHROh/g/TFG9nS6P7
+         JeYtgnU3Owc/aQDqg2bsFBvO9c2VLypU20o8FZSpXK2siUfVw1JWow+D0L5hN5ftgUlR
+         jhFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=oUhjfRkjOGkm9ELzvijHUs/x1QUpKZ8wRrXOGiFDrl8=;
-        b=N7y147OGYF5TKVI7nE9oTvKb6xG+1CTtalw/aHvxVDmvuxyM03eddBh1HSYKmNawex
-         U96qI7l01HcFSgx5o/gET+ADDlezDbNSQEgKgr1XMcBA5l35xuof7yTkgKmvYVxH/xnG
-         wL3g5vMnkBecbUhwvpwTZbizW2lxZd6Kwb5TWE0jT+4jj3QNe2hHIgHtBLPKIm339qSn
-         4SFIrIyTvpDRLim+ENXuSEGt66rHZLQslrqlWyoz6IDY40SioiLX3KGbGqoKi+t1uCdn
-         AcYO/WBqq/4v3V7n93y2kFgwKUQnBbwN5D7vUplCSFD6BTbli25ImpS26HcBA97uJAtB
-         R8wQ==
-X-Gm-Message-State: APjAAAW0G3/O/ZDmjY2P0JUQSaL8acoJshVA2h9Rk996LXBwOipYw+nK
-        T1y2iVEP+2m5BSlFzDYSpK+qwxD7pN5Gyw==
-X-Google-Smtp-Source: APXvYqxAAvjBc6PJvYfBvaR4OV8QOikUPN082WzSWa6tjG63CeieKvh07gvoK1hVcvFEgPHEOU8ytw==
-X-Received: by 2002:a1c:eb0a:: with SMTP id j10mr194381wmh.125.1566396427902;
-        Wed, 21 Aug 2019 07:07:07 -0700 (PDT)
+        bh=eVloRIjpVIeY57SWMpzWuRot/YPT8cIpveh1AqGjZWI=;
+        b=oGK16vhKfD4ZEVg0eNNCi3m7Kg7/CiDxQGe5UYekt8z8KtK1v5J2vxjD9yhdIvRSca
+         JpVd+ryJ9ya62OMr2pjlNeOymedz6vcalO3XpnsCnhXRE2YniQtHMWs5XdNz1jNevkBH
+         NARInZmyJ6s2/R1llSNh9XfPyWPGjLc6FfyMrQQt0O2d4iHPj2cBPo9uYptB1XBhPLi4
+         rzttTn1HKv1ckRJlRDYNp4MbCvd5GIfJ9dVtv8Y2bWZ67R+szWHu81U0Bkean8LD4mCJ
+         JJtjwL90AgZ020kACX6L1Tc0VYh6jRRBlqG9s9KCPCAKNto5kvyUaHdgEhnYxMHl/c6W
+         BhLA==
+X-Gm-Message-State: APjAAAXJcLWBoQKBJJBEQbdLiLRCfr2B3pv5QSj7EEeejleya+YMjsT9
+        FEdR2E5d82QNfcj94/8nXDXuckH6+pMcTA==
+X-Google-Smtp-Source: APXvYqxaOmmnBbqUInTFJV7KgcHoX2qxGV4+Y226M2QdCgFJPGA/7Zg9CpBLf6IkML9UypeOJZAucA==
+X-Received: by 2002:a05:600c:352:: with SMTP id u18mr190628wmd.141.1566396487610;
+        Wed, 21 Aug 2019 07:08:07 -0700 (PDT)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id 91sm65886784wrp.3.2019.08.21.07.07.06
+        by smtp.gmail.com with ESMTPSA id p10sm158248wma.8.2019.08.21.07.08.06
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 07:07:07 -0700 (PDT)
-Subject: Re: [PATCH 08/14] arm64: dts: meson-gxl: fix internal phy compatible
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        jbrunet@baylibre.com
+        Wed, 21 Aug 2019 07:08:06 -0700 (PDT)
+Subject: Re: [PATCH 11/14] arm64: dts: meson-g12a-x96-max: fix compatible
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
 References: <20190814142918.11636-1-narmstrong@baylibre.com>
- <20190814142918.11636-9-narmstrong@baylibre.com>
- <CAFBinCAyhfk1wq0ejXazTWQ=eNqDROauB_Kbc80+ekPQ7oB9Ww@mail.gmail.com>
+ <20190814142918.11636-12-narmstrong@baylibre.com>
+ <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -107,12 +106,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <ba66449e-504c-2937-bc68-1d2b5b03d6b9@baylibre.com>
-Date:   Wed, 21 Aug 2019 16:07:06 +0200
+Message-ID: <c2d78c7c-d9a8-e486-d3b1-c1447e24284b@baylibre.com>
+Date:   Wed, 21 Aug 2019 16:08:06 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCAyhfk1wq0ejXazTWQ=eNqDROauB_Kbc80+ekPQ7oB9Ww@mail.gmail.com>
+In-Reply-To: <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -121,48 +120,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2019 22:38, Martin Blumenstingl wrote:
-> adding Jerome
-> 
-> On Wed, Aug 14, 2019 at 4:31 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On 20/08/2019 22:32, Martin Blumenstingl wrote:
+> On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
 >> This fixes the following DT schemas check errors:
->> meson-gxl-s805x-libretech-ac.dt.yaml: ethernet-phy@8: compatible: ['ethernet-phy-id0181.4400', 'ethernet-phy-ieee802.3-c22'] is not valid under any of the given schemas
+>> meson-g12a-x96-max.dt.yaml: /: compatible: ['amediatech,x96-max', 'amlogic,u200', 'amlogic,g12a'] is not valid under any of the given schemas
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxl.dtsi | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> index ee1ecdbcc958..43eb158bee24 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxl.dtsi
->> @@ -709,7 +709,7 @@
->>                         #size-cells = <0>;
->>
->>                         internal_phy: ethernet-phy@8 {
->> -                               compatible = "ethernet-phy-id0181.4400", "ethernet-phy-ieee802.3-c22";
->> +                               compatible = "ethernet-phy-id0181.4400";
-> on G12A there was a specific reason (iirc it was because the PHY ID
-> can be any arbitrary value programmed into some register) why we added
-> it with a compatible string
-> Jerome, do we have the same situation on GXL/GXM as well?
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> [...]
+>> -       compatible = "amediatech,x96-max", "amlogic,u200", "amlogic,g12a";
+>> +       compatible = "amediatech,x96-max", "amlogic,g12a";
+> only partially related: I wonder if we should add a s905x2 compatible
+> string here and to the .dts filename (just like we separate the GXL
+> variants s905x, s905d, s905w, ...)
+> 
 
-Yes the ID in encoded in the register, but we use the very basic mmio mux, but we should
-switch to the same g12a-mdio-mux at some point..
-
-=> infinite TODO list !
+We could, but AFAIK no variants of G12A are planned yet...
 
 Neil
-
-> 
-> if not I prefer to drop the compatible string because it's probably
-> from a time where the PHY dt-bindings stated "add the PHY ID
-> compatible string if you know it" while the actual suggestion was
-> "only add it if reading the ID doesn't work for some reason"
-> 
-> 
-> Martin
-> 
-
