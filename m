@@ -2,395 +2,394 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5592C97C3B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:15:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C1AC97C51
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:18:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728981AbfHUOOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:14:00 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:46923 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728932AbfHUOOA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:14:00 -0400
-Received: by mail-pg1-f194.google.com with SMTP id m3so1371908pgv.13;
-        Wed, 21 Aug 2019 07:13:58 -0700 (PDT)
+        id S1729162AbfHUORr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:17:47 -0400
+Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:31406 "EHLO
+        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729040AbfHUORr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 10:17:47 -0400
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7LEFlw6029750;
+        Wed, 21 Aug 2019 10:16:54 -0400
+Received: from nam01-by2-obe.outbound.protection.outlook.com (mail-by2nam01lp2051.outbound.protection.outlook.com [104.47.34.51])
+        by mx0a-00128a01.pphosted.com with ESMTP id 2uh4nhrckw-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Wed, 21 Aug 2019 10:16:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X5EYCFpe5Ctu/57LxbablIB0YSVkSwznfLBhEhKk3nzBEJE8MlEetZ+2D5WpPjFCd99I0dZ/3QXrHGhjw0po3un1vgC20EoJGUMP9hYQoKR79l6HWiyromqlCsL5Csk8v9rcUqmpKQ455szVjCZ4JWFoo/e1+8R1jG7Uh/YoYpN12PbQYuaT1meZfFJOihIeuy/yh92Z+ae/e/Vh1v+FqoVisLzj4ovsAZfwFiLr3IYgYxDm7fUqGjs3XU2RVaDOqgE68zsYSG3wLzkM41nFowBj/8T97M27eRuJlTaisqV9SDYatIx5EPdsZG3LmW/yXzCS5b16LBaRZ+lMgOYy9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zlti9iyK/D7qYcMO+LcZ8xJ0lHReO54itp0cLw1C3Qo=;
+ b=OhvShVZR3UhIsFq0i9z5RRZyi3jyUic9QFm2/SO0JHqqPPpKlmapnZlXM8iXDYq0hDSnD6aPrpLNRS0HqG6WHDfInGacTVEXw8GH2YckklPGq4JpL2VQTQL7rEdsR9I6CMACa36rj3L1RYD3xdEk1i8dNWkUvfSm/Et+ho8qmgXh96zoNDJehSeielbMuSk+S4r0zhy9q8QzELmp6/jiXXtE5+I31Dkq7YF67jQJh1GSoyvdePdn74uYVeY+cgchR+bi+hIjPmoIwDSlHvMeSzmPFDWdHn3nmDXQXvHMlGCmx6QQ3rDqjfNi4AaklKt/kRkNsn4EnYJjnsfiiBb8Dw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 137.71.25.55) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=analog.com;
+ dmarc=bestguesspass action=none header.from=analog.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YhBSE2itRIVTx2T1GhEAoFfRNjBTNKOdD0tfgSl/ewM=;
-        b=TDKyp3ZLkp/M4tmQnhc8g8U4DVWk92WFyIJFZN9bOf//mjNzSi8PvBC5KCTzw9qzOx
-         bOYRxuyvkbac05M6s7XH4v3AKQ/9w342ZgfrTMOEKljDEZnBk69TSmpUAv1kXgjppNSZ
-         eD43gFyhvOOe8VagdE0RWll3s0rIm5zJ26F6XMUvarjWC72lSbPHN8SdnpjOgqdHBYZH
-         N4TjeshVlndlx1cVEymvGOcVYMV6R1XRZNjvE1KFGS9ZlHVuyHIsf4Af58Fwmu2vgxC1
-         vy6oN3mlrtildcR9VgxdBPteiRflIqFHbyIvPL/lQGlS6ls4DprfJnsZ+DDWgRvB7hk4
-         qLVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YhBSE2itRIVTx2T1GhEAoFfRNjBTNKOdD0tfgSl/ewM=;
-        b=eoxkcautbwmxpD8ttt7QMze315LFAZCh5jq3mkYN368RmCY09L6VZ5EwvQ09cGurkI
-         /pcroQ4eGH0rPgJsxc7D0CcvahX1/q1uP/eZQkv7gjIh8l7Ujyx9/fRrHwx1wmOyfD9G
-         oH0PX2hV79cURo7VGssUjdycvx6pUSaT6NOVlyAr6m8+Og+kecQnefWkWdD4/L/lSVJp
-         okZnQcOMHQF64CXkS4auZdACgxmmhcaT9jVK6gGOq3TEp0b9xOXk7VDDROHVKurLH1x+
-         /oHJAp1L1YUqiboMay6pa96OoExGKXAm1Wzw2Hfn/Hsz8asEKnzBHZA2F09xdVWVucqX
-         eOPA==
-X-Gm-Message-State: APjAAAU5IJVUYWgo0TGkybVPdO0HNVivQlq9EZ/yz9KWrSNAzQPnBUwR
-        aFParkMFGt+CGswCb+0pIsM=
-X-Google-Smtp-Source: APXvYqxw9UL/gpNT9rdTJ9+Gwo6MR1qECjLZiZilAEME8wmhVPT53xKLwg18n89h+MT/U+abQ4SdeQ==
-X-Received: by 2002:a63:f304:: with SMTP id l4mr21851744pgh.66.1566396838439;
-        Wed, 21 Aug 2019 07:13:58 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id g11sm31832284pfk.187.2019.08.21.07.13.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 07:13:57 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 07:13:55 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux@armlinux.org.uk, otavio@ossystems.com.br,
-        leonard.crestez@nxp.com, schnitzeltony@gmail.com,
-        u.kleine-koenig@pengutronix.de, jan.tuerk@emtrion.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH V3 2/4] watchdog: Add i.MX7ULP watchdog support
-Message-ID: <20190821141355.GA10463@roeck-us.net>
-References: <1566353278-1884-1-git-send-email-Anson.Huang@nxp.com>
- <1566353278-1884-2-git-send-email-Anson.Huang@nxp.com>
+ d=analog.onmicrosoft.com; s=selector2-analog-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Zlti9iyK/D7qYcMO+LcZ8xJ0lHReO54itp0cLw1C3Qo=;
+ b=RIMxkZIohTx/+3waznRRDzD/tUH1dQCM31xzgu0/d0ACp+UNwYz1hR29in/wPI2j7apSwqgOrG8VnWhv640u+QrMLNda3deehy+R0AsbHzMHpN4c3QdFp+kPaFVZddqb+QOpMs07cvsv6T95ENdudZxavmGu0yEw/drI7EE2eFc=
+Received: from BN3PR03CA0064.namprd03.prod.outlook.com
+ (2a01:111:e400:7a4d::24) by DM5PR03MB3114.namprd03.prod.outlook.com
+ (2603:10b6:4:3c::23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2178.18; Wed, 21 Aug
+ 2019 14:16:52 +0000
+Received: from SN1NAM02FT010.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::207) by BN3PR03CA0064.outlook.office365.com
+ (2a01:111:e400:7a4d::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2178.16 via Frontend
+ Transport; Wed, 21 Aug 2019 14:16:51 +0000
+Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
+ 137.71.25.55 as permitted sender) receiver=protection.outlook.com;
+ client-ip=137.71.25.55; helo=nwd2mta1.analog.com;
+Received: from nwd2mta1.analog.com (137.71.25.55) by
+ SN1NAM02FT010.mail.protection.outlook.com (10.152.72.86) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2178.16
+ via Frontend Transport; Wed, 21 Aug 2019 14:16:50 +0000
+Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
+        by nwd2mta1.analog.com (8.13.8/8.13.8) with ESMTP id x7LEGjJ2005617
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Wed, 21 Aug 2019 07:16:45 -0700
+Received: from ben-Latitude-E6540.ad.analog.com (10.48.65.163) by
+ NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
+ 14.3.408.0; Wed, 21 Aug 2019 10:16:48 -0400
+From:   Beniamin Bia <beniamin.bia@analog.com>
+To:     <jic23@kernel.org>
+CC:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
+        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
+        <devel@driverdev.osuosl.org>, <linux-kernel@vger.kernel.org>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <paulmck@linux.ibm.com>,
+        <mchehab+samsung@kernel.org>, <linus.walleij@linaro.org>,
+        <nicolas.ferre@microchip.com>, <biabeniamin@outlook.com>,
+        Stefan Popa <stefan.popa@analog.com>,
+        Beniamin Bia <beniamin.bia@analog.com>
+Subject: [PATCH v3 1/4] iio: adc: ad7606: Add support for AD7606B ADC
+Date:   Wed, 21 Aug 2019 17:16:53 +0300
+Message-ID: <20190821141656.4815-1-beniamin.bia@analog.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1566353278-1884-2-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ADIRoutedOnPrem: True
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:137.71.25.55;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(346002)(376002)(39860400002)(136003)(2980300002)(189003)(199004)(478600001)(50226002)(316002)(106002)(107886003)(70206006)(54906003)(70586007)(36756003)(8936002)(7416002)(8676002)(86362001)(336012)(7696005)(23676004)(246002)(50466002)(4326008)(186003)(2906002)(305945005)(44832011)(2351001)(7636002)(5660300002)(426003)(2616005)(476003)(126002)(1076003)(486006)(6666004)(356004)(5820100001)(47776003)(2870700001)(26005)(14444005)(6916009);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR03MB3114;H:nwd2mta1.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail10.analog.com;MX:1;A:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 3c97c4a8-d681-4280-512e-08d7264235e3
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(4709080)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);SRVR:DM5PR03MB3114;
+X-MS-TrafficTypeDiagnostic: DM5PR03MB3114:
+X-Microsoft-Antispam-PRVS: <DM5PR03MB3114D7B80E4439EA77F6BB03F0AA0@DM5PR03MB3114.namprd03.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-Forefront-PRVS: 0136C1DDA4
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: xojFun89XXaK7oAR174X+hIHC/ufvkcGdkaP/mmCnQ9BgAy70vVx32UWcEtiydXGsiX7lsZar+Gxvq9QreW2ETBM33ryg9TcF1O/oCc9IGJdtxv+oxOkT8+6Ppr/QeQ1lUIB5K69MPffvsC8N/XUMQyFLWdsbt5SNCxTpqmvnNrYVahH9ScPwYLMjhHK4Lg4HcNlgNhSTqQG8NXJiwB/aOkRPj6+uMigskaVyVWNLLZEHFdYCpWKVSc6MWTunlKXKiCuy+OuZbBfyAXB5RGGL/fCZQr469RK13WIp+WRXZBYN11Ma1yMdE1oawcB/Ejl38p1smTFVhJz9SFHEdAZhDQiqxA2CDo3oqAqTItrxBbL4sFn6vm0Ha6e/xJQrxnlvSt7qm1xU3l+XfN2d1/JdY+fBbH8Cq6o/URpNPzR1xA=
+X-OriginatorOrg: analog.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2019 14:16:50.2931
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c97c4a8-d681-4280-512e-08d7264235e3
+X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.55];Helo=[nwd2mta1.analog.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR03MB3114
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-21_05:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908210156
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 10:07:56PM -0400, Anson Huang wrote:
-> The i.MX7ULP Watchdog Timer (WDOG) module is an independent timer
-> that is available for system use.
-> It provides a safety feature to ensure that software is executing
-> as planned and that the CPU is not stuck in an infinite loop or
-> executing unintended code. If the WDOG module is not serviced
-> (refreshed) within a certain period, it resets the MCU.
-> 
-> Add driver support for i.MX7ULP watchdog.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> Changes since V2:
-> 	- add devm_add_action_or_reset to disable clk for remove action.
-> ---
->  drivers/watchdog/Kconfig       |  13 +++
->  drivers/watchdog/Makefile      |   1 +
->  drivers/watchdog/imx7ulp_wdt.c | 246 +++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 260 insertions(+)
->  create mode 100644 drivers/watchdog/imx7ulp_wdt.c
-> 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index a8f5c81..d68e5b5 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -724,6 +724,19 @@ config IMX_SC_WDT
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called imx_sc_wdt.
->  
-> +config IMX7ULP_WDT
-> +	tristate "IMX7ULP Watchdog"
-> +	depends on ARCH_MXC || COMPILE_TEST
-> +	select WATCHDOG_CORE
-> +	help
-> +	  This is the driver for the hardware watchdog on the Freescale
-> +	  IMX7ULP and later processors. If you have one of these
-> +	  processors and wish to have watchdog support enabled,
-> +	  say Y, otherwise say N.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called imx7ulp_wdt.
-> +
->  config UX500_WATCHDOG
->  	tristate "ST-Ericsson Ux500 watchdog"
->  	depends on MFD_DB8500_PRCMU
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index b5a0aed..2ee352b 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -67,6 +67,7 @@ obj-$(CONFIG_TS4800_WATCHDOG) += ts4800_wdt.o
->  obj-$(CONFIG_TS72XX_WATCHDOG) += ts72xx_wdt.o
->  obj-$(CONFIG_IMX2_WDT) += imx2_wdt.o
->  obj-$(CONFIG_IMX_SC_WDT) += imx_sc_wdt.o
-> +obj-$(CONFIG_IMX7ULP_WDT) += imx7ulp_wdt.o
->  obj-$(CONFIG_UX500_WATCHDOG) += ux500_wdt.o
->  obj-$(CONFIG_RETU_WATCHDOG) += retu_wdt.o
->  obj-$(CONFIG_BCM2835_WDT) += bcm2835_wdt.o
-> diff --git a/drivers/watchdog/imx7ulp_wdt.c b/drivers/watchdog/imx7ulp_wdt.c
-> new file mode 100644
-> index 0000000..5d37957
-> --- /dev/null
-> +++ b/drivers/watchdog/imx7ulp_wdt.c
-> @@ -0,0 +1,246 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2019 NXP.
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/reboot.h>
-> +#include <linux/watchdog.h>
-> +
-> +#define WDOG_CS			0x0
-> +#define WDOG_CS_CMD32EN		BIT(13)
-> +#define WDOG_CS_ULK		BIT(11)
-> +#define WDOG_CS_RCS		BIT(10)
-> +#define WDOG_CS_EN		BIT(7)
-> +#define WDOG_CS_UPDATE		BIT(5)
-> +
-> +#define WDOG_CNT	0x4
-> +#define WDOG_TOVAL	0x8
-> +
-> +#define REFRESH_SEQ0	0xA602
-> +#define REFRESH_SEQ1	0xB480
-> +#define REFRESH		((REFRESH_SEQ1 << 16) | REFRESH_SEQ0)
-> +
-> +#define UNLOCK_SEQ0	0xC520
-> +#define UNLOCK_SEQ1	0xD928
-> +#define UNLOCK		((UNLOCK_SEQ1 << 16) | UNLOCK_SEQ0)
-> +
-> +#define DEFAULT_TIMEOUT	60
-> +#define MAX_TIMEOUT	128
-> +
-> +static bool nowayout = WATCHDOG_NOWAYOUT;
-> +module_param(nowayout, bool, 0000);
-> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-> +
-> +struct imx7ulp_wdt_device {
-> +	struct notifier_block restart_handler;
-> +	struct watchdog_device wdd;
-> +	void __iomem *base;
-> +	struct clk *clk;
-> +	int rate;
-> +};
-> +
-> +static inline void imx7ulp_wdt_enable(void __iomem *base, bool enable)
-> +{
-> +	u32 val = readl(base + WDOG_CS);
-> +
-> +	writel(UNLOCK, base + WDOG_CNT);
-> +	if (enable)
-> +		writel(val | WDOG_CS_EN, base + WDOG_CS);
-> +	else
-> +		writel(val & ~WDOG_CS_EN, base + WDOG_CS);
-> +}
-> +
-> +static inline bool imx7ulp_wdt_is_enabled(void __iomem *base)
-> +{
-> +	u32 val = readl(base + WDOG_CS);
-> +
-> +	return val & WDOG_CS_EN;
-> +}
-> +
-> +static int imx7ulp_wdt_ping(struct watchdog_device *wdog)
-> +{
-> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
-> +
-> +	writel(REFRESH, wdt->base + WDOG_CNT);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx7ulp_wdt_start(struct watchdog_device *wdog)
-> +{
-> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
-> +
-> +	imx7ulp_wdt_enable(wdt->base, true);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx7ulp_wdt_stop(struct watchdog_device *wdog)
-> +{
-> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
-> +
-> +	imx7ulp_wdt_enable(wdt->base, false);
-> +
-> +	return 0;
-> +}
-> +
-> +static int imx7ulp_wdt_set_timeout(struct watchdog_device *wdog,
-> +				   unsigned int timeout)
-> +{
-> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
-> +	u32 val = wdt->rate * timeout;
-> +
-> +	writel(UNLOCK, wdt->base + WDOG_CNT);
-> +	writel(val, wdt->base + WDOG_TOVAL);
-> +
-> +	wdog->timeout = timeout;
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct watchdog_ops imx7ulp_wdt_ops = {
-> +	.owner = THIS_MODULE,
-> +	.start = imx7ulp_wdt_start,
-> +	.stop  = imx7ulp_wdt_stop,
-> +	.ping  = imx7ulp_wdt_ping,
-> +	.set_timeout = imx7ulp_wdt_set_timeout,
-> +};
-> +
-> +static const struct watchdog_info imx7ulp_wdt_info = {
-> +	.identity = "i.MX7ULP watchdog timer",
-> +	.options  = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING |
-> +		    WDIOF_MAGICCLOSE,
-> +};
-> +
-> +static inline void imx7ulp_wdt_init(void __iomem *base, unsigned int timeout)
-> +{
-> +	u32 val;
-> +
-> +	/* unlock the wdog for reconfiguration */
-> +	writel_relaxed(UNLOCK_SEQ0, base + WDOG_CNT);
-> +	writel_relaxed(UNLOCK_SEQ1, base + WDOG_CNT);
-> +
-> +	/* set an initial timeout value in TOVAL */
-> +	writel(timeout, base + WDOG_TOVAL);
-> +	/* enable 32bit command sequence and reconfigure */
-> +	val = BIT(13) | BIT(8) | BIT(5);
-> +	writel(val, base + WDOG_CS);
-> +}
-> +
-> +static void imx7ulp_wdt_action(void *data)
-> +{
-> +	struct imx7ulp_wdt_device *imx7ulp_wdt = data;
-> +
-> +	clk_disable_unprepare(imx7ulp_wdt->clk);
+From: Stefan Popa <stefan.popa@analog.com>
 
-If you had passed imx7ulp_wdt->clk as parameter, the dereference here
-would not be necessary.
+The AD7606B is a 16-bit ADC that supports simultaneous sampling of 8
+channels. It is pin compatible to AD7606, but adds extra modes by
+writing to the register map.
 
-> +}
-> +
-> +static int imx7ulp_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct imx7ulp_wdt_device *imx7ulp_wdt;
-> +	struct device *dev = &pdev->dev;
-> +	struct watchdog_device *wdog;
-> +	int ret;
-> +
-> +	imx7ulp_wdt = devm_kzalloc(dev, sizeof(*imx7ulp_wdt), GFP_KERNEL);
-> +	if (!imx7ulp_wdt)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, imx7ulp_wdt);
-> +
-> +	imx7ulp_wdt->base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(imx7ulp_wdt->base))
-> +		return PTR_ERR(imx7ulp_wdt->base);
-> +
-> +	imx7ulp_wdt->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(imx7ulp_wdt->clk)) {
-> +		dev_err(dev, "Failed to get watchdog clock\n");
-> +		return PTR_ERR(imx7ulp_wdt->clk);
-> +	}
-> +
-> +	ret = clk_prepare_enable(imx7ulp_wdt->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_add_action_or_reset(dev, imx7ulp_wdt_action, imx7ulp_wdt);
-> +	if (ret)
-> +		return ret;
-> +
-> +	imx7ulp_wdt->rate = 1000;
+The AD7606B can be configured to work in software mode by setting all
+oversampling pins to high. This mode is selected by default.
+The oversampling ratio is configured from the OS_MODE register (address
+0x08) with the addition of OS=128 and OS=256 that were not available in
+hardware mode.
 
-I forgot to ask (sorry, I had noticed, but I guess I forgot).
+The device is configured to output data on a single spi channel, but this
+configuration must be done right after restart. That is why the delay was
+removed for devices which doesn't require it.
 
-Why not clk_get_rate() ? If the clock rate is fixed, why bother with a 'rate'
-variable ? You could use a constant instead whereever it is used.
+Moreover, in software mode, the range gpio has no longer its function.
+Instead, the scale can be configured individually for each channel from
+the RANGE_CH registers (address 0x03 to 0x06). Besides the already
+supported ±10 V and ±5 V ranges, software mode can also accommodate the
+±2.5 V range.
 
-Thanks
-Guenter
+Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+Co-developed-by: Beniamin Bia <beniamin.bia@analog.com>
+Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
+---
+Changes in v3:
+-comments reworked
+-isWriteOp renamed to is_write_op
 
-> +	wdog = &imx7ulp_wdt->wdd;
-> +	wdog->info = &imx7ulp_wdt_info;
-> +	wdog->ops = &imx7ulp_wdt_ops;
-> +	wdog->min_timeout = 1;
-> +	wdog->max_timeout = MAX_TIMEOUT;
-> +	wdog->parent = dev;
-> +	wdog->timeout = DEFAULT_TIMEOUT;
-> +
-> +	watchdog_init_timeout(wdog, 0, dev);
-> +	watchdog_stop_on_reboot(wdog);
-> +	watchdog_stop_on_unregister(wdog);
-> +	watchdog_set_drvdata(wdog, imx7ulp_wdt);
-> +	imx7ulp_wdt_init(imx7ulp_wdt->base, wdog->timeout * imx7ulp_wdt->rate);
-> +
-> +	return devm_watchdog_register_device(dev, wdog);
-> +}
-> +
-> +static int __maybe_unused imx7ulp_wdt_suspend(struct device *dev)
-> +{
-> +	struct imx7ulp_wdt_device *imx7ulp_wdt = dev_get_drvdata(dev);
-> +
-> +	if (watchdog_active(&imx7ulp_wdt->wdd))
-> +		imx7ulp_wdt_stop(&imx7ulp_wdt->wdd);
-> +
-> +	clk_disable_unprepare(imx7ulp_wdt->clk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int __maybe_unused imx7ulp_wdt_resume(struct device *dev)
-> +{
-> +	struct imx7ulp_wdt_device *imx7ulp_wdt = dev_get_drvdata(dev);
-> +	u32 timeout = imx7ulp_wdt->wdd.timeout * imx7ulp_wdt->rate;
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(imx7ulp_wdt->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (imx7ulp_wdt_is_enabled(imx7ulp_wdt->base))
-> +		imx7ulp_wdt_init(imx7ulp_wdt->base, timeout);
-> +
-> +	if (watchdog_active(&imx7ulp_wdt->wdd))
-> +		imx7ulp_wdt_start(&imx7ulp_wdt->wdd);
-> +
-> +	return 0;
-> +}
-> +
-> +static SIMPLE_DEV_PM_OPS(imx7ulp_wdt_pm_ops, imx7ulp_wdt_suspend,
-> +			 imx7ulp_wdt_resume);
-> +
-> +static const struct of_device_id imx7ulp_wdt_dt_ids[] = {
-> +	{ .compatible = "fsl,imx7ulp-wdt", },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx7ulp_wdt_dt_ids);
-> +
-> +static struct platform_driver imx7ulp_wdt_driver = {
-> +	.probe		= imx7ulp_wdt_probe,
-> +	.driver		= {
-> +		.name	= "imx7ulp-wdt",
-> +		.pm	= &imx7ulp_wdt_pm_ops,
-> +		.of_match_table = imx7ulp_wdt_dt_ids,
-> +	},
-> +};
-> +module_platform_driver(imx7ulp_wdt_driver);
-> +
-> +MODULE_AUTHOR("Anson Huang <Anson.Huang@nxp.com>");
-> +MODULE_DESCRIPTION("Freescale i.MX7ULP watchdog driver");
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 2.7.4
-> 
+ drivers/iio/adc/ad7606.c     |  13 ++++-
+ drivers/iio/adc/ad7606.h     |   4 ++
+ drivers/iio/adc/ad7606_spi.c | 109 ++++++++++++++++++++++++++++++++++-
+ 3 files changed, 123 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+index ed2d08437e5d..f5ba94c03a8d 100644
+--- a/drivers/iio/adc/ad7606.c
++++ b/drivers/iio/adc/ad7606.c
+@@ -410,12 +410,19 @@ static const struct ad7606_chip_info ad7606_chip_info_tbl[] = {
+ 		.oversampling_avail = ad7606_oversampling_avail,
+ 		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
+ 	},
++	[ID_AD7606B] = {
++		.channels = ad7606_channels,
++		.num_channels = 9,
++		.oversampling_avail = ad7606_oversampling_avail,
++		.oversampling_num = ARRAY_SIZE(ad7606_oversampling_avail),
++	},
+ 	[ID_AD7616] = {
+ 		.channels = ad7616_channels,
+ 		.num_channels = 17,
+ 		.oversampling_avail = ad7616_oversampling_avail,
+ 		.oversampling_num = ARRAY_SIZE(ad7616_oversampling_avail),
+ 		.os_req_reset = true,
++		.init_delay_ms = 15,
+ 	},
+ };
+ 
+@@ -631,8 +638,10 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+ 		dev_warn(st->dev, "failed to RESET: no RESET GPIO specified\n");
+ 
+ 	/* AD7616 requires al least 15ms to reconfigure after a reset */
+-	if (msleep_interruptible(15))
+-		return -ERESTARTSYS;
++	if (st->chip_info->init_delay_ms) {
++		if (msleep_interruptible(st->chip_info->init_delay_ms))
++			return -ERESTARTSYS;
++	}
+ 
+ 	st->write_scale = ad7606_write_scale_hw;
+ 	st->write_os = ad7606_write_os_hw;
+diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+index eeaaa8b905db..9350ef1f63b5 100644
+--- a/drivers/iio/adc/ad7606.h
++++ b/drivers/iio/adc/ad7606.h
+@@ -46,6 +46,8 @@
+  *			oversampling ratios.
+  * @oversampling_num	number of elements stored in oversampling_avail array
+  * @os_req_reset	some devices require a reset to update oversampling
++ * @init_delay_ms	required delay in miliseconds for initialization
++ *			after a restart
+  */
+ struct ad7606_chip_info {
+ 	const struct iio_chan_spec	*channels;
+@@ -53,6 +55,7 @@ struct ad7606_chip_info {
+ 	const unsigned int		*oversampling_avail;
+ 	unsigned int			oversampling_num;
+ 	bool				os_req_reset;
++	unsigned long			init_delay_ms;
+ };
+ 
+ /**
+@@ -155,6 +158,7 @@ enum ad7606_supported_device_ids {
+ 	ID_AD7606_8,
+ 	ID_AD7606_6,
+ 	ID_AD7606_4,
++	ID_AD7606B,
+ 	ID_AD7616,
+ };
+ 
+diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
+index 98ed52b74507..29945ad07dca 100644
+--- a/drivers/iio/adc/ad7606_spi.c
++++ b/drivers/iio/adc/ad7606_spi.c
+@@ -28,9 +28,23 @@
+  * an offset of 2 for register address.
+  */
+ #define AD7616_RANGE_CH_ADDR(ch)	((ch) >> 2)
+-/* The range of the channel is stored on 2 bits*/
++/* The range of the channel is stored in 2 bits */
+ #define AD7616_RANGE_CH_MSK(ch)		(0b11 << (((ch) & 0b11) * 2))
+ #define AD7616_RANGE_CH_MODE(ch, mode)	((mode) << ((((ch) & 0b11)) * 2))
++
++#define AD7606_CONFIGURATION_REGISTER	0x02
++#define AD7606_SINGLE_DOUT		0x00
++
++/*
++ * Range for AD7606B channels are stored in registers starting with address 0x3.
++ * Each register stores range for 2 channels(4 bits per channel).
++ */
++#define AD7606_RANGE_CH_MSK(ch)		(GENMASK(3, 0) << (4 * ((ch) & 0x1)))
++#define AD7606_RANGE_CH_MODE(ch, mode)	\
++	((GENMASK(3, 0) & mode) << (4 * ((ch) & 0x1)))
++#define AD7606_RANGE_CH_ADDR(ch)	(0x03 + ((ch) >> 1))
++#define AD7606_OS_MODE			0x08
++
+ static const struct iio_chan_spec ad7616_sw_channels[] = {
+ 	IIO_CHAN_SOFT_TIMESTAMP(16),
+ 	AD7616_CHANNEL(0),
+@@ -51,6 +65,22 @@ static const struct iio_chan_spec ad7616_sw_channels[] = {
+ 	AD7616_CHANNEL(15),
+ };
+ 
++static const struct iio_chan_spec ad7606b_sw_channels[] = {
++	IIO_CHAN_SOFT_TIMESTAMP(8),
++	AD7616_CHANNEL(0),
++	AD7616_CHANNEL(1),
++	AD7616_CHANNEL(2),
++	AD7616_CHANNEL(3),
++	AD7616_CHANNEL(4),
++	AD7616_CHANNEL(5),
++	AD7616_CHANNEL(6),
++	AD7616_CHANNEL(7),
++};
++
++static const unsigned int ad7606B_oversampling_avail[9] = {
++	1, 2, 4, 8, 16, 32, 64, 128, 256
++};
++
+ static u16 ad7616_spi_rd_wr_cmd(int addr, char isWriteOp)
+ {
+ 	/*
+@@ -60,6 +90,16 @@ static u16 ad7616_spi_rd_wr_cmd(int addr, char isWriteOp)
+ 	return ((addr & 0x7F) << 1) | ((isWriteOp & 0x1) << 7);
+ }
+ 
++static u16 ad7606B_spi_rd_wr_cmd(int addr, char is_write_op)
++{
++	/*
++	 * The address of register consists of one bit which
++	 * specifies a read command placed in bit 6, followed by
++	 * 6 bits of address.
++	 */
++	return (addr & 0x3F) | (((~is_write_op) & 0x1) << 6);
++}
++
+ static int ad7606_spi_read_block(struct device *dev,
+ 				 int count, void *buf)
+ {
+@@ -169,6 +209,23 @@ static int ad7616_write_os_sw(struct iio_dev *indio_dev, int val)
+ 				     AD7616_OS_MASK, val << 2);
+ }
+ 
++static int ad7606_write_scale_sw(struct iio_dev *indio_dev, int ch, int val)
++{
++	struct ad7606_state *st = iio_priv(indio_dev);
++
++	return ad7606_spi_write_mask(st,
++				     AD7606_RANGE_CH_ADDR(ch),
++				     AD7606_RANGE_CH_MSK(ch),
++				     AD7606_RANGE_CH_MODE(ch, val));
++}
++
++static int ad7606_write_os_sw(struct iio_dev *indio_dev, int val)
++{
++	struct ad7606_state *st = iio_priv(indio_dev);
++
++	return ad7606_spi_reg_write(st, AD7606_OS_MODE, val);
++}
++
+ static int ad7616_sw_mode_config(struct iio_dev *indio_dev)
+ {
+ 	struct ad7606_state *st = iio_priv(indio_dev);
+@@ -189,6 +246,42 @@ static int ad7616_sw_mode_config(struct iio_dev *indio_dev)
+ 			      AD7616_BURST_MODE | AD7616_SEQEN_MODE);
+ }
+ 
++static int ad7606B_sw_mode_config(struct iio_dev *indio_dev)
++{
++	struct ad7606_state *st = iio_priv(indio_dev);
++	unsigned long os[3] = {1};
++
++	/*
++	 * Software mode is enabled when all three oversampling
++	 * pins are set to high. If oversampling gpios are defined
++	 * in the device tree, then they need to be set to high,
++	 * otherwise, they must be hardwired to VDD
++	 */
++	if (st->gpio_os) {
++		gpiod_set_array_value(ARRAY_SIZE(os),
++				      st->gpio_os->desc, st->gpio_os->info, os);
++	}
++	/* OS of 128 and 256 are available only in software mode */
++	st->oversampling_avail = ad7606B_oversampling_avail;
++	st->num_os_ratios = ARRAY_SIZE(ad7606B_oversampling_avail);
++
++	st->write_scale = ad7606_write_scale_sw;
++	st->write_os = &ad7606_write_os_sw;
++
++	/* Configure device spi to output on a single channel */
++	st->bops->reg_write(st,
++			    AD7606_CONFIGURATION_REGISTER,
++			    AD7606_SINGLE_DOUT);
++
++	/*
++	 * Scale can be configured individually for each channel
++	 * in software mode.
++	 */
++	indio_dev->channels = ad7606b_sw_channels;
++
++	return 0;
++}
++
+ static const struct ad7606_bus_ops ad7606_spi_bops = {
+ 	.read_block = ad7606_spi_read_block,
+ };
+@@ -202,6 +295,15 @@ static const struct ad7606_bus_ops ad7616_spi_bops = {
+ 	.sw_mode_config = ad7616_sw_mode_config,
+ };
+ 
++static const struct ad7606_bus_ops ad7606B_spi_bops = {
++	.read_block = ad7606_spi_read_block,
++	.reg_read = ad7606_spi_reg_read,
++	.reg_write = ad7606_spi_reg_write,
++	.write_mask = ad7606_spi_write_mask,
++	.rd_wr_cmd = ad7606B_spi_rd_wr_cmd,
++	.sw_mode_config = ad7606B_sw_mode_config,
++};
++
+ static int ad7606_spi_probe(struct spi_device *spi)
+ {
+ 	const struct spi_device_id *id = spi_get_device_id(spi);
+@@ -211,6 +313,9 @@ static int ad7606_spi_probe(struct spi_device *spi)
+ 	case ID_AD7616:
+ 		bops = &ad7616_spi_bops;
+ 		break;
++	case ID_AD7606B:
++		bops = &ad7606B_spi_bops;
++		break;
+ 	default:
+ 		bops = &ad7606_spi_bops;
+ 		break;
+@@ -226,6 +331,7 @@ static const struct spi_device_id ad7606_id_table[] = {
+ 	{ "ad7606-4", ID_AD7606_4 },
+ 	{ "ad7606-6", ID_AD7606_6 },
+ 	{ "ad7606-8", ID_AD7606_8 },
++	{ "ad7606b",  ID_AD7606B },
+ 	{ "ad7616",   ID_AD7616 },
+ 	{}
+ };
+@@ -236,6 +342,7 @@ static const struct of_device_id ad7606_of_match[] = {
+ 	{ .compatible = "adi,ad7606-4" },
+ 	{ .compatible = "adi,ad7606-6" },
+ 	{ .compatible = "adi,ad7606-8" },
++	{ .compatible = "adi,ad7606b" },
+ 	{ .compatible = "adi,ad7616" },
+ 	{ },
+ };
+-- 
+2.17.1
+
