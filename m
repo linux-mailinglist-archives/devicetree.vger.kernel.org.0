@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A802F97E3A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 906FB97E3C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:12:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727484AbfHUPJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 11:09:49 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:46076 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726885AbfHUPJt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 11:09:49 -0400
-Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7LF1CJE089643
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 11:09:48 -0400
-Received: from e31.co.us.ibm.com (e31.co.us.ibm.com [32.97.110.149])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2uh85fgr99-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 11:09:48 -0400
-Received: from localhost
-        by e31.co.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <anoo@linux.ibm.com>;
-        Wed, 21 Aug 2019 16:09:47 +0100
-Received: from b03cxnp08026.gho.boulder.ibm.com (9.17.130.18)
-        by e31.co.us.ibm.com (192.168.1.131) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Wed, 21 Aug 2019 16:09:43 +0100
-Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
-        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7LF9gOY61014402
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 21 Aug 2019 15:09:42 GMT
-Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 10780136053;
-        Wed, 21 Aug 2019 15:09:42 +0000 (GMT)
-Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id C743513604F;
-        Wed, 21 Aug 2019 15:09:41 +0000 (GMT)
-Received: from ltc.linux.ibm.com (unknown [9.16.170.189])
-        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed, 21 Aug 2019 15:09:41 +0000 (GMT)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 21 Aug 2019 10:10:06 -0500
-From:   Adriana Kobylak <anoo@linux.ibm.com>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
-        Adriana Kobylak <anoo@us.ibm.com>, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org,
-        Linux-aspeed 
-        <linux-aspeed-bounces+anoo=linux.ibm.com@lists.ozlabs.org>
-Subject: Re: [PATCH] ARM: dts: aspeed: swift: Add eMMC device
-In-Reply-To: <20190821045655.21752-1-joel@jms.id.au>
-References: <20190821045655.21752-1-joel@jms.id.au>
-X-Sender: anoo@linux.ibm.com
-User-Agent: Roundcube Webmail/1.0.1
-X-TM-AS-GCONF: 00
-x-cbid: 19082115-8235-0000-0000-00000EC8D701
-X-IBM-SpamModules-Scores: 
-X-IBM-SpamModules-Versions: BY=3.00011629; HX=3.00000242; KW=3.00000007;
- PH=3.00000004; SC=3.00000287; SDB=6.01250037; UDB=6.00659943; IPR=6.01031592;
- MB=3.00028261; MTD=3.00000008; XFM=3.00000015; UTC=2019-08-21 15:09:45
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19082115-8236-0000-0000-000046E6A6BD
-Message-Id: <202dcd112f41044162465d8a724b66d0@linux.vnet.ibm.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-21_05:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908210160
+        id S1727542AbfHUPKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 11:10:49 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37525 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727134AbfHUPKt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 11:10:49 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1i0SFy-0001Rj-L8; Wed, 21 Aug 2019 17:10:38 +0200
+Message-ID: <1566400237.4193.15.camel@pengutronix.de>
+Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
+ support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Suman Anna <s-anna@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Keerthy <j-keerthy@ti.com>, ssantosh@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     tony@atomide.com, devicetree@vger.kernel.org
+Date:   Wed, 21 Aug 2019 17:10:37 +0200
+In-Reply-To: <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+         <1565164139-21886-3-git-send-email-t-kristo@ti.com>
+         <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
+         <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
+         <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
+         <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
+         <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-08-20 23:56, Joel Stanley wrote:
-> Swift contains an eMMC device attached to the second SDHCI controller.
+On Tue, 2019-08-20 at 11:47 -0500, Suman Anna wrote:
+> On 8/20/19 2:37 AM, Tero Kristo wrote:
+> > On 20.8.2019 2.01, Suman Anna wrote:
+> > > Hi Tero,
+> > > 
+> > > On 8/19/19 4:32 AM, Tero Kristo wrote:
+[...]
+> > > > > > +{
+> > > > > > +    struct omap_reset_data *reset;
+> > > > > > +
+> > > > > > +    /*
+> > > > > > +     * Check if we have resets. If either rstctl or rstst is
+> > > > > > +     * non-zero, we have reset registers in place. Additionally
+> > > > > > +     * the flag OMAP_PRM_NO_RSTST implies that we have resets.
+> > > > > > +     */
+> > > > > > +    if (!prm->data->rstctl && !prm->data->rstst &&
+> > > > > > +        !(prm->data->flags & OMAP_PRM_NO_RSTST))
+> > > > > > +        return 0;
+> > > > > > +
+> > > > > > +    reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
+> > > > > > +    if (!reset)
+> > > > > > +        return -ENOMEM;
+> > > > > > +
+> > > > > > +    reset->rcdev.owner = THIS_MODULE;
+> > > > > > +    reset->rcdev.ops = &omap_reset_ops;
+> > > > > > +    reset->rcdev.of_node = pdev->dev.of_node;
+> > > > > > +    reset->rcdev.nr_resets = OMAP_MAX_RESETS;
+> > > 
+> > > Suggest adding a number of resets to prm->data, and using it so that we
+> > > don't even entertain any resets beyond the actual number of resets.
+> > 
+> > Hmm why bother? Accessing a stale reset bit will just cause access to a
+> > reserved bit in the reset register, doing basically nothing. Also, this
+> > would not work for am3/am4 wkup, as there is a single reset bit at an
+> > arbitrary position.
 > 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-
-Reviewed-by: Adriana Kobylak <anoo@us.ibm.com>
-
-> ---
->  arch/arm/boot/dts/aspeed-bmc-opp-swift.dts | 11 +++++++++++
->  1 file changed, 11 insertions(+)
+> The generic convention seems to be defining a reset id value defined
+> from include/dt-bindings/reset/ that can be used to match between the
+> dt-nodes and the reset-controller driver.
 > 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
-> b/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
-> index f14f745b34ca..25bc0e1bbced 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
-> @@ -963,4 +963,15 @@
->  	status = "okay";
->  };
-> 
-> +&sdmmc {
-> +       status = "okay";
-> +};
-> +
-> +&sdhci1 {
-> +       status = "okay";
-> +
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_sd2_default>;
-> +};
-> +
->  #include "ibm-power9-dual.dtsi"
+> Philipp,
+> Any comments?
 
+Are there only reset bits and reserved bits in the range accessible by
+[0..OMAP_MAX_RESETS] or are ther bits with another function as well?
+If the latter is the case, I would prefer enumerating the resets in a
+dt-bindings header, with the driver containing an enum -> reg/bit
+position lookup table.
+
+In general, assuming the device tree contains no errors, this should not
+matter much, but I think it is nice if the reset driver, even with a
+misconfigured device tree, can't write into arbitrary bit fields.
+
+regards
+Philipp
