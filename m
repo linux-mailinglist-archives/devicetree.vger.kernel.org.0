@@ -2,117 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B37A978BF
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:01:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37A28978D4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:07:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbfHUMBq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 08:01:46 -0400
-Received: from mga05.intel.com ([192.55.52.43]:27218 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726227AbfHUMBq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 08:01:46 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 Aug 2019 05:01:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,412,1559545200"; 
-   d="scan'208";a="178483430"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
-  by fmsmga008.fm.intel.com with ESMTP; 21 Aug 2019 05:01:44 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1i0PJ8-0007BJ-Av; Wed, 21 Aug 2019 15:01:42 +0300
-Date:   Wed, 21 Aug 2019 15:01:42 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     kishon@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, peter.harliman.liem@intel.com
-Subject: Re: [PATCH v3 2/2] phy: intel-lgm-emmc: Add support for eMMC PHY
-Message-ID: <20190821120142.GX30120@smile.fi.intel.com>
-References: <20190821101118.42774-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190821101118.42774-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1726353AbfHUMHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 08:07:47 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:56273 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726227AbfHUMHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 08:07:47 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id BE9C9E0004;
+        Wed, 21 Aug 2019 12:07:43 +0000 (UTC)
+Date:   Wed, 21 Aug 2019 14:07:43 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 03/10] dt-bindings: mailbox: Add a sunxi message box
+ binding
+Message-ID: <20190821120743.hihurpkjancgacs6@flea>
+References: <20190820032311.6506-1-samuel@sholland.org>
+ <20190820032311.6506-4-samuel@sholland.org>
+ <20190820071456.if5lyb4t3em77svl@flea>
+ <8947f4d1-3bb4-11b8-b114-5016339514b8@sholland.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="yj7riia4gph2tfyk"
 Content-Disposition: inline
-In-Reply-To: <20190821101118.42774-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <8947f4d1-3bb4-11b8-b114-5016339514b8@sholland.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 06:11:18PM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> 
-> Add support for eMMC PHY on Intel's Lightning Mountain SoC.
 
-> --- /dev/null
-> +++ b/drivers/phy/intel/Kconfig
-> @@ -0,0 +1,8 @@
+--yj7riia4gph2tfyk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Missed licence tag
+On Tue, Aug 20, 2019 at 08:04:26AM -0500, Samuel Holland wrote:
+> On 8/20/19 2:14 AM, Maxime Ripard wrote:
+> > Hi,
+> >
+> > On Mon, Aug 19, 2019 at 10:23:04PM -0500, Samuel Holland wrote:
+> >> This mailbox hardware is present in Allwinner sun8i, sun9i, and sun50i
+> >> SoCs. Add a device tree binding for it.
+> >>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
+> >> ---
+> >>  .../mailbox/allwinner,sunxi-msgbox.yaml       | 79 +++++++++++++++++++
+> >>  1 file changed, 79 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/mailbox/allwinner,sunxi-msgbox.yaml
+> >
+> > So we merged a bunch of schemas already, with the convention that the
+> > name was the first compatible to use that binding.
+> >
+> > That would be allwinner,sun6i-a31-msgbox.yaml in that case
+>
+> Okay, I'll rename the binding and driver (and Kconfig symbol?).
 
-> +#
-> +# Phy drivers for Intel X86 LGM platform
-> +#
+Yep, thanks!
+Maxime
 
-> +#define EMMC_PHYCTRL2_REG	0xb0
-> +#define FRQSEL_25M		0
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-I would still leave 1 and 2 with corresponding names for sake of documentation.
+--yj7riia4gph2tfyk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +#define FRQSEL_150M		3
-> +#define FRQSEL_MASK		GENMASK(24, 22)
-> +#define FRQSEL_SHIFT(x)		(((x) << 22) & FRQSEL_MASK)
+-----BEGIN PGP SIGNATURE-----
 
-> +	unsigned int freqsel = 0;
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV00DwAKCRDj7w1vZxhR
+xR3QAP4uQpZfAOxXPnBEZQVDzwkMpjeJHL0oHyLSa2q695BzKQEA+XYUt7uuVPcp
+6l8M8wf6Q1kamKS9IXXV4732b0h59Ao=
+=rNyV
+-----END PGP SIGNATURE-----
 
-Redundant assignment.
-
-> +	udelay(5);
-
-+ blank line
-
-> +	regmap_update_bits(priv->syscfg, EMMC_PHYCTRL1_REG, PDB_MASK, 1);
-
-And here missed to address one of my comments.
-
-> +	/*
-> +	 * We purposely get the clock here and not in probe to avoid the
-> +	 * circular dependency problem.  We expect:
-
-We don't use double space
-
-> +	 * - PHY driver to probe
-> +	 * - SDHCI driver to start probe
-> +	 * - SDHCI driver to register it's clock
-> +	 * - SDHCI driver to get the PHY
-> +	 * - SDHCI driver to init the PHY
-> +	 *
-> +	 * The clock is optional, so upon any error just return it like
-> +	 * any other error to user.
-> +	 *
-> +	 */
-
-> +	struct device *dev = &pdev->dev;
-> +	struct intel_emmc_phy *priv;
-> +	struct phy *generic_phy;
-> +	struct phy_provider *phy_provider;
-
-> +	struct device_node *np = dev->of_node;
-
-Group it with other assignment(s), i.e. dev = ... above.
-
-	struct device *dev = ...;
-	struct device_node *np = ...;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+--yj7riia4gph2tfyk--
