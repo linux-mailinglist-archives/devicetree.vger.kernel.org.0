@@ -2,320 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A020097AC1
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 15:28:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8D3F97AE3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 15:36:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728679AbfHUN2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 09:28:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56926 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726484AbfHUN2V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 09:28:21 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F14E7233A1;
-        Wed, 21 Aug 2019 13:28:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566394100;
-        bh=i5OSWlioycaF2Znxi7uMbWMmm2fZgjZElmT5IOPeXtA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=t6Xz1n0Nk1LrGg7AltwDRbxtIXhE07BH99OfT01zbaf0tJObd6DQIs69LhFVO90AO
-         crMBgjBKafVYM9XboXhg5tIfVvl8nRpUUZH0h3qqq49jJfcPzahiSltdjKB1FObqoi
-         DRymR5/HpqHl0CkloXLp2UONEbE5GSDBW9VI1yu8=
-Received: by mail-qt1-f180.google.com with SMTP id b11so2958732qtp.10;
-        Wed, 21 Aug 2019 06:28:19 -0700 (PDT)
-X-Gm-Message-State: APjAAAWBqo+kpBRCp/ybwAVXOIw5mYrv4e7IjQcjEnVXZE/jiRmLkiBZ
-        p+nqEKXzwwSUXSNd+a3YXm/WPcPZnfRaAwNIEA==
-X-Google-Smtp-Source: APXvYqyZ8fsK6kGZwgr/fYxzi8cJ+hkrMeSsTdRTwMYv70RA5TletRh85GG86B60S3n03t8C6AAOpjBUMIzbxQONMXQ=
-X-Received: by 2002:ac8:44c4:: with SMTP id b4mr30978115qto.224.1566394099123;
- Wed, 21 Aug 2019 06:28:19 -0700 (PDT)
+        id S1728516AbfHUNbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 09:31:32 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:60060 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728679AbfHUNbb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 09:31:31 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190821133129euoutp01fba648e52c4f945e500b895945d72ee9~8806t4_Ku0580005800euoutp01N
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 13:31:29 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190821133129euoutp01fba648e52c4f945e500b895945d72ee9~8806t4_Ku0580005800euoutp01N
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1566394289;
+        bh=/D2caZgtkM4Mtk1ImVESN+kr9D/hyd6bSDCa0+RCcXU=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=GR7rQsQoDx+bA2Zq4SW3lrdrn0LfjOXxtFlsbBUd+mFCY6vqFzQ/STPIx3+eQntfu
+         5cm2uosnnhLrL2uchOhwqYPtBenOjxzl+ZDHJFJ9xCQZ6pg6C6ujcXTK7pVJp2h+sO
+         GEuGg3y9oa9q9FYKco/3ZT0B2fYZ3UUW4osEAjl0=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190821133128eucas1p1620bed3555fea4cc5ed3c77029591c86~88054BbWa1122211222eucas1p15;
+        Wed, 21 Aug 2019 13:31:28 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 87.B3.04309.0B74D5D5; Wed, 21
+        Aug 2019 14:31:28 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190821133127eucas1p243b7ca9ead6067c4980534cca2cb435c~8805FTILe2077520775eucas1p26;
+        Wed, 21 Aug 2019 13:31:27 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190821133127eusmtrp1abc4ffc11ae7364b72bf4e51ede9ff57~88042v3dX2187721877eusmtrp1l;
+        Wed, 21 Aug 2019 13:31:27 +0000 (GMT)
+X-AuditID: cbfec7f4-ae1ff700000010d5-c9-5d5d47b05a11
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 5E.0C.04166.FA74D5D5; Wed, 21
+        Aug 2019 14:31:27 +0100 (BST)
+Received: from [106.120.51.71] (unknown [106.120.51.71]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190821133126eusmtip210afd004be05403649fb557e52ca5563~8804Hjb-m0921809218eusmtip2C;
+        Wed, 21 Aug 2019 13:31:26 +0000 (GMT)
+Subject: Re: [PATCH v3 2/9] soc: samsung: Convert exynos-chipid driver to
+ use the regmap API
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Sylwester Nawrocki <snawrocki@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        linux-tegra <linux-tegra@vger.kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>
+From:   Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Message-ID: <d9a20ae5-4bdf-cb05-d68f-a7631517c87c@samsung.com>
+Date:   Wed, 21 Aug 2019 15:31:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190820195959.6126-1-robh@kernel.org> <20190820195959.6126-2-robh@kernel.org>
- <0ab5959e-fc6c-06c3-a3f1-ea5a1ebef87d@baylibre.com>
-In-Reply-To: <0ab5959e-fc6c-06c3-a3f1-ea5a1ebef87d@baylibre.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 21 Aug 2019 08:28:07 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL=qCVfbKnNK6q_au2PXKcOpZ6584gungRgz7T0oXNFdg@mail.gmail.com>
-Message-ID: <CAL_JsqL=qCVfbKnNK6q_au2PXKcOpZ6584gungRgz7T0oXNFdg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: Convert Arm Mali Midgard GPU to DT schema
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Maxime Ripard <maxime.ripard@free-electrons.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAJKOXPdh9eHrAuCxHkQBvJMqEnUCeU2xwkK=9yyiJ6BuTLJ+_A@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0iTYRTGe/0u+xRnr1PxYGowKDBQs0S+Loii4SCiy19hzFz5oZKabN4L
+        Wql5oZrOoLUE7eZloC7vWkm6T00kpSzNwkumodUqcmhqas5Pyf9+7znPc55z4GUIyUfKjYlN
+        SOKUCYo4KW1HNnYt9Hkbw+TyveZmT3ZZ2yViS/g+is3SPyBZzedvBNvfbxSxtZ8HKXagtZhm
+        Z2/yiNX1t9mweRY9zVbxIyL2QYNFxGY/50Ws6XsOxeZMzRBs3XgXHYRlS4taJKs15NGyukdX
+        ZDczf9CyW/UGJJut9TxBh9sdjuLiYlM4pW9gpF2M7t0wnWjxSJsxVFJqVA35yJYB7A+mhzyZ
+        j+wYCa5AYB4apoSHBUFDvYmwqiR4FsGAxnnT8UQ3tlEvR/B0NFEwmBFMaKvXG044Akb5e7SV
+        nbEXDC3Pr08l8DMSNFWvRNYGjQ9CYY4BWVmMA4EfuE9ZmcS7QMe/Xte44NMw1mWkBI0j9Nyd
+        JK1si0/CyPTiegCBXeHDZImNwDuhyVxMWMMAX2XglaaHEtYOhWzTF0JgJ/jaXS8S2B16i26Q
+        gqEawXLu9Ia7CUF50QotqA6Bqfv12iRmLcILalp9rQg4GN627xfQAd6bHYUdHEDbeIcQymLI
+        vS4RZuwGY5mR3kzNb6kkCpBUv+Uy/ZZr9Fuu0f+PLUWkAblyyar4aE61L4FL9VEp4lXJCdE+
+        5y/G16K1L9e70m1pRq1/z3UgzCCpvbjAWy6XUIoUVXp8BwKGkDqL04rD5RJxlCI9g1NePKtM
+        juNUHWgHQ0pdxZe2jZ+R4GhFEneB4xI55WbXhrF1UyPbwr7hFsql7e68/zOZJqKzifL4o6tr
+        d/g11zmbFdPuHpnx9XJw7IRTSlqIxqPq+OGK24WrmXt+rvimNjx2DLMXh4aG1x+onrq2rZRf
+        CghQ1uTN+aoHZU9W/UzbqezVF09fHvF780mUhMa7Q1pOjQWVqaX34o4eU0dpva79XnD3OS0l
+        VTEKvz2EUqX4B67VEr1uAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrPIsWRmVeSWpSXmKPExsVy+t/xe7rr3WNjDebdU7b4O+kYu8X8I+dY
+        LVpmLWKx6H/8mtni/PkN7BabHl9jtbi8aw6bxefeI4wWM87vY7Lo/DKLzWLtkbvsFou2fmG3
+        aN17hN3i8Jt2Vov2py+ZLTY/OMbmIODx+9ckRo9NqzrZPDYvqffobX7H5tG3ZRWjx+dNcgFs
+        UXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2CXoZM67e
+        ZCv4IlvxctVK1gbGdRJdjJwcEgImEhtn3GfuYuTiEBJYyihxeNF9li5GDqCEjMTx9WUQNcIS
+        f651sUHUvGaUOLmkgwkkISwQJ7Hs/jN2EFtEQFPi+t/vrCBFzAL7WCTaDvxgh+h4wyzR8fMa
+        WBWbgJXExPZVjCA2r4CdxJHLC1lBbBYBVYkZRy6C1YgKREiceb+CBaJGUOLkzCdgNqdAoMTd
+        F7/YQGxmAXWJP/MuMUPY4hK3nsxngrDlJba/ncM8gVFoFpL2WUhaZiFpmYWkZQEjyypGkdTS
+        4tz03GJDveLE3OLSvHS95PzcTYzAyN527OfmHYyXNgYfYhTgYFTi4Z2gGxsrxJpYVlyZe4hR
+        goNZSYS3Yk5UrBBvSmJlVWpRfnxRaU5q8SFGU6DnJjJLiSbnA5NOXkm8oamhuYWlobmxubGZ
+        hZI4b4fAwRghgfTEktTs1NSC1CKYPiYOTqkGxj4bRrkvhSXOYbKnPFI/R01w4/30Z3dZgpJM
+        9Kr9u6b+vCmyK386M/eDZnfJBVf1jDcdlWq6ciRG5qT62isS87/dXy9/ZHe2o86crFYxc+31
+        BvXz7zXNnRs1V0RzVWt9QGfkp7mmNT557b82hkkZ3Lltuddu9nZnS72gkM32pw2WrO3/W9jZ
+        q8RSnJFoqMVcVJwIANlgoLoCAwAA
+X-CMS-MailID: 20190821133127eucas1p243b7ca9ead6067c4980534cca2cb435c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c
+References: <20190813150827.31972-1-s.nawrocki@samsung.com>
+        <CGME20190813150852eucas1p2be4c0ab5ec2c079e3daf1af24283b27c@eucas1p2.samsung.com>
+        <20190813150827.31972-3-s.nawrocki@samsung.com>
+        <b5359603-b337-dcd8-b025-ca7dff5f4a06@nvidia.com>
+        <CAJKOXPf597CMx=M2JmSTWe2GzBfcHFefgzSJbJ+njZGp-WfR1A@mail.gmail.com>
+        <1e428c8e-f4b5-0810-77f9-2c899c040fc7@kernel.org>
+        <72eea1ea-2433-2f76-6265-5851554e845d@samsung.com>
+        <CAJKOXPdh9eHrAuCxHkQBvJMqEnUCeU2xwkK=9yyiJ6BuTLJ+_A@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 2:12 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi Rob,
->
-> On 20/08/2019 21:59, Rob Herring wrote:
-> > Convert the Arm Midgard GPU binding to DT schema format.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >  .../bindings/gpu/arm,mali-midgard.txt         | 119 -------------
-> >  .../bindings/gpu/arm,mali-midgard.yaml        | 165 ++++++++++++++++++
-> >  2 files changed, 165 insertions(+), 119 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
-> >  create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
-> > deleted file mode 100644
-> > index 9b298edec5b2..000000000000
-> > --- a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
-> > +++ /dev/null
-> > @@ -1,119 +0,0 @@
-> > -ARM Mali Midgard GPU
-> > -====================
-> > -
-> > -Required properties:
-> > -
-> > -- compatible :
-> > -  * Must contain one of the following:
-> > -    + "arm,mali-t604"
-> > -    + "arm,mali-t624"
-> > -    + "arm,mali-t628"
-> > -    + "arm,mali-t720"
-> > -    + "arm,mali-t760"
-> > -    + "arm,mali-t820"
-> > -    + "arm,mali-t830"
-> > -    + "arm,mali-t860"
-> > -    + "arm,mali-t880"
-> > -  * which must be preceded by one of the following vendor specifics:
-> > -    + "allwinner,sun50i-h6-mali"
-> > -    + "amlogic,meson-gxm-mali"
-> > -    + "samsung,exynos5433-mali"
-> > -    + "rockchip,rk3288-mali"
-> > -    + "rockchip,rk3399-mali"
-> > -
-> > -- reg : Physical base address of the device and length of the register area.
-> > -
-> > -- interrupts : Contains the three IRQ lines required by Mali Midgard devices.
-> > -
-> > -- interrupt-names : Contains the names of IRQ resources in the order they were
-> > -  provided in the interrupts property. Must contain: "job", "mmu", "gpu".
-> > -
-> > -
-> > -Optional properties:
-> > -
-> > -- clocks : Phandle to clock for the Mali Midgard device.
-> > -
-> > -- clock-names : Specify the names of the clocks specified in clocks
-> > -  when multiple clocks are present.
-> > -    * core: clock driving the GPU itself (When only one clock is present,
-> > -      assume it's this clock.)
-> > -    * bus: bus clock for the GPU
-> > -
-> > -- mali-supply : Phandle to regulator for the Mali device. Refer to
-> > -  Documentation/devicetree/bindings/regulator/regulator.txt for details.
-> > -
-> > -- operating-points-v2 : Refer to Documentation/devicetree/bindings/opp/opp.txt
-> > -  for details.
-> > -
-> > -- #cooling-cells: Refer to Documentation/devicetree/bindings/thermal/thermal.txt
-> > -  for details.
-> > -
-> > -- resets : Phandle of the GPU reset line.
-> > -
-> > -Vendor-specific bindings
-> > -------------------------
-> > -
-> > -The Mali GPU is integrated very differently from one SoC to
-> > -another. In order to accommodate those differences, you have the option
-> > -to specify one more vendor-specific compatible, among:
-> > -
-> > -- "allwinner,sun50i-h6-mali"
-> > -  Required properties:
-> > -  - clocks : phandles to core and bus clocks
-> > -  - clock-names : must contain "core" and "bus"
-> > -  - resets: phandle to GPU reset line
-> > -
-> > -- "amlogic,meson-gxm-mali"
-> > -  Required properties:
-> > -  - resets : Should contain phandles of :
-> > -    + GPU reset line
-> > -    + GPU APB glue reset line
-> > -
-> > -Example for a Mali-T760:
-> > -
-> > -gpu@ffa30000 {
-> > -     compatible = "rockchip,rk3288-mali", "arm,mali-t760";
-> > -     reg = <0xffa30000 0x10000>;
-> > -     interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-> > -                  <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-> > -                  <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
-> > -     interrupt-names = "job", "mmu", "gpu";
-> > -     clocks = <&cru ACLK_GPU>;
-> > -     mali-supply = <&vdd_gpu>;
-> > -     operating-points-v2 = <&gpu_opp_table>;
-> > -     power-domains = <&power RK3288_PD_GPU>;
-> > -     #cooling-cells = <2>;
-> > -};
-> > -
-> > -gpu_opp_table: opp_table0 {
-> > -     compatible = "operating-points-v2";
-> > -
-> > -     opp@533000000 {
-> > -             opp-hz = /bits/ 64 <533000000>;
-> > -             opp-microvolt = <1250000>;
-> > -     };
-> > -     opp@450000000 {
-> > -             opp-hz = /bits/ 64 <450000000>;
-> > -             opp-microvolt = <1150000>;
-> > -     };
-> > -     opp@400000000 {
-> > -             opp-hz = /bits/ 64 <400000000>;
-> > -             opp-microvolt = <1125000>;
-> > -     };
-> > -     opp@350000000 {
-> > -             opp-hz = /bits/ 64 <350000000>;
-> > -             opp-microvolt = <1075000>;
-> > -     };
-> > -     opp@266000000 {
-> > -             opp-hz = /bits/ 64 <266000000>;
-> > -             opp-microvolt = <1025000>;
-> > -     };
-> > -     opp@160000000 {
-> > -             opp-hz = /bits/ 64 <160000000>;
-> > -             opp-microvolt = <925000>;
-> > -     };
-> > -     opp@100000000 {
-> > -             opp-hz = /bits/ 64 <100000000>;
-> > -             opp-microvolt = <912500>;
-> > -     };
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
-> > new file mode 100644
-> > index 000000000000..24c4af74fb8d
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
-> > @@ -0,0 +1,165 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/gpu/arm,mali-midgard.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ARM Mali Midgard GPU
-> > +
-> > +maintainers:
-> > +  - Rob Herring <robh@kernel.org>
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: '^gpu@[a-f0-9]+$'
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +             - allwinner,sun50i-h6-mali
-> > +          - const: arm,mali-t720
-> > +      - items:
-> > +          - enum:
-> > +             - amlogic,meson-gxm-mali
-> > +          - const: arm,mali-t820
-> > +      - items:
-> > +          - enum:
-> > +             - rockchip,rk3288-mali
-> > +          - const: arm,mali-t760
-> > +      - items:
-> > +          - enum:
-> > +             - rockchip,rk3399-mali
-> > +          - const: arm,mali-t860
-> > +      - items:
-> > +          - enum:
-> > +             - samsung,exynos5433-mali
-> > +          - const: arm,mali-t760
-> > +
-> > +          # "arm,mali-t604"
-> > +          # "arm,mali-t624"
-> > +          # "arm,mali-t628"
-> > +          # "arm,mali-t830"
-> > +          # "arm,mali-t880"
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Job interrupt
-> > +      - description: MMU interrupt
-> > +      - description: GPU interrupt
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: job
-> > +      - const: mmu
-> > +      - const: gpu
-> > +
-> > +  clocks:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  clock-names:
-> > +    minItems: 1
-> > +    items:
-> > +      - const: core
-> > +      - const: bus
-> > +
-> > +  mali-supply:
-> > +    maxItems: 1
-> > +
-> > +  resets:
-> > +    minItems: 1
-> > +    maxItems: 2
-> > +
-> > +  operating-points-v2: true
-> > +
-> > +  "#cooling-cells":
-> > +    const: 2
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-names
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: allwinner,sun50i-h6-mali
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          minItems: 2
-> > +      required:
-> > +        - clocks
-> > +        - clock-names
-> > +        - resets
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: amlogic,meson-gxm-mali
-> > +    then:
-> > +      properties:
-> > +        resets:
-> > +          minItems: 2
-> > +      required:
-> > +        - resets
->
-> The original bindings was wrong, In fact, clocks should be required here aswell.
-> Same for bifrost and utgard...
->
-> Should I send a fixup patch ?
 
-I think we should just make clocks required. I can't imagine anyone
-not using the clock binding.
+On 8/21/19 2:16 PM, Krzysztof Kozlowski wrote:
+> On Wed, 21 Aug 2019 at 13:51, Bartlomiej Zolnierkiewicz
+> <b.zolnierkie@samsung.com> wrote:
+>>>>> Following this change, I am now seeing the above error on our Tegra
+>>>>> boards where this driver is enabled. This is triggering a kernel
+>>>>> warnings test we have to fail. Hence, I don't think that you can remove
+>>>>> the compatible node test here, unless you have a better way to determine
+>>>>> if this is a samsung device.
+>>>>
+>>>> Right, this is really wrong... I missed that it is not a probe but
+>>>> early init. And this init will be called on every board... Probably it
+>>>> should be converted to a regular driver.
+>>
+>> Early initialization is needed for SoC driver to be used from within
+>> arch/arm/mach-exynos/ and _initcall() usage is the usual way for SoC
+>> drivers to be initialized:
+>>
+>> drivers/soc/amlogic/meson-gx-socinfo.c
+>> drivers/soc/amlogic/meson-mx-socinfo.c
+>> drivers/soc/atmel/soc.c
+>> drivers/soc/bcm/brcmstb/common.c
+>> drivers/soc/imx/soc-imx-scu.c
+>> drivers/soc/imx/soc-imx8.c
+>> drivers/soc/renesas/renesas-soc.c
+>> drivers/soc/tegra/fuse/fuse-tegra.c
+>> drivers/soc/ux500/ux500-soc-id.c
+>> drivers/soc/versatile/soc-integrator.c
+>> drivers/soc/versatile/soc-integrator.c
+>>
+>> The only SoC drivers that are regular drivers are:
+>>
+>> drivers/soc/fsl/guts.c
+>> drivers/soc/versatile/soc-realview.c
+> 
+> Thanks for pointing it out.
+> 
+> Indeed, the initcall was needed in your set of patches here:
+> https://patchwork.kernel.org/project/linux-samsung-soc/list/?series=43565&state=*
+> but this work was not continued here. Maybe it will be later
+> resubmitted... maybe not... who knows? Therefore I would prefer proper
 
-Rob
+The work got delayed mainly because of the request for the formal
+audit of each usage vs cache coherency. Since it is rather small
+cleanup and such audit is time consuming it became a low priority.
+
+> solution for current case (driver), unless patches for mach are being
+> brought back to life now.
+> 
+>>> I'm also inclined to have it converted to a regular driver.  We already
+>>> have "exynos-asv" driver matching on the chipid node (patch 3/9).
+>>> The ASV patches will not be merged soon anyway, all this needs some more
+>>> thought. Krzysztof, can we abandon the chipid patches for now? Your
+>>
+>> chipid driver is good and useful on its own. The preferred solution
+>> IMHO would be to just revert "soc: samsung: Convert exynos-chipid
+>> driver to use the regmap API" commit.
+
+Or just fix it by re-adding removed Exynos chipid compatible checking:
+
+diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
+index 006a95feb618..d9912bd52479 100644
+--- a/drivers/soc/samsung/exynos-chipid.c
++++ b/drivers/soc/samsung/exynos-chipid.c
+@@ -55,6 +55,11 @@ int __init exynos_chipid_early_init(void)
+        u32 revision;
+        int ret;
+ 
++       /* look up for chipid node */
++       np = of_find_compatible_node(NULL, NULL, "samsung,exynos4210-chipid");
++       if (!np)
++               return -ENODEV;
++
+        regmap = syscon_regmap_lookup_by_compatible("samsung,exynos4210-chipid");
+        if (IS_ERR(regmap)) {
+                pr_err("Failed to get CHIPID regmap\n");
+
+> I queued the chipid as a dependency for ASV but ASV requires the
+> regmap. What would be left after reverting the regmap part? Simple
+> unused printk driver? No need for such. If reverting, then let's drop
+
+It provides sysfs information about SoC/platform and is useful on its
+own (for debugging, reporting etc. purposes). Maybe not terrible useful
+but on OTOH the driver is only ~100 LOC.
+
+> entire driver and rework it offline.
+Best regards,
+--
+Bartlomiej Zolnierkiewicz
+Samsung R&D Institute Poland
+Samsung Electronics
