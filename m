@@ -2,89 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAD0A976AD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 12:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E42976BC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 12:14:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726217AbfHUKI4 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 21 Aug 2019 06:08:56 -0400
-Received: from mx1.redhat.com ([209.132.183.28]:59942 "EHLO mx1.redhat.com"
+        id S1727377AbfHUKL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 06:11:26 -0400
+Received: from mga01.intel.com ([192.55.52.88]:27940 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725268AbfHUKIz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 06:08:55 -0400
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com [209.85.208.69])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx1.redhat.com (Postfix) with ESMTPS id 68B9F4E925
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 10:08:55 +0000 (UTC)
-Received: by mail-ed1-f69.google.com with SMTP id i10so1094675edv.14
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 03:08:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version:content-transfer-encoding;
-        bh=umZ1aaOBeJjkeJ1S0Jm8f7ll4VqlupnyjFqoji04PLs=;
-        b=dtZVK15m3duuFicRn9sDjA+mEgWzpxiYuhT4aqAGJ6xKWI1Tz61avrQNieQMg4SEck
-         57zBk924lzJpC1bY27nJ97F6nCAAQbM5FXZPmDZvraaVXVxxTXeoAS+CParcB9KWFBl/
-         6lN17PfT2ejLGR9gpJ+Rg/czNqbW5YwNJMXqqKt6NIc+ASkkfMjSiA2Es9ZsYUEigtLF
-         L+l+DeW7VPjGN51mK1fmdEup/OnvsTZTRMEkQyTM8BVL+5rdcLMXDwkTODT+PkwNrxoB
-         Q01zSKtmjttVbv18HwocSI6VkxSsWGXx/zDEmNn1McyrIZnGQ8gneJv8TZ0rNOdpmKJS
-         t17Q==
-X-Gm-Message-State: APjAAAVLe6f+HXQs8YGcV6rJpl97az56sH8NnTNXZfcHdJ5XaKPkC5SC
-        y752zTWkG6kt27BqPTS5qBiFywUYspKEVhC0IF5ueX7w6UkSVp52KQfaNbwv/Ji2lWdb1FQPYPX
-        TiYUKmuJOMD8Vm5e+BOsLYA==
-X-Received: by 2002:a50:f10d:: with SMTP id w13mr35413404edl.222.1566382134249;
-        Wed, 21 Aug 2019 03:08:54 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqyjtqsPfVaOVcGj4bIlvdZRLCMANdsMw6mmT1TMubKmHil2CT5/yEMGNW9mzQ6x4eSTUcPRVQ==
-X-Received: by 2002:a50:f10d:: with SMTP id w13mr35413397edl.222.1566382134121;
-        Wed, 21 Aug 2019 03:08:54 -0700 (PDT)
-Received: from alrua-x1.borgediget.toke.dk ([2a00:7660:6da:443::2])
-        by smtp.gmail.com with ESMTPSA id x42sm4028988ede.24.2019.08.21.03.08.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 03:08:53 -0700 (PDT)
-Received: by alrua-x1.borgediget.toke.dk (Postfix, from userid 1000)
-        id D5D07181CEF; Wed, 21 Aug 2019 12:08:52 +0200 (CEST)
-From:   Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
-To:     Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless-owner@vger.kernel.org
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-In-Reply-To: <ac6e7dbbd53e7ba9e82e49baca22b73c@codeaurora.org>
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org> <1566316095-27507-32-git-send-email-kvalo@codeaurora.org> <8736hvu6e6.fsf@toke.dk> <ac6e7dbbd53e7ba9e82e49baca22b73c@codeaurora.org>
-X-Clacks-Overhead: GNU Terry Pratchett
-Date:   Wed, 21 Aug 2019 12:08:52 +0200
-Message-ID: <875zmqsudn.fsf@toke.dk>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
+        id S1726217AbfHUKLZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 06:11:25 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 Aug 2019 03:11:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,412,1559545200"; 
+   d="scan'208";a="172733736"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by orsmga008.jf.intel.com with ESMTP; 21 Aug 2019 03:11:22 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     kishon@ti.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, peter.harliman.liem@intel.com,
+        vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: [PATCH v3 1/2] dt-bindings: phy: intel-emmc-phy: Add YAML schema for LGM eMMC PHY
+Date:   Wed, 21 Aug 2019 18:11:17 +0800
+Message-Id: <20190821101118.42774-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
+From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 
-> On 2019-08-20 22:21, Toke Høiland-Jørgensen wrote:
->> [... snip ... ]
->> 
->>> +static const struct ieee80211_ops ath11k_ops = {
->>> +	.tx				= ath11k_mac_op_tx,
->> 
->> No wake_tx_queue? :(
->
-> Yes, packet queueing is handled in firmware. This makes sense
-> especially when we enable 802.11 encap offload support where most of
-> the data path processing in mac80211 will be skipped and packet is
-> given to driver/firmware in 802.3 format itself. Then firmware would
-> take care of all the classification, queueing and encapsulation
-> operations.
+Add a YAML schema to use the host controller driver with the
+eMMC PHY on Intel's Lightning Mountain SoC.
 
-Well, so does ath10k, and yet we still saw a significant improvement by
-moving queueing back into the host where it can be handled by the
-FQ-CoDel-enabled queueing structure.
+Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+---
+changes in v3:
+  - resolve 'make dt_binding_check' warnings
 
-So, *how* does the firmware handle the queueing? Does it have
-per-stations queues? Per-flow queues? What's the latency under load
-figures for the firmware queues?
+changes in v2:
+  As per Rob Herring review comments, the following updates
+ - change GPL-2.0 -> (GPL-2.0-only OR BSD-2-Clause)
+ - filename is the compatible string plus .yaml
+ - LGM: Lightning Mountain
+ - update maintainer
+ - add intel,syscon under property list
+ - keep one example instead of two
+---
+ .../bindings/phy/intel,lgm-emmc-phy.yaml           | 59 ++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
 
--Toke
+diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+new file mode 100644
+index 000000000000..9342e33d8b02
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/intel,lgm-emmc-phy.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Intel Lightning Mountain(LGM) eMMC PHY Device Tree Bindings
++
++maintainers:
++  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
++
++properties:
++  "#phy-cells":
++    const: 0
++
++  compatible:
++    const: intel,lgm-emmc-phy
++
++  reg:
++    maxItems: 1
++
++  syscon:
++    items:
++      $ref: "/schemas/types.yaml#definitions/phandle"
++
++  clocks:
++    items:
++      - description: e-MMC phy module clock
++
++  clock-names:
++    items:
++      - const: emmcclk
++
++  resets:
++    maxItems: 1
++
++required:
++  - "#phy-cells"
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - ref
++
++additionalProperties: false
++
++examples:
++  - |
++    emmc_phy: emmc_phy {
++        compatible = "intel,lgm-emmc-phy";
++        reg = <0xe0020000 0x100>;
++        intel,syscon = <&sysconf>;
++        clocks = <&emmc>;
++        clock-names = "emmcclk";
++        #phy-cells = <0>;
++    };
++
++...
+-- 
+2.11.0
+
