@@ -2,128 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DBFF797632
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 11:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF5197637
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 11:30:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727360AbfHUJ3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 05:29:18 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:52307 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726664AbfHUJ3S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 05:29:18 -0400
-X-Originating-IP: 87.18.63.98
-Received: from uno.localdomain (unknown [87.18.63.98])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id AFAB71C0009;
-        Wed, 21 Aug 2019 09:29:14 +0000 (UTC)
-Date:   Wed, 21 Aug 2019 11:30:39 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Simon Horman <horms@verge.net.au>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sh-mobile-ceu: Rename bindings
- documentation file
-Message-ID: <20190821093039.fb2art6na5stkpao@uno.localdomain>
-References: <20190819140544.19294-1-horms+renesas@verge.net.au>
- <20190820095205.xnthl7d7cpy7myq2@uno.localdomain>
- <20190820151930.pwi42cewslkchssf@verge.net.au>
- <20190821081746.lt6n4nhqnpyowzmi@verge.net.au>
+        id S1726648AbfHUJ3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 05:29:36 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:55902 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726448AbfHUJ3g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 05:29:36 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id D4A4C60E40; Wed, 21 Aug 2019 09:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566379774;
+        bh=GKZY1jxnpJvVPvKA7ZzH4YK0+Sf31FF3nAQtvn89uvI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZWUBdkQgiu+jTWEi0tZ2PIEM4EOCDU3SxAf8ZCd2sd4DaXaRbKnJnQSSIFI6J7DSh
+         rrS8TYgm0kEDKdKOP6v9HVRgQB5CRFQL4V2/vyOD0Na7/TXIIxGVDoM+Isg+M354V0
+         kdQQt2L08RfD3U3hqA4RgTxIm7sfbhAfKUfh3J7Q=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 0C0BF609F3;
+        Wed, 21 Aug 2019 09:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566379774;
+        bh=GKZY1jxnpJvVPvKA7ZzH4YK0+Sf31FF3nAQtvn89uvI=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=ZWUBdkQgiu+jTWEi0tZ2PIEM4EOCDU3SxAf8ZCd2sd4DaXaRbKnJnQSSIFI6J7DSh
+         rrS8TYgm0kEDKdKOP6v9HVRgQB5CRFQL4V2/vyOD0Na7/TXIIxGVDoM+Isg+M354V0
+         kdQQt2L08RfD3U3hqA4RgTxIm7sfbhAfKUfh3J7Q=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jnwnpog3xinnecw2"
-Content-Disposition: inline
-In-Reply-To: <20190821081746.lt6n4nhqnpyowzmi@verge.net.au>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 21 Aug 2019 14:59:33 +0530
+From:   Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless-owner@vger.kernel.org
+Subject: Re: [PATCH 04/49] ath11k: add ahb.c
+In-Reply-To: <8c791df54a831f32fddd634e71e5e91342532535.camel@sipsolutions.net>
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+ <1566316095-27507-5-git-send-email-kvalo@codeaurora.org>
+ (sfid-20190820_175156_108502_D7159DB2)
+ <8c791df54a831f32fddd634e71e5e91342532535.camel@sipsolutions.net>
+Message-ID: <e53ddcaa11d069fbe9d083b9b0105d19@codeaurora.org>
+X-Sender: vthiagar@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2019-08-21 01:35, Johannes Berg wrote:
 
---jnwnpog3xinnecw2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Thanks for the comments!
 
-Hi Simon,
+> On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
+>> 
+>> +static const struct service_to_pipe target_service_to_ce_map_wlan[] = 
+>> {
+>> +	{
+>> +		__cpu_to_le32(ATH11K_HTC_SVC_ID_WMI_DATA_VO),
+>> +		__cpu_to_le32(PIPEDIR_OUT),	/* out = UL = host -> target */
+>> +		__cpu_to_le32(3),
+>> +	},
+> 
+> this might be nicer as C99 initializers as well? It's a struct of some
+> sort, after all.
 
-On Wed, Aug 21, 2019 at 10:17:48AM +0200, Simon Horman wrote:
-> On Tue, Aug 20, 2019 at 05:19:30PM +0200, Simon Horman wrote:
-> > On Tue, Aug 20, 2019 at 11:52:05AM +0200, Jacopo Mondi wrote:
-> > > Hi Simon,
-> > >
-> > > On Mon, Aug 19, 2019 at 04:05:44PM +0200, Simon Horman wrote:
-> > > > Renesas media binding documentation files uses a naming schema of
-> > > > 'renesas,<module>.txt'. Rename the SH Mobile CEU file to match this pattern.
-> > > >
-> > >
-> > > The old soc-camera based sh-mobile-ceu driver has been removed one
-> > > year ago and replaced by driver/media/platform/renesas-ceu.c whose
-> > > bindings are described at
-> > > Documentation/devicetree/bindings/media/renesas,ceu.txt
-> > >
-> > > Should this file be removed instead of renamed?
-> >
-> > Thanks,
-> >
-> > I thought I had checked that but clearly I did not.
-> > I agree the file should be removed and I'll send a revised patch
-> > accordingly.
->
-> The one lingering reference to renesas,sh-mobile-ceu I can see
-> in the tree is its use in an example of two data pipelines in
-> Documentation/devicetree/bindings/media/video-interfaces.txt
->
+Sure.
 
-Yeah, I noticed that, but never considered it more than an example.
-Although, with the removal of the bindings description, it should
-probably be changed to avoid generating confusion...
+> 
+>> +	{ /* must be last */
+>> +		__cpu_to_le32(0),
+>> +		__cpu_to_le32(0),
+>> +		__cpu_to_le32(0),
+>> +	},
+> 
+> You don't need endian conversion for 0, even sparse will not complain,
+> but I'd argue it should anyway be something like
+> 
+> 	{ /* terminator entry */ }
+> 
+> since that's why it's there I guess?
 
-> Could you suggest an alternative example?
+Ok.
 
-The pipeline described in the example is purely fictional, as it uses
-a "renesas-shmobile-csi2" compatible to model a CSI-2 input which I
-don't see mentioned anywhere. I guess the CEU compatible value there could be
-changed to anything we want, including the new renesas-ceu value which
-has superseded the sh-mobile-ceu one.
+> 
+>> +#define ATH11K_TX_RING_MASK_3 0x0
+> 
+> You have a LOT of masks here that are 0, that seems odd?
 
-Otherwise, RZ/A2 supports both CSI-2 by using the rcar-vin+rcar-csi2
-IP blocks we have in R-Car and parallel input using the old CEU interface.
-We could use that as a real-world example, using VIN for CSI-2 and CEU for
-parallel input. Unfortunately, no RZ/A2 DTS in mainline has any of the
-two interfaces enabled afaict.
+We'll remove them.
 
-I'll send a patch to the media list that just changes the suppressed
-compatible value with the new 'renesas-ceu' one unless someone has
-different opinions.
+> 
+>> +/* enum ext_irq_num - irq nubers that can be used by external modules
+> 
+> typo ("numbers")
+> 
+>> +inline u32 ath11k_ahb_read32(struct ath11k_base *ab, u32 offset)
+>> +{
+>> +	return ioread32(ab->mem + offset);
+>> +}
+>> +
+>> +inline void ath11k_ahb_write32(struct ath11k_base *ab, u32 offset, 
+>> u32 value)
+>> +{
+>> +	iowrite32(value, ab->mem + offset);
+>> +}
+> 
+> Just "inline" doesn't seem to make that much sense? If it's only used
+> here then I guess it should be static, otherwise not inline? Or maybe
+> you want it to be inlined *in this file* but available out-of-line
+> otherwise? I'm not sure that actually is guaranteed to work right in C?
 
-Thanks
-   j
+Yes, these read/write functions are used from other files as well. May 
+be define
+them as static inline in ahb.c will be fine.
 
---jnwnpog3xinnecw2
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+>> +		val = ath11k_ahb_read32(ab, CE_HOST_IE_ADDRESS);
+>> +		val |= BIT(ce_id);
+>> +		ath11k_ahb_write32(ab, CE_HOST_IE_ADDRESS, val);
+> 
+> You could perhaps benefit from ath11k_ahb_setbit32() or something like
+> that, this repeats a few times?
+> 
+>> +	if (__le32_to_cpu(ce_config->pipedir) & PIPEDIR_OUT) {
+>> +		val = ath11k_ahb_read32(ab, CE_HOST_IE_ADDRESS);
+>> +		val &= ~BIT(ce_id);
+>> +		ath11k_ahb_write32(ab, CE_HOST_IE_ADDRESS, val);
+> 
+> and clearbit32() maybe. Dunno, I saw only 3 instances of each here I
+> guess, but still, feels repetitive.
 
------BEGIN PGP SIGNATURE-----
+Sure.
 
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1dDz8ACgkQcjQGjxah
-VjxgoxAAoI6/KzvxOIBXDNLLsIs4wUToXkd7RBWwAPLs9+EXvhRjvszMFo67lAdq
-48okp5lxgg/VtbBtnrMbuFqBQ2hZt5a2KMDLj5lZVG15lkzadMqOxLwPEy//0Liy
-nwzBkb1eFQFHeLZjyVWeWuV3Apt6Cg2Y+ye1oBliS+Y9t/Y94s7bPs1gqwSt7cpL
-Ug9JYHRDKuYWdo17zg88foO1rs6ibk9kmbs0EvYenwA9Yqhlj+6a+lv2Lg7U2Qzb
-PpRvqmnes5UohFtbrH0LiBP2hrJ2wqA5Md3Ug1QJvhq3SoVhK3Se8jdvkGfsop42
-FVgdklqHzv/nKzFATp8daJsQYuiPyDIydFPw9LcvbVMRluJaJSRAZyC7zDsZhJ+y
-u+QF1CZqhtOi/m37bJ/QgvVwH7NSYfqfPcctM1ALyQ1huM42cTvu6ctiMOdSkZbX
-NSaY+3aaE5c5yFj7Z+vEb7iYnsKBqGu1ShyhV9DS7gHAIYbP4Sgj1LFYFxXUP9TI
-Nw/UIUfn5x+Sjbxq6c91uLutOiv4LQ/Cs3uuHLjmHyfkw18b9V8Wka55W26cfpjs
-zWcRlMRtW2Fo8mtVO7G80kpNpTTqsplINrLlMg42bVmB7Ss1sTCo4qmHACKIq2aq
-u2VeEbXyjwAddEcGm1VMxDbdkWA7TuarmJTy67MQDOFizsmQvMQ=
-=UNyD
------END PGP SIGNATURE-----
+> 
+>> +int ath11k_ahb_start(struct ath11k_base *ab)
+>> +{
+>> +	ath11k_ahb_ce_irqs_enable(ab);
+>> +	ath11k_ce_rx_post_buf(ab);
+>> +
+>> +	/* Bring up other components as appropriate */
+> 
+> Hmm. What would be appropriate? It's not really doing anything else?
 
---jnwnpog3xinnecw2--
+These comments added during development not to miss anything during
+bring up. Now it is not really needed, we'll remove them.
+
+> 
+>> +void ath11k_ahb_stop(struct ath11k_base *ab)
+>> +{
+>> +	if (!test_bit(ATH11K_FLAG_CRASH_FLUSH, &ab->dev_flags))
+>> +		ath11k_ahb_ce_irqs_disable(ab);
+>> +	ath11k_ahb_sync_ce_irqs(ab);
+>> +	ath11k_ahb_kill_tasklets(ab);
+>> +	del_timer_sync(&ab->rx_replenish_retry);
+>> +	ath11k_ce_cleanup_pipes(ab);
+>> +	/* Shutdown other components as appropriate */
+> 
+> likewise, it's not doing anything else?
+> 
+
+Sure. Thanks.
+
+Vasanth
