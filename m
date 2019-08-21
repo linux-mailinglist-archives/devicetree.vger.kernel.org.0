@@ -2,101 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A13898796
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 760279879C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731288AbfHUXCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 19:02:11 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:44946 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731285AbfHUXCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:02:11 -0400
-Received: by mail-pl1-f195.google.com with SMTP id t14so2165906plr.11
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:02:11 -0700 (PDT)
+        id S1731313AbfHUXCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 19:02:51 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:34352 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730022AbfHUXCv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:02:51 -0400
+Received: by mail-pf1-f193.google.com with SMTP id b24so2476521pfp.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:02:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=NpuoQpLKK7WyEkPSccJxDwY6STNHznjukxBqZ31nzB4=;
-        b=OzsNA61dc5J+KQA9dM2aHRJYNGKNDPTCblKWMfh4/UWZQleUwplGb5CCKwPToD2cAx
-         FcMT/7tDtdVWavTPAWVuj5i6ncwyz/OL+I5ZYxCGCVDAQc6/h0IbKyyzsHuaenGNWz2t
-         kVRQWGtQDOvlsg9SnUnKU5a8c7Rl2oVR03N89QrWEiFdqERXBcO8tLGd2qenDJtofH/S
-         CTg+KgIqan+qgQUiT+ijzNLnvIBfAYWyyggsooT7jNIIwN8LTAHCRtPosnqlYk1Tdn29
-         +heKXNQ+NGewltTzenkU+cpu5vI4OJ5qup2kjb28r5SW2hZ961Aw8oyEZV0ZfLcP/dxf
-         WLzg==
+        bh=TmDOJvhPrJk/RAKywvPdX5bKVeeqGQtRvXF6G/yD7Ts=;
+        b=MryI/zTQcpw1Y7z90icizIK6FBIzgHejqlorJGJcBuRYuCoQgZfYwz2SHvI14xthV2
+         VGpADbJLiy9mh9zsJDWpjh39gVW8n7JdqtcVhowxOmr7akF1xhwC5PxJFMeJrxugq3PV
+         8qfD2zsEa7wOrXG0R4PyQWoFwKtiN55x8GLWBrK/kooZEJ9mx5pEj75VZyULtSNPfMeQ
+         XNjlA/MaESQuoz7S7VZN+l8AZPr2pu80HCZa4rTPHOlQLO93OyacnVz5IuLw/MdcHW23
+         bV2XyPnr8orjJbyHvVyEBNnqjtwMCo5SxkCuUXp09n0F7I0hO0UmsrCggXybhKou3Lx4
+         ASng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NpuoQpLKK7WyEkPSccJxDwY6STNHznjukxBqZ31nzB4=;
-        b=NXQ+1lsqKqTWST/8hx5WIU/03iLBrRd5QPxwnGNL7u4owq9ysz8vafxPkVx5d34WOL
-         PUcknK1XgZOcib1mydWq3+N0/tsnSP1WBwV4v9PVh/5NRtsguJ2q4lpTZ0QOFFZc5fdl
-         JGV0aZI1o97Na8oN3z+XKTzKqft9GRgQ0/URh/zwxcp8gjqnyIguGIQmCuFly5ciRcVG
-         FU7fHMFc4ffI/56RWpZp/EaAgolxZd01rH2QOORBki8tKgh7qstinNNVtyyBmuOXf7MT
-         u6NhbZQCT6An8otxAVit3GneBVGsbtNzj8lUp652S/bok6TXF/ymNXE2+JgX4odrRojG
-         bd5A==
-X-Gm-Message-State: APjAAAU94K/72AuKPz0Kcr6PhZ5SzmHgZDQOffIw5+Ur8Ouv47SVPTou
-        ysRF0bOB+5YPO65cOcR/NOyXqg==
-X-Google-Smtp-Source: APXvYqxkzHLGY8L8dgDlNxoq4G+xKv8wVs2YvpjbObYmqSCZZWIvjwfgn1krBkgU0vu+qoeM1SVaXg==
-X-Received: by 2002:a17:902:4201:: with SMTP id g1mr36449071pld.300.1566428530503;
-        Wed, 21 Aug 2019 16:02:10 -0700 (PDT)
+        bh=TmDOJvhPrJk/RAKywvPdX5bKVeeqGQtRvXF6G/yD7Ts=;
+        b=fp2cxv80WBuxHZj4y42557pnyxgNmq33+T0ExOaMImk7W5Tf0JhJ9BNSa2oJFCuwJq
+         Tl+Rw1201CDNEXGXFy+pCwJk0TPWdzoKZhSRmh/oYULdEAUPyCh8jBKJa+BFrNReUMv+
+         1fkoCP8DYj3FAboMf4DY2S84kaLQfkcEFfWJN3HvBKTBeHFRsL82ZPTpyhZxSwuKrSQM
+         fh7AwqcG4lSqVwFMRyZ7zEAPVeQmr+2XDjlj1sYRk2aGQLke0TqyTmYBeqMZyGhGGMz6
+         UA41ljmI3cs6uAfwNvrty1MDwn9NXCJoFVR4mG4dnJoxsgLmQpz6GnJSQJ9EFAHxUV7a
+         grcQ==
+X-Gm-Message-State: APjAAAXqJKg45P87ztn5o8a0vi4zJQIztWuYiBKDdio8fGuq8sPCTFkD
+        J4UDXpsPBbWTkVjUnQumjEBu6A==
+X-Google-Smtp-Source: APXvYqxI+UkypCWR85p3O8GUubkvI6VHaPvdHe/3j4/MwZxP7+qRgAA8AxavnktcihBGMVXybm8JGA==
+X-Received: by 2002:a62:7d93:: with SMTP id y141mr38186495pfc.164.1566428570694;
+        Wed, 21 Aug 2019 16:02:50 -0700 (PDT)
 Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id 67sm968321pjo.29.2019.08.21.16.02.08
+        by smtp.gmail.com with ESMTPSA id d189sm31101011pfd.165.2019.08.21.16.02.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 16:02:09 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 16:03:56 -0700
+        Wed, 21 Aug 2019 16:02:50 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 16:04:37 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     robh+dt@kernel.org, vkoul@kernel.org, aneela@codeaurora.org,
-        mark.rutland@arm.com, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
-        clew@codeaurora.org
-Subject: Re: [PATCH v2 0/7] Add support for Qualcomm SM8150 and SC7180 SoCs
-Message-ID: <20190821230356.GB1892@tuxbook-pro>
-References: <20190807070957.30655-1-sibis@codeaurora.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/8] arm64: dts: qcom: sm8150: Add SM8150 DTS
+Message-ID: <20190821230437.GC1892@tuxbook-pro>
+References: <20190821184239.12364-1-vkoul@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190807070957.30655-1-sibis@codeaurora.org>
+In-Reply-To: <20190821184239.12364-1-vkoul@kernel.org>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 07 Aug 00:09 PDT 2019, Sibi Sankar wrote:
+On Wed 21 Aug 11:42 PDT 2019, Vinod Koul wrote:
 
-> This patch series adds SCM, APSS shared mailbox and QMP AOSS PD/clock
-> support on SM8150 and SC7180 SoCs.
-> 
-> v2:
->  * re-arrange the compatible lists in sort order
+> This series adds DTS for SM8150, PMIC PM8150, PM8150B, PM8150L and
+> the MTP for SM8150.
 > 
 
-Applied patches 1-3 and 6-7.
+Applied, with Amit's acks.
 
-Regards,
-Bjorn
-
-> Sibi Sankar (7):
->   soc: qcom: smem: Update max processor count
->   dt-bindings: firmware: scm: re-order compatible list
->   dt-bindings: firmware: scm: Add SM8150 and SC7180 support
->   dt-bindings: mailbox: Add APSS shared for SM8150 and SC7180 SoCs
->   mailbox: qcom: Add support for Qualcomm SM8150 and SC7180 SoCs
->   dt-bindings: soc: qcom: aoss: Add SM8150 and SC7180 support
->   soc: qcom: aoss: Add AOSS QMP support
+> Changes in v4:
+>  - Update the address and size cell to 2 and extend ranges and describe DMA
+>    space
+>  - Fix node location of spmi per sorted address
+>  - Add Niklas's review tags
 > 
->  Documentation/devicetree/bindings/firmware/qcom,scm.txt      | 4 +++-
->  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt    | 2 ++
->  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt | 5 ++++-
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c                      | 2 ++
->  drivers/soc/qcom/qcom_aoss.c                                 | 2 ++
->  drivers/soc/qcom/smem.c                                      | 2 +-
->  6 files changed, 14 insertions(+), 3 deletions(-)
+> Changes in v3:
+>  - Fix copyright comment style to Linux kernel style
+>  - Make property values all hex or decimal
+>  - Fix patch titles and logs and make them consistent
+>  - Fix line breaks
+> 
+> Changes in v2:
+>  - Squash patches
+>  - Fix comments given by Stephen namely, lowercase for hex numbers,
+>    making rpmhcc have xo_board as parent, rename pon controller to
+>    power-on controller, make pmic nodes as disabled etc.
+>  - removed the dependency on clk defines and use raw numbers
+> 
+> Vinod Koul (8):
+>   arm64: dts: qcom: sm8150: Add base dts file
+>   arm64: dts: qcom: pm8150: Add base dts file
+>   arm64: dts: qcom: pm8150b: Add base dts file
+>   arm64: dts: qcom: pm8150l: Add base dts file
+>   arm64: dts: qcom: sm8150-mtp: Add base dts file
+>   arm64: dts: qcom: sm8150-mtp: Add regulators
+>   arm64: dts: qcom: sm8150: Add reserved-memory regions
+>   arm64: dts: qcom: sm8150: Add apps shared nodes
+> 
+>  arch/arm64/boot/dts/qcom/Makefile       |   1 +
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi    |  97 +++++
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi   |  86 +++++
+>  arch/arm64/boot/dts/qcom/pm8150l.dtsi   |  80 ++++
+>  arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 375 ++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi    | 482 ++++++++++++++++++++++++
+>  6 files changed, 1121 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8150.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8150b.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/pm8150l.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8150.dtsi
 > 
 > -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+> 2.20.1
 > 
