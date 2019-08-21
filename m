@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86BDF987E3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:29:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0B0987F7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:39:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730440AbfHUX3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 19:29:55 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:36867 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729303AbfHUX3y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:29:54 -0400
-Received: by mail-pf1-f193.google.com with SMTP id y9so2136796pfl.4
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:29:54 -0700 (PDT)
+        id S1726894AbfHUXji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 19:39:38 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:35406 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728371AbfHUXji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:39:38 -0400
+Received: by mail-pf1-f195.google.com with SMTP id d85so2531796pfd.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:39:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
          :mime-version;
-        bh=Ce79tt1EdjWmHjsbOeVM0d2spReWneK1/ievz/5bOQ0=;
-        b=SRJayQ+vvdMXVmtPpjEFclS7e2GZ1M9sa9zF2sf57HNJmzZnN2WRqclWakGVnPGLN7
-         7GYwJ+WTjKHLab1MxehDKQSHs+KMnpzraeh5+CSSW+LhI1avIb7Evi76Syf5qZfJa6Sw
-         L6gZ6SV1gh2iCsdxfxWvzc6oAxu9ug2lsdcMT168c60XJZwz5hCaB9UieV0oaSvD+0rP
-         LU75UaFgyt7GyVC9h8mhJ+2nSDu6Ef8kDqTDpWLmyYk9Y25SXLi9hvNtUGbnIj7WjVUP
-         9sqsHIqaBqGrMWL2EboclseGxi6y8M0YQXDC/jjG1iOUy+AdFQHbGLEdbYTFlpWScRNY
-         2bSw==
+        bh=RoJLziPgJY9mLs+fRu2lKqTyEaUKSYiiOnVn7t9lzGo=;
+        b=znM/oClHkBR6pN7RG6wDMkQnx6pbsRIaoNYQc2ceYPiPEl7hq69Qo14MyokFBCw2Xe
+         FQ20sImAG9QaU+NbtIppKgexVWzDXK7u3I2TJkT7ch4fu0lhJyBfxEQnkTfHBDvjMSBK
+         SBjbbFjeIO1/Uug6SqmyTdB2c9tIYDcPZZc5y1rgtbC2kpInFxWKmChK9bLwT7GvdFbD
+         zXk4Lw6gFtHp+EJz64710+rpjuMARq6Zx3BHACB26ZRCfJoRZD+X+W7tc6iRJTi2dOXi
+         K6vTKICEJmVxIQEBRpUEaBsT6/s5TODqCjYQ7Ba0Bc8KTkwktqpTmNnvQe18Qg4JtDPr
+         HDmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
          :message-id:mime-version;
-        bh=Ce79tt1EdjWmHjsbOeVM0d2spReWneK1/ievz/5bOQ0=;
-        b=epckbS+lxYiq5ZTE5bNz9d2Uo6885l0GHKiX3K2P61HGppXEKx+T+BagIrnCTJZUaO
-         zHhn70fXhEut+UNzLvAxeIqH5lm3wzLdo/8cIlu1V5w1dhN7xXfIDllJBsmPKZl9MnPJ
-         5Hv0Jn4uD6I7CZLiXpkPlJWMUdV1R3PVCsKfAQWM8tKWN56t8r1oeYjvH+eg9jhCDpIb
-         gfEsxIJ+tIZZioH8cWD2bX0x3Zi0UnVzqbmDiyiPVT4LVDQBqbQv1Q+gif5y2aCnikqQ
-         yCTJxOVYjJOi7kad/edl0FXjfEg2TaY/LmqRCBk7vGBUf1xqxqbcynfY9hY4YvnZqAFv
-         FiZA==
-X-Gm-Message-State: APjAAAV4cJWaeKU+9SwnxNCZNs8waz2f9TCT+7az9xy9KQ2YI3aIVvk/
-        x5RUhxf7WNWS7+Bb8FXvDWeBfw==
-X-Google-Smtp-Source: APXvYqzkdm/ufbDMjz6NTJ8+3pzRUrft6UEGKjkNpjv+C03jHIb4CVd+utTFJWjOWcDCpwBAbC0G3Q==
-X-Received: by 2002:a17:90a:d082:: with SMTP id k2mr2464206pju.85.1566430193696;
-        Wed, 21 Aug 2019 16:29:53 -0700 (PDT)
+        bh=RoJLziPgJY9mLs+fRu2lKqTyEaUKSYiiOnVn7t9lzGo=;
+        b=cDYR6dCEttvLYwex4h/AJvswA9jRrgKR4qHa3pDUpIGTSMLoKNK0XMEz7z73pnYd1g
+         FLidAtfwIhibIwCZNRQFg3FvstSn0+XZc9aaqpMeYIy0Igb+Rn0ppu4b2fiZcCqCt5z+
+         Vjp+WiQ+9IhCGf3NvaS/rRQUk1NBEjPb1fKdIb/P64zYEOoaP8D/CgV90qfISK8poVks
+         EIpq1YdOIijUrpKeYVYarskB435A04hzo6B11SUFAVC5mR5ysnhQKAZQHKo7KOhHbbug
+         Ezc26PNSxHtSVWOSao8ESk81QgePPzJtzuWBhSAflL/mOEH1JDzw9lFahj++7RzF+MFi
+         Muyg==
+X-Gm-Message-State: APjAAAUcy9UaXxH5cc5j7rkNa6P96RaDqEfYvhfWYSkic6NhVdlud8OO
+        UGPFLKjre+GAl4EMj1QQvLcbwA==
+X-Google-Smtp-Source: APXvYqxbUoVvUvpMfuvIMtOftEIUIVFxHRXscpTOlg7Xd4x9nP3Em83MNj+d7QIroKxxfU76f9qS/w==
+X-Received: by 2002:a17:90a:d793:: with SMTP id z19mr2480702pju.36.1566430777357;
+        Wed, 21 Aug 2019 16:39:37 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id z19sm20864303pgv.35.2019.08.21.16.29.52
+        by smtp.gmail.com with ESMTPSA id s5sm24549074pfm.97.2019.08.21.16.39.36
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Aug 2019 16:29:53 -0700 (PDT)
+        Wed, 21 Aug 2019 16:39:36 -0700 (PDT)
 From:   Kevin Hilman <khilman@baylibre.com>
 To:     Guillaume La Roque <glaroque@baylibre.com>, rui.zhang@intel.com,
         edubezval@gmail.com, daniel.lezcano@linaro.org
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v4 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
-In-Reply-To: <20190821222421.30242-5-glaroque@baylibre.com>
-References: <20190821222421.30242-1-glaroque@baylibre.com> <20190821222421.30242-5-glaroque@baylibre.com>
-Date:   Wed, 21 Aug 2019 16:29:52 -0700
-Message-ID: <7hsgpu5c7j.fsf@baylibre.com>
+Subject: Re: [PATCH v4 0/6] Add support of New Amlogic temperature sensor for G12 SoCs
+In-Reply-To: <20190821222421.30242-1-glaroque@baylibre.com>
+References: <20190821222421.30242-1-glaroque@baylibre.com>
+Date:   Wed, 21 Aug 2019 16:39:36 -0700
+Message-ID: <7hk1b65brb.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
@@ -64,141 +64,44 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Guillaume La Roque <glaroque@baylibre.com> writes:
 
-> Add minimal thermal zone for two temperature sensor
-> One is located close to the DDR and the other one is
-> located close to the PLLs (between the CPU and GPU)
+> This patchs series add support of New Amlogic temperature sensor and minimal
+> thermal zone for SEI510 and ODROID-N2 boards.
 >
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> ---
->  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
+> First implementation was doing on IIO[1] but after comments i move on thermal framework.
+> Formulas and calibration values come from amlogic.
 >
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index c9fa23a56562..35d2ebbd6d4e 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -10,6 +10,7 @@
->  #include <dt-bindings/input/input.h>
->  #include <dt-bindings/gpio/meson-g12a-gpio.h>
->  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
-> +#include <dt-bindings/thermal/thermal.h>
->  
->  / {
->  	compatible = "seirobotics,sei510", "amlogic,g12a";
-> @@ -33,6 +34,67 @@
->  		ethernet0 = &ethmac;
->  	};
->  
-> +	thermal-zones {
-> +		cpu-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <100>;
-> +			thermal-sensors = <&cpu_temp>;
-> +
-> +			trips {
-> +				cpu_hot: cpu-hot {
-> +					temperature = <85000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "hot";
-> +				};
-> +
-> +				cpu_critical: cpu-critical {
-> +					temperature = <110000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&cpu_hot>;
-> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +
-> +				map1 {
-> +					trip = <&cpu_critical>;
-> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +
-> +		ddr-thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <100>;
-> +			thermal-sensors = <&ddr_temp>;
-> +
-> +			trips {
-> +				ddr_critical: ddr-critical {
-> +					temperature = <110000>; /* millicelsius */
-> +					hysteresis = <2000>; /* millicelsius */
-> +					type = "critical";
-> +				};
-> +			};
-> +
-> +			cooling-maps {
-> +				map {
-> +					trip = <&ddr_critical>;
-> +					cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
->  	mono_dac: audio-codec-0 {
->  		compatible = "maxim,max98357a";
->  		#sound-dai-cells = <0>;
-> @@ -321,6 +383,7 @@
->  	operating-points-v2 = <&cpu_opp_table>;
->  	clocks = <&clkc CLKID_CPU_CLK>;
->  	clock-latency = <50000>;
-> +	#cooling-cells = <2>;
->  };
->  
->  &cpu1 {
-> @@ -328,6 +391,7 @@
->  	operating-points-v2 = <&cpu_opp_table>;
->  	clocks = <&clkc CLKID_CPU_CLK>;
->  	clock-latency = <50000>;
-> +	#cooling-cells = <2>;
->  };
->  
->  &cpu2 {
-> @@ -335,6 +399,7 @@
->  	operating-points-v2 = <&cpu_opp_table>;
->  	clocks = <&clkc CLKID_CPU_CLK>;
->  	clock-latency = <50000>;
-> +	#cooling-cells = <2>;
->  };
->  
->  &cpu3 {
-> @@ -342,6 +407,7 @@
->  	operating-points-v2 = <&cpu_opp_table>;
->  	clocks = <&clkc CLKID_CPU_CLK>;
->  	clock-latency = <50000>;
-> +	#cooling-cells = <2>;
->  };
->  
->  &cvbs_vdac_port {
-> @@ -368,6 +434,10 @@
->  	status = "okay";
->  };
->  
-> +&mali {
-> +	#cooling-cells = <2>;
-> +};
-> +
+> Changes since v3:
+>   - Add cooling map and trip point for hot type
+>   - move compatible on g12a instead of g12 to be aligned with others
+>   - add all reviewer, sorry for this mistake
+>
+> Changes since v2:
+>   - fix yaml documention
+>   - remove unneeded status variable for temperature-sensor node
+>   - rework driver after Martin review
+>   - add some information in commit message
+>
+> Changes since v1:
+>   - fix enum vs const in documentation
+>   - fix error with thermal-sensor-cells value set to 1 instead of 0
+>   - add some dependencies needed to add cooling-maps
+>
+> Dependencies :
+> - patch 3,4 & 5: depends on Neil's patch and series :
+>               - missing dwc2 phy-names[2]
+>               - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
+>
+> [1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+> [2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+> [3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+> [4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+> [5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
+>
+>
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+> Tested-by: Kevin Hilman <khilman@baylibre.com>
 
-Is there a reason these #cooling-cells properties belong in the SoC
-.dtsi and not the board .dts.  Seems like you'll have to repeat this in
-every board .dts which doesn't seem necessary.
-
-Same comment for patch 5/6
+nit: you should put these on the individual patches, since the cover
+letter does not get applied to any tree, any tags here get lost.
 
 Kevin
