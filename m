@@ -2,78 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8120898459
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 21:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 370759846D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 21:32:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729730AbfHUT0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 15:26:48 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39352 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729700AbfHUT0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 15:26:47 -0400
-Received: by mail-ot1-f68.google.com with SMTP id b1so3156864otp.6;
-        Wed, 21 Aug 2019 12:26:47 -0700 (PDT)
+        id S1730202AbfHUTbI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 15:31:08 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45444 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730184AbfHUTbH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 15:31:07 -0400
+Received: by mail-ot1-f65.google.com with SMTP id m24so3135536otp.12;
+        Wed, 21 Aug 2019 12:31:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=10waZ0/ZkKGq42Av7UyfIsQLjaV5XyZlPq4+UDb3efY=;
-        b=Kl9JXevtUhrZ3Tl8A/NDkp2aZ2yoO6bHdVmhIKjilshkv2HxOM/obSpkzj/3EOoyiD
-         ACSo+42qm8I8aJpLFsjBtUjLYxW/iJ9YL28C4tGAOLL9MrXFcZu5O79Dpzch1mlqKVnY
-         qH5v/s5tIz8Y1bak6LWqB3hBxiG1qN5tMsYSz6tPKs3T10zcHGvpnMbIhK/Da2WD7bTa
-         zpzqMpqY81X3Zz7sSXiDSNobeQOGPz5k9EVINI9Q+aZUuaaTZdj2W1ym92+h6d6tF8oh
-         hQyPmJ+S+SiraO+faAqLcyT5zCDXvuhins7ym4pHXL3YxLVWAztKXPJMCwEJSGdzc8UI
-         EUUw==
-X-Gm-Message-State: APjAAAU4V64p1CzoIS7BSb0skm5VJCreaGsYgcyea+j0cvAj+DjzH6Jm
-        Y8MCULMOJZ1XEMiSx8MFsw==
-X-Google-Smtp-Source: APXvYqxLs6MFhoQAEH6ogwkzbZqevbuPU9pesTaxbtwOpkRdDuv+cpoUh2/qMzsEYRLg7/dteh3tjg==
-X-Received: by 2002:a9d:7b4e:: with SMTP id f14mr1554439oto.193.1566415606656;
-        Wed, 21 Aug 2019 12:26:46 -0700 (PDT)
+        bh=P+mIfgwF/Dx2fvxKM3KDec35UT4pGef1zpaBcJAd0yE=;
+        b=PUXY5/aAwqR7vNQWrircfHZtgN0Y6oxXxEgo6apwP6AGELCwtjJ2GOYbLjGze9cPTD
+         BDVp42PRI4aRcw3fFG5+iSPnG7Zb7+2jl8zafYvOg04ZlxtxHPSc7155+L0KaTL1nVgw
+         7NAIoynEqnbGKvnikY9PuQD8ikvq/QjrxcrRZ38NbFQ7iqBWWcsuKb7cHRGJMgzJVgBA
+         XiQJWSzodoq4wX03JBgyXp8DEZQtg7AeM27q0tVK6b+ZOIq3a+opDjGYZexXpF9+7Pyn
+         Zn5xDjS6g1NNhG+zW9O4qBinJRswS+0BYJxmAhFcNjOM0n2Jk5HP05vEik6ZD6dmPC5h
+         W1FA==
+X-Gm-Message-State: APjAAAUEqZ8f7Q/ibHeOqFIXYwld4MK03ijCg01YR3xyp73jeXHFmtoH
+        QdPZwYCvZEXmNHVbcFkxaw==
+X-Google-Smtp-Source: APXvYqw6uPnGkUwS9jVi2LxBcn0vQmq1CDVBqNIUieYulJDWQvedafQd3o4SAYeZa+ky0wbndYwwYQ==
+X-Received: by 2002:a9d:7e6:: with SMTP id 93mr28714164oto.143.1566415866696;
+        Wed, 21 Aug 2019 12:31:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z16sm3139424oic.10.2019.08.21.12.26.46
+        by smtp.gmail.com with ESMTPSA id v17sm4961879ote.62.2019.08.21.12.31.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 12:26:46 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 14:26:45 -0500
+        Wed, 21 Aug 2019 12:31:06 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 14:31:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
-        lorenzo.pieralisi@arm.com, arnd@arndb.de,
-        gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
-        mingkai.hu@nxp.com, zhiqiang.hou@nxp.com, roy.zang@nxp.com,
-        kstewart@linuxfoundation.org, pombredanne@nexb.com,
-        shawn.lin@rock-chips.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, Xiaowei Bao <xiaowei.bao@nxp.com>,
-        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Subject: Re: [PATCHv3 1/3] dt-bindings: pci: layerscape-pci: add compatible
- strings "fsl,ls1028a-pcie"
-Message-ID: <20190821192645.GA22618@bogus>
-References: <20190806061553.19934-1-xiaowei.bao@nxp.com>
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     daniel.lezcano@linaro.org, khilman@baylibre.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: thermal: Add DT bindings
+ documentation for Amlogic Thermal
+Message-ID: <20190821193105.GA25977@bogus>
+References: <20190806130506.8753-1-glaroque@baylibre.com>
+ <20190806130506.8753-2-glaroque@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190806061553.19934-1-xiaowei.bao@nxp.com>
+In-Reply-To: <20190806130506.8753-2-glaroque@baylibre.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  6 Aug 2019 14:15:51 +0800, Xiaowei Bao wrote:
-> Add the PCIe compatible string for LS1028A
+On Tue, Aug 06, 2019 at 03:05:01PM +0200, Guillaume La Roque wrote:
+> Adding the devicetree binding documentation for the Amlogic temperature
+> sensor found in the Amlogic Meson G12 SoCs.
+> the G12A  and G12B SoCs are supported.
 > 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
-> v2:
->  - no change.
-> v3:
->  - no change.
+>  .../bindings/thermal/amlogic,thermal.yaml     | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
 > 
->  Documentation/devicetree/bindings/pci/layerscape-pci.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> new file mode 100644
+> index 000000000000..d25e59113398
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/amlogic,thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Thermal
+> +
+> +maintainers:
+> +  - Guillaume La Roque <glaroque@baylibre.com>
+> +
+> +description: Binding for Amlogic Thermal Driver
+
+Bindings are for h/w blocks, not drivers.
+
+Other than that nit,
 
 Reviewed-by: Rob Herring <robh@kernel.org>
