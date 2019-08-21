@@ -2,96 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A28978D4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9F45978F8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726353AbfHUMHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 08:07:47 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:56273 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726227AbfHUMHr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 08:07:47 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id BE9C9E0004;
-        Wed, 21 Aug 2019 12:07:43 +0000 (UTC)
-Date:   Wed, 21 Aug 2019 14:07:43 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Samuel Holland <samuel@sholland.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Corentin Labbe <clabbe.montjoie@gmail.com>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 03/10] dt-bindings: mailbox: Add a sunxi message box
- binding
-Message-ID: <20190821120743.hihurpkjancgacs6@flea>
-References: <20190820032311.6506-1-samuel@sholland.org>
- <20190820032311.6506-4-samuel@sholland.org>
- <20190820071456.if5lyb4t3em77svl@flea>
- <8947f4d1-3bb4-11b8-b114-5016339514b8@sholland.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="yj7riia4gph2tfyk"
-Content-Disposition: inline
-In-Reply-To: <8947f4d1-3bb4-11b8-b114-5016339514b8@sholland.org>
-User-Agent: NeoMutt/20180716
+        id S1726593AbfHUMPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 08:15:36 -0400
+Received: from mail-wr1-f98.google.com ([209.85.221.98]:34788 "EHLO
+        mail-wr1-f98.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727178AbfHUMPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 08:15:35 -0400
+Received: by mail-wr1-f98.google.com with SMTP id s18so1836543wrn.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 05:15:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:message-id:date;
+        bh=nP0rewb3IBXjR8ah44Y3B+/Ww8/H0gkDfZYTICHG0rc=;
+        b=YWljJGFxe6e+vTbbjXxJmJ71qJrmfbuUTRatzrhLqctY3nszsqoZNdBAiG5rfMDwSb
+         mUT1qWU3oPkcxZPkW8cDxLRpjk3QUFvbS32IhGvpnBK4/5JKItbmHR4scIEfSTQ0oXMN
+         2+UWQtfTyaIKJFPJSBslfGOUTb56wOfHpMZjSs2kBUDWLwoLMvN5x33+SNkPHoTHWo5k
+         uJ3SbHZx8zlCAHQs7ll0MRTEwZvLIJYVlpWC4oOdLhuKJcKhrB2KkhnjH1L9rPgOvKMN
+         lOmEmjQ2mNqJ/exEJuTrDGgTfV8zLUunamPQYuNRF11A85mbzwpG2IiSsuaSfJkOxxrX
+         0A0g==
+X-Gm-Message-State: APjAAAU9JI874ERDUNLYpcgxFgebP1x3JLK0nUGUFK0QW1LTcB2hYcMZ
+        AO3W+FEq6lnAW5jxxM8qIkQu+wy+EfyjqLyG2zmdVgyuxySZhaD4BpUj8sHPJmgkgg==
+X-Google-Smtp-Source: APXvYqyQSDa3qh0AJjqQXicye2RW0x9sVjyglot1pi4YsrC8rjE3vs+Ee79jSQBkTwqgRv3Hei+tz7XSNock
+X-Received: by 2002:a5d:408c:: with SMTP id o12mr38199196wrp.176.1566389733984;
+        Wed, 21 Aug 2019 05:15:33 -0700 (PDT)
+Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk. [2a01:7e01::f03c:91ff:fed4:a3b6])
+        by smtp-relay.gmail.com with ESMTPS id q3sm406651wrs.61.2019.08.21.05.15.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2019 05:15:33 -0700 (PDT)
+X-Relaying-Domain: sirena.org.uk
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1i0PWX-00077F-Lt; Wed, 21 Aug 2019 12:15:33 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id E3E7D2742BAE; Wed, 21 Aug 2019 13:15:32 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     alsa-devel@alsa-project.org, broonie@kernel.org,
+        devicetree@vger.kernel.org, festevam@gmail.com, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        nicoleotsuka@gmail.com, perex@perex.cz, robh+dt@kernel.org,
+        shengjiu.wang@nxp.com, viorel.suman@nxp.com, Xiubo.Lee@gmail.com
+Subject: Applied "ASoC: fsl_sai: Add support for imx8qm" to the asoc tree
+In-Reply-To: <20190814082911.665-2-daniel.baluta@nxp.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190821121532.E3E7D2742BAE@ypsilon.sirena.org.uk>
+Date:   Wed, 21 Aug 2019 13:15:32 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The patch
 
---yj7riia4gph2tfyk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+   ASoC: fsl_sai: Add support for imx8qm
 
-On Tue, Aug 20, 2019 at 08:04:26AM -0500, Samuel Holland wrote:
-> On 8/20/19 2:14 AM, Maxime Ripard wrote:
-> > Hi,
-> >
-> > On Mon, Aug 19, 2019 at 10:23:04PM -0500, Samuel Holland wrote:
-> >> This mailbox hardware is present in Allwinner sun8i, sun9i, and sun50i
-> >> SoCs. Add a device tree binding for it.
-> >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >> Signed-off-by: Samuel Holland <samuel@sholland.org>
-> >> ---
-> >>  .../mailbox/allwinner,sunxi-msgbox.yaml       | 79 +++++++++++++++++++
-> >>  1 file changed, 79 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/mailbox/allwinner,sunxi-msgbox.yaml
-> >
-> > So we merged a bunch of schemas already, with the convention that the
-> > name was the first compatible to use that binding.
-> >
-> > That would be allwinner,sun6i-a31-msgbox.yaml in that case
->
-> Okay, I'll rename the binding and driver (and Kconfig symbol?).
+has been applied to the asoc tree at
 
-Yep, thanks!
-Maxime
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
 
---yj7riia4gph2tfyk
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV00DwAKCRDj7w1vZxhR
-xR3QAP4uQpZfAOxXPnBEZQVDzwkMpjeJHL0oHyLSa2q695BzKQEA+XYUt7uuVPcp
-6l8M8wf6Q1kamKS9IXXV4732b0h59Ao=
-=rNyV
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---yj7riia4gph2tfyk--
+Thanks,
+Mark
+
+From 6eeb60be5ebb73b2e5911e26fb1aed02940b7d09 Mon Sep 17 00:00:00 2001
+From: Daniel Baluta <daniel.baluta@nxp.com>
+Date: Wed, 14 Aug 2019 11:29:10 +0300
+Subject: [PATCH] ASoC: fsl_sai: Add support for imx8qm
+
+SAI module on imx8qm features a register map similar with imx6 series
+(it doesn't have VERID and PARAM registers at the beginning
+of address spece).
+
+Also, it has one FIFO which can help up to 64 * 32 bit samples.
+
+Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+Link: https://lore.kernel.org/r/20190814082911.665-2-daniel.baluta@nxp.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/fsl/fsl_sai.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
+index 4a346fcb5630..728307acab90 100644
+--- a/sound/soc/fsl/fsl_sai.c
++++ b/sound/soc/fsl/fsl_sai.c
+@@ -1031,12 +1031,19 @@ static const struct fsl_sai_soc_data fsl_sai_imx8mq_data = {
+ 	.reg_offset = 8,
+ };
+ 
++static const struct fsl_sai_soc_data fsl_sai_imx8qm_data = {
++	.use_imx_pcm = true,
++	.fifo_depth = 64,
++	.reg_offset = 0,
++};
++
+ static const struct of_device_id fsl_sai_ids[] = {
+ 	{ .compatible = "fsl,vf610-sai", .data = &fsl_sai_vf610_data },
+ 	{ .compatible = "fsl,imx6sx-sai", .data = &fsl_sai_imx6sx_data },
+ 	{ .compatible = "fsl,imx6ul-sai", .data = &fsl_sai_imx6sx_data },
+ 	{ .compatible = "fsl,imx7ulp-sai", .data = &fsl_sai_imx7ulp_data },
+ 	{ .compatible = "fsl,imx8mq-sai", .data = &fsl_sai_imx8mq_data },
++	{ .compatible = "fsl,imx8qm-sai", .data = &fsl_sai_imx8qm_data },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, fsl_sai_ids);
+-- 
+2.20.1
+
