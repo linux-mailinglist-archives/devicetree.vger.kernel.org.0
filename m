@@ -2,203 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6DB4978AA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 13:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D9E1978C2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 14:03:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726372AbfHUL5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 07:57:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52192 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726351AbfHUL5m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 07:57:42 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9B17C206BB;
-        Wed, 21 Aug 2019 11:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566388661;
-        bh=vzV50aK7lDvwz6lMyupuXqdrTQf9pceOREc9MLPjXDA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ErsoLiwFvVa4rb4uLVibjPKKg37prkawlSogG246Bql64GbTFVcbjAdJEsqfxdtpg
-         t/T9fuApibipBMV5XIlwzJERndrgD1LMe2CEi1NiuSyrE3AAwO3y0t9vgPxVknuhr2
-         XIHNqq7kTNCvuIxF5g/OL1vLp3iqYReP6SqQdaso=
-Date:   Wed, 21 Aug 2019 13:57:38 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 1/5] dt-bindings: media: Add Allwinner A10 CSI binding
-Message-ID: <20190821115738.3amrk5td544mhpwd@flea>
-References: <cover.b695c63cf668192aff5574a3005d483c601e77f6.1566300265.git-series.maxime.ripard@bootlin.com>
- <f490b35e62c5fd15174b5241ce1653e991c8fc9e.1566300265.git-series.maxime.ripard@bootlin.com>
- <20190820114849.GD5123@paasikivi.fi.intel.com>
+        id S1726857AbfHUMDE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 08:03:04 -0400
+Received: from mail-mr2fra01hn0218.outbound.protection.outlook.com ([52.101.140.218]:64480
+        "EHLO FRA01-MR2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726762AbfHUMDE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 08:03:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ce6Giwl4Hm2XsXMWnvFkEzrP3AI9tMPinyWZDqL4OzXoJ+2nURPrYOoUy8IMo+XPQ1ZvWjIRJiqBKGqrpOo9enWrHWx79HTH9XwSOutRrFXS3iOQOFy0MX+mpLQ6kS+lfG9j500EFtTf1Q0D+/9E7I6Bh+YsYz2JMnTMhzKbX9MxM/DWbMn6GSz+G8kyDthiPiJKkBs6kzeK+Ln7CPmfbHV++0vrFDvzhS08HV7Gm0aYiToHc4w1Ie4GOPbQZrXShMssdWSqjg5aVz3Q76Odn1WdPI9ECE7kapzTnX68UGx/vd3UZxWXuFuwW/spDwKRilrm4tBrMxZ9RGtxv0irBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M56NI7BLsHahIzx12/uk6EM5Kt0eYf6xIEHooe0Zp2M=;
+ b=Gy+nHPFZQui+4rAEaH1WKoqIpQcyWSnyEZzF31i0VG70HmHdeGkQkXodYa2p9kD2rKwE40pHdI6iuBuU+VTys1y1CHjHOFdhvjYFpWwIA8F1H+nxq7Xt5dGLisTMo4Qs/nJt1Iy8n6MJVgEeBs0lh8++cSXUK9cjMGMJGA+aECZUx9P4fYNN+BQYz4OY8YRJmN2cNovv3zaJYFa1wPHYBKo/PkeiL3kby1wPXp+OcMl/PTIdUN6A5CmxMbBSEkr6Mhrq/fIIphJrxqrIuZuBLhl3bjY7FhPwvljnzZKUwRfnmLqFP/PfZj6iRV7qpcB42K0H7khmnWgROYH39xJ1vQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=etu.univ-amu.fr; dmarc=pass action=none
+ header.from=etu.univ-amu.fr; dkim=pass header.d=etu.univ-amu.fr; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=AixMarseilleUniversite.onmicrosoft.com;
+ s=selector2-AixMarseilleUniversite-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M56NI7BLsHahIzx12/uk6EM5Kt0eYf6xIEHooe0Zp2M=;
+ b=c24Vk47GKB/5X6lBHhvHv3m7sBVz6vOrKwpdXEDzUOQQH2mJ6mwty/6ditujLvDHHQDLthkMkY0jrkw4iMctDM7h0GmxmybJBHGlqmVagDJgfl0LpQyCveZef31HxRUtUyJ9ZwIxeYG/QY3ESYsPkMTqogv/PWilLOQ8owyRtcM=
+Received: from PR0P264MB0281.FRAP264.PROD.OUTLOOK.COM (52.133.66.20) by
+ PR0P264MB0137.FRAP264.PROD.OUTLOOK.COM (52.133.66.145) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2178.16; Wed, 21 Aug 2019 12:02:58 +0000
+Received: from PR0P264MB0281.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::e13f:7998:f994:59fe]) by PR0P264MB0281.FRAP264.PROD.OUTLOOK.COM
+ ([fe80::e13f:7998:f994:59fe%5]) with mapi id 15.20.2178.018; Wed, 21 Aug 2019
+ 12:02:58 +0000
+From:   DEBANNE Priscille <priscille.debanne@etu.univ-amu.fr>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: Priscille
+Thread-Topic: Priscille
+Thread-Index: AQHVWBXlB/lEnFR3x0KYcKJbXb3tRg==
+Date:   Wed, 21 Aug 2019 11:45:14 +0000
+Message-ID: <PR0P264MB0281698B7468B54DF81E0647E4AA0@PR0P264MB0281.FRAP264.PROD.OUTLOOK.COM>
+Reply-To: "aymantax@hotmail.com" <aymantax@hotmail.com>
+Accept-Language: fr-FR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: AM0PR02CA0050.eurprd02.prod.outlook.com
+ (2603:10a6:208:d2::27) To PR0P264MB0281.FRAP264.PROD.OUTLOOK.COM
+ (2603:10a6:100:4::20)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=priscille.debanne@etu.univ-amu.fr; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [41.203.73.114]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 50d5bc27-8225-47e9-f183-08d7262d07fa
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:PR0P264MB0137;
+x-ms-traffictypediagnostic: PR0P264MB0137:
+x-microsoft-antispam-prvs: <PR0P264MB013743FCF3DE58A33FCE05AAE4AA0@PR0P264MB0137.FRAP264.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:1332;
+x-forefront-prvs: 0136C1DDA4
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(396003)(376002)(39860400002)(366004)(136003)(189003)(199004)(66806009)(476003)(478600001)(71190400001)(43066004)(14454004)(99286004)(71200400001)(66556008)(1730700003)(81166006)(25786009)(6666004)(3480700005)(558084003)(2860700004)(8796002)(64756008)(66446008)(10916006)(8936002)(66476007)(9686003)(229853002)(14444005)(81156014)(5640700003)(6436002)(7116003)(66946007)(55016002)(386003)(186003)(5660300002)(6916009)(5003540100004)(53936002)(6246003)(62860400002)(66066001)(3846002)(6116002)(256004)(2906002)(6506007)(221733001)(2501003)(8676002)(52116002)(7696005)(86362001)(26005)(786003)(74316002)(316002)(7736002)(102836004)(2351001)(52536014)(305945005)(486006)(33656002)(5716007);DIR:OUT;SFP:1501;SCL:1;SRVR:PR0P264MB0137;H:PR0P264MB0281.FRAP264.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: etu.univ-amu.fr does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 9xK294A84ZXOkxgjmSEY0+g/1Xc/RBNCwB7T3gs0nBrIkj+IeQjF5t7JTpocLyI4LETgPMantfZUpzF/DcyRxCYNjLA9odtnfiE2mkl2ciPGxj7cEAQZ+zAcHNaKwrbJyn/H1iljZLv6C1BLCQ0XQrnADhKcUaLaSOSYm5Qvx2F5GIoeL+Zag5MB43sq5921P43EgjCdf0I4EyehuaCBSigGT9Xlz565Y5kwrtq4fTXD62ciViLmVGtVQpwvVNxqwULrDhtRa08I7yoRZykZA6JWsSIxg+kwfJt+gjB3vLkYM32pBcjf34ttJaU4noFxtbE34UVlTQN62kBV6GXIRdls7H2e8OE1SxdySxnIz2sJ2wEtQOjtiIFcOEhT67NkFQ8B2QaDjGSiInO74yV42NkqGrdEQch2A/K5qYxDpJ0=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <CA868BF0B5665748A4291220B3D98D4D@FRAP264.PROD.OUTLOOK.COM>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6ow4c2sufu6lsmjk"
-Content-Disposition: inline
-In-Reply-To: <20190820114849.GD5123@paasikivi.fi.intel.com>
-User-Agent: NeoMutt/20180716
+X-OriginatorOrg: etu.univ-amu.fr
+X-MS-Exchange-CrossTenant-Network-Message-Id: 50d5bc27-8225-47e9-f183-08d7262d07fa
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2019 11:45:14.6624
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a9f1c4f7-38f4-4d38-8a3c-4b6dbe981cea
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YvQ14CVV51bv9bmJ3yhLlTISio39TQkNIRgDvXjm+gl+e70gQR3NwMjonw5SL49ae5TcIV7k1wpWS2gj4nJj4TWOMwwr6R/OWGVOs1g4atdftWdBbC9RDZrcwaZdMboP
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR0P264MB0137
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Good Day,
 
---6ow4c2sufu6lsmjk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+We wish to make a trail order from your company, Kindly send me your price =
+list or catalog asap.
 
-Hi Sakari,
-
-On Tue, Aug 20, 2019 at 02:48:49PM +0300, Sakari Ailus wrote:
-> Hi Maxime,
->
-> On Tue, Aug 20, 2019 at 01:24:32PM +0200, Maxime Ripard wrote:
-> > From: Maxime Ripard <maxime.ripard@bootlin.com>
-> >
-> > The Allwinner A10 CMOS Sensor Interface is a camera capture interface also
-> > used in later (A10s, A13, A20, R8 and GR8) SoCs.
-> >
-> > On some SoCs, like the A10, there's multiple instances of that controller,
-> > with one instance supporting more channels and having an ISP.
-> >
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> > ---
-> >  Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml | 107 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 107 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > new file mode 100644
-> > index 000000000000..9000bca344f9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml
-> > @@ -0,0 +1,107 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/allwinner,sun4i-a10-csi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Allwinner A10 CMOS Sensor Interface (CSI) Device Tree Bindings
-> > +
-> > +maintainers:
-> > +  - Chen-Yu Tsai <wens@csie.org>
-> > +  - Maxime Ripard <maxime.ripard@bootlin.com>
-> > +
-> > +description: |-
-> > +  The Allwinner A10 and later has a CMOS Sensor Interface to retrieve
-> > +  frames from a parallel or BT656 sensor.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: allwinner,sun7i-a20-csi0
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    items:
-> > +      - description: The CSI interface clock
-> > +      - description: The CSI module clock
-> > +      - description: The CSI ISP clock
-> > +      - description: The CSI DRAM clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: bus
-> > +      - const: mod
-> > +      - const: isp
-> > +      - const: ram
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  port:
-> > +    type: object
-> > +    additionalProperties: false
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        properties:
-> > +          bus-width:
-> > +            const: 8
-> > +            description: Number of data lines actively used.
->
-> Are other values supported? If not, you could omit this.
-
-It can also support 16 bits data input, but this description is
-redundant anyway, I'll remove it.
-
-> > +
-> > +          data-active: true
-> > +          hsync-active: true
-> > +          pclk-sample: true
-> > +          remote-endpoint: true
-> > +          vsync-active: true
-> > +
-> > +        required:
-> > +          - bus-width
-> > +          - data-active
-> > +          - hsync-active
-> > +          - pclk-sample
-> > +          - remote-endpoint
-> > +          - vsync-active
->
-> Some of these are not allowed in the Bt.656 mode (vsync-active and
-> hsync-active) while they're required in Bt.601 mode. Is there a way to tell
-> that in YAML-based bindings?
-
-You could, but that would be more suited in another schemas. The way
-schemas works is that you can have several layers of them, and each
-being validated in isolation from the others.
-
-Here, we're just listing the values usable by that binding, and it
-will be used only to validate that binding.
-
-Eventually, we'll want to have a video-interfaces schemas that will
-apply to all the OF graph users, with those constraints defined.
-
-This way, we can avoid a lot of duplication and just have the binding
-description.
-
-I guess I could just have the remote endpoint being required, and the
-rest will be in the generic part.
-
-> Similarly, video-interfaces.txt should be referenced from here, shouldn't
-> it?
-
-Sure.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---6ow4c2sufu6lsmjk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV0xsgAKCRDj7w1vZxhR
-xZRVAQCiMCXGC+Jhj5UArGqGUPo8RfUmzov8i8LF6Y+puf29bQD9FukZcvSbUwWP
-7Nb97AhXzuzAohNb4SnGTSQI6zT4lQQ=
-=wBTw
------END PGP SIGNATURE-----
-
---6ow4c2sufu6lsmjk--
+Thanks.
+Priscille
+Sales Rep.
