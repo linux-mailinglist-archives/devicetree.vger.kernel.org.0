@@ -2,130 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68B9A97F49
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:46:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 858C797F4F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:48:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727903AbfHUPqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 11:46:04 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:51942 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727581AbfHUPqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 11:46:04 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7LFjkSg127833;
-        Wed, 21 Aug 2019 10:45:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566402346;
-        bh=2DR/S3/gXqfngiEMqhp2FUVa9vNxRMq/4so3u+ndEWA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=i+/X14L3C6FkibOoBStBp8a1mjMHmHWJoZaF1iBzf5HKLqTsLkdS8P1oUeaM9RYVO
-         B6zMxh9d3Ef4S/l2JFXSRZ59HDJmtkiOdUN0bq6oPTMz6l1BZC0n/IfXB/fueVoF1/
-         VzdJhX1PPsHwmbluu5s0y7zm5qJuHPQiLT9CkQ6s=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7LFjkNJ104657
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Aug 2019 10:45:46 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 21
- Aug 2019 10:45:45 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 21 Aug 2019 10:45:45 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7LFjjm2058635;
-        Wed, 21 Aug 2019 10:45:45 -0500
-Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
- support
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Tero Kristo <t-kristo@ti.com>, Keerthy <j-keerthy@ti.com>,
-        <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
- <1565164139-21886-3-git-send-email-t-kristo@ti.com>
- <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
- <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
- <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
- <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
- <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
- <1566400237.4193.15.camel@pengutronix.de>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <5e82199f-2f75-ee05-ba65-1595d0526572@ti.com>
-Date:   Wed, 21 Aug 2019 10:45:45 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728497AbfHUPsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 11:48:13 -0400
+Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:1924 "EHLO
+        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728357AbfHUPsN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 11:48:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1566402492; x=1597938492;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=wQjlWaSSf3woZCwa9y0Q/yXBW7QLUurCmgMfNw66kl4=;
+  b=iU0r+yZ8NOhTXnCrV1qE/IzXiqx1OdAS+o3+DLC7KEdnewM12lIUEciF
+   oRld54y7cjM9BsRwfoDHyzLzJI8sQipfeH8MsLMnlWEgq3EbtVj7VYlmx
+   CGM/eGiMCPNVc7R0LD62LU2lJwNIMG1Ww285SEQkPSCxXXAfTc9Sh9Buf
+   I=;
+X-IronPort-AV: E=Sophos;i="5.64,412,1559520000"; 
+   d="scan'208";a="696100875"
+Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1d-98acfc19.us-east-1.amazon.com) ([10.47.22.38])
+  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 21 Aug 2019 15:48:09 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
+        by email-inbound-relay-1d-98acfc19.us-east-1.amazon.com (Postfix) with ESMTPS id 25768A2890;
+        Wed, 21 Aug 2019 15:48:04 +0000 (UTC)
+Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
+ EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 21 Aug 2019 15:48:04 +0000
+Received: from u9ff250417f405e.ant.amazon.com (10.43.161.230) by
+ EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Wed, 21 Aug 2019 15:47:57 +0000
+From:   Jonathan Chocron <jonnyc@amazon.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <andrew.murray@arm.com>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <alisaidi@amazon.com>,
+        <ronenk@amazon.com>, <barakw@amazon.com>, <talel@amazon.com>,
+        <hanochu@amazon.com>, <hhhawa@amazon.com>,
+        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <jonnyc@amazon.com>
+Subject: [PATCH v4 5/7] dt-bindings: PCI: Add Amazon's Annapurna Labs PCIe host bridge binding
+Date:   Wed, 21 Aug 2019 18:47:43 +0300
+Message-ID: <20190821154745.31834-1-jonnyc@amazon.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190821153545.17635-1-jonnyc@amazon.com>
+References: <20190821153545.17635-1-jonnyc@amazon.com>
 MIME-Version: 1.0
-In-Reply-To: <1566400237.4193.15.camel@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-Originating-IP: [10.43.161.230]
+X-ClientProxiedBy: EX13D12UWA002.ant.amazon.com (10.43.160.88) To
+ EX13D13UWA001.ant.amazon.com (10.43.160.136)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/21/19 10:10 AM, Philipp Zabel wrote:
-> On Tue, 2019-08-20 at 11:47 -0500, Suman Anna wrote:
->> On 8/20/19 2:37 AM, Tero Kristo wrote:
->>> On 20.8.2019 2.01, Suman Anna wrote:
->>>> Hi Tero,
->>>>
->>>> On 8/19/19 4:32 AM, Tero Kristo wrote:
-> [...]
->>>>>>> +{
->>>>>>> +    struct omap_reset_data *reset;
->>>>>>> +
->>>>>>> +    /*
->>>>>>> +     * Check if we have resets. If either rstctl or rstst is
->>>>>>> +     * non-zero, we have reset registers in place. Additionally
->>>>>>> +     * the flag OMAP_PRM_NO_RSTST implies that we have resets.
->>>>>>> +     */
->>>>>>> +    if (!prm->data->rstctl && !prm->data->rstst &&
->>>>>>> +        !(prm->data->flags & OMAP_PRM_NO_RSTST))
->>>>>>> +        return 0;
->>>>>>> +
->>>>>>> +    reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
->>>>>>> +    if (!reset)
->>>>>>> +        return -ENOMEM;
->>>>>>> +
->>>>>>> +    reset->rcdev.owner = THIS_MODULE;
->>>>>>> +    reset->rcdev.ops = &omap_reset_ops;
->>>>>>> +    reset->rcdev.of_node = pdev->dev.of_node;
->>>>>>> +    reset->rcdev.nr_resets = OMAP_MAX_RESETS;
->>>>
->>>> Suggest adding a number of resets to prm->data, and using it so that we
->>>> don't even entertain any resets beyond the actual number of resets.
->>>
->>> Hmm why bother? Accessing a stale reset bit will just cause access to a
->>> reserved bit in the reset register, doing basically nothing. Also, this
->>> would not work for am3/am4 wkup, as there is a single reset bit at an
->>> arbitrary position.
->>
->> The generic convention seems to be defining a reset id value defined
->> from include/dt-bindings/reset/ that can be used to match between the
->> dt-nodes and the reset-controller driver.
->>
->> Philipp,
->> Any comments?
-> 
-> Are there only reset bits and reserved bits in the range accessible by
-> [0..OMAP_MAX_RESETS] or are ther bits with another function as well?
+Document Amazon's Annapurna Labs PCIe host bridge.
 
-Thanks Philipp, these are just reset bits and reserved bits.
+Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+---
+ .../devicetree/bindings/pci/pcie-al.txt       | 46 +++++++++++++++++++
+ MAINTAINERS                                   |  3 +-
+ 2 files changed, 48 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/pcie-al.txt
 
-> If the latter is the case, I would prefer enumerating the resets in a
-> dt-bindings header, with the driver containing an enum -> reg/bit
-> position lookup table.
-> 
-> In general, assuming the device tree contains no errors, this should not
-> matter much, but I think it is nice if the reset driver, even with a
-> misconfigured device tree, can't write into arbitrary bit fields.
+diff --git a/Documentation/devicetree/bindings/pci/pcie-al.txt b/Documentation/devicetree/bindings/pci/pcie-al.txt
+new file mode 100644
+index 000000000000..557a5089229d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pci/pcie-al.txt
+@@ -0,0 +1,46 @@
++* Amazon Annapurna Labs PCIe host bridge
++
++Amazon's Annapurna Labs PCIe Host Controller is based on the Synopsys DesignWare
++PCI core. It inherits common properties defined in
++Documentation/devicetree/bindings/pci/designware-pcie.txt.
++
++Properties of the host controller node that differ from it are:
++
++- compatible:
++	Usage: required
++	Value type: <stringlist>
++	Definition: Value should contain
++			- "amazon,al-alpine-v2-pcie" for alpine_v2
++			- "amazon,al-alpine-v3-pcie" for alpine_v3
++
++- reg:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: Register ranges as listed in the reg-names property
++
++- reg-names:
++	Usage: required
++	Value type: <stringlist>
++	Definition: Must include the following entries
++			- "config"	PCIe ECAM space
++			- "controller"	AL proprietary registers
++			- "dbi"		Designware PCIe registers
++
++Example:
++
++	pcie-external0: pcie@fb600000 {
++		compatible = "amazon,al-alpine-v3-pcie";
++		reg = <0x0 0xfb600000 0x0 0x00100000
++		       0x0 0xfd800000 0x0 0x00010000
++		       0x0 0xfd810000 0x0 0x00001000>;
++		reg-names = "config", "controller", "dbi";
++		bus-range = <0 255>;
++		device_type = "pci";
++		#address-cells = <3>;
++		#size-cells = <2>;
++		#interrupt-cells = <1>;
++		interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-map-mask = <0x00 0 0 7>;
++		interrupt-map = <0x0000 0 0 1 &gic GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>; /* INTa */
++		ranges = <0x02000000 0x0 0xc0010000 0x0 0xc0010000 0x0 0x07ff0000>;
++	};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 783569e3c4b4..d200b16fa95c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12448,10 +12448,11 @@ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/lpieralisi/pci.git/
+ S:	Supported
+ F:	drivers/pci/controller/
+ 
+-PCIE DRIVER FOR ANNAPURNA LABS
++PCIE DRIVER FOR AMAZON ANNAPURNA LABS
+ M:	Jonathan Chocron <jonnyc@amazon.com>
+ L:	linux-pci@vger.kernel.org
+ S:	Maintained
++F:	Documentation/devicetree/bindings/pci/pcie-al.txt
+ F:	drivers/pci/controller/dwc/pcie-al.c
+ 
+ PCIE DRIVER FOR AMLOGIC MESON
+-- 
+2.17.1
 
-Tero,
-Can you add a check for this if possible?
-
-regards
-Suman
