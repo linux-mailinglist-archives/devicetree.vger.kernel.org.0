@@ -2,109 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA0EF97EE9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B9A97F49
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729096AbfHUPgl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 11:36:41 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:35565 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730002AbfHUPgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 11:36:40 -0400
-Received: by mail-pl1-f194.google.com with SMTP id gn20so1530127plb.2;
-        Wed, 21 Aug 2019 08:36:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bU5dLSJ35u6Bc3f/Z8UK4KjZIowhKbGPaLIlOlO9BhQ=;
-        b=e9XRegtx2T5/e+EyraTykJJsAX5TrMpT3p/QgxCT00RPnE4ToK70gJoh1Y0WFJWSLY
-         zDoLyDdoWRh/QzLOGtgOgQtJcb7LD6M9ftcJ9GQNghZVgg1imiXyBlU+LtdZVry/w/lV
-         4D0T7cCQiWsAolm3jmhpB6gNjToS7C/jzSSdQ6FsDO+P+oJLptCF4E/2oNt577BEiNvr
-         5WZMUJnroUCxcJXbSE1+OrxidBI62E4USySFN4vCy58DtlMTYs359/raXKXTRDm1/gZN
-         T7TPsvPcO6UxVhyjp7I+Fy4cQA4zapyu3Si0Kz1PDEtBPTOHwhRRb6brgDYm1MuOlwbX
-         kM7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bU5dLSJ35u6Bc3f/Z8UK4KjZIowhKbGPaLIlOlO9BhQ=;
-        b=YJqC4Ajxp8bcHh59FAvNI/TbnG9WRiwlnCZDMMcLc/4nsXZ+zk8HT4E6TbIK+zhW+Q
-         tsXgDeam+WwxjeALlsfnaJpSU+krYniANg5qlf/fK9H8P0c3dTdexosRM66PizAqGNiw
-         LNYoL7DonVwVOXHTym4p1F4zHMp74aDfZrL1oSu4t92ERRflh792faHjQFMQUPiuCSC0
-         hyxxnqrL4VPvkvzf8Y7fWmKIl7773LAErPjIiZjiRShyCKlOc/+JeUS5iHEjDxb8EEt+
-         mvXr0BC94Oryu2YjjGEDMV2dPB7bholH283QGrIXx4Q2lcsHWnx6XJrx+OSYGK0rebJa
-         hUcQ==
-X-Gm-Message-State: APjAAAUE5w+8+2eQXxaoKmZTbIKIBV+oEVBTmgsDV+os8Zh9JWdgI6zg
-        o4SH3eEtyoActH0LCvkRob2vOqkT
-X-Google-Smtp-Source: APXvYqznq9ryDWqFwBT1mchJS5I30ZywXEQEi/az8vBCk4OtbrFfSOQOZVxLTuzTa+oAN5fc3zjogg==
-X-Received: by 2002:a17:902:834c:: with SMTP id z12mr20462410pln.8.1566401799789;
-        Wed, 21 Aug 2019 08:36:39 -0700 (PDT)
-Received: from [192.168.43.210] (mobile-166-137-176-042.mycingular.net. [166.137.176.42])
-        by smtp.gmail.com with ESMTPSA id t9sm29730588pgj.89.2019.08.21.08.36.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 08:36:39 -0700 (PDT)
-Subject: Re: [PATCH v7 1/7] driver core: Add support for linking devices
- during device addition
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
-References: <20190724001100.133423-1-saravanak@google.com>
- <20190724001100.133423-2-saravanak@google.com>
- <32a8abd2-b6a4-67df-eee9-0f006310e81e@gmail.com>
- <CAGETcx8Q27+Jnz+rHtt33muMV6U+S3cmKh02Ok_Ds_ZzfBqhrg@mail.gmail.com>
- <522e8375-5070-f579-6509-3e44fe66768e@gmail.com>
- <CAGETcx-9Bera+nU-3=ZNpHqdqKxO0TmNuVUsCMQ-yDm1VXn5zA@mail.gmail.com>
- <a4c139c1-c9d1-3e5a-f47f-cd790b42da1f@gmail.com>
- <CAGETcx-J7+d3pcArMZvO5zQbUhAhRW+1=FUf7C1fV9-QhkckBw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <915b49b5-5511-afa2-d3d6-e4ede94d40be@gmail.com>
-Date:   Wed, 21 Aug 2019 08:36:37 -0700
+        id S1727903AbfHUPqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 11:46:04 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:51942 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727581AbfHUPqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 11:46:04 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7LFjkSg127833;
+        Wed, 21 Aug 2019 10:45:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566402346;
+        bh=2DR/S3/gXqfngiEMqhp2FUVa9vNxRMq/4so3u+ndEWA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=i+/X14L3C6FkibOoBStBp8a1mjMHmHWJoZaF1iBzf5HKLqTsLkdS8P1oUeaM9RYVO
+         B6zMxh9d3Ef4S/l2JFXSRZ59HDJmtkiOdUN0bq6oPTMz6l1BZC0n/IfXB/fueVoF1/
+         VzdJhX1PPsHwmbluu5s0y7zm5qJuHPQiLT9CkQ6s=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7LFjkNJ104657
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 21 Aug 2019 10:45:46 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 21
+ Aug 2019 10:45:45 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 21 Aug 2019 10:45:45 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7LFjjm2058635;
+        Wed, 21 Aug 2019 10:45:45 -0500
+Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
+ support
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Tero Kristo <t-kristo@ti.com>, Keerthy <j-keerthy@ti.com>,
+        <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+ <1565164139-21886-3-git-send-email-t-kristo@ti.com>
+ <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
+ <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
+ <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
+ <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
+ <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
+ <1566400237.4193.15.camel@pengutronix.de>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <5e82199f-2f75-ee05-ba65-1595d0526572@ti.com>
+Date:   Wed, 21 Aug 2019 10:45:45 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx-J7+d3pcArMZvO5zQbUhAhRW+1=FUf7C1fV9-QhkckBw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1566400237.4193.15.camel@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/20/19 3:10 PM, Saravana Kannan wrote:
-> On Mon, Aug 19, 2019 at 9:25 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> On 8/19/19 5:00 PM, Saravana Kannan wrote:
->>> On Sun, Aug 18, 2019 at 8:38 PM Frank Rowand <frowand.list@gmail.com> wrote:
+On 8/21/19 10:10 AM, Philipp Zabel wrote:
+> On Tue, 2019-08-20 at 11:47 -0500, Suman Anna wrote:
+>> On 8/20/19 2:37 AM, Tero Kristo wrote:
+>>> On 20.8.2019 2.01, Suman Anna wrote:
+>>>> Hi Tero,
 >>>>
-
-< snip >
-
+>>>> On 8/19/19 4:32 AM, Tero Kristo wrote:
+> [...]
+>>>>>>> +{
+>>>>>>> +    struct omap_reset_data *reset;
+>>>>>>> +
+>>>>>>> +    /*
+>>>>>>> +     * Check if we have resets. If either rstctl or rstst is
+>>>>>>> +     * non-zero, we have reset registers in place. Additionally
+>>>>>>> +     * the flag OMAP_PRM_NO_RSTST implies that we have resets.
+>>>>>>> +     */
+>>>>>>> +    if (!prm->data->rstctl && !prm->data->rstst &&
+>>>>>>> +        !(prm->data->flags & OMAP_PRM_NO_RSTST))
+>>>>>>> +        return 0;
+>>>>>>> +
+>>>>>>> +    reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
+>>>>>>> +    if (!reset)
+>>>>>>> +        return -ENOMEM;
+>>>>>>> +
+>>>>>>> +    reset->rcdev.owner = THIS_MODULE;
+>>>>>>> +    reset->rcdev.ops = &omap_reset_ops;
+>>>>>>> +    reset->rcdev.of_node = pdev->dev.of_node;
+>>>>>>> +    reset->rcdev.nr_resets = OMAP_MAX_RESETS;
+>>>>
+>>>> Suggest adding a number of resets to prm->data, and using it so that we
+>>>> don't even entertain any resets beyond the actual number of resets.
 >>>
->>> 3. The supplier info doesn't always need to come from a firmware. So I
->>> don't want to limit it to that?
+>>> Hmm why bother? Accessing a stale reset bit will just cause access to a
+>>> reserved bit in the reset register, doing basically nothing. Also, this
+>>> would not work for am3/am4 wkup, as there is a single reset bit at an
+>>> arbitrary position.
 >>
->> If you can find another source of topology info, then I would expect
->> that another set of fwnode_operations functions would be created
->> for the info source.
+>> The generic convention seems to be defining a reset id value defined
+>> from include/dt-bindings/reset/ that can be used to match between the
+>> dt-nodes and the reset-controller driver.
+>>
+>> Philipp,
+>> Any comments?
 > 
-> The other source could just be C files in the kernel. Using fwnodes
-> for that would be hacky. But let's sort (1) and (2) out first.
+> Are there only reset bits and reserved bits in the range accessible by
+> [0..OMAP_MAX_RESETS] or are ther bits with another function as well?
+
+Thanks Philipp, these are just reset bits and reserved bits.
+
+> If the latter is the case, I would prefer enumerating the resets in a
+> dt-bindings header, with the driver containing an enum -> reg/bit
+> position lookup table.
 > 
+> In general, assuming the device tree contains no errors, this should not
+> matter much, but I think it is nice if the reset driver, even with a
+> misconfigured device tree, can't write into arbitrary bit fields.
 
-< snip >
+Tero,
+Can you add a check for this if possible?
 
-Just a piece of trivia.  I got curious enough about this to search.
-There is a third type of fwnode, software nodes.
-
-See commit 59abd83672f70cac4b6bf9b237506c5bc6837606 for a description.
-
--Frank
+regards
+Suman
