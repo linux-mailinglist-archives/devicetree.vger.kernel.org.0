@@ -2,158 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 842C1973F4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 09:53:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95F4E9740D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 09:56:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726409AbfHUHx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 03:53:26 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:36192 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726354AbfHUHxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 03:53:25 -0400
-Received: by mail-lf1-f65.google.com with SMTP id j17so1092813lfp.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 00:53:24 -0700 (PDT)
+        id S1726354AbfHUH4Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 03:56:24 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:41368 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726899AbfHUH4Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 03:56:24 -0400
+Received: by mail-lj1-f194.google.com with SMTP id m24so1228290ljg.8
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 00:56:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=4WkbNxIuQHcMyi/6jdTaT2GJS3hfGOuis/4XMY+Hqv0=;
-        b=XJpPbfj8P9QJPx+MXLpw/Zpk11zobJZrO2DKY2mgHVIboqYEIp2ho60EdmJ3Y6AYhx
-         QSp2QIWv3+2jDYAwohs4rK6Vso5/KH0plNFbkiVQOUBT0vvmNKlwTtmxhBUeNyVviVPx
-         n0fZo6b8dEC6PfFj/iWpjszsR9aKv8/foAkPe46cmiTYeN3GdlFzCc3FTBNrpw6P2R76
-         OT8VBJsJZ11Equt8nnFkW29jpyKvGrmiU9lOd3X/v46bDxzBHa36K1mJnZ5TV0a6SHaW
-         cM/oolufmA0f6Y6h+Se5FCifYLechXV2U57q5/+CIRUGI5wzReLVnaH0QEGrl+dt23hj
-         sLAQ==
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=QOA27fQvmt0ItpWVuER8Cd/2ccQ264UvV5OBM8TClfA=;
+        b=r4qTCJNK5SJ8ogQ4WghaMDrAuodPTaNyFs7N2SEfsWO/khHUCoesuERqXfXhBfYQre
+         BZhSDXDue9g8DqYmEQmgzJrqG0toR/vo6n3qqMg+v0Nfmf1+LEusn9bfeAkSAi/JWlCh
+         D7dlKbNfUNJHct1B5cq9EKFO5qPTk1j4vsDUQIz4LmdlBrZiyxkESssVjfdZmlSL10+U
+         8RNqPqaHiRExoljUbJDthvobAspkeISAe1+PTSNJKl+SZZpwF49JQ5uB1Cj7st7tDVb7
+         nCJWGi2eK25KX46F+acDZZkzHQEzEUmFLwNXV2+Lz2F1fKWjbsNTztybhtF0FLzI9Wf6
+         4fMg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=4WkbNxIuQHcMyi/6jdTaT2GJS3hfGOuis/4XMY+Hqv0=;
-        b=GuFq3qguDgM93aDmKJI+3eT2rZ3FwaavhSlMufQuFOPSxJbXIkt7J+VztJoL8IOjlx
-         431sDDwhFtCWfLl7C0+IKETpsq4jnRB+1Lc60Jw4/c+FNcEQgymVmQleuCHPsuLMqgcw
-         OaqRIJ1wJOQltQhdhzvZTkKtSBcgrXHPAXvnDzPvwSpQ+JIN2nTYtHoXbs/QPta66m7U
-         xOgbPzBazzvRzgp+1h4c5RmNeWez9JMzSqQUc9b6JGrEL/GKVvSSMrAytSapQkoolhyy
-         6fwS1yzz82dpVkVcw1oAE4Vzia46tTG44UwAOZfFMhlLhVGKsqutbW+9v+2RSywYSyME
-         n6TQ==
-X-Gm-Message-State: APjAAAU/V6pHWjKS97k/XyPGg54xiW4fkQVhj83dNLaqPkZZste2Ic6w
-        eh5eCjzmELPVgY1dNY/Wi5vGcw==
-X-Google-Smtp-Source: APXvYqyhZXLsc3Atd+lyJOsKNYthp6F6CwMZKFd5dNFZ+MASXA4v3XjQhoGKDCwuBYhc8sOqNq42Ww==
-X-Received: by 2002:ac2:4ac4:: with SMTP id m4mr17369662lfp.172.1566374003532;
-        Wed, 21 Aug 2019 00:53:23 -0700 (PDT)
-Received: from [192.168.27.209] ([37.157.136.206])
-        by smtp.googlemail.com with ESMTPSA id p28sm3254972lfh.55.2019.08.21.00.53.22
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 00:53:22 -0700 (PDT)
-Subject: Re: [PATCH 1/2] venus: use on-chip interconnect API
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Vikash Garodia <vgarodia@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Aniket Masule <amasule@codeaurora.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-References: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
- <20190814084701.25455-2-stanimir.varbanov@linaro.org>
- <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Message-ID: <939ace85-e006-db6d-02d2-b55385fa5043@linaro.org>
-Date:   Wed, 21 Aug 2019 10:53:20 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=QOA27fQvmt0ItpWVuER8Cd/2ccQ264UvV5OBM8TClfA=;
+        b=jAqSINrpgxnzWYy0w5pzuq4DfsdMo5D5lB1Wr8ObpZZ0H8jc8pW6UbVL2HfgVhNUeG
+         b0iCK0GnFQJ3CNsVd3gzvUMGbrv9Ucaj9XdcQHlY7juQrdcQ2HurcOkkMZMlYwYnBCFy
+         8VPCILrWbrfgOHIPWpM9IKNXoY1WqlX6ImOQk+uvV8Qhqr9KBsSe9jwSFu3agmdPIV/l
+         mbcnDQdWrVjNhl+gU0AFhIChpbxPnntIiQzChlIvLIHWzRDsnaOFcNZhm5xvRl+tHFoL
+         4QGJyaEAIexmAUFT0kw7huVxlcUTCqwUJAPlerP+FNgMY2vTA+wwLEN9K88ny38wbovg
+         dDYQ==
+X-Gm-Message-State: APjAAAUppbxVNBA2WnV3YoIdXR0i1XfYJHm/sEo0O3M1npt7XmPoQvLM
+        ocFiZOu72/BXLMJlvCUErLcCNA==
+X-Google-Smtp-Source: APXvYqxyRNa53b5Cigx2MTrXUcy4HqDnc2hTJX1bT9880ZE78ku7EN1Dk8F5EZafozo6IQNHWVXYsA==
+X-Received: by 2002:a2e:3608:: with SMTP id d8mr18453513lja.140.1566374182107;
+        Wed, 21 Aug 2019 00:56:22 -0700 (PDT)
+Received: from localhost (h-177-236.A463.priv.bahnhof.se. [217.31.177.236])
+        by smtp.gmail.com with ESMTPSA id h3sm1829962ljb.8.2019.08.21.00.56.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2019 00:56:21 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 09:56:20 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: clk: emev2: Rename bindings documentation
+ file
+Message-ID: <20190821075620.GB28351@bigcity.dyn.berto.se>
+References: <20190819135630.18462-1-horms+renesas@verge.net.au>
 MIME-Version: 1.0
-In-Reply-To: <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190819135630.18462-1-horms+renesas@verge.net.au>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi,
+Hi Simon,
 
-Thanks for the review!
+Thanks for your work.
 
-On 8/20/19 12:34 PM, Georgi Djakov wrote:
-> Hi Stan,
-> 
-> On 8/14/19 11:47, Stanimir Varbanov wrote:
->> This aims to add a requests for bandwidth scaling depending
->> on the resolution and framerate (macroblocks per second). The
->> exact value ff the requested bandwidth is get from a
-> 
-> s/ff/of/
-> 
->> pre-calculated tables for encoder and decoder.
->>
->> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
->> ---
->>  drivers/media/platform/qcom/venus/core.c    | 34 +++++++++++
->>  drivers/media/platform/qcom/venus/core.h    | 14 +++++
->>  drivers/media/platform/qcom/venus/helpers.c | 67 ++++++++++++++++++++-
->>  3 files changed, 114 insertions(+), 1 deletion(-)
-> 
-> It looks like venus can be built-in, so how about the case when venus is
-> built-in and the interconnect provider is a module? Maybe add a dependency in
-> Kconfig to depend on INTERCONNECT || !INTERCONNECT?
+On 2019-08-19 15:56:30 +0200, Simon Horman wrote:
+> Rename the device tree clock bindings for Renesas EMMA Mobile EV2
+> from emev2-clock.txt to emev2-renesas,emev2-smu.txt.
 
-yes, I forgot about that dependency.
+Should this not be renesas,emev2-smu.txt to align with the compatible 
+string?
 
 > 
->>
->> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
->> index 0acc7576cc58..19cbe9d5d028 100644
->> --- a/drivers/media/platform/qcom/venus/core.c
->> +++ b/drivers/media/platform/qcom/venus/core.c
->> @@ -5,6 +5,7 @@
->>   */
->>  #include <linux/clk.h>
->>  #include <linux/init.h>
->> +#include <linux/interconnect.h>
->>  #include <linux/ioctl.h>
->>  #include <linux/list.h>
->>  #include <linux/module.h>
->> @@ -239,6 +240,14 @@ static int venus_probe(struct platform_device *pdev)
->>  	if (IS_ERR(core->base))
->>  		return PTR_ERR(core->base);
->>  
->> +	core->video_path = of_icc_get(dev, "video-mem");
->> +	if (IS_ERR(core->video_path))
->> +		return PTR_ERR(core->video_path);
->> +
->> +	core->cpucfg_path = of_icc_get(dev, "cpu-cfg");
->> +	if (IS_ERR(core->cpucfg_path))
->> +		return PTR_ERR(core->cpucfg_path);
->> +
->>  	core->irq = platform_get_irq(pdev, 0);
->>  	if (core->irq < 0)
->>  		return core->irq;
->> @@ -273,6 +282,10 @@ static int venus_probe(struct platform_device *pdev)
->>  	if (ret)
->>  		return ret;
->>  
->> +	ret = icc_set_bw(core->cpucfg_path, 0, kbps_to_icc(1000));
->> +	if (ret)
->> +		return ret;
->> +
->>  	ret = hfi_create(core, &venus_core_ops);
->>  	if (ret)
->>  		return ret;
->> @@ -355,6 +368,9 @@ static int venus_remove(struct platform_device *pdev)
->>  	pm_runtime_put_sync(dev);
->>  	pm_runtime_disable(dev);
->>  
->> +	icc_put(core->video_path);
->> +	icc_put(core->cpucfg_path);
->> +
+> This is part of an ongoing effort to name bindings documentation files for
+> Renesas IP blocks consistently, in line with the compat strings they
+> document.
 > 
-> Do you have any plans to scale the bandwidth on suspend/resume too?
-
-Yes, we definitely need that in suspend/resume, but I guess the plan
-should be add it once we implement pm_runtime autosuspend functionality
-in order to easily test that.
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> ---
+> Based on v5.3-rc1
+> ---
+>  .../bindings/clock/{emev2-clock.txt => emev2-renesas,emev2-smu.txt}       | 0
+>  1 file changed, 0 insertions(+), 0 deletions(-)
+>  rename Documentation/devicetree/bindings/clock/{emev2-clock.txt => emev2-renesas,emev2-smu.txt} (100%)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/emev2-clock.txt b/Documentation/devicetree/bindings/clock/emev2-renesas,emev2-smu.txt
+> similarity index 100%
+> rename from Documentation/devicetree/bindings/clock/emev2-clock.txt
+> rename to Documentation/devicetree/bindings/clock/emev2-renesas,emev2-smu.txt
+> -- 
+> 2.11.0
+> 
 
 -- 
-regards,
-Stan
+Regards,
+Niklas Söderlund
