@@ -2,33 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8812997EA9
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D646897ED6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:38:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728493AbfHUP0B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 11:26:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58930 "EHLO mail.kernel.org"
+        id S1729010AbfHUPec (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 11:34:32 -0400
+Received: from foss.arm.com ([217.140.110.172]:60232 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727903AbfHUP0B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 11:26:01 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CED6D206BA;
-        Wed, 21 Aug 2019 15:25:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566401160;
-        bh=NFr0/nY3IfPKUVlKWEhZAqr+dzWcs/Y2p7eY45qm4Bs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Vx3lNhdbRokT/r8unMb1miHNxu9JN9NYu+yPM5e+d2LRwW3AGqFtGETXG7VnK1Rno
-         rwhPd99dPfgCZlkLeur4F2jSZAS09a9CQm0zjp5fGWWUdpUfDIblVXpp6dtG0i2LnH
-         PFbPOvk9DZnA0p7rlzFDMc2c1v17Q08ToAhdHSEk=
-Date:   Wed, 21 Aug 2019 16:25:54 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Yong Wu <yong.wu@mediatek.com>
+        id S1728557AbfHUPec (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 11:34:32 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BB655337;
+        Wed, 21 Aug 2019 08:34:31 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E11F53F718;
+        Wed, 21 Aug 2019 08:34:28 -0700 (PDT)
+Subject: Re: [PATCH v10 09/23] iommu/io-pgtable-arm-v7s: Extend to support
+ PA[33:32] for MediaTek
+To:     Will Deacon <will@kernel.org>, Yong Wu <yong.wu@mediatek.com>
 Cc:     Joerg Roedel <joro@8bytes.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Evan Green <evgreen@chromium.org>,
         Tomasz Figa <tfiga@google.com>,
@@ -39,34 +32,64 @@ Cc:     Joerg Roedel <joro@8bytes.org>,
         Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
         Matthias Kaehlcke <mka@chromium.org>, cui.zhang@mediatek.com,
         chao.hao@mediatek.com, ming-fan.chen@mediatek.com
-Subject: Re: [PATCH v10 08/23] iommu/io-pgtable-arm-v7s: Rename the quirk
- from MTK_4GB to MTK_EXT
-Message-ID: <20190821152553.r6mdhucvuovq4xdk@willie-the-truck>
 References: <1566395606-7975-1-git-send-email-yong.wu@mediatek.com>
- <1566395606-7975-9-git-send-email-yong.wu@mediatek.com>
+ <1566395606-7975-10-git-send-email-yong.wu@mediatek.com>
+ <20190821152448.qmoqjh5zznfpdi6n@willie-the-truck>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <22a79977-5074-7af1-97b8-8a3e549b23c1@arm.com>
+Date:   Wed, 21 Aug 2019 16:34:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1566395606-7975-9-git-send-email-yong.wu@mediatek.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190821152448.qmoqjh5zznfpdi6n@willie-the-truck>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 09:53:11PM +0800, Yong Wu wrote:
-> In previous mt2712/mt8173, MediaTek extend the v7s to support 4GB dram.
-> But in the latest mt8183, We extend it to support the PA up to 34bit.
-> Then the "MTK_4GB" name is not so fit, This patch only change the quirk
-> name to "MTK_EXT".
+On 21/08/2019 16:24, Will Deacon wrote:
+> On Wed, Aug 21, 2019 at 09:53:12PM +0800, Yong Wu wrote:
+>> MediaTek extend the arm v7s descriptor to support up to 34 bits PA where
+>> the bit32 and bit33 are encoded in the bit9 and bit4 of the PTE
+>> respectively. Meanwhile the iova still is 32bits.
+>>
+>> Regarding whether the pagetable address could be over 4GB, the mt8183
+>> support it while the previous mt8173 don't, thus keep it as is.
+>>
+>> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+>> ---
+>>   drivers/iommu/io-pgtable-arm-v7s.c | 32 +++++++++++++++++++++++++-------
+>>   include/linux/io-pgtable.h         |  7 +++----
+>>   2 files changed, 28 insertions(+), 11 deletions(-)
 > 
-> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> ---
->  drivers/iommu/io-pgtable-arm-v7s.c | 6 +++---
->  drivers/iommu/mtk_iommu.c          | 2 +-
->  include/linux/io-pgtable.h         | 4 ++--
->  3 files changed, 6 insertions(+), 6 deletions(-)
+> [...]
+> 
+>> @@ -731,7 +747,9 @@ static struct io_pgtable *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+>>   {
+>>   	struct arm_v7s_io_pgtable *data;
+>>   
+>> -	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
+>> +	if (cfg->ias > ARM_V7S_ADDR_BITS ||
+>> +	    (cfg->oas > ARM_V7S_ADDR_BITS &&
+>> +	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
+> 
+> Please can you instead change arm_v7s_alloc_pgtable() so that it allows an
+> ias of up to 34 when the IO_PGTABLE_QUIRK_ARM_MTK_EXT is set?
 
-Acked-by: Will Deacon <will@kernel.org>
+You mean oas, right? I believe the hardware *does* actually support a 
+32-bit ias as well, but we shouldn't pretend to support that while 
+__arm_v7s_alloc_table() still only knows how to allocate normal-sized 
+tables.
 
-Will
+Robin.
+
+> 
+> With that change:
+> 
+> Acked-by: Will Deacon <will@kernel.org>
+> 
+> Will
+> 
