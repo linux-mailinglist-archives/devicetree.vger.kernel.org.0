@@ -2,158 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6AE697AF7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 15:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE76997B38
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 15:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728550AbfHUNgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 09:36:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58690 "EHLO mail.kernel.org"
+        id S1728746AbfHUNqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 09:46:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33836 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726372AbfHUNgH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 09:36:07 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+        id S1728616AbfHUNqv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 09:46:51 -0400
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DA06F233A1;
-        Wed, 21 Aug 2019 13:36:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5FCBA2339F;
+        Wed, 21 Aug 2019 13:46:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566394566;
-        bh=/NmeYW95Exo7cKy4d0fywRhRlKRIlx9ue+Ya7TM9/fY=;
+        s=default; t=1566395210;
+        bh=1SBGubWHevGTaPku2q5p2VFb1E6YUKyo3XqPCp/g0/I=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=QjIyG27vI7EvoSIXoKX79El+gjRukM9gfyxCM4f1AF5hhT6Ft4+2C9PGPVPX7OCJc
-         CPGylJR0wMuzBY2HImXWScou9vol0g4TvEfTiUjzWOQIbC37AIEseL5VZ1EGg6tK2j
-         CggsMXtIRWVG8EcTG3fZxP5Z3KN6QpwDYJYlTnKY=
-Received: by mail-qk1-f176.google.com with SMTP id 201so1775952qkm.9;
-        Wed, 21 Aug 2019 06:36:05 -0700 (PDT)
-X-Gm-Message-State: APjAAAWt2yBHYAVQHOGI7cM97oZXOYEv4UImANGqwQrhhn3oWxsYCYVK
-        tyusDmXzP7xXtywcgfchS3yVRhi5M5N2lw3Nlw==
-X-Google-Smtp-Source: APXvYqze9zflmjiULS8riuGVsf57QEagyQh2riNNX9RcdFJpRRR+77eiOBy9RbP2XMx/Tl7n5fDa8Vk8PVe+GEsiHwo=
-X-Received: by 2002:a37:a010:: with SMTP id j16mr32191854qke.152.1566394565049;
- Wed, 21 Aug 2019 06:36:05 -0700 (PDT)
+        b=KKNovrSCCy+qxBBg+LQF1RxSdKIeUAor2DyyUj5ECkqeYKhur3RwCiqyuCLcvmilZ
+         AJWSreR6LpOWFF96w3iUmUUzcBmp74dGMM4P+pm0JvsyO8+iGZoEKDuOmw4lWp0S4o
+         7zyZ3AOden/ijNJ8D6jHxP+m5MlXrLZ0MMBG3090=
+Received: by mail-qt1-f170.google.com with SMTP id t12so3043921qtp.9;
+        Wed, 21 Aug 2019 06:46:50 -0700 (PDT)
+X-Gm-Message-State: APjAAAXumeO3vEajpc68RHMqYcIXPZo6g8WEp/0uiwom4mSEBJy6qGkN
+        yVqcqNzEsi8NR+5tqJ4aVCh8LFelOz5HLE2/LA==
+X-Google-Smtp-Source: APXvYqzVcAdSEaO2BocJ4gK6VMRiGeLEnjs3XBBSPg8GhG/x28s2b9/g6MrsMfZlURkEkfCeqd6IZ4qdq3h8AExDMZE=
+X-Received: by 2002:aed:24f4:: with SMTP id u49mr31852907qtc.110.1566395209619;
+ Wed, 21 Aug 2019 06:46:49 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190821101118.42774-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-In-Reply-To: <20190821101118.42774-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+References: <20190821114121.10430-1-narmstrong@baylibre.com> <20190821114121.10430-2-narmstrong@baylibre.com>
+In-Reply-To: <20190821114121.10430-2-narmstrong@baylibre.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 21 Aug 2019 08:35:53 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+pyaYD2C8G1WZm1fL-wgkJvDYBkp0TwJTmQVKP-gHPXQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+pyaYD2C8G1WZm1fL-wgkJvDYBkp0TwJTmQVKP-gHPXQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: intel-emmc-phy: Add YAML schema
- for LGM eMMC PHY
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+Date:   Wed, 21 Aug 2019 08:46:38 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLy9etZtUYTJdvBRCRGuxPN_eXJQT8_xwdST5TNparJug@mail.gmail.com>
+Message-ID: <CAL_JsqLy9etZtUYTJdvBRCRGuxPN_eXJQT8_xwdST5TNparJug@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: power: add Amlogic Everything-Else power
+ domains bindings
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         devicetree@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        peter.harliman.liem@intel.com
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 5:11 AM Ramuthevar,Vadivel MuruganX
-<vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+On Wed, Aug 21, 2019 at 6:41 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> Add the bindings for the Amlogic Everything-Else power domains,
+> controlling the Everything-Else peripherals power domains.
 >
-> Add a YAML schema to use the host controller driver with the
-> eMMC PHY on Intel's Lightning Mountain SoC.
+> The bindings targets the Amlogic G12A and SM1 compatible SoCs,
+> support for earlier SoCs will be added later.
 >
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
-> changes in v3:
->   - resolve 'make dt_binding_check' warnings
->
-> changes in v2:
->   As per Rob Herring review comments, the following updates
->  - change GPL-2.0 -> (GPL-2.0-only OR BSD-2-Clause)
->  - filename is the compatible string plus .yaml
->  - LGM: Lightning Mountain
->  - update maintainer
->  - add intel,syscon under property list
->  - keep one example instead of two
-> ---
->  .../bindings/phy/intel,lgm-emmc-phy.yaml           | 59 ++++++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->
-> diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
-> new file mode 100644
-> index 000000000000..9342e33d8b02
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/phy/intel,lgm-emmc-phy.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel Lightning Mountain(LGM) eMMC PHY Device Tree Bindings
-> +
-> +maintainers:
-> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> +
-> +properties:
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  compatible:
-> +    const: intel,lgm-emmc-phy
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  syscon:
+>  .../bindings/power/amlogic,meson-ee-pwrc.yaml | 93 +++++++++++++++++++
+>  include/dt-bindings/power/meson-g12a-power.h  | 13 +++
+>  include/dt-bindings/power/meson-sm1-power.h   | 18 ++++
+>  3 files changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+>  create mode 100644 include/dt-bindings/power/meson-g12a-power.h
+>  create mode 100644 include/dt-bindings/power/meson-sm1-power.h
 
-intel,syscon like the example. You must have used 5.2 as on 5.3-rc the
-example will fail validation.
-
-> +    items:
-
-Drop items as there is only 1.
-
-> +      $ref: "/schemas/types.yaml#definitions/phandle"
-> +
-> +  clocks:
-> +    items:
-> +      - description: e-MMC phy module clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: emmcclk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - "#phy-cells"
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - ref
-
-Not documented.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    emmc_phy: emmc_phy {
-> +        compatible = "intel,lgm-emmc-phy";
-> +        reg = <0xe0020000 0x100>;
-> +        intel,syscon = <&sysconf>;
-> +        clocks = <&emmc>;
-> +        clock-names = "emmcclk";
-> +        #phy-cells = <0>;
-> +    };
-> +
-> +...
-> --
-> 2.11.0
->
+Reviewed-by: Rob Herring <robh@kernel.org>
