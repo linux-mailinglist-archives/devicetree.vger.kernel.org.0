@@ -2,140 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 400D197253
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 08:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCA5D97258
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 08:39:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727990AbfHUGiY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 02:38:24 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:32772 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728035AbfHUGiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 02:38:24 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7L6cFWE111177;
-        Wed, 21 Aug 2019 01:38:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566369495;
-        bh=LhmYRBIhziyX3futN1EoMHuPXLhN+yAMM7NrqT9pGwc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=jHqWTjgJioaugtacV0kEZr8DvG43f6qKtDoIE96CpxPkvB0nELSiiEj1BrMNhhG3G
-         MUu+khp1Tn1jxXLrmuYVx0PCh598XzwXRgWt624YNwzUTK/uSzPZ7dt8RBmUQZduQz
-         /h3dyXhTnr2vyp97tqsCP1ufc943HML2Hz7ipb0E=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7L6cFlq068867
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 21 Aug 2019 01:38:15 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 21
- Aug 2019 01:38:14 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 21 Aug 2019 01:38:14 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7L6cCw6029530;
-        Wed, 21 Aug 2019 01:38:13 -0500
-Subject: Re: [PATCH 5/8] soc: ti: omap-prm: add omap4 PRM data
-To:     Suman Anna <s-anna@ti.com>, <ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
- <1565164139-21886-6-git-send-email-t-kristo@ti.com>
- <04bc6773-dbd4-e1ab-ce31-d93e99dafb33@ti.com>
- <9d684bdc-28b8-0772-2957-93e01c55aae4@ti.com>
- <ed0ec707-ddea-cbfa-ecdf-99faeb770f3f@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <6bb038b8-6bfc-196a-d1fc-b97931be9849@ti.com>
-Date:   Wed, 21 Aug 2019 09:38:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728042AbfHUGji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 02:39:38 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:34746 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726741AbfHUGji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 02:39:38 -0400
+Received: by mail-wr1-f65.google.com with SMTP id s18so891804wrn.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 23:39:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=U+7whJW84Q49Ku+tw2Y5QNdnttATl2VRa7WB7fHg68o=;
+        b=rwvLYMbeP8ySJGdV0IkNoD91ZQfFrN1kEmdG5r2tdlTMkc4ps7w13HZSXF0Ibzum1/
+         UVlXDqdXkLra+2adVVO2z6Xo7hstLOgtvXF/hZXb7bDyWBj+XEjTIpAdsxMcthMiDSwn
+         f2LwUot26mNiOU+PCm8geyufK6dABTXIwUmzeTg9T2Z04fGf8IIHLqnEHOEcYLdeBIRT
+         pGDxXnLYDvBcX8eqkJIi5991g5o7HM5mWW3AzpSot9JlL4DZnWSt7gZ0KnHmo5mOxOn8
+         KimVeaSqaJ7H4afIgL6dh/KoJigQivEOJnUsPoyaPavm/rg/zZUZ+GgdhUb6vPIzdNCu
+         znTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=U+7whJW84Q49Ku+tw2Y5QNdnttATl2VRa7WB7fHg68o=;
+        b=EYeUX793/IJrpNb0KZw8XxhfGrde+aJI5DJSjApLXLrU7Nrmp7ftVELi8EQNYLBt3p
+         r1AHhlaH9Jfo/pEjjcXvsM/zffprgh/BBu1wQBq/evzB3+l9SgX/iXnDGO6z3DSwTTGg
+         rJuby+sFQR+a+FK1UX51DdiyCbfnRKwg6czhDGBF3iLmP1JE/TC9xxqeAOyqaj+qHLuo
+         ac5BwhQMfk+rUTMDK+igESLj3aV8C8kmmwqFKeAgVo23MVC+GYw1cxuX54x5MR8snkkV
+         b5q7sb1pvurno0fC6fu6r+bs8oPwBczVlRX5Qd/jOMnrQbyTLWr4toJ+YEZk9+MBTf18
+         qqbQ==
+X-Gm-Message-State: APjAAAUl68ER8pWqCGYhxxICsmhJ86ExyaHv8/gRDNxfuX7rYO33Zay+
+        /SrGu/Cn7rKDEKK/1V1mwKqoDNLkR2SbxfYzDX+ldpX5mLTCwA==
+X-Google-Smtp-Source: APXvYqyrX+9pSLpQEjc0TgjWjVFX2qvDP4gyHjSJFa0BWPhsO0V7XtNUPTgXWKQXf3YQVQrHi13L+S8xjP312PFd24Q=
+X-Received: by 2002:a5d:5450:: with SMTP id w16mr25168992wrv.174.1566369576336;
+ Tue, 20 Aug 2019 23:39:36 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ed0ec707-ddea-cbfa-ecdf-99faeb770f3f@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190819071602.139014-1-hsinyi@chromium.org> <20190819071602.139014-3-hsinyi@chromium.org>
+ <20190819181349.GE10349@mit.edu> <CAJMQK-ghQ8weMerXW7t0DFZTAg_c5M80Yp5DTAtyY2LA7YpS1A@mail.gmail.com>
+ <CAKv+Gu_qJUU2hRujjv6e5yPqPQXRXokBU_2mSGD3civ2d2+xhw@mail.gmail.com> <CAJMQK-hdYz+pW5QL41nXkZAX1qiRynaWg7cne48qCaQsuPrSCg@mail.gmail.com>
+In-Reply-To: <CAJMQK-hdYz+pW5QL41nXkZAX1qiRynaWg7cne48qCaQsuPrSCg@mail.gmail.com>
+From:   Ard Biesheuvel <ard.biesheuvel@linaro.org>
+Date:   Wed, 21 Aug 2019 09:39:28 +0300
+Message-ID: <CAKv+Gu-kp-LqCCx=h2TJxzns4KpM-UEjz3md0u3hbVOyp+iFtA@mail.gmail.com>
+Subject: Re: [PATCH v8 2/3] fdt: add support for rng-seed
+To:     Hsin-Yi Wang <hsinyi@chromium.org>
+Cc:     "Theodore Y. Ts'o" <tytso@mit.edu>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Mike Rapoport <rppt@linux.ibm.com>,
+        Miles Chen <miles.chen@mediatek.com>,
+        James Morse <james.morse@arm.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Laura Abbott <labbott@redhat.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Kees Cook <keescook@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.8.2019 20.23, Suman Anna wrote:
-> On 8/20/19 2:52 AM, Tero Kristo wrote:
->> On 20.8.2019 2.08, Suman Anna wrote:
->>> On 8/7/19 2:48 AM, Tero Kristo wrote:
->>>> Add PRM data for omap4 family of SoCs.
->>>>
->>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->>>> ---
->>>>    drivers/soc/ti/omap_prm.c | 20 ++++++++++++++++++++
->>>>    1 file changed, 20 insertions(+)
->>>>
->>>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
->>>> index 870515e3..9b8d5945 100644
->>>> --- a/drivers/soc/ti/omap_prm.c
->>>> +++ b/drivers/soc/ti/omap_prm.c
->>>> @@ -54,7 +54,27 @@ struct omap_reset_data {
->>>>      #define OMAP_PRM_NO_RSTST    BIT(0)
->>>>    +struct omap_prm_data omap4_prm_data[] = {
->>>
->>> static const
->>
->> Will fix this and rest of the similar comments.
->>
->> -Tero
->>
->>>
->>> regards
->>> Suman
->>>
->>>> +    { .name = "mpu", .base = 0x4a306300, .pwstst = 0x4 },
->>>> +    { .name = "tesla", .base = 0x4a306400, .pwstst = 0x4, .rstctl =
->>>> 0x10, .rstst = 0x14 },
->>>> +    { .name = "abe", .base = 0x4a306500, .pwstst = 0x4 },
->>>> +    { .name = "always_on_core", .base = 0x4a306600, .pwstst = 0x4 },
->>>> +    { .name = "core", .base = 0x4a306700, .pwstst = 0x4, .rstctl =
->>>> 0x210, .rstst = 0x214 },
->>>> +    { .name = "ivahd", .base = 0x4a306f00, .pwstst = 0x4, .rstctl =
->>>> 0x10, .rstst = 0x14 },
->>>> +    { .name = "cam", .base = 0x4a307000, .pwstst = 0x4 },
->>>> +    { .name = "dss", .base = 0x4a307100, .pwstst = 0x4 },
->>>> +    { .name = "gfx", .base = 0x4a307200, .pwstst = 0x4 },
->>>> +    { .name = "l3init", .base = 0x4a307300, .pwstst = 0x4 },
->>>> +    { .name = "l4per", .base = 0x4a307400, .pwstst = 0x4 },
->>>> +    { .name = "cefuse", .base = 0x4a307600, .pwstst = 0x4 },
->>>> +    { .name = "wkup", .base = 0x4a307700, .pwstst = 0x4 },
->>>> +    { .name = "emu", .base = 0x4a307900, .pwstst = 0x4 },
->>>> +    { .name = "device", .base = 0x4a307b00, .rstctl = 0x0, .rstst =
->>>> 0x4 },
-> 
-> So, looks like you are using pwstctrl as 0 by default, but some of them
-> will neither have pwstctrl or pwstst like "device" PRM here. Is the plan
-> to use -1 for the fields, or a flags field?
+On Wed, 21 Aug 2019 at 08:57, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+>
+> Then we'd still use add_device_randomness() in case that bootloader
+> provides weak entropy.
+>
 
-Multiple paths are possible, I will see what makes most sense once I 
-implement it.
+(please don't top post)
 
--Tero
+Whether to trust the firmware provided entropy is a policy decision,
+and typically, we try to avoid dictating policy in the kernel, and
+instead, we try to provide a sane default but give the user control
+over it.
 
-> 
-> regards
-> Suman
-> 
->>>> +    { },
->>>> +};
->>>> +
->>>>    static const struct of_device_id omap_prm_id_table[] = {
->>>> +    { .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
->>>>        { },
->>>>    };
->>>>   
->>>
->>
->> -- 
-> 
+So in this case, we should probably introduce
+add_firmware_randomness() with a Kconfig/cmdline option pair to decide
+whether it should be trusted or not (or reuse the one we have for
+trusting RDRAND etc)
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
+> On Tue, Aug 20, 2019 at 7:14 PM Ard Biesheuvel
+> <ard.biesheuvel@linaro.org> wrote:
+> >
+> > On Tue, 20 Aug 2019 at 10:43, Hsin-Yi Wang <hsinyi@chromium.org> wrote:
+> > >
+> > > Hi Ted,
+> > >
+> > > Thanks for raising this question.
+> > >
+> > > For UEFI based system, they have a config table that carries rng seed
+> > > and can be passed to device randomness. However, they also use
+> > > add_device_randomness (not sure if it's the same reason that they
+> > > can't guarantee _all_ bootloader can be trusted)
+> >
+> > The config table is actually a Linux invention: it is populated by the
+> > EFI stub code (which is part of the kernel) based on the output of a
+> > call into the EFI_RNG_PROTOCOL, which is defined in the UEFI spec, but
+> > optional and not widely available.
+> >
+> > I have opted for add_device_randomness() since there is no way to
+> > establish the quality level of the output of EFI_RNG_PROTOCOL, and so
+> > it is currently only used to prevent the bootup state of the entropy
+> > pool to be too predictable, and the output does not contribute to the
+> > entropy estimate kept by the RNG core.
+> >
+> >
+> > > This patch is to let DT based system also have similar features, which
+> > > can make initial random number stronger. (We only care initial
+> > > situation here, since more entropy would be added to kernel as time
+> > > goes on )
+> > >
+> > > Conservatively, we can use add_device_randomness() as well, which
+> > > would pass buffer to crng_slow_load() instead of crng_fast_load().
+> > > But I think we should trust bootloader here. Whoever wants to use this
+> > > feature should make sure their bootloader can pass valid (random
+> > > enough) seeds. If they are not sure, they can just don't add the
+> > > property to DT.
+> >
+> > It is the firmware that adds the property to the DT, not the user.
