@@ -2,134 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C65B798676
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 457689867D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:19:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726785AbfHUVSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 17:18:44 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37693 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727136AbfHUVSn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:18:43 -0400
-Received: by mail-ot1-f67.google.com with SMTP id f17so3471574otq.4;
-        Wed, 21 Aug 2019 14:18:43 -0700 (PDT)
+        id S1726852AbfHUVTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 17:19:42 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:35665 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728267AbfHUVTl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:19:41 -0400
+Received: by mail-wm1-f68.google.com with SMTP id l2so3591130wmg.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 14:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=dbzkg0dehYA9XxXBy/tRWEwtyB89ujck03vcqauhtxk=;
+        b=M41c94fBiRx04YN/D9LqPjJsO6altoSy7hmpL7ol/za2grZjkRDhSLO5v0GE4oqFcr
+         sB1NADhpZQEX8bu+8z3ngPuXvDNMCnvmraEJ3pjT7pO4D7RFtsLKvpACV3d+wRTcbYS3
+         kXiyqcUDbRVLfqAFOu1aQWi9KhSGOs/D7bXZH5FbeWTIBEsiE3Gq6Uasu8AoiGFjkegK
+         gGauvlV6DC3y9og3jEJhbnL9tuYDdQ6Cj/qw58OVHgjo81rXZQTbiI8lu/htArVrxzmf
+         go8bSDnidovR7Jy0DAm4NoDj/6PEdoI+wObbt2hwoh0VjwVbN95CdgNGGKyfL19/k8sP
+         KHbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0BysGlcLSnXeBZ1pv0mPCj6ITlGQ3QNXjoyF2Ap0RJY=;
-        b=hQ18nXsiPm8wqzfq38jJ8lQCu2q87OuXaZnysQLVlm9K/LZO0fxuRq+Ai+Sdhco7Un
-         fqP9b6yfqiZX7LCIZ4EbqVIEG6YkMLAQ7V3Oqqoas7o7Y/uhdyvhQ8Ra/4D9GfH1yeKH
-         JrU8oWEirm2LVXC+22RKxiZAFoZFBvPLUA5Mm/kIb4RCYMAg0PJWNBHXRbH6cYtsCZG+
-         gg+MH3jESDgnjwl76sXZsqwodkNrIe54hB+LxVOls4gP6Zl1CeduPswL2eQZEH+EGiSh
-         NaLydsc4XFU+gy+vZE+JghXCafCR3zS1FcNr0sbQGuGsoQuFTgWW17mTox5Gy7mn1vxG
-         UslA==
-X-Gm-Message-State: APjAAAUQp6p5H2CPCwRFiGhlurGLJMQjZASfA2XSCDMOGmUIN3xfDeX+
-        hqUFdBmSHe+iye+d/Dk5VA==
-X-Google-Smtp-Source: APXvYqwyCdp9o8YTLQuqlTyT5OIepCOx0aazVgW8orqSC0e9+vmRZf4pQjus03+ay0tw1yhN7gQitQ==
-X-Received: by 2002:a05:6830:54:: with SMTP id d20mr25800639otp.225.1566422322638;
-        Wed, 21 Aug 2019 14:18:42 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o26sm7711687otl.34.2019.08.21.14.18.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 14:18:42 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 16:18:41 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: serial: Document Freescale LINFlex
- UART
-Message-ID: <20190821211841.GA16627@bogus>
-References: <20190809112853.15846-1-stefan-gabriel.mirea@nxp.com>
- <20190809112853.15846-5-stefan-gabriel.mirea@nxp.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=dbzkg0dehYA9XxXBy/tRWEwtyB89ujck03vcqauhtxk=;
+        b=JwqcvorL0VeDjXS6YJudoPAnxSlD3jd7M2k7Rxk8oNLZlb82qR4foRcT8i52v+DABM
+         ELurYg3EAJE5Ek/GZdHhJrY5ebOtggwh9mZJxqQ/ZzLvWXRVz7GPy3SEZIeYC+vHhw4t
+         /jBNnfQehF+QKBW25jYdMSqhIJ/pnJOxrGNQveNudk0OF1vHFV/mrrRstU8+9ji0LHfm
+         HkqNHfKSPzoy2MgOgqdxuWtcK4DkYM57Ndi/oMI4QsXnC0O52xLy15FU6b895vzv7j6q
+         RCm5Bzemz3kRsTgSkzKk2SUNMaeAtXcintvOJ4Awrn+ZrxCMTxYlM5r5GRWt5258Nv6e
+         ZWSA==
+X-Gm-Message-State: APjAAAVdz2aZy86X9Abf8nNw25iEHzX/YltzSIyv4943EcIVlb8pfUoT
+        cLyfMfCtn8yhdThPm7EoERCHug==
+X-Google-Smtp-Source: APXvYqz8RJbRsGB3Mt8HsUVbL8cKiur8eRibcotSAhwTRu5jFrKEfBVKTcGp7K5dPJ2MRLuU5YWVug==
+X-Received: by 2002:a7b:c649:: with SMTP id q9mr2156413wmk.108.1566422379282;
+        Wed, 21 Aug 2019 14:19:39 -0700 (PDT)
+Received: from ?IPv6:2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca? ([2a01:cb1d:6e7:d500:82a9:347a:43f3:d2ca])
+        by smtp.gmail.com with ESMTPSA id c11sm19183554wrs.86.2019.08.21.14.19.37
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 21 Aug 2019 14:19:38 -0700 (PDT)
+Subject: Re: [PATCH v3 0/6] Add support of New Amlogic temperature sensor for
+ G12 SoCs
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     daniel.lezcano@linaro.org, khilman@baylibre.com,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
+References: <20190806130506.8753-1-glaroque@baylibre.com>
+ <357FACA6-6EAC-4E9D-B6F7-4D8D0D59A20A@gmail.com>
+From:   guillaume La Roque <glaroque@baylibre.com>
+Message-ID: <9a63d585-69b1-c9b2-8092-51361ff41991@baylibre.com>
+Date:   Wed, 21 Aug 2019 23:19:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190809112853.15846-5-stefan-gabriel.mirea@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <357FACA6-6EAC-4E9D-B6F7-4D8D0D59A20A@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 09, 2019 at 11:29:14AM +0000, Stefan-gabriel Mirea wrote:
-> From: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-> 
-> Add documentation for the serial communication interface module (LINFlex),
-> found in two instances on S32V234.
-> 
-> Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-> Signed-off-by: Larisa Grigore <Larisa.Grigore@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> ---
->  .../bindings/serial/fsl,s32-linflexuart.txt   | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
-> new file mode 100644
-> index 000000000000..957ffeaca9f1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
-> @@ -0,0 +1,24 @@
-> +* Freescale Linflex UART
+Hi Christian,
 
-Be consistent with the name: LINFlexD?
 
-> +
-> +The LINFlexD controller implements several LIN protocol versions, as well as
-> +support for full-duplex UART communication through 8-bit and 9-bit frames. The
-> +Linflex UART driver enables operation only in UART mode.
+thanks for testing on this 3 boards.
 
-What the driver supports or not is independent of the binding.
 
-> +
-> +See chapter 47 ("LINFlexD") in the reference manual[1].
-> +
-> +Required properties:
-> +- compatible :
-> +  - "fsl,s32-linflexuart" for linflex configured in uart mode which
+guillaume
 
-LINFlexD?
-
-> +  is compatible with the one integrated on S32V234 SoC
-
-Compatibles should be SoC specific. Is 's32' specific enough to account 
-for any differences or future bugs found?
-
-> +- reg : Address and length of the register set for the device
-> +- interrupts : Should contain uart interrupt
-> +
-> +Example:
-> +uart0:serial@40053000 {
-
-space    ^
-
-> +	compatible = "fsl,s32-linflexuart";
-> +	reg = <0x0 0x40053000 0x0 0x1000>;
-> +	interrupts = <0 59 4>;
-> +	status = "disabled";
-
-Don't show status in examples.
-
-> +};
-> +
-> +[1] https://www.nxp.com/webapp/Download?colCode=S32V234RM
-> -- 
-> 2.22.0
-> 
+On 8/14/19 2:24 PM, Christian Hewitt wrote:
+> On 6 Aug 2019, at 5:05 pm, Guillaume La Roque <glaroque@baylibre.com> wrote:
+>> This patchs series add support of New Amlogic temperature sensor and minimal
+>> thermal zone for SEI510 and ODROID-N2 boards.
+>>
+>> First implementation was doing on IIO[1] but after comments i move on thermal framework.
+>> Formulas and calibration values come from amlogic.
+>>
+>> Changes since v2:
+>>  - fix yaml documention 
+>>  - remove unneeded status variable for temperature-sensor node
+>>  - rework driver after Martin review
+>>  - add some information in commit message
+>>
+>> Changes since v1:
+>>  - fix enum vs const in documentation
+>>  - fix error with thermal-sensor-cells value set to 1 instead of 0
+>>  - add some dependencies needed to add cooling-maps
+>>
+>> Dependencies :
+>> - patch 3,4 & 5: depends on Neil's patch and series :
+>>              - missing dwc2 phy-names[2]
+>>              - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
+>>
+>> [1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+>> [2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+>> [3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+>> [4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+>> [5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
+>>
+>> Guillaume La Roque (6):
+>>  dt-bindings: thermal: Add DT bindings documentation for Amlogic
+>>    Thermal
+>>  thermal: amlogic: Add thermal driver to support G12 SoCs
+>>  arm64: dts: amlogic: g12: add temperature sensor
+>>  arm64: dts: meson: sei510: Add minimal thermal zone
+>>  arm64: dts: amlogic: odroid-n2: add minimal thermal zone
+>>  MAINTAINERS: add entry for Amlogic Thermal driver
+> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
+>
+> I’ve tested this series with Odroid N2 and Khadas VIM3, X96-Max. Patches to add
+> support for VIM3/X96-max will be submitted once the driver is merged.
+>
+> VIM3:~ # dmesg | grep thermal
+> [    0.046375] thermal_sys: Registered thermal governor 'step_wise'
+>
+> VIM3:~ # cat /sys/devices/virtual/thermal/thermal_zone0/temp
+> 51300
+>
+> VIM3:~ # cat /sys/devices/virtual/thermal/thermal_zone1/temp
+> 52800
+>
+> Christian
