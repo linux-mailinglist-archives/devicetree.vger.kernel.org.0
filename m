@@ -2,122 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A4D970FD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 06:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FBBD9714D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 06:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726409AbfHUEYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 00:24:15 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:41661 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725787AbfHUEYP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 00:24:15 -0400
-Received: by mail-pl1-f193.google.com with SMTP id m9so595511pls.8;
-        Tue, 20 Aug 2019 21:24:14 -0700 (PDT)
+        id S1727022AbfHUE5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 00:57:04 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:33457 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727134AbfHUE5E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 00:57:04 -0400
+Received: by mail-pg1-f195.google.com with SMTP id n190so605708pgn.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Aug 2019 21:57:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MUy6WQ1xoK9lJfNLjEvn57XDcafYhRNiEwXA8Tk63hA=;
-        b=o2AQ6w2hzvdylDkGbQ4pDyR/cuDlx1jU8ZUDk2Y2Y6xVqKPYirpYBYgwTS5XthsdXc
-         wdykV+BK5LfYKk1+OcVw01Vj1p4R4d1vRi1drzxMFYAgRizN/3FaGChOgfdKQ5Aw57oj
-         UphcE3ekxjyf5jsUaGiMNCQbWgJ9yW4OZET6xG4iFztVrbtUTHsEQNDxeZUrB2ovsJO2
-         Aqa4LB5Zou+iZfc+whmnfTo9esmCvam+UGqwGe1Mm9V5nK4PKpLsXfJUkYQ/FBvGYOLs
-         O16YaYhAcXv2HMdaohN61cf+oQzoYygjXa48Ce8GetAMW/DO9WMfSsx0ED7L/kb3JDGG
-         gPWA==
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=F3L4II85eG5+Ju0PiHDYgaOg83dmrN2U4zsjrFTvtVk=;
+        b=kML78E9Z1HY+LqS0ocE+R+cMN1dL8FMwBoo6lyCPnO9Z8D3Vqpq3umvLjFElQSBX1v
+         AYAwJhVbDwa25PuCimdjnsdS5F1lmRkJXeCxFei+Xxhz/TrP2PJR9uqmL5b4Gb4ZTmCk
+         Muxur/MJCO3cRCQuZBH8aZvAZ4n65gNk2uXUTfGFWIBHISVH5fsXguZMxuiFzI6m75+F
+         ogQ/QXu9tj0aFF4lIxy8tvIF7r4r5OzIXgUtUTbc3nP0wd9PWeod4szuBj/Une4ahb2J
+         M4gxvM0CweUIKFRiG3yr3pg837YWTKOCxx6zasTO7tcd0b8xXnKfqTZ7NFp92IqMbflB
+         nc3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MUy6WQ1xoK9lJfNLjEvn57XDcafYhRNiEwXA8Tk63hA=;
-        b=PHG7t5dat4SdP34WcyegYl6wUKqxrd3ldN5yku4iQz17wNZD3WZyFFEGJIRnLmWhJC
-         Q9D0QnJcf2CAFie5SUYALD4J48U9OyfsdGWzP2EwLZtuIGBPyjP+eYgpq0Rkb/1NCTN5
-         VlWZhRskb+FyVrFH64j5paLL5ynV2MeXXOVSJtgI4jmKh4gIoWUQ0+TPrAzKF/U6eyDO
-         sF8GbdercgT0flLLge44jDZBUNJSj4FmrVRTm32J+/nfhKH5JBZ6FuWXozKIqLsBU2SR
-         pKynGKEt9FICsUkZJ1y0pOQWpfqaX7X1RZLYjKrlea0+ChkE5vrIOAZn2wCpdAlIpqGy
-         ewtA==
-X-Gm-Message-State: APjAAAX1Siel14G8ijD1nJzGux2ZhFX1ErKHmOs8FsOzcDT/hXY8l4ib
-        TAO2aU2wKJ2r9w/qlNSQkpw=
-X-Google-Smtp-Source: APXvYqwai5cAkqOIhGquS4Yv9DULTJ6E8oyvFg/ISEE/lFGOD3GAK991WB57QFuu2WTF1SFRr0ba5g==
-X-Received: by 2002:a17:902:9b90:: with SMTP id y16mr28533828plp.17.1566361454421;
-        Tue, 20 Aug 2019 21:24:14 -0700 (PDT)
-Received: from [192.168.43.210] (mobile-166-137-176-042.mycingular.net. [166.137.176.42])
-        by smtp.gmail.com with ESMTPSA id g2sm39866695pfq.88.2019.08.20.21.24.12
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 20 Aug 2019 21:24:13 -0700 (PDT)
-Subject: Re: [PATCH v7 1/7] driver core: Add support for linking devices
- during device addition
-To:     Saravana Kannan <saravanak@google.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
-References: <20190724001100.133423-1-saravanak@google.com>
- <20190724001100.133423-2-saravanak@google.com>
- <32a8abd2-b6a4-67df-eee9-0f006310e81e@gmail.com>
- <CAGETcx8Q27+Jnz+rHtt33muMV6U+S3cmKh02Ok_Ds_ZzfBqhrg@mail.gmail.com>
- <522e8375-5070-f579-6509-3e44fe66768e@gmail.com>
- <CAGETcx-9Bera+nU-3=ZNpHqdqKxO0TmNuVUsCMQ-yDm1VXn5zA@mail.gmail.com>
- <a4c139c1-c9d1-3e5a-f47f-cd790b42da1f@gmail.com>
- <CAGETcx-J7+d3pcArMZvO5zQbUhAhRW+1=FUf7C1fV9-QhkckBw@mail.gmail.com>
- <6028b35b-a4ca-18de-84c6-4a22dbd987c9@gmail.com>
- <20190821015647.GA12237@kroah.com>
- <CAGETcx8eVfJ0mn08E6pTDytjVE+RFcj_gOt_enide4E6G1NAWw@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <113e6881-4c47-58fb-13fc-181e792818e5@gmail.com>
-Date:   Tue, 20 Aug 2019 21:24:11 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=F3L4II85eG5+Ju0PiHDYgaOg83dmrN2U4zsjrFTvtVk=;
+        b=LKuPRcSWxrLFZotIjfv22h938wFGNamW8DAJutxUUr7ctRSU1ukcl2h38OcCHnT+bE
+         QRmrjjQ0zUtINEj+GXk5aDltGAu7sybD4bT1uD0Pf4M74c9mMzHjkc+CAI4LJ0XsGL1e
+         6Va/V0XmiWck8fgo+OFgWO1x7RPY1nlxA9HcKRmu0+sJ+DBllg81XsZEOabI7HFxk5BE
+         uuSF9Q63iJifMx0KSMSaA1ewGa8U0O8gYT/6NYfJu/4ZUhpsLhlYUbQQXyxe4enH+Vkk
+         F+uyxzQHmSc7T2nzGIONbVhlSMCa5Tqz0Yy7B0M/XYh/flTEADd4gZkNnkDXgU4bfU0A
+         wk7A==
+X-Gm-Message-State: APjAAAXh2Mazcp0kLkj5vtiUqmPAaNAjRo0iVPpHsXic8us8oqg7enA/
+        SF1pM+J44c/YObESYR9LptrYQZ/T
+X-Google-Smtp-Source: APXvYqzSOY46Y5UrW2/vAhHHp3XzP2p/mtKr9xpqX2YfPZx41r5z1RlkJxKGMekNLx4bEdSyXmD22w==
+X-Received: by 2002:aa7:9477:: with SMTP id t23mr34247104pfq.29.1566363423580;
+        Tue, 20 Aug 2019 21:57:03 -0700 (PDT)
+Received: from voyager.ibm.com ([36.255.48.244])
+        by smtp.gmail.com with ESMTPSA id x16sm12279629pff.99.2019.08.20.21.57.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Aug 2019 21:57:03 -0700 (PDT)
+From:   Joel Stanley <joel@jms.id.au>
+To:     Andrew Jeffery <andrew@aj.id.au>, Adriana Kobylak <anoo@us.ibm.com>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: aspeed: swift: Add eMMC device
+Date:   Wed, 21 Aug 2019 14:26:55 +0930
+Message-Id: <20190821045655.21752-1-joel@jms.id.au>
+X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-In-Reply-To: <CAGETcx8eVfJ0mn08E6pTDytjVE+RFcj_gOt_enide4E6G1NAWw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/20/19 7:01 PM, Saravana Kannan wrote:
-> 
-> 
-> On Tue, Aug 20, 2019, 6:56 PM Greg Kroah-Hartman <gregkh@linuxfoundation.org <mailto:gregkh@linuxfoundation.org>> wrote:
-> 
->     On Tue, Aug 20, 2019 at 06:06:55PM -0700, Frank Rowand wrote:
->     > On 8/20/19 3:10 PM, Saravana Kannan wrote:
->     > > On Mon, Aug 19, 2019 at 9:25 PM Frank Rowand <frowand.list@gmail.com <mailto:frowand.list@gmail.com>> wrote:
->     > >>
->     > >> On 8/19/19 5:00 PM, Saravana Kannan wrote:
->     > >>> On Sun, Aug 18, 2019 at 8:38 PM Frank Rowand <frowand.list@gmail.com <mailto:frowand.list@gmail.com>> wrote:
->     > >>>>
->     > >>>> On 8/15/19 6:50 PM, Saravana Kannan wrote:
->     > >>>>> On Wed, Aug 7, 2019 at 7:04 PM Frank Rowand <frowand.list@gmail.com <mailto:frowand.list@gmail.com>> wrote:
->     > >>>>>>
->     > >>>>>>> Date: Tue, 23 Jul 2019 17:10:54 -0700
->     > >>>>>>> Subject: [PATCH v7 1/7] driver core: Add support for linking devices during
->     > >>>>>>>  device addition
->     > >>>>>>> From: Saravana Kannan <saravanak@google.com <mailto:saravanak@google.com>>
-> 
->     This is a "fun" thread :(
-> 
->     You two should get together in person this week and talk.  I think you
->     both will be at ELC, can we do this tomorrow or Thursday so we can hash
->     it out in a way that doesn't end up talking past each other, like I feel
->     is happening here right now?
-> 
-> 
-> That would be great. Wednesday would be better for me. I might not make it to ELC on Thursday. Let us know Frank.
-> 
-> Thanks,
-> Saravana
+Swift contains an eMMC device attached to the second SDHCI controller.
 
-I am really glad that you are here at ELC.  It should be very productive to
-sit down together and figure some things out.
+Signed-off-by: Joel Stanley <joel@jms.id.au>
+---
+ arch/arm/boot/dts/aspeed-bmc-opp-swift.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-I'll send a separate reply with my phone number off list.
+diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts b/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+index f14f745b34ca..25bc0e1bbced 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+@@ -963,4 +963,15 @@
+ 	status = "okay";
+ };
+ 
++&sdmmc {
++       status = "okay";
++};
++
++&sdhci1 {
++       status = "okay";
++
++       pinctrl-names = "default";
++       pinctrl-0 = <&pinctrl_sd2_default>;
++};
++
+ #include "ibm-power9-dual.dtsi"
+-- 
+2.23.0.rc1
 
--Frank
