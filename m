@@ -2,310 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F7D697D7E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:46:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A802F97E3A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 17:12:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729580AbfHUOp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:45:58 -0400
-Received: from mx.0dd.nl ([5.2.79.48]:54174 "EHLO mx.0dd.nl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729564AbfHUOp5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 10:45:57 -0400
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.0dd.nl (Postfix) with ESMTPS id D68315FD0D;
-        Wed, 21 Aug 2019 16:45:55 +0200 (CEST)
-Authentication-Results: mx.0dd.nl;
-        dkim=pass (2048-bit key) header.d=vdorst.com header.i=@vdorst.com header.b="TvPUKkFL";
-        dkim-atps=neutral
-Received: from pc-rene.vdorst.com (pc-rene.vdorst.com [192.168.2.125])
-        by mail.vdorst.com (Postfix) with ESMTPA id 996881D8290F;
-        Wed, 21 Aug 2019 16:45:55 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 996881D8290F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1566398755;
-        bh=rQQjaVJu6F0+ngomi26cD5hFUcxFi6/NsMWrdUzjt0g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TvPUKkFLvcKRdpgl2L2y2E8l3DFHIi3J0OuN2i+zyYPl1GbYoMiI0DUo9DdupLl2J
-         0lxT0p/RrCZ76CF5GZdBBdhX1fhw9UL6MH/LrAPgJ1+qfZI6Jn5jXTwiOJsHczmbYu
-         vnOC4NZsU/btekmtLkemRqebGWFKQ9mYgxn9vwgIAM8027C7txsbDWy+sdy6dm76zV
-         9JlbOMpLe4vlPSMyRohufh90RqhXmA5DCiSJHI7gWCrTHWYfqCcjK3W2qumd8KJSOV
-         UiJK2fER5n9YTdx+tdx4Fz6Rgwbqo/GIH3Sf0AuEnWvE54wDLPC3/6TZO4ip6T9wdb
-         j++wRr2LV03Kg==
-From:   =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
-To:     Sean Wang <sean.wang@mediatek.com>, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        John Crispin <john@phrozen.org>, linux-mips@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH net-next v2 2/3] dt-bindings: net: dsa: mt7530: Add support for port 5
-Date:   Wed, 21 Aug 2019 16:45:46 +0200
-Message-Id: <20190821144547.15113-3-opensource@vdorst.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190821144547.15113-1-opensource@vdorst.com>
-References: <20190821144547.15113-1-opensource@vdorst.com>
+        id S1727484AbfHUPJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 11:09:49 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:46076 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726885AbfHUPJt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 11:09:49 -0400
+Received: from pps.filterd (m0098420.ppops.net [127.0.0.1])
+        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7LF1CJE089643
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 11:09:48 -0400
+Received: from e31.co.us.ibm.com (e31.co.us.ibm.com [32.97.110.149])
+        by mx0b-001b2d01.pphosted.com with ESMTP id 2uh85fgr99-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 11:09:48 -0400
+Received: from localhost
+        by e31.co.us.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <anoo@linux.ibm.com>;
+        Wed, 21 Aug 2019 16:09:47 +0100
+Received: from b03cxnp08026.gho.boulder.ibm.com (9.17.130.18)
+        by e31.co.us.ibm.com (192.168.1.131) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Wed, 21 Aug 2019 16:09:43 +0100
+Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7LF9gOY61014402
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 21 Aug 2019 15:09:42 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 10780136053;
+        Wed, 21 Aug 2019 15:09:42 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id C743513604F;
+        Wed, 21 Aug 2019 15:09:41 +0000 (GMT)
+Received: from ltc.linux.ibm.com (unknown [9.16.170.189])
+        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Wed, 21 Aug 2019 15:09:41 +0000 (GMT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 21 Aug 2019 10:10:06 -0500
+From:   Adriana Kobylak <anoo@linux.ibm.com>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Andrew Jeffery <andrew@aj.id.au>,
+        Adriana Kobylak <anoo@us.ibm.com>, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linux-aspeed 
+        <linux-aspeed-bounces+anoo=linux.ibm.com@lists.ozlabs.org>
+Subject: Re: [PATCH] ARM: dts: aspeed: swift: Add eMMC device
+In-Reply-To: <20190821045655.21752-1-joel@jms.id.au>
+References: <20190821045655.21752-1-joel@jms.id.au>
+X-Sender: anoo@linux.ibm.com
+User-Agent: Roundcube Webmail/1.0.1
+X-TM-AS-GCONF: 00
+x-cbid: 19082115-8235-0000-0000-00000EC8D701
+X-IBM-SpamModules-Scores: 
+X-IBM-SpamModules-Versions: BY=3.00011629; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000287; SDB=6.01250037; UDB=6.00659943; IPR=6.01031592;
+ MB=3.00028261; MTD=3.00000008; XFM=3.00000015; UTC=2019-08-21 15:09:45
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19082115-8236-0000-0000-000046E6A6BD
+Message-Id: <202dcd112f41044162465d8a724b66d0@linux.vnet.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-21_05:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908210160
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MT7530 port 5 has many modes/configurations.
-Update the documentation how to use port 5.
+On 2019-08-20 23:56, Joel Stanley wrote:
+> Swift contains an eMMC device attached to the second SDHCI controller.
+> 
+> Signed-off-by: Joel Stanley <joel@jms.id.au>
 
-Signed-off-by: René van Dorst <opensource@vdorst.com>
-Cc: devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>
-v1->v2:
-* Adding extra note about RGMII2 and gpio use.
-rfc->v1:
-* No change
----
- .../devicetree/bindings/net/dsa/mt7530.txt    | 218 ++++++++++++++++++
- 1 file changed, 218 insertions(+)
+Reviewed-by: Adriana Kobylak <anoo@us.ibm.com>
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/mt7530.txt b/Documentation/devicetree/bindings/net/dsa/mt7530.txt
-index 47aa205ee0bd..43993aae3f9c 100644
---- a/Documentation/devicetree/bindings/net/dsa/mt7530.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/mt7530.txt
-@@ -35,6 +35,42 @@ Required properties for the child nodes within ports container:
- - phy-mode: String, must be either "trgmii" or "rgmii" for port labeled
- 	 "cpu".
- 
-+Port 5 of the switch is muxed between:
-+1. GMAC5: GMAC5 can interface with another external MAC or PHY.
-+2. PHY of port 0 or port 4: PHY interfaces with an external MAC like 2nd GMAC
-+   of the SOC. Used in many setups where port 0/4 becomes the WAN port.
-+   Note: On a MT7621 SOC with integrated switch: 2nd GMAC can only connected to
-+	 GMAC5 when the gpios for RGMII2 (GPIO 22-33) are not used and not
-+	 connected to external component!
-+
-+Port 5 modes/configurations:
-+1. Port 5 is disabled and isolated: An external phy can interface to the 2nd
-+   GMAC of the SOC.
-+   In the case of a build-in MT7530 switch, port 5 shares the RGMII bus with 2nd
-+   GMAC and an optional external phy. Mind the GPIO/pinctl settings of the SOC!
-+2. Port 5 is muxed to PHY of port 0/4: Port 0/4 interfaces with 2nd GMAC.
-+   It is a simple MAC to PHY interface, port 5 needs to be setup for xMII mode
-+   and RGMII delay.
-+3. Port 5 is muxed to GMAC5 and can interface to an external phy.
-+   Port 5 becomes an extra switch port.
-+   Only works on platform where external phy TX<->RX lines are swapped.
-+   Like in the Ubiquiti ER-X-SFP.
-+4. Port 5 is muxed to GMAC5 and interfaces with the 2nd GAMC as 2nd CPU port.
-+   Currently a 2nd CPU port is not supported by DSA code.
-+
-+Depending on how the external PHY is wired:
-+1. normal: The PHY can only connect to 2nd GMAC but not to the switch
-+2. swapped: RGMII TX, RX are swapped; external phy interface with the switch as
-+   a ethernet port. But can't interface to the 2nd GMAC.
-+
-+Based on the DT the port 5 mode is configured.
-+
-+Driver tries to lookup the phy-handle of the 2nd GMAC of the master device.
-+When phy-handle matches PHY of port 0 or 4 then port 5 set-up as mode 2.
-+phy-mode must be set, see also example 2 below!
-+ * mt7621: phy-mode = "rgmii-txid";
-+ * mt7623: phy-mode = "rgmii";
-+
- See Documentation/devicetree/bindings/net/dsa/dsa.txt for a list of additional
- required, optional properties and how the integrated switch subnodes must
- be specified.
-@@ -94,3 +130,185 @@ Example:
- 			};
- 		};
- 	};
-+
-+Example 2: MT7621: Port 4 is WAN port: 2nd GMAC -> Port 5 -> PHY port 4.
-+
-+&eth {
-+	status = "okay";
-+
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "rgmii";
-+
-+		fixed-link {
-+			speed = <1000>;
-+			full-duplex;
-+			pause;
-+		};
-+	};
-+
-+	gmac1: mac@1 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <1>;
-+		phy-mode = "rgmii-txid";
-+		phy-handle = <&phy4>;
-+	};
-+
-+	mdio: mdio-bus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Internal phy */
-+		phy4: ethernet-phy@4 {
-+			reg = <4>;
-+		};
-+
-+		mt7530: switch@1f {
-+			compatible = "mediatek,mt7621";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x1f>;
-+			pinctrl-names = "default";
-+			mediatek,mcm;
-+
-+			resets = <&rstctrl 2>;
-+			reset-names = "mcm";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					label = "lan0";
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+				};
-+
-+/* Commented out. Port 4 is handled by 2nd GMAC.
-+				port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+				};
-+*/
-+
-+				cpu_port0: port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&gmac0>;
-+					phy-mode = "rgmii";
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+Example 3: MT7621: Port 5 is connected to external PHY: Port 5 -> external PHY.
-+
-+&eth {
-+	status = "okay";
-+
-+	gmac0: mac@0 {
-+		compatible = "mediatek,eth-mac";
-+		reg = <0>;
-+		phy-mode = "rgmii";
-+
-+		fixed-link {
-+			speed = <1000>;
-+			full-duplex;
-+			pause;
-+		};
-+	};
-+
-+	mdio: mdio-bus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* External phy */
-+		ephy5: ethernet-phy@7 {
-+			reg = <7>;
-+		};
-+
-+		mt7530: switch@1f {
-+			compatible = "mediatek,mt7621";
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x1f>;
-+			pinctrl-names = "default";
-+			mediatek,mcm;
-+
-+			resets = <&rstctrl 2>;
-+			reset-names = "mcm";
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+					label = "lan0";
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+					label = "lan1";
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+					label = "lan2";
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+					label = "lan3";
-+				};
-+
-+				port@4 {
-+					reg = <4>;
-+					label = "lan4";
-+				};
-+
-+				port@5 {
-+					reg = <5>;
-+					label = "lan5";
-+					phy-mode = "rgmii";
-+					phy-handle = <&ephy5>;
-+				};
-+
-+				cpu_port0: port@6 {
-+					reg = <6>;
-+					label = "cpu";
-+					ethernet = <&gmac0>;
-+					phy-mode = "rgmii";
-+
-+					fixed-link {
-+						speed = <1000>;
-+						full-duplex;
-+						pause;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
--- 
-2.20.1
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-opp-swift.dts | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+> b/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+> index f14f745b34ca..25bc0e1bbced 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-swift.dts
+> @@ -963,4 +963,15 @@
+>  	status = "okay";
+>  };
+> 
+> +&sdmmc {
+> +       status = "okay";
+> +};
+> +
+> +&sdhci1 {
+> +       status = "okay";
+> +
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_sd2_default>;
+> +};
+> +
+>  #include "ibm-power9-dual.dtsi"
 
