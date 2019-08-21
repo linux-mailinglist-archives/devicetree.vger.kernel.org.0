@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BD1297C17
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:08:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EB4197C21
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728985AbfHUOIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:08:10 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:55252 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728303AbfHUOIK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:08:10 -0400
-Received: by mail-wm1-f65.google.com with SMTP id p74so2271160wme.4
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 07:08:08 -0700 (PDT)
+        id S1726484AbfHUOI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:08:27 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:51849 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729135AbfHUOI0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:08:26 -0400
+Received: by mail-wm1-f68.google.com with SMTP id k1so2297516wmi.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 07:08:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=eVloRIjpVIeY57SWMpzWuRot/YPT8cIpveh1AqGjZWI=;
-        b=BhfIP0wB/c4MlGuXrCaP2zeCCyEMDwthOx7UBYQ89t+Cd64hm/TIoJWCEvywn8pHhf
-         JQquZKjk6VEPxKgx+teUzjK8dbqBPdrgeuHj6R7Olei6gvK+gdRia9TSDKlYKENbjIvr
-         iYnIMdJQy/EhY31gIfyplVo8v9yMUuQni7JbQjDtZtUwd90RIdsdo1hN5V7TiG8vLWO/
-         tESuwxXkR2IVS1jBrHfZJBhV9qkYKScgWimn4o4Cwoh5mCXyU1VEHROh/g/TFG9nS6P7
-         JeYtgnU3Owc/aQDqg2bsFBvO9c2VLypU20o8FZSpXK2siUfVw1JWow+D0L5hN5ftgUlR
-         jhFw==
+        bh=WMoQq0gYYHBS1Xnas7hCTSegRXzsqafpfXZ5srz2uTk=;
+        b=YfLhf8ZquALm7qNCcVznUga7apwr1IcXZitVwpaZNU9t/LLGfIYjvlB28m+Pu67YRj
+         VJFrE3u8UmRnOCMeORWAH5ZLV7LYf+QT8klXObinJIC8DanraQdhjMz5je7SPiKfQ3+A
+         FyTwr2pscMhfqnk0RgVtavO0NqEbeiMazwUUKZWjKhcU7WJ8l3PzYBti5nHpPyaSesjC
+         4rIaeqdCPrEs3Owk4bkKLnpudMIP/Be62vJwTOm+Vji7y4hTw54uVXEMzUaBunOXY+CI
+         cJh7D/6YbMwkHztFAMG1BcuF0oKPh9uPjKRL4dHE0qsRTGgYd4T+Xd649PcBYUvCPUoU
+         2LHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=eVloRIjpVIeY57SWMpzWuRot/YPT8cIpveh1AqGjZWI=;
-        b=oGK16vhKfD4ZEVg0eNNCi3m7Kg7/CiDxQGe5UYekt8z8KtK1v5J2vxjD9yhdIvRSca
-         JpVd+ryJ9ya62OMr2pjlNeOymedz6vcalO3XpnsCnhXRE2YniQtHMWs5XdNz1jNevkBH
-         NARInZmyJ6s2/R1llSNh9XfPyWPGjLc6FfyMrQQt0O2d4iHPj2cBPo9uYptB1XBhPLi4
-         rzttTn1HKv1ckRJlRDYNp4MbCvd5GIfJ9dVtv8Y2bWZ67R+szWHu81U0Bkean8LD4mCJ
-         JJtjwL90AgZ020kACX6L1Tc0VYh6jRRBlqG9s9KCPCAKNto5kvyUaHdgEhnYxMHl/c6W
-         BhLA==
-X-Gm-Message-State: APjAAAXJcLWBoQKBJJBEQbdLiLRCfr2B3pv5QSj7EEeejleya+YMjsT9
-        FEdR2E5d82QNfcj94/8nXDXuckH6+pMcTA==
-X-Google-Smtp-Source: APXvYqxaOmmnBbqUInTFJV7KgcHoX2qxGV4+Y226M2QdCgFJPGA/7Zg9CpBLf6IkML9UypeOJZAucA==
-X-Received: by 2002:a05:600c:352:: with SMTP id u18mr190628wmd.141.1566396487610;
-        Wed, 21 Aug 2019 07:08:07 -0700 (PDT)
+        bh=WMoQq0gYYHBS1Xnas7hCTSegRXzsqafpfXZ5srz2uTk=;
+        b=f6Z/oskw94MmoEBDF4cgqyOGitzyNdLRdy4WDAKDe5C86rGzEgOkFmA6N1OHIqdLe7
+         FLGL6ANiz115BB7p0qi9M3w1StEkfUK91t89DePCzIvcUTAakSMVxPlYyqtFFVzvBagU
+         2oEw0qPOuGEGvYRiiu1lEq8YLHW8LpIKMjt+KNvdsykp9/0zXHhggP4UVWWd6QOzj5ey
+         WNU1kBZ8ZOg8CeUxFcnVbrEIuj/bhnGnnz19EfucB13w0NkJ3UO+AffYP5OZ8OffV29j
+         60b5ctskRfeoe71/8namIvSEB6Pwq9qhoA2loBLs8qn3E8BgsCrco8fSVoPnLWkvyxtJ
+         Bjdw==
+X-Gm-Message-State: APjAAAV6XClRvNCCzQ/xQugmxhcq4aE+Jt+qW6/sWyIRu/QaTxnk7BDX
+        4HbKDqpeYPtFpSFGH3H75DT4ZZh/Q8IwAQ==
+X-Google-Smtp-Source: APXvYqy8yJnCe5b+/p5Tz+wxWWxBSwTu4aD9ddSlLVzIEYAiCK77mDnFnjJmmJWShrjbsPLq/9CbtQ==
+X-Received: by 2002:a05:600c:48b:: with SMTP id d11mr219609wme.55.1566396504493;
+        Wed, 21 Aug 2019 07:08:24 -0700 (PDT)
 Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id p10sm158248wma.8.2019.08.21.07.08.06
+        by smtp.gmail.com with ESMTPSA id t19sm156177wmi.29.2019.08.21.07.08.23
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 07:08:06 -0700 (PDT)
-Subject: Re: [PATCH 11/14] arm64: dts: meson-g12a-x96-max: fix compatible
+        Wed, 21 Aug 2019 07:08:23 -0700 (PDT)
+Subject: Re: [PATCH 12/14] arm64: dts: meson-gxbb-nanopi-k2: add missing model
 To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         devicetree@vger.kernel.org
 References: <20190814142918.11636-1-narmstrong@baylibre.com>
- <20190814142918.11636-12-narmstrong@baylibre.com>
- <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
+ <20190814142918.11636-13-narmstrong@baylibre.com>
+ <CAFBinCCJPm+FjMTK+-Qik4x-UtLibH3FTozHG8gMet0e5Rf9bg@mail.gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -106,12 +106,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <c2d78c7c-d9a8-e486-d3b1-c1447e24284b@baylibre.com>
-Date:   Wed, 21 Aug 2019 16:08:06 +0200
+Message-ID: <48de2cf6-2bce-1a55-b08b-8f95bb8e9b3f@baylibre.com>
+Date:   Wed, 21 Aug 2019 16:08:23 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBWFNJNAWdeZ2LfEJA-MVpSf-A5SrLZEx+0z_P+-iBFDg@mail.gmail.com>
+In-Reply-To: <CAFBinCCJPm+FjMTK+-Qik4x-UtLibH3FTozHG8gMet0e5Rf9bg@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -120,23 +120,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2019 22:32, Martin Blumenstingl wrote:
+On 20/08/2019 22:25, Martin Blumenstingl wrote:
 > On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
 >> This fixes the following DT schemas check errors:
->> meson-g12a-x96-max.dt.yaml: /: compatible: ['amediatech,x96-max', 'amlogic,u200', 'amlogic,g12a'] is not valid under any of the given schemas
+>> meson-gxbb-nanopi-k2.dt.yaml: /: 'model' is a required property
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-> [...]
->> -       compatible = "amediatech,x96-max", "amlogic,u200", "amlogic,g12a";
->> +       compatible = "amediatech,x96-max", "amlogic,g12a";
-> only partially related: I wonder if we should add a s905x2 compatible
-> string here and to the .dts filename (just like we separate the GXL
-> variants s905x, s905d, s905w, ...)
+>> ---
+>>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+>> index c34c1c90ccb6..1a36d2bd2d21 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
+>> @@ -10,6 +10,7 @@
+>>
+>>  / {
+>>         compatible = "friendlyarm,nanopi-k2", "amlogic,meson-gxbb";
+>> +       model = "Nanopi K2";
+> this should be "FriendlyARM NanoPi K2" to be consistent with other
+> boards (for example meson-gxbb-odroidc2.dts)
 > 
 
-We could, but AFAIK no variants of G12A are planned yet...
-
-Neil
+Exact, I'll fix it
