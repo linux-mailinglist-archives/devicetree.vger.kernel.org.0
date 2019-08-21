@@ -2,201 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD5B97D40
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58EB97D6D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:46:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729530AbfHUOiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:38:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38562 "EHLO mail.kernel.org"
+        id S1729445AbfHUOol (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:44:41 -0400
+Received: from mx.0dd.nl ([5.2.79.48]:54096 "EHLO mx.0dd.nl"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729486AbfHUOiv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 10:38:51 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        id S1728608AbfHUOok (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 10:44:40 -0400
+Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4FAA923403;
-        Wed, 21 Aug 2019 14:38:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566398330;
-        bh=pn/uJER7PFGwozA06AW0T66hI7CzN2YyTKZKxVMBqDI=;
+        by mx.0dd.nl (Postfix) with ESMTPS id C03B65FC82;
+        Wed, 21 Aug 2019 16:44:38 +0200 (CEST)
+Authentication-Results: mx.0dd.nl;
+        dkim=pass (2048-bit key) header.d=vdorst.com header.i=@vdorst.com header.b="eEI53EAD";
+        dkim-atps=neutral
+Received: from pc-rene.vdorst.com (pc-rene.vdorst.com [192.168.2.125])
+        by mail.vdorst.com (Postfix) with ESMTPA id 8C0E61D828DF;
+        Wed, 21 Aug 2019 16:44:38 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 8C0E61D828DF
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
+        s=default; t=1566398678;
+        bh=mNJIgmi5wMH/URSjGpUvldtStb9e1bN3QN3/MQ5nwPQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tfqHRJ8r0kVu25YN0mX/BohJ7zvMI4cZvdjhVn3triarWc6pdhCQS5fOh7RLu+I6Y
-         GiGb02oaRiAK/0qGHoFOS7duS5c6K3jHWTMapuQPuFs5w4NuW9nRxqtsit3esz8W2H
-         iWTIyEy+zShd4uG9YVw8fAOrS5LI6xIN5//WFap0=
-From:   Maxime Ripard <mripard@kernel.org>
-To:     linux@roeck-us.net, wim@linux-watchdog.org
-Cc:     linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Subject: [PATCH RESEND v2 6/6] ARM: dts: sunxi: Add missing watchdog clocks
-Date:   Wed, 21 Aug 2019 16:38:35 +0200
-Message-Id: <20190821143835.7294-6-mripard@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190821143835.7294-1-mripard@kernel.org>
-References: <20190821143835.7294-1-mripard@kernel.org>
+        b=eEI53EADMJfIturmloGlAMut/nR6qslyhP6rgk8xSdmDB6rBn4CI+cCQ0TEHzts7T
+         Euee/SIen8nuN/os/KF6MOt4Zsa5ONRKWDKsvhHStJKoiLtc+4OWTW10XMjtI6mi3u
+         C09QMb1VwMKCT8xNO2bMdMgUPzp3IzA8pjAKtqyyX52Tl9PoS92Myw+coIiMML8oJG
+         Af6900keuJjmillC3a9rLUy3sNsWXWaDuiJIK+ILKmfkCiuGgwSbwWEf1IxJuA2r53
+         Rx1F4zUT7S8LEzODsSs4yTfpnewTHlIjyiVNLHyog+MD4QXUebRraEYuVVcxCRUGRL
+         3pnuLeu1KZnhQ==
+From:   =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
+To:     John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Nelson Chang <nelson.chang@mediatek.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Stefan Roese <sr@denx.de>,
+        =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH net-next v2 3/3] dt-bindings: net: ethernet: Update mt7622 docs and dts to reflect the new phylink API
+Date:   Wed, 21 Aug 2019 16:43:36 +0200
+Message-Id: <20190821144336.9259-4-opensource@vdorst.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190821144336.9259-1-opensource@vdorst.com>
+References: <20190821144336.9259-1-opensource@vdorst.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maxime Ripard <maxime.ripard@bootlin.com>
+This patch the removes the recently added mediatek,physpeed property.
+Use the fixed-link property speed = <2500> to set the phy in 2.5Gbit.
+See mt7622-bananapi-bpi-r64.dts for a working example.
 
-The watchdog has a clock on all our SoCs, but it wasn't always listed.
-Add it to the devicetree where it's missing.
-
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-
+Signed-off-by: René van Dorst <opensource@vdorst.com>
+Cc: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>
+--
+v1->v2:
+* SGMII port only support BASE-X at 2.5Gbit.
 ---
+ .../arm/mediatek/mediatek,sgmiisys.txt        |  2 --
+ .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  | 28 +++++++++++++------
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |  1 -
+ 3 files changed, 19 insertions(+), 12 deletions(-)
 
-Changes from v1:
-  - New patch
----
- arch/arm/boot/dts/sun4i-a10.dtsi              | 1 +
- arch/arm/boot/dts/sun5i.dtsi                  | 1 +
- arch/arm/boot/dts/sun6i-a31.dtsi              | 1 +
- arch/arm/boot/dts/sun7i-a20.dtsi              | 1 +
- arch/arm/boot/dts/sun8i-a23-a33.dtsi          | 1 +
- arch/arm/boot/dts/sun8i-r40.dtsi              | 1 +
- arch/arm/boot/dts/sun8i-v3s.dtsi              | 1 +
- arch/arm/boot/dts/sunxi-h3-h5.dtsi            | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 1 +
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 2 ++
- 10 files changed, 11 insertions(+)
-
-diff --git a/arch/arm/boot/dts/sun4i-a10.dtsi b/arch/arm/boot/dts/sun4i-a10.dtsi
-index eed9fcb46185..ce823c44e98a 100644
---- a/arch/arm/boot/dts/sun4i-a10.dtsi
-+++ b/arch/arm/boot/dts/sun4i-a10.dtsi
-@@ -816,6 +816,7 @@
- 			compatible = "allwinner,sun4i-a10-wdt";
- 			reg = <0x01c20c90 0x10>;
- 			interrupts = <24>;
-+			clocks = <&osc24M>;
- 		};
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.txt
+index f5518f26a914..30cb645c0e54 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,sgmiisys.txt
+@@ -9,8 +9,6 @@ Required Properties:
+ 	- "mediatek,mt7622-sgmiisys", "syscon"
+ 	- "mediatek,mt7629-sgmiisys", "syscon"
+ - #clock-cells: Must be 1
+-- mediatek,physpeed: Should be one of "auto", "1000" or "2500" to match up
+-		     the capability of the target PHY.
  
- 		rtc: rtc@1c20d00 {
-diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
-index 29a825f7afd1..cfb1efc8828c 100644
---- a/arch/arm/boot/dts/sun5i.dtsi
-+++ b/arch/arm/boot/dts/sun5i.dtsi
-@@ -601,6 +601,7 @@
- 			compatible = "allwinner,sun4i-a10-wdt";
- 			reg = <0x01c20c90 0x10>;
- 			interrupts = <24>;
-+			clocks = <&osc24M>;
- 		};
+ The SGMIISYS controller uses the common clk binding from
+ Documentation/devicetree/bindings/clock/clock-bindings.txt
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+index 710c5c3d87d3..83e10591e0e5 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
++++ b/arch/arm64/boot/dts/mediatek/mt7622-bananapi-bpi-r64.dts
+@@ -115,24 +115,34 @@
+ };
  
- 		ir0: ir@1c21800 {
-diff --git a/arch/arm/boot/dts/sun6i-a31.dtsi b/arch/arm/boot/dts/sun6i-a31.dtsi
-index cba8864bb8f9..bbeb743633c6 100644
---- a/arch/arm/boot/dts/sun6i-a31.dtsi
-+++ b/arch/arm/boot/dts/sun6i-a31.dtsi
-@@ -745,6 +745,7 @@
- 			compatible = "allwinner,sun6i-a31-wdt";
- 			reg = <0x01c20ca0 0x20>;
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
+ &eth {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&eth_pins>;
+ 	status = "okay";
++	gmac0: mac@0 {
++		compatible = "mediatek,eth-mac";
++		reg = <0>;
++		phy-mode = "2500base-x";
++
++		fixed-link {
++			speed = <2500>;
++			full-duplex;
++			pause;
++		};
++	};
  
- 		spdif: spdif@1c21000 {
-diff --git a/arch/arm/boot/dts/sun7i-a20.dtsi b/arch/arm/boot/dts/sun7i-a20.dtsi
-index 8e31ed4a297c..ddaafde0e2d6 100644
---- a/arch/arm/boot/dts/sun7i-a20.dtsi
-+++ b/arch/arm/boot/dts/sun7i-a20.dtsi
-@@ -1116,6 +1116,7 @@
- 			compatible = "allwinner,sun4i-a10-wdt";
- 			reg = <0x01c20c90 0x10>;
- 			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
+ 	gmac1: mac@1 {
+ 		compatible = "mediatek,eth-mac";
+ 		reg = <1>;
+-		phy-handle = <&phy5>;
++		phy-mode = "rgmii";
++
++		fixed-link {
++			speed = <1000>;
++			full-duplex;
++			pause;
++		};
+ 	};
  
- 		rtc: rtc@1c20d00 {
-diff --git a/arch/arm/boot/dts/sun8i-a23-a33.dtsi b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
-index 954489b4ec66..52eed0ae3607 100644
---- a/arch/arm/boot/dts/sun8i-a23-a33.dtsi
-+++ b/arch/arm/boot/dts/sun8i-a23-a33.dtsi
-@@ -452,6 +452,7 @@
- 			compatible = "allwinner,sun6i-a31-wdt";
- 			reg = <0x01c20ca0 0x20>;
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
- 
- 		pwm: pwm@1c21400 {
-diff --git a/arch/arm/boot/dts/sun8i-r40.dtsi b/arch/arm/boot/dts/sun8i-r40.dtsi
-index f1be554b5894..bde068111b85 100644
---- a/arch/arm/boot/dts/sun8i-r40.dtsi
-+++ b/arch/arm/boot/dts/sun8i-r40.dtsi
-@@ -405,6 +405,7 @@
- 			compatible = "allwinner,sun4i-a10-wdt";
- 			reg = <0x01c20c90 0x10>;
- 			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
- 
- 		uart0: serial@1c28000 {
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index ddbcc28dc541..23ba56df38f7 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -339,6 +339,7 @@
- 			compatible = "allwinner,sun6i-a31-wdt";
- 			reg = <0x01c20ca0 0x20>;
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
- 
- 		lradc: lradc@1c22800 {
-diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-index 224e105a994a..eba190b3f9de 100644
---- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-+++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-@@ -574,6 +574,7 @@
- 			compatible = "allwinner,sun6i-a31-wdt";
- 			reg = <0x01c20ca0 0x20>;
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
- 
- 		spdif: spdif@1c21000 {
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-index ddb6f11e89df..69128a6dfc46 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-@@ -1169,6 +1169,7 @@
- 				     "allwinner,sun6i-a31-wdt";
- 			reg = <0x01c20ca0 0x20>;
- 			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
+-	mdio-bus {
++	mdio: mdio-bus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-
+-		phy5: ethernet-phy@5 {
+-			reg = <5>;
+-			phy-mode = "sgmii";
+-		};
  	};
  };
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-index 67b732e34091..e304b110e7a3 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -225,6 +225,7 @@
- 				     "allwinner,sun6i-a31-wdt";
- 			reg = <0x030090a0 0x20>;
- 			interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 			/* Broken on some H6 boards */
- 			status = "disabled";
- 		};
-@@ -725,6 +726,7 @@
- 				     "allwinner,sun6i-a31-wdt";
- 			reg = <0x07020400 0x20>;
- 			interrupts = <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&osc24M>;
- 		};
  
- 		r_intc: interrupt-controller@7021000 {
+diff --git a/arch/arm64/boot/dts/mediatek/mt7622.dtsi b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+index d1e13d340e26..dac51e98204c 100644
+--- a/arch/arm64/boot/dts/mediatek/mt7622.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt7622.dtsi
+@@ -931,6 +931,5 @@
+ 			     "syscon";
+ 		reg = <0 0x1b128000 0 0x3000>;
+ 		#clock-cells = <1>;
+-		mediatek,physpeed = "2500";
+ 	};
+ };
 -- 
-2.21.0
+2.20.1
 
