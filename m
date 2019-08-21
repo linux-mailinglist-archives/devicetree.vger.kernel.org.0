@@ -2,109 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A741981D4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 19:55:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5049198222
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 19:59:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729512AbfHURzE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 13:55:04 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:43878 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729508AbfHURzE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 13:55:04 -0400
-Received: by mail-wr1-f68.google.com with SMTP id y8so2864140wrn.10;
-        Wed, 21 Aug 2019 10:55:02 -0700 (PDT)
+        id S1730243AbfHUR7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 13:59:10 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36566 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729766AbfHUR7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 13:59:09 -0400
+Received: by mail-oi1-f193.google.com with SMTP id n1so2287064oic.3;
+        Wed, 21 Aug 2019 10:59:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dcXFfpfF7Y1vSw3aVBKIoINByXS6ksD7OwWYj454PWY=;
-        b=C9KV221Eocif3ZekpE++QYsPVzUwSukjZei79hd9cPiO+acWKnIJR3q5PDoG9GwF3D
-         1a3b08fTOrahtAnpNIMfKzDqG03RtqJeEuHNGp6jr6uVefZp4ymQZfGJcy+rBO+nmiiY
-         OucKl0Jl4nZxgFmU/I2t4VEJIGjVQhQS9vprDl6annqJRWKYqRiurxQuhCtYcNzzyfz0
-         ePOkODMaJk5U2GXoY2T1Avpj7mjPPOPu91Ue7WDyfkp2LhA1rCMnjg9AKG5WFODN4coW
-         HqZ9FuXYDZ5/vb+j2w4/FOPdpEzm/HJu8Gdh9PvZOe4XY/7lyR+/02/pka0f8KPZkgwQ
-         Cq3g==
-X-Gm-Message-State: APjAAAV7E8KU/sq3EOz1diAxAuB7Nipe5ceqMpx38OQVYv64MUk4mPpx
-        jNw80Qu2uhRJNuD15hRC0+E=
-X-Google-Smtp-Source: APXvYqzXpe8lKkcvUAGrZ3oVo70oJ142K2QzLV1sGyFExlTS0Degv28KaJGOvQor2VcwLb4RuY3/2g==
-X-Received: by 2002:a5d:5183:: with SMTP id k3mr37435361wrv.270.1566410101601;
-        Wed, 21 Aug 2019 10:55:01 -0700 (PDT)
-Received: from kozik-lap ([194.230.147.11])
-        by smtp.googlemail.com with ESMTPSA id 39sm72535478wrc.45.2019.08.21.10.55.00
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Aug 2019 10:55:00 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 19:54:58 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v6 3/4] dt-bindings: arm: fsl: Add Kontron i.MX6UL N6310
- compatibles
-Message-ID: <20190821175458.GA25168@kozik-lap>
-References: <1566315318-30320-1-git-send-email-krzk@kernel.org>
- <1566315318-30320-3-git-send-email-krzk@kernel.org>
- <CAL_JsqJLSZ50tdFcdPFc2ifcDoFZFuw=SoKsunzjtAhZ-11fBg@mail.gmail.com>
- <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
- <CAL_JsqKAH6n1sMoWOhfiHKxgREr-EN1tw0QtC1H8Fm=a7PNzOA@mail.gmail.com>
- <20190820202142.GA15866@kozik-lap>
- <CAL_JsqKBWB2FiVjYo9O7DPw1JYJvan7uRgbR0VBG=FfHDVYdZQ@mail.gmail.com>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=K/th3NArUUDsxYhC0bNRwC8vaVSsABKuuRHPnC96B+s=;
+        b=ZQuNCiXwuTceaX7a9G872sey4ZkyACrR2da0wwV2qtzPXwr8n5HPJu/vCmqqxJBaPC
+         IP/lqgx0fuMO8WjeHEqN4R+uHwa0/NI161f+8D64xlRiFyt9koWgZilW5fB56I5Zhsax
+         0ItVxdahcpUYvrFfvq9m/Q9+bo5w7ByqrHv1pyLaJwB1/JklmZ9cSgE/sdG1W9OKYjVJ
+         uAy6YMZ7mrXbp407XDXTXCe7aHtUYrV/p/Z3mYPDfkRUA0dIwRzEMVF0TZXX9a5tYaFf
+         NBZjV/XB2MiYUQ+HbPpFNdgTovm/8axTLzNN+/McU7K+1wEpokpRBx2MNpYGqzz5NGht
+         s7SA==
+X-Gm-Message-State: APjAAAVvcRQewAmkXdAJdiN8RQtPEGZ0OQWw9VfIXBCerBI70aQbv80F
+        Po6Y62rdqg8CyvUbP2Yw7Ff3JgU=
+X-Google-Smtp-Source: APXvYqxYWHq3juy+XMt1gurNt57qK96nTW0jILgtjvIj6HOsTBk1Wd8+4C/UDmvqsBN8i9a7D1fU9w==
+X-Received: by 2002:aca:4a53:: with SMTP id x80mr942404oia.115.1566410347383;
+        Wed, 21 Aug 2019 10:59:07 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v24sm7943096otj.78.2019.08.21.10.59.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Aug 2019 10:59:06 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 12:59:06 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     vkoul@kernel.org, nm@ti.com, ssantosh@kernel.org,
+        dan.j.williams@intel.com, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
+        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
+        j-keerthy@ti.com
+Subject: Re: [PATCH v2 07/14] dt-bindings: dma: ti: Add document for K3 UDMA
+Message-ID: <20190821175906.GA30618@bogus>
+References: <20190730093450.12664-1-peter.ujfalusi@ti.com>
+ <20190730093450.12664-8-peter.ujfalusi@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqKBWB2FiVjYo9O7DPw1JYJvan7uRgbR0VBG=FfHDVYdZQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190730093450.12664-8-peter.ujfalusi@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 03:27:39PM -0500, Rob Herring wrote:
-> > I see. If I understand the schema correctly, this should look like:
+On Tue, Jul 30, 2019 at 12:34:43PM +0300, Peter Ujfalusi wrote:
+> New binding document for
+> Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P).
 > 
-> Looks correct, but a couple of comments.
+> UDMA-P is introduced as part of the K3 architecture and can be found on
+> AM654 and j721e.
 > 
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > index 7294ac36f4c0..eb263d1ccf13 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -161,6 +161,22 @@ properties:
-> >          items:
-> >            - enum:
-> >                - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
-> > +              - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  .../devicetree/bindings/dma/ti/k3-udma.txt    | 170 ++++++++++++++++++
+>  include/dt-bindings/dma/k3-udma.h             |  10 ++
+>  2 files changed, 180 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-udma.txt
+>  create mode 100644 include/dt-bindings/dma/k3-udma.h
 > 
-> Is the SOM ever used alone? If not, then no point in listing this here.
+> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-udma.txt b/Documentation/devicetree/bindings/dma/ti/k3-udma.txt
+> new file mode 100644
+> index 000000000000..7f30fe583ade
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/dma/ti/k3-udma.txt
+> @@ -0,0 +1,170 @@
+> +* Texas Instruments K3 NAVSS Unified DMA – Peripheral Root Complex (UDMA-P)
+> +
+> +The UDMA-P is intended to perform similar (but significantly upgraded) functions
+> +as the packet-oriented DMA used on previous SoC devices. The UDMA-P module
+> +supports the transmission and reception of various packet types. The UDMA-P is
+> +architected to facilitate the segmentation and reassembly of SoC DMA data
+> +structure compliant packets to/from smaller data blocks that are natively
+> +compatible with the specific requirements of each connected peripheral. Multiple
+> +Tx and Rx channels are provided within the DMA which allow multiple segmentation
+> +or reassembly operations to be ongoing. The DMA controller maintains state
+> +information for each of the channels which allows packet segmentation and
+> +reassembly operations to be time division multiplexed between channels in order
+> +to share the underlying DMA hardware. An external DMA scheduler is used to
+> +control the ordering and rate at which this multiplexing occurs for Transmit
+> +operations. The ordering and rate of Receive operations is indirectly controlled
+> +by the order in which blocks are pushed into the DMA on the Rx PSI-L interface.
+> +
+> +The UDMA-P also supports acting as both a UTC and UDMA-C for its internal
+> +channels. Channels in the UDMA-P can be configured to be either Packet-Based or
+> +Third-Party channels on a channel by channel basis.
+> +
+> +Required properties:
+> +--------------------
+> +- compatible:		Should be
+> +			"ti,am654-navss-main-udmap" for am654 main NAVSS UDMAP
+> +			"ti,am654-navss-mcu-udmap" for am654 mcu NAVSS UDMAP
+> +			"ti,j721e-navss-main-udmap" for j721e main NAVSS UDMAP
+> +			"ti,j721e-navss-mcu-udmap" for j721e mcu NAVSS UDMAP
+> +- #dma-cells:		Should be set to <3>.
+> +			- The first parameter is a phandle to the remote PSI-L
+> +			  endpoint
 
-SoM alone: no, because it requires some type of base board. However it
-will be used by some customer designs with some amount of
-changes/addons.
+This is the phandle of the client? That's weird. More below.
 
-Looking at other aproaches, usually SoMs have their own compatible.  In
-such case - I should document it somewhere.
+> +			- The second parameter is the thread offset within the
+> +			  remote thread ID range
+> +			- The third parameter is the channel direction.
+> +- reg:			Memory map of UDMAP
+> +- reg-names:		"gcfg", "rchanrt", "tchanrt"
+> +- msi-parent:		phandle for "ti,sci-inta" interrupt controller
+> +- ti,ringacc:		phandle for the ring accelerator node
+> +- ti,psil-base:		PSI-L thread ID base of the UDMAP channels
+> +- ti,sci:		phandle on TI-SCI compatible System controller node
+> +- ti,sci-dev-id:	TI-SCI device id
+> +- ti,sci-rm-range-tchan: UDMA tchan resource list in pairs of type and subtype
+> +- ti,sci-rm-range-rchan: UDMA rchan resource list in pairs of type and subtype
+> +- ti,sci-rm-range-rflow: UDMA rflow resource list in pairs of type and subtype
+> +
+> +For PSI-L thread management the parent NAVSS node must have:
+> +- ti,sci:		phandle on TI-SCI compatible System controller node
+> +- ti,sci-dev-id:	TI-SCI device id of the NAVSS instance
+> +
+> +Remote PSI-L endpoint
+> +
+> +Required properties:
+> +--------------------
+> +- ti,psil-base:		PSI-L thread ID base of the endpoint
+> +
+> +Within the PSI-L endpoint node thread configuration subnodes must present with:
+> +psil-configX naming convention, where X is the thread ID offset.
+> +
+> +Configuration node Optional properties:
+> +--------------------
+> +- pdma,statictr-type:	In case the remote endpoint (PDMAs) requires StaticTR
 
+Property names are in the form [<vendor>,]prop-name. pdma is not a 
+vendor.
+
+> +			configuration:
+> +			- PSIL_STATIC_TR_XY (1): XY type of StaticTR
+> +			For endpoints without StaticTR the property is not
+> +			needed or to be set PSIL_STATIC_TR_NONE (0).
+> +- pdma,enable-acc32:	Force 32 bit access on peripheral port. Only valid for
+> +			XY type StaticTR, not supported on am654.
+> +			Must be enabled for threads servicing McASP with AFIFO
+> +			bypass mode.
+> +- pdma,enable-burst:	Enable burst access on peripheral port. Only valid for
+> +			XY type StaticTR, not supported on am654.
+> +- ti,channel-tpl:	Channel Throughput level:
+> +			0 / or not present - normal channel
+> +			1 - High Throughput channel
+> +			2 - Ultra High Throughput channel (j721e only)
+> +- ti,needs-epib:	If the endpoint require EPIB to be present in the
+> +			descriptor.
+> +- ti,psd-size:		Size of the Protocol Specific Data section of the
+> +			descriptor.
+> +
+> +Example:
+> +
+> +main_navss: main_navss {
+> +	compatible = "simple-bus";
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +	dma-coherent;
+> +	dma-ranges;
+> +	ranges;
+> +
+> +	ti,sci = <&dmsc>;
+> +	ti,sci-dev-id = <118>;
+> +
+> +	main_udmap: dma-controller@31150000 {
+> +		compatible = "ti,am654-navss-main-udmap";
+> +		reg =	<0x0 0x31150000 0x0 0x100>,
+> +			<0x0 0x34000000 0x0 0x100000>,
+> +			<0x0 0x35000000 0x0 0x100000>;
+> +		reg-names = "gcfg", "rchanrt", "tchanrt";
+> +		#dma-cells = <3>;
+> +
+> +		ti,ringacc = <&ringacc>;
+> +		ti,psil-base = <0x1000>;
+> +
+> +		interrupt-parent = <&main_udmass_inta>;
+> +
+> +		ti,sci = <&dmsc>;
+> +		ti,sci-dev-id = <188>;
+> +
+> +		ti,sci-rm-range-tchan = <0x6 0x1>, /* TX_HCHAN */
+> +					<0x6 0x2>; /* TX_CHAN */
+> +		ti,sci-rm-range-rchan = <0x6 0x4>, /* RX_HCHAN */
+> +					<0x6 0x5>; /* RX_CHAN */
+> +		ti,sci-rm-range-rflow = <0x6 0x6>; /* GP RFLOW */
+> +	};
+> +};
+> +
+> +psilss@340c000 {
+> +	/* PSILSS1 AASRC */
+> +	compatible = "ti,j721e-psilss";
+> +	reg = <0x0 0x0340c000 0x0 0x1000>;
+> +	reg-names = "config";
+> +
+> +	pdma_main_mcasp_g0: pdma_main_mcasp_g0 {
+> +		/* PDMA6 (PDMA_MCASP_G0) */
+> +		ti,psil-base = <0x4400>;
+> +
+> +		/* psil-config0 */
+> +		psil-config0 {
+> +			pdma,statictr-type = <PSIL_STATIC_TR_XY>;
+> +			pdma,enable-acc32;
+> +			pdma,enable-burst;
+> +		};
+> +	};
+> +};
+> +
+> +mcasp0: mcasp@02B00000 {
+
+I don't really follow what psilss and mcasp are...
+
+> +...
+> +	/* tx: PDMA_MAIN_MCASP_G0-0, rx: PDMA_MAIN_MCASP_G0-0 */
+> +	dmas = <&main_udmap &pdma_main_mcasp_g0 0 UDMA_DIR_TX>,
+> +	       <&main_udmap &pdma_main_mcasp_g0 0 UDMA_DIR_RX>;
+> +	dma-names = "tx", "rx";
+> +...
+> +};
+> +
+> +crypto: crypto@4E00000 {
+> +	compatible = "ti,sa2ul-crypto";
+> +...
+> +
+> +	/* tx: crypto_pnp-1, rx: crypto_pnp-1 */
+> +	dmas = <&main_udmap &crypto 0 UDMA_DIR_TX>,
+> +	       <&main_udmap &crypto 0 UDMA_DIR_RX>,
+> +	       <&main_udmap &crypto 1 UDMA_DIR_RX>;
+
+'thread offset' is 1?
+
+> +	dma-names = "tx", "rx1", "rx2";
+> +...
+> +	psil-config0 {
+
+Are these nodes 1-1 with the 'dmas' entries? I think these flags should 
+all be DMA cells. They are all configuration of DMA channels, right?
+
+Though I'm not sure about how that would work for the previous example.
+
+> +		ti,needs-epib;
+> +		ti,psd-size = <64>;
+> +	};
+> +
+> +	psil-config1 {
+> +		ti,needs-epib;
+> +		ti,psd-size = <64>;
+> +	};
+> +
+> +	psil-config2 {
+> +		ti,needs-epib;
+> +		ti,psd-size = <64>;
+> +	};
+> +};
+> diff --git a/include/dt-bindings/dma/k3-udma.h b/include/dt-bindings/dma/k3-udma.h
+> new file mode 100644
+> index 000000000000..f5c8f5d50491
+> --- /dev/null
+> +++ b/include/dt-bindings/dma/k3-udma.h
+> @@ -0,0 +1,10 @@
+> +#ifndef __DT_TI_UDMA_H
+> +#define __DT_TI_UDMA_H
+> +
+> +#define UDMA_DIR_TX		0
+> +#define UDMA_DIR_RX		1
+> +
+> +#define PSIL_STATIC_TR_NONE	0
+> +#define PSIL_STATIC_TR_XY	1
+> +
+> +#endif /* __DT_TI_UDMA_H */
+> -- 
+> Peter
 > 
-> > +          - const: fsl,imx6ul
-> > +
-> > +      - description: Kontron N6310 S Board
-> > +        items:
-> > +          - enum:
-> > +              - kontron,imx6ul-n6310-s
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 > 
-> This could be a 'const' instead. It depends if you think there will
-> ever be more than one entry.
-
-Indeed, I'll make this and entry below for S 43 board const.
-
-
-Best regards,
-Krzysztof
-
