@@ -2,72 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 417FA983AD
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 20:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCAA4983B4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 20:53:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728412AbfHUSvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 14:51:50 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35098 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727656AbfHUSvt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 14:51:49 -0400
-Received: by mail-ot1-f67.google.com with SMTP id g17so3072942otl.2;
-        Wed, 21 Aug 2019 11:51:49 -0700 (PDT)
+        id S1727539AbfHUSxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 14:53:43 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:46028 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727266AbfHUSxn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 14:53:43 -0400
+Received: by mail-ot1-f66.google.com with SMTP id m24so3027963otp.12;
+        Wed, 21 Aug 2019 11:53:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SQ8XRe9s8OgNGfo+pt6r4nD44qbzr6uqSHMXlrg8a9A=;
-        b=pHm0V85Gx2f2MaMZrETyU9gbC91YYQ31INNBTHyw5PZsbXkpKlXCWW7rv1NQ+7b24P
-         lmz/HZMKAEep7mCcqiP+OjjMB6jXSxvDudpSeyK79HYpxWDTbPopSU7ySr+DcKlOmY/I
-         ghLTG3aEGqCkFdm3r9ZVfk3XSuLJqOQlH5vg8ynb4gIBSdDN/qiz8GNkzeoAT1VzXMcO
-         usNIKcIpVqyqx//MU+IzJQY8qPMLXX2Inv54b4fef1/6AnaVVtbSDeymi5Z0cZvyes95
-         ndRSRLfFIMXMoYYlWyXy8iiUHmpE1Ih0kPLJ7jo2hQ7zlECp1mhLVsSexWVmPEfpysQx
-         MHaw==
-X-Gm-Message-State: APjAAAXhXqJRfOEGq/Lp6IxglTcR3F5cZvbAqsiUy6sHDPwuIec4DCXg
-        5FdgdQF+uMdlj2Nc80oy/Q==
-X-Google-Smtp-Source: APXvYqwXzBcWF0GaeFGTROhTog9npFAGaJLKDbu3sZo2ZVyY14+eb3RINfrhJbpuLC1LHOD67zdGYA==
-X-Received: by 2002:a9d:4c18:: with SMTP id l24mr26368397otf.168.1566413508806;
-        Wed, 21 Aug 2019 11:51:48 -0700 (PDT)
+        bh=35w30kfg8waZGig5Tgp5myLfGxs2v26s2C8ndD5dbgE=;
+        b=TkHm8wHG/DrKD8+PzQmZAWY8/Rf5AwrDYBzbFsMm4BWdtBz4J0usgb0gC3LOo9Z06e
+         yrcLk2GpJMU1PN6Y4iN5ZibtEruDF5rpq6NlagG+N8jYr/UerqCqYUujU7wt1TBQkaMr
+         qc8gGTnJU6YzJDyeZfKFI9hWbaiI0o6natn+nDHD5dRr/kzBB46KoUlzWlrTDKZk+ZQJ
+         nBVWXShgqdA2p/joqJfburolacvobRRDw91eKD8kR1gwrE1/GOGjCgo2musvJd4fNUr8
+         d282M1kwwEB+j9qVNdZfTbQ3P1XHgdazbPi2akxEgGNwmhPcW7jp1P0KelfI9Gapzpr+
+         p8Mw==
+X-Gm-Message-State: APjAAAVDom8bxwg0yCNDZtM1IkvG7/159BEFt29Z/MeRePALKfdjaz2a
+        JAa4Vo+W8+3cuhtJEZthTw==
+X-Google-Smtp-Source: APXvYqx6qzNVtFhlJaMG2/mMChFWJqtieUnJ35anReOkOofFGHrpDYvfpmmHired3qcAnjde3+xLIw==
+X-Received: by 2002:a05:6830:1345:: with SMTP id r5mr11259617otq.158.1566413622284;
+        Wed, 21 Aug 2019 11:53:42 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 20sm8282639otd.71.2019.08.21.11.51.48
+        by smtp.gmail.com with ESMTPSA id d27sm8061374otf.25.2019.08.21.11.53.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 11:51:48 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 13:51:47 -0500
+        Wed, 21 Aug 2019 11:53:41 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 13:53:41 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Gregory Clement <gregory.clement@bootlin.com>,
         Antoine Tenart <antoine.tenart@bootlin.com>,
         Maxime Chevallier <maxime.chevallier@bootlin.com>,
         Nadav Haklai <nadavh@marvell.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         Grzegorz Jaszczyk <jaz@semihalf.com>,
         Marcin Wojtas <mw@semihalf.com>,
         Stefan Chulski <stefanc@marvell.com>,
         Yan Markman <ymarkman@marvell.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 2/8] dt-bindings: ap806: Document AP807 clock compatible
-Message-ID: <20190821185147.GA25742@bogus>
-References: <20190805100310.29048-1-miquel.raynal@bootlin.com>
- <20190805100310.29048-3-miquel.raynal@bootlin.com>
+Subject: Re: [PATCH 2/3] dt-bindings: cp110: document the new CP115 pinctrl
+ compatible
+Message-ID: <20190821185341.GA29195@bogus>
+References: <20190805101607.29811-1-miquel.raynal@bootlin.com>
+ <20190805101607.29811-3-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190805100310.29048-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20190805101607.29811-3-miquel.raynal@bootlin.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  5 Aug 2019 12:03:04 +0200, Miquel Raynal wrote:
-> Add AP807 clock compatible to the bindings.
+On Mon,  5 Aug 2019 12:16:06 +0200, Miquel Raynal wrote:
+> From: Grzegorz Jaszczyk <jaz@semihalf.com>
 > 
+> A new compatible is going to be used for Armada CP115 pinctrl block,
+> document it.
+> 
+> Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
+> [<miquel.raynal@bootlin.com>: split the documentation out of the
+> driver commit]
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  .../bindings/arm/marvell/ap806-system-controller.txt      | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
+>  .../bindings/arm/marvell/cp110-system-controller.txt          | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
