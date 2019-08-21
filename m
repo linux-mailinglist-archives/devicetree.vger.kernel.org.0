@@ -2,181 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B9B497498
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 10:21:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 184AC974FD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 10:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726962AbfHUIVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 04:21:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44190 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726960AbfHUIVr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 04:21:47 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0FCE72332A;
-        Wed, 21 Aug 2019 08:21:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566375706;
-        bh=s6khMTMNTud2ZUJcSd/QD0CjoKrkbB6sXe6+ENqMLpQ=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=NYQThxDg3Xw5qjeOKJ99D5Y7m/pLFASeQyI4wOaAm/7U5FGVRbdm2vhKvIJZfbcoq
-         YkAvBDljPrTv+cK1bBBNoOhrkm9CrNATLoacKnVVvGB3Gep+2Nkvb1FHCadRzVVupc
-         PQILgKVL9i30Qz3Di3+BSziqHtg9GUZdlxcyKpxs=
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: [PATCH v2 2/2] dt-bindings: irq: Convert Allwinner NMI Controller to a schema
-Date:   Wed, 21 Aug 2019 10:21:38 +0200
-Message-Id: <20190821082138.11049-2-mripard@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190821082138.11049-1-mripard@kernel.org>
-References: <20190821082138.11049-1-mripard@kernel.org>
+        id S1727423AbfHUI3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 04:29:11 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:43976 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727367AbfHUI3L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 04:29:11 -0400
+Received: by mail-vs1-f68.google.com with SMTP id s5so809351vsi.10
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 01:29:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=SUO9A4l3IfX0BlcDjJGE9UTcfydGN+ATiaQcy0Ok630=;
+        b=mtHid4fIRJBF1KgK1ORVUgVi130Qk5dhCtY9XJmivMq1x4zdyLroy2KcuhKSZAxYjI
+         9XVAtxvhY0CoxhsHQDsrDYOryjyTQbG8+XhUxjKTkbrSUdL2cINzJmCLozYSWdxd0eDE
+         4Ds2x98xlIPrmc+nJjHWT51Ajpsc96ud33Jp3Gc6THTBgFMDnaSAOUr1XoySaWNPqNXT
+         BmiLogl44KCvqzEw7zUR42Qbjra4jHITvvpMye81DKIoVrxomHxc2uXP3AT0dca5UpJd
+         MXPp+OtygXsRPPdWSOe1X54tjIOQHJ/cHA+AFL105vdC0KST9FywtcwIncegrJoDOzQ0
+         VZjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=SUO9A4l3IfX0BlcDjJGE9UTcfydGN+ATiaQcy0Ok630=;
+        b=LKA+WWlvI62td2It6GiMrUZvVzZ2jfB5PRHIj249CF/orwPEjk0YMh9r2PLqaUwpg1
+         BqfNzYw8N757udx2cfxwrl2mcISs6+1Cv1ImCG2QX2Bf01szvRFqginVTEruDXLRUFBT
+         Ztq+qtCHomibEbGi86izkhXZXryXyvUZ0a4bC9vDlZAo7GOf9526l1IDfM/Wfp0KKeLN
+         0RLkU+Fc6eMuafR2uRY8KxGC9y7V4emy6TcAoHJxSk+BVUl8zZd9iBFFhjusSrNKNY3g
+         VXHLqdWnLpHhOfYccPGp8G2GkLnQgLe57a6oyC7DeVAL3jPVbqZmES5wyfvb345bOVJU
+         /Vpg==
+X-Gm-Message-State: APjAAAXbxsOEkQ6ps72JWOVm24LY4iTG6S30o30hLUlbEnGQcFmEAgR5
+        0mcbYoRxmw5maAZ4HwzuRjSNPssBo7aE6Sa/ZkODMg==
+X-Google-Smtp-Source: APXvYqzPlqc2KEsTtkq7U9A3ZJZcmf3UbjlldfSSa8wVqepcd4DoaZaQ2lc/Udlux9Sn+rpIu1TYvoN7MhVgwloZBFo=
+X-Received: by 2002:a67:2e0e:: with SMTP id u14mr20554451vsu.182.1566376150531;
+ Wed, 21 Aug 2019 01:29:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190820172351.24145-1-vkoul@kernel.org> <20190820172351.24145-7-vkoul@kernel.org>
+In-Reply-To: <20190820172351.24145-7-vkoul@kernel.org>
+From:   Amit Kucheria <amit.kucheria@verdurent.com>
+Date:   Wed, 21 Aug 2019 13:58:58 +0530
+Message-ID: <CAHLCerP-VP=SguQz4nA2ZFMiKBsNajO9E-CqQivdQm-iviqToQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/8] arm64: dts: qcom: sm8150-mtp: add base dts file
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maxime Ripard <maxime.ripard@bootlin.com>
+On Tue, Aug 20, 2019 at 10:55 PM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> This add base DTS file for sm8150-mtp and enables boot to console, adds
+> tlmm reserved range, resin node, volume down key and also includes pmic
+> file.
 
-The Allwinner SoCs have an interrupt controller called NMI supported in
-Linux, with a matching Device Tree binding.
+For some reason, your mailer sent out 2 patches 5/8. I was wondering
+why the patch 5 failed to apply, but it seems the two are identical.
+Lore seems to show the same.
 
-Now that we have the DT validation in place, let's convert the device tree
-bindings for that controller over to a YAML schemas.
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-
----
-
-Changes from v1:
-  - Remove the custom select and rely on the deprecated property instead
----
- .../allwinner,sun7i-a20-sc-nmi.yaml           | 70 +++++++++++++++++++
- .../allwinner,sunxi-nmi.txt                   | 29 --------
- 2 files changed, 70 insertions(+), 29 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sunxi-nmi.txt
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
-new file mode 100644
-index 000000000000..0eccf5551786
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Allwinner A20 Non-Maskable Interrupt Controller Device Tree Bindings
-+
-+maintainers:
-+  - Chen-Yu Tsai <wens@csie.org>
-+  - Maxime Ripard <maxime.ripard@bootlin.com>
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+properties:
-+  "#interrupt-cells":
-+    const: 2
-+    description:
-+      The first cell is the IRQ number, the second cell the trigger
-+      type as defined in interrupt.txt in this directory.
-+
-+  compatible:
-+    oneOf:
-+      - const: allwinner,sun6i-a31-r-intc
-+      - const: allwinner,sun6i-a31-sc-nmi
-+        deprecated: true
-+      - const: allwinner,sun7i-a20-sc-nmi
-+      - items:
-+        - const: allwinner,sun8i-a83t-r-intc
-+        - const: allwinner,sun6i-a31-r-intc
-+      - const: allwinner,sun9i-a80-sc-nmi
-+      - items:
-+        - const: allwinner,sun50i-a64-r-intc
-+        - const: allwinner,sun6i-a31-r-intc
-+      - items:
-+        - const: allwinner,sun50i-h6-r-intc
-+        - const: allwinner,sun6i-a31-r-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+required:
-+  - "#interrupt-cells"
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+
-+# FIXME: We should set it, but it would report all the generic
-+# properties as additional properties.
-+# additionalProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@1c00030 {
-+        compatible = "allwinner,sun7i-a20-sc-nmi";
-+        interrupt-controller;
-+        #interrupt-cells = <2>;
-+        reg = <0x01c00030 0x0c>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <0 0 4>;
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sunxi-nmi.txt b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sunxi-nmi.txt
-deleted file mode 100644
-index 24beadf7ba83..000000000000
---- a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sunxi-nmi.txt
-+++ /dev/null
-@@ -1,29 +0,0 @@
--Allwinner Sunxi NMI Controller
--==============================
--
--Required properties:
--
--- compatible : should be one of the following:
--  - "allwinner,sun7i-a20-sc-nmi"
--  - "allwinner,sun6i-a31-sc-nmi" (deprecated)
--  - "allwinner,sun6i-a31-r-intc"
--  - "allwinner,sun9i-a80-nmi"
--- reg : Specifies base physical address and size of the registers.
--- interrupt-controller : Identifies the node as an interrupt controller
--- #interrupt-cells : Specifies the number of cells needed to encode an
--  interrupt source. The value shall be 2. The first cell is the IRQ number, the
--  second cell the trigger type as defined in interrupt.txt in this directory.
--- interrupts: Specifies the interrupt line (NMI) which is handled by
--  the interrupt controller in the parent controller's notation. This value
--  shall be the NMI.
--
--Example:
--
--sc-nmi-intc@1c00030 {
--	compatible = "allwinner,sun7i-a20-sc-nmi";
--	interrupt-controller;
--	#interrupt-cells = <2>;
--	reg = <0x01c00030 0x0c>;
--	interrupt-parent = <&gic>;
--	interrupts = <0 0 4>;
--};
--- 
-2.21.0
-
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile       |  1 +
+>  arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 51 +++++++++++++++++++++++++
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+>
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 0a7e5dfce6f7..1964dacaf19b 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)       += sdm845-cheza-r2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sdm845-cheza-r3.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sdm845-db845c.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += sdm845-mtp.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)        += sm8150-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += qcs404-evb-1000.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)        += qcs404-evb-4000.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150-mtp.dts b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> new file mode 100644
+> index 000000000000..6f5777f530ae
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/sm8150-mtp.dts
+> @@ -0,0 +1,51 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) 2017-2019, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2019, Linaro Limited
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "sm8150.dtsi"
+> +#include "pm8150.dtsi"
+> +#include "pm8150b.dtsi"
+> +#include "pm8150l.dtsi"
+> +
+> +/ {
+> +       model = "Qualcomm Technologies, Inc. SM8150 MTP";
+> +       compatible = "qcom,sm8150-mtp";
+> +
+> +       aliases {
+> +               serial0 = &uart2;
+> +       };
+> +
+> +       chosen {
+> +               stdout-path = "serial0:115200n8";
+> +       };
+> +};
+> +
+> +&qupv3_id_1 {
+> +       status = "okay";
+> +};
+> +
+> +&pon {
+> +       pwrkey {
+> +               status = "okay";
+> +       };
+> +
+> +       resin {
+> +               compatible = "qcom,pm8941-resin";
+> +               interrupts = <0x0 0x8 0x1 IRQ_TYPE_EDGE_BOTH>;
+> +               debounce = <15625>;
+> +               bias-pull-up;
+> +               linux,code = <KEY_VOLUMEDOWN>;
+> +       };
+> +};
+> +
+> +&tlmm {
+> +       gpio-reserved-ranges = <0 4>, <126 4>;
+> +};
+> +
+> +&uart2 {
+> +       status = "okay";
+> +};
+> --
+> 2.20.1
+>
