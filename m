@@ -2,73 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C2CF9748E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 10:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74B9C974A2
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 10:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726217AbfHUIRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 04:17:53 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:39848 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726252AbfHUIRx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 04:17:53 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 085DB25B7C3;
-        Wed, 21 Aug 2019 18:17:51 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id B6EA49405AE; Wed, 21 Aug 2019 10:17:48 +0200 (CEST)
-Date:   Wed, 21 Aug 2019 10:17:48 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: sh-mobile-ceu: Rename bindings
- documentation file
-Message-ID: <20190821081746.lt6n4nhqnpyowzmi@verge.net.au>
-References: <20190819140544.19294-1-horms+renesas@verge.net.au>
- <20190820095205.xnthl7d7cpy7myq2@uno.localdomain>
- <20190820151930.pwi42cewslkchssf@verge.net.au>
+        id S1727110AbfHUIWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 04:22:41 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:56395 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727107AbfHUIWl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 04:22:41 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 628481BF206;
+        Wed, 21 Aug 2019 08:22:39 +0000 (UTC)
+Date:   Wed, 21 Aug 2019 09:31:54 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/3] dt-bindings: Convert Arm Mali GPUs to DT schema
+Message-ID: <20190821073154.jnqv4sysoyorv7vo@flea>
+References: <20190820195959.6126-1-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ye7watdg3ithuyxt"
 Content-Disposition: inline
-In-Reply-To: <20190820151930.pwi42cewslkchssf@verge.net.au>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190820195959.6126-1-robh@kernel.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 05:19:30PM +0200, Simon Horman wrote:
-> On Tue, Aug 20, 2019 at 11:52:05AM +0200, Jacopo Mondi wrote:
-> > Hi Simon,
-> > 
-> > On Mon, Aug 19, 2019 at 04:05:44PM +0200, Simon Horman wrote:
-> > > Renesas media binding documentation files uses a naming schema of
-> > > 'renesas,<module>.txt'. Rename the SH Mobile CEU file to match this pattern.
-> > >
-> > 
-> > The old soc-camera based sh-mobile-ceu driver has been removed one
-> > year ago and replaced by driver/media/platform/renesas-ceu.c whose
-> > bindings are described at
-> > Documentation/devicetree/bindings/media/renesas,ceu.txt
-> > 
-> > Should this file be removed instead of renamed?
-> 
-> Thanks,
-> 
-> I thought I had checked that but clearly I did not.
-> I agree the file should be removed and I'll send a revised patch
-> accordingly.
 
-The one lingering reference to renesas,sh-mobile-ceu I can see
-in the tree is its use in an example of two data pipelines in
-Documentation/devicetree/bindings/media/video-interfaces.txt
+--ye7watdg3ithuyxt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Could you suggest an alternative example?
+Hi Rob,
+
+On Tue, Aug 20, 2019 at 02:59:56PM -0500, Rob Herring wrote:
+> This series converts the various Arm Mali GPU bindings to use the DT
+> schema format.
+>
+> The Midgard and Bifrost bindings generate warnings on 'interrupt-names'
+> because there's all different ordering. The Utgard binding generates
+> warnings on Rockchip platforms because 'clock-names' order is reversed.
+
+Thank for taking care of that one, it was on my radar but I didn't
+really want to actually do it :)
+
+Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--ye7watdg3ithuyxt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVzzagAKCRDj7w1vZxhR
+xeOoAP0fDHwGDG+Pp7I7jUWueHcugddYVgoBEitC7+EXWXCGywD/cyBgtgtPE19N
+g0eZSCfigQtpIBBde4Gqm9+94pYLnwI=
+=UmRS
+-----END PGP SIGNATURE-----
+
+--ye7watdg3ithuyxt--
