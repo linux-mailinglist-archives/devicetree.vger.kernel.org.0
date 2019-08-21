@@ -2,185 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E19D97C7C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:21:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 250B597C86
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:21:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729510AbfHUOVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:21:12 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:36276 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729500AbfHUOVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:21:12 -0400
-Received: by mail-wm1-f68.google.com with SMTP id g67so2346776wme.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 07:21:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VILxG9P9ws6XZOAdFDkus8qgGuY3lecIRlYPtFgj9WU=;
-        b=ALAt9vKcOrUxqtlLvaArXeD0i2K7pTIcp65CDzCCzBE+nTT+Tf6zUkCyWFV2eHT0W/
-         RXwOlIfL+xEYFFyCdyrDfQ3KBGdXFm8NG4KAzwz4ouVDtL/5IE7U+tT7bLxhuXhndxDM
-         qrTlUWq81UOg5jLdwQtOWfFWCUZ/QDFhY+xR/f178K38mNMFfrlV6SUMu1S6q8wOVYWb
-         h1o9nxMaaHsgraLx5MrQ+cd5nsXx2BgDnVkaGuS6LmcQMb4s9jUTyquAkc/W1SWoWXJ2
-         scRolwzLqrU04OajJ//qBA+g6HLBWBhGC2G1SOtkpiOWXpDoNkfL9bP2xv/8cxl0xGjx
-         cBrA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VILxG9P9ws6XZOAdFDkus8qgGuY3lecIRlYPtFgj9WU=;
-        b=X/qi1Utbr+Gnyvjvks/Np+rumIi2LHi8iGRT2lfKM4XSwCz+DDEpMq+UPw1BHQnZfY
-         zcNhTUzbxAIXbsx7tqP7LmzA3kSgzBhDWY6yOKxHXoEEi4Myrq9W3ezk35Atz5JjS/nl
-         ln8EMBSgPX0VUubAhXJvQlZOiAo4L9EK/poWonfAouT78+SgdpG2EhJsIqAF39ML97uL
-         L3noVW+qlkSZuyi0K6/QWEYlDbKS5FjX8iA7vjR5LjcHgPH4sL0MLJL4coNkQE1JA01n
-         rLEbak5dbmjFfdGG5ImODRfzsUvl60pnnm2zRJ4AnvdQfmGuVYIGTE6oYzAhAUAgVVap
-         VqOw==
-X-Gm-Message-State: APjAAAVK4+PAaNfINo5lfTVPWCBreilrZex4mYfer7wG41apLojkeoEs
-        wyiXBFdSHiVBbJqodIaBwRJ23A==
-X-Google-Smtp-Source: APXvYqwKh9Y2bLzMXUTYcYlInnpK1fTupIoe1aanAgESLEmPjdL5D9kHXCy27XEcN2pzMgbJ+uj4dA==
-X-Received: by 2002:a05:600c:2292:: with SMTP id 18mr307916wmf.156.1566397269128;
-        Wed, 21 Aug 2019 07:21:09 -0700 (PDT)
-Received: from bender.baylibre.local (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id o9sm33418939wrm.88.2019.08.21.07.21.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 07:21:08 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 14/14] arm64: dts: meson: fix boards regulators states format
-Date:   Wed, 21 Aug 2019 16:20:43 +0200
-Message-Id: <20190821142043.14649-15-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190821142043.14649-1-narmstrong@baylibre.com>
-References: <20190821142043.14649-1-narmstrong@baylibre.com>
+        id S1729599AbfHUOVn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:21:43 -0400
+Received: from mail-eopbgr50070.outbound.protection.outlook.com ([40.107.5.70]:36487
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729455AbfHUOVj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 10:21:39 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=h1S7q5ePngZUV/W4Qv46NZUElPhsD7EuLeDC5d75fuGer4X9qCeyZKlfNHFiMvYu+NMutw6qXGTJon35qCZ4z3yEzTlQTZB8ySoxDxy6oze80Ct6ZKAWYCm8QTiHwkmzZgesfwGr28d9ywuDXbthgv46vrm5ZZvVniGQnWAeftejrECm7MN5IJsavHPzYb7E7XH7wIWNc1MrpDY0QFVOcyXfanH/rmHM2n8ppuEAANJWEPy5obrWpPCzHURK5cXRAiCrcXDvsUCHZfbeiyodunSkiMmvqKfmYe5VcQHOoLnEsO4PErDE3MRpHhreJPOdMPrKQRTzf3tHjJ4YaKM1dA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lUgh1gxEi6hlJCpGBTs/Cn1pMZHKoLhVVoKNMR1/LKw=;
+ b=P6rU4iPAZufvH5XMpA2zHl43Hzfotz2vUPIaUigHaMnKz+Wy+gczMYNHNK21jgCJ9JZfD4q4arcVKcCDf2NgxdGARuxYTRSjLxtjdLIwgtK6LG3C9RwQNMgxfPIMvaPBhuhBd6o4l7/Fe/I9CmWQtT+oRibRMAxT5dfvYDdIRvMADAR5s6XtnQWiWFcj4VlRq4klaat01bHvQwCcCRvPQg4j0kYyM7YT4LDqidTaALLVqVo7U9IDRmgpPvhs9UG+Vq8nxCP/saqSzukx5BL9ClbA+lQwnDXQmq3d9dpC2+Mu34r9RtR7yfl8F50jtnASjedab5HCAALZcPrCVUVBzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lUgh1gxEi6hlJCpGBTs/Cn1pMZHKoLhVVoKNMR1/LKw=;
+ b=aUAMqZhdMEIFCarGBvhrdV6gbkx5Ck47+ovQsWkckm+5NqC+7GyeIXfJGPvZRQWoAtEthmp5PpgKWB3KowCl+iCfYYt2NdnC730EJW77REyrWXCxh8HugNjnmaDDEs3/nXNxZgGgyEf7PtNt0BSJyh7Eld9M9QrVPi+i6bUnz9c=
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
+ VI1PR04MB6285.eurprd04.prod.outlook.com (20.179.27.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2178.19; Wed, 21 Aug 2019 14:21:36 +0000
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e]) by VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e%3]) with mapi id 15.20.2178.020; Wed, 21 Aug 2019
+ 14:21:36 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Martin Kepplinger <martink@posteo.de>
+CC:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?iso-8859-2?Q?Artur_=A6wigo=F1?= <a.swigon@partner.samsung.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [RFCv3 3/3] interconnect: imx: Add platform driver for imx8mm
+Thread-Topic: [RFCv3 3/3] interconnect: imx: Add platform driver for imx8mm
+Thread-Index: AQHVTEWKNFF2Yqu6YU66bS83yX49og==
+Date:   Wed, 21 Aug 2019 14:21:36 +0000
+Message-ID: <VI1PR04MB7023E441FEE0D9288CAC0F44EEAA0@VI1PR04MB7023.eurprd04.prod.outlook.com>
+References: <cover.1565088423.git.leonard.crestez@nxp.com>
+ <cf265add1502a75c4d6e6261ab1570c665e82c83.1565088423.git.leonard.crestez@nxp.com>
+ <a2e09a9b-574f-8410-423e-0b0d8ea5c2ab@posteo.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 97d71ead-b2cf-47f4-9294-08d72642e004
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB6285;
+x-ms-traffictypediagnostic: VI1PR04MB6285:
+x-ms-exchange-purlcount: 2
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB628544B532DFFF6943C82997EEAA0@VI1PR04MB6285.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 0136C1DDA4
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(396003)(39860400002)(346002)(376002)(136003)(199004)(189003)(76116006)(486006)(476003)(44832011)(54906003)(5660300002)(7416002)(52536014)(25786009)(446003)(53936002)(66066001)(4326008)(6246003)(229853002)(2906002)(14454004)(8936002)(74316002)(81166006)(305945005)(8676002)(81156014)(7736002)(316002)(66946007)(478600001)(55016002)(76176011)(26005)(6916009)(6506007)(102836004)(33656002)(6116002)(3846002)(7696005)(66556008)(99286004)(91956017)(186003)(71200400001)(71190400001)(9686003)(53546011)(64756008)(66476007)(66446008)(6436002)(966005)(86362001)(256004)(6306002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB6285;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: /7yWEx21AP9z4cw0B5oaoDMJ9jfp/PzqIUwzn5+bUToKiDNCD7A+NKvq6xDJ4TYJUrCIriBWFGVGm6rfZiWMk6MEz4KXsynz8lQhvAMa9MRX6Lu5Tm01OIZk1V4FBDfQLv4lsDQnPqwZNjVmMdJq3PNm0dmCGrRYYVrmRu1PQyXUHL90ZBT0pHqGRmHZN/fOznnEcS2xHmLx6yf7nw3IYZOia1hqOlYxvhhdzxXKZ7GqzhtQRCJDmmpIrNNED7G73auTmaWqdpY0Tqa8svxT9GEjB6pcGFZJOHaahrhUDnWxhYObUs0rfRXJuFMfHp6ff8UmEX0CAFwlAk5ILEoJUd4hwsCduoPJoygRDq67PNNxpovS4DXZGL8y4PEE+If2wBsQYBvgN2/qpuCM6UxeXijafyE9bAGdP9eH+0gqN2s=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97d71ead-b2cf-47f4-9294-08d72642e004
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Aug 2019 14:21:36.2916
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FrZ7Xx7TBNYiq9bwOG+znQ2VR+79bsLxqoeMr2v3jSdGzt1dUllkxUOuCZiI9P4sfTtoeyuKatdbWIJ5oL8JQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6285
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the following DT schemas check errors:
-meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
-meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
-meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
-meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
-meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts          | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts        | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts           | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi              | 4 ++--
- .../arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts   | 4 ++--
- 6 files changed, 12 insertions(+), 12 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-index 81780ffcc7f0..dc35e2982c71 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -65,8 +65,8 @@
- 		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <0>;
- 
--		states = <3300000 0
--			  1800000 1>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
- 	};
- 
- 	flash_1v8: regulator-flash_1v8 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-index b636912a2715..afcf8a9f667b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-@@ -75,8 +75,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 9972b1515da6..6039adda12ee 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -77,8 +77,8 @@
- 		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <0>;
- 
--		states = <3300000 0
--			  1800000 1>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
- 	};
- 
- 	vcc1v8: regulator-vcc1v8 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index e8f925871edf..89f7b41b0e9e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -46,8 +46,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 
- 		regulator-settling-time-up-us = <10000>;
- 		regulator-settling-time-down-us = <150000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-index 796baea7a0bf..c8d74e61dec1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-@@ -38,8 +38,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-index 26907ac82930..c433a031841f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-@@ -38,8 +38,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
--- 
-2.22.0
-
+On 21.08.2019 17:03, Martin Kepplinger wrote:=0A=
+> On 06.08.19 12:55, Leonard Crestez wrote:=0A=
+>> This adds a platform driver for the i.MX8MM SoC.=0A=
+>>=0A=
+>> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>=0A=
+>> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>=0A=
+>> ---=0A=
+>>   drivers/interconnect/imx/Kconfig          |   4 +=0A=
+>>   drivers/interconnect/imx/Makefile         |   1 +=0A=
+>>   drivers/interconnect/imx/imx8mm.c         | 114 ++++++++++++++++++++++=
+=0A=
+>>   include/dt-bindings/interconnect/imx8mm.h |  49 ++++++++++=0A=
+>>   4 files changed, 168 insertions(+)=0A=
+>>   create mode 100644 drivers/interconnect/imx/imx8mm.c=0A=
+>>   create mode 100644 include/dt-bindings/interconnect/imx8mm.h=0A=
+> =0A=
+> Do you plan to add such a driver for imx8mq too?=0A=
+=0A=
+Yes! The topology is different (serving different IP blocks) but no =0A=
+functional code changes are required between 8mm 8mn 8mq.=0A=
+=0A=
+I already wrote the code and tested it but didn't post because I want to =
+=0A=
+get the core parts in first. I periodically push my "full" =0A=
+work-in-progress to github:=0A=
+=0A=
+https://github.com/cdleonard/linux/commits/next_imx8mm_busfreq=0A=
+=0A=
+You need out-of-tree ATF changes or devfreq probe will fail:=0A=
+=0A=
+https://github.com/cdleonard/arm-trusted-firmware/commits/imx_2.0.y_busfreq=
+=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
