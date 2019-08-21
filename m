@@ -2,104 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2880D9827D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 20:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3287498283
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 20:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728050AbfHUSPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 14:15:00 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43519 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727780AbfHUSPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 14:15:00 -0400
-Received: by mail-oi1-f193.google.com with SMTP id y8so2302400oih.10
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 11:14:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=m5nuLuMsfkxZNIzHnYqhL4fj6+pQ1WScxNpfqvSjJaI=;
-        b=aF8BAD8kmmIdN2aA66WcFBo1q6xBRJ82/1z74YUKP3/ZJDF7s7/0ZpMuFKAdZqTCMt
-         bMymf/d6SNpdFvmIGxsyfvbwhnYWjz6a+kFMBqNSeSAuU1WaeAB02d4mgQ9V0YEvqple
-         wxj+B4tdrEmhKlXuWfev6IDt9xn5iW9rqGTblFUriTvJrQUaHwH3VMaMUVIWJxY6eTZY
-         M5TVSQezp7L8FfAVpAqPz/uMPvSKiIjV6YUCBc0Tw4bYKgBssUl2XVrXiFw9xGk2xMgu
-         EayahTumVm+0MXnRITBazCDqgmtXtMB5LlLjKAHl6B5FM5qQyFFN9E3VpElCsTzxD769
-         nuuA==
-X-Gm-Message-State: APjAAAUhIGjvE9BF5SpoMJ2EcC9om05S7e9Pf6rjgR1mxSfnyBPpnoHp
-        9n24nCL60HlkqtOmllCqCA==
-X-Google-Smtp-Source: APXvYqzwhKlJjpqtFevAij5ECQaAFh8CyzecW1FB3eA+DYuuqoWkt1MaKqYsC9EIdtIdbe4Chhf4HQ==
-X-Received: by 2002:aca:b989:: with SMTP id j131mr951663oif.147.1566411299295;
-        Wed, 21 Aug 2019 11:14:59 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id p11sm7874311oto.4.2019.08.21.11.14.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 11:14:58 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 13:14:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Carlo Caione <ccaione@baylibre.com>
-Cc:     srinivas.kandagatla@linaro.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, tglx@linutronix.de, jbrunet@baylibre.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor
- phandle
-Message-ID: <20190821181458.GA2886@bogus>
-References: <20190731082339.20163-1-ccaione@baylibre.com>
- <20190731082339.20163-3-ccaione@baylibre.com>
+        id S1727993AbfHUSP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 14:15:29 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:60112 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727780AbfHUSP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 14:15:29 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 52F6733D;
+        Wed, 21 Aug 2019 20:15:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1566411324;
+        bh=Lb+8Te0kG13/aH5BMLnQNZPSRzaVxlUBbel6YfAFews=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=qQQRutvFEN1Z7mwfR+jmFizZqhQ5bBYEfS7DASqWk9fYaR+9bG7E3j/LgzbaS1LqS
+         9OnMZOJU4IhgvZNbe3zKUQ5zsEY9M3EgZI56xiIN/cfjMCMv1kQxIi+CG6QM3yYbiy
+         q/YWhnXNN4HeaROIR0qrYIDw+JxqMwD/ovp/v8yU=
+Date:   Wed, 21 Aug 2019 21:15:18 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Subject: Re: [PATCH v2 2/3] dt-bindings: display/bridge: Add binding for NWL
+ mipi dsi host controller
+Message-ID: <20190821181518.GB26759@pendragon.ideasonboard.com>
+References: <cover.1565367567.git.agx@sigxcpu.org>
+ <9c906bb6592424acdb1a67447a482e010a113b49.1565367567.git.agx@sigxcpu.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190731082339.20163-3-ccaione@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9c906bb6592424acdb1a67447a482e010a113b49.1565367567.git.agx@sigxcpu.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 09:23:37AM +0100, Carlo Caione wrote:
-> Add a new property to link the nvmem driver to the secure-monitor. The
-> nvmem driver needs to access the secure-monitor to be able to access the
-> fuses.
+Hi Guido,
+
+Thank you for the patch.
+
+On Fri, Aug 09, 2019 at 06:24:22PM +0200, Guido Günther wrote:
+> The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
 > 
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
 > ---
->  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../bindings/display/bridge/nwl-dsi.yaml      | 155 ++++++++++++++++++
+>  1 file changed, 155 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> index 2e0723ab3384..f7b3ed74db54 100644
-> --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
-> @@ -4,6 +4,7 @@ Required properties:
->  - compatible: should be "amlogic,meson-gxbb-efuse"
->  - clocks: phandle to the efuse peripheral clock provided by the
->  	  clock controller.
-> +- secure-monitor: phandle to the secure-monitor node
->  
->  = Data cells =
->  Are child nodes of eFuse, bindings of which as described in
-> @@ -16,6 +17,7 @@ Example:
->  		clocks = <&clkc CLKID_EFUSE>;
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> +		secure-monitor = <&sm>;
->  
->  		sn: sn@14 {
->  			reg = <0x14 0x10>;
-> @@ -30,6 +32,10 @@ Example:
->  		};
->  	};
->  
-> +	sm: secure-monitor {
-> +		compatible = "amlogic,meson-gxbb-sm";
-> +	};
+> diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+> new file mode 100644
+> index 000000000000..5ed8bc4a4d18
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+> @@ -0,0 +1,155 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/imx-nwl-dsi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Northwest Logic MIPI-DSI on imx SoCs
+> +
+> +maintainers:
+> +  - Guido Gúnther <agx@sigxcpu.org>
+> +  - Robert Chiras <robert.chiras@nxp.com>
+> +
+> +description: |
+> +  NWL MIPI-DSI host controller found on i.MX8 platforms. This is a dsi bridge for
+> +  the SOCs NWL MIPI-DSI host controller.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +        - const: fsl,imx8mq-nwl-dsi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: DSI core clock
+> +      - description: RX_ESC clock (used in escape mode)
+> +      - description: TX_ESC clock (used in escape mode)
+> +      - description: PHY_REF clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: rx_esc
+> +      - const: tx_esc
+> +      - const: phy_ref
+> +
+> +  phys:
+> +    maxItems: 1
+> +    description:
+> +      A phandle to the phy module representing the DPHY
+> +
+> +  phy-names:
+> +    items:
+> +      - const: dphy
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +    description:
+> +      A phandle to the power domain
+> +
+> +  resets:
+> +    maxItems: 4
+> +    description:
+> +      A phandle to the reset controller
+> +
+> +  reset-names:
+> +    items:
+> +      - const: byte
+> +      - const: dpi
+> +      - const: esc
+> +      - const: pclk
+> +
+> +  mux-sel:
+> +    maxItems: 1
+> +    description:
+> +      A phandle to the MUX register set
 
-I guess I acked this a while back, but I'm not sure I would today. It 
-seems incomplete and a node with only a compatible string and no 
-resources doesn't need to be in DT. But that's already done...
+Did you mean the MUX syscon ? A phandle to a register set sounds a bit
+strange.
 
-There's no need for 'secure-monitor' anyways. Just do 
-'of_find_compatible_node(NULL, NULL, "amlogic,meson-gxbb-sm")' or search 
-for the driver directly. It's not like there's more than one secure 
-monitor...
+> +
+> +  port:
+> +    type: object
+> +    description:
+> +      A input put or output port node.
 
-Rob
+s/input put/input/
+
+> +
+> +  ports:
+> +    type: object
+> +    description:
+> +      A node containing DSI input & output port nodes with endpoint
+> +      definitions as documented in
+> +      Documentation/devicetree/bindings/graph.txt.
+> +
+> +patternProperties:
+> +  "^panel@[0-9]+$": true
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - fsl,imx8mq-nwl-dsi
+> +    then:
+> +      required:
+> +        - resets
+> +        - reset-names
+> +        - mux-sel
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - phys
+> +  - phy-names
+> +
+> +examples:
+> + - |
+> +
+> +   mipi_dsi: mipi_dsi@30a00000 {
+> +              #address-cells = <1>;
+> +              #size-cells = <0>;
+> +              compatible = "fsl,imx8mq-nwl-dsi";
+> +              reg = <0x30A00000 0x300>;
+> +              clocks = <&clk 163>, <&clk 244>, <&clk 245>, <&clk 164>;
+> +              clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
+> +              interrupts = <0 34 4>;
+> +              power-domains = <&pgc_mipi>;
+> +              resets = <&src 0>, <&src 1>, <&src 2>, <&src 3>;
+> +              reset-names = "byte", "dpi", "esc", "pclk";
+> +              mux-sel = <&iomuxc_gpr>;
+> +              phys = <&dphy>;
+> +              phy-names = "dphy";
+> +
+> +              panel@0 {
+> +                      compatible = "...";
+> +                      port@0 {
+> +                           panel_in: endpoint {
+> +                                     remote-endpoint = <&mipi_dsi_out>;
+> +                           };
+> +                      };
+> +              };
+> +
+> +              ports {
+> +                    #address-cells = <1>;
+> +                    #size-cells = <0>;
+> +
+> +                    port@0 {
+> +                           reg = <0>;
+> +                           mipi_dsi_in: endpoint {
+> +                                        remote-endpoint = <&lcdif_mipi_dsi>;
+> +                           };
+> +                    };
+> +                    port@1 {
+> +                           reg = <1>;
+> +                           mipi_dsi_out: endpoint {
+> +                                         remote-endpoint = <&panel_in>;
+> +                           };
+> +                    };
+> +              };
+> +      };
+
+-- 
+Regards,
+
+Laurent Pinchart
