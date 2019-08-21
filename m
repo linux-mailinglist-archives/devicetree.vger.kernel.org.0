@@ -2,146 +2,395 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EB4197C21
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5592C97C3B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 16:15:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbfHUOI1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 10:08:27 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:51849 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729135AbfHUOI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:08:26 -0400
-Received: by mail-wm1-f68.google.com with SMTP id k1so2297516wmi.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 07:08:26 -0700 (PDT)
+        id S1728981AbfHUOOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 10:14:00 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:46923 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728932AbfHUOOA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 10:14:00 -0400
+Received: by mail-pg1-f194.google.com with SMTP id m3so1371908pgv.13;
+        Wed, 21 Aug 2019 07:13:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=WMoQq0gYYHBS1Xnas7hCTSegRXzsqafpfXZ5srz2uTk=;
-        b=YfLhf8ZquALm7qNCcVznUga7apwr1IcXZitVwpaZNU9t/LLGfIYjvlB28m+Pu67YRj
-         VJFrE3u8UmRnOCMeORWAH5ZLV7LYf+QT8klXObinJIC8DanraQdhjMz5je7SPiKfQ3+A
-         FyTwr2pscMhfqnk0RgVtavO0NqEbeiMazwUUKZWjKhcU7WJ8l3PzYBti5nHpPyaSesjC
-         4rIaeqdCPrEs3Owk4bkKLnpudMIP/Be62vJwTOm+Vji7y4hTw54uVXEMzUaBunOXY+CI
-         cJh7D/6YbMwkHztFAMG1BcuF0oKPh9uPjKRL4dHE0qsRTGgYd4T+Xd649PcBYUvCPUoU
-         2LHA==
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=YhBSE2itRIVTx2T1GhEAoFfRNjBTNKOdD0tfgSl/ewM=;
+        b=TDKyp3ZLkp/M4tmQnhc8g8U4DVWk92WFyIJFZN9bOf//mjNzSi8PvBC5KCTzw9qzOx
+         bOYRxuyvkbac05M6s7XH4v3AKQ/9w342ZgfrTMOEKljDEZnBk69TSmpUAv1kXgjppNSZ
+         eD43gFyhvOOe8VagdE0RWll3s0rIm5zJ26F6XMUvarjWC72lSbPHN8SdnpjOgqdHBYZH
+         N4TjeshVlndlx1cVEymvGOcVYMV6R1XRZNjvE1KFGS9ZlHVuyHIsf4Af58Fwmu2vgxC1
+         vy6oN3mlrtildcR9VgxdBPteiRflIqFHbyIvPL/lQGlS6ls4DprfJnsZ+DDWgRvB7hk4
+         qLVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=WMoQq0gYYHBS1Xnas7hCTSegRXzsqafpfXZ5srz2uTk=;
-        b=f6Z/oskw94MmoEBDF4cgqyOGitzyNdLRdy4WDAKDe5C86rGzEgOkFmA6N1OHIqdLe7
-         FLGL6ANiz115BB7p0qi9M3w1StEkfUK91t89DePCzIvcUTAakSMVxPlYyqtFFVzvBagU
-         2oEw0qPOuGEGvYRiiu1lEq8YLHW8LpIKMjt+KNvdsykp9/0zXHhggP4UVWWd6QOzj5ey
-         WNU1kBZ8ZOg8CeUxFcnVbrEIuj/bhnGnnz19EfucB13w0NkJ3UO+AffYP5OZ8OffV29j
-         60b5ctskRfeoe71/8namIvSEB6Pwq9qhoA2loBLs8qn3E8BgsCrco8fSVoPnLWkvyxtJ
-         Bjdw==
-X-Gm-Message-State: APjAAAV6XClRvNCCzQ/xQugmxhcq4aE+Jt+qW6/sWyIRu/QaTxnk7BDX
-        4HbKDqpeYPtFpSFGH3H75DT4ZZh/Q8IwAQ==
-X-Google-Smtp-Source: APXvYqy8yJnCe5b+/p5Tz+wxWWxBSwTu4aD9ddSlLVzIEYAiCK77mDnFnjJmmJWShrjbsPLq/9CbtQ==
-X-Received: by 2002:a05:600c:48b:: with SMTP id d11mr219609wme.55.1566396504493;
-        Wed, 21 Aug 2019 07:08:24 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id t19sm156177wmi.29.2019.08.21.07.08.23
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=YhBSE2itRIVTx2T1GhEAoFfRNjBTNKOdD0tfgSl/ewM=;
+        b=eoxkcautbwmxpD8ttt7QMze315LFAZCh5jq3mkYN368RmCY09L6VZ5EwvQ09cGurkI
+         /pcroQ4eGH0rPgJsxc7D0CcvahX1/q1uP/eZQkv7gjIh8l7Ujyx9/fRrHwx1wmOyfD9G
+         oH0PX2hV79cURo7VGssUjdycvx6pUSaT6NOVlyAr6m8+Og+kecQnefWkWdD4/L/lSVJp
+         okZnQcOMHQF64CXkS4auZdACgxmmhcaT9jVK6gGOq3TEp0b9xOXk7VDDROHVKurLH1x+
+         /oHJAp1L1YUqiboMay6pa96OoExGKXAm1Wzw2Hfn/Hsz8asEKnzBHZA2F09xdVWVucqX
+         eOPA==
+X-Gm-Message-State: APjAAAU5IJVUYWgo0TGkybVPdO0HNVivQlq9EZ/yz9KWrSNAzQPnBUwR
+        aFParkMFGt+CGswCb+0pIsM=
+X-Google-Smtp-Source: APXvYqxw9UL/gpNT9rdTJ9+Gwo6MR1qECjLZiZilAEME8wmhVPT53xKLwg18n89h+MT/U+abQ4SdeQ==
+X-Received: by 2002:a63:f304:: with SMTP id l4mr21851744pgh.66.1566396838439;
+        Wed, 21 Aug 2019 07:13:58 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id g11sm31832284pfk.187.2019.08.21.07.13.56
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 21 Aug 2019 07:08:23 -0700 (PDT)
-Subject: Re: [PATCH 12/14] arm64: dts: meson-gxbb-nanopi-k2: add missing model
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     khilman@baylibre.com, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-References: <20190814142918.11636-1-narmstrong@baylibre.com>
- <20190814142918.11636-13-narmstrong@baylibre.com>
- <CAFBinCCJPm+FjMTK+-Qik4x-UtLibH3FTozHG8gMet0e5Rf9bg@mail.gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <48de2cf6-2bce-1a55-b08b-8f95bb8e9b3f@baylibre.com>
-Date:   Wed, 21 Aug 2019 16:08:23 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Wed, 21 Aug 2019 07:13:57 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 07:13:55 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     wim@linux-watchdog.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux@armlinux.org.uk, otavio@ossystems.com.br,
+        leonard.crestez@nxp.com, schnitzeltony@gmail.com,
+        u.kleine-koenig@pengutronix.de, jan.tuerk@emtrion.com,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V3 2/4] watchdog: Add i.MX7ULP watchdog support
+Message-ID: <20190821141355.GA10463@roeck-us.net>
+References: <1566353278-1884-1-git-send-email-Anson.Huang@nxp.com>
+ <1566353278-1884-2-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCCJPm+FjMTK+-Qik4x-UtLibH3FTozHG8gMet0e5Rf9bg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1566353278-1884-2-git-send-email-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2019 22:25, Martin Blumenstingl wrote:
-> On Wed, Aug 14, 2019 at 4:33 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> This fixes the following DT schemas check errors:
->> meson-gxbb-nanopi-k2.dt.yaml: /: 'model' is a required property
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 1 +
->>  1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
->> index c34c1c90ccb6..1a36d2bd2d21 100644
->> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
->> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dts
->> @@ -10,6 +10,7 @@
->>
->>  / {
->>         compatible = "friendlyarm,nanopi-k2", "amlogic,meson-gxbb";
->> +       model = "Nanopi K2";
-> this should be "FriendlyARM NanoPi K2" to be consistent with other
-> boards (for example meson-gxbb-odroidc2.dts)
+On Tue, Aug 20, 2019 at 10:07:56PM -0400, Anson Huang wrote:
+> The i.MX7ULP Watchdog Timer (WDOG) module is an independent timer
+> that is available for system use.
+> It provides a safety feature to ensure that software is executing
+> as planned and that the CPU is not stuck in an infinite loop or
+> executing unintended code. If the WDOG module is not serviced
+> (refreshed) within a certain period, it resets the MCU.
 > 
+> Add driver support for i.MX7ULP watchdog.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+> Changes since V2:
+> 	- add devm_add_action_or_reset to disable clk for remove action.
+> ---
+>  drivers/watchdog/Kconfig       |  13 +++
+>  drivers/watchdog/Makefile      |   1 +
+>  drivers/watchdog/imx7ulp_wdt.c | 246 +++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 260 insertions(+)
+>  create mode 100644 drivers/watchdog/imx7ulp_wdt.c
+> 
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index a8f5c81..d68e5b5 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -724,6 +724,19 @@ config IMX_SC_WDT
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called imx_sc_wdt.
+>  
+> +config IMX7ULP_WDT
+> +	tristate "IMX7ULP Watchdog"
+> +	depends on ARCH_MXC || COMPILE_TEST
+> +	select WATCHDOG_CORE
+> +	help
+> +	  This is the driver for the hardware watchdog on the Freescale
+> +	  IMX7ULP and later processors. If you have one of these
+> +	  processors and wish to have watchdog support enabled,
+> +	  say Y, otherwise say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called imx7ulp_wdt.
+> +
+>  config UX500_WATCHDOG
+>  	tristate "ST-Ericsson Ux500 watchdog"
+>  	depends on MFD_DB8500_PRCMU
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index b5a0aed..2ee352b 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -67,6 +67,7 @@ obj-$(CONFIG_TS4800_WATCHDOG) += ts4800_wdt.o
+>  obj-$(CONFIG_TS72XX_WATCHDOG) += ts72xx_wdt.o
+>  obj-$(CONFIG_IMX2_WDT) += imx2_wdt.o
+>  obj-$(CONFIG_IMX_SC_WDT) += imx_sc_wdt.o
+> +obj-$(CONFIG_IMX7ULP_WDT) += imx7ulp_wdt.o
+>  obj-$(CONFIG_UX500_WATCHDOG) += ux500_wdt.o
+>  obj-$(CONFIG_RETU_WATCHDOG) += retu_wdt.o
+>  obj-$(CONFIG_BCM2835_WDT) += bcm2835_wdt.o
+> diff --git a/drivers/watchdog/imx7ulp_wdt.c b/drivers/watchdog/imx7ulp_wdt.c
+> new file mode 100644
+> index 0000000..5d37957
+> --- /dev/null
+> +++ b/drivers/watchdog/imx7ulp_wdt.c
+> @@ -0,0 +1,246 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2019 NXP.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/init.h>
+> +#include <linux/io.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reboot.h>
+> +#include <linux/watchdog.h>
+> +
+> +#define WDOG_CS			0x0
+> +#define WDOG_CS_CMD32EN		BIT(13)
+> +#define WDOG_CS_ULK		BIT(11)
+> +#define WDOG_CS_RCS		BIT(10)
+> +#define WDOG_CS_EN		BIT(7)
+> +#define WDOG_CS_UPDATE		BIT(5)
+> +
+> +#define WDOG_CNT	0x4
+> +#define WDOG_TOVAL	0x8
+> +
+> +#define REFRESH_SEQ0	0xA602
+> +#define REFRESH_SEQ1	0xB480
+> +#define REFRESH		((REFRESH_SEQ1 << 16) | REFRESH_SEQ0)
+> +
+> +#define UNLOCK_SEQ0	0xC520
+> +#define UNLOCK_SEQ1	0xD928
+> +#define UNLOCK		((UNLOCK_SEQ1 << 16) | UNLOCK_SEQ0)
+> +
+> +#define DEFAULT_TIMEOUT	60
+> +#define MAX_TIMEOUT	128
+> +
+> +static bool nowayout = WATCHDOG_NOWAYOUT;
+> +module_param(nowayout, bool, 0000);
+> +MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
+> +		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
+> +
+> +struct imx7ulp_wdt_device {
+> +	struct notifier_block restart_handler;
+> +	struct watchdog_device wdd;
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +	int rate;
+> +};
+> +
+> +static inline void imx7ulp_wdt_enable(void __iomem *base, bool enable)
+> +{
+> +	u32 val = readl(base + WDOG_CS);
+> +
+> +	writel(UNLOCK, base + WDOG_CNT);
+> +	if (enable)
+> +		writel(val | WDOG_CS_EN, base + WDOG_CS);
+> +	else
+> +		writel(val & ~WDOG_CS_EN, base + WDOG_CS);
+> +}
+> +
+> +static inline bool imx7ulp_wdt_is_enabled(void __iomem *base)
+> +{
+> +	u32 val = readl(base + WDOG_CS);
+> +
+> +	return val & WDOG_CS_EN;
+> +}
+> +
+> +static int imx7ulp_wdt_ping(struct watchdog_device *wdog)
+> +{
+> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
+> +
+> +	writel(REFRESH, wdt->base + WDOG_CNT);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx7ulp_wdt_start(struct watchdog_device *wdog)
+> +{
+> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
+> +
+> +	imx7ulp_wdt_enable(wdt->base, true);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx7ulp_wdt_stop(struct watchdog_device *wdog)
+> +{
+> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
+> +
+> +	imx7ulp_wdt_enable(wdt->base, false);
+> +
+> +	return 0;
+> +}
+> +
+> +static int imx7ulp_wdt_set_timeout(struct watchdog_device *wdog,
+> +				   unsigned int timeout)
+> +{
+> +	struct imx7ulp_wdt_device *wdt = watchdog_get_drvdata(wdog);
+> +	u32 val = wdt->rate * timeout;
+> +
+> +	writel(UNLOCK, wdt->base + WDOG_CNT);
+> +	writel(val, wdt->base + WDOG_TOVAL);
+> +
+> +	wdog->timeout = timeout;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_ops imx7ulp_wdt_ops = {
+> +	.owner = THIS_MODULE,
+> +	.start = imx7ulp_wdt_start,
+> +	.stop  = imx7ulp_wdt_stop,
+> +	.ping  = imx7ulp_wdt_ping,
+> +	.set_timeout = imx7ulp_wdt_set_timeout,
+> +};
+> +
+> +static const struct watchdog_info imx7ulp_wdt_info = {
+> +	.identity = "i.MX7ULP watchdog timer",
+> +	.options  = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING |
+> +		    WDIOF_MAGICCLOSE,
+> +};
+> +
+> +static inline void imx7ulp_wdt_init(void __iomem *base, unsigned int timeout)
+> +{
+> +	u32 val;
+> +
+> +	/* unlock the wdog for reconfiguration */
+> +	writel_relaxed(UNLOCK_SEQ0, base + WDOG_CNT);
+> +	writel_relaxed(UNLOCK_SEQ1, base + WDOG_CNT);
+> +
+> +	/* set an initial timeout value in TOVAL */
+> +	writel(timeout, base + WDOG_TOVAL);
+> +	/* enable 32bit command sequence and reconfigure */
+> +	val = BIT(13) | BIT(8) | BIT(5);
+> +	writel(val, base + WDOG_CS);
+> +}
+> +
+> +static void imx7ulp_wdt_action(void *data)
+> +{
+> +	struct imx7ulp_wdt_device *imx7ulp_wdt = data;
+> +
+> +	clk_disable_unprepare(imx7ulp_wdt->clk);
 
-Exact, I'll fix it
+If you had passed imx7ulp_wdt->clk as parameter, the dereference here
+would not be necessary.
+
+> +}
+> +
+> +static int imx7ulp_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct imx7ulp_wdt_device *imx7ulp_wdt;
+> +	struct device *dev = &pdev->dev;
+> +	struct watchdog_device *wdog;
+> +	int ret;
+> +
+> +	imx7ulp_wdt = devm_kzalloc(dev, sizeof(*imx7ulp_wdt), GFP_KERNEL);
+> +	if (!imx7ulp_wdt)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, imx7ulp_wdt);
+> +
+> +	imx7ulp_wdt->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(imx7ulp_wdt->base))
+> +		return PTR_ERR(imx7ulp_wdt->base);
+> +
+> +	imx7ulp_wdt->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(imx7ulp_wdt->clk)) {
+> +		dev_err(dev, "Failed to get watchdog clock\n");
+> +		return PTR_ERR(imx7ulp_wdt->clk);
+> +	}
+> +
+> +	ret = clk_prepare_enable(imx7ulp_wdt->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = devm_add_action_or_reset(dev, imx7ulp_wdt_action, imx7ulp_wdt);
+> +	if (ret)
+> +		return ret;
+> +
+> +	imx7ulp_wdt->rate = 1000;
+
+I forgot to ask (sorry, I had noticed, but I guess I forgot).
+
+Why not clk_get_rate() ? If the clock rate is fixed, why bother with a 'rate'
+variable ? You could use a constant instead whereever it is used.
+
+Thanks
+Guenter
+
+> +	wdog = &imx7ulp_wdt->wdd;
+> +	wdog->info = &imx7ulp_wdt_info;
+> +	wdog->ops = &imx7ulp_wdt_ops;
+> +	wdog->min_timeout = 1;
+> +	wdog->max_timeout = MAX_TIMEOUT;
+> +	wdog->parent = dev;
+> +	wdog->timeout = DEFAULT_TIMEOUT;
+> +
+> +	watchdog_init_timeout(wdog, 0, dev);
+> +	watchdog_stop_on_reboot(wdog);
+> +	watchdog_stop_on_unregister(wdog);
+> +	watchdog_set_drvdata(wdog, imx7ulp_wdt);
+> +	imx7ulp_wdt_init(imx7ulp_wdt->base, wdog->timeout * imx7ulp_wdt->rate);
+> +
+> +	return devm_watchdog_register_device(dev, wdog);
+> +}
+> +
+> +static int __maybe_unused imx7ulp_wdt_suspend(struct device *dev)
+> +{
+> +	struct imx7ulp_wdt_device *imx7ulp_wdt = dev_get_drvdata(dev);
+> +
+> +	if (watchdog_active(&imx7ulp_wdt->wdd))
+> +		imx7ulp_wdt_stop(&imx7ulp_wdt->wdd);
+> +
+> +	clk_disable_unprepare(imx7ulp_wdt->clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused imx7ulp_wdt_resume(struct device *dev)
+> +{
+> +	struct imx7ulp_wdt_device *imx7ulp_wdt = dev_get_drvdata(dev);
+> +	u32 timeout = imx7ulp_wdt->wdd.timeout * imx7ulp_wdt->rate;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(imx7ulp_wdt->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (imx7ulp_wdt_is_enabled(imx7ulp_wdt->base))
+> +		imx7ulp_wdt_init(imx7ulp_wdt->base, timeout);
+> +
+> +	if (watchdog_active(&imx7ulp_wdt->wdd))
+> +		imx7ulp_wdt_start(&imx7ulp_wdt->wdd);
+> +
+> +	return 0;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(imx7ulp_wdt_pm_ops, imx7ulp_wdt_suspend,
+> +			 imx7ulp_wdt_resume);
+> +
+> +static const struct of_device_id imx7ulp_wdt_dt_ids[] = {
+> +	{ .compatible = "fsl,imx7ulp-wdt", },
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx7ulp_wdt_dt_ids);
+> +
+> +static struct platform_driver imx7ulp_wdt_driver = {
+> +	.probe		= imx7ulp_wdt_probe,
+> +	.driver		= {
+> +		.name	= "imx7ulp-wdt",
+> +		.pm	= &imx7ulp_wdt_pm_ops,
+> +		.of_match_table = imx7ulp_wdt_dt_ids,
+> +	},
+> +};
+> +module_platform_driver(imx7ulp_wdt_driver);
+> +
+> +MODULE_AUTHOR("Anson Huang <Anson.Huang@nxp.com>");
+> +MODULE_DESCRIPTION("Freescale i.MX7ULP watchdog driver");
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 2.7.4
+> 
