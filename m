@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0B0987F7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ED4998801
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:40:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726894AbfHUXji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 19:39:38 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:35406 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728371AbfHUXji (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:39:38 -0400
-Received: by mail-pf1-f195.google.com with SMTP id d85so2531796pfd.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:39:37 -0700 (PDT)
+        id S1730745AbfHUXki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 19:40:38 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:37605 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730744AbfHUXki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:40:38 -0400
+Received: by mail-pl1-f193.google.com with SMTP id bj8so2240869plb.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:40:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
          :mime-version;
-        bh=RoJLziPgJY9mLs+fRu2lKqTyEaUKSYiiOnVn7t9lzGo=;
-        b=znM/oClHkBR6pN7RG6wDMkQnx6pbsRIaoNYQc2ceYPiPEl7hq69Qo14MyokFBCw2Xe
-         FQ20sImAG9QaU+NbtIppKgexVWzDXK7u3I2TJkT7ch4fu0lhJyBfxEQnkTfHBDvjMSBK
-         SBjbbFjeIO1/Uug6SqmyTdB2c9tIYDcPZZc5y1rgtbC2kpInFxWKmChK9bLwT7GvdFbD
-         zXk4Lw6gFtHp+EJz64710+rpjuMARq6Zx3BHACB26ZRCfJoRZD+X+W7tc6iRJTi2dOXi
-         K6vTKICEJmVxIQEBRpUEaBsT6/s5TODqCjYQ7Ba0Bc8KTkwktqpTmNnvQe18Qg4JtDPr
-         HDmg==
+        bh=PdGmstYjj4UcbwNUp869OtVuxov1WvQjhoAxWHt7vJo=;
+        b=mzfyNIBHNRCTGRIjuIu6tTYOToZwmVVnG633lROYmZz407Fg369qEh433GRk9g46qr
+         qZET8vlULsVr/1I0eG4WGKcI+worE3kCeP24qFF+KIORfCcaQs8wyob4PbLoMIm1XpDf
+         WanKKGUVelZOnpW4sKm+nFUXJMthRLptAYWZmioldfobL4WbEeKjQzxZq4uhY3SxNFuD
+         N3vUAk0TwaNsSApmgBV3FFc/UXPQrBiGaG02+d+yUDGbCdSRiN8TghsG86TSNeadztFI
+         cT9z4ZPH3G821E42COUqMezutD91ivm1ulCeE0SkybxPehAzaryyXVVOA6mOBtYcSZOu
+         pVAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
          :message-id:mime-version;
-        bh=RoJLziPgJY9mLs+fRu2lKqTyEaUKSYiiOnVn7t9lzGo=;
-        b=cDYR6dCEttvLYwex4h/AJvswA9jRrgKR4qHa3pDUpIGTSMLoKNK0XMEz7z73pnYd1g
-         FLidAtfwIhibIwCZNRQFg3FvstSn0+XZc9aaqpMeYIy0Igb+Rn0ppu4b2fiZcCqCt5z+
-         Vjp+WiQ+9IhCGf3NvaS/rRQUk1NBEjPb1fKdIb/P64zYEOoaP8D/CgV90qfISK8poVks
-         EIpq1YdOIijUrpKeYVYarskB435A04hzo6B11SUFAVC5mR5ysnhQKAZQHKo7KOhHbbug
-         Ezc26PNSxHtSVWOSao8ESk81QgePPzJtzuWBhSAflL/mOEH1JDzw9lFahj++7RzF+MFi
-         Muyg==
-X-Gm-Message-State: APjAAAUcy9UaXxH5cc5j7rkNa6P96RaDqEfYvhfWYSkic6NhVdlud8OO
-        UGPFLKjre+GAl4EMj1QQvLcbwA==
-X-Google-Smtp-Source: APXvYqxbUoVvUvpMfuvIMtOftEIUIVFxHRXscpTOlg7Xd4x9nP3Em83MNj+d7QIroKxxfU76f9qS/w==
-X-Received: by 2002:a17:90a:d793:: with SMTP id z19mr2480702pju.36.1566430777357;
-        Wed, 21 Aug 2019 16:39:37 -0700 (PDT)
+        bh=PdGmstYjj4UcbwNUp869OtVuxov1WvQjhoAxWHt7vJo=;
+        b=sngUMUgkYY4xdk5dcB+OwAWGx5U8s82I9PFCkbVCHYjfhU8JBcBpmgsm+OLrla2VzL
+         lMk4S8jknD8/2qkepPdNfuUAFrVwqo9isKeW/eX33j+CqbGLt/DE94vCPRG2izlUmyfw
+         VFXKF1Mh1LO9JFC/ih1klY17kHec7bxeSKzRTMU9i04WuaFdZNqMxJHDST0sjEA8mjYe
+         21p5ngl0XaqPRImL9Sj6FsfKoUUTsnaRKIWfneX00uf4e494vCsYI2RbicWzq5ZAT3jC
+         1t97S1W8VhaGUfPmb2nMiZDp/yVS2ylHB4P4RtSajNC0LP8hefrFrZ+T36MHF9Be5a6o
+         XPjg==
+X-Gm-Message-State: APjAAAXcg5xgegVWWyZ+AnVAxL+MRBeYx1qYKaEkDNCHcQ7QwwEoBD9V
+        dAHEH3mQcY+jB56rw21Fmrslqg==
+X-Google-Smtp-Source: APXvYqzBpl28fBuk/sy46hFZ1+kwlWBC/dMV3X0jeBb3i46IAc+BgSafaFw9tf/2hKy8B3vf8N/ceQ==
+X-Received: by 2002:a17:902:e592:: with SMTP id cl18mr5064788plb.291.1566430837336;
+        Wed, 21 Aug 2019 16:40:37 -0700 (PDT)
 Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id s5sm24549074pfm.97.2019.08.21.16.39.36
+        by smtp.gmail.com with ESMTPSA id e17sm1122052pjt.6.2019.08.21.16.40.36
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Aug 2019 16:39:36 -0700 (PDT)
+        Wed, 21 Aug 2019 16:40:36 -0700 (PDT)
 From:   Kevin Hilman <khilman@baylibre.com>
 To:     Guillaume La Roque <glaroque@baylibre.com>, rui.zhang@intel.com,
         edubezval@gmail.com, daniel.lezcano@linaro.org
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v4 0/6] Add support of New Amlogic temperature sensor for G12 SoCs
-In-Reply-To: <20190821222421.30242-1-glaroque@baylibre.com>
-References: <20190821222421.30242-1-glaroque@baylibre.com>
-Date:   Wed, 21 Aug 2019 16:39:36 -0700
-Message-ID: <7hk1b65brb.fsf@baylibre.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: thermal: Add DT bindings documentation for Amlogic Thermal
+In-Reply-To: <20190821222421.30242-2-glaroque@baylibre.com>
+References: <20190821222421.30242-1-glaroque@baylibre.com> <20190821222421.30242-2-glaroque@baylibre.com>
+Date:   Wed, 21 Aug 2019 16:40:35 -0700
+Message-ID: <7hef1e5bpo.fsf@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
@@ -64,44 +64,14 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Guillaume La Roque <glaroque@baylibre.com> writes:
 
-> This patchs series add support of New Amlogic temperature sensor and minimal
-> thermal zone for SEI510 and ODROID-N2 boards.
+> Adding the devicetree binding documentation for the Amlogic temperature
+> sensor found in the Amlogic Meson G12 SoCs.
+> the G12A  and G12B SoCs are supported.
 >
-> First implementation was doing on IIO[1] but after comments i move on thermal framework.
-> Formulas and calibration values come from amlogic.
->
-> Changes since v3:
->   - Add cooling map and trip point for hot type
->   - move compatible on g12a instead of g12 to be aligned with others
->   - add all reviewer, sorry for this mistake
->
-> Changes since v2:
->   - fix yaml documention
->   - remove unneeded status variable for temperature-sensor node
->   - rework driver after Martin review
->   - add some information in commit message
->
-> Changes since v1:
->   - fix enum vs const in documentation
->   - fix error with thermal-sensor-cells value set to 1 instead of 0
->   - add some dependencies needed to add cooling-maps
->
-> Dependencies :
-> - patch 3,4 & 5: depends on Neil's patch and series :
->               - missing dwc2 phy-names[2]
->               - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
->
-> [1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
-> [2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
-> [3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
-> [4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
-> [5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
->
->
-> Tested-by: Christian Hewitt <christianshewitt@gmail.com>
-> Tested-by: Kevin Hilman <khilman@baylibre.com>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-nit: you should put these on the individual patches, since the cover
-letter does not get applied to any tree, any tags here get lost.
+nit: put your sign-off at the end.  The tags you collect from
+reviewers/testers should go first.
 
 Kevin
