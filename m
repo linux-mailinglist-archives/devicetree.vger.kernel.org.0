@@ -2,120 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 760279879C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86BDF987E3
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:29:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731313AbfHUXCv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 19:02:51 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:34352 "EHLO
+        id S1730440AbfHUX3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 19:29:55 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:36867 "EHLO
         mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730022AbfHUXCv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:02:51 -0400
-Received: by mail-pf1-f193.google.com with SMTP id b24so2476521pfp.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:02:51 -0700 (PDT)
+        with ESMTP id S1729303AbfHUX3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:29:54 -0400
+Received: by mail-pf1-f193.google.com with SMTP id y9so2136796pfl.4
+        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:29:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=TmDOJvhPrJk/RAKywvPdX5bKVeeqGQtRvXF6G/yD7Ts=;
-        b=MryI/zTQcpw1Y7z90icizIK6FBIzgHejqlorJGJcBuRYuCoQgZfYwz2SHvI14xthV2
-         VGpADbJLiy9mh9zsJDWpjh39gVW8n7JdqtcVhowxOmr7akF1xhwC5PxJFMeJrxugq3PV
-         8qfD2zsEa7wOrXG0R4PyQWoFwKtiN55x8GLWBrK/kooZEJ9mx5pEj75VZyULtSNPfMeQ
-         XNjlA/MaESQuoz7S7VZN+l8AZPr2pu80HCZa4rTPHOlQLO93OyacnVz5IuLw/MdcHW23
-         bV2XyPnr8orjJbyHvVyEBNnqjtwMCo5SxkCuUXp09n0F7I0hO0UmsrCggXybhKou3Lx4
-         ASng==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=Ce79tt1EdjWmHjsbOeVM0d2spReWneK1/ievz/5bOQ0=;
+        b=SRJayQ+vvdMXVmtPpjEFclS7e2GZ1M9sa9zF2sf57HNJmzZnN2WRqclWakGVnPGLN7
+         7GYwJ+WTjKHLab1MxehDKQSHs+KMnpzraeh5+CSSW+LhI1avIb7Evi76Syf5qZfJa6Sw
+         L6gZ6SV1gh2iCsdxfxWvzc6oAxu9ug2lsdcMT168c60XJZwz5hCaB9UieV0oaSvD+0rP
+         LU75UaFgyt7GyVC9h8mhJ+2nSDu6Ef8kDqTDpWLmyYk9Y25SXLi9hvNtUGbnIj7WjVUP
+         9sqsHIqaBqGrMWL2EboclseGxi6y8M0YQXDC/jjG1iOUy+AdFQHbGLEdbYTFlpWScRNY
+         2bSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TmDOJvhPrJk/RAKywvPdX5bKVeeqGQtRvXF6G/yD7Ts=;
-        b=fp2cxv80WBuxHZj4y42557pnyxgNmq33+T0ExOaMImk7W5Tf0JhJ9BNSa2oJFCuwJq
-         Tl+Rw1201CDNEXGXFy+pCwJk0TPWdzoKZhSRmh/oYULdEAUPyCh8jBKJa+BFrNReUMv+
-         1fkoCP8DYj3FAboMf4DY2S84kaLQfkcEFfWJN3HvBKTBeHFRsL82ZPTpyhZxSwuKrSQM
-         fh7AwqcG4lSqVwFMRyZ7zEAPVeQmr+2XDjlj1sYRk2aGQLke0TqyTmYBeqMZyGhGGMz6
-         UA41ljmI3cs6uAfwNvrty1MDwn9NXCJoFVR4mG4dnJoxsgLmQpz6GnJSQJ9EFAHxUV7a
-         grcQ==
-X-Gm-Message-State: APjAAAXqJKg45P87ztn5o8a0vi4zJQIztWuYiBKDdio8fGuq8sPCTFkD
-        J4UDXpsPBbWTkVjUnQumjEBu6A==
-X-Google-Smtp-Source: APXvYqxI+UkypCWR85p3O8GUubkvI6VHaPvdHe/3j4/MwZxP7+qRgAA8AxavnktcihBGMVXybm8JGA==
-X-Received: by 2002:a62:7d93:: with SMTP id y141mr38186495pfc.164.1566428570694;
-        Wed, 21 Aug 2019 16:02:50 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id d189sm31101011pfd.165.2019.08.21.16.02.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 16:02:50 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 16:04:37 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/8] arm64: dts: qcom: sm8150: Add SM8150 DTS
-Message-ID: <20190821230437.GC1892@tuxbook-pro>
-References: <20190821184239.12364-1-vkoul@kernel.org>
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=Ce79tt1EdjWmHjsbOeVM0d2spReWneK1/ievz/5bOQ0=;
+        b=epckbS+lxYiq5ZTE5bNz9d2Uo6885l0GHKiX3K2P61HGppXEKx+T+BagIrnCTJZUaO
+         zHhn70fXhEut+UNzLvAxeIqH5lm3wzLdo/8cIlu1V5w1dhN7xXfIDllJBsmPKZl9MnPJ
+         5Hv0Jn4uD6I7CZLiXpkPlJWMUdV1R3PVCsKfAQWM8tKWN56t8r1oeYjvH+eg9jhCDpIb
+         gfEsxIJ+tIZZioH8cWD2bX0x3Zi0UnVzqbmDiyiPVT4LVDQBqbQv1Q+gif5y2aCnikqQ
+         yCTJxOVYjJOi7kad/edl0FXjfEg2TaY/LmqRCBk7vGBUf1xqxqbcynfY9hY4YvnZqAFv
+         FiZA==
+X-Gm-Message-State: APjAAAV4cJWaeKU+9SwnxNCZNs8waz2f9TCT+7az9xy9KQ2YI3aIVvk/
+        x5RUhxf7WNWS7+Bb8FXvDWeBfw==
+X-Google-Smtp-Source: APXvYqzkdm/ufbDMjz6NTJ8+3pzRUrft6UEGKjkNpjv+C03jHIb4CVd+utTFJWjOWcDCpwBAbC0G3Q==
+X-Received: by 2002:a17:90a:d082:: with SMTP id k2mr2464206pju.85.1566430193696;
+        Wed, 21 Aug 2019 16:29:53 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id z19sm20864303pgv.35.2019.08.21.16.29.52
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 21 Aug 2019 16:29:53 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Guillaume La Roque <glaroque@baylibre.com>, rui.zhang@intel.com,
+        edubezval@gmail.com, daniel.lezcano@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
+In-Reply-To: <20190821222421.30242-5-glaroque@baylibre.com>
+References: <20190821222421.30242-1-glaroque@baylibre.com> <20190821222421.30242-5-glaroque@baylibre.com>
+Date:   Wed, 21 Aug 2019 16:29:52 -0700
+Message-ID: <7hsgpu5c7j.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190821184239.12364-1-vkoul@kernel.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 21 Aug 11:42 PDT 2019, Vinod Koul wrote:
+Guillaume La Roque <glaroque@baylibre.com> writes:
 
-> This series adds DTS for SM8150, PMIC PM8150, PM8150B, PM8150L and
-> the MTP for SM8150.
-> 
+> Add minimal thermal zone for two temperature sensor
+> One is located close to the DDR and the other one is
+> located close to the PLLs (between the CPU and GPU)
+>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> ---
+>  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> index c9fa23a56562..35d2ebbd6d4e 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/input/input.h>
+>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  / {
+>  	compatible = "seirobotics,sei510", "amlogic,g12a";
+> @@ -33,6 +34,67 @@
+>  		ethernet0 = &ethmac;
+>  	};
+>  
+> +	thermal-zones {
+> +		cpu-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&cpu_temp>;
+> +
+> +			trips {
+> +				cpu_hot: cpu-hot {
+> +					temperature = <85000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "hot";
+> +				};
+> +
+> +				cpu_critical: cpu-critical {
+> +					temperature = <110000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&cpu_hot>;
+> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +
+> +				map1 {
+> +					trip = <&cpu_critical>;
+> +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		ddr-thermal {
+> +			polling-delay = <1000>;
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&ddr_temp>;
+> +
+> +			trips {
+> +				ddr_critical: ddr-critical {
+> +					temperature = <110000>; /* millicelsius */
+> +					hysteresis = <2000>; /* millicelsius */
+> +					type = "critical";
+> +				};
+> +			};
+> +
+> +			cooling-maps {
+> +				map {
+> +					trip = <&ddr_critical>;
+> +					cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+>  	mono_dac: audio-codec-0 {
+>  		compatible = "maxim,max98357a";
+>  		#sound-dai-cells = <0>;
+> @@ -321,6 +383,7 @@
+>  	operating-points-v2 = <&cpu_opp_table>;
+>  	clocks = <&clkc CLKID_CPU_CLK>;
+>  	clock-latency = <50000>;
+> +	#cooling-cells = <2>;
+>  };
+>  
+>  &cpu1 {
+> @@ -328,6 +391,7 @@
+>  	operating-points-v2 = <&cpu_opp_table>;
+>  	clocks = <&clkc CLKID_CPU_CLK>;
+>  	clock-latency = <50000>;
+> +	#cooling-cells = <2>;
+>  };
+>  
+>  &cpu2 {
+> @@ -335,6 +399,7 @@
+>  	operating-points-v2 = <&cpu_opp_table>;
+>  	clocks = <&clkc CLKID_CPU_CLK>;
+>  	clock-latency = <50000>;
+> +	#cooling-cells = <2>;
+>  };
+>  
+>  &cpu3 {
+> @@ -342,6 +407,7 @@
+>  	operating-points-v2 = <&cpu_opp_table>;
+>  	clocks = <&clkc CLKID_CPU_CLK>;
+>  	clock-latency = <50000>;
+> +	#cooling-cells = <2>;
+>  };
+>  
+>  &cvbs_vdac_port {
+> @@ -368,6 +434,10 @@
+>  	status = "okay";
+>  };
+>  
+> +&mali {
+> +	#cooling-cells = <2>;
+> +};
+> +
 
-Applied, with Amit's acks.
+Is there a reason these #cooling-cells properties belong in the SoC
+.dtsi and not the board .dts.  Seems like you'll have to repeat this in
+every board .dts which doesn't seem necessary.
 
-> Changes in v4:
->  - Update the address and size cell to 2 and extend ranges and describe DMA
->    space
->  - Fix node location of spmi per sorted address
->  - Add Niklas's review tags
-> 
-> Changes in v3:
->  - Fix copyright comment style to Linux kernel style
->  - Make property values all hex or decimal
->  - Fix patch titles and logs and make them consistent
->  - Fix line breaks
-> 
-> Changes in v2:
->  - Squash patches
->  - Fix comments given by Stephen namely, lowercase for hex numbers,
->    making rpmhcc have xo_board as parent, rename pon controller to
->    power-on controller, make pmic nodes as disabled etc.
->  - removed the dependency on clk defines and use raw numbers
-> 
-> Vinod Koul (8):
->   arm64: dts: qcom: sm8150: Add base dts file
->   arm64: dts: qcom: pm8150: Add base dts file
->   arm64: dts: qcom: pm8150b: Add base dts file
->   arm64: dts: qcom: pm8150l: Add base dts file
->   arm64: dts: qcom: sm8150-mtp: Add base dts file
->   arm64: dts: qcom: sm8150-mtp: Add regulators
->   arm64: dts: qcom: sm8150: Add reserved-memory regions
->   arm64: dts: qcom: sm8150: Add apps shared nodes
-> 
->  arch/arm64/boot/dts/qcom/Makefile       |   1 +
->  arch/arm64/boot/dts/qcom/pm8150.dtsi    |  97 +++++
->  arch/arm64/boot/dts/qcom/pm8150b.dtsi   |  86 +++++
->  arch/arm64/boot/dts/qcom/pm8150l.dtsi   |  80 ++++
->  arch/arm64/boot/dts/qcom/sm8150-mtp.dts | 375 ++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sm8150.dtsi    | 482 ++++++++++++++++++++++++
->  6 files changed, 1121 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/pm8150.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/pm8150b.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/pm8150l.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8150-mtp.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sm8150.dtsi
-> 
-> -- 
-> 2.20.1
-> 
+Same comment for patch 5/6
+
+Kevin
