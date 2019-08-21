@@ -2,80 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D3C897372
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 09:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 820F5973A9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 09:36:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728322AbfHUHbT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 03:31:19 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:49761 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728310AbfHUHbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 03:31:18 -0400
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i0L5N-0003b4-3C; Wed, 21 Aug 2019 09:31:13 +0200
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i0L5H-0005NO-GZ; Wed, 21 Aug 2019 09:31:07 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH v8 13/13] media: tvp5150: make debug output more readable
-Date:   Wed, 21 Aug 2019 09:31:03 +0200
-Message-Id: <20190821073103.19634-14-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190821073103.19634-1-m.felsch@pengutronix.de>
-References: <20190821073103.19634-1-m.felsch@pengutronix.de>
+        id S1727339AbfHUHgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 03:36:21 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:36226 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727210AbfHUHgV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 03:36:21 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7L7aEgv094718;
+        Wed, 21 Aug 2019 02:36:14 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566372974;
+        bh=t9ppVPq7IC2TVAGLlqMcOquzMEQC6ajE6CYvZHvX3Vw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=XuxHz71emVTmDAoK4lUezNKGhzbIt/mHV1V2ilZUZnGhmzoYABWU+5lcZ93OBH1Oe
+         nVwlgh4JEiX/fDH3mMkrZOgDNotSlVEz3HzkVxAGGroqA1E2YWSVzT7w8f4LaU5Gfm
+         QCPUi0AYYSXXkb5tudY3cyUuI3ZZkD3i4JDiDXwo=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7L7aESb104418
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 21 Aug 2019 02:36:14 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 21
+ Aug 2019 02:36:14 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 21 Aug 2019 02:36:14 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7L7aCOA058793;
+        Wed, 21 Aug 2019 02:36:12 -0500
+Subject: Re: [PATCH 7/8] soc: ti: omap-prm: add dra7 PRM data
+To:     Suman Anna <s-anna@ti.com>, <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+ <1565164139-21886-8-git-send-email-t-kristo@ti.com>
+ <0e8aa351-4c58-ab6c-890f-094118b812ac@ti.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <67a06e0c-f85d-bdc4-aedf-9a3c0e80fc6a@ti.com>
+Date:   Wed, 21 Aug 2019 10:36:11 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <0e8aa351-4c58-ab6c-890f-094118b812ac@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The debug output for tvp5150_selmux() isn't really intuitive. Register
-values are printed decimal formatted and the input/output driver states
-are printed as enum. Even more the "normal" output enum mapps to zero so
-a active output will printing output=0 and a inactive output=1.
+On 20.8.2019 22.03, Suman Anna wrote:
+> Hi Tero,
+> 
+> On 8/7/19 2:48 AM, Tero Kristo wrote:
+>> Add PRM data for dra7 family of SoCs.
+>>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> ---
+>>   drivers/soc/ti/omap_prm.c | 26 ++++++++++++++++++++++++++
+>>   1 file changed, 26 insertions(+)
+>>
+>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
+>> index fadfc7f..05b7749 100644
+>> --- a/drivers/soc/ti/omap_prm.c
+>> +++ b/drivers/soc/ti/omap_prm.c
+>> @@ -73,6 +73,31 @@ struct omap_prm_data omap4_prm_data[] = {
+>>   	{ },
+>>   };
+>>   
+>> +static struct omap_prm_data dra7_prm_data[] = {
+>> +	{ .name = "mpu", .base = 0x4ae06300, .pwstst = 0x4 },
+>> +	{ .name = "dsp1", .base = 0x4ae06400, .pwstst = 0x4, .rstctl = 0x10, .rstst = 0x14 },
+>> +	{ .name = "ipu", .base = 0x4ae06500, .pwstst = 0x4, .rstctl = 0x10, .rstst = 0x14, .clkdm_name = "ipu1" },
+>> +	{ .name = "coreaon", .base = 0x4ae06628, .pwstst = 0x4 },
+> 
+> Public TRM marks this region Reserved. Do you need it for anything?
+This is copied from existing PRM data from kernel. However, I'll ditch 
+these for now and only retain the reset enabled domains.
 
-Change this by brinting the register values hex formatted and the states
-as more readable string.
+> 
+>> +	{ .name = "core", .base = 0x4ae06700, .pwstst = 0x4, .rstctl = 0x210, .rstst = 0x214, .clkdm_name = "ipu2" },
+>> +	{ .name = "iva", .base = 0x4ae06f00, .pwstst = 0x4 },
+> 
+> Missing rstctrl and rstst offsets.
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
----
- drivers/media/i2c/tvp5150.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Will add.
 
-diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-index b48b08421993..240df920b521 100644
---- a/drivers/media/i2c/tvp5150.c
-+++ b/drivers/media/i2c/tvp5150.c
-@@ -300,9 +300,12 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
- 		break;
- 	}
- 
--	dev_dbg_lvl(sd->dev, 1, debug, "Selecting video route: route input=%i, output=%i => tvp5150 input=%i, opmode=%i\n",
--			decoder->input, decoder->output,
--			input, opmode);
-+	dev_dbg_lvl(sd->dev, 1, debug,
-+		    "Selecting video route: route input=%s, output=%s => tvp5150 input=0x%02x, opmode=0x%02x\n",
-+		    decoder->input == 0 ? "aip1a" :
-+		    decoder->input == 2 ? "aip1b" : "svideo",
-+		    decoder->output == 0 ? "normal" : "black-frame-gen",
-+		    input, opmode);
- 
- 	regmap_write(decoder->regmap, TVP5150_OP_MODE_CTL, opmode);
- 	regmap_write(decoder->regmap, TVP5150_VD_IN_SRC_SEL_1, input);
--- 
-2.20.1
+> 
+>> +	{ .name = "cam", .base = 0x4ae07000, .pwstst = 0x4 },
+>> +	{ .name = "dss", .base = 0x4ae07100, .pwstst = 0x4 },
+>> +	{ .name = "gpu", .base = 0x4ae07200, .pwstst = 0x4 },
+>> +	{ .name = "l3init", .base = 0x4ae07300, .pwstst = 0x4, .rstctl = 0x10, .rstst = 0x14 },
+>> +	{ .name = "l4per", .base = 0x4ae07400, .pwstst = 0x4 },
+>> +	{ .name = "custefuse", .base = 0x4ae07600, .pwstst = 0x4 },
+>> +	{ .name = "wkupaon", .base = 0x4ae07724, .pwstst = 0x4 },
+> 
+> No pwstctrl and pwstst bits documented in TRM or are marked reserved.
 
+Same as coreaon.
+
+> 
+>> +	{ .name = "emu", .base = 0x4ae07900, .pwstst = 0x4 },
+>> +	{ .name = "dsp2", .base = 0x4ae07b00, .pwstst = 0x4, .rstctl = 0x10, .rstst = 0x14 },
+>> +	{ .name = "eve1", .base = 0x4ae07b40, .pwstst = 0x4 },
+>> +	{ .name = "eve2", .base = 0x4ae07b80, .pwstst = 0x4 },
+>> +	{ .name = "eve3", .base = 0x4ae07bc0, .pwstst = 0x4 },
+>> +	{ .name = "eve4", .base = 0x4ae07c00, .pwstst = 0x4 },
+> 
+> All EVEs are missing rstctrl and rstst fields.
+
+Will add.
+
+> 
+>> +	{ .name = "rtc", .base = 0x4ae07c60, .pwstst = 0x4 },
+> 
+> Undocumented pwstctrl and pwstst registers.
+> 
+>> +	{ .name = "vpe", .base = 0x4ae07c80, .pwstst = 0x4 },
+> 
+> Missing "device" and "instr" PRM. The latter doesn't have any pwrstctl
+> and pwrstst though.
+
+Will ditch those.
+
+-Tero
+
+> 
+> regards
+> Suman
+> 
+>> +	{ },
+>> +};
+>> +
+>>   struct omap_rst_map am3_wkup_rst_map[] = {
+>>   	{ .rst = 3, .st = 5 },
+>>   	{ .rst = -1 },
+>> @@ -91,6 +116,7 @@ struct omap_prm_data am3_prm_data[] = {
+>>   
+>>   static const struct of_device_id omap_prm_id_table[] = {
+>>   	{ .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
+>> +	{ .compatible = "ti,dra7-prm-inst", .data = dra7_prm_data },
+>>   	{ .compatible = "ti,am3-prm-inst", .data = am3_prm_data },
+>>   	{ },
+>>   };
+>>
+> 
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
