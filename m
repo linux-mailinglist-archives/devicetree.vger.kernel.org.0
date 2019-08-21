@@ -2,73 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5D9097FF5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 109679803C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 18:36:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728489AbfHUQYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 12:24:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52172 "EHLO mail.kernel.org"
+        id S1729368AbfHUQgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 12:36:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55792 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726857AbfHUQYH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 21 Aug 2019 12:24:07 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1729367AbfHUQgA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 21 Aug 2019 12:36:00 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BBAA32339E;
-        Wed, 21 Aug 2019 16:24:06 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3D2D216F4;
+        Wed, 21 Aug 2019 16:35:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566404646;
-        bh=6vn5oS8HMSG7JMJf365FjEEzES/Bh/6N4hGyDrDNZn4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WNTHVH0obfAHqho0ZQCiPxVlUvoCcLkMmqX2sT240VqcVX7tZBoHJOKqXnS+WaEJM
-         DLeJFLdKciGAvKI9KVzs94AyUMnSTFNuOFvYp01DM3MgSt7PVo/ICvD9lbPO8Oydkm
-         WMp7LoOXwuPPxk4qG1IFtvFdhtua71JjuTRpM7WI=
-Received: by mail-qk1-f170.google.com with SMTP id u190so2354319qkh.5;
-        Wed, 21 Aug 2019 09:24:06 -0700 (PDT)
-X-Gm-Message-State: APjAAAUvdrFuJwJuAxS5YaPMSDlDhobcdhhydDiucaiwM0JmZdGG+Lva
-        Wjbdoiutc6FPLnrsx0XXISkBSwruQDHFDmVlxg==
-X-Google-Smtp-Source: APXvYqzQe60WO0Pk/hkQrXQ0DanP3ksbv6OcTJaNcrDWlHGnm64JYtW9XJ7EAZi/FJz1FSt53V60vbg804R7yTHVWfE=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr33011507qke.223.1566404645998;
- Wed, 21 Aug 2019 09:24:05 -0700 (PDT)
+        s=default; t=1566405360;
+        bh=523UKRpEYgVnK4n6qoJT/UA2T1eyXvRGlZiSMko8S2I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=THQSoGVckn9loJO2YK6n0hW8Zr+qYViNc6L7hieM8yM6BUPTRpUCVjjlXy5iJ/abQ
+         /8sxz9km+kjRuL5G/1sDfv+VWpOPpsABw8SxC1NN+XfRv9hH04pSbCObu9foGya4yP
+         3u+NJzArrkquuRd6l3iLVqK/x7qHKusaX9b/v5io=
+Date:   Wed, 21 Aug 2019 17:35:54 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux-foundation.org, youlin.pei@mediatek.com,
+        Nicolas Boichat <drinkcat@chromium.org>, anan.sun@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>, cui.zhang@mediatek.com,
+        chao.hao@mediatek.com, ming-fan.chen@mediatek.com
+Subject: Re: [PATCH v10 09/23] iommu/io-pgtable-arm-v7s: Extend to support
+ PA[33:32] for MediaTek
+Message-ID: <20190821163553.ymlk5fcgd6ntnpss@willie-the-truck>
+References: <1566395606-7975-1-git-send-email-yong.wu@mediatek.com>
+ <1566395606-7975-10-git-send-email-yong.wu@mediatek.com>
+ <20190821152448.qmoqjh5zznfpdi6n@willie-the-truck>
+ <22a79977-5074-7af1-97b8-8a3e549b23c1@arm.com>
 MIME-Version: 1.0
-References: <20190821031124.17806-1-kever.yang@rock-chips.com> <20190821031124.17806-2-kever.yang@rock-chips.com>
-In-Reply-To: <20190821031124.17806-2-kever.yang@rock-chips.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 21 Aug 2019 11:23:54 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJW0WG_cs3Y+Rt+DgO=uJg-ccf64qGXCfURviS5fdvHsw@mail.gmail.com>
-Message-ID: <CAL_JsqJW0WG_cs3Y+Rt+DgO=uJg-ccf64qGXCfURviS5fdvHsw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: arm: rockchip: remove reference to
- fennec board
-To:     Kever Yang <kever.yang@rock-chips.com>
-Cc:     "heiko@sntech.de" <heiko@sntech.de>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Akash Gajjar <Akash_Gajjar@mentor.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomeu Vizoso <tomeu.vizoso@collabora.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <22a79977-5074-7af1-97b8-8a3e549b23c1@arm.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 10:11 PM Kever Yang <kever.yang@rock-chips.com> wrote:
->
-> The rk3288 fennec board has been removed, remove the binding document at
-> the same time.
->
-> Signed-off-by: Kever Yang <kever.yang@rock-chips.com>
-> ---
->
-> Changes in v2: None
->
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 -----
->  1 file changed, 5 deletions(-)
+On Wed, Aug 21, 2019 at 04:34:27PM +0100, Robin Murphy wrote:
+> On 21/08/2019 16:24, Will Deacon wrote:
+> > On Wed, Aug 21, 2019 at 09:53:12PM +0800, Yong Wu wrote:
+> > > MediaTek extend the arm v7s descriptor to support up to 34 bits PA where
+> > > the bit32 and bit33 are encoded in the bit9 and bit4 of the PTE
+> > > respectively. Meanwhile the iova still is 32bits.
+> > > 
+> > > Regarding whether the pagetable address could be over 4GB, the mt8183
+> > > support it while the previous mt8173 don't, thus keep it as is.
+> > > 
+> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > ---
+> > >   drivers/iommu/io-pgtable-arm-v7s.c | 32 +++++++++++++++++++++++++-------
+> > >   include/linux/io-pgtable.h         |  7 +++----
+> > >   2 files changed, 28 insertions(+), 11 deletions(-)
+> > 
+> > [...]
+> > 
+> > > @@ -731,7 +747,9 @@ static struct io_pgtable *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+> > >   {
+> > >   	struct arm_v7s_io_pgtable *data;
+> > > -	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
+> > > +	if (cfg->ias > ARM_V7S_ADDR_BITS ||
+> > > +	    (cfg->oas > ARM_V7S_ADDR_BITS &&
+> > > +	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
+> > 
+> > Please can you instead change arm_v7s_alloc_pgtable() so that it allows an
+> > ias of up to 34 when the IO_PGTABLE_QUIRK_ARM_MTK_EXT is set?
+> 
+> You mean oas, right? I believe the hardware *does* actually support a 32-bit
+> ias as well, but we shouldn't pretend to support that while
+> __arm_v7s_alloc_table() still only knows how to allocate normal-sized
+> tables.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Sorry, yes, oas.
+
+Will
