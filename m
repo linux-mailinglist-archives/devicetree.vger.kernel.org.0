@@ -2,89 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0687598432
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 21:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9972D98455
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 21:26:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729484AbfHUTRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 15:17:06 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:39460 "EHLO
+        id S1729708AbfHUT0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 15:26:05 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:35299 "EHLO
         mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729221AbfHUTRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 15:17:06 -0400
-Received: by mail-ot1-f67.google.com with SMTP id b1so3129779otp.6;
-        Wed, 21 Aug 2019 12:17:05 -0700 (PDT)
+        with ESMTP id S1729703AbfHUT0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 15:26:05 -0400
+Received: by mail-ot1-f67.google.com with SMTP id g17so3171665otl.2;
+        Wed, 21 Aug 2019 12:26:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1QMM6X86ZE4m7WOOCA+numF1SrsPevg8RcLzZaNb79Q=;
-        b=mUhrwKZpFNyp3beHAxz5rIMZHI454dEots5EeGYo83UaPbwqzTbB6C2GioR5Ej3pvz
-         9UF/YHIySpqVxOkRr96NJI6BKMQOClosP40RR6VwD/WTezXEtBCBIITFisvEFWIxLCx3
-         StLO9N9VlY1xFQz4pBPoyJZLOQ5AlbtU7sJrQ0Wy2lLAg1YMLHpgN3FX2jezPrgsAtv6
-         suim87k7P+zQmGmMIaV/CVsib2Q/4RWV46VOUTtBF/fVk9Aw0pyGwyVX9DAAW72vkhnv
-         GGfLPcefJNh0jTw9AwOhNZiHtdsmgd6X8uSOeDKMnz4BfZYYkXYpwx6ZhQ8qrsX839Ip
-         F90Q==
-X-Gm-Message-State: APjAAAUkmQKfICnBUgIAsOO9qudrtzSFjoPd8ujk4Fi5oLALJGh/bN+L
-        sKG8qTcAdmuxz10fvjfKNga9RIk=
-X-Google-Smtp-Source: APXvYqx5PsTrBTUQAs9a8a7CgH0vWalbythAh/rmzUtUPMUX/sEYOLsQEUc3KVzZmH5LtUFbIRsbjQ==
-X-Received: by 2002:a9d:7d04:: with SMTP id v4mr9302990otn.329.1566415025136;
-        Wed, 21 Aug 2019 12:17:05 -0700 (PDT)
+        bh=31kAASnlmey7+VCJviKm6PqV+O7d5lyZM9klemAH6PU=;
+        b=k+dycsrIIgTr4OMrQppvHOJ17hQ0d1gJsesQa/PUzRVhUe0znWT2C6MMJ5nDxITDV4
+         jnf9JZvwTMPh+Sz/QvD3j+Wa2mUfKWZMbzpO8RPnjhzHjo6KiAnPMubaaiyj8r+WIHz3
+         WmLTct+riup9vBATZrT0HtJGU9sn0GzqXpOJNSKSA4w6feadlu24Ziy0gRsNv5ThMne9
+         +bH6+yDrg01gw9LPERm78Pm3BI/q6jwZRBCTS2bAPoiZVEjpcQX/JBh6R52/eEDZ0Ea6
+         Ho+PVomzZEHsJJ9BgFm4XJFUzDzwR5xsu3UzYqCsbzJLfC4e/F3qQrYuOxoatNEEqw1l
+         +5ug==
+X-Gm-Message-State: APjAAAX5PbR86iTcSSO+vtYz6K8c5SkSvNxbybnfwPuFLU2GQcaBxjFm
+        FUPAA1Xw8kjMEOvMIgFd+g==
+X-Google-Smtp-Source: APXvYqzOtUjL/X6asaAboZrcr1v3bqEPjWihsqkP7DwCext8H0Eiet7bQrEZgyN6a2WJGFJwVFXJmQ==
+X-Received: by 2002:a9d:68d1:: with SMTP id i17mr14908615oto.84.1566415563945;
+        Wed, 21 Aug 2019 12:26:03 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b188sm6531532oia.57.2019.08.21.12.17.04
+        by smtp.gmail.com with ESMTPSA id e22sm5992200oii.7.2019.08.21.12.26.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 12:17:04 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 14:17:04 -0500
+        Wed, 21 Aug 2019 12:26:03 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 14:26:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Hanna Hawa <hhhawa@amazon.com>
-Cc:     mark.rutland@arm.com, bp@alien8.de, mchehab@kernel.org,
-        james.morse@arm.com, davem@davemloft.net,
-        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
-        Jonathan.Cameron@huawei.com, nicolas.ferre@microchip.com,
-        paulmck@linux.ibm.com, dwmw@amazon.co.uk, benh@amazon.com,
-        ronenk@amazon.com, talel@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] dt-bindings: EDAC: Add Amazon's Annapurna Labs L1
- EDAC
-Message-ID: <20190821191704.GA32425@bogus>
-References: <20190805143911.12185-1-hhhawa@amazon.com>
- <20190805143911.12185-2-hhhawa@amazon.com>
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     agross@kernel.org, robdclark@gmail.com, sean@poorly.run,
+        bjorn.andersson@linaro.org, airlied@linux.ie, daniel@ffwll.ch,
+        mark.rutland@arm.com, jonathan@marek.ca,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, jcrouse@codeaurora.org
+Subject: Re: [PATCH v5 2/7] dt-bindings: display: msm: gmu: add optional
+ ocmem property
+Message-ID: <20190821192602.GA16243@bogus>
+References: <20190806002229.8304-1-masneyb@onstation.org>
+ <20190806002229.8304-3-masneyb@onstation.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190805143911.12185-2-hhhawa@amazon.com>
+In-Reply-To: <20190806002229.8304-3-masneyb@onstation.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 03:39:08PM +0100, Hanna Hawa wrote:
-> Document Amazon's Annapurna Labs L1 EDAC SoC binding.
+On Mon, Aug 05, 2019 at 08:22:24PM -0400, Brian Masney wrote:
+> Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
+> must use the On Chip MEMory (OCMEM) in order to be functional. Add the
+> optional ocmem property to the Adreno Graphics Management Unit bindings.
 > 
-> Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
 > ---
->  .../devicetree/bindings/edac/amazon,al-l1-edac.txt | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-l1-edac.txt
+> Changes since v4:
+> - None
 > 
-> diff --git a/Documentation/devicetree/bindings/edac/amazon,al-l1-edac.txt b/Documentation/devicetree/bindings/edac/amazon,al-l1-edac.txt
-> new file mode 100644
-> index 000000000000..2ae8370216bc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/edac/amazon,al-l1-edac.txt
-> @@ -0,0 +1,14 @@
-> +* Amazon's Annapurna Labs L1 EDAC
-> +
-> +Amazon's Annapurna Labs SoCs supports L1 single bit correction and
-> +two bits detection capability based on ARM implementation.
-> +
-> +Required properties:
-> +- compatible:
-> +	should be "amazon,al-l1-edac".
+> Changes since v3:
+> - correct link to qcom,ocmem.yaml
+> 
+> Changes since v2:
+> - Add a3xx example with OCMEM
+> 
+> Changes since v1:
+> - None
+> 
+>  .../devicetree/bindings/display/msm/gmu.txt   | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.txt b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> index 90af5b0a56a9..672d557caba4 100644
+> --- a/Documentation/devicetree/bindings/display/msm/gmu.txt
+> +++ b/Documentation/devicetree/bindings/display/msm/gmu.txt
+> @@ -31,6 +31,10 @@ Required properties:
+>  - iommus: phandle to the adreno iommu
+>  - operating-points-v2: phandle to the OPP operating points
+>  
+> +Optional properties:
+> +- ocmem: phandle to the On Chip Memory (OCMEM) that's present on some Snapdragon
+> +         SoCs. See Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
 
-Why is this even in DT? AFAICT, this is all just CortexA57 core features 
-(i.e. nothing Amazon specific). The core type and the ECC capabilities 
-are discoverable.
+Sigh, to repeat my comment on v1 and v3:
+
+We already have a couple of similar properties. Lets standardize on
+'sram' as that is what TI already uses.
 
 Rob
