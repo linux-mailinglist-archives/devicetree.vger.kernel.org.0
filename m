@@ -2,137 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5AFE986BC
-	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FDB7986BF
+	for <lists+devicetree@lfdr.de>; Wed, 21 Aug 2019 23:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730913AbfHUVoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 17:44:39 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44460 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727923AbfHUVoj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:44:39 -0400
-Received: by mail-oi1-f195.google.com with SMTP id k22so2774556oiw.11;
-        Wed, 21 Aug 2019 14:44:38 -0700 (PDT)
+        id S1727476AbfHUVp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 17:45:57 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:37822 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727255AbfHUVp5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 17:45:57 -0400
+Received: by mail-oi1-f196.google.com with SMTP id b25so2813347oib.4;
+        Wed, 21 Aug 2019 14:45:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RLnoMCGg4aZAXQG/7EhE1lAx/LE1YZXQ51HizQcuuSk=;
-        b=DPLHpQg7mRC2yS3q/NPwCXTstMe5AHbZuZlhHgVMKwTqH5+7wyAi+FA5d8LDckWJAK
-         9QoeALiocFFBAXgYZr+4QIaLjdT/1qlV8w2qr15SWNArAsYJFcAYgqyeTTA+xAO2ZZdm
-         vCPRyBUre0VXrf8kQjMgcOcTlTdL2ybS1/bzj2KF5q+0cmbj+Oy0bOnA/IiJ4YfblM3N
-         7wHqpJXKf4CNb/A+hkr5niMwozmNo8/I9WN4RygEDGLqXW7CsQcyruSQc6LBVY2g1+DN
-         RiQLgGPaZSE06Q3XfefI/zwY2toKeApqfq2tCPJUvDbTxDKkdoChMA0OPMzcfRwaTakO
-         Gmog==
-X-Gm-Message-State: APjAAAVBgRvvB7FoiDIZ/Ar9pTegauddPueUjcA3R5CnGlUIIc8D87Xu
-        LzG+exD5ScyxUONc1wWjGw==
-X-Google-Smtp-Source: APXvYqwHMvNmtkabfkRrV911VbE74YYZKFohSjzXpV0vzc4tBsAYOT28isHK4N/rXNz29ZFzUCPLIA==
-X-Received: by 2002:a54:4f09:: with SMTP id e9mr1583851oiy.89.1566423877964;
-        Wed, 21 Aug 2019 14:44:37 -0700 (PDT)
+        bh=SlELz4WXoNyx1fC6jRJuCL/0KkGNNJXIdrw589z2kEo=;
+        b=fXsBkCPA80lIbwj1eNE5du2ySTXW/jKc55bvGLC/Ss1tDclkwAxRNH0PLbcxjx0bHZ
+         aADaUfGvv1sovBsq/8iqKLCpqYMUVjcwPooi4ZAcZnKJBB8AISTR2AlCv1L19m97pyGp
+         5hqfuUlv2vPM2XgkWEKrEahJvB3nFxh7yI1HvgdQML81/Pol+tZoaGQg9UinjZB203kl
+         WgeWTu5pwJ97/5Ouc39Gy3lKp07MilcERX4qWJthzKmneGSI/b/pll1OPbCRzgZ/EWG4
+         qcfCHdiWH0iibRJvOnjZTZxE9qtV+xzbcyieTFSPh14Y5ayW3QLWfxKWj2lWh9FyyeWp
+         JmYQ==
+X-Gm-Message-State: APjAAAWNsS/AK66j5p+VkaqCy+7eVJFjwslOu2ngPo3D3ilXy9svW3nE
+        d/TyyV9X035TC+SpDLcMUg==
+X-Google-Smtp-Source: APXvYqwrC7IpZwWire9CqKO08aGc9TxMXLjCkOrqCfjQjiZqfVwhI8DLA/qwjbfEUFW4XjHKtEP7lA==
+X-Received: by 2002:aca:f481:: with SMTP id s123mr1570648oih.109.1566423956094;
+        Wed, 21 Aug 2019 14:45:56 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 65sm7881807otw.2.2019.08.21.14.44.37
+        by smtp.gmail.com with ESMTPSA id d5sm6679680oij.35.2019.08.21.14.45.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Aug 2019 14:44:37 -0700 (PDT)
-Date:   Wed, 21 Aug 2019 16:44:36 -0500
+        Wed, 21 Aug 2019 14:45:55 -0700 (PDT)
+Date:   Wed, 21 Aug 2019 16:45:54 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     vkoul@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
-        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
-Message-ID: <20190821214436.GA13936@bogus>
-References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
- <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Jens Axboe <axboe@kernel.dk>, Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-ide@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Simon Horman <horms+renesas@verge.net.au>
+Subject: Re: [PATCH] dt-bindings: ata: sata_rcar: Rename bindings
+ documentation file
+Message-ID: <20190821214554.GA8691@bogus>
+References: <20190809215131.877-1-horms+renesas@verge.net.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20190809215131.877-1-horms+renesas@verge.net.au>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 09, 2019 at 02:34:04PM +0100, Srinivas Kandagatla wrote:
-> This patch adds bindings for Soundwire Slave devices that includes how
-> SoundWire enumeration address and Link ID are used to represented in
-> SoundWire slave device tree nodes.
+On Fri,  9 Aug 2019 14:51:31 -0700, Simon Horman wrote:
+> Rename the bindings documentation file for Renesas SATA controller
+> from sata_rcar.txt to renesas,rcar-sata.txt
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> This is part of an ongoing effort to name bindings documentation files for
+> Renesas IP blocks consistently, in line with the compat strings they
+> document.
+> 
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 > ---
->  .../devicetree/bindings/soundwire/slave.txt   | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
-
-Can you convert this to DT schema given it is a common binding.
-
-What does the host controller look like? You need to define the node 
-hierarchy. Bus controller schemas should then include the bus schema. 
-See spi-controller.yaml.
-
+> Based on v5.3-rc1
+> ---
+>  .../devicetree/bindings/ata/{sata_rcar.txt => renesas,rcar-sata.txt}      | 0
+>  1 file changed, 0 insertions(+), 0 deletions(-)
+>  rename Documentation/devicetree/bindings/ata/{sata_rcar.txt => renesas,rcar-sata.txt} (100%)
 > 
-> diff --git a/Documentation/devicetree/bindings/soundwire/slave.txt b/Documentation/devicetree/bindings/soundwire/slave.txt
-> new file mode 100644
-> index 000000000000..201f65d2fafa
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soundwire/slave.txt
-> @@ -0,0 +1,51 @@
-> +SoundWire slave device bindings.
-> +
-> +SoundWire is a 2-pin multi-drop interface with data and clock line.
-> +It facilitates development of low cost, efficient, high performance systems.
-> +
-> +SoundWire slave devices:
-> +Every SoundWire controller node can contain zero or more child nodes
-> +representing slave devices on the bus. Every SoundWire slave device is
-> +uniquely determined by the enumeration address containing 5 fields:
-> +SoundWire Version, Instance ID, Manufacturer ID, Part ID
-> +and Class ID for a device. Addition to below required properties,
-> +child nodes can have device specific bindings.
-> +
-> +Required properties:
-> +- compatible:	 "sdw<LinkID><VersionID><InstanceID><MFD><PID><CID>".
-> +		  Is the textual representation of SoundWire Enumeration
-> +		  address along with Link ID. compatible string should contain
-> +		  SoundWire Link ID, SoundWire Version ID, Instance ID,
-> +		  Manufacturer ID, Part ID and Class ID in order
-> +		  represented as above and shall be in lower-case hexadecimal
-> +		  with leading zeroes. Vaild sizes of these fields are
-> +		  LinkID is 1 nibble,
-> +		  Version ID is 1 nibble
-> +		  Instance ID in 1 nibble
-> +		  MFD in 4 nibbles
-> +		  PID in 4 nibbles
-> +		  CID is 2 nibbles
-> +
-> +		  Version number '0x1' represents SoundWire 1.0
-> +		  Version number '0x2' represents SoundWire 1.1
 
-This can all be a regex.
-
-> +		  ex: "sdw0110217201000" represents 0 LinkID,
-> +		  SoundWire 1.0 version slave with Instance ID 1.
-> +		  More Information on detail of encoding of these fields can be
-> +		  found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
-> +
-> +SoundWire example for Qualcomm's SoundWire controller:
-> +
-> +soundwire@c2d0000 {
-> +	compatible = "qcom,soundwire-v1.5.0"
-> +	reg = <0x0c2d0000 0x2000>;
-> +
-> +	spkr_left:wsa8810-left{
-> +		compatible = "sdw0110217201000";
-> +		...
-> +	};
-> +
-> +	spkr_right:wsa8810-right{
-> +		compatible = "sdw0120217201000";
-
-The normal way to distinguish instances is with 'reg'. So I think you 
-need 'reg' with Instance ID moved there at least. Just guessing, but 
-perhaps Link ID, too? And for 2 different classes of device is that 
-enough? 
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
