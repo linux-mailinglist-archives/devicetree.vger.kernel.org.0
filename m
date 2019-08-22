@@ -2,156 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E589998CA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 18:08:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ACD3998E4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 18:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389742AbfHVQHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 12:07:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37282 "EHLO mail.kernel.org"
+        id S1731436AbfHVQLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 12:11:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38562 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732004AbfHVQHy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 12:07:54 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        id S1732895AbfHVQLV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 12:11:21 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CDA6423401;
-        Thu, 22 Aug 2019 16:07:52 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E72B0233FD;
+        Thu, 22 Aug 2019 16:11:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566490073;
-        bh=+vvqhUd+pkM/dp0wpCvzhG8McGJK25Nvoqw+tfejM2Y=;
+        s=default; t=1566490281;
+        bh=zOMLxHs2VWka/qFMYIuywdwW7/bJZ8chpRACeFjJll8=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BesAFVzsDotV2IgMK8BrzUQ6H08d8AhjQZad8fkGpQAuLyaczM4gn9965kE5D/EIL
-         Z3ix5KFGpfNqdbELyObfDVup9RQvgevYv9BkzNTdP7BJ/a3gMQLisQjTAiYtvPxv5D
-         8OXLZNNts4YEbHYVSSaxqs+9aaAmipwa8ppION2s=
-Received: by mail-qt1-f180.google.com with SMTP id i4so8300782qtj.8;
-        Thu, 22 Aug 2019 09:07:52 -0700 (PDT)
-X-Gm-Message-State: APjAAAXTOYKQc0w3CuLl+u5GeJUngl2RaoNATfu11SnzKxhTongP9wYo
-        nD41torosYeY9K3nMNrKs9ComcYNWPx2chpUYw==
-X-Google-Smtp-Source: APXvYqwT5uHUpIO/FFW8324fUtKY3u7N/MLqH5qpfH1g+aJJ3tCwF2PURsFvaRVSyiDKPNxdOYjPgEZ062SLJ8UaQC8=
-X-Received: by 2002:a0c:eb92:: with SMTP id x18mr96839qvo.39.1566490071850;
- Thu, 22 Aug 2019 09:07:51 -0700 (PDT)
+        b=Gx4N0gs5HtgNNNI/UK3B/3JnCYAtGMrYh/avF9aHXY/GFEJZDbLYFPe7BcU+uefo6
+         1z2B/Cbb3Iwz6+HSYwszt9a4aVUn1gi1UUcz0vNkCCM/RQqTD4+ZHTyVumsknbyAib
+         dqf8F5Co7o3Nq/0oOfMLaWbluVThrfcPlqT0P8nc=
+Received: by mail-qt1-f169.google.com with SMTP id t12so8330749qtp.9;
+        Thu, 22 Aug 2019 09:11:20 -0700 (PDT)
+X-Gm-Message-State: APjAAAWsWUSAwK7W0Ym9mRCjVl7HPxKlNKqLSt+sGM/1oioVRnZQK9bB
+        oi4l2PHNhfwdyLuFviOfDaabbUG7iPw9zhsfBA==
+X-Google-Smtp-Source: APXvYqy6FBlK1ClzTIESpRbzxj+d3ls/cIRjhDZi4Cfkk62DRf1Upbl2njPgECs0QSQz5nK0p9oVjHnL75jmEGJ+Cvc=
+X-Received: by 2002:ad4:4050:: with SMTP id r16mr122097qvp.200.1566490280005;
+ Thu, 22 Aug 2019 09:11:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190822143703.13030-1-masneyb@onstation.org> <20190822143703.13030-3-masneyb@onstation.org>
-In-Reply-To: <20190822143703.13030-3-masneyb@onstation.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 22 Aug 2019 11:07:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLcrO9XH9_BgZYYfrFJUfXAnEK6ZkOUtAzv15Zug0QEpw@mail.gmail.com>
-Message-ID: <CAL_JsqLcrO9XH9_BgZYYfrFJUfXAnEK6ZkOUtAzv15Zug0QEpw@mail.gmail.com>
-Subject: Re: [PATCH v6 2/7] dt-bindings: display: msm: gmu: add optional ocmem property
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
-        Sean Paul <sean@poorly.run>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Marek <jonathan@marek.ca>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        freedreno <freedreno@lists.freedesktop.org>,
-        devicetree@vger.kernel.org, Jordan Crouse <jcrouse@codeaurora.org>
+References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
+ <20190809133407.25918-2-srinivas.kandagatla@linaro.org> <20190821214436.GA13936@bogus>
+ <0272eafd-0aa5-f695-64e4-f6ad7157a3a6@linaro.org> <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
+ <90b9fa33-3a49-c414-4352-66e26673a05d@linaro.org>
+In-Reply-To: <90b9fa33-3a49-c414-4352-66e26673a05d@linaro.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 22 Aug 2019 11:11:08 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLuH5=PLSVvyd=5oOECfcV3mgf8b842Y4ppJKG_NHds-g@mail.gmail.com>
+Message-ID: <CAL_JsqLuH5=PLSVvyd=5oOECfcV3mgf8b842Y4ppJKG_NHds-g@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Vinod <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 9:37 AM Brian Masney <masneyb@onstation.org> wrote:
+On Thu, Aug 22, 2019 at 7:56 AM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
 >
-> Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
-> must use the On Chip MEMory (OCMEM) in order to be functional. Add the
-> optional ocmem property to the Adreno Graphics Management Unit bindings.
 >
-> Signed-off-by: Brian Masney <masneyb@onstation.org>
-> ---
-> Changes since v5:
-> - rename ocmem property to sram to match what TI currently has.
 >
-> Changes since v4:
-> - None
+> On 22/08/2019 13:36, Rob Herring wrote:
+> >>>> +soundwire@c2d0000 {
+> >>>> +    compatible = "qcom,soundwire-v1.5.0"
+> >>>> +    reg = <0x0c2d0000 0x2000>;
+> >>>> +
+> >>>> +    spkr_left:wsa8810-left{
+> >>>> +            compatible = "sdw0110217201000";
+> >>>> +            ...
+> >>>> +    };
+> >>>> +
+> >>>> +    spkr_right:wsa8810-right{
+> >>>> +            compatible = "sdw0120217201000";
+> >>> The normal way to distinguish instances is with 'reg'. So I think you
+> >>> need 'reg' with Instance ID moved there at least. Just guessing, but
+> >>> perhaps Link ID, too? And for 2 different classes of device is that
+> >>> enough?
+> >> In previous bindings (https://lists.gt.net/linux/kernel/3403276  ) we
+> >> did have instance-id as different property, however Pierre had some good
+> >> suggestion to make it align with _ADR encoding as per MIPI DisCo spec.
+> >>
+> >> Do you still think that we should split the instance id to reg property?
+> > Assuming you could have more than 1 of the same device on the bus,
+> > then you need some way to distinguish them and the way that's done for
+> > DT is unit-address/reg. And compatible strings should be constant for
+> > each instance.
+> That is a good point!
+> Okay that makes more sense keep compatible string constant.
+> Class ID would be constant for given functionality that the driver will
+> provide.
 >
-> Changes since v3:
-> - correct link to qcom,ocmem.yaml
+> So we will end up with some thing like this:
 >
-> Changes since v2:
-> - Add a3xx example with OCMEM
+> soundwire@c2d0000 {
+>         compatible = "qcom,soundwire-v1.5.0"
+>         reg = <0x0c2d0000 0x2000>;
+>          #address-cells = <1>;
+>          #size-cells = <0>;
 >
-> Changes since v1:
-> - None
->
->  .../devicetree/bindings/display/msm/gmu.txt   | 50 +++++++++++++++++++
->  1 file changed, 50 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/display/msm/gmu.txt b/Documentation/devicetree/bindings/display/msm/gmu.txt
-> index 90af5b0a56a9..2305a2aede5a 100644
-> --- a/Documentation/devicetree/bindings/display/msm/gmu.txt
-> +++ b/Documentation/devicetree/bindings/display/msm/gmu.txt
-> @@ -31,6 +31,10 @@ Required properties:
->  - iommus: phandle to the adreno iommu
->  - operating-points-v2: phandle to the OPP operating points
->
-> +Optional properties:
-> +- sram: phandle to the On Chip Memory (OCMEM) that's present on some Snapdragon
-> +        SoCs. See Documentation/devicetree/bindings/sram/qcom,ocmem.yaml.
-> +
->  Example:
->
->  / {
-> @@ -63,3 +67,49 @@ Example:
->                 operating-points-v2 = <&gmu_opp_table>;
+>         spkr_left:skpr@1{
+>                 compatible = "sdw10217201000";
+>                 reg = <0x1>
+>                 sdw-link-id = <0>;
+
+Not really sure what Link ID is, but maybe it should be part of reg
+too if it is part of how you address a device.
+
+>                 ...
 >         };
->  };
-> +
-> +a3xx example with OCMEM support:
-> +
-> +/ {
-> +       ...
-> +
-> +       gpu: adreno@fdb00000 {
-> +               compatible = "qcom,adreno-330.2",
-> +                            "qcom,adreno";
-> +               reg = <0xfdb00000 0x10000>;
-> +               reg-names = "kgsl_3d0_reg_memory";
-> +               interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
-> +               interrupt-names = "kgsl_3d0_irq";
-> +               clock-names = "core",
-> +                             "iface",
-> +                             "mem_iface";
-> +               clocks = <&mmcc OXILI_GFX3D_CLK>,
-> +                        <&mmcc OXILICX_AHB_CLK>,
-> +                        <&mmcc OXILICX_AXI_CLK>;
-> +               sram = <&ocmem>;
-
-Shouldn't this point to gmu-sram@0? You can always get the parent from
-the child which is a bit easier than the other way around.
-
-> +               power-domains = <&mmcc OXILICX_GDSC>;
-> +               operating-points-v2 = <&gpu_opp_table>;
-> +               iommus = <&gpu_iommu 0>;
-> +       };
-> +
-> +       ocmem: ocmem@fdd00000 {
-> +               compatible = "qcom,msm8974-ocmem";
-> +
-> +               reg = <0xfdd00000 0x2000>,
-> +                     <0xfec00000 0x180000>;
-> +               reg-names = "ctrl",
-> +                            "mem";
-> +
-> +               clocks = <&rpmcc RPM_SMD_OCMEMGX_CLK>,
-> +                        <&mmcc OCMEMCX_OCMEMNOC_CLK>;
-> +               clock-names = "core",
-> +                             "iface";
-> +
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +
-> +               gmu-sram@0 {
-> +                       reg = <0x0 0x100000>;
-> +               };
-> +       };
-> +};
-> --
-> 2.21.0
 >
+>         spkr_right:spkr@2{
+>                 compatible = "sdw10217201000";
+>                 reg = <0x2>
+>                 sdw-link-id = <0>;
+>         };
+> };
+>
+> I will spin this in next version!
+>
+> Thanks,
+> srini
+>
+> >
+> > Rob
