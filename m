@@ -2,160 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FBA098AE4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 07:44:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA66B98B24
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 08:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728049AbfHVFoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 01:44:10 -0400
-Received: from mga18.intel.com ([134.134.136.126]:5691 "EHLO mga18.intel.com"
+        id S1730651AbfHVGCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 02:02:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42646 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726857AbfHVFoK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 01:44:10 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 Aug 2019 22:44:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,415,1559545200"; 
-   d="scan'208";a="169651574"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga007.jf.intel.com with ESMTP; 21 Aug 2019 22:44:09 -0700
-Received: from [10.226.38.19] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.19])
-        by linux.intel.com (Postfix) with ESMTP id 73E04580258;
-        Wed, 21 Aug 2019 22:44:07 -0700 (PDT)
-Subject: Re: [PATCH v3 1/2] dt-bindings: phy: intel-emmc-phy: Add YAML schema
- for LGM eMMC PHY
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        peter.harliman.liem@intel.com
-References: <20190821101118.42774-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <CAL_Jsq+pyaYD2C8G1WZm1fL-wgkJvDYBkp0TwJTmQVKP-gHPXQ@mail.gmail.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <67bca68e-a46b-e03f-bb66-23c677d8515d@linux.intel.com>
-Date:   Thu, 22 Aug 2019 13:44:06 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+pyaYD2C8G1WZm1fL-wgkJvDYBkp0TwJTmQVKP-gHPXQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S1730758AbfHVGCs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 02:02:48 -0400
+Received: from localhost.localdomain (unknown [194.230.147.11])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 72F6D21848;
+        Thu, 22 Aug 2019 06:02:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566453768;
+        bh=PdtTcSZjjJb+bU2tlX229LVd2lD6fC6ue5lm35NYCHw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SJmF9qAvaqsYn+FzYMbnPOQGSw0yFX4dJEP99kmXhonsbnior6Lh8dM8qXSRPR9fE
+         3Jiyc78yBhYV3yaCCEcTWIiZxhI+ik3f2BTccYu159tACCncJgANdplrewmdVwDFtv
+         rFIPvKANKkuCcLTsKDWAZwd3mWtLeVNL5RDRfKD4=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v7 1/4] dt-bindings: vendor-prefixes: Add Anvo-Systems
+Date:   Thu, 22 Aug 2019 08:02:35 +0200
+Message-Id: <20190822060238.3887-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Add vendor prefix for Anvo-Systems Dresden GmbH.
 
-On 21/8/2019 9:35 PM, Rob Herring wrote:
-> On Wed, Aug 21, 2019 at 5:11 AM Ramuthevar,Vadivel MuruganX
-> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> Add a YAML schema to use the host controller driver with the
->> eMMC PHY on Intel's Lightning Mountain SoC.
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->> changes in v3:
->>    - resolve 'make dt_binding_check' warnings
->>
->> changes in v2:
->>    As per Rob Herring review comments, the following updates
->>   - change GPL-2.0 -> (GPL-2.0-only OR BSD-2-Clause)
->>   - filename is the compatible string plus .yaml
->>   - LGM: Lightning Mountain
->>   - update maintainer
->>   - add intel,syscon under property list
->>   - keep one example instead of two
->> ---
->>   .../bindings/phy/intel,lgm-emmc-phy.yaml           | 59 ++++++++++++++++++++++
->>   1 file changed, 59 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->> new file mode 100644
->> index 000000000000..9342e33d8b02
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
->> @@ -0,0 +1,59 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/phy/intel,lgm-emmc-phy.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Intel Lightning Mountain(LGM) eMMC PHY Device Tree Bindings
->> +
->> +maintainers:
->> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> +
->> +properties:
->> +  "#phy-cells":
->> +    const: 0
->> +
->> +  compatible:
->> +    const: intel,lgm-emmc-phy
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  syscon:
-> intel,syscon like the example. You must have used 5.2 as on 5.3-rc the
-> example will fail validation.
-Thanks for the review comments,  used 5.3 for validation, after 
-addressing the below comments
-once again validate on both 5.2 and 5.3 as well.
->> +    items:
-> Drop items as there is only 1.
-agreed
->> +      $ref: "/schemas/types.yaml#definitions/phandle"
->> +
->> +  clocks:
->> +    items:
->> +      - description: e-MMC phy module clock
->> +
->> +  clock-names:
->> +    items:
->> +      - const: emmcclk
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +required:
->> +  - "#phy-cells"
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - ref
-> Not documented.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Agreed, will update
+---
 
-With Best Regards
-Vadivel
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    emmc_phy: emmc_phy {
->> +        compatible = "intel,lgm-emmc-phy";
->> +        reg = <0xe0020000 0x100>;
->> +        intel,syscon = <&sysconf>;
->> +        clocks = <&emmc>;
->> +        clock-names = "emmcclk";
->> +        #phy-cells = <0>;
->> +    };
->> +
->> +...
->> --
->> 2.11.0
->>
+Changes since v4:
+None
+
+Changes since v3:
+1. Add Rob's tag,
+2. Remove Admatec (not needed anymore).
+
+Changes since v2:
+1. Use admatecde vendor prefix.
+2. Add Anvo-Systems Dresden GmbH.
+
+Changes since v1:
+New patch
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 6992bbbbffab..519889f5aec8 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -81,6 +81,8 @@ patternProperties:
+     description: Analogix Semiconductor, Inc.
+   "^andestech,.*":
+     description: Andes Technology Corporation
++  "^anvo,.*":
++    description: Anvo-Systems Dresden GmbH
+   "^apm,.*":
+     description: Applied Micro Circuits Corporation (APM)
+   "^aptina,.*":
+-- 
+2.17.1
+
