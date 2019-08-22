@@ -2,68 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A31298F13
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 11:18:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F33798F30
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 11:21:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731601AbfHVJSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 05:18:15 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:48487 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731632AbfHVJSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 05:18:14 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i0jER-0006yr-IT; Thu, 22 Aug 2019 11:18:11 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i0jEQ-0006Qz-IE; Thu, 22 Aug 2019 11:18:10 +0200
-Date:   Thu, 22 Aug 2019 11:18:10 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, mark.rutland@arm.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        id S1726332AbfHVJUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 05:20:14 -0400
+Received: from relay8-d.mail.gandi.net ([217.70.183.201]:55365 "EHLO
+        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725873AbfHVJUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 05:20:14 -0400
+X-Originating-IP: 86.207.98.53
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id A5BF61BF206;
+        Thu, 22 Aug 2019 09:20:08 +0000 (UTC)
+Date:   Thu, 22 Aug 2019 11:20:08 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Ran Bi <ran.bi@mediatek.com>, Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/2] pwm: pwm-mediatek: Add MT8516 SoC support
-Message-ID: <20190822091810.5t3inn56npdvwnfy@pengutronix.de>
-References: <20190805125848.15751-1-fparent@baylibre.com>
- <20190805125848.15751-2-fparent@baylibre.com>
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        YT Shen <yt.shen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Subject: Re: [PATCH v2 2/4] rtc: Add support for the MediaTek MT2712 RTC
+Message-ID: <20190822092008.GR27031@piout.net>
+References: <20190801110122.26834-1-ran.bi@mediatek.com>
+ <20190801110122.26834-3-ran.bi@mediatek.com>
+ <c4e8b041-4a35-578e-07a3-2ebc99848ee2@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190805125848.15751-2-fparent@baylibre.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <c4e8b041-4a35-578e-07a3-2ebc99848ee2@gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 02:58:48PM +0200, Fabien Parent wrote:
-> Add the compatible and the platform data to support PWM on the MT8516
-> SoC.
+On 22/08/2019 11:12:29+0200, Matthias Brugger wrote:
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> 
+> On 01/08/2019 13:01, Ran Bi wrote:
+> > This add support for the MediaTek MT2712 RTC. It was SoC based RTC, but
+> > had different architecture compared with MT7622 RTC.
+> > 
+> > Signed-off-by: Ran Bi <ran.bi@mediatek.com>
+> > ---
+> >  drivers/rtc/Kconfig      |  10 +
+> >  drivers/rtc/Makefile     |   1 +
+> >  drivers/rtc/rtc-mt2712.c | 444 +++++++++++++++++++++++++++++++++++++++
+> 
+> Can't we just adjust rtc-mt7622.c (and rename it) to unify the source for both
+> devices. What is the difference that we need to write a driver of our own?
+> 
 
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+If they are compatible, this is the way to go but the file can't be
+renamed (and that is fine).
 
-The change looks fine, there is however another series currently waiting
-for application for this driver that conflicts with this one (I think).
-
-Maybe it would be sensible to join your forces and produce a single
-series without conflicts?
-
-Best regards
-Uwe
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
