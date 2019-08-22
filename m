@@ -2,95 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC0299DAF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 19:44:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD42099E52
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 19:55:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392844AbfHVRog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 13:44:36 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:38195 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392838AbfHVRoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 13:44:34 -0400
-Received: by mail-pl1-f194.google.com with SMTP id w11so3396773plp.5;
-        Thu, 22 Aug 2019 10:44:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=LGzx0JdHyHSlWDvF7DFegBLhwVHhKaGEvlCrTMb46DE=;
-        b=ElVE7TPATvVV6bPXr/3CsTovoUvcsn4QLnNLi6NgQhCLTgYRDbVSnbu2P6b1Y8NW0C
-         c+09w1uspNRWwFvOW8rS7hoO99nBsZhhpo94s2mBOWbc9Qswj9uxf/ODBCa3H+iSpm6Z
-         0pNCoijtuLkxInDZ7vVVyrrRBHHBXJo/ocChm+EaATBkMhd2fLXODl6pG4XBiXCicOp2
-         bLN93J1MmPAcRSPaWdcGFb9tDdo8p9cbid7jSusiVFMS5rbX2+tWDNeXP3lw8OC/Wa3A
-         1q00p90fLLZ26OceQHneIKHCQ4k1sK8/TorZVXC4RHwHgRf3+yo8m0c43/Hv8xLxSEhF
-         G8tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LGzx0JdHyHSlWDvF7DFegBLhwVHhKaGEvlCrTMb46DE=;
-        b=QJeJmMEomGu4pHetwyffe2c6gj8FOshaz//p11ZG3Rz59i3rXzrSR1Ha8vXdwFb8dj
-         p+Udo7sR9BMheXYQPdHUy+Ktu7V808S5Droj6wkxdhQ0Z10LfeEeuSr2D9jtygwZ5L5E
-         UOXGaJci7+CIWm7nh+Jo9yWhOxH+sSKiAiepvlQbtPJffmkzfh6HTR9831G9qbrPvxRY
-         0giU16Oek/g9xxLH/ApKE7+LukU3T2G/pIklN+yZhxjjCotAz/vwu426JFEJftrQ/IgV
-         pEHClMUl/QPi4TyvozZBDt5lk6Thp6FHkj7TorW7iMjIjMZ7YwcPWFOpxoT41X2Kc7h1
-         uaag==
-X-Gm-Message-State: APjAAAVq5pQuvgp3QLjS21wqNZ0nhsvb2S5MsWWE64qGcHG/W2wK+qcR
-        SHBRuBxjTFLp6THodpvPRItATjDB
-X-Google-Smtp-Source: APXvYqyXYBuMBmZ3J4m09+Dflg3SI6as5BmcHm+5FGVjp4gnigCUkPpJBKSbP4WwLZuo7xwcLosB8Q==
-X-Received: by 2002:a17:902:8a93:: with SMTP id p19mr19177plo.106.1566495873845;
-        Thu, 22 Aug 2019 10:44:33 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
-        by smtp.gmail.com with ESMTPSA id a26sm3949pff.174.2019.08.22.10.44.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2019 10:44:32 -0700 (PDT)
-Date:   Thu, 22 Aug 2019 10:44:30 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Rob Herring <robh@kernel.org>, robh+dt@kernel.org,
-        kernel@pengutronix.de, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] dt-bindings: input: ads7846: replace vendor-bindings
- by general ones
-Message-ID: <20190822174430.GF76194@dtor-ws>
-References: <20190327133927.1340-1-m.felsch@pengutronix.de>
- <20190327133927.1340-4-m.felsch@pengutronix.de>
- <5ca06167.1c69fb81.6e121.c248@mx.google.com>
- <20190821073613.nh5oyyvahb3i6nf6@pengutronix.de>
+        id S1731481AbfHVRzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 13:55:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44352 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731231AbfHVRzJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 13:55:09 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2DE0A233FC;
+        Thu, 22 Aug 2019 17:55:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566496508;
+        bh=Dba+wxYuJBz7LPcJtDrR9XAQK7WxQ1BRyHz60fVP5Lw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cxGM0Z3CfKrMhwXX6piCfNuGzP+gPEkP1SeCeiTcwxbOTObA7wJa83I1ng3RbMJU2
+         zMqJUVNaiAtn145/ennLGUX+bGFFQWU+Whlrtzs4SH1QkiLWDnyar9iSfcd9VdNCPu
+         8Ygc+sXQ03dYBr2fvN0V4+D/1yTfDDsXWvhUCxdY=
+Received: by mail-qk1-f180.google.com with SMTP id r21so5941214qke.2;
+        Thu, 22 Aug 2019 10:55:08 -0700 (PDT)
+X-Gm-Message-State: APjAAAXPAH/wZnze6oHE3TpqoUvm4xE+yoohFBU5c02T6oFTpGaxxwjA
+        3NK5wniDjypAl1TcIW/1EbLQpXYZGtlWK0Dkng==
+X-Google-Smtp-Source: APXvYqzVSLwn1iMQWDheMUuxXC6gIYklEEylRv6O8vwxXX+Wjw38nhjFxXITQN2puSA/+s0dJP8NRKnNQLQ0rjISmkI=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr172032qkn.254.1566496507376;
+ Thu, 22 Aug 2019 10:55:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190821073613.nh5oyyvahb3i6nf6@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <c909a3a19a1c06ac3ed9e1c42da3193ff8e43b7a.1566454535.git.eswara.kota@linux.intel.com>
+In-Reply-To: <c909a3a19a1c06ac3ed9e1c42da3193ff8e43b7a.1566454535.git.eswara.kota@linux.intel.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Thu, 22 Aug 2019 12:54:54 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKpbXEw63PszfKX+DL-j1itfzpXNqwcJmijpo758dYZuw@mail.gmail.com>
+Message-ID: <CAL_JsqKpbXEw63PszfKX+DL-j1itfzpXNqwcJmijpo758dYZuw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: reset: Add YAML schemas for the Intel
+ Reset controller
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 09:36:13AM +0200, Marco Felsch wrote:
-> Hi Dmitry,
-> 
-> On 19-03-31 01:42, Rob Herring wrote:
-> > On Wed, 27 Mar 2019 14:39:26 +0100, Marco Felsch wrote:
-> > > Mark the vendor-bindings as deprecated and replace them by the general
-> > > ones. All deprecated bindings are used as default and gets overwritten by
-> > > the general ones if the user supplies both. This ensures the backward
-> > > compatibility with old dt's.
-> > > 
-> > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > ---
-> > >  .../bindings/input/touchscreen/ads7846.txt    | 29 ++++++++++++++-----
-> > >  1 file changed, 21 insertions(+), 8 deletions(-)
-> > > 
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> How about this patch?
+On Thu, Aug 22, 2019 at 2:32 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
+>
+> Add YAML schemas for the reset controller on Intel
+> Lightening Mountain (LGM) SoC.
+>
+> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
+> ---
+>  .../bindings/reset/intel,syscon-reset.yaml         | 50 ++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+> new file mode 100644
+> index 000000000000..298c60085486
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/reset/intel,syscon-reset.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Intel Lightening Mountain SoC System Reset Controller
+> +
+> +maintainers:
+> +  - Dilip Kota <eswara.kota@linux.intel.com>
+> +
+> +properties:
+> +  compatible:
+> +    allOf:
+> +      - items:
+> +          - enum:
+> +              - intel,rcu-lgm
+> +              - syscon
 
-It's been folded into the patch implementing the handling of the
-bindings in the driver.
+compatible:
+  items:
+    - const: intel,rcu-lgm
+    - const: syscon
 
-Thanks.
+> +
+> +  reg:
+> +    description: Reset controller register base address and size
+> +
+> +  intel,global-reset:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: Global reset register offset and bit offset.
+> +
+> +  "#reset-cells":
+> +    const: 2
 
--- 
-Dmitry
+Add a description with what each cell contains.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - intel,global-reset
+> +  - "#reset-cells"
+
+Add a:
+
+additionalProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    rcu0: reset-controller@00000000 {
+> +        compatible = "intel,rcu-lgm", "syscon";
+> +        reg = <0x000000 0x80000>;
+> +        intel,global-reset = <0x10 30>;
+> +        #reset-cells = <2>;
+> +    };
+> +
+> +    pcie_phy0: pciephy@... {
+> +        ...
+> +        /* address offset: 0x10, bit offset: 12 */
+> +        resets = <&rcu0 0x10 12>;
+> +        ...
+> +    };
+> --
+> 2.11.0
+>
