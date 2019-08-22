@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25C909966D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:25:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB58599668
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:25:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388031AbfHVOZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 10:25:02 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45329 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387982AbfHVOZC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 10:25:02 -0400
-Received: by mail-wr1-f65.google.com with SMTP id q12so5600448wrj.12
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 07:25:00 -0700 (PDT)
+        id S2388052AbfHVOZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 10:25:06 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:33648 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388083AbfHVOZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 10:25:06 -0400
+Received: by mail-wr1-f66.google.com with SMTP id u16so5657696wrr.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 07:25:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=532R/ZWuiDeQURoM9QVstK3VNVhlUb1b5wMTdcD1y6g=;
-        b=bLOp1aL7F9THqfOV7Xme5zs7Clfg5QY4THoC3eh0rpK44IWqhwMShz0XtR/iqKv8kc
-         NcQFoFY3MPRkiYgSRInPWeijRXC5S5f1rqLaSjPnKUoRSjG+eI/aOj7CvEefd4KmH/g8
-         UDbf+h2tWFy8sjTBM8VbqE7RXx9e/19Xz+PxO7P48ixBT665fCzijh+eVYDnKaQUAXbp
-         boZg+ini8cDQ9V7X9MhxT/SQPvbX6PZ3XuTgdtOJXKKwfG2+F7UZUNv78y7T6ckNRVMn
-         H3BTICzwaKMl8djlpygj5xvQ9ogRv12RtOHsHbmYkOisf7LLjUix1ka3IbRQAxM9GhbO
-         SDbQ==
+        bh=KG2NcaIwbNAD280NQ64Qs5ode6pikwpdVx2HlcQqOdg=;
+        b=Mbo1AIuvdMXerHdaswfzRwqBNLg0dn4ksMsbHBX6Gzz7CO7Ed8uL+57KRDLMsubeLI
+         i9fwlUGa8+0jRP1vOy249LbGNk6rCoLl/5SsfipVbB/xjyDOYdJJNYFajO4lqCfdpUUa
+         NoZd+QfZk+EgydZA+CESI2LeUcOwP/RnN6ck8dKPbdQW5zfLgajcRvdq6vyVCh5uMI/7
+         WGhpSR0IStar+a3Sq2R6J4jcSvZSVx/eb5bYo3QM44Pw30SvS51m+9eaMlT2W0/cxmOS
+         nmdqOZq+uKhu/pSdFXAyCX40rJv4yyIbON40DFdjY1381M1P25kT9V/MA/gK94kpSsBr
+         brYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=532R/ZWuiDeQURoM9QVstK3VNVhlUb1b5wMTdcD1y6g=;
-        b=eThXtZuhxja5sW7KuvLeb/xy8Cuxz8PSJwSSDJ9zZd2RxuSetUu0aYZe9aN9sejCAR
-         E2unE7rBH3ZAZewNei5zDkJf/p3Jx7d6/r5qBchK5XTKpZ4+BUeVhjnMJ1qZjB2Qfcs+
-         xPfYaaPmb0iJUJjdgnfE2nPu0Tyr7LL7l5AAfVcFnPdeGq9haZz4e5kigfUT2EtVt0Dt
-         D7rLI+BOYqiFoPIcVhlVAJLDIYyfz5bQN7WIZdwUZ1rDjl6nflIvH6ImZj52slVQbTjF
-         8ecbjNXhNiPnF5gczjAC3lLGz31GYlSOqjTXEVtMao9ELAJsyiyGFEP6IozE916TV9Kd
-         EKwg==
-X-Gm-Message-State: APjAAAUFxRosRdG7yyIAdg6ydQUE5yTUYyJ48kuQZV64R7DKffyvBOwF
-        m9VIIZ6LuhX8o3xpvYdDv3PKeA==
-X-Google-Smtp-Source: APXvYqxNvQfiW+pmE3LmlxBbVlKlHM6v/pU91KToTSnslnmLS0Z+eHTKFQz+xNljPf3GF3C7gC2pJQ==
-X-Received: by 2002:adf:cd84:: with SMTP id q4mr25260602wrj.232.1566483899812;
-        Thu, 22 Aug 2019 07:24:59 -0700 (PDT)
+        bh=KG2NcaIwbNAD280NQ64Qs5ode6pikwpdVx2HlcQqOdg=;
+        b=uJPDupmKDz174oSFSdfQ/pMG5+dv9uDbql4aM2/gOzt0VVDnsNL7Alj4p4u3RKGycn
+         2izA0yWnsxKw8bnWXZJ1jFLkYnRIR6bDLKKpmtmBCPPxWoTYk/pH2FvMcxgbGg1okjS6
+         aCQ5JgsX2Y/b+H4P/xrmLYnI99dyyYWfaae6AIOTEAuozN2nPkh2gkc2sw09n5TwSL8u
+         2CpU/sOHC85ixvgmwyajfoSSHeUERUzQ51CYZGV62Ai0wrQH/XlZVRMPB4Cu9nW8egeW
+         a4M6db+5VY/rT2VEhiUYBKD36H6MKc617Q1FL0OEJQFWiysbap8fg1gab5TVYm31i8y5
+         UluA==
+X-Gm-Message-State: APjAAAWuL9g/e3K0yv/k5CdV75VuBBwvYuiorcqiyR+D+thEzuqBVM81
+        dT2y94o7tnHrpkZS6g+bH8FAjA==
+X-Google-Smtp-Source: APXvYqx3Mh2RGDC4m6KW3PjxbIkLg6LPgBiTgdSz+Ekeh7xQUa6XovZaLMvsi4r6rmOAQz3j+lYyoQ==
+X-Received: by 2002:adf:e708:: with SMTP id c8mr48174622wrm.25.1566483904374;
+        Thu, 22 Aug 2019 07:25:04 -0700 (PDT)
 Received: from bender.baylibre.local (176-150-251-154.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id d17sm25806547wrm.52.2019.08.22.07.24.58
+        by smtp.gmail.com with ESMTPSA id d17sm25806547wrm.52.2019.08.22.07.25.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2019 07:24:59 -0700 (PDT)
+        Thu, 22 Aug 2019 07:25:03 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     khilman@baylibre.com, jbrunet@baylibre.com,
         devicetree@vger.kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
         linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/6] dt-bindings: clk: meson: add sm1 periph clock controller bindings
-Date:   Thu, 22 Aug 2019 16:24:50 +0200
-Message-Id: <20190822142455.12506-2-narmstrong@baylibre.com>
+Subject: [PATCH 5/6] clk: meson: g12a: expose SM1 CPU 1, 2 & 3 clocks
+Date:   Thu, 22 Aug 2019 16:24:54 +0200
+Message-Id: <20190822142455.12506-6-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190822142455.12506-1-narmstrong@baylibre.com>
 References: <20190822142455.12506-1-narmstrong@baylibre.com>
@@ -63,31 +63,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the documentation to support clock driver for the Amlogic SM1 SoC.
-
-SM1 clock tree is very close, the main differences are :
-- each CPU core can achieve a different frequency, albeit a common PLL
-- a similar tree as the clock tree has been added for the DynamIQ Shared Unit
-- has a new GP1 PLL used for the DynamIQ Shared Unit
-- SM1 has additional clocks like for CSI, NanoQ an other components
+Expose the newly added CPU1, CPU2 and CPU3 clocks bindings for the Amlogic
+SM1 SoC.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/clk/meson/g12a.h              | 3 ---
+ include/dt-bindings/clock/g12a-clkc.h | 3 +++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-index 6eaa52092313..7ccecd5c02c1 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-+++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-@@ -11,6 +11,7 @@ Required Properties:
- 		"amlogic,axg-clkc" for AXG SoC.
- 		"amlogic,g12a-clkc" for G12A SoC.
- 		"amlogic,g12b-clkc" for G12B SoC.
-+		"amlogic,sm1-clkc" for SM1 SoC.
- - clocks : list of clock phandle, one for each entry clock-names.
- - clock-names : should contain the following:
-   * "xtal": the platform xtal
+diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
+index 4682a4442ae9..9c1dc6ade3d6 100644
+--- a/drivers/clk/meson/g12a.h
++++ b/drivers/clk/meson/g12a.h
+@@ -257,9 +257,6 @@
+ #define CLKID_DSU_CLK_DYN			250
+ #define CLKID_DSU_CLK_FINAL			251
+ #define CLKID_DSU_CLK				252
+-#define CLKID_CPU1_CLK				253
+-#define CLKID_CPU2_CLK				254
+-#define CLKID_CPU3_CLK				255
+ 
+ #define NR_CLKS					256
+ 
+diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
+index 8ccc29ac7a72..3cfefaf43315 100644
+--- a/include/dt-bindings/clock/g12a-clkc.h
++++ b/include/dt-bindings/clock/g12a-clkc.h
+@@ -138,5 +138,8 @@
+ #define CLKID_VDEC_HEVCF			210
+ #define CLKID_TS				212
+ #define CLKID_CPUB_CLK				224
++#define CLKID_CPU1_CLK				253
++#define CLKID_CPU2_CLK				254
++#define CLKID_CPU3_CLK				255
+ 
+ #endif /* __G12A_CLKC_H */
 -- 
 2.22.0
 
