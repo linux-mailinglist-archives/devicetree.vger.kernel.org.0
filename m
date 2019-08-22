@@ -2,136 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA7A99457
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:56:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D26919946F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388778AbfHVM4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 08:56:12 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:56025 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732412AbfHVM4J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 08:56:09 -0400
-Received: by mail-wm1-f68.google.com with SMTP id f72so5528534wmf.5
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 05:56:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=rpeKMI/tE6EFW9ANRr1XQ8WE1RGHTA5DL7LclXp1bOU=;
-        b=R8OJYPLbiX6PDGAA9Foc4n9BE7hvuMj/LM+laL12+iN3ynxmIPecnk/ZitUnc4yJf3
-         x3yeNl4JORj5UUgHXKdgISraJTxl7BWjt7qbqq56euafptc6q109RcFVVow+/WV/JGBb
-         vl35AkKxY6R67atF/v4/srrrPrl+H8+oRxfw5grLYXqeGWq467d8+zPk5VMoOzjrwvT8
-         doeHMm1kiNrQ0RhCgFTuTbPYwJUOnxnxUCgWv5xoA6lpt74ZG+CYavhEg/iUSqPPcKqE
-         vkNtC6asp5ZSmnB9oh+ftJS977O0MXa1MXoCVMt/sv/xu5t3l7D4zcIJfpGPZXBsJntW
-         IeKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=rpeKMI/tE6EFW9ANRr1XQ8WE1RGHTA5DL7LclXp1bOU=;
-        b=VfQim7f8CT5SxGH3ZmLs2FbvNliXvIWMDkXl1/NorjmQIA6tHQl6AplrnTgTg4Ny1p
-         UmaLPx8ywD2dHgevKCcIE8uJDs/hTzHvAMo7/l5dc3Pmgv8obu9N4f/23EWzNu3xCF/G
-         PMZ2QNF5S39tawIvyBS2yInowwvFLDOa7lX7p04fl/TwqZOAqPt24IPxUOFw8+8YsMY4
-         llT76+QO6GC+Et+BwnPjkbmSAMYoVPreBwkHv3TrIzx2gfUBQzGGauTtC35d0CFcfSwD
-         URQN9eyR82fQDL0Wnql225WaigO/De/OnixQ+FU3HDeJulwzdM/dWt1zy+Lf+nNUKgEn
-         0YHg==
-X-Gm-Message-State: APjAAAXMR92AbUMFmiJpgw5ySoMFGnOm+bGjBjUPD7uRJDasaldXwzPs
-        yrxifdrTKZJg1ufuo2WSJ6YoAQ==
-X-Google-Smtp-Source: APXvYqyO6aZlnWxHGBHK5szK1yStlylHBnKn6CHrS70h7pgw6i72AhORzAUhgOXoWe69T5EmcC2/uw==
-X-Received: by 2002:a1c:a481:: with SMTP id n123mr5795028wme.123.1566478567074;
-        Thu, 22 Aug 2019 05:56:07 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id t19sm5419487wmi.29.2019.08.22.05.56.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 22 Aug 2019 05:56:06 -0700 (PDT)
-Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Vinod <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
- <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
- <20190821214436.GA13936@bogus>
- <0272eafd-0aa5-f695-64e4-f6ad7157a3a6@linaro.org>
- <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <90b9fa33-3a49-c414-4352-66e26673a05d@linaro.org>
-Date:   Thu, 22 Aug 2019 13:56:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2388839AbfHVNEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 09:04:37 -0400
+Received: from mga09.intel.com ([134.134.136.24]:48582 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731541AbfHVNEh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 09:04:37 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Aug 2019 06:04:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,416,1559545200"; 
+   d="scan'208";a="378509664"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by fmsmga005.fm.intel.com with ESMTP; 22 Aug 2019 06:04:32 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i0mlR-0001dM-TB; Thu, 22 Aug 2019 16:04:29 +0300
+Date:   Thu, 22 Aug 2019 16:04:29 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Cc:     tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, hpa@zytor.com,
+        tony.luck@intel.com, x86@kernel.org, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, alan@linux.intel.com,
+        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
+        cheol.yong.kim@intel.com, rahul.tanwar@intel.com
+Subject: Re: [PATCH v1 1/2] x86/rtc: Add option to skip using RTC
+Message-ID: <20190822130429.GN30120@smile.fi.intel.com>
+References: <cover.1566458029.git.rahul.tanwar@linux.intel.com>
+ <becacc523508b295a52db9f1592e2868e3988e28.1566458029.git.rahul.tanwar@linux.intel.com>
+ <20190822090208.GJ30120@smile.fi.intel.com>
+ <25f6947d-7ba0-c23c-25aa-c4c4173da6b0@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <25f6947d-7ba0-c23c-25aa-c4c4173da6b0@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 22/08/2019 13:36, Rob Herring wrote:
->>>> +soundwire@c2d0000 {
->>>> +    compatible = "qcom,soundwire-v1.5.0"
->>>> +    reg = <0x0c2d0000 0x2000>;
->>>> +
->>>> +    spkr_left:wsa8810-left{
->>>> +            compatible = "sdw0110217201000";
->>>> +            ...
->>>> +    };
->>>> +
->>>> +    spkr_right:wsa8810-right{
->>>> +            compatible = "sdw0120217201000";
->>> The normal way to distinguish instances is with 'reg'. So I think you
->>> need 'reg' with Instance ID moved there at least. Just guessing, but
->>> perhaps Link ID, too? And for 2 different classes of device is that
->>> enough?
->> In previous bindings (https://lists.gt.net/linux/kernel/3403276  ) we
->> did have instance-id as different property, however Pierre had some good
->> suggestion to make it align with _ADR encoding as per MIPI DisCo spec.
->>
->> Do you still think that we should split the instance id to reg property?
-> Assuming you could have more than 1 of the same device on the bus,
-> then you need some way to distinguish them and the way that's done for
-> DT is unit-address/reg. And compatible strings should be constant for
-> each instance.
-That is a good point!
-Okay that makes more sense keep compatible string constant.
-Class ID would be constant for given functionality that the driver will 
-provide.
-
-So we will end up with some thing like this:
-
-soundwire@c2d0000 {
-	compatible = "qcom,soundwire-v1.5.0"
-	reg = <0x0c2d0000 0x2000>;	
-         #address-cells = <1>;
-         #size-cells = <0>;
-
-	spkr_left:skpr@1{
-		compatible = "sdw10217201000";
-		reg = <0x1>
-		sdw-link-id = <0>;
-		...
-	};
-
-	spkr_right:spkr@2{
-		compatible = "sdw10217201000";
-		reg = <0x2>
-		sdw-link-id = <0>;
-	};
-};
-
-I will spin this in next version!
-
-Thanks,
-srini
-
+On Thu, Aug 22, 2019 at 05:26:33PM +0800, Tanwar, Rahul wrote:
+> On 22/8/2019 5:02 PM, Andy Shevchenko wrote:
+> > On Thu, Aug 22, 2019 at 03:44:03PM +0800, Rahul Tanwar wrote:
+> > > Use a newly introduced optional "status" property of "motorola,mc146818"
+> > > compatible DT node to determine if RTC is supported. Skip read/write from
+> > > RTC device only when this node is present and status is "disabled". In all
+> > > other cases, proceed as before.
+> > Can't we rather update ->get_wallclock() and ->set_wallclock() based on this?
 > 
-> Rob
+> 
+> get_wallclock() and set_wallclock() are function pointers of platform_ops
+> 
+> which are initialized to mach_get_cmos_time() and mach_set_rtc_mmss()
+> 
+> at init time. Since adding a new platform to override these functions is
+> 
+> discouraged, so the only way is to modify RTC get/set functions.
+
+Shouldn't it be platform agnostic code?
+So, my point is, instead of hacking two functions, perhaps better to avoid them
+at all.
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
