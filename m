@@ -2,81 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51D5A98C43
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 09:12:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C827D98C70
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 09:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728275AbfHVHMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 03:12:17 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45264 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726332AbfHVHMQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 03:12:16 -0400
-Received: by mail-ot1-f67.google.com with SMTP id m24so4508630otp.12;
-        Thu, 22 Aug 2019 00:12:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NknsyWkZ+xBVq2BmTNJUVibRVuu5kMInH32as/5ZjAU=;
-        b=cLa5zT8AJFQJFdvFjZfv8oUE+ahDdVtpRcrabebAGZjnrmgnADVA0N6JIRGwzVkstn
-         9xe8KJys5dtckQqAGHxDk6fGdvu35Oqr2R26P5RC4dLULvgMOHpi+afmeKZbU7vA57y3
-         KbvVRaByXI7PY0WaLddTifuX/YEUTDn7S8AdTa1IacoBo++swCuVeRuDEMFylBWQp6Xx
-         TdqKzmFM5XQJ/DmB2ERzGN4h9RPWT1DCNHwHd64X1xrYzyFiUNFE3RHJ6zyvtcxU2nLk
-         D0blVoMml4boVwPQ/dwORHpb5siOxC/w/myeJdG+9d8Z3m9pQ95ppiBTVcIJTrihkw/V
-         3azw==
-X-Gm-Message-State: APjAAAVLVTFjtHcEKmx9ph7yDVV8V01ohpAUXIlmz57O4RZHz0hLzSDX
-        5yIQ+MIy3a7YZl8Orz+33Wr8fXb83gMbycnV20o=
-X-Google-Smtp-Source: APXvYqzb1u4mrLRs50aYq9h/RGQbypEZgWcFgLI22he5CrkhuQHi5h0fcP0VS/bOhS2B8MnnbU9LXigUmfwCRmrHj7E=
-X-Received: by 2002:a9d:7a90:: with SMTP id l16mr30789258otn.297.1566457935726;
- Thu, 22 Aug 2019 00:12:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <156630449239.17444.11157306180861080402.sendpatchset@octo> <156630456771.17444.15687151782258703992.sendpatchset@octo>
-In-Reply-To: <156630456771.17444.15687151782258703992.sendpatchset@octo>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 22 Aug 2019 09:12:04 +0200
-Message-ID: <CAMuHMdU6k5BJopgwTgKVVpbmmdN+nj24H5YUiJM8wCNP0fT9zQ@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] clocksource/drivers/sh_cmt: Document "cmt-48" as deprecated
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        id S1729718AbfHVHcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 03:32:20 -0400
+Received: from mga07.intel.com ([134.134.136.100]:59989 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727401AbfHVHcU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 03:32:20 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Aug 2019 00:32:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,415,1559545200"; 
+   d="scan'208";a="378410923"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga005.fm.intel.com with ESMTP; 22 Aug 2019 00:32:17 -0700
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+To:     p.zabel@pengutronix.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com, Dilip Kota <eswara.kota@linux.intel.com>
+Subject: [PATCH 1/2] dt-bindings: reset: Add YAML schemas for the Intel Reset controller
+Date:   Thu, 22 Aug 2019 15:32:10 +0800
+Message-Id: <c909a3a19a1c06ac3ed9e1c42da3193ff8e43b7a.1566454535.git.eswara.kota@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 2:34 PM Magnus Damm <magnus.damm@gmail.com> wrote:
-> From: Magnus Damm <damm+renesas@opensource.se>
->
-> Update the CMT driver to mark "renesas,cmt-48" as deprecated.
->
-> Instead of documenting a theoretical hardware device based on current software
-> support level, define DT bindings top-down based on available data sheet
-> information and make use of part numbers in the DT compat string.
->
-> In case of the only in-tree users r8a7740 and sh73a0 the compat strings
-> "renesas,r8a7740-cmt1" and "renesas,sh73a0-cmt1" may be used instead.
->
-> Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
-> Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+Add YAML schemas for the reset controller on Intel
+Lightening Mountain (LGM) SoC.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
+---
+ .../bindings/reset/intel,syscon-reset.yaml         | 50 ++++++++++++++++++++++
+ 1 file changed, 50 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
 
-Gr{oetje,eeting}s,
+diff --git a/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+new file mode 100644
+index 000000000000..298c60085486
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/intel,syscon-reset.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Intel Lightening Mountain SoC System Reset Controller
++
++maintainers:
++  - Dilip Kota <eswara.kota@linux.intel.com>
++
++properties:
++  compatible:
++    allOf:
++      - items:
++          - enum:
++              - intel,rcu-lgm
++              - syscon
++
++  reg:
++    description: Reset controller register base address and size
++
++  intel,global-reset:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: Global reset register offset and bit offset.
++
++  "#reset-cells":
++    const: 2
++
++required:
++  - compatible
++  - reg
++  - intel,global-reset
++  - "#reset-cells"
++
++examples:
++  - |
++    rcu0: reset-controller@00000000 {
++        compatible = "intel,rcu-lgm", "syscon";
++        reg = <0x000000 0x80000>;
++        intel,global-reset = <0x10 30>;
++        #reset-cells = <2>;
++    };
++
++    pcie_phy0: pciephy@... {
++        ...
++        /* address offset: 0x10, bit offset: 12 */
++        resets = <&rcu0 0x10 12>;
++        ...
++    };
+-- 
+2.11.0
 
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
