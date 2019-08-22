@@ -2,91 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E12E69939A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0989C993E2
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:34:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732309AbfHVMbl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 08:31:41 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:35989 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387472AbfHVMbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 08:31:40 -0400
-Received: by mail-lf1-f68.google.com with SMTP id j17so4406920lfp.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 05:31:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=aWwEGZ7IKPwlD1SyN53LweuoS+rG8j2WBRgPDxMagPA=;
-        b=HTiZwnq/M3TfXijzvWNxVT1w2LfIrWQGSI7AaFELWznEabALCocbEEsCS0ouQxAjTv
-         L2ppprdNx8PqHEjDgMo1KlEvq5ZmOFcZRUa5RYk1+WbJKNqVwsMmvFjli/VJe0LkyDf5
-         rITXAYx2JyEqUJvzcPYTKWW/MFA0QzHrIybTWVO/oov8ed6JGGhC4e/i3boV3dS+v3Cg
-         6szasMHEFAd59krNNio1T1fwXyGjodfq+HlChnEdEsmdAOnNwUDf+s7ypcyA6aulFsoe
-         +Jm/bwlLHaG3WFxkRZgE6lzlxsa93k/NRuUx++h4Uy5TqUImU1pT3eMf39vc2lmO/mQA
-         ZG4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to:content-transfer-encoding;
-        bh=aWwEGZ7IKPwlD1SyN53LweuoS+rG8j2WBRgPDxMagPA=;
-        b=pB1MRP/e+f/A6CzTiFAZDzWErFg0vUY/gXgnWfVoBfJJdAtMFoZNyWfpeB3n+s2VLU
-         O3BS3LZhmFkRGvdtp3c55rw9dPX9r2NyvF2A8M80TGNOQ+aR6mq4tMBvtSslC7pyckzN
-         I68wNA+TXUgcRd2wzAQpSPS1xslt5rncX4k6MpfBXLw2mEHP566iGPTpYgUG+F55e3dV
-         37xPtAhp6r0a0KUEo/QzDM4kV9s7OlqUdwbBFGLxIDIhfqzZMnvU5r4mH7WGQSMBniaX
-         XwDJaN0+vmRqHdhklaKtyvwwGyQgNzLJiZrZp9bAh6qYP7vBDGAPfR5sU6NrGe5oFxng
-         mxxg==
-X-Gm-Message-State: APjAAAWmmei4oDXkRvBlsU65sm/t2HWMiXLBy5QpWXrG+ZzpRRd4CYbA
-        hivE3b1CozIROXkKp6DPwM25Q00sCP6sboBZCtk=
-X-Google-Smtp-Source: APXvYqy0iXJu1OjjK1/w+dGR4lig1dJDuZAaySIndTcujkhpdPTdl55KZJyKAR1B8W+U0pR8yAAtA8Tc+YLhyFTL76s=
-X-Received: by 2002:ac2:560b:: with SMTP id v11mr18377191lfd.177.1566477098592;
- Thu, 22 Aug 2019 05:31:38 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ab3:6a0f:0:0:0:0:0 with HTTP; Thu, 22 Aug 2019 05:31:36
- -0700 (PDT)
-Reply-To: eku.lawfirm@gmail.com
-From:   "Law firm(Eku and Associates)" <ezeobodo1@gmail.com>
-Date:   Thu, 22 Aug 2019 12:31:36 +0000
-Message-ID: <CAN-_bTb1nP9CfQXnKs-EEZxJ0E-1zUOGGdX-92pg5wotBiWzLg@mail.gmail.com>
-Subject: MY $25,000,000.00 INVESTMENT PROPOSAL WITH YOU AND IN YOUR COUNTRY.
-To:     undisclosed-recipients:;
+        id S1731961AbfHVMeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 08:34:24 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:49386 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730918AbfHVMeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 08:34:23 -0400
+X-UUID: 31f219a7482b44259f289d9290bf75da-20190822
+X-UUID: 31f219a7482b44259f289d9290bf75da-20190822
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <ran.bi@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 1694480463; Thu, 22 Aug 2019 20:34:17 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by mtkmbs07n2.mediatek.inc
+ (172.21.101.141) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 22 Aug
+ 2019 20:34:11 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 22 Aug 2019 20:34:10 +0800
+Message-ID: <1566477254.12318.41.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 2/4] rtc: Add support for the MediaTek MT2712 RTC
+From:   Ran Bi <ran.bi@mediatek.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, YT Shen <yt.shen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        "Flora Fu" <flora.fu@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Date:   Thu, 22 Aug 2019 20:34:14 +0800
+In-Reply-To: <20190820201744.GZ3545@piout.net>
+References: <20190801110122.26834-1-ran.bi@mediatek.com>
+         <20190801110122.26834-3-ran.bi@mediatek.com>
+         <20190820201744.GZ3545@piout.net>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=20
-Dear,
-With due respect this is not spam or Scam mail, because I have
-contacted you before and there was no response from you,I apologise if
-the contents of this mail are contrary to your moral ethics, which I
-feel may be of great disturbance to your person, but please treat this
-with absolute confidentiality, believing that this email reaches you
-in good faith. My contacting you is not a mistake or a coincidence
-because God can use any person known or unknown to accomplish great
-things.
-I am a lawyer and I have an investment business proposal to offer you.
-It is not official but should be considered as legal and confidential
-business. I have a customer's deposit of $US25 million dollars ready
-to be moved for investment if you can partner with us. We are ready to
-offer you 10% of this total amount as your compensation for supporting
-the transaction to completion. If you are interested to help me please
-reply me with your full details as stated below:
-(1) Your full names:
-(2) Your address:
-(3) Your occupation:
-(4) Your mobile telephone number:
-(5) Your nationality:
-(6) Your present location:
-(7) Your age:
-So that I will provide you more details on what to do and what is
-required for successful completion.
-Note: DO NOT REPLY ME IF YOU ARE NOT INTERESTED AND WITHOUT THE ABOVE
-MENTIONED DETAILS
+Hi,
 
-Sinc=C3=A8rement v=C3=B4tre,
-Avocat Etienne Eku Esq.(Lawfirm)
-Procureur principal. De Cabinet d=E2=80=99avocats de l=E2=80=99Afrique de l=
-=E2=80=99ouest.
-Skype:westafricalawfirm
+> > +
+> > +#define MTK_RTC_DEV		KBUILD_MODNAME
+> 
+> You probably shouldn't do that and have a static string for the driver
+> name. I probably doesn't matter much though because DT is used to probe
+> the driver.
+> 
+
+Will change it at next patch.
+
+> > +/* we map HW YEAR 0 to 2000 because 2000 is the leap year */
+> > +#define MT2712_MIN_YEAR		2000
+> > +#define MT2712_BASE_YEAR	1900
+> > +#define MT2712_MIN_YEAR_OFFSET	(MT2712_MIN_YEAR - MT2712_BASE_YEAR)
+> > +#define MT2712_MAX_YEAR_OFFSET	(MT2712_MIN_YEAR_OFFSET + 127)
+> > +
+> 
+> All those defines are unecessary, see below.
+> 
+
+Will change it at next patch.
+
+> > +struct mt2712_rtc {
+> > +	struct device		*dev;
+> 
+> Looking at the code closely, it seems this is only used for debug and
+> error messages. Maybe you could use rtc_dev->dev instead.
+> 
+
+Will change it at next patch.
+
+> > +	mutex_lock(&rtc->rtc_dev->ops_lock);
+> > +
+> > +	irqsta = mt2712_readl(rtc, MT2712_IRQ_STA);
+> 
+> Do you have to lock that read? Is the register cleared on read?
+> 
+
+Yes, this register is read clear register.
+
+> > +	do {
+> > +		__mt2712_rtc_read_time(rtc, tm, &sec);
+> > +	} while (sec < tm->tm_sec);	/* SEC has carried */
+> 
+> Shouldn't that be while (tm->tm_sec < sec)?
+> 
+
+In __mt2712_rtc_read_time function, we read tm->tm_sec before read sec.
+Sometimes we can meet situation like "tm->tm_sec == 59" and "sec == 0".
+It means that TC_SEC has carried and we need to reload the tm struct. I
+suppose it was correct that using "while (sec < tm->tm_sec)"
+
+> > +
+> > +	/* HW register use 7 bits to store year data, minus
+> > +	 * MT2712_MIN_YEAR_OFFSET brfore write year data to register, and plus
+> > +	 * MT2712_MIN_YEAR_OFFSET back after read year from register
+> > +	 */
+> > +	tm->tm_year += MT2712_MIN_YEAR_OFFSET;
+> 
+> Simply add 100 in __mt2712_rtc_read_time
+> 
+
+Will change it at next patch.
+
+> > +
+> > +	/* HW register start mon from one, but tm_mon start from zero. */
+> > +	tm->tm_mon--;
+> > +
+> 
+> You can also do that in __mt2712_rtc_read_time.
+> 
+
+Will change it at next patch.
+
+> > +	if (rtc_valid_tm(tm)) {
+> 
+> This check is unnecessary, the validity is always checked by the core.
+> 
+
+Will remove this at next patch.
+
+> > +	if (tm->tm_year > MT2712_MAX_YEAR_OFFSET) {
+> > +		dev_dbg(rtc->dev, "Set year %d out of range. (%d - %d)\n",
+> > +			1900 + tm->tm_year, 1900 + MT2712_MIN_YEAR_OFFSET,
+> > +			1900 + MT2712_MAX_YEAR_OFFSET);
+> > +		return -EINVAL;
+> > +	}
+> 
+> This check is unnecessary, see below.
+> 
+
+Will change it at next patch.
+
+> > +
+> > +	tm->tm_year -= MT2712_MIN_YEAR_OFFSET;
+> > +	tm->tm_mon++;
+> 
+> You should probably avoid modifying tm, move the substraction and
+> addition in the mt2712_writel calls.
+> 
+
+Will change it at next patch.
+
+
+> > +	if (tm->tm_year > MT2712_MAX_YEAR_OFFSET) {
+> > +		dev_dbg(rtc->dev, "Set year %d out of range. (%d - %d)\n",
+> > +			1900 + tm->tm_year, 1900 + MT2712_MIN_YEAR_OFFSET,
+> > +			1900 + MT2712_MAX_YEAR_OFFSET);
+> > +		return -EINVAL;
+> > +	}
+> > +
+> 
+> Unnecessary check.
+> 
+
+Will change it at next patch.
+
+> > +	p1 = mt2712_readl(rtc, MT2712_POWERKEY1);
+> > +	p2 = mt2712_readl(rtc, MT2712_POWERKEY2);
+> > +	if (p1 != MT2712_POWERKEY1_KEY || p2 != MT2712_POWERKEY2_KEY)
+> > +		dev_dbg(rtc->dev, "powerkey not set (lost power)\n");
+> > +
+> 
+> This info is valuable, you should check that when reading the time and
+> return -EINVAL if power was lost.
+> 
+
+Will change it at next patch.
+
+> 
+> > +	/* RTC need POWERKEY1/2 match, then goto normal work mode */
+> > +	mt2712_writel(rtc, MT2712_POWERKEY1, MT2712_POWERKEY1_KEY);
+> > +	mt2712_writel(rtc, MT2712_POWERKEY2, MT2712_POWERKEY2_KEY);
+> 
+> This should be written when setting the time after power was lost.
+> 
+
+I suppose we can move this into mt2712_rtc_read_time function's "if
+(p1 != MT2712_POWERKEY1_KEY || p2 != MT2712_POWERKEY2_KEY)" condition
+which will be added at next patch. We need additional flag to mark this
+condition or another if condition in mt2712_rtc_set_time fucntion if we
+put these code in mt2712_rtc_set_time function.
+
+> > +static const struct rtc_class_ops mt2712_rtc_ops = {
+> > +	.read_time	= mt2712_rtc_read_time,
+> > +	.set_time	= mt2712_rtc_set_time,
+> > +	.read_alarm	= mt2712_rtc_read_alarm,
+> > +	.set_alarm	= mt2712_rtc_set_alarm,
+> 
+> For proper operations, you should also provide the .alarm_irq_enable
+> callback.
+> 
+
+Will change it at next patch.
+
+> > +	rtc->rtc_dev->ops = &mt2712_rtc_ops;
+> 
+> If you set the range properly here using rtc_dev->range_min and
+> rtc_dev->range_max, then the core will be able to do range checking and
+> will also take care of the year offset/windowing calculations instead of
+> having to hardcode that in the driver.
+> 
+
+Will change it at next patch.
+
+Best Regards,
+Ran
+
+
