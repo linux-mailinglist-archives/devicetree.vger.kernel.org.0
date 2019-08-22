@@ -2,156 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C31FB99544
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:39:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E69B9955F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:45:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389175AbfHVNjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 09:39:04 -0400
-Received: from mail-ua1-f65.google.com ([209.85.222.65]:37763 "EHLO
-        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389171AbfHVNjD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 09:39:03 -0400
-Received: by mail-ua1-f65.google.com with SMTP id f9so1999141uaj.4
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 06:39:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FeL+2QSM5K1YLKKF/js9TmuXZpGlOsVDG+4zs7enb+s=;
-        b=vcFXE6FvKpiU/zrPeYmswemc9N4V2PgJ6+b3JrTcb/leP+MyngmDkrXMX6fNCC6dqn
-         5U5DxhJ0+6trsoUFiL1UHaJoAtvD3avRnS5Jjn0hIWhxZH5BNh+UbEx7r03YoAl794Jw
-         HR5w6Fc5AQ9DT3i4m4j2/UueQP7AxJY/ZOBZgowVNQz1pcUgPIDl6VPhzseEWNH2yhVL
-         sFvrbBxAIf0ixOmb1AbOZTeD4bKcIaPo7/IS32eixFYAFFMtH0FSJExgG3ZVVpz5HtpK
-         wpmlq/Au0mkNCg+tpVy6s1iBWLieOP1LhX0U0hAfS+Vy8qt+5L2lehHVNPiimzJsKJTU
-         YaRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FeL+2QSM5K1YLKKF/js9TmuXZpGlOsVDG+4zs7enb+s=;
-        b=fW92lAv0n0sCc42WxcPJZn/JVeymiTT8qca6kxsUbseUPuKqmNSXLp6khg4Vz05oKA
-         hqz3RbAojxljthwL3SCAtnzwbiCaaJvvcwx0fWdfL9XHGzxwCFiYvsTv3IZFNJgPxOWC
-         HieYm9s7FA7k4vHob3eds9n7tX0t/7vHNlfu95b0MHhw8RnqShqjOeO46EcKPHgKbyDg
-         MqxV6gNa6lkYXX5rODNZsrubk1qYJAwqDGHKIrRql3aOQPY4QEOv1Ch6Fe38dvud6n7Y
-         ltl4JkaydK9fsxtiwnwLrllZvYOh9RXJTtKYiXjsG/5ctE1soiICLYyyohlGd2FIjMyS
-         NIog==
-X-Gm-Message-State: APjAAAX7cHBSWOaltdSlDyGIYJFV5XDn41rY8aEDY97VzGVCLB355MHK
-        YHjAkQEVXYSrSKTQaI1GnMA1vfVatPGmlIN8ungY3A==
-X-Google-Smtp-Source: APXvYqyNGgp4CW1Vx1Kr/v3sCAPsdONPj1D+yM9NJraECZoktBBfmsmh2N05UsLj8cJbC+xyyKQktBrLSJpWnqXuTU4=
-X-Received: by 2002:ab0:15e9:: with SMTP id j38mr5992611uae.19.1566481142313;
- Thu, 22 Aug 2019 06:39:02 -0700 (PDT)
+        id S1727875AbfHVNp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 09:45:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38516 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726536AbfHVNp1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 09:45:27 -0400
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 06DB223400;
+        Thu, 22 Aug 2019 13:45:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566481526;
+        bh=Hj0g9/YvLJB/GMiuttfnQ/wy/9VbH/xrP0IgPVN17Zc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jnCnwugfLNTVW8eVNE6bQqVVKL+dAwDnJpPYacg1hM7jXTfCWILOKFzZoPIm0D/t7
+         zD5RK29BhwJU/3yKCHRQyfAix/bDnhvz+dfTEv9VjFG0eRlol+pExjsikW7p0GP6HQ
+         of4HWU/LjS8/pz2xoPQn6iebjvjjqQB1eYXfW0gA=
+Received: by mail-lj1-f177.google.com with SMTP id e24so5595639ljg.11;
+        Thu, 22 Aug 2019 06:45:25 -0700 (PDT)
+X-Gm-Message-State: APjAAAU3kxuXHtpDz4P99SBvEVeZp7L5aNNOMaHjsWMGpAAc1W/7rE/N
+        UMvMfDiQ6OORG+gXRAXC6YZMYrdm8YVn/rDL3zE=
+X-Google-Smtp-Source: APXvYqxuT8xlgNSPZt83epiF37LgDQ9sK/vsAV6n794RAbob+czv9NCCVo7yAkDhpbS+aGKCuJAFi74CavuVY4sEe7E=
+X-Received: by 2002:a2e:a0c3:: with SMTP id f3mr1973090ljm.123.1566481524218;
+ Thu, 22 Aug 2019 06:45:24 -0700 (PDT)
 MIME-Version: 1.0
-References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
- <1561958991-21935-2-git-send-email-manish.narani@xilinx.com>
- <20190722215404.GA28292@bogus> <MN2PR02MB602907616249FF19C1A737D8C1C70@MN2PR02MB6029.namprd02.prod.outlook.com>
- <CAPDyKFostBKYipTkCsDbggsrux7w8BPqARx7fwRsL1XqEEX2NQ@mail.gmail.com> <MN2PR02MB60299EB8B83C4EA68A0F2B33C1A80@MN2PR02MB6029.namprd02.prod.outlook.com>
-In-Reply-To: <MN2PR02MB60299EB8B83C4EA68A0F2B33C1A80@MN2PR02MB6029.namprd02.prod.outlook.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 22 Aug 2019 15:38:26 +0200
-Message-ID: <CAPDyKFqdLE7d9uz_KcpO0CihM+QsFyKbNsoDMoNLT2Qy_TmNdw@mail.gmail.com>
-Subject: Re: [PATCH v2 01/11] dt-bindings: mmc: arasan: Update documentation
- for SD Card Clock
-To:     Manish Narani <MNARANI@xilinx.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        Michal Simek <michals@xilinx.com>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "christoph.muellner@theobroma-systems.com" 
-        <christoph.muellner@theobroma-systems.com>,
-        "philipp.tomsich@theobroma-systems.com" 
-        <philipp.tomsich@theobroma-systems.com>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
-        "scott.branden@broadcom.com" <scott.branden@broadcom.com>,
-        "ayaka@soulik.info" <ayaka@soulik.info>,
-        "kernel@esmil.dk" <kernel@esmil.dk>,
-        "tony.xie@rock-chips.com" <tony.xie@rock-chips.com>,
-        Rajan Vaja <RAJANV@xilinx.com>, Jolly Shah <JOLLYS@xilinx.com>,
-        Nava kishore Manne <navam@xilinx.com>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+References: <1566315318-30320-1-git-send-email-krzk@kernel.org>
+ <1566315318-30320-3-git-send-email-krzk@kernel.org> <CAL_JsqJLSZ50tdFcdPFc2ifcDoFZFuw=SoKsunzjtAhZ-11fBg@mail.gmail.com>
+ <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
+ <CAL_JsqKAH6n1sMoWOhfiHKxgREr-EN1tw0QtC1H8Fm=a7PNzOA@mail.gmail.com>
+ <20190820202142.GA15866@kozik-lap> <CAL_JsqKBWB2FiVjYo9O7DPw1JYJvan7uRgbR0VBG=FfHDVYdZQ@mail.gmail.com>
+ <20190821175458.GA25168@kozik-lap> <CAL_Jsq+YZ9KdCCT1grtpf7Z1o=-mFuq3O=o7iVGSAhJYO1-=Ww@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+YZ9KdCCT1grtpf7Z1o=-mFuq3O=o7iVGSAhJYO1-=Ww@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Thu, 22 Aug 2019 15:45:12 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPc6UNMszVr+fRdLtPxj0GFVrwJ7JqyGrzXz+MC=fY7gUA@mail.gmail.com>
+Message-ID: <CAJKOXPc6UNMszVr+fRdLtPxj0GFVrwJ7JqyGrzXz+MC=fY7gUA@mail.gmail.com>
+Subject: Re: [PATCH v6 3/4] dt-bindings: arm: fsl: Add Kontron i.MX6UL N6310 compatibles
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[...]
-
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/mmc/arasan,sdhci.txt | 15
-> > ++++++++++-
-> > > > ----
-> > > > >  1 file changed, 10 insertions(+), 5 deletions(-)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > > b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > > > index 1edbb04..15c6397 100644
-> > > > > --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > > > +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > > > @@ -23,6 +23,10 @@ Required Properties:
-> > > > >    - reg: From mmc bindings: Register location and length.
-> > > > >    - clocks: From clock bindings: Handles to clock inputs.
-> > > > >    - clock-names: From clock bindings: Tuple including "clk_xin" and
-> > "clk_ahb"
-> > > > > +            Apart from these two there is one more optional clock which
-> > > > > +            is "clk_sdcard". This clock represents output clock from
-> > > > > +            controller and card. This must be specified when #clock-cells
-> > > > > +            is specified.
-> > > > >    - interrupts: Interrupt specifier
-> > > > >
-> > > > >  Required Properties for "arasan,sdhci-5.1":
-> > > > > @@ -36,9 +40,10 @@ Optional Properties:
-> > > > >    - clock-output-names: If specified, this will be the name of the card
-> > clock
-> > > > >      which will be exposed by this device.  Required if #clock-cells is
-> > > > >      specified.
-> > > > > -  - #clock-cells: If specified this should be the value <0>.  With this
-> > property
-> > > > > -    in place we will export a clock representing the Card Clock.  This clock
-> > > > > -    is expected to be consumed by our PHY.  You must also specify
-> > > > > +  - #clock-cells: If specified this should be the value <0>. With this
-> > > > > +    property in place we will export one clock representing the Card
-> > > > > +    Clock. This clock is expected to be consumed by our PHY. You must
-> > also
-> > > > > +    specify
-> > > >
-> > > > specify what?
-> > > I think this line was already there, I missed to correct it, Will update in v3.
+On Thu, 22 Aug 2019 at 14:52, Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Wed, Aug 21, 2019 at 12:55 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > On Tue, Aug 20, 2019 at 03:27:39PM -0500, Rob Herring wrote:
+> > > > I see. If I understand the schema correctly, this should look like:
 > > >
-> > > >
-> > > > The 3rd clock input I assume? This statement means any existing users
-> > > > with 2 clock inputs and #clock-cells are in error now. Is that correct?
-> > > Yes, this is correct. So far there was only one vendor using '#clock-cells'
-> > which is Rockchip. I have sent DT patch (02/11) for that also.
-> > > Here this is needed as earlier implementation isn't correct as suggested by
-> > Uffe. (https://lkml.org/lkml/2019/6/20/486) .
+> > > Looks correct, but a couple of comments.
+> > >
+> > > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > index 7294ac36f4c0..eb263d1ccf13 100644
+> > > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> > > > @@ -161,6 +161,22 @@ properties:
+> > > >          items:
+> > > >            - enum:
+> > > >                - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
+> > > > +              - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
+> > >
+> > > Is the SOM ever used alone? If not, then no point in listing this here.
 > >
-> > I am not sure how big of a problem the backwards compatible thingy
-> > with DT is, in general we must not break it. What do you say Manish?
->
-> Though I agree with Uffe on this, there is no other way from my understanding. Please suggest.
->
+> > SoM alone: no, because it requires some type of base board. However it
+> > will be used by some customer designs with some amount of
+> > changes/addons.
 > >
-> > As a workaround, would it be possible to use
-> > of_clk_get_from_provider() somehow to address the compatibility issue?
+> > Looking at other aproaches, usually SoMs have their own compatible.  In
+> > such case - I should document it somewhere.
 >
-> For this to be used we have to parse 'clkspec' from the DT node and pass the same as an argument to this function. In this case also the DT node needs to be updated, which is same as we have done in this series.
+> I wasn't suggesting not having the compatible for it, but you don't
+> need it in this list because that is not valid. You have to list it
+> with the base board compatibles.
 
-Alright. I guess breaking DTBs for Rockchip platforms isn't
-acceptable, especially if those are already widely deployed, which I
-have no idea of....
+The diff against v7 would be like this then:
+---
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml
+b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 1f440817fc03..7219c15f6185 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -161,7 +161,6 @@ properties:
+         items:
+           - enum:
+               - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
+-              - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
+           - const: fsl,imx6ul
 
-And having support for both options in the driver seems not a great
-option either, so it looks like you need to convert back into the old
-v1 approach. Huh, sorry.
+       - description: Kontron N6310 S Board
+---
 
-Kind regards
-Uffe
+This passes the dtbs_check.
+
+I'll send v8
