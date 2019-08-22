@@ -2,180 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A96599076
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 12:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8DA199085
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 12:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730440AbfHVKML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 06:12:11 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:51997 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726332AbfHVKML (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 06:12:11 -0400
-Received: by mail-wm1-f65.google.com with SMTP id k1so5048779wmi.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 03:12:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0wHYij0xMMbdONxhmt2Q6DoydIxVDY+xQcUzVqKt+3s=;
-        b=VgOU7tWz9tj2ZdvC4hTvHdDaQeGT2Si9AZVE8FGa92l8Oqtw3XYoZkoc96vdmoLdwG
-         6TLN0rXhF0HlZDEryfz+wuT6E51l6pbx4Lf9TVcLUd06F/yHq01QI5omfVdWK3HPxT/F
-         ExM9NolGj7qcF7ZhmHYoy6SZ8+UzqDCfc/F2KM0bpe/QmgNyg6OFQ6Ut5AonVM2upk4L
-         uTEf4SMluqVUX0JjgTH6DS5X7IHsLnkjFboNrZCxS1in6ghFay4ibpKZ0lJQLIUexKs8
-         14HBW067R2l0VDDAnUk0xHLo79dXLaE+oecNJBZjoZyFZvbHb9LoS62NzVMlobfZHEVk
-         gVBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=0wHYij0xMMbdONxhmt2Q6DoydIxVDY+xQcUzVqKt+3s=;
-        b=RWhbAUOzjLNgOOFzIA81GdyyjehbXSdRzh/Ggt5rdaT1h8msBNpFAtBFjNQnIzbyvK
-         8JhiR8mnBLQw3W7I+7clXvofOprwZd9yXPhIYVSfInrdMQJYUE4NQNFv5Ac7BMD7UBKq
-         wSHNKJteVSvGhLiBmCYvvLRRTZQW6SHq68KsqQ3NNkkHjt3SALl4PmwWWtoCsh+v1KWd
-         5p7+TI3RjYr2XMzmgGTG1HxuwfHnrDvKkKPW5mVidYV6amo5PDNl+i4W5wZv5ErBwi5w
-         qyVbrN264HKIBpsSSqG9RghdAmeiVavnST81wZ00uMDsX9MKSGnW6fYRT1yJymwsg8eu
-         cjqA==
-X-Gm-Message-State: APjAAAXfJsiZZslUcCQKFM6kLcu9xiIzjJq7sV2UmIJILLrS3uH+Ro8T
-        FqrM1Mgnd/o80ng6wu2vL0plYDMu9G4=
-X-Google-Smtp-Source: APXvYqzzdoD/tdJWCm9pMx3HqDlxZuqqt0CYYFgVGFGn8E/l9KoCM2HsQQahV6f7pF/TvpSlqT7Klg==
-X-Received: by 2002:a7b:cb89:: with SMTP id m9mr5588534wmi.50.1566468729143;
-        Thu, 22 Aug 2019 03:12:09 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id u186sm8418829wmu.26.2019.08.22.03.12.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 22 Aug 2019 03:12:08 -0700 (PDT)
-Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     vkoul@kernel.org, broonie@kernel.org, bgoswami@codeaurora.org,
-        plai@codeaurora.org, pierre-louis.bossart@linux.intel.com,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
- <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
- <20190821214436.GA13936@bogus>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <0272eafd-0aa5-f695-64e4-f6ad7157a3a6@linaro.org>
-Date:   Thu, 22 Aug 2019 11:12:07 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1733195AbfHVKR5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 06:17:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57338 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731865AbfHVKR5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 06:17:57 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2EA0A206BB;
+        Thu, 22 Aug 2019 10:17:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566469076;
+        bh=D5zRVu+USg1+RS1lEwQnNpD4UWyIvPicvP8SU5txo7M=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=U+kQlDk/quo+7he7VCs7KWCgcPH6jsj+XqyXsFL1nkatram4CncWOWeCdSKn/rY/g
+         +iRxXCIDdDiMiWHQcq6VRQ1qG5uB7ctPdIy7P/MENCTB0Hu4QpP11xguJp+ZhYENWW
+         9LXMLpxz8xM/2PO8Erokk4mm7xsc+uOJrVaKRsdI=
+Date:   Thu, 22 Aug 2019 11:17:50 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Yong Wu <yong.wu@mediatek.com>, youlin.pei@mediatek.com,
+        devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        cui.zhang@mediatek.com, srv_heupstream@mediatek.com,
+        chao.hao@mediatek.com, Joerg Roedel <joro@8bytes.org>,
+        linux-kernel@vger.kernel.org, Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        ming-fan.chen@mediatek.com, anan.sun@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 09/23] iommu/io-pgtable-arm-v7s: Extend to support
+ PA[33:32] for MediaTek
+Message-ID: <20190822101749.3kwzd5lb7zinsord@willie-the-truck>
+References: <1566395606-7975-1-git-send-email-yong.wu@mediatek.com>
+ <1566395606-7975-10-git-send-email-yong.wu@mediatek.com>
+ <20190821152448.qmoqjh5zznfpdi6n@willie-the-truck>
+ <1566464186.11621.7.camel@mhfsdcap03>
+ <10d5122d-3375-161b-9356-2ddfc1c835bd@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20190821214436.GA13936@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10d5122d-3375-161b-9356-2ddfc1c835bd@arm.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 21/08/2019 22:44, Rob Herring wrote:
-> On Fri, Aug 09, 2019 at 02:34:04PM +0100, Srinivas Kandagatla wrote:
->> This patch adds bindings for Soundwire Slave devices that includes how
->> SoundWire enumeration address and Link ID are used to represented in
->> SoundWire slave device tree nodes.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->> ---
->>   .../devicetree/bindings/soundwire/slave.txt   | 51 +++++++++++++++++++
->>   1 file changed, 51 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
+On Thu, Aug 22, 2019 at 11:08:58AM +0100, Robin Murphy wrote:
+> On 2019-08-22 9:56 am, Yong Wu wrote:
+> > On Wed, 2019-08-21 at 16:24 +0100, Will Deacon wrote:
+> > > On Wed, Aug 21, 2019 at 09:53:12PM +0800, Yong Wu wrote:
+> > > > MediaTek extend the arm v7s descriptor to support up to 34 bits PA where
+> > > > the bit32 and bit33 are encoded in the bit9 and bit4 of the PTE
+> > > > respectively. Meanwhile the iova still is 32bits.
+> > > > 
+> > > > Regarding whether the pagetable address could be over 4GB, the mt8183
+> > > > support it while the previous mt8173 don't, thus keep it as is.
+> > > > 
+> > > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > > > ---
+> > > >   drivers/iommu/io-pgtable-arm-v7s.c | 32 +++++++++++++++++++++++++-------
+> > > >   include/linux/io-pgtable.h         |  7 +++----
+> > > >   2 files changed, 28 insertions(+), 11 deletions(-)
+> > > 
+> > > [...]
+> > > 
+> > > > @@ -731,7 +747,9 @@ static struct io_pgtable *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+> > > >   {
+> > > >   	struct arm_v7s_io_pgtable *data;
+> > > > -	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
+> > > > +	if (cfg->ias > ARM_V7S_ADDR_BITS ||
+> > > > +	    (cfg->oas > ARM_V7S_ADDR_BITS &&
+> > > > +	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
+> > > 
+> > > Please can you instead change arm_v7s_alloc_pgtable() so that it allows an
+> > > ias of up to 34 when the IO_PGTABLE_QUIRK_ARM_MTK_EXT is set?
+> > 
+> > Here I only simply skip the oas checking for our case. then which way do
+> > your prefer?  something like you commented before:?
+> > 
+> > 
+> > 	if (cfg->ias > ARM_V7S_ADDR_BITS)
+> > 		return NULL;
+> > 
+> > 	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
+> > 		if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
+> > 			cfg->oas = min(cfg->oas, ARM_V7S_ADDR_BITS);
+> > 		else if (cfg->oas > 34)
+> > 			return NULL;
+> > 	} else if (cfg->oas > ARM_V7S_ADDR_BITS) {
+> > 		return NULL;
+> > 	}
 > 
-> Can you convert this to DT schema given it is a common binding.
+> All it should take is something like:
 > 
-
-I will give that a go in next version!
-
-> What does the host controller look like? You need to define the node
-> hierarchy. Bus controller schemas should then include the bus schema.
-> See spi-controller.yaml.
-
-Host controller is always parent of these devices which is represented 
-in the example.
-
-In my previous patches, i did put this slave bindings in bus.txt, but 
-Vinod suggested to move it to slave.txt.
-
-Are you suggesting to add two yamls here, one for slave and one for bus
-Or just document this in one bus bindings?
-
-
+> 	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)
+> 		max_oas = 34;
+> 	else
+> 		max_oas = 32;
+> 	if (cfg->oas > max_oas)
+> 		return NULL;
 > 
->>
->> diff --git a/Documentation/devicetree/bindings/soundwire/slave.txt b/Documentation/devicetree/bindings/soundwire/slave.txt
->> new file mode 100644
->> index 000000000000..201f65d2fafa
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/soundwire/slave.txt
->> @@ -0,0 +1,51 @@
->> +SoundWire slave device bindings.
->> +
->> +SoundWire is a 2-pin multi-drop interface with data and clock line.
->> +It facilitates development of low cost, efficient, high performance systems.
->> +
->> +SoundWire slave devices:
->> +Every SoundWire controller node can contain zero or more child nodes
->> +representing slave devices on the bus. Every SoundWire slave device is
->> +uniquely determined by the enumeration address containing 5 fields:
->> +SoundWire Version, Instance ID, Manufacturer ID, Part ID
->> +and Class ID for a device. Addition to below required properties,
->> +child nodes can have device specific bindings.
->> +
->> +Required properties:
->> +- compatible:	 "sdw<LinkID><VersionID><InstanceID><MFD><PID><CID>".
->> +		  Is the textual representation of SoundWire Enumeration
->> +		  address along with Link ID. compatible string should contain
->> +		  SoundWire Link ID, SoundWire Version ID, Instance ID,
->> +		  Manufacturer ID, Part ID and Class ID in order
->> +		  represented as above and shall be in lower-case hexadecimal
->> +		  with leading zeroes. Vaild sizes of these fields are
->> +		  LinkID is 1 nibble,
->> +		  Version ID is 1 nibble
->> +		  Instance ID in 1 nibble
->> +		  MFD in 4 nibbles
->> +		  PID in 4 nibbles
->> +		  CID is 2 nibbles
->> +
->> +		  Version number '0x1' represents SoundWire 1.0
->> +		  Version number '0x2' represents SoundWire 1.1
+> or even just:
 > 
-> This can all be a regex.
+> 	if (cfg->oas > 32 ||
+> 	    (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT && cfg->oas > 34))
+> 		return NULL;
 > 
->> +		  ex: "sdw0110217201000" represents 0 LinkID,
->> +		  SoundWire 1.0 version slave with Instance ID 1.
->> +		  More Information on detail of encoding of these fields can be
->> +		  found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
->> +
->> +SoundWire example for Qualcomm's SoundWire controller:
->> +
->> +soundwire@c2d0000 {
->> +	compatible = "qcom,soundwire-v1.5.0"
->> +	reg = <0x0c2d0000 0x2000>;
->> +
->> +	spkr_left:wsa8810-left{
->> +		compatible = "sdw0110217201000";
->> +		...
->> +	};
->> +
->> +	spkr_right:wsa8810-right{
->> +		compatible = "sdw0120217201000";
-> 
-> The normal way to distinguish instances is with 'reg'. So I think you
-> need 'reg' with Instance ID moved there at least. Just guessing, but
-> perhaps Link ID, too? And for 2 different classes of device is that
-> enough?
+> (and if we prefer the latter style, perhaps we could introduce some kind of
+> "is_mtk_4gb()" helper to save on verbosity)
 
-In previous bindings ( https://lists.gt.net/linux/kernel/3403276 ) we 
-did have instance-id as different property, however Pierre had some good 
-suggestion to make it align with _ADR encoding as per MIPI DisCo spec.
+I wondered the same thing, but another place we'd want the check is in
+iopte_to_paddr() which probably needs the PHYS_ADDR_T check to avoid GCC
+warnings, although I didn't try it.
 
-Do you still think that we should split the instance id to reg property?
+So if we did:
 
-Thanks,
-srini
+static bool cfg_mtk_ext_enabled(struct io_pgtable_cfg *cfg)
+{
+	return IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT) &&
+	       cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT;
+}
 
-> 
-> Rob
-> 
+Then I suppose we could do this in _alloc():
+
+	if (cfg->oas > cfg_mtk_ext_enabled(cfg) ? 34 : ARM_V7S_ADDR_BITS)
+		return NULL;
+
+and then this in iopte_to_paddr():
+
+	[...]
+
+	paddr = pte & mask;
+	if (!cfg_mtk_ext_enabled(cfg))
+		return paddr;
+
+	if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+		paddr |= ...
+
+	[...]
+
+What do you reckon?
+
+Will
