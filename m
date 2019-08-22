@@ -2,167 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3C89993ED
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D4459940A
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731923AbfHVMgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 08:36:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33346 "EHLO mail.kernel.org"
+        id S1732370AbfHVMmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 08:42:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35042 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725856AbfHVMgp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 08:36:45 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+        id S1731964AbfHVMmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 08:42:54 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 625422341C;
-        Thu, 22 Aug 2019 12:36:44 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1FB8E23400;
+        Thu, 22 Aug 2019 12:42:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566477404;
-        bh=ga6b31QBXofW14aPOhrj0afNHMcSfr0f4f2qhLAjSZY=;
+        s=default; t=1566477774;
+        bh=u1d+yxJsT1RUvhBvbQpkk+Lf5Hdd3NIZBjhPGRaoLq0=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=g2mTxzcL+6XNgmErJ9kMiY3PPEq2ZMtzru9TPrxdGUohnxDtsE67ZneTZy0eck/yq
-         zq1pp4KgfNUEfjwQMBfukukqpXmKK0kpFiXpL5ce206wKBkz0Ni4/t+a2esWyiRcst
-         iUUIKkppW4adHUGQ02tZ0ogfNItNFHsOBVSWDgIA=
-Received: by mail-qk1-f181.google.com with SMTP id w18so4954359qki.0;
-        Thu, 22 Aug 2019 05:36:44 -0700 (PDT)
-X-Gm-Message-State: APjAAAXIqfqnJSOQkSL3fECc9671kgvpAZWox0nhWQ+Z00mfTvAIaSb9
-        7/diQU3llZCuh9JUVYUfThyHQfHKtuzzs8h8kw==
-X-Google-Smtp-Source: APXvYqw9D+dMZT14AHbYvh+UEVNMDJoszz23u/BEVj7KMPjMnlla91PDTwHFIvTe4a0csE3FYX96NJVL1APNKz9t2Y4=
-X-Received: by 2002:a37:4941:: with SMTP id w62mr3483805qka.119.1566477403498;
- Thu, 22 Aug 2019 05:36:43 -0700 (PDT)
+        b=edR3/F8kHjufAIzXmL5EPLQL9s+FkyXsTgFLD3pGhyRokP1bjNEbtCpYRTsZQWFxU
+         hhpHuv5/XDfytUXLzvVwVR2im285sPfm3Nmu0StCVp6XXQrXbuEoGXtcgLHeoikLEN
+         o6Gey1aefucRSEdl8XNh3eBlPk+tmGJn6uhnA4Kk=
+Received: by mail-qt1-f182.google.com with SMTP id l9so7440883qtu.6;
+        Thu, 22 Aug 2019 05:42:54 -0700 (PDT)
+X-Gm-Message-State: APjAAAUy99qFIC7z+vEZfsWu5VrH2RuAhoJZaFBCQFCiI51pn9K28vpF
+        RITe/li0VM89eKwxlVct7mGk7C/I8Y4ujfzF3g==
+X-Google-Smtp-Source: APXvYqxC0xb53h6O4RvVMfpbGb5MhrE12k/FG4k5FZrxkO1CLd25XOg+b1pujVZE4NJPmG2GhguxmB+9CL3m/MBOJiI=
+X-Received: by 2002:ac8:386f:: with SMTP id r44mr37134933qtb.300.1566477773293;
+ Thu, 22 Aug 2019 05:42:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
- <20190809133407.25918-2-srinivas.kandagatla@linaro.org> <20190821214436.GA13936@bogus>
- <0272eafd-0aa5-f695-64e4-f6ad7157a3a6@linaro.org>
-In-Reply-To: <0272eafd-0aa5-f695-64e4-f6ad7157a3a6@linaro.org>
+References: <20190809093158.7969-1-lkundrak@v3.sk> <20190809093158.7969-3-lkundrak@v3.sk>
+ <20190821210349.GA29732@bogus> <c859d12167d18c21dda13b30c2dd3256f407d1d9.camel@v3.sk>
+In-Reply-To: <c859d12167d18c21dda13b30c2dd3256f407d1d9.camel@v3.sk>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 22 Aug 2019 07:36:32 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
-Message-ID: <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Vinod <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Thu, 22 Aug 2019 07:42:42 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+BVUX3MMjsjK+hhjgDzdiqoo8dwEMD_98OrkGMOQf8GA@mail.gmail.com>
+Message-ID: <CAL_Jsq+BVUX3MMjsjK+hhjgDzdiqoo8dwEMD_98OrkGMOQf8GA@mail.gmail.com>
+Subject: Re: [PATCH 02/19] dt-bindings: arm: mrvl: Document MMP3 compatible string
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Olof Johansson <olof@lixom.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 5:12 AM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
+On Thu, Aug 22, 2019 at 3:12 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
 >
->
->
-> On 21/08/2019 22:44, Rob Herring wrote:
-> > On Fri, Aug 09, 2019 at 02:34:04PM +0100, Srinivas Kandagatla wrote:
-> >> This patch adds bindings for Soundwire Slave devices that includes how
-> >> SoundWire enumeration address and Link ID are used to represented in
-> >> SoundWire slave device tree nodes.
-> >>
-> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> >> ---
-> >>   .../devicetree/bindings/soundwire/slave.txt   | 51 +++++++++++++++++++
-> >>   1 file changed, 51 insertions(+)
-> >>   create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
+> On Wed, 2019-08-21 at 16:03 -0500, Rob Herring wrote:
+> > On Fri, Aug 09, 2019 at 11:31:41AM +0200, Lubomir Rintel wrote:
+> > > Marvel MMP3 is a successor to MMP2, containing similar peripherals with two
+> > > PJ4B cores.
+> > >
+> > > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> > > ---
+> > >  Documentation/devicetree/bindings/arm/mrvl/mrvl.txt | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt b/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
+> > > index 951687528efb0..66e1e1414245b 100644
+> > > --- a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
+> > > +++ b/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
+> > > @@ -12,3 +12,7 @@ Required root node properties:
+> > >  MMP2 Brownstone Board
+> > >  Required root node properties:
+> > >     - compatible = "mrvl,mmp2-brownstone", "mrvl,mmp2";
+> > > +
+> > > +MMP3 SoC
+> > > +Required root node properties:
+> > > +   - compatible = "marvell,mmp3";
 > >
-> > Can you convert this to DT schema given it is a common binding.
-> >
+> > Please convert this file to DT schema before adding new SoCs.
 >
-> I will give that a go in next version!
->
-> > What does the host controller look like? You need to define the node
-> > hierarchy. Bus controller schemas should then include the bus schema.
-> > See spi-controller.yaml.
->
-> Host controller is always parent of these devices which is represented
-> in the example.
->
-> In my previous patches, i did put this slave bindings in bus.txt, but
-> Vinod suggested to move it to slave.txt.
->
-> Are you suggesting to add two yamls here, one for slave and one for bus
-> Or just document this in one bus bindings?
+> Is this something that should generally be done for all new or changed
+> DT bindings?
 
-One. Like I said, see spi-controller.yaml.
-
-> >> diff --git a/Documentation/devicetree/bindings/soundwire/slave.txt b/Documentation/devicetree/bindings/soundwire/slave.txt
-> >> new file mode 100644
-> >> index 000000000000..201f65d2fafa
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/soundwire/slave.txt
-> >> @@ -0,0 +1,51 @@
-> >> +SoundWire slave device bindings.
-> >> +
-> >> +SoundWire is a 2-pin multi-drop interface with data and clock line.
-> >> +It facilitates development of low cost, efficient, high performance systems.
-> >> +
-> >> +SoundWire slave devices:
-> >> +Every SoundWire controller node can contain zero or more child nodes
-> >> +representing slave devices on the bus. Every SoundWire slave device is
-> >> +uniquely determined by the enumeration address containing 5 fields:
-> >> +SoundWire Version, Instance ID, Manufacturer ID, Part ID
-> >> +and Class ID for a device. Addition to below required properties,
-> >> +child nodes can have device specific bindings.
-> >> +
-> >> +Required properties:
-> >> +- compatible:        "sdw<LinkID><VersionID><InstanceID><MFD><PID><CID>".
-> >> +              Is the textual representation of SoundWire Enumeration
-> >> +              address along with Link ID. compatible string should contain
-> >> +              SoundWire Link ID, SoundWire Version ID, Instance ID,
-> >> +              Manufacturer ID, Part ID and Class ID in order
-> >> +              represented as above and shall be in lower-case hexadecimal
-> >> +              with leading zeroes. Vaild sizes of these fields are
-> >> +              LinkID is 1 nibble,
-> >> +              Version ID is 1 nibble
-> >> +              Instance ID in 1 nibble
-> >> +              MFD in 4 nibbles
-> >> +              PID in 4 nibbles
-> >> +              CID is 2 nibbles
-> >> +
-> >> +              Version number '0x1' represents SoundWire 1.0
-> >> +              Version number '0x2' represents SoundWire 1.1
-> >
-> > This can all be a regex.
-> >
-> >> +              ex: "sdw0110217201000" represents 0 LinkID,
-> >> +              SoundWire 1.0 version slave with Instance ID 1.
-> >> +              More Information on detail of encoding of these fields can be
-> >> +              found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
-> >> +
-> >> +SoundWire example for Qualcomm's SoundWire controller:
-> >> +
-> >> +soundwire@c2d0000 {
-> >> +    compatible = "qcom,soundwire-v1.5.0"
-> >> +    reg = <0x0c2d0000 0x2000>;
-> >> +
-> >> +    spkr_left:wsa8810-left{
-> >> +            compatible = "sdw0110217201000";
-> >> +            ...
-> >> +    };
-> >> +
-> >> +    spkr_right:wsa8810-right{
-> >> +            compatible = "sdw0120217201000";
-> >
-> > The normal way to distinguish instances is with 'reg'. So I think you
-> > need 'reg' with Instance ID moved there at least. Just guessing, but
-> > perhaps Link ID, too? And for 2 different classes of device is that
-> > enough?
->
-> In previous bindings ( https://lists.gt.net/linux/kernel/3403276 ) we
-> did have instance-id as different property, however Pierre had some good
-> suggestion to make it align with _ADR encoding as per MIPI DisCo spec.
->
-> Do you still think that we should split the instance id to reg property?
-
-Assuming you could have more than 1 of the same device on the bus,
-then you need some way to distinguish them and the way that's done for
-DT is unit-address/reg. And compatible strings should be constant for
-each instance.
+Preferred, but not quite yet required everywhere. It depends on the
+maintainer/subsystem still. But for board level bindings, you'll
+notice most of them are converted. Marvell, Broadcom, and TI are the
+main ones left.
 
 Rob
