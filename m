@@ -2,93 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 733E99943D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFA7A99457
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728782AbfHVMwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 08:52:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40124 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725856AbfHVMwF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 08:52:05 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3A900233A2;
-        Thu, 22 Aug 2019 12:52:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566478324;
-        bh=M+Cv//+XfrETRuLsfLdPmRxWKe2q0redejZXokNjvFQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Q2wTLVosMvILxnc9Lw9AIYfhRlWhXFI7PJchdrPati0756F0Lz9FjEGI7PQ9e16lC
-         aS9vv0kEAUlHPrbAG9z8xFnPV7PEU3s7u1jQ0aCewbDybe52QMBrdetWAHg3y0hHK+
-         h2g5SqKoLrGax+PD5EtieoOuK42O3+93WLXHlp/k=
-Received: by mail-qt1-f172.google.com with SMTP id q4so7490385qtp.1;
-        Thu, 22 Aug 2019 05:52:04 -0700 (PDT)
-X-Gm-Message-State: APjAAAVXrgirlOpg41l3ev7OoU21YsRHb1vUOwdJCEsUzhDkJLMBhgpp
-        cpwXb+7ZqjZcDvV2Jwc9URWEEpumx5VmFQ6w/g==
-X-Google-Smtp-Source: APXvYqyud1uld7PRlHZyZGc9pJSR2E2SAPODxijwM1XUjXe1gqeZih14Umvdcphw6A3XJwJs9+MIzzyXSO4CKcIra7w=
-X-Received: by 2002:aed:24f4:: with SMTP id u49mr36868968qtc.110.1566478323380;
- Thu, 22 Aug 2019 05:52:03 -0700 (PDT)
+        id S2388778AbfHVM4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 08:56:12 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:56025 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732412AbfHVM4J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 08:56:09 -0400
+Received: by mail-wm1-f68.google.com with SMTP id f72so5528534wmf.5
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 05:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=rpeKMI/tE6EFW9ANRr1XQ8WE1RGHTA5DL7LclXp1bOU=;
+        b=R8OJYPLbiX6PDGAA9Foc4n9BE7hvuMj/LM+laL12+iN3ynxmIPecnk/ZitUnc4yJf3
+         x3yeNl4JORj5UUgHXKdgISraJTxl7BWjt7qbqq56euafptc6q109RcFVVow+/WV/JGBb
+         vl35AkKxY6R67atF/v4/srrrPrl+H8+oRxfw5grLYXqeGWq467d8+zPk5VMoOzjrwvT8
+         doeHMm1kiNrQ0RhCgFTuTbPYwJUOnxnxUCgWv5xoA6lpt74ZG+CYavhEg/iUSqPPcKqE
+         vkNtC6asp5ZSmnB9oh+ftJS977O0MXa1MXoCVMt/sv/xu5t3l7D4zcIJfpGPZXBsJntW
+         IeKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=rpeKMI/tE6EFW9ANRr1XQ8WE1RGHTA5DL7LclXp1bOU=;
+        b=VfQim7f8CT5SxGH3ZmLs2FbvNliXvIWMDkXl1/NorjmQIA6tHQl6AplrnTgTg4Ny1p
+         UmaLPx8ywD2dHgevKCcIE8uJDs/hTzHvAMo7/l5dc3Pmgv8obu9N4f/23EWzNu3xCF/G
+         PMZ2QNF5S39tawIvyBS2yInowwvFLDOa7lX7p04fl/TwqZOAqPt24IPxUOFw8+8YsMY4
+         llT76+QO6GC+Et+BwnPjkbmSAMYoVPreBwkHv3TrIzx2gfUBQzGGauTtC35d0CFcfSwD
+         URQN9eyR82fQDL0Wnql225WaigO/De/OnixQ+FU3HDeJulwzdM/dWt1zy+Lf+nNUKgEn
+         0YHg==
+X-Gm-Message-State: APjAAAXMR92AbUMFmiJpgw5ySoMFGnOm+bGjBjUPD7uRJDasaldXwzPs
+        yrxifdrTKZJg1ufuo2WSJ6YoAQ==
+X-Google-Smtp-Source: APXvYqyO6aZlnWxHGBHK5szK1yStlylHBnKn6CHrS70h7pgw6i72AhORzAUhgOXoWe69T5EmcC2/uw==
+X-Received: by 2002:a1c:a481:: with SMTP id n123mr5795028wme.123.1566478567074;
+        Thu, 22 Aug 2019 05:56:07 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id t19sm5419487wmi.29.2019.08.22.05.56.05
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 22 Aug 2019 05:56:06 -0700 (PDT)
+Subject: Re: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Vinod <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
+ <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
+ <20190821214436.GA13936@bogus>
+ <0272eafd-0aa5-f695-64e4-f6ad7157a3a6@linaro.org>
+ <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <90b9fa33-3a49-c414-4352-66e26673a05d@linaro.org>
+Date:   Thu, 22 Aug 2019 13:56:05 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1566315318-30320-1-git-send-email-krzk@kernel.org>
- <1566315318-30320-3-git-send-email-krzk@kernel.org> <CAL_JsqJLSZ50tdFcdPFc2ifcDoFZFuw=SoKsunzjtAhZ-11fBg@mail.gmail.com>
- <CAJKOXPfkNcWw9sunwXGRz42jOL0cdRC-iiHLtWCYvo5oxCMwFQ@mail.gmail.com>
- <CAL_JsqKAH6n1sMoWOhfiHKxgREr-EN1tw0QtC1H8Fm=a7PNzOA@mail.gmail.com>
- <20190820202142.GA15866@kozik-lap> <CAL_JsqKBWB2FiVjYo9O7DPw1JYJvan7uRgbR0VBG=FfHDVYdZQ@mail.gmail.com>
- <20190821175458.GA25168@kozik-lap>
-In-Reply-To: <20190821175458.GA25168@kozik-lap>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 22 Aug 2019 07:51:51 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+YZ9KdCCT1grtpf7Z1o=-mFuq3O=o7iVGSAhJYO1-=Ww@mail.gmail.com>
-Message-ID: <CAL_Jsq+YZ9KdCCT1grtpf7Z1o=-mFuq3O=o7iVGSAhJYO1-=Ww@mail.gmail.com>
-Subject: Re: [PATCH v6 3/4] dt-bindings: arm: fsl: Add Kontron i.MX6UL N6310 compatibles
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Schrempf Frieder <frieder.schrempf@kontron.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqJJCJB9obR_Jn3hmn4gq+RQjY-8M+xkdYA185Uaw0MHcw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 12:55 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, Aug 20, 2019 at 03:27:39PM -0500, Rob Herring wrote:
-> > > I see. If I understand the schema correctly, this should look like:
-> >
-> > Looks correct, but a couple of comments.
-> >
-> > > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > index 7294ac36f4c0..eb263d1ccf13 100644
-> > > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > > @@ -161,6 +161,22 @@ properties:
-> > >          items:
-> > >            - enum:
-> > >                - fsl,imx6ul-14x14-evk      # i.MX6 UltraLite 14x14 EVK Board
-> > > +              - kontron,imx6ul-n6310-som  # Kontron N6310 SOM
-> >
-> > Is the SOM ever used alone? If not, then no point in listing this here.
->
-> SoM alone: no, because it requires some type of base board. However it
-> will be used by some customer designs with some amount of
-> changes/addons.
->
-> Looking at other aproaches, usually SoMs have their own compatible.  In
-> such case - I should document it somewhere.
 
-I wasn't suggesting not having the compatible for it, but you don't
-need it in this list because that is not valid. You have to list it
-with the base board compatibles.
 
-Rob
+On 22/08/2019 13:36, Rob Herring wrote:
+>>>> +soundwire@c2d0000 {
+>>>> +    compatible = "qcom,soundwire-v1.5.0"
+>>>> +    reg = <0x0c2d0000 0x2000>;
+>>>> +
+>>>> +    spkr_left:wsa8810-left{
+>>>> +            compatible = "sdw0110217201000";
+>>>> +            ...
+>>>> +    };
+>>>> +
+>>>> +    spkr_right:wsa8810-right{
+>>>> +            compatible = "sdw0120217201000";
+>>> The normal way to distinguish instances is with 'reg'. So I think you
+>>> need 'reg' with Instance ID moved there at least. Just guessing, but
+>>> perhaps Link ID, too? And for 2 different classes of device is that
+>>> enough?
+>> In previous bindings (https://lists.gt.net/linux/kernel/3403276  ) we
+>> did have instance-id as different property, however Pierre had some good
+>> suggestion to make it align with _ADR encoding as per MIPI DisCo spec.
+>>
+>> Do you still think that we should split the instance id to reg property?
+> Assuming you could have more than 1 of the same device on the bus,
+> then you need some way to distinguish them and the way that's done for
+> DT is unit-address/reg. And compatible strings should be constant for
+> each instance.
+That is a good point!
+Okay that makes more sense keep compatible string constant.
+Class ID would be constant for given functionality that the driver will 
+provide.
+
+So we will end up with some thing like this:
+
+soundwire@c2d0000 {
+	compatible = "qcom,soundwire-v1.5.0"
+	reg = <0x0c2d0000 0x2000>;	
+         #address-cells = <1>;
+         #size-cells = <0>;
+
+	spkr_left:skpr@1{
+		compatible = "sdw10217201000";
+		reg = <0x1>
+		sdw-link-id = <0>;
+		...
+	};
+
+	spkr_right:spkr@2{
+		compatible = "sdw10217201000";
+		reg = <0x2>
+		sdw-link-id = <0>;
+	};
+};
+
+I will spin this in next version!
+
+Thanks,
+srini
+
+> 
+> Rob
