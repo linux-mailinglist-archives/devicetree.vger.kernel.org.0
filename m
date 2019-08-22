@@ -2,103 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB58599668
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 989329969F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:31:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388052AbfHVOZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 10:25:06 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:33648 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388083AbfHVOZG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 10:25:06 -0400
-Received: by mail-wr1-f66.google.com with SMTP id u16so5657696wrr.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 07:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KG2NcaIwbNAD280NQ64Qs5ode6pikwpdVx2HlcQqOdg=;
-        b=Mbo1AIuvdMXerHdaswfzRwqBNLg0dn4ksMsbHBX6Gzz7CO7Ed8uL+57KRDLMsubeLI
-         i9fwlUGa8+0jRP1vOy249LbGNk6rCoLl/5SsfipVbB/xjyDOYdJJNYFajO4lqCfdpUUa
-         NoZd+QfZk+EgydZA+CESI2LeUcOwP/RnN6ck8dKPbdQW5zfLgajcRvdq6vyVCh5uMI/7
-         WGhpSR0IStar+a3Sq2R6J4jcSvZSVx/eb5bYo3QM44Pw30SvS51m+9eaMlT2W0/cxmOS
-         nmdqOZq+uKhu/pSdFXAyCX40rJv4yyIbON40DFdjY1381M1P25kT9V/MA/gK94kpSsBr
-         brYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KG2NcaIwbNAD280NQ64Qs5ode6pikwpdVx2HlcQqOdg=;
-        b=uJPDupmKDz174oSFSdfQ/pMG5+dv9uDbql4aM2/gOzt0VVDnsNL7Alj4p4u3RKGycn
-         2izA0yWnsxKw8bnWXZJ1jFLkYnRIR6bDLKKpmtmBCPPxWoTYk/pH2FvMcxgbGg1okjS6
-         aCQ5JgsX2Y/b+H4P/xrmLYnI99dyyYWfaae6AIOTEAuozN2nPkh2gkc2sw09n5TwSL8u
-         2CpU/sOHC85ixvgmwyajfoSSHeUERUzQ51CYZGV62Ai0wrQH/XlZVRMPB4Cu9nW8egeW
-         a4M6db+5VY/rT2VEhiUYBKD36H6MKc617Q1FL0OEJQFWiysbap8fg1gab5TVYm31i8y5
-         UluA==
-X-Gm-Message-State: APjAAAWuL9g/e3K0yv/k5CdV75VuBBwvYuiorcqiyR+D+thEzuqBVM81
-        dT2y94o7tnHrpkZS6g+bH8FAjA==
-X-Google-Smtp-Source: APXvYqx3Mh2RGDC4m6KW3PjxbIkLg6LPgBiTgdSz+Ekeh7xQUa6XovZaLMvsi4r6rmOAQz3j+lYyoQ==
-X-Received: by 2002:adf:e708:: with SMTP id c8mr48174622wrm.25.1566483904374;
-        Thu, 22 Aug 2019 07:25:04 -0700 (PDT)
-Received: from bender.baylibre.local (176-150-251-154.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id d17sm25806547wrm.52.2019.08.22.07.25.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Aug 2019 07:25:03 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, jbrunet@baylibre.com,
-        devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/6] clk: meson: g12a: expose SM1 CPU 1, 2 & 3 clocks
-Date:   Thu, 22 Aug 2019 16:24:54 +0200
-Message-Id: <20190822142455.12506-6-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190822142455.12506-1-narmstrong@baylibre.com>
-References: <20190822142455.12506-1-narmstrong@baylibre.com>
+        id S1732947AbfHVOaa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 10:30:30 -0400
+Received: from foss.arm.com ([217.140.110.172]:46912 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732789AbfHVOa3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 10:30:29 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0F453337;
+        Thu, 22 Aug 2019 07:30:29 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5672B3F706;
+        Thu, 22 Aug 2019 07:30:26 -0700 (PDT)
+Subject: Re: [PATCH v2 1/4] iommu/arm-smmu: Introduce wrapper for writeq/readq
+To:     Will Deacon <will@kernel.org>,
+        Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     devicetree@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        linux-kernel@vger.kernel.org,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Hanna Hawa <hannah@marvell.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+References: <20190711150242.25290-1-gregory.clement@bootlin.com>
+ <20190711150242.25290-2-gregory.clement@bootlin.com>
+ <20190820120848.2m6gytilrpil4stu@willie-the-truck>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <4ef6512d-701f-4fe8-8173-5f659dab0d32@arm.com>
+Date:   Thu, 22 Aug 2019 15:30:24 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190820120848.2m6gytilrpil4stu@willie-the-truck>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Expose the newly added CPU1, CPU2 and CPU3 clocks bindings for the Amlogic
-SM1 SoC.
+On 20/08/2019 13:08, Will Deacon wrote:
+> Hi Gregory, Hanna,
+> 
+> On Thu, Jul 11, 2019 at 05:02:39PM +0200, Gregory CLEMENT wrote:
+>> From: Hanna Hawa <hannah@marvell.com>
+>>
+>> This patch introduces the smmu_writeq_relaxed/smmu_readq_relaxed
+>> helpers, as preparation to add specific Marvell work-around for
+>> accessing 64 bits width registers of ARM SMMU.
+>>
+>> Signed-off-by: Hanna Hawa <hannah@marvell.com>
+>> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+>> ---
+>>   drivers/iommu/arm-smmu.c | 36 +++++++++++++++++++++++++++---------
+>>   1 file changed, 27 insertions(+), 9 deletions(-)
+> 
+> Sorry for the delay in replying to this -- Robin's been reworking the driver
+> so that implementation quirks can be specified more cleanly. Please can you
+> take a look at:
+> 
+> https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/arm-smmu/refactoring
+> 
+> and try to respin your patches on top of that?
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- drivers/clk/meson/g12a.h              | 3 ---
- include/dt-bindings/clock/g12a-clkc.h | 3 +++
- 2 files changed, 3 insertions(+), 3 deletions(-)
+Right, the arm_smmu_impl design was specifically anticipating this quirk 
+as well - it should just be a case of a cfg_probe hook to hide the 
+features which can't work, plus {read,write}_reg64 hooks to override any 
+remaining 64-bit accesses with the explicit hi_lo_* variants, munged 
+together (either statically or dynamically) with the standard MMU-500 hooks.
 
-diff --git a/drivers/clk/meson/g12a.h b/drivers/clk/meson/g12a.h
-index 4682a4442ae9..9c1dc6ade3d6 100644
---- a/drivers/clk/meson/g12a.h
-+++ b/drivers/clk/meson/g12a.h
-@@ -257,9 +257,6 @@
- #define CLKID_DSU_CLK_DYN			250
- #define CLKID_DSU_CLK_FINAL			251
- #define CLKID_DSU_CLK				252
--#define CLKID_CPU1_CLK				253
--#define CLKID_CPU2_CLK				254
--#define CLKID_CPU3_CLK				255
- 
- #define NR_CLKS					256
- 
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index 8ccc29ac7a72..3cfefaf43315 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -138,5 +138,8 @@
- #define CLKID_VDEC_HEVCF			210
- #define CLKID_TS				212
- #define CLKID_CPUB_CLK				224
-+#define CLKID_CPU1_CLK				253
-+#define CLKID_CPU2_CLK				254
-+#define CLKID_CPU3_CLK				255
- 
- #endif /* __G12A_CLKC_H */
--- 
-2.22.0
-
+Robin.
