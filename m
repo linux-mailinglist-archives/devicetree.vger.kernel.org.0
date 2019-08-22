@@ -2,77 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 469B2995EF
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:09:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91F4099619
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:16:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731280AbfHVOJh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 10:09:37 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:41887 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725987AbfHVOJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 10:09:37 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 617D0240005;
-        Thu, 22 Aug 2019 14:09:35 +0000 (UTC)
-Date:   Thu, 22 Aug 2019 16:09:35 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Sunil Mohan Adapa <sunil@medhas.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com
-Subject: Re: [PATCH v3 0/2] arm64: dts: allwinner: a64: Add A64 OlinuXino
- board (with eMMC)
-Message-ID: <20190822140935.pwtpu7pzbd7y2xdg@flea>
-References: <20190821195217.4166-1-sunil@medhas.org>
+        id S1733096AbfHVOQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 10:16:30 -0400
+Received: from foss.arm.com ([217.140.110.172]:46538 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731614AbfHVOQa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 10:16:30 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8ED5F337;
+        Thu, 22 Aug 2019 07:16:29 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 686233F706;
+        Thu, 22 Aug 2019 07:16:27 -0700 (PDT)
+Subject: Re: [PATCH v2 3/4] dt-bindings: iommu/arm,smmu: add compatible string
+ for Marvell
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Joerg Roedel <joro@8bytes.org>, linux-kernel@vger.kernel.org,
+        iommu@lists.linux-foundation.org
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Hanna Hawa <hannah@marvell.com>
+References: <20190711150242.25290-1-gregory.clement@bootlin.com>
+ <20190711150242.25290-4-gregory.clement@bootlin.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <5208b371-c81a-23a0-0870-2810fce3c7fa@arm.com>
+Date:   Thu, 22 Aug 2019 15:16:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="o357ly3g6xw34l2g"
-Content-Disposition: inline
-In-Reply-To: <20190821195217.4166-1-sunil@medhas.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190711150242.25290-4-gregory.clement@bootlin.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 11/07/2019 16:02, Gregory CLEMENT wrote:
+> From: Hanna Hawa <hannah@marvell.com>
+> 
+> Add specific compatible string for Marvell usage due errata of
+> accessing 64bits registers of ARM SMMU, in AP806.
+> 
+> AP806 SoC uses the generic ARM-MMU500, and there's no specific
+> implementation of Marvell, this compatible is used for errata only.
 
---o357ly3g6xw34l2g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Forgive me for repeating myself[1], but:
 
-On Wed, Aug 21, 2019 at 12:52:15PM -0700, Sunil Mohan Adapa wrote:
-> A64 OLinuXino board from Olimex has three variants with onboard eMMC:
-> A64-OLinuXino-1Ge16GW, A64-OLinuXino-1Ge4GW and A64-OLinuXino-2Ge8G-IND. In
-> addition, there are two variants without eMMC. One without eMMC and one with SPI
-> flash. This suggests the need for separate device tree for the three eMMC
-> variants.
->
-> Changes:
->
->   v3: Separate dts for eMMC variants
->
->   v2: Fix descriptions for VCC and VCCQ
->
-> Version 2 of this series already committed in linux-sunxi tree as
-> 8d3071f3e85894be35a1b35bcf6fdef970c81018 must be reverted before applying this.
+"Given that, I think something more specific like:
 
-Applied, thanks!
-Maxime
+	"marvell,ap806-smmu", "arm,mmu-500";
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+would be most appropriate. Otherwise, if some future Marvell SoC were to
+ever come out with a *different* MMU-500 integration problem, you'd
+already have painted yourself into a corner."
 
---o357ly3g6xw34l2g
-Content-Type: application/pgp-signature; name="signature.asc"
+Robin.
 
------BEGIN PGP SIGNATURE-----
+[1] 
+https://lore.kernel.org/linux-arm-kernel/3ce1d67a-4e3c-e8d8-f7fc-79649f1def68@arm.com/
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV6iHgAKCRDj7w1vZxhR
-xWLhAQDOkw9X6DlCQETlzeftJrXZtaROlRQI7eMcpSHu1NX55QD9GLwat/8lSR48
-phvN3wKPU67uCQ7L3ceu7WVMPjUoFQY=
-=G4R+
------END PGP SIGNATURE-----
-
---o357ly3g6xw34l2g--
+> Signed-off-by: Hanna Hawa <hannah@marvell.com>
+> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+> ---
+>   Documentation/devicetree/bindings/iommu/arm,smmu.txt | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.txt b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
+> index 3133f3ba7567..7ed58d51846e 100644
+> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.txt
+> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
+> @@ -16,6 +16,7 @@ conditions.
+>                           "arm,mmu-400"
+>                           "arm,mmu-401"
+>                           "arm,mmu-500"
+> +                        "marvell,mmu-500"
+>                           "cavium,smmu-v2"
+>                           "qcom,smmu-v2"
+>   
+> 
