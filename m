@@ -2,83 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8725D9A2C4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 00:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E4629A300
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 00:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404937AbfHVW01 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 18:26:27 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:35483 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404933AbfHVW01 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 18:26:27 -0400
-Received: by mail-pg1-f194.google.com with SMTP id n4so4513602pgv.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 15:26:26 -0700 (PDT)
+        id S2394054AbfHVWgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 18:36:23 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37656 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2394045AbfHVWgX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 18:36:23 -0400
+Received: by mail-wr1-f65.google.com with SMTP id z11so6854736wrt.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 15:36:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=t4hXv9cggrlxKrmBWOfxBfWb9+XY7JPaFG3ZSJTCrY4=;
-        b=L02p7MTZgJSiLnO5xtArax8M52FA4xo/lKe0Dc38mB2q1uJl2C1xNZJTSRufArXftm
-         bGVtFcHDRfmEdMNyxpxyX6sAxuPAlRtvhcR1wrcvkdVNhP2hmuL3Yg3WkfzV3UuCiHpE
-         qBdCZPjxT4jKeeLRp7vIfFYVvzouMA2SEyWES5czqFEzZMXBHywEztChIjLDMAB1V7fI
-         bcI4zWblknUhZlnFdTAJX8+r5O8kJ4jBv9JF1ifzhV0z0Fq/JtXD7kkOCa1cwuEM3v9H
-         8oCGPEeJT/iLPQ6HMXGrFK+w7sj0kORhV3asiA4zet/AHDWuTeVyQKMG7SGGinBLH/ii
-         sMCw==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ps5fSEr1qMGUj4gJBzVj6xZCpnRrFx1jjYFeOMLoqEo=;
+        b=ew8+IDWCuDX0P3zBzbl9bTTlRaF0BjyzxzUXr2A4u5xK1/1vjRmnlQsuoznfX/TRJz
+         h98W/LezmoT47tSdIUXsrmmR+t0yKAEoenYnGoC2W/iQbwTBsqrE83QFkkQOeovJUs8B
+         BF4mlJ3rRB4eusmQ3nFwosElKoFRF8Dtrz6BsFm7D2JOnayubL8m4n6yldfxF4O4u9Rc
+         NQI0TUTQNl3MgJg7SBSkWeeckHhdkMeqqaqkZAX3WUUnM35p1ij+guS9I4PFQFB3YNH7
+         e0bpPWTJyNfm1HV+9YTAU7KErnLd2q7vPz9CUpUoXuTtldjoqbgZVyK1GL2AKEdQcCc5
+         sK/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=t4hXv9cggrlxKrmBWOfxBfWb9+XY7JPaFG3ZSJTCrY4=;
-        b=TYTRcgQkA6jwx4Gggq4yQ5mJxRuUf5zjWRAyElJ8dKrqd6T6j+jPWnpDZ2SPETevFB
-         9d2At5GwhpIbEJbcgQGmY+LpfWa/DXSXH5S0ukVM6Nv/zvgjvectlHw5wPyO9cInXWYI
-         jjWg7usjOy5MB7Aav8KZ62y1FeixLynB1H8g3j+frvp6UJVaIl+p/rCs6Py/0GzfQ8eh
-         VUbOR9rlf8DJgfIHwCf6ophyhljq9n8CSKH1b1dR/9X7nMJc6+eniwipq9CdVHbe7kF/
-         fChDabrkSaou647C9f+++vz7yPJEnjpkXDssdHW9xVdTV1aDWG/L1qhunHF95AG9RT7n
-         Evyw==
-X-Gm-Message-State: APjAAAW/RAGvudWCYrB2yhPW1Om53NxGgyUCZ7IxwSP96TW5UOrPoVCe
-        hhqwZpDL9hO8wZFlWpELkhXKow==
-X-Google-Smtp-Source: APXvYqz7feSiqp0VVtPbpzkC0q2Llqu7JNkCqqYZ963rXLnIewSU4VusDt5Oga9DB5bP6eTW3VjLdg==
-X-Received: by 2002:a65:62cd:: with SMTP id m13mr1209603pgv.437.1566512785980;
-        Thu, 22 Aug 2019 15:26:25 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:89d4:68d1:fc04:721])
-        by smtp.gmail.com with ESMTPSA id v145sm412995pfc.31.2019.08.22.15.26.25
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 22 Aug 2019 15:26:25 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [PATCH v2 00/14] arm64: dts: meson: fixes following YAML bindings schemas conversion
-In-Reply-To: <20190821142043.14649-1-narmstrong@baylibre.com>
-References: <20190821142043.14649-1-narmstrong@baylibre.com>
-Date:   Thu, 22 Aug 2019 15:26:24 -0700
-Message-ID: <7h36hs3khb.fsf@baylibre.com>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ps5fSEr1qMGUj4gJBzVj6xZCpnRrFx1jjYFeOMLoqEo=;
+        b=j30HjtYL1IANmYYGUIQCvgH0dDm0DacxRk3R/DV2zMQien0hfeSK8D1kIP42ZOi50f
+         M4TSUH7fFPTq40oEySUKShj2YQYjSseGNB66jHtnEr+GnkeaiAtvm57Bxklwl/V0p1tY
+         AAWktWbt+W0sEfqIGXfkNx+8HVqmiBCXaoj+07gB6g0/AHD+WS45EFj7QR4Gpg5qhtND
+         ii5QN08OTeBFVmoO+9gghyvfL/SU228BLfIn2H4Ol4cdbfRaf25OxqHzREaqQPONRZSi
+         shqnKQf/teNC3umRcPUgV/dwpFSZmN257bWsr9i0BfxO/wWlLhptr0eqdgMNU/QUKc2R
+         2AXA==
+X-Gm-Message-State: APjAAAWjKJlkSLiyYlAkD0fA515/OCIeym8hg0okFhEJ1ZG9Tm2jVN5c
+        uSu7lhJNi48+p+fv9Fka9z4irr5RofM=
+X-Google-Smtp-Source: APXvYqx0IIRgPoB4p4JYzy/bI4HE0dPeSOqiMsFu/NXuJ66mmtgb/OaIc1NqXxObaoj/F0XPLcPH+A==
+X-Received: by 2002:a5d:678a:: with SMTP id v10mr1136982wru.116.1566513381364;
+        Thu, 22 Aug 2019 15:36:21 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id m188sm1886380wmm.32.2019.08.22.15.36.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2019 15:36:20 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
+Cc:     spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v4 0/4] ASoC: codecs: Add WSA881x Smart Speaker amplifier support
+Date:   Thu, 22 Aug 2019 23:36:02 +0100
+Message-Id: <20190822223606.6775-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Thanks for reviewing v3 patchset, here is v4 with addressing the comments in v3
 
-> This is the first set of DT fixes following the first YAML bindings conversion
-> at [1], [2] and [3].
->
-> After this set of fixes, the remaining errors are :
-> meson-axg-s400.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
-> meson-g12a-sei510.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
-> meson-g12b-odroid-n2.dt.yaml: usb-hub: gpios:0:0: 20 is not valid under any of the given schemas
-> meson-g12b-odroid-n2.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
-> meson-g12a-x96-max.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
->
-> These are only cosmetic changes, and should not break drivers implementation
-> following the bindings.
+This patchset adds support to WSA8810/WSA8815 Class-D Smart Speaker
+Amplifier which is SoundWire interfaced.
+This also adds support to some missing bits in SoundWire bus layer like
+Device Tree support.
 
-Any chance you can rebase this on top of my v5.4/dt64 branch?
+This patchset along with DB845c machine driver and WCD934x codec driver
+has been tested on SDM845 SoC based DragonBoard DB845c with two
+WSA8810 speakers.
+
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
+
+TODO:
+	Add thermal sensor support in WSA881x.
 
 Thanks,
+srini
 
-Kevin
+Changes since v3:
+ - updated slave bindings according to Rob's Suggestion.
+ - moved bindings to yaml
+
+Srinivas Kandagatla (4):
+  dt-bindings: soundwire: add slave bindings
+  soundwire: core: add device tree support for slave devices
+  dt-bindings: ASoC: Add WSA881x bindings
+  ASoC: codecs: add wsa881x amplifier support
+
+ .../bindings/sound/qcom,wsa881x.yaml          |   44 +
+ .../soundwire/soudwire-controller.yaml        |   75 ++
+ drivers/soundwire/bus.c                       |    2 +
+ drivers/soundwire/bus.h                       |    1 +
+ drivers/soundwire/slave.c                     |   52 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wsa881x.c                    | 1134 +++++++++++++++++
+ 8 files changed, 1320 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+ create mode 100644 Documentation/devicetree/bindings/soundwire/soudwire-controller.yaml
+ create mode 100644 sound/soc/codecs/wsa881x.c
+
+-- 
+2.21.0
+
