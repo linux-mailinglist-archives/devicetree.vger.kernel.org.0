@@ -2,87 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A5AC9924B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 13:38:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66E2A9926D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 13:46:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729718AbfHVLih (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 07:38:37 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:43635 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727953AbfHVLih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 07:38:37 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1i0lQB-0006FV-NJ; Thu, 22 Aug 2019 13:38:27 +0200
-Message-ID: <1566473905.3653.10.camel@pengutronix.de>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mq: Add mux controller to iomuxc_gpr
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Date:   Thu, 22 Aug 2019 13:38:25 +0200
-In-Reply-To: <fa3b1df7fc5e74f375df5de53061d1a93d154b51.1566471985.git.agx@sigxcpu.org>
-References: <cover.1566471985.git.agx@sigxcpu.org>
-         <fa3b1df7fc5e74f375df5de53061d1a93d154b51.1566471985.git.agx@sigxcpu.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1731631AbfHVLlu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 07:41:50 -0400
+Received: from foss.arm.com ([217.140.110.172]:44554 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726844AbfHVLlu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 07:41:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3084B337;
+        Thu, 22 Aug 2019 04:41:49 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7D49F3F246;
+        Thu, 22 Aug 2019 04:41:48 -0700 (PDT)
+Date:   Thu, 22 Aug 2019 12:41:47 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, dwmw@amazon.co.uk,
+        benh@kernel.crashing.org, alisaidi@amazon.com, ronenk@amazon.com,
+        barakw@amazon.com, talel@amazon.com, hanochu@amazon.com,
+        hhhawa@amazon.com, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 3/7] PCI/VPD: Add VPD release quirk for Amazon's
+ Annapurna Labs Root Port
+Message-ID: <20190822114146.GP23903@e119886-lin.cambridge.arm.com>
+References: <20190821153545.17635-1-jonnyc@amazon.com>
+ <20190821153545.17635-4-jonnyc@amazon.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190821153545.17635-4-jonnyc@amazon.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-08-22 at 13:10 +0200, Guido Günther wrote:
-> The only mux controls the MIPI DSI input selection.
+On Wed, Aug 21, 2019 at 06:35:43PM +0300, Jonathan Chocron wrote:
+> The Amazon Annapurna Labs PCIe Root Port exposes the VPD capability,
+> but there is no actual support for it.
 > 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> The reason for not using the already existing quirk_blacklist_vpd()
+> is that, although this fails pci_vpd_read/write, the 'vpd' sysfs
+> entry still exists. When running lspci -vv, for example, this
+> results in the following error:
+> 
+> pcilib: sysfs_read_vpd: read failed: Input/output error
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+Oh that's not nice. It's probably triggered by the -EIO in pci_vpd_read.
+A quick search online seems to show that other people have experienced
+this too - though from as far as I can tell this just gives you a
+warning and pcilib will continnue to give other output?
 
-regards
-Philipp
+I guess every vpd blacklist'd driver will have the same issue. And for
+this reason I don't think that this patch is the right solution - as
+otherwise all the other blacklisted drivers could follow your lead.
 
+I don't think you need to fix this specifically for the AL driver and so
+I'd suggest that you can probably drop this patch. (Ideally pciutils
+could be updated to not warn for this specific use-case).
+
+Thanks,
+
+Andrew Murray
+
+> 
+> This quirk removes the sysfs entry, which avoids the error print.
+> 
+> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> Reviewed-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 9 ++++++++-
->  1 file changed, 8 insertions(+), 1 deletion(-)
+>  drivers/pci/vpd.c | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 4fdd60f2c51e..3f3594d9485c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -440,8 +440,15 @@
->  			};
+> diff --git a/drivers/pci/vpd.c b/drivers/pci/vpd.c
+> index 4963c2e2bd4c..c23a8ec08db9 100644
+> --- a/drivers/pci/vpd.c
+> +++ b/drivers/pci/vpd.c
+> @@ -644,4 +644,20 @@ static void quirk_chelsio_extend_vpd(struct pci_dev *dev)
+>  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_CHELSIO, PCI_ANY_ID,
+>  			quirk_chelsio_extend_vpd);
 >  
->  			iomuxc_gpr: syscon@30340000 {
-> -				compatible = "fsl,imx8mq-iomuxc-gpr", "fsl,imx6q-iomuxc-gpr", "syscon";
-> +				compatible = "fsl,imx8mq-iomuxc-gpr", "fsl,imx6q-iomuxc-gpr",
-> +					     "syscon", "simple-mfd";
->  				reg = <0x30340000 0x10000>;
+> +static void quirk_al_vpd_release(struct pci_dev *dev)
+> +{
+> +	if (dev->vpd) {
+> +		pci_vpd_release(dev);
+> +		dev->vpd = NULL;
+> +		pci_warn(dev, FW_BUG "Releasing VPD capability (No support for VPD read/write transactions)\n");
+> +	}
+> +}
 > +
-> +				mux: mux-controller {
-> +					compatible = "mmio-mux";
-> +					#mux-control-cells = <1>;
-> +					mux-reg-masks = <0x34 0x00000004>; /* MIPI_MUX_SEL */
-> +				};
->  			};
->  
->  			ocotp: ocotp-ctrl@30350000 {
+> +/*
+> + * The 0031 device id is reused for other non Root Port device types,
+> + * therefore the quirk is registered for the PCI_CLASS_BRIDGE_PCI class.
+> + */
+> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_AMAZON_ANNAPURNA_LABS, 0x0031,
+> +			      PCI_CLASS_BRIDGE_PCI, 8, quirk_al_vpd_release);
+> +
+>  #endif
+> -- 
+> 2.17.1
+> 
