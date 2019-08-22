@@ -2,120 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C2BF99275
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 13:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C4639927C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 13:47:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732872AbfHVLp5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 07:45:57 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:34120 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732837AbfHVLp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 07:45:56 -0400
-Received: by mail-vs1-f65.google.com with SMTP id b20so3646003vso.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 04:45:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Ias0hnNTQ1W0WLMJ9Tw+pF62AvhAzndWUOgIreZptR4=;
-        b=rDszp6GWldYKXV1jR5X0tVPwOQUmi6CxIEOrbjVQUz3WhkU6oYTxYzX8HxeY8leOeh
-         zvTSuAERxKEcn8Yv9UsDjeKMrhx6DkoMarSTEZkDd68+2mj+BgZXGGtNWJI9+EFQuVQ+
-         CyB4j3oAVf1Sm05kBVhXT8wjbkRr6SC4LyvEcPVuhYxovbmtuhHVcIXOTHLmpwk200KN
-         3vWaa4ABGDhxySRoMd9bnoJjE/MwJ0QN6JNQuGkCtgyDw1T5WZeR3j0ywN5yzX6IjAZ4
-         bp1uABpaYaWvwa4Z1bgZ93PENPx4XxOkKWdZY7cjBXyOAlrgPcwG5by4QPTERiNSTm/f
-         90+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ias0hnNTQ1W0WLMJ9Tw+pF62AvhAzndWUOgIreZptR4=;
-        b=qTr1IJ4mLo3r4vUdF5skqZoNpRSkTULdOP+O+brHqhX3f+1hiW3tX8FSn1bKG1YHTv
-         lKwCg6U9uJQbjRRFFB1NltteCfdVPtiGS4+fVIs20otSEt+2ZV2FxMYxKsIsTSsMt1B4
-         hAO3EHHXiSWKD2ZN3TaRTHK2gURpxiU7ZUtUPXajdRVqvEn3aD50qODaFoA3jec6FY2Q
-         ulEeQrPpDlTOwr1kr/Vd0G5HQcfPyRQiBSEJ6H3CWWkCozhCn1Unu7YL5h+3MYQJtPlV
-         0LQ9t+8eLJZUA8EgjDjgoMIAmDq6DRTt+iN8C066VUEtulbBDwbyvnoTqxdr6nw6wNY+
-         CTYA==
-X-Gm-Message-State: APjAAAX/dXfnapME8bbLwcVXRbi5NJryzLG6tMoTYbQEPMeCs5/l2LOO
-        FvwPguckc3Gp8+5V3Sodyc1JzUaQZUfO0v4qCSGqQg==
-X-Google-Smtp-Source: APXvYqwpurVmREw1NCNrWD/HWUqNVjMRJbQbiiRPPhDel5CxOBrosK7SYbiXJVV66QIkSwppRQHrHqUJ1UD4Wg1NEeE=
-X-Received: by 2002:a67:e287:: with SMTP id g7mr23784378vsf.200.1566474355983;
- Thu, 22 Aug 2019 04:45:55 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190807003629.2974-1-andrew@aj.id.au> <20190807003629.2974-2-andrew@aj.id.au>
- <CACPK8Xe6Zp1uOqEffEc0b6oGa7portEAifGPRqb876HmA+oZeg@mail.gmail.com> <6c94aada-9c4a-4f55-9a43-349282ad12af@www.fastmail.com>
-In-Reply-To: <6c94aada-9c4a-4f55-9a43-349282ad12af@www.fastmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 22 Aug 2019 13:45:19 +0200
-Message-ID: <CAPDyKFrDPxFMm710Z25i-euOT2rrgCNXVa4na-fye0xamMXq_A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mmc: Document Aspeed SD controller
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     Joel Stanley <joel@jms.id.au>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
+        id S1731346AbfHVLr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 07:47:57 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:29466 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727310AbfHVLr5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 07:47:57 -0400
+X-UUID: b1ba783c964143cabbdbb3840f5fdad6-20190822
+X-UUID: b1ba783c964143cabbdbb3840f5fdad6-20190822
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
+        (envelope-from <ran.bi@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 790826270; Thu, 22 Aug 2019 19:47:52 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs01n2.mediatek.inc
+ (172.21.101.79) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 22 Aug
+ 2019 19:47:46 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 22 Aug 2019 19:47:44 +0800
+Message-ID: <1566474469.12318.7.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 2/4] rtc: Add support for the MediaTek MT2712 RTC
+From:   Ran Bi <ran.bi@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Mark Rutland <mark.rutland@arm.com>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, YT Shen <yt.shen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        "Flora Fu" <flora.fu@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Date:   Thu, 22 Aug 2019 19:47:49 +0800
+In-Reply-To: <c4e8b041-4a35-578e-07a3-2ebc99848ee2@gmail.com>
+References: <20190801110122.26834-1-ran.bi@mediatek.com>
+         <20190801110122.26834-3-ran.bi@mediatek.com>
+         <c4e8b041-4a35-578e-07a3-2ebc99848ee2@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 07BEDA87CE6DE420B3D64B7B18F56819C1B1580EC0478AB37A2E93247614A2FB2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Aug 2019 at 07:37, Andrew Jeffery <andrew@aj.id.au> wrote:
->
->
->
-> On Thu, 15 Aug 2019, at 15:06, Joel Stanley wrote:
-> > On Wed, 7 Aug 2019 at 00:38, Andrew Jeffery <andrew@aj.id.au> wrote:
-> > >
-> > > The ASPEED SD/SDIO/MMC controller exposes two slots implementing the
-> > > SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
-> > > data bus if only a single slot is enabled.
-> > >
-> > > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> >
-> > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> >
-> > Two minor comments below.
-> >
-> > > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > @@ -0,0 +1,105 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-or-later
-> >
-> > No "Copyright IBM" ?
->
-> I'm going rogue.
->
-> That reminds me I should chase up where we got to with the binding
-> licensing.
->
-> >
-> > > +%YAML 1.2
-> > > +---
-> >
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/aspeed-clock.h>
-> > > +    sdc@1e740000 {
-> > > +            compatible = "aspeed,ast2500-sd-controller";
-> > > +            reg = <0x1e740000 0x100>;
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <1>;
-> > > +            ranges = <0 0x1e740000 0x10000>;
-> >
-> > According to the datasheet this could be 0x20000. It does not matter
-> > though, as there's nothing in it past 0x300.
->
-> Good catch.
->
+On Thu, 2019-08-22 at 11:12 +0200, Matthias Brugger wrote:
+> 
+> On 01/08/2019 13:01, Ran Bi wrote:
+> > This add support for the MediaTek MT2712 RTC. It was SoC based RTC, but
+> > had different architecture compared with MT7622 RTC.
+> > 
+> > Signed-off-by: Ran Bi <ran.bi@mediatek.com>
+> > ---
+> >  drivers/rtc/Kconfig      |  10 +
+> >  drivers/rtc/Makefile     |   1 +
+> >  drivers/rtc/rtc-mt2712.c | 444 +++++++++++++++++++++++++++++++++++++++
+> 
+> Can't we just adjust rtc-mt7622.c (and rename it) to unify the source for both
+> devices. What is the difference that we need to write a driver of our own?
+> 
+> Regards,
+> Matthias
 
-Are you planning on sending a v6 or you want me to apply this and you
-can post a patch on top?
+We cannot merge rtc-mt7622.c and rtc-mt2712.c together. These two rtc
+hardwares have totally different design. Registers naming, registers
+offset and operating method are different.
 
-Kind regards
-Uffe
+
