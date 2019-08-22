@@ -2,82 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A6FE98A7C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 06:43:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FBA098AE4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 07:44:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725799AbfHVEny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 00:43:54 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:46534 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725710AbfHVEny (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 00:43:54 -0400
-Received: by mail-qk1-f195.google.com with SMTP id p13so3969677qkg.13
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 21:43:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OJYGyBg/ceLSDjtApXeg+QYPHZlKNwzKjUa+6OSFeUo=;
-        b=D1q9lH02crG0hVsSBHPDz4Ty4HHcz8uyhNg9zQlxODrOvuYxeTHbGEOpCeARUKNIc8
-         CsKSL/M/Vp4b0TkraUwdiA0FHEyNiShpWbpIh6c/sY45K/P791GuVCHgLILJz4fPi1rH
-         LL/0LmTxDTPyzUpomzWrXr+nNoZOwBRCJHWNI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OJYGyBg/ceLSDjtApXeg+QYPHZlKNwzKjUa+6OSFeUo=;
-        b=bOLvmPpfSIeE4WSL3vXgbRaZulUQJGyvwv9JTByg8f8Rlb/F3ycOUXCfTmQffnW1Am
-         6xE4UZRp+NgY0onv7lVDq53SV174TL9ABepPs80vQ8gFrLi3ABAgN7+B8vd8WuKw3FGQ
-         H+6QBvp09kodaIKzYLXGpOtkIrIVQFQH6w34mww2y+vRanttWcRAIpN6Xq6ik9HHzxr8
-         Rkah1qFLrOgcz2M9N51kyGJhdeVDJbtlb2d65wFgVXJ+oqCBXIkmVLlihU4/6sX5TRc8
-         v/37+jkdMziC96nbt0PeepHNqVQKkxIKeXWi221A7qTArKPSHkNiI7Pc4XELw0+otP1Q
-         wqSg==
-X-Gm-Message-State: APjAAAXtjlmx4G1/EXW2dooiK1JUf6I4NopyoSzaBrCrnbFbz3L8v01a
-        DZymVzzgIZP42wZbIo/TJGS6DIWadVsE1ix65B0=
-X-Google-Smtp-Source: APXvYqw7+6RHrrapRSIiCA1W4LX4FEsS39J4H0GHx8pMtsjmQmcpotn5m7W2/GkBsc1gILGchs2Kr22CmwLnNjW//2Y=
-X-Received: by 2002:a37:649:: with SMTP id 70mr34466573qkg.208.1566449033127;
- Wed, 21 Aug 2019 21:43:53 -0700 (PDT)
+        id S1728049AbfHVFoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 01:44:10 -0400
+Received: from mga18.intel.com ([134.134.136.126]:5691 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726857AbfHVFoK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 01:44:10 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 21 Aug 2019 22:44:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,415,1559545200"; 
+   d="scan'208";a="169651574"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga007.jf.intel.com with ESMTP; 21 Aug 2019 22:44:09 -0700
+Received: from [10.226.38.19] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.19])
+        by linux.intel.com (Postfix) with ESMTP id 73E04580258;
+        Wed, 21 Aug 2019 22:44:07 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: intel-emmc-phy: Add YAML schema
+ for LGM eMMC PHY
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        peter.harliman.liem@intel.com
+References: <20190821101118.42774-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <CAL_Jsq+pyaYD2C8G1WZm1fL-wgkJvDYBkp0TwJTmQVKP-gHPXQ@mail.gmail.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <67bca68e-a46b-e03f-bb66-23c677d8515d@linux.intel.com>
+Date:   Thu, 22 Aug 2019 13:44:06 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190821055530.8720-1-joel@jms.id.au> <20190821055530.8720-8-joel@jms.id.au>
- <faf79f9d-baa1-4c8c-a35b-c5d97ad6df8b@www.fastmail.com>
-In-Reply-To: <faf79f9d-baa1-4c8c-a35b-c5d97ad6df8b@www.fastmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 22 Aug 2019 04:43:41 +0000
-Message-ID: <CACPK8Xe=mq_Zuw6vsFtb=42ZodbHcizX9QwUoRzY0cDdoWr-Fw@mail.gmail.com>
-Subject: Re: [PATCH 7/7] ARM: configs: aspeed_g5: Enable AST2600
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>,
-        Ryan Chen <ryan_chen@aspeedtech.com>,
-        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_Jsq+pyaYD2C8G1WZm1fL-wgkJvDYBkp0TwJTmQVKP-gHPXQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Aug 2019 at 02:07, Andrew Jeffery <andrew@aj.id.au> wrote:
-> > +CONFIG_MMC=y
-> > +CONFIG_MMC_SDHCI=y
-> > +CONFIG_MMC_SDHCI_PLTFM=y
-> > +CONFIG_MMC_SDHCI_OF_ASPEED=y
->
-> The patches haven't yet been applied to the MMC tree, maybe we should
-> add this later?
+Hi Rob,
 
-When enabling drivers in the same merge window as they go into the
-tree we will always be in this situation.
+On 21/8/2019 9:35 PM, Rob Herring wrote:
+> On Wed, Aug 21, 2019 at 5:11 AM Ramuthevar,Vadivel MuruganX
+> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>
+>> Add a YAML schema to use the host controller driver with the
+>> eMMC PHY on Intel's Lightning Mountain SoC.
+>>
+>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> ---
+>> changes in v3:
+>>    - resolve 'make dt_binding_check' warnings
+>>
+>> changes in v2:
+>>    As per Rob Herring review comments, the following updates
+>>   - change GPL-2.0 -> (GPL-2.0-only OR BSD-2-Clause)
+>>   - filename is the compatible string plus .yaml
+>>   - LGM: Lightning Mountain
+>>   - update maintainer
+>>   - add intel,syscon under property list
+>>   - keep one example instead of two
+>> ---
+>>   .../bindings/phy/intel,lgm-emmc-phy.yaml           | 59 ++++++++++++++++++++++
+>>   1 file changed, 59 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+>> new file mode 100644
+>> index 000000000000..9342e33d8b02
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-emmc-phy.yaml
+>> @@ -0,0 +1,59 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/intel,lgm-emmc-phy.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Intel Lightning Mountain(LGM) eMMC PHY Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> +
+>> +properties:
+>> +  "#phy-cells":
+>> +    const: 0
+>> +
+>> +  compatible:
+>> +    const: intel,lgm-emmc-phy
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  syscon:
+> intel,syscon like the example. You must have used 5.2 as on 5.3-rc the
+> example will fail validation.
+Thanks for the review comments,  used 5.3 for validation, after 
+addressing the below comments
+once again validate on both 5.2 and 5.3 as well.
+>> +    items:
+> Drop items as there is only 1.
+agreed
+>> +      $ref: "/schemas/types.yaml#definitions/phandle"
+>> +
+>> +  clocks:
+>> +    items:
+>> +      - description: e-MMC phy module clock
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: emmcclk
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - "#phy-cells"
+>> +  - compatible
+>> +  - reg
+>> +  - clocks
+>> +  - clock-names
+>> +  - resets
+>> +  - ref
+> Not documented.
 
-If the driver doesn't make it in this merge window, or first has has
-changes, the worst that will happen is the kconfig name changes and I
-need to update it later. I think we're safe to include it as-is.
+Agreed, will update
 
-Thanks for the review.
-
-Cheers,
-
-Joel
+With Best Regards
+Vadivel
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    emmc_phy: emmc_phy {
+>> +        compatible = "intel,lgm-emmc-phy";
+>> +        reg = <0xe0020000 0x100>;
+>> +        intel,syscon = <&sysconf>;
+>> +        clocks = <&emmc>;
+>> +        clock-names = "emmcclk";
+>> +        #phy-cells = <0>;
+>> +    };
+>> +
+>> +...
+>> --
+>> 2.11.0
+>>
