@@ -2,105 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABE2A98DB7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FEC98DE0
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:36:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732381AbfHVIbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 04:31:48 -0400
-Received: from foss.arm.com ([217.140.110.172]:41150 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727484AbfHVIbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 04:31:47 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 13188360;
-        Thu, 22 Aug 2019 01:31:47 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 61F1A3F706;
-        Thu, 22 Aug 2019 01:31:46 -0700 (PDT)
-Date:   Thu, 22 Aug 2019 09:31:44 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Jonathan Chocron <jonnyc@amazon.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, dwmw@amazon.co.uk,
-        benh@kernel.crashing.org, alisaidi@amazon.com, ronenk@amazon.com,
-        barakw@amazon.com, talel@amazon.com, hanochu@amazon.com,
-        hhhawa@amazon.com, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/7] PCI: Add ACS quirk for Amazon Annapurna Labs root
- ports
-Message-ID: <20190822083144.GL23903@e119886-lin.cambridge.arm.com>
-References: <20190821153545.17635-1-jonnyc@amazon.com>
- <20190821153545.17635-3-jonnyc@amazon.com>
+        id S1731306AbfHVIgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 04:36:38 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:50503 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731681AbfHVIgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 04:36:37 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v15so4751726wml.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 01:36:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=hJPd4fuf0Q0sMRr9w0mel/Ifz7rq6P5j4CBybKzJMwE=;
+        b=fTc2ZtuvP7loRUxCeHOgPc6dsw9cJe/gUATYN2BeKfWNZrsYWcd2marjjQdo7Lhqrx
+         uLx1AGKf26OHMHtA5xWY3Rg6lgbYTKIL/O5bzItNqUt6HSSN3kKbS+U2utTdXj5gSNya
+         L1KuOhXSniwIAEcJ9mY9B5gyHSRy+IbrzJtvOxGPofL6UU4bkSwFvGjfc7VdWBVSbSA1
+         emEuDtg2xZZkrdV0Xqj5E0AQreiSXrMoaiUWwrU+t3iCkSZBq2GnSLMpx/JJPXuK1e+M
+         2v72qAFJfFW0CyvlVoULupG3ZkhvrmIUF7SwS5HsVUoDhEefcLTyy3UJ4IXjZPjvl1+i
+         wOGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hJPd4fuf0Q0sMRr9w0mel/Ifz7rq6P5j4CBybKzJMwE=;
+        b=a0Y8TEVi2xZXVtXcrpbJoHkiQdFZVYailhHmoS8mS6xjTjOgT/Pi1MI8r1abL/GneB
+         oDCTr8nrUqhSmio/sAnEuIUiLlqRIGhTtFOdNIeIJnjsoZRPiby9sMZzKy4tZYa6Nvd/
+         X2jwRfx05AMwfGLzglYkB9sXQSsPZtqBwmBj8ewxo/MZoNgXxb4Q689MNHPaD2rqFGQl
+         DV+28HAzShChrTQvHZkDY5WGG8uvjDpWxJ8JBHO6XoHbe+1ODGHylgh7Y0A9gJt7rmVl
+         MB07pQ8OBKfOdeRA0YCHASIhitjJaCxT79BGYm7Kxn1xS7KQgBd0ZWvVTQxYw9XrPwWw
+         WqPg==
+X-Gm-Message-State: APjAAAWvIl3Yp8a7jAl6ccE67MLOGVAHyysMjdlq3UrS7CU3QzfOYDBl
+        W3lRZ4ZZBrxrH8L0kIMhNwEBmCeSxVc7HA==
+X-Google-Smtp-Source: APXvYqyEQYSwVXVVVF28yf/oOta4hazAt8LCB7iogxVzmdxVgpsq3i8NkGlKkfsdl/9+U3jsQN5rDg==
+X-Received: by 2002:a1c:eb06:: with SMTP id j6mr5126462wmh.76.1566462995337;
+        Thu, 22 Aug 2019 01:36:35 -0700 (PDT)
+Received: from ?IPv6:2a00:23c4:f78c:d00:1570:f96d:dab8:76ae? ([2a00:23c4:f78c:d00:1570:f96d:dab8:76ae])
+        by smtp.gmail.com with ESMTPSA id o17sm21342345wrx.60.2019.08.22.01.36.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 22 Aug 2019 01:36:34 -0700 (PDT)
+Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor
+ phandle
+To:     Rob Herring <robh@kernel.org>
+Cc:     srinivas.kandagatla@linaro.org, khilman@baylibre.com,
+        narmstrong@baylibre.com, tglx@linutronix.de, jbrunet@baylibre.com,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+References: <20190731082339.20163-1-ccaione@baylibre.com>
+ <20190731082339.20163-3-ccaione@baylibre.com> <20190821181458.GA2886@bogus>
+From:   Carlo Caione <ccaione@baylibre.com>
+Message-ID: <7c5307fe-2762-eefd-5c65-4ff7c4bd2f5d@baylibre.com>
+Date:   Thu, 22 Aug 2019 09:36:33 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190821153545.17635-3-jonnyc@amazon.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+In-Reply-To: <20190821181458.GA2886@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 06:35:42PM +0300, Jonathan Chocron wrote:
-> From: Ali Saidi <alisaidi@amazon.com>
-> 
-> The Amazon's Annapurna Labs root ports don't advertise an ACS
-> capability, but they don't allow peer-to-peer transactions and do
-> validate bus numbers through the SMMU. Additionally, it's not possible
-> for one RP to pass traffic to another RP.
-> 
-> Signed-off-by: Ali Saidi <alisaidi@amazon.com>
-> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
-> Reviewed-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> ---
->  drivers/pci/quirks.c | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
-> 
-> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
-> index 208aacf39329..23672680dba7 100644
-> --- a/drivers/pci/quirks.c
-> +++ b/drivers/pci/quirks.c
-> @@ -4366,6 +4366,23 @@ static int pci_quirk_qcom_rp_acs(struct pci_dev *dev, u16 acs_flags)
->  	return ret;
->  }
->  
-> +static int pci_quirk_al_acs(struct pci_dev *dev, u16 acs_flags)
-> +{
-> +	/*
-> +	 * Amazon's Annapurna Labs root ports don't include an ACS capability,
-> +	 * but do include ACS-like functionality. The hardware doesn't support
-> +	 * peer-to-peer transactions via the root port and each has a unique
-> +	 * segment number.
-> +	 * Additionally, the root ports cannot send traffic to each other.
+On 21/08/2019 19:14, Rob Herring wrote:
+> On Wed, Jul 31, 2019 at 09:23:37AM +0100, Carlo Caione wrote:
 
-Nit: I'd probably put a new line between the above two lines, or start the
-'Additionally' sentence on the first line. But either way...
+> There's no need for 'secure-monitor' anyways. Just do
+> 'of_find_compatible_node(NULL, NULL, "amlogic,meson-gxbb-sm")' or search
+> for the driver directly. It's not like there's more than one secure
+> monitor...
 
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
+How is hardcoding the secure-monitor directly into the efuse driver 
+better than having it referenced in the DT?
 
+Yes, there is one single secure monitor but (even if this is not 
+currently the case) several drivers can use it making the secure-monitor 
+a resource to be potentially used by several devices.
 
-> +	 */
-> +	acs_flags &= ~(PCI_ACS_RR | PCI_ACS_CR | PCI_ACS_SV | PCI_ACS_UF);
-> +
-> +	if (pci_pcie_type(dev) != PCI_EXP_TYPE_ROOT_PORT)
-> +		return -ENOTTY;
-> +
-> +	return acs_flags ? 0 : 1;
-> +}
-> +
->  /*
->   * Sunrise Point PCH root ports implement ACS, but unfortunately as shown in
->   * the datasheet (Intel 100 Series Chipset Family PCH Datasheet, Vol. 2,
-> @@ -4559,6 +4576,8 @@ static const struct pci_dev_acs_enabled {
->  	{ PCI_VENDOR_ID_AMPERE, 0xE00A, pci_quirk_xgene_acs },
->  	{ PCI_VENDOR_ID_AMPERE, 0xE00B, pci_quirk_xgene_acs },
->  	{ PCI_VENDOR_ID_AMPERE, 0xE00C, pci_quirk_xgene_acs },
-> +	/* Amazon Annapurna Labs */
-> +	{ PCI_VENDOR_ID_AMAZON_ANNAPURNA_LABS, 0x0031, pci_quirk_al_acs },
->  	{ 0 }
->  };
->  
-> -- 
-> 2.17.1
-> 
+--
+Carlo Caione
