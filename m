@@ -2,51 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E74D9A37F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 01:06:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F5369A3E9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 01:38:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405558AbfHVXGj convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Aug 2019 19:06:39 -0400
-Received: from mail.physics.pub.ro ([141.85.216.3]:33202 "EHLO
-        physics1.physics.pub.ro" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405510AbfHVXGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 19:06:39 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by physics1.physics.pub.ro (Postfix) with ESMTP id 13A65E3AA65;
-        Thu, 22 Aug 2019 13:46:18 +0300 (EEST)
-X-Virus-Scanned: amavisd-new at physics.pub.ro
-Received: from physics1.physics.pub.ro ([127.0.0.1])
-        by localhost (physics1.physics.pub.ro [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id hU2LiZCNLHXj; Thu, 22 Aug 2019 13:46:18 +0300 (EEST)
-Received: from [10.51.176.174] (unknown [105.4.6.61])
-        by physics1.physics.pub.ro (Postfix) with ESMTPSA id BE861E3C489;
-        Thu, 22 Aug 2019 13:46:07 +0300 (EEST)
-Content-Type: text/plain; charset="utf-8"
+        id S1726888AbfHVXiW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 19:38:22 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42443 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726865AbfHVXiV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 19:38:21 -0400
+Received: by mail-wr1-f68.google.com with SMTP id b16so6921878wrq.9
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 16:38:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mxo0eAEf3fJwKk0DHfBYnFpenezLkSgCZl+oCD3TV3M=;
+        b=dsMUqV6r4O2zGkVt3hW+Fx7aIsyRgpSQErbvTBN7+ZPaKFr9tuyizHRQVNeMj8c4XL
+         WFqYh1lZiXvZUF8xFPzF25S0ERpoYImdgLie7gREL490yoNp1SvV8CBy/YApGjaF1xfb
+         YMQXlQfC5sVNrCpzMUAAR8I5GJpnuxwlW6wz/sOa45gwrVdGDthTfDW7U08uwMNtn/bg
+         RYUxSd6OeQCpxstLos3AlTzNgqV4UDeRrK+BP8U4DIahtvTu7depDZnlMMDU8KeiSp1E
+         TyATForz+R18C3S+TDdHTIV2Aw67+PvqLnMsmtOkgF6lE+Gfu7jnCB4RljVzbuI2rQik
+         ta4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=mxo0eAEf3fJwKk0DHfBYnFpenezLkSgCZl+oCD3TV3M=;
+        b=TJLoXJH/YFlIyVLpH/eeOYVeuvHX6v8oTEYj1fvva6hcEQWDEzWcILORTA9mvD7YEN
+         b2OuL+1/RfZBQcTz4daedLSIKxiqwmHain1wd5hof7Ady6pJVnCnM+lRxQTJlYxk3wqx
+         4+xuR6+KRgTkd7LLt7zKqjrEwjpjH4DCbFLmGveGgMVnPrkuq87XrlwZiMQfoh8vaO/j
+         NLd6U/4mum9Bs88k6mWA9Pt28yxmr1+7D/eAUBoavymO+HGIwWcdymcoLiFxlyRfCPul
+         1enH5Kx6H5UbNJaWg8nRyJjR2IS2GaaEtiTExXbKOSsYS/ZbppiZ2x5gC6uE5/ViZO7h
+         o3aw==
+X-Gm-Message-State: APjAAAX10g/iT1e6mhE3C8wZS1okHFNvg8b0/xt+nPBLWbOvWw+ZdbLB
+        pMFG6UKZkteijDmeM5yXU9dPPg==
+X-Google-Smtp-Source: APXvYqzVwNyXgKAoUxu6i1pDAVSMuh+VIbRZnl5lFohQGcKO7KCWaa0n9xm8Y4YFV9dQ970h6z0pmA==
+X-Received: by 2002:a5d:4ec6:: with SMTP id s6mr1210862wrv.327.1566517099942;
+        Thu, 22 Aug 2019 16:38:19 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id f134sm1705157wmg.20.2019.08.22.16.38.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2019 16:38:19 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
+Cc:     spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [RESEND PATCH v4 0/4] ASoC: codecs: Add WSA881x Smart Speaker amplifier support
+Date:   Fri, 23 Aug 2019 00:37:55 +0100
+Message-Id: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Description: Mail message body
-Subject: =?utf-8?q?Wohlt=C3=A4tigkeitsspende_von_2=2E000=2E000_Millionen_Euro?=
-To:     Recipients <niculae-tiberiu.puscas@physics.pub.ro>
-From:   ''Tayeb Souami'' <niculae-tiberiu.puscas@physics.pub.ro>
-Date:   Thu, 22 Aug 2019 12:46:03 +0200
-Reply-To: Tayebsouam.spende@gmail.com
-Message-Id: <20190822104607.BE861E3C489@physics1.physics.pub.ro>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lieber Freund,
+Resending this series due to a typo in yaml filename!
 
-Ich bin Herr Tayeb Souami, New Jersey, Vereinigte Staaten von Amerika, der Mega-Gewinner von $ 315million In Mega Millions Jackpot, spende ich an 5 zufällige Personen, wenn Sie diese E-Mail erhalten, dann wurde Ihre E-Mail nach einem Spinball ausgewählt.Ich habe den größten Teil meines Vermögens auf eine Reihe von Wohltätigkeitsorganisationen und Organisationen verteilt.Ich habe mich freiwillig dazu entschieden, die Summe von € 2.000.000,00 an Sie als eine der ausgewählten 5 zu spenden, um meine Gewinne zu überprüfen, sehen Sie bitte meine You Tube Seite unten.
+Thanks for reviewing v3 patchset, here is v4 with addressing the comments in v3
 
-UHR MICH HIER: https://www.youtube.com/watch?v=Z6ui8ZDQ6Ks
+This patchset adds support to WSA8810/WSA8815 Class-D Smart Speaker
+Amplifier which is SoundWire interfaced.
+This also adds support to some missing bits in SoundWire bus layer like
+Device Tree support.
 
-Das ist dein Spendencode: [TS530342018]
+This patchset along with DB845c machine driver and WCD934x codec driver
+has been tested on SDM845 SoC based DragonBoard DB845c with two
+WSA8810 speakers.
 
-Antworten Sie mit dem SPENDE-CODE an diese E-Mail:Tayebsouam.spende@gmail.com
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
 
-Ich hoffe, Sie und Ihre Familie glücklich zu machen.
+TODO:
+	Add thermal sensor support in WSA881x.
 
-Grüße
-Herr Tayeb Souami
+Thanks,
+srini
+
+Changes since v3:
+ - updated slave bindings according to Rob's Suggestion.
+ - moved bindings to yaml
+
+Srinivas Kandagatla (4):
+  dt-bindings: soundwire: add slave bindings
+  soundwire: core: add device tree support for slave devices
+  dt-bindings: ASoC: Add WSA881x bindings
+  ASoC: codecs: add wsa881x amplifier support
+
+ .../bindings/sound/qcom,wsa881x.yaml          |   44 +
+ .../soundwire/soundwire-controller.yaml       |   75 ++
+ drivers/soundwire/bus.c                       |    2 +
+ drivers/soundwire/bus.h                       |    1 +
+ drivers/soundwire/slave.c                     |   52 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wsa881x.c                    | 1134 +++++++++++++++++
+ 8 files changed, 1320 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+ create mode 100644 Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+ create mode 100644 sound/soc/codecs/wsa881x.c
+
+-- 
+2.21.0
+
