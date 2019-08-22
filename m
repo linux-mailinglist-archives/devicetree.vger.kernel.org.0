@@ -2,167 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F021499933
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 18:31:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F01899957
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 18:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731861AbfHVQam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 12:30:42 -0400
-Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:26625 "EHLO
-        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389939AbfHVQal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 12:30:41 -0400
+        id S1731340AbfHVQgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 12:36:48 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:42358 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728591AbfHVQgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 12:36:47 -0400
+Received: by mail-pf1-f193.google.com with SMTP id i30so4308549pfk.9;
+        Thu, 22 Aug 2019 09:36:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1566491439; x=1598027439;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=KkV09y4B5mkQruE6IbrnT1eGI+VPuKeLj/rJNcIegm0=;
-  b=JyL+sIxw2Ou59y95gkhjxSnsrZGFbos0da1tiK0HJCawM1LTp3bBz1Rp
-   RWkCG2nQcTyK0NAxxweZjot70odCr6PipvoMo8aKfU1pI7nYwlwkBQ19V
-   Pfp4SIBJefJtNTpywSLzCCIZHqpSYqHE57ujTBLzUxwGYJ12gaebq0PQJ
-   s=;
-X-IronPort-AV: E=Sophos;i="5.64,417,1559520000"; 
-   d="scan'208";a="822736964"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-1e-27fb8269.us-east-1.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 22 Aug 2019 16:30:33 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
-        by email-inbound-relay-1e-27fb8269.us-east-1.amazon.com (Postfix) with ESMTPS id D0D8DA276C;
-        Thu, 22 Aug 2019 16:30:32 +0000 (UTC)
-Received: from EX13D13UWA003.ant.amazon.com (10.43.160.181) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.58) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 22 Aug 2019 16:30:10 +0000
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13D13UWA003.ant.amazon.com (10.43.160.181) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 22 Aug 2019 16:30:09 +0000
-Received: from EX13D13UWA001.ant.amazon.com ([10.43.160.136]) by
- EX13D13UWA001.ant.amazon.com ([10.43.160.136]) with mapi id 15.00.1367.000;
- Thu, 22 Aug 2019 16:30:09 +0000
-From:   "Chocron, Jonathan" <jonnyc@amazon.com>
-To:     "andrew.murray@arm.com" <andrew.murray@arm.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "Hanoch, Uri" <hanochu@amazon.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "Wasserstrom, Barak" <barakw@amazon.com>,
-        "Saidi, Ali" <alisaidi@amazon.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>
-Subject: Re: [PATCH v4 7/7] PCI: dwc: Add validation that PCIe core is set to
- correct mode
-Thread-Topic: [PATCH v4 7/7] PCI: dwc: Add validation that PCIe core is set to
- correct mode
-Thread-Index: AQHVWDfYfXzAIUBUVEGXGWtVpGVRnqcHBMEAgABYiAA=
-Date:   Thu, 22 Aug 2019 16:30:09 +0000
-Message-ID: <f8fca74c8d252f000d60c52ead3fc41ed5d50b6d.camel@amazon.com>
-References: <20190821153545.17635-1-jonnyc@amazon.com>
-         <20190821154745.31834-3-jonnyc@amazon.com>
-         <20190822111315.GN23903@e119886-lin.cambridge.arm.com>
-In-Reply-To: <20190822111315.GN23903@e119886-lin.cambridge.arm.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.43.162.137]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <28A81580BA6B964C814E165BCC9FC5A6@amazon.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eIMm3XlX1vr3fUCRrpeRDUMgxFL9iF0TgbOM8gIgl2s=;
+        b=js6GDvRFpiupp6/mqb+gMmlZAnTENq8Fgq0pFYmxxsJ3nU/JTZV6BzFvCHETMqKhUb
+         LTUBTjGXXa8lG5uAtfcYFkXVzqkbSWckRHEBRf8aQWYQYh6BoDxDNq5CkMkh3oa6zFEZ
+         eg8xjkQReRrEkVP1FtEuUHhboVOucg5yBmHO0r3OlxQEkkRaZl4esztZUtCmPsaTihN6
+         F+DKno4/BHmBknswFqb1J9jxFH+xQL/HYaj59X5nv/0jzKuR5ar1FG9dW0NMijV+0ws7
+         eyV7HPb7ORlyD3FYrUgt9FYUFsYYkKtaiLe14ggGPPY86mrvTgMV4tV4OfWJfiijnjA1
+         ph5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=eIMm3XlX1vr3fUCRrpeRDUMgxFL9iF0TgbOM8gIgl2s=;
+        b=V3DJvFPLCs2eyAzieATQetsUsklDkpGtj3zOQfajzKrEXUSjjSoY6HieUItEZ5yeoS
+         ZBoB6w/rkFQWKlQJMwUpFKqNZ4bH64v6BMi9Dd0HLwqrVYo3KqL7xrsVttv+2D5/1GRc
+         5G29LHe/Vf8Bu1Yla+a+BMj9wafaf5DF+4rHfu4xUbkUQnWF/HPEsqxMGyDfceju5/Gd
+         F+/L/UD+6ttSj2frJUEs+nEiShhrOOWxcipxvVF9VqILXRbLM0XHIML3QT6WO09yFOsk
+         zPT5kfYLvaC8HktN9eJcYohaFQNFKIkDMzjDED8MZb6uX4K5foJGYodZNT5Z+kGAzeH9
+         oq9A==
+X-Gm-Message-State: APjAAAW/dmZ+Ay/fkEUoTk4zFeinKsgmK34o/TpnhmHHOo4452WUoaiB
+        jKOY/aP35n59kzjvQdJo91gOPe5d
+X-Google-Smtp-Source: APXvYqyDiPCAhU1/6tvg0hdek6Egx3+KvuzKZC7PSELFS/Rd2kdxSwp95e2ojBkAnnVGOibloZvF0w==
+X-Received: by 2002:aa7:9ab8:: with SMTP id x24mr93717pfi.98.1566491805847;
+        Thu, 22 Aug 2019 09:36:45 -0700 (PDT)
+Received: from [10.67.49.31] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id u16sm29196689pgm.83.2019.08.22.09.36.43
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 22 Aug 2019 09:36:45 -0700 (PDT)
+Subject: Re: [PATCH v2 16/20] ARM: mmp: add SMP support
+To:     Lubomir Rintel <lkundrak@v3.sk>, Olof Johansson <olof@lixom.net>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Jason Cooper <jason@lakedaemon.net>,
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190822092643.593488-1-lkundrak@v3.sk>
+ <20190822092643.593488-17-lkundrak@v3.sk>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <6f9d2285-5ca4-a63a-610e-890b49a4f816@gmail.com>
+Date:   Thu, 22 Aug 2019 09:36:41 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <20190822092643.593488-17-lkundrak@v3.sk>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDE5LTA4LTIyIGF0IDEyOjEzICswMTAwLCBBbmRyZXcgTXVycmF5IHdyb3RlOg0K
-PiBPbiBXZWQsIEF1ZyAyMSwgMjAxOSBhdCAwNjo0Nzo0NVBNICswMzAwLCBKb25hdGhhbiBDaG9j
-cm9uIHdyb3RlOg0KPiA+IFNvbWUgUENJZSBjb250cm9sbGVycyBjYW4gYmUgc2V0IHRvIGVpdGhl
-ciBIb3N0IG9yIEVQIGFjY29yZGluZyB0bw0KPiA+IHNvbWUNCj4gPiBlYXJseSBib290IEZXLiBU
-byBtYWtlIHN1cmUgdGhlcmUgaXMgbm8gZGlzY3JlcGFuY3kgKGUuZy4gRlcNCj4gPiBjb25maWd1
-cmVkDQo+ID4gdGhlIHBvcnQgdG8gRVAgbW9kZSB3aGlsZSB0aGUgRFQgc3BlY2lmaWVzIGl0IGFz
-IGEgaG9zdCBicmlkZ2Ugb3INCj4gPiB2aWNlDQo+ID4gdmVyc2EpLCBhIGNoZWNrIGhhcyBiZWVu
-IGFkZGVkIGZvciBlYWNoIG1vZGUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogSm9uYXRoYW4g
-Q2hvY3JvbiA8am9ubnljQGFtYXpvbi5jb20+DQo+ID4gQWNrZWQtYnk6IEd1c3Rhdm8gUGltZW50
-ZWwgPGd1c3Rhdm8ucGltZW50ZWxAc3lub3BzeXMuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJz
-L3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtZXAuYyAgIHwgOCArKysrKysrKw0K
-PiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jIHwg
-OCArKysrKysrKw0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDE2IGluc2VydGlvbnMoKykNCj4gPiAN
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253
-YXJlLWVwLmMNCj4gPiBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2Fy
-ZS1lcC5jDQo+ID4gaW5kZXggMmJmNWEzNWMwNTcwLi4wMGU1OWExMzRiOTMgMTAwNjQ0DQo+ID4g
-LS0tIGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWVwLmMNCj4g
-PiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtZXAuYw0K
-PiA+IEBAIC01MzEsNiArNTMxLDcgQEAgaW50IGR3X3BjaWVfZXBfaW5pdChzdHJ1Y3QgZHdfcGNp
-ZV9lcCAqZXApDQo+ID4gIAlpbnQgcmV0Ow0KPiA+ICAJdTMyIHJlZzsNCj4gPiAgCXZvaWQgKmFk
-ZHI7DQo+ID4gKwl1OCBoZHJfdHlwZTsNCj4gPiAgCXVuc2lnbmVkIGludCBuYmFyczsNCj4gPiAg
-CXVuc2lnbmVkIGludCBvZmZzZXQ7DQo+ID4gIAlzdHJ1Y3QgcGNpX2VwYyAqZXBjOw0KPiA+IEBA
-IC01NDMsNiArNTQ0LDEzIEBAIGludCBkd19wY2llX2VwX2luaXQoc3RydWN0IGR3X3BjaWVfZXAg
-KmVwKQ0KPiA+ICAJCXJldHVybiAtRUlOVkFMOw0KPiA+ICAJfQ0KPiA+ICANCj4gPiArCWhkcl90
-eXBlID0gZHdfcGNpZV9yZWFkYl9kYmkocGNpLCBQQ0lfSEVBREVSX1RZUEUpOw0KPiA+ICsJaWYg
-KGhkcl90eXBlICE9IFBDSV9IRUFERVJfVFlQRV9OT1JNQUwpIHsNCj4gPiArCQlkZXZfZXJyKHBj
-aS0+ZGV2LCAiUENJZSBjb250cm9sbGVyIGlzIG5vdCBzZXQgdG8gRVANCj4gPiBtb2RlIChoZHJf
-dHlwZToweCV4KSFcbiIsDQo+ID4gKwkJCWhkcl90eXBlKTsNCj4gPiArCQlyZXR1cm4gLUVJTzsN
-Cj4gPiArCX0NCj4gPiArDQo+ID4gIAlyZXQgPSBvZl9wcm9wZXJ0eV9yZWFkX3UzMihucCwgIm51
-bS1pYi13aW5kb3dzIiwgJmVwLQ0KPiA+ID5udW1faWJfd2luZG93cyk7DQo+ID4gIAlpZiAocmV0
-IDwgMCkgew0KPiA+ICAJCWRldl9lcnIoZGV2LCAiVW5hYmxlIHRvIHJlYWQgKm51bS1pYi13aW5k
-b3dzKg0KPiA+IHByb3BlcnR5XG4iKTsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29u
-dHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWhvc3QuYw0KPiA+IGIvZHJpdmVycy9wY2kvY29u
-dHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWhvc3QuYw0KPiA+IGluZGV4IGY5MzI1MmQwZGE1
-Yi4uZDJjYTc0OGU0Yzg1IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIv
-ZHdjL3BjaWUtZGVzaWdud2FyZS1ob3N0LmMNCj4gPiArKysgYi9kcml2ZXJzL3BjaS9jb250cm9s
-bGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtaG9zdC5jDQo+ID4gQEAgLTMyMyw2ICszMjMsNyBAQCBp
-bnQgZHdfcGNpZV9ob3N0X2luaXQoc3RydWN0IHBjaWVfcG9ydCAqcHApDQo+ID4gIAlzdHJ1Y3Qg
-cGNpX2J1cyAqY2hpbGQ7DQo+ID4gIAlzdHJ1Y3QgcGNpX2hvc3RfYnJpZGdlICpicmlkZ2U7DQo+
-ID4gIAlzdHJ1Y3QgcmVzb3VyY2UgKmNmZ19yZXM7DQo+ID4gKwl1OCBoZHJfdHlwZTsNCj4gPiAg
-CWludCByZXQ7DQo+ID4gIA0KPiA+ICAJcmF3X3NwaW5fbG9ja19pbml0KCZwY2ktPnBwLmxvY2sp
-Ow0KPiA+IEBAIC0zOTYsNiArMzk3LDEzIEBAIGludCBkd19wY2llX2hvc3RfaW5pdChzdHJ1Y3Qg
-cGNpZV9wb3J0ICpwcCkNCj4gPiAgCQl9DQo+ID4gIAl9DQo+ID4gIA0KPiA+ICsJaGRyX3R5cGUg
-PSBkd19wY2llX3JlYWRiX2RiaShwY2ksIFBDSV9IRUFERVJfVFlQRSk7DQo+IA0KPiBEbyB3ZSBr
-bm93IGlmIGl0J3MgYWx3YXlzIHNhZmUgdG8gcmVhZCB0aGVzZSByZWdpc3RlcnMgYXQgdGhpcyBw
-b2ludA0KPiBpbiB0aW1lPw0KPiANCj4gTGF0ZXIgaW4gZHdfcGNpZV9ob3N0X2luaXQgd2UgY2Fs
-bCBwcC0+b3BzLT5ob3N0X2luaXQgLSBsb29raW5nIGF0DQo+IHRoZQ0KPiBpbXBsZW1lbnRhdGlv
-bnMgb2YgLmhvc3RfaW5pdCBJIGNhbiBzZWU6DQo+IA0KPiAgLSByZXNldHMgYmVpbmcgcGVyZm9y
-bWVkIChxY29tX2VwX3Jlc2V0X2Fzc2VydCwNCj4gICAgYXJ0cGVjNl9wY2llX2Fzc2VydF9jb3Jl
-X3Jlc2V0LCBpbXg2X3BjaWVfYXNzZXJ0X2NvcmVfcmVzZXQpDQo+ICAtIGNoYW5nZXMgdG8gY29u
-ZmlnIHNwYWNlIHJlZ2lzdGVycyAoa3NfcGNpZV9pbml0X2lkLA0KPiBkd19wY2llX3NldHVwX3Jj
-KQ0KPiAgICBpbmNsdWRpbmcgc2V0dGluZyBQQ0lfQ0xBU1NfREVWSUNFDQo+ICAtIGFuZCBjbG9j
-a3MgYmVpbmcgZW5hYmxlZCAocWNvbV9wY2llX2luaXRfMV8wXzApDQo+IA0KR29vZCBwb2ludCEg
-VGhpcyBpbmRlZWQgbWlnaHQgYnJlYWsgaG9zdCBkcml2ZXJzIHdoaWNoIGFjdHVhbGx5IHNldHVw
-DQp0aGUgcmMgaW4gdGhlIGtlcm5lbCwgYW5kIGRvbid0IGRlcGVuZCBvbiBlYXJseSBib290IEZX
-LiBTbyB0aGUNCnZhbGlkYXRpb24gc2hvdWxkIHByb2JhYmx5IGJlIG1vdmVkIHRvIGFmdGVyIHBw
-LT5vcHMtPmhvc3RfaW5pdCgpIChhbmQNCnNpbWlsYXJseSBhZnRlciBlcC0+b3BzLT5lcF9pbml0
-KCkgZm9yIHRoZSBlcCBkcml2ZXIpLCByaWdodD8NCg0KPiBJJ20gbm90IHN1cmUgaWYgeW91ciBj
-aGFuZ2VzIHdvdWxkIGNhdXNlIGFueXRoaW5nIHRvIGJyZWFrIGZvciB0aGVzZQ0KPiBvdGhlcg0K
-PiBjb250cm9sbGVycyAob3IgZnV0dXJlIGNvbnRyb2xsZXJzKSBhcyBJIGNvdWxkbid0IHNlZSBh
-bnkgb3RoZXIgcmVhZHMNCj4gdG8gdGhlDQo+IGNvbmZpZy4NCj4gDQo+IEdpdmVuIHRoYXQgd2Ug
-YXJlIHJlYWRpbmcgY29uZmlnIHNwYWNlIHNob3VsZCBkd19wY2llX3JkX293bl9jb25mIGJlDQo+
-IHVzZWQ/DQoNClRoZSBjb25maWcgc3BhY2Ugb2YgdGhlIERXIGNvcmUgaXMgbG9jYXRlZCBhdCB0
-aGUgYmVnaW5uaW5nIG9mIHRoZSBEQkkNCnJlZ3NwYWNlLiBGdXJ0aGVybW9yZSwgdGhpcyB3b3Vs
-ZCBicmVhayB0aGUgInN5bW1ldHJ5IiBiZXR3ZWVuIHRoZSBob3N0DQphbmQgZXAgdmFsaWRhdGlv
-bnMgKHNpbmNlIHRoZSBlcCBoYXMgbm8gbm90aW9uIG9mIHJlYWRpbmcgZnJvbSBjb25maWcNCnNw
-YWNlIG5vciBhIC5yZWFkIGNhbGxiYWNrIGluIHN0cnVjdCBkd19wY2llX2VwX29wcykuIEkgYWdy
-ZWUgdGhhdA0KdGhlcmUgaXMgc29tZSBzb3J0IG9mIG92ZXJsYXAgYmV0d2VlbiB0aGUgZHdfcGNp
-ZV9yZWFkey93cml0ZX1fZGJpDQpkd19wY2llX3Jkey93cn1fb3duX2NvbmYgQVBJcywgd2hlbiBh
-Y2Nlc3NpbmcgdGhlIGhvc3QgbW9kZSBjb25maWcNCnNwYWNlLCBidXQgSSBhc3N1bWUgdGhhdCBh
-bnkgaG9zdCBkcml2ZXIgd2hpY2ggc3VwcGxpZXMgYSBjYWxsYmFjayBmb3INCi5yZF9vd25fY29u
-ZigpIG11c3Qgc3VwcGx5IGFuIGVxdWl2YWxlbnQgLnJlYWRfZGJpKCkgb25lIGFzIHdlbGwuDQoN
-Cj4gKEZvciBleGFtcGxlIGtpcmluX3BjaWVfcmRfb3duX2NvbmYgZG9lcyBzb21ldGhpbmcgc3Bl
-Y2lhbCkuDQo+IA0KVGhleSBzcGVjaWZpY2FsbHkgZGVmaW5lIGFuIGVxdWl2YWxlbnQga2lyaW5f
-cGNpZV9yZWFkX2RiaSgpLg0KDQo+IFRoYW5rcywNCj4gDQo+IEFuZHJldyBNdXJyYXkNCj4gDQo+
-ID4gKwlpZiAoaGRyX3R5cGUgIT0gUENJX0hFQURFUl9UWVBFX0JSSURHRSkgew0KPiA+ICsJCWRl
-dl9lcnIocGNpLT5kZXYsICJQQ0llIGNvbnRyb2xsZXIgaXMgbm90IHNldCB0byBicmlkZ2UNCj4g
-PiB0eXBlIChoZHJfdHlwZTogMHgleCkhXG4iLA0KPiA+ICsJCQloZHJfdHlwZSk7DQo+ID4gKwkJ
-cmV0dXJuIC1FSU87DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICAJcHAtPm1lbV9iYXNlID0gcHAtPm1l
-bS0+c3RhcnQ7DQo+ID4gIA0KPiA+ICAJaWYgKCFwcC0+dmFfY2ZnMF9iYXNlKSB7DQo+ID4gLS0g
-DQo+ID4gMi4xNy4xDQo+ID4gDQo=
+On 8/22/19 2:26 AM, Lubomir Rintel wrote:
+> Used to bring up the second core on MMP3.
+> 
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> 
+> ---
+> Changes since v1:
+> - Wrap SW_BRANCH_VIRT_ADDR with __pa_symbol()
+> 
+>  arch/arm/mach-mmp/Makefile  |  3 +++
+>  arch/arm/mach-mmp/platsmp.c | 33 +++++++++++++++++++++++++++++++++
+>  2 files changed, 36 insertions(+)
+>  create mode 100644 arch/arm/mach-mmp/platsmp.c
+> 
+> diff --git a/arch/arm/mach-mmp/Makefile b/arch/arm/mach-mmp/Makefile
+> index 322c1c97dc900..7b3a7f979eece 100644
+> --- a/arch/arm/mach-mmp/Makefile
+> +++ b/arch/arm/mach-mmp/Makefile
+> @@ -22,6 +22,9 @@ ifeq ($(CONFIG_PM),y)
+>  obj-$(CONFIG_CPU_PXA910)	+= pm-pxa910.o
+>  obj-$(CONFIG_CPU_MMP2)		+= pm-mmp2.o
+>  endif
+> +ifeq ($(CONFIG_SMP),y)
+> +obj-$(CONFIG_MACH_MMP3_DT)	+= platsmp.o
+> +endif
+>  
+>  # board support
+>  obj-$(CONFIG_MACH_ASPENITE)	+= aspenite.o
+> diff --git a/arch/arm/mach-mmp/platsmp.c b/arch/arm/mach-mmp/platsmp.c
+> new file mode 100644
+> index 0000000000000..98d5ef23623cb
+> --- /dev/null
+> +++ b/arch/arm/mach-mmp/platsmp.c
+> @@ -0,0 +1,33 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2019 Lubomir Rintel <lkundrak@v3.sk>
+> + */
+> +#include <linux/io.h>
+> +#include <asm/smp_scu.h>
+> +#include <asm/smp.h>
+> +#include "addr-map.h"
+> +
+> +#define SW_BRANCH_VIRT_ADDR	CIU_REG(0x24)
+> +
+> +static int mmp3_boot_secondary(unsigned int cpu, struct task_struct *idle)
+> +{
+> +	/*
+> +	 * Apparently, the boot ROM on the second core spins on this
+> +	 * register becoming non-zero and then jumps to the address written
+> +	 * there. No IPIs involved.
+> +	 */
+> +	__raw_writel(virt_to_phys(secondary_startup),
+> +			__pa_symbol(SW_BRANCH_VIRT_ADDR));
+
+
+That looks wrong, the __pa_symbol() is applicable to secondary_startup,
+while SW_BRANCH_VIRT_ADDR does not need that.
+
+> +	return 0;
+> +}
+> +
+> +static void mmp3_smp_prepare_cpus(unsigned int max_cpus)
+> +{
+> +	scu_enable(SCU_VIRT_BASE);
+> +}
+> +
+> +static const struct smp_operations mmp3_smp_ops __initconst = {
+> +	.smp_prepare_cpus	= mmp3_smp_prepare_cpus,
+> +	.smp_boot_secondary	= mmp3_boot_secondary,
+> +};
+> +CPU_METHOD_OF_DECLARE(mmp3_smp, "marvell,mmp3-smp", &mmp3_smp_ops);
+> 
+
+
+-- 
+Florian
