@@ -2,135 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD42099E52
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 19:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79D4699E57
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 19:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731481AbfHVRzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 13:55:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44352 "EHLO mail.kernel.org"
+        id S2388978AbfHVR4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 13:56:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44688 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731231AbfHVRzJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 13:55:09 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        id S1731231AbfHVR4e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 13:56:34 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2DE0A233FC;
-        Thu, 22 Aug 2019 17:55:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 27CA4233FD;
+        Thu, 22 Aug 2019 17:56:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566496508;
-        bh=Dba+wxYuJBz7LPcJtDrR9XAQK7WxQ1BRyHz60fVP5Lw=;
+        s=default; t=1566496593;
+        bh=L9UMGcdA614fnSHWQ04BSdS4ymvZGTviHvehBqLdubs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cxGM0Z3CfKrMhwXX6piCfNuGzP+gPEkP1SeCeiTcwxbOTObA7wJa83I1ng3RbMJU2
-         zMqJUVNaiAtn145/ennLGUX+bGFFQWU+Whlrtzs4SH1QkiLWDnyar9iSfcd9VdNCPu
-         8Ygc+sXQ03dYBr2fvN0V4+D/1yTfDDsXWvhUCxdY=
-Received: by mail-qk1-f180.google.com with SMTP id r21so5941214qke.2;
-        Thu, 22 Aug 2019 10:55:08 -0700 (PDT)
-X-Gm-Message-State: APjAAAXPAH/wZnze6oHE3TpqoUvm4xE+yoohFBU5c02T6oFTpGaxxwjA
-        3NK5wniDjypAl1TcIW/1EbLQpXYZGtlWK0Dkng==
-X-Google-Smtp-Source: APXvYqzVSLwn1iMQWDheMUuxXC6gIYklEEylRv6O8vwxXX+Wjw38nhjFxXITQN2puSA/+s0dJP8NRKnNQLQ0rjISmkI=
-X-Received: by 2002:a37:d8f:: with SMTP id 137mr172032qkn.254.1566496507376;
- Thu, 22 Aug 2019 10:55:07 -0700 (PDT)
+        b=ZNLjdK+2Tq5C2CzVvNoWBQJCMNgJaYiAZrGB2fXAjonnhn+dzQ3Vx7E63+MqY88+p
+         i2vdqvHMZiNOqz5ZBEtZKtOZnRp/mSd9geEiqx2AdkHp4kf7K3VFWyq2Y6CUgYT2xA
+         bbT+p1lhoCDgWcMgSTgwRWxpB1Ga+pT/rPA6IQdI=
+Received: by mail-qt1-f171.google.com with SMTP id y26so8742687qto.4;
+        Thu, 22 Aug 2019 10:56:33 -0700 (PDT)
+X-Gm-Message-State: APjAAAUjZkkkhqlMrIy/gmvovn7tvkkQEgQJyc9muQgEsJmB1BiEJi2C
+        v6r//ljQjXJZqszZ5WOWr8JCCXztvfXbvvkxTA==
+X-Google-Smtp-Source: APXvYqxmpTMuJpoR2hQvI30KNyZXaO90aPAJVNRDaz/KGX8/IUr6Sp01aMXULiLAaSLUCCkn9iQ5zlj6tY+yhexEMPk=
+X-Received: by 2002:ac8:44c4:: with SMTP id b4mr890120qto.224.1566496592345;
+ Thu, 22 Aug 2019 10:56:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <c909a3a19a1c06ac3ed9e1c42da3193ff8e43b7a.1566454535.git.eswara.kota@linux.intel.com>
-In-Reply-To: <c909a3a19a1c06ac3ed9e1c42da3193ff8e43b7a.1566454535.git.eswara.kota@linux.intel.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 22 Aug 2019 12:54:54 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKpbXEw63PszfKX+DL-j1itfzpXNqwcJmijpo758dYZuw@mail.gmail.com>
-Message-ID: <CAL_JsqKpbXEw63PszfKX+DL-j1itfzpXNqwcJmijpo758dYZuw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: reset: Add YAML schemas for the Intel
- Reset controller
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+References: <20190822060238.3887-1-krzk@kernel.org> <20190822060238.3887-3-krzk@kernel.org>
+In-Reply-To: <20190822060238.3887-3-krzk@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 22 Aug 2019 12:56:20 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq++LZ82v9WbyHK8pQg3WVQOxLvWcJ-qM0QAnhzKw033vA@mail.gmail.com>
+Message-ID: <CAL_Jsq++LZ82v9WbyHK8pQg3WVQOxLvWcJ-qM0QAnhzKw033vA@mail.gmail.com>
+Subject: Re: [PATCH v7 3/4] dt-bindings: arm: fsl: Add Kontron i.MX6UL N6310 compatibles
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 2:32 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
+On Thu, Aug 22, 2019 at 1:02 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> Add YAML schemas for the reset controller on Intel
-> Lightening Mountain (LGM) SoC.
+> Add the compatibles for Kontron i.MX6UL N6310 SoM and boards.
 >
-> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+>
 > ---
->  .../bindings/reset/intel,syscon-reset.yaml         | 50 ++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
-> new file mode 100644
-> index 000000000000..298c60085486
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/reset/intel,syscon-reset.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Intel Lightening Mountain SoC System Reset Controller
-> +
-> +maintainers:
-> +  - Dilip Kota <eswara.kota@linux.intel.com>
-> +
-> +properties:
-> +  compatible:
-> +    allOf:
-> +      - items:
-> +          - enum:
-> +              - intel,rcu-lgm
-> +              - syscon
-
-compatible:
-  items:
-    - const: intel,rcu-lgm
-    - const: syscon
-
-> +
-> +  reg:
-> +    description: Reset controller register base address and size
-> +
-> +  intel,global-reset:
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: Global reset register offset and bit offset.
-> +
-> +  "#reset-cells":
-> +    const: 2
-
-Add a description with what each cell contains.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - intel,global-reset
-> +  - "#reset-cells"
-
-Add a:
-
-additionalProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    rcu0: reset-controller@00000000 {
-> +        compatible = "intel,rcu-lgm", "syscon";
-> +        reg = <0x000000 0x80000>;
-> +        intel,global-reset = <0x10 30>;
-> +        #reset-cells = <2>;
-> +    };
-> +
-> +    pcie_phy0: pciephy@... {
-> +        ...
-> +        /* address offset: 0x10, bit offset: 12 */
-> +        resets = <&rcu0 0x10 12>;
-> +        ...
-> +    };
-> --
-> 2.11.0
+> Changes since v6:
+> 1. Split entries to pass the dtbs_check.
 >
+> Changes since v5:
+> New patch
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+
+Reviewed-by: Rob Herring <robh@kernel.org>
