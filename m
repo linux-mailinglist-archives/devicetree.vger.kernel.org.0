@@ -2,96 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F4099619
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25C909966D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:25:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733096AbfHVOQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 10:16:30 -0400
-Received: from foss.arm.com ([217.140.110.172]:46538 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731614AbfHVOQa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 10:16:30 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8ED5F337;
-        Thu, 22 Aug 2019 07:16:29 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 686233F706;
-        Thu, 22 Aug 2019 07:16:27 -0700 (PDT)
-Subject: Re: [PATCH v2 3/4] dt-bindings: iommu/arm,smmu: add compatible string
- for Marvell
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Joerg Roedel <joro@8bytes.org>, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        =?UTF-8?Q?Miqu=c3=a8l_Raynal?= <miquel.raynal@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Hanna Hawa <hannah@marvell.com>
-References: <20190711150242.25290-1-gregory.clement@bootlin.com>
- <20190711150242.25290-4-gregory.clement@bootlin.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <5208b371-c81a-23a0-0870-2810fce3c7fa@arm.com>
-Date:   Thu, 22 Aug 2019 15:16:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2388031AbfHVOZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 10:25:02 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:45329 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387982AbfHVOZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 10:25:02 -0400
+Received: by mail-wr1-f65.google.com with SMTP id q12so5600448wrj.12
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 07:25:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=532R/ZWuiDeQURoM9QVstK3VNVhlUb1b5wMTdcD1y6g=;
+        b=bLOp1aL7F9THqfOV7Xme5zs7Clfg5QY4THoC3eh0rpK44IWqhwMShz0XtR/iqKv8kc
+         NcQFoFY3MPRkiYgSRInPWeijRXC5S5f1rqLaSjPnKUoRSjG+eI/aOj7CvEefd4KmH/g8
+         UDbf+h2tWFy8sjTBM8VbqE7RXx9e/19Xz+PxO7P48ixBT665fCzijh+eVYDnKaQUAXbp
+         boZg+ini8cDQ9V7X9MhxT/SQPvbX6PZ3XuTgdtOJXKKwfG2+F7UZUNv78y7T6ckNRVMn
+         H3BTICzwaKMl8djlpygj5xvQ9ogRv12RtOHsHbmYkOisf7LLjUix1ka3IbRQAxM9GhbO
+         SDbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=532R/ZWuiDeQURoM9QVstK3VNVhlUb1b5wMTdcD1y6g=;
+        b=eThXtZuhxja5sW7KuvLeb/xy8Cuxz8PSJwSSDJ9zZd2RxuSetUu0aYZe9aN9sejCAR
+         E2unE7rBH3ZAZewNei5zDkJf/p3Jx7d6/r5qBchK5XTKpZ4+BUeVhjnMJ1qZjB2Qfcs+
+         xPfYaaPmb0iJUJjdgnfE2nPu0Tyr7LL7l5AAfVcFnPdeGq9haZz4e5kigfUT2EtVt0Dt
+         D7rLI+BOYqiFoPIcVhlVAJLDIYyfz5bQN7WIZdwUZ1rDjl6nflIvH6ImZj52slVQbTjF
+         8ecbjNXhNiPnF5gczjAC3lLGz31GYlSOqjTXEVtMao9ELAJsyiyGFEP6IozE916TV9Kd
+         EKwg==
+X-Gm-Message-State: APjAAAUFxRosRdG7yyIAdg6ydQUE5yTUYyJ48kuQZV64R7DKffyvBOwF
+        m9VIIZ6LuhX8o3xpvYdDv3PKeA==
+X-Google-Smtp-Source: APXvYqxNvQfiW+pmE3LmlxBbVlKlHM6v/pU91KToTSnslnmLS0Z+eHTKFQz+xNljPf3GF3C7gC2pJQ==
+X-Received: by 2002:adf:cd84:: with SMTP id q4mr25260602wrj.232.1566483899812;
+        Thu, 22 Aug 2019 07:24:59 -0700 (PDT)
+Received: from bender.baylibre.local (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id d17sm25806547wrm.52.2019.08.22.07.24.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2019 07:24:59 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, jbrunet@baylibre.com,
+        devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/6] dt-bindings: clk: meson: add sm1 periph clock controller bindings
+Date:   Thu, 22 Aug 2019 16:24:50 +0200
+Message-Id: <20190822142455.12506-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190822142455.12506-1-narmstrong@baylibre.com>
+References: <20190822142455.12506-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <20190711150242.25290-4-gregory.clement@bootlin.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2019 16:02, Gregory CLEMENT wrote:
-> From: Hanna Hawa <hannah@marvell.com>
-> 
-> Add specific compatible string for Marvell usage due errata of
-> accessing 64bits registers of ARM SMMU, in AP806.
-> 
-> AP806 SoC uses the generic ARM-MMU500, and there's no specific
-> implementation of Marvell, this compatible is used for errata only.
+Update the documentation to support clock driver for the Amlogic SM1 SoC.
 
-Forgive me for repeating myself[1], but:
+SM1 clock tree is very close, the main differences are :
+- each CPU core can achieve a different frequency, albeit a common PLL
+- a similar tree as the clock tree has been added for the DynamIQ Shared Unit
+- has a new GP1 PLL used for the DynamIQ Shared Unit
+- SM1 has additional clocks like for CSI, NanoQ an other components
 
-"Given that, I think something more specific like:
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-	"marvell,ap806-smmu", "arm,mmu-500";
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+index 6eaa52092313..7ccecd5c02c1 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 		"amlogic,axg-clkc" for AXG SoC.
+ 		"amlogic,g12a-clkc" for G12A SoC.
+ 		"amlogic,g12b-clkc" for G12B SoC.
++		"amlogic,sm1-clkc" for SM1 SoC.
+ - clocks : list of clock phandle, one for each entry clock-names.
+ - clock-names : should contain the following:
+   * "xtal": the platform xtal
+-- 
+2.22.0
 
-would be most appropriate. Otherwise, if some future Marvell SoC were to
-ever come out with a *different* MMU-500 integration problem, you'd
-already have painted yourself into a corner."
-
-Robin.
-
-[1] 
-https://lore.kernel.org/linux-arm-kernel/3ce1d67a-4e3c-e8d8-f7fc-79649f1def68@arm.com/
-
-> Signed-off-by: Hanna Hawa <hannah@marvell.com>
-> Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
-> ---
->   Documentation/devicetree/bindings/iommu/arm,smmu.txt | 1 +
->   1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.txt b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-> index 3133f3ba7567..7ed58d51846e 100644
-> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.txt
-> @@ -16,6 +16,7 @@ conditions.
->                           "arm,mmu-400"
->                           "arm,mmu-401"
->                           "arm,mmu-500"
-> +                        "marvell,mmu-500"
->                           "cavium,smmu-v2"
->                           "qcom,smmu-v2"
->   
-> 
