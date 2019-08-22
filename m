@@ -2,115 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A3D398E89
+	by mail.lfdr.de (Postfix) with ESMTP id DB82098E8B
 	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:59:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732851AbfHVI7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 04:59:45 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:59535 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1731589AbfHVI7o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 04:59:44 -0400
-X-UUID: a90b8171517b4b73af861d39776b16fd-20190822
-X-UUID: a90b8171517b4b73af861d39776b16fd-20190822
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1899938959; Thu, 22 Aug 2019 16:59:33 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 22 Aug
- 2019 16:59:32 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 22 Aug 2019 16:59:31 +0800
-Message-ID: <1566464375.11621.10.camel@mhfsdcap03>
-Subject: Re: [PATCH v10 09/23] iommu/io-pgtable-arm-v7s: Extend to support
- PA[33:32] for MediaTek
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-CC:     Will Deacon <will@kernel.org>, <youlin.pei@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        <cui.zhang@mediatek.com>, <srv_heupstream@mediatek.com>,
-        <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
-        <linux-kernel@vger.kernel.org>, Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <iommu@lists.linux-foundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <ming-fan.chen@mediatek.com>, <anan.sun@mediatek.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Thu, 22 Aug 2019 16:59:35 +0800
-In-Reply-To: <22a79977-5074-7af1-97b8-8a3e549b23c1@arm.com>
-References: <1566395606-7975-1-git-send-email-yong.wu@mediatek.com>
-         <1566395606-7975-10-git-send-email-yong.wu@mediatek.com>
-         <20190821152448.qmoqjh5zznfpdi6n@willie-the-truck>
-         <22a79977-5074-7af1-97b8-8a3e549b23c1@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1731925AbfHVI7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 04:59:47 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:36634 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731589AbfHVI7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 04:59:46 -0400
+Received: by mail-wr1-f65.google.com with SMTP id r3so4635920wrt.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 01:59:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=kSpdxq5R2ZXVE8nu/XqaBKCSesahRY6PDFEkyTg3anE=;
+        b=mjY6H66cPe06RdfYEXFMBSc4YWclkv3FHF1xhq+GB7/uY34v/d2COdOk3tnovDAIMP
+         gmQRSbXzL9wpmrHpMx+Dt5BSkE501yYYccnGwwY6npXZIxFldZ30+iqdQo6mD9u1ghoV
+         lWYZ2OSYzF8haHJJDJxNqfssGbfzuHCXoPwz9/GFRiZLQud+momrAG0f6ZRlIrNKtYwO
+         fyVQHwVXYvbrKcLpJWG9DS45/DMVxO/ZoPiXZ2YK4dlw4m4gMFLlZjiQrkBmrWgN2nEY
+         /bIp0jnGJ2mFphi1gkqydigbK60fgpkVCBsf4q3FTdzq+yWU5TcE8Z/pp7jcpMItTobP
+         b/0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=kSpdxq5R2ZXVE8nu/XqaBKCSesahRY6PDFEkyTg3anE=;
+        b=om1Cekdde/8Fekg61K1rI5jKAg/NJcYPHVF5qiIyEbcqfGeGvaYiuEK9mkePjp7W2d
+         5PRLVrG1KA0ykxXSAgXjP45/8TCZriW1t5Fh00oHSJczfxR1p/5iTEMd6Te5KzW/jZZy
+         YZWXSp9lk8Xn3RYm8P0rBxxFJbvrm1+oL28+fBQbYQkGW7QpLY/TEf5cnUGoM6B0aw8R
+         Zvlmx4A0J903yP7bKZOWEVJsizwT9DszxC1rvvBCFDmFIs3nUCKlYcWfJrVIoJUlNdKm
+         xKRTkUTqm34tIP1Bo/KNrnoUSVU5esKG/QF43jsZOFjfkRpIOr2UIZITnCqj3GyppJvG
+         u5UQ==
+X-Gm-Message-State: APjAAAUwGtKLcvR03cAAjpvONML88v3v+snLLHtEDrtm/irwOGnQPFYo
+        aXsPqM8C3pjQghTQ+NUnuI4Grw==
+X-Google-Smtp-Source: APXvYqwuKNVJFhJQRdzYNki7o1D+RUvGpp/z37PeOA04+PvNyoaR6ILYxxLPwX8JoH/GpSY3l+eqOw==
+X-Received: by 2002:a5d:4e06:: with SMTP id p6mr47080873wrt.336.1566464385170;
+        Thu, 22 Aug 2019 01:59:45 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id i93sm34408190wri.57.2019.08.22.01.59.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Aug 2019 01:59:44 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Rob Herring <robh@kernel.org>, Carlo Caione <ccaione@baylibre.com>
+Cc:     srinivas.kandagatla@linaro.org, khilman@baylibre.com,
+        narmstrong@baylibre.com, tglx@linutronix.de,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor phandle
+In-Reply-To: <20190821181458.GA2886@bogus>
+References: <20190731082339.20163-1-ccaione@baylibre.com> <20190731082339.20163-3-ccaione@baylibre.com> <20190821181458.GA2886@bogus>
+Date:   Thu, 22 Aug 2019 10:59:43 +0200
+Message-ID: <1jftltpocg.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 77FDD9D92F4B2E27F773B23946AF4889BD952E4F98E058E499F22239F28748B22000:8
-X-MTK:  N
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-08-21 at 16:34 +0100, Robin Murphy wrote:
-> On 21/08/2019 16:24, Will Deacon wrote:
-> > On Wed, Aug 21, 2019 at 09:53:12PM +0800, Yong Wu wrote:
-> >> MediaTek extend the arm v7s descriptor to support up to 34 bits PA where
-> >> the bit32 and bit33 are encoded in the bit9 and bit4 of the PTE
-> >> respectively. Meanwhile the iova still is 32bits.
-> >>
-> >> Regarding whether the pagetable address could be over 4GB, the mt8183
-> >> support it while the previous mt8173 don't, thus keep it as is.
-> >>
-> >> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> >> ---
-> >>   drivers/iommu/io-pgtable-arm-v7s.c | 32 +++++++++++++++++++++++++-------
-> >>   include/linux/io-pgtable.h         |  7 +++----
-> >>   2 files changed, 28 insertions(+), 11 deletions(-)
-> > 
-> > [...]
-> > 
-> >> @@ -731,7 +747,9 @@ static struct io_pgtable *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
-> >>   {
-> >>   	struct arm_v7s_io_pgtable *data;
-> >>   
-> >> -	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
-> >> +	if (cfg->ias > ARM_V7S_ADDR_BITS ||
-> >> +	    (cfg->oas > ARM_V7S_ADDR_BITS &&
-> >> +	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
-> > 
-> > Please can you instead change arm_v7s_alloc_pgtable() so that it allows an
-> > ias of up to 34 when the IO_PGTABLE_QUIRK_ARM_MTK_EXT is set?
-> 
-> You mean oas, right? I believe the hardware *does* actually support a 
-> 32-bit ias as well, but we shouldn't pretend to support that while 
-> __arm_v7s_alloc_table() still only knows how to allocate normal-sized 
-> tables.
+On Wed 21 Aug 2019 at 13:14, Rob Herring <robh@kernel.org> wrote:
 
-Yes. The HW double the lvl1 pgtable, thus it supports 33bit iova
-actually. We may extend ias in the future.
+> On Wed, Jul 31, 2019 at 09:23:37AM +0100, Carlo Caione wrote:
+>> Add a new property to link the nvmem driver to the secure-monitor. The
+>> nvmem driver needs to access the secure-monitor to be able to access the
+>> fuses.
+>> 
+>> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+>> ---
+>>  Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> index 2e0723ab3384..f7b3ed74db54 100644
+>> --- a/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> +++ b/Documentation/devicetree/bindings/nvmem/amlogic-efuse.txt
+>> @@ -4,6 +4,7 @@ Required properties:
+>>  - compatible: should be "amlogic,meson-gxbb-efuse"
+>>  - clocks: phandle to the efuse peripheral clock provided by the
+>>  	  clock controller.
+>> +- secure-monitor: phandle to the secure-monitor node
+>>  
+>>  = Data cells =
+>>  Are child nodes of eFuse, bindings of which as described in
+>> @@ -16,6 +17,7 @@ Example:
+>>  		clocks = <&clkc CLKID_EFUSE>;
+>>  		#address-cells = <1>;
+>>  		#size-cells = <1>;
+>> +		secure-monitor = <&sm>;
+>>  
+>>  		sn: sn@14 {
+>>  			reg = <0x14 0x10>;
+>> @@ -30,6 +32,10 @@ Example:
+>>  		};
+>>  	};
+>>  
+>> +	sm: secure-monitor {
+>> +		compatible = "amlogic,meson-gxbb-sm";
+>> +	};
+>
+> I guess I acked this a while back, but I'm not sure I would today. It 
+> seems incomplete and a node with only a compatible string and no 
+> resources doesn't need to be in DT. But that's already done...
 
-> 
-> Robin.
-> 
-> > 
-> > With that change:
-> > 
-> > Acked-by: Will Deacon <will@kernel.org>
-> > 
-> > Will
-> > 
-> 
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+It does have ressources (the shared memory) but the mistake (we should maybe think about
+fixing) is not expressing these in DT
 
+I think the shared memory is already in our DT, maybe the secure monitor
+should get a phandle to it ?
 
+>
+> There's no need for 'secure-monitor' anyways. Just do 
+> 'of_find_compatible_node(NULL, NULL, "amlogic,meson-gxbb-sm")' or search 
+> for the driver directly. It's not like there's more than one secure 
+> monitor...
+
+IMO the two methods show different constraints:
+- Carlo's proposition show that the efuse driver need a ressource, which
+is *a* secure monitor, whatever the variant is.
+
+- Your proposition shows that the efuse driver depends on a particular
+  secure monitor variant, which is the one provided by
+  "amlogic,meson-gxbb-sm"
+
+Yes, we could make your proposition work by the keeping the
+"amlogic,meson-gxbb-sm" last in the compatible list but it isn't great
+if a newer variant is actually not compatible with it.
+
+Carlo represent the HW the way it is. It seems more flexible to me,
+without adding (unbearable) complexity
+
+>
+> Rob
