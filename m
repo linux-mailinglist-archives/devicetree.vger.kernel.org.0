@@ -2,427 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AFE8899492
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832FD994BB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388893AbfHVNI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 09:08:58 -0400
-Received: from mga09.intel.com ([134.134.136.24]:49158 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387491AbfHVNIz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 09:08:55 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Aug 2019 06:08:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,416,1559545200"; 
-   d="scan'208";a="262856129"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
-  by orsmga001.jf.intel.com with ESMTP; 22 Aug 2019 06:08:51 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1i0mpd-0001hH-02; Thu, 22 Aug 2019 16:08:49 +0300
-Date:   Thu, 22 Aug 2019 16:08:48 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     kishon@ti.com, robh@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, peter.harliman.liem@intel.com
-Subject: Re: [PATCH v4 2/2] phy: intel-lgm-emmc: Add support for eMMC PHY
-Message-ID: <20190822130848.GO30120@smile.fi.intel.com>
-References: <20190822102843.47964-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190822102843.47964-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1732733AbfHVNS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 09:18:56 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:54494 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732271AbfHVNS4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 09:18:56 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190822131854euoutp01098cbe743463118a3d131b2354752508~9QTNv0pHC1291412914euoutp01B
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 13:18:54 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190822131854euoutp01098cbe743463118a3d131b2354752508~9QTNv0pHC1291412914euoutp01B
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1566479934;
+        bh=F44EVnTO+GtDjxdQbJnARMCEO/Q+Yxe2hI8JoPBw2gQ=;
+        h=Subject:Cc:To:From:Date:In-Reply-To:References:From;
+        b=f0vLyt8w7YPH1rhBmSW+wXxcSts5ox5EmwTa6ocUbdjVPzFpKbrQE77MR+tTYQ0Ek
+         +Gvw1yS3tFZ9FRDxi8nkclY9Ty41F6Pho6ZCRDQd+zlbMiAHBrAWMzQA81YTyi++qC
+         wDCkzeJ9Nkbik75HcsDBCJZCDTCCBM6cawbiY8HI=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190822131853eucas1p2c5af1edc93b92358245c742ecd1de77a~9QTM0H8ic0687106871eucas1p2G;
+        Thu, 22 Aug 2019 13:18:53 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id B3.9E.04374.D369E5D5; Thu, 22
+        Aug 2019 14:18:53 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190822131852eucas1p14653c9ddd85096bbee11447e0c68c052~9QTLxC46Y1860818608eucas1p1k;
+        Thu, 22 Aug 2019 13:18:52 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190822131852eusmtrp2c34461aaa48dd5fe69e0efcb6635db70~9QTLhTY4g2865128651eusmtrp2S;
+        Thu, 22 Aug 2019 13:18:52 +0000 (GMT)
+X-AuditID: cbfec7f5-4f7ff70000001116-f7-5d5e963dae74
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 56.D3.04117.C369E5D5; Thu, 22
+        Aug 2019 14:18:52 +0100 (BST)
+Received: from [106.120.51.18] (unknown [106.120.51.18]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190822131851eusmtip22c23884609353eaf52f43abc24fd7fcb~9QTK1iFoa2631926319eusmtip2L;
+        Thu, 22 Aug 2019 13:18:51 +0000 (GMT)
+Subject: Re: [RESEND PATCH v5 0/4] add coupled regulators for
+ Exynos5422/5800
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>
+From:   Kamil Konieczny <k.konieczny@partner.samsung.com>
+Message-ID: <fd9897b6-edc9-f88f-4393-62050bd66710@partner.samsung.com>
+Date:   Thu, 22 Aug 2019 15:18:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190822102843.47964-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190808090234.12577-1-k.konieczny@partner.samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0iTURj27Lvs05odp7UX7WITIY0ySeiA3YSSVT8S/KFkmiu/VFKzTafW
+        D83ssnW/UDYlu1gumbcpTqOsdDg10yywYQXLS0FqZSophtb2FfnvOc/lvO9zOBwltTPeXHJa
+        Bq9KU6bIWTe6vnW6a82m63Gx65reu5OawiqGvJ34zJASSxdDLg4MU6S7u1pMXuaPiIlpoJch
+        bx4Vs2T8vAWRwu4mEamwfBCT+297ROTdcQNLRqZeisjJJxYxme2toUmtvZXd6qEw3jIihalc
+        yypqS3MVF+rKkcJqM4sU46blEewet40JfEqyhlcFbY53SyrNr2TSJxZnX6vOp/OQ0UOHXDnA
+        IVAwNE3pkBsnxQYE/VfrxcJhAkH1gI12uKR4HIFhZq8Occ7ECaOr4ClDUNRz9W96FEHh00rW
+        EfDEu+H5zwbaIVD4FQ1fXt2mHIIXXg0zto/OW1m8AfrNnSIHluBwMJ+4yzgwjf2h6Os7p38x
+        joYf9hZG8HhA+81BZ9YVb4eK8nYnprAM+gZLRAJeAebRYudGgLUcTPaVMULRbaDrbGEF7Alf
+        rHViAS+FuUYhDDgLhu5cEAvhAgT202O0IIRCi7WHcfSncABUPQoS6DAoajDQwrO4g23UQ9jB
+        Ha7U36AEWgJnTkkFtz987jj3d5IP6OYqmUtIrp/XTD+vjX5eG/3/ubcRXY5kfKY6NZFXr0/j
+        s9aqlanqzLTEtQcOp5rQn3/3YtY62YCafu1vRphD8oWSNl1crJRRatQ5qc0IOEruJdFc/kNJ
+        EpQ5R3nV4X2qzBRe3Yx8OFoukxxzscdIcaIygz/E8+m86p8q4ly98xDqtQZw1Xm76BjwKd0S
+        ft9v1fu2D0vuTu18ol12ve/1YIJs+uRjSX/rjq23cmsiQjeVdN2I8naJfhYZPKPNkbmkH9Ev
+        eZCsPeS1cruvxHZcFxhiojQRGsv3yhHfeL8FZR8bxx5GRVZEJ5DBrivxZxOHp6hFSZ+Cv91r
+        CQtHHdmBB+W0OkkZHEip1MrfD68QFXMDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMIsWRmVeSWpSXmKPExsVy+t/xe7o20+JiDSZuZLfYOGM9q8X1L89Z
+        LeYfOcdq0f/4NbPF+fMb2C3ONr1ht9j0+BqrxeVdc9gsPvceYbSYcX4fk8XaI3fZLZZev8hk
+        cbtxBZvFmx9nmSxa9x5ht/h3bSOLxeYHx9gcBD3WzFvD6LFpVSebx+Yl9R59W1Yxehy/sZ3J
+        4/MmuQC2KD2bovzSklSFjPziElulaEMLIz1DSws9IxNLPUNj81grI1MlfTublNSczLLUIn27
+        BL2MJU3rWAu+iFZM2dDE0sC4RrCLkYNDQsBEonkNZxcjJ4eQwFJGiUOzbEFsCQFpicbTq5kg
+        bGGJP9e62LoYuYBqXjNK3N5ykxUkISzgK3Hxwh0WkASzwAUWiee/DrJCVM1glLgzp5EdpEpE
+        QFvi942HLCA2m4C5xKPtZ8DG8gq4SWxvXgQ2iUVAVWL2u9vMILaoQITE4R2zGCFqBCVOznwC
+        1ssp4CqxdtVJMJtZQF3iz7xLzBC2uMStJ/OZIGx5ie1v5zBPYBSahaR9FpKWWUhaZiFpWcDI
+        sopRJLW0ODc9t9hIrzgxt7g0L10vOT93EyMwwrcd+7llB2PXu+BDjAIcjEo8vCe64mKFWBPL
+        iitzDzFKcDArifCWTQQK8aYkVlalFuXHF5XmpBYfYjQFem4is5Rocj4w+eSVxBuaGppbWBqa
+        G5sbm1koifN2CByMERJITyxJzU5NLUgtgulj4uCUamDMEZVaci5V68Ttc+WcT5cd2Z23Tirt
+        1Y336hvXF2TfOdP6ab10Dv+PW+eebFw+zfZCysrm6pkRjya1qFu6Suz2PXf83I8lzFfjp860
+        9ImeUfH2sGJ6utqlaw9t6jOYZp2KiZvDwR+1rsj4u2pLe7DLmZD1tQz37nxR3bBxzhajGUIy
+        6Xma5o4PlViKMxINtZiLihMB6AXRsgYDAAA=
+X-CMS-MailID: 20190822131852eucas1p14653c9ddd85096bbee11447e0c68c052
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190808090249eucas1p19944820d79ec211c85d9e1285f892f9c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190808090249eucas1p19944820d79ec211c85d9e1285f892f9c
+References: <CGME20190808090249eucas1p19944820d79ec211c85d9e1285f892f9c@eucas1p1.samsung.com>
+        <20190808090234.12577-1-k.konieczny@partner.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 06:28:43PM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> 
-> Add support for eMMC PHY on Intel's Lightning Mountain SoC.
-> 
 
-Thanks for an update!
-One minor comment below. After addressing it
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+Dear MyungJoo,
 
-> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-> ---
-> chnages in v4:
->  - As per Andy's review comments,the following update
->  - add license_tag, macro, blank_line, error_check and grouping
+On 08.08.2019 11:02, Kamil Konieczny wrote:
+> Hi,
 > 
-> changes in v3:
->  - As per Andy's review comments macro optimization,aligned
->    function call in proper order and udelay added.
+> The main purpose of this patch series is to add coupled regulators for
+> Exynos5422/5800 to keep constrain on voltage difference between vdd_arm
+> and vdd_int to be at most 300mV. In exynos-bus instead of using
+> regulator_set_voltage_tol() with default voltage tolerance it should be
+> used regulator_set_voltage_triplet() with volatege range, and this is
+> already present in opp/core.c code, so it can be reused. While at this,
+> move setting regulators into opp/core.
 > 
-> changes in v2:
->  - optimize IS_CALDONE() and IS_DLLRDY() macro
->  - remove unneccessary comment
->  - remove redundant assignment
->  - add return the error ptr
-> ---
->  drivers/phy/Kconfig                |   1 +
->  drivers/phy/Makefile               |   1 +
->  drivers/phy/intel/Kconfig          |   9 ++
->  drivers/phy/intel/Makefile         |   2 +
->  drivers/phy/intel/phy-intel-emmc.c | 281 +++++++++++++++++++++++++++++++++++++
->  5 files changed, 294 insertions(+)
->  create mode 100644 drivers/phy/intel/Kconfig
->  create mode 100644 drivers/phy/intel/Makefile
->  create mode 100644 drivers/phy/intel/phy-intel-emmc.c
+> This patchset was tested on Odroid XU3.
 > 
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index 0263db2ac874..b3ed94b98d9b 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -69,5 +69,6 @@ source "drivers/phy/socionext/Kconfig"
->  source "drivers/phy/st/Kconfig"
->  source "drivers/phy/tegra/Kconfig"
->  source "drivers/phy/ti/Kconfig"
-> +source "drivers/phy/intel/Kconfig"
->  
->  endmenu
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index 0d9fddc498a6..3f1fc9efbbed 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -19,6 +19,7 @@ obj-y					+= broadcom/	\
->  					   cadence/	\
->  					   freescale/	\
->  					   hisilicon/	\
-> +					   intel/	\
->  					   marvell/	\
->  					   motorola/	\
->  					   mscc/	\
-> diff --git a/drivers/phy/intel/Kconfig b/drivers/phy/intel/Kconfig
-> new file mode 100644
-> index 000000000000..4ea6a8897cd7
-> --- /dev/null
-> +++ b/drivers/phy/intel/Kconfig
-> @@ -0,0 +1,9 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +#
-> +# Phy drivers for Intel Lightning Mountain(LGM) platform
-> +#
-> +config PHY_INTEL_EMMC
-> +	tristate "Intel EMMC PHY driver"
-> +	select GENERIC_PHY
-> +	help
-> +	  Enable this to support the Intel EMMC PHY
-> diff --git a/drivers/phy/intel/Makefile b/drivers/phy/intel/Makefile
-> new file mode 100644
-> index 000000000000..6b876a75599d
-> --- /dev/null
-> +++ b/drivers/phy/intel/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_PHY_INTEL_EMMC)            += phy-intel-emmc.o
-> diff --git a/drivers/phy/intel/phy-intel-emmc.c b/drivers/phy/intel/phy-intel-emmc.c
-> new file mode 100644
-> index 000000000000..4f0226f37ab0
-> --- /dev/null
-> +++ b/drivers/phy/intel/phy-intel-emmc.c
-> @@ -0,0 +1,281 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Intel eMMC PHY driver
-> + * Copyright (C) 2019 Intel, Corp.
-> + */
-> +
-> +#include <linux/bits.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_address.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +/* eMMC phy register definitions */
-> +#define EMMC_PHYCTRL0_REG	0xa8
-> +#define DR_TY_MASK		GENMASK(30, 28)
-> +#define DR_TY_SHIFT(x)		(((x) << 28) & DR_TY_MASK)
-> +#define OTAPDLYENA		BIT(14)
-> +#define OTAPDLYSEL_MASK		GENMASK(13, 10)
-> +#define OTAPDLYSEL_SHIFT(x)	(((x) << 10) & OTAPDLYSEL_MASK)
-> +
-> +#define EMMC_PHYCTRL1_REG	0xac
-> +#define PDB_MASK		BIT(0)
-> +#define PDB_SHIFT(x)		(((x) << 0) & PDB_MASK)
-> +#define ENDLL_MASK		BIT(7)
-> +#define ENDLL_SHIFT(x)		(((x) << 7) & ENDLL_MASK)
-> +
-> +#define EMMC_PHYCTRL2_REG	0xb0
-> +#define FRQSEL_25M		0
-> +#define FRQSEL_50M		1
-> +#define FRQSEL_100M		2
-> +#define FRQSEL_150M		3
-> +#define FRQSEL_MASK		GENMASK(24, 22)
-> +#define FRQSEL_SHIFT(x)		(((x) << 22) & FRQSEL_MASK)
-> +
-> +#define EMMC_PHYSTAT_REG	0xbc
-> +#define CALDONE_MASK		BIT(9)
-> +#define DLLRDY_MASK		BIT(8)
-> +#define IS_CALDONE(x)	((x) & CALDONE_MASK)
-> +#define IS_DLLRDY(x)	((x) & DLLRDY_MASK)
-> +
-> +struct intel_emmc_phy {
-> +	struct regmap *syscfg;
-> +	struct clk *emmcclk;
-> +};
-> +
-> +static int intel_emmc_phy_power(struct phy *phy, bool on_off)
-> +{
-> +	struct intel_emmc_phy *priv = phy_get_drvdata(phy);
-> +	unsigned int caldone;
-> +	unsigned int dllrdy;
-> +	unsigned int freqsel;
-> +	unsigned long rate;
-> +	int ret, quot;
-> +
-> +	/*
-> +	 * Keep phyctrl_pdb and phyctrl_endll low to allow
-> +	 * initialization of CALIO state M/C DFFs
-> +	 */
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL1_REG, PDB_MASK,
-> +				 PDB_SHIFT(0));
-> +	if (ret) {
-> +		dev_err(&phy->dev, "CALIO power down bar failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Already finish power_off above */
-> +	if (!on_off)
-> +		return 0;
-> +
-> +	rate = clk_get_rate(priv->emmcclk);
-> +	quot = DIV_ROUND_CLOSEST(rate, 50000000);
-> +	if (quot > FRQSEL_150M)
-> +		dev_warn(&phy->dev, "Unsupported rate: %lu\n", rate);
-> +	freqsel = clamp_t(int, quot, FRQSEL_25M, FRQSEL_150M);
-> +
-> +	/*
-> +	 * According to the user manual, calpad calibration
-> +	 * cycle takes more than 2us without the minimal recommended
-> +	 * value, so we may need a little margin here
-> +	 */
-> +	udelay(5);
-> +
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL1_REG, PDB_MASK, 1);
+> The DTS coupled regulators patch depends on previous patches.
+> 
+> Changes:
+> v5:
+> - squashed last patch "remove exynos_bus_passive_target()" into second
+> - added Acked-by to patch "correct clock enable sequence"
 
-1 is magic.
-
-> +	if (ret) {
-> +		dev_err(&phy->dev, "CALIO power down bar failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * According to the user manual, it asks driver to wait 5us for
-> +	 * calpad busy trimming. However it is documented that this value is
-> +	 * PVT(A.K.A process,voltage and temperature) relevant, so some
-> +	 * failure cases are found which indicates we should be more tolerant
-> +	 * to calpad busy trimming.
-> +	 */
-> +	ret = regmap_read_poll_timeout(priv->syscfg, EMMC_PHYSTAT_REG,
-> +				       caldone, IS_CALDONE(caldone),
-> +				       0, 50);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "caldone failed, ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Set the frequency of the DLL operation */
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL2_REG, FRQSEL_MASK,
-> +				 FRQSEL_SHIFT(freqsel));
-> +	if (ret) {
-> +		dev_err(&phy->dev, "set the frequency of dll failed:%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Turn on the DLL */
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL1_REG, ENDLL_MASK,
-> +				 ENDLL_SHIFT(1));
-> +	if (ret) {
-> +		dev_err(&phy->dev, "turn on the dll failed: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/*
-> +	 * After enabling analog DLL circuits docs say that we need 10.2 us if
-> +	 * our source clock is at 50 MHz and that lock time scales linearly
-> +	 * with clock speed.  If we are powering on the PHY and the card clock
-> +	 * is super slow (like 100 kHZ) this could take as long as 5.1 ms as
-> +	 * per the math: 10.2 us * (50000000 Hz / 100000 Hz) => 5.1 ms
-> +	 * Hopefully we won't be running at 100 kHz, but we should still make
-> +	 * sure we wait long enough.
-> +	 *
-> +	 * NOTE: There appear to be corner cases where the DLL seems to take
-> +	 * extra long to lock for reasons that aren't understood.  In some
-> +	 * extreme cases we've seen it take up to over 10ms (!).  We'll be
-> +	 * generous and give it 50ms.
-> +	 */
-> +	ret = regmap_read_poll_timeout(priv->syscfg,
-> +				       EMMC_PHYSTAT_REG,
-> +				       dllrdy, IS_DLLRDY(dllrdy),
-> +				       0, 50 * USEC_PER_MSEC);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "dllrdy failed. ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int intel_emmc_phy_init(struct phy *phy)
-> +{
-> +	struct intel_emmc_phy *priv = phy_get_drvdata(phy);
-> +
-> +	/*
-> +	 * We purposely get the clock here and not in probe to avoid the
-> +	 * circular dependency problem. We expect:
-> +	 * - PHY driver to probe
-> +	 * - SDHCI driver to start probe
-> +	 * - SDHCI driver to register it's clock
-> +	 * - SDHCI driver to get the PHY
-> +	 * - SDHCI driver to init the PHY
-> +	 *
-> +	 * The clock is optional, so upon any error just return it like
-> +	 * any other error to user.
-> +	 *
-> +	 */
-> +	priv->emmcclk = clk_get_optional(&phy->dev, "emmcclk");
-> +	if (IS_ERR(priv->emmcclk)) {
-> +		dev_err(&phy->dev, "ERROR: getting emmcclk\n");
-> +		return PTR_ERR(priv->emmcclk);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int intel_emmc_phy_exit(struct phy *phy)
-> +{
-> +	struct intel_emmc_phy *priv = phy_get_drvdata(phy);
-> +
-> +	clk_put(priv->emmcclk);
-> +
-> +	return 0;
-> +}
-> +
-> +static int intel_emmc_phy_power_on(struct phy *phy)
-> +{
-> +	struct intel_emmc_phy *priv = phy_get_drvdata(phy);
-> +	int ret;
-> +
-> +	/* Drive impedance: 50 Ohm */
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL0_REG, DR_TY_MASK,
-> +				 DR_TY_SHIFT(6));
-> +	if (ret) {
-> +		dev_err(&phy->dev, "ERROR set drive-impednce-50ohm: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Output tap delay: disable */
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL0_REG, OTAPDLYENA, 0);
-> +	if (ret) {
-> +		dev_err(&phy->dev, "ERROR Set output tap delay : %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Output tap delay */
-> +	ret = regmap_update_bits(priv->syscfg, EMMC_PHYCTRL0_REG,
-> +				 OTAPDLYSEL_MASK, OTAPDLYSEL_SHIFT(4));
-> +	if (ret) {
-> +		dev_err(&phy->dev, "ERROR: output tap dly select: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* Power up eMMC phy analog blocks */
-> +	return intel_emmc_phy_power(phy, true);
-> +}
-> +
-> +static int intel_emmc_phy_power_off(struct phy *phy)
-> +{
-> +	/* Power down eMMC phy analog blocks */
-> +	return intel_emmc_phy_power(phy, false);
-> +}
-> +
-> +static const struct phy_ops ops = {
-> +	.init		= intel_emmc_phy_init,
-> +	.exit		= intel_emmc_phy_exit,
-> +	.power_on	= intel_emmc_phy_power_on,
-> +	.power_off	= intel_emmc_phy_power_off,
-> +	.owner		= THIS_MODULE,
-> +};
-> +
-> +static int intel_emmc_phy_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct intel_emmc_phy *priv;
-> +	struct phy *generic_phy;
-> +	struct phy_provider *phy_provider;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	/* Get eMMC phy (accessed via chiptop) regmap */
-> +	priv->syscfg = syscon_regmap_lookup_by_phandle(np, "intel,syscon");
-> +	if (IS_ERR(priv->syscfg)) {
-> +		dev_err(dev, "failed to find syscon\n");
-> +		return PTR_ERR(priv->syscfg);
-> +	}
-> +
-> +	generic_phy = devm_phy_create(dev, np, &ops);
-> +	if (IS_ERR(generic_phy)) {
-> +		dev_err(dev, "failed to create PHY\n");
-> +		return PTR_ERR(generic_phy);
-> +	}
-> +
-> +	phy_set_drvdata(generic_phy, priv);
-> +	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-> +
-> +	return PTR_ERR_OR_ZERO(phy_provider);
-> +}
-> +
-> +static const struct of_device_id intel_emmc_phy_dt_ids[] = {
-> +	{ .compatible = "intel,lgm-emmc-phy" },
-> +	{}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, intel_emmc_phy_dt_ids);
-> +
-> +static struct platform_driver intel_emmc_driver = {
-> +	.probe		= intel_emmc_phy_probe,
-> +	.driver		= {
-> +		.name	= "intel-emmc-phy",
-> +		.of_match_table = intel_emmc_phy_dt_ids,
-> +	},
-> +};
-> +
-> +module_platform_driver(intel_emmc_driver);
-> +
-> +MODULE_AUTHOR("Peter Harliman Liem <peter.harliman.liem@intel.com>");
-> +MODULE_DESCRIPTION("Intel eMMC PHY driver");
-> -- 
-> 2.11.0
-> 
+Could you please merge patches 1/4 and 2/4 for v5.4
+(they were already Ack-ed by Chanwoo Choi)?
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Kamil Konieczny
+Samsung R&D Institute Poland
 
+> v4:
+> - removed "opp: core: add regulators enable and disable" from patchset
+>   as it was applied by Viresh Kumar and changed cover letter
+> - fix patch "devfreq: exynos-bus: correct clock enable sequence" to
+>   correct order of enable/disable
+> - removed unrelated changes in "devfreq: exynos-bus: convert to use
+>   dev_pm_opp_set_rate()"
+> - added new patch "devfreq: exynos-bus: remove exynos_bus_passive_target()"
+>   as suggested by Chanwoo Choi
+> v3:
+> - added new exynos-bus patch to correct clock and regulator enabling
+>   and disabling sequence as suggested by Chanwoo Choi
+> - corrected error path in enable and improved commit message in opp/core
+> - improve comment in devfreq/exynos-bus.c before devfreq_recommended_opp()
+> - change cover letter as there is new patch
+> - added note before Signed-off-by in 4th patch
+> v2:
+> - improve regulators enable/disable code in opp/core as suggested by
+>   Viresh Kumar
+> - add new patch for remove unused dt-bindings as suggested by Krzysztof
+>   Kozlowski
+> 
+> Kamil Konieczny (3):
+>   devfreq: exynos-bus: correct clock enable sequence
+>   devfreq: exynos-bus: convert to use dev_pm_opp_set_rate()
+>   dt-bindings: devfreq: exynos-bus: remove unused property
+> 
+> Marek Szyprowski (1):
+>   ARM: dts: exynos: add initial data for coupled regulators for
+>     Exynos5422/5800
+> 
+>  .../bindings/devfreq/exynos-bus.txt           |   2 -
+>  arch/arm/boot/dts/exynos5420.dtsi             |  34 ++--
+>  arch/arm/boot/dts/exynos5422-odroid-core.dtsi |   4 +
+>  arch/arm/boot/dts/exynos5800-peach-pi.dts     |   4 +
+>  arch/arm/boot/dts/exynos5800.dtsi             |  32 ++--
+>  drivers/devfreq/exynos-bus.c                  | 153 +++++-------------
+>  6 files changed, 78 insertions(+), 151 deletions(-)
+> 
 
