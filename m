@@ -2,83 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED724991B9
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 13:10:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14D8C991CC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 13:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388054AbfHVLK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 07:10:27 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:35686 "EHLO honk.sigxcpu.org"
+        id S1732566AbfHVLNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 07:13:19 -0400
+Received: from foss.arm.com ([217.140.110.172]:44100 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388073AbfHVLK1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 07:10:27 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 74D5AFB03;
-        Thu, 22 Aug 2019 13:10:25 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id DPGs_PT9whdo; Thu, 22 Aug 2019 13:10:24 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 739494014F; Thu, 22 Aug 2019 13:10:23 +0200 (CEST)
-From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 1/1] arm64: dts: imx8mq: Add mux controller to iomuxc_gpr
-Date:   Thu, 22 Aug 2019 13:10:23 +0200
-Message-Id: <fa3b1df7fc5e74f375df5de53061d1a93d154b51.1566471985.git.agx@sigxcpu.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1566471985.git.agx@sigxcpu.org>
-References: <cover.1566471985.git.agx@sigxcpu.org>
+        id S1728594AbfHVLNT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 07:13:19 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 811CF344;
+        Thu, 22 Aug 2019 04:13:18 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CFA4E3F246;
+        Thu, 22 Aug 2019 04:13:17 -0700 (PDT)
+Date:   Thu, 22 Aug 2019 12:13:16 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, dwmw@amazon.co.uk,
+        benh@kernel.crashing.org, alisaidi@amazon.com, ronenk@amazon.com,
+        barakw@amazon.com, talel@amazon.com, hanochu@amazon.com,
+        hhhawa@amazon.com, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 7/7] PCI: dwc: Add validation that PCIe core is set to
+ correct mode
+Message-ID: <20190822111315.GN23903@e119886-lin.cambridge.arm.com>
+References: <20190821153545.17635-1-jonnyc@amazon.com>
+ <20190821154745.31834-3-jonnyc@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190821154745.31834-3-jonnyc@amazon.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The only mux controls the MIPI DSI input selection.
+On Wed, Aug 21, 2019 at 06:47:45PM +0300, Jonathan Chocron wrote:
+> Some PCIe controllers can be set to either Host or EP according to some
+> early boot FW. To make sure there is no discrepancy (e.g. FW configured
+> the port to EP mode while the DT specifies it as a host bridge or vice
+> versa), a check has been added for each mode.
+> 
+> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> Acked-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-ep.c   | 8 ++++++++
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 8 ++++++++
+>  2 files changed, 16 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 2bf5a35c0570..00e59a134b93 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -531,6 +531,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  	int ret;
+>  	u32 reg;
+>  	void *addr;
+> +	u8 hdr_type;
+>  	unsigned int nbars;
+>  	unsigned int offset;
+>  	struct pci_epc *epc;
+> @@ -543,6 +544,13 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  		return -EINVAL;
+>  	}
+>  
+> +	hdr_type = dw_pcie_readb_dbi(pci, PCI_HEADER_TYPE);
+> +	if (hdr_type != PCI_HEADER_TYPE_NORMAL) {
+> +		dev_err(pci->dev, "PCIe controller is not set to EP mode (hdr_type:0x%x)!\n",
+> +			hdr_type);
+> +		return -EIO;
+> +	}
+> +
+>  	ret = of_property_read_u32(np, "num-ib-windows", &ep->num_ib_windows);
+>  	if (ret < 0) {
+>  		dev_err(dev, "Unable to read *num-ib-windows* property\n");
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index f93252d0da5b..d2ca748e4c85 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -323,6 +323,7 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  	struct pci_bus *child;
+>  	struct pci_host_bridge *bridge;
+>  	struct resource *cfg_res;
+> +	u8 hdr_type;
+>  	int ret;
+>  
+>  	raw_spin_lock_init(&pci->pp.lock);
+> @@ -396,6 +397,13 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  		}
+>  	}
+>  
+> +	hdr_type = dw_pcie_readb_dbi(pci, PCI_HEADER_TYPE);
 
-Signed-off-by: Guido Günther <agx@sigxcpu.org>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Do we know if it's always safe to read these registers at this point in time?
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 4fdd60f2c51e..3f3594d9485c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -440,8 +440,15 @@
- 			};
- 
- 			iomuxc_gpr: syscon@30340000 {
--				compatible = "fsl,imx8mq-iomuxc-gpr", "fsl,imx6q-iomuxc-gpr", "syscon";
-+				compatible = "fsl,imx8mq-iomuxc-gpr", "fsl,imx6q-iomuxc-gpr",
-+					     "syscon", "simple-mfd";
- 				reg = <0x30340000 0x10000>;
-+
-+				mux: mux-controller {
-+					compatible = "mmio-mux";
-+					#mux-control-cells = <1>;
-+					mux-reg-masks = <0x34 0x00000004>; /* MIPI_MUX_SEL */
-+				};
- 			};
- 
- 			ocotp: ocotp-ctrl@30350000 {
--- 
-2.20.1
+Later in dw_pcie_host_init we call pp->ops->host_init - looking at the
+implementations of .host_init I can see:
 
+ - resets being performed (qcom_ep_reset_assert,
+   artpec6_pcie_assert_core_reset, imx6_pcie_assert_core_reset)
+ - changes to config space registers (ks_pcie_init_id, dw_pcie_setup_rc)
+   including setting PCI_CLASS_DEVICE
+ - and clocks being enabled (qcom_pcie_init_1_0_0)
+
+I'm not sure if your changes would cause anything to break for these other
+controllers (or future controllers) as I couldn't see any other reads to the
+config.
+
+Given that we are reading config space should dw_pcie_rd_own_conf be used?
+(For example kirin_pcie_rd_own_conf does something special).
+
+Thanks,
+
+Andrew Murray
+
+> +	if (hdr_type != PCI_HEADER_TYPE_BRIDGE) {
+> +		dev_err(pci->dev, "PCIe controller is not set to bridge type (hdr_type: 0x%x)!\n",
+> +			hdr_type);
+> +		return -EIO;
+> +	}
+> +
+>  	pp->mem_base = pp->mem->start;
+>  
+>  	if (!pp->va_cfg0_base) {
+> -- 
+> 2.17.1
+> 
