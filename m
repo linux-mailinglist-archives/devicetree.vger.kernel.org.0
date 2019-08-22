@@ -2,80 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0777C98CFA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:10:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 012BE98D1F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:13:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732012AbfHVIGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 04:06:17 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38053 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731478AbfHVIGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 04:06:10 -0400
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i0i6d-0005Y7-Il; Thu, 22 Aug 2019 10:06:03 +0200
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i0i6Y-0005XO-05; Thu, 22 Aug 2019 10:05:58 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH v9 13/13] media: tvp5150: make debug output more readable
-Date:   Thu, 22 Aug 2019 10:05:56 +0200
-Message-Id: <20190822080556.17109-14-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190822080556.17109-1-m.felsch@pengutronix.de>
-References: <20190822080556.17109-1-m.felsch@pengutronix.de>
+        id S1732043AbfHVIM2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 04:12:28 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:4560 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1731361AbfHVIM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 04:12:27 -0400
+X-UUID: 148adf214d5e41aeb732a3567d7658e1-20190822
+X-UUID: 148adf214d5e41aeb732a3567d7658e1-20190822
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <yingjoe.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 505389812; Thu, 22 Aug 2019 16:12:21 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 22 Aug 2019 16:12:15 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 22 Aug 2019 16:12:15 +0800
+Message-ID: <1566461540.16302.4.camel@mtksdaap41>
+Subject: Re: [PATCH v5 08/13] dt-bindings: pwm: update bindings for MT7628
+ SoC
+From:   Yingjoe Chen <yingjoe.chen@mediatek.com>
+To:     Sam Shih <sam.shih@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        <linux-pwm@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        "John Crispin" <john@phrozen.org>
+Date:   Thu, 22 Aug 2019 16:12:20 +0800
+In-Reply-To: <1566457123-20791-9-git-send-email-sam.shih@mediatek.com>
+References: <1566457123-20791-1-git-send-email-sam.shih@mediatek.com>
+         <1566457123-20791-9-git-send-email-sam.shih@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 3BD61D47ACABA7964220A1B0223F5209B3AA948622B67FF3DAA9B078EE5B90732000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The debug output for tvp5150_selmux() isn't really intuitive. Register
-values are printed decimal formatted and the input/output driver states
-are printed as enum. Even more the "normal" output enum mapps to zero so
-a active output will printing output=0 and a inactive output=1.
+On Thu, 2019-08-22 at 14:58 +0800, Sam Shih wrote:
+> This updates bindings for MT7628 pwm controller.
+> 
+> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> index ea95b490a913..93980e3da261 100644
+> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> @@ -21,6 +21,10 @@ Required properties:
+>     See pinctrl/pinctrl-bindings.txt for details of the property values.
+>   - num-pwms: the number of PWM channels.
+> +
+> + Optional properties:
+> + - clock-frequency: fix clock frequency, this is only used in MT7628 SoC
+> +                    for period calculation. This SoC has no complex clock tree.
 
-Change this by brinting the register values hex formatted and the states
-as more readable string.
+I'm sorry if this has been discussed before. 
 
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
----
- drivers/media/i2c/tvp5150.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Would it be simpler if you just provide a fixed-clock as clock in device
+tree? This way you don't need this optional properties and don't need to
+special handle it in driver code. 
 
-diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-index b48b08421993..240df920b521 100644
---- a/drivers/media/i2c/tvp5150.c
-+++ b/drivers/media/i2c/tvp5150.c
-@@ -300,9 +300,12 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
- 		break;
- 	}
- 
--	dev_dbg_lvl(sd->dev, 1, debug, "Selecting video route: route input=%i, output=%i => tvp5150 input=%i, opmode=%i\n",
--			decoder->input, decoder->output,
--			input, opmode);
-+	dev_dbg_lvl(sd->dev, 1, debug,
-+		    "Selecting video route: route input=%s, output=%s => tvp5150 input=0x%02x, opmode=0x%02x\n",
-+		    decoder->input == 0 ? "aip1a" :
-+		    decoder->input == 2 ? "aip1b" : "svideo",
-+		    decoder->output == 0 ? "normal" : "black-frame-gen",
-+		    input, opmode);
- 
- 	regmap_write(decoder->regmap, TVP5150_OP_MODE_CTL, opmode);
- 	regmap_write(decoder->regmap, TVP5150_VD_IN_SRC_SEL_1, input);
--- 
-2.20.1
+After all, the hw is still connected to a simple clock tree.
+
+Joe.C
+
 
