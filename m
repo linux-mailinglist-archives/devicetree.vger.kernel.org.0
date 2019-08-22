@@ -2,109 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF279958E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD320995B9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 16:01:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731627AbfHVNxB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 09:53:01 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:34696 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731615AbfHVNxB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 09:53:01 -0400
-Received: by mail-vs1-f65.google.com with SMTP id b20so3910677vso.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 06:53:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tuGMouOtFOL6qd6oBESyF32JYfPiKh5leEjrSnKcwpo=;
-        b=RIpf24nRH3NUjh7tR/MywKsXGcriypUW3Nw3anrRX3qatgw7KCnHTkXo3cU/OFH3X2
-         NQeZCbxcPKcmtt7MbN/GPbEOg9oYcgPV2XCjK02rdsa0QPEezNRFzYcsNkaBHcH5Pe6y
-         UqMYqZIINSZ39LZeTGVvj7L/jZXZFHzYNFSUmk7gxCW974AGFMP85ICYFbaLD2jmircr
-         bHH603dKDy9u//yt275AVzVyqZ+GIXaLMYfSmSyxAUt/ZZqlHex64BJXlaG9J0iUkY1B
-         SY++cLbJvsB6MHyhQotX+Y+tXTaF1SCJAFRyK71QAX/he5OHCp3ajltLGSNtA833uZNO
-         esaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tuGMouOtFOL6qd6oBESyF32JYfPiKh5leEjrSnKcwpo=;
-        b=iVq3WXG9l+941NUGTTiFPhmch4X19vbcxKt4hGY3yz/LqsS5+V9vsCyFwMSH7HjVHa
-         lLIYGw4OmTpHY8g6xapkCFCUI7VGN6xRT6nK4OJKfhIrZvDhEPaBfCjDtIWc2OxDf+pZ
-         UgYIXpJmMrxTLAgTx9UhnLvGoZ7bsEArP2f+uSDTyqyN7NXo2sjuarVg8+P5oHVnNNZ5
-         371aA+kYQ7H+pIerNpDqMYWYehX+2ydx17QzzHgVu2GkB3cZGVIb+G91TGVYWwZ6PCMw
-         76S9l0eBvq6J55rZ+0gogsLrmoJk2CE0XloCOS3WxsgikDMO42g5pr+abGdnnwufDGXZ
-         1CLA==
-X-Gm-Message-State: APjAAAXl+kYZlg+9S3Z7YZV8pnZ3gDqB8FuvqQUSFTCYEtTqeAWDKm97
-        4LQKIPKGv6HYLFXiF7W94SaFyk8wPqIeVuJXpfoBiw==
-X-Google-Smtp-Source: APXvYqwLUBPKQGwaCHNT/xqZtRG5kBo+RsrpLvjiu+PO1wXYnj3Lf88aoVFjhAhrpB2zEipWIW/7o+VlnllMarHDCvA=
-X-Received: by 2002:a67:61c7:: with SMTP id v190mr24937528vsb.165.1566481980346;
- Thu, 22 Aug 2019 06:53:00 -0700 (PDT)
+        id S1732139AbfHVOAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 10:00:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42624 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726096AbfHVOAc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 10:00:32 -0400
+Received: from localhost (unknown [171.61.89.145])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D5B0522CE3;
+        Thu, 22 Aug 2019 14:00:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566482431;
+        bh=DWwwr3qPkjE4y1klETI0/GZhGb33KyLJV8JKbxYx8mI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=YvQJ7oGkcjX82C23lfVZfJm+UzNfRuqFQPgn7k1BocoUF1hWtH6zzXyf1nsxPScJV
+         VjLpanuLLNZj6ff3bpKSk+gvNOFOXjvgF+99cxCKinKhMAGe09mrLcWV5V60yoE+b7
+         wapypQsCjygzhmEuThSy+Famze8EnfqcYwxdJ5m4=
+Date:   Thu, 22 Aug 2019 19:29:17 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] clk: qcom: clk-rpmh: Convert to parent data scheme
+Message-ID: <20190822135917.GP12733@vkoul-mobl.Dlink>
+References: <20190819073947.17258-1-vkoul@kernel.org>
+ <20190819073947.17258-3-vkoul@kernel.org>
+ <20190820050829.GJ26807@tuxbook-pro>
 MIME-Version: 1.0
-References: <20190708173330.13217-1-martin.blumenstingl@googlemail.com> <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 22 Aug 2019 15:52:24 +0200
-Message-ID: <CAPDyKFoFQ_QvHD-+Mg_VAR5rqs3CM_h7dw25p81JTzE1Yz7d1A@mail.gmail.com>
-Subject: Re: [PATCH RFC v1 2/2] mmc: host: meson-mx-sdhc: new driver for the
- Amlogic Meson SDHC host
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, jianxin.pan@amlogic.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820050829.GJ26807@tuxbook-pro>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 8 Jul 2019 at 19:33, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> WiP - only partially working - see performance numbers.
->
-> Odroid-C1 eMMC (HS-200):
-> Amlogic's vendor driver @ Linux 3.10:
->   7781351936 bytes (7.8 GB) copied, 134.714 s, 57.8 MB/s
-> This driver:
->   7781351936 bytes (7.8 GB, 7.2 GiB) copied, 189.02 s, 41.2 MB/s
->
-> EC-100 eMMC (HS MMC):
-> Amlogic's vendor driver @ Linux 3.10:
->   15762194432 bytes (16 GB) copied, 422.967 s, 37.3 MB/s
-> This driver:
->   15762194432 bytes (16 GB, 15 GiB) copied, 9232.65 s, 1.7 MB/s
->
-> 1) Amlogic's vendor driver does some magic with the divider:
->       clk_div = input_rate / clk_ios - !(input_rate%clk_ios);
->       if (!(clk_div & 0x01)) // if even number, turn it to an odd one
->          clk_div++;
->    It's not clear to me whether what the reason behind this is, what is
->    supposed to be achieved with this?
->
-> 2) The hardcoded RX clock phases are taken from the vendor driver. It
->    seems that these are only valid when fclk_div3 is used as input
->    clock (however, there are four more inputs). It's not clear to me how
->    to calculate the RX clock phases in set_ios based on the input clock
->    and the ios rate.
->
-> 3) The hardware supports a timeout IRQ but the max_busy_timeout is not
->    documented anywhere.
->
-> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On 19-08-19, 22:08, Bjorn Andersson wrote:
+> On Mon 19 Aug 00:39 PDT 2019, Vinod Koul wrote:
+> 
+> > Convert the rpmh clock driver to use the new parent data scheme by
+> > specifying the parent data for board clock.
+> > 
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  drivers/clk/qcom/clk-rpmh.c | 10 ++++++++--
+> >  1 file changed, 8 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> > index c3fd632af119..16d689e5bb3c 100644
+> > --- a/drivers/clk/qcom/clk-rpmh.c
+> > +++ b/drivers/clk/qcom/clk-rpmh.c
+> > @@ -95,7 +95,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
+> >  		.hw.init = &(struct clk_init_data){			\
+> >  			.ops = &clk_rpmh_ops,				\
+> >  			.name = #_name,					\
+> > -			.parent_names = (const char *[]){ "xo_board" },	\
+> > +			.parent_data =  &(const struct clk_parent_data){ \
+> > +					.fw_name = "xo",		\
+> > +					.name = "xo",		\
+> 
+> Shouldn't .name be "xo_board" to retain backwards compatibility?
 
-Martin, overall this looks good to me. Once you moved from RFC to a
-formal patch I will check again, of course.
+Yes I have updated that
 
-There are a couple of calls to readl_poll_timeout(), for different
-reasons, that I have some questions about, but we can discuss those in
-the next step.
-
-[...]
-
-Kind regards
-Uffe
+Thanks
+-- 
+~Vinod
