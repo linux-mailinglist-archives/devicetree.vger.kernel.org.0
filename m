@@ -2,96 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D4459940A
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71E4399421
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 14:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732370AbfHVMmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 08:42:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35042 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731964AbfHVMmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 08:42:54 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1FB8E23400;
-        Thu, 22 Aug 2019 12:42:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566477774;
-        bh=u1d+yxJsT1RUvhBvbQpkk+Lf5Hdd3NIZBjhPGRaoLq0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=edR3/F8kHjufAIzXmL5EPLQL9s+FkyXsTgFLD3pGhyRokP1bjNEbtCpYRTsZQWFxU
-         hhpHuv5/XDfytUXLzvVwVR2im285sPfm3Nmu0StCVp6XXQrXbuEoGXtcgLHeoikLEN
-         o6Gey1aefucRSEdl8XNh3eBlPk+tmGJn6uhnA4Kk=
-Received: by mail-qt1-f182.google.com with SMTP id l9so7440883qtu.6;
-        Thu, 22 Aug 2019 05:42:54 -0700 (PDT)
-X-Gm-Message-State: APjAAAUy99qFIC7z+vEZfsWu5VrH2RuAhoJZaFBCQFCiI51pn9K28vpF
-        RITe/li0VM89eKwxlVct7mGk7C/I8Y4ujfzF3g==
-X-Google-Smtp-Source: APXvYqxC0xb53h6O4RvVMfpbGb5MhrE12k/FG4k5FZrxkO1CLd25XOg+b1pujVZE4NJPmG2GhguxmB+9CL3m/MBOJiI=
-X-Received: by 2002:ac8:386f:: with SMTP id r44mr37134933qtb.300.1566477773293;
- Thu, 22 Aug 2019 05:42:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190809093158.7969-1-lkundrak@v3.sk> <20190809093158.7969-3-lkundrak@v3.sk>
- <20190821210349.GA29732@bogus> <c859d12167d18c21dda13b30c2dd3256f407d1d9.camel@v3.sk>
-In-Reply-To: <c859d12167d18c21dda13b30c2dd3256f407d1d9.camel@v3.sk>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 22 Aug 2019 07:42:42 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+BVUX3MMjsjK+hhjgDzdiqoo8dwEMD_98OrkGMOQf8GA@mail.gmail.com>
-Message-ID: <CAL_Jsq+BVUX3MMjsjK+hhjgDzdiqoo8dwEMD_98OrkGMOQf8GA@mail.gmail.com>
-Subject: Re: [PATCH 02/19] dt-bindings: arm: mrvl: Document MMP3 compatible string
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Olof Johansson <olof@lixom.net>,
+        id S1730824AbfHVMqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 08:46:34 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:43107 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729922AbfHVMqe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 08:46:34 -0400
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 01503100003;
+        Thu, 22 Aug 2019 12:46:28 +0000 (UTC)
+Date:   Thu, 22 Aug 2019 14:46:28 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Ran Bi <ran.bi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        YT Shen <yt.shen@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Flora Fu <flora.fu@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>
+Subject: Re: [PATCH v2 2/4] rtc: Add support for the MediaTek MT2712 RTC
+Message-ID: <20190822124628.GS27031@piout.net>
+References: <20190801110122.26834-1-ran.bi@mediatek.com>
+ <20190801110122.26834-3-ran.bi@mediatek.com>
+ <20190820201744.GZ3545@piout.net>
+ <1566477254.12318.41.camel@mhfsdcap03>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1566477254.12318.41.camel@mhfsdcap03>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 3:12 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
->
-> On Wed, 2019-08-21 at 16:03 -0500, Rob Herring wrote:
-> > On Fri, Aug 09, 2019 at 11:31:41AM +0200, Lubomir Rintel wrote:
-> > > Marvel MMP3 is a successor to MMP2, containing similar peripherals with two
-> > > PJ4B cores.
-> > >
-> > > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > > ---
-> > >  Documentation/devicetree/bindings/arm/mrvl/mrvl.txt | 4 ++++
-> > >  1 file changed, 4 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt b/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
-> > > index 951687528efb0..66e1e1414245b 100644
-> > > --- a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
-> > > +++ b/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
-> > > @@ -12,3 +12,7 @@ Required root node properties:
-> > >  MMP2 Brownstone Board
-> > >  Required root node properties:
-> > >     - compatible = "mrvl,mmp2-brownstone", "mrvl,mmp2";
-> > > +
-> > > +MMP3 SoC
-> > > +Required root node properties:
-> > > +   - compatible = "marvell,mmp3";
-> >
-> > Please convert this file to DT schema before adding new SoCs.
->
-> Is this something that should generally be done for all new or changed
-> DT bindings?
+On 22/08/2019 20:34:14+0800, Ran Bi wrote:
+> > > +	/* RTC need POWERKEY1/2 match, then goto normal work mode */
+> > > +	mt2712_writel(rtc, MT2712_POWERKEY1, MT2712_POWERKEY1_KEY);
+> > > +	mt2712_writel(rtc, MT2712_POWERKEY2, MT2712_POWERKEY2_KEY);
+> > 
+> > This should be written when setting the time after power was lost.
+> > 
+> 
+> I suppose we can move this into mt2712_rtc_read_time function's "if
+> (p1 != MT2712_POWERKEY1_KEY || p2 != MT2712_POWERKEY2_KEY)" condition
+> which will be added at next patch. We need additional flag to mark this
+> condition or another if condition in mt2712_rtc_set_time fucntion if we
+> put these code in mt2712_rtc_set_time function.
+> 
 
-Preferred, but not quite yet required everywhere. It depends on the
-maintainer/subsystem still. But for board level bindings, you'll
-notice most of them are converted. Marvell, Broadcom, and TI are the
-main ones left.
+It is fine to test both in read_time and in set_time.
 
-Rob
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
