@@ -2,134 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40D78990F0
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 12:34:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A32999135
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 12:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387714AbfHVKeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 06:34:24 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:5762 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387699AbfHVKeY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 06:34:24 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d5e6faf0000>; Thu, 22 Aug 2019 03:34:23 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 22 Aug 2019 03:34:23 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 22 Aug 2019 03:34:23 -0700
-Received: from [10.24.193.88] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 22 Aug
- 2019 10:34:21 +0000
-Subject: Re: [Patch V6 7/8] usb: gadget: Add UDC driver for tegra XUSB device
- mode controller
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <jonathanh@nvidia.com>, <mark.rutland@arm.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <1565257046-9890-1-git-send-email-nkristam@nvidia.com>
- <1565257046-9890-8-git-send-email-nkristam@nvidia.com>
- <20190822091248.GD23873@ulmo>
-X-Nvconfidentiality: public
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-Message-ID: <f48e97e5-4ceb-7c83-de6a-4f29cf1945cf@nvidia.com>
-Date:   Thu, 22 Aug 2019 16:05:30 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2387778AbfHVKo0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 06:44:26 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:34902 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387710AbfHVKoZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 06:44:25 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id DBD26FB03;
+        Thu, 22 Aug 2019 12:44:21 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 7msndP5EInss; Thu, 22 Aug 2019 12:44:17 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id A14CF4014F; Thu, 22 Aug 2019 12:44:16 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH v3 0/2] drm: bridge: Add NWL MIPI DSI host controller support
+Date:   Thu, 22 Aug 2019 12:44:14 +0200
+Message-Id: <cover.1566470526.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190822091248.GD23873@ulmo>
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL109.nvidia.com (172.20.187.15) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="windows-1252"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1566470063; bh=UwwQWiEoSYjEYygq5DziID0WjJ39nuEsV4tOXdpa8zQ=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=rCdoBFQJnlPZmEuyVlH4/ytaw0MHhfGOcIEz+iHdSSSpT0w+fXeAIfB00TdSIU1HI
-         3zajcgb6C+gWo0x1A72e8F8swF4DYfYBzPzW1isnh0tuUA6f2NZmnZ0oMRGSDQ37R7
-         UgOBcnN2hYcESjAepRNWGPc2Q56lg6uYtPGBF7l12SW8CPnRC9S40uFxtLecJ0HBcR
-         LTrFg7+QDnhkFEeZyMMVlJlZogcrwFtd4k/BObdp47S+pLtQCXHuou6UPt4o7ind+u
-         BtHDITRQZLDzhx7X0lz13cMO0BrjAQMKC2GYif1kPviaKeAn9ntUyzP181Z8CtRb7F
-         +Wv0OyU/jmZSQ==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This adds initial support for the NWL MIPI DSI Host controller found on i.MX8
+SoCs.
+
+It adds support for the i.MX8MQ but the same IP core can also be found on e.g.
+i.MX8QXP. I added the necessary hooks to support other imx8 variants but since
+I only have imx8mq boards to test I omitted the platform data for other SoCs.
+
+The code is based on NXPs BSP so I added Robert Chiras as
+Co-authored-by. Robert, if this looks sane could you add your
+Signed-off-by:?
+
+The most notable changes over the BSP driver are
+ - Calculate HS mode timing from phy_configure_opts_mipi_dphy
+ - Perform all clock setup via DT
+ - Merge nwl-imx and nwl drivers
+ - Add B0 silion revision quirk
+ - become a bridge driver to hook into mxsfb (from what I read[0] DCSS, which
+   also can drive the nwl on the imx8mq will likely not become part of
+   imx-display-subsystem so it makes sense to make it drive a bridge for dsi as
+   well).
+ - Use panel_bridge to attach the panel
+ - Use multiplex framework instead of accessing syscon directly
+
+This has been tested on a Librem 5 devkit using mxsfb with Robert's patches[1]
+and the rocktech-jh057n00900 panel driver on next-20190821. The DCSS can later
+on also act as input source too.
+
+Changes from v2:
+- Per review comments by Rob Herring
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/230448.html
+  - bindings:
+    - Simplify by restricting to fsl,imx8mq-nwl-dsi
+    - document reset lines
+    - add port@{0,1}
+    - use a real compatible string for the panel
+    - resets are required
+- Per review comments by Arnd Bergmann
+  https://lists.freedesktop.org/archives/dri-devel/2019-August/230868.html
+  - Don't access iomuxc_gpr regs directly. This allows us to drop the
+    first patch in the series with the iomuxc_gpr field defines.
+- Per review comments by Laurent Pinchart
+    - Fix wording in bindings
+- Add mux-controls to bindings
+- Don't print error message on dphy probe deferal
+
+Changes from v1:
+- Per review comments by Sam Ravnborg
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228130.html
+  - Change binding docs to YAML
+  - build: Don't always visit imx-nwl/
+  - build: Add header-test-y
+  - Sort headers according to DRM convention
+  - Use drm_display_mode instead of videmode
+- Per review comments by Fabio Estevam
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228299.html
+  - Don't restrict build to ARCH_MXC
+  - Drop unused includes
+  - Drop unreachable code in imx_nwl_dsi_bridge_mode_fixup()
+  - Drop remaining calls of dev_err() and use DRM_DEV_ERR()
+    consistently.
+  - Use devm_platform_ioremap_resource()
+  - Drop devm_free_irq() in probe() error path
+  - Use single line comments where sufficient
+  - Use <linux/time64.h> instead of defining USEC_PER_SEC
+  - Make input source select imx8 specific
+  - Drop <asm/unaligned.h> inclusion (after removal of get_unaligned_le32)
+  - Drop all EXPORT_SYMBOL_GPL() for functions used in the same module
+    but different source files.
+  - Drop nwl_dsi_enable_{rx,tx}_clock() by invoking clk_prepare_enable()
+    directly
+  - Remove pointless comment
+- Laurent Pinchart
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228313.html
+  https://lists.freedesktop.org/archives/dri-devel/2019-July/228308.html
+  - Drop (on iMX8MQ) unused csr regmap
+  - Use NWL_MAX_PLATFORM_CLOCKS everywhere
+  - Drop get_unaligned_le32() usage
+  - remove duplicate 'for the' in binding docs
+  - Don't include unused <linux/clk-provider.h>
+  - Don't include unused <linux/component.h>
+  - Drop dpms_mode for tracking state, trust the drm layer on that
+  - Use pm_runtime_put() instead of pm_runtime_put_sync()
+  - Don't overwrite encoder type
+  - Make imx_nwl_platform_data const
+  - Use the reset controller API instead of open coding that platform specific
+    part
+  - Use <linux/bitfield.h> intead of making up our own defines
+  - name mipi_dsi_transfer less generic: nwl_dsi_transfer
+  - ensure clean in .remove by calling mipi_dsi_host_unregister.
+  - prefix constants by NWL_DSI_
+  - properly format transfer_direction enum
+  - simplify platform clock handling
+  - Don't modify state in mode_fixup() and use mode_set() instead
+  - Drop bridge detach(), already handle by nwl_dsi_host_detach()
+  - Drop USE_*_QUIRK() macros
+- Drop (for now) unused clock defnitions. 'pixel' and 'bypass' clock will be
+  used for i.MX8 SoCs but since they're unused atm drop the definitions - but
+  keep the logic to enable/disable several clocks in place since we know we'll
+  need it in the future.
+
+Changes from v0:
+- Add quirk for IMQ8MQ silicon B0 revision to not mess with the
+  system reset controller on power down since enable() won't work
+  otherwise.
+- Drop devm_free_irq() handled by the device driver core
+- Disable tx esc clock after the phy power down to unbreak
+  disable/enable (unblank/blank)
+- Add ports to dt binding docs
+- Select GENERIC_PHY_MIPI_DPHY instead of GENERIC_PHY for
+  phy_mipi_dphy_get_default_config
+- Select DRM_MIPI_DSI
+- Include drm_print.h to fix build on next-20190408
+- Drop some debugging messages
+- Newline terminate all DRM_ printouts
+- Turn component driver into a drm bridge
+
+[0]: https://lists.freedesktop.org/archives/dri-devel/2019-May/219484.html
+[1]: https://patchwork.freedesktop.org/series/62822/
+
+To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Andrzej Hajda <a.hajda@samsung.com>, Neil Armstrong <narmstrong@baylibre.com>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@siol.net>, Lee Jones <lee.jones@linaro.org>, Guido Günther <agx@sigxcpu.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Robert Chiras <robert.chiras@nxp.com>, Sam Ravnborg <sam@ravnborg.org>, Fabio Estevam <festevam@gmail.com>, Arnd Bergmann <arnd@arndb.de>
 
 
-On 22-08-2019 14:42, Thierry Reding wrote:
-> On Thu, Aug 08, 2019 at 03:07:25PM +0530, Nagarjuna Kristam wrote:
->> This patch adds UDC driver for tegra XUSB 3.0 device mode controller.
->> XUSB device mode controller supports SS, HS and FS modes
->>
->> Based on work by:
->>   Mark Kuo <mkuo@nvidia.com>
->>   Hui Fu <hfu@nvidia.com>
->>   Andrew Bresticker <abrestic@chromium.org>
->>
->> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> ---
->>  drivers/usb/gadget/udc/Kconfig      |   11 +
->>  drivers/usb/gadget/udc/Makefile     |    1 +
->>  drivers/usb/gadget/udc/tegra_xudc.c | 3808 +++++++++++++++++++++++++++++++++++
->>  3 files changed, 3820 insertions(+)
->>  create mode 100644 drivers/usb/gadget/udc/tegra_xudc.c
->>
->> diff --git a/drivers/usb/gadget/udc/Kconfig b/drivers/usb/gadget/udc/Kconfig
->> index ef0259a..fe6028e 100644
->> --- a/drivers/usb/gadget/udc/Kconfig
->> +++ b/drivers/usb/gadget/udc/Kconfig
->> @@ -440,6 +440,17 @@ config USB_GADGET_XILINX
->>  	  dynamically linked module called "udc-xilinx" and force all
->>  	  gadget drivers to also be dynamically linked.
->>  
->> +config USB_TEGRA_XUDC
->> +	tristate "NVIDIA Tegra Superspeed USB 3.0 Device Controller"
->> +	depends on ARCH_TEGRA
->> +	select USB_ROLE_SWITCH
->> +	help
->> +	 Enables NVIDIA Tegra USB 3.0 device mode controller driver.
->> +
->> +	 Say "y" to link the driver statically, or "m" to build a
->> +	 dynamically linked module called "tegra_xudc" and force all
->> +	 gadget drivers to also be dynamically linked.
->> +
->>  source "drivers/usb/gadget/udc/aspeed-vhub/Kconfig"
->>  
->>  #
->> diff --git a/drivers/usb/gadget/udc/Makefile b/drivers/usb/gadget/udc/Makefile
->> index 897f648..1c55c96 100644
->> --- a/drivers/usb/gadget/udc/Makefile
->> +++ b/drivers/usb/gadget/udc/Makefile
->> @@ -24,6 +24,7 @@ obj-$(CONFIG_USB_BCM63XX_UDC)	+= bcm63xx_udc.o
->>  obj-$(CONFIG_USB_FSL_USB2)	+= fsl_usb2_udc.o
->>  fsl_usb2_udc-y			:= fsl_udc_core.o
->>  fsl_usb2_udc-$(CONFIG_ARCH_MXC)	+= fsl_mxc_udc.o
->> +obj-$(CONFIG_USB_TEGRA_XUDC)	+= tegra_xudc.o
-> 
-> Nit: I have a slight preference for tegra-xudc.o over tegra_xudc.o. We
-> use dashes rather than underscores pretty consistently on Tegra, so it
-> would be good to keep the same pattern here, unless somebody feels
-> strongly about the underscore.
-> 
-> It doesn't matter that much because module utilities treat them the same
-> way I think, so the Acked-by remains valid either way.
-> 
-> Thierry
-> 
+Guido Günther (2):
+  dt-bindings: display/bridge: Add binding for NWL mipi dsi host
+    controller
+  drm/bridge: Add NWL MIPI DSI host controller support
 
-Thierry,
-Reason to keep tegra_xudc.c instead of tegra-xudc.c is to inline with local file naming.
-I will use tegra-xudc.c name in next version, to be inline with other tegra files across
-kernel.
+ .../bindings/display/bridge/nwl-dsi.yaml      | 155 ++++
+ drivers/gpu/drm/bridge/Kconfig                |   2 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/nwl-dsi/Kconfig        |  16 +
+ drivers/gpu/drm/bridge/nwl-dsi/Makefile       |   4 +
+ drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.c      | 501 +++++++++++++
+ drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.h      |  65 ++
+ drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.c      | 700 ++++++++++++++++++
+ drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.h      | 112 +++
+ 9 files changed, 1556 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/Kconfig
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/Makefile
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.c
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.h
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.c
+ create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.h
 
-Thanks,
-Nagarjuna
+-- 
+2.20.1
+
