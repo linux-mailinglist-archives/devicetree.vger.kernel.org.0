@@ -2,87 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D969A99538
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C31FB99544
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 15:39:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732242AbfHVNgz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 09:36:55 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:50595 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725797AbfHVNgz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 09:36:55 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id BDE321C000D;
-        Thu, 22 Aug 2019 13:36:50 +0000 (UTC)
-Date:   Thu, 22 Aug 2019 15:36:49 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Ran Bi <ran.bi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        YT Shen <yt.shen@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>
-Subject: Re: [PATCH v2 2/4] rtc: Add support for the MediaTek MT2712 RTC
-Message-ID: <20190822133649.GT27031@piout.net>
-References: <20190801110122.26834-1-ran.bi@mediatek.com>
- <20190801110122.26834-3-ran.bi@mediatek.com>
- <20190820201744.GZ3545@piout.net>
- <1566477254.12318.41.camel@mhfsdcap03>
- <20190822124628.GS27031@piout.net>
- <1566480361.12318.50.camel@mhfsdcap03>
+        id S2389175AbfHVNjE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 09:39:04 -0400
+Received: from mail-ua1-f65.google.com ([209.85.222.65]:37763 "EHLO
+        mail-ua1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389171AbfHVNjD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 09:39:03 -0400
+Received: by mail-ua1-f65.google.com with SMTP id f9so1999141uaj.4
+        for <devicetree@vger.kernel.org>; Thu, 22 Aug 2019 06:39:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FeL+2QSM5K1YLKKF/js9TmuXZpGlOsVDG+4zs7enb+s=;
+        b=vcFXE6FvKpiU/zrPeYmswemc9N4V2PgJ6+b3JrTcb/leP+MyngmDkrXMX6fNCC6dqn
+         5U5DxhJ0+6trsoUFiL1UHaJoAtvD3avRnS5Jjn0hIWhxZH5BNh+UbEx7r03YoAl794Jw
+         HR5w6Fc5AQ9DT3i4m4j2/UueQP7AxJY/ZOBZgowVNQz1pcUgPIDl6VPhzseEWNH2yhVL
+         sFvrbBxAIf0ixOmb1AbOZTeD4bKcIaPo7/IS32eixFYAFFMtH0FSJExgG3ZVVpz5HtpK
+         wpmlq/Au0mkNCg+tpVy6s1iBWLieOP1LhX0U0hAfS+Vy8qt+5L2lehHVNPiimzJsKJTU
+         YaRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FeL+2QSM5K1YLKKF/js9TmuXZpGlOsVDG+4zs7enb+s=;
+        b=fW92lAv0n0sCc42WxcPJZn/JVeymiTT8qca6kxsUbseUPuKqmNSXLp6khg4Vz05oKA
+         hqz3RbAojxljthwL3SCAtnzwbiCaaJvvcwx0fWdfL9XHGzxwCFiYvsTv3IZFNJgPxOWC
+         HieYm9s7FA7k4vHob3eds9n7tX0t/7vHNlfu95b0MHhw8RnqShqjOeO46EcKPHgKbyDg
+         MqxV6gNa6lkYXX5rODNZsrubk1qYJAwqDGHKIrRql3aOQPY4QEOv1Ch6Fe38dvud6n7Y
+         ltl4JkaydK9fsxtiwnwLrllZvYOh9RXJTtKYiXjsG/5ctE1soiICLYyyohlGd2FIjMyS
+         NIog==
+X-Gm-Message-State: APjAAAX7cHBSWOaltdSlDyGIYJFV5XDn41rY8aEDY97VzGVCLB355MHK
+        YHjAkQEVXYSrSKTQaI1GnMA1vfVatPGmlIN8ungY3A==
+X-Google-Smtp-Source: APXvYqyNGgp4CW1Vx1Kr/v3sCAPsdONPj1D+yM9NJraECZoktBBfmsmh2N05UsLj8cJbC+xyyKQktBrLSJpWnqXuTU4=
+X-Received: by 2002:ab0:15e9:: with SMTP id j38mr5992611uae.19.1566481142313;
+ Thu, 22 Aug 2019 06:39:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1566480361.12318.50.camel@mhfsdcap03>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
+ <1561958991-21935-2-git-send-email-manish.narani@xilinx.com>
+ <20190722215404.GA28292@bogus> <MN2PR02MB602907616249FF19C1A737D8C1C70@MN2PR02MB6029.namprd02.prod.outlook.com>
+ <CAPDyKFostBKYipTkCsDbggsrux7w8BPqARx7fwRsL1XqEEX2NQ@mail.gmail.com> <MN2PR02MB60299EB8B83C4EA68A0F2B33C1A80@MN2PR02MB6029.namprd02.prod.outlook.com>
+In-Reply-To: <MN2PR02MB60299EB8B83C4EA68A0F2B33C1A80@MN2PR02MB6029.namprd02.prod.outlook.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 22 Aug 2019 15:38:26 +0200
+Message-ID: <CAPDyKFqdLE7d9uz_KcpO0CihM+QsFyKbNsoDMoNLT2Qy_TmNdw@mail.gmail.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: mmc: arasan: Update documentation
+ for SD Card Clock
+To:     Manish Narani <MNARANI@xilinx.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        Michal Simek <michals@xilinx.com>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "christoph.muellner@theobroma-systems.com" 
+        <christoph.muellner@theobroma-systems.com>,
+        "philipp.tomsich@theobroma-systems.com" 
+        <philipp.tomsich@theobroma-systems.com>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        "scott.branden@broadcom.com" <scott.branden@broadcom.com>,
+        "ayaka@soulik.info" <ayaka@soulik.info>,
+        "kernel@esmil.dk" <kernel@esmil.dk>,
+        "tony.xie@rock-chips.com" <tony.xie@rock-chips.com>,
+        Rajan Vaja <RAJANV@xilinx.com>, Jolly Shah <JOLLYS@xilinx.com>,
+        Nava kishore Manne <navam@xilinx.com>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/08/2019 21:26:01+0800, Ran Bi wrote:
-> On Thu, 2019-08-22 at 14:46 +0200, Alexandre Belloni wrote:
-> > On 22/08/2019 20:34:14+0800, Ran Bi wrote:
-> > > > > +	/* RTC need POWERKEY1/2 match, then goto normal work mode */
-> > > > > +	mt2712_writel(rtc, MT2712_POWERKEY1, MT2712_POWERKEY1_KEY);
-> > > > > +	mt2712_writel(rtc, MT2712_POWERKEY2, MT2712_POWERKEY2_KEY);
-> > > > 
-> > > > This should be written when setting the time after power was lost.
-> > > > 
-> > > 
-> > > I suppose we can move this into mt2712_rtc_read_time function's "if
-> > > (p1 != MT2712_POWERKEY1_KEY || p2 != MT2712_POWERKEY2_KEY)" condition
-> > > which will be added at next patch. We need additional flag to mark this
-> > > condition or another if condition in mt2712_rtc_set_time fucntion if we
-> > > put these code in mt2712_rtc_set_time function.
-> > > 
-> > 
-> > It is fine to test both in read_time and in set_time.
-> > 
-> 
-> Do you mean that we can test powerkey and then set powerkey both in
-> read_time and in set_time?
-> 
+[...]
 
-I mean that can test in read_time and test and set in set_time
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/mmc/arasan,sdhci.txt | 15
+> > ++++++++++-
+> > > > ----
+> > > > >  1 file changed, 10 insertions(+), 5 deletions(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > > b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > > > index 1edbb04..15c6397 100644
+> > > > > --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > > > +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > > > @@ -23,6 +23,10 @@ Required Properties:
+> > > > >    - reg: From mmc bindings: Register location and length.
+> > > > >    - clocks: From clock bindings: Handles to clock inputs.
+> > > > >    - clock-names: From clock bindings: Tuple including "clk_xin" and
+> > "clk_ahb"
+> > > > > +            Apart from these two there is one more optional clock which
+> > > > > +            is "clk_sdcard". This clock represents output clock from
+> > > > > +            controller and card. This must be specified when #clock-cells
+> > > > > +            is specified.
+> > > > >    - interrupts: Interrupt specifier
+> > > > >
+> > > > >  Required Properties for "arasan,sdhci-5.1":
+> > > > > @@ -36,9 +40,10 @@ Optional Properties:
+> > > > >    - clock-output-names: If specified, this will be the name of the card
+> > clock
+> > > > >      which will be exposed by this device.  Required if #clock-cells is
+> > > > >      specified.
+> > > > > -  - #clock-cells: If specified this should be the value <0>.  With this
+> > property
+> > > > > -    in place we will export a clock representing the Card Clock.  This clock
+> > > > > -    is expected to be consumed by our PHY.  You must also specify
+> > > > > +  - #clock-cells: If specified this should be the value <0>. With this
+> > > > > +    property in place we will export one clock representing the Card
+> > > > > +    Clock. This clock is expected to be consumed by our PHY. You must
+> > also
+> > > > > +    specify
+> > > >
+> > > > specify what?
+> > > I think this line was already there, I missed to correct it, Will update in v3.
+> > >
+> > > >
+> > > > The 3rd clock input I assume? This statement means any existing users
+> > > > with 2 clock inputs and #clock-cells are in error now. Is that correct?
+> > > Yes, this is correct. So far there was only one vendor using '#clock-cells'
+> > which is Rockchip. I have sent DT patch (02/11) for that also.
+> > > Here this is needed as earlier implementation isn't correct as suggested by
+> > Uffe. (https://lkml.org/lkml/2019/6/20/486) .
+> >
+> > I am not sure how big of a problem the backwards compatible thingy
+> > with DT is, in general we must not break it. What do you say Manish?
+>
+> Though I agree with Uffe on this, there is no other way from my understanding. Please suggest.
+>
+> >
+> > As a workaround, would it be possible to use
+> > of_clk_get_from_provider() somehow to address the compatibility issue?
+>
+> For this to be used we have to parse 'clkspec' from the DT node and pass the same as an argument to this function. In this case also the DT node needs to be updated, which is same as we have done in this series.
 
+Alright. I guess breaking DTBs for Rockchip platforms isn't
+acceptable, especially if those are already widely deployed, which I
+have no idea of....
 
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+And having support for both options in the driver seems not a great
+option either, so it looks like you need to convert back into the old
+v1 approach. Huh, sorry.
+
+Kind regards
+Uffe
