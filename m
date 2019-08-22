@@ -2,76 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C604B98F43
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 11:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9250F98F84
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 11:38:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731845AbfHVJ0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 05:26:42 -0400
-Received: from mga06.intel.com ([134.134.136.31]:22515 "EHLO mga06.intel.com"
+        id S1732362AbfHVJd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 05:33:26 -0400
+Received: from shell.v3.sk ([90.176.6.54]:35734 "EHLO shell.v3.sk"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731829AbfHVJ0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 05:26:42 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Aug 2019 02:26:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,416,1559545200"; 
-   d="scan'208";a="262790259"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga001.jf.intel.com with ESMTP; 22 Aug 2019 02:26:41 -0700
-Received: from [10.226.38.83] (rtanwar-mobl.gar.corp.intel.com [10.226.38.83])
-        by linux.intel.com (Postfix) with ESMTP id CE8235806C4;
-        Thu, 22 Aug 2019 02:26:37 -0700 (PDT)
-Subject: Re: [PATCH v1 1/2] x86/rtc: Add option to skip using RTC
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, hpa@zytor.com,
-        tony.luck@intel.com, x86@kernel.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, alan@linux.intel.com,
-        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
-        cheol.yong.kim@intel.com, rahul.tanwar@intel.com
-References: <cover.1566458029.git.rahul.tanwar@linux.intel.com>
- <becacc523508b295a52db9f1592e2868e3988e28.1566458029.git.rahul.tanwar@linux.intel.com>
- <20190822090208.GJ30120@smile.fi.intel.com>
-From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Message-ID: <25f6947d-7ba0-c23c-25aa-c4c4173da6b0@linux.intel.com>
-Date:   Thu, 22 Aug 2019 17:26:33 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1725799AbfHVJd0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 05:33:26 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id A6343D756F;
+        Thu, 22 Aug 2019 11:33:19 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id RK4SDxnr7J-A; Thu, 22 Aug 2019 11:33:05 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 74E51D749F;
+        Thu, 22 Aug 2019 11:27:25 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id b_wlen16TW9p; Thu, 22 Aug 2019 11:26:46 +0200 (CEST)
+Received: from belphegor.brq.redhat.com (nat-pool-brq-t.redhat.com [213.175.37.10])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 2B844493E8;
+        Thu, 22 Aug 2019 11:26:46 +0200 (CEST)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Olof Johansson <olof@lixom.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v2 00/20] Initial support for Marvell MMP3 SoC 
+Date:   Thu, 22 Aug 2019 11:26:23 +0200
+Message-Id: <20190822092643.593488-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <20190822090208.GJ30120@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,=20
 
-Hi Andy,
+this is a second spin of a patch set that adds support for the Marvell
+MMP3 processor. MMP3 is used in OLPC XO-4 laptops, Panasonic Toughpad
+FZ-A1 tablet and Dell Wyse 3020 Tx0D thin clients.=20
 
-On 22/8/2019 5:02 PM, Andy Shevchenko wrote:
-> On Thu, Aug 22, 2019 at 03:44:03PM +0800, Rahul Tanwar wrote:
->> Use a newly introduced optional "status" property of "motorola,mc146818"
->> compatible DT node to determine if RTC is supported. Skip read/write from
->> RTC device only when this node is present and status is "disabled". In all
->> other cases, proceed as before.
-> Can't we rather update ->get_wallclock() and ->set_wallclock() based on this?
+Compared to v1, there's a handful of fixes in response to reviews. Patch
+02/20 is new. Details in individual patches.
+=20
+Apart from the adjustments in mach-mmp/, the patch makes necessary=20
+changes to the irqchip driver and adds an USB2 PHY driver. The latter=20
+has a dependency on the mach-mmp/ changes, so it can't be submitted=20
+separately.
+=20
+The patch set has been tested to work on Wyse Tx0D and not ruin MMP2=20
+support on XO-1.75.=20
 
+Thanks
+Lubo
 
-get_wallclock() and set_wallclock() are function pointers of platform_ops
-
-which are initialized to mach_get_cmos_time() and mach_set_rtc_mmss()
-
-at init time. Since adding a new platform to override these functions is
-
-discouraged, so the only way is to modify RTC get/set functions.
-
-
-Regards,
-
-Rahul
 
