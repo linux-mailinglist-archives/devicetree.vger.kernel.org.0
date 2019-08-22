@@ -2,177 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D765098D82
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABE2A98DB7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 10:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732290AbfHVIVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 04:21:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60232 "EHLO mail.kernel.org"
+        id S1732381AbfHVIbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 04:31:48 -0400
+Received: from foss.arm.com ([217.140.110.172]:41150 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732277AbfHVIVe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 04:21:34 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0C1B2377B;
-        Thu, 22 Aug 2019 08:21:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566462093;
-        bh=eJ2fT9qPT1MZojyE8YRJ+MPqTXCenhQSEjXtDahZR6w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=wAcQWmIx4PEEczi2m1z1hfumd4f0w4fKglBvqkXys/jTsN01aDvuIHWE+h+aCGcob
-         8MK1E+xvyTNE5q0GXieJ64B7fuVy0RmkJA9i/gCZ6JOpNBKJBEYu7tPoMVJoyPiNaF
-         kxyxBgPYhciVTpBzqL/qhbFIbtz4JWCcjjW+KprQ=
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: [PATCH v8 5/5] DO NOT MERGE: ARM: dts: bananapi: Add Camera support
-Date:   Thu, 22 Aug 2019 10:21:16 +0200
-Message-Id: <c544c14920e3e992d93fcac3f2eade6422194363.1566462064.git-series.maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.85d78dd1a3b44fe4cde1b65a9b1eb3b95daea7cc.1566462064.git-series.maxime.ripard@bootlin.com>
-References: <cover.85d78dd1a3b44fe4cde1b65a9b1eb3b95daea7cc.1566462064.git-series.maxime.ripard@bootlin.com>
+        id S1727484AbfHVIbr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 04:31:47 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 13188360;
+        Thu, 22 Aug 2019 01:31:47 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 61F1A3F706;
+        Thu, 22 Aug 2019 01:31:46 -0700 (PDT)
+Date:   Thu, 22 Aug 2019 09:31:44 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, dwmw@amazon.co.uk,
+        benh@kernel.crashing.org, alisaidi@amazon.com, ronenk@amazon.com,
+        barakw@amazon.com, talel@amazon.com, hanochu@amazon.com,
+        hhhawa@amazon.com, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/7] PCI: Add ACS quirk for Amazon Annapurna Labs root
+ ports
+Message-ID: <20190822083144.GL23903@e119886-lin.cambridge.arm.com>
+References: <20190821153545.17635-1-jonnyc@amazon.com>
+ <20190821153545.17635-3-jonnyc@amazon.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190821153545.17635-3-jonnyc@amazon.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Maxime Ripard <maxime.ripard@bootlin.com>
+On Wed, Aug 21, 2019 at 06:35:42PM +0300, Jonathan Chocron wrote:
+> From: Ali Saidi <alisaidi@amazon.com>
+> 
+> The Amazon's Annapurna Labs root ports don't advertise an ACS
+> capability, but they don't allow peer-to-peer transactions and do
+> validate bus numbers through the SMMU. Additionally, it's not possible
+> for one RP to pass traffic to another RP.
+> 
+> Signed-off-by: Ali Saidi <alisaidi@amazon.com>
+> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> Reviewed-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> ---
+>  drivers/pci/quirks.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index 208aacf39329..23672680dba7 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -4366,6 +4366,23 @@ static int pci_quirk_qcom_rp_acs(struct pci_dev *dev, u16 acs_flags)
+>  	return ret;
+>  }
+>  
+> +static int pci_quirk_al_acs(struct pci_dev *dev, u16 acs_flags)
+> +{
+> +	/*
+> +	 * Amazon's Annapurna Labs root ports don't include an ACS capability,
+> +	 * but do include ACS-like functionality. The hardware doesn't support
+> +	 * peer-to-peer transactions via the root port and each has a unique
+> +	 * segment number.
+> +	 * Additionally, the root ports cannot send traffic to each other.
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- arch/arm/boot/dts/sun7i-a20-bananapi.dts | 87 +++++++++++++++++++++++++-
- 1 file changed, 87 insertions(+)
+Nit: I'd probably put a new line between the above two lines, or start the
+'Additionally' sentence on the first line. But either way...
 
-diff --git a/arch/arm/boot/dts/sun7i-a20-bananapi.dts b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
-index c5730b30a15d..d3f23ce041b2 100644
---- a/arch/arm/boot/dts/sun7i-a20-bananapi.dts
-+++ b/arch/arm/boot/dts/sun7i-a20-bananapi.dts
-@@ -54,6 +54,9 @@
- 	compatible = "lemaker,bananapi", "allwinner,sun7i-a20";
- 
- 	aliases {
-+		i2c0 = &i2c0;
-+		i2c1 = &i2c1;
-+		i2c2 = &i2c2;
- 		serial0 = &uart0;
- 		serial1 = &uart3;
- 		serial2 = &uart7;
-@@ -63,6 +66,41 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	reg_cam: cam {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cam";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&reg_vcc5v0>;
-+		gpio = <&pio 7 16 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+        reg_cam_avdd: cam-avdd {
-+                compatible = "regulator-fixed";
-+                regulator-name = "cam500b-avdd";
-+                regulator-min-microvolt = <2800000>;
-+                regulator-max-microvolt = <2800000>;
-+                vin-supply = <&reg_cam>;
-+        };
-+
-+        reg_cam_dovdd: cam-dovdd {
-+                compatible = "regulator-fixed";
-+                regulator-name = "cam500b-dovdd";
-+                regulator-min-microvolt = <1800000>;
-+                regulator-max-microvolt = <1800000>;
-+                vin-supply = <&reg_cam>;
-+        };
-+
-+        reg_cam_dvdd: cam-dvdd {
-+                compatible = "regulator-fixed";
-+                regulator-name = "cam500b-dvdd";
-+                regulator-min-microvolt = <1500000>;
-+                regulator-max-microvolt = <1500000>;
-+                vin-supply = <&reg_cam>;
-+        };
-+
- 	hdmi-connector {
- 		compatible = "hdmi-connector";
- 		type = "a";
-@@ -116,6 +154,23 @@
- 		>;
- };
- 
-+&csi0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&csi0_8bits_pins>;
-+	status = "okay";
-+
-+	port {
-+		csi_from_ov5640: endpoint {
-+                        remote-endpoint = <&ov5640_to_csi>;
-+                        bus-width = <8>;
-+                        hsync-active = <1>; /* Active high */
-+                        vsync-active = <0>; /* Active low */
-+                        data-active = <1>;  /* Active high */
-+                        pclk-sample = <1>;  /* Rising */
-+                };
-+	};
-+};
-+
- &de {
- 	status = "okay";
- };
-@@ -161,6 +216,38 @@
- 	};
- };
- 
-+&i2c1 {
-+	status = "okay";
-+
-+	camera: camera@21 {
-+		compatible = "ovti,ov5640";
-+		reg = <0x21>;
-+		clocks = <&ccu CLK_CSI0>;
-+		clock-names = "xclk";
-+		assigned-clocks = <&ccu CLK_CSI0>;
-+		assigned-clock-rates = <24000000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&csi0_clk_pin>;
-+
-+		reset-gpios = <&pio 7 14 GPIO_ACTIVE_LOW>;
-+		powerdown-gpios = <&pio 7 19 GPIO_ACTIVE_HIGH>;
-+		AVDD-supply = <&reg_cam_avdd>;
-+		DOVDD-supply = <&reg_cam_dovdd>;
-+		DVDD-supply = <&reg_cam_dvdd>;
-+
-+		port {
-+			ov5640_to_csi: endpoint {
-+				remote-endpoint = <&csi_from_ov5640>;
-+				bus-width = <8>;
-+				hsync-active = <1>; /* Active high */
-+				vsync-active = <0>; /* Active low */
-+				data-active = <1>;  /* Active high */
-+				pclk-sample = <1>;  /* Rising */
-+			};
-+		};
-+	};
-+};
-+
- &i2c2 {
- 	status = "okay";
- };
--- 
-git-series 0.9.1
+Reviewed-by: Andrew Murray <andrew.murray@arm.com>
+
+
+> +	 */
+> +	acs_flags &= ~(PCI_ACS_RR | PCI_ACS_CR | PCI_ACS_SV | PCI_ACS_UF);
+> +
+> +	if (pci_pcie_type(dev) != PCI_EXP_TYPE_ROOT_PORT)
+> +		return -ENOTTY;
+> +
+> +	return acs_flags ? 0 : 1;
+> +}
+> +
+>  /*
+>   * Sunrise Point PCH root ports implement ACS, but unfortunately as shown in
+>   * the datasheet (Intel 100 Series Chipset Family PCH Datasheet, Vol. 2,
+> @@ -4559,6 +4576,8 @@ static const struct pci_dev_acs_enabled {
+>  	{ PCI_VENDOR_ID_AMPERE, 0xE00A, pci_quirk_xgene_acs },
+>  	{ PCI_VENDOR_ID_AMPERE, 0xE00B, pci_quirk_xgene_acs },
+>  	{ PCI_VENDOR_ID_AMPERE, 0xE00C, pci_quirk_xgene_acs },
+> +	/* Amazon Annapurna Labs */
+> +	{ PCI_VENDOR_ID_AMAZON_ANNAPURNA_LABS, 0x0031, pci_quirk_al_acs },
+>  	{ 0 }
+>  };
+>  
+> -- 
+> 2.17.1
+> 
