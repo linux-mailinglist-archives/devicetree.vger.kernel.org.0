@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED4998801
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 01:40:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 435BE9889C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 02:43:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730745AbfHUXki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Aug 2019 19:40:38 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:37605 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730744AbfHUXki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 19:40:38 -0400
-Received: by mail-pl1-f193.google.com with SMTP id bj8so2240869plb.4
-        for <devicetree@vger.kernel.org>; Wed, 21 Aug 2019 16:40:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=PdGmstYjj4UcbwNUp869OtVuxov1WvQjhoAxWHt7vJo=;
-        b=mzfyNIBHNRCTGRIjuIu6tTYOToZwmVVnG633lROYmZz407Fg369qEh433GRk9g46qr
-         qZET8vlULsVr/1I0eG4WGKcI+worE3kCeP24qFF+KIORfCcaQs8wyob4PbLoMIm1XpDf
-         WanKKGUVelZOnpW4sKm+nFUXJMthRLptAYWZmioldfobL4WbEeKjQzxZq4uhY3SxNFuD
-         N3vUAk0TwaNsSApmgBV3FFc/UXPQrBiGaG02+d+yUDGbCdSRiN8TghsG86TSNeadztFI
-         cT9z4ZPH3G821E42COUqMezutD91ivm1ulCeE0SkybxPehAzaryyXVVOA6mOBtYcSZOu
-         pVAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=PdGmstYjj4UcbwNUp869OtVuxov1WvQjhoAxWHt7vJo=;
-        b=sngUMUgkYY4xdk5dcB+OwAWGx5U8s82I9PFCkbVCHYjfhU8JBcBpmgsm+OLrla2VzL
-         lMk4S8jknD8/2qkepPdNfuUAFrVwqo9isKeW/eX33j+CqbGLt/DE94vCPRG2izlUmyfw
-         VFXKF1Mh1LO9JFC/ih1klY17kHec7bxeSKzRTMU9i04WuaFdZNqMxJHDST0sjEA8mjYe
-         21p5ngl0XaqPRImL9Sj6FsfKoUUTsnaRKIWfneX00uf4e494vCsYI2RbicWzq5ZAT3jC
-         1t97S1W8VhaGUfPmb2nMiZDp/yVS2ylHB4P4RtSajNC0LP8hefrFrZ+T36MHF9Be5a6o
-         XPjg==
-X-Gm-Message-State: APjAAAXcg5xgegVWWyZ+AnVAxL+MRBeYx1qYKaEkDNCHcQ7QwwEoBD9V
-        dAHEH3mQcY+jB56rw21Fmrslqg==
-X-Google-Smtp-Source: APXvYqzBpl28fBuk/sy46hFZ1+kwlWBC/dMV3X0jeBb3i46IAc+BgSafaFw9tf/2hKy8B3vf8N/ceQ==
-X-Received: by 2002:a17:902:e592:: with SMTP id cl18mr5064788plb.291.1566430837336;
-        Wed, 21 Aug 2019 16:40:37 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id e17sm1122052pjt.6.2019.08.21.16.40.36
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 21 Aug 2019 16:40:36 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Guillaume La Roque <glaroque@baylibre.com>, rui.zhang@intel.com,
-        edubezval@gmail.com, daniel.lezcano@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v4 1/6] dt-bindings: thermal: Add DT bindings documentation for Amlogic Thermal
-In-Reply-To: <20190821222421.30242-2-glaroque@baylibre.com>
-References: <20190821222421.30242-1-glaroque@baylibre.com> <20190821222421.30242-2-glaroque@baylibre.com>
-Date:   Wed, 21 Aug 2019 16:40:35 -0700
-Message-ID: <7hef1e5bpo.fsf@baylibre.com>
+        id S1727894AbfHVAnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Aug 2019 20:43:50 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49882 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727038AbfHVAnu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Aug 2019 20:43:50 -0400
+X-UUID: 004f331c6dbb432bb98f59b3621e7916-20190822
+X-UUID: 004f331c6dbb432bb98f59b3621e7916-20190822
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <mars.cheng@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 951907247; Thu, 22 Aug 2019 08:43:44 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 22 Aug 2019 08:43:43 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 22 Aug 2019 08:43:33 +0800
+Message-ID: <1566434617.14794.0.camel@mtkswgap22>
+Subject: Re: [PATCH 04/11] pinctrl: mediatek: update pinmux defintions for
+ mt6779
+From:   Mars Cheng <mars.cheng@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>,
+        Wendell Lin <wendell.lin@mediatek.com>,
+        Ivan Tseng <ivan.tseng@mediatek.com>,
+        Andy Teng <andy.teng@mediatek.com>
+Date:   Thu, 22 Aug 2019 08:43:37 +0800
+In-Reply-To: <20190821185025.GA18525@bogus>
+References: <1564996320-10897-1-git-send-email-mars.cheng@mediatek.com>
+         <1564996320-10897-5-git-send-email-mars.cheng@mediatek.com>
+         <20190821185025.GA18525@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guillaume La Roque <glaroque@baylibre.com> writes:
-
-> Adding the devicetree binding documentation for the Amlogic temperature
-> sensor found in the Amlogic Meson G12 SoCs.
-> the G12A  and G12B SoCs are supported.
->
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+On Wed, 2019-08-21 at 13:50 -0500, Rob Herring wrote:
+> On Mon, Aug 05, 2019 at 05:11:53PM +0800, Mars Cheng wrote:
+> > Add devicetree bindings for Mediatek mt6779 SoC Pin Controller.
+> 
+> checkpatch.pl reports typo in subject.
+> 
+> Otherwise,
+> 
 > Reviewed-by: Rob Herring <robh@kernel.org>
+> 
 
-nit: put your sign-off at the end.  The tags you collect from
-reviewers/testers should go first.
+got it, will fix the typo in v3. Thanks for reviewing.
 
-Kevin
+> > 
+> > Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
+> > Signed-off-by: Andy Teng <andy.teng@mediatek.com>
+> > ---
+> >  include/dt-bindings/pinctrl/mt6779-pinfunc.h | 1242 ++++++++++++++++++++++++++
+> >  1 file changed, 1242 insertions(+)
+> >  create mode 100644 include/dt-bindings/pinctrl/mt6779-pinfunc.h
+
+
