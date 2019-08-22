@@ -2,68 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E543B99A69
-	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 19:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 496F899A9B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Aug 2019 19:15:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388485AbfHVRNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 13:13:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34372 "EHLO mail.kernel.org"
+        id S2391114AbfHVRO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 13:14:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35300 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731662AbfHVRNB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 13:13:01 -0400
-Received: from localhost.localdomain (unknown [171.61.89.145])
+        id S2391105AbfHVROY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 13:14:24 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A5F432089E;
-        Thu, 22 Aug 2019 17:12:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 13B182089E;
+        Thu, 22 Aug 2019 17:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566493980;
-        bh=YIshGsicoGE+zJT+JRFCI1Xd0g+0hNcRCeEzpxTP3jI=;
-        h=From:To:Cc:Subject:Date:From;
-        b=Ik9Xic0MuMKLq4IdBpDfoWf6KbhIOlgxccZ4r4BNw7OzC5hQKk/kiyXHUIseED3SB
-         t1/Rc9Y3EqOHgcPJPO2qfYJWdnebT/6Umm/JLO64Dq10y3SoQb6MeO++M5H47baAUv
-         xkKpEcjyUUbpsANZjBNT5xNGVrOvsLMGl7ckpmHU=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: sdm845: Add parent clock for rpmhcc
-Date:   Thu, 22 Aug 2019 22:41:35 +0530
-Message-Id: <20190822171135.26488-1-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        s=default; t=1566494063;
+        bh=vqE2N/zi1fzhDJw+o9xdlWk9123wTSi4CKCbyRiWtHc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=gTshqoq99M9s6kEqnvExZ9y43tJZ5RG6H7DJicnyp4xB0EEyG3E8dxsEeD+mtCaSN
+         tPOnriBlWjBj6t3b/aXGqSnI7for4nxNhTc101nzXmKDqt5n+5VHe7Jxkot9Q6CAmx
+         WfjOx+T5BTnDWixtTIskYdTH9FZDyzwtT6bJ2aG0=
+Date:   Thu, 22 Aug 2019 18:14:16 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Yong Wu <yong.wu@mediatek.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>, youlin.pei@mediatek.com,
+        devicetree@vger.kernel.org,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        cui.zhang@mediatek.com, srv_heupstream@mediatek.com,
+        chao.hao@mediatek.com, Joerg Roedel <joro@8bytes.org>,
+        linux-kernel@vger.kernel.org, Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        iommu@lists.linux-foundation.org, Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        ming-fan.chen@mediatek.com, anan.sun@mediatek.com,
+        Matthias Kaehlcke <mka@chromium.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v10 09/23] iommu/io-pgtable-arm-v7s: Extend to support
+ PA[33:32] for MediaTek
+Message-ID: <20190822171415.475yg7pmy6gfj35l@willie-the-truck>
+References: <1566395606-7975-1-git-send-email-yong.wu@mediatek.com>
+ <1566395606-7975-10-git-send-email-yong.wu@mediatek.com>
+ <20190821152448.qmoqjh5zznfpdi6n@willie-the-truck>
+ <1566464186.11621.7.camel@mhfsdcap03>
+ <10d5122d-3375-161b-9356-2ddfc1c835bd@arm.com>
+ <20190822101749.3kwzd5lb7zinsord@willie-the-truck>
+ <e6652176-763d-5298-9e10-8c1fbe1b3c0d@arm.com>
+ <20190822112836.efodtwu3souq3uwa@willie-the-truck>
+ <1566475533.11621.18.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1566475533.11621.18.camel@mhfsdcap03>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RPM clock controller has parent as xo, so specify that in DT node for
-rpmhcc
+On Thu, Aug 22, 2019 at 08:05:33PM +0800, Yong Wu wrote:
+> On Thu, 2019-08-22 at 12:28 +0100, Will Deacon wrote:
+> > Ok, great. Yong Wu -- are you ok respinning with the above + missing
+> > brackets?
+> 
+> Of course I can.
+> 
+> NearlyAll the interface in this file is prefixed with "arm_v7s_", so
+> does the new interface also need it?, like arm_v7s_is_mtk_enabled. And
+> keep the iopte_to_paddr and paddr_to_iopte symmetrical.
+> 
+> 
+> Then the final patch would looks like below, is it ok?
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Looks good to me:
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 9be6acb0650e..8a19ed601470 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3028,6 +3028,8 @@
- 			rpmhcc: clock-controller {
- 				compatible = "qcom,sdm845-rpmh-clk";
- 				#clock-cells = <1>;
-+				clock-names = "xo-board";
-+				clocks = <&xo_board>;
- 			};
- 
- 			rpmhpd: power-controller {
--- 
-2.20.1
+Acked-by: Will Deacon <will@kernel.org>
 
+Will
