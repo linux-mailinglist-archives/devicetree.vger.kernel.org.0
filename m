@@ -2,210 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 628C49B4C5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 18:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B88ED9B4DB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 18:48:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391540AbfHWQpB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 12:45:01 -0400
-Received: from mga04.intel.com ([192.55.52.120]:3623 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387833AbfHWQpA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 12:45:00 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Aug 2019 09:45:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,422,1559545200"; 
-   d="scan'208";a="354668581"
-Received: from tlchoatx-mobl1.amr.corp.intel.com (HELO [10.254.187.90]) ([10.254.187.90])
-  by orsmga005.jf.intel.com with ESMTP; 23 Aug 2019 09:44:59 -0700
-Subject: Re: [alsa-devel] [RESEND PATCH v4 1/4] dt-bindings: soundwire: add
- slave bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, spapothi@codeaurora.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org
-References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
- <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
- <7da8aa89-2119-21d1-0e29-8894a8d40bf0@linux.intel.com>
- <37be6b6d-7e7f-2cd6-f9e9-f0cac48791ad@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <d538238d-25d8-f179-c900-90be50ce814d@linux.intel.com>
-Date:   Fri, 23 Aug 2019 11:44:58 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2391545AbfHWQsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 12:48:22 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:35419 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391570AbfHWQsV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 12:48:21 -0400
+Received: by mail-pl1-f196.google.com with SMTP id gn20so5875320plb.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 09:48:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=shB6SKOCWrivD7S412WveV0DXQGCOHDXUApJqsM/wlA=;
+        b=Ompr7qYsU3e4pxkTUvcGDfd4ML8vgFjnLheqC9j82bJxX2WMtGNPBrUA1tpfZZ7kkl
+         2MlcYLnijPbPInvIsR6zoBG80ArVaqo/qH8Nz2C1fLluKeQqMKpdn1Isx73kDPRrmtfA
+         uzlQbv8SAmt8wmBgLzDRa1pCbkLXVUC7pw3IzF7X6tCUWtvjtpbvC0Rxd012AHX4+phE
+         8vFfpItPxvkt5HF2AluYoxPT8xW+p0eqWdqhZxhn3iXjphBqdQMERaOSG3vodu0lrJ5X
+         dliaDAtQHPNKh2+Qm2AedTz/hBlaONpPrX2iSmH0iODNpBCdBlLEBbRkV7kNpmjj1hL+
+         ogpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=shB6SKOCWrivD7S412WveV0DXQGCOHDXUApJqsM/wlA=;
+        b=C+PF01zYB7lyddeodRzGE1egBFUpjbsJtSOxf6v1yMDW8b6EYL4dghsB71teE1VMv8
+         ac6kgnrKfY7t9W3aKZRRzdtq+zUTIpUNlXPOCxvP+4SYGQQkvpxgCdQ96k5BDjssj38J
+         JnC3RN3CWm7d0BvjV0qwSmV5qPAqHWc/ekFOMAdBC3q4lI/fdm3GyI8PUO/J7e+V3FZr
+         AReUQJzSIkGjhEcIM6wysVAqRPjWS+8MVmf0Bxg4VDIcVi4EEcKtDzus/Jd8geBnxfd8
+         Bll4VTbiLZgjqleINBS80JE1GoRE8IurlPo/VP8ql7pudtB6Y301kXT0VCBC44dTI+YA
+         nTOA==
+X-Gm-Message-State: APjAAAXt0LGRMqksUmPuZ3S8Q/S0J6cUn/YKgqrli6QEzO821H9qGC4g
+        /nTiLPvFIBrEYdQTmEKCo8hzEbmnVmvnFMMnlomlgA==
+X-Google-Smtp-Source: APXvYqyVqeK74/JWJUZ7pW5UAwhfOe02PTG6GeE5ufM2yWENnaiC/3vIkdv/0Gau1b+w32MpN7Tbr1pv4cTuRxiXwSc=
+X-Received: by 2002:a17:902:169:: with SMTP id 96mr5617305plb.297.1566578900191;
+ Fri, 23 Aug 2019 09:48:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <37be6b6d-7e7f-2cd6-f9e9-f0cac48791ad@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190820232046.50175-1-brendanhiggins@google.com>
+ <20190820232046.50175-2-brendanhiggins@google.com> <7f2c8908-75f6-b793-7113-ad57c51777ce@kernel.org>
+In-Reply-To: <7f2c8908-75f6-b793-7113-ad57c51777ce@kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 23 Aug 2019 09:48:08 -0700
+Message-ID: <CAFd5g44mRK9t4f58i_YMEt=e9RTxwrrhFY_V2LW_E7bUwR3cdg@mail.gmail.com>
+Subject: Re: [PATCH v14 01/18] kunit: test: add KUnit test runner core
+To:     shuah <shuah@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Aug 23, 2019 at 8:33 AM shuah <shuah@kernel.org> wrote:
+>
+> Hi Brendan,
+>
+> On 8/20/19 5:20 PM, Brendan Higgins wrote:
+> > Add core facilities for defining unit tests; this provides a common way
+> > to define test cases, functions that execute code which is under test
+> > and determine whether the code under test behaves as expected; this also
+> > provides a way to group together related test cases in test suites (here
+> > we call them test_modules).
+> >
+> > Just define test cases and how to execute them for now; setting
+> > expectations on code will be defined later.
+> >
+> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> > Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> > ---
+> >   include/kunit/test.h | 179 ++++++++++++++++++++++++++++++++++++++++
+> >   kunit/Kconfig        |  17 ++++
+> >   kunit/Makefile       |   1 +
+> >   kunit/test.c         | 191 +++++++++++++++++++++++++++++++++++++++++++
+> >   4 files changed, 388 insertions(+)
+> >   create mode 100644 include/kunit/test.h
+> >   create mode 100644 kunit/Kconfig
+> >   create mode 100644 kunit/Makefile
+> >   create mode 100644 kunit/test.c
+> >
+> > diff --git a/include/kunit/test.h b/include/kunit/test.h
+> > new file mode 100644
+> > index 0000000000000..e0b34acb9ee4e
+> > --- /dev/null
+> > +++ b/include/kunit/test.h
+> > @@ -0,0 +1,179 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Base unit test (KUnit) API.
+> > + *
+> > + * Copyright (C) 2019, Google LLC.
+> > + * Author: Brendan Higgins <brendanhiggins@google.com>
+> > + */
+> > +
+> > +#ifndef _KUNIT_TEST_H
+> > +#define _KUNIT_TEST_H
+> > +
+> > +#include <linux/types.h>
+> > +
+> > +struct kunit;
+> > +
+> > +/**
+> > + * struct kunit_case - represents an individual test case.
+> > + * @run_case: the function representing the actual test case.
+> > + * @name: the name of the test case.
+> > + *
+> > + * A test case is a function with the signature, ``void (*)(struct kunit *)``
+> > + * that makes expectations (see KUNIT_EXPECT_TRUE()) about code under test. Each
+> > + * test case is associated with a &struct kunit_suite and will be run after the
+> > + * suite's init function and followed by the suite's exit function.
+> > + *
+> > + * A test case should be static and should only be created with the KUNIT_CASE()
+> > + * macro; additionally, every array of test cases should be terminated with an
+> > + * empty test case.
+> > + *
+> > + * Example:
+>
+> Can you fix these line continuations. It makes it very hard to read.
+> Sorry for this late comment. These comments lines are longer than 80
+> and wrap.
 
+None of the lines in this commit are over 80 characters in column
+width. Some are exactly 80 characters (like above).
 
-On 8/23/19 10:57 AM, Srinivas Kandagatla wrote:
-> 
-> 
-> On 23/08/2019 16:41, Pierre-Louis Bossart wrote:
->>
->>
->> On 8/22/19 6:37 PM, Srinivas Kandagatla wrote:
->>> This patch adds bindings for Soundwire Slave devices that includes how
->>> SoundWire enumeration address and Link ID are used to represented in
->>> SoundWire slave device tree nodes.
->>>
->>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> ---
->>>   .../soundwire/soundwire-controller.yaml       | 75 +++++++++++++++++++
->>>   1 file changed, 75 insertions(+)
->>>   create mode 100644 
->>> Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml 
->>> b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
->>> new file mode 100644
->>> index 000000000000..91aa6c6d6266
->>> --- /dev/null
->>> +++ 
->>> b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
->>> @@ -0,0 +1,75 @@
->>> +# SPDX-License-Identifier: GPL-2.0
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/soundwire/soundwire-controller.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: SoundWire Controller Generic Binding
->>> +
->>> +maintainers:
->>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>> +
->>> +description: |
->>> +  SoundWire busses can be described with a node for the SoundWire 
->>> controller
->>> +  device and a set of child nodes for each SoundWire slave on the bus.
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^soundwire(@.*|-[0-9a-f])*$"
+My guess is that you are seeing the diff added text (+ ), which when
+you add that to a line which is exactly 80 char in length ends up
+being over 80 char in email. If you apply the patch you will see that
+they are only 80 chars.
 
-re-reading this, it looks like you are defining the controller bindings, 
-but there are no real controller-level properties except for the fact 
-that they include slave bindings?
+>
+> There are several comment lines in the file that are way too long.
 
-In MIPI the notion of controller is that it can deal with multiple 
-links, each of which having specific properties (clock speed, clock stop 
-properties, etc).
+Note that checkpatch also does not complain about any over 80 char
+lines in this file.
 
->>> +
->>> +  "#address-cells":
->>> +    const: 2
->>> +
->>> +  "#size-cells":
->>> +    const: 0
->>> +
->>> +patternProperties:
->>> +  "^.*@[0-9a-f]+$":
->>> +    type: object
->>> +
->>> +    properties:
->>> +      compatible:
->>> +      pattern: "^sdw[0-9][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
->>
->> So is this a 64-bit value, as in the MIPI spec, or is this part of the 
->> _ADR description?
-> 
-> Rob did not like encoding compatible string exactly like _ADR encoding.
-> 
-> https://lkml.org/lkml/2019/8/22/490
+Sorry if I am misunderstanding what you are trying to tell me. Please
+confirm either way.
 
-Wondering if we are talking about different concepts?
-
-Rob's point was about the InstanceID
-
-"Assuming you could have more than 1 of the same device on the bus,
-then you need some way to distinguish them and the way that's done for
-DT is unit-address/reg. And compatible strings should be constant for
-each instance."
-
-You can use the MIPI encoding *except* for the InstanceID, that'd be 
-fine. It'll just be a bit weird since the Slave device will report the 
-48 bits that include the Instance ID, so you'll have to special case 
-this field, but if this is a DT requirement then fine.
-
-Rob's point does not apply to the link ID - which is used when you have 
-multiple masters in your controller. The Slave device is attached in one 
-location and will never move, so that is a constant value.
-
-> 
->> I also don't get why the first item in in base10?
->>
-> 
-> As this corresponds to Soundwire Version, and I have no visibility of 
-> version number encoding after reaching number 9 in this field.
-> 
-> This can be updated once we have more info on how the Version encoding 
-> will look like in future.
-> 
-> Idea of limiting regex to [0-9] for version is to enforce some checking!
-
-the version is a 4 bit value starting at 1 for SoundWire 1.0. There is 
-nothing in the spec that talks about a limit to 9.
-
-It's unlikely we'll ever reach that but you are interpreting a spec 
-here. plus just below you mention all fields as being hexadecimal.
-
-> 
-> --srini
-> 
->>
->>> +      description:
->>> +      Is the textual representation of SoundWire Enumeration
->>> +      address. compatible string should contain SoundWire Version ID,
->>> +      Manufacturer ID, Part ID and Class ID in order and shall be in
->>> +      lower-case hexadecimal with leading zeroes.
->>> +      Valid sizes of these fields are
->>> +      Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
->>> +      and '0x2' represents SoundWire 1.1 and so on.
->>> +      MFD is 4 nibbles
->>> +      PID is 4 nibbles
->>> +      CID is 2 nibbles
->>> +      More Information on detail of encoding of these fields can be
->>> +      found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
->>> +
->>> +      reg:
->>> +        maxItems: 1
->>> +        description:
->>> +          Instance ID and Link ID of SoundWire Device Address.
->>> +
->>> +    required:
->>> +      - compatible
->>> +      - reg
->>> +
->>> +examples:
->>> +  - |
->>> +    soundwire@c2d0000 {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <0>;
->>> +        compatible = "qcom,soundwire-v1.5.0";
->>> +        reg = <0x0c2d0000 0x2000>;
->>> +
->>> +        speaker@1 {
->>> +            compatible = "sdw10217201000";
->>> +            reg = <1 0>;
->>> +        };
->>> +
->>> +        speaker@2 {
->>> +            compatible = "sdw10217201000";
->>> +            reg = <2 0>;
->>> +        };
->>> +    };
->>> +
->>> +...
->>>
+Thanks
