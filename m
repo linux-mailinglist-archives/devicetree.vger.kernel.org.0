@@ -2,102 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A267A9B554
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 19:21:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5DC69B573
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 19:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388461AbfHWRRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 13:17:15 -0400
-Received: from mout.gmx.net ([212.227.17.20]:51531 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387641AbfHWRRP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 13:17:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1566580580;
-        bh=KAOdaynKbihaITcaFt4WqiyRLZbtSP/RJI/uMxSYwAA=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=Xusb0Xj64yL0T6lEq8KfvIbQDlrHe2gC7RLsib5J7rTaqGSAMg6/Ur+73Ny2qekSq
-         8r9+RAb9gtoR7XFFc6mC31NlMvYo3q3cgFMEtFchyGoO/+De2yJYzL5qDkxhAlZ746
-         XuwMFuSlD//ORk1PvvrRpTE0thLPtaGwE/GSjqz4=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.154.8] ([217.61.154.8]) by web-mail.gmx.net
- (3c-app-gmx-bs75.server.lan [172.19.170.219]) (via HTTP); Fri, 23 Aug 2019
- 19:16:20 +0200
+        id S2389610AbfHWR2D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 13:28:03 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:42596 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389103AbfHWR2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 13:28:02 -0400
+Received: by mail-pg1-f194.google.com with SMTP id p3so6110676pgb.9
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 10:28:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JpGZpvS6y7xgN7XnzsEu5TdSqjOQTKTe7TuWBgzpXxk=;
+        b=DPbWDrNSkF3m3LM0LR49Pzw0ikWe08dHQLzlDwCCEd7SbY6lXjBe4g0E0/Oh0SS+8L
+         1E2R3whjpm/iFQXBpTT4okhqcaJ9ZnLIQH02NXVEugo9GHSE50Jg8iFRbsmg/FsPppnw
+         MrLpLS4WEb0jVHfL7Ku4uZCHChd+71dF0jelCrk2VXPZsc/GseLHkRq3LfohfXHpj4oa
+         AeTShyhb7KisbZpowlWSJWUH5/NPhwM3qX6O9qpBe+sFL60yTW4cJ4vUQwBWpprLutHO
+         5jYbqQDNL1N504EYpXBVjn24evq+dP/NDByqBukweHmVAjQPQCqMp6Hlv66N/RkoT59S
+         yfsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JpGZpvS6y7xgN7XnzsEu5TdSqjOQTKTe7TuWBgzpXxk=;
+        b=QL0gXEOQMW3lENNWyT2SjaBBlAkLaBvjPgriDrS5MDjh1StftWPNRFKjLQz72MIAbd
+         OO1RYfVQfTdrnfY4QDeUJBjzFGRQevyhUJISyPzH4/hXmXRbqEAPOF71la+4sDVG7vRI
+         2LzY0+ENylja8L9twtGPqQ7efujxqKk1R+FlO7gRCaY/8RTUIaDFuxQhds7dEgv5EztG
+         kY9+smNRe+yen9Q92MYio/8N8d46sJ6qrpd6cjB1KZY0nG7rcJSZAxVajp4mgeOoPHCZ
+         H9kasvXEt7JgfUUdyMPi2OrfciBhAmRsYnGpgMIQ8QwcaLrr6liUmDeqk3D96PR2RVQz
+         k7Gg==
+X-Gm-Message-State: APjAAAWsiMHxywNUXqDk787XD1NY63jiEWzAE23yHHeEuHsU1N5FqEFW
+        R2ybYJh0289KfjzetY/Ys08FoOby12eV9oTTcEEc7w==
+X-Google-Smtp-Source: APXvYqxO41uhCLsTUJZzB3icsTW0bMGI+WWDOYyKC539Pf/Fhot22x5RnB49yWHNSNlX8BLD0YS+A9/mQTKWddz6BQY=
+X-Received: by 2002:a63:b919:: with SMTP id z25mr4863766pge.201.1566581281074;
+ Fri, 23 Aug 2019 10:28:01 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-a57f08bb-e30e-4e74-911c-c40e335d00da-1566580580817@3c-app-gmx-bs75>
-From:   "Frank Wunderlich" <frank-w@public-files.de>
-To:     "Matthias Brugger" <matthias.bgg@gmail.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        "Hsin-Hsiung Wang" <hsin-hsiung.wang@mediatek.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Alessandro Zummo" <a.zummo@towertech.it>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Sean Wang" <sean.wang@mediatek.com>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        "Richard Fontana" <rfontana@redhat.com>,
-        "Mark Brown" <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        =?UTF-8?Q?=22Ren=C3=A9_van_Dorst=22?= <opensource@vdorst.com>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Eddie Huang" <eddie.huang@mediatek.com>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        "Kate Stewart" <kstewart@linuxfoundation.org>,
-        linux-rtc@vger.kernel.org
-Subject: Aw: Re: [BUG] [PATCH v5 02/10] mfd: mt6397: extract irq related
- code from core driver
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 23 Aug 2019 19:16:20 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <b5a21908-faee-17d1-ce26-99b941c0fa70@gmail.com>
-References: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1566531931-9772-3-git-send-email-hsin-hsiung.wang@mediatek.com>
- <trinity-1f82bff1-535e-47cd-9a2f-8faccb56e356-1566562433314@3c-app-gmx-bs11>
- <e8a918ab-3e7a-b487-db77-df28d56518ce@gmail.com>
- <0A87F427-2D81-412A-9549-09A51A021799@public-files.de>
- <b5a21908-faee-17d1-ce26-99b941c0fa70@gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:M6tggHu2jkIqLMSHLX83dNUDyHrefgQf8IujR0hyiRKzkuklyndiHW9nYGEkuLXCbOFMO
- SU+tldv0OOjj7fhdIotEInIhprMyKcHFTkDmg3Efi+cKsHLNCA4guu9ErTmP0DGbBBpZpN41036a
- tuKt30R+dNFMZUaZY7u53km3KLRC2mt9/svU71MSZNnuo+/30tBC7dIXkuBB4vRLB+OQsdK4O50+
- XX6VyQNrBSgCyXPZ1HhTjjLmG/rbSC9Y4CbSc2JU2HAPRc62AwxY1qZsv6BFDYP7/gsYLXNh4pyc
- 20=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:TOoEHewdCY8=:S/v5Ky3YBDWNjot/2PylTF
- kK4NljRpELNyO9TgpRHOWLeukFdMAosLfLxz3bWRabDlr3Sfb/rlMknadYnt7/PvLo2b3piM1
- smjOdh6YxQQuRfqIMtvhk5i6BbszdW3monJEzwT+6Kky7MJIES1cblfZ11cvocxi2NZInCaCT
- rTdZFThb/PDsgySQMgfbLL3ETPBcAQS+YtdZRS/7hDoiNYkYpCyxw0xZ+LbUOd02TY9KFuoNh
- +Eb/5DGmKIn7gvJKawUveefsQvtzoYPVBUrPR/IgdXMpyce7AHlatkvq0lxNp098Yy+tO995P
- 1zQq4mgbIHnkw3zZkhw0IBAYfpBGkTqhmrzJQ7+ePW2AEZ2zwzZY08fuv/O0X6DEXqO2dELtd
- /zDW//zdP5Ns35UQN/VOEl6zp+/NzWh6kfYCtQ/eW3Ns2eFrdreUSaJBzmH18vpsMZ86rpmXS
- ib8TdXaLtUf981KqYi0y3TWbY8KkzmW0VtFuAc7arSxVf/ZSdRhFM07FyiD4uwDASn+EVYLU8
- JOkoLAghKWioW2JbWYU3cAdvK47ZHFdRFzdXFMSJePxEGvew4Y+hNXk1icKwNpUZjMtHzDvBF
- 0b6mmpA96LbZ7PR6g8lsDIU2M+8snOHHumaDSNyt+N2sZFA4EMTfFaMec5EZR45lxuMBlvd3w
- sipzH8uF4e4HsVt40jHmE4miAlyyc1ED5nuwyGLE0/9eNzw==
-Content-Transfer-Encoding: quoted-printable
+References: <20190820232046.50175-1-brendanhiggins@google.com>
+ <20190820232046.50175-2-brendanhiggins@google.com> <7f2c8908-75f6-b793-7113-ad57c51777ce@kernel.org>
+ <CAFd5g44mRK9t4f58i_YMEt=e9RTxwrrhFY_V2LW_E7bUwR3cdg@mail.gmail.com> <4513d9f3-a69b-a9a4-768b-86c2962b62e0@kernel.org>
+In-Reply-To: <4513d9f3-a69b-a9a4-768b-86c2962b62e0@kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Fri, 23 Aug 2019 10:27:49 -0700
+Message-ID: <CAFd5g446J=cVW4QW+QeZMLDi+ANqshAW6KTrFFBTusPcdr6-GA@mail.gmail.com>
+Subject: Re: [PATCH v14 01/18] kunit: test: add KUnit test runner core
+To:     shuah <shuah@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Freitag, 23. August 2019 um 17:42 Uhr
-> Von: "Matthias Brugger" <matthias.bgg@gmail.com>
-
-> I suppose that's because 3/10 has code that should be in 2/10 and for so=
-me
-> reason 3/10 was not pushed for linux-next inclusion. Although it has the=
- same
-> Acked-for-mfd-by tag.
+On Fri, Aug 23, 2019 at 10:05 AM shuah <shuah@kernel.org> wrote:
 >
-> @Frank, can you test if adding 3/10 to your code base fixes the issue?
+> On 8/23/19 10:48 AM, Brendan Higgins wrote:
+> > On Fri, Aug 23, 2019 at 8:33 AM shuah <shuah@kernel.org> wrote:
+> >>
+> >> Hi Brendan,
+> >>
+> >> On 8/20/19 5:20 PM, Brendan Higgins wrote:
+> >>> Add core facilities for defining unit tests; this provides a common way
+> >>> to define test cases, functions that execute code which is under test
+> >>> and determine whether the code under test behaves as expected; this also
+> >>> provides a way to group together related test cases in test suites (here
+> >>> we call them test_modules).
+> >>>
+> >>> Just define test cases and how to execute them for now; setting
+> >>> expectations on code will be defined later.
+> >>>
+> >>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> >>> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >>> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> >>> Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+> >>> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> >>> ---
+> >>>    include/kunit/test.h | 179 ++++++++++++++++++++++++++++++++++++++++
+> >>>    kunit/Kconfig        |  17 ++++
+> >>>    kunit/Makefile       |   1 +
+> >>>    kunit/test.c         | 191 +++++++++++++++++++++++++++++++++++++++++++
+> >>>    4 files changed, 388 insertions(+)
+> >>>    create mode 100644 include/kunit/test.h
+> >>>    create mode 100644 kunit/Kconfig
+> >>>    create mode 100644 kunit/Makefile
+> >>>    create mode 100644 kunit/test.c
+> >>>
+> >>> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> >>> new file mode 100644
+> >>> index 0000000000000..e0b34acb9ee4e
+> >>> --- /dev/null
+> >>> +++ b/include/kunit/test.h
+> >>> @@ -0,0 +1,179 @@
+> >>> +/* SPDX-License-Identifier: GPL-2.0 */
+> >>> +/*
+> >>> + * Base unit test (KUnit) API.
+> >>> + *
+> >>> + * Copyright (C) 2019, Google LLC.
+> >>> + * Author: Brendan Higgins <brendanhiggins@google.com>
+> >>> + */
+> >>> +
+> >>> +#ifndef _KUNIT_TEST_H
+> >>> +#define _KUNIT_TEST_H
+> >>> +
+> >>> +#include <linux/types.h>
+> >>> +
+> >>> +struct kunit;
+> >>> +
+> >>> +/**
+> >>> + * struct kunit_case - represents an individual test case.
+> >>> + * @run_case: the function representing the actual test case.
+> >>> + * @name: the name of the test case.
+> >>> + *
+> >>> + * A test case is a function with the signature, ``void (*)(struct kunit *)``
+> >>> + * that makes expectations (see KUNIT_EXPECT_TRUE()) about code under test. Each
+> >>> + * test case is associated with a &struct kunit_suite and will be run after the
+> >>> + * suite's init function and followed by the suite's exit function.
+> >>> + *
+> >>> + * A test case should be static and should only be created with the KUNIT_CASE()
+> >>> + * macro; additionally, every array of test cases should be terminated with an
+> >>> + * empty test case.
+> >>> + *
+> >>> + * Example:
+> >>
+> >> Can you fix these line continuations. It makes it very hard to read.
+> >> Sorry for this late comment. These comments lines are longer than 80
+> >> and wrap.
+> >
+> > None of the lines in this commit are over 80 characters in column
+> > width. Some are exactly 80 characters (like above).
+> >
+> > My guess is that you are seeing the diff added text (+ ), which when
+> > you add that to a line which is exactly 80 char in length ends up
+> > being over 80 char in email. If you apply the patch you will see that
+> > they are only 80 chars.
+> >
+> >>
+> >> There are several comment lines in the file that are way too long.
+> >
+> > Note that checkpatch also does not complain about any over 80 char
+> > lines in this file.
+> >
+> > Sorry if I am misunderstanding what you are trying to tell me. Please
+> > confirm either way.
+> >
+>
+> WARNING: Avoid unnecessary line continuations
+> #258: FILE: include/kunit/test.h:137:
+> +                */                                                            \
+>
+> total: 0 errors, 2 warnings, 388 lines checked
 
-adding part 3 [1] seems to fix the issue too
+Ah, okay so you don't like the warning about the line continuation.
+That's not because it is over 80 char, but because there is a line
+continuation after a comment. I don't really see a way to get rid of
+it without removing the comment from inside the macro.
 
-[    4.960051] mt6323-regulator mt6323-regulator: Chip ID =3D 0x2023
+I put this TODO there in the first place a Luis' request, and I put it
+in the body of the macro because this macro already had a kernel-doc
+comment and I didn't think that an implementation detail TODO belonged
+in the user documentation.
 
-thanks
+> Go ahead fix these. It appears there are few lines that either longer
+> than 80. In general, I keep them around 75, so it is easier read.
 
-[1] https://patchwork.kernel.org/patch/11110509/
+Sorry, the above is the only checkpatch warning other than the
+reminder to update the MAINTAINERS file.
+
+Are you saying you want me to go through and make all the lines fit in
+75 char column width? I hope not because that is going to be a pretty
+substantial change to make.
