@@ -2,99 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F1919B342
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 17:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B2D9B361
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 17:33:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405259AbfHWP1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 11:27:23 -0400
-Received: from mout.gmx.net ([212.227.15.18]:53313 "EHLO mout.gmx.net"
+        id S2405624AbfHWPdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 11:33:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51256 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405254AbfHWP1X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 11:27:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1566573994;
-        bh=Zp3rIEiWFT/dze56KH17pc3w7hpd4V6pR+eI+ZXCu3M=;
-        h=X-UI-Sender-Class:Date:In-Reply-To:References:Subject:Reply-to:To:
-         CC:From;
-        b=eF59Hom6dWe897cYMpJUjOA3BSPM1ZDhDFCb3zy4paWKzPVh/BJcTArszKqjkTZ4B
-         LOmKbuy94EofNxw7Xl8vyes9csFFHJHpErD6QsnXBGdWWydUA/PanhgCcP5WHSz431
-         oEtnvrbgYoOES0FgaZmmBKwoRE72BT3U22d7l9ME=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [10.159.16.108] ([80.187.106.162]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1M42jK-1i1BST3icq-0007yy; Fri, 23
- Aug 2019 17:26:34 +0200
-Date:   Fri, 23 Aug 2019 17:26:30 +0200
-User-Agent: K-9 Mail for Android
-In-Reply-To: <e8a918ab-3e7a-b487-db77-df28d56518ce@gmail.com>
-References: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1566531931-9772-3-git-send-email-hsin-hsiung.wang@mediatek.com> <trinity-1f82bff1-535e-47cd-9a2f-8faccb56e356-1566562433314@3c-app-gmx-bs11> <e8a918ab-3e7a-b487-db77-df28d56518ce@gmail.com>
+        id S2388022AbfHWPdi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 11:33:38 -0400
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2F8AD2133F;
+        Fri, 23 Aug 2019 15:33:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566574416;
+        bh=yCT4ObOgsNt0bYY8blJS3y9Aifbq9ZOtPmFappz9gKg=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=o79+bNgvN/+G52KjHl2k7P+/9FYtVoFa6klyl9gzDLuUZmv2FLD2H6/h6kgCvvnGO
+         RFvuceeQSSSVqLj+co0KPaqw2Cjpu4rkBzl2xsJBk8SmTfznnZR1skMABiBGgQCWnW
+         h17J/lCDhV60JedIGFyevZgryI2eRxj+0jNWq+Gg=
+Subject: Re: [PATCH v14 01/18] kunit: test: add KUnit test runner core
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        shuah <shuah@kernel.org>, pmladek@suse.com,
+        rdunlap@infradead.org, richard@nod.at, rientjes@google.com,
+        rostedt@goodmis.org, wfg@linux.intel.com
+References: <20190820232046.50175-1-brendanhiggins@google.com>
+ <20190820232046.50175-2-brendanhiggins@google.com>
+From:   shuah <shuah@kernel.org>
+Message-ID: <7f2c8908-75f6-b793-7113-ad57c51777ce@kernel.org>
+Date:   Fri, 23 Aug 2019 09:33:13 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [BUG] [PATCH v5 02/10] mfd: mt6397: extract irq related code from core driver
-Reply-to: frank-w@public-files.de
-To:     linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Richard Fontana <rfontana@redhat.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        =?ISO-8859-1?Q?Ren=E9_van_Dorst?= <opensource@vdorst.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        linux-rtc@vger.kernel.org
-From:   Frank Wunderlich <frank-w@public-files.de>
-Message-ID: <0A87F427-2D81-412A-9549-09A51A021799@public-files.de>
-X-Provags-ID: V03:K1:MlEGagT+FxNsAXYs/gx5WKMizc7kwSvyFUw/hTdq7YzFpwt6Zhn
- 5UfK75n7wwRUKjmfPzWHnQelpZHnvazt0+9AFA28McB6YDZTZOTb05dAflzdvUC+CaTmUTW
- /7QG52/cIRR3NjqPis1bJEmb6ZhOUiAKyFf8r4seFicKLQ4zFS2VHUNEQGjBTeoLV5pdnLt
- 6kS8NGzUhCnMMaKRP1gaw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:KpTz2cCVoPo=:Dl6DzB+tsFkVmbbzgg231O
- 64z4l1siG51mmum9OGGWnmGFctN4tPPxgS9nTw2hIL3knuPPlM8XVRczUnZBeG3MEsGzrl7jN
- 1x1W5nRSlvueAtdiKfLJ2jSwCpU8CHeN1LqaUip/XBhyLokZ8Sc6LnT9kMOa7tbxHpMWx8fSA
- eADwOE/+DytC0MgWOcZ9Eegu0Gd4EyQbE3O40E1rWccjNbLVEmpcOhV/Ixqz9Nh9pgZ1bgueY
- TqTgTnHHeS1c6WBasTT+5iMyc+ZX8pkdWfzfJYGrHJhrUdgiYxqAmFtpaO0R7fiwupI4mVExl
- FyR40FFwZ4aEp3niguXguSZ27Qvdv+DVcZ5tW1WKoKl6zpFRF78zQR6gJzru+eqy833QGbWiM
- uGSvuvcMQwwyzcWEjvMyXprX7iEPUiGqfkPdiSXvrjDD1DMAAhMYLeFjP5r/FZHX9O5XqMs+9
- IKQJIOdZ+n3NRn7R434/ryo027mFo04b4plEuSbAW4SDF+USDCMxj4kXL86lhyMjq+w4/Nygy
- eZSTjl00Xj2wBXBNm8lcgjSNmkFYDF+OMvwB0CdAmE2cZRnzHO/rWpwdSrPqokg+SatDVkqxU
- Ls/W7QYjhX7YZqbmoMVcZxO4czRO5xaLcyNJvTOgYR/kfd3f/qL1rc1AFuH7Ed6GRz1m1uzwe
- GCw0Tq61YQqDK+eylXsrBKblDIUDw8ttZUC+wKvBV/vtdOEZlzj2lfUBBl+7AjAcRQlqWqs7E
- p/wf9cLc+KtT8H4jwLBG1YFARoEAFqD/W/OAWAq28/o+IPF3b2dlkqIRwJH/rzOb/LJWkMvsk
- 5vY9U69KPcCkxILQTzGebM/M8Cj2GpwDmW7QpxmtRDk6G6lxZaEqt5FiQOC5cmrC3uQ3t/Awb
- ZLXMoTTXvU+cN15u8m7uh5uWOWDsFz7uesHD43yKTIYk9y25EgJUtW/+ineBL4UY29b2Ncio6
- gXeLeTT+NjSTx0COqFypWM3sKZ9NScWOMewqsnYymone6wPN5yuLZ/Q61OzCkiNt4z+TM7E2w
- YXMcgjKKFp+9vOmAtveaHpAGEPhmUWesCew5FLvSsy8sAGcSTj+xiwmxnUJ1X6HmABQgvctO8
- mhhda235WkbaUBPyuZAjPcKEUQ/iDB9kCMmqCZhpE150ptn7B5BpxmysxjHHjPCclbHufkGj0
- k0/h3u1apZYIm1KRm/HYlhHd8NsP+jS3Rzidw9t30or3FDmw==
+In-Reply-To: <20190820232046.50175-2-brendanhiggins@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Brendan,
 
+On 8/20/19 5:20 PM, Brendan Higgins wrote:
+> Add core facilities for defining unit tests; this provides a common way
+> to define test cases, functions that execute code which is under test
+> and determine whether the code under test behaves as expected; this also
+> provides a way to group together related test cases in test suites (here
+> we call them test_modules).
+> 
+> Just define test cases and how to execute them for now; setting
+> expectations on code will be defined later.
+> 
+> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
+> Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>   include/kunit/test.h | 179 ++++++++++++++++++++++++++++++++++++++++
+>   kunit/Kconfig        |  17 ++++
+>   kunit/Makefile       |   1 +
+>   kunit/test.c         | 191 +++++++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 388 insertions(+)
+>   create mode 100644 include/kunit/test.h
+>   create mode 100644 kunit/Kconfig
+>   create mode 100644 kunit/Makefile
+>   create mode 100644 kunit/test.c
+> 
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> new file mode 100644
+> index 0000000000000..e0b34acb9ee4e
+> --- /dev/null
+> +++ b/include/kunit/test.h
+> @@ -0,0 +1,179 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Base unit test (KUnit) API.
+> + *
+> + * Copyright (C) 2019, Google LLC.
+> + * Author: Brendan Higgins <brendanhiggins@google.com>
+> + */
+> +
+> +#ifndef _KUNIT_TEST_H
+> +#define _KUNIT_TEST_H
+> +
+> +#include <linux/types.h>
+> +
+> +struct kunit;
+> +
+> +/**
+> + * struct kunit_case - represents an individual test case.
+> + * @run_case: the function representing the actual test case.
+> + * @name: the name of the test case.
+> + *
+> + * A test case is a function with the signature, ``void (*)(struct kunit *)``
+> + * that makes expectations (see KUNIT_EXPECT_TRUE()) about code under test. Each
+> + * test case is associated with a &struct kunit_suite and will be run after the
+> + * suite's init function and followed by the suite's exit function.
+> + *
+> + * A test case should be static and should only be created with the KUNIT_CASE()
+> + * macro; additionally, every array of test cases should be terminated with an
+> + * empty test case.
+> + *
+> + * Example:
 
-Am 23=2E August 2019 16:56:13 MESZ schrieb Matthias Brugger <matthias=2Ebg=
-g@gmail=2Ecom>:
->are you sure that you provide the correct chip_id here? I saw 0x2023
->(if I
->remember correctly), while this switch checks for 0x23, 0x91 and 0x97,
->so I'm
->not sure if the problem really lies here=2E I didn't dig into the code to
->find out
->how the chip_id is created=2E
+Can you fix these line continuations. It makes it very hard to read.
+Sorry for this late comment. These comments lines are longer than 80
+and wrap.
 
-The chip-id 0x2023 is reported with 5=2E3-rc5, next-code says 0x0=2E So i =
-guess the chipid is read out/calculated the wrong way=2E If calculation is =
-not changed the read is changed compared to 5=2E3
+There are several comment lines in the file that are way too long.
+
+thanks,
+-- Shuah
+
