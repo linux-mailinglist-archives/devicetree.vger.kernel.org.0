@@ -2,75 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 95B129A983
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55B3B9AA01
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730532AbfHWIAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 04:00:35 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:37982 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731700AbfHWIAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:00:32 -0400
-Received: by mail-lj1-f194.google.com with SMTP id x3so8016582lji.5
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:00:31 -0700 (PDT)
+        id S2404486AbfHWIOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 04:14:41 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35149 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392425AbfHWIOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:14:33 -0400
+Received: by mail-wr1-f68.google.com with SMTP id k2so7808680wrq.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:14:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2MWurloFC424CUmSqLbHj0wb/3z06n1cb9tNRKzCOz0=;
-        b=sA3b4HdX77h7s/fsgrnjxNpZZL2Q2H0A0yDHqxZ97wKFl/4wY6a1hIV5EQoqmrzZ7r
-         f4Z8cqeST9COrJKBqhuaiYdi+KUCmgfbGSP1wKpdmxquge83gpeW3HfaT5SCIGS5uwVG
-         3veKuafvjamg3UGf5XlzSwsesSMNOTzddh4Ge5Tqp+I26zHMONWLgzNiAq0o81va1Jc1
-         emEV0eUjqLBewyOer5y+Dho936IyFhHQSxCZlZqIw1KZGcbRpXPMFujKyY+ryczpp+Yx
-         sISvmhOjokZhZ62yOeO8PFUTc2yZ4Hf2TWU69qgzlCyG7Oq+xQhaGlB5ijax6S+LsHQL
-         jClg==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=an7EFK4JvkBoKoM3Yeo8YPBrJ2AtkRzJC4yL9T9DOFQ=;
+        b=C2llLjqzUduLdL9VZmxRQLNAh79gNPvOHxRc6lEKIqSOnsdMwk9J/IuO0IKipl51LV
+         ExpFAffmyTqbQbSu6k2d5JgfNOs9nStxyJMcW1WfPkYvMA+8RDoMaoi/ygi6ySq3m/Pj
+         pONoERsHmpyXMtpyhd807rWxNI6OdtVU3OlM5PR7rpnA7WDQJYeyt8nOBjKcPFg3NIWQ
+         uUv+L6aN9WgbbiDmYKLqveuXxDxnoaqph79iwXrxx4lzgTLCwxaLDTPOkuwHUYWz1+3Q
+         6ZfZOtzqwDnQcbXFt/ajvuL/K59ukUFusOgXWhri4IH9mlgFQNUEGqBxcG0hVgpgXkCF
+         4WKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2MWurloFC424CUmSqLbHj0wb/3z06n1cb9tNRKzCOz0=;
-        b=dDxBUS9V3dGC0ybmbjd6CbVdW8W7Dy0HyPmD3wDRMRDcFpbF0KWFQrg/3kFBAUyNyp
-         oWihAwjHFdNyp62+SJbAIy9xr1ZjuxqVlRmA62qhhZhZNsNweHKqPReHIiKj/2N8D1kh
-         zoR9UnJc8+uCp03hk/w6k33FIYuQyAZJMsrSmUKJTkZbkgQMN3yDzkCZNUg/StSG6E2z
-         gp1wyE3v3ssHITqnViTpHewuw76dFkNhhpfuFf2PsNgcCPglvtSJBEZcvFdt8lYwUxEv
-         qbBupfzVzlViGmv+J4BKyhhm97ilcQgI3c7//z2bsW44DkJfMxNvFwm2VVM2G3k8FoEe
-         PxTg==
-X-Gm-Message-State: APjAAAU7gz6umiXzHP6wIXdfImcikc4HrQCcCXR7txVf92AgBLvEY0c3
-        8cifKc8h8PoFYQsuksU1jXIkvt3fbm4u9lN9JcBjbg==
-X-Google-Smtp-Source: APXvYqzLQ5ClEUlmAOPmQjblokk+7eUHmNQEQGStJEPG0CbEku6phix8tVMaf7PE4m+a0XscjlciF/e0C/PJmTAj7dk=
-X-Received: by 2002:a2e:781a:: with SMTP id t26mr2091021ljc.28.1566547230567;
- Fri, 23 Aug 2019 01:00:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=an7EFK4JvkBoKoM3Yeo8YPBrJ2AtkRzJC4yL9T9DOFQ=;
+        b=LpsUReFqoEUjxlyppdsSBF/t1jnIPqedjC855znsvW9sqYbpIIAvC7q6qcfOdr6nis
+         KGfePRgRsI6ILq0UfSrHhLryqRVCJgQaZwdWFzCDuty/J+zIznFBRtPfxitTZDwpQnM6
+         hwHOdJo/T8YghxATW3h2nJaKFYUtIwzowfSnBBB2AGALGqWYturs2sfEq9u5sePyqFPR
+         d1Xdcxtj3hf8BBvhNNsJMRtZP/4easmTlROMqIwdHREoXtOIC8pJtWlqGyUgzota1Hrj
+         9Xcvcqxekxn849sg7bbumAuY3tWfjqFtUCCubANwsm0eA/Lvj1SlhaodblYK8RyF6PZ9
+         nYCw==
+X-Gm-Message-State: APjAAAWIZpj6pHvmply1CRj9pguhu3CkyL9OGEMe61kpRLKrNpThRLWR
+        S949eryCmgOZo50zlmZfMRrEK+zy8abAXg==
+X-Google-Smtp-Source: APXvYqzGW6+sUuZMXFxTaQiVCRz6B52nyNUkpqM6pyYGjlS9BL/UG5O9FVm9nklwKZfHr9awWgIN/g==
+X-Received: by 2002:a5d:5343:: with SMTP id t3mr3487147wrv.156.1566548071564;
+        Fri, 23 Aug 2019 01:14:31 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id 74sm3632535wma.15.2019.08.23.01.14.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2019 01:14:31 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 2/3] amlogic: arm: add Amlogic SM1 based Khadas VIM3 variant bindings
+Date:   Fri, 23 Aug 2019 10:14:26 +0200
+Message-Id: <20190823081427.17228-3-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190823081427.17228-1-narmstrong@baylibre.com>
+References: <20190823081427.17228-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20190814123512.6017-1-vkoul@kernel.org> <20190814123512.6017-3-vkoul@kernel.org>
-In-Reply-To: <20190814123512.6017-3-vkoul@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Aug 2019 10:00:19 +0200
-Message-ID: <CACRpkdbANSzMbO2dDGrfFK=KP_ZCkoaOA7xG4zirhzo7hHG_ag@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm8150l support
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     MSM <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 14, 2019 at 2:36 PM Vinod Koul <vkoul@kernel.org> wrote:
+The Khadas VIM3 is also available with the Pin-to-pin compatible
+Amlogic SM1 SoC in the S905D3 variant package.
 
-> Add support for the PM8150l GPIO support to the Qualcomm PMIC GPIO
-> binding.
->
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Change the description to match the S905X3/D3/Y3 variants like the G12A
+description, and add the vim3 compatible.
 
-Patch applied.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-Yours,
-Linus Walleij
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index b48ea1e4913a..2751dd778ce0 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -150,9 +150,10 @@ properties:
+           - const: amlogic,s922x
+           - const: amlogic,g12b
+ 
+-      - description: Boards with the Amlogic Meson SM1 S905X3 SoC
++      - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+         items:
+           - enum:
+               - seirobotics,sei610
++              - khadas,vim3
+           - const: amlogic,sm1
+ ...
+-- 
+2.22.0
+
