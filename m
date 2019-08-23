@@ -2,185 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A571E9A818
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05BE69A84A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:11:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405106AbfHWHDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 03:03:10 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:34310 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405045AbfHWHDJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:03:09 -0400
-Received: by mail-wr1-f66.google.com with SMTP id s18so7632620wrn.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:03:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IQx7JwpS0dFVohc6lFcL0uMhZduD4nFAlJhvbz7oju8=;
-        b=frizW8oO7RTj7zLjZEQTJ7YrRH6o8XwnlJ5ppDPHuhN06xYzcYSWb4XI0JK2BBi+LE
-         KFMkhjhEmv4y1y1S5cj4ivI7lgc06JpvIFOMoYiTI7zK/TJmMJ2sl6/NOo9gzS0+Q148
-         5jq2a7apmT9wpJmGejm2rVlRz5BnW7K5aPk4QHpaNp+ut4x7/fvGH1Gf/5HXMO0YPAB9
-         URj3Q2N4I1ugCxMGFvcWi+DfrA6AQ3VqhsbStK8UX+gH8t8+eQjGCwnW1dj12lCk9IHb
-         sxGwiZOQF7Qx7Lc7x4LPk3+7JT/4qnVce7Axi98OTasK724G5xQj8xP/y5myJ6XtlKWT
-         yNZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IQx7JwpS0dFVohc6lFcL0uMhZduD4nFAlJhvbz7oju8=;
-        b=CpdEttrqS86AAnccfLLKnUtjvzpsOJATy+0+K4ZsvfUraxNA1oZ1IZR/OM4CI53Sf9
-         Yx1kBesl52EYK5K85BoRDAw4aeJ5pxSQx/WCuhue2/fWKxzANOR1fXOXaH7VEROG6eGQ
-         mE3vx8uYxNuCTtM1kRxH0YA0BJjXY+I9TmS/dmqdZZrpb8x+t4f3hf0a8G8B9yOnYtaL
-         1I17bmWkitXokpnlJeG+EFWkf3rkf+Fk5Vnq9lTTUq0dRjGGB8SryxsuX8eD0JoAmYm4
-         X0/GQi5gZldXxcPY78yPoWvi4g3fljKoPODLYe7ggqrDn6a15wDN8PRKS49HfUqDYLt/
-         GiGw==
-X-Gm-Message-State: APjAAAV13W8wAmXnt8W3077OjlJSDBn3ly0V+UYrAEvMkldXzyVudlGt
-        E2ZoTcpy3z58LlRgFStT5MrcDw==
-X-Google-Smtp-Source: APXvYqyG3fWgn+EfbbDhHE9+n7t57vKkhDEcSlm3CiYkSu7TA+hKhqcBk13nKpJ6b9bGoYNrpu6eKA==
-X-Received: by 2002:a5d:4d81:: with SMTP id b1mr465745wru.27.1566543787901;
-        Fri, 23 Aug 2019 00:03:07 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a26sm1741833wmg.45.2019.08.23.00.03.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2019 00:03:06 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [RESEND PATCH v2 14/14] arm64: dts: meson: fix boards regulators states format
-Date:   Fri, 23 Aug 2019 09:02:48 +0200
-Message-Id: <20190823070248.25832-15-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190823070248.25832-1-narmstrong@baylibre.com>
-References: <20190823070248.25832-1-narmstrong@baylibre.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2390659AbfHWHLe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 03:11:34 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:25284 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1728332AbfHWHLd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 03:11:33 -0400
+Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7N7734B050155
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 03:11:32 -0400
+Received: from e06smtp01.uk.ibm.com (e06smtp01.uk.ibm.com [195.75.94.97])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2uj9hfm3js-1
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 03:11:32 -0400
+Received: from localhost
+        by e06smtp01.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
+        for <devicetree@vger.kernel.org> from <huntbag@linux.vnet.ibm.com>;
+        Fri, 23 Aug 2019 08:11:30 +0100
+Received: from b06cxnps4074.portsmouth.uk.ibm.com (9.149.109.196)
+        by e06smtp01.uk.ibm.com (192.168.101.131) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
+        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
+        Fri, 23 Aug 2019 08:11:26 +0100
+Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com [9.149.105.232])
+        by b06cxnps4074.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7N7BPnO51773542
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 23 Aug 2019 07:11:25 GMT
+Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 02F155204E;
+        Fri, 23 Aug 2019 07:11:25 +0000 (GMT)
+Received: from boston16h.aus.stglabs.ibm.com (unknown [9.3.23.78])
+        by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTP id 408F45204F;
+        Fri, 23 Aug 2019 07:11:23 +0000 (GMT)
+From:   Abhishek Goel <huntbag@linux.vnet.ibm.com>
+To:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        devicetree@vger.kernel.org, paulus@samba.org
+Cc:     npiggin@gmail.com, mpe@ellerman.id.au, ego@linux.vnet.ibm.com,
+        svaidy@linux.ibm.com, mikey@neuling.org, rjw@rjwysocki.net,
+        daniel.lezcano@linaro.org,
+        Abhishek Goel <huntbag@linux.vnet.ibm.com>
+Subject: [RFC 0/3] New idle device-tree format and support for versioned stop state
+Date:   Fri, 23 Aug 2019 02:09:37 -0500
+X-Mailer: git-send-email 2.17.1
+X-TM-AS-GCONF: 00
+x-cbid: 19082307-4275-0000-0000-0000035C72A3
+X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
+x-cbparentid: 19082307-4276-0000-0000-0000386E9AD6
+Message-Id: <20190823070940.43220-1-huntbag@linux.vnet.ibm.com>
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-23_01:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908230072
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the following DT schemas check errors:
-meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
-meson-gxbb-odroidc2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
-meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-p200.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxl-s905x-hwacom-amazetv.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxbb-p201.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
-meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: Additional items are not allowed (1800000, 1 were unexpected)
-meson-g12b-odroid-n2.dt.yaml: gpio-regulator-tf_io: states:0: [3300000, 0, 1800000, 1] is too long
-meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: Additional items are not allowed (3300000, 1 were unexpected)
-meson-gxl-s905x-nexbox-a95x.dt.yaml: gpio-regulator: states:0: [1800000, 0, 3300000, 1] is too long
+Background
+------------------
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts          | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts        | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts           | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi              | 4 ++--
- .../arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts | 4 ++--
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts   | 4 ++--
- 6 files changed, 12 insertions(+), 12 deletions(-)
+Previously if a older kernel runs on a newer firmware, it may enable
+all available states irrespective of its capability of handling it.
+Consider a case that some stop state has a bug, we end up disabling all
+the stop states. This patch introduces selective control to solve this
+problem.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-index 6cfc2c69bb4f..7c0cf510fd16 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
-@@ -66,8 +66,8 @@
- 		gpios = <&gpio_ao GPIOAO_9 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <0>;
- 
--		states = <3300000 0
--			  1800000 1>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
- 	};
- 
- 	flash_1v8: regulator-flash_1v8 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-index b636912a2715..afcf8a9f667b 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-nexbox-a95x.dts
-@@ -75,8 +75,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 9972b1515da6..6039adda12ee 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -77,8 +77,8 @@
- 		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
- 		gpios-states = <0>;
- 
--		states = <3300000 0
--			  1800000 1>;
-+		states = <3300000 0>,
-+			 <1800000 1>;
- 	};
- 
- 	vcc1v8: regulator-vcc1v8 {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-index e8f925871edf..89f7b41b0e9e 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-p20x.dtsi
-@@ -46,8 +46,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 
- 		regulator-settling-time-up-us = <10000>;
- 		regulator-settling-time-down-us = <150000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-index 796baea7a0bf..c8d74e61dec1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-hwacom-amazetv.dts
-@@ -38,8 +38,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-index 26907ac82930..c433a031841f 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-nexbox-a95x.dts
-@@ -38,8 +38,8 @@
- 		gpios-states = <1>;
- 
- 		/* Based on P200 schematics, signal CARD_1.8V/3.3V_CTR */
--		states = <1800000 0
--			  3300000 1>;
-+		states = <1800000 0>,
-+			 <3300000 1>;
- 	};
- 
- 	vddio_boot: regulator-vddio_boot {
+Previous version of these patches can be found at:
+https://lkml.org/lkml/2018/10/11/544
+These patch however also had patches for support of opal save-restore
+which now I am decoupling and will take them seperately.
+I have posted the corresponding skiboot patches for this kernel patchset
+here : https://patchwork.ozlabs.org/cover/1144587/
+
+What's new?
+--------------------
+
+Add stop states under ibm,idle-states in addition to the current array
+based device tree properties.
+
+New device tree format adds a compatible flag which has version
+corresponding to every state, so that only kernel which has the capability
+to handle the version of stop state will enable it. Drawback of the array
+based dt node is that versioning of idle states is not possible.
+
+Older kernel will still see stop0 and stop0_lite in older format and we
+will deprecate it after some time.
+
+Consider a case that stop4 has a bug. We take the following steps to
+mitigate the problem.
+
+1) Change compatible string for stop4 in OPAL to "stop4,v2" from
+"stop4,v1", i.e. basicallly bump up the previous version and ship the
+new firmware.
+
+2) The kernel will ignore stop4 as it won't be able to recognize this
+new version. Kernel will also ignore all the deeper states because its
+possible that a cpu have requested for a deeper state but was never able
+to enter into it. But we will still have shallower states that are there
+before stop 4. This, thus prevents from completely disabling stop states.
+
+Linux kernel can now look at the version string and decide if it has the
+ability to handle that idle state. Henceforth, if kernel does not know
+about a version, it will skip that state and all the deeper state.
+
+Once when the workaround are implemented into the kernel, we can bump up
+the known version in kernel for that state, so that support can be
+enabled once again in kernel.
+
+New Device-tree :
+
+Final output
+       power-mgt {
+            ...
+         ibm,enabled-stop-levels = <0xec000000>;
+         ibm,cpu-idle-state-psscr-mask = <0x0 0x3003ff 0x0 0x3003ff>;
+         ibm,cpu-idle-state-latencies-ns = <0x3e8 0x7d0>;
+         ibm,cpu-idle-state-psscr = <0x0 0x330 0x0 0x300330>;
+         ibm,cpu-idle-state-flags = <0x100000 0x101000>;
+         ibm,cpu-idle-state-residency-ns = <0x2710 0x4e20>;
+         ibm,idle-states {
+                     stop4 {
+                         flags = <0x207000>;
+                         compatible = "stop4,v1",
+                         psscr-mask = <0x0 0x3003ff>;
+                         latency-ns = <0x186a0>;
+                         residency-ns = <0x989680>;
+                         psscr = <0x0 0x300374>;
+			 ...
+                  };
+                    ...
+                    stop11 {
+                         ...
+                         compatible = "stop11,v1",
+                         ...
+                  };
+             };
+
+
+Abhishek Goel (3):
+  cpuidle/powernv : Pass state pointer instead of values to stop loop
+  cpuidle/powernv: Add support for versioned stop states
+  cpuidle/powernv : Add flags to identify stop state type
+
+ arch/powerpc/include/asm/cpuidle.h    |   8 +-
+ arch/powerpc/include/asm/opal-api.h   |   7 +
+ arch/powerpc/include/asm/processor.h  |   5 +-
+ arch/powerpc/platforms/powernv/idle.c | 371 +++++++++++++++++++++-----
+ drivers/cpuidle/cpuidle-powernv.c     |  81 +++---
+ 5 files changed, 363 insertions(+), 109 deletions(-)
+
 -- 
-2.22.0
+2.17.1
 
