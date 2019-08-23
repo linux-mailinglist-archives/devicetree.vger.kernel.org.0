@@ -2,133 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A939A84F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAD279A842
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:10:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392800AbfHWHLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 03:11:51 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:15238 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2389543AbfHWHLv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 03:11:51 -0400
-Received: from pps.filterd (m0098419.ppops.net [127.0.0.1])
-        by mx0b-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7N77PC2117461
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 03:11:50 -0400
-Received: from e06smtp01.uk.ibm.com (e06smtp01.uk.ibm.com [195.75.94.97])
-        by mx0b-001b2d01.pphosted.com with ESMTP id 2ujavbhemm-1
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 03:11:49 -0400
-Received: from localhost
-        by e06smtp01.uk.ibm.com with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted
-        for <devicetree@vger.kernel.org> from <huntbag@linux.vnet.ibm.com>;
-        Fri, 23 Aug 2019 08:11:48 +0100
-Received: from b06avi18878370.portsmouth.uk.ibm.com (9.149.26.194)
-        by e06smtp01.uk.ibm.com (192.168.101.131) with IBM ESMTP SMTP Gateway: Authorized Use Only! Violators will be prosecuted;
-        (version=TLSv1/SSLv3 cipher=AES256-GCM-SHA384 bits=256/256)
-        Fri, 23 Aug 2019 08:11:44 +0100
-Received: from d06av21.portsmouth.uk.ibm.com (d06av21.portsmouth.uk.ibm.com [9.149.105.232])
-        by b06avi18878370.portsmouth.uk.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7N7Bi9Z38797672
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 23 Aug 2019 07:11:44 GMT
-Received: from d06av21.portsmouth.uk.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id E820252050;
-        Fri, 23 Aug 2019 07:11:43 +0000 (GMT)
-Received: from boston16h.aus.stglabs.ibm.com (unknown [9.3.23.78])
-        by d06av21.portsmouth.uk.ibm.com (Postfix) with ESMTP id 323E45204F;
-        Fri, 23 Aug 2019 07:11:42 +0000 (GMT)
-From:   Abhishek Goel <huntbag@linux.vnet.ibm.com>
-To:     linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        devicetree@vger.kernel.org, paulus@samba.org
-Cc:     npiggin@gmail.com, mpe@ellerman.id.au, ego@linux.vnet.ibm.com,
-        svaidy@linux.ibm.com, mikey@neuling.org, rjw@rjwysocki.net,
-        daniel.lezcano@linaro.org,
-        Abhishek Goel <huntbag@linux.vnet.ibm.com>
-Subject: [RFC 3/3] cpuidle/powernv : Add flags to identify stop state type
-Date:   Fri, 23 Aug 2019 02:09:40 -0500
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190823070940.43220-1-huntbag@linux.vnet.ibm.com>
-References: <20190823070940.43220-1-huntbag@linux.vnet.ibm.com>
-X-TM-AS-GCONF: 00
-x-cbid: 19082307-4275-0000-0000-0000035C72A9
-X-IBM-AV-DETECTION: SAVI=unused REMOTE=unused XFE=unused
-x-cbparentid: 19082307-4276-0000-0000-0000386E9ADB
-Message-Id: <20190823070940.43220-4-huntbag@linux.vnet.ibm.com>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-23_01:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=720 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908230072
+        id S2389624AbfHWHK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 03:10:28 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:38709 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388050AbfHWHK2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:10:28 -0400
+Received: by mail-lf1-f65.google.com with SMTP id f21so1414548lfc.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:10:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+qU/VHmuE9+FZeGhMZTUDAZVwp0rcf1mKQo/KWfPxLA=;
+        b=c5OYD9xRcMwu9/ZQZ/HUsZELbjvvGpC1Ng9p5IygoPsfBd1n3NT/Wdm7PYN6oI6eaV
+         xvQUkjXdxhvCXi90mothyJm52nkrvbR/rPepOCfN+ae5qKT+y8qEhlclwgoHpM5Dj7KB
+         /72RG5dxARac9ry0l0yS4OpeQNCivZfP8KCjIBzTb0Km6sIXLxaUO6DB2/1j86Ya9/uA
+         +x0XdBQ5H7W5vVkUD/IJqbeEqeco2SPaTRd+FWGAG874ArSJycDdcbL+N/LH0l+KrLj1
+         OR3vKmQ57hoJjYIic3kscsqxHACmDySO+o+xnsQhQoHNUupAdb0Org8cNOownpPvL7CV
+         IT3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=+qU/VHmuE9+FZeGhMZTUDAZVwp0rcf1mKQo/KWfPxLA=;
+        b=dq1XalCZMMYSsCTkeRnu2MZWk2eEWeV9oezWaQ3FoLamrcGg1QKfN0va2cPkVU/f3w
+         4WWHCLXuKWZ0RlSNVhp+983Q7KHvQRtWTt+cb58v4vSkTb6P0z0M/KiVvPiBp1BQ1fsR
+         jvTtJLoAcZ6/lKzV9LJUk6sz+JTByoKJ3MHPokk3ak0zEH9Yh7Isa0P54zRGpULwxLep
+         GBWxw8XzSL68+JFd0ZOXJSDoRlfS1JkJjISGlS0Rcf8hESq+oHsl695Ni3VpsZi3rvkX
+         vWkc9UCcQcKJolpvzsjFwzSMkNOvnYGBaPlvKqPjrHh+jSeAjKJuESIo08YVS6ww3gIz
+         iPeg==
+X-Gm-Message-State: APjAAAW0K39ZXFMv5Nf+bsIDraov++Y6VKUyjTZLmcNE/ozlwfTGqtRS
+        Jp8VN3D6w3FRQ4Y9ssqYgbGZ1g==
+X-Google-Smtp-Source: APXvYqwT/E8A7FD8cjk4aMI47BzOIhL3bksrk0C7JFlQ+gVhCjb/IUuguuiB6vH2DtMJ3fIKrQ+PnQ==
+X-Received: by 2002:ac2:4289:: with SMTP id m9mr1938713lfh.49.1566544225732;
+        Fri, 23 Aug 2019 00:10:25 -0700 (PDT)
+Received: from genomnajs.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id f28sm210055lfp.28.2019.08.23.00.10.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2019 00:10:24 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Denis Carikli <denis@eukrea.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v2] Input: tsc2007 - use GPIO descriptor
+Date:   Fri, 23 Aug 2019 09:10:21 +0200
+Message-Id: <20190823071021.5598-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Removed threshold latency which was being used to decide if a state
-is cpuidle type or not. This decision can be taken using flags, as this
-information has been encapsulated in the state->flags and being read
-from idle device-tree.
+This switches the TSC2007 to use a GPIO descriptor to read
+the pendown GPIO line.
 
-Signed-off-by: Abhishek Goel <huntbag@linux.vnet.ibm.com>
+As this will make the gpiolib start to respect polarity
+inversion flags on the GPIO lines, drop the inversion when
+reading the line with gpio_get_value(), fix two offenders
+in the i.MX device trees, and also emphasize the importance
+of marking the polarity right in the device tree bindings.
+
+Cc: Denis Carikli <denis@eukrea.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: H. Nikolaus Schaller <hns@goldelico.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- arch/powerpc/include/asm/opal-api.h |  7 +++++++
- drivers/cpuidle/cpuidle-powernv.c   | 16 +++++++++-------
- 2 files changed, 16 insertions(+), 7 deletions(-)
+ChangeLog v1->v2:
+- Drop inversion on the GPIO descriptor value, rely on the
+  gpiolib to handle polarity inversion.
+- Comb through device trees, identify two offenders, fix
+  them as part of the patch for a clean cut.
+- Also fix the device tree bindings.
+---
+ .../bindings/input/touchscreen/tsc2007.txt         |  5 +++--
+ arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi       |  3 ++-
+ arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi       |  3 ++-
+ drivers/input/touchscreen/tsc2007.h                |  4 +++-
+ drivers/input/touchscreen/tsc2007_core.c           | 14 +++++++-------
+ 5 files changed, 17 insertions(+), 12 deletions(-)
 
-diff --git a/arch/powerpc/include/asm/opal-api.h b/arch/powerpc/include/asm/opal-api.h
-index 383242eb0dea..b9068fee21d8 100644
---- a/arch/powerpc/include/asm/opal-api.h
-+++ b/arch/powerpc/include/asm/opal-api.h
-@@ -233,6 +233,13 @@
- #define OPAL_PM_STOP_INST_FAST		0x00100000
- #define OPAL_PM_STOP_INST_DEEP		0x00200000
+diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
+index ed00f61b8c08..b08b54d49699 100644
+--- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
++++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
+@@ -7,7 +7,8 @@ Required properties:
  
-+/*
-+ * Flags for stop states to distinguish between cpuidle and
-+ * cpuoffline type of states.
-+ */
-+#define OPAL_PM_STOP_CPUIDLE		0x01000000
-+#define OPAL_PM_STOP_CPUHOTPLUG		0x02000000
-+
- /*
-  * OPAL_CONFIG_CPU_IDLE_STATE parameters
+ Optional properties:
+ - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
+-  The penirq pin goes to low when the panel is touched.
++  The penirq pin goes to low when the panel is touched, so make sure to tag
++  the GPIO line with GPIO_ACTIVE_LOW.
+   (see GPIO binding[1] for more details).
+ - interrupts: (gpio) interrupt to which the chip is connected
+   (see interrupt binding[0]).
+@@ -31,7 +32,7 @@ Example:
+ 			reg = <0x49>;
+ 			interrupt-parent = <&gpio4>;
+ 			interrupts = <0x0 0x8>;
+-			gpios = <&gpio4 0 0>;
++			gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
+ 			ti,x-plate-ohms = <180>;
+ 		};
+ 
+diff --git a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
+index 17bd2a97609a..b8ac60622936 100644
+--- a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
++++ b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
+@@ -3,6 +3,7 @@
+  * Copyright 2013 Eukréa Electromatique <denis@eukrea.com>
   */
-diff --git a/drivers/cpuidle/cpuidle-powernv.c b/drivers/cpuidle/cpuidle-powernv.c
-index 1b6c84d4ac77..1a33a548b769 100644
---- a/drivers/cpuidle/cpuidle-powernv.c
-+++ b/drivers/cpuidle/cpuidle-powernv.c
-@@ -270,8 +270,13 @@ static int powernv_add_idle_states(void)
- 		goto out;
+ 
++#include <dt-bindings/gpio/gpio.h>
+ #include "imx35.dtsi"
+ 
+ / {
+@@ -33,7 +34,7 @@
+ 
+ 	tsc2007: tsc2007@48 {
+ 		compatible = "ti,tsc2007";
+-		gpios = <&gpio3 2 0>;
++		gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
+ 		interrupt-parent = <&gpio3>;
+ 		interrupts = <0x2 0x8>;
+ 		pinctrl-names = "default";
+diff --git a/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi b/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
+index c2a929ba8ceb..016d0bc64bdb 100644
+--- a/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
++++ b/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
+@@ -3,6 +3,7 @@
+  * Copyright 2013 Eukréa Electromatique <denis@eukrea.com>
+  */
+ 
++#include <dt-bindings/gpio/gpio.h>
+ #include "imx51.dtsi"
+ 
+ / {
+@@ -33,7 +34,7 @@
+ 
+ 	tsc2007: tsc2007@49 {
+ 		compatible = "ti,tsc2007";
+-		gpios = <&gpio4 0 1>;
++		gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
+ 		interrupt-parent = <&gpio4>;
+ 		interrupts = <0x0 0x8>;
+ 		pinctrl-names = "default";
+diff --git a/drivers/input/touchscreen/tsc2007.h b/drivers/input/touchscreen/tsc2007.h
+index 91c60bf6dcaf..0306c38b56c7 100644
+--- a/drivers/input/touchscreen/tsc2007.h
++++ b/drivers/input/touchscreen/tsc2007.h
+@@ -49,6 +49,8 @@
+ #define READ_X		(ADC_ON_12BIT | TSC2007_MEASURE_X)
+ #define PWRDOWN		(TSC2007_12BIT | TSC2007_POWER_OFF_IRQ_EN)
+ 
++struct gpio_desc;
++
+ struct ts_event {
+ 	u16	x;
+ 	u16	y;
+@@ -69,7 +71,7 @@ struct tsc2007 {
+ 	int			fuzzy;
+ 	int			fuzzz;
+ 
+-	unsigned int		gpio;
++	struct gpio_desc	*gpiod;
+ 	int			irq;
+ 
+ 	wait_queue_head_t	wait;
+diff --git a/drivers/input/touchscreen/tsc2007_core.c b/drivers/input/touchscreen/tsc2007_core.c
+index 3b80abfc1eca..0eadd6d86fa0 100644
+--- a/drivers/input/touchscreen/tsc2007_core.c
++++ b/drivers/input/touchscreen/tsc2007_core.c
+@@ -23,7 +23,7 @@
+ #include <linux/interrupt.h>
+ #include <linux/i2c.h>
+ #include <linux/of_device.h>
+-#include <linux/of_gpio.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/platform_data/tsc2007.h>
+ #include "tsc2007.h"
+ 
+@@ -226,7 +226,7 @@ static int tsc2007_get_pendown_state_gpio(struct device *dev)
+ 	struct i2c_client *client = to_i2c_client(dev);
+ 	struct tsc2007 *ts = i2c_get_clientdata(client);
+ 
+-	return !gpio_get_value(ts->gpio);
++	return gpiod_get_value(ts->gpiod);
+ }
+ 
+ static int tsc2007_probe_dt(struct i2c_client *client, struct tsc2007 *ts)
+@@ -266,13 +266,13 @@ static int tsc2007_probe_dt(struct i2c_client *client, struct tsc2007 *ts)
+ 		return -EINVAL;
  	}
  
--	/* TODO: Count only states which are eligible for cpuidle */
--	dt_idle_states = nr_pnv_idle_states;
-+	/* Count only cpuidle states*/
-+	for (i = 0; i < nr_pnv_idle_states; i++) {
-+		if (pnv_idle_states[i].flags & OPAL_PM_STOP_CPUIDLE)
-+			dt_idle_states++;
-+	}
-+	pr_info("idle states in dt = %d , states with idle flag = %d",
-+				nr_pnv_idle_states, dt_idle_states);
+-	ts->gpio = of_get_gpio(np, 0);
+-	if (gpio_is_valid(ts->gpio))
++	ts->gpiod = devm_gpiod_get_optional(&client->dev, NULL, GPIOD_IN);
++	if (IS_ERR(ts->gpiod))
++		return PTR_ERR(ts->gpiod);
++	if (ts->gpiod)
+ 		ts->get_pendown_state = tsc2007_get_pendown_state_gpio;
+ 	else
+-		dev_warn(&client->dev,
+-			 "GPIO not specified in DT (of_get_gpio returned %d)\n",
+-			 ts->gpio);
++		dev_warn(&client->dev, "GPIO not specified in DT\n");
  
- 	/*
- 	 * Since snooze is used as first idle state, max idle states allowed is
-@@ -300,11 +305,8 @@ static int powernv_add_idle_states(void)
- 			continue;
- 		}
- 
--		/*
--		 * If an idle state has exit latency beyond
--		 * POWERNV_THRESHOLD_LATENCY_NS then don't use it in cpu-idle.
--		 */
--		if (state->latency_ns > POWERNV_THRESHOLD_LATENCY_NS) {
-+		/* Check whether a state is of cpuidle type */
-+		if ((state->flags & OPAL_PM_STOP_CPUIDLE) != state->flags) {
- 			pr_info("State %d is not idletype\n", i);
- 			continue;
- 		}
+ 	return 0;
+ }
 -- 
-2.17.1
+2.21.0
 
