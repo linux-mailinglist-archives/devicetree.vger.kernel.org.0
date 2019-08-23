@@ -2,117 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B18239B7EE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 22:55:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96EB49B7FE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 23:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392900AbfHWUzY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 16:55:24 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:42450 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392875AbfHWUzY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 16:55:24 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i30so7231223pfk.9
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 13:55:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=DOMSbUFejjbvhh3syNx2mPd1ccD1hkCqGREmnUI4Bh4=;
-        b=Z8fHU3xaHyWUdk8aM+/Zr1k32eHFHXEUQIEGhm0QTklwjF6o2yeRak8xLVTnReEHws
-         mnfMwuQHrRUYoES3KexwZ32OsGrcnrb1s9qJzgF9ziCfP9tYYhWZXUSlT/TmnyHCQoSD
-         EH2wLU7ldNI647pM/cNY8j+L2MWrI3yOfrObg6w/dFr02If3S0v5jO00vVaybZ04gUw6
-         SZaeYbscZ35Rk1qZJNQq70E3JvuhKldBFpRGdwFURY39FdTznEdVQq7XzppcqHi7VNkr
-         hf3Uysejz+aJrF8U3J3YFeAoa5fEXvw8IQqJjVHzxN+LCfK73FdybzahiiwbNaM6mbwE
-         JLmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=DOMSbUFejjbvhh3syNx2mPd1ccD1hkCqGREmnUI4Bh4=;
-        b=oPTxg2Xx50ST+gko5fuX0PG8C6LknbRsSShh5YVRhMvruOhIN0orVssysJvl42wZh6
-         Wa/ntX0xhvLwH+u0V4db93sQhwg6hkat0SfQ1ARizBE9y+SGzelqHCzYfhQY5TVR4N00
-         h2CYbedkhdP8u6eccHyAtudYtRiAP9iyUuwNV08KTOMV8Zvd3YjoxXNDMfM7tDifRG46
-         muqAbvsK0eXOS5eBscYtJfvqVp57nla4EbR5z5OOJ2oGsGiz5jsNdY12tsi/TgPO/uir
-         m+ngwY/O6KVb+ngn74Mgqwior9oKhnMPp+ZUb11JG6LB6JS11o1Hsm0OwxKVYfZVP7D1
-         QhUw==
-X-Gm-Message-State: APjAAAWBexxtNgyrmw7Q/vQMkUYbzRLmiMA11Hf4kDG0IceIMPl6j2JF
-        5NQXgSyljuFTraJYCBamyklQnw==
-X-Google-Smtp-Source: APXvYqwWqXwZanA/RIBsBivTmQ7OMMhM9wxbpGObupZqpUyHXrFJ3OB2nqQJqczKD3p98hiZv47Gzg==
-X-Received: by 2002:a17:90a:f995:: with SMTP id cq21mr5481913pjb.27.1566593723715;
-        Fri, 23 Aug 2019 13:55:23 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:89d4:68d1:fc04:721])
-        by smtp.gmail.com with ESMTPSA id w10sm3132874pjv.23.2019.08.23.13.55.22
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 23 Aug 2019 13:55:23 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Chrisitian Hewitt <christianshewitt@gmail.com>,
-        Oleg Ivanov <balbes-150@yandex.ru>
-Subject: Re: [PATCH 3/3] arm64: dts: meson-g12b-ugoos-am6: add initial device-tree
-In-Reply-To: <1566565717-5182-4-git-send-email-christianshewitt@gmail.com>
-References: <1566565717-5182-1-git-send-email-christianshewitt@gmail.com> <1566565717-5182-4-git-send-email-christianshewitt@gmail.com>
-Date:   Fri, 23 Aug 2019 13:55:22 -0700
-Message-ID: <7hv9uny539.fsf@baylibre.com>
+        id S2406180AbfHWVD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 17:03:59 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:51266 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731003AbfHWVD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 17:03:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=ivYzwFDnFB6dEbOKWm2Jn7GdkzO9PknPkaIHs7XYuW4=; b=Fgximarup8qYnZgGwykU9zYqc
+        Mf11VXqJSHaY0XLTYJOcOUhgWuHRfbVBfb2M1cFFxXYn4AHfiLh8rOFvOEu7v32Yc0qUz5x56uM/b
+        Mo8HNNqsQK2reR6Yk8Ln+wf+gesP810MCyxv6BPtzkSEt4BbphgKXj037/rZDk+ejgbkk=;
+Received: from [92.54.175.117] (helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1i1Giy-0005Ju-Et; Fri, 23 Aug 2019 21:03:56 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id 255B4D02CD1; Fri, 23 Aug 2019 22:03:56 +0100 (BST)
+Date:   Fri, 23 Aug 2019 22:03:56 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     linux-spi@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, netdev <netdev@vger.kernel.org>
+Subject: Re: [PATCH v2 2/5] spi: spi-fsl-dspi: Exit the ISR with IRQ_NONE
+ when it's not ours
+Message-ID: <20190823210356.GU23391@sirena.co.uk>
+References: <20190822211514.19288-1-olteanv@gmail.com>
+ <20190822211514.19288-3-olteanv@gmail.com>
+ <20190823102816.GN23391@sirena.co.uk>
+ <CA+h21hoUfbW8Gpyfa+a-vqVp_qARYoq1_eyFfZFh-5USNGNE2g@mail.gmail.com>
+ <20190823105044.GO23391@sirena.co.uk>
+ <20190823105949.GQ23391@sirena.co.uk>
+ <CA+h21hrj6VjceGJFz7XuS9DFjy=Fb5SHTYUuOWkagtsWf0Egbg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="25rOlkxR6a4U87uN"
+Content-Disposition: inline
+In-Reply-To: <CA+h21hrj6VjceGJFz7XuS9DFjy=Fb5SHTYUuOWkagtsWf0Egbg@mail.gmail.com>
+X-Cookie: Don't SANFORIZE me!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Hewitt <christianshewitt@gmail.com> writes:
 
-> Tested-by: Oleg Ivanov <balbes-150@yandex.ru>
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+--25rOlkxR6a4U87uN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-nit: empty changelog.  I'd rather see the changelog from patch2 here.
+On Fri, Aug 23, 2019 at 03:06:52PM +0300, Vladimir Oltean wrote:
 
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile               |   1 +
->  .../boot/dts/amlogic/meson-g12b-ugoos-am6.dts      | 567 +++++++++++++++++++++
->  2 files changed, 568 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
->
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 07b861f..21e2810 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -4,6 +4,7 @@ dtb-$(CONFIG_ARCH_MESON) += meson-g12a-sei510.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-u200.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12a-x96-max.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-g12b-odroid-n2.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += meson-g12b-ugoos-am6.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nanopi-k2.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-nexbox-a95x.dtb
->  dtb-$(CONFIG_ARCH_MESON) += meson-gxbb-odroidc2.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> new file mode 100644
-> index 0000000..27d1d62
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12b-ugoos-am6.dts
-> @@ -0,0 +1,567 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 BayLibre, SAS
-> + * Author: Neil Armstrong <narmstrong@baylibre.com>
-> + * Copyright (c) 2019 Christian Hewitt <christianshewitt@gmail.com>
+> - You left change requests in the initial patchset I submitted, but
+> you partially applied the series anyway. You didn't give me a chance
+> to respin the whole series and put the shared IRQ fix on top, so it
+> applies on old trees as well. No problem, I sent two versions of the
+> patch.
 
-This is a bit confusing.
+Right, and this is fine.  A big part of this is that it's just
+generally bad practice to not have fixes at the front of the
+series, I'd flag this up as a problem even if the code was all
+new and there was no question of applying as a bug fix.  It's
+something that's noticable just at the level of looking at the
+shape of the series without even looking at the contents of the
+patches, if the fix is actually a good one or anything like that.
+In the context of this it made it look like the reason you'd had
+to do two versions.
 
-I'm assuming you kept Neil's authorship because you copied from another
-g12b board.  If so, it would be helpful in the changelog to describe the
-origins of this file.  I'm assuming it was copied from odroid-n2 and
-then tweaked.  That's fine, just note that as "originally based on
-meson-g12b-odroid-c2".
+> So I didn't put any target version in the patch titles this time,
+> although arguably it would have been clearer to you that there's a
+> patch for-5.4 and another version of it for-4.20 (which i *think* is
+> how I should submit a fix, I don't see any branch for inclusion in
+> stable trees per se).
 
-Other than that, thanks a lot for your work on adding these new boards!
+Not for 4.20, for v5.3 - we basically only fix Linus' tree
+directly, anything else gets backported from there unless it's
+super important.  I don't think anyone is updating v4.20 at all
+these days, the version number change from v4 to v5 was totally
+arbatrary.
 
-Neil, I'm starting to see a lot of duplication in the g12b .dtb files.
-Should we start thinking about factoring out some of the common stuff
-that's standard across all these boards?
+> Yes, I did send a cover letter for a single patch. I thought it's
+> harder to miss than a note hidden under patch 2/5 of one series, and
+> in the note section of the other's. I think you could have also made
 
-Kevin
+If you're sending a multi-patch series it's of course good to
+send a cover letter, it's just single patches where it's adding
+overhead.
+
+> No problem, you missed the link between the two. I sent you a link to
+> the lkml archive. You said "I'm not online enough to readily follow
+> that link right now". Please teach me - I really don't know - how can
+
+It's not that I missed the link between them, it's that what I'd
+expected to see was the fix being the first patch in the series
+for -next and for that fix to look substantially the same with at
+most some context difference.  I wasn't expecting to see a
+completely different patch that wasn't at the start of the
+series, had the fix been at the start of the series it'd have
+been fairly clear what was going on but the refactoring patch
+looked like the main reason you'd needed different versions (it's
+certainly why they don't visually resemble each other).
+
+In other words it looked like you'd sent a different fix because
+the fix you'd done for -next was based on the first patch in the
+series rather than there also being some context changes.
+
+> I make links between patchsets easier for you to follow, if you don't
+> read cover letters and you can't access lkml? I promise I'll use that
+> method next time.
+
+Like I said include a plain text description of what you're
+linking to (eg, the subject line from a mail).
+
+> > I do frequently catch up on my mail on flights or while otherwise
+> > travelling so this is even more pressing for me than just being about
+> > making things a bit easier to read.
+
+> Maybe you simply should do something else while traveling, just saying.
+
+I could also add in the coffee shop I sometimes work from which
+doesn't have WiFi or mobile coverage.  Besides, like that part of
+the text does say it's also a usability thing, having to fire up
+a web browser to figure out what's being described is a stumbling
+block.
+
+--25rOlkxR6a4U87uN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1gVLsACgkQJNaLcl1U
+h9B2pAf+OqEH0c/ir0i5HzOOu3foBEg4ijLDLobzCWquMYtExGnWzATCgFiBeNua
+ukOy2G0NaRiaIVws5VQXj5y9+okcAFfjfVVwMIKTjqT6CwmTmGZb9Xlg/mgk1yJs
+OzKiKXM2b+vc3QyIFHI1EqmLqdz750Pdh6Lnulsl9TYm6zdsv7ecc2lIlnnRP79d
+eWCN2wNbGO8WUXLr/W83nXUfm03qs6KVes765JTaYqDLeYx8QoIV9Lf4UqPFtLDI
+iWT2+NUTPUP2oR7wokomqY8Ql7woJYFr5Okbl33288iJL1XLmM1j8BKxWg+207Cj
+BgnfvF9wzTpzBVO6dTlqlOZK7s6SQA==
+=vtug
+-----END PGP SIGNATURE-----
+
+--25rOlkxR6a4U87uN--
