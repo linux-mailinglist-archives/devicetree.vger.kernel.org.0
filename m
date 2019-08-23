@@ -2,183 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C2219A431
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 02:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 871E69A4DE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 03:27:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728247AbfHWAMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 20:12:18 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:53410 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728235AbfHWAMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 20:12:17 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3E0DC33D;
-        Fri, 23 Aug 2019 02:12:16 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1566519136;
-        bh=SA6jBbNQ6voUiU/4I8ziHcRqrzjm6AE4culPC4bqpNQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=dW9nr2f7BClMjxHoXB00hC2/Oi2AEiuSI3T1lsItUC3ebfnczL7pLHbt6LZZOHHtD
-         nvP/kG7fvAY+I083qsTPFE/G6cuiKoTTmFo7wmjsiCW6fnz/V78iTt4MBm4wmtZVoo
-         0S8q4S9blZOaYfEStFtqeodvn4duo9dKguQOSInY=
-Date:   Fri, 23 Aug 2019 03:12:09 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: Add LIF channel index to 'vsps'
-Message-ID: <20190823001209.GO5027@pendragon.ideasonboard.com>
-References: <20190822195600.30787-1-jacopo+renesas@jmondi.org>
+        id S2387996AbfHWB1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 21:27:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33056 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730588AbfHWB1A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 22 Aug 2019 21:27:00 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DB213233A2;
+        Fri, 23 Aug 2019 01:26:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566523619;
+        bh=6xxjLORt0xPkzoEPUFXYG1cXQ+Y1cImnoe/SmkS0e2A=;
+        h=In-Reply-To:References:Cc:Subject:To:From:Date:From;
+        b=kGwYtQdqH395GM0HbKE8VsJCZOKTZu6zUM6VgRDNti0j1IHOT5wNQbxkVQBX2VQMu
+         CzpWRYUaBk/Q7U69KJRuVqd46FlAt4Yc/wbZwzhr5dc0z3RHTFfIjzY0mOORirKR2V
+         9O7EeNYx5LhgTygYHhat9voOELeEJtOTaV9RJMLs=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190822195600.30787-1-jacopo+renesas@jmondi.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190822020847.10159-2-wen.he_1@nxp.com>
+References: <20190822020847.10159-1-wen.he_1@nxp.com> <20190822020847.10159-2-wen.he_1@nxp.com>
+Cc:     leoyang.li@nxp.com, liviu.dudau@arm.com, Wen He <wen.he_1@nxp.com>
+Subject: Re: [v3 2/2] clk: ls1028a: Add clock driver for Display output interface
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Wen He <wen.he_1@nxp.com>,
+        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-devel@linux.nxdi.nxp.com, linux-kernel@vger.kernel.org
+From:   Stephen Boyd <sboyd@kernel.org>
+User-Agent: alot/0.8.1
+Date:   Thu, 22 Aug 2019 18:26:58 -0700
+Message-Id: <20190823012658.DB213233A2@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-Thank you for the patch.
-
-On Thu, Aug 22, 2019 at 09:56:00PM +0200, Jacopo Mondi wrote:
-> According to the Renesas R-Car DU bindings documentation, the 'vsps'
-> property should be composed by a phandle to the VSP instance and the
-
-s/composed by/composed of/
-
-> index of the LIF channel assigned to the DU channel. Some SoC device
-> tree source files do not specify any LIF channel index, relying on the
-> driver defaulting it to 0 if not specified.
-> 
-> Align all device tree files by specifying the LIF channel index as
-> prescribed by the bindings documentation. While at it, add a comment to
-> the 'vsps' property parsing routine to point out the LIF channel index
-> is still defaulted to 0 for backward compatibility with non-standard DTB
-> found in the wild.
-
-I wouldn't say non-standard, I would instead mention compatible with a
-previous version of the DT bindings.
-
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+Quoting Wen He (2019-08-21 19:08:47)
+> Add clock driver for QorIQ LS1028A Display output interfaces(LCD, DPHY),
+> as implemented in TSMC CLN28HPM PLL, this PLL supports the programmable
+> integer division and range of the display output pixel clock's 27-594MHz.
+>=20
+> Signed-off-by: Wen He <wen.he_1@nxp.com>
 > ---
-> 
-> Patch based on Geert's latest renesas-devel master branch
-> ---
-> 
->  arch/arm64/boot/dts/renesas/r8a774a1.dtsi    | 2 +-
->  arch/arm64/boot/dts/renesas/r8a7795-es1.dtsi | 2 +-
->  arch/arm64/boot/dts/renesas/r8a7796.dtsi     | 2 +-
->  arch/arm64/boot/dts/renesas/r8a77970.dtsi    | 2 +-
->  arch/arm64/boot/dts/renesas/r8a77980.dtsi    | 2 +-
->  drivers/gpu/drm/rcar-du/rcar_du_kms.c        | 9 ++++++++-
->  6 files changed, 13 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> index 06c7c849c8ab..d179ee3da308 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a774a1.dtsi
-> @@ -2651,7 +2651,7 @@
->  			clock-names = "du.0", "du.1", "du.2";
->  			status = "disabled";
-> 
-> -			vsps = <&vspd0 &vspd1 &vspd2>;
-> +			vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
-> 
->  			ports {
->  				#address-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a7795-es1.dtsi b/arch/arm64/boot/dts/renesas/r8a7795-es1.dtsi
-> index e4650ae5b75a..14d8513d2a47 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a7795-es1.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a7795-es1.dtsi
-> @@ -30,7 +30,7 @@
->  };
-> 
->  &du {
-> -	vsps = <&vspd0 &vspd1 &vspd2 &vspd3>;
-> +	vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd3 0>;
->  };
-> 
->  &fcpvb1 {
-> diff --git a/arch/arm64/boot/dts/renesas/r8a7796.dtsi b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
-> index 3dc9d73f589a..8c9bf985d436 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a7796.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a7796.dtsi
-> @@ -2765,7 +2765,7 @@
->  			clock-names = "du.0", "du.1", "du.2";
->  			status = "disabled";
-> 
-> -			vsps = <&vspd0 &vspd1 &vspd2>;
-> +			vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
-> 
->  			ports {
->  				#address-cells = <1>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77970.dtsi b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> index 0cd3b376635d..2c4ab70e2a39 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77970.dtsi
-> @@ -1120,7 +1120,7 @@
->  			clock-names = "du.0";
->  			power-domains = <&sysc R8A77970_PD_ALWAYS_ON>;
->  			resets = <&cpg 724>;
-> -			vsps = <&vspd0>;
-> +			vsps = <&vspd0 0>;
->  			status = "disabled";
-> 
->  			ports {
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77980.dtsi b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-> index 461a47ea656d..042f4089e546 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a77980.dtsi
-> @@ -1495,7 +1495,7 @@
->  			clock-names = "du.0";
->  			power-domains = <&sysc R8A77980_PD_ALWAYS_ON>;
->  			resets = <&cpg 724>;
-> -			vsps = <&vspd0>;
-> +			vsps = <&vspd0 0>;
->  			status = "disabled";
-> 
->  			ports {
-> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> index 2dc9caee8767..1a9e182b2b55 100644
-> --- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> +++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> @@ -585,7 +585,14 @@ static int rcar_du_vsps_init(struct rcar_du_device *rcdu)
-> 
->  		vsps[j].crtcs_mask |= BIT(i);
-> 
-> -		/* Store the VSP pointer and pipe index in the CRTC. */
-> +		/*
-> +		 * Store the VSP pointer and pipe index in the CRTC.
-> +		 *
-> +		 * FIXME: According to the DT bindings, the LIF pipe instance
-> +		 * index shall always be specified. For backward compatibility
-> +		 * with older DTB without any index specified, default it to 0
-> +		 * if cells < 1.
+> change in v3:
+>         - remove the OF dependency
+>         - use clk_parent_data instead of parent_name
+>=20
+>  drivers/clk/Kconfig      |  10 ++
+>  drivers/clk/Makefile     |   1 +
+>  drivers/clk/clk-plldig.c | 283 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 294 insertions(+)
+>  create mode 100644 drivers/clk/clk-plldig.c
+>=20
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 801fa1cd0321..ab05f342af04 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -223,6 +223,16 @@ config CLK_QORIQ
+>           This adds the clock driver support for Freescale QorIQ platforms
+>           using common clock framework.
+> =20
+> +config CLK_LS1028A_PLLDIG
+> +        bool "Clock driver for LS1028A Display output"
+> +        depends on ARCH_LAYERSCAPE || COMPILE_TEST
+> +        default ARCH_LAYERSCAPE
+> +        help
+> +          This driver support the Display output interfaces(LCD, DPHY) p=
+ixel clocks
+> +          of the QorIQ Layerscape LS1028A, as implemented TSMC CLN28HPM =
+PLL. Not all
+> +          features of the PLL are currently supported by the driver. By =
+default,
+> +          configured bypass mode with this PLL.
+> +
+>  config COMMON_CLK_XGENE
+>         bool "Clock driver for APM XGene SoC"
+>         default ARCH_XGENE
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index 0cad76021297..c8e22a764c4d 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -44,6 +44,7 @@ obj-$(CONFIG_COMMON_CLK_OXNAS)                +=3D clk-=
+oxnas.o
+>  obj-$(CONFIG_COMMON_CLK_PALMAS)                +=3D clk-palmas.o
+>  obj-$(CONFIG_COMMON_CLK_PWM)           +=3D clk-pwm.o
+>  obj-$(CONFIG_CLK_QORIQ)                        +=3D clk-qoriq.o
+> +obj-$(CONFIG_CLK_LS1028A_PLLDIG)       +=3D clk-plldig.o
+>  obj-$(CONFIG_COMMON_CLK_RK808)         +=3D clk-rk808.o
+>  obj-$(CONFIG_COMMON_CLK_HI655X)                +=3D clk-hi655x.o
+>  obj-$(CONFIG_COMMON_CLK_S2MPS11)       +=3D clk-s2mps11.o
+> diff --git a/drivers/clk/clk-plldig.c b/drivers/clk/clk-plldig.c
+> new file mode 100644
+> index 000000000000..c5ce80a46fd4
+> --- /dev/null
+> +++ b/drivers/clk/clk-plldig.c
+> @@ -0,0 +1,283 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright 2019 NXP
 
-No need for a FIXME, there's nothing to be fixed here. I would write
-this as
+Please leave this as C style /* */ comment for the NXP part, but comply
+with the SPDX comment style of // on the first line.
 
-		 * If the second cell of the VSP specifier isn't
-		 * present, default to 0 to remain compatible with older
-		 * DT bindings.
+> +
+> +static long plldig_round_rate(struct clk_hw *hw, unsigned long rate,
+> +               unsigned long *parent)
+> +{
+> +       unsigned long parent_rate =3D *parent;
+> +       unsigned long round_rate;
+> +       u32 mult =3D 0, rfdphi1 =3D 0;
+> +       bool found =3D false;
+> +
+> +       found =3D plldig_is_valid_range(rate, parent_rate, &mult,
+> +                                       &rfdphi1, &round_rate);
+> +       if (!found) {
+> +               pr_warn("%s: unable to round rate %lu, parent rate :%lu\n=
+",
+> +                               clk_hw_get_name(hw), rate, parent_rate);
+> +               return 0;
 
-With this fixed here and in the commit message,
+This can return an error instead? In fact, you may want to use
+determine_rate clk op instead.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +       }
+> +
+> +       return round_rate / rfdphi1;
+> +}
+> +
+> +static int plldig_set_rate(struct clk_hw *hw, unsigned long rate,
+> +               unsigned long parent_rate)
+> +{
+> +       struct clk_plldig *data =3D to_clk_plldig(hw);
+> +       bool valid =3D false;
+> +       unsigned long round_rate =3D 0;
+> +       u32 rfdphi1 =3D 0, val, mult =3D 0, cond =3D 0;
+> +       int ret =3D -ETIMEDOUT;
+> +
+> +       valid =3D plldig_is_valid_range(rate, parent_rate, &mult,
+> +                                       &rfdphi1, &round_rate);
+> +       if (!valid) {
+> +               pr_warn("%s: unable to support rate %lu, parent_rate: %lu=
+\n",
+> +                               clk_hw_get_name(hw), rate, parent_rate);
 
-Note that Simon or Geert will likely ask you to split this patch in two,
-in which case I'll take the driver part in my tree.
+Shouldn't determine_rate or round_rate make this impossible to hit in
+practice? I mean that those ops should prevent the rate from being
+rounded to such a frequency that it becomes invalid.
 
-> +		 */
->  		rcdu->crtcs[i].vsp = &rcdu->vsps[j];
->  		rcdu->crtcs[i].vsp_pipe = cells >= 1 ? args.args[0] : 0;
->  	}
+> +               return -EINVAL;
+> +       }
+> +
+> +       val =3D readl(data->regs + PLLDIG_REG_PLLDV);
+> +       val =3D mult;
+> +       rfdphi1 =3D PLLDIG_SET_RFDPHI1(rfdphi1);
+> +       val |=3D rfdphi1;
+> +
+> +       writel(val, data->regs + PLLDIG_REG_PLLDV);
+> +
+> +       /* delay 200us make sure that old lock state is cleared */
+> +       udelay(200);
+> +
+> +       /* Wait until PLL is locked or timeout (maximum 1000 usecs) */
+> +       ret =3D readl_poll_timeout_atomic(data->regs + PLLDIG_REG_PLLSR, =
+cond,
+> +                                       cond & PLLDIG_LOCK_MASK, 0,
+> +                                       USEC_PER_MSEC);
+> +
+> +       return ret;
+> +}
+> +
+> +static const struct clk_ops plldig_clk_ops =3D {
+> +       .enable =3D plldig_enable,
+> +       .disable =3D plldig_disable,
+> +       .is_enabled =3D plldig_is_enabled,
+> +       .recalc_rate =3D plldig_recalc_rate,
+> +       .round_rate =3D plldig_round_rate,
+> +       .set_rate =3D plldig_set_rate,
+> +};
+[...]
+> +
+> +       ret =3D devm_clk_hw_register(dev, &data->hw);
+> +       if (ret) {
+> +               dev_err(dev, "failed to register %s clock\n", init.name);
+> +               return ret;
+> +       }
+> +
+> +       ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_simple_get, &d=
+ata->hw);
+> +       if (ret)
+> +               dev_err(dev, "failed adding the clock provider\n");
+> +
+> +       return ret;
+> +}
+> +
+> +static int plldig_clk_remove(struct platform_device *pdev)
+> +{
+> +       of_clk_del_provider(pdev->dev.of_node);
 
--- 
-Regards,
+This isn't required. devm already does it.
 
-Laurent Pinchart
+> +       return 0;
+> +}
+> +
+> +static const struct of_device_id plldig_clk_id[] =3D {
+> +       { .compatible =3D "fsl,ls1028a-plldig", .data =3D NULL},
+
+You can leave out the data assignment.
+
