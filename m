@@ -2,71 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC3F09AAAC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:51:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE9489AAAE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:51:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387564AbfHWIuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 04:50:18 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38039 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387472AbfHWIuR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:50:17 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1i15Go-0003X9-JC; Fri, 23 Aug 2019 10:50:06 +0200
-Message-ID: <1566550205.3023.4.camel@pengutronix.de>
-Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
- support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Tero Kristo <t-kristo@ti.com>, Suman Anna <s-anna@ti.com>,
-        Keerthy <j-keerthy@ti.com>, ssantosh@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     tony@atomide.com, devicetree@vger.kernel.org
-Date:   Fri, 23 Aug 2019 10:50:05 +0200
-In-Reply-To: <e75eed22-1bed-4c8a-930d-e05890d58c47@ti.com>
-References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
-         <1565164139-21886-3-git-send-email-t-kristo@ti.com>
-         <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
-         <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
-         <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
-         <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
-         <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
-         <1566400237.4193.15.camel@pengutronix.de>
-         <5e82199f-2f75-ee05-ba65-1595d0526572@ti.com>
-         <e75eed22-1bed-4c8a-930d-e05890d58c47@ti.com>
+        id S2405053AbfHWIvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 04:51:19 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:36673 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389529AbfHWIvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:51:19 -0400
+Received: by mail-lj1-f195.google.com with SMTP id u15so8152514ljl.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:51:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=FXtQDuMScF/1nReve4eretX2TO/jfCiedtGuRQR2hjM=;
+        b=p6SBn6sDUBeFLX9nMJmZGZC+PTQMLkZJ8aTvGmL+qINEfOstq/jNuLob/ghlirv1KJ
+         cZRyeXtQ1faKYUnTHuBCVNy/y+gs5O1Ob5u1hV9AU5ut4mXZX+Okq3HmZsxsT+DBbIGs
+         J7sCK51VUU3lrdn3m0sttx9PyWO3QwemGQnd1cRnP0eZPC4Pa8fqdl0xMWR23wDeqeAt
+         FBxKNcv/H0DFEFdPjz9wsTwbnCzc2Hnz2I0UXU6Qlf1/20m+dC5NojBZhY02m301Xx20
+         8SBl2+ZAWxgHnmt/joknqH100+Al87qai/W4q6tyFUZ1rvjBxGuZwVUWExcs1/CQ4lLY
+         4fhA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=FXtQDuMScF/1nReve4eretX2TO/jfCiedtGuRQR2hjM=;
+        b=V6JvGZ9f5Z3mTQMdNdAHibU8C5+iClmiM9mUD5AuzM9uxVSyaAwLHJvBd9iO7eqBpm
+         8GT8JSHAXn9+lmCqJ4Odsba8Te7SdgHII7hAvLjzSTZFXOgVv3wXf8ADFT7OLe1a2ZGa
+         4GjUn2fiorqJH2RFRi7CnjYYwIOB+bhlFgxIzNa4JydHFXOAUyAnvJRhRDCyP1wqWVbx
+         +U5YZuvTVId6RpQt8ubG50gzbjyAc64gmRAbT4V3tuOR0dgLu4MzW3eyrxI/KRAWOqs+
+         4v6kEkeN9c+TFbiZhgaUJZF08nbgOMjvzY1osDzyOBSExD3p0FNpAnxGtPVB8xBIu7xH
+         9IlQ==
+X-Gm-Message-State: APjAAAW/49EZ4RSUbs1lWzlk9qb5SONtCBzEIre229CPofQOPCE5aLbH
+        dAwKrjtBtQcAnnboU8UFeFktq83HtApOASQe5qRmIg==
+X-Google-Smtp-Source: APXvYqyppYyNq83SxxmmRdWOnL0oOzeUD0rB8qh3X7YKYtXA9sxXcXqHi/9iYmrgLahKeTty/OM4UHWE1xxoqpX3Dgw=
+X-Received: by 2002:a2e:80da:: with SMTP id r26mr2124440ljg.62.1566550276856;
+ Fri, 23 Aug 2019 01:51:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com> <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
+In-Reply-To: <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 23 Aug 2019 10:51:04 +0200
+Message-ID: <CACRpkdY4sVV5oyFa+a30dY2A9tsKpzTeuQ8ChmnXcm-5_eZkVA@mail.gmail.com>
+Subject: Re: [PATCH v2 03/11] dt-bindings: irq: mtk,sysirq: add support for mt6779
+To:     Mars Cheng <mars.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, wsd_upstream@mediatek.com,
+        mtk01761 <wendell.lin@mediatek.com>,
+        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-08-21 at 21:15 +0300, Tero Kristo wrote:
-> On 21.8.2019 18.45, Suman Anna wrote:
-> > On 8/21/19 10:10 AM, Philipp Zabel wrote:
-[...]
-> > > In general, assuming the device tree contains no errors, this should not
-> > > matter much, but I think it is nice if the reset driver, even with a
-> > > misconfigured device tree, can't write into arbitrary bit fields.
-> > 
-> > Tero,
-> > Can you add a check for this if possible?
-> 
-> Well, I can enforce the usage of reset bit mapping, which I have already 
-> implemented for some SoCs like am33xx. If the specific ID is not found, 
-> I can bail out. So, basically in this example requesting reset at index 
-> 3 would succeed, but it would fail for any other ID; this would be 
-> direct HW bit mapping.
+On Mon, Aug 19, 2019 at 11:22 AM Mars Cheng <mars.cheng@mediatek.com> wrote:
 
-That should be fine.
+> Add binding documentation of mediatek,sysirq for mt6779 SoC.
+>
+> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
 
-regards
-Philipp
+I'm relying on Sean to review this and ACK when he's pleased
+with the result.
+
+Yours,
+Linus Walleij
