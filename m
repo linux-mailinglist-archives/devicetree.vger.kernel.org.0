@@ -2,106 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D82269ADCA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 13:03:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D3E9ADDF
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 13:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390815AbfHWLC3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 07:02:29 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:56460 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403804AbfHWLC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 07:02:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=mqrlg5qdclgMswZNo7YeuT7GTzz+9HMIwbV1tzQa7/o=; b=tAWhLvebAUeF
-        ZMhTF7cMrpBzfMIEw1+Y2pV0shpl62di12XuNmwGgexF6Vw+voB1Fk/oNg/HvkM9ZbNSMT5SHrn/4
-        Zk2dIjgpis3k0+iVajNeNzMI775zeP1XzcaY/kb12JWwsREdaSdroEg8Qf7oVgt1nFCd0FwFmchOu
-        Szjzs=;
-Received: from [92.54.175.117] (helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1i17Kt-0002wG-Ft; Fri, 23 Aug 2019 11:02:27 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 36BDAD02CD1; Fri, 23 Aug 2019 12:02:27 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Vladimir Oltean <olteanv@gmail.com>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>, netdev@vger.kernel.org
-Subject: Applied "spi: spi-fsl-dspi: Exit the ISR with IRQ_NONE when it's not ours" to the spi tree
-In-Reply-To: <20190822211514.19288-3-olteanv@gmail.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190823110227.36BDAD02CD1@fitzroy.sirena.org.uk>
-Date:   Fri, 23 Aug 2019 12:02:27 +0100 (BST)
+        id S1726457AbfHWLHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 07:07:34 -0400
+Received: from foss.arm.com ([217.140.110.172]:60306 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726247AbfHWLHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 07:07:33 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E8065337;
+        Fri, 23 Aug 2019 04:07:32 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 417653F246;
+        Fri, 23 Aug 2019 04:07:31 -0700 (PDT)
+Date:   Fri, 23 Aug 2019 12:07:22 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "andrew.murray@arm.com" <andrew.murray@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>
+Subject: Re: [PATCHv2 0/4] Layerscape: Remove num-lanes property from PCIe
+ nodes
+Message-ID: <20190823110714.GA10257@e121166-lin.cambridge.arm.com>
+References: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Tue, Aug 20, 2019 at 07:28:37AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> On FSL Layerscape SoCs, the number of lanes assigned to PCIe
+> controller is not fixed, it is determined by the selected
+> SerDes protocol. The current num-lanes indicates the max lanes
+> PCIe controller can support up to, instead of the lanes assigned
+> to the PCIe controller. This can result in PCIe link training fail
+> after hot-reset.
+> 
+> Hou Zhiqiang (4):
+>   dt-bindings: PCI: designware: Remove the num-lanes from Required
+>     properties
+>   PCI: dwc: Return directly when num-lanes is not found
+>   ARM: dts: ls1021a: Remove num-lanes property from PCIe nodes
+>   arm64: dts: fsl: Remove num-lanes property from PCIe nodes
+> 
+>  Documentation/devicetree/bindings/pci/designware-pcie.txt | 1 -
+>  arch/arm/boot/dts/ls1021a.dtsi                            | 2 --
+>  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi            | 1 -
+>  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi            | 3 ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi            | 6 ------
+>  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi            | 3 ---
+>  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi            | 4 ----
+>  drivers/pci/controller/dwc/pcie-designware.c              | 6 ++++--
+>  8 files changed, 4 insertions(+), 22 deletions(-)
 
-   spi: spi-fsl-dspi: Exit the ISR with IRQ_NONE when it's not ours
+Applied to pci/dwc for v5.4, thanks.
 
-has been applied to the spi tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 37b4100180641968056cb4e034cebc38338e8652 Mon Sep 17 00:00:00 2001
-From: Vladimir Oltean <olteanv@gmail.com>
-Date: Fri, 23 Aug 2019 00:15:11 +0300
-Subject: [PATCH] spi: spi-fsl-dspi: Exit the ISR with IRQ_NONE when it's not
- ours
-
-The DSPI interrupt can be shared between two controllers at least on the
-LX2160A. In that case, the driver for one controller might misbehave and
-consume the other's interrupt. Fix this by actually checking if any of
-the bits in the status register have been asserted.
-
-Fixes: 13aed2392741 ("spi: spi-fsl-dspi: use IRQF_SHARED mode to request IRQ")
-Signed-off-by: Vladimir Oltean <olteanv@gmail.com>
-Link: https://lore.kernel.org/r/20190822211514.19288-3-olteanv@gmail.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- drivers/spi/spi-fsl-dspi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/spi/spi-fsl-dspi.c b/drivers/spi/spi-fsl-dspi.c
-index c90db7db4121..6ef2279a3699 100644
---- a/drivers/spi/spi-fsl-dspi.c
-+++ b/drivers/spi/spi-fsl-dspi.c
-@@ -659,7 +659,7 @@ static irqreturn_t dspi_interrupt(int irq, void *dev_id)
- 	regmap_write(dspi->regmap, SPI_SR, spi_sr);
- 
- 	if (!(spi_sr & (SPI_SR_EOQF | SPI_SR_TCFQF)))
--		return IRQ_HANDLED;
-+		return IRQ_NONE;
- 
- 	/* Get transfer counter (in number of SPI transfers). It was
- 	 * reset to 0 when transfer(s) were started.
--- 
-2.20.1
-
+Lorenzo
