@@ -2,122 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A0B9A7C1
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 08:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B97B29A7DC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 08:54:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392342AbfHWGks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 02:40:48 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:43609 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2388663AbfHWGkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 02:40:47 -0400
-X-UUID: 47de99e31def4dd286c05c6aeae9d764-20190823
-X-UUID: 47de99e31def4dd286c05c6aeae9d764-20190823
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 669928500; Fri, 23 Aug 2019 14:40:29 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 23 Aug 2019 14:40:25 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 23 Aug 2019 14:40:24 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Mathias Nyman <mathias.nyman@intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-usb@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [RESEND PATCH v2 2/2] usb: xhci-mtk: add an optional xhci_ck clock
-Date:   Fri, 23 Aug 2019 14:40:25 +0800
-Message-ID: <1566542425-20082-2-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1566542425-20082-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1566542425-20082-1-git-send-email-chunfeng.yun@mediatek.com>
+        id S2404713AbfHWGyw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 02:54:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51590 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404303AbfHWGyw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 02:54:52 -0400
+Received: from localhost (unknown [106.200.210.161])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4BC7921726;
+        Fri, 23 Aug 2019 06:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566543291;
+        bh=W+qn+QOwSKG7puhON5UFJGrv26xyv8xtSb5V5rMP7E4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wDmw9L/HlwxOz/CUNginISgXT6bUGd2KhGdfkcMeC4UfHm55bRlNgTmgwsHlc6He7
+         foWdCjK+8jN0DVJjHT5qJpJGJU1yyHW+6Xw/e6QdqHfDxLRMhT6AdJdBm8KWdmTqw/
+         +Dp1q0feQqbW0+sTAnHu9FpRqt6FoRiIlF55x4FU=
+Date:   Fri, 23 Aug 2019 12:23:40 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, spapothi@codeaurora.org,
+        bgoswami@codeaurora.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND PATCH v4 1/4] dt-bindings: soundwire: add slave bindings
+Message-ID: <20190823065340.GD2672@vkoul-mobl>
+References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
+ <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: D5F0782D299C7618816412C070776E5DD47733EB89CD07D1E2052908E45C089E2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some SoCs may have an optional clock xhci_ck (125M or 200M), it
-usually uses the same PLL as sys_ck, so support it.
+On 23-08-19, 00:37, Srinivas Kandagatla wrote:
+> This patch adds bindings for Soundwire Slave devices that includes how
+> SoundWire enumeration address and Link ID are used to represented in
+> SoundWire slave device tree nodes.
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../soundwire/soundwire-controller.yaml       | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+> new file mode 100644
+> index 000000000000..91aa6c6d6266
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soundwire/soundwire-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SoundWire Controller Generic Binding
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v2 no changes
----
- drivers/usb/host/xhci-mtk.c | 13 +++++++++++++
- drivers/usb/host/xhci-mtk.h |  1 +
- 2 files changed, 14 insertions(+)
+Controller does not make sense here, why not use spec terminology and
+say "SoundWire Slave Generic Binding"
 
-diff --git a/drivers/usb/host/xhci-mtk.c b/drivers/usb/host/xhci-mtk.c
-index 026fe18972d3..b18a6baef204 100644
---- a/drivers/usb/host/xhci-mtk.c
-+++ b/drivers/usb/host/xhci-mtk.c
-@@ -216,6 +216,10 @@ static int xhci_mtk_clks_get(struct xhci_hcd_mtk *mtk)
- 		return PTR_ERR(mtk->sys_clk);
- 	}
- 
-+	mtk->xhci_clk = devm_clk_get_optional(dev, "xhci_ck");
-+	if (IS_ERR(mtk->xhci_clk))
-+		return PTR_ERR(mtk->xhci_clk);
-+
- 	mtk->ref_clk = devm_clk_get_optional(dev, "ref_ck");
- 	if (IS_ERR(mtk->ref_clk))
- 		return PTR_ERR(mtk->ref_clk);
-@@ -244,6 +248,12 @@ static int xhci_mtk_clks_enable(struct xhci_hcd_mtk *mtk)
- 		goto sys_clk_err;
- 	}
- 
-+	ret = clk_prepare_enable(mtk->xhci_clk);
-+	if (ret) {
-+		dev_err(mtk->dev, "failed to enable xhci_clk\n");
-+		goto xhci_clk_err;
-+	}
-+
- 	ret = clk_prepare_enable(mtk->mcu_clk);
- 	if (ret) {
- 		dev_err(mtk->dev, "failed to enable mcu_clk\n");
-@@ -261,6 +271,8 @@ static int xhci_mtk_clks_enable(struct xhci_hcd_mtk *mtk)
- dma_clk_err:
- 	clk_disable_unprepare(mtk->mcu_clk);
- mcu_clk_err:
-+	clk_disable_unprepare(mtk->xhci_clk);
-+xhci_clk_err:
- 	clk_disable_unprepare(mtk->sys_clk);
- sys_clk_err:
- 	clk_disable_unprepare(mtk->ref_clk);
-@@ -272,6 +284,7 @@ static void xhci_mtk_clks_disable(struct xhci_hcd_mtk *mtk)
- {
- 	clk_disable_unprepare(mtk->dma_clk);
- 	clk_disable_unprepare(mtk->mcu_clk);
-+	clk_disable_unprepare(mtk->xhci_clk);
- 	clk_disable_unprepare(mtk->sys_clk);
- 	clk_disable_unprepare(mtk->ref_clk);
- }
-diff --git a/drivers/usb/host/xhci-mtk.h b/drivers/usb/host/xhci-mtk.h
-index 8be8c5f7ff62..5ac458b7d2e0 100644
---- a/drivers/usb/host/xhci-mtk.h
-+++ b/drivers/usb/host/xhci-mtk.h
-@@ -139,6 +139,7 @@ struct xhci_hcd_mtk {
- 	struct regulator *vusb33;
- 	struct regulator *vbus;
- 	struct clk *sys_clk;	/* sys and mac clock */
-+	struct clk *xhci_clk;
- 	struct clk *ref_clk;
- 	struct clk *mcu_clk;
- 	struct clk *dma_clk;
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
+> +  SoundWire busses can be described with a node for the SoundWire controller
+> +  device and a set of child nodes for each SoundWire slave on the bus.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^soundwire(@.*|-[0-9a-f])*$"
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^.*@[0-9a-f]+$":
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +      pattern: "^sdw[0-9][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
+> +      description:
+> +	  Is the textual representation of SoundWire Enumeration
+> +	  address. compatible string should contain SoundWire Version ID,
+> +	  Manufacturer ID, Part ID and Class ID in order and shall be in
+> +	  lower-case hexadecimal with leading zeroes.
+> +	  Valid sizes of these fields are
+> +	  Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
+> +	  and '0x2' represents SoundWire 1.1 and so on.
+> +	  MFD is 4 nibbles
+> +	  PID is 4 nibbles
+> +	  CID is 2 nibbles
+> +	  More Information on detail of encoding of these fields can be
+> +	  found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
+> +
+> +      reg:
+> +        maxItems: 1
+> +        description:
+> +          Instance ID and Link ID of SoundWire Device Address.
+
+This looks better :) Thanks.
+
+Apart from the minor nit above this looks good to me, I can merge the
+sdw parts if Rob is fine with them.
+
+Thanks
+
+> +
+> +    required:
+> +      - compatible
+> +      - reg
+> +
+> +examples:
+> +  - |
+> +    soundwire@c2d0000 {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        compatible = "qcom,soundwire-v1.5.0";
+> +        reg = <0x0c2d0000 0x2000>;
+> +
+> +        speaker@1 {
+> +            compatible = "sdw10217201000";
+> +            reg = <1 0>;
+> +        };
+> +
+> +        speaker@2 {
+> +            compatible = "sdw10217201000";
+> +            reg = <2 0>;
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.21.0
+
 -- 
-2.23.0
-
+~Vinod
