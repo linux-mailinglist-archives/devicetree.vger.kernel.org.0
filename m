@@ -2,387 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A41FE9B3E6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 17:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB8659B3E8
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 17:52:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732803AbfHWPvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 11:51:22 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:35892 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436569AbfHWPvW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 11:51:22 -0400
-Received: by mail-lf1-f68.google.com with SMTP id r5so1970917lfc.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 08:51:19 -0700 (PDT)
+        id S1726921AbfHWPwB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 11:52:01 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:38270 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726889AbfHWPwA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 11:52:00 -0400
+Received: by mail-ed1-f65.google.com with SMTP id r12so14157654edo.5;
+        Fri, 23 Aug 2019 08:51:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=c0jihdx+9pIsDhMUnwWxd5RgGSmywWM1YY3X7RdKEII=;
-        b=bnPK7TDD2iixrAyCNpHY7nk3eZ1VgKhma55JC+aqyzd0cv+yWmVkPL3i1jPlk/3AnY
-         0CbpzjZtVHpyMVRfER7Tw5hPopVCwphN6+6salPBwbaRrV7RQs6EjIy86/YIuVJYqt1/
-         I3AZf36iFQI2LHt2ATVb0mYC7H0xcbmn+3f2Qm9GEs5NQN+TVELRstAH3w79YRJ+fz6i
-         mLYxSCmqjS7tHRK3Wca9l0GlSkTA8HvIqX5NgKyJmjr7IidUSeiZ1Ld1fBwUMrKc9dZV
-         cfxfPaRPjSu8vz/+pGNiOGnxvXcrnGCZ8Yorui9j431RraNmDwV4GC1KeCxIgHMXbeS5
-         OEEQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iyqrdjipyXAujuXf+ThiuGW6nNdgnVLRywofD+cV01o=;
+        b=rvlqHn0L1193g1bK59aDzW5QFZ7INT6gNf3Fv0WGM522kqXV05cx99QeADHrYojnOT
+         bBasDwlDXOn41HN2QOKRtrcmmRM/G/wE+Uf+ceza0tFj3kPXujfHkI9QSDImmXugxTec
+         H3ligJeorzjo88okJUYQ4pB8lIuFR0SMKGoanMIsO8C+dtiAz1c8MZ8YuILQnH+aZJt/
+         cOXURAuFat+IaVpuPsi9LaIbMhbPf7HoLIHmQ1jayg4BTXyEMV8DF8j6t7RC4mKrXHxm
+         EuY6VOaCVkBiEbxCEAd65AWT3RWP2OmhZCENtrfZkCgrsV1F3lsIQNjsexKJP8/NIOMK
+         IPBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=c0jihdx+9pIsDhMUnwWxd5RgGSmywWM1YY3X7RdKEII=;
-        b=DA3MJqrXwPCGrwZUSQRKpCqvXKKR3pwIj88caQTeivLhI3T+Mi0/TGiPiPXu1unoRV
-         8sQPWDBn+qN1TrDwLdeezoNYk/qsw0h92TPVINLRYQGLpO/i65nvPpB+qMRlBTZ0Pkis
-         FuJC3/Et3uGjQ4rBdxzM1xYvnnkkDJAtLUdRsxWx3zRGF62D6jvUi0licj6HFNr90JQc
-         BxJKBZRVHNCWXQ3lwCp/P3llh20ibIkP93Np5Gqmy0RYTS30Tpk4NI4ZvrrAznIQyP3r
-         +mZnzNl+TNx1uq3HZokRjkxGgfQv+ilcPfSOxBWezwmnNMjXmekYG/CP/PXDWjsM2kGa
-         /N4w==
-X-Gm-Message-State: APjAAAVx48PLqCfHxfqm8WnA0Ry8AaDSoB5whoCTjgiUlQ1evmzA0Zh/
-        jzVL4bpmogzE8JAOEAsgRsAK7Q==
-X-Google-Smtp-Source: APXvYqyK0UO+n3n75wo+gE5IghCPaEK7YucPn0UKAnyKPS7EW/YAjWwWUoNQGAj9u9Vd7/0Fs1Zvgg==
-X-Received: by 2002:a19:dc14:: with SMTP id t20mr3274439lfg.182.1566575478748;
-        Fri, 23 Aug 2019 08:51:18 -0700 (PDT)
-Received: from localhost (h-177-236.A463.priv.bahnhof.se. [217.31.177.236])
-        by smtp.gmail.com with ESMTPSA id f18sm712801ljj.60.2019.08.23.08.51.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2019 08:51:18 -0700 (PDT)
-Date:   Fri, 23 Aug 2019 17:51:17 +0200
-From:   Niklas Soderlund <niklas.soderlund@ragnatech.se>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] media: bindings: video-interfaces: Update the example
-Message-ID: <20190823155117.GF28351@bigcity.dyn.berto.se>
-References: <20190822210433.767-1-jacopo+renesas@jmondi.org>
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=iyqrdjipyXAujuXf+ThiuGW6nNdgnVLRywofD+cV01o=;
+        b=D1yzr/aRTHmEwXlmsa6rW4vNtsUZFfe77clNJSvzORSTSPEf1MS7Nj1ZnnIXk4KtG+
+         l1WzphhUn9LZPEoYpB6Cx/z713RHtTWrb2hdc8hTSVjBLxAPUgmxvelX3nDKNT+hv4pD
+         qX+SWwHRnA9o/AoEo0kStFaOG6Ku2VlY8tHe0MoYAvAybkozcIb/f/cNBt1Ci8y+6gxq
+         BpYJzNrz6EJ4FL0xhZWPYij2eeNKtuMTk0qXkdClcbsRDLK0Hx2B4EkVVbhSIWgcDJuj
+         Owb5k6TO1Z4SPk3IUd1GRJ+ENPO5zcouen2yoeBT6pM+Ix69GR/SoAFHTypfL/7XNVst
+         uz+g==
+X-Gm-Message-State: APjAAAWonhuyXuvnvTf35Oq7eAGklI2CX1td+xTBZ4NAbWvt2mGUNSaK
+        L/XHjbUJfAJQFq4r8Q5r1TYj9NdcPzA=
+X-Google-Smtp-Source: APXvYqznB5coGlLh9coLbb8PuXMvVnSjrTSolQ3eNOBqxBxf0JB7bBx1R5LOZE7siYfusUythAV2EA==
+X-Received: by 2002:aa7:d5d3:: with SMTP id d19mr5432403eds.103.1566575517699;
+        Fri, 23 Aug 2019 08:51:57 -0700 (PDT)
+Received: from ziggy.stardust ([37.223.137.147])
+        by smtp.gmail.com with ESMTPSA id k12sm469254ejz.79.2019.08.23.08.51.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Aug 2019 08:51:57 -0700 (PDT)
+Subject: Re: [PATCH v2 03/11] dt-bindings: irq: mtk,sysirq: add support for
+ mt6779
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Mars Cheng <mars.cheng@mediatek.com>
+Cc:     Rob Herring <robh@kernel.org>, Marc Zyngier <marc.zyngier@arm.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sean Wang <sean.wang@kernel.org>,
+        CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, wsd_upstream@mediatek.com,
+        mtk01761 <wendell.lin@mediatek.com>,
+        linux-clk <linux-clk@vger.kernel.org>
+References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com>
+ <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
+ <CACRpkdY4sVV5oyFa+a30dY2A9tsKpzTeuQ8ChmnXcm-5_eZkVA@mail.gmail.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ jrHWeQEI2ucSKsNa8FllDmG/fQ==
+Message-ID: <827cd581-8fa0-d59b-f21c-de16f8c2ee50@gmail.com>
+Date:   Fri, 23 Aug 2019 17:51:56 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190822210433.767-1-jacopo+renesas@jmondi.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <CACRpkdY4sVV5oyFa+a30dY2A9tsKpzTeuQ8ChmnXcm-5_eZkVA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+Hi Linus,
 
-Thanks for your patch.
-
-On 2019-08-22 23:04:33 +0200, Jacopo Mondi wrote:
-> The example provided by the video-interface.txt file uses compatible
-> values for drivers which are have been removed a long time ago. To avoid
-> generating confusion, replace the existing example with a new one using
-> upstream maintained and more modern devices.
+On 23/08/2019 10:51, Linus Walleij wrote:
+> On Mon, Aug 19, 2019 at 11:22 AM Mars Cheng <mars.cheng@mediatek.com> wrote:
 > 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+>> Add binding documentation of mediatek,sysirq for mt6779 SoC.
+>>
+>> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
 > 
-> ---
-> This patch has been triggered by Simon's attempt to rename the bindings
-> for the now removed soc-camera based sh-mobile-ceu device, which is used in
-> this example:
-> https://patchwork.kernel.org/patch/11101079/
-> 
-> As soon as that driver is not mentioned in the example anymore, its
-> bindings documentation could be removed as well.
-> ---
->  .../bindings/media/video-interfaces.txt       | 223 ++++++++++--------
->  1 file changed, 130 insertions(+), 93 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> index f884ada0bffc..cce80fd0ea13 100644
-> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> @@ -153,123 +153,160 @@ Optional endpoint properties
->  Example
->  -------
-> 
-> -The example snippet below describes two data pipelines.  ov772x and imx074 are
-> -camera sensors with a parallel and serial (MIPI CSI-2) video bus respectively.
-> -Both sensors are on the I2C control bus corresponding to the i2c0 controller
-> -node.  ov772x sensor is linked directly to the ceu0 video host interface.
-> -imx074 is linked to ceu0 through the MIPI CSI-2 receiver (csi2). ceu0 has a
-> -(single) DMA engine writing captured data to memory.  ceu0 node has a single
-> -'port' node which may indicate that at any time only one of the following data
-> -pipelines can be active: ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
-> -
-> -	ceu0: ceu@fe910000 {
-> -		compatible = "renesas,sh-mobile-ceu";
-> -		reg = <0xfe910000 0xa0>;
-> -		interrupts = <0x880>;
-> -
-> -		mclk: master_clock {
-> -			compatible = "renesas,ceu-clock";
-> -			#clock-cells = <1>;
-> -			clock-frequency = <50000000>;	/* Max clock frequency */
-> -			clock-output-names = "mclk";
-> -		};
-> +Te example snippet below describes two data pipelines connected to a video
-
-s/Te/The/
-
-> +DMA engine (VIN4) which has a direct parallel video bus connection to an HDMI
-> +video decoder at port@0 and a data path to a CSI-2 receiver connected to an
-> +image sensor (imx074) at port@1.
-> 
-> -		port {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> +The parallel HDMI video decoder links directly to the VIN input port 0, and the
-> +bus configuration at both ends is specified in each endpoint.
-> 
-> -			/* Parallel bus endpoint */
-> -			ceu0_1: endpoint@1 {
-> -				reg = <1>;		/* Local endpoint # */
-> -				remote = <&ov772x_1_1>;	/* Remote phandle */
-> -				bus-width = <8>;	/* Used data lines */
-> -				data-shift = <2>;	/* Lines 9:2 are used */
-> +The imx074 sensor connects to the CSI-2 receiver and the MIPI CSI-2 serial bus
-> +configuration is specified in the respective endpoints as well. The CSI-2
-> +receiver is then linked to the DMA engine through a direct data path which does
-> +not require any endpoint configuration.
-> 
-> -				/* If hsync-active/vsync-active are missing,
-> -				   embedded BT.656 sync is used */
-> -				hsync-active = <0>;	/* Active low */
-> -				vsync-active = <0>;	/* Active low */
-> -				data-active = <1>;	/* Active high */
-> -				pclk-sample = <1>;	/* Rising */
-> -			};
-> +i2c0: i2c@e6500000 {
-> +
-> +	hdmi-decoder@4c {
-> +		compatible = "adi,adv7612";
-> +		reg = <0x4c>;
-> 
-> -			/* MIPI CSI-2 bus endpoint */
-> -			ceu0_0: endpoint@0 {
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
->  				reg = <0>;
-> -				remote = <&csi2_2>;
-> +				adv7612_in: endpoint {
-> +					remote-endpoint = <&hdmi_con_in>;
-> +				};
->  			};
-> -		};
-> -	};
-> 
-> -	i2c0: i2c@fff20000 {
-> -		...
-> -		ov772x_1: camera@21 {
-> -			compatible = "ovti,ov772x";
-> -			reg = <0x21>;
-> -			vddio-supply = <&regulator1>;
-> -			vddcore-supply = <&regulator2>;
-> -
-> -			clock-frequency = <20000000>;
-> -			clocks = <&mclk 0>;
-> -			clock-names = "xclk";
-> -
-> -			port {
-> -				/* With 1 endpoint per port no need for addresses. */
-> -				ov772x_1_1: endpoint {
-> +			port@2 {
-> +				reg = <2>;
-> +				adv7612_out: endpoint {
-> +					bus-type = 5;
->  					bus-width = <8>;
-> -					remote-endpoint = <&ceu0_1>;
-> -					hsync-active = <1>;
-> -					vsync-active = <0>; /* Who came up with an
-> +					pclk-sample = <0>;
-> +					hsync-active = <0>;
-> +					vsync-active = <1>; /* Who came up with an
->  							       inverter here ?... */
-> -					data-active = <1>;
-> -					pclk-sample = <1>;
-> +					remote-endpoint = <&vin4_digital_in>;
->  				};
->  			};
->  		};
-> + 	};
-> 
-> -		imx074: camera@1a {
-> -			compatible = "sony,imx074";
-> -			reg = <0x1a>;
-> -			vddio-supply = <&regulator1>;
-> -			vddcore-supply = <&regulator2>;
-> -
-> -			clock-frequency = <30000000>;	/* Shared clock with ov772x_1 */
-> -			clocks = <&mclk 0>;
-> -			clock-names = "sysclk";		/* Assuming this is the
-> -							   name in the datasheet */
-> -			port {
-> -				imx074_1: endpoint {
-> -					clock-lanes = <0>;
-> -					data-lanes = <1 2>;
-> -					remote-endpoint = <&csi2_1>;
-> -				};
-> +
-> +	imx074: camera@1a {
-> +		compatible = "sony,imx074";
-> +		reg = <0x1a>;
-> +
-> +		rotation = <180>; /* The camera is mounted upside down! */
-> +
-> +		/* With a single port, use 'port' and not 'ports'. */
-> +		port {
-> +			/* With 1 endpoint per port no need for addresses. */
-> +			imx074_1: endpoint {
-> +				bus-type = 4;
-> +				/* If lane re-ordering is not supported, no
-> +				   need to tell where the clock lane is! */
-> +				/* clock-lanes = <0>; */
-> +				/* But the number of data lanes is important! */
-> +				data-lanes = <1 2>;
-> +				remote-endpoint = <&csi20_in>;
->  			};
->  		};
->  	};
-> +};
-> 
-> -	csi2: csi2@ffc90000 {
-> -		compatible = "renesas,sh-mobile-csi2";
-> -		reg = <0xffc90000 0x1000>;
-> -		interrupts = <0x17a0>;
-> +csi20: csi2@fea80000 {
-> +	compatible = "renesas,r8a7795-csi2";
-> +	reg = <0 0xfea80000 0 0x10000>;
-> +	interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-> +	clocks = <&cpg CPG_MOD 714>;
-> +	power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
-> +	resets = <&cpg 714>;
-
-Do we need all reg, interrupts, clocks, power-domains and resets in the 
-example?
-
-> +
-> +	ports {
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> 
-> -		port@1 {
-> -			compatible = "renesas,csi2c";	/* One of CSI2I and CSI2C. */
-> -			reg = <1>;			/* CSI-2 PHY #1 of 2: PHY_S,
-> -							   PHY_M has port address 0,
-> -							   is unused. */
-> -			csi2_1: endpoint {
-> -				clock-lanes = <0>;
-> -				data-lanes = <2 1>;
-> +		port@0 {
-> +			reg = <0>;
-> +
-> +			csi20_in: endpoint {
-> +				bus-type = 4;
-> +				/* Use the same number of data lanes as the
-> +				   one used by the remote endpoint! */
-
-nit: Do this comment bring value, or is it confusing?
-
-> +				data-lanes = <1 2>;
->  				remote-endpoint = <&imx074_1>;
->  			};
->  		};
-> -		port@2 {
-> -			reg = <2>;			/* port 2: link to the CEU */
-> 
-> -			csi2_2: endpoint {
-> -				remote-endpoint = <&ceu0_0>;
-> +		port@1 {
-> +			reg = <1>;
-> +
-> +			/* Data path to the VIN4 DMA engine. */
-
-Needed?
-
-> +			csi20vin4: endpoint {
-> +				remote-endpoint = <&vin4csi20>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +vin4: video@e6ef4000 {
-> +	compatible = "renesas,vin-r8a7795";
-> +	reg = <0 0xe6ef4000 0 0x1000>;
-> +	interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> +	clocks = <&cpg CPG_MOD 807>;
-> +	power-domains = <&sysc R8A7795_PD_ALWAYS_ON>;
-> +	resets = <&cpg 807>;
-> +	renesas,id = <4>;
-
-Same comment as above, is all properties needed in the example?  
-Specially renesas,id can be confusing as it's a driver specific binding 
-needed to workaround a fun hardware design.
-
-> +
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		/* Parallel input port: HDMI decoder */
-> +		port@0 {
-> +			reg = <0>;
-> +
-> +			vin4_digital_in: endpoint {
-> +				bus-type = 5;
-> +				bus-width = <8>;	/* Used data lines */
-> +				data-shift = <2>;	/* Lines 9:2 are used */
-> +				data-active = <1>;	/* Active high */
-> +				pclk-sample = <0>;	/* Falling */
-> +				/* If hsync-active/vsync-active are missing,
-> +				 * embedded BT.656 sync is used */
-
-I feel if this comment is to be kept it should be expanded.
-
-> +				hsync-active = <0>;
-> +				vsync-active = <0>;
-> +				remote-endpoint = <&adv7612_out>;
-> +			};
-> +		};
-> +
-> +
-> +		/* Data path to the MIPI CSI-2 receiver. */
-> +		port@1 {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			reg =<1>;
-> +
-> +			/* Need endpoint numbers when multiple endpoints are
-> +			   present. */
-
-I think this can be dropped.
-
-> +			vin4csi20: endpoint@0 {
-> +				reg = <0>;
-> +				remote-endpoint = <&csi20vin4>;
-> +			};
-> +
-> +			/* Not connected in this example. */
-> +			vin4csi41: endpoint@3 {
-> +				reg = <3>;
-> +				remote-endpoint = <&csi41vin4>;
->  			};
->  		};
->  	};
-> +};
-> --
-> 2.22.0
+> I'm relying on Sean to review this and ACK when he's pleased
+> with the result.
 > 
 
--- 
+I suppose you meant 4/11, right :)
+
 Regards,
-Niklas Söderlund
+Matthias
