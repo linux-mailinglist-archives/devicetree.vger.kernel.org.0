@@ -2,87 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 768BF9A8DE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9125B9A900
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:37:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732091AbfHWHd3 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Aug 2019 03:33:29 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:50161 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728512AbfHWHd2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:33:28 -0400
-X-Originating-IP: 86.250.200.211
-Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id CE0A61C000B;
-        Fri, 23 Aug 2019 07:33:25 +0000 (UTC)
-Date:   Fri, 23 Aug 2019 09:33:24 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        <devicetree@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>
-Subject: Re: [PATCH v3 00/19] Enhance CP110 COMPHY support
-Message-ID: <20190823093324.2d7da1f4@xps13>
-In-Reply-To: <4e1c4d27-3676-5efa-1126-8149a8635eb5@ti.com>
-References: <20190731122126.3049-1-miquel.raynal@bootlin.com>
-        <4e1c4d27-3676-5efa-1126-8149a8635eb5@ti.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1732886AbfHWHhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 03:37:45 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:36043 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732781AbfHWHhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:37:45 -0400
+Received: by mail-lj1-f195.google.com with SMTP id u15so7970865ljl.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ZZWCM1NaKkWZfHYdamHWGDCsp0daigJ/P9DBMZ7/h0o=;
+        b=gnV+a8SbxnF8E7z2Tj14yFsvjUuIGqSsViiLQ/zAYEOipY0vHqYoB2FX2Q9pBj7Byn
+         a8uth2qvzy+VzbI5mKAiM0vjBaR9exB16/ASG5Ddhfv8myEUUBaV67NAcnESCw6XGEYK
+         oFsRP3hNBTbtXU7DMZdHowrtfY6DkD9y27XIUoOGoQbKnSVxe0iRViKWToVDqVCiNSrD
+         1EC2EsLbxekU9X1hKemCBp9Upb3BVVc6Fa5SwH7ARexZmFgondpi+/1u8PgmTannFBIy
+         LDqliBZWjE2ewubCbfQmU9vE2GMbIRij4CGeVQ544MW/Zc5SZtl2+01ffnjVd/XT4foa
+         kamw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ZZWCM1NaKkWZfHYdamHWGDCsp0daigJ/P9DBMZ7/h0o=;
+        b=glCdGts4z/c/NOU9OFmltdN4nwDI24DeE0Uf6y5cutv6RI4kgLJ3gSUQyFLwDQuJLQ
+         epA3m6twugmXyxEC+c2YUUFg75Yt+ljmj6qGZJ6BeTESaDr+4SAC0kgdvGY0lpkh5M7d
+         ur2CBtivC504TefP2ZH06pTaSax188iC4056A29EPOsksM44yPFxdTCpf7E9RZrBDZyz
+         FV6aAUMWsoAjsl48hyZQdCoq+ezfrsn/D8pHehjQl/tHlDOF7gfcJG69d11v7uOqaaLv
+         Ms05P4LoRAmMkVX7R6Lr1aAqBRqSNXKPseI1FW8H6+ZAbs5jXhJUtgNh2babyJeueJay
+         lyRg==
+X-Gm-Message-State: APjAAAWIoMW4Wyvw+LdV5gDkmng7xqa76GLut63pnCbazqm57ESeKVHq
+        W26MkNEBcnF5sGm1h9tRPQAbIOuAQ4Z9X/jSBHMk7A==
+X-Google-Smtp-Source: APXvYqwoTIF/Emnt9eBfMVVaR3D0yZcfntQldBQ8nXDMcgI62M2HujpKdWtwI9F1v3Vnmg1r5+YyulnqcRsz+8EBjBU=
+X-Received: by 2002:a2e:80da:: with SMTP id r26mr1930950ljg.62.1566545863148;
+ Fri, 23 Aug 2019 00:37:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+References: <20190808101628.36782-1-hui.song_1@nxp.com>
+In-Reply-To: <20190808101628.36782-1-hui.song_1@nxp.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 23 Aug 2019 09:37:31 +0200
+Message-ID: <CACRpkdbYEHQ=sYohxEC99T41qUBHYgBCYjM3MaAnD9PmY4YCyA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/3] gpio: mpc8xxx: add ls1088a platform gpio node DT
+ binding description
+To:     Hui Song <hui.song_1@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kishon,
+On Thu, Aug 8, 2019 at 12:26 PM Hui Song <hui.song_1@nxp.com> wrote:
 
-Kishon Vijay Abraham I <kishon@ti.com> wrote on Fri, 23 Aug 2019
-08:46:14 +0530:
+> From: Song Hui <hui.song_1@nxp.com>
+>
+> ls1088a and ls1028a platform share common gpio node.
+>
+> Signed-off-by: Song Hui <hui.song_1@nxp.com>
 
-> On 31/07/19 5:51 PM, Miquel Raynal wrote:
-> > Armada CP110 have a COMPHY IP which supports configuring SERDES lanes
-> > in one mode, either:
-> > - SATA
-> > - USB3 host
-> > - PCIe (several width)
-> > - Ethernet (several modes)
-> > 
-> > As of today, only a few Ethernet modes are supported and the code is
-> > embedded in the Linux driver. A more complete COMPHY driver that can
-> > be used by both Linux and U-Boot is embedded in the firmware and can
-> > be run through SMC calls.
-> > 
-> > First the current COMPHY driver is updated to use SMC calls but
-> > fallbacks to the already existing functions if the firmware is not
-> > up-to-date. Then, more Ethernet modes are added (through SMC calls
-> > only). SATA, USB3H and PCIe modes are also supported one by one.
-> > 
-> > There is one subtle difference with the PCIe functions: we must tell
-> > the firmware the number of lanes to configure (x1, x2 or x4). This
-> > parameter depends on the number of entries in the 'phys' property
-> > describing the PCIe PHY. We use the "submode" parameter of the generic
-> > PHY API to carry this value. The Armada-8k PCIe driver has been
-> > updated to follow this idea and this change has been merged already:
-> > http://patchwork.ozlabs.org/patch/1072763/  
-> 
-> Some of the patches are not applying cleanly. Care to resend the series after
-> rebasing to phy -next?
+Patch applied with Rob's ACK!
 
-Sure, I'll do it asap.
-
-Thanks!
-Miquèl
-
+Yours,
+Linus Walleij
