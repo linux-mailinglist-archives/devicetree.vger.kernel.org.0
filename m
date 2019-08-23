@@ -2,61 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13B769AFD7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 14:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3484F9B01D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 14:59:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388582AbfHWMnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 08:43:22 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:49915 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727894AbfHWMnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 08:43:21 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 3AD631C000B;
-        Fri, 23 Aug 2019 12:43:18 +0000 (UTC)
-Date:   Fri, 23 Aug 2019 14:43:18 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Biwen Li <biwen.li@nxp.com>
-Cc:     a.zummo@towertech.it, leoyang.li@nxp.com, robh+dt@kernel.org,
+        id S2394978AbfHWM4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 08:56:12 -0400
+Received: from mga17.intel.com ([192.55.52.151]:8367 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2394976AbfHWM4L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 08:56:11 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Aug 2019 05:56:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,421,1559545200"; 
+   d="scan'208";a="208538168"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by fmsmga002.fm.intel.com with ESMTP; 23 Aug 2019 05:56:07 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i196q-00035N-LO; Fri, 23 Aug 2019 15:56:04 +0300
+Date:   Fri, 23 Aug 2019 15:56:04 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Cc:     tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, hpa@zytor.com,
+        tony.luck@intel.com, x86@kernel.org, a.zummo@towertech.it,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
         mark.rutland@arm.com, linux-rtc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [1/3] rtc/fsl: support flextimer for lx2160a
-Message-ID: <20190823124318.GA9844@piout.net>
-References: <20190823095740.12280-1-biwen.li@nxp.com>
+        devicetree@vger.kernel.org, alan@linux.intel.com,
+        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
+        cheol.yong.kim@intel.com, rahul.tanwar@intel.com
+Subject: Re: [PATCH v1 1/2] x86/rtc: Add option to skip using RTC
+Message-ID: <20190823125604.GS30120@smile.fi.intel.com>
+References: <cover.1566458029.git.rahul.tanwar@linux.intel.com>
+ <becacc523508b295a52db9f1592e2868e3988e28.1566458029.git.rahul.tanwar@linux.intel.com>
+ <20190822090208.GJ30120@smile.fi.intel.com>
+ <25f6947d-7ba0-c23c-25aa-c4c4173da6b0@linux.intel.com>
+ <20190822130429.GN30120@smile.fi.intel.com>
+ <a6717e97-01cf-771c-8467-be5946528dd0@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190823095740.12280-1-biwen.li@nxp.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <a6717e97-01cf-771c-8467-be5946528dd0@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/08/2019 17:57:38+0800, Biwen Li wrote:
-> The patch supports flextimer for lx2160a
+On Fri, Aug 23, 2019 at 11:37:38AM +0800, Tanwar, Rahul wrote:
+> On 22/8/2019 9:04 PM, Andy Shevchenko wrote:
+> > On Thu, Aug 22, 2019 at 05:26:33PM +0800, Tanwar, Rahul wrote:
+> > > On 22/8/2019 5:02 PM, Andy Shevchenko wrote:
+> > > > On Thu, Aug 22, 2019 at 03:44:03PM +0800, Rahul Tanwar wrote:
+> > > > > Use a newly introduced optional "status" property of "motorola,mc146818"
+> > > > > compatible DT node to determine if RTC is supported. Skip read/write from
+> > > > > RTC device only when this node is present and status is "disabled". In all
+> > > > > other cases, proceed as before.
+> > > > Can't we rather update ->get_wallclock() and ->set_wallclock() based on this?
+> > > 
+> > > get_wallclock() and set_wallclock() are function pointers of platform_ops
+> > > 
+> > > which are initialized to mach_get_cmos_time() and mach_set_rtc_mmss()
+> > > 
+> > > at init time. Since adding a new platform to override these functions is
+> > > 
+> > > discouraged, so the only way is to modify RTC get/set functions.
+> > Shouldn't it be platform agnostic code?
+> > So, my point is, instead of hacking two functions, perhaps better to avoid them
+> > at all.
 > 
-> Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> ---
->  drivers/rtc/rtc-fsl-ftm-alarm.c | 1 +
->  1 file changed, 1 insertion(+)
+> Sorry, i could not understand your point. The changes are platform
 > 
-> diff --git a/drivers/rtc/rtc-fsl-ftm-alarm.c b/drivers/rtc/rtc-fsl-ftm-alarm.c
-> index 4f7259c2d6a3..2b81525f6db8 100644
-> --- a/drivers/rtc/rtc-fsl-ftm-alarm.c
-> +++ b/drivers/rtc/rtc-fsl-ftm-alarm.c
-> @@ -313,6 +313,7 @@ static const struct of_device_id ftm_rtc_match[] = {
->  	{ .compatible = "fsl,ls1088a-ftm-alarm", },
->  	{ .compatible = "fsl,ls208xa-ftm-alarm", },
->  	{ .compatible = "fsl,ls1028a-ftm-alarm", },
-> +	{ .compatible = "fsl,lx2160a-ftm-alarm", },
+> agnostic i.e. it doesn't break existing use cases. Are you recommending
+> 
+> to add a new platform and make changes there ?
 
-Couldn't that have been part of the previous patch series?...
+Nope, I propose to do something like
 
+void __init foo()
+{
+	if (platform has RTC)
+		return;
+
+	set_wallclock = noop;
+	get_wallclock = noop;
+}
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+With Best Regards,
+Andy Shevchenko
+
+
