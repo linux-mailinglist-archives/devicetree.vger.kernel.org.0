@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2D0A9B192
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 16:05:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1CC89B1C3
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 16:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2395150AbfHWOFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 10:05:34 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:41371 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726894AbfHWOFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 10:05:33 -0400
-Received: by mail-ed1-f67.google.com with SMTP id w5so13653545edl.8;
-        Fri, 23 Aug 2019 07:05:31 -0700 (PDT)
+        id S2391335AbfHWOVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 10:21:50 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:44777 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390413AbfHWOVt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 10:21:49 -0400
+Received: by mail-ed1-f66.google.com with SMTP id a21so13716370edt.11;
+        Fri, 23 Aug 2019 07:21:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=HckfSOQwbXy7efsy9K0fZ9GAvJmWOKx0hMop2zLa6dc=;
-        b=ZWoOmvYtAaF1QFgcaahpFOlkVsz9OPHBcm+XH9d7PRhOZwihzHB2bMJd9B0Y3A7/yI
-         /CvCjJHVmQF2c/7DYuCHb3La3pW9Mi12Z2caq3M9MFAhkIx1wqV+BgFgGRostNVEYpCr
-         UEeNmCtANeFGGSFU1Nd0F3UJsckRQS6BUC1unMLwb6kGlpqHMkUpsDADgq/hqoW1QrWz
-         vjCQKbfH/5A38B89NtMq75HZDPNQqb1WUcqhOB8J44Y0vqPYRsUgdgL2J3v4fw3tA7a2
-         zfyy2mMvd7WLhu7YxmpIenkJKTcPEppZpIYAnMdKaob5RZ9bKMU5OPwTtkcckeIESlVN
-         H34A==
+        bh=VG9rOxWjxku+z26WDdlbzrsrLXcwtH5TXXRtbbObEaU=;
+        b=YoftZYPvLKvjWPY8CZUH+3nSINtRnok996aZ19E60yGqznZa2Xf+QV37A2BOprLwoW
+         NLtV1GgWsJXJI5LJlIsxyZRpDKp747PEfmglGTchMZTBILhpvMhrSlV4zySlmefTZkzc
+         ufgUZGWxQjiSgyzA7ya7mAGy2O1/bU2XlZjMylGu2DZ+ffiDxZWtp8h/f/iOSb6oSGKK
+         0ptieEGWpzMe0RVsflikpkD2jAHlp+dc2ENcfmcLV8LTT2dDwR0sSWEnDjPKiOq+eqhV
+         KTh+bSlMfw+SZZ38MEeyPCtwBHVGCvD9Nn1zRKnpNkVe+Hm04Vw5p/TcgHyx/ozQOnQi
+         WQ9w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=HckfSOQwbXy7efsy9K0fZ9GAvJmWOKx0hMop2zLa6dc=;
-        b=nttkzYevWwK4+8r5b/aJuPXJIuY87Y5zAItf2F3CP6kX2aMfWUft4fsVcwj+M+UNlS
-         5jSStZ6DokCB9LrzQkSuuRgpTTf0CinLAJFHQxc4Ct6wqnucrtHFKIiL440+XdMSf0sJ
-         EV1kNW+xxCPoQeqClxrXcRRfx2iyrtdzrGBexM06Lv5DTpuVmIPXo8kghBsn+wcG/Lwm
-         MyG/99+TF1jX2ERSQKP7bWAByKbeIYyPgEOQfRnL6Du9sCZi2cyDHRQYO/G+BzS6nKBS
-         jvrse9fyVyS4GL0n2uUDaF5WjFmyYQ4c+r/KJ9vLzDZdlvuwfYTiQ214Hb46OkJjiHZu
-         3nHw==
-X-Gm-Message-State: APjAAAXvNRUnTsFwDbIAjObVGef4vih6ogS8ua1n8WJU+XJsuB9yZWjc
-        fc45mrj0YSVPRroEubwW4zg=
-X-Google-Smtp-Source: APXvYqwQNgQMkPQDVAeuvRXy/IUnTsMrjJFdp2pbT7cdmrudqNWCgHOSLjZR2/HImsfDacp0Swt+yA==
-X-Received: by 2002:a50:ee08:: with SMTP id g8mr4644212eds.291.1566569130676;
-        Fri, 23 Aug 2019 07:05:30 -0700 (PDT)
+        bh=VG9rOxWjxku+z26WDdlbzrsrLXcwtH5TXXRtbbObEaU=;
+        b=BqnX1leB5lzw5tiqpu71nCbPgpAVKBHZsjpR+nzQs7rW8xTVRt9DF1tKzEDsim6G14
+         wheWIjEzTlxr2QxrkiNxppdQ+3jui+OoWjyvozdJcYxvK0i97Ss3DsSI6IaFvsrsAI3B
+         m8zHW0gRaVxpNumcNIzIa6W/vo2YUgy3yd5fG/g0e49blrODLatv1NzmRpvNR+FAaZQu
+         NUUQpHsEIGBdL46Fjat9aLbZX/GmX1ChWYK6Q3u/iH2hRUQqmXMDP/FAGG9KVPdrGlhK
+         7mM/hGbwlnpiOT/xL0x2hTPzOhW/8ko6zN3/DjUDwguLeazq1DN0f5IY0L84vNbpLum8
+         sjwg==
+X-Gm-Message-State: APjAAAVnoZ8DnNdrPDRuGGAqmiOriIF9vbyri68IDqeREI2Og3iFKVbe
+        COU9jahUyYUvmfK9IJKKz/Q=
+X-Google-Smtp-Source: APXvYqyinR3OXYstq5J0bky2J5mmk+3bSkAvUdl2VnVeXLnI6vK2Y85exowyd67mWasEqVXytQv0Bw==
+X-Received: by 2002:aa7:c508:: with SMTP id o8mr4750850edq.123.1566570107025;
+        Fri, 23 Aug 2019 07:21:47 -0700 (PDT)
 Received: from ziggy.stardust ([37.223.137.147])
-        by smtp.gmail.com with ESMTPSA id rl6sm428391ejb.64.2019.08.23.07.05.29
+        by smtp.gmail.com with ESMTPSA id oo19sm432155ejb.38.2019.08.23.07.21.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Aug 2019 07:05:30 -0700 (PDT)
-Subject: Re: [RESEND, PATCH v13 10/12] soc: mediatek: cmdq: add polling
- function
+        Fri, 23 Aug 2019 07:21:46 -0700 (PDT)
+Subject: Re: [RESEND, PATCH v13 11/12] soc: mediatek: cmdq: add
+ cmdq_dev_get_client_reg function
 To:     Bibby Hsieh <bibby.hsieh@mediatek.com>,
         Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
@@ -65,7 +65,7 @@ Cc:     Daniel Kurtz <djkurtz@chromium.org>,
         Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
         Houlong Wei <houlong.wei@mediatek.com>, ginny.chen@mediatek.com
 References: <20190820084932.22282-1-bibby.hsieh@mediatek.com>
- <20190820084932.22282-11-bibby.hsieh@mediatek.com>
+ <20190820084932.22282-12-bibby.hsieh@mediatek.com>
 From:   Matthias Brugger <matthias.bgg@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
@@ -161,12 +161,12 @@ Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
  pac005PuhxCWkKTJz3gCmznnoat4GCnL5gy/m0Qk45l4PFqwWXVLo9AQg2Kp3mlIFZ6fsEKI
  AN5hxlbNvNb9V2Zo5bFZjPWPFTxOteM0omUAS+QopwU0yPLLGJVf2iCmItHcUXI+r2JwH1CJ
  jrHWeQEI2ucSKsNa8FllDmG/fQ==
-Message-ID: <2dfb6a69-c325-9caf-e11b-bf0f0fbf4bb6@gmail.com>
-Date:   Fri, 23 Aug 2019 16:05:27 +0200
+Message-ID: <ccd3782e-b1bb-7887-f4a5-d7774183c7b7@gmail.com>
+Date:   Fri, 23 Aug 2019 16:21:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190820084932.22282-11-bibby.hsieh@mediatek.com>
+In-Reply-To: <20190820084932.22282-12-bibby.hsieh@mediatek.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -178,103 +178,102 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 20/08/2019 10:49, Bibby Hsieh wrote:
-> add polling function in cmdq helper functions
+> GCE cannot know the register base address, this function
+> can help cmdq client to get the cmdq_client_reg structure.
 > 
 > Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > Reviewed-by: CK Hu <ck.hu@mediatek.com>
 > ---
->  drivers/soc/mediatek/mtk-cmdq-helper.c   | 28 ++++++++++++++++++++++++
->  include/linux/mailbox/mtk-cmdq-mailbox.h |  1 +
->  include/linux/soc/mediatek/mtk-cmdq.h    | 15 +++++++++++++
->  3 files changed, 44 insertions(+)
+>  drivers/soc/mediatek/mtk-cmdq-helper.c | 29 ++++++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-cmdq.h  | 21 +++++++++++++++++++
+>  2 files changed, 50 insertions(+)
 > 
 > diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> index e3d5b0be8e79..c53f8476c68d 100644
+> index c53f8476c68d..80f75a1075b4 100644
 > --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
 > +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> @@ -221,6 +221,34 @@ int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event)
->  }
->  EXPORT_SYMBOL(cmdq_pkt_clear_event);
+> @@ -27,6 +27,35 @@ struct cmdq_instruction {
+>  	u8 op;
+>  };
 >  
-> +int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
-> +		  u16 offset, u32 value, u32 mask)
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +			    struct cmdq_client_reg *client_reg, int idx)
 > +{
-> +	struct cmdq_instruction *inst;
+
+Can't we do/call this in cmdq_mbox_create parsing the number of gce-client-reg
+properties we have and allocating these using a pointer to cmdq_client_reg in
+cmdq_client?
+We will have to free the pointer then in cmdq_mbox_destroy.
+
+Regards,
+Matthias
+
+> +	struct of_phandle_args spec;
+> +	int err;
 > +
-> +	if (mask != 0xffffffff) {
-
-Is this necessary? Can't we just always set the mask, even if it's 0xffffffff?
-
-Regarding interfaces, depending on how often you expect the mask being ~0 we
-might think of adding a cmdq_pkt_poll_mask call.
-What I want to say, if in the end most of the callers will use the mask with
-0xffffffff, then we should add a call cmdq_pkt_poll_mask which actually allows
-to set the mask and let cmdq_pkt_poll set the mask in it's function body.
-As I already said, this depends on how often you think a caller will use/not-use
-the mask.
-Does this make sense?
-
-> +		inst = cmdq_pkt_append_command(pkt);
-> +		if (!inst)
-> +			return -ENOMEM;
+> +	if (!client_reg)
+> +		return -ENOENT;
 > +
-> +		inst->op = CMDQ_CODE_MASK;
-> +		inst->value = ~mask;
-> +		offset = offset | 0x1;
+> +	err = of_parse_phandle_with_fixed_args(dev->of_node,
+> +					       "mediatek,gce-client-reg",
+> +					       3, idx, &spec);
+> +	if (err < 0) {
+> +		dev_err(dev,
+> +			"error %d can't parse gce-client-reg property (%d)",
+> +			err, idx);
+> +
+> +		return err;
 > +	}
 > +
-> +	inst = cmdq_pkt_append_command(pkt);
-> +	if (!inst)
-> +		return -ENOMEM;
-> +
-> +	inst->op = CMDQ_CODE_POLL;
-> +	inst->value = value;
-> +	inst->offset = offset;
-> +	inst->subsys = subsys;
+> +	client_reg->subsys = (u8)spec.args[0];
+> +	client_reg->offset = (u16)spec.args[1];
+> +	client_reg->size = (u16)spec.args[2];
+> +	of_node_put(spec.np);
 > +
 > +	return 0;
 > +}
-> +EXPORT_SYMBOL(cmdq_pkt_poll);
+> +EXPORT_SYMBOL(cmdq_dev_get_client_reg);
 > +
->  static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
+>  static void cmdq_client_timeout(struct timer_list *t)
 >  {
->  	struct cmdq_instruction *inst;
-> diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
-> index c8adedefaf42..9e3502945bc1 100644
-> --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
-> +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
-> @@ -46,6 +46,7 @@
->  enum cmdq_code {
->  	CMDQ_CODE_MASK = 0x02,
->  	CMDQ_CODE_WRITE = 0x04,
-> +	CMDQ_CODE_POLL = 0x08,
->  	CMDQ_CODE_JUMP = 0x10,
->  	CMDQ_CODE_WFE = 0x20,
->  	CMDQ_CODE_EOC = 0x40,
+>  	struct cmdq_client *client = from_timer(client, t, timer);
 > diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
-> index 9618debb9ceb..a345870a6d10 100644
+> index a345870a6d10..02ddd60b212f 100644
 > --- a/include/linux/soc/mediatek/mtk-cmdq.h
 > +++ b/include/linux/soc/mediatek/mtk-cmdq.h
-> @@ -99,6 +99,21 @@ int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event);
->   */
->  int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event);
+> @@ -15,6 +15,12 @@
+>  
+>  struct cmdq_pkt;
+>  
+> +struct cmdq_client_reg {
+> +	u8 subsys;
+> +	u16 offset;
+> +	u16 size;
+> +};
+> +
+>  struct cmdq_client {
+>  	spinlock_t lock;
+>  	u32 pkt_cnt;
+> @@ -24,6 +30,21 @@ struct cmdq_client {
+>  	u32 timeout_ms; /* in unit of microsecond */
+>  };
 >  
 > +/**
-> + * cmdq_pkt_poll() - Append polling command to the CMDQ packet, ask GCE to
-> + *		     execute an instruction that wait for a specified hardware
-> + *		     register to check for the value. All GCE hardware
-> + *		     threads will be blocked by this instruction.
-> + * @pkt:	the CMDQ packet
-> + * @subsys:	the CMDQ sub system code
-> + * @offset:	register offset from CMDQ sub system
-> + * @value:	the specified target register value
-> + * @mask:	the specified target register mask
+> + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device
+> + *			       node of CMDQ client
+> + * @dev:	device of CMDQ mailbox client
+> + * @client_reg: CMDQ client reg pointer
+> + * @idx:	the index of desired reg
 > + *
 > + * Return: 0 for success; else the error code is returned
+> + *
+> + * Help CMDQ client parsing the cmdq client reg
+> + * from the device node of CMDQ client.
 > + */
-> +int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
-> +		  u16 offset, u32 value, u32 mask);
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +			    struct cmdq_client_reg *client_reg, int idx);
+> +
 >  /**
->   * cmdq_pkt_flush_async() - trigger CMDQ to asynchronously execute the CMDQ
->   *                          packet and call back at the end of done packet
+>   * cmdq_mbox_create() - create CMDQ mailbox client and channel
+>   * @dev:	device of CMDQ mailbox client
 > 
