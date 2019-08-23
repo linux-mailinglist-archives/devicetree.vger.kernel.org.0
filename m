@@ -2,241 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 370D19A8C2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 768BF9A8DE
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:33:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730427AbfHWH3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 03:29:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33414 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729116AbfHWH3p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 03:29:45 -0400
-Received: from localhost (unknown [106.200.210.161])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4ED6D22CEC;
-        Fri, 23 Aug 2019 07:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566545384;
-        bh=2i/tPHQ6yaUr13qI3p1eM/TFcoLYXNVeOjhKb00S12M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R6ABXy29gh3qSQN8IYqa6XHQZq/QbzUAZ2NE+vaAzfIM+e5k67nhQhtokZbcjxSJ4
-         TC+1kdlC50rEiTpR7gqK6SxES7dd//RAR3Byq2kNIOopsTMqV0yZG7Apr/7BGnPFuh
-         pjzxPGWwr4Z4E5F/xRkwtYBcYAcHBWE01G6QST1s=
-Date:   Fri, 23 Aug 2019 12:58:31 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        robh+dt@kernel.org
-Cc:     broonie@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, spapothi@codeaurora.org
-Subject: Re: [PATCH v2 4/5] dt-bindings: soundwire: add bindings for Qcom
- controller
-Message-ID: <20190823072831.GE2672@vkoul-mobl>
-References: <20190813083550.5877-1-srinivas.kandagatla@linaro.org>
- <20190813083550.5877-5-srinivas.kandagatla@linaro.org>
+        id S1732091AbfHWHd3 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Aug 2019 03:33:29 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:50161 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728512AbfHWHd2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:33:28 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id CE0A61C000B;
+        Fri, 23 Aug 2019 07:33:25 +0000 (UTC)
+Date:   Fri, 23 Aug 2019 09:33:24 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>
+Subject: Re: [PATCH v3 00/19] Enhance CP110 COMPHY support
+Message-ID: <20190823093324.2d7da1f4@xps13>
+In-Reply-To: <4e1c4d27-3676-5efa-1126-8149a8635eb5@ti.com>
+References: <20190731122126.3049-1-miquel.raynal@bootlin.com>
+        <4e1c4d27-3676-5efa-1126-8149a8635eb5@ti.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190813083550.5877-5-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13-08-19, 09:35, Srinivas Kandagatla wrote:
-> This patch adds bindings for Qualcomm soundwire controller.
-> 
-> Qualcomm SoundWire Master controller is present in most Qualcomm SoCs
-> either integrated as part of WCD audio codecs via slimbus or
-> as part of SOC I/O.
+Hi Kishon,
 
-Rob.. ?
+Kishon Vijay Abraham I <kishon@ti.com> wrote on Fri, 23 Aug 2019
+08:46:14 +0530:
 
+> On 31/07/19 5:51 PM, Miquel Raynal wrote:
+> > Armada CP110 have a COMPHY IP which supports configuring SERDES lanes
+> > in one mode, either:
+> > - SATA
+> > - USB3 host
+> > - PCIe (several width)
+> > - Ethernet (several modes)
+> > 
+> > As of today, only a few Ethernet modes are supported and the code is
+> > embedded in the Linux driver. A more complete COMPHY driver that can
+> > be used by both Linux and U-Boot is embedded in the firmware and can
+> > be run through SMC calls.
+> > 
+> > First the current COMPHY driver is updated to use SMC calls but
+> > fallbacks to the already existing functions if the firmware is not
+> > up-to-date. Then, more Ethernet modes are added (through SMC calls
+> > only). SATA, USB3H and PCIe modes are also supported one by one.
+> > 
+> > There is one subtle difference with the PCIe functions: we must tell
+> > the firmware the number of lanes to configure (x1, x2 or x4). This
+> > parameter depends on the number of entries in the 'phys' property
+> > describing the PCIe PHY. We use the "submode" parameter of the generic
+> > PHY API to carry this value. The Armada-8k PCIe driver has been
+> > updated to follow this idea and this change has been merged already:
+> > http://patchwork.ozlabs.org/patch/1072763/  
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  .../bindings/soundwire/qcom,sdw.txt           | 167 ++++++++++++++++++
->  1 file changed, 167 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> new file mode 100644
-> index 000000000000..436547f3b155
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soundwire/qcom,sdw.txt
-> @@ -0,0 +1,167 @@
-> +Qualcomm SoundWire Controller Bindings
-> +
-> +
-> +This binding describes the Qualcomm SoundWire Controller along with its
-> +board specific bus parameters.
-> +
-> +- compatible:
-> +	Usage: required
-> +	Value type: <stringlist>
-> +	Definition: must be "qcom,soundwire-v<MAJOR>.<MINOR>.<STEP>",
-> +		    Example:
-> +			"qcom,soundwire-v1.3.0"
-> +			"qcom,soundwire-v1.5.0"
-> +			"qcom,soundwire-v1.6.0"
-> +- reg:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: the base address and size of SoundWire controller
-> +		    address space.
-> +
-> +- interrupts:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: should specify the SoundWire Controller IRQ
-> +
-> +- clock-names:
-> +	Usage: required
-> +	Value type: <stringlist>
-> +	Definition: should be "iface" for SoundWire Controller interface clock
-> +
-> +- clocks:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: should specify the SoundWire Controller interface clock
-> +
-> +- #sound-dai-cells:
-> +	Usage: required
-> +	Value type: <u32>
-> +	Definition: must be 1 for digital audio interfaces on the controller.
-> +
-> +- qcom,dout-ports:
-> +	Usage: required
-> +	Value type: <u32>
-> +	Definition: must be count of data out ports
-> +
-> +- qcom,din-ports:
-> +	Usage: required
-> +	Value type: <u32>
-> +	Definition: must be count of data in ports
-> +
-> +- qcom,ports-offset1:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: should specify payload transport window offset1 of each
-> +		    data port. Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-offset2:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: should specify payload transport window offset2 of each
-> +		    data port. Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-sinterval-low:
-> +	Usage: required
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be sample interval low of each data port.
-> +		    Out ports followed by In ports. Used for Sample Interval
-> +		    calculation.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-word-length:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be size of payload channel sample.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-block-pack-mode:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be 0 or 1 to indicate the block packing mode.
-> +		    0 to indicate Blocks are per Channel
-> +		    1 to indicate Blocks are per Port.
-> +		    Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-block-group-count:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be in range 1 to 4 to indicate how many sample
-> +		    intervals are combined into a payload.
-> +		    Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-lane-control:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be in range 0 to 7 to identify which	data lane
-> +		    the data port uses.
-> +		    Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-hstart:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be number identifying lowerst numbered coloum in
-> +		    SoundWire Frame, i.e. left edge of the Transport sub-frame
-> +		    for each port. Values between 0 and 15 are valid.
-> +		    Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,ports-hstop:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be number identifying highest numbered coloum in
-> +		    SoundWire Frame, i.e. the right edge of the Transport
-> +		    sub-frame for each port. Values between 0 and 15 are valid.
-> +		    Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +- qcom,dports-type:
-> +	Usage: optional
-> +	Value type: <prop-encoded-array>
-> +	Definition: should be one of the following types
-> +		    0 for reduced port
-> +		    1 for simple ports
-> +		    2 for full port
-> +		    Out ports followed by In ports.
-> +		    More info in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> +Note:
-> +	More Information on detail of encoding of these fields can be
-> +found in MIPI Alliance SoundWire 1.0 Specifications.
-> +
-> += SoundWire devices
-> +Each subnode of the bus represents SoundWire device attached to it.
-> +The properties of these nodes are defined by the individual bindings.
-> +
-> += EXAMPLE
-> +The following example represents a SoundWire controller on DB845c board
-> +which has controller integrated inside WCD934x codec on SDM845 SoC.
-> +
-> +soundwire: soundwire@c85 {
-> +	compatible = "qcom,soundwire-v1.3.0";
-> +	reg = <0xc85 0x20>;
-> +	interrupts = <20 IRQ_TYPE_EDGE_RISING>;
-> +	clocks = <&wcc>;
-> +	clock-names = "iface";
-> +	#sound-dai-cells = <1>;
-> +	qcom,dports-type = <0>;
-> +	qcom,dout-ports	= <6>;
-> +	qcom,din-ports	= <2>;
-> +	qcom,ports-sinterval-low = /bits/ 8  <0x07 0x1F 0x3F 0x7 0x1F 0x3F 0x0F 0x0F>;
-> +	qcom,ports-offset1 = /bits/ 8 <0x01 0x02 0x0C 0x6 0x12 0x0D 0x07 0x0A >;
-> +	qcom,ports-offset2 = /bits/ 8 <0x00 0x00 0x1F 0x00 0x00 0x1F 0x00 0x00>;
-> +
-> +	/* Left Speaker */
-> +	left{
-> +		....
-> +	};
-> +
-> +	/* Right Speaker */
-> +	right{
-> +		....
-> +	};
-> +};
-> -- 
-> 2.21.0
+> Some of the patches are not applying cleanly. Care to resend the series after
+> rebasing to phy -next?
 
--- 
-~Vinod
+Sure, I'll do it asap.
+
+Thanks!
+Miquèl
+
