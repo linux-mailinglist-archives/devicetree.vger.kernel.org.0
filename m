@@ -2,52 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9125B9A900
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:37:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CBE99A904
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:38:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732886AbfHWHhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 03:37:45 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:36043 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732781AbfHWHhp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:37:45 -0400
-Received: by mail-lj1-f195.google.com with SMTP id u15so7970865ljl.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:37:43 -0700 (PDT)
+        id S1731748AbfHWHiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 03:38:50 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:38712 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732849AbfHWHiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:38:50 -0400
+Received: by mail-lf1-f68.google.com with SMTP id f21so1470732lfc.5
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:38:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ZZWCM1NaKkWZfHYdamHWGDCsp0daigJ/P9DBMZ7/h0o=;
-        b=gnV+a8SbxnF8E7z2Tj14yFsvjUuIGqSsViiLQ/zAYEOipY0vHqYoB2FX2Q9pBj7Byn
-         a8uth2qvzy+VzbI5mKAiM0vjBaR9exB16/ASG5Ddhfv8myEUUBaV67NAcnESCw6XGEYK
-         oFsRP3hNBTbtXU7DMZdHowrtfY6DkD9y27XIUoOGoQbKnSVxe0iRViKWToVDqVCiNSrD
-         1EC2EsLbxekU9X1hKemCBp9Upb3BVVc6Fa5SwH7ARexZmFgondpi+/1u8PgmTannFBIy
-         LDqliBZWjE2ewubCbfQmU9vE2GMbIRij4CGeVQ544MW/Zc5SZtl2+01ffnjVd/XT4foa
-         kamw==
+        bh=Lz2W/Er+vhSnNSGXtvI+raF02sxjt0QdGmNNXiXbeZ8=;
+        b=xSbUP94itBW5D+EIP6J+VeADRYAq49B6u3tO5t95hiQ3LqFqEQ+LFuJEBkPwIvl6NJ
+         rdHJD228PuvuWY4ayKaABZy0R7ZgUsv1KoJKe1+B4yBMntOltSIwBMnp0zedzqrv87zL
+         FyQiEkp4NI1BU+dGZ0yLr0aX/BmREJwiUiVaQP7m7hDwK2klVCy6+CigyrmqkaynwxUX
+         i9hJB5OCNPeM/9T9HUThretRY6cbh94rGzMPh3Hx8QHO9Re1SquQiiwQO2kbIgauukEr
+         DUTZbK0uzXVvytwctPYRyQDuMKG6qUb+FWGnnGyZvGsYO7gI58znr1Ne4ZP01V0cDmVx
+         f3vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZZWCM1NaKkWZfHYdamHWGDCsp0daigJ/P9DBMZ7/h0o=;
-        b=glCdGts4z/c/NOU9OFmltdN4nwDI24DeE0Uf6y5cutv6RI4kgLJ3gSUQyFLwDQuJLQ
-         epA3m6twugmXyxEC+c2YUUFg75Yt+ljmj6qGZJ6BeTESaDr+4SAC0kgdvGY0lpkh5M7d
-         ur2CBtivC504TefP2ZH06pTaSax188iC4056A29EPOsksM44yPFxdTCpf7E9RZrBDZyz
-         FV6aAUMWsoAjsl48hyZQdCoq+ezfrsn/D8pHehjQl/tHlDOF7gfcJG69d11v7uOqaaLv
-         Ms05P4LoRAmMkVX7R6Lr1aAqBRqSNXKPseI1FW8H6+ZAbs5jXhJUtgNh2babyJeueJay
-         lyRg==
-X-Gm-Message-State: APjAAAWIoMW4Wyvw+LdV5gDkmng7xqa76GLut63pnCbazqm57ESeKVHq
-        W26MkNEBcnF5sGm1h9tRPQAbIOuAQ4Z9X/jSBHMk7A==
-X-Google-Smtp-Source: APXvYqwoTIF/Emnt9eBfMVVaR3D0yZcfntQldBQ8nXDMcgI62M2HujpKdWtwI9F1v3Vnmg1r5+YyulnqcRsz+8EBjBU=
-X-Received: by 2002:a2e:80da:: with SMTP id r26mr1930950ljg.62.1566545863148;
- Fri, 23 Aug 2019 00:37:43 -0700 (PDT)
+        bh=Lz2W/Er+vhSnNSGXtvI+raF02sxjt0QdGmNNXiXbeZ8=;
+        b=qnDbMwVe+T1KYm2Xsh+aTqgmZjut6OOTz70vIVrOyiM/dT+yYfEOklMEbajziNziRg
+         6osQ3fZXO2Ir8oTG1Xvdu23dxo2lizBZvltkEQLnrcDvAHkAA8zR48KPUZSQKce6+Bl9
+         QGKhgbwtk+ii0Cxq3HllVtWKecO0LVaMwrbpDDRkqManV0+ex8lxFCz98zVPEEn+6tsD
+         lt0Bb5ZpiKArAkLztUlmFNhoy4Zek3xT3/X1m/jQLhKoLs8m0pNKFXy8Y1dOADkPm8Ec
+         uphjkhbi9PQKfXBLj9bDf4p/syJJVbBIKtg9+yAWXeA3hB8pwEX727eKzv6kVUXYC5RV
+         mXPw==
+X-Gm-Message-State: APjAAAWGo56h2H4AnH5KtFRlkUBLsNFNUUymZ3YqsbMoNvZ8zYnpEZPO
+        cPP4ma4OSmxinP13WZXGL3EHqMOWViiv31Zsb63SGw==
+X-Google-Smtp-Source: APXvYqwn8sOli89h3xpwI0gsI6dJyFeTKTHshx0YK3OmzA9sFUzjhWgRf+UO3GE1WNBwItHvNrorYCww02wff3Qgq/U=
+X-Received: by 2002:a19:e006:: with SMTP id x6mr1813674lfg.165.1566545928179;
+ Fri, 23 Aug 2019 00:38:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190808101628.36782-1-hui.song_1@nxp.com>
-In-Reply-To: <20190808101628.36782-1-hui.song_1@nxp.com>
+References: <20190808101628.36782-1-hui.song_1@nxp.com> <20190808101628.36782-3-hui.song_1@nxp.com>
+In-Reply-To: <20190808101628.36782-3-hui.song_1@nxp.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Aug 2019 09:37:31 +0200
-Message-ID: <CACRpkdbYEHQ=sYohxEC99T41qUBHYgBCYjM3MaAnD9PmY4YCyA@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] gpio: mpc8xxx: add ls1088a platform gpio node DT
- binding description
+Date:   Fri, 23 Aug 2019 09:38:37 +0200
+Message-ID: <CACRpkdajLb3Spsq4SvRCEJVQcABK+QnNyZi5C3ciTvirjcHF-Q@mail.gmail.com>
+Subject: Re: [PATCH v1 3/3] gpio: mpc8xxx: add ls1088a platform special function
 To:     Hui Song <hui.song_1@nxp.com>
 Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -68,11 +67,12 @@ On Thu, Aug 8, 2019 at 12:26 PM Hui Song <hui.song_1@nxp.com> wrote:
 
 > From: Song Hui <hui.song_1@nxp.com>
 >
-> ls1088a and ls1028a platform share common gpio node.
+> ls1028a and ls1088a platform share common special function.
+> The gpio hardware what they use is the same version.
 >
 > Signed-off-by: Song Hui <hui.song_1@nxp.com>
 
-Patch applied with Rob's ACK!
+Patch applied.
 
 Yours,
 Linus Walleij
