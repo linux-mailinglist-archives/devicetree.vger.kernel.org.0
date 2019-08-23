@@ -2,95 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24FD29A89F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:21:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD359A8BB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733226AbfHWHV2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 03:21:28 -0400
-Received: from shell.v3.sk ([90.176.6.54]:40155 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731211AbfHWHV2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 03:21:28 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 55174D7697;
-        Fri, 23 Aug 2019 09:21:24 +0200 (CEST)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id pMkOYpuRgxH6; Fri, 23 Aug 2019 09:21:20 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id E8F49D7699;
-        Fri, 23 Aug 2019 09:21:19 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 5ToaOpSmwFul; Fri, 23 Aug 2019 09:21:19 +0200 (CEST)
-Received: from belphegor (nat-pool-brq-t.redhat.com [213.175.37.10])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id B15DFD7697;
-        Fri, 23 Aug 2019 09:21:18 +0200 (CEST)
-Message-ID: <424d2881edcaf7cedbfa5cbbf2e73aaff5355df3.camel@v3.sk>
-Subject: Re: [PATCH v2 00/20] Initial support for Marvell MMP3 SoC
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Marc Zyngier <maz@kernel.org>, Olof Johansson <olof@lixom.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org
-Date:   Fri, 23 Aug 2019 09:21:17 +0200
-In-Reply-To: <244fdc87-0fe5-be79-d9cd-2395d0ac3f57@kernel.org>
-References: <20190822092643.593488-1-lkundrak@v3.sk>
-         <244fdc87-0fe5-be79-d9cd-2395d0ac3f57@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
+        id S1731421AbfHWHZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 03:25:45 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35306 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728519AbfHWHZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:25:45 -0400
+Received: by mail-ot1-f68.google.com with SMTP id g17so7934843otl.2;
+        Fri, 23 Aug 2019 00:25:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/4ery6oYbTVDJtzAiULAUxO7jVYM45EnpHXVmFk9ZMs=;
+        b=eFtZzqZlpX9igVr9iGwpzAgRQqgFlVpbklCn/ou+K8hNlmljCPmz4MRZuXX2R3tNJU
+         X23+b189F3H7tKqQC36cVkvdVHKoJDcKM//iMrYP7viUhY8i9eOd/lX6rR67ZD5uEWL/
+         5EVhfDXsFx6eI7AHZhJFYJ7bENNgPFXQfnuQNlO3grc7v/n1JQlZJawWQZoIiiLy8jQV
+         aXYw8ImSLvzEU06BG/jbmL4sk19gTPa/Jga2GRKJ8RT1IeLQdWnwBqeilUf+C2Zn9DXL
+         zBmb5MpxHtA9inwnfcZnA51S6PBvJ8G3tbUkdoZCTY78Pfr645Blo43pWWz3mhfLrvXx
+         RBzQ==
+X-Gm-Message-State: APjAAAWwGl4YfyJzHgJGiZfqgs12YrM/JJsHKcr+Qs4BSdJN5tBiyEok
+        P/aiTGLIRrsaXHhRfvrT2fPiyOwrb6dtHuZzUyh6mgET
+X-Google-Smtp-Source: APXvYqxUgPc+q63zFYw/PCIwIQSFInVb5Z1r22QefA0l+rupMNFDFPehpalDEDVIROjZNnXYx5WbUGOc+qjk1udKb5Q=
+X-Received: by 2002:a9d:5c0c:: with SMTP id o12mr2920288otk.145.1566545144193;
+ Fri, 23 Aug 2019 00:25:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+References: <20190822195600.30787-1-jacopo+renesas@jmondi.org>
+ <20190823001209.GO5027@pendragon.ideasonboard.com> <20190823063227.7soxv2gx7t7acsqq@uno.localdomain>
+In-Reply-To: <20190823063227.7soxv2gx7t7acsqq@uno.localdomain>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 23 Aug 2019 09:25:32 +0200
+Message-ID: <CAMuHMdWA6R93obZ+cq9M2XOn-vHGXaPxwP_Nzp_t1CfDE5mDHw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add LIF channel index to 'vsps'
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-08-22 at 11:31 +0100, Marc Zyngier wrote:
-> On 22/08/2019 10:26, Lubomir Rintel wrote:
-> > Hi, 
-> > 
-> > this is a second spin of a patch set that adds support for the Marvell
-> > MMP3 processor. MMP3 is used in OLPC XO-4 laptops, Panasonic Toughpad
-> > FZ-A1 tablet and Dell Wyse 3020 Tx0D thin clients. 
-> > 
-> > Compared to v1, there's a handful of fixes in response to reviews. Patch
-> > 02/20 is new. Details in individual patches.
-> >  
-> > Apart from the adjustments in mach-mmp/, the patch makes necessary 
-> > changes to the irqchip driver and adds an USB2 PHY driver. The latter 
-> > has a dependency on the mach-mmp/ changes, so it can't be submitted 
-> > separately.
-> >  
-> > The patch set has been tested to work on Wyse Tx0D and not ruin MMP2 
-> > support on XO-1.75. 
-> 
-> How do you want this series to be merged? I'm happy to take the irqchip
-> related patches as well as the corresponding DT change (once reviewed)
-> through my tree.
+Hi Jacopo,
 
-I was hoping for the Arm SoC tree, because there are some dependencies
-(MMP3 USB PHY depends on MMP3 SoC).
+On Fri, Aug 23, 2019 at 8:31 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
+> On Fri, Aug 23, 2019 at 03:12:09AM +0300, Laurent Pinchart wrote:
+> > On Thu, Aug 22, 2019 at 09:56:00PM +0200, Jacopo Mondi wrote:
+> > > According to the Renesas R-Car DU bindings documentation, the 'vsps'
+> > > property should be composed by a phandle to the VSP instance and the
+> >
+> > > index of the LIF channel assigned to the DU channel. Some SoC device
+> > > tree source files do not specify any LIF channel index, relying on the
+> > > driver defaulting it to 0 if not specified.
+> > >
+> > > Align all device tree files by specifying the LIF channel index as
+> > > prescribed by the bindings documentation. While at it, add a comment to
+> > > the 'vsps' property parsing routine to point out the LIF channel index
+> > > is still defaulted to 0 for backward compatibility with non-standard DTB
+> > > found in the wild.
+> >
+> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
 
-That said, the irqchip patches are rather independent and the only
-downside of them going in via a different tree will be that the other
-tree that will lack them won't boot on MMP3 (things will compile
-though). I don't know if that's okay. What's typically done in cases
-like these?
+> > Note that Simon or Geert will likely ask you to split this patch in two,
+> > in which case I'll take the driver part in my tree.
+>
+> I was not sure how to split this in facts.. Simon, Geert, would you
+> like a v2 with DT changes separated from the driver comment update?
 
+Yes please.
 
-> Thanks,
-> 
-> 	M.
+> (for the DT changes, one patch per SoC, or a single one?)
 
-Thank you
-Lubo
+One patch for all SoCs is fine:
 
+    arm64: dts: renesas: Add LIF channel indices to vsps properties
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
