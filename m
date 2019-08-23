@@ -2,165 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC859AD0A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 12:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7ACBD9AD1B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 12:28:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732160AbfHWKZF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 06:25:05 -0400
-Received: from vps.xff.cz ([195.181.215.36]:52510 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728961AbfHWKZF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 06:25:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566555903; bh=s3+8t5raJAu57uzI2j66XL5vmWrDNN4s7OqNz0XuY74=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=G6cNjhEL4gXabfOJtLMLF06hg7mqqqdSoBJG2OLFeqnL0TwIK/yd13XByKBdZCFON
-         1zxKMXg2d51/X9WUpWfUKp78dpb7zQpU4KKQaBU0hUVD/YE0EAGw2DXnB93ZCgOa6S
-         x3vqeIciy20uLyMKeF7nmvqY28EPND2IjROoxzlc=
-Date:   Fri, 23 Aug 2019 12:25:03 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: allwinner: orange-pi-3: Enable WiFi
-Message-ID: <20190823102503.ymndnooyzahoi522@core.my.home>
-Mail-Followup-To: Maxime Ripard <mripard@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-References: <20190823094228.6540-1-megous@megous.com>
- <20190823100807.22heh2gahi7owo4e@flea>
+        id S1732093AbfHWK2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 06:28:19 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55448 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731002AbfHWK2T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 06:28:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=/E5JUjiVVTZL1/2NgiVKzh6rSDnh6yNikPOcBaHVxFQ=; b=NDsUSsnr95zSwKVYQ3WivbAxp
+        nxEjNHJjq5bl9MbaBxUkWhwzEv1O1o6KoHcw7hVZs5QW/H3TE2kjXqHy454n/mkmfpizXc4yyP1kt
+        uFOqkG0tZRE/NQJGuVEjlz4StMNKfsJ0+RYPJ369e4eA/gd7U+Nd8bRi8Q5FZ3oj/+jfs=;
+Received: from [92.54.175.117] (helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1i16no-0002jC-VF; Fri, 23 Aug 2019 10:28:16 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id A8203D02CD0; Fri, 23 Aug 2019 11:28:16 +0100 (BST)
+Date:   Fri, 23 Aug 2019 11:28:16 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Vladimir Oltean <olteanv@gmail.com>
+Cc:     linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] spi: spi-fsl-dspi: Exit the ISR with IRQ_NONE
+ when it's not ours
+Message-ID: <20190823102816.GN23391@sirena.co.uk>
+References: <20190822211514.19288-1-olteanv@gmail.com>
+ <20190822211514.19288-3-olteanv@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="SLfjTIIQuAzj8yil"
 Content-Disposition: inline
-In-Reply-To: <20190823100807.22heh2gahi7owo4e@flea>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+In-Reply-To: <20190822211514.19288-3-olteanv@gmail.com>
+X-Cookie: Don't SANFORIZE me!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Maxime,
 
-On Fri, Aug 23, 2019 at 12:08:07PM +0200, Maxime Ripard wrote:
-> Hi,
-> 
-> On Fri, Aug 23, 2019 at 11:42:28AM +0200, megous@megous.com wrote:
-> > From: Ondrej Jirman <megous@megous.com>
-> >
-> > Orange Pi 3 has AP6256 WiFi/BT module. WiFi part of the module is called
-> > bcm43356 and can be used with the brcmfmac driver. The module is powered by
-> > the two always on regulators (not AXP805).
-> >
-> > WiFi uses a PG port with 1.8V voltage level signals. SoC needs to be
-> > configured so that it sets up an 1.8V input bias on this port. This is done
-> > by the pio driver by reading the vcc-pg-supply voltage.
-> >
-> > You'll need a fw_bcm43456c5_ag.bin firmware file and nvram.txt
-> > configuration that can be found in the Xulongs's repository for H6:
-> >
-> > https://github.com/orangepi-xunlong/OrangePiH6_external/tree/master/ap6256
-> >
-> > Mainline brcmfmac driver expects the firmware and nvram at the following
-> > paths relative to the firmware directory:
-> >
-> >   brcm/brcmfmac43456-sdio.bin
-> >   brcm/brcmfmac43456-sdio.txt
-> >
-> > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > ---
-> >
-> > Since RTC patches for H6 were merged, this can now go in too, if it looks ok.
-> >
-> > Other patches for this WiFi chip support were merged in previous cycles,
-> > so this just needs enabling in DTS now.
-> >
-> > Sorry for the links in the commit log, but this information is useful,
-> > even if the link itself goes bad. Any pointer what to google for
-> > (file names, tree name) is great for anyone searching in the future.
-> 
-> I understand, but this should (also?) be in the wiki. Please add it
-> there too.
+--SLfjTIIQuAzj8yil
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Added. Thank you.
+On Fri, Aug 23, 2019 at 12:15:11AM +0300, Vladimir Oltean wrote:
+> The DSPI interrupt can be shared between two controllers at least on the
+> LX2160A. In that case, the driver for one controller might misbehave and
+> consume the other's interrupt. Fix this by actually checking if any of
+> the bits in the status register have been asserted.
 
-  http://linux-sunxi.org/Xunlong_Orange_Pi_3#Firmware_files
+It would be better to have done this as the first patch before
+the restructuring, that way we could send this as a fix - the
+refactoring while good doesn't really fit with stable.
 
-regards,
-	Ondrej
+--SLfjTIIQuAzj8yil
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> > Please take a look.
-> >
-> > Thank you,
-> > 	Ondrej
-> >
-> >  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 48 +++++++++++++++++++
-> >  1 file changed, 48 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> > index eda9d5f640b9..49d954369087 100644
-> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> > @@ -56,6 +56,34 @@
-> >  		regulator-max-microvolt = <5000000>;
-> >  		regulator-always-on;
-> >  	};
-> > +
-> > +	reg_vcc33_wifi: vcc33-wifi {
-> > +		/* Always on 3.3V regulator for WiFi and BT */
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc33-wifi";
-> > +		regulator-min-microvolt = <3300000>;
-> > +		regulator-max-microvolt = <3300000>;
-> > +		regulator-always-on;
-> > +		vin-supply = <&reg_vcc5v>;
-> > +	};
-> > +
-> > +	reg_vcc_wifi_io: vcc-wifi-io {
-> > +		/* Always on 1.8V/300mA regulator for WiFi and BT IO */
-> > +		compatible = "regulator-fixed";
-> > +		regulator-name = "vcc-wifi-io";
-> > +		regulator-min-microvolt = <1800000>;
-> > +		regulator-max-microvolt = <1800000>;
-> > +		regulator-always-on;
-> > +		vin-supply = <&reg_vcc33_wifi>;
-> > +	};
-> > +
-> > +	wifi_pwrseq: wifi_pwrseq {
-> > +		compatible = "mmc-pwrseq-simple";
-> > +		clocks = <&rtc 1>;
-> > +		clock-names = "ext_clock";
-> > +		reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-> > +		post-power-on-delay-ms = <200>;
-> > +	};
-> >  };
-> >
-> >  &cpu0 {
-> > @@ -91,6 +119,25 @@
-> >  	status = "okay";
-> >  };
-> >
-> > +&mmc1 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&mmc1_pins>;
-> 
-> This is the default already. I've removed it and applied.
-> 
-> Maxime
-> 
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1fv78ACgkQJNaLcl1U
+h9Cv4gf+PlempNcDKec7OiBxdWny+wFPRO1wq7OKtAEtzU2wFvuZYAjGYbCciUyw
+cKlSUJ9T9Lg4Rq9PTM7CbmY3FobaqJyqTeZT6cADZE1QZoTJD78lQxB8XmJtRBu1
+r8z6XPbgLbRnws9lzRQIDdRvdIX4DO9sFiY/M+9nbbMGbGbkYKbHNk5461pHEV45
+c9lCEgHX62vJerrt0jxfomw50W8tEaqhZ9q6dg1zXwuXjXMmPBPQNnTkexYuco8L
+PIfr5fq2cFMOH0hvXdim2H8spTU3tizQQlZS7NeXkaC8tgE4vBYibF1BYnoCfuos
+AYL6TZxFXh9I5JM/fUCBs+qbLtbneg==
+=lQOn
+-----END PGP SIGNATURE-----
 
-
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-
+--SLfjTIIQuAzj8yil--
