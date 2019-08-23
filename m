@@ -2,77 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3D3E9ADDF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 13:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABEAF9AE16
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 13:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726457AbfHWLHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 07:07:34 -0400
-Received: from foss.arm.com ([217.140.110.172]:60306 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726247AbfHWLHd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 07:07:33 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E8065337;
-        Fri, 23 Aug 2019 04:07:32 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 417653F246;
-        Fri, 23 Aug 2019 04:07:31 -0700 (PDT)
-Date:   Fri, 23 Aug 2019 12:07:22 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>
-Subject: Re: [PATCHv2 0/4] Layerscape: Remove num-lanes property from PCIe
- nodes
-Message-ID: <20190823110714.GA10257@e121166-lin.cambridge.arm.com>
-References: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
+        id S1732495AbfHWL1P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 07:27:15 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:46890 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732231AbfHWL1P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 07:27:15 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7NBR44J081200;
+        Fri, 23 Aug 2019 06:27:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566559624;
+        bh=XdJh+FhIzu3AefhTsdN/t5wLDtXJYWUH44JZ32qDJMI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=n2JEhRYFNbgYjDFhzPj4XgWRF7HjJ2Te2QGRU82hNoalMmTsBoOiXkWOiPI9dI3gW
+         jWkzcvsybqPK0J1Y9BCngZerbo/RGW5CJSk/QVogUziCLOzEai4NyVQSAwHRFAZJ8e
+         SNaEWaby7otptx4uBJi8Pq0kzONUBWkXeSMoYa+A=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7NBR4Nw106320
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 23 Aug 2019 06:27:04 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 23
+ Aug 2019 06:27:03 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 23 Aug 2019 06:27:03 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7NBR1WN117322;
+        Fri, 23 Aug 2019 06:27:01 -0500
+Subject: Re: [PATCH 2/8] soc: ti: add initial PRM driver with reset control
+ support
+To:     Philipp Zabel <p.zabel@pengutronix.de>, Suman Anna <s-anna@ti.com>,
+        Keerthy <j-keerthy@ti.com>, <ssantosh@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <devicetree@vger.kernel.org>
+References: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+ <1565164139-21886-3-git-send-email-t-kristo@ti.com>
+ <3b76f0e0-7530-e7b5-09df-2de9956f30ee@ti.com>
+ <59709a2d-f13a-bd55-8aba-864c1cf2f19e@ti.com>
+ <9372957c-9ab9-b0dd-fe07-815eb2cb2f16@ti.com>
+ <0f335aec-bfdf-345a-8dfb-dad70aef1af6@ti.com>
+ <a4196b73-63a0-f9d8-1c43-e6c4d1c1d6a4@ti.com>
+ <1566400237.4193.15.camel@pengutronix.de>
+ <5e82199f-2f75-ee05-ba65-1595d0526572@ti.com>
+ <e75eed22-1bed-4c8a-930d-e05890d58c47@ti.com>
+ <1566550205.3023.4.camel@pengutronix.de>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <11f3c842-d90c-6923-2adf-0635d9e780bd@ti.com>
+Date:   Fri, 23 Aug 2019 14:27:00 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <1566550205.3023.4.camel@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 07:28:37AM +0000, Z.q. Hou wrote:
-> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+On 23.8.2019 11.50, Philipp Zabel wrote:
+> On Wed, 2019-08-21 at 21:15 +0300, Tero Kristo wrote:
+>> On 21.8.2019 18.45, Suman Anna wrote:
+>>> On 8/21/19 10:10 AM, Philipp Zabel wrote:
+> [...]
+>>>> In general, assuming the device tree contains no errors, this should not
+>>>> matter much, but I think it is nice if the reset driver, even with a
+>>>> misconfigured device tree, can't write into arbitrary bit fields.
+>>>
+>>> Tero,
+>>> Can you add a check for this if possible?
+>>
+>> Well, I can enforce the usage of reset bit mapping, which I have already
+>> implemented for some SoCs like am33xx. If the specific ID is not found,
+>> I can bail out. So, basically in this example requesting reset at index
+>> 3 would succeed, but it would fail for any other ID; this would be
+>> direct HW bit mapping.
 > 
-> On FSL Layerscape SoCs, the number of lanes assigned to PCIe
-> controller is not fixed, it is determined by the selected
-> SerDes protocol. The current num-lanes indicates the max lanes
-> PCIe controller can support up to, instead of the lanes assigned
-> to the PCIe controller. This can result in PCIe link training fail
-> after hot-reset.
-> 
-> Hou Zhiqiang (4):
->   dt-bindings: PCI: designware: Remove the num-lanes from Required
->     properties
->   PCI: dwc: Return directly when num-lanes is not found
->   ARM: dts: ls1021a: Remove num-lanes property from PCIe nodes
->   arm64: dts: fsl: Remove num-lanes property from PCIe nodes
-> 
->  Documentation/devicetree/bindings/pci/designware-pcie.txt | 1 -
->  arch/arm/boot/dts/ls1021a.dtsi                            | 2 --
->  arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi            | 1 -
->  arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi            | 3 ---
->  arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi            | 6 ------
->  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi            | 3 ---
->  arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi            | 4 ----
->  drivers/pci/controller/dwc/pcie-designware.c              | 6 ++++--
->  8 files changed, 4 insertions(+), 22 deletions(-)
+> That should be fine.
 
-Applied to pci/dwc for v5.4, thanks.
+Ok, I am re-working it like this locally right now.
 
-Lorenzo
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
