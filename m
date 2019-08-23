@@ -2,213 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DF839A61E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 05:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A8609A636
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 05:46:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732572AbfHWDkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 23:40:19 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:37604 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732546AbfHWDkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 23:40:18 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7N3dsco056152;
-        Thu, 22 Aug 2019 22:39:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566531594;
-        bh=81SSEYa5Fp4dwV5qila9E6vwCoCXnItQiSYD67zCfW8=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=JWV4ioQFP6IoggZOdMcyoaMP1ZYasXYOhchN4C+7LKmF5GWY/fxycdv4+VTJvOnBp
-         CG/i6CCa5N2V806C2ZUm4j1Uvw9GWhxQp1m80ztT3LFuMkB56p1qu+TsGUuUsqEtiH
-         l2geahbl0GLEirpyHJqBtlG/34hOoHWZDlmJRhBY=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7N3dsgV012046
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 22 Aug 2019 22:39:54 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 22
- Aug 2019 22:39:54 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 22 Aug 2019 22:39:54 -0500
-Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7N3dmoK102238;
-        Thu, 22 Aug 2019 22:39:49 -0500
-Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of getting
- capability with different PEX
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.co" <lorenzo.pieralisi@arm.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S2388580AbfHWDpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 23:45:47 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:47706 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729659AbfHWDpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 23:45:47 -0400
+X-UUID: 8113fb132fd943e38ce1561fa061410c-20190823
+X-UUID: 8113fb132fd943e38ce1561fa061410c-20190823
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 1501840037; Fri, 23 Aug 2019 11:45:41 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 23 Aug 2019 11:45:34 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 23 Aug 2019 11:45:34 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>
-References: <20190822112242.16309-1-xiaowei.bao@nxp.com>
- <20190822112242.16309-6-xiaowei.bao@nxp.com>
- <0c02ac52-e4b1-8071-bf9e-d10b28fc9029@ti.com>
- <AM5PR04MB3299DE7B57F31EA405E4FCBCF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <11e9b2c3-f4d0-2f82-bb14-45c38a1419e4@ti.com>
-Date:   Fri, 23 Aug 2019 09:09:46 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+        <srv_heupstream@mediatek.com>
+Subject: [PATCH v5 00/10] Add Support for MediaTek PMIC MT6358
+Date:   Fri, 23 Aug 2019 11:45:21 +0800
+Message-ID: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <AM5PR04MB3299DE7B57F31EA405E4FCBCF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 724ACC656101C80D0D4B68F2D13233D42BCF3B5D896D6C75D5318436924E44E62000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This patchset including refactoring interrupt add support to MT6358 PMIC.
+MT6358 is the primary PMIC for MT8183 platform.
 
-(Fixed Lorenzo's email address. All the patches in the series have wrong email id)
+changes since v4:
+- fix some comments for mfd driver.
+- fix some coding style issues for regulator driver.
+- merge the same voltage tables and index tables for regulator driver.
+- remove regulator-always-on for vemc.
+- change mtk rtc struct and variable naming.
+- use of_device_get_match_data() to replace of_match_device() for rtc
+  driver.
 
-On 23/08/19 8:09 AM, Xiaowei Bao wrote:
-> 
-> 
->> -----Original Message-----
->> From: Kishon Vijay Abraham I <kishon@ti.com>
->> Sent: 2019年8月22日 19:44
->> To: Xiaowei Bao <xiaowei.bao@nxp.com>; bhelgaas@google.com;
->> robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo Li
->> <leoyang.li@nxp.com>; lorenzo.pieralisi@arm.co; arnd@arndb.de;
->> gregkh@linuxfoundation.org; M.h. Lian <minghuan.lian@nxp.com>; Mingkai
->> Hu <mingkai.hu@nxp.com>; Roy Zang <roy.zang@nxp.com>;
->> jingoohan1@gmail.com; gustavo.pimentel@synopsys.com;
->> linux-pci@vger.kernel.org; devicetree@vger.kernel.org;
->> linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> linuxppc-dev@lists.ozlabs.org; andrew.murray@arm.com
->> Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of getting
->> capability with different PEX
->>
->> Hi,
->>
->> On 22/08/19 4:52 PM, Xiaowei Bao wrote:
->>> The different PCIe controller in one board may be have different
->>> capability of MSI or MSIX, so change the way of getting the MSI
->>> capability, make it more flexible.
->>
->> please use different pci_epc_features table for different boards.
-> Thanks, I think that it will be more flexible to dynamically get MSI or MSIX capability,
-> Thus, we will not need to define the pci_epc_feature for different boards.
+Hsin-Hsiung Wang (8):
+  mfd: mt6397: clean up code
+  mfd: mt6397: extract irq related code from core driver
+  mfd: mt6397: modify suspend/resume behavior
+  dt-bindings: mfd: Add compatible for the MediaTek MT6358 PMIC
+  regulator: Add document for MT6358 regulator
+  mfd: Add support for the MediaTek MT6358 PMIC
+  regulator: mt6358: Add support for MT6358 regulator
+  arm64: dts: mt6358: add PMIC MT6358 related nodes
 
-Is the restriction because you cannot have different compatible for different
-boards?
+Ran Bi (2):
+  rtc: mt6397: fix alarm register overwrite
+  rtc: mt6397: Add support for the MediaTek MT6358 RTC
 
-Thanks
-Kishon
+ Documentation/devicetree/bindings/mfd/mt6397.txt   |  11 +-
+ .../bindings/regulator/mt6358-regulator.txt        | 358 ++++++++++++++
+ arch/arm64/boot/dts/mediatek/mt6358.dtsi           | 361 ++++++++++++++
+ drivers/mfd/Makefile                               |   4 +-
+ drivers/mfd/mt6358-irq.c                           | 231 +++++++++
+ drivers/mfd/mt6397-core.c                          | 281 ++++-------
+ drivers/mfd/mt6397-irq.c                           | 214 ++++++++
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/mt6358-regulator.c               | 549 +++++++++++++++++++++
+ drivers/rtc/rtc-mt6397.c                           |  85 +++-
+ include/linux/mfd/mt6358/core.h                    | 158 ++++++
+ include/linux/mfd/mt6358/registers.h               | 282 +++++++++++
+ include/linux/mfd/mt6397/core.h                    |  15 +
+ include/linux/regulator/mt6358-regulator.h         |  56 +++
+ 15 files changed, 2393 insertions(+), 222 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/mt6358-regulator.txt
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6358.dtsi
+ create mode 100644 drivers/mfd/mt6358-irq.c
+ create mode 100644 drivers/mfd/mt6397-irq.c
+ create mode 100644 drivers/regulator/mt6358-regulator.c
+ create mode 100644 include/linux/mfd/mt6358/core.h
+ create mode 100644 include/linux/mfd/mt6358/registers.h
+ create mode 100644 include/linux/regulator/mt6358-regulator.h
 
->>
->> Thanks
->> Kishon
->>>
->>> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
->>> ---
->>> v2:
->>>  - Remove the repeated assignment code.
->>>
->>>  drivers/pci/controller/dwc/pci-layerscape-ep.c | 26
->>> +++++++++++++++++++-------
->>>  1 file changed, 19 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
->>> b/drivers/pci/controller/dwc/pci-layerscape-ep.c
->>> index 4e92a95..8461f62 100644
->>> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
->>> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
->>> @@ -22,6 +22,7 @@
->>>
->>>  struct ls_pcie_ep {
->>>  	struct dw_pcie		*pci;
->>> +	struct pci_epc_features	*ls_epc;
->>>  };
->>>
->>>  #define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
->>> @@ -40,25 +41,26 @@ static const struct of_device_id
->> ls_pcie_ep_of_match[] = {
->>>  	{ },
->>>  };
->>>
->>> -static const struct pci_epc_features ls_pcie_epc_features = {
->>> -	.linkup_notifier = false,
->>> -	.msi_capable = true,
->>> -	.msix_capable = false,
->>> -};
->>> -
->>>  static const struct pci_epc_features*  ls_pcie_ep_get_features(struct
->>> dw_pcie_ep *ep)  {
->>> -	return &ls_pcie_epc_features;
->>> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->>> +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
->>> +
->>> +	return pcie->ls_epc;
->>>  }
->>>
->>>  static void ls_pcie_ep_init(struct dw_pcie_ep *ep)  {
->>>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->>> +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
->>>  	enum pci_barno bar;
->>>
->>>  	for (bar = BAR_0; bar <= BAR_5; bar++)
->>>  		dw_pcie_ep_reset_bar(pci, bar);
->>> +
->>> +	pcie->ls_epc->msi_capable = ep->msi_cap ? true : false;
->>> +	pcie->ls_epc->msix_capable = ep->msix_cap ? true : false;
->>>  }
->>>
->>>  static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no, @@
->>> -118,6 +120,7 @@ static int __init ls_pcie_ep_probe(struct platform_device
->> *pdev)
->>>  	struct device *dev = &pdev->dev;
->>>  	struct dw_pcie *pci;
->>>  	struct ls_pcie_ep *pcie;
->>> +	struct pci_epc_features *ls_epc;
->>>  	struct resource *dbi_base;
->>>  	int ret;
->>>
->>> @@ -129,6 +132,10 @@ static int __init ls_pcie_ep_probe(struct
->> platform_device *pdev)
->>>  	if (!pci)
->>>  		return -ENOMEM;
->>>
->>> +	ls_epc = devm_kzalloc(dev, sizeof(*ls_epc), GFP_KERNEL);
->>> +	if (!ls_epc)
->>> +		return -ENOMEM;
->>> +
->>>  	dbi_base = platform_get_resource_byname(pdev, IORESOURCE_MEM,
->> "regs");
->>>  	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
->>>  	if (IS_ERR(pci->dbi_base))
->>> @@ -139,6 +146,11 @@ static int __init ls_pcie_ep_probe(struct
->> platform_device *pdev)
->>>  	pci->ops = &ls_pcie_ep_ops;
->>>  	pcie->pci = pci;
->>>
->>> +	ls_epc->linkup_notifier = false,
->>> +	ls_epc->bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
->>> +
->>> +	pcie->ls_epc = ls_epc;
->>> +
->>>  	platform_set_drvdata(pdev, pcie);
->>>
->>>  	ret = ls_add_pcie_ep(pcie, pdev);
->>>
+-- 
+1.9.1
+
