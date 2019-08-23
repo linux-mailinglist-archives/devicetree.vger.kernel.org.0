@@ -2,64 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E81B59AB3A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 11:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2E149AB84
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 11:42:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727630AbfHWJTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 05:19:55 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:35456 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727389AbfHWJTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 05:19:55 -0400
-Received: by mail-lj1-f193.google.com with SMTP id l14so8235919lje.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 02:19:54 -0700 (PDT)
+        id S2387787AbfHWJmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 05:42:12 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:39991 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731936AbfHWJmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 05:42:12 -0400
+Received: by mail-lj1-f196.google.com with SMTP id e27so8254648ljb.7
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 02:42:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0+DA0AUrj8c0E7gzH9vsBYpt4Fmk9x7nsKTREy+4/ks=;
-        b=Oghd8aglYHCh34au85+ry4tne+dtAEjBaom3pk8M+iAp54CYFO2abPgeB4U6gGQoFb
-         GXq2rlRHqXupg0sssYrOWFmgHV9pZ628O7CVXoWMqtoJKF7y0c6OkAuaRAgGvID/hnie
-         td1TOWlzu+vzgStPw7oHVBR3qrwozDq5AsQ2MV+x3hnNyLk8QwM/uhNh7csdnxs08q7p
-         3kdx4TnXYbqkwxufvlLaPfqmh9AKDixX8dG2TXzvdy8JIjs2TM+R1WR7/mPoWU/keGPm
-         P7VjGhBYL48nDEqaCWPhMu3j3+gyLaSTLX6iA4uhDaNzla+LKn/3WZjKESEYDKj2WXXz
-         Z55Q==
+        bh=G9mRsUodr8INx8kLiQuFLT6wntAGfHnLDVBZoZICFTI=;
+        b=D7pMMnHdfqhTHEbILraVb+LJvXqHH0oAURqSthG109P6NhNjxj8dD1tTBKCsoZE6Wg
+         +ZVyTADxuYmkbpWAU9YFNL+rpYNJAnnwAf1p4HUn77wkRPYNFoWUreoo8oq8nyQy+da8
+         Y4EaWT/NZVIPTHhT/82Y8zlr/QsGAQEGJRBB/8CGdQOZKAilJteJ6NRHVCfWJ0EfLQkw
+         ADRGbxPFwc43sXCSwFxqXc2rliWafXYyjNHb6g3A31lCi37BDlIFfaYbwMXOlolMDvVK
+         5IW1yX/qn1VkdCUaFjnINEp+cGHSctJDS1HErbvHADRBx7bEijJbDa9sf0CIZlN889Vp
+         +S1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0+DA0AUrj8c0E7gzH9vsBYpt4Fmk9x7nsKTREy+4/ks=;
-        b=cVHgwVW6YxXSGyNUQx5u4HyKMPssPqtc1ybxGpInSSyIhsYTU2KFd97+DSEZCfyVFG
-         r9r5hQIGhjC914qi0bE8wzE0C6iKGFBHXus54gFTliXk4Vh8hNFlU/4tOrbysoz5oBWl
-         Hpqh69B1UtGdD9fnDKyQp1ny0X8/eYfEmy7tFQOZ5U3rg6RraZ/dVC5AgUcIqHBLovgi
-         8nP0HI8LWwtBZFmuiWGzvH52J9E9o0jLaHfstAibW7pOEPChNcLD3F0j7KXAD0Ty+jV8
-         8hSP5IYmjjObuoqa9MWbybg+9KgboCOebGIaAGRGJCpUvaDD72OPLjO0hfHkYTENDqDE
-         mMhw==
-X-Gm-Message-State: APjAAAU1VWgQK66lkFgAoI/qAu7g9dCOuh/do5hre1R7+D+xSoPw0MQ2
-        QvupNYUQ/w6OJZyfUS5yWkszcvuRTvJBLbnxhOeZtg==
-X-Google-Smtp-Source: APXvYqwK+gepCG0Ez2tTpjT/vmPLIiIHDlmYRRbhEPz9u24BZVmHTm4kFBeT7fwouJFEuhCJDdriYDbZdllA7ru0lvE=
-X-Received: by 2002:a2e:b174:: with SMTP id a20mr2366638ljm.108.1566551993585;
- Fri, 23 Aug 2019 02:19:53 -0700 (PDT)
+        bh=G9mRsUodr8INx8kLiQuFLT6wntAGfHnLDVBZoZICFTI=;
+        b=cyNLnkRKiavQltdHoDG10wewhQGGVE4Cg7EgznK3NSWhpVbNFBzQXDGpEHYa0V4PKq
+         7OFaxsiyeA956hieeywqvSXT/8O9nMRT29uimEM5joofc/l4bEQFIXLu2zFCBh9wtocZ
+         EZwBrXj57dBQRUuv8ruYq3nZWSk5OCs4cQDtvXeu2/y/3qXYrVqRDxe83QTOZZWSBOc+
+         tbTiIpBCJQdV6TYFI0uPqXWhIJw2iqZGZsWBS/qKLW7+/uW1TXaMZMuPqo0rAQHzE0VV
+         T26hBDmjUy5Kl2EhxSkxsovjBuoe+7QF1+C4TEBnyl78mlK1cNcbsZXM2+//n9BW4bG6
+         Kvkw==
+X-Gm-Message-State: APjAAAWn2liOtKz2/8VPJg+RpEbdgkPmbSAHdu6T2K5KWMUA0BkyIQ6r
+        gMduaqGCAJOJBgZh831LCj6s/qSVz1OOz3Q5dmjN8g==
+X-Google-Smtp-Source: APXvYqxbUW9mwdFAw8PYUVklPhImRXOOG2mrpV80i8O7nFOQr4/Kq5cY8eZfZBLO11XOblNgr1rWKltULlseXo8MMs4=
+X-Received: by 2002:a2e:781a:: with SMTP id t26mr2368029ljc.28.1566553330329;
+ Fri, 23 Aug 2019 02:42:10 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190820145834.7301-1-dinguyen@kernel.org> <20190820145834.7301-2-dinguyen@kernel.org>
-In-Reply-To: <20190820145834.7301-2-dinguyen@kernel.org>
+References: <1566335128-31498-1-git-send-email-hongweiz@ami.com> <1566335128-31498-2-git-send-email-hongweiz@ami.com>
+In-Reply-To: <1566335128-31498-2-git-send-email-hongweiz@ami.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Aug 2019 11:19:42 +0200
-Message-ID: <CACRpkdasbXuqUkO3NjMGBU_ePEBT23BS1eP-bigB0_g494LgvQ@mail.gmail.com>
-Subject: Re: [RESEND PATCHv4 1/1] drivers/amba: add reset control to amba bus probe
-To:     Dinh Nguyen <dinguyen@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+Date:   Fri, 23 Aug 2019 11:41:58 +0200
+Message-ID: <CACRpkdaa3tWw_LC6Ce9Ru4gFji_SquitmsDqThRj114=Fro2zg@mail.gmail.com>
+Subject: Re: [v8 1/1] gpio: aspeed: Add SGPIO driver
+To:     Hongwei Zhang <hongweiz@ami.com>
+Cc:     Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
@@ -67,46 +64,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 20, 2019 at 4:58 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
+On Tue, Aug 20, 2019 at 11:05 PM Hongwei Zhang <hongweiz@ami.com> wrote:
 
-> @@ -401,6 +402,26 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
->         ret = amba_get_enable_pclk(dev);
->         if (ret == 0) {
->                 u32 pid, cid;
-> +               int count;
-> +               struct reset_control *rstc;
-> +
-> +               /*
-> +                * Find reset control(s) of the amba bus and de-assert them.
-> +                */
-> +               count = reset_control_get_count(&dev->dev);
-> +               while (count > 0) {
-> +                       rstc = of_reset_control_get_shared_by_index(dev->dev.of_node, count - 1);
-> +                       if (IS_ERR(rstc)) {
-> +                               if (PTR_ERR(rstc) == -EPROBE_DEFER)
-> +                                       ret = -EPROBE_DEFER;
-> +                               else
-> +                                       dev_err(&dev->dev, "Can't get amba reset!\n");
-> +                               break;
-> +                       }
-> +                       reset_control_deassert(rstc);
-> +                       reset_control_put(rstc);
-> +                       count--;
-> +               }
+> Add SGPIO driver support for Aspeed AST2500 SoC.
+>
+> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+> Reviewed-by:   Andrew Jeffery <andrew@aj.id.au>
 
-I'm not normally a footprint person, but the looks of the stubs in
-<linux/reset.h> makes me suspicious whether this will have zero impact
-in size on platforms without reset controllers.
-
-Can you just ls -al on the kernel without CONFIG_RESET_CONTROLLER
-before and after this patch and ascertain that it has zero footprint effect?
-
-If it doesn't I'd sure like to break this into its own function and
-stick a if (!IS_ENABLED(CONFIG_RESET_CONTROLLER)) return 0;
-in there to make sure the compiler drops it.
-
-Also it'd be nice to get Philipp's ACK on the semantics, though they
-look correct to me.
+This v8 patch applied for v5.4, thanks!
 
 Yours,
 Linus Walleij
