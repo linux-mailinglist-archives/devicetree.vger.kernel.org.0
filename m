@@ -2,78 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D6C649AF9C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 14:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13B769AFD7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 14:45:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388640AbfHWMfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 08:35:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35816 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727894AbfHWMfD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 08:35:03 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A833F21897;
-        Fri, 23 Aug 2019 12:35:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566563702;
-        bh=Z2I05m7SXtNJwNTlvQI5ywWzhVmXjRiklq17kPfyLhk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iiGYu6l9vWLPokyrIr6cKS2LVmGDARqpT7DVl+ptulFiy7Bo2nFagy1AU+sG/NkGJ
-         MXudl9uTjJUUdCpbempJOE97i8iYaE3EgslDG06rRVj4iyw2cU4U/AWXTYGGRo7XhI
-         GXf63yh+QBp5/OKjN3P5BZJRtg7zqz8QYHk3zjso=
-Received: by mail-qt1-f171.google.com with SMTP id t12so10980398qtp.9;
-        Fri, 23 Aug 2019 05:35:02 -0700 (PDT)
-X-Gm-Message-State: APjAAAXeK6FAhd53ILHsNx0WzUkwEIYnGCG7HFzJpVuDf9smTdkbVlzR
-        HfaTsozVRJ2nUFulTJoSq3/gGF7CjYElOpMa+A==
-X-Google-Smtp-Source: APXvYqz0mGDc1DI17v6Z0Y7CzxhC0YIe0QPDxAOoBSFtPO2ZPZcQy+RuIt+LQXO6zdeHyqe/Omq9Zvrq2O6DUFy+F+U=
-X-Received: by 2002:a0c:9782:: with SMTP id l2mr3681523qvd.72.1566563701854;
- Fri, 23 Aug 2019 05:35:01 -0700 (PDT)
+        id S2388582AbfHWMnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 08:43:22 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:49915 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727894AbfHWMnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 08:43:21 -0400
+X-Originating-IP: 86.207.98.53
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 3AD631C000B;
+        Fri, 23 Aug 2019 12:43:18 +0000 (UTC)
+Date:   Fri, 23 Aug 2019 14:43:18 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Biwen Li <biwen.li@nxp.com>
+Cc:     a.zummo@towertech.it, leoyang.li@nxp.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [1/3] rtc/fsl: support flextimer for lx2160a
+Message-ID: <20190823124318.GA9844@piout.net>
+References: <20190823095740.12280-1-biwen.li@nxp.com>
 MIME-Version: 1.0
-References: <20190725104144.22924-10-niklas.cassel@linaro.org> <20190819101238.17335-1-niklas.cassel@linaro.org>
-In-Reply-To: <20190819101238.17335-1-niklas.cassel@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 23 Aug 2019 07:34:50 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ=nH3a9Jmj_Syrg0dmx3gB9vFgbMmZ4=ew_Pcz4EDrYw@mail.gmail.com>
-Message-ID: <CAL_JsqJ=nH3a9Jmj_Syrg0dmx3gB9vFgbMmZ4=ew_Pcz4EDrYw@mail.gmail.com>
-Subject: Re: [PATCH v3 09/14] dt-bindings: opp: Add qcom-opp bindings with
- properties needed for CPR
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Viresh Kumar <vireshk@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190823095740.12280-1-biwen.li@nxp.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 19, 2019 at 5:12 AM Niklas Cassel <niklas.cassel@linaro.org> wrote:
->
-> Add qcom-opp bindings with properties needed for Core Power Reduction
-> (CPR).
->
-> CPR is included in a great variety of Qualcomm SoCs, e.g. msm8916 and
-> msm8996. CPR was first introduced in msm8974.
->
-> Co-developed-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+On 23/08/2019 17:57:38+0800, Biwen Li wrote:
+> The patch supports flextimer for lx2160a
+> 
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
 > ---
-> Changes since V2:
-> qcom,opp-fuse-level is really a required property and not an optional
-> property, so properly define it as such.
->
->  .../devicetree/bindings/opp/qcom-opp.txt      | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/opp/qcom-opp.txt
+>  drivers/rtc/rtc-fsl-ftm-alarm.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/rtc/rtc-fsl-ftm-alarm.c b/drivers/rtc/rtc-fsl-ftm-alarm.c
+> index 4f7259c2d6a3..2b81525f6db8 100644
+> --- a/drivers/rtc/rtc-fsl-ftm-alarm.c
+> +++ b/drivers/rtc/rtc-fsl-ftm-alarm.c
+> @@ -313,6 +313,7 @@ static const struct of_device_id ftm_rtc_match[] = {
+>  	{ .compatible = "fsl,ls1088a-ftm-alarm", },
+>  	{ .compatible = "fsl,ls208xa-ftm-alarm", },
+>  	{ .compatible = "fsl,ls1028a-ftm-alarm", },
+> +	{ .compatible = "fsl,lx2160a-ftm-alarm", },
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Couldn't that have been part of the previous patch series?...
+
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
