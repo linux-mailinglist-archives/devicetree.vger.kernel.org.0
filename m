@@ -2,83 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F9C59AA29
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A97299AA48
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405208AbfHWITY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 04:19:24 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:35197 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729113AbfHWITX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:19:23 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 8809F60007;
-        Fri, 23 Aug 2019 08:19:20 +0000 (UTC)
-Date:   Fri, 23 Aug 2019 10:19:20 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     megous@megous.com
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2388476AbfHWI1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 04:27:01 -0400
+Received: from mga05.intel.com ([192.55.52.43]:53883 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1733069AbfHWI1B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 04:27:01 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Aug 2019 01:27:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,420,1559545200"; 
+   d="scan'208";a="203702966"
+Received: from mattu-haswell.fi.intel.com (HELO [10.237.72.164]) ([10.237.72.164])
+  by fmsmga004.fm.intel.com with ESMTP; 23 Aug 2019 01:26:58 -0700
+Subject: Re: [RESEND PATCH v2 2/2] usb: xhci-mtk: add an optional xhci_ck
+ clock
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v2 3/3] arm64: dts: sun50i-h6: Add support for RTC and
- fix the clock tree
-Message-ID: <20190823081920.xxqg6w7tlnvvkzlx@flea>
-References: <20190820151934.3860-1-megous@megous.com>
- <20190820151934.3860-4-megous@megous.com>
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-usb@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org
+References: <1566542425-20082-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1566542425-20082-2-git-send-email-chunfeng.yun@mediatek.com>
+From:   Mathias Nyman <mathias.nyman@linux.intel.com>
+Message-ID: <e1e4d220-9540-2001-13aa-89ff8ce829f5@linux.intel.com>
+Date:   Fri, 23 Aug 2019 11:28:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="bvvuqig3adpl6wgr"
-Content-Disposition: inline
-In-Reply-To: <20190820151934.3860-4-megous@megous.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <1566542425-20082-2-git-send-email-chunfeng.yun@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23.8.2019 9.40, Chunfeng Yun wrote:
+> Some SoCs may have an optional clock xhci_ck (125M or 200M), it
+> usually uses the same PLL as sys_ck, so support it.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 
---bvvuqig3adpl6wgr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Tue, Aug 20, 2019 at 05:19:34PM +0200, megous@megous.com wrote:
-> From: Ondrej Jirman <megous@megous.com>
->
-> This patch adds RTC node and fixes the clock properties and nodes
-> to reflect the real clock tree.
->
-> The device nodes for the internal oscillator and osc32k are removed,
-> as these clocks are now provided by the RTC device. Clock references
-> are fixed accordingly, too.
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-
-The prefix should be "arm64: dts: allwinner: h6:"
-
-I've fixed it up and applied it.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---bvvuqig3adpl6wgr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV+hiAAKCRDj7w1vZxhR
-xQlxAP9kdMuf4hAYTBGWFaQzFVjFmqRMRi1y/pCcJ+PHKLK3TAD8DZOSzZhHJZFE
-oscKRT3ZVaryNY1pphYVt0LlyyDu2Q0=
-=Ngr3
------END PGP SIGNATURE-----
-
---bvvuqig3adpl6wgr--
+Acked-by: Mathias Nyman <mathias.nyman@linux.intel.com>
