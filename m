@@ -2,128 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E5C9AAE4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 281859AAEB
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732973AbfHWI5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 04:57:17 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:43233 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731191AbfHWI5R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:57:17 -0400
-Received: by mail-lf1-f68.google.com with SMTP id c19so6573644lfm.10
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:57:15 -0700 (PDT)
+        id S2393346AbfHWI7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 04:59:21 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:36072 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391061AbfHWI7U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:59:20 -0400
+Received: by mail-lf1-f65.google.com with SMTP id r5so1090909lfc.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:59:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=a/R2J79LKOKlLeZ/xIkFf9uifEgRMGT7tAE/FX+J+fk=;
-        b=h8cIzFHRwV5mKvh20JVoTWYAVSCIkWyjSzPx/vFSHkOSlO5Q4g9CCbm+693s4TXchd
-         FgS3UGD0guDUAw5xUViOFwLDP+ix8kP+F+oK5Shgc5An7QkANVSs7IZOKKfE0WiEXnef
-         kPY2tdrxMXtW0xoIni2RPvEfgFvOX+gRUf2nclzTLsMc0FJCRgdhGKlGBy3IVnZWfltC
-         LqxGoZo26oS2KvwARlRA8I8eNM6EWNRO4SaOtPtGfw1U39DRvi2A98cs++ugvTCGYM7d
-         2Ge1VMDoj2+9Xy/800qepwswucADX+MTC27muULbqLYD+3WVK9Ym9l1yrBdICpClSvpX
-         HflQ==
+        bh=GxUgalfpHvlU7G4S1EP7MwtQKJLrxEoCVtsJwnBq2SU=;
+        b=w0B3dzBTa3+JyrZeVRsr9ly//+C08gCfIk8KvddiJai9vJRoezhj54mrdyVwb1cbFl
+         sRPkN+bru2wP4dmVDTkn20UOrljSktzElsDLmYwfeNBsz3BkNKlwWa6y0Kr4+GWEfwG1
+         YK9K3GDGdmw/+mt4yBZZ0rCBOvJ2wRiMivQwwjJJnFfQXf1LiACtdWqo7SnZbI9pSXdG
+         FdguDX7EHD7VaI4fG3ApljZIFeKDUrSvlzeHp0Se0NWNeZNXwlDemX+J/tIyKK2beWBF
+         YkS5UFt+u6TP+JMCmWolrRdMU/+bvPBegM8ACCpr9RWdg/IGiTuhMcKbWCZioaHt7WP/
+         FWEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=a/R2J79LKOKlLeZ/xIkFf9uifEgRMGT7tAE/FX+J+fk=;
-        b=hfjjf9hRC1o1bgdBAhgRKEYr3Q1vxZq7E22jxCZ+UM8loGfBaZSUz/64wdNFt5NBk5
-         QwA1p5dNUNvmBNz+b7sPafGuLWwzgafXU65aNY3JjkUFgxAQVTG8woS6c/GzCSGehQPl
-         hV7V9XmCloprnV2NhMnOF+bzgZXb0bPmrdOJIyuKyv07BQTTOt2DBk9znO0jaC35KZ/G
-         l/FaGH+4G74+4NBcPYXA/g3kCpQUabsJIkIiUAf2rPmB8nyg6EfUSuH73uhvzwHnSEBT
-         JHfboTdNjdKGqLcFbatpGm6DuMqoa6uj/5P5/zssWpjr73jQHSnyvPA+dsuMr3djNLZd
-         bohA==
-X-Gm-Message-State: APjAAAWyBLRlwD8kYxiNnBbb/uW4NAkKz2kHsj3NZ0WmGiSWXdcZpHEt
-        DmRXa5jYgaLAWgJbEyrUlazbFboaIB3j8/hCAfdiAQ==
-X-Google-Smtp-Source: APXvYqyiIRQnPqOMRMnznsHxW2APqKA5JW/FUTpLK9hj/I1LedUm+QCEFmX2UPpcBK5I9whssuW2AmLbJBfUVKBqcLU=
-X-Received: by 2002:ac2:5939:: with SMTP id v25mr2135109lfi.115.1566550635185;
- Fri, 23 Aug 2019 01:57:15 -0700 (PDT)
+        bh=GxUgalfpHvlU7G4S1EP7MwtQKJLrxEoCVtsJwnBq2SU=;
+        b=IBohyOR74CDwCMDggxCdl4sR5dKJhF6wUe2oUZaImuQSQ26YHoApsDJk1/Khr6qcyu
+         T+CqA11KzEAmKXImB6R7kTUrfOfL8fKgKkack9WdQ3/s9tncHifbhIuHUHxNjbsbFKCf
+         39upykpvJ0hVf0t/kDe+L5ZxsG6Y8dnOa5N2aFiRU1ReO7XCylZaftGtB5qf8sqxXQrC
+         9VfbJnL8EouLlvCnvXdiBbnedVldAyJ4AOag7vQPTm1HFgDtcuLTuak/BqduImkUPFCD
+         Q93FwRfmx18RqgfFYbOPcUIiwyBjJx1jecdAsXUjv/ghwdyXGlRh96fYBGZh2n/vp+DB
+         ijhQ==
+X-Gm-Message-State: APjAAAUWURSa7PPYBFBzVeT7AN1r/HFnaEMEb9VDXZApnM1YBdocEPMZ
+        S1RwdYNWPi/WrED7lQ1LSP4eSFVkQT7JSWyb1TZHmg==
+X-Google-Smtp-Source: APXvYqw5ndRJYH6Pq0vRfXqvSpTurLxTZpp9+LCmk3CwLeQH9ygW2pVl8/ZMQ7YOPv6vJPkMu932f3Yxr6LWZ0GzqPI=
+X-Received: by 2002:a19:ed11:: with SMTP id y17mr2096873lfy.141.1566550759342;
+ Fri, 23 Aug 2019 01:59:19 -0700 (PDT)
 MIME-Version: 1.0
-References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com> <1566206502-4347-6-git-send-email-mars.cheng@mediatek.com>
-In-Reply-To: <1566206502-4347-6-git-send-email-mars.cheng@mediatek.com>
+References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com>
+ <1566206502-4347-7-git-send-email-mars.cheng@mediatek.com> <CAGp9LzoVwNxY8Q3G4hxpa7=orsEox+J0mNamag70wyjrGvDiZw@mail.gmail.com>
+In-Reply-To: <CAGp9LzoVwNxY8Q3G4hxpa7=orsEox+J0mNamag70wyjrGvDiZw@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Aug 2019 10:57:03 +0200
-Message-ID: <CACRpkdZa_sQgvWC3ic0NxrVi9gS1cNTsV-wa-SDpA0e5kutBRw@mail.gmail.com>
-Subject: Re: [PATCH v2 05/11] pinctrl: mediatek: avoid virtual gpio trying to
- set reg
-To:     Mars Cheng <mars.cheng@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+Date:   Fri, 23 Aug 2019 10:59:08 +0200
+Message-ID: <CACRpkdbZY2vZBaEXDMsjLxA1NGYWirhCdspu0W-foXJX=Fd4yg@mail.gmail.com>
+Subject: Re: [PATCH v2 06/11] pinctrl: mediatek: add pinctrl support for
+ MT6779 SoC
+To:     Sean Wang <sean.wang@kernel.org>
+Cc:     Mars Cheng <mars.cheng@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh@kernel.org>,
         Marc Zyngier <marc.zyngier@arm.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Sean Wang <sean.wang@kernel.org>,
         CC Hwang <cc.hwang@mediatek.com>,
         Loda Chou <loda.chou@mediatek.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>,
         "moderated list:ARM/Mediatek SoC support" 
         <linux-mediatek@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, wsd_upstream@mediatek.com,
         mtk01761 <wendell.lin@mediatek.com>,
-        linux-clk <linux-clk@vger.kernel.org>
+        linux-clk <linux-clk@vger.kernel.org>,
+        Andy Teng <andy.teng@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 19, 2019 at 11:22 AM Mars Cheng <mars.cheng@mediatek.com> wrote:
-
-> for virtual gpios, they should not do reg setting and
-> should behave as expected for eint function.
+On Thu, Aug 22, 2019 at 8:12 PM Sean Wang <sean.wang@kernel.org> wrote:
+> On Mon, Aug 19, 2019 at 2:22 AM Mars Cheng <mars.cheng@mediatek.com> wrote:
+> >
+> > This adds MT6779 pinctrl driver based on MediaTek pinctrl-paris core.
+> >
+> > Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
+> > Signed-off-by: Andy Teng <andy.teng@mediatek.com>
 >
-> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
+> Acked-by: Sean Wang <sean.wang@kernel.org>
 
-This does not explain what a "virtual GPIO" is in this
-context, so please elaborate. What is this? Why does
-it exist? What is it used for?
+Please look at the DT bindings as well when you have time, and
+especially the "virtual GPIO" patch, I don't understand that at all.
 
-GPIO is "general purpose input/output" and it is a
-pretty rubbery category already as it is, so we need
-to define our terms pretty strictly.
-
-> +bool mtk_is_virt_gpio(struct mtk_pinctrl *hw, unsigned int gpio_n)
-> +{
-> +       const struct mtk_pin_desc *desc;
-> +       bool virt_gpio = false;
-> +
-> +       if (gpio_n >= hw->soc->npins)
-> +               return virt_gpio;
-> +
-> +       desc = (const struct mtk_pin_desc *)&hw->soc->pins[gpio_n];
-> +
-> +       if (desc->funcs &&
-> +           desc->funcs[desc->eint.eint_m].name == 0)
-
-NULL check is done like this:
-
-if (desc->funcs && !desc->funcs[desc->eint.eint_m].name)
-
-> +               virt_gpio = true;
-
-So why is this GPIO "virtual" because it does not have
-a name in the funcs table?
-
-> @@ -278,6 +295,9 @@ static int mtk_xt_set_gpio_as_eint(void *data, unsigned long eint_n)
->         if (err)
->                 return err;
->
-> +       if (mtk_is_virt_gpio(hw, gpio_n))
-> +               return 0;
-
-So does this mean we always succeed in setting a GPIO as eint
-if it is virtual? Why? Explanatory comment is needed.
-
-> @@ -693,6 +693,9 @@ static int mtk_gpio_get_direction(struct gpio_chip *chip, unsigned int gpio)
->         const struct mtk_pin_desc *desc;
->         int value, err;
->
-> +       if (mtk_is_virt_gpio(hw, gpio))
-> +               return 1;
-
-Why are "virtual GPIOs" always inputs?
+I suspect the "virtual GPIO" is maybe more about something that
+should be done by setting up the valid_mask in the gpio_chip
+or something.
 
 Yours,
 Linus Walleij
