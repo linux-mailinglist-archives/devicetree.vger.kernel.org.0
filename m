@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A0F59A813
+	by mail.lfdr.de (Postfix) with ESMTP id D7ABB9A814
 	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:06:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405062AbfHWHDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2405032AbfHWHDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 23 Aug 2019 03:03:06 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54743 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405032AbfHWHDG (ORCPT
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:54744 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405049AbfHWHDG (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:03:06 -0400
-Received: by mail-wm1-f67.google.com with SMTP id p74so7864358wme.4
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:03:04 -0700 (PDT)
+Received: by mail-wm1-f66.google.com with SMTP id p74so7864393wme.4
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=BYS/jLJ5SnTBfvUO73YfQ/qZMgKSxQ0+sfqUXBWxFgE=;
-        b=VwfExEy20yJXYNxH8LKSGd6Mc3F55oX0J7Yva343vW5KwrjHbcdmyjuoNkCU/Zm7P9
-         jzK7TUODE2Onk7XXbzt2FkZE06iQnI0ME3K7CPJh8ywR2ZKnubK+Xg/6kZOEe8q4Zmt2
-         F0JyeHph/zSHkuFZfaDQippYQWw9HRrWgM+NEneHXMwN0p7mih38B/WvFxlgnLb/WBVy
-         mLyK8tgI2Vu5NL+T4jFyOofLadOGW92CHCx0dI7qnga28Hij/IVDL55UraU7h8sgtNpa
-         HzcHRqGlHigHegh5c5QFXnkrctrRhqqrm/xm//OhwuVxQ0fDj9hUV9yd+DrNLOJJT4jN
-         8X+w==
+        bh=Y6OlL/eR9h1Ghc3Dkq2YBZdnDsKxiiGiMpQwldNFWsU=;
+        b=2BMhpGV4rttepJcUT2dvXB1b06ryYYyen4bJHkUiI5sHw3e49HDqSL3QaWqKk6BSoL
+         HOBVmHBBbNTqVMQQyQxkDtCyqXxTjgmyJpsziONpWxz9pjtbbeuR1oeMGaamdsWw8ixU
+         j7U5hyLej/ao83Mhm+S4vaGsTqPSK4ZRFL1JJbX4P4C8PrQ8B15ebcV4bpDlt1ZhREx8
+         sfxd15gWro4lsT3pMjDrh4Vl4VLHHv1Kdz3sNhqJ+AcRXZcH4AWZnDapyzZjEuqrBRiB
+         0gOR0HSheZa6D0C8ZZHELom0N/K7XWnUtnPDIklurgcwHf/V8QHqphX90dAQo1JOzVRm
+         mYww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=BYS/jLJ5SnTBfvUO73YfQ/qZMgKSxQ0+sfqUXBWxFgE=;
-        b=AUUJJ3PBITP0klCC9zAL6Sl/GF4n+UM9LHzkpO+U7I9eieqapFjwCSq/mIGCQXJbpS
-         3unK3krzKhCppYal+GHexzJkNLMHed29ratMEOleGDDjERBXBD0YPaQw+3WY3OZkCtRp
-         Z//sclEKb8am4P7STSxPW3bkQwLw3WihyBtH4nxq+SVY+12kCdazFtQ8mQVH7FxJlBkp
-         hog6mQ2H5Jo7pO03g/JrnOllOLv9td1q1fWZ3vjzXseicw39uLN6jOaSSn98ALIaVYIH
-         Py92P7T94CgNZwoCxCOkqxn6I+YKBzFHJ32HBeBKglFQfZke78SI9bWnWoa24188eD1B
-         MmIg==
-X-Gm-Message-State: APjAAAW+lhEQiP2WMBQG5DTOgrve9wPhGnLcnI5k15ceci8LhIaVjCs/
-        wSGiUam0Bnm0w1TTzievvtn3CQ==
-X-Google-Smtp-Source: APXvYqxDBCBALfUY1roCUtb5nFCGs8ULUeZhn4O/3BvnRzigx377XPNv7t8/+DlNYXkU7+9hRiHjCQ==
-X-Received: by 2002:a1c:d185:: with SMTP id i127mr3334208wmg.63.1566543783727;
-        Fri, 23 Aug 2019 00:03:03 -0700 (PDT)
+        bh=Y6OlL/eR9h1Ghc3Dkq2YBZdnDsKxiiGiMpQwldNFWsU=;
+        b=UkXbx724ywEgge4tLHFjEHbgY0Y07qrm3vh35uuW6GPiApcKq3VG1FF2bbgaXXp3h/
+         xqE27R9nv1kLCspHekjsZ7xRRTP6qK8eBeidTjz8Jr4K2u/KFJJqTe/2SLYCf2KvF985
+         OlNRG8TshvskhWTR9XCw9erHvEwtcJ3/Gir+yRaBJn7HpWJw19Ia4MbwrlWzBUf9HMOD
+         r/YtROatOGNgoKXJbzfqmN+pv/lKvNrVH46jaUl2n5k8SKp2rb2VtUCLsBipqgsuvP9B
+         OCYA4eTmmQa2mntehLyC6wQeA/SLuLfUhI4qQMkBFHBbC4OQSD46yh2voeLsVjWI+XMf
+         c+Qg==
+X-Gm-Message-State: APjAAAUoRV+Wh8Bpz5i7NDmS7aCDWkX0IOIzgWHIOrlqhKssQxJaDWsX
+        hcxErSDMckoirQXZM3nprCICv3PMBze4mA==
+X-Google-Smtp-Source: APXvYqxtN07laBxLSGSpNPngo3T29VHr60UhoGb5uhAhV6UuO0Ye5M829fLDQKUyMxekNg94cOFQNQ==
+X-Received: by 2002:a1c:541e:: with SMTP id i30mr3210905wmb.54.1566543784635;
+        Fri, 23 Aug 2019 00:03:04 -0700 (PDT)
 Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a26sm1741833wmg.45.2019.08.23.00.03.02
+        by smtp.gmail.com with ESMTPSA id a26sm1741833wmg.45.2019.08.23.00.03.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2019 00:03:03 -0700 (PDT)
+        Fri, 23 Aug 2019 00:03:04 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     khilman@baylibre.com
 Cc:     linux-amlogic@lists.infradead.org,
@@ -51,9 +51,9 @@ Cc:     linux-amlogic@lists.infradead.org,
         devicetree@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [RESEND PATCH v2 10/14] arm64: dts: meson-g12a: fix reset controller compatible
-Date:   Fri, 23 Aug 2019 09:02:44 +0200
-Message-Id: <20190823070248.25832-11-narmstrong@baylibre.com>
+Subject: [RESEND PATCH v2 11/14] arm64: dts: meson-g12a-x96-max: fix compatible
+Date:   Fri, 23 Aug 2019 09:02:45 +0200
+Message-Id: <20190823070248.25832-12-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190823070248.25832-1-narmstrong@baylibre.com>
 References: <20190823070248.25832-1-narmstrong@baylibre.com>
@@ -65,29 +65,27 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 This fixes the following DT schemas check errors:
-meson-g12a-u200.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
-meson-g12a-sei510.dt.yaml: reset-controller@1004: compatible:0: 'amlogic,meson-g12a-reset' is not one of ['amlogic,meson8b-reset', 'amlogic,meson-gxbb-reset', 'amlogic,meson-axg-reset']
+meson-g12a-x96-max.dt.yaml: /: compatible: ['amediatech,x96-max', 'amlogic,u200', 'amlogic,g12a'] is not valid under any of the given schemas
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 1a5efa2e16c5..d09c7a5cccb4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -2187,8 +2187,7 @@
- 			ranges = <0x0 0x0 0x0 0xffd00000 0x0 0x100000>;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+index c1e58a69d434..4770ecac3d85 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a-x96-max.dts
+@@ -11,7 +11,7 @@
+ #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
  
- 			reset: reset-controller@1004 {
--				compatible = "amlogic,meson-g12a-reset",
--					     "amlogic,meson-axg-reset";
-+				compatible = "amlogic,meson-axg-reset";
- 				reg = <0x0 0x1004 0x0 0x9c>;
- 				#reset-cells = <1>;
- 			};
+ / {
+-	compatible = "amediatech,x96-max", "amlogic,u200", "amlogic,g12a";
++	compatible = "amediatech,x96-max", "amlogic,g12a";
+ 	model = "Shenzhen Amediatech Technology Co., Ltd X96 Max";
+ 
+ 	aliases {
 -- 
 2.22.0
 
