@@ -2,88 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA0099A617
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 05:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DF839A61E
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 05:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388290AbfHWDhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Aug 2019 23:37:46 -0400
-Received: from mga01.intel.com ([192.55.52.88]:49107 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732546AbfHWDhq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 22 Aug 2019 23:37:46 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 22 Aug 2019 20:37:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,419,1559545200"; 
-   d="scan'208";a="378740655"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga005.fm.intel.com with ESMTP; 22 Aug 2019 20:37:45 -0700
-Received: from [10.226.38.55] (rtanwar-mobl.gar.corp.intel.com [10.226.38.55])
-        by linux.intel.com (Postfix) with ESMTP id 78D5D5803A5;
-        Thu, 22 Aug 2019 20:37:41 -0700 (PDT)
-Subject: Re: [PATCH v1 1/2] x86/rtc: Add option to skip using RTC
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     tglx@linutronix.de, mingo@redhat.com, bp@alien8.de, hpa@zytor.com,
-        tony.luck@intel.com, x86@kernel.org, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, alan@linux.intel.com,
-        linux-kernel@vger.kernel.org, qi-ming.wu@intel.com,
-        cheol.yong.kim@intel.com, rahul.tanwar@intel.com
-References: <cover.1566458029.git.rahul.tanwar@linux.intel.com>
- <becacc523508b295a52db9f1592e2868e3988e28.1566458029.git.rahul.tanwar@linux.intel.com>
- <20190822090208.GJ30120@smile.fi.intel.com>
- <25f6947d-7ba0-c23c-25aa-c4c4173da6b0@linux.intel.com>
- <20190822130429.GN30120@smile.fi.intel.com>
-From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Message-ID: <a6717e97-01cf-771c-8467-be5946528dd0@linux.intel.com>
-Date:   Fri, 23 Aug 2019 11:37:38 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1732572AbfHWDkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Aug 2019 23:40:19 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:37604 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732546AbfHWDkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Aug 2019 23:40:18 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7N3dsco056152;
+        Thu, 22 Aug 2019 22:39:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566531594;
+        bh=81SSEYa5Fp4dwV5qila9E6vwCoCXnItQiSYD67zCfW8=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=JWV4ioQFP6IoggZOdMcyoaMP1ZYasXYOhchN4C+7LKmF5GWY/fxycdv4+VTJvOnBp
+         CG/i6CCa5N2V806C2ZUm4j1Uvw9GWhxQp1m80ztT3LFuMkB56p1qu+TsGUuUsqEtiH
+         l2geahbl0GLEirpyHJqBtlG/34hOoHWZDlmJRhBY=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7N3dsgV012046
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 22 Aug 2019 22:39:54 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 22
+ Aug 2019 22:39:54 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 22 Aug 2019 22:39:54 -0500
+Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7N3dmoK102238;
+        Thu, 22 Aug 2019 22:39:49 -0500
+Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of getting
+ capability with different PEX
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.co" <lorenzo.pieralisi@arm.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "andrew.murray@arm.com" <andrew.murray@arm.com>
+References: <20190822112242.16309-1-xiaowei.bao@nxp.com>
+ <20190822112242.16309-6-xiaowei.bao@nxp.com>
+ <0c02ac52-e4b1-8071-bf9e-d10b28fc9029@ti.com>
+ <AM5PR04MB3299DE7B57F31EA405E4FCBCF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+Message-ID: <11e9b2c3-f4d0-2f82-bb14-45c38a1419e4@ti.com>
+Date:   Fri, 23 Aug 2019 09:09:46 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190822130429.GN30120@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <AM5PR04MB3299DE7B57F31EA405E4FCBCF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi,
 
-On 22/8/2019 9:04 PM, Andy Shevchenko wrote:
-> On Thu, Aug 22, 2019 at 05:26:33PM +0800, Tanwar, Rahul wrote:
->> On 22/8/2019 5:02 PM, Andy Shevchenko wrote:
->>> On Thu, Aug 22, 2019 at 03:44:03PM +0800, Rahul Tanwar wrote:
->>>> Use a newly introduced optional "status" property of "motorola,mc146818"
->>>> compatible DT node to determine if RTC is supported. Skip read/write from
->>>> RTC device only when this node is present and status is "disabled". In all
->>>> other cases, proceed as before.
->>> Can't we rather update ->get_wallclock() and ->set_wallclock() based on this?
+(Fixed Lorenzo's email address. All the patches in the series have wrong email id)
+
+On 23/08/19 8:09 AM, Xiaowei Bao wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Kishon Vijay Abraham I <kishon@ti.com>
+>> Sent: 2019年8月22日 19:44
+>> To: Xiaowei Bao <xiaowei.bao@nxp.com>; bhelgaas@google.com;
+>> robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo Li
+>> <leoyang.li@nxp.com>; lorenzo.pieralisi@arm.co; arnd@arndb.de;
+>> gregkh@linuxfoundation.org; M.h. Lian <minghuan.lian@nxp.com>; Mingkai
+>> Hu <mingkai.hu@nxp.com>; Roy Zang <roy.zang@nxp.com>;
+>> jingoohan1@gmail.com; gustavo.pimentel@synopsys.com;
+>> linux-pci@vger.kernel.org; devicetree@vger.kernel.org;
+>> linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linuxppc-dev@lists.ozlabs.org; andrew.murray@arm.com
+>> Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of getting
+>> capability with different PEX
 >>
->> get_wallclock() and set_wallclock() are function pointers of platform_ops
+>> Hi,
 >>
->> which are initialized to mach_get_cmos_time() and mach_set_rtc_mmss()
+>> On 22/08/19 4:52 PM, Xiaowei Bao wrote:
+>>> The different PCIe controller in one board may be have different
+>>> capability of MSI or MSIX, so change the way of getting the MSI
+>>> capability, make it more flexible.
 >>
->> at init time. Since adding a new platform to override these functions is
+>> please use different pci_epc_features table for different boards.
+> Thanks, I think that it will be more flexible to dynamically get MSI or MSIX capability,
+> Thus, we will not need to define the pci_epc_feature for different boards.
+
+Is the restriction because you cannot have different compatible for different
+boards?
+
+Thanks
+Kishon
+
 >>
->> discouraged, so the only way is to modify RTC get/set functions.
-> Shouldn't it be platform agnostic code?
-> So, my point is, instead of hacking two functions, perhaps better to avoid them
-> at all.
-
-Sorry, i could not understand your point. The changes are platform
-
-agnostic i.e. it doesn't break existing use cases. Are you recommending
-
-to add a new platform and make changes there ?
-
-Regards,
-
-Rahul
-
->
->
+>> Thanks
+>> Kishon
+>>>
+>>> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+>>> ---
+>>> v2:
+>>>  - Remove the repeated assignment code.
+>>>
+>>>  drivers/pci/controller/dwc/pci-layerscape-ep.c | 26
+>>> +++++++++++++++++++-------
+>>>  1 file changed, 19 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+>>> b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+>>> index 4e92a95..8461f62 100644
+>>> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+>>> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+>>> @@ -22,6 +22,7 @@
+>>>
+>>>  struct ls_pcie_ep {
+>>>  	struct dw_pcie		*pci;
+>>> +	struct pci_epc_features	*ls_epc;
+>>>  };
+>>>
+>>>  #define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
+>>> @@ -40,25 +41,26 @@ static const struct of_device_id
+>> ls_pcie_ep_of_match[] = {
+>>>  	{ },
+>>>  };
+>>>
+>>> -static const struct pci_epc_features ls_pcie_epc_features = {
+>>> -	.linkup_notifier = false,
+>>> -	.msi_capable = true,
+>>> -	.msix_capable = false,
+>>> -};
+>>> -
+>>>  static const struct pci_epc_features*  ls_pcie_ep_get_features(struct
+>>> dw_pcie_ep *ep)  {
+>>> -	return &ls_pcie_epc_features;
+>>> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>>> +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+>>> +
+>>> +	return pcie->ls_epc;
+>>>  }
+>>>
+>>>  static void ls_pcie_ep_init(struct dw_pcie_ep *ep)  {
+>>>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>>> +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+>>>  	enum pci_barno bar;
+>>>
+>>>  	for (bar = BAR_0; bar <= BAR_5; bar++)
+>>>  		dw_pcie_ep_reset_bar(pci, bar);
+>>> +
+>>> +	pcie->ls_epc->msi_capable = ep->msi_cap ? true : false;
+>>> +	pcie->ls_epc->msix_capable = ep->msix_cap ? true : false;
+>>>  }
+>>>
+>>>  static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no, @@
+>>> -118,6 +120,7 @@ static int __init ls_pcie_ep_probe(struct platform_device
+>> *pdev)
+>>>  	struct device *dev = &pdev->dev;
+>>>  	struct dw_pcie *pci;
+>>>  	struct ls_pcie_ep *pcie;
+>>> +	struct pci_epc_features *ls_epc;
+>>>  	struct resource *dbi_base;
+>>>  	int ret;
+>>>
+>>> @@ -129,6 +132,10 @@ static int __init ls_pcie_ep_probe(struct
+>> platform_device *pdev)
+>>>  	if (!pci)
+>>>  		return -ENOMEM;
+>>>
+>>> +	ls_epc = devm_kzalloc(dev, sizeof(*ls_epc), GFP_KERNEL);
+>>> +	if (!ls_epc)
+>>> +		return -ENOMEM;
+>>> +
+>>>  	dbi_base = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>> "regs");
+>>>  	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
+>>>  	if (IS_ERR(pci->dbi_base))
+>>> @@ -139,6 +146,11 @@ static int __init ls_pcie_ep_probe(struct
+>> platform_device *pdev)
+>>>  	pci->ops = &ls_pcie_ep_ops;
+>>>  	pcie->pci = pci;
+>>>
+>>> +	ls_epc->linkup_notifier = false,
+>>> +	ls_epc->bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
+>>> +
+>>> +	pcie->ls_epc = ls_epc;
+>>> +
+>>>  	platform_set_drvdata(pdev, pcie);
+>>>
+>>>  	ret = ls_add_pcie_ep(pcie, pdev);
+>>>
