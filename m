@@ -2,227 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD279A842
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 388B59A85C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 09:13:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389624AbfHWHK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 03:10:28 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:38709 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388050AbfHWHK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 03:10:28 -0400
-Received: by mail-lf1-f65.google.com with SMTP id f21so1414548lfc.5
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 00:10:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+qU/VHmuE9+FZeGhMZTUDAZVwp0rcf1mKQo/KWfPxLA=;
-        b=c5OYD9xRcMwu9/ZQZ/HUsZELbjvvGpC1Ng9p5IygoPsfBd1n3NT/Wdm7PYN6oI6eaV
-         xvQUkjXdxhvCXi90mothyJm52nkrvbR/rPepOCfN+ae5qKT+y8qEhlclwgoHpM5Dj7KB
-         /72RG5dxARac9ry0l0yS4OpeQNCivZfP8KCjIBzTb0Km6sIXLxaUO6DB2/1j86Ya9/uA
-         +x0XdBQ5H7W5vVkUD/IJqbeEqeco2SPaTRd+FWGAG874ArSJycDdcbL+N/LH0l+KrLj1
-         OR3vKmQ57hoJjYIic3kscsqxHACmDySO+o+xnsQhQoHNUupAdb0Org8cNOownpPvL7CV
-         IT3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+qU/VHmuE9+FZeGhMZTUDAZVwp0rcf1mKQo/KWfPxLA=;
-        b=dq1XalCZMMYSsCTkeRnu2MZWk2eEWeV9oezWaQ3FoLamrcGg1QKfN0va2cPkVU/f3w
-         4WWHCLXuKWZ0RlSNVhp+983Q7KHvQRtWTt+cb58v4vSkTb6P0z0M/KiVvPiBp1BQ1fsR
-         jvTtJLoAcZ6/lKzV9LJUk6sz+JTByoKJ3MHPokk3ak0zEH9Yh7Isa0P54zRGpULwxLep
-         GBWxw8XzSL68+JFd0ZOXJSDoRlfS1JkJjISGlS0Rcf8hESq+oHsl695Ni3VpsZi3rvkX
-         vWkc9UCcQcKJolpvzsjFwzSMkNOvnYGBaPlvKqPjrHh+jSeAjKJuESIo08YVS6ww3gIz
-         iPeg==
-X-Gm-Message-State: APjAAAW0K39ZXFMv5Nf+bsIDraov++Y6VKUyjTZLmcNE/ozlwfTGqtRS
-        Jp8VN3D6w3FRQ4Y9ssqYgbGZ1g==
-X-Google-Smtp-Source: APXvYqwT/E8A7FD8cjk4aMI47BzOIhL3bksrk0C7JFlQ+gVhCjb/IUuguuiB6vH2DtMJ3fIKrQ+PnQ==
-X-Received: by 2002:ac2:4289:: with SMTP id m9mr1938713lfh.49.1566544225732;
-        Fri, 23 Aug 2019 00:10:25 -0700 (PDT)
-Received: from genomnajs.ideon.se ([85.235.10.227])
-        by smtp.gmail.com with ESMTPSA id f28sm210055lfp.28.2019.08.23.00.10.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2019 00:10:24 -0700 (PDT)
-From:   Linus Walleij <linus.walleij@linaro.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        linux-input@vger.kernel.org
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Denis Carikli <denis@eukrea.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH v2] Input: tsc2007 - use GPIO descriptor
-Date:   Fri, 23 Aug 2019 09:10:21 +0200
-Message-Id: <20190823071021.5598-1-linus.walleij@linaro.org>
-X-Mailer: git-send-email 2.21.0
+        id S1731977AbfHWHNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 03:13:44 -0400
+Received: from shell.v3.sk ([90.176.6.54]:40112 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731093AbfHWHNn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 23 Aug 2019 03:13:43 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id F065CD7697;
+        Fri, 23 Aug 2019 09:13:39 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id yGh66jtHXRfw; Fri, 23 Aug 2019 09:13:36 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 46C8AD7698;
+        Fri, 23 Aug 2019 09:13:36 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 9QtK_aypLOFJ; Fri, 23 Aug 2019 09:13:35 +0200 (CEST)
+Received: from belphegor (nat-pool-brq-t.redhat.com [213.175.37.10])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id D11F1D7697;
+        Fri, 23 Aug 2019 09:13:34 +0200 (CEST)
+Message-ID: <0897fa54f487f481bf8770ed516578b6f4f53380.camel@v3.sk>
+Subject: Re: [PATCH v2 16/20] ARM: mmp: add SMP support
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Olof Johansson <olof@lixom.net>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Jason Cooper <jason@lakedaemon.net>,
+        Stephen Boyd <sboyd@kernel.org>, Marc Zyngier <maz@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org
+Date:   Fri, 23 Aug 2019 09:13:33 +0200
+In-Reply-To: <6f9d2285-5ca4-a63a-610e-890b49a4f816@gmail.com>
+References: <20190822092643.593488-1-lkundrak@v3.sk>
+         <20190822092643.593488-17-lkundrak@v3.sk>
+         <6f9d2285-5ca4-a63a-610e-890b49a4f816@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.32.4 (3.32.4-1.fc30) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=y
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This switches the TSC2007 to use a GPIO descriptor to read
-the pendown GPIO line.
+On Thu, 2019-08-22 at 09:36 -0700, Florian Fainelli wrote:
+> On 8/22/19 2:26 AM, Lubomir Rintel wrote:
+> > Used to bring up the second core on MMP3.
+> > 
+> > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> > 
+> > ---
+> > Changes since v1:
+> > - Wrap SW_BRANCH_VIRT_ADDR with __pa_symbol()
+> > 
+> >  arch/arm/mach-mmp/Makefile  |  3 +++
+> >  arch/arm/mach-mmp/platsmp.c | 33 +++++++++++++++++++++++++++++++++
+> >  2 files changed, 36 insertions(+)
+> >  create mode 100644 arch/arm/mach-mmp/platsmp.c
+> > 
+> > diff --git a/arch/arm/mach-mmp/Makefile b/arch/arm/mach-mmp/Makefile
+> > index 322c1c97dc900..7b3a7f979eece 100644
+> > --- a/arch/arm/mach-mmp/Makefile
+> > +++ b/arch/arm/mach-mmp/Makefile
+> > @@ -22,6 +22,9 @@ ifeq ($(CONFIG_PM),y)
+> >  obj-$(CONFIG_CPU_PXA910)	+= pm-pxa910.o
+> >  obj-$(CONFIG_CPU_MMP2)		+= pm-mmp2.o
+> >  endif
+> > +ifeq ($(CONFIG_SMP),y)
+> > +obj-$(CONFIG_MACH_MMP3_DT)	+= platsmp.o
+> > +endif
+> >  
+> >  # board support
+> >  obj-$(CONFIG_MACH_ASPENITE)	+= aspenite.o
+> > diff --git a/arch/arm/mach-mmp/platsmp.c b/arch/arm/mach-mmp/platsmp.c
+> > new file mode 100644
+> > index 0000000000000..98d5ef23623cb
+> > --- /dev/null
+> > +++ b/arch/arm/mach-mmp/platsmp.c
+> > @@ -0,0 +1,33 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Copyright (C) 2019 Lubomir Rintel <lkundrak@v3.sk>
+> > + */
+> > +#include <linux/io.h>
+> > +#include <asm/smp_scu.h>
+> > +#include <asm/smp.h>
+> > +#include "addr-map.h"
+> > +
+> > +#define SW_BRANCH_VIRT_ADDR	CIU_REG(0x24)
+> > +
+> > +static int mmp3_boot_secondary(unsigned int cpu, struct task_struct *idle)
+> > +{
+> > +	/*
+> > +	 * Apparently, the boot ROM on the second core spins on this
+> > +	 * register becoming non-zero and then jumps to the address written
+> > +	 * there. No IPIs involved.
+> > +	 */
+> > +	__raw_writel(virt_to_phys(secondary_startup),
+> > +			__pa_symbol(SW_BRANCH_VIRT_ADDR));
+> 
+> That looks wrong, the __pa_symbol() is applicable to secondary_startup,
+> while SW_BRANCH_VIRT_ADDR does not need that.
 
-As this will make the gpiolib start to respect polarity
-inversion flags on the GPIO lines, drop the inversion when
-reading the line with gpio_get_value(), fix two offenders
-in the i.MX device trees, and also emphasize the importance
-of marking the polarity right in the device tree bindings.
+Whoops, sorry for that. Will fix in the next patch version in a few
+days.
 
-Cc: Denis Carikli <denis@eukrea.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: H. Nikolaus Schaller <hns@goldelico.com>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
-ChangeLog v1->v2:
-- Drop inversion on the GPIO descriptor value, rely on the
-  gpiolib to handle polarity inversion.
-- Comb through device trees, identify two offenders, fix
-  them as part of the patch for a clean cut.
-- Also fix the device tree bindings.
----
- .../bindings/input/touchscreen/tsc2007.txt         |  5 +++--
- arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi       |  3 ++-
- arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi       |  3 ++-
- drivers/input/touchscreen/tsc2007.h                |  4 +++-
- drivers/input/touchscreen/tsc2007_core.c           | 14 +++++++-------
- 5 files changed, 17 insertions(+), 12 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-index ed00f61b8c08..b08b54d49699 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-+++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-@@ -7,7 +7,8 @@ Required properties:
- 
- Optional properties:
- - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
--  The penirq pin goes to low when the panel is touched.
-+  The penirq pin goes to low when the panel is touched, so make sure to tag
-+  the GPIO line with GPIO_ACTIVE_LOW.
-   (see GPIO binding[1] for more details).
- - interrupts: (gpio) interrupt to which the chip is connected
-   (see interrupt binding[0]).
-@@ -31,7 +32,7 @@ Example:
- 			reg = <0x49>;
- 			interrupt-parent = <&gpio4>;
- 			interrupts = <0x0 0x8>;
--			gpios = <&gpio4 0 0>;
-+			gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
- 			ti,x-plate-ohms = <180>;
- 		};
- 
-diff --git a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
-index 17bd2a97609a..b8ac60622936 100644
---- a/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
-+++ b/arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright 2013 Eukréa Electromatique <denis@eukrea.com>
-  */
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "imx35.dtsi"
- 
- / {
-@@ -33,7 +34,7 @@
- 
- 	tsc2007: tsc2007@48 {
- 		compatible = "ti,tsc2007";
--		gpios = <&gpio3 2 0>;
-+		gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
- 		interrupt-parent = <&gpio3>;
- 		interrupts = <0x2 0x8>;
- 		pinctrl-names = "default";
-diff --git a/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi b/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
-index c2a929ba8ceb..016d0bc64bdb 100644
---- a/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
-+++ b/arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi
-@@ -3,6 +3,7 @@
-  * Copyright 2013 Eukréa Electromatique <denis@eukrea.com>
-  */
- 
-+#include <dt-bindings/gpio/gpio.h>
- #include "imx51.dtsi"
- 
- / {
-@@ -33,7 +34,7 @@
- 
- 	tsc2007: tsc2007@49 {
- 		compatible = "ti,tsc2007";
--		gpios = <&gpio4 0 1>;
-+		gpios = <&gpio4 0 GPIO_ACTIVE_LOW>;
- 		interrupt-parent = <&gpio4>;
- 		interrupts = <0x0 0x8>;
- 		pinctrl-names = "default";
-diff --git a/drivers/input/touchscreen/tsc2007.h b/drivers/input/touchscreen/tsc2007.h
-index 91c60bf6dcaf..0306c38b56c7 100644
---- a/drivers/input/touchscreen/tsc2007.h
-+++ b/drivers/input/touchscreen/tsc2007.h
-@@ -49,6 +49,8 @@
- #define READ_X		(ADC_ON_12BIT | TSC2007_MEASURE_X)
- #define PWRDOWN		(TSC2007_12BIT | TSC2007_POWER_OFF_IRQ_EN)
- 
-+struct gpio_desc;
-+
- struct ts_event {
- 	u16	x;
- 	u16	y;
-@@ -69,7 +71,7 @@ struct tsc2007 {
- 	int			fuzzy;
- 	int			fuzzz;
- 
--	unsigned int		gpio;
-+	struct gpio_desc	*gpiod;
- 	int			irq;
- 
- 	wait_queue_head_t	wait;
-diff --git a/drivers/input/touchscreen/tsc2007_core.c b/drivers/input/touchscreen/tsc2007_core.c
-index 3b80abfc1eca..0eadd6d86fa0 100644
---- a/drivers/input/touchscreen/tsc2007_core.c
-+++ b/drivers/input/touchscreen/tsc2007_core.c
-@@ -23,7 +23,7 @@
- #include <linux/interrupt.h>
- #include <linux/i2c.h>
- #include <linux/of_device.h>
--#include <linux/of_gpio.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/platform_data/tsc2007.h>
- #include "tsc2007.h"
- 
-@@ -226,7 +226,7 @@ static int tsc2007_get_pendown_state_gpio(struct device *dev)
- 	struct i2c_client *client = to_i2c_client(dev);
- 	struct tsc2007 *ts = i2c_get_clientdata(client);
- 
--	return !gpio_get_value(ts->gpio);
-+	return gpiod_get_value(ts->gpiod);
- }
- 
- static int tsc2007_probe_dt(struct i2c_client *client, struct tsc2007 *ts)
-@@ -266,13 +266,13 @@ static int tsc2007_probe_dt(struct i2c_client *client, struct tsc2007 *ts)
- 		return -EINVAL;
- 	}
- 
--	ts->gpio = of_get_gpio(np, 0);
--	if (gpio_is_valid(ts->gpio))
-+	ts->gpiod = devm_gpiod_get_optional(&client->dev, NULL, GPIOD_IN);
-+	if (IS_ERR(ts->gpiod))
-+		return PTR_ERR(ts->gpiod);
-+	if (ts->gpiod)
- 		ts->get_pendown_state = tsc2007_get_pendown_state_gpio;
- 	else
--		dev_warn(&client->dev,
--			 "GPIO not specified in DT (of_get_gpio returned %d)\n",
--			 ts->gpio);
-+		dev_warn(&client->dev, "GPIO not specified in DT\n");
- 
- 	return 0;
- }
--- 
-2.21.0
+Thanks
+Lubo
 
