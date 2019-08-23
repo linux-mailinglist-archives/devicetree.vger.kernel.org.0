@@ -2,124 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47EED9AEE4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 14:16:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A51CF9AEE7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 14:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391640AbfHWMOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 08:14:50 -0400
-Received: from mout.gmx.net ([212.227.17.20]:47293 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2391421AbfHWMOu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 08:14:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1566562433;
-        bh=ZZeV6qRtSW/Hn8aQJ6GSyIcFFJLdxp8khErjnJb6tDY=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=FBQpYh+kIJbWDHnjvns4r0qIa5UOO4cbX3d0pJfuKJQ5y42tn0Tk1LWViStDHVUJ0
-         l8u0uHxjhi1p4zou1hzwKGXjSAzdCGQY2wrJ5xNMe8gJqqMi9fLM1Hi8HCbLuWtPgM
-         VE1fJPnOd5+1wXqEm283z06cO2yt5UAm9k/d7yAk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.154.8] ([217.61.154.8]) by web-mail.gmx.net
- (3c-app-gmx-bs11.server.lan [172.19.170.62]) (via HTTP); Fri, 23 Aug 2019
- 14:13:53 +0200
+        id S2393202AbfHWMPo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 08:15:44 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:41298 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391421AbfHWMPo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 08:15:44 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 8A34E6090E; Fri, 23 Aug 2019 12:15:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566562542;
+        bh=1r30JA6PGylRMvBWwK0MZPMCK+yXDedgJm+kK/1QSt4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=kd8S4QJ9iHirqnsy3+azh/ueoMPdHx/7Wr4wSaWVIRdRKSLeWaqbwHzRXxotw00Qt
+         gMVmcIQISocWukFbeFdRsV//HuaSe0jWlbHsGhUCzedxm3gEGvb/6aXQTp4vhpmVBU
+         QGAGjUt//I2mPUi/Af6Q3dxxSNsX05Gd+AwXOFHk=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 8CBA860710;
+        Fri, 23 Aug 2019 12:15:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566562541;
+        bh=1r30JA6PGylRMvBWwK0MZPMCK+yXDedgJm+kK/1QSt4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=C/7+Ox6qOBClultfxMqHQV9n4QwPMnionX8tCHLvQg4gn/lzWCK9UHUoBlU9b+qFB
+         V4h42m9yUhGBR8ZZUQIXoJtWaqrC0NHVOCMfMIuEfFgwl9y2ymbgHjLjDN3CuNZFCA
+         Q7LU7yTaUEDzJDIktXmYAyHhROiapK0ASQ2DxKd4=
 MIME-Version: 1.0
-Message-ID: <trinity-1f82bff1-535e-47cd-9a2f-8faccb56e356-1566562433314@3c-app-gmx-bs11>
-From:   "Frank Wunderlich" <frank-w@public-files.de>
-To:     "Hsin-Hsiung Wang" <hsin-hsiung.wang@mediatek.com>
-Cc:     "Lee Jones" <lee.jones@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Brown" <broonie@kernel.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Alessandro Zummo" <a.zummo@towertech.it>,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Kate Stewart" <kstewart@linuxfoundation.org>,
-        "Sean Wang" <sean.wang@mediatek.com>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        "Richard Fontana" <rfontana@redhat.com>,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Eddie Huang" <eddie.huang@mediatek.com>,
-        "Hsin-Hsiung Wang" <hsin-hsiung.wang@mediatek.com>,
-        linux-rtc@vger.kernel.org,
-        =?UTF-8?Q?=22Ren=C3=A9_van_Dorst=22?= <opensource@vdorst.com>
-Subject: [BUG] [PATCH v5 02/10] mfd: mt6397: extract irq related code from
- core driver
-Content-Type: text/plain; charset=UTF-8
-Date:   Fri, 23 Aug 2019 14:13:53 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <1566531931-9772-3-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1566531931-9772-3-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:nr4dyiSrd5gDD/bbRxF4ZEMIgz3xepFd/XlrekfNAvjvFi0Rx9xJ40d++NeKsHyt0x2if
- Vsxhi9F2hKxfL2TtgZhz8QB3wGKc7O4PkkNfmHp2rkd+cyNHuOeuvgv4tTWEc5vz/AKmz43rcKVO
- w2jtE9MncIXl4dzU+xzojsi78V+giOD8SsFFuIaVLPsJYTcyUSiy3wte1lI3MMA1l7eViGEXQQXU
- yCKnXLU87YTlbIylJbH+NPl9SoVc0aFsk0n3Hp4z+x5ZYnWHl7jBQ13pt2nLpkqQaYEj6njm7x2i
- +Y=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:FnVj54k4t1g=:xdot20YBEqJE3Af3zCaBWN
- Bhkf7wY8DCiRL/dAZBYCJ+tX4aoZA6MWAIBeFyPLOS1gVGIbxCzXRz+7jJbzi3VdLA9lLq9VX
- khKYQ3M03zz3DK/k4cSUE8BNkY5STJDWdOarnUPjWEFbYi1sAIMrxEhc55jbnAKL59/Ek4dl9
- WROreyN+6//0XzUk7kMUjeMmqPwOVKQXW4+xCzS3i8Yh3b2Jv033NVjhDfxHG5BLsJoW6BOcO
- nO+aobMhP5FqUb2aBCnQ9sPjA0Xo9pLiC71DAGgfe6kPNVpeP7Qss6j604hQqk5rTv0UIi6WK
- mR+UddvyW9pHXMhIWZdVnEZ1fAQxXsZdoRKQThlZ1Oz9o8iUca4ES+4R0x89lOMQ4Q4kM9/8H
- Cp1J3hL8C5iVpG5JsNsxqV3BVXZBCYZkpCdB+a6lCjEbkMPoB78sINVR3smTfETnHbq9WkbL0
- EV/uXYkwijeRyfx/7dh++1bj1hKeIaLfrew2OuZWysvrQdgBQxTrlfmWvq1olPIdBqiNB57rj
- oRsUMxl9y9Ol/SJtBbnbnADmPVLNlN+7wgl6WaWyNaBVg/6Gnk2lOf9G5P4zD1MDH6lRJ3vU2
- Un1VhrxjKj6kjzX/bMOI1VupE+fMVk+urJQ3DefrmrYUi88bbyplr1v4M8QpGaZZQM6zEtPhD
- +pVMmTPI6cM2yQC9gSvpZ6ikWI161WUqjQKjzXdXKLxy0Qg==
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Fri, 23 Aug 2019 17:45:41 +0530
+From:   Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
+        devicetree@vger.kernel.org, ath11k@lists.infradead.org
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+In-Reply-To: <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+ <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+ (sfid-20190820_181539_894705_E3B317D0)
+ <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
+Message-ID: <ee38dc5e80097d0ebc186f81b2f11d37@codeaurora.org>
+X-Sender: vthiagar@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 2019-08-21 02:16, Johannes Berg wrote:
+> On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
+> 
+>> +static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
+>> +{
+>> +	struct ath11k *ar = hw->priv;
+>> +	int ret = 0;
+>> +
+>> +	/* mac80211 requires this op to be present and that's why
+>> +	 * there's an empty function, this can be extended when
+>> +	 * required.
+>> +	 */
+> 
+> Well, oops. Maybe it shouldn't be required?
 
-this commit breaks mt6323 pmic on BananaPi-R2
+I think we require this for some configuration handling. The comment is 
+to be updated with
+proper information. We'll address that.
 
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit=
-/?id=3Da4872e80ce7d2a1844328176dbf279d0a2b89bdb
+> 
+>> +	mutex_lock(&ar->conf_mutex);
+>> +
+>> +	/* TODO: Handle configuration changes as appropriate */
+>> +
+>> +	mutex_unlock(&ar->conf_mutex);
+> 
+> It's not actually empty though - why bother locking the mutex for
+> nothing?
 
-resulting in this message in dmesg:
+Sure, we'll remove this locking.
 
-mt6397 1000d000.pwrap:mt6323: unsupported chip: 0x0
-and multiple
-mtk-cpufreq mtk-cpufreq: failed to initialize dvfs info for cpu0
+> 
+>> +	if (sta->mfp) {
+>> +		/* TODO: Need to check if FW supports PMF? */
+> 
+> Probably not? shouldn't get a sta with MFP unless you advertised 
+> support
+> for it. At least I'd think so, and consider it a mac80211 bug if you
+> still did.
+> 
 
-see discussion here:
-http://lists.infradead.org/pipermail/linux-mediatek/2019-August/022505.htm=
-l
+I could see driver getting sta with MFP irrespective of whether driver
+advertises it's support in hw_flags by setting IEEE80211_HW_MFP_CAPABLE.
+I see MFP station in driver even when I remove the support for the MFP 
+cipher
+suits in STA mode. I agree all these needs to be handled in mac80211.
 
-after reverting this one the errors are gone, please provide a fix
+>> +	/* This is a workaround for HT-enabled STAs which break the spec
+>> +	 * and have no HT capabilities RX mask (no HT RX MCS map).
+>> +	 *
+>> +	 * As per spec, in section 20.3.5 Modulation and coding scheme 
+>> (MCS),
+>> +	 * MCS 0 through 7 are mandatory in 20MHz with 800 ns GI at all 
+>> STAs.
+> 
+> Wouldn't that better be in mac80211?
 
-regards Frank
+Right.
 
+> 
+>> +	ampdu_factor = (vht_cap->cap &
+>> +			IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_MASK) >>
+>> +		       IEEE80211_VHT_CAP_MAX_A_MPDU_LENGTH_EXPONENT_SHIFT;
+> 
+> consider u32_get_bits() or something like that from bitfield.h
+> 
+>> +	/* Workaround: Some Netgear/Linksys 11ac APs set Rx A-MPDU factor to
+>> +	 * zero in VHT IE. Using it would result in degraded throughput.
+>> +	 * arg->peer_max_mpdu at this point contains HT max_mpdu so keep
+>> +	 * it if VHT max_mpdu is smaller.
+>> +	 */
+>> +	arg->peer_max_mpdu = max(arg->peer_max_mpdu,
+>> +				 (1U << (IEEE80211_HT_MAX_AMPDU_FACTOR +
+>> +					ampdu_factor)) - 1);
+> 
+> Wait, that seems familiar. Again, put it into mac80211?
+> 
 
-> Gesendet: Freitag, 23. August 2019 um 05:45 Uhr
-> Von: "Hsin-Hsiung Wang" <hsin-hsiung.wang@mediatek.com>
-> Betreff: [PATCH v5 02/10] mfd: mt6397: extract irq related code from cor=
-e driver
->
-> In order to support different types of irq design, we decide to add
-> separate irq drivers for different design and keep mt6397 mfd core
-> simple and reusable to all generations of PMICs so far.
->
-> Acked-for-mfd-by: Lee Jones <lee.jones@linaro.org>
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> ---
->  drivers/mfd/Makefile            |   3 +-
->  drivers/mfd/mt6397-core.c       | 146 --------------------------------
->  drivers/mfd/mt6397-irq.c        | 181 +++++++++++++++++++++++++++++++++=
-+++++++
->  include/linux/mfd/mt6397/core.h |   9 ++
->  4 files changed, 192 insertions(+), 147 deletions(-)
->  create mode 100644 drivers/mfd/mt6397-irq.c
+Sure.
 
+>> +static void ath11k_peer_assoc_h_smps(struct ieee80211_sta *sta,
+>> +				     struct peer_assoc_params *arg)
+>> +{
+>> +	const struct ieee80211_sta_ht_cap *ht_cap = &sta->ht_cap;
+>> +	int smps;
+>> +
+>> +	if (!ht_cap->ht_supported)
+>> +		return;
+>> +
+>> +	smps = ht_cap->cap & IEEE80211_HT_CAP_SM_PS;
+>> +	smps >>= IEEE80211_HT_CAP_SM_PS_SHIFT;
+> 
+> also here, u*_get_bits() or something might be nicer
+> 
+> (and yes, I've written tons of code like this myself before that
+> existed, which is why I'm pointing it out - it's much nicer)
+> 
+
+Ok.
+
+>> +void ath11k_mac_drain_tx(struct ath11k *ar)
+>> +{
+>> +	/* make sure rcu-protected mac80211 tx path itself is drained */
+>> +	synchronize_net();
+> 
+> Doesn't mac80211 ensure that in the relevant places like flush()? But
+> then again, not sure where you call this.
+
+This tx drain cleans up any pending management frames in the software 
+queue.
+This will be done from hw_restart and drv_start callback to make sure we
+do not have any pending management frames.
+
+> 
+>> +	ath11k_dbg(ar->ab, ATH11K_DBG_MAC, "mac set fixed rate params vdev 
+>> %i rate 0x%02hhx nss %hhu sgi %hhu\n",
+>> +		   arvif->vdev_id, rate, nss, sgi);
+> 
+> nit: that could use a line-break
+> 
+>> +	vdev_param = WMI_VDEV_PARAM_FIXED_RATE;
+>> +	ret = ath11k_wmi_vdev_set_param_cmd(ar, arvif->vdev_id,
+>> +					    vdev_param, rate);
+>> +	if (ret) {
+>> +		ath11k_warn(ar->ab, "failed to set fixed rate param 0x%02x: %d\n",
+>> 
+>> +	/* TODO: Check if HT capability advertised from firmware is 
+>> different
+>> +	 * for each band for a dual band capable radio. It will be tricky to
+>> +	 * handle it when the ht capability different for each band.
+>> +	 */
+> 
+> For each band shouldn't really be that tricky?
+> 
+
+Sure, we'll review and address this TODO.
+
+Thanks,
+Vasanth
+
+> _______________________________________________
+> ath11k mailing list
+> ath11k@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/ath11k
