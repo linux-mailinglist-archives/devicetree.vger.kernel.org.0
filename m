@@ -2,278 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 838819B733
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 21:43:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 498769B781
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 21:58:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731854AbfHWTnQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 15:43:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45400 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731763AbfHWTnQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 15:43:16 -0400
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 98F41204EC;
-        Fri, 23 Aug 2019 19:43:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566589395;
-        bh=A5eeAEPetBRLMvoXmWpeJWVupdyZjGQb5uqPUxSopRE=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Lp0kgTaL2ER1ikXu9l5+TknQpBRLVfc4BleH5oF+NdBkxB+c5LFY/2x7o82/KSivI
-         T2zrEDSyzyNekmuNL6JiduReArBzQm9I4NzNK3pfgxz77LI6LzJ40njjfbD25tI8Sf
-         8bH3aLvOlHHgvixhW1XFYsbJ5xt34UdIwlMptUtI=
-Subject: Re: [PATCH v14 01/18] kunit: test: add KUnit test runner core
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Theodore Ts'o <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        shuah <shuah@kernel.org>
-References: <20190820232046.50175-1-brendanhiggins@google.com>
- <20190820232046.50175-2-brendanhiggins@google.com>
- <7f2c8908-75f6-b793-7113-ad57c51777ce@kernel.org>
- <CAFd5g44mRK9t4f58i_YMEt=e9RTxwrrhFY_V2LW_E7bUwR3cdg@mail.gmail.com>
- <4513d9f3-a69b-a9a4-768b-86c2962b62e0@kernel.org>
- <CAFd5g446J=cVW4QW+QeZMLDi+ANqshAW6KTrFFBTusPcdr6-GA@mail.gmail.com>
- <42c6235c-c586-8de1-1913-7cf1962c6066@kernel.org>
- <CAFd5g44hLgeqPtNw1zQ5k_+apBm=ri_6=wAgHk=oPOvQs6xgNg@mail.gmail.com>
- <54f3c011-d666-e828-5e77-359b7a7374e7@kernel.org>
- <CAFd5g44NAs6KK0_sG9itgT5qxujpyx36XV6tT8=zMynG-ZyVhQ@mail.gmail.com>
- <bb9384cd-bd62-2190-e0da-ed3537aff171@kernel.org>
- <CAFd5g47bJjp94bbCRmho8yUXNWx3PpQ4Cu6Y1UnErKVKWuedNw@mail.gmail.com>
-From:   shuah <shuah@kernel.org>
-Message-ID: <6cb3a6b5-8570-07b2-dffb-eeca5a1c663b@kernel.org>
-Date:   Fri, 23 Aug 2019 13:43:11 -0600
+        id S2387782AbfHWT6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 15:58:13 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41642 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730896AbfHWT6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 15:58:13 -0400
+Received: by mail-pf1-f194.google.com with SMTP id 196so7126916pfz.8;
+        Fri, 23 Aug 2019 12:58:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=TRopV706ZzaEH+QRlC4YoYOvF/kT5GnfQwua05qCUGI=;
+        b=AmCjitaCrZ6qkIQg04ZiC8/JOUfyGvMELG/BxNHiTeKLsfg1VHpKeF/eb4pVit5K22
+         +zdVMuTINxjdG8LkqhFzk4nO6S0LQmp9B8UEHL9BSgpIeI5ElMyAPk/6xb9WGuXi84Wc
+         wGMwMq63LKnNyngg6+zuBuE9qKiaIn1b2NHN6p2IoE4SyulePmBXElXTZjxAJIcG249z
+         tayU5qafcBFAruVTwUK6e4q57TeUNdctLNzaRa8anhsBY2QsTZG9zCDz88Gshweb0Wl2
+         dbRByJdr6FPXQWrcw4s/VyKqwKfpDE8CRgjPXV60EbiCCC4qGh8+Jd8cG3JJ9FteMZ5e
+         tVIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=TRopV706ZzaEH+QRlC4YoYOvF/kT5GnfQwua05qCUGI=;
+        b=edJa40MNpnOe9MBYdOtmEQ3xrp77z5fprs34Y8k/AkQymb/7MdS3Np6cMcQ+PPEH4C
+         r8C2nZrN9h5JhTGaWrSXdXOd5ENuzb7OmG+ni+xYeCgPBJJ+PPJFjmNXRZ8JNg7l5zaz
+         MirI3ncvAz/Uh0y648BiPrP+m7bQ9+RUX55V67GXim2aAYy5r/quLDGKIhSg67kcGDwc
+         7FwKrhuyp2/EMV3nbEORfkwmcZtp7PqBSx/rj2jX0y7FBCvqYz1DDnPRDEIUIP8y2WMD
+         KKwDkYHN4p4w3SCQRvv5IszrJALISdPZdzPz5GIYKrLlBYkZN5KgvWqwm9vu4e9mHikU
+         GvIg==
+X-Gm-Message-State: APjAAAVsTE2jQks/oUYgpy2FAg1mJmN9d8TgeJgc0NhIU3Am+BpahlG3
+        t1atmkNx3x6CVI6BVS0rq+JaAgum
+X-Google-Smtp-Source: APXvYqyZybLda3hM0hQeqQG+AJetHdwWpodfEmG1i+FFBw8UYHmx9vCrlXxs5yjpTV7nBM4UL1a0BQ==
+X-Received: by 2002:a17:90a:d592:: with SMTP id v18mr6951600pju.135.1566590291758;
+        Fri, 23 Aug 2019 12:58:11 -0700 (PDT)
+Received: from [10.67.49.31] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id i9sm7274307pgo.46.2019.08.23.12.58.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 23 Aug 2019 12:58:10 -0700 (PDT)
+Subject: Re: [PATCH v6 4/4] net: phy: realtek: Add LED configuration support
+ for RTL8211E
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, Pavel Machek <pavel@ucw.cz>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20190813191147.19936-1-mka@chromium.org>
+ <20190813191147.19936-5-mka@chromium.org> <20190816201342.GB1646@bug>
+ <20190816212728.GW250418@google.com>
+ <31dc724d-77ba-3400-6abe-4cf2e3c2a20a@gmail.com>
+ <CAD=FV=WvWjcVX1YNxKsi_TmJP6vdBZ==bYOVGs2VjUqVhEjpuA@mail.gmail.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
+Message-ID: <f1fd7aba-b36f-8cc4-9ed7-9977c0912b9d@gmail.com>
+Date:   Fri, 23 Aug 2019 12:58:09 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAFd5g47bJjp94bbCRmho8yUXNWx3PpQ4Cu6Y1UnErKVKWuedNw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <CAD=FV=WvWjcVX1YNxKsi_TmJP6vdBZ==bYOVGs2VjUqVhEjpuA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/23/19 1:20 PM, Brendan Higgins wrote:
-> On Fri, Aug 23, 2019 at 12:04 PM shuah <shuah@kernel.org> wrote:
+On 8/16/19 3:39 PM, Doug Anderson wrote:
+> Hi,
+> 
+> On Fri, Aug 16, 2019 at 3:12 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >>
->> On 8/23/19 12:56 PM, Brendan Higgins wrote:
->>> On Fri, Aug 23, 2019 at 11:32 AM shuah <shuah@kernel.org> wrote:
->>>>
->>>> On 8/23/19 11:54 AM, Brendan Higgins wrote:
->>>>> On Fri, Aug 23, 2019 at 10:34 AM shuah <shuah@kernel.org> wrote:
->>>>>>
->>>>>> On 8/23/19 11:27 AM, Brendan Higgins wrote:
->>>>>>> On Fri, Aug 23, 2019 at 10:05 AM shuah <shuah@kernel.org> wrote:
->>>>>>>>
->>>>>>>> On 8/23/19 10:48 AM, Brendan Higgins wrote:
->>>>>>>>> On Fri, Aug 23, 2019 at 8:33 AM shuah <shuah@kernel.org> wrote:
->>>>>>>>>>
->>>>>>>>>> Hi Brendan,
->>>>>>>>>>
->>>>>>>>>> On 8/20/19 5:20 PM, Brendan Higgins wrote:
->>>>>>>>>>> Add core facilities for defining unit tests; this provides a common way
->>>>>>>>>>> to define test cases, functions that execute code which is under test
->>>>>>>>>>> and determine whether the code under test behaves as expected; this also
->>>>>>>>>>> provides a way to group together related test cases in test suites (here
->>>>>>>>>>> we call them test_modules).
->>>>>>>>>>>
->>>>>>>>>>> Just define test cases and how to execute them for now; setting
->>>>>>>>>>> expectations on code will be defined later.
->>>>>>>>>>>
->>>>>>>>>>> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
->>>>>>>>>>> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->>>>>>>>>>> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
->>>>>>>>>>> Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
->>>>>>>>>>> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
->>>>>>>>>>> ---
->>>>>>>>>>>        include/kunit/test.h | 179 ++++++++++++++++++++++++++++++++++++++++
->>>>>>>>>>>        kunit/Kconfig        |  17 ++++
->>>>>>>>>>>        kunit/Makefile       |   1 +
->>>>>>>>>>>        kunit/test.c         | 191 +++++++++++++++++++++++++++++++++++++++++++
->>>>>>>>>>>        4 files changed, 388 insertions(+)
->>>>>>>>>>>        create mode 100644 include/kunit/test.h
->>>>>>>>>>>        create mode 100644 kunit/Kconfig
->>>>>>>>>>>        create mode 100644 kunit/Makefile
->>>>>>>>>>>        create mode 100644 kunit/test.c
->>>>>>>>>>>
->>>>>>>>>>> diff --git a/include/kunit/test.h b/include/kunit/test.h
->>>>>>>>>>> new file mode 100644
->>>>>>>>>>> index 0000000000000..e0b34acb9ee4e
->>>>>>>>>>> --- /dev/null
->>>>>>>>>>> +++ b/include/kunit/test.h
->>>>>>>>>>> @@ -0,0 +1,179 @@
->>>>>>>>>>> +/* SPDX-License-Identifier: GPL-2.0 */
->>>>>>>>>>> +/*
->>>>>>>>>>> + * Base unit test (KUnit) API.
->>>>>>>>>>> + *
->>>>>>>>>>> + * Copyright (C) 2019, Google LLC.
->>>>>>>>>>> + * Author: Brendan Higgins <brendanhiggins@google.com>
->>>>>>>>>>> + */
->>>>>>>>>>> +
->>>>>>>>>>> +#ifndef _KUNIT_TEST_H
->>>>>>>>>>> +#define _KUNIT_TEST_H
->>>>>>>>>>> +
->>>>>>>>>>> +#include <linux/types.h>
->>>>>>>>>>> +
->>>>>>>>>>> +struct kunit;
->>>>>>>>>>> +
->>>>>>>>>>> +/**
->>>>>>>>>>> + * struct kunit_case - represents an individual test case.
->>>>>>>>>>> + * @run_case: the function representing the actual test case.
->>>>>>>>>>> + * @name: the name of the test case.
->>>>>>>>>>> + *
->>>>>>>>>>> + * A test case is a function with the signature, ``void (*)(struct kunit *)``
->>>>>>>>>>> + * that makes expectations (see KUNIT_EXPECT_TRUE()) about code under test. Each
->>>>>>>>>>> + * test case is associated with a &struct kunit_suite and will be run after the
->>>>>>>>>>> + * suite's init function and followed by the suite's exit function.
->>>>>>>>>>> + *
->>>>>>>>>>> + * A test case should be static and should only be created with the KUNIT_CASE()
->>>>>>>>>>> + * macro; additionally, every array of test cases should be terminated with an
->>>>>>>>>>> + * empty test case.
->>>>>>>>>>> + *
->>>>>>>>>>> + * Example:
->>>>>>>>>>
->>>>>>>>>> Can you fix these line continuations. It makes it very hard to read.
->>>>>>>>>> Sorry for this late comment. These comments lines are longer than 80
->>>>>>>>>> and wrap.
->>>>>>>>>
->>>>>>>>> None of the lines in this commit are over 80 characters in column
->>>>>>>>> width. Some are exactly 80 characters (like above).
->>>>>>>>>
->>>>>>>>> My guess is that you are seeing the diff added text (+ ), which when
->>>>>>>>> you add that to a line which is exactly 80 char in length ends up
->>>>>>>>> being over 80 char in email. If you apply the patch you will see that
->>>>>>>>> they are only 80 chars.
->>>>>>>>>
->>>>>>>>>>
->>>>>>>>>> There are several comment lines in the file that are way too long.
->>>>>>>>>
->>>>>>>>> Note that checkpatch also does not complain about any over 80 char
->>>>>>>>> lines in this file.
->>>>>>>>>
->>>>>>>>> Sorry if I am misunderstanding what you are trying to tell me. Please
->>>>>>>>> confirm either way.
->>>>>>>>>
->>>>>>>>
->>>>>>>> WARNING: Avoid unnecessary line continuations
->>>>>>>> #258: FILE: include/kunit/test.h:137:
->>>>>>>> +                */                                                            \
->>>>>>>>
->>>>>>>> total: 0 errors, 2 warnings, 388 lines checked
->>>>>>>
->>>>>>> Ah, okay so you don't like the warning about the line continuation.
->>>>>>> That's not because it is over 80 char, but because there is a line
->>>>>>> continuation after a comment. I don't really see a way to get rid of
->>>>>>> it without removing the comment from inside the macro.
->>>>>>>
->>>>>>> I put this TODO there in the first place a Luis' request, and I put it
->>>>>>> in the body of the macro because this macro already had a kernel-doc
->>>>>>> comment and I didn't think that an implementation detail TODO belonged
->>>>>>> in the user documentation.
->>>>>>>
->>>>>>>> Go ahead fix these. It appears there are few lines that either longer
->>>>>>>> than 80. In general, I keep them around 75, so it is easier read.
->>>>>>>
->>>>>>> Sorry, the above is the only checkpatch warning other than the
->>>>>>> reminder to update the MAINTAINERS file.
->>>>>>>
->>>>>>> Are you saying you want me to go through and make all the lines fit in
->>>>>>> 75 char column width? I hope not because that is going to be a pretty
->>>>>>> substantial change to make.
->>>>>>>
->>>>>>
->>>>>> There are two things with these comment lines. One is checkpatch
->>>>>> complaining and the other is general readability.
+>> On 8/16/19 2:27 PM, Matthias Kaehlcke wrote:
+>>> On Fri, Aug 16, 2019 at 10:13:42PM +0200, Pavel Machek wrote:
+>>>> On Tue 2019-08-13 12:11:47, Matthias Kaehlcke wrote:
+>>>>> Add a .config_led hook which is called by the PHY core when
+>>>>> configuration data for a PHY LED is available. Each LED can be
+>>>>> configured to be solid 'off, solid 'on' for certain (or all)
+>>>>> link speeds or to blink on RX/TX activity.
 >>>>>
->>>>> So for the checkpatch warning, do you want me to move the comment out
->>>>> of the macro body into the kernel-doc comment? I don't really think it
->>>>> is the right place for a comment of this nature, but I think it is
->>>>> probably better than dropping it entirely (I don't see how else to do
->>>>> it without just removing the comment entirely).
->>>>>
+>>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 >>>>
->>>> Don't drop the comments. It makes perfect sense to turn this into a
->>>> kernel-doc comment.
+>>>> THis really needs to go through the LED subsystem,
 >>>
->>> I am fine with that. I will do that in a subsequent revision once we
->>> figure out the column limit issue.
+>>> Sorry, I used what get_maintainers.pl threw at me, I should have
+>>> manually cc-ed the LED list.
 >>>
->>>> We are going back forth on this a lot. I see several lines 81+ in
->>>> this file. I am at 5.3-rc5 and my commit hooks aren't happy. I am
->>>> fine with it if you want to convert these to kernel-doc comments.
->>>> I think it makes perfect sense.
+>>>> and use the same userland interfaces as the rest of the system.
 >>>
->>> Okay, so this is interesting. When I look at the applied patches in my
->>> local repo, I don't see any 81+ lines. So it seems that something
->>> interesting is going on here.
+>>> With the PHY maintainers we discussed to define a binding that is
+>>> compatible with that of the LED one, to have the option to integrate
+>>> it with the LED subsystem later. The integration itself is beyond the
+>>> scope of this patchset.
 >>>
->>> To be clear (sorry for the stupid question) you are seeing the issue
->>> after you applied the patch, and not in the patch file itself?
->>>
+>>> The PHY LED configuration is a low priority for the project I'm
+>>> working on. I wanted to make an attempt to upstream it and spent
+>>> already significantly more time on it than planned, if integration
+>>> with the LED framework now is a requirement please consider this
+>>> series abandonded.
 >>
->> I am using my normal workflow. My pre-commit check is catching this.
->> Just this patch.
+>> While I have an appreciation for how hard it can be to work in a
+>> corporate environment while doing upstream first and working with
+>> virtually unbounded goals (in time or scope) due to maintainers and
+>> reviewers, that kind of statement can hinder your ability to establish
+>> trust with peers in the community as it can be read as take it or leave it.
 > 
-> Okay, *that* is super strange!
+> You think so?  I feel like Matthias is simply expressing the reality
+> of the situation here and I'd rather see a statement like this posted
+> than the series just silently dropped.  Communication is good.
 > 
-> So I have lines in this patch (01/18) that are exactly 80 char wide
-> and I was thinking that it might be an off by one issue on either my
-> workflow or your workflow, but I have lines in other patches that are
-> exactly 80 char wide and our setups agree that they are fine, so I
-> really am not sure what's going on here.
+> In general on Chrome OS we don't spent lots of time tweaking with
+> Ethernet and even less time tweaking with Ethernet on ARM boards where
+> you might need a binding like this, so it's pretty hard to justify up
+> the management chain spending massive amounts of resources on it.  In
+> this case we have two existing ARM boards which we're trying to uprev
+> from 3.14 to 4.19 which were tweaking the Ethernet driver in some
+> downstream code.  We thought it would be nice to try to come up with a
+> solution that could land upstream, which is usually what we try to do
+> in these cases.
 > 
-> It sounds like you are only seeing the issue in only a couple places,
-> do you mind calling out the specific lines that are problematic?
+> Normally if there is some major architecture needed that can't fit in
+> the scope of a project, we would do a downstream solution for the
+> project and then fork off the task (maybe by a different Engineer or a
+> contractor) to get a solution that can land upstream.  ...but in this
+> case it seems hard to justify because it's unlikely we would need it
+> again anytime remotely soon.
+> 
+> So I guess the alternatives to what Matthias did would have been:
+> 
+> A) Don't even try to upstream.  Seems worse.  At least this way
+> there's something a future person can start from and the discussion is
+> rolling.
+> 
+> B) Keep spending tons of time on something even though management
+> doesn't want him to.  Seems worse.
+> 
+> C) Spend his nights and weekends working on this.  Seems worse.
+> 
+> D) Silently stop working on it without saying "I'm going to stop".  Seems worse.
+> 
+> ...unless you have a brilliant "E)" I think what Matthias did here is
+> exactly right.
 
-Take a look at the comment blocks. That is where the problem are.
+I must apologize for making that statement since it was not fair to
+Matthias, and he has been clear about how much time he can spend on that
+specific, please accept my apologies for that.
+
+Having had many recent encounters with various people not driving
+projects to completion lately (not specifically within Linux), it looks
+like I am overly sensitive about flagging words and patch status that
+may fall within that lexicon. The choice of word is what triggered me.
 
 > 
->> All others are good other than the 9/18 BUG() issue.
->>> Since we are still at OSS, would you mind if we meet up this afternoon
->>> so I can see this issue you are seeing? I imagine we should get this
->>> figured out pretty quickly.
->>>
->>
->> Yeah. Would have been nice. I am not at oss today.
+> BTW: I'm giving a talk on this topic next week at ELC [1].  If you're
+> going to be there feel free to attend.  ...or just read the slides if
+> not.
+
+I wish I could be there but that was not possible this year.
+
 > 
-> Dang.
+> 
+>> The LED subsystem integration can definitively come in later from my 2
+>> cents perspective and this patch series as it stands is valuable and
+>> avoids inventing new bindings.
+> 
+> If something like this series can land and someone can later try to
+> make the situation better then I think that would be awesome.  I don't
+> think Matthias is saying "I won't spin" or "I won't take feedback".
+> He's just expressing that he can't keep working on this indefinitely.
+> 
+> 
+> 
+> [1] https://ossna19.sched.com/event/PVSV/how-chrome-os-works-with-upstream-linux-douglas-anderson-google
+> 
+> -Doug
 > 
 
-thanks,
--- Shuah
+
+-- 
+Florian
