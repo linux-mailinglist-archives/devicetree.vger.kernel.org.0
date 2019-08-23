@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B60B9B3BA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 17:46:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DB189B3BC
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 17:46:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405941AbfHWPoj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 11:44:39 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:44154 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405935AbfHWPoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 11:44:38 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p17so9032327wrf.11
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 08:44:37 -0700 (PDT)
+        id S2436496AbfHWPon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 11:44:43 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:32790 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405937AbfHWPoj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 11:44:39 -0400
+Received: by mail-wr1-f67.google.com with SMTP id u16so9077882wrr.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 08:44:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=obK+l1ULf2sodNI7EPFbhk9WngUPNNkAHt9c2x+XLfQ=;
-        b=VrnX7YAoRNF2QXB/FmCbyyvtgPhaISGZTOHNHnruEsnUUq7c4eYdDOnHo3qfvrRSTa
-         cAXo+g/zyoNk5o+EsAvX1XPOPH9/D81X/Ci+mXOhZZ04EN8P4nhp7PhMkaInSnUzc2sX
-         ZtOvgfBPw4JBXjTODebypaABuXJ0lUAUOzS/8W03s446qQqOY/9qMfWejUXsNRc/y7Wv
-         lkSXpz4ufPzWTognDuwvsDHKaeu9gneIPzKwuVVQCpesXf0W9J7ihvwqVcWSeTMdlLHb
-         FIBcdYt0YwnWmLsdUTYk+qmuwAv3KMxsao8y16G8BtQHtO+lfl+VLStWDXxXnJgobyWy
-         eWYA==
+        bh=OmtWBO1n+ZKCQXJ6AqaMInrPsxYx+c+GGrvrczYdURo=;
+        b=ksIuzB7/OWZsHX54bVPcYMM69ePDkVsFJvpeEsHhF4PW4hBLzg2GjNxDflSD0UxGMp
+         oUPTkgr1sIAZB+gvKG18hZ+lflkeq5Qp2Hcu2B7FcIiXjqdOMd8OV7ZUpGMSRaauI8z6
+         gk0gPdGbNJ8fqcQeu+zQBcoHyd60DwagCxo/tT/DELtGbZNhdsU/gIQheaGCQXHSSO6P
+         pR9CDJACYL2tVEc58sL42M5ylPgsFhTsBprDYuZ+gTLeUo2mNooGOlRUnQkNjikrZo8g
+         47PfvX2DrhrsX2aNzyo71qmww6NQa+NCvxlECIBP+t+mLecpfoUs6Bq/+99b6bvxRSxO
+         GCoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=obK+l1ULf2sodNI7EPFbhk9WngUPNNkAHt9c2x+XLfQ=;
-        b=pceK0ToValr1ZokagiJ29Uhg+QvF5gXS6xDJzDZ6iIrl31iEu3WrG/fzc4fKTufDcR
-         /4hBKJzd6gB29Htsva2Hm13AvwW8etFNDezwbcaqdUftcQA+O6AMoAevYEpTlbKbTHWD
-         H/7xd81EVJqSpbkeEdvAXrDxy7o7tI0Ruohbl0Ic/JnwcFndpZP5RuDDj3ohkCDp1GtF
-         JY6GcmgpJ9Vgi1ApnVSq1cRUxY2zwAExaOKAQ6NCvsq/MnIqQrsC/X8sURZNVHZgNI/P
-         UYpFO651o1bC/6AfA3LSEbo9roKfzIaemHYZgQohiaHe4gXI9dzbRXM7K6YRHKbfnAXC
-         /hkA==
-X-Gm-Message-State: APjAAAU+ToZ2Z9ho51NTaZChwXyR1S0QXQK6Dh4QQVEU06oHmbGKVLVl
-        hlQuzcNsFGZeQGnBjKqr8ssBGw==
-X-Google-Smtp-Source: APXvYqyizMhVOpr7iAgAyLE1B+VmNli3JIySiusqNQ07frIHgweG1flrCh0CFLEoaYVhqaKS57axvg==
-X-Received: by 2002:adf:e8c3:: with SMTP id k3mr6265714wrn.8.1566575076760;
-        Fri, 23 Aug 2019 08:44:36 -0700 (PDT)
+        bh=OmtWBO1n+ZKCQXJ6AqaMInrPsxYx+c+GGrvrczYdURo=;
+        b=XVLxN5pfqv9IQKb2MTbay7HYmSfvFJifwCDtUFmX2Ju6BTEI5t6O5kkZ4ZTifjfX0q
+         0aZFK5wGPys605t4R8EXZ8IJ1LSTpcHEyUGGEaN5cfSDlRmMgue3fWhvbtjC2g7tFY0c
+         ahs8glUbI4FKJaUKEUoXGjKka10PEAJiDesrefb9hQDHuPEyHZ/WCRfPxZU+5bTubiSH
+         toL+nq9WpCL6pzGAzWB8ODXqiNkA682w5shVn04gzj6DnpHsucChf0pHCcPDukSKUShL
+         RgjaDGP2ZT73eQLh+cjP0UiVR6vxjXO3YczTAC1YhWC+2bvZdUblGob4+h7IpKpddGrN
+         dGbQ==
+X-Gm-Message-State: APjAAAWfY8lO98dj86Y6wlI8GdmR8Xj7ZG1Gb6AG8/jZckjNhWyZCesI
+        aB5BTSZOLOFVeaci7BnD1DXhfA==
+X-Google-Smtp-Source: APXvYqwijk5AmRYmJRxLF0wlW75lhH46QFkzLlttL1bzSCN8eI/O+klK5GLvJSjNodHvRP0l4Z6f6g==
+X-Received: by 2002:a5d:63d1:: with SMTP id c17mr2612595wrw.3.1566575077641;
+        Fri, 23 Aug 2019 08:44:37 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id v7sm3567342wrn.41.2019.08.23.08.44.35
+        by smtp.googlemail.com with ESMTPSA id v7sm3567342wrn.41.2019.08.23.08.44.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Aug 2019 08:44:36 -0700 (PDT)
+        Fri, 23 Aug 2019 08:44:37 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 1/2] arm64: dts: meson: g12a: audio clock controller provides resets
-Date:   Fri, 23 Aug 2019 17:44:31 +0200
-Message-Id: <20190823154432.16268-2-jbrunet@baylibre.com>
+Subject: [PATCH v2 2/2] arm64: dts: meson: g12a: add reset to tdm formatters
+Date:   Fri, 23 Aug 2019 17:44:32 +0200
+Message-Id: <20190823154432.16268-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190823154432.16268-1-jbrunet@baylibre.com>
 References: <20190823154432.16268-1-jbrunet@baylibre.com>
@@ -64,27 +64,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The clock controller dedicated to audio clocks also provides reset lines
-on the g12 SoC family
+Add the reset to the TDM formatters of the g12a. This helps
+with channel mapping when a playback/capture uses more than 1 lane.
 
 Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index cd3d23d2c6a2..edbc30572958 100644
+index edbc30572958..ee1b71284a83 100644
 --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
 +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -1434,6 +1434,7 @@
- 					compatible = "amlogic,g12a-audio-clkc";
- 					reg = <0x0 0x0 0x0 0xb4>;
- 					#clock-cells = <1>;
-+					#reset-cells = <1>;
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
+ #include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
++#include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
+ #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
  
- 					clocks = <&clkc CLKID_AUDIO>,
- 						 <&clkc CLKID_MPLL0>,
+ / {
+@@ -1543,6 +1544,7 @@
+ 						     "amlogic,axg-tdmin";
+ 					reg = <0x0 0x300 0x0 0x40>;
+ 					sound-name-prefix = "TDMIN_A";
++					resets = <&clkc_audio AUD_RESET_TDMIN_A>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
+@@ -1558,6 +1560,7 @@
+ 						     "amlogic,axg-tdmin";
+ 					reg = <0x0 0x340 0x0 0x40>;
+ 					sound-name-prefix = "TDMIN_B";
++					resets = <&clkc_audio AUD_RESET_TDMIN_B>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
+@@ -1573,6 +1576,7 @@
+ 						     "amlogic,axg-tdmin";
+ 					reg = <0x0 0x380 0x0 0x40>;
+ 					sound-name-prefix = "TDMIN_C";
++					resets = <&clkc_audio AUD_RESET_TDMIN_C>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
+@@ -1588,6 +1592,7 @@
+ 						     "amlogic,axg-tdmin";
+ 					reg = <0x0 0x3c0 0x0 0x40>;
+ 					sound-name-prefix = "TDMIN_LB";
++					resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
+@@ -1627,6 +1632,7 @@
+ 					compatible = "amlogic,g12a-tdmout";
+ 					reg = <0x0 0x500 0x0 0x40>;
+ 					sound-name-prefix = "TDMOUT_A";
++					resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
+ 						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
+@@ -1641,6 +1647,7 @@
+ 					compatible = "amlogic,g12a-tdmout";
+ 					reg = <0x0 0x540 0x0 0x40>;
+ 					sound-name-prefix = "TDMOUT_B";
++					resets = <&clkc_audio AUD_RESET_TDMOUT_B>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
+ 						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
+@@ -1655,6 +1662,7 @@
+ 					compatible = "amlogic,g12a-tdmout";
+ 					reg = <0x0 0x580 0x0 0x40>;
+ 					sound-name-prefix = "TDMOUT_C";
++					resets = <&clkc_audio AUD_RESET_TDMOUT_C>;
+ 					clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
+ 						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
+ 						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
 -- 
 2.21.0
 
