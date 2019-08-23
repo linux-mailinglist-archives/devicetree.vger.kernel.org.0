@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE9489AAAE
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E5C9AAE4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 10:57:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405053AbfHWIvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 04:51:19 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:36673 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389529AbfHWIvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:51:19 -0400
-Received: by mail-lj1-f195.google.com with SMTP id u15so8152514ljl.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:51:17 -0700 (PDT)
+        id S1732973AbfHWI5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 04:57:17 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:43233 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731191AbfHWI5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 04:57:17 -0400
+Received: by mail-lf1-f68.google.com with SMTP id c19so6573644lfm.10
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 01:57:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=FXtQDuMScF/1nReve4eretX2TO/jfCiedtGuRQR2hjM=;
-        b=p6SBn6sDUBeFLX9nMJmZGZC+PTQMLkZJ8aTvGmL+qINEfOstq/jNuLob/ghlirv1KJ
-         cZRyeXtQ1faKYUnTHuBCVNy/y+gs5O1Ob5u1hV9AU5ut4mXZX+Okq3HmZsxsT+DBbIGs
-         J7sCK51VUU3lrdn3m0sttx9PyWO3QwemGQnd1cRnP0eZPC4Pa8fqdl0xMWR23wDeqeAt
-         FBxKNcv/H0DFEFdPjz9wsTwbnCzc2Hnz2I0UXU6Qlf1/20m+dC5NojBZhY02m301Xx20
-         8SBl2+ZAWxgHnmt/joknqH100+Al87qai/W4q6tyFUZ1rvjBxGuZwVUWExcs1/CQ4lLY
-         4fhA==
+        bh=a/R2J79LKOKlLeZ/xIkFf9uifEgRMGT7tAE/FX+J+fk=;
+        b=h8cIzFHRwV5mKvh20JVoTWYAVSCIkWyjSzPx/vFSHkOSlO5Q4g9CCbm+693s4TXchd
+         FgS3UGD0guDUAw5xUViOFwLDP+ix8kP+F+oK5Shgc5An7QkANVSs7IZOKKfE0WiEXnef
+         kPY2tdrxMXtW0xoIni2RPvEfgFvOX+gRUf2nclzTLsMc0FJCRgdhGKlGBy3IVnZWfltC
+         LqxGoZo26oS2KvwARlRA8I8eNM6EWNRO4SaOtPtGfw1U39DRvi2A98cs++ugvTCGYM7d
+         2Ge1VMDoj2+9Xy/800qepwswucADX+MTC27muULbqLYD+3WVK9Ym9l1yrBdICpClSvpX
+         HflQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=FXtQDuMScF/1nReve4eretX2TO/jfCiedtGuRQR2hjM=;
-        b=V6JvGZ9f5Z3mTQMdNdAHibU8C5+iClmiM9mUD5AuzM9uxVSyaAwLHJvBd9iO7eqBpm
-         8GT8JSHAXn9+lmCqJ4Odsba8Te7SdgHII7hAvLjzSTZFXOgVv3wXf8ADFT7OLe1a2ZGa
-         4GjUn2fiorqJH2RFRi7CnjYYwIOB+bhlFgxIzNa4JydHFXOAUyAnvJRhRDCyP1wqWVbx
-         +U5YZuvTVId6RpQt8ubG50gzbjyAc64gmRAbT4V3tuOR0dgLu4MzW3eyrxI/KRAWOqs+
-         4v6kEkeN9c+TFbiZhgaUJZF08nbgOMjvzY1osDzyOBSExD3p0FNpAnxGtPVB8xBIu7xH
-         9IlQ==
-X-Gm-Message-State: APjAAAW/49EZ4RSUbs1lWzlk9qb5SONtCBzEIre229CPofQOPCE5aLbH
-        dAwKrjtBtQcAnnboU8UFeFktq83HtApOASQe5qRmIg==
-X-Google-Smtp-Source: APXvYqyppYyNq83SxxmmRdWOnL0oOzeUD0rB8qh3X7YKYtXA9sxXcXqHi/9iYmrgLahKeTty/OM4UHWE1xxoqpX3Dgw=
-X-Received: by 2002:a2e:80da:: with SMTP id r26mr2124440ljg.62.1566550276856;
- Fri, 23 Aug 2019 01:51:16 -0700 (PDT)
+        bh=a/R2J79LKOKlLeZ/xIkFf9uifEgRMGT7tAE/FX+J+fk=;
+        b=hfjjf9hRC1o1bgdBAhgRKEYr3Q1vxZq7E22jxCZ+UM8loGfBaZSUz/64wdNFt5NBk5
+         QwA1p5dNUNvmBNz+b7sPafGuLWwzgafXU65aNY3JjkUFgxAQVTG8woS6c/GzCSGehQPl
+         hV7V9XmCloprnV2NhMnOF+bzgZXb0bPmrdOJIyuKyv07BQTTOt2DBk9znO0jaC35KZ/G
+         l/FaGH+4G74+4NBcPYXA/g3kCpQUabsJIkIiUAf2rPmB8nyg6EfUSuH73uhvzwHnSEBT
+         JHfboTdNjdKGqLcFbatpGm6DuMqoa6uj/5P5/zssWpjr73jQHSnyvPA+dsuMr3djNLZd
+         bohA==
+X-Gm-Message-State: APjAAAWyBLRlwD8kYxiNnBbb/uW4NAkKz2kHsj3NZ0WmGiSWXdcZpHEt
+        DmRXa5jYgaLAWgJbEyrUlazbFboaIB3j8/hCAfdiAQ==
+X-Google-Smtp-Source: APXvYqyiIRQnPqOMRMnznsHxW2APqKA5JW/FUTpLK9hj/I1LedUm+QCEFmX2UPpcBK5I9whssuW2AmLbJBfUVKBqcLU=
+X-Received: by 2002:ac2:5939:: with SMTP id v25mr2135109lfi.115.1566550635185;
+ Fri, 23 Aug 2019 01:57:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com> <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
-In-Reply-To: <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
+References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com> <1566206502-4347-6-git-send-email-mars.cheng@mediatek.com>
+In-Reply-To: <1566206502-4347-6-git-send-email-mars.cheng@mediatek.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 23 Aug 2019 10:51:04 +0200
-Message-ID: <CACRpkdY4sVV5oyFa+a30dY2A9tsKpzTeuQ8ChmnXcm-5_eZkVA@mail.gmail.com>
-Subject: Re: [PATCH v2 03/11] dt-bindings: irq: mtk,sysirq: add support for mt6779
+Date:   Fri, 23 Aug 2019 10:57:03 +0200
+Message-ID: <CACRpkdZa_sQgvWC3ic0NxrVi9gS1cNTsV-wa-SDpA0e5kutBRw@mail.gmail.com>
+Subject: Re: [PATCH v2 05/11] pinctrl: mediatek: avoid virtual gpio trying to
+ set reg
 To:     Mars Cheng <mars.cheng@mediatek.com>
 Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
         Rob Herring <robh@kernel.org>,
@@ -70,12 +71,59 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, Aug 19, 2019 at 11:22 AM Mars Cheng <mars.cheng@mediatek.com> wrote:
 
-> Add binding documentation of mediatek,sysirq for mt6779 SoC.
+> for virtual gpios, they should not do reg setting and
+> should behave as expected for eint function.
 >
 > Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
 
-I'm relying on Sean to review this and ACK when he's pleased
-with the result.
+This does not explain what a "virtual GPIO" is in this
+context, so please elaborate. What is this? Why does
+it exist? What is it used for?
+
+GPIO is "general purpose input/output" and it is a
+pretty rubbery category already as it is, so we need
+to define our terms pretty strictly.
+
+> +bool mtk_is_virt_gpio(struct mtk_pinctrl *hw, unsigned int gpio_n)
+> +{
+> +       const struct mtk_pin_desc *desc;
+> +       bool virt_gpio = false;
+> +
+> +       if (gpio_n >= hw->soc->npins)
+> +               return virt_gpio;
+> +
+> +       desc = (const struct mtk_pin_desc *)&hw->soc->pins[gpio_n];
+> +
+> +       if (desc->funcs &&
+> +           desc->funcs[desc->eint.eint_m].name == 0)
+
+NULL check is done like this:
+
+if (desc->funcs && !desc->funcs[desc->eint.eint_m].name)
+
+> +               virt_gpio = true;
+
+So why is this GPIO "virtual" because it does not have
+a name in the funcs table?
+
+> @@ -278,6 +295,9 @@ static int mtk_xt_set_gpio_as_eint(void *data, unsigned long eint_n)
+>         if (err)
+>                 return err;
+>
+> +       if (mtk_is_virt_gpio(hw, gpio_n))
+> +               return 0;
+
+So does this mean we always succeed in setting a GPIO as eint
+if it is virtual? Why? Explanatory comment is needed.
+
+> @@ -693,6 +693,9 @@ static int mtk_gpio_get_direction(struct gpio_chip *chip, unsigned int gpio)
+>         const struct mtk_pin_desc *desc;
+>         int value, err;
+>
+> +       if (mtk_is_virt_gpio(hw, gpio))
+> +               return 1;
+
+Why are "virtual GPIOs" always inputs?
 
 Yours,
 Linus Walleij
