@@ -2,165 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A34049AC8C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 12:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 645F39AC98
+	for <lists+devicetree@lfdr.de>; Fri, 23 Aug 2019 12:10:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726423AbfHWKIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 06:08:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44900 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403911AbfHWKIL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 23 Aug 2019 06:08:11 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 930E2233FD;
-        Fri, 23 Aug 2019 10:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566554890;
-        bh=Crf5MDMj/lbQANBrYTEedXUjRJ1Lg0gXyJkpryyhpFA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2I9aABEKFe19P/u13VQXXoUe/QJfkyZhnE0fm2bEYfevqJkdBCeLFRhuL9BGhTqm9
-         9b22xeAubdeOR3pRDInaRFfTkcxdZ8PwA+INjNhzq3Q9XM97koWPu16tcri5SeaQ3o
-         1/OE/G1oAP9zb5aK6WuNSUUQXiGCCu+BxkVjsYOQ=
-Date:   Fri, 23 Aug 2019 12:08:07 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     megous@megous.com
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: orange-pi-3: Enable WiFi
-Message-ID: <20190823100807.22heh2gahi7owo4e@flea>
-References: <20190823094228.6540-1-megous@megous.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="sx4erx44vln7kzi7"
-Content-Disposition: inline
-In-Reply-To: <20190823094228.6540-1-megous@megous.com>
-User-Agent: NeoMutt/20180716
+        id S2394132AbfHWKJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Aug 2019 06:09:52 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57421 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392376AbfHWKJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 06:09:52 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1i16Vx-00058k-20; Fri, 23 Aug 2019 12:09:49 +0200
+Message-ID: <1566554987.3023.8.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Dilip Kota <eswara.kota@linux.intel.com>, robh@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com
+Date:   Fri, 23 Aug 2019 12:09:47 +0200
+In-Reply-To: <15c538d7-1045-1a8c-4c8b-194a1de17a16@linux.intel.com>
+References: <42039170811f798b8edc66bf85166aefe7dbc903.1566531960.git.eswara.kota@linux.intel.com>
+         <90cc600d6f7ded68f5a618b626bd9cffa5edf5c3.1566531960.git.eswara.kota@linux.intel.com>
+         <1566549822.3023.2.camel@pengutronix.de>
+         <15c538d7-1045-1a8c-4c8b-194a1de17a16@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2019-08-23 at 17:47 +0800, Dilip Kota wrote:
+[...]
+> Thanks for pointing it out.
+> Reset is not supported on LGM platform.
+> I will update the reset_device() definition to "return -EOPNOTSUPP"
 
---sx4erx44vln7kzi7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+In that case you can just drop intel_reset_device() completely,
+the core checks whether ops->reset is set before trying to call it.
 
-Hi,
-
-On Fri, Aug 23, 2019 at 11:42:28AM +0200, megous@megous.com wrote:
-> From: Ondrej Jirman <megous@megous.com>
->
-> Orange Pi 3 has AP6256 WiFi/BT module. WiFi part of the module is called
-> bcm43356 and can be used with the brcmfmac driver. The module is powered by
-> the two always on regulators (not AXP805).
->
-> WiFi uses a PG port with 1.8V voltage level signals. SoC needs to be
-> configured so that it sets up an 1.8V input bias on this port. This is done
-> by the pio driver by reading the vcc-pg-supply voltage.
->
-> You'll need a fw_bcm43456c5_ag.bin firmware file and nvram.txt
-> configuration that can be found in the Xulongs's repository for H6:
->
-> https://github.com/orangepi-xunlong/OrangePiH6_external/tree/master/ap6256
->
-> Mainline brcmfmac driver expects the firmware and nvram at the following
-> paths relative to the firmware directory:
->
->   brcm/brcmfmac43456-sdio.bin
->   brcm/brcmfmac43456-sdio.txt
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->
-> Since RTC patches for H6 were merged, this can now go in too, if it looks ok.
->
-> Other patches for this WiFi chip support were merged in previous cycles,
-> so this just needs enabling in DTS now.
->
-> Sorry for the links in the commit log, but this information is useful,
-> even if the link itself goes bad. Any pointer what to google for
-> (file names, tree name) is great for anyone searching in the future.
-
-I understand, but this should (also?) be in the wiki. Please add it
-there too.
-
-> Please take a look.
->
-> Thank you,
-> 	Ondrej
->
->  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> index eda9d5f640b9..49d954369087 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> @@ -56,6 +56,34 @@
->  		regulator-max-microvolt = <5000000>;
->  		regulator-always-on;
->  	};
-> +
-> +	reg_vcc33_wifi: vcc33-wifi {
-> +		/* Always on 3.3V regulator for WiFi and BT */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc33-wifi";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-always-on;
-> +		vin-supply = <&reg_vcc5v>;
-> +	};
-> +
-> +	reg_vcc_wifi_io: vcc-wifi-io {
-> +		/* Always on 1.8V/300mA regulator for WiFi and BT IO */
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc-wifi-io";
-> +		regulator-min-microvolt = <1800000>;
-> +		regulator-max-microvolt = <1800000>;
-> +		regulator-always-on;
-> +		vin-supply = <&reg_vcc33_wifi>;
-> +	};
-> +
-> +	wifi_pwrseq: wifi_pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		clocks = <&rtc 1>;
-> +		clock-names = "ext_clock";
-> +		reset-gpios = <&r_pio 1 3 GPIO_ACTIVE_LOW>; /* PM3 */
-> +		post-power-on-delay-ms = <200>;
-> +	};
->  };
->
->  &cpu0 {
-> @@ -91,6 +119,25 @@
->  	status = "okay";
->  };
->
-> +&mmc1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc1_pins>;
-
-This is the default already. I've removed it and applied.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---sx4erx44vln7kzi7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXV+7BwAKCRDj7w1vZxhR
-xdUoAP9lf+bDRTFhwEM+MuhxjkNWf8b3rdWTvPeIslZaYzUokAD+O9BdXFqXhK6Q
-TawAIlkWp7SHKOU0NdRWhmLzQZyaJwM=
-=YyL0
------END PGP SIGNATURE-----
-
---sx4erx44vln7kzi7--
+regards
+Philipp
