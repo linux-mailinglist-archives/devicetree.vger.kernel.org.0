@@ -2,74 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5CE9C058
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 23:18:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6C59C06F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 23:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728103AbfHXVSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Aug 2019 17:18:14 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:45987 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727969AbfHXVSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Aug 2019 17:18:14 -0400
-Received: by mail-ot1-f66.google.com with SMTP id m24so11866744otp.12;
-        Sat, 24 Aug 2019 14:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=fC0UloVJVd7/NU/uEaCTd2LLUTCDIdGGkP7UNozA/vg=;
-        b=kGmCMbR7sxG2Q8arZgcNRhhxUCcaNY2s4M5AYWXatkqZrkrTiw/az6vmKkeQ+y9dEc
-         v/tuz6wuTkTI+rnsAVPp40XfYO2EoxITAIk1/RQOMwzzCZGZD/2BHWKJxT8XClRRv/xK
-         ZTOEXs62AfMNAwgwqtj2J57M+qDI1UHhG4F+4rTJDFWLkOf/8DAj9PCcuxoVKAYCXgG0
-         PY/sPTQrqZbxlgZ6vUvOlcRkZcYcbvnEVu+pC+dgYb71mZ5gNgMbJtsMCquMhVKBtRE5
-         4gdy1e76nRnZBVcr8neWFQ3hJ8x4zUEq36HSDhNvg07d4h00Jx5DyUsC0mVfkfTEt393
-         c1sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fC0UloVJVd7/NU/uEaCTd2LLUTCDIdGGkP7UNozA/vg=;
-        b=V5hSO8RjJpdkcXh1T1UhO4frhJE9cxpXN+f9DkYOS1XIMLPJcJcatUJIrDXZRal18Y
-         2UGSpDvLnhFPTRzo+SQ6cDtDE+iRcdLxUhyuim99wl/MPCkV1e7QNEWj6nS7UQKMro0E
-         KX5vyAMlwNlpUg15A16RgSb6glSRRu3TuXYFP0S9c5KJteXu5jR+Nf71W68W7j//pCJ/
-         EzjpR++s5aGHw469SF2OtNITAqmaGjDlgZka4xsFhdZczezmjBHDxo7t1JZkXra8E+/V
-         zB9RAl1Thae8vqGH4kk3gVY8V9mHoWlphXUKiXOR4M4f1xv6BZOdfF+TbXl1AuypksZy
-         8HeA==
-X-Gm-Message-State: APjAAAUwqXaClXtfsJ629Azgf5JaXnz+tkkAsMCDGBFTXbLAZuhh8zAe
-        +hkd3oPXVenOTWOqZFAW2IpTgEwGZEXoS62PEn0=
-X-Google-Smtp-Source: APXvYqyc9UMrt0FZO+Czm5ynmHfnj9YArOYB/nd6DV6XFFx7to8SEBFvn4jOe+dwqxaAVKBg8HIXBX6GFOg3lVZAIRY=
-X-Received: by 2002:a9d:7b44:: with SMTP id f4mr895020oto.42.1566681492890;
- Sat, 24 Aug 2019 14:18:12 -0700 (PDT)
+        id S1727690AbfHXV1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Aug 2019 17:27:50 -0400
+Received: from vps.xff.cz ([195.181.215.36]:45272 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727354AbfHXV1t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Aug 2019 17:27:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566682066; bh=E4T9D8ZO2hDesuoosboxZajfg8P+ympomHO6rRYJdqU=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=dJ8exNaIanIhqn1NEvThpKApSpdqHNDJMYzWOmjcR1xNcej/mIKF7ZhKPg7XHRy9I
+         9P0PEUJ5sgCOnLQOalzhAwCsii7AjNBCfEyE3nuHs+TR/Q9r2ythIcjBmdwy5wcvTW
+         T7T8ZT/hg975j+HUKM8ZIKZOPEkW3D+Enx29965g=
+Date:   Sat, 24 Aug 2019 23:27:46 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     linux-sunxi@googlegroups.com, Mark Rutland <mark.rutland@arm.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+Subject: Re: [linux-sunxi] [PATCH v2 2/3] rtc: sun6i: Add support for H6 RTC
+Message-ID: <20190824212746.a5pyilkrrvysjjbd@core.my.home>
+Mail-Followup-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
+        linux-sunxi@googlegroups.com, Mark Rutland <mark.rutland@arm.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
+References: <20190820151934.3860-1-megous@megous.com>
+ <10880274.nteIY8W56H@jernej-laptop>
+ <20190824133057.rhpj3xuzr3vymdiy@core.my.home>
+ <1690798.2HKiRSsjat@jernej-laptop>
 MIME-Version: 1.0
-References: <20190824184912.795-1-linux.amoon@gmail.com>
-In-Reply-To: <20190824184912.795-1-linux.amoon@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 24 Aug 2019 23:18:01 +0200
-Message-ID: <CAFBinCCkEE8==-Sqqj_=Ofnx7_H-970dETwEmEPohs74806ZMw@mail.gmail.com>
-Subject: Re: [PATCHv4 0/3] Odroid c2 usb fixs
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1690798.2HKiRSsjat@jernej-laptop>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+Hello Jernej,
 
-thank you for the patches
+On Sat, Aug 24, 2019 at 11:09:49PM +0200, Jernej Škrabec wrote:
+> > Visually?
+> > 
+> > That would explain why it doesn't work for you. The mainline RTC driver
+> > disables auto-switch feature, and if your board doesn't have a crystal for
+> > LOSC, RTC will not generate a clock for the RTC.
+> > 
+> > H6's dtsi describes by default a situatiuon with external 32k crystal
+> > oscillator. See ext_osc32k node. That's incorrect for your board if it
+> > doesn't have the crystal. You need to fix this in the DTS for your board
+> > instead of patching the driver.
+> 
+> I see that reparenting is supported, but I'm not sure how to fix that in DT. 
+> Any suggestion?
 
-On Sat, Aug 24, 2019 at 8:49 PM Anand Moon <linux.amoon@gmail.com> wrote:
-[...]
-> Anand Moon (3):
->   arm64: dts: meson: odroid-c2: p5v0 is the main 5V power input
->   arm64: dts: meson: odroid-c2: Add missing linking regulator to usb bus
->   arm64: dts: meson: odroid-c2: Disable usb_otg bus to avoid power
->     failed warning
-this whole series is:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+You may try removing the clocks property from rtc node.
+
+> > 
+> > The driver has parent clock selection logic in case the LOSC crystal is not
+> > used.
+> > 
+> > Your patch enables automatic detection of LOSC failure and RTC changes clock
+> > to LOSC automatically, despite what's described in the DTS. That may fix
+> > the issue, but is not the correct solution.
+> > 
+> > Registers on my board look like this (external 32k osc is used) for
+> > reference:
+> > 
+> > LOSC_CTRL_REG[7000000]: 8011
+> > 	KEY_FIELD                      ???                  (0)
+> > 	LOSC_AUTO_SWT_BYPASS           EN                   (1)
+> > 	LOSC_AUTO_SWT_EN               DIS                  (0)
+> > 	EXT_LOSC_EN                    EN                   (1)
+> > 	EXT_LOSC_GSM                   LOW                  (0)
+> > 	BATTERY_DIR                    DISCHARGE            (0)
+> > 	LOSC_SRC_SEL                   EXT32k               (1)
+> > 
+> > LOSC_AUTO_SWT_STA_REG[7000004]: 1
+> > 	EXT_LOSC_STA                   OK                   (0)
+> > 	LOSC_AUTO_SWT_PEND             NOEFF                (0)
+> > 	LOSC_SRC_SEL_STA               EXT32K               (1)
+> > 
+> 
+> In my case LOSC_CTRL_REG has value 0x4010 and LOSC_AUTO_SWT_STA_REG
+> has value 0x4, so there is issue with external crystal (it's missing) and RTC 
+> switched to internal one.
+> 
+> BTW, what's wrong with automatic switching? Why is it disabled?
+
+It always was disabled on mainline (bit 14 was set to 0 even before my patch).
+H6 just probably has another extra undocummented bit, that's needed to disables
+it properly.
+
+You probably don't want a glitch to switch your RTC from high-precision
+clock to a low precision one possibly without any indication in the userspace
+or a kernel log.
+
+Regardless of all this, DTS needs to have a correct description of the HW,
+which means if RTC module is not connected to the 32.757kHz crystal/clock,
+clocks property should be empty.
+
+regards,
+	o.
+
+> Best regards,
+> Jernej
+> 
+> > regards,
+> > 	o.
+> > 
+> > > > The real issue probably is that the mainline driver is missing this:
+> > > > 
+> > > > https://megous.com/git/linux/tree/drivers/rtc/rtc-sunxi.c?h=h6-4.9-bsp#n
+> > > > 650
+> > > 
+> > > Not sure what you mean by that. ext vs. int source selection?
+> > > 
+> > > 
+> > > 
+> > > Best regards,
+> > > Jernej
+> > > 
+> > > > regards,
+> > > > 
+> > > > 	o.
+> 
+> 
+> 
+> 
