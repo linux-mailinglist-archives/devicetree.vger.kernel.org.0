@@ -2,212 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 21BE19BE04
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 15:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 113199BE32
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 16:13:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727651AbfHXNa7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Aug 2019 09:30:59 -0400
-Received: from vps.xff.cz ([195.181.215.36]:42106 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727601AbfHXNa7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 24 Aug 2019 09:30:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566653457; bh=1b0F19iq/dWBCPJilMmXF0tZd8omjFMbcmvxarQbmQI=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=TdfHV2sRGBejRPc60TO/xNtxXoMQrgORh1uzO3ax8qM2TULUmdlklwyC+q6SBkb67
-         X8q8E/TKXKlyfSRhsctitiynXh3aM39lLZTXbEmMOnmo0bhrYivJaIlltE+Ex1RCBN
-         rQ71VD+FiXbej48nDgXDuB/CZx4Jdu/LUfw4jsIY=
-Date:   Sat, 24 Aug 2019 15:30:57 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi@googlegroups.com, Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-Subject: Re: [linux-sunxi] [PATCH v2 2/3] rtc: sun6i: Add support for H6 RTC
-Message-ID: <20190824133057.rhpj3xuzr3vymdiy@core.my.home>
-Mail-Followup-To: Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        linux-sunxi@googlegroups.com, Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org
-References: <20190820151934.3860-1-megous@megous.com>
- <2544007.NTLiB2pbcT@jernej-laptop>
- <20190824130544.kxypq3siv7kffidp@core.my.home>
- <10880274.nteIY8W56H@jernej-laptop>
+        id S1727604AbfHXON6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Aug 2019 10:13:58 -0400
+Received: from mail-eopbgr750090.outbound.protection.outlook.com ([40.107.75.90]:62762
+        "EHLO NAM02-BL2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727546AbfHXON5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Aug 2019 10:13:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Wy7Y42Gnc8FUmvgfGkD/ltBAya2IK6Gt50ZuSTAg6Qd9ZwcvsLlPEERu7SqA/gxYw0++EUMGavmTrqacKFJWJ/Pnrelu6k1MFG46V6cAUbLmpqbrofVw7+rXtVjQ3TRV8HK1PSRk2ip637DdeT7kImQi5o6oDlU3FBIRmASOg3SysSFcSVa+BltMBvLAWhcKDipFBzf4M7H0H9xTH1uZSZa0dHTif2TME769ae677CjAJyK/T3q7DnvneAyJPHOE+o/qT41Y4OzSKaqGGwM+JJGP1eOjTXlJ2jNbTMJRm5CecS+TIYg7dsB0AYyyTC7di5u9q4pYuu4sYdeIhGIsIA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x0/0aXQXLiVGqOBXqqS3IQ6IRsYWA+UfNU5p67qahsg=;
+ b=ZCnKBOb5Cdw+LLc7BmrWwjA16f/eHLzp7o7PHz/vTqWSZqN8EdfsWeqNL2gGLKBf1Fbn0SOAKwFxPVG9CY5/BO79UIJjS4RaCRNMsx7GlMYzTFuekq9UwsmQDwt8uVa1Kw9p7T4jiRMWoc+gXfadSE7mr7WTywdLfqel516SLtfCUSqQ5ccY538Pfgc61ZSNcWDtajk2F8WtGnZNr5kXSRmVNFvL13P48Py7cneswywDmDKVequ6g2kKg7uQfm0JcEcCHCTfo9zDe8LGljYMTiqPoc7OAuxQoVajcZexogfyYrP9zpGyXVk630fbN6cHa3cxF/QRzNUj9vrox25MAw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
+ dkim=pass header.d=mips.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=x0/0aXQXLiVGqOBXqqS3IQ6IRsYWA+UfNU5p67qahsg=;
+ b=L31/YJqi6rpkKUDnzUCRfoNAj0Z7LZ5XkivQrfn2VK0LVkKGKNB5cO2Nv+3YkDAcjm39zR7oWlvSzyLYiza8V+Dc2T3PPw63KSRwC74pfe7AkYj/INTqfZ13S656XRP5NbkQDdTc+OQVXHY9/TxALJvJPJhsGQd2/Ozx/aWleYQ=
+Received: from CY4PR2201MB1272.namprd22.prod.outlook.com (10.171.214.23) by
+ CY4PR2201MB1736.namprd22.prod.outlook.com (10.165.90.39) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2178.16; Sat, 24 Aug 2019 14:13:54 +0000
+Received: from CY4PR2201MB1272.namprd22.prod.outlook.com
+ ([fe80::2d81:1469:ceaf:1168]) by CY4PR2201MB1272.namprd22.prod.outlook.com
+ ([fe80::2d81:1469:ceaf:1168%5]) with mapi id 15.20.2178.020; Sat, 24 Aug 2019
+ 14:13:54 +0000
+From:   Paul Burton <paul.burton@mips.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "john@phrozen.org" <john@phrozen.org>,
+        "kishon@ti.com" <kishon@ti.com>,
+        Paul Burton <pburton@wavecomp.com>,
+        "ralf@linux-mips.org" <ralf@linux-mips.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "hauke@hauke-m.de" <hauke@hauke-m.de>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "ms@dev.tdt.de" <ms@dev.tdt.de>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH v3 4/4] MIPS: lantiq: update the clock alias' for the
+ mainline  PCIe PHY driver
+Thread-Topic: [PATCH v3 4/4] MIPS: lantiq: update the clock alias' for the
+ mainline  PCIe PHY driver
+Thread-Index: AQHVWoYpxj9W4cGayUKjpXZeJ7OkUw==
+Date:   Sat, 24 Aug 2019 14:13:54 +0000
+Message-ID: <CY4PR2201MB1272F47798E4002689E89D01C1A70@CY4PR2201MB1272.namprd22.prod.outlook.com>
+References: <20190727120415.15859-5-martin.blumenstingl@googlemail.com>
+In-Reply-To: <20190727120415.15859-5-martin.blumenstingl@googlemail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: LO2P265CA0097.GBRP265.PROD.OUTLOOK.COM
+ (2603:10a6:600:c::13) To CY4PR2201MB1272.namprd22.prod.outlook.com
+ (2603:10b6:910:6e::23)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pburton@wavecomp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [2a02:c7f:5e65:9900:8519:dc48:d16b:70fc]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2b194438-00b0-4e69-643d-08d7289d4bb1
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:CY4PR2201MB1736;
+x-ms-traffictypediagnostic: CY4PR2201MB1736:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR2201MB1736681D5B2CDFF2430F5BDBC1A70@CY4PR2201MB1736.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 0139052FDB
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39840400004)(136003)(396003)(376002)(346002)(366004)(199004)(189003)(4744005)(256004)(6116002)(4326008)(6916009)(8936002)(446003)(2906002)(5660300002)(6246003)(11346002)(486006)(44832011)(476003)(14444005)(55016002)(42882007)(71190400001)(71200400001)(7416002)(6506007)(386003)(8676002)(7696005)(66446008)(64756008)(81166006)(81156014)(6306002)(66946007)(52116002)(6436002)(99286004)(229853002)(33656002)(74316002)(7736002)(186003)(305945005)(53936002)(54906003)(46003)(316002)(25786009)(9686003)(76176011)(66476007)(66556008)(478600001)(15650500001)(966005)(52536014)(14454004)(102836004);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR2201MB1736;H:CY4PR2201MB1272.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: wavecomp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: chcJlaT4MQZPJiAX3eARHy+zWbNjIeLbGA7zvjgfCM1P91Ck917CRdP73atRO97IVrbi57Dy2JE9Pl4ldKvMYf5OflyXo2ZY8Z4PeyJ3IA2IDWwhP/GPMdT0KKxbpL9y3O9BVAd7ssg6mO0GreIV93Wx93tPpH2sxEGAwTCkkDEoLO0g6HN5yyB2A+DVZE8lXmP+L/zQSq19kZdQq0qQZy4qfdMAEUrEcMQzHBFmddDzDu+QPNv+iyt/3l9tQ+MqWIi4yQyRbkQzG+vV5W3FN9otwMnEjQpq2Sdlnkn1FEwU674IUBXO+hlwqDy72ccyT+HIwBdcSXDR0NlK07UW1eMCt65NXV1aTiIK8eh4RuQJDIiJksiOilhOBO/a3Yi7jAfxssJ3vRsPX3MGEoXeWU7mQKPbwkX+Q6PDusVKsrk=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <10880274.nteIY8W56H@jernej-laptop>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+X-OriginatorOrg: mips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2b194438-00b0-4e69-643d-08d7289d4bb1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Aug 2019 14:13:54.3456
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kVF8FY3lVQYxzQXCxR/o4h9FLdEFLCUH3ZNNb0UbXMPfHzPZa6nsc3n1Dvj75zaN8FBekjvnM9V/gQK7Rdu+0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR2201MB1736
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 24, 2019 at 03:16:41PM +0200, Jernej Škrabec wrote:
-> Dne sobota, 24. avgust 2019 ob 15:05:44 CEST je Ondřej Jirman napisal(a):
-> > On Sat, Aug 24, 2019 at 02:51:54PM +0200, Jernej Škrabec wrote:
-> > > Dne sobota, 24. avgust 2019 ob 14:46:54 CEST je Ondřej Jirman napisal(a):
-> > > > Hi,
-> > > > 
-> > > > On Sat, Aug 24, 2019 at 02:32:32PM +0200, Jernej Škrabec wrote:
-> > > > > Hi!
-> > > > > 
-> > > > > Dne torek, 20. avgust 2019 ob 17:19:33 CEST je megous@megous.com
-> > > 
-> > > napisal(a):
-> > > > > > From: Ondrej Jirman <megous@megous.com>
-> > > > > > 
-> > > > > > RTC on H6 is mostly the same as on H5 and H3. It has slight
-> > > > > > differences
-> > > > > > mostly in features that are not yet supported by this driver.
-> > > > > > 
-> > > > > > Some differences are already stated in the comments in existing
-> > > > > > code.
-> > > > > > One other difference is that H6 has extra bit in LOSC_CTRL_REG,
-> > > > > > called
-> > > > > > EXT_LOSC_EN to enable/disable external low speed crystal oscillator.
-> > > > > > 
-> > > > > > It also has bit EXT_LOSC_STA in LOSC_AUTO_SWT_STA_REG, to check
-> > > > > > whether
-> > > > > > external low speed oscillator is working correctly.
-> > > > > > 
-> > > > > > This patch adds support for enabling LOSC when necessary:
-> > > > > > 
-> > > > > > - during reparenting
-> > > > > > - when probing the clock
-> > > > > > 
-> > > > > > H6 also has capacbility to automatically reparent RTC clock from
-> > > > > > external crystal oscillator, to internal RC oscillator, if external
-> > > > > > oscillator fails. This is enabled by default. Disable it during
-> > > > > > probe.
-> > > > > > 
-> > > > > > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > > > > > Reviewed-by: Chen-Yu Tsai <wens@csie.org>
-> > > > > > ---
-> > > > > > 
-> > > > > >  drivers/rtc/rtc-sun6i.c | 40
-> > > > > >  ++++++++++++++++++++++++++++++++++++++--
-> > > > > >  1 file changed, 38 insertions(+), 2 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/drivers/rtc/rtc-sun6i.c b/drivers/rtc/rtc-sun6i.c
-> > > > > > index d50ee023b559..b0c3752bed3f 100644
-> > > > > > --- a/drivers/rtc/rtc-sun6i.c
-> > > > > > +++ b/drivers/rtc/rtc-sun6i.c
-> > > > > > @@ -32,9 +32,11 @@
-> > > > > > 
-> > > > > >  /* Control register */
-> > > > > >  #define SUN6I_LOSC_CTRL				0x0000
-> > > > > >  #define SUN6I_LOSC_CTRL_KEY			(0x16aa 
-> << 16)
-> > > > > > 
-> > > > > > +#define SUN6I_LOSC_CTRL_AUTO_SWT_BYPASS		BIT(15)
-> > > > > 
-> > > > > User manual says that above field is bit 14.
-> > > > 
-> > > > See the previous discussion, this is from BSP.
-> > > 
-> > > I have two versions of BSP (don't ask me which) which have this set as bit
-> > > 14 and changing this to 14 actually solves all my problems with LOSC (no
-> > > more issues with setting RTC and HDMI-CEC works now - it uses LOSC as
-> > > parent) on Tanix TX6 box.
-> > 
-> > Interesting. Is LOSC fed externally generated clock, or is it setup as a
-> > crystal oscillator on your board?
-> 
-> I really don't know, but here is DT: http://ix.io/1ThI
-> 
-> > 
-> > Anyway, see here:
-> > 
-> > https://megous.com/git/linux/tree/drivers/rtc/rtc-sunxi.h?h=h6-4.9-bsp#n649
-> > https://megous.com/git/linux/tree/drivers/rtc/rtc-sunxi.c?h=h6-4.9-bsp#n652
-> 
-> Interesting, 4.9 BSP has additional bit definition, which is not documented in 
-> manual and 3.10 BSP to which I refer.
-> 
-> I was referring to 3.10 BSP, which uses only bit 14. I thought that you named 
-> it differently.
-> 
-> > 
-> > It would be nice to know what's really happening.
-> > 
-> > My output is:
-> > 
-> > [    0.832252] sun6i-rtc 7000000.rtc: registered as rtc0
-> > [    0.832257] sun6i-rtc 7000000.rtc: RTC enabled
-> > [    1.728968] sun6i-rtc 7000000.rtc: setting system clock to
-> > 1970-01-01T00:00:07 UTC (7)
-> 
-> With change, I get same output.
-> 
-> > 
-> > I think, you may have just enabled the auto switch feature, and running the
-> > clock from low precision RC oscillator with your patch.
-> 
-> True, now I think there is no external crystal, but I'm still not sure how to 
-> confirm that.
+Hello,
 
-Visually?
+Martin Blumenstingl wrote:
+> The mainline PCIe PHY driver has it's own devicetree node. Update the
+> clock alias so the mainline driver finds the clocks.
+>=20
+> The first PCIe PHY is located at 0x1f106800 and exists on VRX200, ARX300
+> and GRX390.
+> The second PCIe PHY is located at 0x1f700400 and exists on ARX300 and
+> GRX390.
+> The third PCIe PHY is located at 0x1f106a00 and exists onl on GRX390.
+> Lantiq's board support package (called "UGW") names these registers
+> "PDI".
 
-That would explain why it doesn't work for you. The mainline RTC driver
-disables auto-switch feature, and if your board doesn't have a crystal for LOSC,
-RTC will not generate a clock for the RTC.
+Applied to mips-next.
 
-H6's dtsi describes by default a situatiuon with external 32k crystal
-oscillator. See ext_osc32k node. That's incorrect for your board if it doesn't
-have the crystal. You need to fix this in the DTS for your board instead of
-patching the driver.
+> commit ed90302be64a
+> https://git.kernel.org/mips/c/ed90302be64a
+>=20
+> Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> Signed-off-by: Paul Burton <paul.burton@mips.com>
 
-The driver has parent clock selection logic in case the LOSC crystal is not
-used.
+Thanks,
+    Paul
 
-Your patch enables automatic detection of LOSC failure and RTC changes clock
-to LOSC automatically, despite what's described in the DTS. That may fix the
-issue, but is not the correct solution.
-
-Registers on my board look like this (external 32k osc is used) for reference:
-
-LOSC_CTRL_REG[7000000]: 8011
-	KEY_FIELD                      ???                  (0)
-	LOSC_AUTO_SWT_BYPASS           EN                   (1)
-	LOSC_AUTO_SWT_EN               DIS                  (0)
-	EXT_LOSC_EN                    EN                   (1)
-	EXT_LOSC_GSM                   LOW                  (0)
-	BATTERY_DIR                    DISCHARGE            (0)
-	LOSC_SRC_SEL                   EXT32k               (1)
-
-LOSC_AUTO_SWT_STA_REG[7000004]: 1
-	EXT_LOSC_STA                   OK                   (0)
-	LOSC_AUTO_SWT_PEND             NOEFF                (0)
-	LOSC_SRC_SEL_STA               EXT32K               (1)
-
-regards,
-	o.
-
-> > 
-> > The real issue probably is that the mainline driver is missing this:
-> > 
-> > https://megous.com/git/linux/tree/drivers/rtc/rtc-sunxi.c?h=h6-4.9-bsp#n650
-> > 
-> 
-> Not sure what you mean by that. ext vs. int source selection?
-
-
-
-> Best regards,
-> Jernej
-> 
-> > regards,
-> > 	o.
+[ This message was auto-generated; if you believe anything is incorrect
+  then please email paul.burton@mips.com to report it. ]
