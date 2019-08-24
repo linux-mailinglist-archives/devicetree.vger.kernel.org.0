@@ -2,158 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D9F9BB7B
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 05:44:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2D4D9BC38
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 08:29:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726961AbfHXDnp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Aug 2019 23:43:45 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:47399 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726793AbfHXDno (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Aug 2019 23:43:44 -0400
-X-UUID: 94847ecf790d458e8eb21d4e003c3ac6-20190824
-X-UUID: 94847ecf790d458e8eb21d4e003c3ac6-20190824
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 2038650983; Sat, 24 Aug 2019 11:06:42 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Sat, 24 Aug 2019 11:06:34 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sat, 24 Aug 2019 11:06:33 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        <anan.sun@mediatek.com>, Matthias Kaehlcke <mka@chromium.org>,
-        <cui.zhang@mediatek.com>, <chao.hao@mediatek.com>,
-        <ming-fan.chen@mediatek.com>
-Subject: [PATCH v11 20/23] memory: mtk-smi: Add bus_sel for mt8183
-Date:   Sat, 24 Aug 2019 11:02:05 +0800
-Message-ID: <1566615728-26388-21-git-send-email-yong.wu@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1566615728-26388-1-git-send-email-yong.wu@mediatek.com>
-References: <1566615728-26388-1-git-send-email-yong.wu@mediatek.com>
+        id S1726924AbfHXG3Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Aug 2019 02:29:25 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:39043 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726865AbfHXG3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Aug 2019 02:29:25 -0400
+Received: by mail-pf1-f196.google.com with SMTP id y200so393908pfb.6
+        for <devicetree@vger.kernel.org>; Fri, 23 Aug 2019 23:29:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=lk3/fdWNHGpXSG4wNNd4Z51nWhNqtO7vua0PVil2X8k=;
+        b=MmZFw4++6ajNtGcDjnTyEZX45owjmCdZ77MjxfCiLNnUI6FmuFS/kri/kbpAgTsdzS
+         cbmA9XAWRXj9gfAsdppqv/ff/ZeRU7OAmyY2sLRehhuBXaRkxR5jGUl0UFL6zkuQHni0
+         zxoPgS3ZxJ7tFveYa+1FM5lF8srYTmrTqv3kPOhfO7S9UxwXylkR14GzFHwvVQm7pXOS
+         Nae34H7jXleGz0JuV2eEYKgAS3iu61sZHrhcV8OjMKr6/eMQb6/M0cnaJgDKBw+yqVzM
+         TAS3vluUriOA9JL5s8zEqc92AGJXaaEXBJ8qjWeNMj+PxdX1mlEKh8h54TNcFgtodkBJ
+         HyIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lk3/fdWNHGpXSG4wNNd4Z51nWhNqtO7vua0PVil2X8k=;
+        b=QSVllnI1OIMXSG6S6ehSaqIvYfiBr6ssHg/uOSythtoooSNQcT9e9u7lgPyZ7A0Bg4
+         9GXTTfyWFWb3QLM+jahl+DDRY8a0Ik2zblyP6k/oARDqSjtTryzCfkfjGEDDMZOD2IqQ
+         r1faY4sdxaDTsUNACXpOi4Ygbl4qic3KU4MgBdc43YpnzIknKbZj0r3EqD4eL4CAtpRe
+         gnid8DmSwpbL0KHUqqY/JDStyIPFPaDEEPw+QKTmwCpSzJqsRQxxoVOL/L4nNOJxcCNP
+         Namw69mEGaKV4cz91Wo68qa301T0numeDzsbKuNZmvs4GqYLDkLVxWovka3oaBxsJwCI
+         zUzw==
+X-Gm-Message-State: APjAAAXRQh2GklD2RE7nFzA/cJzJsziFEz0zdK8Mha2R4o/zw8DakAJU
+        eJ4sXVjqcul6/Z0QUsUQ2ZTHUwCmbJo=
+X-Google-Smtp-Source: APXvYqzP5aW10UjB6WQjHdGXFspmjnPMEW+2ogI0RPCqFngLxhyRS7aAGs3AqLaugeVz1K62+sqiHA==
+X-Received: by 2002:a17:90a:ab01:: with SMTP id m1mr8623968pjq.69.1566628164813;
+        Fri, 23 Aug 2019 23:29:24 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id w129sm8673188pfd.89.2019.08.23.23.29.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Aug 2019 23:29:24 -0700 (PDT)
+Date:   Fri, 23 Aug 2019 23:31:15 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] clk: qcom: clk-rpmh: Convert to parent data scheme
+Message-ID: <20190824063115.GW26807@tuxbook-pro>
+References: <20190822170140.7615-1-vkoul@kernel.org>
+ <20190822170140.7615-3-vkoul@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190822170140.7615-3-vkoul@kernel.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are 2 mmu cells in a M4U HW. we could adjust some larbs entering
-mmu0 or mmu1 to balance the bandwidth via the smi-common register
-SMI_BUS_SEL(0x220)(Each larb occupy 2 bits).
+On Thu 22 Aug 10:01 PDT 2019, Vinod Koul wrote:
 
-In mt8183, For better performance, we switch larb1/2/5/7 to enter
-mmu1 while the others still keep enter mmu0.
+> Convert the rpmh clock driver to use the new parent data scheme by
+> specifying the parent data for board clock.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  drivers/clk/qcom/clk-rpmh.c | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> index c3fd632af119..0bced7326a20 100644
+> --- a/drivers/clk/qcom/clk-rpmh.c
+> +++ b/drivers/clk/qcom/clk-rpmh.c
+> @@ -95,7 +95,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
+>  		.hw.init = &(struct clk_init_data){			\
+>  			.ops = &clk_rpmh_ops,				\
+>  			.name = #_name,					\
+> -			.parent_names = (const char *[]){ "xo_board" },	\
+> +			.parent_data =  &(const struct clk_parent_data){ \
+> +					.fw_name = "xo_board",		\
+> +					.name = "xo_board",		\
 
-In mt8173 and mt2712, we don't get the performance issue,
-Keep its default value(0x0), that means all the larbs enter mmu0.
+Iiuc .name here refers to the global clock namespace and .fw_name refers
+to the device_node local name space. As such I really prefer this to be:
 
-Note: smi gen1(mt2701/mt7623) don't have this bus_sel.
+  .fw_name = "xo",
+  .name = "xo_board",
 
-And, the base of smi-common is completely different with smi_ao_base
-of gen1, thus I add new variable for that.
+This ensures the backwards compatibility (when using global lookup),
+without complicating the node-local naming.
 
-CC: Matthias Brugger <matthias.bgg@gmail.com>
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: Evan Green <evgreen@chromium.org>
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
----
- drivers/memory/mtk-smi.c | 24 ++++++++++++++++++++++--
- 1 file changed, 22 insertions(+), 2 deletions(-)
+Regards,
+Bjorn
 
-diff --git a/drivers/memory/mtk-smi.c b/drivers/memory/mtk-smi.c
-index 2bb55b86..289e595 100644
---- a/drivers/memory/mtk-smi.c
-+++ b/drivers/memory/mtk-smi.c
-@@ -41,6 +41,12 @@
- #define SMI_LARB_NONSEC_CON(id)	(0x380 + ((id) * 4))
- #define F_MMU_EN		BIT(0)
- 
-+/* SMI COMMON */
-+#define SMI_BUS_SEL			0x220
-+#define SMI_BUS_LARB_SHIFT(larbid)	((larbid) << 1)
-+/* All are MMU0 defaultly. Only specialize mmu1 here. */
-+#define F_MMU1_LARB(larbid)		(0x1 << SMI_BUS_LARB_SHIFT(larbid))
-+
- enum mtk_smi_gen {
- 	MTK_SMI_GEN1,
- 	MTK_SMI_GEN2
-@@ -49,6 +55,7 @@ enum mtk_smi_gen {
- struct mtk_smi_common_plat {
- 	enum mtk_smi_gen gen;
- 	bool             has_gals;
-+	u32              bus_sel; /* Balance some larbs to enter mmu0 or mmu1 */
- };
- 
- struct mtk_smi_larb_gen {
-@@ -64,8 +71,10 @@ struct mtk_smi {
- 	struct clk			*clk_apb, *clk_smi;
- 	struct clk			*clk_gals0, *clk_gals1;
- 	struct clk			*clk_async; /*only needed by mt2701*/
--	void __iomem			*smi_ao_base;
--
-+	union {
-+		void __iomem		*smi_ao_base; /* only for gen1 */
-+		void __iomem		*base;	      /* only for gen2 */
-+	};
- 	const struct mtk_smi_common_plat *plat;
- };
- 
-@@ -402,6 +411,8 @@ static int __maybe_unused mtk_smi_larb_suspend(struct device *dev)
- static const struct mtk_smi_common_plat mtk_smi_common_mt8183 = {
- 	.gen      = MTK_SMI_GEN2,
- 	.has_gals = true,
-+	.bus_sel  = F_MMU1_LARB(1) | F_MMU1_LARB(2) | F_MMU1_LARB(5) |
-+		    F_MMU1_LARB(7),
- };
- 
- static const struct of_device_id mtk_smi_common_of_ids[] = {
-@@ -474,6 +485,11 @@ static int mtk_smi_common_probe(struct platform_device *pdev)
- 		ret = clk_prepare_enable(common->clk_async);
- 		if (ret)
- 			return ret;
-+	} else {
-+		res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+		common->base = devm_ioremap_resource(dev, res);
-+		if (IS_ERR(common->base))
-+			return PTR_ERR(common->base);
- 	}
- 	pm_runtime_enable(dev);
- 	platform_set_drvdata(pdev, common);
-@@ -489,6 +505,7 @@ static int mtk_smi_common_remove(struct platform_device *pdev)
- static int __maybe_unused mtk_smi_common_resume(struct device *dev)
- {
- 	struct mtk_smi *common = dev_get_drvdata(dev);
-+	u32 bus_sel = common->plat->bus_sel;
- 	int ret;
- 
- 	ret = mtk_smi_clk_enable(common);
-@@ -496,6 +513,9 @@ static int __maybe_unused mtk_smi_common_resume(struct device *dev)
- 		dev_err(common->dev, "Failed to enable clock(%d).\n", ret);
- 		return ret;
- 	}
-+
-+	if (common->plat->gen == MTK_SMI_GEN2 && bus_sel)
-+		writel(bus_sel, common->base + SMI_BUS_SEL);
- 	return 0;
- }
- 
--- 
-1.9.1
-
+> +			},						\
+>  			.num_parents = 1,				\
+>  		},							\
+>  	};								\
+> @@ -110,7 +113,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
+>  		.hw.init = &(struct clk_init_data){			\
+>  			.ops = &clk_rpmh_ops,				\
+>  			.name = #_name_active,				\
+> -			.parent_names = (const char *[]){ "xo_board" },	\
+> +			.parent_data =  &(const struct clk_parent_data){ \
+> +					.fw_name = "xo_board",		\
+> +					.name = "xo_board",		\
+> +			},						\
+>  			.num_parents = 1,				\
+>  		},							\
+>  	}
+> -- 
+> 2.20.1
+> 
