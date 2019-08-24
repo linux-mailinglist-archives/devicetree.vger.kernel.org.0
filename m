@@ -2,122 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2D439BC89
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 10:06:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5EE89BCC5
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 11:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726518AbfHXIGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Aug 2019 04:06:19 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:35178 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725798AbfHXIGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Aug 2019 04:06:18 -0400
-Received: by mail-wr1-f68.google.com with SMTP id k2so10612717wrq.2;
-        Sat, 24 Aug 2019 01:06:17 -0700 (PDT)
+        id S1725948AbfHXJ2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Aug 2019 05:28:15 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:39288 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725906AbfHXJ2O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Aug 2019 05:28:14 -0400
+Received: by mail-wm1-f68.google.com with SMTP id i63so11264542wmg.4
+        for <devicetree@vger.kernel.org>; Sat, 24 Aug 2019 02:28:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=58C0QNHWQcW+nSLPaoT9CxsTMXwj511Ek3VVka0DlPQ=;
-        b=B5xQXiqE3Vp6VFi1ZvNBuFiQAi/eIXbAfbMJ9wobxfvtytVEcrRqeuV0UUtwRSSTu5
-         0Ckj2jYBxuaE068uoLwxXCXadKE42Derib6FCei5sN8jc7VSexC58Z0BNCINcTH2qXbv
-         LjbSn0gR80dikZ8wYGfWw2pyVJJ37yVeBVYETIVce6JrYEVJDgzryp8H6Hfy7AKcgsFE
-         oUHsXCpgHPlLr91Af7451ESymWNiPp49UDWelz+S3FZIB+r5Huh4SS0CO5RqJsxJG/KG
-         dWrYqOhYMk/P5IC69W2P/kzVrOt6HjDzb8zjotZWg4xs3I2FALSlaK0FlzfjvW8HohV7
-         d8mg==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=zo965yYSGqb8bD4x2EypL21hFRTb95lRpBchUKxraiE=;
+        b=TuHziGI6AfbI1Kuy0OQ1kygyW8xn4FAKLazEENYj8VPvkldA//5vm/dgH0+xVuZx14
+         tkT6llIsrwTyokSfhZgJOYqkNMjvJgvHidUAVbYW/7RGar56ohaLaQbeHESb05JuBSC2
+         NM76IW6gtS1QA9I+1XRbBxFG6xlK7Sh3KhhFhnlvuovONgvGGFgc/x9SGYpBACZsYtqi
+         034qAW47LP5Y3RI1NpEyi6gOZPdnsyGveM8wRDVRemkvq/SydyTKy97XrJuPRuOatWuz
+         hGHeqjoZULuC/UmSXmBQG4H5VzlhH9nIW5aoSLZkUDPxnTehDME4zWw2YDjrR7wKn3bM
+         GQgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=58C0QNHWQcW+nSLPaoT9CxsTMXwj511Ek3VVka0DlPQ=;
-        b=ZywfHN0fhoCrjBKKBXie2rx6403hYl0r0VD8ABJqW7gXf+D/4wODC7S3LG9stlNV2u
-         OUpqcJmlxaqfNoEMIF+H9ZMhAztT2RAU1oEyilxvS0RJNs7Q62hVo5O7Deu1R6teSbRG
-         cFowMya3J2sWK3RQD5HjtdW31bH2SjtV/6UDa/JF/dmazllG6I98M/eWTPw6xukpn42g
-         225Gm8hx+mitYl0V/i9HMZLAhrXvE7WveEdazUKoLUqBfqyrHzwen3Bp732SZMeh8Snb
-         djVfKUk2gIbv/RSl3WK513EXGGZoHIDoT5YEC6z3AggpUEbYesia18MBqa/LgGjpgTl3
-         abHw==
-X-Gm-Message-State: APjAAAXaPFMrRXkyxvAnL0vjqebrfNwV/I3Idt7kVrZ2e8rAzp/13nWY
-        XM1c9PZU4oxvQveRzhUWqXM=
-X-Google-Smtp-Source: APXvYqwOnxQ0AzVpFZ1HBm5/boRWlpN8TL03h6oGNkuhEZ2kZoZ1oBQcqfA7KzDP+OzLAkaQMfIu+Q==
-X-Received: by 2002:a05:6000:104f:: with SMTP id c15mr9366925wrx.225.1566633976612;
-        Sat, 24 Aug 2019 01:06:16 -0700 (PDT)
-Received: from jernej-laptop.localnet (cpe-86-58-59-25.static.triera.net. [86.58.59.25])
-        by smtp.gmail.com with ESMTPSA id n8sm4160105wro.89.2019.08.24.01.06.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Aug 2019 01:06:16 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     linux-sunxi@googlegroups.com
-Cc:     megous@megous.com, Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [linux-sunxi] [PATCH v2 0/3] Add basic support for RTC on Allwinner H6 SoC
-Date:   Sat, 24 Aug 2019 10:06:14 +0200
-Message-ID: <5421621.t8Lore9UF7@jernej-laptop>
-In-Reply-To: <3686940.YHdMKP4MVq@jernej-laptop>
-References: <20190820151934.3860-1-megous@megous.com> <3686940.YHdMKP4MVq@jernej-laptop>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=zo965yYSGqb8bD4x2EypL21hFRTb95lRpBchUKxraiE=;
+        b=UbjpC9k3ocZe+uqBr8rthWQUEp5KO5eBs7xeqVEnX7FJ2V0G7Ca+6pB30wrwerCLk/
+         JK9RCzHobcWO6PVrYG3v+57AsZIXFYSK9QdhK88SitrE49GaO8v99P4JugO7r84aTp/h
+         tYU42W42/zxtEht2fnWnHuMuIJFeUTqFyMKKL8ib1KQqF8K8vmumgXFTnb0ViRy5sLr1
+         TwVFB4TSqX5rSIcyYgsnjMsewMJ8evKFVANhL9UV+clebtlr+b4Nc6DAy5t12g7UJo62
+         Z1xl3X+t88dCYy9NOg5fex0OBHuHkXZ3KUISVUU+ANZJXQAtx3j/E4XAA+6UEbgMtsjS
+         rzXA==
+X-Gm-Message-State: APjAAAVB8oEc/s/+/tP+xbj1dKPtKexvikUyvZixa0v0VboxAv1X5BQu
+        FIG6H2ArTFZiUGmwhFIOo0/HRQ==
+X-Google-Smtp-Source: APXvYqwz3U/TghRbVyV88lkhhqltT+Y394ij6+j58+VszZyqblPtGXpd66unQ4zGBmBYW+D8/WNiuQ==
+X-Received: by 2002:a1c:6387:: with SMTP id x129mr9751912wmb.166.1566638891646;
+        Sat, 24 Aug 2019 02:28:11 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id b15sm4627906wrt.77.2019.08.24.02.28.10
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 24 Aug 2019 02:28:10 -0700 (PDT)
+Subject: Re: [alsa-devel] [RESEND PATCH v4 1/4] dt-bindings: soundwire: add
+ slave bindings
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, spapothi@codeaurora.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org
+References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
+ <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
+ <7da8aa89-2119-21d1-0e29-8894a8d40bf0@linux.intel.com>
+ <37be6b6d-7e7f-2cd6-f9e9-f0cac48791ad@linaro.org>
+ <d538238d-25d8-f179-c900-90be50ce814d@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <7ee47f26-12f8-6028-cb83-7f59e669979f@linaro.org>
+Date:   Sat, 24 Aug 2019 10:28:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <d538238d-25d8-f179-c900-90be50ce814d@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne sobota, 24. avgust 2019 ob 10:04:24 CEST je Jernej =C5=A0krabec napisal=
-(a):
-> Hi!
->=20
-> Dne torek, 20. avgust 2019 ob 17:19:31 CEST je megous@megous.com napisal(=
-a):
-> > From: Ondrej Jirman <megous@megous.com>
-> >=20
-> > I went through the datasheets for H6 and H5, and compared the differenc=
-es.
-> > RTCs are largely similar, but not entirely compatible. Incompatibilities
-> > are in details not yet implemented by the rtc driver though.
-> >=20
-> > I also corrected the clock tree in H6 DTSI.
-> >=20
-> > This patchset is necessary for implementing the WiFi/Bluetooth support
-> > on boards using H6 SoC.
-> >=20
-> > There was some discussion previously of describing HOSC, DCXO and XO
-> > oscillators and clocks as part of RTC in DT, but I decided against it
-> > because it's not necessary, becuse information that would be provided
-> > as a part of DT can already be determined at runtime from RTC registers,
-> > so this woudn't add any value and would only introduce complications
-> > to the driver. See: https://patchwork.kernel.org/cover/10898083/
-> >=20
-> > Please take a look.
-> >=20
-> >=20
-> > Thank you and regards,
-> >=20
-> >   Ondrej Jirman
->=20
-> Sorry for a bit late test, but with your patches on Tanix TX6 box I get t=
-his
-> in dmesg:
->=20
-> [   17.431742] sun6i-rtc 7000000.rtc: Failed to set rtc time.
-> [   20.439742] sun6i-rtc 7000000.rtc: rtc is still busy.
-> [   21.435744] sun6i-rtc 7000000.rtc: rtc is still busy.
-> [   24.055741] sun6i-rtc 7000000.rtc: rtc is still busy.
-> [   24.439752] sun6i-rtc 7000000.rtc: rtc is still busy.
->=20
-> Last line is repeated non-stop.
->=20
-> Any idea what could be wrong?
-
-Additional info - this is on kernel 5.2.6 with your patches applied.
-=20
-Best regards,
-Jernej
 
 
+On 23/08/2019 17:44, Pierre-Louis Bossart wrote:
+> 
+> 
+> On 8/23/19 10:57 AM, Srinivas Kandagatla wrote:
+>>
+>>
+>> On 23/08/2019 16:41, Pierre-Louis Bossart wrote:
+>>>
+>>>
+>>> On 8/22/19 6:37 PM, Srinivas Kandagatla wrote:
+>>>> This patch adds bindings for Soundwire Slave devices that includes how
+>>>> SoundWire enumeration address and Link ID are used to represented in
+>>>> SoundWire slave device tree nodes.
+>>>>
+>>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>>> ---
+>>>>   .../soundwire/soundwire-controller.yaml       | 75 
+>>>> +++++++++++++++++++
+>>>>   1 file changed, 75 insertions(+)
+>>>>   create mode 100644 
+>>>> Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>>>>
+>>>> diff --git 
+>>>> a/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml 
+>>>> b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..91aa6c6d6266
+>>>> --- /dev/null
+>>>> +++ 
+>>>> b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>>>> @@ -0,0 +1,75 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: 
+>>>> http://devicetree.org/schemas/soundwire/soundwire-controller.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: SoundWire Controller Generic Binding
+>>>> +
+>>>> +maintainers:
+>>>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>>> +
+>>>> +description: |
+>>>> +  SoundWire busses can be described with a node for the SoundWire 
+>>>> controller
+>>>> +  device and a set of child nodes for each SoundWire slave on the bus.
+>>>> +
+>>>> +properties:
+>>>> +  $nodename:
+>>>> +    pattern: "^soundwire(@.*|-[0-9a-f])*$"
+> 
+> re-reading this, it looks like you are defining the controller bindings, 
+> but there are no real controller-level properties except for the fact 
+> that they include slave bindings?
+> 
+Yes, Each vendor specific master can have there specific properties 
+here, this is just to represent how slave nodes represented w.r.t to 
+master nodes.
+
+> In MIPI the notion of controller is that it can deal with multiple 
+> links, each of which having specific properties (clock speed, clock stop 
+> properties, etc).
+> 
+>>>> +
+>>>> +  "#address-cells":
+>>>> +    const: 2
+>>>> +
+>>>> +  "#size-cells":
+>>>> +    const: 0
+>>>> +
+>>>> +patternProperties:
+>>>> +  "^.*@[0-9a-f]+$":
+>>>> +    type: object
+>>>> +
+>>>> +    properties:
+>>>> +      compatible:
+>>>> +      pattern: "^sdw[0-9][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
+>>>
+>>> So is this a 64-bit value, as in the MIPI spec, or is this part of 
+>>> the _ADR description?
+>>
+>> Rob did not like encoding compatible string exactly like _ADR encoding.
+>>
+>> https://lkml.org/lkml/2019/8/22/490
+> 
+> Wondering if we are talking about different concepts?
+> 
+> Rob's point was about the InstanceID
+> 
+> "Assuming you could have more than 1 of the same device on the bus,
+> then you need some way to distinguish them and the way that's done for
+> DT is unit-address/reg. And compatible strings should be constant for
+> each instance."
+> 
+> You can use the MIPI encoding *except* for the InstanceID, that'd be 
+> fine. It'll just be a bit weird since the Slave device will report the 
+> 48 bits that include the Instance ID, so you'll have to special case 
+> this field, but if this is a DT requirement then fine.
+> 
+> Rob's point does not apply to the link ID - which is used when you have 
+> multiple masters in your controller. The Slave device is attached in one 
+> location and will never move, so that is a constant value.
+
+Point is that this compatible is for slave device, it should not matter 
+where and how the slave is connected, compatible should be constant 
+irrespective of Link ID.
+Lets say for example if WSA881x slave device is connected to a 
+single-Link Controller and the same device is connected to a 
+MultiLink-controller then we would endup in more than one compatible 
+string for WSA881x driver.
 
 
+ From Disco Specic it clearly says that LinkID values are relative
+to the immediate parent Device. So having LinkID in compatible string is 
+very fragile.
+
+> 
+>>
+>>> I also don't get why the first item in in base10?
+>>>
+>>
+>> As this corresponds to Soundwire Version, and I have no visibility of 
+>> version number encoding after reaching number 9 in this field.
+>>
+>> This can be updated once we have more info on how the Version encoding 
+>> will look like in future.
+>>
+>> Idea of limiting regex to [0-9] for version is to enforce some checking!
+> 
+> the version is a 4 bit value starting at 1 for SoundWire 1.0. There is 
+> nothing in the spec that talks about a limit to 9.
+> 
+> It's unlikely we'll ever reach that but you are interpreting a spec 
+> here. plus just below you mention all fields as being hexadecimal.
+> 
+Am happy to change this to
+
+pattern: "^sdw[0-9a-f][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
+
+if you are okay with rest of the stuff.
+
+thanks,
+srini
+>>
+>> --srini
+>>
+>>>
+>>>> +      description:
+>>>> +      Is the textual representation of SoundWire Enumeration
+>>>> +      address. compatible string should contain SoundWire Version ID,
+>>>> +      Manufacturer ID, Part ID and Class ID in order and shall be in
+>>>> +      lower-case hexadecimal with leading zeroes.
+>>>> +      Valid sizes of these fields are
+>>>> +      Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
+>>>> +      and '0x2' represents SoundWire 1.1 and so on.
+>>>> +      MFD is 4 nibbles
+>>>> +      PID is 4 nibbles
+>>>> +      CID is 2 nibbles
+>>>> +      More Information on detail of encoding of these fields can be
+>>>> +      found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
+>>>> +
+>>>> +      reg:
+>>>> +        maxItems: 1
+>>>> +        description:
+>>>> +          Instance ID and Link ID of SoundWire Device Address.
+>>>> +
+>>>> +    required:
+>>>> +      - compatible
+>>>> +      - reg
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    soundwire@c2d0000 {
+>>>> +        #address-cells = <2>;
+>>>> +        #size-cells = <0>;
+>>>> +        compatible = "qcom,soundwire-v1.5.0";
+>>>> +        reg = <0x0c2d0000 0x2000>;
+>>>> +
+>>>> +        speaker@1 {
+>>>> +            compatible = "sdw10217201000";
+>>>> +            reg = <1 0>;
+>>>> +        };
+>>>> +
+>>>> +        speaker@2 {
+>>>> +            compatible = "sdw10217201000";
+>>>> +            reg = <2 0>;
+>>>> +        };
+>>>> +    };
+>>>> +
+>>>> +...
+>>>>
