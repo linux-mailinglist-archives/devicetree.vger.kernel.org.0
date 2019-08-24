@@ -2,88 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB6019BE80
-	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 17:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3574E9BEF6
+	for <lists+devicetree@lfdr.de>; Sat, 24 Aug 2019 19:29:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728319AbfHXPYc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Aug 2019 11:24:32 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:50984 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728310AbfHXPYb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Aug 2019 11:24:31 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 7479160E41; Sat, 24 Aug 2019 15:24:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1566660270;
-        bh=6aXlqUBwZViX6SYEV6IFwgeA31UVuQZ9Wh7+LosfjCk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TrQrLX/gAK1pNytr8PGKVRhuFKuwUmcEZiR9SHzp1W4pIX3+uXz/fzrTHWk2ohkoM
-         Pzg2g046eG9jLbWkoRKCHjPQMWNBzWAKDItbAZfWO/CGJyG/uGNegoqahuOB81iDTW
-         yAm/pFsjtpadmT050ZjUxgd5Gb5+dVEW/l6IiYhs=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        id S1726810AbfHXR3V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Aug 2019 13:29:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38942 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726769AbfHXR3V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 24 Aug 2019 13:29:21 -0400
+Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: sibis@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E26A460A60;
-        Sat, 24 Aug 2019 15:24:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1566660269;
-        bh=6aXlqUBwZViX6SYEV6IFwgeA31UVuQZ9Wh7+LosfjCk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=ZJiUqS6VvTDnSYHHB6dPFbo/aGNdv04fIaHa1yUmlMWrPbVVR1WyLp1LO81GnNhBZ
-         whdj5wPQlISL8XrXgvNfAQMl/rViSwhM87scrpSNw753CeNSZd5gBYSS6roPMxfu6t
-         3CZlP1Kp8PzeXaKDvkXJaX+zj6dNJs5egs5h2GFE=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E26A460A60
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Sibi Sankar <sibis@codeaurora.org>
-Subject: [RESEND PATCH v2 2/2] dt-bindings: reset: pdc: Add PDC Global binding for SC7180 SoCs
-Date:   Sat, 24 Aug 2019 20:54:11 +0530
-Message-Id: <20190824152411.21757-3-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.22.1
-In-Reply-To: <20190824152411.21757-1-sibis@codeaurora.org>
-References: <20190824152411.21757-1-sibis@codeaurora.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 6F9F020870;
+        Sat, 24 Aug 2019 17:29:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566667760;
+        bh=D3nLnnNPLuL/zFk4MNDUmFGzPOfuIQGc/sSLWQeMJCo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=qQvJssVcUppRZfxWiCWZqD4orXYOwW51Do+MjiJOlXvIE1EasomxA6H/BjQg/l+0v
+         fa5vfHkA/8e+t+mj1UEi7/X+/xak2vcoK3eKYd2CcRnPgYkX6N9X5nDioWKtJGCcNl
+         sMf76jjgFYGDYB4WceIHBLhFl/0T9P84t2fquPsY=
+Subject: Re: [PATCH v15 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, shuah <shuah@kernel.org>
+References: <20190824013425.175645-1-brendanhiggins@google.com>
+From:   shuah <shuah@kernel.org>
+Message-ID: <a657b995-32b3-3352-bc10-834547e44dd4@kernel.org>
+Date:   Sat, 24 Aug 2019 11:29:16 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190824013425.175645-1-brendanhiggins@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add SC7180 PDC global to the list of possible bindings.
+On 8/23/19 7:34 PM, Brendan Higgins wrote:
+> ## TL;DR
+> 
+> This revision addresses comments from Shuah by fixing a couple
+> checkpatch warnings and fixing some comment readability issues. No API
+> or major structual changes have been made since v13.
+> 
+> ## Background
+> 
+> This patch set proposes KUnit, a lightweight unit testing and mocking
+> framework for the Linux kernel.
+> 
+> Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+> it does not require installing the kernel on a test machine or in a VM
+> (however, KUnit still allows you to run tests on test machines or in VMs
+> if you want[1]) and does not require tests to be written in userspace
+> running on a host kernel. Additionally, KUnit is fast: From invocation
+> to completion KUnit can run several dozen tests in about a second.
+> Currently, the entire KUnit test suite for KUnit runs in under a second
+> from the initial invocation (build time excluded).
+> 
+> KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+> Googletest/Googlemock for C++. KUnit provides facilities for defining
+> unit test cases, grouping related test cases into test suites, providing
+> common infrastructure for running tests, mocking, spying, and much more.
+> 
+> ### What's so special about unit testing?
+> 
+> A unit test is supposed to test a single unit of code in isolation,
+> hence the name. There should be no dependencies outside the control of
+> the test; this means no external dependencies, which makes tests orders
+> of magnitudes faster. Likewise, since there are no external dependencies,
+> there are no hoops to jump through to run the tests. Additionally, this
+> makes unit tests deterministic: a failing unit test always indicates a
+> problem. Finally, because unit tests necessarily have finer granularity,
+> they are able to test all code paths easily solving the classic problem
+> of difficulty in exercising error handling code.
+> 
+> ### Is KUnit trying to replace other testing frameworks for the kernel?
+> 
+> No. Most existing tests for the Linux kernel are end-to-end tests, which
+> have their place. A well tested system has lots of unit tests, a
+> reasonable number of integration tests, and some end-to-end tests. KUnit
+> is just trying to address the unit test space which is currently not
+> being addressed.
+> 
+> ### More information on KUnit
+> 
+> There is a bunch of documentation near the end of this patch set that
+> describes how to use KUnit and best practices for writing unit tests.
+> For convenience I am hosting the compiled docs here[2].
+> 
+> Additionally for convenience, I have applied these patches to a
+> branch[3]. The repo may be cloned with:
+> git clone https://kunit.googlesource.com/linux
+> This patchset is on the kunit/rfc/v5.3/v15 branch.
+> 
+> ## Changes Since Last Version
+> 
+> - Moved comment from inline in macro to kernel-doc to address checkpatch
+>    warning.
+> - Demoted BUG() to WARN_ON.
+> - Formatted some kernel-doc comments to make them more readible.
+> 
+> [1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+> [2] https://google.github.io/kunit-docs/third_party/kernel/docs/
+> [3] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.3/v15
+> 
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- Documentation/devicetree/bindings/reset/qcom,pdc-global.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Hi Brendan,
 
-diff --git a/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt b/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
-index a62a492843e70..c1fef349f0faf 100644
---- a/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
-+++ b/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
-@@ -8,8 +8,8 @@ Required properties:
- - compatible:
- 	Usage: required
- 	Value type: <string>
--	Definition: must be:
--		    "qcom,sdm845-pdc-global"
-+	Definition: must be one of:
-+		"qcom,sc7180-pdc-global", "qcom,sdm845-pdc-global"
- 
- - reg:
- 	Usage: required
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Thanks for doing this work.
 
+Thanks for accommodating my request to improve the document/comment
+blocks in patch 01 and removing BUG() from patch 09. The comment block
+reads well now.
+
+Applied the series to linux-kselftest next for 5.4-rc1.
+
+thanks,
+-- Shuah
