@@ -2,85 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2993C9C5D3
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 21:38:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B40919C5F1
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 21:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726981AbfHYTit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 15:38:49 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:46334 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728699AbfHYTit (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 15:38:49 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t24so10572507oij.13;
-        Sun, 25 Aug 2019 12:38:48 -0700 (PDT)
+        id S1727077AbfHYTve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 15:51:34 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:37838 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728733AbfHYTve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 15:51:34 -0400
+Received: by mail-oi1-f196.google.com with SMTP id b25so10643085oib.4;
+        Sun, 25 Aug 2019 12:51:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=chkqvuhekHGQhYnW0yA1AUvunv0CUeXBozcgE5RCGR0=;
-        b=u0cppoVMppKPI4R3tE0oQQPUsjzQdBiwzIVOtcPozizIdOfQcPFCm4jdFut4NLyLHl
-         W7ia+LzopmIt5jWdEAFGUgT7HxX8pm5XT+F4VWzuako2kqYDtXCS2WaL0eRYHmbhut5i
-         Wx6Mqe9uay3JAyeHjmznXMHzmTGUENFoFJwfcWYbHOEEZpQN5h8ragkZrjd6CBuQPEC3
-         /DHI0LFnSIkbSLRhr8D4s+ip6Bfaj4gjbeP1qf2DNlVlLlNC1Jqu10ePv2ESrd+OUisf
-         vnRxY9V6p8RAh4ddtvYeGfnqMu+SgFkdQH9PV+AqPXPIE6Ou6MviSIidgWdoyT00Oo2j
-         Nq4A==
+        bh=hjng6vlLFgbv9Pq9MqHuljD4Do50I8hCQZSgXlEUD+s=;
+        b=JrDdoARW3RK4az1cCf/czevGVpc2XlfXp8QUxGdhWyb3hVQORUWD8P3xDDMIDpy3AE
+         3KAkLF5yPDxXJXfDCVqf7kuHgDdCRIqIGVn2h2f+jLlHQSQTp64ULV3JHXm5RuQhHD9B
+         OCrtDQ8dqbF+NUrvZpRPclVYhN2us1pbugiPBNfbyc30P4xgzUvEY8dUsF+l4zc3tmgT
+         q0UmeQYGc3WHoysYNlUofnqCWkg8/k0LPwPDN8+Qz9igplv2xKYrkqK16H+T7IiWs/qO
+         zxn+EdozSlAEbQyfaux5mw/6XF2EmAqQGz+TvFuEPhDBsdbr1lJ2EgsLmr2kin//JpJL
+         ZSxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=chkqvuhekHGQhYnW0yA1AUvunv0CUeXBozcgE5RCGR0=;
-        b=dgQWgdiLi1DuwOtrn+csirs25/3irHhtpEMGGv/ChbzdTCUH9WZ50MZmq0ryGLNm9M
-         ZidbjF/8w64U8L1tznwzGtDiGuarL1JrklfpcgP3W2lqtJYOFmoRbSbMOcZVVXhJ409h
-         XfT01C2mlMB/TBmxs2jhJFAleao/HrX6EOy0cQFV1+MGzzYXvrFXN+rr5dW1EZ3Ofe/4
-         wFgam1pQwL/niHFvlfMp0ywMn+aNKVI78hdLce8gOyQzLskJeIXj44dnnhtvDphslMaL
-         btJAdFCcH2NLuj+Sin8SYGYsbO0q+Vh7/EtWZ2ojRqjkXx9ocxT+YOGXi5HN/cuWsKdk
-         l1Fw==
-X-Gm-Message-State: APjAAAWsfoUTnml1YKrvw2zzY7J1Z5obT/r6KiauUGk1TfscgfseP7+w
-        8liFrn9JyOResHtOBLzaHnSAqrSw3tazF1WzhWg=
-X-Google-Smtp-Source: APXvYqy1R4zVYwEh8pivnSC69fyaMBLMJemyEus17wAdFf0HZLtZeNrG0Fme7e3Pe3MsSQoUcaWkpnlg8DlAMDncj6c=
-X-Received: by 2002:a05:6808:30d:: with SMTP id i13mr10330434oie.39.1566761928007;
- Sun, 25 Aug 2019 12:38:48 -0700 (PDT)
+        bh=hjng6vlLFgbv9Pq9MqHuljD4Do50I8hCQZSgXlEUD+s=;
+        b=Pf/NZeIdekPcftppC1enRwlosYUNaIWhhUJON/pGgTqYMCJU07/JgFe92T4LmxGcwT
+         wnCPmU9kNIgjCYlWBMPzVg4euoyr1Y4xY3h0bjSbz19hLg+8hSjso1yYxOL3CgfAN3sY
+         y19BCykOUPM/8B3fT6AK4FnM7iWkxV5E5VaRQ2VucnNoCIDS0tOYBjNylN4A9Tze/h+U
+         g8KAN7ooafTMl8TTeSFgVIfsXn2EK7TSEbDQgIF/JNjUH8k57+o+bSVZFokq9r+jmiC2
+         QyMd77f8EfKLAYqWhRhA9PuNNETpFKF3WIUYFu/qIrP03RaPw2C88BRF3TV1+pJf6gYx
+         jo/Q==
+X-Gm-Message-State: APjAAAX/cNFK+7prZjc8JdU5EQur1dQpbqHluM+bktJ7drWM8NTBsT1c
+        8mZCRclJK/lyZx0hm+ZAOGow8xmDf01Kg+e9QVY=
+X-Google-Smtp-Source: APXvYqytfpz4w1IVT5MQr4MnHby/LbGVf5kKD4Rnq9rK/D7rVL1EJG62FQ5lDoR6ZfEKArVTzVXqRM0d613Y4v6IXcc=
+X-Received: by 2002:a05:6808:5cf:: with SMTP id d15mr10416816oij.140.1566762693708;
+ Sun, 25 Aug 2019 12:51:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <1566705688-18442-1-git-send-email-christianshewitt@gmail.com>
-In-Reply-To: <1566705688-18442-1-git-send-email-christianshewitt@gmail.com>
+References: <20190823081427.17228-1-narmstrong@baylibre.com> <20190823081427.17228-3-narmstrong@baylibre.com>
+In-Reply-To: <20190823081427.17228-3-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 25 Aug 2019 21:38:37 +0200
-Message-ID: <CAFBinCD0uhE9Fj1we2MkaTbk7RwtmKh7Fn1C-2nn9wiWqCoNfg@mail.gmail.com>
-Subject: Re: [PATCH 0/7] arm64: dts: meson: ir keymap updates
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Sun, 25 Aug 2019 21:51:22 +0200
+Message-ID: <CAFBinCBLVDVWPbDZ+_cPTbJNCavvzJH4A6U8D9XWVSR-j3fzFQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] amlogic: arm: add Amlogic SM1 based Khadas VIM3
+ variant bindings
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 25, 2019 at 6:03 AM Christian Hewitt
-<christianshewitt@gmail.com> wrote:
+Hi Neil,
+
+the subject should be: dt-bindings: arm: amlogic: ...
+
+On Fri, Aug 23, 2019 at 10:15 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> This series adds keymaps for several box/board vendor IR remote devices
-> to respective device-tree files. The keymaps were submitted in [0] and
-> have been queued for inclusion in Linux 5.4.
+> The Khadas VIM3 is also available with the Pin-to-pin compatible
+> Amlogic SM1 SoC in the S905D3 variant package.
 >
-> The Khadas remote change swaps the rc-geekbox keymap for rc-khadas. The
-> Geekbox branded remote was only sold for a brief period when VIM(1) was
-> a new device. The Khadas branded remote that replaced it exchanged the
-> Geekbox full-screen key for an Android mouse button using a different IR
-> keycode. The rc-khadas keymap supports the mouse button keycode and maps
-> it to KEY_MUTE.
+> Change the description to match the S905X3/D3/Y3 variants like the G12A
+> description, and add the vim3 compatible.
 >
-> [0] https://patchwork.kernel.org/project/linux-media/list/?series=160309
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> Christian Hewitt (7):
->   arm64: dts: meson-g12b-odroid-n2: add rc-odroid keymap
->   arm64: dts: meson-g12a-x96-max: add rc-x96max keymap
->   arm64: dts: meson-gxbb-wetek-hub: add rc-wetek-hub keymap
->   arm64: dts: meson-gxbb-wetek-play2: add rc-wetek-play2 keymap
->   arm64: dts: meson-gxl-s905x-khadas-vim: use rc-khadas keymap
->   arm64: dts: meson-gxl-s905w-tx3-mini: add rc-tx3mini keymap
->   arm64: dts: meson-gxm-khadas-vim2: use rc-khadas keymap
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index b48ea1e4913a..2751dd778ce0 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -150,9 +150,10 @@ properties:
+>            - const: amlogic,s922x
+>            - const: amlogic,g12b
+>
+> -      - description: Boards with the Amlogic Meson SM1 S905X3 SoC
+> +      - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+>          items:
+>            - enum:
+>                - seirobotics,sei610
+> +              - khadas,vim3
+>            - const: amlogic,sm1
+on the GXL we differentiate between S905X and S905D
+do we need to differentiate S905X3 from S905D3 (for example)?
+
+
+Martin
