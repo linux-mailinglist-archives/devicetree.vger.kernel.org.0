@@ -2,85 +2,283 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 365589C181
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 06:02:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54F1F9C264
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 09:10:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726860AbfHYECj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 00:02:39 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:55482 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727048AbfHYECi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 00:02:38 -0400
-Received: by mail-wm1-f68.google.com with SMTP id f72so12346173wmf.5;
-        Sat, 24 Aug 2019 21:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=VN2qLUPJ6VKX1aGIcYVhw809Zd7AJNllVKXjslGw4q8=;
-        b=Za5I32pq80QeFA2QlN9eNKTZqMy9Qq+vvcZe1pjeZeVPbi+hviAcNBkYso27Y/MR2w
-         7uOIlNBNpassE2uey3INI3QPwcqkDYcQB7MKtV2yDT04Yo+3hHKvVb+z2uAFJyP+NEXQ
-         kJ0E+sBtK/ejAjxNZ8KbgHKKzsKWepT+aZEhdW/pyN6L730ApJ7A+CwHo3zaLk5Jyb6q
-         /eJqJp2BJvM94F44X/oH/gRhoWS93g/sKhMv6RGir/BkTgb1kaVJAsR3NSw+ffVoLUyh
-         /m1x4nPrNL7vEW04O2CAcLqldC6R+AZAWybCvetqE7qhOs00gkPNLnn3obziGzOfCzHN
-         3knQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=VN2qLUPJ6VKX1aGIcYVhw809Zd7AJNllVKXjslGw4q8=;
-        b=XYP7G8wNwuyZr99Adxf3p0hn5xG43JZDk80MePN2VuvHRtORoynijFm/xrFBhrlKlm
-         VU+o9ZeJ2jom7OL9sjqYoYTmuIPmABRt9oUvGrzxr6evjStFd5E+vBD2vBLKj/iJKnfL
-         68ySrRcu/RYJcV2lYP3+/h2Fn9GK+emmdJbCtTWgMLA7N0wqjVJMZ91stuoQOIcHXyv2
-         KeMLBWYwvLCYedFW1dBmuIRPyLboca+DYX4+DQzazgUB7Z79n8wILrWyESiZgd26iY71
-         nj1yHB+Va9J0cGc9pPA4UlEpVL3JK/pCcZ0jkmKLYbyZn7NpD1U9M7i9BWz+s8Q4r9Z8
-         ncIw==
-X-Gm-Message-State: APjAAAXPtGhAori7D1zK/ftY26PP4StEgWuyrXbePHL4Ss+yi9d8jdSY
-        BAIwGXWgpI4vNm73UBlnUNs=
-X-Google-Smtp-Source: APXvYqwE8fQkbgsLZou7MaC4xJa1Tgjho5p7QMokyP/C75xx69LIUugw3ZFA2aH0SNV6nB5N6/xdEg==
-X-Received: by 2002:a7b:cf11:: with SMTP id l17mr13425743wmg.158.1566705756007;
-        Sat, 24 Aug 2019 21:02:36 -0700 (PDT)
-Received: from localhost.localdomain ([94.204.252.234])
-        by smtp.gmail.com with ESMTPSA id a6sm6820985wmj.15.2019.08.24.21.02.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sat, 24 Aug 2019 21:02:35 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1725940AbfHYHKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 03:10:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725767AbfHYHKb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Aug 2019 03:10:31 -0400
+Received: from X250.getinternet.no (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DB6382082F;
+        Sun, 25 Aug 2019 07:10:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566717030;
+        bh=RoDREL5RbJftVG6lRVTwnDK+3yQOIuMQ5HtnE1WYjMg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cYr6cWyE2mnkm02Vd+wjCMujFDlICZWzj/0z1a0zpXrapSUHCQpJIilqdhwq8Sh4G
+         jTIhjVmnOym3kJELkcVD/EF5pii9hUlJopN0jbKFEDMX3EYYBp3qinXsmkTR16uJYI
+         Q0SqgHbQrGC+LsCdppPU3FJt2il3f6l5C77WoqUA=
+Date:   Sun, 25 Aug 2019 09:10:16 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Robin van der Gracht <robin@protonic.nl>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Chrisitian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 7/7] arm64: dts: meson-gxm-khadas-vim2: use rc-khadas keymap
-Date:   Sun, 25 Aug 2019 08:01:28 +0400
-Message-Id: <1566705688-18442-8-git-send-email-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1566705688-18442-1-git-send-email-christianshewitt@gmail.com>
-References: <1566705688-18442-1-git-send-email-christianshewitt@gmail.com>
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        Robin Gong <yibin.gong@nxp.com>, Adam Ford <aford173@gmail.com>
+Subject: Re: [PATCH] input: keyboard: snvs_pwrkey: Send press and release
+ event for i.MX6 S,DL and Q
+Message-ID: <20190825071014.GA5292@X250.getinternet.no>
+References: <20190823123002.10448-1-robin@protonic.nl>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190823123002.10448-1-robin@protonic.nl>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Swap to the rc-khadas keymap that maps the mouse button to KEY_MUTE.
+On Fri, Aug 23, 2019 at 02:30:02PM +0200, Robin van der Gracht wrote:
+> The older generation i.MX6 processors send a powerdown request interrupt if
+> the powerkey is released before a hard shutdown (5 second press). This should
+> allow software to bring down the SoC safely.
+> 
+> For this driver to work as a regular powerkey with the older SoCs, we need to
+> send a keypress AND release when we get the powerdown request interrupt.
+> 
+> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
+> ---
+>  arch/arm/boot/dts/imx6qdl.dtsi       |  2 +-
+>  arch/arm/boot/dts/imx6sll.dtsi       |  2 +-
+>  arch/arm/boot/dts/imx6sx.dtsi        |  2 +-
+>  arch/arm/boot/dts/imx6ul.dtsi        |  2 +-
+>  arch/arm/boot/dts/imx7s.dtsi         |  2 +-
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Please have dts changes in a separate patch.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-index 989d33a..f25ddd1 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-@@ -299,7 +299,7 @@
- 	status = "okay";
- 	pinctrl-0 = <&remote_input_ao_pins>;
- 	pinctrl-names = "default";
--	linux,rc-map-name = "rc-geekbox";
-+	linux,rc-map-name = "rc-khadas";
- };
- 
- &pwm_AO_ab {
--- 
-2.7.4
+>  drivers/input/keyboard/Kconfig       |  2 +-
+>  drivers/input/keyboard/snvs_pwrkey.c | 59 +++++++++++++++++++++++-----
+>  7 files changed, 56 insertions(+), 15 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
+> index b3a77bcf00d51..c10d12658743c 100644
+> --- a/arch/arm/boot/dts/imx6qdl.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl.dtsi
+> @@ -836,7 +836,7 @@
+>  				};
+>  
+>  				snvs_pwrkey: snvs-powerkey {
+> -					compatible = "fsl,sec-v4.0-pwrkey";
+> +					compatible = "fsl,imx6qdl-sec-v4.0-pwrkey";
+>  					regmap = <&snvs>;
+>  					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  					linux,keycode = <KEY_POWER>;
+> diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
+> index 1b4899f0fcded..91c7d5bdcc359 100644
+> --- a/arch/arm/boot/dts/imx6sll.dtsi
+> +++ b/arch/arm/boot/dts/imx6sll.dtsi
+> @@ -571,7 +571,7 @@
+>  				};
+>  
+>  				snvs_pwrkey: snvs-powerkey {
+> -					compatible = "fsl,sec-v4.0-pwrkey";
+> +					compatible = "fsl,imx6sx-sec-v4.0-pwrkey";
+>  					regmap = <&snvs>;
+>  					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  					linux,keycode = <KEY_POWER>;
+> diff --git a/arch/arm/boot/dts/imx6sx.dtsi b/arch/arm/boot/dts/imx6sx.dtsi
+> index b16a123990a26..b6736db65350f 100644
+> --- a/arch/arm/boot/dts/imx6sx.dtsi
+> +++ b/arch/arm/boot/dts/imx6sx.dtsi
+> @@ -733,7 +733,7 @@
+>  				};
+>  
+>  				snvs_pwrkey: snvs-powerkey {
+> -					compatible = "fsl,sec-v4.0-pwrkey";
+> +					compatible = "fsl,imx6sx-sec-v4.0-pwrkey";
+>  					regmap = <&snvs>;
+>  					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  					linux,keycode = <KEY_POWER>;
+> diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+> index a7f6d1d58e20d..d4678c52b55db 100644
+> --- a/arch/arm/boot/dts/imx6ul.dtsi
+> +++ b/arch/arm/boot/dts/imx6ul.dtsi
+> @@ -644,7 +644,7 @@
+>  				};
+>  
+>  				snvs_pwrkey: snvs-powerkey {
+> -					compatible = "fsl,sec-v4.0-pwrkey";
+> +					compatible = "fsl,imx6sx-sec-v4.0-pwrkey";
+>  					regmap = <&snvs>;
+>  					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  					linux,keycode = <KEY_POWER>;
+> diff --git a/arch/arm/boot/dts/imx7s.dtsi b/arch/arm/boot/dts/imx7s.dtsi
+> index 106711d2c01b0..bb68c23beb199 100644
+> --- a/arch/arm/boot/dts/imx7s.dtsi
+> +++ b/arch/arm/boot/dts/imx7s.dtsi
+> @@ -604,7 +604,7 @@
+>  				};
+>  
+>  				snvs_pwrkey: snvs-powerkey {
+> -					compatible = "fsl,sec-v4.0-pwrkey";
+> +					compatible = "fsl,imx6sx-sec-v4.0-pwrkey";
+>  					regmap = <&snvs>;
+>  					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
+>  					linux,keycode = <KEY_POWER>;
+> diff --git a/drivers/input/keyboard/Kconfig b/drivers/input/keyboard/Kconfig
+> index 7c4f19dab34fd..937e58da5ce17 100644
+> --- a/drivers/input/keyboard/Kconfig
+> +++ b/drivers/input/keyboard/Kconfig
+> @@ -436,7 +436,7 @@ config KEYBOARD_SNVS_PWRKEY
+>  	depends on OF
+>  	help
+>  	  This is the snvs powerkey driver for the Freescale i.MX application
+> -	  processors that are newer than i.MX6 SX.
+> +	  processors.
+>  
+>  	  To compile this driver as a module, choose M here; the
+>  	  module will be called snvs_pwrkey.
+> diff --git a/drivers/input/keyboard/snvs_pwrkey.c b/drivers/input/keyboard/snvs_pwrkey.c
+> index 5342d8d45f811..c321e5f2d1087 100644
+> --- a/drivers/input/keyboard/snvs_pwrkey.c
+> +++ b/drivers/input/keyboard/snvs_pwrkey.c
+> @@ -29,6 +29,11 @@
+>  #define DEBOUNCE_TIME 30
+>  #define REPEAT_INTERVAL 60
+>  
+> +enum imx_snvs_hwtype {
+> +	IMX6SX_SNVS,	/* i.MX6 SoloX and newer */
+> +	IMX6QDL_SNVS,	/* i.MX6 Solo, DualLite adn Quad */
+> +};
+> +
+>  struct pwrkey_drv_data {
+>  	struct regmap *snvs;
+>  	int irq;
+> @@ -37,6 +42,19 @@ struct pwrkey_drv_data {
+>  	int wakeup;
+>  	struct timer_list check_timer;
+>  	struct input_dev *input;
+> +	enum imx_snvs_hwtype hwtype;
+> +};
+> +
+> +static const struct platform_device_id imx_snvs_devtype[] = {
+> +	{
+> +		.name = "imx6sx-snvs-pwrkey",
+> +		.driver_data = IMX6SX_SNVS,
+> +	}, {
+> +		.name = "imx6qdl-snvs-pwrkey",
+> +		.driver_data = IMX6QDL_SNVS,
+> +	}, {
+> +		/* sentinel */
+> +	}
+>  };
+>  
+>  static void imx_imx_snvs_check_for_events(struct timer_list *t)
+> @@ -67,13 +85,23 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int irq, void *dev_id)
+>  {
+>  	struct platform_device *pdev = dev_id;
+>  	struct pwrkey_drv_data *pdata = platform_get_drvdata(pdev);
+> +	struct input_dev *input = pdata->input;
+>  	u32 lp_status;
+>  
+> -	pm_wakeup_event(pdata->input->dev.parent, 0);
+> +	pm_wakeup_event(input->dev.parent, 0);
+>  
+>  	regmap_read(pdata->snvs, SNVS_LPSR_REG, &lp_status);
+> -	if (lp_status & SNVS_LPSR_SPO)
+> -		mod_timer(&pdata->check_timer, jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
+> +	if (lp_status & SNVS_LPSR_SPO) {
+> +		if (pdata->hwtype == IMX6QDL_SNVS) {
+> +			input_report_key(input, pdata->keycode, 1);
+> +			input_report_key(input, pdata->keycode, 0);
+> +			input_sync(input);
+> +			pm_relax(input->dev.parent);
+> +		} else {
+> +			mod_timer(&pdata->check_timer,
+> +				jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
+> +		}
+> +	}
+>  
+>  	/* clear SPO status */
+>  	regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO);
+> @@ -88,11 +116,24 @@ static void imx_snvs_pwrkey_act(void *pdata)
+>  	del_timer_sync(&pd->check_timer);
+>  }
+>  
+> +static const struct of_device_id imx_snvs_pwrkey_ids[] = {
+> +	{
+> +		.compatible = "fsl,imx6sx-sec-v4.0-pwrkey",
 
+The new compatible should be documented.
+
+> +		.data = &imx_snvs_devtype[IMX6SX_SNVS],
+> +	}, {
+> +		.compatible = "fsl,imx6qdl-sec-v4.0-pwrkey",
+> +		.data = &imx_snvs_devtype[IMX6QDL_SNVS],
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx_snvs_pwrkey_ids);
+> +
+>  static int imx_snvs_pwrkey_probe(struct platform_device *pdev)
+>  {
+>  	struct pwrkey_drv_data *pdata = NULL;
+>  	struct input_dev *input = NULL;
+>  	struct device_node *np;
+> +	const struct of_device_id *of_id;
+>  	int error;
+>  
+>  	/* Get SNVS register Page */
+> @@ -100,6 +141,11 @@ static int imx_snvs_pwrkey_probe(struct platform_device *pdev)
+>  	if (!np)
+>  		return -ENODEV;
+>  
+> +	of_id = of_match_node(imx_snvs_pwrkey_ids, np);
+> +	if (!of_id)
+> +		return -ENODEV;
+> +	pdev->id_entry = of_id->data;
+> +
+>  	pdata = devm_kzalloc(&pdev->dev, sizeof(*pdata), GFP_KERNEL);
+>  	if (!pdata)
+>  		return -ENOMEM;
+> @@ -116,6 +162,7 @@ static int imx_snvs_pwrkey_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	pdata->wakeup = of_property_read_bool(np, "wakeup-source");
+> +	pdata->hwtype = pdev->id_entry->driver_data;
+>  
+>  	pdata->irq = platform_get_irq(pdev, 0);
+>  	if (pdata->irq < 0) {
+> @@ -175,12 +222,6 @@ static int imx_snvs_pwrkey_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> -static const struct of_device_id imx_snvs_pwrkey_ids[] = {
+> -	{ .compatible = "fsl,sec-v4.0-pwrkey" },
+
+The compatible should be kept for not breaking existing DTBs.
+
+Shawn
+
+> -	{ /* sentinel */ }
+> -};
+> -MODULE_DEVICE_TABLE(of, imx_snvs_pwrkey_ids);
+> -
+>  static struct platform_driver imx_snvs_pwrkey_driver = {
+>  	.driver = {
+>  		.name = "snvs_pwrkey",
+> -- 
+> 2.20.1
+> 
