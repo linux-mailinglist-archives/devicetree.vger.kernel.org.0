@@ -2,256 +2,344 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 680B19C4D1
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 18:14:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71F589C508
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 19:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727212AbfHYQOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 12:14:17 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:43267 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726182AbfHYQOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 12:14:17 -0400
-Received: by mail-io1-f65.google.com with SMTP id 18so31483605ioe.10;
-        Sun, 25 Aug 2019 09:14:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=o5hlv7LBBBQ7yX2vTJxs90ureJ9F2QkcSE1n+2RFehQ=;
-        b=EHavlmakZHdQ2TgI6cSSUt8egECu5c6Qhvd6qXCgaANp5/fbK7QaYLlOeT2Wf/VmE2
-         7H285DQaahoH+A8XtfQJ+hLzp5mz28CdpA1uxRJcLZDJkLSbNOnbJJqwNNVAYFLc4I77
-         mhQVxaR2RDyuPRQ8USa944iZcy2tzFRhoDXd7lmA8WVXQklV1xGiMsPS3rn/vbs35E+1
-         4eFik9hUKYo/S+F9x5MrqbrHXvafS84a4K49ajq868ezZtvzRY9se/08M3m4d6D+Xlpq
-         RxZR50pAePjM5B0BR5mQDBrSIN++nLZ3MXNRxDRr3/1KHVAgh6rGrf62Tf/U9yo7sdwF
-         4rUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=o5hlv7LBBBQ7yX2vTJxs90ureJ9F2QkcSE1n+2RFehQ=;
-        b=cEIb01bBuf0dKeminnkc+LPd78o57jRNp8zyDWAhjHtuS6HXjy6567wPwjZHlL8915
-         nNMruwmQ2BIwg3AyFAsP4+zQrT/1Kb5QtE9dF7re3Dvkv/tJE52zBIY0eRItygetNrWF
-         QYFP8OF4EPYrtzb4vc754hVGrPVdlZWb6QGU2wCvY6V1LxverYWf6McfOA46BXJPU0ug
-         XCGgyrXYOridzPqmGt7hWqS5L9fHCjdliMK55RVS6/i6CpsOQ7ZLWFABLOlhUyHUyW0L
-         ahgporb1Xnr2BS7QPI+FDvhhfhTXI4zGwg0KKCuzg1Euqn/6BvR0sW8UcK0XsBCZDU19
-         4dDg==
-X-Gm-Message-State: APjAAAUSttRNJuQNXZNB3uxyuhuhLcjMYrbf+6Unt2COCgRl7w8vyCrq
-        Vx5sKFGvmdO+dzZDYF4kt8zwsrXsg1sqrCEmtWQ=
-X-Google-Smtp-Source: APXvYqyYW/WgCe7KrtqDjbWr9khgZgLkZFrQPqqWIE/KTfnyeROY9OqnnPpzAzTtsJwGJAkMVkGdRQnAPcorkdXkPEI=
-X-Received: by 2002:a05:6602:cb:: with SMTP id z11mr2793812ioe.4.1566749655914;
- Sun, 25 Aug 2019 09:14:15 -0700 (PDT)
+        id S1728632AbfHYRXb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 13:23:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42108 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728623AbfHYRXb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Aug 2019 13:23:31 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4406320870;
+        Sun, 25 Aug 2019 17:23:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566753809;
+        bh=Gy5VbonUoyBBwkCMGlcJzsai8tLLq8emMnvB8ZP7Tss=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=G/OHQcmlLQxMn/fv+kWK40ABktENeT89c/onNMBbMOBEetZ8kFsZQSP2QkyQoDcT6
+         jfWemS6YbB9Z5tyKBVgJZDsS5TBAo+w1VuqhPLySq+UuTdfQnUOXKg9w3zTAkquFT2
+         g22uqA28xefuXjOBhiCkA4j0uVrsjtMIAWENlZ/s=
+Date:   Sun, 25 Aug 2019 18:23:23 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Beniamin Bia <beniamin.bia@analog.com>
+Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
+        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
+        <devel@driverdev.osuosl.org>, <linux-kernel@vger.kernel.org>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <paulmck@linux.ibm.com>,
+        <mchehab+samsung@kernel.org>, <linus.walleij@linaro.org>,
+        <nicolas.ferre@microchip.com>, <biabeniamin@outlook.com>
+Subject: Re: [PATCH v3 3/4] dt-bindings: iio: adc: Migrate AD7606
+ documentation to yaml
+Message-ID: <20190825182323.21d6ef76@archlinux>
+In-Reply-To: <20190821141656.4815-3-beniamin.bia@analog.com>
+References: <20190821141656.4815-1-beniamin.bia@analog.com>
+        <20190821141656.4815-3-beniamin.bia@analog.com>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20190810052829.6032-1-tiny.windzz@gmail.com> <20190810052829.6032-9-tiny.windzz@gmail.com>
- <CA+E=qVfp-rProxOwX__J6jM-pZ9g_SmeuOCOgvC_5DJVQw4OGw@mail.gmail.com>
- <CAEExFWubLqtPZ=ZKJTCb6x2-PeYebXb3sr-t-XvtrLJTRiUU1A@mail.gmail.com>
- <CA+E=qVf9V9iTvCfXXyjqKeviCJOvYpKUO8qw6cQsKqoaRmdKYQ@mail.gmail.com>
- <20190813200623.2dmxcwibuyolnuhh@core.my.home> <CA+E=qVd-hz68VhL0n+3-HDNua2QsT0dOVY9mRjhb5e5+tBW5Fg@mail.gmail.com>
-In-Reply-To: <CA+E=qVd-hz68VhL0n+3-HDNua2QsT0dOVY9mRjhb5e5+tBW5Fg@mail.gmail.com>
-From:   Frank Lee <tiny.windzz@gmail.com>
-Date:   Mon, 26 Aug 2019 00:14:04 +0800
-Message-ID: <CAEExFWueWPOvXoE+zj67DuKWeamcLgawfOxanfPp6Jyo9Envzg@mail.gmail.com>
-Subject: Re: [PATCH v5 08/18] thermal: sun8i: support mod clocks
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan.Cameron@huawei.com,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        rui.zhang@intel.com, "David S. Miller" <davem@davemloft.net>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-HI Vasily,
+On Wed, 21 Aug 2019 17:16:55 +0300
+Beniamin Bia <beniamin.bia@analog.com> wrote:
 
-On Wed, Aug 14, 2019 at 11:01 AM Vasily Khoruzhick <anarsoul@gmail.com> wro=
-te:
->
-> On Tue, Aug 13, 2019 at 1:06 PM Ond=C5=99ej Jirman <megous@megous.com> wr=
-ote:
-> >
-> > On Mon, Aug 12, 2019 at 04:54:15PM -0700, Vasily Khoruzhick wrote:
-> > > On Mon, Aug 12, 2019 at 4:46 PM Frank Lee <tiny.windzz@gmail.com> wro=
-te:
-> > > >
-> > > > HI Vasily,
-> > > >
-> > > > On Sat, Aug 10, 2019 at 2:17 PM Vasily Khoruzhick <anarsoul@gmail.c=
-om> wrote:
-> > > > >
-> > > > > On Fri, Aug 9, 2019 at 10:31 PM Yangtao Li <tiny.windzz@gmail.com=
-> wrote:
-> > > > > >
-> > > > > > H3 has extra clock, so introduce something in ths_thermal_chip/=
-ths_device
-> > > > > > and adds the process of the clock.
-> > > > > >
-> > > > > > This is pre-work for supprt it.
-> > > > > >
-> > > > > > Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
-> > > > > > ---
-> > > > > >  drivers/thermal/sun8i_thermal.c | 17 ++++++++++++++++-
-> > > > > >  1 file changed, 16 insertions(+), 1 deletion(-)
-> > > > > >
-> > > > > > diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/=
-sun8i_thermal.c
-> > > > > > index b934bc81eba7..6f4294c2aba7 100644
-> > > > > > --- a/drivers/thermal/sun8i_thermal.c
-> > > > > > +++ b/drivers/thermal/sun8i_thermal.c
-> > > > > > @@ -54,6 +54,7 @@ struct tsensor {
-> > > > > >  };
-> > > > > >
-> > > > > >  struct ths_thermal_chip {
-> > > > > > +       bool            has_mod_clk;
-> > > > > >         int             sensor_num;
-> > > > > >         int             offset;
-> > > > > >         int             scale;
-> > > > > > @@ -69,6 +70,7 @@ struct ths_device {
-> > > > > >         struct regmap                           *regmap;
-> > > > > >         struct reset_control                    *reset;
-> > > > > >         struct clk                              *bus_clk;
-> > > > > > +       struct clk                              *mod_clk;
-> > > > > >         struct tsensor                          sensor[MAX_SENS=
-OR_NUM];
-> > > > > >  };
-> > > > > >
-> > > > > > @@ -274,6 +276,12 @@ static int sun8i_ths_resource_init(struct =
-ths_device *tmdev)
-> > > > > >         if (IS_ERR(tmdev->bus_clk))
-> > > > > >                 return PTR_ERR(tmdev->bus_clk);
-> > > > > >
-> > > > > > +       if (tmdev->chip->has_mod_clk) {
-> > > > > > +               tmdev->mod_clk =3D devm_clk_get(&pdev->dev, "mo=
-d");
-> > > > > > +               if (IS_ERR(tmdev->mod_clk))
-> > > > > > +                       return PTR_ERR(tmdev->mod_clk);
-> > > > > > +       }
-> > > > > > +
-> > > > > >         ret =3D reset_control_deassert(tmdev->reset);
-> > > > > >         if (ret)
-> > > > > >                 return ret;
-> > > > > > @@ -282,12 +290,18 @@ static int sun8i_ths_resource_init(struct=
- ths_device *tmdev)
-> > > > > >         if (ret)
-> > > > > >                 goto assert_reset;
-> > > > > >
-> > > > > > -       ret =3D sun50i_ths_calibrate(tmdev);
-> > > > > > +       ret =3D clk_prepare_enable(tmdev->mod_clk);
-> > > > >
-> > > > > You have to set rate of modclk before enabling it since you can't=
- rely
-> > > > > on whatever bootloader left for you.
-> > > > >
-> > > > > Also I found that parameters you're using for PC_TEMP_PERIOD, ACQ=
-0 and
-> > > > > ACQ1 are too aggressive and may result in high interrupt rate to =
-the
-> > > > > point when it may stall RCU. I changed driver a bit to use params=
- from
-> > > > > Philipp Rossak's work (modclk set to 4MHz, PC_TEMP_PERIOD is 7, A=
-CQ0
-> > > > > is 255, ACQ1 is 63) and it fixed RCU stalls for me, see [1] for
-> > > > > details.
-> > > >
-> > > > Why is the RCU stall happening, is it caused by a deadlock?
-> > > > Can you provide log information and your configuration?
-> > > > I am a bit curious.
-> > >
-> > > It's not deadlock, I believe it just can't handle that many interrupt=
-s
-> > > when running at lowest CPU frequency. Even with Philipp's settings
-> > > there's ~20 interrupts a second from ths. I don't remember how many
-> > > interrupts were there with your settings.
-> > >
-> > > Unfortunately there's nothing interesting in backtraces, I'm using
-> > > Pine64-LTS board.
-> >
-> > Recently there was a similar issue, with buggy CCU driver that caused
-> > CIR interrupts being fired constantly, and it also resulted in RCU
-> > stalls. Looks like a comon cause of RCU stalls.
-> >
-> > THS timing settings probably need to be made specific to the SoC, becau=
-se
-> > I noticed that the same settings lead to wildly different timings on
-> > different SoCs.
-> >
-> > It would be good to measure how often ths interrupt fires with this dri=
-ver
-> > on various SoCs.
-> >
-> > 20 times a second and more sounds like overkill. I'd expect a useful
-> > range to be at most 5-10 times a second. That should be enough to stop
-> > overheating the SoC due to suddenly increased load, even without a
-> > heatsink.
->
-> Note that A64 has 3 sensors and each sensor has individual interrupt,
-> so technically it's 6-7 interrupts per sensor per second
+> The documentation for ad7606 was migrated to yaml.
+>=20
+> Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
 
-You only need to increase the value of the period to reduce the number
-of interrupts.
-Can you test the relationship between the period and the number of interrup=
-ts
-when the mod clock does not change and stays 24M?
+make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/i=
+io/adc/adi,ad7606.yaml
 
-Thx.
-Yangtao
+3 things needed fixing beyond the tweak Rob mentioned (also done).
 
->
-> > regards,
-> >         o.
-> >
-> > > > Thx,
-> > > > Yangtao
-> > > >
-> > > > >
-> > > > > [1] https://github.com/anarsoul/linux-2.6/commit/46b8bb0fe2ccd1cd=
-88fa9181a2ecbf79e8d513b2
-> > > > >
-> > > > >
-> > > > > >         if (ret)
-> > > > > >                 goto bus_disable;
-> > > > > >
-> > > > > > +       ret =3D sun50i_ths_calibrate(tmdev);
-> > > > > > +       if (ret)
-> > > > > > +               goto mod_disable;
-> > > > > > +
-> > > > > >         return 0;
-> > > > > >
-> > > > > > +mod_disable:
-> > > > > > +       clk_disable_unprepare(tmdev->mod_clk);
-> > > > > >  bus_disable:
-> > > > > >         clk_disable_unprepare(tmdev->bus_clk);
-> > > > > >  assert_reset:
-> > > > > > @@ -395,6 +409,7 @@ static int sun8i_ths_remove(struct platform=
-_device *pdev)
-> > > > > >  {
-> > > > > >         struct ths_device *tmdev =3D platform_get_drvdata(pdev)=
-;
-> > > > > >
-> > > > > > +       clk_disable_unprepare(tmdev->mod_clk);
-> > > > > >         clk_disable_unprepare(tmdev->bus_clk);
-> > > > > >         reset_control_assert(tmdev->reset);
-> > > > > >
-> > > > > > --
-> > > > > > 2.17.1
-> > > > > >
-> > > > > >
-> > > > > > _______________________________________________
-> > > > > > linux-arm-kernel mailing list
-> > > > > > linux-arm-kernel@lists.infradead.org
-> > > > > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> > >
-> > > _______________________________________________
-> > > linux-arm-kernel mailing list
-> > > linux-arm-kernel@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+2 missing headers + one required property isn't present in the example.
+
+I'll be grumpy next time...  Particularly as the warnings don't exactly
+point clearly to what is wrong for missing headers.
+
+Applied with those changes to the togreg branch of iio.git and pushed out
+as testing.
+
+Thanks,
+
+Jonathan
+
+> ---
+> Changes in v3:
+> -nothing changed
+>=20
+>  .../bindings/iio/adc/adi,ad7606.txt           |  66 ---------
+>  .../bindings/iio/adc/adi,ad7606.yaml          | 134 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +-
+>  3 files changed, 135 insertions(+), 67 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7606.=
+txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7606.=
+yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.txt b/D=
+ocumentation/devicetree/bindings/iio/adc/adi,ad7606.txt
+> deleted file mode 100644
+> index d8652460198e..000000000000
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.txt
+> +++ /dev/null
+> @@ -1,66 +0,0 @@
+> -Analog Devices AD7606 Simultaneous Sampling ADC
+> -
+> -Required properties for the AD7606:
+> -
+> -- compatible: Must be one of
+> -	* "adi,ad7605-4"
+> -	* "adi,ad7606-8"
+> -	* "adi,ad7606-6"
+> -	* "adi,ad7606-4"
+> -	* "adi,ad7616"
+> -- reg: SPI chip select number for the device
+> -- spi-max-frequency: Max SPI frequency to use
+> -	see: Documentation/devicetree/bindings/spi/spi-bus.txt
+> -- spi-cpha: See Documentation/devicetree/bindings/spi/spi-bus.txt
+> -- avcc-supply: phandle to the Avcc power supply
+> -- interrupts: IRQ line for the ADC
+> -	see: Documentation/devicetree/bindings/interrupt-controller/interrupts.=
+txt
+> -- adi,conversion-start-gpios: must be the device tree identifier of the =
+CONVST pin.
+> -		  This logic input is used to initiate conversions on the analog
+> -		  input channels. As the line is active high, it should be marked
+> -		  GPIO_ACTIVE_HIGH.
+> -
+> -Optional properties:
+> -
+> -- reset-gpios: must be the device tree identifier of the RESET pin. If s=
+pecified,
+> -	       it will be asserted during driver probe. As the line is active h=
+igh,
+> -	       it should be marked GPIO_ACTIVE_HIGH.
+> -- standby-gpios: must be the device tree identifier of the STBY pin. Thi=
+s pin is used
+> -		to place the AD7606 into one of two power-down modes, Standby mode or
+> -		Shutdown mode. As the line is active low, it should be marked
+> -		GPIO_ACTIVE_LOW.
+> -- adi,first-data-gpios: must be the device tree identifier of the FRSTDA=
+TA pin.
+> -		    The FRSTDATA output indicates when the first channel, V1, is
+> -		    being read back on either the parallel, byte or serial interface.
+> -		    As the line is active high, it should be marked GPIO_ACTIVE_HIGH.
+> -- adi,range-gpios: must be the device tree identifier of the RANGE pin. =
+The polarity on
+> -	      this pin determines the input range of the analog input channels.=
+ If
+> -	      this pin is tied to a logic high, the analog input range is =C2=
+=B110V for
+> -	      all channels. If this pin is tied to a logic low, the analog inpu=
+t range
+> -	      is =C2=B15V for all channels. As the line is active high, it shou=
+ld be marked
+> -	      GPIO_ACTIVE_HIGH.
+> -- adi,oversampling-ratio-gpios: must be the device tree identifier of th=
+e over-sampling
+> -				mode pins. As the line is active high, it should be marked
+> -				GPIO_ACTIVE_HIGH.
+> -
+> -Example:
+> -
+> -	adc@0 {
+> -		compatible =3D "adi,ad7606-8";
+> -		reg =3D <0>;
+> -		spi-max-frequency =3D <1000000>;
+> -		spi-cpol;
+> -
+> -		avcc-supply =3D <&adc_vref>;
+> -
+> -		interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
+> -		interrupt-parent =3D <&gpio>;
+> -
+> -		adi,conversion-start-gpios =3D <&gpio 17 GPIO_ACTIVE_HIGH>;
+> -		reset-gpios =3D <&gpio 27 GPIO_ACTIVE_HIGH>;
+> -		adi,first-data-gpios =3D <&gpio 22 GPIO_ACTIVE_HIGH>;
+> -		adi,oversampling-ratio-gpios =3D <&gpio 18 GPIO_ACTIVE_HIGH
+> -						&gpio 23 GPIO_ACTIVE_HIGH
+> -						&gpio 26 GPIO_ACTIVE_HIGH>;
+> -		standby-gpios =3D <&gpio 24 GPIO_ACTIVE_LOW>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> new file mode 100644
+> index 000000000000..509dbe9c84d2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> @@ -0,0 +1,134 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,ad7606.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices AD7606 Simultaneous Sampling ADC
+> +
+> +maintainers:
+> +  - Beniamin Bia <beniamin.bia@analog.com>
+> +  - Stefan Popa <stefan.popa@analog.com>
+> +
+> +description: |
+> +  Analog Devices AD7606 Simultaneous Sampling ADC
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad=
+7606_7606-6_7606-4.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD=
+7616.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,ad7605-4
+> +      - adi,ad7606-8
+> +      - adi,ad7606-6
+> +      - adi,ad7606-4
+> +      - adi,ad7616
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-cpha: true
+> +
+> +  avcc-supply:
+> +    description:
+> +      Phandle to the Avcc power supply
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  adi,conversion-start-gpios:
+> +    description:
+> +      Must be the device tree identifier of the CONVST pin.
+> +      This logic input is used to initiate conversions on the analog
+> +      input channels. As the line is active high, it should be marked
+> +      GPIO_ACTIVE_HIGH.
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    description:
+> +      Must be the device tree identifier of the RESET pin. If specified,
+> +      it will be asserted during driver probe. As the line is active hig=
+h,
+> +      it should be marked GPIO_ACTIVE_HIGH.
+> +    maxItems: 1
+> +
+> +  standby-gpios:
+> +    description:
+> +       Must be the device tree identifier of the STBY pin. This pin is u=
+sed
+> +       to place the AD7606 into one of two power-down modes, Standby mod=
+e or
+> +       Shutdown mode. As the line is active low, it should be marked
+> +       GPIO_ACTIVE_LOW.
+> +    maxItems: 1
+> +
+> +  adi,first-data-gpios:
+> +    description:
+> +      Must be the device tree identifier of the FRSTDATA pin.
+> +      The FRSTDATA output indicates when the first channel, V1, is
+> +      being read back on either the parallel, byte or serial interface.
+> +      As the line is active high, it should be marked GPIO_ACTIVE_HIGH.
+> +    maxItems: 1
+> +
+> +  adi,range-gpios:
+> +    description:
+> +      Must be the device tree identifier of the RANGE pin. The polarity =
+on
+> +      this pin determines the input range of the analog input channels. =
+If
+> +      this pin is tied to a logic high, the analog input range is =C2=B1=
+10V for
+> +      all channels. If this pin is tied to a logic low, the analog input=
+ range
+> +      is =C2=B15V for all channels. As the line is active high, it shoul=
+d be marked
+> +      GPIO_ACTIVE_HIGH.
+> +    maxItems: 1
+> +
+> +  adi,oversampling-ratio-gpios:
+> +    description:
+> +      Must be the device tree identifier of the over-sampling
+> +      mode pins. As the line is active high, it should be marked
+> +      GPIO_ACTIVE_HIGH.
+> +    maxItems: 1
+> +
+> +  adi,sw-mode:
+> +    description:
+> +      Software mode of operation, so far available only for ad7616.
+> +      It is enabled when all three oversampling mode pins are connected =
+to
+> +      high level. The device is configured by the corresponding register=
+s. If the
+> +      adi,oversampling-ratio-gpios property is defined, then the driver =
+will set the
+> +      oversampling gpios to high. Otherwise, it is assumed that the pins=
+ are hardwired
+> +      to VDD.
+> +    maxItems: 1
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - spi-cpha
+> +  - avcc-supply
+> +  - interrupts
+> +  - adi,conversion-start-gpios
+> +
+> +examples:
+> +  - |
+> +    spi0 {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@0 {
+> +                compatible =3D "adi,ad7606-8";
+> +                reg =3D <0>;
+> +                spi-max-frequency =3D <1000000>;
+> +                spi-cpol;
+> +
+> +                avcc-supply =3D <&adc_vref>;
+> +
+> +                interrupts =3D <25 IRQ_TYPE_EDGE_FALLING>;
+> +                interrupt-parent =3D <&gpio>;
+> +
+> +                adi,conversion-start-gpios =3D <&gpio 17 GPIO_ACTIVE_HIG=
+H>;
+> +                reset-gpios =3D <&gpio 27 GPIO_ACTIVE_HIGH>;
+> +                adi,first-data-gpios =3D <&gpio 22 GPIO_ACTIVE_HIGH>;
+> +                adi,oversampling-ratio-gpios =3D <&gpio 18 GPIO_ACTIVE_H=
+IGH
+> +                                                &gpio 23 GPIO_ACTIVE_HIGH
+> +                                                &gpio 26 GPIO_ACTIVE_HIG=
+H>;
+> +                standby-gpios =3D <&gpio 24 GPIO_ACTIVE_LOW>;
+> +                adi,sw-mode;
+> +        };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 052d7a8591fb..d2e465772071 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -900,7 +900,7 @@ L:	linux-iio@vger.kernel.org
+>  W:	http://ez.analog.com/community/linux-device-drivers
+>  S:	Supported
+>  F:	drivers/iio/adc/ad7606.c
+> -F:	Documentation/devicetree/bindings/iio/adc/adi,ad7606.txt
+> +F:	Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> =20
+>  ANALOG DEVICES INC AD7768-1 DRIVER
+>  M:	Stefan Popa <stefan.popa@analog.com>
+
