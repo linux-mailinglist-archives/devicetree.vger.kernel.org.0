@@ -2,435 +2,355 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADCCF9C448
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 16:09:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 643F99C49E
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 17:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728442AbfHYOJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 10:09:52 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:49305 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727050AbfHYOJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 10:09:52 -0400
-X-Originating-IP: 87.18.63.98
-Received: from uno.localdomain (unknown [87.18.63.98])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 1F27640005;
-        Sun, 25 Aug 2019 14:09:45 +0000 (UTC)
-Date:   Sun, 25 Aug 2019 16:11:11 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Niklas Soderlund <niklas.soderlund@ragnatech.se>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] media: bindings: video-interfaces: Update the example
-Message-ID: <20190825141111.rdzn4p2zjkufbt4w@uno.localdomain>
-References: <20190822210433.767-1-jacopo+renesas@jmondi.org>
- <20190823155117.GF28351@bigcity.dyn.berto.se>
+        id S1728499AbfHYPOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 11:14:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49014 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728375AbfHYPOq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Aug 2019 11:14:46 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 63A01206B7;
+        Sun, 25 Aug 2019 15:14:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566746084;
+        bh=qjwEBraheWHlj8Os3PEoVZsF51PQd7XqwJ5bz7YciA0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=USXLXaildTceq/36hns7i+XTIHoqpLw+yoD2FqQSEEVVNdXUh9B2ZTMWoZI1s9aXF
+         HrGpRmDmgqJOg+UJCE+n35MqpUHFDfpikuakDaASXwWehgs2TECX2KCjra2Gz4wf+c
+         h8fkrzy5eGUM36ZkBMUh70r1S7cEimipgiN6V1OA=
+Date:   Sun, 25 Aug 2019 16:14:38 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Beniamin Bia <beniamin.bia@analog.com>
+Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
+        <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
+        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
+        <devel@driverdev.osuosl.org>, <linux-kernel@vger.kernel.org>,
+        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <paulmck@linux.ibm.com>,
+        <mchehab+samsung@kernel.org>, <linus.walleij@linaro.org>,
+        <nicolas.ferre@microchip.com>, <biabeniamin@outlook.com>,
+        Stefan Popa <stefan.popa@analog.com>
+Subject: Re: [PATCH v3 1/4] iio: adc: ad7606: Add support for AD7606B ADC
+Message-ID: <20190825161438.0b2b6177@archlinux>
+In-Reply-To: <20190821141656.4815-1-beniamin.bia@analog.com>
+References: <20190821141656.4815-1-beniamin.bia@analog.com>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ju5tryhcm7zjjbcx"
-Content-Disposition: inline
-In-Reply-To: <20190823155117.GF28351@bigcity.dyn.berto.se>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 21 Aug 2019 17:16:53 +0300
+Beniamin Bia <beniamin.bia@analog.com> wrote:
 
---ju5tryhcm7zjjbcx
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> From: Stefan Popa <stefan.popa@analog.com>
+>=20
+> The AD7606B is a 16-bit ADC that supports simultaneous sampling of 8
+> channels. It is pin compatible to AD7606, but adds extra modes by
+> writing to the register map.
+>=20
+> The AD7606B can be configured to work in software mode by setting all
+> oversampling pins to high. This mode is selected by default.
+> The oversampling ratio is configured from the OS_MODE register (address
+> 0x08) with the addition of OS=3D128 and OS=3D256 that were not available =
+in
+> hardware mode.
+>=20
+> The device is configured to output data on a single spi channel, but this
+> configuration must be done right after restart. That is why the delay was
+> removed for devices which doesn't require it.
+>=20
+> Moreover, in software mode, the range gpio has no longer its function.
+> Instead, the scale can be configured individually for each channel from
+> the RANGE_CH registers (address 0x03 to 0x06). Besides the already
+> supported =C2=B110 V and =C2=B15 V ranges, software mode can also accommo=
+date the
+> =C2=B12.5 V range.
+>=20
+> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
+> Co-developed-by: Beniamin Bia <beniamin.bia@analog.com>
+> Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
 
-Hi Niklas,
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to play with it.
 
-On Fri, Aug 23, 2019 at 05:51:17PM +0200, Niklas Soderlund wrote:
-> Hi Jacopo,
->
-> Thanks for your patch.
->
-> On 2019-08-22 23:04:33 +0200, Jacopo Mondi wrote:
-> > The example provided by the video-interface.txt file uses compatible
-> > values for drivers which are have been removed a long time ago. To avoid
-> > generating confusion, replace the existing example with a new one using
-> > upstream maintained and more modern devices.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> >
-> > ---
-> > This patch has been triggered by Simon's attempt to rename the bindings
-> > for the now removed soc-camera based sh-mobile-ceu device, which is use=
-d in
-> > this example:
-> > https://patchwork.kernel.org/patch/11101079/
-> >
-> > As soon as that driver is not mentioned in the example anymore, its
-> > bindings documentation could be removed as well.
-> > ---
-> >  .../bindings/media/video-interfaces.txt       | 223 ++++++++++--------
-> >  1 file changed, 130 insertions(+), 93 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.t=
-xt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > index f884ada0bffc..cce80fd0ea13 100644
-> > --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > @@ -153,123 +153,160 @@ Optional endpoint properties
-> >  Example
-> >  -------
-> >
-> > -The example snippet below describes two data pipelines.  ov772x and im=
-x074 are
-> > -camera sensors with a parallel and serial (MIPI CSI-2) video bus respe=
-ctively.
-> > -Both sensors are on the I2C control bus corresponding to the i2c0 cont=
-roller
-> > -node.  ov772x sensor is linked directly to the ceu0 video host interfa=
-ce.
-> > -imx074 is linked to ceu0 through the MIPI CSI-2 receiver (csi2). ceu0 =
-has a
-> > -(single) DMA engine writing captured data to memory.  ceu0 node has a =
-single
-> > -'port' node which may indicate that at any time only one of the follow=
-ing data
-> > -pipelines can be active: ov772x -> ceu0 or imx074 -> csi2 -> ceu0.
-> > -
-> > -	ceu0: ceu@fe910000 {
-> > -		compatible =3D "renesas,sh-mobile-ceu";
-> > -		reg =3D <0xfe910000 0xa0>;
-> > -		interrupts =3D <0x880>;
-> > -
-> > -		mclk: master_clock {
-> > -			compatible =3D "renesas,ceu-clock";
-> > -			#clock-cells =3D <1>;
-> > -			clock-frequency =3D <50000000>;	/* Max clock frequency */
-> > -			clock-output-names =3D "mclk";
-> > -		};
-> > +Te example snippet below describes two data pipelines connected to a v=
-ideo
->
-> s/Te/The/
+Thanks,
 
-Ups... fixed thanks
-
->
-> > +DMA engine (VIN4) which has a direct parallel video bus connection to =
-an HDMI
-> > +video decoder at port@0 and a data path to a CSI-2 receiver connected =
-to an
-> > +image sensor (imx074) at port@1.
-> >
-> > -		port {
-> > -			#address-cells =3D <1>;
-> > -			#size-cells =3D <0>;
-> > +The parallel HDMI video decoder links directly to the VIN input port 0=
-, and the
-> > +bus configuration at both ends is specified in each endpoint.
-> >
-> > -			/* Parallel bus endpoint */
-> > -			ceu0_1: endpoint@1 {
-> > -				reg =3D <1>;		/* Local endpoint # */
-> > -				remote =3D <&ov772x_1_1>;	/* Remote phandle */
-> > -				bus-width =3D <8>;	/* Used data lines */
-> > -				data-shift =3D <2>;	/* Lines 9:2 are used */
-> > +The imx074 sensor connects to the CSI-2 receiver and the MIPI CSI-2 se=
-rial bus
-> > +configuration is specified in the respective endpoints as well. The CS=
-I-2
-> > +receiver is then linked to the DMA engine through a direct data path w=
-hich does
-> > +not require any endpoint configuration.
-> >
-> > -				/* If hsync-active/vsync-active are missing,
-> > -				   embedded BT.656 sync is used */
-> > -				hsync-active =3D <0>;	/* Active low */
-> > -				vsync-active =3D <0>;	/* Active low */
-> > -				data-active =3D <1>;	/* Active high */
-> > -				pclk-sample =3D <1>;	/* Rising */
-> > -			};
-> > +i2c0: i2c@e6500000 {
-> > +
-> > +	hdmi-decoder@4c {
-> > +		compatible =3D "adi,adv7612";
-> > +		reg =3D <0x4c>;
-> >
-> > -			/* MIPI CSI-2 bus endpoint */
-> > -			ceu0_0: endpoint@0 {
-> > +		ports {
-> > +			#address-cells =3D <1>;
-> > +			#size-cells =3D <0>;
-> > +
-> > +			port@0 {
-> >  				reg =3D <0>;
-> > -				remote =3D <&csi2_2>;
-> > +				adv7612_in: endpoint {
-> > +					remote-endpoint =3D <&hdmi_con_in>;
-> > +				};
-> >  			};
-> > -		};
-> > -	};
-> >
-> > -	i2c0: i2c@fff20000 {
-> > -		...
-> > -		ov772x_1: camera@21 {
-> > -			compatible =3D "ovti,ov772x";
-> > -			reg =3D <0x21>;
-> > -			vddio-supply =3D <&regulator1>;
-> > -			vddcore-supply =3D <&regulator2>;
-> > -
-> > -			clock-frequency =3D <20000000>;
-> > -			clocks =3D <&mclk 0>;
-> > -			clock-names =3D "xclk";
-> > -
-> > -			port {
-> > -				/* With 1 endpoint per port no need for addresses. */
-> > -				ov772x_1_1: endpoint {
-> > +			port@2 {
-> > +				reg =3D <2>;
-> > +				adv7612_out: endpoint {
-> > +					bus-type =3D 5;
-> >  					bus-width =3D <8>;
-> > -					remote-endpoint =3D <&ceu0_1>;
-> > -					hsync-active =3D <1>;
-> > -					vsync-active =3D <0>; /* Who came up with an
-> > +					pclk-sample =3D <0>;
-> > +					hsync-active =3D <0>;
-> > +					vsync-active =3D <1>; /* Who came up with an
-> >  							       inverter here ?... */
-> > -					data-active =3D <1>;
-> > -					pclk-sample =3D <1>;
-> > +					remote-endpoint =3D <&vin4_digital_in>;
-> >  				};
-> >  			};
-> >  		};
-> > + 	};
-> >
-> > -		imx074: camera@1a {
-> > -			compatible =3D "sony,imx074";
-> > -			reg =3D <0x1a>;
-> > -			vddio-supply =3D <&regulator1>;
-> > -			vddcore-supply =3D <&regulator2>;
-> > -
-> > -			clock-frequency =3D <30000000>;	/* Shared clock with ov772x_1 */
-> > -			clocks =3D <&mclk 0>;
-> > -			clock-names =3D "sysclk";		/* Assuming this is the
-> > -							   name in the datasheet */
-> > -			port {
-> > -				imx074_1: endpoint {
-> > -					clock-lanes =3D <0>;
-> > -					data-lanes =3D <1 2>;
-> > -					remote-endpoint =3D <&csi2_1>;
-> > -				};
-> > +
-> > +	imx074: camera@1a {
-> > +		compatible =3D "sony,imx074";
-> > +		reg =3D <0x1a>;
-> > +
-> > +		rotation =3D <180>; /* The camera is mounted upside down! */
-> > +
-> > +		/* With a single port, use 'port' and not 'ports'. */
-> > +		port {
-> > +			/* With 1 endpoint per port no need for addresses. */
-> > +			imx074_1: endpoint {
-> > +				bus-type =3D 4;
-> > +				/* If lane re-ordering is not supported, no
-> > +				   need to tell where the clock lane is! */
-> > +				/* clock-lanes =3D <0>; */
-> > +				/* But the number of data lanes is important! */
-> > +				data-lanes =3D <1 2>;
-> > +				remote-endpoint =3D <&csi20_in>;
-> >  			};
-> >  		};
-> >  	};
-> > +};
-> >
-> > -	csi2: csi2@ffc90000 {
-> > -		compatible =3D "renesas,sh-mobile-csi2";
-> > -		reg =3D <0xffc90000 0x1000>;
-> > -		interrupts =3D <0x17a0>;
-> > +csi20: csi2@fea80000 {
-> > +	compatible =3D "renesas,r8a7795-csi2";
-> > +	reg =3D <0 0xfea80000 0 0x10000>;
-> > +	interrupts =3D <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-> > +	clocks =3D <&cpg CPG_MOD 714>;
-> > +	power-domains =3D <&sysc R8A7795_PD_ALWAYS_ON>;
-> > +	resets =3D <&cpg 714>;
->
-> Do we need all reg, interrupts, clocks, power-domains and resets in the
-> example?
->
-
-Probably not, but they were present in the previous example, so I kept
-it. I would be fine by dropping them anyway...
-> > +
-> > +	ports {
-> >  		#address-cells =3D <1>;
-> >  		#size-cells =3D <0>;
-> >
-> > -		port@1 {
-> > -			compatible =3D "renesas,csi2c";	/* One of CSI2I and CSI2C. */
-> > -			reg =3D <1>;			/* CSI-2 PHY #1 of 2: PHY_S,
-> > -							   PHY_M has port address 0,
-> > -							   is unused. */
-> > -			csi2_1: endpoint {
-> > -				clock-lanes =3D <0>;
-> > -				data-lanes =3D <2 1>;
-> > +		port@0 {
-> > +			reg =3D <0>;
-> > +
-> > +			csi20_in: endpoint {
-> > +				bus-type =3D 4;
-> > +				/* Use the same number of data lanes as the
-> > +				   one used by the remote endpoint! */
->
-> nit: Do this comment bring value, or is it confusing?
->
-
-Maybe it does not bring much value, but why is it confusing ?
-
-> > +				data-lanes =3D <1 2>;
-> >  				remote-endpoint =3D <&imx074_1>;
-> >  			};
-> >  		};
-> > -		port@2 {
-> > -			reg =3D <2>;			/* port 2: link to the CEU */
-> >
-> > -			csi2_2: endpoint {
-> > -				remote-endpoint =3D <&ceu0_0>;
-> > +		port@1 {
-> > +			reg =3D <1>;
-> > +
-> > +			/* Data path to the VIN4 DMA engine. */
->
-> Needed?
->
-
-Not really...
-
-> > +			csi20vin4: endpoint {
-> > +				remote-endpoint =3D <&vin4csi20>;
-> > +			};
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +vin4: video@e6ef4000 {
-> > +	compatible =3D "renesas,vin-r8a7795";
-> > +	reg =3D <0 0xe6ef4000 0 0x1000>;
-> > +	interrupts =3D <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> > +	clocks =3D <&cpg CPG_MOD 807>;
-> > +	power-domains =3D <&sysc R8A7795_PD_ALWAYS_ON>;
-> > +	resets =3D <&cpg 807>;
-> > +	renesas,id =3D <4>;
->
-> Same comment as above, is all properties needed in the example?
-> Specially renesas,id can be confusing as it's a driver specific binding
-> needed to workaround a fun hardware design.
-
-I agree, but I'm debated.. one looks at the example and it doesn't
-match the actual VIN bindings, and then might be even more confused.
-I'm find dropping all of this. Maybe we can add a line in the intro
-that says the example is fictional and does not report all the
-required properties for a device to work.
-
->
-> > +
-> > +	ports {
-> > +		#address-cells =3D <1>;
-> > +		#size-cells =3D <0>;
-> > +
-> > +		/* Parallel input port: HDMI decoder */
-> > +		port@0 {
-> > +			reg =3D <0>;
-> > +
-> > +			vin4_digital_in: endpoint {
-> > +				bus-type =3D 5;
-> > +				bus-width =3D <8>;	/* Used data lines */
-> > +				data-shift =3D <2>;	/* Lines 9:2 are used */
-> > +				data-active =3D <1>;	/* Active high */
-> > +				pclk-sample =3D <0>;	/* Falling */
-> > +				/* If hsync-active/vsync-active are missing,
-> > +				 * embedded BT.656 sync is used */
->
-> I feel if this comment is to be kept it should be expanded.
->
-
-I copied it from the existing example. How would you expand it?
-
-> > +				hsync-active =3D <0>;
-> > +				vsync-active =3D <0>;
-> > +				remote-endpoint =3D <&adv7612_out>;
-> > +			};
-> > +		};
-> > +
-> > +
-> > +		/* Data path to the MIPI CSI-2 receiver. */
-> > +		port@1 {
-> > +			#address-cells =3D <1>;
-> > +			#size-cells =3D <0>;
-> > +
-> > +			reg =3D<1>;
-> > +
-> > +			/* Need endpoint numbers when multiple endpoints are
-> > +			   present. */
->
-> I think this can be dropped.
->
-
-Ok
-
-Thanks for review
-   j
+Jonathan
 
 
-> > +			vin4csi20: endpoint@0 {
-> > +				reg =3D <0>;
-> > +				remote-endpoint =3D <&csi20vin4>;
-> > +			};
-> > +
-> > +			/* Not connected in this example. */
-> > +			vin4csi41: endpoint@3 {
-> > +				reg =3D <3>;
-> > +				remote-endpoint =3D <&csi41vin4>;
-> >  			};
-> >  		};
-> >  	};
-> > +};
-> > --
-> > 2.22.0
-> >
->
-> --
-> Regards,
-> Niklas S=C3=B6derlund
+> ---
+> Changes in v3:
+> -comments reworked
+> -isWriteOp renamed to is_write_op
+>=20
+>  drivers/iio/adc/ad7606.c     |  13 ++++-
+>  drivers/iio/adc/ad7606.h     |   4 ++
+>  drivers/iio/adc/ad7606_spi.c | 109 ++++++++++++++++++++++++++++++++++-
+>  3 files changed, 123 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+> index ed2d08437e5d..f5ba94c03a8d 100644
+> --- a/drivers/iio/adc/ad7606.c
+> +++ b/drivers/iio/adc/ad7606.c
+> @@ -410,12 +410,19 @@ static const struct ad7606_chip_info ad7606_chip_in=
+fo_tbl[] =3D {
+>  		.oversampling_avail =3D ad7606_oversampling_avail,
+>  		.oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avail),
+>  	},
+> +	[ID_AD7606B] =3D {
+> +		.channels =3D ad7606_channels,
+> +		.num_channels =3D 9,
+> +		.oversampling_avail =3D ad7606_oversampling_avail,
+> +		.oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avail),
+> +	},
+>  	[ID_AD7616] =3D {
+>  		.channels =3D ad7616_channels,
+>  		.num_channels =3D 17,
+>  		.oversampling_avail =3D ad7616_oversampling_avail,
+>  		.oversampling_num =3D ARRAY_SIZE(ad7616_oversampling_avail),
+>  		.os_req_reset =3D true,
+> +		.init_delay_ms =3D 15,
+>  	},
+>  };
+> =20
+> @@ -631,8 +638,10 @@ int ad7606_probe(struct device *dev, int irq, void _=
+_iomem *base_address,
+>  		dev_warn(st->dev, "failed to RESET: no RESET GPIO specified\n");
+> =20
+>  	/* AD7616 requires al least 15ms to reconfigure after a reset */
+> -	if (msleep_interruptible(15))
+> -		return -ERESTARTSYS;
+> +	if (st->chip_info->init_delay_ms) {
+> +		if (msleep_interruptible(st->chip_info->init_delay_ms))
+> +			return -ERESTARTSYS;
+> +	}
+> =20
+>  	st->write_scale =3D ad7606_write_scale_hw;
+>  	st->write_os =3D ad7606_write_os_hw;
+> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
+> index eeaaa8b905db..9350ef1f63b5 100644
+> --- a/drivers/iio/adc/ad7606.h
+> +++ b/drivers/iio/adc/ad7606.h
+> @@ -46,6 +46,8 @@
+>   *			oversampling ratios.
+>   * @oversampling_num	number of elements stored in oversampling_avail arr=
+ay
+>   * @os_req_reset	some devices require a reset to update oversampling
+> + * @init_delay_ms	required delay in miliseconds for initialization
+> + *			after a restart
+>   */
+>  struct ad7606_chip_info {
+>  	const struct iio_chan_spec	*channels;
+> @@ -53,6 +55,7 @@ struct ad7606_chip_info {
+>  	const unsigned int		*oversampling_avail;
+>  	unsigned int			oversampling_num;
+>  	bool				os_req_reset;
+> +	unsigned long			init_delay_ms;
+>  };
+> =20
+>  /**
+> @@ -155,6 +158,7 @@ enum ad7606_supported_device_ids {
+>  	ID_AD7606_8,
+>  	ID_AD7606_6,
+>  	ID_AD7606_4,
+> +	ID_AD7606B,
+>  	ID_AD7616,
+>  };
+> =20
+> diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
+> index 98ed52b74507..29945ad07dca 100644
+> --- a/drivers/iio/adc/ad7606_spi.c
+> +++ b/drivers/iio/adc/ad7606_spi.c
+> @@ -28,9 +28,23 @@
+>   * an offset of 2 for register address.
+>   */
+>  #define AD7616_RANGE_CH_ADDR(ch)	((ch) >> 2)
+> -/* The range of the channel is stored on 2 bits*/
+> +/* The range of the channel is stored in 2 bits */
+>  #define AD7616_RANGE_CH_MSK(ch)		(0b11 << (((ch) & 0b11) * 2))
+>  #define AD7616_RANGE_CH_MODE(ch, mode)	((mode) << ((((ch) & 0b11)) * 2))
+> +
+> +#define AD7606_CONFIGURATION_REGISTER	0x02
+> +#define AD7606_SINGLE_DOUT		0x00
+> +
+> +/*
+> + * Range for AD7606B channels are stored in registers starting with addr=
+ess 0x3.
+> + * Each register stores range for 2 channels(4 bits per channel).
+> + */
+> +#define AD7606_RANGE_CH_MSK(ch)		(GENMASK(3, 0) << (4 * ((ch) & 0x1)))
+> +#define AD7606_RANGE_CH_MODE(ch, mode)	\
+> +	((GENMASK(3, 0) & mode) << (4 * ((ch) & 0x1)))
+> +#define AD7606_RANGE_CH_ADDR(ch)	(0x03 + ((ch) >> 1))
+> +#define AD7606_OS_MODE			0x08
+> +
+>  static const struct iio_chan_spec ad7616_sw_channels[] =3D {
+>  	IIO_CHAN_SOFT_TIMESTAMP(16),
+>  	AD7616_CHANNEL(0),
+> @@ -51,6 +65,22 @@ static const struct iio_chan_spec ad7616_sw_channels[]=
+ =3D {
+>  	AD7616_CHANNEL(15),
+>  };
+> =20
+> +static const struct iio_chan_spec ad7606b_sw_channels[] =3D {
+> +	IIO_CHAN_SOFT_TIMESTAMP(8),
+> +	AD7616_CHANNEL(0),
+> +	AD7616_CHANNEL(1),
+> +	AD7616_CHANNEL(2),
+> +	AD7616_CHANNEL(3),
+> +	AD7616_CHANNEL(4),
+> +	AD7616_CHANNEL(5),
+> +	AD7616_CHANNEL(6),
+> +	AD7616_CHANNEL(7),
+> +};
+> +
+> +static const unsigned int ad7606B_oversampling_avail[9] =3D {
+> +	1, 2, 4, 8, 16, 32, 64, 128, 256
+> +};
+> +
+>  static u16 ad7616_spi_rd_wr_cmd(int addr, char isWriteOp)
+>  {
+>  	/*
+> @@ -60,6 +90,16 @@ static u16 ad7616_spi_rd_wr_cmd(int addr, char isWrite=
+Op)
+>  	return ((addr & 0x7F) << 1) | ((isWriteOp & 0x1) << 7);
+>  }
+> =20
+> +static u16 ad7606B_spi_rd_wr_cmd(int addr, char is_write_op)
+> +{
+> +	/*
+> +	 * The address of register consists of one bit which
+> +	 * specifies a read command placed in bit 6, followed by
+> +	 * 6 bits of address.
+> +	 */
+> +	return (addr & 0x3F) | (((~is_write_op) & 0x1) << 6);
+> +}
+> +
+>  static int ad7606_spi_read_block(struct device *dev,
+>  				 int count, void *buf)
+>  {
+> @@ -169,6 +209,23 @@ static int ad7616_write_os_sw(struct iio_dev *indio_=
+dev, int val)
+>  				     AD7616_OS_MASK, val << 2);
+>  }
+> =20
+> +static int ad7606_write_scale_sw(struct iio_dev *indio_dev, int ch, int =
+val)
+> +{
+> +	struct ad7606_state *st =3D iio_priv(indio_dev);
+> +
+> +	return ad7606_spi_write_mask(st,
+> +				     AD7606_RANGE_CH_ADDR(ch),
+> +				     AD7606_RANGE_CH_MSK(ch),
+> +				     AD7606_RANGE_CH_MODE(ch, val));
+> +}
+> +
+> +static int ad7606_write_os_sw(struct iio_dev *indio_dev, int val)
+> +{
+> +	struct ad7606_state *st =3D iio_priv(indio_dev);
+> +
+> +	return ad7606_spi_reg_write(st, AD7606_OS_MODE, val);
+> +}
+> +
+>  static int ad7616_sw_mode_config(struct iio_dev *indio_dev)
+>  {
+>  	struct ad7606_state *st =3D iio_priv(indio_dev);
+> @@ -189,6 +246,42 @@ static int ad7616_sw_mode_config(struct iio_dev *ind=
+io_dev)
+>  			      AD7616_BURST_MODE | AD7616_SEQEN_MODE);
+>  }
+> =20
+> +static int ad7606B_sw_mode_config(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7606_state *st =3D iio_priv(indio_dev);
+> +	unsigned long os[3] =3D {1};
+> +
+> +	/*
+> +	 * Software mode is enabled when all three oversampling
+> +	 * pins are set to high. If oversampling gpios are defined
+> +	 * in the device tree, then they need to be set to high,
+> +	 * otherwise, they must be hardwired to VDD
+> +	 */
+> +	if (st->gpio_os) {
+> +		gpiod_set_array_value(ARRAY_SIZE(os),
+> +				      st->gpio_os->desc, st->gpio_os->info, os);
+> +	}
+> +	/* OS of 128 and 256 are available only in software mode */
+> +	st->oversampling_avail =3D ad7606B_oversampling_avail;
+> +	st->num_os_ratios =3D ARRAY_SIZE(ad7606B_oversampling_avail);
+> +
+> +	st->write_scale =3D ad7606_write_scale_sw;
+> +	st->write_os =3D &ad7606_write_os_sw;
+> +
+> +	/* Configure device spi to output on a single channel */
+> +	st->bops->reg_write(st,
+> +			    AD7606_CONFIGURATION_REGISTER,
+> +			    AD7606_SINGLE_DOUT);
+> +
+> +	/*
+> +	 * Scale can be configured individually for each channel
+> +	 * in software mode.
+> +	 */
+> +	indio_dev->channels =3D ad7606b_sw_channels;
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct ad7606_bus_ops ad7606_spi_bops =3D {
+>  	.read_block =3D ad7606_spi_read_block,
+>  };
+> @@ -202,6 +295,15 @@ static const struct ad7606_bus_ops ad7616_spi_bops =
+=3D {
+>  	.sw_mode_config =3D ad7616_sw_mode_config,
+>  };
+> =20
+> +static const struct ad7606_bus_ops ad7606B_spi_bops =3D {
+> +	.read_block =3D ad7606_spi_read_block,
+> +	.reg_read =3D ad7606_spi_reg_read,
+> +	.reg_write =3D ad7606_spi_reg_write,
+> +	.write_mask =3D ad7606_spi_write_mask,
+> +	.rd_wr_cmd =3D ad7606B_spi_rd_wr_cmd,
+> +	.sw_mode_config =3D ad7606B_sw_mode_config,
+> +};
+> +
+>  static int ad7606_spi_probe(struct spi_device *spi)
+>  {
+>  	const struct spi_device_id *id =3D spi_get_device_id(spi);
+> @@ -211,6 +313,9 @@ static int ad7606_spi_probe(struct spi_device *spi)
+>  	case ID_AD7616:
+>  		bops =3D &ad7616_spi_bops;
+>  		break;
+> +	case ID_AD7606B:
+> +		bops =3D &ad7606B_spi_bops;
+> +		break;
+>  	default:
+>  		bops =3D &ad7606_spi_bops;
+>  		break;
+> @@ -226,6 +331,7 @@ static const struct spi_device_id ad7606_id_table[] =
+=3D {
+>  	{ "ad7606-4", ID_AD7606_4 },
+>  	{ "ad7606-6", ID_AD7606_6 },
+>  	{ "ad7606-8", ID_AD7606_8 },
+> +	{ "ad7606b",  ID_AD7606B },
+>  	{ "ad7616",   ID_AD7616 },
+>  	{}
+>  };
+> @@ -236,6 +342,7 @@ static const struct of_device_id ad7606_of_match[] =
+=3D {
+>  	{ .compatible =3D "adi,ad7606-4" },
+>  	{ .compatible =3D "adi,ad7606-6" },
+>  	{ .compatible =3D "adi,ad7606-8" },
+> +	{ .compatible =3D "adi,ad7606b" },
+>  	{ .compatible =3D "adi,ad7616" },
+>  	{ },
+>  };
 
---ju5tryhcm7zjjbcx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1ilvsACgkQcjQGjxah
-Vjx55A/8D2UYgmziaUfVgkW8VbrY/FZUqUeKGBlDRJMpNTypR66wRaEtWN4UwDhI
-icDQ9axSFONbuI/l86/TkTgxDSahMgGqIc7xeoEfLKWTx+wdAtsg6a4i33v13KF4
-UDpzzD/oeTXGfxVxf/Ie+DclK93JZG8cgfufx3VNMy4tIfmCuLTayVpi73v9MbWl
-a949QEMgH20ZJWEi+PcNf++Nmq6sKDKBjn+C1nH91LLIaD/MdMdoW8DDRjXAN69+
-KXI2V1PTcxHG+16+IiwFVJ74oi0BXwaVO92jsVAOhcX97B4xO9FIGcCiY31kLqIT
-MPp1rKm03IzNWSA/Tvx8fYBorDy6b6HBNYlkIdXP9+pv6vXX4LIUCRU2AD+PTam/
-OAMe0Vxc/fY2zv8pDb9f168VF/Hzmup+TCkjdH0Zp2DYx2mkPN4nrtFUaMtCKNfx
-SukIT5yZuaF5Mllx56XF0szmgFvfpm/TVuLd5+7Fhxw4elc2zTAFCedGoPB4Sto0
-yfd2/yGkj8vEs4tPshh80CdgoKHLrD+rrjXbouaSJrbq2aURmREeJDBJPfB3V59j
-UClidyx5Cs1deEaxjcaDXDt7hwL+vKMZpFmQX36aaDKGhnPEoXPtFjkP1Es+rcg7
-rJvMNZCzM5dqIwIBW36+Gxuly4qg9wMdsUPYPHvc6Bpe/G9ETqE=
-=3ZgN
------END PGP SIGNATURE-----
-
---ju5tryhcm7zjjbcx--
