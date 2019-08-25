@@ -2,96 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B40919C5F1
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 21:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F379C61E
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 22:41:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727077AbfHYTve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 15:51:34 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:37838 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728733AbfHYTve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 15:51:34 -0400
-Received: by mail-oi1-f196.google.com with SMTP id b25so10643085oib.4;
-        Sun, 25 Aug 2019 12:51:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hjng6vlLFgbv9Pq9MqHuljD4Do50I8hCQZSgXlEUD+s=;
-        b=JrDdoARW3RK4az1cCf/czevGVpc2XlfXp8QUxGdhWyb3hVQORUWD8P3xDDMIDpy3AE
-         3KAkLF5yPDxXJXfDCVqf7kuHgDdCRIqIGVn2h2f+jLlHQSQTp64ULV3JHXm5RuQhHD9B
-         OCrtDQ8dqbF+NUrvZpRPclVYhN2us1pbugiPBNfbyc30P4xgzUvEY8dUsF+l4zc3tmgT
-         q0UmeQYGc3WHoysYNlUofnqCWkg8/k0LPwPDN8+Qz9igplv2xKYrkqK16H+T7IiWs/qO
-         zxn+EdozSlAEbQyfaux5mw/6XF2EmAqQGz+TvFuEPhDBsdbr1lJ2EgsLmr2kin//JpJL
-         ZSxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hjng6vlLFgbv9Pq9MqHuljD4Do50I8hCQZSgXlEUD+s=;
-        b=Pf/NZeIdekPcftppC1enRwlosYUNaIWhhUJON/pGgTqYMCJU07/JgFe92T4LmxGcwT
-         wnCPmU9kNIgjCYlWBMPzVg4euoyr1Y4xY3h0bjSbz19hLg+8hSjso1yYxOL3CgfAN3sY
-         y19BCykOUPM/8B3fT6AK4FnM7iWkxV5E5VaRQ2VucnNoCIDS0tOYBjNylN4A9Tze/h+U
-         g8KAN7ooafTMl8TTeSFgVIfsXn2EK7TSEbDQgIF/JNjUH8k57+o+bSVZFokq9r+jmiC2
-         QyMd77f8EfKLAYqWhRhA9PuNNETpFKF3WIUYFu/qIrP03RaPw2C88BRF3TV1+pJf6gYx
-         jo/Q==
-X-Gm-Message-State: APjAAAX/cNFK+7prZjc8JdU5EQur1dQpbqHluM+bktJ7drWM8NTBsT1c
-        8mZCRclJK/lyZx0hm+ZAOGow8xmDf01Kg+e9QVY=
-X-Google-Smtp-Source: APXvYqytfpz4w1IVT5MQr4MnHby/LbGVf5kKD4Rnq9rK/D7rVL1EJG62FQ5lDoR6ZfEKArVTzVXqRM0d613Y4v6IXcc=
-X-Received: by 2002:a05:6808:5cf:: with SMTP id d15mr10416816oij.140.1566762693708;
- Sun, 25 Aug 2019 12:51:33 -0700 (PDT)
+        id S1728811AbfHYUl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 16:41:57 -0400
+Received: from onstation.org ([52.200.56.107]:46560 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728467AbfHYUl5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Aug 2019 16:41:57 -0400
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 479863E8B6;
+        Sun, 25 Aug 2019 20:41:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1566765716;
+        bh=WiaeHanYhnrEhirU8hAElFYgE0q/ORQXxd0mMPk5fwA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uTxYrxUAilLyyVOuEQdUrhtLJwOojFw0Urt+ZiT2giud8qo3MSKqVjLkWBeVpjA1C
+         9TwwgdzEdiocS2icnbKVZ81fwRmlc2+h0nwyWPUv0QA1bRNG5mAUZpM0u2f0QIi2HF
+         MRPpUPLdNpmQNTh/+kCKHAfLlrENwrde1EftnjRg=
+Date:   Sun, 25 Aug 2019 16:41:55 -0400
+From:   Brian Masney <masneyb@onstation.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        bjorn.andersson@linaro.org
+Cc:     robh+dt@kernel.org, agross@kernel.org, vkoul@kernel.org,
+        evgreen@chromium.org, daidavid1@codeaurora.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v5 4/5] interconnect: qcom: Add QCS404 interconnect
+ provider driver
+Message-ID: <20190825204155.GA6879@onstation.org>
+References: <20190723142339.27772-1-georgi.djakov@linaro.org>
+ <20190723142339.27772-5-georgi.djakov@linaro.org>
 MIME-Version: 1.0
-References: <20190823081427.17228-1-narmstrong@baylibre.com> <20190823081427.17228-3-narmstrong@baylibre.com>
-In-Reply-To: <20190823081427.17228-3-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 25 Aug 2019 21:51:22 +0200
-Message-ID: <CAFBinCBLVDVWPbDZ+_cPTbJNCavvzJH4A6U8D9XWVSR-j3fzFQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] amlogic: arm: add Amlogic SM1 based Khadas VIM3
- variant bindings
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190723142339.27772-5-georgi.djakov@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+Hi Georgi and Bjorn,
 
-the subject should be: dt-bindings: arm: amlogic: ...
+I'm finishing up a msm8974 interconnect driver and I used qcs404 as a
+starting point. I have a question below.
 
-On Fri, Aug 23, 2019 at 10:15 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The Khadas VIM3 is also available with the Pin-to-pin compatible
-> Amlogic SM1 SoC in the S905D3 variant package.
->
-> Change the description to match the S905X3/D3/Y3 variants like the G12A
-> description, and add the vim3 compatible.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+On Tue, Jul 23, 2019 at 05:23:38PM +0300, Georgi Djakov wrote:
+> From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Add driver for the interconnect buses found in Qualcomm QCS404-based
+> platforms. The topology consists of three NoCs that are controlled by
+> a remote processor. This remote processor collects the aggregated
+> bandwidth for each master-slave pairs.
+> 
+> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 > ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index b48ea1e4913a..2751dd778ce0 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -150,9 +150,10 @@ properties:
->            - const: amlogic,s922x
->            - const: amlogic,g12b
->
-> -      - description: Boards with the Amlogic Meson SM1 S905X3 SoC
-> +      - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
->          items:
->            - enum:
->                - seirobotics,sei610
-> +              - khadas,vim3
->            - const: amlogic,sm1
-on the GXL we differentiate between S905X and S905D
-do we need to differentiate S905X3 from S905D3 (for example)?
 
+[snip]
 
-Martin
+> +enum {
+> +       QCS404_MASTER_AMPSS_M0 = 1,
+
+[snip]
+
+> +#define DEFINE_QNODE(_name, _id, _buswidth, _mas_rpm_id, _slv_rpm_id,	\
+> +		     ...)						\
+> +		static struct qcom_icc_node _name = {			\
+> +		.name = #_name,						\
+> +		.id = _id,						\
+> +		.buswidth = _buswidth,					\
+> +		.mas_rpm_id = _mas_rpm_id,				\
+> +		.slv_rpm_id = _slv_rpm_id,				\
+> +		.num_links = ARRAY_SIZE(((int[]){ __VA_ARGS__ })),	\
+> +		.links = { __VA_ARGS__ },				\
+> +	}
+> +
+> +DEFINE_QNODE(mas_apps_proc, QCS404_MASTER_AMPSS_M0, 8, 0, -1, QCS404_SLAVE_EBI_CH0, QCS404_BIMC_SNOC_SLV);
+
+[snip]
+
+> +static struct qcom_icc_node *qcs404_bimc_nodes[] = {
+> +	[MASTER_AMPSS_M0] = &mas_apps_proc,
+
+Should the id in DEFINE_QNODE() above be MASTER_AMPSS_M0 instead of
+QCS404_MASTER_AMPSS_M0?
+
+of_icc_xlate_onecell() looks up the id by the array index
+MASTER_AMPSS_M0 (1), however qnoc_probe() passes the id that's
+in struct qcom_icc_node to icc_node_create(), which is
+QCS404_MASTER_AMPSS_M0 (0). They have different values and I'm unsure
+why we can't just use the ids that are in qcom,qcs404.h and drop the
+enum above.
+
+Thanks,
+
+Brian
