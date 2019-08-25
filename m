@@ -2,37 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA3A9C418
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 15:50:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A568B9C439
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 16:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727521AbfHYNuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 09:50:44 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:42037 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726686AbfHYNuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 09:50:44 -0400
+        id S1728366AbfHYOAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 10:00:16 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:60237 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728359AbfHYOAQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 10:00:16 -0400
 X-Originating-IP: 87.18.63.98
 Received: from uno.homenet.telecomitalia.it (unknown [87.18.63.98])
         (Authenticated sender: jacopo@jmondi.org)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 08232C0006;
-        Sun, 25 Aug 2019 13:50:38 +0000 (UTC)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id F2498FF80D;
+        Sun, 25 Aug 2019 14:00:12 +0000 (UTC)
 From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
-To:     laurent.pinchart@ideasonboard.com,
-        kieran.bingham+renesas@ideasonboard.com, geert@linux-m68k.org,
-        horms@verge.net.au, uli@fpond.eu, airlied@linux.ie, daniel@ffwll.ch
+To:     Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        koji.matsuoka.xm@renesas.com, muroya@ksk.co.jp,
-        VenkataRajesh.Kalakodima@in.bosch.com,
-        Harsha.ManjulaMallikarjun@in.bosch.com,
-        linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com
-Subject: [PATCH v3 02/14] dt-bindings: display, renesas,du: Document cmms property
-Date:   Sun, 25 Aug 2019 15:51:42 +0200
-Message-Id: <20190825135154.11488-3-jacopo+renesas@jmondi.org>
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] arm64: dts: renesas: Add LIF channel to 'vsps' property
+Date:   Sun, 25 Aug 2019 16:01:33 +0200
+Message-Id: <20190825140135.12150-1-jacopo+renesas@jmondi.org>
 X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190825135154.11488-1-jacopo+renesas@jmondi.org>
-References: <20190825135154.11488-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -40,39 +33,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the newly added 'cmms' property which accepts a list of phandle
-and channel index pairs that point to the CMM units available for each
-Display Unit output video channel.
+V2 of this patch splits the DTS changes from the updating of the DU driver
+comment as suggested by Laurent and Geert.
 
-Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- Documentation/devicetree/bindings/display/renesas,du.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+Patches based on renesas-devel-2019-08-21.
 
-diff --git a/Documentation/devicetree/bindings/display/renesas,du.txt b/Documentation/devicetree/bindings/display/renesas,du.txt
-index c97dfacad281..c2265e2a1af2 100644
---- a/Documentation/devicetree/bindings/display/renesas,du.txt
-+++ b/Documentation/devicetree/bindings/display/renesas,du.txt
-@@ -45,6 +45,10 @@ Required Properties:
-     instance that serves the DU channel, and the channel index identifies the
-     LIF instance in that VSP.
+Thanks
+  j
 
-+  - cmms: A list of phandles to the CMM instances present in the SoC, one
-+    for each available DU channel. The property shall not be specified for
-+    SoCs that do not provide any CMM (such as V3M and V3H).
-+
- Required nodes:
+Jacopo Mondi (2):
+  arm64: dts: renesas: Add LIF channel indices to vsps property
+  drm: rcar-du: kms: Expand comment in vsps parsing routine
 
- The connections to the DU output video ports are modeled using the OF graph
-@@ -91,6 +95,7 @@ Example: R8A7795 (R-Car H3) ES2.0 DU
- 			 <&cpg CPG_MOD 721>;
- 		clock-names = "du.0", "du.1", "du.2", "du.3";
- 		vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd0 1>;
-+		cmms = <&cmm0 &cmm1 &cmm2 &cmm3>;
+ arch/arm64/boot/dts/renesas/r8a774a1.dtsi    | 2 +-
+ arch/arm64/boot/dts/renesas/r8a7795-es1.dtsi | 2 +-
+ arch/arm64/boot/dts/renesas/r8a7796.dtsi     | 2 +-
+ arch/arm64/boot/dts/renesas/r8a77970.dtsi    | 2 +-
+ arch/arm64/boot/dts/renesas/r8a77980.dtsi    | 2 +-
+ drivers/gpu/drm/rcar-du/rcar_du_kms.c        | 6 +++++-
+ 6 files changed, 10 insertions(+), 6 deletions(-)
 
- 		ports {
- 			#address-cells = <1>;
 --
-2.22.0
+2.23.0
 
