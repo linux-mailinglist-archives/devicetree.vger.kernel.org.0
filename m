@@ -2,83 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CA589C567
-	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 20:11:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2993C9C5D3
+	for <lists+devicetree@lfdr.de>; Sun, 25 Aug 2019 21:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728596AbfHYSLQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 14:11:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48062 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727835AbfHYSLQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Aug 2019 14:11:16 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EF506206E0;
-        Sun, 25 Aug 2019 18:11:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566756675;
-        bh=UUK7tEQ+rTb3ouj3U8uBFsbnz05fBk4q02q+1HY4H2w=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=1BSb1L20mqSuNK19ws+uDZPDUpe6dsgXXuSXqp31wZFFF2cIYxsJWBdOeITMLgjmc
-         4BcwXhSSjihImkjTenXfztO5PReV9tr0bc8uOeI+tWFtTPXYW+r8wv31JUbqrDBNR7
-         bqZva5MwxgJ3wlUA2tg9hb6/tmfLFQruv6rmdNw4=
-Date:   Sun, 25 Aug 2019 19:11:09 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: iio: light: isl29501: Rename bindings
- documentation file
-Message-ID: <20190825191109.510e91b5@archlinux>
-In-Reply-To: <20190819141708.20456-1-horms+renesas@verge.net.au>
-References: <20190819141708.20456-1-horms+renesas@verge.net.au>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726981AbfHYTit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 15:38:49 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:46334 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728699AbfHYTit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 15:38:49 -0400
+Received: by mail-oi1-f194.google.com with SMTP id t24so10572507oij.13;
+        Sun, 25 Aug 2019 12:38:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=chkqvuhekHGQhYnW0yA1AUvunv0CUeXBozcgE5RCGR0=;
+        b=u0cppoVMppKPI4R3tE0oQQPUsjzQdBiwzIVOtcPozizIdOfQcPFCm4jdFut4NLyLHl
+         W7ia+LzopmIt5jWdEAFGUgT7HxX8pm5XT+F4VWzuako2kqYDtXCS2WaL0eRYHmbhut5i
+         Wx6Mqe9uay3JAyeHjmznXMHzmTGUENFoFJwfcWYbHOEEZpQN5h8ragkZrjd6CBuQPEC3
+         /DHI0LFnSIkbSLRhr8D4s+ip6Bfaj4gjbeP1qf2DNlVlLlNC1Jqu10ePv2ESrd+OUisf
+         vnRxY9V6p8RAh4ddtvYeGfnqMu+SgFkdQH9PV+AqPXPIE6Ou6MviSIidgWdoyT00Oo2j
+         Nq4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=chkqvuhekHGQhYnW0yA1AUvunv0CUeXBozcgE5RCGR0=;
+        b=dgQWgdiLi1DuwOtrn+csirs25/3irHhtpEMGGv/ChbzdTCUH9WZ50MZmq0ryGLNm9M
+         ZidbjF/8w64U8L1tznwzGtDiGuarL1JrklfpcgP3W2lqtJYOFmoRbSbMOcZVVXhJ409h
+         XfT01C2mlMB/TBmxs2jhJFAleao/HrX6EOy0cQFV1+MGzzYXvrFXN+rr5dW1EZ3Ofe/4
+         wFgam1pQwL/niHFvlfMp0ywMn+aNKVI78hdLce8gOyQzLskJeIXj44dnnhtvDphslMaL
+         btJAdFCcH2NLuj+Sin8SYGYsbO0q+Vh7/EtWZ2ojRqjkXx9ocxT+YOGXi5HN/cuWsKdk
+         l1Fw==
+X-Gm-Message-State: APjAAAWsfoUTnml1YKrvw2zzY7J1Z5obT/r6KiauUGk1TfscgfseP7+w
+        8liFrn9JyOResHtOBLzaHnSAqrSw3tazF1WzhWg=
+X-Google-Smtp-Source: APXvYqy1R4zVYwEh8pivnSC69fyaMBLMJemyEus17wAdFf0HZLtZeNrG0Fme7e3Pe3MsSQoUcaWkpnlg8DlAMDncj6c=
+X-Received: by 2002:a05:6808:30d:: with SMTP id i13mr10330434oie.39.1566761928007;
+ Sun, 25 Aug 2019 12:38:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <1566705688-18442-1-git-send-email-christianshewitt@gmail.com>
+In-Reply-To: <1566705688-18442-1-git-send-email-christianshewitt@gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sun, 25 Aug 2019 21:38:37 +0200
+Message-ID: <CAFBinCD0uhE9Fj1we2MkaTbk7RwtmKh7Fn1C-2nn9wiWqCoNfg@mail.gmail.com>
+Subject: Re: [PATCH 0/7] arm64: dts: meson: ir keymap updates
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Aug 2019 16:17:08 +0200
-Simon Horman <horms+renesas@verge.net.au> wrote:
-
-> Rename the bindings documentation file for Renesas ISL29501 Time-of-flight
-> sensor from isl29501.txt to renesas,isl29501.txt.
-> 
-> This is part of an ongoing effort to name bindings documentation files for
-> Renesas IP blocks consistently, in line with the compat strings they
-> document.
-> 
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-
-Applied,
-
-Thanks,
-
-Jonathan
-
-> ---
-> Based on v5.3-rc1
-> 
-> v2
-> * Drop spurious top-level Makefile hunk
-> ---
->  .../devicetree/bindings/iio/light/{isl29501.txt => renesas,isl29501.txt}  | 0
->  1 file changed, 0 insertions(+), 0 deletions(-)
->  rename Documentation/devicetree/bindings/iio/light/{isl29501.txt => renesas,isl29501.txt} (100%)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/isl29501.txt b/Documentation/devicetree/bindings/iio/light/renesas,isl29501.txt
-> similarity index 100%
-> rename from Documentation/devicetree/bindings/iio/light/isl29501.txt
-> rename to Documentation/devicetree/bindings/iio/light/renesas,isl29501.txt
-
+On Sun, Aug 25, 2019 at 6:03 AM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+>
+> This series adds keymaps for several box/board vendor IR remote devices
+> to respective device-tree files. The keymaps were submitted in [0] and
+> have been queued for inclusion in Linux 5.4.
+>
+> The Khadas remote change swaps the rc-geekbox keymap for rc-khadas. The
+> Geekbox branded remote was only sold for a brief period when VIM(1) was
+> a new device. The Khadas branded remote that replaced it exchanged the
+> Geekbox full-screen key for an Android mouse button using a different IR
+> keycode. The rc-khadas keymap supports the mouse button keycode and maps
+> it to KEY_MUTE.
+>
+> [0] https://patchwork.kernel.org/project/linux-media/list/?series=160309
+>
+> Christian Hewitt (7):
+>   arm64: dts: meson-g12b-odroid-n2: add rc-odroid keymap
+>   arm64: dts: meson-g12a-x96-max: add rc-x96max keymap
+>   arm64: dts: meson-gxbb-wetek-hub: add rc-wetek-hub keymap
+>   arm64: dts: meson-gxbb-wetek-play2: add rc-wetek-play2 keymap
+>   arm64: dts: meson-gxl-s905x-khadas-vim: use rc-khadas keymap
+>   arm64: dts: meson-gxl-s905w-tx3-mini: add rc-tx3mini keymap
+>   arm64: dts: meson-gxm-khadas-vim2: use rc-khadas keymap
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
