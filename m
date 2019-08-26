@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94BA99D316
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61CC19D31D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:40:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733073AbfHZPiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:38:51 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:37484 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733061AbfHZPiu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:50 -0400
-Received: by mail-wr1-f66.google.com with SMTP id z11so15806624wrt.4;
-        Mon, 26 Aug 2019 08:38:49 -0700 (PDT)
+        id S1733196AbfHZPkD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:40:03 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:52791 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733075AbfHZPix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:53 -0400
+Received: by mail-wm1-f66.google.com with SMTP id o4so15928413wmh.2;
+        Mon, 26 Aug 2019 08:38:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=jGtaYskwXqtitTmb81lpaqplH9rL6ZrH9axl395rJFM=;
-        b=IKBxbAxhFUs8aHdi9Ly9aj1Oj3bFYsyg5ZkyYh1xXQlaaax0373zzLdOhAOQdt9Of6
-         NJHz744BYHI/GF95hx0uOi08ZQC6fP+rAil3d3O3mBp734yilW0/9+IV9GEXurwRm1pL
-         ZvVCDfdlEHJODda3pRlav8GXunyABXzPe1TxmU/MB1YOsIDDKodGcffUTPAOCzLbQJ3T
-         FO+60EQmOlrQDvzVc4w7wlrp/qEvw7tfxMpjaI8p14RgvLlqWGurNfZxiX7ZEHYipBDZ
-         TW4K5lFFS6sLpHb3qvwE3d93zssadtuCUjpSSQdNsf0PHvw5xqnXSfngpt9cCDEPhKQ6
-         PjoQ==
-X-Gm-Message-State: APjAAAU29ysQfld+IXBkDkB5i9x1acEEq6l3bmy5An1VIcT24s0XfFks
-        pLYmN0nDc9tO5a7e0L/YIxiTbSjJjOE=
-X-Google-Smtp-Source: APXvYqydGIPpHOfkRz3VzlXBrDkyVledGjyMVRFPj6NY3pQu4YoRMHWAwMQbnBklpd5rb2iT/1qMAA==
-X-Received: by 2002:adf:d08e:: with SMTP id y14mr22820025wrh.309.1566833928723;
-        Mon, 26 Aug 2019 08:38:48 -0700 (PDT)
+        bh=sMmbpncOJ0ZaEaTp6uD1F3mJKzNvU9i5QAcT7nrh4JY=;
+        b=NtvH4toT+W7NXi5ABjtATrF5W685ALg4xltWgScToNc4u6D020xDuK2Db7Cj6hnk3n
+         /bAFcf+MWY/9tlA2M+g/Ne8virVOhRfv+qKGakE/K6olC4e1wz74yf3B69r40nvMOGWj
+         VlPNEA66BT8+TZH6nwIYozAhhcVfp6Vw+ouS2TZIPeKtRXHD/VX/Jk45SaqT+Ie5AuAf
+         IRmsh1ibRyO6jJl2XzmJHSYm/oDfR6bZWL9Q0A8pbTX9DbHRWo1DZWC9u4MMpm05I+fm
+         df1PEtaBpSHrchQ2zNk3JaniGEjrajVtUNaFZrsBydsZRYcoWT1G33XAzL0sxO9oLefm
+         alcA==
+X-Gm-Message-State: APjAAAUsame9kHgc7uwDG7+Z35RnRZd+rJrf1WTaP4vO37E68QArSZ+4
+        YR1c7J9fOFuBhe5ePpknP2HxCBRu9bw=
+X-Google-Smtp-Source: APXvYqzGJnbPj/aQN9vpELl8apyFyQZE5AG9D4gn7qkUgkt0R4z3A8KozlSMpWB1/cHyMGbBxQxjWQ==
+X-Received: by 2002:a1c:1b42:: with SMTP id b63mr22828360wmb.46.1566833930681;
+        Mon, 26 Aug 2019 08:38:50 -0700 (PDT)
 Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
-        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.47
+        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 08:38:48 -0700 (PDT)
+        Mon, 26 Aug 2019 08:38:50 -0700 (PDT)
 From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
 To:     linux-kernel@vger.kernel.org
 Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
@@ -46,9 +46,9 @@ Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 06/12] ARM: dts: imx7d: cl-som-imx7: add / enable watchdog
-Date:   Mon, 26 Aug 2019 16:37:54 +0100
-Message-Id: <20190826153800.35400-6-git@andred.net>
+Subject: [PATCH 08/12] ARM: dts: imx7d: cl-som-imx7: update UART1 (debug) clock
+Date:   Mon, 26 Aug 2019 16:37:56 +0100
+Message-Id: <20190826153800.35400-8-git@andred.net>
 X-Mailer: git-send-email 2.23.0.rc1
 In-Reply-To: <20190826153800.35400-1-git@andred.net>
 References: <20190826153800.35400-1-git@andred.net>
@@ -60,8 +60,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add / enable watchdog which is connected via
-WDOG_B to the PMIC, due to i.MX7 Errata e10574
+assign OSC as uart1 (debug) clock to achieve low power,
+so that the PLL doesn't need to be kept on
 
 Signed-off-by: André Draszik <git@andred.net>
 Cc: Ilya Ledvich <ilya@compulab.co.il>
@@ -76,37 +76,22 @@ Cc: NXP Linux Team <linux-imx@nxp.com>
 Cc: devicetree@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index 78046633d91b..ca3c5d95d6c3 100644
+index d4637a8ca223..f80be855b4ec 100644
 --- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
 +++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-@@ -207,6 +207,12 @@
+@@ -222,7 +222,7 @@
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_uart1>;
+ 	assigned-clocks = <&clks IMX7D_UART1_ROOT_SRC>;
+-	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
++	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
  	status = "okay";
  };
  
-+&wdog1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_wdog>;
-+	fsl,ext-reset-output;
-+};
-+
- &iomuxc {
- 	pinctrl_enet1: enet1grp {
- 		fsl,pins = <
-@@ -288,4 +294,10 @@
- 			MX7D_PAD_LPSR_GPIO1_IO06__GPIO1_IO6	0x4000007f
- 		>;
- 	};
-+
-+	pinctrl_wdog: wdoggrp {
-+		fsl,pins = <
-+			MX7D_PAD_LPSR_GPIO1_IO00__WDOG1_WDOG_B	0x74
-+		>;
-+	};
- };
 -- 
 2.23.0.rc1
 
