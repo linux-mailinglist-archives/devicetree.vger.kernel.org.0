@@ -2,95 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22DE39D764
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 22:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 762719D792
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 22:45:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387848AbfHZU0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 16:26:45 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:33530 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728711AbfHZU0p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 16:26:45 -0400
-Received: by mail-oi1-f193.google.com with SMTP id l2so13186297oil.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 13:26:44 -0700 (PDT)
+        id S1730424AbfHZUoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 16:44:44 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:45817 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730439AbfHZUoo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 16:44:44 -0400
+Received: by mail-wr1-f68.google.com with SMTP id q12so16555120wrj.12
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 13:44:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=CU9vIq4P5BZXCg5wzqzK4HuykkAahQhh1wQ2fSzqgKc=;
-        b=gz1tm9J2aVDQhUGqXvflptDxFexfPuJgbyu3Nkky/w2jUzcjMYbLvBPe9Kl1dJyURy
-         yYOabbLS/9X83B9ppvE14aGfD8arZPC9khfKQwH3ODxWDFSiBk8fI81mPz7A2Uw7PfV8
-         zhjYkULvFEeU2lAZPxiH52Y69RMEdk3PnCVC0CL+F9DSMDc32DAnlVZ2ZQhQYdiVPf3p
-         NQug9mcXFwt3bW+JT2KWT4Ryk+D9hwlepv5Xd0MXHlQwCslTmF1Vi2n66WprJFZwMcwS
-         DPKzUG2jqJLHBawdKS3NOFabxSbhJKLUMtqs7bBkxlLA6keLM53nB29lOiJ8Sj6IaFPo
-         oa4w==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=Fw7X0u9RSVpb9YP6GvJgpnhL1eZP3GnuovkdNKVahNQ=;
+        b=l6sh4qDylt4FBGKZbeZbgdchgf+Ftcthdvk7xzUqt1v1xshu0jydYLG40UO/b9oXc4
+         qsqbemoS4PVcuf0R1a+fcHbHXAJQe9PO5cq8UIcT7hRO8CxZSTmign0nSdfQhUu7fiZs
+         Ms4ELGQ8eo5W1GDUT3mW3f57i3861kIE7zKLLD814esraGpUpxp8a1SNweInJCPEGwy6
+         oD0q5ysgRBsCv1Qtksz98fu14zSZCdrq1hvnkz2RGUf5Oq3tqjIN2Rq4CGqrB20NHFwl
+         UN4pC8rK2b/aqkRqY8aVpzUxULN2VbdJ1xSSPUls0YzvKhNNNg9ogsc4C72ylII9owiF
+         IMXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=CU9vIq4P5BZXCg5wzqzK4HuykkAahQhh1wQ2fSzqgKc=;
-        b=pYQa4FCv+MWTVEA8+D5zSYzRlviv3A6gc8p+4U13HJ993epyK9ijEAhLqNSzOY6/hN
-         ZapqSRhw4prOdegBWq04NkzFsiFD5D+Rts/HbIucLzJ7uJuhRohsHjbDwvfb0aUaqd8z
-         V+FDZJJhOtEyNCbTQjaCERbu6tL5vwd5oXtNJFpA360Fh9hiwOTSsbQwd3v7+nVbwplK
-         lRM09vj414gSwAMpV19XEblY57S0miz0IvgqKqW2ubC0BybMXA83dDxGQ5tqMDemFQuU
-         ZmEhADv6fthJ4Fq6unHm4CBIc4Ll8LGF2p2D3letkjKI1WemBRq4Hwgz3a62hUYV8y6E
-         JtOQ==
-X-Gm-Message-State: APjAAAXKuKexgcBdLOJSqP3GByVRwnqiqSezV3OC+ykiQdz67PmZnOxL
-        sIviqMTkprjLu0y5nYRmNxcWQpao/LI+WMkBBsqDug==
-X-Google-Smtp-Source: APXvYqxifHTyu88QNI+xE/H7y5lAlWbyLdUeL/fr8tthhWEEjrsQhIOC8x+zG6CGeLCSCCxy9LENRIMv6SvRrWwAnO8=
-X-Received: by 2002:aca:5106:: with SMTP id f6mr14016778oib.69.1566851203738;
- Mon, 26 Aug 2019 13:26:43 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190807223111.230846-1-saravanak@google.com> <20190807223111.230846-2-saravanak@google.com>
- <20190821203353.GA11783@bogus>
-In-Reply-To: <20190821203353.GA11783@bogus>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 26 Aug 2019 13:26:07 -0700
-Message-ID: <CAGETcx_vPtPoqtXRmoOuJp9fx10-121YG64rADPh2W=3r8KrDg@mail.gmail.com>
-Subject: Re: [PATCH v5 1/3] dt-bindings: opp: Introduce opp-peak-kBps and
- opp-avg-kBps bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        David Dai <daidavid1@codeaurora.org>, adharmap@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=Fw7X0u9RSVpb9YP6GvJgpnhL1eZP3GnuovkdNKVahNQ=;
+        b=i8rAABvgeqSS/A6Ua+8700Djog82lOIvnYykGU0utRCcyv6z63loz6rDrrrqs06f/c
+         PNbYWUCIQ3/e56drfaEnWTKGMi/IDJdqxQ33LBbREMBaResEUF96N6yYNtiufAFPVPoQ
+         QvYxiomJwaTE1ER49/fozhwB6un1zsLq52uIFg2iSLeDh5cNxGjphHlwG0CrBm2qRHVD
+         ZCwxoiwfQ2mZECON1u7mnWCpVV1iqzmVUVWzy/pmOd6OrTYpspl/THd97+8ZLYmQKILn
+         uBBdYlnoOB/M2TQdmRw8o1dFfSxOyiQrA/37TO+sSZqhaGTTK/iztLWMLjrxaZ5X+7Cx
+         +ZPA==
+X-Gm-Message-State: APjAAAV2QxGlPDiDIzox/tCGQv5gESPo1bGqCBHz6kGm3wIjXn5mLR3I
+        uhkjykrvPLB0X0Enu8/bhOHGbw==
+X-Google-Smtp-Source: APXvYqzj79VdjmpatQooDLN5wdRSkNJ6Zpyso4T8UmaJwAtECyLsZt/J81BWLl/nWJE/nyibmLpEWg==
+X-Received: by 2002:a5d:6a45:: with SMTP id t5mr23996401wrw.228.1566852281822;
+        Mon, 26 Aug 2019 13:44:41 -0700 (PDT)
+Received: from mai.imgcgcw.net ([2a01:e34:ed2f:f020:f881:f5ed:b15d:96ab])
+        by smtp.gmail.com with ESMTPSA id 20sm549557wmk.34.2019.08.26.13.44.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2019 13:44:41 -0700 (PDT)
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+To:     tglx@linutronix.de
+Cc:     linux-kernel@vger.kernel.org,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Allwinner
+        sunXi SoC support)
+Subject: [PATCH 02/20] dt-bindings: timer: Convert Allwinner A10 Timer to a schema
+Date:   Mon, 26 Aug 2019 22:43:49 +0200
+Message-Id: <20190826204407.17759-2-daniel.lezcano@linaro.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190826204407.17759-1-daniel.lezcano@linaro.org>
+References: <df27caba-d9f8-e64d-0563-609f8785ecb3@linaro.org>
+ <20190826204407.17759-1-daniel.lezcano@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 1:33 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed,  7 Aug 2019 15:31:09 -0700, Saravana Kannan wrote:
-> > Interconnects often quantify their performance points in terms of
-> > bandwidth. So, add opp-peak-kBps (required) and opp-avg-kBps (optional) to
-> > allow specifying Bandwidth OPP tables in DT.
-> >
-> > opp-peak-kBps is a required property that replaces opp-hz for Bandwidth OPP
-> > tables.
-> >
-> > opp-avg-kBps is an optional property that can be used in Bandwidth OPP
-> > tables.
-> >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  Documentation/devicetree/bindings/opp/opp.txt     | 15 ++++++++++++---
-> >  .../devicetree/bindings/property-units.txt        |  4 ++++
-> >  2 files changed, 16 insertions(+), 3 deletions(-)
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
+From: Maxime Ripard <maxime.ripard@bootlin.com>
 
-Thanks Rob!
+The older Allwinner SoCs have a Timer supported in Linux, with a matching
+Device Tree binding.
 
--Saravana
+While the original binding only mentions one interrupt, the timer actually
+has 6 of them.
+
+Now that we have the DT validation in place, let's convert the device tree
+bindings for that controller over to a YAML schemas.
+
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ .../timer/allwinner,sun4i-a10-timer.yaml      | 76 +++++++++++++++++++
+ .../bindings/timer/allwinner,sun4i-timer.txt  | 19 -----
+ 2 files changed, 76 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt
+
+diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+new file mode 100644
+index 000000000000..7292a424092c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/allwinner,sun4i-a10-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner A10 Timer Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++properties:
++  compatible:
++    enum:
++      - allwinner,sun4i-a10-timer
++      - allwinner,suniv-f1c100s-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description:
++      List of timers interrupts
++
++  clocks:
++    maxItems: 1
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          items:
++            const: allwinner,sun4i-a10-timer
++
++    then:
++      properties:
++        interrupts:
++          minItems: 6
++          maxItems: 6
++
++  - if:
++      properties:
++        compatible:
++          items:
++            const: allwinner,suniv-f1c100s-timer
++
++    then:
++      properties:
++        interrupts:
++          minItems: 3
++          maxItems: 3
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    timer {
++        compatible = "allwinner,sun4i-a10-timer";
++        reg = <0x01c20c00 0x400>;
++        interrupts = <22>,
++                     <23>,
++                     <24>,
++                     <25>,
++                     <67>,
++                     <68>;
++        clocks = <&osc>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt b/Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt
+deleted file mode 100644
+index 3da9d515c03a..000000000000
+--- a/Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-Allwinner A1X SoCs Timer Controller
+-
+-Required properties:
+-
+-- compatible : should be one of the following:
+-              "allwinner,sun4i-a10-timer"
+-              "allwinner,suniv-f1c100s-timer"
+-- reg : Specifies base physical address and size of the registers.
+-- interrupts : The interrupt of the first timer
+-- clocks: phandle to the source clock (usually a 24 MHz fixed clock)
+-
+-Example:
+-
+-timer {
+-	compatible = "allwinner,sun4i-a10-timer";
+-	reg = <0x01c20c00 0x400>;
+-	interrupts = <22>;
+-	clocks = <&osc>;
+-};
+-- 
+2.17.1
+
