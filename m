@@ -2,110 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B2D99CA37
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 09:25:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 468129CA55
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 09:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729988AbfHZHZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 03:25:47 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:36551 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729969AbfHZHZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 03:25:46 -0400
-Received: by mail-wr1-f68.google.com with SMTP id r3so14248380wrt.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 00:25:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CGSQN1D6LMdbmgRSGuE1QGkShUk3nt2JdTILP9Ti30I=;
-        b=qT5sO3/VwNLT9TYqFJpq3GUIhwypqUCsOJYUBM/JGzJ/gCpXWQiNF1AM6Gi6hIqIsH
-         W+DNZxpwQSlQ/bWfL5331VrESChFxdIa8OBRlfuGlHAfYIZThkf6SUCakQ499aGtoD8A
-         xlRZGuz8leZeFBkz6lF+U7393CssphmGpF7rznn47Pg8bxx+9aMs1ws/oeRbl7qKpigs
-         SARsEA2jq6l7cLv0phk2SQ+9ynqJUrdGdcl795ULoIayT2/b2cjA3BCNFkdbAzZgcpfh
-         wyQ52xxVMQIlDFGRwLQaTMEjziHECD024y92rUV/T4MldmvJisruNiWMlWqgXxlMuIw5
-         5CSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CGSQN1D6LMdbmgRSGuE1QGkShUk3nt2JdTILP9Ti30I=;
-        b=Faj2TeZIM+YcngMAXRo5R7qQA6tRLEMcOU3U8pb9fNMgMoyd7Vu98FI7xH+8YbpCEF
-         Slvbu5qprFryeBaIZfS2LX4Tjb47FQum7kr7Cb6ZYA6NOlW705ZYFJou7a+C3uKYvVRc
-         EeQ/wdiHs8L6QImv5xNjHILPhASLb5kdbVmrzMQlMLga9LgBjSP5SCE0zBzdkedOJ93Y
-         kMlF9bvLVJynPCzvEEcAqBJ2VlQIA1bJqonJLqxhrbO6Azcad4iBW1rlOAsykHCVImtq
-         MPKzRAoYrYdxjJ+Vj1gF09DXU462phDRUMjSVLDX4BAhyrkT67QpHR2/pERkSP6JAM28
-         kIvA==
-X-Gm-Message-State: APjAAAVs4d+5H2AGR9s0BrdCEa7DLrlgueDZEsM4HRZzoN7Wxk/M8MNP
-        s+RHiSVLalm1ewJdQc/BFoHYIQ==
-X-Google-Smtp-Source: APXvYqwlbtNtWnQBNuZa6LXcquUhpElWikUs08sQ+LU2PHstPRCWiPiyF+S0J+d1FpO1H6bp1Vu7DA==
-X-Received: by 2002:adf:e4c6:: with SMTP id v6mr19549498wrm.315.1566804344540;
-        Mon, 26 Aug 2019 00:25:44 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a26sm10821324wmg.45.2019.08.26.00.25.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 00:25:43 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, jbrunet@baylibre.com,
-        devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/5] dt-bindings: clk: meson: add sm1 periph clock controller bindings
-Date:   Mon, 26 Aug 2019 09:25:35 +0200
-Message-Id: <20190826072539.27725-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190826072539.27725-1-narmstrong@baylibre.com>
-References: <20190826072539.27725-1-narmstrong@baylibre.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729955AbfHZH2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 03:28:10 -0400
+Received: from mga09.intel.com ([134.134.136.24]:55080 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729925AbfHZH2J (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 03:28:09 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 00:28:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
+   d="scan'208";a="209266928"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga002.fm.intel.com with ESMTP; 26 Aug 2019 00:28:04 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     linux-mmc@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, michal.simek@xilinx.com,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com,
+        Ramuthevar Vadivel Murugan 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v1 1/2] dt-bindings: mmc: sdhci-of-arasan: Add new compatible for Intel LGM eMMC
+Date:   Mon, 26 Aug 2019 15:27:59 +0800
+Message-Id: <20190826072800.38413-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update the documentation to support clock driver for the Amlogic SM1 SoC
-and expose the GP1, DSU and the CPU 1, 2 & 3 clocks.
+From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 
-SM1 clock tree is very close, the main differences are :
-- each CPU core can achieve a different frequency, albeit a common PLL
-- a similar tree as the clock tree has been added for the DynamIQ Shared Unit
-- has a new GP1 PLL used for the DynamIQ Shared Unit
-- SM1 has additional clocks like for CSI, NanoQ an other components
+Add a new compatible to use the sdhc-arasan host controller driver
+with the eMMC PHY on Intel's Lightning Mountain SoC.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 ---
- .../devicetree/bindings/clock/amlogic,gxbb-clkc.txt          | 1 +
- include/dt-bindings/clock/g12a-clkc.h                        | 5 +++++
- 2 files changed, 6 insertions(+)
+ Documentation/devicetree/bindings/mmc/arasan,sdhci.txt | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-index 6eaa52092313..7ccecd5c02c1 100644
---- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-+++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
-@@ -11,6 +11,7 @@ Required Properties:
- 		"amlogic,axg-clkc" for AXG SoC.
- 		"amlogic,g12a-clkc" for G12A SoC.
- 		"amlogic,g12b-clkc" for G12B SoC.
-+		"amlogic,sm1-clkc" for SM1 SoC.
- - clocks : list of clock phandle, one for each entry clock-names.
- - clock-names : should contain the following:
-   * "xtal": the platform xtal
-diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
-index 8ccc29ac7a72..0837c1a7ae49 100644
---- a/include/dt-bindings/clock/g12a-clkc.h
-+++ b/include/dt-bindings/clock/g12a-clkc.h
-@@ -138,5 +138,10 @@
- #define CLKID_VDEC_HEVCF			210
- #define CLKID_TS				212
- #define CLKID_CPUB_CLK				224
-+#define CLKID_GP1_PLL				243
-+#define CLKID_DSU_CLK				252
-+#define CLKID_CPU1_CLK				253
-+#define CLKID_CPU2_CLK				254
-+#define CLKID_CPU3_CLK				255
+diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+index 1edbb049cccb..7ca0aa7ccc0b 100644
+--- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
++++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+@@ -17,6 +17,8 @@ Required Properties:
+       For this device it is strongly suggested to include arasan,soc-ctl-syscon.
+     - "ti,am654-sdhci-5.1", "arasan,sdhci-5.1": TI AM654 MMC PHY
+ 	Note: This binding has been deprecated and moved to [5].
++    - "intel,lgm-sdhci-5.1-emmc", "arasan,sdhci-5.1": Intel LGM eMMC PHY
++      For this device it is strongly suggested to include arasan,soc-ctl-syscon.
  
- #endif /* __G12A_CLKC_H */
+   [5] Documentation/devicetree/bindings/mmc/sdhci-am654.txt
+ 
+@@ -80,3 +82,18 @@ Example:
+ 		phy-names = "phy_arasan";
+ 		#clock-cells = <0>;
+ 	};
++
++	emmc: sdhci@ec700000 {
++		compatible = "intel,lgm-sdhci-5.1-emmc", "arasan,sdhci-5.1";
++		reg = <0xec700000 0x300>;
++		interrupt-parent = <&ioapic1>;
++		interrupts = <44 1>;
++		clocks = <&cgu0 LGM_CLK_EMMC5>, <&cgu0 LGM_CLK_NGI>,
++			 <&cgu0 LGM_GCLK_EMMC>;
++		clock-names = "clk_xin", "clk_ahb", "gate";
++		clock-output-names = "emmc_cardclock";
++		#clock-cells = <0>;
++		phys = <&emmc_phy>;
++		phy-names = "phy_arasan";
++		arasan,soc-ctl-syscon = <&sysconf>;
++	};
 -- 
-2.22.0
+2.11.0
 
