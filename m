@@ -2,124 +2,442 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A112C9D8C7
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 00:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45FE59D902
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 00:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726278AbfHZWA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 18:00:27 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:42798 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbfHZWA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 18:00:26 -0400
-Received: by mail-pg1-f194.google.com with SMTP id p3so11381046pgb.9;
-        Mon, 26 Aug 2019 15:00:26 -0700 (PDT)
+        id S1726552AbfHZWZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 18:25:15 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:39392 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726250AbfHZWZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 18:25:15 -0400
+Received: by mail-pl1-f193.google.com with SMTP id z3so10748439pln.6
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 15:25:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=QundPzgYfC/K73sFx47R4ZcLhuZTaRK8uTxQax5u8J8=;
-        b=bH1h97nB8UQXZo1Akpx6/6dRrbOsMc4EWh45viwTK88KkkOt7rroHS5cpC4nmwdvXu
-         0zidSiMECchfEMwIamoVHDvsVJM9WuLKacA0w6TZTC5qXSAkH6NYzvUeGsvH07rRuW0X
-         ELRYlgkaKChO1eGdgrzA5xWxSnQlahdeVtFVkvXDR6N1uu32EFjDYmJJJeikxR8UBJ3b
-         L+LVy/uMhaT6c8wRFXanroLx50hz9kiouOTNQllmON8T4G3k+uyGuNhDkCgwT6unB/+D
-         u6iI0CIQqjqD+DqT6ig4S89w5PQDXOD6M91Di2YUmxzVgwxREk1KXEGvS4BzMrVabfq5
-         Z2Fw==
+        bh=LMZwVjH+4us2Ev92zU+mu/Xkyq1cO/rQyWLlynfS8fs=;
+        b=PoUQkvWjr/pN6dxBYdDEPpoacUn1GVgAHXLjRw72chM9Dt7Pdw0Y1Xo7REqlVadj4N
+         0QiD47vUlbPNQoj9g4D0f9f89EleLrVePXyyDXLxNYDN7lkphdlF1HzsKHV4P5qvtOSz
+         Kqcv5zCdg0EPkE8ab6lzVLRCVtbh0BT4fMxZsZQTUfO0gAhL8HySG161n8va0w2wqE8n
+         /IOQPWUWSuQCntZAiL1nBXNkJYATkrnwxi2SC8U03BV2D19Au5ZcigqN2yCLhhNR0tuK
+         /dsaAManRC2Ce2MufGjNovksuP2BtGStOuWzrjBzPBt0senm01Z0hkxF1iJbzMpf5enI
+         w2Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QundPzgYfC/K73sFx47R4ZcLhuZTaRK8uTxQax5u8J8=;
-        b=oPuygbL0Rlt6hSRKgtcBaCShMemclLZM4qmwv5g81iTlaOVC5bY4M2Cw/SsnjeedpV
-         CQE75ZxQFiXO2fNtvRpF9rwFagryDr4yVh+wogoVayQk8Ja/307Qr8kNuVVj7pJnYuoi
-         ndd4UisYApBHACzPDeYN+KnpStOY7lLApdU8fnjH+hzDfzkRTR6rBdoFxdJ3PnZ7zPtk
-         eT6W3+nv+TPB/uG5hvoFtcQNn4eLnQ2cIAZ60vem6CEHIl/smh3iexmsBPLn8yCNGMKb
-         8759EboNGM12SVrd+GFQjSmoPazaSWhaBDxtngq7QzTuWJ1eJpklW3lYKA+4uIX/c6QZ
-         d27w==
-X-Gm-Message-State: APjAAAWPDFi292Xquvm69pA+xjmCxLq97soqq8I5m91/D0/ZBnwon9hC
-        +ZO4Zf4x7jaSU7m+UeocMO4=
-X-Google-Smtp-Source: APXvYqzWxoRcFFhqCWqeVbZS+EnvG3Nk1HyugsCQ5YnNomlIVcOQgAanuXy6QByI5JLqwPLVGiUZPA==
-X-Received: by 2002:a65:5043:: with SMTP id k3mr5303984pgo.406.1566856825427;
-        Mon, 26 Aug 2019 15:00:25 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
-        by smtp.gmail.com with ESMTPSA id b18sm5474156pfi.160.2019.08.26.15.00.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 15:00:24 -0700 (PDT)
-Date:   Mon, 26 Aug 2019 15:00:22 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     linux-input@vger.kernel.org, Denis Carikli <denis@eukrea.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] Input: tsc2007 - use GPIO descriptor
-Message-ID: <20190826220022.GA7663@dtor-ws>
-References: <20190823071021.5598-1-linus.walleij@linaro.org>
+        bh=LMZwVjH+4us2Ev92zU+mu/Xkyq1cO/rQyWLlynfS8fs=;
+        b=ksG6XYRus3bE4B5ZWpUtStwIhwKXArMtBco4AAK4NnOE96dKyBI38GqO5iMUK/IpEd
+         WYTgUdbrSdFnu+BpEsdVHuExGhYL/GUpeOqdS+wjFxSp1uMz8W3XAh8i9ngOwfT+zvwz
+         ZDyRvB6fNYjfRHPFQDROkZlcsfZewpkJnmVnJY3+1t5sBAc2lfrh330piC0WLmeZWfC5
+         atd+u8JTlmqmzEnR19DfVjbVicbqB1aA7RFKE6gR8DGpB3+AyU/kkFkhO7PTsbjIX5zb
+         CIEdte2UpAIYQkRVJohogKwOpZmcaa/Xmu0fV+n+kIjzDIzn2FIzK5qO1Vgz08qh6s8Z
+         bj1Q==
+X-Gm-Message-State: APjAAAXWhSpfvFGFy0Ql31t1E6XdEG/feICgk+2l+jwUam9bUWo1DmNo
+        pgwFvcGhsw3XiTAPPOJKAkHP+A==
+X-Google-Smtp-Source: APXvYqwwXT6gDVBmp/fGNwQwikCuD9+yul2/GYuhKd3l0NcEqPJ+83bxY8pZlCY0MEteJTrSP06xpw==
+X-Received: by 2002:a17:902:23:: with SMTP id 32mr21532842pla.214.1566858314318;
+        Mon, 26 Aug 2019 15:25:14 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id o24sm27922989pfp.135.2019.08.26.15.25.13
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 26 Aug 2019 15:25:13 -0700 (PDT)
+Date:   Mon, 26 Aug 2019 15:25:11 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Burton <paul.burton@mips.com>, od@zcrc.me,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] remoteproc: ingenic: Added remoteproc driver
+Message-ID: <20190826222511.GJ1263@builder>
+References: <20190729183109.18283-1-paul@crapouillou.net>
+ <20190729183109.18283-3-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190823071021.5598-1-linus.walleij@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190729183109.18283-3-paul@crapouillou.net>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Mon 29 Jul 11:31 PDT 2019, Paul Cercueil wrote:
 
-On Fri, Aug 23, 2019 at 09:10:21AM +0200, Linus Walleij wrote:
-> This switches the TSC2007 to use a GPIO descriptor to read
-> the pendown GPIO line.
+> This driver is used to boot, communicate with and load firmwares to the
+> MIPS co-processor found in the VPU hardware of the JZ47xx SoCs from
+> Ingenic.
 > 
-> As this will make the gpiolib start to respect polarity
-> inversion flags on the GPIO lines, drop the inversion when
-> reading the line with gpio_get_value(), fix two offenders
-> in the i.MX device trees, and also emphasize the importance
-> of marking the polarity right in the device tree bindings.
-> 
-> Cc: Denis Carikli <denis@eukrea.com>
-> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> Cc: NXP Linux Team <linux-imx@nxp.com>
-> Cc: H. Nikolaus Schaller <hns@goldelico.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > ---
-> ChangeLog v1->v2:
-> - Drop inversion on the GPIO descriptor value, rely on the
->   gpiolib to handle polarity inversion.
-> - Comb through device trees, identify two offenders, fix
->   them as part of the patch for a clean cut.
-> - Also fix the device tree bindings.
-> ---
->  .../bindings/input/touchscreen/tsc2007.txt         |  5 +++--
->  arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi       |  3 ++-
->  arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi       |  3 ++-
->  drivers/input/touchscreen/tsc2007.h                |  4 +++-
->  drivers/input/touchscreen/tsc2007_core.c           | 14 +++++++-------
->  5 files changed, 17 insertions(+), 12 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> index ed00f61b8c08..b08b54d49699 100644
-> --- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> +++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> @@ -7,7 +7,8 @@ Required properties:
+> Notes:
+>     v2: Remove exception for always-mapped memories
+> 
+>  drivers/remoteproc/Kconfig         |   8 +
+>  drivers/remoteproc/Makefile        |   1 +
+>  drivers/remoteproc/ingenic_rproc.c | 285 +++++++++++++++++++++++++++++
+>  3 files changed, 294 insertions(+)
+>  create mode 100644 drivers/remoteproc/ingenic_rproc.c
+> 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 28ed306982f7..a0be40e2098d 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -214,6 +214,14 @@ config STM32_RPROC
 >  
->  Optional properties:
->  - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
-> -  The penirq pin goes to low when the panel is touched.
-> +  The penirq pin goes to low when the panel is touched, so make sure to tag
-> +  the GPIO line with GPIO_ACTIVE_LOW.
+>  	  This can be either built-in or a loadable module.
+>  
+> +config INGENIC_RPROC
+> +	tristate "Ingenic JZ47xx VPU remoteproc support"
+> +	depends on MIPS || COMPILE_TEST
+> +	help
+> +	  Say y or m here to support the VPU in the JZ47xx SoCs from Ingenic.
+> +	  This can be either built-in or a loadable module.
+> +	  If unsure say N.
+> +
+>  endif # REMOTEPROC
+>  
+>  endmenu
+> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
+> index 00f09e658cb3..6eb0137abbc7 100644
+> --- a/drivers/remoteproc/Makefile
+> +++ b/drivers/remoteproc/Makefile
+> @@ -10,6 +10,7 @@ remoteproc-y				+= remoteproc_sysfs.o
+>  remoteproc-y				+= remoteproc_virtio.o
+>  remoteproc-y				+= remoteproc_elf_loader.o
+>  obj-$(CONFIG_IMX_REMOTEPROC)		+= imx_rproc.o
+> +obj-$(CONFIG_INGENIC_RPROC)			+= ingenic_rproc.o
+>  obj-$(CONFIG_OMAP_REMOTEPROC)		+= omap_remoteproc.o
+>  obj-$(CONFIG_WKUP_M3_RPROC)		+= wkup_m3_rproc.o
+>  obj-$(CONFIG_DA8XX_REMOTEPROC)		+= da8xx_remoteproc.o
+> diff --git a/drivers/remoteproc/ingenic_rproc.c b/drivers/remoteproc/ingenic_rproc.c
+> new file mode 100644
+> index 000000000000..6fe0530c83a6
+> --- /dev/null
+> +++ b/drivers/remoteproc/ingenic_rproc.c
+> @@ -0,0 +1,285 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Ingenic JZ47xx remoteproc driver
+> + * Copyright 2019, Paul Cercueil <paul@crapouillou.net>
+> + */
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/remoteproc.h>
+> +
+> +#include "remoteproc_internal.h"
+> +
+> +#define REG_AUX_CTRL		0x0
+> +#define REG_AUX_MSG_ACK		0x10
+> +#define REG_AUX_MSG		0x14
+> +#define REG_CORE_MSG_ACK	0x18
+> +#define REG_CORE_MSG		0x1C
+> +
+> +#define AUX_CTRL_SLEEP		BIT(31)
+> +#define AUX_CTRL_MSG_IRQ_EN	BIT(3)
+> +#define AUX_CTRL_NMI_RESETS	BIT(2)
+> +#define AUX_CTRL_NMI		BIT(1)
+> +#define AUX_CTRL_SW_RESET	BIT(0)
+> +
+> +struct vpu_mem_map {
+> +	const char *name;
+> +	unsigned int da;
+> +};
+> +
+> +struct vpu_mem_info {
+> +	const struct vpu_mem_map *map;
+> +	unsigned long len;
+> +	void __iomem *base;
+> +};
+> +
+> +static const struct vpu_mem_map vpu_mem_map[] = {
+> +	{ "tcsm0", 0x132b0000 },
+> +	{ "tcsm1", 0xf4000000 },
+> +	{ "sram",  0x132f0000 },
+> +};
+> +
+> +/* Device data */
+> +struct vpu {
+> +	int irq;
+> +	struct clk *vpu_clk;
+> +	struct clk *aux_clk;
+> +	void __iomem *aux_base;
+> +	struct vpu_mem_info mem_info[ARRAY_SIZE(vpu_mem_map)];
+> +	struct device *dev;
+> +};
+> +
+> +static int ingenic_rproc_prepare(struct rproc *rproc)
 
-I think this is too strong. I am sure that one can come up with a way to
-connect the attention signal though polarity inverter and then one would
-have to specify GPIO_ACTIVE_HIGH in the DT.
+So I presume aux_clk and vpu_clk are required by the load callback?
 
-Can we say:
+> +{
+> +	struct vpu *vpu = rproc->priv;
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(vpu->vpu_clk);
 
-The penirq pin goes to low when the panel is touched, so GPIO line
-should normally be tagged with GPIO_ACTIVE_LOW.
+Please use the clk_bulk API instead.
 
-Thanks.
+> +	if (ret) {
+> +		dev_err(vpu->dev, "Unable to start VPU clock: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(vpu->aux_clk);
+> +	if (ret) {
+> +		dev_err(vpu->dev, "Unable to start AUX clock: %d\n", ret);
+> +		goto err_disable_vpu_clk;
+> +	}
+> +
+> +	return 0;
+> +
+> +err_disable_vpu_clk:
+> +	clk_disable_unprepare(vpu->vpu_clk);
+> +	return ret;
+> +}
+> +
+> +static void ingenic_rproc_unprepare(struct rproc *rproc)
+> +{
+> +	struct vpu *vpu = rproc->priv;
+> +
+> +	clk_disable_unprepare(vpu->aux_clk);
+> +	clk_disable_unprepare(vpu->vpu_clk);
+> +}
+> +
+> +static int ingenic_rproc_start(struct rproc *rproc)
+> +{
+> +	struct vpu *vpu = rproc->priv;
+> +	u32 ctrl;
+> +
+> +	enable_irq(vpu->irq);
+> +
+> +	/* Reset the AUX and enable message IRQ */
+> +	ctrl = AUX_CTRL_NMI_RESETS | AUX_CTRL_NMI | AUX_CTRL_MSG_IRQ_EN;
+> +	writel(ctrl, vpu->aux_base + REG_AUX_CTRL);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ingenic_rproc_stop(struct rproc *rproc)
+> +{
+> +	struct vpu *vpu = rproc->priv;
+> +
+> +	/* Keep AUX in reset mode */
+> +	writel(AUX_CTRL_SW_RESET, vpu->aux_base + REG_AUX_CTRL);
+> +
+> +	disable_irq_nosync(vpu->irq);
 
--- 
-Dmitry
+The _nosync here mean that we might return to rproc_stop(), which will
+call ingenic_rproc_unprepare(). Is there any relationship between your
+clocks and the memory used by virtio?
+
+> +
+> +	return 0;
+> +}
+> +
+> +static void ingenic_rproc_kick(struct rproc *rproc, int vqid)
+> +{
+> +	struct vpu *vpu = rproc->priv;
+> +
+> +	writel(vqid, vpu->aux_base + REG_CORE_MSG);
+> +}
+> +
+> +static void *ingenic_rproc_da_to_va(struct rproc *rproc, u64 da, int len)
+> +{
+> +	struct vpu *vpu = rproc->priv;
+> +	void __iomem *va = NULL;
+> +	unsigned int i;
+> +
+> +	if (len <= 0)
+> +		return NULL;
+> +
+> +	for (i = 0; i < ARRAY_SIZE(vpu_mem_map); i++) {
+> +		const struct vpu_mem_info *info = &vpu->mem_info[i];
+> +		const struct vpu_mem_map *map = info->map;
+> +
+> +		if (da >= map->da && (da + len) < (map->da + info->len)) {
+> +			va = info->base + (da - map->da);
+> +			break;
+> +		}
+> +	}
+> +
+> +	return (__force void *)va;
+> +}
+> +
+> +static struct rproc_ops ingenic_rproc_ops = {
+> +	.prepare = ingenic_rproc_prepare,
+> +	.unprepare = ingenic_rproc_unprepare,
+> +	.start = ingenic_rproc_start,
+> +	.stop = ingenic_rproc_stop,
+> +	.kick = ingenic_rproc_kick,
+> +	.da_to_va = ingenic_rproc_da_to_va,
+> +};
+> +
+> +static irqreturn_t vpu_interrupt(int irq, void *data)
+> +{
+> +	struct rproc *rproc = data;
+> +	struct vpu *vpu = rproc->priv;
+> +	u32 vring;
+> +
+> +	vring = readl(vpu->aux_base + REG_AUX_MSG);
+> +
+> +	/* Ack the interrupt */
+> +	writel(0, vpu->aux_base + REG_AUX_MSG_ACK);
+> +
+> +	return rproc_vq_interrupt(rproc, vring);
+> +}
+> +
+> +#ifdef CONFIG_OF
+
+You don't need #ifdef here.
+
+> +static const struct of_device_id ingenic_rproc_of_matches[] = {
+
+Please move this down just before the ingenic_rproc_driver.
+
+> +	{ .compatible = "ingenic,jz4770-vpu-rproc", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, ingenic_rproc_of_matches);
+> +#endif
+> +
+> +static void ingenic_rproc_free(void *rproc)
+> +{
+> +	rproc_free(rproc);
+> +}
+> +
+> +static void ingenic_rproc_unregister(void *rproc)
+> +{
+> +	rproc_del(rproc);
+> +	rproc_shutdown(rproc);
+> +}
+> +
+> +static int ingenic_rproc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *mem;
+> +	struct rproc *rproc;
+> +	struct vpu *vpu;
+> +	unsigned int i;
+> +	int ret;
+> +
+> +	rproc = rproc_alloc(dev, "ingenic-vpu",
+> +			    &ingenic_rproc_ops, NULL, sizeof(*vpu));
+> +	if (!rproc)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_add_action_or_reset(dev, ingenic_rproc_free, rproc);
+
+Please write a patch adding devm_rproc_alloc() to the core.
+
+> +	if (ret) {
+> +		dev_err(dev, "Unable to add action");
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, rproc);
+
+I don't see you getting the drvdata, so please skip this.
+
+> +	vpu = rproc->priv;
+> +	vpu->dev = &pdev->dev;
+> +
+> +	mem = platform_get_resource_byname(pdev, IORESOURCE_MEM, "aux");
+> +	vpu->aux_base = devm_ioremap_resource(dev, mem);
+> +	if (IS_ERR(vpu->aux_base)) {
+> +		dev_err(dev, "Failed to ioremap");
+> +		return PTR_ERR(vpu->aux_base);
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(vpu_mem_map); i++) {
+> +		mem = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> +						   vpu_mem_map[i].name);
+> +
+> +		vpu->mem_info[i].base = devm_ioremap_resource(dev, mem);
+> +		if (IS_ERR(vpu->mem_info[i].base)) {
+> +			ret = PTR_ERR(vpu->mem_info[i].base);
+> +			dev_err(dev, "Failed to ioremap");
+> +			return ret;
+> +		}
+> +
+> +		vpu->mem_info[i].len = resource_size(mem);
+> +		vpu->mem_info[i].map = &vpu_mem_map[i];
+> +	}
+> +
+> +	vpu->vpu_clk = devm_clk_get(dev, "vpu");
+> +	if (IS_ERR(vpu->vpu_clk)) {
+> +		dev_err(dev, "Failed to get VPU clock");
+> +		return PTR_ERR(vpu->vpu_clk);
+> +	}
+> +
+> +	vpu->aux_clk = devm_clk_get(dev, "aux");
+> +	if (IS_ERR(vpu->aux_clk)) {
+> +		dev_err(dev, "Failed to get AUX clock");
+> +		return PTR_ERR(vpu->aux_clk);
+> +	}
+> +
+> +	vpu->irq = platform_get_irq(pdev, 0);
+> +	if (vpu->irq < 0) {
+> +		dev_err(dev, "Failed to get platform IRQ");
+> +		return vpu->irq;
+> +	}
+> +
+> +	ret = devm_request_irq(dev, vpu->irq, vpu_interrupt, 0, "VPU", rproc);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to request IRQ");
+> +		return ret;
+> +	}
+> +
+> +	disable_irq_nosync(vpu->irq);
+> +
+> +	ret = rproc_add(rproc);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to register remote processor");
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_add_action_or_reset(dev, ingenic_rproc_unregister, rproc);
+
+Please add a devm_rproc_add() to the core.
+
+> +	if (ret) {
+> +		dev_err(dev, "Unable to add action");
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static struct platform_driver ingenic_rproc_driver = {
+> +	.probe = ingenic_rproc_probe,
+> +	.driver = {
+> +		.name = "ingenic-vpu",
+> +		.owner = THIS_MODULE,
+
+module_platform_driver() will assign .module for you.
+
+Regards,
+Bjorn
+
+> +		.of_match_table = of_match_ptr(ingenic_rproc_of_matches),
+> +	},
+> +};
+> +module_platform_driver(ingenic_rproc_driver);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_AUTHOR("Paul Cercueil <paul@crapouillou.net>");
+> +MODULE_DESCRIPTION("Ingenic JZ47xx Remote Processor control driver");
+> -- 
+> 2.21.0.593.g511ec345e18
+> 
