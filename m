@@ -2,99 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B9159CA59
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 09:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F48F9CA7A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 09:32:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730071AbfHZH2M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 03:28:12 -0400
-Received: from mga05.intel.com ([192.55.52.43]:62576 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729925AbfHZH2L (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 03:28:11 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 00:28:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
-   d="scan'208";a="380432368"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by fmsmga006.fm.intel.com with ESMTP; 26 Aug 2019 00:28:08 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     linux-mmc@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, adrian.hunter@intel.com,
-        ulf.hansson@linaro.org, michal.simek@xilinx.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com,
-        Ramuthevar Vadivel Muruganx 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Subject: [PATCH v1 2/2] mmc: sdhci-of-arasan: Add Support for Intel LGM eMMC
-Date:   Mon, 26 Aug 2019 15:28:00 +0800
-Message-Id: <20190826072800.38413-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190826072800.38413-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20190826072800.38413-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1730160AbfHZHbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 03:31:53 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:10924 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726896AbfHZHbw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 03:31:52 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d638ae80000>; Mon, 26 Aug 2019 00:31:52 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 26 Aug 2019 00:31:51 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 26 Aug 2019 00:31:51 -0700
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 26 Aug
+ 2019 07:31:51 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Mon, 26 Aug 2019 07:31:51 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d638ae20000>; Mon, 26 Aug 2019 00:31:50 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>
+CC:     <kishon@ti.com>, <gustavo.pimentel@synopsys.com>,
+        <digetx@gmail.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH 0/6] PCI: tegra: Enable PCIe C5 controller of Tegra194 in p2972-0000 platform
+Date:   Mon, 26 Aug 2019 13:01:37 +0530
+Message-ID: <20190826073143.4582-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
+MIME-Version: 1.0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1566804712; bh=6X+WlnCVjo8MVsTv4k2C3wR1RSTOieIbLP/dETqEQcY=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=pnk2JHxEr/a4/h6s3DweEVnws1WizOX0AchEjwIVii7n/xtMDFwvWuWBv45I8sZXZ
+         e+zZc9xBOzuZbKPTxoyxQrhmInwePOxOAZR5LvJQMofH7QfKDdxVAR1Jrs1gGNO689
+         XAT0ynAAzGHNW14RM02EAoKH9asEUZq3ojs1/xNBGZnppHqmqmVVmJOqEsmETyTOud
+         BEO8fV9dCnns8qfQ+hdZLmUCwv6FvVHUg09OBAfQTO5WwVF4rV8YLs80dYPpTHK1t6
+         eM6OmH0OgKcB0KT5dIab9w3r668INC/A52moZAmmLhYwH6CvMyYmDR9/9pHnOKobj3
+         dqB1UBKw0NZcQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ramuthevar Vadivel Muruganx <vadivel.muruganx.ramuthevar@linux.intel.com>
+This patch series enables Tegra194's C5 controller which owns x16 slot in
+p2972-0000 platform. C5 controller's PERST# and CLKREQ# are not configured as
+output and bi-directional signals by default and hence they need to be
+configured explicitly. Also, x16 slot's 3.3V and 12V supplies are controlled
+through GPIOs and hence they need to be enabled through regulator framework.
+This patch series adds required infrastructural support to address both the
+aforementioned requirements.
+Testing done on p2972-0000 platform
+- Able to enumerate devices connected to x16 slot (owned by C5 controller)
+- Enumerated device's functionality verified
+- Suspend-Resume sequence is verified with device connected to x16 slot
 
-The current arasan sdhci PHY configuration isn't compatible
-with the PHY on Intel's LGM(Lightning Mountain) SoC devices.
+Vidya Sagar (6):
+  dt-bindings: PCI: tegra: Add sideband pins configuration entries
+  arm64: tegra: Add configuration for PCIe C5 sideband signals
+  PCI: tegra: Add support to configure sideband pins
+  dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
+  arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
+  PCI: tegra: Add support to enable slot regulators
 
-Therefore, add a new compatible, to adapt the Intel's LGM
-eMMC PHY with arasan-sdhc controller to configure the PHY.
+ .../bindings/pci/nvidia,tegra194-pcie.txt     | 16 +++++
+ .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 24 +++++++
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  4 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      | 38 +++++++++-
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 71 +++++++++++++++++++
+ 5 files changed, 151 insertions(+), 2 deletions(-)
 
-Signed-off-by: Ramuthevar Vadivel Muruganx <vadivel.muruganx.ramuthevar@linux.intel.com>
----
- drivers/mmc/host/sdhci-of-arasan.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-index b12abf9b15f2..7023cbec4017 100644
---- a/drivers/mmc/host/sdhci-of-arasan.c
-+++ b/drivers/mmc/host/sdhci-of-arasan.c
-@@ -114,6 +114,12 @@ static const struct sdhci_arasan_soc_ctl_map rk3399_soc_ctl_map = {
- 	.hiword_update = true,
- };
- 
-+static const struct sdhci_arasan_soc_ctl_map intel_lgm_emmc_soc_ctl_map = {
-+	.baseclkfreq = { .reg = 0xa0, .width = 8, .shift = 2 },
-+	.clockmultiplier = { .reg = 0, .width = -1, .shift = -1 },
-+	.hiword_update = false,
-+};
-+
- /**
-  * sdhci_arasan_syscon_write - Write to a field in soc_ctl registers
-  *
-@@ -373,6 +379,11 @@ static struct sdhci_arasan_of_data sdhci_arasan_rk3399_data = {
- 	.pdata = &sdhci_arasan_cqe_pdata,
- };
- 
-+static struct sdhci_arasan_of_data intel_lgm_emmc_data = {
-+	.soc_ctl_map = &intel_lgm_emmc_soc_ctl_map,
-+	.pdata = &sdhci_arasan_cqe_pdata,
-+};
-+
- #ifdef CONFIG_PM_SLEEP
- /**
-  * sdhci_arasan_suspend - Suspend method for the driver
-@@ -474,6 +485,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
- 		.compatible = "rockchip,rk3399-sdhci-5.1",
- 		.data = &sdhci_arasan_rk3399_data,
- 	},
-+	{
-+		.compatible = "intel,lgm-sdhci-5.1-emmc",
-+		.data = &intel_lgm_emmc_data,
-+	},
- 	/* Generic compatible below here */
- 	{
- 		.compatible = "arasan,sdhci-8.9a",
 -- 
-2.11.0
+2.17.1
 
