@@ -2,166 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41E4D9D2AC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89C9F9D2EA
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:38:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729015AbfHZP1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:27:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41090 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728324AbfHZP1S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 11:27:18 -0400
-Received: from [192.168.1.17] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 98BC52173E;
-        Mon, 26 Aug 2019 15:27:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566833236;
-        bh=inrgG0lTnLbswrs0VGuNVeaCYHuBPS8kAFlXEXDFxNc=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=chACUPQIMjaAy/PcwIJN/lpL21BLUIoD1ZsfTWl+1UZOaILNi9pZtBo+LB8OUyc8u
-         mrBJVCHyK1116+jz+zDK/amU0qgh5eIv42cWwJ05qQNYL5PQR/O9ODUdi4jix7RrPt
-         Psi6dGv5lvcTnxGzv8Y0M6mUvLZQVdMBmwx1f0ME=
-Subject: Re: [RESEND PATCHv4 1/1] drivers/amba: add reset control to amba bus
- probe
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-References: <20190820145834.7301-1-dinguyen@kernel.org>
- <20190820145834.7301-2-dinguyen@kernel.org>
- <CACRpkdasbXuqUkO3NjMGBU_ePEBT23BS1eP-bigB0_g494LgvQ@mail.gmail.com>
- <e7e986a2-762e-674b-608b-5ee5b013935b@kernel.org>
- <1566809829.3842.4.camel@pengutronix.de>
-From:   Dinh Nguyen <dinguyen@kernel.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
- mQINBFEnvWwBEAC44OQqJjuetSRuOpBMIk3HojL8dY1krl8T8GJjfgc/Gh97CfVbrqhV5yQ3
- Sk/MW9mxO9KNvQCbZtthfn62YHmroNwipjZ6wKOMfKdtJR4+8JW/ShIJYnrMfwN8Wki6O+5a
- yPNNCeENHleV0FLVXw3aACxOcjEzGJHYmg4UC+56rfoxPEhKF6aGBTV5aGKMtQy77ywuqt12
- c+hlRXHODmXdIeT2V4/u/AsFNAq6UFUEvHrVj+dMIyv2VhjRvkcESIGnG12ifPdU7v/+wom/
- smtfOAGojgTCqpwd0Ay2xFzgGnSCIFRHp0I/OJqhUcwAYEAdgHSBVwiyTQx2jP+eDu3Q0jI3
- K/x5qrhZ7lj8MmJPJWQOSYC4fYSse2oVO+2msoMTvMi3+Jy8k+QNH8LhB6agq7wTgF2jodwO
- yij5BRRIKttp4U62yUgfwbQtEUvatkaBQlG3qSerOzcdjSb4nhRPxasRqNbgkBfs7kqH02qU
- LOAXJf+y9Y1o6Nk9YCqb5EprDcKCqg2c8hUya8BYqo7y+0NkBU30mpzhaJXncbCMz3CQZYgV
- 1TR0qEzMv/QtoVuuPtWH9RCC83J5IYw1uFUG4RaoL7Z03fJhxGiXx3/r5Kr/hC9eMl2he6vH
- 8rrEpGGDm/mwZOEoG5D758WQHLGH4dTAATg0+ZzFHWBbSnNaSQARAQABtCFEaW5oIE5ndXll
- biA8ZGluZ3V5ZW5Aa2VybmVsLm9yZz6JAjgEEwECACIFAlbG5oQCGwMGCwkIBwMCBhUIAgkK
- CwQWAgMBAh4BAheAAAoJEBmUBAuBoyj0fIgQAICrZ2ceRWpkZv1UPM/6hBkWwOo3YkzSQwL+
- AH15hf9xx0D5mvzEtZ97ZoD0sAuB+aVIFwolet+nw49Q8HA3E/3j0DT7sIAqJpcPx3za+kKT
- twuQ4NkQTTi4q5WCpA5b6e2qzIynB50b3FA6bCjJinN06PxhdOixJGv1qDDmJ01fq2lA7/PL
- cny/1PIo6PVMWo9nf77L6iXVy8sK/d30pa1pjhMivfenIleIPYhWN1ZdRAkH39ReDxdqjQXN
- NHanNtsnoCPFsqeCLmuUwcG+XSTo/gEM6l2sdoMF4qSkD4DdrVf5rsOyN4KJAY9Uqytn4781
- n6l1NAQSRr0LPT5r6xdQ3YXIbwUfrBWh2nDPm0tihuHoH0CfyJMrFupSmjrKXF84F3cq0DzC
- yasTWUKyW/YURbWeGMpQH3ioDLvBn0H3AlVoSloaRzPudQ6mP4O8mY0DZQASGf6leM82V3t0
- Gw8MxY9tIiowY7Yl2bHqXCorPlcEYXjzBP32UOxIK7y7AQ1JQkcv6pZ0/6lX6hMshzi9Ydw0
- m8USfFRZb48gsp039gODbSMCQ2NfxBEyUPw1O9nertCMbIO/0bHKkP9aiHwg3BPwm3YL1UvM
- ngbze/8cyjg9pW3Eu1QAzMQHYkT1iiEjJ8fTssqDLjgJyp/I3YHYUuAf3i8SlcZTusIwSqnD
- uQINBFEnvWwBEADZqma4LI+vMqJYe15fxnX8ANw+ZuDeYHy17VXqQ7dA7n8E827ndnoXoBKB
- 0n7smz1C0I9StarHQPYTUciMLsaUpedEfpYgqLa7eRLFPvk/cVXxmY8Pk+aO8zHafr8yrFB1
- cYHO3Ld8d/DvF2DuC3iqzmgXzaRQhvQZvJ513nveCa2zTPPCj5w4f/Qkq8OgCz9fOrf/CseM
- xcP3Jssyf8qTZ4CTt1L6McRZPA/oFNTTgS/KA22PMMP9i8E6dF0Nsj0MN0R7261161PqfA9h
- 5c+BBzKZ6IHvmfwY+Fb0AgbqegOV8H/wQYCltPJHeA5y1kc/rqplw5I5d8Q6B29p0xxXSfaP
- UQ/qmXUkNQPNhsMnlL3wRoCol60IADiEyDJHVZRIl6U2K54LyYE1vkf14JM670FsUH608Hmk
- 30FG8bxax9i+8Muda9ok/KR4Z/QPQukmHIN9jVP1r1C/aAEvjQ2PK9aqrlXCKKenQzZ8qbeC
- rOTXSuJgWmWnPWzDrMxyEyy+e84bm+3/uPhZjjrNiaTzHHSRnF2ffJigu9fDKAwSof6SwbeH
- eZcIM4a9Dy+Ue0REaAqFacktlfELeu1LVzMRvpIfPua8izTUmACTgz2kltTaeSxAXZwIziwY
- prPU3cfnAjqxFHO2TwEpaQOMf8SH9BSAaCXArjfurOF+Pi3lKwARAQABiQIfBBgBAgAJBQJR
- J71sAhsMAAoJEBmUBAuBoyj0MnIQAI+bcNsfTNltf5AbMJptDgzISZJrYCXuzOgv4+d1CubD
- 83s0k6VJgsiCIEpvELQJsr58xB6l+o3yTBZRo/LViNLk0jF4CmCdXWjTyaQAIceEdlaeeTGH
- d5GqAud9rv9q1ERHTcvmoEX6pwv3m66ANK/dHdBV97vXacl+BjQ71aRiAiAFySbJXnqj+hZQ
- K8TCI/6TOtWJ9aicgiKpmh/sGmdeJCwZ90nxISvkxDXLEmJ1prvbGc74FGNVNTW4mmuNqj/p
- oNr0iHan8hjPNXwoyLNCtj3I5tBmiHZcOiHDUufHDyKQcsKsKI8kqW3pJlDSACeNpKkrjrib
- 3KLQHSEhTQCt3ZUDf5xNPnFHOnBjQuGkumlmhkgD5RVguki39AP2BQYp/mdk1NCRQxz5PR1B
- 2w0QaTgPY24chY9PICcMw+VeEgHZJAhuARKglxiYj9szirPd2kv4CFu2w6a5HNMdVT+i5Hov
- cJEJNezizexE0dVclt9OS2U9Xwb3VOjs1ITMEYUf8T1j83iiCCFuXqH4U3Eji0nDEiEN5Ac0
- Jn/EGOBG2qGyKZ4uOec9j5ABF7J6hyO7H6LJaX5bLtp0Z7wUbyVaR4UIGdIOchNgNQk4stfm
- JiyuXyoFl/1ihREfvUG/e7+VAAoOBnMjitE5/qUERDoEkkuQkMcAHyEyd+XZMyXY
-Message-ID: <c080d163-720c-7a15-857a-fc619eb8d048@kernel.org>
-Date:   Mon, 26 Aug 2019 10:27:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1733024AbfHZPiq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:38:46 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:40108 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729289AbfHZPip (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:45 -0400
+Received: by mail-wm1-f65.google.com with SMTP id c5so16125017wmb.5;
+        Mon, 26 Aug 2019 08:38:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5/JN6uYb6Ltt98oMBprPmMJCQ9NUBW/kztrckS3ANvk=;
+        b=C/Yo0orMvf4IG+QJOrsWt5xIUrf2v5jD0UxUCH13cZem3LihB8dGWppH+rfWbFSiZ0
+         z1g0kXp7SG/fVNyipsTD4JrDQZFyAGHyZEdpbJjFBotomzyYdDa03LdOmwXtoIfD+uv1
+         5+diKPHgnIp9msnR/9Q+nIsgU+gI8ozZ/lroQcGzUhkEg+pG1WDP6PnT8lFvhtL4yymE
+         8+BFejpg34mBL+nSrNpspuFxCburY+yz6wvRE6VB0bLFcROnEWDd1E5OBMHrRbrDZrF8
+         y05nixQlUstkmWn9fR2lzW7staLaTtlFzwTb8avWkObcV8j9SjcubFnsV+ai1q/VSZJd
+         rNIQ==
+X-Gm-Message-State: APjAAAW+Em/HG+uRPOc6wE1GkbpgLk1Fh2ANxVWhk4itrwqB66pYTdcW
+        ivOWpVDx2dGEEA4xFmcpoO7bt7uzfZM=
+X-Google-Smtp-Source: APXvYqz6k0m1OCGHUiJ4OnGEKQyzGpm4tnivwPcoBNTuZ+jjYF+s+0PdhAXAhI1A6chPPoWGfmhDAw==
+X-Received: by 2002:a7b:c3d0:: with SMTP id t16mr23715323wmj.25.1566833923520;
+        Mon, 26 Aug 2019 08:38:43 -0700 (PDT)
+Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
+        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2019 08:38:42 -0700 (PDT)
+From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
+        Ilya Ledvich <ilya@compulab.co.il>,
+        Igor Grinberg <grinberg@compulab.co.il>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 01/12] ARM: dts: imx7d: cl-som-imx7 imx7d-sbc-imx7: move USB
+Date:   Mon, 26 Aug 2019 16:37:49 +0100
+Message-Id: <20190826153800.35400-1-git@andred.net>
+X-Mailer: git-send-email 2.23.0.rc1
 MIME-Version: 1.0
-In-Reply-To: <1566809829.3842.4.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp,
+Whether and which USB port is enabled and how they
+are powered is a function of the carrier board, not
+of the SoM. Different carrier boards can have different
+ports enabled / wired up, and power them differently;
+so this should really move into the respective DTS.
 
-On 8/26/19 3:57 AM, Philipp Zabel wrote:
-> Hi Dinh, Linus,
-> 
-> On Fri, 2019-08-23 at 10:42 -0500, Dinh Nguyen wrote:
->>
->> On 8/23/19 4:19 AM, Linus Walleij wrote:
->>> On Tue, Aug 20, 2019 at 4:58 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
->>>
->>>> @@ -401,6 +402,26 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
->>>>         ret = amba_get_enable_pclk(dev);
->>>>         if (ret == 0) {
->>>>                 u32 pid, cid;
->>>> +               int count;
->>>> +               struct reset_control *rstc;
->>>> +
->>>> +               /*
->>>> +                * Find reset control(s) of the amba bus and de-assert them.
->>>> +                */
->>>> +               count = reset_control_get_count(&dev->dev);
-> 
-> The reset_control_get_count() inline stub returns -ENOENT, so the
-> compiler can throw away the complete loop.
-> 
->>>> +               while (count > 0) {
->>>> +                       rstc = of_reset_control_get_shared_by_index(dev->dev.of_node, count - 1);
-> 
-> Since resets are looked up with of_reset_control_get, I'd use
-> of_reset_control_get_count() above for consistency. But see below:
-> 
+Do so and update the USB power supply to reflect
+the actual situation on the sbc-imx7 carrier board.
 
-reset_control_get_count() ultimately calls of_reset_control_get_count()
-and it looks like of_reset_control_get_count() is not exported.
+Signed-off-by: André Draszik <git@andred.net>
+Cc: Ilya Ledvich <ilya@compulab.co.il>
+Cc: Igor Grinberg <grinberg@compulab.co.il>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+---
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 24 ------------------------
+ arch/arm/boot/dts/imx7d-sbc-imx7.dts    | 13 +++++++++++++
+ 2 files changed, 13 insertions(+), 24 deletions(-)
 
->>>> +                       if (IS_ERR(rstc)) {
->>>> +                               if (PTR_ERR(rstc) == -EPROBE_DEFER)
->>>> +                                       ret = -EPROBE_DEFER;
->>>> +                               else
->>>> +                                       dev_err(&dev->dev, "Can't get amba reset!\n");
->>>> +                               break;
->>>> +                       }
->>>> +                       reset_control_deassert(rstc);
->>>> +                       reset_control_put(rstc);
->>>> +                       count--;
->>>> +               }
-> 
-> It looks like the order of deassertions is irrelevant. If so,
-> You can use of_reset_control_array_get() to simplify this:
-> 
-> +		rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
-> +		if (IS_ERR(rstc)) {
-> +			if (PTR_ERR(rstc) != -EPROBE_DEFER)
-> +				dev_err(&dev->dev, "Can't get amba reset!\n");
-> +			return PTR_ERR(rstc);
-> +		}
-> +		reset_control_deassert(rstc);
-> +		reset_control_put(rstc);
-> 
+diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+index 62d5e9a4a781..6f7e85cf0c28 100644
+--- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+@@ -22,15 +22,6 @@
+ 		device_type = "memory";
+ 		reg = <0x80000000 0x10000000>; /* 256 MB - minimal configuration */
+ 	};
+-
+-	reg_usb_otg1_vbus: regulator-vbus {
+-		compatible = "regulator-fixed";
+-		regulator-name = "usb_otg1_vbus";
+-		regulator-min-microvolt = <5000000>;
+-		regulator-max-microvolt = <5000000>;
+-		gpio = <&gpio1 5 GPIO_ACTIVE_HIGH>;
+-		enable-active-high;
+-	};
+ };
+ 
+ &cpu0 {
+@@ -193,13 +184,6 @@
+ 	status = "okay";
+ };
+ 
+-&usbotg1 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_usbotg1>;
+-	vbus-supply = <&reg_usb_otg1_vbus>;
+-	status = "okay";
+-};
+-
+ &usdhc3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc3>;
+@@ -278,11 +262,3 @@
+ 		>;
+ 	};
+ };
+-
+-&iomuxc_lpsr {
+-	pinctrl_usbotg1: usbotg1grp {
+-		fsl,pins = <
+-			MX7D_PAD_LPSR_GPIO1_IO05__GPIO1_IO5	0x14 /* OTG PWREN */
+-		>;
+-	};
+-};
+diff --git a/arch/arm/boot/dts/imx7d-sbc-imx7.dts b/arch/arm/boot/dts/imx7d-sbc-imx7.dts
+index f8a868552707..aab646903de3 100644
+--- a/arch/arm/boot/dts/imx7d-sbc-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-sbc-imx7.dts
+@@ -15,6 +15,14 @@
+ / {
+ 	model = "CompuLab SBC-iMX7";
+ 	compatible = "compulab,sbc-imx7", "compulab,cl-som-imx7", "fsl,imx7d";
++
++	reg_usb_vbus: regulator-usb-vbus {
++		compatible = "regulator-fixed";
++		regulator-name = "usb_vbus";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-always-on;
++	};
+ };
+ 
+ &usdhc1 {
+@@ -26,6 +34,11 @@
+ 	status = "okay";
+ };
+ 
++&&usbotg1 {
++	vbus-supply = <&reg_usb_vbus>;
++	status = "okay";
++};
++
+ &iomuxc {
+ 	pinctrl_usdhc1: usdhc1grp {
+ 		fsl,pins = <
+-- 
+2.23.0.rc1
 
-Thanks for the review! I'll post v5 shortly.
-
-Dinh
