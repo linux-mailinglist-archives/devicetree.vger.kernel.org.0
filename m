@@ -2,129 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39B229CA08
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 09:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B2D99CA37
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 09:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729901AbfHZHWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 03:22:08 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:51429 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727933AbfHZHWI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 03:22:08 -0400
-Received: from uno.localdomain (unknown [87.18.63.98])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E3890240005;
-        Mon, 26 Aug 2019 07:22:03 +0000 (UTC)
-Date:   Mon, 26 Aug 2019 09:23:30 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] drm: rcar-du: kms: Expand comment in vsps parsing
- routine
-Message-ID: <20190826072330.ymx52yr35tcaafrh@uno.localdomain>
-References: <20190825140135.12150-1-jacopo+renesas@jmondi.org>
- <20190825140135.12150-3-jacopo+renesas@jmondi.org>
- <20190825180603.GB5436@pendragon.ideasonboard.com>
+        id S1729988AbfHZHZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 03:25:47 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36551 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729969AbfHZHZq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 03:25:46 -0400
+Received: by mail-wr1-f68.google.com with SMTP id r3so14248380wrt.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 00:25:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=CGSQN1D6LMdbmgRSGuE1QGkShUk3nt2JdTILP9Ti30I=;
+        b=qT5sO3/VwNLT9TYqFJpq3GUIhwypqUCsOJYUBM/JGzJ/gCpXWQiNF1AM6Gi6hIqIsH
+         W+DNZxpwQSlQ/bWfL5331VrESChFxdIa8OBRlfuGlHAfYIZThkf6SUCakQ499aGtoD8A
+         xlRZGuz8leZeFBkz6lF+U7393CssphmGpF7rznn47Pg8bxx+9aMs1ws/oeRbl7qKpigs
+         SARsEA2jq6l7cLv0phk2SQ+9ynqJUrdGdcl795ULoIayT2/b2cjA3BCNFkdbAzZgcpfh
+         wyQ52xxVMQIlDFGRwLQaTMEjziHECD024y92rUV/T4MldmvJisruNiWMlWqgXxlMuIw5
+         5CSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=CGSQN1D6LMdbmgRSGuE1QGkShUk3nt2JdTILP9Ti30I=;
+        b=Faj2TeZIM+YcngMAXRo5R7qQA6tRLEMcOU3U8pb9fNMgMoyd7Vu98FI7xH+8YbpCEF
+         Slvbu5qprFryeBaIZfS2LX4Tjb47FQum7kr7Cb6ZYA6NOlW705ZYFJou7a+C3uKYvVRc
+         EeQ/wdiHs8L6QImv5xNjHILPhASLb5kdbVmrzMQlMLga9LgBjSP5SCE0zBzdkedOJ93Y
+         kMlF9bvLVJynPCzvEEcAqBJ2VlQIA1bJqonJLqxhrbO6Azcad4iBW1rlOAsykHCVImtq
+         MPKzRAoYrYdxjJ+Vj1gF09DXU462phDRUMjSVLDX4BAhyrkT67QpHR2/pERkSP6JAM28
+         kIvA==
+X-Gm-Message-State: APjAAAVs4d+5H2AGR9s0BrdCEa7DLrlgueDZEsM4HRZzoN7Wxk/M8MNP
+        s+RHiSVLalm1ewJdQc/BFoHYIQ==
+X-Google-Smtp-Source: APXvYqwlbtNtWnQBNuZa6LXcquUhpElWikUs08sQ+LU2PHstPRCWiPiyF+S0J+d1FpO1H6bp1Vu7DA==
+X-Received: by 2002:adf:e4c6:: with SMTP id v6mr19549498wrm.315.1566804344540;
+        Mon, 26 Aug 2019 00:25:44 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id a26sm10821324wmg.45.2019.08.26.00.25.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2019 00:25:43 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, jbrunet@baylibre.com,
+        devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-clk@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/5] dt-bindings: clk: meson: add sm1 periph clock controller bindings
+Date:   Mon, 26 Aug 2019 09:25:35 +0200
+Message-Id: <20190826072539.27725-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190826072539.27725-1-narmstrong@baylibre.com>
+References: <20190826072539.27725-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="4nmcyf3hbnqv5z7t"
-Content-Disposition: inline
-In-Reply-To: <20190825180603.GB5436@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Update the documentation to support clock driver for the Amlogic SM1 SoC
+and expose the GP1, DSU and the CPU 1, 2 & 3 clocks.
 
---4nmcyf3hbnqv5z7t
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+SM1 clock tree is very close, the main differences are :
+- each CPU core can achieve a different frequency, albeit a common PLL
+- a similar tree as the clock tree has been added for the DynamIQ Shared Unit
+- has a new GP1 PLL used for the DynamIQ Shared Unit
+- SM1 has additional clocks like for CSI, NanoQ an other components
 
-Hi Laurent,
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+---
+ .../devicetree/bindings/clock/amlogic,gxbb-clkc.txt          | 1 +
+ include/dt-bindings/clock/g12a-clkc.h                        | 5 +++++
+ 2 files changed, 6 insertions(+)
 
-On Sun, Aug 25, 2019 at 09:06:03PM +0300, Laurent Pinchart wrote:
-> Hi Jacopo,
->
-> Thank you for the patch.
->
-> How about changing the subject to "drm: rcar-du: Document DT backward
-> compatibility" ?
->
-> On Sun, Aug 25, 2019 at 04:01:35PM +0200, Jacopo Mondi wrote:
-> > Exand comment in the 'vsps' parsing routine to specify why the LIF
->
-> s/Exand/Expand/
->
-> > channel index is defaulted to 0 in case the second cell of the property
->
-> s/is defaulted to 0/defaults to 0/
->
-> > is not specified.
->
-> You could explain it here too :-)
->
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+index 6eaa52092313..7ccecd5c02c1 100644
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+@@ -11,6 +11,7 @@ Required Properties:
+ 		"amlogic,axg-clkc" for AXG SoC.
+ 		"amlogic,g12a-clkc" for G12A SoC.
+ 		"amlogic,g12b-clkc" for G12B SoC.
++		"amlogic,sm1-clkc" for SM1 SoC.
+ - clocks : list of clock phandle, one for each entry clock-names.
+ - clock-names : should contain the following:
+   * "xtal": the platform xtal
+diff --git a/include/dt-bindings/clock/g12a-clkc.h b/include/dt-bindings/clock/g12a-clkc.h
+index 8ccc29ac7a72..0837c1a7ae49 100644
+--- a/include/dt-bindings/clock/g12a-clkc.h
++++ b/include/dt-bindings/clock/g12a-clkc.h
+@@ -138,5 +138,10 @@
+ #define CLKID_VDEC_HEVCF			210
+ #define CLKID_TS				212
+ #define CLKID_CPUB_CLK				224
++#define CLKID_GP1_PLL				243
++#define CLKID_DSU_CLK				252
++#define CLKID_CPU1_CLK				253
++#define CLKID_CPU2_CLK				254
++#define CLKID_CPU3_CLK				255
+ 
+ #endif /* __G12A_CLKC_H */
+-- 
+2.22.0
 
-Expand comment in the 'vsps' parsing routine to specify the LIF
-channel index defaults to 0 in case the second cell of the property
-is not specified to remain compatible with older DT bindings.
-
-Could you take this in when applying this patch or want me to resend?
-
-Thanks
-  j
-
-
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > ---
-> >  drivers/gpu/drm/rcar-du/rcar_du_kms.c | 6 +++++-
-> >  1 file changed, 5 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> > index 2dc9caee8767..0d59f390de19 100644
-> > --- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> > +++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
-> > @@ -585,7 +585,11 @@ static int rcar_du_vsps_init(struct rcar_du_device *rcdu)
-> >
-> >  		vsps[j].crtcs_mask |= BIT(i);
-> >
-> > -		/* Store the VSP pointer and pipe index in the CRTC. */
-> > +		/*
-> > +		 * Store the VSP pointer and pipe index in the CRTC. If the
-> > +		 * second cell of the 'vsps' specifier isn't present, default
-> > +		 * to 0 to remain compatible with older DT bindings.
-> > +		 */
-> >  		rcdu->crtcs[i].vsp = &rcdu->vsps[j];
-> >  		rcdu->crtcs[i].vsp_pipe = cells >= 1 ? args.args[0] : 0;
-> >  	}
->
-> --
-> Regards,
->
-> Laurent Pinchart
-
---4nmcyf3hbnqv5z7t
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1jiPIACgkQcjQGjxah
-VjxMshAAr3ccgl1ODaTfliQFny+I2Lm5XYhTcvCU57WiEIL1h5lMtP3oE/AQO7/2
-1LHHSA2s4fKlTQR02FdGbFyN1lDDz86U+NuAWsiMo4+OMe83cqimLMSLwJp6a7ri
-mvmE3ihmPbDU7EAxnIG+o1GwZygdTgKmUPwflvV98WVS+cXk2oOAKwNFYH+NQG92
-by6j1kzgPAQHHT9pw29Hj/e6uU73Is5UgKNlSlFBWaB7snJle9eNPg/bfoB0+F2x
-sJgtbxm6QC8J9FlyOTJs9cDW/+2CkOJ9y6TyOZnMzQP/WyeNKBvC/U/e7eQy3lFM
-YZuWKxnKyzHUtx8SIRMweu8QDJvi4HhewqLRM4KIcEGq4079iXLuis0r0/gtUocL
-/jSEzwom+7C+jOmLMebAThYPZvw9eXRZl5gpBOeq0QrD+TltV6/SYyxLB1VLdV0d
-2BNRvWSe53I0xYluxJ/aUt4JeF1WFV7GR9e/iIBif9aoGCinxg3wwyFqleEAkKAu
-lcCwTzFulwlDh8rC+4Q+2byL56lvQLOmAxD9kafTwGHWRzraGcMKqN2MXrk6mFee
-9djpnkfonTZN1EKhymWVbrCWTLrCldHf/wp9Kn/wgGJFuPncd4Do0hA7vYdZeSEB
-3HJnh1/MGTBpjRUCKT0tuaE8bj0d1xExfYtN2GtBZM7i4zTb684=
-=1RBW
------END PGP SIGNATURE-----
-
---4nmcyf3hbnqv5z7t--
