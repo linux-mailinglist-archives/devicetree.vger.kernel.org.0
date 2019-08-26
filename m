@@ -2,329 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B059D2F6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:39:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C72169D311
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:39:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733118AbfHZPi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:38:58 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54986 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733098AbfHZPi5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:57 -0400
-Received: by mail-wm1-f67.google.com with SMTP id p74so15921102wme.4;
-        Mon, 26 Aug 2019 08:38:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CCidpFZxLFE4P75q/h/CfR1vG1u9xDP4alk3j8cCjK4=;
-        b=gCdIFBQtAvE5/EUXbXLPfPwXhIO/sHbxzTZeE0fRFnEsKbxKhPWJ3r5nUc7QUFnFqb
-         fTxeXAkA/bh2TulU9uNh9Lyn+M47xBSntk9VyVWSW1abPtk76zP2SPha9s6q+L3ue+xf
-         qaJ76O/s6hByL4dLjQNX86TD3+qu0OxYxbbHW76mkYA50gG5BM9IYrRpsGxVhBavg4lB
-         P4R0DmNMLra5+97rB2FqhXn50jUF3f4HSnIp15mkFrN2xpwcwAaQErTgysObnVUedLyP
-         eXuq/pX/vrbLtZnaN7FFHwA3Df1lgTzMVeP6ftYjlLKOsOTUKAP3WLcvou6/4tBpe8iI
-         8Ffg==
-X-Gm-Message-State: APjAAAUMuTxPM4i5FIJm1D3Ln39ehvP9zpe5EnyURMpXVxapwt6TUatc
-        of5uf5L/YnyuNOmf05UxwcLoIfqULIw=
-X-Google-Smtp-Source: APXvYqzsbhVljiEuydQ/xlkYaZBrTfAVaxQTlAtSYpAoi/lBDHWGvwGJ2EF8W9qxZmRGghumu+azug==
-X-Received: by 2002:a1c:a008:: with SMTP id j8mr22556949wme.57.1566833934527;
-        Mon, 26 Aug 2019 08:38:54 -0700 (PDT)
-Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
-        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 08:38:54 -0700 (PDT)
-From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        Ilya Ledvich <ilya@compulab.co.il>,
-        Igor Grinberg <grinberg@compulab.co.il>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1733207AbfHZPjd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:39:33 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:53067 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732222AbfHZPjd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 11:39:33 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7QFPrAb018373;
+        Mon, 26 Aug 2019 17:39:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=STMicroelectronics;
+ bh=G1q9jXeOe+jObYadbTKDBN2nCaQ4doShrwDMtgHwCfo=;
+ b=kgo2lgzxQKE25bsuS4y4FQwg+AF0ctGg/uEnPyfmNh9pUqZkRZcv3f7fE1QoBOG1jX+v
+ 93oONfwSE0K5hgnpW8ChGifG4bSX8cQ1b9GYhb6Fl56rViAmXT0ZRknFPxKsQAkB4Cmr
+ xpsRK2P0Ugi3JSEa0CRWsBo1gBFZSk+R/EPaN7vkM8xrFOC2x7EW/KohqnHsZj09luyo
+ mkpE4NGpaxspIAz4l24bRJGyqtkkhkD8yE3qcvbg6fnrrL795TQBX/Yni/hjI2XCKfGv
+ 6CUrvrlLZ9MDi3XXWyi1F6SyUOsnK33gWyJ3kdorzPCyfJx/yVg1SUhyjHlVgd86Erxi 8w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2uju0vmgkd-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Mon, 26 Aug 2019 17:39:22 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5FA49235;
+        Mon, 26 Aug 2019 15:39:07 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2CD062BC1CE;
+        Mon, 26 Aug 2019 17:38:52 +0200 (CEST)
+Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas22.st.com
+ (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 26 Aug
+ 2019 17:38:52 +0200
+Received: from localhost (10.201.23.25) by Webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 26 Aug 2019 17:38:51
+ +0200
+From:   Fabien Dessenne <fabien.dessenne@st.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 12/12] ARM: dts: imx7d: sbc-iot-imx7: add basic board support
-Date:   Mon, 26 Aug 2019 16:38:00 +0100
-Message-Id: <20190826153800.35400-12-git@andred.net>
-X-Mailer: git-send-email 2.23.0.rc1
-In-Reply-To: <20190826153800.35400-1-git@andred.net>
-References: <20190826153800.35400-1-git@andred.net>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>
+CC:     Fabien Dessenne <fabien.dessenne@st.com>,
+        Loic Pallardy <loic.pallardy@st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>
+Subject: [PATCH 1/2] dt-bindings: remoteproc: stm32: add wakeup-source
+Date:   Mon, 26 Aug 2019 17:38:42 +0200
+Message-ID: <1566833923-16718-2-git-send-email-fabien.dessenne@st.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
+References: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.23.25]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-26_08:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a forward-port of Compulab's downstream commit
-against linux 4.9.11.
+Add the "wakeup-source" property: if the optional wdg interrupt is
+defined, then this property may be defined too.
 
-Original commit message:
-    The SB-IOT-iMX7 base board together with CL-SOM-iMX7
-    SoM forms SBC-IOT-iMX7 single board computer.
-    SBC-IOT-iMX7 is a single board computer optimized for
-    industrial control and monitoring, extensive wireless
-    and wired connectivity, ideal solution for
-    cost-sensitive systems. It is based on the Freescale
-    i.MX7 system-on-chip. SBC-IOT-iMX7 is implemented with
-    the CL-SOM-iMX7 System-on-Module providing most of the
-    functions,and SB-IOT-iMX7 carrier board providing
-    additional peripheral functions and connectors.
-
-    https://www.compulab.com/products/computer-on-modules/cl-som-imx7-freescale-i-mx-7-system-on-module/
-    https://www.compulab.com/products/sbcs/sbc-iot-imx7-nxp-i-mx-7-internet-of-things-single-board-computer/
-
-This commit adds basic board support, including:
-* SD-card (note that write-protect is not connected
-  on this carrier board)
-* SPI (available on expansion header)
-* i2c3 & i2c4 (including bus recovery information)
-* additional UARTs
-* all USB ports
-
-Compared to the downtream commit, this commit doesn't
-add / enable the PCIe and LCD interface, as PCIe
-support needs an additional patch to the PCI controller
-first, and I can't test the LCD.
-
-Signed-off-by: André Draszik <git@andred.net>
-Cc: Ilya Ledvich <ilya@compulab.co.il>
-Cc: Igor Grinberg <grinberg@compulab.co.il>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Mark Rutland <mark.rutland@arm.com>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Fabien Dessenne <fabien.dessenne@st.com>
 ---
- arch/arm/boot/dts/Makefile               |   1 +
- arch/arm/boot/dts/imx7d-sbc-iot-imx7.dts | 198 +++++++++++++++++++++++
- 2 files changed, 199 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx7d-sbc-iot-imx7.dts
+ Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 9159fa2cea90..78d51f2f9930 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -591,6 +591,7 @@ dtb-$(CONFIG_SOC_IMX7D) += \
- 	imx7d-pico-hobbit.dtb \
- 	imx7d-pico-pi.dtb \
- 	imx7d-sbc-imx7.dtb \
-+	imx7d-sbc-iot-imx7.dtb \
- 	imx7d-sdb.dtb \
- 	imx7d-sdb-reva.dtb \
- 	imx7d-sdb-sht11.dtb \
-diff --git a/arch/arm/boot/dts/imx7d-sbc-iot-imx7.dts b/arch/arm/boot/dts/imx7d-sbc-iot-imx7.dts
-new file mode 100644
-index 000000000000..6f2af5aa439e
---- /dev/null
-+++ b/arch/arm/boot/dts/imx7d-sbc-iot-imx7.dts
-@@ -0,0 +1,198 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
-+//
-+// Copyright 2017 CompuLab Ltd. - http://www.compulab.co.il/
-+/*
-+ * Support for CompuLab SBC-IOT-iMX7 Single Board Computer
-+ */
-+
-+#include "imx7d-cl-som-imx7.dts"
-+
-+/ {
-+	model = "CompuLab,SBC-IOT-iMX7";
-+	compatible = "compulab,sbc-iot-imx7", "compulab,cl-som-imx7", "fsl,imx7d";
-+
-+	reg_usb_vbus: regulator-usb-vbus {
-+		compatible = "regulator-fixed";
-+		regulator-name = "usb_vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		regulator-always-on;
-+	};
-+};
-+
-+&ecspi3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi3 &pinctrl_ecspi3_cs>;
-+	cs-gpios = <&gpio4 11 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	pinctrl-1 = <&pinctrl_i2c3_recovery>;
-+	sda-gpios = <&gpio1 9 GPIO_ACTIVE_HIGH>;
-+	scl-gpios = <&gpio1 8 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default", "gpio";
-+	pinctrl-0 = <&pinctrl_i2c4>;
-+	pinctrl-1 = <&pinctrl_i2c4_recovery>;
-+	sda-gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-+	scl-gpios = <&gpio1 10 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	status = "okay";
-+
-+	eeprom_iot@54 {
-+		compatible = "atmel,24c08";
-+		reg = <0x54>;
-+		pagesize = <16>;
-+	};
-+};
-+
-+&iomuxc {
-+	pinctrl-1 = <&pinctrl_xpen>;
-+
-+	/* SB-IOT-iMX7 Xpension Header P7 */
-+	pinctrl_xpen: xpengrp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_DATA13__GPIO3_IO18		0x34 /* P7-4 - gpio82 */
-+			MX7D_PAD_LCD_DATA12__GPIO3_IO17		0x34 /* P7-5 - gpio81 */
-+		>;
-+	};
-+
-+	pinctrl_ecspi3: ecspi3grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C1_SDA__ECSPI3_MOSI		0xf /* P7-7 */
-+			MX7D_PAD_I2C1_SCL__ECSPI3_MISO		0xf /* P7-8 */
-+			MX7D_PAD_I2C2_SCL__ECSPI3_SCLK		0xf /* P7-6 */
-+		>;
-+	};
-+
-+	pinctrl_ecspi3_cs: ecspi3_cs_grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C2_SDA__GPIO4_IO11		0x34 /* P7-9 */
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO09__I2C3_SDA		0x4000000f /* P7-3 */
-+			MX7D_PAD_GPIO1_IO08__I2C3_SCL		0x4000000f /* P7-2 */
-+		>;
-+	};
-+
-+	pinctrl_i2c3_recovery: i2c3recoverygrp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO09__GPIO1_IO9		0x4000000f /* P7-3 */
-+			MX7D_PAD_GPIO1_IO08__GPIO1_IO8		0x4000000f /* P7-2 */
-+		>;
-+	};
-+
-+	pinctrl_i2c4: i2c4grp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO11__I2C4_SDA		0x4000000f
-+			MX7D_PAD_GPIO1_IO10__I2C4_SCL		0x4000000f
-+		>;
-+	};
-+
-+	pinctrl_i2c4_recovery: i2c4recoverygrp {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO11__GPIO1_IO11		0x4000000f
-+			MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x4000000f
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX7D_PAD_LCD_ENABLE__UART2_DCE_TX	0x79 /* P7-12 */
-+			MX7D_PAD_LCD_CLK__UART2_DCE_RX		0x79 /* P7-13 */
-+			MX7D_PAD_LCD_VSYNC__UART2_DCE_CTS	0x79 /* P7-11 */
-+			MX7D_PAD_LCD_HSYNC__UART2_DCE_RTS	0x79 /* P7-10 */
-+		>;
-+	};
-+
-+	pinctrl_uart5: uart5grp {
-+		fsl,pins = <
-+			MX7D_PAD_I2C4_SDA__UART5_DCE_TX		0x79 /* RS232-TX */
-+			MX7D_PAD_I2C4_SCL__UART5_DCE_RX		0x79 /* RS232-RX */
-+			MX7D_PAD_I2C3_SDA__UART5_DCE_RTS	0x79 /* RS232-RTS */
-+			MX7D_PAD_I2C3_SCL__UART5_DCE_CTS	0x79 /* RS232-CTS */
-+		>;
-+	};
-+
-+	pinctrl_uart7: uart7grp {
-+		fsl,pins = <
-+			MX7D_PAD_ECSPI2_MOSI__UART7_DCE_TX	0x79 /* R485-TX */
-+			MX7D_PAD_ECSPI2_SCLK__UART7_DCE_RX	0x79 /* R485-RX */
-+			MX7D_PAD_ECSPI2_SS0__UART7_DCE_CTS	0x79 /* R485-CTS */
-+			MX7D_PAD_ECSPI2_MISO__UART7_DCE_RTS	0x79 /* R485-TTS */
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX7D_PAD_SD1_CMD__SD1_CMD		0x59
-+			MX7D_PAD_SD1_CLK__SD1_CLK		0x19
-+			MX7D_PAD_SD1_DATA0__SD1_DATA0		0x59
-+			MX7D_PAD_SD1_DATA1__SD1_DATA1		0x59
-+			MX7D_PAD_SD1_DATA2__SD1_DATA2		0x59
-+			MX7D_PAD_SD1_DATA3__SD1_DATA3		0x59
-+			MX7D_PAD_SD1_CD_B__GPIO5_IO0		0x59 /* CD */
-+		>;
-+	};
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	assigned-clocks = <&clks IMX7D_UART2_ROOT_SRC>;
-+	assigned-clock-parents = <&clks IMX7D_OSC_24M_CLK>;
-+	fsl,uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart5>;
-+	assigned-clocks = <&clks IMX7D_UART5_ROOT_SRC>;
-+	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
-+	fsl,uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&uart7 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart7>;
-+	assigned-clocks = <&clks IMX7D_UART7_ROOT_SRC>;
-+	assigned-clock-parents = <&clks IMX7D_PLL_SYS_MAIN_240M_CLK>;
-+	fsl,uart-has-rtscts;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	vbus-supply = <&reg_usb_vbus>;
-+	status = "okay";
-+};
-+
-+&usbotg2 {
-+	dr_mode = "host";
-+	vbus-supply = <&reg_usb_vbus>;
-+	status = "okay";
-+};
-+
-+&usbh {
-+	vbus-supply = <&reg_usb_vbus>;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	cd-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-+	wakeup-source;
-+	status = "okay";
-+};
+diff --git a/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt b/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
+index 5fa915a..ac54b5b 100644
+--- a/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
++++ b/Documentation/devicetree/bindings/remoteproc/stm32-rproc.txt
+@@ -21,6 +21,9 @@ Required properties:
+ 
+ Optional properties:
+ - interrupts:	Should contain the watchdog interrupt
++- wakeup-source: Flag indicating whether remoteproc can wake up the system by
++		the watchdog interrupt. Only meaningful if the "interrupts"
++		property is defined.
+ - mboxes:	This property is required only if the rpmsg/virtio functionality
+ 		is used. List of phandle and mailbox channel specifiers:
+ 		- a channel (a) used to communicate through virtqueues with the
 -- 
-2.23.0.rc1
+2.7.4
 
