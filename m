@@ -2,84 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76B009D31B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B4E49D346
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:43:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732598AbfHZPj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:39:57 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:53071 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1733196AbfHZPjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 11:39:32 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7QFPrAV018373;
-        Mon, 26 Aug 2019 17:39:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=H7DnCfFp0iZ60ErGpkBa9fhjxQJ8KQ0RkkUvFpbyyJE=;
- b=0pEDxviXDpGIDzD4OPyXYWY7GFp4XjkoggbCd8Fbo1rkG20JDMTsOjlWWxakPE3kP3bB
- 3vTeTWoBjJUPPDiNSNS/v3wWr4RJK8pnK5IUYBsEDmPPMLgZt8fHeQwHNK1M7OvXQ5aT
- k6h55iqH2bjfVW28WNkGrP3rCbw2xTAt0W6oz/TGeMxh+L3qNEwzOp3o1uE0l0BUZI+7
- FE0L0FpxveE0PufaVubCe7grXDgJlhaodk/Gxppje2FS0bAkM1hKKvamWDWiSpMDmSy3
- vJ6y/qWUQrF+OtU9iuj2cRA+FVRqGnmzYemjYWoEM0JrgqQdWrge45wdRMllQLl9UUL3 6Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2uju0vmgh6-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 26 Aug 2019 17:39:20 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 48F9886;
-        Mon, 26 Aug 2019 15:39:06 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas23.st.com [10.75.90.46])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 912742BC1CA;
-        Mon, 26 Aug 2019 17:38:49 +0200 (CEST)
-Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by SAFEX1HUBCAS23.st.com
- (10.75.90.46) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 26 Aug
- 2019 17:38:49 +0200
-Received: from localhost (10.201.23.25) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 26 Aug 2019 17:38:48
- +0200
-From:   Fabien Dessenne <fabien.dessenne@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>
-CC:     Fabien Dessenne <fabien.dessenne@st.com>,
-        Loic Pallardy <loic.pallardy@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Subject: [PATCH 0/2] remoteproc: stm32: allow wdg irq to be a wakeup source
-Date:   Mon, 26 Aug 2019 17:38:41 +0200
-Message-ID: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S1727788AbfHZPn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:43:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48634 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727850AbfHZPnG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 11:43:06 -0400
+Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A973520874;
+        Mon, 26 Aug 2019 15:43:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566834185;
+        bh=IrvkLc5Ov+J/f8CttzyyWurWNwwmFftVjPaVQ+/Erqs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IZJ1OOsq+OVzE855bSAuMug6lB/iT8i5Ri6k3jzoxm0k9fjMH806zFUSijzubbxKx
+         LWomNqyfpbzl/CajzHjJWwaZq1q2RieGA+rpC7ChH9xgyUAyuEAZKLEWq+Jmq/KAuC
+         Hb1Pf9685vzxvdY3JJR7i48sLMFOfRvQBREZpqjU=
+From:   Dinh Nguyen <dinguyen@kernel.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+        linux@armlinux.org.uk, frowand.list@gmail.com,
+        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
+        tony.luck@intel.com, daniel.thompson@linaro.org,
+        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
+        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
+Subject: [PATCHv5] drivers/amba: add reset control to amba bus probe
+Date:   Mon, 26 Aug 2019 10:42:52 -0500
+Message-Id: <20190826154252.22952-1-dinguyen@kernel.org>
+X-Mailer: git-send-email 2.20.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.23.25]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-26_08:,,
- signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The watchdog IRQ which notifies the remote processor crash is used by the
-remoteproc framework to perform a recovery procedure.
-Since this IRQ may be fired when the Linux system is suspended, this IRQ may
-be configured to wake up the system.
+The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+default. Until recently, the DMA controller was brought out of reset by the
+bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
+that are not used are held in reset and are left to Linux to bring them
+out of reset.
 
-Fabien Dessenne (2):
-  dt-bindings: remoteproc: stm32: add wakeup-source
-  remoteproc: stm32: wakeup the system by wdg irq
+Add a mechanism for getting the reset property and de-assert the primecell
+module from reset if found. This is a not a hard fail if the reset properti
+is not present in the device tree node, so the driver will continue to
+probe.
 
- .../devicetree/bindings/remoteproc/stm32-rproc.txt |  3 ++
- drivers/remoteproc/stm32_rproc.c                   | 47 ++++++++++++++++++++++
- 2 files changed, 50 insertions(+)
+Because there are different variants of the controller that may have
+multiple reset signals, the code will find all reset(s) specified and
+de-assert them.
 
+Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+v5: use of_reset_control_array_get_optional_shared()
+v4: cleaned up indentation in loop
+    fix up a few checkpatch warnings
+    add Reviewed-by:
+v3: add a reset_control_put()
+    add error handling
+v2: move reset control to bus code
+    find all reset properties and de-assert them
+---
+ drivers/amba/bus.c | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+index 100e798a5c82..f8a7cb74c3cf 100644
+--- a/drivers/amba/bus.c
++++ b/drivers/amba/bus.c
+@@ -18,6 +18,7 @@
+ #include <linux/limits.h>
+ #include <linux/clk/clk-conf.h>
+ #include <linux/platform_device.h>
++#include <linux/reset.h>
+ 
+ #include <asm/irq.h>
+ 
+@@ -401,6 +402,24 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+ 	ret = amba_get_enable_pclk(dev);
+ 	if (ret == 0) {
+ 		u32 pid, cid;
++		int count;
++		struct reset_control *rstc;
++
++		/*
++		 * Find reset control(s) of the amba bus and de-assert them.
++		 */
++		count = reset_control_get_count(&dev->dev);
++		while (count > 0) {
++			rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
++			if (IS_ERR(rstc)) {
++				if (PTR_ERR(rstc) != -EPROBE_DEFER)
++					dev_err(&dev->dev, "Can't get amba reset!\n");
++				return PTR_ERR(rstc);
++			}
++			reset_control_deassert(rstc);
++			reset_control_put(rstc);
++			count--;
++		}
+ 
+ 		/*
+ 		 * Read pid and cid based on size of resource
 -- 
-2.7.4
+2.20.0
 
