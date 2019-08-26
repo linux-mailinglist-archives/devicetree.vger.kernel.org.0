@@ -2,45 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C75F9C82A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 06:01:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B249C871
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 06:38:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725796AbfHZEBJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 00:01:09 -0400
-Received: from mga11.intel.com ([192.55.52.93]:15516 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725535AbfHZEBI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 00:01:08 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 25 Aug 2019 21:01:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
-   d="scan'208";a="379508788"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga005.fm.intel.com with ESMTP; 25 Aug 2019 21:01:07 -0700
-Received: from [10.226.39.5] (leichuan-mobl.gar.corp.intel.com [10.226.39.5])
-        by linux.intel.com (Postfix) with ESMTP id C8AAE580444;
-        Sun, 25 Aug 2019 21:01:05 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        eswara.kota@linux.intel.com
-Cc:     cheol.yong.kim@intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-        qi-ming.wu@intel.com, robh@kernel.org, hauke@hauke-m.de
-References: <90cc600d6f7ded68f5a618b626bd9cffa5edf5c3.1566531960.git.eswara.kota@linux.intel.com>
- <20190824211158.5900-1-martin.blumenstingl@googlemail.com>
-From:   "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>
-Message-ID: <3813e658-1600-d878-61a4-29b4fe51b281@linux.intel.com>
-Date:   Mon, 26 Aug 2019 12:01:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
+        id S1727294AbfHZEiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 00:38:09 -0400
+Received: from mail-io1-f50.google.com ([209.85.166.50]:45445 "EHLO
+        mail-io1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726156AbfHZEiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 00:38:09 -0400
+Received: by mail-io1-f50.google.com with SMTP id t3so34089003ioj.12;
+        Sun, 25 Aug 2019 21:38:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b1exAYWMUyyRgKmul096n+B+OJhwM6f4sJVMKQ8yVO4=;
+        b=sNQY2SpHNTmIlNk/wEGcudVnHQM83F7hQaS1ETEjI79e15eMZ/xtylyHzPmznM+1R6
+         1IA03XGhcgR92W7/4Jezb2kbTUHRHGW4TRqQTKB7ssDi1YSl+eQvvPiSk3hy/aOjFHc+
+         3l1PR0QAE2VQsmxiOJwbV6clUiMsSCrMoAcb72aw4cNsQZWt/c844lUQLo4RLaFZmuNi
+         iLMbl/Ggw7uLD7MVLEMbeww3FeArGoHVn/PyZG/gcn8HH+sZTalWC8u4742g1hxkd9Zp
+         01oU8R2vwCiRvGUawpE99qLI/drjYNbfoEH6BEkNM6s/tm0vknYY9BWV/PKXQKn18hW1
+         Orig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b1exAYWMUyyRgKmul096n+B+OJhwM6f4sJVMKQ8yVO4=;
+        b=JkkGGgBFD8+7nOmkF31wxPEpksMnHpxw9ZBTZlR/Ofcl4UsTEPXggJiv+fVLxi4sqx
+         ES7FHeKm6rhgEM7NTokFcVXQyLtRnESfFriCpDZorMG3hwmMlgLx3PcBYIPhsqAlwCN/
+         ncCMgSWNvV67f480K2/5GBieZWSJs3hBLxNOLwtBZdpYxzdvKKAra0a149S5UsWq1i4V
+         s/YOoQ+ZJLTsaih58YvblXFXlEiNjTPTRHSbzecQeeeWVMGG2yqPZ4vnVTSUfWkVS7vS
+         8dZ1axtgQFIR4Pmq5paFW4K8MH1rL46ThHV1gpYx72hXKoLPa4Xla54Ch91DeomymO+7
+         JfQw==
+X-Gm-Message-State: APjAAAXlhoUvasUYCCEOYXTNlBJg3N0bXPOmUhGZFzLrhibB0k1H2uGM
+        WItosdvuYU8zG8JDHxm2MertFghYRPOEepU/p+k=
+X-Google-Smtp-Source: APXvYqwEEY4HsG8gz1jj+r6ZLb2rp/DiM2S4ZMAN7B0+HDDxv6FuAymB/Jnl0NRYtaRzdacjMIKfIX+oi2ihc+NiIOE=
+X-Received: by 2002:a6b:4409:: with SMTP id r9mr22335208ioa.75.1566794288499;
+ Sun, 25 Aug 2019 21:38:08 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190824211158.5900-1-martin.blumenstingl@googlemail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <20190824184912.795-1-linux.amoon@gmail.com> <CAFBinCCkEE8==-Sqqj_=Ofnx7_H-970dETwEmEPohs74806ZMw@mail.gmail.com>
+In-Reply-To: <CAFBinCCkEE8==-Sqqj_=Ofnx7_H-970dETwEmEPohs74806ZMw@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Mon, 26 Aug 2019 10:08:01 +0530
+Message-ID: <CANAwSgTsua_x6fi7NzC2XjcV19OJcN3NhOT_niKXN4RR4X+qVQ@mail.gmail.com>
+Subject: Re: [PATCHv4 0/3] Odroid c2 usb fixs
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -48,75 +64,24 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Martin,
 
-Thanks for your comment.
-
-On 8/25/2019 5:11 AM, Martin Blumenstingl wrote:
-> Hi Dilip,
+On Sun, 25 Aug 2019 at 02:48, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
->> Add driver for the reset controller present on Intel
->> Lightening Mountain (LGM) SoC for performing reset
->> management of the devices present on the SoC. Driver also
->> registers a reset handler to peform the entire device reset.
+> Hi Anand,
+>
+> thank you for the patches
+>
+> On Sat, Aug 24, 2019 at 8:49 PM Anand Moon <linux.amoon@gmail.com> wrote:
 > [...]
->> +static const struct of_device_id intel_reset_match[] = {
->> +	{ .compatible = "intel,rcu-lgm" },
->> +	{}
->> +};
-> how is this IP block differnet from the one used in many Lantiq SoCs?
-> there is already an upstream driver for the RCU IP block on the Lantiq
-> SoCs: drivers/reset/reset-lantiq.c
->
-> some background:
-> Lantiq was started as a spinoff from Infineon in 2009. Intel then
-> acquired Lantiq in 2015. source: [0]
-> Intel is re-using some of the IP blocks from the MIPS Lantiq SoCs
-> (Intel even has some own MIPS SoCs as part of the Lantiq acquisition,
-> typically used for PON/GPON/ADSL/VDSL capable network devices).
-> Thus I think it is likely that the new "Lightening Mountain" SoCs use
-> an updated version of the Lantiq RCU IP.
+> > Anand Moon (3):
+> >   arm64: dts: meson: odroid-c2: p5v0 is the main 5V power input
+> >   arm64: dts: meson: odroid-c2: Add missing linking regulator to usb bus
+> >   arm64: dts: meson: odroid-c2: Disable usb_otg bus to avoid power
+> >     failed warning
+> this whole series is:
+> Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-I would not say there is a fundamental difference since reset is a 
-really simple
+Thanks, I have some more patch in line for this board.
 
-stuff from all reset drivers.  However, it did have some difference
-
-from existing reset-lantiq.c since SoC becomes more and more complex.
-
-1. reset-lantiq.c use index instead of register offset + bit position.
-
-index reset is good for a small system (< 64). However, it will become very
-
-difficult to use if you have  > 100 reset. So we use register offset + 
-bit position
-
-2. reset-lantiq.c does not support device restart which is part of the 
-reset in
-
-old lantiq SoC. It moved this part into arch/mips/lantiq directory.
-
-3. reset-lantiqc reset callback doesn't implement what hardware implemented
-
-function. In old SoCs, some bits in the same register can be hardware 
-reset clear.
-
-It just call assert + assert. For these SoCs, we should only call 
-assert, hardware
-
-will auto deassert.
-
-4. Code not optimized and intel internal review not assessed.
-
-Based on the above findings, I would suggest reset-lantiq.c to move to 
-reset-intel-syscon.c
-
-What is your opinion?
-
-
-Chuanhua
-
->
->
-> Martin
->
->
-> [0] https://wikidevi.com/wiki/Lantiq
+Best Regards
+-Anand
