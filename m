@@ -2,93 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C8029CD17
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 12:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E6529CD2F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 12:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730388AbfHZKMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 06:12:33 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:38584 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730287AbfHZKMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 06:12:33 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7QACHem020466;
-        Mon, 26 Aug 2019 05:12:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566814337;
-        bh=ZNs6U4m8I4snjz0a7R+a3bK5jQt7SGpowKEruEugN2E=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=gbvUPApNIe6GKxn4HyFlLM+Z5dP2BG7IQ2Y6MkcnUAQryYyGZ9vYFGRoTBokGpY/J
-         hM0HtJGPsp05wXnQc/VpZmgpZ7jRvT9ecyzeLu35otBuWKIg0TK1ySF2QNUIQHJAEb
-         EbKtyK3zghwiUtI+J84/KBt62+jjrt6Ogwo54O9w=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7QACHGQ080207
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 26 Aug 2019 05:12:17 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 26
- Aug 2019 05:12:17 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 26 Aug 2019 05:12:16 -0500
-Received: from [172.24.190.117] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7QACD72092396;
-        Mon, 26 Aug 2019 05:12:14 -0500
-Subject: Re: [PATCH v5 0/3] soc: ti: k3: Allow for exclusive and shared device
- requests
-To:     <santosh.shilimkar@oracle.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190729122453.32252-1-lokeshvutla@ti.com>
- <05218f41-9601-9a6c-8ac1-3bf1482e1c3d@ti.com>
- <226a7b55-8a4d-aa25-9392-004d5ea097e4@oracle.com>
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-Message-ID: <ad77afd4-feb6-8123-3207-2518d7a98106@ti.com>
-Date:   Mon, 26 Aug 2019 15:41:28 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1730896AbfHZKQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 06:16:01 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:45924 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731306AbfHZKP7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 06:15:59 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D4EE731B;
+        Mon, 26 Aug 2019 12:15:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1566814557;
+        bh=9wZSzYHEKtzlGccYoNBaQM5/r5uiiDKyUx0xfquMNBM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uyvLe2AQoJzdJ3a+hqTNdkz1kiuJHyq90GBzU82SftccR9ETTjypUnKh5WGKh3DPQ
+         XJbEq+4MyWenoNDZWKweCjlylTnbe/CfH6HJr0A80djtxztDj2j1L0XXUnpLLmwDn6
+         pV+EB/Ug5xi0/r8KUu2H5seKFRPZG3xSg3Lu5fyk=
+Date:   Mon, 26 Aug 2019 13:15:50 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Simon Horman <horms@verge.net.au>, Ulrich Hecht <uli@fpond.eu>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Koji Matsuoka <koji.matsuoka.xm@renesas.com>, muroya@ksk.co.jp,
+        VenkataRajesh.Kalakodima@in.bosch.com,
+        Harsha.ManjulaMallikarjun@in.bosch.com,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH v3 01/14] dt-bindings: display: renesas,cmm: Add R-Car
+ CMM documentation
+Message-ID: <20190826101550.GB5031@pendragon.ideasonboard.com>
+References: <20190825135154.11488-1-jacopo+renesas@jmondi.org>
+ <20190825135154.11488-2-jacopo+renesas@jmondi.org>
+ <CAMuHMdVvjrMXap5CQ-grNYpJfOG6QeN26EW4tR_YE=VFv5ozqw@mail.gmail.com>
+ <20190826075943.h7ivwagape3glym5@uno.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <226a7b55-8a4d-aa25-9392-004d5ea097e4@oracle.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190826075943.h7ivwagape3glym5@uno.localdomain>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Jacopo,
 
+On Mon, Aug 26, 2019 at 09:59:43AM +0200, Jacopo Mondi wrote:
+> On Mon, Aug 26, 2019 at 09:34:41AM +0200, Geert Uytterhoeven wrote:
+> > On Sun, Aug 25, 2019 at 3:50 PM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
+> > > Add device tree bindings documentation for the Renesas R-Car Display
+> > > Unit Color Management Module.
+> > >
+> > > CMM is the image enhancement module available on each R-Car DU video
+> > > channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
+> > >
+> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> >
+> > Thanks for your patch!
+> >
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/renesas,cmm.txt
+> > > @@ -0,0 +1,33 @@
+> > > +* Renesas R-Car Color Management Module (CMM)
+> > > +
+> > > +Renesas R-Car image enhancement module connected to R-Car DU video channels.
+> > > +
+> > > +Required properties:
+> > > + - compatible: shall be one or more of the following:
+> > > +   - "renesas,cmm-r8a7795": for R8A7795 (R-Car H3) compatible CMM.
+> > > +   - "renesas,cmm-r8a7796": for R8A7796 (R-Car M3-W) compatible CMM.
+> > > +   - "renesas,cmm-r8a77965": for R8A77965 (R-Car M3-N) compatible CMM.
+> > > +   - "renesas,cmm-r8a77990": for R8A77990 (R-Car E3) compatible CMM.
+> > > +   - "renesas,cmm-r8a77995": for R8A77995 (R-Car D3) compatible CMM.
+> >
+> > Please use "renesas,<socype->-cmm" instead of "renesas,cmm-<soctype>".
+> 
+> I actually copied it from the r-car gpio bindings, and I liked
+> cmm-<soctype> better. If you prefer I can change it though.
+> 
+> > > +   - "renesas,rcar-gen3-cmm": for a generic R-Car Gen3 compatible CMM.
+> > > +   - "renesas,rcar-gen2-cmm": for a generic R-Car Gen2 compatible CMM.
+> > > +
+> > > +   When the generic compatible string is specified, the SoC-specific
+> > > +   version corresponding to the platform should be listed first.
+> > > +
+> > > + - reg: the address base and length of the memory area where CMM control
+> > > +   registers are mapped to.
+> > > +
+> > > + - clocks: phandle and clock-specifier pair to the CMM functional clock
+> > > +   supplier.
+> >
+> > Thinking about yaml validation:
+> >
+> > power-domains?
+> > resets?
+> 
+> They should indeed be documented.
 
-On 21/08/19 1:36 PM, santosh.shilimkar@oracle.com wrote:
-> On 8/20/19 2:48 PM, Lokesh Vutla wrote:
->>
->>
->> On 29/07/19 5:54 PM, Lokesh Vutla wrote:
->>> Sysfw provides an option for requesting exclusive access for a
->>> device using the flags MSG_FLAG_DEVICE_EXCLUSIVE. If this flag is
->>> not used, the device is meant to be shared across hosts. Once a device
->>> is requested from a host with this flag set, any request to this
->>> device from a different host will be nacked by sysfw.
->>>
->>> Current tisci firmware and pm drivers always requests for device with
->>> exclusive permissions set. But this is not be true for certain devices
->>> that are expcted to be shared across different host contexts.
->>> So add support for getting the shared or exclusive permissions from DT
->>> and request firmware accordingly.
->>
->> Gentle Ping on this series.
->>
-> I can queue this up.
+How about converting this binding to yaml alreay ? It should be fairly
+simple.
 
-Thanks Santosh.
+> > > +Example:
+> > > +--------
+> > > +
+> > > +       cmm0: cmm@fea40000 {
+> > > +               compatible = "renesas,cmm-r8a7796";
+> > > +               reg = <0 0xfea40000 0 0x1000>;
+> > > +               power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
+> > > +               clocks = <&cpg CPG_MOD 711>;
+> > > +               resets = <&cpg 711>;
+> > > +       };
 
+-- 
 Regards,
-Lokesh
 
+Laurent Pinchart
