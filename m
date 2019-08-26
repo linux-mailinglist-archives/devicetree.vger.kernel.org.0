@@ -2,184 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E86F19DA1B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 01:48:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D7259DA35
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 01:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727064AbfHZXsE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 19:48:04 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:36281 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726020AbfHZXsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 19:48:04 -0400
-Received: by mail-pl1-f195.google.com with SMTP id f19so10811008plr.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 16:48:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=zd7cywiAkoUWcRfVHCpRZTgeWdfgqowuSFCwN1bZj2Y=;
-        b=rleVykbQETGOk9pf0W2tIBVTtyvJCh1NxAYt9LOKkj8Iw4PVwKWCbu1GIIKZYvzH3j
-         hxQgIVFjlIx/Mb/mSy24pgBnjmSNGVD5xKOoTavpo0SNduIoyhdeARjVlVZDt80MIJFZ
-         QiifnjshO5rvh0yB67PJtDYfv2DNg5KH7oJ3a9+9gXnBTZUJqKnDjkM3ynj6lEyS1oDc
-         toYjVqyyO8PHPa0MSyAebUjuMKnIVchA27DpUmFPaA9ROhbqJ4w8bm26noitCyIIGHlk
-         PJ0aWWsRDR3goN+/Qc6CbCpu4ZaBF5+WECIPxJrYYIvZr/osk6wprCUfh+HzZX74QvbC
-         0b1A==
-X-Gm-Message-State: APjAAAWm4rmlbNJn42i+aPiNUmmrg9Ku63lF1toqn9kggHDuVggHaZCj
-        K4suM3kyTYkc5FHeuWAwpXXUwA==
-X-Google-Smtp-Source: APXvYqwyXgUsc5NoBh5QUb4SDP9eiKr+6nVJJzX04PkAKM0NdwIJMpxpTcIRtFf4265JDbAiP0IQAA==
-X-Received: by 2002:a17:902:bb96:: with SMTP id m22mr9391336pls.158.1566863283326;
-        Mon, 26 Aug 2019 16:48:03 -0700 (PDT)
-Received: from localhost ([12.206.222.5])
-        by smtp.gmail.com with ESMTPSA id r75sm18127613pfc.18.2019.08.26.16.48.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 16:48:02 -0700 (PDT)
-Date:   Mon, 26 Aug 2019 16:48:02 -0700 (PDT)
-X-Google-Original-Date: Mon, 26 Aug 2019 16:44:31 PDT (-0700)
-Subject:     Re: [PATCH v2 1/5] RISC-V: Remove per cpu clocksource
-In-Reply-To: <089a5ee46759074af391c50f5e9d28344b429de4.camel@wdc.com>
-CC:     daniel.lezcano@linaro.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, Anup Patel <Anup.Patel@wdc.com>,
-        Greg KH <gregkh@linuxfoundation.org>, info@metux.net,
-        devicetree@vger.kernel.org, mark.rutland@arm.com,
-        aou@eecs.berkeley.edu, allison@lohutok.net, johan@kernel.org,
-        alexios.zavras@intel.com, tglx@linutronix.de,
-        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org
-From:   Palmer Dabbelt <palmer@sifive.com>
-To:     Atish Patra <Atish.Patra@wdc.com>
-Message-ID: <mhng-6a5026a2-d727-4c08-969d-712b303903df@palmer-si-x1e>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1727022AbfHZX5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 19:57:47 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:59803 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726020AbfHZX5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 19:57:46 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 01DEA3CB0;
+        Mon, 26 Aug 2019 19:57:46 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Mon, 26 Aug 2019 19:57:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=XME7TZm7cj23/QLbq4OVXeIVehmG6Kj
+        rwVjJRtju3yU=; b=Y6cQ437A8Ha+5sMISr5HPLDDUBGIXZGsj1+W8orSgA+stbB
+        N6MVEEoXQl6B6fp4atWu3Oq6lpm06RBHKxVHgCuB+rQu2M0ZG1ZZNohGEtD/Vxwq
+        lGht1LDPtUHknaJXvkN2VNYPU7ua2NC1LFBWNjuJwkqJGARJjQrL46KjHAad8RPM
+        fdMpUJmNm36qFMPjZ9KKWb+MZeOf5ycRkWAxrgJa2WQvt0I2rHG+PuigTJLaSRK6
+        lmPlL7l5kB2QjYcyoRHTis0cyo5OsJCdWo+Rkq9hfsk5gXx90ONp60x49vkCuA8Y
+        /4znYi7TWepBXZtezyzLhYRlkn/hsgGRSJzODLQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=XME7TZ
+        m7cj23/QLbq4OVXeIVehmG6KjrwVjJRtju3yU=; b=MAW8POA4VYmSqQDxi9ne09
+        FvO8QIzWrk0VH53/UO7gGZvikmkY2ot2SOodhhNQjluNNZ9Y3sP92CvgLWsQbPiO
+        LcU+2no4uTMqJGx+5AkuxEKAQy5PBVIe1/NFUjdHrso1f9zGpD42QlMAaqYfEDwJ
+        HseiIxMzENi3CMwL2LIRL7+J8i7nMVC+MIgeMH80KFcDX9TBBXdM9No1SYH6xlSC
+        4WTVBbsbngHlh3niChfWJzeZkX2X0FDKKte2tbvPhPae/oPm418DJibQb/0hNfPd
+        u+JgFsM3NdrVwmpPfGbZ49by0JWB7KPJBTJYp6SkvDg8qhq/vgQAM/0LWE/d4asw
+        ==
+X-ME-Sender: <xms:93FkXZyTfM9gce3i09PhNxeK-Vitwb5shQUh0jQkqC8ikS8QV72Ydw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudehhedgfedtucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:93FkXZaSNOM0ClCzMJM1cIjEANP8sMQ3vGeSgUato47e1v6mlPzLFg>
+    <xmx:93FkXaxCkrZHNh3HyyMgrYSzokyfvUw-MZvVlWlst8Ri9_ROzb2ZUA>
+    <xmx:93FkXSGLg2_V89JgCAYaDmhJYlylJ8v8rYEZH5ee-pmGLAj1TbLmRw>
+    <xmx:-XFkXSXqk18oyb9Hz3459qfh9zxfAOV5T12ZjJBLlEmSOsHQgRQdWw>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id A3882E00AD; Mon, 26 Aug 2019 19:57:43 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.7-139-g73fcb67-fmstable-20190826v1
+Mime-Version: 1.0
+Message-Id: <f33aa4b8-6d06-4226-8859-ce21a4b8728b@www.fastmail.com>
+In-Reply-To: <20190826104636.19324-5-i.mikhaylov@yadro.com>
+References: <20190826104636.19324-1-i.mikhaylov@yadro.com>
+ <20190826104636.19324-5-i.mikhaylov@yadro.com>
+Date:   Tue, 27 Aug 2019 09:27:44 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Ivan Mikhaylov" <i.mikhaylov@yadro.com>,
+        "Guenter Roeck" <linux@roeck-us.net>,
+        "Wim Van Sebroeck" <wim@linux-watchdog.org>
+Cc:     "Joel Stanley" <joel@jms.id.au>, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        "Alexander Amelkin" <a.amelkin@yadro.com>,
+        openbmc@lists.ozlabs.org, "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>, devicetree@vger.kernel.org
+Subject: =?UTF-8?Q?Re:_[PATCH_v2_4/4]_dt-bindings/watchdog:_Add_access=5Fcs0_opti?=
+ =?UTF-8?Q?on_for_alt-boot?=
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Aug 2019 11:55:14 PDT (-0700), Atish Patra wrote:
-> On Fri, 2019-08-16 at 17:09 +0200, Daniel Lezcano wrote:
->> On 31/07/2019 03:24, Atish Patra wrote:
->> > There is only one clocksource in RISC-V. The boot cpu initializes
->> > that clocksource. No need to keep a percpu data structure.
->> 
->> That is not what is stated in the initial patch [1].
->> 
->> Can you clarify that ?
->> 
-> 
-> I think what I meant to say was "There is only one clocksource used in
-> RISC-V Linux" as it is guranteed that all the timers across all the
-> harts are synchronized within one tick of each other [2]. 
-> Apologies for not being verbose here.
-> 
-> However, reading the privilege specification(1.12-draft) 
-> 
-> Section. 3.1.10 states that 
-> 
-> "Accurate real-time clocks (RTCs) are relatively expensive to provide
-> (requiring a crystal or MEMS oscillator) and have to run even when the
-> rest of system is powered down, and so there is usually only one in a
-> system located in a different frequency/voltage domain from the
-> processors. Hence, the RTC must be shared by all the harts in a system"
-> 
-> This is different from the commit text in [1].
-> 
-> Perhaps I misunderstood something. @Palmer ?
 
-This is one of those places the ISA has drifted around a bit: in the user ISA 
-there is a time CSR, and CSRs are all per-hart state so logically there is a 
-timer per hart.  We used to actually build systems this way (with an SOC agent 
-what would actively increment each CSR whenever the RTC fired), but it ended up 
-being impractical for a bunch of reasons.  There was never a way to actually 
-write these time CSRs from supervisor mode, but machine-mode software could 
-write them so it would have been possible to build system that had different 
-time values on different harts.
 
-As a result we ended up with per-CPU timers in Linux, but they never actually 
-worked correctly: there's a bunch of per-CPU state in the driver, but nothing 
-to actually enforce that timer reads go to the correct hart.  For example, get 
-the time on hart 0 you'd have to IPI over to that hart, do a local CSR read, 
-and then IPI the time back.  As a result the per-CPU state never really made 
-any sense, but it kind of just hung around because it worked fine on the 
-systems we were building (which always had time synced up anyway) and was 
-closer to what the spec allowed -- we didn't IPI over because time was always 
-synchronized on systems that actually existed and the IPIs are super slow, but 
-the scaffolding stuck around.
-
-As part of cleaning up the privileged ISA for ratification we decided to 
-mandate that the time CSRs on every hart are always within a single tick of 
-each other, effectively mandating a single time across the system.  This was 
-partially motivated by Linux, but mostly by a new approach we were taking to 
-the hypervisor specification -- rather than a hypervisor mode, we decided to 
-just extend supervisor mode to support fast nested virtualization, which means 
-we now have "htimedelta" (a per-hart timer offset) rather than per-hart timers.  
-This is more efficient because the per-state stays constant so we don't need to 
-actively tick it, and since it makes the per-hart time state unnecessary we 
-decided to drop that extra state.
-
-The change to global time on RISC-V systems rendered the per-CPU timers 
-defunct, but since they weren't really doing anything they just stuck around.  
-The cleanup seems perfectly reasonable to me, modulo the issue I've pointed out 
-below...
-
+On Mon, 26 Aug 2019, at 20:17, Ivan Mikhaylov wrote:
+> The option for the ast2400/2500 to get access to CS0 at runtime.
 > 
+> Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
+> ---
+>  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> [2] 
-> https://elixir.bootlin.com/linux/v5.3-rc4/source/drivers/clocksource/timer-riscv.c#L44
-> 
->> Thanks
->> 
->>   -- Daniel
->> 
->> [1] https://lkml.org/lkml/2018/8/4/51
->> 
->> 
->> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
->> > ---
->> >  drivers/clocksource/timer-riscv.c | 6 ++----
->> >  1 file changed, 2 insertions(+), 4 deletions(-)
->> > 
->> > diff --git a/drivers/clocksource/timer-riscv.c
->> > b/drivers/clocksource/timer-riscv.c
->> > index 5e6038fbf115..09e031176bc6 100644
->> > --- a/drivers/clocksource/timer-riscv.c
->> > +++ b/drivers/clocksource/timer-riscv.c
->> > @@ -55,7 +55,7 @@ static u64 riscv_sched_clock(void)
->> >  	return get_cycles64();
->> >  }
->> >  
->> > -static DEFINE_PER_CPU(struct clocksource, riscv_clocksource) = {
->> > +static struct clocksource riscv_clocksource = {
->> >  	.name		= "riscv_clocksource",
->> >  	.rating		= 300,
->> >  	.mask		= CLOCKSOURCE_MASK(64),
->> > @@ -92,7 +92,6 @@ void riscv_timer_interrupt(void)
->> >  static int __init riscv_timer_init_dt(struct device_node *n)
->> >  {
->> >  	int cpuid, hartid, error;
->> > -	struct clocksource *cs;
->> >  
->> >  	hartid = riscv_of_processor_hartid(n);
->> >  	if (hartid < 0) {
->> > @@ -112,8 +111,7 @@ static int __init riscv_timer_init_dt(struct
->> > device_node *n)
->> >  
->> >  	pr_info("%s: Registering clocksource cpuid [%d] hartid [%d]\n",
->> >  	       __func__, cpuid, hartid);
->> > -	cs = per_cpu_ptr(&riscv_clocksource, cpuid);
->> > -	error = clocksource_register_hz(cs, riscv_timebase);
->> > +	error = clocksource_register_hz(&riscv_clocksource,
->> > riscv_timebase);
+> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt 
+> b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> index c5077a1f5cb3..023a9b578df6 100644
+> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> @@ -34,6 +34,13 @@ Optional properties:
+>                  engine is responsible for this.
+>  
+>   - aspeed,alt-boot:    If property is present then boot from alternate 
+> block.
+> +                       At alternate side 'access_cs0' sysfs file 
+> provides:
 
-Someone's client has mangled the patches, but I think there's an issue here: 
-we're still calling the init code for every "riscv" DT entry, but there's now 
-only a single "struct clocksource".  This will result in a single clocksource 
-being initialized multiple times, which I assume is an issue.
+Why are we talking about sysfs in the devicetree binding? This patch
+doesn't seem right to me.
 
->> >  	if (error) {
->> >  		pr_err("RISCV timer register failed [%d] for cpu =
->> > [%d]\n",
->> >  		       error, cpuid);
->> > 
->> 
->> 
-> 
+Also if we're not supporting the aspeed,alt-boot property we should
+probably document it as deprecated rather than making it disappear,
+unless you're going to fix the systems that are using it.
+
+Andrew
