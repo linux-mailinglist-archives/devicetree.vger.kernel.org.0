@@ -2,158 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FA129D1CD
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 16:38:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A73E39D1DF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 16:45:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732565AbfHZOiX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 10:38:23 -0400
-Received: from esa1.microchip.iphmx.com ([68.232.147.91]:58336 "EHLO
-        esa1.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726484AbfHZOiX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 10:38:23 -0400
-Received-SPF: Pass (esa1.microchip.iphmx.com: domain of
-  Codrin.Ciubotariu@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-  envelope-from="Codrin.Ciubotariu@microchip.com";
-  x-sender="Codrin.Ciubotariu@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa1.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa1.microchip.iphmx.com;
-  envelope-from="Codrin.Ciubotariu@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa1.microchip.iphmx.com; spf=Pass smtp.mailfrom=Codrin.Ciubotariu@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: PMfF54VrtH3fiz8e/6h/l2eKoNyOXmHbW3wz0TwkNe7mREq8agcrKFY1eTgVgVkDimSSfMfTCY
- Y9UVRNifvjDVGXdDPVRYfjE3WvLfDvn1+8pAUHmj/XQtjUqP4AXxff7c+TuDpvJE/cjrPod8KI
- chTLQeYUrrNphE6lQ0IEudrLBQtXGj48zJ7qlFZnFf562y0Uw1n/i7GWLginCo/Y4PMxwwXIUL
- k95Bho32M90sUFEVLKc99Fg/17DHKRA0HlXEyH995uv2ntktOPtn3Yw3LpHRu2kFNsceJm71Ez
- oZ8=
-X-IronPort-AV: E=Sophos;i="5.64,433,1559545200"; 
-   d="scan'208";a="47989836"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Aug 2019 07:38:20 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 26 Aug 2019 07:38:20 -0700
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Mon, 26 Aug 2019 07:38:20 -0700
+        id S1731903AbfHZOpq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 10:45:46 -0400
+Received: from mail-eopbgr30062.outbound.protection.outlook.com ([40.107.3.62]:51326
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731186AbfHZOpq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 10:45:46 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BQsQxEB5lol7Yvfzty1PkLdIvCnwWs9zHJ3PllY3tJa4pmmaaLsLaLzucfw2MTmqybntB/quMd3ODMUfiVtmVuD0EyabG4x/Si5Z56I4iJaKr8QFd6cJjDeKueSBxYushWWML8zs4lEkrAJe1VWSZ9W+jj5EkFePif+VMsdv2GfXM12/MRvIu3wH7DHhMJ7kVrCubEVZgrz7H5GyRxbw4sizv6Osp3B0yga9ucfqgULHlVAxzVvVZN8jKzEmCc6CDa6LYioVS/Fm0GEml945JZmLgQS8nbRfH2S6yc2XsnKiY5PTqYAfWAHagNY646g0H3y37sYA7I/mBGDLWrhxrA==
+ b=Buxn2QG81vpY/FXll3QGUAicNOySJXSElWH3ZRqWD17toJL3aIcWnUXlOL1qknJnYVsh1SR6TWB5F2Hzy79R60hOHc8Webq+pHOesJGQjVCfDqMiVmz5tK1Dg4kpLXzkXbUn4bzAQxHiFjDWg8VVjCv2AnYV3ifF1pWtNZYNDpmFnW5fOAV/5SdgeXcN8RUboy0udbXzp3WS8/L8M4jbncLGRdOCvHDyTGv+tuX7naxQAjfPogRha8SD50Cny71S9b7juMM366qWatG8kU5jgMfGtlJGl/PP1KvSbm/OhTWsRgjLyLZrp3BwHIdrzOWtp1UVpDR1rYQVWKHrk09/CQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sZzyNSuA50hOak86zUXS80g6SEbAn8U1kiUn4ZaqSqA=;
- b=LSnrGkA4fASthg3iV211qekEvnOPufPa23lt0cysSK8IZr4vDycRSaUOkfGQ10edXwkMf/z31hPij15dzW0QvxdaAdvOMZb5AenlMSAH0nIH6RCzCVoFq9q6Has4BKJ3FIbT57bt6+No8Ow1m1Rv0Px2wj02OpTZvU2K/3QyUH8cQoWxCdlKf2Y/FRvRYyYnaZzVCUx78/KHCgnaZeftt3Ux1HzMZldO9nEK41grvRhYvfnwz0yQaRYH0OtenladsOUiNjoZ5oLTjo3I5NgyzTdk3rYzEox+tRWl+BIH6C3iC+WjKC3Zig53cvq1zRrl8G+ZWkRpWLHDySUKOs712g==
+ bh=bg44byClphCiUQr60zpMaGt8vFEHLaNwrwl9FbWvHtU=;
+ b=mtSYezYLy4UAq4uprFERq6d92ybFiQQvWzsuERvUoq5ek/vJ1B1T5PVswx3LGf6s7ebmwh2W+WOYewtpZORMxAu9kwgXcJIbY8ejORh2jH1VOFsp5MtykRROj+dLPAOXrY1XTvzC47JifRslsQMu9BXywMSIF5KDQB/zx4hMwAHWgWghSNeNbeFmvft7crfnqIukjE9w7WQ4RafD5WZX1vs4bchjn1aIw4QorqfyV2aDsAbDXniphp1f8IWa45cM4xEteKUkF+aSguEc+e37sY1FQiVqlkF1M54OffidoAgs/1P/1sVzidP9hwH4JaLCfEcs4UG9bbMNTQgyAH4xCg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sZzyNSuA50hOak86zUXS80g6SEbAn8U1kiUn4ZaqSqA=;
- b=rcCYr7ef6ZzTqs6lipTe0zIrELoSV63uBpkv8P+5VHqFKmie33+Hc/A/au0ImsGD3oCI5w+CEhTNBPESfPgME8QMcC7zZj/9ltDsjycla+6ubYkxME31f8JdWWQdDYYekzYwJxf8d07yzb+piONG/HoziifaspcGxUCorgZ7zwA=
-Received: from BY5PR11MB4497.namprd11.prod.outlook.com (52.132.255.220) by
- BY5PR11MB4258.namprd11.prod.outlook.com (52.132.254.88) with Microsoft SMTP
+ bh=bg44byClphCiUQr60zpMaGt8vFEHLaNwrwl9FbWvHtU=;
+ b=NqWSZ27fqM5Tg50tHzY6SrJCr1OdxgfShOezVDlriYwsk7zUY1AHNDHRjlaEnqwvftHyqwZ9G2Tgi03i4G+2X9mpAN/oIEiW9XDFP/t3eDPvbxY0DrH0rmeD0xcF04viIYTPsdofwwEl2WK+Q2Flib2TCIvUHZIKfVSuRpyqM1Y=
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
+ VI1PR04MB5920.eurprd04.prod.outlook.com (20.178.205.82) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.20; Mon, 26 Aug 2019 14:38:17 +0000
-Received: from BY5PR11MB4497.namprd11.prod.outlook.com
- ([fe80::14:24b8:9029:c69]) by BY5PR11MB4497.namprd11.prod.outlook.com
- ([fe80::14:24b8:9029:c69%7]) with mapi id 15.20.2199.021; Mon, 26 Aug 2019
- 14:38:17 +0000
-From:   <Codrin.Ciubotariu@microchip.com>
-To:     <mirq-linux@rere.qmqm.pl>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>
-CC:     <alexandre.belloni@bootlin.com>, <arnd@arndb.de>,
-        <3chas3@gmail.com>, <gregkh@linuxfoundation.org>, <perex@perex.cz>,
-        <lgirdwood@gmail.com>, <Ludovic.Desroches@microchip.com>,
-        <broonie@kernel.org>, <mark.rutland@arm.com>,
-        <Nicolas.Ferre@microchip.com>, <robh-dt@kernel.org>,
-        <tiwai@suse.com>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 5/6] misc: atmel-ssc: get LRCLK pin selection from DT
-Thread-Topic: [PATCH v2 5/6] misc: atmel-ssc: get LRCLK pin selection from DT
-Thread-Index: AQHVWrpLsarueKwUH0+T0VGyCb2x16cNgkmA
-Date:   Mon, 26 Aug 2019 14:38:17 +0000
-Message-ID: <5174bac2-294d-177a-b30c-6a7326820bfb@microchip.com>
-References: <cover.1566677788.git.mirq-linux@rere.qmqm.pl>
- <5f1fd1b8f646c5ced1d838c381b6973e5abccd53.1566677788.git.mirq-linux@rere.qmqm.pl>
-In-Reply-To: <5f1fd1b8f646c5ced1d838c381b6973e5abccd53.1566677788.git.mirq-linux@rere.qmqm.pl>
+ 15.20.2199.21; Mon, 26 Aug 2019 14:45:40 +0000
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e]) by VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e%3]) with mapi id 15.20.2199.021; Mon, 26 Aug 2019
+ 14:45:40 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Anson Huang <anson.huang@nxp.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>
+CC:     Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>
+Subject: Re: [PATCH V3 1/5] thermal: qoriq: Add clock operations
+Thread-Topic: [PATCH V3 1/5] thermal: qoriq: Add clock operations
+Thread-Index: AQHVRn7UNdyaJx5tOE6OrvzyFWKCoA==
+Date:   Mon, 26 Aug 2019 14:45:40 +0000
+Message-ID: <VI1PR04MB7023F219CA7B4187F86EAA42EEA10@VI1PR04MB7023.eurprd04.prod.outlook.com>
+References: <20190730022126.17883-1-Anson.Huang@nxp.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1PR08CA0149.eurprd08.prod.outlook.com
- (2603:10a6:800:d5::27) To BY5PR11MB4497.namprd11.prod.outlook.com
- (2603:10b6:a03:1cc::28)
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [94.177.32.156]
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [212.146.100.6]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9218897d-3dd6-482b-bf8b-08d72a33089f
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BY5PR11MB4258;
-x-ms-traffictypediagnostic: BY5PR11MB4258:
+x-ms-office365-filtering-correlation-id: 47938838-ec7c-4734-d552-08d72a3410b0
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5920;
+x-ms-traffictypediagnostic: VI1PR04MB5920:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BY5PR11MB42583996DAB09E7F7DC66BCCE7A10@BY5PR11MB4258.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
+x-microsoft-antispam-prvs: <VI1PR04MB5920BA96346B2E7E954763FFEEA10@VI1PR04MB5920.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-forefront-prvs: 01415BB535
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(136003)(39860400002)(366004)(396003)(189003)(199004)(4326008)(86362001)(6436002)(2906002)(76176011)(31696002)(486006)(305945005)(71190400001)(71200400001)(2201001)(52116002)(53936002)(110136005)(54906003)(81166006)(25786009)(31686004)(81156014)(446003)(7416002)(478600001)(8676002)(316002)(14454004)(386003)(7736002)(6506007)(66946007)(53546011)(229853002)(66446008)(64756008)(66556008)(6246003)(11346002)(476003)(2501003)(36756003)(102836004)(2616005)(8936002)(186003)(6116002)(3846002)(6512007)(6486002)(5660300002)(99286004)(66066001)(26005)(256004)(66476007);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR11MB4258;H:BY5PR11MB4497.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: microchip.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(346002)(396003)(39860400002)(136003)(376002)(199004)(189003)(486006)(476003)(44832011)(229853002)(316002)(6506007)(53546011)(14454004)(76176011)(99286004)(7696005)(54906003)(110136005)(8936002)(478600001)(102836004)(4326008)(25786009)(6246003)(26005)(446003)(66066001)(8676002)(53936002)(81166006)(81156014)(55016002)(9686003)(7416002)(33656002)(6116002)(3846002)(6436002)(74316002)(186003)(86362001)(305945005)(7736002)(2906002)(91956017)(64756008)(52536014)(66446008)(5660300002)(66574012)(76116006)(71190400001)(4744005)(14444005)(71200400001)(256004)(66946007)(66556008)(66476007);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5920;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: TwcWAC4ZSJIbIgC0LXxPebmZ17u7p4cFmWeiGJrYo0sYHkKkTf8+Co6FeUgpxKmGfIbYk4gizktLksdjbXT44pHfHgMeFrR5wfWNAKNgi912sdl+ghCRoWW/kqFTeaT8FUrKAzr9M07pW4knAc6oeVjkZgwaBQzi7pR4S6wTvEZnHC5b/wNdeeEHPAHOr6DOKRvHV52RqfhXWugmEUYDBuyn2Q9Y/Xlnjnp2xQvPLj60nNfJyoRPBv3s7yp4o2I+5sliyK1KJRNmy8iYofhqeSbi7QEBs0lpCBrYYiKgXKysFc0/SjdrMkTd85/49hJfYnu8+4d9udmMOGEk0HWEBbEVZMrxaDIFBh3n3wxclhmBu3mCjmbtHycja0SOGXVmv7OUHLejy+Iayv1iqZHaIGB+4niLsIg3X7g44vd/9eo=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <22A5BB8587FCE34A9D008F56EDF2B7A0@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+x-microsoft-antispam-message-info: Q3gZqQGW1IqOtO/nyHuhZ9fJEamu1fq9qNEThjtXwkiT2Hlk+6jPgJ3b2AkBM8KTtNRtJ3txMsPMqIGCJmcHYIQlRNCPGHzEGl/wph5ZqrfAAw7JMe5rQ25b/uSR+QfOvNkt29LWvh/UZsAyafu7aOJ/cRvcBIzCfLSCGnefH7vad8Z7SnbqLqDxsFcLEoG+n8thsZ96N95nrbkVCzGumjOu/mTofRRPNQIviAu3eELwTItUHLPbBcVFzlY7fqNLtaVpc/1OSzvsKv/sTJOKlIVShSh1s9mMjU4yen8Tc9QMpnOesULloRngkLjajmHMiMWImOn6jMqZUB43hA6saaJoJsoCjlg45F+HlqRJrX41hRyIaExlaXH2WHcKWSwtcgEbGj1fzgWzVVoqTszcwoPuFWRy6rNqv5T0rXVjWyc=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9218897d-3dd6-482b-bf8b-08d72a33089f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2019 14:38:17.4968
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 47938838-ec7c-4734-d552-08d72a3410b0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2019 14:45:40.1203
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZC1Msbx6I5t6X8B1NhNPV4EWBo7rvVqLmy+Db4/YL7x68lrzkoUP5k4+rYWICiYZQ1kYSpEzLf5KuUH5QkykPR5HhUvdnBfmF6FJH8UhuQo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4258
+X-MS-Exchange-CrossTenant-userprincipalname: tKaj00hjkeUWlXl5iMlRmFwSRu3JClmuBYC7cNjAwU0QwPtYy4VEcVK90JHgkf9VHivHm2UsCPszxMfOJtHeQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5920
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjQuMDguMjAxOSAyMzoyNiwgTWljaGHFgiBNaXJvc8WCYXcgd3JvdGU6DQo+IFN0b3JlIExS
-Q0xLIHBpbiBzZWxlY3Rpb24gZm9yIHVzZSBieSBBU29DIERBSSBkcml2ZXIuDQo+IA0KPiBTaWdu
-ZWQtb2ZmLWJ5OiBNaWNoYcWCIE1pcm9zxYJhdyA8bWlycS1saW51eEByZXJlLnFtcW0ucGw+DQoN
-ClJldmlld2VkLWJ5OiBDb2RyaW4gQ2l1Ym90YXJpdSA8Y29kcmluLmNpdWJvdGFyaXVAbWljcm9j
-aGlwLmNvbT4NCg0KVGhhbmtzIGFuZCBiZXN0IHJlZ2FyZHMsDQpDb2RyaW4NCg0KPiANCj4gLS0t
-DQo+ICAgIHYyOiBzcGxpdCBmcm9tIEFTb0MgaW1wbGVtZW50YXRpb24NCj4gDQo+IC0tLQ0KPiAg
-IGRyaXZlcnMvbWlzYy9hdG1lbC1zc2MuYyAgfCA5ICsrKysrKysrKw0KPiAgIGluY2x1ZGUvbGlu
-dXgvYXRtZWwtc3NjLmggfCAyICsrDQo+ICAgMiBmaWxlcyBjaGFuZ2VkLCAxMSBpbnNlcnRpb25z
-KCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9taXNjL2F0bWVsLXNzYy5jIGIvZHJpdmVy
-cy9taXNjL2F0bWVsLXNzYy5jDQo+IGluZGV4IGFiNDE0NGVhMWYxMS4uMTMyMmUyOWJjMzdhIDEw
-MDY0NA0KPiAtLS0gYS9kcml2ZXJzL21pc2MvYXRtZWwtc3NjLmMNCj4gKysrIGIvZHJpdmVycy9t
-aXNjL2F0bWVsLXNzYy5jDQo+IEBAIC0yMTAsNiArMjEwLDE1IEBAIHN0YXRpYyBpbnQgc3NjX3By
-b2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ICAgCQlzdHJ1Y3QgZGV2aWNlX25v
-ZGUgKm5wID0gcGRldi0+ZGV2Lm9mX25vZGU7DQo+ICAgCQlzc2MtPmNsa19mcm9tX3JrX3BpbiA9
-DQo+ICAgCQkJb2ZfcHJvcGVydHlfcmVhZF9ib29sKG5wLCAiYXRtZWwsY2xrLWZyb20tcmstcGlu
-Iik7DQo+ICsJCXNzYy0+bHJjbGtfZnJvbV90Zl9waW4gPQ0KPiArCQkJb2ZfcHJvcGVydHlfcmVh
-ZF9ib29sKG5wLCAiYXRtZWwsbHJjbGstZnJvbS10Zi1waW4iKTsNCj4gKwkJc3NjLT5scmNsa19m
-cm9tX3JmX3BpbiA9DQo+ICsJCQlvZl9wcm9wZXJ0eV9yZWFkX2Jvb2wobnAsICJhdG1lbCxscmNs
-ay1mcm9tLXJmLXBpbiIpOw0KPiArDQo+ICsJCWlmIChzc2MtPmxyY2xrX2Zyb21fdGZfcGluICYm
-IHNzYy0+bHJjbGtfZnJvbV9yZl9waW4pIHsNCj4gKwkJCWRldl9lcnIoJnBkZXYtPmRldiwgImJv
-dGggTFJDTEsgZnJvbSBSSy9USyBvcHRpb25zIGZvdW5kIGluIERUIG5vZGUiKTsNCj4gKwkJCXJl
-dHVybiAtRUlOVkFMOw0KPiArCQl9DQo+ICAgCX0NCj4gICANCj4gICAJcmVncyA9IHBsYXRmb3Jt
-X2dldF9yZXNvdXJjZShwZGV2LCBJT1JFU09VUkNFX01FTSwgMCk7DQo+IGRpZmYgLS1naXQgYS9p
-bmNsdWRlL2xpbnV4L2F0bWVsLXNzYy5oIGIvaW5jbHVkZS9saW51eC9hdG1lbC1zc2MuaA0KPiBp
-bmRleCA2MDkxZDJhYmMxZWIuLmZiZTFjMmZmYWE4MSAxMDA2NDQNCj4gLS0tIGEvaW5jbHVkZS9s
-aW51eC9hdG1lbC1zc2MuaA0KPiArKysgYi9pbmNsdWRlL2xpbnV4L2F0bWVsLXNzYy5oDQo+IEBA
-IC0yMSw2ICsyMSw4IEBAIHN0cnVjdCBzc2NfZGV2aWNlIHsNCj4gICAJaW50CQkJdXNlcjsNCj4g
-ICAJaW50CQkJaXJxOw0KPiAgIAlib29sCQkJY2xrX2Zyb21fcmtfcGluOw0KPiArCWJvb2wJCQls
-cmNsa19mcm9tX3RmX3BpbjsNCj4gKwlib29sCQkJbHJjbGtfZnJvbV9yZl9waW47DQo+ICAgCWJv
-b2wJCQlzb3VuZF9kYWk7DQo+ICAgfTsNCj4gICANCj4gDQoNCg==
+On 7/30/2019 5:31 AM, Anson.Huang@nxp.com wrote:=0A=
+> From: Anson Huang <Anson.Huang@nxp.com>=0A=
+> =0A=
+> Some platforms like i.MX8MQ has clock control for this module,=0A=
+> need to add clock operations to make sure the driver is working=0A=
+> properly.=0A=
+> =0A=
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>=0A=
+> Reviewed-by: Guido G=FCnther <agx@sigxcpu.org>=0A=
+=0A=
+This series looks good, do you think it can be merged in time for v5.4? =0A=
+Today was v5.3-rc6.=0A=
+=0A=
+In an earlier series the CLK_IS_CRITICAL flags was removed from the TMU =0A=
+clock so if the thermal driver doesn't explicitly enable it the system =0A=
+will hang on probe. This is what happens in linux-next right now!=0A=
+=0A=
+Unless this patches is merged soon we'll end up with a 5.4-rc1 that =0A=
+doesn't boot on imx8mq. An easy fix would be to drop/revert commit =0A=
+951c1aef9691 ("clk: imx8mq: Remove CLK_IS_CRITICAL flag for =0A=
+IMX8MQ_CLK_TMU_ROOT") until the thermal patches are accepted.=0A=
+=0A=
+Merging patches out-of-order when they have hard (boot-breaking) =0A=
+dependencies also breaks bisect.=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
