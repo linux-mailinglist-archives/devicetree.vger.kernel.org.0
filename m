@@ -2,184 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8A9C9D30A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:39:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25D279D315
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:40:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733216AbfHZPjf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:39:35 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1659 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1733200AbfHZPjf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 11:39:35 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7QFPxf4018386;
-        Mon, 26 Aug 2019 17:39:23 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=jU9f5j6ZxSufRp0l6yClPcW1jUXM3GEpOLQlLRS9pBU=;
- b=To1PgnC5V2IkRIl04X2kCQ4oVzbXRNf5P5lzE3ePlDgyC556SLdSpOi1X84Fd05OhJ1w
- 6WFgqhhx5nX1gKmrSRgQmw8akYzlR4e6i+XSLcllZN/jD16WXKTLv3vAiS2ZJwmIhTCf
- nNjp4LSdVgz2RhkXzSkXRBQW2HSGRdG7rcyv4u5yEzBQBZ53PWw+6cFP49237RInq0KJ
- nHf/mgBEOfUFoy89GfXdGrpiuifa6b/AqQmdVru9pKYWYfcSGYtNXNvC93+aSawavht1
- Ws2+y6m06TOminI/hfJwLkBwpSZjkkvFMZU/eqy7s7OEZfxBYzhH27PO/wiuIAV9cze7 VA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2uju0vmgkf-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 26 Aug 2019 17:39:23 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 166B7238;
-        Mon, 26 Aug 2019 15:39:07 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C05532BC1DD;
-        Mon, 26 Aug 2019 17:38:53 +0200 (CEST)
-Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas24.st.com
- (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 26 Aug
- 2019 17:38:53 +0200
-Received: from localhost (10.201.23.25) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 26 Aug 2019 17:38:53
- +0200
-From:   Fabien Dessenne <fabien.dessenne@st.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        id S1733068AbfHZPiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:38:50 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:43894 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733054AbfHZPiu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:50 -0400
+Received: by mail-wr1-f67.google.com with SMTP id y8so15758989wrn.10;
+        Mon, 26 Aug 2019 08:38:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=C68wfOK/1whk3hXx2aI+LZu/B14qolQqF5YsPbhywYw=;
+        b=JyQoopayi0NQ+uMrbKNFrchy8ctwzvEhEnsYqUCRJdOSjNXkDan0KQMx8RROZFS9fD
+         S27mYjoJWszoWgv7icA7Ur/cAphRDBwtKQ2Qn//9ARlxry6+xcZ3QeRKcIO401xncFga
+         HLXEveqxaV/kKIlu0KmHjrKNvZeh5seKsyU3I72kGpf7ytwC9qnhpRXMg4CPP2XybMiT
+         9ghetOsel/Jro8pT46uYPDcbQQ7EqdZPpumdeP2FrTemUKJPeAC3UwwnSWKGjz3BNTml
+         9RnS/U/T3gfUfa23Fk7iGZfJpr2R6Clt4yY1BvEqIN/OaqIjjcGnK24mJ6FCZFl4NoXt
+         ejRw==
+X-Gm-Message-State: APjAAAUe/h/QaM5JPbLMhI7YbiKkUtOYz9EtK37c+XZDqr30QC5vexJ5
+        06BT5UTIUMTKVqBm24Uyr8a5oDwjS30=
+X-Google-Smtp-Source: APXvYqzSfSRNF+1JuaMYWeM7Zw0bN2vHYxbspqB/4JqdONbprhgfE3ickBcc/rF94i6b4+TlH5xkhA==
+X-Received: by 2002:adf:c803:: with SMTP id d3mr24148095wrh.130.1566833927742;
+        Mon, 26 Aug 2019 08:38:47 -0700 (PDT)
+Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
+        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2019 08:38:47 -0700 (PDT)
+From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
+To:     linux-kernel@vger.kernel.org
+Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
+        Ilya Ledvich <ilya@compulab.co.il>,
+        Igor Grinberg <grinberg@compulab.co.il>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>
-CC:     Fabien Dessenne <fabien.dessenne@st.com>,
-        Loic Pallardy <loic.pallardy@st.com>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>
-Subject: [PATCH 2/2] remoteproc: stm32: wakeup the system by wdg irq
-Date:   Mon, 26 Aug 2019 17:38:43 +0200
-Message-ID: <1566833923-16718-3-git-send-email-fabien.dessenne@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
-References: <1566833923-16718-1-git-send-email-fabien.dessenne@st.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 05/12] ARM: dts: imx7d: cl-som-imx7: update pfuze3000 max voltage
+Date:   Mon, 26 Aug 2019 16:37:53 +0100
+Message-Id: <20190826153800.35400-5-git@andred.net>
+X-Mailer: git-send-email 2.23.0.rc1
+In-Reply-To: <20190826153800.35400-1-git@andred.net>
+References: <20190826153800.35400-1-git@andred.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.23.25]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-26_08:,,
- signatures=0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the device node defines the 'wakeup-source' property, use the WDG
-exti IRQ as a wakeup source of the system.
+The max voltage of SW1A is 3.3V on PF3000 as per
+http://cache.freescale.com/files/analog/doc/data_sheet/PF3000.pdf?fsrch=1&sr=1&pageNum=1
 
-Signed-off-by: Fabien Dessenne <fabien.dessenne@st.com>
+While at it, remove the unnecessary leading zero from
+the i2c address.
+
+Signed-off-by: André Draszik <git@andred.net>
+Cc: Ilya Ledvich <ilya@compulab.co.il>
+Cc: Igor Grinberg <grinberg@compulab.co.il>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Mark Rutland <mark.rutland@arm.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
 ---
- drivers/remoteproc/stm32_rproc.c | 47 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
-index 2cf4b29..7ed8895 100644
---- a/drivers/remoteproc/stm32_rproc.c
-+++ b/drivers/remoteproc/stm32_rproc.c
-@@ -15,6 +15,7 @@
- #include <linux/of_address.h>
- #include <linux/of_device.h>
- #include <linux/of_reserved_mem.h>
-+#include <linux/pm_wakeirq.h>
- #include <linux/regmap.h>
- #include <linux/remoteproc.h>
- #include <linux/reset.h>
-@@ -65,6 +66,7 @@ struct stm32_rproc {
- 	struct reset_control *rst;
- 	struct stm32_syscon hold_boot;
- 	struct stm32_syscon pdds;
-+	int wdg_irq;
- 	u32 nb_rmems;
- 	struct stm32_rproc_mem *rmems;
- 	struct stm32_mbox mb[MBOX_NB_MBX];
-@@ -528,6 +530,13 @@ static int stm32_rproc_parse_dt(struct platform_device *pdev)
- 			return err;
- 		}
+diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+index 481bd3971c55..78046633d91b 100644
+--- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
++++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
+@@ -81,12 +81,12 @@
  
-+		ddata->wdg_irq = irq;
-+
-+		if (of_property_read_bool(np, "wakeup-source")) {
-+			device_init_wakeup(dev, true);
-+			dev_pm_set_wake_irq(dev, irq);
-+		}
-+
- 		dev_info(dev, "wdg irq registered\n");
- 	}
+ 	pmic: pmic@8 {
+ 		compatible = "fsl,pfuze3000";
+-		reg = <0x08>;
++		reg = <0x8>;
  
-@@ -607,6 +616,10 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- free_mb:
- 	stm32_rproc_free_mbox(rproc);
- free_rproc:
-+	if (device_may_wakeup(dev)) {
-+		dev_pm_clear_wake_irq(dev);
-+		device_init_wakeup(dev, false);
-+	}
- 	rproc_free(rproc);
- 	return ret;
- }
-@@ -614,22 +627,56 @@ static int stm32_rproc_probe(struct platform_device *pdev)
- static int stm32_rproc_remove(struct platform_device *pdev)
- {
- 	struct rproc *rproc = platform_get_drvdata(pdev);
-+	struct device *dev = &pdev->dev;
- 
- 	if (atomic_read(&rproc->power) > 0)
- 		rproc_shutdown(rproc);
- 
- 	rproc_del(rproc);
- 	stm32_rproc_free_mbox(rproc);
-+
-+	if (device_may_wakeup(dev)) {
-+		dev_pm_clear_wake_irq(dev);
-+		device_init_wakeup(dev, false);
-+	}
- 	rproc_free(rproc);
- 
- 	return 0;
- }
- 
-+#ifdef CONFIG_PM_SLEEP
-+static int stm32_rproc_suspend(struct device *dev)
-+{
-+	struct rproc *rproc = dev_get_drvdata(dev);
-+	struct stm32_rproc *ddata = rproc->priv;
-+
-+	if (device_may_wakeup(dev))
-+		return enable_irq_wake(ddata->wdg_irq);
-+
-+	return 0;
-+}
-+
-+static int stm32_rproc_resume(struct device *dev)
-+{
-+	struct rproc *rproc = dev_get_drvdata(dev);
-+	struct stm32_rproc *ddata = rproc->priv;
-+
-+	if (device_may_wakeup(dev))
-+		return disable_irq_wake(ddata->wdg_irq);
-+
-+	return 0;
-+}
-+#endif
-+
-+static SIMPLE_DEV_PM_OPS(stm32_rproc_pm_ops,
-+			 stm32_rproc_suspend, stm32_rproc_resume);
-+
- static struct platform_driver stm32_rproc_driver = {
- 	.probe = stm32_rproc_probe,
- 	.remove = stm32_rproc_remove,
- 	.driver = {
- 		.name = "stm32-rproc",
-+		.pm = &stm32_rproc_pm_ops,
- 		.of_match_table = of_match_ptr(stm32_rproc_match),
- 	},
- };
+ 		regulators {
+ 			sw1a_reg: sw1a {
+ 				regulator-min-microvolt = <700000>;
+-				regulator-max-microvolt = <1475000>;
++				regulator-max-microvolt = <3300000>;
+ 				regulator-boot-on;
+ 				regulator-always-on;
+ 				regulator-ramp-delay = <6250>;
 -- 
-2.7.4
+2.23.0.rc1
 
