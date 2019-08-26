@@ -2,194 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6558E9D8B3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 23:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A112C9D8C7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 00:00:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727418AbfHZVth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 17:49:37 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:32872 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726281AbfHZVth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 17:49:37 -0400
-Received: by mail-ot1-f67.google.com with SMTP id p23so12527743oto.0;
-        Mon, 26 Aug 2019 14:49:36 -0700 (PDT)
+        id S1726278AbfHZWA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 18:00:27 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:42798 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725933AbfHZWA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 18:00:26 -0400
+Received: by mail-pg1-f194.google.com with SMTP id p3so11381046pgb.9;
+        Mon, 26 Aug 2019 15:00:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=P2jqha8V8ByiibF4urtutm74FTUCiRsGVegLuvKy1vc=;
-        b=UUrkYneqJGIgi5bSpPl6N7bUNymkG+gww4Utt3BL5EUlQLIW4c6Q/ezkG6JucoE2Gm
-         uttpBlMUDTUWzKM6LgjDpPZyGHdbl7Ey4h6KfluW760yEVlqE3x58TK1o7OP18fvgh/n
-         WVgyDHgkxN1NKvgp9bytsMYeNfIQxk0yXJt2/6VHOP+nB8GjmQabD+Ofr+tX/mOqqorp
-         /9I8PR3E6bbaBantLjOuEVpAXJ6Nn00moxOWl4vE+rNpqMfSrquLEQfEw3gqhU9Qi7+Q
-         /uDAxNz/8Vv5Ck0fvBEZ7uPRs6eQNq466vm+weM+cWoI3u794bYYhAEQCe9hhvQt+BzJ
-         qM2A==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=QundPzgYfC/K73sFx47R4ZcLhuZTaRK8uTxQax5u8J8=;
+        b=bH1h97nB8UQXZo1Akpx6/6dRrbOsMc4EWh45viwTK88KkkOt7rroHS5cpC4nmwdvXu
+         0zidSiMECchfEMwIamoVHDvsVJM9WuLKacA0w6TZTC5qXSAkH6NYzvUeGsvH07rRuW0X
+         ELRYlgkaKChO1eGdgrzA5xWxSnQlahdeVtFVkvXDR6N1uu32EFjDYmJJJeikxR8UBJ3b
+         L+LVy/uMhaT6c8wRFXanroLx50hz9kiouOTNQllmON8T4G3k+uyGuNhDkCgwT6unB/+D
+         u6iI0CIQqjqD+DqT6ig4S89w5PQDXOD6M91Di2YUmxzVgwxREk1KXEGvS4BzMrVabfq5
+         Z2Fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P2jqha8V8ByiibF4urtutm74FTUCiRsGVegLuvKy1vc=;
-        b=b6fPMJctg+h+jC7hrpxB+i2mHTuWill7cc3iwYylFlm1+OB/G0CJHopaQd5WXmP8rF
-         b4Bct+BURGZ13vE2fhhAK0VTxbe3yBbTG+4CN6AAfFVJ7BPhN+OffRVrXkNwipU+GEgv
-         T70Yrxb2E3VqnL7v/4htlDb4G1zwdOREQ+GV3t7bIUNWZI/6DRnjUbTYCz+V3cmlxm56
-         YDCbkEZcECCmqUmflkKKnZjzLMzDV3DtkgpYxBcD5jLnPJepnKNSBJeQQHwgMsDjHUqs
-         BvbZasGmOPbfrlhvSYDTAUz+Ov2NvHze/rrJex4lxaTtkLXGCEC/Z++UWtJ/z+8Bw/8m
-         ZWuw==
-X-Gm-Message-State: APjAAAUzAkz98B/VUxwNJKQDmFItMBm6hV4ISxNOHX+mb8+q6sYqG0b2
-        SnwL3d7YTcaDNg7JeGU/EWSilBWGoPNxTMIhw40=
-X-Google-Smtp-Source: APXvYqxpazjd/Ar57NDFJNxQv1s76AdGXHEZZrgd7vE6v0B3ilxg//wmEiNttjvVTfU/aU1aopBQUA7I5SgKRUVPxJ4=
-X-Received: by 2002:a9d:7b44:: with SMTP id f4mr8198249oto.42.1566856176220;
- Mon, 26 Aug 2019 14:49:36 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=QundPzgYfC/K73sFx47R4ZcLhuZTaRK8uTxQax5u8J8=;
+        b=oPuygbL0Rlt6hSRKgtcBaCShMemclLZM4qmwv5g81iTlaOVC5bY4M2Cw/SsnjeedpV
+         CQE75ZxQFiXO2fNtvRpF9rwFagryDr4yVh+wogoVayQk8Ja/307Qr8kNuVVj7pJnYuoi
+         ndd4UisYApBHACzPDeYN+KnpStOY7lLApdU8fnjH+hzDfzkRTR6rBdoFxdJ3PnZ7zPtk
+         eT6W3+nv+TPB/uG5hvoFtcQNn4eLnQ2cIAZ60vem6CEHIl/smh3iexmsBPLn8yCNGMKb
+         8759EboNGM12SVrd+GFQjSmoPazaSWhaBDxtngq7QzTuWJ1eJpklW3lYKA+4uIX/c6QZ
+         d27w==
+X-Gm-Message-State: APjAAAWPDFi292Xquvm69pA+xjmCxLq97soqq8I5m91/D0/ZBnwon9hC
+        +ZO4Zf4x7jaSU7m+UeocMO4=
+X-Google-Smtp-Source: APXvYqzWxoRcFFhqCWqeVbZS+EnvG3Nk1HyugsCQ5YnNomlIVcOQgAanuXy6QByI5JLqwPLVGiUZPA==
+X-Received: by 2002:a65:5043:: with SMTP id k3mr5303984pgo.406.1566856825427;
+        Mon, 26 Aug 2019 15:00:25 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id b18sm5474156pfi.160.2019.08.26.15.00.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Aug 2019 15:00:24 -0700 (PDT)
+Date:   Mon, 26 Aug 2019 15:00:22 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     linux-input@vger.kernel.org, Denis Carikli <denis@eukrea.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] Input: tsc2007 - use GPIO descriptor
+Message-ID: <20190826220022.GA7663@dtor-ws>
+References: <20190823071021.5598-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-References: <90cc600d6f7ded68f5a618b626bd9cffa5edf5c3.1566531960.git.eswara.kota@linux.intel.com>
- <20190824211158.5900-1-martin.blumenstingl@googlemail.com> <3813e658-1600-d878-61a4-29b4fe51b281@linux.intel.com>
-In-Reply-To: <3813e658-1600-d878-61a4-29b4fe51b281@linux.intel.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 26 Aug 2019 23:49:24 +0200
-Message-ID: <CAFBinCA_B9psNGBeDyhkewhoutNh6HsLUN+TRfO_8vuNqhis4Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
-To:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>
-Cc:     eswara.kota@linux.intel.com, cheol.yong.kim@intel.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, qi-ming.wu@intel.com, robh@kernel.org,
-        Hauke Mehrtens <hauke@hauke-m.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190823071021.5598-1-linus.walleij@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Linus,
 
-On Mon, Aug 26, 2019 at 6:01 AM Chuan Hua, Lei
-<chuanhua.lei@linux.intel.com> wrote:
->
-> Hi Martin,
->
-> Thanks for your comment.
-thank you for the quick reply
+On Fri, Aug 23, 2019 at 09:10:21AM +0200, Linus Walleij wrote:
+> This switches the TSC2007 to use a GPIO descriptor to read
+> the pendown GPIO line.
+> 
+> As this will make the gpiolib start to respect polarity
+> inversion flags on the GPIO lines, drop the inversion when
+> reading the line with gpio_get_value(), fix two offenders
+> in the i.MX device trees, and also emphasize the importance
+> of marking the polarity right in the device tree bindings.
+> 
+> Cc: Denis Carikli <denis@eukrea.com>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> Cc: NXP Linux Team <linux-imx@nxp.com>
+> Cc: H. Nikolaus Schaller <hns@goldelico.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - Drop inversion on the GPIO descriptor value, rely on the
+>   gpiolib to handle polarity inversion.
+> - Comb through device trees, identify two offenders, fix
+>   them as part of the patch for a clean cut.
+> - Also fix the device tree bindings.
+> ---
+>  .../bindings/input/touchscreen/tsc2007.txt         |  5 +++--
+>  arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi       |  3 ++-
+>  arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi       |  3 ++-
+>  drivers/input/touchscreen/tsc2007.h                |  4 +++-
+>  drivers/input/touchscreen/tsc2007_core.c           | 14 +++++++-------
+>  5 files changed, 17 insertions(+), 12 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
+> index ed00f61b8c08..b08b54d49699 100644
+> --- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
+> +++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
+> @@ -7,7 +7,8 @@ Required properties:
+>  
+>  Optional properties:
+>  - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
+> -  The penirq pin goes to low when the panel is touched.
+> +  The penirq pin goes to low when the panel is touched, so make sure to tag
+> +  the GPIO line with GPIO_ACTIVE_LOW.
 
-> On 8/25/2019 5:11 AM, Martin Blumenstingl wrote:
-> > Hi Dilip,
-> >
-> >> Add driver for the reset controller present on Intel
-> >> Lightening Mountain (LGM) SoC for performing reset
-> >> management of the devices present on the SoC. Driver also
-> >> registers a reset handler to peform the entire device reset.
-> > [...]
-> >> +static const struct of_device_id intel_reset_match[] = {
-> >> +    { .compatible = "intel,rcu-lgm" },
-> >> +    {}
-> >> +};
-> > how is this IP block differnet from the one used in many Lantiq SoCs?
-> > there is already an upstream driver for the RCU IP block on the Lantiq
-> > SoCs: drivers/reset/reset-lantiq.c
-> >
-> > some background:
-> > Lantiq was started as a spinoff from Infineon in 2009. Intel then
-> > acquired Lantiq in 2015. source: [0]
-> > Intel is re-using some of the IP blocks from the MIPS Lantiq SoCs
-> > (Intel even has some own MIPS SoCs as part of the Lantiq acquisition,
-> > typically used for PON/GPON/ADSL/VDSL capable network devices).
-> > Thus I think it is likely that the new "Lightening Mountain" SoCs use
-> > an updated version of the Lantiq RCU IP.
->
-> I would not say there is a fundamental difference since reset is a
-> really simple
-> stuff from all reset drivers.  However, it did have some difference
-> from existing reset-lantiq.c since SoC becomes more and more complex.
-OK, let me go through your detailed list
+I think this is too strong. I am sure that one can come up with a way to
+connect the attention signal though polarity inverter and then one would
+have to specify GPIO_ACTIVE_HIGH in the DT.
 
-> 1. reset-lantiq.c use index instead of register offset + bit position.
-> index reset is good for a small system (< 64). However, it will become very
-> difficult to use if you have  > 100 reset. So we use register offset +
-> bit position
-reset-lantiq uses bit bit positions for specifying the reset line.
-for example this is from OpenWrt's vr9.dtsi:
-  reset0: reset-controller@10 {
-    ...
-    reg = <0x10 4>, <0x14 4>;
-    #reset-cells = <2>;
-  };
+Can we say:
 
-  gphy0: gphy@20 {
-    ...
-    resets = <&reset0 31 30>, <&reset1 7 7>;
-    reset-names = "gphy", "gphy2";
-  };
+The penirq pin goes to low when the panel is touched, so GPIO line
+should normally be tagged with GPIO_ACTIVE_LOW.
 
-in my own words this means:
-- all reset0 reset bits are at offset 0x10 (parent is RCU)
-- all reset0 status bits are at offset 0x14 (parent is RCU)
-- the first reset line uses reset bit 31 and status bit 30
-- the second reset line uses reset bit 7 and status bit 7
-- there can be multiple reset-controller instances, each taking the
-reset and status offsets (OpenWrt's vr9.dtsi specifies the second RCU
-reset controller "reset1" with reset offset 0x48 and status offset
-0x24)
+Thanks.
 
-> 2. reset-lantiq.c does not support device restart which is part of the
-> reset in
-> old lantiq SoC. It moved this part into arch/mips/lantiq directory.
-it was moved to the .dts instead of the arch code. again from
-OpenWrt's vr9.dtsi [0]:
-  reboot {
-    compatible = "syscon-reboot";
-    regmap = <&rcu0>;
-    offset = <0x10>;
-    mask = <0xe0000000>;
-  };
-
-this sets the reset0 reset bits 31, 30 and 29 at reboot
-
-> 3. reset-lantiqc reset callback doesn't implement what hardware implemented
-> function. In old SoCs, some bits in the same register can be hardware
-> reset clear.
->
-> It just call assert + assert. For these SoCs, we should only call
-> assert, hardware will auto deassert.
-I didn't know that. so to confirm I understand this correctly:
-- some reset lines must be asserted and de-asserted manually (setting
-and clearing the bit manually). the _assert and _deassert functions
-should be used in this case
-- other reset lines only support reset pulses. the _reset function
-should be used in this case
-- the _reset function should only assert the reset line, then wait
-until the hardware automatically de-asserts it (without any further
-write)
-
-is this the same for all, old and new SoCs?
-
-only two mainline Lantiq drivers are using reset lines - both are
-using the _assert and _deassert variants:
-- drivers/net/dsa/lantiq_gswip.c
-- drivers/phy/lantiq/phy-lantiq-rcu-usb2.c
-
-> 4. Code not optimized and intel internal review not assessed.
-insights from you (like the issue with the reset callback) are very
-valuable - this shows that we should focus on having one driver.
-
-> Based on the above findings, I would suggest reset-lantiq.c to move to
-> reset-intel-syscon.c
-my concern with having two separate drivers is that it will be hard to
-migrate from reset-lantiq to the "optimized" reset-intel-syscon
-driver.
-I don't have access to the datasheets for the any Lantiq/Intel SoC
-(VRX200 and even older).
-so debugging issues after switching from one driver to another is
-tedious because I cannot tell which part of the driver is causing a
-problem (it's either "all code from driver A" vs "all code from driver
-B", meaning it's hard to narrow it down).
-with separate commits/patches that are improving the reset-lantiq
-driver I can do git bisect to find the cause of a problem on the older
-SoCs (VRX200 for example)
-
-> What is your opinion?
-I explained why I would like to avoid having two separate drivers
-(even just for a limited amount of time)
-
-
-Martin
-
-
-[0] https://git.openwrt.org/?p=openwrt/openwrt.git;a=blob;f=target/linux/lantiq/files/arch/mips/boot/dts/vr9.dtsi;h=e8b87dbcc7de2fb928a4e602f1a650030d2f7c35;hb=c3a78955f34a61d402044f357f54f21c75a19ff9#l103
+-- 
+Dmitry
