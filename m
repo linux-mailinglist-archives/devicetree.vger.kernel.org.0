@@ -2,455 +2,740 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B5FB9C995
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 08:44:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 784109C99F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 08:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729485AbfHZGo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 02:44:27 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:43168 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729419AbfHZGo0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 02:44:26 -0400
-Received: by mail-ed1-f67.google.com with SMTP id h13so24906719edq.10
-        for <devicetree@vger.kernel.org>; Sun, 25 Aug 2019 23:44:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dA2WZyMm67w3lO2i0AwQCrVkkd/5XMnhJesFUl2G2rU=;
-        b=C4YDeZtuVwQGdLrgUjSHPgr3obyG56oJ9qOyoHqZVYDtnV3aKIZuzTZ3pvAqLgP+9D
-         3o0OcS6arw/aiYkexbBui+5rQIgxrzMnO4OeaU7CYczkUWBuaVHH1y8sp8jO/FeEBaOZ
-         eBZJ8YiLcvvqjYk38LgndlGhf2Im4QlTXQfxk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dA2WZyMm67w3lO2i0AwQCrVkkd/5XMnhJesFUl2G2rU=;
-        b=Zs7wuoFYCsGizVYcnAWyIm0GkIHCJiZnsqdg4WvDIUlbLEehV0TPY5AiW0sx1XaHSk
-         e3DSnyo3WsEJ0s1DC5BM4jJYuLUpp4yDPq7z0tdiZoQyClfMwPsDD1r0zvnfIjkIjx2h
-         U6rUrbuB7PSMewS2E34a/tBkTIPPeeJnYvukmn8AJhXiw84WbL2gAax6uUhaGTAuD/FH
-         wQ9cCjs95Ii0HeIPn1j66NqBZT2HewEl2Bpxr8GBl2lUhIfYhnESx1I383usJ1U0DHej
-         GZfJqixf5hNKNBS52UqRCQ/hXs9JhfWCkt0SasfyetBHF1uUUYaJWjZsn6rEXW/wl3lT
-         pcUQ==
-X-Gm-Message-State: APjAAAWdFyOn4i5AzHtsifdVyU3vsZbg9bisst2+A4qch2C0HqtL6I19
-        MKzGSF1EcBVTw0lCXP8JQCCtX/ExyJz58g==
-X-Google-Smtp-Source: APXvYqz0i2itGTJltOSbuPrWXdBbavn8VCLMIrZc1o3nADmPwjV9IT1BWfoCWWTHcvP0abKDDz0G5g==
-X-Received: by 2002:a17:906:244c:: with SMTP id a12mr14932050ejb.288.1566801864279;
-        Sun, 25 Aug 2019 23:44:24 -0700 (PDT)
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com. [209.85.128.43])
-        by smtp.gmail.com with ESMTPSA id s22sm1098131eds.67.2019.08.25.23.44.24
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Aug 2019 23:44:24 -0700 (PDT)
-Received: by mail-wm1-f43.google.com with SMTP id 10so14291340wmp.3
-        for <devicetree@vger.kernel.org>; Sun, 25 Aug 2019 23:44:24 -0700 (PDT)
-X-Received: by 2002:a05:600c:254a:: with SMTP id e10mr20720968wma.113.1566801385282;
- Sun, 25 Aug 2019 23:36:25 -0700 (PDT)
+        id S1729444AbfHZGtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 02:49:01 -0400
+Received: from mga17.intel.com ([192.55.52.151]:7079 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725446AbfHZGtB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 02:49:01 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 25 Aug 2019 23:49:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
+   d="scan'208";a="187489501"
+Received: from linux.intel.com ([10.54.29.200])
+  by FMSMGA003.fm.intel.com with ESMTP; 25 Aug 2019 23:48:59 -0700
+Received: from [10.226.39.22] (ekotax-mobl.gar.corp.intel.com [10.226.39.22])
+        by linux.intel.com (Postfix) with ESMTP id 1E92A580444;
+        Sun, 25 Aug 2019 23:48:55 -0700 (PDT)
+Subject: Re: [PATCH v2 3/3] dwc: PCI: intel: Intel PCIe RC controller driver
+To:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        hch@infradead.org, jingoohan1@gmail.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        qi-ming.wu@intel.com
+References: <9bd455a628d4699684c0f9d439b64af1535cccc6.1566208109.git.eswara.kota@linux.intel.com>
+ <20190824210302.3187-1-martin.blumenstingl@googlemail.com>
+ <2c71003f-06d1-9fe2-2176-94ac816b40e3@linux.intel.com>
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+Message-ID: <c9001043-41f5-75c0-c59b-6e3b0e8500b0@linux.intel.com>
+Date:   Mon, 26 Aug 2019 14:48:54 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.0
 MIME-Version: 1.0
-References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
- <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
- <20190802082815.GA203993@chromium.org> <1566724680.20680.8.camel@mtksdccf07>
-In-Reply-To: <1566724680.20680.8.camel@mtksdccf07>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Mon, 26 Aug 2019 15:36:13 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
-Message-ID: <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
-Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
-To:     Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-Cc:     "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "yuzhao@chromium.org" <yuzhao@chromium.org>,
-        "zwisler@chromium.org" <zwisler@chromium.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
-        <Sean.Cheng@mediatek.com>,
-        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
-        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
-        <christie.yu@mediatek.com>,
-        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
-        <Frederic.Chen@mediatek.com>,
-        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
-        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
-        =?UTF-8?B?UG8tWWFuZyBIdWFuZyAo6buD5p+P6Zm9KQ==?= 
-        <po-yang.huang@mediatek.com>,
-        "shik@chromium.org" <shik@chromium.org>,
-        "suleiman@chromium.org" <suleiman@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <2c71003f-06d1-9fe2-2176-94ac816b40e3@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerry,
+[Got delivery failure mail , so re-sending the mail]
 
-On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
-<Jerry-ch.Chen@mediatek.com> wrote:
+Hi Martin,
+
+Thanks for review comments, please find my response inline.
+
+On 8/26/2019 11:30 AM, Chuan Hua, Lei wrote:
+> Hi Martin,
 >
-> Hi Tomasz,
+> Thanks for your valuable comments. I reply some of them as below.
 >
-> On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
-> > Hi Jerry,
-> >
-> > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
-> > > From: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-> > >
-> > > This patch adds the driver of Face Detection (FD) unit in
-> > > Mediatek camera system, providing face detection function.
-> > >
-> > > The mtk-isp directory will contain drivers for multiple IP
-> > > blocks found in Mediatek ISP system. It will include ISP Pass 1
-> > > driver (CAM), sensor interface driver, DIP driver and face
-> > > detection driver.
-> > >
-> > > Signed-off-by: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-> > > ---
-> > >  drivers/media/platform/Makefile               |    2 +
-> > >  drivers/media/platform/mtk-isp/fd/Makefile    |    5 +
-> > >  drivers/media/platform/mtk-isp/fd/mtk_fd.h    |  157 +++
-> > >  drivers/media/platform/mtk-isp/fd/mtk_fd_40.c | 1259 +++++++++++++++++++++++++
-> > >  include/uapi/linux/v4l2-controls.h            |    4 +
-> > >  5 files changed, 1427 insertions(+)
-> > >  create mode 100644 drivers/media/platform/mtk-isp/fd/Makefile
-> > >  create mode 100644 drivers/media/platform/mtk-isp/fd/mtk_fd.h
-> > >  create mode 100644 drivers/media/platform/mtk-isp/fd/mtk_fd_40.c
-> > >
-> >
-> > Thanks for the patch! I finally got a chance to fully review the code. Sorry
-> > for the delay. Please check my comments inline.
-> >
-> I appreciate your comments.
-> I've fixed most of the comments and verifying them,
-> Sorry for the delay, here is the reply.
+> Regards,
 >
-
-Thanks for replying to all the comments, it's very helpful. I'll snip
-the parts that I don't have any further comments.
-
-[snip]
-
-> > > +   if (usercount == 1) {
-> > > +           pm_runtime_get_sync(&fd_dev->pdev->dev);
-> > > +           if (mtk_fd_hw_enable(fd_hw)) {
-> > > +                   pm_runtime_put_sync(&fd_dev->pdev->dev);
-> > > +                   atomic_dec_return(&fd_hw->fd_user_cnt);
-> > > +                   mutex_unlock(&fd_hw->fd_hw_lock);
-> > > +                   return -EINVAL;
-> > > +           }
-> > > +   }
-> >
-> > This is a simple mem-to-mem device, so there is no reason to keep it active
-> > all the time it's streaming. Please just get the runtime PM counter when
-> > queuing a job to the hardware and release it when the job finishes.
-> >
-> > I guess we might still want to do the costly operations like rproc_boot()
-> > when we start streaming, though.
-> >
-> Do you mean by moving the pm_runtime_get/put stuff to the job execution
-> and job finish place?
-
-Yes.
-
-> the rproc_boot() operation will be done here.
+> Chuanhua
 >
-
-How much time does the rproc_boot() operation take?
-
-[snip]
-
-> > > +
-> > > +           pm_runtime_put_sync(&fd_dev->pdev->dev);
-> >
-> > Any reason to use pm_runtime_put_sync() over pm_runtime_put()?
-> >
-> No special reason to do so, the pm_runtime_put_sync here will be moved
-> to the place each job finished.
+> On 8/25/2019 5:03 AM, Martin Blumenstingl wrote:
+>> Hi Dilip,
+>>
+>> first of all: thank you for submitting this upstream!
+>> I hope that we can use this driver to replace the out-of-tree PCIe
+>> driver that's used in OpenWrt for the Lantiq VRX200 SoCs.
+>>
+>> a small disclaimer: I don't have access to any Lantiq, Intel or
+>> DesignWare datasheets. so everything I write below is based on my own
+>> understanding of the Tegra public datasheet (which describes the
+>> DesignWare PCIe registers) as well as the public Lantiq UGW code drops
+>> with out-of-tree drivers for an older version of this PCIe IP.
+>> thus some of my statements below may be wrong - in this case I would
+>> appreciate an explanation of how the hardware really works.
+>>
+>> please keep me CC'ed on further revisions of this series. I am highly
+>> interested in making this driver work on the Lantiq VRX200 SoCs once
+>> the initial version has landed in linux-next.
+>>
+>>> +config PCIE_INTEL_AXI
+>>> +        bool "Intel AHB/AXI PCIe host controller support"
+>> I believe that this is mostly the same IP block as it's used in Lantiq
+>> (xDSL) VRX200 SoCs (with MIPS cores) which was introduced in 2010
+>> (before Intel acquired Lantiq).
+>> This is why I would have personally called the driver PCIE_LANTIQ
 >
-
-If there is no reason, then the _sync() variant shouldn't be used, as
-it could affect the performance negatively.
-
-[snip]
-
-> > > +static int mtk_fd_hw_job_exec(struct mtk_fd_hw *fd_hw,
-> > > +                         struct fd_hw_param *fd_param,
-> > > +                         void *output_vaddr)
-> > > +{
-> > > +   struct fd_user_output *fd_output;
-> > > +   struct ipi_message fd_ipi_msg;
-> > > +   int ret;
-> > > +   u32 num;
-> > > +
-> > > +   if (fd_param->user_param.src_img_fmt == FMT_UNKNOWN)
-> > > +           goto param_err;
-> >
-> > Is this possible?
-> >
-> Only if user set wrong format, I will remove this.
+> VRX200 SoC(internally called VR9) was the first PCIe SoC product which 
+> was using synopsys
 >
-
-It shouldn't be possible to set a wrong format, because TRY_/S_FMT
-should adjust what the user set to something that is valid.
-
-> > > +
-> > > +   mutex_lock(&fd_hw->fd_hw_lock);
-> > > +   fd_hw->state = FD_ENQ;
-> >
-> > What is this state for?
-> >
-> It was for checking status, if a job is processing, the state is
-> FD_ENQ,
-> then we should wait for the last job to be done when pm_suspend().
+> controller v3.30a. It only supports PCIe Gen1.1/1.0. The phy is 
+> internal phy from infineon.
 >
-
-If so, would it be possible to make it a bool and call is_processing?
-
-[snip]
-
-> > > +static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
-> > > +                             unsigned int *num_buffers,
-> > > +                             unsigned int *num_planes,
-> > > +                             unsigned int sizes[],
-> > > +                             struct device *alloc_devs[])
-> > > +{
-> > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > +   struct device *dev = ctx->dev;
-> > > +   unsigned int size;
-> > > +
-> > > +   switch (vq->type) {
-> > > +   case V4L2_BUF_TYPE_META_CAPTURE:
-> > > +           size = ctx->dst_fmt.buffersize;
-> > > +           break;
-> > > +   case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
-> > > +           size = ctx->src_fmt.plane_fmt[0].sizeimage;
-> > > +           break;
-> > > +   default:
-> > > +           dev_err(dev, "invalid queue type: %d\n", vq->type);
-> >
-> > We should need to handle this.
-> >
-> Do you mean by giving a size instead of return -EINVAL?
+> After that, we have other PCe 1.1/10. products such as ARX300/390.  
+> However, these products are EOL,
 >
-
-Sorry, typo. I meant we shouldn't need to handle it, because we can't
-get any other queue type here.
-
-[snip]
-
-> > > +static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > +{
-> > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > +   struct vb2_buffer *vb;
-> >
-> > How do we guarantee here that the hardware isn't still accessing the buffers
-> > removed below?
-> >
-> Maybe we can check the driver state flag and aborting the unfinished
-> jobs?
-> (fd_hw->state == FD_ENQ)
+> that is why we don't put effort to support VRX200/ARX300/390.
 >
-
-Yes, we need to either cancel or wait for the currently processing
-job. It depends on hardware capabilities, but cancelling is generally
-preferred for the lower latency.
-
-> > > +
-> > > +   if (V4L2_TYPE_IS_OUTPUT(vq->type))
-> > > +           vb = v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
-> > > +   else
-> > > +           vb = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
-> > > +
-> > > +   while (vb) {
-> > > +           v4l2_m2m_buf_done(to_vb2_v4l2_buffer(vb), VB2_BUF_STATE_ERROR);
-> > > +           if (V4L2_TYPE_IS_OUTPUT(vq->type))
-> > > +                   vb = v4l2_m2m_src_buf_remove(ctx->fh.m2m_ctx);
-> > > +           else
-> > > +                   vb = v4l2_m2m_dst_buf_remove(ctx->fh.m2m_ctx);
-> > > +   }
-> >
-> > We can use v4l2_m2m_buf_remove(). Also we can move the call into the loop
-> > condition:
-> >
-> > while ((vb == v4l2_m2m_buf_remove(...)))
-> >       v4l2_m2m_buf_done(...);
-> >
-> Ok, I will refine as following:
+> PCIE_LANTIQ was also a name used internally in the product as in 
+> linux-3.10.x.
 >
-> while ((vb = v4l2_m2m_buf_remove(V4L2_TYPE_IS_OUTPUT(vq->type)?
->   &m2m_ctx->out_q_ctx :
->   &m2m_ctx->cap_q_ctx)))
-> v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-
-Please move the queue type check before the loop and save the queue
-context in a local variable.
-
-[snip]
-
-> > > +}
-> > > +
-> > > +static void mtk_fd_vb2_request_complete(struct vb2_buffer *vb)
-> > > +{
-> > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vb->vb2_queue);
-> > > +
-> > > +   v4l2_ctrl_request_complete(vb->req_obj.req, &ctx->hdl);
-> > > +}
-> > > +
-> > > +static void mtk_fd_fill_pixfmt_mp(struct v4l2_pix_format_mplane *dfmt,
-> > > +                             const struct v4l2_pix_format_mplane *sfmt)
-> > > +{
-> > > +   dfmt->width = sfmt->width;
-> > > +   dfmt->height = sfmt->height;
-> > > +   dfmt->pixelformat = sfmt->pixelformat;
-> > > +   dfmt->field = sfmt->field;
-> > > +   dfmt->colorspace = sfmt->colorspace;
-> > > +   dfmt->num_planes = sfmt->num_planes;
-> > > +
-> > > +   /* Use default */
-> > > +   dfmt->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
-> > > +   dfmt->quantization = V4L2_QUANTIZATION_DEFAULT;
-> > > +   dfmt->xfer_func =
-> > > +           V4L2_MAP_XFER_FUNC_DEFAULT(dfmt->colorspace);
-> > > +   dfmt->plane_fmt[0].bytesperline = dfmt->width * 2;
-> > > +   dfmt->plane_fmt[0].sizeimage =
-> > > +           dfmt->height * dfmt->plane_fmt[0].bytesperline;
-> > > +   memset(dfmt->reserved, 0, sizeof(dfmt->reserved));
-> > > +}
-> >
-> > Could we unify this function with mtk_fd_m2m_try_fmt_out_mp()? That function
-> > should be almost directly reusable for the default format initialization +/-
-> > the arguments passed to it.
-> >
-> Ok, I will try to reuse it as following:
 >
-> static void mtk_fd_fill_pixfmt_mp(struct v4l2_pix_format_mplane *dfmt,
->   const struct v4l2_pix_format_mplane *sfmt)
-> {
-> dfmt->field = V4L2_FIELD_NONE;
-> dfmt->colorspace = V4L2_COLORSPACE_BT2020;
-> dfmt->num_planes = sfmt->num_planes;
-> dfmt->ycbcr_enc = V4L2_YCBCR_ENC_DEFAULT;
-> dfmt->quantization = V4L2_QUANTIZATION_DEFAULT;
-> dfmt->xfer_func =
-> V4L2_MAP_XFER_FUNC_DEFAULT(dfmt->colorspace);
+>>
+>> [...]
+>>> +#define PCIE_CCRID                0x8
+>>> +
+>>> +#define PCIE_LCAP                0x7C
+>>> +#define PCIE_LCAP_MAX_LINK_SPEED        GENMASK(3, 0)
+>>> +#define PCIE_LCAP_MAX_LENGTH_WIDTH        GENMASK(9, 4)
+>>> +
+>>> +/* Link Control and Status Register */
+>>> +#define PCIE_LCTLSTS                0x80
+>>> +#define PCIE_LCTLSTS_ASPM_ENABLE        GENMASK(1, 0)
+>>> +#define PCIE_LCTLSTS_RCB128            BIT(3)
+>>> +#define PCIE_LCTLSTS_LINK_DISABLE        BIT(4)
+>>> +#define PCIE_LCTLSTS_COM_CLK_CFG        BIT(6)
+>>> +#define PCIE_LCTLSTS_HW_AW_DIS            BIT(9)
+>>> +#define PCIE_LCTLSTS_LINK_SPEED            GENMASK(19, 16)
+>>> +#define PCIE_LCTLSTS_NEGOTIATED_LINK_WIDTH    GENMASK(25, 20)
+>>> +#define PCIE_LCTLSTS_SLOT_CLK_CFG        BIT(28)
+>>> +
+>>> +#define PCIE_LCTLSTS2                0xA0
+>>> +#define PCIE_LCTLSTS2_TGT_LINK_SPEED        GENMASK(3, 0)
+>>> +#define PCIE_LCTLSTS2_TGT_LINK_SPEED_25GT    0x1
+>>> +#define PCIE_LCTLSTS2_TGT_LINK_SPEED_5GT    0x2
+>>> +#define PCIE_LCTLSTS2_TGT_LINK_SPEED_8GT    0x3
+>>> +#define PCIE_LCTLSTS2_TGT_LINK_SPEED_16GT    0x4
+>>> +#define PCIE_LCTLSTS2_HW_AUTO_DIS        BIT(5)
+>>> +
+>>> +/* Ack Frequency Register */
+>>> +#define PCIE_AFR                0x70C
+>>> +#define PCIE_AFR_FTS_NUM            GENMASK(15, 8)
+>>> +#define PCIE_AFR_COM_FTS_NUM            GENMASK(23, 16)
+>>> +#define PCIE_AFR_GEN12_FTS_NUM_DFT        (SZ_128 - 1)
+>>> +#define PCIE_AFR_GEN3_FTS_NUM_DFT        180
+>>> +#define PCIE_AFR_GEN4_FTS_NUM_DFT        196
+>>> +
+>>> +#define PCIE_PLCR_DLL_LINK_EN            BIT(5)
+>>> +#define PCIE_PORT_LOGIC_FTS            GENMASK(7, 0)
+>>> +#define PCIE_PORT_LOGIC_DFT_FTS_NUM        (SZ_128 - 1)
+>>> +
+>>> +#define PCIE_MISC_CTRL                0x8BC
+>>> +#define PCIE_MISC_CTRL_DBI_RO_WR_EN        BIT(0)
+>>> +
+>>> +#define PCIE_MULTI_LANE_CTRL            0x8C0
+>>> +#define PCIE_UPCONFIG_SUPPORT            BIT(7)
+>>> +#define PCIE_DIRECT_LINK_WIDTH_CHANGE        BIT(6)
+>>> +#define PCIE_TARGET_LINK_WIDTH            GENMASK(5, 0)
+>>> +
+>>> +#define PCIE_IOP_CTRL                0x8C4
+>>> +#define PCIE_IOP_RX_STANDBY_CTRL        GENMASK(6, 0)
+> no need for IOP
+>> are you sure that you need any of the registers above?
+>> as far as I can tell most (all?) of them are part of the DesignWare
+>> register set. why doesn't pcie-designware-host initialize these?
+>> I don't have any datasheet or register documentation for the DesignWare
+>> PCIe core. In my own experiment from a month ago on the Lantiq VRX200
+>> SoC I didn't need any of this: [0]
 >
-> /* Keep user setting as possible */
-> dfmt->width = clamp(dfmt->width,
->     MTK_FD_OUTPUT_MIN_WIDTH,
->     MTK_FD_OUTPUT_MAX_WIDTH);
-> dfmt->height = clamp(dfmt->height,
->      MTK_FD_OUTPUT_MIN_HEIGHT,
->      MTK_FD_OUTPUT_MAX_HEIGHT);
+> As I mentioned, VRX200 was a very old PCIe Gen1.1 product. In our 
+> latest SoC Lightning
 >
-> if (sfmt->num_planes == 2) {
-> /* NV16M and NV61M has 1 byte per pixel */
-> dfmt->plane_fmt[0].bytesperline = dfmt->width;
-> dfmt->plane_fmt[1].bytesperline = dfmt->width;
-> } else {
-> /* 2 bytes per pixel */
-> dfmt->plane_fmt[0].bytesperline = dfmt->width * 2;
-> }
+> Mountain, we are using synopsys controller 5.20/5.50a. We support 
+> Gen2(XRX350/550),
 >
-> dfmt->plane_fmt[0].sizeimage =
-> dfmt->height * dfmt->plane_fmt[0].bytesperline;
-> }
-
-How would the implementation of TRY_FMT look in this case?
-
-[snip]
-
-> > > +static int mtk_fd_m2m_enum_fmt_out_mp(struct file *file, void *fh,
-> > > +                                 struct v4l2_fmtdesc *f)
-> > > +{
-> > > +   int i;
-> > > +
-> > > +   for (i = 0; i < NUM_FORMATS; ++i) {
-> > > +           if (i == f->index) {
-> > > +                   f->pixelformat = in_img_fmts[i].pixelformat;
-> > > +                   return 0;
-> > > +           }
-> > > +   }
-> >
-> > Why don't we just check if f->index is within the [0, ARRAY_SIZE()-1] bounds
-> > and then just use it to index the array directly?
-> >
-> I will refine as :
+> Gen3(PRX300) and GEN4(X86 based SoC). We also supported dual lane and 
+> single lane.
 >
-> static int mtk_fd_m2m_enum_fmt_out_mp(struct file *file, void *fh,
->       struct v4l2_fmtdesc *f)
-> {
-> if ((f->index >= 0) && (f->index < NUM_FORMATS)) {
-
-f->index is unsigned
-
-> f->pixelformat = in_img_fmts[f->index].pixelformat;
-> return 0;
-> }
+> Some of the above registers are needed to control FTS, link width and 
+> link speed.
 >
-> return -EINVAL;
-> }
-
-nit: The usual convention is to check for invalid values and return early, i.e.
-
-if (f->index >= NUM_FORMATS)
-    return -EINVAL;
-
-f->pixelformat = in_img_fmts[f->index].pixelformat;
-return 0;
-
-> > > +
-> > > +   return -EINVAL;
-> > > +}
-> > > +
-> > > +static int mtk_fd_m2m_try_fmt_out_mp(struct file *file,
-> > > +                                void *fh,
-> > > +                                struct v4l2_format *f)
-> >
-> > I think we could just shorten the function prefixes to "mtk_fd_".
-> >
-> Do you mean by replace mtk_fd_m2m_* with mtk_fd_ ?
+>>
+>> this also makes me wonder if various functions below like
+>> intel_pcie_link_setup() and intel_pcie_max_speed_setup() (and probably
+>> more) are really needed or if it's just cargo cult / copy paste from
+>> an out-of-tree driver).
 >
-
-Yes.
-
-[snip]
-
-> > > +static int mtk_fd_request_validate(struct media_request *req)
-> > > +{
-> > > +   unsigned int count;
-> > > +
-> > > +   count = vb2_request_buffer_cnt(req);
-> > > +   if (!count)
-> > > +           return -ENOENT;
-> >
-> > Why -ENOENT?
-> >
-> Reference the return code in vb2_request_validate()
-
-You're right, -ENOENT seems to be the right error code here.
-
-> I consider refining as following:
-> static int mtk_fd_request_validate(struct media_request *req)
-> {
-> if (vb2_request_buffer_cnt(req) > 1)
-> return -EINVAL;
+> intel_pcie_link_setup is to record maximum speed and and link width. 
+> We need these
+> to change speed and link width on the fly which is not supported by 
+> dwc driver common
+> source.
+> There are two major purposes.
+> 1. For cable applications, they have battery support mode. In this 
+> case, it has to
+> switch from x2 and gen4 to x1 and gen1 on the fly
+> 2. Some customers have high EMI issues. They can try to switch to 
+> lower speed and
+> lower link width to check on the fly. Otherwise, they have to change 
+> the device tree
+> and reboot the system.
 >
-> return vb2_request_validate(req);
-> }
-> or maybe I don't need to worry the request count greater than 1,
-> just remove this function and set vb2_request_validate as .req_validate
-> directly?
+>>
+>>> +/* APP RC Core Control Register */
+>>> +#define PCIE_RC_CCR                0x10
+>>> +#define PCIE_RC_CCR_LTSSM_ENABLE        BIT(0)
+>>> +#define PCIE_DEVICE_TYPE            GENMASK(7, 4)
+>>> +#define PCIE_RC_CCR_RC_MODE            BIT(2)
+>>> +
+>>> +/* PCIe Message Control */
+>>> +#define PCIE_MSG_CR                0x30
+>>> +#define PCIE_XMT_PM_TURNOFF            BIT(0)
+>>> +
+>>> +/* PCIe Power Management Control */
+>>> +#define PCIE_PMC                0x44
+>>> +#define PCIE_PM_IN_L2                BIT(20)
+>>> +
+>>> +/* Interrupt Enable Register */
+>>> +#define PCIE_IRNEN                0xF4
+>>> +#define PCIE_IRNCR                0xF8
+>>> +#define PCIE_IRN_AER_REPORT            BIT(0)
+>>> +#define PCIE_IRN_PME                BIT(2)
+>>> +#define PCIE_IRN_HOTPLUG            BIT(3)
+>>> +#define PCIE_IRN_RX_VDM_MSG            BIT(4)
+>>> +#define PCIE_IRN_PM_TO_ACK            BIT(9)
+>>> +#define PCIE_IRN_PM_TURNOFF_ACK            BIT(10)
+>>> +#define PCIE_IRN_LINK_AUTO_BW_STATUS        BIT(11)
+>>> +#define PCIE_IRN_BW_MGT                BIT(12)
+>>> +#define PCIE_IRN_WAKEUP                BIT(17)
+>>> +#define PCIE_IRN_MSG_LTR            BIT(18)
+>>> +#define PCIE_IRN_SYS_INT            BIT(28)
+>>> +#define PCIE_IRN_SYS_ERR_RC            BIT(29)
+>>> +
+>>> +#define PCIE_IRN_IR_INT    (PCIE_IRN_AER_REPORT | PCIE_IRN_PME | \
+>>> +            PCIE_IRN_RX_VDM_MSG | PCIE_IRN_SYS_ERR_RC | \
+>>> +            PCIE_IRN_PM_TO_ACK | PCIE_IRN_LINK_AUTO_BW_STATUS | \
+>>> +            PCIE_IRN_BW_MGT | PCIE_IRN_MSG_LTR)
+>> I would rename all of the APP register #defines to match the pattern
+>> PCIE_APP_*
+>> That makes it easy to differentiate the PCIe (DBI) registers from the
+>> APP registers.
+>>
+>> [...]
+> Agree.
+>>> +static inline u32 pcie_app_rd(struct intel_pcie_port *lpp, u32 ofs)
+>>> +{
+>>> +    return readl(lpp->app_base + ofs);
+>>> +}
+>>> +
+>>> +static inline void pcie_app_wr(struct intel_pcie_port *lpp, u32 
+>>> val, u32 ofs)
+>>> +{
+>>> +    writel(val, lpp->app_base + ofs);
+>>> +}
+>>> +
+>>> +static void pcie_app_wr_mask(struct intel_pcie_port *lpp,
+>>> +                 u32 mask, u32 val, u32 ofs)
+>>> +{
+>>> +    pcie_update_bits(lpp->app_base, mask, val, ofs);
+>>> +}
+>> do you have plans to support the MIPS SoCs (VRX200, ARX300, XRX350,
+>> XRX550)?
+>> These will need register writes in big endian. in my own experiment [0]
+>> I simply used the regmap interface which will default to little endian
+>> register access but switch to big endian when the devicetree node is
+>> marked with big-endian.
+>>
+>> [...]
 >
+> We can support up to XRX350/XRX500/PRX300 for MIPS SoC since we still
+>
+> sell these products. However, we have no effort to support EOL product
+>
+> such as VRX200 which also makes driver quite complex since the glue
+>
+> logic(reset, clock and endianness). For MIPS based platform, we have
+>
+> endianness control in device tree such as inbound_swap and outbound_swap
+>
+> For VRX200, we have another big concern, that is PCI and PCIe has 
+> coupling
+>
+> for endiannes which makes things very bad.
+>
+> However, if you are interested in supporting VRX200, it is highly 
+> appreciated.
+>
+>>> +static int intel_pcie_bios_map_irq(const struct pci_dev *dev, u8 
+>>> slot, u8 pin)
+>>> +{
+>>> +
+>>> +    struct pcie_port *pp = dev->bus->sysdata;
+>>> +    struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>> +    struct intel_pcie_port *lpp = dev_get_drvdata(pci->dev);
+>>> +    struct device *pdev = lpp->pci->dev;
+>>> +    u32 irq_bit;
+>>> +    int irq;
+>>> +
+>>> +    if (pin == PCI_INTERRUPT_UNKNOWN || pin > PCI_NUM_INTX) {
+>>> +        dev_warn(pdev, "WARNING: dev %s: invalid interrupt pin %d\n",
+>>> +             pci_name(dev), pin);
+>>> +        return -1;
+>>> +    }
+>>> +    irq = of_irq_parse_and_map_pci(dev, slot, pin);
+>>> +    if (!irq) {
+>>> +        dev_err(pdev, "trying to map irq for unknown slot:%d 
+>>> pin:%d\n",
+>>> +            slot, pin);
+>>> +        return -1;
+>>> +    }
+>>> +    /* Pin to irq offset bit position */
+>>> +    irq_bit = BIT(pin + PCIE_INTX_OFFSET);
+>>> +
+>>> +    /* Clear possible pending interrupts first */
+>>> +    pcie_app_wr(lpp, irq_bit, PCIE_IRNCR);
+>>> +
+>>> +    pcie_app_wr_mask(lpp, irq_bit, irq_bit, PCIE_IRNEN);
+>>> +    return irq;
+>>> +}
+>> my interpretation is that there's an interrupt controller embedded into
+>> the APP registers. The integrated interrupt controller takes 5
+>> interrupts and provides the legacy PCI_INTA/B/C/D interrupts as well as
+>> a WAKEUP IRQ. Each of it's own interrupts is tied to one of the parent
+>> interrupts.
+>
+> For MIPS base SoC, there is no interrupt controller for such APP 
+> registers.
+>
+> They are directly connected with centralized PIC(ICU for 
+> VRX200/ARX300, GIC
+>
+> for XRX500/PRX300, IOAPIC for lightning mountain).That is why we don't
+>
+> implement the interrupt controller here.
+>
+>>
+>> my solution (in the experiment on the VRX200 SoC [1]) was to 
+>> implement an
+>> interrupt controller and have it as a child devicetree node. then I used
+>> interrupt-map to route the interrupts to the PCIe interrupt controller.
+>> with that I didn't have to overwrite .map_irq.
+>>
+>> (note that this comment is only related to the PCI_INTx and WAKE
+>> interrupts but not the other interrupt configuration bits, because as
+>> far as I understand the other ones are only related to the controller)
+>>
+>>> +static void intel_pcie_bridge_class_code_setup(struct 
+>>> intel_pcie_port *lpp)
+>>> +{
+>>> +    pcie_rc_cfg_wr_mask(lpp, PCIE_MISC_CTRL_DBI_RO_WR_EN,
+>>> +                PCIE_MISC_CTRL_DBI_RO_WR_EN, PCIE_MISC_CTRL);
+>>> +    pcie_rc_cfg_wr_mask(lpp, 0xffffff00, PCI_CLASS_BRIDGE_PCI << 16,
+>>> +                PCIE_CCRID);
+>>> +    pcie_rc_cfg_wr_mask(lpp, PCIE_MISC_CTRL_DBI_RO_WR_EN, 0,
+>>> +                PCIE_MISC_CTRL);
+>>> +}
+>> in my own experiments I didn't need this - have you confirmed that it's
+>> required? and if it is required: why is that?
+>> if others are curious as well then maybe add the explanation as comment
+>> to the driver
+>>
+>> [...]
+>
+> This is needed. In the old driver, we fixed this by fixup. The 
+> original comment as follows,
+>
+> /*
+>  * The root complex has a hardwired class of PCI_CLASS_NETWORK_OTHER or
+>  * PCI_CLASS_BRIDGE_HOST, when it is operating as a root complex this
+>  * needs to be switched to * PCI_CLASS_BRIDGE_PCI
+>  */
+>
+>>> +static const char *pcie_link_gen_to_str(int gen)
+>>> +{
+>>> +    switch (gen) {
+>>> +    case PCIE_LINK_SPEED_GEN1:
+>>> +        return "2.5";
+>>> +    case PCIE_LINK_SPEED_GEN2:
+>>> +        return "5.0";
+>>> +    case PCIE_LINK_SPEED_GEN3:
+>>> +        return "8.0";
+>>> +    case PCIE_LINK_SPEED_GEN4:
+>>> +        return "16.0";
+>>> +    default:
+>>> +        return "???";
+>>> +    }
+>>> +}
+>> why duplicate PCIE_SPEED2STR from drivers/pci/pci.h?
+>
+> Great! even link_device_setup can be reduced since pcie_get_speed_cap is
+>
+> implementing similar stuff.
+>
+>>
+>>> +static int intel_pcie_ep_rst_init(struct intel_pcie_port *lpp)
+>>> +{
+>>> +    struct device *dev = lpp->pci->dev;
+>>> +    int ret = 0;
+>>> +
+>>> +    lpp->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_LOW);
+>>> +    if (IS_ERR(lpp->reset_gpio)) {
+>>> +        ret = PTR_ERR(lpp->reset_gpio);
+>>> +        if (ret != -EPROBE_DEFER)
+>>> +            dev_err(dev, "failed to request PCIe GPIO: %d\n", ret);
+>>> +        return ret;
+>>> +    }
+>>> +    /* Make initial reset last for 100ms */
+>>> +    msleep(100);
+>> why is there lpp->rst_interval when you hardcode 100ms here?
+>
+> There are different purpose. rst_interval is purely for asserted reset 
+> pulse.
+>
+> Here 100ms is to make sure the initial state keeps at least 100ms, 
+> then we
+>
+> can reset.
+>
+>>
+>> [...]
+>>> +static int intel_pcie_setup_irq(struct intel_pcie_port *lpp)
+>>> +{
+>>> +    struct device *dev = lpp->pci->dev;
+>>> +    struct platform_device *pdev;
+>>> +    char *irq_name;
+>>> +    int irq, ret;
+>>> +
+>>> +    pdev = to_platform_device(dev);
+>>> +    irq = platform_get_irq(pdev, 0);
+>>> +    if (irq < 0) {
+>>> +        dev_err(dev, "missing sys integrated irq resource\n");
+>>> +        return irq;
+>>> +    }
+>>> +
+>>> +    irq_name = devm_kasprintf(dev, GFP_KERNEL, "pcie_misc%d", 
+>>> lpp->id);
+>>> +    if (!irq_name) {
+>>> +        dev_err(dev, "failed to alloc irq name\n");
+>>> +        return -ENOMEM;
+>> you are only requesting one IRQ line for the whole driver. personally
+>> I would drop the custom irq_name and pass NULL to devm_request_irq
+>> because that will then fall-back to auto-generating an IRQ name based
+>> on the devicetree node. I assume it's the same for ACPI but I haven't
+>> tried that yet.
+>
+> Not sure I understand what you mean.  As you know from the code, we 
+> have lpp->id which means
+>
+> we have multiple instances of Root Complex(1,2,3,4,8), so we need this 
+> for identification.
+>
+> this irq in old product called ir(integrated interrupt or misc 
+> interrupt).
+>
+>>
+>>> +static void intel_pcie_disable_clks(struct intel_pcie_port *lpp)
+>>> +{
+>>> +    clk_disable_unprepare(lpp->core_clk);
+>>> +}
+>>> +
+>>> +static int intel_pcie_enable_clks(struct intel_pcie_port *lpp)
+>>> +{
+>>> +    int ret = clk_prepare_enable(lpp->core_clk);
+>>> +
+>>> +    if (ret)
+>>> +        dev_err(lpp->pci->dev, "Core clock enable failed: %d\n", ret);
+>>> +
+>>> +    return ret;
+>>> +}
+>> you have some functions (using these two as an example) which are only
+>> used once. they add some boilerplate and (in my opinion) make the code
+>> harder to read.
+>
+> Yes. If we plan to support old MIPS SoC, we have a lot of clocks. The
+>
+> code is from old code. We can remove this wrapper for new SoC. Later we
+>
+> can add them back.
+>
+>>
+>>> +static int intel_pcie_get_resources(struct platform_device *pdev)
+>>> +{
+>>> +    struct intel_pcie_port *lpp;
+>>> +    struct device *dev;
+>>> +    int ret;
+>>> +
+>>> +    lpp = platform_get_drvdata(pdev);
+>>> +    dev = lpp->pci->dev;
+>>> +
+>>> +    lpp->core_clk = devm_clk_get(dev, NULL);
+>>> +    if (IS_ERR(lpp->core_clk)) {
+>>> +        ret = PTR_ERR(lpp->core_clk);
+>>> +        if (ret != -EPROBE_DEFER)
+>>> +            dev_err(dev, "failed to get clks: %d\n", ret);
+>>> +        return ret;
+>>> +    }
+>>> +
+>>> +    lpp->core_rst = devm_reset_control_get(dev, NULL);
+>>> +    if (IS_ERR(lpp->core_rst)) {
+>>> +        ret = PTR_ERR(lpp->core_rst);
+>>> +        if (ret != -EPROBE_DEFER)
+>>> +            dev_err(dev, "failed to get resets: %d\n", ret);
+>>> +        return ret;
+>>> +    }
+>>> +
+>>> +    ret = device_property_match_string(dev, "device_type", "pci");
+>>> +    if (ret) {
+>>> +        dev_err(dev, "failed to find pci device type: %d\n", ret);
+>>> +        return ret;
+>>> +    }
+>>> +
+>>> +    if (device_property_read_u32(dev, "intel,rst-interval",
+>>> +                     &lpp->rst_interval))
+>>> +        lpp->rst_interval = RST_INTRVL_DFT_MS;
+>>> +
+>>> +    if (device_property_read_u32(dev, "max-link-speed", 
+>>> &lpp->link_gen))
+>>> +        lpp->link_gen = 0; /* Fallback to auto */
+>>> +
+>>> +    lpp->app_base = devm_platform_ioremap_resource(pdev, 2);
+>> I suggest using platform_get_resource_byname(pdev, "app") because
+>> pcie-designware uses named resources for the "config" space already
+>>
+>> that said, devm_platform_ioremap_resource_byname would be a great
+>> addition in my opinion ;)
+> Agree.
+>>
+>>> +    if (IS_ERR(lpp->app_base))
+>>> +        return PTR_ERR(lpp->app_base);
+>>> +
+>>> +    ret = intel_pcie_ep_rst_init(lpp);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    lpp->phy = devm_phy_get(dev, "phy");
+>> I suggest to use "pcie" as phy-name, otherwise the binding looks odd:
+>>    phys = <&pcie0_phy>;
+>>    phy-names = "phy";
+>> versus:
+>>    phys = <&pcie0_phy>;
+>>    phy-names = "pcie";
+> Agree.
+>>> +static ssize_t
+>>> +pcie_link_status_show(struct device *dev, struct device_attribute 
+>>> *attr,
+>>> +              char *buf)
+>>> +{
+>>> +    u32 reg, width, gen;
+>>> +    struct intel_pcie_port *lpp;
+>>> +
+>>> +    lpp = dev_get_drvdata(dev);
+>>> +
+>>> +    reg = pcie_rc_cfg_rd(lpp, PCIE_LCTLSTS);
+>>> +    width = FIELD_GET(PCIE_LCTLSTS_NEGOTIATED_LINK_WIDTH, reg);
+>>> +    gen = FIELD_GET(PCIE_LCTLSTS_LINK_SPEED, reg);
+>>> +    if (gen > lpp->max_speed)
+>>> +        return -EINVAL;
+>>> +
+>>> +    return sprintf(buf, "Port %2u Width x%u Speed %s GT/s\n", lpp->id,
+>>> +               width, pcie_link_gen_to_str(gen));
+>>> +}
+>>> +static DEVICE_ATTR_RO(pcie_link_status);
+>> "lspci -vv | grep LnkSta" already shows the link speed and width.
+>> why do you need this?
+>
+> In most embedded package, lspci from busybox only showed deviceid and 
+> vendor id.
+>
+> They don't install lspci utilities.
+>
+>>> +static ssize_t pcie_speed_store(struct device *dev,
+>>> +                struct device_attribute *attr,
+>>> +                const char *buf, size_t len)
+>>> +{
+>>> +    struct intel_pcie_port *lpp;
+>>> +    unsigned long val;
+>>> +    int ret;
+>>> +
+>>> +    lpp = dev_get_drvdata(dev);
+>>> +
+>>> +    ret = kstrtoul(buf, 10, &val);
+>>> +    if (ret)
+>>> +        return ret;
+>>> +
+>>> +    if (val > lpp->max_speed)
+>>> +        return -EINVAL;
+>>> +
+>>> +    lpp->link_gen = val;
+>>> +    intel_pcie_max_speed_setup(lpp);
+>>> +    intel_pcie_speed_change_disable(lpp);
+>>> +    intel_pcie_speed_change_enable(lpp);
+>>> +
+>>> +    return len;
+>>> +}
+>>> +static DEVICE_ATTR_WO(pcie_speed);
+>> this is already configurable via devicetree, why do you need this?
+> On the fly change as I mentioned in the beginning.
+>>
+>>> +/*
+>>> + * Link width change on the fly is not always successful.
+>>> + * It also depends on the partner.
+>>> + */
+>>> +static ssize_t pcie_width_store(struct device *dev,
+>>> +                struct device_attribute *attr,
+>>> +                const char *buf, size_t len)
+>>> +{
+>>> +    struct intel_pcie_port *lpp;
+>>> +    unsigned long val;
+>>> +
+>>> +    lpp = dev_get_drvdata(dev);
+>>> +
+>>> +    if (kstrtoul(buf, 10, &val))
+>>> +        return -EINVAL;
+>>> +
+>>> +    if (val > lpp->max_width)
+>>> +        return -EINVAL;
+>>> +
+>>> +    lpp->lanes = val;
+>>> +    intel_pcie_max_link_width_setup(lpp);
+>>> +
+>>> +    return len;
+>>> +}
+>>> +static DEVICE_ATTR_WO(pcie_width);
+>> is it needed because of a bug somewhere? who do you expect to use this
+>> sysfs attribute and when (which condition) do you expect people to use
+>> this?
+>>
+>> [...]
+> On the fly change as I mentioned in the beginning.
+>>> +static void __intel_pcie_remove(struct intel_pcie_port *lpp)
+>>> +{
+>>> +    pcie_rc_cfg_wr_mask(lpp, PCI_COMMAND_MEMORY | PCI_COMMAND_MASTER,
+>>> +                0, PCI_COMMAND);
+>> I expect logic like this to be part of the PCI subsystem in Linux.
+>> why is this needed?
+>>
+>> [...]
+>
+> bind/unbind case we use this. For extreme cases, we use unbind and 
+> bind to reset
+>
+> PCI instead of rebooting.
+>
+>>> +int intel_pcie_msi_init(struct pcie_port *pp)
+>>> +{
+>>> +    struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>> +
+>>> +    dev_dbg(pci->dev, "MSI is handled in x86 arch\n");
+>> I would rephrase this to "MSI is handled by a separate MSI interrupt
+>> controller"
+>> on the VRX200 SoC there's also a MSI interrupt controller and it seems
+>> that "x86" has this as well (even though it might be two different MSI
+>> IRQ IP blocks).
+>>
+>> [...]
+>
+> Agree. For X86/64, MSI is handled by X86 arch. We don't need to
+>
+> implement another MSI controller separately.
+>
+> For MIPS based SoC, we don't use synopsys MSI controller. The MSI still
+>
+> connects with central interrupt controller with MSI decoding (we can 
+> name it
+>
+> as MSI controller)
+>
+>>> +static int intel_pcie_probe(struct platform_device *pdev)
+>>> +{
+>>> +    struct device *dev = &pdev->dev;
+>>> +    const struct intel_pcie_soc *data;
+>>> +    struct intel_pcie_port *lpp;
+>>> +    struct pcie_port *pp;
+>>> +    struct dw_pcie *pci;
+>>> +    int ret;
+>>> +
+>>> +    lpp = devm_kzalloc(dev, sizeof(*lpp), GFP_KERNEL);
+>>> +    if (!lpp)
+>>> +        return -ENOMEM;
+>>> +
+>>> +    pci = devm_kzalloc(dev, sizeof(*pci), GFP_KERNEL);
+>>> +    if (!pci)
+>>> +        return -ENOMEM;
+>> other drivers have a "struct dw_pcie    pci" struct member (I assume
+>> that it's to prevent memory fragmentation). why not do the same here
+>> and embed it into struct intel_pcie_port?
+> Dilip should explain this
+Almost all the drivers are following the same way. I don't see any issue 
+in this way.
+Please help me with more description if you see an issue here.
 
-Given that we only have 1 queue handling requests, we should be able
-to just use vb2_request_validate() indeed.
+struct qcom_pcie {
+     struct dw_pcie *pci;
+Ref: 
+https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/pci/controller/dwc/pcie-qcom.c
 
-Best regards,
-Tomasz
+struct armada8k_pcie {
+     struct dw_pcie *pci;
+Ref: 
+https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/pci/controller/dwc/pcie-armada8k.c
+
+struct artpec6_pcie {
+     struct dw_pcie        *pci;
+Ref: 
+https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/pci/controller/dwc/pcie-artpec6.c
+
+struct kirin_pcie {
+     struct dw_pcie    *pci;
+Ref: 
+https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/pci/controller/dwc/pcie-kirin.c
+
+struct spear13xx_pcie {
+     struct dw_pcie        *pci;
+Ref: 
+https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/pci/controller/dwc/pcie-spear13xx.c
+
+Regards,
+
+Dilip
+>>
+>>> +    platform_set_drvdata(pdev, lpp);
+>>> +    lpp->pci = pci;
+>>> +    pci->dev = dev;
+>>> +    pp = &pci->pp;
+>>> +
+>>> +    ret = device_property_read_u32(dev, "linux,pci-domain", &lpp->id);
+>>> +    if (ret) {
+>>> +        dev_err(dev, "failed to get domain id, errno %d\n", ret);
+>>> +        return ret;
+>>> +    }
+>>> +
+>>> +    pci->dbi_base = devm_platform_ioremap_resource(pdev, 0);
+>>> +    if (IS_ERR(pci->dbi_base))
+>>> +        return PTR_ERR(pci->dbi_base);
+>>> +
+>> as stated above I would use the _byname variant
+> Agree.
+>>
+>>
+>> Martin
+>>
+>>
+>> [0] 
+>> https://github.com/xdarklight/linux/blob/lantiq-pcie-driver-next-20190727/drivers/pci/controller/dwc/pcie-lantiq.c
+>> [1] 
+>> https://github.com/xdarklight/linux/blob/lantiq-pcie-driver-next-20190727/Documentation/devicetree/bindings/pci/lantiq%2Cdw-pcie.yaml
