@@ -2,210 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0608D9CBEC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 10:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C61389CBFB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 10:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729882AbfHZIzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 04:55:01 -0400
-Received: from mga17.intel.com ([192.55.52.151]:16777 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726189AbfHZIzB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 04:55:01 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 01:55:00 -0700
-X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
-   d="scan'208";a="182379359"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 01:54:57 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 537E020B47; Mon, 26 Aug 2019 11:54:25 +0300 (EEST)
-Date:   Mon, 26 Aug 2019 11:54:25 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        Jacopo Mondi <jacopo@jmondi.org>, devicetree@vger.kernel.org,
-        graphics@pengutronix.de, linux-media@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: add bindings for Toshiba
- TC358746
-Message-ID: <20190826085425.GN31967@paasikivi.fi.intel.com>
-References: <20190619152838.25079-1-m.felsch@pengutronix.de>
- <20190619152838.25079-2-m.felsch@pengutronix.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190619152838.25079-2-m.felsch@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1729557AbfHZI5V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 04:57:21 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:46661 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727974AbfHZI5T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 04:57:19 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1i2AoN-0003gN-GM; Mon, 26 Aug 2019 10:57:15 +0200
+Message-ID: <1566809829.3842.4.camel@pengutronix.de>
+Subject: Re: [RESEND PATCHv4 1/1] drivers/amba: add reset control to amba
+ bus probe
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Dinh Nguyen <dinguyen@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 26 Aug 2019 10:57:09 +0200
+In-Reply-To: <e7e986a2-762e-674b-608b-5ee5b013935b@kernel.org>
+References: <20190820145834.7301-1-dinguyen@kernel.org>
+         <20190820145834.7301-2-dinguyen@kernel.org>
+         <CACRpkdasbXuqUkO3NjMGBU_ePEBT23BS1eP-bigB0_g494LgvQ@mail.gmail.com>
+         <e7e986a2-762e-674b-608b-5ee5b013935b@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Hi Dinh, Linus,
 
-On Wed, Jun 19, 2019 at 05:28:37PM +0200, Marco Felsch wrote:
-> Add corresponding dt-bindings for the Toshiba tc358746 device and update
-> the MAINTAINERS file too.
+On Fri, 2019-08-23 at 10:42 -0500, Dinh Nguyen wrote:
 > 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Hi Rob,
+> On 8/23/19 4:19 AM, Linus Walleij wrote:
+> > On Tue, Aug 20, 2019 at 4:58 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
+> > 
+> > > @@ -401,6 +402,26 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+> > >         ret = amba_get_enable_pclk(dev);
+> > >         if (ret == 0) {
+> > >                 u32 pid, cid;
+> > > +               int count;
+> > > +               struct reset_control *rstc;
+> > > +
+> > > +               /*
+> > > +                * Find reset control(s) of the amba bus and de-assert them.
+> > > +                */
+> > > +               count = reset_control_get_count(&dev->dev);
+
+The reset_control_get_count() inline stub returns -ENOENT, so the
+compiler can throw away the complete loop.
+
+> > > +               while (count > 0) {
+> > > +                       rstc = of_reset_control_get_shared_by_index(dev->dev.of_node, count - 1);
+
+Since resets are looked up with of_reset_control_get, I'd use
+of_reset_control_get_count() above for consistency. But see below:
+
+> > > +                       if (IS_ERR(rstc)) {
+> > > +                               if (PTR_ERR(rstc) == -EPROBE_DEFER)
+> > > +                                       ret = -EPROBE_DEFER;
+> > > +                               else
+> > > +                                       dev_err(&dev->dev, "Can't get amba reset!\n");
+> > > +                               break;
+> > > +                       }
+> > > +                       reset_control_deassert(rstc);
+> > > +                       reset_control_put(rstc);
+> > > +                       count--;
+> > > +               }
+
+It looks like the order of deassertions is irrelevant. If so,
+You can use of_reset_control_array_get() to simplify this:
+
++		rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
++		if (IS_ERR(rstc)) {
++			if (PTR_ERR(rstc) != -EPROBE_DEFER)
++				dev_err(&dev->dev, "Can't get amba reset!\n");
++			return PTR_ERR(rstc);
++		}
++		reset_control_deassert(rstc);
++		reset_control_put(rstc);
+
+> > I'm not normally a footprint person, but the looks of the stubs in
+> > <linux/reset.h> makes me suspicious whether this will have zero impact
+> > in size on platforms without reset controllers.
+> > 
+> > Can you just ls -al on the kernel without CONFIG_RESET_CONTROLLER
+> > before and after this patch and ascertain that it has zero footprint effect?
 > 
-> I droped your reviewed-by tag since there where several changes.
+> Thanks for the review. I checked it, and indeed, it does have a zero
+> footprint effect.
 > 
-> Changes
-> v2:
->  - use the Documentation/devicetree/bindings/media/ti,omap3isp.txt
->    formatting scheme
->  - Adapt introducing paragraph according Jacopo's comments
->  - drop the clock-names property
->  - drop the clock-lanes (csi-2) property
->  - adapt the property descriptions accroding Jacopo's comments
->  - use port@0 as input and port@1 as output port instead of mapping
->    port@0 to parallel and port@1 to csi-2 interface
->  - Adapt port/endpoint description according Jacopo's and Sakari's
->    comments
->  - Adapt the example
->  - squash v1 patch-3 and patch-1
->  - set status to Maintained
-> 
->  .../bindings/media/i2c/toshiba,tc358746.txt   | 95 +++++++++++++++++++
->  MAINTAINERS                                   |  7 ++
->  2 files changed, 102 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
-> new file mode 100644
-> index 000000000000..e79b45ee050e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
-> @@ -0,0 +1,95 @@
-> +Toshiba TC358746 Parallel to MIPI CSI2-TX or MIPI CSI2-RX to Parallel Bridge
-> +============================================================================
-> +
-> +The Toshiba TC358746 converts a parallel into a MIPI CSI-2 stream. The direction
-> +can be either parallel-in -> csi-out e.g. to connect a parallel camera to a
-> +MIPI CSI-2 host or csi-in -> parallel-out e.g. to connect a parallel display to
-> +a MIPI CSI-2 host. It's programmable trough I2C and SPI. The SPI interface is
-> +only supported in parallel-in -> csi-out mode.
-> +
-> +Required properties
-> +-------------------
-> +
-> +- compatible		: Shall be "toshiba,tc358746"
-> +- reg			: Shall be <0x0e>
-> +- clocks		: Phandle to the reference clock source
-> +
-> +Optional properties
-> +-------------------
-> +
-> +- reset-gpios		: Phandle to the GPIO connected to the reset input pin
-> +
-> +Port nodes (required)
-> +=====================
-> +
-> +The device node must contain two ports children nodes which should be grouped
-> +within a 'ports' node. The first port describes the input connection, the second
-> +one describes the output one. Each port shall contain one endpoint subnode that
-> +connects to a remote device and specifies the bus type of the input and output
-> +ports. Only one endpoint per port shall be present.
-> +
-> +More documentation on these bindings is available in [1].
-> +
-> +reg			: The interface:
-> +			  0 - Input, either parallel or MIPI CSI-2
-> +			  1 - Output, either parallel or MIPI CSI-2
-> +
-> +Endpoint nodes (required)
-> +=========================
-> +
-> +Required properties
-> +-------------------
-> +
-> +- bus-width		: Look at [1] for more information (Parallel endpoint)
-> +- data-lanes		: Look at [1] for more information (CSI-2 endpoint)
+> > 
+> > If it doesn't I'd sure like to break this into its own function and
+> > stick a if (!IS_ENABLED(CONFIG_RESET_CONTROLLER)) return 0;
+> > in there to make sure the compiler drops it.
+> > 
+> > Also it'd be nice to get Philipp's ACK on the semantics, though they
+> > look correct to me.
 
-Which values data-lanes may have? How about the bus-width property?
-
-> +- link-frequencies	: Array of frequencies the driver can choose to
-> +			  full-fill the parallel timings calculation. Look at
-> +			  [1] for more information (CSI-2 endpoint)
-> +
-> +Optional properties
-> +-------------------
-> +
-> +- bus-type		: Look at [1] for more information
-
-I think you can omit this as you have either bus-width or data-lanes that
-implicitly tell the type of the bus. Another possibility would be making
-this required, but optional doesn't seem useful.
-
-> +- clock-noncontinuous	: Look at [1] for more information (CSI-2 endpoint)
-> +
-> +[1] Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +Example
-> +=======
-> +
-> +&i2c {
-> +	csi-bridge@0e {
-> +		reg = <0x0e>;
-> +		compatible = "toshiba,tc358746";
-> +		pinctrl-names = "default";
-> +		clocks = <&clk_cam_ref>;
-> +		reset-gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			/* Input */
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				tc358746_parallel_in: endpoint {
-> +					bus-width = <8>;
-> +					remote-endpoint = <&micron_parallel_out>;
-> +				};
-> +			};
-> +
-> +			/* Output */
-> +			port@1 {
-> +				reg = <1>;
-> +
-> +				tc358746_mipi2_out: endpoint {
-> +					remote-endpoint = <&mipi_csi2_in>;
-> +					data-lanes = <1 2>;
-> +					clock-noncontinuous;
-> +					link-frequencies = /bits/ 64 <216000000>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 57f496cff999..833b3c8fb301 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15955,6 +15955,13 @@ S:	Maintained
->  F:	drivers/media/i2c/tc358743*
->  F:	include/media/i2c/tc358743.h
->  
-> +TOSHIBA TC358746 DRIVER
-> +M:	Marco Felsch <kernel@pengutronix.de>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/media/i2c/tc358746*
-> +F:	Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
-> +
->  TOSHIBA WMI HOTKEYS DRIVER
->  M:	Azael Avalos <coproscefalo@gmail.com>
->  L:	platform-driver-x86@vger.kernel.org
-
--- 
-Kind regards,
-
-Sakari Ailus
-sakari.ailus@linux.intel.com
+regards
+Philipp
