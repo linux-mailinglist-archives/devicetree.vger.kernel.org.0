@@ -2,150 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 75E9A9CCDE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 11:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102149CCF3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 12:01:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730392AbfHZJw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 05:52:59 -0400
-Received: from mga02.intel.com ([134.134.136.20]:18290 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726616AbfHZJw6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 05:52:58 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 02:52:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
-   d="scan'208";a="181327932"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga007.fm.intel.com with ESMTP; 26 Aug 2019 02:52:57 -0700
-Received: from [10.226.39.22] (ekotax-mobl.gar.corp.intel.com [10.226.39.22])
-        by linux.intel.com (Postfix) with ESMTP id B73805807C5;
-        Mon, 26 Aug 2019 02:52:55 -0700 (PDT)
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Add YAML schemas for the Intel
- Reset controller
-To:     Rob Herring <robh@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-References: <42039170811f798b8edc66bf85166aefe7dbc903.1566531960.git.eswara.kota@linux.intel.com>
- <CAL_JsqJxh5TzDb8kOFm+F5Gs4WXF6BP5uaNPLcyx+srtaDisMw@mail.gmail.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <746ed130-a1ae-0cc2-5060-70de95cdf2fe@linux.intel.com>
-Date:   Mon, 26 Aug 2019 17:52:52 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJxh5TzDb8kOFm+F5Gs4WXF6BP5uaNPLcyx+srtaDisMw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1727361AbfHZKBD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 06:01:03 -0400
+Received: from mail-eopbgr820049.outbound.protection.outlook.com ([40.107.82.49]:51332
+        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726820AbfHZKBC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 06:01:02 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XU9GfGMmeqtCNrfORXB/ZpjCK6/LoQVearsiqdMVRg0/Ir8aI+womPuiMKizi5jl7AnogECn/ZVaEcg1FqWOoa4LoJWOtMsAKz1jpx3G2Qm3ktoWSLiCCb/W5WXGcf5SIAs/dDKl03Zp53PbKLoj1RLaa18nMRq9hp2+XBMN3Q4zeaW0Q+Ju24CQwpI2rmjFEeR98tjQzCX/KPNVZQBE77ODJfSKaiRQYIlfHL75AORyPUAZIsmgtgwiHdR5HKwCLeZKFf5XYbb4PXlaLvxjPGHhRa2StZQ9WLQHPw94UfMX6cLfbzmQj6nHzJLn6/RGLt4tKvw6BaldsBC1D5QmKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TbJKNDnN1GQx1AXa0LroQuByxnIAZttlWjC9hZTgh7M=;
+ b=JTyqm9dU1EwnFSxsHLV2oSg6hmxmI9HeD1JZaRkWgTCaAJc4vY0FdsVomFyl+4izZie6JQgOi9hyl/Os3xo/egb3SigRymIc75vuw/GpqcGXPs3qQe+QgIBxxobKf+QyPLFd6oAFcwGQ95Es5zzkl7wlfyAMY3sAWBvylVvu7EnaffY8oyYsE0N5U3wOr3e/bXk/aoQkakKgGQFiCyHFjifJWwR7IyL4CQoLnzGjHJhz4fiNS8FvkAr+sKoBmcAu2OqUd1XFIlqDkOqHgCl/sIjj3IC1AtvES7YVnmK0aqy65eq1yJf7SoEdg0PhjJ/nC/qj5N2IQTQ4db6xvgfvtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TbJKNDnN1GQx1AXa0LroQuByxnIAZttlWjC9hZTgh7M=;
+ b=om5iSzubm9D+OKHGctmvt0Cu+Xw1w16AHlngl4iBmwF7FAuwlsnfVBXcStlLwLr7HiAuNBC1hWcjAXhd+RhGuKt0YVhCTXs6v1du4KdIuCIbeGValu0DE7vLj8oLhkOOD5WwEv+9IVUat3k7cNAE5eKMMmCJy7/a7/Vqfi9GT1s=
+Received: from BYAPR03MB4773.namprd03.prod.outlook.com (20.179.92.152) by
+ BYAPR03MB3589.namprd03.prod.outlook.com (52.135.213.31) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.19; Mon, 26 Aug 2019 10:00:59 +0000
+Received: from BYAPR03MB4773.namprd03.prod.outlook.com
+ ([fe80::b050:60f8:d275:e9f4]) by BYAPR03MB4773.namprd03.prod.outlook.com
+ ([fe80::b050:60f8:d275:e9f4%7]) with mapi id 15.20.2199.021; Mon, 26 Aug 2019
+ 10:00:59 +0000
+From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [PATCH 0/2] hwmon: a new driver for Synaptics AS370 PVT sensor
+Thread-Topic: [PATCH 0/2] hwmon: a new driver for Synaptics AS370 PVT sensor
+Thread-Index: AQHVW/UpuKgnUYeviku4YwTMS3cUuw==
+Date:   Mon, 26 Aug 2019 10:00:59 +0000
+Message-ID: <20190826174942.2b28ff05@xhacker.debian>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [124.74.246.114]
+x-clientproxiedby: TYAPR01CA0115.jpnprd01.prod.outlook.com
+ (2603:1096:404:2a::31) To BYAPR03MB4773.namprd03.prod.outlook.com
+ (2603:10b6:a03:134::24)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Jisheng.Zhang@synaptics.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 56ab9302-0a1a-466a-0b57-08d72a0c4b9b
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BYAPR03MB3589;
+x-ms-traffictypediagnostic: BYAPR03MB3589:
+x-microsoft-antispam-prvs: <BYAPR03MB3589B1E1AE41052A4EFB62A5EDA10@BYAPR03MB3589.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1751;
+x-forefront-prvs: 01415BB535
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(366004)(39860400002)(136003)(346002)(396003)(199004)(189003)(14454004)(81166006)(71190400001)(81156014)(71200400001)(50226002)(486006)(316002)(7736002)(52116002)(25786009)(5660300002)(99286004)(476003)(2906002)(86362001)(6512007)(9686003)(66066001)(305945005)(4326008)(1076003)(6486002)(478600001)(256004)(186003)(8936002)(102836004)(6116002)(6436002)(66446008)(66556008)(64756008)(66476007)(26005)(66946007)(110136005)(8676002)(4744005)(6506007)(3846002)(53936002)(386003)(54906003)(39210200001);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR03MB3589;H:BYAPR03MB4773.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+received-spf: None (protection.outlook.com: synaptics.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: rpqoyWL4FLyNBAX+WHzf5XNe2xQjJ3yxV5hr6uf0SlSoG5Q9L6CaPSriYs2nzV5mRwaZZ2mMNgi93n/DlE57I8NHI4UT9XNvYfG5GyAPRdgvFbq3lGet5r9FHwlbeDprGKw6g089ugFUocogLyOLtV2LlVq3iAKCRN7tpXhgXqg6GNeRnCuBTDYZ3HLZu7n1kKcnHcxFpERvsHeAoCxm46pcbY/U8yW5mCFOYZGarzMh6eYQFJRzQhhHhIzXmR+KSU4k00oKqczHm3fFAQgalZGjVXZnJ3nmbaB2yd/uNGus+HfeEcVyZbkQJvWysfySOybiaRQqLbzGeOS6HYTZ6mMzE4D+ciNAdSNQDgugsXIajYTYLnyB41yuaERTSabKDSmAE3CALuX88697Y+e9EItA7LG1IVpZ8fzijvFpMIk=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <4D0CBE1D2191CE40B68239C6DFEC1C29@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56ab9302-0a1a-466a-0b57-08d72a0c4b9b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2019 10:00:59.6128
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CWQTlQ/Dvpj7clw9sqgdMwhBwy9xhK9/fnnndKdqGndjfp5NByxgsxUo+28jAtVVEonlozW50Cap3aNtgUi5eQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB3589
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Add a new driver for Synaptics AS370 PVT sensor. Currently only
+temperature is supported.
 
-On 8/23/2019 8:25 PM, Rob Herring wrote:
-> On Fri, Aug 23, 2019 at 12:28 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
->> Add YAML schemas for the reset controller on Intel
->> Lightening Mountain (LGM) SoC.
->>
->> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->> ---
->> Changes on v2:
->>      Address review comments
->>        Update the compatible property definition
->>        Add description for reset-cells
->>        Add 'additionalProperties: false' property
->>
->>   .../bindings/reset/intel,syscon-reset.yaml         | 53 ++++++++++++++++++++++
->>   1 file changed, 53 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->> new file mode 100644
->> index 000000000000..3403a967190a
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->> @@ -0,0 +1,53 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/reset/intel,syscon-reset.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Intel Lightening Mountain SoC System Reset Controller
->> +
->> +maintainers:
->> +  - Dilip Kota <eswara.kota@linux.intel.com>
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: intel,rcu-lgm
->> +      - const: syscon
->> +
->> +  reg:
->> +    description: Reset controller register base address and size
->> +
->> +  intel,global-reset:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    description: Global reset register offset and bit offset.
->> +
->> +  "#reset-cells":
->> +    const: 2
->> +    description: |
->> +      The 1st cell is the register offset.
->> +      The 2nd cell is the bit offset in the register.
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - intel,global-reset
->> +  - "#reset-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    rcu0: reset-controller@00000000 {
->> +        compatible = "intel,rcu-lgm", "syscon";
->> +        reg = <0x000000 0x80000>;
->> +        intel,global-reset = <0x10 30>;
->> +        #reset-cells = <2>;
->> +    };
->> +
->> +    pcie_phy0: pciephy@... {
->> +        ...
-> You need to run 'make dt_binding_check' and fix the warnings. The
-> example has to be buildable and it is not.
+Jisheng Zhang (2):
+  hwmon: Add Synaptics AS370 PVT sensor driver
+  hwmon: (as370-hwmon) Add DT bindings for Synaptics AS370 PVT
 
-Sure, i  will correct this pcie_phy0 node. But i didn't get any warnings 
-for make dt_binding_check
+ .../devicetree/bindings/hwmon/as370.txt       |  11 ++
+ drivers/hwmon/Kconfig                         |  10 ++
+ drivers/hwmon/Makefile                        |   1 +
+ drivers/hwmon/as370-hwmon.c                   | 158 ++++++++++++++++++
+ 4 files changed, 180 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/as370.txt
+ create mode 100644 drivers/hwmon/as370-hwmon.c
 
-   CHKDT Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
-DTC Documentation/devicetree/bindings/arm/renesas.example.dt.yaml
-FATAL ERROR: Unknown output format "yaml"
+--=20
+2.23.0.rc1
 
-Will DTC report about the example node errors? But, DTC is failing with 
-FATAL_ERROR.
-I tried it even after installing libyaml and headers in my local 
-directory and export the path, but no luck.(ref: 
-https://lkml.org/lkml/2018/12/3/951)
-Could you please let me know if i miss anything and help me to proceed 
-further.
-
-Regards,
-Dilip
->
->> +        /* address offset: 0x10, bit offset: 12 */
->> +        resets = <&rcu0 0x10 12>;
->> +        ...
->> +    };
->> --
->> 2.11.0
->>
