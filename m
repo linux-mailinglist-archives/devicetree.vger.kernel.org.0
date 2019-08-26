@@ -2,112 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31EE59C72B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 04:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29F829C75D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 04:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726996AbfHZCPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 22:15:53 -0400
-Received: from out5-smtp.messagingengine.com ([66.111.4.29]:33525 "EHLO
-        out5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726434AbfHZCPx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 25 Aug 2019 22:15:53 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id C673621F18;
-        Sun, 25 Aug 2019 22:15:52 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Sun, 25 Aug 2019 22:15:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm3; bh=5HH0SDUDjRUO/CjnMqxbLxtd9W
-        vPtHdd1vX8IagkIVU=; b=fQj6puKz2T8eR411RhHtM0GGLu7IKaPpkIZcw5LLEy
-        djuvXoAnCMjVSALDV6vxlPeDNsxB6UOcQiuFfezoN12Mos5C2yDhCiwkstD4tI6g
-        ctDs5n6mvhc7u9KmHxWyKt0vlSmRio22Mmz5w/2FBYPxCMsXmrBexTbhsgKFIa7c
-        QiX0hhb6tDoZLDAhZ8s6pc9mDLbi8PHe1IG51ErssC9JGhDcdSf3QYjaMNtb6jY8
-        mDYyfETSusbESJw6gTYRr3x6PmwvSfzWWMpj2gSTIP5uZzvviDj/2idQ87vP6o2V
-        echX0LOopFfC1dPQ5YHlr7rcKi7srI08N6DTsOZx6GpA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=5HH0SDUDjRUO/CjnM
-        qxbLxtd9WvPtHdd1vX8IagkIVU=; b=N4Jrnv7NNhn1eGNqUYS3qwdxiypPeW/6j
-        rSIAdhu9HgDrfmjq0mwJJZ7M0EzfY6cvzHJvYVomrUnJQFxA/1PRRaJMtYIkOKjv
-        T3oaFzbF6kyMsDdqKQHICCzpn3iaSrTrTYcgWC8nFzZt+N6u2HT5wUtGiGk1NQHP
-        b3xv2vHtO3amFPLXBG7Ns1bPKcvAEgcTPLyJZhDlxsAuyX314FxbOfTcpDi/23k1
-        XU6+8hflfJzztEsBvYyAnrMYjj1ETxrXqM9q8cBlq9Q2J2LiGYe89nUc1fpxVNLK
-        55OnG/kjco8SjmQ5rKLfV1qSa8+D60/dfUj1zvGWmMWlPxefu69HA==
-X-ME-Sender: <xms:10BjXQGSpxfbAIpcIv70Rp73osgLgwxN3j51fLtu_XALTZVjFrIcjQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudehfedgheekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
-    ihgurdgruheqnecuffhomhgrihhnpeguvghvihgtvghtrhgvvgdrohhrghdpohiilhgrsg
-    hsrdhorhhgnecukfhppedvtdefrdehjedrvdduhedrudejkeenucfrrghrrghmpehmrghi
-    lhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghrufhiiigvpe
-    dt
-X-ME-Proxy: <xmx:10BjXdkFl7e-VF5gE6JjtHG3ZC7-VDrfzqQd7gV1i9cvzy5Fmv7R6w>
-    <xmx:10BjXVJgRS60gm0H1Ym9yue7ySzyFC-QVRALFQ-QyYuLrWCtJ2Ztqw>
-    <xmx:10BjXWa4qv6pxmPO0zo4HSZcYcQGFhIBsjzPnvbqjsAHtffjx232iw>
-    <xmx:2EBjXbNjGDuQGIz_Mc6dzbexqDPS-0-yUKkfvgRPIX6dE683ZlV97Q>
-Received: from localhost.localdomain (203-57-215-178.dyn.iinet.net.au [203.57.215.178])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 3C828D6005D;
-        Sun, 25 Aug 2019 22:15:47 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-mmc@vger.kernel.org
-Cc:     Andrew Jeffery <andrew@aj.id.au>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: mmc: aspeed: Update example ranges property
-Date:   Mon, 26 Aug 2019 11:46:19 +0930
-Message-Id: <20190826021620.11915-1-andrew@aj.id.au>
-X-Mailer: git-send-email 2.20.1
+        id S1729269AbfHZCrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 22:47:16 -0400
+Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:43032 "EHLO
+        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
+        with ESMTP id S1729352AbfHZCrQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 22:47:16 -0400
+X-Greylist: delayed 410 seconds by postgrey-1.27 at vger.kernel.org; Sun, 25 Aug 2019 22:47:15 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id DEE922005C56
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
+X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
+Received: from mail.gtsys.com.hk ([127.0.0.1])
+        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id F63-wzZMowJN for <devicetree@vger.kernel.org>;
+        Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
+Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
+        by mail.gtsys.com.hk (Postfix) with ESMTP id BDF992001F2C
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
+Received: from [10.128.2.32] (n058152218032.netvigator.com [58.152.218.32])
+        by s01.gtsys.com.hk (Postfix) with ESMTPSA id 9DBEBC019FB
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
+To:     devicetree@vger.kernel.org
+From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
+Subject: i.mx6 Warning triggered if cores greater then configed max cores
+Message-ID: <946f3c0e-b57f-156f-3029-6cb585557525@gtsys.com.hk>
+Date:   Mon, 26 Aug 2019 10:40:24 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The example node in the binding uses the AST2500 compatible string for
-the SD controller with a 64kiB ranges property, but the SD controller is
-allocated 128kiB of MMIO space according to the AST2500 datasheet. Fix
-the example to correctly reflect the hardware in the AST2500, however it
-should be noted that the MMIO region is reduced to 64kiB in the AST2600
-where a second SD controller block has been introduced into the address
-space.
+Hi all,
 
-Also add the IBM copyright header that I left out of the initial patch.
+I have compiled a kernel limit cores = 2, which fits my imx6dl, start this
+kernel on the imx6q triggers a warning and back - trace.
 
-Suggested-by: Joel Stanley <joel@jms.id.au>
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
-Hi Ulf, this is the follow-up fix as discussed here:
+I'm wondering if that is intended.
 
-http://patchwork.ozlabs.org/patch/1143090/
 
- Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-index 570f8c72662b..200de9396036 100644
---- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-+++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0-or-later
-+# Copyright 2019 IBM Corp.
- %YAML 1.2
- ---
- $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-@@ -84,7 +85,7 @@ examples:
-             reg = <0x1e740000 0x100>;
-             #address-cells = <1>;
-             #size-cells = <1>;
--            ranges = <0 0x1e740000 0x10000>;
-+            ranges = <0 0x1e740000 0x20000>;
-             clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
- 
-             sdhci0: sdhci@100 {
--- 
-2.20.1
+[    0.000000] ------------[ cut here ]------------
+[    0.000000] WARNING: CPU: 0 PID: 0 at arch/arm/kernel/devtree.c:157 
+arm_dt_init_cpu_maps+0x170/0x21c
+[    0.000000] DT /cpu 3 nodes greater than max cores 2, capping them
+[    0.000000] Modules linked in:
+[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 4.19.67-rt24 #30
+[    0.000000] Hardware name: Freescale i.MX6 Quad/DualLite (Device Tree)
+[    0.000000] Backtrace:
+[    0.000000] [<c010c3c8>] (dump_backtrace) from [<c010c738>] 
+(show_stack+0x18/0x1c)
+[    0.000000]  r7:c08a618c r6:600000d3 r5:00000000 r4:c0b44fe4
+[    0.000000] [<c010c720>] (show_stack) from [<c06ceb84>] (dump_stack+0xbc/0xd0)
+[    0.000000] [<c06ceac8>] (dump_stack) from [<c011f8fc>] (__warn+0xdc/0xf8)
+[    0.000000]  r7:c08a618c r6:00000009 r5:00000000 r4:c0b01ed0
+[    0.000000] [<c011f820>] (__warn) from [<c011f564>] (warn_slowpath_fmt+0x40/0x48)
+[    0.000000]  r9:c08ab890 r8:c08f8fb0 r7:00000000 r6:00000001 r5:c0b0753c 
+r4:c08a61a8
+[    0.000000] [<c011f528>] (warn_slowpath_fmt) from [<c0a03f10>] 
+(arm_dt_init_cpu_maps+0x170/0x21c)
+[    0.000000]  r3:00000003 r2:c08a61a8
+[    0.000000]  r4:00000003
+[    0.000000] [<c0a03da0>] (arm_dt_init_cpu_maps) from [<c0a033dc>] 
+(setup_arch+0x8b0/0xa7c)
+[    0.000000]  r10:efffcec0 r9:c0b623e8 r8:fffff000 r7:10000000 r6:c0b0b218 
+r5:8fffffff
+[    0.000000]  r4:c0a2df44
+[    0.000000] [<c0a02b2c>] (setup_arch) from [<c0a00a2c>] (start_kernel+0x60/0x3ec)
+[    0.000000]  r10:10c5387d r9:412fc09a r8:00000001 r7:00000eb9 r6:c0b07440 
+r5:00000051
+[    0.000000]  r4:00000000
+[    0.000000] [<c0a009cc>] (start_kernel) from [<00000000>] (  (null))
+[    0.000000]  r10:10c5387d r9:412fc09a r8:18000000 r7:00000eb9 r6:10c0387d 
+r5:00000051
+[    0.000000]  r4:c0a00330
+[    0.000000] ---[ end trace 0000000000000001 ]---
 
+
+Regards
+Chris
