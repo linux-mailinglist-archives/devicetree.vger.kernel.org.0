@@ -2,222 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A7819D60B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 20:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0291F9D655
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 21:19:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732976AbfHZSzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 14:55:19 -0400
-Received: from mga14.intel.com ([192.55.52.115]:26688 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727559AbfHZSzT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 14:55:19 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 11:55:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,433,1559545200"; 
-   d="scan'208";a="185044399"
-Received: from dmitra-mobl.amr.corp.intel.com (HELO [10.252.138.53]) ([10.252.138.53])
-  by orsmga006.jf.intel.com with ESMTP; 26 Aug 2019 11:55:17 -0700
-Subject: Re: [alsa-devel] [RESEND PATCH v4 1/4] dt-bindings: soundwire: add
- slave bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, spapothi@codeaurora.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org
-References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
- <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
- <7da8aa89-2119-21d1-0e29-8894a8d40bf0@linux.intel.com>
- <37be6b6d-7e7f-2cd6-f9e9-f0cac48791ad@linaro.org>
- <d538238d-25d8-f179-c900-90be50ce814d@linux.intel.com>
- <7ee47f26-12f8-6028-cb83-7f59e669979f@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <e5b184be-02f1-faa4-94fa-79bda8936d9d@linux.intel.com>
-Date:   Mon, 26 Aug 2019 11:22:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <7ee47f26-12f8-6028-cb83-7f59e669979f@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1732403AbfHZTTX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 15:19:23 -0400
+Received: from mail-eopbgr80078.outbound.protection.outlook.com ([40.107.8.78]:26698
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727504AbfHZTTW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 15:19:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a4vnbF3LfC0Er1Cwg7P/WQxWrYgqI1oVhtHluiYdy1g4mYEY44k4VUIa6z7ZyPIQtsd3PhzUjN7xqll1GcSWKeXbAxRZRZ3ybi7kiWAbz+DrHWLs5WW53FEczgqwzLDzmV4plmvlteUIsLGAeh1cO4TsACrTXqeGAGOyKcr6CPfBNErek6i7wCepk52EI1XFRPL8Ca+Cjir7epFPWFNVShxtYpDwq0T/erdD9rrdeJxbX87VJ9B1S3+X3ZyLsEyOq8qkKmaJD7L9cTWactnfoLp5b8x1n0h+/OpGrHcHmCiBp0UsOTRY+9R8tJNOPm+FzXs0dlKAl94TFEAIH787Yw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CRspqHGpkffkgwELhLGwHdRPcZk7T7UDa07SdIKaT7k=;
+ b=SGPBbGO/n5Fdb9TqzGH9WK6Y2/dx9geZmZkwJkwmqCJbjd9uD95xLuQdQsMhq3O/laB2ZrOr5CmP5dUdiUJQ5hZXzdO1n4Kk3rcjqREsC9uEmrFEZFyHiWMlAKEEqEz8QsyhTEXD17NWsYL1J2h5kDzQZLZv6dx/Sc2csyBD3gteZBcAPaMbjLlS8Xyz0jbCWPu9dYBAxA1l7GtVV0O3ORnNVJRWpSr0XZqpF41bTb81lqffbQhmOWSgBet05srtR5PgjdVdyo0F3jApV8ulQYohdP8Q6Y/xBeD+FhzDq6yavMRgjNT+dqvZ4coGafCY6x+PtWsSQYzz8dUJwW0T6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CRspqHGpkffkgwELhLGwHdRPcZk7T7UDa07SdIKaT7k=;
+ b=sGqVGdMRxcnVmcqZTgCw9KK36VaP3l9qWhGTpVT+WV7rzcyU1NLjB9YltCQxEj449ngrplCYfJk4QNtdVpgTBfleD6lqL3bP5Jkpt7UO0iYnAzx1gf6CvWRQPn2fbBUOzAndxyBDpvRLb78mG4SrehpxUPmcIyy/FgwJxHsLGnA=
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
+ VI1PR04MB3983.eurprd04.prod.outlook.com (10.171.182.16) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Mon, 26 Aug 2019 19:19:18 +0000
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e]) by VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e%3]) with mapi id 15.20.2199.021; Mon, 26 Aug 2019
+ 19:19:17 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Stefan Agner <stefan@agner.ch>,
+        Robert Chiras <robert.chiras@nxp.com>
+CC:     =?iso-8859-1?Q?Guido_G=FCnther?= <agx@sigxcpu.org>,
+        Marek Vasut <marex@denx.de>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 00/15] Improvements and fixes for mxsfb DRM driver
+Thread-Topic: [PATCH v3 00/15] Improvements and fixes for mxsfb DRM driver
+Thread-Index: AQHVWAl4KWfQYrgkMk+Db70gagBB/g==
+Date:   Mon, 26 Aug 2019 19:19:17 +0000
+Message-ID: <VI1PR04MB70233374E91F85119FD21FD5EEA10@VI1PR04MB7023.eurprd04.prod.outlook.com>
+References: <1566382555-12102-1-git-send-email-robert.chiras@nxp.com>
+ <20190826120548.GA14316@bogon.m.sigxcpu.org>
+ <3bd35686e046048d35cd4987567a13cf@agner.ch>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 6d0d5059-de07-4019-3e3b-08d72a5a4a67
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB3983;
+x-ms-traffictypediagnostic: VI1PR04MB3983:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB398315D6AA1CDEA1C549CBFEEEA10@VI1PR04MB3983.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 01415BB535
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(346002)(136003)(376002)(39860400002)(366004)(189003)(199004)(71190400001)(6436002)(6506007)(55016002)(71200400001)(66066001)(86362001)(186003)(81156014)(81166006)(9686003)(8676002)(5660300002)(6116002)(66556008)(66946007)(66446008)(76116006)(3846002)(8936002)(33656002)(64756008)(91956017)(7696005)(2906002)(76176011)(66476007)(486006)(6246003)(476003)(26005)(25786009)(7416002)(446003)(102836004)(110136005)(14454004)(99286004)(4326008)(229853002)(305945005)(52536014)(74316002)(54906003)(256004)(316002)(7736002)(6636002)(44832011)(53546011)(478600001)(53936002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3983;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Ch1vJqoVWK787E3WK3WIHLNokRfeIUs3naTk6FihbNJrRWegFVTKIk50RuJYtrvPwEBB56DUJp9xvG75mcmUs7Y1zrP39/qui808I9qwKKMDMRvCpNlhhSQnENETg/17+aipkq211vR8zoRIvKFYJZtVo2xVEv3r8v9eMWdcnHHRBY5hg/co1y/yTLxC5kOscOE8oElKPe006K8Y6mAQcnmtnAlMht82OQOHSThSpGDnDjwFs1SVWILJicLGmK4xH2dnQ3PV7LLeCvYRTvlvA5+ZavTock5mZ+3dVvTJA1PqrOXKKRT4WenTVLQsqTxfqix896PmQ6oFe2j257OJDdtbCOvEbZgNZ9gaq8S+8mBs07fs+kjQylqgQ10XUlFrt+kMAR+2QDK9FwUgbgdk/7W+Br2iG0MtbfOY+wzMqho=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6d0d5059-de07-4019-3e3b-08d72a5a4a67
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2019 19:19:17.8817
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: TTdibkanzX+uGMNpOCROORN3vgeGTN/WE2CdgK6JgQT5iuFHCRu28ZfrgUORoJY07ETY506M4rPXmQF9/i009Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3983
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
->>>>> +title: SoundWire Controller Generic Binding
->>>>> +
->>>>> +maintainers:
->>>>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->>>>> +
->>>>> +description: |
->>>>> +  SoundWire busses can be described with a node for the SoundWire 
->>>>> controller
->>>>> +  device and a set of child nodes for each SoundWire slave on the 
->>>>> bus.
->>>>> +
->>>>> +properties:
->>>>> +  $nodename:
->>>>> +    pattern: "^soundwire(@.*|-[0-9a-f])*$"
->>
->> re-reading this, it looks like you are defining the controller 
->> bindings, but there are no real controller-level properties except for 
->> the fact that they include slave bindings?
->>
-> Yes, Each vendor specific master can have there specific properties 
-> here, this is just to represent how slave nodes represented w.r.t to 
-> master nodes.
-
-I am not clear on how a vendor would document those controller 
-properties then?
-
-And the number of links doesn't seem like a vendor-specific definition, 
-if you include the linkID in the register information below it'd help to 
-known how many links can be enabled, which ones are used (if there is 
-any pin-mux) and check if the configurations are correct.
-
-> 
->> In MIPI the notion of controller is that it can deal with multiple 
->> links, each of which having specific properties (clock speed, clock 
->> stop properties, etc).
->>
->>>>> +
->>>>> +  "#address-cells":
->>>>> +    const: 2
->>>>> +
->>>>> +  "#size-cells":
->>>>> +    const: 0
->>>>> +
->>>>> +patternProperties:
->>>>> +  "^.*@[0-9a-f]+$":
->>>>> +    type: object
->>>>> +
->>>>> +    properties:
->>>>> +      compatible:
->>>>> +      pattern: "^sdw[0-9][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
->>>>
->>>> So is this a 64-bit value, as in the MIPI spec, or is this part of 
->>>> the _ADR description?
->>>
->>> Rob did not like encoding compatible string exactly like _ADR encoding.
->>>
->>> https://lkml.org/lkml/2019/8/22/490
->>
->> Wondering if we are talking about different concepts?
->>
->> Rob's point was about the InstanceID
->>
->> "Assuming you could have more than 1 of the same device on the bus,
->> then you need some way to distinguish them and the way that's done for
->> DT is unit-address/reg. And compatible strings should be constant for
->> each instance."
->>
->> You can use the MIPI encoding *except* for the InstanceID, that'd be 
->> fine. It'll just be a bit weird since the Slave device will report the 
->> 48 bits that include the Instance ID, so you'll have to special case 
->> this field, but if this is a DT requirement then fine.
->>
->> Rob's point does not apply to the link ID - which is used when you 
->> have multiple masters in your controller. The Slave device is attached 
->> in one location and will never move, so that is a constant value.
-> 
-> Point is that this compatible is for slave device, it should not matter 
-> where and how the slave is connected, compatible should be constant 
-> irrespective of Link ID.
-> Lets say for example if WSA881x slave device is connected to a 
-> single-Link Controller and the same device is connected to a 
-> MultiLink-controller then we would endup in more than one compatible 
-> string for WSA881x driver. >
-> 
->  From Disco Specic it clearly says that LinkID values are relative
-> to the immediate parent Device. So having LinkID in compatible string is 
-> very fragile.
-
-ok, fine then.
-
-> 
->>
->>>
->>>> I also don't get why the first item in in base10?
->>>>
->>>
->>> As this corresponds to Soundwire Version, and I have no visibility of 
->>> version number encoding after reaching number 9 in this field.
->>>
->>> This can be updated once we have more info on how the Version 
->>> encoding will look like in future.
->>>
->>> Idea of limiting regex to [0-9] for version is to enforce some checking!
->>
->> the version is a 4 bit value starting at 1 for SoundWire 1.0. There is 
->> nothing in the spec that talks about a limit to 9.
->>
->> It's unlikely we'll ever reach that but you are interpreting a spec 
->> here. plus just below you mention all fields as being hexadecimal.
->>
-> Am happy to change this to
-> 
-> pattern: "^sdw[0-9a-f][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
-> 
-> if you are okay with rest of the stuff.
-
-yes, ok.
-
-> 
-> thanks,
-> srini
->>>
->>> --srini
->>>
->>>>
->>>>> +      description:
->>>>> +      Is the textual representation of SoundWire Enumeration
->>>>> +      address. compatible string should contain SoundWire Version ID,
->>>>> +      Manufacturer ID, Part ID and Class ID in order and shall be in
->>>>> +      lower-case hexadecimal with leading zeroes.
->>>>> +      Valid sizes of these fields are
->>>>> +      Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
->>>>> +      and '0x2' represents SoundWire 1.1 and so on.
->>>>> +      MFD is 4 nibbles
->>>>> +      PID is 4 nibbles
->>>>> +      CID is 2 nibbles
->>>>> +      More Information on detail of encoding of these fields can be
->>>>> +      found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
->>>>> +
->>>>> +      reg:
->>>>> +        maxItems: 1
->>>>> +        description:
->>>>> +          Instance ID and Link ID of SoundWire Device Address.
-
-maybe put link first and make it clear that both are required.
-
->>>>> +
->>>>> +    required:
->>>>> +      - compatible
->>>>> +      - reg
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    soundwire@c2d0000 {
->>>>> +        #address-cells = <2>;
->>>>> +        #size-cells = <0>;
->>>>> +        compatible = "qcom,soundwire-v1.5.0";
->>>>> +        reg = <0x0c2d0000 0x2000>;
->>>>> +
->>>>> +        speaker@1 {
->>>>> +            compatible = "sdw10217201000";
->>>>> +            reg = <1 0>;
->>>>> +        };
->>>>> +
->>>>> +        speaker@2 {
->>>>> +            compatible = "sdw10217201000";
->>>>> +            reg = <2 0>;
->>>>> +        };
->>>>> +    };
->>>>> +
->>>>> +...
->>>>>
+On 26.08.2019 17:35, Stefan Agner wrote:=0A=
+> On 2019-08-26 14:05, Guido G=FCnther wrote:=0A=
+>> Hi,=0A=
+>> On Wed, Aug 21, 2019 at 01:15:40PM +0300, Robert Chiras wrote:=0A=
+>>> This patch-set improves the use of eLCDIF block on iMX 8 SoCs (like 8MQ=
+, 8MM=0A=
+>>> and 8QXP). Following, are the new features added and fixes from this=0A=
+>>> patch-set:=0A=
+>>=0A=
+>> I've applied this whole series on top of my NWL work and it looks good=
+=0A=
+>> with a DSI panel. Applying the whole series also fixes an issue where=0A=
+>> after unblank the output was sometimes shifted about half a screen width=
+=0A=
+>> to the right (which didn't happen with DCSS). So at least from the parts=
+=0A=
+>> I could test:=0A=
+>>=0A=
+>>    Tested-by: Guido G=FCnther <agx@sigxcpu.org>=0A=
+>>=0A=
+>> for the whole thing.=0A=
+> =0A=
+> Thanks for testing! What SoC did you use? I think it would be good to=0A=
+> also give this a try on i.MX 7 or i.MX 6ULL before merging.=0A=
+=0A=
+I did a quick test on imx6sx-sdb and it seems that [PATCH 07/15] =0A=
+"drm/mxsfb: Fix the vblank events" causes a hang on boot, even without a =
+=0A=
+panel.=0A=
+=0A=
+If I revert that particular patch it seems to be fine: the new pixel =0A=
+formats seem to work in modetest (checked with sii,43wvf1g panel).=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
