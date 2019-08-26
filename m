@@ -2,308 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBF0E9D0D8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 15:44:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC0109D0F1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 15:46:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731828AbfHZNoi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 09:44:38 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:35470 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731801AbfHZNoi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 09:44:38 -0400
-Received: by mail-pl1-f195.google.com with SMTP id gn20so10060386plb.2;
-        Mon, 26 Aug 2019 06:44:37 -0700 (PDT)
+        id S1731696AbfHZNqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 09:46:00 -0400
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:34050 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726953AbfHZNqA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 09:46:00 -0400
+Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+  Codrin.Ciubotariu@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Codrin.Ciubotariu@microchip.com";
+  x-sender="Codrin.Ciubotariu@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa6.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Codrin.Ciubotariu@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa6.microchip.iphmx.com; spf=Pass smtp.mailfrom=Codrin.Ciubotariu@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: EhWV2r5JRWOdo7CAMg5mQpszvR/GJH5tWFVAJkI6xATv3wZ1FRj6TKpejB+hbskPQbEXrsI16A
+ FhVk6h2Sfu4B18hVOoQD4qEXyqCh5Dqg+V6qJWstedmeuO6og49DIy1H7X+vzVg7RdKblMpj9Z
+ oXFaO78zypn1C/U0H2UOUz47aIvvXtceCHAqmGszWElA0IZCO68JBPPxtGpw1mtnlE6hA8DUVG
+ jDuwH+1EnELcLJIa9VrPZaVdLlgOkQfC03mbELgvla6i6do7HsfCk0rpPjHJ5Q9QoLvBcLdMam
+ wLM=
+X-IronPort-AV: E=Sophos;i="5.64,433,1559545200"; 
+   d="scan'208";a="43700175"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Aug 2019 06:45:58 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 26 Aug 2019 06:45:57 -0700
+Received: from NAM05-DM3-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5 via Frontend
+ Transport; Mon, 26 Aug 2019 06:45:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QGFesGpdl/gCWLpxOJ9b/WvOhK7xMK29I1ZRUErCyajZP9BkrCHpk4qWxjSKVsKbf8QrBVQ/vcOS/C2Xacn0oKEuTLFpt7gsDt9cE0J8K3px/0a/+XLpy4oPrefR8rQTZdzuKl96KYHZ8AC+gR4ia50uzDsstb/oeR5cYOaXsAkZPi+aaM3UrFBdY+Z6X6IbfaiYVHce7+KiyOFreUVKaPH0Z5iVq3gr7Vhhx/u5xiQHgGEdQ2yqesA9ZWKqMjHEtwRpRiBgAPQMUaIGljBbGbd4hGQl/svhJNSrehXFL9xLTof4dS2/Tko2GYJ9ffPxY5IuhXHh6wjfUvS4nxK8vw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=64aqOb3qDwGcygfZFYtZSl3K8m9rWCTQMcYUNwyGdHM=;
+ b=GWgpgJeOcYXtmuT/9PLsQw4mVYVp11d5dHlpPryj5J+pn+kz2kn9qg9VzwBTUEfVgGx2zF/42B8IvDXx9w0UhlvFWBNZE6x3949L32+mehdYEPBYC7zzFbWnZre6LBiPI0NV80imZGtoJOkowXhbOOhLyhKj/pDaOBskkiyYdTEurs2Yp7uipWoEJ43DNTnpQ1NKFz1k/dqqykkZVSW7f3HEzlkp6VgRjPvSpmxCznbnjupd6MGf5ukWSz2/bYDTuPs+rF/+303LzmVka3NweWizM1cYjW57aZU1wnn3NVSGVLSJKDPDB7yAA513j4iqkwQW1nkIvy1KyWAR+IgnpQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=f4J8zbxFlsOeeFNMYOIQRLtE9UOHqm8l4NtvLF0e4RA=;
-        b=loIXLOGuFFgi+yXni20QDIwYD1K1TqxeDEDHWIgW8RtVdYenVUzaq8U3eYF459ynDj
-         C+EwFwoKXeAbW++I0TulNcGJy45Brb7WLtfu6RYt3suflHKuf53phxe5qWOynD/HnMpy
-         tvsUfk+wR3UYyZx0vLvGPHMjCU+7VwmwGRqqIGsPc7pxTd+vKs7XAn6DDWF+7KNp+OOB
-         wTaWR4O4tngVQ1Njpg57qumH4/skkaZxDfqB2tj5LBkLWuHVFIOaTHmc8Wne7Ii3tdJX
-         8ufieym9gWcvCYQzLWAr3RV3QKywd2ASL6eN3kSq5QHz0tra5AShogmKyq6S5aQ31GY/
-         /yuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=f4J8zbxFlsOeeFNMYOIQRLtE9UOHqm8l4NtvLF0e4RA=;
-        b=OqhhDjlQEKwH0EIgMADcD/jy49y9asqtEimcKTSzjD1aiWv7gVs2K6S8qpnB/id4pS
-         u0E3wljANNPkpdbJ12QR6OH2slp99XtwQEE/dtJbFUA6baEa+F0vuNWYQTqrikX2PH1i
-         5wQv/G3XlmpzHi3o6y/uoHeBNUDByUwqMH8nVzCIawkb0wcRuBTgEJH1zL5jwgyt25Yw
-         agaD/dV7FNXO3By+I3qg10fB6jFCXbrva7ytV3UEJflXFq/4H9E1IOxPh/2uJX+F3Mdg
-         ADnzHEXsLpEMxqQJ3hYJmTTe3CwuneKzEIKSrZrkqz/ZGz4xVJZlmuWaLBVgU7jcD+2H
-         9MxQ==
-X-Gm-Message-State: APjAAAW8IjdgPeKqwZH53KW2b3MTcfA1n1uov5hUZ+M5zg7vdvhBVjX9
-        06khdXbmC1kZjqUZ6UZ8EV2TJ2sl
-X-Google-Smtp-Source: APXvYqxgOcvuEghwHiQetBW5SYVdaZKjdD7BVoVYt9x5/AzSimo8ZPlesuoGxgVNF830I3/puYwD1A==
-X-Received: by 2002:a17:902:b106:: with SMTP id q6mr6899499plr.333.1566827077018;
-        Mon, 26 Aug 2019 06:44:37 -0700 (PDT)
-Received: from server.roeck-us.net (108-223-40-66.lightspeed.sntcca.sbcglobal.net. [108.223.40.66])
-        by smtp.gmail.com with ESMTPSA id h20sm13004841pfq.156.2019.08.26.06.44.35
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 26 Aug 2019 06:44:36 -0700 (PDT)
-Subject: Re: [PATCH 1/2] hwmon: Add Synaptics AS370 PVT sensor driver
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20190826174942.2b28ff05@xhacker.debian>
- <20190826175029.433632f6@xhacker.debian>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <35b05950-4a72-9e00-50ab-ecd0a7e759a4@roeck-us.net>
-Date:   Mon, 26 Aug 2019 06:44:34 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190826175029.433632f6@xhacker.debian>
-Content-Type: text/plain; charset=utf-8; format=flowed
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=64aqOb3qDwGcygfZFYtZSl3K8m9rWCTQMcYUNwyGdHM=;
+ b=UUXwgDI9vQShlX2A9H3sh2h+YvXn9ins/FJ9CoBwjWk9V3XYFqarRhOKbjlfdb4D3B6GlBv67R0cJFtiqBTCr3eGCYeG/M+0elAPtHJ04LGgWC/4qRqPWSHUnjTEdvC36Ej4Q6zzXL/uSSGbizQK7NYfiI3RLZYvssd0ex+zRKU=
+Received: from BY5PR11MB4497.namprd11.prod.outlook.com (52.132.255.220) by
+ BY5PR11MB4181.namprd11.prod.outlook.com (10.255.162.32) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.20; Mon, 26 Aug 2019 13:45:56 +0000
+Received: from BY5PR11MB4497.namprd11.prod.outlook.com
+ ([fe80::14:24b8:9029:c69]) by BY5PR11MB4497.namprd11.prod.outlook.com
+ ([fe80::14:24b8:9029:c69%7]) with mapi id 15.20.2199.021; Mon, 26 Aug 2019
+ 13:45:56 +0000
+From:   <Codrin.Ciubotariu@microchip.com>
+To:     <mirq-linux@rere.qmqm.pl>, <alsa-devel@alsa-project.org>,
+        <devicetree@vger.kernel.org>
+CC:     <alexandre.belloni@bootlin.com>, <arnd@arndb.de>,
+        <3chas3@gmail.com>, <gregkh@linuxfoundation.org>, <perex@perex.cz>,
+        <lgirdwood@gmail.com>, <Ludovic.Desroches@microchip.com>,
+        <broonie@kernel.org>, <mark.rutland@arm.com>,
+        <Nicolas.Ferre@microchip.com>, <robh-dt@kernel.org>,
+        <tiwai@suse.com>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 1/6] ASoC: atmel: enable SOC_SSC_PDC and SOC_SSC_DMA in
+ Kconfig
+Thread-Topic: [PATCH v2 1/6] ASoC: atmel: enable SOC_SSC_PDC and SOC_SSC_DMA
+ in Kconfig
+Thread-Index: AQHVWrpMB5SfcuBicUqn8zHcvguU4acNc6mA
+Date:   Mon, 26 Aug 2019 13:45:56 +0000
+Message-ID: <2afbf219-9c2d-566a-511c-2bc332479f98@microchip.com>
+References: <cover.1566677788.git.mirq-linux@rere.qmqm.pl>
+ <233d5461f4448df151755de7b69a0cd3ad310d5c.1566677788.git.mirq-linux@rere.qmqm.pl>
+In-Reply-To: <233d5461f4448df151755de7b69a0cd3ad310d5c.1566677788.git.mirq-linux@rere.qmqm.pl>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: VI1P195CA0001.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:800:d0::11) To BY5PR11MB4497.namprd11.prod.outlook.com
+ (2603:10b6:a03:1cc::28)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [94.177.32.156]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 33b66457-92a4-4b01-f1be-08d72a2bb88d
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BY5PR11MB4181;
+x-ms-traffictypediagnostic: BY5PR11MB4181:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BY5PR11MB4181D4D7EE22153FDCFD14E4E7A10@BY5PR11MB4181.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4303;
+x-forefront-prvs: 01415BB535
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(366004)(396003)(376002)(346002)(39860400002)(136003)(199004)(189003)(102836004)(486006)(81166006)(476003)(54906003)(186003)(26005)(2616005)(81156014)(31696002)(53546011)(2906002)(6116002)(3846002)(478600001)(305945005)(110136005)(71190400001)(8676002)(446003)(76176011)(11346002)(7736002)(86362001)(6512007)(64756008)(66476007)(66556008)(66066001)(66446008)(66946007)(2501003)(6506007)(386003)(229853002)(256004)(36756003)(316002)(71200400001)(6436002)(14454004)(6486002)(31686004)(52116002)(8936002)(4326008)(5660300002)(99286004)(2201001)(7416002)(25786009)(6246003)(53936002);DIR:OUT;SFP:1101;SCL:1;SRVR:BY5PR11MB4181;H:BY5PR11MB4497.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: DcKaQCVCd9u7bB9fUFTw+GwE5FNeglPZA9Dk85bBgrrH6ZcNEQ9it/SRqgR3M0GlIY8BSBl3SqnPIzUIBZDLkb+aBzraVBF7t1qNNjaZXN0rVcIFNPB02REEX9TcM6yQGz5L+0qkyIJ5Fw7HQjEbzBJFxQGTvv99gsU88pI13FaQT899inXhGOCZ6gTeax4u9DgOt+T6jQcOwAX9yo0FUJzaaYUaMKfGMMqkwyxFIAmJpFrqtinR5+Hpj4Vzjnj9I4qn52TljL6a0JF/s3tP9tTCXUjFTGjfxOZBqPsTZ/p6yKb+3j3NQFS+MFVaAXoSIvU5hSrd6uLEJkhGKPOnX9NbvnXL9fO+Q+txTir6jr6QjUXG9nEALK3xGxehHVVUa5QTjds83i+TruhQwmp60WsaejKeXuiABfIGDfosRMs=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E0A8CDA29785994B80CF66D3605A800D@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 33b66457-92a4-4b01-f1be-08d72a2bb88d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2019 13:45:56.6493
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: rAoDs5E3tlWQb9TqUSHHKGmJFf5OUvjOrMHC3HeVfNcbjsrcm3hs7Fi12US/qw3AQWeVO0b+tFCQAW1HMGrDYH20RqfcaIiG+dpPR81bTe8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR11MB4181
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/26/19 3:01 AM, Jisheng Zhang wrote:
-> Add a new driver for Synaptics AS370 PVT sensors. Currently, only
-> temperature is supported.
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> ---
->   drivers/hwmon/Kconfig       |  10 +++
->   drivers/hwmon/Makefile      |   1 +
->   drivers/hwmon/as370-hwmon.c | 158 ++++++++++++++++++++++++++++++++++++
->   3 files changed, 169 insertions(+)
->   create mode 100644 drivers/hwmon/as370-hwmon.c
-> 
-> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-> index 650dd71f9724..d31610933faa 100644
-> --- a/drivers/hwmon/Kconfig
-> +++ b/drivers/hwmon/Kconfig
-> @@ -246,6 +246,16 @@ config SENSORS_ADT7475
->   	  This driver can also be built as a module. If so, the module
->   	  will be called adt7475.
->   
-> +config SENSORS_AS370
-> +	tristate "Synaptics AS370 SoC hardware monitoring driver"
-
-I think this needs "depends on HAS_IOMEM".
-
-> +	help
-> +	  If you say yes here you get support for the PVT sensors of
-> +	  the Synaptics AS370 SoC
-> +
-> +	  This driver can also be built as a module. If so, the module
-> +	  will be called as370-hwmon.
-> +
-> +
->   config SENSORS_ASC7621
->   	tristate "Andigilog aSC7621"
->   	depends on I2C
-> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-> index 8db472ea04f0..252e8a4c9781 100644
-> --- a/drivers/hwmon/Makefile
-> +++ b/drivers/hwmon/Makefile
-> @@ -48,6 +48,7 @@ obj-$(CONFIG_SENSORS_ADT7475)	+= adt7475.o
->   obj-$(CONFIG_SENSORS_APPLESMC)	+= applesmc.o
->   obj-$(CONFIG_SENSORS_ARM_SCMI)	+= scmi-hwmon.o
->   obj-$(CONFIG_SENSORS_ARM_SCPI)	+= scpi-hwmon.o
-> +obj-$(CONFIG_SENSORS_AS370)	+= as370-hwmon.o
->   obj-$(CONFIG_SENSORS_ASC7621)	+= asc7621.o
->   obj-$(CONFIG_SENSORS_ASPEED)	+= aspeed-pwm-tacho.o
->   obj-$(CONFIG_SENSORS_ATXP1)	+= atxp1.o
-> diff --git a/drivers/hwmon/as370-hwmon.c b/drivers/hwmon/as370-hwmon.c
-> new file mode 100644
-> index 000000000000..98dfba45e1b0
-> --- /dev/null
-> +++ b/drivers/hwmon/as370-hwmon.c
-> @@ -0,0 +1,158 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Synaptics AS370 SoC Hardware Monitoring Driver
-> + *
-> + * Copyright (C) 2018 Synaptics Incorporated
-> + * Author: Jisheng Zhang <jszhang@kernel.org>
-> + */
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/delay.h>
-
-Unnecessary include file.
-
-> +#include <linux/hwmon.h>
-> +#include <linux/init.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +
-> +#define CTRL		0x0
-> +#define  PD		BIT(0)
-> +#define  EN		BIT(1)
-> +#define  T_SEL		BIT(2)
-> +#define  V_SEL		BIT(3)
-> +#define  NMOS_SEL	BIT(8)
-> +#define  PMOS_SEL	BIT(9)
-> +#define STS		0x4
-> +#define  BN_MASK	(0xfff << 0)
-
-How about using GENMASK() ?
-
-> +#define  EOC		BIT(12)
-> +
-> +struct as370_hwmon {
-> +	void __iomem *base;
-> +};
-> +
-> +static void init_pvt(struct as370_hwmon *hwmon)
-> +{
-> +	u32 val;
-> +	void __iomem *addr = hwmon->base + CTRL;
-> +
-> +	val = PD;
-> +	writel_relaxed(val, addr);
-> +	val |= T_SEL;
-> +	val &= ~V_SEL;
-> +	val &= ~NMOS_SEL;
-> +	val &= ~PMOS_SEL;
-
-What is the point of this ? We know that val == PD here.
-
-> +	writel_relaxed(val, addr);
-> +	val |= EN;
-> +	writel_relaxed(val, addr);
-> +	val &= ~PD;
-> +	writel_relaxed(val, addr);
-> +}
-> +
-> +static int read_pvt(struct as370_hwmon *hwmon)
-> +{
-> +	return readl_relaxed(hwmon->base + STS) & BN_MASK;
-> +}
-
-Please fold into the calling code.
-
-> +
-> +static int as370_hwmon_read(struct device *dev, enum hwmon_sensor_types type,
-> +			    u32 attr, int channel, long *temp)
-> +{
-> +	int val;
-> +	struct as370_hwmon *hwmon = dev_get_drvdata(dev);
-> +
-> +	switch (attr) {
-> +	case hwmon_temp_input:
-> +		val = read_pvt(hwmon);
-> +		if (val < 0)
-> +			return val;
-
-read_pvt() doesn't return a negative error code. This check is unnecessary.
-
-> +		*temp = val * 251802 / 4096 - 85525;
-
-This results in rounding down the reported temperature. It is ok if it is
-what you want; otherwise, I would suggest to use DIV_ROUND_CLOSEST().
-
-> +		break;
-> +	default:
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static umode_t
-> +as370_hwmon_is_visible(const void *data, enum hwmon_sensor_types type,
-> +		       u32 attr, int channel)
-> +{
-> +	if (type != hwmon_temp)
-> +		return 0;
-> +
-> +	switch (attr) {
-> +	case hwmon_temp_input:
-> +		return 0444;
-> +	default:
-> +		return 0;
-> +	}
-> +}
-> +
-> +static const u32 as370_hwmon_temp_config[] = {
-> +	HWMON_T_INPUT,
-> +	0
-> +};
-> +
-> +static const struct hwmon_channel_info as370_hwmon_temp = {
-> +	.type = hwmon_temp,
-> +	.config = as370_hwmon_temp_config,
-> +};
-> +
-> +static const struct hwmon_channel_info *as370_hwmon_info[] = {
-> +	&as370_hwmon_temp,
-> +	NULL
-> +};
-> +
-> +static const struct hwmon_ops as370_hwmon_ops = {
-> +	.is_visible = as370_hwmon_is_visible,
-> +	.read = as370_hwmon_read,
-> +};
-> +
-> +static const struct hwmon_chip_info as370_chip_info = {
-> +	.ops = &as370_hwmon_ops,
-> +	.info = as370_hwmon_info,
-> +};
-> +
-> +static int as370_hwmon_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *res;
-> +	struct device *hwmon_dev;
-> +	struct as370_hwmon *hwmon;
-> +	struct device *dev = &pdev->dev;
-> +
-> +	hwmon = devm_kzalloc(dev, sizeof(*hwmon), GFP_KERNEL);
-> +	if (!hwmon)
-> +		return -ENOMEM;
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	hwmon->base = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(hwmon->base))
-> +		return PTR_ERR(hwmon->base);
-> +
-> +	init_pvt(hwmon);
-> +
-> +	hwmon_dev = devm_hwmon_device_register_with_info(dev,
-> +							 "as370_hwmon",
-
-The "_hwmon" seems unnecessary. It will show up in "sensors" as part
-of the sensor name. Is this really what you want ?
-
-> +							 hwmon,
-> +							 &as370_chip_info,
-> +							 NULL);
-> +	return PTR_ERR_OR_ZERO(hwmon_dev);
-> +}
-> +
-> +static const struct of_device_id as370_hwmon_match[] = {
-> +	{ .compatible = "syna,as370-hwmon" },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, as370_hwmon_match);
-> +
-> +static struct platform_driver as370_hwmon_driver = {
-> +	.probe = as370_hwmon_probe,
-> +	.driver = {
-> +		.name = "as370-hwmon",
-> +		.of_match_table = as370_hwmon_match,
-> +	},
-> +};
-> +module_platform_driver(as370_hwmon_driver);
-> +
-> +MODULE_AUTHOR("Jisheng Zhang<jszhang@kernel.org>");
-> +MODULE_DESCRIPTION("Synaptics AS370 SoC hardware monitor");
-> +MODULE_LICENSE("GPL v2");
-> 
-
+T24gMjQuMDguMjAxOSAyMzoyNiwgTWljaGHFgiBNaXJvc8WCYXcgd3JvdGU6DQo+IEFsbG93IFNT
+QyB0byBiZSB1c2VkIG9uIHBsYXRmb3JtcyBkZXNjcmliZWQgdXNpbmcgYXVkaW8tZ3JhcGgtY2Fy
+ZA0KPiBpbiBEZXZpY2UgVHJlZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE1pY2hhxYIgTWlyb3PF
+gmF3IDxtaXJxLWxpbnV4QHJlcmUucW1xbS5wbD4NCg0KUmV2aWV3ZWQtYnk6IENvZHJpbiBDaXVi
+b3Rhcml1IDxjb2RyaW4uY2l1Ym90YXJpdUBtaWNyb2NoaXAuY29tPg0KDQpUaGFua3MhDQoNCkJl
+c3QgcmVnYXJkcywNCkNvZHJpbg0KDQo+IA0KPiAtLS0NCj4gICB2MjogZXh0ZW5kZWQgdG8gUERD
+IG1vZGUNCj4gICAgICAgcmV3b3JrZWQgYW5kIGZpeGVkIEtjb25maWcgb3B0aW9uIGRlcGVuZGVu
+Y2llcw0KPiANCj4gLS0tDQo+ICAgc291bmQvc29jL2F0bWVsL0tjb25maWcgfCAzMCArKysrKysr
+KysrKysrKysrKystLS0tLS0tLS0tLS0NCj4gICAxIGZpbGUgY2hhbmdlZCwgMTggaW5zZXJ0aW9u
+cygrKSwgMTIgZGVsZXRpb25zKC0pDQo+IA0KPiBkaWZmIC0tZ2l0IGEvc291bmQvc29jL2F0bWVs
+L0tjb25maWcgYi9zb3VuZC9zb2MvYXRtZWwvS2NvbmZpZw0KPiBpbmRleCAwNmMxZDVjZTY0MmMu
+LmYxMThjMjI5ZWQ4MiAxMDA2NDQNCj4gLS0tIGEvc291bmQvc29jL2F0bWVsL0tjb25maWcNCj4g
+KysrIGIvc291bmQvc29jL2F0bWVsL0tjb25maWcNCj4gQEAgLTEyLDI1ICsxMiwzMSBAQCBpZiBT
+TkRfQVRNRUxfU09DDQo+ICAgY29uZmlnIFNORF9BVE1FTF9TT0NfUERDDQo+ICAgCXRyaXN0YXRl
+DQo+ICAgCWRlcGVuZHMgb24gSEFTX0RNQQ0KPiAtCWRlZmF1bHQgbSBpZiBTTkRfQVRNRUxfU09D
+X1NTQ19QREM9bSAmJiBTTkRfQVRNRUxfU09DX1NTQz1tDQo+IC0JZGVmYXVsdCB5IGlmIFNORF9B
+VE1FTF9TT0NfU1NDX1BEQz15IHx8IChTTkRfQVRNRUxfU09DX1NTQ19QREM9bSAmJiBTTkRfQVRN
+RUxfU09DX1NTQz15KQ0KPiAtDQo+IC1jb25maWcgU05EX0FUTUVMX1NPQ19TU0NfUERDDQo+IC0J
+dHJpc3RhdGUNCj4gICANCj4gICBjb25maWcgU05EX0FUTUVMX1NPQ19ETUENCj4gICAJdHJpc3Rh
+dGUNCj4gICAJc2VsZWN0IFNORF9TT0NfR0VORVJJQ19ETUFFTkdJTkVfUENNDQo+IC0JZGVmYXVs
+dCBtIGlmIFNORF9BVE1FTF9TT0NfU1NDX0RNQT1tICYmIFNORF9BVE1FTF9TT0NfU1NDPW0NCj4g
+LQlkZWZhdWx0IHkgaWYgU05EX0FUTUVMX1NPQ19TU0NfRE1BPXkgfHwgKFNORF9BVE1FTF9TT0Nf
+U1NDX0RNQT1tICYmIFNORF9BVE1FTF9TT0NfU1NDPXkpDQo+IC0NCj4gLWNvbmZpZyBTTkRfQVRN
+RUxfU09DX1NTQ19ETUENCj4gLQl0cmlzdGF0ZQ0KPiAgIA0KPiAgIGNvbmZpZyBTTkRfQVRNRUxf
+U09DX1NTQw0KPiAgIAl0cmlzdGF0ZQ0KPiAtCWRlZmF1bHQgeSBpZiBTTkRfQVRNRUxfU09DX1NT
+Q19ETUE9eSB8fCBTTkRfQVRNRUxfU09DX1NTQ19QREM9eQ0KPiAtCWRlZmF1bHQgbSBpZiBTTkRf
+QVRNRUxfU09DX1NTQ19ETUE9bSB8fCBTTkRfQVRNRUxfU09DX1NTQ19QREM9bQ0KPiArDQo+ICtj
+b25maWcgU05EX0FUTUVMX1NPQ19TU0NfUERDDQo+ICsJdHJpc3RhdGUgIlNvQyBQQ00gREFJIHN1
+cHBvcnQgZm9yIEFUOTEgU1NDIGNvbnRyb2xsZXIgdXNpbmcgUERDIg0KPiArCWRlcGVuZHMgb24g
+QVRNRUxfU1NDDQo+ICsJc2VsZWN0IFNORF9BVE1FTF9TT0NfUERDDQo+ICsJc2VsZWN0IFNORF9B
+VE1FTF9TT0NfU1NDDQo+ICsJaGVscA0KPiArCSAgU2F5IFkgb3IgTSBpZiB5b3Ugd2FudCB0byBh
+ZGQgc3VwcG9ydCBmb3IgQXRtZWwgU1NDIGludGVyZmFjZQ0KPiArCSAgaW4gUERDIG1vZGUgY29u
+ZmlndXJlZCB1c2luZyBhdWRpby1ncmFwaC1jYXJkIGluIGRldmljZS10cmVlLg0KPiArDQo+ICtj
+b25maWcgU05EX0FUTUVMX1NPQ19TU0NfRE1BDQo+ICsJdHJpc3RhdGUgIlNvQyBQQ00gREFJIHN1
+cHBvcnQgZm9yIEFUOTEgU1NDIGNvbnRyb2xsZXIgdXNpbmcgRE1BIg0KPiArCWRlcGVuZHMgb24g
+QVRNRUxfU1NDDQo+ICsJc2VsZWN0IFNORF9BVE1FTF9TT0NfRE1BDQo+ICsJc2VsZWN0IFNORF9B
+VE1FTF9TT0NfU1NDDQo+ICsJaGVscA0KPiArCSAgU2F5IFkgb3IgTSBpZiB5b3Ugd2FudCB0byBh
+ZGQgc3VwcG9ydCBmb3IgQXRtZWwgU1NDIGludGVyZmFjZQ0KPiArCSAgaW4gRE1BIG1vZGUgY29u
+ZmlndXJlZCB1c2luZyBhdWRpby1ncmFwaC1jYXJkIGluIGRldmljZS10cmVlLg0KPiAgIA0KPiAg
+IGNvbmZpZyBTTkRfQVQ5MV9TT0NfU0FNOUcyMF9XTTg3MzENCj4gICAJdHJpc3RhdGUgIlNvQyBB
+dWRpbyBzdXBwb3J0IGZvciBXTTg3MzEtYmFzZWQgQXQ5MXNhbTlnMjAgZXZhbHVhdGlvbiBib2Fy
+ZCINCj4gDQoNCg==
