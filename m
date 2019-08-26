@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB1569D2EE
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:38:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B25539D2FB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733064AbfHZPiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:38:50 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:52775 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733045AbfHZPit (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:49 -0400
-Received: by mail-wm1-f66.google.com with SMTP id o4so15928111wmh.2;
-        Mon, 26 Aug 2019 08:38:47 -0700 (PDT)
+        id S1733092AbfHZPiy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:38:54 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:35956 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733067AbfHZPiv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:38:51 -0400
+Received: by mail-wr1-f65.google.com with SMTP id r3so15790010wrt.3;
+        Mon, 26 Aug 2019 08:38:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=a4whMVybYrFM/VJAJPt+RDbk4EyD/C4nT92WrUXXMMQ=;
-        b=ZDWDgNtaoGKZJN5ZCD3CwmHdeDT3qs2bA3TXB/jgRVJDt5q+75f0nrdxGIogtwwbO+
-         wML7v86408gOdV22Ea18QyyLnwosgia+jhQCV8nNFtGA55ubad36HE29Xih6yauRG7OZ
-         Z1+ywFKANxvNhbpdLQNSXZ8hZY4NQUtA9EeCJgH6HcX5nXwX6DdHQ7rXjws4BLAmck/5
-         EOBp016BJLsQRKofJ+t1p2rm/RTsJYSMfigun92bAPywGtw4mKlFFZtzgRV5PaSRDBwI
-         eCxgAzUyoFNjY59HenVknekxPCkwAyZhKXwydfXqfsE8i5gpx88LOLXP6ETqgc4qrGum
-         Ltog==
-X-Gm-Message-State: APjAAAVbDS/PJ/uNAd5DDGzjuV3Y/lhO1vcUG+b2wsYXv/+pJVhaXC9x
-        FtdJQ4u+ppu/MiAYmAAhKtZrPPKpftw=
-X-Google-Smtp-Source: APXvYqygTRJ64Z2TySzhfxKxSjAmfAcggoIVmXZ4r3Dc/XwC55KuebNCr5QYo+MM+8TDE2dGCd2iUw==
-X-Received: by 2002:a05:600c:40f:: with SMTP id q15mr23039886wmb.88.1566833926763;
-        Mon, 26 Aug 2019 08:38:46 -0700 (PDT)
+        bh=sdNLZLbUZjioU3Z4lRpuQbaNIysXdv9lDzhe4Q5gJwU=;
+        b=CfCocCWMwTszwFAeiQHIpRu1PjqDEExNjixAjIeiZZ1uRRMQEl0xka9egM+Kqw+5zf
+         UdDuDXIDMT8ky3fgkh23UbAwnHxUvL2CiGjZaqBuTvFXcx9AG/Eq01MR4b1STngL33NE
+         M79+zZdSkChVCgv9FM8JjPJCbJkW9vOMxfmInaOjw2aG94F/yYQcjyWloNJYVbWR/lGZ
+         8/DA5oy3irqO+ETOp4/PtvSdAcKeAS49y7TfHA4qvMwLAFjj7pPTL1kj8djgI6jnw9k1
+         qMMPrDTlmz1KCtsAtgMdZH7cjOCpP1RCoXq9w7wk9COxTc/5cbujVE4Pxsq0bfbLNsRP
+         CsKA==
+X-Gm-Message-State: APjAAAVkt7DmxK2TIg2QMIHRqkDrLHiMLRMZ/QPhZ+lvnz7h4qy2MP7C
+        5yaRnOvo5F7/w1OfAuVLErPhwvRLtwc=
+X-Google-Smtp-Source: APXvYqyupufwIm7Jbil3XGdUZ6YsobfUaIlznuBm6oZ9/FZv+zEyI9GMPHplQrpOf0n27DVXhf+4PA==
+X-Received: by 2002:adf:fd8b:: with SMTP id d11mr22079526wrr.300.1566833929706;
+        Mon, 26 Aug 2019 08:38:49 -0700 (PDT)
 Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
-        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.45
+        by smtp.gmail.com with ESMTPSA id z8sm11580798wru.13.2019.08.26.08.38.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 08:38:46 -0700 (PDT)
+        Mon, 26 Aug 2019 08:38:49 -0700 (PDT)
 From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
 To:     linux-kernel@vger.kernel.org
 Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
@@ -46,9 +46,9 @@ Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 04/12] ARM: dts: imx7d: cl-som-imx7: add emmicro,em3027 RTC
-Date:   Mon, 26 Aug 2019 16:37:52 +0100
-Message-Id: <20190826153800.35400-4-git@andred.net>
+Subject: [PATCH 07/12] ARM: dts: imx7d: cl-som-imx7: add/enable SPI flash on spi1
+Date:   Mon, 26 Aug 2019 16:37:55 +0100
+Message-Id: <20190826153800.35400-7-git@andred.net>
 X-Mailer: git-send-email 2.23.0.rc1
 In-Reply-To: <20190826153800.35400-1-git@andred.net>
 References: <20190826153800.35400-1-git@andred.net>
@@ -60,8 +60,8 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add/enable RTC support using the on-board EM3027 real time
-clock on i2c2.
+add/enable SPI flash on spi1 using the default vendor's
+partition layout as per downstream kernel
 
 Signed-off-by: André Draszik <git@andred.net>
 Cc: Ilya Ledvich <ilya@compulab.co.il>
@@ -76,25 +76,72 @@ Cc: NXP Linux Team <linux-imx@nxp.com>
 Cc: devicetree@vger.kernel.org
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 45 +++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
 
 diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index ec82f4738c4f..481bd3971c55 100644
+index ca3c5d95d6c3..d4637a8ca223 100644
 --- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
 +++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-@@ -181,6 +181,11 @@
- 		reg = <0x50>;
- 		pagesize = <16>;
- 	};
-+
-+	rtc@56 {
-+		compatible = "emmicro,em3027";
-+		reg = <0x56>;
-+	};
+@@ -28,6 +28,36 @@
+ 	cpu-supply = <&sw1a_reg>;
  };
  
- &uart1 {
++&ecspi1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_ecspi1 &pinctrl_ecspi1_cs>;
++	cs-gpios = <&gpio4 19 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++
++	flash@0 {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		compatible = "jedec,spi-nor";
++		spi-max-frequency = <20000000>;
++		reg = <0>;
++
++		partition@0 {
++			label = "uboot";
++			reg = <0x0 0xc0000>;
++		};
++
++		partition@c0000 {
++			label = "uboot environment";
++			reg = <0xc0000 0x40000>;
++		};
++
++		partition@100000 {
++			label = "splash";
++			reg = <0x100000 0x100000>;
++		};
++	};
++};
++
+ &fec1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_enet1 &pinctrl_enet1phy>;
+@@ -214,6 +244,21 @@
+ };
+ 
+ &iomuxc {
++	pinctrl_ecspi1: ecspi1grp {
++		fsl,pins = <
++			MX7D_PAD_ECSPI1_MOSI__ECSPI1_MOSI		0xf
++			MX7D_PAD_ECSPI1_MISO__ECSPI1_MISO		0xf
++			MX7D_PAD_ECSPI1_SCLK__ECSPI1_SCLK		0xf
++		>;
++	};
++
++	pinctrl_ecspi1_cs: ecspi1_cs_grp {
++		fsl,pins = <
++			/* SPI flash chipselect */
++			MX7D_PAD_ECSPI1_SS0__GPIO4_IO19			0x34
++		>;
++	};
++
+ 	pinctrl_enet1: enet1grp {
+ 		fsl,pins = <
+ 			MX7D_PAD_SD2_CD_B__ENET1_MDIO			0x30
 -- 
 2.23.0.rc1
 
