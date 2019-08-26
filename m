@@ -2,67 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0B39CF30
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 14:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 713969CF47
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 14:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731624AbfHZMLd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 08:11:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34170 "EHLO mail.kernel.org"
+        id S1731634AbfHZMQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 08:16:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37778 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731592AbfHZMLd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 08:11:33 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1731592AbfHZMQ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 08:16:29 -0400
+Received: from localhost.localdomain (unknown [122.178.200.231])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 953492187F;
-        Mon, 26 Aug 2019 12:11:32 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 18DE7217F5;
+        Mon, 26 Aug 2019 12:16:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566821492;
-        bh=YjOhHVNb3S+TKmqIRau91HDeiF/9aMDjoGnlxjpwtFI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nXGicwi8LQMcrqtLzIDuXd2LskmnWsntr0uvzQtncJ+uBbM8dsai6PA6n9rZG3gIj
-         a3B0I+mcQe2sdxhq3J11jzfVQZaccPj66WqPYLJBGrBvvKUac/qJCUXOYaTVoqz/Qx
-         BWxu6sEVnIUFWYZiVrbCphZdvtqiIA96t3Gn3OUI=
-Received: by mail-qk1-f170.google.com with SMTP id 125so13774282qkl.6;
-        Mon, 26 Aug 2019 05:11:32 -0700 (PDT)
-X-Gm-Message-State: APjAAAU/AqaktpcFHCPSQBVrSzrpQaHlQItyqognBR9pw/7wB0qtUO2e
-        aRzTEFJiP1OWJCwlU5VbolbQcBNdJPTVNnl+rA==
-X-Google-Smtp-Source: APXvYqxagKO99F9mS7t6DaXXxukZkMZEy/9XN2GKqINovi5R7IFk0Zl3h+jg5Zq3YC4qsFWsngg9N8DwLKv0FhuW7S8=
-X-Received: by 2002:a37:4941:: with SMTP id w62mr14601999qka.119.1566821491710;
- Mon, 26 Aug 2019 05:11:31 -0700 (PDT)
+        s=default; t=1566821788;
+        bh=S6oGlqVHEeMffta/FzpKQdWs0mHsBTyLqpmwkxWrE7c=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RM1bz1eD0k817b+hdzpnmOhS4Q1IrfCqmKAz9re2X3O13ZcPSJtKb7Q2qzzEto9mc
+         JVbXhC2j0MQqUozh9XQs+Jf9DGZ8htrdbY9UHI9xYs8fmx/Xl4uywuZwkzEU3l6Wkr
+         31nGNw4+NcWsye2QIcXtm0sPbbddRWoUxvnMN4Ek=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/4] clk: qcom: Add support for SM8150
+Date:   Mon, 26 Aug 2019 17:44:49 +0530
+Message-Id: <20190826121453.21732-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1566633850-9421-1-git-send-email-christianshewitt@gmail.com> <1566633850-9421-3-git-send-email-christianshewitt@gmail.com>
-In-Reply-To: <1566633850-9421-3-git-send-email-christianshewitt@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 26 Aug 2019 07:11:15 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKJvyYpAb2n1aq7RRKrgnt+oL2yd47b4jh=QiZdu6t39A@mail.gmail.com>
-Message-ID: <CAL_JsqKJvyYpAb2n1aq7RRKrgnt+oL2yd47b4jh=QiZdu6t39A@mail.gmail.com>
-Subject: Re: [PATCH v2,2/3] dt-bindings: arm: amlogic: Add support for the
- Ugoos AM6
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Oleg Ivanov <balbes-150@yandex.ru>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 24, 2019 at 3:05 AM Christian Hewitt
-<christianshewitt@gmail.com> wrote:
->
-> The Ugoos AM6 is based on the Amlogic W400 (G12B) reference design using the
-> S922X chipset.
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Add support for rpm clock controller found in SM8150 and while at it update
+the driver to support parent data clock scheme as suggested by Stephen.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Changes since v3:
+ - Make clock parent name as xo instead of xo_board
+
+Changes since v2:
+ - Add reviewed-by from Bjorn
+ - Update the parent name as xo_board
+ - Fix style issue
+
+Changes since v1:
+ - Describe parent clocks for rpmhcc
+ - Add support for parent data scheme for rpmhcc
+
+Vinod Koul (4):
+  dt-bindings: clock: Document the parent clocks
+  clk: qcom: clk-rpmh: Convert to parent data scheme
+  dt-bindings: clock: Document SM8150 rpmh-clock compatible
+  clk: qcom: clk-rpmh: Add support for SM8150
+
+ .../bindings/clock/qcom,rpmh-clk.txt          |  7 +++-
+ drivers/clk/qcom/clk-rpmh.c                   | 38 ++++++++++++++++++-
+ 2 files changed, 42 insertions(+), 3 deletions(-)
+
+-- 
+2.20.1
+
