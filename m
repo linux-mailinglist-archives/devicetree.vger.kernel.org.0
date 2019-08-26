@@ -2,115 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2BDC9CBB4
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 10:38:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0608D9CBEC
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 10:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730723AbfHZIiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 04:38:16 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:34912 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730705AbfHZIiQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 04:38:16 -0400
-Received: by mail-oi1-f195.google.com with SMTP id a127so11516589oii.2;
-        Mon, 26 Aug 2019 01:38:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S97RvsRiKIiK8t6HN0Bo20TQZGEw922DDvAZ31Eixeg=;
-        b=nf74FlP0FzTCTsXSDHfqdRtUaBLWvrT9s52Rci+0W82VVPyr1phHG9lemAmZj4Tuc3
-         46TJ4Gyh2dvnVjJdRWfFi/rqZIwFz97dBpn0aBItAiJjDM6NQSau2cVYnZHeMSCC0vVa
-         nfLxe0zzfKywiXhjjnCkqkvuOLI0FAzddG9p08FLmkfbXldZDfXnXZh8r37vRHOWnLRg
-         P+UNo3RO6gUvlEDmm9jXVmdPJDV1sm9CUO8oQKTA4XIFFgNSz6DAnFueKcwt3gNv61YO
-         sg1Xt9vSXRd7jOJ7OjIgHFmT4b57ZTXsFOR39NuF6w79DxE4j9qDV+aXVbowrxZoLcWa
-         ZzRg==
-X-Gm-Message-State: APjAAAUI2RCM0/DekfVsK/VurKumrRjwGBK+CIkrhn22rFf+EDFUb11D
-        99WqxztWcUE92BTH3jxSMRHodHO3Jnw4QMfk0K7lECo7
-X-Google-Smtp-Source: APXvYqwS8pPXQBTu7rOA7Ra36ZN5byF9JEUVZwQ88s7wxrXqb3PQ6w+mwoiH0MbAT1cJodMEFqRUkvdBUISj1SUi2yc=
-X-Received: by 2002:aca:b154:: with SMTP id a81mr10921390oif.148.1566808695135;
- Mon, 26 Aug 2019 01:38:15 -0700 (PDT)
+        id S1729882AbfHZIzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 04:55:01 -0400
+Received: from mga17.intel.com ([192.55.52.151]:16777 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726189AbfHZIzB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 26 Aug 2019 04:55:01 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 01:55:00 -0700
+X-IronPort-AV: E=Sophos;i="5.64,431,1559545200"; 
+   d="scan'208";a="182379359"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Aug 2019 01:54:57 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 537E020B47; Mon, 26 Aug 2019 11:54:25 +0300 (EEST)
+Date:   Mon, 26 Aug 2019 11:54:25 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        Jacopo Mondi <jacopo@jmondi.org>, devicetree@vger.kernel.org,
+        graphics@pengutronix.de, linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] media: dt-bindings: add bindings for Toshiba
+ TC358746
+Message-ID: <20190826085425.GN31967@paasikivi.fi.intel.com>
+References: <20190619152838.25079-1-m.felsch@pengutronix.de>
+ <20190619152838.25079-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-References: <20190825135154.11488-1-jacopo+renesas@jmondi.org>
- <20190825135154.11488-2-jacopo+renesas@jmondi.org> <CAMuHMdVvjrMXap5CQ-grNYpJfOG6QeN26EW4tR_YE=VFv5ozqw@mail.gmail.com>
- <20190826075943.h7ivwagape3glym5@uno.localdomain>
-In-Reply-To: <20190826075943.h7ivwagape3glym5@uno.localdomain>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 26 Aug 2019 10:38:04 +0200
-Message-ID: <CAMuHMdWgc2QQu38mqcYrutwKzED-e0-cMUV-vEwa5njqGTB=mg@mail.gmail.com>
-Subject: Re: [PATCH v3 01/14] dt-bindings: display: renesas,cmm: Add R-Car CMM documentation
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Simon Horman <horms@verge.net.au>, Ulrich Hecht <uli@fpond.eu>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Koji Matsuoka <koji.matsuoka.xm@renesas.com>, muroya@ksk.co.jp,
-        VenkataRajesh.Kalakodima@in.bosch.com,
-        Harsha.ManjulaMallikarjun@in.bosch.com,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190619152838.25079-2-m.felsch@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+Hi Marco,
 
-On Mon, Aug 26, 2019 at 9:58 AM Jacopo Mondi <jacopo@jmondi.org> wrote:
-> On Mon, Aug 26, 2019 at 09:34:41AM +0200, Geert Uytterhoeven wrote:
-> > On Sun, Aug 25, 2019 at 3:50 PM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
-> > > Add device tree bindings documentation for the Renesas R-Car Display
-> > > Unit Color Management Module.
-> > >
-> > > CMM is the image enhancement module available on each R-Car DU video
-> > > channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
-> > >
-> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> >
-> > Thanks for your patch!
-> >
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/renesas,cmm.txt
-> > > @@ -0,0 +1,33 @@
-> > > +* Renesas R-Car Color Management Module (CMM)
-> > > +
-> > > +Renesas R-Car image enhancement module connected to R-Car DU video channels.
-> > > +
-> > > +Required properties:
-> > > + - compatible: shall be one or more of the following:
-> > > +   - "renesas,cmm-r8a7795": for R8A7795 (R-Car H3) compatible CMM.
-> > > +   - "renesas,cmm-r8a7796": for R8A7796 (R-Car M3-W) compatible CMM.
-> > > +   - "renesas,cmm-r8a77965": for R8A77965 (R-Car M3-N) compatible CMM.
-> > > +   - "renesas,cmm-r8a77990": for R8A77990 (R-Car E3) compatible CMM.
-> > > +   - "renesas,cmm-r8a77995": for R8A77995 (R-Car D3) compatible CMM.
-> >
-> > Please use "renesas,<socype->-cmm" instead of "renesas,cmm-<soctype>".
-> >
->
-> I actually copied it from the r-car gpio bindings, and I liked
-> cmm-<soctype> better. If you prefer I can change it though.
+On Wed, Jun 19, 2019 at 05:28:37PM +0200, Marco Felsch wrote:
+> Add corresponding dt-bindings for the Toshiba tc358746 device and update
+> the MAINTAINERS file too.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+> Hi Rob,
+> 
+> I droped your reviewed-by tag since there where several changes.
+> 
+> Changes
+> v2:
+>  - use the Documentation/devicetree/bindings/media/ti,omap3isp.txt
+>    formatting scheme
+>  - Adapt introducing paragraph according Jacopo's comments
+>  - drop the clock-names property
+>  - drop the clock-lanes (csi-2) property
+>  - adapt the property descriptions accroding Jacopo's comments
+>  - use port@0 as input and port@1 as output port instead of mapping
+>    port@0 to parallel and port@1 to csi-2 interface
+>  - Adapt port/endpoint description according Jacopo's and Sakari's
+>    comments
+>  - Adapt the example
+>  - squash v1 patch-3 and patch-1
+>  - set status to Maintained
+> 
+>  .../bindings/media/i2c/toshiba,tc358746.txt   | 95 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 102 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
+> new file mode 100644
+> index 000000000000..e79b45ee050e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
+> @@ -0,0 +1,95 @@
+> +Toshiba TC358746 Parallel to MIPI CSI2-TX or MIPI CSI2-RX to Parallel Bridge
+> +============================================================================
+> +
+> +The Toshiba TC358746 converts a parallel into a MIPI CSI-2 stream. The direction
+> +can be either parallel-in -> csi-out e.g. to connect a parallel camera to a
+> +MIPI CSI-2 host or csi-in -> parallel-out e.g. to connect a parallel display to
+> +a MIPI CSI-2 host. It's programmable trough I2C and SPI. The SPI interface is
+> +only supported in parallel-in -> csi-out mode.
+> +
+> +Required properties
+> +-------------------
+> +
+> +- compatible		: Shall be "toshiba,tc358746"
+> +- reg			: Shall be <0x0e>
+> +- clocks		: Phandle to the reference clock source
+> +
+> +Optional properties
+> +-------------------
+> +
+> +- reset-gpios		: Phandle to the GPIO connected to the reset input pin
+> +
+> +Port nodes (required)
+> +=====================
+> +
+> +The device node must contain two ports children nodes which should be grouped
+> +within a 'ports' node. The first port describes the input connection, the second
+> +one describes the output one. Each port shall contain one endpoint subnode that
+> +connects to a remote device and specifies the bus type of the input and output
+> +ports. Only one endpoint per port shall be present.
+> +
+> +More documentation on these bindings is available in [1].
+> +
+> +reg			: The interface:
+> +			  0 - Input, either parallel or MIPI CSI-2
+> +			  1 - Output, either parallel or MIPI CSI-2
+> +
+> +Endpoint nodes (required)
+> +=========================
+> +
+> +Required properties
+> +-------------------
+> +
+> +- bus-width		: Look at [1] for more information (Parallel endpoint)
+> +- data-lanes		: Look at [1] for more information (CSI-2 endpoint)
 
-We switched from "renesas,cmm-<soctype>" to "renesas,<socype->-cmm"
-a few years ago, upon request from the DT people:
+Which values data-lanes may have? How about the bus-width property?
 
-    vendor -> family/SoC -> IP core
+> +- link-frequencies	: Array of frequencies the driver can choose to
+> +			  full-fill the parallel timings calculation. Look at
+> +			  [1] for more information (CSI-2 endpoint)
+> +
+> +Optional properties
+> +-------------------
+> +
+> +- bus-type		: Look at [1] for more information
 
-Unfortunately we cannot change the old style in existing bindings, without
-great effort and backwards compatibility ramifications.
+I think you can omit this as you have either bus-width or data-lanes that
+implicitly tell the type of the bus. Another possibility would be making
+this required, but optional doesn't seem useful.
 
-Gr{oetje,eeting}s,
-
-                        Geert
+> +- clock-noncontinuous	: Look at [1] for more information (CSI-2 endpoint)
+> +
+> +[1] Documentation/devicetree/bindings/media/video-interfaces.txt
+> +
+> +Example
+> +=======
+> +
+> +&i2c {
+> +	csi-bridge@0e {
+> +		reg = <0x0e>;
+> +		compatible = "toshiba,tc358746";
+> +		pinctrl-names = "default";
+> +		clocks = <&clk_cam_ref>;
+> +		reset-gpios = <&gpio3 2 GPIO_ACTIVE_LOW>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			/* Input */
+> +			port@0 {
+> +				reg = <0>;
+> +
+> +				tc358746_parallel_in: endpoint {
+> +					bus-width = <8>;
+> +					remote-endpoint = <&micron_parallel_out>;
+> +				};
+> +			};
+> +
+> +			/* Output */
+> +			port@1 {
+> +				reg = <1>;
+> +
+> +				tc358746_mipi2_out: endpoint {
+> +					remote-endpoint = <&mipi_csi2_in>;
+> +					data-lanes = <1 2>;
+> +					clock-noncontinuous;
+> +					link-frequencies = /bits/ 64 <216000000>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 57f496cff999..833b3c8fb301 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15955,6 +15955,13 @@ S:	Maintained
+>  F:	drivers/media/i2c/tc358743*
+>  F:	include/media/i2c/tc358743.h
+>  
+> +TOSHIBA TC358746 DRIVER
+> +M:	Marco Felsch <kernel@pengutronix.de>
+> +L:	linux-media@vger.kernel.org
+> +S:	Maintained
+> +F:	drivers/media/i2c/tc358746*
+> +F:	Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.txt
+> +
+>  TOSHIBA WMI HOTKEYS DRIVER
+>  M:	Azael Avalos <coproscefalo@gmail.com>
+>  L:	platform-driver-x86@vger.kernel.org
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Kind regards,
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Sakari Ailus
+sakari.ailus@linux.intel.com
