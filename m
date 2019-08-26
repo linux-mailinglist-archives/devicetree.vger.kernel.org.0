@@ -2,103 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E9039CF57
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 14:16:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32D2A9CFA1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 14:23:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731709AbfHZMQr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 08:16:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38350 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731774AbfHZMQq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 08:16:46 -0400
-Received: from localhost.localdomain (unknown [122.178.200.231])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 421282184D;
-        Mon, 26 Aug 2019 12:16:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566821805;
-        bh=tXUqhiySfD6lPQAcB630z21XV3dVhvqoXjyurJHZJkc=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=W1UXCNaH526rfnt/Gnf1co3YeSkueiuxRQl7HqbnsZcc5wutcRJjFkv0tBX0SUfVJ
-         20qsRNy0ogWIc0TKIxHpEyUd0l8zJIemPwp/wu3H69xEpoHhbvysHS4+CWaXXZBPhg
-         fyYHXhAR/tXpnxw6sbXLzEOuEZ8GekDeTwnroTu0=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S1731330AbfHZMX2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Aug 2019 08:23:28 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:54615 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730491AbfHZMX2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 08:23:28 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 355F4240095;
+        Mon, 26 Aug 2019 12:23:24 +0000 (UTC)
+Date:   Mon, 26 Aug 2019 14:23:23 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] clk: qcom: clk-rpmh: Add support for SM8150
-Date:   Mon, 26 Aug 2019 17:44:53 +0530
-Message-Id: <20190826121453.21732-5-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190826121453.21732-1-vkoul@kernel.org>
-References: <20190826121453.21732-1-vkoul@kernel.org>
+        Russell King <linux@armlinux.org.uk>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Matt Pelland <mpelland@starry.com>
+Subject: Re: [PATCH v3 00/19] Enhance CP110 COMPHY support
+Message-ID: <20190826142323.5a434543@xps13>
+In-Reply-To: <8c91e2e3-2a83-a6f0-c98a-d0dbfcddfee3@ti.com>
+References: <20190731122126.3049-1-miquel.raynal@bootlin.com>
+        <4e1c4d27-3676-5efa-1126-8149a8635eb5@ti.com>
+        <20190824135414.5c490337@xps13>
+        <8c91e2e3-2a83-a6f0-c98a-d0dbfcddfee3@ti.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for rpmh clocks found in SM8150
+Hi Kishon,
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/clk/qcom/clk-rpmh.c | 28 ++++++++++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+Kishon Vijay Abraham I <kishon@ti.com> wrote on Mon, 26 Aug 2019
+17:21:55 +0530:
 
-diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-index 97aa092f5f40..082d0b72fe1e 100644
---- a/drivers/clk/qcom/clk-rpmh.c
-+++ b/drivers/clk/qcom/clk-rpmh.c
-@@ -374,6 +374,33 @@ static const struct clk_rpmh_desc clk_rpmh_sdm845 = {
- 	.num_clks = ARRAY_SIZE(sdm845_rpmh_clocks),
- };
- 
-+DEFINE_CLK_RPMH_ARC(sm8150, bi_tcxo, bi_tcxo_ao, "xo.lvl", 0x3, 2);
-+DEFINE_CLK_RPMH_VRM(sm8150, ln_bb_clk2, ln_bb_clk2_ao, "lnbclka2", 2);
-+DEFINE_CLK_RPMH_VRM(sm8150, ln_bb_clk3, ln_bb_clk3_ao, "lnbclka3", 2);
-+DEFINE_CLK_RPMH_VRM(sm8150, rf_clk1, rf_clk1_ao, "rfclka1", 1);
-+DEFINE_CLK_RPMH_VRM(sm8150, rf_clk2, rf_clk2_ao, "rfclka2", 1);
-+DEFINE_CLK_RPMH_VRM(sm8150, rf_clk3, rf_clk3_ao, "rfclka3", 1);
-+
-+static struct clk_hw *sm8150_rpmh_clocks[] = {
-+	[RPMH_CXO_CLK]		= &sm8150_bi_tcxo.hw,
-+	[RPMH_CXO_CLK_A]	= &sm8150_bi_tcxo_ao.hw,
-+	[RPMH_LN_BB_CLK2]	= &sm8150_ln_bb_clk2.hw,
-+	[RPMH_LN_BB_CLK2_A]	= &sm8150_ln_bb_clk2_ao.hw,
-+	[RPMH_LN_BB_CLK3]	= &sm8150_ln_bb_clk3.hw,
-+	[RPMH_LN_BB_CLK3_A]	= &sm8150_ln_bb_clk3_ao.hw,
-+	[RPMH_RF_CLK1]		= &sm8150_rf_clk1.hw,
-+	[RPMH_RF_CLK1_A]	= &sm8150_rf_clk1_ao.hw,
-+	[RPMH_RF_CLK2]		= &sm8150_rf_clk2.hw,
-+	[RPMH_RF_CLK2_A]	= &sm8150_rf_clk2_ao.hw,
-+	[RPMH_RF_CLK3]		= &sm8150_rf_clk3.hw,
-+	[RPMH_RF_CLK3_A]	= &sm8150_rf_clk3_ao.hw,
-+};
-+
-+static const struct clk_rpmh_desc clk_rpmh_sm8150 = {
-+	.clks = sm8150_rpmh_clocks,
-+	.num_clks = ARRAY_SIZE(sm8150_rpmh_clocks),
-+};
-+
- static struct clk_hw *of_clk_rpmh_hw_get(struct of_phandle_args *clkspec,
- 					 void *data)
- {
-@@ -453,6 +480,7 @@ static int clk_rpmh_probe(struct platform_device *pdev)
- 
- static const struct of_device_id clk_rpmh_match_table[] = {
- 	{ .compatible = "qcom,sdm845-rpmh-clk", .data = &clk_rpmh_sdm845},
-+	{ .compatible = "qcom,sm8150-rpmh-clk", .data = &clk_rpmh_sm8150},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, clk_rpmh_match_table);
--- 
-2.20.1
+> Hi,
+> 
+> On 24/08/19 5:24 PM, Miquel Raynal wrote:
+> > Hi Kishon,
+> > 
+> > + Matt Pelland
+> > 
+> > Kishon Vijay Abraham I <kishon@ti.com> wrote on Fri, 23 Aug 2019
+> > 08:46:14 +0530:
+> >   
+> >> On 31/07/19 5:51 PM, Miquel Raynal wrote:  
+> >>> Armada CP110 have a COMPHY IP which supports configuring SERDES lanes
+> >>> in one mode, either:
+> >>> - SATA
+> >>> - USB3 host
+> >>> - PCIe (several width)
+> >>> - Ethernet (several modes)
+> >>>
+> >>> As of today, only a few Ethernet modes are supported and the code is
+> >>> embedded in the Linux driver. A more complete COMPHY driver that can
+> >>> be used by both Linux and U-Boot is embedded in the firmware and can
+> >>> be run through SMC calls.
+> >>>
+> >>> First the current COMPHY driver is updated to use SMC calls but
+> >>> fallbacks to the already existing functions if the firmware is not
+> >>> up-to-date. Then, more Ethernet modes are added (through SMC calls
+> >>> only). SATA, USB3H and PCIe modes are also supported one by one.
+> >>>
+> >>> There is one subtle difference with the PCIe functions: we must tell
+> >>> the firmware the number of lanes to configure (x1, x2 or x4). This
+> >>> parameter depends on the number of entries in the 'phys' property
+> >>> describing the PCIe PHY. We use the "submode" parameter of the generic
+> >>> PHY API to carry this value. The Armada-8k PCIe driver has been
+> >>> updated to follow this idea and this change has been merged already:
+> >>> http://patchwork.ozlabs.org/patch/1072763/    
+> >>
+> >> Some of the patches are not applying cleanly. Care to resend the series after
+> >> rebasing to phy -next?  
+> > 
+> > Besides two conflicts that I can fix very easily about missing
+> > of_node_put() calls, you just merged in phy-next this patch:
+> > 
+> > phy: marvell: phy-mvebu-cp110-comphy: implement RXAUI support
+> > 
+> > Which totally conflicts with my series while I also add RXAUI support
+> > in patch 5. Please note that even the third version of my series
+> > was contributed before this patch.
+> > 
+> > There is one difference to note though: in the patch from Matt Peland,
+> > RXAUI support is embedded in the driver while I do SMC calls.
+> > 
+> > Anyway, would it be possible to change the order of application if
+> > you want both methods in the driver because it will be much easier
+> > to add Matt's patch on top of my series than the opposite. I can
+> > even do it myself if you wish.  
+> 
+> I've resolved this. Can you review in phy -next if the changes looks okay?
 
+Great! Thanks for doing it yourself!
+
+I had a look and everything looks fine by me.
+
+Cheers,
+Miquèl
