@@ -2,94 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAB809F368
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:44:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F6E9F37D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726675AbfH0Top (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 15:44:45 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:53516 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726584AbfH0Top (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 15:44:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=ZkyrTJsfOjFeT9DU9YWNBO4J5POV3kWv2nzxcp7HESs=; b=QtmmuBPjjKfKpMEpglfMXttTa
-        faxnzfOuiy1GhBkPAlXWqwyaqvB8iSyPV8eJyN021MSTWTB1X4EoMc0Ql4JyUTxeXZFwq3CB7Zvbh
-        EmGbT0/cfgk4Lh8BULMhrUeNbiZIldlkijPtXe/AKweP2SNN1XWe4t/n/voGUiZTlUJfE=;
-Received: from 188.28.18.107.threembb.co.uk ([188.28.18.107] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1i2hOS-00018k-L3; Tue, 27 Aug 2019 19:44:40 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 7D13ED02CE6; Tue, 27 Aug 2019 20:44:37 +0100 (BST)
-Date:   Tue, 27 Aug 2019 20:44:37 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/8] regulator: add support for SY8824C regulator
-Message-ID: <20190827194437.GO23391@sirena.co.uk>
-References: <20190827163252.4982af95@xhacker.debian>
- <20190827163418.1a32fc48@xhacker.debian>
+        id S1730561AbfH0Tvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 15:51:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36692 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726871AbfH0Tvk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 15:51:40 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6515C20674;
+        Tue, 27 Aug 2019 19:51:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566935499;
+        bh=aMMmd3YGmlvqtDHoRGDNt5SoUS7AWAH8HYMEx0R+19k=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SeSLyOqZbaW1nwafb+XoyOORajAqgxyjUTDBWl5RN9dLGbFzOeHXYyq7Xom8Wcuun
+         vqchvNvWxcPDbPrW04Phpl9l9ibC8+Cs79F0dgyB7AfLlQTazASy5k0U9zOlIq1THB
+         No3WoVE+Tm1s3YtedlBJwZuRwz+A7u7QXpdgXpZk=
+Date:   Mon, 26 Aug 2019 09:10:24 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     lorenzo.bianconi83@gmail.com, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 4/4] dt-bindings: iio: imu: st_lsm6dsx: add lsm9ds1
+ device bindings
+Message-ID: <20190826091024.50bbf6ba@archlinux>
+In-Reply-To: <20190821132520.28225-5-martin.kepplinger@puri.sm>
+References: <20190821132520.28225-1-martin.kepplinger@puri.sm>
+        <20190821132520.28225-5-martin.kepplinger@puri.sm>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ch6x/diZ8cQC324S"
-Content-Disposition: inline
-In-Reply-To: <20190827163418.1a32fc48@xhacker.debian>
-X-Cookie: Don't SANFORIZE me!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 21 Aug 2019 15:25:20 +0200
+Martin Kepplinger <martin.kepplinger@puri.sm> wrote:
 
---ch6x/diZ8cQC324S
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Tweaked to add the -imu plus some text in the patch description to say
+why.
 
-On Tue, Aug 27, 2019 at 08:45:33AM +0000, Jisheng Zhang wrote:
+Applied to the togreg branch of iio.git and pushed out as testing for
+the autobuilders to ignore.
 
-This looks mostly good and I'll apply it, a couple of small
-things though:
+Thanks,
 
-> @@ -0,0 +1,192 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SY8824C regulator driver
-> + *
+Jonathan
 
-Please send a patch which updates the entire comment block to be
-C++ style so it looks consistent.
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> ---
+>  Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
+> index 87407d110bb7..0b0a74d9ab89 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
+> +++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
+> @@ -13,6 +13,7 @@ Required properties:
+>    "st,lsm6dsr"
+>    "st,lsm6ds3tr-c"
+>    "st,ism330dhcx"
+> +  "st,lsm9ds1"
+>  - reg: i2c address of the sensor / spi cs line
+>  
+>  Optional properties:
 
-> +#define BUCK_EN		(1 << 7)
-> +#define MODE		(1 << 6)
-> +
-
-Please also add prefixes to these to namespace them, especially
-MODE is likely to collide with something later.
-
---ch6x/diZ8cQC324S
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1liCQACgkQJNaLcl1U
-h9C9rgf/Xy1nABMJdavfpBaTNK/T0dAqzeL4PbecKw+JWZ95N5qd8YzDvedjAyT1
-ZZNNKYyF6i8+gLPjEs2h3CCLfZqnYMyGrNnLSOGzW9k/a0DtnLg8+4lIFdls9qKc
-CcZyOdp+UrPirPfxpjJCG4hvqXPfex1LNX0T7TU5XL84vPnFaq7LUM5l8bLW4QfQ
-xCTK4Fx1UzFGodW/24DpXvI1OI5suqnS2e+PtMPxM56sT8KgjE9Y/ZsGWUi//SLH
-ogxrcoA6YG49Y/JWd52cFGiFkLvkrkfPdnqLM+2XtpRSwItqOkdVFnQkIFEg8wQF
-KHNnU8/HPD+izR09pC/BF2AB4NgebQ==
-=Zq5D
------END PGP SIGNATURE-----
-
---ch6x/diZ8cQC324S--
