@@ -2,113 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B4E49D346
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D140C9D361
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 17:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727788AbfHZPn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 11:43:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48634 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727850AbfHZPnG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 11:43:06 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A973520874;
-        Mon, 26 Aug 2019 15:43:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566834185;
-        bh=IrvkLc5Ov+J/f8CttzyyWurWNwwmFftVjPaVQ+/Erqs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=IZJ1OOsq+OVzE855bSAuMug6lB/iT8i5Ri6k3jzoxm0k9fjMH806zFUSijzubbxKx
-         LWomNqyfpbzl/CajzHjJWwaZq1q2RieGA+rpC7ChH9xgyUAyuEAZKLEWq+Jmq/KAuC
-         Hb1Pf9685vzxvdY3JJR7i48sLMFOfRvQBREZpqjU=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-        linux@armlinux.org.uk, frowand.list@gmail.com,
-        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
-        tony.luck@intel.com, daniel.thompson@linaro.org,
-        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
-Subject: [PATCHv5] drivers/amba: add reset control to amba bus probe
-Date:   Mon, 26 Aug 2019 10:42:52 -0500
-Message-Id: <20190826154252.22952-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727850AbfHZPvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 11:51:51 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:39229 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730091AbfHZPvu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 11:51:50 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1i2HHW-0007Po-QI; Mon, 26 Aug 2019 17:51:46 +0200
+Message-ID: <1566834704.3842.7.camel@pengutronix.de>
+Subject: Re: [PATCHv5] drivers/amba: add reset control to amba bus probe
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Dinh Nguyen <dinguyen@kernel.org>, linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, robh@kernel.org, linux@armlinux.org.uk,
+        frowand.list@gmail.com, keescook@chromium.org, anton@enomsg.org,
+        ccross@android.com, tony.luck@intel.com,
+        daniel.thompson@linaro.org, linus.walleij@linaro.org,
+        manivannan.sadhasivam@linaro.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Mon, 26 Aug 2019 17:51:44 +0200
+In-Reply-To: <20190826154252.22952-1-dinguyen@kernel.org>
+References: <20190826154252.22952-1-dinguyen@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-default. Until recently, the DMA controller was brought out of reset by the
-bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
-that are not used are held in reset and are left to Linux to bring them
-out of reset.
+On Mon, 2019-08-26 at 10:42 -0500, Dinh Nguyen wrote:
+> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+> default. Until recently, the DMA controller was brought out of reset by the
+> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
+> that are not used are held in reset and are left to Linux to bring them
+> out of reset.
+> 
+> Add a mechanism for getting the reset property and de-assert the primecell
+> module from reset if found. This is a not a hard fail if the reset properti
+> is not present in the device tree node, so the driver will continue to
+> probe.
+> 
+> Because there are different variants of the controller that may have
+> multiple reset signals, the code will find all reset(s) specified and
+> de-assert them.
+> 
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> v5: use of_reset_control_array_get_optional_shared()
+> v4: cleaned up indentation in loop
+>     fix up a few checkpatch warnings
+>     add Reviewed-by:
+> v3: add a reset_control_put()
+>     add error handling
+> v2: move reset control to bus code
+>     find all reset properties and de-assert them
+> ---
+>  drivers/amba/bus.c | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+> index 100e798a5c82..f8a7cb74c3cf 100644
+> --- a/drivers/amba/bus.c
+> +++ b/drivers/amba/bus.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/limits.h>
+>  #include <linux/clk/clk-conf.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>  
+>  #include <asm/irq.h>
+>  
+> @@ -401,6 +402,24 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+>  	ret = amba_get_enable_pclk(dev);
+>  	if (ret == 0) {
+>  		u32 pid, cid;
+> +		int count;
+> +		struct reset_control *rstc;
+> +
+> +		/*
+> +		 * Find reset control(s) of the amba bus and de-assert them.
+> +		 */
+> +		count = reset_control_get_count(&dev->dev);
+> +		while (count > 0) {
+> +			rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
 
-Add a mechanism for getting the reset property and de-assert the primecell
-module from reset if found. This is a not a hard fail if the reset properti
-is not present in the device tree node, so the driver will continue to
-probe.
+You can drop the loop, the rstc returned by of_reset_control_array_get()
+already controls all resets together.
 
-Because there are different variants of the controller that may have
-multiple reset signals, the code will find all reset(s) specified and
-de-assert them.
-
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v5: use of_reset_control_array_get_optional_shared()
-v4: cleaned up indentation in loop
-    fix up a few checkpatch warnings
-    add Reviewed-by:
-v3: add a reset_control_put()
-    add error handling
-v2: move reset control to bus code
-    find all reset properties and de-assert them
----
- drivers/amba/bus.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-index 100e798a5c82..f8a7cb74c3cf 100644
---- a/drivers/amba/bus.c
-+++ b/drivers/amba/bus.c
-@@ -18,6 +18,7 @@
- #include <linux/limits.h>
- #include <linux/clk/clk-conf.h>
- #include <linux/platform_device.h>
-+#include <linux/reset.h>
- 
- #include <asm/irq.h>
- 
-@@ -401,6 +402,24 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
- 	ret = amba_get_enable_pclk(dev);
- 	if (ret == 0) {
- 		u32 pid, cid;
-+		int count;
-+		struct reset_control *rstc;
-+
-+		/*
-+		 * Find reset control(s) of the amba bus and de-assert them.
-+		 */
-+		count = reset_control_get_count(&dev->dev);
-+		while (count > 0) {
-+			rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
-+			if (IS_ERR(rstc)) {
-+				if (PTR_ERR(rstc) != -EPROBE_DEFER)
-+					dev_err(&dev->dev, "Can't get amba reset!\n");
-+				return PTR_ERR(rstc);
-+			}
-+			reset_control_deassert(rstc);
-+			reset_control_put(rstc);
-+			count--;
-+		}
- 
- 		/*
- 		 * Read pid and cid based on size of resource
--- 
-2.20.0
-
+regards
+Philipp
