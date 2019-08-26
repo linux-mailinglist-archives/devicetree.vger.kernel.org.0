@@ -2,162 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 010869D413
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 18:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0F3E9D460
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 18:48:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732199AbfHZQeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 12:34:46 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:43018 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727261AbfHZQeq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 26 Aug 2019 12:34:46 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id F22E8FB04;
-        Mon, 26 Aug 2019 18:34:42 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id qBltwtRLUrlk; Mon, 26 Aug 2019 18:34:41 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id A11B349200; Mon, 26 Aug 2019 18:34:40 +0200 (CEST)
-Date:   Mon, 26 Aug 2019 18:34:40 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Stefan Agner <stefan@agner.ch>
-Cc:     Robert Chiras <robert.chiras@nxp.com>, Marek Vasut <marex@denx.de>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/15] Improvements and fixes for mxsfb DRM driver
-Message-ID: <20190826163440.GA5539@bogon.m.sigxcpu.org>
-References: <1566382555-12102-1-git-send-email-robert.chiras@nxp.com>
- <20190826120548.GA14316@bogon.m.sigxcpu.org>
- <3bd35686e046048d35cd4987567a13cf@agner.ch>
+        id S1733170AbfHZQsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 12:48:12 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:37660 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729558AbfHZQsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 12:48:12 -0400
+Received: by mail-wr1-f67.google.com with SMTP id z11so16020045wrt.4
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 09:48:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YOocsbJSeEFZluDhuzPE1zAAorjfBXrmhgRxid6+uG4=;
+        b=NsZnHTnbHWll2bdVW2ovEHICEh3GJqof/NEoMfJ4Y8yrH0xeFp417Yy+3C+h1fJv1p
+         AjePh5kfIe6BX5pLNWHmxs6MSQzBqgP7+JmZiY7k7pKJauPYW+NYLjUnQ64q6jljK/d4
+         ErMrPOf5XameBxDFh50wEbNTfj8M4NJ/Ujq/x5LYBFq79CY6PQp9SHDudQaIRyQvFZvH
+         ZcPK/pW7zutvsABFwvilgc1rRl9mkzJvaD0EBfooe1GdX0K47j+4wlQN3fWe5i0LcIgw
+         Fgb85bN60puObL2yXFhMaOiox2CBlB+yEu20ZaBaDUlhk2wKX4CPOQi8fhJx8ngVqJYW
+         QNIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=YOocsbJSeEFZluDhuzPE1zAAorjfBXrmhgRxid6+uG4=;
+        b=C9pKomfY0WxgoDEnMRQ22j0s1S9aqvjsiT9h0jwMJcAIGuEsMHg2CYBXsZNw3cLmiC
+         Yl26M371EIdoVJhbr5Go3+IovEAaUjjiTMaBP8/TBg12zW+RAtQ+nqaF9rjOUal/hENj
+         kcEPCzgZk/BD30R+WFjbvR1IAWyssp5WAgLq5GE7xWcMss0O0e+v8IMBoExdEMjREBew
+         l3XxnQ2TnNnVP2kw4/x/3AApo3uwDtlf/VswcdbxhHdb2pVAzV8tOQEeOfKU+l2DkuBn
+         EMGFMOKLF4JYGHnI1qy1pKbTvGV/upWGG+DXFQnsFVv9FYhDZw0ld8Dk98AuCFZOWO04
+         8v8w==
+X-Gm-Message-State: APjAAAWDFV8/l4xZZVYcS70qk3Gb1s5qryf+hnN4U/54uC4h+Qph4ZyQ
+        TC4j7fx50msrKzGH0/qcZHm4BA==
+X-Google-Smtp-Source: APXvYqzPcgyMXXhYl1Q3zNI2CZd1u12C3LHziyafTloiYXqCJAA7EACMMiSblht14P9NtKAoKIy1ow==
+X-Received: by 2002:adf:e887:: with SMTP id d7mr23481374wrm.282.1566838090464;
+        Mon, 26 Aug 2019 09:48:10 -0700 (PDT)
+Received: from localhost.localdomain (124.red-83-36-179.dynamicip.rima-tde.net. [83.36.179.124])
+        by smtp.gmail.com with ESMTPSA id o14sm21800076wrg.64.2019.08.26.09.48.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 26 Aug 2019 09:48:10 -0700 (PDT)
+From:   Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+To:     jorge.ramirez-ortiz@linaro.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, agross@kernel.org, mark.rutland@arm.com
+Cc:     niklas.cassel@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/6] dt-bindings: mailbox: qcom: Add clock-name optional property
+Date:   Mon, 26 Aug 2019 18:48:02 +0200
+Message-Id: <20190826164807.7028-1-jorge.ramirez-ortiz@linaro.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <3bd35686e046048d35cd4987567a13cf@agner.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Mon, Aug 26, 2019 at 04:35:10PM +0200, Stefan Agner wrote:
-> On 2019-08-26 14:05, Guido Günther wrote:
-> > Hi,
-> > On Wed, Aug 21, 2019 at 01:15:40PM +0300, Robert Chiras wrote:
-> >> This patch-set improves the use of eLCDIF block on iMX 8 SoCs (like 8MQ, 8MM
-> >> and 8QXP). Following, are the new features added and fixes from this
-> >> patch-set:
-> > 
-> > I've applied this whole series on top of my NWL work and it looks good
-> > with a DSI panel. Applying the whole series also fixes an issue where
-> > after unblank the output was sometimes shifted about half a screen width
-> > to the right (which didn't happen with DCSS). So at least from the parts
-> > I could test:
-> > 
-> >   Tested-by: Guido Günther <agx@sigxcpu.org> 
-> > 
-> > for the whole thing.
-> 
-> Thanks for testing! What SoC did you use? I think it would be good to
-> also give this a try on i.MX 7 or i.MX 6ULL before merging.
+When the APCS clock is registered (platform dependent), it retrieves
+its parent names from hardcoded values in the driver.
 
-This was on i.MX8MQ. I don't have hardware to test mxsfb on anything
-else over here atm.
-Cheers,
- -- Guido
+The following commit allows the DT node to provide such clock names to
+the platform data based clock driver therefore avoiding having to
+explicitly embed those names in the clock driver source code.
 
-> 
-> --
-> Stefan
-> 
-> 
-> > Cheers,
-> >  -- Guido
-> >>
-> >> 1. Add support for drm_bridge
-> >> On 8MQ and 8MM, the LCDIF block is not directly connected to a parallel
-> >> display connector, where an LCD panel can be attached, but instead it is
-> >> connected to DSI controller. Since this DSI stands between the display
-> >> controller (eLCDIF) and the physical connector, the DSI can be implemented
-> >> as a DRM bridge. So, in order to be able to connect the mxsfb driver to
-> >> the DSI driver, the support for a drm_bridge was needed in mxsfb DRM
-> >> driver (the actual driver for the eLCDIF block).
-> >>
-> >> 2. Add support for additional pixel formats
-> >> Some of the pixel formats needed by Android were not implemented in this
-> >> driver, but they were actually supported. So, add support for them.
-> >>
-> >> 3. Add support for horizontal stride
-> >> Having support for horizontal stride allows the use of eLCDIF with a GPU
-> >> (for example) that can only output resolution sizes multiple of a power of
-> >> 8. For example, 1080 is not a power of 16, so in order to support 1920x1080
-> >> output from GPUs that can produce linear buffers only in sizes multiple to 16,
-> >> this feature is needed.
-> >>
-> >> 3. Few minor features and bug-fixing
-> >> The addition of max-res DT property was actually needed in order to limit
-> >> the bandwidth usage of the eLCDIF block. This is need on systems where
-> >> multiple display controllers are presend and the memory bandwidth is not
-> >> enough to handle all of them at maximum capacity (like it is the case on
-> >> 8MQ, where there are two display controllers: DCSS and eLCDIF).
-> >> The rest of the patches are bug-fixes.
-> >>
-> >> v3:
-> >> - Removed the max-res property patches and added support for
-> >>   max-memory-bandwidth property, as it is also implemented in other drivers
-> >> - Removed unnecessary drm_vblank_off in probe
-> >>
-> >> v2:
-> >> - Collected Tested-by from Guido
-> >> - Split the first patch, which added more than one feature into relevant
-> >>   patches, explaining each feature added
-> >> - Also split the second patch into more patches, to differentiate between
-> >>   the feature itself (additional pixel formats support) and the cleanup
-> >>   of the register definitions for a better representation (guido)
-> >> - Included a patch submitted by Guido, while he was testing my patch-set
-> >>
-> >> Guido Günther (1):
-> >>   drm/mxsfb: Read bus flags from bridge if present
-> >>
-> >> Mirela Rabulea (1):
-> >>   drm/mxsfb: Signal mode changed when bpp changed
-> >>
-> >> Robert Chiras (13):
-> >>   drm/mxsfb: Update mxsfb to support a bridge
-> >>   drm/mxsfb: Add defines for the rest of registers
-> >>   drm/mxsfb: Reset vital registers for a proper initialization
-> >>   drm/mxsfb: Update register definitions using bit manipulation defines
-> >>   drm/mxsfb: Update mxsfb with additional pixel formats
-> >>   drm/mxsfb: Fix the vblank events
-> >>   drm/mxsfb: Add max-memory-bandwidth property for MXSFB
-> >>   dt-bindings: display: Add max-memory-bandwidth property for mxsfb
-> >>   drm/mxsfb: Update mxsfb to support LCD reset
-> >>   drm/mxsfb: Improve the axi clock usage
-> >>   drm/mxsfb: Clear OUTSTANDING_REQS bits
-> >>   drm/mxsfb: Add support for horizontal stride
-> >>   drm/mxsfb: Add support for live pixel format change
-> >>
-> >>  .../devicetree/bindings/display/mxsfb.txt          |   5 +
-> >>  drivers/gpu/drm/mxsfb/mxsfb_crtc.c                 | 287 ++++++++++++++++++---
-> >>  drivers/gpu/drm/mxsfb/mxsfb_drv.c                  | 203 +++++++++++++--
-> >>  drivers/gpu/drm/mxsfb/mxsfb_drv.h                  |  12 +-
-> >>  drivers/gpu/drm/mxsfb/mxsfb_out.c                  |  26 +-
-> >>  drivers/gpu/drm/mxsfb/mxsfb_regs.h                 | 193 +++++++++-----
-> >>  6 files changed, 589 insertions(+), 137 deletions(-)
-> >>
-> >> --
-> >> 2.7.4
-> >>
-> 
+Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
+Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+---
+ .../mailbox/qcom,apcs-kpss-global.txt         | 24 ++++++++++++++++---
+ 1 file changed, 21 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
+index 1232fc9fc709..b69310322b09 100644
+--- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
++++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
+@@ -18,10 +18,11 @@ platforms.
+ 	Usage: required
+ 	Value type: <prop-encoded-array>
+ 	Definition: must specify the base address and size of the global block
++
+ - clocks:
+-	Usage: required if #clocks-cells property is present
+-	Value type: <phandle>
+-	Definition: phandle to the input PLL, which feeds the APCS mux/divider
++	Usage: required if #clock-names property is present
++	Value type: <phandle array>
++	Definition: phandles to the two parent clocks of the clock driver.
+ 
+ - #mbox-cells:
+ 	Usage: required
+@@ -33,6 +34,12 @@ platforms.
+ 	Value type: <u32>
+ 	Definition: as described in clock.txt, must be 0
+ 
++- clock-names:
++	Usage: required if the platform data based clock driver needs to
++	retrieve the parent clock names from device tree.
++	This will requires two mandatory clocks to be defined.
++	Value type: <string-array>
++	Definition: must be "aux" and "pll"
+ 
+ = EXAMPLE
+ The following example describes the APCS HMSS found in MSM8996 and part of the
+@@ -65,3 +72,14 @@ Below is another example of the APCS binding on MSM8916 platforms:
+ 		clocks = <&a53pll>;
+ 		#clock-cells = <0>;
+ 	};
++
++Below is another example of the APCS binding on QCS404 platforms:
++
++	apcs_glb: mailbox@b011000 {
++		compatible = "qcom,qcs404-apcs-apps-global", "syscon";
++		reg = <0x0b011000 0x1000>;
++		#mbox-cells = <1>;
++		clocks = <&gcc GCC_GPLL0_AO_OUT_MAIN>, <&apcs_hfpll>;
++		clock-names = "aux", "pll";
++		#clock-cells = <0>;
++	};
+-- 
+2.22.0
+
