@@ -2,91 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29F829C75D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 04:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514A69C78D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Aug 2019 05:14:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729269AbfHZCrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Aug 2019 22:47:16 -0400
-Received: from server-x.ipv4.hkg02.ds.network ([27.111.83.178]:43032 "EHLO
-        mail.gtsys.com.hk" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1729352AbfHZCrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Aug 2019 22:47:16 -0400
-X-Greylist: delayed 410 seconds by postgrey-1.27 at vger.kernel.org; Sun, 25 Aug 2019 22:47:15 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id DEE922005C56
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
-X-Virus-Scanned: Debian amavisd-new at gtsys.com.hk
-Received: from mail.gtsys.com.hk ([127.0.0.1])
-        by localhost (mail.gtsys.com.hk [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id F63-wzZMowJN for <devicetree@vger.kernel.org>;
-        Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
-Received: from s01.gtsys.com.hk (unknown [10.128.4.2])
-        by mail.gtsys.com.hk (Postfix) with ESMTP id BDF992001F2C
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
-Received: from [10.128.2.32] (n058152218032.netvigator.com [58.152.218.32])
-        by s01.gtsys.com.hk (Postfix) with ESMTPSA id 9DBEBC019FB
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 10:40:24 +0800 (HKT)
-To:     devicetree@vger.kernel.org
-From:   Chris Ruehl <chris.ruehl@gtsys.com.hk>
-Subject: i.mx6 Warning triggered if cores greater then configed max cores
-Message-ID: <946f3c0e-b57f-156f-3029-6cb585557525@gtsys.com.hk>
-Date:   Mon, 26 Aug 2019 10:40:24 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+        id S1729159AbfHZDOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Aug 2019 23:14:46 -0400
+Received: from mail-eopbgr20055.outbound.protection.outlook.com ([40.107.2.55]:37890
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726215AbfHZDOp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 25 Aug 2019 23:14:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RNDYIGLvGAcxO93XasJmmohuWY7qmdYu02dZCD9N3K1PzyfXTQE0YiVJDZGiQnQ6UHDNwbJuw0aKAw+NjTVAfdA7SxGNe//GIUkTJcej5y7QMpkusPoBTTltgXfhxHPp+P6UvMv9rfDFGi/DCkfjj24UytWdcbhrmsVkW5DgfY+gHYz2IAHjrvQ2dRzbBqF12Q8M2L+5NS+v7OdQBtUU8YVE78fCPwuCq9PLDeOEhLUwg8oy/gjFxz48Hxs8k1rFRAPKcWkdpXa99fZ/tTVdRzJo5782TEd4pL2hr3Yr58BBT14ld5PRF6J1lMHXt+WE8CZTObdkCIt/Okumo3DHAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OAmHtTMgFgRd54JiOwwMqGiFq1/NA8w9S7iWCnQ616Y=;
+ b=KjjzEL5gOvsuAMiDib0YrzX49x/GY7VS9CHibPLBs9YV/NMtmcJWULwC2g6cTigGPMOaeDoNG0Kc4NeXKiDvUsG4LuneQd7Uxu27ebBQ0ir629maEUToFdgmd1umEJRQI/UNujRh2FX0QushZmz/XLs/87vlsNJc31ztMU2B283Q/1jilcduB9euiw5lI5ipqJJaw0S3WOpIVHh5gcvOayGJeuHIMzItWKP2WqPOCWjO0iJT+68Y3jYkkHQLkieCVgY49H+OOUnUyW6sZWqk45XMHbBRI2AS2g3Ajq2UhTRBfA3fPRomef9OBC0a/2Hel6FBpZipAAoOx5XqUTiueQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OAmHtTMgFgRd54JiOwwMqGiFq1/NA8w9S7iWCnQ616Y=;
+ b=OY2UFJl8z1NxXZjRKU9voJz274Ww6DVNj3K20hgKTRDIi6Sa5TE8hHu9tViZ4y7qICz+TT4Ig3a6l+veV0ZDIKj5h3gh6NrsEgMzI6Y0jsmGRKPUcMZYHcwD6Lk+ziD1lCviaikh5P5QKS07Il1xRx8EGkSPqEaygFF2KiQGS4U=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB5284.eurprd04.prod.outlook.com (20.177.41.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Mon, 26 Aug 2019 03:14:41 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::44b4:2932:8e73:d707]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::44b4:2932:8e73:d707%7]) with mapi id 15.20.2199.021; Mon, 26 Aug 2019
+ 03:14:41 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH V4 02/11] dt-bindings: clock: imx-lpcg: add support to
+ parse clocks from device tree
+Thread-Topic: [PATCH V4 02/11] dt-bindings: clock: imx-lpcg: add support to
+ parse clocks from device tree
+Thread-Index: AQHVV0rlu0hXHSvML0qy3W+1YgLATqcKs4wAgAIWVEA=
+Date:   Mon, 26 Aug 2019 03:14:41 +0000
+Message-ID: <AM0PR04MB4211047E7632FD0E48D53B9F80A10@AM0PR04MB4211.eurprd04.prod.outlook.com>
+References: <1566299605-15641-1-git-send-email-aisheng.dong@nxp.com>
+ <1566299605-15641-3-git-send-email-aisheng.dong@nxp.com>
+ <20190824192101.GG16308@X250.getinternet.no>
+In-Reply-To: <20190824192101.GG16308@X250.getinternet.no>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: bf1878e0-f1a0-4dd3-49cc-08d729d38930
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5284;
+x-ms-traffictypediagnostic: AM0PR04MB5284:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB5284BC279C0CFA247710543F80A10@AM0PR04MB5284.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 01415BB535
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(136003)(376002)(366004)(346002)(396003)(199004)(189003)(51914003)(54906003)(53936002)(305945005)(33656002)(476003)(486006)(66066001)(5660300002)(6436002)(53546011)(316002)(14454004)(8936002)(7736002)(26005)(55016002)(3846002)(4326008)(44832011)(6506007)(76176011)(7696005)(446003)(186003)(11346002)(102836004)(86362001)(25786009)(478600001)(99286004)(256004)(71200400001)(8676002)(74316002)(6116002)(81156014)(229853002)(66946007)(2906002)(52536014)(66556008)(64756008)(66446008)(6246003)(81166006)(71190400001)(66476007)(76116006)(9686003)(6916009);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5284;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: qITlmuVcbvDh5pJysVayGDHkik4jNxdJHNmcQ30arEM4sKgqeqc831i4bqlMae/ezI2Gbs7Dujt7Df8u85VO/527KyDjACBW6PIpvNmu/R52NGvQEnqE4I4Aoo+RXoXFfiQgpOvrdBvRJRqHkq8xadTtWNJa6ikEcUOXTDDYPzQG6dTHocvm/R5oisb0MsShBHpZS+LwDBPEgZoQjR63LwqcbRNtA9LvaQFKBK8cya1V/8fU1P+04NHJggGW+6E+Jzc84xbp2pfysTFSjH+lUctRktjPkWrTsBwXF/IrVbfjf9qDpvtjzR2TMJApJMW5q9ciAqhzryzmILnvcIeLVpIIJifdCO610I7ughEwWkZ0jz7XdBgFAgz5sXdm2fixwW+O1G9XVqOmuvp2En+szdsthfvPCGBrJeuLeH8/a8E=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bf1878e0-f1a0-4dd3-49cc-08d729d38930
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Aug 2019 03:14:41.1706
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qLSmjeM0x7+5tQHdrFxZZz7U7A0NJ5RXepF1Yp+lQR5bxeB9cmjD83OJCqIAmPUS/BrjVPcw9R/9PjAy7n8cOA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5284
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
-
-I have compiled a kernel limit cores = 2, which fits my imx6dl, start this
-kernel on the imx6q triggers a warning and back - trace.
-
-I'm wondering if that is intended.
-
-
-
-[    0.000000] ------------[ cut here ]------------
-[    0.000000] WARNING: CPU: 0 PID: 0 at arch/arm/kernel/devtree.c:157 
-arm_dt_init_cpu_maps+0x170/0x21c
-[    0.000000] DT /cpu 3 nodes greater than max cores 2, capping them
-[    0.000000] Modules linked in:
-[    0.000000] CPU: 0 PID: 0 Comm: swapper Not tainted 4.19.67-rt24 #30
-[    0.000000] Hardware name: Freescale i.MX6 Quad/DualLite (Device Tree)
-[    0.000000] Backtrace:
-[    0.000000] [<c010c3c8>] (dump_backtrace) from [<c010c738>] 
-(show_stack+0x18/0x1c)
-[    0.000000]  r7:c08a618c r6:600000d3 r5:00000000 r4:c0b44fe4
-[    0.000000] [<c010c720>] (show_stack) from [<c06ceb84>] (dump_stack+0xbc/0xd0)
-[    0.000000] [<c06ceac8>] (dump_stack) from [<c011f8fc>] (__warn+0xdc/0xf8)
-[    0.000000]  r7:c08a618c r6:00000009 r5:00000000 r4:c0b01ed0
-[    0.000000] [<c011f820>] (__warn) from [<c011f564>] (warn_slowpath_fmt+0x40/0x48)
-[    0.000000]  r9:c08ab890 r8:c08f8fb0 r7:00000000 r6:00000001 r5:c0b0753c 
-r4:c08a61a8
-[    0.000000] [<c011f528>] (warn_slowpath_fmt) from [<c0a03f10>] 
-(arm_dt_init_cpu_maps+0x170/0x21c)
-[    0.000000]  r3:00000003 r2:c08a61a8
-[    0.000000]  r4:00000003
-[    0.000000] [<c0a03da0>] (arm_dt_init_cpu_maps) from [<c0a033dc>] 
-(setup_arch+0x8b0/0xa7c)
-[    0.000000]  r10:efffcec0 r9:c0b623e8 r8:fffff000 r7:10000000 r6:c0b0b218 
-r5:8fffffff
-[    0.000000]  r4:c0a2df44
-[    0.000000] [<c0a02b2c>] (setup_arch) from [<c0a00a2c>] (start_kernel+0x60/0x3ec)
-[    0.000000]  r10:10c5387d r9:412fc09a r8:00000001 r7:00000eb9 r6:c0b07440 
-r5:00000051
-[    0.000000]  r4:00000000
-[    0.000000] [<c0a009cc>] (start_kernel) from [<00000000>] (  (null))
-[    0.000000]  r10:10c5387d r9:412fc09a r8:18000000 r7:00000eb9 r6:10c0387d 
-r5:00000051
-[    0.000000]  r4:c0a00330
-[    0.000000] ---[ end trace 0000000000000001 ]---
-
-
-Regards
-Chris
+SGkgU2hhd24sDQoNCj4gRnJvbTogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPg0KPiBT
+ZW50OiBTdW5kYXksIEF1Z3VzdCAyNSwgMjAxOSAzOjIxIEFNDQo+IFN1YmplY3Q6IFJlOiBbUEFU
+Q0ggVjQgMDIvMTFdIGR0LWJpbmRpbmdzOiBjbG9jazogaW14LWxwY2c6IGFkZCBzdXBwb3J0IHRv
+DQo+IHBhcnNlIGNsb2NrcyBmcm9tIGRldmljZSB0cmVlDQo+IA0KPiBPbiBUdWUsIEF1ZyAyMCwg
+MjAxOSBhdCAwNzoxMzoxNkFNIC0wNDAwLCBEb25nIEFpc2hlbmcgd3JvdGU6DQo+ID4gTVg4UU0g
+YW5kIE1YOFFYUCBMUENHIENsb2NrcyBhcmUgbW9zdGx5IHRoZSBzYW1lIGV4Y2VwdCB0aGV5IG1h
+eQ0KPiA+IHJlc2lkZSBpbiBkaWZmZXJlbnQgc3Vic3lzdGVtcyBhY3Jvc3MgQ1BVcyBhbmQgYWxz
+byB2YXJ5IGEgYml0IG9uIHRoZQ0KPiBhdmFpbGFiaWxpdHkuDQo+ID4NCj4gPiBTYW1lIGFzIFND
+VSBjbG9jaywgd2Ugd2FudCB0byBtb3ZlIHRoZSBjbG9jayBkZWZpbml0aW9uIGludG8gZGV2aWNl
+DQo+ID4gdHJlZSB3aGljaCBjYW4gZnVsbHkgZGVjb3VwbGUgdGhlIGRlcGVuZGVuY3kgb2YgQ2xv
+Y2sgSUQgZGVmaW5pdGlvbg0KPiA+IGZyb20gZGV2aWNlIHRyZWUgYW5kIG1ha2UgdXMgYmUgYWJs
+ZSB0byB3cml0ZSBhIGZ1bGx5IGdlbmVyaWMgbHBjZyBjbG9jaw0KPiBkcml2ZXIuDQo+ID4NCj4g
+PiBBbmQgd2UgY2FuIGFsc28gdXNlIHRoZSBleGlzdGVuY2Ugb2YgY2xvY2sgbm9kZXMgaW4gZGV2
+aWNlIHRyZWUgdG8NCj4gPiBhZGRyZXNzIHRoZSBkZXZpY2UgYW5kIGNsb2NrIGF2YWlsYWJpbGl0
+eSBkaWZmZXJlbmNlcyBhY3Jvc3MgZGlmZmVyZW50IFNvQ3MuDQo+ID4NCj4gPiBDYzogUm9iIEhl
+cnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4NCj4gPiBDYzogU3RlcGhlbiBCb3lkIDxzYm95ZEBr
+ZXJuZWwub3JnPg0KPiA+IENjOiBTaGF3biBHdW8gPHNoYXduZ3VvQGtlcm5lbC5vcmc+DQo+ID4g
+Q2M6IFNhc2NoYSBIYXVlciA8a2VybmVsQHBlbmd1dHJvbml4LmRlPg0KPiA+IENjOiBNaWNoYWVs
+IFR1cnF1ZXR0ZSA8bXR1cnF1ZXR0ZUBiYXlsaWJyZS5jb20+DQo+ID4gQ2M6IGRldmljZXRyZWVA
+dmdlci5rZXJuZWwub3JnDQo+ID4gU2lnbmVkLW9mZi1ieTogRG9uZyBBaXNoZW5nIDxhaXNoZW5n
+LmRvbmdAbnhwLmNvbT4NCj4gDQo+IEFja2VkLWJ5OiBTaGF3biBHdW8gPHNoYXduZ3VvQGtlcm5l
+bC5vcmc+DQoNClRoYW5rcyBmb3IgdGhlIHJldmlldy4NCkRvIHlvdSB0aGluayBpZiB3ZSBoYXZl
+IGEgY2hhbmNlIHRvIGNhdGNoIHVwIHY1LjQ/DQpXaWxsIHRoaXMgcGF0Y2ggc2V0IGdvIHRocm91
+Z2ggQ2xvY2sgdHJlZSBvciB5b3VyIHRyZWU/DQoNClJlZ2FyZHMNCkFpc2hlbmcNCg==
