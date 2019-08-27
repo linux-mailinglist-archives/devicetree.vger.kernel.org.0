@@ -2,68 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB1529F16C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 19:22:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 128329F171
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 19:23:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727401AbfH0RWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 13:22:04 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:46108 "EHLO
+        id S1727064AbfH0RXX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 13:23:23 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44258 "EHLO
         mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfH0RWE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 13:22:04 -0400
-Received: by mail-ot1-f65.google.com with SMTP id z17so19379045otk.13;
-        Tue, 27 Aug 2019 10:22:03 -0700 (PDT)
+        with ESMTP id S1727057AbfH0RXX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 13:23:23 -0400
+Received: by mail-ot1-f65.google.com with SMTP id w4so19395647ote.11
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 10:23:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WPpftmwK3OKZMRgsYVJviNISUJHoAZwIDI0S7LTpL6w=;
-        b=W0q92+WG6hCNW+vZej+6W4tkglz6MvMiPcScFFbwIDKersDaYwaz5iZ69l9Lowm3mH
-         W2PYVJsAC344SMc6Qs6LTdp7IH5O4rntek+d+WoLCYkdqE3gKLDLPPe8/TgFiiwGvV8Y
-         HZrFf6vOP94RpxTsmoA35BE0KDXIbEnQGkM/gGNIpIB/pScW0RK6f/e/FppHaoxhPDpl
-         BX/6B7M+F90wq7xRMs9ZeKg3WD5AvDKZbzqhHwx+Vou1GbhcZu4gahDy89IvI/1beUfl
-         tfN+oJ8VwNoYMpADUTw3fQv0SpzBHzhlZk+p/WGTPui/jH9ABh6DT0pd359T3R680bhh
-         pL6w==
-X-Gm-Message-State: APjAAAVGaewFrJqMkEg5bHxsOcZvimoyzKUTmQHgOdFUF36kl9CJ7K1+
-        /Jpf1fpVJK5LeowD1eyFlRof96c=
-X-Google-Smtp-Source: APXvYqxjZ8uf2LA9GzcCtuUvEFrM392BMVxwyyzfao6eluhjcJIf98avFVPEXxAiKtXFK5u0LaztRA==
-X-Received: by 2002:a9d:39c4:: with SMTP id y62mr20481062otb.313.1566926523239;
-        Tue, 27 Aug 2019 10:22:03 -0700 (PDT)
+        bh=k0t3NiRYm9OpCPktFCGeL+MYN/Ce727JCb94DDXrktQ=;
+        b=Y1c8KaUkxxaBPNDKLFsVjYxXqQOedrHQEgDFCWI1W5DuhtMvsPk5QXm7zUA5ks714k
+         a0SGkWAg7cgjcmFYbp41m4varI3yH/PpKi5b8ZTCVxukScsLRfRsV8ILmOfIjFBwFZOS
+         PFo+p4Nm25AGT9tbv1bKvzoK5A8a1AK4qt6eFmCcX/oZIfEc6UerIJY45n5QuFD6NO68
+         MZeKqXBgFIWJMmmAzFY3sNGjeLrxGVRjy2esJHYxHTsTN9e/wlf9horG/2soLnAjjKai
+         YR4ynFPCEbMptRDwn2etxD5kkcWCtnSPE2PBNv0gSsMvLJnVS0gTyTMxpZ17nTrleEj7
+         qJjA==
+X-Gm-Message-State: APjAAAXNCoV6P4PVF9q4klq3Nvx8rLp7bZLBGKKh4lmZaiZrMqBTqE/8
+        YxKO57hMEJenviITXp/FbQ==
+X-Google-Smtp-Source: APXvYqx3UzCCfd0mAMrprSeLiog2mYwOCvZnecPxIgq3vWxWzICLXleVMIMivZUKp56Vu+x6cRPZ2g==
+X-Received: by 2002:a9d:5601:: with SMTP id e1mr10639521oti.370.1566926602008;
+        Tue, 27 Aug 2019 10:23:22 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d27sm5477424otf.25.2019.08.27.10.22.02
+        by smtp.gmail.com with ESMTPSA id n32sm4782749otn.61.2019.08.27.10.23.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 10:22:02 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 12:22:02 -0500
+        Tue, 27 Aug 2019 10:23:21 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 12:23:20 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, mark.rutland@arm.com,
-        linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
-        cheol.yong.kim@intel.com, rahul.tanwar@intel.com,
-        Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Subject: Re: [PATCH v3 2/2] dt-bindings: lantiq: Update for new SoC
-Message-ID: <20190827172202.GA10615@bogus>
-References: <cover.1566370151.git.rahul.tanwar@linux.intel.com>
- <ffb6855d4c8d47412775b5fa4ce6ae4dd1161cb8.1566370151.git.rahul.tanwar@linux.intel.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>, tglx@linutronix.de,
+        jason@lakedaemon.net, maz@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: irq: Convert Allwinner IRQ
+ Controller to a schema
+Message-ID: <20190827172320.GA12595@bogus>
+References: <20190821082138.11049-1-mripard@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ffb6855d4c8d47412775b5fa4ce6ae4dd1161cb8.1566370151.git.rahul.tanwar@linux.intel.com>
+In-Reply-To: <20190821082138.11049-1-mripard@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Aug 2019 15:06:52 +0800, Rahul Tanwar wrote:
-> Intel Lightning Mountain(LGM) reuses Lantiq ASC serial controller IP.
-> Update the dt bindings to support LGM as well.
+On Wed, 21 Aug 2019 10:21:37 +0200, Maxime Ripard wrote:
+> From: Maxime Ripard <maxime.ripard@bootlin.com>
 > 
-> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> The Allwinner SoCs have an interrupt controller supported in Linux, with a
+> matching Device Tree binding.
+> 
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for that controller over to a YAML schemas.
+> 
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> 
 > ---
->  .../devicetree/bindings/serial/lantiq,asc.yaml     | 35 ++++++++++++++++++++++
->  1 file changed, 35 insertions(+)
+> 
+> Changes from v1:
+>   - Remove Fixme and add additionalProperties to false
+>   - Add unit address for the example
+> ---
+>  .../allwinner,sun4i-a10-ic.yaml               | 47 +++++++++++++++++++
+>  .../allwinner,sun4i-ic.txt                    | 20 --------
+>  2 files changed, 47 insertions(+), 20 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-ic.txt
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
+
+Rob
