@@ -2,112 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D0099EBFB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 17:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B6079EC6B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 17:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730252AbfH0PI7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 11:08:59 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:58784 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728612AbfH0PI5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 11:08:57 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7RF28XA026519;
-        Tue, 27 Aug 2019 17:08:28 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type :
- content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=XBn5EdlEuwPuny7s/ZVplkEwvVDz5QZdOFX+dgKCXXA=;
- b=iNORaUj7p6Vrz+dT27NTys4RFbS+VfOsa9329guLiC7b/Do+brszYr2pMO4ew3YzyzNM
- NB0Pjy6+9dBvLiwvNd+yE7efuMkFFrfe7UiYNHZ7+prV8NXDD24+bgJ5upoorAKVYi+T
- c3P2DG8fCtnZ3rJDwIq+9B9t7srkeH93DdVhn4TZoQpeXnEtLl6nB/6F6eEMNPuwetOU
- IFpI3OhI6uS1ozBIUwvNz3fe+qjtwQRge6Fh8bbYlBsa16M/sBr3KC6kFcA+RVBZ8Fa1
- /bM2ZiVTFBhLv/okCWn0oJvRLk4GFWajAJFT1uMjpZdI7sKsbVj9cw42Q7mZDfhVq/wV WA== 
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2ujv4kt4b3-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Tue, 27 Aug 2019 17:08:28 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 20FB056;
-        Tue, 27 Aug 2019 15:08:23 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D02862B76DD;
-        Tue, 27 Aug 2019 17:08:22 +0200 (CEST)
-Received: from SFHDAG5NODE1.st.com (10.75.127.13) by SFHDAG5NODE3.st.com
- (10.75.127.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 27 Aug
- 2019 17:08:22 +0200
-Received: from SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6]) by
- SFHDAG5NODE1.st.com ([fe80::cc53:528c:36c8:95f6%20]) with mapi id
- 15.00.1473.003; Tue, 27 Aug 2019 17:08:21 +0200
-From:   Gerald BAEZA <gerald.baeza@st.com>
-To:     "will@kernel.org" <will@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "olof@lixom.net" <olof@lixom.net>, "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-CC:     Gerald BAEZA <gerald.baeza@st.com>
-Subject: [PATCH v3 5/5] ARM: dts: stm32: add ddrperfm on stm32mp157c
-Thread-Topic: [PATCH v3 5/5] ARM: dts: stm32: add ddrperfm on stm32mp157c
-Thread-Index: AQHVXOlE7eeGfv5rUUSEpFdWg8XWbA==
-Date:   Tue, 27 Aug 2019 15:08:21 +0000
-Message-ID: <1566918464-23927-6-git-send-email-gerald.baeza@st.com>
-References: <1566918464-23927-1-git-send-email-gerald.baeza@st.com>
-In-Reply-To: <1566918464-23927-1-git-send-email-gerald.baeza@st.com>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.50]
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S1730310AbfH0PXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 11:23:54 -0400
+Received: from mail.nic.cz ([217.31.204.67]:46824 "EHLO mail.nic.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730243AbfH0PXx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 11:23:53 -0400
+Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
+        by mail.nic.cz (Postfix) with ESMTP id 0DA7C14089B;
+        Tue, 27 Aug 2019 17:16:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1566919005; bh=j8I8myFzD7V9AW0HXnx7CqrLa964d//tVgdKc6MnJZo=;
+        h=From:To:Date;
+        b=KBLR+4xk4/4G/bpxOydeRIh9+ICdQQfY5LbzqAUBx/er6k3YDDPlgiwQkjc5CUA+f
+         xawABxkMKotIolSDMTz7eXoNu6hRzKVrxUXMjCTuP0WW/De56/UgFMT4EkmuBiLc61
+         j4CGGdG6wybjpzQw6nZRQLWd8pWwwZcOsxCmdfng=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+To:     arm@kernel.org
+Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+Subject: [PATCH mvebu-dt64 0/3] Add Turris Mox device-tree
+Date:   Tue, 27 Aug 2019 17:16:41 +0200
+Message-Id: <20190827151644.12532-1-marek.behun@nic.cz>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-27_03:,,
- signatures=0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.100.3 at mail.nic.cz
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
+        shortcircuit=ham autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DDRPERFM is the DDR Performance Monitor embedded
-in STM32MP1 SOC.
+Hello,
+this patch series adds device-tree for Turris Mox.
 
-Signed-off-by: Gerald Baeza <gerald.baeza@st.com>
----
- arch/arm/boot/dts/stm32mp157c.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+All the devices described in this device-tree are supported, although
+the moxtet bus driver and moxtet GPIO driver are now only in
+soc/for-next.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp=
-157c.dtsi
-index 0c4e6eb..6ea6933 100644
---- a/arch/arm/boot/dts/stm32mp157c.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-@@ -1378,6 +1378,14 @@
- 			};
- 		};
-=20
-+		ddrperfm: perf@5a007000 {
-+			compatible =3D "st,stm32-ddr-pmu";
-+			reg =3D <0x5a007000 0x400>;
-+			clocks =3D <&rcc DDRPERFM>;
-+			resets =3D <&rcc DDRPERFM_R>;
-+			status =3D "okay";
-+		};
-+
- 		usart1: serial@5c000000 {
- 			compatible =3D "st,stm32h7-uart";
- 			reg =3D <0x5c000000 0x400>;
---=20
-2.7.4
+The device-tree includes <dt-bindings/bus/moxtet.h>. This file is not
+present in mvebu/dt64, but is in soc/for-next.
+
+I have addressed the issues Rob Herring had with this device-tree when
+I sent a RFC in November 2018. These include:
+ - since there are whole hierarchy of nodes that may be disabled since
+   the modules are not connected, U-Boot removes these nodes
+ - the documentation for board compatible flag was moved into
+   armada-37xx dt-bindings documentation
+ - reset_button was renamed to reset
+ - reset-gpio was renamed to reset-gpios
+ - flash partitions nodes are now contained in one 'partitions' node
+ - moxtet node now has a driver in soc/for-next and has documented
+   dt-bindings
+Not addressed:
+ - the switch nodes have names:
+     switch0@10   switch1@11   switch2@12
+     switch0@2    switch1@2    switch2@2
+   Rob said that 'Ideally, we shouldn't have this switch0, switch1,
+   etc.'
+   The problem here is that the 4-port switch is always on the same MDIO
+   address (0x2), but depending on it's position in this module topology
+   it has different settings. Therefore we have three nodes, and only
+   one of them can be ever enabled (only one 4-port switch can be
+   connected). Since I did not change this for the 4-port switch, I left
+   this naming also for 8-port switch.
+   Hopefully this is not a major problem.
+There were also other changes since the RFC, since there are new drivers
+now in the kernel (for example the comphy driver for Armada 37xx).
+
+Marek
+
+Marek Behún (3):
+  arm64: dts: marvell: armada-37xx: add SPI CS1 pinctrl
+  dt-bindings: marvell: document Turris Mox compatible
+  arm64: dts: marvell: add DTS for Turris Mox
+
+ .../bindings/arm/marvell/armada-37xx.txt      |   8 +
+ arch/arm64/boot/dts/marvell/Makefile          |   1 +
+ .../dts/marvell/armada-3720-turris-mox.dts    | 841 ++++++++++++++++++
+ arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   5 +
+ 4 files changed, 855 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+
+-- 
+2.21.0
+
