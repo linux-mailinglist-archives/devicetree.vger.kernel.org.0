@@ -2,78 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C4329ED86
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 17:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0CC9EF26
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 17:40:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726190AbfH0Pcs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 11:32:48 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:39729 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726170AbfH0Pcs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 11:32:48 -0400
-Received: by mail-ot1-f65.google.com with SMTP id b1so19074796otp.6;
-        Tue, 27 Aug 2019 08:32:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=psxjuLv+ryXAluL3Y0/EmRRDYDCri/QRiadvV6UTfEc=;
-        b=GI6MT+/SyPkPqnmuhdnlw3MZeKDPF5cqgoCXEkRkhTf+DTGcN6fcD7chF1IwwTttty
-         xTEFTnZXDbYuL79ynvP2vLDDa28icPsNmjsHp5HciOtMnF8Cdi9moX1uh0nRmUyoNs0Q
-         XyOjjM4N7edL3Ufau01Wn7EnLZ7dPqhwQNezwSNSZPjZojffdxrqlIA/uE/wr+KqUFYu
-         BNq5vauJc49ZTPr6mUdrFxdDj490/6wXxKmNwlBUIVAMdToD9KErAHOf0nk0tIm/+Kzg
-         hRZPTEG5zADb99DGv3yQ93SckuRXeB6FQWAR36kxDedvWvzhUSQzbHgvBCzN6gfw3jiT
-         VJ0g==
-X-Gm-Message-State: APjAAAW/hxIlWSOy1o5HZoWc6WdyXKu058QZoo2Z2eCPCHwpOBARpidd
-        0j8J2OmolN62WOOTSnNLQ+gbGbY=
-X-Google-Smtp-Source: APXvYqzg87wcjGtdo5ddLcywWbBI4aYwjeq88p93CB03ZutHHEeMht0pndzHOXOaGG00DgHmDANJTw==
-X-Received: by 2002:a05:6830:13cb:: with SMTP id e11mr21441210otq.130.1566919967034;
-        Tue, 27 Aug 2019 08:32:47 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n1sm4166267oie.12.2019.08.27.08.32.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 08:32:46 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 10:32:46 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan Roese <sr@denx.de>
-Cc:     linux-mips@vger.kernel.org, Paul Burton <paul.burton@mips.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4 v4] dt-bindings: mips: Add gardena vendor prefix and
- board description
-Message-ID: <20190827153246.GA3678@bogus>
-References: <20190812103655.11070-1-sr@denx.de>
- <20190812103655.11070-3-sr@denx.de>
+        id S1726621AbfH0Pkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 11:40:37 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:14658 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726190AbfH0Pkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 11:40:37 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d654ef40000>; Tue, 27 Aug 2019 08:40:36 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 27 Aug 2019 08:40:36 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 27 Aug 2019 08:40:36 -0700
+Received: from [10.25.73.29] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 27 Aug
+ 2019 15:40:31 +0000
+Subject: Re: [PATCH 3/6] PCI: tegra: Add support to configure sideband pins
+To:     Andrew Murray <andrew.murray@arm.com>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>,
+        <gustavo.pimentel@synopsys.com>, <digetx@gmail.com>,
+        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190826073143.4582-1-vidyas@nvidia.com>
+ <20190826073143.4582-4-vidyas@nvidia.com>
+ <20190827153029.GO14582@e119886-lin.cambridge.arm.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <9fe2fc1b-8fdf-e8cf-e5fd-36b536b28889@nvidia.com>
+Date:   Tue, 27 Aug 2019 21:10:28 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190812103655.11070-3-sr@denx.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190827153029.GO14582@e119886-lin.cambridge.arm.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1566920436; bh=RALnJDAwbfk7yCMD7+TxIj1eEVtiHxWVO6vHKCUuBi8=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=mvMWZvETEIcF0IIS5rVUnIAxOSb5My1zfvk5h7A3mQQRyRJA4Mdtbv6b9G5zO32lA
+         j4AUZpoFq6IL2McN7KJ1T10QB5rfNho12CWdDXbE7EbjkJLkNThxJc/k5twNPxFUJr
+         WBNOTYWNTx5XwLJGgGxHVPJBPv0M8YgyeunmlqJXhHNvYGLNp5keRL6c5m7GuLG0sx
+         /KiNJ69Q9Kp2WpBjHCNHcteKBDy48ilm9DxtyKep3np4Oq26DMi7/E7pMhZ9pV03yV
+         wE4YjC5voMooSW8OPx6ScwI/mkncEJ/0FcUyFU7wPjj/XM/TFmvt/IuZe/YJPzX8+4
+         dPeKc4wmiaIHw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Aug 2019 12:36:54 +0200, Stefan Roese wrote:
-> This patch adds the vendor prefix for gardena and a short description
-> including the compatible string for the "GARDENA smart Gateway" based
-> on the MT7688 SoC.
+On 8/27/2019 9:00 PM, Andrew Murray wrote:
+> On Mon, Aug 26, 2019 at 01:01:40PM +0530, Vidya Sagar wrote:
+>> Add support to configure sideband signal pins when information is present
+>> in respective controller's device-tree node.
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-tegra194.c | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> index fc0dbeb31d78..8a27b25893c9 100644
+>> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+>> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> @@ -1308,6 +1308,12 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
+>>   		return ret;
+>>   	}
+>>   
+>> +	ret = pinctrl_pm_select_default_state(pcie->dev);
+>> +	if (ret < 0) {
+>> +		dev_err(pcie->dev, "Failed to configure sideband pins\n");
 > 
-> Signed-off-by: Stefan Roese <sr@denx.de>
-> Cc: Paul Burton <paul.burton@mips.com>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
-> v4:
-> - Move board description into ralink.txt instead of creating a gardena
->   board file (Rob)
-> - Slightly changed board compatible
-> 
-> v3:
-> - New patch
-> 
->  Documentation/devicetree/bindings/mips/ralink.txt   | 13 +++++++++++++
->  .../devicetree/bindings/vendor-prefixes.yaml        |  2 ++
->  2 files changed, 15 insertions(+)
-> 
+> I think you can just use dev instead of pcie->dev here.
+Yup. I can use just 'dev' here.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+>> +		return ret;
+> 
+> Don't you need to pm_runtime_put_sync and pm_runtime_disable here?
+Yup. Thanks for catching it. I'll address it in next patch series.
+
+> 
+> Thanks,
+> 
+> Andrew Murray
+> 
+>> +	}
+>> +
+>>   	tegra_pcie_init_controller(pcie);
+>>   
+>>   	pcie->link_state = tegra_pcie_dw_link_up(&pcie->pci);
+>> -- 
+>> 2.17.1
+>>
+
