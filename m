@@ -2,110 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6928E9EA8C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 16:13:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6866E9EABB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 16:19:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729471AbfH0ON3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 10:13:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39316 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729159AbfH0ON3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 10:13:29 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4CB52214DA;
-        Tue, 27 Aug 2019 14:13:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566915208;
-        bh=pl2trC3SUKLOMkiq8cJFVya7N1BiXPCf1NJhGvJLSMw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=NBcLeWKjodp6DLvUNoe/GG4H9KDx7NsTp+DJ7tH/ydWrFedw9eck+AcxxEJbK+nDk
-         uEikpV6cGeBlB14TQPMBjzRXXPL1ki0eVbmOTI9WmOyFlsMkkN/C6O5dfciw4m7/qw
-         vVhaq7mVFhCnlTK277nOfy12FBpandzq+VL1mXY8=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-        linux@armlinux.org.uk, frowand.list@gmail.com,
-        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
-        tony.luck@intel.com, daniel.thompson@linaro.org,
-        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
-Subject: [PATCHv6] drivers/amba: add reset control to amba bus probe
-Date:   Tue, 27 Aug 2019 09:11:53 -0500
-Message-Id: <20190827141153.20254-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
+        id S1726065AbfH0OTJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 10:19:09 -0400
+Received: from forward101o.mail.yandex.net ([37.140.190.181]:47185 "EHLO
+        forward101o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726054AbfH0OTJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 10:19:09 -0400
+Received: from mxback29g.mail.yandex.net (mxback29g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:329])
+        by forward101o.mail.yandex.net (Yandex) with ESMTP id AFAD63C010BE;
+        Tue, 27 Aug 2019 17:19:04 +0300 (MSK)
+Received: from smtp1p.mail.yandex.net (smtp1p.mail.yandex.net [2a02:6b8:0:1472:2741:0:8b6:6])
+        by mxback29g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id MavhNij79l-J4AWWKPG;
+        Tue, 27 Aug 2019 17:19:04 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1566915544;
+        bh=Q9pUCEdPyR1430MwOUuTZfxYBhNGyX+eoOaRoswXA8U=;
+        h=In-Reply-To:From:To:Subject:Cc:Date:References:Message-ID;
+        b=WAmmy3rYCrQeeIhuTgCHLsoK+q9wGCJXwCyDVMUs0VexG4C610/ecc3VCjOirXaNL
+         NYAUB82oxslNihFOv8WF8bo6oDDy6Bp8S8/CchdRQkvSTQWOyT/PTUzy/UiP914n/B
+         AnUtcMUHfM04St28sfS0qHZRTuP27L7CAqCe6Rsg=
+Authentication-Results: mxback29g.mail.yandex.net; dkim=pass header.i=@flygoat.com
+Received: by smtp1p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id AzkE6b5uHe-Ivt4wcrM;
+        Tue, 27 Aug 2019 17:19:02 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+Subject: Re: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     "open list:MIPS" <linux-mips@vger.kernel.org>,
+        Huacai Chen <chenhc@lemote.com>,
+        Paul Burton <paul.burton@mips.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.co>, devicetree@vger.kernel.org
+References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+ <20190827085302.5197-12-jiaxun.yang@flygoat.com>
+ <CAL_JsqL6htVye-LSBWw1WwRy9xH=zwuH6gurscwoCWj9Te_hAg@mail.gmail.com>
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+Message-ID: <d94eff2b-76ec-5cd2-512d-5ee0406a1bb9@flygoat.com>
+Date:   Tue, 27 Aug 2019 22:18:46 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <CAL_JsqL6htVye-LSBWw1WwRy9xH=zwuH6gurscwoCWj9Te_hAg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-default. Until recently, the DMA controller was brought out of reset by the
-bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
-that are not used are held in reset and are left to Linux to bring them
-out of reset.
 
-Add a mechanism for getting the reset property and de-assert the primecell
-module from reset if found. This is a not a hard fail if the reset properti
-is not present in the device tree node, so the driver will continue to
-probe.
+On 2019/8/27 下午8:45, Rob Herring wrote:
+> On Tue, Aug 27, 2019 at 3:55 AM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+>> Prepare for later dts.
+>>
+>> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
+>> ---
+>>   .../bindings/mips/loongson/cpus.yaml          | 38 +++++++++++
+>>   .../bindings/mips/loongson/devices.yaml       | 64 +++++++++++++++++++
+>>   2 files changed, 102 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+>>   create mode 100644 Documentation/devicetree/bindings/mips/loongson/devices.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mips/loongson/cpus.yaml b/Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+>> new file mode 100644
+>> index 000000000000..410d896a0078
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+>> @@ -0,0 +1,38 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+> Dual license for new bindings please:
+>
+> (GPL-2.0-only OR BSD-2-Clause)
+>
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mips/loongson/cpus.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Loongson CPUs bindings
+>> +
+>> +maintainers:
+>> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+>> +
+>> +description: |+
+>> +  The device tree allows to describe the layout of CPUs in a system through
+>> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
+>> +  defining properties for every cpu.
+>> +
+>> +  Bindings for CPU nodes follow the Devicetree Specification, available from:
+>> +
+>> +  https://www.devicetree.org/specifications/
+>> +
+>> +properties:
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: |
+>> +      Physical ID of a CPU, Can be read from CP0 EBase.CPUNum.
+> Is this definition specific to Loongson CPUs or all MIPS?
 
-Because there are different variants of the controller that may have
-multiple reset signals, the code will find all reset(s) specified and
-de-assert them.
+Currently it's specific to Loongson CPU only, as other processors may 
+using different method to express CPU map.
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v6: remove the need to reset_control_get_count as
-    of_reset_control_array_get_optional_shared is already doing that
-v5: use of_reset_control_array_get_optional_shared()
-v4: cleaned up indentation in loop
-    fix up a few checkpatch warnings
-    add Reviewed-by:
-v3: add a reset_control_put()
-    add error handling
-v2: move reset control to bus code
-    find all reset properties and de-assert them
----
- drivers/amba/bus.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Different from Arm, MIPS family of processors seems less uniform and 
+have their own designs.
 
-diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-index 100e798a5c82..f39f075abff9 100644
---- a/drivers/amba/bus.c
-+++ b/drivers/amba/bus.c
-@@ -18,6 +18,7 @@
- #include <linux/limits.h>
- #include <linux/clk/clk-conf.h>
- #include <linux/platform_device.h>
-+#include <linux/reset.h>
- 
- #include <asm/irq.h>
- 
-@@ -401,6 +402,19 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
- 	ret = amba_get_enable_pclk(dev);
- 	if (ret == 0) {
- 		u32 pid, cid;
-+		struct reset_control *rstc;
-+
-+		/*
-+		 * Find reset control(s) of the amba bus and de-assert them.
-+		 */
-+		rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
-+		if (IS_ERR(rstc)) {
-+			if (PTR_ERR(rstc) != -EPROBE_DEFER)
-+				dev_err(&dev->dev, "Can't get amba reset!\n");
-+			return PTR_ERR(rstc);
-+		}
-+		reset_control_deassert(rstc);
-+		reset_control_put(rstc);
- 
- 		/*
- 		 * Read pid and cid based on size of resource
--- 
-2.20.0
+For this point, we'd better ask Paul's opinion.
+
+--
+
+Jiaxun Yang
 
