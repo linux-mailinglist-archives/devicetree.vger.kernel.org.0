@@ -2,87 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C50F39F58D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:51:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C6299F5BA
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:59:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726444AbfH0VvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 17:51:05 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42865 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726437AbfH0VvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:51:05 -0400
-Received: by mail-ot1-f65.google.com with SMTP id j7so672123ota.9;
-        Tue, 27 Aug 2019 14:51:04 -0700 (PDT)
+        id S1726408AbfH0V7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 17:59:14 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:41509 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725835AbfH0V7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:59:13 -0400
+Received: by mail-pl1-f195.google.com with SMTP id m9so193580pls.8
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 14:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=TdYOcDy5jsMWziyheC0sLWKkoIn520mmauZjzHRKXw0=;
+        b=fqX7HAuzT5KuFfsn8d+HExjzxkOeMp9ciR59skQfXichfF0DxduVaNwQa72F8i2JRJ
+         RcqtQKXAMQAjfhy1CJChhtF3Sv538PUx6V+L2FZJ/YtfvFAsJYwh2hca4OiQtCwBo9OU
+         VwkmnGUC9flIc+hJlh+bpiWQN35phBb0UYpHysFLpKvvDRLPvxMvJ4WUB5kl579mWgYs
+         bAQindBZCEfngbh3o6ERCSUnxUSw2SpKuPE4eKM1o1jcYpeviPzHreexlsNAf4KHD2cN
+         pDTAB49gxvQx3+ZQK9tVGn5gGVTDK2oG3ZS1sD4ab4bIaRI8r81jBAQbtua9fkMRiijQ
+         63CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=6UdyZcW8GFUoOtzUiYA5oJv2+sr88zTJhUxT/a3/xms=;
-        b=haBhAWvbeMDkQy34cFiGETDjgcGS+OUwoYesplqqIM/B8lMStXztJPUUzY+AOeD+aJ
-         hDZqSggNYijakBb+IZ4F9sMIIep0WWz3y/ed6FbtqmraA2l+rk7N9ziwXr28Rcq8R5LB
-         HUIifvMs2NqOgx51k5ujUivgKKMrnOP7Nlv1Ew5dCEKeDPcgBFXnDZkMg5oTFOnBZVh5
-         YyXYOcIbEWQoRdNz4ZcyMkuN4ZR7GpHQVH71I5qEwCdmyPSHMHFErQIHiaTOBcxhOEre
-         gL6JbDGfDkBYtP/5LkWFI2tk7Wy4Mx4CR975S+CMOxMcVMl7Cw10xeerRaeuTc5tTAci
-         uE+A==
-X-Gm-Message-State: APjAAAUCdjFcWrytEB5ujgenCKx0R/HSzWOHAfxdGVP+8JLqqrXSu4lk
-        mijCZArLRrfiFJQg6+EspQ==
-X-Google-Smtp-Source: APXvYqyNJodchzPPttfy347MDQHJuYnjjVx9z7i0CE2ylYyoXY7FQ6zIjBxdcMZshF3PlC4QaHevbA==
-X-Received: by 2002:a9d:6290:: with SMTP id x16mr680894otk.292.1566942664365;
-        Tue, 27 Aug 2019 14:51:04 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t18sm237696otk.73.2019.08.27.14.51.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 14:51:03 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 16:51:03 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
-Cc:     John Crispin <john@phrozen.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Nelson Chang <nelson.chang@mediatek.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        Frank Wunderlich <frank-w@public-files.de>,
-        Stefan Roese <sr@denx.de>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v2 3/3] dt-bindings: net: ethernet: Update
- mt7622 docs and dts to reflect the new phylink API
-Message-ID: <20190827215103.GA9401@bogus>
-References: <20190821144336.9259-1-opensource@vdorst.com>
- <20190821144336.9259-4-opensource@vdorst.com>
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=TdYOcDy5jsMWziyheC0sLWKkoIn520mmauZjzHRKXw0=;
+        b=G32bg/rYOfhLm22RWBJn3ZLHjzgoTO8WMUUGipQBH+XP7MT8TVhvAKa34IqCt+p8pQ
+         grQMYw9xwegZFK0dq1O5fhjynN78+l2YyAE5bT2oDV7sfmFh2FKW8BMbohEpUJX26avR
+         OGZmqITPgcB6GyujKBkreUi1sE4KawZKOtQGJmpW7HaBMadmRJk9DHmZJKn1Yc53INVF
+         N832UQ6M+qGfs9uaXX+kT2GPpWcwsjyhAecxBy1LTrs2gp2BYTg1QmxospSaI/BsGGM1
+         soEkggQPuz9qX2V3S8vIEwy/q6U8akOlAi0Uhj6D7to7FpeEiiTM7hvM7T8d900lBAYg
+         epgA==
+X-Gm-Message-State: APjAAAX5hHsOrDMv1DHD0G3dFgh+lkdkR/3eRbjrBrUkB79L36IYbhtY
+        8KPJI5NgNDsx0nDn8Zm3EoHy5QKMHIw=
+X-Google-Smtp-Source: APXvYqws8hfOSYTfuqQpuIYlzKB7o2Sp5rFJ3VOL35Gaol7mqdAOiWBTbpZz0mLm3qMRR7/MJdUF5g==
+X-Received: by 2002:a17:902:9b86:: with SMTP id y6mr1087338plp.217.1566943152953;
+        Tue, 27 Aug 2019 14:59:12 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:cc35:e750:308e:47f])
+        by smtp.gmail.com with ESMTPSA id e17sm175950pjt.6.2019.08.27.14.59.12
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 27 Aug 2019 14:59:12 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [RESEND PATCH v2 00/14] arm64: dts: meson: fixes following YAML bindings schemas conversion
+In-Reply-To: <20190823070248.25832-1-narmstrong@baylibre.com>
+References: <20190823070248.25832-1-narmstrong@baylibre.com>
+Date:   Tue, 27 Aug 2019 14:59:11 -0700
+Message-ID: <7htva2uv68.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190821144336.9259-4-opensource@vdorst.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 04:43:36PM +0200, René van Dorst wrote:
-> This patch the removes the recently added mediatek,physpeed property.
-> Use the fixed-link property speed = <2500> to set the phy in 2.5Gbit.
-> See mt7622-bananapi-bpi-r64.dts for a working example.
-> 
-> Signed-off-by: René van Dorst <opensource@vdorst.com>
-> Cc: devicetree@vger.kernel.org
-> Cc: Rob Herring <robh@kernel.org>
-> --
-> v1->v2:
-> * SGMII port only support BASE-X at 2.5Gbit.
-> ---
->  .../arm/mediatek/mediatek,sgmiisys.txt        |  2 --
+Neil Armstrong <narmstrong@baylibre.com> writes:
 
-Bindings and dts files should be separate patches.
+> This is the first set of DT fixes following the first YAML bindings conversion
+> at [1], [2] and [3].
+>
+> After this set of fixes, the remaining errors are :
+> meson-axg-s400.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+> meson-g12a-sei510.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+> meson-g12b-odroid-n2.dt.yaml: usb-hub: gpios:0:0: 20 is not valid under any of the given schemas
+> meson-g12b-odroid-n2.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+> meson-g12a-x96-max.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
+>
+> These are only cosmetic changes, and should not break drivers implementation
+> following the bindings.
 
+Queued for v5.4,
 
->  .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  | 28 +++++++++++++------
->  arch/arm64/boot/dts/mediatek/mt7622.dtsi      |  1 -
->  3 files changed, 19 insertions(+), 12 deletions(-)
+Thanks,
 
-In any case,
-
-Acked-by: Rob Herring <robh@kernel.org>
+Kevin
