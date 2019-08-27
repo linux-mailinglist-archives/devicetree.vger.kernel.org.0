@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 85DB09E3C0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 11:14:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C319E3DE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 11:22:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728772AbfH0JOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 05:14:16 -0400
-Received: from mga17.intel.com ([192.55.52.151]:32104 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725805AbfH0JOQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 05:14:16 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Aug 2019 02:14:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,436,1559545200"; 
-   d="scan'208";a="380850102"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga006.fm.intel.com with ESMTP; 27 Aug 2019 02:14:15 -0700
-Received: from [10.226.39.22] (ekotax-mobl.gar.corp.intel.com [10.226.39.22])
-        by linux.intel.com (Postfix) with ESMTP id 121F7580444;
-        Tue, 27 Aug 2019 02:14:12 -0700 (PDT)
-Subject: Re: [PATCH v2 3/3] dwc: PCI: intel: Intel PCIe RC controller driver
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
-        hch@infradead.org, jingoohan1@gmail.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        qi-ming.wu@intel.com
-References: <9bd455a628d4699684c0f9d439b64af1535cccc6.1566208109.git.eswara.kota@linux.intel.com>
- <20190824210302.3187-1-martin.blumenstingl@googlemail.com>
- <2c71003f-06d1-9fe2-2176-94ac816b40e3@linux.intel.com>
- <f1cb5ba9-b57a-971a-5a2f-1f13e0cc9507@linux.intel.com>
- <CAFBinCDojCN0Gxpa0fyh7t8TdvTLc_dwgJgMxC4PoAszK==BKg@mail.gmail.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <c0bb5bcf-6ccb-d155-7184-a7174bb36bd8@linux.intel.com>
-Date:   Tue, 27 Aug 2019 17:14:11 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
+        id S1726125AbfH0JW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 05:22:29 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:39317 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725912AbfH0JW3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 05:22:29 -0400
+X-Originating-IP: 87.18.63.98
+Received: from uno.homenet.telecomitalia.it (unknown [87.18.63.98])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 629C61C000A;
+        Tue, 27 Aug 2019 09:22:26 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        tfiga@google.com, Rob Herring <robh+dt@kernel.org>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
+        (V4L/DVB)), devicetree@vger.kernel.org
+Subject: [PATCH v2 01/10] media: dt-bindings: Document 'location' property
+Date:   Tue, 27 Aug 2019 11:23:27 +0200
+Message-Id: <20190827092339.8858-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20190827092339.8858-1-jacopo@jmondi.org>
+References: <20190827092339.8858-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDojCN0Gxpa0fyh7t8TdvTLc_dwgJgMxC4PoAszK==BKg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the 'location' device property, used to specify the camera device
+mounting position. The property is particularly meaningful for mobile
+devices with a well defined usage orientation.
 
-On 8/27/2019 4:14 AM, Martin Blumenstingl wrote:
-> second example: pcie-tegra194 (only in -next, will be part of v5.4)
->    struct tegra_pcie_dw {
->      ...
->      struct dw_pcie pci;
->      ...
->    };
->
-> so some drivers store a pointer pointer to the dw_pcie struct vs.
-> embedding the dw_pcie struct directly.
-> as far as I know the result will be equal, except that you don't have
-> to use a second devm_kzalloc for struct dw_pcie (and thus reducing
-> memory fragmentation).
-Okay, i will change it to "struct dw_pcie pci;"
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+---
+ .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Thanks for the feedback.
+diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+index f884ada0bffc..865f4142f432 100644
+--- a/Documentation/devicetree/bindings/media/video-interfaces.txt
++++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+@@ -89,6 +89,16 @@ Optional properties
+   but a number of degrees counter clockwise. Typical values are 0 and 180
+   (upside down).
 
-Regards,
++- location: The camera sensor mounting location, expressed as a position
++  relative to the usage orientation of the device the sensor is installed on.
++  Possible values are:
++  0 - Front. The image sensor is mounted on the front facing side of the device.
++  For mobile devices such as smartphones, tablets and laptops the front side is
++  the user facing side of the device.
++  1 - Back. The image sensor is mounted on the back side of the device, which is
++  defined as the opposite side of the front facing one.
++  2 - External. The image sensor is connected to the device by extension cables,
++  and can be freely moved, regardless of the device position.
 
-Dilip
+ Optional endpoint properties
+ ----------------------------
+--
+2.23.0
 
