@@ -2,72 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 020FF9F2B6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 20:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9964D9F331
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730407AbfH0SyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 14:54:01 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:46349 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfH0SyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 14:54:00 -0400
-Received: by mail-ot1-f67.google.com with SMTP id z17so144416otk.13;
-        Tue, 27 Aug 2019 11:54:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=N7oNktNQAUJH+sUHR0NB6EzuIGhp5QVB1/RE4ZususQ=;
-        b=U1+xEInR37D4PbXFBM/4nPkBzcRt/4uhJepXmOx94G72ERhAHWT9arpCoj5dBSMBCY
-         gmjRDHC3C0CKRsqF7etqwzjThz0Dsz+u3ZxXZMQKdVAA+WtNxnhbGE103tKzbUIm3LXw
-         9J7FpwbxX2ogRugbyc6iHArmZdLkjtwRMUyJXFQv69ISUPrl247DJJ3MH/S+6+CqXyF4
-         DINxy1liwj6UytMzv3dgUd4KtIqd1rsFk0spzngdQohX5q6vSz/g2NxJ/eiEBztaA9hT
-         Xf/oql/x5qgfZPkaEzs208QQvc1pplO/KJCw+AJS/3u6OBXtDR7Tbp/YO18HSvseokvj
-         q4AQ==
-X-Gm-Message-State: APjAAAUa2u+PjhS37vQ/4aI9d/wftE3u3frIna1V8obSBQ1gDMpunXcU
-        dmxxPB1pJHimpfKF3pR3jw==
-X-Google-Smtp-Source: APXvYqysJkT3ZlMc3kBvdVSqg7vjs4HFGv+NzrWjVBelfZ61WEOj5tO22xXj2jDmx/odK753dKDh+g==
-X-Received: by 2002:a9d:390:: with SMTP id f16mr41363otf.93.1566932039790;
-        Tue, 27 Aug 2019 11:53:59 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n32sm65214otn.61.2019.08.27.11.53.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 11:53:59 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 13:53:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Chocron <jonnyc@amazon.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, andrew.murray@arm.com,
-        dwmw@amazon.co.uk, benh@kernel.crashing.org, alisaidi@amazon.com,
-        ronenk@amazon.com, barakw@amazon.com, talel@amazon.com,
-        hanochu@amazon.com, hhhawa@amazon.com, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jonnyc@amazon.com
-Subject: Re: [PATCH v4 5/7] dt-bindings: PCI: Add Amazon's Annapurna Labs
- PCIe host bridge binding
-Message-ID: <20190827185358.GA23134@bogus>
-References: <20190821153545.17635-1-jonnyc@amazon.com>
- <20190821154745.31834-1-jonnyc@amazon.com>
+        id S1731074AbfH0TSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 15:18:55 -0400
+Received: from mail2.candelatech.com ([208.74.158.173]:46116 "EHLO
+        mail3.candelatech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726871AbfH0TSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 15:18:55 -0400
+X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Aug 2019 15:18:54 EDT
+Received: from [192.168.100.195] (50-251-239-81-static.hfc.comcastbusiness.net [50.251.239.81])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail3.candelatech.com (Postfix) with ESMTPSA id B06CCDDE7;
+        Tue, 27 Aug 2019 12:13:51 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail3.candelatech.com B06CCDDE7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=candelatech.com;
+        s=default; t=1566933231;
+        bh=xQteBVwidZSGC2MZfHHOR7dAWZi7qDYFFFClYgjptwo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=m/NdBaWWuaEyGUDgK5fKEuea6TpFHxts1IPUIe4QXLhbuwLHtgoQrYqywPGNJsp1w
+         Ck53cutqu4rPGWPAnq/cf3/Tcub78y1amEr3T0hvnNN5TqWXp2kJ893kQx31JWXlIn
+         meerxpxK/G2AUca0U/xW91NNV0RyLDNHWCPFdJpk=
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+To:     =?UTF-8?Q?Toke_H=c3=b8iland-J=c3=b8rgensen?= <toke@redhat.com>,
+        Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless-owner@vger.kernel.org
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+ <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+ <8736hvu6e6.fsf@toke.dk> <ac6e7dbbd53e7ba9e82e49baca22b73c@codeaurora.org>
+ <875zmqsudn.fsf@toke.dk> <14737343f1925a771ddd8dadf0f2b5a3@codeaurora.org>
+ <87sgpmikne.fsf@toke.dk>
+From:   Ben Greear <greearb@candelatech.com>
+Organization: Candela Technologies
+Message-ID: <0aa03fd8-1fad-416b-0cd5-fcca79732987@candelatech.com>
+Date:   Tue, 27 Aug 2019 12:13:51 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190821154745.31834-1-jonnyc@amazon.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <87sgpmikne.fsf@toke.dk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Aug 2019 18:47:43 +0300, Jonathan Chocron wrote:
-> Document Amazon's Annapurna Labs PCIe host bridge.
+On 8/27/19 10:27 AM, Toke Høiland-Jørgensen wrote:
+> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
 > 
-> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
-> ---
->  .../devicetree/bindings/pci/pcie-al.txt       | 46 +++++++++++++++++++
->  MAINTAINERS                                   |  3 +-
->  2 files changed, 48 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/pcie-al.txt
+>> On 2019-08-21 15:38, Toke Høiland-Jørgensen wrote:
+>>> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
+>>>
+>>>> On 2019-08-20 22:21, Toke Høiland-Jørgensen wrote:
+>>>>> [... snip ... ]
+>>>>>
+>>>>>> +static const struct ieee80211_ops ath11k_ops = {
+>>>>>> +	.tx				= ath11k_mac_op_tx,
+>>>>>
+>>>>> No wake_tx_queue? :(
+>>>>
+>>>> Yes, packet queueing is handled in firmware. This makes sense
+>>>> especially when we enable 802.11 encap offload support where most of
+>>>> the data path processing in mac80211 will be skipped and packet is
+>>>> given to driver/firmware in 802.3 format itself. Then firmware would
+>>>> take care of all the classification, queueing and encapsulation
+>>>> operations.
+>>>
+>>> Well, so does ath10k, and yet we still saw a significant improvement by
+>>> moving queueing back into the host where it can be handled by the
+>>> FQ-CoDel-enabled queueing structure.
+>>>
+>>
+>> Sure, we could probably try that with ath11k as well at some point when
+>> we have a baseline with HE support.
 > 
+> Well, rather than retrofit change things later, why not start out with a
+> wake_tx_queue-based driver?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+If there is something that works at all, lets get it upstream when it is
+easier to develop and test against.  Then we will have a baseline to test against
+when adding new features and so forth.
+
+Thanks,
+Ben
+
+-- 
+Ben Greear <greearb@candelatech.com>
+Candela Technologies Inc  http://www.candelatech.com
+
