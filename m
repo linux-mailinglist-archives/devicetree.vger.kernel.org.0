@@ -2,104 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B1CD9F4FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:21:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C50F39F58D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:51:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726675AbfH0VVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 17:21:15 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43734 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726735AbfH0VVP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:21:15 -0400
-Received: by mail-wr1-f67.google.com with SMTP id y8so243362wrn.10
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 14:21:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=tLhcw38FuKLNsut7gUz1FietvesVxFl+vsh+ysDektI=;
-        b=Nttduy7GCncxAEwTn7ROUQfvrd7gHjj+gmRcBK8NJhKmsWss+ZW5JMz+WsG3RVKWWK
-         W98wigEyZsjUQuT5JcZS7emeap2xUSbSbpr+dKTOjhjj6IcgqV5Kw38yY9+MBXH89mQz
-         jepDS09L0iPppjfwLMM6GElXvmlBox6z94GRZQCgQ0DPbBnYppklne7QOfYMcac/D22T
-         9+RjltFJWmIZK6vOkKA8EtSruFP+O239NQRcvbWM0oMZclwW16hgZ8XPv4IPcTOcHAk0
-         QtTvMsidOLa2XAXF94hKc5Oy+UroqgLZ+dNCh6zFuTlLxfrAwJ1B1kDgNCPFzqZzIdUS
-         +8pw==
+        id S1726444AbfH0VvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 17:51:05 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:42865 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726437AbfH0VvF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:51:05 -0400
+Received: by mail-ot1-f65.google.com with SMTP id j7so672123ota.9;
+        Tue, 27 Aug 2019 14:51:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=tLhcw38FuKLNsut7gUz1FietvesVxFl+vsh+ysDektI=;
-        b=Eti66z7/4rJ/DbHIy4EhwuJ8jiQ8YK0NncNkljv1QnCWgvYysauLM/uxr/jNFvJo2L
-         rBgMyjH3j5ktWSonkTHpR01cQQN61KC5SGCAV/zyfDVmNGWapkRY/gt2S0Stlf6HCYNu
-         xqrFQkqb68YaZa+XBZ7djdIxrsYeWhdfwXh4DboLd2JZ0RIclRatcamMABIUQCCnPLUi
-         RoezvNZJkF6SF5CclPqXoZlDiWvc/hNBx0cizA1LU3EuF2PQMZPTp6e7J2IW202N0dEF
-         6QHiNVj7ZccJibqsEBsc92T2I7gx1J2vjNc9Y51PY77v+eYUbffDI0VxTurE4gmig9qo
-         8jRA==
-X-Gm-Message-State: APjAAAX/Xzd94xq0Abg7wlk2JfEOuji0R4W5ih99NhnNTeOpm36fzgbq
-        TzrBeoxrVPAeIIw14/VbjTjWrw==
-X-Google-Smtp-Source: APXvYqy8AWyg2VL46hPxiroKD/nqocylXrXqvK7Uf41BSbK1KZmcquEck3Uhap2HM5cQB1Qylj3kJg==
-X-Received: by 2002:a5d:4fc4:: with SMTP id h4mr272620wrw.64.1566940872977;
-        Tue, 27 Aug 2019 14:21:12 -0700 (PDT)
-Received: from [192.168.86.29] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id r17sm458558wrg.93.2019.08.27.14.21.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 27 Aug 2019 14:21:11 -0700 (PDT)
-Subject: Re: [alsa-devel] [RESEND PATCH v4 1/4] dt-bindings: soundwire: add
- slave bindings
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        bgoswami@codeaurora.org, spapothi@codeaurora.org,
-        lgirdwood@gmail.com, linux-kernel@vger.kernel.org
-References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
- <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
- <7da8aa89-2119-21d1-0e29-8894a8d40bf0@linux.intel.com>
- <37be6b6d-7e7f-2cd6-f9e9-f0cac48791ad@linaro.org>
- <d538238d-25d8-f179-c900-90be50ce814d@linux.intel.com>
- <7ee47f26-12f8-6028-cb83-7f59e669979f@linaro.org>
- <e5b184be-02f1-faa4-94fa-79bda8936d9d@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <aaf1a8f6-9be5-2d42-9f92-4fd75986424d@linaro.org>
-Date:   Tue, 27 Aug 2019 22:21:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=6UdyZcW8GFUoOtzUiYA5oJv2+sr88zTJhUxT/a3/xms=;
+        b=haBhAWvbeMDkQy34cFiGETDjgcGS+OUwoYesplqqIM/B8lMStXztJPUUzY+AOeD+aJ
+         hDZqSggNYijakBb+IZ4F9sMIIep0WWz3y/ed6FbtqmraA2l+rk7N9ziwXr28Rcq8R5LB
+         HUIifvMs2NqOgx51k5ujUivgKKMrnOP7Nlv1Ew5dCEKeDPcgBFXnDZkMg5oTFOnBZVh5
+         YyXYOcIbEWQoRdNz4ZcyMkuN4ZR7GpHQVH71I5qEwCdmyPSHMHFErQIHiaTOBcxhOEre
+         gL6JbDGfDkBYtP/5LkWFI2tk7Wy4Mx4CR975S+CMOxMcVMl7Cw10xeerRaeuTc5tTAci
+         uE+A==
+X-Gm-Message-State: APjAAAUCdjFcWrytEB5ujgenCKx0R/HSzWOHAfxdGVP+8JLqqrXSu4lk
+        mijCZArLRrfiFJQg6+EspQ==
+X-Google-Smtp-Source: APXvYqyNJodchzPPttfy347MDQHJuYnjjVx9z7i0CE2ylYyoXY7FQ6zIjBxdcMZshF3PlC4QaHevbA==
+X-Received: by 2002:a9d:6290:: with SMTP id x16mr680894otk.292.1566942664365;
+        Tue, 27 Aug 2019 14:51:04 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id t18sm237696otk.73.2019.08.27.14.51.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 14:51:03 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 16:51:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
+Cc:     John Crispin <john@phrozen.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Nelson Chang <nelson.chang@mediatek.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Stefan Roese <sr@denx.de>, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v2 3/3] dt-bindings: net: ethernet: Update
+ mt7622 docs and dts to reflect the new phylink API
+Message-ID: <20190827215103.GA9401@bogus>
+References: <20190821144336.9259-1-opensource@vdorst.com>
+ <20190821144336.9259-4-opensource@vdorst.com>
 MIME-Version: 1.0
-In-Reply-To: <e5b184be-02f1-faa4-94fa-79bda8936d9d@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190821144336.9259-4-opensource@vdorst.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 26/08/2019 17:22, Pierre-Louis Bossart wrote:
->>>>>
->>>>>> +      description:
->>>>>> +      Is the textual representation of SoundWire Enumeration
->>>>>> +      address. compatible string should contain SoundWire Version 
->>>>>> ID,
->>>>>> +      Manufacturer ID, Part ID and Class ID in order and shall be in
->>>>>> +      lower-case hexadecimal with leading zeroes.
->>>>>> +      Valid sizes of these fields are
->>>>>> +      Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
->>>>>> +      and '0x2' represents SoundWire 1.1 and so on.
->>>>>> +      MFD is 4 nibbles
->>>>>> +      PID is 4 nibbles
->>>>>> +      CID is 2 nibbles
->>>>>> +      More Information on detail of encoding of these fields can be
->>>>>> +      found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
->>>>>> +
->>>>>> +      reg:
->>>>>> +        maxItems: 1
->>>>>> +        description:
->>>>>> +          Instance ID and Link ID of SoundWire Device Address.
+On Wed, Aug 21, 2019 at 04:43:36PM +0200, Ren� van Dorst wrote:
+> This patch the removes the recently added mediatek,physpeed property.
+> Use the fixed-link property speed = <2500> to set the phy in 2.5Gbit.
+> See mt7622-bananapi-bpi-r64.dts for a working example.
 > 
-> maybe put link first and make it clear that both are required.
-Okay, I will give that a go in next version!
+> Signed-off-by: Ren� van Dorst <opensource@vdorst.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: Rob Herring <robh@kernel.org>
+> --
+> v1->v2:
+> * SGMII port only support BASE-X at 2.5Gbit.
+> ---
+>  .../arm/mediatek/mediatek,sgmiisys.txt        |  2 --
 
-thanks,
-srini
+Bindings and dts files should be separate patches.
+
+
+>  .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  | 28 +++++++++++++------
+>  arch/arm64/boot/dts/mediatek/mt7622.dtsi      |  1 -
+>  3 files changed, 19 insertions(+), 12 deletions(-)
+
+In any case,
+
+Acked-by: Rob Herring <robh@kernel.org>
