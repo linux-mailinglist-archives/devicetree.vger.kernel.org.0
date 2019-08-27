@@ -2,65 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C289F114
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 19:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5A209F116
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 19:04:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728312AbfH0REt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 13:04:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47694 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727807AbfH0REt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 13:04:49 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 302982184D;
-        Tue, 27 Aug 2019 17:04:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566925488;
-        bh=XeUdz62QOCJpL9O1N11O4eJhz/7iILY7JLWPy9nGNRo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WuXkd4wEUqFBqeJj/V6ZjioNe1M9rL5cnJrGFU/7m31OcEWeb+k1i/SkBWbTWRTec
-         pym9Zae69TjiBa6itpx8NnNfXBipBt8PyxGCl7JVWBCs5BBnxokDf/wnDUxo3oSWPC
-         nFSnat0K5JQrZNeho8SPt2JvvHfTKQkzoOMPKiA4=
-Date:   Tue, 27 Aug 2019 19:04:46 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] uio: uio_pdrv_genirq: Make UIO name controllable
- via DT node property
-Message-ID: <20190827170446.GA21369@kroah.com>
-References: <20190815212807.25058-1-daniel@zonque.org>
- <3f65e92e-350e-d414-75c4-8680932b39d1@zonque.org>
+        id S1730338AbfH0REv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 13:04:51 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33512 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727807AbfH0REu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 13:04:50 -0400
+Received: by mail-oi1-f194.google.com with SMTP id l2so15549433oil.0;
+        Tue, 27 Aug 2019 10:04:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MOuzbil80+G9gYzAiopiCVDBooAH3B/XNeV0uY3F0I8=;
+        b=YIIPYcz48I8nZWggVktuyWDaA3H41zM7eAmuhqHXxqLl/azfplN1y62/yzTXORkL7x
+         OipwvPdTHJZBfwcjnDeUFoiWb2AchQJoQazgSlUQj6wpbDG5EF6Z/LdqvnnIvQO2F+zR
+         an5DE9EiHLt+KIXEvLhgMSr01ezIEOinrXvCwy7auEf3JCQ95//1i+uSX3fyDoF1bdsJ
+         5eHekpcpGWlFyO5dMVeKq/eQ0qtFaZCnmofWACm0vyy0bFLe/otPwmTNpNQHLfnqB4Tq
+         aYGhVOT68ApuQF5NTe68fS4nFotWIcEMOo3JXWA2BXXaJ5tk12sd4txzybEW2Dzrh8lr
+         SgpA==
+X-Gm-Message-State: APjAAAWd+PQo81pbt11/qzFUM9BmBDFw4KyppG+S8eC0HogXtalTQqYm
+        mSVGtiOnDeJVbq5l1L7ziA==
+X-Google-Smtp-Source: APXvYqxQM/gESOiP+h1wYgpZhd53hKVRGNNezbbV85qz8HiBzlfPBARHfluEK6KErDc/DhbhvNrKoQ==
+X-Received: by 2002:a54:4414:: with SMTP id k20mr1968312oiw.120.1566925489593;
+        Tue, 27 Aug 2019 10:04:49 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id r3sm5366680otq.10.2019.08.27.10.04.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 10:04:48 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 12:04:48 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        sboyd@kernel.org, mturquette@baylibre.com, shawnguo@kernel.org,
+        fabio.estevam@nxp.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        Dong Aisheng <aisheng.dong@nxp.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 01/11] dt-bindings: firmware: imx-scu: new binding to
+ parse clocks from device tree
+Message-ID: <20190827170448.GA15803@bogus>
+References: <1566299605-15641-1-git-send-email-aisheng.dong@nxp.com>
+ <1566299605-15641-2-git-send-email-aisheng.dong@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3f65e92e-350e-d414-75c4-8680932b39d1@zonque.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <1566299605-15641-2-git-send-email-aisheng.dong@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 06:07:04PM +0200, Daniel Mack wrote:
-> Hi Greg,
+On Tue, 20 Aug 2019 07:13:15 -0400, Dong Aisheng wrote:
+> There's a few limitations on the original one cell clock binding
+> (#clock-cells = <1>) that we have to define some SW clock IDs for device
+> tree to reference. This may cause troubles if we want to use common
+> clock IDs for multi platforms support when the clock of those platforms
+> are mostly the same.
+> e.g. Current clock IDs name are defined with SS prefix.
 > 
-> On 15/8/2019 11:28 PM, Daniel Mack wrote:
-> > When probed via DT, the uio_pdrv_genirq driver currently uses the name
-> > of the node and exposes that as name of the UIO device to userspace.
-> > 
-> > This doesn't work for systems where multiple nodes with the same name
-> > (but different unit addresses) are present, or for systems where the
-> > node names are auto-generated by a third-party tool.
-> > 
-> > This patch adds the possibility to read the UIO name from the optional
-> > "linux,uio-name" property.
+> However the device may reside in different SS across CPUs, that means the
+> SS prefix may not valid anymore for a new SoC. Furthermore, the device
+> availability of those clocks may also vary a bit.
 > 
-> Any opinion on this one?
+> For such situation, we want to eliminate the using of SW Clock IDs and
+> change to use a more close to HW one instead.
+> For SCU clocks usage, only two params required: Resource id + Clock Type.
+> Both parameters are platform independent. So we could use two cells binding
+> to pass those parameters,
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <kernel@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> ---
+> ChangeLog:
+> v3->v4:
+>  * add some comments for various clock types
+> v2->v3:
+>  * Changed to two cells binding and register all clocks in driver
+>    instead of parse from device tree.
+> v1->v2:
+>  * changed to one cell binding inspired by arm,scpi.txt
+>    Documentation/devicetree/bindings/arm/arm,scpi.txt
+>    Resource ID is encoded in 'reg' property.
+>    Clock type is encoded in generic clock-indices property.
+>    Then we don't have to search all the DT nodes to fetch
+>    those two value to construct clocks which is relatively
+>    low efficiency.
+>  * Add required power-domain property as well.
+> ---
+>  .../devicetree/bindings/arm/freescale/fsl,scu.txt  | 12 ++++++-----
+>  include/dt-bindings/firmware/imx/rsrc.h            | 23 ++++++++++++++++++++++
+>  2 files changed, 30 insertions(+), 5 deletions(-)
+> 
 
-Sorry, it's in my "to review" queue, was traveling all last week and
-it's really big now :(
-
-it's not lost...
-
-greg k-h
+Reviewed-by: Rob Herring <robh@kernel.org>
