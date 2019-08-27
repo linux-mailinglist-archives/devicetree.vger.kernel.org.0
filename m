@@ -2,225 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4AB59E8D3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:14:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B482C9E8E3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:18:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726952AbfH0NOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 09:14:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41578 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725920AbfH0NOA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 09:14:00 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 56FC8214DA;
-        Tue, 27 Aug 2019 13:13:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566911639;
-        bh=n8ibduXjZXj7Q34xh0Rv5sPDq7/16sV0kGKVNRLgDSs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lSNV9HxRdPa/5Ef56wsJ6JYR5Xjq4MdznNNx74DNIz4MOmTAVYNQsoy+Xu1Lk6dBW
-         sRVBzin4qJyRoLxOuwFBdMs0YnPpXYwVMWlj8/onYqVPNA/0l4oiiK+0vfrDuiYGNu
-         ApTb/71j0CI5hh9Pqi6kf6tBHis1MHAWXGOJnjS4=
-Received: by mail-qt1-f169.google.com with SMTP id v38so21222232qtb.0;
-        Tue, 27 Aug 2019 06:13:59 -0700 (PDT)
-X-Gm-Message-State: APjAAAXNNekc+55DYTYP+RnHJklthMwY4Xi5p5hEw43CAFHMES+cdPFe
-        /h19I9sO5CVXGANRjBGFp0bmjJI0eEjVVx/NXQ==
-X-Google-Smtp-Source: APXvYqxM4rKSeMsRFJ0k2CX54SJt1oCxc9GdiuyJ73RX+TOjoI7sPcD0/x/mVMxp/Tq4eyB0bRsd2oxqjdCHpUHNzIA=
-X-Received: by 2002:a0c:eb92:: with SMTP id x18mr20029210qvo.39.1566911638442;
- Tue, 27 Aug 2019 06:13:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <1566942646-18015-1-git-send-email-peng.fan@nxp.com> <1566942646-18015-2-git-send-email-peng.fan@nxp.com>
-In-Reply-To: <1566942646-18015-2-git-send-email-peng.fan@nxp.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Aug 2019 08:13:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK7xPTYFzSXt52m+Z0LRcFy2TUfa45XzY1YGH0-JRA-WQ@mail.gmail.com>
-Message-ID: <CAL_JsqK7xPTYFzSXt52m+Z0LRcFy2TUfa45XzY1YGH0-JRA-WQ@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: mailbox: add binding doc for the ARM
- SMC/HVC mailbox
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        id S1727784AbfH0NSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 09:18:22 -0400
+Received: from mail-eopbgr50112.outbound.protection.outlook.com ([40.107.5.112]:14974
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725920AbfH0NSW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 09:18:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ii1glYbNlsmCnYxsMLD0imAczlLLjlbpqjwCwzdHWz5ltOAWcnQuHCUX5lblzSgUvGpaJeKUBV0qp3S5OZoh0ZqvHBhc7Nzhzz7XX6+S4Ios7vDzRd2+J+fyG8kfbORqxT3+qZMFZZeK6id+/q6LX0ahu8DYWfZEwOph2VHXWRCzJMxitfAsSLOuKmWc+RY5qqN6/5TaXR9WQAq+2GZYw/hPe6RwQ2z84LnpIxyWnp5NE8ox0S5dHG8GjpBNdhKGZM5Fpk0OAdG4U2ZBBXz1xnJYqRMXIPrDZQYDNgyUbGV2oq9Xxr+E/A9ZaV3o+7G78oYognl2nNlJT60xGm5nkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4c38jKzZzL1YLNMypixVtDvWLs5M48WiAq9DnHYbgF0=;
+ b=PCUrxb3+gxvFoeqvpEKV5hU7fgm3eUCKqaaXwNfpGI//xVyN/1QhzwDqh7+fwVJj0EzYZhob2VcQji4HqKUNZswQYOgmdFnZ2CokyQkDZCkS5H3d+OG8kqcPFkD93PDNcy45k2OGYGLoyW2cW2ru3PIN+4cdpdjxC4XstqiRZ8vE/5G0Mhk2VThwbe5EzbzGmVjkY/+WKqbUWcaJAbdJgZsfdAuJzN+qV3jyexiQ+f9rc+4QL/mInEaZ7AF94ZjMijeoCe9+Xpz0XNiHadSi2Rjo2bkYOZOKSMHjUh33hVZL1kzcooFXzIpqxhTRJUsFt6brfGamfZpC0SINEZa/Rw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4c38jKzZzL1YLNMypixVtDvWLs5M48WiAq9DnHYbgF0=;
+ b=qHFp4kZvRqmVXPNTROLOtdAmmtT/QyMPINBM4JJdGTtiHzZNEROhpFb5z1dj2J9wAGTL1J7815R7asjO12g0+MIJ4muMx1CYPQI3QHwAPhwpVzAoalW/h+OlO4JWn1aUMaNctzQzSjmeQxCbQ2EUboNAFQ5nZfBDrmWEOJYHgoc=
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
+ VI1PR0502MB3872.eurprd05.prod.outlook.com (52.134.5.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Tue, 27 Aug 2019 13:18:16 +0000
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::f59f:a307:9c53:63b9]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::f59f:a307:9c53:63b9%6]) with mapi id 15.20.2199.021; Tue, 27 Aug 2019
+ 13:18:16 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        "stefan @ agner . ch" <stefan@agner.ch>,
+        "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?utf-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Fabio Estevam <festevam@gmail.com>
+CC:     Philippe Schenker <philippe.schenker@toradex.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v5 00/13] Common patches from downstream development
+Thread-Topic: [PATCH v5 00/13] Common patches from downstream development
+Thread-Index: AQHVXNnirAUAmshgM0GrJ2yVzzun2A==
+Date:   Tue, 27 Aug 2019 13:18:16 +0000
+Message-ID: <20190827131806.6816-1-philippe.schenker@toradex.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: AM0PR0102CA0031.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:14::44) To VI1PR0502MB3965.eurprd05.prod.outlook.com
+ (2603:10a6:803:23::29)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=philippe.schenker@toradex.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.23.0
+x-originating-ip: [46.140.72.82]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4fc8600a-51f8-4d88-7216-08d72af10555
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3872;
+x-ms-traffictypediagnostic: VI1PR0502MB3872:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0502MB38728A19B912DF5E5DB53C61F4A00@VI1PR0502MB3872.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:619;
+x-forefront-prvs: 0142F22657
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(376002)(366004)(136003)(346002)(39850400004)(189003)(199004)(8936002)(66946007)(2906002)(5660300002)(50226002)(54906003)(110136005)(316002)(14454004)(1076003)(561944003)(14444005)(256004)(64756008)(6506007)(386003)(7736002)(478600001)(36756003)(53936002)(66556008)(6116002)(66066001)(66446008)(3846002)(6436002)(476003)(2616005)(486006)(6512007)(26005)(305945005)(102836004)(6486002)(71200400001)(186003)(8676002)(86362001)(81166006)(4326008)(71190400001)(81156014)(66476007)(25786009)(99286004)(7416002)(52116002)(44832011)(21314003);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3872;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: x2vV1BoMOXB0f49Jcumk4GwxWp2E6wKD184vmfI/rYZ9KzjMpjCSWkN7DaMmLQ5btEqzaEq60H3e6OYlg8+ZbV/sfUE46cFuMRpKaXovpQa/UZeSKvWJPBPBitGlailPtvkaruNlIQ8wyNobr5oFciU63fLLkfSqP+EuV5JH41Wh9WFSNJua/Au5jxSO+2s+oSkfjNKb4QunvxdzHw/r7lEXi7vA8GldvfoEGrxlMCcn49ej7loIA0ZWP6YM5PEabAgeS1X1jt3dPeJ1O5NWGKWy3HAnOEQzcfWOd1u7Dfx6VRHhvV3EWjyR6FXl0lX6dzWGCHV417aPpiJ+JIU2ExnaspfTbXFSj14b+K7cjoJP7HsB02Rq/kixfRwz2EMcIWwHUp0Oc68EoSWeCI7CvuC+vxOVF6W0Rb8gKYskQh4=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <E9D7C2CC8883B8409492F23CF1D14A42@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4fc8600a-51f8-4d88-7216-08d72af10555
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2019 13:18:16.3434
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: YaiWVF6wJYk43u0xnVVMJxiA+qzAJpFAk4dVOaRPH2UYq95qv9xKHQw/ukv2WYHuOlRAhVgNv4gE3h4oKdBwrocb447Pi4e/2MKkZutQBHM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3872
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 4:51 AM Peng Fan <peng.fan@nxp.com> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
-> actions in software layers running in the EL2 or EL3 exception levels.
-> The term "ARM" here relates to the SMC instruction as part of the ARM
-> instruction set, not as a standard endorsed by ARM Ltd.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mailbox/arm-smc.yaml       | 126 +++++++++++++++++++++
->  1 file changed, 126 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
->
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> new file mode 100644
-> index 000000000000..ae677e0c0910
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM SMC Mailbox Interface
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
-> +  call) instruction to trigger a mailbox-connected activity in firmware,
-> +  executing on the very same core as the caller. By nature this operation
-> +  is synchronous and this mailbox provides no way for asynchronous messages
-> +  to be delivered the other way round, from firmware to the OS, but
-> +  asynchronous notification could also be supported. However the value of
-> +  r0/w0/x0 the firmware returns after the smc call is delivered as a received
-> +  message to the mailbox framework, so a synchronous communication can be
-> +  established, for a asynchronous notification, no value will be returned.
-> +  The exact meaning of both the action the mailbox triggers as well as the
-> +  return value is defined by their users and is not subject to this binding.
-> +
-> +  One use case of this mailbox is the SCMI interface, which uses shared memory
-> +  to transfer commands and parameters, and a mailbox to trigger a function
-> +  call. This allows SoCs without a separate management processor (or when
-> +  such a processor is not available or used) to use this standardized
-> +  interface anyway.
-> +
-> +  This binding describes no hardware, but establishes a firmware interface.
-> +  Upon receiving an SMC using one of the described SMC function identifiers,
-> +  the firmware is expected to trigger some mailbox connected functionality.
-> +  The communication follows the ARM SMC calling convention.
-> +  Firmware expects an SMC function identifier in r0 or w0. The supported
-> +  identifiers are passed from consumers, or listed in the the arm,func-ids
-> +  properties as described below. The firmware can return one value in
-> +  the first SMC result register, it is expected to be an error value,
-> +  which shall be propagated to the mailbox client.
-> +
-> +  Any core which supports the SMC or HVC instruction can be used, as long as
-> +  a firmware component running in EL3 or EL2 is handling these calls.
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,smc-mbox
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +
-> +  arm,num-chans:
-> +    description: The number of channels supported.
-> +    items:
-> +     minimum: 1
-> +     maximum: 4096 # Should be enough?
-> +
-> +  method:
-> +    items:
-
-You can drop 'items' as this is a single entry.
-
-> +      - enum:
-> +          - smc
-> +          - hvc
-> +
-> +  transports:
-> +    items:
-
-same here
-
-> +      - enum:
-> +          - mem
-> +          - reg
-> +
-> +  arm,func-ids:
-
-Needs a $ref to a type (uint32-array).
-
-> +    description: |
-> +      An array of 32-bit values specifying the function IDs used by each
-> +      mailbox channel. Those function IDs follow the ARM SMC calling
-> +      convention standard [1].
-> +
-> +      There is one identifier per channel and the number of supported
-> +      channels is determined by the length of this array.
-> +    minItems: 0
-> +    maxItems: 4096   # Should be enough?
-> +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +  - arm,num-chans
-> +  - transports
-> +  - method
-> +
-> +examples:
-> +  - |
-> +    sram@910000 {
-> +      compatible = "mmio-sram";
-> +      reg = <0x0 0x93f000 0x0 0x1000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      ranges = <0 0x0 0x93f000 0x1000>;
-> +
-> +        cpu_scp_lpri: scp-shmem@0 {
-
-Looks like some indentation problem...
-
-> +          compatible = "arm,scmi-shmem";
-> +          reg = <0x0 0x200>;
-> +        };
-> +
-> +        cpu_scp_hpri: scp-shmem@200 {
-> +          compatible = "arm,scmi-shmem";
-> +          reg = <0x200 0x200>;
-> +        };
-> +    };
-> +
-> +    firmware {
-> +      smc_mbox: mailbox {
-> +        #mbox-cells = <1>;
-> +        compatible = "arm,smc-mbox";
-> +        method = "smc";
-> +        arm,num-chans = <0x2>;
-> +        transports = "mem";
-> +        /* Optional */
-> +        arm,func-ids = <0xc20000fe>, <0xc20000ff>;
-> +      };
-> +
-> +      scmi {
-> +        compatible = "arm,scmi";
-> +        mboxes = <&mailbox 0 &mailbox 1>;
-
-&smc_mbox and <> each entry.
-
-> +        mbox-names = "tx", "rx";
-> +        shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
-
-<> each entry
-
-> +      };
-> +    };
-> +
-> +...
-> --
-> 2.16.4
->
+DQpUaGlzIHBhdGNoc2V0IGhvbGRzIHNvbWUgY29tbW9uIGNoYW5nZXMgdGhhdCB3ZXJlIG5ldmVy
+IHVwc3RyZWFtZWQuDQpXaXRoIGxhdGVzdCBkb3duc3RyZWFtIGtlcm5lbCB1cGdyYWRlLCBJIHRv
+b2sgdGhlIGFwcm9hY2ggdG8gc2VsZWN0DQptYWlubGluZSBkZXZpY2V0cmVlcyBhbmQgYXRvbWlj
+YWxseSBhZGQgbWlzc2luZyBzdHVmZiBmb3IgZG93bnN0cmVhbS4NCg0KVGhlc2UgcGF0Y2hlcyBJ
+IHNlbmQgaGVyZSBhcmUgc2VwYXJhdGVkIG91dCB3aXRoIGNoYW5nZXMgdGhhdCBhbHNvDQpoYXZl
+IGEgYmVuZWZpdCBmb3IgbWFpbmxpbmUuDQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLSBVcGRhdGUg
+dmVyc2lvbiA0IGFuZCBsYXRlciAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KUGF0Y2hlcyB0aGF0
+IGdvdCBwdWxsZWQgaW4gYW4gZWFybGllciBwYXRjaHNldCB2ZXJzaW9uIGdvdCBkcm9wcGVkIGlu
+DQp0aGlzIHBhdGNoc2V0Lg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQoNClBoaWxpcHBlDQoNCkNoYW5nZXMg
+aW4gdjU6DQotIGNoYW5nZWQgbGVnYWN5IGdwaW8ta2V5LHdha2V1cCB0byB3YWtldXAtc291cmNl
+DQotIEFkZCBub3RlIGluIGNvbW1pdCBtZXNzYWdlIGFib3V0IGRpc2FibGVkIHN0YXR1cw0KLSBB
+ZGRlZCBPbGVrJ3MgcmV2aWV3ZWQtYnkNCi0gY2hhbmdlIGdyb3VwIG5hbWUNCi0gQWRkIHBpbm11
+eCB0byBpb211eGMNCi0gQWRqdXN0ZWQgY29tbWl0IG1lc3NhZ2UNCi0gU3dpdGNoZWQgdG8gY29u
+c2lzdGVudCBuYW1pbmc6IHBpbmN0cmxfeHh4OiB4eHhncnANCi0gQWRkZWQgT2xlaydzIFJldmll
+d2VkLWJ5DQotIEFkZGVkIE9sZWsncyBSZXZpZXdlZC1ieQ0KLSBBZGRlZCBPbGVrJ3MgUmV2aWV3
+ZWQtYnkNCi0gQWRkZWQgT2xlaydzIFJldmlld2QtYnkNCi0gQWRkZWQgT2xlaydzIFJldmlld2Vk
+LWJ5DQotIEFkZCBPbGVrJ3MgUmV2aWV3ZWQtYnkNCi0gQWRkZWQgbm90ZSB0byBjb21taXQgbWVz
+c2FnZSBhYm91dCBkaXNhYmxlZCBzdGF0dXMNCi0gQWRkIE9sZWsncyBSZXZpZXdlZC1ieQ0KDQpD
+aGFuZ2VzIGluIHY0Og0KLSBBZGQgTWFyY2VsIFppc3dpbGVyJ3MgQWNrDQotIEFkZCBNYXJjZWwg
+Wmlzd2lsZXIncyBBY2sNCi0gQWRkIE1hcmNlbCBaaXN3aWxlcidzIEFjaw0KLSBBZGQgTWFyY2Vs
+IFppc3dpbGVyJ3MgQWNrDQotIEFkZCBNYXJjZWwgWmlzd2lsZXIncyBBY2sNCi0gQWRkIE1hcmNl
+bCBaaXN3aWxlcidzIEFjaw0KLSBBZGQgTWFyY2VsIFppc3dpbGVyJ3MgQWNrDQotIEFkZCBNYXJj
+ZWwgWmlzd2lsZXIncyBBY2sNCi0gQWRkIE1hcmNlbCBaaXN3aWxlcidzIEFjaw0KLSBBZGQgTWFy
+Y2VsIFppc3dpbGVyJ3MgQWNrDQotIE1vdmUgY2FuIG5vZGVzIHRvIG1vZHVsZSBkZXZpY2V0ZXJl
+ZSBpbmNsdWRlIGlteDZ1bGwtY29saWJyaS5kdHNpDQotIEFkZCBNYXJjZWwgWmlzd2lsZXIncyBB
+Y2sNCg0KQ2hhbmdlcyBpbiB2MzoNCi0gQWRkIG5ldyBjb21taXQgbWVzc2FnZSBmcm9tIFN0ZWZh
+bidzIHByb3Bvc2FsIG9uIE1MDQotIEZpeCBjb21taXQgbWVzc2FnZQ0KLSBGaXggY29tbWl0IHRp
+dGxlIHRvICIuLi5pbXg2LWFwYWxpczouLi4iDQoNCkNoYW5nZXMgaW4gdjI6DQotIERlbGV0ZWQg
+dG91Y2hyZXZvbHV0aW9uIGRvd25zdHJlYW0gc3R1ZmYNCi0gVXNlIGdlbmVyaWMgbm9kZSBuYW1l
+DQotIEJldHRlciBjb21tZW50DQotIENoYW5nZWQgY29tbWl0IHRpdGxlIHRvICcuLi5pbXg2cWRs
+LWFwYWxpczouLi4nDQotIERlbGV0ZWQgdG91Y2hyZXZvbHV0aW9uIGRvd25zdHJlYW0gc3R1ZmYN
+Ci0gVXNlIGdlbmVyaWMgbm9kZSBuYW1lDQotIFB1dCBhIGJldHRlciBjb21tZW50IGluIHRoZXJl
+DQotIENvbW1pdCB0aXRsZQ0KLSBSZW1vdmVkIGYwNzEwYQ0KdGhhdCBpcyBkb3duc3RyZWFtIG9u
+bHkNCi0gQ2hhbmdlZCB0byBnZW5lcmljIG5vZGUgbmFtZQ0KLSBCZXR0ZXIgY29tbWVudA0KDQpN
+YXggS3J1bW1lbmFjaGVyICgyKToNCiAgQVJNOiBkdHM6IGlteDZ1bGwtY29saWJyaTogcmVkdWNl
+IHZfYmF0dCBjdXJyZW50IGluIHBvd2VyIG9mZg0KICBBUk06IGR0czogaW14NnVsbDogaW1wcm92
+ZSBjYW4gdGVtcGxhdGVzDQoNClBoaWxpcHBlIFNjaGVua2VyICg5KToNCiAgQVJNOiBkdHM6IGlt
+eDctY29saWJyaTogQWRkIHRvdWNoIGNvbnRyb2xsZXJzDQogIEFSTTogZHRzOiBpbXg2cWRsLWNv
+bGlicmk6IEFkZCBtaXNzaW5nIHBpbiBkZWNsYXJhdGlvbiBpbiBpb211eGMNCiAgQVJNOiBkdHM6
+IGlteDZxZGwtYXBhbGlzOiBBZGQgc2xlZXAgc3RhdGUgdG8gY2FuIGludGVyZmFjZXMNCiAgQVJN
+OiBkdHM6IGlteDYtYXBhbGlzOiBBZGQgdG91Y2hzY3JlZW5zIHVzZWQgb24gVG9yYWRleCBldmFs
+IGJvYXJkcw0KICBBUk06IGR0czogaW14Ni1jb2xpYnJpOiBBZGQgbWlzc2luZyBwaW5tdXhpbmcg
+dG8gVG9yYWRleCBldmFsIGJvYXJkDQogIEFSTTogZHRzOiBpbXg2dWxsLWNvbGlicmk6IEFkZCBz
+bGVlcCBtb2RlIHRvIGZlYw0KICBBUk06IGR0czogaW14NnVsbC1jb2xpYnJpOiBBZGQgd2F0Y2hk
+b2cNCiAgQVJNOiBkdHM6IGlteDZ1bGwtY29saWJyaTogQWRkIGdlbmVyYWwgd2FrZXVwIGtleSB1
+c2VkIG9uIENvbGlicmkNCiAgQVJNOiBkdHM6IGlteDZ1bGwtY29saWJyaTogQWRkIHRvdWNoc2Ny
+ZWVuIHVzZWQgd2l0aCBFdmFsIEJvYXJkDQoNClN0ZWZhbiBBZ25lciAoMik6DQogIEFSTTogZHRz
+OiBpbXg3LWNvbGlicmk6IGFkZCBHUElPIHdha2V1cCBrZXkNCiAgQVJNOiBkdHM6IGlteDctY29s
+aWJyaTogZml4IDEuOFYvVUhTIHN1cHBvcnQNCg0KIGFyY2gvYXJtL2Jvb3QvZHRzL2lteDZkbC1j
+b2xpYnJpLWV2YWwtdjMuZHRzICB8IDM5ICsrKysrKysrKysrDQogYXJjaC9hcm0vYm9vdC9kdHMv
+aW14NnEtYXBhbGlzLWV2YWwuZHRzICAgICAgIHwgMTMgKysrKw0KIGFyY2gvYXJtL2Jvb3QvZHRz
+L2lteDZxLWFwYWxpcy1peG9yYS12MS4xLmR0cyB8IDEzICsrKysNCiBhcmNoL2FybS9ib290L2R0
+cy9pbXg2cS1hcGFsaXMtaXhvcmEuZHRzICAgICAgfCAxMyArKysrDQogYXJjaC9hcm0vYm9vdC9k
+dHMvaW14NnFkbC1hcGFsaXMuZHRzaSAgICAgICAgIHwgMjcgKysrKysrLS0NCiBhcmNoL2FybS9i
+b290L2R0cy9pbXg2cWRsLWNvbGlicmkuZHRzaSAgICAgICAgfCAxNyArKysrKw0KIC4uLi9hcm0v
+Ym9vdC9kdHMvaW14NnVsbC1jb2xpYnJpLWV2YWwtdjMuZHRzaSB8IDM4ICsrKysrKysrKysrDQog
+Li4uL2FybS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmktbm9ud2lmaS5kdHNpIHwgIDIgKy0NCiBh
+cmNoL2FybS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmktd2lmaS5kdHNpICAgfCAgMiArLQ0KIGFy
+Y2gvYXJtL2Jvb3QvZHRzL2lteDZ1bGwtY29saWJyaS5kdHNpICAgICAgICB8IDY0ICsrKysrKysr
+KysrKysrKysrLS0NCiBhcmNoL2FybS9ib290L2R0cy9pbXg3LWNvbGlicmktZXZhbC12My5kdHNp
+ICAgfCAzOCArKysrKysrKysrKw0KIGFyY2gvYXJtL2Jvb3QvZHRzL2lteDctY29saWJyaS5kdHNp
+ICAgICAgICAgICB8IDMwICsrKysrKysrLQ0KIDEyIGZpbGVzIGNoYW5nZWQsIDI4MCBpbnNlcnRp
+b25zKCspLCAxNiBkZWxldGlvbnMoLSkNCg0KLS0gDQoyLjIzLjANCg0K
