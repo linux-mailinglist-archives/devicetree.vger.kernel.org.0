@@ -2,117 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EB579F0D6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CC209F0F5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:57:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730446AbfH0Qy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:54:57 -0400
-Received: from mta-02.yadro.com ([89.207.88.252]:40052 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730413AbfH0Qy4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 12:54:56 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 3774F41209;
-        Tue, 27 Aug 2019 16:54:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        content-type:content-type:content-transfer-encoding:mime-version
-        :references:in-reply-to:x-mailer:message-id:date:date:subject
-        :subject:from:from:received:received:received; s=mta-01; t=
-        1566924893; x=1568739294; bh=87VA5h5waSDTUF2CVQN/4Wwh9JYi5VNM4bl
-        aFGLhSMY=; b=gMdBm7HVXlGC8jRakgwY2WAmkhPtPeYsZxpqkbunuWfvgC23B86
-        B6SKzMVsvtgEgU8t7dTVDIU71OEUnd34+SzHiHqNMDwJJVbxdyoVSDttK8S7y803
-        dv+JmJcjATJuvoLmntstZDQFdUu00tZPXMju/cdk4igODmobcHHGY6eQ=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id DE_cOhyTE2_a; Tue, 27 Aug 2019 19:54:53 +0300 (MSK)
-Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 0C98E42ECA;
-        Tue, 27 Aug 2019 19:54:53 +0300 (MSK)
-Received: from localhost.dev.yadro.com (172.17.15.69) by
- T-EXCH-02.corp.yadro.com (172.17.10.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
- 15.1.669.32; Tue, 27 Aug 2019 19:54:52 +0300
-From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-CC:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
-        <linux-watchdog@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        Alexander Amelkin <a.amelkin@yadro.com>,
-        <openbmc@lists.ozlabs.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        Ivan Mikhaylov <i.mikhaylov@yadro.com>
-Subject: [PATCH v3 4/4] aspeed/watchdog: Add access_cs0 option for alt-boot
-Date:   Tue, 27 Aug 2019 19:54:26 +0300
-Message-ID: <20190827165426.17037-5-i.mikhaylov@yadro.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190827165426.17037-1-i.mikhaylov@yadro.com>
-References: <20190827165426.17037-1-i.mikhaylov@yadro.com>
+        id S1730463AbfH0Q5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:57:45 -0400
+Received: from mail-ot1-f53.google.com ([209.85.210.53]:39938 "EHLO
+        mail-ot1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729861AbfH0Q5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:57:44 -0400
+Received: by mail-ot1-f53.google.com with SMTP id c34so19356323otb.7;
+        Tue, 27 Aug 2019 09:57:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=e34XC5omSPkrZmlMoY94//8TGLk1xQwBY2owDQuZ6pU=;
+        b=WwFCAQL6xjcL39RzeYzWqPIkDGliOto7KQQN3P8HoSxGt4xKGlLjDj/qX9aw9T4caL
+         clKrk4pvHI1lqayrX8mr7r2dTpDvRVNOVo7QMdMrnJRwhr2m1L+4oZkdtTSmZ2/WvEI5
+         HhyaNU5+TMEnUXepuztWb+0d4hkvd3meD96gF1+Vn68y0pDjG9lLSDXFO9joGqw/HHEM
+         FFPgbNLb++Otdv5uZarVGNvobir3V1sFx1YOiy+jbfqtvzu089npXG1M9yQxU0/iChez
+         DkO1OyJ1vHfjlVprW9/27Vr7LxaWj3U/360nDtSfNoBBP9VVkPGTpvBWxD3dFjLbVxpY
+         RwFw==
+X-Gm-Message-State: APjAAAW0JeZc8da7rZNiGNcq+xIoA1Y/HpKhEbKlJkpZYYeX09B7sEnA
+        j6goAMXc9Be/DEE1QKvl2w==
+X-Google-Smtp-Source: APXvYqxfJvReAk8gOPh8OBq+8npMo5SEDQRFFNpZg0W2AGejCsNo+idFunecxm0L/VujnvtLXPrsJQ==
+X-Received: by 2002:a9d:200c:: with SMTP id n12mr21465382ota.334.1566925063917;
+        Tue, 27 Aug 2019 09:57:43 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id w10sm5452551otm.68.2019.08.27.09.57.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 09:57:43 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 11:57:42 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "andrew.murray@arm.com" <andrew.murray@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Subject: Re: [PATCHv2 1/4] dt-bindings: PCI: designware: Remove the num-lanes
+ from  Required properties
+Message-ID: <20190827165742.GA5083@bogus>
+References: <20190820073022.24217-1-Zhiqiang.Hou@nxp.com>
+ <20190820073022.24217-2-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [172.17.15.69]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-02.corp.yadro.com (172.17.10.102)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190820073022.24217-2-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The option for the ast2400/2500 to get access to CS0 at runtime.
+On Tue, 20 Aug 2019 07:28:43 +0000, "Z.q. Hou" wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> The num-lanes is not a mandatory property, e.g. on FSL
+> Layerscape SoCs, the PCIe link training is completed
+> automatically base on the selected SerDes protocol, it
+> doesn't need the num-lanes to set-up the link width.
+> 
+> It is previously in both Required and Optional properties,
+> let's remove it from the Required properties.
+> 
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> ---
+> V2:
+>  - Reworded the change log and subject.
+>  - Fixed a typo in subject.
+> 
+>  Documentation/devicetree/bindings/pci/designware-pcie.txt | 1 -
+>  1 file changed, 1 deletion(-)
+> 
 
-Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
----
- .../ABI/testing/sysfs-class-watchdog          | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
-
-diff --git a/Documentation/ABI/testing/sysfs-class-watchdog b/Documentation/ABI/testing/sysfs-class-watchdog
-index 6317ade5ad19..675f9b537661 100644
---- a/Documentation/ABI/testing/sysfs-class-watchdog
-+++ b/Documentation/ABI/testing/sysfs-class-watchdog
-@@ -72,3 +72,37 @@ Description:
- 		It is a read/write file. When read, the currently assigned
- 		pretimeout governor is returned.  When written, it sets
- 		the pretimeout governor.
-+
-+What:		/sys/class/watchdog/watchdog1/access_cs0
-+Date:		August 2019
-+Contact:	Ivan Mikhaylov <i.mikhaylov@yadro.com>,
-+		Alexander Amelkin <a.amelkin@yadro.com>
-+Description:
-+		It is a read/write file. This attribute exists only if the
-+		system has booted from the alternate flash chip due to
-+		expiration of a watchdog timer of AST2400/AST2500 when
-+		alternate boot function was enabled with 'aspeed,alt-boot'
-+		devicetree option for that watchdog or with an appropriate
-+		h/w strapping (for WDT2 only).
-+
-+		At alternate flash the 'access_cs0' sysfs node provides:
-+			ast2400: a way to get access to the primary SPI flash
-+				chip at CS0 after booting from the alternate
-+				chip at CS1.
-+			ast2500: a way to restore the normal address mapping
-+				from (CS0->CS1, CS1->CS0) to (CS0->CS0,
-+				CS1->CS1).
-+
-+		Clearing the boot code selection and timeout counter also
-+		resets to the initial state the chip select line mapping. When
-+		the SoC is in normal mapping state (i.e. booted from CS0),
-+		clearing those bits does nothing for both versions of the SoC.
-+		For alternate boot mode (booted from CS1 due to wdt2
-+		expiration) the behavior differs as described above.
-+
-+		This option can be used with wdt2 (watchdog1) only.
-+
-+		When read, the current status of the boot code selection is
-+		shown. When written with any non-zero value, it clears
-+		the boot code selection and the timeout counter, which results
-+		in chipselect reset for AST2400/AST2500.
--- 
-2.20.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
