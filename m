@@ -2,232 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE399E389
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 11:01:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 484749E398
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 11:04:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbfH0JBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 05:01:12 -0400
-Received: from forward104j.mail.yandex.net ([5.45.198.247]:55692 "EHLO
-        forward104j.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725805AbfH0JBM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 05:01:12 -0400
-Received: from mxback15o.mail.yandex.net (mxback15o.mail.yandex.net [IPv6:2a02:6b8:0:1a2d::66])
-        by forward104j.mail.yandex.net (Yandex) with ESMTP id 7A8A14A1B5A;
-        Tue, 27 Aug 2019 11:55:15 +0300 (MSK)
-Received: from smtp1p.mail.yandex.net (smtp1p.mail.yandex.net [2a02:6b8:0:1472:2741:0:8b6:6])
-        by mxback15o.mail.yandex.net (nwsmtp/Yandex) with ESMTP id 3r8G3bhQvA-tE5Ogajn;
-        Tue, 27 Aug 2019 11:55:15 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1566896115;
-        bh=9x9JHKkA5s2saezMDxxt5Ql6wxmaHniD/+8n/iFpUTE=;
-        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
-        b=NashDxeo1Tfl+b8j0QMdUXOR7BeLWTXdY8jILSaOTvTLo9cRK799i6XOwJg4sZsxZ
-         hiMCBBtYujEVUxH1hGtBN40UDAGTeVO5Wds7nbQ7nopLgsvApmMAcWu2GGlx6OP7JQ
-         ngUulvIjgzIfc9cNNDo2pQsAm288nW2UDU4oNu+4=
-Authentication-Results: mxback15o.mail.yandex.net; dkim=pass header.i=@flygoat.com
-Received: by smtp1p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id JOqUfE8LDO-t9tClHm7;
-        Tue, 27 Aug 2019 11:55:13 +0300
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client certificate not present)
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     linux-mips@vger.kernel.org
-Cc:     chenhc@lemote.com, paul.burton@mips.com, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.co,
-        devicetree@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: [PATCH 13/13] MIPS: Loongson64: Load built-in dtbs
-Date:   Tue, 27 Aug 2019 16:53:02 +0800
-Message-Id: <20190827085302.5197-14-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
-References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+        id S1728636AbfH0JEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 05:04:25 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:45410 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725805AbfH0JEZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 05:04:25 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 6974A60D35; Tue, 27 Aug 2019 09:04:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566896664;
+        bh=HS1OouRZhdolW8NM9h0nQjiU3lPKdOar2sWLkTzCqIw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=hklnlLAqmsvSOtq5T/om8QBF63iOcu7BXR6BbPH1dKiQqvI0R00QMq3ZwMwRiaFkY
+         yDvRgvYZIRwGcdMEvSHv4FdjC6epE2BuIiPAk79+VWbpGq8DLkWdWSK+/xsBes+h+F
+         qgEBM6UceEsYnyDV2WA9B0koy87IoDwfYwZL42Jw=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id B3BCE6044E;
+        Tue, 27 Aug 2019 09:04:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1566896663;
+        bh=HS1OouRZhdolW8NM9h0nQjiU3lPKdOar2sWLkTzCqIw=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Z+odZ4KFprdkXmC8ksOERWY0gRUlHknCnpCeMfZ0w+yI0utkR7sE99SQYqYypyMXU
+         uia4IJmmH7m4YPm1wa2VmlJVQrBj0TtxKbmOhWcvA8WPDggCiKGi8qGC/x4hzBdA0p
+         KE0X9egMkxKuRueOOaTWd2MHMnek++/L7I8ysgj4=
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 27 Aug 2019 14:34:23 +0530
+From:   Anilkumar Kolli <akolli@codeaurora.org>
+To:     Sven Eckelmann <sven@narfation.org>
+Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, Kalle Valo <kvalo@codeaurora.org>
+Subject: Re: [PATCH 10/49] ath11k: add debug.c
+In-Reply-To: <4441194.D8eDD6Tzdi@bentobox>
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+ <2708501.D2hezO5Rnt@bentobox>
+ <80bdedf3740960e0ce05b02a77d1b457@codeaurora.org>
+ <4441194.D8eDD6Tzdi@bentobox>
+Message-ID: <6622b83f754404ec05b9442027757c5e@codeaurora.org>
+X-Sender: akolli@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Load proper dtb according to firmware passed parameters and
-CPU PRID.
+On 2019-08-27 13:05, Sven Eckelmann wrote:
+> On Tuesday, 27 August 2019 09:33:39 CEST Anilkumar Kolli wrote:
+> [...]
+>> >     [ 4312.884650] The reading for sensor 4 is 0x002041f7
+>> >     [ 4312.891499] The reading for sensor 5 is 0x002051f4
+>> >     [ 4312.896415] Couldn't get reading for sensor 6
+>> >     [ 4312.901189] Couldn't get reading for sensor 7
+>> >     [ 4312.905561] The reading for sensor 8 is 0x002081e0
+>> >     [ 4312.909902] The reading for sensor 9 is 0x002091f7
+>> >     [ 4312.914645] Couldn't get reading for sensor 10
+>> >     [ 4312.919364] The reading for sensor 11 is 0x0020b1fa
+>> >     [ 4312.923791] The reading for sensor 12 is 0x0020c1fa
+>> >     [ 4312.928621] Couldn't get reading for sensor 13
+>> >     [ 4312.933425] The reading for sensor 14 is 0x0020e1f4
+>> >     [ 4312.937941] The reading for sensor 15 is 0x0020f1e7
+>> >     [ 4313.942700] Rebooting in 3 seconds..
+>> >
+>> > Maybe can be fixed by a different kernel (for the remoteproc). But I
+>> > don't
+>> > have this kernel at the moment.
+>> >
+>> 
+>> The write of an "assert", sends 'WMI_FORCE_FW_HANG_CMDID' WMI command 
+>> to
+>> target firmware.
+>> This WMI command forces the target to assert.
+> 
+> Yes, but it shouldn't kill the complete system.
+> 
+This will not kill the whole system, This will crash target and we have 
+mechanism to recover the system.
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- .../asm/mach-loongson64/builtin_dtbs.h        | 26 +++++++
- .../include/asm/mach-loongson64/loongson64.h  |  2 +
- arch/mips/loongson64/env.c                    | 67 +++++++++++++++++++
- arch/mips/loongson64/setup.c                  | 15 +++++
- 4 files changed, 110 insertions(+)
- create mode 100644 arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
+Hope u have generated the crash with below patch,
+https://source.codeaurora.org/quic/qsdk/oss/system/feeds/wlan-open/tree/mac80211/patches/019-ath11k-disable-q6-recovery-to-crash-kernel.patch?h=win_ap.1.0
 
-diff --git a/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h b/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
-new file mode 100644
-index 000000000000..234803ba9d82
---- /dev/null
-+++ b/arch/mips/include/asm/mach-loongson64/builtin_dtbs.h
-@@ -0,0 +1,26 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * Copyright (C) 2019 Jiaxun Yang <jiaxun.yang@flygoat.com>
-+ * 
-+ * Built-in Generic dtbs for MACH_LOONGSON64 
-+ */
-+
-+#ifndef __ASM_MACH_LOONGSON64_BUILTIN_DTBS_H_
-+#define __ASM_MACH_LOONGSON64_BUILTIN_DTBS_H_
-+
-+extern u32 __dtb_ls3a1000_780e_1way_begin[];
-+extern u32 __dtb_ls3a1000_780e_2way_begin[];
-+extern u32 __dtb_ls3a1000_780e_4way_begin[];
-+
-+extern u32 __dtb_ls3b_780e_1way_begin[];
-+extern u32 __dtb_ls3b_780e_2way_begin[];
-+
-+extern u32 __dtb_ls3a2000_780e_1way_begin[];
-+extern u32 __dtb_ls3a2000_780e_2way_begin[];
-+extern u32 __dtb_ls3a2000_780e_4way_begin[];
-+
-+extern u32 __dtb_ls3a3000_780e_1way_begin[];
-+extern u32 __dtb_ls3a3000_780e_2way_begin[];
-+extern u32 __dtb_ls3a3000_780e_4way_begin[];
-+
-+#endif
-diff --git a/arch/mips/include/asm/mach-loongson64/loongson64.h b/arch/mips/include/asm/mach-loongson64/loongson64.h
-index d877adb99d33..78daa3fb3fa7 100644
---- a/arch/mips/include/asm/mach-loongson64/loongson64.h
-+++ b/arch/mips/include/asm/mach-loongson64/loongson64.h
-@@ -45,4 +45,6 @@ extern u64 loongson_freqctrl[MAX_PACKAGES];
- 
- extern const struct plat_smp_ops loongson3_smp_ops;
- extern void __init prom_init_lefi(void);
-+extern void *loongson_fdt_blob;
-+
- #endif
-diff --git a/arch/mips/loongson64/env.c b/arch/mips/loongson64/env.c
-index 93658cfbf3a6..4336bd7c1b94 100644
---- a/arch/mips/loongson64/env.c
-+++ b/arch/mips/loongson64/env.c
-@@ -20,6 +20,7 @@
- 
- #include <loongson64.h>
- #include <boot_param.h>
-+#include <builtin_dtbs.h>
- #include <workarounds.h>
- 
- u32 cpu_clock_freq;
-@@ -126,6 +127,72 @@ void __init prom_init_lefi(void)
- 		loongson_sysconf.cores_per_node - 1) /
- 		loongson_sysconf.cores_per_node;
- 
-+	if ((read_c0_prid() & PRID_IMP_MASK) == PRID_IMP_LOONGSON_64) {
-+		switch (read_c0_prid() & PRID_REV_MASK) {
-+		case PRID_REV_LOONGSON3A_R1:
-+			switch (loongson_sysconf.nr_nodes) {
-+			case 4:
-+				loongson_fdt_blob = __dtb_ls3a1000_780e_4way_begin;
-+				break;
-+			case 2:
-+				loongson_fdt_blob = __dtb_ls3a1000_780e_2way_begin;
-+				break;			
-+			case 1:
-+			default:
-+				loongson_fdt_blob = __dtb_ls3a1000_780e_1way_begin;
-+				break;
-+			}
-+			break;
-+		case PRID_REV_LOONGSON3A_R2_0:
-+		case PRID_REV_LOONGSON3A_R2_1:
-+			switch (loongson_sysconf.nr_nodes) {
-+			case 4:
-+				loongson_fdt_blob = __dtb_ls3a2000_780e_4way_begin;
-+				break;
-+			case 2:
-+				loongson_fdt_blob = __dtb_ls3a2000_780e_2way_begin;
-+				break;			
-+			case 1:
-+			default:
-+				loongson_fdt_blob = __dtb_ls3a2000_780e_1way_begin;
-+				break;
-+			}
-+			break;
-+		case PRID_REV_LOONGSON3A_R3_0:
-+		case PRID_REV_LOONGSON3A_R3_1:
-+			switch (loongson_sysconf.nr_nodes) {
-+			case 4:
-+				loongson_fdt_blob = __dtb_ls3a3000_780e_4way_begin;
-+				break;
-+			case 2:
-+				loongson_fdt_blob = __dtb_ls3a3000_780e_2way_begin;
-+				break;			
-+			case 1:
-+			default:
-+				loongson_fdt_blob = __dtb_ls3a3000_780e_1way_begin;
-+				break;
-+			}
-+			break;
-+		case PRID_REV_LOONGSON3B_R1:
-+		case PRID_REV_LOONGSON3B_R2:
-+			switch (loongson_sysconf.nr_nodes) {
-+			case 4:
-+				loongson_fdt_blob = __dtb_ls3b_780e_2way_begin;
-+				break;			
-+			case 2:
-+			default:
-+				loongson_fdt_blob = __dtb_ls3b_780e_1way_begin;
-+				break;
-+			}
-+			break;
-+		default:
-+			break;
-+		}
-+	}
-+
-+	if(!loongson_fdt_blob)
-+		pr_err("Failed to determine built-in Loongson64 dtb\n");
-+
- 	loongson_sysconf.pci_mem_start_addr = eirq_source->pci_mem_start_addr;
- 	loongson_sysconf.pci_mem_end_addr = eirq_source->pci_mem_end_addr;
- 	loongson_sysconf.pci_io_base = eirq_source->pci_io_start_addr;
-diff --git a/arch/mips/loongson64/setup.c b/arch/mips/loongson64/setup.c
-index 24432adc8350..3b850b3128ea 100644
---- a/arch/mips/loongson64/setup.c
-+++ b/arch/mips/loongson64/setup.c
-@@ -7,9 +7,15 @@
- #include <asm/setup.h>
- #include <asm/smp-ops.h>
- #include <asm/cacheflush.h>
-+#include <linux/libfdt.h>
-+#include <linux/of_fdt.h>
-+
-+#include <asm/prom.h>
- 
- #include <loongson64.h>
- 
-+void *loongson_fdt_blob;
-+
- static void wbflush_loongson(void)
- {
- 	asm(".set\tpush\n\t"
-@@ -81,6 +87,8 @@ void __init prom_free_prom_memory(void)
- 
- void __init plat_mem_setup(void)
- {
-+	if (loongson_fdt_blob)
-+		__dt_setup_arch(loongson_fdt_blob);
- }
- 
- void __init plat_time_init(void)
-@@ -90,3 +98,10 @@ void __init plat_time_init(void)
- #endif
- }
- 
-+void __init device_tree_init(void)
-+{
-+	if (!initial_boot_params)
-+		return;
-+
-+	unflatten_and_copy_device_tree();
-+}
--- 
-2.22.0
+Please remove this patch to see the target recover after the crash.
+
+Thanks
+Anil
 
