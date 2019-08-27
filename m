@@ -2,102 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ED639EC4E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 17:21:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFCF09EC7F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 17:26:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727306AbfH0PU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 11:20:59 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:36115 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726170AbfH0PU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 11:20:59 -0400
-X-Originating-IP: 86.207.98.53
-Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 3E6BC20018;
-        Tue, 27 Aug 2019 15:20:56 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Yan Markman <ymarkman@marvell.com>,
-        Konstantin Porotchkin <kostap@marvell.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: Re: [PATCH 05/20] arm64: dts: marvell: Prepare the introduction of AP807 based SoCs
-In-Reply-To: <20190806145500.24109-6-miquel.raynal@bootlin.com>
-References: <20190806145500.24109-1-miquel.raynal@bootlin.com> <20190806145500.24109-6-miquel.raynal@bootlin.com>
-Date:   Tue, 27 Aug 2019 17:20:55 +0200
-Message-ID: <87d0gqzlbc.fsf@FE-laptop>
+        id S1726871AbfH0P0V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 11:26:21 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:37399 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726333AbfH0P0U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 11:26:20 -0400
+Received: by mail-ot1-f68.google.com with SMTP id f17so19077458otq.4;
+        Tue, 27 Aug 2019 08:26:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Cx5A9kmsqXyCRtIPjR+drsX0vo8kNVTlvMzHwdHDI2U=;
+        b=RIg7e4bu1WhuS2qovk0SJsoVFdIJYNfO+Qda2jHs2m2tMGat7k5hbzULRSUl3rd21A
+         Wz86/famYzFxNMh/HyUyeEccHJTVZ7I954tNxLIwFTlbDnarHTY5BkVYgAZ8FPtzZHIE
+         3BWNhlzKIwX0D0inRycVRFrTkjJ7VEn2oyz51urWzTAKAhLiQ/Vga/9Q9K68dTHnv4yt
+         y1n4U/5ZFGC/n7xNIRAttQ1HDM0CmVkpsHAxZXkjXpjP/iLml8M1r143yluOuU/XjFmj
+         HP3gYvYFi21ZAUMj5iKvuyoVBWDUou0OKhbR2gctH2y9mo/g6uS8s/QGVWxM2LSnTju7
+         JVkw==
+X-Gm-Message-State: APjAAAXqcKrUjQ2LbWLp+3oCQwmnfneennTThiaW7BgDxrxYmZpOQlb+
+        19u5YcfZg6BlNdXHiUKPUw==
+X-Google-Smtp-Source: APXvYqwSeY1/zyQlliXFGLvmROu9EUOrSjDGZJ/u1Ovb3jw9fy9cQ2GnzE/ll0sd4/G7GJ44D+KuNA==
+X-Received: by 2002:a05:6830:42:: with SMTP id d2mr19950752otp.123.1566919579411;
+        Tue, 27 Aug 2019 08:26:19 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i16sm5354376otc.65.2019.08.27.08.26.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 08:26:18 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 10:26:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Yangtao Li <tiny.windzz@gmail.com>
+Cc:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
+        mchehab+samsung@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
+        nicolas.ferre@microchip.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Yangtao Li <tiny.windzz@gmail.com>
+Subject: Re: [PATCH v5 10/18] dt-bindings: thermal: add binding document for
+ h3 thermal controller
+Message-ID: <20190827152617.GA24677@bogus>
+References: <20190810052829.6032-1-tiny.windzz@gmail.com>
+ <20190810052829.6032-11-tiny.windzz@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190810052829.6032-11-tiny.windzz@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel,
-
-> From: Konstantin Porotchkin <kostap@marvell.com>
->
-> Prepare the support for Marvell AP807 die. This die is very similar to
-> AP806 but uses different DDR PHY. AP807 is a major component of CN9130
-> SoC series.
->
-> Signed-off-by: Konstantin Porotchkin <kostap@marvell.com>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+On Sat, 10 Aug 2019 05:28:21 +0000, Yangtao Li wrote:
+> This patch adds binding document for allwinner h3 thermal controller.
+> 
+> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
 > ---
->  arch/arm64/boot/dts/marvell/armada-ap806.dtsi | 448 +----------------
->  arch/arm64/boot/dts/marvell/armada-ap80x.dtsi | 456 ++++++++++++++++++
->  2 files changed, 458 insertions(+), 446 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-> index a23ddd46efc5..cdadb28f287e 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-> @@ -5,454 +5,10 @@
->   * Device Tree file for Marvell Armada AP806.
->   */
->  
-> -#include <dt-bindings/interrupt-controller/arm-gic.h>
-> -#include <dt-bindings/thermal/thermal.h>
-> -
-> -/dts-v1/;
-> +#define AP_NAME		ap806
+>  .../bindings/thermal/sun8i-thermal.yaml       | 81 ++++++++++++++++++-
+>  1 file changed, 78 insertions(+), 3 deletions(-)
+> 
 
-I didn't find where AP_NAME is used.
-
-> +#include "armada-ap80x.dtsi"
-[...]
-
-> diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-> new file mode 100644
-> index 000000000000..c44cd7c64bf6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
-
-[...]
-
-
-> +	ap806 {
-
-This file will be used for ap806 and for ap807 but the ap name will be
-the same for both varirant?
-
-Shouldn't you use the AP_NAME here?
-
-Gregory
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Reviewed-by: Rob Herring <robh@kernel.org>
