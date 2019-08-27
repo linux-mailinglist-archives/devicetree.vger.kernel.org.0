@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9964D9F331
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC5CF9F345
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:25:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731074AbfH0TSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 15:18:55 -0400
-Received: from mail2.candelatech.com ([208.74.158.173]:46116 "EHLO
-        mail3.candelatech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfH0TSz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 15:18:55 -0400
-X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Aug 2019 15:18:54 EDT
-Received: from [192.168.100.195] (50-251-239-81-static.hfc.comcastbusiness.net [50.251.239.81])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail3.candelatech.com (Postfix) with ESMTPSA id B06CCDDE7;
-        Tue, 27 Aug 2019 12:13:51 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail3.candelatech.com B06CCDDE7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=candelatech.com;
-        s=default; t=1566933231;
-        bh=xQteBVwidZSGC2MZfHHOR7dAWZi7qDYFFFClYgjptwo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=m/NdBaWWuaEyGUDgK5fKEuea6TpFHxts1IPUIe4QXLhbuwLHtgoQrYqywPGNJsp1w
-         Ck53cutqu4rPGWPAnq/cf3/Tcub78y1amEr3T0hvnNN5TqWXp2kJ893kQx31JWXlIn
-         meerxpxK/G2AUca0U/xW91NNV0RyLDNHWCPFdJpk=
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-To:     =?UTF-8?Q?Toke_H=c3=b8iland-J=c3=b8rgensen?= <toke@redhat.com>,
-        Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless-owner@vger.kernel.org
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
- <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
- <8736hvu6e6.fsf@toke.dk> <ac6e7dbbd53e7ba9e82e49baca22b73c@codeaurora.org>
- <875zmqsudn.fsf@toke.dk> <14737343f1925a771ddd8dadf0f2b5a3@codeaurora.org>
- <87sgpmikne.fsf@toke.dk>
-From:   Ben Greear <greearb@candelatech.com>
-Organization: Candela Technologies
-Message-ID: <0aa03fd8-1fad-416b-0cd5-fcca79732987@candelatech.com>
-Date:   Tue, 27 Aug 2019 12:13:51 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <87sgpmikne.fsf@toke.dk>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1730486AbfH0TZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 15:25:35 -0400
+Received: from outbound.smtp.vt.edu ([198.82.183.121]:42644 "EHLO
+        omr1.cc.vt.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728834AbfH0TZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 15:25:34 -0400
+Received: from mr6.cc.vt.edu (mr6.cc.vt.edu [IPv6:2607:b400:92:8500:0:af:2d00:4488])
+        by omr1.cc.vt.edu (8.14.4/8.14.4) with ESMTP id x7RJPWRe010325
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 15:25:33 -0400
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+        by mr6.cc.vt.edu (8.14.7/8.14.7) with ESMTP id x7RJPRkC023446
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 15:25:32 -0400
+Received: by mail-qk1-f199.google.com with SMTP id x1so106244qkn.6
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 12:25:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
+         :mime-version:content-transfer-encoding:date:message-id;
+        bh=/VrYLSYfcVcWU8zr6i2AquUrruupT+f/dYq6MTZWV9A=;
+        b=LFDrWSkTdFvCkz8nlvAHyFWeDy405XhbokUCvud8uuun2hYqCcZEO0aXccg6DeW7OB
+         2GLws8DDD57ROnlgws+j7rykN2NDvq8HVjK97+t4YmeL7Fj0X3l4Y34ihrzp4KsVFnG6
+         AMJgzLloC0lRtyguDmPnYxhDQIGgGK2mc9AdURPzEwLcJVSmH+vt/vbmVV4t8zw/HPje
+         dU6MUMKaIuPIEGacTeeDJlPbvzjOqErY2OYTto6W/tQ+5cfJJjFmAAGxmLo7be5rfKJO
+         GEah0HIIoRHh1LpJxq+xvXQ2ZAuxOHVFGU0Li/g5EHM2MWk57OjM5VRWH0SPQhiTikaT
+         4REA==
+X-Gm-Message-State: APjAAAWgHfGdu9F1dUTaDShqkHznz/xIfIqtnSKIzeVL3lDUyqBGtBFC
+        iB38ojeB6xPVcFvxM+YQKHTSmcYIAXFmiGXQxBObqnPcgxyd6SnFUM+sc69C/8EbAkbHwsVsBvj
+        dYJ19MGdbetxRNdpX0/+/80nApCSafDWR
+X-Received: by 2002:ad4:4301:: with SMTP id c1mr135702qvs.138.1566933927556;
+        Tue, 27 Aug 2019 12:25:27 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqw0pbhFIG53y1qAT0fpDgiysZVyE9tsfzlFkV4m2v3eE8h31MrmRk0phL4zAQ9B/pjlGvPJjg==
+X-Received: by 2002:ad4:4301:: with SMTP id c1mr135669qvs.138.1566933927147;
+        Tue, 27 Aug 2019 12:25:27 -0700 (PDT)
+Received: from turing-police ([2601:5c0:c001:4341::359])
+        by smtp.gmail.com with ESMTPSA id m10sm154810qka.43.2019.08.27.12.25.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 12:25:25 -0700 (PDT)
+From:   "Valdis Kl=?utf-8?Q?=c4=93?=tnieks" <valdis.kletnieks@vt.edu>
+X-Google-Original-From: "Valdis Kl=?utf-8?Q?=c4=93?=tnieks" <Valdis.Kletnieks@vt.edu>
+X-Mailer: exmh version 2.9.0 11/07/2018 with nmh-1.7+dev
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, linux@armlinux.org.uk, frowand.list@gmail.com,
+        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
+        tony.luck@intel.com, daniel.thompson@linaro.org,
+        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
+        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
+Subject: Re: [PATCHv5] drivers/amba: add reset control to amba bus probe
+In-Reply-To: <20190826154252.22952-1-dinguyen@kernel.org>
+References: <20190826154252.22952-1-dinguyen@kernel.org>
+Mime-Version: 1.0
+Content-Type: multipart/signed; boundary="==_Exmh_1566933924_1612P";
+         micalg=pgp-sha1; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 27 Aug 2019 15:25:24 -0400
+Message-ID: <30608.1566933924@turing-police>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/27/19 10:27 AM, Toke Høiland-Jørgensen wrote:
-> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
-> 
->> On 2019-08-21 15:38, Toke Høiland-Jørgensen wrote:
->>> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
->>>
->>>> On 2019-08-20 22:21, Toke Høiland-Jørgensen wrote:
->>>>> [... snip ... ]
->>>>>
->>>>>> +static const struct ieee80211_ops ath11k_ops = {
->>>>>> +	.tx				= ath11k_mac_op_tx,
->>>>>
->>>>> No wake_tx_queue? :(
->>>>
->>>> Yes, packet queueing is handled in firmware. This makes sense
->>>> especially when we enable 802.11 encap offload support where most of
->>>> the data path processing in mac80211 will be skipped and packet is
->>>> given to driver/firmware in 802.3 format itself. Then firmware would
->>>> take care of all the classification, queueing and encapsulation
->>>> operations.
->>>
->>> Well, so does ath10k, and yet we still saw a significant improvement by
->>> moving queueing back into the host where it can be handled by the
->>> FQ-CoDel-enabled queueing structure.
->>>
->>
->> Sure, we could probably try that with ath11k as well at some point when
->> we have a baseline with HE support.
-> 
-> Well, rather than retrofit change things later, why not start out with a
-> wake_tx_queue-based driver?
+--==_Exmh_1566933924_1612P
+Content-Type: text/plain; charset=us-ascii
 
-If there is something that works at all, lets get it upstream when it is
-easier to develop and test against.  Then we will have a baseline to test against
-when adding new features and so forth.
+On Mon, 26 Aug 2019 10:42:52 -0500, Dinh Nguyen said:
+> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+> default. Until recently, the DMA controller was brought out of reset by the
+> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
+> that are not used are held in reset and are left to Linux to bring them
+> out of reset.
+>
+> Add a mechanism for getting the reset property and de-assert the primecell
+> module from reset if found. This is a not a hard fail if the reset properti
+> is not present in the device tree node, so the driver will continue to
+> probe.
 
-Thanks,
-Ben
+Does this DTRT for both old and new U-Boots? My naive reading of this patch
+says on an old U-Boot, we end up attempting to bring it out of reset even though
+they had already been brought out.
 
--- 
-Ben Greear <greearb@candelatech.com>
-Candela Technologies Inc  http://www.candelatech.com
+--==_Exmh_1566933924_1612P
+Content-Type: application/pgp-signature
 
+-----BEGIN PGP SIGNATURE-----
+Comment: Exmh version 2.9.0 11/07/2018
+
+iQIVAwUBXWWDpAdmEQWDXROgAQIdrxAAon/T5pCtAGieFVjdAdhJjdPwqAhckoGF
+6pdEvZoDtGgXHLPcNmX5YO0BXVRyCmQg8x57sEFISk2PrmS2Ax+UCVUpEaLQMjbD
+Dd0vJxZKe9Sz95p4ELvhEVvXPVq9+rkIEmWsVUVNGWN4sbpQc7vs2+JtHwFlx+2n
+m/taFbOH5qIRVYJQalBesf8WUcltYiA9ox4tKNYDSyKMqWVrGgvkxjO81appgJAZ
+78x3eX94SyB2l7pJHNmRYdvr69kdFFzQDSbm1Y8rQnzar03fKUtpRmn1yXGc87wc
+SG08stZRhvr+H98MHe4LjkjYNxNO+k6R0q+jmdjMwD+NaDveKt43ydl+xF4kbYbl
+GzX+t51GUeU1PWnuHj+frYnUc0hv4N0xwC5SSWQ8vh0+0xQZsxYRluHLSEAw/VRp
+Qh8+wBX3rZ8Q8dQfoXPfj9z4DdWgXAlDoB1yAJDtdRG8sdcKfGL71bZjv7hB0Z6I
+XWnRsfqNevx/9Ev6shSve1jSHqGuuVb0ggOQVIcR9qaEeXI9UiRHOgK4qahEA6rI
+Im7p+uPlHE4agtwgvXy4QTXksuKqFj8xouyI9QQc5PtI60bT83/PXQzS7ywotkZh
+mFrpIGzD7D4xB4dQY4MB4jrGlPIArWfIKkqQ9jnTgD5dugR1CfejVwe7im0Lotyt
+0bip0m4JQ/U=
+=XqAz
+-----END PGP SIGNATURE-----
+
+--==_Exmh_1566933924_1612P--
