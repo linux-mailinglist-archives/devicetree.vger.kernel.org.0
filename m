@@ -2,71 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B17B79E7F9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:32:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21389E80D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:36:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729308AbfH0Mbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 08:31:53 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:52918 "EHLO protonic.nl"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726140AbfH0Mbw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 08:31:52 -0400
-Received: from erd987.prtnl (erd987.prtnl [192.168.237.3])
-        by sparta (Postfix) with ESMTP id 8694B44A00C5;
-        Tue, 27 Aug 2019 14:33:48 +0200 (CEST)
-From:   Robin van der Gracht <robin@protonic.nl>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel @ lists . infradead . org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel @ vger . kernel . org" <linux-kernel@vger.kernel.org>,
-        "linux-input @ vger . kernel . org" <linux-input@vger.kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Robin van der Gracht <robin@protonic.nl>
-Subject: [PATCH v2 2/2] arm: dts: imx6qdl: snvs-pwrkey: Change compatible string
-Date:   Tue, 27 Aug 2019 14:32:16 +0200
-Message-Id: <20190827123216.32728-2-robin@protonic.nl>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190827123216.32728-1-robin@protonic.nl>
-References: <20190827123216.32728-1-robin@protonic.nl>
+        id S1726278AbfH0Mg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 08:36:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49804 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725850AbfH0MgZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 08:36:25 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BB31B21883;
+        Tue, 27 Aug 2019 12:36:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566909384;
+        bh=dAxS1WqRV4b7iS74EzUk2CY6pRW9CCrAG7RucQHWt7g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=j2dZVEnx8ktgPjH/Vaf3xrdEzSnGNtSFvQb0SfS1RJp1Yw9C5pQQz94rLgPcHRpLf
+         m7WTkmYD4w13R0zNQJGb0uqtomWErkOaQXu4YeTNlw29sJP3iq4BPmH4EU6v+ms0NV
+         w1MKxTKsFpWKD6IwEwRK6gMlCs/hAjpvxJHiQfYY=
+Received: by mail-qt1-f172.google.com with SMTP id b11so21036150qtp.10;
+        Tue, 27 Aug 2019 05:36:24 -0700 (PDT)
+X-Gm-Message-State: APjAAAWL5L431X03ql6VgPxk65BZD7V6tj2kTYCHG6bGNpgy858q4Wwj
+        tH7SQcQl1hjYkXH4rXKuV3VAPERYnB/qtcI36g==
+X-Google-Smtp-Source: APXvYqyqEKW+TR5bJFFladOyjiCxYJlVjy2VJ+VJSQICBWMQEZulSFTqlCQVzHkPkq4vL9h4hPWYtKn93pLIWauILws=
+X-Received: by 2002:aed:24f4:: with SMTP id u49mr22819140qtc.110.1566909383931;
+ Tue, 27 Aug 2019 05:36:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190826021620.11915-1-andrew@aj.id.au>
+In-Reply-To: <20190826021620.11915-1-andrew@aj.id.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 27 Aug 2019 07:36:12 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJsLt5FjKayO9ksksrpXDFs3cbAngcQ21xhZYz3JLG=7g@mail.gmail.com>
+Message-ID: <CAL_JsqJsLt5FjKayO9ksksrpXDFs3cbAngcQ21xhZYz3JLG=7g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mmc: aspeed: Update example ranges property
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The older imx6 SoCs do not send a power key press interrupt, instead it
-sends a power down request interrupt when the key is released between
-750ms and 5 seconds. The driver uses a different compatible string to ID
-the older SoCs.
+On Sun, Aug 25, 2019 at 9:15 PM Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The example node in the binding uses the AST2500 compatible string for
+> the SD controller with a 64kiB ranges property, but the SD controller is
+> allocated 128kiB of MMIO space according to the AST2500 datasheet. Fix
+> the example to correctly reflect the hardware in the AST2500, however it
+> should be noted that the MMIO region is reduced to 64kiB in the AST2600
+> where a second SD controller block has been introduced into the address
+> space.
+>
+> Also add the IBM copyright header that I left out of the initial patch.
+>
+> Suggested-by: Joel Stanley <joel@jms.id.au>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> ---
+> Hi Ulf, this is the follow-up fix as discussed here:
+>
+> http://patchwork.ozlabs.org/patch/1143090/
+>
+>  Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Signed-off-by: Robin van der Gracht <robin@protonic.nl>
----
- arch/arm/boot/dts/imx6qdl.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/imx6qdl.dtsi b/arch/arm/boot/dts/imx6qdl.dtsi
-index b3a77bcf00d5..91b97816881c 100644
---- a/arch/arm/boot/dts/imx6qdl.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl.dtsi
-@@ -836,7 +836,7 @@
- 				};
- 
- 				snvs_pwrkey: snvs-powerkey {
--					compatible = "fsl,sec-v4.0-pwrkey";
-+					compatible = "fsl,imx6qdl-snvs-pwrkey";
- 					regmap = <&snvs>;
- 					interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
- 					linux,keycode = <KEY_POWER>;
--- 
-2.20.1
-
+Acked-by: Rob Herring <robh@kernel.org>
