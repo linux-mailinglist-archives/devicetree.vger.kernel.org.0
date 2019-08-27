@@ -2,153 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A5EF9E208
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 10:17:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 494429E275
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 10:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730316AbfH0HzV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 03:55:21 -0400
-Received: from protonic.xs4all.nl ([83.163.252.89]:51731 "EHLO protonic.nl"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730303AbfH0HzU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 03:55:20 -0400
-Received: from webmail.promanet.nl (edge2.prtnl [192.168.1.170])
-        by sparta (Postfix) with ESMTP id EE15344A009E;
-        Tue, 27 Aug 2019 09:57:15 +0200 (CEST)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 27 Aug 2019 09:55:18 +0200
-From:   robin <robin@protonic.nl>
-To:     Robin Gong <yibin.gong@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        Adam Ford <aford173@gmail.com>
-Subject: Re: [PATCH] input: keyboard: snvs_pwrkey: Send press and release
- event for i.MX6 S,DL and Q
-In-Reply-To: <VE1PR04MB6638754916357F551502102589A00@VE1PR04MB6638.eurprd04.prod.outlook.com>
-References: <20190823123002.10448-1-robin@protonic.nl>
- <VE1PR04MB6638754916357F551502102589A00@VE1PR04MB6638.eurprd04.prod.outlook.com>
-Message-ID: <83c033a20f5f2e3ce15525a1efd072bb@protonic.nl>
-X-Sender: robin@protonic.nl
-User-Agent: Roundcube Webmail/1.3.6
+        id S1730166AbfH0I1F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 04:27:05 -0400
+Received: from mga11.intel.com ([192.55.52.93]:32185 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730435AbfH0I1C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 04:27:02 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Aug 2019 01:27:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,436,1559545200"; 
+   d="scan'208";a="197256618"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by fmsmga001.fm.intel.com with ESMTP; 27 Aug 2019 01:27:00 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     kishon@ti.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        peter.harliman.liem@intel.com,
+        vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: [PATCH v1 0/2] phy: intel-lgm-sdxc: Add support for SDXC PHY
+Date:   Tue, 27 Aug 2019 16:26:50 +0800
+Message-Id: <20190827082652.43840-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-08-27 08:17, Robin Gong wrote:
-> On Fri, Aug 23, 2019 at 02:30:02PM +0200, Robin van der Gracht wrote:>
->> The older generation i.MX6 processors send a powerdown request 
->> interrupt
->> if the powerkey is released before a hard shutdown (5 second press). 
->> This
->> should allow software to bring down the SoC safely.
->> 
->> For this driver to work as a regular powerkey with the older SoCs, we 
->> need to
->> send a keypress AND release when we get the powerdown request 
->> interrupt.
-> Please clarify here more clearly that because there is NO press
-> interrupt triggered
-> but only release interrupt on elder i.mx6 processors and that HW issue
-> fixed from
-> i.mx6sx.
+Add support for eMMC PHY on Intel's Lightning Mountain SoC.
 
-ACK
+Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+---
+Ramuthevar Vadivel Murugan (2):
+  dt-bindings: phy: intel-sdxc-phy: Add YAML schema for LGM SDXC PHY
+  phy: intel-lgm-sdxc: Add support for SDXC PHY
 
->> 
->> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
->> ---
->>  arch/arm/boot/dts/imx6qdl.dtsi       |  2 +-
->>  arch/arm/boot/dts/imx6sll.dtsi       |  2 +-
->>  arch/arm/boot/dts/imx6sx.dtsi        |  2 +-
->>  arch/arm/boot/dts/imx6ul.dtsi        |  2 +-
->>  arch/arm/boot/dts/imx7s.dtsi         |  2 +-
-> As Shawn talked, please keep the original "fsl,sec-v4.0-pwrkey", just 
-> add
-> 'imx6qdl-snvs-pwrkey' for elder i.mx6 processor i.mx6q/dl/sl, thus no 
-> need
-> to touch other newer processor's dts.
+ .../bindings/phy/intel,lgm-sdxc-phy.yaml           |  50 +++++++
+ drivers/phy/intel/Kconfig                          |   6 +
+ drivers/phy/intel/Makefile                         |   1 +
+ drivers/phy/intel/phy-intel-sdxc.c                 | 144 +++++++++++++++++++++
+ 4 files changed, 201 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
+ create mode 100644 drivers/phy/intel/phy-intel-sdxc.c
 
-ACK
+-- 
+2.11.0
 
-> 
->> 
->>  static void imx_imx_snvs_check_for_events(struct timer_list *t) @@ 
->> -67,13
->> +85,23 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int irq, void
->> *dev_id)  {
->>  	struct platform_device *pdev = dev_id;
->>  	struct pwrkey_drv_data *pdata = platform_get_drvdata(pdev);
->> +	struct input_dev *input = pdata->input;
->>  	u32 lp_status;
->> 
->> -	pm_wakeup_event(pdata->input->dev.parent, 0);
->> +	pm_wakeup_event(input->dev.parent, 0);
->> 
->>  	regmap_read(pdata->snvs, SNVS_LPSR_REG, &lp_status);
->> -	if (lp_status & SNVS_LPSR_SPO)
->> -		mod_timer(&pdata->check_timer, jiffies +
->> msecs_to_jiffies(DEBOUNCE_TIME));
->> +	if (lp_status & SNVS_LPSR_SPO) {
->> +		if (pdata->hwtype == IMX6QDL_SNVS) {
->> +			input_report_key(input, pdata->keycode, 1);
->> +			input_report_key(input, pdata->keycode, 0);
->> +			input_sync(input);
->> +			pm_relax(input->dev.parent);
-> Could you move the above input event report steps into
-> imx_imx_snvs_check_for_events()
-> as before? That make code better to understand and less operation in 
-> ISR.
-
-I placed it here to avoid the unnessesairy debounce delay (since thats 
-already
-implemented in hardware).
-
-I do agree with your arguments so I'll move emitting the events to
-imx_imx_snvs_check_for_events().
-
-Is it ok if I keep the conditional, but instead of emitting the events,
-schedule imx_imx_snvs_check_for_events() immidiatly to avoid the 
-debounce,
-or should I choose clarity over the 30 ms delay?
-
->> +		} else {
->> +			mod_timer(&pdata->check_timer,
->> +				jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
->> +		}
->> +	}
->> 
->>  	/* clear SPO status */
->>  	regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO); @@
->> -88,11 +116,24 @@ static void imx_snvs_pwrkey_act(void *pdata)
->>  	del_timer_sync(&pd->check_timer);
->>  }
->> 
->> +static const struct of_device_id imx_snvs_pwrkey_ids[] = {
->> +	{
->> +		.compatible = "fsl,imx6sx-sec-v4.0-pwrkey",
->> +		.data = &imx_snvs_devtype[IMX6SX_SNVS],
->> +	}, {
->> +		.compatible = "fsl,imx6qdl-sec-v4.0-pwrkey",
->> +		.data = &imx_snvs_devtype[IMX6QDL_SNVS],
-> No ' IMX6QDL_SNVS ' defined in your patch or am I missing?
-
-I added an enum 'imx_snvs_hwtype' that defines both IMX6SX_SNVS and 
-IMX6QDL_SNVS.
-
->> +	},
->> +	{ /* sentinel */ }
->> +};
->> +MODULE_DEVICE_TABLE(of, imx_snvs_pwrkey_ids);
->> --
->> 2.20.1
