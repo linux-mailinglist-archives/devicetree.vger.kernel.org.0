@@ -2,134 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5991F9EA13
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8268C9EA59
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 16:05:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730223AbfH0Nu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 09:50:28 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:43281 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729626AbfH0Nu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 09:50:28 -0400
-Received: by mail-vs1-f65.google.com with SMTP id s5so13462020vsi.10
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 06:50:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9nTdAXMkkDWuizv1tysprjOJ2R0IJRbo/lx0RTYg+gg=;
-        b=lRFCIPmx30bbAcvZ3ja1zoN/Q3+vSqfaVYAcaCKhScS9+a4YuFNPLRxB9y5OIZW+Iu
-         6pa5Iu/6QsGXgoEY5AB8deRH2GTZgetkr0vkJL6dpQ4V0cl0AHjU48W6ayhzWNXsgMuL
-         /3GYi+XhaOw8Wi5LXWnKjn6WgGak6tZhmxOIZWPfBop/ZWYefWw46yN0SAPYQCBO7WMN
-         zMJvjGTPUCviMFP2pVUsoXeG//iGiUMhfuVu2czaHGlLoJAO/pbzLBl48LxnmKEsmfZk
-         bmfQvPvgwX4m9OyGWFQNO5nK+jZ2umhflxqFk4orYXIMuiKov8bBIoNu34lHmvkenMS2
-         lx9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9nTdAXMkkDWuizv1tysprjOJ2R0IJRbo/lx0RTYg+gg=;
-        b=PkymfoClNrVJCyAv6c46H6Ruhl4dblCmP0DJfukaNcjCBgIOP7Ek/yd4yQZD168Qc9
-         rHquus469rN78DchNxtKndO1ObWyy80/3BZPLt7x5Yh31ulFrt3O1Qy8Bpty8XnWDwEz
-         5hG7tv7/3DkEj/6/DWh8rYcTVLuBq/DOVAnrKEogqULukC0hkFYNnjDItBAgXsgrNdfn
-         Lp48eR6Q/j9LPhNHS8K0Z7qOxjYdApXrr5Wgho7DxBaD7Mw9JiKmUfsEK02EeJLu1PLb
-         mk/ahmx8i0w7WjbsVkffo8WLJ+9sDAK5UV4d6hw2h5VwrK0U03LrNtUQSiGszumHQ2Y6
-         Hc+g==
-X-Gm-Message-State: APjAAAX7WP58Vmc+xbqEYPqCeoIuRROdfF5JN4xNcC/L/0NnFBQLhq46
-        4XRI9ctpqe1gagivOzJGOOocVJ+k8T36+XX0BxAKgg==
-X-Google-Smtp-Source: APXvYqxuL5QLvtpihYjZI5CsVwD6jsXto4QZa31USkmsbOyid71SgorLhwLsMkfjsVyq/LxIIJYnJj5VAXPG3DJ54S8=
-X-Received: by 2002:a67:32c5:: with SMTP id y188mr13651472vsy.191.1566913827420;
- Tue, 27 Aug 2019 06:50:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190826072800.38413-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190826072800.38413-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-In-Reply-To: <20190826072800.38413-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Tue, 27 Aug 2019 15:49:49 +0200
-Message-ID: <CAPDyKFrPoPqnh3_23P=wGO+QrUE9ogJzC6xgzy+0QeyuyeO=HQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] mmc: sdhci-of-arasan: Add Support for Intel LGM eMMC
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        id S1729469AbfH0OFE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 10:05:04 -0400
+Received: from mga09.intel.com ([134.134.136.24]:30685 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726134AbfH0OFE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 10:05:04 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Aug 2019 07:05:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,437,1559545200"; 
+   d="scan'208";a="197314678"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga001.fm.intel.com with ESMTP; 27 Aug 2019 07:05:01 -0700
+Received: from [10.255.129.116] (unknown [10.255.129.116])
+        by linux.intel.com (Postfix) with ESMTP id 13641580375;
+        Tue, 27 Aug 2019 07:04:56 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Add YAML schemas for the Intel
+ Reset controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
         qi-ming.wu@intel.com
-Content-Type: text/plain; charset="UTF-8"
+References: <42039170811f798b8edc66bf85166aefe7dbc903.1566531960.git.eswara.kota@linux.intel.com>
+ <CAL_JsqJxh5TzDb8kOFm+F5Gs4WXF6BP5uaNPLcyx+srtaDisMw@mail.gmail.com>
+ <746ed130-a1ae-0cc2-5060-70de95cdf2fe@linux.intel.com>
+ <CAL_JsqLSU6+5umYeVmh1NYTcpUcpJKMt7d4d+5E+Ni5rqKJvxQ@mail.gmail.com>
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+Message-ID: <c052e984-1144-6dc1-651a-8d9c924a1da9@linux.intel.com>
+Date:   Tue, 27 Aug 2019 22:04:55 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.0
+MIME-Version: 1.0
+In-Reply-To: <CAL_JsqLSU6+5umYeVmh1NYTcpUcpJKMt7d4d+5E+Ni5rqKJvxQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Aug 2019 at 09:28, Ramuthevar,Vadivel MuruganX
-<vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
->
-> From: Ramuthevar Vadivel Muruganx <vadivel.muruganx.ramuthevar@linux.intel.com>
->
-> The current arasan sdhci PHY configuration isn't compatible
-> with the PHY on Intel's LGM(Lightning Mountain) SoC devices.
->
-> Therefore, add a new compatible, to adapt the Intel's LGM
-> eMMC PHY with arasan-sdhc controller to configure the PHY.
->
-> Signed-off-by: Ramuthevar Vadivel Muruganx <vadivel.muruganx.ramuthevar@linux.intel.com>
+Hi Rob,
+
+On 8/26/2019 7:23 PM, Rob Herring wrote:
+> On Mon, Aug 26, 2019 at 4:52 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
+>> Hi Rob,
+>>
+>> On 8/23/2019 8:25 PM, Rob Herring wrote:
+>>> On Fri, Aug 23, 2019 at 12:28 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
+>>>> Add YAML schemas for the reset controller on Intel
+>>>> Lightening Mountain (LGM) SoC.
+>>>>
+>>>> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
+>>>> ---
+>>>> Changes on v2:
+>>>>       Address review comments
+>>>>         Update the compatible property definition
+>>>>         Add description for reset-cells
+>>>>         Add 'additionalProperties: false' property
+>>>>
+>>>>    .../bindings/reset/intel,syscon-reset.yaml         | 53 ++++++++++++++++++++++
+>>>>    1 file changed, 53 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..3403a967190a
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+>>>> @@ -0,0 +1,53 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/reset/intel,syscon-reset.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Intel Lightening Mountain SoC System Reset Controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Dilip Kota <eswara.kota@linux.intel.com>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    items:
+>>>> +      - const: intel,rcu-lgm
+>>>> +      - const: syscon
+>>>> +
+>>>> +  reg:
+>>>> +    description: Reset controller register base address and size
+>>>> +
+>>>> +  intel,global-reset:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> +    description: Global reset register offset and bit offset.
+>>>> +
+>>>> +  "#reset-cells":
+>>>> +    const: 2
+>>>> +    description: |
+>>>> +      The 1st cell is the register offset.
+>>>> +      The 2nd cell is the bit offset in the register.
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - intel,global-reset
+>>>> +  - "#reset-cells"
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    rcu0: reset-controller@00000000 {
+>>>> +        compatible = "intel,rcu-lgm", "syscon";
+>>>> +        reg = <0x000000 0x80000>;
+>>>> +        intel,global-reset = <0x10 30>;
+>>>> +        #reset-cells = <2>;
+>>>> +    };
+>>>> +
+>>>> +    pcie_phy0: pciephy@... {
+>>>> +        ...
+>>> You need to run 'make dt_binding_check' and fix the warnings. The
+>>> example has to be buildable and it is not.
+>> Sure, i  will correct this pcie_phy0 node. But i didn't get any warnings
+>> for make dt_binding_check
+>>
+>>     CHKDT Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
+>> DTC Documentation/devicetree/bindings/arm/renesas.example.dt.yaml
+>> FATAL ERROR: Unknown output format "yaml"
+>>
+>> Will DTC report about the example node errors? But, DTC is failing with
+>> FATAL_ERROR.
+>> I tried it even after installing libyaml and headers in my local
+>> directory and export the path, but no luck.(ref:
+>> https://lkml.org/lkml/2018/12/3/951)
+>> Could you please let me know if i miss anything and help me to proceed
+>> further.
+> See Documentation/devicetree/writing-schema.md
+
+I have followed all the steps mentioned in the document before keeping 
+the mail itself.
+Does the dtc script looks for libyaml and its header files at any 
+default or specific location?
+
+Regards,
+Dilip
 
 
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
-> ---
->  drivers/mmc/host/sdhci-of-arasan.c | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
 >
-> diff --git a/drivers/mmc/host/sdhci-of-arasan.c b/drivers/mmc/host/sdhci-of-arasan.c
-> index b12abf9b15f2..7023cbec4017 100644
-> --- a/drivers/mmc/host/sdhci-of-arasan.c
-> +++ b/drivers/mmc/host/sdhci-of-arasan.c
-> @@ -114,6 +114,12 @@ static const struct sdhci_arasan_soc_ctl_map rk3399_soc_ctl_map = {
->         .hiword_update = true,
->  };
->
-> +static const struct sdhci_arasan_soc_ctl_map intel_lgm_emmc_soc_ctl_map = {
-> +       .baseclkfreq = { .reg = 0xa0, .width = 8, .shift = 2 },
-> +       .clockmultiplier = { .reg = 0, .width = -1, .shift = -1 },
-> +       .hiword_update = false,
-> +};
-> +
->  /**
->   * sdhci_arasan_syscon_write - Write to a field in soc_ctl registers
->   *
-> @@ -373,6 +379,11 @@ static struct sdhci_arasan_of_data sdhci_arasan_rk3399_data = {
->         .pdata = &sdhci_arasan_cqe_pdata,
->  };
->
-> +static struct sdhci_arasan_of_data intel_lgm_emmc_data = {
-> +       .soc_ctl_map = &intel_lgm_emmc_soc_ctl_map,
-> +       .pdata = &sdhci_arasan_cqe_pdata,
-> +};
-> +
->  #ifdef CONFIG_PM_SLEEP
->  /**
->   * sdhci_arasan_suspend - Suspend method for the driver
-> @@ -474,6 +485,10 @@ static const struct of_device_id sdhci_arasan_of_match[] = {
->                 .compatible = "rockchip,rk3399-sdhci-5.1",
->                 .data = &sdhci_arasan_rk3399_data,
->         },
-> +       {
-> +               .compatible = "intel,lgm-sdhci-5.1-emmc",
-> +               .data = &intel_lgm_emmc_data,
-> +       },
->         /* Generic compatible below here */
->         {
->                 .compatible = "arasan,sdhci-8.9a",
-> --
-> 2.11.0
->
+> Rob
