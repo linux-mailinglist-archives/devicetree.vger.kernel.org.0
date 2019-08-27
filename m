@@ -2,89 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 262949F4F4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B1CD9F4FD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:21:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727064AbfH0VTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 17:19:49 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36895 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfH0VTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:19:49 -0400
-Received: by mail-ot1-f66.google.com with SMTP id f17so626305otq.4;
-        Tue, 27 Aug 2019 14:19:48 -0700 (PDT)
+        id S1726675AbfH0VVP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 17:21:15 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:43734 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726735AbfH0VVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:21:15 -0400
+Received: by mail-wr1-f67.google.com with SMTP id y8so243362wrn.10
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 14:21:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cgYmTClrC/asl3eR4xct5fw+wHifMzNWe21TIUQLX/s=;
-        b=fPm/hV4QKJeCA+j5g3rsjtP+azHB2zk6ntrj6l42vnXDPvSw5O92sHbgitSFwflbUL
-         m9UTet+JaUBIERtI7Kk8KIITgjMa5OR4KVwUZ2DCOadIm0gYaREA+QlQZQLI/U1Dfec+
-         YVlh5AS0iutk7nU/yNOmzUUcSl7YRmgSLhbecVQPF2In2aJL1NGonYhsbhKw3tfqkS1L
-         fKvwQn+zISyavxmXb2+7LBWu2vDAZ8FEFcC5VeUThlM4Nroz0dDjFb3l4mIYfH+ErOG2
-         5A5B/DNvueCA+b7LJ3QVAtlfgg3EDfAxtTHTr9w+Wlb2JDc5Dlz4wXt4InnyEmfVXNty
-         8v4w==
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=tLhcw38FuKLNsut7gUz1FietvesVxFl+vsh+ysDektI=;
+        b=Nttduy7GCncxAEwTn7ROUQfvrd7gHjj+gmRcBK8NJhKmsWss+ZW5JMz+WsG3RVKWWK
+         W98wigEyZsjUQuT5JcZS7emeap2xUSbSbpr+dKTOjhjj6IcgqV5Kw38yY9+MBXH89mQz
+         jepDS09L0iPppjfwLMM6GElXvmlBox6z94GRZQCgQ0DPbBnYppklne7QOfYMcac/D22T
+         9+RjltFJWmIZK6vOkKA8EtSruFP+O239NQRcvbWM0oMZclwW16hgZ8XPv4IPcTOcHAk0
+         QtTvMsidOLa2XAXF94hKc5Oy+UroqgLZ+dNCh6zFuTlLxfrAwJ1B1kDgNCPFzqZzIdUS
+         +8pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cgYmTClrC/asl3eR4xct5fw+wHifMzNWe21TIUQLX/s=;
-        b=bZhsXoFaforDtZNCBg6hhVCeStMjLyl4FQJ2TcNqNH/SuN2RMFpxLYaF3pHH7D1RJ1
-         d/kMvdjcO0UDe7QhZFoHSjMbEIEnvhiaOuN7dIrxf93Sb8+ZGOf87UmByjtHuYGnAAVX
-         ppKYbfOofZ1t/znCX05TWK9zvZGVl78CeBHL3IxYGnH5j4cP6JRXZDE4BR78N0UnhHXU
-         S3r+0lXAMHmmEG+DrEvoYxOECEgY8G8dlRTVeWye3NDqkj2qK3lPMHBok7MjJuWnlO0R
-         NBqnEc+uW+2DsEABenXd1uR/2GgVcFrUY1Pg4O5X9B/1HI48uPDnMA2puTqZPztoHoeo
-         oCtg==
-X-Gm-Message-State: APjAAAUjSzlvRRrVUd0n7JHR9bylJtvoLI+/PGqlNEXH+Y689Weik/+O
-        6A/bngLvxlr4qPJQtgstBbvgc9bbKlGUcnXGmRlZ7g==
-X-Google-Smtp-Source: APXvYqwwRRQN8HPUGgQVIpMqj1N2WMUBTzJ9Fh3YyiZAGgwoTYmJ49wk8Lo3LwUim1tFvC30tR6g38IAynQdpxOBCYk=
-X-Received: by 2002:a9d:5c0f:: with SMTP id o15mr594707otk.81.1566940787892;
- Tue, 27 Aug 2019 14:19:47 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=tLhcw38FuKLNsut7gUz1FietvesVxFl+vsh+ysDektI=;
+        b=Eti66z7/4rJ/DbHIy4EhwuJ8jiQ8YK0NncNkljv1QnCWgvYysauLM/uxr/jNFvJo2L
+         rBgMyjH3j5ktWSonkTHpR01cQQN61KC5SGCAV/zyfDVmNGWapkRY/gt2S0Stlf6HCYNu
+         xqrFQkqb68YaZa+XBZ7djdIxrsYeWhdfwXh4DboLd2JZ0RIclRatcamMABIUQCCnPLUi
+         RoezvNZJkF6SF5CclPqXoZlDiWvc/hNBx0cizA1LU3EuF2PQMZPTp6e7J2IW202N0dEF
+         6QHiNVj7ZccJibqsEBsc92T2I7gx1J2vjNc9Y51PY77v+eYUbffDI0VxTurE4gmig9qo
+         8jRA==
+X-Gm-Message-State: APjAAAX/Xzd94xq0Abg7wlk2JfEOuji0R4W5ih99NhnNTeOpm36fzgbq
+        TzrBeoxrVPAeIIw14/VbjTjWrw==
+X-Google-Smtp-Source: APXvYqy8AWyg2VL46hPxiroKD/nqocylXrXqvK7Uf41BSbK1KZmcquEck3Uhap2HM5cQB1Qylj3kJg==
+X-Received: by 2002:a5d:4fc4:: with SMTP id h4mr272620wrw.64.1566940872977;
+        Tue, 27 Aug 2019 14:21:12 -0700 (PDT)
+Received: from [192.168.86.29] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id r17sm458558wrg.93.2019.08.27.14.21.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 27 Aug 2019 14:21:11 -0700 (PDT)
+Subject: Re: [alsa-devel] [RESEND PATCH v4 1/4] dt-bindings: soundwire: add
+ slave bindings
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, spapothi@codeaurora.org,
+        lgirdwood@gmail.com, linux-kernel@vger.kernel.org
+References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
+ <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
+ <7da8aa89-2119-21d1-0e29-8894a8d40bf0@linux.intel.com>
+ <37be6b6d-7e7f-2cd6-f9e9-f0cac48791ad@linaro.org>
+ <d538238d-25d8-f179-c900-90be50ce814d@linux.intel.com>
+ <7ee47f26-12f8-6028-cb83-7f59e669979f@linaro.org>
+ <e5b184be-02f1-faa4-94fa-79bda8936d9d@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <aaf1a8f6-9be5-2d42-9f92-4fd75986424d@linaro.org>
+Date:   Tue, 27 Aug 2019 22:21:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190824184912.795-1-linux.amoon@gmail.com> <CAFBinCCkEE8==-Sqqj_=Ofnx7_H-970dETwEmEPohs74806ZMw@mail.gmail.com>
- <CANAwSgTsua_x6fi7NzC2XjcV19OJcN3NhOT_niKXN4RR4X+qVQ@mail.gmail.com>
-In-Reply-To: <CANAwSgTsua_x6fi7NzC2XjcV19OJcN3NhOT_niKXN4RR4X+qVQ@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 27 Aug 2019 23:19:36 +0200
-Message-ID: <CAFBinCB45YkbgbRNx8aE+yrT7scT6BYZy1h9JozBxsoC6MZGSQ@mail.gmail.com>
-Subject: Re: [PATCHv4 0/3] Odroid c2 usb fixs
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <e5b184be-02f1-faa4-94fa-79bda8936d9d@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 26, 2019 at 6:38 AM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> Hi Martin,
->
-> On Sun, 25 Aug 2019 at 02:48, Martin Blumenstingl
-> <martin.blumenstingl@googlemail.com> wrote:
-> >
-> > Hi Anand,
-> >
-> > thank you for the patches
-> >
-> > On Sat, Aug 24, 2019 at 8:49 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> > [...]
-> > > Anand Moon (3):
-> > >   arm64: dts: meson: odroid-c2: p5v0 is the main 5V power input
-> > >   arm64: dts: meson: odroid-c2: Add missing linking regulator to usb bus
-> > >   arm64: dts: meson: odroid-c2: Disable usb_otg bus to avoid power
-> > >     failed warning
-> > this whole series is:
-> > Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->
-> Thanks, I have some more patch in line for this board.
-great, any improvement counts (especially since most boards are
-derived from Amlogic reference designs, so it's likely that more than
-just the Odroid-C2 will benefit from your patches) :)
+
+
+On 26/08/2019 17:22, Pierre-Louis Bossart wrote:
+>>>>>
+>>>>>> +      description:
+>>>>>> +      Is the textual representation of SoundWire Enumeration
+>>>>>> +      address. compatible string should contain SoundWire Version 
+>>>>>> ID,
+>>>>>> +      Manufacturer ID, Part ID and Class ID in order and shall be in
+>>>>>> +      lower-case hexadecimal with leading zeroes.
+>>>>>> +      Valid sizes of these fields are
+>>>>>> +      Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
+>>>>>> +      and '0x2' represents SoundWire 1.1 and so on.
+>>>>>> +      MFD is 4 nibbles
+>>>>>> +      PID is 4 nibbles
+>>>>>> +      CID is 2 nibbles
+>>>>>> +      More Information on detail of encoding of these fields can be
+>>>>>> +      found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
+>>>>>> +
+>>>>>> +      reg:
+>>>>>> +        maxItems: 1
+>>>>>> +        description:
+>>>>>> +          Instance ID and Link ID of SoundWire Device Address.
+> 
+> maybe put link first and make it clear that both are required.
+Okay, I will give that a go in next version!
+
+thanks,
+srini
