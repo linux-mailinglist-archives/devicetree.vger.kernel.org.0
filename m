@@ -2,103 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DA9A9F396
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51C709F3AB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731162AbfH0T4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 15:56:12 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44474 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727089AbfH0T4M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 15:56:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=/SvwAeVLFzkeHMJUWjHlGUw6u6XSl9ETzXitKNoc/KI=; b=aubTN7sVyrFsylxFt/p++jFvz
-        IUpDtM7H3+oQMGOc08rN9Mts1dnJQoYWhOEwtloAPx03pQn3vPwiembAtDwXyNPk785i+h5IXyZPv
-        uTBrlA4psbYwK7SjQwyRlTyeTavoc7maGZjkCv/r1atgsxlBKteO/WFZQCbnO7K5Q8KSQ=;
-Received: from 188.28.18.107.threembb.co.uk ([188.28.18.107] helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1i2hZX-0001B6-Sn; Tue, 27 Aug 2019 19:56:08 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 3C3E1D02CE6; Tue, 27 Aug 2019 20:56:06 +0100 (BST)
-Date:   Tue, 27 Aug 2019 20:56:06 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ashish Kumar <ashish.kumar@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: Re: [EXT] Re: [Patch v4 1/3] dt-bindings: spi: spi-fsl-qspi: Add
- ls2080a compatibility string to bindings
-Message-ID: <20190827195606.GA28879@sirena.org.uk>
-References: <1565691791-26167-1-git-send-email-Ashish.Kumar@nxp.com>
- <20190821110640.GC5128@sirena.co.uk>
- <VI1PR04MB401528B4F92DAD98385EF53395AA0@VI1PR04MB4015.eurprd04.prod.outlook.com>
- <VI1PR04MB4015474B3086AE99354FE65395A50@VI1PR04MB4015.eurprd04.prod.outlook.com>
- <20190822184927.GH23391@sirena.co.uk>
- <20190827155005.GA18581@bogus>
+        id S1731098AbfH0T7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 15:59:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39676 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730668AbfH0T7b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 15:59:31 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4731820674;
+        Tue, 27 Aug 2019 19:59:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566935970;
+        bh=ojJTAihZUqMEokPKLE9L8uVVoc+pBtHgjdGSEFAvIsk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=C7xIPolsj58PGtDH6xrvPEO8rj8ZGeHz2D/fVKx1Sd2oMn/kbkLfVpe7DzCFMiFH+
+         6B3pqeptERTcxSzDSKtjh9TVklpUB5pB1dFzHq2oInQP8a9LMQhdEuxGVd+h0bpc0c
+         jvNXvQzR7cO6WRrqlsCAIIKLNKyHv5pVIDQ1g/ig=
+Date:   Tue, 27 Aug 2019 20:59:24 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     lorenzo.bianconi83@gmail.com, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: Re: [PATCH v5 2/4] iio: imu: st_lsm6sdx: move register definitions
+ to sensor_settings struct
+Message-ID: <20190827205924.313344e4@archlinux>
+In-Reply-To: <d3cb1cf5-f17f-38ef-66a2-23c1b7a7d08f@puri.sm>
+References: <20190821132520.28225-1-martin.kepplinger@puri.sm>
+        <20190821132520.28225-3-martin.kepplinger@puri.sm>
+        <d3cb1cf5-f17f-38ef-66a2-23c1b7a7d08f@puri.sm>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="r5Pyd7+fXNt84Ff3"
-Content-Disposition: inline
-In-Reply-To: <20190827155005.GA18581@bogus>
-X-Cookie: We are not a clone.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 27 Aug 2019 08:54:57 +0200
+Martin Kepplinger <martin.kepplinger@puri.sm> wrote:
 
---r5Pyd7+fXNt84Ff3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> On 21.08.19 15:25, Martin Kepplinger wrote:
+> > Move some register definitions to the per-device array of struct
+> > st_lsm6dsx_sensor_settings in order to simplify adding new sensor
+> > devices to the driver.
+> > 
+> > Also, remove completely unused register definitions.
+> > 
+> > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > Acked-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h      |  6 ++++
+> >  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c | 31 ++++++++++++++------
+> >  2 files changed, 28 insertions(+), 9 deletions(-)
+> >   
+> 
+> I just notices the commit message header typo "st_lsm6sdx" should be
+> "st_lsm6dsx" of course. If you can still rebase/force-push to testing,
+> would you be able to fix that? If it's too far out there already, so be
+> it :) sorry for the typo, and thanks for adding "-imu" yourself where
+> applicable.
 
-On Tue, Aug 27, 2019 at 10:50:05AM -0500, Rob Herring wrote:
-> On Thu, Aug 22, 2019 at 07:49:27PM +0100, Mark Brown wrote:
+I can indeed. Fixed up.
 
-> > Drop the dt-bindings:.
+Added Rob's ack to the dt patch as well.
 
-> If you do 'git log --oneline Documentation/devicetree/bindings/' you'll=
-=20
-> notice that SPI and ASoC are the oddballs now. I don't really care
-> except it does add to tribal knowledge needed regarding maintainers'=20
-> requirements.
+Thanks,
 
-Well, you have been pushing people to change over to using
-dt-bindings: so I guess you do care :(  It really does cause me
-to miss stuff, especially where people don't even include the
-subsystem name in the header.  I get quite a lot of CCs for
-things where I once reviewed a patch for a subsystem that made
-use of some subsystem I do maintain or where one patch in a
-series (perhaps even an already applied one) was relevant at some
-point so I'm doing quite a bit of triage that's purely based on
-the subject lines.
+Jonathan
 
---r5Pyd7+fXNt84Ff3
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> thanks,
+> 
+>                       martin
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1litUACgkQJNaLcl1U
-h9CT3Qf/blNHGchHmk2gQ8FvcJr6UsKNmtbrNv1Zov3/pMDT0H/NiFlJzdL4A6lh
-F/4aSXaqEoR8Ns/IBrQ+geoVVr8dzb0P44QVSOPBlP2PlnMH1lKtLjtGoVYMwd9s
-WtByb4e5KTeuOGUWdVC7+//RwjZyx5dMiV5qTv7f6yEZb+bq208Lrm30mluybDiF
-8xj3c1HFSN4S+U0qvDcgsTjPOP0sOSP/DxXQUpKBPjf04446WOB7D8f7z8E+avI3
-y22TeatnvVC9KDuGM136rHNNpWnO7X7wB2HQKs12JwOjQJCcNNx8/WbGaQFgZ1Zp
-fdK3xIKw8dtN4DMr9QAh2R8lLLOunw==
-=8aqH
------END PGP SIGNATURE-----
-
---r5Pyd7+fXNt84Ff3--
