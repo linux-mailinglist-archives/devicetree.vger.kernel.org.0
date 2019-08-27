@@ -2,86 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7BDA9E9E5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED9779E9FC
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730030AbfH0NsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 09:48:08 -0400
-Received: from vps.xff.cz ([195.181.215.36]:59392 "EHLO vps.xff.cz"
+        id S1725825AbfH0Nt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 09:49:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55680 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725825AbfH0NsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 09:48:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1566913686; bh=gUkiaA2UIAfdqLZqpz83L/LrKryHgSOsMfxD9p5JB0g=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=sInfPNmyAp81M2iQxMQJOE28y/Ho0Y8utaCVwSOeVpnZ9lPQ14QaOa5uVI27fnTN5
-         cCVcd9Dz3wvLkYxGyn4l8FmgikPs9k0c3XzJpOfsBok90o5FCZbg8rkUf8Xk3wQBy7
-         q+cBxetxCsNjEQRtNK/YhpgyExf19CKbEms/5oIM=
-Date:   Tue, 27 Aug 2019 15:48:06 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Jernej Skrabec <jernej.skrabec@siol.net>, wens@csie.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: pine64-plus: Add PHY
- regulator delay
-Message-ID: <20190827134806.5l7dxyvzjrvabh7o@core.my.home>
-Mail-Followup-To: Maxime Ripard <mripard@kernel.org>,
-        Jernej Skrabec <jernej.skrabec@siol.net>, wens@csie.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-References: <20190825130336.14154-1-jernej.skrabec@siol.net>
- <20190827133443.fdxl5wjmgkerc3uh@flea>
+        id S1725811AbfH0Nt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 09:49:27 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 99A2522DA7;
+        Tue, 27 Aug 2019 13:49:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566913766;
+        bh=t8dV1JQ6YjWzp6xWQVowBI3+h+v4134YMz5+lu9L+/A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vxThKCxhmjAnNTIY32ynwA5M4uCpDxXpUzkUdSxei05qZyPP/qcipIdYdgpontZLS
+         YqQzblm7YkM8uRqS4nEl7X1l4vp8fthLL9yo5ADW17nizmtUmnpOpq4umYZW1M12Td
+         k7lg97H0TlLoWg+cDwA12rm24mMpngjjXbqBxIN4=
+Received: by mail-qk1-f169.google.com with SMTP id m2so16982196qkd.10;
+        Tue, 27 Aug 2019 06:49:26 -0700 (PDT)
+X-Gm-Message-State: APjAAAWrxOReXJ7N/us0vxxpIxYuSwtegYzQ/YmtlSHiBss4grRaTBaJ
+        trm5hVqpyA+xN6UFTLFi1nirXb6/IOeDHjRJXw==
+X-Google-Smtp-Source: APXvYqyzUQ15boR9MbWaQGb4gGOqWJfi8CzSbuazLWRrpy5Me3zhwjIkil7L3eEEZiEqqtxcmVl0NXeT5X4kfIDHEnc=
+X-Received: by 2002:a37:4941:: with SMTP id w62mr19882827qka.119.1566913765684;
+ Tue, 27 Aug 2019 06:49:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190827133443.fdxl5wjmgkerc3uh@flea>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+References: <20190805143911.12185-1-hhhawa@amazon.com> <20190805143911.12185-2-hhhawa@amazon.com>
+ <20190821191704.GA32425@bogus> <1d23d7c5-cd7b-1512-5300-d43e82ba6dc1@amazon.com>
+In-Reply-To: <1d23d7c5-cd7b-1512-5300-d43e82ba6dc1@amazon.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 27 Aug 2019 08:49:13 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+8jGbR4u7FA8r0gP5i2H+nSgOkGU_5mfiL=i=c0sOW8A@mail.gmail.com>
+Message-ID: <CAL_Jsq+8jGbR4u7FA8r0gP5i2H+nSgOkGU_5mfiL=i=c0sOW8A@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: EDAC: Add Amazon's Annapurna Labs L1 EDAC
+To:     "Hawa, Hanna" <hhhawa@amazon.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Borislav Petkov <bp@alien8.de>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        James Morse <james.morse@arm.com>,
+        David Miller <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>, benh@amazon.com,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        Talel Shenhar <talel@amazon.com>,
+        Jonathan Chocron <jonnyc@amazon.com>,
+        "Hanoch, Uri" <hanochu@amazon.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Aug 26, 2019 at 9:49 AM Hawa, Hanna <hhhawa@amazon.com> wrote:
+>
+>
+>
+> On 8/21/2019 10:17 PM, Rob Herring wrote:
+> > Why is this even in DT? AFAICT, this is all just CortexA57 core features
+> > (i.e. nothing Amazon specific). The core type and the ECC capabilities
+> > are discoverable.
+>
+> Added to the DT in order to easily enable/disable the driver.
 
-On Tue, Aug 27, 2019 at 03:34:43PM +0200, Maxime Ripard wrote:
-> On Sun, Aug 25, 2019 at 03:03:36PM +0200, Jernej Skrabec wrote:
-> > Depending on kernel and bootloader configuration, it's possible that
-> > Realtek ethernet PHY isn't powered on properly. It needs some time
-> > before it can be used.
-> >
-> > Fix that by adding 100ms ramp delay to regulator responsible for
-> > powering PHY.
-> >
-> > Fixes: 94dcfdc77fc5 ("arm64: allwinner: pine64-plus: Enable dwmac-sun8i")
-> > Suggested-by: Ondrej Jirman <megous@megous.com>
-> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> 
-> How was that delay found?
+That alone is not reason enough to put it in DT. From a DT
+perspective, I have no idea what the whims of a OS maintainer are
+regarding whether they want all this to be 1 driver or 2 drivers.
+(IMO, it should be 1 as this is ECC for an A57. For a core and memory
+controller, then 2 seems appropriate.)
 
-I suggested it. There's no delay in the dwmac-sun8i driver, so after enabling
-the phy power, it will start accessing it over MDIO right away, which is not
-good.
+> You are
+> correct that they are CortexA57 core features and nothing Amazon
+> specific, but it's IMPLEMENTATION DEFINED, meaning that in different
+> cortex revisions (e.g. A57) the register bitmap may change. Because of
+> that we added an Amazon compatible which corresponds to the specific
+> core we are using.
 
-I suggested the value based on post-reset delay in the PHY's datasheet (30ms).
-Multiplied ~3x (if I remember correctly) to get some safety margin. Chip has
-more to do then after the HW reset, and regulator also needs some time to
-ramp-up.
+'IMPLEMENTATION DEFINED' usually means not defined by the
+architecture. This doesn't seem like something that's going to change
+with A57 revisions. Plus, the A57 is pretty old now, so we know what's
+out there already. In any case, the revision is discoverable too, so
+we could deal with changes between revisions in any case.
 
-regards,
-	o.
-
-> It should at least have a comment explaining why it's there.
-> 
-> Thanks!
-> Maxime
-> 
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
-
+Rob
