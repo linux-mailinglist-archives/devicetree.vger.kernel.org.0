@@ -2,126 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 870879F4E1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:16:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C6CB9F4ED
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:18:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729903AbfH0VQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 17:16:08 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:45138 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726735AbfH0VQI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:16:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=BNQgl8BXmDinA3/U5qi90mgN02ztpsNcfJjDKC7Jswk=; b=eo2x2tz3u+pHlB2Uk761ZEgQe
-        hOUhU0oDfXDzrQh5Ow4isbPRbctYV/QTHIPCdlkGF8v6IJBtNDWppbeFwBq3TXYqh5G6uSjbJFtDw
-        HL9SOsUw/41VrBvdBEgF1bRKE5um63SBrhyTvje70W3XYmJBSBlNg1119PrQfybSQ6jycpnoWf/Iz
-        IZNR63vpGwrh2kHQj77V8FK5be474OckRHvY2rxUZEhCstLANTUN97jU16pGoJEiqu/xZBiXptItJ
-        qv/6MRPCyJ9zAKpl8gOMAbnXwTegmyVouWJkCUvks63rGtTrpT9/EjEvWp/VrrLqtWBqvIh/5ZFgY
-        CEI3D5siA==;
-Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:55352)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1i2ios-0006nH-B5; Tue, 27 Aug 2019 22:16:02 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1i2ion-00063o-Pz; Tue, 27 Aug 2019 22:15:57 +0100
-Date:   Tue, 27 Aug 2019 22:15:57 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "james.morse@arm.com" <james.morse@arm.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "gregory.clement@free-electrons.com" 
-        <gregory.clement@free-electrons.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jlu@pengutronix.de" <jlu@pengutronix.de>,
-        "bp@alien8.de" <bp@alien8.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
-        "patches@armlinux.org.uk" <patches@armlinux.org.uk>
-Subject: Re: [PATCH v9 1/8] ARM: aurora-l2: add prefix to MAX_RANGE_SIZE
-Message-ID: <20190827211557.GP13294@shell.armlinux.org.uk>
-References: <20190712034904.5747-1-chris.packham@alliedtelesis.co.nz>
- <20190712034904.5747-2-chris.packham@alliedtelesis.co.nz>
- <20190823104621.GY13294@shell.armlinux.org.uk>
- <20190823105020.GZ13294@shell.armlinux.org.uk>
- <836653f04f526333e8dbd45361329731f8dfe2ea.camel@alliedtelesis.co.nz>
- <20190827091336.GI13294@shell.armlinux.org.uk>
- <b1e2e5b325b3c4453e2ed63c17e1e11d6b24f099.camel@alliedtelesis.co.nz>
- <20190827210713.GO13294@shell.armlinux.org.uk>
- <0e9c7c7cb17b6fdea8d49b06925badb0b3d2ff8b.camel@alliedtelesis.co.nz>
+        id S1729626AbfH0VSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 17:18:34 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34448 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726675AbfH0VSe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:18:34 -0400
+Received: by mail-ot1-f68.google.com with SMTP id c7so635917otp.1;
+        Tue, 27 Aug 2019 14:18:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=79O2d4MxaNzshKkDgbf9PCXtK+1faNjqfacVtcjhXCw=;
+        b=WfKFP2Ex7iHPWuOIN+wXVARM//Fw+EtyALZ2RHdD2VFf+u0UdwMzKBy3aPxg/7RPR/
+         pYJqOuJj0qomXcd2rN3UpcOUFUw8Te0rvzryveTSoFLLKuz9uBTGHHZeGoXBb1HDcwkh
+         P4KNTBURWbvWCfte0L+pEJbEatRgNmt4QzDU9JxVdcIW+lWwlw23gSLvYqoiscpm2ckT
+         lsj3Bq39CEouDk2Ngp62twh+Oebm/Ssxc4voexjQq+sn44Nn+bJDjoNsV6Uc0Ij80O04
+         D5nyNFuMbQtVPo3CMRAWfJUQc2XEfLcN0T6kVN+E6nNvnGMZkw/b7XXvq+TSsrC+CMJA
+         0EdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=79O2d4MxaNzshKkDgbf9PCXtK+1faNjqfacVtcjhXCw=;
+        b=Nr7ts3WvRMBqozzdhn4y9tFSWMgA6W2Pr16Ij4MRnak2iiGoc7hM17GVskfdds3fE8
+         nqWNZ9dJ00o38HzxwPNKOl6/uhNcQOcEnAixEJDYResiDSljaJ7BReqyzE7TeTdYj2wr
+         AP3//hPzJjfGBSlZvGvtymuUTe0Qweej43Ckjfz8aapxAi5QdO1IJGi8ZvdkHJJM6xGs
+         w15aMUrVUeRhh8fcQezkIbMpq/k9tpToVeVko++2CH1SxT2rep5V9UCznlv/M2mI711T
+         sXFEynkgS9Ry7AmRKotVEe4sMsE6hqy9rA6h0AF7x+zSHRq1WjVi1B3YOEEb6Sj0Dpx0
+         ABxQ==
+X-Gm-Message-State: APjAAAWRMcyIn1NUsJxxU3CNQFS03NazUaM4zU3VcsW3lVmDIFw9ayN6
+        /pe5n4i4Lh5FCraNH2iHA9w6+S3AhyynNMGEhEw=
+X-Google-Smtp-Source: APXvYqwGwnC+flBOhOIUQLHX1WACuwTk+aVA1Xep4g6gD4QcHubhVgX2ByYgZ7v0D2tQL2mAd7UJqcYjnDBDStIY/rY=
+X-Received: by 2002:a9d:7b44:: with SMTP id f4mr571632oto.42.1566940713518;
+ Tue, 27 Aug 2019 14:18:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0e9c7c7cb17b6fdea8d49b06925badb0b3d2ff8b.camel@alliedtelesis.co.nz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190823081427.17228-1-narmstrong@baylibre.com>
+ <20190823081427.17228-3-narmstrong@baylibre.com> <CAFBinCBLVDVWPbDZ+_cPTbJNCavvzJH4A6U8D9XWVSR-j3fzFQ@mail.gmail.com>
+ <c853d934-113c-2305-f229-1e2c7138fc3f@baylibre.com>
+In-Reply-To: <c853d934-113c-2305-f229-1e2c7138fc3f@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 27 Aug 2019 23:18:22 +0200
+Message-ID: <CAFBinCBLxW2r-N0z10Z7uUpvdoPikkZ0Lca6J-NctGYXtuxb2Q@mail.gmail.com>
+Subject: Re: [PATCH 2/3] amlogic: arm: add Amlogic SM1 based Khadas VIM3
+ variant bindings
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 09:13:11PM +0000, Chris Packham wrote:
-> On Tue, 2019-08-27 at 22:07 +0100, Russell King - ARM Linux admin
-> wrote:
-> > On Tue, Aug 27, 2019 at 08:56:05PM +0000, Chris Packham wrote:
-> > > On Tue, 2019-08-27 at 10:13 +0100, Russell King - ARM Linux admin
-> > > wrote:
-> > > > Just send the single patch to the patch tracker - having it against
-> > > > 5.3-rc is fine (I don't think anything has changed for a long time
-> > > > with that file.)
-> > > 
-> > > Done 
-> > > https://www.armlinux.org.uk/developer/patches/viewpatch.php?id=8902/1
-> > > 
-> > > I'm still not entirely sure what to put for the KernelVersion tag. In
-> > > hindsight think I misinterpreted your comment above and set it to 5.3rc
-> > > (where you meant a series based on 5.3-rcX should apply cleanly). It
-> > > probably should have been next or master because it's way past the
-> > > merge window for 5.3.
-> > 
-> > Think about it as "which kernel version was _this_ patch generated
-> > against" - it's a guide for me to know which kernel version it
-> > should be applied to.  The nearest Linus release (rc or final) is
-> > generally sufficient.
-> > 
-> > If it doesn't apply to my current base, then I might check out that
-> > version, apply it there, and then merge it in, resolving any
-> > conflicts during the merge.
-> > 
-> > It started off with a different purpose: when we had the older
-> > development system, such as the 2.x series kernels, we would have
-> > even x being the current stable kernels, and concurrently we'd
-> > also have x+1 as the development series.  When someone sent me a
-> > patch back then, it was important to know which kernel series it
-> > was meant for.
-> > 
-> > I decided not to get rid of it because it provides useful
-> > information when patches don't apply, and gives more options
-> > than me just discarding the patch with a comment saying it
-> > doesn't apply.
-> > 
-> 
-> Thanks for the info. So 5.3-rc is not as wrong as I thought it was.
-> 
-> One could even summarize the above as.
-> 
->   git format-patch --add-header \
->       "KernelVersion: $(git describe --abbrev=0 HEAD)"
+On Mon, Aug 26, 2019 at 9:42 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+[...]
+> >> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> >> index b48ea1e4913a..2751dd778ce0 100644
+> >> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> >> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> >> @@ -150,9 +150,10 @@ properties:
+> >>            - const: amlogic,s922x
+> >>            - const: amlogic,g12b
+> >>
+> >> -      - description: Boards with the Amlogic Meson SM1 S905X3 SoC
+> >> +      - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+> >>          items:
+> >>            - enum:
+> >>                - seirobotics,sei610
+> >> +              - khadas,vim3
+>
+> Khadas asked me to rename the board to "vim3l", which is the commercial name,
+> should I only change the DT name or also the compatible "khadas,vim3l" ?
+I vote for being consistent:
+- rename the .dts to vim3l
+- and change the compatible string
 
-Yep, I should probably update the patch system help with that, and
-actually strip out everything about the old diff and patch way of
-working.
+> >>            - const: amlogic,sm1
+> > on the GXL we differentiate between S905X and S905D
+> > do we need to differentiate S905X3 from S905D3 (for example)?
+>
+> From a pure SoC die perspective they are the same, exactly like
+> the S905X and S905D, only the package changes.
+> So only the board DT will determine which eth PHY is used,
+> if a DSI panel is connected, a demodulator is connected.. even
+> if the underlying package is S905Y3 without any of these pins
+> available.
+OK, I see - fine for me then
+GXL's S905W and/or S805X are the "special cases" then which (AFAIK)
+use a different (smaller) package (so it made sense to differentiate
+all GXL SoCs)
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+
+Martin
