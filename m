@@ -2,105 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 370F49E7C9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8B09E7CB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729166AbfH0MVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 08:21:36 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:44946 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726125AbfH0MVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 08:21:36 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 128522F0;
-        Tue, 27 Aug 2019 14:21:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1566908493;
-        bh=pO1EML76MfiPMY/J+dY6Y8D9KGKV9qWwuuVymaiBWl0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pjTOrlTKIfphqT+UvllbboS8TIV4h5otoklh+uDNT74yhkcieYuzb6E6MSebNmcbw
-         14mOwcTkYYECA7pBeQ3laojP71MWOFfYoSE47mgVO0sSw6/lxCrtVUqpqTsrU3p9oX
-         /25/Pa81GALgGjgyOb1doloURMi5Q0JcDRTHMrKo=
-Date:   Tue, 27 Aug 2019 15:21:26 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>, tfiga@google.com,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
-        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 01/10] media: dt-bindings: Document 'location' property
-Message-ID: <20190827122126.GQ5054@pendragon.ideasonboard.com>
-References: <20190827092339.8858-1-jacopo@jmondi.org>
- <20190827092339.8858-2-jacopo@jmondi.org>
+        id S1727219AbfH0MVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 08:21:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44340 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726125AbfH0MVy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 08:21:54 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3152022CF5;
+        Tue, 27 Aug 2019 12:21:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566908513;
+        bh=eit3RrFqNrNE4vZrZrZF8s6p9Ki/i527M3cLIrYgSgk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=K+bhF6LQlv0PWuqu69sB60FlA8VjbX6q7t88std4fDvwW+Qdv9KvM0+06G4BpppUE
+         Tq7Cm1xEVtY69dumS4ki+R8Lx4ZUFhuF9PEy4Xz7vrH+kntlW5Qv1SH6JUm28eC46r
+         UVt7J4YMad9VT8qigX+DqJi8v3/FaWGHckQXRWjE=
+Received: by mail-qt1-f175.google.com with SMTP id a13so251816qtj.1;
+        Tue, 27 Aug 2019 05:21:53 -0700 (PDT)
+X-Gm-Message-State: APjAAAVSZkctW86tZeY4a8DwYOE7qx2kYiC25d3J++dfr1JW9/L/onfu
+        zLqsZka/A5t4jveqKbxFxr1LDOpgEBdnJ2djPQ==
+X-Google-Smtp-Source: APXvYqyA08IogmVH6/eLxgDuudG/7vlKnuGh62iApaH8ZRCJvpE+Z067YCE/LHZReBYhVH85YjaQVbcpek7HBHvUyfc=
+X-Received: by 2002:ac8:386f:: with SMTP id r44mr22938146qtb.300.1566908512316;
+ Tue, 27 Aug 2019 05:21:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190827092339.8858-2-jacopo@jmondi.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190823121637.5861-1-masneyb@onstation.org> <20190823121637.5861-3-masneyb@onstation.org>
+In-Reply-To: <20190823121637.5861-3-masneyb@onstation.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 27 Aug 2019 07:21:41 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLmaE+6Lj6KDgscK3OO=fsCGM=90eRCYK_gBA7bdkEbEg@mail.gmail.com>
+Message-ID: <CAL_JsqLmaE+6Lj6KDgscK3OO=fsCGM=90eRCYK_gBA7bdkEbEg@mail.gmail.com>
+Subject: Re: [PATCH v7 2/7] dt-bindings: display: msm: gmu: add optional ocmem property
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org, Jordan Crouse <jcrouse@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-Thank you for the patch.
-
-On Tue, Aug 27, 2019 at 11:23:27AM +0200, Jacopo Mondi wrote:
-> Add the 'location' device property, used to specify the camera device
-> mounting position. The property is particularly meaningful for mobile
-> devices with a well defined usage orientation.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+On Fri, Aug 23, 2019 at 7:16 AM Brian Masney <masneyb@onstation.org> wrote:
+>
+> Some A3xx and A4xx Adreno GPUs do not have GMEM inside the GPU core and
+> must use the On Chip MEMory (OCMEM) in order to be functional. Add the
+> optional ocmem property to the Adreno Graphics Management Unit bindings.
+>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
 > ---
->  .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> index f884ada0bffc..865f4142f432 100644
-> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> @@ -89,6 +89,16 @@ Optional properties
->    but a number of degrees counter clockwise. Typical values are 0 and 180
->    (upside down).
-> 
-> +- location: The camera sensor mounting location, expressed as a position
-> +  relative to the usage orientation of the device the sensor is installed on.
+> Changes since v6:
+> - link to gmu-sram in example
+> - add ranges property to ocmem example to match bindings
+>
+> Changes since v5:
+> - rename ocmem property to sram to match what TI currently has.
+>
+> Changes since v4:
+> - None
+>
+> Changes since v3:
+> - correct link to qcom,ocmem.yaml
+>
+> Changes since v2:
+> - Add a3xx example with OCMEM
+>
+> Changes since v1:
+> - None
+>
+>  .../devicetree/bindings/display/msm/gmu.txt   | 51 +++++++++++++++++++
+>  1 file changed, 51 insertions(+)
 
-DT bindings being ABIs, we need to be precise and thorough there. One
-particular point that bothers me is that the property is named location,
-and its description refers to camera sensor mounting location. 
-
-I see two options to fix this. One of them is to rename the property to
-camera-location, but that would limit its future usage for other types
-of devices. The other one is to document the property as applying to a
-"device" instead of a "camera sensor", and add one sentence stating that
-this property is valid for camera sensors only.
-
-This will require finding another name for the device that the device is
-mounted on though, as using device twice would be very confusing.
-
-> +  Possible values are:
-> +  0 - Front. The image sensor is mounted on the front facing side of the device.
-> +  For mobile devices such as smartphones, tablets and laptops the front side is
-> +  the user facing side of the device.
-> +  1 - Back. The image sensor is mounted on the back side of the device, which is
-> +  defined as the opposite side of the front facing one.
-> +  2 - External. The image sensor is connected to the device by extension cables,
-> +  and can be freely moved, regardless of the device position.
-
-It could be something else than cables (wireless possibly ?). I would
-phrase this along the lines of "The device is not attached directly to
-the [device], or is attached in a way that allows it to move to
-different locations."
-
-> 
->  Optional endpoint properties
->  ----------------------------
-
--- 
-Regards,
-
-Laurent Pinchart
+Reviewed-by: Rob Herring <robh@kernel.org>
