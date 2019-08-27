@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE0259DC3C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 05:59:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD2FE9DC4B
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 06:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728976AbfH0D7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 23:59:34 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:46880 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728820AbfH0D7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 23:59:34 -0400
-X-UUID: e45fd75da6594be69814b2941f255a4a-20190827
-X-UUID: e45fd75da6594be69814b2941f255a4a-20190827
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        id S1725825AbfH0EHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 00:07:45 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:41559 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725805AbfH0EHp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 00:07:45 -0400
+X-UUID: 1541c87a783d4fbe9bd5d7381a2f4456-20190827
+X-UUID: 1541c87a783d4fbe9bd5d7381a2f4456-20190827
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
         (envelope-from <bibby.hsieh@mediatek.com>)
         (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 838284026; Tue, 27 Aug 2019 11:59:30 +0800
+        with ESMTP id 1160898092; Tue, 27 Aug 2019 12:07:39 +0800
 Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 27 Aug 2019 11:59:37 +0800
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 27 Aug 2019 12:07:46 +0800
 Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 27 Aug 2019 11:59:36 +0800
-Message-ID: <1566878368.29523.1.camel@mtksdaap41>
-Subject: Re: [RESEND, PATCH v13 11/12] soc: mediatek: cmdq: add
- cmdq_dev_get_client_reg function
+ Transport; Tue, 27 Aug 2019 12:07:46 +0800
+Message-ID: <1566878857.29523.4.camel@mtksdaap41>
+Subject: Re: [RESEND, PATCH v13 10/12] soc: mediatek: cmdq: add polling
+ function
 From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
 To:     Matthias Brugger <matthias.bgg@gmail.com>
 CC:     Jassi Brar <jassisinghbrar@gmail.com>,
@@ -45,137 +45,131 @@ CC:     Jassi Brar <jassisinghbrar@gmail.com>,
         Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
         Houlong Wei <houlong.wei@mediatek.com>,
         <ginny.chen@mediatek.com>
-Date:   Tue, 27 Aug 2019 11:59:28 +0800
-In-Reply-To: <ccd3782e-b1bb-7887-f4a5-d7774183c7b7@gmail.com>
+Date:   Tue, 27 Aug 2019 12:07:37 +0800
+In-Reply-To: <2dfb6a69-c325-9caf-e11b-bf0f0fbf4bb6@gmail.com>
 References: <20190820084932.22282-1-bibby.hsieh@mediatek.com>
-         <20190820084932.22282-12-bibby.hsieh@mediatek.com>
-         <ccd3782e-b1bb-7887-f4a5-d7774183c7b7@gmail.com>
+         <20190820084932.22282-11-bibby.hsieh@mediatek.com>
+         <2dfb6a69-c325-9caf-e11b-bf0f0fbf4bb6@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 34024C2035332237CE94BB97C522852CCDEB6CCC7296B54A2D16406976ACB8382000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2019-08-23 at 16:21 +0200, Matthias Brugger wrote:
+On Fri, 2019-08-23 at 16:05 +0200, Matthias Brugger wrote:
 > 
 > On 20/08/2019 10:49, Bibby Hsieh wrote:
-> > GCE cannot know the register base address, this function
-> > can help cmdq client to get the cmdq_client_reg structure.
+> > add polling function in cmdq helper functions
 > > 
 > > Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > > Reviewed-by: CK Hu <ck.hu@mediatek.com>
 > > ---
-> >  drivers/soc/mediatek/mtk-cmdq-helper.c | 29 ++++++++++++++++++++++++++
-> >  include/linux/soc/mediatek/mtk-cmdq.h  | 21 +++++++++++++++++++
-> >  2 files changed, 50 insertions(+)
+> >  drivers/soc/mediatek/mtk-cmdq-helper.c   | 28 ++++++++++++++++++++++++
+> >  include/linux/mailbox/mtk-cmdq-mailbox.h |  1 +
+> >  include/linux/soc/mediatek/mtk-cmdq.h    | 15 +++++++++++++
+> >  3 files changed, 44 insertions(+)
 > > 
 > > diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> > index c53f8476c68d..80f75a1075b4 100644
+> > index e3d5b0be8e79..c53f8476c68d 100644
 > > --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
 > > +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> > @@ -27,6 +27,35 @@ struct cmdq_instruction {
-> >  	u8 op;
-> >  };
+> > @@ -221,6 +221,34 @@ int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event)
+> >  }
+> >  EXPORT_SYMBOL(cmdq_pkt_clear_event);
 > >  
-> > +int cmdq_dev_get_client_reg(struct device *dev,
-> > +			    struct cmdq_client_reg *client_reg, int idx)
+> > +int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
+> > +		  u16 offset, u32 value, u32 mask)
 > > +{
+> > +	struct cmdq_instruction *inst;
+> > +
+> > +	if (mask != 0xffffffff) {
 > 
-> Can't we do/call this in cmdq_mbox_create parsing the number of gce-client-reg
-> properties we have and allocating these using a pointer to cmdq_client_reg in
-> cmdq_client?
-> We will have to free the pointer then in cmdq_mbox_destroy.
+> Is this necessary? Can't we just always set the mask, even if it's 0xffffffff?
 > 
-> Regards,
-> Matthias
+> Regarding interfaces, depending on how often you expect the mask being ~0 we
+> might think of adding a cmdq_pkt_poll_mask call.
+> What I want to say, if in the end most of the callers will use the mask with
+> 0xffffffff, then we should add a call cmdq_pkt_poll_mask which actually allows
+> to set the mask and let cmdq_pkt_poll set the mask in it's function body.
+> As I already said, this depends on how often you think a caller will use/not-use
+> the mask.
+> Does this make sense?
 
-I don't think we need to keep the cmdq_client_reg in cmdq_client
-structure.
-Because our client will have own data structure, they will copy the
-client_reg information into their own structure.
+It's better to have two function: cmdq_pkt_poll_mask and cmdq_pkt_poll,
+client can choose which they need by themselves.
 
-In the design now, we do not allocate the cmdq_client_reg, client pass
-the cmdq_client_reg pointer into this API.
-Client will destroy the pointer after they get the information they
-want.
-
-Thanks for the comments so much.
+Thanks for the comments.
 
 Bibby
-
-> 
-> > +	struct of_phandle_args spec;
-> > +	int err;
+> > +		inst = cmdq_pkt_append_command(pkt);
+> > +		if (!inst)
+> > +			return -ENOMEM;
 > > +
-> > +	if (!client_reg)
-> > +		return -ENOENT;
-> > +
-> > +	err = of_parse_phandle_with_fixed_args(dev->of_node,
-> > +					       "mediatek,gce-client-reg",
-> > +					       3, idx, &spec);
-> > +	if (err < 0) {
-> > +		dev_err(dev,
-> > +			"error %d can't parse gce-client-reg property (%d)",
-> > +			err, idx);
-> > +
-> > +		return err;
+> > +		inst->op = CMDQ_CODE_MASK;
+> > +		inst->value = ~mask;
+> > +		offset = offset | 0x1;
 > > +	}
 > > +
-> > +	client_reg->subsys = (u8)spec.args[0];
-> > +	client_reg->offset = (u16)spec.args[1];
-> > +	client_reg->size = (u16)spec.args[2];
-> > +	of_node_put(spec.np);
+> > +	inst = cmdq_pkt_append_command(pkt);
+> > +	if (!inst)
+> > +		return -ENOMEM;
+> > +
+> > +	inst->op = CMDQ_CODE_POLL;
+> > +	inst->value = value;
+> > +	inst->offset = offset;
+> > +	inst->subsys = subsys;
 > > +
 > > +	return 0;
 > > +}
-> > +EXPORT_SYMBOL(cmdq_dev_get_client_reg);
+> > +EXPORT_SYMBOL(cmdq_pkt_poll);
 > > +
-> >  static void cmdq_client_timeout(struct timer_list *t)
+> >  static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
 > >  {
-> >  	struct cmdq_client *client = from_timer(client, t, timer);
+> >  	struct cmdq_instruction *inst;
+> > diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> > index c8adedefaf42..9e3502945bc1 100644
+> > --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
+> > +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> > @@ -46,6 +46,7 @@
+> >  enum cmdq_code {
+> >  	CMDQ_CODE_MASK = 0x02,
+> >  	CMDQ_CODE_WRITE = 0x04,
+> > +	CMDQ_CODE_POLL = 0x08,
+> >  	CMDQ_CODE_JUMP = 0x10,
+> >  	CMDQ_CODE_WFE = 0x20,
+> >  	CMDQ_CODE_EOC = 0x40,
 > > diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
-> > index a345870a6d10..02ddd60b212f 100644
+> > index 9618debb9ceb..a345870a6d10 100644
 > > --- a/include/linux/soc/mediatek/mtk-cmdq.h
 > > +++ b/include/linux/soc/mediatek/mtk-cmdq.h
-> > @@ -15,6 +15,12 @@
-> >  
-> >  struct cmdq_pkt;
-> >  
-> > +struct cmdq_client_reg {
-> > +	u8 subsys;
-> > +	u16 offset;
-> > +	u16 size;
-> > +};
-> > +
-> >  struct cmdq_client {
-> >  	spinlock_t lock;
-> >  	u32 pkt_cnt;
-> > @@ -24,6 +30,21 @@ struct cmdq_client {
-> >  	u32 timeout_ms; /* in unit of microsecond */
-> >  };
+> > @@ -99,6 +99,21 @@ int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event);
+> >   */
+> >  int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event);
 > >  
 > > +/**
-> > + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device
-> > + *			       node of CMDQ client
-> > + * @dev:	device of CMDQ mailbox client
-> > + * @client_reg: CMDQ client reg pointer
-> > + * @idx:	the index of desired reg
+> > + * cmdq_pkt_poll() - Append polling command to the CMDQ packet, ask GCE to
+> > + *		     execute an instruction that wait for a specified hardware
+> > + *		     register to check for the value. All GCE hardware
+> > + *		     threads will be blocked by this instruction.
+> > + * @pkt:	the CMDQ packet
+> > + * @subsys:	the CMDQ sub system code
+> > + * @offset:	register offset from CMDQ sub system
+> > + * @value:	the specified target register value
+> > + * @mask:	the specified target register mask
 > > + *
 > > + * Return: 0 for success; else the error code is returned
-> > + *
-> > + * Help CMDQ client parsing the cmdq client reg
-> > + * from the device node of CMDQ client.
 > > + */
-> > +int cmdq_dev_get_client_reg(struct device *dev,
-> > +			    struct cmdq_client_reg *client_reg, int idx);
-> > +
+> > +int cmdq_pkt_poll(struct cmdq_pkt *pkt, u8 subsys,
+> > +		  u16 offset, u32 value, u32 mask);
 > >  /**
-> >   * cmdq_mbox_create() - create CMDQ mailbox client and channel
-> >   * @dev:	device of CMDQ mailbox client
+> >   * cmdq_pkt_flush_async() - trigger CMDQ to asynchronously execute the CMDQ
+> >   *                          packet and call back at the end of done packet
 > > 
+
 
 
