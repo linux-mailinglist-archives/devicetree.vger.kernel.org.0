@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 589889F01A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:26:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0BBE9F028
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:30:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729140AbfH0Q0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:26:50 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36685 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726678AbfH0Q0u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:26:50 -0400
-Received: by mail-oi1-f194.google.com with SMTP id n1so15433321oic.3;
-        Tue, 27 Aug 2019 09:26:49 -0700 (PDT)
+        id S1727270AbfH0QaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:30:07 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46729 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727138AbfH0QaH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:30:07 -0400
+Received: by mail-ot1-f68.google.com with SMTP id z17so19211186otk.13;
+        Tue, 27 Aug 2019 09:30:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4HSp7GpMjayluxWHO7ugEoqBf1XE55/uOIFDoDgJv6Q=;
-        b=jsB92w66Dst0WBEF8yw2f0Lm8mbvlzjPO0pIFtStcB/u9DwceX7WcM2QMnytrz5MAx
-         AgWlpTD5NywTzhhihSS1jUMePbR3Bq8muc2djMMtE5eWAn2TXQJqEUwlQIQ84t/0Qnaj
-         XUpmtQ1Rze1rM/D7wr1vrBHjtesmKv6iEmcO7vO1xLOi7oJyGUswDOhdSfxV+yLJPvta
-         z4G1n0+1+P+bUdMfbsLXloWdUQDQFr4uYuwbz+F2p0uEcuxwTHPLiEaqly0A4s/7IzV+
-         Aa/lu1kB52KjNPqTA7cnU5uXkB3FwgIp4Yi7fEiOwU/VP9DK5dLSOXqNySu89oYkLWd6
-         ufDQ==
-X-Gm-Message-State: APjAAAUrbm4vmxKhz7RB/zXWhtYYBlDuWJe5AciogHP5n3qfIMy8MjKO
-        JQIxweq32YCuR8sUUttd2Q==
-X-Google-Smtp-Source: APXvYqz+FEVhEUY3wCiucFQEMMkHkhySFHT9ozYmvRgI1VOAn+6/u4QwVBFFW28kEOM0vAnYZbB4fA==
-X-Received: by 2002:aca:5652:: with SMTP id k79mr1967173oib.175.1566923209074;
-        Tue, 27 Aug 2019 09:26:49 -0700 (PDT)
+        bh=MZo+lyJS1qB+LB2JBgDPX4nY4iKSSmb/XJUlvm5QG+Q=;
+        b=dWv3xGUUbmyVIPTD5+hEjyfSk+3JGwvLoSv0L4pH3jtmu6OCZS75IeW32klL6QDrIt
+         9GpObn8uIiJ9bnDpvPpHvYU1m2TZvhT7nJ5uHeB94MffsGcL2NK/tvdPC45ai0E74QVO
+         ZACn9p5offnT49Qp3Jp2rwFkZ4ngDJIH7yhrNqIe4evNI2Vez5PsaZupy2SIu7k1foIM
+         kKkjvXOlqkhNDdFdXggUpN5eyLKShCbN5JZ52Tl1RDFfW1cN92lgmpJJ4LxKTRT9Cng9
+         RVYyXCwRAnCPMXxK5MLs6WfhKAzwwwG/esnIX10dwJSXNdRlJcDyDFhQlvqD+lqZo2mv
+         H5uw==
+X-Gm-Message-State: APjAAAUN4AHvJZYi7WuOA1XDOLHzM5kADxZh4WXhzqbZIKVvOmNh0GhB
+        YaXdSlXxEE7L7KY8U/Vu/w==
+X-Google-Smtp-Source: APXvYqzyFGqlBO40GT+QMDN6a35htomQuDpDn1K6+V8gSqoGWVfe1dbAM1KRXwtq7YlPKL3CPKHYEg==
+X-Received: by 2002:a9d:4c0f:: with SMTP id l15mr19784465otf.138.1566923406579;
+        Tue, 27 Aug 2019 09:30:06 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c3sm5232759otm.70.2019.08.27.09.26.48
+        by smtp.gmail.com with ESMTPSA id u5sm6177265ote.27.2019.08.27.09.30.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 09:26:48 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 11:26:47 -0500
+        Tue, 27 Aug 2019 09:30:05 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 11:30:05 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
-        lorenzo.pieralisi@arm.com, arnd@arndb.de,
-        gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
-        mingkai.hu@nxp.com, roy.zang@nxp.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCH 08/10] dt-bindings: PCI: Add the pf-offset property
-Message-ID: <20190827162647.GA21347@bogus>
-References: <20190815083716.4715-1-xiaowei.bao@nxp.com>
- <20190815083716.4715-8-xiaowei.bao@nxp.com>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     srinivas.kandagatla@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, orsonzhai@gmail.com, zhang.lyra@gmail.com,
+        baolin.wang@linaro.org, freeman.liu@unisoc.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: nvmem: Add Spreadtrum eFuse controller
+ documentation
+Message-ID: <20190827163005.GA26471@bogus>
+References: <80b6cf41d2dc2660a710e611e06faae753e2e09a.1565955745.git.baolin.wang@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190815083716.4715-8-xiaowei.bao@nxp.com>
+In-Reply-To: <80b6cf41d2dc2660a710e611e06faae753e2e09a.1565955745.git.baolin.wang@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Aug 2019 16:37:14 +0800, Xiaowei Bao wrote:
-> Add the pf-offset property for multiple PF.
+On Fri, 16 Aug 2019 19:44:16 +0800, Baolin Wang wrote:
+> From: Freeman Liu <freeman.liu@unisoc.com>
 > 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> This patch adds the binding documentation for Spreadtrum eFuse controller.
+> 
+> Signed-off-by: Freeman Liu <freeman.liu@unisoc.com>
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
 > ---
->  Documentation/devicetree/bindings/pci/designware-pcie.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/nvmem/sprd-efuse.txt       |   39 ++++++++++++++++++++
+>  1 file changed, 39 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/nvmem/sprd-efuse.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
