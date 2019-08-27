@@ -2,102 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EA9D9F644
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 00:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 176769F68C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 01:07:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725992AbfH0WhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 18:37:18 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:38127 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725989AbfH0WhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 18:37:18 -0400
-Received: by mail-ot1-f66.google.com with SMTP id r20so807032ota.5;
-        Tue, 27 Aug 2019 15:37:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=zauk4U8OoEi1FBo/2vpUOZ45fQEWaY7iuSdGeCHe83s=;
-        b=Lu2AZA2CjEvpqaTyPYa8p1B21lH48/VPBt6GaMqK9fp0al0gFfO7B8n2LD0IabAzjE
-         SOha1LoqMbrbzcrs4pVkzMRFG+A3E7wWSt6SQZ3Yn0gHtI9vtAPkt7kt1ikdN/B4JkUY
-         R8UC+9D1KsZL4ADPbL9ETW7OLieyyFCGW7PUphc9LcSeYNhw/S4h0yWXYeWxzj0A9XrA
-         J295WtsH1WWIFCLoLmDtDL6196XqLMabZKEWBKS4DTsXJbBFBHY4G9GPYA2Q3eVIf6St
-         dhhKztdxw/+dhW/WAZX/5/ZJ/chdAQ8QSbo4Kyr++VKzzKPmG3mf4KYZ0IhC4y2T7fW8
-         CfIQ==
-X-Gm-Message-State: APjAAAWzjc9QL8KAJrDYWzxB9InMhPDOKVb1E54Gi4Z/hapXbvtuwBQz
-        iap1ZS0H20nbRkU6BI+SFQ==
-X-Google-Smtp-Source: APXvYqwyWCyxbtq92eeNM9609mAefZjtCS/Vde8B3KkemlEEUxzPpD1Evn5Zu509yiJdHmGHVTcsHg==
-X-Received: by 2002:a05:6830:1345:: with SMTP id r5mr848280otq.158.1566945437274;
-        Tue, 27 Aug 2019 15:37:17 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id q85sm200903oic.52.2019.08.27.15.37.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 15:37:16 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 17:37:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Chas Williams <3chas3@gmail.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S1726025AbfH0XHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 19:07:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39314 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725992AbfH0XHE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 19:07:04 -0400
+Received: from localhost (unknown [69.71.4.100])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 09904214DA;
+        Tue, 27 Aug 2019 23:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566947222;
+        bh=WE4QEs46+F0AXHLzxSkuwUCWzJwNYQIvdKGLoOjedEQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Nbk0GzfVvfIDS2w248ZujPEbSU7RmkyFzJLmfCKhInfK7r2zQ1n5pr30kuzojc1n1
+         iUk/K5GEwiUWMu8ikTnYZfkz7SG2Df3/BexhC7K6iOIijWSxbH3ARYdCgKerqaJMQE
+         RkwKbTq8PTfLbZU2WoVQnFT0U0cpKug0xXpfRtHE=
+Date:   Tue, 27 Aug 2019 18:06:59 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Krzysztof Wilczynski <kw@linux.com>
+Cc:     Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 4/6] dt-bindings: misc: atmel-ssc: LRCLK from TF/RF
- pin option
-Message-ID: <20190827223716.GA31605@bogus>
-References: <cover.1566677788.git.mirq-linux@rere.qmqm.pl>
- <9b85d5a7c7e788e9ed87d020323ad9292e3aeab7.1566677788.git.mirq-linux@rere.qmqm.pl>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] PCI: Fix misspelled words.
+Message-ID: <20190827230659.GF9987@google.com>
+References: <20190819115306.27338-1-kw@linux.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9b85d5a7c7e788e9ed87d020323ad9292e3aeab7.1566677788.git.mirq-linux@rere.qmqm.pl>
+In-Reply-To: <20190819115306.27338-1-kw@linux.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 24, 2019 at 10:26:55PM +0200, Michał Mirosław wrote:
-> Add single-pin LRCLK source options for Atmel SSC module.
+On Mon, Aug 19, 2019 at 01:53:06PM +0200, Krzysztof Wilczynski wrote:
+> Fix misspelled words in include/linux/pci.h, drivers/pci/Kconfig,
+> and in the documentation for Freescale i.MX6 and Marvell Armada 7K/8K
+> PCIe interfaces.  No functional change intended.
 > 
-> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> Related commit 96291d565550 ("PCI: Fix typos and whitespace errors").
 > 
-> ---
->   v2: split from implementation patch
-> 
-> ---
->  Documentation/devicetree/bindings/misc/atmel-ssc.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/misc/atmel-ssc.txt b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-> index f9fb412642fe..c98e96dbec3a 100644
-> --- a/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-> +++ b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-> @@ -24,6 +24,11 @@ Optional properties:
->         this parameter to choose where the clock from.
->       - By default the clock is from TK pin, if the clock from RK pin, this
->         property is needed.
-> +  - atmel,lrclk-from-tf-pin: bool property.
-> +  - atmel,lrclk-from-rf-pin: bool property.
-> +     - SSC in slave mode gets LRCLK from RF for receive and TF for transmit
-> +       data direction. This property makes both use single TF (or RF) pin
-> +       as LRCLK. At most one can be present.
+> Signed-off-by: Krzysztof Wilczynski <kw@linux.com>
 
-A single property taking 1 of possible 2 values would prevent the error 
-of more than 1 property present.
+Applied with Thomas' ack and Rob's reviewed-by to pci/trivial for
+v5.4, thanks!
 
->    - #sound-dai-cells: Should contain <0>.
->       - This property makes the SSC into an automatically registered DAI.
+> ---
+>  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt | 2 +-
+>  Documentation/devicetree/bindings/pci/pci-armada8k.txt   | 2 +-
+>  drivers/pci/Kconfig                                      | 2 +-
+>  include/linux/pci.h                                      | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> index a7f5f5afa0e6..de4b2baf91e8 100644
+> --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> @@ -50,7 +50,7 @@ Additional required properties for imx7d-pcie and imx8mq-pcie:
+>  - power-domains: Must be set to a phandle pointing to PCIE_PHY power domain
+>  - resets: Must contain phandles to PCIe-related reset lines exposed by SRC
+>    IP block
+> -- reset-names: Must contain the following entires:
+> +- reset-names: Must contain the following entries:
+>  	       - "pciephy"
+>  	       - "apps"
+>  	       - "turnoff"
+> diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> index 9e3fc15e1af8..1aaa09254001 100644
+> --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
+> @@ -11,7 +11,7 @@ Required properties:
+>  - reg-names:
+>     - "ctrl" for the control register region
+>     - "config" for the config space region
+> -- interrupts: Interrupt specifier for the PCIe controler
+> +- interrupts: Interrupt specifier for the PCIe controller
+>  - clocks: reference to the PCIe controller clocks
+>  - clock-names: mandatory if there is a second clock, in this case the
+>     name must be "core" for the first clock and "reg" for the second
+> diff --git a/drivers/pci/Kconfig b/drivers/pci/Kconfig
+> index 2ab92409210a..46f4912a370d 100644
+> --- a/drivers/pci/Kconfig
+> +++ b/drivers/pci/Kconfig
+> @@ -170,7 +170,7 @@ config PCI_P2PDMA
 >  
+>  	  Many PCIe root complexes do not support P2P transactions and
+>  	  it's hard to tell which support it at all, so at this time,
+> -	  P2P DMA transations must be between devices behind the same root
+> +	  P2P DMA transactions must be between devices behind the same root
+>  	  port.
+>  
+>  	  If unsure, say N.
+> diff --git a/include/linux/pci.h b/include/linux/pci.h
+> index 463486016290..5a89854bd3cb 100644
+> --- a/include/linux/pci.h
+> +++ b/include/linux/pci.h
+> @@ -961,7 +961,7 @@ resource_size_t pcibios_align_resource(void *, const struct resource *,
+>  				resource_size_t,
+>  				resource_size_t);
+>  
+> -/* Weak but can be overriden by arch */
+> +/* Weak but can be overridden by arch */
+>  void pci_fixup_cardbus(struct pci_bus *);
+>  
+>  /* Generic PCI functions used internally */
 > -- 
-> 2.20.1
+> 2.22.0
 > 
