@@ -2,112 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86FE09EACA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 16:20:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CBBB9EAD2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 16:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727058AbfH0OUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 10:20:40 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:46645 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725987AbfH0OUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 10:20:39 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1i2cKp-0002Db-JU; Tue, 27 Aug 2019 16:20:35 +0200
-Message-ID: <1566915632.4102.19.camel@pengutronix.de>
-Subject: Re: [PATCHv6] drivers/amba: add reset control to amba bus probe
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Dinh Nguyen <dinguyen@kernel.org>, linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, robh@kernel.org, linux@armlinux.org.uk,
-        frowand.list@gmail.com, keescook@chromium.org, anton@enomsg.org,
-        ccross@android.com, tony.luck@intel.com,
-        daniel.thompson@linaro.org, linus.walleij@linaro.org,
-        manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Tue, 27 Aug 2019 16:20:32 +0200
-In-Reply-To: <20190827141153.20254-1-dinguyen@kernel.org>
-References: <20190827141153.20254-1-dinguyen@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1725987AbfH0OWa convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Aug 2019 10:22:30 -0400
+Received: from relay11.mail.gandi.net ([217.70.178.231]:51627 "EHLO
+        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725920AbfH0OWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 10:22:30 -0400
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id E554B100007;
+        Tue, 27 Aug 2019 14:22:26 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Cc:     devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v3 00/19] Enhance CP110 COMPHY support
+In-Reply-To: <20190731122126.3049-1-miquel.raynal@bootlin.com>
+References: <20190731122126.3049-1-miquel.raynal@bootlin.com>
+Date:   Tue, 27 Aug 2019 16:22:26 +0200
+Message-ID: <87lfvezo0t.fsf@FE-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-08-27 at 09:11 -0500, Dinh Nguyen wrote:
-> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-> default. Until recently, the DMA controller was brought out of reset by the
-> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
-> that are not used are held in reset and are left to Linux to bring them
-> out of reset.
-> 
-> Add a mechanism for getting the reset property and de-assert the primecell
-> module from reset if found. This is a not a hard fail if the reset properti
-> is not present in the device tree node, so the driver will continue to
-> probe.
-> 
-> Because there are different variants of the controller that may have
-> multiple reset signals, the code will find all reset(s) specified and
-> de-assert them.
-> 
-> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
-> v6: remove the need to reset_control_get_count as
->     of_reset_control_array_get_optional_shared is already doing that
-> v5: use of_reset_control_array_get_optional_shared()
-> v4: cleaned up indentation in loop
->     fix up a few checkpatch warnings
->     add Reviewed-by:
-> v3: add a reset_control_put()
->     add error handling
-> v2: move reset control to bus code
->     find all reset properties and de-assert them
-> ---
->  drivers/amba/bus.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
-> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-> index 100e798a5c82..f39f075abff9 100644
-> --- a/drivers/amba/bus.c
-> +++ b/drivers/amba/bus.c
-> @@ -18,6 +18,7 @@
->  #include <linux/limits.h>
->  #include <linux/clk/clk-conf.h>
->  #include <linux/platform_device.h>
-> +#include <linux/reset.h>
->  
->  #include <asm/irq.h>
->  
-> @@ -401,6 +402,19 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
->  	ret = amba_get_enable_pclk(dev);
->  	if (ret == 0) {
->  		u32 pid, cid;
-> +		struct reset_control *rstc;
-> +
-> +		/*
-> +		 * Find reset control(s) of the amba bus and de-assert them.
-> +		 */
-> +		rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
-> +		if (IS_ERR(rstc)) {
-> +			if (PTR_ERR(rstc) != -EPROBE_DEFER)
-> +				dev_err(&dev->dev, "Can't get amba reset!\n");
-> +			return PTR_ERR(rstc);
-> +		}
-> +		reset_control_deassert(rstc);
-> +		reset_control_put(rstc);
->  
->  		/*
->  		 * Read pid and cid based on size of resource
+Hi Miquel,
 
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> Armada CP110 have a COMPHY IP which supports configuring SERDES lanes
+> in one mode, either:
+> - SATA
+> - USB3 host
+> - PCIe (several width)
+> - Ethernet (several modes)
+>
+> As of today, only a few Ethernet modes are supported and the code is
+> embedded in the Linux driver. A more complete COMPHY driver that can
+> be used by both Linux and U-Boot is embedded in the firmware and can
+> be run through SMC calls.
+>
+> First the current COMPHY driver is updated to use SMC calls but
+> fallbacks to the already existing functions if the firmware is not
+> up-to-date. Then, more Ethernet modes are added (through SMC calls
+> only). SATA, USB3H and PCIe modes are also supported one by one.
+>
+> There is one subtle difference with the PCIe functions: we must tell
+> the firmware the number of lanes to configure (x1, x2 or x4). This
+> parameter depends on the number of entries in the 'phys' property
+> describing the PCIe PHY. We use the "submode" parameter of the generic
+> PHY API to carry this value. The Armada-8k PCIe driver has been
+> updated to follow this idea and this change has been merged already:
+> http://patchwork.ozlabs.org/patch/1072763/
+>
+> Thanks,
+> Miquèl
+>
+>
+> Changes since v2:
+> -----------------
+> * Inverted two arguments in a trace.
+> * Avoid warning the user when EPROBE_DEFER is returned (clocks case).
+> * Added Maxime C. and Grzegorz J. 's Tested-by tags (only on the
+>   "introducing SMC calls" patch, but they tested the whole series).
+> * Added Rob's Reviewed-by on the bindings.
+> * Also updated the bindings as suggested by Rob to reflect that there
+>   can be from one to four PHYs in the PCIe nodes (hence, the need for
+>   the phy-names property).
+>
+> Changes since v1:
+> -----------------
+> * All modes report their errors to the user.
+> * If the firmware is too old, advise the user to update it.
+> * Credit Grzegorz for his work.
+> * Fix wrong speed in Ethernet modes.
+> * Add COMPHY necessary clocks.
+> * Update bindings.
+> * The security flaw related to the fact that we must give the CP
+>   address to the firmware has been mitigated by the addition of extra
+>   checks in ATF recently.
+>
+>
+> Grzegorz Jaszczyk (5):
+>   phy: mvebu-cp110-comphy: Add SMC call support
+>   phy: mvebu-cp110-comphy: Add RXAUI support
+>   phy: mvebu-cp110-comphy: Add USB3 host/device support
+>   phy: mvebu-cp110-comphy: Add SATA support
+>   phy: mvebu-cp110-comphy: Add PCIe support
+>
+> Miquel Raynal (14):
+>   phy: mvebu-cp110-comphy: Add clocks support
+>   phy: mvebu-cp110-comphy: Explicitly initialize the lane submode
+>   phy: mvebu-cp110-comphy: List already supported Ethernet modes
+>   phy: mvebu-cp110-comphy: Rename the macro handling only Ethernet modes
+>   phy: mvebu-cp110-comphy: Allow non-Ethernet modes to be configured
+>   phy: mvebu-cp110-comphy: Cosmetic change in a helper
+>   phy: mvebu-cp110-comphy: Update comment about powering off all lanes
+>     at boot
+>   dt-bindings: phy: Add Marvell COMPHY clocks
+>   dt-bindings: pci: add PHY properties to Armada 7K/8K controller
+>     bindings
 
-regards
-Philipp
+
+
+>   arm64: dts: marvell: Add CP110 COMPHY clocks
+>   arm64: dts: marvell: Add 7k/8k per-port PHYs in SATA nodes
+>   arm64: dts: marvell: Add 7k/8k PHYs in USB3 nodes
+>   arm64: dts: marvell: Add 7k/8k PHYs in PCIe nodes
+>   arm64: dts: marvell: Convert 7k/8k usb-phy properties to phy-supply
+
+These 5 patches have been applied on mvebu/dt64
+
+Thanks,
+
+Gregory
+
+
+
+>
+>  .../devicetree/bindings/pci/pci-armada8k.txt  |   6 +
+>  .../bindings/phy/phy-mvebu-comphy.txt         |  10 +
+>  .../arm64/boot/dts/marvell/armada-7040-db.dts |  37 +-
+>  .../marvell/armada-8040-clearfog-gt-8k.dts    |  22 +-
+>  .../arm64/boot/dts/marvell/armada-8040-db.dts |  43 +-
+>  .../boot/dts/marvell/armada-8040-mcbin.dtsi   |  38 +-
+>  arch/arm64/boot/dts/marvell/armada-cp110.dtsi |  13 +
+>  drivers/phy/marvell/phy-mvebu-cp110-comphy.c  | 412 +++++++++++++++---
+>  8 files changed, 499 insertions(+), 82 deletions(-)
+>
+> -- 
+> 2.20.1
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
