@@ -2,176 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5B59E994
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:37:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7BDA9E9E5
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:49:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727951AbfH0NhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 09:37:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52158 "EHLO mail.kernel.org"
+        id S1730030AbfH0NsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 09:48:08 -0400
+Received: from vps.xff.cz ([195.181.215.36]:59392 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725811AbfH0NhB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 09:37:01 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A82A820673;
-        Tue, 27 Aug 2019 13:36:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566913019;
-        bh=mD4q3LMo8D/oOkYLDOKCUAJJn9XFxRojkzOMMIIoH1I=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iIHtOikMNFdIzPT8jWOw/5DwxGlxnvIEDZv9e0PiIiaJHWvdLX+iDsXGeyppF1TUt
-         c17W7Fc/T4Ik+b8XGYSHnukX7bjPDJcSTOeFIdDfjLuyWZrYhffCGT6g1hesZDhpUj
-         3ZgF2FfSALXvFmHTL98And13MaG/+fN4e5USc9s4=
-Received: by mail-qt1-f177.google.com with SMTP id z4so21308542qtc.3;
-        Tue, 27 Aug 2019 06:36:59 -0700 (PDT)
-X-Gm-Message-State: APjAAAU7mfZwakEtztu/sMj5ID/Uyt9AY8SLd0ZRYKMJM4kH7V8NLZ/0
-        ok97OqN9a2T9MWbWZlAgsWg3nUEhOCJIEReUwQ==
-X-Google-Smtp-Source: APXvYqzEOWLWWqszNcnpUlBSWwsUeCt8Jjat6t6FjKZi0ldOgh/0RivRU5T9R/NH2jHj7b42YDO9ISbX143dqtx8U7A=
-X-Received: by 2002:a0c:eb92:: with SMTP id x18mr20126969qvo.39.1566913018683;
- Tue, 27 Aug 2019 06:36:58 -0700 (PDT)
+        id S1725825AbfH0NsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 09:48:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1566913686; bh=gUkiaA2UIAfdqLZqpz83L/LrKryHgSOsMfxD9p5JB0g=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=sInfPNmyAp81M2iQxMQJOE28y/Ho0Y8utaCVwSOeVpnZ9lPQ14QaOa5uVI27fnTN5
+         cCVcd9Dz3wvLkYxGyn4l8FmgikPs9k0c3XzJpOfsBok90o5FCZbg8rkUf8Xk3wQBy7
+         q+cBxetxCsNjEQRtNK/YhpgyExf19CKbEms/5oIM=
+Date:   Tue, 27 Aug 2019 15:48:06 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>, wens@csie.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: pine64-plus: Add PHY
+ regulator delay
+Message-ID: <20190827134806.5l7dxyvzjrvabh7o@core.my.home>
+Mail-Followup-To: Maxime Ripard <mripard@kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>, wens@csie.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+References: <20190825130336.14154-1-jernej.skrabec@siol.net>
+ <20190827133443.fdxl5wjmgkerc3uh@flea>
 MIME-Version: 1.0
-References: <20190822092643.593488-1-lkundrak@v3.sk> <20190822092643.593488-3-lkundrak@v3.sk>
- <CAL_JsqJ4_h+M=6L-nzK2N+A9TAy-N8SoiFv1SSTk_kCcKt0eXw@mail.gmail.com> <136a57cf3d293e3233f31d5ee660a6418726333a.camel@v3.sk>
-In-Reply-To: <136a57cf3d293e3233f31d5ee660a6418726333a.camel@v3.sk>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Aug 2019 08:36:47 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqK1pkwPZj+Us8CecNnfA7L17YVk9aTe3qPoNTAvRiHibw@mail.gmail.com>
-Message-ID: <CAL_JsqK1pkwPZj+Us8CecNnfA7L17YVk9aTe3qPoNTAvRiHibw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/20] dt-bindings: arm: Convert Marvell MMP board/soc
- bindings to json-schema
-To:     Lubomir Rintel <lkundrak@v3.sk>
-Cc:     Olof Johansson <olof@lixom.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190827133443.fdxl5wjmgkerc3uh@flea>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 8:24 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
->
-> On Tue, 2019-08-27 at 06:59 -0500, Rob Herring wrote:
-> > On Thu, Aug 22, 2019 at 4:27 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
-> > > Convert Marvell MMP SoC bindings to DT schema format using json-schema.
-> > >
-> > > Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
-> > >
-> > > ---
-> > > Changes since v1:
-> > > - Added this patch
-> > >
-> > >  .../devicetree/bindings/arm/mrvl/mrvl.txt     | 14 ---------
-> > >  .../devicetree/bindings/arm/mrvl/mrvl.yaml    | 31 +++++++++++++++++++
-> > >  2 files changed, 31 insertions(+), 14 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt b/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
-> > > deleted file mode 100644
-> > > index 951687528efb0..0000000000000
-> > > --- a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
-> > > +++ /dev/null
-> > > @@ -1,14 +0,0 @@
-> > > -Marvell Platforms Device Tree Bindings
-> > > -----------------------------------------------------
-> > > -
-> > > -PXA168 Aspenite Board
-> > > -Required root node properties:
-> > > -       - compatible = "mrvl,pxa168-aspenite", "mrvl,pxa168";
-> > > -
-> > > -PXA910 DKB Board
-> > > -Required root node properties:
-> > > -       - compatible = "mrvl,pxa910-dkb";
-> > > -
-> > > -MMP2 Brownstone Board
-> > > -Required root node properties:
-> > > -       - compatible = "mrvl,mmp2-brownstone", "mrvl,mmp2";
-> > > diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml b/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
-> > > new file mode 100644
-> > > index 0000000000000..dc9de506ac6e3
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
-> > > @@ -0,0 +1,31 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/arm/mrvl/mrvl.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Marvell Platforms Device Tree Bindings
-> > > +
-> > > +maintainers:
-> > > +  - Lubomir Rintel <lkundrak@v3.sk>
-> > > +
-> > > +properties:
-> > > +  $nodename:
-> > > +    const: '/'
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - description: PXA168 Aspenite Board
-> > > +        items:
-> > > +          - enum:
-> > > +              - mrvl,pxa168-aspenite
-> > > +          - const: mrvl,pxa168
-> > > +      - description: PXA910 DKB Board
-> > > +        items:
-> > > +          - enum:
-> > > +              - mrvl,pxa910-dkb
+Hi,
+
+On Tue, Aug 27, 2019 at 03:34:43PM +0200, Maxime Ripard wrote:
+> On Sun, Aug 25, 2019 at 03:03:36PM +0200, Jernej Skrabec wrote:
+> > Depending on kernel and bootloader configuration, it's possible that
+> > Realtek ethernet PHY isn't powered on properly. It needs some time
+> > before it can be used.
 > >
-> > Doesn't match what's in dts file:
+> > Fix that by adding 100ms ramp delay to regulator responsible for
+> > powering PHY.
 > >
-> > arch/arm/boot/dts/pxa910-dkb.dts:       compatible =
-> > "mrvl,pxa910-dkb", "mrvl,pxa910";
->
-> It corresponds to the .txt bindings specification this commit is
-> converting. I thought it wouldn't be a good idea to do any changes to
-> the contents at the time the conversion is done.
+> > Fixes: 94dcfdc77fc5 ("arm64: allwinner: pine64-plus: Enable dwmac-sun8i")
+> > Suggested-by: Ondrej Jirman <megous@megous.com>
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> 
+> How was that delay found?
 
-There are so many errors like this, that it's fine to do it in the
-conversion. A separate patch is fine too.
+I suggested it. There's no delay in the dwmac-sun8i driver, so after enabling
+the phy power, it will start accessing it over MDIO right away, which is not
+good.
 
-> I also don't understand why does the dts file specify the board-
-> specific compatible string. Surely "mrvl,pxa910" alone would be
-> sufficient?
+I suggested the value based on post-reset delay in the PHY's datasheet (30ms).
+Multiplied ~3x (if I remember correctly) to get some safety margin. Chip has
+more to do then after the HW reset, and regulator also needs some time to
+ramp-up.
 
-To potentially work around any board specific issue without a dtb change.
+regards,
+	o.
 
->
-> > > +      - description: MMP2 Brownstone Board
-> >
-> > If this entry is only for this board...
-> >
-> > > +        items:
-> > > +          - enum:
-> > > +              - mrvl,mmp2-brownstone
-> >
-> > ...then this can be a 'const' instead. Same for the others.
->
-> Sure, but is it preferable? I've actually done a "git grep -A3 enum
-> Documentation/devicetree/bindings/" to see if the single-element is
-> typically used and it seems like it is. Perhaps it's a good idea to
-> indicate to a human reader that this is a list that's expected to
-> eventually be extended with new elements.
+> It should at least have a comment explaining why it's there.
+> 
+> Thanks!
+> Maxime
+> 
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
-Then the description should match and say 'MMP2 based boards'.
 
-> In any case, there are more boards with MMP2 currently supported,
-> notably the XO-1.75 laptop. I've actually sent out the dts file for
-> review some time ago. I haven't added a separate compatible string for
-> it because I thought it is not necessary (see above).
-
-You should add one.
-
-Rob
