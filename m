@@ -2,77 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E8719F0CA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:54:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A61FF9F0D2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727306AbfH0Qx7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:53:59 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:46209 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727064AbfH0Qx7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:53:59 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t24so15472099oij.13;
-        Tue, 27 Aug 2019 09:53:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/cWnSwSnizJoPptrMCxgyU0EGIA7FE8H3qBw7ZxkmMM=;
-        b=FhlNulBcTRdzxP+A9ueXa99BmB0nmJD5lSOK6EK+cncRmhFudE7AjO4Z3STk6vKnPX
-         wxDodSPIu3UX3Y9It+fkP1m5eqcw4IFlCT1MqGZI5ttem7yoX9LzTFBNMKYsbBrLS2j2
-         cPhG8AYCq+tpSLBCES05HakH02jU++uee3/KGFF3JoR27PR8plF2p+X4eETGfOOrces/
-         9NhDQsz4FDqmFH7KCw/OO1rnzPWw/xSsCDhojVmWHIV+U8B5KrdJa53sqbDUzV3m1Tz8
-         jo0z4DIAhY9tlb+FXYHAVD34XmYvgL4b6Yn5pJHFMofGy4lQMfVkWJHqhVrevZ0SFFcL
-         /DdQ==
-X-Gm-Message-State: APjAAAUCFnMXgiHIXZNt+qyFfL6QMInDN/TBtiNCLstiwSACDtB4DXfM
-        Kvffv2V4OVETpuIP4oD+Ng==
-X-Google-Smtp-Source: APXvYqy/YlUNjEPP5QW/TvNLxzezivmnRm+zWoT/6RxwryHO+9wlLtBLicefYrG9cQNpNDQFaShGug==
-X-Received: by 2002:aca:5f46:: with SMTP id t67mr16825090oib.42.1566924838416;
-        Tue, 27 Aug 2019 09:53:58 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 44sm5772961otf.30.2019.08.27.09.53.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 09:53:57 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 11:53:57 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Wilczynski <kw@linux.com>
-Cc:     Bjorn Helgaas <helgaas@kernel.org>,
-        Richard Zhu <hongxing.zhu@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] PCI: Fix misspelled words.
-Message-ID: <20190827165357.GA31146@bogus>
-References: <20190819115306.27338-1-kw@linux.com>
+        id S1728061AbfH0Qyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:54:51 -0400
+Received: from mta-02.yadro.com ([89.207.88.252]:39936 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726871AbfH0Qyv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 12:54:51 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 83D5541240;
+        Tue, 27 Aug 2019 16:54:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1566924888; x=
+        1568739289; bh=Z6gOnxcpev6cYIQbp+Z/8lEArpM2TigF6DeTVeb0yng=; b=w
+        IZvuPAhtKbGrDL5vI541Byi3k4t/VVG8qlxhkPunYd0WpeJ8YxjKh1Narniy9dem
+        gqxvb8gdhzrAWRek8M10GRCU9wiYNGyMn2DQ21BrZI8oZAWk2gdgqmLrIW9AJJmJ
+        2D6x5oUQ08DHixWWLaLfZfSOqALYiYTykR4ioyqonI=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id DLqQlwXm_mOd; Tue, 27 Aug 2019 19:54:48 +0300 (MSK)
+Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id B8B3041209;
+        Tue, 27 Aug 2019 19:54:47 +0300 (MSK)
+Received: from localhost.dev.yadro.com (172.17.15.69) by
+ T-EXCH-02.corp.yadro.com (172.17.10.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.669.32; Tue, 27 Aug 2019 19:54:47 +0300
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+CC:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        Alexander Amelkin <a.amelkin@yadro.com>,
+        <openbmc@lists.ozlabs.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>,
+        Ivan Mikhaylov <i.mikhaylov@yadro.com>
+Subject: [PATCH v3 0/4] add dual-boot support
+Date:   Tue, 27 Aug 2019 19:54:22 +0300
+Message-ID: <20190827165426.17037-1-i.mikhaylov@yadro.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190819115306.27338-1-kw@linux.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.17.15.69]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-02.corp.yadro.com (172.17.10.102)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Aug 2019 13:53:06 +0200, Krzysztof Wilczynski wrote:
-> Fix misspelled words in include/linux/pci.h, drivers/pci/Kconfig,
-> and in the documentation for Freescale i.MX6 and Marvell Armada 7K/8K
-> PCIe interfaces.  No functional change intended.
-> 
-> Related commit 96291d565550 ("PCI: Fix typos and whitespace errors").
-> 
-> Signed-off-by: Krzysztof Wilczynski <kw@linux.com>
-> ---
->  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt | 2 +-
->  Documentation/devicetree/bindings/pci/pci-armada8k.txt   | 2 +-
->  drivers/pci/Kconfig                                      | 2 +-
->  include/linux/pci.h                                      | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
+ASPEED SoCs support dual-boot feature for SPI Flash.
+When strapped appropriately, the SoC starts wdt2 (/dev/watchdog1)
+and if within a minute it is not disabled, it goes off and reboots
+the SoC from an alternate SPI Flash chip by changing CS0 controls
+to actually drive CS1 line.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+When booted from alternate chip, in order to access the main chip
+at CS0, the user must reset the appropriate bit in the watchdog
+hardware. There is no interface that would allow to do that from
+an embedded firmware startup script.
+
+This commit implements support for that feature:
+
+* Enable 'alt-boot' option for wdt2
+
+* Enable secondary SPI flash chip
+
+* Make it possible to get access to the primary SPI flash chip at CS0
+  after booting from the alternate chip at CS1. A sysfs interface is added
+  to provide an easy way for embedded firmware startup scripts to clear
+  the chip select bit to gain access to the primary flash chip in order
+  to allow for recovery of its contents.
+
+Ivan Mikhaylov (4):
+  vesnin: add wdt2 section with alt-boot option
+  vesnin: add secondary SPI flash chip
+  watchdog/aspeed: add support for dual boot
+  aspeed/watchdog: Add access_cs0 option for alt-boot
+
+ .../ABI/testing/sysfs-class-watchdog          | 34 ++++++++++
+ arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts   | 12 ++++
+ drivers/watchdog/aspeed_wdt.c                 | 65 ++++++++++++++++++-
+ 3 files changed, 110 insertions(+), 1 deletion(-)
+
+-- 
+2.20.1
+
