@@ -2,176 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 661B19DD80
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 08:18:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 705759DE41
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 08:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725825AbfH0GSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 02:18:37 -0400
-Received: from mail-eopbgr20062.outbound.protection.outlook.com ([40.107.2.62]:18780
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725811AbfH0GSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 02:18:37 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ajehQUUlW/5Goap9q643tNGjL1BbLSIJUDFKEjpnvF27tK8rXBKfZlqEsq25o3Jh4LElF8HmbW7ecZ+8ceb4WJ19FdHQGfvrkkACkcMfD0Rvj1P1XFpBU9CkGu45b/wrLi6cR//IjJxUpCHoMAiVIO3xlEUuQk1C5X4J2qN2s4hLY7TB2L+FMU8ZeHDAsB2K8porABklJHXVBcopqVW0ydOiLEfB0nxwJHL05dlEaBCAbqqXrFzsxIxSE9DaO9al2jDZxjt8kvXBMriQQz+xsKJhejpJR1ac7596R5m+ty3CFlg/3m5AgcCH3mT9YJE77Fq72ml1WNZXOT684Q3xlg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bh8Y7POGQExJuCAZLqVXeYBNrtw6e7YdTml3Dludo+w=;
- b=TKYn3mcbBV+dNw3zA30WLDIxYMiKnH6SDXo4DY2861+zFeEGX0r1IefO4KWUmFFd/NOv0XF1Jqtzttj47UfTmFRx9nQXOIlSXhOQnVVhXD8lCH3Uwq4SYxWTQRF8vKQQhnPZDBPhAGRyaBCFLUi6fE/4/sXMiwT4rhXF2y5y8O5rg2BkXtSoXsyt/ou3mkGj9uqyISp+nLb3rthoBujrwhOQQg/5rIHXIWtYhlm5ri1BEkAElFlYe9xyVLenC7f+AadgWVGnqOIRze+3YYvm0OiFCGRjQxlafYiZQYRA5pl/UYjKVIQYf3v42S5Y/3SPSrrVigMljwuT7jWZyguyPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bh8Y7POGQExJuCAZLqVXeYBNrtw6e7YdTml3Dludo+w=;
- b=BFY/tA9shlLD/v5c2JzBHg+fPvS2fe53eHlrlj6nq+OonodofGFhkmUYhgfc5l19K0oO233bhPqKT81natxRT+37caGUylKY/pwA3QS+rKlg91ybYGuQQt4o7WsxIROHgnQOsN1xJRsHAuBH93H83sytRpXiD/XNpDpa3j2WHGE=
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.235.81) by
- VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.235.81) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.21; Tue, 27 Aug 2019 06:17:53 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::8f2:412c:88c6:a365]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::8f2:412c:88c6:a365%7]) with mapi id 15.20.2199.021; Tue, 27 Aug 2019
- 06:17:53 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Robin van der Gracht <robin@protonic.nl>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        Adam Ford <aford173@gmail.com>
-Subject: RE: [PATCH] input: keyboard: snvs_pwrkey: Send press and release
- event for i.MX6 S,DL and Q
-Thread-Topic: [PATCH] input: keyboard: snvs_pwrkey: Send press and release
- event for i.MX6 S,DL and Q
-Thread-Index: AQHVWa5ZFk23j3f7OEWRDzQvDh9iTqcOfq3w
-Date:   Tue, 27 Aug 2019 06:17:52 +0000
-Message-ID: <VE1PR04MB6638754916357F551502102589A00@VE1PR04MB6638.eurprd04.prod.outlook.com>
-References: <20190823123002.10448-1-robin@protonic.nl>
-In-Reply-To: <20190823123002.10448-1-robin@protonic.nl>
-Accept-Language: en-US
+        id S1726071AbfH0GzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 02:55:08 -0400
+Received: from comms.puri.sm ([159.203.221.185]:58634 "EHLO comms.puri.sm"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725904AbfH0GzH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 02:55:07 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by comms.puri.sm (Postfix) with ESMTP id E6D7AE046D;
+        Mon, 26 Aug 2019 23:55:04 -0700 (PDT)
+Received: from comms.puri.sm ([127.0.0.1])
+        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ZBBjett01ZkY; Mon, 26 Aug 2019 23:55:04 -0700 (PDT)
+Subject: Re: [PATCH v5 2/4] iio: imu: st_lsm6sdx: move register definitions to
+ sensor_settings struct
+To:     lorenzo.bianconi83@gmail.com, jic23@kernel.org, knaack.h@gmx.de,
+        lars@metafoo.de, pmeerw@pmeerw.net
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>
+References: <20190821132520.28225-1-martin.kepplinger@puri.sm>
+ <20190821132520.28225-3-martin.kepplinger@puri.sm>
+From:   Martin Kepplinger <martin.kepplinger@puri.sm>
+Openpgp: preference=signencrypt
+Autocrypt: addr=martin.kepplinger@puri.sm; keydata=
+ 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
+ WG//KA68tPVBR2xhy7Fp+qAa
+Message-ID: <d3cb1cf5-f17f-38ef-66a2-23c1b7a7d08f@puri.sm>
+Date:   Tue, 27 Aug 2019 08:54:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+In-Reply-To: <20190821132520.28225-3-martin.kepplinger@puri.sm>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yibin.gong@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 8f6b6e0a-19a3-4317-a10d-08d72ab64b40
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VE1PR04MB6638;
-x-ms-traffictypediagnostic: VE1PR04MB6638:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB66387E91505A7CBB3D122D1C89A00@VE1PR04MB6638.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0142F22657
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(396003)(346002)(376002)(136003)(39860400002)(199004)(189003)(6506007)(446003)(7416002)(102836004)(6116002)(6436002)(11346002)(3846002)(26005)(186003)(486006)(66066001)(99286004)(86362001)(2906002)(229853002)(76116006)(33656002)(478600001)(256004)(14444005)(66476007)(66946007)(54906003)(476003)(8676002)(53936002)(81166006)(81156014)(55016002)(8936002)(4326008)(6916009)(305945005)(7736002)(9686003)(74316002)(71190400001)(71200400001)(76176011)(316002)(66556008)(64756008)(7696005)(66446008)(6246003)(14454004)(52536014)(5660300002)(25786009)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6638;H:VE1PR04MB6638.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: oa92eBpqcOwClrchIzJ8XsWmQRh/4avcISNwo8v3EFZWqAtJT/kpB3BlyzWSPzFSxwbY83SblKR2v27Ah6VUqdlpqLXoCpd8mgCMDo8fxu4nOYrSYEGRzhubR/MbZDv/ful2hVSNxmwncQG4Is5wuo2ygGYv0o7bZG6Tg31lF10yYOpOgAIdq0iL7x1Prw8F8A4l1Sw/F6KXhAqjAPT0md9QdPkwVxL8TMgI8j2eJNVaBYK82EpXlAMUE1nnqQY1kLLC5emXECodOk2BkDNtKaEvw264YJ+E+6yuoWWuyXwcbSMB0H2r02YpMMawHaET4GZU3m0d6/4CA+PxuVodnKq0ihGbSZPbzls0egcRvoCcHTF21oEaiVB/QU0uASDrlkF0P3TyQnRFquS9MyuzJQZmeofAS9v7+VVTXSpnA1I=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8f6b6e0a-19a3-4317-a10d-08d72ab64b40
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2019 06:17:52.9726
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +/XtjRz0VVFRYrVLkWVXbf5U9772++bqT/D0GKEaAlazE1VzXnmPk4R0u7FwMP2PYVVctoPw1adsF/GeShXuaA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6638
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 23, 2019 at 02:30:02PM +0200, Robin van der Gracht wrote:>=20
-> The older generation i.MX6 processors send a powerdown request interrupt
-> if the powerkey is released before a hard shutdown (5 second press). This
-> should allow software to bring down the SoC safely.
->=20
-> For this driver to work as a regular powerkey with the older SoCs, we nee=
-d to
-> send a keypress AND release when we get the powerdown request interrupt.
-Please clarify here more clearly that because there is NO press interrupt t=
-riggered
-but only release interrupt on elder i.mx6 processors and that HW issue fixe=
-d from
-i.mx6sx.
->=20
-> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
+On 21.08.19 15:25, Martin Kepplinger wrote:
+> Move some register definitions to the per-device array of struct
+> st_lsm6dsx_sensor_settings in order to simplify adding new sensor
+> devices to the driver.
+> 
+> Also, remove completely unused register definitions.
+> 
+> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> Acked-by: Lorenzo Bianconi <lorenzo@kernel.org>
 > ---
->  arch/arm/boot/dts/imx6qdl.dtsi       |  2 +-
->  arch/arm/boot/dts/imx6sll.dtsi       |  2 +-
->  arch/arm/boot/dts/imx6sx.dtsi        |  2 +-
->  arch/arm/boot/dts/imx6ul.dtsi        |  2 +-
->  arch/arm/boot/dts/imx7s.dtsi         |  2 +-
-As Shawn talked, please keep the original "fsl,sec-v4.0-pwrkey", just add
-'imx6qdl-snvs-pwrkey' for elder i.mx6 processor i.mx6q/dl/sl, thus no need
-to touch other newer processor's dts.
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h      |  6 ++++
+>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c | 31 ++++++++++++++------
+>  2 files changed, 28 insertions(+), 9 deletions(-)
+> 
 
->=20
->  static void imx_imx_snvs_check_for_events(struct timer_list *t) @@ -67,1=
-3
-> +85,23 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int irq, void
-> *dev_id)  {
->  	struct platform_device *pdev =3D dev_id;
->  	struct pwrkey_drv_data *pdata =3D platform_get_drvdata(pdev);
-> +	struct input_dev *input =3D pdata->input;
->  	u32 lp_status;
->=20
-> -	pm_wakeup_event(pdata->input->dev.parent, 0);
-> +	pm_wakeup_event(input->dev.parent, 0);
->=20
->  	regmap_read(pdata->snvs, SNVS_LPSR_REG, &lp_status);
-> -	if (lp_status & SNVS_LPSR_SPO)
-> -		mod_timer(&pdata->check_timer, jiffies +
-> msecs_to_jiffies(DEBOUNCE_TIME));
-> +	if (lp_status & SNVS_LPSR_SPO) {
-> +		if (pdata->hwtype =3D=3D IMX6QDL_SNVS) {
-> +			input_report_key(input, pdata->keycode, 1);
-> +			input_report_key(input, pdata->keycode, 0);
-> +			input_sync(input);
-> +			pm_relax(input->dev.parent);
-Could you move the above input event report steps into imx_imx_snvs_check_f=
-or_events()
-as before? That make code better to understand and less operation in ISR.
-> +		} else {
-> +			mod_timer(&pdata->check_timer,
-> +				jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
-> +		}
-> +	}
->=20
->  	/* clear SPO status */
->  	regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO); @@
-> -88,11 +116,24 @@ static void imx_snvs_pwrkey_act(void *pdata)
->  	del_timer_sync(&pd->check_timer);
->  }
->=20
-> +static const struct of_device_id imx_snvs_pwrkey_ids[] =3D {
-> +	{
-> +		.compatible =3D "fsl,imx6sx-sec-v4.0-pwrkey",
-> +		.data =3D &imx_snvs_devtype[IMX6SX_SNVS],
-> +	}, {
-> +		.compatible =3D "fsl,imx6qdl-sec-v4.0-pwrkey",
-> +		.data =3D &imx_snvs_devtype[IMX6QDL_SNVS],
-No ' IMX6QDL_SNVS ' defined in your patch or am I missing?
-> +	},
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, imx_snvs_pwrkey_ids);
-> --
-> 2.20.1
+I just notices the commit message header typo "st_lsm6sdx" should be
+"st_lsm6dsx" of course. If you can still rebase/force-push to testing,
+would you be able to fix that? If it's too far out there already, so be
+it :) sorry for the typo, and thanks for adding "-imu" yourself where
+applicable.
 
+thanks,
+
+                      martin
