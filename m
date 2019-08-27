@@ -2,108 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC5CF9F345
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:25:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62DEE9F364
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 21:43:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730486AbfH0TZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 15:25:35 -0400
-Received: from outbound.smtp.vt.edu ([198.82.183.121]:42644 "EHLO
-        omr1.cc.vt.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728834AbfH0TZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 15:25:34 -0400
-Received: from mr6.cc.vt.edu (mr6.cc.vt.edu [IPv6:2607:b400:92:8500:0:af:2d00:4488])
-        by omr1.cc.vt.edu (8.14.4/8.14.4) with ESMTP id x7RJPWRe010325
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 15:25:33 -0400
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-        by mr6.cc.vt.edu (8.14.7/8.14.7) with ESMTP id x7RJPRkC023446
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 15:25:32 -0400
-Received: by mail-qk1-f199.google.com with SMTP id x1so106244qkn.6
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 12:25:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
-         :mime-version:content-transfer-encoding:date:message-id;
-        bh=/VrYLSYfcVcWU8zr6i2AquUrruupT+f/dYq6MTZWV9A=;
-        b=LFDrWSkTdFvCkz8nlvAHyFWeDy405XhbokUCvud8uuun2hYqCcZEO0aXccg6DeW7OB
-         2GLws8DDD57ROnlgws+j7rykN2NDvq8HVjK97+t4YmeL7Fj0X3l4Y34ihrzp4KsVFnG6
-         AMJgzLloC0lRtyguDmPnYxhDQIGgGK2mc9AdURPzEwLcJVSmH+vt/vbmVV4t8zw/HPje
-         dU6MUMKaIuPIEGacTeeDJlPbvzjOqErY2OYTto6W/tQ+5cfJJjFmAAGxmLo7be5rfKJO
-         GEah0HIIoRHh1LpJxq+xvXQ2ZAuxOHVFGU0Li/g5EHM2MWk57OjM5VRWH0SPQhiTikaT
-         4REA==
-X-Gm-Message-State: APjAAAWgHfGdu9F1dUTaDShqkHznz/xIfIqtnSKIzeVL3lDUyqBGtBFC
-        iB38ojeB6xPVcFvxM+YQKHTSmcYIAXFmiGXQxBObqnPcgxyd6SnFUM+sc69C/8EbAkbHwsVsBvj
-        dYJ19MGdbetxRNdpX0/+/80nApCSafDWR
-X-Received: by 2002:ad4:4301:: with SMTP id c1mr135702qvs.138.1566933927556;
-        Tue, 27 Aug 2019 12:25:27 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqw0pbhFIG53y1qAT0fpDgiysZVyE9tsfzlFkV4m2v3eE8h31MrmRk0phL4zAQ9B/pjlGvPJjg==
-X-Received: by 2002:ad4:4301:: with SMTP id c1mr135669qvs.138.1566933927147;
-        Tue, 27 Aug 2019 12:25:27 -0700 (PDT)
-Received: from turing-police ([2601:5c0:c001:4341::359])
-        by smtp.gmail.com with ESMTPSA id m10sm154810qka.43.2019.08.27.12.25.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 12:25:25 -0700 (PDT)
-From:   "Valdis Kl=?utf-8?Q?=c4=93?=tnieks" <valdis.kletnieks@vt.edu>
-X-Google-Original-From: "Valdis Kl=?utf-8?Q?=c4=93?=tnieks" <Valdis.Kletnieks@vt.edu>
-X-Mailer: exmh version 2.9.0 11/07/2018 with nmh-1.7+dev
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, linux@armlinux.org.uk, frowand.list@gmail.com,
-        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
-        tony.luck@intel.com, daniel.thompson@linaro.org,
-        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
-Subject: Re: [PATCHv5] drivers/amba: add reset control to amba bus probe
-In-Reply-To: <20190826154252.22952-1-dinguyen@kernel.org>
-References: <20190826154252.22952-1-dinguyen@kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed; boundary="==_Exmh_1566933924_1612P";
-         micalg=pgp-sha1; protocol="application/pgp-signature"
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 27 Aug 2019 15:25:24 -0400
-Message-ID: <30608.1566933924@turing-police>
+        id S1730854AbfH0TnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 15:43:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33478 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730839AbfH0TnI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 15:43:08 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A7804205C9;
+        Tue, 27 Aug 2019 19:43:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566934987;
+        bh=KVbmka9ABeew0oeKcX2zXJS+dXzEmI/gB2MFO35RERo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IRF9Kh+Rih5NMatUwVRW+LxLOyL3b8lDJz+WanQR5l6WJ3Fk+koJz6lvcn0lFnCAJ
+         vzOBMy2ieFCJSnLrrMPMRh33w3WQG9yL5Hn/XmEgiG055mYNfqR0xR0Jnllii+9Uk9
+         p6DFK+Og2xnZvphuwOXqWVOGyHphIJl+Qs4Xl2ew=
+Date:   Tue, 27 Aug 2019 21:43:04 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
+Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize
+ probe ordering
+Message-ID: <20190827194304.GA9121@kroah.com>
+References: <20190731221721.187713-1-saravanak@google.com>
+ <20190801061209.GA3570@kroah.com>
+ <5a1e785d-075e-19a0-7d3d-949e1b65d726@gmail.com>
+ <20190801193248.GA24916@kroah.com>
+ <6366cb2a-65ea-cb44-f765-f246f3fb3bf9@gmail.com>
+ <20190802063720.GA12789@kroah.com>
+ <05d4f2b2-0395-476d-8c93-37b2b07bdd4f@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <05d4f2b2-0395-476d-8c93-37b2b07bdd4f@gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---==_Exmh_1566933924_1612P
-Content-Type: text/plain; charset=us-ascii
+On Wed, Aug 07, 2019 at 07:13:26PM -0700, Frank Rowand wrote:
+> Hi Greg, Saravana,
+> 
+> On 8/1/19 11:37 PM, Greg Kroah-Hartman wrote:
+> > On Thu, Aug 01, 2019 at 12:59:25PM -0700, Frank Rowand wrote:
+> >> On 8/1/19 12:32 PM, Greg Kroah-Hartman wrote:
+> >>> On Thu, Aug 01, 2019 at 12:28:13PM -0700, Frank Rowand wrote:
+> >>>> Hi Greg,
+> >>>>
+> >>>> On 7/31/19 11:12 PM, Greg Kroah-Hartman wrote:
+> >>>>> On Wed, Jul 31, 2019 at 03:17:13PM -0700, Saravana Kannan wrote:
+> >>>>>> Add device-links to track functional dependencies between devices
+> >>>>>> after they are created (but before they are probed) by looking at
+> >>>>>> their common DT bindings like clocks, interconnects, etc.
+> >>>>>>
+> >>>>>> Having functional dependencies automatically added before the devices
+> >>>>>> are probed, provides the following benefits:
+> >>>>>>
+> >>>>>> - Optimizes device probe order and avoids the useless work of
+> >>>>>>   attempting probes of devices that will not probe successfully
+> >>>>>>   (because their suppliers aren't present or haven't probed yet).
+> >>>>>>
+> >>>>>>   For example, in a commonly available mobile SoC, registering just
+> >>>>>>   one consumer device's driver at an initcall level earlier than the
+> >>>>>>   supplier device's driver causes 11 failed probe attempts before the
+> >>>>>>   consumer device probes successfully. This was with a kernel with all
+> >>>>>>   the drivers statically compiled in. This problem gets a lot worse if
+> >>>>>>   all the drivers are loaded as modules without direct symbol
+> >>>>>>   dependencies.
+> >>>>>>
+> >>>>>> - Supplier devices like clock providers, interconnect providers, etc
+> >>>>>>   need to keep the resources they provide active and at a particular
+> >>>>>>   state(s) during boot up even if their current set of consumers don't
+> >>>>>>   request the resource to be active. This is because the rest of the
+> >>>>>>   consumers might not have probed yet and turning off the resource
+> >>>>>>   before all the consumers have probed could lead to a hang or
+> >>>>>>   undesired user experience.
+> >>>>>>
+> >>>>>>   Some frameworks (Eg: regulator) handle this today by turning off
+> >>>>>>   "unused" resources at late_initcall_sync and hoping all the devices
+> >>>>>>   have probed by then. This is not a valid assumption for systems with
+> >>>>>>   loadable modules. Other frameworks (Eg: clock) just don't handle
+> >>>>>>   this due to the lack of a clear signal for when they can turn off
+> >>>>>>   resources. This leads to downstream hacks to handle cases like this
+> >>>>>>   that can easily be solved in the upstream kernel.
+> >>>>>>
+> >>>>>>   By linking devices before they are probed, we give suppliers a clear
+> >>>>>>   count of the number of dependent consumers. Once all of the
+> >>>>>>   consumers are active, the suppliers can turn off the unused
+> >>>>>>   resources without making assumptions about the number of consumers.
+> >>>>>>
+> >>>>>> By default we just add device-links to track "driver presence" (probe
+> >>>>>> succeeded) of the supplier device. If any other functionality provided
+> >>>>>> by device-links are needed, it is left to the consumer/supplier
+> >>>>>> devices to change the link when they probe.
+> >>>>>
+> >>>>> All now queued up in my driver-core-testing branch, and if 0-day is
+> >>>>> happy with this, will move it to my "real" driver-core-next branch in a
+> >>>>> day or so to get included in linux-next.
+> >>>>
+> >>>> I have been slow in getting my review out.
+> >>>>
+> >>>> This patch series is not yet ready for sending to Linus, so if putting
+> >>>> this in linux-next implies that it will be in your next pull request
+> >>>> to Linus, please do not put it in linux-next.
+> >>>
+> >>> It means that it will be in my pull request for 5.4-rc1, many many
+> >>> waeeks away from now.
+> >>
+> >> If you are willing to revert the series before the pull request _if_ I
+> >> have significant review issues in the next couple of days, then I am happy
+> >> to see the patches get exposure in linux-next.
+> > 
+> > If you have significant review issues, yes, I will be glad to revert them.
+> 
+> Just a heads up that I have sent review issues in reply to version 7 of this
+> patch series.
+> 
+> We'll see what the responses are to my review comments, but I am expecting
+> the changes are big enough to result in a new version (or a couple more
+> versions) of the patch series.
+> 
+> No rush to revert version 9 since your 5.4-rc1 pull request is still not
+> near, and I am glad for whatever exposure these patches are getting in
+> linux-next.
 
-On Mon, 26 Aug 2019 10:42:52 -0500, Dinh Nguyen said:
-> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-> default. Until recently, the DMA controller was brought out of reset by the
-> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
-> that are not used are held in reset and are left to Linux to bring them
-> out of reset.
->
-> Add a mechanism for getting the reset property and de-assert the primecell
-> module from reset if found. This is a not a hard fail if the reset properti
-> is not present in the device tree node, so the driver will continue to
-> probe.
+Based on the further comments on this series, and the in-person we had
+at ELC, I have now reverted these, and the follow-on fixes for this
+series from my tree, with the hope that an updated patch set will be
+sent for review soon.
 
-Does this DTRT for both old and new U-Boots? My naive reading of this patch
-says on an old U-Boot, we end up attempting to bring it out of reset even though
-they had already been brought out.
+thanks,
 
---==_Exmh_1566933924_1612P
-Content-Type: application/pgp-signature
-
------BEGIN PGP SIGNATURE-----
-Comment: Exmh version 2.9.0 11/07/2018
-
-iQIVAwUBXWWDpAdmEQWDXROgAQIdrxAAon/T5pCtAGieFVjdAdhJjdPwqAhckoGF
-6pdEvZoDtGgXHLPcNmX5YO0BXVRyCmQg8x57sEFISk2PrmS2Ax+UCVUpEaLQMjbD
-Dd0vJxZKe9Sz95p4ELvhEVvXPVq9+rkIEmWsVUVNGWN4sbpQc7vs2+JtHwFlx+2n
-m/taFbOH5qIRVYJQalBesf8WUcltYiA9ox4tKNYDSyKMqWVrGgvkxjO81appgJAZ
-78x3eX94SyB2l7pJHNmRYdvr69kdFFzQDSbm1Y8rQnzar03fKUtpRmn1yXGc87wc
-SG08stZRhvr+H98MHe4LjkjYNxNO+k6R0q+jmdjMwD+NaDveKt43ydl+xF4kbYbl
-GzX+t51GUeU1PWnuHj+frYnUc0hv4N0xwC5SSWQ8vh0+0xQZsxYRluHLSEAw/VRp
-Qh8+wBX3rZ8Q8dQfoXPfj9z4DdWgXAlDoB1yAJDtdRG8sdcKfGL71bZjv7hB0Z6I
-XWnRsfqNevx/9Ev6shSve1jSHqGuuVb0ggOQVIcR9qaEeXI9UiRHOgK4qahEA6rI
-Im7p+uPlHE4agtwgvXy4QTXksuKqFj8xouyI9QQc5PtI60bT83/PXQzS7ywotkZh
-mFrpIGzD7D4xB4dQY4MB4jrGlPIArWfIKkqQ9jnTgD5dugR1CfejVwe7im0Lotyt
-0bip0m4JQ/U=
-=XqAz
------END PGP SIGNATURE-----
-
---==_Exmh_1566933924_1612P--
+greg k-h
