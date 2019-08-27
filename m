@@ -2,145 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80C869E79B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9270C9E7BD
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:20:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730017AbfH0MPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 08:15:18 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:33940 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729968AbfH0MPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 08:15:17 -0400
-Received: by mail-pl1-f196.google.com with SMTP id d3so11734157plr.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 05:15:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=X1C1wuLpaATs6Y4OlN6hIu56jXxXInO37XE+mmtb07c=;
-        b=rNYuNnktdEgs/Igxq0AjJmX1QTMrz9hWnybCHl+0TPcfozu+U8NzY5JOcWQtMOE2GL
-         2SYeBJB+LszgzXgips9HGnqCJ/KW5l20CvwubqC2McdZFKg1dndf9XV1E2ZJ5U3VRQzV
-         UsuIAB2/I4w5tw6XKFgeqxEgEFXZPptZPaU0HTmirTKQA/F2xeVXFlw3pXFeO4z5YQsm
-         rMqwTXYqa+VqoETpmjdTLHeacjJEZEdQW2lJbmdJ3aBjqZDcMQ9/vw5qrN3iXtna4NAw
-         QpwLJgz8WZhdYEM0pXxX0BFgmFnQMoS5ZEC22UjgXQd/4bQG8JXUN5dRS3Uv1Xcjqp8g
-         gx/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=X1C1wuLpaATs6Y4OlN6hIu56jXxXInO37XE+mmtb07c=;
-        b=WfELgFhAOk0fwSvfIACAvGc6VxQXByS7mhvUAj48e+ay91qmc3oDp/kp++h1HEdqpd
-         w9jmYn8UfOW12ekF1ufPDJqEd2KXZ2sZUyqfrvO1or9XsjpX7wgYyK5GwG5gKQiaFrRp
-         SwFo6jqZD5cZW5Gbyf750Do5PulvE1OJHi/cx6mLSeOFisAVKHyaNSJ2ifhhpmylPkDb
-         TMfeKnp69IMfWKoEzroU/hJz5WLGwsV+wWgP9ufQQUylTwWSEAzD//AAcaDFmXq0qW1S
-         NHHbV3TdZh2KXjUtDex9MnFXq+EgpKKJ/gL6MahsztPeWvwKcpk1p6LzhOTlQ0P3abvh
-         4t8A==
-X-Gm-Message-State: APjAAAUmfS04j59h52oomJSseqTOOMyuhBhUKMYactSqn3mcevgeC3+k
-        yhIPlYOGLnRRvR6wrwpGdVy5Nw==
-X-Google-Smtp-Source: APXvYqx/hNWE4nn6DV6gHnrucR81zd5daH4/skNEXcW/Z07C49C4lAbqYfCunzwuye2WpB7FkGyoqw==
-X-Received: by 2002:a17:902:7c0b:: with SMTP id x11mr22630033pll.73.1566908116911;
-        Tue, 27 Aug 2019 05:15:16 -0700 (PDT)
-Received: from localhost ([49.248.54.193])
-        by smtp.gmail.com with ESMTPSA id a1sm13719777pgh.61.2019.08.27.05.15.15
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 27 Aug 2019 05:15:16 -0700 (PDT)
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, edubezval@gmail.com, agross@kernel.org,
-        sboyd@kernel.org, masneyb@onstation.org, marc.w.gonzalez@free.fr,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     devicetree@vger.kernel.org
-Subject: [PATCH v2 13/15] arm64: dts: msm8916: thermal: Add interrupt support
-Date:   Tue, 27 Aug 2019 17:44:09 +0530
-Message-Id: <e9edaeb7b65f98abd226b94e8487dff24e55b44a.1566907161.git.amit.kucheria@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <cover.1566907161.git.amit.kucheria@linaro.org>
-References: <cover.1566907161.git.amit.kucheria@linaro.org>
-In-Reply-To: <cover.1566907161.git.amit.kucheria@linaro.org>
-References: <cover.1566907161.git.amit.kucheria@linaro.org>
+        id S1727864AbfH0MUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 08:20:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43644 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726170AbfH0MUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 08:20:35 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E7816206BF;
+        Tue, 27 Aug 2019 12:20:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1566908434;
+        bh=10BPMi7ogBKEVUWUCp+OlUh6tWIYmElWTtO/pbCLCfE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=hiSjrNzN9O29H/jZozkaXJ1RY7B2iPUnmPqzXqXAfbEHqvCNs2qwYPYjz+fe0bIVP
+         3OWIUxGwCDw0ICc9roj00pPsDU+tYy6PMcG/TCSw0YwM5ErWb8psm8Fm/gJJGcB7wT
+         Gdyvjxn2TXOQ9wvf0rvh4w1k9UfLYSxEan4/ebTw=
+Received: by mail-qt1-f176.google.com with SMTP id q64so9348813qtd.5;
+        Tue, 27 Aug 2019 05:20:33 -0700 (PDT)
+X-Gm-Message-State: APjAAAXzNhZ+egjyhcIPGnxugc26lJPigKtAR8jh6r9xYli+sf86xObF
+        5Rsx9eMA9EiXMdbzNfqEUK8f8qMr+nFyvoQexQ==
+X-Google-Smtp-Source: APXvYqwMqxGiTa7rYYydtko9BqUul5ihk660b1Rd0cPJHim/fp9+Uq5BxXYH75v80lYawW9Ve2rEL384NDhcnbTwKFM=
+X-Received: by 2002:a05:6214:10e1:: with SMTP id q1mr19735401qvt.148.1566908433096;
+ Tue, 27 Aug 2019 05:20:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org> <20190822233759.12663-4-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20190822233759.12663-4-srinivas.kandagatla@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 27 Aug 2019 07:20:21 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLjgOy3TKrpuNYYkRxy-Ln+3FOoKVE9KweS0ycTxriWMQ@mail.gmail.com>
+Message-ID: <CAL_JsqLjgOy3TKrpuNYYkRxy-Ln+3FOoKVE9KweS0ycTxriWMQ@mail.gmail.com>
+Subject: Re: [RESEND PATCH v4 3/4] dt-bindings: ASoC: Add WSA881x bindings
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, Vinod <vkoul@kernel.org>,
+        spapothi@codeaurora.org, Banajit Goswami <bgoswami@codeaurora.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register upper-lower interrupt for the tsens controller.
+On Thu, Aug 22, 2019 at 6:38 PM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
+>
+> This patch adds bindings for WSA8810/WSA8815 Class-D Smart Speaker
+> Amplifier. This Amplifier also has a simple thermal sensor for
+> over temperature and speaker protection.
+>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../bindings/sound/qcom,wsa881x.yaml          | 44 +++++++++++++++++++
+>  1 file changed, 44 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+> new file mode 100644
+> index 000000000000..ad718d75c660
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+> @@ -0,0 +1,44 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/qcom,wsa881x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Bindings for Qualcomm WSA8810/WSA8815 Class-D Smart Speaker Amplifier
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +allOf:
+> +  - $ref: "soundwire-controller.yaml#"
 
-Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 22 ++++++++++++----------
- 1 file changed, 12 insertions(+), 10 deletions(-)
+This is not the controller, so this should not be included here. You
+should get lots of warnings from doing so. You did run 'make
+dt_binding_check', right?
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 8686e101905cc..c0d0492d90ec0 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -176,8 +176,8 @@
- 
- 	thermal-zones {
- 		cpu0_1-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens 5>;
- 
-@@ -206,8 +206,8 @@
- 		};
- 
- 		cpu2_3-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens 4>;
- 
-@@ -236,8 +236,8 @@
- 		};
- 
- 		gpu-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens 2>;
- 
-@@ -256,8 +256,8 @@
- 		};
- 
- 		camera-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens 1>;
- 
-@@ -271,8 +271,8 @@
- 		};
- 
- 		modem-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens 0>;
- 
-@@ -816,6 +816,8 @@
- 			nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
- 			nvmem-cell-names = "calib", "calib_sel";
- 			#qcom,sensors = <5>;
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "uplow";
- 			#thermal-sensor-cells = <1>;
- 		};
- 
--- 
-2.17.1
+> +
+> +properties:
+> +  compatible:
+> +    const: sdw10217201000
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  pd-gpios:
 
+powerdown-gpios is the standard name.
+
+> +    description: GPIO spec for Powerdown/Shutdown line to use
+> +    maxItems: 1
+> +
+> +  "#thermal-sensor-cells":
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - pd-gpios
+> +  - #thermal-sensor-cells
+> +
+> +examples:
+> +  - |
+> +    efuse@1c23800 {
+> +        compatible = "allwinner,sun4i-a10-sid";
+
+Huh?
+
+> +        reg = <0x01c23800 0x10>;
+> +        pd-gpios = <&wcdpinctrl 2 0>;
+> +        #thermal-sensor-cells = <0>;
+> +    };
+> +
+> +...
+> --
+> 2.21.0
+>
