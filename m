@@ -2,143 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE9E49EFB4
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82CDC9EFD4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:12:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726435AbfH0QHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:07:07 -0400
-Received: from mail.bugwerft.de ([46.23.86.59]:48176 "EHLO mail.bugwerft.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726420AbfH0QHH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 12:07:07 -0400
-Received: from [192.168.178.170] (p57BC9FEC.dip0.t-ipconnect.de [87.188.159.236])
-        by mail.bugwerft.de (Postfix) with ESMTPSA id 654C229E564;
-        Tue, 27 Aug 2019 16:02:50 +0000 (UTC)
-Subject: Re: [PATCH v2 1/2] uio: uio_pdrv_genirq: Make UIO name controllable
- via DT node property
-To:     gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190815212807.25058-1-daniel@zonque.org>
-From:   Daniel Mack <daniel@zonque.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel@zonque.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <3f65e92e-350e-d414-75c4-8680932b39d1@zonque.org>
-Date:   Tue, 27 Aug 2019 18:07:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1729423AbfH0QMi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:12:38 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:42848 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726537AbfH0QMi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:12:38 -0400
+Received: by mail-oi1-f195.google.com with SMTP id o6so15372876oic.9;
+        Tue, 27 Aug 2019 09:12:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Cz/ZReSAayiO2TIIiV0TqCPnJ2ta6EUq4sXNauC2br4=;
+        b=FDbqR2IhrA3xRvMLd92Q9mkm5relO/2py5uPevvxLa4bTW8ew36KZyTaK2ttU41R2q
+         A9u5Ivp/Ay/vnKjnMXTFpsH2wDQldwFPHA62OcmSnFtyBRJ3jnzeA3+qhJiAyNq1aBKj
+         9VULKTk6alil+2fjv+FmTec7aax+nKD61U9AfiG3DPAYtgyghd4ZCYxH9FFpOfuzJhpt
+         ydUc5SwBG/7spcFUcPAPT1Xsv0GG8FC8HdL/SAByuljQU3VO7qU5nunwmt7/6uRjs/N5
+         M4Jl/JsUN9Ym4ep1otCGNN0c0OCCrgppOdLjR5vxYfU79tE18OSAwJNffRJ32CKUeMbh
+         mFeQ==
+X-Gm-Message-State: APjAAAWpNpvVA2jahXMvNrXJg3BwDTRFkVqtJ+qQvCFZbV+WHu50+fNv
+        DfRKgzEqrJQUmA1CkXJVtg==
+X-Google-Smtp-Source: APXvYqy5uq8+TgF1D4UOlhXpGeWe88J4wJ104qD4aXUbxNeuR6i5LmlumFgVQYjTec1HMkYnvWFUbQ==
+X-Received: by 2002:a54:4508:: with SMTP id l8mr10701622oil.90.1566922356702;
+        Tue, 27 Aug 2019 09:12:36 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id f21sm5402064otq.7.2019.08.27.09.12.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 09:12:36 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 11:12:35 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v6 1/4] dt-bindings: net: phy: Add subnode for LED
+ configuration
+Message-ID: <20190827161235.GA14901@bogus>
+References: <20190813191147.19936-1-mka@chromium.org>
+ <20190813191147.19936-2-mka@chromium.org>
 MIME-Version: 1.0
-In-Reply-To: <20190815212807.25058-1-daniel@zonque.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190813191147.19936-2-mka@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
-
-On 15/8/2019 11:28 PM, Daniel Mack wrote:
-> When probed via DT, the uio_pdrv_genirq driver currently uses the name
-> of the node and exposes that as name of the UIO device to userspace.
+On Tue, Aug 13, 2019 at 12:11:44PM -0700, Matthias Kaehlcke wrote:
+> The LED behavior of some Ethernet PHYs is configurable. Add an
+> optional 'leds' subnode with a child node for each LED to be
+> configured. The binding aims to be compatible with the common
+> LED binding (see devicetree/bindings/leds/common.txt).
 > 
-> This doesn't work for systems where multiple nodes with the same name
-> (but different unit addresses) are present, or for systems where the
-> node names are auto-generated by a third-party tool.
+> A LED can be configured to be:
 > 
-> This patch adds the possibility to read the UIO name from the optional
-> "linux,uio-name" property.
-
-Any opinion on this one?
-
-
-Thanks,
-Daniel
-
-
+> - 'on' when a link is active, some PHYs allow configuration for
+>   certain link speeds
+>   speeds
+> - 'off'
+> - blink on RX/TX activity, some PHYs allow configuration for
+>   certain link speeds
 > 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> For the configuration to be effective it needs to be supported by
+> the hardware and the corresponding PHY driver.
+> 
+> Suggested-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  drivers/uio/uio_pdrv_genirq.c | 14 +++++++++++---
->  1 file changed, 11 insertions(+), 3 deletions(-)
+> Changes in v6:
+> - none
 > 
-> diff --git a/drivers/uio/uio_pdrv_genirq.c b/drivers/uio/uio_pdrv_genirq.c
-> index 6c759934bff3..24d60eb1bda5 100644
-> --- a/drivers/uio/uio_pdrv_genirq.c
-> +++ b/drivers/uio/uio_pdrv_genirq.c
-> @@ -105,12 +105,15 @@ static int uio_pdrv_genirq_irqcontrol(struct uio_info *dev_info, s32 irq_on)
->  static int uio_pdrv_genirq_probe(struct platform_device *pdev)
->  {
->  	struct uio_info *uioinfo = dev_get_platdata(&pdev->dev);
-> +	struct device_node *node = pdev->dev.of_node;
->  	struct uio_pdrv_genirq_platdata *priv;
->  	struct uio_mem *uiomem;
->  	int ret = -EINVAL;
->  	int i;
+> Changes in v5:
+> - renamed triggers from 'phy_link_<speed>_active' to 'phy-link-<speed>'
+> - added entries for 'phy-link-<speed>-activity'
+> - added 'phy-link' and 'phy-link-activity' for triggers with any link
+>   speed
+> - added entry for trigger 'none'
+> 
+> Changes in v4:
+> - patch added to the series
+> ---
+>  .../devicetree/bindings/net/ethernet-phy.yaml | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> index f70f18ff821f..98ba320f828b 100644
+> --- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> +++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
+> @@ -153,6 +153,50 @@ properties:
+>        Delay after the reset was deasserted in microseconds. If
+>        this property is missing the delay will be skipped.
 >  
-> -	if (pdev->dev.of_node) {
-> +	if (node) {
-> +		const char *name;
-> +
->  		/* alloc uioinfo for one device */
->  		uioinfo = devm_kzalloc(&pdev->dev, sizeof(*uioinfo),
->  				       GFP_KERNEL);
-> @@ -118,8 +121,13 @@ static int uio_pdrv_genirq_probe(struct platform_device *pdev)
->  			dev_err(&pdev->dev, "unable to kmalloc\n");
->  			return -ENOMEM;
->  		}
-> -		uioinfo->name = devm_kasprintf(&pdev->dev, GFP_KERNEL, "%pOFn",
-> -					       pdev->dev.of_node);
-> +
-> +		if (!of_property_read_string(node, "linux,uio-name", &name))
-> +			uioinfo->name = devm_kstrdup(&pdev->dev, name, GFP_KERNEL);
-> +		else
-> +			uioinfo->name = devm_kasprintf(&pdev->dev, GFP_KERNEL,
-> +						       "%pOFn", node);
-> +
->  		uioinfo->version = "devicetree";
->  		/* Multiple IRQs are not supported */
->  	}
-> 
+> +patternProperties:
+> +  "^leds$":
+> +    type: object
+> +    description:
+> +      Subnode with configuration of the PHY LEDs.
 
+#address-cells and #size-cells needed.
+
+> +
+> +    patternProperties:
+> +      "^led@[0-9]+$":
+
+Need to allow for the case of 1 LED which doesn't need a unit-address 
+nor reg.
+
+> +        type: object
+> +        description:
+> +          Subnode with the configuration of a single PHY LED.
+> +
+> +    properties:
+> +      reg:
+> +        description:
+> +          The ID number of the LED, typically corresponds to a hardware ID.
+> +        $ref: "/schemas/types.yaml#/definitions/uint32"
+
+Standard properties already have a type definition. What's needed is 
+'maxItems: 1'.
+
+> +
+> +      linux,default-trigger:
+> +        description:
+> +          This parameter, if present, is a string specifying the trigger
+> +          assigned to the LED. Supported triggers are:
+> +            "none" - LED will be solid off
+> +            "phy-link" - LED will be solid on when a link is active
+> +            "phy-link-10m" - LED will be solid on when a 10Mb/s link is active
+> +            "phy-link-100m" - LED will be solid on when a 100Mb/s link is active
+> +            "phy-link-1g" - LED will be solid on when a 1Gb/s link is active
+> +            "phy-link-10g" - LED will be solid on when a 10Gb/s link is active
+> +            "phy-link-activity" - LED will be on when link is active and blink
+> +                                  off with activity.
+> +            "phy-link-10m-activity" - LED will be on when 10Mb/s link is active
+> +                                      and blink off with activity.
+> +            "phy-link-100m-activity" - LED will be on when 100Mb/s link is
+> +                                       active and blink off with activity.
+> +            "phy-link-1g-activity" - LED will be on when 1Gb/s link is active
+> +                                     and blink off with activity.
+> +            "phy-link-10g-activity" - LED will be on when 10Gb/s link is active
+> +                                      and blink off with activity.
+
+These strings all need to be in an enum.
+
+The led binding is moving away from linux,default-trigger to 'function' 
+and 'color' properties. You probably want to do that here.
+
+> +
+> +        $ref: "/schemas/types.yaml#/definitions/string"
+> +
+> +    required:
+> +      - reg
+> +
+>  required:
+>    - reg
+>  
+> @@ -173,5 +217,20 @@ examples:
+>              reset-gpios = <&gpio1 4 1>;
+>              reset-assert-us = <1000>;
+>              reset-deassert-us = <2000>;
+> +
+> +            leds {
+> +                #address-cells = <1>;
+> +                #size-cells = <0>;
+> +
+> +                led@0 {
+> +                    reg = <0>;
+> +                    linux,default-trigger = "phy-link-1g";
+> +                };
+> +
+> +                led@1 {
+> +                    reg = <1>;
+> +                    linux,default-trigger = "phy-link-100m-activity";
+> +                };
+> +            };
+>          };
+>      };
+> -- 
+> 2.23.0.rc1.153.gdeed80330f-goog
+> 
