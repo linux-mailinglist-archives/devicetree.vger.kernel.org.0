@@ -2,101 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 553A09DEEF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 09:43:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E9009DEFE
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 09:46:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbfH0HnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 03:43:00 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:34586 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725850AbfH0HnA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 03:43:00 -0400
-Received: by mail-lj1-f194.google.com with SMTP id x18so17550912ljh.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 00:42:58 -0700 (PDT)
+        id S1728670AbfH0Hq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 03:46:58 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:42789 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727138AbfH0Hq6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 03:46:58 -0400
+Received: by mail-lf1-f67.google.com with SMTP id u13so4475588lfm.9
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 00:46:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=DbaQN5lQG5PhayNJm6ofuK4UBXmTcy1tI10d3jvgHCU=;
-        b=A6eWBMhHhLQjZxk0QZVj1/zy6hsxB6T9+koUgWtRrGfFHhRAinL2GFgmFw3eqYfzIy
-         4LPQ4K8BjydZGt4cCEAuFHtf7AgHOEZ4zBPnxUf1IorkwshlPrmPLr6BmI0aos/dhDFo
-         u5ClpEPLp2+/pvdPCOF+Q32817xbmc0SpN1J9CMj01595p1t39y8wGUbZao1edH1yPbj
-         QXfUyhkDlLPbnNnIVDDxT63K7Xf/tAMHiPKD0xk1LPHcH9A6Uq96LG4uObZrMTNcLl6H
-         fqIj23OrqRFi/Yrj4SUuuOuXWe8P82DHUSb2A87eiMYfV3bAaPFIN1z10DdKrB23FxvM
-         PcHA==
+        bh=dFOqKfbpfyZwn4Lyu2FeqhkpQf6JFuziIop7qSWTXvo=;
+        b=o20jXDDPPvxsDErqPFhPbfNrq2zsAHXv/blUGUUzxgi9ZujS2x3dWAXkVTJkZvSiRp
+         XLQYJ7cS5xAsRz9QN5DVVevEEPm26i/0CDuG/bH+j0WidzzWVNm0GhjLFyUPOgmrYO/I
+         d0Vj52vxskMPnsYGqKcvsL0A08TxjsahAWGQR4FPYo3EasGLcyzAbeIh6v/tZj5iEoOQ
+         6dsrGi1rLGZQLzn38pc2y8nOUx8Lea9k+lhUEt/HKQ9lqrfux/gx5pPdZYOvDlpS7a+w
+         P8BmixbZNLImDZeI1aWMxY+C0H1waPmA4soCZRh42waMFt94rl1RNwb62jC4CFsKfcrF
+         RBWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=DbaQN5lQG5PhayNJm6ofuK4UBXmTcy1tI10d3jvgHCU=;
-        b=W3tUwmBkVPJitgqaPcCnrINN15tddWvzexyzyZOS5iRXSrLnuhESGjEnl8XW0rpmI9
-         urmqZ+WihWC/AyAwcztwMWJsbxBQH+UhJUweiRWO4kAIZlgykMYU+BHrZ+yac+4FC8Bo
-         4yITqYdOgHNVMf1OMmQlEdZjOG9O6JtIfDK0Dv5J4/oOsLBnD7gXcgrqLvIwhd7T3b+x
-         PDoyrz9a+otRSTD4PFImoxcrKvy4RNfmo+mXKMAOFSAuOD7jITYU+se1zm4o4Ae2SFkZ
-         sC8VrpiuTQyOEEJpMAKxZrJgKY3VEaDyZtNhFMXNjMcLJoFhGe/188qZqN/YaP1C/GWQ
-         4JMg==
-X-Gm-Message-State: APjAAAVDoWLf7SRpiG1PKCGzHNSnILDiERBFYra1I3mXwEMUhcj7mKPc
-        6PlaADRyjYeVX1yLDgDJ10I/JNyXFKyPf0Rr5cYK9w==
-X-Google-Smtp-Source: APXvYqzheeGJyqRkncJ2J0YcY4zURcDf5exuFHynMcmTIs31SslHtjb2DBsUHTeshcC0qadJggmKkGlpScdKw+hMgdw=
-X-Received: by 2002:a05:651c:28c:: with SMTP id b12mr13161238ljo.69.1566891778138;
- Tue, 27 Aug 2019 00:42:58 -0700 (PDT)
+        bh=dFOqKfbpfyZwn4Lyu2FeqhkpQf6JFuziIop7qSWTXvo=;
+        b=q4d5YtcSyc3nkM+fIrGfQf/bSRDuUd0Sc2tlEH52nhmsb+2sVHQAooVHINFITMuMa1
+         czuIx4abcoLH7kHCinyvx3HNRGzmAH2OO4TqxpiYFAy9vVvwMTqgtBICVCd3BMyG+3yW
+         UXbYrONVH9OCMaW5dhQffLwhAV5suzulaBx8SN4w7V8SlHosdP9LbZBsQpRxNrV6EuLb
+         uwIcl2R4lpAe1eH3MkDZXofpO8l5fwNgO4xlhBk/BMMDi6+MHN3zJIDf++KPxit6jnoz
+         wj/+QKbr/LBqW7h1I4g6PsAtCtjvrJv2+Wrar2fPFgNQdXxxiQsIlwUHbSlYM3ubuG5i
+         aD1w==
+X-Gm-Message-State: APjAAAV6uHMSmA6YZabcfJCZeItKVyWK3sb+pMey3nQTegF7BrvVt2J+
+        FU4/+Ahns3RIMgayOcgdrgUU1Ewrpxq/zNDZ30cjHQ==
+X-Google-Smtp-Source: APXvYqxixoiN4Btq5D4VdRTz8xdDlhBGXd+FvALGAPeghizFIx2u8ZlMTzyPN6AT9HwLGk6zEvIAWZ7sUfdYixXZlD4=
+X-Received: by 2002:ac2:5939:: with SMTP id v25mr13672672lfi.115.1566892016527;
+ Tue, 27 Aug 2019 00:46:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190823071021.5598-1-linus.walleij@linaro.org> <20190826220022.GA7663@dtor-ws>
-In-Reply-To: <20190826220022.GA7663@dtor-ws>
+References: <20190805101607.29811-1-miquel.raynal@bootlin.com> <20190805101607.29811-3-miquel.raynal@bootlin.com>
+In-Reply-To: <20190805101607.29811-3-miquel.raynal@bootlin.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 27 Aug 2019 09:42:46 +0200
-Message-ID: <CACRpkdbv8yVP==WDo-wBgotyvnPhApTCD2x7oamCHBQKuNp3RQ@mail.gmail.com>
-Subject: Re: [PATCH v2] Input: tsc2007 - use GPIO descriptor
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Harish Jenny K N <harish_kandiga@mentor.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Linux Input <linux-input@vger.kernel.org>,
-        Denis Carikli <denis@eukrea.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
+Date:   Tue, 27 Aug 2019 09:46:45 +0200
+Message-ID: <CACRpkdb4m9RJ_e_ykWu2-FEOXP3X3K04TX5nPFjo482iY15j+A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: cp110: document the new CP115 pinctrl compatible
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 12:00 AM Dmitry Torokhov
-<dmitry.torokhov@gmail.com> wrote:
+On Mon, Aug 5, 2019 at 12:16 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-> >  Optional properties:
-> >  - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
-> > -  The penirq pin goes to low when the panel is touched.
-> > +  The penirq pin goes to low when the panel is touched, so make sure to tag
-> > +  the GPIO line with GPIO_ACTIVE_LOW.
+> From: Grzegorz Jaszczyk <jaz@semihalf.com>
 >
-> I think this is too strong. I am sure that one can come up with a way to
-> connect the attention signal though polarity inverter and then one would
-> have to specify GPIO_ACTIVE_HIGH in the DT.
-
-Yeah this is something that has been discussed recently as
-Harish is suggesting to add an actual inverter to the device
-tree model. As the description of reality in the device tree is
-incomplete, these flags, which should nominally be consumer
-flags and indicate the behavior of the consumer, becomes
-a panacea for solving shortcomings in the device tree model.
-
-I am in favor of introducing explicit inverters in device tree,
-as it makes the descriptions more consistent: e.g. regulators
-are consumer oriented, they even model rails to make things
-very clear on where a voltage applies, whereas GPIO polarity
-is defined as "trial-and-error until whatever makes the system
-run" more or less.
-
-> Can we say:
+> A new compatible is going to be used for Armada CP115 pinctrl block,
+> document it.
 >
-> The penirq pin goes to low when the panel is touched, so GPIO line
-> should normally be tagged with GPIO_ACTIVE_LOW.
+> Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
+> [<miquel.raynal@bootlin.com>: split the documentation out of the
+> driver commit]
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Sure, this is not the place for hashing out DT design issues,
-can you fix when applying or should I send a new version?
+Patch applied with Rob's ACK.
 
 Yours,
 Linus Walleij
