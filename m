@@ -2,69 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D31DD9F00C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EC719F00F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:24:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727064AbfH0QWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:22:00 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34973 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfH0QWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:22:00 -0400
-Received: by mail-oi1-f194.google.com with SMTP id a127so15430794oii.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 09:22:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5JlZoESkdfp/SKYJDWkEzRPTnHXmzPaOFMIA9w2D3Ms=;
-        b=mwf6UwukW/t60UothIqAV7XpMkLgj63YZ1YKXkLuKQNp9ukyaBKZLzPYbxJSxRYjLU
-         3G3+8oVGkdKoTuWfKOExYyMkTkIlaXKdr2DG4Tdmm+r2OWa/nNP2/0IW1GE00uBbWrlL
-         D7zZWjWOXVfa6gTLjIkk6tZUbOtUK89+w+OJJ1199DDwRqtWPzrC+t8gRXD+Q8BVz82J
-         yAsvtbzopAepWZOz4g+GbEGAWH8zwTiDRz2ue7TjPMbZydCTHYMnGnlpGPQOcjZK5EFt
-         63SE4KB9VnKyVnDPHfO/XnHY2+T05pklsy92waWNdGHlPqv8Ez9+QAtMfAaz3HHqycUd
-         yllg==
-X-Gm-Message-State: APjAAAWbT8QiELMIXGcrR75ImnHSKiAqfKL4Wp6/ScbDRQGEqeoQs5ar
-        e96oWa4Uie+a/sy0h912mg==
-X-Google-Smtp-Source: APXvYqyB0l/ITKcu0ArpTcwZRprxENst8wTwsb2llLpo+xmsGSUsstJL4pe2qy+jUlqbKOcyC22w5Q==
-X-Received: by 2002:aca:4713:: with SMTP id u19mr16207926oia.139.1566922919927;
-        Tue, 27 Aug 2019 09:21:59 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k6sm5830519otp.57.2019.08.27.09.21.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 09:21:59 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 11:21:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Nishka Dasgupta <nishkadg.linux@gmail.com>
-Cc:     robh+dt@kernel.org, frowand.list@gmail.com,
-        devicetree@vger.kernel.org,
-        Nishka Dasgupta <nishkadg.linux@gmail.com>
-Subject: Re: [PATCH] of: unittest: Add of_node_put() before return
-Message-ID: <20190827162158.GA14084@bogus>
-References: <20190815062218.5428-1-nishkadg.linux@gmail.com>
+        id S1726610AbfH0QY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:24:28 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:15202 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726522AbfH0QY2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:24:28 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d65593b0000>; Tue, 27 Aug 2019 09:24:27 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 27 Aug 2019 09:24:26 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 27 Aug 2019 09:24:26 -0700
+Received: from [10.25.73.29] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 27 Aug
+ 2019 16:24:20 +0000
+Subject: Re: [PATCH 6/6] PCI: tegra: Add support to enable slot regulators
+To:     Andrew Murray <andrew.murray@arm.com>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>,
+        <gustavo.pimentel@synopsys.com>, <digetx@gmail.com>,
+        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190826073143.4582-1-vidyas@nvidia.com>
+ <20190826073143.4582-7-vidyas@nvidia.com>
+ <20190827154725.GP14582@e119886-lin.cambridge.arm.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <91f8914a-22a9-8b7c-bc00-c309a21d83db@nvidia.com>
+Date:   Tue, 27 Aug 2019 21:54:17 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190815062218.5428-1-nishkadg.linux@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190827154725.GP14582@e119886-lin.cambridge.arm.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1566923067; bh=2HdnrU28EZ0UoDqd1XHS7RWTxi3+8RJrX0DXDhdTXkQ=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=UOf5q/JTyE7cqbJ2RVqu81ZL65HIP/RvqM8b1wP0H1VXjJebSJDsJvXXdA3VfdA1x
+         Jbr3ddj2il6lYfOFxuCYGJNMp6xxACUwmdB6GqACH8qZExBnD7xHVadBilMH29V0te
+         uJdU/li30TESP1YmrqDsAKct4j8wbJuXi33QGvUzLVIz5/JxV1ctWzJOQ5fYnBhLJa
+         i7DOxUfJkTiiqPq2+SQLT+4jzJXo0VEleuCsTH9fpqvQZ8l2EBajamhY3cFBEHMngJ
+         L7QSsuDVebiATbOuUuGU/Ze28NuAV2p2oj/cLWB2uG80hgKBVfkQxVk5Z/q6wmv9QI
+         xXMNSMo/Z0bqA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Aug 2019 11:52:18 +0530, Nishka Dasgupta wrote:
-> The local variable np in function of_unittest_platform_populate takes
-> the return value of of_find_node_by_path, which gets a node but does not
-> put it. If np is not put before return it may cause a memory leak. Hence
-> put np before a return statement.
-> Issue found with Coccinelle.
+On 8/27/2019 9:17 PM, Andrew Murray wrote:
+> On Mon, Aug 26, 2019 at 01:01:43PM +0530, Vidya Sagar wrote:
+>> Add support to get regulator information of 3.3V and 12V supplies of a PCIe
+>> slot from the respective controller's device-tree node and enable those
+>> supplies. This is required in platforms like p2972-0000 where the supplies
+>> to x16 slot owned by C5 controller need to be enabled before attempting to
+>> enumerate the devices.
+>>
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-tegra194.c | 65 ++++++++++++++++++++++
+>>   1 file changed, 65 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> index 8a27b25893c9..97de2151a738 100644
+>> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+>> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> @@ -278,6 +278,8 @@ struct tegra_pcie_dw {
+>>   	u32 aspm_l0s_enter_lat;
+>>   
+>>   	struct regulator *pex_ctl_supply;
+>> +	struct regulator *slot_ctl_3v3;
+>> +	struct regulator *slot_ctl_12v;
+>>   
+>>   	unsigned int phy_count;
+>>   	struct phy **phys;
+>> @@ -1047,6 +1049,59 @@ static void tegra_pcie_downstream_dev_to_D0(struct tegra_pcie_dw *pcie)
+>>   	}
+>>   }
+>>   
+>> +static void tegra_pcie_get_slot_regulators(struct tegra_pcie_dw *pcie)
+>> +{
+>> +	pcie->slot_ctl_3v3 = devm_regulator_get_optional(pcie->dev, "vpcie3v3");
+>> +	if (IS_ERR(pcie->slot_ctl_3v3))
+>> +		pcie->slot_ctl_3v3 = NULL;
+>> +
+>> +	pcie->slot_ctl_12v = devm_regulator_get_optional(pcie->dev, "vpcie12v");
+>> +	if (IS_ERR(pcie->slot_ctl_12v))
+>> +		pcie->slot_ctl_12v = NULL;
 > 
-> Signed-off-by: Nishka Dasgupta <nishkadg.linux@gmail.com>
-> ---
->  drivers/of/unittest.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Do these need to take into consideration -EPROBE_DEFER?
+Since these are devm_* APIs, isn't it taken care of automatically?
+
 > 
+> Thanks,
+> 
+> Andrew Murray
+> 
+>> +}
+>> +
+>> +static int tegra_pcie_enable_slot_regulators(struct tegra_pcie_dw *pcie)
+>> +{
+>> +	int ret;
+>> +
+>> +	if (pcie->slot_ctl_3v3) {
+>> +		ret = regulator_enable(pcie->slot_ctl_3v3);
+>> +		if (ret < 0) {
+>> +			dev_err(pcie->dev,
+>> +				"Failed to enable 3V3 slot supply: %d\n", ret);
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	if (pcie->slot_ctl_12v) {
+>> +		ret = regulator_enable(pcie->slot_ctl_12v);
+>> +		if (ret < 0) {
+>> +			dev_err(pcie->dev,
+>> +				"Failed to enable 12V slot supply: %d\n", ret);
+>> +			if (pcie->slot_ctl_3v3)
+>> +				regulator_disable(pcie->slot_ctl_3v3);
+>> +			return ret;
+>> +		}
+>> +	}
+>> +
+>> +	/*
+>> +	 * According to PCI Express Card Electromechanical Specification
+>> +	 * Revision 1.1, Table-2.4, T_PVPERL (Power stable to PERST# inactive)
+>> +	 * should be a minimum of 100ms.
+>> +	 */
+>> +	msleep(100);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void tegra_pcie_disable_slot_regulators(struct tegra_pcie_dw *pcie)
+>> +{
+>> +	if (pcie->slot_ctl_12v)
+>> +		regulator_disable(pcie->slot_ctl_12v);
+>> +	if (pcie->slot_ctl_3v3)
+>> +		regulator_disable(pcie->slot_ctl_3v3);
+>> +}
+>> +
+>>   static int tegra_pcie_config_controller(struct tegra_pcie_dw *pcie,
+>>   					bool en_hw_hot_rst)
+>>   {
+>> @@ -1060,6 +1115,10 @@ static int tegra_pcie_config_controller(struct tegra_pcie_dw *pcie,
+>>   		return ret;
+>>   	}
+>>   
+>> +	ret = tegra_pcie_enable_slot_regulators(pcie);
+>> +	if (ret < 0)
+>> +		goto fail_slot_reg_en;
+>> +
+>>   	ret = regulator_enable(pcie->pex_ctl_supply);
+>>   	if (ret < 0) {
+>>   		dev_err(pcie->dev, "Failed to enable regulator: %d\n", ret);
+>> @@ -1142,6 +1201,8 @@ static int tegra_pcie_config_controller(struct tegra_pcie_dw *pcie,
+>>   fail_core_clk:
+>>   	regulator_disable(pcie->pex_ctl_supply);
+>>   fail_reg_en:
+>> +	tegra_pcie_disable_slot_regulators(pcie);
+>> +fail_slot_reg_en:
+>>   	tegra_pcie_bpmp_set_ctrl_state(pcie, false);
+>>   
+>>   	return ret;
+>> @@ -1174,6 +1235,8 @@ static int __deinit_controller(struct tegra_pcie_dw *pcie)
+>>   		return ret;
+>>   	}
+>>   
+>> +	tegra_pcie_disable_slot_regulators(pcie);
+>> +
+>>   	ret = tegra_pcie_bpmp_set_ctrl_state(pcie, false);
+>>   	if (ret) {
+>>   		dev_err(pcie->dev, "Failed to disable controller %d: %d\n",
+>> @@ -1372,6 +1435,8 @@ static int tegra_pcie_dw_probe(struct platform_device *pdev)
+>>   		return ret;
+>>   	}
+>>   
+>> +	tegra_pcie_get_slot_regulators(pcie);
+>> +
+>>   	pcie->pex_ctl_supply = devm_regulator_get(dev, "vddio-pex-ctl");
+>>   	if (IS_ERR(pcie->pex_ctl_supply)) {
+>>   		dev_err(dev, "Failed to get regulator: %ld\n",
+>> -- 
+>> 2.17.1
+>>
 
-Applied, thanks.
-
-Rob
