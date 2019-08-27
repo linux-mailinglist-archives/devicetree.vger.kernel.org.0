@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC16D9EFF3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84EFD9F001
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:20:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727893AbfH0QRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:17:49 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34427 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727306AbfH0QRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:17:48 -0400
-Received: by mail-oi1-f194.google.com with SMTP id g128so15438893oib.1;
-        Tue, 27 Aug 2019 09:17:48 -0700 (PDT)
+        id S1726621AbfH0QUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:20:20 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44641 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726522AbfH0QUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:20:20 -0400
+Received: by mail-ot1-f65.google.com with SMTP id w4so19188436ote.11;
+        Tue, 27 Aug 2019 09:20:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7muvzMncx4YoE3IQ35DaVbjOS8KQcGXrD0KkrlfBrr8=;
-        b=GSu7a6hX6FUj+pPyr9nlU6NtKgCFtzIkagj8xAikCJYR/wpKAxQGduezjhRdKjMnbt
-         BMQS4FVLco1IfZ229PafuI33eeaEE+Dv5zHTYOlqq4XZWBInbJspQY8q8tCpgM7ivEpE
-         iBqieUZ2ntUUMSOZy7YdfrDm8NN6UjMoa4x2nMF65OspktGYZ5Yi4YpK75ga9KtHwGnG
-         e3lNbaKtVyDnTc1rXUq7M9lsDc08X+0SExK4w9molYdayT2NefjM75Rm07LXOEvV8D4C
-         4nLZXkZOnAtppjvC3QoEODAO+yaKETkpb91tRSRlk1jQ+V4492Hmr/y25tQRXvEQtmxc
-         dOMw==
-X-Gm-Message-State: APjAAAUjmmxos7esXOz/GnfV3qZkyS4tEWZ+iPcUod9oyMjmbhiB0zeB
-        iNtBfSLY3AnnZVqNP/jk3w==
-X-Google-Smtp-Source: APXvYqySoYjSnor6MzzbBz/lQbLzJ0tJ+VwZ2+9peKDYeoigi2IqpZCPnjF5k6qLhms8Egjt860ocg==
-X-Received: by 2002:aca:4c44:: with SMTP id z65mr10740973oia.113.1566922663759;
-        Tue, 27 Aug 2019 09:17:43 -0700 (PDT)
+        bh=03y+6O+pVdA0iRm3AU9FQ8YTQS7jTiqNnHaIUG6Eo4I=;
+        b=Sw9/jXIoAqZpm2F0NqDym0bH1i070k6y8tAwOnStGwKSeDsC+lPtbPiDSfoqykrTnp
+         zak37mpWTWkJgSw3FfjrmluMeOXjKQbZRkHEr8cttH8QiLZWb4RFpRGd6qFNFfPpiycH
+         orVlFTDq5Fsh6TAe9+nbumon1sudw5DNv2CR+7sfW7jn87ji1AmyWl2F/tB5USuNM9ma
+         QwD8ntE3P70+wf7qj3ksemT3w2vcBbUPGbGzKHbCZ8JcrObOeJkqz/IwUB5plTwS5E4r
+         WPqUj4joBSWP+75A3hODaPQybF704ltqFOERwGXA9A6hJXRQ+ubt1KdEEks7DVnx91O8
+         k+Yw==
+X-Gm-Message-State: APjAAAXCKCh4fRR200sJWDjG6reTC2yGsZ8rQ1zXArnTy2LlyLo7HN6L
+        x+3m3s+PgsXV4pB6N8F1q/t8nVg=
+X-Google-Smtp-Source: APXvYqy6L2w6poPxiOiA1JXS3qP3upveE43AeK0ekRiMmhT+yWG4TzGjK2lym2Xula+v5WXsCL41wQ==
+X-Received: by 2002:a9d:77cc:: with SMTP id w12mr13373051otl.207.1566922819429;
+        Tue, 27 Aug 2019 09:20:19 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k67sm5469648otk.26.2019.08.27.09.17.42
+        by smtp.gmail.com with ESMTPSA id f60sm5991174otf.18.2019.08.27.09.20.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 09:17:42 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 11:17:42 -0500
+        Tue, 27 Aug 2019 09:20:18 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 11:20:18 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     lee.jones@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        patches@opensource.cirrus.com
-Subject: Re: [PATCH v2 1/2] mfd: madera: Update DT binding document to
- support clock supplies
-Message-ID: <20190827161742.GA7223@bogus>
-References: <20190814092140.30995-1-ckeepax@opensource.cirrus.com>
+To:     Baolin Wang <baolin.wang@linaro.org>
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        u.kleine-koenig@pengutronix.de, mark.rutland@arm.com,
+        orsonzhai@gmail.com, zhang.lyra@gmail.com, baolin.wang@linaro.org,
+        vincent.guittot@linaro.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: pwm: sprd: Add Spreadtrum PWM
+ documentation
+Message-ID: <20190827162018.GA11135@bogus>
+References: <65a34dd943b0260bfe45ec76dcf414a67e5d8343.1565785291.git.baolin.wang@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190814092140.30995-1-ckeepax@opensource.cirrus.com>
+In-Reply-To: <65a34dd943b0260bfe45ec76dcf414a67e5d8343.1565785291.git.baolin.wang@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 14 Aug 2019 10:21:39 +0100, Charles Keepax wrote:
-> Add the 3 input clock sources for the chip into the device tree binding
-> document.
+On Wed, 14 Aug 2019 20:46:10 +0800, Baolin Wang wrote:
+> Add Spreadtrum PWM controller documentation.
 > 
-> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
 > ---
+> Changes from v2:
+>  - Fix some typos.
+>  - Move assigned-clocks to be optional.
 > 
-> No changes since v1.
-> 
-> Thanks,
-> Charles
-> 
->  Documentation/devicetree/bindings/mfd/madera.txt | 8 ++++++++
->  1 file changed, 8 insertions(+)
+> Changes from v1:
+>  - Use assigned-clock-parents and assigned-clocks to set PWM clock parent.
+> ---
+>  Documentation/devicetree/bindings/pwm/pwm-sprd.txt |   40 ++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sprd.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
