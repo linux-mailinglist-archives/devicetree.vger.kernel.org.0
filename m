@@ -2,107 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BCA479F3C9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:09:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1389A9F3D3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729626AbfH0UI6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 16:08:58 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:35410 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727484AbfH0UI5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:08:57 -0400
-Received: by mail-oi1-f195.google.com with SMTP id a127so272523oii.2;
-        Tue, 27 Aug 2019 13:08:57 -0700 (PDT)
+        id S1731001AbfH0UMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 16:12:50 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:37921 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728233AbfH0UMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:12:50 -0400
+Received: by mail-qt1-f194.google.com with SMTP id q64so358023qtd.5
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 13:12:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ng/ondwrrnfBxKPNMtYoFquttD4noee2/m3ndHQDx/0=;
-        b=Ib0+i8CMaAbtL7/7qIyHGy4Ferr4vHLU0YpAYTrdWf5gzpQy6TdLnJ1CYOpQ+U3X8e
-         zQRAo7Lnbe6KNhW8Iu6LahuZD2lcBVIzAY/7scmnGyG05Y0Xg30wPUPTMZ3iiuYti1WS
-         5UYn+6vvNxxYmQxqZm4YjOBoDi1jA7EHadn1JmI4OzmvYdq7TxqkElpXjNNkgPFf83au
-         lNo3bSh0zrcoUZOzewiaVFgSCXt1hEeGfp30f/0KLqIxsWOCTNuo8LGRSLq+TJvEKhUp
-         pttukgkE7opZtSEZAy6B8/CkCqGvPf8aAN2SF64jPM+Mf1K7+9oJHmsNJIdF6Bex2oRW
-         GUJw==
-X-Gm-Message-State: APjAAAXPXh0x97zhAhKoMLqFLB9+RMtkxYpen9sSTTpFDPJgj2957EHK
-        fFKQgaVUPPdaIVAaiv7DMA==
-X-Google-Smtp-Source: APXvYqzzs9eWBhou0aG3BlVhbCRM/HDy6khsII/8Kx06DMoap2M/MFjtTc2tykVoa1mrUGNt8UVn6A==
-X-Received: by 2002:aca:3388:: with SMTP id z130mr329140oiz.81.1566936536648;
-        Tue, 27 Aug 2019 13:08:56 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l16sm135580otq.42.2019.08.27.13.08.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 13:08:56 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 15:08:55 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     wim@linux-watchdog.org, linux@roeck-us.net, mark.rutland@arm.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux@armlinux.org.uk, otavio@ossystems.com.br,
-        leonard.crestez@nxp.com, schnitzeltony@gmail.com,
-        u.kleine-koenig@pengutronix.de, jan.tuerk@emtrion.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH V4 1/4] dt-bindings: watchdog: Add i.MX7ULP bindings
-Message-ID: <20190827200855.GA5260@bogus>
-References: <1566441463-11911-1-git-send-email-Anson.Huang@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Le7/DPty+666pMSSFBSolUxx7aiRXx8yMy4J1BfqBIQ=;
+        b=khzN1WCc/Ap3eg9LoZjxQfszKdGqKsflWjiUYBi1oI9XlbIxsNQxFoS9D97g8uu22G
+         KfUZwHVCZW8BVVD8RH7CXmpV27gBzAMfexGjaMHBQMb/w3mJmLlxkG8pjMIp9uwPyRmW
+         h8rpOOUmB9a3YctwbrKtEgUx03Gf/r4Iyldck3YmDO87jNVwIfoo6H16fFhbnqdGTgQU
+         qDEYBipYjw0FfELK8AVa3jPpv8PQB1ouKTN2zNasoDoPQRhUzEBEm/b1DyQN3MR4+E/+
+         DclNRaIbhJqM8K7jXXuGz0tqGxvN1vXEzhw9JN4Sk81WuyM6y3gh/99LH7oLVu9/kLCg
+         eVUQ==
+X-Gm-Message-State: APjAAAUA6bFQH3ANINMu63wWh/t3fEJ078uJpSWZA5JNmLJEqBRALMbd
+        vPQxFO19I4EWJ6c7AT5gGE2gsvLVaQNnRI9TUKwpWoGk
+X-Google-Smtp-Source: APXvYqyEurgHAvSLKroxFOuP9U5ayE6Ghq9iJgArGFYndN0YDBGMpGHoMWmlrrisgnTI8voyhgeUAwkLXq8DOartowY=
+X-Received: by 2002:aed:3363:: with SMTP id u90mr689168qtd.7.1566936769088;
+ Tue, 27 Aug 2019 13:12:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1566441463-11911-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190821055530.8720-1-joel@jms.id.au> <20190821055530.8720-8-joel@jms.id.au>
+ <faf79f9d-baa1-4c8c-a35b-c5d97ad6df8b@www.fastmail.com> <CACPK8Xe=mq_Zuw6vsFtb=42ZodbHcizX9QwUoRzY0cDdoWr-Fw@mail.gmail.com>
+In-Reply-To: <CACPK8Xe=mq_Zuw6vsFtb=42ZodbHcizX9QwUoRzY0cDdoWr-Fw@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 27 Aug 2019 22:12:33 +0200
+Message-ID: <CAK8P3a1Dgzrw7nuQR_YJYXSF7Owop2Hpd80bAL0OPhzHMHcbPg@mail.gmail.com>
+Subject: Re: [PATCH 7/7] ARM: configs: aspeed_g5: Enable AST2600
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Andrew Jeffery <andrew@aj.id.au>, Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
+        Ryan Chen <ryan_chen@aspeedtech.com>,
+        =?UTF-8?Q?C=C3=A9dric_Le_Goater?= <clg@kaod.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 10:37:40PM -0400, Anson Huang wrote:
-> Add the watchdog bindings for Freescale i.MX7ULP.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> No changes.
-> ---
->  .../bindings/watchdog/fsl-imx7ulp-wdt.txt          | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt
-> new file mode 100644
-> index 0000000..d83fc5c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt
-> @@ -0,0 +1,22 @@
-> +* Freescale i.MX7ULP Watchdog Timer (WDT) Controller
-> +
-> +Required properties:
-> +- compatible : Should be "fsl,imx7ulp-wdt"
-> +- reg : Should contain WDT registers location and length
-> +- interrupts : Should contain WDT interrupt
-> +- clocks: Should contain a phandle pointing to the gated peripheral clock.
-> +
-> +Optional properties:
-> +- timeout-sec : Contains the watchdog timeout in seconds
-> +
-> +Examples:
-> +
-> +wdog1: wdog@403d0000 {
+On Thu, Aug 22, 2019 at 6:43 AM Joel Stanley <joel@jms.id.au> wrote:
+>
+> On Thu, 22 Aug 2019 at 02:07, Andrew Jeffery <andrew@aj.id.au> wrote:
+> > > +CONFIG_MMC=y
+> > > +CONFIG_MMC_SDHCI=y
+> > > +CONFIG_MMC_SDHCI_PLTFM=y
+> > > +CONFIG_MMC_SDHCI_OF_ASPEED=y
+> >
+> > The patches haven't yet been applied to the MMC tree, maybe we should
+> > add this later?
+>
+> When enabling drivers in the same merge window as they go into the
+> tree we will always be in this situation.
+>
+> If the driver doesn't make it in this merge window, or first has has
+> changes, the worst that will happen is the kconfig name changes and I
+> need to update it later. I think we're safe to include it as-is.
 
-watchdog@...
+Yes, that's fine.
 
-With that,
+Please also enable all the drivers you need in multi_v7_defconfig
+now, preferably as loadable modules.
 
-Reviewed-by: Rob Herring <rohb@kernel.org>
 
-> +	compatible = "fsl,imx7ulp-wdt";
-> +	reg = <0x403d0000 0x10000>;
-> +	interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-> +	clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-> +	assigned-clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-> +	assigned-clocks-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
-> +	timeout-sec = <40>;
-> +};
-> -- 
-> 2.7.4
-> 
+      Arnd
