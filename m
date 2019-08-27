@@ -2,133 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B4139F486
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:51:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 071649F497
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726675AbfH0UvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 16:51:25 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36772 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726584AbfH0UvY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:51:24 -0400
-Received: by mail-ot1-f66.google.com with SMTP id k18so556251otr.3;
-        Tue, 27 Aug 2019 13:51:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dFtF8AMRjxGRycJChvuu+QOaS234Rbc2kfA92QoOhR8=;
-        b=qYYxolS5fuSP3djvlBL/HOIW+sovTY0tqvgXcUM6zhqLnu/KdHnckre+AffxcaQPuw
-         Pg7C2lm7ZvGoDDZiRwAbEcsRWGykPwuVl3iPGqeEXdGU6fJsFMEz0MmQNyMmL3NPyPoV
-         0oR4WAdalK/clMCWNkqsrhe5KNzldZTg34rk9j+8oG2f1HSZjzGZFsrFzu7eIaZETyZg
-         A5SwCpgSyexS45450GKEm0uddUj9B7kwdn5+yIA/LDWFzWP0Bag9VlUEpwpiRE4gmLHP
-         wtJmYu+m+VUr+WNYJR7qxRnxZ7502Mh1Izq6nhKYCRYYqKe/b9kJggrpfF0WmBicFBCk
-         oqEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dFtF8AMRjxGRycJChvuu+QOaS234Rbc2kfA92QoOhR8=;
-        b=WJi1AJ3k1mP67mfqRie3Y1Mdax752nRxvfSd+ZjYUYg0NIOsiUeg5htTRRX9P+4KTr
-         03DTQ/bNQy7/lf7IheVL4GQ/H85gx+lYgF3+srQVCMP8oIrtAC1X1ZkgjietHnkDnp/i
-         UajlPaUBI1c9SWJiwjjB2qBzcFRenb1f6n8Qnb4otDLF1ytcwpTlqbAUG9ERkShmeU69
-         k+C/y7KbjIRNfNudDBvfOO7BUroJm9WC2qr3iYPzl7mN3vYIbUueETHwZxyRG1z8oySy
-         xJkFVa4HOhrdMxLkspsl0SjkUY3YNJqu4nDrGKCwhVZeh/WuNfydg6NOyndNEgYPG9PA
-         1sZw==
-X-Gm-Message-State: APjAAAWNrZvmVk+Sc1T4Ew3gS9kFnSqI9HJ1TZBbmpBYchGWW/hSpEkm
-        T45BF0FYuLhmpNO8w1SdQB/RilX8EqtWIAZm6kqINkks
-X-Google-Smtp-Source: APXvYqwFn2NE0qOdFMOqInpTjKCQduZPMBIHAU9paWcbft2GuR94j1ckD2V67ocVSCK8gs/Bh62sKrOwSg+711aT3sw=
-X-Received: by 2002:a9d:7b44:: with SMTP id f4mr479637oto.42.1566939083798;
- Tue, 27 Aug 2019 13:51:23 -0700 (PDT)
+        id S1728834AbfH0U4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 16:56:11 -0400
+Received: from gate2.alliedtelesis.co.nz ([202.36.163.20]:60191 "EHLO
+        gate2.alliedtelesis.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726871AbfH0U4K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:56:10 -0400
+Received: from mmarshal3.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 35CF2886BF;
+        Wed, 28 Aug 2019 08:56:06 +1200 (NZST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+        s=mail181024; t=1566939366;
+        bh=Qkj1mG0wHsGHa/gKm5/x9q0JZlgBpJKgAE+1iQkqh2Q=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To;
+        b=iN/lZg2JjWlXXd7voA+WGY6nUBTzOuOMmdO6MEpyAcO5ls/YCOx4rTVA4nDNs7r9H
+         aLJ9wjk8ZPdg6LYkDaNWao/pkECE2/NEzyil5tR2jNFXWfpmAq0vnqycnZD8N3uPZL
+         qV/5p3eBVw29pmpXD79jKWyqrGMF4J3GMa9b8i6IH5gZwdrMi3KKvoGgzhHdHMG6N6
+         dlfUOmPEOlsGdPgkbab4LlF3wi5cd2mIeYxoZpcwaVhlWt71E707/1aCVeneqMv8+R
+         3oByeNDpbuVz2Nv/Z2/zHNIJEa8aKFSFbt0S2dpIkJlZiM2ROO9Q+GojJZqV2xL9uV
+         8AFUJX/3Bxm8w==
+Received: from svr-chch-ex1.atlnz.lc (Not Verified[10.32.16.77]) by mmarshal3.atlnz.lc with Trustwave SEG (v7,5,8,10121)
+        id <B5d6598e60001>; Wed, 28 Aug 2019 08:56:06 +1200
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8)
+ by svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with
+ Microsoft SMTP Server (TLS) id 15.0.1156.6; Wed, 28 Aug 2019 08:56:05 +1200
+Received: from svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8]) by
+ svr-chch-ex1.atlnz.lc ([fe80::409d:36f5:8899:92e8%12]) with mapi id
+ 15.00.1156.000; Wed, 28 Aug 2019 08:56:05 +1200
+From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To:     "linux@armlinux.org.uk" <linux@armlinux.org.uk>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "james.morse@arm.com" <james.morse@arm.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregory.clement@free-electrons.com" 
+        <gregory.clement@free-electrons.com>,
+        "jlu@pengutronix.de" <jlu@pengutronix.de>,
+        "bp@alien8.de" <bp@alien8.de>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+        "patches@armlinux.org.uk" <patches@armlinux.org.uk>
+Subject: Re: [PATCH v9 1/8] ARM: aurora-l2: add prefix to MAX_RANGE_SIZE
+Thread-Topic: [PATCH v9 1/8] ARM: aurora-l2: add prefix to MAX_RANGE_SIZE
+Thread-Index: AQHVOGTGof7sJp7iK06MfTI7WDVk4qcIBgyAgAABHQCABA5YgIACH/QAgADERoA=
+Date:   Tue, 27 Aug 2019 20:56:05 +0000
+Message-ID: <b1e2e5b325b3c4453e2ed63c17e1e11d6b24f099.camel@alliedtelesis.co.nz>
+References: <20190712034904.5747-1-chris.packham@alliedtelesis.co.nz>
+         <20190712034904.5747-2-chris.packham@alliedtelesis.co.nz>
+         <20190823104621.GY13294@shell.armlinux.org.uk>
+         <20190823105020.GZ13294@shell.armlinux.org.uk>
+         <836653f04f526333e8dbd45361329731f8dfe2ea.camel@alliedtelesis.co.nz>
+         <20190827091336.GI13294@shell.armlinux.org.uk>
+In-Reply-To: <20190827091336.GI13294@shell.armlinux.org.uk>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [2001:df5:b000:22:2872:a49:e4e9:7214]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <DB7AD1FE2BCAAD49A227E6CDD248BBBA@atlnz.lc>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <9bd455a628d4699684c0f9d439b64af1535cccc6.1566208109.git.eswara.kota@linux.intel.com>
- <20190824210302.3187-1-martin.blumenstingl@googlemail.com>
- <2c71003f-06d1-9fe2-2176-94ac816b40e3@linux.intel.com> <CAFBinCDSJdq6axcYM7AkqvzUbc6X1zfOZ85Q-q1-FPwVxvgnpA@mail.gmail.com>
- <9ba19f08-e25a-4d15-8854-8dc4f9b6faca@linux.intel.com> <e4ddb571-e003-7bb8-a04c-795423ea0e2f@linux.intel.com>
-In-Reply-To: <e4ddb571-e003-7bb8-a04c-795423ea0e2f@linux.intel.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 27 Aug 2019 22:51:12 +0200
-Message-ID: <CAFBinCDgpNMfF-DnZSLAd7Ps66OKnUdpDmi7OE2O0bctOwwvCg@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dwc: PCI: intel: Intel PCIe RC controller driver
-To:     Dilip Kota <eswara.kota@linux.intel.com>
-Cc:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
-        hch@infradead.org, jingoohan1@gmail.com,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        qi-ming.wu@intel.com
-Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dilip,
-
-On Tue, Aug 27, 2019 at 10:47 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
-[...]
-> >
-> >
-> >> now I am wondering:
-> >> - if we don't have to disable the interrupt line (once it is enabled),
-> >> why can't we enable all of these interrupts at initialization time
-> >> (instead of doing it on-demand)?
-> > Good point! we even can remote map_irq patch, directly call
-> >
-> > of_irq_parse_and_map_pci as other drivers do.
->
-> Irrespective of disabling, imo interrupts(A/B/C/D) should be enabled
-> when they are requested; which happens during map_irq() call.
-with an integrated interrupt controller (which I decided to use in my
-experiment because I could not find a .unmap_irq callback) this would
-be the case:
-- of_irq_parse_and_map_pci finds our APP interrupt
-- this will enable the interrupt in the PCIe controller's APP register first
-- then it will enable the interrupt in the parent interrupt controller
-- when the PCIe card then frees the IRQ line again we will disable
-both interrupts (the APP interrupt as well as the parent interrupt)
-
-I don't see why of_irq_parse_and_map_pci + custom code to enable the
-APP interrupt in .map_irq (without any .unmap_irq callback) is better
-than always enabling it
-
-[...]
-> >>> This is needed. In the old driver, we fixed this by fixup. The original
-> >>> comment as follows,
-> >>>
-> >>> /*
-> >>>    * The root complex has a hardwired class of
-> >>> PCI_CLASS_NETWORK_OTHER or
-> >>>    * PCI_CLASS_BRIDGE_HOST, when it is operating as a root complex this
-> >>>    * needs to be switched to * PCI_CLASS_BRIDGE_PCI
-> >>>    */
-> >> that would be a good comment to add if you really need it
-> >> can you please look at dw_pcie_setup_rc (from
-> >> pcie-designware-host.c), it does:
-> >>    /* Enable write permission for the DBI read-only register */
-> >>    dw_pcie_dbi_ro_wr_en(pci);
-> >>    /* Program correct class for RC */
-> >>    dw_pcie_wr_own_conf(pp, PCI_CLASS_DEVICE, 2, PCI_CLASS_BRIDGE_PCI);
-> >>    /* Better disable write permission right after the update */
-> >>    dw_pcie_dbi_ro_wr_dis(pci);
-> >>
-> >> so my understanding is that there is a functional requirement to set
-> >> the class to PCI_CLASS_BRIDGE_PCI
-> >> however, that requirement is already covered by pcie-designware-host.c
-> > I will task Dilip to check if we can use dwc one.
-> dw_pcie_setup_rc () cannot be called here because, it is not doing
-> PCI_CLASS_BRIDGE_PCI set alone, it is configuring many other things.
-I am surprised to see that dw_pcie_setup_rc() is not used at all in your driver
-it sets up BARs, bus numbers, interrupt pins, the command register, etc.
-with my limited knowledge I assumed that these ("many other things")
-are all mandatory so everything works correctly
-
-what problems do you experience when you use dw_pcie_setup_rc()?
-
-also it seems that virtually every PCIe driver based on the DWC
-controller uses it:
-$ grep -R dw_pcie_setup_rc drivers/pci/controller/dwc/ | wc -l
-20
-
-
-Martin
+T24gVHVlLCAyMDE5LTA4LTI3IGF0IDEwOjEzICswMTAwLCBSdXNzZWxsIEtpbmcgLSBBUk0gTGlu
+dXggYWRtaW4NCndyb3RlOg0KPiBPbiBNb24sIEF1ZyAyNiwgMjAxOSBhdCAxMjo0Njo0NEFNICsw
+MDAwLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPiA+IEhpIFJ1c3NlbGwsDQo+ID4gDQo+ID4gT24g
+RnJpLCAyMDE5LTA4LTIzIGF0IDExOjUwICswMTAwLCBSdXNzZWxsIEtpbmcgLSBBUk0gTGludXgg
+YWRtaW4NCj4gPiB3cm90ZToNCj4gPiA+IE9uIEZyaSwgQXVnIDIzLCAyMDE5IGF0IDExOjQ2OjIx
+QU0gKzAxMDAsIFJ1c3NlbGwgS2luZyAtIEFSTSBMaW51eA0KPiA+ID4gYWRtaW4gd3JvdGU6DQo+
+ID4gPiA+IEkgY2FuJ3QgYXBwbHkgdGhpcyBzZXJpZXMgLSB0aGlzIGZpbGUgZG9lcyBub3QgZXhp
+c3QgaW4gbXkgdHJlZSwNCj4gPiA+ID4gYW5kDQo+ID4gPiA+IGZyb20gd2hhdCBnaXQgdGVsbHMg
+bWUsIGl0IG5ldmVyIGhhcyBleGlzdGVkLiAgTWF5YmUgaXQncyBpbg0KPiA+ID4gPiBzb21lb25l
+DQo+ID4gPiA+IGVsc2VzIHRyZWU/DQo+ID4gPiANCj4gPiA+IEkgdGhpbmsgdGhlIGZpbGUgaXMg
+aW4gbXkgdHJlZSwganVzdCBhcyBhcmNoL2FybS9tbS9jYWNoZS1hdXJvcmEtbDIuaA0KPiA+ID4g
+d2hpY2ggaXMgd2hlcmUgaXQgaGFzIGJlZW4gc2luY2UgaXQgd2FzIG9yaWdpbmFsbHkgc3VibWl0
+dGVkIGluIDIwMTIuDQo+ID4gDQo+ID4gU29ycnkgdGhlcmUgaXMgYSBtaXNzaW5nIHBhdGNoIHRo
+YXQgbW92ZXMgaXQgbmV4dCB0byB0aGUNCj4gPiBoYXJkd2FyZS9jYWNoZS0qLmguIEkgY2FuIHNl
+bmQgdGhlIG1pc3NpbmcgcGF0Y2ggb3IgSSBjYW4gcmUtc2VuZCB0aGUNCj4gPiB3aG9sZSBzZXJp
+ZXMuIElmIEkgZG8gc2VuZCB0aGUgd2hvbGUgc2VyaWVzIGRvIHlvdSB3YW50IG1lIHRvIHJlYmFz
+ZSBpdA0KPiA+IGFnYWluc3QgYSBwYXJ0aWN1bGFyIHRhZy90cmVlPw0KPiANCj4gSnVzdCBzZW5k
+IHRoZSBzaW5nbGUgcGF0Y2ggdG8gdGhlIHBhdGNoIHRyYWNrZXIgLSBoYXZpbmcgaXQgYWdhaW5z
+dA0KPiA1LjMtcmMgaXMgZmluZSAoSSBkb24ndCB0aGluayBhbnl0aGluZyBoYXMgY2hhbmdlZCBm
+b3IgYSBsb25nIHRpbWUNCj4gd2l0aCB0aGF0IGZpbGUuKQ0KDQpEb25lIA0KaHR0cHM6Ly93d3cu
+YXJtbGludXgub3JnLnVrL2RldmVsb3Blci9wYXRjaGVzL3ZpZXdwYXRjaC5waHA/aWQ9ODkwMi8x
+DQoNCkknbSBzdGlsbCBub3QgZW50aXJlbHkgc3VyZSB3aGF0IHRvIHB1dCBmb3IgdGhlIEtlcm5l
+bFZlcnNpb24gdGFnLiBJbg0KaGluZHNpZ2h0IHRoaW5rIEkgbWlzaW50ZXJwcmV0ZWQgeW91ciBj
+b21tZW50IGFib3ZlIGFuZCBzZXQgaXQgdG8gNS4zcmMNCih3aGVyZSB5b3UgbWVhbnQgYSBzZXJp
+ZXMgYmFzZWQgb24gNS4zLXJjWCBzaG91bGQgYXBwbHkgY2xlYW5seSkuIEl0DQpwcm9iYWJseSBz
+aG91bGQgaGF2ZSBiZWVuIG5leHQgb3IgbWFzdGVyIGJlY2F1c2UgaXQncyB3YXkgcGFzdCB0aGUN
+Cm1lcmdlIHdpbmRvdyBmb3IgNS4zLg0KDQo=
