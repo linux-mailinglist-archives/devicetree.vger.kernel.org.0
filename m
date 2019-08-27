@@ -2,70 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A39899F0B0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D15419F0B8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 18:50:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728584AbfH0Qty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 12:49:54 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:35450 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727064AbfH0Qty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:49:54 -0400
-Received: by mail-oi1-f194.google.com with SMTP id a127so15504961oii.2;
-        Tue, 27 Aug 2019 09:49:53 -0700 (PDT)
+        id S1727219AbfH0Quw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 12:50:52 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38410 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727057AbfH0Quw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 12:50:52 -0400
+Received: by mail-ot1-f67.google.com with SMTP id r20so19318638ota.5;
+        Tue, 27 Aug 2019 09:50:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7MPppvQzuTQRt9BznXwjvzO0Ebod4s5AerzRU45JZms=;
-        b=rvC1pskTXwtYW8fj3q+q005Rgql8EfcBrkhHXuakFU+XOUPy1iirA4duu3dYGidFkr
-         E8Frn2tMUZgDrOPJeJwQIdv9bXb8QyxI0ZCE8+Q5Y/yijKg71h+h6IHME3YfXH2oU0Yp
-         LWTh9sADj5Nz9zoctYoOx09LObrzjehMKWzeuZeYN0cmWjfJ+PcS5G2Afzwhambm29bn
-         0zqzucmv/xJkRrz+AxN8KXbYgGbE9OQGp6TJsbYRjeCc02hzvFB+skOsAvRGH7Zot2ow
-         Hg5rb12iEw7ZibCtjj9Oor2ZN5Dm8PfCzSaG2Ok838cc+D9rRC51udeCox3T04TAIBlc
-         im1A==
-X-Gm-Message-State: APjAAAWsRoznJxqx6PCpGTYOQ0+fbrDUV/k4l8FV6odLUPfctn0udf84
-        7gwjK4ghn2bnmZEJSQFx8w==
-X-Google-Smtp-Source: APXvYqxdvM5S16bwNgKtmD/8gpKaMVejRbwknzUDZRxkGiPYP4MSJdQYjH2zGFN+sh6d3qXNd4ffoQ==
-X-Received: by 2002:aca:ec87:: with SMTP id k129mr16354304oih.80.1566924593136;
-        Tue, 27 Aug 2019 09:49:53 -0700 (PDT)
+        bh=fqBFilW3Taxmqkkc+lbabtCZRi69qq/O3UlJxrJchrY=;
+        b=OVZWjl/3X16+uT/lPdJz9HuC2H1nIclyq2h5JAip4if4UZuzZ73rZutywL9MV++7+A
+         ePtHYmnH+HRkl5z/mLljQ0JF31YNnEO0ahnqEPPh0Hrb4mYhuLOk0ubGOPTQfWYAVMF2
+         xaMwaYjsxE14pR1146SM0NSMOEXNhXIWAjsKjtF84fztJaPipGiwENDTqrmrzWG20As3
+         qM/O/JUgXMDPZJU4NHNiE8N9x22uWU3/EunAj2psEJ1RLWvwlJBEzc9RRwErhxrs0hBk
+         x4N2DAiml+k/6cA4XMnRZO9fT3nRqAoNnQGjmtCdWQrKkKW4koSYTTXESwlO9gjDD8pU
+         wf+w==
+X-Gm-Message-State: APjAAAXM6ng90WYzCNLRCoHTMdpD5eUqsRvL9k7yvBDY8/LjloKAcJsV
+        WsbuXxoGYN+ZgaHK88BlzA==
+X-Google-Smtp-Source: APXvYqyw4UG0idfNDJmbNZqg1Onu34fcHoHyW1oudTW4c4m5Yz92ptA6VjcNj2jaiiv7lA3hJ7MwFg==
+X-Received: by 2002:a9d:58c9:: with SMTP id s9mr17368581oth.16.1566924651011;
+        Tue, 27 Aug 2019 09:50:51 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f21sm5435626otq.7.2019.08.27.09.49.52
+        by smtp.gmail.com with ESMTPSA id g3sm6043222oti.41.2019.08.27.09.50.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 09:49:52 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 11:49:52 -0500
+        Tue, 27 Aug 2019 09:50:50 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 11:50:50 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, Ryan Chen <ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: watchdog: Add ast2600 compatible
-Message-ID: <20190827164952.GA24417@bogus>
-References: <20190819051738.17370-1-joel@jms.id.au>
- <20190819051738.17370-2-joel@jms.id.au>
+To:     Mars Cheng <mars.cheng@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
+        mtk01761 <wendell.lin@mediatek.com>, linux-clk@vger.kernel.org,
+        Mars Cheng <mars.cheng@mediatek.com>
+Subject: Re: [PATCH v2 03/11] dt-bindings: irq: mtk,sysirq: add support for
+ mt6779
+Message-ID: <20190827165050.GA25969@bogus>
+References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com>
+ <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190819051738.17370-2-joel@jms.id.au>
+In-Reply-To: <1566206502-4347-4-git-send-email-mars.cheng@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Aug 2019 14:47:37 +0930, Joel Stanley wrote:
-> This adds a compatible for the ast2600, a new ASPEED SoC.
+On Mon, 19 Aug 2019 17:21:34 +0800, Mars Cheng wrote:
+> Add binding documentation of mediatek,sysirq for mt6779 SoC.
 > 
-> Signed-off-by: Joel Stanley <joel@jms.id.au>
-> Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+> Signed-off-by: Mars Cheng <mars.cheng@mediatek.com>
 > ---
-> v2:
->  - Add Andrew's r-b
-> ---
->  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 1 +
+>  .../interrupt-controller/mediatek,sysirq.txt       |    1 +
 >  1 file changed, 1 insertion(+)
 > 
 
