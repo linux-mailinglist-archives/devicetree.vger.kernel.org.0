@@ -2,65 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 121779F188
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 19:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C286F9F18E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 19:27:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730473AbfH0RZb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 13:25:31 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35280 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727064AbfH0RZa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 13:25:30 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 100so8662922otn.2;
-        Tue, 27 Aug 2019 10:25:30 -0700 (PDT)
+        id S1727064AbfH0R1V convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Aug 2019 13:27:21 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:59826 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727306AbfH0R1V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 13:27:21 -0400
+Received: from mail-ed1-f72.google.com (mail-ed1-f72.google.com [209.85.208.72])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id 932A5882EA
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 17:27:20 +0000 (UTC)
+Received: by mail-ed1-f72.google.com with SMTP id a7so12038103edm.23
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 10:27:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=RAdx3knbJdmHJIAYuCsyCxVXwy79upfsZxSrxjBV/Fs=;
-        b=IfTN3DYKpr5XEZL7/cRXpQXN6J1zwuRISho/lEYKqz54sNvHcY34eqcH2sBNC7oI5N
-         yY7JIJKMTqH0jkkXmwqMh/7tdq1javjDkRkCfEX4Beyh34xoJ1TATFVf6+KKVdcQo/os
-         DTvm6E+4keBWl2HE5FX/X3j8r5NcGt8GF4zVbfZy9OAchYypqmancdhTggDeabuAqYJK
-         W4O7lJVWryBvezGyAWPOytI7Sq2+Tm581hxoa6K6zllGgrimCBGu8m1bYq6vqEONeAJa
-         PCc8V5zPWzIubfS1J4Z/CCg+Q7U3fqL12jLUWwS7/nA41XrVrXOnwsxVoN3AXQB9HCPH
-         hD7g==
-X-Gm-Message-State: APjAAAUMJg1vuCCOvQb7ZJHPbR3d1VMBb46moxl+5Go0DEdmF+zBesn0
-        inhss+DCLSMKrrXtdSn4YQ==
-X-Google-Smtp-Source: APXvYqzyYML6e8inoQ40na2bt0XfhvJ9YzCYogrNaMHwGOZqEiHXi8Yf1Csw2h9ooroMQd1yb4hqUA==
-X-Received: by 2002:a9d:3bcb:: with SMTP id k69mr8186736otc.182.1566926730130;
-        Tue, 27 Aug 2019 10:25:30 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z16sm4238710oic.10.2019.08.27.10.25.29
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version:content-transfer-encoding;
+        bh=YmLb+EgtCjKbjsP72nDuR7gCcltdq6dvJWkJFscEBhU=;
+        b=fePKPN8g4fQliEBOR4uuSFuj1hXbcK6+IcIaIXeVAppmeg5eER1+TwDJI+xeusAOcs
+         GL2J+M9qslo1ovwCItnSt0WY/Do+ksnGGuFqVqqM2MTFcEleH/VEqjUwS9HpKkLsAqsh
+         3rwD77ZyTkQBwsiuKoIzF8BYvuTicdnvvyxrB/o5hwqnoY8brO92xhe15fR6UQgYteH8
+         CrPNQtTPQHGCfgi1rrTscmw28B6WPmA8q6EeM5ezlG+6leYC1GI7UBgTRipQtGdlOCr6
+         /mfK5ebkPbZMkuMKBx148TfD1huUHxDE1zGMESMivSgdXs7GINWRHe65AQjsygOJm+00
+         MdKw==
+X-Gm-Message-State: APjAAAVO6N29LDSrFmqmynrByuk2aH3yf0gj/BPh9Hte+6R+rr2vfWF6
+        cI3CxA0shMUWuCHlNCa3O9ZVjM2eK2wXICxEZAFqgeHp6tvuP/3spxfk245Z5fKwhglsrln2LQK
+        Ox1+xK7PCpcX7rQ1RyqDYgA==
+X-Received: by 2002:a17:906:1c8b:: with SMTP id g11mr22158478ejh.81.1566926839371;
+        Tue, 27 Aug 2019 10:27:19 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqy6kCL8ylCKmKPBNZRv3ewOAXE4EniTndu2nFf4f+l/TLjIHR7W9o9lCRgQGf97PKW1WW6WNA==
+X-Received: by 2002:a17:906:1c8b:: with SMTP id g11mr22158469ejh.81.1566926839187;
+        Tue, 27 Aug 2019 10:27:19 -0700 (PDT)
+Received: from alrua-x1.borgediget.toke.dk (borgediget.toke.dk. [85.204.121.218])
+        by smtp.gmail.com with ESMTPSA id d20sm3448191ejb.75.2019.08.27.10.27.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 10:25:29 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 12:25:29 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Martin Kepplinger <martin.kepplinger@puri.sm>
-Cc:     lorenzo.bianconi83@gmail.com, jic23@kernel.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Martin Kepplinger <martin.kepplinger@puri.sm>
-Subject: Re: [PATCH v5 4/4] dt-bindings: iio: imu: st_lsm6dsx: add lsm9ds1
- device bindings
-Message-ID: <20190827172529.GA16508@bogus>
-References: <20190821132520.28225-1-martin.kepplinger@puri.sm>
- <20190821132520.28225-5-martin.kepplinger@puri.sm>
+        Tue, 27 Aug 2019 10:27:18 -0700 (PDT)
+Received: by alrua-x1.borgediget.toke.dk (Postfix, from userid 1000)
+        id A2E07181C2E; Tue, 27 Aug 2019 19:27:17 +0200 (CEST)
+From:   Toke =?utf-8?Q?H=C3=B8iland-J=C3=B8rgensen?= <toke@redhat.com>
+To:     Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless-owner@vger.kernel.org
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+In-Reply-To: <14737343f1925a771ddd8dadf0f2b5a3@codeaurora.org>
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org> <1566316095-27507-32-git-send-email-kvalo@codeaurora.org> <8736hvu6e6.fsf@toke.dk> <ac6e7dbbd53e7ba9e82e49baca22b73c@codeaurora.org> <875zmqsudn.fsf@toke.dk> <14737343f1925a771ddd8dadf0f2b5a3@codeaurora.org>
+X-Clacks-Overhead: GNU Terry Pratchett
+Date:   Tue, 27 Aug 2019 19:27:17 +0200
+Message-ID: <87sgpmikne.fsf@toke.dk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190821132520.28225-5-martin.kepplinger@puri.sm>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Aug 2019 15:25:20 +0200, Martin Kepplinger wrote:
-> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
-> ---
->  Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> On 2019-08-21 15:38, Toke Høiland-Jørgensen wrote:
+>> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
+>> 
+>>> On 2019-08-20 22:21, Toke Høiland-Jørgensen wrote:
+>>>> [... snip ... ]
+>>>> 
+>>>>> +static const struct ieee80211_ops ath11k_ops = {
+>>>>> +	.tx				= ath11k_mac_op_tx,
+>>>> 
+>>>> No wake_tx_queue? :(
+>>> 
+>>> Yes, packet queueing is handled in firmware. This makes sense
+>>> especially when we enable 802.11 encap offload support where most of
+>>> the data path processing in mac80211 will be skipped and packet is
+>>> given to driver/firmware in 802.3 format itself. Then firmware would
+>>> take care of all the classification, queueing and encapsulation
+>>> operations.
+>> 
+>> Well, so does ath10k, and yet we still saw a significant improvement by
+>> moving queueing back into the host where it can be handled by the
+>> FQ-CoDel-enabled queueing structure.
+>> 
+>
+> Sure, we could probably try that with ath11k as well at some point when 
+> we have a baseline with HE support.
+
+Well, rather than retrofit change things later, why not start out with a
+wake_tx_queue-based driver?
+
+-Toke
