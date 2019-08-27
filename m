@@ -2,140 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC3AB9F45F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B4139F486
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730940AbfH0UlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 16:41:15 -0400
-Received: from mail-eopbgr770109.outbound.protection.outlook.com ([40.107.77.109]:54352
-        "EHLO NAM02-SN1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726332AbfH0UlO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 16:41:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PDKX8glMUQ0GbnBrGgyTouReap6AnvAM5B/hCKmX6825QZ9OlUzFAdlTuzmFE8pHuUs+L/SZYY2VkukRb9yCt81VBgm5rYNHlSCrc8UHK7EyKYclq/kvZOeWOXNkFVujulG8ew5kjLoYaXd1bbKM4qKuyB2k6jyYCf4GloNEdNG+mv8wVLFyw7qZNu7L79Eb4XlTZlYLmghyBQ2lY6Di4ITI0iVky/2xxAeGj50mAKafGqmkEMFmEbx4z/xAhwYxp8kSheVMsOetSG1AWRmpLuAvLR6Uzl+xGxFuNmccp0cKCiBKt1QAgLES4NqR1FawQrIa518QO5eukOMMnBTCWA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hbWz1QM7X+5spHSl+LwOYGYzoYjNy005Txu4QMnlP3o=;
- b=Yt7XiCiMKH3bXNZ5PhpapfRCbl3PB+F5UIEgQGHWl9kgxDYay4LzXzoY/cqnBv2wRmycSb4XR6RITe5xLcB4eBEldsyOFm3+RBhiFfwvXZec7RuL4I8mO8AWVhtCI24CEWZRh+g9rVWi+Jp67LgRGx7z0zyuHZlhu6s4YRYd2QzlGPtb08c4+S2SDiHHGvbhvFd7aiXPPzdSQolROvsc4ibi7p93tAfmsdlzlxjjupcSsS+Km97Miy+TtBvjxVxROBOeAVJRZcgGfI9/zpg6kIlsWYJc7NdhTKlBAxCJwgOo9dgwBcKnllQ4b0bX05C+6NueEvm6DJlnvtBE7WzXEw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
- dkim=pass header.d=mips.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=hbWz1QM7X+5spHSl+LwOYGYzoYjNy005Txu4QMnlP3o=;
- b=OY10YckGuGw9eQdRFXZW5q6ckxkulKpHbkcuHFb5Y+8mXn463/gUuH/dHN+CErut4AMt1vX/lCo90MC4hwXzvohhwsoB7L5qwfZu+UstP3wVdg7OhpD8XJ2XSQsSEftknmsLzDvwB1SNzcr/Z3O4hORfN4FfcJ4B76qPizEc1QM=
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
- MWHPR2201MB1469.namprd22.prod.outlook.com (10.174.170.142) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.20; Tue, 27 Aug 2019 20:41:11 +0000
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::f9e8:5e8c:7194:fad3]) by MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::f9e8:5e8c:7194:fad3%11]) with mapi id 15.20.2199.021; Tue, 27 Aug
- 2019 20:41:11 +0000
-From:   Paul Burton <paul.burton@mips.com>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Huacai Chen <chenhc@lemote.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.co>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
-Thread-Topic: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
-Thread-Index: AQHVXRfCtuxS9b9w7ESa0feRfCmKMg==
-Date:   Tue, 27 Aug 2019 20:41:11 +0000
-Message-ID: <20190827204105.7nyt4pi7lvxse5ij@pburton-laptop>
-References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
- <20190827085302.5197-12-jiaxun.yang@flygoat.com>
- <CAL_JsqL6htVye-LSBWw1WwRy9xH=zwuH6gurscwoCWj9Te_hAg@mail.gmail.com>
- <d94eff2b-76ec-5cd2-512d-5ee0406a1bb9@flygoat.com>
-In-Reply-To: <d94eff2b-76ec-5cd2-512d-5ee0406a1bb9@flygoat.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: LO2P265CA0070.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:60::34) To MWHPR2201MB1277.namprd22.prod.outlook.com
- (2603:10b6:301:18::12)
-user-agent: NeoMutt/20180716
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pburton@wavecomp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [2a02:c7f:5e65:9900:8519:dc48:d16b:70fc]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 34b616aa-42a5-4c6c-7fcc-08d72b2ee531
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1469;
-x-ms-traffictypediagnostic: MWHPR2201MB1469:
-x-ms-exchange-purlcount: 3
-x-microsoft-antispam-prvs: <MWHPR2201MB14693861B542D8C400BBA31AC1A00@MWHPR2201MB1469.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 0142F22657
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(39840400004)(376002)(346002)(136003)(366004)(396003)(199004)(189003)(5660300002)(46003)(14454004)(7416002)(25786009)(229853002)(6436002)(6306002)(6512007)(9686003)(1076003)(6246003)(54906003)(478600001)(966005)(66946007)(66556008)(53376002)(66446008)(66476007)(64756008)(4326008)(6116002)(305945005)(7736002)(316002)(256004)(76176011)(52116002)(486006)(44832011)(8676002)(14444005)(81156014)(81166006)(58126008)(8936002)(53936002)(2906002)(6916009)(33716001)(102836004)(99286004)(186003)(386003)(6506007)(53546011)(476003)(6486002)(71190400001)(71200400001)(446003)(11346002)(42882007);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1469;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: wavecomp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: LVrlZ5gwuiei9KAwFhfxhwDtz8AO5K1Do7fCqVqHBHS3gvhZVwkZAdV+l0YiSeG8Z+QBKr4XcxrTUZ+VD2SRdHHz0yfrUqgaxsC9EOa1Fxlyt8/umtgjtILFBID/cN7Pa4eS8sxrhBP25eloUjhz91MamwZGgVZ6VNii4bqX7DeWUXMd9JIUPiry6pMzeTWh5hXXcLw3Px8NxmvLCVjQR6ohRdw9Kx+W4rDfiYMFhSt8Zw2vAD58/uK8iU1fw0M+wMwOI92CfyOvIgAKJ/oWzyF9iNW2xsMa4r/WBPMPUMWbADpaJSatcd2mZZxr5Q7pnOYuZ8SIy/gbnejcpWnA+9Kn34rTueFAVNc/NyXc8h/Z8EYeCcP+SSHnN2UZ5X0pUaoNLhgWs2Ra3lZmZkpBxRw3XoPYit0QuLliGZCFaJQ=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <12ECD8C448368C468E9C13D363C21C2D@namprd22.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1726675AbfH0UvZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 16:51:25 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:36772 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726584AbfH0UvY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:51:24 -0400
+Received: by mail-ot1-f66.google.com with SMTP id k18so556251otr.3;
+        Tue, 27 Aug 2019 13:51:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dFtF8AMRjxGRycJChvuu+QOaS234Rbc2kfA92QoOhR8=;
+        b=qYYxolS5fuSP3djvlBL/HOIW+sovTY0tqvgXcUM6zhqLnu/KdHnckre+AffxcaQPuw
+         Pg7C2lm7ZvGoDDZiRwAbEcsRWGykPwuVl3iPGqeEXdGU6fJsFMEz0MmQNyMmL3NPyPoV
+         0oR4WAdalK/clMCWNkqsrhe5KNzldZTg34rk9j+8oG2f1HSZjzGZFsrFzu7eIaZETyZg
+         A5SwCpgSyexS45450GKEm0uddUj9B7kwdn5+yIA/LDWFzWP0Bag9VlUEpwpiRE4gmLHP
+         wtJmYu+m+VUr+WNYJR7qxRnxZ7502Mh1Izq6nhKYCRYYqKe/b9kJggrpfF0WmBicFBCk
+         oqEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dFtF8AMRjxGRycJChvuu+QOaS234Rbc2kfA92QoOhR8=;
+        b=WJi1AJ3k1mP67mfqRie3Y1Mdax752nRxvfSd+ZjYUYg0NIOsiUeg5htTRRX9P+4KTr
+         03DTQ/bNQy7/lf7IheVL4GQ/H85gx+lYgF3+srQVCMP8oIrtAC1X1ZkgjietHnkDnp/i
+         UajlPaUBI1c9SWJiwjjB2qBzcFRenb1f6n8Qnb4otDLF1ytcwpTlqbAUG9ERkShmeU69
+         k+C/y7KbjIRNfNudDBvfOO7BUroJm9WC2qr3iYPzl7mN3vYIbUueETHwZxyRG1z8oySy
+         xJkFVa4HOhrdMxLkspsl0SjkUY3YNJqu4nDrGKCwhVZeh/WuNfydg6NOyndNEgYPG9PA
+         1sZw==
+X-Gm-Message-State: APjAAAWNrZvmVk+Sc1T4Ew3gS9kFnSqI9HJ1TZBbmpBYchGWW/hSpEkm
+        T45BF0FYuLhmpNO8w1SdQB/RilX8EqtWIAZm6kqINkks
+X-Google-Smtp-Source: APXvYqwFn2NE0qOdFMOqInpTjKCQduZPMBIHAU9paWcbft2GuR94j1ckD2V67ocVSCK8gs/Bh62sKrOwSg+711aT3sw=
+X-Received: by 2002:a9d:7b44:: with SMTP id f4mr479637oto.42.1566939083798;
+ Tue, 27 Aug 2019 13:51:23 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: mips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34b616aa-42a5-4c6c-7fcc-08d72b2ee531
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2019 20:41:11.1770
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 0uSkajUcXf40OGkua/2ZzowIGrK8CGfrdyaIsomZ+K01nmgsROlaIwbe8AvnpwGU/1cZOtNBYkytpTmr/6UvBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1469
+References: <9bd455a628d4699684c0f9d439b64af1535cccc6.1566208109.git.eswara.kota@linux.intel.com>
+ <20190824210302.3187-1-martin.blumenstingl@googlemail.com>
+ <2c71003f-06d1-9fe2-2176-94ac816b40e3@linux.intel.com> <CAFBinCDSJdq6axcYM7AkqvzUbc6X1zfOZ85Q-q1-FPwVxvgnpA@mail.gmail.com>
+ <9ba19f08-e25a-4d15-8854-8dc4f9b6faca@linux.intel.com> <e4ddb571-e003-7bb8-a04c-795423ea0e2f@linux.intel.com>
+In-Reply-To: <e4ddb571-e003-7bb8-a04c-795423ea0e2f@linux.intel.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 27 Aug 2019 22:51:12 +0200
+Message-ID: <CAFBinCDgpNMfF-DnZSLAd7Ps66OKnUdpDmi7OE2O0bctOwwvCg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dwc: PCI: intel: Intel PCIe RC controller driver
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
+        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
+        devicetree@vger.kernel.org, gustavo.pimentel@synopsys.com,
+        hch@infradead.org, jingoohan1@gmail.com,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        qi-ming.wu@intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgZ3V5cywNCg0KT24gVHVlLCBBdWcgMjcsIDIwMTkgYXQgMTA6MTg6NDZQTSArMDgwMCwgSmlh
-eHVuIFlhbmcgd3JvdGU6DQo+IE9uIDIwMTkvOC8yNyDkuIvljYg4OjQ1LCBSb2IgSGVycmluZyB3
-cm90ZToNCj4gPiBPbiBUdWUsIEF1ZyAyNywgMjAxOSBhdCAzOjU1IEFNIEppYXh1biBZYW5nIDxq
-aWF4dW4ueWFuZ0BmbHlnb2F0LmNvbT4gd3JvdGU6DQo+ID4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21pcHMvbG9vbmdzb24vY3B1cy55YW1sIGIvRG9j
-dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21pcHMvbG9vbmdzb24vY3B1cy55YW1sDQo+
-ID4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi40MTBk
-ODk2YTAwNzgNCj4gPiA+IC0tLSAvZGV2L251bGwNCj4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9taXBzL2xvb25nc29uL2NwdXMueWFtbA0KPiA+ID4gQEAgLTAs
-MCArMSwzOCBAQA0KPiA+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjANCj4g
-PiBEdWFsIGxpY2Vuc2UgZm9yIG5ldyBiaW5kaW5ncyBwbGVhc2U6DQo+ID4gDQo+ID4gKEdQTC0y
-LjAtb25seSBPUiBCU0QtMi1DbGF1c2UpDQo+ID4gDQo+ID4gPiArJVlBTUwgMS4yDQo+ID4gPiAr
-LS0tDQo+ID4gPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1hcy9taXBzL2xvb25n
-c29uL2NwdXMueWFtbCMNCj4gPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0
-YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiA+ICsNCj4gPiA+ICt0aXRsZTogTG9vbmdzb24gQ1BV
-cyBiaW5kaW5ncw0KPiA+ID4gKw0KPiA+ID4gK21haW50YWluZXJzOg0KPiA+ID4gKyAgLSBKaWF4
-dW4gWWFuZyA8amlheHVuLnlhbmdAZmx5Z29hdC5jb20+DQo+ID4gPiArDQo+ID4gPiArZGVzY3Jp
-cHRpb246IHwrDQo+ID4gPiArICBUaGUgZGV2aWNlIHRyZWUgYWxsb3dzIHRvIGRlc2NyaWJlIHRo
-ZSBsYXlvdXQgb2YgQ1BVcyBpbiBhIHN5c3RlbSB0aHJvdWdoDQo+ID4gPiArICB0aGUgImNwdXMi
-IG5vZGUsIHdoaWNoIGluIHR1cm4gY29udGFpbnMgYSBudW1iZXIgb2Ygc3Vibm9kZXMgKGllICJj
-cHUiKQ0KPiA+ID4gKyAgZGVmaW5pbmcgcHJvcGVydGllcyBmb3IgZXZlcnkgY3B1Lg0KPiA+ID4g
-Kw0KPiA+ID4gKyAgQmluZGluZ3MgZm9yIENQVSBub2RlcyBmb2xsb3cgdGhlIERldmljZXRyZWUg
-U3BlY2lmaWNhdGlvbiwgYXZhaWxhYmxlIGZyb206DQo+ID4gPiArDQo+ID4gPiArICBodHRwczov
-L3d3dy5kZXZpY2V0cmVlLm9yZy9zcGVjaWZpY2F0aW9ucy8NCj4gPiA+ICsNCj4gPiA+ICtwcm9w
-ZXJ0aWVzOg0KPiA+ID4gKyAgcmVnOg0KPiA+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ID4gKyAg
-ICBkZXNjcmlwdGlvbjogfA0KPiA+ID4gKyAgICAgIFBoeXNpY2FsIElEIG9mIGEgQ1BVLCBDYW4g
-YmUgcmVhZCBmcm9tIENQMCBFQmFzZS5DUFVOdW0uDQo+ID4gSXMgdGhpcyBkZWZpbml0aW9uIHNw
-ZWNpZmljIHRvIExvb25nc29uIENQVXMgb3IgYWxsIE1JUFM/DQo+IA0KPiBDdXJyZW50bHkgaXQn
-cyBzcGVjaWZpYyB0byBMb29uZ3NvbiBDUFUgb25seSwgYXMgb3RoZXIgcHJvY2Vzc29ycyBtYXkg
-dXNpbmcNCj4gZGlmZmVyZW50IG1ldGhvZCB0byBleHByZXNzIENQVSBtYXAuDQo+IA0KPiBEaWZm
-ZXJlbnQgZnJvbSBBcm0sIE1JUFMgZmFtaWx5IG9mIHByb2Nlc3NvcnMgc2VlbXMgbGVzcyB1bmlm
-b3JtIGFuZCBoYXZlDQo+IHRoZWlyIG93biBkZXNpZ25zLg0KPiANCj4gRm9yIHRoaXMgcG9pbnQs
-IHdlJ2QgYmV0dGVyIGFzayBQYXVsJ3Mgb3Bpbmlvbi4NCg0KSW4gZ2VuZXJhbCBvbiBNSVBTIHdl
-IGRldGVjdCBDUFUgcHJvcGVydGllcyBhdCBydW50aW1lIGZyb20gY29wcm9jZXNzb3INCjAgcmVn
-aXN0ZXJzICYgc2ltaWxhciBzb3VyY2VzIG9mIGluZm9ybWF0aW9uLCBzbyB0aGVyZSdzIG5vdCBy
-ZWFsbHkgYQ0KbmVlZCB0byBzcGVjaWZ5IGFueXRoaW5nIGFib3V0IHRoZSBDUFUgaW4gZGV2aWNl
-dHJlZS4gRm9yIGV4YW1wbGUgaGVyZQ0KeW91IHNheSB5b3Vyc2VsZiB0aGF0IHRoZSB2YWx1ZSBm
-b3IgdGhpcyBwcm9wZXJ0eSBjYW4gYmUgcmVhZCBmcm9tDQpFQmFzZS5DUFVOdW0gLSBzbyB3aHkg
-c3BlY2lmeSBpdCBpbiBEVD8NCg0KVGhhbmtzLA0KICAgIFBhdWwNCg==
+Hi Dilip,
+
+On Tue, Aug 27, 2019 at 10:47 AM Dilip Kota <eswara.kota@linux.intel.com> wrote:
+[...]
+> >
+> >
+> >> now I am wondering:
+> >> - if we don't have to disable the interrupt line (once it is enabled),
+> >> why can't we enable all of these interrupts at initialization time
+> >> (instead of doing it on-demand)?
+> > Good point! we even can remote map_irq patch, directly call
+> >
+> > of_irq_parse_and_map_pci as other drivers do.
+>
+> Irrespective of disabling, imo interrupts(A/B/C/D) should be enabled
+> when they are requested; which happens during map_irq() call.
+with an integrated interrupt controller (which I decided to use in my
+experiment because I could not find a .unmap_irq callback) this would
+be the case:
+- of_irq_parse_and_map_pci finds our APP interrupt
+- this will enable the interrupt in the PCIe controller's APP register first
+- then it will enable the interrupt in the parent interrupt controller
+- when the PCIe card then frees the IRQ line again we will disable
+both interrupts (the APP interrupt as well as the parent interrupt)
+
+I don't see why of_irq_parse_and_map_pci + custom code to enable the
+APP interrupt in .map_irq (without any .unmap_irq callback) is better
+than always enabling it
+
+[...]
+> >>> This is needed. In the old driver, we fixed this by fixup. The original
+> >>> comment as follows,
+> >>>
+> >>> /*
+> >>>    * The root complex has a hardwired class of
+> >>> PCI_CLASS_NETWORK_OTHER or
+> >>>    * PCI_CLASS_BRIDGE_HOST, when it is operating as a root complex this
+> >>>    * needs to be switched to * PCI_CLASS_BRIDGE_PCI
+> >>>    */
+> >> that would be a good comment to add if you really need it
+> >> can you please look at dw_pcie_setup_rc (from
+> >> pcie-designware-host.c), it does:
+> >>    /* Enable write permission for the DBI read-only register */
+> >>    dw_pcie_dbi_ro_wr_en(pci);
+> >>    /* Program correct class for RC */
+> >>    dw_pcie_wr_own_conf(pp, PCI_CLASS_DEVICE, 2, PCI_CLASS_BRIDGE_PCI);
+> >>    /* Better disable write permission right after the update */
+> >>    dw_pcie_dbi_ro_wr_dis(pci);
+> >>
+> >> so my understanding is that there is a functional requirement to set
+> >> the class to PCI_CLASS_BRIDGE_PCI
+> >> however, that requirement is already covered by pcie-designware-host.c
+> > I will task Dilip to check if we can use dwc one.
+> dw_pcie_setup_rc () cannot be called here because, it is not doing
+> PCI_CLASS_BRIDGE_PCI set alone, it is configuring many other things.
+I am surprised to see that dw_pcie_setup_rc() is not used at all in your driver
+it sets up BARs, bus numbers, interrupt pins, the command register, etc.
+with my limited knowledge I assumed that these ("many other things")
+are all mandatory so everything works correctly
+
+what problems do you experience when you use dw_pcie_setup_rc()?
+
+also it seems that virtually every PCIe driver based on the DWC
+controller uses it:
+$ grep -R dw_pcie_setup_rc drivers/pci/controller/dwc/ | wc -l
+20
+
+
+Martin
