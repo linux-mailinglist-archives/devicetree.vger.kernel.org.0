@@ -2,112 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71B339DC9F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 06:29:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F055B9DCF3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 07:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729211AbfH0E3k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 00:29:40 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:44237 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729201AbfH0E3k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 00:29:40 -0400
-Received: by mail-pl1-f195.google.com with SMTP id t14so11103177plr.11
-        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 21:29:39 -0700 (PDT)
+        id S1729139AbfH0FGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 01:06:30 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:45231 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725795AbfH0FG3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 01:06:29 -0400
+Received: by mail-pg1-f196.google.com with SMTP id o13so11928361pgp.12
+        for <devicetree@vger.kernel.org>; Mon, 26 Aug 2019 22:06:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=7lmFerACB7Z6QvTYKolUFXR5vC+xKCugzXKrGfIU7mY=;
-        b=kT8GiffZSf53a/DI9bdAaYdzUPD1bjgnUX5/rTQA8ZUBkuYGXxeE5JQ3D5vEuD4LoA
-         cds+yySpv9nTfnIcYB71WebWf9IAWjpXPT2t/ABvNnTHbF+XzgrEYvT8rBOlf37KXhkX
-         mq6vwO/j+4jhQOBOQLViCmm03k/KUnxEDAFGFFyk7Nr3t/MwAr2asYVgq9w1ty5D0dLA
-         L1XHGE+tZCbBA1dlKCT3RO7dOU7Rl2enNXTRHMstzTpTHH3S2NhzBQo9pKSWgxDD/m67
-         lexXQRD4irGKk/xWpT2Ktn02LIrJcBQkbrP3nkJYxfiNIbCo+qjFoSN3kW30ihZBdOAa
-         Nurw==
+        d=sifive.com; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=bk+JaA9Wm7oz2NoF52hCcBz04mg8rRkowz0Je01pv/o=;
+        b=ACmTv+sLluHVTa5psjJ02RKShK7i0i9u1wgYGE7mrIr27NYnWxyVpGgxOzII3/NkyE
+         dcoF0oVkDA3ndBTXpDNr8h+v5nvKj60M9IB055E6ZLm8qKCtCdTHLKRU7m/4NeGBFukc
+         rHO7CjH0RFgBg4lMAavNeYOr7y5MuBhvmKspsGrtop7wf6QqmRhh03Wc39j197QoXCSU
+         i3XIUBDvUp73QKxExLUVdEYRU0e6OKJyjQSbc0rRVtpLYQRIjhNxX7u3Ie5e8vh8bkmB
+         BGteBb35BoV3Sd1/lVG4AnrWhtD9XuEksL6oFgBBiLn0JRaayRVtCgrnvS5UOQWJ8eI1
+         hgpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7lmFerACB7Z6QvTYKolUFXR5vC+xKCugzXKrGfIU7mY=;
-        b=fpb1dBLmZ0gm4Rx37QlclHWVbSFZtg2+rE20/P9jl+lNDUuP37ZtO0G5VGZd729vdn
-         Oq1fw9TQeCG5tyM2dtbkSAtmfATQxhGiSoAID5DiTsQVW92RP++0uQnZaajA3NCHo7e3
-         B3iBF8l8aFF0EtqMqBzJsKob9/qCPRPlOpVDONigRry2Wma4u8ujrkl+jdNMt1VOfLOO
-         vGJNWtS8pFgVXzhPNzfb40IoN9DmQ8rcOHSFRa0uzSSnzfgJ8F+2wV9gMOGC1eLQw5/m
-         QnfvmqStFdF9fDIIYuN3s79Fa96aRVXs52ntTVQ2CqBPPRMFXeLrAJDDOMwVTfDO6g00
-         ACjA==
-X-Gm-Message-State: APjAAAVkjolNc8tHM4kP5cZtRtcuK/cpE6Fcvgog+1phXg+hD/Widr2B
-        aDz3qr1yinQ65rFbo51l0NO4gQ==
-X-Google-Smtp-Source: APXvYqykU9Iv3ReU8naBgaJ2xs2TesTPCnVvwbgNPtQhz7mPxdaOQfoSl6942Idr2I80B5d0YO55Cw==
-X-Received: by 2002:a17:902:7c10:: with SMTP id x16mr8041902pll.181.1566880179166;
-        Mon, 26 Aug 2019 21:29:39 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id g2sm15306925pfm.32.2019.08.26.21.29.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Aug 2019 21:29:38 -0700 (PDT)
-Date:   Mon, 26 Aug 2019 21:31:29 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/4] clk: qcom: clk-rpmh: Convert to parent data scheme
-Message-ID: <20190827043129.GB26807@tuxbook-pro>
-References: <20190826173120.2971-1-vkoul@kernel.org>
- <20190826173120.2971-3-vkoul@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190826173120.2971-3-vkoul@kernel.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=bk+JaA9Wm7oz2NoF52hCcBz04mg8rRkowz0Je01pv/o=;
+        b=tIUbaA13e5hn86JpMxzMLPoDnpPPzHNQVTnINE+xP89RHDof36SwIidv6DPJP5ttut
+         sEjCTXjQwY27zdFqRvf7wwZhftKsujai66SwnECsJBlHiMm7ajjX8l5gaxMk1FrfRP1S
+         KEro76KeigoRPA+IXdQCRPWM//qKP8XVk1FlylpF1JKO5MPPJ37GAEm4472rZ3FwdmE2
+         tYtM6F+c/vYFnzwRmBAqYg3IAQjH0ACaDT/NyQ4aCBIpQKLgiFjDMjJErqFxoPZS1+Zf
+         hbz6OCQLe7DfzvcrnyPtQPeUQ0dVwkgYSc/Xmz8StgyEaVcktB86whLabfEPC/TEeaCb
+         IFUQ==
+X-Gm-Message-State: APjAAAVwf+BLL3ub8rcEntwacU8C+dTPlIF7zU0ACY0eMOiZJoIL92nG
+        cD7HwXi0UO1B1LqbrZZ4EbG0OA==
+X-Google-Smtp-Source: APXvYqx2+mfszF4XOEdf2VyJdPl/56BfxhDiG//VfH7sfIzgWmV7i6pR1y1dd5w9xBmLxpAPPz0suA==
+X-Received: by 2002:aa7:9e4f:: with SMTP id z15mr23349159pfq.89.1566882389075;
+        Mon, 26 Aug 2019 22:06:29 -0700 (PDT)
+Received: from buildserver-90.open-silicon.com ([114.143.65.226])
+        by smtp.googlemail.com with ESMTPSA id q8sm896414pjq.20.2019.08.26.22.06.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 26 Aug 2019 22:06:28 -0700 (PDT)
+From:   Yash Shah <yash.shah@sifive.com>
+To:     davem@davemloft.net, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        nicolas.ferre@microchip.com, palmer@sifive.com,
+        paul.walmsley@sifive.com, ynezz@true.cz, sachin.ghadi@sifive.com,
+        Yash Shah <yash.shah@sifive.com>
+Subject: [PATCH v2 0/2] Update ethernet compatible string for SiFive FU540
+Date:   Tue, 27 Aug 2019 10:36:02 +0530
+Message-Id: <1566882364-23891-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 26 Aug 10:31 PDT 2019, Vinod Koul wrote:
+This patch series renames the compatible property to a more appropriate
+string. The patchset is based on Linux-5.3-rc6 and tested on SiFive
+Unleashed board
 
-> Convert the rpmh clock driver to use the new parent data scheme by
-> specifying the parent data for board clock.
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+Change history:
+Since v1:
+- Dropped PATCH3 because it's already merged
+- Change the reference url in the patch descriptions to point to a
+  'lore.kernel.org' link instead of 'lkml.org'
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Yash Shah (2):
+  macb: bindings doc: update sifive fu540-c000 binding
+  macb: Update compatibility string for SiFive FU540-C000
 
-> ---
->  drivers/clk/qcom/clk-rpmh.c | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> index c3fd632af119..35d55aee6a01 100644
-> --- a/drivers/clk/qcom/clk-rpmh.c
-> +++ b/drivers/clk/qcom/clk-rpmh.c
-> @@ -95,7 +95,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
->  		.hw.init = &(struct clk_init_data){			\
->  			.ops = &clk_rpmh_ops,				\
->  			.name = #_name,					\
-> -			.parent_names = (const char *[]){ "xo_board" },	\
-> +			.parent_data =  &(const struct clk_parent_data){ \
-> +					.fw_name = "xo",		\
-> +					.name = "xo_board",		\
-> +			},						\
->  			.num_parents = 1,				\
->  		},							\
->  	};								\
-> @@ -110,7 +113,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
->  		.hw.init = &(struct clk_init_data){			\
->  			.ops = &clk_rpmh_ops,				\
->  			.name = #_name_active,				\
-> -			.parent_names = (const char *[]){ "xo_board" },	\
-> +			.parent_data =  &(const struct clk_parent_data){ \
-> +					.fw_name = "xo",		\
-> +					.name = "xo_board",		\
-> +			},						\
->  			.num_parents = 1,				\
->  		},							\
->  	}
-> -- 
-> 2.20.1
-> 
+ Documentation/devicetree/bindings/net/macb.txt | 4 ++--
+ drivers/net/ethernet/cadence/macb_main.c       | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+-- 
+1.9.1
+
