@@ -2,85 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AF989F40A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C369F41D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 22:29:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730839AbfH0U0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 16:26:24 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:40062 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfH0U0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:26:24 -0400
-Received: by mail-oi1-f194.google.com with SMTP id h21so289496oie.7;
-        Tue, 27 Aug 2019 13:26:23 -0700 (PDT)
+        id S1731238AbfH0U3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 16:29:03 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:42029 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731253AbfH0U3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 16:29:02 -0400
+Received: by mail-wr1-f67.google.com with SMTP id b16so128234wrq.9
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 13:28:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MNtgMowNOziQU04tj21QpB7UTHF+CQydh5Mx2MU8eSk=;
+        b=b7P2GhkDgx27DNyq0sjWmuBd2+u9U15lHb46pibNLi+dCp5bNz8y514//rUZKUKu3D
+         dEILlf0Wbax4H4GnSa4lJmq8ZfTQ+hKIMqsaZ81JcO6yxwfihGNrCEvPZ1aImRMxOlTZ
+         SM5y9YmLxdtZgLpfSIfttP4GJDF1h7yAtUxsC0lFevA9F2/p26MkBVD6sxbjFe8MAmHt
+         GMIqg7qCRfCdR2Zv2jRBTfNtUTTG9FBzNRiWfz0N/GCKAe+CXSQPX2FcIN/O2KsdXs9A
+         DaxIPLCqNlsuOY6IR400wVJAL1YgF24eO3+gVdzlljq/RE0W+c9TDI/segUAdJ7t15D4
+         v+OA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bJafdp9XsI7mzj3hJGruH3bP4YYXWdgduJkXKPlsaeA=;
-        b=t/HqgTuZWCYoWAWDhP7wvUgnl5kQ6iZ2E0Wn+ywqMHBwT0OY4N8n3+dn/Xm+qOL7eR
-         COWk2Hps8v+TnqyO9O3z0NKgcrsZh73ILhbET5QPzipVd0WDeMd7p8M3QpROXDc1vdxE
-         1PTL62JdJ4szSlztIlaHp0IuobaRiagmHPNLm/OiGS5xiEuCTZPViYKeYptznbxZZ6J2
-         nZdoFFPwf70noNnEJF3G2LqYYjw+m9Nn3OrckejlU3NdqoBMTkS8XGmWoqfPjYH0ixui
-         6M6tefCphawVOtXw64YW9xti/ZG+g284SzBsTQU3KVLj/Glc3ssVfKFim4dqD6wUpzng
-         u+KA==
-X-Gm-Message-State: APjAAAUpwG19Uo3GA2ny736t0f7qQ1NJ2/GaWl6Zkl9citMvyxornPrG
-        ahhK39JZ8ZPYkhqx8x0qew==
-X-Google-Smtp-Source: APXvYqyKie8vatTjl5awxYMdKBNp12v/B6SKJjd+ugH9yGwI/S8MRo4Z3W0w2zAQDAC2/ZrDzebOpg==
-X-Received: by 2002:aca:5152:: with SMTP id f79mr393628oib.124.1566937582955;
-        Tue, 27 Aug 2019 13:26:22 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r13sm73551oic.56.2019.08.27.13.26.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 13:26:22 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 15:26:21 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH v3 6/7] dt-bindings: serial: Document Freescale LINFlexD
- UART
-Message-ID: <20190827202621.GA703@bogus>
-References: <20190823191115.18490-1-stefan-gabriel.mirea@nxp.com>
- <20190823191115.18490-7-stefan-gabriel.mirea@nxp.com>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MNtgMowNOziQU04tj21QpB7UTHF+CQydh5Mx2MU8eSk=;
+        b=SaRLSTM0Y3CD5avQ1dSsKiCQDp+FjmNkHdX5LZ4yaLQL38v4KjgbQdQAo+fZjWpHEX
+         JLkFZRj4VQRxcR9bOsnLeD1PPKs2OhfAKuXl1feVqLR50tismUHi2pY56c1L4vOE3Aa6
+         ia03RlC5fI1tas4J1/sVgJdJSVblxXpJ3fkij+niBivWjfluu7ehnpISfJpTO6bPPFeZ
+         sIUb+lZ7OPGr8kX/8JOFnUAUWWnhfXKOtx6ZL1O92txElmnrVfPABBJVf4zrdZIHpB4A
+         PDhLu/cKyoyIH5JaHnSu4OjFHLgibvtwTWH7zN5sAOAUaJrmmWKqoDx1PEkkx8lf+tPW
+         gbUQ==
+X-Gm-Message-State: APjAAAU1c3LHe0A3Zg+gVGaWkJjug+GgrfgYCaIH9QKQATUB7STLQjHx
+        pyU7WfOT+tRNs5ZBsIBnyu4NVoc4XMQ=
+X-Google-Smtp-Source: APXvYqyqCKkUfNCobT49Kq8m/ke+WZcPuDoTmO1DYlDvMjvIx4arhT/4wdztPrpeCEQna1wLRCKfmQ==
+X-Received: by 2002:a05:6000:1186:: with SMTP id g6mr66120wrx.17.1566937738779;
+        Tue, 27 Aug 2019 13:28:58 -0700 (PDT)
+Received: from [192.168.86.29] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id n14sm227060wra.75.2019.08.27.13.28.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 27 Aug 2019 13:28:57 -0700 (PDT)
+Subject: Re: [RESEND PATCH v4 1/4] dt-bindings: soundwire: add slave bindings
+To:     Rob Herring <robh@kernel.org>, Vinod Koul <vkoul@kernel.org>
+Cc:     broonie@kernel.org, spapothi@codeaurora.org,
+        bgoswami@codeaurora.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        devicetree@vger.kernel.org
+References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org>
+ <20190822233759.12663-2-srinivas.kandagatla@linaro.org>
+ <20190823065340.GD2672@vkoul-mobl> <20190827202022.GA7783@bogus>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <ccc90c56-f776-0c1c-df6b-cb661aa5ea97@linaro.org>
+Date:   Tue, 27 Aug 2019 21:28:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190823191115.18490-7-stefan-gabriel.mirea@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190827202022.GA7783@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 23 Aug 2019 19:11:40 +0000, Stefan-gabriel Mirea wrote:
-> From: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-> 
-> Add documentation for the serial communication interface module (LINFlexD),
-> found in two instances on S32V234.
-> 
-> Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-> Signed-off-by: Larisa Grigore <Larisa.Grigore@nxp.com>
-> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> ---
->  .../bindings/serial/fsl,s32-linflexuart.txt   | 22 +++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/serial/fsl,s32-linflexuart.txt
-> 
+thanks for reviewing the patch!
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On 27/08/2019 21:20, Rob Herring wrote:
+> On Fri, Aug 23, 2019 at 12:23:40PM +0530, Vinod Koul wrote:
+>> On 23-08-19, 00:37, Srinivas Kandagatla wrote:
+>>> This patch adds bindings for Soundwire Slave devices that includes how
+>>> SoundWire enumeration address and Link ID are used to represented in
+>>> SoundWire slave device tree nodes.
+>>>
+>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> ---
+>>>   .../soundwire/soundwire-controller.yaml       | 75 +++++++++++++++++++
+>>>   1 file changed, 75 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>>> new file mode 100644
+>>> index 000000000000..91aa6c6d6266
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>>> @@ -0,0 +1,75 @@
+>>> +# SPDX-License-Identifier: GPL-2.0
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soundwire/soundwire-controller.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: SoundWire Controller Generic Binding
+>>
+>> Controller does not make sense here, why not use spec terminology and
+>> say "SoundWire Slave Generic Binding"
+> 
+> It's both IMO. It's describing the structure of child devices of a
+> controller (aka a bus).
+> 
+>>
+>>> +
+>>> +maintainers:
+>>> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>>> +
+>>> +description: |
+>>> +  SoundWire busses can be described with a node for the SoundWire controller
+>>> +  device and a set of child nodes for each SoundWire slave on the bus.
+>>> +
+>>> +properties:
+>>> +  $nodename:
+>>> +    pattern: "^soundwire(@.*|-[0-9a-f])*$"
+> 
+> '-[0-9a-f]' was to handle cases like spi-gpio or i2c-gpio. Would a
+> bit banged interface be possible here?
+
+Highly unlikely!
+
+
+> 
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 2
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>> +
+>>> +patternProperties:
+>>> +  "^.*@[0-9a-f]+$":
+> 
+> If there are distinct fields in the address, they are typically comma
+> separated in the unit-address.
+
+okay, will fix that in next version!
+
+
+> 
+>>> +    type: object
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +      pattern: "^sdw[0-9][0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
+>>> +      description:
+>>> +	  Is the textual representation of SoundWire Enumeration
+>>> +	  address. compatible string should contain SoundWire Version ID,
+>>> +	  Manufacturer ID, Part ID and Class ID in order and shall be in
+>>> +	  lower-case hexadecimal with leading zeroes.
+>>> +	  Valid sizes of these fields are
+>>> +	  Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
+>>> +	  and '0x2' represents SoundWire 1.1 and so on.
+>>> +	  MFD is 4 nibbles
+>>> +	  PID is 4 nibbles
+>>> +	  CID is 2 nibbles
+>>> +	  More Information on detail of encoding of these fields can be
+>>> +	  found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
+>>> +
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +        description:
+>>> +          Instance ID and Link ID of SoundWire Device Address.
+>>
+>> This looks better :) Thanks.
+>>
+>> Apart from the minor nit above this looks good to me, I can merge the
+>> sdw parts if Rob is fine with them.
+>>
+>> Thanks
+>>
+>>> +
+>>> +    required:
+>>> +      - compatible
+>>> +      - reg
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    soundwire@c2d0000 {
+>>> +        #address-cells = <2>;
+>>> +        #size-cells = <0>;
+>>> +        compatible = "qcom,soundwire-v1.5.0";
+> 
+> This will probably change once I review it. :)
+
+:-)
+
+thanks,
+srini
+> 
+>>> +        reg = <0x0c2d0000 0x2000>;
+>>> +
+>>> +        speaker@1 {
+>>> +            compatible = "sdw10217201000";
+>>> +            reg = <1 0>;
+>>> +        };
+>>> +
+>>> +        speaker@2 {
+>>> +            compatible = "sdw10217201000";
+>>> +            reg = <2 0>;
+>>> +        };
+>>> +    };
+>>> +
+>>> +...
+>>> -- 
+>>> 2.21.0
+>>
+>> -- 
+>> ~Vinod
