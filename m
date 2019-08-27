@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC559F63B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 00:34:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA9D9F644
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 00:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725997AbfH0Web (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 18:34:31 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38818 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725989AbfH0Web (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 18:34:31 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7RMYSxw104756;
-        Tue, 27 Aug 2019 17:34:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566945268;
-        bh=iGbHiDwfaJ1ToRRU2etB2TGPOpwBvqEOF0vVDGEktEA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=alUjGY/VxbEymQg7HDaejV+Y66LsmeHipYYYenx6/Pa/mrCsqrFHJdv5NwxQjgRJg
-         QDS791obgwVgrOW5J3k/EErytxMQwRytJHlWLxmf4GFlXJWw/iH8dVEBrm6FQuUv2R
-         hkKurygFfMxsPfPK5QfHSmB9AjEoBm8L6DSLrj6w=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7RMYSXL092892
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 27 Aug 2019 17:34:28 -0500
-Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 27
- Aug 2019 17:34:28 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 27 Aug 2019 17:34:28 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7RMYSTL125727;
-        Tue, 27 Aug 2019 17:34:28 -0500
-Subject: Re: [PATCH 0/2] Add HwSpinlock nodes for TI K3 SoCs
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190722190539.27816-1-s-anna@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <715d61be-c881-cde8-38f0-451637767909@ti.com>
-Date:   Tue, 27 Aug 2019 17:34:28 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1725992AbfH0WhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 18:37:18 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38127 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725989AbfH0WhS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 18:37:18 -0400
+Received: by mail-ot1-f66.google.com with SMTP id r20so807032ota.5;
+        Tue, 27 Aug 2019 15:37:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=zauk4U8OoEi1FBo/2vpUOZ45fQEWaY7iuSdGeCHe83s=;
+        b=Lu2AZA2CjEvpqaTyPYa8p1B21lH48/VPBt6GaMqK9fp0al0gFfO7B8n2LD0IabAzjE
+         SOha1LoqMbrbzcrs4pVkzMRFG+A3E7wWSt6SQZ3Yn0gHtI9vtAPkt7kt1ikdN/B4JkUY
+         R8UC+9D1KsZL4ADPbL9ETW7OLieyyFCGW7PUphc9LcSeYNhw/S4h0yWXYeWxzj0A9XrA
+         J295WtsH1WWIFCLoLmDtDL6196XqLMabZKEWBKS4DTsXJbBFBHY4G9GPYA2Q3eVIf6St
+         dhhKztdxw/+dhW/WAZX/5/ZJ/chdAQ8QSbo4Kyr++VKzzKPmG3mf4KYZ0IhC4y2T7fW8
+         CfIQ==
+X-Gm-Message-State: APjAAAWzjc9QL8KAJrDYWzxB9InMhPDOKVb1E54Gi4Z/hapXbvtuwBQz
+        iap1ZS0H20nbRkU6BI+SFQ==
+X-Google-Smtp-Source: APXvYqwyWCyxbtq92eeNM9609mAefZjtCS/Vde8B3KkemlEEUxzPpD1Evn5Zu509yiJdHmGHVTcsHg==
+X-Received: by 2002:a05:6830:1345:: with SMTP id r5mr848280otq.158.1566945437274;
+        Tue, 27 Aug 2019 15:37:17 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q85sm200903oic.52.2019.08.27.15.37.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 15:37:16 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 17:37:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Chas Williams <3chas3@gmail.com>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Takashi Iwai <tiwai@suse.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: misc: atmel-ssc: LRCLK from TF/RF
+ pin option
+Message-ID: <20190827223716.GA31605@bogus>
+References: <cover.1566677788.git.mirq-linux@rere.qmqm.pl>
+ <9b85d5a7c7e788e9ed87d020323ad9292e3aeab7.1566677788.git.mirq-linux@rere.qmqm.pl>
 MIME-Version: 1.0
-In-Reply-To: <20190722190539.27816-1-s-anna@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9b85d5a7c7e788e9ed87d020323ad9292e3aeab7.1566677788.git.mirq-linux@rere.qmqm.pl>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tero,
+On Sat, Aug 24, 2019 at 10:26:55PM +0200, Michał Mirosław wrote:
+> Add single-pin LRCLK source options for Atmel SSC module.
+> 
+> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> 
+> ---
+>   v2: split from implementation patch
+> 
+> ---
+>  Documentation/devicetree/bindings/misc/atmel-ssc.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/atmel-ssc.txt b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
+> index f9fb412642fe..c98e96dbec3a 100644
+> --- a/Documentation/devicetree/bindings/misc/atmel-ssc.txt
+> +++ b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
+> @@ -24,6 +24,11 @@ Optional properties:
+>         this parameter to choose where the clock from.
+>       - By default the clock is from TK pin, if the clock from RK pin, this
+>         property is needed.
+> +  - atmel,lrclk-from-tf-pin: bool property.
+> +  - atmel,lrclk-from-rf-pin: bool property.
+> +     - SSC in slave mode gets LRCLK from RF for receive and TF for transmit
+> +       data direction. This property makes both use single TF (or RF) pin
+> +       as LRCLK. At most one can be present.
 
-On 7/22/19 2:05 PM, Suman Anna wrote:
-> Hi Tero,
-> 
-> The following series adds the HwSpinlock DT nodes for the
-> TI K3 AM65x and J721E SoC families. Patches are based on
-> v5.3-rc1.
+A single property taking 1 of possible 2 values would prevent the error 
+of more than 1 property present.
 
-I am not sure if you have already staged these, but if haven't,
-can you please pick these and the mailbox nodes for 5.4 merge window?
-
-Thanks,
-Suman
-
+>    - #sound-dai-cells: Should contain <0>.
+>       - This property makes the SSC into an automatically registered DAI.
+>  
+> -- 
+> 2.20.1
 > 
-> The bindings and driver support for the same have been
-> merged in v5.3-rc1.
-> 
-> regards
-> Suman
-> 
-> Suman Anna (2):
->   arm64: dts: ti: k3-am65-main: Add hwspinlock node
->   arm64: dts: ti: k3-j721e-main: Add hwspinlock node
-> 
->  arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 6 ++++++
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 6 ++++++
->  2 files changed, 12 insertions(+)
-> 
-
