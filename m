@@ -2,156 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A4219F255
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 20:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7B339F262
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 20:33:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730207AbfH0Sb6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 14:31:58 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40450 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730038AbfH0Sb6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 14:31:58 -0400
-Received: by mail-ot1-f65.google.com with SMTP id c34so118403otb.7;
-        Tue, 27 Aug 2019 11:31:57 -0700 (PDT)
+        id S1730824AbfH0Sda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 14:33:30 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36759 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730424AbfH0Sda (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 14:33:30 -0400
+Received: by mail-ot1-f67.google.com with SMTP id k18so145775otr.3;
+        Tue, 27 Aug 2019 11:33:29 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nh5JlXKDScp/6jdVD0lYiet/VZlxy5TKafXl/GE7L28=;
-        b=Rzm0Z0Gjh+Sw50WibD5Vk8LcPjvRCsjDiaqN0mK5FO1zPE+cwsq9xQ9wV8d9M9Vr57
-         o11h6F6O6dt8KeEI1KUzTO4/43U823mDnk7AnLq7C8jop+t+meVeGZZl3wSVhbK0UO2X
-         zfgXyftqI/W1+ZiQ9g0QIb4y6BfNRJpTyjuHUgXe7dfgDayDbb2/iYgzbM7R+PzpzbIH
-         hlGT5L/jTK6FH6UK7O7In706yo7uvHNdhkootTjZXOcTtaicUZNcSq4BxXfNZKLAmUf7
-         2z8DG9Co92X72+xjknhshLddfn/C67o3fL+Wh87kc07a/ixwAH1vWyogOJdVbIgel298
-         3bRw==
-X-Gm-Message-State: APjAAAVB/oPdoReXi9XZdHIjAd8/TTpNzVBXKyjlDtz1fV9v7J9Q0+Oo
-        yQDK5yn+uZmOhTFdTJBoyA==
-X-Google-Smtp-Source: APXvYqwyILKBeRNQk+rBVcbEFALTsvo/l+G1oYafWQ6QxRePRSd/ebw3//wOjN0+4335ghUuXLcLYA==
-X-Received: by 2002:a9d:6b1a:: with SMTP id g26mr17166549otp.195.1566930716465;
-        Tue, 27 Aug 2019 11:31:56 -0700 (PDT)
+        bh=rauxVeX6XXUN6kRfoUwD+dQyTpVuWd2Mc2ch5ZLcNlg=;
+        b=UnSJnHYx/lx4/NxtSiOYIHZJGmWyy0mc+ECKiF4reFBaNknezTVeeTE+uVPVTAthNh
+         GKIcfOS/rQn/QHXJXqmoYngve20bR06/0QZs0PIksSTYt/XxEtdJ8b7Y3ER3daszYMZ5
+         hoB9OtakgPf43p7TjlIpXS/XX0m1XdDP2p5MEyImz5z3W+qky25KUindIULBKnJBCCJZ
+         xk6PtHGlJAI7fnBdqA3In+Uhe/owbwM7Hp4+lJgMIJ8ykmJdHxVsBBaUH9/KvSN+tjJO
+         vTjzIbrOLBswPVGT2JRdJxq6jm1EqfuB1pxpURs/iYbHxMYfsKidezFNJB/2rTD2xIFn
+         mZrQ==
+X-Gm-Message-State: APjAAAUXLfRz1Jfhx10JzSWia0XJgMisO1BRsEeHxkIRYwLZ7hpjVqYF
+        VQk7WMFe+4eNvU3vrLzAe7YqgeyA5g==
+X-Google-Smtp-Source: APXvYqyiZjF/APCriiZUIRoNzTjoS7oq65RNpcauJCJcm5uyW8yJ2ZvltaFCn93zN1Sc5JRUZVuoEA==
+X-Received: by 2002:a9d:6c1a:: with SMTP id f26mr21543920otq.83.1566930809307;
+        Tue, 27 Aug 2019 11:33:29 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v24sm32104otj.78.2019.08.27.11.31.55
+        by smtp.gmail.com with ESMTPSA id v24sm33429otj.78.2019.08.27.11.33.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 11:31:55 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 13:31:54 -0500
+        Tue, 27 Aug 2019 11:33:28 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 13:33:27 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nagarjuna Kristam <nkristam@nvidia.com>
-Subject: Re: [PATCH next v10 03/11] dt-bindings: usb: add binding for USB
- GPIO based connection detection driver
-Message-ID: <20190827183154.GA10374@bogus>
-References: <1566547041-20804-1-git-send-email-chunfeng.yun@mediatek.com>
- <1566547041-20804-4-git-send-email-chunfeng.yun@mediatek.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v9 01/13] dt-bindings: connector: analog: add sdtv
+ standards property
+Message-ID: <20190827183327.GA24030@bogus>
+References: <20190822080556.17109-1-m.felsch@pengutronix.de>
+ <20190822080556.17109-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1566547041-20804-4-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <20190822080556.17109-2-m.felsch@pengutronix.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 23, 2019 at 03:57:13PM +0800, Chunfeng Yun wrote:
-> It's used to support dual role switch via GPIO when use Type-B
-> receptacle, typically the USB ID pin is connected to an input
-> GPIO, and also used to enable/disable device when the USB Vbus
-> pin is connected to an input GPIO.
+On Thu, 22 Aug 2019 10:05:44 +0200, Marco Felsch wrote:
+> Some connectors no matter if in- or output supports only a limited
+> range of sdtv standards. It doesn't matter if the hardware behind that
+> connector supports more than the listed formats since the users are
+> restriced by a label e.g. to plug only a camera into this connector
+> which uses the PAL format.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> This patch adds the capability to describe such limitation within the
+> firmware. There are no format restrictions if the property isn't
+> present, so it's completely backward compatible.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > ---
-> v9~v10 no changes
+> [1] https://patchwork.kernel.org/cover/10794703/
 > 
-> v8 changes:
->  1. rename the title
->  2. change the compatible as "linux,usb-conn-gpio" instead of
->     "linux,typeb-conn-gpio"
-
-I don't think that is an improvement. How about 'gpio-usb-b-connector' 
-to be consistent.
-
+> v8:
+> Hi Rob,
 > 
-> v7 changes:
->  1. add description for device only mode
+> I dropped your r b tag becuase of the changes I made in this version.
+> Please can you have look on it again? Luckily this would be the last
+> time ;-)
 > 
-> v6 changes:
->  1. remove status and port nodes in example
->  2. make vbus-supply as optional property
+> - move definition to include/dt-bindings/display
+> - rename tvnorms.h to sdtv-standards.h
+> - TVORMS_* -> SDTV_STD_*
+> - add sync comments
+> - adapt commit message
+> - fix bindings documentation
 > 
-> v5 changes:
->  1. treat type-B connector as child device of USB controller's, but not
->     as a separate virtual device, suggested by Rob
->  2. put connector's port node under connector node, suggested by Rob
+> v7:
+> I kept Robs r b tag because I only changed the example and extended
+> TVNORM_* macros.
 > 
-> v4 no changes
+> - fix some style issues
+> - add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
 > 
-> v3 changes:
->  1. treat type-B connector as a virtual device, but not child device of
->     USB controller's
+> v6:
+> - tvnorms.h: use tabs instead of spaces
+> - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
 > 
-> v2 changes:
->   1. new patch to make binding clear suggested by Hans
+> v2-v4:
+> - nothing since the patch was squashed from series [1] into this
+>   series.
 > ---
->  .../devicetree/bindings/usb/usb-conn-gpio.txt | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/usb-conn-gpio.txt
+>  .../display/connector/analog-tv-connector.txt |  6 ++
+>  include/dt-bindings/display/sdtv-standards.h  | 76 +++++++++++++++++++
+>  include/uapi/linux/videodev2.h                |  4 +
+>  3 files changed, 86 insertions(+)
+>  create mode 100644 include/dt-bindings/display/sdtv-standards.h
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/usb-conn-gpio.txt b/Documentation/devicetree/bindings/usb/usb-conn-gpio.txt
-> new file mode 100644
-> index 000000000000..d4d107fedc22
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/usb-conn-gpio.txt
-> @@ -0,0 +1,31 @@
-> +USB GPIO Based Connection Detection
-> +
-> +This is typically used to switch dual role mode from the USB ID pin connected
-> +to an input GPIO, and also used to enable/disable device mode from the USB
-> +Vbus pin connected to an input GPIO.
-> +
-> +Required properties:
-> +- compatible : should include "linux,usb-conn-gpio" and "usb-b-connector".
-> +- id-gpios, vbus-gpios : input gpios, either one of them must be present,
-> +	and both can be present as well.
-> +	see connector/usb-connector.txt
-> +
-> +Optional properties:
-> +- vbus-supply : can be present if needed when supports dual role mode.
-> +	see connector/usb-connector.txt
-> +
-> +- Sub-nodes:
-> +	- port : can be present.
-> +		see graph.txt
-> +
-> +Example:
-> +
-> +&mtu3 {
-> +	connector {
-> +		compatible = "linux,usb-conn-gpio", "usb-b-connector";
-> +		label = "micro-USB";
 
-'label' is for a human identifying a particular connector when there are 
-multiple (of the same type). So not a great example here.
-
-> +		type = "micro";
-> +		id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
-> +		vbus-supply = <&usb_p0_vbus>;
-> +	};
-> +};
-> -- 
-> 2.23.0
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
