@@ -2,119 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 438D39F298
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 20:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADEA59F2A4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 20:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730339AbfH0Sqe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 14:46:34 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:45657 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730313AbfH0Sqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 14:46:34 -0400
-Received: by mail-pf1-f196.google.com with SMTP id w26so14642798pfq.12;
-        Tue, 27 Aug 2019 11:46:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Y/FpJfIQDFFYFWCv8d3VQXA3ejRf4dcDUC9VQhShWIk=;
-        b=PUisLtI1N8WCRaQO16uILlJJfdxkC1gSxGhTwLgCpeRbDvg+pIPeq3HngTxt+0WdCm
-         ZnUuS9myTf58efM2uqSEvZ3OT0yH61LQLgnLEydkvgGi6OSmR73pJZOSpEKmH0SEbUew
-         E/ap2SW/XY6EgjMGBG1aJMEB0INkVpLQGRJFNfnYiutaB+J1V2MNjYblS/dgxAzZxoQ6
-         jrWQ4ZcMJFcGLpQGpxk2eLb/6hMa/Bqg91YUKuxYs3TLXH7+3Twix0OcSToEsqC1O6iC
-         Igv81Ho8J/fwUTQ7zIhQGZFAPIX9BVIO0blL5FNczXwPS5W/OSy0er9XnjSGlwWQXkGh
-         kFuw==
+        id S1730518AbfH0SvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 14:51:01 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46005 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728972AbfH0SvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 14:51:01 -0400
+Received: by mail-ot1-f68.google.com with SMTP id m24so143876otp.12;
+        Tue, 27 Aug 2019 11:51:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Y/FpJfIQDFFYFWCv8d3VQXA3ejRf4dcDUC9VQhShWIk=;
-        b=VCcR0iz5Vy67yJXMUEo/4OgEGU8H58C5I1ODayYI1Tzx+wMpUBZVjq9QumoGbFxBIY
-         nNQLSLdp3IycuoMZ3fXXQEz/2l5lebRfLpwxkyJfKScPgyTTjHsIRlNbR1Ds/9Exh/w3
-         vA5xqivuKSJnV0RAb0E1LKOae3+PtzrkqBqBQwTzgOHUMSo0wU/87MZN7Il3w03ranCf
-         G9aPbnRCxFDLRryVuKbIBh7JHXPmhtFUUpO+VqyCSerGl5yBvrKgWxrfamPyd5rN3BjR
-         43dB4iNo1VFO6ZvFEI822lVx2oBJk7IUesD1h4P3uhCzmmfweRGc+1IpUen4XI/bMIQx
-         2Sgw==
-X-Gm-Message-State: APjAAAVoPZyqseryrxJ3/tKgN3RqVSbfp3uom1jhQYtVOGRP1AUgZKvp
-        OGQnjvgXGAnHuNCtx8v6D54=
-X-Google-Smtp-Source: APXvYqz09YuVdeR/3PMOpPSn74q3fvy5vLGD3UkUsFXl/F/WadfQsTqxhHLZ5pJgNxtIwAbJBwn9oQ==
-X-Received: by 2002:a65:49cc:: with SMTP id t12mr21051640pgs.83.1566931593494;
-        Tue, 27 Aug 2019 11:46:33 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id b13sm110101pjz.10.2019.08.27.11.46.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 27 Aug 2019 11:46:33 -0700 (PDT)
-Subject: Re: [PATCH] scripts/dtc: Simplify condition in get_node_by_path
-To:     Denis Efremov <efremov@linux.com>, Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190827145727.16791-1-efremov@linux.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <1b896532-006b-b729-35cc-03f5c58748ef@gmail.com>
-Date:   Tue, 27 Aug 2019 11:46:31 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=oPoTdeqM0P75hcFYgSTuxBhxtUvuWZSubw/9Hs6o4sM=;
+        b=hfZv55F3gBCT67v8xux5lJuZ6K9c3tT9TpYQhsxclu54VeDEZZVUvsYiJQ3+V3ONCF
+         JDWCngSVT7UlOAYJCZWR3z0wGoW0rEOuL1T4DZy3dSzqa9AeoZQwyJ2Rl4qs8+5lXzcL
+         1mUURzzyNtBDWcKi4cRc/kExZaNRhY+hU1WNPfCRKvykIEvHC2CWLfhoJP2FvFwUhNjC
+         oqC4Z7LX/Gb3mO+uVsASBFI823Z0z8FFq81W7p7q0CZN4EH/CsGijdrThaGCCOMqbbvb
+         AlfuEoxxrPzCoGhj+kkgMg+81DOsHUXkQsGTXjcCMKu2WA5QGpbrZEmXYXi8FSJGiMBM
+         90dg==
+X-Gm-Message-State: APjAAAUIWd+rNBKk51YRXdr/ELwu0EtJfwX11lkX3lborCMhcvZS0cUM
+        NcuuNvE7inS4Tlb58p/SdA==
+X-Google-Smtp-Source: APXvYqz+bG5+fGhyalD276cK1+3QAQWF94WLq9FkbYF+Z7WGgBVskS5GVp+KAEL1cRVAgHYj9mupgQ==
+X-Received: by 2002:a9d:68c5:: with SMTP id i5mr50587oto.250.1566931860502;
+        Tue, 27 Aug 2019 11:51:00 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id d27sm59836otf.25.2019.08.27.11.50.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Aug 2019 11:51:00 -0700 (PDT)
+Date:   Tue, 27 Aug 2019 13:50:59 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: clock: Document the parent clocks
+Message-ID: <20190827185059.GA18373@bogus>
+References: <20190826173120.2971-1-vkoul@kernel.org>
+ <20190826173120.2971-2-vkoul@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20190827145727.16791-1-efremov@linux.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190826173120.2971-2-vkoul@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Denis,
-
-On 8/27/19 7:57 AM, Denis Efremov wrote:
-> The strlen && strprefixeq check in get_node_by_path is
-> excessive, since strlen is checked in strprefixeq macro
-> internally. Thus, 'strlen(child->name) == p-path'
-> conjunct duplicates after macro expansion and could
-> be removed.
+On Mon, 26 Aug 2019 23:01:17 +0530, Vinod Koul wrote:
+> With clock parent data scheme we must specify the parent clocks for the
+> rpmhcc nodes. So describe the parent clock for rpmhcc in the bindings.
 > 
-> Signed-off-by: Denis Efremov <efremov@linux.com>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  scripts/dtc/livetree.c | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/scripts/dtc/livetree.c b/scripts/dtc/livetree.c
-> index 0c039993953a..032df5878ccc 100644
-> --- a/scripts/dtc/livetree.c
-> +++ b/scripts/dtc/livetree.c
-> @@ -526,8 +526,7 @@ struct node *get_node_by_path(struct node *tree, const char *path)
->  	p = strchr(path, '/');
->  
->  	for_each_child(tree, child) {
-> -		if (p && (strlen(child->name) == p-path) &&
-> -		    strprefixeq(path, p - path, child->name))
-> +		if (p && strprefixeq(path, p - path, child->name))
->  			return get_node_by_path(child, p+1);
->  		else if (!p && streq(path, child->name))
->  			return child;
+>  Documentation/devicetree/bindings/clock/qcom,rpmh-clk.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
 
-livetree.c is maintained in the upstream dtc project.  We pull changes
-from that project into the Linux kernel source tree.
-
-Info on submitting patches is in the upstream file "Documentation/manual.txt":
-
-   1) Sources
-
-   Source code for the Device Tree Compiler can be found at git.kernel.org.
-
-   The upstream repository is here:
-
-       git://git.kernel.org/pub/scm/utils/dtc/dtc.git
-       https://git.kernel.org/pub/scm/utils/dtc/dtc.git
-
-   The gitweb interface for the upstream respository is:
-
-       https://git.kernel.org/cgit/utils/dtc/dtc.git/
-
-   1.1) Submitting Patches
-
-   Patches should be sent to the maintainers:
-           David Gibson <david@gibson.dropbear.id.au>
-           Jon Loeliger <jdl@jdl.com>
-   and CCed to <devicetree-compiler@vger.kernel.org>.
+Reviewed-by: Rob Herring <robh@kernel.org>
