@@ -2,227 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00F3B9E272
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 10:27:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 120759E2EF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 10:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730606AbfH0I1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 04:27:10 -0400
-Received: from mga09.intel.com ([134.134.136.24]:53395 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730521AbfH0I1J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 04:27:09 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Aug 2019 01:27:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,436,1559545200"; 
-   d="scan'208";a="331748558"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by orsmga004.jf.intel.com with ESMTP; 27 Aug 2019 01:27:06 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     kishon@ti.com
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        peter.harliman.liem@intel.com,
-        vadivel.muruganx.ramuthevar@linux.intel.com
-Subject: [PATCH v1 2/2] phy: intel-lgm-sdxc: Add support for SDXC PHY
-Date:   Tue, 27 Aug 2019 16:26:52 +0800
-Message-Id: <20190827082652.43840-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190827082652.43840-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20190827082652.43840-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1725912AbfH0IoR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 04:44:17 -0400
+Received: from mail-eopbgr680073.outbound.protection.outlook.com ([40.107.68.73]:55424
+        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727270AbfH0IoR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 04:44:17 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eGl3brtLrMQhi73eK1O8JTf4qJBg4NX8ioxGnMOn46OX3WUoUEcEgBQHEqhUDSozwm+cpFJg1TYvUtg1h6m9/iSufqfh9iqpddTTdrrqI8CtLJyYsULFUdyxDyi4n9OndWwasuEHpFu5/yI6tM2jaInTDYbBS9MJgTURZk+VoY++KTEihlKEEMB7TQ8fKPetg183BfTiKpkICfnb1ULl5Di5z4QUlMpcqfgWg6o8osGNVcD84U78ZViwiWhc1bBsql5tD2Zc0RSp6iyGDgvXUH2E6I8JWBVp+Z8wjURbu5Ymn18a6woatDLaSV814A0fKbvJ1rJ60VNFh6BO7Zwbng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jGruqD4MiFZn5TZVoL8n9jJi0jOsLBXbJ4HNmLaRXEw=;
+ b=Eu2Fx1MbKMXR73g1QMIohbQp9FArNU+ehDSgW2MD0+R4sXql1rzEev0jGXXysJJsZI9XVWjoFeitvS8JTKD8fNXrf9JduiPTYPG/bzkr+D0iQpUhvpaqc2LEZAY2lX3XqL8oBanQLOiXsSJgY9dc7j2wGu1U+C9cv15YMxYVBonuDJKiVgbif3u+xKTCeOwcnBA37BZHX822ngOBUBoBOh+S2+WwNx2WCwcZ7C+Xgs/m7RbjFh6LbHmQB0zK+zd+y5Zy3I1eeTf2R7SkqBxgDau32K/VhkKZYKaUCOyrIGLbJOHQsNa5eeMni3m8vVSzNioIW+erhh0gKltlg0Brgg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synaptics.com; dmarc=pass action=none
+ header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jGruqD4MiFZn5TZVoL8n9jJi0jOsLBXbJ4HNmLaRXEw=;
+ b=X/3IPciaFu3yesB5QrFT/JlADB0G5pfNdMEPa9RK6CH4+5y/yvi2/jD1jK0njPgw4AIBx8RUc+Tbdww+a9+d650mhnRms/2cKHNY3Klr8j2/6229h+eZkdxSNTZ7hAxIJWgTPk8BvPTK7BXRAZN0t48r3x+6X0aWYh5Y6xRLXto=
+Received: from BYAPR03MB4773.namprd03.prod.outlook.com (20.179.92.152) by
+ BYAPR03MB4263.namprd03.prod.outlook.com (20.177.185.220) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.20; Tue, 27 Aug 2019 08:44:13 +0000
+Received: from BYAPR03MB4773.namprd03.prod.outlook.com
+ ([fe80::b050:60f8:d275:e9f4]) by BYAPR03MB4773.namprd03.prod.outlook.com
+ ([fe80::b050:60f8:d275:e9f4%7]) with mapi id 15.20.2199.021; Tue, 27 Aug 2019
+ 08:44:13 +0000
+From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: [PATCH 0/8] regulator: support Silergy SY8824C/SY8824E etc.
+Thread-Topic: [PATCH 0/8] regulator: support Silergy SY8824C/SY8824E etc.
+Thread-Index: AQHVXLOaXwIuKKIVAUyLjyjf+ULZFQ==
+Date:   Tue, 27 Aug 2019 08:44:13 +0000
+Message-ID: <20190827163252.4982af95@xhacker.debian>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [124.74.246.114]
+x-clientproxiedby: TYCPR01CA0051.jpnprd01.prod.outlook.com
+ (2603:1096:405:2::15) To BYAPR03MB4773.namprd03.prod.outlook.com
+ (2603:10b6:a03:134::24)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Jisheng.Zhang@synaptics.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d112c37d-7bc7-4da6-2875-08d72acabc9a
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BYAPR03MB4263;
+x-ms-traffictypediagnostic: BYAPR03MB4263:
+x-microsoft-antispam-prvs: <BYAPR03MB4263FF9C1826FBA18D9F7FAEEDA00@BYAPR03MB4263.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3631;
+x-forefront-prvs: 0142F22657
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(366004)(39860400002)(346002)(396003)(189003)(199004)(486006)(25786009)(66946007)(66066001)(71190400001)(186003)(110136005)(53936002)(386003)(6506007)(7736002)(305945005)(54906003)(1076003)(6116002)(3846002)(256004)(86362001)(2906002)(4744005)(8936002)(14454004)(81156014)(81166006)(8676002)(71200400001)(50226002)(99286004)(4326008)(476003)(6436002)(26005)(6512007)(5660300002)(316002)(52116002)(478600001)(66556008)(64756008)(66446008)(102836004)(9686003)(66476007)(6486002)(39210200001);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR03MB4263;H:BYAPR03MB4773.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: synaptics.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: MLKrsnI9hlHHTkGWjVQM15dSNFw0hKBlf0Tl8MAeq0HXiHBxCMIukx5/jlZDnK58yWiN81ejb4DVnABSJUjFfO3sPNbCd1GjWLG82WlBW4ut4il9+zTrn74cc3Uy1j4AE8EoCRhaNrQWMZ7JnBU4vUsKX5KCbqwF/Ne0RGEGyF1GgXLTI0StNd2NdZZ7wCUlwi2sfVONOz6kojC2g3UGY9HlMbR+UTbtk3/0XBgrY1QXmrODMNd4637L/0ciE68wPB0Sx+oMCyi+X8/Bj5PeHxcwdTsxRI3eyoX1s7fv2Q1cwNPb1NA3lxnClc4n4LeI45tO5IArjF/EMz6AJC3Y+j/LMqrgcArWXQa/kTAwC0XNFC34HDcMqJXYd5rEl4s9OJBeedLNpWSlA5BQOwADZnPqh5PrDaiRKFHBmU5Wtb8=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <E388B72B7E360E4DB68B1B5C65106AF7@namprd03.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: synaptics.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d112c37d-7bc7-4da6-2875-08d72acabc9a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2019 08:44:13.4143
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 335d1fbc-2124-4173-9863-17e7051a2a0e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: AYhu0b8UBWBjAUi1m0emXDR0I9JIRnmLIF8gkqihEmIGztIYykMsXFwTJNMQ1YKIhYFvyHmlkHCBV5JHIAtQQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB4263
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+Add support for Silergy SY8824C/SY8824E/SY20276/SY20278 regulator.
 
-Add support for eMMC PHY on Intel's Lightning Mountain SoC.
+Jisheng Zhang (8):
+  regulator: add binding for the SY8824C voltage regulator
+  regulator: add support for SY8824C regulator
+  dt-bindings: sy8824x: Document SY8824E support
+  regulator: sy8824x: add SY8824E support
+  dt-bindings: sy8824x: Document SY20276 support
+  regulator: sy8824x: add SY20276 support
+  dt-bindings: sy8824x: Document SY20278 support
+  regulator: sy8824x: add SY20278 support
 
-Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
----
- drivers/phy/intel/Kconfig          |   6 ++
- drivers/phy/intel/Makefile         |   1 +
- drivers/phy/intel/phy-intel-sdxc.c | 144 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 151 insertions(+)
- create mode 100644 drivers/phy/intel/phy-intel-sdxc.c
+ .../devicetree/bindings/regulator/sy8824x.txt |  24 ++
+ drivers/regulator/Kconfig                     |   7 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/sy8824x.c                   | 231 ++++++++++++++++++
+ 4 files changed, 263 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/sy8824x.txt
+ create mode 100644 drivers/regulator/sy8824x.c
 
-diff --git a/drivers/phy/intel/Kconfig b/drivers/phy/intel/Kconfig
-index 4ea6a8897cd7..d6356c762a6b 100644
---- a/drivers/phy/intel/Kconfig
-+++ b/drivers/phy/intel/Kconfig
-@@ -7,3 +7,9 @@ config PHY_INTEL_EMMC
- 	select GENERIC_PHY
- 	help
- 	  Enable this to support the Intel EMMC PHY
-+
-+config PHY_INTEL_SDXC
-+       tristate "Intel SDXC PHY driver"
-+       select GENERIC_PHY
-+       help
-+         Enable this to support the Intel SDXC PHY driver
-diff --git a/drivers/phy/intel/Makefile b/drivers/phy/intel/Makefile
-index 6b876a75599d..3c6e7523200c 100644
---- a/drivers/phy/intel/Makefile
-+++ b/drivers/phy/intel/Makefile
-@@ -1,2 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_PHY_INTEL_EMMC)            += phy-intel-emmc.o
-+obj-$(CONFIG_PHY_INTEL_SDXC)            += phy-intel-sdxc.o
-diff --git a/drivers/phy/intel/phy-intel-sdxc.c b/drivers/phy/intel/phy-intel-sdxc.c
-new file mode 100644
-index 000000000000..7e13fd9ced5b
---- /dev/null
-+++ b/drivers/phy/intel/phy-intel-sdxc.c
-@@ -0,0 +1,144 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Intel SDXC PHY driver
-+ * Copyright (C) 2019 Intel, Corp.
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_address.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+
-+/* SDXC PHY register definitions */
-+#define SDXC_PHYCTRL_REG	0x88
-+#define OTAPDLYENA_MASK		BIT(14)
-+#define OTAPDLYSEL(x)		((x) << 10)
-+#define OTAPDLYSEL_ALL		OTAPDLYSEL(GENMASK(3, 0))
-+
-+struct intel_sdxc_phy {
-+	struct regmap *syscfg;
-+	struct clk *sdxcclk;
-+};
-+
-+static int intel_sdxc_phy_init(struct phy *phy)
-+{
-+	struct intel_sdxc_phy *priv = phy_get_drvdata(phy);
-+
-+	/*
-+	 * We purposely get the clock here and not in probe to avoid the
-+	 * circular dependency problem.  We expect:
-+	 * - PHY driver to probe
-+	 * - SDHCI driver to start probe
-+	 * - SDHCI driver to register it's clock
-+	 * - SDHCI driver to get the PHY
-+	 * - SDHCI driver to init the PHY
-+	 *
-+	 * The clock is optional, so upon any error just return it like
-+	 * any other error to user.
-+	 */
-+	priv->sdxcclk = clk_get_optional(&phy->dev, "sdxcclk");
-+	if (IS_ERR(priv->sdxcclk)) {
-+		dev_err(&phy->dev, "Error getting sdxcclk\n");
-+		return PTR_ERR(priv->sdxcclk);
-+	}
-+
-+	return 0;
-+}
-+
-+static int intel_sdxc_phy_exit(struct phy *phy)
-+{
-+	struct intel_sdxc_phy *priv = phy_get_drvdata(phy);
-+
-+	clk_put(priv->sdxcclk);
-+
-+	return 0;
-+}
-+
-+static int intel_sdxc_phy_power_on(struct phy *phy)
-+{
-+	struct intel_sdxc_phy *priv = phy_get_drvdata(phy);
-+
-+	/* Output tap delay: disable */
-+	regmap_update_bits(priv->syscfg, SDXC_PHYCTRL_REG, OTAPDLYENA_MASK, 0);
-+
-+	/* Output tap delay */
-+	regmap_update_bits(priv->syscfg, SDXC_PHYCTRL_REG, OTAPDLYSEL_ALL,
-+			   OTAPDLYSEL_ALL);
-+
-+	return 0;
-+}
-+
-+static int intel_sdxc_phy_power_off(struct phy *phy)
-+{
-+	/* Do nothing */
-+	return 0;
-+}
-+
-+static const struct phy_ops ops = {
-+	.init		= intel_sdxc_phy_init,
-+	.exit		= intel_sdxc_phy_exit,
-+	.power_on	= intel_sdxc_phy_power_on,
-+	.power_off	= intel_sdxc_phy_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int intel_sdxc_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct intel_sdxc_phy *priv;
-+	struct phy *generic_phy;
-+	struct phy_provider *phy_provider;
-+
-+	if (!dev->parent || !dev->parent->of_node)
-+		return -ENODEV;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	/* Get SDXC phy (accessed via chiptop) regmap */
-+	priv->syscfg = syscon_regmap_lookup_by_phandle(dev->of_node,
-+						       "intel,syscon");
-+	if (IS_ERR(priv->syscfg)) {
-+		dev_err(dev, "No syscon phandle for chiptop\n");
-+		return PTR_ERR(priv->syscfg);
-+	}
-+
-+	generic_phy = devm_phy_create(dev, dev->of_node, &ops);
-+	if (IS_ERR(generic_phy)) {
-+		dev_err(dev, "failed to create PHY\n");
-+		return PTR_ERR(generic_phy);
-+	}
-+
-+	phy_set_drvdata(generic_phy, priv);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id intel_sdxc_phy_dt_ids[] = {
-+	{ .compatible = "intel,lgm-sdxc-phy" },
-+	{}
-+};
-+
-+MODULE_DEVICE_TABLE(of, intel_sdxc_phy_dt_ids);
-+
-+static struct platform_driver intel_sdxc_driver = {
-+	.probe		= intel_sdxc_phy_probe,
-+	.driver		= {
-+		.name	= "intel-sdxc-phy",
-+		.of_match_table = intel_sdxc_phy_dt_ids,
-+	},
-+};
-+
-+module_platform_driver(intel_sdxc_driver);
-+
-+MODULE_AUTHOR("Peter Harliman Liem <peter.harliman.liem@intel.com>");
-+MODULE_DESCRIPTION("Intel SDXC PHY driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.11.0
+--=20
+2.23.0.rc1
 
