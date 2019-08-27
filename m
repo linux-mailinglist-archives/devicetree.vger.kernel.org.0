@@ -2,95 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B8C8C9DE5C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 09:03:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C1099DE83
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 09:15:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbfH0HDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 03:03:47 -0400
-Received: from mx2.suse.de ([195.135.220.15]:35694 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725811AbfH0HDr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 03:03:47 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id F3D93B0DA;
-        Tue, 27 Aug 2019 07:03:45 +0000 (UTC)
-Date:   Tue, 27 Aug 2019 09:03:41 +0200
-From:   Petr Tesarik <ptesarik@suse.cz>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Christoph Hellwig <hch@lst.de>, linux-arch@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-        f.fainelli@gmail.com, will@kernel.org, eric@anholt.net,
-        marc.zyngier@arm.com, catalin.marinas@arm.com,
-        frowand.list@gmail.com, linux-kernel@vger.kernel.org,
-        linux-mm@kvack.org, iommu@lists.linux-foundation.org,
-        robh+dt@kernel.org, wahrenst@gmx.net, mbrugger@suse.com,
-        linux-riscv@lists.infradead.org, m.szyprowski@samsung.com,
-        Robin Murphy <robin.murphy@arm.com>, akpm@linux-foundation.org,
-        linux-arm-kernel@lists.infradead.org, phill@raspberryi.org
-Subject: Re: [PATCH v2 10/11] arm64: edit zone_dma_bits to fine tune
- dma-direct min mask
-Message-ID: <20190827090341.2bf6b336@ezekiel.suse.cz>
-In-Reply-To: <4d8d18af22d6dcd122bc9b4d9c2bd49e8443c746.camel@suse.de>
-References: <20190820145821.27214-1-nsaenzjulienne@suse.de>
-        <20190820145821.27214-11-nsaenzjulienne@suse.de>
-        <20190826070633.GB11331@lst.de>
-        <4d8d18af22d6dcd122bc9b4d9c2bd49e8443c746.camel@suse.de>
-Organization: SUSE Linux, s.r.o.
-X-Mailer: Claws Mail 3.16.0 (GTK+ 2.24.32; x86_64-suse-linux-gnu)
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/vmjhQR+jY/bQH=VqrrKvOyt"; protocol="application/pgp-signature"
+        id S1726278AbfH0HPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 03:15:48 -0400
+Received: from regular1.263xmail.com ([211.150.70.197]:36252 "EHLO
+        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726125AbfH0HPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 03:15:48 -0400
+Received: from zhangzj?rock-chips.com (unknown [192.168.167.153])
+        by regular1.263xmail.com (Postfix) with ESMTP id C11D9690;
+        Tue, 27 Aug 2019 15:15:27 +0800 (CST)
+X-263anti-spam: KSV:0;BIG:0;
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-KSVirus-check: 0
+X-ADDR-CHECKED4: 1
+X-ABS-CHECKED: 1
+X-SKE-CHECKED: 1
+X-ANTISPAM-LEVEL: 2
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P15961T139881246357248S1566890113084555_;
+        Tue, 27 Aug 2019 15:15:17 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <3ad0733fd004bc1499c4d958c0965038>
+X-RL-SENDER: zhangzj@rock-chips.com
+X-SENDER: zhangzj@rock-chips.com
+X-LOGIN-NAME: zhangzj@rock-chips.com
+X-FST-TO: heiko@sntech.de
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+From:   Elon Zhang <zhangzj@rock-chips.com>
+To:     heiko@sntech.de, mark.rutland@arm.com, robh+dt@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org,
+        Elon Zhang <zhangzj@rock-chips.com>
+Subject: [PATCH v1 1/1] ARM: dts: rockchip: set crypto default disabled on rk3288
+Date:   Tue, 27 Aug 2019 15:14:39 +0800
+Message-Id: <20190827071439.14767-1-zhangzj@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/vmjhQR+jY/bQH=VqrrKvOyt
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Not every board needs to enable crypto node, so the node should
+be set default disabled in rk3288.dtsi and enabled in specific
+board dts file.
 
-On Mon, 26 Aug 2019 13:08:50 +0200
-Nicolas Saenz Julienne <nsaenzjulienne@suse.de> wrote:
+Signed-off-by: Elon Zhang <zhangzj@rock-chips.com>
+---
+ arch/arm/boot/dts/rk3288.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> On Mon, 2019-08-26 at 09:06 +0200, Christoph Hellwig wrote:
-> > On Tue, Aug 20, 2019 at 04:58:18PM +0200, Nicolas Saenz Julienne wrote:=
- =20
-> > > -	if (IS_ENABLED(CONFIG_ZONE_DMA))
-> > > +	if (IS_ENABLED(CONFIG_ZONE_DMA)) {
-> > >  		arm64_dma_phys_limit =3D max_zone_dma_phys();
-> > > +		zone_dma_bits =3D ilog2((arm64_dma_phys_limit - 1) &
-> > > GENMASK_ULL(31, 0)) + 1; =20
-> > =20
-> Hi Christoph,
-> thanks for the rewiews.
->=20
-> > This adds a way too long line. =20
->=20
-> I know, I couldn't find a way to split the operation without making it ev=
-en
-> harder to read. I'll find a solution.
+diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+index cc893e154fe5..d509aa24177c 100644
+--- a/arch/arm/boot/dts/rk3288.dtsi
++++ b/arch/arm/boot/dts/rk3288.dtsi
+@@ -984,7 +984,7 @@
+ 		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
+ 		resets = <&cru SRST_CRYPTO>;
+ 		reset-names = "crypto-rst";
+-		status = "okay";
++		status = "disabled";
+ 	};
+ 
+ 	iep_mmu: iommu@ff900800 {
+-- 
+2.17.1
 
-If all else fails, move the code to an inline function and call it e.g.
-phys_limit_to_dma_bits().
 
-Just my two cents,
-Petr T
 
---Sig_/vmjhQR+jY/bQH=VqrrKvOyt
-Content-Type: application/pgp-signature
-Content-Description: Digitální podpis OpenPGP
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEHl2YIZkIo5VO2MxYqlA7ya4PR6cFAl1k1c0ACgkQqlA7ya4P
-R6ffZggAphWovRbYbJElIMDB+201+43NCpSH8dbZwe3UrJ+1DHzEn4OEldBRpcAv
-CuA2/u6GyA8wgnGpCAKj9HNHWSx9VeFoCmf6kPVHFtoC0hnJyJtCCWS1O9B1nqXR
-3h1Dw+6F/4wh14vqUucVvfseO/T1VV1QtfsczxBy2xEvcTZGhBjo7LEKeABa2yRm
-CoPLGyNtTtNkAhXeSeVJUcuquOjdqrcU+RlCH5EIZZagAvXuNLryEsjjUfD4Lx35
-RBeRcO+KmGJvAYuelWr/lqtO5ZUnD4OXoFE6fV7AvvJCD6RIHngLS4EXDIkGAaqd
-kWlLtSieXZDEl0mMBdQBfSVcByyzKA==
-=RDo8
------END PGP SIGNATURE-----
-
---Sig_/vmjhQR+jY/bQH=VqrrKvOyt--
