@@ -2,144 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D6E9DD71
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 08:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 661B19DD80
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 08:18:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726037AbfH0GLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 02:11:11 -0400
-Received: from mail-eopbgr680046.outbound.protection.outlook.com ([40.107.68.46]:35845
-        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        id S1725825AbfH0GSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 02:18:37 -0400
+Received: from mail-eopbgr20062.outbound.protection.outlook.com ([40.107.2.62]:18780
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725879AbfH0GLL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 02:11:11 -0400
+        id S1725811AbfH0GSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 02:18:37 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JvnKCicAZeYfwLP74rWQyJRoMKE45lIM+nYk/CtVZoA3316W5OY7vTiH0XxNniY2YVKgK6hRCmrkAJU/ggATROtAUAU/VmekQ/uVLu4Z9ULt8bW3Q4FhUdJQMXVSjXxLyCgjGQARtqhvjPm1UQmkCpFfGsl5l7A+yLiW2Wpt9lQmh0YaXSn2Jv1YO68F8P0bVxJgfIqb9Al8F6dcTl8nDLz5yM41JJAoDqsbMFbQUIAiXfCe0QhdraCzm3fei5t+6R4Kf6Q2hjPU0trXTrQEORodB5LIGhaNF4KtuwQCru+PkYxEaSDoIHgu/QWOB5Ac4CCicUIxIH1QlQYFxao9Qg==
+ b=ajehQUUlW/5Goap9q643tNGjL1BbLSIJUDFKEjpnvF27tK8rXBKfZlqEsq25o3Jh4LElF8HmbW7ecZ+8ceb4WJ19FdHQGfvrkkACkcMfD0Rvj1P1XFpBU9CkGu45b/wrLi6cR//IjJxUpCHoMAiVIO3xlEUuQk1C5X4J2qN2s4hLY7TB2L+FMU8ZeHDAsB2K8porABklJHXVBcopqVW0ydOiLEfB0nxwJHL05dlEaBCAbqqXrFzsxIxSE9DaO9al2jDZxjt8kvXBMriQQz+xsKJhejpJR1ac7596R5m+ty3CFlg/3m5AgcCH3mT9YJE77Fq72ml1WNZXOT684Q3xlg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JwKRbvRbARnlRQSCZJNyqmLiu3Lga8GV4ItdB3t0dD4=;
- b=ZOgf2h49oF2TZnUh/w7M3w97lXM8TAmWxsbf7ROTHJ5VvVCIrExHf5X+dkvhRP8riMvf57HLG6lwQivp38dfcVsyBrS4Kbem5g1KBt1saq/0bcHxnI75J2N19RFlJGPKgBlobo1cDENnHlKZcdR+IYidiat9XA9nDMLENxqedR6vscG+e+gkS8hAAiOJ1pnqdt+6DX6mKAKr1SdNuxF1rvS4DAeoPOPGWFPFI/E9xhOKRhEjDl2+qErv5jyy+wvOFaY5bVil2QiZT23VnOGAhsp8WWtQ1hmQkxtIqJhIXjLiuX2JWEkX+FB6PKYgbuIpNxtnDFNeOTgnmdenITiS7Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.100) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ bh=bh8Y7POGQExJuCAZLqVXeYBNrtw6e7YdTml3Dludo+w=;
+ b=TKYn3mcbBV+dNw3zA30WLDIxYMiKnH6SDXo4DY2861+zFeEGX0r1IefO4KWUmFFd/NOv0XF1Jqtzttj47UfTmFRx9nQXOIlSXhOQnVVhXD8lCH3Uwq4SYxWTQRF8vKQQhnPZDBPhAGRyaBCFLUi6fE/4/sXMiwT4rhXF2y5y8O5rg2BkXtSoXsyt/ou3mkGj9uqyISp+nLb3rthoBujrwhOQQg/5rIHXIWtYhlm5ri1BEkAElFlYe9xyVLenC7f+AadgWVGnqOIRze+3YYvm0OiFCGRjQxlafYiZQYRA5pl/UYjKVIQYf3v42S5Y/3SPSrrVigMljwuT7jWZyguyPg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JwKRbvRbARnlRQSCZJNyqmLiu3Lga8GV4ItdB3t0dD4=;
- b=hj9yT42IC7e6ZgJupnGb0skViyjJxojZLMZhqJNdhW/tqg5iKyLdq5AzjNXrheLHhuGV/ENIUPQ5uKx6jXR1opHlVpzk+eE4GNyh8LCmQ/C9KHoJYKpm4WXry+ZFM9uhS6NPjs5Oj25bEsXy3Tc0rWCRgfl2wD1jmQ+tbjP8inM=
-Received: from SN6PR02CA0030.namprd02.prod.outlook.com (2603:10b6:805:a2::43)
- by BYAPR02MB5303.namprd02.prod.outlook.com (2603:10b6:a03:67::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2178.20; Tue, 27 Aug
- 2019 06:11:07 +0000
-Received: from BL2NAM02FT057.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e46::200) by SN6PR02CA0030.outlook.office365.com
- (2603:10b6:805:a2::43) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2199.14 via Frontend
- Transport; Tue, 27 Aug 2019 06:11:06 +0000
-Authentication-Results: spf=pass (sender IP is 149.199.60.100)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
-Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
- BL2NAM02FT057.mail.protection.outlook.com (10.152.77.36) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2199.13
- via Frontend Transport; Tue, 27 Aug 2019 06:11:06 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66]:47813 helo=xsj-pvapsmtp01)
-        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1i2Uh7-0002UC-MX; Mon, 26 Aug 2019 23:11:05 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by xsj-pvapsmtp01 with smtp (Exim 4.63)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1i2Uh2-0004bR-JC; Mon, 26 Aug 2019 23:11:00 -0700
-Received: from [172.30.17.116]
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <michals@xilinx.com>)
-        id 1i2Ugz-0004Zy-Qe; Mon, 26 Aug 2019 23:10:58 -0700
-Subject: Re: [PATCH 1/2] dt-binding: iio: Add optional label property
-To:     Phil Reid <preid@electromag.com.au>, jic23@kernel.org,
-        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        michal.simek@xilinx.com
-References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
- <1566876924-63608-2-git-send-email-preid@electromag.com.au>
-From:   Michal Simek <michal.simek@xilinx.com>
-Message-ID: <b4b8d01f-67c3-2a6f-e7f6-ead6cbaa6d46@xilinx.com>
-Date:   Tue, 27 Aug 2019 08:10:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1566876924-63608-2-git-send-email-preid@electromag.com.au>
-Content-Type: text/plain; charset=utf-8
+ bh=bh8Y7POGQExJuCAZLqVXeYBNrtw6e7YdTml3Dludo+w=;
+ b=BFY/tA9shlLD/v5c2JzBHg+fPvS2fe53eHlrlj6nq+OonodofGFhkmUYhgfc5l19K0oO233bhPqKT81natxRT+37caGUylKY/pwA3QS+rKlg91ybYGuQQt4o7WsxIROHgnQOsN1xJRsHAuBH93H83sytRpXiD/XNpDpa3j2WHGE=
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.235.81) by
+ VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.235.81) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Tue, 27 Aug 2019 06:17:53 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::8f2:412c:88c6:a365]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::8f2:412c:88c6:a365%7]) with mapi id 15.20.2199.021; Tue, 27 Aug 2019
+ 06:17:53 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Robin van der Gracht <robin@protonic.nl>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        Adam Ford <aford173@gmail.com>
+Subject: RE: [PATCH] input: keyboard: snvs_pwrkey: Send press and release
+ event for i.MX6 S,DL and Q
+Thread-Topic: [PATCH] input: keyboard: snvs_pwrkey: Send press and release
+ event for i.MX6 S,DL and Q
+Thread-Index: AQHVWa5ZFk23j3f7OEWRDzQvDh9iTqcOfq3w
+Date:   Tue, 27 Aug 2019 06:17:52 +0000
+Message-ID: <VE1PR04MB6638754916357F551502102589A00@VE1PR04MB6638.eurprd04.prod.outlook.com>
+References: <20190823123002.10448-1-robin@protonic.nl>
+In-Reply-To: <20190823123002.10448-1-robin@protonic.nl>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(136003)(39850400004)(376002)(2980300002)(199004)(189003)(50466002)(6246003)(6666004)(478600001)(58126008)(36386004)(316002)(31686004)(23676004)(76176011)(52146003)(81156014)(2486003)(106002)(2906002)(47776003)(65806001)(65956001)(81166006)(8676002)(426003)(26005)(446003)(9786002)(70206006)(486006)(70586007)(8936002)(229853002)(44832011)(31696002)(336012)(5660300002)(2616005)(36756003)(186003)(356004)(11346002)(305945005)(230700001)(126002)(476003)(921003)(5001870100001)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR02MB5303;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:unknown-60-100.xilinx.com,xapps1.xilinx.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 8fac6f18-b804-4e54-2746-08d72ab558d6
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(4709080)(1401327)(4618075)(2017052603328);SRVR:BYAPR02MB5303;
-X-MS-TrafficTypeDiagnostic: BYAPR02MB5303:
-X-Microsoft-Antispam-PRVS: <BYAPR02MB5303A7B98E9D063D1954A1FDC6A00@BYAPR02MB5303.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:4502;
-X-Forefront-PRVS: 0142F22657
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: wVrhxGVjXYOp6yBImYlSbePJ+fhsCkzTy1KujWD3cJVHjBH3AFj/ohXl2wP87xwZqDOTcm7FBvl6lkjQWokeocVtT1r/IlhHeGr/3okcTMuwRoOLuKGHWWB4MNO6WeH6xu3lE5HB24cY29fHRlHRwZACeR0utlcdeHdNZrzZOzM8YJUxTKE+oQP5WwMwgNZpH6QoVEm9NgrL6UqXEN3gZHC64YZC90uL954e6CbWkFqR0VwuaoaHUeIGkPN18L0K7ckl9lDXlJx1ioL5x1JK3ePrtCxHifh+sAME0+Ke3Uwx1SCXU5pzgTUWSsjKMHl7ejP+EzU9N2WhJl1AisMUvsaFtF9WljoQ74dvcp71OgungV84p3xSGifsLhoi1IlqNDUPeqGps/iYFaDNUeiHYgZa9D8bC3OZAanNvvU0Krc=
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Aug 2019 06:11:06.2360
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=yibin.gong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8f6b6e0a-19a3-4317-a10d-08d72ab64b40
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VE1PR04MB6638;
+x-ms-traffictypediagnostic: VE1PR04MB6638:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VE1PR04MB66387E91505A7CBB3D122D1C89A00@VE1PR04MB6638.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0142F22657
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(396003)(346002)(376002)(136003)(39860400002)(199004)(189003)(6506007)(446003)(7416002)(102836004)(6116002)(6436002)(11346002)(3846002)(26005)(186003)(486006)(66066001)(99286004)(86362001)(2906002)(229853002)(76116006)(33656002)(478600001)(256004)(14444005)(66476007)(66946007)(54906003)(476003)(8676002)(53936002)(81166006)(81156014)(55016002)(8936002)(4326008)(6916009)(305945005)(7736002)(9686003)(74316002)(71190400001)(71200400001)(76176011)(316002)(66556008)(64756008)(7696005)(66446008)(6246003)(14454004)(52536014)(5660300002)(25786009)(142933001);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6638;H:VE1PR04MB6638.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: oa92eBpqcOwClrchIzJ8XsWmQRh/4avcISNwo8v3EFZWqAtJT/kpB3BlyzWSPzFSxwbY83SblKR2v27Ah6VUqdlpqLXoCpd8mgCMDo8fxu4nOYrSYEGRzhubR/MbZDv/ful2hVSNxmwncQG4Is5wuo2ygGYv0o7bZG6Tg31lF10yYOpOgAIdq0iL7x1Prw8F8A4l1Sw/F6KXhAqjAPT0md9QdPkwVxL8TMgI8j2eJNVaBYK82EpXlAMUE1nnqQY1kLLC5emXECodOk2BkDNtKaEvw264YJ+E+6yuoWWuyXwcbSMB0H2r02YpMMawHaET4GZU3m0d6/4CA+PxuVodnKq0ihGbSZPbzls0egcRvoCcHTF21oEaiVB/QU0uASDrlkF0P3TyQnRFquS9MyuzJQZmeofAS9v7+VVTXSpnA1I=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f6b6e0a-19a3-4317-a10d-08d72ab64b40
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2019 06:17:52.9726
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fac6f18-b804-4e54-2746-08d72ab558d6
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5303
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +/XtjRz0VVFRYrVLkWVXbf5U9772++bqT/D0GKEaAlazE1VzXnmPk4R0u7FwMP2PYVVctoPw1adsF/GeShXuaA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6638
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27. 08. 19 5:35, Phil Reid wrote:
-> This optional property defines a symbolic name for the device.
-> 
-> Signed-off-by: Phil Reid <preid@electromag.com.au>
+On Fri, Aug 23, 2019 at 02:30:02PM +0200, Robin van der Gracht wrote:>=20
+> The older generation i.MX6 processors send a powerdown request interrupt
+> if the powerkey is released before a hard shutdown (5 second press). This
+> should allow software to bring down the SoC safely.
+>=20
+> For this driver to work as a regular powerkey with the older SoCs, we nee=
+d to
+> send a keypress AND release when we get the powerdown request interrupt.
+Please clarify here more clearly that because there is NO press interrupt t=
+riggered
+but only release interrupt on elder i.mx6 processors and that HW issue fixe=
+d from
+i.mx6sx.
+>=20
+> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
 > ---
->  Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/iio-bindings.txt b/Documentation/devicetree/bindings/iio/iio-bindings.txt
-> index 68d6f8ce063b..ffeae5aad8b5 100644
-> --- a/Documentation/devicetree/bindings/iio/iio-bindings.txt
-> +++ b/Documentation/devicetree/bindings/iio/iio-bindings.txt
-> @@ -18,12 +18,17 @@ Required properties:
->  		   with a single IIO output and 1 for nodes with multiple
->  		   IIO outputs.
->  
-> +Optional properties:
-> +label:		   A symbolic name for the device.
-> +
-> +
->  Example for a simple configuration with no trigger:
->  
->  	adc: voltage-sensor@35 {
->  		compatible = "maxim,max1139";
->  		reg = <0x35>;
->  		#io-channel-cells = <1>;
-> +		label = "adc_voltage_sensor";
->  	};
->  
->  Example for a configuration with trigger:
-> 
+>  arch/arm/boot/dts/imx6qdl.dtsi       |  2 +-
+>  arch/arm/boot/dts/imx6sll.dtsi       |  2 +-
+>  arch/arm/boot/dts/imx6sx.dtsi        |  2 +-
+>  arch/arm/boot/dts/imx6ul.dtsi        |  2 +-
+>  arch/arm/boot/dts/imx7s.dtsi         |  2 +-
+As Shawn talked, please keep the original "fsl,sec-v4.0-pwrkey", just add
+'imx6qdl-snvs-pwrkey' for elder i.mx6 processor i.mx6q/dl/sl, thus no need
+to touch other newer processor's dts.
 
-Suggested-by: Michal Simek <michal.simek@xilinx.com>
+>=20
+>  static void imx_imx_snvs_check_for_events(struct timer_list *t) @@ -67,1=
+3
+> +85,23 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int irq, void
+> *dev_id)  {
+>  	struct platform_device *pdev =3D dev_id;
+>  	struct pwrkey_drv_data *pdata =3D platform_get_drvdata(pdev);
+> +	struct input_dev *input =3D pdata->input;
+>  	u32 lp_status;
+>=20
+> -	pm_wakeup_event(pdata->input->dev.parent, 0);
+> +	pm_wakeup_event(input->dev.parent, 0);
+>=20
+>  	regmap_read(pdata->snvs, SNVS_LPSR_REG, &lp_status);
+> -	if (lp_status & SNVS_LPSR_SPO)
+> -		mod_timer(&pdata->check_timer, jiffies +
+> msecs_to_jiffies(DEBOUNCE_TIME));
+> +	if (lp_status & SNVS_LPSR_SPO) {
+> +		if (pdata->hwtype =3D=3D IMX6QDL_SNVS) {
+> +			input_report_key(input, pdata->keycode, 1);
+> +			input_report_key(input, pdata->keycode, 0);
+> +			input_sync(input);
+> +			pm_relax(input->dev.parent);
+Could you move the above input event report steps into imx_imx_snvs_check_f=
+or_events()
+as before? That make code better to understand and less operation in ISR.
+> +		} else {
+> +			mod_timer(&pdata->check_timer,
+> +				jiffies + msecs_to_jiffies(DEBOUNCE_TIME));
+> +		}
+> +	}
+>=20
+>  	/* clear SPO status */
+>  	regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO); @@
+> -88,11 +116,24 @@ static void imx_snvs_pwrkey_act(void *pdata)
+>  	del_timer_sync(&pd->check_timer);
+>  }
+>=20
+> +static const struct of_device_id imx_snvs_pwrkey_ids[] =3D {
+> +	{
+> +		.compatible =3D "fsl,imx6sx-sec-v4.0-pwrkey",
+> +		.data =3D &imx_snvs_devtype[IMX6SX_SNVS],
+> +	}, {
+> +		.compatible =3D "fsl,imx6qdl-sec-v4.0-pwrkey",
+> +		.data =3D &imx_snvs_devtype[IMX6QDL_SNVS],
+No ' IMX6QDL_SNVS ' defined in your patch or am I missing?
+> +	},
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, imx_snvs_pwrkey_ids);
+> --
+> 2.20.1
 
-Thanks,
-Michal
