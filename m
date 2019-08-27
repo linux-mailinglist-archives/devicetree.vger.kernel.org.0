@@ -2,275 +2,247 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 015959E75E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:10:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCC89E76A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726539AbfH0MJe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 08:09:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38706 "EHLO mail.kernel.org"
+        id S1726675AbfH0MNH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 08:13:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39806 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725850AbfH0MJe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 08:09:34 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        id S1726125AbfH0MNG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 08:13:06 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 912AA23407;
-        Tue, 27 Aug 2019 12:09:32 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A13B921872;
+        Tue, 27 Aug 2019 12:13:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566907772;
-        bh=fUcUeDsVMM74MJ34Ry+nmElbDrbiFBZpMPM2hzgixd0=;
+        s=default; t=1566907984;
+        bh=aonEiOoI4N7zGZiyonXbquCAFE0htrxfMdE5k4O5cvI=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=a/HU21B1cyQ6s40aeFD4kglNlgx/8tu55rjKwGr1G3GYTZwUzCWGnPKMfw7u3icX6
-         lg9PzWKcnnP3PvbousMWaYQLUOR4BFPYNU1XJ57UIy2rxgYRhPrRY3RZPAkCycs07A
-         mZiI8mDd73MKcYwA2EC9W5/61ATgG6Q4muAxpEMM=
-Received: by mail-qt1-f178.google.com with SMTP id y26so21024219qto.4;
-        Tue, 27 Aug 2019 05:09:32 -0700 (PDT)
-X-Gm-Message-State: APjAAAWSwajLxqZMq+KJxMH1hpiFeW+QPdOWQ7CsqddYqm2u4IV7cbR8
-        E+CfDDoR762oHoIAdCKEppXxMots69Ab2rMTbg==
-X-Google-Smtp-Source: APXvYqwITMYFg2CYFwhIyWqxLZ/aKw9ADPAqPzY//V2prhlPF7exrU3jWDce1/49wEhaqDxEIWNDGyMlSPrc6zzUzds=
-X-Received: by 2002:aed:24f4:: with SMTP id u49mr22702194qtc.110.1566907771556;
- Tue, 27 Aug 2019 05:09:31 -0700 (PDT)
+        b=pk0OU1+LKCEsFAI5jInaf3ETd9t+tKrlFrvSWdPics5nhYt38Ds5jNxZw06XHYlei
+         mEwKTE+wc/OqH6l5AhkueGzgccaXeJkTZc+Z3+v9B+0XewwFKwPLnaLyt8/ZV98bIr
+         aocgVJAWzo0zDg43Xev2Qi1QgbjSSIsQ+5oHLaH0=
+Received: by mail-qk1-f171.google.com with SMTP id 4so1510609qki.6;
+        Tue, 27 Aug 2019 05:13:04 -0700 (PDT)
+X-Gm-Message-State: APjAAAWPqUX02PYtmruXH2VJbWVjB2G5FP1TN2ZbGRSejb/vY6X7lqmU
+        s1VjTq+vSO7C7Jm8qASHH54DuQudaDBWLuapgg==
+X-Google-Smtp-Source: APXvYqyobVuBJkxtt2J5Vqgl94929NSQZpwVLIffBY9bHymUp0I31gQKCn9/grMijIqD8+Buj7d1FFkojRRMupXUPvk=
+X-Received: by 2002:a37:8905:: with SMTP id l5mr3754099qkd.152.1566907983749;
+ Tue, 27 Aug 2019 05:13:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1566470526.git.agx@sigxcpu.org> <36f62b431f32bc76e92d21e04dc48464aef43869.1566470526.git.agx@sigxcpu.org>
-In-Reply-To: <36f62b431f32bc76e92d21e04dc48464aef43869.1566470526.git.agx@sigxcpu.org>
+References: <20190822172426.25879-1-manivannan.sadhasivam@linaro.org> <20190822172426.25879-5-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190822172426.25879-5-manivannan.sadhasivam@linaro.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Aug 2019 07:09:20 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLOa9yg+oWHM4o8b8b=4DGYC40b3o7YB_pKHSOTBEuvTA@mail.gmail.com>
-Message-ID: <CAL_JsqLOa9yg+oWHM4o8b8b=4DGYC40b3o7YB_pKHSOTBEuvTA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: display/bridge: Add binding for NWL
- mipi dsi host controller
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
+Date:   Tue, 27 Aug 2019 07:12:51 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLg1G6iCYSLOjBMNheURQ-Ew9hEnvaz=iNxwxQ0L1iGfg@mail.gmail.com>
+Message-ID: <CAL_JsqLg1G6iCYSLOjBMNheURQ-Ew9hEnvaz=iNxwxQ0L1iGfg@mail.gmail.com>
+Subject: Re: [PATCH v4 4/8] dt-bindings: clock: Add devicetree binding for
+ BM1880 SoC
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-clk <linux-clk@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>
+        devicetree@vger.kernel.org, haitao.suo@bitmain.com,
+        darren.tsao@bitmain.com, fisher.cheng@bitmain.com,
+        alec.lin@bitmain.com
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 5:44 AM Guido G=C3=BCnther <agx@sigxcpu.org> wrote:
+On Thu, Aug 22, 2019 at 12:25 PM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
 >
-> The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
+> Add YAML devicetree binding for Bitmain BM1880 SoC.
 >
-> Signed-off-by: Guido G=C3=BCnther <agx@sigxcpu.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../bindings/display/bridge/nwl-dsi.yaml      | 155 ++++++++++++++++++
->  1 file changed, 155 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/nwl-=
-dsi.yaml
+>  .../bindings/clock/bitmain,bm1880-clk.yaml    | 74 +++++++++++++++++
+>  include/dt-bindings/clock/bm1880-clock.h      | 82 +++++++++++++++++++
+>  2 files changed, 156 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
+>  create mode 100644 include/dt-bindings/clock/bm1880-clock.h
 >
-> diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yam=
-l b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
 > new file mode 100644
-> index 000000000000..24d17a6310dc
+> index 000000000000..31c48dcf5b8e
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> @@ -0,0 +1,155 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> +++ b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.yaml
+> @@ -0,0 +1,74 @@
+> +# SPDX-License-Identifier: GPL-2.0+
 
-(GPL-2.0-only OR BSD-2-Clause) is preferred for new bindings.
+Dual license please.
 
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/display/bridge/nwl-dsi.yaml#
+> +$id: http://devicetree.org/schemas/bindings/clock/bitmain,bm1880-clk.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Northwest Logic MIPI-DSI controller on i.MX SoCs
+> +title: Bitmain BM1880 Clock Controller
 > +
 > +maintainers:
-> +  - Guido G=C3=BAnther <agx@sigxcpu.org>
-> +  - Robert Chiras <robert.chiras@nxp.com>
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > +
 > +description: |
-> +  NWL MIPI-DSI host controller found on i.MX8 platforms. This is a dsi b=
-ridge for
-> +  the SOCs NWL MIPI-DSI host controller.
+> +  The Bitmain BM1880 clock controller generates and supplies clock to
+> +  various peripherals within the SoC.
+> +
+> +  This binding uses common clock bindings
+> +  [1] Documentation/devicetree/bindings/clock/clock-bindings.txt
 > +
 > +properties:
 > +  compatible:
-> +    const: fsl,imx8mq-nwl-dsi
+> +    const: bitmain,bm1880-clk
 > +
 > +  reg:
-> +    maxItems: 1
+> +    items:
+> +      - description: pll registers
+> +      - description: system registers
 > +
-> +  interrupts:
-> +    maxItems: 1
+> +  reg-names:
+> +    items:
+> +      - const: pll
+> +      - const: sys
 > +
 > +  clocks:
-> +    items:
-> +      - description: DSI core clock
-> +      - description: RX_ESC clock (used in escape mode)
-> +      - description: TX_ESC clock (used in escape mode)
-> +      - description: PHY_REF clock
+> +    maxItems: 1
 > +
 > +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: rx_esc
-> +      - const: tx_esc
-> +      - const: phy_ref
+> +    const: osc
 > +
-> +  mux-controls:
-> +    description:
-> +      mux controller node to use for operating the input mux
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description:
-> +      A phandle to the phy module representing the DPHY
-> +
-> +  phy-names:
-> +    items:
-> +      - const: dphy
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description:
-> +      A phandle to the power domain
-
-Don't need a description for common properties unless you have
-something specific about this device to say.
-
-> +
-> +  resets:
-> +    description:
-> +      phandles to the reset controller
-
-Same here.
-
-> +    items:
-> +      - description: dsi byte reset line
-> +      - description: dsi dpi reset line
-> +      - description: dsi esc reset line
-> +      - description: dsi pclk reset line
-> +
-> +  reset-names:
-> +    items:
-> +      - const: byte
-> +      - const: dpi
-> +      - const: esc
-> +      - const: pclk
-> +
-> +  ports:
-> +    type: object
-> +    description:
-> +      A node containing DSI input & output port nodes with endpoint
-> +      definitions as documented in
-> +      Documentation/devicetree/bindings/graph.txt.
-> +
-> +  port@0:
-
-These are child nodes of ports. So under ports you need 'properties'
-with these. And 'required'.
-
-> +    type: object
-> +    description:
-> +      Input port node to receive pixel data from the
-> +      display controller
-> +
-> +  port@1:
-> +    type: object
-> +    description:
-> +      DSI output port node to the panel or the next bridge
-> +      in the chain
-> +
-> +patternProperties:
-> +  "^panel@[0-9]+$": true
-
-This is a node, so:
-
-type: object
-
+> +  '#clock-cells':
+> +    const: 1
 > +
 > +required:
-> +  - clock-names
-> +  - clocks
 > +  - compatible
-> +  - interrupts
-> +  - mux-controls
-> +  - phy-names
-> +  - phys
-> +  - ports
 > +  - reg
-> +  - reset-names
-> +  - resets
-
-Add a:
+> +  - reg-names
+> +  - clocks
+> +  - clock-names
+> +  - '#clock-cells'
 
 additionalProperties: false
 
+
 > +
 > +examples:
-> + - |
+> +  # Clock controller node:
+> +  - |
+> +    clk: clock-controller@e8 {
+> +        compatible = "bitmain,bm1880-clk";
+> +        reg = <0xe8 0x0c>, <0x800 0xb0>;
+> +        reg-names = "pll", "sys";
+> +        clocks = <&osc>;
+> +        clock-names = "osc";
+> +        #clock-cells = <1>;
+> +    };
 > +
-> +   mipi_dsi: mipi_dsi@30a00000 {
-> +              #address-cells =3D <1>;
-> +              #size-cells =3D <0>;
-
-These need to be listed above.
-
-> +              compatible =3D "fsl,imx8mq-nwl-dsi";
-> +              reg =3D <0x30A00000 0x300>;
-> +              clocks =3D <&clk 163>, <&clk 244>, <&clk 245>, <&clk 164>;
-> +              clock-names =3D "core", "rx_esc", "tx_esc", "phy_ref";
-> +              interrupts =3D <0 34 4>;
-> +              mux-controls =3D <&mux 0>;
-> +              power-domains =3D <&pgc_mipi>;
-> +              resets =3D <&src 0>, <&src 1>, <&src 2>, <&src 3>;
-> +              reset-names =3D "byte", "dpi", "esc", "pclk";
-> +              phys =3D <&dphy>;
-> +              phy-names =3D "dphy";
+> +  # Example UART controller node that consumes clock generated by the clock controller:
+> +  - |
+> +    uart0: serial@58018000 {
+> +         compatible = "snps,dw-apb-uart";
+> +         reg = <0x0 0x58018000 0x0 0x2000>;
+> +         clocks = <&clk 45>, <&clk 46>;
+> +         clock-names = "baudclk", "apb_pclk";
+> +         interrupts = <0 9 4>;
+> +         reg-shift = <2>;
+> +         reg-io-width = <4>;
+> +    };
 > +
-> +              panel@0 {
-> +                      compatible =3D "rocktech,jh057n00900";
-> +                      reg =3D <0>;
-> +                      port@0 {
-> +                           panel_in: endpoint {
-> +                                     remote-endpoint =3D <&mipi_dsi_out>=
-;
-> +                           };
-> +                      };
-> +              };
+> +...
+> diff --git a/include/dt-bindings/clock/bm1880-clock.h b/include/dt-bindings/clock/bm1880-clock.h
+> new file mode 100644
+> index 000000000000..b46732361b25
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/bm1880-clock.h
+> @@ -0,0 +1,82 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/*
+> + * Device Tree binding constants for Bitmain BM1880 SoC
+> + *
+> + * Copyright (c) 2019 Linaro Ltd.
+> + */
 > +
-> +              ports {
-> +                    #address-cells =3D <1>;
-> +                    #size-cells =3D <0>;
+> +#ifndef __DT_BINDINGS_CLOCK_BM1880_H
+> +#define __DT_BINDINGS_CLOCK_BM1880_H
 > +
-> +                    port@0 {
-> +                           reg =3D <0>;
-> +                           mipi_dsi_in: endpoint {
-> +                                        remote-endpoint =3D <&lcdif_mipi=
-_dsi>;
-> +                           };
-> +                    };
-> +                    port@1 {
-> +                           reg =3D <1>;
-> +                           mipi_dsi_out: endpoint {
-> +                                         remote-endpoint =3D <&panel_in>=
-;
-> +                           };
-> +                    };
-> +              };
-> +      };
+> +#define BM1880_CLK_OSC                 0
+> +#define BM1880_CLK_MPLL                        1
+> +#define BM1880_CLK_SPLL                        2
+> +#define BM1880_CLK_FPLL                        3
+> +#define BM1880_CLK_DDRPLL              4
+> +#define BM1880_CLK_A53                 5
+> +#define BM1880_CLK_50M_A53             6
+> +#define BM1880_CLK_AHB_ROM             7
+> +#define BM1880_CLK_AXI_SRAM            8
+> +#define BM1880_CLK_DDR_AXI             9
+> +#define BM1880_CLK_EFUSE               10
+> +#define BM1880_CLK_APB_EFUSE           11
+> +#define BM1880_CLK_AXI5_EMMC           12
+> +#define BM1880_CLK_EMMC                        13
+> +#define BM1880_CLK_100K_EMMC           14
+> +#define BM1880_CLK_AXI5_SD             15
+> +#define BM1880_CLK_SD                  16
+> +#define BM1880_CLK_100K_SD             17
+> +#define BM1880_CLK_500M_ETH0           18
+> +#define BM1880_CLK_AXI4_ETH0           19
+> +#define BM1880_CLK_500M_ETH1           20
+> +#define BM1880_CLK_AXI4_ETH1           21
+> +#define BM1880_CLK_AXI1_GDMA           22
+> +#define BM1880_CLK_APB_GPIO            23
+> +#define BM1880_CLK_APB_GPIO_INTR       24
+> +#define BM1880_CLK_GPIO_DB             25
+> +#define BM1880_CLK_AXI1_MINER          26
+> +#define BM1880_CLK_AHB_SF              27
+> +#define BM1880_CLK_SDMA_AXI            28
+> +#define BM1880_CLK_SDMA_AUD            29
+> +#define BM1880_CLK_APB_I2C             30
+> +#define BM1880_CLK_APB_WDT             31
+> +#define BM1880_CLK_APB_JPEG            32
+> +#define BM1880_CLK_JPEG_AXI            33
+> +#define BM1880_CLK_AXI5_NF             34
+> +#define BM1880_CLK_APB_NF              35
+> +#define BM1880_CLK_NF                  36
+> +#define BM1880_CLK_APB_PWM             37
+> +#define BM1880_CLK_DIV_0_RV            38
+> +#define BM1880_CLK_DIV_1_RV            39
+> +#define BM1880_CLK_MUX_RV              40
+> +#define BM1880_CLK_RV                  41
+> +#define BM1880_CLK_APB_SPI             42
+> +#define BM1880_CLK_TPU_AXI             43
+> +#define BM1880_CLK_DIV_UART_500M       44
+> +#define BM1880_CLK_UART_500M           45
+> +#define BM1880_CLK_APB_UART            46
+> +#define BM1880_CLK_APB_I2S             47
+> +#define BM1880_CLK_AXI4_USB            48
+> +#define BM1880_CLK_APB_USB             49
+> +#define BM1880_CLK_125M_USB            50
+> +#define BM1880_CLK_33K_USB             51
+> +#define BM1880_CLK_DIV_12M_USB         52
+> +#define BM1880_CLK_12M_USB             53
+> +#define BM1880_CLK_APB_VIDEO           54
+> +#define BM1880_CLK_VIDEO_AXI           55
+> +#define BM1880_CLK_VPP_AXI             56
+> +#define BM1880_CLK_APB_VPP             57
+> +#define BM1880_CLK_DIV_0_AXI1          58
+> +#define BM1880_CLK_DIV_1_AXI1          59
+> +#define BM1880_CLK_AXI1                        60
+> +#define BM1880_CLK_AXI2                        61
+> +#define BM1880_CLK_AXI3                        62
+> +#define BM1880_CLK_AXI4                        63
+> +#define BM1880_CLK_AXI5                        64
+> +#define BM1880_CLK_DIV_0_AXI6          65
+> +#define BM1880_CLK_DIV_1_AXI6          66
+> +#define BM1880_CLK_MUX_AXI6            67
+> +#define BM1880_CLK_AXI6                        68
+> +#define BM1880_NR_CLKS                 69
+> +
+> +#endif /* __DT_BINDINGS_CLOCK_BM1880_H */
 > --
-> 2.20.1
+> 2.17.1
 >
