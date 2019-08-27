@@ -2,83 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C6299F5BA
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 23:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FFF49F5DB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 00:14:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbfH0V7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 17:59:14 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:41509 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725835AbfH0V7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 17:59:13 -0400
-Received: by mail-pl1-f195.google.com with SMTP id m9so193580pls.8
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 14:59:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=TdYOcDy5jsMWziyheC0sLWKkoIn520mmauZjzHRKXw0=;
-        b=fqX7HAuzT5KuFfsn8d+HExjzxkOeMp9ciR59skQfXichfF0DxduVaNwQa72F8i2JRJ
-         RcqtQKXAMQAjfhy1CJChhtF3Sv538PUx6V+L2FZJ/YtfvFAsJYwh2hca4OiQtCwBo9OU
-         VwkmnGUC9flIc+hJlh+bpiWQN35phBb0UYpHysFLpKvvDRLPvxMvJ4WUB5kl579mWgYs
-         bAQindBZCEfngbh3o6ERCSUnxUSw2SpKuPE4eKM1o1jcYpeviPzHreexlsNAf4KHD2cN
-         pDTAB49gxvQx3+ZQK9tVGn5gGVTDK2oG3ZS1sD4ab4bIaRI8r81jBAQbtua9fkMRiijQ
-         63CA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=TdYOcDy5jsMWziyheC0sLWKkoIn520mmauZjzHRKXw0=;
-        b=G32bg/rYOfhLm22RWBJn3ZLHjzgoTO8WMUUGipQBH+XP7MT8TVhvAKa34IqCt+p8pQ
-         grQMYw9xwegZFK0dq1O5fhjynN78+l2YyAE5bT2oDV7sfmFh2FKW8BMbohEpUJX26avR
-         OGZmqITPgcB6GyujKBkreUi1sE4KawZKOtQGJmpW7HaBMadmRJk9DHmZJKn1Yc53INVF
-         N832UQ6M+qGfs9uaXX+kT2GPpWcwsjyhAecxBy1LTrs2gp2BYTg1QmxospSaI/BsGGM1
-         soEkggQPuz9qX2V3S8vIEwy/q6U8akOlAi0Uhj6D7to7FpeEiiTM7hvM7T8d900lBAYg
-         epgA==
-X-Gm-Message-State: APjAAAX5hHsOrDMv1DHD0G3dFgh+lkdkR/3eRbjrBrUkB79L36IYbhtY
-        8KPJI5NgNDsx0nDn8Zm3EoHy5QKMHIw=
-X-Google-Smtp-Source: APXvYqws8hfOSYTfuqQpuIYlzKB7o2Sp5rFJ3VOL35Gaol7mqdAOiWBTbpZz0mLm3qMRR7/MJdUF5g==
-X-Received: by 2002:a17:902:9b86:: with SMTP id y6mr1087338plp.217.1566943152953;
-        Tue, 27 Aug 2019 14:59:12 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:cc35:e750:308e:47f])
-        by smtp.gmail.com with ESMTPSA id e17sm175950pjt.6.2019.08.27.14.59.12
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 27 Aug 2019 14:59:12 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: Re: [RESEND PATCH v2 00/14] arm64: dts: meson: fixes following YAML bindings schemas conversion
-In-Reply-To: <20190823070248.25832-1-narmstrong@baylibre.com>
-References: <20190823070248.25832-1-narmstrong@baylibre.com>
-Date:   Tue, 27 Aug 2019 14:59:11 -0700
-Message-ID: <7htva2uv68.fsf@baylibre.com>
+        id S1725976AbfH0WOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 18:14:31 -0400
+Received: from emh06.mail.saunalahti.fi ([62.142.5.116]:41022 "EHLO
+        emh06.mail.saunalahti.fi" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725835AbfH0WOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 18:14:31 -0400
+X-Greylist: delayed 561 seconds by postgrey-1.27 at vger.kernel.org; Tue, 27 Aug 2019 18:14:30 EDT
+Received: from darkstar.musicnaut.iki.fi (85-76-76-175-nat.elisa-mobile.fi [85.76.76.175])
+        by emh06.mail.saunalahti.fi (Postfix) with ESMTP id 4A0923001A;
+        Wed, 28 Aug 2019 01:05:07 +0300 (EEST)
+Date:   Wed, 28 Aug 2019 01:05:07 +0300
+From:   Aaro Koskinen <aaro.koskinen@iki.fi>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
+        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
+        maz@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.co, devicetree@vger.kernel.org
+Subject: Re: [PATCH 02/13] MIPS: Loongson64: Sepreate loongson2ef/loongson64
+ code
+Message-ID: <20190827220506.GK30291@darkstar.musicnaut.iki.fi>
+References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+ <20190827085302.5197-3-jiaxun.yang@flygoat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190827085302.5197-3-jiaxun.yang@flygoat.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
+Hi,
 
-> This is the first set of DT fixes following the first YAML bindings conversion
-> at [1], [2] and [3].
->
-> After this set of fixes, the remaining errors are :
-> meson-axg-s400.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
-> meson-g12a-sei510.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
-> meson-g12b-odroid-n2.dt.yaml: usb-hub: gpios:0:0: 20 is not valid under any of the given schemas
-> meson-g12b-odroid-n2.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
-> meson-g12a-x96-max.dt.yaml: sound: 'clocks' is a dependency of 'assigned-clocks'
->
-> These are only cosmetic changes, and should not break drivers implementation
-> following the bindings.
+On Tue, Aug 27, 2019 at 04:52:51PM +0800, Jiaxun Yang wrote:
+> As later model of GSx64 family processors including 2-series-soc have
+> similar design with initial loongson3a while loongson2e/f seems less
+> identical, we seprate loongson2e/f support code out of mach-loongson64
+                ^^^^^^^
 
-Queued for v5.4,
+separate (typo in patch title as well)
 
-Thanks,
+> to make our life easier.
+> 
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 
-Kevin
+[...]
+
+> +config MACH_LOONGSON2EF
+
+You need to update lemote2f_defconfig with his patch.
+
+A.
