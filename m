@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A58409F634
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 00:33:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EC559F63B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 00:34:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726078AbfH0Wcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 18:32:55 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:43238 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726025AbfH0Wcz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 18:32:55 -0400
-Received: by mail-ot1-f65.google.com with SMTP id e12so762450otp.10;
-        Tue, 27 Aug 2019 15:32:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bG9bAPsPgtk0aXT02g27VLf1Saty2/UhvB2P1PQFez4=;
-        b=lFh0XojkxV22fnbW+8yeuTFoncb0V58PwmV6D1R0gHbEE8Fnl/sk3qJJbNsDFEem9S
-         IJgRLxQQenYX8WZAaUxPsCZHrsog3v12vAM+W6kzbyYl7/SRL6K4byR2nc0wa4AeBQsa
-         3+4DI+hppspWCQljpfstzZROzPbfC45xcc06SdhrATNNYp7cY5h7lVpXPWltFmHVX/0x
-         LCpyitPHpzTv1Zhk8bNEZINSOoNKRYT0FDW3A7a68cM+WSRFzCBRSbel8WrVkrXtejPj
-         +ARLIqx4jVTYuTfKRaeo5uL6cpwyKsp3tr3thFyLP2hmyZkg9DpoWHtWZT5yaGQe2AiY
-         Xzig==
-X-Gm-Message-State: APjAAAUHLRa46OaVpnGKiPC+BaXrntNieNfbix5rma9DDcQd4sfoUbRq
-        oW+qTEbiMXpYqTz3eXxSZUgLgo+FRw==
-X-Google-Smtp-Source: APXvYqxrYCEbW6Lei7IWDJP4LIXpA5Q0iwBYIAzLRZXOMhYN8gHCCf8NUNNEpuif/S+KC2JZ8UZZfg==
-X-Received: by 2002:a9d:6e93:: with SMTP id a19mr819140otr.29.1566945174143;
-        Tue, 27 Aug 2019 15:32:54 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e27sm186531oig.53.2019.08.27.15.32.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Aug 2019 15:32:53 -0700 (PDT)
-Date:   Tue, 27 Aug 2019 17:32:52 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maulik Shah <mkshah@codeaurora.org>
-Cc:     swboyd@chromium.org, agross@kernel.org, david.brown@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, dianders@chromium.org, rnayak@codeaurora.org,
-        ilina@codeaurora.org, lsrao@codeaurora.org, ulf.hansson@linaro.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] dt-bindings: soc: qcom: Add RSC power domain
- specifier
-Message-ID: <20190827223252.GA26039@bogus>
-References: <20190823081703.17325-1-mkshah@codeaurora.org>
- <20190823081703.17325-4-mkshah@codeaurora.org>
+        id S1725997AbfH0Web (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 18:34:31 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38818 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725989AbfH0Web (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 18:34:31 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7RMYSxw104756;
+        Tue, 27 Aug 2019 17:34:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1566945268;
+        bh=iGbHiDwfaJ1ToRRU2etB2TGPOpwBvqEOF0vVDGEktEA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=alUjGY/VxbEymQg7HDaejV+Y66LsmeHipYYYenx6/Pa/mrCsqrFHJdv5NwxQjgRJg
+         QDS791obgwVgrOW5J3k/EErytxMQwRytJHlWLxmf4GFlXJWw/iH8dVEBrm6FQuUv2R
+         hkKurygFfMxsPfPK5QfHSmB9AjEoBm8L6DSLrj6w=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7RMYSXL092892
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 27 Aug 2019 17:34:28 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 27
+ Aug 2019 17:34:28 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 27 Aug 2019 17:34:28 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7RMYSTL125727;
+        Tue, 27 Aug 2019 17:34:28 -0500
+Subject: Re: [PATCH 0/2] Add HwSpinlock nodes for TI K3 SoCs
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190722190539.27816-1-s-anna@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <715d61be-c881-cde8-38f0-451637767909@ti.com>
+Date:   Tue, 27 Aug 2019 17:34:28 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190823081703.17325-4-mkshah@codeaurora.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190722190539.27816-1-s-anna@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 23, 2019 at 01:47:00PM +0530, Maulik Shah wrote:
-> In addition to transmitting resource state requests to the remote
-> processor, the RSC is responsible for powering off/lowering the
-> requirements from CPUs subsystem for the associated hardware like
-> buses, clocks, and regulators when all CPUs and cluster is powered down.
-> 
-> The power domain is configured to a low power state and when all the
-> CPUs are powered down, the RSC can lower resource state requirements
-> and power down the rails that power the CPUs.
-> 
-> Add PM domain specifier property for RSC controller.
-> 
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-> ---
->  Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
-> index 9b86d1eff219..d0ab6e9b6745 100644
-> --- a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
-> +++ b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
-> @@ -83,6 +83,13 @@ Properties:
->  	Value type: <string>
->  	Definition: Name for the RSC. The name would be used in trace logs.
->  
-> +- #power-domain-cells:
-> +	Usage: optional
-> +	Value type: <u32>
-> +	Definition: Number of cells in power domain specifier. Optional for
-> +		    controllers that may be in 'solver' state where they can
-> +		    be in autonomous mode executing low power modes.
+Hi Tero,
 
-What's the value? It's always 0?
-
-> +
->  Drivers that want to use the RSC to communicate with RPMH must specify their
->  bindings as child nodes of the RSC controllers they wish to communicate with.
->  
-> @@ -112,6 +119,7 @@ TCS-OFFSET: 0xD00
->  				  <SLEEP_TCS   3>,
->  				  <WAKE_TCS    3>,
->  				  <CONTROL_TCS 1>;
-> +		#power-domain-cells = <0>;
->  	};
->  
->  Example 2:
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by The Linux Foundation.
+On 7/22/19 2:05 PM, Suman Anna wrote:
+> Hi Tero,
 > 
+> The following series adds the HwSpinlock DT nodes for the
+> TI K3 AM65x and J721E SoC families. Patches are based on
+> v5.3-rc1.
+
+I am not sure if you have already staged these, but if haven't,
+can you please pick these and the mailbox nodes for 5.4 merge window?
+
+Thanks,
+Suman
+
+> 
+> The bindings and driver support for the same have been
+> merged in v5.3-rc1.
+> 
+> regards
+> Suman
+> 
+> Suman Anna (2):
+>   arm64: dts: ti: k3-am65-main: Add hwspinlock node
+>   arm64: dts: ti: k3-j721e-main: Add hwspinlock node
+> 
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 6 ++++++
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 6 ++++++
+>  2 files changed, 12 insertions(+)
+> 
+
