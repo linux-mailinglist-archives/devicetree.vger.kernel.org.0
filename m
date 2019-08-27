@@ -2,46 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCBDF9E771
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:14:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31B0A9E77F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729353AbfH0MOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 08:14:22 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:42765 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727864AbfH0MOW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 08:14:22 -0400
-Received: by mail-pg1-f196.google.com with SMTP id p3so12582151pgb.9
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 05:14:21 -0700 (PDT)
+        id S1729770AbfH0MOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 08:14:45 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:43896 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729765AbfH0MOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 08:14:45 -0400
+Received: by mail-pf1-f193.google.com with SMTP id v12so14008352pfn.10
+        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 05:14:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=4wcazYDkpL0duARs99jL9aMnOJv1Px99rhHjbxqeKAs=;
-        b=cIgfNMS9Y89X0ZTePhVRGhyzjprNxkg12d7CxOIay09vvWQ7pVobVStnxSO26gJvk1
-         S/MIaLSZTP/FjdrAvjSMT/AoNgVnfKrpnivkArmqpkkQHyNW8K60XuBDXLQCZBJO9Swd
-         9UApfN32eAlqF7F6IeEJeJ4e6X83cl82o7L93atoHWeyrSFIFn/3EWi+ZFAjHW2a93Xs
-         3TTRv0kz8QSOr/TKs9TEIl9KIZ4Y/2FS5HX+DVwbL96YoErvDA/9xS1QEu5jcFvDkMII
-         Ow2mykWpg05txO9FQ/potL4EJanVMLc9b9ACki9YjX0dqUHfitZM+n65CPiNfJ4KFqNt
-         VymA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :in-reply-to:references;
+        bh=pptHIxhK3eUIONZUZXLRgUgraNH7ZHKiRKOOZXId9Og=;
+        b=Yt68EfZ2pCFv6y3gNY6s3zwZ4WSXntxsFOa47DjhNzOsV1J5zO/oWMXCCM4ziZopTz
+         bc59P5UcoHPyCzi8fpT3YV0x8Y8a9xopYAIppMf0Ei5huVhnE/riO5bgNckL3Lc/tu2E
+         ibzWAufe7k3bLbA3nFAaz6IiNjcoh1dSxIr1vja5R5iKFcCSEVke98SjyUfm4yQmHgsL
+         fW34Jl0um+NvWqv2+ew8nSypw3pPLE70fQXXZEuaKLWxhzYUoaei9XyypBgJ89dre9CI
+         qO3nXzc/NqrNtjkAHCVo2hp3/8mQokN+UyXXdqAJCEf8u8epkU2/7YYUTaOcAtwCW2sF
+         NIUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=4wcazYDkpL0duARs99jL9aMnOJv1Px99rhHjbxqeKAs=;
-        b=IdE/9DFL1idtem01We/W2H+ixsjgEqY7MgggVaQMb0B9lKPAwMNiXH/1iDmDqyQeiR
-         hHVUxsJTXAPZm25ZL1d4lRYjVJ+BK1TzUrYIESnWHgfatBv4xQq2dnkTSiGCN4G53/6o
-         ZYXTRYmHkD1w6Nad9nRFXZaKjI4Nz+DVQ538Jpnnhd32yatD9NI+OxycAvaD+9IzKtOK
-         dPINJcLpjh5PA+m7HYJKxheS/6PqkjWSHmkO7zaB4e5pSIYDzd6IbmJi0i0B0aSLbBUs
-         BPUasL/rzZd5DgqlxhNrXcR8XuVFNlF3k/tmHn99SW3Xc4gCah51oxfxIQycfm/zPZ9W
-         4wIQ==
-X-Gm-Message-State: APjAAAVGHJ5m/zJQ6BTg0IpttA2au8bIK9/FznOhrZ0mLCTaf0oQ5iVJ
-        oKbgHACr+58aEExs6FsS6QXGsQ==
-X-Google-Smtp-Source: APXvYqySuJMvr50yVLa9Q+m8dsjJ0euzRJ/Qgw6e9jts/v+QxNAsjYeS/M3MgQw692ynNmbMHDFf7Q==
-X-Received: by 2002:a17:90a:a00b:: with SMTP id q11mr2396118pjp.91.1566908061427;
-        Tue, 27 Aug 2019 05:14:21 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:in-reply-to:references;
+        bh=pptHIxhK3eUIONZUZXLRgUgraNH7ZHKiRKOOZXId9Og=;
+        b=qhZ+s5Un6TBRc+VRX61a/HVW0dYF/e/rbf6jusoZVzDzLootYd/85zcPLKQVp6CPzB
+         MtQ5/phKD7Dmz5EvxP8iXabWtRunBz+BZr3Mo9lV4ROpUUaqbAeHBdO2nTFjY0VAD7jV
+         Cx4AMvYOyW4yjWG5tfT5OjOOEb7G7xL9MgBcMpKVyRHFA85E8aR5SM5/vLWz2oI2MIzj
+         7HgwSZ/oW4cnQW1MlJbpcPCfyQs6JU9HtJFrJGojz202IAY/3aBDeYZXaqmTtm2kRyWP
+         0jLoDRhXixoQLSQpV4wGjOyqNlygCjoma5L4f2ycG10sh37ykDHqvE5w/fAFiruzUR+s
+         uHGA==
+X-Gm-Message-State: APjAAAVrGqO7+L/pI1jPoQHezL+jWN5pkYf/RqpgLbScJ0hlsbRFkdjh
+        IJpSV7PJ5PdbKNsGyS4XV2RzVw==
+X-Google-Smtp-Source: APXvYqwqFs89Mvx84AcWAVFxVj9NOaNbeWi9cVrFQYua1OYgL8Er/3O3Nn0U/M+BXMH8RumzRgrbgA==
+X-Received: by 2002:a17:90a:2ec3:: with SMTP id h3mr5833943pjs.121.1566908084300;
+        Tue, 27 Aug 2019 05:14:44 -0700 (PDT)
 Received: from localhost ([49.248.54.193])
-        by smtp.gmail.com with ESMTPSA id d3sm3148595pjz.31.2019.08.27.05.14.20
+        by smtp.gmail.com with ESMTPSA id g10sm25108702pfb.95.2019.08.27.05.14.42
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 27 Aug 2019 05:14:20 -0700 (PDT)
+        Tue, 27 Aug 2019 05:14:43 -0700 (PDT)
 From:   Amit Kucheria <amit.kucheria@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         bjorn.andersson@linaro.org, edubezval@gmail.com, agross@kernel.org,
@@ -50,66 +52,130 @@ To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Zhang Rui <rui.zhang@intel.com>
-Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: [PATCH v2 00/15] thermal: qcom: tsens: Add interrupt support
-Date:   Tue, 27 Aug 2019 17:43:56 +0530
-Message-Id: <cover.1566907161.git.amit.kucheria@linaro.org>
+Cc:     devicetree@vger.kernel.org
+Subject: [PATCH v2 05/15] arm: dts: msm8974: thermal: Add thermal zones for each sensor
+Date:   Tue, 27 Aug 2019 17:44:01 +0530
+Message-Id: <5b26d4410b50387fcacae939d97f9f75853e69ea.1566907161.git.amit.kucheria@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <cover.1566907161.git.amit.kucheria@linaro.org>
+References: <cover.1566907161.git.amit.kucheria@linaro.org>
+In-Reply-To: <cover.1566907161.git.amit.kucheria@linaro.org>
+References: <cover.1566907161.git.amit.kucheria@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Changes since v1:
-- Collected reviews and acks
-- Addressed Stephen's review comments (hopefully I got them all).
-- Completely removed critical interrupt infrastructure from this series.
-  Will post that separately.
-- Fixed a bug in sign-extension of temperature.
-- Fixed DT bindings to use the name of the interrupt e.g. "uplow" and use
-  platform_get_irq_byname().
+msm8974 has 11 sensors connected to a single TSENS IP. Define a thermal
+zone for each of those sensors to expose the temperature of each zone.
 
-Add interrupt support to TSENS. The first 6 patches are general fixes and
-cleanups to the driver before interrupt support is introduced.
+Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+Tested-by: Brian Masney <masneyb@onstation.org>
+---
+ arch/arm/boot/dts/qcom-msm8974.dtsi | 90 +++++++++++++++++++++++++++++
+ 1 file changed, 90 insertions(+)
 
-This series has been developed against qcs404 and sdm845 and then tested on
-msm8916 and msm8974 (Thanks Brian). Testing on msm8998 would be appreciated since I don't
-have hardware handy.
-
-Amit Kucheria (15):
-  drivers: thermal: tsens: Get rid of id field in tsens_sensor
-  drivers: thermal: tsens: Simplify code flow in tsens_probe
-  drivers: thermal: tsens: Add __func__ identifier to debug statements
-  drivers: thermal: tsens: Add debugfs support
-  arm: dts: msm8974: thermal: Add thermal zones for each sensor
-  arm64: dts: msm8916: thermal: Fixup HW ids for cpu sensors
-  dt: thermal: tsens: Document interrupt support in tsens driver
-  arm64: dts: sdm845: thermal: Add interrupt support
-  arm64: dts: msm8996: thermal: Add interrupt support
-  arm64: dts: msm8998: thermal: Add interrupt support
-  arm64: dts: qcs404: thermal: Add interrupt support
-  arm: dts: msm8974: thermal: Add interrupt support
-  arm64: dts: msm8916: thermal: Add interrupt support
-  drivers: thermal: tsens: Create function to return sign-extended
-    temperature
-  drivers: thermal: tsens: Add interrupt support
-
- .../bindings/thermal/qcom-tsens.txt           |   8 +
- arch/arm/boot/dts/qcom-msm8974.dtsi           | 108 +++-
- arch/arm64/boot/dts/qcom/msm8916.dtsi         |  26 +-
- arch/arm64/boot/dts/qcom/msm8996.dtsi         |  60 +-
- arch/arm64/boot/dts/qcom/msm8998.dtsi         |  82 +--
- arch/arm64/boot/dts/qcom/qcs404.dtsi          |  42 +-
- arch/arm64/boot/dts/qcom/sdm845.dtsi          |  88 +--
- drivers/thermal/qcom/tsens-8960.c             |   4 +-
- drivers/thermal/qcom/tsens-common.c           | 528 ++++++++++++++++--
- drivers/thermal/qcom/tsens-v0_1.c             |  11 +
- drivers/thermal/qcom/tsens-v1.c               |  29 +
- drivers/thermal/qcom/tsens-v2.c               |  13 +
- drivers/thermal/qcom/tsens.c                  |  59 +-
- drivers/thermal/qcom/tsens.h                  | 288 ++++++++--
- 14 files changed, 1089 insertions(+), 257 deletions(-)
-
+diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-msm8974.dtsi
+index 369e58f64145d..d32f639505f1b 100644
+--- a/arch/arm/boot/dts/qcom-msm8974.dtsi
++++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+@@ -217,6 +217,96 @@
+ 				};
+ 			};
+ 		};
++
++		q6-dsp-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++
++			thermal-sensors = <&tsens 1>;
++
++			trips {
++				q6_dsp_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++			};
++		};
++
++		modemtx-thermal {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++
++			thermal-sensors = <&tsens 2>;
++
++			trips {
++				modemtx_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++			};
++		};
++
++		video-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <1000>;
++
++			thermal-sensors = <&tsens 3>;
++
++			trips {
++				video_alert0: trip-point0 {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++			};
++		};
++
++		wlan-thermal {
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
++
++			thermal-sensors = <&tsens 4>;
++
++			trips {
++				wlan_alert0: trip-point0 {
++					temperature = <105000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++			};
++		};
++
++		gpu-thermal-top {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++
++			thermal-sensors = <&tsens 9>;
++
++			trips {
++				gpu1_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++			};
++		};
++
++		gpu-thermal-bottom {
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++
++			thermal-sensors = <&tsens 10>;
++
++			trips {
++				gpu2_alert0: trip-point0 {
++					temperature = <90000>;
++					hysteresis = <2000>;
++					type = "hot";
++				};
++			};
++		};
+ 	};
+ 
+ 	cpu-pmu {
 -- 
 2.17.1
 
