@@ -2,128 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9270C9E7BD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:20:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 370F49E7C9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727864AbfH0MUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 08:20:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43644 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726170AbfH0MUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 08:20:35 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E7816206BF;
-        Tue, 27 Aug 2019 12:20:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566908434;
-        bh=10BPMi7ogBKEVUWUCp+OlUh6tWIYmElWTtO/pbCLCfE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hiSjrNzN9O29H/jZozkaXJ1RY7B2iPUnmPqzXqXAfbEHqvCNs2qwYPYjz+fe0bIVP
-         3OWIUxGwCDw0ICc9roj00pPsDU+tYy6PMcG/TCSw0YwM5ErWb8psm8Fm/gJJGcB7wT
-         Gdyvjxn2TXOQ9wvf0rvh4w1k9UfLYSxEan4/ebTw=
-Received: by mail-qt1-f176.google.com with SMTP id q64so9348813qtd.5;
-        Tue, 27 Aug 2019 05:20:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAXzNhZ+egjyhcIPGnxugc26lJPigKtAR8jh6r9xYli+sf86xObF
-        5Rsx9eMA9EiXMdbzNfqEUK8f8qMr+nFyvoQexQ==
-X-Google-Smtp-Source: APXvYqwMqxGiTa7rYYydtko9BqUul5ihk660b1Rd0cPJHim/fp9+Uq5BxXYH75v80lYawW9Ve2rEL384NDhcnbTwKFM=
-X-Received: by 2002:a05:6214:10e1:: with SMTP id q1mr19735401qvt.148.1566908433096;
- Tue, 27 Aug 2019 05:20:33 -0700 (PDT)
+        id S1729166AbfH0MVg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 08:21:36 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:44946 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726125AbfH0MVg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 08:21:36 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 128522F0;
+        Tue, 27 Aug 2019 14:21:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1566908493;
+        bh=pO1EML76MfiPMY/J+dY6Y8D9KGKV9qWwuuVymaiBWl0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pjTOrlTKIfphqT+UvllbboS8TIV4h5otoklh+uDNT74yhkcieYuzb6E6MSebNmcbw
+         14mOwcTkYYECA7pBeQ3laojP71MWOFfYoSE47mgVO0sSw6/lxCrtVUqpqTsrU3p9oX
+         /25/Pa81GALgGjgyOb1doloURMi5Q0JcDRTHMrKo=
+Date:   Tue, 27 Aug 2019 15:21:26 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>, tfiga@google.com,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 01/10] media: dt-bindings: Document 'location' property
+Message-ID: <20190827122126.GQ5054@pendragon.ideasonboard.com>
+References: <20190827092339.8858-1-jacopo@jmondi.org>
+ <20190827092339.8858-2-jacopo@jmondi.org>
 MIME-Version: 1.0
-References: <20190822233759.12663-1-srinivas.kandagatla@linaro.org> <20190822233759.12663-4-srinivas.kandagatla@linaro.org>
-In-Reply-To: <20190822233759.12663-4-srinivas.kandagatla@linaro.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Aug 2019 07:20:21 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLjgOy3TKrpuNYYkRxy-Ln+3FOoKVE9KweS0ycTxriWMQ@mail.gmail.com>
-Message-ID: <CAL_JsqLjgOy3TKrpuNYYkRxy-Ln+3FOoKVE9KweS0ycTxriWMQ@mail.gmail.com>
-Subject: Re: [RESEND PATCH v4 3/4] dt-bindings: ASoC: Add WSA881x bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Mark Brown <broonie@kernel.org>, Vinod <vkoul@kernel.org>,
-        spapothi@codeaurora.org, Banajit Goswami <bgoswami@codeaurora.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190827092339.8858-2-jacopo@jmondi.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 6:38 PM Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
->
-> This patch adds bindings for WSA8810/WSA8815 Class-D Smart Speaker
-> Amplifier. This Amplifier also has a simple thermal sensor for
-> over temperature and speaker protection.
->
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi Jacopo,
+
+Thank you for the patch.
+
+On Tue, Aug 27, 2019 at 11:23:27AM +0200, Jacopo Mondi wrote:
+> Add the 'location' device property, used to specify the camera device
+> mounting position. The property is particularly meaningful for mobile
+> devices with a well defined usage orientation.
+> 
+> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 > ---
->  .../bindings/sound/qcom,wsa881x.yaml          | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
->
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
-> new file mode 100644
-> index 000000000000..ad718d75c660
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/qcom,wsa881x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bindings for Qualcomm WSA8810/WSA8815 Class-D Smart Speaker Amplifier
-> +
-> +maintainers:
-> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +
-> +allOf:
-> +  - $ref: "soundwire-controller.yaml#"
+>  .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> index f884ada0bffc..865f4142f432 100644
+> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> @@ -89,6 +89,16 @@ Optional properties
+>    but a number of degrees counter clockwise. Typical values are 0 and 180
+>    (upside down).
+> 
+> +- location: The camera sensor mounting location, expressed as a position
+> +  relative to the usage orientation of the device the sensor is installed on.
 
-This is not the controller, so this should not be included here. You
-should get lots of warnings from doing so. You did run 'make
-dt_binding_check', right?
+DT bindings being ABIs, we need to be precise and thorough there. One
+particular point that bothers me is that the property is named location,
+and its description refers to camera sensor mounting location. 
 
-> +
-> +properties:
-> +  compatible:
-> +    const: sdw10217201000
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  pd-gpios:
+I see two options to fix this. One of them is to rename the property to
+camera-location, but that would limit its future usage for other types
+of devices. The other one is to document the property as applying to a
+"device" instead of a "camera sensor", and add one sentence stating that
+this property is valid for camera sensors only.
 
-powerdown-gpios is the standard name.
+This will require finding another name for the device that the device is
+mounted on though, as using device twice would be very confusing.
 
-> +    description: GPIO spec for Powerdown/Shutdown line to use
-> +    maxItems: 1
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - pd-gpios
-> +  - #thermal-sensor-cells
-> +
-> +examples:
-> +  - |
-> +    efuse@1c23800 {
-> +        compatible = "allwinner,sun4i-a10-sid";
+> +  Possible values are:
+> +  0 - Front. The image sensor is mounted on the front facing side of the device.
+> +  For mobile devices such as smartphones, tablets and laptops the front side is
+> +  the user facing side of the device.
+> +  1 - Back. The image sensor is mounted on the back side of the device, which is
+> +  defined as the opposite side of the front facing one.
+> +  2 - External. The image sensor is connected to the device by extension cables,
+> +  and can be freely moved, regardless of the device position.
 
-Huh?
+It could be something else than cables (wireless possibly ?). I would
+phrase this along the lines of "The device is not attached directly to
+the [device], or is attached in a way that allows it to move to
+different locations."
 
-> +        reg = <0x01c23800 0x10>;
-> +        pd-gpios = <&wcdpinctrl 2 0>;
-> +        #thermal-sensor-cells = <0>;
-> +    };
-> +
-> +...
-> --
-> 2.21.0
->
+> 
+>  Optional endpoint properties
+>  ----------------------------
+
+-- 
+Regards,
+
+Laurent Pinchart
