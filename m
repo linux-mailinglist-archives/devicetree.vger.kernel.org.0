@@ -2,145 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 288679E8F3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:18:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D8A29E930
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 15:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730196AbfH0NSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 09:18:48 -0400
-Received: from mail-eopbgr60138.outbound.protection.outlook.com ([40.107.6.138]:29946
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730102AbfH0NSr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 09:18:47 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=en9WvhCnq11ONce879dipSXtL3BB/FgQDdHY8M52NA90KzVnGiethgRgdmHET6wSb5U1MP7JezvM/lln6Q5+D23oXH12VSbn0ncazgFcUtHZd1rn13tW1yhZ6lx85bHVsECPE0hh3QN2pOCSfgthk/r4iERtDlka6fz8C0S2k7dSEKI1DXF0BbeQCiIlXWhgo8IHmrioFO6t/sRVtq0M/997f5UBX9AaF1pO3ceIeD5U71QiM33/Pe31PpnThRi9WngqhBdiOyJO5NHkmHJs+mp1Ycqv+xZTXqs7LFQZuWJu3Pbz+irqltIUB0qCoRshID6nHS0Ro+IV4AupqzxCIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wJ64QS/8jVPjN2X3nlcHg/p/676cBfS4rbdraIY/t9s=;
- b=jnc8mDAEyH6Mr5NfEemMAxYdn5bmySanu0AhAVFz8LRrITcMSJIKpDiShUw8ybP3WtRN6ENGHGIcbG4smDU+BZP7Uxh7+IkrpHvOsu46Xc7szOJSX3omC0iLqkkhpnr4jdTZkyvBzgCIp2MwsGJO6y2BkrQwrfod4C35j44oxjooOIruJyvXmhm/WUKIvhi/EmdHMhFuusGST/HgaMT3GtNjXiC8/FHeL/uPhI2W8oZNZqcEVLy/aKnhL2vrdZAn4P8PodawrCeg/sMGOKtgveQmaW1ZKbTzE4p8O6yid6ppO8CTMEgJ2wCi8B53TqfhxU/Mp51XTNDW0crp7w4WPg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wJ64QS/8jVPjN2X3nlcHg/p/676cBfS4rbdraIY/t9s=;
- b=REfiLRhVzW7KB8zZENXQIGJQmjER4BcZQHxf41VFZk4kmPDR32lpDcyTRCHfo2wZNrhqmple/arZs67LbQMV6JfnIzeUVX0YC/YxC3KLk0TwRSS+5k4LLuO0N43JWKIp9pT7fzFfETvJvP8INx7lCiaxij1AI/0s5LaWBtizV3I=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3008.eurprd05.prod.outlook.com (10.172.255.143) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.21; Tue, 27 Aug 2019 13:18:42 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f59f:a307:9c53:63b9]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f59f:a307:9c53:63b9%6]) with mapi id 15.20.2199.021; Tue, 27 Aug 2019
- 13:18:42 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        "stefan @ agner . ch" <stefan@agner.ch>,
-        "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
-        Fabio Estevam <festevam@gmail.com>
-CC:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v5 13/13] ARM: dts: imx6ull-colibri: Add touchscreen used with
- Eval Board
-Thread-Topic: [PATCH v5 13/13] ARM: dts: imx6ull-colibri: Add touchscreen used
- with Eval Board
-Thread-Index: AQHVXNny2WCdTF6H40qV0xJg8ZiIRg==
-Date:   Tue, 27 Aug 2019 13:18:42 +0000
-Message-ID: <20190827131806.6816-14-philippe.schenker@toradex.com>
-References: <20190827131806.6816-1-philippe.schenker@toradex.com>
-In-Reply-To: <20190827131806.6816-1-philippe.schenker@toradex.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM0PR0102CA0031.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:14::44) To VI1PR0502MB3965.eurprd05.prod.outlook.com
- (2603:10a6:803:23::29)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.23.0
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: caaf72b4-e396-46a5-5bdb-08d72af114bc
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3008;
-x-ms-traffictypediagnostic: VI1PR0502MB3008:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB300840F0458A250417600290F4A00@VI1PR0502MB3008.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:530;
-x-forefront-prvs: 0142F22657
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(366004)(376002)(39850400004)(396003)(136003)(199004)(189003)(4326008)(256004)(36756003)(6512007)(14444005)(86362001)(5660300002)(25786009)(66446008)(64756008)(66476007)(66556008)(1076003)(478600001)(66066001)(316002)(110136005)(53936002)(71200400001)(54906003)(71190400001)(7416002)(8936002)(8676002)(52116002)(76176011)(6116002)(6486002)(50226002)(3846002)(2906002)(66946007)(99286004)(486006)(44832011)(2616005)(14454004)(305945005)(6506007)(386003)(186003)(7736002)(26005)(81156014)(81166006)(6436002)(476003)(11346002)(446003)(102836004)(32563001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3008;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Y72o342tkGJU8dODCIANwFg0I11s49wKLQw3vkcsGt8wXd/mziCJ0QF4KWn65CpICB+RN497dR6Ie5R2T8JM+l7eGV61CRcpK+1Qxrkl3r9lujCH4qGZ80Kf7ziLPGZJTt/RKANiy9Zer2wsLcdPnUhsV9+NbtlJOlLVySH4vaQn/7FQBwXpcajhMyLp09wLPM86yl1ykzCs6XFqoMKzQX2wXvNzYmm4f6I7VV6QTrjoHwDqSMh63LK9ACcei9qHliYE1VU9ijIbgC6BPNC2Hk87KIYkGZx2QP3Q87Sl6GdeaZuctQ8j/G7LRV1LhOBuyFMIl0Rl0NZOxSYV5UR4YjAdpfEW5f8G+tDM7Wn8i/XcxIbooejyPQM+3ZQiaP43s09sF4gK6PQsBQg7jkloJcKUZnGMjzmxQzT4klez1iU=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6625A000C6DDED4F94A0DF53AA4BE792@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1728653AbfH0NX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 09:23:59 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:46806 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725920AbfH0NX7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 09:23:59 -0400
+Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A4B1954B;
+        Tue, 27 Aug 2019 15:23:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1566912237;
+        bh=FUaS9CojkeuOZgYDZ4zgyKrXatWn2AF2y9v+hD/okX0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WslLQc83SxuPVIX3r4KHA/+ziTG6pNKXpUXDc71p9F6OM/A23Q9Jsour5umMO1oCB
+         fSuR0zAqfqYE8M7lVYJU1+l4+IKtTWLFQdXmbuH2km5i9SFikRHXkEoPwKrOvtmw0s
+         MJBsR4lZ2cFPZGwUanL6y2vDM7PYzhjOmsgOY3pE=
+Date:   Tue, 27 Aug 2019 16:23:51 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] drm: rcar-du: kms: Expand comment in vsps parsing
+ routine
+Message-ID: <20190827132351.GY5054@pendragon.ideasonboard.com>
+References: <20190825140135.12150-1-jacopo+renesas@jmondi.org>
+ <20190825140135.12150-3-jacopo+renesas@jmondi.org>
+ <20190825180603.GB5436@pendragon.ideasonboard.com>
+ <20190826072330.ymx52yr35tcaafrh@uno.localdomain>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: caaf72b4-e396-46a5-5bdb-08d72af114bc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Aug 2019 13:18:42.1806
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +847SBpbmid/6ntqvzNJ9sVbLjIjUczViTe6II0SSZXMC43nYGI1e7bKrOgeYkf6RdeZbo2HSRWp2HAzEENdky1tJUygijOIj1+Pk9Z//6E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3008
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190826072330.ymx52yr35tcaafrh@uno.localdomain>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VGhpcyBhZGRzIHRoZSBjb21tb24gdG91Y2hzY3JlZW4gdGhhdCBpcyB1c2VkIHdpdGggVG9yYWRl
-eCdzDQpFdmFsIEJvYXJkcy4NCkl0IGlzIGRpc2FibGVkIGJ5IGRlZmF1bHQgYmVjYXVzZSB0aGUg
-cGlucyBhcmUgYWxzbyB1c2VkIGZvciBQV00sDQp3aGljaCBpcyB0aGUgc3RhbmRhcmQgdXNlIGZv
-ciBjb2xpYnJpIGJvYXJkcy4NCg0KU2lnbmVkLW9mZi1ieTogUGhpbGlwcGUgU2NoZW5rZXIgPHBo
-aWxpcHBlLnNjaGVua2VyQHRvcmFkZXguY29tPg0KUmV2aWV3ZWQtYnk6IE9sZWtzYW5kciBTdXZv
-cm92IDxvbGVrc2FuZHIuc3V2b3JvdkB0b3JhZGV4LmNvbT4NCg0KTWFyY2VsIFppc3dpbGVyIDxt
-YXJjZWwuemlzd2lsZXJAdG9yYWRleC5jb20+DQpNYXggS3J1bW1lbmFjaGVyIDxtYXgua3J1bW1l
-bmFjaGVyQHRvcmFkZXguY29tPg0Kc3RlZmFuQGFnbmVyLmNoIDxzdGVmYW5AYWduZXIuY2g+DQpk
-ZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyA8ZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc+DQpS
-b2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPg0KU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJu
-ZWwub3JnPg0KTWFyayBSdXRsYW5kIDxtYXJrLnJ1dGxhbmRAYXJtLmNvbT4NCk1pY2hhbCBWb2vD
-ocSNIDxtaWNoYWwudm9rYWNAeXNvZnQuY29tPg0KRmFiaW8gRXN0ZXZhbSA8ZmVzdGV2YW1AZ21h
-aWwuY29tPg0KDQotLS0NCg0KQ2hhbmdlcyBpbiB2NToNCi0gQWRkZWQgbm90ZSB0byBjb21taXQg
-bWVzc2FnZSBhYm91dCBkaXNhYmxlZCBzdGF0dXMNCi0gQWRkIE9sZWsncyBSZXZpZXdlZC1ieQ0K
-DQpDaGFuZ2VzIGluIHY0OiBOb25lDQpDaGFuZ2VzIGluIHYzOiBOb25lDQpDaGFuZ2VzIGluIHYy
-Og0KLSBSZW1vdmVkIGYwNzEwYQ0KdGhhdCBpcyBkb3duc3RyZWFtIG9ubHkNCi0gQ2hhbmdlZCB0
-byBnZW5lcmljIG5vZGUgbmFtZQ0KLSBCZXR0ZXIgY29tbWVudA0KDQogLi4uL2FybS9ib290L2R0
-cy9pbXg2dWxsLWNvbGlicmktZXZhbC12My5kdHNpIHwgMjQgKysrKysrKysrKysrKysrKysrKw0K
-IDEgZmlsZSBjaGFuZ2VkLCAyNCBpbnNlcnRpb25zKCspDQoNCmRpZmYgLS1naXQgYS9hcmNoL2Fy
-bS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmktZXZhbC12My5kdHNpIGIvYXJjaC9hcm0vYm9vdC9k
-dHMvaW14NnVsbC1jb2xpYnJpLWV2YWwtdjMuZHRzaQ0KaW5kZXggYTc4ODQ5ZmQyYWZhLi40NThh
-NDA4NGU1M2MgMTAwNjQ0DQotLS0gYS9hcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmkt
-ZXZhbC12My5kdHNpDQorKysgYi9hcmNoL2FybS9ib290L2R0cy9pbXg2dWxsLWNvbGlicmktZXZh
-bC12My5kdHNpDQpAQCAtMTAwLDYgKzEwMCwyMSBAQA0KICZpMmMxIHsNCiAJc3RhdHVzID0gIm9r
-YXkiOw0KIA0KKwkvKg0KKwkgKiBUb3VjaHNjcmVlbiBpcyB1c2luZyBTT0RJTU0gMjgvMzAsIGFs
-c28gdXNlZCBmb3IgUFdNPEI+LCBQV008Qz4sDQorCSAqIGFrYSBwd20yLCBwd20zLiBzbyBpZiB5
-b3UgZW5hYmxlIHRvdWNoc2NyZWVuLCBkaXNhYmxlIHRoZSBwd21zDQorCSAqLw0KKwl0b3VjaHNj
-cmVlbkA0YSB7DQorCQljb21wYXRpYmxlID0gImF0bWVsLG1heHRvdWNoIjsNCisJCXBpbmN0cmwt
-bmFtZXMgPSAiZGVmYXVsdCI7DQorCQlwaW5jdHJsLTAgPSA8JnBpbmN0cmxfZ3Bpb3RvdWNoPjsN
-CisJCXJlZyA9IDwweDRhPjsNCisJCWludGVycnVwdC1wYXJlbnQgPSA8JmdwaW80PjsNCisJCWlu
-dGVycnVwdHMgPSA8MTYgSVJRX1RZUEVfRURHRV9GQUxMSU5HPjsJLyogU09ESU1NIDI4ICovDQor
-CQlyZXNldC1ncGlvcyA9IDwmZ3BpbzIgNSBHUElPX0FDVElWRV9ISUdIPjsJLyogU09ESU1NIDMw
-ICovDQorCQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KKwl9Ow0KKw0KIAkvKiBNNDFUME02IHJlYWwg
-dGltZSBjbG9jayBvbiBjYXJyaWVyIGJvYXJkICovDQogCW00MXQwbTY6IHJ0Y0A2OCB7DQogCQlj
-b21wYXRpYmxlID0gInN0LG00MXQwIjsNCkBAIC0xNzYsMyArMTkxLDEyIEBADQogCXNkLXVocy1z
-ZHIxMDQ7DQogCXN0YXR1cyA9ICJva2F5IjsNCiB9Ow0KKw0KKyZpb211eGMgew0KKwlwaW5jdHJs
-X2dwaW90b3VjaDogdG91Y2hncGlvcyB7DQorCQlmc2wscGlucyA9IDwNCisJCQlNWDZVTF9QQURf
-TkFORF9EUVNfX0dQSU80X0lPMTYJCTB4NzQNCisJCQlNWDZVTF9QQURfRU5FVDFfVFhfRU5fX0dQ
-SU8yX0lPMDUJMHgxNA0KKwkJPjsNCisJfTsNCit9Ow0KLS0gDQoyLjIzLjANCg0K
+Hi Jacopo,
+
+On Mon, Aug 26, 2019 at 09:23:30AM +0200, Jacopo Mondi wrote:
+> On Sun, Aug 25, 2019 at 09:06:03PM +0300, Laurent Pinchart wrote:
+> > Hi Jacopo,
+> >
+> > Thank you for the patch.
+> >
+> > How about changing the subject to "drm: rcar-du: Document DT backward
+> > compatibility" ?
+> >
+> > On Sun, Aug 25, 2019 at 04:01:35PM +0200, Jacopo Mondi wrote:
+> >> Exand comment in the 'vsps' parsing routine to specify why the LIF
+> >
+> > s/Exand/Expand/
+> >
+> >> channel index is defaulted to 0 in case the second cell of the property
+> >
+> > s/is defaulted to 0/defaults to 0/
+> >
+> >> is not specified.
+> >
+> > You could explain it here too :-)
+> 
+> Expand comment in the 'vsps' parsing routine to specify the LIF
+> channel index defaults to 0 in case the second cell of the property
+> is not specified to remain compatible with older DT bindings.
+> 
+> Could you take this in when applying this patch or want me to resend?
+
+I would have, but you have forgotten to CC the dri-devel mailing list
+I'm afraid. Could you post a v3 of this patch to the list ? I'll then
+pick it up.
+
+> >> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> >> ---
+> >>  drivers/gpu/drm/rcar-du/rcar_du_kms.c | 6 +++++-
+> >>  1 file changed, 5 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/drivers/gpu/drm/rcar-du/rcar_du_kms.c b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> >> index 2dc9caee8767..0d59f390de19 100644
+> >> --- a/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> >> +++ b/drivers/gpu/drm/rcar-du/rcar_du_kms.c
+> >> @@ -585,7 +585,11 @@ static int rcar_du_vsps_init(struct rcar_du_device *rcdu)
+> >>
+> >>  		vsps[j].crtcs_mask |= BIT(i);
+> >>
+> >> -		/* Store the VSP pointer and pipe index in the CRTC. */
+> >> +		/*
+> >> +		 * Store the VSP pointer and pipe index in the CRTC. If the
+> >> +		 * second cell of the 'vsps' specifier isn't present, default
+> >> +		 * to 0 to remain compatible with older DT bindings.
+> >> +		 */
+> >>  		rcdu->crtcs[i].vsp = &rcdu->vsps[j];
+> >>  		rcdu->crtcs[i].vsp_pipe = cells >= 1 ? args.args[0] : 0;
+> >>  	}
+
+-- 
+Regards,
+
+Laurent Pinchart
