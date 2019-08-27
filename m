@@ -2,111 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E84239DC26
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 05:53:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F8F9DC1F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 05:51:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728999AbfH0DxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Aug 2019 23:53:23 -0400
-Received: from anchovy3.45ru.net.au ([203.30.46.155]:43828 "EHLO
-        anchovy3.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729010AbfH0DxW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 23:53:22 -0400
-Received: (qmail 16245 invoked by uid 5089); 27 Aug 2019 03:53:20 -0000
-Received: by simscan 1.2.0 ppid: 16184, pid: 16187, t: 0.0333s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-X-RBL:  $rbltext
-Received: from unknown (HELO preid-c7.electromag.com.au) (preid@electromag.com.au@203.59.235.95)
-  by anchovy2.45ru.net.au with ESMTPA; 27 Aug 2019 03:53:19 -0000
-Received: by preid-c7.electromag.com.au (Postfix, from userid 1000)
-        id D04832021C4D0; Tue, 27 Aug 2019 11:35:28 +0800 (AWST)
-From:   Phil Reid <preid@electromag.com.au>
-To:     jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        preid@electromag.com.au, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, michal.simek@xilinx.com
-Subject: [PATCH 2/2] iio: core: Add optional symbolic label to device attributes
-Date:   Tue, 27 Aug 2019 11:35:24 +0800
-Message-Id: <1566876924-63608-3-git-send-email-preid@electromag.com.au>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
-References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
+        id S1728676AbfH0Dvq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Aug 2019 23:51:46 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:42664 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728345AbfH0Dvp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Aug 2019 23:51:45 -0400
+Received: by mail-pf1-f194.google.com with SMTP id i30so13170660pfk.9;
+        Mon, 26 Aug 2019 20:51:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=uzw991Nd9jKGjk5uiYDdWpoGos7yXqXk1ZGkmJpLpEc=;
+        b=VZ/bEeo+JL0jEB5ajc2gQ8c0lAQWsCg5gV7chmk0uvbopRZahtryHkP6pu2LfI1kJv
+         isK0BI2HdUHIqMK6fshtaQ4+Q5Diip+Gv7/lohTtwkpwUYur99cozGU9M99bb6kzRTtk
+         eb/ha+mOsD+n5ONGq3fpWc9B52f/i062cvudEoXmRt4ydGKk5hoaVq6xsZGahoQLSgsp
+         lOD1fArESLDxXiUeAxaUa0wKKRwSN/6Xy2YCRM2ctTXQlcfUbdjrvfs3PRKEdR1vjrSJ
+         bXM3pW4AEg+oJaIAW4NVWyv1PJvTNWS0OSbtUHS+8K3rRLTmDo2dKiIWQfmsVSY4qskw
+         WFlA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=uzw991Nd9jKGjk5uiYDdWpoGos7yXqXk1ZGkmJpLpEc=;
+        b=fzahIZBGOXY2OEikMXCTm41LtfYNRU/+czXZgVrBfF6wQ2l7hM0q5Oi9mMJZw7+Xa/
+         15F2JzDZxIMU/tDQzA68uFqf+SUYmxjIyF6a0CBOpFB8nOukPdfaUujq9rdakem3wQXm
+         7/b5rEjp+YIo3yaWNlFqT5PZRKd6CJUyDYhuuUViL5bclK6OFOG0BmNQM6aFIZ/81eW9
+         XpnjUnQDlJa/kvStidpk1b1Fdv2OvOuwUc5qRMtor+8paAW6xb79WznW+RLaYnVorqbv
+         MEbr5ZZ8OWG2HM4xTfk7XCuusfDy+ZtqF6mL6ZMUhkkL5X/Ch6sBysok7AbqL6Bo9kqQ
+         smsw==
+X-Gm-Message-State: APjAAAXQl1aiXpJECYsx64O9pfXsbx7nQ0Wx/VJpD0NLMYW+mh3HxONs
+        JVWUM9gGlyKm6JFcglQ+2CdC23dL
+X-Google-Smtp-Source: APXvYqwMSCQaA5x5qIUZLvllnP98gD/Ag8iZwbgHtzXNc4bCbFCMJoYX8ghjfU7J1gfOnZZ2LLNOsQ==
+X-Received: by 2002:a65:6406:: with SMTP id a6mr17840286pgv.393.1566877904887;
+        Mon, 26 Aug 2019 20:51:44 -0700 (PDT)
+Received: from server.roeck-us.net (108-223-40-66.lightspeed.sntcca.sbcglobal.net. [108.223.40.66])
+        by smtp.gmail.com with ESMTPSA id y16sm13799827pfn.173.2019.08.26.20.51.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 26 Aug 2019 20:51:43 -0700 (PDT)
+Subject: Re: [PATCH 1/2] hwmon: Add Synaptics AS370 PVT sensor driver
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190826174942.2b28ff05@xhacker.debian>
+ <20190826175029.433632f6@xhacker.debian>
+ <35b05950-4a72-9e00-50ab-ecd0a7e759a4@roeck-us.net>
+ <20190827105110.0be8d669@xhacker.debian>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <e0bfae1c-07f5-f907-0003-2c2f959e8099@roeck-us.net>
+Date:   Mon, 26 Aug 2019 20:51:42 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190827105110.0be8d669@xhacker.debian>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If a label is defined in the device tree for this device add that
-to the device specific attributes. This is useful for userspace to
-be able to identify an individual device when multiple identical
-chips are present in the system.
+On 8/26/19 8:02 PM, Jisheng Zhang wrote:
+> Hi Guenter,
+> 
+> On Mon, 26 Aug 2019 06:44:34 -0700 Guenter Roeck wrote:
+> 
+>>
+>>
+>> On 8/26/19 3:01 AM, Jisheng Zhang wrote:
+>>> Add a new driver for Synaptics AS370 PVT sensors. Currently, only
+>>> temperature is supported.
+>>>
+>>> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+>>> ---
+>>>    drivers/hwmon/Kconfig       |  10 +++
+>>>    drivers/hwmon/Makefile      |   1 +
+>>>    drivers/hwmon/as370-hwmon.c | 158 ++++++++++++++++++++++++++++++++++++
+>>>    3 files changed, 169 insertions(+)
+>>>    create mode 100644 drivers/hwmon/as370-hwmon.c
+>>>
+>>> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+>>> index 650dd71f9724..d31610933faa 100644
+>>> --- a/drivers/hwmon/Kconfig
+>>> +++ b/drivers/hwmon/Kconfig
+>>> @@ -246,6 +246,16 @@ config SENSORS_ADT7475
+>>>          This driver can also be built as a module. If so, the module
+>>>          will be called adt7475.
+>>>
+>>> +config SENSORS_AS370
+>>> +     tristate "Synaptics AS370 SoC hardware monitoring driver"
+>>
+>> I think this needs "depends on HAS_IOMEM".
+> 
+> HWMON depends on HAS_IOMEM, so the dependency has been required
+> by the common HWMON, we don't need it here.
+> 
 
-Signed-off-by: Phil Reid <preid@electromag.com.au>
----
- drivers/iio/industrialio-core.c | 17 +++++++++++++++++
- include/linux/iio/iio.h         |  1 +
- 2 files changed, 18 insertions(+)
+This is so wrong :-(. As if I2C or SPI based sensor chips would
+require iomem. Oh well, no one complained in 12+ years, so I guess
+we are "fine", at least for the time being.
 
-diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-index 8303639963d7..2d7fb7629095 100644
---- a/drivers/iio/industrialio-core.c
-+++ b/drivers/iio/industrialio-core.c
-@@ -1300,6 +1300,16 @@ static ssize_t iio_show_dev_name(struct device *dev,
- 
- static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
- 
-+static ssize_t iio_show_dev_label(struct device *dev,
-+				 struct device_attribute *attr,
-+				 char *buf)
-+{
-+	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-+	return snprintf(buf, PAGE_SIZE, "%s\n", indio_dev->label);
-+}
-+
-+static DEVICE_ATTR(label, S_IRUGO, iio_show_dev_label, NULL);
-+
- static ssize_t iio_show_timestamp_clock(struct device *dev,
- 					struct device_attribute *attr,
- 					char *buf)
-@@ -1416,6 +1426,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
- 
- 	if (indio_dev->name)
- 		attrcount++;
-+	if (indio_dev->label)
-+		attrcount++;
- 	if (clk)
- 		attrcount++;
- 
-@@ -1438,6 +1450,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
- 		indio_dev->chan_attr_group.attrs[attrn++] = &p->dev_attr.attr;
- 	if (indio_dev->name)
- 		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_name.attr;
-+	if (indio_dev->label)
-+		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_label.attr;
- 	if (clk)
- 		indio_dev->chan_attr_group.attrs[attrn++] = clk;
- 
-@@ -1709,6 +1723,9 @@ int __iio_device_register(struct iio_dev *indio_dev, struct module *this_mod)
- 	if (!indio_dev->dev.of_node && indio_dev->dev.parent)
- 		indio_dev->dev.of_node = indio_dev->dev.parent->of_node;
- 
-+	indio_dev->label = of_get_property(indio_dev->dev.of_node, "label",
-+					   NULL);
-+
- 	ret = iio_check_unique_scan_index(indio_dev);
- 	if (ret < 0)
- 		return ret;
-diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-index a74cb177dc6f..3f89db50d3f6 100644
---- a/include/linux/iio/iio.h
-+++ b/include/linux/iio/iio.h
-@@ -556,6 +556,7 @@ struct iio_dev {
- 	struct list_head		channel_attr_list;
- 	struct attribute_group		chan_attr_group;
- 	const char			*name;
-+	const char			*label;
- 	const struct iio_info		*info;
- 	clockid_t			clock_id;
- 	struct mutex			info_exist_lock;
--- 
-1.8.3.1
+Thanks for noticing.
 
+Guenter
