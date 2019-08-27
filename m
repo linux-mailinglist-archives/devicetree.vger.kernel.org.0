@@ -2,69 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7789F9E728
-	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 13:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B549E73A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Aug 2019 14:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726039AbfH0LzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 07:55:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60364 "EHLO mail.kernel.org"
+        id S1726170AbfH0L77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 07:59:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34856 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725850AbfH0LzX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 07:55:23 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        id S1726039AbfH0L77 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 07:59:59 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5C5C821883
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 11:55:22 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1EE442186A;
+        Tue, 27 Aug 2019 11:59:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566906922;
-        bh=JiIH7GvJBqIxLgHBqdAcR6l0tLEHUHaDAkOIev7Itr0=;
+        s=default; t=1566907198;
+        bh=cojGaPwwiuNAb/W4vwUgL1AZRj1AsasbQrMb/I1e6iI=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=trzMOQh6oZRO2pC2WPUJO+UAuISCDB3Ul+ISna6+GjiF9AQ0VsBlOswIOikqm5YJo
-         trwRBjITsBFlMVOKWXfbbnofPrPCqHnrclSmJ911WA80Bi50zHu6WEz1JrMGVMcArq
-         ZX8WplDbV4CvWTmuPgkFgxyf8L0B5KpP96g69Dl0=
-Received: by mail-qt1-f181.google.com with SMTP id l9so20935860qtu.6
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 04:55:22 -0700 (PDT)
-X-Gm-Message-State: APjAAAUBnkRLSNTAufPHWfzhF7p1mLn44SCzBvdLJltJOFiV4+qiaX31
-        gKDK/BxRE7ft33EUWzHSOQf9EoYTUFhkw3jpmQ==
-X-Google-Smtp-Source: APXvYqxCV/v7Inh8wWhYTUZAYGrC60mkBp9+b9uV5KJfPw0V8JXBVd0Ry8xbsYF6Er9EbPJLQGadfPnHe8X09KiOeQA=
-X-Received: by 2002:ac8:44c4:: with SMTP id b4mr22131243qto.224.1566906921516;
- Tue, 27 Aug 2019 04:55:21 -0700 (PDT)
+        b=T0pJ99OEmlQBr7pPoQJoDHmOtqwMOKuEXwbmbigauW6MlUwHMiCooYtqwR8OgpAnS
+         Z8xNy1gdTVGPI3MkG+btJusN57WfVBUu3E5qOHKl96b73LRExbxcxFew7In4KKhx+o
+         T/avNFZxabrlaVvNYxVFrq6mQ0633EAHtFlX4mVU=
+Received: by mail-qt1-f179.google.com with SMTP id u34so20990058qte.2;
+        Tue, 27 Aug 2019 04:59:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAUbfn0lxQhvFUqyCTXuLoaQ7rVrFIsdX3sXKXmSgFS+TpPf3v7v
+        CIK7diUqD2Khs8Xh7vsbiVSPxW+dtE9iXi+NFg==
+X-Google-Smtp-Source: APXvYqxzLkdUJzCt/zWOg6IuhiGFBaSLvGFnC+KgLNTyvxF+vcnBvHOa0oGv5spSX6RPZ8f6ZyHhXNAQ/NwAtPhzuWs=
+X-Received: by 2002:aed:22b3:: with SMTP id p48mr20191755qtc.136.1566907197288;
+ Tue, 27 Aug 2019 04:59:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190821195217.4166-1-sunil@medhas.org> <20190821195217.4166-2-sunil@medhas.org>
-In-Reply-To: <20190821195217.4166-2-sunil@medhas.org>
+References: <20190822092643.593488-1-lkundrak@v3.sk> <20190822092643.593488-3-lkundrak@v3.sk>
+In-Reply-To: <20190822092643.593488-3-lkundrak@v3.sk>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 27 Aug 2019 06:55:10 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKLLUX+CZOuBWqxB3UZv7uY74snqqz8fHPqnw4Zrz-p0A@mail.gmail.com>
-Message-ID: <CAL_JsqKLLUX+CZOuBWqxB3UZv7uY74snqqz8fHPqnw4Zrz-p0A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: sunxi: Add compatible for A64
- OlinuXino with eMMC
-To:     Sunil Mohan Adapa <sunil@medhas.org>
-Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>
+Date:   Tue, 27 Aug 2019 06:59:45 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ4_h+M=6L-nzK2N+A9TAy-N8SoiFv1SSTk_kCcKt0eXw@mail.gmail.com>
+Message-ID: <CAL_JsqJ4_h+M=6L-nzK2N+A9TAy-N8SoiFv1SSTk_kCcKt0eXw@mail.gmail.com>
+Subject: Re: [PATCH v2 02/20] dt-bindings: arm: Convert Marvell MMP board/soc
+ bindings to json-schema
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     Olof Johansson <olof@lixom.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 21, 2019 at 2:53 PM Sunil Mohan Adapa <sunil@medhas.org> wrote:
+On Thu, Aug 22, 2019 at 4:27 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
 >
-> A64 OLinuXino board from Olimex has three variants with onboard eMMC:
-> A64-OLinuXino-1Ge16GW, A64-OLinuXino-1Ge4GW and A64-OLinuXino-2Ge8G-IND. In
-> addition, there are two variants without eMMC. One without eMMC and one with SPI
-> flash. This suggests the need for separate device tree for the three eMMC
-> variants.
+> Convert Marvell MMP SoC bindings to DT schema format using json-schema.
 >
-> Add new compatible string to the bindings documentation for the A64 OlinuXino
-> board variant with on-board eMMC.
+> Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
 >
-> Signed-off-by: Sunil Mohan Adapa <sunil@medhas.org>
 > ---
->  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changes since v1:
+> - Added this patch
+>
+>  .../devicetree/bindings/arm/mrvl/mrvl.txt     | 14 ---------
+>  .../devicetree/bindings/arm/mrvl/mrvl.yaml    | 31 +++++++++++++++++++
+>  2 files changed, 31 insertions(+), 14 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt b/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
+> deleted file mode 100644
+> index 951687528efb0..0000000000000
+> --- a/Documentation/devicetree/bindings/arm/mrvl/mrvl.txt
+> +++ /dev/null
+> @@ -1,14 +0,0 @@
+> -Marvell Platforms Device Tree Bindings
+> -----------------------------------------------------
+> -
+> -PXA168 Aspenite Board
+> -Required root node properties:
+> -       - compatible = "mrvl,pxa168-aspenite", "mrvl,pxa168";
+> -
+> -PXA910 DKB Board
+> -Required root node properties:
+> -       - compatible = "mrvl,pxa910-dkb";
+> -
+> -MMP2 Brownstone Board
+> -Required root node properties:
+> -       - compatible = "mrvl,mmp2-brownstone", "mrvl,mmp2";
+> diff --git a/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml b/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
+> new file mode 100644
+> index 0000000000000..dc9de506ac6e3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/mrvl/mrvl.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/mrvl/mrvl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Platforms Device Tree Bindings
+> +
+> +maintainers:
+> +  - Lubomir Rintel <lkundrak@v3.sk>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - description: PXA168 Aspenite Board
+> +        items:
+> +          - enum:
+> +              - mrvl,pxa168-aspenite
+> +          - const: mrvl,pxa168
+> +      - description: PXA910 DKB Board
+> +        items:
+> +          - enum:
+> +              - mrvl,pxa910-dkb
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Doesn't match what's in dts file:
+
+arch/arm/boot/dts/pxa910-dkb.dts:       compatible =
+"mrvl,pxa910-dkb", "mrvl,pxa910";
+
+> +      - description: MMP2 Brownstone Board
+
+If this entry is only for this board...
+
+> +        items:
+> +          - enum:
+> +              - mrvl,mmp2-brownstone
+
+...then this can be a 'const' instead. Same for the others.
+
+> +          - const: mrvl,mmp2
+> +...
+> --
+> 2.21.0
+>
