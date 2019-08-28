@@ -2,112 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03D37A039B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 15:46:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA9D1A03E7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 15:59:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726663AbfH1Nqz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 09:46:55 -0400
-Received: from outbound.smtp.vt.edu ([198.82.183.121]:37780 "EHLO
-        omr2.cc.vt.edu" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726439AbfH1Nqy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 09:46:54 -0400
-Received: from mr2.cc.vt.edu (smtp.ipv6.vt.edu [IPv6:2607:b400:92:9:0:9d:8fcb:4116])
-        by omr2.cc.vt.edu (8.14.4/8.14.4) with ESMTP id x7SDkrkS016010
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 09:46:53 -0400
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-        by mr2.cc.vt.edu (8.14.7/8.14.7) with ESMTP id x7SDkmj6022041
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 09:46:53 -0400
-Received: by mail-qk1-f200.google.com with SMTP id c79so2539941qkg.13
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 06:46:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:in-reply-to:references
-         :mime-version:content-transfer-encoding:date:message-id;
-        bh=6dlfkMiIJoG2i19B9uaZmEjU8eFDQ1sIWjxdg+T91HE=;
-        b=R/LVoDKGbyHa7ZtdnYSbvTc1qaN6aKcgNH4JFCs41LNbWuwwbK0/n5bHSOIh09OmYV
-         stUX2Plz9sdYsuCDIBBpvzaj62APPyRQAxPfZfKhuZhVbIPpKSg6OsVbb2FfuIXtMyK6
-         kKwTlLC1gmYiPLHVjr5S9+4arYtcg4kuUZnKmqBHYal9EUqObyu58xII1nfb0jQDgQFH
-         jJVQHiBIHtINFDcevbTs3pJkQ8R5sQ12K7NVE25AvH+BtxjWZfYnVpWV9zeao46qjj7m
-         EgLN3xOVgR9qSJhTqAWXajB3UqyHIxMh+LnJserHOSwcscDXIlRSeTmfV3aDsmDbMexv
-         sBJg==
-X-Gm-Message-State: APjAAAW6eP1bMMGL6v3j6h/ImVgmtak/5vA2Qc7s6LaWt0NhXiRBb36N
-        XiFBGnaxDlzIQaW4svhteKQeIzJGzyFosS0NhZYJANwhLU5NJVa7hy2zXDxuMedsOqtEUxAMuO+
-        x/ky8X86U63/eWsqeyZEdYzVKZSHkYvQU
-X-Received: by 2002:ac8:7543:: with SMTP id b3mr4241826qtr.13.1567000008084;
-        Wed, 28 Aug 2019 06:46:48 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqxQaF6n9TNJ7UANQVE9yf8af37GlOyOcqa4tTFHjolQSwZt4CkCi4+VJt/bQM0T+/UKVBdLGA==
-X-Received: by 2002:ac8:7543:: with SMTP id b3mr4241800qtr.13.1567000007811;
-        Wed, 28 Aug 2019 06:46:47 -0700 (PDT)
-Received: from turing-police ([2601:5c0:c001:4341::359])
-        by smtp.gmail.com with ESMTPSA id g24sm1327307qtc.38.2019.08.28.06.46.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2019 06:46:46 -0700 (PDT)
-From:   "Valdis Kl=?utf-8?Q?=c4=93?=tnieks" <valdis.kletnieks@vt.edu>
-X-Google-Original-From: "Valdis Kl=?utf-8?Q?=c4=93?=tnieks" <Valdis.Kletnieks@vt.edu>
-X-Mailer: exmh version 2.9.0 11/07/2018 with nmh-1.7+dev
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, linux@armlinux.org.uk, frowand.list@gmail.com,
-        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
-        tony.luck@intel.com, daniel.thompson@linaro.org,
-        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
-Subject: Re: [PATCHv5] drivers/amba: add reset control to amba bus probe
-In-Reply-To: <46bcf493-9dd6-bf5b-089a-be158739a13f@kernel.org>
-References: <20190826154252.22952-1-dinguyen@kernel.org> <30608.1566933924@turing-police>
- <46bcf493-9dd6-bf5b-089a-be158739a13f@kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed; boundary="==_Exmh_1567000004_1612P";
-         micalg=pgp-sha1; protocol="application/pgp-signature"
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 28 Aug 2019 09:46:45 -0400
-Message-ID: <292438.1567000005@turing-police>
+        id S1727086AbfH1N61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 09:58:27 -0400
+Received: from foss.arm.com ([217.140.110.172]:60038 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727064AbfH1N6H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 09:58:07 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 60EBC28;
+        Wed, 28 Aug 2019 06:58:06 -0700 (PDT)
+Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E58733F246;
+        Wed, 28 Aug 2019 06:58:04 -0700 (PDT)
+Date:   Wed, 28 Aug 2019 14:58:02 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+Message-ID: <20190828135802.GB21614@e107155-lin>
+References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
+ <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---==_Exmh_1567000004_1612P
-Content-Type: text/plain; charset=us-ascii
-
-On Wed, 28 Aug 2019 08:34:20 -0500, Dinh Nguyen said:
-
-> > Does this DTRT for both old and new U-Boots? My naive reading of
-> > this patch
+On Wed, Aug 28, 2019 at 03:02:58AM +0000, Peng Fan wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 >
-> What is a DTRT?
-
-Do The Right Thing, sorry...
-
-> > says on an old U-Boot, we end up attempting to bring it out of
-> > reset even though they had already been brought out.
-> >
+> The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
+> actions in software layers running in the EL2 or EL3 exception levels.
+> The term "ARM" here relates to the SMC instruction as part of the ARM
+> instruction set, not as a standard endorsed by ARM Ltd.
 >
-> If the peripheral is already out of reset, de-asserting the reset has
-> no affect.
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/mailbox/arm-smc.yaml       | 125 +++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> new file mode 100644
+> index 000000000000..f8eb28d5e307
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM SMC Mailbox Interface
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +description: |
+> +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
+> +  call) instruction to trigger a mailbox-connected activity in firmware,
+> +  executing on the very same core as the caller. By nature this operation
+> +  is synchronous and this mailbox provides no way for asynchronous messages
+> +  to be delivered the other way round, from firmware to the OS, but
 
-OK, thanks.  There's been hardware where doing that sort of thing twice will
-confuse the device and cause issues.
 
---==_Exmh_1567000004_1612P
-Content-Type: application/pgp-signature
+> +  asynchronous notification could also be supported.
 
------BEGIN PGP SIGNATURE-----
-Comment: Exmh version 2.9.0 11/07/2018
+What do you mean by that ? I would prefer to drop the above line unless
+I am missing something. IMO it contradicts the previous statement less
+you elaborate more on this.
 
-iQIVAwUBXWaFxAdmEQWDXROgAQJZPhAAopKhP6wn5B9evWUpllhb6CIajYqxhob3
-zLAF1vVdOpPXyTT3PaFMjwrqKiPt9QnMLHW5odZ5UswcH4dBRByhwb8Hr8a/Ibo9
-Nb6BdK1KuilWx3bCvw63nNH9aB+tPvcaOUtux73gD+HaPa/XCvzZvObCnFCXa4oa
-9gQJl8GG8pRLfH03QPSYGKAzyJ35qt2RBarVa0Z19NZPB5LDDePLKwxblatRFICW
-mhdH1t6uC7CuxMqfHKbG5MyhdmgmmOyHg16tHxZ85B8f0CoCFAHx9sNzvS3dmXZd
-bP2+r7cQ4kNkIWI/PNPzh+s8D9ZlWYdGn1p2VQU/4FKMh2d7IDS5MvLgA5rf0DiE
-bOPBbqzfZ/DsfyW96M9e4/53OYYK5gqC+ZaePJKY4BkAHLNtKewczCw6E+kck7OW
-4ya+eOEFQzl9wC5XNMrYkdV8DLhftU4qEzAHuNH2vHIK7BK+3ARGB4tSQyTMNi/x
-yOPY69cLv4llawfjD/y0PSqmvKN1MlIjmxeAD9kh6AoTUNNNRgj0F+T/Ma91uBeV
-50x+YgZZ104bD6d3s5U0kIgykQJARE0JivC9fkFuKZXE6vtIAssE3FFLw2NKncXw
-Sq+YA6DuuSvCdhAWEmYJpbpwREHEGAjLsN+JBxPhV7vbbGhVV1UuYXPDVfp18Moy
-fW9l0ZeoE+c=
-=tC0P
------END PGP SIGNATURE-----
+> However the value of
+> +  r0/w0/x0 the firmware returns after the smc call is delivered as a received
+> +  message to the mailbox framework, so a synchronous communication can be
+> +  established, for a asynchronous notification, no value will be returned.
 
---==_Exmh_1567000004_1612P--
+I assume you refer to asynchronous communication from OS to firmware in the
+above statement and "not asynchronous notification" from firmware to OS.
+
+> +  The exact meaning of both the action the mailbox triggers as well as the
+> +  return value is defined by their users and is not subject to this binding.
+> +
+> +  One use case of this mailbox is the SCMI interface, which uses shared memory
+> +  to transfer commands and parameters, and a mailbox to trigger a function
+> +  call. This allows SoCs without a separate management processor (or when
+> +  such a processor is not available or used) to use this standardized
+> +  interface anyway.
+> +
+
+Not sure if reference to SCMI is needed at all but I don't have any
+objections to it, just thought worth mentioning.
+
+> +  This binding describes no hardware, but establishes a firmware interface.
+> +  Upon receiving an SMC using one of the described SMC function identifiers,
+> +  the firmware is expected to trigger some mailbox connected functionality.
+> +  The communication follows the ARM SMC calling convention.
+> +  Firmware expects an SMC function identifier in r0 or w0. The supported
+> +  identifiers are passed from consumers, or listed in the the arm,func-ids
+> +  properties as described below. The firmware can return one value in
+> +  the first SMC result register, it is expected to be an error value,
+> +  which shall be propagated to the mailbox client.
+> +
+> +  Any core which supports the SMC or HVC instruction can be used, as long as
+> +  a firmware component running in EL3 or EL2 is handling these calls.
+> +
+
+
+Other than the above points, I am fine with it. Once fixed,
+
+Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
+
+Note I haven't reviewed the yaml scheme, but just binding in general.
+
+--
+Regards,
+Sudeep
