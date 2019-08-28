@@ -2,158 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F04C99FC2D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 09:47:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FD999FC70
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 10:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726382AbfH1Hr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 03:47:56 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:41525 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726368AbfH1Hrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 03:47:55 -0400
-X-UUID: 4a791d614abe41039e1fcfcbac0eab9b-20190828
-X-UUID: 4a791d614abe41039e1fcfcbac0eab9b-20190828
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1855172273; Wed, 28 Aug 2019 15:47:48 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs02n2.mediatek.inc
- (172.21.101.101) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 28 Aug
- 2019 15:47:54 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 28 Aug 2019 15:47:51 +0800
-Message-ID: <1566978464.7317.19.camel@mhfsdcap03>
-Subject: Re: [PATCH 2/2] clk: mediatek: add pericfg clocks for MT8183
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Weiyi Lu <weiyi.lu@mediatek.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Ryder Lee" <ryder.lee@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "Erin Lo" <erin.lo@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 28 Aug 2019 15:47:44 +0800
-In-Reply-To: <1566975333.24969.2.camel@mtksdaap41>
-References: <1566971755-21217-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1566971755-21217-2-git-send-email-chunfeng.yun@mediatek.com>
-         <1566975333.24969.2.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726657AbfH1IAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 04:00:01 -0400
+Received: from shell.v3.sk ([90.176.6.54]:40580 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726292AbfH1IAA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 04:00:00 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id BC4C7D832D;
+        Wed, 28 Aug 2019 09:59:57 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id S8cKjMhYL0Ji; Wed, 28 Aug 2019 09:59:45 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 9A0F4D833A;
+        Wed, 28 Aug 2019 09:59:44 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id ih7jdCbCCXrQ; Wed, 28 Aug 2019 09:59:42 +0200 (CEST)
+Received: from belphegor.brq.redhat.com (nat-pool-brq-t.redhat.com [213.175.37.10])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 88E7FD832D;
+        Wed, 28 Aug 2019 09:59:41 +0200 (CEST)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Russell King <linux@armlinux.org.uk>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>
+Subject: [PATCH v4 2/5] dt-bindings: display: armada: Rename the binding doc file
+Date:   Wed, 28 Aug 2019 09:59:35 +0200
+Message-Id: <20190828075938.318028-3-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190828075938.318028-1-lkundrak@v3.sk>
+References: <20190828075938.318028-1-lkundrak@v3.sk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 713EC96C0A4AABC7BF3F4C27B34FBB7BEDA8C68640AC4F87A0B57E3202F859B22000:8
-X-MTK:  N
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weiyi,
+Use a more generic name, since it will document more compatible LCD
+controllers than just that of Dove. Also, there's no point putting it in
+a separate directory.
 
-On Wed, 2019-08-28 at 14:55 +0800, Weiyi Lu wrote:
-> On Wed, 2019-08-28 at 13:55 +0800, Chunfeng Yun wrote:
-> > Add pericfg clocks for MT8183, it's used when support USB
-> > remote wakeup
-> > 
-> > Cc: Weiyi Lu <weiyi.lu@mediatek.com>
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> >  drivers/clk/mediatek/clk-mt8183.c      | 35 ++++++++++++++++++++++++++
-> >  include/dt-bindings/clock/mt8183-clk.h |  4 +++
-> >  2 files changed, 39 insertions(+)
-> > 
-> > diff --git a/drivers/clk/mediatek/clk-mt8183.c b/drivers/clk/mediatek/clk-mt8183.c
-> > index 1aa5f4059251..b19221bad0c9 100644
-> > --- a/drivers/clk/mediatek/clk-mt8183.c
-> > +++ b/drivers/clk/mediatek/clk-mt8183.c
-> > @@ -999,6 +999,25 @@ static const struct mtk_gate infra_clks[] = {
-> >  		"msdc50_0_sel", 24),
-> >  };
-> >  
-> > +static const struct mtk_gate_regs peri_cg_regs = {
-> > +	.set_ofs = 0x20c,
-> > +	.clr_ofs = 0x20c,
-> > +	.sta_ofs = 0x20c,
-> > +};
-> > +
-> > +#define GATE_PERI(_id, _name, _parent, _shift) {	\
-> > +	.id = _id,				\
-> > +	.name = _name,				\
-> > +	.parent_name = _parent,			\
-> > +	.regs = &peri_cg_regs,			\
-> > +	.shift = _shift,			\
-> > +	.ops = &mtk_clk_gate_ops_no_setclr_inv,	\
-> > +}
-> 
-> Hi Chunfeng,
-> 
-> I suggest
-> 
-> #define GATE_PERI(_id, _name, _parent, _shift)		\
-> 	GATE_MTK(_id, _name, _parent, &peri_cg_regs, _shift,	\
-> 		&mtk_clk_gate_ops_no_setclr_inv)
-> 
-Good point, thanks
+Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
 
-> > +
-> > +static const struct mtk_gate peri_clks[] = {
-> > +	GATE_PERI(CLK_PERI_AXI, "periaxi", "axi_sel", 31),
-> > +};
-> > +
-> >  static const struct mtk_gate_regs apmixed_cg_regs = {
-> >  	.set_ofs = 0x20,
-> >  	.clr_ofs = 0x20,
-> > @@ -1194,6 +1213,19 @@ static int clk_mt8183_infra_probe(struct platform_device *pdev)
-> >  	return of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-> >  }
-> >  
-> > +static int clk_mt8183_peri_probe(struct platform_device *pdev)
-> > +{
-> > +	struct clk_onecell_data *clk_data;
-> > +	struct device_node *node = pdev->dev.of_node;
-> > +
-> > +	clk_data = mtk_alloc_clk_data(CLK_PERI_NR_CLK);
-> > +
-> > +	mtk_clk_register_gates(node, peri_clks, ARRAY_SIZE(peri_clks),
-> > +			       clk_data);
-> > +
-> > +	return of_clk_add_provider(node, of_clk_src_onecell_get, clk_data);
-> > +}
-> > +
-> >  static int clk_mt8183_mcu_probe(struct platform_device *pdev)
-> >  {
-> >  	struct clk_onecell_data *clk_data;
-> > @@ -1223,6 +1255,9 @@ static const struct of_device_id of_match_clk_mt8183[] = {
-> >  	}, {
-> >  		.compatible = "mediatek,mt8183-infracfg",
-> >  		.data = clk_mt8183_infra_probe,
-> > +	}, {
-> > +		.compatible = "mediatek,mt8183-pericfg",
-> > +		.data = clk_mt8183_peri_probe,
-> >  	}, {
-> >  		.compatible = "mediatek,mt8183-mcucfg",
-> >  		.data = clk_mt8183_mcu_probe,
-> > diff --git a/include/dt-bindings/clock/mt8183-clk.h b/include/dt-bindings/clock/mt8183-clk.h
-> > index 0046506eb24c..a7b470b0ec8a 100644
-> > --- a/include/dt-bindings/clock/mt8183-clk.h
-> > +++ b/include/dt-bindings/clock/mt8183-clk.h
-> > @@ -284,6 +284,10 @@
-> >  #define CLK_INFRA_FBIST2FPC		100
-> >  #define CLK_INFRA_NR_CLK		101
-> >  
-> > +/* PERICFG */
-> > +#define CLK_PERI_AXI			0
-> > +#define CLK_PERI_NR_CLK			1
-> > +
-> >  /* MFGCFG */
-> >  #define CLK_MFG_BG3D			0
-> >  #define CLK_MFG_NR_CLK			1
-> 
-> 
+---
+Changes since v1:
+- Choose a better name than armada/marvell-armada-drm.txt, since
+  there will be no display-subsystem master node and thus it will
+  only document just the LCDC.
 
+ .../{armada/marvell,dove-lcd.txt =3D> marvell,armada-lcdc.txt}    | 0
+ MAINTAINERS                                                     | 2 +-
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+ rename Documentation/devicetree/bindings/display/{armada/marvell,dove-lc=
+d.txt =3D> marvell,armada-lcdc.txt} (100%)
+
+diff --git a/Documentation/devicetree/bindings/display/armada/marvell,dov=
+e-lcd.txt b/Documentation/devicetree/bindings/display/marvell,armada-lcdc=
+.txt
+similarity index 100%
+rename from Documentation/devicetree/bindings/display/armada/marvell,dove=
+-lcd.txt
+rename to Documentation/devicetree/bindings/display/marvell,armada-lcdc.t=
+xt
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3d824ecf96229..d379acd4f69ce 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9620,7 +9620,7 @@ T:	git git://git.armlinux.org.uk/~rmk/linux-arm.git=
+ drm-armada-devel
+ T:	git git://git.armlinux.org.uk/~rmk/linux-arm.git drm-armada-fixes
+ F:	drivers/gpu/drm/armada/
+ F:	include/uapi/drm/armada_drm.h
+-F:	Documentation/devicetree/bindings/display/armada/
++F:	Documentation/devicetree/bindings/display/marvell,armada-lcdc.txt
+ F:	Documentation/devicetree/bindings/reserved-memory/marvell,armada-fram=
+ebuffer.txt
+=20
+ MARVELL ARMADA 3700 PHY DRIVERS
+--=20
+2.21.0
 
