@@ -2,124 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54FAD9FF10
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E84E69FF21
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:09:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726328AbfH1KEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 06:04:11 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:19073 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726272AbfH1KEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 06:04:11 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d66519a0000>; Wed, 28 Aug 2019 03:04:10 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 28 Aug 2019 03:04:10 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 28 Aug 2019 03:04:10 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL105.nvidia.com
- (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
- 2019 10:04:09 +0000
-Received: from [10.24.46.191] (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
- 2019 10:04:04 +0000
-Subject: Re: [PATCH 0/6] PCI: tegra: Enable PCIe C5 controller of Tegra194 in
- p2972-0000 platform
-To:     Thierry Reding <thierry.reding@gmail.com>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <jonathanh@nvidia.com>, <kishon@ti.com>,
-        <gustavo.pimentel@synopsys.com>, <digetx@gmail.com>,
-        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190826073143.4582-1-vidyas@nvidia.com>
- <20190828091028.GB2917@ulmo>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <57b55bde-0f59-27ef-8bd3-13408d6d4493@nvidia.com>
-Date:   Wed, 28 Aug 2019 15:34:02 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726253AbfH1KJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 06:09:00 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37622 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726300AbfH1KI7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 06:08:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=PxI8huNfC6VFO+8riZb4FVf90k7meZB53ciogdQeoxw=; b=EWanL1V5Q1ysiJUkGXj2AZpLA
+        AkKvPbie/CUTWWQtcEDvQ4ZEe9KNvHIA4Ww2o9G1oWRdSQapHeQuYXmaV9oyW1qB2fZNrOlYyC/xO
+        ABBSFHObTB6l64IZ8JM0viW114aCvD8+hum4x5JcpS9SveY9HFFGVN7i0XRZX0qG4odg8=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1i2uso-0003Yo-Lg; Wed, 28 Aug 2019 10:08:54 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 432E82742B9F; Wed, 28 Aug 2019 11:08:52 +0100 (BST)
+Date:   Wed, 28 Aug 2019 11:08:52 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 0/8] regulator: support Silergy SY8824C/SY8824E etc.
+Message-ID: <20190828100852.GA4298@sirena.co.uk>
+References: <20190828135646.52457ac3@xhacker.debian>
 MIME-Version: 1.0
-In-Reply-To: <20190828091028.GB2917@ulmo>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zhXaljGHf11kAtnf"
+Content-Disposition: inline
+In-Reply-To: <20190828135646.52457ac3@xhacker.debian>
+X-Cookie: Oatmeal raisin.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/28/2019 2:40 PM, Thierry Reding wrote:
-> On Mon, Aug 26, 2019 at 01:01:37PM +0530, Vidya Sagar wrote:
->> This patch series enables Tegra194's C5 controller which owns x16 slot in
->> p2972-0000 platform. C5 controller's PERST# and CLKREQ# are not configured as
->> output and bi-directional signals by default and hence they need to be
->> configured explicitly. Also, x16 slot's 3.3V and 12V supplies are controlled
->> through GPIOs and hence they need to be enabled through regulator framework.
->> This patch series adds required infrastructural support to address both the
->> aforementioned requirements.
->> Testing done on p2972-0000 platform
->> - Able to enumerate devices connected to x16 slot (owned by C5 controller)
->> - Enumerated device's functionality verified
->> - Suspend-Resume sequence is verified with device connected to x16 slot
->>
->> Vidya Sagar (6):
->>    dt-bindings: PCI: tegra: Add sideband pins configuration entries
->>    arm64: tegra: Add configuration for PCIe C5 sideband signals
->>    PCI: tegra: Add support to configure sideband pins
->>    dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
->>    arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
->>    PCI: tegra: Add support to enable slot regulators
-> 
-> Hi Vidya,
-> 
-> when you resend with review comments addressed, can you please reorder
-> the patches slightly? I think it's more natural to order them like this:
-> 
->      dt-bindings: PCI: tegra: Add sideband pins configuration entries
->      PCI: tegra: Add support to configure sideband pins
->      dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
->      PCI: tegra: Add support to enable slot regulators
->      arm64: tegra: Add configuration for PCIe C5 sideband signals
->      arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
-> 
-> Or perhaps even like this:
-> 
->      dt-bindings: PCI: tegra: Add sideband pins configuration entries
->      dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
->      PCI: tegra: Add support to configure sideband pins
->      PCI: tegra: Add support to enable slot regulators
->      arm64: tegra: Add configuration for PCIe C5 sideband signals
->      arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
-> 
-> That makes it more obvious that patches 1-2 need an Acked-by from Rob
-> and patches 1-4 need to go through Lorenzo's tree and that I'll pick up
-> patches 5-6.Sure.
-I'll do that.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-	t=1566986650; bh=fKSn9tEu0u/7kvehjleUQGVzZJJHx0MojZ9eQ2aJqWM=;
-	h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-	 Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-	 X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-	 Content-Transfer-Encoding;
-	b=aSDWQiNYeJefaP3hT1F2Kc9CSOb6AJPVC1NOPnn4rLtaj7EOJb+j70r/h4+I3bKEk
-	 N6siO4F51Zz49OC3S0601fPefcag3AJZZQEdvrpk3pIhqGZ+62QMXTeG4f7t/ETsLY
-	 TPYf5ksG6Kb8vxeUEAY6ATiHOIhjJhbLjRn/uJ/Oat+8ZRv3VgTOtujSHpzsKf1rTz
-	 gJZbRa8GsOlGBEvMoc7xxgRDx1/GzUqaHw8T8GqLV/JDOW9qNy44TVpHkk4Exc7g5+
-	 bM5zCyghflgpfG+ZMzbwZEkd1b4gDyPfxYL2J+AzEjgQyVsBSU6+nXSjJg65VfzSd6
-	 bM8cWEfkmyeMA==
 
-Thanks,
-Vidya Sagar
+--zhXaljGHf11kAtnf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
-> Thierry
-> 
+On Wed, Aug 28, 2019 at 06:08:09AM +0000, Jisheng Zhang wrote:
+> Add support for Silergy SY8824C/SY8824E/SY20276/SY20278 regulator.
+>=20
+> Changes since v1:
+>   - use c++ comment style for SPDX header
+>   - add prefix for BUCK_EN and MODE
 
+I already applied v1, please just send incremental updates fixing these
+rather than entirely new versions.  As the message sent when applying
+patches says:
+
+| If any updates are required or you are submitting further changes they
+| should be sent as incremental updates against current git, existing
+| patches will not be replaced.
+
+--zhXaljGHf11kAtnf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1mUrMACgkQJNaLcl1U
+h9DfAQf/Z/uVU2+OG/dRjjnb9aJg2tEZUnbuMpSBOEc39IJjERea1NqcPGugs1/r
+GoDl/aa1erdGnnA7Thw4iMN9fmyqxvL71eTblz0gQ4KcNFYtOAR7EHWUYqM7rXsX
+STu+D4ytH5fUspWIqeGROG5kVS6+1x3OO3JDRAobTAO23F4u0Hecq85g2vxGHiHn
+ifrjH8uYFs7zExUlvidN4qkF6Lz3vz88XGffPScsoi6ZySBFPQBcmEiWk8namQ+a
+z3yDJoVrW84Api/AQ4Oz+0YvHUk2IPwLW9x9rAAhsZJwdYxURhClQgUQOsV+/XA1
+hiEzWBdNw8Y1TQMUjjISRBJuh3+eTg==
+=kSzK
+-----END PGP SIGNATURE-----
+
+--zhXaljGHf11kAtnf--
