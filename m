@@ -2,869 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07E04A04D5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 16:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E001A04FD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 16:30:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727228AbfH1O0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 10:26:13 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:42111 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726368AbfH1O0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 10:26:11 -0400
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id x7SEPFSk001864;
-        Wed, 28 Aug 2019 17:25:15 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id 8F82862CAA; Wed, 28 Aug 2019 17:25:15 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        vigneshr@ti.com, bbrezillon@kernel.org, avifishman70@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com
-Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v3 2/2] spi: npcm-fiu: add NPCM FIU controller driver
-Date:   Wed, 28 Aug 2019 17:25:13 +0300
-Message-Id: <20190828142513.228556-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190828142513.228556-1-tmaimon77@gmail.com>
-References: <20190828142513.228556-1-tmaimon77@gmail.com>
+        id S1726428AbfH1OaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 10:30:01 -0400
+Received: from mail-eopbgr150044.outbound.protection.outlook.com ([40.107.15.44]:29094
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726437AbfH1OaB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 10:30:01 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZI2RoRgzuGy43+cO7btK2FucNB/cBpHS1BIVb4n6WzvTEhSYQJqfu0XAUzji+F8RbuvlsHkoebiJIphDcWxeIikOEcO23z1Y4xsJAwF0oGg0TMwY1fjUV1WKY0XK/7b10DYMzztxAl8eCDnDpiWNu/rCiBMUFIQiJLeUy7tRnTmjrEPHNiLiJoHgAlypbgWCLEDbzoHI4IFkR6qL/X3J800/IKbZlLXrkooN2veSjZbjIcolJqy6+w3Gopmkz3PHaeBrNi6j6t718v1qL7EyBoCmVNxjYDYanFPgFKAnaqXpNN/ErTM7J4Kuf1lXH0XGK+17UDZHGUWA4DQjEgdaQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BsuGBknpPIF3qd38+eAYP9oMSLQkl3l7H+b4py6Qcxk=;
+ b=YrKQGd2Zk09fActEDx2MjJIGcgz4o7sou9GPzKl6CfUJbWvLVMjmMnl4ieFRbMRuuM5albIB/RpjPqlfq/d8wqZxPEcGImVtWjLvlNatQTE96Zxl2EtBr8/vPdXm2odUABN4fA0JOX3ChpMk1X2kJqM5QVrMipLbjtFtFtxoeF3luAAB5DPTY3IHzeT+PkF0WnO54uVVjpOgwloXS7e7+ua3aYBAjqmoev6gLjWPGnPUR6vIYim5RyoJ60t/shCOQlCcNIqJa1Bb0tkCtGa630374qWM02mrGBqkdAALyRkyCxVOOoL82p2DLNEU0Ivi9eZq7NtS3+plAUNRv2ziLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=BsuGBknpPIF3qd38+eAYP9oMSLQkl3l7H+b4py6Qcxk=;
+ b=M4RNGWE/wPWxKxP6o9BIvEL7iapCkCH6zyCxCz5r5acSqyDsiPD6kPMCwaaFJtCMeROAlMOyoGLaQaK4Asspfl03LLZSUgQH3UuUONkSxIn4+jNqdw8AmgsBGzAsMA1gu98aOa0dQ/OBNs2//j87ZZSjIikkcDEfvE7Ycbp3ceg=
+Received: from DB8PR04MB6715.eurprd04.prod.outlook.com (20.179.251.14) by
+ DB8PR04MB6361.eurprd04.prod.outlook.com (20.179.249.140) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Wed, 28 Aug 2019 14:29:49 +0000
+Received: from DB8PR04MB6715.eurprd04.prod.outlook.com
+ ([fe80::b0ab:d127:ca27:e1fa]) by DB8PR04MB6715.eurprd04.prod.outlook.com
+ ([fe80::b0ab:d127:ca27:e1fa%7]) with mapi id 15.20.2199.021; Wed, 28 Aug 2019
+ 14:29:49 +0000
+From:   Robert Chiras <robert.chiras@nxp.com>
+To:     dl-linux-imx <linux-imx@nxp.com>,
+        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "a.hajda@samsung.com" <a.hajda@samsung.com>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "jonas@kwiboo.se" <jonas@kwiboo.se>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "sam@ravnborg.org" <sam@ravnborg.org>,
+        "airlied@linux.ie" <airlied@linux.ie>,
+        "Laurent.pinchart@ideasonboard.com" 
+        <Laurent.pinchart@ideasonboard.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+Subject: Re: [EXT] [PATCH v3 0/2] drm: bridge: Add NWL MIPI DSI host
+ controller support
+Thread-Topic: [EXT] [PATCH v3 0/2] drm: bridge: Add NWL MIPI DSI host
+ controller support
+Thread-Index: AQHVWNaQzsaMIe4h0k+Alsjj+KS8sKcQqGiA
+Date:   Wed, 28 Aug 2019 14:29:48 +0000
+Message-ID: <1567002587.3209.122.camel@nxp.com>
+References: <cover.1566470526.git.agx@sigxcpu.org>
+In-Reply-To: <cover.1566470526.git.agx@sigxcpu.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: Evolution 3.18.5.2-0ubuntu3.2 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=robert.chiras@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fbc3b088-2458-4a37-55f5-08d72bc42e81
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB8PR04MB6361;
+x-ms-traffictypediagnostic: DB8PR04MB6361:
+x-ms-exchange-purlcount: 2
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB8PR04MB6361860D42696D0B40921009E3A30@DB8PR04MB6361.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 014304E855
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(39860400002)(376002)(346002)(396003)(136003)(199004)(189003)(5024004)(25786009)(486006)(66556008)(76116006)(91956017)(66946007)(64756008)(66446008)(11346002)(36756003)(86362001)(71200400001)(446003)(53936002)(5660300002)(66476007)(6306002)(14454004)(2616005)(3846002)(6116002)(478600001)(2906002)(44832011)(476003)(2501003)(45080400002)(6436002)(81156014)(6512007)(71190400001)(103116003)(2201001)(8936002)(50226002)(26005)(14444005)(6506007)(102836004)(66066001)(229853002)(110136005)(305945005)(66574012)(316002)(99286004)(7736002)(45954011)(76176011)(7416002)(8676002)(81166006)(256004)(6246003)(186003)(966005)(6486002)(99106002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB6361;H:DB8PR04MB6715.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: a33rbYS1Jjrzo+/Q3nyIfrx4VBn2qyqj4A38FU9gohj+//c+SxQZrUY/+JMbZscYR0jx+YiL7eHi+R220uSXfAAuvBYKbkxdjbAMYnn2ECbHylXIvDlu3TLFTjGQwm7fz8f4Fe/Uwv+rqciEUc+ipvbCSr9F0MkMn/E++LDCfoCQpAU85b1ckHE9sHFDPZXBot+nY00cFJoBq5sxtYjY19lqVYFYoerWnPs9qgSDR3OMjr8cQCw20gRnnSK/zw9qJGZdOQwOhs9vsYlN3o0nM6F3dw6R52oyUjDak0uDQNJNxb7EoRCpoq0ClN5T0TQ2sXMk0BPMc3Jh2Kg+xnpSkS8Pow8Oiu5Hzjj6sOzqW5lLu6BKL8cy7Ij3A5nd5q1qBiK9iPcAvz6HZQrIqNxIOMtZvDt3wZHrgjc7Xxk4GOE=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <297A9D2CBA4BCF43A70ADEE516340FB7@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fbc3b088-2458-4a37-55f5-08d72bc42e81
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 14:29:48.8108
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oQ88uIWiklU1JiTmWXbdYNZHT0VOCZcSlJ53zYQrrUG91BwRbQmCHAyNXfpF6YevcV0lkDRlO2rUbnXvunxlAQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6361
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Nuvoton NPCM BMC Flash Interface Unit(FIU) SPI master
-controller driver using SPI-MEM interface.
-
-The FIU supports single, dual or quad communication interface.
-
-the FIU controller can operate in following modes:
-- User Mode Access(UMA): provides flash access by using an
-  indirect address/data mechanism.
-- direct rd/wr mode: maps the flash memory into the core
-  address space.
-- SPI-X mode: used for an expansion bus to an ASIC or CPLD.
-
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- drivers/spi/Kconfig        |  10 +
- drivers/spi/Makefile       |   1 +
- drivers/spi/spi-npcm-fiu.c | 771 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 782 insertions(+)
- create mode 100644 drivers/spi/spi-npcm-fiu.c
-
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 3a1d8f1170de..6ee514fd0920 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -433,6 +433,16 @@ config SPI_MT7621
- 	help
- 	  This selects a driver for the MediaTek MT7621 SPI Controller.
- 
-+config SPI_NPCM_FIU
-+	tristate "Nuvoton NPCM FLASH Interface Unit"
-+	depends on ARCH_NPCM || COMPILE_TEST
-+	depends on OF && HAS_IOMEM
-+	help
-+	  This enables support for the Flash Interface Unit SPI controller
-+	  in master mode.
-+	  This driver does not support generic SPI. The implementation only
-+	  supports spi-mem interface.
-+
- config SPI_NPCM_PSPI
- 	tristate "Nuvoton NPCM PSPI Controller"
- 	depends on ARCH_NPCM || COMPILE_TEST
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 63dcab552bcb..adbebee93a75 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -63,6 +63,7 @@ obj-$(CONFIG_SPI_MT65XX)                += spi-mt65xx.o
- obj-$(CONFIG_SPI_MT7621)		+= spi-mt7621.o
- obj-$(CONFIG_SPI_MXIC)			+= spi-mxic.o
- obj-$(CONFIG_SPI_MXS)			+= spi-mxs.o
-+obj-$(CONFIG_SPI_NPCM_FIU)		+= spi-npcm-fiu.o
- obj-$(CONFIG_SPI_NPCM_PSPI)		+= spi-npcm-pspi.o
- obj-$(CONFIG_SPI_NUC900)		+= spi-nuc900.o
- obj-$(CONFIG_SPI_NXP_FLEXSPI)		+= spi-nxp-fspi.o
-diff --git a/drivers/spi/spi-npcm-fiu.c b/drivers/spi/spi-npcm-fiu.c
-new file mode 100644
-index 000000000000..3ea1ec68147e
---- /dev/null
-+++ b/drivers/spi/spi-npcm-fiu.c
-@@ -0,0 +1,771 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Nuvoton Technology corporation.
-+
-+#include <linux/init.h>
-+#include <linux/kernel.h>
-+#include <linux/device.h>
-+#include <linux/module.h>
-+#include <linux/ioport.h>
-+#include <linux/clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/io.h>
-+#include <linux/vmalloc.h>
-+#include <linux/regmap.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi-mem.h>
-+#include <linux/mfd/syscon.h>
-+
-+/* NPCM7xx GCR module */
-+#define NPCM7XX_INTCR3_OFFSET		0x9C
-+#define NPCM7XX_INTCR3_FIU_FIX		BIT(6)
-+
-+/* Flash Interface Unit (FIU) Registers */
-+#define NPCM_FIU_DRD_CFG		0x00
-+#define NPCM_FIU_DWR_CFG		0x04
-+#define NPCM_FIU_UMA_CFG		0x08
-+#define NPCM_FIU_UMA_CTS		0x0C
-+#define NPCM_FIU_UMA_CMD		0x10
-+#define NPCM_FIU_UMA_ADDR		0x14
-+#define NPCM_FIU_PRT_CFG		0x18
-+#define NPCM_FIU_UMA_DW0		0x20
-+#define NPCM_FIU_UMA_DW1		0x24
-+#define NPCM_FIU_UMA_DW2		0x28
-+#define NPCM_FIU_UMA_DW3		0x2C
-+#define NPCM_FIU_UMA_DR0		0x30
-+#define NPCM_FIU_UMA_DR1		0x34
-+#define NPCM_FIU_UMA_DR2		0x38
-+#define NPCM_FIU_UMA_DR3		0x3C
-+#define NPCM_FIU_MAX_REG_LIMIT		0x80
-+
-+/* FIU Direct Read Configuration Register */
-+#define NPCM_FIU_DRD_CFG_LCK		BIT(31)
-+#define NPCM_FIU_DRD_CFG_R_BURST	GENMASK(25, 24)
-+#define NPCM_FIU_DRD_CFG_ADDSIZ		GENMASK(17, 16)
-+#define NPCM_FIU_DRD_CFG_DBW		GENMASK(13, 12)
-+#define NPCM_FIU_DRD_CFG_ACCTYPE	GENMASK(9, 8)
-+#define NPCM_FIU_DRD_CFG_RDCMD		GENMASK(7, 0)
-+#define NPCM_FIU_DRD_ADDSIZ_SHIFT	16
-+#define NPCM_FIU_DRD_DBW_SHIFT		12
-+#define NPCM_FIU_DRD_ACCTYPE_SHIFT	8
-+
-+/* FIU Direct Write Configuration Register */
-+#define NPCM_FIU_DWR_CFG_LCK		BIT(31)
-+#define NPCM_FIU_DWR_CFG_W_BURST	GENMASK(25, 24)
-+#define NPCM_FIU_DWR_CFG_ADDSIZ		GENMASK(17, 16)
-+#define NPCM_FIU_DWR_CFG_ABPCK		GENMASK(11, 10)
-+#define NPCM_FIU_DWR_CFG_DBPCK		GENMASK(9, 8)
-+#define NPCM_FIU_DWR_CFG_WRCMD		GENMASK(7, 0)
-+#define NPCM_FIU_DWR_ADDSIZ_SHIFT	16
-+#define NPCM_FIU_DWR_ABPCK_SHIFT	10
-+#define NPCM_FIU_DWR_DBPCK_SHIFT	8
-+
-+/* FIU UMA Configuration Register */
-+#define NPCM_FIU_UMA_CFG_LCK		BIT(31)
-+#define NPCM_FIU_UMA_CFG_CMMLCK		BIT(30)
-+#define NPCM_FIU_UMA_CFG_RDATSIZ	GENMASK(28, 24)
-+#define NPCM_FIU_UMA_CFG_DBSIZ		GENMASK(23, 21)
-+#define NPCM_FIU_UMA_CFG_WDATSIZ	GENMASK(20, 16)
-+#define NPCM_FIU_UMA_CFG_ADDSIZ		GENMASK(13, 11)
-+#define NPCM_FIU_UMA_CFG_CMDSIZ		BIT(10)
-+#define NPCM_FIU_UMA_CFG_RDBPCK		GENMASK(9, 8)
-+#define NPCM_FIU_UMA_CFG_DBPCK		GENMASK(7, 6)
-+#define NPCM_FIU_UMA_CFG_WDBPCK		GENMASK(5, 4)
-+#define NPCM_FIU_UMA_CFG_ADBPCK		GENMASK(3, 2)
-+#define NPCM_FIU_UMA_CFG_CMBPCK		GENMASK(1, 0)
-+#define NPCM_FIU_UMA_CFG_ADBPCK_SHIFT	2
-+#define NPCM_FIU_UMA_CFG_WDBPCK_SHIFT	4
-+#define NPCM_FIU_UMA_CFG_DBPCK_SHIFT	6
-+#define NPCM_FIU_UMA_CFG_RDBPCK_SHIFT	8
-+#define NPCM_FIU_UMA_CFG_ADDSIZ_SHIFT	11
-+#define NPCM_FIU_UMA_CFG_WDATSIZ_SHIFT	16
-+#define NPCM_FIU_UMA_CFG_DBSIZ_SHIFT	21
-+#define NPCM_FIU_UMA_CFG_RDATSIZ_SHIFT	24
-+
-+/* FIU UMA Control and Status Register */
-+#define NPCM_FIU_UMA_CTS_RDYIE		BIT(25)
-+#define NPCM_FIU_UMA_CTS_RDYST		BIT(24)
-+#define NPCM_FIU_UMA_CTS_SW_CS		BIT(16)
-+#define NPCM_FIU_UMA_CTS_DEV_NUM	GENMASK(9, 8)
-+#define NPCM_FIU_UMA_CTS_EXEC_DONE	BIT(0)
-+#define NPCM_FIU_UMA_CTS_DEV_NUM_SHIFT	8
-+
-+/* FIU UMA Command Register */
-+#define NPCM_FIU_UMA_CMD_DUM3		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_CMD_DUM2		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_CMD_DUM1		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_CMD_CMD		GENMASK(7, 0)
-+
-+/* FIU UMA Address Register */
-+#define NPCM_FIU_UMA_ADDR_UMA_ADDR	GENMASK(31, 0)
-+#define NPCM_FIU_UMA_ADDR_AB3		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_ADDR_AB2		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_ADDR_AB1		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_ADDR_AB0		GENMASK(7, 0)
-+
-+/* FIU UMA Write Data Bytes 0-3 Register */
-+#define NPCM_FIU_UMA_DW0_WB3		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DW0_WB2		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DW0_WB1		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DW0_WB0		GENMASK(7, 0)
-+
-+/* FIU UMA Write Data Bytes 4-7 Register */
-+#define NPCM_FIU_UMA_DW1_WB7		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DW1_WB6		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DW1_WB5		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DW1_WB4		GENMASK(7, 0)
-+
-+/* FIU UMA Write Data Bytes 8-11 Register */
-+#define NPCM_FIU_UMA_DW2_WB11		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DW2_WB10		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DW2_WB9		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DW2_WB8		GENMASK(7, 0)
-+
-+/* FIU UMA Write Data Bytes 12-15 Register */
-+#define NPCM_FIU_UMA_DW3_WB15		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DW3_WB14		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DW3_WB13		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DW3_WB12		GENMASK(7, 0)
-+
-+/* FIU UMA Read Data Bytes 0-3 Register */
-+#define NPCM_FIU_UMA_DR0_RB3		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DR0_RB2		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DR0_RB1		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DR0_RB0		GENMASK(7, 0)
-+
-+/* FIU UMA Read Data Bytes 4-7 Register */
-+#define NPCM_FIU_UMA_DR1_RB15		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DR1_RB14		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DR1_RB13		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DR1_RB12		GENMASK(7, 0)
-+
-+/* FIU UMA Read Data Bytes 8-11 Register */
-+#define NPCM_FIU_UMA_DR2_RB15		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DR2_RB14		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DR2_RB13		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DR2_RB12		GENMASK(7, 0)
-+
-+/* FIU UMA Read Data Bytes 12-15 Register */
-+#define NPCM_FIU_UMA_DR3_RB15		GENMASK(31, 24)
-+#define NPCM_FIU_UMA_DR3_RB14		GENMASK(23, 16)
-+#define NPCM_FIU_UMA_DR3_RB13		GENMASK(15, 8)
-+#define NPCM_FIU_UMA_DR3_RB12		GENMASK(7, 0)
-+
-+/* FIU Read Mode */
-+enum {
-+	DRD_SINGLE_WIRE_MODE	= 0,
-+	DRD_DUAL_IO_MODE	= 1,
-+	DRD_QUAD_IO_MODE	= 2,
-+	DRD_SPI_X_MODE		= 3,
-+};
-+
-+enum {
-+	DWR_ABPCK_BIT_PER_CLK	= 0,
-+	DWR_ABPCK_2_BIT_PER_CLK	= 1,
-+	DWR_ABPCK_4_BIT_PER_CLK	= 2,
-+};
-+
-+enum {
-+	DWR_DBPCK_BIT_PER_CLK	= 0,
-+	DWR_DBPCK_2_BIT_PER_CLK	= 1,
-+	DWR_DBPCK_4_BIT_PER_CLK	= 2,
-+};
-+
-+#define NPCM_FIU_DRD_16_BYTE_BURST	0x3000000
-+#define NPCM_FIU_DWR_16_BYTE_BURST	0x3000000
-+
-+#define MAP_SIZE_128MB			0x8000000
-+#define MAP_SIZE_16MB			0x1000000
-+#define MAP_SIZE_8MB			0x800000
-+
-+#define NUM_BITS_IN_BYTE		8
-+#define FIU_DRD_MAX_DUMMY_NUMBER	3
-+#define NPCM_MAX_CHIP_NUM		4
-+#define CHUNK_SIZE			16
-+#define UMA_MICRO_SEC_TIMEOUT		150
-+
-+enum {
-+	FIU0 = 0,
-+	FIU3,
-+	FIUX,
-+};
-+
-+struct npcm_fiu_info {
-+	char *name;
-+	u32 fiu_id;
-+	u32 max_map_size;
-+	u32 max_cs;
-+};
-+
-+struct fiu_data {
-+	const struct npcm_fiu_info *npcm_fiu_data_info;
-+	int fiu_max;
-+};
-+
-+static const struct npcm_fiu_info npxm7xx_fiu_info[] = {
-+	{.name = "FIU0", .fiu_id = FIU0,
-+		.max_map_size = MAP_SIZE_128MB, .max_cs = 2},
-+	{.name = "FIU3", .fiu_id = FIU3,
-+		.max_map_size = MAP_SIZE_128MB, .max_cs = 4},
-+	{.name = "FIUX", .fiu_id = FIUX,
-+		.max_map_size = MAP_SIZE_16MB, .max_cs = 2} };
-+
-+static const struct fiu_data npxm7xx_fiu_data = {
-+	.npcm_fiu_data_info = npxm7xx_fiu_info,
-+	.fiu_max = 3,
-+};
-+
-+struct npcm_fiu_spi;
-+
-+struct npcm_fiu_chip {
-+	void __iomem *flash_region_mapped_ptr;
-+	struct npcm_fiu_spi *fiu;
-+	unsigned long clkrate;
-+	u32 chipselect;
-+};
-+
-+struct npcm_fiu_spi {
-+	struct npcm_fiu_chip chip[NPCM_MAX_CHIP_NUM];
-+	const struct npcm_fiu_info *info;
-+	struct spi_mem_op drd_op;
-+	struct resource *res_mem;
-+	struct regmap *regmap;
-+	unsigned long clkrate;
-+	struct device *dev;
-+	struct clk *clk;
-+	bool spix_mode;
-+};
-+
-+static const struct regmap_config npcm_mtd_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = NPCM_FIU_MAX_REG_LIMIT,
-+};
-+
-+static void npcm_fiu_set_drd(struct npcm_fiu_spi *fiu,
-+			     const struct spi_mem_op *op)
-+{
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
-+			   NPCM_FIU_DRD_CFG_ACCTYPE,
-+			   ilog2(op->addr.buswidth) <<
-+			   NPCM_FIU_DRD_ACCTYPE_SHIFT);
-+	fiu->drd_op.addr.buswidth = op->addr.buswidth;
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
-+			   NPCM_FIU_DRD_CFG_DBW,
-+			   ((op->dummy.nbytes * ilog2(op->addr.buswidth))
-+			    / NUM_BITS_IN_BYTE) << NPCM_FIU_DRD_DBW_SHIFT);
-+	fiu->drd_op.dummy.nbytes = op->dummy.nbytes;
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
-+			   NPCM_FIU_DRD_CFG_RDCMD, op->cmd.opcode);
-+	fiu->drd_op.cmd.opcode = op->cmd.opcode;
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
-+			   NPCM_FIU_DRD_CFG_ADDSIZ,
-+			   (op->addr.nbytes - 3) << NPCM_FIU_DRD_ADDSIZ_SHIFT);
-+	fiu->drd_op.addr.nbytes = op->addr.nbytes;
-+}
-+
-+static ssize_t npcm_fiu_direct_read(struct spi_mem_dirmap_desc *desc,
-+				    u64 offs, size_t len, void *buf)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(desc->mem->spi->master);
-+	struct npcm_fiu_chip *chip = &fiu->chip[desc->mem->spi->chip_select];
-+	void __iomem *src = (void __iomem *)(chip->flash_region_mapped_ptr +
-+					     offs);
-+	u8 *buf_rx = buf;
-+	u32 i;
-+
-+	if (fiu->spix_mode) {
-+		for (i = 0 ; i < len ; i++)
-+			*(buf_rx + i) = ioread8(src + i);
-+	} else {
-+		if (desc->info.op_tmpl.addr.buswidth != fiu->drd_op.addr.buswidth ||
-+		    desc->info.op_tmpl.dummy.nbytes != fiu->drd_op.dummy.nbytes ||
-+		    desc->info.op_tmpl.cmd.opcode != fiu->drd_op.cmd.opcode ||
-+		    desc->info.op_tmpl.addr.nbytes != fiu->drd_op.addr.nbytes)
-+			npcm_fiu_set_drd(fiu, &desc->info.op_tmpl);
-+
-+		memcpy_fromio(buf_rx, src, len);
-+	}
-+
-+	return len;
-+}
-+
-+static ssize_t npcm_fiu_direct_write(struct spi_mem_dirmap_desc *desc,
-+				     u64 offs, size_t len, const void *buf)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(desc->mem->spi->master);
-+	struct npcm_fiu_chip *chip = &fiu->chip[desc->mem->spi->chip_select];
-+	void __iomem *dst = (void __iomem *)(chip->flash_region_mapped_ptr +
-+					     offs);
-+	const u8 *buf_tx = buf;
-+	u32 i;
-+
-+	if (fiu->spix_mode)
-+		for (i = 0 ; i < len ; i++)
-+			iowrite8(*(buf_tx + i), dst + i);
-+	else
-+		memcpy_toio(dst, buf_tx, len);
-+
-+	return len;
-+}
-+
-+static int npcm_fiu_uma_read(struct spi_mem *mem,
-+			     const struct spi_mem_op *op, u32 addr,
-+			      bool is_address_size, u8 *data, u32 data_size)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(mem->spi->master);
-+	u32 uma_cfg = BIT(10);
-+	u32 data_reg[4];
-+	int ret;
-+	u32 val;
-+	u32 i;
-+
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			   NPCM_FIU_UMA_CTS_DEV_NUM,
-+			   (mem->spi->chip_select <<
-+			    NPCM_FIU_UMA_CTS_DEV_NUM_SHIFT));
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CMD,
-+			   NPCM_FIU_UMA_CMD_CMD, op->cmd.opcode);
-+
-+	if (is_address_size) {
-+		uma_cfg |= ilog2(op->cmd.buswidth);
-+		uma_cfg |= ilog2(op->addr.buswidth)
-+			<< NPCM_FIU_UMA_CFG_ADBPCK_SHIFT;
-+		uma_cfg |= ilog2(op->dummy.buswidth)
-+			<< NPCM_FIU_UMA_CFG_DBPCK_SHIFT;
-+		uma_cfg |= ilog2(op->data.buswidth)
-+			<< NPCM_FIU_UMA_CFG_RDBPCK_SHIFT;
-+		uma_cfg |= op->dummy.nbytes << NPCM_FIU_UMA_CFG_DBSIZ_SHIFT;
-+		uma_cfg |= op->addr.nbytes << NPCM_FIU_UMA_CFG_ADDSIZ_SHIFT;
-+		regmap_write(fiu->regmap, NPCM_FIU_UMA_ADDR, addr);
-+	} else {
-+		regmap_write(fiu->regmap, NPCM_FIU_UMA_ADDR, 0x0);
-+	}
-+
-+	uma_cfg |= data_size << NPCM_FIU_UMA_CFG_RDATSIZ_SHIFT;
-+	regmap_write(fiu->regmap, NPCM_FIU_UMA_CFG, uma_cfg);
-+	regmap_write_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			  NPCM_FIU_UMA_CTS_EXEC_DONE,
-+			  NPCM_FIU_UMA_CTS_EXEC_DONE);
-+	ret = regmap_read_poll_timeout(fiu->regmap, NPCM_FIU_UMA_CTS, val,
-+				       (!(val & NPCM_FIU_UMA_CTS_EXEC_DONE)), 0,
-+				       UMA_MICRO_SEC_TIMEOUT);
-+	if (ret)
-+		return ret;
-+
-+	if (data_size) {
-+		for (i = 0; i < DIV_ROUND_UP(data_size, 4); i++)
-+			regmap_read(fiu->regmap, NPCM_FIU_UMA_DR0 + (i * 4),
-+				    &data_reg[i]);
-+		memcpy(data, data_reg, data_size);
-+	}
-+
-+	return 0;
-+}
-+
-+static int npcm_fiu_uma_write(struct spi_mem *mem,
-+			      const struct spi_mem_op *op, u8 cmd,
-+			      bool is_address_size, u8 *data, u32 data_size)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(mem->spi->master);
-+	u32 uma_cfg = BIT(10);
-+	u32 data_reg[4] = {0};
-+	u32 val;
-+	u32 i;
-+
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			   NPCM_FIU_UMA_CTS_DEV_NUM,
-+			   (mem->spi->chip_select <<
-+			    NPCM_FIU_UMA_CTS_DEV_NUM_SHIFT));
-+
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CMD,
-+			   NPCM_FIU_UMA_CMD_CMD, cmd);
-+
-+	if (data_size) {
-+		memcpy(data_reg, data, data_size);
-+		for (i = 0; i < DIV_ROUND_UP(data_size, 4); i++)
-+			regmap_write(fiu->regmap, NPCM_FIU_UMA_DW0 + (i * 4),
-+				     data_reg[i]);
-+	}
-+
-+	if (is_address_size) {
-+		uma_cfg |= ilog2(op->cmd.buswidth);
-+		uma_cfg |= ilog2(op->addr.buswidth) <<
-+			NPCM_FIU_UMA_CFG_ADBPCK_SHIFT;
-+		uma_cfg |= ilog2(op->data.buswidth) <<
-+			NPCM_FIU_UMA_CFG_WDBPCK_SHIFT;
-+		uma_cfg |= op->addr.nbytes << NPCM_FIU_UMA_CFG_ADDSIZ_SHIFT;
-+		regmap_write(fiu->regmap, NPCM_FIU_UMA_ADDR, op->addr.val);
-+	} else {
-+		regmap_write(fiu->regmap, NPCM_FIU_UMA_ADDR, 0x0);
-+	}
-+
-+	uma_cfg |= (data_size << NPCM_FIU_UMA_CFG_WDATSIZ_SHIFT);
-+	regmap_write(fiu->regmap, NPCM_FIU_UMA_CFG, uma_cfg);
-+
-+	regmap_write_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			  NPCM_FIU_UMA_CTS_EXEC_DONE,
-+			  NPCM_FIU_UMA_CTS_EXEC_DONE);
-+
-+	return regmap_read_poll_timeout(fiu->regmap, NPCM_FIU_UMA_CTS, val,
-+				       (!(val & NPCM_FIU_UMA_CTS_EXEC_DONE)), 0,
-+					UMA_MICRO_SEC_TIMEOUT);
-+}
-+
-+static int npcm_fiu_manualwrite(struct spi_mem *mem,
-+				const struct spi_mem_op *op)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(mem->spi->master);
-+	u8 *data = (u8 *)op->data.buf.out;
-+	u32 num_data_chunks;
-+	u32 remain_data;
-+	u32 idx = 0;
-+	int ret;
-+
-+	num_data_chunks  = op->data.nbytes / CHUNK_SIZE;
-+	remain_data  = op->data.nbytes % CHUNK_SIZE;
-+
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			   NPCM_FIU_UMA_CTS_DEV_NUM,
-+			   (mem->spi->chip_select <<
-+			    NPCM_FIU_UMA_CTS_DEV_NUM_SHIFT));
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			   NPCM_FIU_UMA_CTS_SW_CS, 0);
-+
-+	ret = npcm_fiu_uma_write(mem, op, op->cmd.opcode, true, NULL, 0);
-+	if (ret)
-+		return ret;
-+
-+	/* Starting the data writing loop in multiples of 8 */
-+	for (idx = 0; idx < num_data_chunks; ++idx) {
-+		ret = npcm_fiu_uma_write(mem, op, data[0], false,
-+					 &data[1], CHUNK_SIZE - 1);
-+		if (ret)
-+			return ret;
-+
-+		data += CHUNK_SIZE;
-+	}
-+
-+	/* Handling chunk remains */
-+	if (remain_data > 0) {
-+		ret = npcm_fiu_uma_write(mem, op, data[0], false,
-+					 &data[1], remain_data - 1);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_UMA_CTS,
-+			   NPCM_FIU_UMA_CTS_SW_CS, NPCM_FIU_UMA_CTS_SW_CS);
-+
-+	return 0;
-+}
-+
-+static int npcm_fiu_read(struct spi_mem *mem, const struct spi_mem_op *op)
-+{
-+	u8 *data = op->data.buf.in;
-+	int i, readlen, currlen;
-+	size_t retlen = 0;
-+	u8 *buf_ptr;
-+	u32 addr;
-+	int ret;
-+
-+	i = 0;
-+	currlen = op->data.nbytes;
-+
-+	do {
-+		addr = ((u32)op->addr.val + i);
-+		if (currlen < 16)
-+			readlen = currlen;
-+		else
-+			readlen = 16;
-+
-+		buf_ptr = data + i;
-+		ret = npcm_fiu_uma_read(mem, op, addr, true, buf_ptr,
-+					readlen);
-+		if (ret)
-+			return ret;
-+
-+		i += readlen;
-+		currlen -= 16;
-+	} while (currlen > 0);
-+
-+	retlen = i;
-+
-+	return 0;
-+}
-+
-+static void npcm_fiux_set_direct_wr(struct npcm_fiu_spi *fiu)
-+{
-+	regmap_write(fiu->regmap, NPCM_FIU_DWR_CFG,
-+		     NPCM_FIU_DWR_16_BYTE_BURST);
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DWR_CFG,
-+			   NPCM_FIU_DWR_CFG_ABPCK,
-+			   DWR_ABPCK_4_BIT_PER_CLK << NPCM_FIU_DWR_ABPCK_SHIFT);
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DWR_CFG,
-+			   NPCM_FIU_DWR_CFG_DBPCK,
-+			   DWR_DBPCK_4_BIT_PER_CLK << NPCM_FIU_DWR_DBPCK_SHIFT);
-+}
-+
-+static void npcm_fiux_set_direct_rd(struct npcm_fiu_spi *fiu)
-+{
-+	u32 rx_dummy = 0;
-+
-+	regmap_write(fiu->regmap, NPCM_FIU_DRD_CFG,
-+		     NPCM_FIU_DRD_16_BYTE_BURST);
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
-+			   NPCM_FIU_DRD_CFG_ACCTYPE,
-+			   DRD_SPI_X_MODE << NPCM_FIU_DRD_ACCTYPE_SHIFT);
-+	regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
-+			   NPCM_FIU_DRD_CFG_DBW,
-+			   rx_dummy << NPCM_FIU_DRD_DBW_SHIFT);
-+}
-+
-+static int npcm_fiu_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(mem->spi->master);
-+	struct npcm_fiu_chip *chip = &fiu->chip[mem->spi->chip_select];
-+	int ret = 0;
-+	u8 *buf;
-+
-+	dev_dbg(fiu->dev, "cmd:%#x mode:%d.%d.%d.%d addr:%#llx len:%#x\n",
-+		op->cmd.opcode, op->cmd.buswidth, op->addr.buswidth,
-+		op->dummy.buswidth, op->data.buswidth, op->addr.val,
-+		op->data.nbytes);
-+
-+	if (fiu->spix_mode || op->addr.nbytes > 4)
-+		return -ENOTSUPP;
-+
-+	if (fiu->clkrate != chip->clkrate) {
-+		ret = clk_set_rate(fiu->clk, chip->clkrate);
-+		if (ret < 0)
-+			dev_warn(fiu->dev, "Failed setting %lu frequancy, stay at %lu frequancy\n", chip->clkrate, fiu->clkrate);
-+		else
-+			fiu->clkrate = chip->clkrate;
-+	}
-+
-+	if (op->data.dir == SPI_MEM_DATA_IN) {
-+		if (!op->addr.nbytes) {
-+			buf = op->data.buf.in;
-+			ret = npcm_fiu_uma_read(mem, op, op->addr.val, false,
-+						buf, op->data.nbytes);
-+		} else {
-+			ret = npcm_fiu_read(mem, op);
-+		}
-+	} else  {
-+		if (!op->addr.nbytes && !op->data.nbytes)
-+			ret = npcm_fiu_uma_write(mem, op, op->cmd.opcode, false,
-+						 NULL, 0);
-+		if (op->addr.nbytes && !op->data.nbytes) {
-+			int i;
-+			u8 buf_addr[4];
-+			u32 addr = op->addr.val;
-+
-+			for (i = op->addr.nbytes - 1; i >= 0; i--) {
-+				buf_addr[i] = addr & 0xff;
-+				addr >>= 8;
-+			}
-+			ret = npcm_fiu_uma_write(mem, op, op->cmd.opcode, false,
-+						 buf_addr, op->addr.nbytes);
-+		}
-+		if (!op->addr.nbytes && op->data.nbytes)
-+			ret = npcm_fiu_uma_write(mem, op, op->cmd.opcode, false,
-+						 (u8 *)op->data.buf.out,
-+						 op->data.nbytes);
-+		if (op->addr.nbytes && op->data.nbytes)
-+			ret = npcm_fiu_manualwrite(mem, op);
-+	}
-+
-+	return ret;
-+}
-+
-+static int npcm_fiu_dirmap_create(struct spi_mem_dirmap_desc *desc)
-+{
-+	struct npcm_fiu_spi *fiu =
-+		spi_controller_get_devdata(desc->mem->spi->master);
-+	struct npcm_fiu_chip *chip = &fiu->chip[desc->mem->spi->chip_select];
-+	struct regmap *gcr_regmap;
-+
-+	if (!fiu->res_mem) {
-+		dev_warn(fiu->dev, "Reserved memory not defined, direct read disabled\n");
-+		desc->nodirmap = true;
-+		return 0;
-+	}
-+
-+	if (!fiu->spix_mode &&
-+	    desc->info.op_tmpl.data.dir == SPI_MEM_DATA_OUT) {
-+		desc->nodirmap = true;
-+		return 0;
-+	}
-+
-+	if (!chip->flash_region_mapped_ptr) {
-+		chip->flash_region_mapped_ptr =
-+			devm_ioremap_nocache(fiu->dev, (fiu->res_mem->start +
-+							(fiu->info->max_map_size *
-+						    desc->mem->spi->chip_select)),
-+					     (u32)desc->info.length);
-+		if (!chip->flash_region_mapped_ptr) {
-+			dev_warn(fiu->dev, "Error mapping memory region, direct read disabled\n");
-+			desc->nodirmap = true;
-+			return 0;
-+		}
-+	}
-+
-+	if (of_device_is_compatible(fiu->dev->of_node, "nuvoton,npcm750-fiu")) {
-+		gcr_regmap =
-+			syscon_regmap_lookup_by_compatible("nuvoton,npcm750-gcr");
-+		if (IS_ERR(gcr_regmap)) {
-+			dev_warn(fiu->dev, "Didn't find nuvoton,npcm750-gcr, direct read disabled\n");
-+			desc->nodirmap = true;
-+			return 0;
-+		}
-+		regmap_update_bits(gcr_regmap, NPCM7XX_INTCR3_OFFSET,
-+				   NPCM7XX_INTCR3_FIU_FIX,
-+				   NPCM7XX_INTCR3_FIU_FIX);
-+	}
-+
-+	if (desc->info.op_tmpl.data.dir == SPI_MEM_DATA_IN) {
-+		if (!fiu->spix_mode)
-+			npcm_fiu_set_drd(fiu, &desc->info.op_tmpl);
-+		else
-+			npcm_fiux_set_direct_rd(fiu);
-+
-+	} else {
-+		npcm_fiux_set_direct_wr(fiu);
-+	}
-+
-+	return 0;
-+}
-+
-+static int npcm_fiu_setup(struct spi_device *spi)
-+{
-+	struct spi_controller *ctrl = spi->master;
-+	struct npcm_fiu_spi *fiu = spi_controller_get_devdata(ctrl);
-+	struct npcm_fiu_chip *chip;
-+
-+	chip = &fiu->chip[spi->chip_select];
-+	chip->fiu = fiu;
-+	chip->chipselect = spi->chip_select;
-+	chip->clkrate = spi->max_speed_hz;
-+
-+	fiu->clkrate = clk_get_rate(fiu->clk);
-+
-+	return 0;
-+}
-+
-+static const struct spi_controller_mem_ops npcm_fiu_mem_ops = {
-+	.exec_op = npcm_fiu_exec_op,
-+	.dirmap_create = npcm_fiu_dirmap_create,
-+	.dirmap_read = npcm_fiu_direct_read,
-+	.dirmap_write = npcm_fiu_direct_write,
-+};
-+
-+static const struct of_device_id npcm_fiu_dt_ids[] = {
-+	{ .compatible = "nuvoton,npcm750-fiu", .data = &npxm7xx_fiu_data  },
-+	{ /* sentinel */ }
-+};
-+
-+static int npcm_fiu_probe(struct platform_device *pdev)
-+{
-+	const struct fiu_data *fiu_data_match;
-+	const struct of_device_id *match;
-+	struct device *dev = &pdev->dev;
-+	struct spi_controller *ctrl;
-+	struct npcm_fiu_spi *fiu;
-+	void __iomem *regbase;
-+	struct resource *res;
-+	int ret;
-+	int id;
-+
-+	ctrl = spi_alloc_master(dev, sizeof(*fiu));
-+	if (!ctrl)
-+		return -ENOMEM;
-+
-+	fiu = spi_controller_get_devdata(ctrl);
-+
-+	match = of_match_device(npcm_fiu_dt_ids, dev);
-+	if (!match || !match->data) {
-+		dev_err(dev, "No compatible OF match\n");
-+		return -ENODEV;
-+	}
-+
-+	fiu_data_match = match->data;
-+	id = of_alias_get_id(dev->of_node, "fiu");
-+	if (id < 0 || id >= fiu_data_match->fiu_max) {
-+		dev_err(dev, "Invalid platform device id: %d\n", id);
-+		return -EINVAL;
-+	}
-+
-+	fiu->info = &fiu_data_match->npcm_fiu_data_info[id];
-+
-+	platform_set_drvdata(pdev, fiu);
-+	fiu->dev = dev;
-+
-+	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "control");
-+	regbase = devm_ioremap_resource(dev, res);
-+	if (IS_ERR(regbase))
-+		return PTR_ERR(regbase);
-+
-+	fiu->regmap = devm_regmap_init_mmio(dev, regbase,
-+					    &npcm_mtd_regmap_config);
-+	if (IS_ERR(fiu->regmap)) {
-+		dev_err(dev, "Failed to create regmap\n");
-+		return PTR_ERR(fiu->regmap);
-+	}
-+
-+	fiu->res_mem = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-+						    "memory");
-+	fiu->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(fiu->clk))
-+		return PTR_ERR(fiu->clk);
-+
-+	fiu->spix_mode = of_property_read_bool(dev->of_node,
-+					       "nuvoton,spix-mode");
-+
-+	platform_set_drvdata(pdev, fiu);
-+	clk_prepare_enable(fiu->clk);
-+
-+	ctrl->mode_bits = SPI_RX_DUAL | SPI_RX_QUAD
-+		| SPI_TX_DUAL | SPI_TX_QUAD;
-+	ctrl->setup = npcm_fiu_setup;
-+	ctrl->bus_num = -1;
-+	ctrl->mem_ops = &npcm_fiu_mem_ops;
-+	ctrl->num_chipselect = fiu->info->max_cs;
-+	ctrl->dev.of_node = dev->of_node;
-+
-+	ret = devm_spi_register_master(dev, ctrl);
-+	if (ret)
-+		return ret;
-+
-+	return 0;
-+}
-+
-+static int npcm_fiu_remove(struct platform_device *pdev)
-+{
-+	struct npcm_fiu_spi *fiu = platform_get_drvdata(pdev);
-+
-+	clk_disable_unprepare(fiu->clk);
-+	return 0;
-+}
-+
-+MODULE_DEVICE_TABLE(of, npcm_fiu_dt_ids);
-+
-+static struct platform_driver npcm_fiu_driver = {
-+	.driver = {
-+		.name	= "NPCM-FIU",
-+		.bus	= &platform_bus_type,
-+		.of_match_table = npcm_fiu_dt_ids,
-+	},
-+	.probe      = npcm_fiu_probe,
-+	.remove	    = npcm_fiu_remove,
-+};
-+module_platform_driver(npcm_fiu_driver);
-+
-+MODULE_DESCRIPTION("Nuvoton FLASH Interface Unit SPI Controller Driver");
-+MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-+MODULE_LICENSE("GPL v2");
--- 
-2.18.0
-
+SGkgR3VpZG8sDQoNCkkgdGVzdGVkIHRoaXMgb24gbXkgc2V0dXAgYW5kIGl0IHdvcmtzLiBNeSBE
+U0kgcGFuZWwgaXMgYSBsaXR0bGUgYml0DQpkaWZmZXJlbnQgYW5kIGl0IGRvZXNuJ3Qgd29yayB3
+aXRoIHRoaXMgYXMtaXMsIGJ1dCBJIGFkZGVkIHNvbWUNCmltcHJvdmVtZW50cyBvbiB0b3Agb2Yg
+dGhpcywgaW4gb3JkZXIgdG8gYmUgYWJsZSB0byBzZXR1cCB0aGUgY2xvY2tzLg0KVGhlIGNoYW5n
+ZXMgSSBtYWRlIGNhbiBhcnJpdmUgb24gdG9wIG9mIHRoaXMgYXMgaW1wcm92ZW1lbnRzLCBvZg0K
+Y291cnNlLCBzaW5jZSBpdCB3aWxsIGFsbG93IHRoaXMgZHJpdmVyIHRvIGRpbmFtaWNhbGx5IHNl
+dCB0aGUNCnZpZGVvX3BsbCBjbG9jayBmb3IgYW55IGtpbmQgb2YgbW9kZS4NCg0KU28sIGZvciB0
+aGUgd2hvbGUgcGF0Y2gtc2V0LCB5b3UgY2FuIGFkZDoNClRlc3RlZC1ieTogUm9iZXJ0IENoaXJh
+cyA8cm9iZXJ0LmNoaXJhc0BueHAuY29tPg0KU2lnbmVkLW9mZi1ieTogUm9iZXJ0IENoaXJhcyA8
+cm9iZXJ0LmNoaXJhc0BueHAuY29tPg0KDQpCZXN0IHJlZ2FyZHMsDQpSb2JlcnQNCg0KT24gSm8s
+IDIwMTktMDgtMjIgYXQgMTI6NDQgKzAyMDAsIEd1aWRvIEfDvG50aGVyIHdyb3RlOg0KPiBUaGlz
+IGFkZHMgaW5pdGlhbCBzdXBwb3J0IGZvciB0aGUgTldMIE1JUEkgRFNJIEhvc3QgY29udHJvbGxl
+ciBmb3VuZA0KPiBvbiBpLk1YOA0KPiBTb0NzLg0KPiANCj4gSXQgYWRkcyBzdXBwb3J0IGZvciB0
+aGUgaS5NWDhNUSBidXQgdGhlIHNhbWUgSVAgY29yZSBjYW4gYWxzbyBiZQ0KPiBmb3VuZCBvbiBl
+LmcuDQo+IGkuTVg4UVhQLiBJIGFkZGVkIHRoZSBuZWNlc3NhcnkgaG9va3MgdG8gc3VwcG9ydCBv
+dGhlciBpbXg4IHZhcmlhbnRzDQo+IGJ1dCBzaW5jZQ0KPiBJIG9ubHkgaGF2ZSBpbXg4bXEgYm9h
+cmRzIHRvIHRlc3QgSSBvbWl0dGVkIHRoZSBwbGF0Zm9ybSBkYXRhIGZvcg0KPiBvdGhlciBTb0Nz
+Lg0KPiANCj4gVGhlIGNvZGUgaXMgYmFzZWQgb24gTlhQcyBCU1Agc28gSSBhZGRlZCBSb2JlcnQg
+Q2hpcmFzIGFzDQo+IENvLWF1dGhvcmVkLWJ5LiBSb2JlcnQsIGlmIHRoaXMgbG9va3Mgc2FuZSBj
+b3VsZCB5b3UgYWRkIHlvdXINCj4gU2lnbmVkLW9mZi1ieTo/DQo+IA0KPiBUaGUgbW9zdCBub3Rh
+YmxlIGNoYW5nZXMgb3ZlciB0aGUgQlNQIGRyaXZlciBhcmUNCj4gwqAtIENhbGN1bGF0ZSBIUyBt
+b2RlIHRpbWluZyBmcm9tIHBoeV9jb25maWd1cmVfb3B0c19taXBpX2RwaHkNCj4gwqAtIFBlcmZv
+cm0gYWxsIGNsb2NrIHNldHVwIHZpYSBEVA0KPiDCoC0gTWVyZ2UgbndsLWlteCBhbmQgbndsIGRy
+aXZlcnMNCj4gwqAtIEFkZCBCMCBzaWxpb24gcmV2aXNpb24gcXVpcmsNCj4gwqAtIGJlY29tZSBh
+IGJyaWRnZSBkcml2ZXIgdG8gaG9vayBpbnRvIG14c2ZiIChmcm9tIHdoYXQgSSByZWFkWzBdDQo+
+IERDU1MsIHdoaWNoDQo+IMKgwqDCoGFsc28gY2FuIGRyaXZlIHRoZSBud2wgb24gdGhlIGlteDht
+cSB3aWxsIGxpa2VseSBub3QgYmVjb21lIHBhcnQNCj4gb2YNCj4gwqDCoMKgaW14LWRpc3BsYXkt
+c3Vic3lzdGVtIHNvIGl0IG1ha2VzIHNlbnNlIHRvIG1ha2UgaXQgZHJpdmUgYSBicmlkZ2UNCj4g
+Zm9yIGRzaSBhcw0KPiDCoMKgwqB3ZWxsKS4NCj4gwqAtIFVzZSBwYW5lbF9icmlkZ2UgdG8gYXR0
+YWNoIHRoZSBwYW5lbA0KPiDCoC0gVXNlIG11bHRpcGxleCBmcmFtZXdvcmsgaW5zdGVhZCBvZiBh
+Y2Nlc3Npbmcgc3lzY29uIGRpcmVjdGx5DQo+IA0KPiBUaGlzIGhhcyBiZWVuIHRlc3RlZCBvbiBh
+IExpYnJlbSA1IGRldmtpdCB1c2luZyBteHNmYiB3aXRoIFJvYmVydCdzDQo+IHBhdGNoZXNbMV0N
+Cj4gYW5kIHRoZSByb2NrdGVjaC1qaDA1N24wMDkwMCBwYW5lbCBkcml2ZXIgb24gbmV4dC0yMDE5
+MDgyMS4gVGhlIERDU1MNCj4gY2FuIGxhdGVyDQo+IG9uIGFsc28gYWN0IGFzIGlucHV0IHNvdXJj
+ZSB0b28uDQo+IA0KPiBDaGFuZ2VzIGZyb20gdjI6DQo+IC0gUGVyIHJldmlldyBjb21tZW50cyBi
+eSBSb2IgSGVycmluZw0KPiDCoCBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91
+dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsDQo+IGlzdHMuZnJlZWRlc2t0b3Aub3JnJTJG
+YXJjaGl2ZXMlMkZkcmktZGV2ZWwlMkYyMDE5LQ0KPiBBdWd1c3QlMkYyMzA0NDguaHRtbCZhbXA7
+ZGF0YT0wMiU3QzAxJTdDcm9iZXJ0LmNoaXJhcyU0MG54cC5jb20lN0M3NTcNCj4gMjAxZjlhYWE1
+NDY1MzU4MGUwOGQ3MjZlZGIyOTAlN0M2ODZlYTFkM2JjMmI0YzZmYTkyY2Q5OWM1YzMwMTYzNSU3
+QzAlDQo+IDdDMCU3QzYzNzAyMDY3NDY1NDU2NjQxNCZhbXA7c2RhdGE9SmR2QWRDUEdxMkNUc1cl
+MkJnWGduQVZsdFdNSWZkQ0RRbg0KPiBkWFNMWXBuakVIOCUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiDC
+oCAtIGJpbmRpbmdzOg0KPiDCoMKgwqDCoC0gU2ltcGxpZnkgYnkgcmVzdHJpY3RpbmcgdG8gZnNs
+LGlteDhtcS1ud2wtZHNpDQo+IMKgwqDCoMKgLSBkb2N1bWVudCByZXNldCBsaW5lcw0KPiDCoMKg
+wqDCoC0gYWRkIHBvcnRAezAsMX0NCj4gwqDCoMKgwqAtIHVzZSBhIHJlYWwgY29tcGF0aWJsZSBz
+dHJpbmcgZm9yIHRoZSBwYW5lbA0KPiDCoMKgwqDCoC0gcmVzZXRzIGFyZSByZXF1aXJlZA0KPiAt
+IFBlciByZXZpZXcgY29tbWVudHMgYnkgQXJuZCBCZXJnbWFubg0KPiDCoCBodHRwczovL2V1cjAx
+LnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsDQo+
+IGlzdHMuZnJlZWRlc2t0b3Aub3JnJTJGYXJjaGl2ZXMlMkZkcmktZGV2ZWwlMkYyMDE5LQ0KPiBB
+dWd1c3QlMkYyMzA4NjguaHRtbCZhbXA7ZGF0YT0wMiU3QzAxJTdDcm9iZXJ0LmNoaXJhcyU0MG54
+cC5jb20lN0M3NTcNCj4gMjAxZjlhYWE1NDY1MzU4MGUwOGQ3MjZlZGIyOTAlN0M2ODZlYTFkM2Jj
+MmI0YzZmYTkyY2Q5OWM1YzMwMTYzNSU3QzAlDQo+IDdDMCU3QzYzNzAyMDY3NDY1NDU2NjQxNCZh
+bXA7c2RhdGE9THlKcFpqUWpNQ2U1elVkdks4Q0Q4RVR1Y0xQeHg2MjFnVw0KPiB4dHBBcjhETTQl
+M0QmYW1wO3Jlc2VydmVkPTANCj4gwqAgLSBEb24ndCBhY2Nlc3MgaW9tdXhjX2dwciByZWdzIGRp
+cmVjdGx5LiBUaGlzIGFsbG93cyB1cyB0byBkcm9wIHRoZQ0KPiDCoMKgwqDCoGZpcnN0IHBhdGNo
+IGluIHRoZSBzZXJpZXMgd2l0aCB0aGUgaW9tdXhjX2dwciBmaWVsZCBkZWZpbmVzLg0KPiAtIFBl
+ciByZXZpZXcgY29tbWVudHMgYnkgTGF1cmVudCBQaW5jaGFydA0KPiDCoMKgwqDCoC0gRml4IHdv
+cmRpbmcgaW4gYmluZGluZ3MNCj4gLSBBZGQgbXV4LWNvbnRyb2xzIHRvIGJpbmRpbmdzDQo+IC0g
+RG9uJ3QgcHJpbnQgZXJyb3IgbWVzc2FnZSBvbiBkcGh5IHByb2JlIGRlZmVyYWwNCj4gDQo+IENo
+YW5nZXMgZnJvbSB2MToNCj4gLSBQZXIgcmV2aWV3IGNvbW1lbnRzIGJ5IFNhbSBSYXZuYm9yZw0K
+PiDCoCBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9
+aHR0cHMlM0ElMkYlMkZsDQo+IGlzdHMuZnJlZWRlc2t0b3Aub3JnJTJGYXJjaGl2ZXMlMkZkcmkt
+ZGV2ZWwlMkYyMDE5LQ0KPiBKdWx5JTJGMjI4MTMwLmh0bWwmYW1wO2RhdGE9MDIlN0MwMSU3Q3Jv
+YmVydC5jaGlyYXMlNDBueHAuY29tJTdDNzU3MjANCj4gMWY5YWFhNTQ2NTM1ODBlMDhkNzI2ZWRi
+MjkwJTdDNjg2ZWExZDNiYzJiNGM2ZmE5MmNkOTljNWMzMDE2MzUlN0MwJTdDDQo+IDAlN0M2Mzcw
+MjA2NzQ2NTQ1NjY0MTQmYW1wO3NkYXRhPUFVMmd6SXdyYkNkSUJaZW5QV1dZWVglMkJnZFg1M3pj
+MiUyQg0KPiBTUWhaYnVOJTJGV3BVJTNEJmFtcDtyZXNlcnZlZD0wDQo+IMKgIC0gQ2hhbmdlIGJp
+bmRpbmcgZG9jcyB0byBZQU1MDQo+IMKgIC0gYnVpbGQ6IERvbid0IGFsd2F5cyB2aXNpdCBpbXgt
+bndsLw0KPiDCoCAtIGJ1aWxkOiBBZGQgaGVhZGVyLXRlc3QteQ0KPiDCoCAtIFNvcnQgaGVhZGVy
+cyBhY2NvcmRpbmcgdG8gRFJNIGNvbnZlbnRpb24NCj4gwqAgLSBVc2UgZHJtX2Rpc3BsYXlfbW9k
+ZSBpbnN0ZWFkIG9mIHZpZGVtb2RlDQo+IC0gUGVyIHJldmlldyBjb21tZW50cyBieSBGYWJpbyBF
+c3RldmFtDQo+IMKgIGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3RlY3Rpb24ub3V0bG9vay5j
+b20vP3VybD1odHRwcyUzQSUyRiUyRmwNCj4gaXN0cy5mcmVlZGVza3RvcC5vcmclMkZhcmNoaXZl
+cyUyRmRyaS1kZXZlbCUyRjIwMTktDQo+IEp1bHklMkYyMjgyOTkuaHRtbCZhbXA7ZGF0YT0wMiU3
+QzAxJTdDcm9iZXJ0LmNoaXJhcyU0MG54cC5jb20lN0M3NTcyMA0KPiAxZjlhYWE1NDY1MzU4MGUw
+OGQ3MjZlZGIyOTAlN0M2ODZlYTFkM2JjMmI0YzZmYTkyY2Q5OWM1YzMwMTYzNSU3QzAlN0MNCj4g
+MCU3QzYzNzAyMDY3NDY1NDU2NjQxNCZhbXA7c2RhdGE9NmtwSVo2aU5BUTEzZk1YVTZzcUVOTHd5
+JTJGZElXTDZlZjhqDQo+IGd5YXM3STBDUSUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiDCoCAtIERvbid0
+IHJlc3RyaWN0IGJ1aWxkIHRvIEFSQ0hfTVhDDQo+IMKgIC0gRHJvcCB1bnVzZWQgaW5jbHVkZXMN
+Cj4gwqAgLSBEcm9wIHVucmVhY2hhYmxlIGNvZGUgaW4gaW14X253bF9kc2lfYnJpZGdlX21vZGVf
+Zml4dXAoKQ0KPiDCoCAtIERyb3AgcmVtYWluaW5nIGNhbGxzIG9mIGRldl9lcnIoKSBhbmQgdXNl
+IERSTV9ERVZfRVJSKCkNCj4gwqDCoMKgwqBjb25zaXN0ZW50bHkuDQo+IMKgIC0gVXNlIGRldm1f
+cGxhdGZvcm1faW9yZW1hcF9yZXNvdXJjZSgpDQo+IMKgIC0gRHJvcCBkZXZtX2ZyZWVfaXJxKCkg
+aW4gcHJvYmUoKSBlcnJvciBwYXRoDQo+IMKgIC0gVXNlIHNpbmdsZSBsaW5lIGNvbW1lbnRzIHdo
+ZXJlIHN1ZmZpY2llbnQNCj4gwqAgLSBVc2UgPGxpbnV4L3RpbWU2NC5oPiBpbnN0ZWFkIG9mIGRl
+ZmluaW5nIFVTRUNfUEVSX1NFQw0KPiDCoCAtIE1ha2UgaW5wdXQgc291cmNlIHNlbGVjdCBpbXg4
+IHNwZWNpZmljDQo+IMKgIC0gRHJvcCA8YXNtL3VuYWxpZ25lZC5oPiBpbmNsdXNpb24gKGFmdGVy
+IHJlbW92YWwgb2YNCj4gZ2V0X3VuYWxpZ25lZF9sZTMyKQ0KPiDCoCAtIERyb3AgYWxsIEVYUE9S
+VF9TWU1CT0xfR1BMKCkgZm9yIGZ1bmN0aW9ucyB1c2VkIGluIHRoZSBzYW1lDQo+IG1vZHVsZQ0K
+PiDCoMKgwqDCoGJ1dCBkaWZmZXJlbnQgc291cmNlIGZpbGVzLg0KPiDCoCAtIERyb3AgbndsX2Rz
+aV9lbmFibGVfe3J4LHR4fV9jbG9jaygpIGJ5IGludm9raW5nDQo+IGNsa19wcmVwYXJlX2VuYWJs
+ZSgpDQo+IMKgwqDCoMKgZGlyZWN0bHkNCj4gwqAgLSBSZW1vdmUgcG9pbnRsZXNzIGNvbW1lbnQN
+Cj4gLSBMYXVyZW50IFBpbmNoYXJ0DQo+IMKgIGh0dHBzOi8vZXVyMDEuc2FmZWxpbmtzLnByb3Rl
+Y3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRmwNCj4gaXN0cy5mcmVlZGVza3Rv
+cC5vcmclMkZhcmNoaXZlcyUyRmRyaS1kZXZlbCUyRjIwMTktDQo+IEp1bHklMkYyMjgzMTMuaHRt
+bCZhbXA7ZGF0YT0wMiU3QzAxJTdDcm9iZXJ0LmNoaXJhcyU0MG54cC5jb20lN0M3NTcyMA0KPiAx
+ZjlhYWE1NDY1MzU4MGUwOGQ3MjZlZGIyOTAlN0M2ODZlYTFkM2JjMmI0YzZmYTkyY2Q5OWM1YzMw
+MTYzNSU3QzAlN0MNCj4gMCU3QzYzNzAyMDY3NDY1NDU2NjQxNCZhbXA7c2RhdGE9dERsVkdlRVQx
+Q1BNSDlXJTJGcW1uZVBOUjUxdk5hVEtEJTJGDQo+IGlGT29SOSUyRm1FU2MlM0QmYW1wO3Jlc2Vy
+dmVkPTANCj4gwqAgaHR0cHM6Ly9ldXIwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNv
+bS8/dXJsPWh0dHBzJTNBJTJGJTJGbA0KPiBpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRmFyY2hpdmVz
+JTJGZHJpLWRldmVsJTJGMjAxOS0NCj4gSnVseSUyRjIyODMwOC5odG1sJmFtcDtkYXRhPTAyJTdD
+MDElN0Nyb2JlcnQuY2hpcmFzJTQwbnhwLmNvbSU3Qzc1NzIwDQo+IDFmOWFhYTU0NjUzNTgwZTA4
+ZDcyNmVkYjI5MCU3QzY4NmVhMWQzYmMyYjRjNmZhOTJjZDk5YzVjMzAxNjM1JTdDMCU3Qw0KPiAw
+JTdDNjM3MDIwNjc0NjU0NTY2NDE0JmFtcDtzZGF0YT1Oc0xHQUw4JTJCY09DMFpaeHhlb0dlN1Z4
+UUNncVNCRU40RzMNCj4gV1ZHT2VacENvJTNEJmFtcDtyZXNlcnZlZD0wDQo+IMKgIC0gRHJvcCAo
+b24gaU1YOE1RKSB1bnVzZWQgY3NyIHJlZ21hcA0KPiDCoCAtIFVzZSBOV0xfTUFYX1BMQVRGT1JN
+X0NMT0NLUyBldmVyeXdoZXJlDQo+IMKgIC0gRHJvcCBnZXRfdW5hbGlnbmVkX2xlMzIoKSB1c2Fn
+ZQ0KPiDCoCAtIHJlbW92ZSBkdXBsaWNhdGUgJ2ZvciB0aGUnIGluIGJpbmRpbmcgZG9jcw0KPiDC
+oCAtIERvbid0IGluY2x1ZGUgdW51c2VkIDxsaW51eC9jbGstcHJvdmlkZXIuaD4NCj4gwqAgLSBE
+b24ndCBpbmNsdWRlIHVudXNlZCA8bGludXgvY29tcG9uZW50Lmg+DQo+IMKgIC0gRHJvcCBkcG1z
+X21vZGUgZm9yIHRyYWNraW5nIHN0YXRlLCB0cnVzdCB0aGUgZHJtIGxheWVyIG9uIHRoYXQNCj4g
+wqAgLSBVc2UgcG1fcnVudGltZV9wdXQoKSBpbnN0ZWFkIG9mIHBtX3J1bnRpbWVfcHV0X3N5bmMo
+KQ0KPiDCoCAtIERvbid0IG92ZXJ3cml0ZSBlbmNvZGVyIHR5cGUNCj4gwqAgLSBNYWtlIGlteF9u
+d2xfcGxhdGZvcm1fZGF0YSBjb25zdA0KPiDCoCAtIFVzZSB0aGUgcmVzZXQgY29udHJvbGxlciBB
+UEkgaW5zdGVhZCBvZiBvcGVuIGNvZGluZyB0aGF0IHBsYXRmb3JtDQo+IHNwZWNpZmljDQo+IMKg
+wqDCoMKgcGFydA0KPiDCoCAtIFVzZSA8bGludXgvYml0ZmllbGQuaD4gaW50ZWFkIG9mIG1ha2lu
+ZyB1cCBvdXIgb3duIGRlZmluZXMNCj4gwqAgLSBuYW1lIG1pcGlfZHNpX3RyYW5zZmVyIGxlc3Mg
+Z2VuZXJpYzogbndsX2RzaV90cmFuc2Zlcg0KPiDCoCAtIGVuc3VyZSBjbGVhbiBpbiAucmVtb3Zl
+IGJ5IGNhbGxpbmcgbWlwaV9kc2lfaG9zdF91bnJlZ2lzdGVyLg0KPiDCoCAtIHByZWZpeCBjb25z
+dGFudHMgYnkgTldMX0RTSV8NCj4gwqAgLSBwcm9wZXJseSBmb3JtYXQgdHJhbnNmZXJfZGlyZWN0
+aW9uIGVudW0NCj4gwqAgLSBzaW1wbGlmeSBwbGF0Zm9ybSBjbG9jayBoYW5kbGluZw0KPiDCoCAt
+IERvbid0IG1vZGlmeSBzdGF0ZSBpbiBtb2RlX2ZpeHVwKCkgYW5kIHVzZSBtb2RlX3NldCgpIGlu
+c3RlYWQNCj4gwqAgLSBEcm9wIGJyaWRnZSBkZXRhY2goKSwgYWxyZWFkeSBoYW5kbGUgYnkgbnds
+X2RzaV9ob3N0X2RldGFjaCgpDQo+IMKgIC0gRHJvcCBVU0VfKl9RVUlSSygpIG1hY3Jvcw0KPiAt
+IERyb3AgKGZvciBub3cpIHVudXNlZCBjbG9jayBkZWZuaXRpb25zLiAncGl4ZWwnIGFuZCAnYnlw
+YXNzJyBjbG9jaw0KPiB3aWxsIGJlDQo+IMKgIHVzZWQgZm9yIGkuTVg4IFNvQ3MgYnV0IHNpbmNl
+IHRoZXkncmUgdW51c2VkIGF0bSBkcm9wIHRoZQ0KPiBkZWZpbml0aW9ucyAtIGJ1dA0KPiDCoCBr
+ZWVwIHRoZSBsb2dpYyB0byBlbmFibGUvZGlzYWJsZSBzZXZlcmFsIGNsb2NrcyBpbiBwbGFjZSBz
+aW5jZSB3ZQ0KPiBrbm93IHdlJ2xsDQo+IMKgIG5lZWQgaXQgaW4gdGhlIGZ1dHVyZS4NCj4gDQo+
+IENoYW5nZXMgZnJvbSB2MDoNCj4gLSBBZGQgcXVpcmsgZm9yIElNUThNUSBzaWxpY29uIEIwIHJl
+dmlzaW9uIHRvIG5vdCBtZXNzIHdpdGggdGhlDQo+IMKgIHN5c3RlbSByZXNldCBjb250cm9sbGVy
+IG9uIHBvd2VyIGRvd24gc2luY2UgZW5hYmxlKCkgd29uJ3Qgd29yaw0KPiDCoCBvdGhlcndpc2Uu
+DQo+IC0gRHJvcCBkZXZtX2ZyZWVfaXJxKCkgaGFuZGxlZCBieSB0aGUgZGV2aWNlIGRyaXZlciBj
+b3JlDQo+IC0gRGlzYWJsZSB0eCBlc2MgY2xvY2sgYWZ0ZXIgdGhlIHBoeSBwb3dlciBkb3duIHRv
+IHVuYnJlYWsNCj4gwqAgZGlzYWJsZS9lbmFibGUgKHVuYmxhbmsvYmxhbmspDQo+IC0gQWRkIHBv
+cnRzIHRvIGR0IGJpbmRpbmcgZG9jcw0KPiAtIFNlbGVjdCBHRU5FUklDX1BIWV9NSVBJX0RQSFkg
+aW5zdGVhZCBvZiBHRU5FUklDX1BIWSBmb3INCj4gwqAgcGh5X21pcGlfZHBoeV9nZXRfZGVmYXVs
+dF9jb25maWcNCj4gLSBTZWxlY3QgRFJNX01JUElfRFNJDQo+IC0gSW5jbHVkZSBkcm1fcHJpbnQu
+aCB0byBmaXggYnVpbGQgb24gbmV4dC0yMDE5MDQwOA0KPiAtIERyb3Agc29tZSBkZWJ1Z2dpbmcg
+bWVzc2FnZXMNCj4gLSBOZXdsaW5lIHRlcm1pbmF0ZSBhbGwgRFJNXyBwcmludG91dHMNCj4gLSBU
+dXJuIGNvbXBvbmVudCBkcml2ZXIgaW50byBhIGRybSBicmlkZ2UNCj4gDQo+IFswXTogaHR0cHM6
+Ly9ldXIwMS5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNBJTJG
+JQ0KPiAyRmxpc3RzLmZyZWVkZXNrdG9wLm9yZyUyRmFyY2hpdmVzJTJGZHJpLWRldmVsJTJGMjAx
+OS0NCj4gTWF5JTJGMjE5NDg0Lmh0bWwmYW1wO2RhdGE9MDIlN0MwMSU3Q3JvYmVydC5jaGlyYXMl
+NDBueHAuY29tJTdDNzU3MjAxDQo+IGY5YWFhNTQ2NTM1ODBlMDhkNzI2ZWRiMjkwJTdDNjg2ZWEx
+ZDNiYzJiNGM2ZmE5MmNkOTljNWMzMDE2MzUlN0MwJTdDMA0KPiAlN0M2MzcwMjA2NzQ2NTQ1NjY0
+MTQmYW1wO3NkYXRhPTRJVmpoTHkzYTJYeFo0all3REZEMjNEJTJCdndBVkFFajQ0aFkNCj4gZnZ2
+cDhPcFElM0QmYW1wO3Jlc2VydmVkPTANCj4gWzFdOiBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5w
+cm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlDQo+IDJGcGF0Y2h3b3JrLmZy
+ZWVkZXNrdG9wLm9yZyUyRnNlcmllcyUyRjYyODIyJTJGJmFtcDtkYXRhPTAyJTdDMDElN0Nybw0K
+PiBiZXJ0LmNoaXJhcyU0MG54cC5jb20lN0M3NTcyMDFmOWFhYTU0NjUzNTgwZTA4ZDcyNmVkYjI5
+MCU3QzY4NmVhMWQzYmMNCj4gMmI0YzZmYTkyY2Q5OWM1YzMwMTYzNSU3QzAlN0MwJTdDNjM3MDIw
+Njc0NjU0NTY2NDE0JmFtcDtzZGF0YT1HdWVVQk9jDQo+IGJhR2pXdFdjTVlCcGxMNmtpMlViZ2FG
+UGtRSGclMkY2ZVJlaVlnJTNEJmFtcDtyZXNlcnZlZD0wDQo+IA0KPiBUbzogRGF2aWQgQWlybGll
+IDxhaXJsaWVkQGxpbnV4LmllPiwgRGFuaWVsIFZldHRlciA8ZGFuaWVsQGZmd2xsLmNoPiwNCj4g
+Um9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz4sIE1hcmsgUnV0bGFuZCA8bWFyay5ydXRs
+YW5kQGFybS5jb20+DQo+ICwgU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3JnPiwgU2FzY2hh
+IEhhdWVyIDxzLmhhdWVyQHBlbmd1dHJvbml4Lg0KPiBkZT4sIFBlbmd1dHJvbml4IEtlcm5lbCBU
+ZWFtIDxrZXJuZWxAcGVuZ3V0cm9uaXguZGU+LCBGYWJpbyBFc3RldmFtIDwNCj4gZmVzdGV2YW1A
+Z21haWwuY29tPiwgTlhQIExpbnV4IFRlYW0gPGxpbnV4LWlteEBueHAuY29tPiwgQW5kcnplag0K
+PiBIYWpkYSA8YS5oYWpkYUBzYW1zdW5nLmNvbT4sIE5laWwgQXJtc3Ryb25nIDxuYXJtc3Ryb25n
+QGJheWxpYnJlLmNvbT4NCj4gLCBMYXVyZW50IFBpbmNoYXJ0IDxMYXVyZW50LnBpbmNoYXJ0QGlk
+ZWFzb25ib2FyZC5jb20+LCBKb25hcyBLYXJsbWFuDQo+IDxqb25hc0Brd2lib28uc2U+LCBKZXJu
+ZWogU2tyYWJlYyA8amVybmVqLnNrcmFiZWNAc2lvbC5uZXQ+LCBMZWUNCj4gSm9uZXMgPGxlZS5q
+b25lc0BsaW5hcm8ub3JnPiwgR3VpZG8gR8O8bnRoZXIgPGFneEBzaWd4Y3B1Lm9yZz4sIGRyaS1k
+ZQ0KPiB2ZWxAbGlzdHMuZnJlZWRlc2t0b3Aub3JnLCBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9y
+ZywgbGludXgtYXJtLWtlcm4NCj4gZWxAbGlzdHMuaW5mcmFkZWFkLm9yZywgbGludXgta2VybmVs
+QHZnZXIua2VybmVsLm9yZywgUm9iZXJ0IENoaXJhcyA8DQo+IHJvYmVydC5jaGlyYXNAbnhwLmNv
+bT4sIFNhbSBSYXZuYm9yZyA8c2FtQHJhdm5ib3JnLm9yZz4sIEZhYmlvDQo+IEVzdGV2YW0gPGZl
+c3RldmFtQGdtYWlsLmNvbT4sIEFybmQgQmVyZ21hbm4gPGFybmRAYXJuZGIuZGU+DQo+IA0KPiAN
+Cj4gR3VpZG8gR8O8bnRoZXIgKDIpOg0KPiDCoCBkdC1iaW5kaW5nczogZGlzcGxheS9icmlkZ2U6
+IEFkZCBiaW5kaW5nIGZvciBOV0wgbWlwaSBkc2kgaG9zdA0KPiDCoMKgwqDCoGNvbnRyb2xsZXIN
+Cj4gwqAgZHJtL2JyaWRnZTogQWRkIE5XTCBNSVBJIERTSSBob3N0IGNvbnRyb2xsZXIgc3VwcG9y
+dA0KPiANCj4gwqAuLi4vYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvbndsLWRzaS55YW1swqDCoMKg
+wqDCoMKgfCAxNTUgKysrKw0KPiDCoGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvS2NvbmZpZ8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfMKgwqDCoDIgKw0KPiDCoGRyaXZlcnMvZ3B1L2Ry
+bS9icmlkZ2UvTWFrZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB8wqDCoMKgMSAr
+DQo+IMKgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9ud2wtZHNpL0tjb25maWfCoMKgwqDCoMKgwqDC
+oMKgfMKgwqAxNiArDQo+IMKgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9ud2wtZHNpL01ha2VmaWxl
+wqDCoMKgwqDCoMKgwqB8wqDCoMKgNCArDQo+IMKgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9ud2wt
+ZHNpL253bC1kcnYuY8KgwqDCoMKgwqDCoHwgNTAxICsrKysrKysrKysrKysNCj4gwqBkcml2ZXJz
+L2dwdS9kcm0vYnJpZGdlL253bC1kc2kvbndsLWRydi5owqDCoMKgwqDCoMKgfMKgwqA2NSArKw0K
+PiDCoGRyaXZlcnMvZ3B1L2RybS9icmlkZ2UvbndsLWRzaS9ud2wtZHNpLmPCoMKgwqDCoMKgwqB8
+IDcwMA0KPiArKysrKysrKysrKysrKysrKysNCj4gwqBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL253
+bC1kc2kvbndsLWRzaS5owqDCoMKgwqDCoMKgfCAxMTIgKysrDQo+IMKgOSBmaWxlcyBjaGFuZ2Vk
+LCAxNTU2IGluc2VydGlvbnMoKykNCj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL253bC1kc2kueWFtbA0KPiDC
+oGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL253bC1kc2kvS2NvbmZp
+Zw0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0vYnJpZGdlL253bC1kc2kv
+TWFrZWZpbGUNCj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQgZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9u
+d2wtZHNpL253bC1kcnYuYw0KPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2dwdS9kcm0v
+YnJpZGdlL253bC1kc2kvbndsLWRydi5oDQo+IMKgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
+Z3B1L2RybS9icmlkZ2UvbndsLWRzaS9ud2wtZHNpLmMNCj4gwqBjcmVhdGUgbW9kZSAxMDA2NDQg
+ZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9ud2wtZHNpL253bC1kc2kuaA0KPiANCj4gLS0NCj4gMi4y
+MC4xDQo+IA==
