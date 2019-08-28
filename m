@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E84E69FF21
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:09:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE63D9FF30
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726253AbfH1KJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 06:09:00 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37622 "EHLO
+        id S1726391AbfH1KNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 06:13:40 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45530 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726300AbfH1KI7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 06:08:59 -0400
+        with ESMTP id S1726246AbfH1KNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 06:13:40 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=PxI8huNfC6VFO+8riZb4FVf90k7meZB53ciogdQeoxw=; b=EWanL1V5Q1ysiJUkGXj2AZpLA
-        AkKvPbie/CUTWWQtcEDvQ4ZEe9KNvHIA4Ww2o9G1oWRdSQapHeQuYXmaV9oyW1qB2fZNrOlYyC/xO
-        ABBSFHObTB6l64IZ8JM0viW114aCvD8+hum4x5JcpS9SveY9HFFGVN7i0XRZX0qG4odg8=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+         bh=6Hcdm4CpIqKt7py/aqpOB6jyd7ntLB//7FnB38ZJF1U=; b=N/n52wcJOLKSBwVrVhui/AseL
+        stM3Olw+r2+yVWBBA6cP309MUYzht7vs60CNyvxjA7dpPAdC5b5wShwKcgoyh6rmEr7TsVOtb2NHE
+        Wc/sUh4gsQQxQoP0QjpdajDbNv5/fxzIOVVG9365Esa8JuDQSu95Mk/1ltHrvl7R/sNRQ=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1i2uso-0003Yo-Lg; Wed, 28 Aug 2019 10:08:54 +0000
+        id 1i2uxL-0003ZT-8c; Wed, 28 Aug 2019 10:13:35 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 432E82742B9F; Wed, 28 Aug 2019 11:08:52 +0100 (BST)
-Date:   Wed, 28 Aug 2019 11:08:52 +0100
+        id 81EAA2742A55; Wed, 28 Aug 2019 11:13:34 +0100 (BST)
+Date:   Wed, 28 Aug 2019 11:13:34 +0100
 From:   Mark Brown <broonie@kernel.org>
 To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
@@ -35,14 +35,17 @@ Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 0/8] regulator: support Silergy SY8824C/SY8824E etc.
-Message-ID: <20190828100852.GA4298@sirena.co.uk>
-References: <20190828135646.52457ac3@xhacker.debian>
+Subject: Re: [PATCH 2/8] regulator: add support for SY8824C regulator
+Message-ID: <20190828101334.GB4298@sirena.co.uk>
+References: <20190827163252.4982af95@xhacker.debian>
+ <20190827163418.1a32fc48@xhacker.debian>
+ <20190827194437.GO23391@sirena.co.uk>
+ <20190828112705.5e683693@xhacker.debian>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zhXaljGHf11kAtnf"
+        protocol="application/pgp-signature"; boundary="IiVenqGWf+H9Y6IX"
 Content-Disposition: inline
-In-Reply-To: <20190828135646.52457ac3@xhacker.debian>
+In-Reply-To: <20190828112705.5e683693@xhacker.debian>
 X-Cookie: Oatmeal raisin.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
@@ -51,39 +54,51 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---zhXaljGHf11kAtnf
+--IiVenqGWf+H9Y6IX
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Aug 28, 2019 at 06:08:09AM +0000, Jisheng Zhang wrote:
-> Add support for Silergy SY8824C/SY8824E/SY20276/SY20278 regulator.
+On Wed, Aug 28, 2019 at 03:38:29AM +0000, Jisheng Zhang wrote:
+> On Tue, 27 Aug 2019 20:44:37 +0100 Mark Brown wrote:
+
+> >=20
+> > Please send a patch which updates the entire comment block to be
+> > C++ style so it looks consistent.
+
+> Do you mean update the following style
+
+> A:
 >=20
-> Changes since v1:
->   - use c++ comment style for SPDX header
->   - add prefix for BUCK_EN and MODE
+> // SPDX-License-Identifier: GPL-2.0
+> /*
+>  * SY8824C regulator driver
+>  * ...
 
-I already applied v1, please just send incremental updates fixing these
-rather than entirely new versions.  As the message sent when applying
-patches says:
+> as B:
 
-| If any updates are required or you are submitting further changes they
-| should be sent as incremental updates against current git, existing
-| patches will not be replaced.
+> // SPDX-License-Identifier: GPL-2.0
+> // SY8824C regulator driver
+> // ...
 
---zhXaljGHf11kAtnf
+> I'm not sure which style is correct. But I see B is commonly used
+> in lots .c source files in other dirs, such as kernel/ mm/ etc.
+
+Yes, please - update to style B.
+
+--IiVenqGWf+H9Y6IX
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1mUrMACgkQJNaLcl1U
-h9DfAQf/Z/uVU2+OG/dRjjnb9aJg2tEZUnbuMpSBOEc39IJjERea1NqcPGugs1/r
-GoDl/aa1erdGnnA7Thw4iMN9fmyqxvL71eTblz0gQ4KcNFYtOAR7EHWUYqM7rXsX
-STu+D4ytH5fUspWIqeGROG5kVS6+1x3OO3JDRAobTAO23F4u0Hecq85g2vxGHiHn
-ifrjH8uYFs7zExUlvidN4qkF6Lz3vz88XGffPScsoi6ZySBFPQBcmEiWk8namQ+a
-z3yDJoVrW84Api/AQ4Oz+0YvHUk2IPwLW9x9rAAhsZJwdYxURhClQgUQOsV+/XA1
-hiEzWBdNw8Y1TQMUjjISRBJuh3+eTg==
-=kSzK
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1mU80ACgkQJNaLcl1U
+h9DQbAf9Etbge3YinPdjAxIYYWtuPv6r2hsxMHOm1iKbI1gItlt6aNtFLLilT4kk
+pv2lx+YEFNZXPP/cuwzsgtKEfMkPEM4KDsz85mY+3v8y350N+RiVIX1nUirnDEYs
+mWaLoK6D+DrKAPgDgH23zcNH6KoTKNYIPpUfdVQT/jiSXUWXRFDQnsko0e/zb2sw
+cJjadPq1V8qjMFaR+xAOh/sT+LLKseWgIYgxWBXgKSj/in8Bbpk09Fy+rONS6/D7
+5QRfNaUshg+L7SPK+TRfIs39VNnpuGQI3FqzHyzoht4uApVVmbozKx3KOy7SBks1
+72cq7+eqDXUZFMnI5nToM26kFj/K9w==
+=/Kyl
 -----END PGP SIGNATURE-----
 
---zhXaljGHf11kAtnf--
+--IiVenqGWf+H9Y6IX--
