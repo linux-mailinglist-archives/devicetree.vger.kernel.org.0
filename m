@@ -2,151 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D1D5A03FA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 16:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E15DA0450
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 16:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726437AbfH1OCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 10:02:22 -0400
-Received: from foss.arm.com ([217.140.110.172]:60126 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726438AbfH1OCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 10:02:21 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5A7D28;
-        Wed, 28 Aug 2019 07:02:20 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 66CB93F246;
-        Wed, 28 Aug 2019 07:02:19 -0700 (PDT)
-Date:   Wed, 28 Aug 2019 15:02:17 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v5 2/2] mailbox: introduce ARM SMC based mailbox
-Message-ID: <20190828140217.GC21614@e107155-lin>
-References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
- <1567004515-3567-3-git-send-email-peng.fan@nxp.com>
+        id S1726506AbfH1OMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 10:12:05 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:41102 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726560AbfH1OME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 10:12:04 -0400
+Received: by mail-wr1-f68.google.com with SMTP id j16so2670825wrr.8
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 07:12:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=mcL3AvqHT7bRzBjlZdaYirVmcHrrTcNQrMrMxpM5Yus=;
+        b=Md/3fBANfgsgXmzYx8/JW1lt0iPF0+PbgXaoXZob5EGJKRUx0qIXp/tb6eC1ccBzzi
+         XH4G9eKmZPggNRvEG1ARm6Jw/BVdMjs+97H8n469rQWCuUD+0HO/3JPGbgdRDk9tG7zE
+         TmIwQtUJjFClFDaBhIE47Nm2hk/Oc8SDriGJYEW3+cryh6Q1BUdoByvZJGna5NEWaJrR
+         +9yS/A51lCgFmWEzG166CNY39NrU4osMjpTGwZK8im2l+8IIQ5Hz9D+d0zqvWxU+NPR2
+         uy1cxOIlUvTqA7PoSIkSbquL1TgDm3oR8ZaCjHqQpQvxb3N9Z2lz0fQlpVAiNDjsveKN
+         Wzmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=mcL3AvqHT7bRzBjlZdaYirVmcHrrTcNQrMrMxpM5Yus=;
+        b=D/vh0xRekaHwskvHnON3tv5kf9FcEoOOebOvbdQJ5NUCOrJ7fyrnWIBUXiKEduER8H
+         c2JtSpEp/VQhYwh1e2wtjK0Pj1t/weU/M4xWdBybYO2xAXMgKn4KPQmI0w8t7sNlP9WS
+         5I2wv7NTdRdtXSM+GMaPeBvGeKPVc1PPg4x6L/lR/+zXv5ZvW1GyIgTvG6/HHi7GmufI
+         SDlJCRCm7z8OKFR4teJ/PauAaNGWEZ8kXKBGQKkzIUDiYhRSsUMYtgR+qg4kcsusPGYa
+         aFFQ7JBOab31ysh/P6evX7SO4NLypv0uDmC3IXoCpDLoZZxbfkugYLjc2lN6DX3fdpjO
+         zjiQ==
+X-Gm-Message-State: APjAAAVe1rPamJ50WNwPDTQyY9eKJjl0KrrQQMaHSqagp22DmB+b3I2w
+        TicwAVUPj/puxB4Dwm3cQmEmWWQGJrcWyw==
+X-Google-Smtp-Source: APXvYqyrf0ESs+jD2QyAojNvUhYbZpMQlomaI7+FIXl2yK84Z2ycpyt8wNDFiuQ5NlRktCpu+SKeVQ==
+X-Received: by 2002:adf:d852:: with SMTP id k18mr118322wrl.88.1567001522020;
+        Wed, 28 Aug 2019 07:12:02 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id a11sm2774838wrx.59.2019.08.28.07.12.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2019 07:12:01 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 2/3] amlogic: arm: add Amlogic SM1 based Khadas VIM3L bindings
+Date:   Wed, 28 Aug 2019 16:11:56 +0200
+Message-Id: <20190828141157.15503-3-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190828141157.15503-1-narmstrong@baylibre.com>
+References: <20190828141157.15503-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567004515-3567-3-git-send-email-peng.fan@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 03:03:02AM +0000, Peng Fan wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->
-> This mailbox driver implements a mailbox which signals transmitted data
-> via an ARM smc (secure monitor call) instruction. The mailbox receiver
-> is implemented in firmware and can synchronously return data when it
-> returns execution to the non-secure world again.
-> An asynchronous receive path is not implemented.
-> This allows the usage of a mailbox to trigger firmware actions on SoCs
-> which either don't have a separate management processor or on which such
-> a core is not available. A user of this mailbox could be the SCP
-> interface.
->
-> Modified from Andre Przywara's v2 patch
-> https://lore.kernel.org/patchwork/patch/812999/
->
-> Cc: Andre Przywara <andre.przywara@arm.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/mailbox/Kconfig           |   7 ++
->  drivers/mailbox/Makefile          |   2 +
->  drivers/mailbox/arm-smc-mailbox.c | 215 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 224 insertions(+)
->  create mode 100644 drivers/mailbox/arm-smc-mailbox.c
->
+The Khadas VIM3 is also available as VIM3L with the Pin-to-pin compatible
+Amlogic SM1 SoC in the S905D3 variant package.
 
-[...]
+Change the description to match the S905X3/D3/Y3 variants like the G12A
+description, and add the khadas,vim3l compatible.
 
-> +static int arm_smc_mbox_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct mbox_controller *mbox;
-> +	struct arm_smc_chan_data *chan_data;
-> +	const char *method;
-> +	bool mem_trans = false;
-> +	int ret, i;
-> +	u32 val;
-> +
-> +	if (!of_property_read_u32(dev->of_node, "arm,num-chans", &val)) {
-> +		if (!val) {
-> +			dev_err(dev, "invalid arm,num-chans value %u\n", val);
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!of_property_read_string(dev->of_node, "transports", &method)) {
-> +		if (!strcmp("mem", method)) {
-> +			mem_trans = true;
-> +		} else if (!strcmp("reg", method)) {
-> +			mem_trans = false;
-> +		} else {
-> +			dev_warn(dev, "invalid \"transports\" property: %s\n",
-> +				 method);
-> +
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!of_property_read_string(dev->of_node, "method", &method)) {
-> +		if (!strcmp("hvc", method)) {
-> +			invoke_smc_mbox_fn = __invoke_fn_hvc;
-> +		} else if (!strcmp("smc", method)) {
-> +			invoke_smc_mbox_fn = __invoke_fn_smc;
-> +		} else {
-> +			dev_warn(dev, "invalid \"method\" property: %s\n",
-> +				 method);
-> +
-> +			return -EINVAL;
-> +		}
-> +	} else {
-> +		return -EINVAL;
-> +	}
-> +
-> +	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-> +	if (!mbox)
-> +		return -ENOMEM;
-> +
-> +	mbox->num_chans = val;
-> +	mbox->chans = devm_kcalloc(dev, mbox->num_chans, sizeof(*mbox->chans),
-> +				   GFP_KERNEL);
-> +	if (!mbox->chans)
-> +		return -ENOMEM;
-> +
-> +	chan_data = devm_kcalloc(dev, mbox->num_chans, sizeof(*chan_data),
-> +				 GFP_KERNEL);
-> +	if (!chan_data)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < mbox->num_chans; i++) {
-> +		u32 function_id;
-> +
-> +		ret = of_property_read_u32_index(dev->of_node,
-> +						 "arm,func-ids", i,
-> +						 &function_id);
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-I missed it in binding but I thought we agreed to make this "arm,func-ids"
-a required property and not optional ?
+diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+index b48ea1e4913a..99015cef8bb1 100644
+--- a/Documentation/devicetree/bindings/arm/amlogic.yaml
++++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+@@ -150,9 +150,10 @@ properties:
+           - const: amlogic,s922x
+           - const: amlogic,g12b
+ 
+-      - description: Boards with the Amlogic Meson SM1 S905X3 SoC
++      - description: Boards with the Amlogic Meson SM1 S905X3/D3/Y3 SoC
+         items:
+           - enum:
+               - seirobotics,sei610
++              - khadas,vim3l
+           - const: amlogic,sm1
+ ...
+-- 
+2.22.0
 
---
-Regards,
-Sudeep
