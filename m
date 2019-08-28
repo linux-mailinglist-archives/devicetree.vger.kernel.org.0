@@ -2,127 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73499A0C4D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 23:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19C92A0C9A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 23:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726583AbfH1VUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 17:20:41 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37670 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726400AbfH1VUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 17:20:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=JKvFxTaIw4ze+wFQy7JhepfnKnFczjcF0kqC/gORddo=; b=Y0IjVu63m32RBVFGgH6347V27
-        tNPXsKKoVfddMUlISVN20mfIjblfY/rA6KlKAY0Yw/+oVIPv5RWkB/l8PjQ5W13duFays3zME33dv
-        mn90cdqw1gwngc2ST4iELesX9720zL+411xNqPytuzgZcExfq1C0E3feQaF0vkLEcDbeA=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i35Mr-0006js-0u; Wed, 28 Aug 2019 21:20:37 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 9FB9A2742B61; Wed, 28 Aug 2019 22:20:34 +0100 (BST)
-Date:   Wed, 28 Aug 2019 22:20:34 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ashish Kumar <ashish.kumar@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: Re: [EXT] Re: [Patch v4 1/3] dt-bindings: spi: spi-fsl-qspi: Add
- ls2080a compatibility string to bindings
-Message-ID: <20190828212034.GL4298@sirena.co.uk>
-References: <1565691791-26167-1-git-send-email-Ashish.Kumar@nxp.com>
- <20190821110640.GC5128@sirena.co.uk>
- <VI1PR04MB401528B4F92DAD98385EF53395AA0@VI1PR04MB4015.eurprd04.prod.outlook.com>
- <VI1PR04MB4015474B3086AE99354FE65395A50@VI1PR04MB4015.eurprd04.prod.outlook.com>
- <20190822184927.GH23391@sirena.co.uk>
- <20190827155005.GA18581@bogus>
- <20190827195606.GA28879@sirena.org.uk>
- <CAL_JsqKnY1ucejpaSUYu_dGZ=uHMybsW4ryJAtEgimUXB+ozbg@mail.gmail.com>
+        id S1726794AbfH1VpF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 17:45:05 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:36137 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726658AbfH1VpF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 17:45:05 -0400
+Received: by mail-oi1-f195.google.com with SMTP id n1so948405oic.3;
+        Wed, 28 Aug 2019 14:45:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3BRznw7W8ExG2xqwSL+qcCCTF7qtixX1kVjq5WpB9B8=;
+        b=a9gYfqa3opd0hYXIrVtK4GeF2VlxRtquMFpecTlokOWrTzyaHIEDK1YX+KzYnGy/16
+         1HNjWTpD55rAZH51RMToDabmady2jQcpmkW2B3hUqyHl0QOkv+NLA06TVseoVEw+FXDM
+         9mGGvT8gmy+FAatddssu1worPd0112E4qFunVDhs+lP0hYanC6XghvwnAu/a6b50AHzA
+         jJXPPkekQO037waoYyxrsoryTPFxjHMYNqCev1XZRdtHyGv0onPBNGyJ3pooW6cXXMWI
+         w4aOFdOmYe/Hq+1J0Q6ahHF+NI70btinlyCmV4GJw8odutWBd8VFLPbRXFLRTId3j3Mj
+         OlbQ==
+X-Gm-Message-State: APjAAAXIaaH0wOFPPuYQEBvttrVyLOQG0zPDccNGNi9RfPj55KGyOnhz
+        aiQimdzkUg0JVf9WfUzT2w571YM=
+X-Google-Smtp-Source: APXvYqwWyUu61tAJJPPkBOygOuXHaR90ro3L9y+vM21Pmm6DC6T7jptFSAdv1NKq/Cc3ecYvIQ9N3A==
+X-Received: by 2002:a54:4814:: with SMTP id j20mr4208111oij.33.1567028703777;
+        Wed, 28 Aug 2019 14:45:03 -0700 (PDT)
+Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.googlemail.com with ESMTPSA id p11sm102431oto.4.2019.08.28.14.45.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2019 14:45:03 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] dt-bindings: Convert Arm Mali GPUs to DT schema
+Date:   Wed, 28 Aug 2019 16:44:59 -0500
+Message-Id: <20190828214502.12293-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="V3eawNQxI9TAjvgi"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKnY1ucejpaSUYu_dGZ=uHMybsW4ryJAtEgimUXB+ozbg@mail.gmail.com>
-X-Cookie: Oatmeal raisin.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series converts the various Arm Mali GPU bindings to use the DT
+schema format.
 
---V3eawNQxI9TAjvgi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The Midgard and Bifrost bindings generate warnings on 'interrupt-names'
+because there's all different ordering. The Utgard binding generates 
+warnings on Rockchip platforms because 'clock-names' order is reversed.
 
-On Wed, Aug 28, 2019 at 03:01:15PM -0500, Rob Herring wrote:
-> On Tue, Aug 27, 2019 at 2:56 PM Mark Brown <broonie@kernel.org> wrote:
-> > On Tue, Aug 27, 2019 at 10:50:05AM -0500, Rob Herring wrote:
+v2:
+ - Make 'clocks' always required.
 
-> > Well, you have been pushing people to change over to using
-> > dt-bindings: so I guess you do care :(
+Rob
 
-> Well, yes. In the absence of any sort of pattern, I have pushed for
-> some consistency. And to get rid of subjects like this:
+Rob Herring (3):
+  dt-bindings: Convert Arm Mali Midgard GPU to DT schema
+  dt-bindings: Convert Arm Mali Bifrost GPU to DT schema
+  dt-bindings: Convert Arm Mali Utgard GPU to DT schema
 
-> Documentation/devicetree/bindings: Add the DT binding documentation for foo-bar
+ .../bindings/gpu/arm,mali-bifrost.txt         |  92 ----------
+ .../bindings/gpu/arm,mali-bifrost.yaml        | 116 ++++++++++++
+ .../bindings/gpu/arm,mali-midgard.txt         | 119 -------------
+ .../bindings/gpu/arm,mali-midgard.yaml        | 165 +++++++++++++++++
+ .../bindings/gpu/arm,mali-utgard.txt          | 129 --------------
+ .../bindings/gpu/arm,mali-utgard.yaml         | 168 ++++++++++++++++++
+ 6 files changed, 449 insertions(+), 340 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifrost.txt
+ create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-bifrost.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-midgard.txt
+ create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
+ delete mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-utgard.txt
+ create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
 
-> If subsystems are consistent with their own standard as you are, then
-> as a maintainer I don't really care. My point was in regard to what
-> submitters need to know and follow.
+-- 
+2.20.1
 
-I agree that things should be more consistent.
-
-> > It really does cause me
-> > to miss stuff, especially where people don't even include the
-> > subsystem name in the header.  I get quite a lot of CCs for
-
-> I can't imagine filtering on subjects will ever be that reliable
-> unless we add subject prefixes to MAINTAINERS and have checkpatch
-> check commits against those. Filtering on the diffstat is the only
-> thing that's kept things to a sane list for me (MAINTAINERS for DT
-> used to tag of_* functions which just meant getting copied on *every*
-> driver). This is done on the patchwork server side for me, but I
-> imagine one could do it on the client side too.
-
-Part of the problem for me here is that stuff that's flagged as just a
-binding has a very high chance of being misdirected, I'm unlikely to
-have much input unless it's for a driver or subsystem I maintain and I
-get a lot of bindings docs for things like other bits of MFDs that have
-a regulator on them or where there was some interesting interaction with
-one of my subsystems that hasn't yet filtered out of get_maintainers'
-view.
-
-The other trick here is that sometimes I am actually being asked about
-the thing that I'm getting CCed on so I don't want to actually filter
-stuff out of my inbox, it's more of a scoring system thing with lots of
-guessing going on.  I say filtering but it's more a strong signal than
-strictly a filter.
-
---V3eawNQxI9TAjvgi
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1m8CEACgkQJNaLcl1U
-h9CrLwf/X5MQzBfb7KpPjUp6dJEyGZqPZF7kgvsPjAMXkY9IjIBIuCqeYj1aNCdU
-iRKUACgqSXfN6cFrlsx4tINlbMoQA7I9QrDjEULrM92Q+ScjIlbBVfNc0tPNjNXW
-jWoXqK0qjVkHC7A1IppMEU3Z8VtLCIe0pE51MSWl/IcLh0PlMNZBpnvOFz+M9LA+
-dUnF9/4/oA4smOQ9rSH0iLi9ceXsag2Hva5dSDkbwmYC7+QavIK5fGWxvM7sCMgF
-NMhlBwLZBjD1NWix97vbA2laF1unnRFEdxswTym4bmo/yMwSdgPUbryI0mtgiKtj
-AEcGfuhWCTX9uZEBJOhs9d8+oA8RQw==
-=uj8w
------END PGP SIGNATURE-----
-
---V3eawNQxI9TAjvgi--
