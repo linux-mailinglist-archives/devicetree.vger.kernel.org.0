@@ -2,150 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20DE3A0143
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 14:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0855A0177
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 14:19:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbfH1MHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 08:07:47 -0400
-Received: from mga09.intel.com ([134.134.136.24]:60816 "EHLO mga09.intel.com"
+        id S1726293AbfH1MTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 08:19:14 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:37318 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725991AbfH1MHr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 08:07:47 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 28 Aug 2019 05:07:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,441,1559545200"; 
-   d="scan'208";a="332142468"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga004.jf.intel.com with ESMTP; 28 Aug 2019 05:07:46 -0700
-Received: from [10.255.185.142] (unknown [10.255.185.142])
-        by linux.intel.com (Postfix) with ESMTP id CD9DE580107;
-        Wed, 28 Aug 2019 05:07:43 -0700 (PDT)
-Subject: Re: [PATCH v1 1/2] dt-bindings: phy: intel-sdxc-phy: Add YAML schema
- for LGM SDXC PHY
-To:     Rob Herring <robh@kernel.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        peter.harliman.liem@intel.com
-References: <20190827082652.43840-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190827082652.43840-2-vadivel.muruganx.ramuthevar@linux.intel.com>
- <CAL_JsqJsTDNR7FsdFouLetzhsRhmr3fVT_xzzhKbR7KuTwepuQ@mail.gmail.com>
- <2a915595-be5f-83f4-34e8-34d667875cc2@linux.intel.com>
- <CAL_JsqLSXCK9u0fC99mv=7Lwmiqg2Qtu7Kf_xFG0WHE3v3wE6w@mail.gmail.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <7d076a6f-b761-4968-2280-837630db309d@linux.intel.com>
-Date:   Wed, 28 Aug 2019 20:07:42 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726300AbfH1MTN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 08:19:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=+tj0AyWEv4Z+dQyySoP99xYWBRRCmJztMoD2W7dYFOw=; b=zz/FqLdwlqfq6r8LESd3Ih1z29
+        CtITZfb+dsHF2g8vQrIfAGCDDAAN0yMdma6IZ2UUGvjP2Va+5BuYs5Ex74NTg363LITEB7KDaQGBp
+        RC7eiBbn5uGl6VJ/9Sy2ezV3QdFbkJI7mWDRFZ2Gp2pt0HpMN4Trr1qpv8R5FGfPvBU4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1i2wur-0002UY-Sp; Wed, 28 Aug 2019 14:19:09 +0200
+Date:   Wed, 28 Aug 2019 14:19:09 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
+        arm@kernel.org, Rob Herring <robh@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH mvebu-dt64 3/3] arm64: dts: marvell: add DTS for Turris
+ Mox
+Message-ID: <20190828121909.GB32178@lunn.ch>
+References: <20190827151644.12532-1-marek.behun@nic.cz>
+ <20190827151644.12532-4-marek.behun@nic.cz>
+ <8736hlziv3.fsf@FE-laptop>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLSXCK9u0fC99mv=7Lwmiqg2Qtu7Kf_xFG0WHE3v3wE6w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8736hlziv3.fsf@FE-laptop>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi  Rob,
+> > +	leds {
+> > +		compatible = "gpio-leds";
+> > +		red {
+> > +			gpios = <&gpiosb 21 GPIO_ACTIVE_LOW>;
+> > +			linux,default-trigger = "default-on";
+> > +		};
 
-Thank you for the review comments.
+I think there would normally be a label here, so the LED has a
+name. There is a convention to follow, which is in the documentation.
 
-On 28/8/2019 7:39 PM, Rob Herring wrote:
-> On Tue, Aug 27, 2019 at 10:47 PM Ramuthevar, Vadivel MuruganX
-> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
->> Hi Rob,
->>
->> On 27/8/2019 8:39 PM, Rob Herring wrote:
->>> On Tue, Aug 27, 2019 at 3:27 AM Ramuthevar,Vadivel MuruganX
->>> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
->>>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>>>
->>>> Add a YAML schema to use the host controller driver with the
->>>> SDXC PHY on Intel's Lightning Mountain SoC.
->>>>
->>>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>>> ---
->>>>    .../bindings/phy/intel,lgm-sdxc-phy.yaml           | 50 ++++++++++++++++++++++
->>>>    1 file changed, 50 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
->>>> new file mode 100644
->>>> index 000000000000..be05020880bf
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
->>>> @@ -0,0 +1,50 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/phy/intel,lgm-sdxc-phy.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Intel Lightning Mountain(LGM) SDXC PHY Device Tree Bindings
->>>> +
->>>> +maintainers:
->>>> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>>> +
->>>> +description: Binding for SDXC PHY
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: intel,lgm-sdxc-phy
->>>> +
->>>> +  intel,syscon:
->>>> +    description: phandle to the sdxc through syscon
->>>> +    $ref: '/schemas/types.yaml#/definitions/phandle'
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 1
->>>> +
->>>> +  clock-names:
->>>> +    maxItems: 1
->>>> +
->>>> +  "#phy-cells":
->>>> +    const: 0
->>>> +
->>>> +required:
->>>> +  - "#phy-cells"
->>>> +  - compatible
->>>> +  - intel,syscon
->>>> +  - clocks
->>>> +  - clock-names
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    sdxc_phy: sdxc_phy {
->>>> +        compatible = "intel,lgm-sdxc-phy";
->>>> +        intel,syscon = <&sysconf>;
->>> Rather than a phandle, can this be a child node of sysconf? You need a
->>> binding for sysconf first anyways.
->> intel,syscon is phandle, emmc_phy is not child node of sysconf, access
->> emmc_phy
->> register over sysconf so made as reference here.
-> How do you access the emmc_phy registers? They are part of the sysconf
-> address space or the sysconf provides some sort of indirect register
-> access? In case of the former, then emmc_phy should be a child node.
-> That's actually fairly common.
+> > +	};
+> > +
+> > +	gpio-keys {
+> > +		compatible = "gpio-keys";
+> > +
+> > +		reset {
+> > +			label = "reset";
+> > +			linux,code = <BTN_MISC>;
 
-Agreed!, you are correct. I have created two files one for syscon and 
-other one is for emmc-phy
+I'm pretty sure there is a linux,code for reset.
 
-Documentation/devicetree/bindings/phy/intel,syscon.yaml
-Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
+> > +			gpios = <&gpiosb 20 GPIO_ACTIVE_LOW>;
+> > +			debounce-interval = <60>;
+> > +		};
+> > +	};
 
-As you said earlier mail, first syscon bindings to be there, sending the 
-patch as well.
+> > +
+> > +	sfp: sfp {
+> > +		compatible = "sff,sfp+";
+> > +		i2c-bus = <&i2c0>;
 
-Regards
-Vadivel
-> Rob
->
+The standard for SFPs sets the maximum bus speed is 100Khz. I'm sure
+some can do 400Khz, but if you want to support all SFPs, you should
+use the lower speed. I don't see anywhere in this file where you set
+the maximum speed. Maybe the bus defaults to 100K so you don't need
+anything?
+
+> > +		los-gpio = <&moxtet_sfp 0 GPIO_ACTIVE_HIGH>;
+> > +		tx-fault-gpio = <&moxtet_sfp 1 GPIO_ACTIVE_HIGH>;
+> > +		mod-def0-gpio = <&moxtet_sfp 2 GPIO_ACTIVE_LOW>;
+> > +		tx-disable-gpio = <&moxtet_sfp 4 GPIO_ACTIVE_HIGH>;
+> > +		rate-select0-gpio = <&moxtet_sfp 5 GPIO_ACTIVE_HIGH>;
+> > +
+> > +		/* enabled by U-Boot if SFP module is present */
+> > +		status = "disabled";
+> > +	};
+> > +};
+> > +
+> > +&i2c0 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&i2c1_pins>;
+
+The node is called i2c0, but here you have i2c1_pins?
+
+> > +	status = "okay";
+> > +
+> > +	rtc@6f {
+> > +		compatible = "microchip,mcp7940x";
+> > +		reg = <0x6f>;
+> > +	};
+> > +};
+> > +
+> > +&pcie_reset_pins {
+> > +	function = "gpio";
+> > +};
+
+Should there be something to indicate which GPIO?
+
+> > +&mdio {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&smi_pins>;
+> > +	status = "okay";
+> > +
+> > +	phy1: ethernet-phy@1 {
+> > +		reg = <1>;
+> > +	};
+> > +
+> > +	/* switch nodes are enabled by U-Boot if modules are present */
+> > +	switch0@10 {
+> > +		compatible = "marvell,mv88e6190";
+> > +		reg = <0x10 0>;
+> > +		dsa,member = <0 0>;
+> > +		interrupt-parent = <&moxtet>;
+> > +		interrupts = <MOXTET_IRQ_PERIDOT(0)>;
+> > +		status = "disabled";
+> > +
+> > +		mdio {
+
+> > +		ports {
+
+> > +			switch0port10: port@a {
+> > +				reg = <0xa>;
+> > +				label = "dsa";
+> > +				phy-mode = "2500base-x";
+> > +				managed = "in-band-status";
+> > +				link = <&switch1port9 &switch2port9>;
+
+Does u-boot also modify this, if switch2 does not exist? I don't know
+if it actually matters, but if the switch does not exist, but the
+routing entry exists, this switch might still send it frames and use
+up some of your bandwidth?
+
+   Andrew
