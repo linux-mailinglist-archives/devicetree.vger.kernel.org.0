@@ -2,69 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DF59A07D4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 18:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C216A085C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 19:29:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726571AbfH1Qt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 12:49:59 -0400
-Received: from secure.icces.com ([172.81.118.59]:41693 "EHLO secure.icces.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726563AbfH1Qt7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 12:49:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=icces.com;
-         s=default; h=Message-ID:Reply-To:Subject:To:From:Date:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:Sender:Cc:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=/FNFSyAG+b9FvyaozjIa6PHOoQY37mYtzb3yWizsXTQ=; b=RoPHvItz8e7mx0k50dp+LJpxx8
-        nV1TNvLQtEYQy+hm3h0zR5+Fa4KpE8/v3e/5XCIoPG4oHqMw5+UDcGX3eGhQrvu9bZmsEr9MGzlu5
-        9BSwepa+QstGE9A1JDdQGCRcpUs+fYeUQ43fjNhb7jBf1TNG9FOLCn/MmUXuKVKh6ANDbEejMzhzq
-        WvxCWZSlZfScXbVf5Rd7UOAQP8vYyy2QehPc1a2jH0rU4NWOP49b3toN/4XqkmWT2xwKzlN1ZdEWF
-        dxR7vIFSU15pY+Xqa1JTpKRDIm3appxBT+8IaoFMesfSBYu+hoOsX0zCKkyaPMQ0JD+uAdkdZTnUB
-        xyPx4G2w==;
-Received: from [::1] (port=63197 helo=secure.icces.com)
-        by secure.icces.com with esmtpa (Exim 4.92)
-        (envelope-from <aisha@icces.com>)
-        id 1i2uJ8-00004v-3n; Wed, 28 Aug 2019 05:32:30 -0400
+        id S1726616AbfH1R27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 13:28:59 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:7367 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726315AbfH1R27 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 13:28:59 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d66b9dc0000>; Wed, 28 Aug 2019 10:29:00 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 28 Aug 2019 10:28:58 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 28 Aug 2019 10:28:58 -0700
+Received: from HQMAIL110.nvidia.com (172.18.146.15) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
+ 2019 17:28:58 +0000
+Received: from HQMAIL107.nvidia.com (172.20.187.13) by hqmail110.nvidia.com
+ (172.18.146.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
+ 2019 17:28:58 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 28 Aug 2019 17:28:58 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d66b9d50000>; Wed, 28 Aug 2019 10:28:57 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <andrew.murray@arm.com>
+CC:     <kishon@ti.com>, <gustavo.pimentel@synopsys.com>,
+        <digetx@gmail.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V3 0/6] PCI: tegra: Enable PCIe C5 controller of Tegra194 in p2972-0000 platform
+Date:   Wed, 28 Aug 2019 22:58:44 +0530
+Message-ID: <20190828172850.19871-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 28 Aug 2019 05:32:01 -0400
-From:   "Mr. Jack Nicolas" <aisha@icces.com>
-To:     undisclosed-recipients:;
-Subject: we offer all kinds of loan at 3% Apply Now
-Organization: mrogen82@gmail.com
-Reply-To: jackfundsplc@gmail.com
-Mail-Reply-To: jackfundsplc@gmail.com
-Message-ID: <ba95fd996f0c7d945e0c2db015ee19c9@icces.com>
-X-Sender: aisha@icces.com
-User-Agent: Roundcube Webmail/1.3.8
-X-OutGoing-Spam-Status: No, score=2.6
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - secure.icces.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - icces.com
-X-Get-Message-Sender-Via: secure.icces.com: authenticated_id: aisha@icces.com
-X-Authenticated-Sender: secure.icces.com: aisha@icces.com
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch series enables Tegra194's C5 controller which owns x16 slot in
+p2972-0000 platform. C5 controller's PERST# and CLKREQ# are not configured as
+output and bi-directional signals by default and hence they need to be
+configured explicitly. Also, x16 slot's 3.3V and 12V supplies are controlled
+through GPIOs and hence they need to be enabled through regulator framework.
+This patch series adds required infrastructural support to address both the
+aforementioned requirements.
+Testing done on p2972-0000 platform
+- Able to enumerate devices connected to x16 slot (owned by C5 controller)
+- Enumerated device's functionality verified
+- Suspend-Resume sequence is verified with device connected to x16 slot
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+	t=1567013340; bh=TvQY7ZhhxcvoKbpcEAh6qHqIQEasISWH+/X/STdQQk0=;
+	h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+	 X-NVConfidentiality:MIME-Version:Content-Type;
+	b=gVtBiB2IR+pKYaZJQ+f6BYQX23e2leD7q8vdf+vr0+12GlPQc/30oFhIDgzGmLr3W
+	 81mgV2Pp3bLNf9oNOB7tnv+yjoJK+qPGAB0bQ+VPMKGOkpvVfFtN4K3D+TkNjEQnQc
+	 eBs35Pzc7zQ3jso4y80hoeIGegqfu4qLvORCW3qsy7OuPxjELUpGKvJTozekRSZVw3
+	 voa570Uvaiotu9UgYqdAyJe0S4iuNUmJ8eWJDZLb9zkj1gfWhuQaDxt6bOMK8pyr7e
+	 SVhNP0p2cTOaV0ALtd16tvi7+vRmcV4uQeArl0l1XPwxwHkR6ShLYbyji3Zb+JxJGN
+	 vrTsP917B385w==
 
+V3:
+* Addressed some more review comments from Andrew Murray and Thierry Reding
+
+V2:
+* Changed the order of patches in the series for easy merging
+* Addressed review comments from Thierry Reding and Andrew Murray
+
+Vidya Sagar (6):
+  dt-bindings: PCI: tegra: Add sideband pins configuration entries
+  dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
+  PCI: tegra: Add support to configure sideband pins
+  PCI: tegra: Add support to enable slot regulators
+  arm64: tegra: Add configuration for PCIe C5 sideband signals
+  arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
+
+ .../bindings/pci/nvidia,tegra194-pcie.txt     | 16 ++++
+ .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 24 +++++
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  4 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      | 38 +++++++-
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 94 ++++++++++++++++++-
+ 5 files changed, 172 insertions(+), 4 deletions(-)
 
 -- 
-Attn: Are you in need of a loan? we offer all kinds of loan like 
-Personal
-loans, Debt Consolidation Loan, Business Loan, with an interest rate of 
-3%
-Have you been turned down by your bank? Do you have bad credit? Do you 
-have
-unpaid bills? Are you in debt? Do you need to set up a business? Worry 
-no
-more as we are here to offer you the chance to get a loan.if interested
-contact us for more information on this email via: 
-jackfundsplc@gmail.com
+2.17.1
+
