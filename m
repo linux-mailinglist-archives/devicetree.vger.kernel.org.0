@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DEEF0A0AEE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 21:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 574EBA0B05
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 22:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726777AbfH1T5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 15:57:34 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:45764 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726315AbfH1T5e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 15:57:34 -0400
-Received: by mail-qt1-f193.google.com with SMTP id k13so930268qtm.12;
-        Wed, 28 Aug 2019 12:57:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=L8TI0FYfNM24ppkJYFG6qOg+IUh+v/+7bkBCmbd/o1U=;
-        b=od89jVX6U1HTi2Ua0mQBqSe9vCA9lhvMN+NiX3sSQ2zqbFaFsl3Ec/OZ526tbAYWSI
-         JQAAoYmaSvdo2sKk4wMenaTTMKsWjXJu98MMUnyrWuc8AyJqtyU+dPCyKupXSYqgQw5F
-         cfdMgjSKfULJWwk0gLhPORT/Pix+JwjhE99314NnOCmFwxclFVlRvEKuPpFogSFHud3w
-         kwDH6+cpZYu/Yhn2xsHvNAe9E1bjetWXmrhm91Z+hLL+0dC3QK38d/2h4eFTuK4ni4RX
-         7pz/lcpXaMALM5cvu60lLXVkVfAjH+ezK/33OU/nCupZCsYdxyjoLggP3sJ5jK77gOo0
-         vrZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=L8TI0FYfNM24ppkJYFG6qOg+IUh+v/+7bkBCmbd/o1U=;
-        b=n9zCzhtnQN4fap4PtQkpidY/hoz/IsZuHuVXB8f3CVmX9R3KvWWVCgrwlS3sfrrg95
-         uOhgWEzk3tr6DY/mzcLeu9/vNXvO47JNp5X3y9h2Qbo1yI3TqDCtAViVG2Lbgz9c5bJz
-         PKhf8xlWxIJFTf6gOIhG4+ONu8aQgOpaxpNVgJDhq/U0zTv8RrVRQlBDz+ynoKFB/2N1
-         Y6CbK2FwLLUEmtcK61i+ZQdiONwWyMGMs44mn1bpJRYawjjbzudPP6osM/txz/dhdBAJ
-         FJFhZF1a/WrWitNdTTj1HM19Qmi9BQa8KsNEWE1dFvq9OmaSh+e57acoOpT4MvX9XbuY
-         yEpw==
-X-Gm-Message-State: APjAAAUsV8qnoGmHJZSPqjRhmaBwNuc8gysNwr86NuPpaV/W+GZSosxM
-        nXHMj8S1X5OL0Z6fJ1eRcaY=
-X-Google-Smtp-Source: APXvYqzT87+RKNEsWkCNXwUBTwGxlha0v6Y5m9kSXMYf11Ty/t78K9JvfdUPECbHxaWLT//6zXsroA==
-X-Received: by 2002:ac8:4895:: with SMTP id i21mr6318407qtq.146.1567022253364;
-        Wed, 28 Aug 2019 12:57:33 -0700 (PDT)
-Received: from localhost.localdomain (mobile-166-170-30-28.mycingular.net. [166.170.30.28])
-        by smtp.googlemail.com with ESMTPSA id q6sm105689qtr.23.2019.08.28.12.57.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2019 12:57:32 -0700 (PDT)
-From:   Peter Vernia <peter.vernia@gmail.com>
-To:     peter.vernia@gmail.com
-Cc:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, poeschel@lemonage.de
-Subject: [PATCH] pinctrl-mcp23s08: Fix property-name in dt-example
-Date:   Wed, 28 Aug 2019 15:56:09 -0400
-Message-Id: <20190828195609.4176-1-peter.vernia@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        id S1726785AbfH1UBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 16:01:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41208 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726315AbfH1UB3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 16:01:29 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5613E22CF8;
+        Wed, 28 Aug 2019 20:01:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567022488;
+        bh=MD4qcU/RNuQWBhQQ01cICuFkYluzMOqVUuTE6FPZ0IM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iFfeQDhnrzVMUj4H9FCZIGJEVCdmUoJdFOJqH0nNIMzHq+sMuN7d0E/8e4AMSnVtC
+         7MVGmzqlFmzUS63rAQNUJjQdW0qwa87B1DdQhq1z0vsDdXRF4aSG1YgvLlybgwRoQb
+         8M19RIEIXpDElPoZ3O4OZ4pJwThIcMXQWQDipfuo=
+Received: by mail-qt1-f177.google.com with SMTP id g4so980662qtq.7;
+        Wed, 28 Aug 2019 13:01:28 -0700 (PDT)
+X-Gm-Message-State: APjAAAUp9VezRVwUfVlbLWU2fWju0bUz/wwgtg+3u4Fa489Jpdf4Lz/5
+        UBukcuG9fU7gdhlwQ3Gsf151owJyzj+NxHzN6A==
+X-Google-Smtp-Source: APXvYqzh6lclUqux/vGx4y8IrMqxuIi7axYVYygQGUBgHesfvCn92IkyHi3rsied4shlJPCDpAw75irc/7RIpvqF21A=
+X-Received: by 2002:ad4:4301:: with SMTP id c1mr4283774qvs.138.1567022487474;
+ Wed, 28 Aug 2019 13:01:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1565691791-26167-1-git-send-email-Ashish.Kumar@nxp.com>
+ <20190821110640.GC5128@sirena.co.uk> <VI1PR04MB401528B4F92DAD98385EF53395AA0@VI1PR04MB4015.eurprd04.prod.outlook.com>
+ <VI1PR04MB4015474B3086AE99354FE65395A50@VI1PR04MB4015.eurprd04.prod.outlook.com>
+ <20190822184927.GH23391@sirena.co.uk> <20190827155005.GA18581@bogus> <20190827195606.GA28879@sirena.org.uk>
+In-Reply-To: <20190827195606.GA28879@sirena.org.uk>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 28 Aug 2019 15:01:15 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKnY1ucejpaSUYu_dGZ=uHMybsW4ryJAtEgimUXB+ozbg@mail.gmail.com>
+Message-ID: <CAL_JsqKnY1ucejpaSUYu_dGZ=uHMybsW4ryJAtEgimUXB+ozbg@mail.gmail.com>
+Subject: Re: [EXT] Re: [Patch v4 1/3] dt-bindings: spi: spi-fsl-qspi: Add
+ ls2080a compatibility string to bindings
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Ashish Kumar <ashish.kumar@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-next@vger.kernel.org" <linux-next@vger.kernel.org>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The device-tree properties documentation-file specifies the property
-"microchip,spi-present-mask" as required for MCP23SXX chips. However,
-the device-tree-source example below it uses only "spi-present-mask".
-Without "microchip," on the front, the driver will print "missing
-spi-present-mask" when it initializes.
+On Tue, Aug 27, 2019 at 2:56 PM Mark Brown <broonie@kernel.org> wrote:
+>
+> On Tue, Aug 27, 2019 at 10:50:05AM -0500, Rob Herring wrote:
+> > On Thu, Aug 22, 2019 at 07:49:27PM +0100, Mark Brown wrote:
+>
+> > > Drop the dt-bindings:.
+>
+> > If you do 'git log --oneline Documentation/devicetree/bindings/' you'll
+> > notice that SPI and ASoC are the oddballs now. I don't really care
+> > except it does add to tribal knowledge needed regarding maintainers'
+> > requirements.
+>
+> Well, you have been pushing people to change over to using
+> dt-bindings: so I guess you do care :(
 
-Update the device-tree example with the correct property-name.
+Well, yes. In the absence of any sort of pattern, I have pushed for
+some consistency. And to get rid of subjects like this:
 
-Signed-off-by: Peter Vernia <peter.vernia@gmail.com>
----
- Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Documentation/devicetree/bindings: Add the DT binding documentation for foo-bar
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt
-index 625a22e2f211..8b94aa8f5971 100644
---- a/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt
-+++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt
-@@ -82,7 +82,7 @@ gpiom1: gpio@0 {
-         compatible = "microchip,mcp23s17";
-         gpio-controller;
-         #gpio-cells = <2>;
--        spi-present-mask = <0x01>;
-+        microchip,spi-present-mask = <0x01>;
-         reg = <0>;
-         spi-max-frequency = <1000000>;
- };
--- 
-2.20.1
+If subsystems are consistent with their own standard as you are, then
+as a maintainer I don't really care. My point was in regard to what
+submitters need to know and follow.
 
+> It really does cause me
+> to miss stuff, especially where people don't even include the
+> subsystem name in the header.  I get quite a lot of CCs for
+> things where I once reviewed a patch for a subsystem that made
+> use of some subsystem I do maintain or where one patch in a
+> series (perhaps even an already applied one) was relevant at some
+> point so I'm doing quite a bit of triage that's purely based on
+> the subject lines.
+
+I can't imagine filtering on subjects will ever be that reliable
+unless we add subject prefixes to MAINTAINERS and have checkpatch
+check commits against those. Filtering on the diffstat is the only
+thing that's kept things to a sane list for me (MAINTAINERS for DT
+used to tag of_* functions which just meant getting copied on *every*
+driver). This is done on the patchwork server side for me, but I
+imagine one could do it on the client side too.
+
+Rob
