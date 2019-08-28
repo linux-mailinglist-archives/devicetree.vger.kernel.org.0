@@ -2,88 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9793DA019E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 14:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59839A0204
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 14:40:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726536AbfH1M3A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 08:29:00 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:63063 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726428AbfH1M3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 08:29:00 -0400
-X-UUID: 07e4afb7c74a4584920a1462ee7269f2-20190828
-X-UUID: 07e4afb7c74a4584920a1462ee7269f2-20190828
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <henryc.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 844402232; Wed, 28 Aug 2019 20:28:53 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 28 Aug 2019 20:28:59 +0800
-Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 28 Aug 2019 20:28:59 +0800
-From:   Henry Chen <henryc.chen@mediatek.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ryan Case <ryandcase@chromium.org>
-CC:     Nicolas Boichat <drinkcat@google.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Weiyi Lu <weiyi.lu@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Henry Chen <henryc.chen@mediatek.com>
-Subject: [PATCH V3 10/10] arm64: dts: mt8183: Add interconnect provider DT nodes
-Date:   Wed, 28 Aug 2019 20:28:48 +0800
-Message-ID: <1566995328-15158-11-git-send-email-henryc.chen@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
-References: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 5A7D628ED1EE4F9C2C551AEC390E7608E055E3BDF0690A1F4EA55F66C15079B52000:8
-X-MTK:  N
+        id S1726561AbfH1Mk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 08:40:28 -0400
+Received: from mga04.intel.com ([192.55.52.120]:53769 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726472AbfH1Mk1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 08:40:27 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 28 Aug 2019 05:40:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,441,1559545200"; 
+   d="scan'208";a="210152703"
+Received: from deyangko-mobl.ccr.corp.intel.com ([10.249.168.35])
+  by fmsmga002.fm.intel.com with ESMTP; 28 Aug 2019 05:40:23 -0700
+Message-ID: <63b8753a2a58688e75f6e03c46c84a064a123d85.camel@intel.com>
+Subject: Re: [PATCH v5 03/18] thermal: fix indentation in makefile
+From:   Zhang Rui <rui.zhang@intel.com>
+To:     Yangtao Li <tiny.windzz@gmail.com>, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
+        mchehab+samsung@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
+        nicolas.ferre@microchip.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Wed, 28 Aug 2019 20:40:33 +0800
+In-Reply-To: <20190810052829.6032-4-tiny.windzz@gmail.com>
+References: <20190810052829.6032-1-tiny.windzz@gmail.com>
+         <20190810052829.6032-4-tiny.windzz@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DDR EMI provider dictating dram interconnect bus performance
-found on MT8183-based platforms
+On Sat, 2019-08-10 at 05:28 +0000, Yangtao Li wrote:
+> To unify code style.
+> 
+> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
 
-Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+the later patches in this series does not change Makefile.
+So this seems to be a cleanup patch independent of this patch set.
+It's better to remove this patch from this patch series.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 7512f84..a3af77d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -11,6 +11,7 @@
- #include <dt-bindings/power/mt8183-power.h>
- #include "mt8183-pinfunc.h"
- #include <dt-bindings/soc/mtk,dvfsrc.h>
-+#include <dt-bindings/interconnect/mtk,mt8183-emi.h>
- 
- / {
- 	compatible = "mediatek,mt8183";
-@@ -148,6 +149,10 @@
- 		reg = <0 0x10012000 0 0x1000>;
- 		clocks = <&infracfg CLK_INFRA_DVFSRC>;
- 		clock-names = "dvfsrc";
-+		ddr_emi: interconnect {
-+			compatible = "mediatek,mt8183-emi";
-+			#interconnect-cells = <1>;
-+		};
- 	};
- 
- 	timer {
--- 
-1.9.1
+thanks,
+rui
+> ---
+>  drivers/thermal/Makefile | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/thermal/Makefile b/drivers/thermal/Makefile
+> index fa6f8b206281..d7eafb5ef8ef 100644
+> --- a/drivers/thermal/Makefile
+> +++ b/drivers/thermal/Makefile
+> @@ -5,7 +5,7 @@
+>  
+>  obj-$(CONFIG_THERMAL)		+= thermal_sys.o
+>  thermal_sys-y			+= thermal_core.o
+> thermal_sysfs.o \
+> -					thermal_helpers.o
+> +				   thermal_helpers.o
+>  
+>  # interface to/from other layers providing sensors
+>  thermal_sys-$(CONFIG_THERMAL_HWMON)		+= thermal_hwmon.o
+> @@ -25,11 +25,11 @@ thermal_sys-$(CONFIG_CPU_THERMAL)	+=
+> cpu_cooling.o
+>  thermal_sys-$(CONFIG_CLOCK_THERMAL)	+= clock_cooling.o
+>  
+>  # devfreq cooling
+> -thermal_sys-$(CONFIG_DEVFREQ_THERMAL) += devfreq_cooling.o
+> +thermal_sys-$(CONFIG_DEVFREQ_THERMAL) 	+= devfreq_cooling.o
+>  
+>  # platform thermal drivers
+>  obj-y				+= broadcom/
+> -obj-$(CONFIG_THERMAL_MMIO)		+= thermal_mmio.o
+> +obj-$(CONFIG_THERMAL_MMIO)	+= thermal_mmio.o
+>  obj-$(CONFIG_SPEAR_THERMAL)	+= spear_thermal.o
+>  obj-$(CONFIG_SUN8I_THERMAL)     += sun8i_thermal.o
+>  obj-$(CONFIG_ROCKCHIP_THERMAL)	+= rockchip_thermal.o
+> @@ -50,7 +50,7 @@ obj-$(CONFIG_TI_SOC_THERMAL)	+= ti-soc-
+> thermal/
+>  obj-y				+= st/
+>  obj-$(CONFIG_QCOM_TSENS)	+= qcom/
+>  obj-y				+= tegra/
+> -obj-$(CONFIG_HISI_THERMAL)     += hisi_thermal.o
+> +obj-$(CONFIG_HISI_THERMAL)     	+= hisi_thermal.o
+>  obj-$(CONFIG_MTK_THERMAL)	+= mtk_thermal.o
+>  obj-$(CONFIG_GENERIC_ADC_THERMAL)	+= thermal-generic-adc.o
+>  obj-$(CONFIG_ZX2967_THERMAL)	+= zx2967_thermal.o
 
