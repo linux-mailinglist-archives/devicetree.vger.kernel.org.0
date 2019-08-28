@@ -2,87 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74CE39FC85
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 10:03:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9111F9FCB0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 10:17:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726339AbfH1IDP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 04:03:15 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40163 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726253AbfH1IDO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 04:03:14 -0400
-Received: by mail-wm1-f66.google.com with SMTP id t9so625536wmi.5
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 01:03:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=20Jn2+dCC+I8w6FtFfD0vbMvlgqMeEqx0r5JGNJSXvw=;
-        b=BRdtncww57yR+oh9ioHww1AygNYE9lSkqU2mG//XHwzTsagVjR4YsA8HZLgV0wx8f7
-         MGD8CF1vTBltWRC04ALXWMJqPiuhNcXA/dhIWF5i2SqNeYztB0T8jnz2K4A6VzLd+ddc
-         YEpKr2fG5TixL2Xdu17BHvZgY600WF8v6JoftyobJhEdPNmnGwssFAydMClk+OSjNdH2
-         /htwt76aoWHuRaxE0qDXMFOwIZwwxCT8fPe129GAv6C3axxfjNmENgSKz8MMSU5skxWO
-         kFSMKYMxXvF+2P8J0wsa+XECHfZG9888WhVvnCG/iRlUy9lIbkqUYzBAiy/dd1pHDumy
-         gjvA==
+        id S1726410AbfH1IRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 04:17:12 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:44245 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726292AbfH1IRL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 04:17:11 -0400
+Received: by mail-wr1-f67.google.com with SMTP id j11so690459wrp.11;
+        Wed, 28 Aug 2019 01:17:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=20Jn2+dCC+I8w6FtFfD0vbMvlgqMeEqx0r5JGNJSXvw=;
-        b=gYfqGOgpz7w3u3JTmEKUNsJoZfDOmCLxXHldcNUjBKnyTd5EUkjDP9kon+7OpPYE2P
-         2V5pLLi9j61QZCgDSwNPxYNkab/tK7zwiJNKLAQ3R0aIUeKsZa+yEQqpfJ09waXNHPJC
-         Vfcq3zujqbsK42SzaejNhlyY4qxsp+OYdorJaEJJbDxgScApkqciJYpTFBeqgVS9ESaq
-         STckxjxvX12xUT9UFNgK4fkXFO0CvDLK1OgZVsgrzKeHQ9KSUOPsqrW3Q7vnOMcFQMKY
-         iTQKwXqZNpiKTN39bVWxnQ9vzBRDDY9BwciPV4I+rDFIGZR5VkEimDIFDs01xdPvmUr1
-         m/qQ==
-X-Gm-Message-State: APjAAAWOwo5+RgKXUChRQ+OTLeqnxTJFYdVdlAWEU0ZoL8PdTnuSRxCk
-        iDM9S9MDcOqBvvvpA4dvILw5uA==
-X-Google-Smtp-Source: APXvYqxmqwViJF2WTLIOMiRFCef/fmmO9N41vOJh+ND/giymLdwj+196F+O+dvCn+JoNQAz/G4CsdA==
-X-Received: by 2002:a05:600c:352:: with SMTP id u18mr3102630wmd.141.1566979392301;
-        Wed, 28 Aug 2019 01:03:12 -0700 (PDT)
-Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a11sm1330229wrx.59.2019.08.28.01.03.11
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=elcDxralvab5BCLPwy6aNqNRddh9yUrA4hJ16xi48PI=;
+        b=KsERq02pyOdSj8DPaDZ0SanJNIq3WnXBJWhH4yeuGICKoNdcG/9JkmJnkyKaf1Bs5E
+         wySG6bGoQYTgWbP1BBBPPmK3AKu5ZToZxtlj7LomlVhH+QBpvbXmcflr7LwXDdObalFd
+         hSmRWdwk1tYK+9e6k+wmNKw8P1diniRId/9fYsbaongF4Icrao+lOa4pR5iNMV+FOwpF
+         y8WVPgwaYs9swp9fsTSOlYtsQ3x2DH6w52xLLsUIa68bBQF0bQZ9lFTaB4gQaRAlOTcZ
+         bt7stDAHzHBNx4o7yDZTvAUOBi51FLw1hnC/SQmGIh4o+1QWQr9PMIJ6EmJzWX5c/fZL
+         i1Pw==
+X-Gm-Message-State: APjAAAW+awAfq6FaYJpF9ifkLDUanahXWBdAMWQLz/BYvXvU5GUH0ppN
+        l1W7RG5o7oa1xsl7OGIiyuc=
+X-Google-Smtp-Source: APXvYqwmhv7I8k483ahGnEjGNmo4amPeyJahnDXrjCmOd75ub2Hi+25Drc0PFsP+jngUCzaAGvF4IQ==
+X-Received: by 2002:adf:efd2:: with SMTP id i18mr2910751wrp.145.1566980229213;
+        Wed, 28 Aug 2019 01:17:09 -0700 (PDT)
+Received: from 1aq-andre ([77.107.218.170])
+        by smtp.gmail.com with ESMTPSA id p19sm1406467wmg.31.2019.08.28.01.17.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2019 01:03:11 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: g12a: add tdm resets
-In-Reply-To: <7hh862tbt2.fsf@baylibre.com>
-References: <20190820121551.18398-1-jbrunet@baylibre.com> <7hh862tbt2.fsf@baylibre.com>
-Date:   Wed, 28 Aug 2019 10:03:10 +0200
-Message-ID: <1j4l217m4h.fsf@starbuckisacylon.baylibre.com>
+        Wed, 28 Aug 2019 01:17:08 -0700 (PDT)
+Message-ID: <bc6247cdd51d7a7b28c52a186d4975ecbeaa602d.camel@andred.net>
+Subject: Re: [PATCH 2/2] dt-bindings: imx6q-pcie: add
+ "fsl,pcie-phy-refclk-internal" for i.MX7D
+From:   =?ISO-8859-1?Q?Andr=E9?= Draszik <git@andred.net>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, Richard Zhu <hongxing.zhu@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Date:   Wed, 28 Aug 2019 09:17:07 +0100
+In-Reply-To: <20190827155626.GA29948@bogus>
+References: <20190813103759.38358-1-git@andred.net>
+         <20190813103759.38358-2-git@andred.net> <20190827155626.GA29948@bogus>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 27 Aug 2019 at 16:42, Kevin Hilman <khilman@baylibre.com> wrote:
+Hi Rob,
 
-> Jerome Brunet <jbrunet@baylibre.com> writes:
->
->> This patchset adds the dedicated reset of the tdm formatters which
->> have been added on the g12a SoC family. Using these help with the channel
->> mapping when the formatter uses more than 1 i2s lane.
->
-> Because I forgot^W waited on this, we did the meson-g12a-common split,
-> so this no longer applies cleanly.  Could you rebase this on current v5.4/dt64
-> and I'll queue it for v5.4/dt64.
+On Tue, 2019-08-27 at 10:56 -0500, Rob Herring wrote:
+> On Tue, Aug 13, 2019 at 11:37:59AM +0100, André Draszik wrote:
+> > The i.MX7D variant of the IP can use either an external
+> > crystal oscillator input or an internal clock input as
+> > a reference clock input for the PCIe PHY.
+> > 
+> > Document the optional property 'fsl,pcie-phy-refclk-internal'
+> > 
+> > Signed-off-by: André Draszik <git@andred.net>
+> > Cc: Richard Zhu <hongxing.zhu@nxp.com>
+> > Cc: Lucas Stach <l.stach@pengutronix.de>
+> > Cc: Bjorn Helgaas <bhelgaas@google.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Mark Rutland <mark.rutland@arm.com>
+> > Cc: Shawn Guo <shawnguo@kernel.org>
+> > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+> > Cc: Fabio Estevam <festevam@gmail.com>
+> > Cc: NXP Linux Team <linux-imx@nxp.com>
+> > Cc: linux-pci@vger.kernel.org
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Cc: devicetree@vger.kernel.org
+> > Cc: linux-kernel@vger.kernel.org
+> > ---
+> >  Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > index a7f5f5afa0e6..985d7083df9f 100644
+> > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie.txt
+> > @@ -56,6 +56,11 @@ Additional required properties for imx7d-pcie and imx8mq-pcie:
+> >  	       - "turnoff"
+> >  - fsl,imx7d-pcie-phy: A phandle to an fsl,imx7d-pcie-phy node.
+> 
+> Not sure how this got in, but why is the phy binding not used here?
+> 
+> >  
+> > +Additional optional properties for imx7d-pcie:
+> > +- fsl,pcie-phy-refclk-internal: If present then an internal PLL input is used
+> > +  as PCIe PHY reference clock source. By default an external ocsillator input
+> > +  is used.
+> 
+> Can't the clock binding and maybe 'assigned-clocks' be used here? 
+> 
+> Also, this is a property of the PHY, so it belongs in the PHY's node.
 
-Acutally it was already not applying when I sent this v1 ...
-.. which is why I sent a v2 [0] ;)
+Thanks for pointing this out. I'll have a look.
 
-[0]: https://lkml.kernel.org/r/20190823154432.16268-1-jbrunet@baylibre.com
+Andre'
 
->
->> Kevin, please note that to build, this patchset depends on the new reset
->> bindings of the audio clock controller. I've prepared a tag for you [0]
->>
->> [0]: git://github.com/BayLibre/clk-meson.git - clk-meson-dt-v5.4-2
->
-> Thanks for the tag.  This is now included in v5.4/dt64.
->
-> Kevin
+
