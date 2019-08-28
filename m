@@ -2,64 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08EF19FFF2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1BEA001D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726725AbfH1KcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 06:32:07 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:29746 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726328AbfH1KcG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 06:32:06 -0400
-X-IronPort-AV: E=Sophos;i="5.64,440,1559487600"; 
-   d="scan'208";a="24927763"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 28 Aug 2019 19:32:05 +0900
-Received: from localhost.localdomain (unknown [10.166.17.210])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0B1A54004CFD;
-        Wed, 28 Aug 2019 19:32:05 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     vkoul@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH] dt-bindings: dmaengine: dma-common: Fix the dma-channel-mask property
-Date:   Wed, 28 Aug 2019 19:30:23 +0900
-Message-Id: <1566988223-14657-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1726270AbfH1KoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 06:44:20 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40706 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726253AbfH1KoT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 06:44:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=9KEYKWi6mdkxqPHqKcMPIBv43kB3WI8NArLEUSNjZ90=; b=QhOBICUPXVX6i3OYn6QDtarKE
+        zquKmVgCK4oEiNyZSbe0beNsb5h+vWvYf/BB0UIvn8vBFGhKF40w2b7HGdfv25LCMVEA7H/Yl9Mi6
+        cdZ5lPiMMLeJNZEwcmPIpLxoiDzFDtMIXso8bLjPpgdGMBAM8asdnw3neywXnAiixPNMo=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1i2vQr-0003cX-25; Wed, 28 Aug 2019 10:44:05 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id A426F2742A55; Wed, 28 Aug 2019 11:44:03 +0100 (BST)
+Date:   Wed, 28 Aug 2019 11:44:03 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v5 05/10] regulator: Add document for MT6358 regulator
+Message-ID: <20190828104403.GD4298@sirena.co.uk>
+References: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1566531931-9772-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="gE7i1rD7pdK0Ng3j"
+Content-Disposition: inline
+In-Reply-To: <1566531931-9772-6-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Cookie: Oatmeal raisin.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The commit b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas
-for the generic DMA bindings") changed the property from
-dma-channel-mask to dma-channel-masks. So, this patch fixes it.
 
-Fixes: b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas for the generic DMA bindings")
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Changes from v1:
- - s/Revise/Fix/ in the subject and s/revises/fixes/ the commit log.
- https://patchwork.kernel.org/patch/11117885/
+--gE7i1rD7pdK0Ng3j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- Documentation/devicetree/bindings/dma/dma-common.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Fri, Aug 23, 2019 at 11:45:26AM +0800, Hsin-Hsiung Wang wrote:
 
-diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml b/Documentation/devicetree/bindings/dma/dma-common.yaml
-index 0141af0..ed0a49a 100644
---- a/Documentation/devicetree/bindings/dma/dma-common.yaml
-+++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
-@@ -24,7 +24,7 @@ properties:
-     description:
-       Used to provide DMA controller specific information.
- 
--  dma-channel-masks:
-+  dma-channel-mask:
-     $ref: /schemas/types.yaml#definitions/uint32
-     description:
-       Bitmask of available DMA channels in ascending order that are
--- 
-2.7.4
+> +	pmic {
+> +		compatible =3D "mediatek,mt6358";
+> +
+> +		mt6358regulator: mt6358regulator {
+> +			compatible =3D "mediatek,mt6358-regulator";
 
+This still lists the subnode compatible string which has been removed
+=66rom the binding.
+
+--gE7i1rD7pdK0Ng3j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1mWvIACgkQJNaLcl1U
+h9DRhggAgRvC7U6BzuvYz9spXJ1dhssJoo4Cnc4KMXUuUQ6QoLUsAWOp6czaDVMi
+2RNmm2MTbOfyXQs/lYDyEmNCxNCevItzJzxx0F1ny9EQ43yUGc/eoV1EqQB4df/j
+SmqBQi1AbtM8eftJ/qtYfjGpuMgvch335oKN0YlpdsKgbT05CRlywkciokwd9D/N
++ZikuKYjDNep1358Y/axhdaeGBjwIC9YaUh9TYZ7oRE6U8H4hacfkSiCp76GYzn3
+Wta9GRiHSlYxkiUgqDT7C6sqwDNfeIq68hda/2FoveacCOU9brIy8BwRC53amB95
+adi4im7qPsNIUHUNKl7lgztsd8jrSw==
+=HBf8
+-----END PGP SIGNATURE-----
+
+--gE7i1rD7pdK0Ng3j--
