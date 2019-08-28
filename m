@@ -2,96 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C58D69FB67
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 09:20:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B71129FB99
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 09:25:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726457AbfH1HU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 03:20:28 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53060 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726328AbfH1HU2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 03:20:28 -0400
+        id S1726310AbfH1HZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 03:25:10 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:34204 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726154AbfH1HZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 03:25:10 -0400
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7S7KKG4112382;
-        Wed, 28 Aug 2019 02:20:20 -0500
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7S7OxBL128105;
+        Wed, 28 Aug 2019 02:24:59 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566976821;
-        bh=dGrMgeUi6wflxIOZ9TLPa+y2wgWQNeSeZXll2Q1ypN8=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=LA7RHGfHHWPKg1RLI17yfbYWVpXg1RU3JUvaAt79aXRfoyq+tfl95bm6lZfmvApRn
-         NaoPn9ry9yrPaftjaSzzRyIPKtKLkegS4EdzCdrVl4TiOCXXnjleX50Q1Sq5a2ViTl
-         D2q2ImWl/caFL0skz6G7J2KTjb44CSDVht2xOM4M=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7S7KKbZ025853
+        s=ti-com-17Q1; t=1566977099;
+        bh=pHyb5hhjOJ/59tZ3itIB2wCsNr0fqOVSdMsLMcMWCFg=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=DprJg+7gYdCQZU3GT0E4RZqlgPotiqCwfk4/ZIrngU2ongYe4mokK686Rnj+8I0xr
+         IGya1Edsw00RFX6LQeC+EFbZt4g4MhamBOOVxJkE/2gwtrOA0vU6Vf0F7CYkjqXP8Q
+         PyfdZXK+wt2I6GRnyBmKO41um+l6u+dp49pldKhI=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7S7OxBR030983
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 28 Aug 2019 02:20:20 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+        Wed, 28 Aug 2019 02:24:59 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 28
- Aug 2019 02:20:14 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Aug 2019 02:24:58 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 28 Aug 2019 02:20:14 -0500
-Received: from sokoban.bb.dnainternet.fi (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7S7JmfN052201;
-        Wed, 28 Aug 2019 02:20:12 -0500
-From:   Tero Kristo <t-kristo@ti.com>
-To:     <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>,
-        <p.zabel@pengutronix.de>
-CC:     <tony@atomide.com>, <s-anna@ti.com>, <devicetree@vger.kernel.org>
-Subject: [PATCHv2 11/11] soc: ti: omap-prm: add omap5 PRM data
-Date:   Wed, 28 Aug 2019 10:19:41 +0300
-Message-ID: <20190828071941.32378-12-t-kristo@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190828071941.32378-1-t-kristo@ti.com>
-References: <20190828071941.32378-1-t-kristo@ti.com>
+ Frontend Transport; Wed, 28 Aug 2019 02:24:57 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7S7Oumq019424;
+        Wed, 28 Aug 2019 02:24:56 -0500
+Subject: Re: [PATCH] dt-bindings: dmaengine: dma-common: Revise the
+ dma-channel-mask property
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        <vkoul@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <dmaengine@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <1566974375-32482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <eb823985-5cf6-0d83-8613-1baeeaf7d9c8@ti.com>
+Date:   Wed, 28 Aug 2019 10:25:19 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <1566974375-32482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PRM instance data for omap5 family of SoCs. Initially this is just
-used to provide reset support.
 
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
----
- drivers/soc/ti/omap_prm.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
-index fd11785637ff..1a02e319fc63 100644
---- a/drivers/soc/ti/omap_prm.c
-+++ b/drivers/soc/ti/omap_prm.c
-@@ -86,6 +86,14 @@ static const struct omap_prm_data omap4_prm_data[] = {
- 	{ },
- };
- 
-+static const struct omap_prm_data omap5_prm_data[] = {
-+	{ .name = "dsp", .base = 0x4ae06400, .rstctrl = 0x10, .rstst = 0x14, .rstmap = rst_map_01 },
-+	{ .name = "core", .base = 0x4ae06700, .rstctrl = 0x210, .rstst = 0x214, .clkdm_name = "ipu", .rstmap = rst_map_012 },
-+	{ .name = "iva", .base = 0x4ae07200, .rstctrl = 0x10, .rstst = 0x14, .rstmap = rst_map_012 },
-+	{ .name = "device", .base = 0x4ae07c00, .rstctrl = 0x0, .rstst = 0x4, .rstmap = rst_map_01, .flags = OMAP_PRM_HAS_RSTCTRL | OMAP_PRM_HAS_NO_CLKDM },
-+	{ },
-+};
-+
- static const struct omap_prm_data dra7_prm_data[] = {
- 	{ .name = "dsp1", .base = 0x4ae06400, .rstctrl = 0x10, .rstst = 0x14, .rstmap = rst_map_01 },
- 	{ .name = "ipu", .base = 0x4ae06500, .rstctrl = 0x10, .rstst = 0x14, .clkdm_name = "ipu1", .rstmap = rst_map_012 },
-@@ -138,6 +146,7 @@ static const struct omap_prm_data am4_prm_data[] = {
- 
- static const struct of_device_id omap_prm_id_table[] = {
- 	{ .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
-+	{ .compatible = "ti,omap5-prm-inst", .data = omap5_prm_data },
- 	{ .compatible = "ti,dra7-prm-inst", .data = dra7_prm_data },
- 	{ .compatible = "ti,am3-prm-inst", .data = am3_prm_data },
- 	{ .compatible = "ti,am4-prm-inst", .data = am4_prm_data },
--- 
-2.17.1
+On 28/08/2019 9.39, Yoshihiro Shimoda wrote:
+> The commit b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas
+> for the generic DMA bindings") changed the property from
+> dma-channel-mask to dma-channel-masks. So, this patch revises it.
+> 
+> Fixes: b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas for the generic DMA bindings")
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  Documentation/devicetree/bindings/dma/dma-common.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml b/Documentation/devicetree/bindings/dma/dma-common.yaml
+> index 0141af0..ed0a49a 100644
+> --- a/Documentation/devicetree/bindings/dma/dma-common.yaml
+> +++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
+> @@ -24,7 +24,7 @@ properties:
+>      description:
+>        Used to provide DMA controller specific information.
+>  
+> -  dma-channel-masks:
+> +  dma-channel-mask:
+>      $ref: /schemas/types.yaml#definitions/uint32
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+How this mask supposed to be used for controllers having more than 32
+channels (64, 300+)?
+
+>      description:
+>        Bitmask of available DMA channels in ascending order that are
+> 
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
