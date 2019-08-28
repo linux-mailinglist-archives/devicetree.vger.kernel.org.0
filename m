@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E87CA065A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:31:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5E5BA0669
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726880AbfH1Pbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 11:31:53 -0400
-Received: from forward104p.mail.yandex.net ([77.88.28.107]:51019 "EHLO
-        forward104p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726429AbfH1Pbx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 11:31:53 -0400
-Received: from mxback7o.mail.yandex.net (mxback7o.mail.yandex.net [IPv6:2a02:6b8:0:1a2d::21])
-        by forward104p.mail.yandex.net (Yandex) with ESMTP id D013B4B0094F;
-        Wed, 28 Aug 2019 18:31:48 +0300 (MSK)
-Received: from smtp1j.mail.yandex.net (smtp1j.mail.yandex.net [2a02:6b8:0:801::ab])
-        by mxback7o.mail.yandex.net (nwsmtp/Yandex) with ESMTP id ffjlMBsko1-VlremqIv;
-        Wed, 28 Aug 2019 18:31:48 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1567006308;
-        bh=7RA0sHF5D03f4tAZfj9rCdvuBWfcitbh3YPyvz8e+CI=;
-        h=In-Reply-To:Cc:To:Subject:From:Date:References:Message-ID;
-        b=eMmYwxIXwqY9HlvIBMIYRd49H7lhEAeOX2i3qqRcSXP5K2V0nBHs06yPe3mK8trzt
-         6/omZIndgJtP4AEB16Cim2Iz9aMzI9F9Y/xjR81E+DDJobtA7eFWJkDUYiNerlOfIp
-         uJQYGqzcDbpuCwZl+6eQRSqfPUcTOJ2vsI58TIkM=
-Authentication-Results: mxback7o.mail.yandex.net; dkim=pass header.i=@flygoat.com
-Received: by smtp1j.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id gq3U0rBuMO-VcbGsZJ1;
-        Wed, 28 Aug 2019 18:31:45 +0300
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client certificate not present)
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH 04/13] irqchip: Add driver for Loongson-3 I/O interrupt
- controller
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
-        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.co, devicetree@vger.kernel.org
-References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
- <20190827085302.5197-5-jiaxun.yang@flygoat.com>
- <e6a5862f-0f6c-cab0-9f4a-51b7889d38e7@kernel.org>
- <82c4b9ed-7270-74ce-6e10-165182e540dd@flygoat.com>
- <20190828075940.549e1983@why>
-Message-ID: <619b1d35-7bc2-999f-5a51-fb2efdc63f60@flygoat.com>
-Date:   Wed, 28 Aug 2019 23:31:31 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726520AbfH1Pex (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 11:34:53 -0400
+Received: from muru.com ([72.249.23.125]:58960 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726440AbfH1Pex (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 11:34:53 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 3D2DF80C5;
+        Wed, 28 Aug 2019 15:35:21 +0000 (UTC)
+Date:   Wed, 28 Aug 2019 08:34:48 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>,
+        Marcel Partap <mpartap@gmx.net>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        Michael Scott <hashcode0f@gmail.com>,
+        NeKit <nekit1000@gmail.com>, Pavel Machek <pavel@ucw.cz>,
+        Sebastian Reichel <sre@kernel.org>
+Subject: Re: [PATCH] ARM: dts: omap4-droid4: Allow 350mA current for USB
+ peripherals
+Message-ID: <20190828153448.GC52127@atomide.com>
+References: <20190828151706.32643-1-tony@atomide.com>
 MIME-Version: 1.0
-In-Reply-To: <20190828075940.549e1983@why>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190828151706.32643-1-tony@atomide.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Tony Lindgren <tony@atomide.com> [190828 08:17]:
+> Looks like we can use some USB Ethernet dongles for example if we increase
+> the allowed power limit.
+> 
+> A similar PMIC MC13783 documents maximum current limit as 350 mA in in
+> "Table 10-3. VUSB Regulator Main Characteristics". Since we have no
+> other documentation, let's use that value as the limit.
 
-On 2019/8/28 下午2:59, Marc Zyngier wrote:
-> On Wed, 28 Aug 2019 08:27:05 +0800
-> Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
->
->> On 2019/8/28 上午12:45, Marc Zyngier wrote:
->>> On 27/08/2019 09:52, Jiaxun Yang wrote:
->>>> +	chained_irq_enter(chip, desc);
->>>> +
->>>> +	pending = readl(priv->intc_base + LS3_REG_INTC_EN_STATUS) &
->>>> +		readl(priv->intc_base + LS3_REG_INTC_STATUS);
->>> Reading the enabled status from the HW on each interrupt? I'm sure
->>> that's pretty cheap...
->> Seems expensive but to deal with a buggy hardware... That's worthy.
-> How broken is it? You very much seem to rely on the HW being correct
-> here, since you trust it exclusively. I'd expect the enable mask to be
-> a SW construct if you didn't blindly trust it
-Hi Marc
+Oops, that's too much, it's not VUSB regulator but VBUS regulator
+that lists 300 mA max instead of 350 mA for VUSB regulator.
 
-Thanks for your answering.
+Updated patch below.
 
-The vendor code did this and said there is a HW issue. I just don't have 
-the guts to remove this check.
-Seems like sometimes masked interrupt may get ISR set wrongly.
-> And if this is truly the right way to do it, please document the
-> various problems with the controller so that we don't break it at a
-> later time.
-Thanks, will do.
->
-> Then how comes this comes from the irqchip's DT node? This should be
-> part of the endpoint's interrupt specifier.
+Regards,
 
-In theory it should be, However if we set different interrupt 
-lines/cores on that controller, interrupts may get lost. It means we can 
-only have single parent core/interrupt.
+Tony
 
-So I'd prefer just set them uniformly by controller's dt-binding to 
-prevent confusing.
+8< ------------------------
+From tony Mon Sep 17 00:00:00 2001
+From: Tony Lindgren <tony@atomide.com>
+Date: Wed, 28 Aug 2019 08:11:26 -0700
+Subject: [PATCH] ARM: dts: omap4-droid4: Allow 300mA current for USB
+ peripherals
 
->> It's parent IRQ (mti,cpu-interrupt-controller) is a percpu IRQ.
-> But then why is that interrupt described using the "core" property? It
-> should be an interrupt specifier, just like any other interrupt.
-The same.
->
->> In design, it allows us to decide affinity at runtime but actually hardware is seriously broken.
-> I understand the HW is terrible. But the binding looks pretty bad too.
-> This needs fixing.
->
-> 	M.
---
-Jiaxun Yang
+Looks like we can use some USB Ethernet dongles for example if we increase
+the allowed power limit.
+
+A similar PMIC MC13783 documents maximum current limit as 300 mA in in
+"Table 10-4. VBUS Regulator Main Characteristics". Since we have no
+other documentation, let's use that value as the limit.
+
+Cc: Jacopo Mondi <jacopo@jmondi.org>
+Cc: Marcel Partap <mpartap@gmx.net>
+Cc: Merlijn Wajer <merlijn@wizzup.org>
+Cc: Michael Scott <hashcode0f@gmail.com>
+Cc: NeKit <nekit1000@gmail.com>
+Cc: Pavel Machek <pavel@ucw.cz>
+Cc: Sebastian Reichel <sre@kernel.org>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm/boot/dts/omap4-droid4-xt894.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/omap4-droid4-xt894.dts b/arch/arm/boot/dts/omap4-droid4-xt894.dts
+--- a/arch/arm/boot/dts/omap4-droid4-xt894.dts
++++ b/arch/arm/boot/dts/omap4-droid4-xt894.dts
+@@ -781,7 +781,12 @@
+ &usb_otg_hs {
+ 	interface-type = <1>;
+ 	mode = <3>;
+-	power = <50>;
++
++	/*
++	 * Max 300 mA steps based on similar PMIC MC13783UG.pdf "Table 10-4.
++	 * VBUS Regulator Main Characteristics". Binding uses 2 mA units.
++	 */
++	power = <150>;
+ };
+ 
+ &i2c4 {
+-- 
+2.23.0
