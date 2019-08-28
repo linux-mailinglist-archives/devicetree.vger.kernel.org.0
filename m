@@ -2,89 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3174AA08FE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 19:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8033AA0983
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 20:34:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbfH1Rwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 13:52:47 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:35915 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726663AbfH1Rwq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 13:52:46 -0400
-Received: by mail-pf1-f195.google.com with SMTP id w2so283036pfi.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 10:52:46 -0700 (PDT)
+        id S1726921AbfH1Sd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 14:33:59 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39205 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726586AbfH1Sd6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 14:33:58 -0400
+Received: by mail-io1-f67.google.com with SMTP id l7so1548039ioj.6;
+        Wed, 28 Aug 2019 11:33:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:subject:to:from:user-agent:date;
-        bh=Px8LkhnvRWF4dwuD/m3pQWcRskg4hOcGMoEJQEofQZ8=;
-        b=b8Su07oogeUnBWJ/0tg5akVGMO8eE2d43UCFFCgBPKGffQgjBkuv7y3A9eC/T4EjRA
-         i7cHOOuL3iwYyhXeVmkunHv4h61+Sh5KbLMZW3NkZo6fBsNGuzL8yykC9A1ECMrI54y1
-         ORagwvll1OSa52p8t4TebQyKcuNvQJi3NpzNA=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=8hu0ssZ0oGIHsc6XK0+vNFtta74+suq/nbsPFXeUCzo=;
+        b=gOExUspZ43jLMuF+eKU6GV47d0erYUbZyKrYKRx3biAPGIachP/lZDr5vFrM7ph+Sw
+         shJydx+mpJs1RrkwMNxmJECY4wh7aA7ZKu2d5mA0P3sr7HYMgo5ybKOr2mPGlKDdZp30
+         7MhEdpd/5TcPxjlpD44R15158z8gKGN6ZD88QhHvYg+xnGrDm/RXuKuVoinN/WjSDYBd
+         VEkShaMh9qJLhxrQfM1EKfjC43RqqjIPrRMvlqTDlrYXW5m3DjhUqwV1z0XKmIM7KBar
+         abct8GgJIyTOCQIYegKpz+CXpOUpCR3AegIdWRO5vz88hIWhrDN/hGXah/6GhnMAOo6y
+         2rew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:subject:to:from
-         :user-agent:date;
-        bh=Px8LkhnvRWF4dwuD/m3pQWcRskg4hOcGMoEJQEofQZ8=;
-        b=gd/v3HVrxveMoUcHSMrVZeDFQYK5CHfTceRR3500FfABqT7COd9uw99mNmt4rMo0n4
-         34uKQuvMz0fqjF0DT4vV3+PkMvQIGRFFa2wcbY+v/iYlZyII9CqXskey4JVIRLNVrRFv
-         mzo7v1YBbK3EmAnOdWyzkEq9cm+pYEfSKoh4Ynl86dd9ieZmf9UkYE86pNtSM1oS47Oz
-         wSxdyZxqpk3zQSzsYzmc1KETEkWpveQ2uP9rioL002lFw6/CLeE7dT3EP+2xliE2mcrt
-         Doi9BL1JAp/H2wmmYY1O01zwfg1auUB/ILzewyRWP2f+2tDTv6BRRBmzd89VmvvmAMgm
-         xdrg==
-X-Gm-Message-State: APjAAAVVh04qdNjedjxzybsUP56YNoHwxJI7fUT4TiJKcVIUmBhJajx5
-        pUJRdTJpzjA5PV3BFSF1fa0A1Q==
-X-Google-Smtp-Source: APXvYqxCTQjvm1BM9NXD/WyFjJvnpm9d045wXvVon/BZtschRXgyy8tL19nyMEwFqWDkx1/sIvisKw==
-X-Received: by 2002:a65:6815:: with SMTP id l21mr4618991pgt.146.1567014766012;
-        Wed, 28 Aug 2019 10:52:46 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id e21sm3512214pfi.13.2019.08.28.10.52.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8hu0ssZ0oGIHsc6XK0+vNFtta74+suq/nbsPFXeUCzo=;
+        b=EYPwzy/1oztWmVzmRGlGq9FBEUpMlFMK1rOvvsgsaESFrzkwOhoIIgia0fCilOU+R3
+         7fJgJau1mQ6o/9V61223Vi2Xkm9uBRubnqboWHBPCnPG7ayFqFr11j+kaRSVZT7mfPpV
+         /51c4iFH1/ug9LzcJdXPq9l59r8Vmd5264LlzRi2DpWHPun3tDtBkr6b95bDtKvhK/mi
+         heouUZm/si7Ce02gLy9ROHaM2bhaTXMFJgIsf0dzNDOgf3Mif29hPTWi2ZcyZvCQQ7k6
+         hhJAyUKAnI3oFaum01gvSX3SZ0a3Oq79hvmGZi1C2dD+rX5WliOAZfw8QeANLseor3+N
+         G+Yw==
+X-Gm-Message-State: APjAAAV6EyWsNCeuGUCciVIldUcg/B0LGMEQjMkYNl90apW9An5GI3DS
+        yknQLgmaBEnOTWa3jhI85boG07VN54U=
+X-Google-Smtp-Source: APXvYqwEMGWFsgtbR4pzYu0QHQcSSHkT8AIV7Vx2F+xl54RWfWBWN+WSLiU9SH8fydowdo4lmRC4Ww==
+X-Received: by 2002:a05:6602:219a:: with SMTP id b26mr236370iob.55.1567017237339;
+        Wed, 28 Aug 2019 11:33:57 -0700 (PDT)
+Received: from localhost.localdomain (c-73-37-219-234.hsd1.mn.comcast.net. [73.37.219.234])
+        by smtp.gmail.com with ESMTPSA id o3sm2494650ioo.74.2019.08.28.11.33.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2019 10:52:45 -0700 (PDT)
-Message-ID: <5d66bf6d.1c69fb81.c7b73.8fdb@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190822102723.GB8494@centauri>
-References: <20190725104144.22924-7-niklas.cassel@linaro.org> <20190819100957.17095-1-niklas.cassel@linaro.org> <5d5ae389.1c69fb81.cb730.3225@mx.google.com> <20190822102723.GB8494@centauri>
-Cc:     Andy Gross <agross@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
-        Nishanth Menon <nm@ti.com>, Viresh Kumar <vireshk@kernel.org>,
-        linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
-        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
-        Rob Herring <robh@kernel.org>,
+        Wed, 28 Aug 2019 11:33:56 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-omap@vger.kernel.org
+Cc:     Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 06/14] dt-bindings: cpufreq: qcom-nvmem: Support pstates provided by a power domain
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.8.1
-Date:   Wed, 28 Aug 2019 10:52:44 -0700
+        Mark Rutland <mark.rutland@arm.com>,
+        Russell King <linux@armlinux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/3] ARM: omap2plus_defconfig: Fix missing video
+Date:   Wed, 28 Aug 2019 13:33:49 -0500
+Message-Id: <20190828183351.822-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Niklas Cassel (2019-08-22 03:27:23)
-> On Mon, Aug 19, 2019 at 10:59:36AM -0700, Stephen Boyd wrote:
-> > Quoting Niklas Cassel (2019-08-19 03:09:57)
-> > > +
-> > > +soc {
-> > > +....
-> > > +       cprpd: cpr@b018000 {
-> >=20
-> > Maybe node name should be 'avs' for the industry standard adaptive
-> > voltage scaling acronym?
->=20
-> I see where this is coming from, but "git grep avs" gives a single result.
->=20
-> Also, since the label is cprpd, it doesn't make sense to simply rename the
-> node name, and I don't think that avspd would be a good name, since it is
-> less correct.
->=20
-> So if you don't insist, I would prefer to leave it as it is.
->=20
+When the panel-dpi driver was removed, the simple-panels driver
+was never enabled, so anyone who used the panel-dpi driver lost
+video, and those who used it inconjunction with simple-panels
+would have to manually enable CONFIG_DRM_PANEL_SIMPLE.
 
-How about 'power-controller'?=20
+This patch makes CONFIG_DRM_PANEL_SIMPLE a module in the same
+way the deprecated panel-dpi was.
+
+Fixes: 8bf4b1621178 ("drm/omap: Remove panel-dpi driver")
+
+Signed-off-by: Adam Ford <aford173@gmail.com>
+
+diff --git a/arch/arm/configs/omap2plus_defconfig b/arch/arm/configs/omap2plus_defconfig
+index c7bf9c493646..64eb896907bf 100644
+--- a/arch/arm/configs/omap2plus_defconfig
++++ b/arch/arm/configs/omap2plus_defconfig
+@@ -363,6 +363,7 @@ CONFIG_DRM_OMAP_PANEL_TPO_TD028TTEC1=m
+ CONFIG_DRM_OMAP_PANEL_TPO_TD043MTEA1=m
+ CONFIG_DRM_OMAP_PANEL_NEC_NL8048HL11=m
+ CONFIG_DRM_TILCDC=m
++CONFIG_DRM_PANEL_SIMPLE=m
+ CONFIG_FB=y
+ CONFIG_FIRMWARE_EDID=y
+ CONFIG_FB_MODE_HELPERS=y
+-- 
+2.17.1
 
