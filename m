@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E5CC9FA36
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 08:11:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EBAC9FA3D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 08:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726147AbfH1GL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 02:11:26 -0400
-Received: from mail-eopbgr700040.outbound.protection.outlook.com ([40.107.70.40]:14177
+        id S1726167AbfH1GMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 02:12:08 -0400
+Received: from mail-eopbgr700088.outbound.protection.outlook.com ([40.107.70.88]:21408
         "EHLO NAM04-SN1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726052AbfH1GL0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 02:11:26 -0400
+        id S1726052AbfH1GMI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 02:12:08 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EK2ca0UwFwv2Lqo8fwB3YOo3h2l4mdWYqU+xs7TNcfBCThCIMzZEnDz+EW2ADwRATnQRyBth1d2rjjzHBs8abidmn+dvfEjwQIAZ2Vx2UeEe6F2GGw7n/ri9EhAbopP7cpuSsJQK6j3+qnPxRTN7spNQneRRwf6H/SDYEUP4xODbn31MwDxU2fLxmScqhZk1qbdD50e2TJqDROBZHzZ1UP5ae+rEZnIk5tXbDbOIWRWtMvl4uTk7zM0b/2Hj3NZuEGm+p+DuvQ52FqhDLurGIYfiG9dEz/Bw+fXKQkMYZw8Nsr9FJGrEiVmKYjEKqUx+r1bI0Z2uu9BUyTZVCCt/iw==
+ b=AoPY3bAQQ1VkelbVeiLcaKdS9vN4lgPUTcuCHBVcjXIxLi/wXIKtrEzuuhhSw9ahcXSdDi5ULd0a5t7RH0kcSI48X1I8edck4y0qEWLRhVFOx1Cg0MsZ9oBaLJc3GbTev5xbDrZu05HI1Up5M36q8bwB0+F96qZJ26nVOI5ubEVi18nty8/ceUQNiXNZmLhwh8N79Nz7kUcxeC5T7b481hBvXexuS7dev7UIXee8uGf93R5OEaiP+T259QH/tt/l8A5d4iCvR5TDSetvMEcIrBlbujV9WmebWnpV93eufMX4zae9L2D13KeKbfoJE4P3JQWoMIAG7RzADNLpi738OA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dGpE63J3u/bXrLMI4LFs5+4k3hv9G4uzthqViaUDK8Y=;
- b=PUwYRSiADrBEZd23brmhyPIbailHkihTzwkxOWfxJnMFBN0xT/8mN61d9CImWgYZRd1DXd5SnaOqiWGGjN2djEuuEAewD/lOAKb6JEuFJv37VVeWcymnHVjwZZYdHfQ0j5KzBybxXX26nAUQcTjbz4HPhWThv/JREMmLlPRpLqk86693kHJN7g9iO/ud6r1z0GUDNInFydlM6GBJBgyqKXvK7Br/5bZrwp5i0cWWqpydJoHyFZ66Czj7ZoOKMItAMH/ouF1QlSWJfKt1w6X4Ko1WIq4HFsp7C/PWaDJw+wlRhctieoxY2n6kEAIIWaKvvFPfn+vdru8eFV8u+Zli/A==
+ bh=xiOt2ZUhhjM6pGb/QWF7EM8K6dolCK1Z2IopG1lvDL4=;
+ b=cG4lPCjwJS8QBJsrP+M51uwLtWJJR343PMOlCa6bfW8zotgVR8QL56ZKvicHOWVQbj2Ka8lmhETxvh5rQzpyx3BwqwPNzN2o6bFbX4EDvdTD/a2VFYo3ZfODD+aUcyM1+nClTl7I6GqDJI5G5W0E9YaRl+/3twpuWMTgV0fMg8X/1ZItsn4sox8B4YRJesoC8gDqgDwGdWEY9TCsVgIoyhAShmKt6es2QHK2+WRri7pzFW0syBTq4DwQQt8tm3FWg2E/lW9RpWA+gz6owpBWMTK+OdQZjuH8VNlxNqSL45dOvzSkro9sPnTyQc4QJ/eN1J6cJGv/u4Rp/B1aaEHR8w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=synaptics.com; dmarc=pass action=none
  header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dGpE63J3u/bXrLMI4LFs5+4k3hv9G4uzthqViaUDK8Y=;
- b=aOKMzBxUhG5qeXSWKagJBR0IS9RGiRD3QLBOsx/ECNgGK9d6U77UhD9Bu/UGp4BWKUoPHYqn3uqzj1RGIq0mibFjFPt/6uicHkBdPJ6GctHgUpRQMCHQlNaEAXgfBSW0Peb3ChWs8lyorjjojbJkZPmCQJ3Ko0sQAoD8+Bhefwc=
+ bh=xiOt2ZUhhjM6pGb/QWF7EM8K6dolCK1Z2IopG1lvDL4=;
+ b=c3fMU24SK1xot9XBfXdncWFgU3WeIjO9ecyPoufNLlpjRrSTIpbcnViCwW9zhWNSXKw78I2NfoM4lLVMe8PWe9K7gwl/FWnZaWXxOncA/MCLjOYfFMJ5b/pZMpcM179ixOOPVCzEnYnAhymQxaGTnPOKlrEnZ77BhuqgAVniccY=
 Received: from BYAPR03MB4773.namprd03.prod.outlook.com (20.179.92.152) by
  BYAPR03MB4503.namprd03.prod.outlook.com (20.178.49.224) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.21; Wed, 28 Aug 2019 06:11:23 +0000
+ 15.20.2199.21; Wed, 28 Aug 2019 06:12:05 +0000
 Received: from BYAPR03MB4773.namprd03.prod.outlook.com
  ([fe80::b050:60f8:d275:e9f4]) by BYAPR03MB4773.namprd03.prod.outlook.com
  ([fe80::b050:60f8:d275:e9f4%7]) with mapi id 15.20.2199.021; Wed, 28 Aug 2019
- 06:11:23 +0000
+ 06:12:05 +0000
 From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Brown <broonie@kernel.org>,
@@ -42,11 +42,11 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>
 CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH v2 5/8] dt-bindings: sy8824x: Document SY20276 support
-Thread-Topic: [PATCH v2 5/8] dt-bindings: sy8824x: Document SY20276 support
-Thread-Index: AQHVXWdrWeANySZyR0K4TjLC7mqiHQ==
-Date:   Wed, 28 Aug 2019 06:11:23 +0000
-Message-ID: <20190828140006.6223f958@xhacker.debian>
+Subject: [PATCH v2 6/8] regulator: sy8824x: add SY20276 support
+Thread-Topic: [PATCH v2 6/8] regulator: sy8824x: add SY20276 support
+Thread-Index: AQHVXWeEXfrkT8TpGEe0+ipQUU3D+g==
+Date:   Wed, 28 Aug 2019 06:12:05 +0000
+Message-ID: <20190828140048.71df2899@xhacker.debian>
 References: <20190828135646.52457ac3@xhacker.debian>
 In-Reply-To: <20190828135646.52457ac3@xhacker.debian>
 Accept-Language: en-US
@@ -54,70 +54,83 @@ Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [124.74.246.114]
-x-clientproxiedby: TY2PR01CA0002.jpnprd01.prod.outlook.com
- (2603:1096:404:a::14) To BYAPR03MB4773.namprd03.prod.outlook.com
+x-clientproxiedby: TY2PR01CA0008.jpnprd01.prod.outlook.com
+ (2603:1096:404:a::20) To BYAPR03MB4773.namprd03.prod.outlook.com
  (2603:10b6:a03:134::24)
 authentication-results: spf=none (sender IP is )
  smtp.mailfrom=Jisheng.Zhang@synaptics.com; 
 x-ms-exchange-messagesentrepresentingtype: 1
 x-mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: eed70e70-dbc5-4b21-e4b4-08d72b7e8d88
+x-ms-office365-filtering-correlation-id: f6046b4d-f388-44da-42e2-08d72b7ea645
 x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BYAPR03MB4503;
 x-ms-traffictypediagnostic: BYAPR03MB4503:
-x-microsoft-antispam-prvs: <BYAPR03MB450392ECFBAD812CC087FA14EDA30@BYAPR03MB4503.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-microsoft-antispam-prvs: <BYAPR03MB4503F0846D779B861F9E2A6BEDA30@BYAPR03MB4503.namprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1122;
 x-forefront-prvs: 014304E855
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(136003)(366004)(346002)(396003)(39860400002)(199004)(189003)(66946007)(66556008)(386003)(64756008)(6506007)(52116002)(5660300002)(66446008)(71200400001)(81166006)(76176011)(71190400001)(99286004)(6512007)(9686003)(14444005)(4744005)(81156014)(4326008)(14454004)(54906003)(66476007)(6486002)(102836004)(26005)(186003)(50226002)(1076003)(25786009)(6436002)(8676002)(8936002)(7736002)(478600001)(2906002)(6116002)(305945005)(53936002)(86362001)(3846002)(110136005)(66066001)(11346002)(256004)(486006)(476003)(446003)(316002)(39210200001);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR03MB4503;H:BYAPR03MB4773.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(376002)(136003)(366004)(346002)(396003)(39860400002)(199004)(189003)(66946007)(66556008)(386003)(64756008)(6506007)(52116002)(5660300002)(66446008)(71200400001)(81166006)(76176011)(71190400001)(99286004)(6512007)(9686003)(81156014)(4326008)(14454004)(54906003)(66476007)(6486002)(102836004)(26005)(186003)(50226002)(1076003)(25786009)(6436002)(8676002)(8936002)(7736002)(478600001)(2906002)(6116002)(305945005)(53936002)(86362001)(3846002)(110136005)(66066001)(11346002)(256004)(486006)(476003)(446003)(316002)(39210200001);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR03MB4503;H:BYAPR03MB4773.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
 received-spf: None (protection.outlook.com: synaptics.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: vElXjHjyr9G4QKr3yj1FbF0LBdfLOAbSJy5gRVq1+toXsawRr8EK3bOTB3iL+/pQopkxnin68o5vLrQqulFT7ffco5e0M1XNUx70d6pEBc8d/a+3klY66Sy3WR3JqwdtsnPhqgERKfAUohv6e3x/NT6oi90HXZrJy/mnVHQx9Dfe4a4vrcgAFwfb7kBplzYizxftEyx+2RymqvoHHl9v0P+gRHILmeZ1UISlf/WSpjhd7m9zwRCM17ZXhApeBWkE7vFCuEKMdHy+1oJvvDZDjUabjEYdLUf5083TfEd1N1AkuaedqkiAiAsWTBHqqwfq5Yidb/dhvZS35RfJ0N5C4X2QwIKzk6oMfGOspCntuxFpb75fVftSx9l9vilUuUPatYqrAZsri/jEpWqKRBpuRfjhAnBx+aSQYCpjdHoKjnA=
+x-microsoft-antispam-message-info: 2aUMdYnCeh1AbTuJcxH8gneUC5mXl5j66m9LXcJjq4R6cGzbknVdGs9pE1bzNNsYryTDA9fruMZqj8DKIooaAOEB7IA+JJEjiusEOqpwhsQ+x/TRfYMhrC1yhv8kCsnLszEm5zf1BMSwidtmYSDCokwwjdxqIyCkrcrne+fhy65dMXe+h7SnDuZh76bwa8+JnhdIhDJo30bLOFCtuOKPWrbAalXS3S/LUXeGaLPBuFAy9H1lnXJ44+bT7JWckE4s05P0JPmEAqZb2Ma1Js3x9PamTzgmBpQ+asOnxXqQPPQMxhSpGsLfRTxYPsAHM87qO5jhfWKFRMDBcJAKbjNfuovCgbiswyhGAPLfiV5/16ghaCxDdmFF6ApSjOXPIoaz0WpBWuQ20HThiwcceYhppD+27NgAI3nQNgIQLS4ou/w=
 x-ms-exchange-transport-forked: True
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <B546BCD7F86DC145949DDB394FB427BA@namprd03.prod.outlook.com>
+Content-ID: <CA5BD6946FB20045B13B2AD032857C30@namprd03.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eed70e70-dbc5-4b21-e4b4-08d72b7e8d88
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 06:11:23.9365
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6046b4d-f388-44da-42e2-08d72b7ea645
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 06:12:05.5403
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 335d1fbc-2124-4173-9863-17e7051a2a0e
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +YBZJJ4+YyhRiDZeBqpKnmYUPSF7jFZf4+2iKej2jgVdNOd96jn8JJ+iIW8iC6VuZvY92daft2iIK3IxCb6JqA==
+X-MS-Exchange-CrossTenant-userprincipalname: 9JHNx011wT+2kt//NzCCZRJtIKJqCFS8LgdBJkT3xY/3M3SHw7H1wl38LAHwlIHtJbKcwF37tFtTIjY01lzOww==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB4503
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SY20276 is an I2C-controlled adjustable voltage regulator made by
-Silergy Corp. The differences between SY8824C and SY20276 are
-different vsel_min, vsel_step, vsel_count and regs for mode/enable.
+The differences between SY8824C and SY20276 are different vsel_min,
+vsel_step, vsel_count and regs for mode/enable.
 
 Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
 ---
- Documentation/devicetree/bindings/regulator/sy8824x.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/regulator/sy8824x.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/regulator/sy8824x.txt b/Docu=
-mentation/devicetree/bindings/regulator/sy8824x.txt
-index 31fefa3baa71..28600541b5de 100644
---- a/Documentation/devicetree/bindings/regulator/sy8824x.txt
-+++ b/Documentation/devicetree/bindings/regulator/sy8824x.txt
-@@ -1,9 +1,10 @@
--SY8824C/SY8824E Voltage regulator
-+SY8824C/SY8824E/SY20276 Voltage regulator
+diff --git a/drivers/regulator/sy8824x.c b/drivers/regulator/sy8824x.c
+index c93c49e64315..10d9180a0d77 100644
+--- a/drivers/regulator/sy8824x.c
++++ b/drivers/regulator/sy8824x.c
+@@ -171,6 +171,15 @@ static const struct sy8824_config sy8824e_cfg =3D {
+ 	.vsel_count =3D 64,
+ };
 =20
- Required properties:
- - compatible: Must be one of the following.
- 	"silergy,sy8824c"
- 	"silergy,sy8824e"
-+	"silergy,sy20276"
- - reg: I2C slave address
-=20
- Any property defined as part of the core regulator binding, defined in
++static const struct sy8824_config sy20276_cfg =3D {
++	.vol_reg =3D 0x00,
++	.mode_reg =3D 0x01,
++	.enable_reg =3D 0x01,
++	.vsel_min =3D 600000,
++	.vsel_step =3D 10000,
++	.vsel_count =3D 128,
++};
++
+ static const struct of_device_id sy8824_dt_ids[] =3D {
+ 	{
+ 		.compatible =3D "silergy,sy8824c",
+@@ -180,6 +189,10 @@ static const struct of_device_id sy8824_dt_ids[] =3D {
+ 		.compatible =3D "silergy,sy8824e",
+ 		.data =3D &sy8824e_cfg
+ 	},
++	{
++		.compatible =3D "silergy,sy20276",
++		.data =3D &sy20276_cfg
++	},
+ 	{ }
+ };
+ MODULE_DEVICE_TABLE(of, sy8824_dt_ids);
 --=20
 2.23.0.rc1
 
