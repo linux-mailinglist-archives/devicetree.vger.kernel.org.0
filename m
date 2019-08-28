@@ -2,136 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ACBC9FA28
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 08:08:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6CD09FA2D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 08:09:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726100AbfH1GIz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 02:08:55 -0400
-Received: from mail-eopbgr690070.outbound.protection.outlook.com ([40.107.69.70]:21711
-        "EHLO NAM04-CO1-obe.outbound.protection.outlook.com"
+        id S1726292AbfH1GJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 02:09:44 -0400
+Received: from mail-eopbgr710045.outbound.protection.outlook.com ([40.107.71.45]:31763
+        "EHLO NAM05-BY2-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725951AbfH1GIz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 02:08:55 -0400
+        id S1725951AbfH1GJn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 02:09:43 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TW01XGIK3tH3PnLD3NmHruGFe2enKGIWdvUK3jCZ/HiPBLvMsRIvgahhf9n6J/sRIn06Kb5o0ktE8EhhGps2g1QtHaGZkBGdrHyvYPW+apjuPb7L+For+hRtDCt6og7hFcgcy2KnL378YB61M68WvikOxnWKB1luqL619OSdkQWch3q6X5leNUC0ut8ivVlcSF3tmxzYYiOEBDzVVW3COLToDtdQg+sMScxbwgh7D03A0QkdYFeGT1I4FIj3AoMxAkGRni9oxImFaXynLMKRR7JYuathj+1Ho6Sk67pqTo2LqrcruWDcBXruY3ntKHXeI20PRyJ5RdiVtuK+H0y58A==
+ b=ksD+D9AguQjyofUopBZs62qPZRSLiqadNSXyRtPS+oAXQ9nmtUvE4heU/Z9KQ39C4mymapyWhG5lFwodEvSeBNu1i/uRzjfQSAop+lcDRcKIKGVfplQYoj/+zNb22yh2bOroc41mMWe1HGRDBCD4qjjSTMiuyRxwjxKNS7yKS15ZSEPM2PV454WU28/1/c7CTBs2akqgZH61Rhlg0Vs/u+waQfw/x8Z3u9S8Xak1nv6qphw4BzeOKprbkwPMC/niX8le8PaFXD7q65uYP8e5iPnWlgFEfMpdJxqQ/SDcCq1D6MuPoee4naNTaUY42g8rmgvuBYgTX/Iv5G2lQzVGGw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RERL0TOi6wCwMg1U6k8F+/1A4BHrHMxNgHnSYhQVX1w=;
- b=c5diRC+A6dPKix2g1ztkd7sYU7DdmmsPp3k1lpjwUqUbJDg94KymnO/bEch/r7nYtjf/r1XIp6ISgLvKGHDW5ruEGcveQPlKrDT1/Mx2AuLiTG0L0CvSViIjvFZVdvtce47F7afF3Hy1v2BQhio8NbNexlCG0JIIrYa/G2E0IgRVAdc6Afw74YUQxX0mMilv/0iwgAfChcSPSuysBb3IIQfA5j/APHQs+/BExUv1ijEjKwxs5KUQ4yhtb2vJ381UYDxWbt1v+ddwFhgbncVFADtgDZZSJyZH3lobd/mwkf5zqVm+fKvscRyTaB1WdNKBVpEbAM+mW4hHjMmFkMWZZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synaptics.com; dmarc=pass action=none
- header.from=synaptics.com; dkim=pass header.d=synaptics.com; arc=none
+ bh=msJcnTnsJ/ntq0daoKHBzBVoYgdT+SwxBLigDzJ0BO0=;
+ b=AmHk5VsTJS1MV+Nr3tkclZCae9q8OkcnYVJmZkTqt2NK70wPpdk3aObz9eCW0TxA/TE4pI5/RS9lGBFpnVESM58AYVJlxaSdx83dIyG1Vjm4m0Y9yDx41wTmqBKoRj4r1y2bvD7wrqtROQDCgdti7/bVcMTj1sUA8M3CghqdnXSH7MmGeZf0AhC7iOV/FOWTTuHK98i/vMjf0nFgx8iRpYbRPLE/3ibt9qp2wnAQF2uxrkW5AfELSzln/dzymIMqgChPKWjiZZ/ikChG/keuv84Bnl3BXFwQK5ofxQ84A9BDtSe0dL4PwQBQ4d+3KUW4sG25oYXIuartDmgOJeeWMA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.100) smtp.rcpttodomain=electromag.com.au smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Synaptics.onmicrosoft.com; s=selector2-Synaptics-onmicrosoft-com;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RERL0TOi6wCwMg1U6k8F+/1A4BHrHMxNgHnSYhQVX1w=;
- b=h/LVoJ+y287ju0GTkiNl43+juJeOo4N0421N+8kWwLdnHiQOvZecQS6YkJXA4kQpHbog8EvRJ2bJTYFrah95cfiUamIEB1dMpiJKtf5q0d9Ct8iZL0HWqtY2K4sjQJhUXH5Pz1GpUC4LbgVAaKqKHymbdMMhC5KRrDzuzEQtrhs=
-Received: from BYAPR03MB4773.namprd03.prod.outlook.com (20.179.92.152) by
- BYAPR03MB4487.namprd03.prod.outlook.com (20.178.49.204) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.20; Wed, 28 Aug 2019 06:08:52 +0000
-Received: from BYAPR03MB4773.namprd03.prod.outlook.com
- ([fe80::b050:60f8:d275:e9f4]) by BYAPR03MB4773.namprd03.prod.outlook.com
- ([fe80::b050:60f8:d275:e9f4%7]) with mapi id 15.20.2199.021; Wed, 28 Aug 2019
- 06:08:52 +0000
-From:   Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: [PATCH v2 1/8] regulator: add binding for the SY8824C voltage
- regulator
-Thread-Topic: [PATCH v2 1/8] regulator: add binding for the SY8824C voltage
- regulator
-Thread-Index: AQHVXWcQN9g0ZslKfUGrTbgrWX/msQ==
-Date:   Wed, 28 Aug 2019 06:08:52 +0000
-Message-ID: <20190828135734.05aa51ec@xhacker.debian>
-References: <20190828135646.52457ac3@xhacker.debian>
-In-Reply-To: <20190828135646.52457ac3@xhacker.debian>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [124.74.246.114]
-x-clientproxiedby: TYCPR01CA0087.jpnprd01.prod.outlook.com
- (2603:1096:405:3::27) To BYAPR03MB4773.namprd03.prod.outlook.com
- (2603:10b6:a03:134::24)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Jisheng.Zhang@synaptics.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f8a2f42d-f2d2-46a0-9d6d-08d72b7e32f7
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BYAPR03MB4487;
-x-ms-traffictypediagnostic: BYAPR03MB4487:
-x-microsoft-antispam-prvs: <BYAPR03MB448775E922CFEEECABF2DF24EDA30@BYAPR03MB4487.namprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-forefront-prvs: 014304E855
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(396003)(136003)(366004)(376002)(39860400002)(199004)(189003)(54906003)(66066001)(50226002)(186003)(102836004)(305945005)(8936002)(7736002)(26005)(52116002)(386003)(99286004)(8676002)(11346002)(3846002)(110136005)(81166006)(81156014)(6436002)(5660300002)(66476007)(66446008)(64756008)(66556008)(476003)(76176011)(6116002)(2906002)(1076003)(71190400001)(486006)(66946007)(256004)(86362001)(25786009)(4326008)(14454004)(6512007)(478600001)(6486002)(53936002)(71200400001)(446003)(6506007)(316002)(9686003)(39210200001);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR03MB4487;H:BYAPR03MB4773.namprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: synaptics.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: CKN/ojpcGvPANZDVl8NtORWRtGW6LrXIphkLVy07oX8gFPLWl56lQYr7qup/3etI/uuZk3AFx9j69+3Cts4t0SDlOpqoGtefS5GE86eKZXpZRmMQxFO4hTxZEnUU1b/+h2yKKsbY9WTDiT86GT91fjzy7eqXTf7qFYj3ufepFkwXSR9bC1jReucBKOCl2/oB6c8iAA9Wj9L6GCOfDFaKJHTCGu8YfnzG+I7fFH9oF34gTZYARdW4tC4GuYBw65zZocSvUT+OhSL1LWAIv6Se2ea3P+iJ6fZ/kE6Gl/U4Lg8+rKYOq3oMKvpamJrI1m/qZZjmhV6vl/bonMp8xWmY3B3nTtfMMmck5CKWtWbe/zrMcfk7C3EWLaljY1zNsYsEMjVzn3dZgZHumM0rLkip9xRFIi0LUDgrbPEohkCHz8A=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <48C12E409EA8FD48808A9AA0DA49990A@namprd03.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+ bh=msJcnTnsJ/ntq0daoKHBzBVoYgdT+SwxBLigDzJ0BO0=;
+ b=Tf/5/Lc7De9X3Kl6D5OlJz+UsyziujFl9V5a6ONEmvJ4AVvcTebBN3zVxLigr1/HHuiF6rbp4TQ2/Q3pKuIaTevwIw92EG1WKNlR6lP5EyouYPzY78FkrYnh4h4QbRmw469D6XQljHTi/AZ0EDRYt2KTJaEkHXSs+r3Y/C8v0Fk=
+Received: from BL0PR02CA0059.namprd02.prod.outlook.com (2603:10b6:207:3d::36)
+ by BN7PR02MB4036.namprd02.prod.outlook.com (2603:10b6:406:f2::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2199.19; Wed, 28 Aug
+ 2019 06:09:40 +0000
+Received: from SN1NAM02FT038.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::209) by BL0PR02CA0059.outlook.office365.com
+ (2603:10b6:207:3d::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2178.16 via Frontend
+ Transport; Wed, 28 Aug 2019 06:09:40 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.100)
+ smtp.mailfrom=xilinx.com; electromag.com.au; dkim=none (message not signed)
+ header.d=none;electromag.com.au; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
+Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
+ SN1NAM02FT038.mail.protection.outlook.com (10.152.72.69) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2199.13
+ via Frontend Transport; Wed, 28 Aug 2019 06:09:38 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]:58923 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1i2r9G-0006xL-5a; Tue, 27 Aug 2019 23:09:38 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1i2r9B-0007O3-2X; Tue, 27 Aug 2019 23:09:33 -0700
+Received: from xsj-pvapsmtp01 (smtp.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x7S69MZn016906;
+        Tue, 27 Aug 2019 23:09:22 -0700
+Received: from [172.30.17.116]
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <michals@xilinx.com>)
+        id 1i2r90-0007N6-7H; Tue, 27 Aug 2019 23:09:22 -0700
+Subject: Re: [PATCH 1/2] dt-binding: iio: Add optional label property
+To:     Phil Reid <preid@electromag.com.au>, jic23@kernel.org,
+        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        michal.simek@xilinx.com
+References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
+ <1566876924-63608-2-git-send-email-preid@electromag.com.au>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <a30b6dca-c598-135a-0559-1018dd5f5fde@xilinx.com>
+Date:   Wed, 28 Aug 2019 08:09:19 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: synaptics.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8a2f42d-f2d2-46a0-9d6d-08d72b7e32f7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 06:08:52.4012
+In-Reply-To: <1566876924-63608-2-git-send-email-preid@electromag.com.au>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(136003)(39860400002)(396003)(376002)(346002)(2980300002)(199004)(189003)(186003)(229853002)(6666004)(8676002)(6306002)(70206006)(70586007)(31696002)(230700001)(478600001)(966005)(6246003)(305945005)(106002)(426003)(11346002)(2486003)(52146003)(23676004)(446003)(5660300002)(316002)(81166006)(76176011)(81156014)(8936002)(58126008)(44832011)(9786002)(2616005)(50466002)(2906002)(476003)(126002)(486006)(47776003)(65956001)(65806001)(31686004)(36756003)(26005)(36386004)(356004)(336012)(921003)(5001870100001)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:BN7PR02MB4036;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:xapps1.xilinx.com,unknown-60-100.xilinx.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 110ffe61-d628-40a0-d6f6-08d72b7e4f1b
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(4709080)(1401327)(4618075)(2017052603328);SRVR:BN7PR02MB4036;
+X-MS-TrafficTypeDiagnostic: BN7PR02MB4036:
+X-MS-Exchange-PUrlCount: 1
+X-Microsoft-Antispam-PRVS: <BN7PR02MB4036D206383D9A6788A8D64EC6A30@BN7PR02MB4036.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-Forefront-PRVS: 014304E855
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: s0uUs/Nn1oIZpcGVgOZbFSpxp5KUK77w96WQ3Z9NSga85b4l/er6SKDuWNHeSFa39MdlFu3KPJWEtpbhIp7VCrzgh0UBw4bIJpJd9VsgCXhIUmhOdiA3qjkQ1Qw0lkC0WSWc6GIIkZX+sLo3fzJ2pMR6BRR/5gwDMLuKUjcCnGwS6jtcb+T8Udk5yhU8IIXEtTbaYt+GqdHlEamEVvlCql7i7AQJ2H37EWZxJpWNZ+KIBEiVDu5LEyK+GBXGWoDOJenIpPnQn6WD02JdOmqlJHEbcqidkq6UDtcurKt1Pd/GEeWIovP+1HyxnJ6EQC/U5lsn+IyqMPwKllBYKpDVSODa8s+e7l61SOecdeePj2wnun1bd9GtNwH/GOscwuR3JKNISvY3Gzrur8N/ptvW9HC8j+Iz9P0pQyoEaAPVmBw=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Aug 2019 06:09:38.5549
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 335d1fbc-2124-4173-9863-17e7051a2a0e
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 16jIXA9zQTYuFf/xzEysClgbt41OO+Qwc+G54bYTzLCj7Arp5B/G89rDI9+BV60F3jyTgNE1PS7s52XvVzzKeA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR03MB4487
+X-MS-Exchange-CrossTenant-Network-Message-Id: 110ffe61-d628-40a0-d6f6-08d72b7e4f1b
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PR02MB4036
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SY8824C is an I2C-controlled adjustable voltage regulator made by
-Silergy Corp.
+On 27. 08. 19 5:35, Phil Reid wrote:
+> This optional property defines a symbolic name for the device.
+> 
+> Signed-off-by: Phil Reid <preid@electromag.com.au>
+> ---
+>  Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/iio-bindings.txt b/Documentation/devicetree/bindings/iio/iio-bindings.txt
+> index 68d6f8ce063b..ffeae5aad8b5 100644
+> --- a/Documentation/devicetree/bindings/iio/iio-bindings.txt
+> +++ b/Documentation/devicetree/bindings/iio/iio-bindings.txt
+> @@ -18,12 +18,17 @@ Required properties:
+>  		   with a single IIO output and 1 for nodes with multiple
+>  		   IIO outputs.
+>  
+> +Optional properties:
+> +label:		   A symbolic name for the device.
+> +
+> +
+>  Example for a simple configuration with no trigger:
+>  
+>  	adc: voltage-sensor@35 {
+>  		compatible = "maxim,max1139";
+>  		reg = <0x35>;
+>  		#io-channel-cells = <1>;
+> +		label = "adc_voltage_sensor";
+>  	};
+>  
+>  Example for a configuration with trigger:
+> 
 
-Add its device tree binding.
+Just for the record. This patch has been created based on initial
+discussion about label property. And Rob had not problem with using
+label in connection to ina226. https://lkml.org/lkml/2019/8/27/1213
 
-Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
----
- .../devicetree/bindings/regulator/sy8824x.txt | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/sy8824x.txt
-
-diff --git a/Documentation/devicetree/bindings/regulator/sy8824x.txt b/Docu=
-mentation/devicetree/bindings/regulator/sy8824x.txt
-new file mode 100644
-index 000000000000..ff8d1af04f7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/sy8824x.txt
-@@ -0,0 +1,20 @@
-+SY8824C Voltage regulator
-+
-+Required properties:
-+- compatible: Must be "silergy,sy8824c"
-+- reg: I2C slave address
-+
-+Any property defined as part of the core regulator binding, defined in
-+./regulator.txt, can also be used.
-+
-+Example:
-+
-+	vcore: regulator@00 {
-+		compatible =3D "silergy,sy8824c";
-+		reg =3D <0x66>;
-+		regulator-name =3D "vcore";
-+		regulator-min-microvolt =3D <800000>;
-+		regulator-max-microvolt =3D <1150000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
---=20
-2.23.0.rc1
-
+Thanks,
+Michal
