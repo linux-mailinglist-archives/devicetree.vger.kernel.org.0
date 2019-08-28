@@ -2,81 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAE439F704
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 01:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D5D59F738
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 02:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726315AbfH0Xmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 19:42:51 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:46234 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726025AbfH0Xmv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 19:42:51 -0400
-Received: by mail-pf1-f195.google.com with SMTP id q139so384950pfc.13
-        for <devicetree@vger.kernel.org>; Tue, 27 Aug 2019 16:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=zZhupswYJRpQl2nx+3EaAYIvNYHJJK6zS8VHQ2dEq0o=;
-        b=aKIPYGdpDtpWjheRueo74FyiXWqdB3rxs9dqEadj9ooeD9wrrjQUXhGqf+pBNgzwRs
-         +33Q0tKEOxQcQaIciDay3urxoZZ0LUm7TFkRiRAfERG+2rR1MEoMiyHVb8u+F2qFfgQB
-         ERRMV4s4gpt7SyF4cI8pR7aT7vac+5uZ1BJMQMhrrJv1u6anWjbKOGJQtr6zZax0bQCT
-         t/m5nv4XRPE05BHeGPgr/pNsl5TncA9GfVE1gIMiW93thDK0UYplitY5eIwCYxE3T39U
-         4mv5Uooq96x961Ewdmqr1eo+72Znz4u1POBNBzJitLjUY6f8h+Mqy5JTAhNblnz3/sMC
-         NZjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=zZhupswYJRpQl2nx+3EaAYIvNYHJJK6zS8VHQ2dEq0o=;
-        b=SJsedKLnKTjV1rNNU5KkU/J2OVVEE7NFNnRkj9hgEwWz18dJ+CiPUICeBC+oPrzJ7Z
-         wrKTlpCkgQltF2l0AyM4OsCuVksBpT9QG+MUwYwnTFnxb6tL6dO9s4GRXpckbRgk8Jd7
-         fTTBpXapbBu/awHHK0zgfsjGLSGUiBvkywpoNoF2xHW7f/pk6/kuU24/l4Pb2c9uFDVV
-         G6O/dFbVGjgPkEAgrfg2TiC2AsqULPbAGuQLF+7y1XGTANi8dy3hAeIrDcBtQ/keyjhC
-         KLEGmOR/yIo89LbFw3mAncEKHsX0gminK/9KG/IOmSHHHfi/dpPgWtWj6K3RWm0mEZyF
-         PaEA==
-X-Gm-Message-State: APjAAAVmE1Yu2czeAqqP1BgigGK+drKvIoL5Xd404NPYXQsJvBtVXzaD
-        VEK0qds3LW2Y5kuggf8ZFNt+Dohh/KA=
-X-Google-Smtp-Source: APXvYqwXfzwRgynraPWYmZHmZ4nqfdc0jVUarkPtMHItZPdLhXyQy/n60WaWTA3gyehqjYkOkVqSTw==
-X-Received: by 2002:a17:90a:1a8d:: with SMTP id p13mr1342730pjp.15.1566949370220;
-        Tue, 27 Aug 2019 16:42:50 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:cc35:e750:308e:47f])
-        by smtp.gmail.com with ESMTPSA id h195sm468857pfe.20.2019.08.27.16.42.49
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 27 Aug 2019 16:42:49 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: meson: g12a: add tdm resets
-In-Reply-To: <20190820121551.18398-1-jbrunet@baylibre.com>
-References: <20190820121551.18398-1-jbrunet@baylibre.com>
-Date:   Tue, 27 Aug 2019 16:42:49 -0700
-Message-ID: <7hh862tbt2.fsf@baylibre.com>
+        id S1726044AbfH1AQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 20:16:07 -0400
+Received: from forward101p.mail.yandex.net ([77.88.28.101]:44793 "EHLO
+        forward101p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725992AbfH1AQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 20:16:07 -0400
+Received: from mxback25j.mail.yandex.net (mxback25j.mail.yandex.net [IPv6:2a02:6b8:0:1619::225])
+        by forward101p.mail.yandex.net (Yandex) with ESMTP id 71FC532815FB;
+        Wed, 28 Aug 2019 03:16:03 +0300 (MSK)
+Received: from smtp3o.mail.yandex.net (smtp3o.mail.yandex.net [2a02:6b8:0:1a2d::27])
+        by mxback25j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id pf3PWAbr7i-G220X1LN;
+        Wed, 28 Aug 2019 03:16:03 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1566951363;
+        bh=JPqk88nk2DvsQEaTqhodzeqJOHeYNWtRgMzrH+66FJg=;
+        h=In-Reply-To:From:To:Subject:Cc:Date:References:Message-ID;
+        b=i1u2s7xowOB75lenpI0lHDZ/U0kTl3tkfQdfi4l2fJFr0wkn3zjc7wumd3RtszugH
+         8+o7pPqvhqfsjdvg1mT2yqxVDBOT7DjATMrcV+jqkMFl7AQx/Py+yLo59v9+nbSZs0
+         I3BnLUdPvCa5cAIRkcXIWR/Dkumw96H3Ys4k9J84=
+Authentication-Results: mxback25j.mail.yandex.net; dkim=pass header.i=@flygoat.com
+Received: by smtp3o.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id ZovwiHQNO6-FsmGkx2E;
+        Wed, 28 Aug 2019 03:16:01 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+Subject: Re: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
+To:     Paul Burton <paul.burton@mips.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        Huacai Chen <chenhc@lemote.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.co>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+ <20190827085302.5197-12-jiaxun.yang@flygoat.com>
+ <CAL_JsqL6htVye-LSBWw1WwRy9xH=zwuH6gurscwoCWj9Te_hAg@mail.gmail.com>
+ <d94eff2b-76ec-5cd2-512d-5ee0406a1bb9@flygoat.com>
+ <20190827204105.7nyt4pi7lvxse5ij@pburton-laptop>
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+Message-ID: <63304ddd-eb24-31a4-d905-ce8e37ec5cb9@flygoat.com>
+Date:   Wed, 28 Aug 2019 08:15:38 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20190827204105.7nyt4pi7lvxse5ij@pburton-laptop>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> This patchset adds the dedicated reset of the tdm formatters which
-> have been added on the g12a SoC family. Using these help with the channel
-> mapping when the formatter uses more than 1 i2s lane.
-
-Because I forgot^W waited on this, we did the meson-g12a-common split,
-so this no longer applies cleanly.  Could you rebase this on current v5.4/dt64
-and I'll queue it for v5.4/dt64.
-
-> Kevin, please note that to build, this patchset depends on the new reset
-> bindings of the audio clock controller. I've prepared a tag for you [0]
+On 2019/8/28 上午4:41, Paul Burton wrote:
+> Hi guys,
 >
-> [0]: git://github.com/BayLibre/clk-meson.git - clk-meson-dt-v5.4-2
+> On Tue, Aug 27, 2019 at 10:18:46PM +0800, Jiaxun Yang wrote:
+>> On 2019/8/27 下午8:45, Rob Herring wrote:
+>>> On Tue, Aug 27, 2019 at 3:55 AM Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+>>>> diff --git a/Documentation/devicetree/bindings/mips/loongson/cpus.yaml b/Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..410d896a0078
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+>>>> @@ -0,0 +1,38 @@
+>>>> +# SPDX-License-Identifier: GPL-2.0
+>>> Dual license for new bindings please:
+>>>
+>>> (GPL-2.0-only OR BSD-2-Clause)
+>>>
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/mips/loongson/cpus.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Loongson CPUs bindings
+>>>> +
+>>>> +maintainers:
+>>>> +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+>>>> +
+>>>> +description: |+
+>>>> +  The device tree allows to describe the layout of CPUs in a system through
+>>>> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
+>>>> +  defining properties for every cpu.
+>>>> +
+>>>> +  Bindings for CPU nodes follow the Devicetree Specification, available from:
+>>>> +
+>>>> +  https://www.devicetree.org/specifications/
+>>>> +
+>>>> +properties:
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +    description: |
+>>>> +      Physical ID of a CPU, Can be read from CP0 EBase.CPUNum.
+>>> Is this definition specific to Loongson CPUs or all MIPS?
+>> Currently it's specific to Loongson CPU only, as other processors may using
+>> different method to express CPU map.
+>>
+>> Different from Arm, MIPS family of processors seems less uniform and have
+>> their own designs.
+>>
+>> For this point, we'd better ask Paul's opinion.
+> In general on MIPS we detect CPU properties at runtime from coprocessor
+> 0 registers & similar sources of information, so there's not really a
+> need to specify anything about the CPU in devicetree. For example here
+> you say yourself that the value for this property can be read from
+> EBase.CPUNum - so why specify it in DT?
+Hi Paul,
 
-Thanks for the tag.  This is now included in v5.4/dt64.
+CPU itself doesn't have to expressed by DT, but other nodes (like NUMA) 
+will use CPU Node to determine the physical core.
 
-Kevin
+Also CPU Node can be used to express the total number of CPUs. We need 
+this property to bind a CPU Node to a fixed core.
 
+Or we'd better describe "reg" as "Physical Core ID" rather than specify 
+"EBase.CPUNum"?
+
+--
+
+Jiaxun Yang
+
+>
+> Thanks,
+>      Paul
