@@ -2,149 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E0855A0177
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 14:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A7D2A01A2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 14:29:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726293AbfH1MTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 08:19:14 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:37318 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726300AbfH1MTN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 08:19:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=+tj0AyWEv4Z+dQyySoP99xYWBRRCmJztMoD2W7dYFOw=; b=zz/FqLdwlqfq6r8LESd3Ih1z29
-        CtITZfb+dsHF2g8vQrIfAGCDDAAN0yMdma6IZ2UUGvjP2Va+5BuYs5Ex74NTg363LITEB7KDaQGBp
-        RC7eiBbn5uGl6VJ/9Sy2ezV3QdFbkJI7mWDRFZ2Gp2pt0HpMN4Trr1qpv8R5FGfPvBU4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1i2wur-0002UY-Sp; Wed, 28 Aug 2019 14:19:09 +0200
-Date:   Wed, 28 Aug 2019 14:19:09 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>
-Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
-        arm@kernel.org, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH mvebu-dt64 3/3] arm64: dts: marvell: add DTS for Turris
- Mox
-Message-ID: <20190828121909.GB32178@lunn.ch>
-References: <20190827151644.12532-1-marek.behun@nic.cz>
- <20190827151644.12532-4-marek.behun@nic.cz>
- <8736hlziv3.fsf@FE-laptop>
+        id S1726713AbfH1M3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 08:29:03 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:2747 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726541AbfH1M3C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 08:29:02 -0400
+X-UUID: 6eaa46da8a724eadb1ee62c224dd50aa-20190828
+X-UUID: 6eaa46da8a724eadb1ee62c224dd50aa-20190828
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
+        (envelope-from <henryc.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1926949016; Wed, 28 Aug 2019 20:28:52 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 28 Aug 2019 20:28:58 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 28 Aug 2019 20:28:58 +0800
+From:   Henry Chen <henryc.chen@mediatek.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>
+CC:     Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH V3 00/10] Add driver for dvfsrc, support for active state of scpsys 
+Date:   Wed, 28 Aug 2019 20:28:38 +0800
+Message-ID: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8736hlziv3.fsf@FE-laptop>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> > +	leds {
-> > +		compatible = "gpio-leds";
-> > +		red {
-> > +			gpios = <&gpiosb 21 GPIO_ACTIVE_LOW>;
-> > +			linux,default-trigger = "default-on";
-> > +		};
+The patchsets add support for MediaTek hardware module named DVFSRC
+(dynamic voltage and frequency scaling resource collector). The DVFSRC is
+a HW module which is used to collect all the requests from both software
+and hardware and turn into the decision of minimum operating voltage and
+minimum DRAM frequency to fulfill those requests.
 
-I think there would normally be a label here, so the LED has a
-name. There is a convention to follow, which is in the documentation.
+So, This series is to implement the dvfsrc driver to collect all the
+requests of operating voltage or DRAM bandwidth from other device drivers
+likes GPU/Camera through 2 frameworks basically:
 
-> > +	};
-> > +
-> > +	gpio-keys {
-> > +		compatible = "gpio-keys";
-> > +
-> > +		reset {
-> > +			label = "reset";
-> > +			linux,code = <BTN_MISC>;
+1. interconnect framework: to aggregate the bandwidth
+   requirements from different clients
 
-I'm pretty sure there is a linux,code for reset.
+[1] https://patchwork.kernel.org/cover/10766329/
 
-> > +			gpios = <&gpiosb 20 GPIO_ACTIVE_LOW>;
-> > +			debounce-interval = <60>;
-> > +		};
-> > +	};
+Below is the emi bandwidth map of mt8183. There has a hw module "DRAM scheduler"
+which used to control the throughput. The DVFSRC will collect forecast data
+of dram bandwidth from SW consumers(camera/gpu...), and according the forecast
+to change the DRAM frequency
 
-> > +
-> > +	sfp: sfp {
-> > +		compatible = "sff,sfp+";
-> > +		i2c-bus = <&i2c0>;
+           ICC provider         ICC Nodes
+                            ----          ----
+           ---------       |CPU |   |--->|VPU |
+  -----   |         |-----> ----    |     ----
+ |DRAM |--|DRAM     |       ----    |     ----
+ |     |--|scheduler|----->|GPU |   |--->|DISP|
+ |     |--|(EMI)    |       ----    |     ----
+ |     |--|         |       -----   |     ----
+  -----   |         |----->|MMSYS|--|--->|VDEC|
+           ---------        -----   |     ----
+             /|\                    |     ----
+              |change DRAM freq     |--->|VENC|
+           ----------               |     ----
+          |  DVFSR   |              |
+          |          |              |     ----
+           ----------               |--->|IMG |
+                                    |     ----
+                                    |     ----
+                                    |--->|CAM |
+                                          ----
 
-The standard for SFPs sets the maximum bus speed is 100Khz. I'm sure
-some can do 400Khz, but if you want to support all SFPs, you should
-use the lower speed. I don't see anywhere in this file where you set
-the maximum speed. Maybe the bus defaults to 100K so you don't need
-anything?
+2. Active state management of power domains[1]: to handle the operating
+   voltage opp requirement from different power domains
 
-> > +		los-gpio = <&moxtet_sfp 0 GPIO_ACTIVE_HIGH>;
-> > +		tx-fault-gpio = <&moxtet_sfp 1 GPIO_ACTIVE_HIGH>;
-> > +		mod-def0-gpio = <&moxtet_sfp 2 GPIO_ACTIVE_LOW>;
-> > +		tx-disable-gpio = <&moxtet_sfp 4 GPIO_ACTIVE_HIGH>;
-> > +		rate-select0-gpio = <&moxtet_sfp 5 GPIO_ACTIVE_HIGH>;
-> > +
-> > +		/* enabled by U-Boot if SFP module is present */
-> > +		status = "disabled";
-> > +	};
-> > +};
-> > +
-> > +&i2c0 {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&i2c1_pins>;
+[2] https://lwn.net/Articles/744047/
 
-The node is called i2c0, but here you have i2c1_pins?
+Changes in RFC V3:
+* Remove RFC from the subject prefix of the series
+* Combine dt-binding patch and move interconnect dt-binding document into
+dvfsrc. (Rob)
+* Remove unused header, add unit descirption to the bandwidth, rename compatible
+name on interconnect driver. (Georgi)
+* Fixed some coding style: check flow, naming, used readx_poll_timeout
+on dvfsrc driver. (Ryan)
+* Rename interconnect driver mt8183.c to mtk-emi.c
+* Rename interconnect header mtk,mt8183.h to mtk,emi.h
+* mtk-scpsys.c: Add opp table check first to avoid OF runtime parse failed
 
-> > +	status = "okay";
-> > +
-> > +	rtc@6f {
-> > +		compatible = "microchip,mcp7940x";
-> > +		reg = <0x6f>;
-> > +	};
-> > +};
-> > +
-> > +&pcie_reset_pins {
-> > +	function = "gpio";
-> > +};
+Changes in RFC V2:
+* Remove the DT property dram_type. (Rob)
+* Used generic dts property 'opp-level' to get the performace state. (Stephen)
+* Remove unecessary dependency config on Kconfig. (Stephen)
+* Remove unused header file, fixed some coding style issue, typo,
+error handling on dvfsrc driver. (Nicolas/Stephen)
+* Remove irq handler on dvfsrc driver. (Stephen)
+* Remove init table on dvfsrc driver, combine hw init on trustzone.
+* Add interconnect support of mt8183 to aggregate the emi bandwidth.
+(Georgi)
 
-Should there be something to indicate which GPIO?
+RFC V2: https://lore.kernel.org/patchwork/patch/1068113/
+RFC V1: https://lore.kernel.org/patchwork/cover/1028535/
 
-> > +&mdio {
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&smi_pins>;
-> > +	status = "okay";
-> > +
-> > +	phy1: ethernet-phy@1 {
-> > +		reg = <1>;
-> > +	};
-> > +
-> > +	/* switch nodes are enabled by U-Boot if modules are present */
-> > +	switch0@10 {
-> > +		compatible = "marvell,mv88e6190";
-> > +		reg = <0x10 0>;
-> > +		dsa,member = <0 0>;
-> > +		interrupt-parent = <&moxtet>;
-> > +		interrupts = <MOXTET_IRQ_PERIDOT(0)>;
-> > +		status = "disabled";
-> > +
-> > +		mdio {
+Henry Chen (10):
+  dt-bindings: soc: Add dvfsrc driver bindings
+  dt-bindings: soc: Add opp table on scpsys bindings
+  soc: mediatek: add support for the performance state
+  arm64: dts: mt8183: add performance state support of scpsys
+  soc: mediatek: add header for mediatek SIP interface
+  soc: mediatek: add MT8183 dvfsrc support
+  arm64: dts: mt8183: add dvfsrc related nodes
+  dt-bindings: interconnect: add MT8183 interconnect dt-bindings
+  interconnect: mediatek: Add mt8183 interconnect provider driver
+  arm64: dts: mt8183: Add interconnect provider DT nodes
 
-> > +		ports {
+ .../devicetree/bindings/soc/mediatek/dvfsrc.txt    |  32 ++
+ .../devicetree/bindings/soc/mediatek/scpsys.txt    |  42 +++
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi           |  33 ++
+ drivers/interconnect/Kconfig                       |   1 +
+ drivers/interconnect/Makefile                      |   1 +
+ drivers/interconnect/mediatek/Kconfig              |  13 +
+ drivers/interconnect/mediatek/Makefile             |   3 +
+ drivers/interconnect/mediatek/mtk-emi.c            | 246 ++++++++++++++
+ drivers/soc/mediatek/Kconfig                       |  15 +
+ drivers/soc/mediatek/Makefile                      |   1 +
+ drivers/soc/mediatek/mtk-dvfsrc.c                  | 374 +++++++++++++++++++++
+ drivers/soc/mediatek/mtk-scpsys.c                  |  58 ++++
+ drivers/soc/mediatek/mtk-scpsys.h                  |  22 ++
+ include/dt-bindings/interconnect/mtk,mt8183-emi.h  |  18 +
+ include/dt-bindings/soc/mtk,dvfsrc.h               |  14 +
+ include/soc/mediatek/mtk_dvfsrc.h                  |  22 ++
+ include/soc/mediatek/mtk_sip.h                     |  17 +
+ 17 files changed, 912 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+ create mode 100644 drivers/interconnect/mediatek/Kconfig
+ create mode 100644 drivers/interconnect/mediatek/Makefile
+ create mode 100644 drivers/interconnect/mediatek/mtk-emi.c
+ create mode 100644 drivers/soc/mediatek/mtk-dvfsrc.c
+ create mode 100644 drivers/soc/mediatek/mtk-scpsys.h
+ create mode 100644 include/dt-bindings/interconnect/mtk,mt8183-emi.h
+ create mode 100644 include/dt-bindings/soc/mtk,dvfsrc.h
+ create mode 100644 include/soc/mediatek/mtk_dvfsrc.h
+ create mode 100644 include/soc/mediatek/mtk_sip.h
 
-> > +			switch0port10: port@a {
-> > +				reg = <0xa>;
-> > +				label = "dsa";
-> > +				phy-mode = "2500base-x";
-> > +				managed = "in-band-status";
-> > +				link = <&switch1port9 &switch2port9>;
+-- 
+1.9.1
 
-Does u-boot also modify this, if switch2 does not exist? I don't know
-if it actually matters, but if the switch does not exist, but the
-routing entry exists, this switch might still send it frames and use
-up some of your bandwidth?
-
-   Andrew
