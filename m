@@ -2,112 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C74A4A098E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 20:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE3BAA09A3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 20:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726840AbfH1See (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 14:34:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35762 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726567AbfH1See (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 14:34:34 -0400
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2A64C22DA7;
-        Wed, 28 Aug 2019 18:34:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567017273;
-        bh=QlJKrHuG8AijV/iNEU5ZY82mlQS+xGN6r27ZxabHhuE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=MLqrqhKZvW++VoqjZu0wKlAS41c+6bTvUhyT44KCDmpDXDeL6e9Z+bh46Izr+Cg6o
-         aMW7k13Tnkpn/nhxaWJLmRCcQwwB6ZEkyDRvuvwY/WsDNW65AHvfskOlzpqXdyXJ5C
-         pOmeQkVOnKSdT9EoZITcYWWMEAQ93s0tEGfcaFA0=
-Received: by mail-qk1-f176.google.com with SMTP id m2so620787qkd.10;
-        Wed, 28 Aug 2019 11:34:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAX2znrRGdgWN1JLRunj2LxQOERqqu4azH/P9W49X02goVMITrEX
-        6Fj7xhFiimiSMrK13QTDSXtIVB5KnOaIftAiQA==
-X-Google-Smtp-Source: APXvYqz5A5Bvj5V4jmWUchP11mypRsc4CrfFKrk/S0ky7O9zQRqolgrNnj40h/MhRHeg7iGHdxRMNzcIxjSQshaobs4=
-X-Received: by 2002:a37:8905:: with SMTP id l5mr5638069qkd.152.1567017272343;
- Wed, 28 Aug 2019 11:34:32 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1566677788.git.mirq-linux@rere.qmqm.pl> <9b85d5a7c7e788e9ed87d020323ad9292e3aeab7.1566677788.git.mirq-linux@rere.qmqm.pl>
- <20190827223716.GA31605@bogus> <20190828130252.GD20202@qmqm.qmqm.pl>
-In-Reply-To: <20190828130252.GD20202@qmqm.qmqm.pl>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 28 Aug 2019 13:34:20 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+tD1U2znUTdHxZDCJnfYa9fUeU4YMDAMMFXDka8vJ7jg@mail.gmail.com>
-Message-ID: <CAL_Jsq+tD1U2znUTdHxZDCJnfYa9fUeU4YMDAMMFXDka8vJ7jg@mail.gmail.com>
-Subject: Re: [PATCH v2 4/6] dt-bindings: misc: atmel-ssc: LRCLK from TF/RF pin option
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Chas Williams <3chas3@gmail.com>,
-        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Ludovic Desroches <ludovic.desroches@microchip.com>,
-        Mark Brown <broonie@kernel.org>,
+        id S1726735AbfH1Sg4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 14:36:56 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:45272 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726711AbfH1Sgz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 14:36:55 -0400
+X-IronPort-AV: E=Sophos;i="5.64,442,1559487600"; 
+   d="scan'208";a="25166320"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 29 Aug 2019 03:36:52 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D013D400A897;
+        Thu, 29 Aug 2019 03:36:46 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Takashi Iwai <tiwai@suse.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>,
+        Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        xu_shunji@hoperun.com, ebiharaml@si-linux.co.jp
+Subject: [PATCH v3 0/8] Add dual-LVDS panel support to EK874
+Date:   Wed, 28 Aug 2019 19:36:34 +0100
+Message-Id: <1567017402-5895-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 8:03 AM Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.=
-qmqm.pl> wrote:
->
-> On Tue, Aug 27, 2019 at 05:37:16PM -0500, Rob Herring wrote:
-> > On Sat, Aug 24, 2019 at 10:26:55PM +0200, Micha=C5=82 Miros=C5=82aw wro=
-te:
-> > > Add single-pin LRCLK source options for Atmel SSC module.
-> > >
-> > > Signed-off-by: Micha=C5=82 Miros=C5=82aw <mirq-linux@rere.qmqm.pl>
-> > >
-> > > ---
-> > >   v2: split from implementation patch
-> > >
-> > > ---
-> > >  Documentation/devicetree/bindings/misc/atmel-ssc.txt | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/misc/atmel-ssc.txt b/D=
-ocumentation/devicetree/bindings/misc/atmel-ssc.txt
-> > > index f9fb412642fe..c98e96dbec3a 100644
-> > > --- a/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-> > > +++ b/Documentation/devicetree/bindings/misc/atmel-ssc.txt
-> > > @@ -24,6 +24,11 @@ Optional properties:
-> > >         this parameter to choose where the clock from.
-> > >       - By default the clock is from TK pin, if the clock from RK pin=
-, this
-> > >         property is needed.
-> > > +  - atmel,lrclk-from-tf-pin: bool property.
-> > > +  - atmel,lrclk-from-rf-pin: bool property.
-> > > +     - SSC in slave mode gets LRCLK from RF for receive and TF for t=
-ransmit
-> > > +       data direction. This property makes both use single TF (or RF=
-) pin
-> > > +       as LRCLK. At most one can be present.
-> >
-> > A single property taking 1 of possible 2 values would prevent the error
-> > of more than 1 property present.
->
-> It still would need a validation check in the code, though: you
-> could put wrong value then.  It seems more consistent with the
-> existing parameters to have two bool properties.
+Dear All,
 
-It was validation using schema that I was thinking about. Expressing a
-possible set of values for a property is easier than inter-property
-constraints.
+this series adds support for dual-LVDS panel IDK-2121WR
+from Advantech:
+https://buy.advantech.eu/Displays/Embedded-LCD-Kits-High-Brightness/model-IDK-2121WR-K2FHA2E.htm
 
-But if you really prefer as-is:
+V3 approaches the problem in a completely different way, we now
+have two new properties to mark the ports in the DT as receiving
+even pixels and odd pixels: dual-lvds-even-pixels and dual-lvds-odd-pixels,
+which means device drivers should not use bridge specific or panel
+specific dual_link flags. Also, in this case the DT describes the
+connection fully.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+In order for the solution to be generic, I have exported a new helper
+(drm_of_lvds_get_dual_link_configuration) to walk the device tree,
+and figure out if the connection is dual-LVDS. The same helper gives
+information about the configuration of the connection. If Px is connected
+to a port expecting even pixels and Py is connected to a port expecting
+odd pixels, then the helper returns DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS
+(like in the example below), otherwise it returns
+DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS.
+
+
+ --------            dual-lvds-even-pixels  --------
+|        |----                         ----|        |
+|        | Px |---------------------->| Pn |        |
+|        |----                         ----|        |
+| SOURCE |           dual-lvds-odd-pixels  |  SINK  |
+|        |----                         ----|        |
+|        | Py |---------------------->| Pm |        |
+|        |----                         ----|        |
+ --------                                   --------
+
+The device driver for the encoder then will work out if with the current
+wiring the pixels need swapping or not.
+
+The same solution works for both panels and bridges.
+
+Since the DT describes the connection fully, driver
+drivers/gpu/drm/panel/panel-lvds.c works out-of-the-box, no changes
+required, however, this implementation opens up a problem with the
+dt-bindings.
+Driver drivers/gpu/drm/panel/panel-lvds.c can still be pleased by
+a port node, but also by a ports node.
+I have created Documentation/devicetree/bindings/display/bus-timings/lvds.yaml
+with the idea of including it from panels and bridges dt-bindings
+supporting dual-LVDS (and of course the dt-bindings for the specific
+devices should say which port should be marked as what), but file
+Documentation/devicetree/bindings/display/panel/lvds.yaml formally
+requires property "port", while with this implementation it should require
+OneOf "port" and "ports", and unfortunately I can't seem to find a neat way
+aroud that, other than creating a new compatible string
+(e.g. "panel-dual-lvds"), a new dt-binding document for it, and of course adding
+support for the new compatible string to drivers/gpu/drm/panel/panel-lvds.c.
+As a result, this series is missing (at least) a patch necessary to fully
+document the new implementation within
+Documentation/devicetree/bindings/display/panel/lvds.yaml
+
+Rob, do you have any suggestions? Do you think this idea works ok from a
+documentation point of view? By the way, I don't really know what I am doing
+with the yaml dt-bindings, I hope you won't be horrified by this series :-P
+
+I hope I was able to deliver the concept clearly, if not please just ask.
+
+Comments are very much appreciated.
+
+Thanks,
+Fab
+
+Fabrizio Castro (8):
+  dt-bindings: display: Add bindings for LVDS bus-timings
+  dt-bindings: display: Add idk-2121wr binding
+  drm: Add bus timings helper
+  drm: rcar-du: lvds: Add dual-LVDS panels support
+  drm: bridge: thc63: Do not report input bus mode through bridge
+    timings
+  arm64: dts: renesas: Add EK874 board with idk-2121wr display support
+  [HACK] arm64: dts: renesas: draak: Enable LVDS
+  [HACK] arm64: dts: renesas: draak: Enable LVDS dual-link operation
+
+ .../bindings/display/bus-timings/lvds.yaml         |  38 +++++++
+ .../display/panel/advantech,idk-2121wr.yaml        |  90 ++++++++++++++++
+ arch/arm64/boot/dts/renesas/Makefile               |   3 +-
+ .../boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts | 116 +++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts     |  21 +++-
+ arch/arm64/boot/dts/renesas/r8a77995-draak.dts     |  26 +++--
+ drivers/gpu/drm/Makefile                           |   3 +-
+ drivers/gpu/drm/bridge/thc63lvd1024.c              |   9 +-
+ drivers/gpu/drm/drm_bus_timings.c                  |  97 +++++++++++++++++
+ drivers/gpu/drm/rcar-du/rcar_lvds.c                | 110 +++++++++++--------
+ include/drm/drm_bridge.h                           |   8 --
+ include/drm/drm_bus_timings.h                      |  21 ++++
+ 12 files changed, 473 insertions(+), 69 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bus-timings/lvds.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.yaml
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
+ create mode 100644 drivers/gpu/drm/drm_bus_timings.c
+ create mode 100644 include/drm/drm_bus_timings.h
+
+-- 
+2.7.4
+
