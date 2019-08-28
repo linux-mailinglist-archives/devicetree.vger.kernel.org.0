@@ -2,84 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 855AD9FCB8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 10:18:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD2979FCD7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 10:22:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726272AbfH1ISX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 04:18:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39948 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726292AbfH1ISX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 04:18:23 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 310E82189D;
-        Wed, 28 Aug 2019 08:18:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1566980302;
-        bh=+pPMLUCSSxO28zMU47W0EaRFagvxicZdMQed3gzfifw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=09CmK50HCvij31BRxh1M3vSf9K8uw68/0d/d5eMMsCOfA6A9Pbp7INvd1tMHJg7nu
-         pvbxHaI4GFBWa/xBBLz7LAsxuA+8PaEk8PSl0DRtAAVMoJ6YdYrBxVU+RvOOUMMhOS
-         vt8f/iHOhmY5YghwX2M2lOmhLJkRIKLPNgFxtkk0=
-Date:   Wed, 28 Aug 2019 10:18:19 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     linux@roeck-us.net, wim@linux-watchdog.org
-Cc:     linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH RESEND v2 1/6] dt-bindings: watchdog: Add YAML schemas
- for the generic watchdog bindings
-Message-ID: <20190828081819.qqztieg7cgdvpkxv@flea>
-References: <20190821143835.7294-1-mripard@kernel.org>
+        id S1726400AbfH1IWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 04:22:35 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:27809 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726290AbfH1IWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 04:22:35 -0400
+X-UUID: da2ad66d982943dc8b67744764a45c80-20190828
+X-UUID: da2ad66d982943dc8b67744764a45c80-20190828
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 857769133; Wed, 28 Aug 2019 16:22:30 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 28 Aug 2019 16:22:36 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 28 Aug 2019 16:22:35 +0800
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Erin Lo <erin.lo@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v2 1/2] dt-bindings: clock: mediatek: add pericfg for MT8183
+Date:   Wed, 28 Aug 2019 16:22:12 +0800
+Message-ID: <1566980533-28282-1-git-send-email-chunfeng.yun@mediatek.com>
+X-Mailer: git-send-email 1.8.1.1.dirty
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="i6iaeebbwmfsnvrm"
-Content-Disposition: inline
-In-Reply-To: <20190821143835.7294-1-mripard@kernel.org>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 24CF5FCCFEF98A39383D98B9B0EE85FBD6A2695AB226366B63B0A026F1BC62432000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds binding of pericfg for MT8183.
 
---i6iaeebbwmfsnvrm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+---
+v2: no changes
+---
+ .../devicetree/bindings/arm/mediatek/mediatek,pericfg.txt        | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Wed, Aug 21, 2019 at 04:38:30PM +0200, Maxime Ripard wrote:
-> From: Maxime Ripard <maxime.ripard@bootlin.com>
->
-> The watchdogs have a bunch of generic properties that are needed in a
-> device tree. Add a YAML schemas for those.
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.txt b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.txt
+index 4c7e478117a0..ecf027a9003a 100644
+--- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.txt
++++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,pericfg.txt
+@@ -14,6 +14,7 @@ Required Properties:
+ 	- "mediatek,mt7629-pericfg", "syscon"
+ 	- "mediatek,mt8135-pericfg", "syscon"
+ 	- "mediatek,mt8173-pericfg", "syscon"
++	- "mediatek,mt8183-pericfg", "syscon"
+ - #clock-cells: Must be 1
+ - #reset-cells: Must be 1
+ 
+-- 
+2.23.0
 
-Ping?
-
-Maxime
-
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---i6iaeebbwmfsnvrm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXWY4ywAKCRDj7w1vZxhR
-xSrsAP9Wm4uqadS7xrVp8WfRQCHb46bRTlF+qGXNnJAoK7xrlwEAnhNhZ4zOZeDd
-sjEXxaKnIq1SiINnOpEsBy21a+L8eAY=
-=fuF4
------END PGP SIGNATURE-----
-
---i6iaeebbwmfsnvrm--
