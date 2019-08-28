@@ -2,151 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 90895A057E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:02:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0B8EA0598
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:05:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726497AbfH1PCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 11:02:06 -0400
-Received: from mail.nic.cz ([217.31.204.67]:32950 "EHLO mail.nic.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726439AbfH1PCG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 11:02:06 -0400
-Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
-        by mail.nic.cz (Postfix) with ESMTPSA id 740FB140942;
-        Wed, 28 Aug 2019 17:02:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1567004524; bh=7qK3CM9j0VplYHVUBUyu1PXM53I6r5LhfXrYrt9impM=;
-        h=Date:From:To;
-        b=OgMZe2a+sbA80rFfcf3eprHoVta4ceF3yUwcyV0ap9D3dbsWeIE4YswtwIaxRM7iD
-         RAvVC/7mC+JxgNYfMLoAm8bY5PEmh+jPCf+roZbg4iSsQLLNZZVEpKArXIHyl8kYhq
-         KgSb99DET2NBcmv4PV4HXyb1ICaYf+ZS7aDB8YTU=
-Date:   Wed, 28 Aug 2019 17:02:04 +0200
-From:   Marek =?ISO-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Gregory CLEMENT <gregory.clement@bootlin.com>, arm@kernel.org,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH mvebu-dt64 3/3] arm64: dts: marvell: add DTS for Turris
- Mox
-Message-ID: <20190828170204.15340299@dellmb.labs.office.nic.cz>
-In-Reply-To: <20190828121909.GB32178@lunn.ch>
-References: <20190827151644.12532-1-marek.behun@nic.cz>
-        <20190827151644.12532-4-marek.behun@nic.cz>
-        <8736hlziv3.fsf@FE-laptop>
-        <20190828121909.GB32178@lunn.ch>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726475AbfH1PFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 11:05:10 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:36306 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726394AbfH1PFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 11:05:10 -0400
+Received: by mail-pg1-f196.google.com with SMTP id l21so1632533pgm.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 08:05:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=bT8YwM8lVQY3Bq3jN8kP+13N5ePTqKFep5cdRAHRBlc=;
+        b=XTMO2HGgu5TOWpIq2y/FGjSLIfekGl3M7vrFDWmmXrc3l7yTlbf9kzmw+6UgrRxdYf
+         EUbuRzFeta2W/L+B3PZpY2qEZ/y7tzJ2F9OBVzaEfG4xsqk7cFhMoHP6Gqtqhoxfu0Qy
+         gYPyPibTk1uvvsWLxnTDR1dWnS3h8m7lFWrTbJ45gr/cTJs2QW8ToY49DvtGetqBEYyv
+         oyRJy0DZaBt5PB7jWV5PBWBzEGr01umcF/KgPXrcn29lDdPIOqrqGKLcrdvzpZjJ/6Nn
+         mM9gdu1u/oEj8ogKNPKG2C1347dDMjGgsOFsW+F9OG5wvKz9ixqPyBLNi0DCc87HstDR
+         Ep1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=bT8YwM8lVQY3Bq3jN8kP+13N5ePTqKFep5cdRAHRBlc=;
+        b=Lf5QB/lZeTtmSTchW1NiCZwkJpdQc3BbE1ec320rXHeyAepD6lR1L9NXtggQ7ki/i2
+         4aWqFQdZBSyhD5hIWPgK9KiI0crsxcCcuu7uLhJLDNUIroKGkdxGTSVV333eWJdbAG+j
+         WzMO/8E4EsBaxynSFjcIPMqNTOfbL/0DI6ck9mk2WE90Q+WTStkC6L+ivspLrGKUMpSk
+         GTHGoKjXlunOa/OBiyeOtr+30ITaNAi7QK/k6AkaewxyGne+fej75RiqelXaezINA4Cx
+         3fsduuvtTWGbnDeqIVF/vXQiPVMQh/2eoDCU7Ut7xvPUrOsOSefX940u5L1SohcMo0ff
+         MIqA==
+X-Gm-Message-State: APjAAAXRkHKFOiThwzuKg0unTnnbG5APAadef4Ym1Nq3hq2BYZgP8gSZ
+        Utk7xZhlGf4XOCQsIwtuXtEhFA==
+X-Google-Smtp-Source: APXvYqzkvG1I1NPAFfC7H9Dk+LVN7x+xUAvV2mJTqg57N1F2qNKzHUY0aH5d1aHxD8OQH2RdhhU8aQ==
+X-Received: by 2002:aa7:8705:: with SMTP id b5mr5275834pfo.205.1567004709374;
+        Wed, 28 Aug 2019 08:05:09 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:cc35:e750:308e:47f])
+        by smtp.gmail.com with ESMTPSA id b126sm6598437pfa.177.2019.08.28.08.05.08
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 28 Aug 2019 08:05:08 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: meson: g12a: add tdm resets
+In-Reply-To: <1j4l217m4h.fsf@starbuckisacylon.baylibre.com>
+References: <20190820121551.18398-1-jbrunet@baylibre.com> <7hh862tbt2.fsf@baylibre.com> <1j4l217m4h.fsf@starbuckisacylon.baylibre.com>
+Date:   Wed, 28 Aug 2019 08:05:07 -0700
+Message-ID: <7h36hltjoc.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.100.3 at mail.nic.cz
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
-        shortcircuit=ham autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Aug 2019 14:19:09 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-> > > +	leds {
-> > > +		compatible = "gpio-leds";
-> > > +		red {
-> > > +			gpios = <&gpiosb 21 GPIO_ACTIVE_LOW>;
-> > > +			linux,default-trigger = "default-on";
-> > > +		};  
-> 
-> I think there would normally be a label here, so the LED has a
-> name. There is a convention to follow, which is in the documentation.
+> On Tue 27 Aug 2019 at 16:42, Kevin Hilman <khilman@baylibre.com> wrote:
+>
+>> Jerome Brunet <jbrunet@baylibre.com> writes:
+>>
+>>> This patchset adds the dedicated reset of the tdm formatters which
+>>> have been added on the g12a SoC family. Using these help with the channel
+>>> mapping when the formatter uses more than 1 i2s lane.
+>>
+>> Because I forgot^W waited on this, we did the meson-g12a-common split,
+>> so this no longer applies cleanly.  Could you rebase this on current v5.4/dt64
+>> and I'll queue it for v5.4/dt64.
+>
+> Acutally it was already not applying when I sent this v1 ...
+> .. which is why I sent a v2 [0] ;)
+>
+> [0]: https://lkml.kernel.org/r/20190823154432.16268-1-jbrunet@baylibre.com
 
-I shall rename it to "mox:red:activity" according to convetion.
+Oops, I saw there was a v2, but I missed that in my `git pw` because v2
+of the series had an "ASoC:" prefix in the cover letter, not an "arm64:
+dts" one, so I skimmed past it.
 
-> > > +	};
-> > > +
-> > > +	gpio-keys {
-> > > +		compatible = "gpio-keys";
-> > > +
-> > > +		reset {
-> > > +			label = "reset";
-> > > +			linux,code = <BTN_MISC>;  
-> 
-> I'm pretty sure there is a linux,code for reset.
-
-KEY_RESTART
-
-> 
-> > > +			gpios = <&gpiosb 20 GPIO_ACTIVE_LOW>;
-> > > +			debounce-interval = <60>;
-> > > +		};
-> > > +	};  
-> 
-> > > +
-> > > +	sfp: sfp {
-> > > +		compatible = "sff,sfp+";
-> > > +		i2c-bus = <&i2c0>;  
-> 
-> The standard for SFPs sets the maximum bus speed is 100Khz. I'm sure
-> some can do 400Khz, but if you want to support all SFPs, you should
-> use the lower speed. I don't see anywhere in this file where you set
-> the maximum speed. Maybe the bus defaults to 100K so you don't need
-> anything?
-
-Ill add it to i2c0
-
-> > > +
-> > > +&i2c0 {
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&i2c1_pins>;  
-> 
-> The node is called i2c0, but here you have i2c1_pins?
-
-That is how this is defined in armada-37xx.dtsi. First i2c has
-phandle pointer called i2c0, second i2c1. But the pinctrl drivers uses
-i2c1 and i2c2. All device trees need to be changed for this. This can
-be done later in a separate commit for all device trees using
-armada-37xx.dtsi
-
-> > > +	status = "okay";
-> > > +
-> > > +	rtc@6f {
-> > > +		compatible = "microchip,mcp7940x";
-> > > +		reg = <0x6f>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&pcie_reset_pins {
-> > > +	function = "gpio";
-> > > +};  
-> 
-> Should there be something to indicate which GPIO?
-
-No. The thing here is that the function here should remain "pcie"
-ideally. When that pin is configured in pcie mode, modifying specific
-pcie register should control the pin. But for some reason on our SOC it
-does not. I suspect it does not work for Miquel Raynal either, since he
-sent patches for aardvark that use reset-gpio as well (see
-https://lkml.org/lkml/2018/12/12/242 ).
-So we configure it in gpio mode and than in the pcie node we have
-  reset-gpios = <&gpiosb 3 GPIO_ACTIVE_LOW>;
-
-> > +		ports {  
-> 
-> > > +			switch0port10: port@a {
-> > > +				reg = <0xa>;
-> > > +				label = "dsa";
-> > > +				phy-mode = "2500base-x";
-> > > +				managed = "in-band-status";
-> > > +				link = <&switch1port9
-> > > &switch2port9>;  
-> 
-> Does u-boot also modify this, if switch2 does not exist? I don't know
-> if it actually matters, but if the switch does not exist, but the
-> routing entry exists, this switch might still send it frames and use
-> up some of your bandwidth?
-
-That port has status = "disabled" by default. U-Boot enables that node
-if second switch is present. U-Boot removes all disabled nodes before
-boot. Even if it did not, kernel ignores disabled nodes here.
-
-Marek
+Kevin
