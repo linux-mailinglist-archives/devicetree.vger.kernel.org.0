@@ -2,195 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CAE5A0611
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:20:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E87CA065A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:31:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726719AbfH1PUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 11:20:09 -0400
-Received: from foss.arm.com ([217.140.110.172]:33142 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726586AbfH1PUJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 11:20:09 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4C77F28;
-        Wed, 28 Aug 2019 08:20:08 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8B19D3F59C;
-        Wed, 28 Aug 2019 08:20:07 -0700 (PDT)
-Date:   Wed, 28 Aug 2019 16:20:05 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        gustavo.pimentel@synopsys.com, digetx@gmail.com,
-        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V2 4/6] PCI: tegra: Add support to enable slot regulators
-Message-ID: <20190828152005.GY14582@e119886-lin.cambridge.arm.com>
-References: <20190828131505.28475-1-vidyas@nvidia.com>
- <20190828131505.28475-5-vidyas@nvidia.com>
+        id S1726880AbfH1Pbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 11:31:53 -0400
+Received: from forward104p.mail.yandex.net ([77.88.28.107]:51019 "EHLO
+        forward104p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726429AbfH1Pbx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 11:31:53 -0400
+Received: from mxback7o.mail.yandex.net (mxback7o.mail.yandex.net [IPv6:2a02:6b8:0:1a2d::21])
+        by forward104p.mail.yandex.net (Yandex) with ESMTP id D013B4B0094F;
+        Wed, 28 Aug 2019 18:31:48 +0300 (MSK)
+Received: from smtp1j.mail.yandex.net (smtp1j.mail.yandex.net [2a02:6b8:0:801::ab])
+        by mxback7o.mail.yandex.net (nwsmtp/Yandex) with ESMTP id ffjlMBsko1-VlremqIv;
+        Wed, 28 Aug 2019 18:31:48 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1567006308;
+        bh=7RA0sHF5D03f4tAZfj9rCdvuBWfcitbh3YPyvz8e+CI=;
+        h=In-Reply-To:Cc:To:Subject:From:Date:References:Message-ID;
+        b=eMmYwxIXwqY9HlvIBMIYRd49H7lhEAeOX2i3qqRcSXP5K2V0nBHs06yPe3mK8trzt
+         6/omZIndgJtP4AEB16Cim2Iz9aMzI9F9Y/xjR81E+DDJobtA7eFWJkDUYiNerlOfIp
+         uJQYGqzcDbpuCwZl+6eQRSqfPUcTOJ2vsI58TIkM=
+Authentication-Results: mxback7o.mail.yandex.net; dkim=pass header.i=@flygoat.com
+Received: by smtp1j.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id gq3U0rBuMO-VcbGsZJ1;
+        Wed, 28 Aug 2019 18:31:45 +0300
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (Client certificate not present)
+From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH 04/13] irqchip: Add driver for Loongson-3 I/O interrupt
+ controller
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
+        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.co, devicetree@vger.kernel.org
+References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+ <20190827085302.5197-5-jiaxun.yang@flygoat.com>
+ <e6a5862f-0f6c-cab0-9f4a-51b7889d38e7@kernel.org>
+ <82c4b9ed-7270-74ce-6e10-165182e540dd@flygoat.com>
+ <20190828075940.549e1983@why>
+Message-ID: <619b1d35-7bc2-999f-5a51-fb2efdc63f60@flygoat.com>
+Date:   Wed, 28 Aug 2019 23:31:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190828131505.28475-5-vidyas@nvidia.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+In-Reply-To: <20190828075940.549e1983@why>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 06:45:03PM +0530, Vidya Sagar wrote:
-> Add support to get regulator information of 3.3V and 12V supplies of a PCIe
-> slot from the respective controller's device-tree node and enable those
-> supplies. This is required in platforms like p2972-0000 where the supplies
-> to x16 slot owned by C5 controller need to be enabled before attempting to
-> enumerate the devices.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> V2:
-> * Addressed review comments from Thierry Reding and Andrew Murray
-> * Handled failure case of devm_regulator_get_optional() for -ENODEV cleanly
-> 
->  drivers/pci/controller/dwc/pcie-tegra194.c | 80 ++++++++++++++++++++++
->  1 file changed, 80 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-> index 057ba4f9fbcd..6a66101ec83d 100644
-> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
-> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-> @@ -278,6 +278,8 @@ struct tegra_pcie_dw {
->  	u32 aspm_l0s_enter_lat;
->  
->  	struct regulator *pex_ctl_supply;
-> +	struct regulator *slot_ctl_3v3;
-> +	struct regulator *slot_ctl_12v;
->  
->  	unsigned int phy_count;
->  	struct phy **phys;
-> @@ -1047,6 +1049,72 @@ static void tegra_pcie_downstream_dev_to_D0(struct tegra_pcie_dw *pcie)
->  	}
->  }
->  
-> +static int tegra_pcie_get_slot_regulators(struct tegra_pcie_dw *pcie)
-> +{
-> +	pcie->slot_ctl_3v3 = devm_regulator_get_optional(pcie->dev, "vpcie3v3");
-> +	if (IS_ERR(pcie->slot_ctl_3v3)) {
-> +		if (PTR_ERR(pcie->slot_ctl_3v3) != -ENODEV)
-> +			return PTR_ERR(pcie->slot_ctl_3v3);
-> +
-> +		pcie->slot_ctl_3v3 = NULL;
-> +	}
-> +
-> +	pcie->slot_ctl_12v = devm_regulator_get_optional(pcie->dev, "vpcie12v");
-> +	if (IS_ERR(pcie->slot_ctl_12v)) {
-> +		if (PTR_ERR(pcie->slot_ctl_12v) != -ENODEV)
-> +			return PTR_ERR(pcie->slot_ctl_12v);
-> +
-> +		pcie->slot_ctl_12v = NULL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int tegra_pcie_enable_slot_regulators(struct tegra_pcie_dw *pcie)
-> +{
-> +	int ret;
-> +
-> +	if (pcie->slot_ctl_3v3) {
-> +		ret = regulator_enable(pcie->slot_ctl_3v3);
-> +		if (ret < 0) {
-> +			dev_err(pcie->dev,
-> +				"Failed to enable 3V3 slot supply: %d\n", ret);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	if (pcie->slot_ctl_12v) {
-> +		ret = regulator_enable(pcie->slot_ctl_12v);
-> +		if (ret < 0) {
-> +			dev_err(pcie->dev,
-> +				"Failed to enable 12V slot supply: %d\n", ret);
-> +			goto fail_12v_enable;
-> +		}
-> +	}
-> +
-> +	/*
-> +	 * According to PCI Express Card Electromechanical Specification
-> +	 * Revision 1.1, Table-2.4, T_PVPERL (Power stable to PERST# inactive)
-> +	 * should be a minimum of 100ms.
-> +	 */
-> +	msleep(100);
-> +
-> +	return 0;
-> +
-> +fail_12v_enable:
-> +	if (pcie->slot_ctl_3v3)
-> +		regulator_disable(pcie->slot_ctl_3v3);
-> +	return ret;
-> +}
-> +
-> +static void tegra_pcie_disable_slot_regulators(struct tegra_pcie_dw *pcie)
-> +{
-> +	if (pcie->slot_ctl_12v)
-> +		regulator_disable(pcie->slot_ctl_12v);
-> +	if (pcie->slot_ctl_3v3)
-> +		regulator_disable(pcie->slot_ctl_3v3);
-> +}
-> +
->  static int tegra_pcie_config_controller(struct tegra_pcie_dw *pcie,
->  					bool en_hw_hot_rst)
->  {
-> @@ -1060,6 +1128,10 @@ static int tegra_pcie_config_controller(struct tegra_pcie_dw *pcie,
->  		return ret;
->  	}
->  
-> +	ret = tegra_pcie_enable_slot_regulators(pcie);
-> +	if (ret < 0)
-> +		goto fail_slot_reg_en;
-> +
->  	ret = regulator_enable(pcie->pex_ctl_supply);
->  	if (ret < 0) {
->  		dev_err(pcie->dev, "Failed to enable regulator: %d\n", ret);
-> @@ -1142,6 +1214,8 @@ static int tegra_pcie_config_controller(struct tegra_pcie_dw *pcie,
->  fail_core_clk:
->  	regulator_disable(pcie->pex_ctl_supply);
->  fail_reg_en:
-> +	tegra_pcie_disable_slot_regulators(pcie);
-> +fail_slot_reg_en:
->  	tegra_pcie_bpmp_set_ctrl_state(pcie, false);
->  
->  	return ret;
-> @@ -1174,6 +1248,8 @@ static int __deinit_controller(struct tegra_pcie_dw *pcie)
->  		return ret;
->  	}
->  
-> +	tegra_pcie_disable_slot_regulators(pcie);
-> +
->  	ret = tegra_pcie_bpmp_set_ctrl_state(pcie, false);
->  	if (ret) {
->  		dev_err(pcie->dev, "Failed to disable controller %d: %d\n",
-> @@ -1373,6 +1449,10 @@ static int tegra_pcie_dw_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	ret = tegra_pcie_get_slot_regulators(pcie);
-> +	if (ret < 0)
-> +		return ret;
 
-All of the functions called from tegra_pcie_dw_probe appear to dev_err if
-something goes wrong, is there any reason why you haven't done that here?
+On 2019/8/28 下午2:59, Marc Zyngier wrote:
+> On Wed, 28 Aug 2019 08:27:05 +0800
+> Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+>
+>> On 2019/8/28 上午12:45, Marc Zyngier wrote:
+>>> On 27/08/2019 09:52, Jiaxun Yang wrote:
+>>>> +	chained_irq_enter(chip, desc);
+>>>> +
+>>>> +	pending = readl(priv->intc_base + LS3_REG_INTC_EN_STATUS) &
+>>>> +		readl(priv->intc_base + LS3_REG_INTC_STATUS);
+>>> Reading the enabled status from the HW on each interrupt? I'm sure
+>>> that's pretty cheap...
+>> Seems expensive but to deal with a buggy hardware... That's worthy.
+> How broken is it? You very much seem to rely on the HW being correct
+> here, since you trust it exclusively. I'd expect the enable mask to be
+> a SW construct if you didn't blindly trust it
+Hi Marc
 
-Thanks,
+Thanks for your answering.
 
-Andrew Murray
+The vendor code did this and said there is a HW issue. I just don't have 
+the guts to remove this check.
+Seems like sometimes masked interrupt may get ISR set wrongly.
+> And if this is truly the right way to do it, please document the
+> various problems with the controller so that we don't break it at a
+> later time.
+Thanks, will do.
+>
+> Then how comes this comes from the irqchip's DT node? This should be
+> part of the endpoint's interrupt specifier.
 
-> +
->  	pcie->pex_ctl_supply = devm_regulator_get(dev, "vddio-pex-ctl");
->  	if (IS_ERR(pcie->pex_ctl_supply)) {
->  		dev_err(dev, "Failed to get regulator: %ld\n",
-> -- 
-> 2.17.1
-> 
+In theory it should be, However if we set different interrupt 
+lines/cores on that controller, interrupts may get lost. It means we can 
+only have single parent core/interrupt.
+
+So I'd prefer just set them uniformly by controller's dt-binding to 
+prevent confusing.
+
+>> It's parent IRQ (mti,cpu-interrupt-controller) is a percpu IRQ.
+> But then why is that interrupt described using the "core" property? It
+> should be an interrupt specifier, just like any other interrupt.
+The same.
+>
+>> In design, it allows us to decide affinity at runtime but actually hardware is seriously broken.
+> I understand the HW is terrible. But the binding looks pretty bad too.
+> This needs fixing.
+>
+> 	M.
+--
+Jiaxun Yang
