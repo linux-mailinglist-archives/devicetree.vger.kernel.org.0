@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA9D1A03E7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 15:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D1D5A03FA
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 16:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727086AbfH1N61 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 09:58:27 -0400
-Received: from foss.arm.com ([217.140.110.172]:60038 "EHLO foss.arm.com"
+        id S1726437AbfH1OCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 10:02:22 -0400
+Received: from foss.arm.com ([217.140.110.172]:60126 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727064AbfH1N6H (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 09:58:07 -0400
+        id S1726438AbfH1OCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 10:02:21 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 60EBC28;
-        Wed, 28 Aug 2019 06:58:06 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5A7D28;
+        Wed, 28 Aug 2019 07:02:20 -0700 (PDT)
 Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E58733F246;
-        Wed, 28 Aug 2019 06:58:04 -0700 (PDT)
-Date:   Wed, 28 Aug 2019 14:58:02 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 66CB93F246;
+        Wed, 28 Aug 2019 07:02:19 -0700 (PDT)
+Date:   Wed, 28 Aug 2019 15:02:17 +0100
 From:   Sudeep Holla <sudeep.holla@arm.com>
 To:     Peng Fan <peng.fan@nxp.com>
 Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
@@ -31,107 +31,121 @@ Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         dl-linux-imx <linux-imx@nxp.com>,
         Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
- SMC/HVC mailbox
-Message-ID: <20190828135802.GB21614@e107155-lin>
+Subject: Re: [PATCH v5 2/2] mailbox: introduce ARM SMC based mailbox
+Message-ID: <20190828140217.GC21614@e107155-lin>
 References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
- <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+ <1567004515-3567-3-git-send-email-peng.fan@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1567004515-3567-3-git-send-email-peng.fan@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 03:02:58AM +0000, Peng Fan wrote:
+On Wed, Aug 28, 2019 at 03:03:02AM +0000, Peng Fan wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 >
-> The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
-> actions in software layers running in the EL2 or EL3 exception levels.
-> The term "ARM" here relates to the SMC instruction as part of the ARM
-> instruction set, not as a standard endorsed by ARM Ltd.
+> This mailbox driver implements a mailbox which signals transmitted data
+> via an ARM smc (secure monitor call) instruction. The mailbox receiver
+> is implemented in firmware and can synchronously return data when it
+> returns execution to the non-secure world again.
+> An asynchronous receive path is not implemented.
+> This allows the usage of a mailbox to trigger firmware actions on SoCs
+> which either don't have a separate management processor or on which such
+> a core is not available. A user of this mailbox could be the SCP
+> interface.
 >
+> Modified from Andre Przywara's v2 patch
+> https://lore.kernel.org/patchwork/patch/812999/
+>
+> Cc: Andre Przywara <andre.przywara@arm.com>
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../devicetree/bindings/mailbox/arm-smc.yaml       | 125 +++++++++++++++++++++
->  1 file changed, 125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+>  drivers/mailbox/Kconfig           |   7 ++
+>  drivers/mailbox/Makefile          |   2 +
+>  drivers/mailbox/arm-smc-mailbox.c | 215 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 224 insertions(+)
+>  create mode 100644 drivers/mailbox/arm-smc-mailbox.c
 >
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> new file mode 100644
-> index 000000000000..f8eb28d5e307
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> @@ -0,0 +1,125 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+[...]
+
+> +static int arm_smc_mbox_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct mbox_controller *mbox;
+> +	struct arm_smc_chan_data *chan_data;
+> +	const char *method;
+> +	bool mem_trans = false;
+> +	int ret, i;
+> +	u32 val;
 > +
-> +title: ARM SMC Mailbox Interface
+> +	if (!of_property_read_u32(dev->of_node, "arm,num-chans", &val)) {
+> +		if (!val) {
+> +			dev_err(dev, "invalid arm,num-chans value %u\n", val);
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		return -EINVAL;
+> +	}
 > +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
+> +	if (!of_property_read_string(dev->of_node, "transports", &method)) {
+> +		if (!strcmp("mem", method)) {
+> +			mem_trans = true;
+> +		} else if (!strcmp("reg", method)) {
+> +			mem_trans = false;
+> +		} else {
+> +			dev_warn(dev, "invalid \"transports\" property: %s\n",
+> +				 method);
 > +
-> +description: |
-> +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
-> +  call) instruction to trigger a mailbox-connected activity in firmware,
-> +  executing on the very same core as the caller. By nature this operation
-> +  is synchronous and this mailbox provides no way for asynchronous messages
-> +  to be delivered the other way round, from firmware to the OS, but
-
-
-> +  asynchronous notification could also be supported.
-
-What do you mean by that ? I would prefer to drop the above line unless
-I am missing something. IMO it contradicts the previous statement less
-you elaborate more on this.
-
-> However the value of
-> +  r0/w0/x0 the firmware returns after the smc call is delivered as a received
-> +  message to the mailbox framework, so a synchronous communication can be
-> +  established, for a asynchronous notification, no value will be returned.
-
-I assume you refer to asynchronous communication from OS to firmware in the
-above statement and "not asynchronous notification" from firmware to OS.
-
-> +  The exact meaning of both the action the mailbox triggers as well as the
-> +  return value is defined by their users and is not subject to this binding.
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		return -EINVAL;
+> +	}
 > +
-> +  One use case of this mailbox is the SCMI interface, which uses shared memory
-> +  to transfer commands and parameters, and a mailbox to trigger a function
-> +  call. This allows SoCs without a separate management processor (or when
-> +  such a processor is not available or used) to use this standardized
-> +  interface anyway.
+> +	if (!of_property_read_string(dev->of_node, "method", &method)) {
+> +		if (!strcmp("hvc", method)) {
+> +			invoke_smc_mbox_fn = __invoke_fn_hvc;
+> +		} else if (!strcmp("smc", method)) {
+> +			invoke_smc_mbox_fn = __invoke_fn_smc;
+> +		} else {
+> +			dev_warn(dev, "invalid \"method\" property: %s\n",
+> +				 method);
 > +
-
-Not sure if reference to SCMI is needed at all but I don't have any
-objections to it, just thought worth mentioning.
-
-> +  This binding describes no hardware, but establishes a firmware interface.
-> +  Upon receiving an SMC using one of the described SMC function identifiers,
-> +  the firmware is expected to trigger some mailbox connected functionality.
-> +  The communication follows the ARM SMC calling convention.
-> +  Firmware expects an SMC function identifier in r0 or w0. The supported
-> +  identifiers are passed from consumers, or listed in the the arm,func-ids
-> +  properties as described below. The firmware can return one value in
-> +  the first SMC result register, it is expected to be an error value,
-> +  which shall be propagated to the mailbox client.
+> +			return -EINVAL;
+> +		}
+> +	} else {
+> +		return -EINVAL;
+> +	}
 > +
-> +  Any core which supports the SMC or HVC instruction can be used, as long as
-> +  a firmware component running in EL3 or EL2 is handling these calls.
+> +	mbox = devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
+> +	if (!mbox)
+> +		return -ENOMEM;
 > +
+> +	mbox->num_chans = val;
+> +	mbox->chans = devm_kcalloc(dev, mbox->num_chans, sizeof(*mbox->chans),
+> +				   GFP_KERNEL);
+> +	if (!mbox->chans)
+> +		return -ENOMEM;
+> +
+> +	chan_data = devm_kcalloc(dev, mbox->num_chans, sizeof(*chan_data),
+> +				 GFP_KERNEL);
+> +	if (!chan_data)
+> +		return -ENOMEM;
+> +
+> +	for (i = 0; i < mbox->num_chans; i++) {
+> +		u32 function_id;
+> +
+> +		ret = of_property_read_u32_index(dev->of_node,
+> +						 "arm,func-ids", i,
+> +						 &function_id);
 
-
-Other than the above points, I am fine with it. Once fixed,
-
-Reviewed-by: Sudeep Holla <sudeep.holla@arm.com>
-
-Note I haven't reviewed the yaml scheme, but just binding in general.
+I missed it in binding but I thought we agreed to make this "arm,func-ids"
+a required property and not optional ?
 
 --
 Regards,
