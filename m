@@ -2,130 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D9ACA0711
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 18:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A242AA0721
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 18:19:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726706AbfH1QQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 12:16:35 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:7261 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726395AbfH1QQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 12:16:35 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d66a8e40000>; Wed, 28 Aug 2019 09:16:36 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 28 Aug 2019 09:16:34 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 28 Aug 2019 09:16:34 -0700
-Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
- 2019 16:16:33 +0000
-Received: from [10.25.74.161] (10.124.1.5) by DRHQMAIL107.nvidia.com
- (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
- 2019 16:16:28 +0000
-Subject: Re: [PATCH V2 3/6] PCI: tegra: Add support to configure sideband pins
-To:     Andrew Murray <andrew.murray@arm.com>
-CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <kishon@ti.com>,
-        <gustavo.pimentel@synopsys.com>, <digetx@gmail.com>,
-        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
-        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
-References: <20190828131505.28475-1-vidyas@nvidia.com>
- <20190828131505.28475-4-vidyas@nvidia.com>
- <20190828150739.GX14582@e119886-lin.cambridge.arm.com>
-X-Nvconfidentiality: public
-From:   Vidya Sagar <vidyas@nvidia.com>
-Message-ID: <015280f6-cf13-9a36-6ae7-77476d089af4@nvidia.com>
-Date:   Wed, 28 Aug 2019 21:46:26 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190828150739.GX14582@e119886-lin.cambridge.arm.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- DRHQMAIL107.nvidia.com (10.27.9.16)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1567008996; bh=vkYR9GMGra4mXvzpjpzlucRSvf0JCKSyhfkQefgDo5g=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=ddOdhhcYgMCMUdb0NaOCMhghD3DAvywx7L0BfIq4QMvoctZLVx6TYtgcTOWclJqd1
-         Kk5QMQWGX+FdIkHUG+yE+dFVqPPL2JPHnamym5DTHQJ5RrGsjvtzPckOR4ct3icH3n
-         kCVV6C3TQnc35zWT2euvmQP/mBZ52L7x1JhVWJAgvn05Mi5U8tbzCM6htKUHVtGfl6
-         xYhsu/1q0UBrr458CbH/lzSxu99dJmrc1xEPJJ3IMYPLXhWR0TKHihzHQNrpli90zw
-         FtrGsKFehb71WlKSxCLC9ZxPCmQYeXv7qntl9qOoeOh8VaCFgBbrNAorTAI4jyOjwX
-         df6qf8GLoa4GA==
+        id S1726506AbfH1QTy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 12:19:54 -0400
+Received: from mail-wr1-f52.google.com ([209.85.221.52]:45750 "EHLO
+        mail-wr1-f52.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726513AbfH1QTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 12:19:54 -0400
+Received: by mail-wr1-f52.google.com with SMTP id q12so364500wrj.12;
+        Wed, 28 Aug 2019 09:19:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=h2Qh+gscHnR7JdUJaSMgnvl1LJ0NCwpowKI5j/ZvmWU=;
+        b=u8LX9/UQhL4+ai6U3VRZ6sQHe2IRUYsLsY5NEl2FgJnKQFzBAS6YPo9qKbpyulP7sp
+         W/YrUlGY0QG3TVRC5MvrX/e8BG3bcN7/8IctAReoGh/nVeEFDL2cFoS0/hG+SITtqDMd
+         RpG9hUyPtrjEdqxRi7llub8A29dAuleGXaB86PxXgFqnH2XW/nQEFCtPctFicKBVUkhh
+         6rSH5Q7fDYi+vEdkb9HC3C92dkICqvfVwLsVatPTHCEDUM9Xsp4ogIkgD+xDyhD+t6z1
+         CVg1EcDY7gSFfc/8KBCxS3WDfQi/DPSiWYtdMFcNNThgVUwNbU7ueFmxncbrk/izCO1o
+         PHRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=h2Qh+gscHnR7JdUJaSMgnvl1LJ0NCwpowKI5j/ZvmWU=;
+        b=bPKPt1/d9/huWG4q+MMTnM3IqhtI6lr5WCr5hgbLEL1100DXueLECewiAz9PaGqOyf
+         /kANF21vb6fuV1ddHQzFIyKWRlbGyN930aCOFfHDm0P65DKZ/+XZvdxHE08TEjaLZeTz
+         ev15JmdQRv85OSAFqKq++fuLjEBjzpzfV4pPuElo/Voc9/JgkLkpVzIkAHNEDw4/SCcR
+         XUqAZBHutFiTwCd/Va/wdmD/wac4p6w0umGRe77cW6qIfvOAH4VBcVpUQTPKxafDC35d
+         DczVQuK7ndJB7KvQc1skFcH7sUr41qsVFUkL5lKBdE7h1lvGMayqv7wtyG0em2URHrC5
+         hgCw==
+X-Gm-Message-State: APjAAAX7/JiJBOIAtj0I2KeKhRlZvOiu4V9JedX7GCDwaplTG+G4OtH6
+        Agu7mqAO9ORurkWiEx+MrLk=
+X-Google-Smtp-Source: APXvYqzmHItt68j4CFSaYP1355hKziONiyL+VRfe/5ff4LpMcoPcSL6AqjJmEf4SwqIUWHYI1yJQdQ==
+X-Received: by 2002:adf:ea51:: with SMTP id j17mr6186501wrn.184.1567009191817;
+        Wed, 28 Aug 2019 09:19:51 -0700 (PDT)
+Received: from localhost ([31.16.217.87])
+        by smtp.gmail.com with ESMTPSA id a141sm9494988wmd.0.2019.08.28.09.19.50
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 28 Aug 2019 09:19:50 -0700 (PDT)
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     oliver.graute@gmail.com, narmstrong@baylibre.com,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCHv5 0/2] Variscite DART-6UL SoM support
+Date:   Wed, 28 Aug 2019 18:19:16 +0200
+Message-Id: <1567009160-21965-1-git-send-email-oliver.graute@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/28/2019 8:37 PM, Andrew Murray wrote:
-> On Wed, Aug 28, 2019 at 06:45:02PM +0530, Vidya Sagar wrote:
->> Add support to configure sideband signal pins when information is present
->> in respective controller's device-tree node.
->>
->> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
->> ---
->> V2:
->> * Addressed review comment from Andrew Murray
->> * Handled failure case of pinctrl_pm_select_default_state() cleanly
->>
->>   drivers/pci/controller/dwc/pcie-tegra194.c | 11 +++++++++--
->>   1 file changed, 9 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
->> index fc0dbeb31d78..057ba4f9fbcd 100644
->> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
->> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
->> @@ -1304,8 +1304,13 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
->>   	if (ret < 0) {
->>   		dev_err(dev, "Failed to get runtime sync for PCIe dev: %d\n",
->>   			ret);
->> -		pm_runtime_disable(dev);
->> -		return ret;
->> +		goto fail_pm_get_sync;
->> +	}
->> +
->> +	ret = pinctrl_pm_select_default_state(pcie->dev);
-> 
-> This patch looks OK, though you're still using pcie->dev here instead of dev.
-I'll take care of this.
-Thanks for the thorough review.
+Need feedback to the following patches which adds support for a DART-6UL Board
 
-- Vidya Sagar
+Need feedback howto document propertys and compatible the right way
 
-> 
-> Thanks,
-> 
-> Andrew Murray
-> 
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to configure sideband pins: %d\n", ret);
->> +		goto fail_pinctrl;
->>   	}
->>   
->>   	tegra_pcie_init_controller(pcie);
->> @@ -1332,7 +1337,9 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
->>   
->>   fail_host_init:
->>   	tegra_pcie_deinit_controller(pcie);
->> +fail_pinctrl:
->>   	pm_runtime_put_sync(dev);
->> +fail_pm_get_sync:
->>   	pm_runtime_disable(dev);
->>   	return ret;
->>   }
->> -- 
->> 2.17.1
->>
+Need feedback why ethernet RX is deaf
+
+Product Page: https://www.variscite.com/product/evaluation-kits/dart-6ul-kits
+
+Oliver Graute (2):
+  ARM: dts: imx6ul: Add Variscite DART-6UL SoM support
+  ARM: dts: Add support for i.MX6 UltraLite DART Variscite Customboard
+
+ arch/arm/boot/dts/Makefile                         |   1 +
+ .../boot/dts/imx6ul-imx6ull-var-dart-common.dtsi   | 445 +++++++++++++++++++++
+ arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts    | 196 +++++++++
+ 3 files changed, 642 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6ul-imx6ull-var-dart-common.dtsi
+ create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+
+-- 
+2.7.4
 
