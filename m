@@ -2,113 +2,412 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 699629FDAC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 10:57:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 672BE9FDC3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 11:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726253AbfH1I5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 04:57:17 -0400
-Received: from mail-eopbgr1400121.outbound.protection.outlook.com ([40.107.140.121]:9856
-        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726326AbfH1I5Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 04:57:16 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=I6S7x4gmCr/C/WgF6Qs3Dn9Sc6l22aHSaqoG9ubmTBYaNp3OkU7tu6fcWfyulk4zifinfxbTgQ5v/GoxUjiHWSswkZSZIctxCpBLLDsthsgGHF0qywmLndPEbnIxRs38KyDcHf5mREBghk7zZupw7NoxFqtnEVnKHYC74AmJDtxn5sCDjU/c4QDrUjOk2zyfk0sWkS5NoNdcCB+Wxf06iyPJwr21P6eUihUrudA88q20I1prfrRUVUUl4hNa7RfNwY0bNqexSmChhcM5hRXKpdwHvQM71WufxDG1x9v5ocGBZ17KeGU2pm/DBkLh9zZJ0nNXmpm8k6nv3i8I77fP7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YVRq8trD6/0wtJj0/xyehlDhSSPiaPRTWsSsUm/A/ZQ=;
- b=eWdRrhlURgXBVr9mtSkJsPUh7rGt8YobTnnQmJZNuN80UyMmqwAeI2TnJQC4dGRfYHhqB3QhdR4tKWFIB52nm3oUmzOc0gYmqE8W2XoeVO1Lrwgr9n/VyiKpX9AMhX0zvrJmyqgR4GLspUGYPt3inMlSM65OzeCevK3gMlPQfoIYzdBLKrGFGMEvODIyFoIwLTN83bnAShg3OpTFKOPmes7EcuYIeXI4Yz1FTGECnSpRu03L5rYDpwxTzkvHVhlodAWUPGHpcF/lquLkzQ7a3j45GzalFp5G/mU8UKbjJXh30rVdXLkVfub5xuiOZsnEmFyXsxAcQlzA5pryYBxmOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YVRq8trD6/0wtJj0/xyehlDhSSPiaPRTWsSsUm/A/ZQ=;
- b=eAt5wdkNL9/J9nkRXkd6HpYPAz5tgkZr/mG7QT5Gh7fyupP1yTvm27cGwUibtmZByzFLeU7zPRLP3VN9Z1XkGF+nkmMlqUwS58G8K74Pl16T9gyYvWJ06+gvuVZXgfEfzz0uZhd7YW3IBC12k7AH6MQilRgk0HK3XTi4ZvXJwXQ=
-Received: from TYAPR01MB4544.jpnprd01.prod.outlook.com (20.179.175.203) by
- TYAPR01MB3936.jpnprd01.prod.outlook.com (20.178.139.85) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.21; Wed, 28 Aug 2019 08:57:13 +0000
-Received: from TYAPR01MB4544.jpnprd01.prod.outlook.com
- ([fe80::6564:f61f:f179:facf]) by TYAPR01MB4544.jpnprd01.prod.outlook.com
- ([fe80::6564:f61f:f179:facf%5]) with mapi id 15.20.2199.021; Wed, 28 Aug 2019
- 08:57:13 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Vinod <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: RE: [PATCH] dt-bindings: dmaengine: dma-common: Revise the
- dma-channel-mask property
-Thread-Topic: [PATCH] dt-bindings: dmaengine: dma-common: Revise the
- dma-channel-mask property
-Thread-Index: AQHVXWuY7BBEFyXtZE29P6wjBVSPHacQKgmAgAAX1wA=
-Date:   Wed, 28 Aug 2019 08:57:12 +0000
-Message-ID: <TYAPR01MB4544BB54346D937B41E16F7CD8A30@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-References: <1566974375-32482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdVHtJTmuW0z+LRRFGL4O2bjiNv6odyGTmLi-EqxN1PP8g@mail.gmail.com>
-In-Reply-To: <CAMuHMdVHtJTmuW0z+LRRFGL4O2bjiNv6odyGTmLi-EqxN1PP8g@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=yoshihiro.shimoda.uh@renesas.com; 
-x-originating-ip: [150.249.235.54]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 795346dc-7701-4991-617a-08d72b95b7de
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TYAPR01MB3936;
-x-ms-traffictypediagnostic: TYAPR01MB3936:
-x-microsoft-antispam-prvs: <TYAPR01MB3936375CFCD938B3D2589D82D8A30@TYAPR01MB3936.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:483;
-x-forefront-prvs: 014304E855
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(39860400002)(366004)(346002)(376002)(136003)(396003)(189003)(199004)(256004)(8936002)(6436002)(99286004)(9686003)(186003)(14454004)(8676002)(55016002)(81156014)(81166006)(7696005)(76176011)(478600001)(53936002)(26005)(316002)(54906003)(102836004)(5660300002)(6246003)(2906002)(86362001)(66556008)(7736002)(66446008)(446003)(64756008)(66946007)(66476007)(11346002)(76116006)(305945005)(476003)(3846002)(66066001)(4326008)(6116002)(486006)(229853002)(33656002)(74316002)(71200400001)(71190400001)(25786009)(6506007)(6916009)(53546011)(52536014);DIR:OUT;SFP:1102;SCL:1;SRVR:TYAPR01MB3936;H:TYAPR01MB4544.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: wIf+6b/BSvwoA0onpblALMHus7xvQQnuuDcAr77G2f4N+RKvbook6ueSaOYcMfrkBZ3+7pvPA5sHcvAFPiedM57EQ0VDurTWSu3eycswLKgEJgXJ4HSquqgHYyH/Mq4vw0cx6Dw4lRG8ujxNjuBlF7zR8vr4ZdF228xrL0El5eCm8BakxhuCRKR+vU6GqwagtO4/xauY83mLbR5+ZeAeliFai2qsn6vJ5hyzYHfWIMa8UeE/LV3tUAJAZo4V4I6CsvQkWf0R07RaYyB74bj6NPv/zV3A+TcH9PeV20XfPmhkhaKaM+rrkCmX5ZxUzyzZbuY80WnA5WG1toTmKoT0RwXJgm5zYRsrIQIub6VURuD9O3Jesjsns2APWGCcyWhdlfc0ktjByh0e+v1+JDZGBMtHK52B0h3kNoifR8dnYRY=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726253AbfH1JBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 05:01:12 -0400
+Received: from foss.arm.com ([217.140.110.172]:55646 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726232AbfH1JBM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 05:01:12 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17F56337;
+        Wed, 28 Aug 2019 02:01:11 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6455C3F59C;
+        Wed, 28 Aug 2019 02:01:10 -0700 (PDT)
+Date:   Wed, 28 Aug 2019 10:01:08 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.co" <lorenzo.pieralisi@arm.co>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Subject: Re: [PATCH v2 08/10] PCI: layerscape: Add EP mode support for
+ ls1088a and ls2088a
+Message-ID: <20190828090105.GR14582@e119886-lin.cambridge.arm.com>
+References: <20190822112242.16309-1-xiaowei.bao@nxp.com>
+ <20190822112242.16309-8-xiaowei.bao@nxp.com>
+ <20190823142756.GI14582@e119886-lin.cambridge.arm.com>
+ <AM5PR04MB3299B100D1029E90945CF7DDF5A10@AM5PR04MB3299.eurprd04.prod.outlook.com>
+ <20190827133429.GM14582@e119886-lin.cambridge.arm.com>
+ <VI1PR04MB3310F78C86F775BB1F5B7E0CF5A30@VI1PR04MB3310.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 795346dc-7701-4991-617a-08d72b95b7de
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 08:57:12.9301
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: bFrhwVwUuujcRorfQvT3M/Ad2I22YMAs2DLbLoWbB1bNcj1j67WgaGz7aQQDrS42Ry8cL64/7jE93IkFo6UzyhpcUtllfgXuAWHXFg3HSAGIXGPUgeYlW6Oo+TbdZJfa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB3936
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <VI1PR04MB3310F78C86F775BB1F5B7E0CF5A30@VI1PR04MB3310.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogV2VkbmVz
-ZGF5LCBBdWd1c3QgMjgsIDIwMTkgNDozMCBQTQ0KPiANCj4gSGkgU2hpbW9kYS1zYW4sDQo+IA0K
-PiBJIHdvdWxkIHMvUmV2aXNlL0ZpeC8gaW4gdGhlIHN1YmplY3QuDQoNCkkgZ290IGl0LiBJJ2xs
-IHN1Ym1pdCB2MiBwYXRjaC4NCg0KPiBPbiBXZWQsIEF1ZyAyOCwgMjAxOSBhdCA4OjQxIEFNIFlv
-c2hpaGlybyBTaGltb2RhDQo+IDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2FzLmNvbT4gd3Jv
-dGU6DQo+ID4gVGhlIGNvbW1pdCBiMzdlMzUzNGFjNDIgKCJkdC1iaW5kaW5nczogZG1hZW5naW5l
-OiBBZGQgWUFNTCBzY2hlbWFzDQo+ID4gZm9yIHRoZSBnZW5lcmljIERNQSBiaW5kaW5ncyIpIGNo
-YW5nZWQgdGhlIHByb3BlcnR5IGZyb20NCj4gPiBkbWEtY2hhbm5lbC1tYXNrIHRvIGRtYS1jaGFu
-bmVsLW1hc2tzLiBTbywgdGhpcyBwYXRjaCByZXZpc2VzIGl0Lg0KDQpBbHNvLCBJIHRoaW5rIHRo
-aXMgbGluZSBzaG91bGQgYmUgcy9yZXZpc2VzL2ZpeGVzLy4NCg0KPiA+IEZpeGVzOiBiMzdlMzUz
-NGFjNDIgKCJkdC1iaW5kaW5nczogZG1hZW5naW5lOiBBZGQgWUFNTCBzY2hlbWFzIGZvciB0aGUg
-Z2VuZXJpYyBETUEgYmluZGluZ3MiKQ0KPiA+IFNpZ25lZC1vZmYtYnk6IFlvc2hpaGlybyBTaGlt
-b2RhIDx5b3NoaWhpcm8uc2hpbW9kYS51aEByZW5lc2FzLmNvbT4NCj4gDQo+IFJldmlld2VkLWJ5
-OiBHZWVydCBVeXR0ZXJob2V2ZW4gPGdlZXJ0K3JlbmVzYXNAZ2xpZGVyLmJlPg0KDQpUaGFuayB5
-b3UgZm9yIHlvdXIgcmV2aWV3IQ0KDQpCZXN0IHJlZ2FyZHMsDQpZb3NoaWhpcm8gU2hpbW9kYQ0K
-DQo+IEdye29ldGplLGVldGluZ31zLA0KPiANCj4gICAgICAgICAgICAgICAgICAgICAgICAgR2Vl
-cnQNCj4gDQo+IC0tDQo+IEdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2YgTGlu
-dXggYmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcNCj4gDQo+IEluIHBlcnNvbmFs
-IGNvbnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEgaGFj
-a2VyLiBCdXQNCj4gd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5ICJw
-cm9ncmFtbWVyIiBvciBzb21ldGhpbmcgbGlrZSB0aGF0Lg0KPiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRzDQo=
+On Wed, Aug 28, 2019 at 04:29:32AM +0000, Xiaowei Bao wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Andrew Murray <andrew.murray@arm.com>
+> > Sent: 2019年8月27日 21:34
+> > To: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > Cc: bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
+> > shawnguo@kernel.org; Leo Li <leoyang.li@nxp.com>; kishon@ti.com;
+> > lorenzo.pieralisi@arm.co; arnd@arndb.de; gregkh@linuxfoundation.org; M.h.
+> > Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>; Roy
+> > Zang <roy.zang@nxp.com>; jingoohan1@gmail.com;
+> > gustavo.pimentel@synopsys.com; linux-pci@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org
+> > Subject: Re: [PATCH v2 08/10] PCI: layerscape: Add EP mode support for
+> > ls1088a and ls2088a
+> > 
+> > On Mon, Aug 26, 2019 at 09:49:35AM +0000, Xiaowei Bao wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Andrew Murray <andrew.murray@arm.com>
+> > > > Sent: 2019年8月23日 22:28
+> > > > To: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > > > Cc: bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
+> > > > shawnguo@kernel.org; Leo Li <leoyang.li@nxp.com>; kishon@ti.com;
+> > > > lorenzo.pieralisi@arm.co; arnd@arndb.de; gregkh@linuxfoundation.org;
+> > M.h.
+> > > > Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>; Roy
+> > > > Zang <roy.zang@nxp.com>; jingoohan1@gmail.com;
+> > > > gustavo.pimentel@synopsys.com; linux-pci@vger.kernel.org;
+> > > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > > > linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org
+> > > > Subject: Re: [PATCH v2 08/10] PCI: layerscape: Add EP mode support
+> > > > for ls1088a and ls2088a
+> > > >
+> > > > On Thu, Aug 22, 2019 at 07:22:40PM +0800, Xiaowei Bao wrote:
+> > > > > Add PCIe EP mode support for ls1088a and ls2088a, there are some
+> > > > > difference between LS1 and LS2 platform, so refactor the code of
+> > > > > the EP driver.
+> > > > >
+> > > > > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > > > > ---
+> > > > > v2:
+> > > > >  - New mechanism for layerscape EP driver.
+> > > >
+> > > > Was there a v1 of this patch?
+> > > >
+> > > > >
+> > > > >  drivers/pci/controller/dwc/pci-layerscape-ep.c | 76
+> > > > > ++++++++++++++++++++------
+> > > > >  1 file changed, 58 insertions(+), 18 deletions(-)
+> > > > >
+> > > > > diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > > > b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > > > index 7ca5fe8..2a66f07 100644
+> > > > > --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > > > +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > > > @@ -20,27 +20,29 @@
+> > > > >
+> > > > >  #define PCIE_DBI2_OFFSET		0x1000	/* DBI2 base address*/
+> > > > >
+> > > > > -struct ls_pcie_ep {
+> > > > > -	struct dw_pcie		*pci;
+> > > > > -	struct pci_epc_features	*ls_epc;
+> > > > > +#define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
+> > > > > +
+> > > > > +struct ls_pcie_ep_drvdata {
+> > > > > +	u32				func_offset;
+> > > > > +	const struct dw_pcie_ep_ops	*ops;
+> > > > > +	const struct dw_pcie_ops	*dw_pcie_ops;
+> > > > >  };
+> > > > >
+> > > > > -#define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
+> > > > > +struct ls_pcie_ep {
+> > > > > +	struct dw_pcie			*pci;
+> > > > > +	struct pci_epc_features		*ls_epc;
+> > > > > +	const struct ls_pcie_ep_drvdata *drvdata; };
+> > > > >
+> > > > >  static int ls_pcie_establish_link(struct dw_pcie *pci)  {
+> > > > >  	return 0;
+> > > > >  }
+> > > > >
+> > > > > -static const struct dw_pcie_ops ls_pcie_ep_ops = {
+> > > > > +static const struct dw_pcie_ops dw_ls_pcie_ep_ops = {
+> > > > >  	.start_link = ls_pcie_establish_link,  };
+> > > > >
+> > > > > -static const struct of_device_id ls_pcie_ep_of_match[] = {
+> > > > > -	{ .compatible = "fsl,ls-pcie-ep",},
+> > > > > -	{ },
+> > > > > -};
+> > > > > -
+> > > > >  static const struct pci_epc_features*
+> > > > > ls_pcie_ep_get_features(struct dw_pcie_ep *ep)  { @@ -82,10 +84,44
+> > > > > @@ static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> > > > >  	}
+> > > > >  }
+> > > > >
+> > > > > -static const struct dw_pcie_ep_ops pcie_ep_ops = {
+> > > > > +static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep
+> > *ep,
+> > > > > +						u8 func_no)
+> > > > > +{
+> > > > > +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> > > > > +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+> > > > > +	u8 header_type;
+> > > > > +
+> > > > > +	header_type = ioread8(pci->dbi_base + PCI_HEADER_TYPE);
+> > > > > +
+> > > > > +	if (header_type & (1 << 7))
+> > > > > +		return pcie->drvdata->func_offset * func_no;
+> > > > > +	else
+> > > > > +		return 0;
+> > > >
+> > > > It looks like there isn't a PCI define for multi function, the
+> > > > nearest I could find was PCI_HEADER_TYPE_MULTIDEVICE in
+> > > > hotplug/ibmphp.h. A comment above the test might be helpful to explain
+> > the test.
+> > >
+> > > OK, I will add a comment above this code.
+> > >
+> > > >
+> > > > As the ls_pcie_ep_drvdata structures are static, the unset
+> > > > .func_offset will be initialised to 0, so you could just drop the test above.
+> > >
+> > > Due to the different PCIe controller have different property, e.g.
+> > > PCIe controller1 support multiple function feature, but PCIe
+> > > controller2 don't support this feature, so I need to check which
+> > > controller support it and return the correct offset value, but each board only
+> > have one ls_pcie_ep_drvdata, ^_^.
+> > 
+> > Yes but if they don't support the feature then func_offset will be 0.
+> > 
+> > >
+> > > >
+> > > > However something to the effect of the following may help spot
+> > > > misconfiguration:
+> > > >
+> > > > WARN_ON(func_no && !pcie->drvdata->func_offset); return
+> > > > pcie->drvdata->func_offset * func_no;
+> > > >
+> > > > The WARN is probably quite useful as if you are attempting to use
+> > > > non-zero functions and func_offset isn't set - then things may
+> > > > appear to work normally but actually will break horribly.
+> > >
+> > > As discussion before, I think the func_offset should not depends on
+> > > the function number, even if other platforms of NXP may be use write
+> > > registers way to access the different function config space.
+> > 
+> > I agree that func_offset is an optional parameter. But if you are attempting to
+> > determine the offset of a function and you are given a non-zero function
+> > number - then something has gone wrong if func_offset is 0.
+> 
+> I have understood you means, maybe I need to set a flag in the driver_data struct,
+> because I may add other platform of NXP, these platform use the write register 
+> method to access different function, e.g. 
+> write func_num to register, then we can access this func_num config space.
+> 
+> I will modify the code like this? Do you have better advice?
+> Case1:
+> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> index 004a7e8..8a0d6df 100644
+> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> @@ -23,6 +23,7 @@
+>  #define to_ls_pcie_ep(x)       dev_get_drvdata((x)->dev)
+> 
+>  struct ls_pcie_ep_drvdata {
+> +       u8                              func_config_flag;
+>         u32                             func_offset;
+>         const struct dw_pcie_ep_ops     *ops;
+>         const struct dw_pcie_ops        *dw_pcie_ops;
+> @@ -97,8 +98,14 @@ static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+>          * Read the Header Type register of config space to check
+>          * whether this PCI device support the multiple function.
+>          */
+> -       if (header_type & (1 << 7))
+> -               return pcie->drvdata->func_offset * func_no;
+> +       if (header_type & (1 << 7)) {
+> +               if (pcie->drvdata->func_config_flag) {
+> +                       iowrite32((func_num << n), pci->dbi_base + PCI_XXXX_XXX);
+> +               } else {
+> +                       WARN_ON(func_no && !pcie->drvdata->func_offset);
+> +                       return pcie->drvdata->func_offset * func_no;
+> +               }
+> +       }
+> 
+>         return 0;
+>  }
+> 
+> Of course, I don't need to set the flag this time, because I don't use the second method(write
+> register method), so the code like this:
+> case2:
+> +static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+>                                                u8 func_no) {
+>        struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>        struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+>        u8 header_type;
+> 
+> 	   of course, this code is not requied, due to the 
+> 	   pcie->drvdata->func_offset is 0, but I think this is more clear
+> 	   if use this code.
+>        header_type = ioread8(pci->dbi_base + PCI_HEADER_TYPE);
+> 
+>        /*
+>         * Read the Header Type register of config space to check
+>         * whether this PCI device support the multiple function.
+>         */
+>        if (header_type & (1 << 7)) {
+> 			   WARN_ON(func_no && !pcie->drvdata->func_offset);
+>                return pcie->drvdata->func_offset * func_no; 
+> 		}
+> 		
+>        return 0;
+> }
+> 
+> Or like this:
+> Case3:
+> +static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+>                                                u8 func_no) {
+>        struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+>        struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+> 
+> 	   WARN_ON(func_no && !pcie->drvdata->func_offset);
+>        return pcie->drvdata->func_offset * func_no;
+
+This is better. Given there is only currently one method of calculating
+an offset for layerscape, I'd recommend you add additional methods when
+the need arises.
+
+Thanks,
+
+Andrew Murray
+
+> 
+> }
+> Of course, we can return a -1 by adjuring the (func_no && !pcie->drvdata->func_offset) 
+> Valu in case1
+> 
+> Thanks 
+> Xiaowei
+> 
+> > 
+> > Thanks,
+> > 
+> > Andrew Murray
+> > 
+> > >
+> > > I have added the comments above the code, as follow, do you have any
+> > advice?
+> > > +static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+> > > +                                               u8 func_no) {
+> > > +       struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> > > +       struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+> > > +       u8 header_type;
+> > > +
+> > > +       header_type = ioread8(pci->dbi_base + PCI_HEADER_TYPE);
+> > > +
+> > > +       /*
+> > > +        * Read the Header Type register of config space to check
+> > > +        * whether this PCI device support the multiple function.
+> > > +        */
+> > > +       if (header_type & (1 << 7))
+> > > +               return pcie->drvdata->func_offset * func_no;
+> > > +
+> > > +       return 0;
+> > > +}
+> > >
+> > > Thanks a lot for your detail comments.
+> > >
+> > > >
+> > > > Thanks,
+> > > >
+> > > > Andrew Murray
+> > > >
+> > > > > +}
+> > > > > +
+> > > > > +static const struct dw_pcie_ep_ops ls_pcie_ep_ops = {
+> > > > >  	.ep_init = ls_pcie_ep_init,
+> > > > >  	.raise_irq = ls_pcie_ep_raise_irq,
+> > > > >  	.get_features = ls_pcie_ep_get_features,
+> > > > > +	.func_conf_select = ls_pcie_ep_func_conf_select, };
+> > > > > +
+> > > > > +static const struct ls_pcie_ep_drvdata ls1_ep_drvdata = {
+> > > > > +	.ops = &ls_pcie_ep_ops,
+> > > > > +	.dw_pcie_ops = &dw_ls_pcie_ep_ops, };
+> > > > > +
+> > > > > +static const struct ls_pcie_ep_drvdata ls2_ep_drvdata = {
+> > > > > +	.func_offset = 0x20000,
+> > > > > +	.ops = &ls_pcie_ep_ops,
+> > > > > +	.dw_pcie_ops = &dw_ls_pcie_ep_ops, };
+> > > > > +
+> > > > > +static const struct of_device_id ls_pcie_ep_of_match[] = {
+> > > > > +	{ .compatible = "fsl,ls1046a-pcie-ep", .data = &ls1_ep_drvdata },
+> > > > > +	{ .compatible = "fsl,ls1088a-pcie-ep", .data = &ls2_ep_drvdata },
+> > > > > +	{ .compatible = "fsl,ls2088a-pcie-ep", .data = &ls2_ep_drvdata },
+> > > > > +	{ },
+> > > > >  };
+> > > > >
+> > > > >  static int __init ls_add_pcie_ep(struct ls_pcie_ep *pcie, @@
+> > > > > -98,7
+> > > > > +134,7 @@ static int __init ls_add_pcie_ep(struct ls_pcie_ep
+> > > > > +*pcie,
+> > > > >  	int ret;
+> > > > >
+> > > > >  	ep = &pci->ep;
+> > > > > -	ep->ops = &pcie_ep_ops;
+> > > > > +	ep->ops = pcie->drvdata->ops;
+> > > > >
+> > > > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > > > "addr_space");
+> > > > >  	if (!res)
+> > > > > @@ -137,14 +173,11 @@ static int __init ls_pcie_ep_probe(struct
+> > > > platform_device *pdev)
+> > > > >  	if (!ls_epc)
+> > > > >  		return -ENOMEM;
+> > > > >
+> > > > > -	dbi_base = platform_get_resource_byname(pdev,
+> > IORESOURCE_MEM,
+> > > > "regs");
+> > > > > -	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
+> > > > > -	if (IS_ERR(pci->dbi_base))
+> > > > > -		return PTR_ERR(pci->dbi_base);
+> > > > > +	pcie->drvdata = of_device_get_match_data(dev);
+> > > > >
+> > > > > -	pci->dbi_base2 = pci->dbi_base + PCIE_DBI2_OFFSET;
+> > > > >  	pci->dev = dev;
+> > > > > -	pci->ops = &ls_pcie_ep_ops;
+> > > > > +	pci->ops = pcie->drvdata->dw_pcie_ops;
+> > > > > +
+> > > > >  	pcie->pci = pci;
+> > > > >
+> > > > >  	ls_epc->linkup_notifier = false, @@ -152,6 +185,13 @@ static int
+> > > > > __init ls_pcie_ep_probe(struct platform_device *pdev)
+> > > > >
+> > > > >  	pcie->ls_epc = ls_epc;
+> > > > >
+> > > > > +	dbi_base = platform_get_resource_byname(pdev,
+> > IORESOURCE_MEM,
+> > > > "regs");
+> > > > > +	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
+> > > > > +	if (IS_ERR(pci->dbi_base))
+> > > > > +		return PTR_ERR(pci->dbi_base);
+> > > > > +
+> > > > > +	pci->dbi_base2 = pci->dbi_base + PCIE_DBI2_OFFSET;
+> > > > > +
+> > > > >  	platform_set_drvdata(pdev, pcie);
+> > > > >
+> > > > >  	ret = ls_add_pcie_ep(pcie, pdev);
+> > > > > --
+> > > > > 2.9.5
+> > > > >
