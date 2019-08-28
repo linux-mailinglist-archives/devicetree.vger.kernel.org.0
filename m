@@ -2,97 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EEC8A06E0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 18:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D9ACA0711
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 18:16:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726555AbfH1QCV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 12:02:21 -0400
-Received: from foss.arm.com ([217.140.110.172]:33666 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726450AbfH1QCV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 12:02:21 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E32C028;
-        Wed, 28 Aug 2019 09:02:20 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A84DE3F59C;
-        Wed, 28 Aug 2019 09:02:19 -0700 (PDT)
-Subject: Re: [PATCH 04/13] irqchip: Add driver for Loongson-3 I/O interrupt
- controller
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
-        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.co, devicetree@vger.kernel.org
-References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
- <20190827085302.5197-5-jiaxun.yang@flygoat.com>
- <e6a5862f-0f6c-cab0-9f4a-51b7889d38e7@kernel.org>
- <82c4b9ed-7270-74ce-6e10-165182e540dd@flygoat.com>
- <20190828075940.549e1983@why>
- <619b1d35-7bc2-999f-5a51-fb2efdc63f60@flygoat.com>
-From:   Marc Zyngier <maz@kernel.org>
-Organization: Approximate
-Message-ID: <45615c1a-7af8-3496-5369-4b2f174a76e7@kernel.org>
-Date:   Wed, 28 Aug 2019 17:02:17 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+        id S1726706AbfH1QQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 12:16:35 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:7261 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726395AbfH1QQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 12:16:35 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d66a8e40000>; Wed, 28 Aug 2019 09:16:36 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 28 Aug 2019 09:16:34 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 28 Aug 2019 09:16:34 -0700
+Received: from DRHQMAIL107.nvidia.com (10.27.9.16) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
+ 2019 16:16:33 +0000
+Received: from [10.25.74.161] (10.124.1.5) by DRHQMAIL107.nvidia.com
+ (10.27.9.16) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 28 Aug
+ 2019 16:16:28 +0000
+Subject: Re: [PATCH V2 3/6] PCI: tegra: Add support to configure sideband pins
+To:     Andrew Murray <andrew.murray@arm.com>
+CC:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kishon@ti.com>,
+        <gustavo.pimentel@synopsys.com>, <digetx@gmail.com>,
+        <mperttunen@nvidia.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <sagar.tv@gmail.com>
+References: <20190828131505.28475-1-vidyas@nvidia.com>
+ <20190828131505.28475-4-vidyas@nvidia.com>
+ <20190828150739.GX14582@e119886-lin.cambridge.arm.com>
+X-Nvconfidentiality: public
+From:   Vidya Sagar <vidyas@nvidia.com>
+Message-ID: <015280f6-cf13-9a36-6ae7-77476d089af4@nvidia.com>
+Date:   Wed, 28 Aug 2019 21:46:26 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <619b1d35-7bc2-999f-5a51-fb2efdc63f60@flygoat.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190828150739.GX14582@e119886-lin.cambridge.arm.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ DRHQMAIL107.nvidia.com (10.27.9.16)
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1567008996; bh=vkYR9GMGra4mXvzpjpzlucRSvf0JCKSyhfkQefgDo5g=;
+        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
+         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
+         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=ddOdhhcYgMCMUdb0NaOCMhghD3DAvywx7L0BfIq4QMvoctZLVx6TYtgcTOWclJqd1
+         Kk5QMQWGX+FdIkHUG+yE+dFVqPPL2JPHnamym5DTHQJ5RrGsjvtzPckOR4ct3icH3n
+         kCVV6C3TQnc35zWT2euvmQP/mBZ52L7x1JhVWJAgvn05Mi5U8tbzCM6htKUHVtGfl6
+         xYhsu/1q0UBrr458CbH/lzSxu99dJmrc1xEPJJ3IMYPLXhWR0TKHihzHQNrpli90zw
+         FtrGsKFehb71WlKSxCLC9ZxPCmQYeXv7qntl9qOoeOh8VaCFgBbrNAorTAI4jyOjwX
+         df6qf8GLoa4GA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2019 16:31, Jiaxun Yang wrote:
-> 
-> On 2019/8/28 下午2:59, Marc Zyngier wrote:
->> On Wed, 28 Aug 2019 08:27:05 +0800
->> Jiaxun Yang <jiaxun.yang@flygoat.com> wrote:
+On 8/28/2019 8:37 PM, Andrew Murray wrote:
+> On Wed, Aug 28, 2019 at 06:45:02PM +0530, Vidya Sagar wrote:
+>> Add support to configure sideband signal pins when information is present
+>> in respective controller's device-tree node.
 >>
->>> On 2019/8/28 上午12:45, Marc Zyngier wrote:
->>>> On 27/08/2019 09:52, Jiaxun Yang wrote:
->>>>> +	chained_irq_enter(chip, desc);
->>>>> +
->>>>> +	pending = readl(priv->intc_base + LS3_REG_INTC_EN_STATUS) &
->>>>> +		readl(priv->intc_base + LS3_REG_INTC_STATUS);
->>>> Reading the enabled status from the HW on each interrupt? I'm sure
->>>> that's pretty cheap...
->>> Seems expensive but to deal with a buggy hardware... That's worthy.
->> How broken is it? You very much seem to rely on the HW being correct
->> here, since you trust it exclusively. I'd expect the enable mask to be
->> a SW construct if you didn't blindly trust it
-> Hi Marc
-> 
-> Thanks for your answering.
-> 
-> The vendor code did this and said there is a HW issue. I just don't have 
-> the guts to remove this check.
-> Seems like sometimes masked interrupt may get ISR set wrongly.
-
-And that would just as well avoided by a SW managed mask.
-
->> And if this is truly the right way to do it, please document the
->> various problems with the controller so that we don't break it at a
->> later time.
-> Thanks, will do.
+>> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+>> ---
+>> V2:
+>> * Addressed review comment from Andrew Murray
+>> * Handled failure case of pinctrl_pm_select_default_state() cleanly
 >>
->> Then how comes this comes from the irqchip's DT node? This should be
->> part of the endpoint's interrupt specifier.
+>>   drivers/pci/controller/dwc/pcie-tegra194.c | 11 +++++++++--
+>>   1 file changed, 9 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> index fc0dbeb31d78..057ba4f9fbcd 100644
+>> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
+>> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
+>> @@ -1304,8 +1304,13 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
+>>   	if (ret < 0) {
+>>   		dev_err(dev, "Failed to get runtime sync for PCIe dev: %d\n",
+>>   			ret);
+>> -		pm_runtime_disable(dev);
+>> -		return ret;
+>> +		goto fail_pm_get_sync;
+>> +	}
+>> +
+>> +	ret = pinctrl_pm_select_default_state(pcie->dev);
 > 
-> In theory it should be, However if we set different interrupt 
-> lines/cores on that controller, interrupts may get lost. It means we can 
-> only have single parent core/interrupt.
+> This patch looks OK, though you're still using pcie->dev here instead of dev.
+I'll take care of this.
+Thanks for the thorough review.
+
+- Vidya Sagar
+
 > 
-> So I'd prefer just set them uniformly by controller's dt-binding to 
-> prevent confusing.
+> Thanks,
+> 
+> Andrew Murray
+> 
+>> +	if (ret < 0) {
+>> +		dev_err(dev, "Failed to configure sideband pins: %d\n", ret);
+>> +		goto fail_pinctrl;
+>>   	}
+>>   
+>>   	tegra_pcie_init_controller(pcie);
+>> @@ -1332,7 +1337,9 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
+>>   
+>>   fail_host_init:
+>>   	tegra_pcie_deinit_controller(pcie);
+>> +fail_pinctrl:
+>>   	pm_runtime_put_sync(dev);
+>> +fail_pm_get_sync:
+>>   	pm_runtime_disable(dev);
+>>   	return ret;
+>>   }
+>> -- 
+>> 2.17.1
+>>
 
-And I disagree. You can document the restriction, and even maybe enforce
-it by validating the DT one way or another. But we're not putting what
-ends up being a routing table in the irqchip binding.
-
-	M.
--- 
-Jazz is not dead, it just smells funny...
