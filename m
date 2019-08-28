@@ -2,103 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE63D9FF30
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DCF69FFB2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 12:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726391AbfH1KNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 06:13:40 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45530 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726246AbfH1KNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 06:13:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=6Hcdm4CpIqKt7py/aqpOB6jyd7ntLB//7FnB38ZJF1U=; b=N/n52wcJOLKSBwVrVhui/AseL
-        stM3Olw+r2+yVWBBA6cP309MUYzht7vs60CNyvxjA7dpPAdC5b5wShwKcgoyh6rmEr7TsVOtb2NHE
-        Wc/sUh4gsQQxQoP0QjpdajDbNv5/fxzIOVVG9365Esa8JuDQSu95Mk/1ltHrvl7R/sNRQ=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i2uxL-0003ZT-8c; Wed, 28 Aug 2019 10:13:35 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 81EAA2742A55; Wed, 28 Aug 2019 11:13:34 +0100 (BST)
-Date:   Wed, 28 Aug 2019 11:13:34 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1726368AbfH1KYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 06:24:19 -0400
+Received: from mta-02.yadro.com ([89.207.88.252]:60460 "EHLO mta-01.yadro.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726246AbfH1KYT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 06:24:19 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mta-01.yadro.com (Postfix) with ESMTP id 8A9BC42ECA;
+        Wed, 28 Aug 2019 10:24:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
+        content-type:content-type:content-transfer-encoding:mime-version
+        :x-mailer:message-id:date:date:subject:subject:from:from
+        :received:received:received; s=mta-01; t=1566987856; x=
+        1568802257; bh=Z6gOnxcpev6cYIQbp+Z/8lEArpM2TigF6DeTVeb0yng=; b=k
+        wmQFRM/I89DOCih7PaiIHF4zHrTVZ+bsn/DPLjtA63cNXJn5mCciiyogFMzZsn9S
+        jY+Tdzv83e/f5H+J1QgAUObu7EkT6z5D42Rlykfb4MiRYnfIteHHtyJN0xfp/DER
+        XbYXeIaBX0RMsL3Y3VAnYlCLWnX7kaBxxf+nvpmrvY=
+X-Virus-Scanned: amavisd-new at yadro.com
+Received: from mta-01.yadro.com ([127.0.0.1])
+        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id ljMMtvMPotI3; Wed, 28 Aug 2019 13:24:16 +0300 (MSK)
+Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mta-01.yadro.com (Postfix) with ESMTPS id A91F9404CB;
+        Wed, 28 Aug 2019 13:24:14 +0300 (MSK)
+Received: from localhost.dev.yadro.com (172.17.15.69) by
+ T-EXCH-02.corp.yadro.com (172.17.10.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id
+ 15.1.669.32; Wed, 28 Aug 2019 13:24:13 +0300
+From:   Ivan Mikhaylov <i.mikhaylov@yadro.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+CC:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        <linux-watchdog@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        Alexander Amelkin <a.amelkin@yadro.com>,
+        <openbmc@lists.ozlabs.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/8] regulator: add support for SY8824C regulator
-Message-ID: <20190828101334.GB4298@sirena.co.uk>
-References: <20190827163252.4982af95@xhacker.debian>
- <20190827163418.1a32fc48@xhacker.debian>
- <20190827194437.GO23391@sirena.co.uk>
- <20190828112705.5e683693@xhacker.debian>
+        <devicetree@vger.kernel.org>,
+        Ivan Mikhaylov <i.mikhaylov@yadro.com>
+Subject: [PATCH v4 0/4] add dual-boot support
+Date:   Wed, 28 Aug 2019 13:23:58 +0300
+Message-ID: <20190828102402.13155-1-i.mikhaylov@yadro.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="IiVenqGWf+H9Y6IX"
-Content-Disposition: inline
-In-Reply-To: <20190828112705.5e683693@xhacker.debian>
-X-Cookie: Oatmeal raisin.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.17.15.69]
+X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
+ T-EXCH-02.corp.yadro.com (172.17.10.102)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ASPEED SoCs support dual-boot feature for SPI Flash.
+When strapped appropriately, the SoC starts wdt2 (/dev/watchdog1)
+and if within a minute it is not disabled, it goes off and reboots
+the SoC from an alternate SPI Flash chip by changing CS0 controls
+to actually drive CS1 line.
 
---IiVenqGWf+H9Y6IX
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+When booted from alternate chip, in order to access the main chip
+at CS0, the user must reset the appropriate bit in the watchdog
+hardware. There is no interface that would allow to do that from
+an embedded firmware startup script.
 
-On Wed, Aug 28, 2019 at 03:38:29AM +0000, Jisheng Zhang wrote:
-> On Tue, 27 Aug 2019 20:44:37 +0100 Mark Brown wrote:
+This commit implements support for that feature:
 
-> >=20
-> > Please send a patch which updates the entire comment block to be
-> > C++ style so it looks consistent.
+* Enable 'alt-boot' option for wdt2
 
-> Do you mean update the following style
+* Enable secondary SPI flash chip
 
-> A:
->=20
-> // SPDX-License-Identifier: GPL-2.0
-> /*
->  * SY8824C regulator driver
->  * ...
+* Make it possible to get access to the primary SPI flash chip at CS0
+  after booting from the alternate chip at CS1. A sysfs interface is added
+  to provide an easy way for embedded firmware startup scripts to clear
+  the chip select bit to gain access to the primary flash chip in order
+  to allow for recovery of its contents.
 
-> as B:
+Ivan Mikhaylov (4):
+  vesnin: add wdt2 section with alt-boot option
+  vesnin: add secondary SPI flash chip
+  watchdog/aspeed: add support for dual boot
+  aspeed/watchdog: Add access_cs0 option for alt-boot
 
-> // SPDX-License-Identifier: GPL-2.0
-> // SY8824C regulator driver
-> // ...
+ .../ABI/testing/sysfs-class-watchdog          | 34 ++++++++++
+ arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts   | 12 ++++
+ drivers/watchdog/aspeed_wdt.c                 | 65 ++++++++++++++++++-
+ 3 files changed, 110 insertions(+), 1 deletion(-)
 
-> I'm not sure which style is correct. But I see B is commonly used
-> in lots .c source files in other dirs, such as kernel/ mm/ etc.
+-- 
+2.20.1
 
-Yes, please - update to style B.
-
---IiVenqGWf+H9Y6IX
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1mU80ACgkQJNaLcl1U
-h9DQbAf9Etbge3YinPdjAxIYYWtuPv6r2hsxMHOm1iKbI1gItlt6aNtFLLilT4kk
-pv2lx+YEFNZXPP/cuwzsgtKEfMkPEM4KDsz85mY+3v8y350N+RiVIX1nUirnDEYs
-mWaLoK6D+DrKAPgDgH23zcNH6KoTKNYIPpUfdVQT/jiSXUWXRFDQnsko0e/zb2sw
-cJjadPq1V8qjMFaR+xAOh/sT+LLKseWgIYgxWBXgKSj/in8Bbpk09Fy+rONS6/D7
-5QRfNaUshg+L7SPK+TRfIs39VNnpuGQI3FqzHyzoht4uApVVmbozKx3KOy7SBks1
-72cq7+eqDXUZFMnI5nToM26kFj/K9w==
-=/Kyl
------END PGP SIGNATURE-----
-
---IiVenqGWf+H9Y6IX--
