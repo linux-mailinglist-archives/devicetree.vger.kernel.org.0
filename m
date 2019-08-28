@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FA26A05B0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:07:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CF63A05C9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 17:12:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726454AbfH1PHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 11:07:43 -0400
-Received: from foss.arm.com ([217.140.110.172]:32890 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726437AbfH1PHn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 11:07:43 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5FAC628;
-        Wed, 28 Aug 2019 08:07:42 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9DF093F59C;
-        Wed, 28 Aug 2019 08:07:41 -0700 (PDT)
-Date:   Wed, 28 Aug 2019 16:07:40 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        gustavo.pimentel@synopsys.com, digetx@gmail.com,
-        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V2 3/6] PCI: tegra: Add support to configure sideband pins
-Message-ID: <20190828150739.GX14582@e119886-lin.cambridge.arm.com>
-References: <20190828131505.28475-1-vidyas@nvidia.com>
- <20190828131505.28475-4-vidyas@nvidia.com>
+        id S1726545AbfH1PMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 11:12:06 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:39210 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726440AbfH1PMG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 11:12:06 -0400
+Received: by mail-wr1-f67.google.com with SMTP id t16so177553wra.6
+        for <devicetree@vger.kernel.org>; Wed, 28 Aug 2019 08:12:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=P0hG9q4LB7iGekm1JhwQRUtYrz5muvxkyOofP3RfFhA=;
+        b=rH7Gn3AjKHZbFLaxdTydl+21XtDp/c3XOzAXQeUr7/glUovX6NNiTZr6F09ghOMISm
+         N6EGUzPcQ+j22h6uCr+YjcOxfPKeSEV6y7X7Cr+oJ/cXz6Nu+lerCI1Jl6V9w9BOFwA/
+         bCLk2BxHpVQExy2rq6Lhx6ZvhF0GRXs/nU5nV8zaxcriyblTbRAfiN+4jqNng2LaPPBP
+         9OBJ5qMhKXkQNJzA+GN9qnja/4Od162cn/7fhcCya1WIrBB9BXD7vx7YRZmgHEJFEhKY
+         fm8zZoVZWW3qXG1qljLtob6+3JshgCTIv8sYXm7jcxhurVTbysO4LyTyId6dmXHZpmZL
+         W9nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=P0hG9q4LB7iGekm1JhwQRUtYrz5muvxkyOofP3RfFhA=;
+        b=aa8lrRGm1l9vZ3kqNN9sdk8PFQ+ztJpOKRoy4nQNpNUtSrfV0hAGX8awOGu1IB+70m
+         80XBNUVxzofQDbueFxxt2uKAu0L6KK8DZJicZL6NUzwowxa3AtrlNNDC7bN5owKiAmts
+         29OouKY/PMz8BPucfzQZU4qXI28hQSRl0rNfyxmT+gL61+/1Baj17WlYIXfhevG6Zbwn
+         hAfyjwMxudQuDpcEy0zLpbAK+JfoAMHfEuCdX0oR5itUcRhaAbWwlUJoT9pSTgakXzb0
+         6IR5KCKtZLULuM3eeU5U89/Pz30R5Ne9H5cBooAGiKobNREhXUV8QzKX2BERqRzNx1+V
+         Wt3Q==
+X-Gm-Message-State: APjAAAUTvFm/AN31mRDtEuqR4Eoo7Kk1dZGdKkuFQa573K+G2OOiEpOH
+        PADkQiuMWdwi6YX8q9k+UMp87g==
+X-Google-Smtp-Source: APXvYqz4/oPu11MT6odSjP8m1t6PJbsEBeAeOhlbcfVkXq2dmrdFzJWmAdZ/CRF08N4B8WACk/3F6w==
+X-Received: by 2002:adf:cd84:: with SMTP id q4mr5148814wrj.232.1567005124161;
+        Wed, 28 Aug 2019 08:12:04 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id d17sm2549897wrm.52.2019.08.28.08.12.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Aug 2019 08:12:03 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: meson: g12a: add tdm resets
+In-Reply-To: <7h36hltjoc.fsf@baylibre.com>
+References: <20190820121551.18398-1-jbrunet@baylibre.com> <7hh862tbt2.fsf@baylibre.com> <1j4l217m4h.fsf@starbuckisacylon.baylibre.com> <7h36hltjoc.fsf@baylibre.com>
+Date:   Wed, 28 Aug 2019 17:12:02 +0200
+Message-ID: <1jlfvdnx31.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190828131505.28475-4-vidyas@nvidia.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 06:45:02PM +0530, Vidya Sagar wrote:
-> Add support to configure sideband signal pins when information is present
-> in respective controller's device-tree node.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> V2:
-> * Addressed review comment from Andrew Murray
-> * Handled failure case of pinctrl_pm_select_default_state() cleanly
-> 
->  drivers/pci/controller/dwc/pcie-tegra194.c | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-tegra194.c b/drivers/pci/controller/dwc/pcie-tegra194.c
-> index fc0dbeb31d78..057ba4f9fbcd 100644
-> --- a/drivers/pci/controller/dwc/pcie-tegra194.c
-> +++ b/drivers/pci/controller/dwc/pcie-tegra194.c
-> @@ -1304,8 +1304,13 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
->  	if (ret < 0) {
->  		dev_err(dev, "Failed to get runtime sync for PCIe dev: %d\n",
->  			ret);
-> -		pm_runtime_disable(dev);
-> -		return ret;
-> +		goto fail_pm_get_sync;
-> +	}
-> +
-> +	ret = pinctrl_pm_select_default_state(pcie->dev);
+On Wed 28 Aug 2019 at 08:05, Kevin Hilman <khilman@baylibre.com> wrote:
 
-This patch looks OK, though you're still using pcie->dev here instead of dev.
+> Jerome Brunet <jbrunet@baylibre.com> writes:
+>
+>> On Tue 27 Aug 2019 at 16:42, Kevin Hilman <khilman@baylibre.com> wrote:
+>>
+>>> Jerome Brunet <jbrunet@baylibre.com> writes:
+>>>
+>>>> This patchset adds the dedicated reset of the tdm formatters which
+>>>> have been added on the g12a SoC family. Using these help with the channel
+>>>> mapping when the formatter uses more than 1 i2s lane.
+>>>
+>>> Because I forgot^W waited on this, we did the meson-g12a-common split,
+>>> so this no longer applies cleanly.  Could you rebase this on current v5.4/dt64
+>>> and I'll queue it for v5.4/dt64.
+>>
+>> Acutally it was already not applying when I sent this v1 ...
+>> .. which is why I sent a v2 [0] ;)
+>>
+>> [0]: https://lkml.kernel.org/r/20190823154432.16268-1-jbrunet@baylibre.com
+>
+> Oops, I saw there was a v2, but I missed that in my `git pw` because v2
+> of the series had an "ASoC:" prefix in the cover letter, not an "arm64:
+> dts" one, so I skimmed past it.
 
-Thanks,
+Oh ! indeed and this prefix makes no sense. Sorry about that
 
-Andrew Murray
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to configure sideband pins: %d\n", ret);
-> +		goto fail_pinctrl;
->  	}
->  
->  	tegra_pcie_init_controller(pcie);
-> @@ -1332,7 +1337,9 @@ static int tegra_pcie_config_rp(struct tegra_pcie_dw *pcie)
->  
->  fail_host_init:
->  	tegra_pcie_deinit_controller(pcie);
-> +fail_pinctrl:
->  	pm_runtime_put_sync(dev);
-> +fail_pm_get_sync:
->  	pm_runtime_disable(dev);
->  	return ret;
->  }
-> -- 
-> 2.17.1
-> 
+>
+> Kevin
