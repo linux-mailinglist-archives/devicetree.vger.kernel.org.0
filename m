@@ -2,127 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE9B69FEAF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 11:38:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66DC49FEC7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 11:44:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726391AbfH1Jig (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 05:38:36 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44452 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726340AbfH1Jig (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 05:38:36 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7S9cQeI020608;
-        Wed, 28 Aug 2019 04:38:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1566985106;
-        bh=yp8N2N5EP3yYlCK65D66DkEGfXW2eOtkjqrbcnFjoMs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=L+FLZ16UR4FRflRPQoY9zZHDvbHrXqCTagQ+hvdtuaHzu8VwLigyugkolqG6GWpaj
-         hD/QRPkTI66krSkT4vExFCwBzSk3WfUQj83sfWX2n3ALEEPW/gxyttAZa9HU0BOn34
-         C7c7aOloMK1M/Kfz0dvqyUKxj0KSHFFDd4QkQp64=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7S9cQnA085208
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 28 Aug 2019 04:38:26 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 28
- Aug 2019 04:38:25 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 28 Aug 2019 04:38:25 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7S9cNJk071564;
-        Wed, 28 Aug 2019 04:38:24 -0500
-Subject: Re: [PATCH] dt-bindings: dmaengine: dma-common: Revise the
- dma-channel-mask property
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-CC:     "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <1566974375-32482-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <eb823985-5cf6-0d83-8613-1baeeaf7d9c8@ti.com>
- <TYAPR01MB454400436713332F1075D424D8A30@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <3b06567c-8cfe-bfec-3973-c3e7cf71a18b@ti.com>
-Date:   Wed, 28 Aug 2019 12:38:46 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726513AbfH1JoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 05:44:19 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50450 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726315AbfH1JoS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 05:44:18 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 7A77DAD26;
+        Wed, 28 Aug 2019 09:44:16 +0000 (UTC)
+Message-ID: <5271f3041cf16ec06a8266b0072f294384280f54.camel@suse.de>
+Subject: Re: [PATCH v2 01/11] asm-generic: add dma_zone_size
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     catalin.marinas@arm.com, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org, will@kernel.org,
+        m.szyprowski@samsung.com, linux-arch@vger.kernel.org,
+        f.fainelli@gmail.com, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        marc.zyngier@arm.com, robh+dt@kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, phill@raspberryi.org,
+        mbrugger@suse.com, eric@anholt.net, linux-kernel@vger.kernel.org,
+        iommu@lists.linux-foundation.org, wahrenst@gmx.net,
+        akpm@linux-foundation.org, Robin Murphy <robin.murphy@arm.com>
+Date:   Wed, 28 Aug 2019 11:44:12 +0200
+In-Reply-To: <027272c27398b950f207101a2c5dbc07a30a36bc.camel@suse.de>
+References: <20190820145821.27214-1-nsaenzjulienne@suse.de>
+         <20190820145821.27214-2-nsaenzjulienne@suse.de>
+         <20190826070939.GD11331@lst.de>
+         <027272c27398b950f207101a2c5dbc07a30a36bc.camel@suse.de>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-HuE7CYEmA0DlmwKJIinl"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-In-Reply-To: <TYAPR01MB454400436713332F1075D424D8A30@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
 
-On 28/08/2019 11.55, Yoshihiro Shimoda wrote:
-> Hi Peter,
-> 
->> From: Peter Ujfalusi, Sent: Wednesday, August 28, 2019 4:25 PM
->>
->> On 28/08/2019 9.39, Yoshihiro Shimoda wrote:
->>> The commit b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas
->>> for the generic DMA bindings") changed the property from
->>> dma-channel-mask to dma-channel-masks. So, this patch revises it.
->>>
->>> Fixes: b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas for the generic DMA bindings")
->>> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
->>> ---
->>>  Documentation/devicetree/bindings/dma/dma-common.yaml | 2 +-
->>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/dma/dma-common.yaml
->> b/Documentation/devicetree/bindings/dma/dma-common.yaml
->>> index 0141af0..ed0a49a 100644
->>> --- a/Documentation/devicetree/bindings/dma/dma-common.yaml
->>> +++ b/Documentation/devicetree/bindings/dma/dma-common.yaml
->>> @@ -24,7 +24,7 @@ properties:
->>>      description:
->>>        Used to provide DMA controller specific information.
->>>
->>> -  dma-channel-masks:
->>> +  dma-channel-mask:
->>>      $ref: /schemas/types.yaml#definitions/uint32
->>
->> How this mask supposed to be used for controllers having more than 32
->> channels (64, 300+)?
-> 
-> I found "dma-channels" property as 40 in arch/arm/boot/dts/ste-u300.dts.
-> However, since arch/arm64/boot/dts/hisilicon/hi3660.dtsi already has
-> the dma-channel-mask property, I think we should not change the property name.
+--=-HuE7CYEmA0DlmwKJIinl
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm not asking it to be changed, I just wondered how I could use this
-generic property for DMA controllers having more channels than u32
-bitfield could describe. An array of multiple u32 to cover the number of
-channels would probably something which can be done, but it would need
-update for the documentation to make sure that it is used consistently.
+On Mon, 2019-08-26 at 15:46 +0200, Nicolas Saenz Julienne wrote:
+> On Mon, 2019-08-26 at 09:09 +0200, Christoph Hellwig wrote:
+> > On Tue, Aug 20, 2019 at 04:58:09PM +0200, Nicolas Saenz Julienne wrote:
+> > > Some architectures have platform specific DMA addressing limitations.
+> > > This will allow for hardware description code to provide the constrai=
+nts
+> > > in a generic manner, so as for arch code to properly setup it's memor=
+y
+> > > zones and DMA mask.
+> >=20
+> > I know this just spreads the arm code, but I still kinda hate it.
+>=20
+> Rob's main concern was finding a way to pass the constraint from HW defin=
+ition
+> to arch without widening fdt's architecture specific function surface. I'=
+d say
+> it's fair to argue that having a generic mechanism makes sense as it'll n=
+ow
+> traverse multiple archs and subsystems.
+>=20
+> I get adding globals like this is not very appealing, yet I went with it =
+as it
+> was the easier to integrate with arm's code. Any alternative suggestions?
+>=20
+> > MAX_DMA_ADDRESS is such an oddly defined concepts.  We have the mm
+> > code that uses it to start allocating after the dma zones, but
+> > I think that would better be done using a function returning
+> > 1 << max(zone_dma_bits, 32) or so.  Then we have about a handful
+> > of drivers using it that all seem rather bogus, and one of which
+> > I think are usable on arm64.
+>=20
+> Is it safe to assume DMA limitations will always be a power of 2? I ask a=
+s
+> RPi4
+> kinda isn't: ZONE_DMA is 0x3c000000 bytes big, I'm approximating the zone=
+ mask
+> to 30 as [0x3c000000 0x3fffffff] isn't defined as memory so it's unlikely=
+ that
+> we=C2=B4ll encounter buffers there. But I don't know how it could affect =
+mm
+> initialization code.
+>=20
+> This also rules out 'zone_dma_bits' as a mechanism to pass ZONE_DMA's siz=
+e
+> from
+> HW definition code to arch's.
 
-I'm asking this because of: https://patchwork.kernel.org/patch/11111619/
+Hi Christoph,
+I gave it a thought and think this whole MAX_DMA_ADDRESS topic falls out of=
+ the
+scope of the series. I agree it's something that we should get rid of, but
+fixing it isn't going to affect the overall enhancement intended here.  I'd
+rather focus on how are we going to pass the DMA zone data into the arch co=
+de
+and fix MAX_DMA_ADDRESS on another series.
 
-> 
-> Best regards,
-> Yoshihiro Shimoda
-> 
->>>      description:
->>>        Bitmask of available DMA channels in ascending order that are
->>>
->>
->> - Péter
->>
->> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
->> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Regards,
+Nicolas
 
-- Péter
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+--=-HuE7CYEmA0DlmwKJIinl
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1mTOwACgkQlfZmHno8
+x/5rEQf/a0hgCNBuEJW0dF6JOgmq1B1AUgrpu1lR5mCYvRYKaWrIH0GEWk7/DMYN
+5P/0pfK8WcmvSuTsH3kAL9FVcqCF1fm+KHxDUfHg0WM4TbfF/SNx8nzM0thhMSGg
+vcgA6AP1aXP4wkqXKPhjga2uBewFfdD02TKqIvsSKEXAUge69kAkVjSAy/Sz8Rj9
+NUwJ6GbY5Clul7ZkO6eRe39K/bnmICJytZCvmxas+x3YQN5eiml9ooPhHoCa48l1
+tzjKhxg5VSCVPYdvIdauSRDsuHKcYzezXiaX/mX8Rz6h2/4bWbX9/Lt9Y5UZyikO
+2DdZK0hdYuTCw2X0qHF5x4sS1s9Tew==
+=HHcK
+-----END PGP SIGNATURE-----
+
+--=-HuE7CYEmA0DlmwKJIinl--
+
