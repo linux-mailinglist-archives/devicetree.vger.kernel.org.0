@@ -2,92 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F900A0B6C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 22:28:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 745EDA0C28
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 23:06:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727056AbfH1U1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 16:27:45 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:34285 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726616AbfH1U1o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 16:27:44 -0400
-Received: by mail-pg1-f194.google.com with SMTP id n9so332469pgc.1;
-        Wed, 28 Aug 2019 13:27:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dkXX5TgiTvbmjZ2s48sm4xiTslbHfT/2Tf1RMDcUMM4=;
-        b=lmauFG49VNHXeEHXlI8hUJynuUqS3GWxNpN9EIvomJl3C9ApBZzLH/erJcW6rTzdgw
-         Lt5iL4SbrD/pv4FYJSvMNDc5RoBBFqvCnChz/nyFqV6jaIhuund/Km4eDj7iZsoa1cmN
-         zw3ru34EDUQ7Hb/P8ut5dyDuh8XNHF+4tq/VaNO/GgEHvLSCk6DAK77CBeoS1WOh5Vvg
-         /wknMk9qtIbldZ4WMagQ1WgWEQOTyH9bJJNU0kT0m3YbTPS+BN4q+qu1u0I1fsAYP3Uk
-         FmgwNwr30tTw6lbv8nhaVxImkRrYqQn0RwsnhBYyXPQSR6aS0EaqFUyHuK6oJ58t9FgV
-         dSAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dkXX5TgiTvbmjZ2s48sm4xiTslbHfT/2Tf1RMDcUMM4=;
-        b=TpsGz9394kelTSTRqIYRd2MTocVYBJQLF0+g23Z4OaMV9pR2IZokk6ahZvdE5Gq8Ui
-         d5Vmj4uFpiKByTPEhSdAiQMkr/XXth4k1Qas80pS+ILDtWmlBY0O+vnkK/o2Ft6Mc21i
-         PzyM4wyaIzMyHzgQnt20dItyf5QTDPRduLKXeB2k+NOivtoQ3EPK9aeRk2UgIcCEwGud
-         1eNss0cTG9IA6wKNAesGi3/5n/mt8Ml7E8C72G9rmag4XE0WsvCYDKfRaXRgIE+NpyvB
-         ts3/CSmzpVt7rT0NvW6/RJk6eiByRZASp2/KlwiVmBbnHqEi52IdbQvOqL6OA62mJIEh
-         iW0Q==
-X-Gm-Message-State: APjAAAWnwT1Df4kGcUnjwZ1lqrMyiXToSstMSdyR8PPJZfSd8yTMvE3E
-        CfdASjh6r3kpqk/ZCWzrncI=
-X-Google-Smtp-Source: APXvYqzh2Ahi+YBjudkc/D6a3Rt2lT3vtzWfy3Lwr8zSzRTJ1DJR4wGqglvYhUWpr6KYMJNbz3+Mtw==
-X-Received: by 2002:a62:641:: with SMTP id 62mr6804168pfg.55.1567024064309;
-        Wed, 28 Aug 2019 13:27:44 -0700 (PDT)
-Received: from localhost.localdomain ([103.51.74.111])
-        by smtp.gmail.com with ESMTPSA id g2sm253373pfq.88.2019.08.28.13.27.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2019 13:27:43 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCHv1 3/3] arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI supply
-Date:   Wed, 28 Aug 2019 20:27:23 +0000
-Message-Id: <20190828202723.1145-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190828202723.1145-1-linux.amoon@gmail.com>
-References: <20190828202723.1145-1-linux.amoon@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726773AbfH1VGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 17:06:48 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:36936 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726583AbfH1VGs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 17:06:48 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 60C3C1539AF06;
+        Wed, 28 Aug 2019 14:06:47 -0700 (PDT)
+Date:   Wed, 28 Aug 2019 14:06:44 -0700 (PDT)
+Message-Id: <20190828.140644.534529249197568915.davem@davemloft.net>
+To:     yash.shah@sifive.com
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        nicolas.ferre@microchip.com, palmer@sifive.com,
+        paul.walmsley@sifive.com, ynezz@true.cz, sachin.ghadi@sifive.com
+Subject: Re: [PATCH v2 0/2] Update ethernet compatible string for SiFive
+ FU540
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <1566882364-23891-1-git-send-email-yash.shah@sifive.com>
+References: <1566882364-23891-1-git-send-email-yash.shah@sifive.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Wed, 28 Aug 2019 14:06:47 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per shematics HDMI_P5V0 is supplied by P5V0 so add missing link.
+From: Yash Shah <yash.shah@sifive.com>
+Date: Tue, 27 Aug 2019 10:36:02 +0530
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 ++
- 1 file changed, 2 insertions(+)
+> This patch series renames the compatible property to a more appropriate
+> string. The patchset is based on Linux-5.3-rc6 and tested on SiFive
+> Unleashed board
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index a078a1ee5004..47789fd50415 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -213,6 +213,8 @@
- 	status = "okay";
- 	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
- 	pinctrl-names = "default";
-+	/* AP2331SA-7 */
-+	hdmi-supply = <&p5v0>;
- };
- 
- &hdmi_tx_tmds_port {
--- 
-2.23.0
+You should always base changes off of "net" or "net-next" and be explicitly
+in your Subject lines which of those two trees your changes are for f.e.:
 
+	Subject: [PATCH v2 net-next N/M] ...
+
+> 
+> Change history:
+> Since v1:
+> - Dropped PATCH3 because it's already merged
+> - Change the reference url in the patch descriptions to point to a
+>   'lore.kernel.org' link instead of 'lkml.org'
+
+Series applied to 'net'.
