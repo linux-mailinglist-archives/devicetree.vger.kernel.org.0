@@ -2,85 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5950D9F772
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 02:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 213A69F7CC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 03:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726111AbfH1AiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 20:38:02 -0400
-Received: from forward105o.mail.yandex.net ([37.140.190.183]:40335 "EHLO
-        forward105o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726078AbfH1AiB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 20:38:01 -0400
-Received: from mxback25o.mail.yandex.net (mxback25o.mail.yandex.net [IPv6:2a02:6b8:0:1a2d::76])
-        by forward105o.mail.yandex.net (Yandex) with ESMTP id 6B09C4200053;
-        Wed, 28 Aug 2019 03:37:57 +0300 (MSK)
-Received: from smtp3p.mail.yandex.net (smtp3p.mail.yandex.net [2a02:6b8:0:1472:2741:0:8b6:8])
-        by mxback25o.mail.yandex.net (nwsmtp/Yandex) with ESMTP id WghB2cmymp-buEehqwS;
-        Wed, 28 Aug 2019 03:37:57 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1566952677;
-        bh=L2Xd+9AiOoNLfOkQ5EzsvSfGq3k5Jl0vE6Xs4nSiU1Y=;
-        h=In-Reply-To:From:To:Subject:Cc:Date:References:Message-ID;
-        b=mkM8tid/f0vhI0tT9Zot6Gx4VyuFcRiS8Qq4cUwuukuXsFLIopzpHfT5csVUQe/r+
-         qVUXUAY9JSC59x4agFcPvO82wXqDRzQZwvebwYHVKipQX8Lfk1kcAE1OJEItP1j0y/
-         V1pdHY+SLC6UuXZeGf4ZPeRFUVuHX601EvJsAmdo=
-Authentication-Results: mxback25o.mail.yandex.net; dkim=pass header.i=@flygoat.com
-Received: by smtp3p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id SYjjmtSgLl-bl1WrXMb;
-        Wed, 28 Aug 2019 03:37:55 +0300
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client certificate not present)
-Subject: Re: [PATCH 02/13] MIPS: Loongson64: Sepreate loongson2ef/loongson64
- code
-To:     Aaro Koskinen <aaro.koskinen@iki.fi>
-Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
-        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
-        maz@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.co, devicetree@vger.kernel.org
-References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
- <20190827085302.5197-3-jiaxun.yang@flygoat.com>
- <20190827220506.GK30291@darkstar.musicnaut.iki.fi>
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-Message-ID: <c03045cd-25df-a3b9-3b3b-cf09b7fdd3fa@flygoat.com>
-Date:   Wed, 28 Aug 2019 08:37:34 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726258AbfH1B2Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 21:28:25 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:5087 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726096AbfH1B2Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Aug 2019 21:28:25 -0400
+X-UUID: 96f7fddde3974cd790b42912ff8297f0-20190828
+X-UUID: 96f7fddde3974cd790b42912ff8297f0-20190828
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 237847491; Wed, 28 Aug 2019 09:28:26 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 28 Aug
+ 2019 09:28:24 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 28 Aug 2019 09:28:23 +0800
+Message-ID: <1566955695.7317.17.camel@mhfsdcap03>
+Subject: Re: [PATCH next v10 03/11] dt-bindings: usb: add binding for USB
+ GPIO based connection detection driver
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        "Badhri Jagan Sridharan" <badhri@google.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nagarjuna Kristam <nkristam@nvidia.com>
+Date:   Wed, 28 Aug 2019 09:28:15 +0800
+In-Reply-To: <20190827183154.GA10374@bogus>
+References: <1566547041-20804-1-git-send-email-chunfeng.yun@mediatek.com>
+         <1566547041-20804-4-git-send-email-chunfeng.yun@mediatek.com>
+         <20190827183154.GA10374@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20190827220506.GK30291@darkstar.musicnaut.iki.fi>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 259D35EFF30C0616C1A211BC45937CDECB94215148384FD745984477FEA65A402000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2019-08-27 at 13:31 -0500, Rob Herring wrote:
+> On Fri, Aug 23, 2019 at 03:57:13PM +0800, Chunfeng Yun wrote:
+> > It's used to support dual role switch via GPIO when use Type-B
+> > receptacle, typically the USB ID pin is connected to an input
+> > GPIO, and also used to enable/disable device when the USB Vbus
+> > pin is connected to an input GPIO.
+> > 
+> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> > ---
+> > v9~v10 no changes
+> > 
+> > v8 changes:
+> >  1. rename the title
+> >  2. change the compatible as "linux,usb-conn-gpio" instead of
+> >     "linux,typeb-conn-gpio"
+> 
+> I don't think that is an improvement. How about 'gpio-usb-b-connector' 
+> to be consistent.
+Ok
 
-On 2019/8/28 上午6:05, Aaro Koskinen wrote:
-> Hi,
->
-> On Tue, Aug 27, 2019 at 04:52:51PM +0800, Jiaxun Yang wrote:
->> As later model of GSx64 family processors including 2-series-soc have
->> similar design with initial loongson3a while loongson2e/f seems less
->> identical, we seprate loongson2e/f support code out of mach-loongson64
->                  ^^^^^^^
->
-> separate (typo in patch title as well)
->
->> to make our life easier.
->>
->> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> [...]
->
->> +config MACH_LOONGSON2EF
-Hi Aaro,
-> You need to update lemote2f_defconfig with his patch.
+> 
+> > 
+> > v7 changes:
+> >  1. add description for device only mode
+> > 
+> > v6 changes:
+> >  1. remove status and port nodes in example
+> >  2. make vbus-supply as optional property
+> > 
+> > v5 changes:
+> >  1. treat type-B connector as child device of USB controller's, but not
+> >     as a separate virtual device, suggested by Rob
+> >  2. put connector's port node under connector node, suggested by Rob
+> > 
+> > v4 no changes
+> > 
+> > v3 changes:
+> >  1. treat type-B connector as a virtual device, but not child device of
+> >     USB controller's
+> > 
+> > v2 changes:
+> >   1. new patch to make binding clear suggested by Hans
+> > ---
+> >  .../devicetree/bindings/usb/usb-conn-gpio.txt | 31 +++++++++++++++++++
+> >  1 file changed, 31 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/usb-conn-gpio.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/usb-conn-gpio.txt b/Documentation/devicetree/bindings/usb/usb-conn-gpio.txt
+> > new file mode 100644
+> > index 000000000000..d4d107fedc22
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/usb-conn-gpio.txt
+> > @@ -0,0 +1,31 @@
+> > +USB GPIO Based Connection Detection
+> > +
+> > +This is typically used to switch dual role mode from the USB ID pin connected
+> > +to an input GPIO, and also used to enable/disable device mode from the USB
+> > +Vbus pin connected to an input GPIO.
+> > +
+> > +Required properties:
+> > +- compatible : should include "linux,usb-conn-gpio" and "usb-b-connector".
+> > +- id-gpios, vbus-gpios : input gpios, either one of them must be present,
+> > +	and both can be present as well.
+> > +	see connector/usb-connector.txt
+> > +
+> > +Optional properties:
+> > +- vbus-supply : can be present if needed when supports dual role mode.
+> > +	see connector/usb-connector.txt
+> > +
+> > +- Sub-nodes:
+> > +	- port : can be present.
+> > +		see graph.txt
+> > +
+> > +Example:
+> > +
+> > +&mtu3 {
+> > +	connector {
+> > +		compatible = "linux,usb-conn-gpio", "usb-b-connector";
+> > +		label = "micro-USB";
+> 
+> 'label' is for a human identifying a particular connector when there are 
+> multiple (of the same type). So not a great example here.
+Got it, will remove it
 
-How to generate this config? We should not edit it manually right?
+Thanks a lot
+> 
+> > +		type = "micro";
+> > +		id-gpios = <&pio 12 GPIO_ACTIVE_HIGH>;
+> > +		vbus-supply = <&usb_p0_vbus>;
+> > +	};
+> > +};
+> > -- 
+> > 2.23.0
+> > 
 
-Thanks
 
---
-
-Jiaxun Yang
-
-> A.
