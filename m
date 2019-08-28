@@ -2,177 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 790219F87C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 04:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC4B9F886
+	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 05:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726206AbfH1C7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Aug 2019 22:59:37 -0400
-Received: from mga17.intel.com ([192.55.52.151]:54338 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726111AbfH1C7h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 27 Aug 2019 22:59:37 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 27 Aug 2019 19:59:37 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,439,1559545200"; 
-   d="scan'208";a="197450540"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga001.fm.intel.com with ESMTP; 27 Aug 2019 19:59:36 -0700
-Received: from [10.226.39.8] (ekotax-mobl.gar.corp.intel.com [10.226.39.8])
-        by linux.intel.com (Postfix) with ESMTP id F1997580375;
-        Tue, 27 Aug 2019 19:59:34 -0700 (PDT)
-Subject: Re: [PATCH v2 1/2] dt-bindings: reset: Add YAML schemas for the Intel
- Reset controller
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+        id S1726470AbfH1DDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Aug 2019 23:03:00 -0400
+Received: from mail-eopbgr30068.outbound.protection.outlook.com ([40.107.3.68]:37765
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726178AbfH1DDA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 27 Aug 2019 23:03:00 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bc9hK9APccyum72sfb0qn0aPJGbo8nnAQREdRKv6QF+gMn7EdNxec94M5QIwEiStIkFXrMa+tJ0060DXV6+g6w+lGDNBl8v/H9Rv59xWdFgFZPqd5wzadwJygZmTOjHDtHIdNWql7v/n8vZAkfy0ERs50mE85kIJ4UghU++dgsPzzNpixQrRiwSZQJlBKlT4E58Ly/VbxTJ40+Fyoclu76NNfa7Nt/3cNQlFglQow3sAFx0pJZW6yU/0fNU5phYt1Z2cMJ1VyE3tYVBX3k1iD2MGpCvTddCa0DTcWDVKp/Y/J9a7AFrvzR/jvzeF19jGFsW+u7qes6F4rknAXY88Cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Rx9r6CgURtCFmp8DHjXvh7Bt6cFnUZHBoFRsXTMJoY=;
+ b=Ir6kf/I+jKNJvJZzCNim55D5zOKbRwJtTW+70/YVdPti3DoUFJ9FpK8SUMyrJDCcj2D49esgaQvOWyQAJI8QBzQLgc0IVK56zsXG1SIYDjofzz/IvdU+lY4ZFpmzNLkf83LacOLvMj72u9BEahsCi/I44Lh7/MdQgDL9I94GTUHcomoAR7WH9L26lWX1L8St6bblnNJl9yitx93Ao1hwFJXmHVpVSozPL6rNYV97tPah3za5WMHTDhmHHko5ZpR+sjNqMZzMAVCZfWXdBqXSZ8k4ki6AmQgYG5kPuf07DZYgj+0JcJbvt7T7LwLBHLk4/HWeLHtXHDTe5SPYxpW96A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2Rx9r6CgURtCFmp8DHjXvh7Bt6cFnUZHBoFRsXTMJoY=;
+ b=qIHxHcfGv1Gm09Kmb6/n8ee0Z3v6R0o4IFkF9qznXLOT4n8UmldwclV1p6viebWsNHQp5Bzg9EuViicladZ+QXywq3nRYRyM/HoDFmeYK4wFNtjqpva9iH+hQOSJTuAksJraKscY47E8yDeYygIDHik8fndaanw+0WAe6MS5ChE=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB6033.eurprd04.prod.outlook.com (20.179.33.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2178.18; Wed, 28 Aug 2019 03:02:54 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::5d98:e1f4:aa72:16b4]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::5d98:e1f4:aa72:16b4%4]) with mapi id 15.20.2178.023; Wed, 28 Aug 2019
+ 03:02:54 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-References: <42039170811f798b8edc66bf85166aefe7dbc903.1566531960.git.eswara.kota@linux.intel.com>
- <CAL_JsqJxh5TzDb8kOFm+F5Gs4WXF6BP5uaNPLcyx+srtaDisMw@mail.gmail.com>
- <746ed130-a1ae-0cc2-5060-70de95cdf2fe@linux.intel.com>
- <CAL_JsqLSU6+5umYeVmh1NYTcpUcpJKMt7d4d+5E+Ni5rqKJvxQ@mail.gmail.com>
- <c052e984-1144-6dc1-651a-8d9c924a1da9@linux.intel.com>
-Message-ID: <3e49f596-99d8-3ef4-8d35-32dd4dc978f3@linux.intel.com>
-Date:   Wed, 28 Aug 2019 10:59:33 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
-MIME-Version: 1.0
-In-Reply-To: <c052e984-1144-6dc1-651a-8d9c924a1da9@linux.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH v5 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Topic: [PATCH v5 0/2] mailbox: arm: introduce smc triggered mailbox
+Thread-Index: AQHVXU0W/OQqpHrw2UaiSQygGBIz9Q==
+Date:   Wed, 28 Aug 2019 03:02:54 +0000
+Message-ID: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
+Accept-Language: en-US
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.7.4
+x-clientproxiedby: HK2PR02CA0163.apcprd02.prod.outlook.com
+ (2603:1096:201:1f::23) To AM0PR04MB4481.eurprd04.prod.outlook.com
+ (2603:10a6:208:70::15)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d15ec50a-bf93-4ec6-b435-08d72b6438a6
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:AM0PR04MB6033;
+x-ms-traffictypediagnostic: AM0PR04MB6033:
+x-ms-exchange-purlcount: 4
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB60339A6C7E9DD99397A9EB2088A30@AM0PR04MB6033.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 014304E855
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(396003)(376002)(346002)(136003)(366004)(189003)(199004)(476003)(25786009)(6116002)(66446008)(53936002)(3846002)(66476007)(66946007)(66556008)(64756008)(8936002)(6512007)(14444005)(478600001)(386003)(44832011)(6306002)(305945005)(15650500001)(54906003)(2201001)(86362001)(2616005)(14454004)(486006)(6506007)(256004)(966005)(7736002)(6436002)(2906002)(50226002)(4326008)(81166006)(102836004)(81156014)(8676002)(6486002)(36756003)(5660300002)(26005)(71190400001)(2501003)(99286004)(66066001)(52116002)(316002)(186003)(71200400001)(110136005);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6033;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: MOuufvugdaLsoY3W1ukB+WMdtSjLlDAhRv4fupLXYl4+qBwd21C+Xsx/yG8oKpjo0m6mGTrqqSP2D5pZQtRu/hmWqV+T16C8ACN9VEpDV6H7zQELZtFF1OuR+2uKoZpt9tLLA429lCq69V1HwrefQScHlgDCJ+qjSp7UaCPMBzuucP/LlD95h7eQ1b2/XSfmgPlSTZ0Yoxy1jNHJbvj4NqbyrckPtV6+Bkjx25DS+KRztmM7mA5nTG0hw879dHkLAI3oVu+LLud4UQoZ2+Ha3nkGGuid7wkSBx45RvJRJZ5c1rYS89DvefBKagdAtNEO+mF0KVCpVOgbMyozexjlNCiSACAkH/9S0F8/DIx0K/65yDWsCRAAfTn0Z4OJiJ+23J1/RKnyg+8ETA7KUi9x9AkSD9gSLWxP1/MxHZSRn7A=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d15ec50a-bf93-4ec6-b435-08d72b6438a6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Aug 2019 03:02:54.6176
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PccFo1di8NM2BGM+WAIsfvLonKL6dpxc1RSN4xI+NEC34U7K9gWo4q6qi14B8XIJUx3VxO5oSz/sKDslHVrzvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6033
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+From: Peng Fan <peng.fan@nxp.com>
 
-On 8/27/2019 10:04 PM, Dilip Kota wrote:
-> Hi Rob,
->
-> On 8/26/2019 7:23 PM, Rob Herring wrote:
->> On Mon, Aug 26, 2019 at 4:52 AM Dilip Kota 
->> <eswara.kota@linux.intel.com> wrote:
->>> Hi Rob,
->>>
->>> On 8/23/2019 8:25 PM, Rob Herring wrote:
->>>> On Fri, Aug 23, 2019 at 12:28 AM Dilip Kota 
->>>> <eswara.kota@linux.intel.com> wrote:
->>>>> Add YAML schemas for the reset controller on Intel
->>>>> Lightening Mountain (LGM) SoC.
->>>>>
->>>>> Signed-off-by: Dilip Kota <eswara.kota@linux.intel.com>
->>>>> ---
->>>>> Changes on v2:
->>>>>       Address review comments
->>>>>         Update the compatible property definition
->>>>>         Add description for reset-cells
->>>>>         Add 'additionalProperties: false' property
->>>>>
->>>>>    .../bindings/reset/intel,syscon-reset.yaml         | 53 
->>>>> ++++++++++++++++++++++
->>>>>    1 file changed, 53 insertions(+)
->>>>>    create mode 100644 
->>>>> Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->>>>>
->>>>> diff --git 
->>>>> a/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml 
->>>>> b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..3403a967190a
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->>>>> @@ -0,0 +1,53 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/reset/intel,syscon-reset.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Intel Lightening Mountain SoC System Reset Controller
->>>>> +
->>>>> +maintainers:
->>>>> +  - Dilip Kota <eswara.kota@linux.intel.com>
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    items:
->>>>> +      - const: intel,rcu-lgm
->>>>> +      - const: syscon
->>>>> +
->>>>> +  reg:
->>>>> +    description: Reset controller register base address and size
->>>>> +
->>>>> +  intel,global-reset:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>>>> +    description: Global reset register offset and bit offset.
->>>>> +
->>>>> +  "#reset-cells":
->>>>> +    const: 2
->>>>> +    description: |
->>>>> +      The 1st cell is the register offset.
->>>>> +      The 2nd cell is the bit offset in the register.
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - intel,global-reset
->>>>> +  - "#reset-cells"
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    rcu0: reset-controller@00000000 {
->>>>> +        compatible = "intel,rcu-lgm", "syscon";
->>>>> +        reg = <0x000000 0x80000>;
->>>>> +        intel,global-reset = <0x10 30>;
->>>>> +        #reset-cells = <2>;
->>>>> +    };
->>>>> +
->>>>> +    pcie_phy0: pciephy@... {
->>>>> +        ...
->>>> You need to run 'make dt_binding_check' and fix the warnings. The
->>>> example has to be buildable and it is not.
->>> Sure, i  will correct this pcie_phy0 node. But i didn't get any 
->>> warnings
->>> for make dt_binding_check
->>>
->>>     CHKDT 
->>> Documentation/devicetree/bindings/reset/intel,syscon-reset.yaml
->>> DTC Documentation/devicetree/bindings/arm/renesas.example.dt.yaml
->>> FATAL ERROR: Unknown output format "yaml"
->>>
->>> Will DTC report about the example node errors? But, DTC is failing with
->>> FATAL_ERROR.
->>> I tried it even after installing libyaml and headers in my local
->>> directory and export the path, but no luck.(ref:
->>> https://lkml.org/lkml/2018/12/3/951)
->>> Could you please let me know if i miss anything and help me to proceed
->>> further.
->> See Documentation/devicetree/writing-schema.md
->
-> I have followed all the steps mentioned in the document before keeping 
-> the mail itself.
-> Does the dtc script looks for libyaml and its header files at any 
-> default or specific location?
-DTC is working for me now.
-It is working for me after updating the libyaml and header paths in 
-scripts/dtc/Makefile and yamltree.c (since i have installed libyaml and 
-header files in my local directories)
+V5:
+yaml fix
 
-I have fixed all the warnings and DTC checks are successful. I will push 
-the changes in the next patch version.
-   DTC 
-Documentation/devicetree/bindings/reset/intel,syscon-reset.example.dt.yaml
-   CHECK 
-Documentation/devicetree/bindings/reset/intel,syscon-reset.example.dt.yaml
+V4:
+yaml fix for num-chans in patch 1/2.
+https://patchwork.kernel.org/cover/11116521/
 
-Regards,
-Dilip
+V3:
+Drop interrupt
+Introduce transports for mem/reg usage
+Add chan-id for mem usage
+Convert to yaml format
+https://patchwork.kernel.org/cover/11043541/
+=20
+V2:
+This is a modified version from Andre Przywara's patch series
+https://lore.kernel.org/patchwork/cover/812997/.
+The modification are mostly:
+Introduce arm,num-chans
+Introduce arm_smccc_mbox_cmd
+txdone_poll and txdone_irq are both set to false
+arm,func-ids are kept, but as an optional property.
+Rewords SCPI to SCMI, because I am trying SCMI over SMC, not SCPI.
+Introduce interrupts notification.
+
+[1] is a draft implementation of i.MX8MM SCMI ATF implementation that
+use smc as mailbox, power/clk is included, but only part of clk has been
+implemented to work with hardware, power domain only supports get name
+for now.
+
+The traditional Linux mailbox mechanism uses some kind of dedicated hardwar=
+e
+IP to signal a condition to some other processing unit, typically a dedicat=
+ed
+management processor.
+This mailbox feature is used for instance by the SCMI protocol to signal a
+request for some action to be taken by the management processor.
+However some SoCs does not have a dedicated management core to provide
+those services. In order to service TEE and to avoid linux shutdown
+power and clock that used by TEE, need let firmware to handle power
+and clock, the firmware here is ARM Trusted Firmware that could also
+run SCMI service.
+
+The existing SCMI implementation uses a rather flexible shared memory
+region to communicate commands and their parameters, it still requires a
+mailbox to actually trigger the action.
+
+This patch series provides a Linux mailbox compatible service which uses
+smc calls to invoke firmware code, for instance taking care of SCMI request=
+s.
+The actual requests are still communicated using the standard SCMI way of
+shared memory regions, but a dedicated mailbox hardware IP can be replaced =
+via
+this new driver.
+
+This simple driver uses the architected SMC calling convention to trigger
+firmware services, also allows for using "HVC" calls to call into hyperviso=
+rs
+or firmware layers running in the EL2 exception level.
+
+Patch 1 contains the device tree binding documentation, patch 2 introduces
+the actual mailbox driver.
+
+Please note that this driver just provides a generic mailbox mechanism,
+It could support synchronous TX/RX, or synchronous TX with asynchronous
+RX. And while providing SCMI services was the reason for this exercise,
+this driver is in no way bound to this use case, but can be used genericall=
+y
+where the OS wants to signal a mailbox condition to firmware or a
+hypervisor.
+Also the driver is in no way meant to replace any existing firmware
+interface, but actually to complement existing interfaces.
+
+[1] https://github.com/MrVan/arm-trusted-firmware/tree/scmi
+
+Peng Fan (2):
+  dt-bindings: mailbox: add binding doc for the ARM SMC/HVC mailbox
+  mailbox: introduce ARM SMC based mailbox
+
+ .../devicetree/bindings/mailbox/arm-smc.yaml       | 125 ++++++++++++
+ drivers/mailbox/Kconfig                            |   7 +
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/arm-smc-mailbox.c                  | 215 +++++++++++++++++=
+++++
+ 4 files changed, 349 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+ create mode 100644 drivers/mailbox/arm-smc-mailbox.c
+
+--=20
+2.16.4
 
