@@ -2,91 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EE00A11B4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 08:24:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAF57A1243
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:04:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725776AbfH2GYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 02:24:45 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:29503 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725782AbfH2GYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 02:24:45 -0400
-X-UUID: a196583a8332455382dc647d0c53f3f3-20190829
-X-UUID: a196583a8332455382dc647d0c53f3f3-20190829
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1898947706; Thu, 29 Aug 2019 14:24:38 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 29 Aug 2019 14:24:42 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 29 Aug 2019 14:24:42 +0800
-Message-ID: <1567059876.15320.3.camel@mtksdaap41>
-Subject: Re: Aw: Re: [BUG] [PATCH v5 02/10] mfd: mt6397: extract irq related
- code from core driver
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Frank Wunderlich <frank-w@public-files.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-mediatek@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        "Liam Girdwood" <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        "Mark Brown" <broonie@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "=?ISO-8859-1?Q?=22Ren=E9?= van Dorst\"" <opensource@vdorst.com>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        <linux-rtc@vger.kernel.org>
-Date:   Thu, 29 Aug 2019 14:24:36 +0800
-In-Reply-To: <trinity-a57f08bb-e30e-4e74-911c-c40e335d00da-1566580580817@3c-app-gmx-bs75>
-References: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1566531931-9772-3-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <trinity-1f82bff1-535e-47cd-9a2f-8faccb56e356-1566562433314@3c-app-gmx-bs11>
-         <e8a918ab-3e7a-b487-db77-df28d56518ce@gmail.com>
-         <0A87F427-2D81-412A-9549-09A51A021799@public-files.de>
-         <b5a21908-faee-17d1-ce26-99b941c0fa70@gmail.com>
-         <trinity-a57f08bb-e30e-4e74-911c-c40e335d00da-1566580580817@3c-app-gmx-bs75>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727709AbfH2HD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 03:03:56 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:34997 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727718AbfH2HDz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:03:55 -0400
+Received: by mail-wm1-f67.google.com with SMTP id l2so2590915wmg.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 00:03:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=syJN1AElda7xhPvOw/vcy1dd6HyoWfY83SuIugcFyfE=;
+        b=ApuYI+m8YDXZXFm3JiiYl7767qTRfvwsIUrqU1BtJ2d3ovZVEMt+HLDjKOOIG8qu1y
+         H1FIhI5XqpMsPJWwcN+FJL3SMafk+HnnOisnkhs5CTX06OlcP+lctgbMQMQQYPjf1kx/
+         m70NRulYPkKyxLP8brmSIv3W7/6N6Npa5ffSDDSuHslYCMPxVrwrHpAj+hoRisd4261N
+         sB/bzFTQm+B4HQkAOUQUfWZFcJkFLStqshAbLDIVaNiR32aBlPSG0x9Rl2K87crpsTpj
+         bexhAjHtp/q0EQLl/PHc8wg2+Zpw+bIXy3QmloUGO50Kzh0ZWLkQ6PsZw8NWcPyTf/yE
+         3L+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=syJN1AElda7xhPvOw/vcy1dd6HyoWfY83SuIugcFyfE=;
+        b=BWqkQHemfRPhXxExGWMOUFxgJM9rwcltaOrXFEjYKIYPSi2TUfPLYNJ4fUs+9dlAA7
+         +EBqEl9YwWoIdcFQ60DI602KjGJMd1Whrwnf8IN2V7D/CRr4hVSdUwUWS8an5GtpOyBR
+         m7lDq7wWLx/tw2i2cchMtHjWtFI+7fiHfTGaJc1XW3j9YD776uxFUX9CQlpeoV0WJRQG
+         /309m1/ptrvhV1G7KEsC5/iSyqazqzkRCtNouQukpLEI15EMNHkPlOAxVBQ/uZKB0Im6
+         QqW62womtZ6emc5qmg84QV15LBu7nAWLmTff5mz5PBCIfGKRb/3voMeaA67f+Auw9DOb
+         S/Fw==
+X-Gm-Message-State: APjAAAXRuuE1i5fqlkEZoCHzM6FKTwOSlAYrTDhErl4WPVXpO4y9j7PL
+        XZYnwDXhUMfzvjSyFuZ/cENoAQ==
+X-Google-Smtp-Source: APXvYqya0CiL9G1moyvmqQVNqGgkib/s77qe7jypGG/sh++aoSP0FKfRPFNRmI03bw4m+Sn596Ij4g==
+X-Received: by 2002:a7b:ce8f:: with SMTP id q15mr2906912wmj.154.1567062231241;
+        Thu, 29 Aug 2019 00:03:51 -0700 (PDT)
+Received: from [192.168.1.6] (124.red-83-36-179.dynamicip.rima-tde.net. [83.36.179.124])
+        by smtp.gmail.com with ESMTPSA id n14sm4299285wra.75.2019.08.29.00.03.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 29 Aug 2019 00:03:50 -0700 (PDT)
+Subject: Re: [PATCH v4 3/4] dt-bindings: Add Qualcomm USB SuperSpeed PHY
+ bindings
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     robh@kernel.org, swboyd@chromium.org, andy.gross@linaro.org,
+        shawn.guo@linaro.org, gregkh@linuxfoundation.org,
+        mark.rutland@arm.com, kishon@ti.com, jackp@codeaurora.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, khasim.mohammed@linaro.org
+References: <20190207111734.24171-1-jorge.ramirez-ortiz@linaro.org>
+ <20190207111734.24171-4-jorge.ramirez-ortiz@linaro.org>
+ <20190223165218.GB572@tuxbook-pro>
+From:   Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Message-ID: <6dc0957d-5806-7643-4454-966015865d38@linaro.org>
+Date:   Thu, 29 Aug 2019 09:03:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
+In-Reply-To: <20190223165218.GB572@tuxbook-pro>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank/Matthias,
+On 2/23/19 17:52, Bjorn Andersson wrote:
+> On Thu 07 Feb 03:17 PST 2019, Jorge Ramirez-Ortiz wrote:
+> 
+>> Binding description for Qualcomm's Synopsys 1.0.0 SuperSpeed phy
+>> controller embedded in QCS404.
+>>
+>> Based on Sriharsha Allenki's <sallenki@codeaurora.org> original
+>> definitions.
+>>
+>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+>> ---
+>>  .../bindings/phy/qcom,snps-usb-ssphy.txt      | 79 +++++++++++++++++++
+>>  1 file changed, 79 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/phy/qcom,snps-usb-ssphy.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,snps-usb-ssphy.txt b/Documentation/devicetree/bindings/phy/qcom,snps-usb-ssphy.txt
+>> new file mode 100644
+>> index 000000000000..354e6f9cef62
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,snps-usb-ssphy.txt
+>> @@ -0,0 +1,79 @@
+>> +Qualcomm Synopsys 1.0.0 SS phy controller
+>> +===========================================
+>> +
+>> +Qualcomm 1.0.0 SS phy controller supports SuperSpeed USB connectivity on
+>> +some Qualcomm platforms.
+>> +
+>> +Required properties:
+>> +
+>> +- compatible:
+>> +    Value type: <string>
+>> +    Definition: Should contain "qcom,snps-usb-ssphy".
+> 
+> Per Rob's request make this:
+> 
+> Should contain "qcom,qcs404-snps-usb-ssphy" and "qcom,snps-usb-ssphy"
 
-On Fri, 2019-08-23 at 19:16 +0200, Frank Wunderlich wrote:
-> > Gesendet: Freitag, 23. August 2019 um 17:42 Uhr
-> > Von: "Matthias Brugger" <matthias.bgg@gmail.com>
+ok
+
 > 
-> > I suppose that's because 3/10 has code that should be in 2/10 and for some
-> > reason 3/10 was not pushed for linux-next inclusion. Although it has the same
-> > Acked-for-mfd-by tag.
-> >
-> > @Frank, can you test if adding 3/10 to your code base fixes the issue?
+> You can then leave the driver matching on qcom,snps-usb-ssphy for now
+> and if we ever find this to be incompatible with other platforms we can
+> make the driver match on the platform-specific compatible.
+
+ok
+
 > 
-> adding part 3 [1] seems to fix the issue too
+>> +
+>> +- reg:
+>> +    Value type: <prop-encoded-array>
+>> +    Definition: USB PHY base address and length of the register map.
+>> +
+>> +- #phy-cells:
+>> +    Value type: <u32>
+>> +    Definition: Should be 0. See phy/phy-bindings.txt for details.
+>> +
+>> +- clocks:
+>> +    Value type: <prop-encoded-array>
+>> +    Definition: See clock-bindings.txt section "consumers". List of
+>> +		 three clock specifiers for reference, phy core and
+>> +		 pipe clocks.
+>> +
+>> +- clock-names:
+>> +    Value type: <string>
+>> +    Definition: Names of the clocks in 1-1 correspondence with the "clocks"
+>> +		 property. Must contain "ref", "phy" and "pipe".
+>> +
+>> +- vdd-supply:
+>> +    Value type: <phandle>
+>> +    Definition: phandle to the regulator VDD supply node.
+>> +
+>> +- vdda1p8-supply:
+>> +    Value type: <phandle>
+>> +    Definition: phandle to the regulator 1.8V supply node.
+>> +
+>> +Optional properties:
+>> +
+>> +- resets:
+>> +    Value type: <prop-encoded-array>
+>> +    Definition: See reset.txt section "consumers". Specifiers for COM and
+>> +		 PHY resets.
+>> +
+>> +- reset-names:
+>> +    Value type: <string>
+>> +    Definition: Names of the resets in 1-1 correspondence with the "resets"
+>> +		 property. Must contain "com" and "phy" if the property is
+>> +		 specified.
+>> +
+>> +Required child nodes:
+>> +
+>> +- usb connector node as defined in bindings/connector/usb-connector.txt
+>> +  containing the property vbus-supply.
+>> +
+>> +Example:
+>> +
+>> +usb3_phy: usb3-phy@78000 {
+>> +	compatible = "qcom,snps-usb-ssphy";
+>> +	reg = <0x78000 0x400>;
+>> +	#phy-cells = <0>;
+>> +	clocks = <&rpmcc RPM_SMD_LN_BB_CLK>,
+>> +		 <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
+>> +		 <&gcc GCC_USB3_PHY_PIPE_CLK>;
+>> +	clock-names = "ref", "phy", "pipe";
+>> +	resets = <&gcc GCC_USB3_PHY_BCR>,
+>> +		 <&gcc GCC_USB3PHY_PHY_BCR>;
+>> +	reset-names = "com", "phy";
+>> +	vdd-supply = <&vreg_l3_1p05>;
+>> +	vdda1p8-supply = <&vreg_l5_1p8>;
+>> +	usb3_c_connector: usb3-c-connector {
 > 
-> [    4.960051] mt6323-regulator mt6323-regulator: Chip ID = 0x2023
+> The USB-C connector is attached both to the HS and SS PHYs, so I think
+> you should represent this external to this node and use of_graph to
+> query it.
+
+but AFAICS we wont be able to retrieve the vbux-supply from an external
+node (that interface does not exist).
+
+rob, do you have a suggestion?
+
 > 
-> thanks
+> So the connector should look similar to example 2 in
+> connector/usb-connector.txt.
 > 
-> [1] https://patchwork.kernel.org/patch/11110509/
-Thanks for your comments.
-The root cause seems I didn't split the code well.
-I will fix it in the next version.
+> Regards,
+> Bjorn
+> 
+>> +		compatible = "usb-c-connector";
+>> +		label = "USB-C";
+>> +		type = "micro";
+>> +		vbus-supply = <&usb3_vbus_reg>;
+>> +	};
+>> +};
+>> -- 
+>> 2.20.1
+>>
+> 
 
