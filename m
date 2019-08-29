@@ -2,82 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69940A2A28
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 00:47:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB2C9A2A5C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 00:56:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728474AbfH2Wrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 18:47:31 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:44308 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728067AbfH2Wra (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 18:47:30 -0400
-Received: by mail-ot1-f65.google.com with SMTP id w4so5046364ote.11;
-        Thu, 29 Aug 2019 15:47:30 -0700 (PDT)
+        id S1727907AbfH2W4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 18:56:05 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:46158 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727992AbfH2W4E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 18:56:04 -0400
+Received: by mail-oi1-f195.google.com with SMTP id t24so3863730oij.13;
+        Thu, 29 Aug 2019 15:56:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LGSaPx3LdslUNS74sxx3stGfHKDniSUYmPCWv7ZUOGU=;
-        b=CmpG0SmsLqyUSBg7Wvh6/wQCTN0dIubo5S4yZEAJ4meR9D+aJbxflrXqXUyUfOk+uc
-         VC31yFrQ0b/N8vR9oCOJjJm1KqoHEjmD0gjG6MtNDFcwUDvFkQIC5uvyYNGEUG9IFpxA
-         +dt/jrP6Hf5el3PA3V13jIE/FoFFJBGS0etMF/xbMYL/G4MUBq+UhNBiUaJljXvKYIXM
-         B2SkC1LJNtrCTo4pkZRGNEQmZjnixSufFk1vFby2ItG7yodq+ec2onEN5zqsNTFLyNNF
-         NGSPWfk4wO1z1ByNwjN5It64Biqh2OnmJmYVRO6/UbuTIHuEBcczPts7IUsmco6EYrp1
-         nFsA==
-X-Gm-Message-State: APjAAAUMS5tSzVp+Z+NtoOCUC3/zuUr70o/iN5HueZ9dHAf3Pd1DUpV7
-        I+HeRG2gcK9kZFa/fcL9mw==
-X-Google-Smtp-Source: APXvYqxvjUidJEXS3GfJHqsfP2OQKa+fDP+j/F6yDenxAYwRHbUHx3JF0HxP1UjQZHQSup1Fw1dzRQ==
-X-Received: by 2002:a05:6830:1f04:: with SMTP id u4mr1227223otg.340.1567118849657;
-        Thu, 29 Aug 2019 15:47:29 -0700 (PDT)
+        bh=AcqAKzCkm/gS75dDEccyBh6Oz2jirMULmsO7hRuPRrg=;
+        b=T5Ma4Zd5bMuuEw+CVg0G0+KTxTlak/eE9IGR3c7wGom18bNtrFXK9C5fYpq0Y6fI1b
+         c8m4q6+QNm0bgpDuSHujRv/h5m235x8IZpmGtlExxhzs1KyICXXGYK/6z/07Qz98RUjE
+         0a/tlnQ5l/YWnulfhx9QN6PIKHyzcVOsJuQjnt93Rivhn9vuqITRNJGKHPeiYoCidoBY
+         DeOxp4DALlsTgH0ZcjmaPO5CVdD9Idr0+Vge32MnBnesTYYMbZGa3wWc0+m1AwSpgBpr
+         RcpS2/w56WBGtFltQTyE+ygJpVygVXRSmGqbQJME+5gtiNBKNOQDh+wMDTo70avPx5IN
+         RgnQ==
+X-Gm-Message-State: APjAAAVIb6FbGr6pVRwpYQxijh3bolRCZbBWmAJAphFu2QyPX9t8j0Wp
+        91k3yjKgTkA7R/FPGE/suA==
+X-Google-Smtp-Source: APXvYqwkvLByG+E3adSffoHfKaAwsMfaOUgusko2o61o2oZkDP5FVCtM+58yL1hGvRelXT0PjmhLBg==
+X-Received: by 2002:aca:f5c8:: with SMTP id t191mr8247459oih.61.1567119363695;
+        Thu, 29 Aug 2019 15:56:03 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e27sm971378oig.53.2019.08.29.15.47.29
+        by smtp.gmail.com with ESMTPSA id i22sm1253218oto.80.2019.08.29.15.56.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2019 15:47:29 -0700 (PDT)
-Date:   Thu, 29 Aug 2019 17:47:28 -0500
+        Thu, 29 Aug 2019 15:56:02 -0700 (PDT)
+Date:   Thu, 29 Aug 2019 17:56:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     vkoul@kernel.org, dan.j.williams@intel.com,
-        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org
-Subject: Re: [PATCH 4/5] dt-bindings: dma: ti-edma: Add option for reserved
- channel ranges
-Message-ID: <20190829224728.GA1198@bogus>
-References: <20190823125618.8133-1-peter.ujfalusi@ti.com>
- <20190823125618.8133-5-peter.ujfalusi@ti.com>
+To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Alexander Amelkin <a.amelkin@yadro.com>,
+        openbmc@lists.ozlabs.org, Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 4/4] dt-bindings/watchdog: Add access_cs0 option for
+ alt-boot
+Message-ID: <20190829225602.GA15783@bogus>
+References: <20190826104636.19324-1-i.mikhaylov@yadro.com>
+ <20190826104636.19324-5-i.mikhaylov@yadro.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190823125618.8133-5-peter.ujfalusi@ti.com>
+In-Reply-To: <20190826104636.19324-5-i.mikhaylov@yadro.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 23, 2019 at 03:56:17PM +0300, Peter Ujfalusi wrote:
-> Similarly to paRAM slots, channels can be used by other cores.
+On Mon, Aug 26, 2019 at 01:46:36PM +0300, Ivan Mikhaylov wrote:
+> The option for the ast2400/2500 to get access to CS0 at runtime.
 > 
-> Add optional property to configure the reserved channel ranges.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
 > ---
->  Documentation/devicetree/bindings/dma/ti-edma.txt | 5 +++++
->  1 file changed, 5 insertions(+)
+>  Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/dma/ti-edma.txt b/Documentation/devicetree/bindings/dma/ti-edma.txt
-> index 4bbc94d829c8..1198682ada99 100644
-> --- a/Documentation/devicetree/bindings/dma/ti-edma.txt
-> +++ b/Documentation/devicetree/bindings/dma/ti-edma.txt
-> @@ -42,6 +42,9 @@ Optional properties:
->  - ti,edma-reserved-slot-ranges: PaRAM slot ranges which should not be used by
->  		the driver, they are allocated to be used by for example the
->  		DSP. See example.
-> +- ti,edma-reserved-chan-ranges: channel ranges which should not be used by
-> +		the driver, they are allocated to be used by for example the
-> +		DSP. See example.
+> diff --git a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> index c5077a1f5cb3..023a9b578df6 100644
+> --- a/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> +++ b/Documentation/devicetree/bindings/watchdog/aspeed-wdt.txt
+> @@ -34,6 +34,13 @@ Optional properties:
+>                  engine is responsible for this.
+>  
+>   - aspeed,alt-boot:    If property is present then boot from alternate block.
+> +                       At alternate side 'access_cs0' sysfs file provides:
 
-Based on the other thread, I think extending dma-channel-mask to a 
-uint32-array makes sense here.
+What's sysfs?
 
-Rob
+Don't put Linux stuff in bindings.
+
+> +                       ast2400: a way to get access to the primary SPI flash
+> +                                chip at CS0 after booting from the alternate
+> +                                chip at CS1.
+> +                       ast2500: a way to restore the normal address mapping from
+> +                                (CS0->CS1, CS1->CS0) to (CS0->CS0, CS1->CS1).
+> +
+>   - aspeed,external-signal: If property is present then signal is sent to
+>  			external reset counter (only WDT1 and WDT2). If not
+>  			specified no external signal is sent.
+> -- 
+> 2.20.1
+> 
