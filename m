@@ -2,114 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D78C8A20F6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47B60A2101
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727686AbfH2QeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 12:34:14 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:34039 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727673AbfH2QeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:34:14 -0400
-Received: by mail-qt1-f193.google.com with SMTP id a13so4392986qtj.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 09:34:14 -0700 (PDT)
+        id S1727144AbfH2Qgh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 12:36:37 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:36820 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726739AbfH2Qgh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:36:37 -0400
+Received: by mail-wr1-f65.google.com with SMTP id y19so4124954wrd.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 09:36:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=n9l5S2KbsRERhGgBhP1Pu1DL1JLpghBBG1KctWMbhPY=;
-        b=wrKlAklpDzCaK9bitOGvsiE1iRls1xkKTHr1uVj6ML6++yzsbIy4Ss6lHKR/4t+kWB
-         kBWFsevMQv+AgM/3QUQZMUuLjWg5OTvBgfxqQiHHHX66tW4HQ0cbyJdw6Z7A+bvdNRbr
-         zzSU6odPMrenQU/WFUgNqhIZzotjT1I5eoV05DepZXWhc6zk/N4nzQiCscWRFAsp83f5
-         2mCCoPEUzklIvPUTCncScdjggNIqgZ5lAVE0A/GQ2YfQD/jm7+CBxdARj37Wj589cCgt
-         8JKM1lQw79QAQpsOnSqj0AI/1GmG00Z5SoJni7fKTOlQKVKf47/4TAlFHKd1YRmsV2lR
-         fxDg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N+c0qA0XM3CJtKzSOyldE7zb5NKzBbtoCRXB4ExOIbU=;
+        b=ILi2D94OAOQwwctQJ3w2ApbF1WkWInktVYqIS55gOb8Ugdl0wE1ny8VP9sSvWelKlX
+         hlZrFOecE0RCikC+Hr0LnSzMXqUQrhmMHQ6gWvFPDtIOfSec8yagELdOWLrI9QJE7ITW
+         I8n7kp71OEqALz6VefXsWjdvQICRVkrq9TpNOYbmIYWIJiTysdeOwGc5/n4I4EIJJp14
+         3qgN1gNIibA+7B3ls4IaUhmPxTj/RnwzRy5nzdO6YKsAEt+AzzYSjQRtKN2Zxb9/b30m
+         PvMtJ3Wmpovn6Sf5JixDwUQahojbgiQIESTmVF9vnP6UVP5EwgJjTpHWiCid2hf9c66O
+         u2+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=n9l5S2KbsRERhGgBhP1Pu1DL1JLpghBBG1KctWMbhPY=;
-        b=YkESuwfOgQUhBwgg2hE+YqehNpbr8yTrKgMHW4WdF8wXwPAt4poDbSAHE5Hd3akNE8
-         THOdJ6XjHuiOnqByJqyekmTDfLN0TW42dqz99MkIBuRDoXHz/tzmwGiSuKxWY3M/NSEV
-         yd0jtmkuXHfsOCNB5IJ7VXjp+rQ5CDYOMaiocdknYdq70sNMODK8GRfXDRSWu+upGBCE
-         sbDX0pC2eiwxplImRvjeJLyPS8YN9gSCssGQGcXbMikjLyklsC3mChvPQ/33mdy/QE4g
-         DhKWZZLb/OOBdKSLctIIEdeAbBaqoLT5ob0U9EKYjd6sMYXMrXnUdrvZT6HJmCP//zge
-         cfrA==
-X-Gm-Message-State: APjAAAVBcRWWlv9o0P0LDiMtc4pnrio1N7x7WP9YnZQbRKGI79IwpF1b
-        YgNUlTj3frMmAOzjGbGQx0IA+PyxQnYcTjTpQKmpUQ==
-X-Google-Smtp-Source: APXvYqybIZXqTwDDQ5W+o0WnOsb/6yXiPOlEJ24WuiGolNzJDgN+eYlJS9toAhvqvDTFL41byEJ0HGyvQWDJPto49aU=
-X-Received: by 2002:aed:3f47:: with SMTP id q7mr10718052qtf.209.1567096453696;
- Thu, 29 Aug 2019 09:34:13 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=N+c0qA0XM3CJtKzSOyldE7zb5NKzBbtoCRXB4ExOIbU=;
+        b=IEionb0yBbAdQzu+WjacVx976mP4semJrq1cBycTLxWKaV55Wc6wDC4AohB4twMsMz
+         73Bwvj9Hy4iHm2br4wPBiBftLH7x6+E11rbCFhKLWzTBv+NcO39rZsEUP/aRDUvPm622
+         Kjhz6J4vMvYpqQp+iHeoDEQ3ub27n3NqarX7ZYlmaM6K/42hAfS1FqsK7fxwUgIouv69
+         LMCeC6QhrA7D9hyVDbOXi/cv3Srr316Kz/SPfF3hbAgpozjqxtZ1Mvd71rVcMWExR88q
+         u3c+OCLsxFRVhWa2PslfYPE4q4RiURVzFirL3nVtI1ZNO/yQXe97cVpaeZFwmdiwcVte
+         kw0g==
+X-Gm-Message-State: APjAAAUQY3GJi2ekbX7F4VMi8rWkK/7XUGl2IEC4g3mAj3Zz3l3HU1E1
+        s88+xpKjs281MyHHGX58r0vZbg==
+X-Google-Smtp-Source: APXvYqycd8fi72Kcd8HMVvxvRzc0dAVNmyoMC+kJmLPG7uQ3k/lN/mNd0JQBtiMLUhXA93Y8EAKJAA==
+X-Received: by 2002:a5d:5343:: with SMTP id t3mr12508573wrv.156.1567096595281;
+        Thu, 29 Aug 2019 09:36:35 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id k9sm4398243wrq.15.2019.08.29.09.36.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2019 09:36:34 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     broonie@kernel.org, robh+dt@kernel.org, vkoul@kernel.org
+Cc:     spapothi@codeaurora.org, bgoswami@codeaurora.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        lgirdwood@gmail.com, devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v6 0/4] ASoC: codecs: Add WSA881x Smart Speaker amplifier support
+Date:   Thu, 29 Aug 2019 17:35:10 +0100
+Message-Id: <20190829163514.11221-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <cover.1566907161.git.amit.kucheria@linaro.org>
- <66ac3d3707d6296ef85bf1fa321f7f1ee0c02131.1566907161.git.amit.kucheria@linaro.org>
- <5d65cbe9.1c69fb81.1ceb.2374@mx.google.com> <CAP245DWWKsZBHnvSqC40XOH48kGd-hykd+fr-UZfWTmvuG2KaA@mail.gmail.com>
- <5d67e6cf.1c69fb81.5aec9.3b71@mx.google.com>
-In-Reply-To: <5d67e6cf.1c69fb81.5aec9.3b71@mx.google.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Thu, 29 Aug 2019 22:04:02 +0530
-Message-ID: <CAP245DVjgnwGn5rUgbYrkBOi3vtyShz0Qbx_opx80xiOV7uXeA@mail.gmail.com>
-Subject: Re: [PATCH v2 07/15] dt: thermal: tsens: Document interrupt support
- in tsens driver
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Brian Masney <masneyb@onstation.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 29, 2019 at 8:23 PM Stephen Boyd <swboyd@chromium.org> wrote:
->
-> Quoting Amit Kucheria (2019-08-29 01:48:27)
-> > On Wed, Aug 28, 2019 at 6:03 AM Stephen Boyd <swboyd@chromium.org> wrote:
-> > >
-> > > Quoting Amit Kucheria (2019-08-27 05:14:03)
-> > > > Define two new required properties to define interrupts and
-> > > > interrupt-names for tsens.
-> > > >
-> > > > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/thermal/qcom-tsens.txt | 8 ++++++++
-> > > >  1 file changed, 8 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
-> > > > index 673cc1831ee9d..686bede72f846 100644
-> > > > --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
-> > > > +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
-> > > > @@ -22,6 +22,8 @@ Required properties:
-> > > >
-> > > >  - #thermal-sensor-cells : Should be 1. See ./thermal.txt for a description.
-> > > >  - #qcom,sensors: Number of sensors in tsens block
-> > > > +- interrupts: Interrupts generated from Always-On subsystem (AOSS)
-> > >
-> > > Is it always one? interrupt-names makes it sound like it.
-> > >
-> > > > +- interrupt-names: Must be one of the following: "uplow", "critical"
-> >
-> > Will fix to "one or more of the following"
-> >
->
-> Can we get a known quantity of interrupts for a particular compatible
-> string instead? Let's be as specific as possible. The index matters too,
-> so please list them in the order that is desired.
+This patchset adds support to WSA8810/WSA8815 Class-D Smart Speaker
+Amplifier which is SoundWire interfaced.
+This also adds support to some missing bits in SoundWire bus layer like
+Device Tree support.
 
-I *think* we can predict what platforms have uplow and critical
-interrupts based on IP version currently[1]. For newer interrupt
-types, we might need more fine-grained platform compatibles.
+This patchset along with DB845c machine driver and WCD934x codec driver
+has been tested on SDM845 SoC based DragonBoard DB845c with two
+WSA8810 speakers.
 
-[1] Caveat: this is based only on the list of platforms I've currently
-looked at, there might be something internally that breaks these
-rules.
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
+
+TODO:
+        Add thermal sensor support in WSA881x.
+
+Thanks,
+srini
+
+Changes since v5:
+ - updated slave bindings with proper licencing and fixed up examples.
+
+Srinivas Kandagatla (4):
+  dt-bindings: soundwire: add slave bindings
+  soundwire: core: add device tree support for slave devices
+  dt-bindings: ASoC: Add WSA881x bindings
+  ASoC: codecs: add wsa881x amplifier support
+
+ .../bindings/sound/qcom,wsa881x.yaml          |   62 +
+ .../soundwire/soundwire-controller.yaml       |   82 ++
+ drivers/soundwire/bus.c                       |    2 +
+ drivers/soundwire/bus.h                       |    1 +
+ drivers/soundwire/slave.c                     |   52 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wsa881x.c                    | 1134 +++++++++++++++++
+ 8 files changed, 1345 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+ create mode 100644 Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+ create mode 100644 sound/soc/codecs/wsa881x.c
+
+-- 
+2.21.0
+
