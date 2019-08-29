@@ -2,327 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC1DA1F51
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:34:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5CB8A1F57
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:37:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727891AbfH2Peu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 11:34:50 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54351 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727802AbfH2Peu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 11:34:50 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3MRc-0003WC-1r; Thu, 29 Aug 2019 17:34:40 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3MRa-0006ty-GF; Thu, 29 Aug 2019 17:34:38 +0200
-Date:   Thu, 29 Aug 2019 17:34:38 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v9 07/13] media: tvp5150: add FORMAT_TRY support for
- get/set selection handlers
-Message-ID: <20190829153438.fhxdccvko2lilvyn@pengutronix.de>
-References: <20190822080556.17109-1-m.felsch@pengutronix.de>
- <20190822080556.17109-8-m.felsch@pengutronix.de>
- <aadcd44b-7708-e4e7-1926-d9ac0bc8ef8f@xs4all.nl>
+        id S1727122AbfH2PhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 11:37:17 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:34482 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726283AbfH2PhR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 11:37:17 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id CC30F283C49;
+        Thu, 29 Aug 2019 16:37:13 +0100 (BST)
+Date:   Thu, 29 Aug 2019 17:37:09 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Vitor Soares <Vitor.Soares@synopsys.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
+        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>,
+        Przemyslaw Gaj <pgaj@cadence.com>
+Subject: Re: [PATCH 1/4] i3c: master: detach and free device if
+ pre_assign_dyn_addr() fails
+Message-ID: <20190829173709.79c093dd@collabora.com>
+In-Reply-To: <SN6PR12MB2655E9E544D7E96323BAC796AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+References: <cover.1567071213.git.vitor.soares@synopsys.com>
+        <e26948eaaf765f683d8fe0618a31a98e2ecc0e65.1567071213.git.vitor.soares@synopsys.com>
+        <20190829124115.482cd8ec@collabora.com>
+        <SN6PR12MB26551F172804D039F3EAA991AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+        <20190829163520.126d42d6@collabora.com>
+        <SN6PR12MB2655E9E544D7E96323BAC796AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aadcd44b-7708-e4e7-1926-d9ac0bc8ef8f@xs4all.nl>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 15:02:15 up 103 days, 19:20, 63 users,  load average: 0.06, 0.07,
- 0.05
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-08-29 11:56, Hans Verkuil wrote:
-> On 8/22/19 10:05 AM, Marco Felsch wrote:
-> > Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
-> > the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
-> > no way to try different selections. The patch adds a helper function to
-> > select the correct selection memory space (sub-device file handle or
-> > driver state) which will be set/returned.
+On Thu, 29 Aug 2019 15:23:30 +0000
+Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+
+> From: Boris Brezillon <boris.brezillon@collabora.com>
+> Date: Thu, Aug 29, 2019 at 15:35:20
+> 
+> > On Thu, 29 Aug 2019 13:53:24 +0000
+> > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+> >   
+> > > Hi Boris,
+> > > 
+> > > From: Boris Brezillon <boris.brezillon@collabora.com>
+> > > Date: Thu, Aug 29, 2019 at 11:41:15
+> > >   
+> > > > +Przemek
+> > > > 
+> > > > Please try to Cc active I3C contributors so they get a chance to
+> > > > comment on your patches.    
+> > > 
+> > > I can do that next time.
+> > >   
+> > > > 
+> > > > On Thu, 29 Aug 2019 12:19:32 +0200
+> > > > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+> > > >     
+> > > > > On pre_assing_dyn_addr() the devices that fail:
+> > > > >   i3c_master_setdasa_locked()
+> > > > >   i3c_master_reattach_i3c_dev()
+> > > > >   i3c_master_retrieve_dev_info()
+> > > > > 
+> > > > > are kept in memory and master->bus.devs list. This makes the i3c devices
+> > > > > without a dynamic address are sent on DEFSLVS CCC command. Fix this by
+> > > > > detaching and freeing the devices that fail on pre_assign_dyn_addr().    
+> > > > 
+> > > > I don't think removing those entries is a good strategy, as one might
+> > > > want to try to use a different dynamic address if the requested one
+> > > > is not available.    
+> > > 
+> > > Do you mean same 'assigned-address' attribute in DT?  
 > > 
-> > The selection rectangle is updated if the format is FORMAT_ACTIVE and
-> > the rectangle position and/or size differs from the current set
-> > rectangle.
+> > Yes, or say it's another device that got the address we want and this
+> > device doesn't want to release the address (I'm assuming the !SA case).
+> >   
+> > > 
+> > > If so, it is checked here:
+> > > 
+> > > static int i3c_master_bus_init(struct i3c_master_controller *master)
+> > > ...
+> > > 	list_for_each_entry(i3cboardinfo, &master->boardinfo.i3c, node) {
+> > > 		struct i3c_device_info info = {
+> > > 			.static_addr = i3cboardinfo->static_addr,
+> > > 		};
+> > > 
+> > > 		if (i3cboardinfo->init_dyn_addr) {
+> > > 			status = i3c_bus_get_addr_slot_status(&master->bus,
+> > > 			^
+> > > 						i3cboardinfo->init_dyn_addr);
+> > > 			if (status != I3C_ADDR_SLOT_FREE) {
+> > > 				ret = -EBUSY;
+> > > 				goto err_detach_devs;
+> > > 			}
+> > > 		}
+> > > 
+> > > 		i3cdev = i3c_master_alloc_i3c_dev(master, &info);
+> > > 		if (IS_ERR(i3cdev)) {
+> > > 			ret = PTR_ERR(i3cdev);
+> > > 			goto err_detach_devs;
+> > > 		}
+> > > 
+> > > 		i3cdev->boardinfo = i3cboardinfo;
+> > > 
+> > > 		ret = i3c_master_attach_i3c_dev(master, i3cdev);
+> > > 		if (ret) {
+> > > 			i3c_master_free_i3c_dev(i3cdev);
+> > > 			goto err_detach_devs;
+> > > 		}
+> > > 	}
+> > > ...
+> > > 
+> > > and later if it fails i3c_master_pre_assign_dyn_addr(), the device can 
+> > > participate in Enter Dynamic Address Assignment process.
+> > > I may need to check the boardinfo->init_dyn_addr status on 
+> > > i3c_master_add_i3c_dev_locked before i3c_master_setnewda_locked().  
 > > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> > Changelog:
+> > I need to double check but I thought we were already handling that case
+> > properly.  
+> 
+> Yes, it is handled in the code above.
+
+No, I meant the 'assign init_dyn_addr even if !SA', and the code I
+pointed in my other reply tends to confirm that this is something we
+already take into account (maybe not correctly, but the code is here).
+
+> 
+> >   
+> > >   
+> > > > Why not simply skipping entries that have ->dyn_addr
+> > > > set to 0 when preparing a DEFSLVS frame    
+> > > 
+> > > I considered that solution too but if the device isn't enumerated why 
+> > > should it be attached and kept in memory?  
 > > 
-> > v8:
-> > - adapt commit message
-> > - remove wrong FORMAT_TRY handling for tvp5150_fill_fmt() handling
-> > - return 0 during set_selection if FORMAT_TRY was requested and
-> >   CONFIG_VIDEO_V4L2_SUBDEV_API is disabled
-> > - return -EINVAL during get_selection if FORMAT_TRY was requested and
-> >   CONFIG_VIDEO_V4L2_SUBDEV_API is disabled
-> > v7:
-> > - __tvp5150_get_pad_crop(): return error on default case
-> > - simplify __tvp5150_get_pad_crop() error handling
-> > - tvp5150_set_selection() squash __tvp5150_set_selection() execution
-> >   conditions
-> > v6:
-> > nothing
-> > v5:
-> >  - handle stub for v4l2_subdev_get_try_crop() internal since commit
-> >    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
-> >    isn't anymore part of this series.
-> >  - add error handling of __tvp5150_get_pad_crop()
-> > v4:
-> >  - fix merge conflict due to rebase on top of media-tree/master
-> >  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
-> > ---
-> >  drivers/media/i2c/tvp5150.c | 111 +++++++++++++++++++++++++-----------
-> >  1 file changed, 79 insertions(+), 32 deletions(-)
-> > 
-> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> > index 477a929d4f89..62a1c7c3a7c0 100644
-> > --- a/drivers/media/i2c/tvp5150.c
-> > +++ b/drivers/media/i2c/tvp5150.c
-> > @@ -19,6 +19,7 @@
-> >  #include <media/v4l2-ctrls.h>
-> >  #include <media/v4l2-fwnode.h>
-> >  #include <media/v4l2-mc.h>
-> > +#include <media/v4l2-rect.h>
-> >  
-> >  #include "tvp5150_reg.h"
-> >  
-> > @@ -995,6 +996,23 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
-> >  		crop->height = TVP5150_V_MAX_OTHERS;
-> >  }
-> >  
-> > +static struct v4l2_rect *
-> > +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
-> > +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
-> > +		       enum v4l2_subdev_format_whence which)
-> > +{
-> > +	switch (which) {
-> > +	case V4L2_SUBDEV_FORMAT_ACTIVE:
-> > +		return &decoder->rect;
-> > +	case V4L2_SUBDEV_FORMAT_TRY:
-> > +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
-> > +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
-> > +#endif
+> > Might be a device that supports HJ, and in that case we might want the
+> > controller to reserve a slot in its device table for that device.
+> > Anyway, it doesn't hurt to have it around as long as we don't pass the
+> > device through DEFSLVS if it doesn't have a dynamic address. I really
+> > prefer to keep the logic unchanged and fix it if it needs to be fixed.  
 > 
-> Hmm, this fall-through is confusing.
-> 
-> I'd just do:
-> 
-> #else
-> 		return ERR_PTR(-EINVAL);
-> #endif
+> Well, we aren't reserving a slot because we need another one to attach 
+> the device when it is enumerated and hence a device may be using 2 slots 
+> in the controller.
 
-Okay.
+Right, you shouldn't reserve a slot when ->static_address == 0 &&
+->dynamic_address == 0, but I still don't see where the problem is with
+the solution we have right now, sorry. Note that even if you reserve a
+slot in that case, the device only occupies 2 slots for a short amount
+of time, because the add_i3c_dev() logic will detect that the descriptor
+already exists and reattach the device with its new address.
 
-> > +	default:
-> > +		return ERR_PTR(-EINVAL);
-> > +	}
-> > +}
-> > +
-> >  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
-> >  			    struct v4l2_subdev_pad_config *cfg,
-> >  			    struct v4l2_subdev_format *format)
-> > @@ -1019,36 +1037,68 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
-> >  	return 0;
-> >  }
-> >  
-> > +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
-> > +{
-> > +	struct tvp5150 *decoder = to_tvp5150(sd);
-> > +	v4l2_std_id std;
-> > +
-> > +	/* Calculate height based on current standard */
-> > +	if (decoder->norm == V4L2_STD_ALL)
-> > +		std = tvp5150_read_std(sd);
-> > +	else
-> > +		std = decoder->norm;
-> > +
-> > +	return (std & V4L2_STD_525_60) ?
-> > +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
-> > +}
-> > +
-> > +static inline void
-> > +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect rect)
-> > +{
-> > +	struct tvp5150 *decoder = to_tvp5150(sd);
-> > +	unsigned int hmax = tvp5150_get_hmax(sd);
-> > +
-> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
-> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> > +		     rect.top + rect.height - hmax);
-> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> > +		     rect.left >> TVP5150_CROP_SHIFT);
-> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> > +		     rect.left | (1 << TVP5150_CROP_SHIFT));
-> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> > +		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
-> > +		     TVP5150_CROP_SHIFT);
-> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> > +		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
-> > +}
-> > +
-> >  static int tvp5150_set_selection(struct v4l2_subdev *sd,
-> >  				 struct v4l2_subdev_pad_config *cfg,
-> >  				 struct v4l2_subdev_selection *sel)
-> >  {
-> >  	struct tvp5150 *decoder = to_tvp5150(sd);
-> >  	struct v4l2_rect rect = sel->r;
-> > -	v4l2_std_id std;
-> > -	int hmax;
-> > +	struct v4l2_rect *crop;
-> > +	unsigned int hmax;
-> >  
-> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
-> > -	    sel->target != V4L2_SEL_TGT_CROP)
-> > +	if (sel->target != V4L2_SEL_TGT_CROP)
-> >  		return -EINVAL;
-> >  
-> >  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
-> >  		__func__, rect.left, rect.top, rect.width, rect.height);
-> >  
-> > +	/*
-> > +	 * Do not apply the request in case of FORMAT_TRY and disabled
-> > +	 * CONFIG_VIDEO_V4L2_SUBDEV_API support.
-> > +	 */
-> > +	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
-> > +	if (IS_ERR(crop))
-> > +		return 0;
-> 
-> This isn't right.
-> 
-> If VIDEO_V4L2_SUBDEV_API isn't set, then set_selection with FORMAT_TRY
-> should succeed: it should just verify (and optionally adjust) the selection
-> against the current active format and return that.
+> It may cause problems in HC with reduced slots and it is another reason 
+> why I think we should detach device without dynamic address after the 
+> enumeration phase.
 
-Okay got that.
-
-> I think the easiest would be to do this:
-> 
-> #ifdef VIDEO_V4L2_SUBDEV_API
-> 	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
-> #else
-> 	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, V4L2_SUBDEV_FORMAT_ACTIVE);
-> #endif
-
-Hm.. I think that's a bit to easy since we apply the rect to the crop so
-we would apply the selection to the driver state. I changed the order of
-set_selection in such a way to adapt the selection->rect first and
-return 0 if VIDEO_V4L2_SUBDEV_API isn't available and sel->which was
-V4L2_SUBDEV_FORMAT_TRY.
-
-Futhermore I recognized that the set_selection didn't adapt the sel->r.
-Instead the local copy is adapted... BTW. this isn't the only driver
-which has that problem.. Should we add a compliance test here to cover
-such problems during review?
-
-Regards,
-  Marco
-
-> 
-> > +
-> >  	/* tvp5150 has some special limits */
-> >  	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
-> >  	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
-> > -
-> > -	/* Calculate height based on current standard */
-> > -	if (decoder->norm == V4L2_STD_ALL)
-> > -		std = tvp5150_read_std(sd);
-> > -	else
-> > -		std = decoder->norm;
-> > -
-> > -	if (std & V4L2_STD_525_60)
-> > -		hmax = TVP5150_V_MAX_525_60;
-> > -	else
-> > -		hmax = TVP5150_V_MAX_OTHERS;
-> > +	hmax = tvp5150_get_hmax(sd);
-> >  
-> >  	/*
-> >  	 * alignments:
-> > @@ -1061,20 +1111,15 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
-> >  			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
-> >  			      hmax - rect.top, 0, 0);
-> >  
-> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
-> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
-> > -		     rect.top + rect.height - hmax);
-> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
-> > -		     rect.left >> TVP5150_CROP_SHIFT);
-> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
-> > -		     rect.left | (1 << TVP5150_CROP_SHIFT));
-> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
-> > -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
-> > -		     TVP5150_CROP_SHIFT);
-> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
-> > -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
-> > +	/*
-> > +	 * Update output image size if the selection (crop) rectangle size or
-> > +	 * position has been modified.
-> > +	 */
-> > +	if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
-> > +	    !v4l2_rect_equal(&rect, crop))
-> > +		__tvp5150_set_selection(sd, rect);
-> >  
-> > -	decoder->rect = rect;
-> > +	*crop = rect;
-> >  
-> >  	return 0;
-> >  }
-> > @@ -1084,11 +1129,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
-> >  				 struct v4l2_subdev_selection *sel)
-> >  {
-> >  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
-> > +	struct v4l2_rect *crop;
-> >  	v4l2_std_id std;
-> >  
-> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
-> > -		return -EINVAL;
-> > -
-> >  	switch (sel->target) {
-> >  	case V4L2_SEL_TGT_CROP_BOUNDS:
-> >  		sel->r.left = 0;
-> > @@ -1106,7 +1149,11 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
-> >  			sel->r.height = TVP5150_V_MAX_OTHERS;
-> >  		return 0;
-> >  	case V4L2_SEL_TGT_CROP:
-> > -		sel->r = decoder->rect;
-> > +		crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
-> > +						sel->which);
-> > +		if (IS_ERR(crop))
-> > +			return PTR_ERR(crop);
-> > +		sel->r = *crop;
-> >  		return 0;
-> >  	default:
-> >  		return -EINVAL;
-> > 
-> 
-> Regards,
-> 
-> 	Hans
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Can you please try the approach I suggest? => fix the existing logic to
+make it work without this "free undiscovered dev desc, reallocate later"
+dance.
