@@ -2,112 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BFE36A2647
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 20:44:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6438A271C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 21:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728600AbfH2SoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 14:44:04 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:44207 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728455AbfH2SoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 14:44:04 -0400
-Received: by mail-pl1-f193.google.com with SMTP id t14so1969630plr.11
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 11:44:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=v1Wo1j2tnlDDBx+9tVoNxVDQEbVVitJMbE6zkrCsNYQ=;
-        b=sXXYtAAaVMdonPdNFmCLacc1yMs7M1edc94O5lELRYJxadC3JjUM5YbUwWi4dWK0jJ
-         zN29PrPjete6yiziQDuS3B95q7jfnVD8wxKih2rukf/ma6btEa7zj5D+Yc/L3IS1sn3U
-         Wzo+4s7a1O06d9y0kvd5ashlirrH5iOvhibysr7HVY69SnScODa2J78ftUOVJxT1EWW3
-         9om/44Pa0e6rQamyCftba66Zw3RTmOnxK8wAbFNqJ2qRomcgzemIdJxt+QbsO18zv/Nq
-         zzUYrsM5YSe2WqLJp4NWtD/ZnQTypUYO3+AYtZiL7/gQb+E0qjUlhkq1YrIt1qDMwOfE
-         HcAA==
+        id S1728408AbfH2TQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 15:16:34 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:36113 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728063AbfH2TQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 15:16:33 -0400
+Received: by mail-ot1-f66.google.com with SMTP id k18so4570331otr.3;
+        Thu, 29 Aug 2019 12:16:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=v1Wo1j2tnlDDBx+9tVoNxVDQEbVVitJMbE6zkrCsNYQ=;
-        b=kS0NDEqY+0D2lR8eZOMCd0idAoTDqKN/l5//DYTViQ/zYIjfsBHtbTCY4mXB6ZNPBG
-         C599UzqzC2KEaJmaBFClu5rusScAkyOqtICkrlYdYPNEPnlsAPRrH38aMNQSu6Z/azXS
-         zvw9sDmuJiAyMQ+rUu7dyyB87ywVHc4npXWMXgFKCdiplzKLsBpvdSjVpN4spprnKr3m
-         +rMcS8XWcycIG65ZgHULfT4ZjNgE7QD/z2LPqlKTAjpTJ99/7F2CnhCWAB60BQDw3RUe
-         pWX/46OchIYAK1FksHpWZFuohYGXvqADNLRNOX5lpGrYDk7is3TQNgjCONvyuTFhk+kf
-         bsOQ==
-X-Gm-Message-State: APjAAAXyOwkI0aWQp7qr8l4D+clTm+QEXDO7gquP/8yDxFhTqEq9ZeZV
-        fu+DPSp/4vCQmjVZUxo1Ou0XnQ==
-X-Google-Smtp-Source: APXvYqySV7f6ZMmiEy8g7xUfSMB1MLLk+cK+esN7+JKSPp3z46QGrwido2SYzkKtN/oLNUGfcjySEw==
-X-Received: by 2002:a17:902:ba16:: with SMTP id j22mr10261299pls.253.1567104243423;
-        Thu, 29 Aug 2019 11:44:03 -0700 (PDT)
-Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
-        by smtp.gmail.com with ESMTPSA id z189sm6021212pfb.137.2019.08.29.11.44.02
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 29 Aug 2019 11:44:02 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] irqchip/meson-gpio: Add support for meson sm1 SoCs
-In-Reply-To: <20190829161635.25067-3-jbrunet@baylibre.com>
-References: <20190829161635.25067-1-jbrunet@baylibre.com> <20190829161635.25067-3-jbrunet@baylibre.com>
-Date:   Thu, 29 Aug 2019 11:43:59 -0700
-Message-ID: <7h1rx3revk.fsf@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=qXXfSWb8r+ekX6AnOeZMT+WDuuUjHIsf04zXphaqwHY=;
+        b=qxOMyKU6lo3pwk88ln2CmmFBaxrRo8rIC+tJLttekgcz9M1M/fLnFPUDE8VxUxeHEQ
+         jTX7qzN7sEUS/Fy26BCWWJQSPW/04JqKaNWi43C1Is6iKL9N7HKVk8Jd1+tZ2Le8bm6m
+         Yrdmz7nJZuwGDsLjZtoL55X4yaFRz28toMImkHWccIxzyvXlAiILD204cIm6LwUFnqXK
+         zdQ5o5F8WOHqT+8jOpv0iyjB/dIcDLSgFTLI6eogBgF0u6H5f/OufB+S18/UheXGfBgy
+         aVH97LwCUQAnFUXhQ378GaRBPG/HkuCbpVAleff/MWT+a6NK+I1vZrK5t0GQPm/8oa9J
+         B6Tg==
+X-Gm-Message-State: APjAAAVjuZ1rjGRRtMxm6F3MuJvf90XIayAeH8O/NM601arwPWgiQaJl
+        zd9kFqswkItk5toUU1j9xQ==
+X-Google-Smtp-Source: APXvYqw3wayppmtwe4suZgP9c/BFmJes13dE7GUWcARKQZLPrkt0xRRa40WAmFF2sKNFSuU8OEACug==
+X-Received: by 2002:a05:6830:1345:: with SMTP id r5mr9441701otq.158.1567106192618;
+        Thu, 29 Aug 2019 12:16:32 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q85sm931405oic.52.2019.08.29.12.16.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2019 12:16:31 -0700 (PDT)
+Date:   Thu, 29 Aug 2019 14:16:31 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Henry Chen <henryc.chen@mediatek.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Henry Chen <henryc.chen@mediatek.com>
+Subject: Re: [PATCH V3 01/10] dt-bindings: soc: Add dvfsrc driver bindings
+Message-ID: <20190829191631.GA15714@bogus>
+References: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
+ <1566995328-15158-2-git-send-email-henryc.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1566995328-15158-2-git-send-email-henryc.chen@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Jerome Brunet <jbrunet@baylibre.com> writes:
-
-> The meson sm1 SoCs uses the same type of GPIO interrupt controller IP
-> block as the other meson SoCs, A total of 100 pins can be spied on:
->
-> - 223:100 undefined (no interrupt)
-> - 99:97   3 pins on bank GPIOE
-> - 96:77   20 pins on bank GPIOX
-> - 76:61   16 pins on bank GPIOA
-> - 60:53   8 pins on bank GPIOC
-> - 52:37   16 pins on bank BOOT
-> - 36:28   9 pins on bank GPIOH
-> - 27:12   16 pins on bank GPIOZ
-> - 11:0    12 pins in the AO domain
->
-> Mapping is the same as the g12a family but the sm1 controller
-> allows to trig an irq on both edges of the input signal. This was
-> not possible with the previous SoCs families
->
-> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-
-Reviewed-by: Kevin Hilman <khilman@baylibre.com>
-Tested-by: Kevin Hilman <khilman@baylibre.com>
-
+On Wed, 28 Aug 2019 20:28:39 +0800, Henry Chen wrote:
+> Document the binding for enabling dvfsrc on MediaTek SoC.
+> 
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
 > ---
->  drivers/irqchip/irq-meson-gpio.c | 52 +++++++++++++++++++++++---------
->  1 file changed, 38 insertions(+), 14 deletions(-)
->
-> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
-> index dcdc23b9dce6..829084b568fa 100644
-> --- a/drivers/irqchip/irq-meson-gpio.c
-> +++ b/drivers/irqchip/irq-meson-gpio.c
-> @@ -24,14 +24,25 @@
->  #define REG_PIN_47_SEL	0x08
->  #define REG_FILTER_SEL	0x0c
->  
-> -#define REG_EDGE_POL_MASK(x)	(BIT(x) | BIT(16 + (x)))
-> +/*
-> + * Note: The S905X3 datasheet reports that BOTH_EDGE is controlled by
-> + * bits 24 to 31. Tests on the actual HW show that these bits are
-> + * stuck at 0. Bits 8 to 15 are responsive and have the expected
-> + * effect.
-> + */
+>  .../devicetree/bindings/soc/mediatek/dvfsrc.txt    | 23 ++++++++++++++++++++++
+>  include/dt-bindings/soc/mtk,dvfsrc.h               | 14 +++++++++++++
+>  2 files changed, 37 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+>  create mode 100644 include/dt-bindings/soc/mtk,dvfsrc.h
+> 
 
-nice catch!
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-Kevin
+If a tag was not added on purpose, please state why and what changed.
