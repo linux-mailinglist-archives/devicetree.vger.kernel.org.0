@@ -2,154 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC62A13A1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 10:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64DAAA1407
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 10:48:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727065AbfH2I2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 04:28:07 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:43430 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725782AbfH2I2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 04:28:07 -0400
-Received: by mail-wr1-f65.google.com with SMTP id y8so2437844wrn.10
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 01:28:05 -0700 (PDT)
+        id S1725990AbfH2Isk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 04:48:40 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:43181 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726223AbfH2Isj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 04:48:39 -0400
+Received: by mail-qt1-f196.google.com with SMTP id b11so2760222qtp.10
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 01:48:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=CcH8S6mcl9XC4eQag+I2TqcIX7okr0gHsoQ3xqAOqmI=;
-        b=iFur9JMY0lJLohdyPHJHP3xON311PiV7KcfFbFp15tSdZevNZUNUy5lOkv5iVstetb
-         lNQysnJuKJo2ZAnYiAJjGGUajvvhis4JlXRxk9eCbrUbYJJGbUktDGtH2d0cwewyB5t/
-         3CErl8NDZDPxJ9dGJLNRELfV6Ufh/e7SyA3aOGObh6JDFyh75GPtZ9zqSuK33M7IqMJW
-         4UAZka4JwUd7//LzbH2bR1rG9g0iJhaBAhgO52vM/YatVE//a+1Omi1qZ8YUuuRRqv8e
-         D5p4JU11xzJALxgRKVwLExkExGu/7hsbluyB89msHl44fK5D1lS2SIZ23Z5EBaHvjxkt
-         ki6A==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9zMYasvwvJSOlUawu9XgM9g2TZzoppz6gZllm9KotKE=;
+        b=SHZ9YgeyfCMnhqlOYfjPzfUSq1BNrP1DU/i9TUQBQF5OxqXyYXFbD3KXCwEOnPeA9c
+         71IF+x2HqEnqDJjtx3sQ8JNZRIoc4n0DkM6tPqcjTXAclxoj2axWpdPIm/GILFF5sqvV
+         I1Rtjsp1Aau4Ox+y/Z3P8ANJk7ugFKmHEbk+DWR25g0QLrrX7MhO99/okNsqLhcX7sZe
+         Zv3aMcHI9NL6UYsDsPPhRH637K0OTyfvpMkDLPysG4poicXhoDUeLGQgZYLpuiBCFhQ0
+         JSQefxcGPF33JB1eO3tomQetKOKEC4cwOdg7Xx6IrIidmf4qk5MZqWfG2ws4KkNrECVC
+         dqdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=CcH8S6mcl9XC4eQag+I2TqcIX7okr0gHsoQ3xqAOqmI=;
-        b=nBDS/nuvQLI5F/8NJCSaskLJwy+a2yerNXb19MDq7ohe9SOYusyXUsE7HJ4C1xOcD1
-         k2eyGPl7Ydx8tXuHNHbMJQtNIvin3HV0gJb5gyKrSVYZSU+InXZb2Cyby4Y9soGz+P15
-         bwU3TSrF2NCPYFullIAQoGL8iaf1I8AQXOzc/tHpqAlDlipLX71NSsMYcnyEYtTXXKN2
-         dKTr1gf/3zLWrONQYzNQDtD303HC5MQpLEd50QEoWW7hHbqSvS1PrJ3Z8t+OUAyynw+T
-         sCV9H5ywcmzedhN4l1XxvWf1G3doiXBfCQi2CjsPVpcr037xtUEFZIROq9gDfF9C4PhX
-         QWGw==
-X-Gm-Message-State: APjAAAVrCnZTNb9GiG1tuJFkJY34G8TJU71ox8qlbVudIXg/4fSG5Ri5
-        lZoQr/fRL2RSVXZvwI8qd0EJYw==
-X-Google-Smtp-Source: APXvYqwJliYCGmU0lF2xxGLowTfgOGMmmQpb1L201aa3+n6oM4g/xGVOnrj7gr6c7crih7WHq+7KCA==
-X-Received: by 2002:adf:f206:: with SMTP id p6mr10184785wro.216.1567067284342;
-        Thu, 29 Aug 2019 01:28:04 -0700 (PDT)
-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id a192sm2247911wma.1.2019.08.29.01.28.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 29 Aug 2019 01:28:03 -0700 (PDT)
-Subject: Re: [PATCHv1 0/3] Odroid c2 missing regulator linking
-To:     Anand Moon <linux.amoon@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190828202723.1145-1-linux.amoon@gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
-Date:   Thu, 29 Aug 2019 10:28:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9zMYasvwvJSOlUawu9XgM9g2TZzoppz6gZllm9KotKE=;
+        b=n282TECCOYVBbzwKY0JHLYCVcCq4P5FGcwXN8lMV5ZynqTweIs9aYyIhvujHdJvj0x
+         zmDjiX6UvjQeDHYTTAV5NDBd+6DpLNQlmHJQVUwbTFiuAxaPaoGOq4nz702bmfW8lJlX
+         lWuaKSbp1TF/cjs3817RWM8EArE0W2Yu3ur21VlHBjPbWg5mA4OGBlrYQwk3ZR5dMSLk
+         NTYzY0+YiGpJHuZm/fjqjlibrvZRh6KhgQxqLe4tgHWsuEX9zByu8Qkw3x0+T5MiyRpK
+         mgPpi3UxMrGdKmQpDd+utdYqsDOuRMaHVCENDYJ9sA7IZyWMm55G01g79rUAEKVlByJy
+         5M5A==
+X-Gm-Message-State: APjAAAUx4it/uYyTvu89bWGNdRFuI8JZTwigFZoi1URs+LBQV63/Gn7y
+        Yl8rNqryvgC6F+wvFjcJgTLKJQNY2JZpxr9oT5oeGM/oaao=
+X-Google-Smtp-Source: APXvYqzjzN2EG+az7+HCU8fERqdhPqrzGKY2WH86fhF6ux/sDMROPXd1/G1j4VoryLHc4mDvNkJkhfATh7/XtrFc9S0=
+X-Received: by 2002:aed:3287:: with SMTP id z7mr3594931qtd.264.1567068518675;
+ Thu, 29 Aug 2019 01:48:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190828202723.1145-1-linux.amoon@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <cover.1566907161.git.amit.kucheria@linaro.org>
+ <66ac3d3707d6296ef85bf1fa321f7f1ee0c02131.1566907161.git.amit.kucheria@linaro.org>
+ <5d65cbe9.1c69fb81.1ceb.2374@mx.google.com>
+In-Reply-To: <5d65cbe9.1c69fb81.1ceb.2374@mx.google.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Thu, 29 Aug 2019 14:18:27 +0530
+Message-ID: <CAP245DWWKsZBHnvSqC40XOH48kGd-hykd+fr-UZfWTmvuG2KaA@mail.gmail.com>
+Subject: Re: [PATCH v2 07/15] dt: thermal: tsens: Document interrupt support
+ in tsens driver
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        Brian Masney <masneyb@onstation.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/08/2019 22:27, Anand Moon wrote:
-> Below small changes help re-configure or fix missing inter linking
-> of regulator node.
-> 
-> Changes based top on my prevoius series.
+On Wed, Aug 28, 2019 at 6:03 AM Stephen Boyd <swboyd@chromium.org> wrote:
+>
+> Quoting Amit Kucheria (2019-08-27 05:14:03)
+> > Define two new required properties to define interrupts and
+> > interrupt-names for tsens.
+> >
+> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/thermal/qcom-tsens.txt | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > index 673cc1831ee9d..686bede72f846 100644
+> > --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+> > @@ -22,6 +22,8 @@ Required properties:
+> >
+> >  - #thermal-sensor-cells : Should be 1. See ./thermal.txt for a description.
+> >  - #qcom,sensors: Number of sensors in tsens block
+> > +- interrupts: Interrupts generated from Always-On subsystem (AOSS)
+>
+> Is it always one? interrupt-names makes it sound like it.
+>
+> > +- interrupt-names: Must be one of the following: "uplow", "critical"
 
-For the serie:
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Will fix to "one or more of the following"
 
-> 
-> [0] https://patchwork.kernel.org/cover/11113091/
-> 
-> TOOD: Add support for DVFS GXBB odroid board in next series.
-
-I'm curious how you will do this !
-
-> 
-> Best Regards
-> -Anand
-> 
-> Anand Moon (3):
->   arm64: dts: meson: odroid-c2: Add missing regulator linked to P5V0
->     regulator
->   arm64: dts: meson: odroid-c2: Add missing regulator linked to
->     VDDIO_AO3V3 regulator
->   arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI
->     supply
-> 
->  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 44 ++++++++++++++++---
->  1 file changed, 38 insertions(+), 6 deletions(-)
-> 
-
+> >  - Refer to Documentation/devicetree/bindings/nvmem/nvmem.txt to know how to specify
+> >  nvmem cells
+> >
