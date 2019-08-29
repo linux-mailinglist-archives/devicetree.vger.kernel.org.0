@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 616E5A1D23
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 16:39:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E481A1D6C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 16:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727144AbfH2OjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 10:39:23 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:33844 "EHLO
+        id S1728007AbfH2Ojs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 10:39:48 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:33850 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727066AbfH2OjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 10:39:23 -0400
+        with ESMTP id S1728282AbfH2Ojq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 10:39:46 -0400
 Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 7D27628A16C;
-        Thu, 29 Aug 2019 15:39:21 +0100 (BST)
-Date:   Thu, 29 Aug 2019 16:39:18 +0200
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 45BD028A16C;
+        Thu, 29 Aug 2019 15:39:44 +0100 (BST)
+Date:   Thu, 29 Aug 2019 16:39:41 +0200
 From:   Boris Brezillon <boris.brezillon@collabora.com>
 To:     Vitor Soares <Vitor.Soares@synopsys.com>
 Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
@@ -29,12 +29,13 @@ Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>
 Subject: Re: [PATCH 2/4] i3c: master: Check if devices have
  i3c_dev_boardinfo on i3c_master_add_i3c_dev_locked()
-Message-ID: <20190829163918.571fd0d8@collabora.com>
-In-Reply-To: <SN6PR12MB265551F73B9B516CACB5B807AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+Message-ID: <20190829163941.45380b19@collabora.com>
+In-Reply-To: <20190829163918.571fd0d8@collabora.com>
 References: <cover.1567071213.git.vitor.soares@synopsys.com>
         <3e21481ddf53ea58f5899df6ec542b79b8cbcd68.1567071213.git.vitor.soares@synopsys.com>
         <20190829124457.3a750932@collabora.com>
         <SN6PR12MB265551F73B9B516CACB5B807AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+        <20190829163918.571fd0d8@collabora.com>
 Organization: Collabora
 X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
@@ -45,27 +46,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Aug 2019 14:00:44 +0000
-Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+On Thu, 29 Aug 2019 16:39:18 +0200
+Boris Brezillon <boris.brezillon@collabora.com> wrote:
 
-> Hi Boris,
+> On Thu, 29 Aug 2019 14:00:44 +0000
+> Vitor Soares <Vitor.Soares@synopsys.com> wrote:
 > 
-> From: Boris Brezillon <boris.brezillon@collabora.com>
-> Date: Thu, Aug 29, 2019 at 11:44:57
-> 
-> > On Thu, 29 Aug 2019 12:19:33 +0200
-> > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
-> >   
-> > > The I3C devices described in DT might not be attached to the master which
-> > > doesn't allow to assign a specific dynamic address.  
+> > Hi Boris,
 > > 
-> > I remember testing this when developing the framework, so, unless
-> > another patch regressed it, it should already work. I suspect patch 1
-> > is actually the regressing this use case.  
+> > From: Boris Brezillon <boris.brezillon@collabora.com>
+> > Date: Thu, Aug 29, 2019 at 11:44:57
+> >   
+> > > On Thu, 29 Aug 2019 12:19:33 +0200
+> > > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+> > >     
+> > > > The I3C devices described in DT might not be attached to the master which
+> > > > doesn't allow to assign a specific dynamic address.    
+> > > 
+> > > I remember testing this when developing the framework, so, unless
+> > > another patch regressed it, it should already work. I suspect patch 1
+> > > is actually the regressing this use case.    
+> > 
+> > For today it doesn't address the case where the device is described with 
+> > static address = 0, which isn't attached to the controller.  
 > 
-> For today it doesn't address the case where the device is described with 
-> static address = 0, which isn't attached to the controller.
+> Hm, I'm pretty sure I had designed the code to support that case (see
+> [1]). It might be buggy, but nothing we can't fix I guess.
+> 
 
-Hm, I'm pretty sure I had designed the code to support that case (see
-[1]). It might be buggy, but nothing we can't fix I guess.
-
+[1]https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/i3c/master.c#L1898
