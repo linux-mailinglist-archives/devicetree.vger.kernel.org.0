@@ -2,175 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5CB8A1F57
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:37:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A098BA1F74
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:42:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727122AbfH2PhR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 11:37:17 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34482 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726283AbfH2PhR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 11:37:17 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727417AbfH2Pmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 11:42:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50400 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727118AbfH2Pmw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 11:42:52 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id CC30F283C49;
-        Thu, 29 Aug 2019 16:37:13 +0100 (BST)
-Date:   Thu, 29 Aug 2019 17:37:09 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Vitor Soares <Vitor.Soares@synopsys.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
-        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>,
-        Przemyslaw Gaj <pgaj@cadence.com>
-Subject: Re: [PATCH 1/4] i3c: master: detach and free device if
- pre_assign_dyn_addr() fails
-Message-ID: <20190829173709.79c093dd@collabora.com>
-In-Reply-To: <SN6PR12MB2655E9E544D7E96323BAC796AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-References: <cover.1567071213.git.vitor.soares@synopsys.com>
-        <e26948eaaf765f683d8fe0618a31a98e2ecc0e65.1567071213.git.vitor.soares@synopsys.com>
-        <20190829124115.482cd8ec@collabora.com>
-        <SN6PR12MB26551F172804D039F3EAA991AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-        <20190829163520.126d42d6@collabora.com>
-        <SN6PR12MB2655E9E544D7E96323BAC796AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8649E22CED;
+        Thu, 29 Aug 2019 15:42:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567093370;
+        bh=DxWOdTfJDyMTvRtm9hgWK6xzF49v9zdddJc0Ul0OHxY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vzJZPgiDkWKkP+NaPPxauJ+fKFwPvLGB8/KdLTohOjj/xVgXAESpMcyDxLKvgC9FL
+         4ds2R9TlkDRR/vh+2bQOe0y3+DDbXYkzBMHs913aiDG10CTXtcEJX0TITe/ya+q4ot
+         Mt/Cil3GMNqnHFH52WvFb2OkSak1IHnGLTgP3aq0=
+Received: by mail-qt1-f172.google.com with SMTP id k13so4119062qtm.12;
+        Thu, 29 Aug 2019 08:42:50 -0700 (PDT)
+X-Gm-Message-State: APjAAAV6kgnd10p4AQMetpRnckTAffkAfnLcsF2/f/bKZ+saptydbaGJ
+        5pnzEj3TJUT3of5IDi+IOaaOrNpFT8rYCmTckQ==
+X-Google-Smtp-Source: APXvYqzic6Dz5pyl8Zhym2cQiIYya/v+IE6KIzVsJARvSoJSziaqBB5AVnV348vxKKPJBjtqCYdf51FhEHiBWnPYbek=
+X-Received: by 2002:ad4:4050:: with SMTP id r16mr6931395qvp.200.1567093369577;
+ Thu, 29 Aug 2019 08:42:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20190829144442.6210-1-srinivas.kandagatla@linaro.org> <20190829144442.6210-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20190829144442.6210-2-srinivas.kandagatla@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 29 Aug 2019 10:42:37 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLwbz5eiBEw8PmXsJrxzXffNc7rRON-wQ0KviVW8JVv5A@mail.gmail.com>
+Message-ID: <CAL_JsqLwbz5eiBEw8PmXsJrxzXffNc7rRON-wQ0KviVW8JVv5A@mail.gmail.com>
+Subject: Re: [PATCH v5 1/4] dt-bindings: soundwire: add slave bindings
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Mark Brown <broonie@kernel.org>, Vinod <vkoul@kernel.org>,
+        spapothi@codeaurora.org, Banajit Goswami <bgoswami@codeaurora.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Aug 2019 15:23:30 +0000
-Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+On Thu, Aug 29, 2019 at 9:45 AM Srinivas Kandagatla
+<srinivas.kandagatla@linaro.org> wrote:
+>
+> This patch adds bindings for Soundwire Slave devices that includes how
+> SoundWire enumeration address and Link ID are used to represented in
+> SoundWire slave device tree nodes.
+>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../soundwire/soundwire-controller.yaml       | 72 +++++++++++++++++++
+>  1 file changed, 72 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+> new file mode 100644
+> index 000000000000..449b6130ce63
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+> @@ -0,0 +1,72 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-> From: Boris Brezillon <boris.brezillon@collabora.com>
-> Date: Thu, Aug 29, 2019 at 15:35:20
-> 
-> > On Thu, 29 Aug 2019 13:53:24 +0000
-> > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
-> >   
-> > > Hi Boris,
-> > > 
-> > > From: Boris Brezillon <boris.brezillon@collabora.com>
-> > > Date: Thu, Aug 29, 2019 at 11:41:15
-> > >   
-> > > > +Przemek
-> > > > 
-> > > > Please try to Cc active I3C contributors so they get a chance to
-> > > > comment on your patches.    
-> > > 
-> > > I can do that next time.
-> > >   
-> > > > 
-> > > > On Thu, 29 Aug 2019 12:19:32 +0200
-> > > > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
-> > > >     
-> > > > > On pre_assing_dyn_addr() the devices that fail:
-> > > > >   i3c_master_setdasa_locked()
-> > > > >   i3c_master_reattach_i3c_dev()
-> > > > >   i3c_master_retrieve_dev_info()
-> > > > > 
-> > > > > are kept in memory and master->bus.devs list. This makes the i3c devices
-> > > > > without a dynamic address are sent on DEFSLVS CCC command. Fix this by
-> > > > > detaching and freeing the devices that fail on pre_assign_dyn_addr().    
-> > > > 
-> > > > I don't think removing those entries is a good strategy, as one might
-> > > > want to try to use a different dynamic address if the requested one
-> > > > is not available.    
-> > > 
-> > > Do you mean same 'assigned-address' attribute in DT?  
-> > 
-> > Yes, or say it's another device that got the address we want and this
-> > device doesn't want to release the address (I'm assuming the !SA case).
-> >   
-> > > 
-> > > If so, it is checked here:
-> > > 
-> > > static int i3c_master_bus_init(struct i3c_master_controller *master)
-> > > ...
-> > > 	list_for_each_entry(i3cboardinfo, &master->boardinfo.i3c, node) {
-> > > 		struct i3c_device_info info = {
-> > > 			.static_addr = i3cboardinfo->static_addr,
-> > > 		};
-> > > 
-> > > 		if (i3cboardinfo->init_dyn_addr) {
-> > > 			status = i3c_bus_get_addr_slot_status(&master->bus,
-> > > 			^
-> > > 						i3cboardinfo->init_dyn_addr);
-> > > 			if (status != I3C_ADDR_SLOT_FREE) {
-> > > 				ret = -EBUSY;
-> > > 				goto err_detach_devs;
-> > > 			}
-> > > 		}
-> > > 
-> > > 		i3cdev = i3c_master_alloc_i3c_dev(master, &info);
-> > > 		if (IS_ERR(i3cdev)) {
-> > > 			ret = PTR_ERR(i3cdev);
-> > > 			goto err_detach_devs;
-> > > 		}
-> > > 
-> > > 		i3cdev->boardinfo = i3cboardinfo;
-> > > 
-> > > 		ret = i3c_master_attach_i3c_dev(master, i3cdev);
-> > > 		if (ret) {
-> > > 			i3c_master_free_i3c_dev(i3cdev);
-> > > 			goto err_detach_devs;
-> > > 		}
-> > > 	}
-> > > ...
-> > > 
-> > > and later if it fails i3c_master_pre_assign_dyn_addr(), the device can 
-> > > participate in Enter Dynamic Address Assignment process.
-> > > I may need to check the boardinfo->init_dyn_addr status on 
-> > > i3c_master_add_i3c_dev_locked before i3c_master_setnewda_locked().  
-> > 
-> > I need to double check but I thought we were already handling that case
-> > properly.  
-> 
-> Yes, it is handled in the code above.
+(GPL-2.0-only OR BSD-2-Clause) for new bindings.
 
-No, I meant the 'assign init_dyn_addr even if !SA', and the code I
-pointed in my other reply tends to confirm that this is something we
-already take into account (maybe not correctly, but the code is here).
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soundwire/soundwire-controller.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SoundWire Controller Generic Binding
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +  - Vinod Koul <vkoul@kernel.org>
+> +
+> +description: |
+> +  SoundWire busses can be described with a node for the SoundWire controller
+> +  device and a set of child nodes for each SoundWire slave on the bus.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^soundwire(@.*)?$"
+> +
+> +  "#address-cells":
+> +    const: 2
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+> +patternProperties:
+> +  "^.*@[0-9a-f],[0-9a-f]$":
+> +    type: object
+> +
+> +    properties:
+> +      compatible:
+> +        pattern: "^sdw[0-9a-f]{1}[0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
+> +        description: Is the textual representation of SoundWire Enumeration
+> +          address. compatible string should contain SoundWire Version ID,
+> +          Manufacturer ID, Part ID and Class ID in order and shall be in
+> +          lower-case hexadecimal with leading zeroes.
+> +          Valid sizes of these fields are
+> +          Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
+> +          and '0x2' represents SoundWire 1.1 and so on.
+> +          MFD is 4 nibbles
+> +          PID is 4 nibbles
+> +          CID is 2 nibbles
+> +          More Information on detail of encoding of these fields can be
+> +          found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
+> +
+> +      reg:
+> +        maxItems: 1
+> +        description:
+> +          Link ID followed by Instance ID of SoundWire Device Address.
+> +
+> +    additionalProperties: false
 
-> 
-> >   
-> > >   
-> > > > Why not simply skipping entries that have ->dyn_addr
-> > > > set to 0 when preparing a DEFSLVS frame    
-> > > 
-> > > I considered that solution too but if the device isn't enumerated why 
-> > > should it be attached and kept in memory?  
-> > 
-> > Might be a device that supports HJ, and in that case we might want the
-> > controller to reserve a slot in its device table for that device.
-> > Anyway, it doesn't hurt to have it around as long as we don't pass the
-> > device through DEFSLVS if it doesn't have a dynamic address. I really
-> > prefer to keep the logic unchanged and fix it if it needs to be fixed.  
-> 
-> Well, we aren't reserving a slot because we need another one to attach 
-> the device when it is enumerated and hence a device may be using 2 slots 
-> in the controller.
+I'm pretty sure you'll want nodes with other properties. If not, then
+why are they in DT? So drop this.
 
-Right, you shouldn't reserve a slot when ->static_address == 0 &&
-->dynamic_address == 0, but I still don't see where the problem is with
-the solution we have right now, sorry. Note that even if you reserve a
-slot in that case, the device only occupies 2 slots for a short amount
-of time, because the add_i3c_dev() logic will detect that the descriptor
-already exists and reattach the device with its new address.
+Both the controller and child nodes need to list required properties.
 
-> It may cause problems in HC with reduced slots and it is another reason 
-> why I think we should detach device without dynamic address after the 
-> enumeration phase.
-
-Can you please try the approach I suggest? => fix the existing logic to
-make it work without this "free undiscovered dev desc, reallocate later"
-dance.
+> +
+> +examples:
+> +  - |
+> +    soundwire@c2d0000 {
+> +        #address-cells = <2>;
+> +        #size-cells = <0>;
+> +        reg = <0x0c2d0000 0x2000>;
+> +
+> +        speaker@0,1 {
+> +            compatible = "sdw10217201000";
+> +            reg = <0 1>;
+> +        };
+> +
+> +        speaker@0,2 {
+> +            compatible = "sdw10217201000";
+> +            reg = <0 2>;
+> +        };
+> +    };
+> +
+> +...
+> --
+> 2.21.0
+>
