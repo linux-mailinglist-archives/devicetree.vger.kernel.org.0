@@ -2,81 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13055A12A7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:31:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E7DA12C4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:44:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726417AbfH2Hbg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 03:31:36 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55162 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726075AbfH2Hbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:31:36 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7T7VT2F117558;
-        Thu, 29 Aug 2019 02:31:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567063889;
-        bh=6lFiBJb8Ta1sG6UfjVQLk4Nn8P/YN1U8LTVtNgQJm74=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=VpNLZD6Kuun8uGQBKui/gGiHTxeNEsv8gbwOtaLjG75BGaKpNETS9fu1OX1DeWLLi
-         pDpQ2kP4ZwndnIBRSADaG84hFTGrBVJhV5ssmslv5+MSF/19MqF3XcvZzwrMveFvXk
-         +MY00CkkRKAT4jonqLWKS4bcOwTKQ6AkHOcvYH6A=
-Received: from DFLE106.ent.ti.com (dfle106.ent.ti.com [10.64.6.27])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7T7VT8c037199
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 29 Aug 2019 02:31:29 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 29
- Aug 2019 02:31:29 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 29 Aug 2019 02:31:29 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7T7VQDt009951;
-        Thu, 29 Aug 2019 02:31:27 -0500
-Subject: Re: [PATCH v5 0/2] arm64: dts: ti: k3: Update the power-domain cells
-To:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190729123023.32702-1-lokeshvutla@ti.com>
- <9aa7eeaf-36ee-3d5f-9654-d8fa37577877@ti.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <4dab34ae-e7cc-6c6e-4adb-3a061027ab39@ti.com>
-Date:   Thu, 29 Aug 2019 10:31:26 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <9aa7eeaf-36ee-3d5f-9654-d8fa37577877@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726973AbfH2Hoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 03:44:46 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:39328 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726739AbfH2Hop (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 03:44:45 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4C9E81A0227;
+        Thu, 29 Aug 2019 09:44:44 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 86DA31A00FC;
+        Thu, 29 Aug 2019 09:44:40 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 914B1402D7;
+        Thu, 29 Aug 2019 15:44:35 +0800 (SGT)
+From:   Yuantian Tang <andy.tang@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Yuantian Tang <andy.tang@nxp.com>
+Subject: [PATCH] arm64: dts: ls1028a: fix a compatible issue
+Date:   Thu, 29 Aug 2019 15:34:39 +0800
+Message-Id: <20190829073439.13069-1-andy.tang@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/08/2019 15:48, Lokesh Vutla wrote:
-> 
-> 
-> On 29/07/19 6:00 PM, Lokesh Vutla wrote:
->> Update the power-domains cells on all K3 based devices to reflect
->> exclusive and shared permissions in each device.
-> 
-> Gentle Ping on this series.
-> 
-> Thanks and regards,
-> Lokesh
-> 
+The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
+So correct it.
 
-This can't be merged until the driver portion is in. I could probably 
-live with an immutable branch though.
+Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+index 5e14e5a19744..f5da9e8b0d9d 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+@@ -107,7 +107,7 @@
+ 	status = "okay";
+ 
+ 	i2c-mux@77 {
+-		compatible = "nxp,pca9847";
++		compatible = "nxp,pca9547";
+ 		reg = <0x77>;
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-- 
+2.17.1
+
