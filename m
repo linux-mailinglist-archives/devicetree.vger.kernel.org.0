@@ -2,51 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 490A6A1A82
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D916A1B19
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 15:12:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727213AbfH2MyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 08:54:19 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:43471 "EHLO
+        id S1727014AbfH2NMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 09:12:30 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:47009 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726985AbfH2MyT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:54:19 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3JwJ-0000iA-7h; Thu, 29 Aug 2019 14:54:11 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3JwI-0001Vn-Rx; Thu, 29 Aug 2019 14:54:10 +0200
-Date:   Thu, 29 Aug 2019 14:54:10 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org
-Subject: Re: [PATCH v9 01/13] dt-bindings: connector: analog: add sdtv
- standards property
-Message-ID: <20190829125410.zjiebcf4cjdlyocl@pengutronix.de>
-References: <20190822080556.17109-1-m.felsch@pengutronix.de>
- <20190822080556.17109-2-m.felsch@pengutronix.de>
- <23fa2569-970e-ebf9-2116-90027123566e@xs4all.nl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <23fa2569-970e-ebf9-2116-90027123566e@xs4all.nl>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:52:36 up 103 days, 19:10, 63 users,  load average: 0.07, 0.09,
- 0.05
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
+        with ESMTP id S1726985AbfH2NMa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 09:12:30 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1i3KDr-00039Y-KV; Thu, 29 Aug 2019 15:12:19 +0200
+Message-ID: <1567084339.5345.7.camel@pengutronix.de>
+Subject: Re: [PATCHv2 02/11] soc: ti: add initial PRM driver with reset
+ control support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Tero Kristo <t-kristo@ti.com>, ssantosh@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-omap@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     tony@atomide.com, s-anna@ti.com, devicetree@vger.kernel.org
+Date:   Thu, 29 Aug 2019 15:12:19 +0200
+In-Reply-To: <20190828071941.32378-3-t-kristo@ti.com>
+References: <20190828071941.32378-1-t-kristo@ti.com>
+         <20190828071941.32378-3-t-kristo@ti.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
@@ -54,205 +40,346 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-08-29 12:02, Hans Verkuil wrote:
-> On 8/22/19 10:05 AM, Marco Felsch wrote:
-> > Some connectors no matter if in- or output supports only a limited
-> > range of sdtv standards. It doesn't matter if the hardware behind that
-> > connector supports more than the listed formats since the users are
-> > restriced by a label e.g. to plug only a camera into this connector
-> > which uses the PAL format.
-> > 
-> > This patch adds the capability to describe such limitation within the
-> > firmware. There are no format restrictions if the property isn't
-> > present, so it's completely backward compatible.
-> > 
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > ---
-> > [1] https://patchwork.kernel.org/cover/10794703/
-> > 
-> > v8:
-> > Hi Rob,
-> > 
-> > I dropped your r b tag becuase of the changes I made in this version.
-> > Please can you have look on it again? Luckily this would be the last
-> > time ;-)
-> > 
-> > - move definition to include/dt-bindings/display
-> > - rename tvnorms.h to sdtv-standards.h
-> > - TVORMS_* -> SDTV_STD_*
-> > - add sync comments
-> > - adapt commit message
-> > - fix bindings documentation
-> > 
-> > v7:
-> > I kept Robs r b tag because I only changed the example and extended
-> > TVNORM_* macros.
-> > 
-> > - fix some style issues
-> > - add TVNORM_NTSC, TVNORM_525_60 and TVNORM_625_50
-> > 
-> > v6:
-> > - tvnorms.h: use tabs instead of spaces
-> > - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
-> > - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
-> > 
-> > v2-v4:
-> > - nothing since the patch was squashed from series [1] into this
-> >   series.
-> > ---
-> >  .../display/connector/analog-tv-connector.txt |  6 ++
-> >  include/dt-bindings/display/sdtv-standards.h  | 76 +++++++++++++++++++
-> >  include/uapi/linux/videodev2.h                |  4 +
-> >  3 files changed, 86 insertions(+)
-> >  create mode 100644 include/dt-bindings/display/sdtv-standards.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > index 0c0970c210ab..883bcb2604c7 100644
-> > --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
-> > @@ -6,16 +6,22 @@ Required properties:
-> >  
-> >  Optional properties:
-> >  - label: a symbolic name for the connector
-> > +- sdtv-standards: limit the supported TV standards on a connector to the given
-> > +                  ones. If not specified all TV standards are allowed.
-> > +                  Possible TV standards are defined in
-> > +                  include/dt-bindings/display/sdtv-standards.h.
-> >  
-> >  Required nodes:
-> >  - Video port for TV input
-> >  
-> >  Example
-> >  -------
-> > +#include <dt-bindings/display/sdtv-standards.h>
-> >  
-> >  tv: connector {
-> >  	compatible = "composite-video-connector";
-> >  	label = "tv";
-> > +	sdtv-standards = <(SDTV_STD_PAL | SDTV_STD_NTSC)>;
-> >  
-> >  	port {
-> >  		tv_connector_in: endpoint {
-> > diff --git a/include/dt-bindings/display/sdtv-standards.h b/include/dt-bindings/display/sdtv-standards.h
-> > new file mode 100644
-> > index 000000000000..bb6966505a6c
-> > --- /dev/null
-> > +++ b/include/dt-bindings/display/sdtv-standards.h
-> > @@ -0,0 +1,76 @@
-> > +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
-> > +/*
-> > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_DISPLAY_SDTV_STDS_H
-> > +#define _DT_BINDINGS_DISPLAY_SDTV_STDS_H
-> > +
-> > +/*
-> > + * Attention: Keep the TV_STD_* bit definitions in sync with
+On Wed, 2019-08-28 at 10:19 +0300, Tero Kristo wrote:
+> Add initial PRM (Power and Reset Management) driver for TI OMAP class
+> SoCs. Initially this driver only supports reset control, but can be
+> extended to support rest of the functionality, like powerdomain
+> control, PRCM irq support etc.
 > 
-> TV_STD -> SDTV_STD
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+> ---
+>  arch/arm/mach-omap2/Kconfig |   1 +
+>  drivers/soc/ti/Makefile     |   1 +
+>  drivers/soc/ti/omap_prm.c   | 235 ++++++++++++++++++++++++++++++++++++
+>  3 files changed, 237 insertions(+)
+>  create mode 100644 drivers/soc/ti/omap_prm.c
 > 
-> > + * include/uapi/linux/videodev2.h V4L2_STD_* bit definitions.
-> > + */
-> > +/* One bit for each standard */
-> > +#define SDTV_STD_PAL_B		0x00000001
-> > +#define SDTV_STD_PAL_B1		0x00000002
-> > +#define SDTV_STD_PAL_G		0x00000004
-> > +#define SDTV_STD_PAL_H		0x00000008
-> > +#define SDTV_STD_PAL_I		0x00000010
-> > +#define SDTV_STD_PAL_D		0x00000020
-> > +#define SDTV_STD_PAL_D1		0x00000040
-> > +#define SDTV_STD_PAL_K		0x00000080
-> > +
-> > +#define SDTV_STD_PAL		(SDTV_STD_PAL_B		| \
-> > +				 SDTV_STD_PAL_B1	| \
-> > +				 SDTV_STD_PAL_G		| \
-> > +				 SDTV_STD_PAL_H		| \
-> > +				 SDTV_STD_PAL_I		| \
-> > +				 SDTV_STD_PAL_D		| \
-> > +				 SDTV_STD_PAL_D1	| \
-> > +				 SDTV_STD_PAL_K)
-> > +
-> > +#define SDTV_STD_PAL_M		0x00000100
-> > +#define SDTV_STD_PAL_N		0x00000200
-> > +#define SDTV_STD_PAL_Nc		0x00000400
-> > +#define SDTV_STD_PAL_60		0x00000800
-> > +
-> > +#define SDTV_STD_NTSC_M		0x00001000	/* BTSC */
-> > +#define SDTV_STD_NTSC_M_JP	0x00002000	/* EIA-J */
-> > +#define SDTV_STD_NTSC_443	0x00004000
-> > +#define SDTV_STD_NTSC_M_KR	0x00008000	/* FM A2 */
-> > +
-> > +#define SDTV_STD_NTSC		(SDTV_STD_NTSC_M	| \
-> > +				 SDTV_STD_NTSC_M_JP	| \
-> > +				 SDTV_STD_NTSC_M_KR)
-> > +
-> > +#define SDTV_STD_SECAM_B	0x00010000
-> > +#define SDTV_STD_SECAM_D	0x00020000
-> > +#define SDTV_STD_SECAM_G	0x00040000
-> > +#define SDTV_STD_SECAM_H	0x00080000
-> > +#define SDTV_STD_SECAM_K	0x00100000
-> > +#define SDTV_STD_SECAM_K1	0x00200000
-> > +#define SDTV_STD_SECAM_L	0x00400000
-> > +#define SDTV_STD_SECAM_LC	0x00800000
-> > +
-> > +#define SDTV_STD_SECAM		(SDTV_STD_SECAM_B	| \
-> > +				 SDTV_STD_SECAM_D	| \
-> > +				 SDTV_STD_SECAM_G	| \
-> > +				 SDTV_STD_SECAM_H	| \
-> > +				 SDTV_STD_SECAM_K	| \
-> > +				 SDTV_STD_SECAM_K1	| \
-> > +				 SDTV_STD_SECAM_L	| \
-> > +				 SDTV_STD_SECAM_LC)
-> > +
-> > +/* Standards for Countries with 60Hz Line frequency */
-> > +#define SDTV_STD_525_60		(SDTV_STD_PAL_M		| \
-> > +				 SDTV_STD_PAL_60	| \
-> > +				 SDTV_STD_NTSC		| \
-> > +				 SDTV_STD_NTSC_443)
-> > +
-> > +/* Standards for Countries with 50Hz Line frequency */
-> > +#define SDTV_STD_625_50		(SDTV_STD_PAL		| \
-> > +				 SDTV_STD_PAL_N		| \
-> > +				 SDTV_STD_PAL_Nc	| \
-> > +				 SDTV_STD_SECAM)
-> > +
-> > +#endif /* _DT_BINDINGS_DISPLAY_SDTV_STDS_H */
-> > diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
-> > index 530638dffd93..c358cc34fc34 100644
-> > --- a/include/uapi/linux/videodev2.h
-> > +++ b/include/uapi/linux/videodev2.h
-> > @@ -1208,6 +1208,10 @@ struct v4l2_selection {
-> >  
-> >  typedef __u64 v4l2_std_id;
-> >  
-> > +/*
-> > + * Attention: Keep the V4L2_STD_* bit definitions in sync with
-> > + * include/dt-bindings/display/sdtv-standards.h TV_STD_* bit definitions.
-> 
-> TV_STD -> SDTV_STD
+> diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+> index fdb6743760a2..ad08d470a2ca 100644
+> --- a/arch/arm/mach-omap2/Kconfig
+> +++ b/arch/arm/mach-omap2/Kconfig
+> @@ -109,6 +109,7 @@ config ARCH_OMAP2PLUS
+>  	select TI_SYSC
+>  	select OMAP_IRQCHIP
+>  	select CLKSRC_TI_32K
+> +	select ARCH_HAS_RESET_CONTROLLER
+>  	help
+>  	  Systems based on OMAP2, OMAP3, OMAP4 or OMAP5
+>  
+> diff --git a/drivers/soc/ti/Makefile b/drivers/soc/ti/Makefile
+> index b3868d392d4f..788b5cd1e180 100644
+> --- a/drivers/soc/ti/Makefile
+> +++ b/drivers/soc/ti/Makefile
+> @@ -6,6 +6,7 @@ obj-$(CONFIG_KEYSTONE_NAVIGATOR_QMSS)	+= knav_qmss.o
+>  knav_qmss-y := knav_qmss_queue.o knav_qmss_acc.o
+>  obj-$(CONFIG_KEYSTONE_NAVIGATOR_DMA)	+= knav_dma.o
+>  obj-$(CONFIG_AMX3_PM)			+= pm33xx.o
+> +obj-$(CONFIG_ARCH_OMAP2PLUS)		+= omap_prm.o
+>  obj-$(CONFIG_WKUP_M3_IPC)		+= wkup_m3_ipc.o
+>  obj-$(CONFIG_TI_SCI_PM_DOMAINS)		+= ti_sci_pm_domains.o
+>  obj-$(CONFIG_TI_SCI_INTA_MSI_DOMAIN)	+= ti_sci_inta_msi.o
+> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
+> new file mode 100644
+> index 000000000000..fd5c431f8736
+> --- /dev/null
+> +++ b/drivers/soc/ti/omap_prm.c
+> @@ -0,0 +1,235 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * OMAP2+ PRM driver
+> + *
+> + * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
+> + *	Tero Kristo <t-kristo@ti.com>
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
 
-Thanks for covering that. I tought I got all of them.
+Why <linux/module.h>? This is a builtin driver.
 
-Regards,
-  Marco
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset-controller.h>
+> +#include <linux/delay.h>
+> +
+> +struct omap_rst_map {
+> +	s8 rst;
+> +	s8 st;
+> +};
+> +
+> +struct omap_prm_data {
+> +	u32 base;
+> +	const char *name;
+> +	u16 rstctrl;
+> +	u16 rstst;
+> +	const struct omap_rst_map *rstmap;
+> +	u8 flags;
+> +};
 
-> 
-> > + */
-> >  /* one bit for each */
-> >  #define V4L2_STD_PAL_B          ((v4l2_std_id)0x00000001)
-> >  #define V4L2_STD_PAL_B1         ((v4l2_std_id)0x00000002)
-> > 
-> 
-> I really like this. Nice.
-> 
-> Regards,
-> 
-> 	Hans
-> 
+I wonder if splitting rstctrl/rstst/rstmap out into a separate structure
+would make sense. That could be linked from omap_reset_data directly.
+That only makes sense if there'd be enough cases where it can be reused
+for multiple PRMs instances.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> +
+> +struct omap_prm {
+> +	const struct omap_prm_data *data;
+> +	void __iomem *base;
+> +};
+> +
+> +struct omap_reset_data {
+> +	struct reset_controller_dev rcdev;
+> +	struct omap_prm *prm;
+> +};
+> +
+> +#define to_omap_reset_data(p) container_of((p), struct omap_reset_data, rcdev)
+> +
+> +#define OMAP_MAX_RESETS		8
+> +#define OMAP_RESET_MAX_WAIT	10000
+> +
+> +#define OMAP_PRM_HAS_RSTCTRL	BIT(0)
+> +#define OMAP_PRM_HAS_RSTST	BIT(1)
+> +
+> +#define OMAP_PRM_HAS_RESETS	(OMAP_PRM_HAS_RSTCTRL | OMAP_PRM_HAS_RSTST)
+> +
+> +static const struct of_device_id omap_prm_id_table[] = {
+> +	{ },
+> +};
+> +
+> +static bool _is_valid_reset(struct omap_reset_data *reset, unsigned long id)
+> +{
+> +	const struct omap_rst_map *map = reset->prm->data->rstmap;
+> +
+> +	while (map && map->rst >= 0) {
+
+If rstmap is never NULL,
+
+	while (map->rst >= 0) {
+
+should be enough.
+
+> +		if (map->rst == id)
+> +			return true;
+> +		map++;
+> +	}
+> +
+> +	return false;
+> +}
+> +
+> +static int omap_reset_status(struct reset_controller_dev *rcdev,
+> +			     unsigned long id)
+> +{
+> +	struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+> +	u32 v;
+> +
+> +	if (!_is_valid_reset(reset, id))
+> +		return -EINVAL;
+
+Don't check this in the status/(de)assert/reset callbacks. Instead,
+implement rcdev.of_xlate and return -EINVAL there, so that invalid ids
+can never be requested.
+
+> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
+> +	v &= 1 << id;
+> +	v >>= id;
+
+omap_get_st_bit below makes it look like the status bit can be in a
+different place than the reset control bit, should that be used here as
+well?
+
+> +
+> +	return v;
+> +}
+> +
+> +static int omap_reset_assert(struct reset_controller_dev *rcdev,
+> +			     unsigned long id)
+> +{
+> +	struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+> +	u32 v;
+> +
+> +	if (!_is_valid_reset(reset, id))
+> +		return -EINVAL;
+
+Same as above.
+
+> +	/* assert the reset control line */
+> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstctrl);
+> +	v |= 1 << id;
+> +	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
+
+This read-modify-write should be protected with a lock.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int omap_reset_get_st_bit(struct omap_reset_data *reset,
+> +				 unsigned long id)
+> +{
+> +	const struct omap_rst_map *map = reset->prm->data->rstmap;
+> +
+> +	while (map && map->rst >= 0) {
+
+Same as above.
+
+> +		if (map->rst == id)
+> +			return map->st;
+> +
+> +		map++;
+> +	}
+> +
+> +	return id;
+> +}
+> +
+> +/*
+> + * Note that status will not change until clocks are on, and clocks cannot be
+> + * enabled until reset is deasserted. Consumer drivers must check status
+> + * separately after enabling clocks.
+> + */
+> +static int omap_reset_deassert(struct reset_controller_dev *rcdev,
+> +			       unsigned long id)
+> +{
+> +	struct omap_reset_data *reset = to_omap_reset_data(rcdev);
+> +	u32 v;
+> +	int st_bit;
+> +	bool has_rstst;
+> +
+> +	if (!_is_valid_reset(reset, id))
+> +		return -EINVAL;
+
+Same as above.
+
+> +	/* check the current status to avoid de-asserting the line twice */
+> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstctrl);
+> +	if (!(v & BIT(id)))
+> +		return -EEXIST;
+
+What is the purpose of this? For shared consumers the core already does
+refcounting, and I expect exclusive consumers won't deassert twice.
+Since the reset signal is deasserted after this call, this should not
+return an error.
+
+> +
+> +	has_rstst = reset->prm->data->rstst ||
+> +		(reset->prm->data->flags & OMAP_PRM_HAS_RSTST);
+> +
+> +	if (has_rstst) {
+> +		st_bit = omap_reset_get_st_bit(reset, id);
+> +
+> +		/* Clear the reset status by writing 1 to the status bit */
+> +		v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
+> +		v |= 1 << st_bit;
+> +		writel_relaxed(v, reset->prm->base + reset->prm->data->rstst);
+
+What does the value read from the rstst register indicate? Is it the
+current state of the reset line? Is it 0 until deassertion is completed,
+and then it turns to 1?
+
+> +	}
+> +
+> +	/* de-assert the reset control line */
+> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstctrl);
+
+Reading the register again seems unnecessary.
+
+> +	v &= ~(1 << id);
+> +	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
+
+As above, the read-modify-write should be locked.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct reset_control_ops omap_reset_ops = {
+> +	.assert		= omap_reset_assert,
+> +	.deassert	= omap_reset_deassert,
+> +	.status		= omap_reset_status,
+> +};
+> +
+> +static int omap_prm_reset_init(struct platform_device *pdev,
+> +			       struct omap_prm *prm)
+> +{
+> +	struct omap_reset_data *reset;
+> +
+> +	/*
+> +	 * Check if we have controllable resets. If either rstctrl is non-zero
+> +	 * or OMAP_PRM_HAS_RSTCTRL flag is set, we have reset control register
+> +	 * for the domain.
+> +	 */
+> +	if (!prm->data->rstctrl && !(prm->data->flags & OMAP_PRM_HAS_RSTCTRL))
+> +		return 0;
+> +
+> +	reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
+> +	if (!reset)
+> +		return -ENOMEM;
+> +
+> +	reset->rcdev.owner = THIS_MODULE;
+> +	reset->rcdev.ops = &omap_reset_ops;
+> +	reset->rcdev.of_node = pdev->dev.of_node;
+> +	reset->rcdev.nr_resets = OMAP_MAX_RESETS;
+> +
+> +	reset->prm = prm;
+> +
+> +	return devm_reset_controller_register(&pdev->dev, &reset->rcdev);
+> +}
+> +
+> +static int omap_prm_probe(struct platform_device *pdev)
+> +{
+> +	struct resource *res;
+> +	const struct omap_prm_data *data;
+> +	struct omap_prm *prm;
+> +	const struct of_device_id *match;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	if (!res)
+> +		return -ENODEV;
+
+This can be merged with devm_ioremap_resource below.
+
+> +	match = of_match_device(omap_prm_id_table, &pdev->dev);
+> +	if (!match)
+> +		return -ENOTSUPP;
+> +
+> +	prm = devm_kzalloc(&pdev->dev, sizeof(*prm), GFP_KERNEL);
+> +	if (!prm)
+> +		return -ENOMEM;
+> +
+> +	data = match->data;
+> +
+> +	while (data->base != res->start) {
+> +		if (!data->base)
+> +			return -EINVAL;
+> +		data++;
+> +	}
+
+Is this not something that you want to have encoded in the compatible
+string? They all have a different register layout.
+
+> +
+> +	prm->data = data;
+> +
+> +	prm->base = devm_ioremap_resource(&pdev->dev, res);
+
+	prm->base = devm_platform_ioremap_resource(pdev, 0);
+
+> +	if (!prm->base)
+> +		return -ENOMEM;
+> +
+> +	return omap_prm_reset_init(pdev, prm);
+> +}
+> +
+> +static struct platform_driver omap_prm_driver = {
+> +	.probe = omap_prm_probe,
+> +	.driver = {
+> +		.name		= KBUILD_MODNAME,
+> +		.of_match_table	= omap_prm_id_table,
+> +	},
+> +};
+> +builtin_platform_driver(omap_prm_driver);
+
+regards
+Philipp
