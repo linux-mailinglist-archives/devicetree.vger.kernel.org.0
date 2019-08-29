@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4517CA140C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 10:49:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BBC2A1412
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 10:49:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbfH2It1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 04:49:27 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:36661 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726070AbfH2It1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 04:49:27 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7T8kxr5031268;
-        Thu, 29 Aug 2019 10:48:55 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
- : from : message-id : date : mime-version : in-reply-to : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=NlGM32ocdpPWCJcOtDVLjpgH+SvU7mlXgBdhDT7M+X8=;
- b=u0db09ugjsVglBswXP+mVOWomLQtCDERzWqyS+4Tpnl9MaCsmoTNFiPCKzdfA50T6D7C
- C+GbQFCz9y6h5qxvB99GS73qVvw+KBZ69vEVNNDHZmhmS15jbzNJVBCyDo2rYNVPA0M7
- AyM0nNRswqEa8rgxhWc9dSev0UQYkJERN5IjBULZUiyCR/eN9O5v/jIbbg2kSa8HokzD
- rtGaXJ45MtbkV2OIbOKlJc3uFrOvxL1SpY0kxAVa5WkVxmObe6Qqx27tr3PO4f2e0oac
- pDQVtheQDemuJ/HUlrZ3smKV1zedt2eG+UZXZqQCz4eKkIaj21L5ZvS8MsZ+wsLUnvfD 2g== 
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2unujk470g-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Thu, 29 Aug 2019 10:48:55 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8F4B04D;
-        Thu, 29 Aug 2019 08:48:47 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E22742AD3F3;
-        Thu, 29 Aug 2019 10:48:46 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.47) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Thu, 29 Aug
- 2019 10:48:46 +0200
-Subject: Re: [PATCH v3 5/5] ARM: dts: stm32: add ddrperfm on stm32mp157c
-To:     Gerald BAEZA <gerald.baeza@st.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        "corbet@lwn.net" <corbet@lwn.net>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "olof@lixom.net" <olof@lixom.net>, "arnd@arndb.de" <arnd@arndb.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-References: <1566918464-23927-1-git-send-email-gerald.baeza@st.com>
- <1566918464-23927-6-git-send-email-gerald.baeza@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <8e3170a3-c814-d06e-f1f9-6d4e6a4bed71@st.com>
-Date:   Thu, 29 Aug 2019 10:48:45 +0200
+        id S1726990AbfH2Itt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 04:49:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43842 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726070AbfH2Itt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 04:49:49 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7T8ng8w111003;
+        Thu, 29 Aug 2019 03:49:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1567068582;
+        bh=hb1qfncjpjyooL2xBRQ/iE6DhSxUJnJBzoFjZ644LWk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=w+Y+5KcFVkNAl319jUaVFUDgo5s2HL05wlhZeU+ROONxq4FOLieh3EdySpd8XiLKw
+         Z/45Ke1aJncrqIUDrXAF72FsCK8Ok7Y4uQfg4NmNFR8YhdQguKdeBWojbRYomjOVK9
+         r/Z3YwI8X/h7kMFVkuR6rTA2tv+znkK59PZZPAb4=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7T8ng7f009077
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 29 Aug 2019 03:49:42 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 29
+ Aug 2019 03:49:42 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 29 Aug 2019 03:49:42 -0500
+Received: from [172.24.190.117] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7T8naMX001450;
+        Thu, 29 Aug 2019 03:49:38 -0500
+Subject: Re: [PATCH v5 0/2] arm64: dts: ti: k3: Update the power-domain cells
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+References: <20190729123023.32702-1-lokeshvutla@ti.com>
+ <9aa7eeaf-36ee-3d5f-9654-d8fa37577877@ti.com>
+ <4dab34ae-e7cc-6c6e-4adb-3a061027ab39@ti.com>
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+Message-ID: <1ad82ac9-b59b-3698-feca-f92a4be992a0@ti.com>
+Date:   Thu, 29 Aug 2019 14:18:49 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <1566918464-23927-6-git-send-email-gerald.baeza@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <4dab34ae-e7cc-6c6e-4adb-3a061027ab39@ti.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.47]
-X-ClientProxiedBy: SFHDAG8NODE2.st.com (10.75.127.23) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-29_05:,,
- signatures=0
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gerald
+Hi Tero,
 
-On 8/27/19 5:08 PM, Gerald BAEZA wrote:
-> The DDRPERFM is the DDR Performance Monitor embedded
-> in STM32MP1 SOC.
+On 29/08/19 1:01 PM, Tero Kristo wrote:
+> On 20/08/2019 15:48, Lokesh Vutla wrote:
+>>
+>>
+>> On 29/07/19 6:00 PM, Lokesh Vutla wrote:
+>>> Update the power-domains cells on all K3 based devices to reflect
+>>> exclusive and shared permissions in each device.
+>>
+>> Gentle Ping on this series.
+>>
+>> Thanks and regards,
+>> Lokesh
+>>
 > 
-> Signed-off-by: Gerald Baeza <gerald.baeza@st.com>
-> ---
->   arch/arm/boot/dts/stm32mp157c.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
+> This can't be merged until the driver portion is in. I could probably live with
+> an immutable branch though.
+
+Santosh already sent a pull request[0] with the driver changes. IMHO, dt changes
+can be merged in. I don't think we need to wait for one release for DT changes
+to get in or did I mis-understood your statement?
+
+[0] https://lkml.org/lkml/2019/8/26/1124
+
+Thanks and regards,
+Lokesh
+
 > 
-> diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi 
-> b/arch/arm/boot/dts/stm32mp157c.dtsi
-> index 0c4e6eb..6ea6933 100644
-> --- a/arch/arm/boot/dts/stm32mp157c.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp157c.dtsi
-> @@ -1378,6 +1378,14 @@
->                           };
->                   };
-> 
-> +               ddrperfm: perf@5a007000 {
-> +                       compatible = "st,stm32-ddr-pmu";
-> +                       reg = <0x5a007000 0x400>;
-> +                       clocks = <&rcc DDRPERFM>;
-> +                       resets = <&rcc DDRPERFM_R>;
-> +                       status = "okay";
-
-No need to add "status = "okay"" here.
-
-regards
-Alex
-
-> +               };
-> +
->                   usart1: serial@5c000000 {
->                           compatible = "st,stm32h7-uart";
->                           reg = <0x5c000000 0x400>;
+> -Tero
 > -- 
-> 2.7.4
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
