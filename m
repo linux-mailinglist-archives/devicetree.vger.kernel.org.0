@@ -2,106 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD408A27C6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 22:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77DF5A27F0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 22:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727686AbfH2UR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 16:17:26 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:59076 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727673AbfH2UR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 16:17:26 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 8052A634C87;
-        Thu, 29 Aug 2019 23:17:01 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1i3Qqr-0000yE-Ce; Thu, 29 Aug 2019 23:17:01 +0300
-Date:   Thu, 29 Aug 2019 23:17:01 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com
-Subject: Re: [PATCH v2 2/3] media: i2c: Add IMX290 CMOS image sensor driver
-Message-ID: <20190829201701.GA3568@valkosipuli.retiisi.org.uk>
-References: <20190806130938.19916-1-manivannan.sadhasivam@linaro.org>
- <20190806130938.19916-3-manivannan.sadhasivam@linaro.org>
- <20190813105920.GH835@valkosipuli.retiisi.org.uk>
- <20190829170415.GA4427@mani>
+        id S1727125AbfH2U2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 16:28:19 -0400
+Received: from sauhun.de ([88.99.104.3]:43298 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726661AbfH2U2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 16:28:19 -0400
+Received: from localhost (p54B33070.dip0.t-ipconnect.de [84.179.48.112])
+        by pokefinder.org (Postfix) with ESMTPSA id 85D682C001C;
+        Thu, 29 Aug 2019 22:28:17 +0200 (CEST)
+Date:   Thu, 29 Aug 2019 22:28:17 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Eugen.Hristev@microchip.com
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        pierre-yves.mordret@st.com, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, peda@axentia.se, mark.rutland@arm.com,
+        Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH v3 0/9] i2c: add support for filters
+Message-ID: <20190829202817.GT3740@ninjato>
+References: <1562678049-17581-1-git-send-email-eugen.hristev@microchip.com>
+ <20190712082044.6eteunzehyptsibk@M43218.corp.atmel.com>
+ <867070c3-02c8-da1b-04d9-0a1b628577de@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="MET8MpPxp2u2c48q"
 Content-Disposition: inline
-In-Reply-To: <20190829170415.GA4427@mani>
+In-Reply-To: <867070c3-02c8-da1b-04d9-0a1b628577de@microchip.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Manivannan,
 
-On Thu, Aug 29, 2019 at 10:34:15PM +0530, Manivannan Sadhasivam wrote:
+--MET8MpPxp2u2c48q
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-...
 
-> > > +static int imx290_set_fmt(struct v4l2_subdev *sd,
-> > > +			  struct v4l2_subdev_pad_config *cfg,
-> > > +		      struct v4l2_subdev_format *fmt)
-> > > +{
-> > > +	struct imx290 *imx290 = to_imx290(sd);
-> > > +	const struct imx290_mode *mode;
-> > > +	struct v4l2_mbus_framefmt *format;
-> > > +	int i, ret = 0;
-> > 
-> > Note that sub-device drivers need to serialise access through the uAPI to
-> > their own data.
-> > 
-> 
-> You mean guarding with mutex?
+> > I don't know if it will fit other vendors need concerning the binding
+> > but for Microchip it sounds good.
+> >=20
+> > Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+> > for the whole serie.
+> >=20
+> > Regards
+> >=20
+> > Ludovic
+> >=20
+>=20
+> Hello Wolfram,
+>=20
+> What is the plan for this patch series?
 
-Yes, please.
+I hope to review it this weekend and my hope it is good to go for 5.4.
 
-...
 
-> > > +static int imx290_get_regulators(struct device *dev, struct imx290 *imx290)
-> > > +{
-> > > +	unsigned int i;
-> > > +
-> > > +	for (i = 0; i < IMX290_NUM_SUPPLIES; i++)
-> > > +		imx290->supplies[i].supply = imx290_supply_name[i];
-> > > +
-> > > +	return devm_regulator_bulk_get(dev, IMX290_NUM_SUPPLIES,
-> > > +				       imx290->supplies);
-> > > +}
-> > > +
+--MET8MpPxp2u2c48q
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
 
-> > > +	ret = imx290_get_regulators(dev, imx290);
-> > > +	if (ret < 0) {
-> > > +		dev_err(dev, "Cannot get regulators\n");
-> > > +		return ret;
-> > > +	}
-> > > +
-> > > +	imx290->rst_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_ASIS);
-> > > +	if (IS_ERR(imx290->rst_gpio)) {
-> > > +		dev_err(dev, "Cannot get reset gpio\n");
-> > 
-> > Remember to put the regulators from now on. Or grab them later.
-> > 
-> 
-> Shouldn't that happen by default with devm_regulator* APIs?
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1oNWAACgkQFA3kzBSg
+KbZrWw/9HqjOXK/IH1rLw2tSA9GN1022F4IumHkzV+65mZFNq21FwtEAjTScq2uv
+nIRFzhRtjtBlov0w3t5prkUAuSKqKXiGgue/cDannWVLvdk/pcrTCERvQsBc5rIe
+Jlhya4MgSnE3teHqrJy4XtKn3m1LUJ6I/XtTGzDl50KHsepFWGuITBXKIKpS+R1q
+XVG1reJyxec3oWGHh1V1L+klLIb1HHWickcmYM2djZXrpharb7D0fIsdQB+1jSNR
+qhOpL15ye5Gc/01JA/rkNsSz/TI7AQBekZrsVaSgehnvN24yG9JzP6jLhaNU+9Xw
+lR5YY2FY8ubdAtcfDLYa+pJYBBxAtPuNfCMpVqaT/9woLF0gsCX4S8ggGAzne/MN
+KfatKAkosRZhO2rnXfFDnnBpL/wCGFA4/xiECAjYv1kalCopR8dUeYCdWIMcI1g5
+7MRqq9c1HE95e3Sh2mEPR3BHgDD83YmEjsYU6TOyYFoa0FS/A7WaQ1iqX7FmqZbm
+WRLtrtD3aVGxUncuYxfjLpNRSmOGnowjcIVLrURVCSYMvYsU5ltn0t9xTDp9h6yf
+D+rfsiFxcKnoasaeLaPauHCXVrgbbDG28tI+GoNTJkLjTZmWHkH/hPdcam3N6Qcc
+hHQImfyLvBDp9ePMb8U8ombH/SLyT2cqdOXgSHTLflZuCazJWZo=
+=S1+3
+-----END PGP SIGNATURE-----
 
-Ah, I missed you were using the devm variant. Please ignore the comment
-then.
-
--- 
-Regards,
-
-Sakari Ailus
+--MET8MpPxp2u2c48q--
