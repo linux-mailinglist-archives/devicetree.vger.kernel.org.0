@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6DCA174A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 12:54:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E978A1713
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 12:53:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728041AbfH2Ky1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 06:54:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57782 "EHLO mail.kernel.org"
+        id S1728336AbfH2Ku4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 06:50:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58462 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728021AbfH2Kua (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 06:50:30 -0400
+        id S1728325AbfH2Kuz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 06:50:55 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EB7C02173E;
-        Thu, 29 Aug 2019 10:50:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 224CB23405;
+        Thu, 29 Aug 2019 10:50:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567075829;
-        bh=9OwpUQxQjkGWdwWltlQKTGXWR2s8Zhgbq2LrY6GIs8I=;
+        s=default; t=1567075854;
+        bh=7R5Sb9pQniThNe2V1GX9Yyy/CTgDm7fN5URc3GLrp6Y=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=mFvjoaEScbm2R6FOwxzrEGMFZoYfEgpa8b2+wAsTnEMKfv+FLgNhr3POwCdh7WHED
-         PqZea4ufXFCibqlPG24V36t+b1fetVPXa3voyWAFmSSuN4RkJSH9J5ygTQuMR1KIXD
-         o3NTkqgM1Lh1bsunIbO5ZHrlQaKB5UUwF49ch0dc=
+        b=iTH2/+J4xIoqqeujl8Zj5v6Q5OrTQJj6mZ4eRUMoM+RDtn8aODqr3mDmDGzx/rWg1
+         inOJx1G3Z0JhQR8pUAOdIbdw2Xj0eG6gyQw6Rl7BTNRbpx+1E+BSdxSgOij/lu7ach
+         c1rrSa/R+CWVvmJeDRXysjfA3kI8QJJzyeRt8EOg=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Dmitry Voytik <voytikd@gmail.com>,
         Heiko Stuebner <heiko@sntech.de>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
         linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 17/29] arm64: dts: rockchip: enable usb-host regulators at boot on rk3328-rock64
-Date:   Thu, 29 Aug 2019 06:49:57 -0400
-Message-Id: <20190829105009.2265-17-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 09/14] arm64: dts: rockchip: enable usb-host regulators at boot on rk3328-rock64
+Date:   Thu, 29 Aug 2019 06:50:38 -0400
+Message-Id: <20190829105043.2508-9-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190829105009.2265-1-sashal@kernel.org>
-References: <20190829105009.2265-1-sashal@kernel.org>
+In-Reply-To: <20190829105043.2508-1-sashal@kernel.org>
+References: <20190829105043.2508-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -61,10 +61,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index c142169a58fc5..e9147e35b7396 100644
+index e720f40bbd5d7..3f8f528099a80 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -40,6 +40,7 @@
+@@ -77,6 +77,7 @@
  		pinctrl-0 = <&usb30_host_drv>;
  		regulator-name = "vcc_host_5v";
  		regulator-always-on;
@@ -72,7 +72,7 @@ index c142169a58fc5..e9147e35b7396 100644
  		vin-supply = <&vcc_sys>;
  	};
  
-@@ -50,6 +51,7 @@
+@@ -87,6 +88,7 @@
  		pinctrl-0 = <&usb20_host_drv>;
  		regulator-name = "vcc_host1_5v";
  		regulator-always-on;
