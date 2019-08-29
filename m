@@ -2,137 +2,327 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 60A56A1F0C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FC1DA1F51
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:34:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727115AbfH2P06 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 11:26:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44718 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726739AbfH2P06 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 11:26:58 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CA2072342F;
-        Thu, 29 Aug 2019 15:26:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567092416;
-        bh=L+4ClaRi9fsykE32xB4xhDmYla9Xiavn1wqCMCMursM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YQI2zazxcGJYwGnMOBrNMMxEPo5oFzhrDk9+MilWCL+KAoP8rKKDgHfufr1foeqeP
-         QSCFvW+tV30oJMZ4OWJ7859VnJK4QUc5OXu2QgkA43Vr9CRTGzKR4KESa6U1OeOAye
-         5Sy2mg+SEmmRG4WYyimWY/ci+PiF1Z0X6j6cZpLI=
-Received: by mail-qk1-f170.google.com with SMTP id m2so3247725qki.12;
-        Thu, 29 Aug 2019 08:26:56 -0700 (PDT)
-X-Gm-Message-State: APjAAAUTWSWjguGAYuj+oDQ/VGykjE/PvAbm4MYvUx50g3GsNTZGpQOz
-        6eDuGW5praTMIT0FJ9K5dq6U2uybYBaiXL1BTQ==
-X-Google-Smtp-Source: APXvYqwpfIKijR3krvhxBbOcuXprzAlMFrP7pRI7j1UXKERObZYR+sKPh8ZKFsOblUy4X3oiWnIbSfzV1lql8lzhaiI=
-X-Received: by 2002:a37:4941:: with SMTP id w62mr9319300qka.119.1567092415814;
- Thu, 29 Aug 2019 08:26:55 -0700 (PDT)
+        id S1727891AbfH2Peu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 11:34:50 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:54351 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727802AbfH2Peu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 11:34:50 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3MRc-0003WC-1r; Thu, 29 Aug 2019 17:34:40 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3MRa-0006ty-GF; Thu, 29 Aug 2019 17:34:38 +0200
+Date:   Thu, 29 Aug 2019 17:34:38 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v9 07/13] media: tvp5150: add FORMAT_TRY support for
+ get/set selection handlers
+Message-ID: <20190829153438.fhxdccvko2lilvyn@pengutronix.de>
+References: <20190822080556.17109-1-m.felsch@pengutronix.de>
+ <20190822080556.17109-8-m.felsch@pengutronix.de>
+ <aadcd44b-7708-e4e7-1926-d9ac0bc8ef8f@xs4all.nl>
 MIME-Version: 1.0
-References: <1567017402-5895-1-git-send-email-fabrizio.castro@bp.renesas.com>
-In-Reply-To: <1567017402-5895-1-git-send-email-fabrizio.castro@bp.renesas.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 29 Aug 2019 10:26:43 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+5FMHK4W4UQU24g+rm3CLjnhRcB29skygRB++GaJyM0A@mail.gmail.com>
-Message-ID: <CAL_Jsq+5FMHK4W4UQU24g+rm3CLjnhRcB29skygRB++GaJyM0A@mail.gmail.com>
-Subject: Re: [PATCH v3 0/8] Add dual-LVDS panel support to EK874
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        xu_shunji@hoperun.com, ebiharaml@si-linux.co.jp
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aadcd44b-7708-e4e7-1926-d9ac0bc8ef8f@xs4all.nl>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 15:02:15 up 103 days, 19:20, 63 users,  load average: 0.06, 0.07,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 1:36 PM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
->
-> Dear All,
->
-> this series adds support for dual-LVDS panel IDK-2121WR
-> from Advantech:
-> https://buy.advantech.eu/Displays/Embedded-LCD-Kits-High-Brightness/model-IDK-2121WR-K2FHA2E.htm
->
-> V3 approaches the problem in a completely different way, we now
-> have two new properties to mark the ports in the DT as receiving
-> even pixels and odd pixels: dual-lvds-even-pixels and dual-lvds-odd-pixels,
-> which means device drivers should not use bridge specific or panel
-> specific dual_link flags. Also, in this case the DT describes the
-> connection fully.
->
-> In order for the solution to be generic, I have exported a new helper
-> (drm_of_lvds_get_dual_link_configuration) to walk the device tree,
-> and figure out if the connection is dual-LVDS. The same helper gives
-> information about the configuration of the connection. If Px is connected
-> to a port expecting even pixels and Py is connected to a port expecting
-> odd pixels, then the helper returns DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS
-> (like in the example below), otherwise it returns
-> DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS.
->
->
->  --------            dual-lvds-even-pixels  --------
-> |        |----                         ----|        |
-> |        | Px |---------------------->| Pn |        |
-> |        |----                         ----|        |
-> | SOURCE |           dual-lvds-odd-pixels  |  SINK  |
-> |        |----                         ----|        |
-> |        | Py |---------------------->| Pm |        |
-> |        |----                         ----|        |
->  --------                                   --------
->
-> The device driver for the encoder then will work out if with the current
-> wiring the pixels need swapping or not.
->
-> The same solution works for both panels and bridges.
->
-> Since the DT describes the connection fully, driver
-> drivers/gpu/drm/panel/panel-lvds.c works out-of-the-box, no changes
-> required, however, this implementation opens up a problem with the
-> dt-bindings.
-> Driver drivers/gpu/drm/panel/panel-lvds.c can still be pleased by
-> a port node, but also by a ports node.
-> I have created Documentation/devicetree/bindings/display/bus-timings/lvds.yaml
-> with the idea of including it from panels and bridges dt-bindings
-> supporting dual-LVDS (and of course the dt-bindings for the specific
-> devices should say which port should be marked as what), but file
-> Documentation/devicetree/bindings/display/panel/lvds.yaml formally
-> requires property "port", while with this implementation it should require
-> OneOf "port" and "ports", and unfortunately I can't seem to find a neat way
-> aroud that, other than creating a new compatible string
+On 19-08-29 11:56, Hans Verkuil wrote:
+> On 8/22/19 10:05 AM, Marco Felsch wrote:
+> > Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
+> > the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
+> > no way to try different selections. The patch adds a helper function to
+> > select the correct selection memory space (sub-device file handle or
+> > driver state) which will be set/returned.
+> > 
+> > The selection rectangle is updated if the format is FORMAT_ACTIVE and
+> > the rectangle position and/or size differs from the current set
+> > rectangle.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> > Changelog:
+> > 
+> > v8:
+> > - adapt commit message
+> > - remove wrong FORMAT_TRY handling for tvp5150_fill_fmt() handling
+> > - return 0 during set_selection if FORMAT_TRY was requested and
+> >   CONFIG_VIDEO_V4L2_SUBDEV_API is disabled
+> > - return -EINVAL during get_selection if FORMAT_TRY was requested and
+> >   CONFIG_VIDEO_V4L2_SUBDEV_API is disabled
+> > v7:
+> > - __tvp5150_get_pad_crop(): return error on default case
+> > - simplify __tvp5150_get_pad_crop() error handling
+> > - tvp5150_set_selection() squash __tvp5150_set_selection() execution
+> >   conditions
+> > v6:
+> > nothing
+> > v5:
+> >  - handle stub for v4l2_subdev_get_try_crop() internal since commit
+> >    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
+> >    isn't anymore part of this series.
+> >  - add error handling of __tvp5150_get_pad_crop()
+> > v4:
+> >  - fix merge conflict due to rebase on top of media-tree/master
+> >  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
+> > ---
+> >  drivers/media/i2c/tvp5150.c | 111 +++++++++++++++++++++++++-----------
+> >  1 file changed, 79 insertions(+), 32 deletions(-)
+> > 
+> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+> > index 477a929d4f89..62a1c7c3a7c0 100644
+> > --- a/drivers/media/i2c/tvp5150.c
+> > +++ b/drivers/media/i2c/tvp5150.c
+> > @@ -19,6 +19,7 @@
+> >  #include <media/v4l2-ctrls.h>
+> >  #include <media/v4l2-fwnode.h>
+> >  #include <media/v4l2-mc.h>
+> > +#include <media/v4l2-rect.h>
+> >  
+> >  #include "tvp5150_reg.h"
+> >  
+> > @@ -995,6 +996,23 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
+> >  		crop->height = TVP5150_V_MAX_OTHERS;
+> >  }
+> >  
+> > +static struct v4l2_rect *
+> > +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
+> > +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
+> > +		       enum v4l2_subdev_format_whence which)
+> > +{
+> > +	switch (which) {
+> > +	case V4L2_SUBDEV_FORMAT_ACTIVE:
+> > +		return &decoder->rect;
+> > +	case V4L2_SUBDEV_FORMAT_TRY:
+> > +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
+> > +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
+> > +#endif
+> 
+> Hmm, this fall-through is confusing.
+> 
+> I'd just do:
+> 
+> #else
+> 		return ERR_PTR(-EINVAL);
+> #endif
 
-Just add 'ports' and drop 'port' from being required in the common
-binding. Then it is up to the panel specific bindings to define which
-one is required. Or we just leave it to allow either form which the
-graph code can handle.
+Okay.
 
-We could have this in the common binding:
+> > +	default:
+> > +		return ERR_PTR(-EINVAL);
+> > +	}
+> > +}
+> > +
+> >  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+> >  			    struct v4l2_subdev_pad_config *cfg,
+> >  			    struct v4l2_subdev_format *format)
+> > @@ -1019,36 +1037,68 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+> >  	return 0;
+> >  }
+> >  
+> > +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
+> > +{
+> > +	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	v4l2_std_id std;
+> > +
+> > +	/* Calculate height based on current standard */
+> > +	if (decoder->norm == V4L2_STD_ALL)
+> > +		std = tvp5150_read_std(sd);
+> > +	else
+> > +		std = decoder->norm;
+> > +
+> > +	return (std & V4L2_STD_525_60) ?
+> > +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
+> > +}
+> > +
+> > +static inline void
+> > +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect rect)
+> > +{
+> > +	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	unsigned int hmax = tvp5150_get_hmax(sd);
+> > +
+> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> > +		     rect.top + rect.height - hmax);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> > +		     rect.left >> TVP5150_CROP_SHIFT);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> > +		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> > +		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> > +		     TVP5150_CROP_SHIFT);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> > +		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> > +}
+> > +
+> >  static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  				 struct v4l2_subdev_pad_config *cfg,
+> >  				 struct v4l2_subdev_selection *sel)
+> >  {
+> >  	struct tvp5150 *decoder = to_tvp5150(sd);
+> >  	struct v4l2_rect rect = sel->r;
+> > -	v4l2_std_id std;
+> > -	int hmax;
+> > +	struct v4l2_rect *crop;
+> > +	unsigned int hmax;
+> >  
+> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
+> > -	    sel->target != V4L2_SEL_TGT_CROP)
+> > +	if (sel->target != V4L2_SEL_TGT_CROP)
+> >  		return -EINVAL;
+> >  
+> >  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
+> >  		__func__, rect.left, rect.top, rect.width, rect.height);
+> >  
+> > +	/*
+> > +	 * Do not apply the request in case of FORMAT_TRY and disabled
+> > +	 * CONFIG_VIDEO_V4L2_SUBDEV_API support.
+> > +	 */
+> > +	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
+> > +	if (IS_ERR(crop))
+> > +		return 0;
+> 
+> This isn't right.
+> 
+> If VIDEO_V4L2_SUBDEV_API isn't set, then set_selection with FORMAT_TRY
+> should succeed: it should just verify (and optionally adjust) the selection
+> against the current active format and return that.
 
-oneOf:
- - required: [ports]
- - required: [port]
+Okay got that.
 
-Rob
+> I think the easiest would be to do this:
+> 
+> #ifdef VIDEO_V4L2_SUBDEV_API
+> 	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
+> #else
+> 	crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, V4L2_SUBDEV_FORMAT_ACTIVE);
+> #endif
+
+Hm.. I think that's a bit to easy since we apply the rect to the crop so
+we would apply the selection to the driver state. I changed the order of
+set_selection in such a way to adapt the selection->rect first and
+return 0 if VIDEO_V4L2_SUBDEV_API isn't available and sel->which was
+V4L2_SUBDEV_FORMAT_TRY.
+
+Futhermore I recognized that the set_selection didn't adapt the sel->r.
+Instead the local copy is adapted... BTW. this isn't the only driver
+which has that problem.. Should we add a compliance test here to cover
+such problems during review?
+
+Regards,
+  Marco
+
+> 
+> > +
+> >  	/* tvp5150 has some special limits */
+> >  	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
+> >  	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
+> > -
+> > -	/* Calculate height based on current standard */
+> > -	if (decoder->norm == V4L2_STD_ALL)
+> > -		std = tvp5150_read_std(sd);
+> > -	else
+> > -		std = decoder->norm;
+> > -
+> > -	if (std & V4L2_STD_525_60)
+> > -		hmax = TVP5150_V_MAX_525_60;
+> > -	else
+> > -		hmax = TVP5150_V_MAX_OTHERS;
+> > +	hmax = tvp5150_get_hmax(sd);
+> >  
+> >  	/*
+> >  	 * alignments:
+> > @@ -1061,20 +1111,15 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
+> >  			      hmax - rect.top, 0, 0);
+> >  
+> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> > -		     rect.top + rect.height - hmax);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> > -		     rect.left >> TVP5150_CROP_SHIFT);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> > -		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> > -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> > -		     TVP5150_CROP_SHIFT);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> > -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> > +	/*
+> > +	 * Update output image size if the selection (crop) rectangle size or
+> > +	 * position has been modified.
+> > +	 */
+> > +	if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE &&
+> > +	    !v4l2_rect_equal(&rect, crop))
+> > +		__tvp5150_set_selection(sd, rect);
+> >  
+> > -	decoder->rect = rect;
+> > +	*crop = rect;
+> >  
+> >  	return 0;
+> >  }
+> > @@ -1084,11 +1129,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+> >  				 struct v4l2_subdev_selection *sel)
+> >  {
+> >  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
+> > +	struct v4l2_rect *crop;
+> >  	v4l2_std_id std;
+> >  
+> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> > -		return -EINVAL;
+> > -
+> >  	switch (sel->target) {
+> >  	case V4L2_SEL_TGT_CROP_BOUNDS:
+> >  		sel->r.left = 0;
+> > @@ -1106,7 +1149,11 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+> >  			sel->r.height = TVP5150_V_MAX_OTHERS;
+> >  		return 0;
+> >  	case V4L2_SEL_TGT_CROP:
+> > -		sel->r = decoder->rect;
+> > +		crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
+> > +						sel->which);
+> > +		if (IS_ERR(crop))
+> > +			return PTR_ERR(crop);
+> > +		sel->r = *crop;
+> >  		return 0;
+> >  	default:
+> >  		return -EINVAL;
+> > 
+> 
+> Regards,
+> 
+> 	Hans
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
