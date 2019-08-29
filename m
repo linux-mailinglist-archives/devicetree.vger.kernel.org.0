@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3130EA2092
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 060B2A2099
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728114AbfH2QQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 12:16:41 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:51837 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727270AbfH2QQl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:16:41 -0400
-Received: by mail-wm1-f65.google.com with SMTP id k1so4349904wmi.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 09:16:40 -0700 (PDT)
+        id S1728297AbfH2QQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 12:16:42 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:51138 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728041AbfH2QQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:16:42 -0400
+Received: by mail-wm1-f66.google.com with SMTP id v15so4370622wml.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 09:16:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CWCn/aI8becgibBgiWeAnHIhr/fW5iSwk5vO24eMpyY=;
-        b=bm/wB0YaVcjT6w+zuY98KSFu6eCxy17zcKSZfLHIxBTwUrXyyW2KOJqQS6th1ahwRF
-         ojaAQ209ayGc0lkbX8T+55UBIcbASYkszecXN05+Jsam8Xin9ZoLp2Bt98D2AiJ/sT4d
-         0YpOHmc6CjAuOrLH6sgrGij+fbDGgzKc0FsN2FEgazKPZUFBVWrNfvPvRW6Dhe2zGldp
-         iCc4I7KyPD4R+HWg+q5i+MBZ4Irbw3XqmcJvQvwVBZQJebe2Mdd36DDrvR5TVC1dtQOc
-         ab3jt08/c/ulgIGxNqpZm0wdQLuOzx2PV5tiFdBWyfuD/kZ1GCOCpa4aOI9IVKKTvyJy
-         G6mA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=LRSXXM/9Hjh3g9tVzGv7Uh9K2mMpn/F7sp2YRf04TcA=;
+        b=iUy5GOB3ydrfuUnBvxT0tgXebasbWCSqGhJqfY56RSa1bYiL6CrKIwTIGnjL9N+9V0
+         xNWVb1yd8ku2sgZdEh4+UVeKVpLO6IebJPqa1VdcThqBj76hW2CO5SGwA1TSWiOLUKfc
+         2I9J80oDABJi/ub5Ee9F1swJWC6OJMeCGJppcKQDkzN1oxu0XlWjkqsAJouNwC3eSaOq
+         uXzxgM/xeh9F1v610PmBCiyn2ERPOM4eaJpGNByq/I6o5SERnIHEYHH/eqqNBqmVcklC
+         FRcXpd2ZBj6QQg7btuMBudGmHlgZdZgfM0So3yd+rHTqnTHb3hNk42jdUpNsL7/wzwix
+         Umng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CWCn/aI8becgibBgiWeAnHIhr/fW5iSwk5vO24eMpyY=;
-        b=nfAHAYzKNbsAwp5mk/SjwGwNY5RP7itlxLRHXE28GrGC+45L1veykHHoXeVsws4DZv
-         7Qrd2h9QRYMd4jfa+krPXK57ga52TucmTG4crPah9hrQktN281dAIlwO1JvEYCSt1RMQ
-         hktNwaV+J2Fg4aKEQ97OwIgOtUqc3SggkcCz8hw3py8YT+BIzMqfI3K09SwrU740xMik
-         cpzVG/ZFmJ5VJcQoGlLVLxdPwZE+/oxXHgZeD8Lg89Gzd6fDWzgxIyBZlQIns/szhCaE
-         SK4RVa8Qq1YKjPlXnGpUutB1GHQMh0dcVPHzJ7QwKvC3FcGRchBpl/IyOJ4wfHavWIg4
-         xiaQ==
-X-Gm-Message-State: APjAAAULAy3tIlX5wtlKe6iMihMZi21d9oCvAyN6d6T5faf1w+6wKPhd
-        Wx6aM88t1sM3lwkmQgIpDy5+bw==
-X-Google-Smtp-Source: APXvYqydE7PJ/qjqc2ZeXlyG8yavTZbBpvs1Q31Mh7laIOnhU9ePQ3Djq1ddTmF/W6PTlWyUyZP8fw==
-X-Received: by 2002:a05:600c:245:: with SMTP id 5mr12118923wmj.36.1567095399634;
-        Thu, 29 Aug 2019 09:16:39 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=LRSXXM/9Hjh3g9tVzGv7Uh9K2mMpn/F7sp2YRf04TcA=;
+        b=Mq1WHBLbdO5rOOuGvWlZYFXi3Da27ymIx9K10LjiJ2YnqGLZ/dTirIWVYUgxChgXyP
+         ubH1Xz8bh0YYMJwG1uzwXXJ7XuOrW2O+T5QE3MKoDAxQk7r/xg3RnmDVj8xKGalE/+/U
+         A1M1yyJ2CpB86kOW5XH4eAe90HOdk3DH07E49IN9KyiyWFaEs9QEV8ZpvQOxBA2sCljz
+         jajNCBJJ6w5M1bcvS3NPCQCEtH3XMAE/bojjvVRWtqVG+1OMGsyFPgRDwy9A9V4NkpFV
+         iS54WVF4ssz4iO+joEHZZFYSSpZJ+SbVxfF4FY2W16WiRvLT3EGGeqwNlPJeXbDOTD1p
+         V8cQ==
+X-Gm-Message-State: APjAAAWpq1tphyiZlTPGqBGA52uTCo9MWf1jVtII/30Wts9B74T0qf2i
+        eTDz5vo9NnZgkHheRBYIneRzlA==
+X-Google-Smtp-Source: APXvYqy5A2xGzz3+Z5BYXuI0TCEvUQNi8cgwHdW5HQMj/N9nGUuBDXTkjcWNpsSQK93sO6clm8gUMw==
+X-Received: by 2002:a7b:c013:: with SMTP id c19mr5053414wmb.118.1567095400557;
+        Thu, 29 Aug 2019 09:16:40 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id q13sm3915424wmq.30.2019.08.29.09.16.38
+        by smtp.googlemail.com with ESMTPSA id q13sm3915424wmq.30.2019.08.29.09.16.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2019 09:16:39 -0700 (PDT)
+        Thu, 29 Aug 2019 09:16:40 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Thomas Gleixner <tglx@linutronix.de>,
         Jason Cooper <jason@lakedaemon.net>,
@@ -52,10 +52,12 @@ To:     Thomas Gleixner <tglx@linutronix.de>,
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/2] irqchip/meson-gpio: add sm1 support
-Date:   Thu, 29 Aug 2019 18:16:33 +0200
-Message-Id: <20190829161635.25067-1-jbrunet@baylibre.com>
+Subject: [PATCH 1/2] dt-bindings: interrupt-controller: new binding for the meson sm1 SoCs
+Date:   Thu, 29 Aug 2019 18:16:34 +0200
+Message-Id: <20190829161635.25067-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190829161635.25067-1-jbrunet@baylibre.com>
+References: <20190829161635.25067-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
@@ -64,17 +66,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds support for the new sm1 SoC family in the Amlogic gpio
-interrupt controller.
+Update the dt-binding to add support for the sm1 SoC family in the
+amlogic GPIO interrupt controller driver.
 
-Jerome Brunet (2):
-  dt-bindings: interrupt-controller: new binding for the meson sm1 SoCs
-  irqchip/meson-gpio: Add support for meson sm1 SoCs
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../amlogic,meson-gpio-intc.txt               |  1 +
- drivers/irqchip/irq-meson-gpio.c              | 52 ++++++++++++++-----
- 2 files changed, 39 insertions(+), 14 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+index 7d531d5fff29..684bb1cd75ec 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+@@ -16,6 +16,7 @@ Required properties:
+     "amlogic,meson-gxl-gpio-intc" for GXL SoCs (S905X, S912)
+     "amlogic,meson-axg-gpio-intc" for AXG SoCs (A113D, A113X)
+     "amlogic,meson-g12a-gpio-intc" for G12A SoCs (S905D2, S905X2, S905Y2)
++    "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
+ - reg : Specifies base physical address and size of the registers.
+ - interrupt-controller : Identifies the node as an interrupt controller.
+ - #interrupt-cells : Specifies the number of cells needed to encode an
 -- 
 2.21.0
 
