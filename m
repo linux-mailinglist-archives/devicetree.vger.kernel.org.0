@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A098BA1F74
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E079A1F94
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 17:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727417AbfH2Pmw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 11:42:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50400 "EHLO mail.kernel.org"
+        id S1727122AbfH2Pqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 11:46:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52238 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727118AbfH2Pmw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 11:42:52 -0400
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        id S1726283AbfH2Pqp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 11:46:45 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8649E22CED;
-        Thu, 29 Aug 2019 15:42:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 979B121726;
+        Thu, 29 Aug 2019 15:46:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567093370;
-        bh=DxWOdTfJDyMTvRtm9hgWK6xzF49v9zdddJc0Ul0OHxY=;
+        s=default; t=1567093603;
+        bh=cHM+V4KNetFDv6bvk4UNayqxUbJb3S5INnPuReHPqLw=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vzJZPgiDkWKkP+NaPPxauJ+fKFwPvLGB8/KdLTohOjj/xVgXAESpMcyDxLKvgC9FL
-         4ds2R9TlkDRR/vh+2bQOe0y3+DDbXYkzBMHs913aiDG10CTXtcEJX0TITe/ya+q4ot
-         Mt/Cil3GMNqnHFH52WvFb2OkSak1IHnGLTgP3aq0=
-Received: by mail-qt1-f172.google.com with SMTP id k13so4119062qtm.12;
-        Thu, 29 Aug 2019 08:42:50 -0700 (PDT)
-X-Gm-Message-State: APjAAAV6kgnd10p4AQMetpRnckTAffkAfnLcsF2/f/bKZ+saptydbaGJ
-        5pnzEj3TJUT3of5IDi+IOaaOrNpFT8rYCmTckQ==
-X-Google-Smtp-Source: APXvYqzic6Dz5pyl8Zhym2cQiIYya/v+IE6KIzVsJARvSoJSziaqBB5AVnV348vxKKPJBjtqCYdf51FhEHiBWnPYbek=
-X-Received: by 2002:ad4:4050:: with SMTP id r16mr6931395qvp.200.1567093369577;
- Thu, 29 Aug 2019 08:42:49 -0700 (PDT)
+        b=Q9hbL5eIgVwnAAJOXnNjlP1Y2Iq//H9voJlF+Pn/JaW8WkSV44fet0A9aZYpzrs7M
+         4fHrVkiUk22xNzzQGmAu0G0oI2WqbrWk00j28SbSefXbF9842Sej3ZZe9CQ70TT2//
+         a9q2ISFqBgTsS1mfOUsBp3JT/gsxyDONFgN0e7io=
+Received: by mail-qk1-f182.google.com with SMTP id p13so3303983qkg.13;
+        Thu, 29 Aug 2019 08:46:43 -0700 (PDT)
+X-Gm-Message-State: APjAAAXvHjCl2YwsJ4P5THzN3O5W8ds1Aee3AvE6r+ZpMmfCxUbR8/kJ
+        AENDgqoVH8xaK0wxNSzZ79dCJJyrN4mbfNltfg==
+X-Google-Smtp-Source: APXvYqyA+jMNSQIZCkr6jb8mlC5b6oVNdaV5mOjZDpj/IbaU+kEDe/0ubCo2ed9zxMPBL94qqUFeR0bF/sGOmuc+Nw8=
+X-Received: by 2002:a37:8905:: with SMTP id l5mr10368083qkd.152.1567093602775;
+ Thu, 29 Aug 2019 08:46:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190829144442.6210-1-srinivas.kandagatla@linaro.org> <20190829144442.6210-2-srinivas.kandagatla@linaro.org>
-In-Reply-To: <20190829144442.6210-2-srinivas.kandagatla@linaro.org>
+References: <20190829144442.6210-1-srinivas.kandagatla@linaro.org> <20190829144442.6210-4-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20190829144442.6210-4-srinivas.kandagatla@linaro.org>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 29 Aug 2019 10:42:37 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLwbz5eiBEw8PmXsJrxzXffNc7rRON-wQ0KviVW8JVv5A@mail.gmail.com>
-Message-ID: <CAL_JsqLwbz5eiBEw8PmXsJrxzXffNc7rRON-wQ0KviVW8JVv5A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/4] dt-bindings: soundwire: add slave bindings
+Date:   Thu, 29 Aug 2019 10:46:30 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLOHA+r9UCTwyvj+_BzWSrsVDZw5vp-1XhYYvQxncx0sw@mail.gmail.com>
+Message-ID: <CAL_JsqLOHA+r9UCTwyvj+_BzWSrsVDZw5vp-1XhYYvQxncx0sw@mail.gmail.com>
+Subject: Re: [PATCH v5 3/4] dt-bindings: ASoC: Add WSA881x bindings
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc:     Mark Brown <broonie@kernel.org>, Vinod <vkoul@kernel.org>,
         spapothi@codeaurora.org, Banajit Goswami <bgoswami@codeaurora.org>,
@@ -53,100 +53,75 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Thu, Aug 29, 2019 at 9:45 AM Srinivas Kandagatla
 <srinivas.kandagatla@linaro.org> wrote:
 >
-> This patch adds bindings for Soundwire Slave devices that includes how
-> SoundWire enumeration address and Link ID are used to represented in
-> SoundWire slave device tree nodes.
+> This patch adds bindings for WSA8810/WSA8815 Class-D Smart Speaker
+> Amplifier. This Amplifier also has a simple thermal sensor for
+> over temperature and speaker protection.
 >
 > Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
->  .../soundwire/soundwire-controller.yaml       | 72 +++++++++++++++++++
->  1 file changed, 72 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+>  .../bindings/sound/qcom,wsa881x.yaml          | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
 >
-> diff --git a/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
 > new file mode 100644
-> index 000000000000..449b6130ce63
+> index 000000000000..7a486c024732
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soundwire/soundwire-controller.yaml
-> @@ -0,0 +1,72 @@
+> +++ b/Documentation/devicetree/bindings/sound/qcom,wsa881x.yaml
+> @@ -0,0 +1,41 @@
 > +# SPDX-License-Identifier: GPL-2.0
 
-(GPL-2.0-only OR BSD-2-Clause) for new bindings.
+Dual license please.
 
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/soundwire/soundwire-controller.yaml#
+> +$id: http://devicetree.org/schemas/sound/qcom,wsa881x.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: SoundWire Controller Generic Binding
+> +title: Bindings for Qualcomm WSA8810/WSA8815 Class-D Smart Speaker Amplifier
 > +
 > +maintainers:
 > +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> +  - Vinod Koul <vkoul@kernel.org>
 > +
 > +description: |
-> +  SoundWire busses can be described with a node for the SoundWire controller
-> +  device and a set of child nodes for each SoundWire slave on the bus.
+> +  WSA8810 is a class-D smart speaker amplifier and WSA8815
+> +  is a high-output power class-D smart speaker amplifier.
+> +  Their primary operating mode uses a SoundWire digital audio
+> +  interface. This binding is for SoundWire interface.
 > +
 > +properties:
-> +  $nodename:
-> +    pattern: "^soundwire(@.*)?$"
+> +  compatible:
+> +    const: "sdw10217201000"
+
+No need for quotes.
+
 > +
-> +  "#address-cells":
-> +    const: 2
+> +  reg:
+> +    maxItems: 1
 > +
-> +  "#size-cells":
+
+> +  powerdown-gpios:
+> +    description: GPIO spec for Powerdown/Shutdown line to use
+> +    maxItems: 1
+> +
+> +  '#thermal-sensor-cells':
 > +    const: 0
-> +
-> +patternProperties:
-> +  "^.*@[0-9a-f],[0-9a-f]$":
-> +    type: object
-> +
-> +    properties:
-> +      compatible:
-> +        pattern: "^sdw[0-9a-f]{1}[0-9a-f]{4}[0-9a-f]{4}[0-9a-f]{2}$"
-> +        description: Is the textual representation of SoundWire Enumeration
-> +          address. compatible string should contain SoundWire Version ID,
-> +          Manufacturer ID, Part ID and Class ID in order and shall be in
-> +          lower-case hexadecimal with leading zeroes.
-> +          Valid sizes of these fields are
-> +          Version ID is 1 nibble, number '0x1' represents SoundWire 1.0
-> +          and '0x2' represents SoundWire 1.1 and so on.
-> +          MFD is 4 nibbles
-> +          PID is 4 nibbles
-> +          CID is 2 nibbles
-> +          More Information on detail of encoding of these fields can be
-> +          found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
-> +
-> +      reg:
-> +        maxItems: 1
-> +        description:
-> +          Link ID followed by Instance ID of SoundWire Device Address.
-> +
-> +    additionalProperties: false
 
-I'm pretty sure you'll want nodes with other properties. If not, then
-why are they in DT? So drop this.
+Either of these required?
 
-Both the controller and child nodes need to list required properties.
+Here you can put 'additionalProperties: false'
 
 > +
 > +examples:
 > +  - |
-> +    soundwire@c2d0000 {
-> +        #address-cells = <2>;
-> +        #size-cells = <0>;
-> +        reg = <0x0c2d0000 0x2000>;
-> +
-> +        speaker@0,1 {
-> +            compatible = "sdw10217201000";
-> +            reg = <0 1>;
-> +        };
-> +
-> +        speaker@0,2 {
-> +            compatible = "sdw10217201000";
-> +            reg = <0 2>;
-> +        };
+> +    speaker@0,1 {
+
+This should be under a soundwire bus node.
+
+> +        compatible = "sdw10217201000";
+> +        reg = <0 1>;
+> +        powerdown-gpios = <&wcdpinctrl 2 0>;
+> +        #thermal-sensor-cells = <0>;
 > +    };
 > +
 > +...
