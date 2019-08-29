@@ -2,60 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03E7DA12C4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AADCA12CE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726973AbfH2Hoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 03:44:46 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:39328 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726739AbfH2Hop (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 03:44:45 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4C9E81A0227;
-        Thu, 29 Aug 2019 09:44:44 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 86DA31A00FC;
-        Thu, 29 Aug 2019 09:44:40 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 914B1402D7;
-        Thu, 29 Aug 2019 15:44:35 +0800 (SGT)
-From:   Yuantian Tang <andy.tang@nxp.com>
-To:     shawnguo@kernel.org
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Yuantian Tang <andy.tang@nxp.com>
-Subject: [PATCH] arm64: dts: ls1028a: fix a compatible issue
-Date:   Thu, 29 Aug 2019 15:34:39 +0800
-Message-Id: <20190829073439.13069-1-andy.tang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727876AbfH2HqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 03:46:13 -0400
+Received: from mail-pf1-f201.google.com ([209.85.210.201]:48360 "EHLO
+        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727161AbfH2HqK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:46:10 -0400
+Received: by mail-pf1-f201.google.com with SMTP id t14so1834762pfq.15
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 00:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=W1PmjVL/6s5ZXXFzVRoWXIYsoDfmFEis3kh7AY5/b/U=;
+        b=BlBlZcZoKDjgUAr7XG6MtHOGce0R3ksWhAYokbXmmIBoBJml3QfGoVZnzlSpGJZ7fo
+         ctBud1He4pmoya0E8XD2Q32uvOOZ0BdedmzPEab50lAtOEa+5NeR03NsNnFtyn3WRkTE
+         g3GM3mZhgXqy4srOHzbGLNj8cSyz+++EWnPSUacRg70jS7mzrzEM+zqmkOEE8qMbOon7
+         5JWBj0P+lhdTL7oESqnUj3SisI1jTDbiiABGWvDD8AqArQBJXi820TWLlnBCxW6YvuSX
+         LgaKO0ZVZPjezsn1SEIfqZvIaXIZNMVbBPdSuSd0rbrNZSILWVwusSRflGEGf5Z83xwa
+         Xv3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=W1PmjVL/6s5ZXXFzVRoWXIYsoDfmFEis3kh7AY5/b/U=;
+        b=ImV4KxXpHEaDNK65x/VIqkG1zC0W93frQgmCIFu91MzXPrFF73NgYY+41+gNCzoiJ1
+         +fnPiZIZjeHeVlX7TOVG1x+v0976vlZYHMfIRzXwTGuS3J1DY2P1DW5fg2uD+GRONh0o
+         8woIZ7QjfnYRBKvLAyh9H8i3DWvS4BuLtyOqBp0efia75k9g7IiGrEwV6uc6056bxFVS
+         ohZ9h18yCC2K+yLsMFycGIawR/lARdBbmYjVTJa7JhrfWHapVxTQDmYS4uQEZoNvuW03
+         +T8pOjOfJGahlee5lllU7Bou4LL32LOHZO5Rg0ATu0b+YbIUrZt3Z0MrPSSB5DEKw4Q4
+         xEzA==
+X-Gm-Message-State: APjAAAXO8w4vjfX5ymj558+liyKG9v6lM2yb7I955o+a/n6TAESj4Mxd
+        eLz0AIjzGzP0w01AEGfwwyfJjajM5am1r0c=
+X-Google-Smtp-Source: APXvYqx8b6RNwtvC8vhWCgQOo7SditWRgK6j21AF90oa0Vxuu2xB7Qykx4b8MpO0DR/c1K1mehO1tLGPMlWRAhs=
+X-Received: by 2002:a63:6901:: with SMTP id e1mr6839120pgc.390.1567064768278;
+ Thu, 29 Aug 2019 00:46:08 -0700 (PDT)
+Date:   Thu, 29 Aug 2019 00:45:56 -0700
+Message-Id: <20190829074603.70424-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.187.g17f5b7556c-goog
+Subject: [PATCH v10 0/7] Solve postboot supplier cleanup and optimize probe ordering
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-acpi@vger.kernel.org, clang-built-linux@googlegroups.com,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
-So correct it.
+Add device-links to track functional dependencies between devices
+after they are created (but before they are probed) by looking at
+their common DT bindings like clocks, interconnects, etc.
 
-Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Having functional dependencies automatically added before the devices
+are probed, provides the following benefits:
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index 5e14e5a19744..f5da9e8b0d9d 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -107,7 +107,7 @@
- 	status = "okay";
- 
- 	i2c-mux@77 {
--		compatible = "nxp,pca9847";
-+		compatible = "nxp,pca9547";
- 		reg = <0x77>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
+- Optimizes device probe order and avoids the useless work of
+  attempting probes of devices that will not probe successfully
+  (because their suppliers aren't present or haven't probed yet).
+
+  For example, in a commonly available mobile SoC, registering just
+  one consumer device's driver at an initcall level earlier than the
+  supplier device's driver causes 11 failed probe attempts before the
+  consumer device probes successfully. This was with a kernel with all
+  the drivers statically compiled in. This problem gets a lot worse if
+  all the drivers are loaded as modules without direct symbol
+  dependencies.
+
+- Supplier devices like clock providers, interconnect providers, etc
+  need to keep the resources they provide active and at a particular
+  state(s) during boot up even if their current set of consumers don't
+  request the resource to be active. This is because the rest of the
+  consumers might not have probed yet and turning off the resource
+  before all the consumers have probed could lead to a hang or
+  undesired user experience.
+
+  Some frameworks (Eg: regulator) handle this today by turning off
+  "unused" resources at late_initcall_sync and hoping all the devices
+  have probed by then. This is not a valid assumption for systems with
+  loadable modules. Other frameworks (Eg: clock) just don't handle
+  this due to the lack of a clear signal for when they can turn off
+  resources. This leads to downstream hacks to handle cases like this
+  that can easily be solved in the upstream kernel.
+
+  By linking devices before they are probed, we give suppliers a clear
+  count of the number of dependent consumers. Once all of the
+  consumers are active, the suppliers can turn off the unused
+  resources without making assumptions about the number of consumers.
+
+By default we just add device-links to track "driver presence" (probe
+succeeded) of the supplier device. If any other functionality provided
+by device-links are needed, it is left to the consumer/supplier
+devices to change the link when they probe.
+
+v1 -> v2:
+- Drop patch to speed up of_find_device_by_node()
+- Drop depends-on property and use existing bindings
+
+v2 -> v3:
+- Refactor the code to have driver core initiate the linking of devs
+- Have driver core link consumers to supplier before it's probed
+- Add support for drivers to edit the device links before probing
+
+v3 -> v4:
+- Tested edit_links() on system with cyclic dependency. Works.
+- Added some checks to make sure device link isn't attempted from
+  parent device node to child device node.
+- Added way to pause/resume sync_state callbacks across
+  of_platform_populate().
+- Recursively parse DT node to create device links from parent to
+  suppliers of parent and all child nodes.
+
+v4 -> v5:
+- Fixed copy-pasta bugs with linked list handling
+- Walk up the phandle reference till I find an actual device (needed
+  for regulators to work)
+- Added support for linking devices from regulator DT bindings
+- Tested the whole series again to make sure cyclic dependencies are
+  broken with edit_links() and regulator links are created properly.
+
+v5 -> v6:
+- Split, squashed and reordered some of the patches.
+- Refactored the device linking code to follow the same code pattern for
+  any property.
+
+v6 -> v7:
+- No functional changes.
+- Renamed i to index
+- Added comment to clarify not having to check property name for every
+  index
+- Added "matched" variable to clarify code. No functional change.
+- Added comments to include/linux/device.h for add_links()
+
+v7 -> v8:
+- Rebased on top of linux-next to handle device link changes in [1]
+
+v8 -> v9:
+- Fixed kbuild test bot reported errors (docs and const)
+
+v9->v10:
+- Changes made based on reviews on LKML [2] and discussions at ELC [3]
+- Dropped the edit_links() patch
+- Dropped the patch that skips linking for default bus nodes
+- 1/7: Changed from bus.add_links() to fwnode.ops.add_links() 
+- 1/7: Update device link doc
+- 1/7: Lots of comments/fn doc updates
+- 1/7: Renamed device_link_check_waiting_consumers() to
+  device_link_add_missing_supplier_links()
+- 2/7: Moved DT parsing/linking code from of/platform.c to of/property.c
+- 2/7: Lots of comments/fn doc updates
+- 2/7: Returned errors for all error cases in of_link_to_phandle()
+- 2/7: Some minor code refactor to remove "bool done"
+- 2/7: Added debug messages when links not created due permanent errors
+- 3/7: Minor comments update
+- Added 2 new patches 6/7 and 7/7 to handle cyclic dependencies using
+  depends-on
+
+[1] - https://lore.kernel.org/lkml/2305283.AStDPdUUnE@kreacher/
+[2] - https://lore.kernel.org/lkml/20190724001100.133423-2-saravanak@google.com/
+[3] - https://lore.kernel.org/lkml/CAGETcx_pSnC_2D7ufLRyfE3b8uRc814XEf8zu+SpNtT7_Z8NLg@mail.gmail.com/
+
+-Saravana
+
+Saravana Kannan (7):
+  driver core: Add support for linking devices during device addition
+  of: property: Add functional dependency link from DT bindings
+  driver core: Add sync_state driver/bus callback
+  of/platform: Pause/resume sync state during init and
+    of_platform_populate()
+  of: property: Create device links for all child-supplier depencencies
+  dt-bindings: Add depends-on property to break cyclic inferred
+    dependencies
+  of: property: Add "depends-on" parsing support to
+    of_fwnode_add_links()
+
+ .../admin-guide/kernel-parameters.rst         |   1 +
+ .../admin-guide/kernel-parameters.txt         |   6 +
+ .../devicetree/bindings/depends-on.txt        |  46 ++++
+ Documentation/driver-api/device_link.rst      |   3 +-
+ drivers/base/core.c                           | 154 +++++++++++
+ drivers/of/platform.c                         |  12 +
+ drivers/of/property.c                         | 258 ++++++++++++++++++
+ include/linux/device.h                        |  26 ++
+ include/linux/fwnode.h                        |  17 ++
+ 9 files changed, 522 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/depends-on.txt
+
 -- 
-2.17.1
+2.23.0.187.g17f5b7556c-goog
 
