@@ -2,90 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABDCCA279A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 22:03:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B7C8A27A8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 22:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728214AbfH2UDs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 16:03:48 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:36140 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727991AbfH2UDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 16:03:47 -0400
-Received: by mail-wm1-f66.google.com with SMTP id p13so5086648wmh.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 13:03:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=p680zAEryobKlt4lW3L6CDRlAanEpxTFkLsO4D5mjF0=;
-        b=vSraP6xrw5G/N4zBQME8wvMKp2bSNx6/o6PF97n8Wb9WL6K8mrsLG5h96E7t1zyzo0
-         uV8gLIzWQNCNLTZP72+mnB5U+B/dFXuz/iNHmdCx/f6SMZw/CdELkIfRw5zK2BOl9bsZ
-         4UW7Ih7x0utEorDXwoOG5eXTafjn5xaJGH+bDPCHdpqGtFiQePDCIHMqNVvNT0pP1Zvy
-         wL0kTgU3yyvt+gVOuy1O4sPwF+H/5Aycg6WUIw9VC0nwLVaflGZZ4LqAFU9R0mluJKl3
-         qQ2T46wUnWu6C2qpSPyOQJakgsExPvFVcCKLxh93GN5Sty5PhnIY/2hmmLuDUkVS8zXb
-         bHUQ==
+        id S1727929AbfH2UFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 16:05:05 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36675 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728085AbfH2UFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 16:05:05 -0400
+Received: by mail-oi1-f193.google.com with SMTP id n1so3579400oic.3;
+        Thu, 29 Aug 2019 13:05:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=p680zAEryobKlt4lW3L6CDRlAanEpxTFkLsO4D5mjF0=;
-        b=oYXXxjGVBf0UTPFSNJ6RA/pDDm5XJNVhejG8ILvSe6+rQ586FsFwVuobxrbc5ocybF
-         Rj4V3dhloX7v+bBsgOeNyYX2lTkRkQTd/BOonWPP4QcGiSLuu/biM+LfvgsQ6ZZvlKZZ
-         aryZ6nO/XZHZx/mihOqusWQ0tup/QWV5I9Td+qpAJG8V7178FrZt0lYF+SyHamX1S0gr
-         s0Tq4ei4JqLzLIYnLG/z6Ww+96adWlzqj4hYPiKp6qAbbIpGXSx7DqICQMymar4HbKY+
-         8B7GZIRjkHZgs60tw9455a5rhFiod3JKTmvdXwPUvMDG96bLkzCb/Wu9Mt0SIIOERB7I
-         PHbw==
-X-Gm-Message-State: APjAAAXw7fPyxeTCAM+b3z70EIAd03dqJEEwsMxw6dot4v9tgzhd1ZEk
-        UxXxMiHIun8Hi+TixfRYu1X95A==
-X-Google-Smtp-Source: APXvYqxEwqKarTekylYsSy42tncYr3cgdA8AaeAKY+NPrXroOaDE+8nIBsqNnKY0aBgP4aku1hqwaA==
-X-Received: by 2002:a1c:cb83:: with SMTP id b125mr6655160wmg.43.1567109025744;
-        Thu, 29 Aug 2019 13:03:45 -0700 (PDT)
-Received: from localhost.localdomain (124.red-83-36-179.dynamicip.rima-tde.net. [83.36.179.124])
-        by smtp.gmail.com with ESMTPSA id w8sm15584995wmc.1.2019.08.29.13.03.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 29 Aug 2019 13:03:45 -0700 (PDT)
-From:   Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-To:     jorge.ramirez-ortiz@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: qcs404: add the watchdog node
-Date:   Thu, 29 Aug 2019 22:03:40 +0200
-Message-Id: <20190829200340.15498-2-jorge.ramirez-ortiz@linaro.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190829200340.15498-1-jorge.ramirez-ortiz@linaro.org>
-References: <20190829200340.15498-1-jorge.ramirez-ortiz@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=olD2mIH4m+P4tlheGqCEsNMbY7eNHE8lmUC8IgMGIBs=;
+        b=X+Bkf/yxgIk2/caIYMIFbkS4Ise/Aw6hqwhYqRwjrizB7Z5ATVOh5Snx3kfsMNAWVA
+         Y/KZruo/GAYisLkYaiONlH8bCe1/jiOnlMtz+vSAfn+5vqna7JAWZghXPwLb76YuLAlw
+         +iVz/87NBNGLWq+NzmAwjHZNn0ZJ84RFKm8Z6qVoVaW8rg+mJ7lx+bMdlihwh6uFrHuL
+         cPX/+59zy5+hlkYaehXbvA1/D/vDUJgN4fsZJAbcLlEThTRZTOWcQj/p+OKKZ51+EHzv
+         raBq6gZvqx5jCNz40QaK0Q/XaMB+LvVxYAqOoX1Hr41b7Sloj0+kabG7ZUPpmZyQohTD
+         cZ0Q==
+X-Gm-Message-State: APjAAAWgogj6km7eYk3qmapkJVEsiwkC+P276FwSbf0GJ14q6jw1Vo5P
+        tpXbWFls2zcpsNzux4G/g6npwCE=
+X-Google-Smtp-Source: APXvYqw25K1BL3gwLmn1i6McjlyIKHA3SA6g6v8scCo80RRzPLJIQGfYl6oq/ARM6ji1yUyJh172ig==
+X-Received: by 2002:aca:b445:: with SMTP id d66mr7924251oif.7.1567109104134;
+        Thu, 29 Aug 2019 13:05:04 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v1sm1055259ota.60.2019.08.29.13.05.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2019 13:05:03 -0700 (PDT)
+Date:   Thu, 29 Aug 2019 15:05:03 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 04/11] dt-bindings: phy-mtk-tphy: add a new reference
+ clock
+Message-ID: <20190829200503.GA2542@bogus>
+References: <e99c0d7a55869a4425250c601b80a3331c9d0976.1566542696.git.chunfeng.yun@mediatek.com>
+ <f6ee7d33103b43b2f1e1331c23c36057ef20b20d.1566542697.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f6ee7d33103b43b2f1e1331c23c36057ef20b20d.1566542697.git.chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allows QCS404 based designs to enable watchdog support
+On Fri, Aug 23, 2019 at 03:00:11PM +0800, Chunfeng Yun wrote:
+> Usually the digital and anolog phys use the same reference clock,
+> but on some platforms, they are separated, so add another optional
+> clock to support it.
+> In order to keep the clock names consistent with PHY IP's, use
+> the da_ref for anolog phy and ref clock for digital phy.
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+> index dbc143ed5999..ed9a2641f204 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+> +++ b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+> @@ -41,9 +41,12 @@ Optional properties (PHY_TYPE_USB2 port (child) node):
+>  - clocks	: a list of phandle + clock-specifier pairs, one for each
+>  		  entry in clock-names
+>  - clock-names	: may contain
+> -		  "ref": 48M reference clock for HighSpeed anolog phy; and 26M
+> -			reference clock for SuperSpeed anolog phy, sometimes is
+> +		  "ref": 48M reference clock for HighSpeed (digital) phy; and 26M
+> +			reference clock for SuperSpeed (digital) phy, sometimes is
+>  			24M, 25M or 27M, depended on platform.
+> +		  "da_ref": the reference clock of anolog phy, used if the clocks
+> +			of anolog and digital phys are separated, otherwise uses
 
-Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+s/amolog/analog/
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 131d8046d3be..17d4dd54c53a 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -875,6 +875,12 @@
- 			#mbox-cells = <1>;
- 		};
- 
-+		watchdog@b017000 {
-+			compatible = "qcom,kpss-wdt";
-+			reg = <0x0b017000 0x1000>;
-+			clocks = <&sleep_clk>;
-+		};
-+
- 		timer@b120000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--- 
-2.22.0
+> +			"ref" clock only if need.
 
+needed.
+
+>  
+>  - mediatek,eye-src	: u32, the value of slew rate calibrate
+>  - mediatek,eye-vrt	: u32, the selection of VRT reference voltage
+> -- 
+> 2.23.0
+> 
