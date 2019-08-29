@@ -2,106 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDA62A1A3D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:39:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E1B0A1A5B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:45:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727125AbfH2Mji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 08:39:38 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:50543 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725782AbfH2Mjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:39:37 -0400
-X-UUID: d364c0196eef4773b0fb14c861edcb58-20190829
-X-UUID: d364c0196eef4773b0fb14c861edcb58-20190829
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <yongqiang.niu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 186969430; Thu, 29 Aug 2019 20:39:30 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs01n2.mediatek.inc
- (172.21.101.79) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 29 Aug
- 2019 20:39:34 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 29 Aug 2019 20:39:33 +0800
-Message-ID: <1567082367.30648.2.camel@mhfsdcap03>
-Subject: Re: [PATCH v4, 12/33] drm/mediatek: split DISP_REG_CONFIG_DSI_SEL
- setting into another use case
-From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
-Reply-To: <yongqiang.niu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        id S1726852AbfH2MpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 08:45:12 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:58973 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726379AbfH2MpL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:45:11 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 18781C000C;
+        Thu, 29 Aug 2019 12:45:07 +0000 (UTC)
+Date:   Thu, 29 Aug 2019 14:46:40 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>, tfiga@google.com,
         Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 29 Aug 2019 20:39:27 +0800
-In-Reply-To: <1563341736.29169.15.camel@mtksdaap41>
-References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1562625253-29254-13-git-send-email-yongqiang.niu@mediatek.com>
-         <1563341736.29169.15.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 01/10] media: dt-bindings: Document 'location' property
+Message-ID: <20190829124639.tzjp63tqnojnytlq@uno.localdomain>
+References: <20190827092339.8858-1-jacopo@jmondi.org>
+ <20190827092339.8858-2-jacopo@jmondi.org>
+ <20190827122126.GQ5054@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 1AB6CD6AEFA081CDD571265A6B6FA16D64076F9D817FB5E376E91E95D5153CED2000:8
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="siklwweqobuuvov4"
+Content-Disposition: inline
+In-Reply-To: <20190827122126.GQ5054@pendragon.ideasonboard.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-07-17 at 13:35 +0800, CK Hu wrote:
-> Hi, Yongqiang:
-> 
-> On Tue, 2019-07-09 at 06:33 +0800, yongqiang.niu@mediatek.com wrote:
-> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > 
-> > Here is two modifition in this patch:
-> > 1.bls->dpi0 and rdma1->dsi are differen usecase,
-> > Split DISP_REG_CONFIG_DSI_SEL setting into anther usecase
-> > 2.remove DISP_REG_CONFIG_DPI_SEL setting, DPI_SEL_IN_BLS is 0 and
-> > this is same with hardware defautl setting,
-> > 
-> 
-> You move 2 register setting out of the path from BLS to DPI0, does this
-> path still work? Please make sure that all modification could work on
-> all supported SoC.
-> 
-> Regards,
-> CK
-> 
 
-DPI_SEL_IN_BLS is 0 and this is same with hardware default setting as
-description in patch.
-the removed sentence is useless.
+--siklwweqobuuvov4
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
+Hi Laurent,
 
-> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On Tue, Aug 27, 2019 at 03:21:26PM +0300, Laurent Pinchart wrote:
+> Hi Jacopo,
+>
+> Thank you for the patch.
+>
+> On Tue, Aug 27, 2019 at 11:23:27AM +0200, Jacopo Mondi wrote:
+> > Add the 'location' device property, used to specify the camera device
+> > mounting position. The property is particularly meaningful for mobile
+> > devices with a well defined usage orientation.
+> >
+> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 > > ---
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 3 +--
-> >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> > index d015c1a..47b3e35 100644
-> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
-> > @@ -400,10 +400,9 @@ static void mtk_ddp_sout_sel(void __iomem *config_regs,
-> >  	} else if (cur == DDP_COMPONENT_BLS && next == DDP_COMPONENT_DPI0) {
-> >  		writel_relaxed(BLS_TO_DPI_RDMA1_TO_DSI,
-> >  			       config_regs + DISP_REG_CONFIG_OUT_SEL);
-> > +	} else if (cur == DDP_COMPONENT_RDMA1 && next == DDP_COMPONENT_DSI0) {
-> >  		writel_relaxed(DSI_SEL_IN_RDMA,
-> >  			       config_regs + DISP_REG_CONFIG_DSI_SEL);
-> > -		writel_relaxed(DPI_SEL_IN_BLS,
-> > -			       config_regs + DISP_REG_CONFIG_DPI_SEL);
-> >  	}
-> >  }
-> >  
-> 
-> 
+> >  .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > index f884ada0bffc..865f4142f432 100644
+> > --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > @@ -89,6 +89,16 @@ Optional properties
+> >    but a number of degrees counter clockwise. Typical values are 0 and 180
+> >    (upside down).
+> >
+> > +- location: The camera sensor mounting location, expressed as a position
+> > +  relative to the usage orientation of the device the sensor is installed on.
+>
+> DT bindings being ABIs, we need to be precise and thorough there. One
+> particular point that bothers me is that the property is named location,
+> and its description refers to camera sensor mounting location.
+>
+> I see two options to fix this. One of them is to rename the property to
+> camera-location, but that would limit its future usage for other types
+> of devices. The other one is to document the property as applying to a
+> "device" instead of a "camera sensor", and add one sentence stating that
+> this property is valid for camera sensors only.
+>
+> This will require finding another name for the device that the device is
+> mounted on though, as using device twice would be very confusing.
 
+I had the same concern, but I cannot find another term to convey
+this... suggestions?
 
+>
+> > +  Possible values are:
+> > +  0 - Front. The image sensor is mounted on the front facing side of the device.
+> > +  For mobile devices such as smartphones, tablets and laptops the front side is
+> > +  the user facing side of the device.
+> > +  1 - Back. The image sensor is mounted on the back side of the device, which is
+> > +  defined as the opposite side of the front facing one.
+> > +  2 - External. The image sensor is connected to the device by extension cables,
+> > +  and can be freely moved, regardless of the device position.
+>
+> It could be something else than cables (wireless possibly ?). I would
+> phrase this along the lines of "The device is not attached directly to
+> the [device], or is attached in a way that allows it to move to
+> different locations."
+
+Agreed, once we find a good term for [device] :)
+
+>
+> >
+> >  Optional endpoint properties
+> >  ----------------------------
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
+
+--siklwweqobuuvov4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1nyS8ACgkQcjQGjxah
+VjzL2BAAgqsNZgAW+vRkwt7RDjK6QpMnNwif5DzH5YXs/aZ9BFu0ZYLi+M9/OXq7
+yiBXbMa7OrA/eYnDRY3Z4ILQ8sEUCBCB/eC733VdWIrThEpiBSNGLLncW1z+2RoS
+fYMuCr2mBirGkyhGzu7vE4geW3FjMwJhB4oEdshuA7Wy8+mcz64LQZipOk/xo01I
+gvmwNmtZltKU5tA6uzShpZ+/UxAitiUwOV6Sh7uBNkDc4V0yYfz+Bo7pU6XexoEd
+W58m9Pprs40BUJ4T8cTGGRK9YqOi+RAAQ6Wv1GtZqgWZiBNO6uWLNC+hkOdmxgGB
+kEznLvM9lw1KjJ9KVJFSX/wX8463gyejJUkTYBzl4pz5ZAWE3P1Un4BfbxrvnoXs
+CFT+6SuRpSZUykGqxfGDLpJ/R+vUhP4QC+DgsNhbFV44jEqElbCmH/cirIdffZ5S
+o29yngV5wfIjGR8uYuJbCqEgLk+o/SCn/Aw3UMzEDA+oJ836kq7pDt+SttlB4FOH
+7dRlko11SeOEKDMJAUsCT1hhn94LshXqKRgqN9zP1CdScR947uQ8M51PRG+n0kKH
+0a+ieydHAGKlQo26jBwkXfosHHLNzNlJ9YFcHXOi2GUS0IOet80eigwmP2zfq78h
+d8SeO9FgcOQ9++h7YlixGBK8+bdxq/tdlNiYV+UZ5slu5IkJpzM=
+=kIpu
+-----END PGP SIGNATURE-----
+
+--siklwweqobuuvov4--
