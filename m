@@ -2,210 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91F3CA211F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 592A5A2133
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727364AbfH2QlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 12:41:22 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:36892 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727115AbfH2QlW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:41:22 -0400
-Received: by mail-wr1-f66.google.com with SMTP id z11so4137968wrt.4;
-        Thu, 29 Aug 2019 09:41:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=7yR+2btUdVZzugNInICo4vnQNuN1EMp975yLN+tXmcs=;
-        b=Nr51xhgt9tORYUWvBQQm95aMApchSwYclJnaXP/uN2D3PCnFROMeV96h47hEqCZtFq
-         jd2Mp/8M0EoSfJLApxXhqm7cUoLqCSUjbOCu48TbMNufS9t2Ml1/z58Lx25+PKfbjP6/
-         DtSUtMiXvQtBXJsxgNxyU2xGgSRI6WA+/wJjYWLVncs+CxNLYXP2mwhO/HekUlslp9eM
-         rng+dCtd6tZ9lwQdaQhIyMEUVZT2vPtf26jsE03Xx7+4GaH8VvIyyM49gErUvkyyhqOM
-         MoTnitGGbFgUyQXNCpqvElfqYeV+iPo2B6+BrC7Y1o8jWndezMS2efOabGZwIHbtleeX
-         OjTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7yR+2btUdVZzugNInICo4vnQNuN1EMp975yLN+tXmcs=;
-        b=XiM85cX16KD7PYwLFy8Gel0jVSyUpwzsISXxJ/I4ypONGQfsCW5hEgsIrBWpn4O7RK
-         wOJyGDUjiubmX3xCTeoWD3qs9zqXTq0sWtKiANTIG88sMNCy6qa+H0uC5Z2QjzF93RGR
-         Z7cBYp0ZN24VY+Px6lBOB+KB5jaN9vG0xJe4RUJoFhoA5uGDfGExSc0issJ+QRySVpMZ
-         mWs5yzE58FH13RhKAR81GtkWMinYufzGTv1dzDfrgwQDUdKForiJXjpu/BjT8fdlGRtt
-         b2T1i9RU0NBPmo1NSFwqrbc+qLUXjO8Zosc7s0L6X5k9+8aSao0H5MR1fbiwjrSryXry
-         o01w==
-X-Gm-Message-State: APjAAAUVUN4yuE8iTKhpQoswL3mJ0dep89Ty4F3gz3i6gD2hsBa+yC2x
-        gn66iJijmolETbihnLbru6E=
-X-Google-Smtp-Source: APXvYqzH/Fb2rRJgC7QIBqkUDelILLM7o7FXNLzJWMFGznShGN50OrlVbmIDnTmkWuRLO1lAUsOcRA==
-X-Received: by 2002:adf:ee41:: with SMTP id w1mr12591389wro.102.1567096878914;
-        Thu, 29 Aug 2019 09:41:18 -0700 (PDT)
-Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
-        by smtp.gmail.com with ESMTPSA id s64sm6260070wmf.16.2019.08.29.09.41.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2019 09:41:17 -0700 (PDT)
-Date:   Thu, 29 Aug 2019 18:41:15 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com, robh+dt@kernel.org,
-        jonathanh@nvidia.com, andrew.murray@arm.com, kishon@ti.com,
-        gustavo.pimentel@synopsys.com, digetx@gmail.com,
-        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V3 2/6] dt-bindings: PCI: tegra: Add PCIe slot supplies
- regulator entries
-Message-ID: <20190829164115.GD19842@ulmo>
-References: <20190828172850.19871-1-vidyas@nvidia.com>
- <20190828172850.19871-3-vidyas@nvidia.com>
- <20190829120329.GC13187@ulmo>
- <cd106d64-e06c-e7a2-d807-f5f080625363@nvidia.com>
+        id S1727115AbfH2Qnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 12:43:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49144 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726739AbfH2Qnw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 12:43:52 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 721FC2341B;
+        Thu, 29 Aug 2019 16:43:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567097030;
+        bh=7Qs6OeqXPoEjk6VZjdjpvfyCnDBrj2rVCbUUfEnMiDs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=K92dt0qQ6mM95svcgKDFE//HrjDXVlEryQpKCFOqrvJnid2p17ozMXZuQdUcns/qA
+         jCXI2tn5xc21soDSevNZOKZC6X8Yvl+jk861VYmTVeA1sRQejHpGFeRQ5lboTGGp+I
+         RmTXzxXjzkROspwAmmlzkmYhwQtSo3/MIT3SHLqc=
+Received: by mail-qt1-f176.google.com with SMTP id b2so915424qtq.5;
+        Thu, 29 Aug 2019 09:43:50 -0700 (PDT)
+X-Gm-Message-State: APjAAAVWfsA7RMq4C/OLtQdpMsCOlHdXU1yOlRLpOxe9hxzfAwQkzwMO
+        fa0lWKpOXy0SLFZaQCWVA0KTuyjS8UsTvfjhWQ==
+X-Google-Smtp-Source: APXvYqxgQtOtFxkO7kgCl8zbXuT2nFsqGOsVrnXWmrG5VF4zoGK8bS9woQJYu1t/bzTD8UmthfoDjdjpS+15fFJ88kQ=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr10766806qtc.143.1567097029511;
+ Thu, 29 Aug 2019 09:43:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="DiL7RhKs8rK9YGuF"
-Content-Disposition: inline
-In-Reply-To: <cd106d64-e06c-e7a2-d807-f5f080625363@nvidia.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190829074603.70424-1-saravanak@google.com>
+In-Reply-To: <20190829074603.70424-1-saravanak@google.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 29 Aug 2019 11:43:38 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+2vR75ofq=aKOt1bb1T-JfhiGSR9dnHWQf7VLmgJP4eA@mail.gmail.com>
+Message-ID: <CAL_Jsq+2vR75ofq=aKOt1bb1T-JfhiGSR9dnHWQf7VLmgJP4eA@mail.gmail.com>
+Subject: Re: [PATCH v10 0/7] Solve postboot supplier cleanup and optimize
+ probe ordering
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        linux-acpi@vger.kernel.org,
+        clang-built-linux <clang-built-linux@googlegroups.com>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Aug 29, 2019 at 2:46 AM Saravana Kannan <saravanak@google.com> wrote:
+>
+> Add device-links to track functional dependencies between devices
+> after they are created (but before they are probed) by looking at
+> their common DT bindings like clocks, interconnects, etc.
+>
+> Having functional dependencies automatically added before the devices
+> are probed, provides the following benefits:
+>
+> - Optimizes device probe order and avoids the useless work of
+>   attempting probes of devices that will not probe successfully
+>   (because their suppliers aren't present or haven't probed yet).
+>
+>   For example, in a commonly available mobile SoC, registering just
+>   one consumer device's driver at an initcall level earlier than the
+>   supplier device's driver causes 11 failed probe attempts before the
+>   consumer device probes successfully. This was with a kernel with all
+>   the drivers statically compiled in. This problem gets a lot worse if
+>   all the drivers are loaded as modules without direct symbol
+>   dependencies.
+>
+> - Supplier devices like clock providers, interconnect providers, etc
+>   need to keep the resources they provide active and at a particular
+>   state(s) during boot up even if their current set of consumers don't
+>   request the resource to be active. This is because the rest of the
+>   consumers might not have probed yet and turning off the resource
+>   before all the consumers have probed could lead to a hang or
+>   undesired user experience.
+>
+>   Some frameworks (Eg: regulator) handle this today by turning off
+>   "unused" resources at late_initcall_sync and hoping all the devices
+>   have probed by then. This is not a valid assumption for systems with
+>   loadable modules. Other frameworks (Eg: clock) just don't handle
+>   this due to the lack of a clear signal for when they can turn off
+>   resources. This leads to downstream hacks to handle cases like this
+>   that can easily be solved in the upstream kernel.
+>
+>   By linking devices before they are probed, we give suppliers a clear
+>   count of the number of dependent consumers. Once all of the
+>   consumers are active, the suppliers can turn off the unused
+>   resources without making assumptions about the number of consumers.
+>
+> By default we just add device-links to track "driver presence" (probe
+> succeeded) of the supplier device. If any other functionality provided
+> by device-links are needed, it is left to the consumer/supplier
+> devices to change the link when they probe.
+>
+> v1 -> v2:
+> - Drop patch to speed up of_find_device_by_node()
+> - Drop depends-on property and use existing bindings
+>
+> v2 -> v3:
+> - Refactor the code to have driver core initiate the linking of devs
+> - Have driver core link consumers to supplier before it's probed
+> - Add support for drivers to edit the device links before probing
+>
+> v3 -> v4:
+> - Tested edit_links() on system with cyclic dependency. Works.
+> - Added some checks to make sure device link isn't attempted from
+>   parent device node to child device node.
+> - Added way to pause/resume sync_state callbacks across
+>   of_platform_populate().
+> - Recursively parse DT node to create device links from parent to
+>   suppliers of parent and all child nodes.
+>
+> v4 -> v5:
+> - Fixed copy-pasta bugs with linked list handling
+> - Walk up the phandle reference till I find an actual device (needed
+>   for regulators to work)
+> - Added support for linking devices from regulator DT bindings
+> - Tested the whole series again to make sure cyclic dependencies are
+>   broken with edit_links() and regulator links are created properly.
+>
+> v5 -> v6:
+> - Split, squashed and reordered some of the patches.
+> - Refactored the device linking code to follow the same code pattern for
+>   any property.
+>
+> v6 -> v7:
+> - No functional changes.
+> - Renamed i to index
+> - Added comment to clarify not having to check property name for every
+>   index
+> - Added "matched" variable to clarify code. No functional change.
+> - Added comments to include/linux/device.h for add_links()
+>
+> v7 -> v8:
+> - Rebased on top of linux-next to handle device link changes in [1]
+>
+> v8 -> v9:
+> - Fixed kbuild test bot reported errors (docs and const)
+>
+> v9->v10:
+> - Changes made based on reviews on LKML [2] and discussions at ELC [3]
+> - Dropped the edit_links() patch
+> - Dropped the patch that skips linking for default bus nodes
+> - 1/7: Changed from bus.add_links() to fwnode.ops.add_links()
+> - 1/7: Update device link doc
+> - 1/7: Lots of comments/fn doc updates
+> - 1/7: Renamed device_link_check_waiting_consumers() to
+>   device_link_add_missing_supplier_links()
+> - 2/7: Moved DT parsing/linking code from of/platform.c to of/property.c
 
---DiL7RhKs8rK9YGuF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Why? You'll notice that of/property.c doesn't know anything about
+platform_device (and struct device):
 
-On Thu, Aug 29, 2019 at 08:48:39PM +0530, Vidya Sagar wrote:
-> On 8/29/2019 5:33 PM, Thierry Reding wrote:
-> > On Wed, Aug 28, 2019 at 10:58:46PM +0530, Vidya Sagar wrote:
-> > > Add optional bindings "vpcie3v3-supply" and "vpcie12v-supply" to desc=
-ribe
-> > > regulators of a PCIe slot's supplies 3.3V and 12V provided the platfo=
-rm
-> > > is designed to have regulator controlled slot supplies.
-> > >=20
-> > > Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> > > ---
-> > > V3:
-> > > * None
-> > >=20
-> > > V2:
-> > > * None
-> > >=20
-> > >   .../devicetree/bindings/pci/nvidia,tegra194-pcie.txt      | 8 +++++=
-+++
-> > >   1 file changed, 8 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pc=
-ie.txt b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> > > index 0ac1b867ac24..b739f92da58e 100644
-> > > --- a/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> > > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
-> > > @@ -104,6 +104,12 @@ Optional properties:
-> > >      specified in microseconds
-> > >   - nvidia,aspm-l0s-entrance-latency-us: ASPM L0s entrance latency to=
- be
-> > >      specified in microseconds
-> > > +- vpcie3v3-supply: A phandle to the regulator node that supplies 3.3=
-V to the slot
-> > > +  if the platform has one such slot. (Ex:- x16 slot owned by C5 cont=
-roller
-> > > +  in p2972-0000 platform).
-> > > +- vpcie12v-supply: A phandle to the regulator node that supplies 12V=
- to the slot
-> > > +  if the platform has one such slot. (Ex:- x16 slot owned by C5 cont=
-roller
-> > > +  in p2972-0000 platform).
-> >=20
-> > There's an ongoing discussion regarding the use of optional power
-> > supplies and I'm wondering if we're not abusing this here. Why exactly
-> > are these regulators optional?
-> I made them optional because, the number and type of supplies typically d=
-epend on the
-> kind of slot the controller is owning. If it is a CEM slot, then, it need=
-s 3.3V & 12V
-> supplies and if it is an M.2 Key-E/M slot, it needs only 3.3V supply. Als=
-o, if there are
-> on-board PCIe endpoint devices, supplies may vary again from vendor to ve=
-ndor.
-> Considering all these, I made them optional instead of mandatory.
-> Also, I agree that regulator framework supplies a dummy regulator if we m=
-ake them mandatory
-> but doesn't supply one, but it does so with a warning print in the log wh=
-ich I feel is
-> an unwanted alert and to avoid that one has to supply dummy/fixed regulat=
-ors which again
-> seems an overkill when all of this can be addressed by making slot regula=
-tors optional.
+$ git grep platform_device -- drivers/of/property.c
+$
 
-Okay. That sounds like a good reason to make these optional indeed.
-There is no way for the PCI controller to know exactly which regulators
-will be needed. The only case where it is known is that of the regular
-PCIe slot where the 3.3 V and 12 V are mandatory. But since it isn't
-always a standard PCIe slot that the controller drives, I think optional
-is okay in this case.
+Everything related to platform_device goes in of/platform.c.
+Everything related to struct device only goes in of/device.c. I'd be
+okay with a new file for this too.
 
-Thierry
-
-> > The distinction is somewhat subtle, but the other way to look at
-> > modelling this in DT is that the supplies are in fact required, but may
-> > be connected to an always-on regulator with a fixed voltage. Or in some
-> > cases they may also be shorted to ground. In both cases the PCI
-> > controller, or rather the slot that the controller connects to, actually
-> > "requires" the supplies, it's just that we can get away without
-> > describing them because they can't be controlled anyway.
-> >=20
-> > Looking at the PCI connector pinout for PCI Express, I do see a bunch of
-> > +3.3 V and +12 V pins. To me that indicates that the 3.3 V and 12 V
-> > supplies are indeed required for PCI slots. I'm not sure about devices
-> > that are directly connected to the PCI controller, though. I'll need to
-> > go look at some schematics to get a better understanding of these.
-> >=20
-> > Bottom line: I'm wondering if we shouldn't really make these supplies
-> > mandatory and in case where we don't care either just leave them away
-> > (the regulator framework will supply a dummy regulator in that case) or
-> > hook them up to a fixed regulator if that matches the hardware design.
-> >=20
-> > Any thoughts?
-> >=20
-> > Thierry
-> >=20
-> > >   Examples:
-> > >   =3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > > @@ -156,6 +162,8 @@ Tegra194:
-> > >   			  0xc2000000 0x18 0x00000000 0x18 0x00000000 0x4 0x00000000>;  /=
-* prefetchable memory (16GB) */
-> > >   		vddio-pex-ctl-supply =3D <&vdd_1v8ao>;
-> > > +		vpcie3v3-supply =3D <&vdd_3v3_pcie>;
-> > > +		vpcie12v-supply =3D <&vdd_12v_pcie>;
-> > >   		phys =3D <&p2u_hsio_2>, <&p2u_hsio_3>, <&p2u_hsio_4>,
-> > >   		       <&p2u_hsio_5>;
-> > > --=20
-> > > 2.17.1
-> > >=20
->=20
-
---DiL7RhKs8rK9YGuF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1oACkACgkQ3SOs138+
-s6EGvw//aC8g/p1/uH6bQaFYayqHbvSXJkcs+qLM1pXP6sQs+Y78dkyd0bFY5d3I
-eWq7JMsg5syZh6vKYm8rYUQoOvmhKvgGJ2ICfXTe5Jj9F3pS2pK6PCcF3OpZIopk
-N9rsnpwUm/N5966NBkZyikA9iQat2EPJXSJA917kV8bAhs2uu4/xxBO2joG9GLPb
-hWD6EtgywvtYlRhpJ7irFlVjJ8VOj5j3zUi6ZpedMrtU8Bx/llbz+1bnrvyVlMjY
-HtcN2ndkRacf4nwu8/nB5GIzucOAE6jiKmwjpfv0PwV1GHkj8QggDZ6U8YEK98i3
-cYBL2iGlQw+k3dJgPl5poUrHmyHxvphHt3eEnrbOqXwe3jFtC/z4cKtc0d2h0omo
-5OQzeXZ9DNP26b2NvCkz/JCQlSGzlCp6M/MiJQu4Iu53DTAR9S2T650QG4s/hMVF
-cBujoyFuAc9rXwB+uxrkHHcHZZFNXDTawC8LQJgWIAfa5v8bhgfWKdaHbjhb0Bee
-R7fHHclqVSU2J1K6cRJ1d1daqme8VloCxg+eClg72UxXXnEPqRPP/PJS7tyX9Dzp
-uJMC4JfgRu+xShFywcXH9oif3ufSqHBnfIUiWNnKefLu5w6Y3Fg10nj5Shj0k0UL
-Jjk6JzRLE/h8QkgmNs49r3r7NkjzFfm4GZ5xBC0n/VAeVRxxW/8=
-=RTQ7
------END PGP SIGNATURE-----
-
---DiL7RhKs8rK9YGuF--
+Rob
