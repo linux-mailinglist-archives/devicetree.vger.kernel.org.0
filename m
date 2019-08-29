@@ -2,36 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77DF5A27F0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 22:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75F72A2837
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 22:42:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727125AbfH2U2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 16:28:19 -0400
-Received: from sauhun.de ([88.99.104.3]:43298 "EHLO pokefinder.org"
+        id S1727108AbfH2UmA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 16:42:00 -0400
+Received: from sauhun.de ([88.99.104.3]:43588 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726661AbfH2U2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 16:28:19 -0400
+        id S1726526AbfH2UmA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 16:42:00 -0400
 Received: from localhost (p54B33070.dip0.t-ipconnect.de [84.179.48.112])
-        by pokefinder.org (Postfix) with ESMTPSA id 85D682C001C;
-        Thu, 29 Aug 2019 22:28:17 +0200 (CEST)
-Date:   Thu, 29 Aug 2019 22:28:17 +0200
+        by pokefinder.org (Postfix) with ESMTPSA id C83F22C001C;
+        Thu, 29 Aug 2019 22:41:58 +0200 (CEST)
+Date:   Thu, 29 Aug 2019 22:41:58 +0200
 From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Eugen.Hristev@microchip.com
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        pierre-yves.mordret@st.com, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, peda@axentia.se, mark.rutland@arm.com,
-        Nicolas.Ferre@microchip.com
-Subject: Re: [PATCH v3 0/9] i2c: add support for filters
-Message-ID: <20190829202817.GT3740@ninjato>
-References: <1562678049-17581-1-git-send-email-eugen.hristev@microchip.com>
- <20190712082044.6eteunzehyptsibk@M43218.corp.atmel.com>
- <867070c3-02c8-da1b-04d9-0a1b628577de@microchip.com>
+To:     Ray Jui <ray.jui@broadcom.com>
+Cc:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Lori Hikichi <lori.hikichi@broadcom.com>,
+        Icarus Chau <icarus.chau@broadcom.com>,
+        Shivaraj Shetty <sshetty1@broadcom.com>
+Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
+Message-ID: <20190829204158.GV3740@ninjato>
+References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
+ <a2b0ccc1-63d5-177d-2b54-d79c65057907@broadcom.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MET8MpPxp2u2c48q"
+        protocol="application/pgp-signature"; boundary="o3Y+93sjbn8Tp8J9"
 Content-Disposition: inline
-In-Reply-To: <867070c3-02c8-da1b-04d9-0a1b628577de@microchip.com>
+In-Reply-To: <a2b0ccc1-63d5-177d-2b54-d79c65057907@broadcom.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -39,48 +43,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---MET8MpPxp2u2c48q
+--o3Y+93sjbn8Tp8J9
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
 
-> > I don't know if it will fit other vendors need concerning the binding
-> > but for Microchip it sounds good.
-> >=20
-> > Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
-> > for the whole serie.
-> >=20
-> > Regards
-> >=20
-> > Ludovic
-> >=20
+> Given that my name is also on the Signed-off-by since I helped to rewrite
+> part of the patch, I'm not going to add my Reviewed-by tag here.
 >=20
-> Hello Wolfram,
->=20
-> What is the plan for this patch series?
+> Please help to review.
 
-I hope to review it this weekend and my hope it is good to go for 5.4.
+Outstanding iproc patches are next in my queue.
 
 
---MET8MpPxp2u2c48q
+--o3Y+93sjbn8Tp8J9
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1oNWAACgkQFA3kzBSg
-KbZrWw/9HqjOXK/IH1rLw2tSA9GN1022F4IumHkzV+65mZFNq21FwtEAjTScq2uv
-nIRFzhRtjtBlov0w3t5prkUAuSKqKXiGgue/cDannWVLvdk/pcrTCERvQsBc5rIe
-Jlhya4MgSnE3teHqrJy4XtKn3m1LUJ6I/XtTGzDl50KHsepFWGuITBXKIKpS+R1q
-XVG1reJyxec3oWGHh1V1L+klLIb1HHWickcmYM2djZXrpharb7D0fIsdQB+1jSNR
-qhOpL15ye5Gc/01JA/rkNsSz/TI7AQBekZrsVaSgehnvN24yG9JzP6jLhaNU+9Xw
-lR5YY2FY8ubdAtcfDLYa+pJYBBxAtPuNfCMpVqaT/9woLF0gsCX4S8ggGAzne/MN
-KfatKAkosRZhO2rnXfFDnnBpL/wCGFA4/xiECAjYv1kalCopR8dUeYCdWIMcI1g5
-7MRqq9c1HE95e3Sh2mEPR3BHgDD83YmEjsYU6TOyYFoa0FS/A7WaQ1iqX7FmqZbm
-WRLtrtD3aVGxUncuYxfjLpNRSmOGnowjcIVLrURVCSYMvYsU5ltn0t9xTDp9h6yf
-D+rfsiFxcKnoasaeLaPauHCXVrgbbDG28tI+GoNTJkLjTZmWHkH/hPdcam3N6Qcc
-hHQImfyLvBDp9ePMb8U8ombH/SLyT2cqdOXgSHTLflZuCazJWZo=
-=S1+3
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1oOJYACgkQFA3kzBSg
+KbbbyBAAjquRkJJZCHvzp6ow/QsO6YcL0zRxe7eofXkwatruJwf6SEPIuUOoqc7s
+OCrfJ+EhvBm3O4BV2GT0uNHGfCTVpBhPYaNzO66eFK4ZUg3ekuvh+qyAMZtMnjl+
+YW4BNxwhHtBfwXBsuJum1xoU0Z7+gyoGrShOKYutdrrEWZGa0Fi7CcwOtonTz1Ag
+6aEv8Yg8V56bpIOeNij6YeVi0aRSzFehUbdHMK6LzhY8bEcVPx8es7rKiKLYP5QX
+zRc+axs98l/CaS4lp+ZIfm/hnSY0NhyJvNWucb2o7pYHK0j5GpclyR3mvGhiVEpT
+TOMCLuXzjMl2x2BPcj19V4RnmbuQj6VlRr2aic895xqfaq47IjP59pzdzdW/2MWR
+5fkmZu01ioFDKkNcvpHS6ugFsHyu21Bx85f48VJPaAGCAD9Ib25xF2yXkIXnvgJ7
+MupHsMQNg4/6UX8+FsR0YYLeJ+SoIVaPFunEj1r/fy+u1Dx8x+We1pDp0T6wPVYm
++Ph5VgIb3r2m/ZXCjf9Obn8mGYGnKO9+urh4E4h2nwS7pNTH+BYp6dvokK1vDjYe
+HITJ8jc7GHep6D4OpnJqQWn34Qio4kAZPOSur6pNgHEaig+shY/8gw1sL+4ae21E
+afLD0ZgRF8BSFx5A8QMi17YGWvwN/hRK8rACO+c0x502U+7Upgw=
+=oQ7R
 -----END PGP SIGNATURE-----
 
---MET8MpPxp2u2c48q--
+--o3Y+93sjbn8Tp8J9--
