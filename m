@@ -2,130 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA965A10B6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 07:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5105BA10E2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 07:34:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbfH2FN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 01:13:58 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39562 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725776AbfH2FN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 01:13:58 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7T5DVQ1080368;
-        Thu, 29 Aug 2019 00:13:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567055611;
-        bh=LYyFnkusAO06maJIyAoLh4uHHcHnpkVbJ8SCEW6OJlg=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=xAvXEf/1vTB129pEHtXkhBGqX8JXqhzbbly6gS1T+vqU0Wn+9Yi+jY+g4E3aPNqVZ
-         bs2/RdD9XzUDZalkIWDSNadfyS+dVvioyPCUIQOo99sbAAb86ZifKDpYqA2RMaxQk3
-         0uTYPMDWLATmZWbjfLTy8NyNqesUw632YUQfGKm0=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7T5DVgk118886
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 29 Aug 2019 00:13:31 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 29
- Aug 2019 00:13:31 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 29 Aug 2019 00:13:31 -0500
-Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7T5DOv7066185;
-        Thu, 29 Aug 2019 00:13:25 -0500
-Subject: Re: [PATCH v2 07/10] PCI: layerscape: Modify the MSIX to the doorbell
- way
-To:     Andrew Murray <andrew.murray@arm.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>
-CC:     "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.co" <lorenzo.pieralisi@arm.co>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1726009AbfH2FeW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 01:34:22 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:55358 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725883AbfH2FeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 01:34:22 -0400
+X-UUID: a9b55ba842b4482a934a329a8c782b3a-20190829
+X-UUID: a9b55ba842b4482a934a329a8c782b3a-20190829
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 635198789; Thu, 29 Aug 2019 13:34:14 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 29 Aug 2019 13:34:18 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 29 Aug 2019 13:34:18 +0800
+Message-ID: <1567056852.31616.0.camel@mtksdaap41>
+Subject: Re: [PATCH v5 09/10] rtc: mt6397: fix alarm register overwrite
+From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Mark Brown" <broonie@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ran Bi <ran.bi@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        <linux-kernel@vger.kernel.org>,
+        Richard Fontana <rfontana@redhat.com>,
+        <linux-mediatek@lists.infradead.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-References: <20190822112242.16309-1-xiaowei.bao@nxp.com>
- <20190822112242.16309-7-xiaowei.bao@nxp.com>
- <20190823135816.GH14582@e119886-lin.cambridge.arm.com>
- <AM5PR04MB3299E50BA5D7579D41B8B4F9F5A70@AM5PR04MB3299.eurprd04.prod.outlook.com>
- <20190827132504.GL14582@e119886-lin.cambridge.arm.com>
-From:   Kishon Vijay Abraham I <kishon@ti.com>
-Message-ID: <e64a484c-7cf5-5f65-400c-47128ab45e52@ti.com>
-Date:   Thu, 29 Aug 2019 10:43:18 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Thomas Gleixner <tglx@linutronix.de>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        <linux-rtc@vger.kernel.org>
+Date:   Thu, 29 Aug 2019 13:34:12 +0800
+In-Reply-To: <bf8435a7-db97-5ed8-bccc-9d197396aeb6@gmail.com>
+References: <1566531931-9772-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <1566531931-9772-10-git-send-email-hsin-hsiung.wang@mediatek.com>
+         <bf8435a7-db97-5ed8-bccc-9d197396aeb6@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20190827132504.GL14582@e119886-lin.cambridge.arm.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: ADC74A5DEDFF4B5036933CA1E2AC6DBFD0512ED5B9376EFA5CA1F9F22C66550D2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gustavo,
+Hi Matthias,
 
-On 27/08/19 6:55 PM, Andrew Murray wrote:
-> On Sat, Aug 24, 2019 at 12:08:40AM +0000, Xiaowei Bao wrote:
->>
->>
->>> -----Original Message-----
->>> From: Andrew Murray <andrew.murray@arm.com>
->>> Sent: 2019年8月23日 21:58
->>> To: Xiaowei Bao <xiaowei.bao@nxp.com>
->>> Cc: bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
->>> shawnguo@kernel.org; Leo Li <leoyang.li@nxp.com>; kishon@ti.com;
->>> lorenzo.pieralisi@arm.co; arnd@arndb.de; gregkh@linuxfoundation.org; M.h.
->>> Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>; Roy
->>> Zang <roy.zang@nxp.com>; jingoohan1@gmail.com;
->>> gustavo.pimentel@synopsys.com; linux-pci@vger.kernel.org;
->>> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
->>> linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org
->>> Subject: Re: [PATCH v2 07/10] PCI: layerscape: Modify the MSIX to the
->>> doorbell way
->>>
->>> On Thu, Aug 22, 2019 at 07:22:39PM +0800, Xiaowei Bao wrote:
->>>> The layerscape platform use the doorbell way to trigger MSIX interrupt
->>>> in EP mode.
->>>>
->>>
->>> I have no problems with this patch, however...
->>>
->>> Are you able to add to this message a reason for why you are making this
->>> change? Did dw_pcie_ep_raise_msix_irq not work when func_no != 0? Or did
->>> it work yet dw_pcie_ep_raise_msix_irq_doorbell is more efficient?
->>
->> The fact is that, this driver is verified in ls1046a platform of NXP before, and ls1046a don't
->> support MSIX feature, so I set the msix_capable of pci_epc_features struct is false,
->> but in other platform, e.g. ls1088a, it support the MSIX feature, I verified the MSIX
->> feature in ls1088a, it is not OK, so I changed to another way. Thanks.
+On Fri, 2019-08-23 at 17:35 +0200, Matthias Brugger wrote:
 > 
-> Right, so the existing pci-layerscape-ep.c driver never supported MSIX yet it
-> erroneously had a switch case statement to call dw_pcie_ep_raise_msix_irq which
-> would never get used.
+> On 23/08/2019 05:45, Hsin-Hsiung Wang wrote:
+> > From: Ran Bi <ran.bi@mediatek.com>
+> > 
+> > Alarm registers high byte was reserved for other functions.
+> > This add mask in alarm registers operation functions.
+> > This also fix error condition in interrupt handler.
+> > 
+> > Fixes: fc2979118f3f ("rtc: mediatek: Add MT6397 RTC driver")
+> > 
+> > Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > Signed-off-by: Ran Bi <ran.bi@mediatek.com>
 > 
-> Now that we're adding a platform with MSIX support the existing
-> dw_pcie_ep_raise_msix_irq doesn't work (for this platform) so we are adding a
-> different method.
+> Misses your Signed-off-by.
+> 
 
-Gustavo, can you confirm dw_pcie_ep_raise_msix_irq() works for designware as it
-didn't work for both me and Xiaowei?
+I will add it in the next patch, thanks.
 
-Thanks
-Kishon
+> Regards,
+> Matthias
+> 
+> > ---
+> >  drivers/rtc/rtc-mt6397.c | 47 +++++++++++++++++++++++++++++++++--------------
+> >  1 file changed, 33 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+> > index b46ed4d..828def7 100644
+> > --- a/drivers/rtc/rtc-mt6397.c
+> > +++ b/drivers/rtc/rtc-mt6397.c
+> > @@ -47,6 +47,14 @@
+> >  
+> >  #define RTC_AL_SEC		0x0018
+> >  
+> > +#define RTC_AL_SEC_MASK		0x003f
+> > +#define RTC_AL_MIN_MASK		0x003f
+> > +#define RTC_AL_HOU_MASK		0x001f
+> > +#define RTC_AL_DOM_MASK		0x001f
+> > +#define RTC_AL_DOW_MASK		0x0007
+> > +#define RTC_AL_MTH_MASK		0x000f
+> > +#define RTC_AL_YEA_MASK		0x007f
+> > +
+> >  #define RTC_PDN2		0x002e
+> >  #define RTC_PDN2_PWRON_ALARM	BIT(4)
+> >  
+> > @@ -103,7 +111,7 @@ static irqreturn_t mtk_rtc_irq_handler_thread(int irq, void *data)
+> >  		irqen = irqsta & ~RTC_IRQ_EN_AL;
+> >  		mutex_lock(&rtc->lock);
+> >  		if (regmap_write(rtc->regmap, rtc->addr_base + RTC_IRQ_EN,
+> > -				 irqen) < 0)
+> > +				 irqen) == 0)
+> >  			mtk_rtc_write_trigger(rtc);
+> >  		mutex_unlock(&rtc->lock);
+> >  
+> > @@ -225,12 +233,12 @@ static int mtk_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *alm)
+> >  	alm->pending = !!(pdn2 & RTC_PDN2_PWRON_ALARM);
+> >  	mutex_unlock(&rtc->lock);
+> >  
+> > -	tm->tm_sec = data[RTC_OFFSET_SEC];
+> > -	tm->tm_min = data[RTC_OFFSET_MIN];
+> > -	tm->tm_hour = data[RTC_OFFSET_HOUR];
+> > -	tm->tm_mday = data[RTC_OFFSET_DOM];
+> > -	tm->tm_mon = data[RTC_OFFSET_MTH];
+> > -	tm->tm_year = data[RTC_OFFSET_YEAR];
+> > +	tm->tm_sec = data[RTC_OFFSET_SEC] & RTC_AL_SEC_MASK;
+> > +	tm->tm_min = data[RTC_OFFSET_MIN] & RTC_AL_MIN_MASK;
+> > +	tm->tm_hour = data[RTC_OFFSET_HOUR] & RTC_AL_HOU_MASK;
+> > +	tm->tm_mday = data[RTC_OFFSET_DOM] & RTC_AL_DOM_MASK;
+> > +	tm->tm_mon = data[RTC_OFFSET_MTH] & RTC_AL_MTH_MASK;
+> > +	tm->tm_year = data[RTC_OFFSET_YEAR] & RTC_AL_YEA_MASK;
+> >  
+> >  	tm->tm_year += RTC_MIN_YEAR_OFFSET;
+> >  	tm->tm_mon--;
+> > @@ -251,14 +259,25 @@ static int mtk_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *alm)
+> >  	tm->tm_year -= RTC_MIN_YEAR_OFFSET;
+> >  	tm->tm_mon++;
+> >  
+> > -	data[RTC_OFFSET_SEC] = tm->tm_sec;
+> > -	data[RTC_OFFSET_MIN] = tm->tm_min;
+> > -	data[RTC_OFFSET_HOUR] = tm->tm_hour;
+> > -	data[RTC_OFFSET_DOM] = tm->tm_mday;
+> > -	data[RTC_OFFSET_MTH] = tm->tm_mon;
+> > -	data[RTC_OFFSET_YEAR] = tm->tm_year;
+> > -
+> >  	mutex_lock(&rtc->lock);
+> > +	ret = regmap_bulk_read(rtc->regmap, rtc->addr_base + RTC_AL_SEC,
+> > +			       data, RTC_OFFSET_COUNT);
+> > +	if (ret < 0)
+> > +		goto exit;
+> > +
+> > +	data[RTC_OFFSET_SEC] = ((data[RTC_OFFSET_SEC] & ~(RTC_AL_SEC_MASK)) |
+> > +				(tm->tm_sec & RTC_AL_SEC_MASK));
+> > +	data[RTC_OFFSET_MIN] = ((data[RTC_OFFSET_MIN] & ~(RTC_AL_MIN_MASK)) |
+> > +				(tm->tm_min & RTC_AL_MIN_MASK));
+> > +	data[RTC_OFFSET_HOUR] = ((data[RTC_OFFSET_HOUR] & ~(RTC_AL_HOU_MASK)) |
+> > +				(tm->tm_hour & RTC_AL_HOU_MASK));
+> > +	data[RTC_OFFSET_DOM] = ((data[RTC_OFFSET_DOM] & ~(RTC_AL_DOM_MASK)) |
+> > +				(tm->tm_mday & RTC_AL_DOM_MASK));
+> > +	data[RTC_OFFSET_MTH] = ((data[RTC_OFFSET_MTH] & ~(RTC_AL_MTH_MASK)) |
+> > +				(tm->tm_mon & RTC_AL_MTH_MASK));
+> > +	data[RTC_OFFSET_YEAR] = ((data[RTC_OFFSET_YEAR] & ~(RTC_AL_YEA_MASK)) |
+> > +				(tm->tm_year & RTC_AL_YEA_MASK));
+> > +
+> >  	if (alm->enabled) {
+> >  		ret = regmap_bulk_write(rtc->regmap,
+> >  					rtc->addr_base + RTC_AL_SEC,
+> > 
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+
+
