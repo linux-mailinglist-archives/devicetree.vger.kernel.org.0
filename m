@@ -2,125 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00CB3A189E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 13:31:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FF4EA18FA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 13:38:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728083AbfH2LbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 07:31:11 -0400
-Received: from regular1.263xmail.com ([211.150.70.203]:39944 "EHLO
-        regular1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728041AbfH2LbK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 07:31:10 -0400
-Received: from zhangzj?rock-chips.com (unknown [192.168.167.73])
-        by regular1.263xmail.com (Postfix) with ESMTP id 2B4EF38D;
-        Thu, 29 Aug 2019 19:30:58 +0800 (CST)
-X-263anti-spam: KSV:0;BIG:0;
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-KSVirus-check: 0
-X-ADDR-CHECKED4: 1
-X-ABS-CHECKED: 1
-X-SKE-CHECKED: 1
-X-ANTISPAM-LEVEL: 2
-Received: from [172.16.9.224] (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P18543T140265176168192S1567078256984205_;
-        Thu, 29 Aug 2019 19:30:57 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <658534ad7c1ca7df45c972965d3d6d09>
-X-RL-SENDER: zhangzj@rock-chips.com
-X-SENDER: zhangzj@rock-chips.com
-X-LOGIN-NAME: zhangzj@rock-chips.com
-X-FST-TO: linux-rockchip@lists.infradead.org
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-Subject: Re: [PATCH v1 1/1] ARM: dts: rockchip: set crypto default disabled on
- rk3288
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     mark.rutland@arm.com, robh+dt@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
-References: <20190827071439.14767-1-zhangzj@rock-chips.com>
- <4806912.UyKsYhR33o@phil>
-From:   Elon Zhang <zhangzj@rock-chips.com>
-Message-ID: <3b9cbffa-291e-fc95-bce6-5b24f5fd860d@rock-chips.com>
-Date:   Thu, 29 Aug 2019 19:31:00 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <4806912.UyKsYhR33o@phil>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+        id S1727174AbfH2Lin (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 07:38:43 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:5115 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727176AbfH2Lin (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 07:38:43 -0400
+X-IronPort-AV: E=Sophos;i="5.64,442,1559487600"; 
+   d="scan'208";a="25249611"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 29 Aug 2019 20:38:40 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2C7A94002C30;
+        Thu, 29 Aug 2019 20:38:35 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        xu_shunji@hoperun.com, ebiharaml@si-linux.co.jp
+Subject: [PATCH v2 0/2] Add LVDS panel support to HiHope RZ/G2M
+Date:   Thu, 29 Aug 2019 12:38:31 +0100
+Message-Id: <1567078713-29361-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Dear All,
 
-On 8/27/2019 22:28, Heiko Stuebner wrote:
-> Hi,
->
-> Am Dienstag, 27. August 2019, 09:14:39 CEST schrieb Elon Zhang:
->> Not every board needs to enable crypto node, so the node should
->> be set default disabled in rk3288.dtsi and enabled in specific
->> board dts file.
-> Can you give a bit more rationale here? There would need to be a very
-> specific reason because of the following:
->
-> The crypto module is not wired to some board-specific components,
-> so its usability does not depend on the specific board at all.
-> Instead every board can just use it out of the box and the devicetree
-> is supposed to describe the hardware and is _not_ meant as a space
-> for user configuration.
+the HiHope RZ/G2M is advertised as supporting panel idk-1110wr from
+Advantech, but the panel doesn't come with the board, it has to purchased
+separatey, therefore this series adds panel support to a new DT.
 
-Right for almost all normal hardware modules but the crypto module was 
-designed
+v1->v2
+* fixed a space according to Geert's feedback.
 
-for secure world. As a result,  the crypto module will become 
-inaccessible for linux
+Thanks,
+Fab
 
-kernel if secure world enable it.
+Fabrizio Castro (2):
+  dt-bindings: display: Add idk-1110wr binding
+  arm64: dts: renesas: Add HiHope RZ/G2M board with idk-1110wr display
 
-We plan to enable the crypto module in secure world so we should set 
-crypto module
+ .../display/panel/advantech,idk-1110wr.yaml        | 69 +++++++++++++++++
+ arch/arm64/boot/dts/renesas/Makefile               |  1 +
+ .../r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts        | 86 ++++++++++++++++++++++
+ 3 files changed, 156 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/advantech,idk-1110wr.yaml
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
 
-default disabled in linux kernel.
-
->
-> So in fact the status property should probably go away completely from
-> the crypto node, as it's usable out of the box in all cases.
->
->
-> Heiko
->
->
->
->> Signed-off-by: Elon Zhang <zhangzj@rock-chips.com>
->> ---
->>   arch/arm/boot/dts/rk3288.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
->> index cc893e154fe5..d509aa24177c 100644
->> --- a/arch/arm/boot/dts/rk3288.dtsi
->> +++ b/arch/arm/boot/dts/rk3288.dtsi
->> @@ -984,7 +984,7 @@
->>   		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
->>   		resets = <&cru SRST_CRYPTO>;
->>   		reset-names = "crypto-rst";
->> -		status = "okay";
->> +		status = "disabled";
->>   	};
->>   
->>   	iep_mmu: iommu@ff900800 {
->>
->
->
->
->
->
->
-
+-- 
+2.7.4
 
