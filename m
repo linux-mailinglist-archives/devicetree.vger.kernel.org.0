@@ -2,78 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EAC43A0ECE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 03:09:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC6CA0F03
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 03:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbfH2BJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 21:09:14 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:39176 "EHLO vps0.lunn.ch"
+        id S1726279AbfH2Bpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 21:45:40 -0400
+Received: from mga05.intel.com ([192.55.52.43]:18130 "EHLO mga05.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726079AbfH2BJN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Aug 2019 21:09:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=sFzCLQljOVVup477S84S6o2/tJc4F15Dmhtol6ohh0M=; b=nVgS+xEc358i00Bi+OIvsPcruc
-        IrpRBYMosLXOM3aTbNrqLlxqAgBTqhmMSxwoJ+k2oP6AA6hQkeK/gGkrpD/1wY6Z4EJXlKb7Vft+m
-        +sAdPQ6+ghN8FvqCxyGqQRuG56SXnjvE91vDWxKZGdcLHxvmLnSVlZWNBZXaQplQdnMM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1i38w0-00076K-PS; Thu, 29 Aug 2019 03:09:08 +0200
-Date:   Thu, 29 Aug 2019 03:09:08 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-Cc:     arm@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 mvebu-dt64 3/3] arm64: dts: marvell: add DTS for
- Turris Mox
-Message-ID: <20190829010908.GC32178@lunn.ch>
-References: <20190828151243.23542-1-marek.behun@nic.cz>
- <20190828151243.23542-4-marek.behun@nic.cz>
+        id S1726081AbfH2Bpk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 21:45:40 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 28 Aug 2019 18:45:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,442,1559545200"; 
+   d="scan'208";a="192795343"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga002.jf.intel.com with ESMTP; 28 Aug 2019 18:45:39 -0700
+Received: from [10.226.38.21] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.21])
+        by linux.intel.com (Postfix) with ESMTP id 2A1B8580107;
+        Wed, 28 Aug 2019 18:45:36 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: intel-sdxc-phy: Add YAML schema
+ for LGM SDXC PHY
+To:     "Langer, Thomas" <thomas.langer@intel.com>,
+        "kishon@ti.com" <kishon@ti.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "Shevchenko, Andriy" <andriy.shevchenko@intel.com>,
+        "Kim, Cheol Yong" <cheol.yong.kim@intel.com>,
+        "Wu, Qiming" <qi-ming.wu@intel.com>,
+        "Liem, Peter Harliman" <peter.harliman.liem@intel.com>
+References: <20190828124315.48448-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190828124315.48448-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <0DAF21CFE1B20740AE23D6AF6E54843F1FDDE99F@IRSMSX108.ger.corp.intel.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <d14411be-434c-ed02-6d85-f70d4a0acded@linux.intel.com>
+Date:   Thu, 29 Aug 2019 09:45:36 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190828151243.23542-4-marek.behun@nic.cz>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <0DAF21CFE1B20740AE23D6AF6E54843F1FDDE99F@IRSMSX108.ger.corp.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 05:12:43PM +0200, Marek Behún wrote:
-> This adds support for the Turris Mox board from CZ.NIC.
-> 
-> Turris Mox is as modular router based on the Armada 3720 SOC (same as
-> EspressoBin).
-> 
-> The basic board can be extended by different modules.
-> If those are connected, U-Boot lets the kernel know via device-tree.
-> 
-> Since modules can be connected in different order and some modules can
-> be connected multiple times (up to three modules containing 8-port
-> ethernet switch in DSA configuration can be connected) we decided
-> against using device-tree overlays, because it got complicated rather
-> quickly. (For example the SFP module can be connected directly to the
-> CPU, or after a switch module. There are four cases and all would need
-> different SFP overlay. There are two types of switch modules (8-port
-> with pass-through and 4-port with no pass-through). For those we would
-> again need at least 6 more overlays.)
-> 
-> We therefore decided to put all the possibly connected devices in one
-> device-tree and disable them by default. When U-Boot finds out which
-> modules are connected, it fixes the loaded device-tree accordingly just
-> before boot. By Rob Herring's suggestion we also made it so that U-Boot
-> completely removes nodes which are disabled after this fixup.
-> 
-> Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
-> Cc: Andrew Lunn <andrew@lunn.ch>
+Hi Langer,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Thank you for the review comments.
 
-    Andrew
+On 28/8/2019 11:37 PM, Langer, Thomas wrote:
+> Hi Vadivel,
+>
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/phy/intel,syscon.yaml
+>> b/Documentation/devicetree/bindings/phy/intel,syscon.yaml
+>> new file mode 100644
+>> index 000000000000..d0b78805e49f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/phy/intel,syscon.yaml
+>> @@ -0,0 +1,33 @@
+>> +# SPDX-License-Identifier: GPL-2.0
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/phy/intel,syscon.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Syscon for eMMC/SDXC PHY Device Tree Bindings
+> This says the binding is for eMMC/SDXC
+Agreed, fix it.
+>> +
+>> +maintainers:
+>> +  - Ramuthevar Vadivel Murugan
+>> <vadivel.muruganx.ramuthevar@linux.intel.com>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: intel,syscon
+> but this is a generic syscon, behind which are many registers, not only for
+> eMMC/SDXC. Also, the registers will be different for each SoC and needed for
+> many different drivers, that is why in your example it is called "chiptop"
+> -> toplevel registers not belonging to a specific HW module.
+>
+> Rob: Do you also think this "intel,syscon" is too generic?
+>       And the binding should be outside the "phy" folder?
+>
+> What is the way to support different SoCs with this?
+> Must the driver referencing this syscon be aware of these differences?
+
+[Vadivel] : most of the IP drivers are using syscon, please suggest me 
+to keep in the right place since
+
+it is common to all(w.r.t Intel's Lightning Mountain).
+
+Best Regards
+Vadivel
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  "#reset-cells":
+>> +   const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - "#reset-cells"
+>> +
+>> +examples:
+>> +  - |
+>> +    sysconf: chiptop@e0020000 {
+>> +       compatible = "intel,syscon", "syscon";
+>> +       reg = <0xe0020000 0x100>;
+>> +       #reset-cells = <1>;
+>> +    };
+>> --
+>> 2.11.0
+> Best regards,
+> Thomas
