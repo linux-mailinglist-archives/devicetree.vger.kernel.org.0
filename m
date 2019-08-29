@@ -2,173 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F71A1902
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 13:38:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3BDAA1961
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 13:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727345AbfH2Liw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 07:38:52 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:5115 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727474AbfH2Liw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 07:38:52 -0400
-X-IronPort-AV: E=Sophos;i="5.64,442,1559487600"; 
-   d="scan'208";a="25249633"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 29 Aug 2019 20:38:50 +0900
-Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 2BCCF4002C30;
-        Thu, 29 Aug 2019 20:38:45 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1727318AbfH2LvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 07:51:01 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:45125 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726416AbfH2LvB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 07:51:01 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3Ix4-0002md-Ut; Thu, 29 Aug 2019 13:50:54 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3Ix2-0007yd-A0; Thu, 29 Aug 2019 13:50:52 +0200
+Date:   Thu, 29 Aug 2019 13:50:52 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Robin Gong <yibin.gong@nxp.com>
+Cc:     robin <robin@protonic.nl>, Mark Rutland <mark.rutland@arm.com>,
+        "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "linux-kernel @ vger . kernel . org" <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        xu_shunji@hoperun.com, ebiharaml@si-linux.co.jp
-Subject: [PATCH v2 2/2] arm64: dts: renesas: Add HiHope RZ/G2M board with idk-1110wr display
-Date:   Thu, 29 Aug 2019 12:38:33 +0100
-Message-Id: <1567078713-29361-3-git-send-email-fabrizio.castro@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1567078713-29361-1-git-send-email-fabrizio.castro@bp.renesas.com>
-References: <1567078713-29361-1-git-send-email-fabrizio.castro@bp.renesas.com>
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "linux-input @ vger . kernel . org" <linux-input@vger.kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-arm-kernel @ lists . infradead . org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] input: keyboard: snvs_pwrkey: Send key events for
+ i.MX6 S, DL and Q
+Message-ID: <20190829115052.s2m4jw4p3rknqoxb@pengutronix.de>
+References: <20190827123216.32728-1-robin@protonic.nl>
+ <20190828091550.pdc57wanu6twew5p@pengutronix.de>
+ <6d353af709ea545cc34abca5c40674e3@protonic.nl>
+ <20190829081712.timamprawezzbesn@pengutronix.de>
+ <VE1PR04MB6638A54664EE3FFE16BD419189A20@VE1PR04MB6638.eurprd04.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VE1PR04MB6638A54664EE3FFE16BD419189A20@VE1PR04MB6638.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 13:49:36 up 103 days, 18:07, 63 users,  load average: 0.02, 0.01,
+ 0.00
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The HiHope RZ/G2M is advertised as compatible with panel idk-1110wr
-from Advantech, however the panel isn't sold alongside the board.
-A new dts, adding everything that's required to get the panel to
-work the HiHope RZ/G2M, is the most convenient way to support the
-HiHope RZ/G2M when it's connected to the idk-1110wr.
+On 19-08-29 09:11, Robin Gong wrote:
+> 
+> On 2019-08-29 16:17, Marco Felsch wrote:
+> > > > While reading the rm it seems that
+> > > > the snvs block has a dedicated version register. IMHO this could be
+> > > > a better way to apply the change also to existing devices with old
+> > > > firmware.
+> > >
+> > > I thought the same thing, and fully agree with you. However I do not
+> > > have a way to determine which versions are out there. Since I couldn't
+> > > find any documentation on this, and I only have i.MX6 S/DL, D/Q and UL
+> > laying around.
+> > 
+> > @NXP Kernel Team
+> > Can we get some more information here?
+> Go ahead, please. That snvs version register SNVS_HPVIDR1 should work as expect.
+> MINOR_REV checking is enough, none-zero means for soc after i.mx6sx, but
+> Zero means i.mx6q/dl/sl elder soc.
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
----
-v1->v2:
-* added space between lvds-connector-en-gpio and curly brace
+Thanks. Robin can you integrate that so we can drop the different
+dt-handling?
 
- arch/arm64/boot/dts/renesas/Makefile               |  1 +
- .../r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts        | 86 ++++++++++++++++++++++
- 2 files changed, 87 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
+Regards,
+  Marco
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index 42b74c2..5d94301 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m.dtb
- dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m-ex.dtb
-+dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m-ex-idk-1110wr.dtb
- dtb-$(CONFIG_ARCH_R8A774C0) += r8a774c0-cat874.dtb r8a774c0-ek874.dtb
- dtb-$(CONFIG_ARCH_R8A7795) += r8a7795-salvator-x.dtb r8a7795-h3ulcb.dtb
- dtb-$(CONFIG_ARCH_R8A7795) += r8a7795-h3ulcb-kf.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
-new file mode 100644
-index 0000000..67fe04c
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
-@@ -0,0 +1,86 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Device Tree Source for the HiHope RZ/G2M sub board connected to an
-+ * Advantech IDK-1110WR 10.1" LVDS panel
-+ *
-+ * Copyright (C) 2019 Renesas Electronics Corp.
-+ */
-+
-+#include "r8a774a1-hihope-rzg2m-ex.dts"
-+
-+/ {
-+	backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm0 0 50000>;
-+
-+		brightness-levels = <0 2 8 16 32 64 128 255>;
-+		default-brightness-level = <6>;
-+	};
-+
-+	panel-lvds {
-+		compatible = "advantech,idk-1110wr", "panel-lvds";
-+
-+		width-mm = <223>;
-+		height-mm = <125>;
-+
-+		data-mapping = "jeida-24";
-+
-+		panel-timing {
-+			/* 1024x600 @60Hz */
-+			clock-frequency = <51200000>;
-+			hactive = <1024>;
-+			vactive = <600>;
-+			hsync-len = <240>;
-+			hfront-porch = <40>;
-+			hback-porch = <40>;
-+			vfront-porch = <15>;
-+			vback-porch = <10>;
-+			vsync-len = <10>;
-+		};
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&lvds0_out>;
-+			};
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	/*
-+	 * When GP1_20 is LOW LVDS0 is connected to the LVDS connector
-+	 * When GP1_20 is HIGH LVDS0 is connected to the LT8918L
-+	 */
-+	lvds-connector-en-gpio {
-+		gpio-hog;
-+		gpios = <20 GPIO_ACTIVE_HIGH>;
-+		output-low;
-+		line-name = "lvds-connector-en-gpio";
-+	};
-+};
-+
-+&lvds0 {
-+	status = "okay";
-+
-+	ports {
-+		port@1 {
-+			lvds0_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+};
-+
-+&pfc {
-+	pwm0_pins: pwm0 {
-+		groups = "pwm0";
-+		function = "pwm0";
-+	};
-+};
-+
-+&pwm0 {
-+	pinctrl-0 = <&pwm0_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
+> > 
+> > Regards,
+> >   Marco
+> > 
+> > > Regards,
+> > > Robin van der Gracht
+> > >
+> > 
+> > --
+> > Pengutronix e.K.                           |
+> > |
+> > Industrial Linux Solutions                 |
+> > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fwww.p
+> > engutronix.de%2F&amp;data=02%7C01%7Cyibin.gong%40nxp.com%7C8d4e1
+> > 0cd77bd4652f3eb08d72c594e76%7C686ea1d3bc2b4c6fa92cd99c5c301635%7
+> > C0%7C0%7C637026634390359345&amp;sdata=mhXlUxmLWg8qtwhPQfkJZm
+> > VAn4QQ3YybLOSh83uf27E%3D&amp;reserved=0  |
+> > Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0
+> > |
+> > Amtsgericht Hildesheim, HRA 2686           | Fax:
+> > +49-5121-206917-5555 |
+> 
+
 -- 
-2.7.4
-
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
