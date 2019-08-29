@@ -2,303 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C06E7A1281
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2D33A128C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:24:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726889AbfH2HXA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 03:23:00 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:58356 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726330AbfH2HXA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 03:23:00 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 787F0FB03;
-        Thu, 29 Aug 2019 09:22:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id KtmbkXjx-TTe; Thu, 29 Aug 2019 09:22:54 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 9278742EEE; Thu, 29 Aug 2019 09:22:53 +0200 (CEST)
-Date:   Thu, 29 Aug 2019 09:22:53 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     dl-linux-imx <linux-imx@nxp.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "a.hajda@samsung.com" <a.hajda@samsung.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "sam@ravnborg.org" <sam@ravnborg.org>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Subject: Re: [EXT] [PATCH v3 0/2] drm: bridge: Add NWL MIPI DSI host
- controller support
-Message-ID: <20190829072253.GA5078@bogon.m.sigxcpu.org>
-References: <cover.1566470526.git.agx@sigxcpu.org>
- <1567002587.3209.122.camel@nxp.com>
+        id S1727903AbfH2HYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 03:24:14 -0400
+Received: from protonic.xs4all.nl ([83.163.252.89]:35640 "EHLO protonic.nl"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727347AbfH2HYO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 03:24:14 -0400
+Received: from webmail.promanet.nl (edge2.prtnl [192.168.1.170])
+        by sparta (Postfix) with ESMTP id 3921E44A0065;
+        Thu, 29 Aug 2019 09:26:10 +0200 (CEST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1567002587.3209.122.camel@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 29 Aug 2019 09:24:12 +0200
+From:   robin <robin@protonic.nl>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Robin Gong <yibin.gong@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        "linux-kernel @ vger . kernel . org" <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        "linux-input @ vger . kernel . org" <linux-input@vger.kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-arm-kernel @ lists . infradead . org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] input: keyboard: snvs_pwrkey: Send key events for
+ i.MX6 S, DL and Q
+In-Reply-To: <20190828091550.pdc57wanu6twew5p@pengutronix.de>
+References: <20190827123216.32728-1-robin@protonic.nl>
+ <20190828091550.pdc57wanu6twew5p@pengutronix.de>
+Message-ID: <6d353af709ea545cc34abca5c40674e3@protonic.nl>
+X-Sender: robin@protonic.nl
+User-Agent: Roundcube Webmail/1.3.6
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Wed, Aug 28, 2019 at 02:29:48PM +0000, Robert Chiras wrote:
-> Hi Guido,
-> 
-> I tested this on my setup and it works. My DSI panel is a little bit
-> different and it doesn't work with this as-is, but I added some
-> improvements on top of this, in order to be able to setup the clocks.
-> The changes I made can arrive on top of this as improvements, of
-> course, since it will allow this driver to dinamically set the
-> video_pll clock for any kind of mode.
-> 
-> So, for the whole patch-set, you can add:
-> Tested-by: Robert Chiras <robert.chiras@nxp.com>
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+Hi Marco,
 
-Added for v4, thanks!
- -- Guido
+On 2019-08-28 11:15, Marco Felsch wrote:
+> Hi Robin,
+> 
+> thanks for the patch.
+> 
+> On 19-08-27 14:32, Robin van der Gracht wrote:
+>> The first generation i.MX6 processors does not send an interrupt when 
+>> the
+>> power key is pressed. It sends a power down request interrupt if the 
+>> key is
+>> released before a hard shutdown (5 second press). This should allow
+>> software to bring down the SoC safely.
+>> 
+>> For this driver to work as a regular power key with the older SoCs, we 
+>> need
+>> to send a keypress AND release when we get the power down request irq.
+>> 
+>> Signed-off-by: Robin van der Gracht <robin@protonic.nl>
+>> ---
+>>  .../devicetree/bindings/crypto/fsl-sec4.txt   | 16 ++++--
+>>  drivers/input/keyboard/Kconfig                |  2 +-
+>>  drivers/input/keyboard/snvs_pwrkey.c          | 52 
+>> ++++++++++++++++---
+> 
+> Can we split this so the dt-bindings are a standalone patch? IMHO this
+> is the usual way because the maintainer can squash them on there needs.
+
+Not sure what you mean, do you want me to make a separate patch for the
+devicetree binding documentation here?
+
+> Also it would be cool to document the changes. A common place for
+> changes is after the '---' or on the cover-letter.
+
+Agreed!
+
+v1 -> v2:
+  - Nolonger altering the existing compatible string, just add a second 
+one.
+  - Moved the event emiting work out of the irq handler to the timer 
+handler.
+  - Assign hwtype directly to of_device_id->data instead of a struct
+    platform_device_id entry which has it's .driver_data set to hwtype.
+  - Document the new device tree binding.
+  - Update commit message to make more clear why we want to make this 
+change.
 
 > 
-> Best regards,
-> Robert
+>>  3 files changed, 57 insertions(+), 13 deletions(-)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/crypto/fsl-sec4.txt 
+>> b/Documentation/devicetree/bindings/crypto/fsl-sec4.txt
+>> index 2fe245ca816a..e4fbb9797082 100644
+>> --- a/Documentation/devicetree/bindings/crypto/fsl-sec4.txt
+>> +++ b/Documentation/devicetree/bindings/crypto/fsl-sec4.txt
+>> @@ -420,14 +420,22 @@ EXAMPLE
+>>  =====================================================================
+>>  System ON/OFF key driver
+>> 
+>> -  The snvs-pwrkey is designed to enable POWER key function which 
+>> controlled
+>> -  by SNVS ONOFF, the driver can report the status of POWER key and 
+>> wakeup
+>> -  system if pressed after system suspend.
+>> +  The snvs-pwrkey is designed to enable POWER key function which is 
+>> controlled
+>> +  by SNVS ONOFF. It can wakeup the system if pressed after system 
+>> suspend.
+>> +
+>> +  There are two generations of SVNS pwrkey hardware. The first 
+>> generation is
+>> +  included in i.MX6 Solo, DualLite and Quad processors. The second 
+>> generation
+>> +  is included in i.MX6 SoloX and newer SoCs.
+>> +
+>> +  Second generation SNVS can detect and report the status of POWER 
+>> key, but the
+>> +  first generation can only detect a key release and so emits an 
+>> instantaneous
+>> +  press and release event when the key is released.
+>> 
+>>    - compatible:
+>>        Usage: required
+>>        Value type: <string>
+>> -      Definition: Mush include "fsl,sec-v4.0-pwrkey".
+>> +      Definition: Must include "fsl,sec-v4.0-pwrkey" for i.MX6 SoloX 
+>> and newer
+>> +	   or "fsl,imx6qdl-snvs-pwrkey" for older SoCs.
+>> 
+>>    - interrupts:
+>>        Usage: required
+>> diff --git a/drivers/input/keyboard/Kconfig 
+>> b/drivers/input/keyboard/Kconfig
+>> index 7c4f19dab34f..937e58da5ce1 100644
+>> --- a/drivers/input/keyboard/Kconfig
+>> +++ b/drivers/input/keyboard/Kconfig
+>> @@ -436,7 +436,7 @@ config KEYBOARD_SNVS_PWRKEY
+>>  	depends on OF
+>>  	help
+>>  	  This is the snvs powerkey driver for the Freescale i.MX 
+>> application
+>> -	  processors that are newer than i.MX6 SX.
+>> +	  processors.
+>> 
+>>  	  To compile this driver as a module, choose M here; the
+>>  	  module will be called snvs_pwrkey.
+>> diff --git a/drivers/input/keyboard/snvs_pwrkey.c 
+>> b/drivers/input/keyboard/snvs_pwrkey.c
+>> index 5342d8d45f81..d71c44733103 100644
+>> --- a/drivers/input/keyboard/snvs_pwrkey.c
+>> +++ b/drivers/input/keyboard/snvs_pwrkey.c
+>> @@ -29,6 +29,11 @@
+>>  #define DEBOUNCE_TIME 30
+>>  #define REPEAT_INTERVAL 60
+>> 
+>> +enum imx_snvs_hwtype {
+>> +	IMX6SX_SNVS,	/* i.MX6 SoloX and newer */
+>> +	IMX6QDL_SNVS,	/* i.MX6 Solo, DualLite and Quad */
+>> +};
+>> +
+>>  struct pwrkey_drv_data {
+>>  	struct regmap *snvs;
+>>  	int irq;
+>> @@ -37,14 +42,41 @@ struct pwrkey_drv_data {
+>>  	int wakeup;
+>>  	struct timer_list check_timer;
+>>  	struct input_dev *input;
+>> +	enum imx_snvs_hwtype hwtype;
+>>  };
+>> 
+>> +static const struct of_device_id imx_snvs_pwrkey_ids[] = {
+>> +	{
+>> +		.compatible = "fsl,sec-v4.0-pwrkey",
+>> +		.data = (const void *)IMX6SX_SNVS,
+>> +	},
+>> +	{
+>> +		.compatible = "fsl,imx6qdl-snvs-pwrkey",
+>> +		.data = (const void *)IMX6QDL_SNVS,
+>> +	},
+>> +	{ /* sentinel */ },
+>> +};
+>> +MODULE_DEVICE_TABLE(of, imx_snvs_pwrkey_ids);
 > 
-> On Jo, 2019-08-22 at 12:44 +0200, Guido Günther wrote:
-> > This adds initial support for the NWL MIPI DSI Host controller found
-> > on i.MX8
-> > SoCs.
-> > 
-> > It adds support for the i.MX8MQ but the same IP core can also be
-> > found on e.g.
-> > i.MX8QXP. I added the necessary hooks to support other imx8 variants
-> > but since
-> > I only have imx8mq boards to test I omitted the platform data for
-> > other SoCs.
-> > 
-> > The code is based on NXPs BSP so I added Robert Chiras as
-> > Co-authored-by. Robert, if this looks sane could you add your
-> > Signed-off-by:?
-> > 
-> > The most notable changes over the BSP driver are
-> >  - Calculate HS mode timing from phy_configure_opts_mipi_dphy
-> >  - Perform all clock setup via DT
-> >  - Merge nwl-imx and nwl drivers
-> >  - Add B0 silion revision quirk
-> >  - become a bridge driver to hook into mxsfb (from what I read[0]
-> > DCSS, which
-> >    also can drive the nwl on the imx8mq will likely not become part
-> > of
-> >    imx-display-subsystem so it makes sense to make it drive a bridge
-> > for dsi as
-> >    well).
-> >  - Use panel_bridge to attach the panel
-> >  - Use multiplex framework instead of accessing syscon directly
-> > 
-> > This has been tested on a Librem 5 devkit using mxsfb with Robert's
-> > patches[1]
-> > and the rocktech-jh057n00900 panel driver on next-20190821. The DCSS
-> > can later
-> > on also act as input source too.
-> > 
-> > Changes from v2:
-> > - Per review comments by Rob Herring
-> >   https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fl
-> > ists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > August%2F230448.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C757
-> > 201f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%
-> > 7C0%7C637020674654566414&amp;sdata=JdvAdCPGq2CTsW%2BgXgnAVltWMIfdCDQn
-> > dXSLYpnjEH8%3D&amp;reserved=0
-> >   - bindings:
-> >     - Simplify by restricting to fsl,imx8mq-nwl-dsi
-> >     - document reset lines
-> >     - add port@{0,1}
-> >     - use a real compatible string for the panel
-> >     - resets are required
-> > - Per review comments by Arnd Bergmann
-> >   https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fl
-> > ists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > August%2F230868.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C757
-> > 201f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%
-> > 7C0%7C637020674654566414&amp;sdata=LyJpZjQjMCe5zUdvK8CD8ETucLPxx621gW
-> > xtpAr8DM4%3D&amp;reserved=0
-> >   - Don't access iomuxc_gpr regs directly. This allows us to drop the
-> >     first patch in the series with the iomuxc_gpr field defines.
-> > - Per review comments by Laurent Pinchart
-> >     - Fix wording in bindings
-> > - Add mux-controls to bindings
-> > - Don't print error message on dphy probe deferal
-> > 
-> > Changes from v1:
-> > - Per review comments by Sam Ravnborg
-> >   https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fl
-> > ists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > July%2F228130.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C75720
-> > 1f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
-> > 0%7C637020674654566414&amp;sdata=AU2gzIwrbCdIBZenPWWYYX%2BgdX53zc2%2B
-> > SQhZbuN%2FWpU%3D&amp;reserved=0
-> >   - Change binding docs to YAML
-> >   - build: Don't always visit imx-nwl/
-> >   - build: Add header-test-y
-> >   - Sort headers according to DRM convention
-> >   - Use drm_display_mode instead of videmode
-> > - Per review comments by Fabio Estevam
-> >   https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fl
-> > ists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > July%2F228299.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C75720
-> > 1f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
-> > 0%7C637020674654566414&amp;sdata=6kpIZ6iNAQ13fMXU6sqENLwy%2FdIWL6ef8j
-> > gyas7I0CQ%3D&amp;reserved=0
-> >   - Don't restrict build to ARCH_MXC
-> >   - Drop unused includes
-> >   - Drop unreachable code in imx_nwl_dsi_bridge_mode_fixup()
-> >   - Drop remaining calls of dev_err() and use DRM_DEV_ERR()
-> >     consistently.
-> >   - Use devm_platform_ioremap_resource()
-> >   - Drop devm_free_irq() in probe() error path
-> >   - Use single line comments where sufficient
-> >   - Use <linux/time64.h> instead of defining USEC_PER_SEC
-> >   - Make input source select imx8 specific
-> >   - Drop <asm/unaligned.h> inclusion (after removal of
-> > get_unaligned_le32)
-> >   - Drop all EXPORT_SYMBOL_GPL() for functions used in the same
-> > module
-> >     but different source files.
-> >   - Drop nwl_dsi_enable_{rx,tx}_clock() by invoking
-> > clk_prepare_enable()
-> >     directly
-> >   - Remove pointless comment
-> > - Laurent Pinchart
-> >   https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fl
-> > ists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > July%2F228313.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C75720
-> > 1f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
-> > 0%7C637020674654566414&amp;sdata=tDlVGeET1CPMH9W%2FqmnePNR51vNaTKD%2F
-> > iFOoR9%2FmESc%3D&amp;reserved=0
-> >   https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fl
-> > ists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > July%2F228308.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C75720
-> > 1f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C
-> > 0%7C637020674654566414&amp;sdata=NsLGAL8%2BcOC0ZZxxeoGe7VxQCgqSBEN4G3
-> > WVGOeZpCo%3D&amp;reserved=0
-> >   - Drop (on iMX8MQ) unused csr regmap
-> >   - Use NWL_MAX_PLATFORM_CLOCKS everywhere
-> >   - Drop get_unaligned_le32() usage
-> >   - remove duplicate 'for the' in binding docs
-> >   - Don't include unused <linux/clk-provider.h>
-> >   - Don't include unused <linux/component.h>
-> >   - Drop dpms_mode for tracking state, trust the drm layer on that
-> >   - Use pm_runtime_put() instead of pm_runtime_put_sync()
-> >   - Don't overwrite encoder type
-> >   - Make imx_nwl_platform_data const
-> >   - Use the reset controller API instead of open coding that platform
-> > specific
-> >     part
-> >   - Use <linux/bitfield.h> intead of making up our own defines
-> >   - name mipi_dsi_transfer less generic: nwl_dsi_transfer
-> >   - ensure clean in .remove by calling mipi_dsi_host_unregister.
-> >   - prefix constants by NWL_DSI_
-> >   - properly format transfer_direction enum
-> >   - simplify platform clock handling
-> >   - Don't modify state in mode_fixup() and use mode_set() instead
-> >   - Drop bridge detach(), already handle by nwl_dsi_host_detach()
-> >   - Drop USE_*_QUIRK() macros
-> > - Drop (for now) unused clock defnitions. 'pixel' and 'bypass' clock
-> > will be
-> >   used for i.MX8 SoCs but since they're unused atm drop the
-> > definitions - but
-> >   keep the logic to enable/disable several clocks in place since we
-> > know we'll
-> >   need it in the future.
-> > 
-> > Changes from v0:
-> > - Add quirk for IMQ8MQ silicon B0 revision to not mess with the
-> >   system reset controller on power down since enable() won't work
-> >   otherwise.
-> > - Drop devm_free_irq() handled by the device driver core
-> > - Disable tx esc clock after the phy power down to unbreak
-> >   disable/enable (unblank/blank)
-> > - Add ports to dt binding docs
-> > - Select GENERIC_PHY_MIPI_DPHY instead of GENERIC_PHY for
-> >   phy_mipi_dphy_get_default_config
-> > - Select DRM_MIPI_DSI
-> > - Include drm_print.h to fix build on next-20190408
-> > - Drop some debugging messages
-> > - Newline terminate all DRM_ printouts
-> > - Turn component driver into a drm bridge
-> > 
-> > [0]: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%
-> > 2Flists.freedesktop.org%2Farchives%2Fdri-devel%2F2019-
-> > May%2F219484.html&amp;data=02%7C01%7Crobert.chiras%40nxp.com%7C757201
-> > f9aaa54653580e08d726edb290%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0
-> > %7C637020674654566414&amp;sdata=4IVjhLy3a2XxZ4jYwDFD23D%2BvwAVAEj44hY
-> > fvvp8OpQ%3D&amp;reserved=0
-> > [1]: https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%
-> > 2Fpatchwork.freedesktop.org%2Fseries%2F62822%2F&amp;data=02%7C01%7Cro
-> > bert.chiras%40nxp.com%7C757201f9aaa54653580e08d726edb290%7C686ea1d3bc
-> > 2b4c6fa92cd99c5c301635%7C0%7C0%7C637020674654566414&amp;sdata=GueUBOc
-> > baGjWtWcMYBplL6ki2UbgaFPkQHg%2F6eReiYg%3D&amp;reserved=0
-> > 
-> > To: David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-> > Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>
-> > , Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.
-> > de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <
-> > festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Andrzej
-> > Hajda <a.hajda@samsung.com>, Neil Armstrong <narmstrong@baylibre.com>
-> > , Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman
-> > <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@siol.net>, Lee
-> > Jones <lee.jones@linaro.org>, Guido Günther <agx@sigxcpu.org>, dri-de
-> > vel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kern
-> > el@lists.infradead.org, linux-kernel@vger.kernel.org, Robert Chiras <
-> > robert.chiras@nxp.com>, Sam Ravnborg <sam@ravnborg.org>, Fabio
-> > Estevam <festevam@gmail.com>, Arnd Bergmann <arnd@arndb.de>
-> > 
-> > 
-> > Guido Günther (2):
-> >   dt-bindings: display/bridge: Add binding for NWL mipi dsi host
-> >     controller
-> >   drm/bridge: Add NWL MIPI DSI host controller support
-> > 
-> >  .../bindings/display/bridge/nwl-dsi.yaml      | 155 ++++
-> >  drivers/gpu/drm/bridge/Kconfig                |   2 +
-> >  drivers/gpu/drm/bridge/Makefile               |   1 +
-> >  drivers/gpu/drm/bridge/nwl-dsi/Kconfig        |  16 +
-> >  drivers/gpu/drm/bridge/nwl-dsi/Makefile       |   4 +
-> >  drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.c      | 501 +++++++++++++
-> >  drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.h      |  65 ++
-> >  drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.c      | 700
-> > ++++++++++++++++++
-> >  drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.h      | 112 +++
-> >  9 files changed, 1556 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> >  create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/Kconfig
-> >  create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/Makefile
-> >  create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.c
-> >  create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-drv.h
-> >  create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.c
-> >  create mode 100644 drivers/gpu/drm/bridge/nwl-dsi/nwl-dsi.h
-> > 
-> > --
-> > 2.20.1
-> > 
+> Can we keep this on the original place if you are using ...
+> 
+>> +
+>>  static void imx_imx_snvs_check_for_events(struct timer_list *t)
+>>  {
+>>  	struct pwrkey_drv_data *pdata = from_timer(pdata, t, check_timer);
+>>  	struct input_dev *input = pdata->input;
+>>  	u32 state;
+>> 
+>> +	if (pdata->hwtype == IMX6QDL_SNVS) {
+>> +		/*
+>> +		 * The first generation i.MX6 SoCs only sends an interrupt on
+>> +		 * button release. To mimic power-key usage, we'll prepend a
+>> +		 * press event.
+>> +		 */
+>> +		input_report_key(input, pdata->keycode, 1);
+> 
+> Missing input_sync() here?
+
+Yes you are right. Odd that systemd powerkey handling didn't complain.
+
+> 
+>> +		input_report_key(input, pdata->keycode, 0);
+>> +		input_sync(input);
+>> +		pm_relax(input->dev.parent);
+>> +		return;
+>> +	}
+>> +
+>>  	regmap_read(pdata->snvs, SNVS_HPSR_REG, &state);
+>>  	state = state & SNVS_HPSR_BTN ? 1 : 0;
+>> 
+>> @@ -67,13 +99,17 @@ static irqreturn_t imx_snvs_pwrkey_interrupt(int 
+>> irq, void *dev_id)
+>>  {
+>>  	struct platform_device *pdev = dev_id;
+>>  	struct pwrkey_drv_data *pdata = platform_get_drvdata(pdev);
+>> +	unsigned long expire = jiffies;
+>>  	u32 lp_status;
+>> 
+>>  	pm_wakeup_event(pdata->input->dev.parent, 0);
+>> 
+>>  	regmap_read(pdata->snvs, SNVS_LPSR_REG, &lp_status);
+>> -	if (lp_status & SNVS_LPSR_SPO)
+>> -		mod_timer(&pdata->check_timer, jiffies + 
+>> msecs_to_jiffies(DEBOUNCE_TIME));
+>> +	if (lp_status & SNVS_LPSR_SPO) {
+>> +		if (pdata->hwtype == IMX6SX_SNVS)
+>> +			expire += msecs_to_jiffies(DEBOUNCE_TIME);
+>> +		mod_timer(&pdata->check_timer, expire);
+> 
+> Is this desired because the timer gets triggered earlier.
+
+Yes, since the first generation has debounce implemented in hardware,
+we dont need to add another one.
+
+Now looking at it, maybe I should change the conditional to:
+
+if (pdata->hwtype != IMX6QDL_SNVS)
+         expire += msecs_to_jiffies(DEBOUNCE_TIME);
+
+to make this more clear.
+
+> 
+>> +	}
+>> 
+>>  	/* clear SPO status */
+>>  	regmap_write(pdata->snvs, SNVS_LPSR_REG, SNVS_LPSR_SPO);
+>> @@ -93,6 +129,7 @@ static int imx_snvs_pwrkey_probe(struct 
+>> platform_device *pdev)
+>>  	struct pwrkey_drv_data *pdata = NULL;
+>>  	struct input_dev *input = NULL;
+>>  	struct device_node *np;
+>> +	const struct of_device_id *match;
+>>  	int error;
+>> 
+>>  	/* Get SNVS register Page */
+>> @@ -100,6 +137,10 @@ static int imx_snvs_pwrkey_probe(struct 
+>> platform_device *pdev)
+>>  	if (!np)
+>>  		return -ENODEV;
+>> 
+>> +	match = of_match_node(imx_snvs_pwrkey_ids, np);
+>> +	if (!match)
+>> +		return -ENODEV;
+> 
+> ... of_device_get_match_data() here.
+
+of_device_get_match_data() returns NULL on error. In this case, because 
+I
+assigned integer values to the .data pointers, casting NULL back to an
+integer will result in a valid hwtype.
+
+I could declare a special struct with a 'quirks' field like they did in 
+the
+flexcan diver: 'drivers/net/can/flexcan.c'.
+
+Use of_device_get_match_data() to get it, and define a quirk like:
+SNVS_QUIRK_NO_BTN_PRESS_IRQ. This might also improve readability.
+
+
+> While reading the rm it seems that
+> the snvs block has a dedicated version register. IMHO this could be a
+> better way to apply the change also to existing devices with old
+> firmware.
+
+I thought the same thing, and fully agree with you. However I do not 
+have
+a way to determine which versions are out there. Since I couldn't find 
+any
+documentation on this, and I only have i.MX6 S/DL, D/Q and UL laying 
+around.
+
+Regards,
+Robin van der Gracht
