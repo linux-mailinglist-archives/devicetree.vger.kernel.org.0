@@ -2,121 +2,331 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA40CA12E8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A6FDA1303
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728061AbfH2Hqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 03:46:32 -0400
-Received: from mail-pf1-f201.google.com ([209.85.210.201]:48362 "EHLO
-        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728056AbfH2Hqc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:46:32 -0400
-Received: by mail-pf1-f201.google.com with SMTP id t14so1835447pfq.15
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 00:46:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=nhjHwCHt3mcz+mHDiVxN7s8L1KuUZ7MDwDAfLe16I50=;
-        b=G+4eBBbE8eR+JweFO/MTbU/JiiK//ZmQj8k/LyrXbCGTThb38w/Z2lUm+J9+GnNM0R
-         ILZAbYqpRKL7TOIZvfQiUJ2cF39/iD9rfGRzN/JPmUP0imOiTAzvaNMocnkNuQkRpez1
-         TeFD7m5SShMLKZ99sCn6+3Jk0GWByzZ/IZjTTkJhmHdk/U8KSb8jext129vtnUphdVPK
-         3Og8DoR1JhhS8QHP8PSei9z2OIoEIJgw7WByG4I5s8EIdtWDrfnC1s2xxQI7P6I0R2oo
-         vZCWREqieybOCkNKb7WgvgWuO6NUQORyGlcpSxF+myfSq3RilEg/tbt3CAbeESXosLmc
-         vLfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=nhjHwCHt3mcz+mHDiVxN7s8L1KuUZ7MDwDAfLe16I50=;
-        b=mcaUSqsTM7DdL5LeCeykKwAGuStQqoGH/z5s+zbcHJvG3M7bjejc2P4DdlBtKGHOTC
-         HKNVvzLLOSNhCUhLhOZLbTfpCQdaX+mZlPNz+BC85eRE/VMUI2QtM4tFF9sM6QYGvtGM
-         ZMtepg0MQuKY5J45XqrsqcuXES+o1TdISGZQtmYnNSvVI0fOjR3rArp4jF9C70NrZ+XL
-         xiywx1Y/GOcDlow/lPZ3Wva2eyUFAO5CA3NTfjn19mJ8HAxnekYcFibLKReiGFi+QiHW
-         h13Bsk0wmb3pdGeCLDOiieAksQ45H7cfObkRS3xTraJ1MBOF/K/kkOxAnlBbAe246BwA
-         seXg==
-X-Gm-Message-State: APjAAAUUPTHSPevjvdAJHFlgt8wqRe1wpx4vkeziAQbb5r3NRJSgjQRR
-        APjuG1+ysOQ/FxyknkHp0uKWY5GCGKSk/fo=
-X-Google-Smtp-Source: APXvYqxjRrI7v0tAcH4lDhIBqUhl0wBMcJY40NePOKQ5MWBcbB/tbpokA1E16lgkYG8HCTLquA1Ns3qi+HNbWZE=
-X-Received: by 2002:a65:690f:: with SMTP id s15mr6855732pgq.432.1567064791199;
- Thu, 29 Aug 2019 00:46:31 -0700 (PDT)
-Date:   Thu, 29 Aug 2019 00:46:03 -0700
-In-Reply-To: <20190829074603.70424-1-saravanak@google.com>
-Message-Id: <20190829074603.70424-8-saravanak@google.com>
-Mime-Version: 1.0
-References: <20190829074603.70424-1-saravanak@google.com>
-X-Mailer: git-send-email 2.23.0.187.g17f5b7556c-goog
-Subject: [PATCH v10 7/7] of: property: Add "depends-on" parsing support to of_fwnode_add_links()
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>
-Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-acpi@vger.kernel.org, clang-built-linux@googlegroups.com,
-        David Collins <collinsd@codeaurora.org>,
-        kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+        id S1725939AbfH2HyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 03:54:10 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:46267 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725807AbfH2HyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:54:10 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3FFw-0006JE-5t; Thu, 29 Aug 2019 09:54:08 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3FFt-0008Rm-NH; Thu, 29 Aug 2019 09:54:05 +0200
+Date:   Thu, 29 Aug 2019 09:54:05 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Oliver Graute <oliver.graute@gmail.com>
+Cc:     shawnguo@kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, narmstrong@baylibre.com,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCHv5 2/2] ARM: dts: Add support for i.MX6 UltraLite DART
+ Variscite Customboard
+Message-ID: <20190829075405.j7av4aojvzddlfz3@pengutronix.de>
+References: <1567009160-21965-1-git-send-email-oliver.graute@gmail.com>
+ <1567009160-21965-3-git-send-email-oliver.graute@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1567009160-21965-3-git-send-email-oliver.graute@gmail.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:39:09 up 103 days, 13:57, 63 users,  load average: 0.00, 0.05,
+ 0.01
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If dependencies inferred by of_fwnode_add_links() result in a cycle, it
-can prevent the probing of all the devices in the cycle. The depends-on
-property has been added to explicitly override inferred dependencies
-when they create a cycle.
+Hi Oliver,
 
-Add depends-on parsing support to of_fwnode_add_links() so that
-platforms with cyclic dependencies can use "depends-on" to break the
-cycle and continue successfully probing devices.
+On 19-08-28 18:19, Oliver Graute wrote:
+> This patch adds DeviceTree Source for the i.MX6 UltraLite DART NAND/WIFI
+> 
+> Signed-off-by: Oliver Graute <oliver.graute@gmail.com>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  arch/arm/boot/dts/Makefile                      |   1 +
+>  arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts | 196 ++++++++++++++++++++++++
+>  2 files changed, 197 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index a24a6a1..a2a69e4 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -579,6 +579,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
+>  	imx6ul-tx6ul-0010.dtb \
+>  	imx6ul-tx6ul-0011.dtb \
+>  	imx6ul-tx6ul-mainboard.dtb \
+> +	imx6ul-var-6ulcustomboard.dtb \
+>  	imx6ull-14x14-evk.dtb \
+>  	imx6ull-colibri-eval-v3.dtb \
+>  	imx6ull-colibri-wifi-eval-v3.dtb \
+> diff --git a/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+> new file mode 100644
+> index 00000000..1861b34
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
+> @@ -0,0 +1,196 @@
+> +// SPDX-License-Identifier: (GPL-2.0)
+> +/*
+> + * Support for Variscite DART-6UL Module
+> + *
+> + * Copyright (C) 2015 Freescale Semiconductor, Inc.
+> + * Copyright (C) 2015-2016 Variscite Ltd. - http://www.variscite.com
+> + * Copyright (C) 2018-2019 Oliver Graute <oliver.graute@gmail.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include <dt-bindings/input/input.h>
+> +#include "imx6ul-imx6ull-var-dart-common.dtsi"
+> +
+> +/ {
+> +	model = "Variscite i.MX6 UltraLite Carrier-board";
+> +	compatible = "variscite,6ulcustomboard", "fsl,imx6ul";
+> +
+> +	backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm1 0 20000>;
+> +		brightness-levels = <0 4 8 16 32 64 128 255>;
+> +		default-brightness-level = <6>;
+> +		status = "okay";
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		user {
+> +			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/property.c | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Please mux the gpios where you need them. In this case mux it within the
+gpio-keys node.
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index 420c2d428184..78a262e24686 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1106,6 +1106,12 @@ static struct device_node *parse_interconnects(struct device_node *np,
- 				"#interconnect-cells");
- }
- 
-+static struct device_node *parse_depends_on(struct device_node *np,
-+					    const char *prop_name, int index)
-+{
-+	return parse_prop_cells(np, prop_name, index, "depends-on", NULL);
-+}
-+
- static int strcmp_suffix(const char *str, const char *suffix)
- {
- 	unsigned int len, suffix_len;
-@@ -1151,6 +1157,7 @@ static const struct supplier_bindings bindings[] = {
- 	{ .parse_prop = parse_clocks, },
- 	{ .parse_prop = parse_interconnects, },
- 	{ .parse_prop = parse_regulators, },
-+	{ .parse_prop = parse_depends_on, },
- 	{},
- };
- 
-@@ -1203,6 +1210,12 @@ static int __of_link_to_suppliers(struct device *dev,
- 	struct property *p;
- 	int ret = 0;
- 
-+	if (of_find_property(con_np, "depends-on", NULL)) {
-+		if (of_link_property(dev, con_np, "depends-on"))
-+			ret = -EAGAIN;
-+		return ret;
-+	}
-+
- 	for_each_property_of_node(con_np, p)
- 		if (of_link_property(dev, con_np, p->name))
- 			ret = -EAGAIN;
+> +			linux,code = <KEY_BACK>;
+> +			gpio-key,wakeup;
+> +		};
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +
+> +		d16-led {
+> +			gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+
+The same applies here.
+
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "wm8731audio";
+> +		simple-audio-card,widgets =
+> +			"Headphone", "Headphone Jack",
+> +			"Line", "Line Jack",
+> +			"Microphone", "Mic Jack";
+> +		simple-audio-card,routing =
+> +			"Headphone Jack", "RHPOUT",
+> +			"Headphone Jack", "LHPOUT",
+> +			"LLINEIN", "Line Jack",
+> +			"RLINEIN", "Line Jack",
+> +			"MICIN", "Mic Bias",
+> +			"Mic Bias", "Mic Jack";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,bitclock-master = <&sound_master>;
+> +		simple-audio-card,frame-master = <&sound_master>;
+> +
+> +		sound_master: simple-audio-card,cpu {
+> +				sound-dai = <&sai2>;
+> +		};
+
+Where is the codec node?
+
+> +	};
+> +};
+> +
+> +&can1 {
+> +	status = "okay";
+
+We need to move the complete muxing from the SoM dtsi to the baseboard
+for all baseboard related nodes.. I tought that the Dart 6UL layout
+follows a specific standard but that isn't the case.
+
+> +};
+> +
+> +&can2 {
+> +	status = "okay";
+> +};
+> +
+> +&fec1 {
+> +	phy-mode = "rgmii";
+
+This avoid such re-assigning here too. Also the imx6ul only support
+10/100 Mbit/s. So rgmii makes no sense here.
+
+> +	phy-reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
+> +	phy-handle = <&ethphy0>;
+> +	status = "okay";
+> +};
+> +
+> +&fec2 {
+> +	phy-mode = "rgmii";
+> +	phy-reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
+> +	phy-handle = <&ethphy1>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	clock_frequency = <100000>;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_i2c2>;
+> +	status = "okay";
+> +
+> +	wm8731: audio-codec@1a {
+> +		#sound-dai-cells = <0>;
+
+Please move #sound-dai-cells below compatible and reg property.
+
+> +		compatible = "wlf,wm8731";
+> +		reg = <0x1a>;
+> +		clocks = <&clks IMX6UL_CLK_SAI2>;
+> +		clock-names = "mclk";
+> +	};
+> +
+> +	touchscreen@38 {
+> +		compatible = "edt,edt-ft5x06";
+> +		reg = <0x38>;
+> +		interrupt-parent = <&gpio3>;
+> +		interrupts = <4 0>;
+
+Make use of IRQ_TYPE_*
+
+> +		touchscreen-size-x = <800>;
+> +		touchscreen-size-y = <480>;
+> +		touchscreen-inverted-x;
+> +		touchscreen-inverted-y;
+> +		wakeup-source;
+> +	};
+> +
+> +	rtc@68 {
+> +		compatible = "dallas,ds1337";
+> +		reg = <0x68>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_rtc>;
+> +		interrupt-parent = <&gpio5>;
+> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
+> +	};
+> +};
+> +
+> +&lcdif {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_lcdif>;
+> +	display = <&display0>;
+> +	status = "okay";
+> +
+> +	display0: display0 {
+> +		bits-per-pixel = <16>;
+> +		bus-width = <24>;
+> +
+> +		display-timings {
+> +			native-mode = <&timing0>;
+> +			timing0: timing0 {
+> +				clock-frequency =<35000000>;
+> +				hactive = <800>;
+> +				vactive = <480>;
+> +				hfront-porch = <40>;
+> +				hback-porch = <40>;
+> +				hsync-len = <48>;
+> +				vback-porch = <29>;
+> +				vfront-porch = <13>;
+> +				vsync-len = <3>;
+> +				hsync-active = <0>;
+> +				vsync-active = <0>;
+> +				de-active = <1>;
+> +				pixelclk-active = <0>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&pwm1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +};
+> +
+> +&uart2 {
+> +	status = "okay";
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +};
+> +
+> +&usbotg1 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&usbotg2 {
+> +	dr_mode = "host";
+> +	status = "okay";
+> +};
+> +
+> +&iomuxc {
+> +	pinctrl_rtc: rtcgrp {
+> +		fsl,pins = <
+> +			MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x1b0b0
+> +		>;
+> +	};
+
+As I said above, move the complete muxing pwm/usb/i2c/lcd/... from the
+som dtsi to the baseboard dts because it is only valid for this
+baseboard. Another baseboard using this som can have a complete
+different mux option.
+
+Regards,
+  Marco
+
+
+> +};
+> -- 
+> 2.7.4
+> 
+> 
+> 
+
 -- 
-2.23.0.187.g17f5b7556c-goog
-
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
