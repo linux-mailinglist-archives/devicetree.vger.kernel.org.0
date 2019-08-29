@@ -2,117 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41CEEA1585
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 12:11:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA66CA15A8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 12:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727204AbfH2KKs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 06:10:48 -0400
-Received: from mga01.intel.com ([192.55.52.88]:24391 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727161AbfH2KKs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 06:10:48 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Aug 2019 03:10:47 -0700
-X-IronPort-AV: E=Sophos;i="5.64,442,1559545200"; 
-   d="scan'208";a="197773294"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Aug 2019 03:10:46 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id 8FFBB20D81;
-        Thu, 29 Aug 2019 13:10:40 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1i3HO7-0006W0-KP; Thu, 29 Aug 2019 13:10:43 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 10/10] lib/test_printf: Add tests for %pfw printk modifier
-Date:   Thu, 29 Aug 2019 13:10:43 +0300
-Message-Id: <20190829101043.24963-11-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
-References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726739AbfH2KTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 06:19:41 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:36152 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726330AbfH2KTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 06:19:40 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 20432C0391;
+        Thu, 29 Aug 2019 10:19:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1567073980; bh=od80gmY2zZhh+3Bcew23DiiwRVI+IoD71SEOvgTHG9g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZCpfD6NXKGjUIDyuyy6P1W/RWFyrnEbssFCR4FlNciPZnoNwnK4hSjHHsciqeGWvj
+         csro7zd7SZAZh0DCnfIBbf3NUL3+o0LR8nfrt/WweoO5Mr2s7sYVuQ3Kr9kqlSHbue
+         SSm8KGVcVawD/Fx3v5AmvjqXgCkwu2ObxiOm0Z1c8vAeEpTEvOAPtXDfI0SrjNhapt
+         xgppE8g+DyxZToCwFV+TDQTHULhTyRGl6/qae1RQxj7g8cMi7/N02EhunlgLKMl+Oz
+         kswwWiVz9H0z4sIjPUfWp+xwNF1Z3Hh9YmZTX8ZQX9pt5kKnPrK0cnOBRBS3sXVfMe
+         uXKrEtyBe4lng==
+Received: from de02.synopsys.com (de02.internal.synopsys.com [10.225.17.21])
+        by mailhost.synopsys.com (Postfix) with ESMTP id 37493A005F;
+        Thu, 29 Aug 2019 10:19:38 +0000 (UTC)
+Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
+        by de02.synopsys.com (Postfix) with ESMTP id 1176B3B640;
+        Thu, 29 Aug 2019 12:19:38 +0200 (CEST)
+From:   Vitor Soares <Vitor.Soares@synopsys.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i3c@lists.infradead.org
+Cc:     bbrezillon@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        Joao.Pinto@synopsys.com, Vitor Soares <Vitor.Soares@synopsys.com>
+Subject: [PATCH 0/4] i3c: remove device if failed on pre_assign_dyn_addr()
+Date:   Thu, 29 Aug 2019 12:19:31 +0200
+Message-Id: <cover.1567071213.git.vitor.soares@synopsys.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a test for the %pfw printk modifier using software nodes.
+This patch series remove the devices that fail during
+pre_assign_dyn_addr() and were being sent on DEFSVLS command.
+With the change above, during the i3c_master_add_i3c_dev_locked() is
+necessary to check if the device has i3c_boardinfo and try to assign the
+i3c_dev_boardinfo->init_dyn_addr if there no oldev. This change will
+allow to describe in DT device with preferable dynamic address but without
+static address.
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
----
- lib/test_printf.c | 37 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Vitor Soares (4):
+  "i3c: detach and free device if pre_assign_dyn_addr fails "
+  i3c: check i3c_boardinfo during i3c_master_add_i3c_dev_locked
+  update i3c bingins
+  i3c: master: dw: Reattach device on first empty location of DAT
 
-diff --git a/lib/test_printf.c b/lib/test_printf.c
-index 944eb50f38625..9c6d716979fb1 100644
---- a/lib/test_printf.c
-+++ b/lib/test_printf.c
-@@ -22,6 +22,8 @@
- #include <linux/gfp.h>
- #include <linux/mm.h>
- 
-+#include <linux/property.h>
-+
- #include "../tools/testing/selftests/kselftest_module.h"
- 
- #define BUF_SIZE 256
-@@ -588,6 +590,40 @@ flags(void)
- 	kfree(cmp_buffer);
- }
- 
-+static void __init fwnode_pointer(void)
-+{
-+	const struct software_node softnodes[] = {
-+		{ .name = "first", },
-+		{ .name = "second", .parent = &softnodes[0], },
-+		{ .name = "third", .parent = &softnodes[1], },
-+		{ NULL /* Guardian */ },
-+	};
-+	const char * const full_name = "/second/third";
-+	const char * const full_name_second = "/second";
-+	const char * const second_name = "second";
-+	const char * const third_name = "third";
-+	int rval;
-+
-+	rval = software_node_register_nodes(softnodes);
-+	if (rval) {
-+		pr_warn("cannot register softnodes; rval %d\n", rval);
-+		return;
-+	}
-+
-+	test(full_name_second, "%pfw",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
-+	test(full_name, "%pfw",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-+	test(full_name, "%pfwf",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-+	test(second_name, "%pfwP",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
-+	test(third_name, "%pfwP",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-+
-+	software_node_unregister_nodes(softnodes);
-+}
-+
- static void __init
- test_pointer(void)
- {
-@@ -610,6 +646,7 @@ test_pointer(void)
- 	bitmap();
- 	netdev_features();
- 	flags();
-+	fwnode_pointer();
- }
- 
- static void __init selftest(void)
+ Documentation/devicetree/bindings/i3c/i3c.txt | 13 ++++++++---
+ drivers/i3c/master.c                          | 33 ++++++++++++++++++++++++---
+ drivers/i3c/master/dw-i3c-master.c            | 16 +++++++++++++
+ 3 files changed, 56 insertions(+), 6 deletions(-)
+
 -- 
-2.20.1
+2.7.4
 
