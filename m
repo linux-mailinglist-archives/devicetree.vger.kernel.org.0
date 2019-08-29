@@ -2,108 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC579A265F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 20:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE36A2647
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 20:44:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727867AbfH2SrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 14:47:25 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:35324 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726518AbfH2SrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 14:47:25 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 662F668B12; Thu, 29 Aug 2019 18:12:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567104439;
-        bh=UrH1sAFAb1z9oIzC3C7zIhB+/ZJIJDhRvFYRG0P+AAo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=O9hf/MTlKD3LwL1oqjIJYG+EVIhZ1YfMeKrtCohMSMHXbRWmomBBAcW9HCwbHmph3
-         8nJ9TYpmiPxGzZfhynFzA2CI98v1X9e4JdJsVJ0VeRJmkNuhR7JUuKfCnH5gUJPTpO
-         7deBcmHtmPJXW+buKhdNsTVubYY/BWur35FvodUw=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: ilina@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 93B1568891;
-        Thu, 29 Aug 2019 18:12:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567102340;
-        bh=UrH1sAFAb1z9oIzC3C7zIhB+/ZJIJDhRvFYRG0P+AAo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=o9wmELH7qzTvMQkbu04AsjCoy5NjTGqsFtQ1lSjvKSxK7QAEI1J3ajb8cbjIcbOz3
-         o36Qrl0sJDIobSaS6OqEO7wsvr2Gs+T+OzJl60TGlXIOlTC2Q0+iT2v3PpR5EQ6cRk
-         K6ryPuX+WfYgPdrgZxUrwGG/sI5//AOoDQoXLG6E=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 93B1568891
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
-From:   Lina Iyer <ilina@codeaurora.org>
-To:     swboyd@chromium.org, evgreen@chromium.org, marc.zyngier@arm.com,
-        linus.walleij@linaro.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, rnayak@codeaurora.org,
-        Lina Iyer <ilina@codeaurora.org>, devicetree@vger.kernel.org
-Subject: [PATCH RFC 05/14] dt-bindings/interrupt-controller: pdc: add SPI config register
-Date:   Thu, 29 Aug 2019 12:11:54 -0600
-Message-Id: <20190829181203.2660-6-ilina@codeaurora.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190829181203.2660-1-ilina@codeaurora.org>
-References: <20190829181203.2660-1-ilina@codeaurora.org>
+        id S1728600AbfH2SoE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 14:44:04 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:44207 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728455AbfH2SoE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 14:44:04 -0400
+Received: by mail-pl1-f193.google.com with SMTP id t14so1969630plr.11
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 11:44:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=v1Wo1j2tnlDDBx+9tVoNxVDQEbVVitJMbE6zkrCsNYQ=;
+        b=sXXYtAAaVMdonPdNFmCLacc1yMs7M1edc94O5lELRYJxadC3JjUM5YbUwWi4dWK0jJ
+         zN29PrPjete6yiziQDuS3B95q7jfnVD8wxKih2rukf/ma6btEa7zj5D+Yc/L3IS1sn3U
+         Wzo+4s7a1O06d9y0kvd5ashlirrH5iOvhibysr7HVY69SnScODa2J78ftUOVJxT1EWW3
+         9om/44Pa0e6rQamyCftba66Zw3RTmOnxK8wAbFNqJ2qRomcgzemIdJxt+QbsO18zv/Nq
+         zzUYrsM5YSe2WqLJp4NWtD/ZnQTypUYO3+AYtZiL7/gQb+E0qjUlhkq1YrIt1qDMwOfE
+         HcAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=v1Wo1j2tnlDDBx+9tVoNxVDQEbVVitJMbE6zkrCsNYQ=;
+        b=kS0NDEqY+0D2lR8eZOMCd0idAoTDqKN/l5//DYTViQ/zYIjfsBHtbTCY4mXB6ZNPBG
+         C599UzqzC2KEaJmaBFClu5rusScAkyOqtICkrlYdYPNEPnlsAPRrH38aMNQSu6Z/azXS
+         zvw9sDmuJiAyMQ+rUu7dyyB87ywVHc4npXWMXgFKCdiplzKLsBpvdSjVpN4spprnKr3m
+         +rMcS8XWcycIG65ZgHULfT4ZjNgE7QD/z2LPqlKTAjpTJ99/7F2CnhCWAB60BQDw3RUe
+         pWX/46OchIYAK1FksHpWZFuohYGXvqADNLRNOX5lpGrYDk7is3TQNgjCONvyuTFhk+kf
+         bsOQ==
+X-Gm-Message-State: APjAAAXyOwkI0aWQp7qr8l4D+clTm+QEXDO7gquP/8yDxFhTqEq9ZeZV
+        fu+DPSp/4vCQmjVZUxo1Ou0XnQ==
+X-Google-Smtp-Source: APXvYqySV7f6ZMmiEy8g7xUfSMB1MLLk+cK+esN7+JKSPp3z46QGrwido2SYzkKtN/oLNUGfcjySEw==
+X-Received: by 2002:a17:902:ba16:: with SMTP id j22mr10261299pls.253.1567104243423;
+        Thu, 29 Aug 2019 11:44:03 -0700 (PDT)
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net. [71.197.186.152])
+        by smtp.gmail.com with ESMTPSA id z189sm6021212pfb.137.2019.08.29.11.44.02
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 29 Aug 2019 11:44:02 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] irqchip/meson-gpio: Add support for meson sm1 SoCs
+In-Reply-To: <20190829161635.25067-3-jbrunet@baylibre.com>
+References: <20190829161635.25067-1-jbrunet@baylibre.com> <20190829161635.25067-3-jbrunet@baylibre.com>
+Date:   Thu, 29 Aug 2019 11:43:59 -0700
+Message-ID: <7h1rx3revk.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In addition to configuring the PDC, additional registers that interface
-the GIC have to be configured to match the GPIO type. The registers on
-some QCOM SoCs are access restricted, while on other SoCs are not. They
-SoCs with access restriction to these SPI registers need to be written
-from the firmware using the SCM interface. Add a flag to indicate if the
-register is to be written using SCM interface.
+Jerome Brunet <jbrunet@baylibre.com> writes:
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Lina Iyer <ilina@codeaurora.org>
----
- .../bindings/interrupt-controller/qcom,pdc.txt           | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+> The meson sm1 SoCs uses the same type of GPIO interrupt controller IP
+> block as the other meson SoCs, A total of 100 pins can be spied on:
+>
+> - 223:100 undefined (no interrupt)
+> - 99:97   3 pins on bank GPIOE
+> - 96:77   20 pins on bank GPIOX
+> - 76:61   16 pins on bank GPIOA
+> - 60:53   8 pins on bank GPIOC
+> - 52:37   16 pins on bank BOOT
+> - 36:28   9 pins on bank GPIOH
+> - 27:12   16 pins on bank GPIOZ
+> - 11:0    12 pins in the AO domain
+>
+> Mapping is the same as the g12a family but the sm1 controller
+> allows to trig an irq on both edges of the input signal. This was
+> not possible with the previous SoCs families
+>
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-index 8e0797cb1487..852fcba98ea6 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-@@ -50,15 +50,22 @@ Properties:
- 		    The second element is the GIC hwirq number for the PDC port.
- 		    The third element is the number of interrupts in sequence.
- 
-+- qcom,scm-spi-cfg:
-+	Usage: optional
-+	Value type: <bool>
-+	Definition: Specifies if the SPI configuration registers have to be
-+		    written from the firmware.
-+
- Example:
- 
- 	pdc: interrupt-controller@b220000 {
- 		compatible = "qcom,sdm845-pdc";
--		reg = <0xb220000 0x30000>;
-+		reg = <0xb220000 0x30000>, <0x179900f0 0x60>;
- 		qcom,pdc-ranges = <0 512 94>, <94 641 15>, <115 662 7>;
- 		#interrupt-cells = <2>;
- 		interrupt-parent = <&intc>;
- 		interrupt-controller;
-+		qcom,scm-spi-cfg;
- 	};
- 
- DT binding of a device that wants to use the GIC SPI 514 as a wakeup
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Tested-by: Kevin Hilman <khilman@baylibre.com>
 
+> ---
+>  drivers/irqchip/irq-meson-gpio.c | 52 +++++++++++++++++++++++---------
+>  1 file changed, 38 insertions(+), 14 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-meson-gpio.c b/drivers/irqchip/irq-meson-gpio.c
+> index dcdc23b9dce6..829084b568fa 100644
+> --- a/drivers/irqchip/irq-meson-gpio.c
+> +++ b/drivers/irqchip/irq-meson-gpio.c
+> @@ -24,14 +24,25 @@
+>  #define REG_PIN_47_SEL	0x08
+>  #define REG_FILTER_SEL	0x0c
+>  
+> -#define REG_EDGE_POL_MASK(x)	(BIT(x) | BIT(16 + (x)))
+> +/*
+> + * Note: The S905X3 datasheet reports that BOTH_EDGE is controlled by
+> + * bits 24 to 31. Tests on the actual HW show that these bits are
+> + * stuck at 0. Bits 8 to 15 are responsive and have the expected
+> + * effect.
+> + */
+
+nice catch!
+
+Kevin
