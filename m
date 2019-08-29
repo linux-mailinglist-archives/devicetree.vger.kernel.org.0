@@ -2,197 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D5FAA1D27
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 16:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 616E5A1D23
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 16:39:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727675AbfH2Ojh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 10:39:37 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:57274 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727066AbfH2Ojh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 10:39:37 -0400
-Received: from pendragon.ideasonboard.com (85-76-165-17-nat.elisa-mobile.fi [85.76.165.17])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 26C042E5;
-        Thu, 29 Aug 2019 16:39:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1567089575;
-        bh=2UXHM5b1YAj2t0RDx8a11m5h72/N89NUdiQSrAd+NHM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fr9OAeKtuUG/9HAaUCLSLvfBf51J7Zw3QVevDG39yW89RopMz8zSY7Q0VS83eU5RX
-         QKAxhIZSdbNcES7WtKez/7Yy2PrGJuAUdx5cJRV4r/xI8oG1IFZCiH1snoPValDqo4
-         mKK32ubWBA+awn3oriPwiKP6jedjtmX4bgh/CfIE=
-Date:   Thu, 29 Aug 2019 17:39:09 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        xu_shunji@hoperun.com, ebiharaml@si-linux.co.jp
-Subject: Re: [PATCH v2 2/2] arm64: dts: renesas: Add HiHope RZ/G2M board with
- idk-1110wr display
-Message-ID: <20190829143909.GB5875@pendragon.ideasonboard.com>
-References: <1567078713-29361-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1567078713-29361-3-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S1727144AbfH2OjX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 10:39:23 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:33844 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727066AbfH2OjX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 10:39:23 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 7D27628A16C;
+        Thu, 29 Aug 2019 15:39:21 +0100 (BST)
+Date:   Thu, 29 Aug 2019 16:39:18 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Vitor Soares <Vitor.Soares@synopsys.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
+        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>
+Subject: Re: [PATCH 2/4] i3c: master: Check if devices have
+ i3c_dev_boardinfo on i3c_master_add_i3c_dev_locked()
+Message-ID: <20190829163918.571fd0d8@collabora.com>
+In-Reply-To: <SN6PR12MB265551F73B9B516CACB5B807AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+References: <cover.1567071213.git.vitor.soares@synopsys.com>
+        <3e21481ddf53ea58f5899df6ec542b79b8cbcd68.1567071213.git.vitor.soares@synopsys.com>
+        <20190829124457.3a750932@collabora.com>
+        <SN6PR12MB265551F73B9B516CACB5B807AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1567078713-29361-3-git-send-email-fabrizio.castro@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+On Thu, 29 Aug 2019 14:00:44 +0000
+Vitor Soares <Vitor.Soares@synopsys.com> wrote:
 
-Thank you for the patch.
-
-On Thu, Aug 29, 2019 at 12:38:33PM +0100, Fabrizio Castro wrote:
-> The HiHope RZ/G2M is advertised as compatible with panel idk-1110wr
-> from Advantech, however the panel isn't sold alongside the board.
-> A new dts, adding everything that's required to get the panel to
-> work the HiHope RZ/G2M, is the most convenient way to support the
-> HiHope RZ/G2M when it's connected to the idk-1110wr.
+> Hi Boris,
 > 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> ---
-> v1->v2:
-> * added space between lvds-connector-en-gpio and curly brace
+> From: Boris Brezillon <boris.brezillon@collabora.com>
+> Date: Thu, Aug 29, 2019 at 11:44:57
 > 
->  arch/arm64/boot/dts/renesas/Makefile               |  1 +
->  .../r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts        | 86 ++++++++++++++++++++++
->  2 files changed, 87 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
+> > On Thu, 29 Aug 2019 12:19:33 +0200
+> > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+> >   
+> > > The I3C devices described in DT might not be attached to the master which
+> > > doesn't allow to assign a specific dynamic address.  
+> > 
+> > I remember testing this when developing the framework, so, unless
+> > another patch regressed it, it should already work. I suspect patch 1
+> > is actually the regressing this use case.  
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-> index 42b74c2..5d94301 100644
-> --- a/arch/arm64/boot/dts/renesas/Makefile
-> +++ b/arch/arm64/boot/dts/renesas/Makefile
-> @@ -1,6 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m.dtb
->  dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m-ex.dtb
-> +dtb-$(CONFIG_ARCH_R8A774A1) += r8a774a1-hihope-rzg2m-ex-idk-1110wr.dtb
->  dtb-$(CONFIG_ARCH_R8A774C0) += r8a774c0-cat874.dtb r8a774c0-ek874.dtb
->  dtb-$(CONFIG_ARCH_R8A7795) += r8a7795-salvator-x.dtb r8a7795-h3ulcb.dtb
->  dtb-$(CONFIG_ARCH_R8A7795) += r8a7795-h3ulcb-kf.dtb
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
-> new file mode 100644
-> index 0000000..67fe04c
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/renesas/r8a774a1-hihope-rzg2m-ex-idk-1110wr.dts
-> @@ -0,0 +1,86 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the HiHope RZ/G2M sub board connected to an
-> + * Advantech IDK-1110WR 10.1" LVDS panel
-> + *
-> + * Copyright (C) 2019 Renesas Electronics Corp.
-> + */
-> +
-> +#include "r8a774a1-hihope-rzg2m-ex.dts"
-> +
-> +/ {
-> +	backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm0 0 50000>;
-> +
-> +		brightness-levels = <0 2 8 16 32 64 128 255>;
-> +		default-brightness-level = <6>;
-> +	};
-> +
-> +	panel-lvds {
-> +		compatible = "advantech,idk-1110wr", "panel-lvds";
-> +
-> +		width-mm = <223>;
-> +		height-mm = <125>;
-> +
-> +		data-mapping = "jeida-24";
-> +
-> +		panel-timing {
-> +			/* 1024x600 @60Hz */
-> +			clock-frequency = <51200000>;
-> +			hactive = <1024>;
-> +			vactive = <600>;
-> +			hsync-len = <240>;
-> +			hfront-porch = <40>;
-> +			hback-porch = <40>;
-> +			vfront-porch = <15>;
-> +			vback-porch = <10>;
-> +			vsync-len = <10>;
-> +		};
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lvds0_out>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&gpio1 {
-> +	/*
-> +	 * When GP1_20 is LOW LVDS0 is connected to the LVDS connector
-> +	 * When GP1_20 is HIGH LVDS0 is connected to the LT8918L
-> +	 */
+> For today it doesn't address the case where the device is described with 
+> static address = 0, which isn't attached to the controller.
 
-I knew that runtime-configurable output routing would be needed one day.
-While I'm not opposed to merging this patch as-is, it means that a board
-shipping this DT will not support the DSI output. I suppose that's not a
-problem as using DSI would require an external DSI panel, which would
-require a different DT anyway. In the general case, however,
-implementing support in the DU driver for output routing outside the SoC
-will be interesting to say the least :-)
+Hm, I'm pretty sure I had designed the code to support that case (see
+[1]). It might be buggy, but nothing we can't fix I guess.
 
-Acked-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-> +	lvds-connector-en-gpio {
-> +		gpio-hog;
-> +		gpios = <20 GPIO_ACTIVE_HIGH>;
-> +		output-low;
-> +		line-name = "lvds-connector-en-gpio";
-> +	};
-> +};
-> +
-> +&lvds0 {
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			lvds0_out: endpoint {
-> +				remote-endpoint = <&panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&pfc {
-> +	pwm0_pins: pwm0 {
-> +		groups = "pwm0";
-> +		function = "pwm0";
-> +	};
-> +};
-> +
-> +&pwm0 {
-> +	pinctrl-0 = <&pwm0_pins>;
-> +	pinctrl-names = "default";
-> +
-> +	status = "okay";
-> +};
-
--- 
-Regards,
-
-Laurent Pinchart
