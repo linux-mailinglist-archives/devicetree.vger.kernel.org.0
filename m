@@ -2,139 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E1B0A1A5B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8116CA1A78
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726852AbfH2MpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 08:45:12 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:58973 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726379AbfH2MpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:45:11 -0400
-X-Originating-IP: 2.224.242.101
-Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
-        (Authenticated sender: jacopo@jmondi.org)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 18781C000C;
-        Thu, 29 Aug 2019 12:45:07 +0000 (UTC)
-Date:   Thu, 29 Aug 2019 14:46:40 +0200
-From:   Jacopo Mondi <jacopo@jmondi.org>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>, tfiga@google.com,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
-        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 01/10] media: dt-bindings: Document 'location' property
-Message-ID: <20190829124639.tzjp63tqnojnytlq@uno.localdomain>
-References: <20190827092339.8858-1-jacopo@jmondi.org>
- <20190827092339.8858-2-jacopo@jmondi.org>
- <20190827122126.GQ5054@pendragon.ideasonboard.com>
+        id S1726852AbfH2Mw1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 08:52:27 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:38903 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725990AbfH2Mw1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:52:27 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3JuR-0000cw-QQ; Thu, 29 Aug 2019 14:52:15 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i3JuQ-0001VD-2D; Thu, 29 Aug 2019 14:52:14 +0200
+Date:   Thu, 29 Aug 2019 14:52:14 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v9 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
+Message-ID: <20190829125214.q3u7fnpbpas5kpdp@pengutronix.de>
+References: <20190822080556.17109-1-m.felsch@pengutronix.de>
+ <20190822080556.17109-3-m.felsch@pengutronix.de>
+ <c868ab4e-206b-bf66-a276-a9901b9fc41a@xs4all.nl>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="siklwweqobuuvov4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190827122126.GQ5054@pendragon.ideasonboard.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <c868ab4e-206b-bf66-a276-a9901b9fc41a@xs4all.nl>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:50:50 up 103 days, 19:08, 63 users,  load average: 0.10, 0.11,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---siklwweqobuuvov4
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-
-Hi Laurent,
-
-On Tue, Aug 27, 2019 at 03:21:26PM +0300, Laurent Pinchart wrote:
-> Hi Jacopo,
->
-> Thank you for the patch.
->
-> On Tue, Aug 27, 2019 at 11:23:27AM +0200, Jacopo Mondi wrote:
-> > Add the 'location' device property, used to specify the camera device
-> > mounting position. The property is particularly meaningful for mobile
-> > devices with a well defined usage orientation.
-> >
-> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+On 19-08-29 11:59, Hans Verkuil wrote:
+> On 8/22/19 10:05 AM, Marco Felsch wrote:
+> > Currently every driver needs to parse the connector endpoints by it self.
+> > This is the initial work to make this generic. A generic connector has
+> > common members and connector specific members. The common members are:
+> >   - type
+> >   - label (optional)
+> >   - links
+> >   - nr_of_links
+> > 
+> > The specific members are stored within a union, since only one of them
+> > can be available at the time. Since this is the initial support the
+> > patch adds only the analog-connector specific ones.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 > > ---
-> >  .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > index f884ada0bffc..865f4142f432 100644
-> > --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > @@ -89,6 +89,16 @@ Optional properties
-> >    but a number of degrees counter clockwise. Typical values are 0 and 180
-> >    (upside down).
-> >
-> > +- location: The camera sensor mounting location, expressed as a position
-> > +  relative to the usage orientation of the device the sensor is installed on.
->
-> DT bindings being ABIs, we need to be precise and thorough there. One
-> particular point that bothers me is that the property is named location,
-> and its description refers to camera sensor mounting location.
->
-> I see two options to fix this. One of them is to rename the property to
-> camera-location, but that would limit its future usage for other types
-> of devices. The other one is to document the property as applying to a
-> "device" instead of a "camera sensor", and add one sentence stating that
-> this property is valid for camera sensors only.
->
-> This will require finding another name for the device that the device is
-> mounted on though, as using device twice would be very confusing.
+> > [1] https://patchwork.kernel.org/cover/10794703/
+> > 
+> > v8:
+> > - rename CON -> CONN
+> > - supported_tvnorms_stds -> sdtv_stds and adapt description
+> > 
+> > v7:
+> > - fix spelling issues
+> > - constify label
+> > - support variable label size
+> > - replace single remote_port/id members by links member of variable
+> >   size
+> > - squash v4l2-connector into v4l2-fwnode
+> > 
+> > @Jacopo: I dropped your r b tag because I changed the port/id logic.
+> > 
+> > v6:
+> > - fix some spelling and style issues
+> > - rm unnecessary comments
+> > - drop vga and dvi connector
+> > - fix misspelt connector
+> > 
+> > v2-v4:
+> > - nothing since the patch was squashed from series [1] into this
+> >   series.
+> > ---
+> >  include/media/v4l2-fwnode.h | 45 +++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 45 insertions(+)
+> > 
+> > diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> > index f6a7bcd13197..7ca5669ef6fa 100644
+> > --- a/include/media/v4l2-fwnode.h
+> > +++ b/include/media/v4l2-fwnode.h
+> > @@ -123,6 +123,51 @@ struct v4l2_fwnode_link {
+> >  	unsigned int remote_port;
+> >  };
+> >  
+> > +/**
+> > + * enum v4l2_connector_type - connector type
+> > + * @V4L2_CONN_UNKNOWN:   unknown connector type, no V4L2 connector configuration
+> > + * @V4L2_CONN_COMPOSITE: analog composite connector
+> > + * @V4L2_CONN_SVIDEO:    analog svideo connector
+> > + * @V4L2_CONN_HDMI:      digital hdmi connector
+> 
+> Why exactly is CONN_HDMI added if there is no V4L2 driver that uses it?
 
-I had the same concern, but I cannot find another term to convey
-this... suggestions?
+Just for the sake of completeness..
 
->
-> > +  Possible values are:
-> > +  0 - Front. The image sensor is mounted on the front facing side of the device.
-> > +  For mobile devices such as smartphones, tablets and laptops the front side is
-> > +  the user facing side of the device.
-> > +  1 - Back. The image sensor is mounted on the back side of the device, which is
-> > +  defined as the opposite side of the front facing one.
-> > +  2 - External. The image sensor is connected to the device by extension cables,
-> > +  and can be freely moved, regardless of the device position.
->
-> It could be something else than cables (wireless possibly ?). I would
-> phrase this along the lines of "The device is not attached directly to
-> the [device], or is attached in a way that allows it to move to
-> different locations."
+> I would just drop it from this series.
 
-Agreed, once we find a good term for [device] :)
+Okay.
 
->
-> >
-> >  Optional endpoint properties
-> >  ----------------------------
->
-> --
+Regards,
+  Marco
+
+
 > Regards,
->
-> Laurent Pinchart
+> 
+> 	Hans
+> 
+> > + */
+> > +enum v4l2_connector_type {
+> > +	V4L2_CONN_UNKNOWN,
+> > +	V4L2_CONN_COMPOSITE,
+> > +	V4L2_CONN_SVIDEO,
+> > +	V4L2_CONN_HDMI,
+> > +};
+> > +
+> > +/**
+> > + * struct v4l2_fwnode_connector_analog - analog connector data structure
+> > + * @sdtv_stds: sdtv standards this connector supports, set to V4L2_STD_ALL
+> > + *             if no restrictions are specified.
+> > + */
+> > +struct v4l2_fwnode_connector_analog {
+> > +	v4l2_std_id sdtv_stds;
+> > +};
+> > +
+> > +/**
+> > + * struct v4l2_fwnode_connector - the connector data structure
+> > + * @label: optional connector label
+> > + * @type: connector type
+> > + * @links: list of &struct v4l2_fwnode_link links the connector is connected to
+> > + * @nr_of_links: total number of links
+> > + * @connector: connector configuration
+> > + * @connector.analog: analog connector configuration
+> > + *                    &struct v4l2_fwnode_connector_analog
+> > + */
+> > +struct v4l2_fwnode_connector {
+> > +	const char *label;
+> > +	enum v4l2_connector_type type;
+> > +	struct v4l2_fwnode_link *links;
+> > +	unsigned int nr_of_links;
+> > +
+> > +	union {
+> > +		struct v4l2_fwnode_connector_analog analog;
+> > +		/* future connectors */
+> > +	} connector;
+> > +};
+> > +
+> >  /**
+> >   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
+> >   * @fwnode: pointer to the endpoint's fwnode handle
+> > 
+> 
+> 
 
---siklwweqobuuvov4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1nyS8ACgkQcjQGjxah
-VjzL2BAAgqsNZgAW+vRkwt7RDjK6QpMnNwif5DzH5YXs/aZ9BFu0ZYLi+M9/OXq7
-yiBXbMa7OrA/eYnDRY3Z4ILQ8sEUCBCB/eC733VdWIrThEpiBSNGLLncW1z+2RoS
-fYMuCr2mBirGkyhGzu7vE4geW3FjMwJhB4oEdshuA7Wy8+mcz64LQZipOk/xo01I
-gvmwNmtZltKU5tA6uzShpZ+/UxAitiUwOV6Sh7uBNkDc4V0yYfz+Bo7pU6XexoEd
-W58m9Pprs40BUJ4T8cTGGRK9YqOi+RAAQ6Wv1GtZqgWZiBNO6uWLNC+hkOdmxgGB
-kEznLvM9lw1KjJ9KVJFSX/wX8463gyejJUkTYBzl4pz5ZAWE3P1Un4BfbxrvnoXs
-CFT+6SuRpSZUykGqxfGDLpJ/R+vUhP4QC+DgsNhbFV44jEqElbCmH/cirIdffZ5S
-o29yngV5wfIjGR8uYuJbCqEgLk+o/SCn/Aw3UMzEDA+oJ836kq7pDt+SttlB4FOH
-7dRlko11SeOEKDMJAUsCT1hhn94LshXqKRgqN9zP1CdScR947uQ8M51PRG+n0kKH
-0a+ieydHAGKlQo26jBwkXfosHHLNzNlJ9YFcHXOi2GUS0IOet80eigwmP2zfq78h
-d8SeO9FgcOQ9++h7YlixGBK8+bdxq/tdlNiYV+UZ5slu5IkJpzM=
-=kIpu
------END PGP SIGNATURE-----
-
---siklwweqobuuvov4--
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
