@@ -2,68 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA1C7A19FC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA62A1A3D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 14:39:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725990AbfH2M1B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 08:27:01 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:33815 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725782AbfH2M1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:27:00 -0400
-Received: by mail-ot1-f65.google.com with SMTP id c7so3229103otp.1;
-        Thu, 29 Aug 2019 05:27:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=JISakUM5CfOU3yuiNb3Jx9kDoSgKiU08qnHS4spuyBM=;
-        b=hyj0BFcrPhbvBEizPlqt74ZLL/7SqPhr7D72DbGqGGH6pLIdN15B9qsCpNLzNbpK+k
-         24yBFgmm6ljcUyQ3A8paTPJRXwmzxDnnACOXu37eyBeKsAPaApa8YI5FM8LgRbQGD6GF
-         H98Hu61ncpHqHtgmM3z0qmCiAV8s9RGQZ2M3blUVLkb9fKkblaqR+VYSz8ieXDRkal3N
-         a90dfSamtQy6/bV+ymu91Y1kuIEkIEuh9DuHCbX2XvU33/6wxtqQVrWOZSv22X4zWvV3
-         rMmZ/9J1mXzdhojoZmY3hlAJUJhMTALpYGPhKA/7/3RrWbleoptTY6TVJaoMvS+zFlzd
-         TVpg==
-X-Gm-Message-State: APjAAAVa9lH2fyJD+9z3mEd96CJXevHtGV484UVN2ByfAtTAUMc/p7pd
-        VmCaIgjcAtNTJNreAa3M4g==
-X-Google-Smtp-Source: APXvYqxQFzYed8B8VKY779L9N8Rwlqs155UUnDupIGmcQZ1ooy42GSMcysJRv7n+ECaVUK2B9ONlyQ==
-X-Received: by 2002:a9d:7dc6:: with SMTP id k6mr6756221otn.99.1567081619385;
-        Thu, 29 Aug 2019 05:26:59 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a94sm708682otb.15.2019.08.29.05.26.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2019 05:26:58 -0700 (PDT)
-Date:   Thu, 29 Aug 2019 07:26:58 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: amlogic: add Amlogic SM1 based
- Khadas VIM3L bindings
-Message-ID: <20190829122658.GA10660@bogus>
-References: <20190828141816.16328-1-narmstrong@baylibre.com>
- <20190828141816.16328-3-narmstrong@baylibre.com>
+        id S1727125AbfH2Mji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 08:39:38 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:50543 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725782AbfH2Mjh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 08:39:37 -0400
+X-UUID: d364c0196eef4773b0fb14c861edcb58-20190829
+X-UUID: d364c0196eef4773b0fb14c861edcb58-20190829
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <yongqiang.niu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 186969430; Thu, 29 Aug 2019 20:39:30 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs01n2.mediatek.inc
+ (172.21.101.79) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 29 Aug
+ 2019 20:39:34 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 29 Aug 2019 20:39:33 +0800
+Message-ID: <1567082367.30648.2.camel@mhfsdcap03>
+Subject: Re: [PATCH v4, 12/33] drm/mediatek: split DISP_REG_CONFIG_DSI_SEL
+ setting into another use case
+From:   Yongqiang Niu <yongqiang.niu@mediatek.com>
+Reply-To: <yongqiang.niu@mediatek.com>
+To:     CK Hu <ck.hu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Thu, 29 Aug 2019 20:39:27 +0800
+In-Reply-To: <1563341736.29169.15.camel@mtksdaap41>
+References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1562625253-29254-13-git-send-email-yongqiang.niu@mediatek.com>
+         <1563341736.29169.15.camel@mtksdaap41>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190828141816.16328-3-narmstrong@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 1AB6CD6AEFA081CDD571265A6B6FA16D64076F9D817FB5E376E91E95D5153CED2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 04:18:15PM +0200, Neil Armstrong wrote:
-> The Khadas VIM3 is also available as VIM3L with the Pin-to-pin compatible
-> Amlogic SM1 SoC in the S905D3 variant package.
+On Wed, 2019-07-17 at 13:35 +0800, CK Hu wrote:
+> Hi, Yongqiang:
 > 
-> Change the description to match the S905X3/D3/Y3 variants like the G12A
-> description, and add the khadas,vim3l compatible.
+> On Tue, 2019-07-09 at 06:33 +0800, yongqiang.niu@mediatek.com wrote:
+> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > 
+> > Here is two modifition in this patch:
+> > 1.bls->dpi0 and rdma1->dsi are differen usecase,
+> > Split DISP_REG_CONFIG_DSI_SEL setting into anther usecase
+> > 2.remove DISP_REG_CONFIG_DPI_SEL setting, DPI_SEL_IN_BLS is 0 and
+> > this is same with hardware defautl setting,
+> > 
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+> You move 2 register setting out of the path from BLS to DPI0, does this
+> path still work? Please make sure that all modification could work on
+> all supported SoC.
+> 
+> Regards,
+> CK
+> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+DPI_SEL_IN_BLS is 0 and this is same with hardware default setting as
+description in patch.
+the removed sentence is useless.
+
+
+> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> > index d015c1a..47b3e35 100644
+> > --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> > +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> > @@ -400,10 +400,9 @@ static void mtk_ddp_sout_sel(void __iomem *config_regs,
+> >  	} else if (cur == DDP_COMPONENT_BLS && next == DDP_COMPONENT_DPI0) {
+> >  		writel_relaxed(BLS_TO_DPI_RDMA1_TO_DSI,
+> >  			       config_regs + DISP_REG_CONFIG_OUT_SEL);
+> > +	} else if (cur == DDP_COMPONENT_RDMA1 && next == DDP_COMPONENT_DSI0) {
+> >  		writel_relaxed(DSI_SEL_IN_RDMA,
+> >  			       config_regs + DISP_REG_CONFIG_DSI_SEL);
+> > -		writel_relaxed(DPI_SEL_IN_BLS,
+> > -			       config_regs + DISP_REG_CONFIG_DPI_SEL);
+> >  	}
+> >  }
+> >  
+> 
+> 
+
+
