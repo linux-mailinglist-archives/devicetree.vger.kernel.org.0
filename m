@@ -2,384 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AD4CA0CA3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Aug 2019 23:45:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAC43A0ECE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 03:09:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726725AbfH1VpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Aug 2019 17:45:09 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:42124 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726658AbfH1VpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Aug 2019 17:45:09 -0400
-Received: by mail-ot1-f68.google.com with SMTP id j7so1336399ota.9;
-        Wed, 28 Aug 2019 14:45:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=B4nnrHAyvMgvk0yYoG3+v+AY9L1WGcgLrX6WCAU79Kc=;
-        b=njcAE9jogFycOovERpFI9HJzKBUMjkHuau9qnBQTGcCBGlxB4H8LgDmymsO6yZsh4i
-         jlxykyEUqmFoI90PLIBW/HjmIlJv5MLpm78NZNnds29aX4FGQrDUaOt1QXlbKl6k6hCZ
-         Cenx4pBV331Lfk8fEPgkzHc4wwRzZ6xQj6Vv+0mZlaDlZw3fqfI7xFT14QCraQkQmtCE
-         MZXHc9ElZRsSAMDtR0CFD7K3AvtE7yAi8ipAmGZ/cxYTHyy7FWKTRgC2h6WQDoeva+ah
-         RuwtsJ1O/jm8O+z28SW/r41qV/c5PxCD2rKMbuYqTJ9yzeEakk2d+nSgi+rF25CXLjoZ
-         wcJg==
-X-Gm-Message-State: APjAAAVCKqn0uOU1lukANesSlU03OWSNtFVZgv48gnbB4rTji2WYoduR
-        O8vLJn/zEvHQaEtncyqAEg8H3TI=
-X-Google-Smtp-Source: APXvYqw+8kKFmgMyeR0jKXJqcDbq0JjRTg37xfi495LeYAs+CCyF8TKQ8VUEpgeWs74y3EnBdSDHuQ==
-X-Received: by 2002:a9d:6749:: with SMTP id w9mr5179289otm.293.1567028707002;
-        Wed, 28 Aug 2019 14:45:07 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id p11sm102431oto.4.2019.08.28.14.45.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Aug 2019 14:45:06 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH v2 3/3] dt-bindings: Convert Arm Mali Utgard GPU to DT schema
-Date:   Wed, 28 Aug 2019 16:45:02 -0500
-Message-Id: <20190828214502.12293-4-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190828214502.12293-1-robh@kernel.org>
-References: <20190828214502.12293-1-robh@kernel.org>
+        id S1726384AbfH2BJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Aug 2019 21:09:14 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:39176 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726079AbfH2BJN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Aug 2019 21:09:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=sFzCLQljOVVup477S84S6o2/tJc4F15Dmhtol6ohh0M=; b=nVgS+xEc358i00Bi+OIvsPcruc
+        IrpRBYMosLXOM3aTbNrqLlxqAgBTqhmMSxwoJ+k2oP6AA6hQkeK/gGkrpD/1wY6Z4EJXlKb7Vft+m
+        +sAdPQ6+ghN8FvqCxyGqQRuG56SXnjvE91vDWxKZGdcLHxvmLnSVlZWNBZXaQplQdnMM=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1i38w0-00076K-PS; Thu, 29 Aug 2019 03:09:08 +0200
+Date:   Thu, 29 Aug 2019 03:09:08 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
+Cc:     arm@kernel.org, Gregory CLEMENT <gregory.clement@bootlin.com>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 mvebu-dt64 3/3] arm64: dts: marvell: add DTS for
+ Turris Mox
+Message-ID: <20190829010908.GC32178@lunn.ch>
+References: <20190828151243.23542-1-marek.behun@nic.cz>
+ <20190828151243.23542-4-marek.behun@nic.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190828151243.23542-4-marek.behun@nic.cz>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Arm Utgard GPU binding to DT schema format.
+On Wed, Aug 28, 2019 at 05:12:43PM +0200, Marek Behún wrote:
+> This adds support for the Turris Mox board from CZ.NIC.
+> 
+> Turris Mox is as modular router based on the Armada 3720 SOC (same as
+> EspressoBin).
+> 
+> The basic board can be extended by different modules.
+> If those are connected, U-Boot lets the kernel know via device-tree.
+> 
+> Since modules can be connected in different order and some modules can
+> be connected multiple times (up to three modules containing 8-port
+> ethernet switch in DSA configuration can be connected) we decided
+> against using device-tree overlays, because it got complicated rather
+> quickly. (For example the SFP module can be connected directly to the
+> CPU, or after a switch module. There are four cases and all would need
+> different SFP overlay. There are two types of switch modules (8-port
+> with pass-through and 4-port with no pass-through). For those we would
+> again need at least 6 more overlays.)
+> 
+> We therefore decided to put all the possibly connected devices in one
+> device-tree and disable them by default. When U-Boot finds out which
+> modules are connected, it fixes the loaded device-tree accordingly just
+> before boot. By Rob Herring's suggestion we also made it so that U-Boot
+> completely removes nodes which are disabled after this fixup.
+> 
+> Signed-off-by: Marek Behún <marek.behun@nic.cz>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Gregory CLEMENT <gregory.clement@bootlin.com>
+> Cc: Andrew Lunn <andrew@lunn.ch>
 
-'allwinner,sun8i-a23-mali' compatible was not documented, so add it.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-The 'clocks' property is now required. This simplifies the schema as
-effectively all the users require 'clocks' already and the upstream
-driver requires clocks.
-
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
-Acked-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/gpu/arm,mali-utgard.txt          | 129 --------------
- .../bindings/gpu/arm,mali-utgard.yaml         | 168 ++++++++++++++++++
- 2 files changed, 168 insertions(+), 129 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-utgard.txt
- create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.txt b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.txt
-deleted file mode 100644
-index ba895efe3039..000000000000
---- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.txt
-+++ /dev/null
-@@ -1,129 +0,0 @@
--ARM Mali Utgard GPU
--===================
--
--Required properties:
--  - compatible
--    * Must be one of the following:
--      + "arm,mali-300"
--      + "arm,mali-400"
--      + "arm,mali-450"
--    * And, optionally, one of the vendor specific compatible:
--      + allwinner,sun4i-a10-mali
--      + allwinner,sun7i-a20-mali
--      + allwinner,sun8i-h3-mali
--      + allwinner,sun50i-a64-mali
--      + allwinner,sun50i-h5-mali
--      + amlogic,meson8-mali
--      + amlogic,meson8b-mali
--      + amlogic,meson-gxbb-mali
--      + amlogic,meson-gxl-mali
--      + samsung,exynos4210-mali
--      + rockchip,rk3036-mali
--      + rockchip,rk3066-mali
--      + rockchip,rk3188-mali
--      + rockchip,rk3228-mali
--      + rockchip,rk3328-mali
--      + stericsson,db8500-mali
--      + hisilicon,hi6220-mali
--
--  - reg: Physical base address and length of the GPU registers
--
--  - interrupts: an entry for each entry in interrupt-names.
--    See ../interrupt-controller/interrupts.txt for details.
--
--  - interrupt-names:
--    * ppX: Pixel Processor X interrupt (X from 0 to 7)
--    * ppmmuX: Pixel Processor X MMU interrupt (X from 0 to 7)
--    * pp: Pixel Processor broadcast interrupt (mali-450 only)
--    * gp: Geometry Processor interrupt
--    * gpmmu: Geometry Processor MMU interrupt
--
--  - clocks: an entry for each entry in clock-names
--  - clock-names:
--    * bus: bus clock for the GPU
--    * core: clock driving the GPU itself
--
--Optional properties:
--  - interrupt-names and interrupts:
--    * pmu: Power Management Unit interrupt, if implemented in hardware
--
--  - memory-region:
--    Memory region to allocate from, as defined in
--    Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
--
--  - mali-supply:
--    Phandle to regulator for the Mali device, as defined in
--    Documentation/devicetree/bindings/regulator/regulator.txt for details.
--
--  - operating-points-v2:
--    Operating Points for the GPU, as defined in
--    Documentation/devicetree/bindings/opp/opp.txt
--
--  - power-domains:
--    A power domain consumer specifier as defined in
--    Documentation/devicetree/bindings/power/power_domain.txt
--
--Vendor-specific bindings
--------------------------
--
--The Mali GPU is integrated very differently from one SoC to
--another. In order to accomodate those differences, you have the option
--to specify one more vendor-specific compatible, among:
--
--  - allwinner,sun4i-a10-mali
--    Required properties:
--      * resets: phandle to the reset line for the GPU
--
--  - allwinner,sun7i-a20-mali
--    Required properties:
--      * resets: phandle to the reset line for the GPU
--
--  - allwinner,sun50i-a64-mali
--    Required properties:
--      * resets: phandle to the reset line for the GPU
--
--  - allwinner,sun50i-h5-mali
--    Required properties:
--      * resets: phandle to the reset line for the GPU
--
--  - amlogic,meson8-mali and amlogic,meson8b-mali
--    Required properties:
--      * resets: phandle to the reset line for the GPU
--
--  - Rockchip variants:
--    Required properties:
--      * resets: phandle to the reset line for the GPU
--
--  - stericsson,db8500-mali
--    Required properties:
--      * interrupt-names and interrupts:
--        + combined: combined interrupt of all of the above lines
--
--  - hisilicon,hi6220-mali
--    Required properties:
--      * resets: phandles to the reset lines for the GPU
--
--Example:
--
--mali: gpu@1c40000 {
--	compatible = "allwinner,sun7i-a20-mali", "arm,mali-400";
--	reg = <0x01c40000 0x10000>;
--	interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
--		     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
--	interrupt-names = "gp",
--			  "gpmmu",
--			  "pp0",
--			  "ppmmu0",
--			  "pp1",
--			  "ppmmu1",
--			  "pmu";
--	clocks = <&ccu CLK_BUS_GPU>, <&ccu CLK_GPU>;
--	clock-names = "bus", "core";
--	resets = <&ccu RST_BUS_GPU>;
--};
--
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-new file mode 100644
-index 000000000000..c5d93c5839d3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-@@ -0,0 +1,168 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/arm,mali-utgard.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM Mali Utgard GPU
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+  - Maxime Ripard <maxime.ripard@free-electrons.com>
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpu@[a-f0-9]+$'
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: allwinner,sun8i-a23-mali
-+          - const: allwinner,sun7i-a20-mali
-+          - const: arm,mali-400
-+      - items:
-+          - enum:
-+              - allwinner,sun4i-a10-mali
-+              - allwinner,sun7i-a20-mali
-+              - allwinner,sun8i-h3-mali
-+              - allwinner,sun50i-a64-mali
-+              - rockchip,rk3036-mali
-+              - rockchip,rk3066-mali
-+              - rockchip,rk3188-mali
-+              - rockchip,rk3228-mali
-+              - samsung,exynos4210-mali
-+              - stericsson,db8500-mali
-+          - const: arm,mali-400
-+      - items:
-+          - enum:
-+              - allwinner,sun50i-h5-mali
-+              - amlogic,meson8-mali
-+              - amlogic,meson8b-mali
-+              - amlogic,meson-gxbb-mali
-+              - amlogic,meson-gxl-mali
-+              - hisilicon,hi6220-mali
-+              - rockchip,rk3328-mali
-+          - const: arm,mali-450
-+
-+      # "arm,mali-300"
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    minItems: 4
-+    maxItems: 20
-+
-+  interrupt-names:
-+    allOf:
-+      - additionalItems: true
-+        minItems: 4
-+        maxItems: 20
-+        items:
-+          # At least enforce the first 2 interrupts
-+          - const: gp
-+          - const: gpmmu
-+      - items:
-+          # Not ideal as any order and combination are allowed
-+          enum:
-+            - gp        # Geometry Processor interrupt
-+            - gpmmu     # Geometry Processor MMU interrupt
-+            - pp        # Pixel Processor broadcast interrupt (mali-450 only)
-+            - pp0       # Pixel Processor X interrupt (X from 0 to 7)
-+            - ppmmu0    # Pixel Processor X MMU interrupt (X from 0 to 7)
-+            - pp1
-+            - ppmmu1
-+            - pp2
-+            - ppmmu2
-+            - pp3
-+            - ppmmu3
-+            - pp4
-+            - ppmmu4
-+            - pp5
-+            - ppmmu5
-+            - pp6
-+            - ppmmu6
-+            - pp7
-+            - ppmmu7
-+            - pmu       # Power Management Unit interrupt (optional)
-+            - combined  # stericsson,db8500-mali only
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: bus
-+      - const: core
-+
-+  memory-region: true
-+
-+  mali-supply:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  operating-points-v2: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - allwinner,sun4i-a10-mali
-+              - allwinner,sun7i-a20-mali
-+              - allwinner,sun50i-a64-mali
-+              - allwinner,sun50i-h5-mali
-+              - amlogic,meson8-mali
-+              - amlogic,meson8b-mali
-+              - hisilicon,hi6220-mali
-+              - rockchip,rk3036-mali
-+              - rockchip,rk3066-mali
-+              - rockchip,rk3188-mali
-+              - rockchip,rk3228-mali
-+              - rockchip,rk3328-mali
-+    then:
-+      required:
-+        - resets
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    mali: gpu@1c40000 {
-+      compatible = "allwinner,sun7i-a20-mali", "arm,mali-400";
-+      reg = <0x01c40000 0x10000>;
-+      interrupts = <GIC_SPI 97 IRQ_TYPE_LEVEL_HIGH>,
-+             <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-+             <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>,
-+             <GIC_SPI 100 IRQ_TYPE_LEVEL_HIGH>,
-+             <GIC_SPI 102 IRQ_TYPE_LEVEL_HIGH>,
-+             <GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+             <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>;
-+      interrupt-names = "gp",
-+            "gpmmu",
-+            "pp0",
-+            "ppmmu0",
-+            "pp1",
-+            "ppmmu1",
-+            "pmu";
-+      clocks = <&ccu 1>, <&ccu 2>;
-+      clock-names = "bus", "core";
-+      resets = <&ccu 1>;
-+    };
-+
-+...
--- 
-2.20.1
-
+    Andrew
