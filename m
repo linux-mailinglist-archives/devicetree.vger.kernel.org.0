@@ -2,119 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C352A2084
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:15:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3130EA2092
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 18:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727867AbfH2QP3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 12:15:29 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34704 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727255AbfH2QP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:15:29 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 8754D28D6D2;
-        Thu, 29 Aug 2019 17:15:25 +0100 (BST)
-Date:   Thu, 29 Aug 2019 18:15:20 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Vitor Soares <Vitor.Soares@synopsys.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
-        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>
-Subject: Re: [PATCH 2/4] i3c: master: Check if devices have
- i3c_dev_boardinfo on i3c_master_add_i3c_dev_locked()
-Message-ID: <20190829181520.0b33b642@collabora.com>
-In-Reply-To: <SN6PR12MB26553867412178B3F7190F0CAEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-References: <cover.1567071213.git.vitor.soares@synopsys.com>
-        <3e21481ddf53ea58f5899df6ec542b79b8cbcd68.1567071213.git.vitor.soares@synopsys.com>
-        <20190829124457.3a750932@collabora.com>
-        <SN6PR12MB265551F73B9B516CACB5B807AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-        <20190829163918.571fd0d8@collabora.com>
-        <20190829163941.45380b19@collabora.com>
-        <SN6PR12MB2655B08176E14BE9DF2BACA2AEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-        <20190829172441.3a76385e@collabora.com>
-        <SN6PR12MB26553867412178B3F7190F0CAEA20@SN6PR12MB2655.namprd12.prod.outlook.com>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1728114AbfH2QQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 12:16:41 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:51837 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727270AbfH2QQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 12:16:41 -0400
+Received: by mail-wm1-f65.google.com with SMTP id k1so4349904wmi.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 09:16:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CWCn/aI8becgibBgiWeAnHIhr/fW5iSwk5vO24eMpyY=;
+        b=bm/wB0YaVcjT6w+zuY98KSFu6eCxy17zcKSZfLHIxBTwUrXyyW2KOJqQS6th1ahwRF
+         ojaAQ209ayGc0lkbX8T+55UBIcbASYkszecXN05+Jsam8Xin9ZoLp2Bt98D2AiJ/sT4d
+         0YpOHmc6CjAuOrLH6sgrGij+fbDGgzKc0FsN2FEgazKPZUFBVWrNfvPvRW6Dhe2zGldp
+         iCc4I7KyPD4R+HWg+q5i+MBZ4Irbw3XqmcJvQvwVBZQJebe2Mdd36DDrvR5TVC1dtQOc
+         ab3jt08/c/ulgIGxNqpZm0wdQLuOzx2PV5tiFdBWyfuD/kZ1GCOCpa4aOI9IVKKTvyJy
+         G6mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CWCn/aI8becgibBgiWeAnHIhr/fW5iSwk5vO24eMpyY=;
+        b=nfAHAYzKNbsAwp5mk/SjwGwNY5RP7itlxLRHXE28GrGC+45L1veykHHoXeVsws4DZv
+         7Qrd2h9QRYMd4jfa+krPXK57ga52TucmTG4crPah9hrQktN281dAIlwO1JvEYCSt1RMQ
+         hktNwaV+J2Fg4aKEQ97OwIgOtUqc3SggkcCz8hw3py8YT+BIzMqfI3K09SwrU740xMik
+         cpzVG/ZFmJ5VJcQoGlLVLxdPwZE+/oxXHgZeD8Lg89Gzd6fDWzgxIyBZlQIns/szhCaE
+         SK4RVa8Qq1YKjPlXnGpUutB1GHQMh0dcVPHzJ7QwKvC3FcGRchBpl/IyOJ4wfHavWIg4
+         xiaQ==
+X-Gm-Message-State: APjAAAULAy3tIlX5wtlKe6iMihMZi21d9oCvAyN6d6T5faf1w+6wKPhd
+        Wx6aM88t1sM3lwkmQgIpDy5+bw==
+X-Google-Smtp-Source: APXvYqydE7PJ/qjqc2ZeXlyG8yavTZbBpvs1Q31Mh7laIOnhU9ePQ3Djq1ddTmF/W6PTlWyUyZP8fw==
+X-Received: by 2002:a05:600c:245:: with SMTP id 5mr12118923wmj.36.1567095399634;
+        Thu, 29 Aug 2019 09:16:39 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id q13sm3915424wmq.30.2019.08.29.09.16.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Aug 2019 09:16:39 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] irqchip/meson-gpio: add sm1 support
+Date:   Thu, 29 Aug 2019 18:16:33 +0200
+Message-Id: <20190829161635.25067-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Aug 2019 15:57:32 +0000
-Vitor Soares <Vitor.Soares@synopsys.com> wrote:
+This patchset adds support for the new sm1 SoC family in the Amlogic gpio
+interrupt controller.
 
-> -----Original Message-----
-> From: Boris Brezillon 
-> <boris.brezillon@collabora.com> 
-> Sent: Thursday, August 29, 2019 4:25 
-> PM
-> To: Vitor Soares <Vitor.Soares@synopsys.com>
-> Cc: 
-> linux-kernel@vger.kernel.org; devicetree@vger.kernel.org; 
-> linux-i3c@lists.infradead.org; bbrezillon@kernel.org; robh+dt@kernel.org; 
-> mark.rutland@arm.com; Joao.Pinto@synopsys.com
-> Subject: Re: [PATCH 2/4] 
-> i3c: master: Check if devices have i3c_dev_boardinfo on 
-> i3c_master_add_i3c_dev_locked()
-> 
-> On Thu, 29 Aug 2019 15:07:08 +0000
-> Vitor Soares <Vitor.Soares@synopsys.com> wrote:
-> 
-> > From: Boris Brezillon   
-> <boris.brezillon@collabora.com>
-> > Date: Thu, Aug 29, 2019 at 15:39:41
-> >   
-> 
-> > > On Thu, 29 Aug 2019 16:39:18 +0200
-> > > Boris Brezillon <boris.brezillon@collabora.com> wrote:
-> > >     
-> > > > On Thu, 29 Aug 2019 14:00:44 +0000
-> > > > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
-> > > >     
-> > > > > Hi Boris,
-> > > > > 
-> > > > > From: Boris Brezillon <boris.brezillon@collabora.com>
-> > > > > Date: Thu, Aug 29, 2019 at 11:44:57
-> > > > >       
-> > > > > > On Thu, 29 Aug 2019 12:19:33 +0200
-> > > > > > Vitor Soares <Vitor.Soares@synopsys.com> wrote:
-> > > > > >         
-> > > > > > > The I3C devices described in DT might not be attached to the master which
-> > > > > > > doesn't allow to assign a specific dynamic address.        
-> > > > > > 
-> > > > > > I remember testing this when developing the framework, so, unless
-> > > > > > another patch regressed it, it should already work. I suspect patch 1
-> > > > > > is actually the regressing this use case.        
-> > > > > 
-> > > > > For today it doesn't address the case where the device is described with 
-> > > > > static address = 0, which isn't attached to the controller.      
-> > > > 
-> > > > Hm, I'm pretty sure I had designed the code to support that case (see
-> > > > [1]). It might be buggy, but nothing we can't fix I guess.
-> > > >     
-> > > 
-> > > [1]https://urldefense.proofpoint.com/v2/url?u=https-3A__elixir.bootlin.com_linux_v5.3-2Drc6_source_drivers_i3c_master.c-23L1898&d=DwICAg&c=DPL6_X_6JkXFx7AXWqB0tg&r=qVuU64u9x77Y0Kd0PhDK_lpxFgg6PK9PateHwjb_DY0&m=IXS1ygIgEo5vwajk0iwd5aBDVBzRnVTjO3cg4iBmGNc&s=HC-AcYm-AZPrUBoALioej_BDnqOtJHltr39Z2yPkuU4&e=     
-> > 
-> > That is only valid if you have olddev which will only exist if static 
-> > address != 0.  
-> 
-> Hm, if you revert patch 1 (and assuming the device is properly defined
-> in the DT), you should have olddev != NULL when reaching that point. If
-> that's not the case there's a bug somewhere that should be fixed.
-> 
-> No, because the device is not attached.
+Jerome Brunet (2):
+  dt-bindings: interrupt-controller: new binding for the meson sm1 SoCs
+  irqchip/meson-gpio: Add support for meson sm1 SoCs
 
-Oh, my bad, I see what you mean now. This is definitely a bug and should
-have the Fixes tags. I mean, even if we don't care about dynamic
-address assignment, I3C drivers might care about the ->of_node that's
-attached to the device.
+ .../amlogic,meson-gpio-intc.txt               |  1 +
+ drivers/irqchip/irq-meson-gpio.c              | 52 ++++++++++++++-----
+ 2 files changed, 39 insertions(+), 14 deletions(-)
+
+-- 
+2.21.0
+
