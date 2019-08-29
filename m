@@ -2,92 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F39DFA2726
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 21:17:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDF2A2735
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 21:23:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728408AbfH2TRl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 15:17:41 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35205 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728295AbfH2TRk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 15:17:40 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 100so4577831otn.2;
-        Thu, 29 Aug 2019 12:17:40 -0700 (PDT)
+        id S1727546AbfH2TXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 15:23:43 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33535 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727525AbfH2TXn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 15:23:43 -0400
+Received: by mail-oi1-f194.google.com with SMTP id l2so3508885oil.0;
+        Thu, 29 Aug 2019 12:23:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lUNDK8okeaG+StRZk49PqR3pb3KxBcvMlQlvR84IJuE=;
-        b=ehf/DbFk4yML96oksiNfly7f62LvWHGkOo0smPSnNijZS+IlH+kEoBS1q0o1rCrmYK
-         HlhqO+xmO5w4vbjy+3id41xiExaFcxtB83AyoMB1xNfizUEz9Iwl/FFKkdg1LYWz7k0W
-         93ih1zZPT7NHCWVzQg4CKFpgkzKAns4j1V0FJXWR2u2+KFBctM6Ch6Yj8qt9F6dgFkiE
-         HowlseeGRhe9MSGi8ffCbZbix8zlVtRn0iP4xf3hXDU0jp05ynypO/1WXim/tUbOCoDD
-         JJ+QcnMxdX7Sr7nyRkhnqruMzd9OpS5Ro6YAjNiM9IcSiAbHILDcrFeGWDZqc8n33nrS
-         WkAA==
-X-Gm-Message-State: APjAAAXXFxz7tqSE1Y8ErhuaLqRmneDtDx2278XoZBPhblv56BhtvwRE
-        c2t7Yirxeul4dSwT9ih++g==
-X-Google-Smtp-Source: APXvYqwjleFRjcjRc0Auu8E/bMXkfJn6aIIX5yibCMAZNhu85rTpuRR7DK/sUMIDH60M3OWn/+ol1Q==
-X-Received: by 2002:a9d:4717:: with SMTP id a23mr8773212otf.212.1567106259689;
-        Thu, 29 Aug 2019 12:17:39 -0700 (PDT)
+        bh=awB7Qev2kte00T2ifUulW7uJN/+Y8eVNRqAUedJCoug=;
+        b=UJHop8Sv1AtXqtY7sK2ZibOwqFgvrqUCzJqItKq7315CEVgmT6T+K6IOUZH1BfwDoz
+         M5Z0brymxz99mw5LEaVzJ5ofu9NFTvsovBfH5azApgrvB73Y+MJMBkPVibJqLDOwl87W
+         U51gaSuH+XVMZ35vyVTNaE2UOujrDKSIQiCKPEJzNickO46gnK76mxtdjA4O4KaO9mDg
+         YzGQHShWmcj0nWbtL9oMRIW95RWQVlllmZk5b1dU7EmMoTV9CpqY8bFtKGkyqvaR/A0B
+         4wZWLd8Ci+9Jv3LoYIFt8EhC3YVUtl8zZglvsRF0WELQynU3e2uo3NGRM1mGTtJ7IZgd
+         xRAA==
+X-Gm-Message-State: APjAAAU0sT87AoFZyEZeCHlwhrS+Z31pIs76aD1ztNVWo7ciq4ApZ8q3
+        ZOkXWnNYKaJ4A+ReDoLMmg==
+X-Google-Smtp-Source: APXvYqxKBNcCX2Vcs4btyyWNLLy+0CXp/jm5HlmQq9eqINvWH7Jql4eAMiRJysKxAactJJBh/j9HhQ==
+X-Received: by 2002:aca:dd8a:: with SMTP id u132mr7196217oig.150.1567106622407;
+        Thu, 29 Aug 2019 12:23:42 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id c15sm1106792otf.35.2019.08.29.12.17.39
+        by smtp.gmail.com with ESMTPSA id n17sm1107111otl.21.2019.08.29.12.23.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Aug 2019 12:17:39 -0700 (PDT)
-Date:   Thu, 29 Aug 2019 14:17:38 -0500
+        Thu, 29 Aug 2019 12:23:41 -0700 (PDT)
+Date:   Thu, 29 Aug 2019 14:23:41 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v6 10/11] dt-bindings: pwm: update bindings for MT7629 SoC
-Message-ID: <20190829191738.GA17395@bogus>
-References: <1567057160-552-1-git-send-email-sam.shih@mediatek.com>
- <1567057160-552-11-git-send-email-sam.shih@mediatek.com>
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/11] dt-bindings: phy-mtk-tphy: add two optional
+ properties for u2phy
+Message-ID: <20190829192341.GA26293@bogus>
+References: <e99c0d7a55869a4425250c601b80a3331c9d0976.1566542696.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1567057160-552-11-git-send-email-sam.shih@mediatek.com>
+In-Reply-To: <e99c0d7a55869a4425250c601b80a3331c9d0976.1566542696.git.chunfeng.yun@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 29, 2019 at 01:39:19PM +0800, Sam Shih wrote:
-> From: Ryder Lee <ryder.lee@mediatek.com>
-> 
-> This updates bindings for MT7629 pwm controller.
-> 
-> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> ---
-> Changes since v1:
-> - add a Reviewed-by tag
+On Fri, Aug 23, 2019 at 03:00:08PM +0800, Chunfeng Yun wrote:
+> Add two optional properties, one for J-K test, another for disconnect
+> threshold, both of them can be used to debug disconnection issues.
 
-I believe you missed mine.
+Testing and debug properties aren't really things that belong in DT.
 
 > 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> index ea95b490a913..c7bd5633d1eb 100644
-> --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> @@ -6,6 +6,7 @@ Required properties:
->     - "mediatek,mt7622-pwm": found on mt7622 SoC.
->     - "mediatek,mt7623-pwm": found on mt7623 SoC.
->     - "mediatek,mt7628-pwm": found on mt7628 SoC.
-> +   - "mediatek,mt7629-pwm", "mediatek,mt7622-pwm": found on mt7629 SoC.
->   - reg: physical base address and length of the controller's registers.
->   - #pwm-cells: must be 2. See pwm.txt in this directory for a description of
->     the cell format.
+> diff --git a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+> index a5f7a4f0dbc1..d5b327f85fa2 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+> +++ b/Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
+> @@ -52,6 +52,8 @@ Optional properties (PHY_TYPE_USB2 port (child) node):
+>  - mediatek,eye-vrt	: u32, the selection of VRT reference voltage
+>  - mediatek,eye-term	: u32, the selection of HS_TX TERM reference voltage
+>  - mediatek,bc12	: bool, enable BC12 of u2phy if support it
+> +- mediatek,discth	: u32, the voltage of disconnect threshold
+> +- mediatek,intr	: u32, the value of internal R (resistance)
+
+These need units as defined in property-units.txt.
+
+>  
+>  Example:
+>  
 > -- 
-> 2.17.1
+> 2.23.0
 > 
