@@ -2,331 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A6FDA1303
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4247DA1314
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 09:57:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725939AbfH2HyK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 03:54:10 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:46267 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725807AbfH2HyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:54:10 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3FFw-0006JE-5t; Thu, 29 Aug 2019 09:54:08 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3FFt-0008Rm-NH; Thu, 29 Aug 2019 09:54:05 +0200
-Date:   Thu, 29 Aug 2019 09:54:05 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Oliver Graute <oliver.graute@gmail.com>
-Cc:     shawnguo@kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, narmstrong@baylibre.com,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCHv5 2/2] ARM: dts: Add support for i.MX6 UltraLite DART
- Variscite Customboard
-Message-ID: <20190829075405.j7av4aojvzddlfz3@pengutronix.de>
-References: <1567009160-21965-1-git-send-email-oliver.graute@gmail.com>
- <1567009160-21965-3-git-send-email-oliver.graute@gmail.com>
+        id S1726128AbfH2H5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 03:57:47 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:38692 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726081AbfH2H5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 03:57:47 -0400
+Received: by mail-oi1-f195.google.com with SMTP id q8so1851822oij.5;
+        Thu, 29 Aug 2019 00:57:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QlVHj9x553xnQTEez13oHT9EpyHgH9QecAY7hhhrPAk=;
+        b=dibCH4Kpy40T+8ia3cuELqFqfiywro389srcRhrZnlMMsZi9AlPxfEE7PkWfubY//v
+         WMlL9RtXqYuBHPTCquTt0mD2702sqwKjG6pB09pn0OYwQwOakSMnRRQc7mxB1Y8EeGGQ
+         RETzn5vA14fAHKUm2/DQr7t0zkCCfKFS3cSh13mEUWtitUHdpVCbp3fTIHjCdHOXl+8g
+         ZiY0667VCXpJYb2yXZVp3aFPXrtEnm0oBHOrVZsp2/UW+Tll21wtAI8Rm934gT+MsxO7
+         H7sHL/PT7hM/YINyQ8PBcIbN1uyNC99XvRCfmz24K2FNoDCox6gjIoFQwNm+0BwHRwAS
+         tKZA==
+X-Gm-Message-State: APjAAAWc1wLoKdjLdOwI7bkTlPFGp/ETr+DlboS1cdQ+6OmHwKUVbhut
+        1XdK1zlFOS8r1RuOinmmujlsr2MyEGOAF42zfrU=
+X-Google-Smtp-Source: APXvYqwtm23JqVzDWeBpUT9mVYdLnoyO70OgcXLyNcpsa0xvNS/qCBp951gxuzDuCzJMGWND93w6eQfyvRVEfqxUW4U=
+X-Received: by 2002:aca:ea82:: with SMTP id i124mr5313299oih.153.1567065466698;
+ Thu, 29 Aug 2019 00:57:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567009160-21965-3-git-send-email-oliver.graute@gmail.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:39:09 up 103 days, 13:57, 63 users,  load average: 0.00, 0.05,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <1567017402-5895-1-git-send-email-fabrizio.castro@bp.renesas.com> <1567017402-5895-2-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1567017402-5895-2-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 29 Aug 2019 09:57:35 +0200
+Message-ID: <CAMuHMdVPsT=1R7DAnmui+iaWcnoy52Xrr47zLWbgmUumBZ2sdw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/8] dt-bindings: display: Add bindings for LVDS bus-timings
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Sam Ravnborg <sam@ravnborg.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Oliver,
+Hi Fabrizio,
 
-On 19-08-28 18:19, Oliver Graute wrote:
-> This patch adds DeviceTree Source for the i.MX6 UltraLite DART NAND/WIFI
-> 
-> Signed-off-by: Oliver Graute <oliver.graute@gmail.com>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  arch/arm/boot/dts/Makefile                      |   1 +
->  arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts | 196 ++++++++++++++++++++++++
->  2 files changed, 197 insertions(+)
->  create mode 100644 arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index a24a6a1..a2a69e4 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -579,6 +579,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
->  	imx6ul-tx6ul-0010.dtb \
->  	imx6ul-tx6ul-0011.dtb \
->  	imx6ul-tx6ul-mainboard.dtb \
-> +	imx6ul-var-6ulcustomboard.dtb \
->  	imx6ull-14x14-evk.dtb \
->  	imx6ull-colibri-eval-v3.dtb \
->  	imx6ull-colibri-wifi-eval-v3.dtb \
-> diff --git a/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
-> new file mode 100644
-> index 00000000..1861b34
+On Wed, Aug 28, 2019 at 8:36 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Dual-LVDS connections need markers in the DT, this patch adds
+> some common documentation to be referenced by both panels and
+> bridges.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+
+Thanks for your patch!
+
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ul-var-6ulcustomboard.dts
-> @@ -0,0 +1,196 @@
-> +// SPDX-License-Identifier: (GPL-2.0)
-> +/*
-> + * Support for Variscite DART-6UL Module
-> + *
-> + * Copyright (C) 2015 Freescale Semiconductor, Inc.
-> + * Copyright (C) 2015-2016 Variscite Ltd. - http://www.variscite.com
-> + * Copyright (C) 2018-2019 Oliver Graute <oliver.graute@gmail.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/display/bus-timings/lvds.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bus-timings/lvds.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +/dts-v1/;
+> +title: Common Properties for bus timings of LVDS interfaces
 > +
-> +#include <dt-bindings/input/input.h>
-> +#include "imx6ul-imx6ull-var-dart-common.dtsi"
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 > +
-> +/ {
-> +	model = "Variscite i.MX6 UltraLite Carrier-board";
-> +	compatible = "variscite,6ulcustomboard", "fsl,imx6ul";
+> +description: |
+> +  This document defines device tree properties common to LVDS and dual-LVDS
+> +  interfaces, where a dual-LVDS interface is a dual-link connection with even
+> +  pixels traveling on one connection, and with odd pixels traveling on the other
+> +  connection.
+> +  This document doesn't constitue a device tree binding specification by itself
+> +  but is meant to be referenced by device tree bindings.
+> +  When referenced from panel or bridge device tree bindings, the properties
+> +  defined in this document are defined as follows. The panel and bridge device
+> +  tree bindings are responsible for defining whether each property is required
+> +  or optional.
 > +
-> +	backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm1 0 20000>;
-> +		brightness-levels = <0 4 8 16 32 64 128 255>;
-> +		default-brightness-level = <6>;
-> +		status = "okay";
-> +	};
+> +properties:
+> +  dual-lvds-even-pixels:
+> +    type: boolean
+> +    description:
+> +      This property is specific to an input port of a sink device. When
+> +      specified, it marks the port as recipient of even-pixels.
 > +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +
-> +		user {
-> +			gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+> +  dual-lvds-odd-pixels:
+> +    type: boolean
+> +    description:
+> +      This property is specific to an input port of a sink device. When
+> +      specified, it marks the port as recipient of odd-pixels.
 
-Please mux the gpios where you need them. In this case mux it within the
-gpio-keys node.
+Do you need the "dual-" prefix? Isn't that implied by even/odd?
+Or is it better to keep it, for readability?
 
-> +			linux,code = <KEY_BACK>;
-> +			gpio-key,wakeup;
-> +		};
-> +	};
-> +
-> +	gpio-leds {
-> +		compatible = "gpio-leds";
-> +
-> +		d16-led {
-> +			gpios = <&gpio4 20 GPIO_ACTIVE_HIGH>;
+I'm also thinking about a possible future extension to triple or quad LVDS.
+As I'm not aware of English word equivalents of even/odd for triple/quad,
+perhaps this should be specified using a numerical value instead?
 
-The same applies here.
+If I go too far, please just say so ;-)
 
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "wm8731audio";
-> +		simple-audio-card,widgets =
-> +			"Headphone", "Headphone Jack",
-> +			"Line", "Line Jack",
-> +			"Microphone", "Mic Jack";
-> +		simple-audio-card,routing =
-> +			"Headphone Jack", "RHPOUT",
-> +			"Headphone Jack", "LHPOUT",
-> +			"LLINEIN", "Line Jack",
-> +			"RLINEIN", "Line Jack",
-> +			"MICIN", "Mic Bias",
-> +			"Mic Bias", "Mic Jack";
-> +		simple-audio-card,format = "i2s";
-> +		simple-audio-card,bitclock-master = <&sound_master>;
-> +		simple-audio-card,frame-master = <&sound_master>;
-> +
-> +		sound_master: simple-audio-card,cpu {
-> +				sound-dai = <&sai2>;
-> +		};
+Gr{oetje,eeting}s,
 
-Where is the codec node?
-
-> +	};
-> +};
-> +
-> +&can1 {
-> +	status = "okay";
-
-We need to move the complete muxing from the SoM dtsi to the baseboard
-for all baseboard related nodes.. I tought that the Dart 6UL layout
-follows a specific standard but that isn't the case.
-
-> +};
-> +
-> +&can2 {
-> +	status = "okay";
-> +};
-> +
-> +&fec1 {
-> +	phy-mode = "rgmii";
-
-This avoid such re-assigning here too. Also the imx6ul only support
-10/100 Mbit/s. So rgmii makes no sense here.
-
-> +	phy-reset-gpios = <&gpio5 0 GPIO_ACTIVE_LOW>;
-> +	phy-handle = <&ethphy0>;
-> +	status = "okay";
-> +};
-> +
-> +&fec2 {
-> +	phy-mode = "rgmii";
-> +	phy-reset-gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;
-> +	phy-handle = <&ethphy1>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	clock_frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +
-> +	wm8731: audio-codec@1a {
-> +		#sound-dai-cells = <0>;
-
-Please move #sound-dai-cells below compatible and reg property.
-
-> +		compatible = "wlf,wm8731";
-> +		reg = <0x1a>;
-> +		clocks = <&clks IMX6UL_CLK_SAI2>;
-> +		clock-names = "mclk";
-> +	};
-> +
-> +	touchscreen@38 {
-> +		compatible = "edt,edt-ft5x06";
-> +		reg = <0x38>;
-> +		interrupt-parent = <&gpio3>;
-> +		interrupts = <4 0>;
-
-Make use of IRQ_TYPE_*
-
-> +		touchscreen-size-x = <800>;
-> +		touchscreen-size-y = <480>;
-> +		touchscreen-inverted-x;
-> +		touchscreen-inverted-y;
-> +		wakeup-source;
-> +	};
-> +
-> +	rtc@68 {
-> +		compatible = "dallas,ds1337";
-> +		reg = <0x68>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_rtc>;
-> +		interrupt-parent = <&gpio5>;
-> +		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-> +	};
-> +};
-> +
-> +&lcdif {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_lcdif>;
-> +	display = <&display0>;
-> +	status = "okay";
-> +
-> +	display0: display0 {
-> +		bits-per-pixel = <16>;
-> +		bus-width = <24>;
-> +
-> +		display-timings {
-> +			native-mode = <&timing0>;
-> +			timing0: timing0 {
-> +				clock-frequency =<35000000>;
-> +				hactive = <800>;
-> +				vactive = <480>;
-> +				hfront-porch = <40>;
-> +				hback-porch = <40>;
-> +				hsync-len = <48>;
-> +				vback-porch = <29>;
-> +				vfront-porch = <13>;
-> +				vsync-len = <3>;
-> +				hsync-active = <0>;
-> +				vsync-active = <0>;
-> +				de-active = <1>;
-> +				pixelclk-active = <0>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&pwm1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	status = "okay";
-> +};
-> +
-> +&uart3 {
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	dr_mode = "host";
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_rtc: rtcgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x1b0b0
-> +		>;
-> +	};
-
-As I said above, move the complete muxing pwm/usb/i2c/lcd/... from the
-som dtsi to the baseboard dts because it is only valid for this
-baseboard. Another baseboard using this som can have a complete
-different mux option.
-
-Regards,
-  Marco
-
-
-> +};
-> -- 
-> 2.7.4
-> 
-> 
-> 
+                        Geert
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
