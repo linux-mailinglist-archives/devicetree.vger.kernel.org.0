@@ -2,99 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51DF5A261B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 20:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE048A2640
+	for <lists+devicetree@lfdr.de>; Thu, 29 Aug 2019 20:41:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727935AbfH2Sft (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 14:35:49 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:41540 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726518AbfH2Sft (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 14:35:49 -0400
-Received: by mail-io1-f67.google.com with SMTP id j5so8875254ioj.8;
-        Thu, 29 Aug 2019 11:35:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dE7PRZQ345omAc8kJ4IwmsYptXobZW+/ikZLYjrE7WQ=;
-        b=tUNmQb+LFpYbL1cSRPf5bCe64L++eHLfZ3CowzYJsxcHu6DWB7Khliqd+0WFFTUkut
-         UgliUO5/JyqxYdKS3oPQorxRPZMGv/eyYDZinzXKZUFcL8wfTyTXE54NmzJF+Vo+c7C9
-         /6CxcG+neGPSPOpPtQfvL+hWLHQo3leLd6FTrsSEHeCFcPw6gCq5tkMfnr/hnLWY6L/x
-         hHQ9oTXwrZyOpp4pFqG1Ae7f1l91G0oPB0ISu+2CigxbB/+gg3e8WkinItIZ66L9sl3y
-         sod6Sj1WOSojNdn7hOqcp4ojk/QPz2fC6PhALJTTkADd14rbnYMIbd76D8s9Zygo3Bwj
-         /JgQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dE7PRZQ345omAc8kJ4IwmsYptXobZW+/ikZLYjrE7WQ=;
-        b=lr/03c13JUt9Dh/Vfw2PZdxocDFZqmNwcbLL+1lKzB83Lk7QFrZS4E81c6GwA/uaGj
-         ehQq2V0nPGn10cXUtq9xn2OjFdIohMeXptyjmvXrBJGb4vz0Ia5km9iLkltDma4k7ebh
-         Q0C1euk3VtquhJh6FLMHRX1x6TApPVR4YeBVBqB9J/sn8fcAJ1PAuLVUuikJhlzCt83e
-         EsTpESg3oSA/U+4zzdV6fFqXWkeMDWKO4CFUFWLzX/XbTrOuFYWjbUOBya1lPXR/U9K2
-         H7POacCpNlSkRwxGAX1SZzI6dNfpvomfCdez8EQQBifExZLq4cFUWOr7i1QPKCT9tcmq
-         mm6A==
-X-Gm-Message-State: APjAAAWJOEulYxispJTf155z3E7tALGi9rLICiCKE2KJ2wb5ImfTXFB4
-        Dj3Ww6Fd3hAMFI5/S9el1P10wOdfbCvXfSS/60w=
-X-Google-Smtp-Source: APXvYqzg2TrSvQ2sGfxlX6InibTPJ6qPNmnESCZkxiQHWcDZTe8CGM/4kKFmZ8yqnYQphNmu4/FiJ2pT0Ndftf28zJ8=
-X-Received: by 2002:a5d:9bd4:: with SMTP id d20mr1721932ion.243.1567103748387;
- Thu, 29 Aug 2019 11:35:48 -0700 (PDT)
+        id S1728062AbfH2Slw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 14:41:52 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:49204 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727867AbfH2Slw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 14:41:52 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 8C77766593; Thu, 29 Aug 2019 18:12:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567104110;
+        bh=idSCDDdET3/7wJntdfWeAGtzPidjabyISQCbpIXoF3g=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=W+9l33i7Xf4dlyQPL+tosLBLO8T00kWWKz3lZQO6W15ivzQ7WrEZRL8+QbrMYPO3V
+         HaZsO0LnC8OFY/Xht8sjDsqUpV065667mXkNHRXsWgwaCdyBTrKBDr8SgKKNb1FluV
+         Kh2BlQaerGXhpVN4HPWBJ+HBEH/9G/QGW9n6VULU=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: ilina@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id CD8EB688BF;
+        Thu, 29 Aug 2019 18:12:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567102338;
+        bh=idSCDDdET3/7wJntdfWeAGtzPidjabyISQCbpIXoF3g=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=I/Lv8e+5c+rWTsSEDw0Bdjk7jvYOk7c1fmLdoN0csf5ltHQlOWjNmK7Yt8cTRquSA
+         TLdQdG1hZ67HLjAgM/ZFnhxlmx6mHMZoLUuyba8vTcGb5+dMw3WV17HXHnTo8Lyv7C
+         gxvv0wyRY3WYmnZrCAmpDTj8m/huaiFtSLLX/Bhk=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org CD8EB688BF
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
+From:   Lina Iyer <ilina@codeaurora.org>
+To:     swboyd@chromium.org, evgreen@chromium.org, marc.zyngier@arm.com,
+        linus.walleij@linaro.org
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
+        linux-gpio@vger.kernel.org, rnayak@codeaurora.org,
+        Lina Iyer <ilina@codeaurora.org>, devicetree@vger.kernel.org
+Subject: [PATCH RFC 04/14] of: irq: document properties for wakeup interrupt parent
+Date:   Thu, 29 Aug 2019 12:11:53 -0600
+Message-Id: <20190829181203.2660-5-ilina@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190829181203.2660-1-ilina@codeaurora.org>
+References: <20190829181203.2660-1-ilina@codeaurora.org>
 MIME-Version: 1.0
-References: <20190828202723.1145-1-linux.amoon@gmail.com> <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
-In-Reply-To: <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Fri, 30 Aug 2019 00:05:37 +0530
-Message-ID: <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
-Subject: Re: [PATCHv1 0/3] Odroid c2 missing regulator linking
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil,
+Some interrupt controllers in a SoC, are always powered on and have a
+select interrupts routed to them, so that they can wakeup the SoC from
+suspend. Add wakeup-parent DT property to refer to these interrupt
+controllers.
 
-On Thu, 29 Aug 2019 at 13:58, Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> On 28/08/2019 22:27, Anand Moon wrote:
-> > Below small changes help re-configure or fix missing inter linking
-> > of regulator node.
-> >
-> > Changes based top on my prevoius series.
->
-> For the serie:
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+---
+ .../bindings/interrupt-controller/interrupts.txt    | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-Thanks for your review.
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+index 8a3c40829899..c10e31050dd2 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+@@ -108,3 +108,16 @@ commonly used:
+ 			sensitivity = <7>;
+ 		};
+ 	};
++
++3) Interrupt wakeup parent
++--------------------------
++
++Some interrupt controllers in a SoC, are always powered on and have a select
++interrupts routed to them, so that they can wakeup the SoC from suspend. These
++interrupt controllers do not fall into the category of a parent interrupt
++controller and can be specified by the "wakeup-parent" property and contain a
++single phandle referring to the wakeup capable interrupt controller.
++
++   Example:
++	wakeup-parent = <&pdc_intc>;
++
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-> >
-> > [0] https://patchwork.kernel.org/cover/11113091/
-> >
-> > TOOD: Add support for DVFS GXBB odroid board in next series.
->
-> I'm curious how you will do this !
-
-I was just studying you previous series on how you have implemented
-this feature for C1, N2 and VIM3 boards.
-
-[0] https://patchwork.kernel.org/cover/11114125/
-
-I started gathering key inputs needed for this ie *clk / pwm*
-like VDDCPU and VDDE clk changes.
-
-But it looks like of the complex clk framework needed, so I leave this to the
-expert like your team of developers to do this much quick and efficiently.
-
-Best Regards,
--Anand
