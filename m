@@ -2,108 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9D16A3ECF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 22:10:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8B02A3EE5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 22:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728072AbfH3UK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 16:10:26 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:35471 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728086AbfH3UKY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 16:10:24 -0400
-Received: by mail-qk1-f196.google.com with SMTP id c189so5703903qkg.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 13:10:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ykdpZ3lP39dlVnbQ5KDoe1TuBSHZwyVocsneznT9rQE=;
-        b=XihncdPfw8Y5WDsLRhGs6fYzbisVgMxlyPdg3ot2eXeQARM6P5zBldtANv5/CC7tTZ
-         I7VeOV+dAfznnv1tOjZKqMAtD/BGGyE3UY7Cz+pJ2FGkovFzyna4dY2kTANicHk3KnSj
-         qowoCxS3+BeN6WKTh7yjuvkbIumJldeCEaD1Ay39TArzYNQmwTG/OCNQ16bsflwtQ/yt
-         SObq3auat+mGZten0jcpsswKU/GuKEaqfzbkS0Rs4vhlltiVvRfZOaFkcDPJ9JQ6NHJf
-         GjOH85aABntGnH/QQ1nLRjH2MMpg9XjSmu6upJUUvcZtWDD9PdvM9q4N02NuTTensx7R
-         +Puw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ykdpZ3lP39dlVnbQ5KDoe1TuBSHZwyVocsneznT9rQE=;
-        b=iCM0l5WinvbJPWaKLiUlLpVz3QguoTAMJY0oe8FtCRdFwk3CeuYeTdfxhitTlA4oUa
-         yFtecAZcUFqVDQ0oBvwF4zzcoouaMRXxHqJeCZ3Sx/6kyXHKbS2oqZmPte3SVOd3nASD
-         qZcl2r9atgTSWdZlWkBQKcahOABDMbWzTPgCFcOJcYwZEtZBUTBZ0ikxA4Ryvh1oGaTE
-         Pm4dkK4Yr0hxrE6W3BOVPmiUSZcte3JwjM5+BwhYKOaW+LL+6bz6UvGmoJ8javk5Zlgs
-         pKSdi5jjsb2IDidlQtgKiO8fdsVugbScctOnqB02VHvhVhvAWku69KpfcuwQ96csgOxC
-         2FvQ==
-X-Gm-Message-State: APjAAAXpMJyrIN5O3WcAx/JwQ9lA9XaZ1zbAEuWqSAcBd0jMMT0TWEyc
-        BLfde6ZeYGSMyGrwzwLmjCRvPbpEW2W1FBFO1K5wCQ==
-X-Google-Smtp-Source: APXvYqzDwXEeJpjBAbUVp7P1xM0YAYYCf1VtkMTqM0lrwSFZEhZXYIV6mkwoFCy10QW66IskEuQfvlBu/ePB7p183PE=
-X-Received: by 2002:a05:620a:143b:: with SMTP id k27mr16695729qkj.127.1567195822193;
- Fri, 30 Aug 2019 13:10:22 -0700 (PDT)
+        id S1727963AbfH3UUW convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Aug 2019 16:20:22 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:46969 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727888AbfH3UUV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 16:20:21 -0400
+X-Originating-IP: 87.231.134.186
+Received: from localhost (87-231-134-186.rev.numericable.fr [87.231.134.186])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 4F1996000E;
+        Fri, 30 Aug 2019 20:20:19 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Marek =?utf-8?Q?Beh=C3=BAn?= <marek.behun@nic.cz>, arm@kernel.org
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Marek =?utf-8?Q?Beh=C3=BAn?= <marek.behun@nic.cz>
+Subject: Re: [PATCH v2 mvebu-dt64 0/3] Add Turris Mox device-tree
+In-Reply-To: <20190828151243.23542-1-marek.behun@nic.cz>
+References: <20190828151243.23542-1-marek.behun@nic.cz>
+Date:   Fri, 30 Aug 2019 22:20:18 +0200
+Message-ID: <874l1yxv5p.fsf@FE-laptop>
 MIME-Version: 1.0
-References: <cover.1566907161.git.amit.kucheria@linaro.org>
- <1cb5ab682bce53d32f3a73b5b29cc6c3e800bfcc.1566907161.git.amit.kucheria@linaro.org>
- <5d65cc4a.1c69fb81.376b6.2486@mx.google.com>
-In-Reply-To: <5d65cc4a.1c69fb81.376b6.2486@mx.google.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Sat, 31 Aug 2019 01:40:10 +0530
-Message-ID: <CAP245DX1PfszgyL4JB60zqbFynusXUjATrkUr1_Ps6NG-fRx=g@mail.gmail.com>
-Subject: Re: [PATCH v2 09/15] arm64: dts: msm8996: thermal: Add interrupt support
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Brian Masney <masneyb@onstation.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 6:05 AM Stephen Boyd <swboyd@chromium.org> wrote:
+Hi Marek,
+
+> Hello, this is the second version of patches adding Turris Mox dts.
+> I have addressed Andrew's comments about led label, reset button
+> function and sfp i2c bus speed. The other issues I have explained
+> in reply to Andrew. Here is a copy of those:
 >
-> Quoting Amit Kucheria (2019-08-27 05:14:05)
-> > Register upper-lower interrupts for each of the two tsens controllers.
-> >
-> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/msm8996.dtsi | 60 ++++++++++++++-------------
-> >  1 file changed, 32 insertions(+), 28 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/msm8996.dtsi b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > index 96c0a481f454e..bb763b362c162 100644
-> > --- a/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/msm8996.dtsi
-> > @@ -175,8 +175,8 @@
-> >
-> >         thermal-zones {
-> >                 cpu0-thermal {
-> > -                       polling-delay-passive = <250>;
-> > -                       polling-delay = <1000>;
-> > +                       polling-delay-passive = <0>;
-> > +                       polling-delay = <0>;
+>> > The node is called i2c0, but here you have i2c1_pins?
 >
-> Is it really necessary to change the configuration here to be 0 instead
-> of some number? Why can't we detect that there's an interrupt and then
-> ignore these properties?
+>> That is how this is defined in armada-37xx.dtsi. First i2c has
+>> phandle pointer called i2c0, second i2c1. But the pinctrl drivers uses
+>> i2c1 and i2c2. All device trees need to be changed for this. This can
+>> be done later in a separate commit for all device trees using
+>> armada-37xx.dtsi
+>
+>> > > > +&pcie_reset_pins {
+>> > > > +	function = "gpio";
+>> > > > +};
+>> > 
+>> > Should there be something to indicate which GPIO?
+>
+>> No. The thing here is that the function here should remain "pcie"
+>> ideally. When that pin is configured in pcie mode, modifying specific
+>> pcie register should control the pin. But for some reason on our SOC
+>> it does not. I suspect it does not work for Miquel Raynal either,
+>> since he sent patches for aardvark that use reset-gpio as well (see
+>> https://lkml.org/lkml/2018/12/12/242 ).
+>> So we configure it in gpio mode and than in the pcie node we have
+>>   reset-gpios = <&gpiosb 3 GPIO_ACTIVE_LOW>;
+>
+>> > Does u-boot also modify this, if switch2 does not exist? I don't
+>> > know if it actually matters, but if the switch does not exist, but
+>> > the routing entry exists, this switch might still send it frames and
+>> > use up some of your bandwidth?
+>
+>> That port has status = "disabled" by default. U-Boot enables that node
+>> if second switch is present. U-Boot removes all disabled nodes before
+>> boot. Even if it did not, kernel ignores disabled nodes here.
+>
+> Marek
+>
+> Marek Behún (3):
+>   arm64: dts: marvell: armada-37xx: add SPI CS1 pinctrl
+>   dt-bindings: marvell: document Turris Mox compatible
+>   arm64: dts: marvell: add DTS for Turris Mox
 
-AFAICT, the thermal core currently depends on the passive and
-polling_delay being set to 0 to avoid setting dispatching polling work
-to a workqueue. If we leave the values to set, we'll continue to poll
-inspite of an interrupt. See
-thermal_core.c:thermal_zone_device_set_polling()
+The 3 patches are applied on mvebu/dt64
 
-But I agree, the core should detect the presence of an interrupt
-property and ignore the polling intervals. I'll see if I can fix this
-up later.
+Thanks,
 
-Regards,
-Amit
+Gregory
+
+
+>
+>  .../bindings/arm/marvell/armada-37xx.txt      |   8 +
+>  arch/arm64/boot/dts/marvell/Makefile          |   1 +
+>  .../dts/marvell/armada-3720-turris-mox.dts    | 840 ++++++++++++++++++
+>  arch/arm64/boot/dts/marvell/armada-37xx.dtsi  |   5 +
+>  4 files changed, 854 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/marvell/armada-3720-turris-mox.dts
+>
+> -- 
+> 2.21.0
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
