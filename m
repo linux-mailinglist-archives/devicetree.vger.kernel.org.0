@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B746A2EC2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 07:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC545A2ECC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 07:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725902AbfH3FPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 01:15:47 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:45744 "EHLO
+        id S1726023AbfH3FVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 01:21:23 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:2390 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725901AbfH3FPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 01:15:46 -0400
-X-UUID: 89f3ea637db24791918a9be07a7734f7-20190830
-X-UUID: 89f3ea637db24791918a9be07a7734f7-20190830
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        with ESMTP id S1726011AbfH3FVX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 01:21:23 -0400
+X-UUID: eb94aa96f4fe4235a5be0a1581f1f067-20190830
+X-UUID: eb94aa96f4fe4235a5be0a1581f1f067-20190830
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1931682608; Fri, 30 Aug 2019 13:15:42 +0800
+        with ESMTP id 332242960; Fri, 30 Aug 2019 13:21:16 +0800
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
  MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 30 Aug 2019 13:15:34 +0800
+ 15.0.1395.4; Fri, 30 Aug 2019 13:21:10 +0800
 Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 30 Aug 2019 13:15:34 +0800
-Message-ID: <1567142129.5942.1.camel@mtksdaap41>
-Subject: Re: [PATCH v5, 01/32] dt-bindings: mediatek: add binding for mt8183
- display
+ Transport; Fri, 30 Aug 2019 13:21:09 +0800
+Message-ID: <1567142464.5942.4.camel@mtksdaap41>
+Subject: Re: [PATCH v5, 11/32] drm/mediatek: split DISP_REG_CONFIG_DSI_SEL
+ setting into another use case
 From:   CK Hu <ck.hu@mediatek.com>
 To:     <yongqiang.niu@mediatek.com>
 CC:     Philipp Zabel <p.zabel@pengutronix.de>,
@@ -37,15 +37,15 @@ CC:     Philipp Zabel <p.zabel@pengutronix.de>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>
-Date:   Fri, 30 Aug 2019 13:15:29 +0800
-In-Reply-To: <1567090254-15566-2-git-send-email-yongqiang.niu@mediatek.com>
+Date:   Fri, 30 Aug 2019 13:21:04 +0800
+In-Reply-To: <1567090254-15566-12-git-send-email-yongqiang.niu@mediatek.com>
 References: <1567090254-15566-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1567090254-15566-2-git-send-email-yongqiang.niu@mediatek.com>
+         <1567090254-15566-12-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 40D01842456FDB7578DD54B7F9993BB4EE0E3C99E56B99BA4973B50E77C587A62000:8
+X-TM-SNTS-SMTP: ABE7C60E2CBF0188A970D85C6C78E7CA90917B094088DEB0F5CED3D1ED62ED7E2000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -57,48 +57,40 @@ Hi, Yongqiang:
 On Thu, 2019-08-29 at 22:50 +0800, yongqiang.niu@mediatek.com wrote:
 > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> Update device tree binding documention for the display subsystem for
-> Mediatek MT8183 SOCs
+> Here is two modifition in this patch:
+> 1.bls->dpi0 and rdma1->dsi are differen usecase,
+> Split DISP_REG_CONFIG_DSI_SEL setting into anther usecase
+> 2.remove DISP_REG_CONFIG_DPI_SEL setting, DPI_SEL_IN_BLS is 0 and
+> this is same with hardware defautl setting,
 > 
 > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  .../bindings/display/mediatek/mediatek,display.txt  | 21 +++++++++++++++++++++
->  1 file changed, 21 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt
-> new file mode 100644
-> index 0000000..951d2a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt
-> @@ -0,0 +1,21 @@
-> +Mediatek Display Device
-> +============================
-> +
-> +The Mediatek Display Device provides power control to the system.
-> +
-> +Required Properties:
-> +
-> +- compatible: Should be one of:
-> +	- "mediatek,mt8183-display"
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> index 4866a9b..c93e1b7 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> @@ -392,10 +392,9 @@ static void mtk_ddp_sout_sel(void __iomem *config_regs,
+>  	} else if (cur == DDP_COMPONENT_BLS && next == DDP_COMPONENT_DPI0) {
+>  		writel_relaxed(BLS_TO_DPI_RDMA1_TO_DSI,
+>  			       config_regs + DISP_REG_CONFIG_OUT_SEL);
+> +	} else if (cur == DDP_COMPONENT_RDMA1 && next == DDP_COMPONENT_DSI0) {
+>  		writel_relaxed(DSI_SEL_IN_RDMA,
+>  			       config_regs + DISP_REG_CONFIG_DSI_SEL);
+> -		writel_relaxed(DPI_SEL_IN_BLS,
+> -			       config_regs + DISP_REG_CONFIG_DPI_SEL);
 
-I think this is "mediatek,mt8183-mmsys".
+As internal discussion, please rewrite this to prevent breaking MT2701
+connection. It's better to add comment to address the special usage for
+MT2701.
 
 Regards,
 CK
 
-> +
-> +The Display Device power name are defined in
-> +include\dt-bindings\power\mt*-power.h
-> +
-> +
-> +Example:
-> +
-> +display_components: dispsys@14000000 {
-> +	compatible = "mediatek,mt8183-display";
-> +	reg = <0 0x14000000 0 0x1000>;
-> +	power-domains = <&scpsys MT8183_POWER_DOMAIN_DISP>;
-> +};
-> \ No newline at end of file
+>  	}
+>  }
+>  
 
 
