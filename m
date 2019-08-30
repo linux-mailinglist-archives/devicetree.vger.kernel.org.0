@@ -2,222 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABC79A2CF8
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 04:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4228BA2D1E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 05:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727398AbfH3CuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 22:50:12 -0400
-Received: from mail-eopbgr50059.outbound.protection.outlook.com ([40.107.5.59]:26157
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727110AbfH3CuM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 22:50:12 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DPN3hhKwC12xAj1vHz6GUYcksENeOc08YCsCav1PB2LqlE8G/x9pjsYmtMSEQBNbwHImSME3F8a2Y2KrD5mM/iEZ9K42a8L9WVNdoVgcqCE/VyXZc8nBS3HqmwulpuLa440mwkDANmqMHjHhL83Sn0ZZkN7va5V13gyGkOzurYf00SzeN0WKWFicnW0pnqMNfUmfM36DGMkcAL3PKrQQJIzm+t11G0s4LTNxfy+8svaxxdCRWCvcC5+EBUttiQ9Kd8NdlxEDy2j1E46tcj3tfAV3ietpFvuwIDvqpQ9v/QmmT19ehilTnjLRZ1gXHQ/e6+ls58j3uGN6iXAShEZAGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eM4eMRC1pihVgxOPeLGh00LxTRusVk0fhPpoVJ2JvOs=;
- b=MzmDj4rC3G85kL9ha/yBTe47PkI20TSTJcYIOzrHkS/SdfiHspFyB8IDg2GMUmETh36c0QZCvTg1ptF2H0nblAHRg3IKv5+WoTof3nDa1/zQpIUZtVyJ4LPl75kQFjLgsL+LiFeCLqpHmCEur4JgCDE+CkstaBGeA+VtuUqnQ/UgmawTG28C1yprBb0K4Xh7XK2/QMA560cNbYfwxmLlTl8JUTHtUxnT6FLgiiOmvEqT/RsgoZ0Nlo+AMFR0/F2CH9bJwfiLntYKm2OAXfKijZkUYl8RP2GaqQOBZhuGhZHL/3P/L17h5Yxh61ZHWP6m1sA2beZJPMfjIeHNsiwuhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eM4eMRC1pihVgxOPeLGh00LxTRusVk0fhPpoVJ2JvOs=;
- b=PSO0qk7f0unEJbRCV4D9tDQU/3MtPKug5O/EVO8A504m1WlaJhQxyMJ8hIQGCw9Ey5xozl/xxrwOszmLZwzetDvzTjg77WpGK7mOPtm905Q4JM14/so6y25S33nmOUnonBkE3Loxp0UR6CQdIl9SNHlzB+/Povx8c1TjmfWuCh8=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB5794.eurprd04.prod.outlook.com (20.178.117.96) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.19; Fri, 30 Aug 2019 02:50:05 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::5d98:e1f4:aa72:16b4]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::5d98:e1f4:aa72:16b4%4]) with mapi id 15.20.2178.023; Fri, 30 Aug 2019
- 02:50:05 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH v5 2/2] mailbox: introduce ARM SMC based mailbox
-Thread-Topic: [PATCH v5 2/2] mailbox: introduce ARM SMC based mailbox
-Thread-Index: AQHVXU0ae8K1wuPrRECT1HUVPDQ2yacQl8yAgAJoF4A=
-Date:   Fri, 30 Aug 2019 02:50:05 +0000
-Message-ID: <AM0PR04MB4481944FA435E252C786B73888BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
- <1567004515-3567-3-git-send-email-peng.fan@nxp.com>
- <20190828140217.GC21614@e107155-lin>
-In-Reply-To: <20190828140217.GC21614@e107155-lin>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3ef33731-de4a-473c-d052-08d72cf4c36d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5794;
-x-ms-traffictypediagnostic: AM0PR04MB5794:
-x-ms-exchange-purlcount: 1
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB5794779080671792B965533F88BD0@AM0PR04MB5794.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1201;
-x-forefront-prvs: 0145758B1D
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(396003)(366004)(346002)(376002)(39860400002)(189003)(199004)(45080400002)(4326008)(478600001)(71200400001)(14454004)(71190400001)(966005)(53936002)(5660300002)(9686003)(55016002)(52536014)(6306002)(25786009)(6246003)(256004)(2906002)(33656002)(54906003)(15650500001)(8936002)(81166006)(81156014)(8676002)(316002)(66066001)(6116002)(3846002)(7696005)(102836004)(486006)(11346002)(446003)(86362001)(476003)(44832011)(76176011)(229853002)(6916009)(6506007)(26005)(99286004)(74316002)(6436002)(66446008)(64756008)(66556008)(66476007)(76116006)(305945005)(66946007)(7736002)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5794;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 6vUiDhrJ1JuWX5PjFQa3RSYSwXX8UdKbEqj/6SgJfXCGEWRazN1ZkD+u2siozVAdlULHstszX4cElShKAcBoGM2+XwilCw6BNjmLxeOW7uwr2R07JdE2X/+yKTu+M1y0H6yxgG3ycLYcgTaqyV+skNYeLP5oXFY+czFFvHojNGrzTXk5nyBwP6R+8cKBwD1fEcTfD1JZw6EOxYCLBwwolZYDNVog8Ff5ci6Q8EJ/QWW1bqPZ0vIiehKXLbb2hKrzpWmrO4uM/1jCJO/Muu1DCm+DKcPkDIofokLLxfGRS6TcuFLkdDGGdbAO2WRoLyrJyD5j9joCiLBfZlaDSRWP378/085TFxw6wSo1sRNhv1LEI6ugndr1kzGgiWGioFnpdi4wieuC4dsrveoIW5a4YtkK1aVTLuCLkdeTLML6/So=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727920AbfH3DCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 23:02:05 -0400
+Received: from mga14.intel.com ([192.55.52.115]:47135 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727986AbfH3DCD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 29 Aug 2019 23:02:03 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Aug 2019 20:02:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,445,1559545200"; 
+   d="scan'208";a="193184999"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga002.jf.intel.com with ESMTP; 29 Aug 2019 20:02:02 -0700
+Received: from [10.226.39.5] (leichuan-mobl.gar.corp.intel.com [10.226.39.5])
+        by linux.intel.com (Postfix) with ESMTP id A8C6958046E;
+        Thu, 29 Aug 2019 20:02:00 -0700 (PDT)
+Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     eswara.kota@linux.intel.com, cheol.yong.kim@intel.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        p.zabel@pengutronix.de, qi-ming.wu@intel.com, robh@kernel.org,
+        Hauke Mehrtens <hauke@hauke-m.de>
+References: <90cc600d6f7ded68f5a618b626bd9cffa5edf5c3.1566531960.git.eswara.kota@linux.intel.com>
+ <20190824211158.5900-1-martin.blumenstingl@googlemail.com>
+ <3813e658-1600-d878-61a4-29b4fe51b281@linux.intel.com>
+ <CAFBinCA_B9psNGBeDyhkewhoutNh6HsLUN+TRfO_8vuNqhis4Q@mail.gmail.com>
+ <48b90943-e23d-a27a-c743-f321345c9151@linux.intel.com>
+ <CAFBinCD1oKxYm8QD7XfZUWq_HC5A4GLMmLCnZrcRvpTxrKo30w@mail.gmail.com>
+ <19719490-178a-18fd-64f2-f77d955897f7@linux.intel.com>
+ <CAFBinCDmi4HN4Ayg4T8aKUeu4hrUmVQ+z-hTN-6XMhiOCUcHjg@mail.gmail.com>
+ <34336c9a-8e87-8f84-2ae8-032b7967928f@linux.intel.com>
+ <CAFBinCDfM3ssHisMBKXZUFkfoAFw51TaUuKt_aBgtD-mN+9fhg@mail.gmail.com>
+From:   "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>
+Message-ID: <657d796d-cb1b-472d-fe67-f7b9bf12fd79@linux.intel.com>
+Date:   Fri, 30 Aug 2019 11:01:59 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ef33731-de4a-473c-d052-08d72cf4c36d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2019 02:50:05.7561
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dN7yG6ehuzJE/VUvxXcurrvY6TI+c0zxZkar9tXmMndOY1cUIpbAdeDXMNdHrhUar6mhJUMMURpxB0pz6q8IFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5794
+In-Reply-To: <CAFBinCDfM3ssHisMBKXZUFkfoAFw51TaUuKt_aBgtD-mN+9fhg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Subject: Re: [PATCH v5 2/2] mailbox: introduce ARM SMC based mailbox
->=20
-> On Wed, Aug 28, 2019 at 03:03:02AM +0000, Peng Fan wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > This mailbox driver implements a mailbox which signals transmitted
-> > data via an ARM smc (secure monitor call) instruction. The mailbox
-> > receiver is implemented in firmware and can synchronously return data
-> > when it returns execution to the non-secure world again.
-> > An asynchronous receive path is not implemented.
-> > This allows the usage of a mailbox to trigger firmware actions on SoCs
-> > which either don't have a separate management processor or on which
-> > such a core is not available. A user of this mailbox could be the SCP
-> > interface.
-> >
-> > Modified from Andre Przywara's v2 patch
-> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Flor=
-e
-> > .kernel.org%2Fpatchwork%2Fpatch%2F812999%2F&amp;data=3D02%7C01%7
-> Cpeng.fa
-> >
-> n%40nxp.com%7Ca1e96c6b782d43b2cfb208d72bc05898%7C686ea1d3bc2b
-> 4c6fa92cd
-> >
-> 99c5c301635%7C0%7C0%7C637025977487779923&amp;sdata=3DrzC%2B4Y1c
-> q9Y3tSDFR
-> > %2Fsvf5ktk7INP2rwXN%2BXdWCVjNs%3D&amp;reserved=3D0
-> >
-> > Cc: Andre Przywara <andre.przywara@arm.com>
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  drivers/mailbox/Kconfig           |   7 ++
-> >  drivers/mailbox/Makefile          |   2 +
-> >  drivers/mailbox/arm-smc-mailbox.c | 215
-> > ++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 224 insertions(+)
-> >  create mode 100644 drivers/mailbox/arm-smc-mailbox.c
-> >
->=20
+Hi Martin,
+
+On 8/30/2019 5:40 AM, Martin Blumenstingl wrote:
+> Hi,
+>
+> On Thu, Aug 29, 2019 at 4:51 AM Chuan Hua, Lei
+> <chuanhua.lei@linux.intel.com> wrote:
+>
+>>> I'm not surprised that we got some of the IP block layout for the
+>>> VRX200 RCU "wrong" - all "documentation" we have is the old Lantiq UGW
+>>> (BSP).
+>>> with proper documentation (as in a "public datasheet for the SoC") it
+>>> would be easy to spot these mistakes (at least I assume that the
+>>> quality of the Infineon / Lantiq datasheets is excellent).
+>>>
+>>> back to reset-intel-syscon:
+>>> assigning only one job to the RCU hardware is a good idea (in my opinion).
+>>> that brings up a question: why do we need the "syscon" compatible for
+>>> the RCU node?
+>>> this is typically used when registers are accessed by another IP block
+>>> and the other driver has to access these registers as well. does this
+>>> mean that there's more hidden in the RCU registers?
+>> As I mentioned, some other misc registers are put into RCU even they
+>> don't belong to reset functions.
+> OK, just be aware that there are also rules for syscon compatible
+> drivers, see for example: [0]
+> if Rob (dt-bindings maintainer) is happy with the documentation in
+> patch 1 then I'm fine with it as well.
+> for my own education I would appreciate if you could describe these
+> "other misc registers" with a few sentences (I assume that this can
+> also help Rob)
+For LGM, RCU is clean. There would be no MISC register after software's 
+feedback. These misc registers will be moved to chiptop/misc 
+groups(implemented by syscon). For legacy SoC, we do have a lot MISC 
+registers for different SoCs.
+>
 > [...]
->=20
-> > +static int arm_smc_mbox_probe(struct platform_device *pdev) {
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct mbox_controller *mbox;
-> > +	struct arm_smc_chan_data *chan_data;
-> > +	const char *method;
-> > +	bool mem_trans =3D false;
-> > +	int ret, i;
-> > +	u32 val;
-> > +
-> > +	if (!of_property_read_u32(dev->of_node, "arm,num-chans", &val)) {
-> > +		if (!val) {
-> > +			dev_err(dev, "invalid arm,num-chans value %u\n", val);
-> > +			return -EINVAL;
-> > +		}
-> > +	} else {
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (!of_property_read_string(dev->of_node, "transports", &method)) {
-> > +		if (!strcmp("mem", method)) {
-> > +			mem_trans =3D true;
-> > +		} else if (!strcmp("reg", method)) {
-> > +			mem_trans =3D false;
-> > +		} else {
-> > +			dev_warn(dev, "invalid \"transports\" property: %s\n",
-> > +				 method);
-> > +
-> > +			return -EINVAL;
-> > +		}
-> > +	} else {
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (!of_property_read_string(dev->of_node, "method", &method)) {
-> > +		if (!strcmp("hvc", method)) {
-> > +			invoke_smc_mbox_fn =3D __invoke_fn_hvc;
-> > +		} else if (!strcmp("smc", method)) {
-> > +			invoke_smc_mbox_fn =3D __invoke_fn_smc;
-> > +		} else {
-> > +			dev_warn(dev, "invalid \"method\" property: %s\n",
-> > +				 method);
-> > +
-> > +			return -EINVAL;
-> > +		}
-> > +	} else {
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	mbox =3D devm_kzalloc(dev, sizeof(*mbox), GFP_KERNEL);
-> > +	if (!mbox)
-> > +		return -ENOMEM;
-> > +
-> > +	mbox->num_chans =3D val;
-> > +	mbox->chans =3D devm_kcalloc(dev, mbox->num_chans,
-> sizeof(*mbox->chans),
-> > +				   GFP_KERNEL);
-> > +	if (!mbox->chans)
-> > +		return -ENOMEM;
-> > +
-> > +	chan_data =3D devm_kcalloc(dev, mbox->num_chans, sizeof(*chan_data),
-> > +				 GFP_KERNEL);
-> > +	if (!chan_data)
-> > +		return -ENOMEM;
-> > +
-> > +	for (i =3D 0; i < mbox->num_chans; i++) {
-> > +		u32 function_id;
-> > +
-> > +		ret =3D of_property_read_u32_index(dev->of_node,
-> > +						 "arm,func-ids", i,
-> > +						 &function_id);
->=20
-> I missed it in binding but I thought we agreed to make this "arm,func-ids=
-"
-> a required property and not optional ?
+>>>>>>>> 4. Code not optimized and intel internal review not assessed.
+>>>>>>> insights from you (like the issue with the reset callback) are very
+>>>>>>> valuable - this shows that we should focus on having one driver.
+>>>>>>>
+>>>>>>>> Based on the above findings, I would suggest reset-lantiq.c to move to
+>>>>>>>> reset-intel-syscon.c
+>>>>>>> my concern with having two separate drivers is that it will be hard to
+>>>>>>> migrate from reset-lantiq to the "optimized" reset-intel-syscon
+>>>>>>> driver.
+>>>>>>> I don't have access to the datasheets for the any Lantiq/Intel SoC
+>>>>>>> (VRX200 and even older).
+>>>>>>> so debugging issues after switching from one driver to another is
+>>>>>>> tedious because I cannot tell which part of the driver is causing a
+>>>>>>> problem (it's either "all code from driver A" vs "all code from driver
+>>>>>>> B", meaning it's hard to narrow it down).
+>>>>>>> with separate commits/patches that are improving the reset-lantiq
+>>>>>>> driver I can do git bisect to find the cause of a problem on the older
+>>>>>>> SoCs (VRX200 for example)
+>>>>>> Our internal version supports XRX350/XRX500/PRX300(MIPS based) and
+>>>>>> latest Lighting Mountain(X86 based). Migration to reset-intel-syscon.c
+>>>>>> should be straight forward.
+>>>>> what about the _reset callback on the XRX350/XRX500/PRX300 SoCs - do
+>>>>> they only use level resets (_assert and _deassert) or are some reset
+>>>>> lines using reset pulses (_reset)?
+>>>>>
+>>>>> when we wanted to switch from reset-lantiq.c to reset-intel-syscon.c
+>>>>> we still had to add support for the _reset callback as this is missing
+>>>>> in reset-intel-syscon.c currently
+>>>> Yes. We have reset pulse(assert, then check the reset status).
+>>> only now I realized that the reset-intel-syscon driver does not seem
+>>> to use the status registers (instead it's looking at the reset
+>>> registers when checking the status).
+>>> what happened to the status registers - do they still exist in newer
+>>> SoCs (like LGM)? why are they not used?
+>> Reset status check is there. regmap_read_poll_timeout to check status
+>> big. Status register offset <4) from request register. For legacy, there
+>> is one exception, we can add soc specific data to handle it.
+> I see, thank you for the explanation
+> this won't work on VRX200 for example because the status register is
+> not always at (reset register - 0x4)
 
-Not sure Jassi is fine with it being a required property, but I could conve=
-rt
-it to a required property in V6.
+As I mentioned, VRX200 and all legacy SoCs (MIPS based) can be solved 
+with one soc data in the compatible array.
 
-Thanks,
-Peng.
+For example(not same as upstream, but idea is similar)
 
->=20
-> --
-> Regards,
-> Sudeep
+static u32 intel_stat_reg_off(struct intel_reset_data *data, u32 req_off)
+{
+     if (data->soc_data->legacy && req_off == RCU_RST_REQ)
+         return RCU_RST_STAT;
+     else
+         return req_off + 0x4;
+}
+
+>
+>>> on VRX200 for example there seem to be some cases where the bits in
+>>> the reset and status registers are different (for example: the first
+>>> GPHY seems to use reset bit 31 but status bit 30)
+>>> this is currently not supported in reset-intel-syscon
+>> This is most tricky and ugly part for VRX200/Danube. Do you have any
+>> idea to handle this nicely?
+> with reset-lantiq we have the following register information:
+> a) reset offset: first reg property
+> b) status offset: second reg property
+> c) reset bit: first #reset-cell
+> d) status bit: second #reset-cell
+>
+> reset-intel-syscon derives half of this information from the two #reset-cells:
+> a) reset offset: first #reset-cell
+> b) status offset: reset offset - 0x4
+> c) reset bit: second #reset-cell
+> d) status bit: same as reset bit
+>
+> I cannot make any suggestion (yet) how to handle VRX200 and LGM in one
+> driver because I don't know enough about LGM (yet).
+> on VRX200 my understanding is that we have 64 reset bits (2x 32bit
+> registers) and 64 status bits (also 2x 32bit registers). each reset
+> bit has a corresponding status bit but the numbering may be different
+> it's not clear to me how many resets LGM supports and how they are
+> organized. for example: I think it makes a difference if "there are 64
+> registers with each one reset bit" versus "there are two registers
+> with 32 bits each"
+> please share some details how it's organized internally, then I can
+> try to come up with a suggestion.
+LGM reset organization is more clean compared with legacy SoCs. We have 
+8 x 32bit reset and status registers(more modules need to be reset, 
+overall ideas are similar without big change). Their request and status 
+bit is at the same register bit position.  Hope this will help you.
+>
+> ... after writing this I noticed that we are discussing the binding.
+> we definitely need to share a summary with Rob on patch #1 and check
+> with him if he sees any problems with the approach that we may come up
+> with
+>
+>
+> Martin
+>
+>
+> [0] https://lkml.org/lkml/2019/8/27/849
