@@ -2,127 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 84CF6A3CF3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 19:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44697A3D0E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 19:36:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727304AbfH3RYb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 13:24:31 -0400
-Received: from mx2.suse.de ([195.135.220.15]:35906 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727791AbfH3RYa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 13:24:30 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 5DC6FAEAE;
-        Fri, 30 Aug 2019 17:24:28 +0000 (UTC)
-Message-ID: <bdeda2206b751a1c6a8d2e0732186792282633c6.camel@suse.de>
-Subject: Re: [PATCH v2 01/11] asm-generic: add dma_zone_size
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Christoph Hellwig <hch@lst.de>
-Cc:     linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-        will@kernel.org, m.szyprowski@samsung.com,
-        linux-arch@vger.kernel.org, f.fainelli@gmail.com,
-        frowand.list@gmail.com, devicetree@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, marc.zyngier@arm.com,
-        robh+dt@kernel.org, linux-rpi-kernel@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, phill@raspberryi.org,
-        mbrugger@suse.com, eric@anholt.net, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org, wahrenst@gmx.net,
-        akpm@linux-foundation.org, Robin Murphy <robin.murphy@arm.com>
-Date:   Fri, 30 Aug 2019 19:24:25 +0200
-In-Reply-To: <20190830144536.GJ36992@arrakis.emea.arm.com>
-References: <20190820145821.27214-1-nsaenzjulienne@suse.de>
-         <20190820145821.27214-2-nsaenzjulienne@suse.de>
-         <20190826070939.GD11331@lst.de>
-         <027272c27398b950f207101a2c5dbc07a30a36bc.camel@suse.de>
-         <20190830144536.GJ36992@arrakis.emea.arm.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-VseoIlC7OSxnfDPpE7cN"
-User-Agent: Evolution 3.32.4 
+        id S1727922AbfH3RgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 13:36:07 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:45461 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727914AbfH3RgH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 13:36:07 -0400
+Received: by mail-pl1-f195.google.com with SMTP id y8so3664416plr.12;
+        Fri, 30 Aug 2019 10:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Pafo73I1UbBRX8XwIZQylqQ4gK9txbwYzG4pKvHI3F8=;
+        b=f/XzB+SeEsVRxFEknXHKYgibFNLpjaG/LE0MjGm3VLZ/Zx4lss9JzcDr/2nlg03iq2
+         xpFRuoFL+ArKTHR2Ic3szIPLegOknO4mWolM+GdCzrVU4OBEsGiqW4rFjkIXH4cqyGDL
+         ieLiEgR0SqVHWNkpusRL/q6UdVr5P8WNpNH0eVDZZyHnCdk1u9X/9GuPzEvkieTf4yzs
+         AHtSS8HpN+o5mADp30NlUtg0hxe39Cin6Lyou6n4LWNAAHXNcpsSo61E+yLN2NQO6G21
+         S3GIG4u2zdTtA9BZ8BWj3nWx1F1wvP5WXoWl5xWMVcFtLRwexcy+0ecGQVY91OXPZjof
+         c93Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Pafo73I1UbBRX8XwIZQylqQ4gK9txbwYzG4pKvHI3F8=;
+        b=X3xEBBSGOsyNw8Roupfh9SB/BMH7iEkN0+qOYUSBFBQedSx0LIAZo1njt4UupFPft+
+         QkGMT/4iKI7Re86JsNv/QRZ0V7neGBJgneLbxw56ryT06GeJEUCXTVotw4fOT0/ar/QE
+         GTM6CmNKlD5h++XkjY1xoy2Xq6VDkQxRB9drtWvPsalT5VWITOOZBCGfnwGdmxquLOLN
+         ku4eOrBeT08smHY9EjmF2+ozR/iBsBeS1J/Av3HBDXCLY7LFwTjwG36ZQb7/insT1CGI
+         ozJTBnT+D+DiqU6lutWUlgoRjBC0wG/5slT34UYF6ixkb9/Ndr28AUIDfvN4bW6T0ssk
+         FrmQ==
+X-Gm-Message-State: APjAAAVhTaHh+qS/VZ3xanelkuGHydQbRltilqRNfoN0cEFWj/v1BtXQ
+        eyActNkKxPnkFDR4ye8tCQE=
+X-Google-Smtp-Source: APXvYqxpGugk/VQ+2edUg60V5g3B6e7BsglHIs5QrhYmn1FKo4djBUFftIpEWoFU+ny6R7+GZQawzg==
+X-Received: by 2002:a17:902:f204:: with SMTP id gn4mr16870589plb.23.1567186566135;
+        Fri, 30 Aug 2019 10:36:06 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id r23sm8887772pfg.10.2019.08.30.10.36.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 30 Aug 2019 10:36:04 -0700 (PDT)
+Date:   Fri, 30 Aug 2019 10:36:03 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
+        andrew@aj.id.au, joel@jms.id.au, mark.rutland@arm.com,
+        robh+dt@kernel.org, jdelvare@suse.com
+Subject: Re: [PATCH 3/3] pmbus: ibm-cffps: Add support for version 2 of the
+ PSU
+Message-ID: <20190830173603.GA10472@roeck-us.net>
+References: <1567181385-22129-1-git-send-email-eajames@linux.ibm.com>
+ <1567181385-22129-4-git-send-email-eajames@linux.ibm.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1567181385-22129-4-git-send-email-eajames@linux.ibm.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Aug 30, 2019 at 11:09:45AM -0500, Eddie James wrote:
+> Version 2 of the PSU supports a second page of data and changes the
+> format of the FW version. Use the devicetree binding to differentiate
+> between the version the driver should use.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> ---
+>  drivers/hwmon/pmbus/ibm-cffps.c | 109 ++++++++++++++++++++++++++++++++--------
+>  1 file changed, 87 insertions(+), 22 deletions(-)
+> 
+> diff --git a/drivers/hwmon/pmbus/ibm-cffps.c b/drivers/hwmon/pmbus/ibm-cffps.c
+> index ee2ee9e..ca26fbd 100644
+> --- a/drivers/hwmon/pmbus/ibm-cffps.c
+> +++ b/drivers/hwmon/pmbus/ibm-cffps.c
+> @@ -12,16 +12,20 @@
+>  #include <linux/leds.h>
+>  #include <linux/module.h>
+>  #include <linux/mutex.h>
+> +#include <linux/of_device.h>
+>  #include <linux/pmbus.h>
+>  
+>  #include "pmbus.h"
+>  
+> +#define CFFPS_VERSIONS				2
+> +
 
---=-VseoIlC7OSxnfDPpE7cN
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Any chance you can use an enum for the versions ? Using version
+numbers 1/2 combined with array indices 0/1 is confusing, error
+prone, and seems unnecessary.
 
-On Fri, 2019-08-30 at 15:45 +0100, Catalin Marinas wrote:
-> On Mon, Aug 26, 2019 at 03:46:52PM +0200, Nicolas Saenz Julienne wrote:
-> > On Mon, 2019-08-26 at 09:09 +0200, Christoph Hellwig wrote:
-> > > On Tue, Aug 20, 2019 at 04:58:09PM +0200, Nicolas Saenz Julienne wrot=
-e:
-> > > > Some architectures have platform specific DMA addressing limitation=
-s.
-> > > > This will allow for hardware description code to provide the constr=
-aints
-> > > > in a generic manner, so as for arch code to properly setup it's mem=
-ory
-> > > > zones and DMA mask.
-> > >=20
-> > > I know this just spreads the arm code, but I still kinda hate it.
-> >=20
-> > Rob's main concern was finding a way to pass the constraint from HW
-> > definition
-> > to arch without widening fdt's architecture specific function surface. =
-I'd
-> > say
-> > it's fair to argue that having a generic mechanism makes sense as it'll=
- now
-> > traverse multiple archs and subsystems.
-> >=20
-> > I get adding globals like this is not very appealing, yet I went with i=
-t as
-> > it
-> > was the easier to integrate with arm's code. Any alternative suggestion=
-s?
->=20
-> In some discussion with Robin, since it's just RPi4 that we are aware of
-> having such requirement on arm64, he suggested that we have a permanent
-> ZONE_DMA on arm64 with a default size of 1GB. It should cover all arm64
-> SoCs we know of without breaking the single Image binary. The arch/arm
-> can use its current mach-* support.
->=20
-> I may like this more than the proposed early_init_dt_get_dma_zone_size()
-> here which checks for specific SoCs (my preferred way was to build the
-> mask from all buses described in DT but I hadn't realised the
-> complications).
+Thanks,
+Guenter
 
-Hi Catalin, thanks for giving it a thought.
-
-I'll be happy to implement it that way. I agree it's a good compromise.
-
-@Christoph, do you still want the patch where I create 'zone_dma_bits'? Wit=
-h a
-hardcoded ZONE_DMA it's not absolutely necessary. Though I remember you sai=
-d it
-was a first step towards being able to initialize dma-direct's min_mask in
-meminit.
-
-Regards,
-Nicolas
-
-
---=-VseoIlC7OSxnfDPpE7cN
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1pW8kACgkQlfZmHno8
-x/4ltggAgcfG1puKlA5IJJrCySlntixj950TwNq7qMwwKwzxVCTojg/6HtjhOmlp
-IRbqq36DEjcQ12ulD0rqU84gMIP6jryt4iVDDutg18liBPSH3eekj9Wf22J+Vq7f
-5yw3zuYyCkrTcgWufsIwn4kbH0GRXCCLV8kwfKFRtXE5dtcWTRbOeNPpmh4HxIJW
-z0SkTnBc03CvX0VamQYNZ45QvBFVntqKMCExrvinZyOBUs4+/nd68IXfBU+rj9qb
-IBbZaZspKLp1NdVxSo/Tmamv2NVTodxnue9KbFzQe8r3n1bak/9VJKO4z3u0R6AK
-6x6oAxLccyXIktLiudLXEMdXMar2vw==
-=LsVM
------END PGP SIGNATURE-----
-
---=-VseoIlC7OSxnfDPpE7cN--
-
+>  #define CFFPS_FRU_CMD				0x9A
+>  #define CFFPS_PN_CMD				0x9B
+>  #define CFFPS_SN_CMD				0x9E
+>  #define CFFPS_CCIN_CMD				0xBD
+> -#define CFFPS_FW_CMD_START			0xFA
+> -#define CFFPS_FW_NUM_BYTES			4
+> +#define CFFPS_FW_CMD				0xFA
+> +#define CFFPS1_FW_NUM_BYTES			4
+> +#define CFFPS2_FW_NUM_WORDS			3
+>  #define CFFPS_SYS_CONFIG_CMD			0xDA
+>  
+>  #define CFFPS_INPUT_HISTORY_CMD			0xD6
+> @@ -61,6 +65,7 @@ struct ibm_cffps_input_history {
+>  };
+>  
+>  struct ibm_cffps {
+> +	int version;
+>  	struct i2c_client *client;
+>  
+>  	struct ibm_cffps_input_history input_history;
+> @@ -132,6 +137,8 @@ static ssize_t ibm_cffps_debugfs_op(struct file *file, char __user *buf,
+>  	struct ibm_cffps *psu = to_psu(idxp, idx);
+>  	char data[I2C_SMBUS_BLOCK_MAX] = { 0 };
+>  
+> +	pmbus_set_page(psu->client, 0);
+> +
+>  	switch (idx) {
+>  	case CFFPS_DEBUGFS_INPUT_HISTORY:
+>  		return ibm_cffps_read_input_history(psu, buf, count, ppos);
+> @@ -152,16 +159,36 @@ static ssize_t ibm_cffps_debugfs_op(struct file *file, char __user *buf,
+>  		rc = snprintf(data, 5, "%04X", rc);
+>  		goto done;
+>  	case CFFPS_DEBUGFS_FW:
+> -		for (i = 0; i < CFFPS_FW_NUM_BYTES; ++i) {
+> -			rc = i2c_smbus_read_byte_data(psu->client,
+> -						      CFFPS_FW_CMD_START + i);
+> -			if (rc < 0)
+> -				return rc;
+> +		switch (psu->version) {
+> +		case 1:
+> +			for (i = 0; i < CFFPS1_FW_NUM_BYTES; ++i) {
+> +				rc = i2c_smbus_read_byte_data(psu->client,
+> +							      CFFPS_FW_CMD +
+> +								i);
+> +				if (rc < 0)
+> +					return rc;
+> +
+> +				snprintf(&data[i * 2], 3, "%02X", rc);
+> +			}
+>  
+> -			snprintf(&data[i * 2], 3, "%02X", rc);
+> -		}
+> +			rc = i * 2;
+> +			break;
+> +		case 2:
+> +			for (i = 0; i < CFFPS2_FW_NUM_WORDS; ++i) {
+> +				rc = i2c_smbus_read_word_data(psu->client,
+> +							      CFFPS_FW_CMD +
+> +								i);
+> +				if (rc < 0)
+> +					return rc;
+> +
+> +				snprintf(&data[i * 4], 5, "%04X", rc);
+> +			}
+>  
+> -		rc = i * 2;
+> +			rc = i * 4;
+> +			break;
+> +		default:
+> +			return -EOPNOTSUPP;
+> +		}
+>  		goto done;
+>  	default:
+>  		return -EINVAL;
+> @@ -279,6 +306,8 @@ static void ibm_cffps_led_brightness_set(struct led_classdev *led_cdev,
+>  			psu->led_state = CFFPS_LED_ON;
+>  	}
+>  
+> +	pmbus_set_page(psu->client, 0);
+> +
+>  	rc = i2c_smbus_write_byte_data(psu->client, CFFPS_SYS_CONFIG_CMD,
+>  				       psu->led_state);
+>  	if (rc < 0)
+> @@ -299,6 +328,8 @@ static int ibm_cffps_led_blink_set(struct led_classdev *led_cdev,
+>  	if (led_cdev->brightness == LED_OFF)
+>  		return 0;
+>  
+> +	pmbus_set_page(psu->client, 0);
+> +
+>  	rc = i2c_smbus_write_byte_data(psu->client, CFFPS_SYS_CONFIG_CMD,
+>  				       CFFPS_LED_BLINK);
+>  	if (rc < 0)
+> @@ -328,15 +359,32 @@ static void ibm_cffps_create_led_class(struct ibm_cffps *psu)
+>  		dev_warn(dev, "failed to register led class: %d\n", rc);
+>  }
+>  
+> -static struct pmbus_driver_info ibm_cffps_info = {
+> -	.pages = 1,
+> -	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+> -		PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
+> -		PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 | PMBUS_HAVE_STATUS_VOUT |
+> -		PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_INPUT |
+> -		PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_FAN12,
+> -	.read_byte_data = ibm_cffps_read_byte_data,
+> -	.read_word_data = ibm_cffps_read_word_data,
+> +static struct pmbus_driver_info ibm_cffps_info[CFFPS_VERSIONS] = {
+> +	[0] = {
+> +		.pages = 1,
+> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+> +			PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
+> +			PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
+> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
+> +			PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP |
+> +			PMBUS_HAVE_STATUS_FAN12,
+> +		.read_byte_data = ibm_cffps_read_byte_data,
+> +		.read_word_data = ibm_cffps_read_word_data,
+> +	},
+> +	[1] = {
+> +		.pages = 2,
+> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+> +			PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
+> +			PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
+> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
+> +			PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP |
+> +			PMBUS_HAVE_STATUS_FAN12,
+> +		.func[1] = PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
+> +			PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
+> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT,
+> +		.read_byte_data = ibm_cffps_read_byte_data,
+> +		.read_word_data = ibm_cffps_read_word_data,
+> +	},
+>  };
+>  
+>  static struct pmbus_platform_data ibm_cffps_pdata = {
+> @@ -346,13 +394,21 @@ static void ibm_cffps_create_led_class(struct ibm_cffps *psu)
+>  static int ibm_cffps_probe(struct i2c_client *client,
+>  			   const struct i2c_device_id *id)
+>  {
+> -	int i, rc;
+> +	int i, rc, vs;
+>  	struct dentry *debugfs;
+>  	struct dentry *ibm_cffps_dir;
+>  	struct ibm_cffps *psu;
+> +	const void *md = of_device_get_match_data(&client->dev);
+> +
+> +	if (md)
+> +		vs = (int)md;
+> +	else if (id)
+> +		vs = (int)id->driver_data;
+> +	else
+> +		vs = 1;
+>  
+>  	client->dev.platform_data = &ibm_cffps_pdata;
+> -	rc = pmbus_do_probe(client, id, &ibm_cffps_info);
+> +	rc = pmbus_do_probe(client, id, &ibm_cffps_info[vs - 1]);
+>  	if (rc)
+>  		return rc;
+>  
+> @@ -364,6 +420,7 @@ static int ibm_cffps_probe(struct i2c_client *client,
+>  	if (!psu)
+>  		return 0;
+>  
+> +	psu->version = vs;
+>  	psu->client = client;
+>  	mutex_init(&psu->input_history.update_lock);
+>  	psu->input_history.last_update = jiffies - HZ;
+> @@ -406,12 +463,20 @@ static int ibm_cffps_probe(struct i2c_client *client,
+>  
+>  static const struct i2c_device_id ibm_cffps_id[] = {
+>  	{ "ibm_cffps1", 1 },
+> +	{ "ibm_cffps2", 2 },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(i2c, ibm_cffps_id);
+>  
+>  static const struct of_device_id ibm_cffps_of_match[] = {
+> -	{ .compatible = "ibm,cffps1" },
+> +	{
+> +		.compatible = "ibm,cffps1",
+> +		.data = (void *)1
+> +	},
+> +	{
+> +		.compatible = "ibm,cffps2",
+> +		.data = (void *)2
+> +	},
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, ibm_cffps_of_match);
+> -- 
+> 1.8.3.1
+> 
