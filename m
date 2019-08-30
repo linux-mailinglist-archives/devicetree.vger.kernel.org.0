@@ -2,93 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E661A301B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 08:38:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7AEA3051
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727170AbfH3GiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 02:38:14 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:59341 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727156AbfH3GiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 02:38:14 -0400
-X-UUID: 52299a477fb840b4a5c534a8607efb75-20190830
-X-UUID: 52299a477fb840b4a5c534a8607efb75-20190830
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 312043307; Fri, 30 Aug 2019 14:38:12 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 30 Aug 2019 14:38:10 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 30 Aug 2019 14:38:10 +0800
-Message-ID: <1567147084.5942.24.camel@mtksdaap41>
-Subject: Re: [PATCH v5, 32/32] drm/mediatek: add support for mediatek SOC
- MT8183
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <yongqiang.niu@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S1726334AbfH3HEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 03:04:15 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:55538 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726005AbfH3HEP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 03:04:15 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7U73gmm042113;
+        Fri, 30 Aug 2019 02:03:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1567148622;
+        bh=TvjLDefDv40s29fEzH3g7fQslYok3FADT3UXIgYvbVU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=yhw24j2hc2Ms0XnG/Bp8FBmgwPVDGfO0uIh6twc+Fscewu9zYFZBzEm/DEvAZN203
+         NpfFlnv2Zo8Hn1x1dPhedDpQAxKybR+MMI+uGCSXproeQ+qczo5ORw9mjfbX+WRMzf
+         lWQKKBacNX/GTi9O+xu1pqo4EBrJVWzCA4tiYnhE=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7U73gZ0045863
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 30 Aug 2019 02:03:42 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 30
+ Aug 2019 02:03:41 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 30 Aug 2019 02:03:41 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7U73ddp074448;
+        Fri, 30 Aug 2019 02:03:39 -0500
+Subject: Re: [PATCHv2 05/11] soc: ti: omap-prm: sync func clock status with
+ resets
+To:     Philipp Zabel <p.zabel@pengutronix.de>, <ssantosh@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Fri, 30 Aug 2019 14:38:04 +0800
-In-Reply-To: <1567090254-15566-33-git-send-email-yongqiang.niu@mediatek.com>
-References: <1567090254-15566-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1567090254-15566-33-git-send-email-yongqiang.niu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <s-anna@ti.com>, <devicetree@vger.kernel.org>
+References: <20190828071941.32378-1-t-kristo@ti.com>
+ <20190828071941.32378-6-t-kristo@ti.com>
+ <1567085114.5345.12.camel@pengutronix.de>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <7725d643-42ac-c3c1-9b07-ce2631fdb3c4@ti.com>
+Date:   Fri, 30 Aug 2019 10:03:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <1567085114.5345.12.camel@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 3A53A6B57AF88A36690CA44703A5200786A336B147C0319BCC50C2D54FFA42BF2000:8
-X-MTK:  N
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
-
-On Thu, 2019-08-29 at 22:50 +0800, yongqiang.niu@mediatek.com wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On 29/08/2019 16:25, Philipp Zabel wrote:
+> On Wed, 2019-08-28 at 10:19 +0300, Tero Kristo wrote:
+>> Hardware reset signals are tightly coupled with associated clocks, and
+>> basically de-asserting a reset won't succeed properly if the clock is
+>> not enabled, and vice-versa. Also, disabling a clock won't fully succeed
+>> if the associated hardware resets are not asserted. Add status sync
+>> functionality between these two for TI drivers so that the situations
+>> can be handled properly without generating any timeouts.
+>>
+>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>> ---
+>>   drivers/soc/ti/omap_prm.c | 36 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 36 insertions(+)
+>>
+>> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
+>> index 38998ce19c71..e876bad8f8d5 100644
+>> --- a/drivers/soc/ti/omap_prm.c
+>> +++ b/drivers/soc/ti/omap_prm.c
+>> @@ -15,6 +15,8 @@
+>>   #include <linux/platform_device.h>
+>>   #include <linux/reset-controller.h>
+>>   #include <linux/delay.h>
+>> +#include <linux/clk.h>
+>> +#include <linux/clk/ti.h>
+>>   
+>>   #include <linux/platform_data/ti-prm.h>
+>>   
+>> @@ -42,7 +44,9 @@ struct omap_reset_data {
+>>   	struct reset_controller_dev rcdev;
+>>   	struct omap_prm *prm;
+>>   	struct clockdomain *clkdm;
+>> +	struct clk *clk;
+>>   	struct device *dev;
+>> +	u32 mask;
+>>   };
+>>   
+>>   #define to_omap_reset_data(p) container_of((p), struct omap_reset_data, rcdev)
+>> @@ -102,6 +106,8 @@ static int omap_reset_assert(struct reset_controller_dev *rcdev,
+>>   	v |= 1 << id;
+>>   	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
+>>   
+>> +	ti_clk_notify_resets(reset->clk, v == reset->mask);
+>> +
+>>   	return 0;
+>>   }
+>>   
+>> @@ -163,9 +169,19 @@ static int omap_reset_deassert(struct reset_controller_dev *rcdev,
+>>   	v &= ~(1 << id);
+>>   	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
+>>   
+>> +	ti_clk_notify_resets(reset->clk, v == reset->mask);
+>> +
+>>   	if (!has_rstst)
+>>   		goto exit;
+>>   
+>> +	/* If associated clock is disabled, we can't poll completion status */
+>> +	if (reset->clk) {
+>> +		struct clk_hw *hw = __clk_get_hw(reset->clk);
+>> +
+>> +		if (!clk_hw_is_enabled(hw))
+>> +			return ret;
+>> +	}
+>> +
+>>   	/* wait for the status to be set */
+>>   	while (1) {
+>>   		v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
+>> @@ -199,8 +215,10 @@ static int omap_prm_reset_init(struct platform_device *pdev,
+>>   			       struct omap_prm *prm)
+>>   {
+>>   	struct omap_reset_data *reset;
+>> +	const struct omap_rst_map *map;
+>>   	struct ti_prm_platform_data *pdata = dev_get_platdata(&pdev->dev);
+>>   	char buf[32];
+>> +	u32 v;
+>>   
+>>   	/*
+>>   	 * Check if we have controllable resets. If either rstctrl is non-zero
+>> @@ -215,6 +233,10 @@ static int omap_prm_reset_init(struct platform_device *pdev,
+>>   	    !pdata->clkdm_allow_idle)
+>>   		return -EINVAL;
+>>   
+>> +	map = prm->data->rstmap;
+>> +	if (!map)
+>> +		return -EINVAL;
 > 
-> This patch add support for mediatek SOC MT8183
-> 1.ovl_2l share driver with ovl
-> 2.rdma1 share drive with rdma0, but fifo size is different
-> 3.add mt8183 mutex private data, and mmsys private data
-> 4.add mt8183 main and external path module for crtc create
+> Can this actually happen?
+
+It can, if user writes bad data to the omap_prm_data structs. Without 
+this check it would make the probe crash which is bad.
+
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  drivers/gpu/drm/mediatek/mtk_disp_ovl.c  | 18 +++++++++
->  drivers/gpu/drm/mediatek/mtk_disp_rdma.c | 27 ++++++++++++-
->  drivers/gpu/drm/mediatek/mtk_drm_ddp.c   | 69 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/mediatek/mtk_drm_ddp.h   |  1 +
->  drivers/gpu/drm/mediatek/mtk_drm_drv.c   | 47 ++++++++++++++++++++++
->  5 files changed, 161 insertions(+), 1 deletion(-)
+>> +
+>>   	reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
+>>   	if (!reset)
+>>   		return -ENOMEM;
+>> @@ -224,6 +246,10 @@ static int omap_prm_reset_init(struct platform_device *pdev,
+>>   	reset->rcdev.of_node = pdev->dev.of_node;
+>>   	reset->rcdev.nr_resets = OMAP_MAX_RESETS;
+>>   	reset->dev = &pdev->dev;
+>> +	reset->clk = of_clk_get(pdev->dev.of_node, 0);
+>> +
+>> +	if (IS_ERR(reset->clk))
+>> +		reset->clk = NULL;
 > 
+> Maybe only ignore -ENOENT?
 
-[snip]
+Yeah, I can modify this.
 
-> @@ -613,6 +658,8 @@ static SIMPLE_DEV_PM_OPS(mtk_drm_pm_ops, mtk_drm_sys_suspend,
->  	  .data = &mt2712_mmsys_driver_data},
->  	{ .compatible = "mediatek,mt8173-mmsys",
->  	  .data = &mt8173_mmsys_driver_data},
-> +	{ .compatible = "mediatek,mt8183-display",
+> 
+>>   	reset->prm = prm;
+>>   
+>> @@ -234,6 +260,16 @@ static int omap_prm_reset_init(struct platform_device *pdev,
+>>   	if (!reset->clkdm)
+>>   		return -EINVAL;
+>>   
+>> +	while (map->rst >= 0) {
+>> +		reset->mask |= BIT(map->rst);
+>> +		map++;
+>> +	}
+> 
+> With this, you could use reset->mask to simplify _is_valid_reset.
 
-This should be "mediatek,mt8183-mmsys".
+True, let me re-write it.
 
-Regards,
-CK
-
-> +	  .data = &mt8183_mmsys_driver_data},
->  	{ }
->  };
->  
-
-
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
