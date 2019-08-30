@@ -2,118 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69AE9A3FF6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 23:50:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB24EA404C
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 00:16:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728138AbfH3Vui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 17:50:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38930 "EHLO mail.kernel.org"
+        id S1728431AbfH3WQV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 18:16:21 -0400
+Received: from shell.v3.sk ([90.176.6.54]:56362 "EHLO shell.v3.sk"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728111AbfH3Vui (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 17:50:38 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B7D7623777;
-        Fri, 30 Aug 2019 21:50:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567201836;
-        bh=BMFO/ja6VS575JdKNAgPGs67fG/E1rzTU5Hcuyhlp3Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Xr9EVH03o73fNeuckzt6dLa3FfxpH2GW0Qn7velEm+IuPIc7/1LrPkZz48VRLey21
-         PJmaWr/pvtrKOdFuSti/pogGgcUyo+BEHaQUmy7VEFRuPQjhyb70rv7DEtXD+6mq1k
-         nuFl+OxgnCkudyUoGKmDHFuuRQsxrnRNbDQDa+BQ=
-Received: by mail-qk1-f172.google.com with SMTP id i78so6055249qke.11;
-        Fri, 30 Aug 2019 14:50:36 -0700 (PDT)
-X-Gm-Message-State: APjAAAWjX9IRdrCZjLH1YCiB/Y90Gk4SGSkWbojJ6QAh9J2obcbbIcej
-        RlYZZvSsF2txnTAHMPdBe666KR0yjBguwvtpNw==
-X-Google-Smtp-Source: APXvYqw1u/Fyzf4M/pGE0WKEgY1r+h6iNzEwpmsmQCOY+XNy4hoICxOp5eBbsmTiZ2KtNobLJuNgVEJMuuTQythKs2k=
-X-Received: by 2002:a37:682:: with SMTP id 124mr17209455qkg.393.1567201835797;
- Fri, 30 Aug 2019 14:50:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190805143911.12185-1-hhhawa@amazon.com> <20190805143911.12185-2-hhhawa@amazon.com>
- <20190821191704.GA32425@bogus> <1d23d7c5-cd7b-1512-5300-d43e82ba6dc1@amazon.com>
- <CAL_Jsq+8jGbR4u7FA8r0gP5i2H+nSgOkGU_5mfiL=i=c0sOW8A@mail.gmail.com> <d46ac081-1867-2997-e2a3-bcfea42b74f3@arm.com>
-In-Reply-To: <d46ac081-1867-2997-e2a3-bcfea42b74f3@arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 30 Aug 2019 16:50:24 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+95qZyHWT_A-=L+SSbR0vmMqQDq8N2XcxwFJVG2HCthA@mail.gmail.com>
-Message-ID: <CAL_Jsq+95qZyHWT_A-=L+SSbR0vmMqQDq8N2XcxwFJVG2HCthA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/4] dt-bindings: EDAC: Add Amazon's Annapurna Labs L1 EDAC
-To:     James Morse <james.morse@arm.com>
-Cc:     "Hawa, Hanna" <hhhawa@amazon.com>,
+        id S1728399AbfH3WQV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 18:16:21 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 1767CD87E9;
+        Sat, 31 Aug 2019 00:08:10 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id a5rZfM7YaGHz; Sat, 31 Aug 2019 00:07:55 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 74FFAD87F5;
+        Sat, 31 Aug 2019 00:07:53 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id GBElljx_XOIP; Sat, 31 Aug 2019 00:07:49 +0200 (CEST)
+Received: from belphegor.brq.redhat.com (nat-pool-brq-t.redhat.com [213.175.37.10])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 37B4CD87C5;
+        Sat, 31 Aug 2019 00:07:48 +0200 (CEST)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     "To : Olof Johansson" <olof@lixom.net>
+Cc:     "Cc : Rob Herring" <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>, benh@amazon.com,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        Talel Shenhar <talel@amazon.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        "Hanoch, Uri" <hanochu@amazon.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH v3 00/16] Initial support for Marvell MMP3 SoC
+Date:   Sat, 31 Aug 2019 00:07:27 +0200
+Message-Id: <20190830220743.439670-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 7:45 AM James Morse <james.morse@arm.com> wrote:
->
-> Hi guys,
->
-> On 27/08/2019 14:49, Rob Herring wrote:
-> > On Mon, Aug 26, 2019 at 9:49 AM Hawa, Hanna <hhhawa@amazon.com> wrote:
-> >> On 8/21/2019 10:17 PM, Rob Herring wrote:
-> >>> Why is this even in DT? AFAICT, this is all just CortexA57 core features
-> >>> (i.e. nothing Amazon specific). The core type and the ECC capabilities
-> >>> are discoverable.
-> >>
-> >> Added to the DT in order to easily enable/disable the driver.
-> >
-> > That alone is not reason enough to put it in DT. From a DT
-> > perspective, I have no idea what the whims of a OS maintainer are
-> > regarding whether they want all this to be 1 driver or 2 drivers.
-> > (IMO, it should be 1 as this is ECC for an A57. For a core and memory
-> > controller, then 2 seems appropriate.)
-> >
-> >> You are
-> >> correct that they are CortexA57 core features and nothing Amazon
-> >> specific, but it's IMPLEMENTATION DEFINED, meaning that in different
-> >> cortex revisions (e.g. A57) the register bitmap may change. Because of
-> >> that we added an Amazon compatible which corresponds to the specific
-> >> core we are using.
->
-> I think its that the instruction encoding is in the imp-def space that is important.
->
-> CPU-implementers can add whatever registers they find useful here. A57 and A72 both
-> implemented some ECC registers here. (They are not guaranteed to be the same, but I can't
-> find any differences).
+Hi,=20
 
-Two cores potentially being the same only furthers my argument that
-this shouldn't be an Amazon driver.
+this is the third spin of a patch set that adds support for the Marvell
+MMP3 processor, that I'd eventually love to see land in the Arm SoC
+tree. MMP3 is used in OLPC XO-4 laptops, Panasonic Toughpad FZ-A1 tablet
+and Dell Wyse 3020/Tx0D thin clients.=20
 
-> We need some information from DT because the TRM doesn't say what happens when you read
-> from these registers on an A57 that doesn't have the 'optional ECC protection'. It could
-> take an exception due to an unimplemented system register.
+Compared to v2, there's a handful of fixes in response to reviews. Four
+irqchip patches have been removed because they've been applied to the
+irqchip-next tree. Details in individual patches.
+=20
+Thank you
+Lubo
 
-My read of the TRM is that L2 ECC is always there and L1 ECC/parity is
-optional. Furthermore, bit 22 of L2CTRL_EL1 indicates if L1 ECC/parity
-is supported or not and there's other non-ECC stuff like cache RAM
-timing values in that register.
 
-> The imp-def instruction space may also be trapped by a higher exception level. KVM does
-> this, and emulates these registers as if they were all undefined.
-
-So KVM provides a semi-CortexA57? Code that runs on real h/w won't as a guest.
-
-However, if we do need DT to indicate ECC support in a core or not,
-then we already have an A57 node and should put that info there.
-
-Rob
