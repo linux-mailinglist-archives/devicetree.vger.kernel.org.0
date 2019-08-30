@@ -2,164 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 704E4A2EB2
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 06:58:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B746A2EC2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 07:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726581AbfH3E6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 00:58:42 -0400
-Received: from mail-ot1-f41.google.com ([209.85.210.41]:33789 "EHLO
-        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725812AbfH3E6m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 00:58:42 -0400
-Received: by mail-ot1-f41.google.com with SMTP id p23so5790710oto.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 21:58:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=otaruv9LefKS//TBIlDQnjNiuW6KTPwtImDRK6ssut0=;
-        b=YVPTvMGlcH01uTnYYmqDUhLpoNUvdfkrjOWSONoE//HewEvD6G+gfszJ2m7bXZDXzi
-         LkC6wbKiVtzJgQMwCBbvQB67g+SFUCRXy3qkIsUJn0jv/8ce8eNu9LhdnalvYMmRgeX4
-         PXkmY10YLl7WjZAm6IXJot6DohZhiRdnk4EL5hJ4+WEJHBtIipnf+mEP9DtUcnGpSVR+
-         EMq+i+LB3ot7jf4ZtsX4Czgn2uPT5Rmp3b2Sf/m9EzRtRjebDkn2NbtjRHeqzCDIJHiO
-         Tjjy8J2dpl6fhX2eaComfNcj9gfomIOh4l9Mg5MMuYMUm2bvuiF+sacYKgZb16CDPMNR
-         oOSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=otaruv9LefKS//TBIlDQnjNiuW6KTPwtImDRK6ssut0=;
-        b=WzbngGviijLy3YAD9Io3/TBcjEJrD2FAb93Ekdw3CXDFOF+HNI7uumuej8Q35+YLum
-         ODhHVlOSBeFhHKZPEIEa8Nzi4LjYa4Ilcq3F9E2rClT9ktOp2SJSbZMVfMy0tNcwEfoa
-         krujtHBmsBnn/Lgaz8HW/z3CI/H3l7cqJa8ybXM8jKQv2eeVX26B6YYtENYCO0mCmkaG
-         sXprXRcO36tPpOpeAuKdCgdNoft4q4fJsCjFUScT4StvTT53/NbvW1ZbLe3pzLIvV6zG
-         AGkvRWCfzU+E7QPibu7+9UPQRceJYU40Lvu/wBAJayjS0/4qMDJ3c98chMgPjgYmjZgS
-         S4qA==
-X-Gm-Message-State: APjAAAWnvwCKnk6hK8xCq4PR+875ETwGEMDvn5+JrET+kL47IOCBiBP9
-        38oXpVmFofsHHgUN57rFT0MLd+BRLGmV2DWvCmRkcA==
-X-Google-Smtp-Source: APXvYqzSt6NNhsdCchPdX3qSuDp2k6hX88p0qYy4ZK+ape7vUHCkMYvJtodpyBpAWOKj0LwxR7h3DMOJbseD2+pcNO4=
-X-Received: by 2002:a05:6830:54:: with SMTP id d20mr3109090otp.225.1567141120629;
- Thu, 29 Aug 2019 21:58:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAGETcx_pSnC_2D7ufLRyfE3b8uRc814XEf8zu+SpNtT7_Z8NLg@mail.gmail.com>
- <CAL_JsqKWcGSzCF_ZyEo6bbuayoYks51A-JAMp_oLR1RyTUzNUA@mail.gmail.com>
-In-Reply-To: <CAL_JsqKWcGSzCF_ZyEo6bbuayoYks51A-JAMp_oLR1RyTUzNUA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Thu, 29 Aug 2019 21:58:04 -0700
-Message-ID: <CAGETcx_RL4hHHA2MFTVyV1ivgghaBZePROXpnC-UUJ7tcH4kSQ@mail.gmail.com>
-Subject: Re: Adding depends-on DT binding to break cyclic dependencies
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
+        id S1725902AbfH3FPr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 01:15:47 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:45744 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725901AbfH3FPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 01:15:46 -0400
+X-UUID: 89f3ea637db24791918a9be07a7734f7-20190830
+X-UUID: 89f3ea637db24791918a9be07a7734f7-20190830
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1931682608; Fri, 30 Aug 2019 13:15:42 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 30 Aug 2019 13:15:34 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 30 Aug 2019 13:15:34 +0800
+Message-ID: <1567142129.5942.1.camel@mtksdaap41>
+Subject: Re: [PATCH v5, 01/32] dt-bindings: mediatek: add binding for mt8183
+ display
+From:   CK Hu <ck.hu@mediatek.com>
+To:     <yongqiang.niu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Fri, 30 Aug 2019 13:15:29 +0800
+In-Reply-To: <1567090254-15566-2-git-send-email-yongqiang.niu@mediatek.com>
+References: <1567090254-15566-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1567090254-15566-2-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 40D01842456FDB7578DD54B7F9993BB4EE0E3C99E56B99BA4973B50E77C587A62000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 29, 2019 at 9:28 AM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Aug 22, 2019 at 1:55 AM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > Hi Rob,
-> >
-> > Frank, Greg and I got together during ELC and had an extensive and
-> > very productive discussion about my "postboot supplier state cleanup"
-> > patch series [1]. The three of us are on the same page now -- the
-> > series as it stands is the direction we want to go in, with some minor
-> > refactoring, documentation and naming changes.
-> >
-> > However, one of the things Frank is concerned about (and Greg and I
-> > agree) in the current patch series is that the "cyclic dependency
-> > breaking" logic has been pushed off to individual drivers using the
-> > edit_links() callback.
->
-> I would think the core can detect this condition. There's nothing
-> device specific once you have the dependency tree. You still need to
-> know what device needs to probe first and the drivers are going to
-> have that knowledge anyways. So wouldn't it be enough to allow probe
-> to proceed for devices in the loop.
+Hi, Yongqiang:
 
-The problem is that device links don't allow creating a cyclic
-dependency graph -- for good reasons. The last link in the cycle would
-be rejected. I don't think trying to change device link to allow
-cyclic links is the right direction to go in nor is it a can of worms
-I want to open.
+On Thu, 2019-08-29 at 22:50 +0800, yongqiang.niu@mediatek.com wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> Update device tree binding documention for the display subsystem for
+> Mediatek MT8183 SOCs
+> 
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  .../bindings/display/mediatek/mediatek,display.txt  | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt
+> new file mode 100644
+> index 0000000..951d2a8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,display.txt
+> @@ -0,0 +1,21 @@
+> +Mediatek Display Device
+> +============================
+> +
+> +The Mediatek Display Device provides power control to the system.
+> +
+> +Required Properties:
+> +
+> +- compatible: Should be one of:
+> +	- "mediatek,mt8183-display"
 
-So, we'll need some other way of tracking the loop and then allowing
-only those devices in a loop to attempt probing even if their
-suppliers haven't probed. And then if a device ends up being in more
-than one loop, things could get even more complicated. And after one
-of the devices in the loop probes, we still need to somehow figure out
-the "bad" link and delete it so the last "good" link can be made
-before all the suppliers have their sync_state() called (because the
-"good" link hasn't been created yet). That all gets pretty messy. If
-we are never going to accept any DT changes, then I'd rather go with
-edit_links() and keep the complexity within the one off weird hardware
-where there are cycles instead of over complicating the driver core.
+I think this is "mediatek,mt8183-mmsys".
 
-> Once 1 driver succeeds, then you
-> can enforce the dependencies on the rest.
->
-> > The concern being, there are going to be multiple device specific ad
-> > hoc implementations to break a cyclic dependency. Also, if a device
-> > can be part of a cyclic dependency, the driver for that device has to
-> > check for specific system/products in which the device is part of a
-> > cyclic dependency (because it might not always be part of a cycle),
-> > and then potentially have cycle/product specific code to break the
-> > cycle (since the cycle can be different on each system/product).
-> >
-> > One way to avoid all of the device/driver specific code and simplify
-> > my patch series by a non-trivial amount would be by adding a
-> > "depends-on" DT binding that can ONLY be used to break cycles. We can
-> > document it as such and reject any attempts to use it for other
-> > purposes. When a depends-on property is present in a device node, that
-> > specific device's supplier list will be parsed ONLY from the
-> > depends-on property and the other properties won't be parsed for
-> > deriving dependency information for that device.
->
-> Seems like only ignoring the dependencies with a cycle would be
-> sufficient.
+Regards,
+CK
 
-No, we need to only ignore the "bad" dependency. We can't ignore all
-the dependencies in the cycle because that would cause the suppliers
-to clean up the hardware state before the consumers are ready.
+> +
+> +The Display Device power name are defined in
+> +include\dt-bindings\power\mt*-power.h
+> +
+> +
+> +Example:
+> +
+> +display_components: dispsys@14000000 {
+> +	compatible = "mediatek,mt8183-display";
+> +	reg = <0 0x14000000 0 0x1000>;
+> +	power-domains = <&scpsys MT8183_POWER_DOMAIN_DISP>;
+> +};
+> \ No newline at end of file
 
-> For example, consider a clock controller which has 2 clock
-> inputs from other clock controllers where one has a cycle and one
-> doesn't. Also consider it has a regulator dependency. We only need to
-> ignore the dependency for 1 of the clock inputs. The rest of the
-> dependencies should be honored.
 
-Agreed. In this case, if the device used the depends-on property,
-it'll have to list the 1 clock controller and the regulator.
-
-> > Frank, Greg and I like this usage model for a new depends-on DT
-> > binding. Is this something you'd be willing to accept?
->
-> To do the above, it needs to be inverted.
-
-I understand you are basically asking for a "does-not-depend-on"
-property (like a black list). But I think a whitelist on the rare
-occasions that we need to override would give more flexibility than a
-blacklist. It'll also mean we don't have to check every supplier with
-the entire black list each time.
-
-> Convince me that cycles are really a problem anywhere besides clocks.
-
-I wouldn't be surprised at all if interconnects end up with cyclic
-dependencies as support for more of them are added.
-
-> I'd be more comfortable with a clock specific property if we only need
-> it for clocks and I'm having a hard time imagining cycles for other
-> dependencies.
-
-I definitely don't want per-supplier type override. That's just making
-things too complicated and adding too many DT properties if we need to
-override more than clocks.
-
--Saravana
