@@ -2,115 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 756E8A33AD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 11:21:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7044A3401
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 11:30:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727718AbfH3JVJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 05:21:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59974 "EHLO mail.kernel.org"
+        id S1727792AbfH3JaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 05:30:12 -0400
+Received: from foss.arm.com ([217.140.110.172]:57042 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727328AbfH3JVI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 05:21:08 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 301FB23426;
-        Fri, 30 Aug 2019 09:21:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567156867;
-        bh=3GufUtVPDW9HriFeClZCJbc5zRagccTM02azG30ED2s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bGyZtmRs0b4Fxnur3ZChQTe3ktJskBmByqsK+yxfB7FdIL+Uh06hPDvKO2tBvxUs2
-         vLV9cE1Ubcz2f8fnnb2TSe3PgjfSXD+6sU67fjRkl13gI1sm+JyGlBeKHDPGcq2ROY
-         YXJsOb4xjBWPyFkTwemYMp+Iq9qfKXZ+68kxV7x8=
-Date:   Fri, 30 Aug 2019 11:21:04 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Marcel Holtmann <marcel@holtmann.org>
-Cc:     megous@megous.com, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [RESEND PATCH 0/5] Add bluetooth support for Orange Pi 3
-Message-ID: <20190830092104.odipmbflounqpffo@flea>
-References: <20190823103139.17687-1-megous@megous.com>
- <5524D5E9-FA82-4244-A91F-78CF1C3FB3FB@holtmann.org>
+        id S1727242AbfH3JaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 05:30:12 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1382344;
+        Fri, 30 Aug 2019 02:30:11 -0700 (PDT)
+Received: from bogus (e107155-lin.cambridge.arm.com [10.1.196.42])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 60AAF3F718;
+        Fri, 30 Aug 2019 02:30:10 -0700 (PDT)
+Date:   Fri, 30 Aug 2019 10:30:05 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sudeep Holla <sudeep.holla@arm.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+Message-ID: <20190830093005.GA31297@bogus>
+References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
+ <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+ <CABb+yY2tRjazjaogpM7irqgTD+PdwsfqCxk5hP-_czrET3V5xQ@mail.gmail.com>
+ <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
+ <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zvsfua4pdi5vswnn"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <5524D5E9-FA82-4244-A91F-78CF1C3FB3FB@holtmann.org>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---zvsfua4pdi5vswnn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Hi Marcel,
-
-On Fri, Aug 30, 2019 at 09:53:16AM +0200, Marcel Holtmann wrote:
-> > (Resend to add missing lists, sorry for the noise.)
-> >
-> > This series implements bluetooth support for Xunlong Orange Pi 3 board.
-> >
-> > The board uses AP6256 WiFi/BT 5.0 chip.
-> >
-> > Summary of changes:
-> >
-> > - add more delay to let initialize the chip
-> > - let the kernel detect firmware file path
-> > - add new compatible and update dt-bindings
-> > - update Orange Pi 3 / H6 DTS
-> >
-> > Please take a look.
-> >
-> > thank you and regards,
-> >  Ondrej Jirman
-> >
-> > Ondrej Jirman (5):
-> >  dt-bindings: net: Add compatible for BCM4345C5 bluetooth device
-> >  bluetooth: bcm: Add support for loading firmware for BCM4345C5
-> >  bluetooth: hci_bcm: Give more time to come out of reset
-> >  arm64: dts: allwinner: h6: Add pin configs for uart1
-> >  arm64: dts: allwinner: orange-pi-3: Enable UART1 / Bluetooth
-> >
-> > .../bindings/net/broadcom-bluetooth.txt       |  1 +
-> > .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 19 +++++++++++++++++++
-> > arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 10 ++++++++++
-> > drivers/bluetooth/btbcm.c                     |  3 +++
-> > drivers/bluetooth/hci_bcm.c                   |  3 ++-
-> > 5 files changed, 35 insertions(+), 1 deletion(-)
+On Fri, Aug 30, 2019 at 07:37:41AM +0000, Peng Fan wrote:
+> Hi Jassi,
+> > > I think there could be channel for TEE, and channel for Linux.
+> > > For virtualization case, there could be dedicated channel for each VM.
+> > >
+> > I am talking from Linux pov. Functions 0xfe and 0xff above, can't both be
+> > active at the same time, right?
 >
-> all 5 patches have been applied to bluetooth-next tree.
+> If I get your point correctly,
+> On UP, both could not be active. On SMP, tx/rx could be both active, anyway
+> this depends on secure firmware and Linux firmware design.
+>
 
-The DTS patches (last 2) should go through the arm-soc tree, can you
-drop them?
+Just to confirm, we can't have SMC/HVC based Rx channel as there's no
+*architectural* way to achieve it. So it can be based on some interrupt
+from secure side and hence will be a *different* type of channel/controller.
 
-Thanks!
-Maxime
+Sorry to make this point repeatedly, but juts to be absolutely clear:
+as it stands, SMC/HVC can be used only for Tx today.
 
 --
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---zvsfua4pdi5vswnn
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXWjqgAAKCRDj7w1vZxhR
-xV8CAP417aV0QNmWtbn2xiBjkD9flY36PSlMOjyVjsX2zxv2GgEAyCygOXXu4S1z
-X+AQg5RIlPCGhi8UpGGBfw2i1qEr5gQ=
-=bUKu
------END PGP SIGNATURE-----
-
---zvsfua4pdi5vswnn--
+Regards,
+Sudeep
