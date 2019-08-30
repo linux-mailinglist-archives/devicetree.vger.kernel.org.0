@@ -2,108 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 983D7A37A9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 15:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8874A37BA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 15:25:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727781AbfH3NUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 09:20:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32950 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727135AbfH3NUi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 09:20:38 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9E0A72186A;
-        Fri, 30 Aug 2019 13:20:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567171237;
-        bh=SK7MIU26ekdFufN9wFcNBBpMKeHmFfdUbjP+h2nZYvI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kwwbxERsPTczwEsIdSPds2TKEG8g1kxDybF1PiA0Z0k+fDM25ivomVokZGGEPDksp
-         V5RitlF0EmcbfhMrs9eRJRJvkJNLgEqIMUh1urS042x+/5RNzhWrXyLQOLdO8LwvzU
-         U8zyEwOecd8CSGBUqh2E+L94YyODq2KLxmWw6Pco=
-Date:   Fri, 30 Aug 2019 15:20:34 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Marcel Holtmann <marcel@holtmann.org>
-Cc:     megous@megous.com, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-bluetooth@vger.kernel.org
-Subject: Re: [RESEND PATCH 0/5] Add bluetooth support for Orange Pi 3
-Message-ID: <20190830132034.u65arlv7umh64lx6@flea>
-References: <20190823103139.17687-1-megous@megous.com>
- <5524D5E9-FA82-4244-A91F-78CF1C3FB3FB@holtmann.org>
- <20190830092104.odipmbflounqpffo@flea>
- <D02B89FB-F8C0-40AD-A99A-6C1B4FEB72A0@holtmann.org>
+        id S1727859AbfH3NZv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 09:25:51 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:39639 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727135AbfH3NZv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 09:25:51 -0400
+Received: by mail-ot1-f65.google.com with SMTP id b1so6893586otp.6;
+        Fri, 30 Aug 2019 06:25:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ONcxjA/xj5zjcYYIHoKaRWyZ2UyvDe9PGkmssJa9Wjc=;
+        b=nXA5/VMaHXil39u3hrhOV8FzXQcK2KiQZ7prDcg0SlE2rGd0VC6VQJ/kJ+OmQ1EVXH
+         XDU2VcIpwpymYpFd1ovSXUIxXxWKpvWGTDnzH0lYURMvHsMP8o4ld+RCzaVNPpd3kw6w
+         VEIoziEmWgksq64mt98a+hA/ERL7iOq9KFaMfCqSx+m5TXZgkQ+lzE4UMV/FHBhZCjH+
+         82tk+prNjV52qqotX3TanY5UEj6I86hn99DPs7GH0KXqtfP8bMlTMZHBwwJhHVi+wlTd
+         19spYmdB0PoRQRfVN72GSIoWzFQDPET12RqMo/ruszW0H5px1fuGP2fvwihJXgettx/y
+         1JKQ==
+X-Gm-Message-State: APjAAAXXRgjwHIDa7Mc/gK3oUQwf1ynXrRoy/y4z6cmfcd5TUiIkJblA
+        2+JLTg/hO97zWvmHzZOcbTaChn3e9WiKo2G3MZ0=
+X-Google-Smtp-Source: APXvYqz0Cz34xoZDrBsu1TbuTzbiUDn+xogmAbtOvJs9bhp5Oh/MRI+yJUDTF9Kdt6pkfSF4j3BXylaK/kduxPwx3QU=
+X-Received: by 2002:a9d:3e50:: with SMTP id h16mr11619950otg.107.1567171550260;
+ Fri, 30 Aug 2019 06:25:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <D02B89FB-F8C0-40AD-A99A-6C1B4FEB72A0@holtmann.org>
-User-Agent: NeoMutt/20180716
+References: <1567170935-19186-1-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1567170935-19186-1-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 30 Aug 2019 15:25:39 +0200
+Message-ID: <CAMuHMdVtkBtVpXo2eCMbZ6MEJskeLHYgC4O=p1SjwOdkHLakyg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: hihope-common: Fix eMMC status
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>, xu_shunji@hoperun.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 02:43:48PM +0200, Marcel Holtmann wrote:
-> >>> (Resend to add missing lists, sorry for the noise.)
-> >>>
-> >>> This series implements bluetooth support for Xunlong Orange Pi 3 board.
-> >>>
-> >>> The board uses AP6256 WiFi/BT 5.0 chip.
-> >>>
-> >>> Summary of changes:
-> >>>
-> >>> - add more delay to let initialize the chip
-> >>> - let the kernel detect firmware file path
-> >>> - add new compatible and update dt-bindings
-> >>> - update Orange Pi 3 / H6 DTS
-> >>>
-> >>> Please take a look.
-> >>>
-> >>> thank you and regards,
-> >>> Ondrej Jirman
-> >>>
-> >>> Ondrej Jirman (5):
-> >>> dt-bindings: net: Add compatible for BCM4345C5 bluetooth device
-> >>> bluetooth: bcm: Add support for loading firmware for BCM4345C5
-> >>> bluetooth: hci_bcm: Give more time to come out of reset
-> >>> arm64: dts: allwinner: h6: Add pin configs for uart1
-> >>> arm64: dts: allwinner: orange-pi-3: Enable UART1 / Bluetooth
-> >>>
-> >>> .../bindings/net/broadcom-bluetooth.txt       |  1 +
-> >>> .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 19 +++++++++++++++++++
-> >>> arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 10 ++++++++++
-> >>> drivers/bluetooth/btbcm.c                     |  3 +++
-> >>> drivers/bluetooth/hci_bcm.c                   |  3 ++-
-> >>> 5 files changed, 35 insertions(+), 1 deletion(-)
-> >>
-> >> all 5 patches have been applied to bluetooth-next tree.
-> >
-> > The DTS patches (last 2) should go through the arm-soc tree, can you
-> > drop them?
+On Fri, Aug 30, 2019 at 3:15 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> SDHI3 got accidentally disabled while adding USB 2.0 support,
+> this patch fixes it.
 >
-> why is that? We have included DTS changes for Bluetooth devices
-> directly all the time. What is different with this hardware?
+> Fixes: 734d277f412a ("arm64: dts: renesas: hihope-common: Add USB 2.0 support")
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-I guess some maintainers are more relaxed with it than we are then,
-but for the why, well, it's the usual reasons, the most immediate one
-being that it reduces to a minimum the conflicts between trees.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-The other being that it's not really usual to merge patches supposed
-to be handled by another maintainer without (at least) his
-consent. I'm pretty sure you would have asked the same request if I
-would have merged the bluetooth patches through my tree without
-notice.
+This is a fix for v5.3.
 
-Maxime
+Gr{oetje,eeting}s,
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
