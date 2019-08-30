@@ -2,96 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 545C9A369F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:18:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08FECA36B0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:22:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728166AbfH3MS4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 08:18:56 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55016 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728161AbfH3MS4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 08:18:56 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7UCImAK013329;
-        Fri, 30 Aug 2019 07:18:48 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567167528;
-        bh=q6uzw5vqoIuhn6+C2iD6BtNQh0n3/Xa+SZtfI3ZMIFI=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=Eabp0LSS2Kzm/Npyjfeqtu2iKHevGa0O6jF7MvZyMyaNP5hclp1Dn1e+9RtdlYeMw
-         Y49NEDFQj66dSeontP6qfJZEnupPAX9ewCLIITuNNtr8sSB/AlNP0kgkabNjXpmxVi
-         8iny7vHyNryK3qZSkEOJ95kf0yVuACTqXL0fxm18=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7UCIm91016345
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Aug 2019 07:18:48 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 30
- Aug 2019 07:18:48 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 30 Aug 2019 07:18:48 -0500
-Received: from sokoban.bb.dnainternet.fi (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7UCIP6Q083824;
-        Fri, 30 Aug 2019 07:18:46 -0500
-From:   Tero Kristo <t-kristo@ti.com>
-To:     <ssantosh@kernel.org>, <linux-omap@vger.kernel.org>,
-        <tony@atomide.com>, <s-anna@ti.com>, <p.zabel@pengutronix.de>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCHv3 10/10] soc: ti: omap-prm: add omap5 PRM data
-Date:   Fri, 30 Aug 2019 15:18:16 +0300
-Message-ID: <20190830121816.30034-11-t-kristo@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190830121816.30034-1-t-kristo@ti.com>
-References: <20190830121816.30034-1-t-kristo@ti.com>
+        id S1727620AbfH3MWm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 08:22:42 -0400
+Received: from mga06.intel.com ([134.134.136.31]:6770 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727455AbfH3MWm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 08:22:42 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Aug 2019 05:22:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,447,1559545200"; 
+   d="scan'208";a="182639240"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga007.fm.intel.com with ESMTP; 30 Aug 2019 05:22:38 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i3fvJ-0007OT-SD; Fri, 30 Aug 2019 15:22:37 +0300
+Date:   Fri, 30 Aug 2019 15:22:37 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 01/10] software node: Get reference to parent swnode
+ in get_parent op
+Message-ID: <20190830122237.GY2680@smile.fi.intel.com>
+References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
+ <20190829101043.24963-2-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190829101043.24963-2-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PRM instance data for omap5 family of SoCs. Initially this is just
-used to provide reset support.
+On Thu, Aug 29, 2019 at 01:10:34PM +0300, Sakari Ailus wrote:
+> The software_node_get_parent() returned a pointer to the parent swnode,
+> but did not take a reference to it, leading the caller to put a reference
+> that was not taken. Take that reference now.
+> 
 
-Signed-off-by: Tero Kristo <t-kristo@ti.com>
----
- drivers/soc/ti/omap_prm.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> Fixes: 59abd83672f7 ("drivers: base: Introducing software nodes to the
+> 		      firmware node framework")
 
-diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
-index 216a4b69a6c9..6363923e77f2 100644
---- a/drivers/soc/ti/omap_prm.c
-+++ b/drivers/soc/ti/omap_prm.c
-@@ -87,6 +87,14 @@ static const struct omap_prm_data omap4_prm_data[] = {
- 	{ },
- };
- 
-+static const struct omap_prm_data omap5_prm_data[] = {
-+	{ .name = "dsp", .base = 0x4ae06400, .rstctrl = 0x10, .rstst = 0x14, .rstmap = rst_map_01 },
-+	{ .name = "core", .base = 0x4ae06700, .rstctrl = 0x210, .rstst = 0x214, .clkdm_name = "ipu", .rstmap = rst_map_012 },
-+	{ .name = "iva", .base = 0x4ae07200, .rstctrl = 0x10, .rstst = 0x14, .rstmap = rst_map_012 },
-+	{ .name = "device", .base = 0x4ae07c00, .rstctrl = 0x0, .rstst = 0x4, .rstmap = rst_map_01, .flags = OMAP_PRM_HAS_RSTCTRL | OMAP_PRM_HAS_NO_CLKDM },
-+	{ },
-+};
-+
- static const struct omap_prm_data dra7_prm_data[] = {
- 	{ .name = "dsp1", .base = 0x4ae06400, .rstctrl = 0x10, .rstst = 0x14, .rstmap = rst_map_01 },
- 	{ .name = "ipu", .base = 0x4ae06500, .rstctrl = 0x10, .rstst = 0x14, .clkdm_name = "ipu1", .rstmap = rst_map_012 },
-@@ -139,6 +147,7 @@ static const struct omap_prm_data am4_prm_data[] = {
- 
- static const struct of_device_id omap_prm_id_table[] = {
- 	{ .compatible = "ti,omap4-prm-inst", .data = omap4_prm_data },
-+	{ .compatible = "ti,omap5-prm-inst", .data = omap5_prm_data },
- 	{ .compatible = "ti,dra7-prm-inst", .data = dra7_prm_data },
- 	{ .compatible = "ti,am3-prm-inst", .data = am3_prm_data },
- 	{ .compatible = "ti,am4-prm-inst", .data = am4_prm_data },
+I dunno if scripts parse the split line like above.
+
+Nevertheless, for the code prospective looks good to me. Though you probably
+would like to Cc it to Heikki.
+
 -- 
-2.17.1
+With Best Regards,
+Andy Shevchenko
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
