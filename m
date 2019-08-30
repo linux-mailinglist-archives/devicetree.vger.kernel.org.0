@@ -2,139 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B094CA3432
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 11:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 821BFA3459
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 11:45:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727620AbfH3Jki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 05:40:38 -0400
-Received: from mail-eopbgr150048.outbound.protection.outlook.com ([40.107.15.48]:57840
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726480AbfH3Jki (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 05:40:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cQHmAzhUIAIKVF1JU6+qCn8T/PlzXY40Wxws1CW/wmI6j2I4KhGbUqiSz4ZSfpivfXT7Q1Us9jWv/5dKhcaLfdt5LZ7GUEXDleJnjdAjQhmhvvaPRXjGANboyP/GfA6YopKcoNMrTLChJctQbJdMdj7CcW4wg/dnzQyVSfdQmkf7uFbcPNszd9iitOLdIqReu0isF8jJpZmim40QL6fJDgHqL9+PH0L1AkYaBJ1j21IZDxh9xk2rlDt6fh55gC08qj/10iskcuTPWaA7DAAzrLjiw3nYK8w8n1ZX3NcZa6OEw3Wxw2+/gWA8LonPebNyFuz9G4RmFqkMlX4NZRpQZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j199Et/IkZohdPhwYegKMdABIf61exT/zUjB2nb25x8=;
- b=RAA5GuVOZwEJ5KXhAuUG98E8BWq0varyHVkzTgfGMh01vx3S2FKXWudsVc8L7tF7+2UxSEeJN0u92/wVTq8RtisMUa0xCZtgI82SsJbg3onlrBkKK0xQEHuDRSvP3CnORKAVXw7CPbfX9dEyoIN0QVFebLIuJTeb+gKdNM7cviomLhC9qikAT56iHzp0DP3l4P0O/fbgl0ZP8YGextngk+mGy7nTL/+MO/PYl2/n9QtcJGeioG6kk0ivPv3ChSTi4EwGNz3sFUgC3I5H5sTYCW6rlzgP/Hsht7w6oBfRxrND9FSKQchQq0mKRXdXCewOjwvEUZ+2T6xYndmBwxMKcA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=j199Et/IkZohdPhwYegKMdABIf61exT/zUjB2nb25x8=;
- b=NQSJYUUdoCZNMqe8jqLQmrvrhMrvBxcN9b02l8IEjjufU+qojxvnqsbI5kAmU60p3EkNhtbASSgVLfE5al2M16OfA6MprA2IhOY+b8K1o3iOyBKjytUU9wZsJJF5a4KYvnl79rt5ghiOq5jXUzF6Ir8dUMdmVkru4E9zQJXrlng=
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
- AM0PR04MB6353.eurprd04.prod.outlook.com (20.179.252.77) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.21; Fri, 30 Aug 2019 09:40:34 +0000
-Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::5d98:e1f4:aa72:16b4]) by AM0PR04MB4481.eurprd04.prod.outlook.com
- ([fe80::5d98:e1f4:aa72:16b4%4]) with mapi id 15.20.2178.023; Fri, 30 Aug 2019
- 09:40:34 +0000
-From:   Peng Fan <peng.fan@nxp.com>
-To:     Sudeep Holla <sudeep.holla@arm.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
- SMC/HVC mailbox
-Thread-Topic: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
- SMC/HVC mailbox
-Thread-Index: AQHVXU0YJPArUxY1ok6XlIUgkri4VacTNWSAgAAFe+CAABGfAIAAAKjwgAAjQoCAAAKuIA==
-Date:   Fri, 30 Aug 2019 09:40:34 +0000
-Message-ID: <AM0PR04MB4481879790B4E2C3FC3554E088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
- <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
- <CABb+yY2tRjazjaogpM7irqgTD+PdwsfqCxk5hP-_czrET3V5xQ@mail.gmail.com>
- <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
- <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <20190830093005.GA31297@bogus>
-In-Reply-To: <20190830093005.GA31297@bogus>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peng.fan@nxp.com; 
-x-originating-ip: [119.31.174.71]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c4b930b5-707f-4b43-4f64-08d72d2e1b50
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6353;
-x-ms-traffictypediagnostic: AM0PR04MB6353:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB6353022ECB4C0CC61F70ABA888BD0@AM0PR04MB6353.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0145758B1D
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(136003)(39860400002)(366004)(376002)(199004)(189003)(53936002)(316002)(66946007)(66476007)(11346002)(6506007)(256004)(8936002)(14444005)(81166006)(6436002)(71200400001)(71190400001)(7736002)(54906003)(66446008)(64756008)(102836004)(86362001)(186003)(26005)(3846002)(4326008)(44832011)(66556008)(76176011)(476003)(486006)(76116006)(446003)(7696005)(25786009)(15650500001)(9686003)(33656002)(5660300002)(66066001)(99286004)(229853002)(305945005)(6916009)(74316002)(6116002)(8676002)(81156014)(6246003)(14454004)(2906002)(52536014)(478600001)(55016002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6353;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: N1i0ZlfjDSIb0aw00LHaO7LBSNAtw9P7QV/nj5m8coiHAI2KxZpBQsLZm53SJlX8+tlJ2QE/dUUAWqC0qESKFFEScHaDTN0VVdo67sSESr9wL+dLlBP/lRdY7pj5CZeaHR9Ibc36ljnTZhWmV4sahoFhIGPd+6xx8GKpiv8hzq4Ktbw7tCbtoksOfAANMfr748S8Kk0L+3w0lMkIhzQO4+J4wJXa4Sg59VYou45psr+tkl3EMbAQoylibOuDh+0A72P8drnZog6a6QjaLo4TFxg+s802wODhQ/Oi69itqsG1Um2pkOG3ja6SrJS9x0BBvip9Vv6VqQwPUi31YFaYmnluSmIKcwI+8Jo8rOfeL5m3epFFegDZ+a28XjKkt6qV+FWdnDKlwHUUAsVolB+Ihy5zvYnzDkoJGrpMSW/r4qA=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727800AbfH3JpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 05:45:09 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:58203 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726653AbfH3JpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 05:45:08 -0400
+X-Originating-IP: 86.207.98.53
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id BEBA1E000E;
+        Fri, 30 Aug 2019 09:45:04 +0000 (UTC)
+Date:   Fri, 30 Aug 2019 11:44:56 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Biwen Li <biwen.li@nxp.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org, mark.rutland@arm.com,
+        leoyang.li@nxp.com, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Martin Fuzzey <mfuzzey@parkeon.com>
+Subject: Re: [1/2] dt-bindings: rtc: pcf85263/pcf85363: add some properties
+Message-ID: <20190830094456.GO21922@piout.net>
+References: <20190830091720.41156-1-biwen.li@nxp.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c4b930b5-707f-4b43-4f64-08d72d2e1b50
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2019 09:40:34.4539
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jTSvnSvGdZu1f97KT8SGP8xnAwD69i05H0YOWYWGa/g0BtTyYHtT2LqJ8R9+u3MSwqEnkkKx6FLTdXDpChzc6A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6353
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190830091720.41156-1-biwen.li@nxp.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sudeep
+On 30/08/2019 17:17:19+0800, Biwen Li wrote:
+> Add some properties for pcf85263/pcf85363 as follows:
+>   - interrupt-output-pin: string type
+>   - quartz-load-capacitance: integer type
+>   - quartz-drive-strength: integer type
+>   - quartz-low-jitter: bool type
+>   - wakeup-source: bool type
+> 
+> Signed-off-by: Martin Fuzzey <mfuzzey@parkeon.com>
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> ---
+>  .../devicetree/bindings/rtc/pcf85363.txt      | 31 +++++++++++++++++++
+>  include/dt-bindings/rtc/pcf85363.h            | 15 +++++++++
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 include/dt-bindings/rtc/pcf85363.h
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/pcf85363.txt b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+> index 94adc1cf93d9..d83359990bd7 100644
+> --- a/Documentation/devicetree/bindings/rtc/pcf85363.txt
+> +++ b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+> @@ -8,10 +8,41 @@ Required properties:
+>  Optional properties:
+>  - interrupts: IRQ line for the RTC (not implemented).
+>  
+> +- interrupt-output-pin: The interrupt output pin must be
+> +  "NONE", "INTA" or "INTB", default value is "NONE"
+> +
 
-> Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the=
- ARM
-> SMC/HVC mailbox
->=20
-> On Fri, Aug 30, 2019 at 07:37:41AM +0000, Peng Fan wrote:
-> > Hi Jassi,
-> > > > I think there could be channel for TEE, and channel for Linux.
-> > > > For virtualization case, there could be dedicated channel for each =
-VM.
-> > > >
-> > > I am talking from Linux pov. Functions 0xfe and 0xff above, can't
-> > > both be active at the same time, right?
-> >
-> > If I get your point correctly,
-> > On UP, both could not be active. On SMP, tx/rx could be both active,
-> > anyway this depends on secure firmware and Linux firmware design.
-> >
->=20
-> Just to confirm, we can't have SMC/HVC based Rx channel as there's no
-> *architectural* way to achieve it. So it can be based on some interrupt f=
-rom
-> secure side and hence will be a *different* type of channel/controller.
->=20
-> Sorry to make this point repeatedly, but juts to be absolutely clear:
-> as it stands, SMC/HVC can be used only for Tx today.
+default value can't be none if there is an interrupts property. Also,
+both pins can be enabled at the same time and this binding would prevent
+that.
+Finally, it may also be desirable to have some interrupts on one pin and
+other interrupts on another pin e.g. alarms and timestamping on INTA
+going to the SoC and only alarms on INTB going to a PMIC.
 
-Since interrupt notification was dropped in v5, I need to drop RX descripti=
-on
-in v6.
+> +- quartz-load-capacitance: The internal capacitor to select for the quartz:
+> +	PCF85263_QUARTZCAP_7pF		[0]
+> +	PCF85263_QUARTZCAP_6pF		[1]
+> +	PCF85263_QUARTZCAP_12p5pF	[2] DEFAULT
+> +
 
-Thanks,
-Peng.
+The correct generic property is quartz-load-femtofarads.
 
->=20
-> --
-> Regards,
-> Sudeep
+> +- quartz-drive-strength: Drive strength for the quartz:
+> +	PCF85263_QUARTZDRIVE_NORMAL	[0] DEFAULT
+> +	PCF85263_QUARTZDRIVE_LOW	[1]
+> +	PCF85263_QUARTZDRIVE_HIGH	[2]
+> +
+
+This has to take a value in ohm to be generic and then you don't need
+the include file.
+
+> +- quartz-low-jitter: Boolean property, if present enables low jitter mode
+> +  which reduces jitter at the cost of increased power consumption.
+> +
+
+I think that property needs to be nxp specific.
+
+> +- wakeup-source: Boolean property, mark the chip as a wakeup source,
+> +  independently of the availability of an IRQ line connected to the SoC.
+> +  This is useful if the IRQ line is connected to a PMIC or other circuit
+> +  that can power up the device rather than to a normal SOC interrupt.
+> +
+
+This is already defined in bindings/power/wakeup-source.txt I guess you
+can simply refer to it.
+
+>  Example:
+>  
+>  pcf85363: pcf85363@51 {
+>  	compatible = "nxp,pcf85363";
+>  	reg = <0x51>;
+> +
+> +	interrupt-parent = <&gpio1>;
+> +	interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
+> +
+> +	#include <dt-bindings/rtc/pcf85363.h>
+> +	wakeup-source;
+> +	interrupt-output-pin = "INTA";
+> +	quartz-load-capacitance = <PCF85363_QUARTZCAP_12p5pF>;
+> +	quartz-drive-strength = <PCF85363_QUARTZDRIVE_LOW>;
+> +	quartz-low-jitter;
+>  };
+>  
+> diff --git a/include/dt-bindings/rtc/pcf85363.h b/include/dt-bindings/rtc/pcf85363.h
+> new file mode 100644
+> index 000000000000..2c06c28eb5ff
+> --- /dev/null
+> +++ b/include/dt-bindings/rtc/pcf85363.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +#ifndef _DT_BINDINGS_RTC_PCF85363_H
+> +#define _DT_BINDINGS_RTC_PCF85363_H
+> +
+> +/* Quartz capacitance */
+> +#define PCF85363_QUARTZCAP_7pF		0
+> +#define PCF85363_QUARTZCAP_6pF		1
+> +#define PCF85363_QUARTZCAP_12p5pF	2
+> +
+> +/* Quartz drive strength */
+> +#define PCF85363_QUARTZDRIVE_NORMAL	0
+> +#define PCF85363_QUARTZDRIVE_LOW	1
+> +#define PCF85363_QUARTZDRIVE_HIGH	2
+> +
+> +#endif /* _DT_BINDINGS_RTC_PCF85363_H */
+> -- 
+> 2.17.1
+> 
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
