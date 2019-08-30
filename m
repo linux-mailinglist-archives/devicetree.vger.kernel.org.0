@@ -2,165 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E64D7A31EA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 10:12:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073A6A320D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 10:22:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725822AbfH3IMm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 04:12:42 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:37356 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725780AbfH3IMl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 04:12:41 -0400
-Received: by mail-io1-f65.google.com with SMTP id q12so12355871iog.4;
-        Fri, 30 Aug 2019 01:12:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NMrzUZakuedIUFLQ4qutVDpTqggQszwfrIEmL3MWamg=;
-        b=Y3//Wl0sWaMJ6wZfWWTEwNj1Ox+8VsXUOD6+9/kw3jfi+mNkIE29xffetrvEfzI1Wq
-         d3OnmMYj0mkdydFyG1GuZ4H2/jaP945KeSzyBAadRbsOU3qESLZgfEzG7NO4r+wLRnKn
-         kTQg0qnEqIsZBSm5zKfvMw2jHU4+GtDYCEq6Y0y24huz5Z6Eu1wEOcO17KhzMerfQcxC
-         i8isXfCddnFPsZcwXumtvx96t1lUFOiLWiywIij/V2wDIhO0wOWPisX1w0H/MTjopICW
-         e25EVQIL9nLsmF8Yn8IdQi12o+lTtDTsa0hJcvyFleCOylBWCjxeaJen7T+LWmC/uXlO
-         PiIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NMrzUZakuedIUFLQ4qutVDpTqggQszwfrIEmL3MWamg=;
-        b=aVc+/DmY3bmXTnlSteLS9pV17WGiZIMI1ZKxpmFTSE7YZFO+o0YaysXb4ilPJBSK+2
-         Y3sp7CQbJnYY6rHTLU19KTPPCpXYyX8fY4YgdwcoQ32D34CoHEZj52aE0IXz4uUlEkpN
-         VEylUZ0tp86DzMHpPwRMfgn4vMKAn5iMgPnAJqKAIvjY1x1ZR3z0xamBkspwThi6v799
-         DIp42aI2BDngvBB8YRAqlRLfpV0ZwHuRtXBbTElY2Jr1mgy06Hdu4LaUTo8PaMEaigFo
-         h0FtRpprqNJ4RMqjFRfNznvvZa7Q5C3dPS6s9Ld3Au1d7Eeol/wyHG8C7mpPrtCmDM4F
-         MXxw==
-X-Gm-Message-State: APjAAAWRzUBsMWPBZ87kn4b9iW2jOzKr+1sKP6KOdZZ2lxkt9XrdCY6M
-        1PBzX2N3Ni6kcnd9GiBApkRW6/KwgA5xsfwONZSwRg==
-X-Google-Smtp-Source: APXvYqzRkLgg62E5VqPsCQHPop+fShn/+BbHSzlhnrnA2SZOVRr9hhh4RYBbl4DSGWx+IK21jAy1mSaPlMkwqpKsgMI=
-X-Received: by 2002:a5e:8c0a:: with SMTP id n10mr12946485ioj.69.1567152760530;
- Fri, 30 Aug 2019 01:12:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
- <1567004515-3567-2-git-send-email-peng.fan@nxp.com> <CABb+yY2tRjazjaogpM7irqgTD+PdwsfqCxk5hP-_czrET3V5xQ@mail.gmail.com>
- <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
- <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
- <CABb+yY2SrMF8e1iLyLqb-rJyBx4ajA0hZ6D=LFtuMNtXYjgccA@mail.gmail.com> <AM0PR04MB448133D1F4C887A82C679CEB88BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-In-Reply-To: <AM0PR04MB448133D1F4C887A82C679CEB88BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
-From:   Jassi Brar <jassisinghbrar@gmail.com>
-Date:   Fri, 30 Aug 2019 03:12:29 -0500
-Message-ID: <CABb+yY2t-oz6KqvCTsOJZqcMAUaR9Cbj014m7dCFXSBAMCojww@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
- SMC/HVC mailbox
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1727387AbfH3IW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 04:22:57 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:45158 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726492AbfH3IW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 04:22:57 -0400
+X-UUID: 9e0e8b28f374421b8fc3a918560ea716-20190830
+X-UUID: 9e0e8b28f374421b8fc3a918560ea716-20190830
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <min.guo@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1553134306; Fri, 30 Aug 2019 16:22:52 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 30 Aug 2019 16:22:47 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 30 Aug 2019 16:22:47 +0800
+From:   <min.guo@mediatek.com>
+To:     Bin Liu <b-liu@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        <chunfeng.yun@mediatek.com>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-mediatek@lists.infradead.org>, <tony@atomide.com>,
+        <hdegoede@redhat.com>, Min Guo <min.guo@mediatek.com>
+Subject: [PATCH v7 0/6] Add MediaTek MUSB Controller Driver
+Date:   Fri, 30 Aug 2019 16:20:20 +0800
+Message-ID: <20190830082026.30401-1-min.guo@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 900FA1D8111BFA22B338BB5CDAAA7A9DFDF9233EBA9FD475AAC1DCFDD5654A4E2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 3:07 AM Peng Fan <peng.fan@nxp.com> wrote:
->
-> > Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
-> > SMC/HVC mailbox
-> >
-> > On Fri, Aug 30, 2019 at 2:37 AM Peng Fan <peng.fan@nxp.com> wrote:
-> > >
-> > > Hi Jassi,
-> > >
-> > > > Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc
-> > > > for the ARM SMC/HVC mailbox
-> > > >
-> > > > On Fri, Aug 30, 2019 at 1:28 AM Peng Fan <peng.fan@nxp.com> wrote:
-> > > >
-> > > > > > > +examples:
-> > > > > > > +  - |
-> > > > > > > +    sram@910000 {
-> > > > > > > +      compatible = "mmio-sram";
-> > > > > > > +      reg = <0x0 0x93f000 0x0 0x1000>;
-> > > > > > > +      #address-cells = <1>;
-> > > > > > > +      #size-cells = <1>;
-> > > > > > > +      ranges = <0 0x0 0x93f000 0x1000>;
-> > > > > > > +
-> > > > > > > +      cpu_scp_lpri: scp-shmem@0 {
-> > > > > > > +        compatible = "arm,scmi-shmem";
-> > > > > > > +        reg = <0x0 0x200>;
-> > > > > > > +      };
-> > > > > > > +
-> > > > > > > +      cpu_scp_hpri: scp-shmem@200 {
-> > > > > > > +        compatible = "arm,scmi-shmem";
-> > > > > > > +        reg = <0x200 0x200>;
-> > > > > > > +      };
-> > > > > > > +    };
-> > > > > > > +
-> > > > > > > +    firmware {
-> > > > > > > +      smc_mbox: mailbox {
-> > > > > > > +        #mbox-cells = <1>;
-> > > > > > > +        compatible = "arm,smc-mbox";
-> > > > > > > +        method = "smc";
-> > > > > > > +        arm,num-chans = <0x2>;
-> > > > > > > +        transports = "mem";
-> > > > > > > +        /* Optional */
-> > > > > > > +        arm,func-ids = <0xc20000fe>, <0xc20000ff>;
-> > > > > > >
-> > > > > > SMC/HVC is synchronously(block) running in "secure mode", i.e,
-> > > > > > there can only be one instance running platform wide. Right?
-> > > > >
-> > > > > I think there could be channel for TEE, and channel for Linux.
-> > > > > For virtualization case, there could be dedicated channel for each VM.
-> > > > >
-> > > > I am talking from Linux pov. Functions 0xfe and 0xff above, can't
-> > > > both be active at the same time, right?
-> > >
-> > > If I get your point correctly,
-> > > On UP, both could not be active. On SMP, tx/rx could be both active,
-> > > anyway this depends on secure firmware and Linux firmware design.
-> > >
-> > > Do you have any suggestions about arm,func-ids here?
-> > >
-> > I was thinking if this is just an instruction, why can't each channel be
-> > represented as a controller, i.e, have exactly one func-id per controller node.
-> > Define as many controllers as you need channels ?
->
-> I am ok, this could make driver code simpler. Something as below?
->
->     smc_tx_mbox: tx_mbox {
->       #mbox-cells = <0>;
->       compatible = "arm,smc-mbox";
->       method = "smc";
->       transports = "mem";
->       arm,func-id = <0xc20000fe>;
->     };
->
->     smc_rx_mbox: rx_mbox {
->       #mbox-cells = <0>;
->       compatible = "arm,smc-mbox";
->       method = "smc";
->       transports = "mem";
->       arm,func-id = <0xc20000ff>;
->     };
->
->     firmware {
->       scmi {
->         compatible = "arm,scmi";
->         mboxes = <&smc_tx_mbox>, <&smc_rx_mbox 1>;
->         mbox-names = "tx", "rx";
->         shmem = <&cpu_scp_lpri>, <&cpu_scp_hpri>;
->       };
->     };
->
-Yes, the channel part is good.
-But I am not convinced by the need to have SCMI specific "transport" mode.
+From: Min Guo <min.guo@mediatek.com>
 
-thanks
+These patches introduce the MediaTek MUSB controller driver.
+
+The driver can be configured as Dual-Role Device (DRD),
+Peripheral Only and Host Only modes. This has beed tested on
+MT2701 with a variety of devices in host mode and with the 
+f_mass gadget driver in peripheral mode, plugging otg cables
+in/out a lot of times in all possible imaginable plug orders.
+
+changes in v7:
+changes of dt-bindings and DTS:
+1. Change compatible string
+2. Change usb connector child node compatible as "gpio-usb-b-connector" 
+
+changes in v6:
+changes of dt-bindings:
+1. Modify usb connector child node
+changes of DTS:
+1. Modify usb connector child node
+changes of driver:
+1. Add of_platform_populate in probe to populate connector platform_devices
+   from device tree data
+2. Replace extcon with usb role switch mechanism to support dual-role mode,
+   depends on [1]
+3. Remove set vbus function
+
+    [1] [v6,09/10] usb: roles: add USB Type-B GPIO connector driver
+        https://patchwork.kernel.org/patch/10966361/
+
+changes in v5:
+changes of dt-bindings suggested by Rob:
+1. Modify compatible as 
+- compatible : should be one of:
+               "mediatek,mt-2701"
+               ...
+               followed by "mediatek,mtk-musb"
+2. Add usb connector child node
+changes of DTS:
+1. Add usb connector child node
+changes of driver suggested by Bin:
+1. Replace musb_readb() with musb_clearb() to clear dma pending interrupts
+2. Replace musb_readb() with musb_clearb() to clear common/tx/rx pending interrupts
+3. Make musb_clearb/w() return the value of musb_readb/w()
+
+changes in v4:
+changes of dt-bindings suggested by Sergei:
+1. String alignment
+changes of driver suggested by Tony and Bin:
+1. Add a new patch for set/get_toggle()
+2. Add a new patch for noirq type of dma
+3. Add a new patch musb_clearb/w()
+4. Abondon patch "usb: musb: Delete the const attribute of addr parameter in readb/w/l hooks"
+
+changes in v3:
+changes of driver suggested by Bin:
+1. Add a new patch for musb_readb/w/l() to remove const attribute 
+2. Use is_out as function parameter in set_toggle/get_toggle() hooks
+3. Remove 'u8/u16 data' parameter in clearb/w() hooks
+4. Remove musb_default_clearb/w()
+5. Replace musb_readb/w() with musb_clearb/w() to clear pending interrupts 
+6. Add comments to clearb/w() hooks
+7. Replace musb_save_toggle() with musb->io.get_toggle()
+8. Replace musb_set_toggle() with musb->io.set_toggle()
+
+changes in v2:
+changes of dt-bindings suggested by Rob and Bin:
+1. Modify DRC to DRD
+2. Drop the "<soc-model>-musb" in compatible
+3. Remove phy-names
+4. Add space after comma in clock-names
+dtsi:
+1. Remove phy-names
+changes of driver suggested by Bin:
+1. Add a new patch for musb_set_toggle
+2. Add summarize of MediaTek musb controller differences in the commit log
+3. Abondon patch "usb: musb: Move musbhsdma macro definition to musb_dma.h"
+4. Add "|| COMPILE_TEST" in Kconfig
+5. Add musb_clearb() and musb_clearw() hooks
+6. Add get_toggle() and set_toggle() hooks
+7. Replace musb_readl() with musb_readw() to read 16bit toggle register
+8. Move MediaTek's private toggle registers from musb_regs.h to mediatek.c
+9. Create musbhs_dma_controller_create_noirq()
+
+Min Guo (6):
+  dt-bindings: usb: musb: Add support for MediaTek musb controller
+  arm: dts: mt2701: Add usb2 device nodes
+  usb: musb: Add get/set toggle hooks
+  usb: musb: Add noirq type of dma create interface
+  usb: musb: Add musb_clearb/w() interface
+  usb: musb: Add support for MediaTek musb controller
+
+ .../devicetree/bindings/usb/mediatek,musb.txt      |  55 ++
+ arch/arm/boot/dts/mt2701-evb.dts                   |  21 +
+ arch/arm/boot/dts/mt2701.dtsi                      |  33 ++
+ drivers/usb/musb/Kconfig                           |   9 +-
+ drivers/usb/musb/Makefile                          |   1 +
+ drivers/usb/musb/mediatek.c                        | 582 +++++++++++++++++++++
+ drivers/usb/musb/musb_core.c                       |  74 ++-
+ drivers/usb/musb/musb_core.h                       |  13 +-
+ drivers/usb/musb/musb_dma.h                        |   9 +
+ drivers/usb/musb/musb_host.c                       |  46 +-
+ drivers/usb/musb/musb_io.h                         |  12 +-
+ drivers/usb/musb/musbhsdma.c                       |  56 +-
+ drivers/usb/musb/sunxi.c                           |   4 +-
+ drivers/usb/musb/tusb6010.c                        |   2 +-
+ 14 files changed, 845 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/mediatek,musb.txt
+ create mode 100644 drivers/usb/musb/mediatek.c
+
+-- 
+1.9.1
+
