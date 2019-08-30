@@ -2,64 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B07EDA36F3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 348D2A36FD
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:43:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727857AbfH3Mmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 08:42:38 -0400
-Received: from mga12.intel.com ([192.55.52.136]:18803 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727826AbfH3Mmi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 08:42:38 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Aug 2019 05:42:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,447,1559545200"; 
-   d="scan'208";a="198028263"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001.fm.intel.com with ESMTP; 30 Aug 2019 05:42:36 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1i3gEd-0007YI-82; Fri, 30 Aug 2019 15:42:35 +0300
-Date:   Fri, 30 Aug 2019 15:42:35 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 03/10] device property: Add functions for accessing
- node's parents
-Message-ID: <20190830124235.GD2680@smile.fi.intel.com>
-References: <20190829101043.24963-4-sakari.ailus@linux.intel.com>
- <20190829104401.24183-1-sakari.ailus@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190829104401.24183-1-sakari.ailus@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727455AbfH3Mnw convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Aug 2019 08:43:52 -0400
+Received: from coyote.holtmann.net ([212.227.132.17]:39723 "EHLO
+        mail.holtmann.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727417AbfH3Mnw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 08:43:52 -0400
+Received: from marcel-macbook.fritz.box (p4FEFC580.dip0.t-ipconnect.de [79.239.197.128])
+        by mail.holtmann.org (Postfix) with ESMTPSA id 17EFACECDE;
+        Fri, 30 Aug 2019 14:52:35 +0200 (CEST)
+Content-Type: text/plain;
+        charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Subject: Re: [RESEND PATCH 0/5] Add bluetooth support for Orange Pi 3
+From:   Marcel Holtmann <marcel@holtmann.org>
+In-Reply-To: <20190830092104.odipmbflounqpffo@flea>
+Date:   Fri, 30 Aug 2019 14:43:48 +0200
+Cc:     megous@megous.com, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-bluetooth@vger.kernel.org
+Content-Transfer-Encoding: 8BIT
+Message-Id: <D02B89FB-F8C0-40AD-A99A-6C1B4FEB72A0@holtmann.org>
+References: <20190823103139.17687-1-megous@megous.com>
+ <5524D5E9-FA82-4244-A91F-78CF1C3FB3FB@holtmann.org>
+ <20190830092104.odipmbflounqpffo@flea>
+To:     Maxime Ripard <mripard@kernel.org>
+X-Mailer: Apple Mail (2.3445.104.11)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 29, 2019 at 01:44:01PM +0300, Sakari Ailus wrote:
-> Add two convenience functions for accessing node's parents:
+Hi Maxime,
+
+>>> (Resend to add missing lists, sorry for the noise.)
+>>> 
+>>> This series implements bluetooth support for Xunlong Orange Pi 3 board.
+>>> 
+>>> The board uses AP6256 WiFi/BT 5.0 chip.
+>>> 
+>>> Summary of changes:
+>>> 
+>>> - add more delay to let initialize the chip
+>>> - let the kernel detect firmware file path
+>>> - add new compatible and update dt-bindings
+>>> - update Orange Pi 3 / H6 DTS
+>>> 
+>>> Please take a look.
+>>> 
+>>> thank you and regards,
+>>> Ondrej Jirman
+>>> 
+>>> Ondrej Jirman (5):
+>>> dt-bindings: net: Add compatible for BCM4345C5 bluetooth device
+>>> bluetooth: bcm: Add support for loading firmware for BCM4345C5
+>>> bluetooth: hci_bcm: Give more time to come out of reset
+>>> arm64: dts: allwinner: h6: Add pin configs for uart1
+>>> arm64: dts: allwinner: orange-pi-3: Enable UART1 / Bluetooth
+>>> 
+>>> .../bindings/net/broadcom-bluetooth.txt       |  1 +
+>>> .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 19 +++++++++++++++++++
+>>> arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 10 ++++++++++
+>>> drivers/bluetooth/btbcm.c                     |  3 +++
+>>> drivers/bluetooth/hci_bcm.c                   |  3 ++-
+>>> 5 files changed, 35 insertions(+), 1 deletion(-)
+>> 
+>> all 5 patches have been applied to bluetooth-next tree.
 > 
-> fwnode_count_parents() returns the number of parent nodes a given node
-> has. fwnode_get_nth_parent() returns node's parent at a given distance
-> from the node itself.
-> 
-> Also reorder fwnode_get_parent() in property.c according to the same order
-> as in property.h.
+> The DTS patches (last 2) should go through the arm-soc tree, can you
+> drop them?
 
-Same comment as per previous version.
+why is that? We have included DTS changes for Bluetooth devices directly all the time. What is different with this hardware?
 
--- 
-With Best Regards,
-Andy Shevchenko
+Regards
 
+Marcel
 
