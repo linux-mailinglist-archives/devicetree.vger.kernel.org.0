@@ -2,102 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54443A2F05
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 07:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2D3A2F15
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 07:40:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727904AbfH3Fh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 01:37:26 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:59252 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbfH3FhZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 01:37:25 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7U5bBq0007730;
-        Fri, 30 Aug 2019 00:37:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567143431;
-        bh=wENEtc1oSdE7sKdHvE/SrtRNZIVELKHhkqPIGCtqfZM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=fP+UQ47ODQpVpnHMSgU5hH2Tw8D2QjpX/uQ0nWELDQ8CIOgTzh81lJSfMvU/RNJi7
-         rRVBF5K0YELHhOo+cMFUNJpqQA9yYjdnmOTHXBS2+1IQJtiS87lUuTqR+R+cxGmEUm
-         g20o9y/eXQs6LQQ4vwrizejntWF+Ue1biLPyEqow=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7U5bB59040438
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Aug 2019 00:37:11 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 30
- Aug 2019 00:37:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 30 Aug 2019 00:37:11 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7U5b9RZ082071;
-        Fri, 30 Aug 2019 00:37:09 -0500
-Subject: Re: [PATCH 4/5] dt-bindings: dma: ti-edma: Add option for reserved
- channel ranges
-To:     Rob Herring <robh@kernel.org>
-CC:     <vkoul@kernel.org>, <dan.j.williams@intel.com>,
-        <dmaengine@vger.kernel.org>,
+        id S1727814AbfH3Fki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 01:40:38 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:45816 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725902AbfH3Fki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 01:40:38 -0400
+X-UUID: e3765b949a904a1ea0e241e9a73b7c84-20190830
+X-UUID: e3765b949a904a1ea0e241e9a73b7c84-20190830
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 92452426; Fri, 30 Aug 2019 13:40:34 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 30 Aug 2019 13:40:32 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 30 Aug 2019 13:40:32 +0800
+Message-ID: <1567143627.5942.10.camel@mtksdaap41>
+Subject: Re: [PATCH v5, 12/32] drm/mediatek: add mmsys private data for ddp
+ path config
+From:   CK Hu <ck.hu@mediatek.com>
+To:     <yongqiang.niu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-omap@vger.kernel.org>
-References: <20190823125618.8133-1-peter.ujfalusi@ti.com>
- <20190823125618.8133-5-peter.ujfalusi@ti.com> <20190829224728.GA1198@bogus>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <a4c5688b-cbeb-5059-5351-11d9ae1b25d5@ti.com>
-Date:   Fri, 30 Aug 2019 08:37:33 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        <linux-mediatek@lists.infradead.org>
+Date:   Fri, 30 Aug 2019 13:40:27 +0800
+In-Reply-To: <1567142858.5942.6.camel@mtksdaap41>
+References: <1567090254-15566-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1567090254-15566-13-git-send-email-yongqiang.niu@mediatek.com>
+         <1567142858.5942.6.camel@mtksdaap41>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20190829224728.GA1198@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 63705600795A02F27505757BDD9CBCADFD9382BB26651453F850F28E9B4B8EDE2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob,
+Hi, Yongqiang:
 
-On 30/08/2019 1.47, Rob Herring wrote:
-> On Fri, Aug 23, 2019 at 03:56:17PM +0300, Peter Ujfalusi wrote:
->> Similarly to paRAM slots, channels can be used by other cores.
->>
->> Add optional property to configure the reserved channel ranges.
->>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> ---
->>  Documentation/devicetree/bindings/dma/ti-edma.txt | 5 +++++
->>  1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/dma/ti-edma.txt b/Documentation/devicetree/bindings/dma/ti-edma.txt
->> index 4bbc94d829c8..1198682ada99 100644
->> --- a/Documentation/devicetree/bindings/dma/ti-edma.txt
->> +++ b/Documentation/devicetree/bindings/dma/ti-edma.txt
->> @@ -42,6 +42,9 @@ Optional properties:
->>  - ti,edma-reserved-slot-ranges: PaRAM slot ranges which should not be used by
->>  		the driver, they are allocated to be used by for example the
->>  		DSP. See example.
->> +- ti,edma-reserved-chan-ranges: channel ranges which should not be used by
->> +		the driver, they are allocated to be used by for example the
->> +		DSP. See example.
+On Fri, 2019-08-30 at 13:27 +0800, CK Hu wrote:
+> Hi, Yongqiang:
 > 
-> Based on the other thread, I think extending dma-channel-mask to a 
-> uint32-array makes sense here.
+> On Thu, 2019-08-29 at 22:50 +0800, yongqiang.niu@mediatek.com wrote:
+> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > 
+> > This patch add mmsys private data for ddp path config
+> > all these register offset and value will be different in future SOC
+> > add these define into mmsys private data
+> > 	u32 ovl0_mout_en;
+> > 	u32 rdma1_sout_sel_in;
+> > 	u32 rdma1_sout_dsi0;
+> > 	u32 dpi0_sel_in;
+> > 	u32 dpi0_sel_in_rdma1;
+> > 	u32 dsi0_sel_in;
+> > 	u32 dsi0_sel_in_rdma1;
+> > 
+> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> > ---
+> >  drivers/gpu/drm/mediatek/mtk_drm_crtc.c |  4 ++
+> >  drivers/gpu/drm/mediatek/mtk_drm_ddp.c  | 86 +++++++++++++++++++++++----------
+> >  drivers/gpu/drm/mediatek/mtk_drm_ddp.h  |  5 ++
+> >  drivers/gpu/drm/mediatek/mtk_drm_drv.c  |  3 ++
+> >  drivers/gpu/drm/mediatek/mtk_drm_drv.h  |  3 ++
+> >  5 files changed, 76 insertions(+), 25 deletions(-)
+> > 
+> 
+> [snip]
+> 
+> >  
+> >  void mtk_ddp_add_comp_to_path(void __iomem *config_regs,
+> > +			      const struct mtk_mmsys_reg_data *reg_data,
+> >  			      enum mtk_ddp_comp_id cur,
+> >  			      enum mtk_ddp_comp_id next)
+> >  {
+> >  	unsigned int addr, value, reg;
+> >  
+> > -	value = mtk_ddp_mout_en(cur, next, &addr);
+> > +	value = mtk_ddp_mout_en(reg_data, cur, next, &addr);
+> >  	if (value) {
+> >  		reg = readl_relaxed(config_regs + addr) | value;
+> >  		writel_relaxed(reg, config_regs + addr);
+> >  	}
+> >  
+> > -	mtk_ddp_sout_sel(config_regs, cur, next);
+> > +	value = mtk_ddp_sout_sel(reg_data, cur, next, &addr);
+> > +	if (value)
+> > +		writel_relaxed(value, config_regs + addr);
+> 
+> I think the register could be written inside mtk_ddp_sout_sel(), why do
+> you move out of that function?
 
-Yes, that is the reason I have asked on that and I'm in progress of
-converting the edma driver to use the dma-channel-mask.
-Just need to do some shuffling in the driver to get the mask in a form
-usable by the driver.
+OK, after review other patch, I understand what you do here.
+You want to align the method of mtk_ddp_mout_en(), mtk_ddp_sout_sel(),
+and mtk_ddp_sel_in(). so modification in these three function would be
+the same style. So I think this alignment should be an independent patch
+before this patch.
 
-I'll send an updated series early next week.
+Regards,
+CK
 
-- Péter
+> 
+> Regards,
+> CK
+> 
+> >  
+> > -	value = mtk_ddp_sel_in(cur, next, &addr);
+> > +	value = mtk_ddp_sel_in(reg_data, cur, next, &addr);
+> >  	if (value) {
+> >  		reg = readl_relaxed(config_regs + addr) | value;
+> >  		writel_relaxed(reg, config_regs + addr);
+> > @@ -420,18 +455,19 @@ void mtk_ddp_add_comp_to_path(void __iomem *config_regs,
+> >  }
+> >  
+> >  
+> >  
+> 
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
