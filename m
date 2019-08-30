@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7044A3401
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 11:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81CACA340C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 11:32:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727792AbfH3JaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 05:30:12 -0400
-Received: from foss.arm.com ([217.140.110.172]:57042 "EHLO foss.arm.com"
+        id S1727522AbfH3Jc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 05:32:29 -0400
+Received: from foss.arm.com ([217.140.110.172]:57128 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727242AbfH3JaM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 05:30:12 -0400
+        id S1727236AbfH3Jc3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 05:32:29 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D1382344;
-        Fri, 30 Aug 2019 02:30:11 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5ADE6344;
+        Fri, 30 Aug 2019 02:32:28 -0700 (PDT)
 Received: from bogus (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 60AAF3F718;
-        Fri, 30 Aug 2019 02:30:10 -0700 (PDT)
-Date:   Fri, 30 Aug 2019 10:30:05 +0100
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E0C913F718;
+        Fri, 30 Aug 2019 02:32:26 -0700 (PDT)
+Date:   Fri, 30 Aug 2019 10:32:24 +0100
 From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Peng Fan <peng.fan@nxp.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
         "andre.przywara@arm.com" <andre.przywara@arm.com>,
@@ -33,42 +33,43 @@ Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
         Sudeep Holla <sudeep.holla@arm.com>
 Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
  SMC/HVC mailbox
-Message-ID: <20190830093005.GA31297@bogus>
+Message-ID: <20190830093224.GB31297@bogus>
 References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
  <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
  <CABb+yY2tRjazjaogpM7irqgTD+PdwsfqCxk5hP-_czrET3V5xQ@mail.gmail.com>
  <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
  <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
  <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <CABb+yY2SrMF8e1iLyLqb-rJyBx4ajA0hZ6D=LFtuMNtXYjgccA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+In-Reply-To: <CABb+yY2SrMF8e1iLyLqb-rJyBx4ajA0hZ6D=LFtuMNtXYjgccA@mail.gmail.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 07:37:41AM +0000, Peng Fan wrote:
-> Hi Jassi,
-> > > I think there could be channel for TEE, and channel for Linux.
-> > > For virtualization case, there could be dedicated channel for each VM.
-> > >
-> > I am talking from Linux pov. Functions 0xfe and 0xff above, can't both be
-> > active at the same time, right?
->
-> If I get your point correctly,
-> On UP, both could not be active. On SMP, tx/rx could be both active, anyway
-> this depends on secure firmware and Linux firmware design.
+On Fri, Aug 30, 2019 at 02:52:40AM -0500, Jassi Brar wrote:
+> On Fri, Aug 30, 2019 at 2:37 AM Peng Fan <peng.fan@nxp.com> wrote:
+
+[...]
+
+> >
+> > If I get your point correctly,
+> > On UP, both could not be active. On SMP, tx/rx could be both active, anyway
+> > this depends on secure firmware and Linux firmware design.
+> >
+> > Do you have any suggestions about arm,func-ids here?
+> >
+> I was thinking if this is just an instruction, why can't each channel
+> be represented as a controller, i.e, have exactly one func-id per
+> controller node. Define as many controllers as you need channels ?
 >
 
-Just to confirm, we can't have SMC/HVC based Rx channel as there's no
-*architectural* way to achieve it. So it can be based on some interrupt
-from secure side and hence will be a *different* type of channel/controller.
-
-Sorry to make this point repeatedly, but juts to be absolutely clear:
-as it stands, SMC/HVC can be used only for Tx today.
+I might have missed to follow this, but what's the advantage of doing so ?
+Which can't single controller instance deal with all the channels ?
 
 --
 Regards,
