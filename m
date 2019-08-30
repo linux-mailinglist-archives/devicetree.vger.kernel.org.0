@@ -2,97 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3563A3707
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BDC7A370D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727876AbfH3Mpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 08:45:31 -0400
-Received: from foss.arm.com ([217.140.110.172]:59676 "EHLO foss.arm.com"
+        id S1727756AbfH3MrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 08:47:03 -0400
+Received: from mga01.intel.com ([192.55.52.88]:22344 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727417AbfH3Mpb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 08:45:31 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4CD94337;
-        Fri, 30 Aug 2019 05:45:30 -0700 (PDT)
-Received: from [10.1.196.105] (eglon.cambridge.arm.com [10.1.196.105])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 911AE3F246;
-        Fri, 30 Aug 2019 05:45:27 -0700 (PDT)
-Subject: Re: [PATCH v5 1/4] dt-bindings: EDAC: Add Amazon's Annapurna Labs L1
- EDAC
-To:     Rob Herring <robh@kernel.org>, "Hawa, Hanna" <hhhawa@amazon.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>, benh@amazon.com,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        Talel Shenhar <talel@amazon.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        "Hanoch, Uri" <hanochu@amazon.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-References: <20190805143911.12185-1-hhhawa@amazon.com>
- <20190805143911.12185-2-hhhawa@amazon.com> <20190821191704.GA32425@bogus>
- <1d23d7c5-cd7b-1512-5300-d43e82ba6dc1@amazon.com>
- <CAL_Jsq+8jGbR4u7FA8r0gP5i2H+nSgOkGU_5mfiL=i=c0sOW8A@mail.gmail.com>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <d46ac081-1867-2997-e2a3-bcfea42b74f3@arm.com>
-Date:   Fri, 30 Aug 2019 13:45:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1727417AbfH3MrD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 08:47:03 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Aug 2019 05:47:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,447,1559545200"; 
+   d="scan'208";a="332848662"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga004.jf.intel.com with ESMTP; 30 Aug 2019 05:46:59 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i3gIr-0007aG-OJ; Fri, 30 Aug 2019 15:46:57 +0300
+Date:   Fri, 30 Aug 2019 15:46:57 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 05/10] device property: Add a function to obtain a
+ node's prefix
+Message-ID: <20190830124657.GE2680@smile.fi.intel.com>
+References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
+ <20190829101043.24963-6-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+8jGbR4u7FA8r0gP5i2H+nSgOkGU_5mfiL=i=c0sOW8A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190829101043.24963-6-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi guys,
+On Thu, Aug 29, 2019 at 01:10:38PM +0300, Sakari Ailus wrote:
+> The prefix is used for printing purpose before a node, and it also works
+> as a separator between two nodes.
 
-On 27/08/2019 14:49, Rob Herring wrote:
-> On Mon, Aug 26, 2019 at 9:49 AM Hawa, Hanna <hhhawa@amazon.com> wrote:
->> On 8/21/2019 10:17 PM, Rob Herring wrote:
->>> Why is this even in DT? AFAICT, this is all just CortexA57 core features
->>> (i.e. nothing Amazon specific). The core type and the ECC capabilities
->>> are discoverable.
->>
->> Added to the DT in order to easily enable/disable the driver.
-> 
-> That alone is not reason enough to put it in DT. From a DT
-> perspective, I have no idea what the whims of a OS maintainer are
-> regarding whether they want all this to be 1 driver or 2 drivers.
-> (IMO, it should be 1 as this is ECC for an A57. For a core and memory
-> controller, then 2 seems appropriate.)
-> 
->> You are
->> correct that they are CortexA57 core features and nothing Amazon
->> specific, but it's IMPLEMENTATION DEFINED, meaning that in different
->> cortex revisions (e.g. A57) the register bitmap may change. Because of
->> that we added an Amazon compatible which corresponds to the specific
->> core we are using.
+> +	/* Is this the root node? */
+> +	parent = fwnode_get_parent(fwnode);
+> +	if (!parent)
+> +		return "";
+> +
+> +	/* Is this 2nd node from the root? */
+> +	parent = fwnode_get_next_parent(parent);
+> +	if (!parent)
 
-I think its that the instruction encoding is in the imp-def space that is important.
+Can we theoretically have a case when we got parent != NULL and thus taken
+reference, while the 2nd one is NULL and we leak reference here (and in all
+similar places)?
 
-CPU-implementers can add whatever registers they find useful here. A57 and A72 both
-implemented some ECC registers here. (They are not guaranteed to be the same, but I can't
-find any differences).
+> +		return "";
+> +
+> +	fwnode_handle_put(parent);
 
-We need some information from DT because the TRM doesn't say what happens when you read
-from these registers on an A57 that doesn't have the 'optional ECC protection'. It could
-take an exception due to an unimplemented system register.
-
-The imp-def instruction space may also be trapped by a higher exception level. KVM does
-this, and emulates these registers as if they were all undefined.
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-Thanks,
-
-James
