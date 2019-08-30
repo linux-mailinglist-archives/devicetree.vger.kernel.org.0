@@ -2,86 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54381A36D6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:33:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDD5A36D8
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 14:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727812AbfH3MdM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 08:33:12 -0400
-Received: from mga03.intel.com ([134.134.136.65]:22953 "EHLO mga03.intel.com"
+        id S1727751AbfH3MeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 08:34:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40180 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727595AbfH3MdM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 08:33:12 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 30 Aug 2019 05:33:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,447,1559545200"; 
-   d="scan'208";a="183789281"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga003.jf.intel.com with ESMTP; 30 Aug 2019 05:33:09 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1i3g5T-0007TL-JT; Fri, 30 Aug 2019 15:33:07 +0300
-Date:   Fri, 30 Aug 2019 15:33:07 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 01/10] software node: Get reference to parent swnode
- in get_parent op
-Message-ID: <20190830123307.GA2680@smile.fi.intel.com>
-References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
- <20190829101043.24963-2-sakari.ailus@linux.intel.com>
+        id S1727681AbfH3MeV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 08:34:21 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BE35B23405;
+        Fri, 30 Aug 2019 12:34:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567168459;
+        bh=3rrXMJtan18Re7KhSBgKrcPPLL6Q9PW+UzzWxgZVuxQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=D6LSqkeBH6QfYvQj7z50Sr48oxBfEwB4GIXfdJeXuSqDkR0zR03aGARZ93vGnnN1D
+         rpf6VCOO/Q7IlgmozxmDoqGj8EJ5P0dvujyKQB0rI+WcUlOjzOPVf79wVsP3nncI0n
+         zGozVKQ4XencXLew1kh8byGhefJ+KUuUp7juQ8Cg=
+Received: by mail-qk1-f173.google.com with SMTP id g17so5938145qkk.8;
+        Fri, 30 Aug 2019 05:34:19 -0700 (PDT)
+X-Gm-Message-State: APjAAAXg8QuwzBrep8KzKs/IPwLY6fYFgwrhcfoxN6cOjXcPdp3pOcSA
+        xGvV5o5BLTxnro4XrU081d1arby8cUbedf526w==
+X-Google-Smtp-Source: APXvYqyatiuSoW8EWuTbC7p9+3HzMSiSVBIaY3duZuqWM9ddQfN7nymjPmtry1NYpS+vL/e737xtFZPFXwuYbrljx+U=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr15083639qke.223.1567168458921;
+ Fri, 30 Aug 2019 05:34:18 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190829101043.24963-2-sakari.ailus@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
+ <1566876924-63608-2-git-send-email-preid@electromag.com.au>
+ <a30b6dca-c598-135a-0559-1018dd5f5fde@xilinx.com> <20190829230207.GA22979@bogus>
+ <b50bce2d-8819-67b1-c55c-8c2b8070a4ac@electromag.com.au>
+In-Reply-To: <b50bce2d-8819-67b1-c55c-8c2b8070a4ac@electromag.com.au>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 30 Aug 2019 07:34:07 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKb8cC=4HR7uVHmKt-zw32U_1u62hG4h-TnbPy=a+QZZg@mail.gmail.com>
+Message-ID: <CAL_JsqKb8cC=4HR7uVHmKt-zw32U_1u62hG4h-TnbPy=a+QZZg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-binding: iio: Add optional label property
+To:     Phil Reid <preid@electromag.com.au>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 29, 2019 at 01:10:34PM +0300, Sakari Ailus wrote:
-> The software_node_get_parent() returned a pointer to the parent swnode,
-> but did not take a reference to it, leading the caller to put a reference
-> that was not taken. Take that reference now.
-> 
-> Fixes: 59abd83672f7 ("drivers: base: Introducing software nodes to the
-> 		      firmware node framework")
+On Thu, Aug 29, 2019 at 8:01 PM Phil Reid <preid@electromag.com.au> wrote:
+>
+> On 30/08/2019 07:02, Rob Herring wrote:
+> > On Wed, Aug 28, 2019 at 08:09:19AM +0200, Michal Simek wrote:
+> >> On 27. 08. 19 5:35, Phil Reid wrote:
+> >>> This optional property defines a symbolic name for the device.
+> >>>
+> >>> Signed-off-by: Phil Reid <preid@electromag.com.au>
+> >>> ---
+> >>>   Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
+> >>>   1 file changed, 5 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/iio/iio-bindings.txt b/Documentation/devicetree/bindings/iio/iio-bindings.txt
+> >>> index 68d6f8ce063b..ffeae5aad8b5 100644
+> >>> --- a/Documentation/devicetree/bindings/iio/iio-bindings.txt
+> >>> +++ b/Documentation/devicetree/bindings/iio/iio-bindings.txt
+> >>> @@ -18,12 +18,17 @@ Required properties:
+> >>>                with a single IIO output and 1 for nodes with multiple
+> >>>                IIO outputs.
+> >>>
+> >>> +Optional properties:
+> >>> +label:                A symbolic name for the device.
+> >>> +
+> >>> +
+> >>>   Example for a simple configuration with no trigger:
+> >>>
+> >>>     adc: voltage-sensor@35 {
+> >>>             compatible = "maxim,max1139";
+> >>>             reg = <0x35>;
+> >>>             #io-channel-cells = <1>;
+> >>> +           label = "adc_voltage_sensor";
+> >>>     };
+> >>>
+> >>>   Example for a configuration with trigger:
+> >>>
+> >>
+> >> Just for the record. This patch has been created based on initial
+> >> discussion about label property. And Rob had not problem with using
+> >> label in connection to ina226. https://lkml.org/lkml/2019/8/27/1213
+> >
+> > I didn't, but based on the name here I'm less convinced. 'label' is
+> > supposed to be for needing to distinguish between more than 1 of
+> > something. A name like 'adc_voltage_sensor' doesn't really.
+> >
+> > Rob
+> >
+> >
+>
+> That's the problem we're try to solve. Having multiple devices and try to
+> determine which device is which.
+> eg: Mutliple adc's.
+> For example I have the same dac chip on multiple boards that do different
+> things, it's difficult to id them.
+>
+> so label examples could be:
+> label = "current_control_group1";
+> label = "voltage_control_group1";
+>
+> Are you totally against this or is it a problem with me not being clear
+> with the problem and the wording of the commit message or the example?
 
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+It's just the example is less than ideal. But it's just an example, so:
 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> ---
->  drivers/base/swnode.c | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/base/swnode.c b/drivers/base/swnode.c
-> index e7b3aa3bd55ad..a7cb41812cfda 100644
-> --- a/drivers/base/swnode.c
-> +++ b/drivers/base/swnode.c
-> @@ -520,7 +520,10 @@ software_node_get_parent(const struct fwnode_handle *fwnode)
->  {
->  	struct swnode *swnode = to_swnode(fwnode);
->  
-> -	return swnode ? (swnode->parent ? &swnode->parent->fwnode : NULL) : NULL;
-> +	if (!swnode || !swnode->parent)
-> +		return NULL;
-> +
-> +	return fwnode_handle_get(&swnode->parent->fwnode);
->  }
->  
->  static struct fwnode_handle *
-> -- 
-> 2.20.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
 
--- 
-With Best Regards,
-Andy Shevchenko
+Feel free to update the example if you respin.
 
-
+Rob
