@@ -2,114 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 814BAA3B5C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 18:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B07A3B9F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 18:10:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727891AbfH3QGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 12:06:17 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52134 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727924AbfH3QGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 12:06:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=9ebJwu7EOXBPskA4zH2UXwKyoD+aeQJw7WuvqJssUrk=; b=VOthHBaTOtSZ
-        1hDi/x81cvI3Q8tKjR6mxBsVlqTZ3KVgrfwPzRMQZZAALa2dJScAAB3Jl9pFjmyDdLaFbkRm4A1a2
-        +3DqWwtBwVMP0lqGM4jyVI930RPqFQItSMS93TFv+bxq/kvq2qjaFHff5qOWDw7qv/QrIAxfNa+cz
-        f1Qq8=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i3jPc-00078y-BU; Fri, 30 Aug 2019 16:06:08 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id D19712742CA1; Fri, 30 Aug 2019 17:06:07 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     alsa-devel@alsa-project.org, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Applied "ASoC: dt-bindings: sun4i-spdif: Fix dma-names warning" to the asoc tree
-In-Reply-To: <20190828125209.28173-1-mripard@kernel.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20190830160607.D19712742CA1@ypsilon.sirena.org.uk>
-Date:   Fri, 30 Aug 2019 17:06:07 +0100 (BST)
+        id S1727979AbfH3QK0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 12:10:26 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:17112 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727304AbfH3QK0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 12:10:26 -0400
+Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7UG7uu9141674;
+        Fri, 30 Aug 2019 12:09:50 -0400
+Received: from ppma04wdc.us.ibm.com (1a.90.2fa9.ip4.static.sl-reverse.com [169.47.144.26])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2uq3waqgyq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Aug 2019 12:09:50 -0400
+Received: from pps.filterd (ppma04wdc.us.ibm.com [127.0.0.1])
+        by ppma04wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x7UG5D45001624;
+        Fri, 30 Aug 2019 16:09:48 GMT
+Received: from b03cxnp08025.gho.boulder.ibm.com (b03cxnp08025.gho.boulder.ibm.com [9.17.130.17])
+        by ppma04wdc.us.ibm.com with ESMTP id 2ujvv73pn8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Aug 2019 16:09:48 +0000
+Received: from b03ledav003.gho.boulder.ibm.com (b03ledav003.gho.boulder.ibm.com [9.17.130.234])
+        by b03cxnp08025.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7UG9lfO52232670
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 30 Aug 2019 16:09:47 GMT
+Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id B1ECF6A04F;
+        Fri, 30 Aug 2019 16:09:47 +0000 (GMT)
+Received: from b03ledav003.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id D80386A051;
+        Fri, 30 Aug 2019 16:09:46 +0000 (GMT)
+Received: from talon7.ibm.com (unknown [9.41.179.222])
+        by b03ledav003.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Fri, 30 Aug 2019 16:09:46 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-hwmon@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux@roeck-us.net, andrew@aj.id.au,
+        joel@jms.id.au, mark.rutland@arm.com, robh+dt@kernel.org,
+        jdelvare@suse.com, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH 0/3] pmbus: ibm-cffps: Add support for version 2 of PSU
+Date:   Fri, 30 Aug 2019 11:09:42 -0500
+Message-Id: <1567181385-22129-1-git-send-email-eajames@linux.ibm.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-30_06:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908300160
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Version 2 of this PSU supports a second page of data and changes the
+format of the FW version command. Use the devicetree binding (or the I2C
+device ID) to determine which version the driver should use. Therefore add
+the new compatible string to the devicetree documentation and change the
+Swift system devicetree to use version 2.
 
-   ASoC: dt-bindings: sun4i-spdif: Fix dma-names warning
+Eddie James (3):
+  dt-bindings: hwmon: Document ibm,cffps2 compatible string
+  ARM: dts: aspeed: swift: Change power supplies to version 2
+  pmbus: ibm-cffps: Add support for version 2 of the PSU
 
-has been applied to the asoc tree at
+ .../devicetree/bindings/hwmon/ibm,cffps1.txt       |   8 +-
+ arch/arm/boot/dts/aspeed-bmc-opp-swift.dts         |   4 +-
+ drivers/hwmon/pmbus/ibm-cffps.c                    | 109 ++++++++++++++++-----
+ 3 files changed, 94 insertions(+), 27 deletions(-)
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 1a8e7cdfa4f5872bf0c202d09bff6628aba6b9f6 Mon Sep 17 00:00:00 2001
-From: Maxime Ripard <maxime.ripard@bootlin.com>
-Date: Wed, 28 Aug 2019 14:52:05 +0200
-Subject: [PATCH] ASoC: dt-bindings: sun4i-spdif: Fix dma-names warning
-
-Even though the H6 compatible has been properly added, the exeption for the
-number of DMA channels hasn't been updated, leading in a validation
-warning.
-
-Fix this.
-
-Fixes: b20453031472 ("dt-bindings: sound: sun4i-spdif: Add Allwinner H6 compatible")
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-Link: https://lore.kernel.org/r/20190828125209.28173-1-mripard@kernel.org
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml  | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
-index e0284d8c3b63..38d4cede0860 100644
---- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
-+++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-spdif.yaml
-@@ -70,7 +70,9 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: allwinner,sun8i-h3-spdif
-+            enum:
-+              - allwinner,sun8i-h3-spdif
-+              - allwinner,sun50i-h6-spdif
- 
-     then:
-       properties:
 -- 
-2.20.1
+1.8.3.1
 
