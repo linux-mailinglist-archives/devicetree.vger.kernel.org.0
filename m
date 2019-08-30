@@ -2,150 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07DC2A308A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:16:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4887A30DE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:21:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728272AbfH3HP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 03:15:28 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:56993 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728201AbfH3HPW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 03:15:22 -0400
-X-UUID: 4e69472a1fb04066878f32c626d107df-20190830
-X-UUID: 4e69472a1fb04066878f32c626d107df-20190830
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 2008193538; Fri, 30 Aug 2019 15:15:20 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 30 Aug 2019 15:15:16 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 30 Aug 2019 15:15:16 +0800
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 11/11] arm64: dts: mt2712: use non-empty ranges for usb-phy
-Date:   Fri, 30 Aug 2019 15:14:58 +0800
-Message-ID: <1567149298-29366-11-git-send-email-chunfeng.yun@mediatek.com>
-X-Mailer: git-send-email 1.8.1.1.dirty
-In-Reply-To: <1567149298-29366-1-git-send-email-chunfeng.yun@mediatek.com>
-References: <1567149298-29366-1-git-send-email-chunfeng.yun@mediatek.com>
+        id S1726716AbfH3HVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 03:21:44 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:32814 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725780AbfH3HVo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 03:21:44 -0400
+Received: by mail-io1-f67.google.com with SMTP id z3so12194310iog.0;
+        Fri, 30 Aug 2019 00:21:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AlhFgQeL/mYiQX6p6gp6sv+Yu6hpMLWLNkdRBnpDQiA=;
+        b=QrowYFp5jRyggiMNrPIzMypbBgTVm25Yb91NkmJgbZPFHT3+eqflmDIpgaXs9Ja+Sb
+         0SaId/XviBrbPr9ra3Q1ryqGt923GWhcBPA2YkrkoACGObI7CLSF7nwtayBSVvyivIGi
+         Ij+pCG1oX+tSO4KL2tbwP1WxwVaDsGcf0qzgP7R8e/B4KHVlIPD4AN8aXaON1ppV47HD
+         cxDxkQbMKFsYy4aqhwvzL33/Mb3wgkj/Tl4tZ7lAZXVxq5d58qUyEQZlamIfnAG/JlhK
+         3Y7noHEHERn2uzFp8REzI8xn9s0oPLeM0+gRB/PtFppOdAeb4rsjxbLP3Tlvel4v+VaS
+         HYog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AlhFgQeL/mYiQX6p6gp6sv+Yu6hpMLWLNkdRBnpDQiA=;
+        b=gvgUu4TLlE7L6gPRuf66n81zLxJF1d3ZwraBswf4rdjzp0dgq8jyeRM6B3mdxKB8uh
+         RdqBz2zj5vw0UdJK38fH2bcycl5pQ1j/uRgywnIPf/mqzJX0sVhuqrfCDZNdmq+5Vxnl
+         Y9PO0CpWFclMaRB00bvVBmBg5rkLgbSWPlwWIcoVILSp0lB7s3Z01nLaBq0ZGLy/Ruhl
+         g+5mObVxM1e/fKnmvubBjEkT657DNXuxFvK4/ede9ns/ZyHzvDYJv5+3S7xXZQy/Pt/a
+         5yk9oheWct+KPqWxh9Zes4bB2trEKvcomaMC1wI9aejICHFURLKgk2u/OAfGGKkvACi3
+         vn/w==
+X-Gm-Message-State: APjAAAWPjCJq9lbCa5iROmqFR5ia/xGQL0dmqSSjZc7QM0+hZFSRU6lO
+        Mfz/xDkK0fX6Ady1FkLIfrds/XmvsQaWmiSWLfQ=
+X-Google-Smtp-Source: APXvYqxdEUCSeILyh2pFmXq4fHzi6CcocAFis6vG7eX8iNXSYZsq2LtQPx3otlCh1YNNK3ymTfJiHprCHskaedRe/kE=
+X-Received: by 2002:a5d:9aca:: with SMTP id x10mr15481830ion.11.1567149702961;
+ Fri, 30 Aug 2019 00:21:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: BD036BF71A2114EE1D0769FF267A80CF60102E115BE80E3E7B8EE655C728DD512000:8
-X-MTK:  N
+References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
+ <1567004515-3567-2-git-send-email-peng.fan@nxp.com> <CABb+yY2tRjazjaogpM7irqgTD+PdwsfqCxk5hP-_czrET3V5xQ@mail.gmail.com>
+ <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+In-Reply-To: <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Fri, 30 Aug 2019 02:21:32 -0500
+Message-ID: <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use non-empty ranges for usb-phy to make the layout of
-its registers clearer;
-Replace deprecated compatible by generic
+On Fri, Aug 30, 2019 at 1:28 AM Peng Fan <peng.fan@nxp.com> wrote:
 
-Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
----
-v2: use generic compatible
----
- arch/arm64/boot/dts/mediatek/mt2712e.dtsi | 42 ++++++++++++-----------
- 1 file changed, 22 insertions(+), 20 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-index 43307bad3f0d..e24f2f2f6004 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-@@ -697,30 +697,31 @@
- 	};
- 
- 	u3phy0: usb-phy@11290000 {
--		compatible = "mediatek,mt2712-u3phy";
--		#address-cells = <2>;
--		#size-cells = <2>;
--		ranges;
-+		compatible = "mediatek,mt2712-tphy",
-+			     "mediatek,generic-tphy-v2";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0 0x11290000 0x9000>;
- 		status = "okay";
- 
--		u2port0: usb-phy@11290000 {
--			reg = <0 0x11290000 0 0x700>;
-+		u2port0: usb-phy@0 {
-+			reg = <0x0 0x700>;
- 			clocks = <&clk26m>;
- 			clock-names = "ref";
- 			#phy-cells = <1>;
- 			status = "okay";
- 		};
- 
--		u2port1: usb-phy@11298000 {
--			reg = <0 0x11298000 0 0x700>;
-+		u2port1: usb-phy@8000 {
-+			reg = <0x8000 0x700>;
- 			clocks = <&clk26m>;
- 			clock-names = "ref";
- 			#phy-cells = <1>;
- 			status = "okay";
- 		};
- 
--		u3port0: usb-phy@11298700 {
--			reg = <0 0x11298700 0 0x900>;
-+		u3port0: usb-phy@8700 {
-+			reg = <0x8700 0x900>;
- 			clocks = <&clk26m>;
- 			clock-names = "ref";
- 			#phy-cells = <1>;
-@@ -760,30 +761,31 @@
- 	};
- 
- 	u3phy1: usb-phy@112e0000 {
--		compatible = "mediatek,mt2712-u3phy";
--		#address-cells = <2>;
--		#size-cells = <2>;
--		ranges;
-+		compatible = "mediatek,mt2712-tphy",
-+			     "mediatek,generic-tphy-v2";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges = <0 0 0x112e0000 0x9000>;
- 		status = "okay";
- 
--		u2port2: usb-phy@112e0000 {
--			reg = <0 0x112e0000 0 0x700>;
-+		u2port2: usb-phy@0 {
-+			reg = <0x0 0x700>;
- 			clocks = <&clk26m>;
- 			clock-names = "ref";
- 			#phy-cells = <1>;
- 			status = "okay";
- 		};
- 
--		u2port3: usb-phy@112e8000 {
--			reg = <0 0x112e8000 0 0x700>;
-+		u2port3: usb-phy@8000 {
-+			reg = <0x8000 0x700>;
- 			clocks = <&clk26m>;
- 			clock-names = "ref";
- 			#phy-cells = <1>;
- 			status = "okay";
- 		};
- 
--		u3port1: usb-phy@112e8700 {
--			reg = <0 0x112e8700 0 0x900>;
-+		u3port1: usb-phy@8700 {
-+			reg = <0x8700 0x900>;
- 			clocks = <&clk26m>;
- 			clock-names = "ref";
- 			#phy-cells = <1>;
--- 
-2.23.0
-
+> > > +examples:
+> > > +  - |
+> > > +    sram@910000 {
+> > > +      compatible = "mmio-sram";
+> > > +      reg = <0x0 0x93f000 0x0 0x1000>;
+> > > +      #address-cells = <1>;
+> > > +      #size-cells = <1>;
+> > > +      ranges = <0 0x0 0x93f000 0x1000>;
+> > > +
+> > > +      cpu_scp_lpri: scp-shmem@0 {
+> > > +        compatible = "arm,scmi-shmem";
+> > > +        reg = <0x0 0x200>;
+> > > +      };
+> > > +
+> > > +      cpu_scp_hpri: scp-shmem@200 {
+> > > +        compatible = "arm,scmi-shmem";
+> > > +        reg = <0x200 0x200>;
+> > > +      };
+> > > +    };
+> > > +
+> > > +    firmware {
+> > > +      smc_mbox: mailbox {
+> > > +        #mbox-cells = <1>;
+> > > +        compatible = "arm,smc-mbox";
+> > > +        method = "smc";
+> > > +        arm,num-chans = <0x2>;
+> > > +        transports = "mem";
+> > > +        /* Optional */
+> > > +        arm,func-ids = <0xc20000fe>, <0xc20000ff>;
+> > >
+> > SMC/HVC is synchronously(block) running in "secure mode", i.e, there can
+> > only be one instance running platform wide. Right?
+>
+> I think there could be channel for TEE, and channel for Linux.
+> For virtualization case, there could be dedicated channel for each VM.
+>
+I am talking from Linux pov. Functions 0xfe and 0xff above, can't both
+be active at the same time, right?
