@@ -2,71 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9CD4A2E97
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 06:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 704E4A2EB2
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 06:58:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727464AbfH3Efl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 00:35:41 -0400
-Received: from forward103j.mail.yandex.net ([5.45.198.246]:42402 "EHLO
-        forward103j.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725648AbfH3Efl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 00:35:41 -0400
-Received: from mxback30j.mail.yandex.net (mxback30j.mail.yandex.net [IPv6:2a02:6b8:0:1619::230])
-        by forward103j.mail.yandex.net (Yandex) with ESMTP id E5D5D6741178;
-        Fri, 30 Aug 2019 07:35:38 +0300 (MSK)
-Received: from smtp1p.mail.yandex.net (smtp1p.mail.yandex.net [2a02:6b8:0:1472:2741:0:8b6:6])
-        by mxback30j.mail.yandex.net (nwsmtp/Yandex) with ESMTP id 32U7f9lBw7-Zcri6gdt;
-        Fri, 30 Aug 2019 07:35:38 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=flygoat.com; s=mail; t=1567139738;
-        bh=vrMkaB9xn2ZE/mMPhncAwnoH2UZZVYCo5x0BeJ38aIs=;
-        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
-        b=Q0hLb42eEIAgd3tuXr+Ysh9mGKETNBAamYbgahhoX534I1WvSgPi/GbolwJaMyjLJ
-         y934WyjHDo7olFddOMSZraquQ9GMTx/GmDaKFp89Y0P0ZfLi+H/GzLPbItXfvez1iY
-         bcW9zXpyaN8n2Nn6b5QS74PbqEcDP9KlPuOQVWMQ=
-Authentication-Results: mxback30j.mail.yandex.net; dkim=pass header.i=@flygoat.com
-Received: by smtp1p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id vFuwVxmDwr-ZUDG4Ds5;
-        Fri, 30 Aug 2019 07:35:36 +0300
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client certificate not present)
-From:   Jiaxun Yang <jiaxun.yang@flygoat.com>
-To:     linux-mips@vger.kernel.org
-Cc:     chenhc@lemote.com, paul.burton@mips.com, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.co,
-        devicetree@vger.kernel.org, Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: [PATCH v1 18/18] MAINTAINERS: Add myself as maintainer of LOONGSON64
-Date:   Fri, 30 Aug 2019 12:32:32 +0800
-Message-Id: <20190830043232.20191-13-jiaxun.yang@flygoat.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190830043232.20191-1-jiaxun.yang@flygoat.com>
-References: <20190830043232.20191-1-jiaxun.yang@flygoat.com>
+        id S1726581AbfH3E6m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 00:58:42 -0400
+Received: from mail-ot1-f41.google.com ([209.85.210.41]:33789 "EHLO
+        mail-ot1-f41.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725812AbfH3E6m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 00:58:42 -0400
+Received: by mail-ot1-f41.google.com with SMTP id p23so5790710oto.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Aug 2019 21:58:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=otaruv9LefKS//TBIlDQnjNiuW6KTPwtImDRK6ssut0=;
+        b=YVPTvMGlcH01uTnYYmqDUhLpoNUvdfkrjOWSONoE//HewEvD6G+gfszJ2m7bXZDXzi
+         LkC6wbKiVtzJgQMwCBbvQB67g+SFUCRXy3qkIsUJn0jv/8ce8eNu9LhdnalvYMmRgeX4
+         PXkmY10YLl7WjZAm6IXJot6DohZhiRdnk4EL5hJ4+WEJHBtIipnf+mEP9DtUcnGpSVR+
+         EMq+i+LB3ot7jf4ZtsX4Czgn2uPT5Rmp3b2Sf/m9EzRtRjebDkn2NbtjRHeqzCDIJHiO
+         Tjjy8J2dpl6fhX2eaComfNcj9gfomIOh4l9Mg5MMuYMUm2bvuiF+sacYKgZb16CDPMNR
+         oOSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=otaruv9LefKS//TBIlDQnjNiuW6KTPwtImDRK6ssut0=;
+        b=WzbngGviijLy3YAD9Io3/TBcjEJrD2FAb93Ekdw3CXDFOF+HNI7uumuej8Q35+YLum
+         ODhHVlOSBeFhHKZPEIEa8Nzi4LjYa4Ilcq3F9E2rClT9ktOp2SJSbZMVfMy0tNcwEfoa
+         krujtHBmsBnn/Lgaz8HW/z3CI/H3l7cqJa8ybXM8jKQv2eeVX26B6YYtENYCO0mCmkaG
+         sXprXRcO36tPpOpeAuKdCgdNoft4q4fJsCjFUScT4StvTT53/NbvW1ZbLe3pzLIvV6zG
+         AGkvRWCfzU+E7QPibu7+9UPQRceJYU40Lvu/wBAJayjS0/4qMDJ3c98chMgPjgYmjZgS
+         S4qA==
+X-Gm-Message-State: APjAAAWnvwCKnk6hK8xCq4PR+875ETwGEMDvn5+JrET+kL47IOCBiBP9
+        38oXpVmFofsHHgUN57rFT0MLd+BRLGmV2DWvCmRkcA==
+X-Google-Smtp-Source: APXvYqzSt6NNhsdCchPdX3qSuDp2k6hX88p0qYy4ZK+ape7vUHCkMYvJtodpyBpAWOKj0LwxR7h3DMOJbseD2+pcNO4=
+X-Received: by 2002:a05:6830:54:: with SMTP id d20mr3109090otp.225.1567141120629;
+ Thu, 29 Aug 2019 21:58:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAGETcx_pSnC_2D7ufLRyfE3b8uRc814XEf8zu+SpNtT7_Z8NLg@mail.gmail.com>
+ <CAL_JsqKWcGSzCF_ZyEo6bbuayoYks51A-JAMp_oLR1RyTUzNUA@mail.gmail.com>
+In-Reply-To: <CAL_JsqKWcGSzCF_ZyEo6bbuayoYks51A-JAMp_oLR1RyTUzNUA@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 29 Aug 2019 21:58:04 -0700
+Message-ID: <CAGETcx_RL4hHHA2MFTVyV1ivgghaBZePROXpnC-UUJ7tcH4kSQ@mail.gmail.com>
+Subject: Re: Adding depends-on DT binding to break cyclic dependencies
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I'm going to help with LOONGSON64 maintainance as well.
+On Thu, Aug 29, 2019 at 9:28 AM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Thu, Aug 22, 2019 at 1:55 AM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > Hi Rob,
+> >
+> > Frank, Greg and I got together during ELC and had an extensive and
+> > very productive discussion about my "postboot supplier state cleanup"
+> > patch series [1]. The three of us are on the same page now -- the
+> > series as it stands is the direction we want to go in, with some minor
+> > refactoring, documentation and naming changes.
+> >
+> > However, one of the things Frank is concerned about (and Greg and I
+> > agree) in the current patch series is that the "cyclic dependency
+> > breaking" logic has been pushed off to individual drivers using the
+> > edit_links() callback.
+>
+> I would think the core can detect this condition. There's nothing
+> device specific once you have the dependency tree. You still need to
+> know what device needs to probe first and the drivers are going to
+> have that knowledge anyways. So wouldn't it be enough to allow probe
+> to proceed for devices in the loop.
 
-Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+The problem is that device links don't allow creating a cyclic
+dependency graph -- for good reasons. The last link in the cycle would
+be rejected. I don't think trying to change device link to allow
+cyclic links is the right direction to go in nor is it a can of worms
+I want to open.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 242970af939c..e14edf51ee15 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10758,6 +10758,7 @@ F:	drivers/*/*/*loongson2*
- 
- MIPS/LOONGSON64 ARCHITECTURE
- M:	Huacai Chen <chenhc@lemote.com>
-+M:	Jiaxun Yang <jiaxun.yang@flygoat.com>
- L:	linux-mips@vger.kernel.org
- S:	Maintained
- F:	arch/mips/boot/dts/loongson/
--- 
-2.22.0
+So, we'll need some other way of tracking the loop and then allowing
+only those devices in a loop to attempt probing even if their
+suppliers haven't probed. And then if a device ends up being in more
+than one loop, things could get even more complicated. And after one
+of the devices in the loop probes, we still need to somehow figure out
+the "bad" link and delete it so the last "good" link can be made
+before all the suppliers have their sync_state() called (because the
+"good" link hasn't been created yet). That all gets pretty messy. If
+we are never going to accept any DT changes, then I'd rather go with
+edit_links() and keep the complexity within the one off weird hardware
+where there are cycles instead of over complicating the driver core.
 
+> Once 1 driver succeeds, then you
+> can enforce the dependencies on the rest.
+>
+> > The concern being, there are going to be multiple device specific ad
+> > hoc implementations to break a cyclic dependency. Also, if a device
+> > can be part of a cyclic dependency, the driver for that device has to
+> > check for specific system/products in which the device is part of a
+> > cyclic dependency (because it might not always be part of a cycle),
+> > and then potentially have cycle/product specific code to break the
+> > cycle (since the cycle can be different on each system/product).
+> >
+> > One way to avoid all of the device/driver specific code and simplify
+> > my patch series by a non-trivial amount would be by adding a
+> > "depends-on" DT binding that can ONLY be used to break cycles. We can
+> > document it as such and reject any attempts to use it for other
+> > purposes. When a depends-on property is present in a device node, that
+> > specific device's supplier list will be parsed ONLY from the
+> > depends-on property and the other properties won't be parsed for
+> > deriving dependency information for that device.
+>
+> Seems like only ignoring the dependencies with a cycle would be
+> sufficient.
+
+No, we need to only ignore the "bad" dependency. We can't ignore all
+the dependencies in the cycle because that would cause the suppliers
+to clean up the hardware state before the consumers are ready.
+
+> For example, consider a clock controller which has 2 clock
+> inputs from other clock controllers where one has a cycle and one
+> doesn't. Also consider it has a regulator dependency. We only need to
+> ignore the dependency for 1 of the clock inputs. The rest of the
+> dependencies should be honored.
+
+Agreed. In this case, if the device used the depends-on property,
+it'll have to list the 1 clock controller and the regulator.
+
+> > Frank, Greg and I like this usage model for a new depends-on DT
+> > binding. Is this something you'd be willing to accept?
+>
+> To do the above, it needs to be inverted.
+
+I understand you are basically asking for a "does-not-depend-on"
+property (like a black list). But I think a whitelist on the rare
+occasions that we need to override would give more flexibility than a
+blacklist. It'll also mean we don't have to check every supplier with
+the entire black list each time.
+
+> Convince me that cycles are really a problem anywhere besides clocks.
+
+I wouldn't be surprised at all if interconnects end up with cyclic
+dependencies as support for more of them are added.
+
+> I'd be more comfortable with a clock specific property if we only need
+> it for clocks and I'm having a hard time imagining cycles for other
+> dependencies.
+
+I definitely don't want per-supplier type override. That's just making
+things too complicated and adding too many DT properties if we need to
+override more than clocks.
+
+-Saravana
