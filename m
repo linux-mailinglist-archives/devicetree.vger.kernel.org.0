@@ -2,122 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA61A3DBD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 20:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09AF9A3E2B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 21:11:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727992AbfH3SfP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 14:35:15 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:37635 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727914AbfH3SfP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 14:35:15 -0400
-Received: by mail-pf1-f196.google.com with SMTP id y9so5151194pfl.4
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 11:35:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=bIeN59zLlf9hPECJ+a5c6Glfl7dAXXKY36z7SizN9gM=;
-        b=IQGa3Mt4+au2PyMQHW+PvrAcz/AETV0wFmHOYGLymVh/gc+dTht/JO4nBjR1m4Z8Qx
-         B7KxIkemrczvh45Jb/1x2k0NFOVuub+ATOjZSexJsTNLChgVm8aVno/qRULf4iIGKJ07
-         z71IX/iXX3oF2ff6SAr+g37jeArEF4jRYP+lc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=bIeN59zLlf9hPECJ+a5c6Glfl7dAXXKY36z7SizN9gM=;
-        b=Gtc3r1E8t81J7Jp3d6Vd7VoZYgdwLwtBjuNDeikXTZJFxYUEsYF70zfNPFRj+SeWYE
-         WsA27lIVZwJ+/8W2y/hchUUnR11yBzT3eiRVab/MMyh/kFtDWbSqpEjajUC73bsR1Vu+
-         OfIaDfsn+lwcqfN0wXqYDq0KkZAb803uTfu+khH2gZai7XOOM7SBJ95nZ9GDvZ3ldAmd
-         aSgl3KDmfDPfih14K0rpD03OvKgozTr5RNxBgn40l3htdGssh+9I73OnOk7JdOeovuKV
-         b722Va5WPO/5wG8ic5XgJzw2zHnfaztVab02PH6RNIJliOiJvizNmR35L5ZJ5RxXIhTm
-         2dzg==
-X-Gm-Message-State: APjAAAXMxcMUjmQkXA3C43xCJR+jCBn3+1jm7wLuW+Luu+AWpwWnjn0e
-        k0UT/0tXQv1e1TC01zzVCZKPsg==
-X-Google-Smtp-Source: APXvYqygSJnu7L2JedNmYX5ICyfUrGX+E4J3wKc8DRjWeJwkgnQsT/NWZZ9V0F2txVYvAu85h9YZmw==
-X-Received: by 2002:a17:90a:8081:: with SMTP id c1mr17371952pjn.62.1567190113962;
-        Fri, 30 Aug 2019 11:35:13 -0700 (PDT)
-Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id x16sm7420135pff.99.2019.08.30.11.35.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Aug 2019 11:35:12 -0700 (PDT)
-Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
-To:     Wolfram Sang <wsa@the-dreams.de>,
-        Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lori Hikichi <lori.hikichi@broadcom.com>,
-        Icarus Chau <icarus.chau@broadcom.com>,
-        Shivaraj Shetty <sshetty1@broadcom.com>
-References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
- <20190830125626.GC2870@ninjato>
-From:   Ray Jui <ray.jui@broadcom.com>
-Message-ID: <3e70fa7e-de13-4edd-2e17-b7c56e91d220@broadcom.com>
-Date:   Fri, 30 Aug 2019 11:35:08 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190830125626.GC2870@ninjato>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1727914AbfH3TLk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 15:11:40 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:56196 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727888AbfH3TLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 15:11:40 -0400
+Received: from pps.filterd (m0098399.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7UIqLfQ048223;
+        Fri, 30 Aug 2019 15:11:08 -0400
+Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2uq775mv1j-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Aug 2019 15:11:08 -0400
+Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
+        by ppma01dal.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x7UJAIA6021495;
+        Fri, 30 Aug 2019 19:11:07 GMT
+Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
+        by ppma01dal.us.ibm.com with ESMTP id 2unb3tfemq-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Aug 2019 19:11:06 +0000
+Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7UJB5PT58917212
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 30 Aug 2019 19:11:05 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 9F8AD136059;
+        Fri, 30 Aug 2019 19:11:05 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 14D2213604F;
+        Fri, 30 Aug 2019 19:11:05 +0000 (GMT)
+Received: from talon7.ibm.com (unknown [9.41.179.222])
+        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Fri, 30 Aug 2019 19:11:04 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-hwmon@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        devicetree@vger.kernel.org, linux@roeck-us.net, andrew@aj.id.au,
+        joel@jms.id.au, mark.rutland@arm.com, robh+dt@kernel.org,
+        jdelvare@suse.com, Eddie James <eajames@linux.ibm.com>
+Subject: [PATCH v2 0/3] pmbus: ibm-cffps: Add support for version 2 of PSU
+Date:   Fri, 30 Aug 2019 14:11:00 -0500
+Message-Id: <1567192263-15065-1-git-send-email-eajames@linux.ibm.com>
+X-Mailer: git-send-email 1.8.3.1
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-30_07:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ malwarescore=0 suspectscore=1 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908300179
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Version 2 of this PSU supports a second page of data and changes the
+format of the FW version command. Use the devicetree binding (or the I2C
+device ID) to determine which version the driver should use. Therefore add
+the new compatible string to the devicetree documentation and change the
+Swift system devicetree to use version 2.
 
+Changes since v1:
+ - use an enum for the version instead of integers 1, 2, etc
 
-On 8/30/19 5:56 AM, Wolfram Sang wrote:
-> Hi everyone,
-> 
->> +/*
->> + * If 'process_call' is true, then this is a multi-msg transfer that requires
->> + * a repeated start between the messages.
->> + * More specifically, it must be a write (reg) followed by a read (data).
->> + * The i2c quirks are set to enforce this rule.
->> + */
-> 
-> With all the limitations in place, I wonder if it might be easier to
-> implement an smbus_xfer callback instead? What is left that makes this
-> controller more than SMBus and real I2C?
-> 
+Eddie James (3):
+  dt-bindings: hwmon: Document ibm,cffps2 compatible string
+  ARM: dts: aspeed: swift: Change power supplies to version 2
+  pmbus: ibm-cffps: Add support for version 2 of the PSU
 
-Right. But what is the implication of using smbus_xfer instead of 
-master_xfer in our driver?
+ .../devicetree/bindings/hwmon/ibm,cffps1.txt       |   8 +-
+ arch/arm/boot/dts/aspeed-bmc-opp-swift.dts         |   4 +-
+ drivers/hwmon/pmbus/ibm-cffps.c                    | 110 ++++++++++++++++-----
+ 3 files changed, 95 insertions(+), 27 deletions(-)
 
-Does it mean it will break existing functions of the i2c app that our 
-customers developed based on i2cdev (e.g., I2C_RDWR)?
+-- 
+1.8.3.1
 
-1) Does
->> +	/* Process the read message if this is process call */
-> 
-> Also, the term "process call" here seriously sounds like SMBus.
-> 
->> +		addr = msg->addr << 1 | 1;
-> 
-> addr = i2c_8bit_addr_from_msg(msg);
-> 
->> +		u32 protocol;
-> 
-> Hmm, another SMBus terminology.
-> 
-> 
->> +	if (num > 2) {
->> +		dev_err(iproc_i2c->device,
->> +			"Only support up to 2 messages. Current msg count %d\n",
->> +			num);
->> +		return -EOPNOTSUPP;
->> +	}
-> 
-> With your quirks flags set, the core checks it for you.
-> 
-> Kind regards,
-> 
->     Wolfram
-> 
