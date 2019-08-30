@@ -2,191 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4228BA2D1E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 05:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3624FA2D93
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 05:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727920AbfH3DCF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 23:02:05 -0400
-Received: from mga14.intel.com ([192.55.52.115]:47135 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727986AbfH3DCD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Aug 2019 23:02:03 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Aug 2019 20:02:02 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,445,1559545200"; 
-   d="scan'208";a="193184999"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga002.jf.intel.com with ESMTP; 29 Aug 2019 20:02:02 -0700
-Received: from [10.226.39.5] (leichuan-mobl.gar.corp.intel.com [10.226.39.5])
-        by linux.intel.com (Postfix) with ESMTP id A8C6958046E;
-        Thu, 29 Aug 2019 20:02:00 -0700 (PDT)
-Subject: Re: [PATCH v2 2/2] reset: Reset controller driver for Intel LGM SoC
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     eswara.kota@linux.intel.com, cheol.yong.kim@intel.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        p.zabel@pengutronix.de, qi-ming.wu@intel.com, robh@kernel.org,
-        Hauke Mehrtens <hauke@hauke-m.de>
-References: <90cc600d6f7ded68f5a618b626bd9cffa5edf5c3.1566531960.git.eswara.kota@linux.intel.com>
- <20190824211158.5900-1-martin.blumenstingl@googlemail.com>
- <3813e658-1600-d878-61a4-29b4fe51b281@linux.intel.com>
- <CAFBinCA_B9psNGBeDyhkewhoutNh6HsLUN+TRfO_8vuNqhis4Q@mail.gmail.com>
- <48b90943-e23d-a27a-c743-f321345c9151@linux.intel.com>
- <CAFBinCD1oKxYm8QD7XfZUWq_HC5A4GLMmLCnZrcRvpTxrKo30w@mail.gmail.com>
- <19719490-178a-18fd-64f2-f77d955897f7@linux.intel.com>
- <CAFBinCDmi4HN4Ayg4T8aKUeu4hrUmVQ+z-hTN-6XMhiOCUcHjg@mail.gmail.com>
- <34336c9a-8e87-8f84-2ae8-032b7967928f@linux.intel.com>
- <CAFBinCDfM3ssHisMBKXZUFkfoAFw51TaUuKt_aBgtD-mN+9fhg@mail.gmail.com>
-From:   "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>
-Message-ID: <657d796d-cb1b-472d-fe67-f7b9bf12fd79@linux.intel.com>
-Date:   Fri, 30 Aug 2019 11:01:59 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
+        id S1727386AbfH3Dtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 23:49:52 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:60918 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727270AbfH3Dtv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 23:49:51 -0400
+X-UUID: 04816912c3b74d5190312a90b59dbd86-20190830
+X-UUID: 04816912c3b74d5190312a90b59dbd86-20190830
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
+        (envelope-from <sam.shih@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 608273229; Fri, 30 Aug 2019 11:49:43 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 30 Aug 2019 11:49:47 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 30 Aug 2019 11:49:47 +0800
+From:   Sam Shih <sam.shih@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Sam Shih <sam.shih@mediatek.com>
+Subject: [PATCH v7 0/11] Add mt7629 and fix mt7628 pwm
+Date:   Fri, 30 Aug 2019 11:49:25 +0800
+Message-ID: <1567136976-9351-1-git-send-email-sam.shih@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDfM3ssHisMBKXZUFkfoAFw51TaUuKt_aBgtD-mN+9fhg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+Changes since v6:
+  1. Due to we can use fixed-clock in DT
+     We removed has_clks and fixed-clock properties 
 
-On 8/30/2019 5:40 AM, Martin Blumenstingl wrote:
-> Hi,
->
-> On Thu, Aug 29, 2019 at 4:51 AM Chuan Hua, Lei
-> <chuanhua.lei@linux.intel.com> wrote:
->
->>> I'm not surprised that we got some of the IP block layout for the
->>> VRX200 RCU "wrong" - all "documentation" we have is the old Lantiq UGW
->>> (BSP).
->>> with proper documentation (as in a "public datasheet for the SoC") it
->>> would be easy to spot these mistakes (at least I assume that the
->>> quality of the Infineon / Lantiq datasheets is excellent).
->>>
->>> back to reset-intel-syscon:
->>> assigning only one job to the RCU hardware is a good idea (in my opinion).
->>> that brings up a question: why do we need the "syscon" compatible for
->>> the RCU node?
->>> this is typically used when registers are accessed by another IP block
->>> and the other driver has to access these registers as well. does this
->>> mean that there's more hidden in the RCU registers?
->> As I mentioned, some other misc registers are put into RCU even they
->> don't belong to reset functions.
-> OK, just be aware that there are also rules for syscon compatible
-> drivers, see for example: [0]
-> if Rob (dt-bindings maintainer) is happy with the documentation in
-> patch 1 then I'm fine with it as well.
-> for my own education I would appreciate if you could describe these
-> "other misc registers" with a few sentences (I assume that this can
-> also help Rob)
-For LGM, RCU is clean. There would be no MISC register after software's 
-feedback. These misc registers will be moved to chiptop/misc 
-groups(implemented by syscon). For legacy SoC, we do have a lot MISC 
-registers for different SoCs.
->
-> [...]
->>>>>>>> 4. Code not optimized and intel internal review not assessed.
->>>>>>> insights from you (like the issue with the reset callback) are very
->>>>>>> valuable - this shows that we should focus on having one driver.
->>>>>>>
->>>>>>>> Based on the above findings, I would suggest reset-lantiq.c to move to
->>>>>>>> reset-intel-syscon.c
->>>>>>> my concern with having two separate drivers is that it will be hard to
->>>>>>> migrate from reset-lantiq to the "optimized" reset-intel-syscon
->>>>>>> driver.
->>>>>>> I don't have access to the datasheets for the any Lantiq/Intel SoC
->>>>>>> (VRX200 and even older).
->>>>>>> so debugging issues after switching from one driver to another is
->>>>>>> tedious because I cannot tell which part of the driver is causing a
->>>>>>> problem (it's either "all code from driver A" vs "all code from driver
->>>>>>> B", meaning it's hard to narrow it down).
->>>>>>> with separate commits/patches that are improving the reset-lantiq
->>>>>>> driver I can do git bisect to find the cause of a problem on the older
->>>>>>> SoCs (VRX200 for example)
->>>>>> Our internal version supports XRX350/XRX500/PRX300(MIPS based) and
->>>>>> latest Lighting Mountain(X86 based). Migration to reset-intel-syscon.c
->>>>>> should be straight forward.
->>>>> what about the _reset callback on the XRX350/XRX500/PRX300 SoCs - do
->>>>> they only use level resets (_assert and _deassert) or are some reset
->>>>> lines using reset pulses (_reset)?
->>>>>
->>>>> when we wanted to switch from reset-lantiq.c to reset-intel-syscon.c
->>>>> we still had to add support for the _reset callback as this is missing
->>>>> in reset-intel-syscon.c currently
->>>> Yes. We have reset pulse(assert, then check the reset status).
->>> only now I realized that the reset-intel-syscon driver does not seem
->>> to use the status registers (instead it's looking at the reset
->>> registers when checking the status).
->>> what happened to the status registers - do they still exist in newer
->>> SoCs (like LGM)? why are they not used?
->> Reset status check is there. regmap_read_poll_timeout to check status
->> big. Status register offset <4) from request register. For legacy, there
->> is one exception, we can add soc specific data to handle it.
-> I see, thank you for the explanation
-> this won't work on VRX200 for example because the status register is
-> not always at (reset register - 0x4)
+Changes since v5:
+- Follow reviewer's comments:
+  1. the license stuff is a separate change
+  2. split fix mt7628 pwm into a single patch
+  3. to ensure to not use mtk_pwm_clk_name[10] 
+     (After dynamic allocate clock array patch, 
+      this is no need to check)
+  4. Use clock-frequency property to replace 
+     the use of has_clks
 
-As I mentioned, VRX200 and all legacy SoCs (MIPS based) can be solved 
-with one soc data in the compatible array.
+Changes since v4:
+- Follow reviewer's comments (v3: pwm: mediatek: add a property "num-pwms")
+  Move the changes of droping the check for of_device_get_match_data
+  returning non-NULL to next patch
+- Follow reviewers's comments 
+  (v3: pwm: mediatek: allocate the clks array dynamically)
+  1. use pc->soc->has_clks to check clocks exist or not.
+  2. Add error message when probe() unable to get clks
+- Fixes bug when SoC is old mips which has no complex clock tree.
+if clocks not exist, use the new property from DT to apply period 
+calculation; otherwise, use clk_get_rate to get clock frequency and 
+apply period calculation.
 
-For example(not same as upstream, but idea is similar)
+Changes since v3:
+- add a new property "clock-frequency" and fix mt7628 pwm
+- add mt7629 pwm support
 
-static u32 intel_stat_reg_off(struct intel_reset_data *data, u32 req_off)
-{
-     if (data->soc_data->legacy && req_off == RCU_RST_REQ)
-         return RCU_RST_STAT;
-     else
-         return req_off + 0x4;
-}
+Changes since v2:
+- use num-pwms instead of mediatek,num-pwms.
+- rename the member from num_pwms to fallback_num_pwms to make it 
+  more obvious that it doesn't represent the actually used value.
+- add a dev_warn and a expressive comment to help other developers 
+  to not start adding num_pwms in the compatible_data.
 
->
->>> on VRX200 for example there seem to be some cases where the bits in
->>> the reset and status registers are different (for example: the first
->>> GPHY seems to use reset bit 31 but status bit 30)
->>> this is currently not supported in reset-intel-syscon
->> This is most tricky and ugly part for VRX200/Danube. Do you have any
->> idea to handle this nicely?
-> with reset-lantiq we have the following register information:
-> a) reset offset: first reg property
-> b) status offset: second reg property
-> c) reset bit: first #reset-cell
-> d) status bit: second #reset-cell
->
-> reset-intel-syscon derives half of this information from the two #reset-cells:
-> a) reset offset: first #reset-cell
-> b) status offset: reset offset - 0x4
-> c) reset bit: second #reset-cell
-> d) status bit: same as reset bit
->
-> I cannot make any suggestion (yet) how to handle VRX200 and LGM in one
-> driver because I don't know enough about LGM (yet).
-> on VRX200 my understanding is that we have 64 reset bits (2x 32bit
-> registers) and 64 status bits (also 2x 32bit registers). each reset
-> bit has a corresponding status bit but the numbering may be different
-> it's not clear to me how many resets LGM supports and how they are
-> organized. for example: I think it makes a difference if "there are 64
-> registers with each one reset bit" versus "there are two registers
-> with 32 bits each"
-> please share some details how it's organized internally, then I can
-> try to come up with a suggestion.
-LGM reset organization is more clean compared with legacy SoCs. We have 
-8 x 32bit reset and status registers(more modules need to be reset, 
-overall ideas are similar without big change). Their request and status 
-bit is at the same register bit position.  Hope this will help you.
->
-> ... after writing this I noticed that we are discussing the binding.
-> we definitely need to share a summary with Rob on patch #1 and check
-> with him if he sees any problems with the approach that we may come up
-> with
->
->
-> Martin
->
->
-> [0] https://lkml.org/lkml/2019/8/27/849
+Changes since v1:
+- add some checks for backwards compatibility.
+
+
+Ryder Lee (5):
+  pwm: mediatek: add a property "num-pwms"
+  dt-bindings: pwm: add a property "num-pwms"
+  arm64: dts: mt7622: add a property "num-pwms" for PWM
+  arm: dts: mt7623: add a property "num-pwms" for PWM
+  dt-bindings: pwm: update bindings for MT7629 SoC
+
+Sam Shih (6):
+  pwm: mediatek: droping the check for of_device_get_match_data
+  pwm: mediatek: remove a property "has-clks"
+  pwm: mediatek: allocate the clks array dynamically
+  pwm: mediatek: use pwm_mediatek as common prefix
+  pwm: mediatek: update license and switch to SPDX tag
+  arm: dts: mediatek: add mt7629 pwm support
+
+ .../devicetree/bindings/pwm/pwm-mediatek.txt  |   8 +-
+ arch/arm/boot/dts/mt7623.dtsi                 |   1 +
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   1 +
+ drivers/pwm/pwm-mediatek.c                    | 245 +++++++++---------
+ arch/arm/boot/dts/mt7629.dtsi                 | 16 ++++++++++++++++
+ 5 files changed, 149 insertions(+), 122 deletions(-)
+
+-- 
+2.17.1
+
