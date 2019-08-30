@@ -2,124 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FAFBA3B37
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 18:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 126E4A3B5B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 18:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728308AbfH3QCB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 12:02:01 -0400
-Received: from mail-pl1-f182.google.com ([209.85.214.182]:45429 "EHLO
-        mail-pl1-f182.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728093AbfH3QCB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 12:02:01 -0400
-Received: by mail-pl1-f182.google.com with SMTP id y8so3558851plr.12
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 09:02:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:cc:subject:to:from:user-agent:date;
-        bh=Ll00P0HvLyh9ff4mGqhoY7oNmqZV/WIp9ZbBt7WSZuQ=;
-        b=DVNT4sGrKS8uBzpUvPlrwNcWOB48ID/E33wWVXKNaf5Rn1vgh5+t2kQyuqrFOdqw8j
-         2YmAmtzGl93QBYkr5aUtVLO4FEmveVBcPhwSjMHjKvnQY3WFEPGdEkGAlL/QNiRxAde0
-         9vR6xABOTJ0qzHXur+j0+MpQAv4Et4E71ZHUg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:cc:subject:to:from
-         :user-agent:date;
-        bh=Ll00P0HvLyh9ff4mGqhoY7oNmqZV/WIp9ZbBt7WSZuQ=;
-        b=rMG0xAkEPNKSCwHdx8fuSfGWUQm5kJpAgFk/axMSZ4yXLSPDFTToIDHbSjdaV+aqeJ
-         DigWKbrpko5T4XBkwQFK9wTFHPN/t2beX06EhlaNVvOM6AIsOa19UANxu4cB/82Tu7H5
-         cFPxRXgPck7cSoDv4RJb31zdOSAOwwhlBVKhUp9A2HeXuP5p9WBd8o+hKw9dm6WEDzLZ
-         S9fM17w/zRLJTqLdB05rFULRRpFJHBQAurvBaZJwuhi8qeaih++kVbwGEYSkd0abWsXG
-         xqfxm2QCqeo8HlPyPuwwMwsCu7YcmqYxBtLIK3PP+vtqXsatpVbwVqxgScJ2ScwXvY0Q
-         qgFQ==
-X-Gm-Message-State: APjAAAUcELyBvEe90kA+Pm1dRdIMghcCV3Xs9uo0swWCXzCSUVI3XVIG
-        5pRiboxaGO1yhaVy/FjdyyhlVg==
-X-Google-Smtp-Source: APXvYqxBQB8qqHi4xILIYQH7twNKrk/p0gZaksrJaQi2G+n2F2uAcIBYTnbtvlcNY1uzFyMjBAQ7Rg==
-X-Received: by 2002:a17:902:223:: with SMTP id 32mr16796973plc.220.1567180920622;
-        Fri, 30 Aug 2019 09:02:00 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id t70sm5846917pjb.2.2019.08.30.09.01.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Aug 2019 09:02:00 -0700 (PDT)
-Message-ID: <5d694878.1c69fb81.5f13b.ec4f@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <6dc0957d-5806-7643-4454-966015865d38@linaro.org>
-References: <20190207111734.24171-1-jorge.ramirez-ortiz@linaro.org> <20190207111734.24171-4-jorge.ramirez-ortiz@linaro.org> <20190223165218.GB572@tuxbook-pro> <6dc0957d-5806-7643-4454-966015865d38@linaro.org>
-Cc:     robh@kernel.org, andy.gross@linaro.org, shawn.guo@linaro.org,
-        gregkh@linuxfoundation.org, mark.rutland@arm.com, kishon@ti.com,
-        jackp@codeaurora.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        khasim.mohammed@linaro.org
-Subject: Re: [PATCH v4 3/4] dt-bindings: Add Qualcomm USB SuperSpeed PHY bindings
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-User-Agent: alot/0.8.1
-Date:   Fri, 30 Aug 2019 09:01:59 -0700
+        id S1727876AbfH3QGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 12:06:17 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:52132 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727891AbfH3QGQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 12:06:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=uTQeEEYIJhC5tbPfUST4PEt+2kXGnfovRSLhPtWx96o=; b=I2DWabrGuEwq
+        olvrLYhLWDgnKzTuw2SaAmTxADjTjGVpu9I451lQI+6aUbyCJpENSArCxdMp04x/qRd5/ZXjSEgE1
+        BNGSQEkd5xkBPC+ACLeVoTU0OCjsz3CLWK0pCPyu3yQ7cfV/W/S8OSNbW5Bm2SBNl9RqJZiHu4ggP
+        BnkkY=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1i3jPc-00078x-BR; Fri, 30 Aug 2019 16:06:08 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 772D52742B61; Fri, 30 Aug 2019 17:06:07 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     alsa-devel@alsa-project.org, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Applied "ASoC: dt-bindings: Convert Allwinner A64 analog codec to a schema" to the asoc tree
+In-Reply-To: <20190828125209.28173-5-mripard@kernel.org>
+X-Patchwork-Hint: ignore
+Message-Id: <20190830160607.772D52742B61@ypsilon.sirena.org.uk>
+Date:   Fri, 30 Aug 2019 17:06:07 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Jorge Ramirez (2019-08-29 00:03:48)
-> On 2/23/19 17:52, Bjorn Andersson wrote:
-> > On Thu 07 Feb 03:17 PST 2019, Jorge Ramirez-Ortiz wrote:
-> >> +
-> >> +Required child nodes:
-> >> +
-> >> +- usb connector node as defined in bindings/connector/usb-connector.t=
-xt
-> >> +  containing the property vbus-supply.
-> >> +
-> >> +Example:
-> >> +
-> >> +usb3_phy: usb3-phy@78000 {
-> >> +    compatible =3D "qcom,snps-usb-ssphy";
-> >> +    reg =3D <0x78000 0x400>;
-> >> +    #phy-cells =3D <0>;
-> >> +    clocks =3D <&rpmcc RPM_SMD_LN_BB_CLK>,
-> >> +             <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
-> >> +             <&gcc GCC_USB3_PHY_PIPE_CLK>;
-> >> +    clock-names =3D "ref", "phy", "pipe";
-> >> +    resets =3D <&gcc GCC_USB3_PHY_BCR>,
-> >> +             <&gcc GCC_USB3PHY_PHY_BCR>;
-> >> +    reset-names =3D "com", "phy";
-> >> +    vdd-supply =3D <&vreg_l3_1p05>;
-> >> +    vdda1p8-supply =3D <&vreg_l5_1p8>;
-> >> +    usb3_c_connector: usb3-c-connector {
+The patch
 
-Node name should be 'connector', not usb3-c-connector.
+   ASoC: dt-bindings: Convert Allwinner A64 analog codec to a schema
 
-> >=20
-> > The USB-C connector is attached both to the HS and SS PHYs, so I think
-> > you should represent this external to this node and use of_graph to
-> > query it.
->=20
-> but AFAICS we wont be able to retrieve the vbux-supply from an external
-> node (that interface does not exist).
->=20
-> rob, do you have a suggestion?
+has been applied to the asoc tree at
 
-Shouldn't the vbus supply be in the phy? Or is this a situation where
-the phy itself doesn't have the vbus supply going to it because the PMIC
-gets in the way and handles the vbus for the connector by having the SoC
-communicate with the PMIC about when to turn the vbus on and off, etc?
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
 
->=20
-> >=20
-> > So the connector should look similar to example 2 in
-> > connector/usb-connector.txt.
-> >=20
-> > Regards,
-> > Bjorn
-> >=20
-> >> +            compatible =3D "usb-c-connector";
-> >> +            label =3D "USB-C";
-> >> +            type =3D "micro";
-> >> +            vbus-supply =3D <&usb3_vbus_reg>;
-> >> +    };
-> >> +};
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 497144a5b7af12097c09b0ca30409ee7122499a0 Mon Sep 17 00:00:00 2001
+From: Maxime Ripard <maxime.ripard@bootlin.com>
+Date: Wed, 28 Aug 2019 14:52:09 +0200
+Subject: [PATCH] ASoC: dt-bindings: Convert Allwinner A64 analog codec to a
+ schema
+
+The Allwinner A64 SoC has an embedded audio codec that uses a separate
+controller to drive its analog part, which is supported in Linux, with a
+matching Device Tree binding.
+
+Now that we have the DT validation in place, let's convert the device tree
+bindings for that controller over to a YAML schemas.
+
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+Link: https://lore.kernel.org/r/20190828125209.28173-5-mripard@kernel.org
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ .../allwinner,sun50i-a64-codec-analog.yaml    | 39 +++++++++++++++++++
+ .../bindings/sound/sun50i-codec-analog.txt    | 14 -------
+ 2 files changed, 39 insertions(+), 14 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun50i-a64-codec-analog.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/sun50i-codec-analog.txt
+
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun50i-a64-codec-analog.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun50i-a64-codec-analog.yaml
+new file mode 100644
+index 000000000000..f290eb72a878
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun50i-a64-codec-analog.yaml
+@@ -0,0 +1,39 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/allwinner,sun50i-a64-codec-analog.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner A64 Analog Codec Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++properties:
++  compatible:
++    const: allwinner,sun50i-a64-codec-analog
++
++  reg:
++    maxItems: 1
++
++  cpvdd-supply:
++    description:
++      Regulator for the headphone amplifier
++
++required:
++  - compatible
++  - reg
++  - cpvdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    codec_analog: codec-analog@1f015c0 {
++      compatible = "allwinner,sun50i-a64-codec-analog";
++      reg = <0x01f015c0 0x4>;
++      cpvdd-supply = <&reg_eldo1>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/sound/sun50i-codec-analog.txt b/Documentation/devicetree/bindings/sound/sun50i-codec-analog.txt
+deleted file mode 100644
+index 056a098495cc..000000000000
+--- a/Documentation/devicetree/bindings/sound/sun50i-codec-analog.txt
++++ /dev/null
+@@ -1,14 +0,0 @@
+-* Allwinner A64 Codec Analog Controls
+-
+-Required properties:
+-- compatible: must be one of the following compatibles:
+-		- "allwinner,sun50i-a64-codec-analog"
+-- reg: must contain the registers location and length
+-- cpvdd-supply: Regulator supply for the headphone amplifier
+-
+-Example:
+-	codec_analog: codec-analog@1f015c0 {
+-		compatible = "allwinner,sun50i-a64-codec-analog";
+-		reg = <0x01f015c0 0x4>;
+-		cpvdd-supply = <&reg_eldo1>;
+-	};
+-- 
+2.20.1
+
