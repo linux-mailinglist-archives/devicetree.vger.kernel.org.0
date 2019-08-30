@@ -2,307 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05B2CA3DA3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 20:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B08EA3DAE
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 20:28:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727994AbfH3SU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 14:20:29 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:18848 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727963AbfH3SU3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 30 Aug 2019 14:20:29 -0400
-Received: from pps.filterd (m0098393.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7UIHUmW143508;
-        Fri, 30 Aug 2019 14:19:54 -0400
-Received: from ppma03wdc.us.ibm.com (ba.79.3fa9.ip4.static.sl-reverse.com [169.63.121.186])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2uq77fbchq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Aug 2019 14:19:54 -0400
-Received: from pps.filterd (ppma03wdc.us.ibm.com [127.0.0.1])
-        by ppma03wdc.us.ibm.com (8.16.0.27/8.16.0.27) with SMTP id x7UIJmfw013615;
-        Fri, 30 Aug 2019 18:19:53 GMT
-Received: from b03cxnp08028.gho.boulder.ibm.com (b03cxnp08028.gho.boulder.ibm.com [9.17.130.20])
-        by ppma03wdc.us.ibm.com with ESMTP id 2upp5dwh4m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Aug 2019 18:19:52 +0000
-Received: from b03ledav001.gho.boulder.ibm.com (b03ledav001.gho.boulder.ibm.com [9.17.130.232])
-        by b03cxnp08028.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id x7UIJq0D61931928
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 30 Aug 2019 18:19:52 GMT
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 040656E04E;
-        Fri, 30 Aug 2019 18:19:52 +0000 (GMT)
-Received: from b03ledav001.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 82ACE6E04C;
-        Fri, 30 Aug 2019 18:19:50 +0000 (GMT)
-Received: from [9.85.210.225] (unknown [9.85.210.225])
-        by b03ledav001.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Fri, 30 Aug 2019 18:19:50 +0000 (GMT)
-Subject: Re: [PATCH 3/3] pmbus: ibm-cffps: Add support for version 2 of the
- PSU
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        andrew@aj.id.au, joel@jms.id.au, mark.rutland@arm.com,
-        robh+dt@kernel.org, jdelvare@suse.com
-References: <1567181385-22129-1-git-send-email-eajames@linux.ibm.com>
- <1567181385-22129-4-git-send-email-eajames@linux.ibm.com>
- <20190830173603.GA10472@roeck-us.net>
-From:   Eddie James <eajames@linux.ibm.com>
-Message-ID: <6b2feb94-eb69-35c5-a7a9-0ca08c392fcc@linux.ibm.com>
-Date:   Fri, 30 Aug 2019 13:19:49 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728008AbfH3S2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 14:28:36 -0400
+Received: from mail-pf1-f173.google.com ([209.85.210.173]:46907 "EHLO
+        mail-pf1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727914AbfH3S2f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 14:28:35 -0400
+Received: by mail-pf1-f173.google.com with SMTP id q139so5118243pfc.13
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 11:28:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:cc:subject:to:from:user-agent:date;
+        bh=9GeCgw/KxFloNeY2cmQhUJuI6BYk8fDzNxr9XRd8OXk=;
+        b=ai/zCqyb/BzQPSLxNpUrZR7CwKxGWQ2I+RXtaeVKtdkNKoEKnMxFwrdfTlSjANybDL
+         FF+SNidSutGnxWc+1lYqacTgreiFWZg7A6uEls2EktdaioC8OiAd991XAHTvd/I/CTsq
+         I0D3cpqKf3EdMUshwYywp0JTUbS39u11rPAy4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:cc:subject:to:from
+         :user-agent:date;
+        bh=9GeCgw/KxFloNeY2cmQhUJuI6BYk8fDzNxr9XRd8OXk=;
+        b=mBz8/m+wtgtoo4PSFg5wFpj3ZDrE6OHUPnl4ehbgtSbDAt4rdedP53E6YLRtIqpX+e
+         ECle740bqXINruvbzBUaQeqKA9wvWFIJTpfAJZ9KKRBc868VaASpnBb1jGwjk5Ehiz0d
+         wYsZt7S12J5ceqBOOfl5mY/zDyduKM6rHKMXjnbvOZck2czaa1RSA/K2DesS/96Tq2mw
+         nmK7CnQldacZPihs60Vgn60OejZboc37aX23lMXN3osNPpIEykLAn/2FV2VEP5e2qKrT
+         cYrvOOIuLXna6f7CpSwZg7mW/3akpSug6XjuJX6Rj8EfdPdYc29mroTFSOx/BdP5X1p/
+         s87A==
+X-Gm-Message-State: APjAAAU6MZlgTG/mvote4XsNq4l6REiiRgHMXWjjke5RKfuNhvGcbaz6
+        /B92/pBQpAKYJlc023N4ba6sgg==
+X-Google-Smtp-Source: APXvYqzMiFGN83Njt2/JrFLYZUyyM9L9qiaHV6onYdWf1y1eG8n3W6IX2y++KngHRNf/PFHG04PAew==
+X-Received: by 2002:a63:460c:: with SMTP id t12mr13961916pga.69.1567189714926;
+        Fri, 30 Aug 2019 11:28:34 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id g14sm7411264pfb.150.2019.08.30.11.28.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2019 11:28:34 -0700 (PDT)
+Message-ID: <5d696ad2.1c69fb81.977ea.39e5@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190830173603.GA10472@roeck-us.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-30_07:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908300177
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190830164520.GK26807@tuxbook-pro>
+References: <20190207111734.24171-1-jorge.ramirez-ortiz@linaro.org> <20190207111734.24171-4-jorge.ramirez-ortiz@linaro.org> <20190223165218.GB572@tuxbook-pro> <6dc0957d-5806-7643-4454-966015865d38@linaro.org> <5d694878.1c69fb81.5f13b.ec4f@mx.google.com> <20190830164520.GK26807@tuxbook-pro>
+Cc:     Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>, robh@kernel.org,
+        andy.gross@linaro.org, shawn.guo@linaro.org,
+        gregkh@linuxfoundation.org, mark.rutland@arm.com, kishon@ti.com,
+        jackp@codeaurora.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        khasim.mohammed@linaro.org
+Subject: Re: [PATCH v4 3/4] dt-bindings: Add Qualcomm USB SuperSpeed PHY bindings
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.8.1
+Date:   Fri, 30 Aug 2019 11:28:33 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Quoting Bjorn Andersson (2019-08-30 09:45:20)
+> On Fri 30 Aug 09:01 PDT 2019, Stephen Boyd wrote:
+>=20
+> > Quoting Jorge Ramirez (2019-08-29 00:03:48)
+> > > On 2/23/19 17:52, Bjorn Andersson wrote:
+> > > > On Thu 07 Feb 03:17 PST 2019, Jorge Ramirez-Ortiz wrote:
+> > > >> +
+> > > >> +Required child nodes:
+> > > >> +
+> > > >> +- usb connector node as defined in bindings/connector/usb-connect=
+or.txt
+> > > >> +  containing the property vbus-supply.
+> > > >> +
+> > > >> +Example:
+> > > >> +
+> > > >> +usb3_phy: usb3-phy@78000 {
+> > > >> +    compatible =3D "qcom,snps-usb-ssphy";
+> > > >> +    reg =3D <0x78000 0x400>;
+> > > >> +    #phy-cells =3D <0>;
+> > > >> +    clocks =3D <&rpmcc RPM_SMD_LN_BB_CLK>,
+> > > >> +             <&gcc GCC_USB_HS_PHY_CFG_AHB_CLK>,
+> > > >> +             <&gcc GCC_USB3_PHY_PIPE_CLK>;
+> > > >> +    clock-names =3D "ref", "phy", "pipe";
+> > > >> +    resets =3D <&gcc GCC_USB3_PHY_BCR>,
+> > > >> +             <&gcc GCC_USB3PHY_PHY_BCR>;
+> > > >> +    reset-names =3D "com", "phy";
+> > > >> +    vdd-supply =3D <&vreg_l3_1p05>;
+> > > >> +    vdda1p8-supply =3D <&vreg_l5_1p8>;
+> > > >> +    usb3_c_connector: usb3-c-connector {
+> >=20
+> > Node name should be 'connector', not usb3-c-connector.
+> >=20
+>=20
+> It probably has to be usb-c-connector, because we have a
+> micro-usb-connector on the same board.
 
-On 8/30/19 12:36 PM, Guenter Roeck wrote:
-> On Fri, Aug 30, 2019 at 11:09:45AM -0500, Eddie James wrote:
->> Version 2 of the PSU supports a second page of data and changes the
->> format of the FW version. Use the devicetree binding to differentiate
->> between the version the driver should use.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> ---
->>   drivers/hwmon/pmbus/ibm-cffps.c | 109 ++++++++++++++++++++++++++++++++--------
->>   1 file changed, 87 insertions(+), 22 deletions(-)
->>
->> diff --git a/drivers/hwmon/pmbus/ibm-cffps.c b/drivers/hwmon/pmbus/ibm-cffps.c
->> index ee2ee9e..ca26fbd 100644
->> --- a/drivers/hwmon/pmbus/ibm-cffps.c
->> +++ b/drivers/hwmon/pmbus/ibm-cffps.c
->> @@ -12,16 +12,20 @@
->>   #include <linux/leds.h>
->>   #include <linux/module.h>
->>   #include <linux/mutex.h>
->> +#include <linux/of_device.h>
->>   #include <linux/pmbus.h>
->>   
->>   #include "pmbus.h"
->>   
->> +#define CFFPS_VERSIONS				2
->> +
-> Any chance you can use an enum for the versions ? Using version
-> numbers 1/2 combined with array indices 0/1 is confusing, error
-> prone, and seems unnecessary.
+Ok. Or connector@1 and connector@2? Our toplevel node container story is
+sort of sad because we have to play tricks with node names. But in the
+example, just connector I presume?=20
 
+>=20
+> > > >=20
+> > > > The USB-C connector is attached both to the HS and SS PHYs, so I th=
+ink
+> > > > you should represent this external to this node and use of_graph to
+> > > > query it.
+> > >=20
+> > > but AFAICS we wont be able to retrieve the vbux-supply from an extern=
+al
+> > > node (that interface does not exist).
+> > >=20
+> > > rob, do you have a suggestion?
+> >=20
+> > Shouldn't the vbus supply be in the phy? Or is this a situation where
+> > the phy itself doesn't have the vbus supply going to it because the PMIC
+> > gets in the way and handles the vbus for the connector by having the SoC
+> > communicate with the PMIC about when to turn the vbus on and off, etc?
+> >=20
+>=20
+> That's correct, the VBUS comes out of the PMIC and goes directly to the
+> connector.
+>=20
+> The additional complicating factor here is that the connector is wired
+> to a USB2 phy as well, so we need to wire up detection and vbus control
+> to both of them - but I think this will be fine, if we can only figure
+> out a sane way of getting hold of the vbus-supply.
+>=20
 
-Sure, good idea.
+Does it really matter to describe this situation though? Maybe it's
+simpler to throw the vbus supply into the phy and control it from the
+phy driver, even if it never really goes there. Or put it into the
+toplevel usb controller?
 
-Thanks,
-
-Eddie
-
-
->
-> Thanks,
-> Guenter
->
->>   #define CFFPS_FRU_CMD				0x9A
->>   #define CFFPS_PN_CMD				0x9B
->>   #define CFFPS_SN_CMD				0x9E
->>   #define CFFPS_CCIN_CMD				0xBD
->> -#define CFFPS_FW_CMD_START			0xFA
->> -#define CFFPS_FW_NUM_BYTES			4
->> +#define CFFPS_FW_CMD				0xFA
->> +#define CFFPS1_FW_NUM_BYTES			4
->> +#define CFFPS2_FW_NUM_WORDS			3
->>   #define CFFPS_SYS_CONFIG_CMD			0xDA
->>   
->>   #define CFFPS_INPUT_HISTORY_CMD			0xD6
->> @@ -61,6 +65,7 @@ struct ibm_cffps_input_history {
->>   };
->>   
->>   struct ibm_cffps {
->> +	int version;
->>   	struct i2c_client *client;
->>   
->>   	struct ibm_cffps_input_history input_history;
->> @@ -132,6 +137,8 @@ static ssize_t ibm_cffps_debugfs_op(struct file *file, char __user *buf,
->>   	struct ibm_cffps *psu = to_psu(idxp, idx);
->>   	char data[I2C_SMBUS_BLOCK_MAX] = { 0 };
->>   
->> +	pmbus_set_page(psu->client, 0);
->> +
->>   	switch (idx) {
->>   	case CFFPS_DEBUGFS_INPUT_HISTORY:
->>   		return ibm_cffps_read_input_history(psu, buf, count, ppos);
->> @@ -152,16 +159,36 @@ static ssize_t ibm_cffps_debugfs_op(struct file *file, char __user *buf,
->>   		rc = snprintf(data, 5, "%04X", rc);
->>   		goto done;
->>   	case CFFPS_DEBUGFS_FW:
->> -		for (i = 0; i < CFFPS_FW_NUM_BYTES; ++i) {
->> -			rc = i2c_smbus_read_byte_data(psu->client,
->> -						      CFFPS_FW_CMD_START + i);
->> -			if (rc < 0)
->> -				return rc;
->> +		switch (psu->version) {
->> +		case 1:
->> +			for (i = 0; i < CFFPS1_FW_NUM_BYTES; ++i) {
->> +				rc = i2c_smbus_read_byte_data(psu->client,
->> +							      CFFPS_FW_CMD +
->> +								i);
->> +				if (rc < 0)
->> +					return rc;
->> +
->> +				snprintf(&data[i * 2], 3, "%02X", rc);
->> +			}
->>   
->> -			snprintf(&data[i * 2], 3, "%02X", rc);
->> -		}
->> +			rc = i * 2;
->> +			break;
->> +		case 2:
->> +			for (i = 0; i < CFFPS2_FW_NUM_WORDS; ++i) {
->> +				rc = i2c_smbus_read_word_data(psu->client,
->> +							      CFFPS_FW_CMD +
->> +								i);
->> +				if (rc < 0)
->> +					return rc;
->> +
->> +				snprintf(&data[i * 4], 5, "%04X", rc);
->> +			}
->>   
->> -		rc = i * 2;
->> +			rc = i * 4;
->> +			break;
->> +		default:
->> +			return -EOPNOTSUPP;
->> +		}
->>   		goto done;
->>   	default:
->>   		return -EINVAL;
->> @@ -279,6 +306,8 @@ static void ibm_cffps_led_brightness_set(struct led_classdev *led_cdev,
->>   			psu->led_state = CFFPS_LED_ON;
->>   	}
->>   
->> +	pmbus_set_page(psu->client, 0);
->> +
->>   	rc = i2c_smbus_write_byte_data(psu->client, CFFPS_SYS_CONFIG_CMD,
->>   				       psu->led_state);
->>   	if (rc < 0)
->> @@ -299,6 +328,8 @@ static int ibm_cffps_led_blink_set(struct led_classdev *led_cdev,
->>   	if (led_cdev->brightness == LED_OFF)
->>   		return 0;
->>   
->> +	pmbus_set_page(psu->client, 0);
->> +
->>   	rc = i2c_smbus_write_byte_data(psu->client, CFFPS_SYS_CONFIG_CMD,
->>   				       CFFPS_LED_BLINK);
->>   	if (rc < 0)
->> @@ -328,15 +359,32 @@ static void ibm_cffps_create_led_class(struct ibm_cffps *psu)
->>   		dev_warn(dev, "failed to register led class: %d\n", rc);
->>   }
->>   
->> -static struct pmbus_driver_info ibm_cffps_info = {
->> -	.pages = 1,
->> -	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
->> -		PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
->> -		PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 | PMBUS_HAVE_STATUS_VOUT |
->> -		PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_INPUT |
->> -		PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_FAN12,
->> -	.read_byte_data = ibm_cffps_read_byte_data,
->> -	.read_word_data = ibm_cffps_read_word_data,
->> +static struct pmbus_driver_info ibm_cffps_info[CFFPS_VERSIONS] = {
->> +	[0] = {
->> +		.pages = 1,
->> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
->> +			PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
->> +			PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
->> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
->> +			PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP |
->> +			PMBUS_HAVE_STATUS_FAN12,
->> +		.read_byte_data = ibm_cffps_read_byte_data,
->> +		.read_word_data = ibm_cffps_read_word_data,
->> +	},
->> +	[1] = {
->> +		.pages = 2,
->> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
->> +			PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
->> +			PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
->> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
->> +			PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP |
->> +			PMBUS_HAVE_STATUS_FAN12,
->> +		.func[1] = PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
->> +			PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
->> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT,
->> +		.read_byte_data = ibm_cffps_read_byte_data,
->> +		.read_word_data = ibm_cffps_read_word_data,
->> +	},
->>   };
->>   
->>   static struct pmbus_platform_data ibm_cffps_pdata = {
->> @@ -346,13 +394,21 @@ static void ibm_cffps_create_led_class(struct ibm_cffps *psu)
->>   static int ibm_cffps_probe(struct i2c_client *client,
->>   			   const struct i2c_device_id *id)
->>   {
->> -	int i, rc;
->> +	int i, rc, vs;
->>   	struct dentry *debugfs;
->>   	struct dentry *ibm_cffps_dir;
->>   	struct ibm_cffps *psu;
->> +	const void *md = of_device_get_match_data(&client->dev);
->> +
->> +	if (md)
->> +		vs = (int)md;
->> +	else if (id)
->> +		vs = (int)id->driver_data;
->> +	else
->> +		vs = 1;
->>   
->>   	client->dev.platform_data = &ibm_cffps_pdata;
->> -	rc = pmbus_do_probe(client, id, &ibm_cffps_info);
->> +	rc = pmbus_do_probe(client, id, &ibm_cffps_info[vs - 1]);
->>   	if (rc)
->>   		return rc;
->>   
->> @@ -364,6 +420,7 @@ static int ibm_cffps_probe(struct i2c_client *client,
->>   	if (!psu)
->>   		return 0;
->>   
->> +	psu->version = vs;
->>   	psu->client = client;
->>   	mutex_init(&psu->input_history.update_lock);
->>   	psu->input_history.last_update = jiffies - HZ;
->> @@ -406,12 +463,20 @@ static int ibm_cffps_probe(struct i2c_client *client,
->>   
->>   static const struct i2c_device_id ibm_cffps_id[] = {
->>   	{ "ibm_cffps1", 1 },
->> +	{ "ibm_cffps2", 2 },
->>   	{}
->>   };
->>   MODULE_DEVICE_TABLE(i2c, ibm_cffps_id);
->>   
->>   static const struct of_device_id ibm_cffps_of_match[] = {
->> -	{ .compatible = "ibm,cffps1" },
->> +	{
->> +		.compatible = "ibm,cffps1",
->> +		.data = (void *)1
->> +	},
->> +	{
->> +		.compatible = "ibm,cffps2",
->> +		.data = (void *)2
->> +	},
->>   	{}
->>   };
->>   MODULE_DEVICE_TABLE(of, ibm_cffps_of_match);
->> -- 
->> 1.8.3.1
->>
