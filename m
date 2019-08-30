@@ -2,80 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 798CFA34CB
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 12:17:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62ECA34F1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 12:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727887AbfH3KQ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 06:16:58 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:36301 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727729AbfH3KQ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 06:16:58 -0400
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3dxa-00031p-Ox; Fri, 30 Aug 2019 12:16:50 +0200
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i3dxY-0003om-Dj; Fri, 30 Aug 2019 12:16:48 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
-        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
-        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-media@vger.kernel.org, Jacopo Mondi <jacopo@jmondi.org>
-Subject: [PATCH v10 14/14] media: tvp5150: make debug output more readable
-Date:   Fri, 30 Aug 2019 12:16:46 +0200
-Message-Id: <20190830101646.6530-15-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190830101646.6530-1-m.felsch@pengutronix.de>
-References: <20190830101646.6530-1-m.felsch@pengutronix.de>
+        id S1726660AbfH3K3X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 06:29:23 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:36290 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726902AbfH3K3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 06:29:23 -0400
+Received: by mail-lj1-f196.google.com with SMTP id u15so6009038ljl.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 03:29:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=77jjzv0Z9CzErPSRHF84ZQ30/TlT+daBnsbqrJqJCd4=;
+        b=Pf2xiclZwwkFi4pPMvFrD4oBHqaPKSusBqloCaplvgLWIbPC5oH6J8nSFdYgrMURxK
+         XNRzdtUAG1gZ1p4U0kmKOiFjF8bXqPCiUlsMYqjXNk7Gb66QODKm3AETHHzBqvHLieEd
+         0+i/nehhw3anG74awucIWO/fUwOk/jR0+3Woz3A7bzK4fpcBZOVXEABjHdcBZNj5hzk4
+         1UuJsIn7X+Vp/KBQsvl9cbl0c9w4hFmDvqRV8sqFenRUB7MKkE9Cphs/KuXdfTjHeqZj
+         +ERRSybPlqUD9bPHV5SPvwe+QgTmUNpg2klC11Bk4uXzy5CCfgwbhtVR84p7ueTI6duW
+         9KyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=77jjzv0Z9CzErPSRHF84ZQ30/TlT+daBnsbqrJqJCd4=;
+        b=CvBAlbvyIWCCTruA+RFMoJPHFXSM8v30KctXc5DEEc7WGw4CykwDlCkV4Bjf1C6pXZ
+         +FgNV7FfpJeLiLuudBGp0Hqn1N6t+WgtxigDri+S02Aydg4fqb64FU4Rx98oLCJMI9af
+         FG7XVsiqvGmkDuOGH2hsH9SspZFEVEIZQeooaVDHs6f4P6W7ovAZiIHa2jX6cXZcyy4i
+         j9G8Xxgk4Ok/gbN6ZNi86MIQY/5SGWadW+751YZRh5+kCwI+2HmApkE3m/Zs2FUIysq5
+         3/cIIt4DwFO6XnSS2yWq3ZkcJTgK9hwbjRglW2PQ/w8vH20RE7s2ICLtTEYQILb4AN4Z
+         3qaA==
+X-Gm-Message-State: APjAAAWTz2NBIulfYdYBxR3X6eYDCtg7vYLjIWoOkVjDPyzWiZvPeLkb
+        tTUKcMmuzOITQSSgfOYjNa2Rqg==
+X-Google-Smtp-Source: APXvYqxafQzvzz4MY5Rs0uUe86I235CVUgWRrKRXteTpBF1m851Sy/GmfwzhCJVCHjj32713TXhdvg==
+X-Received: by 2002:a2e:a313:: with SMTP id l19mr8299166lje.32.1567160960375;
+        Fri, 30 Aug 2019 03:29:20 -0700 (PDT)
+Received: from localhost.localdomain (ua-84-219-138-247.bbcust.telenor.se. [84.219.138.247])
+        by smtp.gmail.com with ESMTPSA id l8sm778786lja.38.2019.08.30.03.29.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Aug 2019 03:29:19 -0700 (PDT)
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
+        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 06/14] dt-bindings: opp: qcom-nvmem: Support pstates provided by a power domain
+Date:   Fri, 30 Aug 2019 12:29:15 +0200
+Message-Id: <20190830102915.7418-1-niklas.cassel@linaro.org>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190819100957.17095-1-niklas.cassel@linaro.org>
+References: <20190819100957.17095-1-niklas.cassel@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The debug output for tvp5150_selmux() isn't really intuitive. Register
-values are printed decimal formatted and the input/output driver states
-are printed as enum. Even more the "normal" output enum mapps to zero so
-a active output will printing output=0 and a inactive output=1.
+Some Qualcomm SoCs have support for Core Power Reduction (CPR).
+On these platforms, we need to attach to the power domain provider
+providing the performance states, so that the leaky device (the CPU)
+can configure the performance states (which represent different
+CPU clock frequencies).
 
-Change this by brinting the register values hex formatted and the states
-as more readable string.
-
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- drivers/media/i2c/tvp5150.c | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+Changes since V3:
+-In Example 2: rename the node name from cpr to power-controller,
+and rename the label from cprpd to cpr.
 
-diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-index da7e7fe16f89..16f777e5c1b9 100644
---- a/drivers/media/i2c/tvp5150.c
-+++ b/drivers/media/i2c/tvp5150.c
-@@ -300,9 +300,12 @@ static void tvp5150_selmux(struct v4l2_subdev *sd)
- 		break;
- 	}
+ .../bindings/opp/qcom-nvmem-cpufreq.txt       | 113 +++++++++++++++++-
+ 1 file changed, 112 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
+index c5ea8b90e35d..4751029b9b74 100644
+--- a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
++++ b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
+@@ -14,7 +14,7 @@ operating-points-v2 table when it is parsed by the OPP framework.
  
--	dev_dbg_lvl(sd->dev, 1, debug, "Selecting video route: route input=%i, output=%i => tvp5150 input=%i, opmode=%i\n",
--			decoder->input, decoder->output,
--			input, opmode);
-+	dev_dbg_lvl(sd->dev, 1, debug,
-+		    "Selecting video route: route input=%s, output=%s => tvp5150 input=0x%02x, opmode=0x%02x\n",
-+		    decoder->input == 0 ? "aip1a" :
-+		    decoder->input == 2 ? "aip1b" : "svideo",
-+		    decoder->output == 0 ? "normal" : "black-frame-gen",
-+		    input, opmode);
+ Required properties:
+ --------------------
+-In 'cpus' nodes:
++In 'cpu' nodes:
+ - operating-points-v2: Phandle to the operating-points-v2 table to use.
  
- 	regmap_write(decoder->regmap, TVP5150_OP_MODE_CTL, opmode);
- 	regmap_write(decoder->regmap, TVP5150_VD_IN_SRC_SEL_1, input);
+ In 'operating-points-v2' table:
+@@ -23,6 +23,15 @@ In 'operating-points-v2' table:
+ 
+ Optional properties:
+ --------------------
++In 'cpu' nodes:
++- power-domains: A phandle pointing to the PM domain specifier which provides
++		the performance states available for active state management.
++		Please refer to the power-domains bindings
++		Documentation/devicetree/bindings/power/power_domain.txt
++		and also examples below.
++- power-domain-names: Should be
++	- 'cpr' for qcs404.
++
+ In 'operating-points-v2' table:
+ - nvmem-cells: A phandle pointing to a nvmem-cells node representing the
+ 		efuse registers that has information about the
+@@ -682,3 +691,105 @@ soc {
+ 		};
+ 	};
+ };
++
++Example 2:
++---------
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		CPU0: cpu@100 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x100>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cpr>;
++			power-domain-names = "cpr";
++		};
++
++		CPU1: cpu@101 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x101>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cpr>;
++			power-domain-names = "cpr";
++		};
++
++		CPU2: cpu@102 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x102>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cpr>;
++			power-domain-names = "cpr";
++		};
++
++		CPU3: cpu@103 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x103>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cpr>;
++			power-domain-names = "cpr";
++		};
++	};
++
++	cpu_opp_table: cpu-opp-table {
++		compatible = "operating-points-v2-kryo-cpu";
++		opp-shared;
++
++		opp-1094400000 {
++			opp-hz = /bits/ 64 <1094400000>;
++			required-opps = <&cpr_opp1>;
++		};
++		opp-1248000000 {
++			opp-hz = /bits/ 64 <1248000000>;
++			required-opps = <&cpr_opp2>;
++		};
++		opp-1401600000 {
++			opp-hz = /bits/ 64 <1401600000>;
++			required-opps = <&cpr_opp3>;
++		};
++	};
++
++	cpr_opp_table: cpr-opp-table {
++		compatible = "operating-points-v2-qcom-level";
++
++		cpr_opp1: opp1 {
++			opp-level = <1>;
++			qcom,opp-fuse-level = <1>;
++		};
++		cpr_opp2: opp2 {
++			opp-level = <2>;
++			qcom,opp-fuse-level = <2>;
++		};
++		cpr_opp3: opp3 {
++			opp-level = <3>;
++			qcom,opp-fuse-level = <3>;
++		};
++	};
++
++....
++
++soc {
++....
++	cpr: power-controller@b018000 {
++		compatible = "qcom,qcs404-cpr", "qcom,cpr";
++		reg = <0x0b018000 0x1000>;
++		....
++		vdd-apc-supply = <&pms405_s3>;
++		#power-domain-cells = <0>;
++		operating-points-v2 = <&cpr_opp_table>;
++		....
++	};
++};
 -- 
-2.20.1
+2.21.0
 
