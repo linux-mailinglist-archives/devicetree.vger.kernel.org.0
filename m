@@ -2,108 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CAFEA2C07
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 03:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 053C2A2CCA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 04:23:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726991AbfH3BBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Aug 2019 21:01:30 -0400
-Received: from anchovy3.45ru.net.au ([203.30.46.155]:56247 "EHLO
-        anchovy3.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727110AbfH3BBa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 21:01:30 -0400
-Received: (qmail 669 invoked by uid 5089); 30 Aug 2019 01:01:27 -0000
-Received: by simscan 1.2.0 ppid: 566, pid: 567, t: 0.1021s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?192.168.0.128?) (preid@electromag.com.au@203.59.235.95)
-  by anchovy2.45ru.net.au with ESMTPA; 30 Aug 2019 01:01:26 -0000
-Subject: Re: [PATCH 1/2] dt-binding: iio: Add optional label property
-To:     Rob Herring <robh@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>
-Cc:     jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, mark.rutland@arm.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
- <1566876924-63608-2-git-send-email-preid@electromag.com.au>
- <a30b6dca-c598-135a-0559-1018dd5f5fde@xilinx.com>
- <20190829230207.GA22979@bogus>
-From:   Phil Reid <preid@electromag.com.au>
-Message-ID: <b50bce2d-8819-67b1-c55c-8c2b8070a4ac@electromag.com.au>
-Date:   Fri, 30 Aug 2019 09:01:15 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727066AbfH3CX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Aug 2019 22:23:57 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:60452 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727216AbfH3CX4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Aug 2019 22:23:56 -0400
+X-UUID: 2253cdb25a6c4982bc16fa3535e8a1da-20190830
+X-UUID: 2253cdb25a6c4982bc16fa3535e8a1da-20190830
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <houlong.wei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 564175187; Fri, 30 Aug 2019 10:23:53 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 30 Aug
+ 2019 10:23:49 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 30 Aug 2019 10:23:48 +0800
+Message-ID: <1567131823.24642.4.camel@mhfsdcap03>
+Subject: Re: [PATCH v14 07/10] soc: mediatek: cmdq: define the instruction
+ struct
+From:   houlong wei <houlong.wei@mediatek.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?= 
+        <ck.hu@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Dennis-YC Hsieh =?UTF-8?Q?=28=E8=AC=9D=E5=AE=87=E5=93=B2=29?= 
+        <Dennis-YC.Hsieh@mediatek.com>, <houlong.wei@mediatek.com>
+Date:   Fri, 30 Aug 2019 10:23:43 +0800
+In-Reply-To: <20190829014817.25482-9-bibby.hsieh@mediatek.com>
+References: <20190829014817.25482-1-bibby.hsieh@mediatek.com>
+         <20190829014817.25482-9-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20190829230207.GA22979@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
 Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 12636E4DEB4769029CE24443B391F3E200D9807E82F84E9F8E69B09A8C990E5C2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2019 07:02, Rob Herring wrote:
-> On Wed, Aug 28, 2019 at 08:09:19AM +0200, Michal Simek wrote:
->> On 27. 08. 19 5:35, Phil Reid wrote:
->>> This optional property defines a symbolic name for the device.
->>>
->>> Signed-off-by: Phil Reid <preid@electromag.com.au>
->>> ---
->>>   Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/iio/iio-bindings.txt b/Documentation/devicetree/bindings/iio/iio-bindings.txt
->>> index 68d6f8ce063b..ffeae5aad8b5 100644
->>> --- a/Documentation/devicetree/bindings/iio/iio-bindings.txt
->>> +++ b/Documentation/devicetree/bindings/iio/iio-bindings.txt
->>> @@ -18,12 +18,17 @@ Required properties:
->>>   		   with a single IIO output and 1 for nodes with multiple
->>>   		   IIO outputs.
->>>   
->>> +Optional properties:
->>> +label:		   A symbolic name for the device.
->>> +
->>> +
->>>   Example for a simple configuration with no trigger:
->>>   
->>>   	adc: voltage-sensor@35 {
->>>   		compatible = "maxim,max1139";
->>>   		reg = <0x35>;
->>>   		#io-channel-cells = <1>;
->>> +		label = "adc_voltage_sensor";
->>>   	};
->>>   
->>>   Example for a configuration with trigger:
->>>
->>
->> Just for the record. This patch has been created based on initial
->> discussion about label property. And Rob had not problem with using
->> label in connection to ina226. https://lkml.org/lkml/2019/8/27/1213
+On Thu, 2019-08-29 at 09:48 +0800, Bibby Hsieh wrote:
+> Define an instruction structure for gce driver to append command.
+> This structure can make the client's code more readability.
 > 
-> I didn't, but based on the name here I'm less convinced. 'label' is
-> supposed to be for needing to distinguish between more than 1 of
-> something. A name like 'adc_voltage_sensor' doesn't really.
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> Reviewed-by: CK Hu <ck.hu@mediatek.com>
+> Reviewed-by: Houlong Wei <houlong.wei@mediatek.com>
+> ---
+>  drivers/soc/mediatek/mtk-cmdq-helper.c   | 77 ++++++++++++++++--------
+>  include/linux/mailbox/mtk-cmdq-mailbox.h | 10 +++
+>  2 files changed, 61 insertions(+), 26 deletions(-)
 > 
-> Rob
-> 
-> 
+> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> index 7aa0517ff2f3..9472526ab076 100644
+> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> @@ -9,12 +9,24 @@
+>  #include <linux/mailbox_controller.h>
+>  #include <linux/soc/mediatek/mtk-cmdq.h>
+>  
+> -#define CMDQ_ARG_A_WRITE_MASK	0xffff
+>  #define CMDQ_WRITE_ENABLE_MASK	BIT(0)
+>  #define CMDQ_EOC_IRQ_EN		BIT(0)
+>  #define CMDQ_EOC_CMD		((u64)((CMDQ_CODE_EOC << CMDQ_OP_CODE_SHIFT)) \
+>  				<< 32 | CMDQ_EOC_IRQ_EN)
+>  
+> +struct cmdq_instruction {
+> +	union {
+> +		u32 value;
+> +		u32 mask;
+> +	};
+> +	union {
+> +		u16 offset;
+> +		u16 event;
+> +	};
+> +	u8 subsys;
+> +	u8 op;
+> +};
+> +
+>  static void cmdq_client_timeout(struct timer_list *t)
+>  {
+>  	struct cmdq_client *client = from_timer(client, t, timer);
+> @@ -110,10 +122,10 @@ void cmdq_pkt_destroy(struct cmdq_pkt *pkt)
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_destroy);
+>  
+> -static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
+> -				   u32 arg_a, u32 arg_b)
+> +static int cmdq_pkt_append_command(struct cmdq_pkt *pkt,
+> +				   struct cmdq_instruction inst)
 
-That's the problem we're try to solve. Having multiple devices and try to
-determine which device is which.
-eg: Mutliple adc's.
-For example I have the same dac chip on multiple boards that do different
-things, it's difficult to id them.
+Can we use 'struct cmdq_instruction *inst' instead of 'struct
+cmdq_instruction inst' to reduce stack memory consumption a bit?
 
-so label examples could be:
-label = "current_control_group1";
-label = "voltage_control_group1";
+>  {
+> -	u64 *cmd_ptr;
+> +	struct cmdq_instruction *cmd_ptr;
+>  
+>  	if (unlikely(pkt->cmd_buf_size + CMDQ_INST_SIZE > pkt->buf_size)) {
+>  		/*
+> @@ -129,8 +141,9 @@ static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
+>  			__func__, (u32)pkt->buf_size);
+>  		return -ENOMEM;
+>  	}
+> +
+>  	cmd_ptr = pkt->va_base + pkt->cmd_buf_size;
+> -	(*cmd_ptr) = (u64)((code << CMDQ_OP_CODE_SHIFT) | arg_a) << 32 | arg_b;
+> +	*cmd_ptr = inst;
+>  	pkt->cmd_buf_size += CMDQ_INST_SIZE;
+>  
+>  	return 0;
+> @@ -138,24 +151,31 @@ static int cmdq_pkt_append_command(struct cmdq_pkt *pkt, enum cmdq_code code,
+>  
+>  int cmdq_pkt_write(struct cmdq_pkt *pkt, u8 subsys, u16 offset, u32 value)
+>  {
+> -	u32 arg_a = (offset & CMDQ_ARG_A_WRITE_MASK) |
+> -		    (subsys << CMDQ_SUBSYS_SHIFT);
+> +	struct cmdq_instruction inst;
+> +
+> +	inst.op = CMDQ_CODE_WRITE;
+> +	inst.value = value;
+> +	inst.offset = offset;
+> +	inst.subsys = subsys;
+>  
+> -	return cmdq_pkt_append_command(pkt, CMDQ_CODE_WRITE, arg_a, value);
+> +	return cmdq_pkt_append_command(pkt, inst);
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_write);
+>  
+>  int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
+>  			u16 offset, u32 value, u32 mask)
+>  {
+> -	u32 offset_mask = offset;
+> +	struct cmdq_instruction inst = { {0} };
+> +	u16 offset_mask = offset;
+>  	int err = 0;
+>  
+>  	if (mask != 0xffffffff) {
+> -		err = cmdq_pkt_append_command(pkt, CMDQ_CODE_MASK, 0, ~mask);
+> +		inst.op = CMDQ_CODE_MASK;
+> +		inst.mask = ~mask;
+> +		err = cmdq_pkt_append_command(pkt, inst);
+>  		offset_mask |= CMDQ_WRITE_ENABLE_MASK;
+>  	}
+> -	err |= cmdq_pkt_write(pkt, value, subsys, offset_mask);
+> +	err |= cmdq_pkt_write(pkt, subsys, offset_mask, value);
+>  
+>  	return err;
+>  }
+> @@ -163,43 +183,48 @@ EXPORT_SYMBOL(cmdq_pkt_write_mask);
+>  
+>  int cmdq_pkt_wfe(struct cmdq_pkt *pkt, u16 event)
+>  {
+> -	u32 arg_b;
+> +	struct cmdq_instruction inst = { {0} };
+>  
+>  	if (event >= CMDQ_MAX_EVENT)
+>  		return -EINVAL;
+>  
+> -	/*
+> -	 * WFE arg_b
+> -	 * bit 0-11: wait value
+> -	 * bit 15: 1 - wait, 0 - no wait
+> -	 * bit 16-27: update value
+> -	 * bit 31: 1 - update, 0 - no update
+> -	 */
+> -	arg_b = CMDQ_WFE_UPDATE | CMDQ_WFE_WAIT | CMDQ_WFE_WAIT_VALUE;
+> +	inst.op = CMDQ_CODE_WFE;
+> +	inst.value = CMDQ_WFE_OPTION;
+> +	inst.event = event;
+>  
+> -	return cmdq_pkt_append_command(pkt, CMDQ_CODE_WFE, event, arg_b);
+> +	return cmdq_pkt_append_command(pkt, inst);
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_wfe);
+>  
+>  int cmdq_pkt_clear_event(struct cmdq_pkt *pkt, u16 event)
+>  {
+> +	struct cmdq_instruction inst = { {0} };
+> +
+>  	if (event >= CMDQ_MAX_EVENT)
+>  		return -EINVAL;
+>  
+> -	return cmdq_pkt_append_command(pkt, CMDQ_CODE_WFE, event,
+> -				       CMDQ_WFE_UPDATE);
+> +	inst.op = CMDQ_CODE_WFE;
+> +	inst.value = CMDQ_WFE_UPDATE;
+> +	inst.event = event;
+> +
+> +	return cmdq_pkt_append_command(pkt, inst);
+>  }
+>  EXPORT_SYMBOL(cmdq_pkt_clear_event);
+>  
+>  static int cmdq_pkt_finalize(struct cmdq_pkt *pkt)
+>  {
+> -	int err;
+> +	struct cmdq_instruction inst = { {0} };
+> +	int err = 0;
+>  
+>  	/* insert EOC and generate IRQ for each command iteration */
+> -	err = cmdq_pkt_append_command(pkt, CMDQ_CODE_EOC, 0, CMDQ_EOC_IRQ_EN);
+> +	inst.op = CMDQ_CODE_EOC;
+> +	inst.value = CMDQ_EOC_IRQ_EN;
+> +	err = cmdq_pkt_append_command(pkt, inst);
+>  
+>  	/* JUMP to end */
+> -	err |= cmdq_pkt_append_command(pkt, CMDQ_CODE_JUMP, 0, CMDQ_JUMP_PASS);
+> +	inst.op = CMDQ_CODE_JUMP;
+> +	inst.value = CMDQ_JUMP_PASS;
+> +	err |= cmdq_pkt_append_command(pkt, inst);
+>  
+>  	return err;
+>  }
+> diff --git a/include/linux/mailbox/mtk-cmdq-mailbox.h b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> index e6f54ef6698b..678760548791 100644
+> --- a/include/linux/mailbox/mtk-cmdq-mailbox.h
+> +++ b/include/linux/mailbox/mtk-cmdq-mailbox.h
+> @@ -20,6 +20,16 @@
+>  #define CMDQ_WFE_WAIT			BIT(15)
+>  #define CMDQ_WFE_WAIT_VALUE		0x1
+>  
+> +/*
+> + * WFE arg_b
+> + * bit 0-11: wait value
+> + * bit 15: 1 - wait, 0 - no wait
+> + * bit 16-27: update value
+> + * bit 31: 1 - update, 0 - no update
+> + */
+> +#define CMDQ_WFE_OPTION			(CMDQ_WFE_UPDATE | CMDQ_WFE_WAIT | \
+> +					CMDQ_WFE_WAIT_VALUE)
+> +
+>  /** cmdq event maximum */
+>  #define CMDQ_MAX_EVENT			0x3ff
+>  
 
-Are you totally against this or is it a problem with me not being clear
-with the problem and the wording of the commit message or the example?
-
-
-
-
--- 
-Regards
-Phil Reid
 
