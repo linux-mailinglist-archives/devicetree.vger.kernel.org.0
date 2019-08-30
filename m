@@ -2,186 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B34EDA3108
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B54FA311D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:38:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726716AbfH3HbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 03:31:12 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35937 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726655AbfH3HbL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 03:31:11 -0400
-Received: by mail-wm1-f65.google.com with SMTP id p13so6332391wmh.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 00:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=eT0V9By0wFOQbPXq6H4vvmj3LHP78Pt4zF687HucEZU=;
-        b=BrEbiUqfta0ytJ1900WPvFX7spWQ+TDoAzBxqX6mDdxRoSlNEcU0R5WVAf9vhO9KeQ
-         RS0CDXWvw5LgU/cTijsQ0GR4LC1aaFnKTQ3rNnGTpCo9E6o5X+RXmeOqWm89WgMg1dDo
-         j7SI/sZlj/qo4HGcDMbPQ5VaH5WomS20xtsva/trCFfbFANoHH1AEVZ8QS8h1SNBpAYH
-         wwJj1MHgErXGliymGwWD1o7k5IHqNIibm9VjD9LrfrRLaUfTrcbaA7dEo6ND3pZcpoWi
-         oR6kyyRc/yCIjt9BhKx1/tOMT/SOZ5IbAO2lCSeQ+fzDeCej1vM+XrIuq8fesWlp1e5J
-         7CEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=eT0V9By0wFOQbPXq6H4vvmj3LHP78Pt4zF687HucEZU=;
-        b=PKaDj/UyvFfgtzfuaEYp7pZxfzqBzVh0REP0AZUV4+sFbbcNoMitsVILKguPFRfMUc
-         QyTxuTfp2z6rJJ2HOqVSCK6iB2aV8HJ6OTBvbTzixlaHY4HxYabIOPAoesXRWnR6UoL6
-         ZO2RQ3YgN1TV/gzFLWRES0P20PuqyAfnHH8Fs80Ji3AXbjvA5tPfitVrwDhy2UwxoWrL
-         tQ7zTBEcCc4FjwCFk5hBrKR/jcFwVZ8BKlNaT7u7ZLncMPRawWPvgeIZGj7ChTfsRFzP
-         FusZssoGzxPf3OcHwJePf9JCcao2JTktQh5ujvCPIsRegHiV8YupqjhIMeU2jm9Ij5wb
-         tboA==
-X-Gm-Message-State: APjAAAVXU2NdhYsE47n+FL051lA63OztScLYCTBrE5IC8XoSdZhvZGHj
-        Z8F7CCEIjwbz8CEbJVBQHjgr7g==
-X-Google-Smtp-Source: APXvYqxXcMOWh19YnabgtyHTqH8xVJ2EuxiFv86HFpNTTKT/Hj/XNspHRc2IP5QiTflz7jrI8x0LoA==
-X-Received: by 2002:a1c:720e:: with SMTP id n14mr8249776wmc.54.1567150268718;
-        Fri, 30 Aug 2019 00:31:08 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id n8sm10261657wma.7.2019.08.30.00.31.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 30 Aug 2019 00:31:08 -0700 (PDT)
-Subject: Re: [PATCHv1 0/3] Odroid c2 missing regulator linking
-To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-References: <20190828202723.1145-1-linux.amoon@gmail.com>
- <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
- <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <101a12ac-1464-8864-4f8c-56bb46034a08@baylibre.com>
-Date:   Fri, 30 Aug 2019 09:31:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
+        id S1726090AbfH3HiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 03:38:25 -0400
+Received: from mail-eopbgr00069.outbound.protection.outlook.com ([40.107.0.69]:16544
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726716AbfH3HiZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 30 Aug 2019 03:38:25 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=K4Skz3cbz6ZUs+oux4OCw9gKXLOhG3DXFiRtjKo8p1JjpMs5IPqQv39CQuqJnT/lnJ3hCMiTlLSLmqqURbAtr+7v0L4eKUxCmvPthxINZPAKFD4jBaqo3Nq5DdAT3er6oMRzTOykltKslwQki/5HAkQCjAMo6n99x3xURF6dku40eAdbiesD2kqieHqAVseKAwpkbvopgOSItyY4BXV/EyBNReqaF7WzoqWi7znMQ01BV1rf53AFnBoJT6Cn38rGSqpCEGxXtIC5THCGnQjatPyF/Mb98G2YdqJVpFxELrznAxOwImDI6wNMI30szBzvTHV7jJ92DYLRifs94uGfag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xk8sTKRlMx17lDvxqSpvfzPJIaOM8MVPciDQWfmcOCM=;
+ b=mH/FeQProrLcawlnM3kNY9UjoqrCHMV7+ACItCBLS6yA5Ubv8Z0umbn2/301yeFXZorqvaguvuQhi65NScKnYPmq8OHnrs373L38Bm1TG+Rcs8AwEyUk43gThQ6XAcLPRevMroU2lL7uXVmTWbRa2/ts5WF5ANSD/zKKWsuilaE6D76e0LPNYg02Qf+ShRiQ7Y/dB0OlqbXwlppIGVPZl0YoOi2h6kKCWhS6HobdX3UysrKxn6rC5m/A5ljQknYuklxPeHDn61RNtBkfG/LsQLmuK2ZUB0ZlHlUFiq0GT3/o33XDoao1XI2n04Uuf8fCjcB21/rf10qYIP071KHzpA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xk8sTKRlMx17lDvxqSpvfzPJIaOM8MVPciDQWfmcOCM=;
+ b=iiKChERG1CKN3FFEqzLMfSP7Z4CcwKV6mmnGBMMWiZejKrqthprNU97hO6pM2qJfZHYkAdvOnkE0IiHkLRmudvrG3B3mptXHPoxAbFtzvfo4bpLO9oq5kXWYcp6PuOfc0ghLxj11NIQ63OQQ0Z+3cuR2uR1dXBqBWl4edkO7IeU=
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com (52.135.147.15) by
+ AM0PR04MB5284.eurprd04.prod.outlook.com (20.177.41.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2199.21; Fri, 30 Aug 2019 07:37:42 +0000
+Received: from AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::5d98:e1f4:aa72:16b4]) by AM0PR04MB4481.eurprd04.prod.outlook.com
+ ([fe80::5d98:e1f4:aa72:16b4%4]) with mapi id 15.20.2178.023; Fri, 30 Aug 2019
+ 07:37:42 +0000
+From:   Peng Fan <peng.fan@nxp.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+Thread-Topic: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+Thread-Index: AQHVXU0YJPArUxY1ok6XlIUgkri4VacTNWSAgAAFe+CAABGfAIAAAKjw
+Date:   Fri, 30 Aug 2019 07:37:41 +0000
+Message-ID: <AM0PR04MB448161C632722DF10989008088BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
+ <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+ <CABb+yY2tRjazjaogpM7irqgTD+PdwsfqCxk5hP-_czrET3V5xQ@mail.gmail.com>
+ <AM0PR04MB4481785CABB44A8C71CFB8D788BD0@AM0PR04MB4481.eurprd04.prod.outlook.com>
+ <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
+In-Reply-To: <CABb+yY2TREpO7+TFcGgsgQrkmMWwFAgtuJ4GnLPPQ+GEBuh07w@mail.gmail.com>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=peng.fan@nxp.com; 
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 43a510cc-e525-4985-4d7c-08d72d1cf0e9
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5284;
+x-ms-traffictypediagnostic: AM0PR04MB5284:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM0PR04MB5284627F824D0A209FCADD4388BD0@AM0PR04MB5284.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3513;
+x-forefront-prvs: 0145758B1D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(136003)(346002)(376002)(396003)(39860400002)(199004)(189003)(256004)(66066001)(66446008)(8936002)(54906003)(478600001)(9686003)(81166006)(316002)(6246003)(2906002)(15650500001)(76176011)(229853002)(66946007)(7696005)(86362001)(64756008)(71200400001)(71190400001)(76116006)(6436002)(44832011)(53546011)(446003)(11346002)(55016002)(7736002)(305945005)(74316002)(476003)(6916009)(66556008)(6116002)(5660300002)(66476007)(3846002)(53936002)(52536014)(81156014)(1411001)(186003)(8676002)(102836004)(99286004)(25786009)(4326008)(33656002)(486006)(26005)(14454004)(6506007);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5284;H:AM0PR04MB4481.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: jUfGUkLgCRYDhTF1XR20fKqJ/IhjOFJmsYqX9Yie1RGT7YLfopWcJ9ha1KN5CUie+vXQWAwgnYjJe4WUi78I6dOAbZn+fgxeoLjCHHzQ88S+U8ue7fh1SdutkRrlMeU6BmIL5hEYDcs4YYluzfXYFIO+2gxKXr0dl5VaCn0ozgQ8NRlXRxJ5Dav723mxOIkb36/PZJiAUS1vCAnfE9OMQgAm5QFVsfzNQM39YmtDeRWcgORw046oWW+PxCA7CEekTsHQF5xMyI7L3s34GVtXykzN2vy2/sDbsY9JXMUfdedQZW7h1RHw+4h3WkffDzxWE9Er536Kx/ShzJpIXyqL38EpngHd81VJBKkuYzC+mO6HCr7MSOX43SrvbYF9SOxtlg/dOt6j7AKNF29eEbVUbHviDYQbhO7F6PMVc6DORcw=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43a510cc-e525-4985-4d7c-08d72d1cf0e9
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Aug 2019 07:37:41.9160
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GUn3DUvfv4xDScEwcxK3tPnSgPhl2QcIhzwWITzWgq4uqUJjrBetUYpxICqpa7KVXHejVHBcprnAQw0wDg2AIg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5284
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2019 20:35, Anand Moon wrote:
-> Hi Neil,
-> 
-> On Thu, 29 Aug 2019 at 13:58, Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> On 28/08/2019 22:27, Anand Moon wrote:
->>> Below small changes help re-configure or fix missing inter linking
->>> of regulator node.
->>>
->>> Changes based top on my prevoius series.
->>
->> For the serie:
->> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
->>
-> 
-> Thanks for your review.
-> 
->>>
->>> [0] https://patchwork.kernel.org/cover/11113091/
->>>
->>> TOOD: Add support for DVFS GXBB odroid board in next series.
->>
->> I'm curious how you will do this !
-> 
-> I was just studying you previous series on how you have implemented
-> this feature for C1, N2 and VIM3 boards.
-> 
-> [0] https://patchwork.kernel.org/cover/11114125/
-> 
-> I started gathering key inputs needed for this ie *clk / pwm*
-> like VDDCPU and VDDE clk changes.
-> 
-> But it looks like of the complex clk framework needed, so I leave this to the
-> expert like your team of developers to do this much quick and efficiently.
-
-On GXBB, GXL, GXM and AXG SoCs, CPU Frequency setting and PWM Regulator setup is
-done by the SCPI Co-processor via the SCPI protocol.
-
-Thus, we should not handle it from Linux, and even if we could, we don't have the
-registers documentation of the CPU clusters clock tree.
-
-SCPI works fine on all tested devices, except Odroid-C2, because Hardkernel left
-the > 1.5GHz freq in the initial SCPI tables loaded by the BL2, i.e. packed with U-Boot.
-Nowadays they have removed the bad frequencies, but still some devices uses the old
-bootloader.
-
-But in the SCPI case we trust the table returned by the firmware and use it as-in,
-and there is no (simple ?) way to override the table and set a max frequency.
-
-This is why we disabled SCPI.
-
-See https://patchwork.kernel.org/patch/9500175/
-
-Neil
-
-> 
-> Best Regards,
-> -Anand
-> 
-
+SGkgSmFzc2ksDQoNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2NSAxLzJdIGR0LWJpbmRpbmdzOiBt
+YWlsYm94OiBhZGQgYmluZGluZyBkb2MgZm9yIHRoZSBBUk0NCj4gU01DL0hWQyBtYWlsYm94DQo+
+IA0KPiBPbiBGcmksIEF1ZyAzMCwgMjAxOSBhdCAxOjI4IEFNIFBlbmcgRmFuIDxwZW5nLmZhbkBu
+eHAuY29tPiB3cm90ZToNCj4gDQo+ID4gPiA+ICtleGFtcGxlczoNCj4gPiA+ID4gKyAgLSB8DQo+
+ID4gPiA+ICsgICAgc3JhbUA5MTAwMDAgew0KPiA+ID4gPiArICAgICAgY29tcGF0aWJsZSA9ICJt
+bWlvLXNyYW0iOw0KPiA+ID4gPiArICAgICAgcmVnID0gPDB4MCAweDkzZjAwMCAweDAgMHgxMDAw
+PjsNCj4gPiA+ID4gKyAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPiA+ID4gPiArICAgICAg
+I3NpemUtY2VsbHMgPSA8MT47DQo+ID4gPiA+ICsgICAgICByYW5nZXMgPSA8MCAweDAgMHg5M2Yw
+MDAgMHgxMDAwPjsNCj4gPiA+ID4gKw0KPiA+ID4gPiArICAgICAgY3B1X3NjcF9scHJpOiBzY3At
+c2htZW1AMCB7DQo+ID4gPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLHNjbWktc2htZW0i
+Ow0KPiA+ID4gPiArICAgICAgICByZWcgPSA8MHgwIDB4MjAwPjsNCj4gPiA+ID4gKyAgICAgIH07
+DQo+ID4gPiA+ICsNCj4gPiA+ID4gKyAgICAgIGNwdV9zY3BfaHByaTogc2NwLXNobWVtQDIwMCB7
+DQo+ID4gPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLHNjbWktc2htZW0iOw0KPiA+ID4g
+PiArICAgICAgICByZWcgPSA8MHgyMDAgMHgyMDA+Ow0KPiA+ID4gPiArICAgICAgfTsNCj4gPiA+
+ID4gKyAgICB9Ow0KPiA+ID4gPiArDQo+ID4gPiA+ICsgICAgZmlybXdhcmUgew0KPiA+ID4gPiAr
+ICAgICAgc21jX21ib3g6IG1haWxib3ggew0KPiA+ID4gPiArICAgICAgICAjbWJveC1jZWxscyA9
+IDwxPjsNCj4gPiA+ID4gKyAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sc21jLW1ib3giOw0KPiA+
+ID4gPiArICAgICAgICBtZXRob2QgPSAic21jIjsNCj4gPiA+ID4gKyAgICAgICAgYXJtLG51bS1j
+aGFucyA9IDwweDI+Ow0KPiA+ID4gPiArICAgICAgICB0cmFuc3BvcnRzID0gIm1lbSI7DQo+ID4g
+PiA+ICsgICAgICAgIC8qIE9wdGlvbmFsICovDQo+ID4gPiA+ICsgICAgICAgIGFybSxmdW5jLWlk
+cyA9IDwweGMyMDAwMGZlPiwgPDB4YzIwMDAwZmY+Ow0KPiA+ID4gPg0KPiA+ID4gU01DL0hWQyBp
+cyBzeW5jaHJvbm91c2x5KGJsb2NrKSBydW5uaW5nIGluICJzZWN1cmUgbW9kZSIsIGkuZSwgdGhl
+cmUNCj4gPiA+IGNhbiBvbmx5IGJlIG9uZSBpbnN0YW5jZSBydW5uaW5nIHBsYXRmb3JtIHdpZGUu
+IFJpZ2h0Pw0KPiA+DQo+ID4gSSB0aGluayB0aGVyZSBjb3VsZCBiZSBjaGFubmVsIGZvciBURUUs
+IGFuZCBjaGFubmVsIGZvciBMaW51eC4NCj4gPiBGb3IgdmlydHVhbGl6YXRpb24gY2FzZSwgdGhl
+cmUgY291bGQgYmUgZGVkaWNhdGVkIGNoYW5uZWwgZm9yIGVhY2ggVk0uDQo+ID4NCj4gSSBhbSB0
+YWxraW5nIGZyb20gTGludXggcG92LiBGdW5jdGlvbnMgMHhmZSBhbmQgMHhmZiBhYm92ZSwgY2Fu
+J3QgYm90aCBiZQ0KPiBhY3RpdmUgYXQgdGhlIHNhbWUgdGltZSwgcmlnaHQ/DQoNCklmIEkgZ2V0
+IHlvdXIgcG9pbnQgY29ycmVjdGx5LA0KT24gVVAsIGJvdGggY291bGQgbm90IGJlIGFjdGl2ZS4g
+T24gU01QLCB0eC9yeCBjb3VsZCBiZSBib3RoIGFjdGl2ZSwgYW55d2F5DQp0aGlzIGRlcGVuZHMg
+b24gc2VjdXJlIGZpcm13YXJlIGFuZCBMaW51eCBmaXJtd2FyZSBkZXNpZ24uDQoNCkRvIHlvdSBo
+YXZlIGFueSBzdWdnZXN0aW9ucyBhYm91dCBhcm0sZnVuYy1pZHMgaGVyZT8NCg0KVGhhbmtzLA0K
+UGVuZy4NCg==
