@@ -2,484 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F045A30FC
-	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:28:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B34EDA3108
+	for <lists+devicetree@lfdr.de>; Fri, 30 Aug 2019 09:31:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728110AbfH3H23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Aug 2019 03:28:29 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:49254 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726731AbfH3H23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 03:28:29 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x7U7SI50073271;
-        Fri, 30 Aug 2019 02:28:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567150098;
-        bh=8sdTCRtdplYo/h5ZDE5eJXQIxLz1e8dYm1qiYiYwDQo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cvzcotxYZ+yZtU5U/G4E5SwGBvdD5hQRC8OVg2VpqPFIhzs1/KnzFHbCZDir07kSS
-         998ubvRTtmooaoX7JZS5mnbu3c0/GwzPDc3nsPi1B6pxzINbXjJxOH4MdxVUlHCFV5
-         RUX/Eg2LF6JJkWxwkzjlONfxCkhaC296bo8rKrKA=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x7U7SIPZ073565
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 30 Aug 2019 02:28:18 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 30
- Aug 2019 02:28:16 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 30 Aug 2019 02:28:16 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x7U7SEX2051736;
-        Fri, 30 Aug 2019 02:28:15 -0500
-Subject: Re: [PATCHv2 02/11] soc: ti: add initial PRM driver with reset
- control support
-To:     Philipp Zabel <p.zabel@pengutronix.de>, <ssantosh@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
-CC:     <tony@atomide.com>, <s-anna@ti.com>, <devicetree@vger.kernel.org>
-References: <20190828071941.32378-1-t-kristo@ti.com>
- <20190828071941.32378-3-t-kristo@ti.com>
- <1567084339.5345.7.camel@pengutronix.de>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <049da607-c352-4ed1-9a2d-2374d7a7e372@ti.com>
-Date:   Fri, 30 Aug 2019 10:28:13 +0300
+        id S1726716AbfH3HbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Aug 2019 03:31:12 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:35937 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726655AbfH3HbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Aug 2019 03:31:11 -0400
+Received: by mail-wm1-f65.google.com with SMTP id p13so6332391wmh.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Aug 2019 00:31:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=eT0V9By0wFOQbPXq6H4vvmj3LHP78Pt4zF687HucEZU=;
+        b=BrEbiUqfta0ytJ1900WPvFX7spWQ+TDoAzBxqX6mDdxRoSlNEcU0R5WVAf9vhO9KeQ
+         RS0CDXWvw5LgU/cTijsQ0GR4LC1aaFnKTQ3rNnGTpCo9E6o5X+RXmeOqWm89WgMg1dDo
+         j7SI/sZlj/qo4HGcDMbPQ5VaH5WomS20xtsva/trCFfbFANoHH1AEVZ8QS8h1SNBpAYH
+         wwJj1MHgErXGliymGwWD1o7k5IHqNIibm9VjD9LrfrRLaUfTrcbaA7dEo6ND3pZcpoWi
+         oR6kyyRc/yCIjt9BhKx1/tOMT/SOZ5IbAO2lCSeQ+fzDeCej1vM+XrIuq8fesWlp1e5J
+         7CEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=eT0V9By0wFOQbPXq6H4vvmj3LHP78Pt4zF687HucEZU=;
+        b=PKaDj/UyvFfgtzfuaEYp7pZxfzqBzVh0REP0AZUV4+sFbbcNoMitsVILKguPFRfMUc
+         QyTxuTfp2z6rJJ2HOqVSCK6iB2aV8HJ6OTBvbTzixlaHY4HxYabIOPAoesXRWnR6UoL6
+         ZO2RQ3YgN1TV/gzFLWRES0P20PuqyAfnHH8Fs80Ji3AXbjvA5tPfitVrwDhy2UwxoWrL
+         tQ7zTBEcCc4FjwCFk5hBrKR/jcFwVZ8BKlNaT7u7ZLncMPRawWPvgeIZGj7ChTfsRFzP
+         FusZssoGzxPf3OcHwJePf9JCcao2JTktQh5ujvCPIsRegHiV8YupqjhIMeU2jm9Ij5wb
+         tboA==
+X-Gm-Message-State: APjAAAVXU2NdhYsE47n+FL051lA63OztScLYCTBrE5IC8XoSdZhvZGHj
+        Z8F7CCEIjwbz8CEbJVBQHjgr7g==
+X-Google-Smtp-Source: APXvYqxXcMOWh19YnabgtyHTqH8xVJ2EuxiFv86HFpNTTKT/Hj/XNspHRc2IP5QiTflz7jrI8x0LoA==
+X-Received: by 2002:a1c:720e:: with SMTP id n14mr8249776wmc.54.1567150268718;
+        Fri, 30 Aug 2019 00:31:08 -0700 (PDT)
+Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id n8sm10261657wma.7.2019.08.30.00.31.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 30 Aug 2019 00:31:08 -0700 (PDT)
+Subject: Re: [PATCHv1 0/3] Odroid c2 missing regulator linking
+To:     Anand Moon <linux.amoon@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
+References: <20190828202723.1145-1-linux.amoon@gmail.com>
+ <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
+ <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <101a12ac-1464-8864-4f8c-56bb46034a08@baylibre.com>
+Date:   Fri, 30 Aug 2019 09:31:07 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1567084339.5345.7.camel@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2019 16:12, Philipp Zabel wrote:
-> On Wed, 2019-08-28 at 10:19 +0300, Tero Kristo wrote:
->> Add initial PRM (Power and Reset Management) driver for TI OMAP class
->> SoCs. Initially this driver only supports reset control, but can be
->> extended to support rest of the functionality, like powerdomain
->> control, PRCM irq support etc.
+On 29/08/2019 20:35, Anand Moon wrote:
+> Hi Neil,
+> 
+> On Thu, 29 Aug 2019 at 13:58, Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
->> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->> ---
->>   arch/arm/mach-omap2/Kconfig |   1 +
->>   drivers/soc/ti/Makefile     |   1 +
->>   drivers/soc/ti/omap_prm.c   | 235 ++++++++++++++++++++++++++++++++++++
->>   3 files changed, 237 insertions(+)
->>   create mode 100644 drivers/soc/ti/omap_prm.c
+>> On 28/08/2019 22:27, Anand Moon wrote:
+>>> Below small changes help re-configure or fix missing inter linking
+>>> of regulator node.
+>>>
+>>> Changes based top on my prevoius series.
 >>
->> diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
->> index fdb6743760a2..ad08d470a2ca 100644
->> --- a/arch/arm/mach-omap2/Kconfig
->> +++ b/arch/arm/mach-omap2/Kconfig
->> @@ -109,6 +109,7 @@ config ARCH_OMAP2PLUS
->>   	select TI_SYSC
->>   	select OMAP_IRQCHIP
->>   	select CLKSRC_TI_32K
->> +	select ARCH_HAS_RESET_CONTROLLER
->>   	help
->>   	  Systems based on OMAP2, OMAP3, OMAP4 or OMAP5
->>   
->> diff --git a/drivers/soc/ti/Makefile b/drivers/soc/ti/Makefile
->> index b3868d392d4f..788b5cd1e180 100644
->> --- a/drivers/soc/ti/Makefile
->> +++ b/drivers/soc/ti/Makefile
->> @@ -6,6 +6,7 @@ obj-$(CONFIG_KEYSTONE_NAVIGATOR_QMSS)	+= knav_qmss.o
->>   knav_qmss-y := knav_qmss_queue.o knav_qmss_acc.o
->>   obj-$(CONFIG_KEYSTONE_NAVIGATOR_DMA)	+= knav_dma.o
->>   obj-$(CONFIG_AMX3_PM)			+= pm33xx.o
->> +obj-$(CONFIG_ARCH_OMAP2PLUS)		+= omap_prm.o
->>   obj-$(CONFIG_WKUP_M3_IPC)		+= wkup_m3_ipc.o
->>   obj-$(CONFIG_TI_SCI_PM_DOMAINS)		+= ti_sci_pm_domains.o
->>   obj-$(CONFIG_TI_SCI_INTA_MSI_DOMAIN)	+= ti_sci_inta_msi.o
->> diff --git a/drivers/soc/ti/omap_prm.c b/drivers/soc/ti/omap_prm.c
->> new file mode 100644
->> index 000000000000..fd5c431f8736
->> --- /dev/null
->> +++ b/drivers/soc/ti/omap_prm.c
->> @@ -0,0 +1,235 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * OMAP2+ PRM driver
->> + *
->> + * Copyright (C) 2019 Texas Instruments Incorporated - http://www.ti.com/
->> + *	Tero Kristo <t-kristo@ti.com>
->> + */
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
+>> For the serie:
+>> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+>>
 > 
-> Why <linux/module.h>? This is a builtin driver.
-
-Yeah, not anymore. Let me ditch this.
-
+> Thanks for your review.
 > 
->> +#include <linux/device.h>
->> +#include <linux/io.h>
->> +#include <linux/of.h>
->> +#include <linux/of_device.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/reset-controller.h>
->> +#include <linux/delay.h>
->> +
->> +struct omap_rst_map {
->> +	s8 rst;
->> +	s8 st;
->> +};
->> +
->> +struct omap_prm_data {
->> +	u32 base;
->> +	const char *name;
->> +	u16 rstctrl;
->> +	u16 rstst;
->> +	const struct omap_rst_map *rstmap;
->> +	u8 flags;
->> +};
+>>>
+>>> [0] https://patchwork.kernel.org/cover/11113091/
+>>>
+>>> TOOD: Add support for DVFS GXBB odroid board in next series.
+>>
+>> I'm curious how you will do this !
 > 
-> I wonder if splitting rstctrl/rstst/rstmap out into a separate structure
-> would make sense. That could be linked from omap_reset_data directly.
-> That only makes sense if there'd be enough cases where it can be reused
-> for multiple PRMs instances.
+> I was just studying you previous series on how you have implemented
+> this feature for C1, N2 and VIM3 boards.
+> 
+> [0] https://patchwork.kernel.org/cover/11114125/
+> 
+> I started gathering key inputs needed for this ie *clk / pwm*
+> like VDDCPU and VDDE clk changes.
+> 
+> But it looks like of the complex clk framework needed, so I leave this to the
+> expert like your team of developers to do this much quick and efficiently.
 
-Hmm, splitting these out would make it possible to share the bits for 
-ipu:s across devices, same for dsp:s and eve:s.
+On GXBB, GXL, GXM and AXG SoCs, CPU Frequency setting and PWM Regulator setup is
+done by the SCPI Co-processor via the SCPI protocol.
 
-However, adding too many levels of abstraction makes it kind of 
-difficult to follow what is happening with the code, and it would only 
-save maybe ~100 bytes of memory at the moment.
+Thus, we should not handle it from Linux, and even if we could, we don't have the
+registers documentation of the CPU clusters clock tree.
+
+SCPI works fine on all tested devices, except Odroid-C2, because Hardkernel left
+the > 1.5GHz freq in the initial SCPI tables loaded by the BL2, i.e. packed with U-Boot.
+Nowadays they have removed the bad frequencies, but still some devices uses the old
+bootloader.
+
+But in the SCPI case we trust the table returned by the firmware and use it as-in,
+and there is no (simple ?) way to override the table and set a max frequency.
+
+This is why we disabled SCPI.
+
+See https://patchwork.kernel.org/patch/9500175/
+
+Neil
 
 > 
->> +
->> +struct omap_prm {
->> +	const struct omap_prm_data *data;
->> +	void __iomem *base;
->> +};
->> +
->> +struct omap_reset_data {
->> +	struct reset_controller_dev rcdev;
->> +	struct omap_prm *prm;
->> +};
->> +
->> +#define to_omap_reset_data(p) container_of((p), struct omap_reset_data, rcdev)
->> +
->> +#define OMAP_MAX_RESETS		8
->> +#define OMAP_RESET_MAX_WAIT	10000
->> +
->> +#define OMAP_PRM_HAS_RSTCTRL	BIT(0)
->> +#define OMAP_PRM_HAS_RSTST	BIT(1)
->> +
->> +#define OMAP_PRM_HAS_RESETS	(OMAP_PRM_HAS_RSTCTRL | OMAP_PRM_HAS_RSTST)
->> +
->> +static const struct of_device_id omap_prm_id_table[] = {
->> +	{ },
->> +};
->> +
->> +static bool _is_valid_reset(struct omap_reset_data *reset, unsigned long id)
->> +{
->> +	const struct omap_rst_map *map = reset->prm->data->rstmap;
->> +
->> +	while (map && map->rst >= 0) {
-> 
-> If rstmap is never NULL,
-> 
-> 	while (map->rst >= 0) {
-> 
-> should be enough.
-
-I'll actually re-write this to use the reset mask.
-
-> 
->> +		if (map->rst == id)
->> +			return true;
->> +		map++;
->> +	}
->> +
->> +	return false;
->> +}
->> +
->> +static int omap_reset_status(struct reset_controller_dev *rcdev,
->> +			     unsigned long id)
->> +{
->> +	struct omap_reset_data *reset = to_omap_reset_data(rcdev);
->> +	u32 v;
->> +
->> +	if (!_is_valid_reset(reset, id))
->> +		return -EINVAL;
-> 
-> Don't check this in the status/(de)assert/reset callbacks. Instead,
-> implement rcdev.of_xlate and return -EINVAL there, so that invalid ids
-> can never be requested.
-
-Yeah, let me do that.
-
-> 
->> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
->> +	v &= 1 << id;
->> +	v >>= id;
-> 
-> omap_get_st_bit below makes it look like the status bit can be in a
-> different place than the reset control bit, should that be used here as
-> well?
-
-True, this is a bug.
-
-> 
->> +
->> +	return v;
->> +}
->> +
->> +static int omap_reset_assert(struct reset_controller_dev *rcdev,
->> +			     unsigned long id)
->> +{
->> +	struct omap_reset_data *reset = to_omap_reset_data(rcdev);
->> +	u32 v;
->> +
->> +	if (!_is_valid_reset(reset, id))
->> +		return -EINVAL;
-> 
-> Same as above.
-
-Will drop this one.
-
-> 
->> +	/* assert the reset control line */
->> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstctrl);
->> +	v |= 1 << id;
->> +	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
-> 
-> This read-modify-write should be protected with a lock.
-
-Ok, will add a spinlock. I did think about this before but all the cases 
-where we are sharing a reset register are to be controlled from the same 
-process / driver, and the events are effectively serialized. Doesn't 
-hurt adding it for possible future need though.
-
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static int omap_reset_get_st_bit(struct omap_reset_data *reset,
->> +				 unsigned long id)
->> +{
->> +	const struct omap_rst_map *map = reset->prm->data->rstmap;
->> +
->> +	while (map && map->rst >= 0) {
-> 
-> Same as above.
-
-Yeah, usage of rstmap is now enforced, so no need to check it here.
-
-> 
->> +		if (map->rst == id)
->> +			return map->st;
->> +
->> +		map++;
->> +	}
->> +
->> +	return id;
->> +}
->> +
->> +/*
->> + * Note that status will not change until clocks are on, and clocks cannot be
->> + * enabled until reset is deasserted. Consumer drivers must check status
->> + * separately after enabling clocks.
->> + */
->> +static int omap_reset_deassert(struct reset_controller_dev *rcdev,
->> +			       unsigned long id)
->> +{
->> +	struct omap_reset_data *reset = to_omap_reset_data(rcdev);
->> +	u32 v;
->> +	int st_bit;
->> +	bool has_rstst;
->> +
->> +	if (!_is_valid_reset(reset, id))
->> +		return -EINVAL;
-> 
-> Same as above.
-
-Will drop.
-
-> 
->> +	/* check the current status to avoid de-asserting the line twice */
->> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstctrl);
->> +	if (!(v & BIT(id)))
->> +		return -EEXIST;
-> 
-> What is the purpose of this? For shared consumers the core already does
-> refcounting, and I expect exclusive consumers won't deassert twice.
-> Since the reset signal is deasserted after this call, this should not
-> return an error.
-
-This is actually a leftover from legacy code; this driver is mostly a 
-move of the reset handling from platform codebase to be an actual driver 
-of its own. But yes, I believe this can be dropped.
-
-> 
->> +
->> +	has_rstst = reset->prm->data->rstst ||
->> +		(reset->prm->data->flags & OMAP_PRM_HAS_RSTST);
->> +
->> +	if (has_rstst) {
->> +		st_bit = omap_reset_get_st_bit(reset, id);
->> +
->> +		/* Clear the reset status by writing 1 to the status bit */
->> +		v = readl_relaxed(reset->prm->base + reset->prm->data->rstst);
->> +		v |= 1 << st_bit;
->> +		writel_relaxed(v, reset->prm->base + reset->prm->data->rstst);
-> 
-> What does the value read from the rstst register indicate? Is it the
-> current state of the reset line? Is it 0 until deassertion is completed,
-> and then it turns to 1?
-
-Value of 1 indicates that the corresponding IP has been reset 
-successfully. Writing back 1 to the same bit clears it out, so the 
-status can be polled later on.
-
-> 
->> +	}
->> +
->> +	/* de-assert the reset control line */
->> +	v = readl_relaxed(reset->prm->base + reset->prm->data->rstctrl);
-> 
-> Reading the register again seems unnecessary.
-
-I dropped the earlier read for now, so this is again needed.
-
-> 
->> +	v &= ~(1 << id);
->> +	writel_relaxed(v, reset->prm->base + reset->prm->data->rstctrl);
-> 
-> As above, the read-modify-write should be locked.
-
-Yep, will protect this.
-
-> 
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct reset_control_ops omap_reset_ops = {
->> +	.assert		= omap_reset_assert,
->> +	.deassert	= omap_reset_deassert,
->> +	.status		= omap_reset_status,
->> +};
->> +
->> +static int omap_prm_reset_init(struct platform_device *pdev,
->> +			       struct omap_prm *prm)
->> +{
->> +	struct omap_reset_data *reset;
->> +
->> +	/*
->> +	 * Check if we have controllable resets. If either rstctrl is non-zero
->> +	 * or OMAP_PRM_HAS_RSTCTRL flag is set, we have reset control register
->> +	 * for the domain.
->> +	 */
->> +	if (!prm->data->rstctrl && !(prm->data->flags & OMAP_PRM_HAS_RSTCTRL))
->> +		return 0;
->> +
->> +	reset = devm_kzalloc(&pdev->dev, sizeof(*reset), GFP_KERNEL);
->> +	if (!reset)
->> +		return -ENOMEM;
->> +
->> +	reset->rcdev.owner = THIS_MODULE;
->> +	reset->rcdev.ops = &omap_reset_ops;
->> +	reset->rcdev.of_node = pdev->dev.of_node;
->> +	reset->rcdev.nr_resets = OMAP_MAX_RESETS;
->> +
->> +	reset->prm = prm;
->> +
->> +	return devm_reset_controller_register(&pdev->dev, &reset->rcdev);
->> +}
->> +
->> +static int omap_prm_probe(struct platform_device *pdev)
->> +{
->> +	struct resource *res;
->> +	const struct omap_prm_data *data;
->> +	struct omap_prm *prm;
->> +	const struct of_device_id *match;
->> +
->> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->> +	if (!res)
->> +		return -ENODEV;
-> 
-> This can be merged with devm_ioremap_resource below.
-
-Well, I actually use the "res" later on to map the DT node to the 
-corresponding prm_data based on address.
-
-> 
->> +	match = of_match_device(omap_prm_id_table, &pdev->dev);
->> +	if (!match)
->> +		return -ENOTSUPP;
->> +
->> +	prm = devm_kzalloc(&pdev->dev, sizeof(*prm), GFP_KERNEL);
->> +	if (!prm)
->> +		return -ENOMEM;
->> +
->> +	data = match->data;
->> +
->> +	while (data->base != res->start) {
->> +		if (!data->base)
->> +			return -EINVAL;
->> +		data++;
->> +	}
-> 
-> Is this not something that you want to have encoded in the compatible
-> string? They all have a different register layout.
-
-With the addition of all the prm instances later on, this changes. Most 
-of the prm instances will have same register layout then. See v1 data 
-that was posted earlier [1], but which I dropped for now to keep this 
-series isolated for reset handling only. In this patch, you see that for 
-DRA7, all the power domain handling related PRM instances have identical 
-register layout, they just differ based on base address.
-
-[1] https://www.spinics.net/lists/linux-omap/msg149872.html
-
-It would be possible to encode all of this based on different 
-compatibles, but then the amount of different compatible strings would 
-explode... DRA7 is just one SoC.
-
-> 
->> +
->> +	prm->data = data;
->> +
->> +	prm->base = devm_ioremap_resource(&pdev->dev, res);
-> 
-> 	prm->base = devm_platform_ioremap_resource(pdev, 0);
-
-I still need the "res" pointer as indicated above.
-
--Tero
-
-> 
->> +	if (!prm->base)
->> +		return -ENOMEM;
->> +
->> +	return omap_prm_reset_init(pdev, prm);
->> +}
->> +
->> +static struct platform_driver omap_prm_driver = {
->> +	.probe = omap_prm_probe,
->> +	.driver = {
->> +		.name		= KBUILD_MODNAME,
->> +		.of_match_table	= omap_prm_id_table,
->> +	},
->> +};
->> +builtin_platform_driver(omap_prm_driver);
-> 
-> regards
-> Philipp
+> Best Regards,
+> -Anand
 > 
 
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
