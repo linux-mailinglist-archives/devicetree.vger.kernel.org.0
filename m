@@ -2,98 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 366DFA43C3
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 11:49:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BBC6A43FA
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 12:20:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726489AbfHaJto (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Aug 2019 05:49:44 -0400
-Received: from sauhun.de ([88.99.104.3]:36442 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726402AbfHaJto (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 31 Aug 2019 05:49:44 -0400
-Received: from localhost (p5486C98B.dip0.t-ipconnect.de [84.134.201.139])
-        by pokefinder.org (Postfix) with ESMTPSA id 649852C0093;
-        Sat, 31 Aug 2019 11:49:41 +0200 (CEST)
-Date:   Sat, 31 Aug 2019 11:49:41 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Ray Jui <ray.jui@broadcom.com>
-Cc:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lori Hikichi <lori.hikichi@broadcom.com>,
-        Icarus Chau <icarus.chau@broadcom.com>,
-        Shivaraj Shetty <sshetty1@broadcom.com>
-Subject: Re: [PATCH v1 1/1] i2c: iproc: Add i2c repeated start capability
-Message-ID: <20190831094940.GA1138@kunai>
-References: <1565150941-27297-1-git-send-email-rayagonda.kokatanur@broadcom.com>
- <20190830125626.GC2870@ninjato>
- <3e70fa7e-de13-4edd-2e17-b7c56e91d220@broadcom.com>
+        id S1726679AbfHaKUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Aug 2019 06:20:01 -0400
+Received: from anchovy2.45ru.net.au ([203.30.46.146]:51393 "EHLO
+        anchovy2.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727177AbfHaKUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Aug 2019 06:20:01 -0400
+Received: (qmail 1545 invoked by uid 5089); 31 Aug 2019 10:19:58 -0000
+Received: by simscan 1.2.0 ppid: 1462, pid: 1463, t: 0.0634s
+         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
+Received: from unknown (HELO ?10.1.1.129?) (preid@electromag.com.au@118.208.174.34)
+  by anchovy3.45ru.net.au with ESMTPA; 31 Aug 2019 10:19:58 -0000
+Subject: Re: [PATCH 1/2] dt-binding: iio: Add optional label property
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michal Simek <michal.simek@xilinx.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald <pmeerw@pmeerw.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org
+References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
+ <1566876924-63608-2-git-send-email-preid@electromag.com.au>
+ <a30b6dca-c598-135a-0559-1018dd5f5fde@xilinx.com>
+ <20190829230207.GA22979@bogus>
+ <b50bce2d-8819-67b1-c55c-8c2b8070a4ac@electromag.com.au>
+ <CAL_JsqKb8cC=4HR7uVHmKt-zw32U_1u62hG4h-TnbPy=a+QZZg@mail.gmail.com>
+From:   Phil Reid <preid@electromag.com.au>
+Message-ID: <29f831da-d23a-bc9c-151a-885bd526a785@electromag.com.au>
+Date:   Sat, 31 Aug 2019 18:19:53 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="AhhlLboLdkugWU4S"
-Content-Disposition: inline
-In-Reply-To: <3e70fa7e-de13-4edd-2e17-b7c56e91d220@broadcom.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAL_JsqKb8cC=4HR7uVHmKt-zw32U_1u62hG4h-TnbPy=a+QZZg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-AU
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 30/08/2019 20:34, Rob Herring wrote:
+> On Thu, Aug 29, 2019 at 8:01 PM Phil Reid <preid@electromag.com.au> wrote:
+>>
+>> On 30/08/2019 07:02, Rob Herring wrote:
+>>> On Wed, Aug 28, 2019 at 08:09:19AM +0200, Michal Simek wrote:
+>>>> On 27. 08. 19 5:35, Phil Reid wrote:
+>>>>> This optional property defines a symbolic name for the device.
+>>>>>
+>>>>> Signed-off-by: Phil Reid <preid@electromag.com.au>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
+>>>>>    1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/iio/iio-bindings.txt b/Documentation/devicetree/bindings/iio/iio-bindings.txt
+>>>>> index 68d6f8ce063b..ffeae5aad8b5 100644
+>>>>> --- a/Documentation/devicetree/bindings/iio/iio-bindings.txt
+>>>>> +++ b/Documentation/devicetree/bindings/iio/iio-bindings.txt
+>>>>> @@ -18,12 +18,17 @@ Required properties:
+>>>>>                 with a single IIO output and 1 for nodes with multiple
+>>>>>                 IIO outputs.
+>>>>>
+>>>>> +Optional properties:
+>>>>> +label:                A symbolic name for the device.
+>>>>> +
+>>>>> +
+>>>>>    Example for a simple configuration with no trigger:
+>>>>>
+>>>>>      adc: voltage-sensor@35 {
+>>>>>              compatible = "maxim,max1139";
+>>>>>              reg = <0x35>;
+>>>>>              #io-channel-cells = <1>;
+>>>>> +           label = "adc_voltage_sensor";
+>>>>>      };
+>>>>>
+>>>>>    Example for a configuration with trigger:
+>>>>>
+>>>>
+>>>> Just for the record. This patch has been created based on initial
+>>>> discussion about label property. And Rob had not problem with using
+>>>> label in connection to ina226. https://lkml.org/lkml/2019/8/27/1213
+>>>
+>>> I didn't, but based on the name here I'm less convinced. 'label' is
+>>> supposed to be for needing to distinguish between more than 1 of
+>>> something. A name like 'adc_voltage_sensor' doesn't really.
+>>>
+>>> Rob
+>>>
+>>>
+>>
+>> That's the problem we're try to solve. Having multiple devices and try to
+>> determine which device is which.
+>> eg: Mutliple adc's.
+>> For example I have the same dac chip on multiple boards that do different
+>> things, it's difficult to id them.
+>>
+>> so label examples could be:
+>> label = "current_control_group1";
+>> label = "voltage_control_group1";
+>>
+>> Are you totally against this or is it a problem with me not being clear
+>> with the problem and the wording of the commit message or the example?
+> 
+> It's just the example is less than ideal. But it's just an example, so:
+> 
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> Feel free to update the example if you respin.
+> 
+Thanks Rob,
 
---AhhlLboLdkugWU4S
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Ray,
-
-> > With all the limitations in place, I wonder if it might be easier to
-> > implement an smbus_xfer callback instead? What is left that makes this
-> > controller more than SMBus and real I2C?
-> >=20
->=20
-> Right. But what is the implication of using smbus_xfer instead of
-> master_xfer in our driver?
->=20
-> Does it mean it will break existing functions of the i2c app that our
-> customers developed based on i2cdev (e.g., I2C_RDWR)?
-
-If the customers uses I2C_RDWR (and it cannot be mapped to i2c_smbus_*
-calls) then this is an indication that there is some I2C functionality
-left which the HW can provide. I'd be interested which one, though.
-
->=20
-> 1) Does
-
-Maybe you wanted to describe it here and it got accidently cut off?
-
-Regards,
-
-   Wolfram
+I'll update the example if the series gets a respin.
 
 
---AhhlLboLdkugWU4S
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1qQrAACgkQFA3kzBSg
-KbbmbQ/9E9Ts1/5jZMraYl7CNxsXtWMbdSUWQFyuZDJGvO7UvZz9v7O0Aq9ct/MB
-mMb4lMVP4lLM/y1DMpVmoYoqVXyKPXzvMzGzsB0CMCs5e+XCbWKr1yCaDCLv0/Js
-HNbEe7PC1fuNz/YklNtYvHEe1LjSxf81lFWoLDFGPZ4FkSDcbUAZQkUfe/VpcKbc
-VVhYAQucc6GrBoJ12UMRSWSf3diIkR0CBqKhALZXCnrSLx9cXtTuqA0k7UnN9Piv
-qPZs/I20tTu52RCHXTpjnwFpWMLNuswRIoCWcMR6Vl1Ix6v0TB4NiUpMStk4Pw45
-KD6hdZSPBtFM4uQ04M7wbVFR634PF4mQx7wts+VjFXBe6rxEASwpIq3dMtxVFWgs
-GwZ2tyZDQBT/jqdJi2QyUsKw4UW2R7su3D3+/idNTtoT1JkqwAfsFix283Bcbees
-Kmx1W32dzB7p2G0k2vCWmNWx1CI+Mf/K16H0n2ffyD/5t4vCME7kLeIVcqkYNF7l
-i98hRkYVJm3iecvg2iVr5/y6a7T/V248YJl59WTs7ycb3wqZJib5hQDOmMKeZbmS
-DrKSbdHwlistLsHnatTQxOz8vlHG6ufoAXBy+x3PXs1b+HD21Zh94ugVqgoOHoSm
-xqIQaulWFBYVg6xi2y9ZyEPyKo4KEwBBmNFs4eTCPmSgTvKT3lg=
-=mcNR
------END PGP SIGNATURE-----
-
---AhhlLboLdkugWU4S--
+-- 
+Regards
+Phil Reid
