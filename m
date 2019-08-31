@@ -2,125 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BBC6A43FA
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 12:20:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14094A4449
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 13:39:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726679AbfHaKUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Aug 2019 06:20:01 -0400
-Received: from anchovy2.45ru.net.au ([203.30.46.146]:51393 "EHLO
-        anchovy2.45ru.net.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727177AbfHaKUB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Aug 2019 06:20:01 -0400
-Received: (qmail 1545 invoked by uid 5089); 31 Aug 2019 10:19:58 -0000
-Received: by simscan 1.2.0 ppid: 1462, pid: 1463, t: 0.0634s
-         scanners: regex: 1.2.0 attach: 1.2.0 clamav: 0.88.3/m:40/d:1950
-Received: from unknown (HELO ?10.1.1.129?) (preid@electromag.com.au@118.208.174.34)
-  by anchovy3.45ru.net.au with ESMTPA; 31 Aug 2019 10:19:58 -0000
-Subject: Re: [PATCH 1/2] dt-binding: iio: Add optional label property
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michal Simek <michal.simek@xilinx.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald <pmeerw@pmeerw.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org
-References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
- <1566876924-63608-2-git-send-email-preid@electromag.com.au>
- <a30b6dca-c598-135a-0559-1018dd5f5fde@xilinx.com>
- <20190829230207.GA22979@bogus>
- <b50bce2d-8819-67b1-c55c-8c2b8070a4ac@electromag.com.au>
- <CAL_JsqKb8cC=4HR7uVHmKt-zw32U_1u62hG4h-TnbPy=a+QZZg@mail.gmail.com>
-From:   Phil Reid <preid@electromag.com.au>
-Message-ID: <29f831da-d23a-bc9c-151a-885bd526a785@electromag.com.au>
-Date:   Sat, 31 Aug 2019 18:19:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726282AbfHaLjM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Aug 2019 07:39:12 -0400
+Received: from sauhun.de ([88.99.104.3]:37376 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726062AbfHaLjM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Aug 2019 07:39:12 -0400
+Received: from localhost (p5486C98B.dip0.t-ipconnect.de [84.134.201.139])
+        by pokefinder.org (Postfix) with ESMTPSA id 4161A2C0093;
+        Sat, 31 Aug 2019 13:39:10 +0200 (CEST)
+Date:   Sat, 31 Aug 2019 13:39:09 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Eugen.Hristev@microchip.com
+Cc:     peda@axentia.se, mark.rutland@arm.com,
+        Ludovic.Desroches@microchip.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, pierre-yves.mordret@st.com,
+        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH v3 2/9] dt-bindings: i2c: add bindings for i2c analog and
+ digital filter
+Message-ID: <20190831113909.GA1032@ninjato>
+References: <1562678049-17581-1-git-send-email-eugen.hristev@microchip.com>
+ <1562678049-17581-3-git-send-email-eugen.hristev@microchip.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKb8cC=4HR7uVHmKt-zw32U_1u62hG4h-TnbPy=a+QZZg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-AU
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fUYQa+Pmc3FrFX/N"
+Content-Disposition: inline
+In-Reply-To: <1562678049-17581-3-git-send-email-eugen.hristev@microchip.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/08/2019 20:34, Rob Herring wrote:
-> On Thu, Aug 29, 2019 at 8:01 PM Phil Reid <preid@electromag.com.au> wrote:
->>
->> On 30/08/2019 07:02, Rob Herring wrote:
->>> On Wed, Aug 28, 2019 at 08:09:19AM +0200, Michal Simek wrote:
->>>> On 27. 08. 19 5:35, Phil Reid wrote:
->>>>> This optional property defines a symbolic name for the device.
->>>>>
->>>>> Signed-off-by: Phil Reid <preid@electromag.com.au>
->>>>> ---
->>>>>    Documentation/devicetree/bindings/iio/iio-bindings.txt | 5 +++++
->>>>>    1 file changed, 5 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/iio/iio-bindings.txt b/Documentation/devicetree/bindings/iio/iio-bindings.txt
->>>>> index 68d6f8ce063b..ffeae5aad8b5 100644
->>>>> --- a/Documentation/devicetree/bindings/iio/iio-bindings.txt
->>>>> +++ b/Documentation/devicetree/bindings/iio/iio-bindings.txt
->>>>> @@ -18,12 +18,17 @@ Required properties:
->>>>>                 with a single IIO output and 1 for nodes with multiple
->>>>>                 IIO outputs.
->>>>>
->>>>> +Optional properties:
->>>>> +label:                A symbolic name for the device.
->>>>> +
->>>>> +
->>>>>    Example for a simple configuration with no trigger:
->>>>>
->>>>>      adc: voltage-sensor@35 {
->>>>>              compatible = "maxim,max1139";
->>>>>              reg = <0x35>;
->>>>>              #io-channel-cells = <1>;
->>>>> +           label = "adc_voltage_sensor";
->>>>>      };
->>>>>
->>>>>    Example for a configuration with trigger:
->>>>>
->>>>
->>>> Just for the record. This patch has been created based on initial
->>>> discussion about label property. And Rob had not problem with using
->>>> label in connection to ina226. https://lkml.org/lkml/2019/8/27/1213
->>>
->>> I didn't, but based on the name here I'm less convinced. 'label' is
->>> supposed to be for needing to distinguish between more than 1 of
->>> something. A name like 'adc_voltage_sensor' doesn't really.
->>>
->>> Rob
->>>
->>>
->>
->> That's the problem we're try to solve. Having multiple devices and try to
->> determine which device is which.
->> eg: Mutliple adc's.
->> For example I have the same dac chip on multiple boards that do different
->> things, it's difficult to id them.
->>
->> so label examples could be:
->> label = "current_control_group1";
->> label = "voltage_control_group1";
->>
->> Are you totally against this or is it a problem with me not being clear
->> with the problem and the wording of the commit message or the example?
-> 
-> It's just the example is less than ideal. But it's just an example, so:
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Feel free to update the example if you respin.
-> 
-Thanks Rob,
 
-I'll update the example if the series gets a respin.
+--fUYQa+Pmc3FrFX/N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Jul 09, 2019 at 01:19:33PM +0000, Eugen.Hristev@microchip.com wrote:
+> From: Eugen Hristev <eugen.hristev@microchip.com>
+>=20
+> Some i2c controllers have a built-in digital or analog filter.
+> This is specifically required depending on the hardware PCB/board.
+> Some controllers also allow specifying the maximum width of the
+> spikes that can be filtered. The width length can be specified in nanosec=
+onds.
+>=20
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c.txt | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c.txt b/Documentatio=
+n/devicetree/bindings/i2c/i2c.txt
+> index 44efafd..a2d31aa 100644
+> --- a/Documentation/devicetree/bindings/i2c/i2c.txt
+> +++ b/Documentation/devicetree/bindings/i2c/i2c.txt
+> @@ -55,6 +55,17 @@ wants to support one of the below features, it should =
+adapt the bindings below.
+>  	Number of nanoseconds the SDA signal takes to fall; t(f) in the I2C
+>  	specification.
+> =20
+> +- i2c-ana-filter
+> +	Enable analog filter for i2c lines.
+> +
+> +- i2c-dig-filter
+> +	Enable digital filter for i2c lines.
 
+Would you be OK with writing out 'analog' and 'digital' in full form?
+The abrreviation doesn't save us much, I'd think, and I didn't find
+similar wording in existing bindings.
 
--- 
-Regards
-Phil Reid
+> +
+> +- i2c-filter-width-ns
+> +	Width of spikes which can be filtered by either digital or analog
+> +	filters (i2c-ana-filtr or i2c-dig-filtr). This width is specified
+> +	in nanoseconds.
+> +
+>  - interrupts
+>  	interrupts used by the device.
+> =20
+> --=20
+> 2.7.4
+>=20
+
+--fUYQa+Pmc3FrFX/N
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1qXF0ACgkQFA3kzBSg
+KbbKJxAApyKizr/4AG2mt0cdPc6Pg5Q4whRHl0WPC6X1dG4zB0aR3btEB3esTmWY
+FCyB0bqxsn64ZFqHpSfnF6piDxSu7iNrtxh+ltx2j3E8SyaOASeP29gckhaJoSsH
+U2vUtPYg+I/9L6bCx8Kl6ZAf3EnXrRDFxIJU1lYGfeWbqXfrLNQgvtpcjx8jnADn
+YRDpyeezNLnD8Nz3h321Zt9d/dnkeW2kb6x78Sstg0MVEskiGY97dioCbCzR59C6
+QvAl4z/vlSMCOywBDplMKVpzYieCxD3IhE/BlydvvEwEgUmJuZWKfJDxURSuve4K
+kll9//TsFaSSDZd4mZICUiTJurdmCskq8GFV4GQQZEO/J9viPfj61lZmtl6diMcY
+eXHIWRWns+85mPJuKhdLpsCHv7Peki+u95K4lKOff4oErj9whAt1fEQ93vvz9oXF
+2ciZiio4Wx8KokmGl6usNgugA9JMxJtLbJ1sNIUmykCa4Wdso3E02k6vcF0L6Sfx
+uMEvNpxULD2zWe3yMX/LM2qkMjfadgloGJWaYI9KymKk9F5J9PjQ4GrXOCO1JmIq
+qtYFpzw3sJ5EksYq/p21JOFSAK0x/1Cw/pjTOUcsXVgaRstIwgm5k+Vatl9C111+
+JYRETvHiVYuj2qWUIboXY8TWkQuZaFCojPFv6e/kUQ6xgaPIIJA=
+=WvKa
+-----END PGP SIGNATURE-----
+
+--fUYQa+Pmc3FrFX/N--
