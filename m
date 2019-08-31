@@ -2,125 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17658A44DE
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 17:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1E13A44EE
+	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 17:08:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728316AbfHaPBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Aug 2019 11:01:38 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:43108 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728285AbfHaPBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Aug 2019 11:01:37 -0400
-Received: by mail-pg1-f195.google.com with SMTP id u72so842733pgb.10;
-        Sat, 31 Aug 2019 08:01:37 -0700 (PDT)
+        id S1726740AbfHaPI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Aug 2019 11:08:56 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:40692 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726705AbfHaPI4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Aug 2019 11:08:56 -0400
+Received: by mail-pf1-f196.google.com with SMTP id w16so6434296pfn.7;
+        Sat, 31 Aug 2019 08:08:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=pgmHg3ukoYkhaRQ72n0KiU687Zs7MhjBlJ4ipL0qwQE=;
-        b=B3bTo9nmMR/i7oh0IaQJj8OJoTDX+qoEGfM41Dt+zLDGc70vkBAsDR6WZJxYKyTByR
-         ToqEQBhAvFzUGcgZYhC06n26Dv3l5QCPzWBTSZ7jb38S47K+8Ow0peFxgaasP+Fz2JKG
-         /Xs4NfxIEhsZCMMcDQz0BBRKp9aJ2nq9R/odVV+jl+tDkopQs2p9N2JXnhi8626PsZiT
-         JKloU3LculAz8V+r9ktvuT31bx+7GtcIuN1aDVs+g4sAIn/cqmDwxzDeyW21Z4GON4hz
-         T7AIB3kalcAWUpCo78XZiuS0ACwNaYRjDOQmCLAGMe2ZUpdUd5gOEL9xIQ+CNCPoyOtK
-         ELEg==
+        bh=eky3WHoxHJCo0ovTEewNnX9X46RkqUom31Mc/9+9MuI=;
+        b=sgqBhc1i0yodkIStwgmptDDOGMTibmy2Yxb9ld4upRyZkEhSSOGE27vxk8wb/nKsNl
+         VCGmcDJkEclj8VfbPcMZNGzdVBkShTOViWrPGG+2uf5NpwxvPsxcGP3DdOSKfegAW+ZU
+         FlPPgCQ4eqU6mc0Qk+/rM0pEnQKRgxgNTq2GF4HQM2ZERmN4JLUWSCG7rjFDCnmsJ9Pj
+         80de/bllQlxvWrZU247PYTN8/YGHfaqLASBN7kGH2OfckCrEiwIVzKe6pSvmpnFJFDSM
+         4GvbU6e/bQctw7i6x4koixp0/7MMEzGajkL6Mx59G4KPJrWGSmgMhhjGq2wUKmZwKj8b
+         TOQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
          :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=pgmHg3ukoYkhaRQ72n0KiU687Zs7MhjBlJ4ipL0qwQE=;
-        b=aUaigWzHfaS+tkn+ielILEbzfFrH+w8EWbJmcFN2IRE9xORCsNvKLufmTrPstyYcTd
-         uWnOpt+bksQI0uQ3hIyuGUJuodmGfmwY5mrok7UyMW7aQAHjG46gN6tt2PPfy9EdY5wi
-         1shQ2Ut3PXqK/cVaK35XT5MG1dmlViteKvW1x9nLJHLsEGbv7NyDK3kQb7pTIjjMvWWR
-         rmDjnZck/i9F6LhQyPY96AvxpWhhua2OPGP4CDFg7zVO7zRN4e8g5XRVDQcb5xlz1Cv+
-         fX3JUu17/Zae9DjRsJrjLOxIASe459ejz9cOMDncPbexL+wlrYB0fCQINmxKk99QG9ad
-         bMOA==
-X-Gm-Message-State: APjAAAVTyb1WgIGTqx7RHfXagAxF6s52JWqMeX2TzTsqzOcwdX0jG5gq
-        3+EP7ngV/bbpnv+dFXd6cHR+A/0Z
-X-Google-Smtp-Source: APXvYqzxO5TxxgJX3+CZnA8sNzId2Ur3EJ1lJTqlYglz6V20PPBYoElyIToU51GXQcMExZzVIgyYcg==
-X-Received: by 2002:aa7:96dc:: with SMTP id h28mr24787013pfq.86.1567263697149;
-        Sat, 31 Aug 2019 08:01:37 -0700 (PDT)
+        bh=eky3WHoxHJCo0ovTEewNnX9X46RkqUom31Mc/9+9MuI=;
+        b=VxpdaEAsSZMNUBKhYTaTIvgMG29QRBK8TUfDkFYFClCzJ9U5Am3YVIEOkPeTkzWC/i
+         MVMe3/w07arSewb95S9LFsR8zYZyPekftbPnhGr90ntbPHhALK/6p8Tu1Zl8uSs6hk91
+         m10s2cSIORVuSm8X2KLz2True6Qp/CSpOsmp+MJm8XM4l7efJuCiZvDeDoCYWxJl3ScX
+         0KrzStwdpZnxVlZCi/cj6M4LDXFuwgjXm6lbd3zV3ic2c810PVpuEGsxo23An+opuFPo
+         4sYptzDgVpJvgl8gmW9Guh5OPYQagZ68Me0VKjKyb3g4372pELkmsOiHPDWJumMfaKzG
+         c85A==
+X-Gm-Message-State: APjAAAXAMJ7nTdS3ZjeEoRWHunOTO1Pc4q0CGLZIz5njDaS+wvZLbB9T
+        JnGbc//dqou6liFcc9NvTso=
+X-Google-Smtp-Source: APXvYqxO3o6pIDP/l7+Lf0cDjIgbk27UMgfqpNk6SBZq9uhRjE7aneQpTek+jsOSL4x4ralxt8B00w==
+X-Received: by 2002:a62:1bc5:: with SMTP id b188mr3560024pfb.210.1567264135862;
+        Sat, 31 Aug 2019 08:08:55 -0700 (PDT)
 Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id t70sm9610914pjb.2.2019.08.31.08.01.36
+        by smtp.gmail.com with ESMTPSA id a23sm10295586pfo.80.2019.08.31.08.08.55
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 31 Aug 2019 08:01:36 -0700 (PDT)
-Date:   Sat, 31 Aug 2019 08:01:35 -0700
+        Sat, 31 Aug 2019 08:08:55 -0700 (PDT)
+Date:   Sat, 31 Aug 2019 08:08:54 -0700
 From:   Guenter Roeck <linux@roeck-us.net>
-To:     Ivan Mikhaylov <i.mikhaylov@yadro.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Alexander Amelkin <a.amelkin@yadro.com>,
-        openbmc@lists.ozlabs.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] aspeed/watchdog: Add access_cs0 option for
- alt-boot
-Message-ID: <20190831150135.GA7230@roeck-us.net>
-References: <20190828102402.13155-1-i.mikhaylov@yadro.com>
- <20190828102402.13155-5-i.mikhaylov@yadro.com>
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] hwmon: (as370-hwmon) Add DT bindings for
+ Synaptics AS370 PVT
+Message-ID: <20190831150854.GA8653@roeck-us.net>
+References: <20190827113214.13773d45@xhacker.debian>
+ <20190827113337.384457f6@xhacker.debian>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190828102402.13155-5-i.mikhaylov@yadro.com>
+In-Reply-To: <20190827113337.384457f6@xhacker.debian>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 01:24:02PM +0300, Ivan Mikhaylov wrote:
-> The option for the ast2400/2500 to get access to CS0 at runtime.
+On Tue, Aug 27, 2019 at 03:44:57AM +0000, Jisheng Zhang wrote:
+> Add device tree bindings for Synaptics AS370 PVT sensors.
 > 
-> Signed-off-by: Ivan Mikhaylov <i.mikhaylov@yadro.com>
+> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+
+For my reference:
 
 Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
+... but we'll have to wait for DT maintainer review.
+
 > ---
->  .../ABI/testing/sysfs-class-watchdog          | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
+>  Documentation/devicetree/bindings/hwmon/as370.txt | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/as370.txt
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-class-watchdog b/Documentation/ABI/testing/sysfs-class-watchdog
-> index 6317ade5ad19..675f9b537661 100644
-> --- a/Documentation/ABI/testing/sysfs-class-watchdog
-> +++ b/Documentation/ABI/testing/sysfs-class-watchdog
-> @@ -72,3 +72,37 @@ Description:
->  		It is a read/write file. When read, the currently assigned
->  		pretimeout governor is returned.  When written, it sets
->  		the pretimeout governor.
+> diff --git a/Documentation/devicetree/bindings/hwmon/as370.txt b/Documentation/devicetree/bindings/hwmon/as370.txt
+> new file mode 100644
+> index 000000000000..d102fe765124
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/hwmon/as370.txt
+> @@ -0,0 +1,11 @@
+> +Bindings for Synaptics AS370 PVT sensors
 > +
-> +What:		/sys/class/watchdog/watchdog1/access_cs0
-> +Date:		August 2019
-> +Contact:	Ivan Mikhaylov <i.mikhaylov@yadro.com>,
-> +		Alexander Amelkin <a.amelkin@yadro.com>
-> +Description:
-> +		It is a read/write file. This attribute exists only if the
-> +		system has booted from the alternate flash chip due to
-> +		expiration of a watchdog timer of AST2400/AST2500 when
-> +		alternate boot function was enabled with 'aspeed,alt-boot'
-> +		devicetree option for that watchdog or with an appropriate
-> +		h/w strapping (for WDT2 only).
+> +Required properties:
+> +- compatible : "syna,as370-hwmon"
+> +- reg        : address and length of the register set.
 > +
-> +		At alternate flash the 'access_cs0' sysfs node provides:
-> +			ast2400: a way to get access to the primary SPI flash
-> +				chip at CS0 after booting from the alternate
-> +				chip at CS1.
-> +			ast2500: a way to restore the normal address mapping
-> +				from (CS0->CS1, CS1->CS0) to (CS0->CS0,
-> +				CS1->CS1).
-> +
-> +		Clearing the boot code selection and timeout counter also
-> +		resets to the initial state the chip select line mapping. When
-> +		the SoC is in normal mapping state (i.e. booted from CS0),
-> +		clearing those bits does nothing for both versions of the SoC.
-> +		For alternate boot mode (booted from CS1 due to wdt2
-> +		expiration) the behavior differs as described above.
-> +
-> +		This option can be used with wdt2 (watchdog1) only.
-> +
-> +		When read, the current status of the boot code selection is
-> +		shown. When written with any non-zero value, it clears
-> +		the boot code selection and the timeout counter, which results
-> +		in chipselect reset for AST2400/AST2500.
+> +Example:
+> +	hwmon@ea0810 {
+> +		compatible = "syna,as370-hwmon";
+> +		reg = <0xea0810 0xc>;
+> +	};
