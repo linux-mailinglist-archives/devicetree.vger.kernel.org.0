@@ -2,296 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04CC4A4502
-	for <lists+devicetree@lfdr.de>; Sat, 31 Aug 2019 17:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D59EAA467F
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 01:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728048AbfHaP2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 31 Aug 2019 11:28:16 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:35981 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726354AbfHaP2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 31 Aug 2019 11:28:16 -0400
-Received: by mail-pf1-f193.google.com with SMTP id y22so818046pfr.3;
-        Sat, 31 Aug 2019 08:28:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=zzIDZ/Y3p8mE/YfP5L16dMWmiE8dYK2diKs+M4D4Cgc=;
-        b=VWRgtwud29/jLxkWyt35yqG74YJ+cyqUHSWJ++dKjBJ96NRE15Gr7MU207xXof2hXl
-         ZvYZ+qN3FJ+vmMWGGrJLOMCAHCynfJ0wV7wlk93DAk/nu5RaZUUs7p9mMbrtLLNm4slA
-         2ZpF3n7qVqbcaBhD4MXwWax7PuXtIjdrGV6UKGcH3t48O0rmw1YMVW0qRUgOFcKKvhao
-         helFewJdV/zHLrC6a+tFh4/O2hwXJe7VVgYsBEzvtl6dVCuFHHE3FD5JaqWBwGaBKEVr
-         U+qmh9GVlmzdRFC5U5brqFFsSbXSUPFidcSVZlqEwbAme4m7x0LnVpOzLlEiOGcz5m5E
-         yPGA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=zzIDZ/Y3p8mE/YfP5L16dMWmiE8dYK2diKs+M4D4Cgc=;
-        b=UD2At86VSHO5uONf8zqVzx9X0NGjc5bac2dG8nR0zeeejBWp2h5HTPKS0SpWMSaAqq
-         4wPWE8LsTPRNnvNLzocWYTiDSl0oGvaOv4I5EQWu4yJ5S6lSjTfM8Qr6gyepcozQLuM4
-         d6DXctuvQhdgYFOLL9i6gIr0Em9HIry4xuQeA9XsqCcyvb15+/qo7AGSBLHxT5nfN+5n
-         W/395d4yaCHvIPgiKM9QmCLdWVcTVOTsuCjPmBeK1IR+dhE6H+ZZrBbquhFIbNIbKFsJ
-         XWgaEIk2rbRpu2GvL7WPtsDoYatM7VbfIEmsEnVzwxPfbtXW8WtE8qq1aMc/eGuwm+1T
-         1drA==
-X-Gm-Message-State: APjAAAVwQDcb2gCcn/O2PGP8UzwqZztD7LcRU3RPxo/fxEzYWm9RkzKQ
-        EkYSqPqKCRChhpBwO4e/Qe0=
-X-Google-Smtp-Source: APXvYqyAedlEYt09FSt6C+s32rSCfqEidrAj77ncA9rZ6m+ZCPnRSVQ2/hg/rkmSv4DjTtbdzRdk7Q==
-X-Received: by 2002:a17:90a:1916:: with SMTP id 22mr4476855pjg.62.1567265295363;
-        Sat, 31 Aug 2019 08:28:15 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id a1sm7212452pgh.61.2019.08.31.08.28.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 31 Aug 2019 08:28:14 -0700 (PDT)
-Date:   Sat, 31 Aug 2019 08:28:14 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     linux-hwmon@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        andrew@aj.id.au, joel@jms.id.au, mark.rutland@arm.com,
-        robh+dt@kernel.org, jdelvare@suse.com
-Subject: Re: [PATCH v2 3/3] pmbus: ibm-cffps: Add support for version 2 of
- the PSU
-Message-ID: <20190831152814.GA9950@roeck-us.net>
-References: <1567192263-15065-1-git-send-email-eajames@linux.ibm.com>
- <1567192263-15065-4-git-send-email-eajames@linux.ibm.com>
+        id S1726908AbfHaXE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 31 Aug 2019 19:04:59 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:48908 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726730AbfHaXE6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 31 Aug 2019 19:04:58 -0400
+Received: from [88.128.80.160] (helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1i4CQJ-0002xc-OE; Sun, 01 Sep 2019 01:04:49 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     Elon Zhang <zhangzj@rock-chips.com>
+Cc:     mark.rutland@arm.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v1 1/1] ARM: dts: rockchip: set crypto default disabled on rk3288
+Date:   Sun, 01 Sep 2019 01:04:31 +0200
+Message-ID: <3345609.Z0LLm6LDBC@phil>
+In-Reply-To: <3b9cbffa-291e-fc95-bce6-5b24f5fd860d@rock-chips.com>
+References: <20190827071439.14767-1-zhangzj@rock-chips.com> <4806912.UyKsYhR33o@phil> <3b9cbffa-291e-fc95-bce6-5b24f5fd860d@rock-chips.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567192263-15065-4-git-send-email-eajames@linux.ibm.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 02:11:03PM -0500, Eddie James wrote:
-> Version 2 of the PSU supports a second page of data and changes the
-> format of the FW version. Use the devicetree binding to differentiate
-> between the version the driver should use.
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+Hi Elon,
 
-Applied to hwmon-next.
-
-Thanks,
-Guenter
-
-> ---
-> Changes since v1:
->  - use an enum for the version instead of integers 1, 2, etc
+Am Donnerstag, 29. August 2019, 13:31:00 CEST schrieb Elon Zhang:
+> On 8/27/2019 22:28, Heiko Stuebner wrote:
+> > Am Dienstag, 27. August 2019, 09:14:39 CEST schrieb Elon Zhang:
+> >> Not every board needs to enable crypto node, so the node should
+> >> be set default disabled in rk3288.dtsi and enabled in specific
+> >> board dts file.
+> > Can you give a bit more rationale here? There would need to be a very
+> > specific reason because of the following:
+> >
+> > The crypto module is not wired to some board-specific components,
+> > so its usability does not depend on the specific board at all.
+> > Instead every board can just use it out of the box and the devicetree
+> > is supposed to describe the hardware and is _not_ meant as a space
+> > for user configuration.
 > 
->  drivers/hwmon/pmbus/ibm-cffps.c | 110 ++++++++++++++++++++++++++++++++--------
->  1 file changed, 88 insertions(+), 22 deletions(-)
+> Right for almost all normal hardware modules but the crypto module was 
+> designed
 > 
-> diff --git a/drivers/hwmon/pmbus/ibm-cffps.c b/drivers/hwmon/pmbus/ibm-cffps.c
-> index ee2ee9e..d44745e 100644
-> --- a/drivers/hwmon/pmbus/ibm-cffps.c
-> +++ b/drivers/hwmon/pmbus/ibm-cffps.c
-> @@ -12,6 +12,7 @@
->  #include <linux/leds.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/of_device.h>
->  #include <linux/pmbus.h>
->  
->  #include "pmbus.h"
-> @@ -20,8 +21,9 @@
->  #define CFFPS_PN_CMD				0x9B
->  #define CFFPS_SN_CMD				0x9E
->  #define CFFPS_CCIN_CMD				0xBD
-> -#define CFFPS_FW_CMD_START			0xFA
-> -#define CFFPS_FW_NUM_BYTES			4
-> +#define CFFPS_FW_CMD				0xFA
-> +#define CFFPS1_FW_NUM_BYTES			4
-> +#define CFFPS2_FW_NUM_WORDS			3
->  #define CFFPS_SYS_CONFIG_CMD			0xDA
->  
->  #define CFFPS_INPUT_HISTORY_CMD			0xD6
-> @@ -52,6 +54,8 @@ enum {
->  	CFFPS_DEBUGFS_NUM_ENTRIES
->  };
->  
-> +enum versions { cffps1, cffps2 };
-> +
->  struct ibm_cffps_input_history {
->  	struct mutex update_lock;
->  	unsigned long last_update;
-> @@ -61,6 +65,7 @@ struct ibm_cffps_input_history {
->  };
->  
->  struct ibm_cffps {
-> +	enum versions version;
->  	struct i2c_client *client;
->  
->  	struct ibm_cffps_input_history input_history;
-> @@ -132,6 +137,8 @@ static ssize_t ibm_cffps_debugfs_op(struct file *file, char __user *buf,
->  	struct ibm_cffps *psu = to_psu(idxp, idx);
->  	char data[I2C_SMBUS_BLOCK_MAX] = { 0 };
->  
-> +	pmbus_set_page(psu->client, 0);
-> +
->  	switch (idx) {
->  	case CFFPS_DEBUGFS_INPUT_HISTORY:
->  		return ibm_cffps_read_input_history(psu, buf, count, ppos);
-> @@ -152,16 +159,36 @@ static ssize_t ibm_cffps_debugfs_op(struct file *file, char __user *buf,
->  		rc = snprintf(data, 5, "%04X", rc);
->  		goto done;
->  	case CFFPS_DEBUGFS_FW:
-> -		for (i = 0; i < CFFPS_FW_NUM_BYTES; ++i) {
-> -			rc = i2c_smbus_read_byte_data(psu->client,
-> -						      CFFPS_FW_CMD_START + i);
-> -			if (rc < 0)
-> -				return rc;
-> +		switch (psu->version) {
-> +		case cffps1:
-> +			for (i = 0; i < CFFPS1_FW_NUM_BYTES; ++i) {
-> +				rc = i2c_smbus_read_byte_data(psu->client,
-> +							      CFFPS_FW_CMD +
-> +								i);
-> +				if (rc < 0)
-> +					return rc;
-> +
-> +				snprintf(&data[i * 2], 3, "%02X", rc);
-> +			}
->  
-> -			snprintf(&data[i * 2], 3, "%02X", rc);
-> -		}
-> +			rc = i * 2;
-> +			break;
-> +		case cffps2:
-> +			for (i = 0; i < CFFPS2_FW_NUM_WORDS; ++i) {
-> +				rc = i2c_smbus_read_word_data(psu->client,
-> +							      CFFPS_FW_CMD +
-> +								i);
-> +				if (rc < 0)
-> +					return rc;
-> +
-> +				snprintf(&data[i * 4], 5, "%04X", rc);
-> +			}
->  
-> -		rc = i * 2;
-> +			rc = i * 4;
-> +			break;
-> +		default:
-> +			return -EOPNOTSUPP;
-> +		}
->  		goto done;
->  	default:
->  		return -EINVAL;
-> @@ -279,6 +306,8 @@ static void ibm_cffps_led_brightness_set(struct led_classdev *led_cdev,
->  			psu->led_state = CFFPS_LED_ON;
->  	}
->  
-> +	pmbus_set_page(psu->client, 0);
-> +
->  	rc = i2c_smbus_write_byte_data(psu->client, CFFPS_SYS_CONFIG_CMD,
->  				       psu->led_state);
->  	if (rc < 0)
-> @@ -299,6 +328,8 @@ static int ibm_cffps_led_blink_set(struct led_classdev *led_cdev,
->  	if (led_cdev->brightness == LED_OFF)
->  		return 0;
->  
-> +	pmbus_set_page(psu->client, 0);
-> +
->  	rc = i2c_smbus_write_byte_data(psu->client, CFFPS_SYS_CONFIG_CMD,
->  				       CFFPS_LED_BLINK);
->  	if (rc < 0)
-> @@ -328,15 +359,32 @@ static void ibm_cffps_create_led_class(struct ibm_cffps *psu)
->  		dev_warn(dev, "failed to register led class: %d\n", rc);
->  }
->  
-> -static struct pmbus_driver_info ibm_cffps_info = {
-> -	.pages = 1,
-> -	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
-> -		PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
-> -		PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 | PMBUS_HAVE_STATUS_VOUT |
-> -		PMBUS_HAVE_STATUS_IOUT | PMBUS_HAVE_STATUS_INPUT |
-> -		PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_STATUS_FAN12,
-> -	.read_byte_data = ibm_cffps_read_byte_data,
-> -	.read_word_data = ibm_cffps_read_word_data,
-> +static struct pmbus_driver_info ibm_cffps_info[] = {
-> +	[cffps1] = {
-> +		.pages = 1,
-> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
-> +			PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
-> +			PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
-> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
-> +			PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP |
-> +			PMBUS_HAVE_STATUS_FAN12,
-> +		.read_byte_data = ibm_cffps_read_byte_data,
-> +		.read_word_data = ibm_cffps_read_word_data,
-> +	},
-> +	[cffps2] = {
-> +		.pages = 2,
-> +		.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
-> +			PMBUS_HAVE_PIN | PMBUS_HAVE_FAN12 | PMBUS_HAVE_TEMP |
-> +			PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
-> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT |
-> +			PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP |
-> +			PMBUS_HAVE_STATUS_FAN12,
-> +		.func[1] = PMBUS_HAVE_VOUT | PMBUS_HAVE_IOUT |
-> +			PMBUS_HAVE_TEMP | PMBUS_HAVE_TEMP2 | PMBUS_HAVE_TEMP3 |
-> +			PMBUS_HAVE_STATUS_VOUT | PMBUS_HAVE_STATUS_IOUT,
-> +		.read_byte_data = ibm_cffps_read_byte_data,
-> +		.read_word_data = ibm_cffps_read_word_data,
-> +	},
->  };
->  
->  static struct pmbus_platform_data ibm_cffps_pdata = {
-> @@ -347,12 +395,21 @@ static int ibm_cffps_probe(struct i2c_client *client,
->  			   const struct i2c_device_id *id)
->  {
->  	int i, rc;
-> +	enum versions vs;
->  	struct dentry *debugfs;
->  	struct dentry *ibm_cffps_dir;
->  	struct ibm_cffps *psu;
-> +	const void *md = of_device_get_match_data(&client->dev);
-> +
-> +	if (md)
-> +		vs = (enum versions)md;
-> +	else if (id)
-> +		vs = (enum versions)id->driver_data;
-> +	else
-> +		vs = cffps1;
->  
->  	client->dev.platform_data = &ibm_cffps_pdata;
-> -	rc = pmbus_do_probe(client, id, &ibm_cffps_info);
-> +	rc = pmbus_do_probe(client, id, &ibm_cffps_info[vs]);
->  	if (rc)
->  		return rc;
->  
-> @@ -364,6 +421,7 @@ static int ibm_cffps_probe(struct i2c_client *client,
->  	if (!psu)
->  		return 0;
->  
-> +	psu->version = vs;
->  	psu->client = client;
->  	mutex_init(&psu->input_history.update_lock);
->  	psu->input_history.last_update = jiffies - HZ;
-> @@ -405,13 +463,21 @@ static int ibm_cffps_probe(struct i2c_client *client,
->  }
->  
->  static const struct i2c_device_id ibm_cffps_id[] = {
-> -	{ "ibm_cffps1", 1 },
-> +	{ "ibm_cffps1", cffps1 },
-> +	{ "ibm_cffps2", cffps2 },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, ibm_cffps_id);
->  
->  static const struct of_device_id ibm_cffps_of_match[] = {
-> -	{ .compatible = "ibm,cffps1" },
-> +	{
-> +		.compatible = "ibm,cffps1",
-> +		.data = (void *)cffps1
-> +	},
-> +	{
-> +		.compatible = "ibm,cffps2",
-> +		.data = (void *)cffps2
-> +	},
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, ibm_cffps_of_match);
+> for secure world. As a result,  the crypto module will become 
+> inaccessible for linux kernel if secure world enable it.
+> 
+> We plan to enable the crypto module in secure world so we should set 
+> crypto module default disabled in linux kernel.
+
+ok ... I'm halfway convinced ;-) .
+
+The big thing I want to see is that secure setting in the actual firmware.
+Aka right now you probably have that in your Rockchip-specific ATF fork
+and I really want to see the relevant change for public uboot or ATF.
+
+I don't necessarily require it to be fully merged before taking this, but
+I really want to see the change either on a mailing list or atf gerrit
+instance [that makes the crypto engine secure only].
+
+Rationale behind this is that we don't care very much about private stuff
+that the general ecosystem doesn't benefit from.
+
+
+Thanks
+Heiko
+
+
+> > So in fact the status property should probably go away completely from
+> > the crypto node, as it's usable out of the box in all cases.
+> >
+> >
+> > Heiko
+> >
+> >
+> >
+> >> Signed-off-by: Elon Zhang <zhangzj@rock-chips.com>
+> >> ---
+> >>   arch/arm/boot/dts/rk3288.dtsi | 2 +-
+> >>   1 file changed, 1 insertion(+), 1 deletion(-)
+> >>
+> >> diff --git a/arch/arm/boot/dts/rk3288.dtsi b/arch/arm/boot/dts/rk3288.dtsi
+> >> index cc893e154fe5..d509aa24177c 100644
+> >> --- a/arch/arm/boot/dts/rk3288.dtsi
+> >> +++ b/arch/arm/boot/dts/rk3288.dtsi
+> >> @@ -984,7 +984,7 @@
+> >>   		clock-names = "aclk", "hclk", "sclk", "apb_pclk";
+> >>   		resets = <&cru SRST_CRYPTO>;
+> >>   		reset-names = "crypto-rst";
+> >> -		status = "okay";
+> >> +		status = "disabled";
+> >>   	};
+> >>   
+> >>   	iep_mmu: iommu@ff900800 {
+> >>
+> >
+> >
+> >
+> >
+> >
+> >
+> 
+> 
+> 
+
+
+
+
