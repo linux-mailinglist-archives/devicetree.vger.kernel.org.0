@@ -2,74 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27AFAA4830
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 09:52:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41F16A488B
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 11:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728860AbfIAHv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Sep 2019 03:51:56 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:35586 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728712AbfIAHvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 1 Sep 2019 03:51:54 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9D4812001BC;
-        Sun,  1 Sep 2019 09:51:52 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A743B20058B;
-        Sun,  1 Sep 2019 09:51:45 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E4AC1402FB;
-        Sun,  1 Sep 2019 15:51:36 +0800 (SGT)
-From:   Xiaowei Bao <xiaowei.bao@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        leoyang.li@nxp.com, minghuan.Lian@nxp.com, mingkai.hu@nxp.com,
-        roy.zang@nxp.com, lorenzo.pieralisi@arm.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org
-Cc:     bhelgaas@google.com, Xiaowei Bao <xiaowei.bao@nxp.com>,
-        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-Subject: [PATCH v5 3/3] PCI: layerscape: Add LS1028a support
-Date:   Sun,  1 Sep 2019 15:41:34 +0800
-Message-Id: <20190901074134.24455-3-xiaowei.bao@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190901074134.24455-1-xiaowei.bao@nxp.com>
-References: <20190901074134.24455-1-xiaowei.bao@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1728909AbfIAJQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Sep 2019 05:16:33 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:57893 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728895AbfIAJQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 05:16:32 -0400
+X-Originating-IP: 90.65.161.137
+Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr [90.65.161.137])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 66BA720002;
+        Sun,  1 Sep 2019 09:16:30 +0000 (UTC)
+Date:   Sun, 1 Sep 2019 11:16:29 +0200
+From:   Alexandre Belloni <alexandre.belloni@free-electrons.com>
+To:     Bastian Krause <bst@pengutronix.de>
+Cc:     linux-rtc@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: rtc: add missing rx8130 compatible
+Message-ID: <20190901091629.GZ21922@piout.net>
+References: <20190830134755.1121-1-bst@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190830134755.1121-1-bst@pengutronix.de>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the LS1028a PCIe controller.
+On 30/08/2019 15:47:55+0200, Bastian Krause wrote:
+> The required OF entries were added with 47dd47292828
+> ("rtc: ds1307: add OF and ACPI entries for Epson RX8130").
+> 
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Bastian Krause <bst@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/rtc/rtc-ds1307.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+Applied, thanks.
 
-Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
----
-v2:
- - No change.
-v3:
- - Reuse the ls2088 driver data structurt.
-v4:
- - No change.
-v5:
- - No change.
-
- drivers/pci/controller/dwc/pci-layerscape.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
-index 3a5fa26..f24f79a 100644
---- a/drivers/pci/controller/dwc/pci-layerscape.c
-+++ b/drivers/pci/controller/dwc/pci-layerscape.c
-@@ -263,6 +263,7 @@ static const struct ls_pcie_drvdata ls2088_drvdata = {
- static const struct of_device_id ls_pcie_of_match[] = {
- 	{ .compatible = "fsl,ls1012a-pcie", .data = &ls1046_drvdata },
- 	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021_drvdata },
-+	{ .compatible = "fsl,ls1028a-pcie", .data = &ls2088_drvdata },
- 	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1043_drvdata },
- 	{ .compatible = "fsl,ls1046a-pcie", .data = &ls1046_drvdata },
- 	{ .compatible = "fsl,ls2080a-pcie", .data = &ls2080_drvdata },
 -- 
-2.9.5
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
