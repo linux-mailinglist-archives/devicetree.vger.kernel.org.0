@@ -2,99 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A34ECA48F3
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 13:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A191DA49AC
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 15:58:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727591AbfIALo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Sep 2019 07:44:56 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40966 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726275AbfIALo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 07:44:56 -0400
-Received: by mail-ot1-f65.google.com with SMTP id o101so11107681ota.8;
-        Sun, 01 Sep 2019 04:44:55 -0700 (PDT)
+        id S1728989AbfIAN5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Sep 2019 09:57:01 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:44647 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728764AbfIAN5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 09:57:01 -0400
+Received: by mail-io1-f68.google.com with SMTP id j4so24087631iog.11;
+        Sun, 01 Sep 2019 06:57:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=N5SW0h/ksHed7i/eHFWIqXI6qoMGR2BQIv5D3teJr74=;
-        b=vhanXbkPhCASy7yp6E70RWXSIea3XKgBgpX4J0cjIOAXFMJTvv4io0WvNACb2Q3NHI
-         KqPzpdfJDGsN3hcbHseg56/IVIqd+TCUKLGLCVlBCgoaBA3+DcXamXY36nT+rtVt/7UH
-         z0Sx87ePMve/U0njqJexwh8+c8PfcU7rKefFregulzCaq0LKPs65DamwrPTnAZQ0/xmK
-         +cduO/uBYFyqO1xVjiFqng6rNs1rMw21ZKXzSKn2lRN3OuElmSbwlOv+bg6vTiymyDXa
-         J8X6pRqog59PPe0G6EpFNcdUq0OlIcD6RqJttG9cIFjx7MaQ92QUm2Lw13rLH5OmKldY
-         wSAA==
+        bh=DlZdrf9Irxs4fo8S+BI75RsfTncmV298kgaHuNHnRpA=;
+        b=SJ2HR+ZX4CCLpMwYVrMm4tC48zXsqIaDeOJpgI3Pu3aF57K2+/GDf7STWkbYhRe2jR
+         7G6ODjRtP47aLxPmSBBqyyqGzi3KCb2cqBA399LgCItWnhLzUke/Y463BhS5rQjdJQTK
+         1BkGi60BKBY0TjPWuG0De2lTR4hD+X4qFbNhpF9j+6ldhAF1FEkBqt5Oy8zEpeW1sj6g
+         t3yKMcSIaRw2WJb4SzaAwvl8LSCsOy0JEyEOFMJYk4CAt+qCWeDjeABNCA6XWck+s3i4
+         L+VsTBC+P8E3bxrBz+29duUA/AtUC8ML5kSvPq7G7g0DIxZN8tFz+7M4fUgzRKVWscmj
+         GAsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=N5SW0h/ksHed7i/eHFWIqXI6qoMGR2BQIv5D3teJr74=;
-        b=mXSc7pfz36It3eRnEARa4DepoA1DGU56pvEvvodFHPsP63ELHyfLRYPcuZ3whjyb7+
-         9f9tYkX9rWdqzIyadB3S3AIPOoVHW47UydCJmCuBUxurs13waH1Pg/IBKc9njU+6JbDj
-         Z2Bmg9c8411mhEeqO4QVKU5T3QnkVJYTLBHk+jeeGIQ+W8B4BrRAMmhudU4xGeJxO6Eg
-         vhlwnYF4CVmvE6K4AtrYu+jUyJyFkOucptXLbcWYhWPqslQ51YZygYbSxvOWGol0PTK5
-         CZ+6MlmwvFVBGsxf8Hn7/GIcqWx8hg0uhv3grkUMflfApga0XT3b+/poapgfPntHMXj8
-         //ig==
-X-Gm-Message-State: APjAAAVVbl+uXSsV8QlNh9Tibaht5nycZQn7DNR4Qpo7zekZrxqLuNSi
-        M4BszCNc67KywXpKKBZCy6TlzZu86aV6Ocw1NX8=
-X-Google-Smtp-Source: APXvYqxLmXiuv+TRf/3RDHS6aD3eo3thHXEQG33YbJzqOL7vyoTqfUAXob2N+E96QZArxo0XcqUwg5ritXmDRv0E4k0=
-X-Received: by 2002:a9d:1d5:: with SMTP id e79mr19768337ote.98.1567338295280;
- Sun, 01 Sep 2019 04:44:55 -0700 (PDT)
+        bh=DlZdrf9Irxs4fo8S+BI75RsfTncmV298kgaHuNHnRpA=;
+        b=jlRLyVuDVnDbLn+44Ae7SJt2vap+3sv+H4WU7xAhRD7t40JrBJl+MvV65amLB8S7pe
+         S0AVzugcVCZVun2cuGmEpVpuwor8USqkhh9BFasTE7s2l/jznCZoXbIfnKl6Mb1HzJ0q
+         16/vT8MDWyZVb2PSDB9Y6RX14ziJm2meNXcTtiB+DU2dCBBJdIWSl7KKPyp0HXh4YBC5
+         wbZpn4BtbRA0/4fwcqcRKSigi+71GJQKDM+QC8K3HbznTDOs9uBHImE/vVhWk1nNdpDQ
+         Y/Sqq+sVwiS6DDPd+nQIwya4dWLbqr89i5XkyEcuhm2uq7S5XbnQJAMNyWqJEFuDsLMU
+         9F5A==
+X-Gm-Message-State: APjAAAUFzk6NsbZAUAEvfE+BJEljMDwAUiODOKlhWd/gqbOFFESurGvf
+        +5GrjzH6KrcJ+bjgPPCIY5h/YsIRaYM5sD1i318=
+X-Google-Smtp-Source: APXvYqxYOm/Hc/RFqCzlkxBEZ30dho7qz2hnto+SyaO5xK9jP5vx8O05CRf6dpJlVvYT87HcbjJnLhCQXciWgSqFGEw=
+X-Received: by 2002:a6b:c810:: with SMTP id y16mr5973464iof.75.1567346220862;
+ Sun, 01 Sep 2019 06:57:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190828202723.1145-1-linux.amoon@gmail.com> <20190828202723.1145-4-linux.amoon@gmail.com>
-In-Reply-To: <20190828202723.1145-4-linux.amoon@gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sun, 1 Sep 2019 13:44:44 +0200
-Message-ID: <CAFBinCB9NPtncyJCMWDbbzJnQafeaY5U3XHh=NuRZSCNDdO=Hg@mail.gmail.com>
-Subject: Re: [PATCHv1 3/3] arm64: dts: meson: odroid-c2: Add missing regulator
- linked to HDMI supply
-To:     Anand Moon <linux.amoon@gmail.com>
+References: <20190828202723.1145-1-linux.amoon@gmail.com> <20190828202723.1145-3-linux.amoon@gmail.com>
+ <CAFBinCBA-sQcshd9iAVn=ZDBKkDN3OgJs-WjKEhVLw===b0AdQ@mail.gmail.com>
+In-Reply-To: <CAFBinCBA-sQcshd9iAVn=ZDBKkDN3OgJs-WjKEhVLw===b0AdQ@mail.gmail.com>
+From:   Anand Moon <linux.amoon@gmail.com>
+Date:   Sun, 1 Sep 2019 19:26:47 +0530
+Message-ID: <CANAwSgTXWgcyzsU1Y6Msc4hyuRh7QPoXe9WsV5uqNc=c9_z2TA@mail.gmail.com>
+Subject: Re: [PATCHv1 2/3] arm64: dts: meson: odroid-c2: Add missing regulator
+ linked to VDDIO_AO3V3 regulator
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Jerome Brunet <jbrunet@baylibre.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anand,
+Hi Martin,
 
-On Wed, Aug 28, 2019 at 10:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
+Thanks of your review comments.
+
+On Sun, 1 Sep 2019 at 17:11, Martin Blumenstingl
+<martin.blumenstingl@googlemail.com> wrote:
 >
-> As per shematics HDMI_P5V0 is supplied by P5V0 so add missing link.
-typo: "schematics"
-
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 2 ++
->  1 file changed, 2 insertions(+)
+> On Wed, Aug 28, 2019 at 10:27 PM Anand Moon <linux.amoon@gmail.com> wrote:
+> >
+> > As per shematics TFLASH_VDD, TF_IO, VCC3V3 fixed regulator output which
+> typo: "schematics"
 >
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> index a078a1ee5004..47789fd50415 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-> @@ -213,6 +213,8 @@
->         status = "okay";
->         pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
->         pinctrl-names = "default";
-> +       /* AP2331SA-7 */
-> +       hdmi-supply = <&p5v0>;
->  };
-my understanding based on odroid-c2_rev0.1_20150930.pdf is that:
-- there's a (fixed) hdmi_p5v0 regulator using p5v0 as input
-- the hdmi_p5v0 is the hdmi-supply
+Ok
+> > is supplied by VDDIO_AO3V3.
+> please add a short sentence to the description (since you probably
+> have to re-send a v2) like:
+> "While here, move the comment name with the signal name in the
+> schematics above the gpio property to make it consistent with other
+> regulators"
+>
 
-it doesn't change the functionality of this patch (since both supplies
-are fixed regulators anyways)
-you are already doing a nice cleanup with this series, so it would be
-a shame to take a shortcut here
+Ok I will append this in next version.
 
+> > Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> > Cc: Jerome Brunet <jbrunet@baylibre.com>
+> > Cc: Neil Armstrong <narmstrong@baylibre.com>
+> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> with the patch rebased (see below) and the two issues from above addressed:
+> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>
+> > ---
+> >  arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 13 ++++++++++---
+> >  1 file changed, 10 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> > index 98e742bf44c1..a078a1ee5004 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
+> > @@ -67,17 +67,19 @@
+> >         };
+> >
+> >         tflash_vdd: regulator-tflash_vdd {
+> > -               /*
+> > -                * signal name from schematics: TFLASH_VDD_EN
+> > -                */
+> >                 compatible = "regulator-fixed";
+> >
+> >                 regulator-name = "TFLASH_VDD";
+> >                 regulator-min-microvolt = <3300000>;
+> >                 regulator-max-microvolt = <3300000>;
+> >
+> > +               /*
+> > +                * signal name from schematics: TFLASH_VDD_EN
+> > +                */
+> >                 gpio = <&gpio GPIOY_12 GPIO_ACTIVE_HIGH>;
+> >                 enable-active-high;
+> > +               /* U16 RT9179GB */
+> > +               vin-supply = <&vddio_ao3v3>;
+> >         };
+> >
+> >         tf_io: gpio-regulator-tf_io {
+> > @@ -95,6 +97,8 @@
+> >
+> >                 states = <3300000 0
+> >                           1800000 1>;
+> > +               /* U12/U13 RT9179GB */
+> > +               vin-supply = <&vddio_ao3v3>;
+> >         };
+> thank you for the patch but I think it won't apply on top of Neil's
+> "arm64: dts: meson: fix boards regulators states format" (which was
+> applied just after you sent this series)
+>
 
-Martin
+>
+> Martin
+
+Ok will re-base these changes on linux-next next time.
+
+Best Regards
+-Anand
