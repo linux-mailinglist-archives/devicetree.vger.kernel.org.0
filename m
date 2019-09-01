@@ -2,189 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65078A4AF4
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 19:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FAF7A4B57
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 21:18:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729092AbfIARob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Sep 2019 13:44:31 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:42328 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728496AbfIARob (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 13:44:31 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 38AE060A00; Sun,  1 Sep 2019 17:44:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567359870;
-        bh=t+W7GhUSBFkf6UXKVCmzE61u9r7x9uMCJGn4pNUAeh0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UhF6ktKKHUDAwqzHf9/nw8hSRMcToVsV/uFr/zbQif9t7LpIcHtVpdcW+zwSBVupj
-         F4yfE+eKDC8fyI5z7kqY02W+7A2WYvZeltCWmvZOSbgSyDuaaav/jzkwGnCIJ09Uui
-         s4Z7i53F2XDoq4af7vUl99afgdOmK8P/pELe2ZO0=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 238546086B;
-        Sun,  1 Sep 2019 17:44:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567359869;
-        bh=t+W7GhUSBFkf6UXKVCmzE61u9r7x9uMCJGn4pNUAeh0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kpvtcnOT5TJfns8fVfSImC2N8zsL1yy5+ZB0i+4NOkSNRsuMX0XyIB9siEL0dvtMx
-         pdmUEkwBloi5qfdgrnVzSoKKIM7jarm1wP7x5UOsrd+7w8Dsw1kjf0aKFrfa4ezRoK
-         8da/KvUBgxlvqIjy1zUZw0LoAtsYfHtqdAhFTCEY=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 238546086B
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org
-Cc:     agross@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, sboyd@kernel.org,
-        Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v3 2/2] dt-bindings: reset: pdc: Convert PDC Global bindings to yaml
-Date:   Sun,  1 Sep 2019 23:14:07 +0530
-Message-Id: <20190901174407.30756-3-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.22.1
-In-Reply-To: <20190901174407.30756-1-sibis@codeaurora.org>
-References: <20190901174407.30756-1-sibis@codeaurora.org>
+        id S1729077AbfIATSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Sep 2019 15:18:39 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:41332 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726727AbfIATSj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 15:18:39 -0400
+Received: by mail-ot1-f65.google.com with SMTP id o101so11694062ota.8;
+        Sun, 01 Sep 2019 12:18:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=CZBDk6mbhB56f+rg410i/1cUkGakskFz89DEFDY+5dY=;
+        b=Mn96XJhOYLuU5yTW4p6Fy7sMNhHcUZPPsJf3xg1nr//hn69KhgoCShZyOjaW1WVxiQ
+         gX/Ez6iBdX7jKoBFJBdDztj9P1ty0Nb1+4A8U/6q3+x1/4ZCyxGKjqsgBEv4Zx9uz9QP
+         ueEOck89vLCiMl9ReNkJkO18ErCQgFavK654CTAKzFrXPtqHppe2lPCdYzp0ALxZ1ZKp
+         3zOtI4E6lo28t+bKdy3Kv6S1xkpl/fBMDeTkzF1+X2mc5cg0QJ3zV8eIMORjQuunYmin
+         pA1SEVtUKqsio3XliHYHJGT3zeXZiQLhjSIUCgTs0beqj2t16pAku01yAmkF/RAzVMyt
+         6Yzw==
+X-Gm-Message-State: APjAAAWEUVJbu4eXbk4GWGH9S85oD9oopSRx7jGqZbfPCm/lqKnnwkFb
+        avbMv9NCH9C9ppcAKv6aIQi5Sek=
+X-Google-Smtp-Source: APXvYqy8EkuFLlB5Z0a7P//P+uQZwZhCvJ9S843QCGeaPmYZgQ1WgPhAIAlADGqUJuPvwPHgJK2z6w==
+X-Received: by 2002:a9d:d22:: with SMTP id 31mr21118802oti.220.1567365518143;
+        Sun, 01 Sep 2019 12:18:38 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s24sm3303280oic.22.2019.09.01.12.18.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 01 Sep 2019 12:18:37 -0700 (PDT)
+Date:   Sun, 1 Sep 2019 14:18:36 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Oleh Kravchenko <oleg@kaa.org.ua>
+Cc:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        Oleh Kravchenko <oleg@kaa.org.ua>
+Subject: Re: [PATCH v5 1/2] dt-bindings: Add docs for EL15203000
+Message-ID: <20190901191836.GA21686@bogus>
+References: <20190830224619.15728-1-oleg@kaa.org.ua>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190830224619.15728-1-oleg@kaa.org.ua>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert PDC Global bindings to yaml and add SC7180 PDC global to the list
-of possible bindings.
+On Sat, 31 Aug 2019 01:46:18 +0300, Oleh Kravchenko wrote:
+> Add documentation and example for dt-bindings EL15203000.
+> LED board (aka RED LED board) from Crane Merchandising Systems.
+> 
+> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+> ---
+>  .../bindings/leds/leds-el15203000.txt         | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-el15203000.txt
+> 
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- .../bindings/reset/qcom,pdc-global.txt        | 52 -------------------
- .../bindings/reset/qcom,pdc-global.yaml       | 47 +++++++++++++++++
- 2 files changed, 47 insertions(+), 52 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
- create mode 100644 Documentation/devicetree/bindings/reset/qcom,pdc-global.yaml
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-diff --git a/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt b/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
-deleted file mode 100644
-index a62a492843e70..0000000000000
---- a/Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
-+++ /dev/null
-@@ -1,52 +0,0 @@
--PDC Global
--======================================
--
--This binding describes a reset-controller found on PDC-Global (Power Domain
--Controller) block for Qualcomm Technologies Inc SDM845 SoCs.
--
--Required properties:
--- compatible:
--	Usage: required
--	Value type: <string>
--	Definition: must be:
--		    "qcom,sdm845-pdc-global"
--
--- reg:
--	Usage: required
--	Value type: <prop-encoded-array>
--	Definition: must specify the base address and size of the register
--	            space.
--
--- #reset-cells:
--	Usage: required
--	Value type: <uint>
--	Definition: must be 1; cell entry represents the reset index.
--
--Example:
--
--pdc_reset: reset-controller@b2e0000 {
--	compatible = "qcom,sdm845-pdc-global";
--	reg = <0xb2e0000 0x20000>;
--	#reset-cells = <1>;
--};
--
--PDC reset clients
--======================================
--
--Device nodes that need access to reset lines should
--specify them as a reset phandle in their corresponding node as
--specified in reset.txt.
--
--For a list of all valid reset indices see
--<dt-bindings/reset/qcom,sdm845-pdc.h>
--
--Example:
--
--modem-pil@4080000 {
--	...
--
--	resets = <&pdc_reset PDC_MODEM_SYNC_RESET>;
--	reset-names = "pdc_reset";
--
--	...
--};
-diff --git a/Documentation/devicetree/bindings/reset/qcom,pdc-global.yaml b/Documentation/devicetree/bindings/reset/qcom,pdc-global.yaml
-new file mode 100644
-index 0000000000000..d7d8cec9419fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/reset/qcom,pdc-global.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/reset/qcom,pdc-global.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm PDC Global
-+
-+maintainers:
-+  - Sibi Sankar <sibis@codeaurora.org>
-+
-+description:
-+  The bindings describes the reset-controller found on PDC-Global (Power Domain
-+  Controller) block for Qualcomm Technologies Inc SoCs.
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - description: on SC7180 SoCs the following compatibles must be specified
-+        items:
-+          - const: "qcom,sc7180-pdc-global"
-+          - const: "qcom,sdm845-pdc-global"
-+
-+      - description: on SDM845 SoCs the following compatibles must be specified
-+        items:
-+          - const: "qcom,sdm845-pdc-global"
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#reset-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pdc_reset: reset-controller@b2e0000 {
-+      compatible = "qcom,sdm845-pdc-global";
-+      reg = <0xb2e0000 0x20000>;
-+      #reset-cells = <1>;
-+    };
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+If a tag was not added on purpose, please state why and what changed.
