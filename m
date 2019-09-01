@@ -2,69 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08A9FA4AD6
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 19:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36794A4AED
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 19:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728764AbfIARYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Sep 2019 13:24:18 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:39184 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728570AbfIARYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 13:24:18 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 86F49815E8; Sun,  1 Sep 2019 19:24:02 +0200 (CEST)
-Date:   Sun, 1 Sep 2019 19:24:15 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Jacopo Mondi <jacopo@jmondi.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
-        <linux-media@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC 1/5] media: dt-bindings: Document 'location' property
-Message-ID: <20190901172414.GB1047@bug>
-References: <20190814202815.32491-1-jacopo@jmondi.org>
- <20190814202815.32491-2-jacopo@jmondi.org>
- <20190815065635.GJ6133@paasikivi.fi.intel.com>
+        id S1728644AbfIARoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Sep 2019 13:44:23 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:42100 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728496AbfIARoX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 13:44:23 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 4AE6D6083E; Sun,  1 Sep 2019 17:44:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567359862;
+        bh=8h1JaaJsfGFa8wEtmNJJQvcbs5BX8hfIPAfG6zkOX/M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=J2tVcHTQA67DjZIh7Pl0lpVkGmIbYwPXMqC22qMDjGUZt8yczLiJEBe4o8EJ+EHoE
+         M4MTGUcravwMQvUlmqVNeHMhIOop/0bN0qP5U9NN5O/4P12xyTJLcU6dmnta8c629Z
+         CjdDYAK5T1/mCUYD3e8M88wVFUg81EMQXvcY2hyA=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 48FE860264;
+        Sun,  1 Sep 2019 17:44:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567359861;
+        bh=8h1JaaJsfGFa8wEtmNJJQvcbs5BX8hfIPAfG6zkOX/M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=RQhpnOrtMjMpQMwrTdagJUjWm/7A6H0zrWlZxLGbUmbaPS62e8h1w6+gRPAdNMcmR
+         wXQDF98v08sTuKfMCTMT+nfD6eoeo9dwTDJmsWC5P50u8ord4qOpaddtaRvKChXWSN
+         ennCZTZbgy+qpbbddx4n4l5ipHGwWZddZfamzgQw=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 48FE860264
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
+From:   Sibi Sankar <sibis@codeaurora.org>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org
+Cc:     agross@kernel.org, mark.rutland@arm.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, sboyd@kernel.org,
+        Sibi Sankar <sibis@codeaurora.org>
+Subject: [PATCH v3 0/2] Add PDC Global and AOSS reset support
+Date:   Sun,  1 Sep 2019 23:14:05 +0530
+Message-Id: <20190901174407.30756-1-sibis@codeaurora.org>
+X-Mailer: git-send-email 2.22.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190815065635.GJ6133@paasikivi.fi.intel.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+This patch series converts PDC Global and AOSS reset bindings to yaml
+and adds support on SC7180 SoCs.
 
-> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > @@ -89,6 +89,10 @@ Optional properties
-> >    but a number of degrees counter clockwise. Typical values are 0 and 180
-> >    (upside down).
-> > 
-> > +- location: The camera device mounting position, relative to the device
-> > +  usage orientation. Possible values are:
-> > +  0 - Front camera. The image sensor is mounted on the front side of the device.
-> > +  1 - Back camera. The image sensor is mounted on the back side of the device.
-> 
-> Would it make sense to make this a little more generic? Such as s/image
-> sensor/ device/, for instance?
-> 
-> Is this also relevant for flash or lens devices?
-> 
-> Flash (torch) devices could be present, at least principle, without a
-> camera. There once was even such a Nokia phone, 1100 unless I'm mistaken.
-> :-)
+v3:
+ * Convert to yaml bindings
 
-Well, I'd call them LEDs, not camera flashes ... if there's no camera. And IIRC 
-these devices had LEDs on top of the phone... so neither front nor back side.
+v2:
+ * Addressed Philipp's review comments
 
-									Pavel
+Sibi Sankar (2):
+  dt-bindings: reset: aoss: Convert AOSS reset bindings to yaml
+  dt-bindings: reset: pdc: Convert PDC Global bindings to yaml
+
+ .../bindings/reset/qcom,aoss-reset.txt        | 52 -------------------
+ .../bindings/reset/qcom,aoss-reset.yaml       | 47 +++++++++++++++++
+ .../bindings/reset/qcom,pdc-global.txt        | 52 -------------------
+ .../bindings/reset/qcom,pdc-global.yaml       | 47 +++++++++++++++++
+ 4 files changed, 94 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/reset/qcom,aoss-reset.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/qcom,aoss-reset.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reset/qcom,pdc-global.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/qcom,pdc-global.yaml
+
 -- 
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
