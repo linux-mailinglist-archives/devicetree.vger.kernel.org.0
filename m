@@ -2,181 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52A84A480A
-	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 09:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 743A8A482C
+	for <lists+devicetree@lfdr.de>; Sun,  1 Sep 2019 09:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728787AbfIAHMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Sep 2019 03:12:02 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:46537 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728679AbfIAHMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 03:12:02 -0400
-Received: by mail-pl1-f195.google.com with SMTP id o3so5159146plb.13
-        for <devicetree@vger.kernel.org>; Sun, 01 Sep 2019 00:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=vKTwNtpfVl/ofq1lszN6uNSXidoJKzu+EuY1m89tIBg=;
-        b=nkBdHU1bLcqhB0Pu13xor/HRU8pRbyHtm401VWyDRE09OfgA47ny3+8CsXdIm62QgZ
-         6sHuK8HnBmweVy81dP9vA2W6dmBiqC1Wb2mwfWlx3HwjwizUmBrxbTuqmLrYh5IQwUOg
-         IeW4PL+tq0zAmAdoH6vgWAyB2sWk8xxbWIW1BwIQWmrP6XANhXQsPToLBlSxOdm11P/L
-         TzcS/bG13nyF32qDIcsfaZk/QGb96vFzNz5+5Sno225zTqGNgLp80wKsvaWlFFr1wYY+
-         xpoqw0Ig04OhxhMkl+ckQhegRFM6pm1FtEXAlVhDyqCnen3hY4gdIqwBMcg3kQMN082o
-         tX7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=vKTwNtpfVl/ofq1lszN6uNSXidoJKzu+EuY1m89tIBg=;
-        b=mcZ5Wr9VMj1JApn60imMogxp4KvwkTU7R2bMKKGMtckm/b+uPEoECz0btYOx6pEJk5
-         d1s2yMHD4Wup3zc5X4QlTIRDAitQ0pmcfVIvlGUAPBxWUEwMVgXFoPAfBqAeWeVsLX8V
-         cEddObDGnqLpggPWsO57Ehq5blfvnjHOEfeKynXzvgM7MUIpELrlb/NgE6Rcrn4fwMpj
-         ZvitRwAUse5+iq81cxgnrreL9fHnywY6ESKMEQmRYqACc6s2vM+jUjW7gba0QGbgt9zR
-         7XWFG3TR4kygofkiybpS/6XfSt6Yz/3O+lZqfOs7SmvBpdMyxS2uSPIj3EvnZHj+itIA
-         A8Vg==
-X-Gm-Message-State: APjAAAUZ4gVHHM7hRiwRc22bpN5i7MYPqRF3v6fIm7BQNPKgmn0Pi96i
-        DjFQb947+mVOXiJ8VUkhWrbpKQ==
-X-Google-Smtp-Source: APXvYqwQny1Nmrz/C5sgtbnJWlSSGimvrNW83Dy1il6BLDq9WjeTfmJnQVGgEdpz2lT6oF5Pw/kQ/g==
-X-Received: by 2002:a17:902:f216:: with SMTP id gn22mr25329995plb.59.1567321921847;
-        Sun, 01 Sep 2019 00:12:01 -0700 (PDT)
-Received: from localhost.localdomain ([103.81.243.14])
-        by smtp.gmail.com with ESMTPSA id b185sm6968998pfg.14.2019.09.01.00.11.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Sun, 01 Sep 2019 00:12:01 -0700 (PDT)
-From:   Pragnesh Patel <pragnesh.patel@sifive.com>
-To:     palmer@sifive.com, paul.walmsley@sifive.com
-Cc:     Pragnesh Patel <pragnesh.patel@sifive.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: Convert riscv,sifive-serial to json-schema
-Date:   Sun,  1 Sep 2019 12:39:21 +0530
-Message-Id: <1567321765-3738-1-git-send-email-pragnesh.patel@sifive.com>
-X-Mailer: git-send-email 2.7.4
+        id S1728797AbfIAHvv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Sep 2019 03:51:51 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:47386 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728712AbfIAHvv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Sep 2019 03:51:51 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A20E41A02AC;
+        Sun,  1 Sep 2019 09:51:49 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id AE8CB1A0211;
+        Sun,  1 Sep 2019 09:51:42 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id E7A8F402F0;
+        Sun,  1 Sep 2019 15:51:33 +0800 (SGT)
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        leoyang.li@nxp.com, minghuan.Lian@nxp.com, mingkai.hu@nxp.com,
+        roy.zang@nxp.com, lorenzo.pieralisi@arm.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     bhelgaas@google.com, Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: [PATCH v5 1/3] dt-bindings: pci: layerscape-pci: add compatible strings "fsl,ls1028a-pcie"
+Date:   Sun,  1 Sep 2019 15:41:32 +0800
+Message-Id: <20190901074134.24455-1-xiaowei.bao@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the riscv,sifive-serial binding to DT schema using json-schema.
+Add the PCIe compatible string for LS1028A
 
-Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
+Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
 ---
- .../devicetree/bindings/serial/sifive-serial.txt   | 33 ------------
- .../devicetree/bindings/serial/sifive-serial.yaml  | 62 ++++++++++++++++++++++
- 2 files changed, 62 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/sifive-serial.txt
- create mode 100644 Documentation/devicetree/bindings/serial/sifive-serial.yaml
+v2:
+ - No change.
+v3:
+ - No change.
+v4:
+ - No change.
+v5:
+ - No change.
 
-diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.txt b/Documentation/devicetree/bindings/serial/sifive-serial.txt
-deleted file mode 100644
-index c86b1e5..0000000
---- a/Documentation/devicetree/bindings/serial/sifive-serial.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--SiFive asynchronous serial interface (UART)
--
--Required properties:
--
--- compatible: should be something similar to
--	      "sifive,<chip>-uart" for the UART as integrated
--	      on a particular chip, and "sifive,uart<version>" for the
--	      general UART IP block programming model.	Supported
--	      compatible strings as of the date of this writing are:
--	      "sifive,fu540-c000-uart" for the SiFive UART v0 as
--	      integrated onto the SiFive FU540 chip, or "sifive,uart0"
--	      for the SiFive UART v0 IP block with no chip integration
--	      tweaks (if any)
--- reg: address and length of the register space
--- interrupts: Should contain the UART interrupt identifier
--- clocks: Should contain a clock identifier for the UART's parent clock
--
--
--UART HDL that corresponds to the IP block version numbers can be found
--here:
--
--https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/uart
--
--
--Example:
--
--uart0: serial@10010000 {
--	compatible = "sifive,fu540-c000-uart", "sifive,uart0";
--	interrupt-parent = <&plic0>;
--	interrupts = <80>;
--	reg = <0x0 0x10010000 0x0 0x1000>;
--	clocks = <&prci PRCI_CLK_TLCLK>;
--};
-diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.yaml b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
-new file mode 100644
-index 0000000..56fa935
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
-@@ -0,0 +1,62 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/serial/sifive-serial.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive asynchronous serial interface (UART)
-+
-+maintainers:
-+  - Pragnesh Patel <pragnesh.patel@sifive.com>
-+  - Paul Walmsley  <paul.walmsley@sifive.com>
-+  - Palmer Dabbelt <palmer@sifive.com>
-+
-+allOf:
-+  - $ref: /schemas/serial.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - sifive,fu540-c000-uart
-+      - sifive,uart0
-+
-+    description:
-+      Should be something similar to "sifive,<chip>-uart"
-+      for the UART as integrated on a particular chip,
-+      and "sifive,uart<version>" for the general UART IP
-+      block programming model.
-+
-+      UART HDL that corresponds to the IP block version
-+      numbers can be found here -
-+
-+      https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/uart
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+      #include <dt-bindings/clock/sifive-fu540-prci.h>
-+      serial@10010000 {
-+        compatible = "sifive,fu540-c000-uart", "sifive,uart0";
-+        interrupt-parent = <&plic0>;
-+        interrupts = <80>;
-+        reg = <0x0 0x10010000 0x0 0x1000>;
-+        clocks = <&prci PRCI_CLK_TLCLK>;
-+      };
-+
-+...
+ Documentation/devicetree/bindings/pci/layerscape-pci.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+index e20ceaa..99a386e 100644
+--- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
++++ b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+@@ -21,6 +21,7 @@ Required properties:
+         "fsl,ls1046a-pcie"
+         "fsl,ls1043a-pcie"
+         "fsl,ls1012a-pcie"
++        "fsl,ls1028a-pcie"
+   EP mode:
+ 	"fsl,ls1046a-pcie-ep", "fsl,ls-pcie-ep"
+ - reg: base addresses and lengths of the PCIe controller register blocks.
 -- 
-2.7.4
+2.9.5
 
