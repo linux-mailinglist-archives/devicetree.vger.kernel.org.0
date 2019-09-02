@@ -2,65 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2BFAA4F58
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 08:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 562F2A4F5F
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 08:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729562AbfIBGqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 02:46:39 -0400
-Received: from mga14.intel.com ([192.55.52.115]:62434 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729328AbfIBGqj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 02:46:39 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Sep 2019 23:46:39 -0700
-X-IronPort-AV: E=Sophos;i="5.64,457,1559545200"; 
-   d="scan'208";a="198526756"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Sep 2019 23:46:37 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 2F82220B09; Mon,  2 Sep 2019 09:46:05 +0300 (EEST)
-Date:   Mon, 2 Sep 2019 09:46:05 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 01/10] software node: Get reference to parent swnode
- in get_parent op
-Message-ID: <20190902064605.GB5475@paasikivi.fi.intel.com>
-References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
- <20190829101043.24963-2-sakari.ailus@linux.intel.com>
- <20190830122237.GY2680@smile.fi.intel.com>
+        id S1729521AbfIBGvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 02:51:14 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:43682 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729359AbfIBGvO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 02:51:14 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x826oq5V049395;
+        Mon, 2 Sep 2019 01:50:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1567407052;
+        bh=ox3ufaLMVDgFuqEZpqLT51isg/cyX5JQ6XMTFXw8veU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=cIHMXK/iZ8iNX114dUzNvVAZWBnAaoAPYxYr9hmovMIzMOC8ea4E0VU8F2o9j6QpW
+         0D8W+837wZsTy5TcrP8u7vgdsjnOQo+aLM9thxs7nSGV3B5B1AJ3ioaX7pQVmmBkvS
+         UfwW9xxQ8EdN8ljnJrmWBhGnutOJM399b+bgMRkI=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x826opBQ082261
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 2 Sep 2019 01:50:51 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 2 Sep
+ 2019 01:50:51 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 2 Sep 2019 01:50:51 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x826onNI003681;
+        Mon, 2 Sep 2019 01:50:49 -0500
+Subject: Re: [PATCHv3 00/10] soc: ti: add OMAP PRM driver (for reset)
+To:     <santosh.shilimkar@oracle.com>, <ssantosh@kernel.org>,
+        <linux-omap@vger.kernel.org>, <tony@atomide.com>, <s-anna@ti.com>,
+        <p.zabel@pengutronix.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20190830121816.30034-1-t-kristo@ti.com>
+ <f7d6a2fb-175c-361b-00ff-ddde67700daa@oracle.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <178f8d3a-3658-132f-e937-64313c912dd0@ti.com>
+Date:   Mon, 2 Sep 2019 09:50:48 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190830122237.GY2680@smile.fi.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <f7d6a2fb-175c-361b-00ff-ddde67700daa@oracle.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 03:22:37PM +0300, Andy Shevchenko wrote:
-> On Thu, Aug 29, 2019 at 01:10:34PM +0300, Sakari Ailus wrote:
-> > The software_node_get_parent() returned a pointer to the parent swnode,
-> > but did not take a reference to it, leading the caller to put a reference
-> > that was not taken. Take that reference now.
-> > 
-> 
-> > Fixes: 59abd83672f7 ("drivers: base: Introducing software nodes to the
-> > 		      firmware node framework")
-> 
-> I dunno if scripts parse the split line like above.
-> 
-> Nevertheless, for the code prospective looks good to me. Though you probably
-> would like to Cc it to Heikki.
+On 30/08/2019 19:50, santosh.shilimkar@oracle.com wrote:
+> On 8/30/19 5:18 AM, Tero Kristo wrote:
+>> Hi,
+>>
+>> V3 of the series, ended up re-sending the whole series as I squashed one
+>> patch from v2 and because of that the ordering has changed a bit. Changes
+>> in v3 contain fixes for the comments from Philipp Zabel.
+>>
+>> - added spinlock to protect register writes
+>> - added own xlate function to prevent bad reset IDs to be registered
+>> - use mask for the valid reset detection instead of parsing reset map
+>> - fixed reset status bit handling
+>> - used iopoll macro instead of handwritten poll loop for timeouts
+>> - squashed patch #6 into #4 from v2 of the series
+>> - some other minor fixes.
+>>
+>> This series still depends on the clk driver changes for the reset<->clk
+>> syncing [1].
+>>
+> This has to wait for another merge window. It will also take care of 
+> dependencies landing in mainline. Will push this to linux-next as
+> soon as v5.4-rc1 is out. Please remind me in case you don't see it
+> in next after 5.4-rc1.
 
-I will cc him for v4.
+Yep it is very late so did not expect it getting in, just wanted to get 
+the patches rolling. I still hope to see the clock patches getting in 
+this cycle due to dependency, lets keep fingers crossed.
 
--- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
