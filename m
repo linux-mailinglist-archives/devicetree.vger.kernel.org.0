@@ -2,121 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CA9DA5818
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26FD4A581A
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:41:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731306AbfIBNjS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:39:18 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52821 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731290AbfIBNjS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:39:18 -0400
-Received: by mail-wm1-f67.google.com with SMTP id t17so14649036wmi.2;
-        Mon, 02 Sep 2019 06:39:16 -0700 (PDT)
+        id S1731322AbfIBNjT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 09:39:19 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38027 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731301AbfIBNjT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:39:19 -0400
+Received: by mail-wr1-f66.google.com with SMTP id l11so5251311wrx.5;
+        Mon, 02 Sep 2019 06:39:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=M0OACsjJM/vFX4zZJBUZMzKJ/8JnqkMV5QQXF6yqIpw=;
-        b=GvJr9+ogweiL3yV6clbltN0YUs/nKQsG+nCwo0cY9aHWWqy2NrynnKtTZJ3l2CsE+4
-         O/LnFU6w76e0BxMVnKQBHTupQ6NH58zaPtHw1FfRi+Tz8lEirJP2a9TmVOwGP74aH2vD
-         zyRpRO0FP2N8smLdrJiMIw/WOTrKpWn9bUxd3EYM2qZIXkdVXeK/bu+qtTPwmUlvV6Tk
-         q1l/TTVKsN8nghyVbPvnhgytZmE1GvU/5qKihPckS/ExalmybGE/zkViK4V1vMCyKjFM
-         GoFilllwlv16pAbyC0GkIOM3YBnraZGG2XfPNroWexhS+RNcAlyiPV8ILV/wmfcLQL7P
-         +b0g==
-X-Gm-Message-State: APjAAAVGVSFLJoExbysWrR5YzSdzHjaNQVyVPTew09IURR9R4ABPcdXs
-        tCYU1m0SN18TIimqyN8UXg==
-X-Google-Smtp-Source: APXvYqypcMzdNic7ziNevmFZ8BaxYjbIqLahyGSd0YIMXh2YBwVcb/OvssGZQd+0DzdiFqCWRfYvcQ==
-X-Received: by 2002:a1c:3d03:: with SMTP id k3mr37181683wma.138.1567431555922;
-        Mon, 02 Sep 2019 06:39:15 -0700 (PDT)
+        bh=mBpjwnSsFCTVBcmHZlpMrYye8G+2awgzTgrbzOvv4w4=;
+        b=eqnKd+PA5OOWM5zv4c8rX48i+DSgbxxpb6FgKOfR9ZSpY0F+tEI7Ql5nvTedKHcUba
+         1G9GNEn6TW3HNiO3hbnmbniuqgEjMbuARomEs9+P8cirSXSbpHnEIURsoQrBeaLJ8Sno
+         j8t8voSEB0qKY+v6J08QIPXSnS/JHv7c5VEgCCWLDWl4pXWR0dhfnAXi+/CJbog4UMGE
+         D53UqR92Sf55SQ6EC15VEtzTDwkWlDs+oJlA5jip4ndqKXbmRz+iNXbLdl7i/Zoau3Lk
+         riSm7RFsFAKbWW++vg4LzCti3aSJijJdVPJXGvC2fqAkS7nYBTnU1OCGJ7o8yDJnDhX3
+         E9lA==
+X-Gm-Message-State: APjAAAUfSGma7yd8B7SmY4e2p4NKtBn2KdDvDWSXdbwl9e9K9UfRnzVS
+        35cQgfEExo7SrgrIxYs9UQ==
+X-Google-Smtp-Source: APXvYqw80tZ831GwJOJkT8zNmc12IMcFltPAd+Zpk7tUl46ueJLKOI89QyXozExV5CZuhbIYuxu0cw==
+X-Received: by 2002:a5d:6647:: with SMTP id f7mr5887085wrw.170.1567431557093;
+        Mon, 02 Sep 2019 06:39:17 -0700 (PDT)
 Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id s19sm28771567wrb.94.2019.09.02.06.39.15
+        by smtp.gmail.com with ESMTPSA id g3sm14924272wrh.28.2019.09.02.06.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 06:39:15 -0700 (PDT)
-Date:   Mon, 02 Sep 2019 14:39:14 +0100
+        Mon, 02 Sep 2019 06:39:16 -0700 (PDT)
+Date:   Mon, 02 Sep 2019 14:39:16 +0100
 From:   Rob Herring <robh@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, dmitry.torokhov@gmail.com, aisheng.dong@nxp.com,
-        ulf.hansson@linaro.org, fugang.duan@nxp.com, peng.fan@nxp.com,
-        daniel.baluta@nxp.com, leonard.crestez@nxp.com, olof@lixom.net,
-        mripard@kernel.org, arnd@arndb.de, jagan@amarulasolutions.com,
-        bjorn.andersson@linaro.org, dinguyen@kernel.org,
-        marcin.juszkiewicz@linaro.org, hsweeten@visionengravers.com,
-        tglx@linutronix.de, gregkh@linuxfoundation.org, stefan@agner.ch,
-        ronald@innovation.ch, ping.bai@nxp.com, m.felsch@pengutronix.de,
-        andriy.shevchenko@linux.intel.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-input@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH 1/5] dt-bindings: fsl: scu: add scu power key binding
-Message-ID: <20190902043521.GA14143@bogus>
-References: <1567198429-27886-1-git-send-email-Anson.Huang@nxp.com>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     ssantosh@kernel.org, linux-omap@vger.kernel.org, tony@atomide.com,
+        s-anna@ti.com, p.zabel@pengutronix.de,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv3 01/10] dt-bindings: omap: add new binding for PRM
+ instances
+Message-ID: <20190902042631.GA22055@bogus>
+References: <20190830121816.30034-1-t-kristo@ti.com>
+ <20190830121816.30034-2-t-kristo@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1567198429-27886-1-git-send-email-Anson.Huang@nxp.com>
+In-Reply-To: <20190830121816.30034-2-t-kristo@ti.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 04:53:45PM -0400, Anson Huang wrote:
-> NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
-> system controller, the system controller is in charge of system
-> power, clock and power key event etc. management, Linux kernel
-> has to communicate with system controller via MU (message unit)
-> IPC to get power key event, add binding doc for i.MX system
-> controller power key driver.
+On Fri, Aug 30, 2019 at 03:18:07PM +0300, Tero Kristo wrote:
+> Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
+> of these will act as a power domain controller and potentially as a reset
+> provider.
 > 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+
+Converting this to schema would be nice.
+
+> Signed-off-by: Tero Kristo <t-kristo@ti.com>
 > ---
->  .../devicetree/bindings/arm/freescale/fsl,scu.txt      | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+>  .../devicetree/bindings/arm/omap/prm-inst.txt | 31 +++++++++++++++++++
+
+bindings/reset/
+
+>  1 file changed, 31 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/omap/prm-inst.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> index c149fad..001d0b7 100644
-> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> @@ -157,6 +157,17 @@ Required properties:
->  Optional properties:
->  - timeout-sec: contains the watchdog timeout in seconds.
->  
-> +Power key bindings based on SCU Message Protocol
-> +------------------------------------------------------------
+> diff --git a/Documentation/devicetree/bindings/arm/omap/prm-inst.txt b/Documentation/devicetree/bindings/arm/omap/prm-inst.txt
+> new file mode 100644
+> index 000000000000..7c7527c37734
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/omap/prm-inst.txt
+> @@ -0,0 +1,31 @@
+> +OMAP PRM instance bindings
+> +
+> +Power and Reset Manager is an IP block on OMAP family of devices which
+> +handle the power domains and their current state, and provide reset
+> +handling for the domains and/or separate IP blocks under the power domain
+> +hierarchy.
 > +
 > +Required properties:
-> +- compatible: should be:
-> +              "fsl,imx8qxp-sc-pwrkey"
-> +              followed by "fsl,imx-sc-pwrkey";
-> +- linux,keycodes: See Documentation/devicetree/bindings/input/keys.txt
-> +Optional Properties:
-> +- wakeup-source: See Documentation/devicetree/bindings/power/wakeup-source.txt
+> +- compatible:	Must be one of:
+> +		"ti,am3-prm-inst"
+> +		"ti,am4-prm-inst"
+> +		"ti,omap4-prm-inst"
+> +		"ti,omap5-prm-inst"
+> +		"ti,dra7-prm-inst"
+
+'-inst' seems a bit redundant.
+
+> +- reg:		Contains PRM instance register address range
+> +		(base address and length)
 > +
->  Example (imx8qxp):
->  -------------
->  aliases {
-> @@ -220,6 +231,13 @@ firmware {
->  			compatible = "fsl,imx8qxp-sc-rtc";
->  		};
->  
-> +		scu_pwrkey: scu-pwrkey {
-> +			compatible = "fsl,imx8qxp-sc-pwrkey", "fsl,imx-sc-pwrkey";
-> +			linux,keycode = <KEY_POWER>;
-> +			wakeup-source;
-
-wakeup-source implies an interrupt property.
-
-> +			status = "disabled";
-
-Don't should status in examples.
-
-> +		};
+> +Optional properties:
+> +- #reset-cells:	Should be 1 if the PRM instance in question supports resets.
+> +- clocks:	Associated clocks for the reset signals if any. Certain reset
+> +		signals can't be toggled properly without functional clock
+> +		being active for them.
 > +
->  		watchdog {
->  			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
->  			timeout-sec = <60>;
+> +Example:
+> +
+> +prm_dsp2: prm@1b00 {
+
+reset-controller@...
+
+> +	compatible = "ti,dra7-prm-inst";
+> +	reg = <0x1b00 0x40>;
+> +	#reset-cells = <1>;
+> +	clocks = <&dsp2_clkctrl DRA7_DSP2_MMU0_DSP2_CLKCTRL 0>;
+> +};
 > -- 
-> 2.7.4
+> 2.17.1
 > 
+> --
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
