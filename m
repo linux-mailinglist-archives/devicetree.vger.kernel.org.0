@@ -2,82 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A50CCA56C3
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 14:54:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33F00A56E3
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730428AbfIBMy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 08:54:57 -0400
-Received: from foss.arm.com ([217.140.110.172]:53710 "EHLO foss.arm.com"
+        id S1729791AbfIBNBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 09:01:07 -0400
+Received: from verein.lst.de ([213.95.11.211]:50055 "EHLO verein.lst.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729844AbfIBMy5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 08:54:57 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA8E7360;
-        Mon,  2 Sep 2019 05:54:56 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EC6173F246;
-        Mon,  2 Sep 2019 05:54:55 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 13:54:54 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        leoyang.li@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, arnd@arndb.de,
-        gregkh@linuxfoundation.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v3 11/11] misc: pci_endpoint_test: Add LS1088a in
- pci_device_id table
-Message-ID: <20190902125454.GK9720@e119886-lin.cambridge.arm.com>
-References: <20190902031716.43195-1-xiaowei.bao@nxp.com>
- <20190902031716.43195-12-xiaowei.bao@nxp.com>
+        id S1729785AbfIBNBG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 09:01:06 -0400
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 0E88568AFE; Mon,  2 Sep 2019 15:01:02 +0200 (CEST)
+Date:   Mon, 2 Sep 2019 15:01:01 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Christoph Hellwig <hch@lst.de>, linux-mm@kvack.org,
+        linux-riscv@lists.infradead.org, will@kernel.org,
+        m.szyprowski@samsung.com, linux-arch@vger.kernel.org,
+        f.fainelli@gmail.com, frowand.list@gmail.com,
+        devicetree@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+        marc.zyngier@arm.com, robh+dt@kernel.org,
+        linux-rpi-kernel@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, phill@raspberryi.org,
+        mbrugger@suse.com, eric@anholt.net, linux-kernel@vger.kernel.org,
+        iommu@lists.linux-foundation.org, wahrenst@gmx.net,
+        akpm@linux-foundation.org, Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v2 01/11] asm-generic: add dma_zone_size
+Message-ID: <20190902130101.GA2051@lst.de>
+References: <20190820145821.27214-1-nsaenzjulienne@suse.de> <20190820145821.27214-2-nsaenzjulienne@suse.de> <20190826070939.GD11331@lst.de> <027272c27398b950f207101a2c5dbc07a30a36bc.camel@suse.de> <20190830144536.GJ36992@arrakis.emea.arm.com> <bdeda2206b751a1c6a8d2e0732186792282633c6.camel@suse.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190902031716.43195-12-xiaowei.bao@nxp.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+In-Reply-To: <bdeda2206b751a1c6a8d2e0732186792282633c6.camel@suse.de>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 11:17:16AM +0800, Xiaowei Bao wrote:
-> Add LS1088a in pci_device_id table so that pci-epf-test can be used
-> for testing PCIe EP in LS1088a.
+On Fri, Aug 30, 2019 at 07:24:25PM +0200, Nicolas Saenz Julienne wrote:
+> I'll be happy to implement it that way. I agree it's a good compromise.
 > 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> ---
-> v2:
->  - No change.
-> v3:
->  - No change.
->  
->  drivers/misc/pci_endpoint_test.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/misc/pci_endpoint_test.c b/drivers/misc/pci_endpoint_test.c
-> index 6e208a0..d531951 100644
-> --- a/drivers/misc/pci_endpoint_test.c
-> +++ b/drivers/misc/pci_endpoint_test.c
-> @@ -793,6 +793,7 @@ static const struct pci_device_id pci_endpoint_test_tbl[] = {
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA74x) },
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_DRA72x) },
->  	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, 0x81c0) },
-> +	{ PCI_DEVICE(PCI_VENDOR_ID_FREESCALE, 0x80c0) },
+> @Christoph, do you still want the patch where I create 'zone_dma_bits'? With a
+> hardcoded ZONE_DMA it's not absolutely necessary. Though I remember you said it
+> was a first step towards being able to initialize dma-direct's min_mask in
+> meminit.
 
-The Freescale PCI devices are the only devices in this table that don't
-have a define for their device ID. I think a define should be created
-for both of the device IDs above.
-
-Thanks,
-
-Andrew Murray
-
->  	{ PCI_DEVICE_DATA(SYNOPSYS, EDDA, NULL) },
->  	{ PCI_DEVICE(PCI_VENDOR_ID_TI, PCI_DEVICE_ID_TI_AM654),
->  	  .driver_data = (kernel_ulong_t)&am654_data
-> -- 
-> 2.9.5
-> 
+I do like the variable better than the current #define.  I wonder if
+really want a mask or a max_zone_dma_address like variable.  So for this
+series feel free to drop the patch.   I'll see if I'll pick it up
+later or if we can find some way to automatically propagate that
+information from the zone initialization.
