@@ -2,99 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E175A5948
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAABA5962
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:29:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730872AbfIBO0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:26:43 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:47047 "EHLO
+        id S1726593AbfIBO3S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:29:18 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:44281 "EHLO
         mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726421AbfIBO0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:26:43 -0400
-Received: by mail-wr1-f68.google.com with SMTP id h7so12896435wrt.13;
-        Mon, 02 Sep 2019 07:26:41 -0700 (PDT)
+        with ESMTP id S1726382AbfIBO3R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:29:17 -0400
+Received: by mail-wr1-f68.google.com with SMTP id 30so3296995wrk.11;
+        Mon, 02 Sep 2019 07:29:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=ot30V47/iBS0yHDmKdi6h92CwtoqCpzSIGyUdC23LBs=;
-        b=DKmJBL62s4BKsitaQZYkjhwsrKPx4BZxwQTWRBG58jPBxXLwKX7n4+LG+aWksU14vn
-         3b8HC0m8/d3X1dLfm2GU79CtibBrL6RLL3hpdh6wIFEY64HQcmGj4H+A4T1Ap3ZBeAUb
-         IFafW5Q1yHVYSGwMi7g+AdVE9Z29Jpk5demO6o/nWosIehBTi3KnfsVpzome14dmii6m
-         RRCnwM3Nec593Y41DZeDdIC6VnRtzn/bTOtM4UrQNU50pssgiJE7mW/L3QjL1DIHFyCv
-         Dec9nRkDXpnHomOEUMJQDLA+n5XP7gWwfv8bQDkPs+ICJ9xaeDtr6D4XMim8yvjwF2Fw
-         /MrQ==
-X-Gm-Message-State: APjAAAWsvCY51Q2D8k+sykQjIW8T25UjuD4h79WuKFynR0/pb8rULcvs
-        8SchQ4XvQfjViZmpMIFh7Q==
-X-Google-Smtp-Source: APXvYqwrcoUbjAf10BUlLBhioq2RZCRuSUEHDKWeG20TWt9K0tZHjtvEfqHEbFfZ7g0NKNH+PmgRKg==
-X-Received: by 2002:a5d:6811:: with SMTP id w17mr1391676wru.181.1567434400948;
-        Mon, 02 Sep 2019 07:26:40 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DjYd27e5rUrA0mFadxSqkNYgMFL3Biunt8BWTcHyQek=;
+        b=OaFlLxenZ+Vm2UjyPrGkK2ueFEVZYdL1wGIbk7VZVXSCfDPxeYg9TZen5SnweM6wRt
+         iXS84cDlFO5vEcT+hhREU5d75GWq3T1z8oKphnNF4addQVpEKEPZjRyObMLtfgBwiber
+         3aWDD2p52JNnjF9X1pdlmvJlyCnuB63YwIyrVcmTGePi+0eBkbMqHbjZSGOjk4EYYyz6
+         cajBMEFBCZu1i2LqfL/SgZo01Mete/Povew8wTJu6UvSgI8E3lFwkDbG246Vng6gdLvV
+         FevINGF20oFX40X209LK8Vo8yXNyqDVcsin1Hlq1cfvzCUbjnZUVEyB1/++O2tYJDcXf
+         S1Bw==
+X-Gm-Message-State: APjAAAUfmhYvagRz07m6pIHcmxHlPXR/Yt8IMkEEwpOlLP1V5pwwOs2K
+        I+eQWAY/p8DQtgzi7MTkvA==
+X-Google-Smtp-Source: APXvYqzW/GN1ey91R5BmJA5pnLC5WiMXFYRMPae9O7nnw0okaF9xqO9oDPIM4raCO3nV0T/6K8Ptrw==
+X-Received: by 2002:adf:bc84:: with SMTP id g4mr36664702wrh.135.1567434555598;
+        Mon, 02 Sep 2019 07:29:15 -0700 (PDT)
 Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id h125sm33788405wmf.31.2019.09.02.07.26.40
+        by smtp.gmail.com with ESMTPSA id f13sm13885177wrq.3.2019.09.02.07.29.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 07:26:40 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 15:26:39 +0100
+        Mon, 02 Sep 2019 07:29:14 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 15:29:14 +0100
 From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH v1 2/2] of: Let of_for_each_phandle fallback to
- non-negative cell_count
-Message-ID: <20190902142639.GA13947@bogus>
-References: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
- <20190824132846.8589-2-u.kleine-koenig@pengutronix.de>
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/2] hwmon: (as370-hwmon) Add DT bindings for
+ Synaptics  AS370 PVT
+Message-ID: <20190902142914.GA3170@bogus>
+References: <20190827113214.13773d45@xhacker.debian>
+ <20190827113337.384457f6@xhacker.debian>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190824132846.8589-2-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20190827113337.384457f6@xhacker.debian>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 24, 2019 at 03:28:46PM +0200, Uwe Kleine-König wrote:
-> Referencing device tree nodes from a property allows to pass arguments.
-> This is for example used for referencing gpios. This looks as follows:
+On Tue, 27 Aug 2019 03:44:57 +0000, Jisheng Zhang wrote:
+> Add device tree bindings for Synaptics AS370 PVT sensors.
 > 
-> 	gpio_ctrl: gpio-controller {
-> 		#gpio-cells = <2>
-> 		...
-> 	}
-> 
-> 	someothernode {
-> 		gpios = <&gpio_ctrl 5 0 &gpio_ctrl 3 0>;
-> 		...
-> 	}
-> 
-> To know the number of arguments this must be either fixed, or the
-> referenced node is checked for a $cells_name (here: "#gpio-cells")
-> property and with this information the start of the second reference can
-> be determined.
-> 
-> Currently regulators are referenced with no additional arguments. To
-> allow some optional arguments without having to change all referenced
-> nodes this change introduces a way to specify a default cell_count. So
-> when a phandle is parsed we check for the $cells_name property and use
-> it as before if present. If it is not present we fall back to
-> cells_count if non-negative and only fail if cells_count is smaller than
-> zero.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
 > ---
->  drivers/of/base.c | 25 +++++++++++++++++--------
->  1 file changed, 17 insertions(+), 8 deletions(-)
+>  Documentation/devicetree/bindings/hwmon/as370.txt | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/hwmon/as370.txt
+> 
 
-Looks fine to me. I can apply with an ack from the iommu folks on patch 
-1.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
