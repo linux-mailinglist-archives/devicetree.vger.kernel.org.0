@@ -2,733 +2,1871 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B2ACA503F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 09:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE25DA504C
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 09:52:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729894AbfIBHux (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 03:50:53 -0400
-Received: from mga06.intel.com ([134.134.136.31]:23648 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725839AbfIBHux (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 03:50:53 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:50:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,457,1559545200"; 
-   d="gz'50?scan'50,208,50";a="186939424"
-Received: from lkp-server01.sh.intel.com (HELO lkp-server01) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 02 Sep 2019 00:50:47 -0700
-Received: from kbuild by lkp-server01 with local (Exim 4.89)
-        (envelope-from <lkp@intel.com>)
-        id 1i4h6s-0003Sk-RY; Mon, 02 Sep 2019 15:50:46 +0800
-Date:   Mon, 2 Sep 2019 15:49:58 +0800
-From:   kbuild test robot <lkp@intel.com>
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     kbuild-all@01.org, linux-hwmon@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
-        devicetree@vger.kernel.org, linux@roeck-us.net, andrew@aj.id.au,
-        joel@jms.id.au, mark.rutland@arm.com, robh+dt@kernel.org,
-        jdelvare@suse.com, Eddie James <eajames@linux.ibm.com>
-Subject: Re: [PATCH 3/3] pmbus: ibm-cffps: Add support for version 2 of the
- PSU
-Message-ID: <201909021511.JcXZhb33%lkp@intel.com>
-References: <1567181385-22129-4-git-send-email-eajames@linux.ibm.com>
+        id S1729499AbfIBHwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 03:52:10 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:42401 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729474AbfIBHwJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 03:52:09 -0400
+X-UUID: d5de05fb5f4647dd814daec995a2facc-20190902
+X-UUID: d5de05fb5f4647dd814daec995a2facc-20190902
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <jungo.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 952950647; Mon, 02 Sep 2019 15:51:49 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 2 Sep 2019 15:51:48 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 2 Sep 2019 15:51:49 +0800
+From:   Jungo Lin <jungo.lin@mediatek.com>
+To:     <tfiga@chromium.org>, <hverkuil-cisco@xs4all.nl>,
+        <laurent.pinchart@ideasonboard.com>, <matthias.bgg@gmail.com>,
+        <mchehab@kernel.org>
+CC:     <linux-media@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <srv_heupstream@mediatek.com>,
+        <ddavenport@chromium.org>, <robh@kernel.org>,
+        <Sean.Cheng@mediatek.com>, <sj.huang@mediatek.com>,
+        <frederic.chen@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
+        <frankie.chiu@mediatek.com>, <ryan.yu@mediatek.com>,
+        <Rynn.Wu@mediatek.com>, <yuzhao@chromium.org>,
+        <zwisler@chromium.org>, <shik@chromium.org>,
+        <suleiman@chromium.org>, <jungo.lin@mediatek.com>
+Subject: [RFC,v5,0/5] media: platform: mtk-isp: Add Mediatek ISP Pass 1 driver
+Date:   Mon, 2 Sep 2019 15:51:30 +0800
+Message-ID: <20190902075135.1332-1-jungo.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <Jungo Lin <jungo.lin@mediatek.com>
+References: <Jungo Lin <jungo.lin@mediatek.com>
+Reply-To: Jungo Lin <jungo.lin@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="jeacolxlqnciebpx"
-Content-Disposition: inline
-In-Reply-To: <1567181385-22129-4-git-send-email-eajames@linux.ibm.com>
-X-Patchwork-Hint: ignore
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---jeacolxlqnciebpx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This RFC patch series adding the driver for Pass 1 (P1) unit in
+Mediatek's camera ISP system on mt8183 SoC, which will be used in
+camera features of CrOS. It's the first time Mediatek develops
+ISP kernel drivers based on V4L2 and media controller framework.
+I posted the main part of the ISP Pass 1 driver as RFC to discuss
+first and would like some review comments on the overall architecture
+of the driver.
 
-Hi Eddie,
+Pass 1 unit processes image signal from sensor devices and accepts the
+tuning parameters to adjust the image quality. It performs optical
+black correction, defect pixel correction, W/IR imbalance correction
+and lens shading correction for RAW processing.
 
-I love your patch! Perhaps something to improve:
+The driver is implemented with V4L2 and media controller framework so
+we have the following entities to describe the ISP pass 1 path.
 
-[auto build test WARNING on linus/master]
-[cannot apply to v5.3-rc6 next-20190830]
-[if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+(The current metadata interface used in meta input and partial meta
+nodes is only a temporary solution to kick off the driver development
+and is not ready to be reviewed yet.)
 
-url:    https://github.com/0day-ci/linux/commits/Eddie-James/pmbus-ibm-cffps-Add-support-for-version-2-of-PSU/20190901-151755
-config: x86_64-randconfig-s0-09021304 (attached as .config)
-compiler: gcc-7 (Debian 7.4.0-11) 7.4.0
-reproduce:
-        # save the attached .config to linux build tree
-        make ARCH=x86_64 
+1. meta input (output video device): connect to ISP P1 sub device.
+It accepts the tuning buffer from user.
 
-If you fix the issue, kindly add following tag
-Reported-by: kbuild test robot <lkp@intel.com>
+2. ISP P1 (sub device): connect to partial meta 0/1/2/3,
+main stream and packed out video devices. When processing an image,
+Pass 1 hardware supports multiple output images with different sizes
+and formats so it needs two capture video devices ("main stream" and
+"packed out") to return the image data to the user.
 
-All warnings (new ones prefixed by >>):
+3. main stream (capture video device): return the processed image data
+which is used in capture scenario.
 
-   drivers/hwmon/pmbus/ibm-cffps.c: In function 'ibm_cffps_probe':
->> drivers/hwmon/pmbus/ibm-cffps.c:404:8: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-      vs = (int)md;
-           ^
+4. packed out (capture video device): return the processed image data
+which is used in preview scenario.
 
-vim +404 drivers/hwmon/pmbus/ibm-cffps.c
+5. partial meta 0 (capture video device): return the AE/AWB statistics.
 
-   393	
-   394	static int ibm_cffps_probe(struct i2c_client *client,
-   395				   const struct i2c_device_id *id)
-   396	{
-   397		int i, rc, vs;
-   398		struct dentry *debugfs;
-   399		struct dentry *ibm_cffps_dir;
-   400		struct ibm_cffps *psu;
-   401		const void *md = of_device_get_match_data(&client->dev);
-   402	
-   403		if (md)
- > 404			vs = (int)md;
-   405		else if (id)
-   406			vs = (int)id->driver_data;
-   407		else
-   408			vs = 1;
-   409	
-   410		client->dev.platform_data = &ibm_cffps_pdata;
-   411		rc = pmbus_do_probe(client, id, &ibm_cffps_info[vs - 1]);
-   412		if (rc)
-   413			return rc;
-   414	
-   415		/*
-   416		 * Don't fail the probe if there isn't enough memory for leds and
-   417		 * debugfs.
-   418		 */
-   419		psu = devm_kzalloc(&client->dev, sizeof(*psu), GFP_KERNEL);
-   420		if (!psu)
-   421			return 0;
-   422	
-   423		psu->version = vs;
-   424		psu->client = client;
-   425		mutex_init(&psu->input_history.update_lock);
-   426		psu->input_history.last_update = jiffies - HZ;
-   427	
-   428		ibm_cffps_create_led_class(psu);
-   429	
-   430		/* Don't fail the probe if we can't create debugfs */
-   431		debugfs = pmbus_get_debugfs_dir(client);
-   432		if (!debugfs)
-   433			return 0;
-   434	
-   435		ibm_cffps_dir = debugfs_create_dir(client->name, debugfs);
-   436		if (!ibm_cffps_dir)
-   437			return 0;
-   438	
-   439		for (i = 0; i < CFFPS_DEBUGFS_NUM_ENTRIES; ++i)
-   440			psu->debugfs_entries[i] = i;
-   441	
-   442		debugfs_create_file("input_history", 0444, ibm_cffps_dir,
-   443				    &psu->debugfs_entries[CFFPS_DEBUGFS_INPUT_HISTORY],
-   444				    &ibm_cffps_fops);
-   445		debugfs_create_file("fru", 0444, ibm_cffps_dir,
-   446				    &psu->debugfs_entries[CFFPS_DEBUGFS_FRU],
-   447				    &ibm_cffps_fops);
-   448		debugfs_create_file("part_number", 0444, ibm_cffps_dir,
-   449				    &psu->debugfs_entries[CFFPS_DEBUGFS_PN],
-   450				    &ibm_cffps_fops);
-   451		debugfs_create_file("serial_number", 0444, ibm_cffps_dir,
-   452				    &psu->debugfs_entries[CFFPS_DEBUGFS_SN],
-   453				    &ibm_cffps_fops);
-   454		debugfs_create_file("ccin", 0444, ibm_cffps_dir,
-   455				    &psu->debugfs_entries[CFFPS_DEBUGFS_CCIN],
-   456				    &ibm_cffps_fops);
-   457		debugfs_create_file("fw_version", 0444, ibm_cffps_dir,
-   458				    &psu->debugfs_entries[CFFPS_DEBUGFS_FW],
-   459				    &ibm_cffps_fops);
-   460	
-   461		return 0;
-   462	}
-   463	
+6. partial meta 1 (capture video device): return the AF statistics.
 
----
-0-DAY kernel test infrastructure                Open Source Technology Center
-https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+7. partial meta 2 (capture video device): return the local contrast
+   enhanced statistics.
 
---jeacolxlqnciebpx
-Content-Type: application/gzip
-Content-Disposition: attachment; filename=".config.gz"
-Content-Transfer-Encoding: base64
+8. partial meta 3 (capture video device): return the local motion
+   vector statistics.
 
-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
+The overall patches of the series is:
 
---jeacolxlqnciebpx--
+* Patch 1 & 2 are dt-bindings & dts information related to ISP P1 driver.
+* Patch 3 extends the original V4L2 image & meta formats for ISP P1 driver.
+* Patch 4 is the heart of ISP P1 driver. It handles the ISP
+  HW configuration. Moreover, implement standard V4L2 video driver that utilizes
+  V4L2 and media framework APIs. Communicate with co-process via SCP communication
+  to compose ISP registers in the firmware.
+
+Here is ISP P1 media topology:
+It is included the main/sub sensor & sen-inf sub-devices which are implemented
+in below patch[1][2][3]:
+
+For Mediatek ISP P1 driver, it also depends on MT8183 SCP[6] & IOMMU[7] patchsets
+
+/usr/bin/media-ctl -p -d /dev/media1
+
+Media controller API version 4.19.59
+
+Media device information
+------------------------
+driver          mtk-cam-p1
+model           mtk-cam-p1
+serial          
+bus info        platform:1a000000.camisp
+hw revision     0x0
+driver version  4.19.67
+
+Device topology
+- entity 1: mtk-cam-p1 (12 pads, 8 links)
+            type V4L2 subdev subtype Unknown flags 0
+            device node name /dev/v4l-subdev5
+	pad0: Sink
+		<- "mtk-cam-p1 meta input":0 []
+	pad1: Source
+		-> "mtk-cam-p1 main stream":0 [ENABLED,IMMUTABLE]
+	pad2: Source
+		-> "mtk-cam-p1 packed out":0 []
+	pad3: Source
+		-> "mtk-cam-p1 partial meta 0":0 []
+	pad4: Source
+		-> "mtk-cam-p1 partial meta 1":0 []
+	pad5: Source
+		-> "mtk-cam-p1 partial meta 2":0 []
+	pad6: Source
+		-> "mtk-cam-p1 partial meta 3":0 []
+	pad7: Source
+	pad8: Source
+	pad9: Source
+	pad10: Source
+	pad11: Sink
+		<- "1a040000.seninf.mipi-csi":4 [ENABLED,IMMUTABLE]
+
+- entity 14: mtk-cam-p1 meta input (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video25
+	pad0: Source
+		-> "mtk-cam-p1":0 []
+
+- entity 20: mtk-cam-p1 main stream (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video26
+	pad0: Sink
+		<- "mtk-cam-p1":1 [ENABLED,IMMUTABLE]
+
+- entity 26: mtk-cam-p1 packed out (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video27
+	pad0: Sink
+		<- "mtk-cam-p1":2 []
+
+- entity 32: mtk-cam-p1 partial meta 0 (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video28
+	pad0: Sink
+		<- "mtk-cam-p1":3 []
+
+- entity 38: mtk-cam-p1 partial meta 1 (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video29
+	pad0: Sink
+		<- "mtk-cam-p1":4 []
+
+- entity 44: mtk-cam-p1 partial meta 2 (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video30
+	pad0: Sink
+		<- "mtk-cam-p1":5 []
+
+- entity 50: mtk-cam-p1 partial meta 3 (1 pad, 1 link)
+             type Node subtype V4L flags 0
+             device node name /dev/video31
+	pad0: Sink
+		<- "mtk-cam-p1":6 []
+
+- entity 56: 1a040000.seninf.mipi-csi (12 pads, 3 links)
+             type V4L2 subdev subtype Unknown flags 0
+             device node name /dev/v4l-subdev6
+	pad0: Sink
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+		<- "ov5695 2-0036":0 []
+	pad1: Sink
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+		<- "ov2685 4-003c":0 []
+	pad2: Sink
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad3: Sink
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad4: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+		-> "mtk-cam-p1":11 [ENABLED,IMMUTABLE]
+	pad5: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad6: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad7: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad8: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad9: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad10: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+	pad11: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+
+- entity 69: ov5695 2-0036 (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev7
+	pad0: Source
+		[fmt:SBGGR10_1X10/2592x1944 field:none colorspace:srgb]
+		-> "1a040000.seninf.mipi-csi":0 []
+
+- entity 73: ov2685 4-003c (1 pad, 1 link)
+             type V4L2 subdev subtype Sensor flags 0
+             device node name /dev/v4l-subdev8
+	pad0: Source
+		[fmt:SBGGR10_1X10/1600x1200 field:none colorspace:srgb]
+		-> "1a040000.seninf.mipi-csi":1 []
+
+===========
+= history =
+===========
+
+version 5:
+ - Fixed Rob's comment on dt-binding format
+ - Fix Tomasz's comment in mtk_isp_pm_suspend function
+ - Support V4L2_BUF_FLAG_TIMESTAMP_BOOTTIME timestamp flag
+   and new timestamp type in driver
+ - Fix buffer en-queue timing issue in v4
+ - Remove default link_notify callback function in mtk_cam_media_ops
+
+Todo:
+ - vb2_ops's buf_request_complete callback function implementation
+ - Add rst documents for Mediatek meta formats
+ - New meta buffer structure design & re-factoring
+ - Align and pack IPI comamnd structures for EC ROM size shrink
+ 
+version 4:
+ - Fix Tomasz's comments which are addressed in MTK ISP P1 driver v3 patch[4]
+ - Fix some Tomasz comments which are addressed in DIP's v2 patch[5]
+ - Extend MTK proprietary image formats to support bayer order
+ - Support V4L2_BUF_FLAG_TSTAMP_SRC_SOE for capture devices
+
+Todo:
+ - vb2_ops's buf_request_complete callback function implementation
+ - Add rst documents for Mediatek meta formats
+ - New meta buffer structure design & re-factoring
+ - Support V4L2_BUF_FLAG_TIMESTAMP_BOOTTIME timestamp flag
+ - Align and pack IPI comamnd structures for EC ROM size shrink
+
+version 3:
+ - Remove ISP Pass 1 reserved memory device node and change to use SCP's
+   reserved memory region. (Rob Herring)
+ - Fix comments of ISP Pass 1 device node & dt-bindings document (Rob Herring)
+ - Revise ISP Pass1 Kconfig
+ - Add rst documents for Mediatek image formats (Hans Verkuil)
+ - Fix kernel warning messages when running v4l2_compliance test
+ - Move AFO buffer enqueue & de-queue from request API to non-request
+ - mtk_cam-ctrl.h/mtk_cam-ctrl.c
+   Revise Mediatek ISP Pass1 specific V4L2 control naming & file licence declaration (Hans Verkuil)
+   Split GET_BIN_INFO control into two controls to get width & height in-dependently (Hans Verkuil)
+ - mtk_cam-v4l2-util.h/mtk_cam-v4l2-util.c
+   Merging mtk_cam-dev.c and mtk_cam-v4l2-util.c. (Drew Davenport)
+   Remove the pix_mode argument in related functions and unreachable code. (Drew Davenport)
+   Fix Drew's comments which are addressed in v2 patch
+   Fix some Tomasz comments which are addressed in DIP's v1 patch[3]
+ - mtk_cam-regs.h / mtk_cam.h / mtk_cam.c
+   Fix Drew's comments which are addressed in v2 patch
+   Fix some Tomasz comments which are addressed in DIP's v1 patch[3]
+   Refactoring mtk_isp_config & mtk_isp_req_enqueue functions
+ - mtk_cam-scp.h / mtk_cam-scp.c
+   Move function declarations from mtk_cam.h to mtk_cam-scp.h (Drew Davenport)
+   Fix some Tomasz comments which are addressed in DIP's v1 patch[3]
+   Fix ISP de-initialize timing KE issue
+ - mtk_cam-smem.h / mtk_cam-smem-dev.c
+   Get the reserved shared memory via SCP driver (Tomasz Figa)
+
+Todo:
+ - Add rst documents for Mediatek meta formats
+ - New meta buffer structure design & re-factoring
+
+version 2:
+ - Add 3A enhancement feature which includes:
+   Separates 3A pipeline out of frame basis to improve
+   AE/AWB (exposure and white balance) performance.
+   Add 2 SCP sub-commands for 3A meta buffers.
+ - Add new child device to manage P1 shared memory between P1 HW unit
+   and co-processor.
+ - Remove mediatek,cam_smem.txt & cam_smem dts node in mt8183.dtsi.
+ - Revised document wording for dt-bindings documents & dts information.
+ - Remove mtk_cam-ctx.h & mtk_cam-dev-ctx-core.c and move these
+   source codes to mtk_cam-dev.h & mtk_cam-dev.c.
+ - mtk_cam-dev.h / mtk_cam-dev.c
+   Revised mtk_cam_video_device & mtk_cam_dev to remove unused structure fields
+   or add comments.
+   Revised buffer size for LMVO & LCSO.
+   Fix pixel format utility function.
+   Add vb2_dma_contig_set_max_seg_size to configure DMA max segment size.
+ - mtk_cam-v4l2-util.c
+   Refactoring V4L2 async mechanism with seninf driver only
+   Refactoring CIO (Connection IO) implementation with active sensor
+   Revised stream on function for 3A enhancement feature
+   Add new V4L2 en-queue/de-queue utility functions for 3A enhancement feature
+ - mtk_cam-regs.h / mtk_cam.h / mtk_cam.c
+   Add meta buffer index register definitions
+   Add meta DMA configuration function.
+   Separate with frame-base and non-frame-base en-queue/de-queue functions
+   Add isp_setup_scp_rproc function to get RPC handle
+   Add mtk_cam_reserved_memory_init for shared memory management
+ - mtk_cam-scp.h / mtk_cam-scp.c
+   Add new meta strictures for 3A enhancement feature
+   Add new IPI command utility function for 3A enhancement feature
+   Enhance isp_composer_dma_sg_init function flow
+   Shorten overall IPI command structure size
+   Remove scp_state state checking
+   Improve code readability
+ - mtk_cam-smem.h / mtk_cam-smem-dev.c
+   Add mtk_cam_alloc_smem_dev to allocate one new child device of ISP driver.
+   Handling P1 driver 's reserved memory & allocate DMA buffers based on this
+   memory region.
+
+TODOs:
+ - 3A enhancement feature bug fixing
+
+version 1:
+ - Revised driver sources based on Tomasz's comments including
+   part1/2/3/4 in RFC V0 patch.
+ - Remove DMA cache mechanism.
+   Support two new video devices (LCSO/LMVO) for advance camera
+   features.
+ - Fixed v4l2-compliance test failure items.
+ - Add private controls for Mediatek camera middle-ware.
+ - Replace VPU driver's APIs with new SCP driver interface for
+   co-processor communication.
+ - Refactoring mtk_cam_scp.c to use ring-buffers mechanism for IPI
+   commands RX handling.
+ - Fix internal bugs.
+
+TODOs:
+ - Remove mtk_cam_smem_drv.c & mtk_cam_smem.h and implement DMA pool
+   for shared memory management.
+ - Revised file names.
+ - Support non frame-sync AFO/AAO DMA buffers
+
+version 0:
+- Initial submission
+
+==================
+ Dependent patch
+==================
+
+Camera ISP P1 driver depends on seninf driver, SCP driver.
+The patches are listed as following:
+
+[1]. BACKPORT: FROMLIST: platform: mtk-isp: Add Mediatek sensor interface driver
+https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/1482517
+
+[2]. WIP: media: ov5695: support ov5695 sensor in mt8183
+https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/1614887
+
+[3]. WIP: media: ov2685: support ov2685 sensor in mt8183
+https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/1614885
+
+[4]. media: platform: mtk-isp: Add Mediatek ISP Pass 1 driver
+https://patchwork.linuxtv.org/cover/56778/
+
+[5]. [RFC,V2,4/6] platform: mtk-isp: Add Mediatek DIP driver
+https://patchwork.linuxtv.org/patch/57472/
+
+[6]. Add support for mt8183 SCP
+https://patchwork.kernel.org/cover/11076543/
+
+[7]. MT8183 IOMMU SUPPORT
+https://patchwork.kernel.org/cover/10984739/
+
+==================
+ Compliance test
+==================
+
+The v4l2-compliance is built with the below lastest patch.
+https://git.linuxtv.org/v4l-utils.git/commit/?id=28be49b4e9d72c5866188cf5ba408541c665c921
+
+Note 1.
+This testing depends on the above seninf & sensors patches[1][2][3].
+
+Note 2.
+The current failure items are related to Mediatek seninf driver which
+is under developing in other patchset.[1]
+
+/usr/bin/v4l2-compliance -m /dev/media1
+
+v4l2-compliance SHA: not available, 32 bits
+
+Compliance test for mtk-cam-p1 device /dev/media1:
+
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+
+Required ioctls:
+	test MEDIA_IOC_DEVICE_INFO: OK
+
+Allow for multiple opens:
+	test second /dev/media1 open: OK
+	test MEDIA_IOC_DEVICE_INFO: OK
+	test for unlimited opens: OK
+
+Media Controller ioctls:
+	test MEDIA_IOC_G_TOPOLOGY: OK
+	Entities: 11 Interfaces: 11 Pads: 33 Links: 21
+	test MEDIA_IOC_ENUM_ENTITIES/LINKS: OK
+	test MEDIA_IOC_SETUP_LINK: OK
+
+Total for mtk-cam-p1 device /dev/media1: 7, Succeeded: 7, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video25:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x8c200000
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x0c200000
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000010
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x0000000e (14)
+	Name             : mtk-cam-p1 meta input
+	Function         : V4L2 I/O
+	Pad 0x0100000f   : 0: Source
+	  Link 0x02000012: to remote pad 0x1000002 of entity 'mtk-cam-p1': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video25 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video25: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video26:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x84201000
+		Video Capture Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04201000
+		Video Capture Multiplanar
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000016
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000014 (20)
+	Name             : mtk-cam-p1 main stream
+	Function         : V4L2 I/O
+	Pad 0x01000015   : 0: Sink
+	  Link 0x02000018: from remote pad 0x1000003 of entity 'mtk-cam-p1': Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video26 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video26: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video27:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x84201000
+		Video Capture Multiplanar
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04201000
+		Video Capture Multiplanar
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x0300001c
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x0000001a (26)
+	Name             : mtk-cam-p1 packed out
+	Function         : V4L2 I/O
+	Pad 0x0100001b   : 0: Sink
+	  Link 0x0200001e: from remote pad 0x1000004 of entity 'mtk-cam-p1': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video27 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video27: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video28:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x84a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000022
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000020 (32)
+	Name             : mtk-cam-p1 partial meta 0
+	Function         : V4L2 I/O
+	Pad 0x01000021   : 0: Sink
+	  Link 0x02000024: from remote pad 0x1000005 of entity 'mtk-cam-p1': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video28 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video28: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video29:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x84a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000028
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000026 (38)
+	Name             : mtk-cam-p1 partial meta 1
+	Function         : V4L2 I/O
+	Pad 0x01000027   : 0: Sink
+	  Link 0x0200002a: from remote pad 0x1000006 of entity 'mtk-cam-p1': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video29 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video29: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video30:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x84a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x0300002e
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x0000002c (44)
+	Name             : mtk-cam-p1 partial meta 2
+	Function         : V4L2 I/O
+	Pad 0x0100002d   : 0: Sink
+	  Link 0x02000030: from remote pad 0x1000007 of entity 'mtk-cam-p1': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video30 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video30: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/video31:
+
+Driver Info:
+	Driver name      : mtk-cam-p1
+	Card type        : mtk-cam-p1
+	Bus info         : platform:1a000000.camisp
+	Driver version   : 4.19.67
+	Capabilities     : 0x84a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+		Device Capabilities
+	Device Caps      : 0x04a00000
+		Metadata Capture
+		Streaming
+		Extended Pix Format
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000034
+	Type             : V4L Video
+Entity Info:
+	ID               : 0x00000032 (50)
+	Name             : mtk-cam-p1 partial meta 3
+	Function         : V4L2 I/O
+	Pad 0x01000033   : 0: Sink
+	  Link 0x02000036: from remote pad 0x1000008 of entity 'mtk-cam-p1': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+	test VIDIOC_QUERYCAP: OK
+
+Allow for multiple opens:
+	test second /dev/video31 open: OK
+	test VIDIOC_QUERYCAP: OK
+	test VIDIOC_G/S_PRIORITY: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_DBG_G/S_REGISTER: OK (Not Supported)
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK
+	test VIDIOC_TRY_FMT: OK
+	test VIDIOC_S_FMT: OK
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK
+	test VIDIOC_EXPBUF: OK
+	test Requests: OK
+
+Total for mtk-cam-p1 device /dev/video31: 45, Succeeded: 45, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/v4l-subdev5:
+
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x0300004f
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000001 (1)
+	Name             : mtk-cam-p1
+	Function         : Video Pixel Formatter
+	Pad 0x01000002   : 0: Sink
+	  Link 0x02000012: from remote pad 0x100000f of entity 'mtk-cam-p1 meta input': Data
+	Pad 0x01000003   : 1: Source
+	  Link 0x02000018: to remote pad 0x1000015 of entity 'mtk-cam-p1 main stream': Data, Enabled, Immutable
+	Pad 0x01000004   : 2: Source
+	  Link 0x0200001e: to remote pad 0x100001b of entity 'mtk-cam-p1 packed out': Data
+	Pad 0x01000005   : 3: Source
+	  Link 0x02000024: to remote pad 0x1000021 of entity 'mtk-cam-p1 partial meta 0': Data
+	Pad 0x01000006   : 4: Source
+	  Link 0x0200002a: to remote pad 0x1000027 of entity 'mtk-cam-p1 partial meta 1': Data
+	Pad 0x01000007   : 5: Source
+	  Link 0x02000030: to remote pad 0x100002d of entity 'mtk-cam-p1 partial meta 2': Data
+	Pad 0x01000008   : 6: Source
+	  Link 0x02000036: to remote pad 0x1000033 of entity 'mtk-cam-p1 partial meta 3': Data
+	Pad 0x01000009   : 7: Source
+	Pad 0x0100000a   : 8: Source
+	Pad 0x0100000b   : 9: Source
+	Pad 0x0100000c   : 10: Source
+	Pad 0x0100000d   : 11: Sink
+	  Link 0x0200004d: from remote pad 0x100003d of entity '1a040000.seninf.mipi-csi': Data, Enabled, Immutable
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev5 open: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 0):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 1):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 2):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 3):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 4):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 5):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 6):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 7):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 8):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 9):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 10):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 11):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for mtk-cam-p1 device /dev/v4l-subdev5: 125, Succeeded: 125, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/v4l-subdev6:
+
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000051
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000038 (56)
+	Name             : 1a040000.seninf.mipi-csi
+	Function         : Video Interface Bridge
+	Pad 0x01000039   : 0: Sink
+	  Link 0x02000047: from remote pad 0x1000046 of entity 'ov5695 2-0036': Data
+	Pad 0x0100003a   : 1: Sink
+	  Link 0x0200004b: from remote pad 0x100004a of entity 'ov2685 4-003c': Data
+	Pad 0x0100003b   : 2: Sink
+	Pad 0x0100003c   : 3: Sink
+	Pad 0x0100003d   : 4: Source
+	  Link 0x0200004d: to remote pad 0x100000d of entity 'mtk-cam-p1': Data, Enabled, Immutable
+	Pad 0x0100003e   : 5: Source
+	Pad 0x0100003f   : 6: Source
+	Pad 0x01000040   : 7: Source
+	Pad 0x01000041   : 8: Source
+	Pad 0x01000042   : 9: Source
+	Pad 0x01000043   : 10: Source
+	Pad 0x01000044   : 11: Source
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev6 open: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 0):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 1):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 2):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Sink Pad 3):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 4):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 5):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 6):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 7):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 8):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 9):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 10):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 11):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(381): s_fmt.format.code == ~0U
+	test Try VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK (Not Supported)
+		fail: v4l2-test-subdevs.cpp(313): fmt.code == 0 || fmt.code == ~0U
+		fail: v4l2-test-subdevs.cpp(356): checkMBusFrameFmt(node, fmt.format)
+	test Active VIDIOC_SUBDEV_G/S_FMT: FAIL
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 2 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for mtk-cam-p1 device /dev/v4l-subdev6: 125, Succeeded: 101, Failed: 24, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/v4l-subdev7:
+
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000053
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000045 (69)
+	Name             : ov5695 2-0036
+	Function         : Camera Sensor
+	Pad 0x01000046   : 0: Source
+	  Link 0x02000047: to remote pad 0x1000039 of entity '1a040000.seninf.mipi-csi': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev7 open: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 0):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 11 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for mtk-cam-p1 device /dev/v4l-subdev7: 48, Succeeded: 48, Failed: 0, Warnings: 0
+--------------------------------------------------------------------------------
+Compliance test for mtk-cam-p1 device /dev/v4l-subdev8:
+
+Media Driver Info:
+	Driver name      : mtk-cam-p1
+	Model            : mtk-cam-p1
+	Serial           : 
+	Bus info         : platform:1a000000.camisp
+	Media version    : 4.19.67
+	Hardware revision: 0x00000000 (0)
+	Driver version   : 4.19.67
+Interface Info:
+	ID               : 0x03000055
+	Type             : V4L Sub-Device
+Entity Info:
+	ID               : 0x00000049 (73)
+	Name             : ov2685 4-003c
+	Function         : Camera Sensor
+	Pad 0x0100004a   : 0: Source
+	  Link 0x0200004b: to remote pad 0x100003a of entity '1a040000.seninf.mipi-csi': Data
+
+Required ioctls:
+	test MC information (see 'Media Driver Info' above): OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev8 open: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Sub-Device ioctls (Source Pad 0):
+	test Try VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Try VIDIOC_SUBDEV_G/S_FMT: OK
+	test Try VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test Active VIDIOC_SUBDEV_ENUM_MBUS_CODE/FRAME_SIZE/FRAME_INTERVAL: OK
+	test Active VIDIOC_SUBDEV_G/S_FMT: OK
+	test Active VIDIOC_SUBDEV_G/S_SELECTION/CROP: OK (Not Supported)
+	test VIDIOC_SUBDEV_G/S_FRAME_INTERVAL: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 10 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for mtk-cam-p1 device /dev/v4l-subdev8: 48, Succeeded: 48, Failed: 0, Warnings: 0
+
+Grand Total for mtk-cam-p1 device /dev/media1: 668, Succeeded: 644, Failed: 24, Warnings: 0
+
+=========================================================================================
+
+Jungo Lin (5):
+  media: dt-bindings: mt8183: Added camera ISP Pass 1
+  dts: arm64: mt8183: Add ISP Pass 1 nodes
+  media: videodev2.h: Add new boottime timestamp type
+  media: pixfmt: Add Mediatek ISP P1 image & meta formats
+  media: platform: Add Mediatek ISP P1 V4L2 device driver
+
+ .../bindings/media/mediatek,camisp.txt        |   73 +
+ Documentation/media/uapi/v4l/buffer.rst       |   11 +-
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr10.rst   |   65 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr10f.rst  |   90 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr12.rst   |   61 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr12f.rst  |  110 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr14.rst   |   73 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr14f.rst  |  110 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr8.rst    |   51 +
+ .../media/uapi/v4l/pixfmt-mtisp-sbggr8f.rst   |   78 +
+ Documentation/media/uapi/v4l/pixfmt-rgb.rst   |    8 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   30 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    2 +
+ drivers/media/platform/mtk-isp/Kconfig        |   17 +
+ .../media/platform/mtk-isp/isp_50/Makefile    |    3 +
+ .../platform/mtk-isp/isp_50/cam/Makefile      |    6 +
+ .../platform/mtk-isp/isp_50/cam/mtk_cam-hw.c  |  634 +++++
+ .../platform/mtk-isp/isp_50/cam/mtk_cam-hw.h  |   64 +
+ .../platform/mtk-isp/isp_50/cam/mtk_cam-ipi.h |  222 ++
+ .../mtk-isp/isp_50/cam/mtk_cam-regs.h         |   95 +
+ .../platform/mtk-isp/isp_50/cam/mtk_cam.c     | 2081 +++++++++++++++++
+ .../platform/mtk-isp/isp_50/cam/mtk_cam.h     |  244 ++
+ drivers/media/v4l2-core/v4l2-ioctl.c          |   37 +
+ include/uapi/linux/videodev2.h                |   41 +
+ 25 files changed, 4206 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,camisp.txt
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr10.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr10f.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr12.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr12f.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr14.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr14f.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr8.rst
+ create mode 100644 Documentation/media/uapi/v4l/pixfmt-mtisp-sbggr8f.rst
+ create mode 100644 drivers/media/platform/mtk-isp/Kconfig
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/Makefile
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/Makefile
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-hw.c
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-hw.h
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-ipi.h
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-regs.h
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam.c
+ create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam.h
+
+-- 
+
