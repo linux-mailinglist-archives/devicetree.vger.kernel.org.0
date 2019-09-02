@@ -2,75 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2E8DA520D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 10:44:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 626B7A5217
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 10:45:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730264AbfIBIoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 04:44:05 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:34326 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729874AbfIBIoE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 04:44:04 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 7944F25B784;
-        Mon,  2 Sep 2019 18:44:02 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 6297E9401E6; Mon,  2 Sep 2019 10:44:00 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1730293AbfIBIpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 04:45:40 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:8214 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730310AbfIBIpk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 04:45:40 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x828f0wk004309;
+        Mon, 2 Sep 2019 10:45:23 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type : content-id :
+ content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=GS6p14phASWxCZ4PtGrDKAo6LRyf7Ljc9Xi7ApKfmMg=;
+ b=CIM3oU33MmbYDaWi6BsVinIjyzgVO+pktbhR6/MQP88YQWV+BP4IHIldpKif6i47v0Yw
+ tdfzE5ss4NObBkcafR88tYGO/KbeKj7DgzFyr5bpeE2O7YX5mpyJosPiZtfU8XIOV0PZ
+ oLHZ1djsu9XcnFnxIejLmj/OdKaIakCoSPLt9y1wUlroStPWaUATBNw9t61nM6QZZLsv
+ dSQimWmzWRGjYciu5+cDQtqSaI9KeMKVwl1+3Wzec/zxenjKgtbCHCu+6tvPDd/x86ws
+ zn24DK+NxBJrBoDF1pSMqrAhLs90i4cow7ZYyBnOmRUKTg7DuqTSzT4T8K7GIb5Iya5v 7A== 
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2uqenuudhf-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Mon, 02 Sep 2019 10:45:23 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7DB8955;
+        Mon,  2 Sep 2019 08:45:19 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag6node3.st.com [10.75.127.18])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C232E2C38B9;
+        Mon,  2 Sep 2019 10:45:18 +0200 (CEST)
+Received: from SFHDAG6NODE3.st.com (10.75.127.18) by SFHDAG6NODE3.st.com
+ (10.75.127.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 2 Sep
+ 2019 10:45:18 +0200
+Received: from SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6]) by
+ SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6%20]) with mapi id
+ 15.00.1473.003; Mon, 2 Sep 2019 10:45:18 +0200
+From:   Philippe CORNU <philippe.cornu@st.com>
+To:     Yannick FERTRE <yannick.fertre@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH] dt-bindings: sh-mobile-ceu: Remove now unimplemented bindings documentation
-Date:   Mon,  2 Sep 2019 10:43:52 +0200
-Message-Id: <20190902084352.7974-1-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Benjamin GAIGNARD <benjamin.gaignard@st.com>,
+        Fabrice GASNIER <fabrice.gasnier@st.com>
+Subject: Re: [PATCH] ARM: dts: stm32: move ltdc pinctrl on stm32mp157a dk1
+ board
+Thread-Topic: [PATCH] ARM: dts: stm32: move ltdc pinctrl on stm32mp157a dk1
+ board
+Thread-Index: AQHVSTvVGIXip1PqEkulX36vwruXGKcYIXgA
+Date:   Mon, 2 Sep 2019 08:45:18 +0000
+Message-ID: <50695b37-df51-08d6-a11e-99f9349aa481@st.com>
+References: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
+In-Reply-To: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
+Accept-Language: fr-FR, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.50]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EEAD06A52162824F94647D53ADBE7BB7@st.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
+ definitions=2019-09-02_03:2019-08-29,2019-09-02 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove the SH Mobile CEU bindings documentation as the corresponding driver
-was removed v5.1 by the following commit:
-
-43a445f188e1 ("media: sh_mobile_ceu_camera: remove obsolete soc_camera driver")
-
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
----
- .../devicetree/bindings/media/sh_mobile_ceu.txt         | 17 -----------------
- 1 file changed, 17 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/sh_mobile_ceu.txt
-
-diff --git a/Documentation/devicetree/bindings/media/sh_mobile_ceu.txt b/Documentation/devicetree/bindings/media/sh_mobile_ceu.txt
-deleted file mode 100644
-index cfa4ffada8ae..000000000000
---- a/Documentation/devicetree/bindings/media/sh_mobile_ceu.txt
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Bindings, specific for the sh_mobile_ceu_camera.c driver:
-- - compatible: Should be "renesas,sh-mobile-ceu"
-- - reg: register base and size
-- - interrupts: the interrupt number
-- - renesas,max-width: maximum image width, supported on this SoC
-- - renesas,max-height: maximum image height, supported on this SoC
--
--Example:
--
--ceu0: ceu@fe910000 {
--	compatible = "renesas,sh-mobile-ceu";
--	reg = <0xfe910000 0xa0>;
--	interrupt-parent = <&intcs>;
--	interrupts = <0x880>;
--	renesas,max-width = <8188>;
--	renesas,max-height = <8188>;
--};
--- 
-2.11.0
-
+SGkgWWFubmljaywNCg0KT24gOC8yLzE5IDQ6MDggUE0sIFlhbm5pY2sgRmVydHLDqSB3cm90ZToN
+Cj4gVGhlIGx0ZGMgcGluY3RybCBtdXN0IGJlIGluIHRoZSBkaXNwbGF5IGNvbnRyb2xsZXIgbm9k
+ZSBhbmQNCj4gbm90IGluIHRoZSBwZXJpcGhlcmFsIG5vZGUgKGhkbWkgYnJpZGdlKS4NCj4gDQo+
+IFNpZ25lZC1vZmYtYnk6IFlhbm5pY2sgRmVydHLDqSA8eWFubmljay5mZXJ0cmVAc3QuY29tPg0K
+PiAtLS0NCj4gICBhcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3YS1kazEuZHRzIHwgNiArKyst
+LS0NCj4gICAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0K
+PiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTdhLWRrMS5kdHMg
+Yi9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3YS1kazEuZHRzDQo+IGluZGV4IGYzZjBlMzcu
+LjEyODVjZmMgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTdhLWRr
+MS5kdHMNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvc3RtMzJtcDE1N2EtZGsxLmR0cw0KPiBA
+QCAtOTksOSArOTksNiBAQA0KPiAgIAkJcmVzZXQtZ3Bpb3MgPSA8JmdwaW9hIDEwIEdQSU9fQUNU
+SVZFX0xPVz47DQo+ICAgCQlpbnRlcnJ1cHRzID0gPDEgSVJRX1RZUEVfRURHRV9GQUxMSU5HPjsN
+Cj4gICAJCWludGVycnVwdC1wYXJlbnQgPSA8JmdwaW9nPjsNCj4gLQkJcGluY3RybC1uYW1lcyA9
+ICJkZWZhdWx0IiwgInNsZWVwIjsNCj4gLQkJcGluY3RybC0wID0gPCZsdGRjX3BpbnNfYT47DQo+
+IC0JCXBpbmN0cmwtMSA9IDwmbHRkY19waW5zX3NsZWVwX2E+Ow0KPiAgIAkJc3RhdHVzID0gIm9r
+YXkiOw0KPiAgIA0KPiAgIAkJcG9ydHMgew0KPiBAQCAtMjc2LDYgKzI3Myw5IEBADQo+ICAgfTsN
+Cj4gICANCj4gICAmbHRkYyB7DQo+ICsJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IiwgInNsZWVw
+IjsNCj4gKwlwaW5jdHJsLTAgPSA8Jmx0ZGNfcGluc19hPjsNCj4gKwlwaW5jdHJsLTEgPSA8Jmx0
+ZGNfcGluc19zbGVlcF9hPjsNCg0KUmV2aWV3ZWQtYnk6IFBoaWxpcHBlIENvcm51IDxwaGlsaXBw
+ZS5jb3JudUBzdC5jb20+DQoNClRoYW5rcw0KUGhpbGlwcGUgOikNCg0KPiAgIAlzdGF0dXMgPSAi
+b2theSI7DQo+ICAgDQo+ICAgCXBvcnQgew0KPiA=
