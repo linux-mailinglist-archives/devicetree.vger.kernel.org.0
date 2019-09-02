@@ -2,74 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3C76A59A4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:44:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F21BA59BE
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:51:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731625AbfIBOnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:43:41 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53536 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbfIBOnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:43:41 -0400
-Received: by mail-wm1-f66.google.com with SMTP id q19so6067855wmc.3;
-        Mon, 02 Sep 2019 07:43:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=iZLcdNS033cxSK0Fvg6MV+q8rh6JD3AHU1mNNgBVJpQ=;
-        b=LEyT1WQyBOp6pEz6uwSiYjFL99BbFbIaJTSOXwSiIoX11EBxKOtAxZGuyHdLKRtCWT
-         vHBk1Mcx8L/nHg/tZsMCN/I3NO1q/nm4O1BOTKmM3qzTD8II8gDw6rGQ20O5ma6hoybc
-         uz4irnSjurKltAK6rMUFlhZfBjJ5ZUkEV4FImEF9Lb9KS9EhDGVzNpSU+aZPuClLTb9t
-         nH+P9xUNi8gfVLRRowR63+h6vqzAz1Bg5xpLjfsH/pEQw33VzALk7jUxpZvGmXifZPSV
-         po2f2Ie91f+qhtqlNnPPAvnlnaovGK4/fTtK1Np+DKtN3RtC8+beFd8TuPwiB2pTBqmw
-         cQFw==
-X-Gm-Message-State: APjAAAXaj+2UfUuB2Ul05YqbtAYGqOoiVzK0hVCGODfcdFmcfsh48RnA
-        SnjcSzEpdRuMuzvVlp3Bng==
-X-Google-Smtp-Source: APXvYqwxtxRib647UlHObm5LyGs/Ur8DIObbfrBfd03KY7R2uk+nMKra+8g2kZJ8KgljWasyIMoWRA==
-X-Received: by 2002:a05:600c:23cd:: with SMTP id p13mr33723857wmb.86.1567435418805;
-        Mon, 02 Sep 2019 07:43:38 -0700 (PDT)
-Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id q192sm3004661wme.23.2019.09.02.07.43.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 07:43:38 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 15:43:37 +0100
-From:   Rob Herring <robh@kernel.org>
-To:     Sam Shih <sam.shih@mediatek.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v7 07/11] dt-bindings: pwm: pwm-mediatek: add a property
- "num-pwms"
-Message-ID: <20190902144337.GA25200@bogus>
-References: <1567137437-10041-1-git-send-email-sam.shih@mediatek.com>
- <1567137437-10041-8-git-send-email-sam.shih@mediatek.com>
+        id S1726916AbfIBOvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:51:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52634 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726436AbfIBOvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 10:51:00 -0400
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2B09021897;
+        Mon,  2 Sep 2019 14:50:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567435859;
+        bh=71pLWk8MdR2BOEmIJHJ2tEkCtIxRrDQMnHh6cQ1w+II=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=IgOfV4zJAO/gl7avGfHCcrRz75Z2bQ1g9P9ui20ZUBezasAoKLWDdlsReZA7CMq/w
+         JKIIGcOPRcKEYYq/ICfGNHIZPsixxf1hEekeWvtMzGzUemhrvZ1K0XpBhzVE426Q+d
+         X8H4Zfu+NGjbrqNPqJY8dlFGlZGlmLWjoqoH6xpc=
+Received: by mail-qk1-f171.google.com with SMTP id 4so12705744qki.6;
+        Mon, 02 Sep 2019 07:50:59 -0700 (PDT)
+X-Gm-Message-State: APjAAAUc/mdsB9gLx+F8ByRjesmkL+KhXHXOa0nJUFpCxCdaWXBRyj8F
+        kWMa0vFCHDpQiWqlOT8nY28RYo0//RznoO8S2g==
+X-Google-Smtp-Source: APXvYqyh28Ow2UJPekS8IlWnjRcGuFquE4h1Btq6Udon+B5ixZMsP3odA9iep7SfJTniUSqfAkbwkbi3IhdjZEq0KtU=
+X-Received: by 2002:a37:8905:: with SMTP id l5mr29175066qkd.152.1567435858286;
+ Mon, 02 Sep 2019 07:50:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1567137437-10041-8-git-send-email-sam.shih@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
+ <20190827085302.5197-12-jiaxun.yang@flygoat.com> <CAL_JsqL6htVye-LSBWw1WwRy9xH=zwuH6gurscwoCWj9Te_hAg@mail.gmail.com>
+ <d94eff2b-76ec-5cd2-512d-5ee0406a1bb9@flygoat.com> <20190827204105.7nyt4pi7lvxse5ij@pburton-laptop>
+In-Reply-To: <20190827204105.7nyt4pi7lvxse5ij@pburton-laptop>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 2 Sep 2019 15:50:47 +0100
+X-Gmail-Original-Message-ID: <CAL_Jsq+VmFi6r1-WOa9RJ4vfqsZLqcn5HMbv1oyQjhtJ8Qd8Lw@mail.gmail.com>
+Message-ID: <CAL_Jsq+VmFi6r1-WOa9RJ4vfqsZLqcn5HMbv1oyQjhtJ8Qd8Lw@mail.gmail.com>
+Subject: Re: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
+To:     Paul Burton <paul.burton@mips.com>
+Cc:     Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        Huacai Chen <chenhc@lemote.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.co>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 11:57:13AM +0800, Sam Shih wrote:
-> From: Ryder Lee <ryder.lee@mediatek.com>
-> 
-> This adds a property "num-pwms" in example so that we could
-> specify the number of PWM channels via device tree.
+On Tue, Aug 27, 2019 at 9:41 PM Paul Burton <paul.burton@mips.com> wrote:
+>
+> Hi guys,
+>
+> On Tue, Aug 27, 2019 at 10:18:46PM +0800, Jiaxun Yang wrote:
+> > On 2019/8/27 =E4=B8=8B=E5=8D=888:45, Rob Herring wrote:
+> > > On Tue, Aug 27, 2019 at 3:55 AM Jiaxun Yang <jiaxun.yang@flygoat.com>=
+ wrote:
+> > > > diff --git a/Documentation/devicetree/bindings/mips/loongson/cpus.y=
+aml b/Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..410d896a0078
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/mips/loongson/cpus.yaml
+> > > > @@ -0,0 +1,38 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0
+> > > Dual license for new bindings please:
+> > >
+> > > (GPL-2.0-only OR BSD-2-Clause)
+> > >
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/mips/loongson/cpus.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Loongson CPUs bindings
+> > > > +
+> > > > +maintainers:
+> > > > +  - Jiaxun Yang <jiaxun.yang@flygoat.com>
+> > > > +
+> > > > +description: |+
+> > > > +  The device tree allows to describe the layout of CPUs in a syste=
+m through
+> > > > +  the "cpus" node, which in turn contains a number of subnodes (ie=
+ "cpu")
+> > > > +  defining properties for every cpu.
+> > > > +
+> > > > +  Bindings for CPU nodes follow the Devicetree Specification, avai=
+lable from:
+> > > > +
+> > > > +  https://www.devicetree.org/specifications/
+> > > > +
+> > > > +properties:
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +    description: |
+> > > > +      Physical ID of a CPU, Can be read from CP0 EBase.CPUNum.
+> > > Is this definition specific to Loongson CPUs or all MIPS?
+> >
+> > Currently it's specific to Loongson CPU only, as other processors may u=
+sing
+> > different method to express CPU map.
+> >
+> > Different from Arm, MIPS family of processors seems less uniform and ha=
+ve
+> > their own designs.
+> >
+> > For this point, we'd better ask Paul's opinion.
+>
+> In general on MIPS we detect CPU properties at runtime from coprocessor
+> 0 registers & similar sources of information, so there's not really a
+> need to specify anything about the CPU in devicetree.
 
-Please respond to my questions on v5.
+We thought the same thing initially for Arm... Mostly what is in DT is
+not what is discoverable. Are clock speeds, power domains, low power
+states, etc. all discoverable?
 
-> 
-> Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
-> Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> For example here
+> you say yourself that the value for this property can be read from
+> EBase.CPUNum - so why specify it in DT?
+
+To map DT nodes to cores?
+
+Rob
