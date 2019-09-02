@@ -2,90 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5840A5B0A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 18:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9ADE1A5B10
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 18:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726016AbfIBQDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 12:03:51 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:32908 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726023AbfIBQDv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 12:03:51 -0400
-Received: by mail-wm1-f65.google.com with SMTP id r17so12283818wme.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 09:03:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U9IqFz/rCcEzO9sp+80zoE9eGKQjzJcJCmdp79nsgKY=;
-        b=IoMj7wcRG5nrP1XZaokIgDQnJyPnhAsLUVzLVD+Y8a8n/Got9Tn4fTRNNAJzAJb4ci
-         byoY/In8Thaj/JTsbIo2F/izij0ckD+1KyFNX3wY8oWfSTBPd5Gqj9cUf7Lt5H3ol542
-         zF1TAGtzpa/at4wONaXeiX8rsnq68UC7i1L/8167bMVgz3eIW16ogAVrL3PAz2lkb3bU
-         JsqtrD4Ofl+CQFrU3p+7WyLY+ze5o84brxNX3Yfkulv0WB3GeuAGxguHff6ZiE224lHm
-         +cTpR4N2jhxq9kMz2Z8/Bfd0jxDNQH1Jsq3avRw9Hdgm5QLOZ57HePqlFyDSNTOYb+du
-         nKHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U9IqFz/rCcEzO9sp+80zoE9eGKQjzJcJCmdp79nsgKY=;
-        b=Putqa10O5FLwFTy5aFJnVJhmdD64V5/etr0+2HeA9ToZR9p3FXbWiTrDlCRw3F0JXQ
-         VaPL9xuhrqC8rrongDN65zqI1UjzAgEj/aXNvIomUxJTuPakh09ij3nxwl+ZlSm6ZjDK
-         MHOC/x9kUC9jVXbxc3KGNGSCzkvBjw4y8IVUJ5ilHsF+XD9Y1fwTtZOncXvK88qpGNtC
-         ap19WQYOE3o0+jE4/I/wllfDVwusBGGIqagL5tXftMVEC6oUcmBYKSvX44PHsSqcXVd+
-         9RrjwsfX3cq2NdNQ1T0MH2w+3+UM/C/vYW9UVr9+wajlfaf9EzRUUJRuz8mBsdSTFr/C
-         DzCA==
-X-Gm-Message-State: APjAAAUBrmisfdXNE2H5BxWA0H4PuN0v636bAVd2Fvd4bziLvPUwG7u1
-        SfOUmBi0/HcPcYjzPBqVcf9qVA==
-X-Google-Smtp-Source: APXvYqzzmST/34EWEs+z7TaicJFBkWqMl5acy9cm3cF71CYOV64yFL+lf6O3kMjOc4sDbgGKLWB+PQ==
-X-Received: by 2002:a7b:cc0f:: with SMTP id f15mr36009973wmh.39.1567440229675;
-        Mon, 02 Sep 2019 09:03:49 -0700 (PDT)
-Received: from starbuck.baylibre.local (uluru.liltaz.com. [163.172.81.188])
-        by smtp.googlemail.com with ESMTPSA id f15sm7507365wml.8.2019.09.02.09.03.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 09:03:49 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: meson: sm1: set gpio interrupt controller compatible
-Date:   Mon,  2 Sep 2019 18:03:34 +0200
-Message-Id: <20190902160334.14321-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
+        id S1726179AbfIBQE4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 12:04:56 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:36949 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726026AbfIBQE4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 12:04:56 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1i4oow-0001oT-VY; Mon, 02 Sep 2019 18:04:46 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1i4oov-0002kp-AO; Mon, 02 Sep 2019 18:04:45 +0200
+Date:   Mon, 2 Sep 2019 18:04:45 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sam Shih <sam.shih@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        John Crispin <john@phrozen.org>, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 07/13] dt-bindings: pwm: add a property "num-pwms"
+Message-ID: <20190902160445.fitoa65t4ndzjq6v@pengutronix.de>
+References: <1566457123-20791-1-git-send-email-sam.shih@mediatek.com>
+ <1566457123-20791-8-git-send-email-sam.shih@mediatek.com>
+ <20190827183924.GA24178@bogus>
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190827183924.GA24178@bogus>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set the appropriate gpio interrupt controller compatible for the
-sm1 SoC family. This newer version of the controller can now
-trig irq on both edge of the input signal
+On Tue, Aug 27, 2019 at 01:39:24PM -0500, Rob Herring wrote:
+> On Thu, Aug 22, 2019 at 02:58:37PM +0800, Sam Shih wrote:
+> > From: Ryder Lee <ryder.lee@mediatek.com>
+> 
+> The subject should indicate this is for Mediatek.
+> 
+> > 
+> > This adds a property "num-pwms" in example so that we could
+> > specify the number of PWM channels via device tree.
+> > 
+> > Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+> > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
+> > Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+> > Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> > ---
+> > Changes since v5:
+> > - Add an Acked-by tag
+> > - This file is original v4 patch 5/10
+> > (https://patchwork.kernel.org/patch/11102577/)
+> > 
+> > Change-Id: I429048afeffa96f3f14533910efe242f88776043
+> > ---
+> >  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 7 ++++---
+> >  1 file changed, 4 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> > index 991728cb46cb..ea95b490a913 100644
+> > --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> > +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
+> > @@ -14,12 +14,12 @@ Required properties:
+> >                  has no clocks
+> >     - "top": the top clock generator
+> >     - "main": clock used by the PWM core
+> > -   - "pwm1-8": the eight per PWM clocks for mt2712
+> > -   - "pwm1-6": the six per PWM clocks for mt7622
+> > -   - "pwm1-5": the five per PWM clocks for mt7623
+> > +   - "pwm1-N": the PWM clocks for each channel
+> > +   where N starting from 1 to the maximum number of PWM channels
+> 
+> Once converted to schema, you are going to be back to listing them out.
+> 
+> >   - pinctrl-names: Must contain a "default" entry.
+> >   - pinctrl-0: One property must exist for each entry in pinctrl-names.
+> >     See pinctrl/pinctrl-bindings.txt for details of the property values.
+> > + - num-pwms: the number of PWM channels.
+> 
+> You can't add new required properties without breaking compatibility. 
+> 
+> You already have to imply the number of channels from the compatible (or 
+> number of clocks) and you have to keep doing so to maintain 
+> compatibility, so why not just keep doing that for new chips?
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-sm1.dtsi | 5 +++++
- 1 file changed, 5 insertions(+)
+This was a suggestion by me. The driver still handles compatibility
+(i.e. falls back to the number of PWMs that was implied by the
+compatible before). Given that there are various drivers that all solve
+the same problem (i.e. different variants with different number of PWMs)
+I thought it would be a good idea to introduce a property in the device
+tree that specifies this number.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-index 521573f3a5ba..6152e928aef2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-sm1.dtsi
-@@ -134,6 +134,11 @@
- 	power-domains = <&pwrc PWRC_SM1_ETH_ID>;
- };
- 
-+&gpio_intc {
-+	compatible = "amlogic,meson-sm1-gpio-intc",
-+		     "amlogic,meson-gpio-intc";
-+};
-+
- &pwrc {
- 	compatible = "amlogic,meson-sm1-pwrc";
- };
+Only for newly introduced compatibles the num-pwms property is really
+required. Differentiating the ones that need it and the ones that don't
+seems over-engineered to me.
+
+(BTW, using the number of clks doesn't really work because there are
+also some variants without clocks. It is still under discussion if in
+this case dummy-clocks should be provided IIRC.)
+
+Best regards
+Uwe
+
 -- 
-2.21.0
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
