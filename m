@@ -2,88 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F2FA5614
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 14:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA66A5623
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 14:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731284AbfIBMbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 08:31:44 -0400
-Received: from foss.arm.com ([217.140.110.172]:53344 "EHLO foss.arm.com"
+        id S1730033AbfIBMeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 08:34:36 -0400
+Received: from mga06.intel.com ([134.134.136.31]:28972 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729999AbfIBMbn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 08:31:43 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C7527337;
-        Mon,  2 Sep 2019 05:31:42 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 155123F246;
-        Mon,  2 Sep 2019 05:31:42 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 13:31:40 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        leoyang.li@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, arnd@arndb.de,
-        gregkh@linuxfoundation.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v3 05/11] dt-bindings: pci: layerscape-pci: add
- compatible strings for ls1088a and ls2088a
-Message-ID: <20190902123140.GI9720@e119886-lin.cambridge.arm.com>
-References: <20190902031716.43195-1-xiaowei.bao@nxp.com>
- <20190902031716.43195-6-xiaowei.bao@nxp.com>
+        id S1729942AbfIBMeg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 08:34:36 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 05:34:35 -0700
+X-IronPort-AV: E=Sophos;i="5.64,459,1559545200"; 
+   d="scan'208";a="183299004"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 05:34:33 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 3D7FD20B48; Mon,  2 Sep 2019 15:34:31 +0300 (EEST)
+Date:   Mon, 2 Sep 2019 15:34:31 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: Re: [PATCH v4 04/11] device property: Add functions for accessing
+ node's parents
+Message-ID: <20190902123431.GK5475@paasikivi.fi.intel.com>
+References: <20190902083240.20367-1-sakari.ailus@linux.intel.com>
+ <20190902083240.20367-5-sakari.ailus@linux.intel.com>
+ <20190902101426.GB2680@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190902031716.43195-6-xiaowei.bao@nxp.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+In-Reply-To: <20190902101426.GB2680@smile.fi.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 11:17:10AM +0800, Xiaowei Bao wrote:
-> Add compatible strings for ls1088a and ls2088a.
+Hi Andy,
+
+On Mon, Sep 02, 2019 at 01:14:26PM +0300, Andy Shevchenko wrote:
+> On Mon, Sep 02, 2019 at 11:32:33AM +0300, Sakari Ailus wrote:
+> > Add two convenience functions for accessing node's parents:
+> > 
+> > fwnode_count_parents() returns the number of parent nodes a given node
+> > has. fwnode_get_nth_parent() returns node's parent at a given distance
+> > from the node itself.
+> > 
 > 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> ---
-> v2:
->  - No change.
-> v3:
->  - Use one valid combination of compatible strings.
+> Much better now, thanks!
 > 
->  Documentation/devicetree/bindings/pci/layerscape-pci.txt | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-> index e20ceaa..762ae41 100644
-> --- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
-> @@ -22,7 +22,9 @@ Required properties:
->          "fsl,ls1043a-pcie"
->          "fsl,ls1012a-pcie"
->    EP mode:
-> -	"fsl,ls1046a-pcie-ep", "fsl,ls-pcie-ep"
-> +	"fsl,ls1046a-pcie-ep" "fsl,ls-pcie-ep"
-> +	"fsl,ls1088a-pcie-ep" "fsl,ls-pcie-ep"
-> +	"fsl,ls2088a-pcie-ep" "fsl,ls-pcie-ep"
+> though one question below.
 
-This isn't consistent with "[PATCH v3 09/11] PCI: layerscape: Add EP mode..."
-as that patch drops the fallback "fsl,ls-pcie-ep". Either the fallback must
-be preserved in the driver, or you need to drop it here.
+Thanks!
 
-What if there are existing users that depend on the fallback?
+...
 
-(I'm also not sure if that comma should have been dropped).
-
-Thanks,
-
-Andrew Murray
-
->  - reg: base addresses and lengths of the PCIe controller register blocks.
->  - interrupts: A list of interrupt outputs of the controller. Must contain an
->    entry for each entry in the interrupt-names property.
-> -- 
-> 2.9.5
+> > +/**
+> > + * fwnode_get_nth_parent - Return an nth parent of a node
+> > + * @fwnode: The node the parent of which is requested
+> > + * @depth: Distance of the parent from the node
+> > + *
+> > + * Returns the nth parent of a node. If @depth is 0, the functionality is
+> > + * equivalent to fwnode_handle_get(). For @depth == 1, it is fwnode_get_parent()
+> > + * and so on.
+> > + *
+> > + * The caller is responsible for calling fwnode_handle_put() for the returned
+> > + * node.
+> > + */
+> > +struct fwnode_handle *fwnode_get_nth_parent(struct fwnode_handle *fwnode,
+> > +					    unsigned int depth)
+> > +{
+> > +	unsigned int i;
+> > +
+> > +	fwnode_handle_get(fwnode);
+> > +
+> > +	for (i = 0; i < depth && fwnode; i++)
+> > +		fwnode = fwnode_get_next_parent(fwnode);
+> > +
 > 
+> If 'fnode == NULL' and 'i < depth', shan't we return some kind of error?
+
+How about adding to the comment, after the first sentence of the
+description:
+
+	If there is no parent at the requested depth, NULL is returned.
+
+-- 
+Sakari Ailus
+sakari.ailus@linux.intel.com
