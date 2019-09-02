@@ -2,84 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9ABCA5914
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:17:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DE2A5925
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731317AbfIBORo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:17:44 -0400
-Received: from vern.gendns.com ([98.142.107.122]:47558 "EHLO vern.gendns.com"
+        id S1731222AbfIBOUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:20:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39536 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726438AbfIBORo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 10:17:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=6TLPgKGO4e+YChj0k7INLip6MXL7BlzYN8RpVTNGmwE=; b=gCzu6eHLvtHmo74UR0XtZFFNvw
-        lt+v8Xw9aZU0MmjUZRkHT6nR6XBjxZ4HH4EkrPuS09uI2dGSx9ibq/Y0ZNnc7YHABNgQ9+3fTlIfZ
-        QTuVHU3lUfSyYZkk22c9kGePnIeLG2pwvQM/H6TsZL30zq28kdCTwYzSinXYn+OkXK1g+tdWHfinH
-        NDcioOH2VtEPOdO5qOPbp3h9EZhVyVvlrCGWSDpC8613bx0r8KjpHPkybIrxA7tkSzFekVPB36MMp
-        KBlMeNBLDRqK0zVl3KvdrcPc3kA1oS6/O8iHMLtsPxyQUNd4AuHJow82+CIxeNnkUo5VF5B2gKwHX
-        jRtkO5PA==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:49090 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <david@lechnology.com>)
-        id 1i4n9J-0003eo-2X; Mon, 02 Sep 2019 10:17:41 -0400
-Subject: Re: [PATCH v3 0/6] counter: new TI eQEP driver
-To:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20190901225827.12301-1-david@lechnology.com>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <68ce4c1a-5098-f6b8-e318-1d86d91a3206@lechnology.com>
-Date:   Mon, 2 Sep 2019 09:17:40 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1731097AbfIBOUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 10:20:18 -0400
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AA9ED21883;
+        Mon,  2 Sep 2019 14:20:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567434012;
+        bh=AxTJX4Sy34LCyqEsH+WI/Hwf5ujI35RSWIvy9oMh8Wc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=L2Blockz7/DoqZgkB8u4vX6tVvN7EVnrZ0r2H/VY0IsukXWuTe0ncWyvirv5atV4w
+         UEUAdLuod8c9cPTqWimDKIokQKFtTOUdbmF5F0omUdbfF/SL1fKWn/pVq1n0kutMBX
+         8xBC2rf1gZpeXsOLZNES3F/sI2JafMqN6YGFyNAU=
+Received: by mail-qk1-f177.google.com with SMTP id g17so12612741qkk.8;
+        Mon, 02 Sep 2019 07:20:12 -0700 (PDT)
+X-Gm-Message-State: APjAAAW27+Ez2AwPogxjAb06G9fzWpnH+C+svmVUkUdCYlOW0Gh3wyRl
+        1iTF9DgNF2CzH3z6HlF3X069sV4Ful2xDGqmZg==
+X-Google-Smtp-Source: APXvYqxPGBMJIHE3Wdp0ctZv+Wz/CJn+h36vN88vdviYdDNQU98hoWVWliq0ENL5YpSo9mfe/J4UK3cWrQaTNxP86zY=
+X-Received: by 2002:a05:620a:1356:: with SMTP id c22mr9452576qkl.119.1567434011842;
+ Mon, 02 Sep 2019 07:20:11 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190901225827.12301-1-david@lechnology.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
+ <1567004515-3567-2-git-send-email-peng.fan@nxp.com> <5d6d1b86.1c69fb81.f86b5.3988@mx.google.com>
+In-Reply-To: <5d6d1b86.1c69fb81.f86b5.3988@mx.google.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 2 Sep 2019 15:20:00 +0100
+X-Gmail-Original-Message-ID: <CAL_JsqLauLbgVg=Aguebqk3q6e+BOxiMNJ+xqTgkmpAjOh8BpA@mail.gmail.com>
+Message-ID: <CAL_JsqLauLbgVg=Aguebqk3q6e+BOxiMNJ+xqTgkmpAjOh8BpA@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/1/19 5:58 PM, David Lechner wrote:
-> This series adds device tree bindings and a new counter driver for the Texas
-> Instruments Enhanced Quadrature Encoder Pulse (eQEP).
-> 
+On Mon, Sep 2, 2019 at 2:39 PM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Aug 28, 2019 at 03:02:58AM +0000, Peng Fan wrote:
+> > From: Peng Fan <peng.fan@nxp.com>
+> >
+> > The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
+> > actions in software layers running in the EL2 or EL3 exception levels.
+> > The term "ARM" here relates to the SMC instruction as part of the ARM
+> > instruction set, not as a standard endorsed by ARM Ltd.
+> >
+> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> > ---
+> >  .../devicetree/bindings/mailbox/arm-smc.yaml       | 125 +++++++++++++++++++++
+> >  1 file changed, 125 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> > new file mode 100644
+> > index 000000000000..f8eb28d5e307
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> > @@ -0,0 +1,125 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ARM SMC Mailbox Interface
+> > +
+> > +maintainers:
+> > +  - Peng Fan <peng.fan@nxp.com>
+> > +
+> > +description: |
+> > +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
+> > +  call) instruction to trigger a mailbox-connected activity in firmware,
+> > +  executing on the very same core as the caller. By nature this operation
+> > +  is synchronous and this mailbox provides no way for asynchronous messages
+> > +  to be delivered the other way round, from firmware to the OS, but
+> > +  asynchronous notification could also be supported. However the value of
+> > +  r0/w0/x0 the firmware returns after the smc call is delivered as a received
+> > +  message to the mailbox framework, so a synchronous communication can be
+> > +  established, for a asynchronous notification, no value will be returned.
+> > +  The exact meaning of both the action the mailbox triggers as well as the
+> > +  return value is defined by their users and is not subject to this binding.
+> > +
+> > +  One use case of this mailbox is the SCMI interface, which uses shared memory
+> > +  to transfer commands and parameters, and a mailbox to trigger a function
+> > +  call. This allows SoCs without a separate management processor (or when
+> > +  such a processor is not available or used) to use this standardized
+> > +  interface anyway.
+> > +
+> > +  This binding describes no hardware, but establishes a firmware interface.
+> > +  Upon receiving an SMC using one of the described SMC function identifiers,
+> > +  the firmware is expected to trigger some mailbox connected functionality.
+> > +  The communication follows the ARM SMC calling convention.
+> > +  Firmware expects an SMC function identifier in r0 or w0. The supported
+> > +  identifiers are passed from consumers, or listed in the the arm,func-ids
+> > +  properties as described below. The firmware can return one value in
+> > +  the first SMC result register, it is expected to be an error value,
+> > +  which shall be propagated to the mailbox client.
+> > +
+> > +  Any core which supports the SMC or HVC instruction can be used, as long as
+> > +  a firmware component running in EL3 or EL2 is handling these calls.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: arm,smc-mbox
+> > +
+> > +  "#mbox-cells":
+> > +    const: 1
+> > +
+> > +  arm,num-chans:
+> > +    description: The number of channels supported.
+> > +    items:
+> > +      minimum: 1
+> > +      maximum: 4096 # Should be enough?
+> > +
+> > +  method:
+> > +    - enum:
+>
+> Did you build this with 'make dt_binding_check' as this should be a
+> warning. This should not be a list entry (i.e. drop the '-').
+>
+> > +        - smc
+> > +        - hvc
+> > +
+> > +  transports:
+>
+> arm,transports
+>
+> > +    - enum:
+> > +        - mem
+> > +        - reg
+> > +
+> > +  arm,func-ids:
+> > +    description: |
+> > +      An array of 32-bit values specifying the function IDs used by each
+> > +      mailbox channel. Those function IDs follow the ARM SMC calling
+> > +      convention standard [1].
+> > +
+> > +      There is one identifier per channel and the number of supported
+> > +      channels is determined by the length of this array.
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
 
-...
+Also, this doesn't work. You need:
 
-> David Lechner (6):
->    bus/ti-pwmss: move TI PWMSS driver from PWM to bus subsystem
->    dt-bindings: counter: new bindings for TI eQEP
->    counter: new TI eQEP driver
->    ARM: dts: am33xx: Add nodes for eQEP
->    ARM: dts: am335x-boneblue: Enable eQEP
->    ARM: dts: am335x-boneblue: Use of am335x-osd335x-common.dtsi
-> 
+allOf:
+  - $ref: /schemas/types.yaml#/definitions/uint32-array
 
-In case anyone notices, this series only has 5 patches, not 6. "ARM: dts:
-am335x-boneblue: Use of am335x-osd335x-common.dtsi" is unrelated and was
-submitted separately.
+> > +    minItems: 0
+> > +    maxItems: 4096   # Should be enough?
