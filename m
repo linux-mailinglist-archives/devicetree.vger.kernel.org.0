@@ -2,151 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 315B9A593A
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:24:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E175A5948
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:26:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730947AbfIBOY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:24:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730872AbfIBOY2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 10:24:28 -0400
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C7FD822DBF
-        for <devicetree@vger.kernel.org>; Mon,  2 Sep 2019 14:24:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567434266;
-        bh=B74PQ5o385KMtSFx606GqW7Hji/64H+L+7SO8wzLMGg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=eG5ApBOQMdx43szlZ3hRfFK3JhjJnHU1h9N6fzJZ5gSFAGo+DUwYCQAzqPRtkeL/Z
-         egjx2sk3s2NgyQuuh7m09MlzWLOaXz87O/ehHQQMF+Ukgb9LnuLBl275xwetBiplq0
-         SJsZX23mHLern4Z4WajFyMqxkRO1LaFCSNuEgAlY=
-Received: by mail-qk1-f175.google.com with SMTP id d26so5042920qkk.2
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 07:24:26 -0700 (PDT)
-X-Gm-Message-State: APjAAAWJszJvHEsNEh4divOavvRVkeJwL95/joYwWBrm0HrmAgaxHDc1
-        MACIoOtnnXrjpv9vYbD+ERADRouuH+bT+NVoaA==
-X-Google-Smtp-Source: APXvYqxVgrKxDU9AKZPVkiZjyBgcLWuDoOAhBqYHYxpm22jPeoe3HQJTqnHt0BhMxQu7W0O02Nt2wgbZXPnLf8rZcYc=
-X-Received: by 2002:a37:682:: with SMTP id 124mr28156982qkg.393.1567434265875;
- Mon, 02 Sep 2019 07:24:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190830210607.22644-1-miquel.raynal@bootlin.com>
- <20190830210607.22644-2-miquel.raynal@bootlin.com> <20190902044231.GA17348@bogus>
- <20190902155113.40b00fa0@xps13>
-In-Reply-To: <20190902155113.40b00fa0@xps13>
+        id S1730872AbfIBO0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:26:43 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:47047 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726421AbfIBO0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:26:43 -0400
+Received: by mail-wr1-f68.google.com with SMTP id h7so12896435wrt.13;
+        Mon, 02 Sep 2019 07:26:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=ot30V47/iBS0yHDmKdi6h92CwtoqCpzSIGyUdC23LBs=;
+        b=DKmJBL62s4BKsitaQZYkjhwsrKPx4BZxwQTWRBG58jPBxXLwKX7n4+LG+aWksU14vn
+         3b8HC0m8/d3X1dLfm2GU79CtibBrL6RLL3hpdh6wIFEY64HQcmGj4H+A4T1Ap3ZBeAUb
+         IFafW5Q1yHVYSGwMi7g+AdVE9Z29Jpk5demO6o/nWosIehBTi3KnfsVpzome14dmii6m
+         RRCnwM3Nec593Y41DZeDdIC6VnRtzn/bTOtM4UrQNU50pssgiJE7mW/L3QjL1DIHFyCv
+         Dec9nRkDXpnHomOEUMJQDLA+n5XP7gWwfv8bQDkPs+ICJ9xaeDtr6D4XMim8yvjwF2Fw
+         /MrQ==
+X-Gm-Message-State: APjAAAWsvCY51Q2D8k+sykQjIW8T25UjuD4h79WuKFynR0/pb8rULcvs
+        8SchQ4XvQfjViZmpMIFh7Q==
+X-Google-Smtp-Source: APXvYqwrcoUbjAf10BUlLBhioq2RZCRuSUEHDKWeG20TWt9K0tZHjtvEfqHEbFfZ7g0NKNH+PmgRKg==
+X-Received: by 2002:a5d:6811:: with SMTP id w17mr1391676wru.181.1567434400948;
+        Mon, 02 Sep 2019 07:26:40 -0700 (PDT)
+Received: from localhost ([212.187.182.166])
+        by smtp.gmail.com with ESMTPSA id h125sm33788405wmf.31.2019.09.02.07.26.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2019 07:26:40 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 15:26:39 +0100
 From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 2 Sep 2019 15:24:13 +0100
-X-Gmail-Original-Message-ID: <CAL_JsqJJ31wfXnLGSp5Hzkb2L7VeDoOki+eBqUkm2LWEtsA58A@mail.gmail.com>
-Message-ID: <CAL_JsqJJ31wfXnLGSp5Hzkb2L7VeDoOki+eBqUkm2LWEtsA58A@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: sound: Add Xilinx logicPD-I2S FPGA IP bindings
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        alexandre@bootlin.com
-Content-Type: text/plain; charset="UTF-8"
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v1 2/2] of: Let of_for_each_phandle fallback to
+ non-negative cell_count
+Message-ID: <20190902142639.GA13947@bogus>
+References: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
+ <20190824132846.8589-2-u.kleine-koenig@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190824132846.8589-2-u.kleine-koenig@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 2, 2019 at 2:51 PM Miquel Raynal <miquel.raynal@bootlin.com> wrote:
->
-> Hi Rob,
->
-> Thanks for the review, one question below.
->
-> Rob Herring <robh@kernel.org> wrote on Mon, 02 Sep 2019 14:39:09 +0100:
->
-> > On Fri, Aug 30, 2019 at 11:06:06PM +0200, Miquel Raynal wrote:
-> > > Document the logicPD I2S FPGA block bindings in yaml.
-> > >
-> > > Syntax verified with dt-doc-validate.
-> > >
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  .../bindings/sound/xlnx,logicpd-i2s.yaml      | 57 +++++++++++++++++++
-> > >  1 file changed, 57 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml b/Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml
-> > > new file mode 100644
-> > > index 000000000000..cbff641af199
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml
-> > > @@ -0,0 +1,57 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/sound/xlnx,logicpd-i2s.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Device-Tree bindings for Xilinx logicPD I2S FPGA block
-> > > +
-> > > +maintainers:
-> > > +  - Miquel Raynal <miquel.raynal@bootlin.com>
-> > > +
-> > > +description: |
-> > > +  The IP supports I2S playback/capture audio. It acts as a slave and
-> > > +  clocks should come from the codec. It only supports two channels and
-> > > +  S16_LE format.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - const: xlnx,logicpd-i2s
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +    description:
-> > > +      Base address and size of the IP core instance.
-> > > +
-> > > +  interrupts:
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > > +    items:
-> > > +      - description: tx interrupt
-> > > +      - description: rx interrupt
-> > > +    description:
-> > > +      Either the Tx interruption or the Rx interruption or both.
-> >
-> > The schema says either tx or both. Doesn't really matter here as it's
-> > just numbers.
->
-> I see , I'll drop the 'items' entry.
->
-> >
-> > > +
-> > > +  interrupt-names:
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > > +    items:
-> > > +      - const: tx
-> > > +      - const: rx
-> >
-> > But here it does matter.
-> >
-> > The easiest way to express this is:
-> >
-> > oneOf:
-> >   - items:
-> >       - enum: [ tx, rx ]
-> >   - items:
-> >       - const: tx
-> >       - const: rx
-> >
->
-> Does this enforce an order? (I don't know if it matters, though, but in
-> the bellow example I put the Rx interrupt first).
+On Sat, Aug 24, 2019 at 03:28:46PM +0200, Uwe Kleine-König wrote:
+> Referencing device tree nodes from a property allows to pass arguments.
+> This is for example used for referencing gpios. This looks as follows:
+> 
+> 	gpio_ctrl: gpio-controller {
+> 		#gpio-cells = <2>
+> 		...
+> 	}
+> 
+> 	someothernode {
+> 		gpios = <&gpio_ctrl 5 0 &gpio_ctrl 3 0>;
+> 		...
+> 	}
+> 
+> To know the number of arguments this must be either fixed, or the
+> referenced node is checked for a $cells_name (here: "#gpio-cells")
+> property and with this information the start of the second reference can
+> be determined.
+> 
+> Currently regulators are referenced with no additional arguments. To
+> allow some optional arguments without having to change all referenced
+> nodes this change introduces a way to specify a default cell_count. So
+> when a phandle is parsed we check for the $cells_name property and use
+> it as before if present. If it is not present we fall back to
+> cells_count if non-negative and only fail if cells_count is smaller than
+> zero.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> ---
+>  drivers/of/base.c | 25 +++++++++++++++++--------
+>  1 file changed, 17 insertions(+), 8 deletions(-)
 
-Yes. It does matter and should be defined what the order it.
+Looks fine to me. I can apply with an ack from the iommu folks on patch 
+1.
 
 Rob
