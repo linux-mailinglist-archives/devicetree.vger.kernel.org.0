@@ -2,152 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 966C3A597F
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 514D0A5988
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731038AbfIBOji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:39:38 -0400
-Received: from mx2.suse.de ([195.135.220.15]:39580 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727393AbfIBOji (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 10:39:38 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id ED046B65E;
-        Mon,  2 Sep 2019 14:39:35 +0000 (UTC)
-Date:   Mon, 2 Sep 2019 16:39:35 +0200
-From:   Petr Mladek <pmladek@suse.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Arnaldo Carvalho de Melo <acme@redhat.com>,
-        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
-        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>
-Subject: Re: [PATCH v4 07/11] lib/vsprintf: Remove support for %pF and %pf in
- favour of %pS and %ps
-Message-ID: <20190902143935.xtd44jdvhjuc2wxe@pathway.suse.cz>
-References: <20190902083240.20367-1-sakari.ailus@linux.intel.com>
- <20190902083240.20367-8-sakari.ailus@linux.intel.com>
+        id S1731519AbfIBOkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:40:12 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:33563 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731523AbfIBOkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:40:11 -0400
+Received: by mail-wm1-f67.google.com with SMTP id r17so12118890wme.0
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 07:40:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=rqck1HgtYvTFndS0HVWjRCv4NRinryTkdQd/sTBP6J8=;
+        b=GhBvx41L5btNRr/sYbSeodk8h+ahuX8GTBk2fkrI18hB/AnW5Sj0Zq+2NCVGA0XXNk
+         3VDw71YhqEcMgrx+6qtWX1rApRkZywGPo8u0cqwU1ctMDApoJf6VnAyc93MYbcgG5PJ5
+         UnMB+zbqx4TX7l9XDSXgxW4Kh6sulAy25T///fX92fOyXlmBPMvvCmtHPt3CMz/ZH3M4
+         QEB3AeuDkbK6xvh0X+5K5hAsiThUWpIgEoEHWcclnqxQ5qLgVxyecy8lCy/Hc+9lMTc3
+         sEp+uhiB9FWpts0LHGkrfgZsAYMRjt6ShmUQucNEivtB1ZOf96s0GSeN1AiV6HXjqT7M
+         JMeg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rqck1HgtYvTFndS0HVWjRCv4NRinryTkdQd/sTBP6J8=;
+        b=FFHlAX2Mst28Rb8bkD7kwZQB6PT22bwaD9P8qsXG3q1F8bEySergd21SEutF00O3BH
+         NNUHMvbXn3XoDwX/79d3dK14iFiI8ZbdAqkp3nWwclpk+I/KGLTARg0TB+23YOsATEDE
+         ZMW+NEDhI9KfVEZzBA90bY+dsfEw+acGtjTGjB/8LUVOpYE/qvOTfPSGG4AX1EaYfqtJ
+         Go3tjjfLukQ0oFKcpVKvReNG5XQkDUlglE6F+9Ibtp9pn7iTf06MlPSRQmdzLIGAqNyb
+         rE8pF8Lrm//+E/6p/e1J0VM8lf1KjCJZi7xbCmkTxjDHKfrf6EcsLPOBYRPbhsKq2Tzg
+         1j+w==
+X-Gm-Message-State: APjAAAViSuWRwslISZ/yBRJDZWKcoGN1wmJcJk6BwncDSzAk8m5rbYC1
+        G4eS8vgq7fsd8/Kl7ak9GFk=
+X-Google-Smtp-Source: APXvYqwAzM8lYoZC5FAWTuEWeriwbFm0I649F/5EWCknS8Fe2HF0zsLG31yKXQBFy6IPxafMi7IDWg==
+X-Received: by 2002:a1c:9a0f:: with SMTP id c15mr14014869wme.27.1567435209635;
+        Mon, 02 Sep 2019 07:40:09 -0700 (PDT)
+Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
+        by smtp.gmail.com with ESMTPSA id e3sm11679270wrh.12.2019.09.02.07.40.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2019 07:40:07 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 16:40:06 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] drm/panel: Add DT bindings for Sony ACX424AKP
+Message-ID: <20190902144006.GB1445@ulmo>
+References: <20190902090633.24239-1-linus.walleij@linaro.org>
+ <20190902093517.GA12946@ulmo>
+ <CACRpkdb_X+Eia=mhHrXBcBn0osMtw6bKU6uAS5AV8ASV63qBkg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="EuxKj2iCbKjpUGkD"
 Content-Disposition: inline
-In-Reply-To: <20190902083240.20367-8-sakari.ailus@linux.intel.com>
-User-Agent: NeoMutt/20170912 (1.9.0)
+In-Reply-To: <CACRpkdb_X+Eia=mhHrXBcBn0osMtw6bKU6uAS5AV8ASV63qBkg@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 2019-09-02 11:32:36, Sakari Ailus wrote:
-> %pS and %ps are now the preferred conversion specifiers to print function
-> names. The functionality is equivalent; remove the old, deprecated %pF
-> and %pf support.
 
-Hmm, I see the following in master:
+--EuxKj2iCbKjpUGkD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-$> git grep %pF
-tools/lib/traceevent/Documentation/libtraceevent-func_apis.txt:or events have "%pF" or "%pS" parameter in its format string. It is common to
+On Mon, Sep 02, 2019 at 01:44:38PM +0200, Linus Walleij wrote:
+> On Mon, Sep 2, 2019 at 11:35 AM Thierry Reding <thierry.reding@gmail.com>=
+ wrote:
+>=20
+> > > +  dsi-command-mode:
+> > > +     type: boolean
+> > > +     description:
+> > > +       If this is specified, the panel will be used in command
+> > > +       mode instead of video mode.
+> >
+> > I'm not sure there's concensus on this one yet. I think so far the
+> > driver decides which mode to use the panel in. Technically this falls
+> > into the category of configuration, so it doesn't really belong in the
+> > DT.
+>=20
+> The way we've used DT is for a bit of both hardware description
+> and configuration I'd say, but I'm no authority on the subject.
+>=20
+> > I vaguely recall from discussions I've had on this subject that there's
+> > usually no reason to do video mode if you can do command mode because
+> > command mode is more power efficient. This was a long time ago, so I may
+> > be misremembering. Perhaps you have different information on this?
+>=20
+> No idea. I was under the impression that video mode was preferred
+> but I have no idea why.
 
-$> git grep %pf
-tools/lib/traceevent/event-parse.c:             if (asprintf(&format, "%%pf: (NO FORMAT FOUND at %llx)\n", addr) < 0)
-tools/lib/traceevent/event-parse.c:     if (asprintf(&format, "%s: %s", "%pf", printk->printk) < 0)
+Hm... my recollection is that command mode is only supported on "smart"
+panels that have an internal framebuffer. So the commands actually
+instruct the panel to update their internal framebuffer, which means you
+can technically switch off the display engine when there are no updates.
 
-I wonder how this is related to printk(). In each case, it seems
-that libtraceevent somehow implements the non-standard kernel
-%p mofifiers. It looks error-prone to keep another %pf user
-with the old semantic around.
+Under those circumstances I think it'd make sense to default to command
+mode if both the panel and the host support it and stick with video mode
+if for example the host can't do command mode.
 
-I am adding some tracing people into CC.
+Or perhaps this is something that could be set from some userspace
+policy maker via a connector property? A compositor for instance would
+have a pretty good idea of what kind of activity is going on, so it
+could at some point decide to switch between video mode and command mode
+if one of them is more appropriate for the given workload.
 
-Best Regards,
-Petr
+Command mode can also be used to do partial updates, if I remember
+correctly, which again would make it possible for a compositor to send
+only a subset of a screen update.
 
-> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> ---
->  Documentation/core-api/printk-formats.rst | 10 ----------
->  lib/vsprintf.c                            |  8 ++------
->  scripts/checkpatch.pl                     |  1 -
->  3 files changed, 2 insertions(+), 17 deletions(-)
-> 
-> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
-> index c6224d039bcbe..922a29eb70e6c 100644
-> --- a/Documentation/core-api/printk-formats.rst
-> +++ b/Documentation/core-api/printk-formats.rst
-> @@ -86,8 +86,6 @@ Symbols/Function Pointers
->  
->  	%pS	versatile_init+0x0/0x110
->  	%ps	versatile_init
-> -	%pF	versatile_init+0x0/0x110
-> -	%pf	versatile_init
->  	%pSR	versatile_init+0x9/0x110
->  		(with __builtin_extract_return_addr() translation)
->  	%pB	prev_fn_of_versatile_init+0x88/0x88
-> @@ -97,14 +95,6 @@ The ``S`` and ``s`` specifiers are used for printing a pointer in symbolic
->  format. They result in the symbol name with (S) or without (s)
->  offsets. If KALLSYMS are disabled then the symbol address is printed instead.
->  
-> -Note, that the ``F`` and ``f`` specifiers are identical to ``S`` (``s``)
-> -and thus deprecated. We have ``F`` and ``f`` because on ia64, ppc64 and
-> -parisc64 function pointers are indirect and, in fact, are function
-> -descriptors, which require additional dereferencing before we can lookup
-> -the symbol. As of now, ``S`` and ``s`` perform dereferencing on those
-> -platforms (when needed), so ``F`` and ``f`` exist for compatibility
-> -reasons only.
-> -
->  The ``B`` specifier results in the symbol name with offsets and should be
->  used when printing stack backtraces. The specifier takes into
->  consideration the effect of compiler optimisations which may occur
-> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-> index b0967cf17137d..b00b57f9f911f 100644
-> --- a/lib/vsprintf.c
-> +++ b/lib/vsprintf.c
-> @@ -909,7 +909,7 @@ char *symbol_string(char *buf, char *end, void *ptr,
->  #ifdef CONFIG_KALLSYMS
->  	if (*fmt == 'B')
->  		sprint_backtrace(sym, value);
-> -	else if (*fmt != 'f' && *fmt != 's')
-> +	else if (*fmt != 's')
->  		sprint_symbol(sym, value);
->  	else
->  		sprint_symbol_no_offset(sym, value);
-> @@ -2007,9 +2007,7 @@ static char *kobject_string(char *buf, char *end, void *ptr,
->   *
->   * - 'S' For symbolic direct pointers (or function descriptors) with offset
->   * - 's' For symbolic direct pointers (or function descriptors) without offset
-> - * - 'F' Same as 'S'
-> - * - 'f' Same as 's'
-> - * - '[FfSs]R' as above with __builtin_extract_return_addr() translation
-> + * - '[Ss]R' as above with __builtin_extract_return_addr() translation
->   * - 'B' For backtraced symbolic direct pointers with offset
->   * - 'R' For decoded struct resource, e.g., [mem 0x0-0x1f 64bit pref]
->   * - 'r' For raw struct resource, e.g., [mem 0x0-0x1f flags 0x201]
-> @@ -2112,8 +2110,6 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
->  	      struct printf_spec spec)
->  {
->  	switch (*fmt) {
-> -	case 'F':
-> -	case 'f':
->  	case 'S':
->  	case 's':
->  		ptr = dereference_symbol_descriptor(ptr);
-> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> index 93a7edfe0f059..a60c241112cd4 100755
-> --- a/scripts/checkpatch.pl
-> +++ b/scripts/checkpatch.pl
-> @@ -6012,7 +6012,6 @@ sub process {
->  					my $ext_type = "Invalid";
->  					my $use = "";
->  					if ($bad_specifier =~ /p[Ff]/) {
-> -						$ext_type = "Deprecated";
->  						$use = " - use %pS instead";
->  						$use =~ s/pS/ps/ if ($bad_specifier =~ /pf/);
->  					}
-> -- 
-> 2.20.1
-> 
+Thierry
+
+--EuxKj2iCbKjpUGkD
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1tKcYACgkQ3SOs138+
+s6Getw//VlLa1RVzsDcvNquUxqbLt7fKys2ntFacTCSHS7dRHxODI3n4LQdqX4oD
+RsVefgn7sFKYB4Q5/Gx+JWwcpnOlGgYhvry62RUGLLAeQdCgVdFDgFy9eVIB5lDh
+yYFz4HNLOvqyjC5IZozy6n/qAYrAzDMJJ9mz5h4WJ8w+p5qyg0bT/k1PtG0iLsZW
+5EzzjB7OXjqGrNUvZb0at+fK4tOz862ZXsXUY1VP+6/VKd5pWns56xLC3ZHdh1y6
+yLgezbG8zHttMgxfF65EeSTVxaC1NvcNySb+aNxZFtpoyZbyLi/UHRZNjHkAdRVP
+GNghtHXPZvjDaC/qrvVwyHsRiO+Pb+pMVezchyn1B2b5BeTtKzHr9bVAdX1ldlwN
+w043kdBcA6lY981UYC397KsrLhbYecn25RoblZBJsevNgMBfcN7AE1/8xl3teYga
+n9f3xsmExjuQsI+sDiq1phTrOU0iaZkg8zf+cYFMozThavk79l9SHc5mwkMuKjWd
+jy3WapegGFnmGh/BEdwZKsVJaA2ebGCZMU+kLea1yvQKajU8fAudmDl9+XUuWmUO
+3LPgVRR0SHTXcX5eWaeQVD9ckEn20nEBtWnr5ARNZbBbG7k539MF7kHAytuY+XNl
+H4nc7fX6LEeAHNWFlmIZ9moJ9jslFKzIXid3RIdZqL4YtWZi2fM=
+=JVKc
+-----END PGP SIGNATURE-----
+
+--EuxKj2iCbKjpUGkD--
