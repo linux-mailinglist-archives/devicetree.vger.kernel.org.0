@@ -2,47 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09885A5C38
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 20:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45568A5CD1
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 21:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbfIBSX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 14:23:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54922 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726775AbfIBSX6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 14:23:58 -0400
-Received: from earth.universe (unknown [185.62.205.105])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F03D3208E4;
-        Mon,  2 Sep 2019 18:23:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567448637;
-        bh=mW5nf+1HLE19vezXKFXZ5fGbtvNwUx214Bc6vuyN+XQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2lRKi/DYQ1enqibPmCSg9L2FuAxsP8jQ6ZqevbwzCQggmhKMaD2EkSkhYwD1LVclL
-         rEuRiVlo5PiIrcPAfH7RTG+sgWJzA9JCV/TeR/ADbQxFNywLye6/VyYYiiKHAM1A6/
-         0emN/s4cyN+YGMjmWzFA5P5PfUsaqp060NIGGYls=
-Received: by earth.universe (Postfix, from userid 1000)
-        id 97B813C0B7F; Mon,  2 Sep 2019 20:23:54 +0200 (CEST)
-Date:   Mon, 2 Sep 2019 20:23:54 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Richard Tresidder <rtresidd@electromag.com.au>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        kstewart@linuxfoundation.org, gregkh@linuxfoundation.org,
-        tglx@linutronix.de, rfontana@redhat.com, allison@lohutok.net,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RESEND v2 1/2] dt-binding docs: sbs_sbs-battery: Addition of
- force_load binding
-Message-ID: <20190902182354.p2o6pb4wy7bggywz@earth.universe>
-References: <1564481404-39505-1-git-send-email-rtresidd@electromag.com.au>
- <1564481404-39505-2-git-send-email-rtresidd@electromag.com.au>
+        id S1727046AbfIBTrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 15:47:06 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:42315 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726750AbfIBTrG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 15:47:06 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.localdomain (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id E3AD3E0003;
+        Mon,  2 Sep 2019 19:47:01 +0000 (UTC)
+Date:   Mon, 2 Sep 2019 21:48:30 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>, tfiga@google.com,
+        "open list:MEDIA INPUT INFRASTRUCTURE (V4L/DVB)" 
+        <linux-media@vger.kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 01/10] media: dt-bindings: Document 'location' property
+Message-ID: <20190902190949.3zhbg6fcudfdmu4z@uno.localdomain>
+References: <20190827092339.8858-1-jacopo@jmondi.org>
+ <20190827092339.8858-2-jacopo@jmondi.org>
+ <20190827122126.GQ5054@pendragon.ideasonboard.com>
+ <20190829124639.tzjp63tqnojnytlq@uno.localdomain>
+ <5d6d1b60.1c69fb81.f3a3a.1619@mx.google.com>
+ <20190902164031.yllajoj6duz27mun@uno.localdomain>
+ <20190902164937.GF12197@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kxy72r42udvqwqdq"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="itbrn6bstyq6c5d7"
 Content-Disposition: inline
-In-Reply-To: <1564481404-39505-2-git-send-email-rtresidd@electromag.com.au>
+In-Reply-To: <20190902164937.GF12197@pendragon.ideasonboard.com>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -50,75 +46,143 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---kxy72r42udvqwqdq
-Content-Type: text/plain; charset=us-ascii
+--itbrn6bstyq6c5d7
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi again,
 
-On Tue, Jul 30, 2019 at 06:10:03PM +0800, Richard Tresidder wrote:
-> Add device tree binding documentation for addition of force_load boolean =
-value
-> to allow loading a battery during boot even if notpresent at that time.
->=20
-> Signed-off-by: Richard Tresidder <rtresidd@electromag.com.au>
-> ---
->  Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt | 4 +=
-++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/power/supply/sbs_sbs-batte=
-ry.txt b/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
-> index 4e78e51..187d7bb 100644
-> --- a/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
-> +++ b/Documentation/devicetree/bindings/power/supply/sbs_sbs-battery.txt
-> @@ -15,7 +15,8 @@ Optional properties :
->     after an external change notification.
->   - sbs,battery-detect-gpios : The gpio which signals battery detection a=
-nd
->     a flag specifying its polarity.
-> -
-> + - sbs,force-load : Allow loading of a hot-pluggable battery when there =
-is no
-> +   GPIO detect available and the module is statically built.
+On Mon, Sep 02, 2019 at 07:49:37PM +0300, Laurent Pinchart wrote:
+> Hi Jacopo,
+>
+> On Mon, Sep 02, 2019 at 06:40:31PM +0200, Jacopo Mondi wrote:
+> > On Mon, Sep 02, 2019 at 02:38:40PM +0100, Rob Herring wrote:
+> > > On Thu, Aug 29, 2019 at 02:46:40PM +0200, Jacopo Mondi wrote:
+> > >> On Tue, Aug 27, 2019 at 03:21:26PM +0300, Laurent Pinchart wrote:
+> > >>> On Tue, Aug 27, 2019 at 11:23:27AM +0200, Jacopo Mondi wrote:
+> > >>>> Add the 'location' device property, used to specify the camera device
+> > >>>> mounting position. The property is particularly meaningful for mobile
+> > >>>> devices with a well defined usage orientation.
+> > >>>>
+> > >>>> Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> > >>>> ---
+> > >>>>  .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
+> > >>>>  1 file changed, 10 insertions(+)
+> > >>>>
+> > >>>> diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > >>>> index f884ada0bffc..865f4142f432 100644
+> > >>>> --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > >>>> +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > >>>> @@ -89,6 +89,16 @@ Optional properties
+> > >>>>    but a number of degrees counter clockwise. Typical values are 0 and 180
+> > >>>>    (upside down).
+> > >>>>
+> > >>>> +- location: The camera sensor mounting location, expressed as a position
+> > >>>> +  relative to the usage orientation of the device the sensor is installed on.
+> > >>>
+> > >>> DT bindings being ABIs, we need to be precise and thorough there. One
+> > >>> particular point that bothers me is that the property is named location,
+> > >>> and its description refers to camera sensor mounting location.
+> > >>>
+> > >>> I see two options to fix this. One of them is to rename the property to
+> > >>> camera-location, but that would limit its future usage for other types
+> > >>> of devices. The other one is to document the property as applying to a
+> > >>> "device" instead of a "camera sensor", and add one sentence stating that
+> > >>> this property is valid for camera sensors only.
+> > >>>
+> > >>> This will require finding another name for the device that the device is
+> > >>> mounted on though, as using device twice would be very confusing.
+> > >>
+> > >> I had the same concern, but I cannot find another term to convey
+> > >> this... suggestions?
+> > >
+> > > For accelerometers and/or gyroscopes, we already have 'mount-matrix'.
+> >
+> > Pardon my ignorance, but I could not find it documented. Some binding
+> > files refers to an iio/mount-matrix.txt file which I cannot find. Has
+> > it been removed? Anyway, some individual bindings report examples of
+> > mount matrices (ie
+> > Documentation/devicetree/bindings/iio/imu/inv_mpu6050.txt)
+> >
+> > > That would replace 'rotation'. Maybe we can do something similar here?
+> >
+> > I think 'rotation' simply expressed as degrees is fine here, our
+> > problem was to find a term that would make it possible to specify that
+> > rotation/location are applied to a 'device' mounted on a 'device'.
+> > Sakari suggested on irc to use 'system' in place of the second
+> > 'device' and that seems to work well to me.
+> >
+> > Or were you suggesting to use a construct similar to mount-matrix for
+> > a purpose I didn't get :) ?
+>
+> mount-matrix would allow exposing the rotation in a more generic way,
+> and if there are standard DT bindings, I think this would make sense,
+> especially given that we could have device with camera sensors not
+> mounted parallel to the device side.
+>
 
-This does not describe hardware configuration and is not an
-acceptable DT property.
+After reading this entry you pointed me to
+https://lore.kernel.org/patchwork/patch/1044786/
+I understand why Rob suggested that, but it seems a bit far fetched to
+me... The devices that could make use of 'mount-matrix', such as the
+ones IIO deal with, sample data in a 3D space, and to compensate their
+mounting displacement a rotation matrix is required.
 
--- Sebastian
+Do you see use cases for compensating mounting displacement in a 3-d
+space for a camera ? I'm not saying it's not possible, but seems -a
+bit- far fetched.
 
->  Example:
-> =20
->  	battery@b {
-> @@ -24,4 +25,5 @@ Example:
->  		sbs,i2c-retry-count =3D <2>;
->  		sbs,poll-retry-count =3D <10>;
->  		sbs,battery-detect-gpios =3D <&gpio-controller 122 1>;
-> +		sbs,force-load;
->  	}
-> --=20
-> 1.8.3.1
->=20
+If we consider cameras as always mounted parallel to the device used
+to take picturea, the correction you could apply to the possible mounting
+displacements are just rotations along the origin (or the z axis you want
+to consider a 3 dimensional space) and requiring to supply a 2-dimensions
+rotation matrix (with only a few combinations of 0, 1 and -1, if we only
+accept multiples of 90 degrees as we agreed) it seems a bit an overkill.
 
---kxy72r42udvqwqdq
+True, we could also handle image flipping, not just rotation with a rotation
+matrix but an image sensor mounted flipped upside down kind of defeat its
+purpose, doesn't it ? (it would point to the inside of the device :)
+
+When we'll have devices with movable sensors like the one Pavel
+linked, rotation matrices could be used to report the current camera
+position maybe, but to represent a mounting displacement compensation,
+for devices working in a 2 dimensional space and with fixed rotations
+of 90 degrees multiples it seems an overkill to ask to developers to
+me.
+
+That said, there are devices out there which do things I cannot even
+imagine, and maybe could actually compensate rotations in the 3D
+space, sample 3D point maps or other advanced things. Indeed they
+could use a rotation matrix if they need to, but the purpose of
+'rotation' is much more humble and even if it could be represented
+with 'mount-matrix' it seems to me a non justifiable effort.
+
+Thanks
+   j
+
+> --
+> Regards,
+>
+> Laurent Pinchart
+
+--itbrn6bstyq6c5d7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl1tXjcACgkQ2O7X88g7
-+potIhAAh3upX8+LvEe6Q2MDNqs1lToaIapy6jXTBI9HHhb0i78GbnqV/dducdPJ
-TpZo7N4G8+3/jz8h8wPOZtOZuAUm1RE44+aqP39CHE1wfrzuNGa7Q2JVPijT2xAN
-6dmeIWCz1qkK6cskT3MngTcUNHwul1RMHuhdrlzZ8I+BxvfjQXo7VBjK8oMhGys/
-sKZ1ZMv4IQx37iEfbFibTo8HhcJJKsy1Qg2qwoizyQytuu8axlg+PYh4sS+oEcbf
-1DAWUh+KeHX5IG6BKJFkWth17HGPvJUVpFqm/Wx6SWAQ76k9j4lL3jRnhZPWRuLF
-B9Oq8ikQCgCk2Blt1oNPVSpHv39r6vQFLPuUXYAA1ZCPEISYRFu63ACeA354eddL
-r0IDU+l1aMVumX9Flrj2pY5+tWEKtZER9ieuHsERyA9JNZetuvz3Um3CzP964wut
-WRERDWcJhxl6Hwv7YvWTx0lQgT7hO9yvAa9dzXux8UYX53lAGvlq5PXf2I9AHPlo
-z7jlCokUtjG195B36QvZLZoiGDEZ7p+kfFRTFIhTKc4c/dsbQX/gKB99TeVAp6TB
-2Kc6Ge3sRkqHaVKqmNc4B5/56YmSDTAttxZQGEY0c4wAdvLz7DTDPQdcDxF792Ap
-BDji1wHRt9323nXptnhzPE+IF2qnvfvJ/jV5MIncVst+EmAxnx0=
-=tOBC
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl1tcg4ACgkQcjQGjxah
+VjwUrw//XOC9F3igugY1bbCJP2hBFUiQWeRWHZK86iHqe1RutQ6zbWQeoPvmEyTx
+WUeVCoSPmGH/Sbo6Av2xH9lFzEzFu03HOMox0SIhmgGskykzTJd5vAL+yS9+akxR
+48aGI4VIlFFvPKFrcGcbeWV4dVrNH2/eIAKRkm8BPn743NT6jAPF4J3d3PqHyuZU
+/DwiPC+DJelFG9p+OyDnFovELp9m7GRCupvFetToeHcpKHcTEDUTNFV0Ti6dgGS8
+2KC/kJi/i9oxr6Hum8o3LzNJ/LgUOdUkWPAciiPPfQAep9J7W3OeWE+iz447/ovh
+LQe7ej25rTi7bueb8nC0n6hghKIrRavCBAw+DaK8hY4zPZEwDu1eXVh7UBBsf+4W
+9KckyXa7v9lpqOPA9ni42C/6bZW+k85g1WG3GPH9wT9Youc/cDAY71z0k8PraKx2
+6v5DR7Sy/zD1hqxPPG9WJaxFBOvx7sVUcmbQLfpmT2jHz2l6qwasXepRn+nGoKIM
+qtk953YvTUlYNY+g7kzd4OsFiTt/Mj3h6cYWF7i9jOXkAQtBBsfz+Ep/DWduegtd
+3ra/ftUsqlf4PmjB8AuxKgmZvquv1Sb7NOn3JsCschgAZAa9gmk64itC4MRI2r1T
+GQvEkCd5bYyFrJjZzJqMxOcn/Yb8GwmHHTq8yBCyuidytN5U9wc=
+=/pCD
 -----END PGP SIGNATURE-----
 
---kxy72r42udvqwqdq--
+--itbrn6bstyq6c5d7--
