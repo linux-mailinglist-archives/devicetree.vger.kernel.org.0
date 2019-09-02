@@ -2,149 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 06023A5876
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:54:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64F70A5883
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:57:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730468AbfIBNyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:54:31 -0400
-Received: from foss.arm.com ([217.140.110.172]:55098 "EHLO foss.arm.com"
+        id S1730887AbfIBN5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 09:57:30 -0400
+Received: from mga11.intel.com ([192.55.52.93]:52288 "EHLO mga11.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730207AbfIBNyb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 09:54:31 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DCDDD337;
-        Mon,  2 Sep 2019 06:54:27 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9F7683F59C;
-        Mon,  2 Sep 2019 06:54:26 -0700 (PDT)
-Subject: Re: [PATCH 1/2] iommu: Implement of_iommu_get_resv_regions()
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190829111407.17191-1-thierry.reding@gmail.com>
- <20190829111407.17191-2-thierry.reding@gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <0b7e050a-cec6-6ce7-9ed6-2146eabb2fe8@arm.com>
-Date:   Mon, 2 Sep 2019 14:54:23 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1730136AbfIBN5a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 09:57:30 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 06:57:29 -0700
+X-IronPort-AV: E=Sophos;i="5.64,459,1559545200"; 
+   d="scan'208";a="183314992"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 06:57:27 -0700
+Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
+        by paasikivi.fi.intel.com (Postfix) with ESMTP id 9E27A20B48;
+        Mon,  2 Sep 2019 16:57:25 +0300 (EEST)
+Received: from sailus by punajuuri.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@linux.intel.com>)
+        id 1i4mpo-00067D-GN; Mon, 02 Sep 2019 16:57:32 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: [PATCH v5 00/11] Device property improvements, add %pfw format specifier
+Date:   Mon,  2 Sep 2019 16:57:21 +0300
+Message-Id: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20190829111407.17191-2-thierry.reding@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/08/2019 12:14, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> This is an implementation that IOMMU drivers can use to obtain reserved
-> memory regions from a device tree node. It uses the reserved-memory DT
-> bindings to find the regions associated with a given device. These
-> regions will be used to create 1:1 mappings in the IOMMU domain that
-> the devices will be attached to.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->   drivers/iommu/of_iommu.c | 39 +++++++++++++++++++++++++++++++++++++++
->   include/linux/of_iommu.h |  8 ++++++++
->   2 files changed, 47 insertions(+)
-> 
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index 614a93aa5305..0d47f626b854 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -9,6 +9,7 @@
->   #include <linux/iommu.h>
->   #include <linux/limits.h>
->   #include <linux/of.h>
-> +#include <linux/of_address.h>
->   #include <linux/of_iommu.h>
->   #include <linux/of_pci.h>
->   #include <linux/slab.h>
-> @@ -225,3 +226,41 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
->   
->   	return ops;
->   }
-> +
-> +/**
-> + * of_iommu_get_resv_regions - reserved region driver helper for device tree
-> + * @dev: device for which to get reserved regions
-> + * @list: reserved region list
-> + *
-> + * IOMMU drivers can use this to implement their .get_resv_regions() callback
-> + * for memory regions attached to a device tree node. See the reserved-memory
-> + * device tree bindings on how to use these:
-> + *
-> + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> + */
-> +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
-> +{
-> +	struct of_phandle_iterator it;
-> +	int err;
-> +
-> +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0) {
-> +		struct iommu_resv_region *region;
-> +		struct resource res;
-> +
-> +		err = of_address_to_resource(it.node, 0, &res);
-> +		if (err < 0) {
-> +			dev_err(dev, "failed to parse memory region %pOF: %d\n",
-> +				it.node, err);
-> +			continue;
-> +		}
+Hi all,
 
-What if the device node has memory regions for other purposes, like 
-private CMA carveouts? We wouldn't want to force mappings of those (and 
-in the very worst case doing so could even render them unusable).
+This set adds functionality into the device property API (counting a
+node's parents as well as obtaining its name) in order to support printing
+fwnode names using a new conversion specifier "%pfw". The names that are
+produced are equivalent to its OF counterpart "%pOF" on OF systems for the
+two supported modifiers ("f" and "P").
 
-Robin.
+Printing a node's name is something that's been available on OF for a long
+time and if something is converted to device property API (such as the
+V4L2 fwnode framework) it always got removed of a nice feature that was
+sometimes essential in debugging. With this set, that no longer is the
+case.
 
-> +
-> +		region = iommu_alloc_resv_region(res.start, resource_size(&res),
-> +						 IOMMU_READ | IOMMU_WRITE,
-> +						 IOMMU_RESV_DIRECT_RELAXABLE);
-> +		if (!region)
-> +			continue;
-> +
-> +		list_add_tail(&region->list, list);
-> +	}
-> +}
-> +EXPORT_SYMBOL(of_iommu_get_resv_regions);
-> diff --git a/include/linux/of_iommu.h b/include/linux/of_iommu.h
-> index f3d40dd7bb66..fa16b26f55bc 100644
-> --- a/include/linux/of_iommu.h
-> +++ b/include/linux/of_iommu.h
-> @@ -15,6 +15,9 @@ extern int of_get_dma_window(struct device_node *dn, const char *prefix,
->   extern const struct iommu_ops *of_iommu_configure(struct device *dev,
->   					struct device_node *master_np);
->   
-> +extern void of_iommu_get_resv_regions(struct device *dev,
-> +				      struct list_head *list);
-> +
->   #else
->   
->   static inline int of_get_dma_window(struct device_node *dn, const char *prefix,
-> @@ -30,6 +33,11 @@ static inline const struct iommu_ops *of_iommu_configure(struct device *dev,
->   	return NULL;
->   }
->   
-> +static inline void of_iommu_get_resv_regions(struct device *dev,
-> +					     struct list_head *list)
-> +{
-> +}
-> +
->   #endif	/* CONFIG_OF_IOMMU */
->   
->   #endif /* __OF_IOMMU_H */
-> 
+since v4:
+
+- Improved documentation for fwnode_get_nth_parent().
+
+- Removed comma from the guardian entry in fwnode_pointer() testcase.
+
+since v3:
+
+- Remove underscores in argument name of fwnode_count_parents().
+
+- Re-introduce "%pO?" error string.
+
+- Unwrap a call to string() in fwnode_string().
+
+- Removed a useless Depends-on: on a patch that was merged long ago.
+
+- Unwrap a Fixes: line.
+
+- Added a patch to move fwnode_get_parent() up to make the review of the
+  following patch easier.
+
+since v2:
+
+- Better comments in acpi_fwnode_get_name_prefix().
+
+- Added swnode implementation.
+
+- Fixed swnode refcounting in get_parent() ("swnode: Get reference to
+  parent swnode in get_parent op")
+
+- Make argument to to_software_node() const (a new patch)
+
+- Factored out confusingly named kobject_string() that had a single
+  caller.
+
+- Cleaner fwnode_count_parents() implementation (as discussed in review).
+
+- Made fwnode_count_parents() argument const.
+
+- Added tests (last patch in the set).
+
+since v1:
+
+- Add patch to remove support for %pf and %pF (depends on another patch
+  removing all use of %pf and %pF) (now 4th patch)
+
+- Fix kerneldoc argument documentation for fwnode_get_name (2nd patch)
+
+- Align kerneldoc style with the rest of drivers/base/property.c (no extra
+  newline after function name)
+
+- Make checkpatch.pl complain about "%pf" not followed by "w" (6th patch)
+
+- WARN_ONCE() on use of invalid conversion specifiers ("%pf" not followed
+  by "w")
+
+Sakari Ailus (11):
+  software node: Get reference to parent swnode in get_parent op
+  software node: Make argument to to_software_node const
+  device property: Move fwnode_get_parent() up
+  device property: Add functions for accessing node's parents
+  device property: Add fwnode_get_name for returning the name of a node
+  device property: Add a function to obtain a node's prefix
+  lib/vsprintf: Remove support for %pF and %pf in favour of %pS and %ps
+  lib/vsprintf: Make use of fwnode API to obtain node names and
+    separators
+  lib/vsprintf: OF nodes are first and foremost, struct device_nodes
+  lib/vsprintf: Add %pfw conversion specifier for printing fwnode names
+  lib/test_printf: Add tests for %pfw printk modifier
+
+ Documentation/core-api/printk-formats.rst | 34 ++++++---
+ drivers/acpi/property.c                   | 48 +++++++++++++
+ drivers/base/property.c                   | 83 +++++++++++++++++++--
+ drivers/base/swnode.c                     | 55 +++++++++++++-
+ drivers/of/property.c                     | 16 +++++
+ include/linux/fwnode.h                    |  4 ++
+ include/linux/property.h                  |  8 ++-
+ lib/test_printf.c                         | 37 ++++++++++
+ lib/vsprintf.c                            | 88 ++++++++++++++---------
+ scripts/checkpatch.pl                     |  4 +-
+ 10 files changed, 319 insertions(+), 58 deletions(-)
+
+-- 
+2.20.1
+
