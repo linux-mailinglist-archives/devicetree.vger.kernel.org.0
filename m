@@ -2,102 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF083A5B20
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 18:06:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95BACA5B37
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 18:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726263AbfIBQGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 12:06:34 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:35535 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726148AbfIBQGe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 12:06:34 -0400
-Received: by mail-pg1-f195.google.com with SMTP id n4so7674158pgv.2;
-        Mon, 02 Sep 2019 09:06:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=sxgseS6plewEfEHDjM3waRPe5YrFalTRTYQNjb7uPp4=;
-        b=L5PwGwBs6FIZzKkWuxixRG5h3DDv2/Y1yKCo7SukPtJ69w25uAvYo8omFQgvdrL3Tr
-         j9K+Zx8ZwqImF3qGBxgxxYMqNZG5ogPFVvG+jCpx+mQVl7s5+LoPRxuDKJtxogppUVyK
-         R2IDKLYAM1BnrHjSw3ahwCWAVRyJkgmhAjO5J+uGMqVFHLm9r+jXi7mUqO6pViz24Ga+
-         6EI138rjXXtmxYlWEKLxe7eJ0f6Idd1HLEXXfZBOrkbE12KKxreBKPW4LUK35JadQqWu
-         WRvZt7meq2D6Zt8xzEOyldGbKckWN/RHKUZaSWqwSlxD10Ya0r9QZs+I1+V6VWAD5niR
-         4wdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=sxgseS6plewEfEHDjM3waRPe5YrFalTRTYQNjb7uPp4=;
-        b=K2vveLKT5Z9NRoB7JyOomS8P+sEOy+Wm+hfWCZy7wxQe+5ZxTV9DZ9LYQymSczHW+D
-         nZmqFFwR8Ko9GPxuTHjW3qEJxYx2BYTQQO8wLVyo8XKg1idvkq4F/9CVDzONTR8CZn2Y
-         OjM0Fvf8d2gkZrjnaa8E8+r0d1dh+ZSyvD0WSbd/pBKYJkdG/UnO0QBPAs9+hv708fhs
-         RcD4vgvJquwqb8T1YEr+pDt7hUnt3tEnSC8KJFF0rwB/6U62br83Gevf4tOXJ3dPI5Dx
-         Lqx2axBlEKX0X2N4LplPJlQQPB5DpGBEy3LEC3R1eziakIZQDSmVMajNKh+j33kf8Al5
-         Zswg==
-X-Gm-Message-State: APjAAAU6iWDDuSUYxUWJHYDANPpw1/MriAHjDolzxV21M2QmVNkh5Y2B
-        71dmtxsMI4l4/DhyQ7xXGM4=
-X-Google-Smtp-Source: APXvYqwqPC3RGR7rMKL0EGNwbK6QjUDTu5pYSnt93ij51dgyCiLk7Mp1Onc8LkVJhN8faPqnSCSjpA==
-X-Received: by 2002:a17:90a:3aa3:: with SMTP id b32mr3135171pjc.75.1567440393554;
-        Mon, 02 Sep 2019 09:06:33 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id x12sm11662476pjt.32.2019.09.02.09.06.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Sep 2019 09:06:33 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 09:06:32 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Jean Delvare <jdelvare@suse.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] hwmon: (as370-hwmon) Add DT bindings for
- Synaptics AS370 PVT
-Message-ID: <20190902160632.GA16274@roeck-us.net>
-References: <20190827113214.13773d45@xhacker.debian>
- <20190827113337.384457f6@xhacker.debian>
+        id S1726375AbfIBQN4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 12:13:56 -0400
+Received: from mga05.intel.com ([192.55.52.43]:30419 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725830AbfIBQN4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 12:13:56 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 09:13:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,459,1559545200"; 
+   d="scan'208";a="198604174"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga001.fm.intel.com with ESMTP; 02 Sep 2019 09:13:53 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i4oxk-0004ew-S2; Mon, 02 Sep 2019 19:13:52 +0300
+Date:   Mon, 2 Sep 2019 19:13:52 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: Re: [PATCH v5 11/11] lib/test_printf: Add tests for %pfw printk
+ modifier
+Message-ID: <20190902161352.GS2680@smile.fi.intel.com>
+References: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
+ <20190902135732.23455-12-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190827113337.384457f6@xhacker.debian>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190902135732.23455-12-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 03:44:57AM +0000, Jisheng Zhang wrote:
-> Add device tree bindings for Synaptics AS370 PVT sensors.
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Sep 02, 2019 at 04:57:32PM +0300, Sakari Ailus wrote:
+> Add a test for the %pfw printk modifier using software nodes.
 
-Applied to hwmon-next.
+> +static void __init fwnode_pointer(void)
+> +{
+> +	const struct software_node softnodes[] = {
+> +		{ .name = "first", },
+> +		{ .name = "second", .parent = &softnodes[0], },
+> +		{ .name = "third", .parent = &softnodes[1], },
+> +		{ NULL /* Guardian */ },
 
-Thanks,
-Guenter
+Comma is still here :-)
 
-> ---
->  Documentation/devicetree/bindings/hwmon/as370.txt | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/as370.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/as370.txt b/Documentation/devicetree/bindings/hwmon/as370.txt
-> new file mode 100644
-> index 000000000000..d102fe765124
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/as370.txt
-> @@ -0,0 +1,11 @@
-> +Bindings for Synaptics AS370 PVT sensors
-> +
-> +Required properties:
-> +- compatible : "syna,as370-hwmon"
-> +- reg        : address and length of the register set.
-> +
-> +Example:
-> +	hwmon@ea0810 {
-> +		compatible = "syna,as370-hwmon";
-> +		reg = <0xea0810 0xc>;
 > +	};
+
+> +	test(full_name_second, "%pfw",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
+> +	test(full_name, "%pfw",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
+> +	test(full_name, "%pfwf",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
+> +	test(second_name, "%pfwP",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
+> +	test(third_name, "%pfwP",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
+
+I have another thought about these. The test cases will fail in either of
+adding, inserting or removing items in softnodes array. So, using the above
+"protective" scheme doesn't bring any value except making readability worse.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
