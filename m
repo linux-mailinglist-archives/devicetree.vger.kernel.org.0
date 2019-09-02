@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2C68A4F90
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 09:11:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDFC5A4FA5
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 09:22:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729415AbfIBHLg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 03:11:36 -0400
-Received: from mga07.intel.com ([134.134.136.100]:48282 "EHLO mga07.intel.com"
+        id S1729293AbfIBHW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 03:22:28 -0400
+Received: from mga09.intel.com ([134.134.136.24]:5185 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729262AbfIBHLf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 03:11:35 -0400
+        id S1729262AbfIBHW1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 03:22:27 -0400
 X-Amp-Result: UNSCANNABLE
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:11:34 -0700
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:22:27 -0700
 X-IronPort-AV: E=Sophos;i="5.64,457,1559545200"; 
-   d="scan'208";a="183240942"
+   d="scan'208";a="184429072"
 Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:11:31 -0700
+  by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:22:25 -0700
 Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 3C25120B09; Mon,  2 Sep 2019 10:11:30 +0300 (EEST)
-Date:   Mon, 2 Sep 2019 10:11:30 +0300
+        id CB98C20B09; Mon,  2 Sep 2019 10:22:22 +0300 (EEST)
+Date:   Mon, 2 Sep 2019 10:22:22 +0300
 From:   Sakari Ailus <sakari.ailus@linux.intel.com>
 To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
         rafael@kernel.org, linux-acpi@vger.kernel.org,
         devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 07/10] lib/vsprintf: Make use of fwnode API to obtain
- node names and separators
-Message-ID: <20190902071130.GF5475@paasikivi.fi.intel.com>
+Subject: Re: [PATCH v3 09/10] lib/vsprintf: Add %pfw conversion specifier for
+ printing fwnode names
+Message-ID: <20190902072222.GG5475@paasikivi.fi.intel.com>
 References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
- <20190829101043.24963-8-sakari.ailus@linux.intel.com>
- <20190830125314.GG2680@smile.fi.intel.com>
+ <20190829101043.24963-10-sakari.ailus@linux.intel.com>
+ <20190830130349.GJ2680@smile.fi.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190830125314.GG2680@smile.fi.intel.com>
+In-Reply-To: <20190830130349.GJ2680@smile.fi.intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -45,105 +45,119 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Andy,
 
-On Fri, Aug 30, 2019 at 03:53:14PM +0300, Andy Shevchenko wrote:
-> On Thu, Aug 29, 2019 at 01:10:40PM +0300, Sakari Ailus wrote:
-> > Instead of implementing our own means of discovering parent nodes, node
-> > names or counting how many parents a node has, use the newly added
-> > functions in the fwnode API to obtain that information.
+Thanks for the review.
+
+On Fri, Aug 30, 2019 at 04:03:49PM +0300, Andy Shevchenko wrote:
+> On Thu, Aug 29, 2019 at 01:10:42PM +0300, Sakari Ailus wrote:
+> > Add support for %pfw conversion specifier (with "f" and "P" modifiers) to
+> > support printing full path of the node, including its name ("f") and only
+> > the node's name ("P") in the printk family of functions. The two flags
+> > have equivalent functionality to existing %pOF with the same two modifiers
+> > ("f" and "P") on OF based systems. The ability to do the same on ACPI
+> > based systems is added by this patch.
 > > 
+> > On ACPI based systems the resulting strings look like
+> > 
+> > 	\_SB.PCI0.CIO2.port@1.endpoint@0
+> > 
+> > where the nodes are separated by a dot (".") and the first three are
+> > ACPI device nodes and the latter two ACPI data nodes.
 > 
-> Some style comments below.
-> Nevertheless,
+> Couple of comments below, FWIW,
 > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
 Thanks!
 
 > 
+> > 
 > > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
 > > ---
-> >  lib/vsprintf.c | 38 ++++++++++++++++----------------------
-> >  1 file changed, 16 insertions(+), 22 deletions(-)
+> >  Documentation/core-api/printk-formats.rst | 24 +++++++++++++++
+> >  lib/vsprintf.c                            | 37 +++++++++++++++++++++++
+> >  scripts/checkpatch.pl                     |  3 +-
+> >  3 files changed, 63 insertions(+), 1 deletion(-)
 > > 
+> > diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
+> > index 922a29eb70e6c..abba210f67567 100644
+> > --- a/Documentation/core-api/printk-formats.rst
+> > +++ b/Documentation/core-api/printk-formats.rst
+> > @@ -418,6 +418,30 @@ Examples::
+> >  
+> >  Passed by reference.
+> >  
+> > +Fwnode handles
+> > +--------------
+> > +
+> > +::
+> > +
+> > +	%pfw[fP]
+> 
+> I'm not familiar with all flavours of the OF case, the question is do we use
+> same letters for analogues?
+
+Yes. There are some that may be unworkable to be extended, but in general
+this helps folks who are familiar with the OF conversion specifiers.
+
+> 
+> > +
+> > +For printing information on fwnode handles. The default is to print the full
+> > +node name, including the path. The modifiers are functionally equivalent to
+> > +%pOF above.
+> > +
+> > +	- f - full name of the node, including the path
+> > +	- P - the name of the node including an address (if there is one)
+> > +
+> > +Examples (ACPI):
+> > +
+> > +	%pfwf	\_SB.PCI0.CIO2.port@1.endpoint@0	- Full node name
+> > +	%pfwP	endpoint@0				- Node name
+> > +
+> > +Examples (OF):
+> > +
+> > +	%pfwf	/ocp@68000000/i2c@48072000/camera@10/port/endpoint - Full name
+> > +	%pfwP	endpoint				- Node name
+> > +
+> >  Time and date (struct rtc_time)
+> >  -------------------------------
+> >  
 > > diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-> > index b00b57f9f911f..a04a2167101ef 100644
+> > index 19f9b3f30623e..79dacd0b9e124 100644
 > > --- a/lib/vsprintf.c
 > > +++ b/lib/vsprintf.c
-> > @@ -38,6 +38,7 @@
-> >  #include <net/addrconf.h>
-> >  #include <linux/siphash.h>
-> >  #include <linux/compiler.h>
-> > +#include <linux/property.h>
-> >  #ifdef CONFIG_BLOCK
-> >  #include <linux/blkdev.h>
-> >  #endif
-> > @@ -1863,32 +1864,24 @@ char *flags_string(char *buf, char *end, void *flags_ptr,
-> >  	return format_flags(buf, end, flags, names);
+> > @@ -1978,6 +1978,37 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+> >  	return widen_string(buf, buf - buf_start, end, spec);
 > >  }
 > >  
-> > -static const char *device_node_name_for_depth(const struct device_node *np, int depth)
-> > -{
-> > -	for ( ; np && depth; depth--)
-> > -		np = np->parent;
-> > -
-> > -	return kbasename(np->full_name);
-> > -}
-> > -
-> >  static noinline_for_stack
-> > -char *device_node_gen_full_name(const struct device_node *np, char *buf, char *end)
-> 
-> > +char *fwnode_full_name_string(struct fwnode_handle *fwnode, char *buf,
-> > +			      char *end)
-> 
-> I would leave it on one line.
-> 
-> >  {
-> >  	int depth;
-> > -	const struct device_node *parent = np->parent;
-> >  
-> > -	/* special case for root node */
-> > -	if (!parent)
-> > -		return string_nocheck(buf, end, "/", default_str_spec);
-> > +	for (depth = fwnode_count_parents(fwnode); depth >= 0; depth--) {
-> > +		struct fwnode_handle *__fwnode =
-> > +			fwnode_get_nth_parent(fwnode, depth);
-> 
-> Ditto if you name temporary variable like fw / fh / fn / etc.
-> 
-> >  
-> > -	for (depth = 0; parent->parent; depth++)
-> > -		parent = parent->parent;
-> > -
-> > -	for ( ; depth >= 0; depth--) {
-> > -		buf = string_nocheck(buf, end, "/", default_str_spec);
-> > -		buf = string(buf, end, device_node_name_for_depth(np, depth),
-> 
-> > +		buf = string(buf, end, fwnode_get_name_prefix(__fwnode),
-> > +			     default_str_spec);
-> > +		buf = string(buf, end, fwnode_get_name(__fwnode),
-> >  			     default_str_spec);
-> 
-> Ditto.
-> 
+> > +static noinline_for_stack
+> > +char *fwnode_string(char *buf, char *end, struct fwnode_handle *fwnode,
+> > +		    struct printf_spec spec, const char *fmt)
+> > +{
+> > +	struct printf_spec str_spec = spec;
+> > +	char *buf_start = buf;
 > > +
-> > +		fwnode_handle_put(__fwnode);
-> >  	}
+> > +	str_spec.field_width = -1;
 > > +
-> >  	return buf;
-> >  }
-> >  
-> > @@ -1933,10 +1926,11 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
-> >  
-> >  		switch (*fmt) {
-> >  		case 'f':	/* full_name */
-> > -			buf = device_node_gen_full_name(dn, buf, end);
+> > +	if (*fmt != 'w')
+> > +		return error_string(buf, end, "(%pfw?)", spec);
+> > +
+> > +	if (check_pointer(&buf, end, fwnode, spec))
+> > +		return buf;
+> > +
+> > +	fmt++;
+> > +
+> > +	switch (*fmt) {
+> > +	case 'f':	/* full_name */
+> > +	default:
+> > +		buf = fwnode_full_name_string(fwnode, buf, end);
+> > +		break;
+> > +	case 'P':	/* name */
 > 
-> > +			buf = fwnode_full_name_string(of_fwnode_handle(dn), buf,
-> > +						      end);
+> > +		buf = string(buf, end, fwnode_get_name(fwnode),
+> > +			     str_spec);
 > 
-> Ditto, disregard checkpatch.
+> Perfectly one line.
 
-Why? I see no reason to avoid wrapping here; in fact, if I'd review a patch
-that contained such code, I'd ask the submitter to wrap the lines.
+Fixed.
 
 -- 
 Sakari Ailus
