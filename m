@@ -2,596 +2,252 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63310A57B4
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B653A57C0
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:37:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730619AbfIBNfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:35:42 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:32264 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730417AbfIBNfm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:35:42 -0400
-X-UUID: 277f0245d0a54bf2a1612aaceda1e91e-20190902
-X-UUID: 277f0245d0a54bf2a1612aaceda1e91e-20190902
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <dongchun.zhu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1218658141; Mon, 02 Sep 2019 21:35:35 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 2 Sep
- 2019 21:35:33 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 2 Sep 2019 21:35:32 +0800
-Message-ID: <1567431331.21623.57.camel@mhfsdcap03>
-Subject: Re: [PATCH 2/2] media: i2c: dw9768: Add DW9768 VCM driver
-From:   Dongchun Zhu <dongchun.zhu@mediatek.com>
-To:     Bingbu Cao <bingbu.cao@linux.intel.com>
-CC:     <mchehab@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <matthias.bgg@gmail.com>, <bingbu.cao@intel.com>,
-        <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
-        <tfiga@google.com>, <drinkcat@chromium.org>
-Date:   Mon, 2 Sep 2019 21:35:31 +0800
-In-Reply-To: <0255a021cb9b424f85ec53c22f5e8dad@mtkmbs07n1.mediatek.inc>
-References: <20190708100641.2702-1-dongchun.zhu@mediatek.com>
-         <20190708100641.2702-3-dongchun.zhu@mediatek.com>
-         <576bb964-c16d-2ca2-e3ec-feff2e155d3c@linux.intel.com>
-         <0255a021cb9b424f85ec53c22f5e8dad@mtkmbs07n1.mediatek.inc>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1730302AbfIBNgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 09:36:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:54574 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730197AbfIBNgm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 09:36:42 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 85F83337;
+        Mon,  2 Sep 2019 06:36:40 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C6EEC3F59C;
+        Mon,  2 Sep 2019 06:36:39 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 14:36:38 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "lorenzo.pieralisi@arm.co" <lorenzo.pieralisi@arm.com>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of getting
+ capability with different PEX
+Message-ID: <20190902133637.GM9720@e119886-lin.cambridge.arm.com>
+References: <20190822112242.16309-1-xiaowei.bao@nxp.com>
+ <20190822112242.16309-6-xiaowei.bao@nxp.com>
+ <0c02ac52-e4b1-8071-bf9e-d10b28fc9029@ti.com>
+ <AM5PR04MB3299DE7B57F31EA405E4FCBCF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
+ <11e9b2c3-f4d0-2f82-bb14-45c38a1419e4@ti.com>
+ <AM5PR04MB32995566CD6DF0AAAD1AE52EF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: F9E911B1F6E583A0FBC67DBAB4A296EEF632DF2F947AF3157E41450FDFC8D8EB2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM5PR04MB32995566CD6DF0AAAD1AE52EF5A40@AM5PR04MB3299.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bingbu,
+On Fri, Aug 23, 2019 at 04:13:30AM +0000, Xiaowei Bao wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Kishon Vijay Abraham I <kishon@ti.com>
+> > Sent: 2019年8月23日 11:40
+> > To: Xiaowei Bao <xiaowei.bao@nxp.com>; bhelgaas@google.com;
+> > robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo Li
+> > <leoyang.li@nxp.com>; lorenzo.pieralisi@arm.co
+> > <lorenzo.pieralisi@arm.com>; arnd@arndb.de; gregkh@linuxfoundation.org;
+> > M.h. Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>;
+> > Roy Zang <roy.zang@nxp.com>; jingoohan1@gmail.com;
+> > gustavo.pimentel@synopsys.com; linux-pci@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org;
+> > andrew.murray@arm.com
+> > Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of getting
+> > capability with different PEX
+> > 
+> > Hi,
+> > 
+> > (Fixed Lorenzo's email address. All the patches in the series have wrong email
+> > id)
+> > 
+> > On 23/08/19 8:09 AM, Xiaowei Bao wrote:
+> > >
+> > >
+> > >> -----Original Message-----
+> > >> From: Kishon Vijay Abraham I <kishon@ti.com>
+> > >> Sent: 2019年8月22日 19:44
+> > >> To: Xiaowei Bao <xiaowei.bao@nxp.com>; bhelgaas@google.com;
+> > >> robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo
+> > Li
+> > >> <leoyang.li@nxp.com>; lorenzo.pieralisi@arm.co; arnd@arndb.de;
+> > >> gregkh@linuxfoundation.org; M.h. Lian <minghuan.lian@nxp.com>;
+> > >> Mingkai Hu <mingkai.hu@nxp.com>; Roy Zang <roy.zang@nxp.com>;
+> > >> jingoohan1@gmail.com; gustavo.pimentel@synopsys.com;
+> > >> linux-pci@vger.kernel.org; devicetree@vger.kernel.org;
+> > >> linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+> > >> linuxppc-dev@lists.ozlabs.org; andrew.murray@arm.com
+> > >> Subject: Re: [PATCH v2 06/10] PCI: layerscape: Modify the way of
+> > >> getting capability with different PEX
+> > >>
+> > >> Hi,
+> > >>
+> > >> On 22/08/19 4:52 PM, Xiaowei Bao wrote:
+> > >>> The different PCIe controller in one board may be have different
+> > >>> capability of MSI or MSIX, so change the way of getting the MSI
+> > >>> capability, make it more flexible.
+> > >>
+> > >> please use different pci_epc_features table for different boards.
+> > > Thanks, I think that it will be more flexible to dynamically get MSI
+> > > or MSIX capability, Thus, we will not need to define the pci_epc_feature for
+> > different boards.
+> > 
+> > Is the restriction because you cannot have different compatible for different
+> > boards?
+> Sorry, I am not very clear what your mean, I think even if I use the same compatible
+> with different boards, each boards will enter the probe function, in there I will get
+> the MSI or MSIX PCIe capability of the current controller in this board. Why do I need
+> to define the pci_epc_feature for different boards? 
 
-On Wed, 2019-07-24 at 11:16 +0800, Bingbu Cao wrote:
-> On 7/8/19 6:06 PM, dongchun.zhu@mediatek.com wrote:
-> > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> >
-> > This patch adds a V4L2 sub-device driver for DW9768 lens voice coil,
-> > and provides control to set the desired focus.
-> >
-> > The DW9807 is a 10 bit DAC from Dongwoon, designed for linear control
-> > of voice coil motor.
-> >
-> > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > ---
-> >  MAINTAINERS                |   1 +
-> >  drivers/media/i2c/Kconfig  |  10 +
-> >  drivers/media/i2c/Makefile |   1 +
-> >  drivers/media/i2c/dw9768.c | 458
-> > +++++++++++++++++++++++++++++++++++++++++++++
-> >  4 files changed, 470 insertions(+)
-> >  create mode 100644 drivers/media/i2c/dw9768.c
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS index 8f6ac93..17152d7 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -4877,6 +4877,7 @@ M:Dongchun Zhu <dongchun.zhu@mediatek.com>
-> >  L:linux-media@vger.kernel.org
-> >  T:git git://linuxtv.org/media_tree.git
-> >  S:Maintained
-> > +F:drivers/media/i2c/dw9768.c
-> >  F:Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt
-> >
-> >  DONGWOON DW9807 LENS VOICE COIL DRIVER diff --git
-> > a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig index
-> > 7793358..8ff6c95 100644
-> > --- a/drivers/media/i2c/Kconfig
-> > +++ b/drivers/media/i2c/Kconfig
-> > @@ -1014,6 +1014,16 @@ config VIDEO_DW9714
-> >    capability. This is designed for linear control of
-> >    voice coil motors, controlled via I2C serial interface.
-> >
-> > +config VIDEO_DW9768
-> > +tristate "DW9768 lens voice coil support"
-> > +depends on I2C && VIDEO_V4L2 && MEDIA_CONTROLLER
-> > +depends on VIDEO_V4L2_SUBDEV_API
-> > +help
-> > +  This is a driver for the DW9768 camera lens voice coil.
-> > +  DW9768 is a 10 bit DAC with 100mA output current sink
-> > +  capability. This is designed for linear control of
-> > +  voice coil motors, controlled via I2C serial interface.
-> > +
-> >  config VIDEO_DW9807_VCM
-> >  tristate "DW9807 lens voice coil support"
-> >  depends on I2C && VIDEO_V4L2 && MEDIA_CONTROLLER diff --git
-> > a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile index
-> > d8ad9da..944fbf6 100644
-> > --- a/drivers/media/i2c/Makefile
-> > +++ b/drivers/media/i2c/Makefile
-> > @@ -24,6 +24,7 @@ obj-$(CONFIG_VIDEO_SAA6752HS) += saa6752hs.o
-> >  obj-$(CONFIG_VIDEO_AD5820)  += ad5820.o
-> >  obj-$(CONFIG_VIDEO_AK7375)  += ak7375.o
-> >  obj-$(CONFIG_VIDEO_DW9714)  += dw9714.o
-> > +obj-$(CONFIG_VIDEO_DW9768)  += dw9768.o
-> >  obj-$(CONFIG_VIDEO_DW9807_VCM)  += dw9807-vcm.o
-> >  obj-$(CONFIG_VIDEO_ADV7170) += adv7170.o
-> >  obj-$(CONFIG_VIDEO_ADV7175) += adv7175.o diff --git
-> > a/drivers/media/i2c/dw9768.c b/drivers/media/i2c/dw9768.c new file
-> > mode 100644 index 0000000..f5b5591
-> > --- /dev/null
-> > +++ b/drivers/media/i2c/dw9768.c
-> > @@ -0,0 +1,458 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2018 MediaTek Inc.
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/module.h>
-> > +#include <linux/regulator/consumer.h> #include <linux/pm_runtime.h>
-> > +#include <media/v4l2-ctrls.h> #include <media/v4l2-device.h> #include
-> > +<media/v4l2-subdev.h>
-> > +
-> > +#define DW9768_VOLTAGE_ANALOG2800000
-> > +#define DW9768_NAME"dw9768"
-> > +#define DW9768_MAX_FOCUS_POS1023
-> > +/*
-> > + * This sets the minimum granularity for the focus positions.
-> > + * A value of 1 gives maximum accuracy for a desired focus position
-> > +*/
-> > +#define DW9768_FOCUS_STEPS1
-> > +
-> > +#define DW9768_CTRL_DELAY_US5000
-> > +
-> > +#define DW9768_REG_DAC_MSB0x03
-> > +#define DW9768_REG_DAC_LSB0x04
-> > +#define DW9768_REG_NULL0xff
-> > +
-> > +#define DW9768_DAC_SHIFT8
-> > +
-> > +#define DW9768_REG_VALUE_16BIT2
-> > +
-> > +/* dw9768 device structure */
-> > +struct dw9768_device {
-> > +struct v4l2_ctrl_handler ctrls;
-> > +struct v4l2_subdev sd;
-> > +struct regulator *analog_regulator;
-> > +/*
-> > + * Serialize control access, get/set format, get selection
-> > + * and start streaming.
-> > + */
-> > +struct mutex power_lock;
-> > +
-> > +int power_count;
-> > +bool standby;
-> > +};
-> > +
-> > +static inline struct dw9768_device *to_dw9768_vcm(struct v4l2_ctrl
-> > +*ctrl) {
-> > +return container_of(ctrl->handler, struct dw9768_device, ctrls); }
-> > +
-> > +static inline struct dw9768_device *sd_to_dw9768_vcm(struct
-> > +v4l2_subdev *subdev) {
-> > +return container_of(subdev, struct dw9768_device, sd); }
-> > +
-> > +static int dw9768_i2c_write(struct dw9768_device *dw9768_dev, u8 *data,
-> > +    int size)
-> > +{
-> > +struct i2c_client *client = v4l2_get_subdevdata(&dw9768_dev->sd);
-> > +struct i2c_msg msg;
-> > +u8 *w_buf = NULL;
-> > +u8 retry_cnt = 3;
-> > +int ret;
-> > +
-> > +if (!client->adapter)
-> > +return -ENODEV;
-> > +
-> > +if (size != 1 && size != 2)
-> > +return -EINVAL;
-> > +
-> > +memset(&msg, 0, sizeof(struct i2c_msg));
-> > +
-> > +w_buf = kzalloc(size, GFP_KERNEL);
-> > +if (!w_buf)
-> > +return -1;
-> return -ENOMEM;
+At present you determine how to set the [msi,msix]_capable flags of
+pci_epc_features based on reading the function capabilities at probe
+time. Instead of doing this, is it possible that you can determine the flags
+based on the compatible type alone? For example, is the MSI/MSIX capability
+the same for all fsl,ls2088a-pcie-ep devices?
 
-Fixed in next release.
+If it isn't *necessary* to probe for this information at probe time, then
+you could instead create a static pci_epc_features structure and assign
+it to something in your drvdata. This may provide some benefits.
 
-> > +
-> > +memcpy(w_buf, data, size);
-> > +
-> > +msg.addr  = client->addr;
-> > +msg.flags = 0;
-> > +msg.len   = size;
-> > +msg.buf   = w_buf;
-> > +
-> > +do {
-> > +ret = i2c_transfer(client->adapter, &msg, 1);
-> > +if (ret != 1)
-> > +dev_err(&client->dev, "write fail, ret:%d, retry:%d\n",
-> > +ret, retry_cnt);
-> > +else
-> > +break;
-> > +retry_cnt--;
-> > +} while (retry_cnt != 0);
-> > +
-> > +if (retry_cnt == 0){
-> > +dev_err(&client->dev, "i2c write fail(%d)\n", ret);
-> > +return -EIO;
-> > +}
-> > +
-> > +kfree(w_buf);
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +static int dw9768_release(struct dw9768_device *dw9768_dev) {
-> > +unsigned char i;
-> > +int ret;
-> > +
-> > +char puSendCmdArray[4][2] = {
-> > +{0x02, 0x00}, {DW9768_REG_NULL, DW9768_REG_NULL},
-> > +{0x01, 0x00}, {DW9768_REG_NULL, DW9768_REG_NULL},
-> > +};
-> > +
-> > +for (i = 0; i < (sizeof(puSendCmdArray) / sizeof(char)) /
-> > +     (sizeof(puSendCmdArray[0]) / sizeof(char)); i++) {> +if (puSendCmdArray[i][0] != DW9768_REG_NULL) {
-> > +ret = dw9768_i2c_write(dw9768_dev, puSendCmdArray[i],
-> > +       DW9768_REG_VALUE_16BIT);
-> > +if (ret < 0)
-> > +return ret;
-> > +} else {
-> > +usleep_range(DW9768_CTRL_DELAY_US,
-> > +     DW9768_CTRL_DELAY_US + 100);
-> > +}
-> > +}
-> Can we make this block more simple?  I think the loop is not necessary.
+The dw_pcie_ep_get_features function would then look like:
 
-Fixed in next release.
+static const struct pci_epc_features*
+ls_pcie_ep_get_features(struct dw_pcie_ep *ep)
+{
+	struct dw_pcie *pci = to_dw_pcie_from_pp(ep);
+	struct ls_pcie_ep *pcie = dev_get_drvdata(pci->dev);
+	return pcie->epc_features;
+}
 
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +static int dw9768_init(struct dw9768_device *dw9768_dev) {
-> > +unsigned char i;
-> > +int ret;
-> > +
-> > +char puSendCmdArray[5][2] = {
-> > +{0x02, 0x02}, {DW9768_REG_NULL, DW9768_REG_NULL},
-> > +{0x06, 0x41}, {0x07, 0x39}, {DW9768_REG_NULL, DW9768_REG_NULL},
-> > +};
-> > +
-> > +for (i = 0; i < (sizeof(puSendCmdArray) / sizeof(char)) /
-> > +     (sizeof(puSendCmdArray[0]) / sizeof(char)); i++) {
-> > +if (puSendCmdArray[i][0] != DW9768_REG_NULL) {
-> > +ret = dw9768_i2c_write(dw9768_dev, puSendCmdArray[i],
-> > +       DW9768_REG_VALUE_16BIT);
-> > +if (ret < 0)
-> > +return ret;
-> > +} else {
-> > +usleep_range(DW9768_CTRL_DELAY_US,
-> > +     DW9768_CTRL_DELAY_US + 100);
-> > +}
-> > +}
-> Ditto.
+This also means you can revert "[v3,03/11] PCI: designware-ep: Move the".
 
-Fixed in next release.
+Is this what you had in mind Kishon?
 
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +/*
-> > + * Power handling
-> > + */
-> > +static int dw9768_power_off(struct dw9768_device *dw9768_dev, bool
-> > +standby) {
-> > +struct i2c_client *client = v4l2_get_subdevdata(&dw9768_dev->sd);
-> > +int ret;
-> > +
-> > +/*
-> > + * Go to standby first as real power off my be denied by the
-> > +hardware
-> typo? "may be denied"
+Thanks,
 
-Sorry for the typo. Fixed in next release.
+Andrew Murray
 
-> > + * (single power line control for both dw9768_dev and sensor).
-> > + */
-> > +if (standby) {
-> > +dw9768_dev->standby = true;
-> > +ret = dw9768_release(dw9768_dev);
-> > +if (ret)
-> > +dev_err(&client->dev, "dw9768_release failed!\n");
-> > +}
-> > +ret = regulator_disable(dw9768_dev->analog_regulator);
-> > +if (ret)
-> > +return ret;
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +static int dw9768_power_on(struct dw9768_device *dw9768_dev, bool
-> > +restore) {
-> > +int ret;
-> > +
-> > +ret = regulator_enable(dw9768_dev->analog_regulator);
-> > +if (ret < 0)
-> > +return ret;
-> > +
-> > +if (restore) {
-> > +/* Restore the hardware settings. */
-> > +dw9768_dev->standby = false;
-> > +ret = dw9768_init(dw9768_dev);
-> > +if (ret < 0)
-> > +goto fail;
-> > +}
-> > +
-> > +return 0;
-> > +
-> > +fail:
-> > +dw9768_dev->standby = true;
-> > +regulator_disable(dw9768_dev->analog_regulator);
-> > +
-> > +return ret;
-> > +}
-> > +
-> > +/*
-> > + * Calculate status word and write it to the device based on current
-> > + * values of V4L2 controls. It is assumed that the stored V4L2
-> > +control
-> > + * values are properly limited and rounded.
-> > + */
-> > +static int dw9768_update_hw(struct dw9768_device *dw9768_dev, u16
-> > +val) {
-> > +unsigned char i;
-> > +int ret;
-> > +
-> > +char puSendCmdArray[2][2] = {
-> > +{DW9768_REG_DAC_MSB, (char)(val >> DW9768_DAC_SHIFT)},
-> > +{DW9768_REG_DAC_LSB, (char)(val & 0xFF)},
-> > +};
-> > +
-> > +for (i = 0; i < (sizeof(puSendCmdArray) / sizeof(char)) /
-> > +     (sizeof(puSendCmdArray[0]) / sizeof(char)); i++) {
-> > +ret = dw9768_i2c_write(dw9768_dev, puSendCmdArray[i],
-> > +       DW9768_REG_VALUE_16BIT);
-> > +if (ret)
-> > +return ret;
-> > +}
-> ditto.
-
-Fixed in next release.
-
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +static int dw9768_set_ctrl(struct v4l2_ctrl *ctrl) {
-> > +struct dw9768_device *dw9768_dev = to_dw9768_vcm(ctrl);
-> > +
-> > +if (ctrl->id == V4L2_CID_FOCUS_ABSOLUTE)
-> > +return dw9768_update_hw(dw9768_dev, ctrl->val);
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +static const struct v4l2_ctrl_ops dw9768_vcm_ctrl_ops = {
-> > +.s_ctrl = dw9768_set_ctrl,
-> > +};
-> > +
-> > +static int
-> > +dw9768_set_power(struct v4l2_subdev *subdev, int on) {
-> > +struct dw9768_device *dw9768_dev = sd_to_dw9768_vcm(subdev);
-> > +int ret = 0;
-> > +
-> > +mutex_lock(&dw9768_dev->power_lock);
-> > +
-> > +/*
-> > + * If the power count is modified from 0 to != 0 or from != 0 to 0,
-> > + * update the power state.
-> > + */
-> > +if (dw9768_dev->power_count == !on) {
-> > +ret = on ? dw9768_power_on(dw9768_dev, true) :
-> > +dw9768_power_off(dw9768_dev, true);
-> > +if (ret < 0)
-> > +goto done;
-> > +}
-> > +
-> > +/* Update the power count. */
-> > +dw9768_dev->power_count += on ? 1 : -1;
-> > +WARN_ON(dw9768_dev->power_count < 0);
-> > +
-> > +done:
-> > +mutex_unlock(&dw9768_dev->power_lock);
-> > +return ret;
-> > +}
-> > +
-> > +static int dw9768_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh
-> > +*fh) {
-> > +return dw9768_set_power(sd, 1);
-> > +}
-> > +
-> > +static int dw9768_close(struct v4l2_subdev *sd, struct v4l2_subdev_fh
-> > +*fh) {
-> > +return dw9768_set_power(sd, 0);
-> > +}
-> I am a little confused about the pm control here.
-> Could we use the pm generic APIs to help do this?
-
-Fixed in next release.
-
-> > +
-> > +static const struct v4l2_subdev_internal_ops dw9768_int_ops = {
-> > +.open = dw9768_open,
-> > +.close = dw9768_close,
-> > +};
-> > +
-> > +static const struct v4l2_subdev_ops dw9768_ops = { };
-> > +
-> > +static void dw9768_subdev_cleanup(struct dw9768_device *dw9768_dev) {
-> > +v4l2_async_unregister_subdev(&dw9768_dev->sd);
-> > +v4l2_ctrl_handler_free(&dw9768_dev->ctrls);
-> > +media_entity_cleanup(&dw9768_dev->sd.entity);
-> > +}
-> > +
-> > +static int dw9768_init_controls(struct dw9768_device *dw9768_dev) {
-> > +struct v4l2_ctrl_handler *hdl = &dw9768_dev->ctrls;
-> > +const struct v4l2_ctrl_ops *ops = &dw9768_vcm_ctrl_ops;
-> > +
-> > +v4l2_ctrl_handler_init(hdl, 1);
-> > +
-> > +v4l2_ctrl_new_std(hdl, ops, V4L2_CID_FOCUS_ABSOLUTE,
-> > +  0, DW9768_MAX_FOCUS_POS, DW9768_FOCUS_STEPS, 0);
-> > +
-> > +if (hdl->error) {
-> > +dev_err(dw9768_dev->sd.dev, "%s fail error: 0x%x\n",
-> > +__func__, hdl->error);
-> > +return hdl->error;
-> > +}
-> > +
-> > +dw9768_dev->sd.ctrl_handler = hdl;
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +static int dw9768_probe(struct i2c_client *client) {
-> > +struct device *dev = &client->dev;
-> > +struct dw9768_device *dw9768_dev;
-> > +int rval;
-> > +
-> > +dw9768_dev = devm_kzalloc(&client->dev, sizeof(*dw9768_dev),
-> > +  GFP_KERNEL);
-> > +if (!dw9768_dev)
-> > +return -ENOMEM;
-> > +
-> > +dw9768_dev->analog_regulator = devm_regulator_get(dev, "afvdd");
-> > +if (IS_ERR(dw9768_dev->analog_regulator)) {
-> > +dev_err(dev, "cannot get analog regulator\n");
-> > +return PTR_ERR(dw9768_dev->analog_regulator);
-> > +}
-> > +
-> > +rval = regulator_set_voltage(dw9768_dev->analog_regulator,
-> > +     DW9768_VOLTAGE_ANALOG,
-> > +     DW9768_VOLTAGE_ANALOG);
-> > +if (rval < 0) {
-> > +dev_err(dev, "cannot set analog voltage\n");
-> > +return rval;
-> > +}
-> > +
-> > +mutex_init(&dw9768_dev->power_lock);
-> > +
-> > +v4l2_i2c_subdev_init(&dw9768_dev->sd, client, &dw9768_ops);
-> > +dw9768_dev->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > +dw9768_dev->sd.internal_ops = &dw9768_int_ops;
-> > +
-> > +rval = dw9768_init_controls(dw9768_dev);
-> > +if (rval)
-> > +goto err_cleanup;
-> > +
-> > +rval = media_entity_pads_init(&dw9768_dev->sd.entity, 0, NULL);
-> > +if (rval < 0)
-> > +goto err_cleanup;
-> > +
-> > +dw9768_dev->sd.entity.function = MEDIA_ENT_F_LENS;
-> > +
-> > +rval = v4l2_async_register_subdev(&dw9768_dev->sd);
-> > +if (rval < 0)
-> > +goto err_cleanup;
-> > +
-> > +pm_runtime_set_active(dev);
-> > +pm_runtime_enable(dev);
-> > +pm_runtime_idle(dev);
-> > +
-> > +return 0;
-> > +
-> > +err_cleanup:
-> > +mutex_destroy(&dw9768_dev->power_lock);
-> > +dw9768_subdev_cleanup(dw9768_dev);
-> > +dev_err(dev, "Probe failed: %d\n", rval);
-> > +return rval;
-> > +}
-> > +
-> > +static int dw9768_remove(struct i2c_client *client) {
-> > +struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > +struct dw9768_device *dw9768_dev = sd_to_dw9768_vcm(sd);
-> > +
-> > +pm_runtime_disable(&client->dev);
-> > +dw9768_subdev_cleanup(dw9768_dev);
-> > +
-> > +return 0;
-> > +}
-> > +
-> > +/*
-> > + * This function sets the vcm position, so it consumes least current
-> > + * The lens position is gradually moved in units of
-> > +DW9768_CTRL_STEPS,
-> > + * to make the movements smoothly.
-> > + */
-> > +static int __maybe_unused dw9768_vcm_suspend(struct device *dev) {
-> > +struct i2c_client *client = to_i2c_client(dev);
-> > +struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > +struct dw9768_device *dw9768_dev = sd_to_dw9768_vcm(sd);
-> > +
-> > +if (!dw9768_dev->power_count)
-> > +return 0;
-> > +
-> > +return dw9768_power_off(dw9768_dev, false); }
-> > +
-> > +/*
-> > + * This function sets the vcm position to the value set by the user
-> > + * through v4l2_ctrl_ops s_ctrl handler
-> > + * The lens position is gradually moved in units of
-> > +DW9768_CTRL_STEPS,
-> > + * to make the movements smoothly.
-> > + */
-> > +static int __maybe_unused dw9768_vcm_resume(struct device *dev) {
-> > +struct i2c_client *client = to_i2c_client(dev);
-> > +struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> > +struct dw9768_device *dw9768_dev = sd_to_dw9768_vcm(sd);
-> > +
-> > +if (!dw9768_dev->power_count)
-> > +return 0;
-> > +
-> > +return dw9768_power_on(dw9768_dev, true); }
-> > +
-> > +static const struct i2c_device_id dw9768_id_table[] = {
-> > +{ DW9768_NAME, 0 },
-> > +{ { 0 } }
-> > +};
-> > +MODULE_DEVICE_TABLE(i2c, dw9768_id_table);
-> > +
-> > +static const struct of_device_id dw9768_of_table[] = {
-> > +{ .compatible = "dongwoon,dw9768" },
-> > +{ { 0 } }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, dw9768_of_table);
-> > +
-> > +static const struct dev_pm_ops dw9768_pm_ops = {
-> > +SET_SYSTEM_SLEEP_PM_OPS(dw9768_vcm_suspend, dw9768_vcm_resume)
-> > +SET_RUNTIME_PM_OPS(dw9768_vcm_suspend, dw9768_vcm_resume, NULL) };
-> > +
-> > +static struct i2c_driver dw9768_i2c_driver = {
-> > +.driver = {
-> > +.name = DW9768_NAME,
-> > +.pm = &dw9768_pm_ops,
-> > +.of_match_table = dw9768_of_table,
-> > +},
-> > +.probe_new  = dw9768_probe,
-> > +.remove = dw9768_remove,
-> > +.id_table = dw9768_id_table,
-> > +};
-> > +
-> > +module_i2c_driver(dw9768_i2c_driver);
-> > +
-> > +MODULE_AUTHOR("Dongchun Zhu <dongchun.zhu@mediatek.com>");
-> > +MODULE_DESCRIPTION("DW9768 VCM driver"); MODULE_LICENSE("GPL v2");
-> >
-> *********************MEDIATEK Confidential/Internal Use*********************
-
-
+> > 
+> > Thanks
+> > Kishon
+> > 
+> > >>
+> > >> Thanks
+> > >> Kishon
+> > >>>
+> > >>> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > >>> ---
+> > >>> v2:
+> > >>>  - Remove the repeated assignment code.
+> > >>>
+> > >>>  drivers/pci/controller/dwc/pci-layerscape-ep.c | 26
+> > >>> +++++++++++++++++++-------
+> > >>>  1 file changed, 19 insertions(+), 7 deletions(-)
+> > >>>
+> > >>> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > >>> b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > >>> index 4e92a95..8461f62 100644
+> > >>> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > >>> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > >>> @@ -22,6 +22,7 @@
+> > >>>
+> > >>>  struct ls_pcie_ep {
+> > >>>  	struct dw_pcie		*pci;
+> > >>> +	struct pci_epc_features	*ls_epc;
+> > >>>  };
+> > >>>
+> > >>>  #define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
+> > >>> @@ -40,25 +41,26 @@ static const struct of_device_id
+> > >> ls_pcie_ep_of_match[] = {
+> > >>>  	{ },
+> > >>>  };
+> > >>>
+> > >>> -static const struct pci_epc_features ls_pcie_epc_features = {
+> > >>> -	.linkup_notifier = false,
+> > >>> -	.msi_capable = true,
+> > >>> -	.msix_capable = false,
+> > >>> -};
+> > >>> -
+> > >>>  static const struct pci_epc_features*
+> > >>> ls_pcie_ep_get_features(struct dw_pcie_ep *ep)  {
+> > >>> -	return &ls_pcie_epc_features;
+> > >>> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> > >>> +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+> > >>> +
+> > >>> +	return pcie->ls_epc;
+> > >>>  }
+> > >>>
+> > >>>  static void ls_pcie_ep_init(struct dw_pcie_ep *ep)  {
+> > >>>  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> > >>> +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+> > >>>  	enum pci_barno bar;
+> > >>>
+> > >>>  	for (bar = BAR_0; bar <= BAR_5; bar++)
+> > >>>  		dw_pcie_ep_reset_bar(pci, bar);
+> > >>> +
+> > >>> +	pcie->ls_epc->msi_capable = ep->msi_cap ? true : false;
+> > >>> +	pcie->ls_epc->msix_capable = ep->msix_cap ? true : false;
+> > >>>  }
+> > >>>
+> > >>>  static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> > >>> @@
+> > >>> -118,6 +120,7 @@ static int __init ls_pcie_ep_probe(struct
+> > >>> platform_device
+> > >> *pdev)
+> > >>>  	struct device *dev = &pdev->dev;
+> > >>>  	struct dw_pcie *pci;
+> > >>>  	struct ls_pcie_ep *pcie;
+> > >>> +	struct pci_epc_features *ls_epc;
+> > >>>  	struct resource *dbi_base;
+> > >>>  	int ret;
+> > >>>
+> > >>> @@ -129,6 +132,10 @@ static int __init ls_pcie_ep_probe(struct
+> > >> platform_device *pdev)
+> > >>>  	if (!pci)
+> > >>>  		return -ENOMEM;
+> > >>>
+> > >>> +	ls_epc = devm_kzalloc(dev, sizeof(*ls_epc), GFP_KERNEL);
+> > >>> +	if (!ls_epc)
+> > >>> +		return -ENOMEM;
+> > >>> +
+> > >>>  	dbi_base = platform_get_resource_byname(pdev,
+> > IORESOURCE_MEM,
+> > >> "regs");
+> > >>>  	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
+> > >>>  	if (IS_ERR(pci->dbi_base))
+> > >>> @@ -139,6 +146,11 @@ static int __init ls_pcie_ep_probe(struct
+> > >> platform_device *pdev)
+> > >>>  	pci->ops = &ls_pcie_ep_ops;
+> > >>>  	pcie->pci = pci;
+> > >>>
+> > >>> +	ls_epc->linkup_notifier = false,
+> > >>> +	ls_epc->bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
+> > >>> +
+> > >>> +	pcie->ls_epc = ls_epc;
+> > >>> +
+> > >>>  	platform_set_drvdata(pdev, pcie);
+> > >>>
+> > >>>  	ret = ls_add_pcie_ep(pcie, pdev);
+> > >>>
