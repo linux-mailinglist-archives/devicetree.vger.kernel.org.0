@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E69A6A5570
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 14:01:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B248A55F8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 14:27:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730291AbfIBMBv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 08:01:51 -0400
-Received: from foss.arm.com ([217.140.110.172]:53096 "EHLO foss.arm.com"
+        id S1730987AbfIBM0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 08:26:30 -0400
+Received: from mga01.intel.com ([192.55.52.88]:40037 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729690AbfIBMBu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 08:01:50 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B102B28;
-        Mon,  2 Sep 2019 05:01:49 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 280923F246;
-        Mon,  2 Sep 2019 05:01:49 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 13:01:47 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        leoyang.li@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
-        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, arnd@arndb.de,
-        gregkh@linuxfoundation.org, zhiqiang.hou@nxp.com
-Subject: Re: [PATCH v3 08/11] PCI: layerscape: Modify the MSIX to the
- doorbell mode
-Message-ID: <20190902120147.GH9720@e119886-lin.cambridge.arm.com>
-References: <20190902031716.43195-1-xiaowei.bao@nxp.com>
- <20190902031716.43195-9-xiaowei.bao@nxp.com>
+        id S1729893AbfIBM0a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 08:26:30 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 05:26:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,459,1559545200"; 
+   d="scan'208";a="198574743"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga001.fm.intel.com with ESMTP; 02 Sep 2019 05:26:28 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i4lPf-0001gL-5Z; Mon, 02 Sep 2019 15:26:27 +0300
+Date:   Mon, 2 Sep 2019 15:26:27 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: Re: [PATCH v4 11/11] lib/test_printf: Add tests for %pfw printk
+ modifier
+Message-ID: <20190902122627.GG2680@smile.fi.intel.com>
+References: <20190902083240.20367-1-sakari.ailus@linux.intel.com>
+ <20190902083240.20367-12-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190902031716.43195-9-xiaowei.bao@nxp.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+In-Reply-To: <20190902083240.20367-12-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 11:17:13AM +0800, Xiaowei Bao wrote:
-> dw_pcie_ep_raise_msix_irq was never called in the exisitng driver
-> before, because the ls1046a platform don't support the MSIX feature
-> and msix_capable was always set to false.
-> Now that add the ls1088a platform with MSIX support, but the existing
-> dw_pcie_ep_raise_msix_irq doesn't work, so use the doorbell method to
-> support the MSIX feature.
-> 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+On Mon, Sep 02, 2019 at 11:32:40AM +0300, Sakari Ailus wrote:
+> Add a test for the %pfw printk modifier using software nodes.
 
-Reviewed-by: Andrew Murray <andrew.murray@arm.com>
+> +	const struct software_node softnodes[] = {
+> +		{ .name = "first", },
+> +		{ .name = "second", .parent = &softnodes[0], },
+> +		{ .name = "third", .parent = &softnodes[1], },
+> +		{ NULL /* Guardian */ },
+> +	};
 
-> ---
-> v2: 
->  - No change
-> v3:
->  - Modify the commit message make it clearly.
-> 
->  drivers/pci/controller/dwc/pci-layerscape-ep.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> index 1e07287..5f0cb99 100644
-> --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> @@ -79,7 +79,8 @@ static int ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
->  	case PCI_EPC_IRQ_MSI:
->  		return dw_pcie_ep_raise_msi_irq(ep, func_no, interrupt_num);
->  	case PCI_EPC_IRQ_MSIX:
-> -		return dw_pcie_ep_raise_msix_irq(ep, func_no, interrupt_num);
-> +		return dw_pcie_ep_raise_msix_irq_doorbell(ep, func_no,
-> +							  interrupt_num);
->  	default:
->  		dev_err(pci->dev, "UNKNOWN IRQ type\n");
->  		return -EINVAL;
-> -- 
-> 2.9.5
-> 
+> +	test(full_name_second, "%pfw",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
+> +	test(full_name, "%pfw",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
+> +	test(full_name, "%pfwf",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
+> +	test(second_name, "%pfwP",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
+> +	test(third_name, "%pfwP",
+> +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
+
+
+These can be shorted and easier to parse if you use absolute indexes.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
