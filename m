@@ -2,118 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 50029A4D14
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 03:18:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFFCA4D87
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 05:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729206AbfIBBST (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 1 Sep 2019 21:18:19 -0400
-Received: from mail-io1-f42.google.com ([209.85.166.42]:41028 "EHLO
-        mail-io1-f42.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729147AbfIBBST (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 1 Sep 2019 21:18:19 -0400
-Received: by mail-io1-f42.google.com with SMTP id j5so25967578ioj.8;
-        Sun, 01 Sep 2019 18:18:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=sO42KCp2F1BVVy0mnKBt9Vus/HrCCbUOcWtHspdbidA=;
-        b=XJFndeRmSX0J60cBWb5Pl6nwkDYWWu+6m5+hqN3MqlI19bLGRXu21vV2tmTCvzqrkd
-         R8jVR/Y+Fz3QNKZkLNCWj8ANMMnkflemBXKMeFTXVYa0yB4q/C05+6dvR/6fC1e00kuF
-         AWmg+sRNLNU+GgIpOq51TQr9nSYzbt3NtSXvL8YHi7t0Z3MRL9I8yt1FsT6/jfX/Q/Zs
-         rf1EA1kNbi0KJI5QB8lt/RjarO2ZjyxmIS42U1/wBdpB/W+ZhBBR8JhyFgqEtlvy6BTZ
-         FcLjl0UWZ/X5ZkKTOV54z5H0h03/KYgZSbJSMJxj1jMRi8BA2w6Xrj0/DsBpduCEY1ml
-         1Tbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=sO42KCp2F1BVVy0mnKBt9Vus/HrCCbUOcWtHspdbidA=;
-        b=QPUTfaBPMbUShTkFfJRZdi4USLVPHZtKk03wpPDElt2EzSBzjjfoAdcPGZcLKarAep
-         jrIGZUJfCxolIfLJL+B6Y1ANpP5YHqbWWWIB3rV+7u/oAbZAk65B2Y6Mq65edwqcFjBR
-         X3SISZMBNtYhUgZcBiHHfya18LdMLtTwTAW6NISl814SIaoMB7PgafiZDUHiNSgbEPye
-         p8k+GC7VyM817JQbftFnww6sJF76UrYcyKrAmd8ytCqrnvVv3bURMheNgu1Nj40LLpjG
-         tegKD8EE18dlZSTwU1X3K+n/KHquDYMCR29Qs8kI51ixza2dc42zuYAXiHtAOjziotaq
-         jB1Q==
-X-Gm-Message-State: APjAAAWX/KoH1vp9SxRrlA1QQdR+Fwa2s20WvYrndF/VqCf4NvJGhvqY
-        ZwCOgn4P4XpOzQkQNSU7M/t/P5cMuwdIl2YE6UA=
-X-Google-Smtp-Source: APXvYqxMV47N5X/vUxjVExPfpQ++jyOIgMFhA/LhDqItTA2hAXcTqHdda6Q2bPmGBITO9UxVtyqih4ySAUoEPw0fggM=
-X-Received: by 2002:a5d:9bd4:: with SMTP id d20mr2538618ion.243.1567387098254;
- Sun, 01 Sep 2019 18:18:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190828202723.1145-1-linux.amoon@gmail.com> <20190828202723.1145-2-linux.amoon@gmail.com>
- <CAFBinCBWq0LcdA1-a5W06zKp0RzGs5_=Mph6StGKXJ7npCgbfg@mail.gmail.com>
- <CANAwSgS+HGYXr290=EvdhKxh3TiBOqfbcuuF4cMAiBVX1ez9+Q@mail.gmail.com> <CAFBinCCLPa64_h0JE4Z_pMuUuhb=HKUXPti2pkUFAuEPO2fE6Q@mail.gmail.com>
-In-Reply-To: <CAFBinCCLPa64_h0JE4Z_pMuUuhb=HKUXPti2pkUFAuEPO2fE6Q@mail.gmail.com>
-From:   Anand Moon <linux.amoon@gmail.com>
-Date:   Mon, 2 Sep 2019 06:48:06 +0530
-Message-ID: <CANAwSgRVkJXNckcNELKhj4R_Lex62WJn3K4ct1wkuocMjfWAAg@mail.gmail.com>
-Subject: Re: [PATCHv1 1/3] arm64: dts: meson: odroid-c2: Add missing regulator
- linked to P5V0 regulator
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org,
-        Linux Kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1729269AbfIBD1i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 1 Sep 2019 23:27:38 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:47644 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729239AbfIBD1h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 1 Sep 2019 23:27:37 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id F18AD20067B;
+        Mon,  2 Sep 2019 05:27:35 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 739B020067A;
+        Mon,  2 Sep 2019 05:27:27 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id CC7B0402B7;
+        Mon,  2 Sep 2019 11:27:16 +0800 (SGT)
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        leoyang.li@nxp.com, kishon@ti.com, lorenzo.pieralisi@arm.com,
+        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org
+Cc:     arnd@arndb.de, gregkh@linuxfoundation.org, zhiqiang.hou@nxp.com,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: [PATCH v3 00/11] *** SUBJECT HERE ***
+Date:   Mon,  2 Sep 2019 11:17:05 +0800
+Message-Id: <20190902031716.43195-1-xiaowei.bao@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+*** BLURB HERE ***
 
-On Mon, 2 Sep 2019 at 03:23, Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> Hi Anand,
->
-> On Sun, Sep 1, 2019 at 3:58 PM Anand Moon <linux.amoon@gmail.com> wrote:
-> >
-> > Hi Martin,
-> >
-> > Thanks for your review comments.
-> >
-> > Their have been some revision changes in S905 Odroid Schematics.
-> > [0] https://dn.odroid.com/S905/Schematic/
-> >
-> > Well I have make my changes based on old odroid-c2_rev0.2_20151218.pdf
->
-> [...]
-> > >
-> > > according to the schematics there's both:
-> > > - VDDIO_AO3V3
-> > > - VCC3V3 (which is turned on by VDDIO_AO3V3, see [0])
-> > >
-> >
-> > From the schematics it seams same.
-> >
-> > VDDIO_AO3V3---DMG340LSQN4 (Q4)---VCC3V3
-> yes, they are the same signal. the only difference is that VCC3V3 is
-> turned on later in the power-up sequence
->
-> > But this name change was done to link TFLASH_VDD_EN to TFLASH_VDD for eMMC
-> >
-> > VDDIO_AO3V3-----TFLASH_VDD using  TFLASH_VDD_EN gpio pin.
-> >
-> > Well I have tested this changes on eMMC module.
-> I cannot see any of the TFLASH_* regulators being linked to eMMC (they
-> are only linked to the SD card slot, I also checked
-> odroid-c2_rev0.2_20151218.pdf and odroid-c2_rev0.2_20171114.pdf).
-> which page of the odroid-c2_rev0.2_20151218.pdf schematics shows how
-> TFLASH_VDD is linked to eMMC?
->
-> please note that I don't have an Odroid-C2 board myself (so I cannot
-> test any of this).
->
->
-> Martin
+Xiaowei Bao (11):
+  PCI: designware-ep: Add multiple PFs support for DWC
+  PCI: designware-ep: Add the doorbell mode of MSI-X in EP mode
+  PCI: designware-ep: Move the function of getting MSI capability
+    forward
+  PCI: designware-ep: Modify MSI and MSIX CAP way of finding
+  dt-bindings: pci: layerscape-pci: add compatible strings for ls1088a
+    and ls2088a
+  PCI: layerscape: Fix some format issue of the code
+  PCI: layerscape: Modify the way of getting capability with different
+    PEX
+  PCI: layerscape: Modify the MSIX to the doorbell mode
+  PCI: layerscape: Add EP mode support for ls1088a and ls2088a
+  arm64: dts: layerscape: Add PCIe EP node for ls1088a
+  misc: pci_endpoint_test: Add LS1088a in pci_device_id table
 
-Thanks I will double check again and re-post then with correction again.
+ .../devicetree/bindings/pci/layerscape-pci.txt     |   4 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi     |  31 +++
+ drivers/misc/pci_endpoint_test.c                   |   1 +
+ drivers/pci/controller/dwc/pci-layerscape-ep.c     | 100 ++++++--
+ drivers/pci/controller/dwc/pcie-designware-ep.c    | 255 +++++++++++++++++----
+ drivers/pci/controller/dwc/pcie-designware.c       |  59 +++--
+ drivers/pci/controller/dwc/pcie-designware.h       |  48 +++-
+ 7 files changed, 404 insertions(+), 94 deletions(-)
 
-Best Regards
--Anand
+-- 
+2.9.5
+
