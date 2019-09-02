@@ -2,217 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1F27A581E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:41:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA8EFA5861
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:51:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731341AbfIBNjW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:39:22 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37479 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731330AbfIBNjV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:39:21 -0400
-Received: by mail-wm1-f68.google.com with SMTP id d16so14655554wme.2;
-        Mon, 02 Sep 2019 06:39:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=wPZgkYUgc3YwR+wsRfif0DfrV8qbGMQgmAEKsHAecWE=;
-        b=eKuQdGtexegE3PpOSoNtZBswPvbY08dfUGF/JdNDuTDheJnGpB2WCdV7eH0ACzjyPw
-         al24wTSCth1r4T923r8pGZfGEB8LdfINk112GO+kHocwx9OLAGUxZVJMQ7/ohv4ntTxE
-         2Q36vXj6N5QDikirRBtnSAsSj8LnMtRmqm1XVjafeD38UIgKCsGykHVwzIaKe6I/qgyZ
-         kKOJYt5HewE/XCbMLvX9b+WIxazyfPTX/pH5ho+NiF+LbNmnbNa6MwWo6JaYgoJZS4fe
-         72ud+yaa9cMb1gK1Y91QoI4hKWxWecX+l+Iv0wTehUQruNCtd9a07FPwCU18mf7qwc8Z
-         M5IQ==
-X-Gm-Message-State: APjAAAWnihenHi34Fh9ugIUdapT6segGo3wfTCNzPG7m2waTlsmZesG3
-        mNWLEd9J3j//Y/nFIR77Ng==
-X-Google-Smtp-Source: APXvYqybCVrAVCbPJoi8ueJ0dQ9Ncnp8wfj00aMU86WHtM1txDOX6nDXBPHLAZhUgCdNYthuSw+/sg==
-X-Received: by 2002:a7b:c244:: with SMTP id b4mr35203191wmj.125.1567431559382;
-        Mon, 02 Sep 2019 06:39:19 -0700 (PDT)
-Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id m17sm15277494wrs.9.2019.09.02.06.39.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 06:39:18 -0700 (PDT)
-Message-ID: <5d6d1b86.1c69fb81.f86b5.3988@mx.google.com>
-Date:   Mon, 02 Sep 2019 14:39:18 +0100
-From:   Rob Herring <robh@kernel.org>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "andre.przywara@arm.com" <andre.przywara@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: mailbox: add binding doc for the ARM
- SMC/HVC mailbox
-References: <1567004515-3567-1-git-send-email-peng.fan@nxp.com>
- <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+        id S1729832AbfIBNvV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Sep 2019 09:51:21 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:40687 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729823AbfIBNvV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:51:21 -0400
+X-Originating-IP: 86.250.200.211
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 4FE5EFF80E;
+        Mon,  2 Sep 2019 13:51:14 +0000 (UTC)
+Date:   Mon, 2 Sep 2019 15:51:13 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Michal Simek <michal.simek@xilinx.com>,
+        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        alexandre@bootlin.com
+Subject: Re: [PATCH 2/3] dt-bindings: sound: Add Xilinx logicPD-I2S FPGA IP
+ bindings
+Message-ID: <20190902155113.40b00fa0@xps13>
+In-Reply-To: <20190902044231.GA17348@bogus>
+References: <20190830210607.22644-1-miquel.raynal@bootlin.com>
+        <20190830210607.22644-2-miquel.raynal@bootlin.com>
+        <20190902044231.GA17348@bogus>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567004515-3567-2-git-send-email-peng.fan@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 28, 2019 at 03:02:58AM +0000, Peng Fan wrote:
-> From: Peng Fan <peng.fan@nxp.com>
+Hi Rob,
+
+Thanks for the review, one question below.
+
+Rob Herring <robh@kernel.org> wrote on Mon, 02 Sep 2019 14:39:09 +0100:
+
+> On Fri, Aug 30, 2019 at 11:06:06PM +0200, Miquel Raynal wrote:
+> > Document the logicPD I2S FPGA block bindings in yaml.
+> > 
+> > Syntax verified with dt-doc-validate.
+> > 
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../bindings/sound/xlnx,logicpd-i2s.yaml      | 57 +++++++++++++++++++
+> >  1 file changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml b/Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml
+> > new file mode 100644
+> > index 000000000000..cbff641af199
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/xlnx,logicpd-i2s.yaml
+> > @@ -0,0 +1,57 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/xlnx,logicpd-i2s.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Device-Tree bindings for Xilinx logicPD I2S FPGA block
+> > +
+> > +maintainers:
+> > +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> > +
+> > +description: |
+> > +  The IP supports I2S playback/capture audio. It acts as a slave and
+> > +  clocks should come from the codec. It only supports two channels and
+> > +  S16_LE format.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: xlnx,logicpd-i2s
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +    description:
+> > +      Base address and size of the IP core instance.
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    items:
+> > +      - description: tx interrupt
+> > +      - description: rx interrupt
+> > +    description:
+> > +      Either the Tx interruption or the Rx interruption or both.  
 > 
-> The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
-> actions in software layers running in the EL2 or EL3 exception levels.
-> The term "ARM" here relates to the SMC instruction as part of the ARM
-> instruction set, not as a standard endorsed by ARM Ltd.
+> The schema says either tx or both. Doesn't really matter here as it's 
+> just numbers.
+
+I see , I'll drop the 'items' entry.
+
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mailbox/arm-smc.yaml       | 125 +++++++++++++++++++++
->  1 file changed, 125 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> > +
+> > +  interrupt-names:
+> > +    minItems: 1
+> > +    maxItems: 2
+> > +    items:
+> > +      - const: tx
+> > +      - const: rx  
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> new file mode 100644
-> index 000000000000..f8eb28d5e307
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> @@ -0,0 +1,125 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM SMC Mailbox Interface
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
-> +  call) instruction to trigger a mailbox-connected activity in firmware,
-> +  executing on the very same core as the caller. By nature this operation
-> +  is synchronous and this mailbox provides no way for asynchronous messages
-> +  to be delivered the other way round, from firmware to the OS, but
-> +  asynchronous notification could also be supported. However the value of
-> +  r0/w0/x0 the firmware returns after the smc call is delivered as a received
-> +  message to the mailbox framework, so a synchronous communication can be
-> +  established, for a asynchronous notification, no value will be returned.
-> +  The exact meaning of both the action the mailbox triggers as well as the
-> +  return value is defined by their users and is not subject to this binding.
-> +
-> +  One use case of this mailbox is the SCMI interface, which uses shared memory
-> +  to transfer commands and parameters, and a mailbox to trigger a function
-> +  call. This allows SoCs without a separate management processor (or when
-> +  such a processor is not available or used) to use this standardized
-> +  interface anyway.
-> +
-> +  This binding describes no hardware, but establishes a firmware interface.
-> +  Upon receiving an SMC using one of the described SMC function identifiers,
-> +  the firmware is expected to trigger some mailbox connected functionality.
-> +  The communication follows the ARM SMC calling convention.
-> +  Firmware expects an SMC function identifier in r0 or w0. The supported
-> +  identifiers are passed from consumers, or listed in the the arm,func-ids
-> +  properties as described below. The firmware can return one value in
-> +  the first SMC result register, it is expected to be an error value,
-> +  which shall be propagated to the mailbox client.
-> +
-> +  Any core which supports the SMC or HVC instruction can be used, as long as
-> +  a firmware component running in EL3 or EL2 is handling these calls.
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,smc-mbox
-> +
-> +  "#mbox-cells":
-> +    const: 1
-> +
-> +  arm,num-chans:
-> +    description: The number of channels supported.
-> +    items:
-> +      minimum: 1
-> +      maximum: 4096 # Should be enough?
-> +
-> +  method:
-> +    - enum:
-
-Did you build this with 'make dt_binding_check' as this should be a 
-warning. This should not be a list entry (i.e. drop the '-').
-
-> +        - smc
-> +        - hvc
-> +
-> +  transports:
-
-arm,transports
-
-> +    - enum:
-> +        - mem
-> +        - reg
-> +
-> +  arm,func-ids:
-> +    description: |
-> +      An array of 32-bit values specifying the function IDs used by each
-> +      mailbox channel. Those function IDs follow the ARM SMC calling
-> +      convention standard [1].
-> +
-> +      There is one identifier per channel and the number of supported
-> +      channels is determined by the length of this array.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 0
-> +    maxItems: 4096   # Should be enough?
-> +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +  - arm,num-chans
-> +  - transports
-> +  - method
-> +
-> +examples:
-> +  - |
-> +    sram@910000 {
-> +      compatible = "mmio-sram";
-> +      reg = <0x0 0x93f000 0x0 0x1000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      ranges = <0 0x0 0x93f000 0x1000>;
-> +
-> +      cpu_scp_lpri: scp-shmem@0 {
-> +        compatible = "arm,scmi-shmem";
-> +        reg = <0x0 0x200>;
-> +      };
-> +
-> +      cpu_scp_hpri: scp-shmem@200 {
-> +        compatible = "arm,scmi-shmem";
-> +        reg = <0x200 0x200>;
-> +      };
-> +    };
-> +
-> +    firmware {
-> +      smc_mbox: mailbox {
-> +        #mbox-cells = <1>;
-> +        compatible = "arm,smc-mbox";
-> +        method = "smc";
-> +        arm,num-chans = <0x2>;
-> +        transports = "mem";
-> +        /* Optional */
-> +        arm,func-ids = <0xc20000fe>, <0xc20000ff>;
-> +      };
-> +
-> +      scmi {
-> +        compatible = "arm,scmi";
-> +        mboxes = <&smc_mbox 0>, <&smc_mbox 1>;
-> +        mbox-names = "tx", "rx";
-> +        shmem = <&cpu_scp_lpri>, <&cpu_scp_hpri>;
-> +      };
-> +    };
-> +
-> +...
-> -- 
-> 2.16.4
+> But here it does matter.
+> 
+> The easiest way to express this is:
+> 
+> oneOf:
+>   - items:
+>       - enum: [ tx, rx ]
+>   - items:
+>       - const: tx
+>       - const: rx
 > 
 
+Does this enforce an order? (I don't know if it matters, though, but in
+the bellow example I put the Rx interrupt first).
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupts-controller
+> > +
+> > +examples:
+> > +  - |
+> > +    logii2s_dai: logii2s-dai@43c10000 {
+> > +        reg = <0x43c10000 0x1000>;
+> > +        compatible = "xlnx,logicpd-i2s-dai";
+> > +        interrupt-parent = <&intc>;
+> > +        interrupts = <0 29 IRQ_TYPE_LEVEL_HIGH>, <0 30 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names = "rx", "tx";
+> > +    };
+> > -- 
+> > 2.20.1
+> >   
+> 
+
+Thanks,
+Miquèl
