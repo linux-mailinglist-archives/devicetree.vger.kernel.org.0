@@ -2,62 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13063A5257
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 10:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F948A5280
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 11:07:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730054AbfIBI6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 04:58:45 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:39684 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729801AbfIBI6p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 04:58:45 -0400
-Received: by mail-pg1-f195.google.com with SMTP id u17so7159155pgi.6;
-        Mon, 02 Sep 2019 01:58:44 -0700 (PDT)
+        id S1729883AbfIBJGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 05:06:47 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:36566 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729763AbfIBJGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 05:06:47 -0400
+Received: by mail-lj1-f194.google.com with SMTP id u15so12159291ljl.3
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 02:06:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=VeTPzJ+ApN7GKUp8q8Zb3MQjmxhoQ+Z6J4rIQfIPMcs=;
-        b=p2zSEeCQMIN4+TtDuAUx64/2zNyixZ4CxGIdpAHhzWN+3pwCTpR7LsNV6lBUQ3vluz
-         AhbTmBUZBOdmlyeYnVOldMkWPPpso+v6z0yjAJ4yeTmjDkPDLvOJFIlb8zklQwQa4T9l
-         MlBbkT+VeHsI/eCPR3d17d8QhqzVkvI+UPvTqaFcStDUnLXjDeXsZWbbAYKopdRODvz8
-         PLnEKtVV57rKYlY9sAUuCnD0/6nIwO4uyWZRa8P4eTWkxin7L2FR1ZPOZIopaq6dg1Rn
-         b9xgoXnICPA1+xLa5vEoiC4oU5xBtj+o9ymVs4C7GTClg6dTyQLQkuOdSszTTQE3Eoyn
-         cY8g==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ayhIrTq0dYD1crX4bCnYCwEQ3J9YxfxzkKpNwwOjRhU=;
+        b=pvdgSVsXnsmLoeqY7Acklfd5TL4BuMOQzRiz9/n8bYqW+jPlVz5jH7EIr7BIzvsn8v
+         JUazHV+FJyUTc0opXUX4sf98fM3ChTEKHZYALqUc1C2H/MQlFC55mIBgHCZ8K9ajBWDG
+         yez4FnfzEldnSL3xTTNj1MYoUV4x7G7qSmzpZmfHT+aQq1lvqZ/itvyvaQ8NApStUn/l
+         oZ5iSq4gf/HGsc4C9VMV/7jjjyBEGm0IKuigSdFkhVi5rqKU6GPo2O3RCydmzMQbi6Hd
+         38zMhHDRH0M2RGp+X8wZKExfwGHHILxKtM+YzA39xp9MtGTC1W34QWhFThFDvGSWVD4J
+         el0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=VeTPzJ+ApN7GKUp8q8Zb3MQjmxhoQ+Z6J4rIQfIPMcs=;
-        b=N7NqcdcGA+qavfywh/+w2OL8EwirUU7vj1YBNqz2QvXXTI4v5Udx3gWqIAxk5xjczG
-         2Mhwesg3QX7C0WKxgcwAfp37Zut7igVi88KXLr+HHkqFyhdW6ziHQrpsAZdeiiwomPAv
-         TFsYjTcCBcoWdZKLPstL+vwBMs7sR8y88+oDgntVdP3KyyCnt2SNhZLAfJBUWtu85pWm
-         XuA/NiZWBO5VcN+jKR3jPE6gKvC72ObU6YTBhGnM2EaJE+0g52llQrOjg69BVJwdaD92
-         coo5vVFfFvdZz3EehKkYH/F/93nKlc9RCjvNB22ju88oSz1znBni4SePZTGpLm0QRH1u
-         mBqw==
-X-Gm-Message-State: APjAAAVK6Hysu18eogbjUbZduR/8RgVFjpf++sSc0E1QG+Hw9CfcKgvA
-        gook3E6wAX1keP13PhfBahU=
-X-Google-Smtp-Source: APXvYqz/XVIL92q6ROyMvLN8edaMCL4kFQPd9X397P59sX5o4g/F7kM5IfpBBD+l5eYNHQWRp0spVw==
-X-Received: by 2002:a63:5c7:: with SMTP id 190mr23692838pgf.67.1567414724496;
-        Mon, 02 Sep 2019 01:58:44 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.203])
-        by smtp.gmail.com with ESMTPSA id y6sm6313117pfp.82.2019.09.02.01.58.41
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ayhIrTq0dYD1crX4bCnYCwEQ3J9YxfxzkKpNwwOjRhU=;
+        b=TyeCM7r5tC+g89V6VdHGAKF+LWQD+wnaTak+0YzW/K/xdrYS/RHkqwONVEPg1dvwLs
+         FzmTzVUFT1F6oef1zH0HDfsJ2pFRub6PWLQ+cLggI9+RwFR1qWr0xTpPkZbt9lcbAP6p
+         E8WgfDChyupFPXtDmJH77fzCgkgT7p4OWHpoSAvwUl9JYB4uBfPrXpIythMrQx8NdT5r
+         kv6J/P6CX7JXVIbP156spRT3LYkWzsdm1V4KujYNpwedmwy8VhAMVYo7ynTL0SmGFFs9
+         83EEIQa5vo+C8l0NvZa0WECS3tP3geGXVBQudwCb38QHWxqKs7LE28wFAEDpk60a49Jv
+         0xjA==
+X-Gm-Message-State: APjAAAUGCmX3udFvBRbm2tVXwT0YDu21m97TKBSA96EhE5w5hE3GUQt4
+        ceQWKSw15nJXxTPC8jYqMayUtg==
+X-Google-Smtp-Source: APXvYqxinO7cywWMdvwtgixZqruPokLKVNsJL4WagBKMUJnVPQ/plMIqS+6vYQCJqv1xk5igpllCVQ==
+X-Received: by 2002:a2e:42c9:: with SMTP id h70mr6166391ljf.88.1567415204890;
+        Mon, 02 Sep 2019 02:06:44 -0700 (PDT)
+Received: from genomnajs.ideon.se ([85.235.10.227])
+        by smtp.gmail.com with ESMTPSA id m3sm725034ljc.29.2019.09.02.02.06.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 01:58:44 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCHv2-next 3/3] arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI supply
-Date:   Mon,  2 Sep 2019 08:58:21 +0000
-Message-Id: <20190902085821.1263-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190902085821.1263-1-linux.amoon@gmail.com>
-References: <20190902085821.1263-1-linux.amoon@gmail.com>
+        Mon, 02 Sep 2019 02:06:43 -0700 (PDT)
+From:   Linus Walleij <linus.walleij@linaro.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/2] drm/panel: Add DT bindings for Sony ACX424AKP
+Date:   Mon,  2 Sep 2019 11:06:32 +0200
+Message-Id: <20190902090633.24239-1-linus.walleij@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -65,46 +61,76 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per schematics HDMI_P5V0 is supplied by P5V0 so add missing link.
+This adds device tree bindings for the Sony ACX424AKP panel.
+Let's use YAML.
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-As per Martin's suggestion added the HDMI_P5V0 fix regulator node.
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../display/panel/sony,acx424akp.yaml         | 53 +++++++++++++++++++
+ 1 file changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index ef2c3b74415b..a520ec0d73ff 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -66,6 +66,15 @@
- 		regulator-always-on;
- 	};
- 
-+	hdmi_p5v0: regulator-hdmi_p5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "HDMI_P5V0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		/* AP2331SA-7 */
-+		vin-supply = <&p5v0>;
-+	};
+diff --git a/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+new file mode 100644
+index 000000000000..29f41fee1b69
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/sony,acx424akp.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
- 	tflash_vdd: regulator-tflash_vdd {
- 		compatible = "regulator-fixed";
- 
-@@ -220,6 +229,7 @@
- 	status = "okay";
- 	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
- 	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_p5v0>;
- };
- 
- &hdmi_tx_tmds_port {
++title: Sony ACX424AKP 4" 480x864 AMOLED panel
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++allOf:
++  - $ref: panel-common.yaml#
++
++properties:
++  compatible:
++    const: sony,acx424akp
++  reg: true
++  port: true
++  reset-gpios: true
++  vddi-supply:
++     description: regulator that supplies the vddi voltage
++  dsi-command-mode:
++     type: boolean
++     description:
++       If this is specified, the panel will be used in command
++       mode instead of video mode.
++
++required:
++  - compatible
++  - reg
++  - port
++  - reset-gpios
++  - power-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    panel@0 {
++        compatible = "sony,acx424akp";
++        reg = <0>;
++        vddi-supply = <&foo>;
++        reset-gpios = <&foo_gpio 0 GPIO_ACTIVE_LOW>;
++
++        port {
++            panel_in: endpoint {
++                remote-endpoint = <&dsi_out>;
++            };
++        };
++    };
++
++...
+\ No newline at end of file
 -- 
-2.23.0
+2.21.0
 
