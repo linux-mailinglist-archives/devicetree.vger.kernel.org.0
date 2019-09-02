@@ -2,142 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 514D0A5988
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:40:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54956A5989
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:40:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731519AbfIBOkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:40:12 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33563 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731523AbfIBOkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:40:11 -0400
-Received: by mail-wm1-f67.google.com with SMTP id r17so12118890wme.0
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 07:40:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rqck1HgtYvTFndS0HVWjRCv4NRinryTkdQd/sTBP6J8=;
-        b=GhBvx41L5btNRr/sYbSeodk8h+ahuX8GTBk2fkrI18hB/AnW5Sj0Zq+2NCVGA0XXNk
-         3VDw71YhqEcMgrx+6qtWX1rApRkZywGPo8u0cqwU1ctMDApoJf6VnAyc93MYbcgG5PJ5
-         UnMB+zbqx4TX7l9XDSXgxW4Kh6sulAy25T///fX92fOyXlmBPMvvCmtHPt3CMz/ZH3M4
-         QEB3AeuDkbK6xvh0X+5K5hAsiThUWpIgEoEHWcclnqxQ5qLgVxyecy8lCy/Hc+9lMTc3
-         sEp+uhiB9FWpts0LHGkrfgZsAYMRjt6ShmUQucNEivtB1ZOf96s0GSeN1AiV6HXjqT7M
-         JMeg==
+        id S1731534AbfIBOk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:40:26 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:45584 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730830AbfIBOk0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:40:26 -0400
+Received: by mail-wr1-f67.google.com with SMTP id q12so14241135wrj.12;
+        Mon, 02 Sep 2019 07:40:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rqck1HgtYvTFndS0HVWjRCv4NRinryTkdQd/sTBP6J8=;
-        b=FFHlAX2Mst28Rb8bkD7kwZQB6PT22bwaD9P8qsXG3q1F8bEySergd21SEutF00O3BH
-         NNUHMvbXn3XoDwX/79d3dK14iFiI8ZbdAqkp3nWwclpk+I/KGLTARg0TB+23YOsATEDE
-         ZMW+NEDhI9KfVEZzBA90bY+dsfEw+acGtjTGjB/8LUVOpYE/qvOTfPSGG4AX1EaYfqtJ
-         Go3tjjfLukQ0oFKcpVKvReNG5XQkDUlglE6F+9Ibtp9pn7iTf06MlPSRQmdzLIGAqNyb
-         rE8pF8Lrm//+E/6p/e1J0VM8lf1KjCJZi7xbCmkTxjDHKfrf6EcsLPOBYRPbhsKq2Tzg
-         1j+w==
-X-Gm-Message-State: APjAAAViSuWRwslISZ/yBRJDZWKcoGN1wmJcJk6BwncDSzAk8m5rbYC1
-        G4eS8vgq7fsd8/Kl7ak9GFk=
-X-Google-Smtp-Source: APXvYqwAzM8lYoZC5FAWTuEWeriwbFm0I649F/5EWCknS8Fe2HF0zsLG31yKXQBFy6IPxafMi7IDWg==
-X-Received: by 2002:a1c:9a0f:: with SMTP id c15mr14014869wme.27.1567435209635;
-        Mon, 02 Sep 2019 07:40:09 -0700 (PDT)
-Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
-        by smtp.gmail.com with ESMTPSA id e3sm11679270wrh.12.2019.09.02.07.40.07
+        bh=gF2YRoI6/lwt/TFrMmnLSeITDMeILS4+8zt7lZ2omHo=;
+        b=SeD1F11cXtnLnW8M3vBCdD1wlLJ8w/5LP6d+V+4Vlv91+v0XCPwv827KEG8Xo4xYbj
+         IohDbp5OyaDgbcpYX4CzKDwebbYrbt6SXQibN+j0BIpKLXRCnwarVW9gfjTdZhiED7cc
+         UABBye0tc4hDMMbNsT029lm/CS0Q0lxXaH4sbrreD84gTGu1FCP55UAl3DAhRZnbVlNg
+         Yn7XrLKe6tx9OYfknoOG5vTkZtILGU0nDQDCkVyZZi6DwOczbjPXqOmrlv7dNyu78+Za
+         5+iC6fy80cQ4utrys9ndpQ3dnETiNtWYGl3gCskoN1SfRW2PjDULxNKODgnmBn6W1Cba
+         IuEQ==
+X-Gm-Message-State: APjAAAUsaJ0kW3no0/sOtjhkkZPms85IAoFPkic7FeT1zp1RQv7Si4WE
+        Xlv9IPBJex9mLGBUqkl3eQ==
+X-Google-Smtp-Source: APXvYqzRwSzgzhnfparGWRJaR6tBJvpa7gyFCJoMnUO+USlBgu95jVtD97+bXRcYz9WicR2EhMiC3g==
+X-Received: by 2002:a5d:51c7:: with SMTP id n7mr35130945wrv.73.1567435224169;
+        Mon, 02 Sep 2019 07:40:24 -0700 (PDT)
+Received: from localhost ([212.187.182.166])
+        by smtp.gmail.com with ESMTPSA id o193sm14431348wme.39.2019.09.02.07.40.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 07:40:07 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 16:40:06 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] drm/panel: Add DT bindings for Sony ACX424AKP
-Message-ID: <20190902144006.GB1445@ulmo>
-References: <20190902090633.24239-1-linus.walleij@linaro.org>
- <20190902093517.GA12946@ulmo>
- <CACRpkdb_X+Eia=mhHrXBcBn0osMtw6bKU6uAS5AV8ASV63qBkg@mail.gmail.com>
+        Mon, 02 Sep 2019 07:40:23 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 15:40:22 +0100
+From:   Rob Herring <robh@kernel.org>
+To:     Peter Vernia <peter.vernia@gmail.com>
+Cc:     peter.vernia@gmail.com, linus.walleij@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, poeschel@lemonage.de
+Subject: Re: [PATCH] pinctrl-mcp23s08: Fix property-name in dt-example
+Message-ID: <20190902144022.GA24928@bogus>
+References: <20190828195609.4176-1-peter.vernia@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="EuxKj2iCbKjpUGkD"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CACRpkdb_X+Eia=mhHrXBcBn0osMtw6bKU6uAS5AV8ASV63qBkg@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190828195609.4176-1-peter.vernia@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 28 Aug 2019 15:56:09 -0400, Peter Vernia wrote:
+> The device-tree properties documentation-file specifies the property
+> "microchip,spi-present-mask" as required for MCP23SXX chips. However,
+> the device-tree-source example below it uses only "spi-present-mask".
+> Without "microchip," on the front, the driver will print "missing
+> spi-present-mask" when it initializes.
+> 
+> Update the device-tree example with the correct property-name.
+> 
+> Signed-off-by: Peter Vernia <peter.vernia@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/pinctrl-mcp23s08.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
---EuxKj2iCbKjpUGkD
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied, thanks.
 
-On Mon, Sep 02, 2019 at 01:44:38PM +0200, Linus Walleij wrote:
-> On Mon, Sep 2, 2019 at 11:35 AM Thierry Reding <thierry.reding@gmail.com>=
- wrote:
->=20
-> > > +  dsi-command-mode:
-> > > +     type: boolean
-> > > +     description:
-> > > +       If this is specified, the panel will be used in command
-> > > +       mode instead of video mode.
-> >
-> > I'm not sure there's concensus on this one yet. I think so far the
-> > driver decides which mode to use the panel in. Technically this falls
-> > into the category of configuration, so it doesn't really belong in the
-> > DT.
->=20
-> The way we've used DT is for a bit of both hardware description
-> and configuration I'd say, but I'm no authority on the subject.
->=20
-> > I vaguely recall from discussions I've had on this subject that there's
-> > usually no reason to do video mode if you can do command mode because
-> > command mode is more power efficient. This was a long time ago, so I may
-> > be misremembering. Perhaps you have different information on this?
->=20
-> No idea. I was under the impression that video mode was preferred
-> but I have no idea why.
-
-Hm... my recollection is that command mode is only supported on "smart"
-panels that have an internal framebuffer. So the commands actually
-instruct the panel to update their internal framebuffer, which means you
-can technically switch off the display engine when there are no updates.
-
-Under those circumstances I think it'd make sense to default to command
-mode if both the panel and the host support it and stick with video mode
-if for example the host can't do command mode.
-
-Or perhaps this is something that could be set from some userspace
-policy maker via a connector property? A compositor for instance would
-have a pretty good idea of what kind of activity is going on, so it
-could at some point decide to switch between video mode and command mode
-if one of them is more appropriate for the given workload.
-
-Command mode can also be used to do partial updates, if I remember
-correctly, which again would make it possible for a compositor to send
-only a subset of a screen update.
-
-Thierry
-
---EuxKj2iCbKjpUGkD
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1tKcYACgkQ3SOs138+
-s6Getw//VlLa1RVzsDcvNquUxqbLt7fKys2ntFacTCSHS7dRHxODI3n4LQdqX4oD
-RsVefgn7sFKYB4Q5/Gx+JWwcpnOlGgYhvry62RUGLLAeQdCgVdFDgFy9eVIB5lDh
-yYFz4HNLOvqyjC5IZozy6n/qAYrAzDMJJ9mz5h4WJ8w+p5qyg0bT/k1PtG0iLsZW
-5EzzjB7OXjqGrNUvZb0at+fK4tOz862ZXsXUY1VP+6/VKd5pWns56xLC3ZHdh1y6
-yLgezbG8zHttMgxfF65EeSTVxaC1NvcNySb+aNxZFtpoyZbyLi/UHRZNjHkAdRVP
-GNghtHXPZvjDaC/qrvVwyHsRiO+Pb+pMVezchyn1B2b5BeTtKzHr9bVAdX1ldlwN
-w043kdBcA6lY981UYC397KsrLhbYecn25RoblZBJsevNgMBfcN7AE1/8xl3teYga
-n9f3xsmExjuQsI+sDiq1phTrOU0iaZkg8zf+cYFMozThavk79l9SHc5mwkMuKjWd
-jy3WapegGFnmGh/BEdwZKsVJaA2ebGCZMU+kLea1yvQKajU8fAudmDl9+XUuWmUO
-3LPgVRR0SHTXcX5eWaeQVD9ckEn20nEBtWnr5ARNZbBbG7k539MF7kHAytuY+XNl
-H4nc7fX6LEeAHNWFlmIZ9moJ9jslFKzIXid3RIdZqL4YtWZi2fM=
-=JVKc
------END PGP SIGNATURE-----
-
---EuxKj2iCbKjpUGkD--
+Rob
