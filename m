@@ -2,119 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 789BDA5895
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56781A58B4
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731193AbfIBN5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:57:46 -0400
-Received: from mga06.intel.com ([134.134.136.31]:34043 "EHLO mga06.intel.com"
+        id S1730526AbfIBOD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:03:26 -0400
+Received: from vps.xff.cz ([195.181.215.36]:37646 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731080AbfIBN5f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 09:57:35 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 06:57:34 -0700
-X-IronPort-AV: E=Sophos;i="5.64,459,1559545200"; 
-   d="scan'208";a="189563848"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 06:57:32 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id F408521150;
-        Mon,  2 Sep 2019 16:57:25 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1i4mpo-00067j-U5; Mon, 02 Sep 2019 16:57:32 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Subject: [PATCH v5 11/11] lib/test_printf: Add tests for %pfw printk modifier
-Date:   Mon,  2 Sep 2019 16:57:32 +0300
-Message-Id: <20190902135732.23455-12-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
-References: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
+        id S1730218AbfIBOD0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 10:03:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1567433004; bh=PIZR0w2A/4yebx5N98JZFq5HnRwp3i+09UDZyZKFhJg=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=aynYSKF6bVmhcvJuC139QvR0C8HJJb5VJKWPq7VfJaFlkBnvBYDScjhMpL0Scs1cv
+         keN8Ong6vJuGEaVrZczvmiZBmYwVOQuNBvImPWvyXrUOhDKD78dPfdDISy+3l5SOwn
+         Sd6zcnfIZJWzynwdBsycqGIUQoUuBE+1perL7TJ0=
+Date:   Mon, 2 Sep 2019 16:03:23 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        devicetree@vger.kernel.org,
+        Sergey Matyukevich <geomatsi@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-kernel@vger.kernel.org, Emmanuel Vadot <manu@freebsd.org>,
+        linux-sunxi@googlegroups.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: Re: [PATCH 00/10] arm64: dts: allwinner: h5: Enable CPU DVFS
+ (cpufreq)
+Message-ID: <20190902140323.fgfrifyow5qgoce4@core.my.home>
+Mail-Followup-To: Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        devicetree@vger.kernel.org, Sergey Matyukevich <geomatsi@gmail.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-kernel@vger.kernel.org, Emmanuel Vadot <manu@freebsd.org>,
+        linux-sunxi@googlegroups.com,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        linux-arm-kernel@lists.infradead.org,
+        Icenowy Zheng <icenowy@aosc.io>
+References: <20190130084203.25053-1-wens@csie.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190130084203.25053-1-wens@csie.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a test for the %pfw printk modifier using software nodes.
+Hi,
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- lib/test_printf.c | 37 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+On Wed, Jan 30, 2019 at 04:41:53PM +0800, Chen-Yu Tsai wrote:
+> Hi everyone,
+> 
+> This series enables DVFS for the CPU cores (aka cpufreq) on the
+> Allwinner H5 SoC. The OPP table was taken from Armbian, with minor
+> tweaks to the maximum voltage to account for slightly increased voltage
+> on some of the boards.
+> 
+> This has been tested on the Bananapi M2+ v1.2 and Libre Computer
+> ALL-H3-CC H5 ver..  I do not have the remaining boards so I've CC-ed
+> people who did the original submission or have modified the board
+> specifically later on.
+> 
+> Patch 1 fixes the voltages specified for the GPIO-controlled regulator
+> on the Bananapi M2+ v1.2. The voltages are slightly higher than what
+> was originally written.
+> 
+> Patch 2 adds a fixed regulator for the CPU on the original Bananapi M2+.
+> This is for the retail version, not the engineering samples that had an
+> even higher voltage setting.
+> 
+> Patch 3 hooks up the CPU regulator supply for H5 boards that already
+> define the regulator, but were missing the property to tie it to the
+> CPUs.
+> 
+> Patch 4 ~ 8 adds the CPU regulator for boards that don't have it
+> defined. This is based on each vendor's schematics. I need people
+> to test each of these specifically and the whole series.
+> 
+> Patch 9 ties the CPU clock to the CPU cores.
+> 
+> Patch 10 adds the OPP table, based on the one from Armbian.
+> 
+> Please have a look and please help test this.
 
-diff --git a/lib/test_printf.c b/lib/test_printf.c
-index 944eb50f38625..9c6d716979fb1 100644
---- a/lib/test_printf.c
-+++ b/lib/test_printf.c
-@@ -22,6 +22,8 @@
- #include <linux/gfp.h>
- #include <linux/mm.h>
- 
-+#include <linux/property.h>
-+
- #include "../tools/testing/selftests/kselftest_module.h"
- 
- #define BUF_SIZE 256
-@@ -588,6 +590,40 @@ flags(void)
- 	kfree(cmp_buffer);
- }
- 
-+static void __init fwnode_pointer(void)
-+{
-+	const struct software_node softnodes[] = {
-+		{ .name = "first", },
-+		{ .name = "second", .parent = &softnodes[0], },
-+		{ .name = "third", .parent = &softnodes[1], },
-+		{ NULL /* Guardian */ },
-+	};
-+	const char * const full_name = "/second/third";
-+	const char * const full_name_second = "/second";
-+	const char * const second_name = "second";
-+	const char * const third_name = "third";
-+	int rval;
-+
-+	rval = software_node_register_nodes(softnodes);
-+	if (rval) {
-+		pr_warn("cannot register softnodes; rval %d\n", rval);
-+		return;
-+	}
-+
-+	test(full_name_second, "%pfw",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
-+	test(full_name, "%pfw",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-+	test(full_name, "%pfwf",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-+	test(second_name, "%pfwP",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
-+	test(third_name, "%pfwP",
-+	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-+
-+	software_node_unregister_nodes(softnodes);
-+}
-+
- static void __init
- test_pointer(void)
- {
-@@ -610,6 +646,7 @@ test_pointer(void)
- 	bitmap();
- 	netdev_features();
- 	flags();
-+	fwnode_pointer();
- }
- 
- static void __init selftest(void)
--- 
-2.20.1
+Looks like this patch series got forgotten. Or is it waiting for some
+user testing?
 
+regards,
+	o.
+
+> 
+> Regards
+> ChenYu
+> 
+> 
+> Chen-Yu Tsai (10):
+>   ARM: dts: sunxi: bananapi-m2-plus-v1.2: Fix CPU supply voltages
+>   ARM: dts: bananapi-m2-plus: Add CPU supply regulator
+>   arm64: dts: allwinner: h5: Hook up cpu regulator supplies
+>   arm64: dts: allwinner: h5: nanopi-neo2: Add CPU regulator supply
+>   arm64: dts: allwinner: h5: orange-pi-zero-plus: Add CPU regulator
+>     supply
+>   arm64: dts: allwinner: h5: orange-pi-zero-plus2: Add CPU regulator
+>     supply
+>   arm64: dts: allwinner: h5: orange-pi-pc2: Add CPU regulator supply
+>   arm64: dts: allwinner: h5: orange-pi-prime: Add CPU regulator supply
+>   arm64: dts: allwinner: h5: Add clock to CPU cores
+>   arm64: dts: allwinner: h5: Add CPU Operating Performance Points table
+> 
+>  .../boot/dts/sunxi-bananapi-m2-plus-v1.2.dtsi | 30 +++-----
+>  arch/arm/boot/dts/sunxi-bananapi-m2-plus.dtsi | 14 ++++
+>  .../sun50i-h5-emlid-neutis-n5-devboard.dts    |  4 +
+>  .../allwinner/sun50i-h5-nanopi-neo-plus2.dts  |  4 +
+>  .../dts/allwinner/sun50i-h5-nanopi-neo2.dts   | 20 +++++
+>  .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  | 28 +++++++
+>  .../allwinner/sun50i-h5-orangepi-prime.dts    | 28 +++++++
+>  .../sun50i-h5-orangepi-zero-plus.dts          | 20 +++++
+>  .../sun50i-h5-orangepi-zero-plus2.dts         | 20 +++++
+>  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  | 75 +++++++++++++++++++
+>  10 files changed, 224 insertions(+), 19 deletions(-)
+> 
+> -- 
+> 2.20.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
