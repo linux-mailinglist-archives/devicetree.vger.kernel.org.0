@@ -2,28 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17658A50BB
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 10:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43B9FA50FA
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 10:13:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730129AbfIBICh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 04:02:37 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:58302 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730036AbfIBICT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 04:02:19 -0400
-Received: from pendragon.ideasonboard.com (231.125-247-81.adsl-dyn.isp.belgacom.be [81.247.125.231])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6D2A0303;
-        Mon,  2 Sep 2019 10:02:17 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1567411337;
-        bh=9LpLDBZKeRKxbRTdwGzHizcveEKiifXyzbvf6jL+liQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=l4oUO988Hlc4uTdtzaHPaZBcV30LXMyIR1ns7Ywb9XZhhkX6dXKaawv+8gDacGTqR
-         pX6ZkK0asuMtPvXmXgwPYY3LdyNOirfYSlhJpz6yUaj65XTRlet3PMwl3d40Pom9Yt
-         rq3DS4oYOEZlq5VQHWw7i6i2ZUbG4fZRQKf4k5Ug=
-Date:   Mon, 2 Sep 2019 11:02:11 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Pavel Machek <pavel@ucw.cz>
+        id S1729776AbfIBIL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 04:11:28 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:60414 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729771AbfIBIL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 04:11:28 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 06F08821C8; Mon,  2 Sep 2019 10:11:11 +0200 (CEST)
+Date:   Mon, 2 Sep 2019 10:11:25 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         Jacopo Mondi <jacopo@jmondi.org>,
         Mauro Carvalho Chehab <mchehab@kernel.org>,
@@ -34,52 +26,89 @@ Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
         open list <linux-kernel@vger.kernel.org>,
         devicetree@vger.kernel.org
 Subject: Re: [RFC 1/5] media: dt-bindings: Document 'location' property
-Message-ID: <20190902080211.GD4777@pendragon.ideasonboard.com>
+Message-ID: <20190902081125.GD15850@amd>
 References: <20190814202815.32491-1-jacopo@jmondi.org>
  <20190814202815.32491-2-jacopo@jmondi.org>
  <20190815065635.GJ6133@paasikivi.fi.intel.com>
  <20190901172414.GB1047@bug>
+ <20190902080211.GD4777@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="n2Pv11Ogg/Ox8ay5"
 Content-Disposition: inline
-In-Reply-To: <20190901172414.GB1047@bug>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190902080211.GD4777@pendragon.ideasonboard.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Pavel,
 
-On Sun, Sep 01, 2019 at 07:24:15PM +0200, Pavel Machek wrote:
-> > > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-> > > @@ -89,6 +89,10 @@ Optional properties
-> > >    but a number of degrees counter clockwise. Typical values are 0 and 180
-> > >    (upside down).
-> > > 
-> > > +- location: The camera device mounting position, relative to the device
-> > > +  usage orientation. Possible values are:
-> > > +  0 - Front camera. The image sensor is mounted on the front side of the device.
-> > > +  1 - Back camera. The image sensor is mounted on the back side of the device.
-> > 
-> > Would it make sense to make this a little more generic? Such as s/image
-> > sensor/ device/, for instance?
-> > 
-> > Is this also relevant for flash or lens devices?
-> > 
-> > Flash (torch) devices could be present, at least principle, without a
-> > camera. There once was even such a Nokia phone, 1100 unless I'm mistaken.
-> > :-)
-> 
-> Well, I'd call them LEDs, not camera flashes ... if there's no camera. And IIRC 
-> these devices had LEDs on top of the phone... so neither front nor back side.
+--n2Pv11Ogg/Ox8ay5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I would go for the name "torch" in that case. It really depends on the
-device, but in any case, the torch LEDs would have a location (and we
-would possibly need to expand this property to
-include the top, bottom, left and right sides).
+On Mon 2019-09-02 11:02:11, Laurent Pinchart wrote:
+> Hi Pavel,
+>=20
+> On Sun, Sep 01, 2019 at 07:24:15PM +0200, Pavel Machek wrote:
+> > > > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > > > @@ -89,6 +89,10 @@ Optional properties
+> > > >    but a number of degrees counter clockwise. Typical values are 0 =
+and 180
+> > > >    (upside down).
+> > > >=20
+> > > > +- location: The camera device mounting position, relative to the d=
+evice
+> > > > +  usage orientation. Possible values are:
+> > > > +  0 - Front camera. The image sensor is mounted on the front side =
+of the device.
+> > > > +  1 - Back camera. The image sensor is mounted on the back side of=
+ the device.
+> > >=20
+> > > Would it make sense to make this a little more generic? Such as s/ima=
+ge
+> > > sensor/ device/, for instance?
+> > >=20
+> > > Is this also relevant for flash or lens devices?
+> > >=20
+> > > Flash (torch) devices could be present, at least principle, without a
+> > > camera. There once was even such a Nokia phone, 1100 unless I'm mista=
+ken.
+> > > :-)
+> >=20
+> > Well, I'd call them LEDs, not camera flashes ... if there's no camera. =
+And IIRC=20
+> > these devices had LEDs on top of the phone... so neither front nor back=
+ side.
+>=20
+> I would go for the name "torch" in that case. It really depends on the
+> device, but in any case, the torch LEDs would have a location (and we
+> would possibly need to expand this property to
+> include the top, bottom, left and right sides).
 
--- 
-Regards,
+Yes, but please let the torch devices be handled by LED subsystem
+(/sys/class/leds). media/ subsystem is a bit too big and complex for
+toggling LEDs on and off...
 
-Laurent Pinchart
+Thanks,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--n2Pv11Ogg/Ox8ay5
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl1szq0ACgkQMOfwapXb+vKnHQCgjekAFWoxQmyBJvoBF9kp1qOf
+E/0AoKfpZkQ0lr19PAOslOpMFN75pBfR
+=f3wG
+-----END PGP SIGNATURE-----
+
+--n2Pv11Ogg/Ox8ay5--
