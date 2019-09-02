@@ -2,68 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 201CCA583E
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232D0A57EB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729736AbfIBNkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:40:39 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33714 "EHLO
+        id S1730662AbfIBNit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 09:38:49 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:34687 "EHLO
         mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730221AbfIBNis (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:38:48 -0400
-Received: by mail-wm1-f67.google.com with SMTP id r17so11990513wme.0;
-        Mon, 02 Sep 2019 06:38:46 -0700 (PDT)
+        with ESMTP id S1730922AbfIBNit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:38:49 -0400
+Received: by mail-wm1-f67.google.com with SMTP id y135so9912368wmc.1;
+        Mon, 02 Sep 2019 06:38:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:subject:references
-         :in-reply-to:cc:cc:to;
-        bh=TpRHrWDk+BKtVt16BeWPVl2Sj4S7ymxrqVbVJgDIHmM=;
-        b=F4yhXb0UbAicyQ1qM5Aed/kzyZxzIuLsOS9zrfsvM3g1+YTEvgL1mWWSUWHmfEDT8j
-         h0klIJQmWSGzthSc0iRj2FilHodzh8GG8oeWeV6e29EU4xFl55kFT0rsnQLbFxKOrmrA
-         csEFgTGJljBMwREVJ3XrfEDuLkZYawy1LA/103JzZS5pwX+9/VvHA62yGkn5nYmi/Kmp
-         jaY31gpeYsdh1Z/Qs54C/YtyZbNp247KGrzxsGxyy9wlHGMl9M/M3WaZshHoAW2nkirF
-         bFYDSHA+rTYfRn8jkVrhrIxE1sor83ICWng5HATrFeqOWOeGwk5QZt8bf0XpbVPSz3c0
-         TdAA==
-X-Gm-Message-State: APjAAAWT2DNpgSJIASTqAS2HHyiDGMnN31ch8XPNR1WSzWQ5S1ZrtxZS
-        yeJI330H0O0lyaafdLhjBI+OgBFIlA==
-X-Google-Smtp-Source: APXvYqx0IbfQx421rMxJRsliJiRNSgfS7S13d8uiiggmXY+SbLRC8+XkevIKmxeykpo9JQltTt3UOw==
-X-Received: by 2002:a7b:c216:: with SMTP id x22mr36357141wmi.19.1567431525970;
-        Mon, 02 Sep 2019 06:38:45 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=lP+OoGEF7HmeKCtfc8mmDkbVMHD2nEU0wy8Yk5Uuck8=;
+        b=qtyht2Knuc7WOEUVyWz7N7W2OyvHeJVMWelH0n0+VFYi+2ZODa3VjTWOjWgbxJu6G4
+         rHaDs+CNydeoa66smHH31gJHMrvgN+CfrC9RL7kqmgLBzK37EnuthJAqS2Q3RwiBG+EU
+         qIF+pgQoIo1QQKzXBTpqUYvISQEnw61VOjSh3yM7qmAoAFFSd8ZqVkz6dI3G/+W1vKIa
+         7haO/h5/b8dX8bxk40193neUjz+VUJ0tIiPVZAjFx4ggxTMAq+t4G0yGWk5wWdK0E7qL
+         ILA/uKqspyQ8pNmBE8QMMbSBsCdTf1HJbVKBzBHVNGZUesdIRkkYzSGYv5GvimsRiAIh
+         fd3g==
+X-Gm-Message-State: APjAAAXpPUgW2iufGvTixPKRfPtk7vXOdkz0gEq8Z3+94W387IHBno6D
+        yvhqzC2ccltPP3laK3CyKA==
+X-Google-Smtp-Source: APXvYqyDb7iutaz5y4Tc0LmVuWNVw/82y5Rin3xTusZ5wHyki1kqxmyfgqmGSIYLq5xNG/JShwZX8w==
+X-Received: by 2002:a1c:a003:: with SMTP id j3mr35873401wme.42.1567431527091;
+        Mon, 02 Sep 2019 06:38:47 -0700 (PDT)
 Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id n2sm9271782wro.52.2019.09.02.06.38.45
+        by smtp.gmail.com with ESMTPSA id t18sm11645053wrx.76.2019.09.02.06.38.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 06:38:45 -0700 (PDT)
-Message-ID: <5d6d1b65.1c69fb81.735c8.5363@mx.google.com>
-Date:   Mon, 02 Sep 2019 14:38:44 +0100
+        Mon, 02 Sep 2019 06:38:46 -0700 (PDT)
+Date:   Mon, 02 Sep 2019 14:38:46 +0100
 From:   Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: dmaengine: dma-common: Fix the dma-channel-mask property
-References: <1566988223-14657-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1566988223-14657-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Henry Chen <henryc.chen@mediatek.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V3 08/10] dt-bindings: interconnect: add MT8183
+ interconnect dt-bindings
+Message-ID: <20190902033045.GA10734@bogus>
+References: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
+ <1566995328-15158-9-git-send-email-henryc.chen@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1566995328-15158-9-git-send-email-henryc.chen@mediatek.com>
+X-Mutt-References: <1566995328-15158-9-git-send-email-henryc.chen@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Aug 2019 19:30:23 +0900, Yoshihiro Shimoda wrote:
-> The commit b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas
-> for the generic DMA bindings") changed the property from
-> dma-channel-mask to dma-channel-masks. So, this patch fixes it.
+On Wed, Aug 28, 2019 at 08:28:46PM +0800, Henry Chen wrote:
+> Add interconnect provider dt-bindings for MT8183.
 > 
-> Fixes: b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas for the generic DMA bindings")
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
 > ---
->  Changes from v1:
->  - s/Revise/Fix/ in the subject and s/revises/fixes/ the commit log.
->  https://patchwork.kernel.org/patch/11117885/
+>  .../devicetree/bindings/soc/mediatek/dvfsrc.txt        |  9 +++++++++
+>  include/dt-bindings/interconnect/mtk,mt8183-emi.h      | 18 ++++++++++++++++++
+>  2 files changed, 27 insertions(+)
+>  create mode 100644 include/dt-bindings/interconnect/mtk,mt8183-emi.h
 > 
->  Documentation/devicetree/bindings/dma/dma-common.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+> diff --git a/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt b/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+> index 7f43499..da98ec9 100644
+> --- a/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+> +++ b/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+> @@ -12,6 +12,11 @@ Required Properties:
+>  - clock-names: Must include the following entries:
+>  	"dvfsrc": DVFSRC module clock
+>  - clocks: Must contain an entry for each entry in clock-names.
+> +- #interconnect-cells : should contain 1
+> +- interconnect : interconnect providers support dram bandwidth requirements.
+> +	The provider is able to communicate with the DVFSRC and send the dram
+> +	bandwidth to it. shall contain only one of the following:
+> +	"mediatek,mt8183-emi"
+>  
+>  Example:
+>  
+> @@ -20,4 +25,8 @@ Example:
+>  		reg = <0 0x10012000 0 0x1000>;
+>  		clocks = <&infracfg CLK_INFRA_DVFSRC>;
+>  		clock-names = "dvfsrc";
+> +		ddr_emi: interconnect {
 
-Acked-by: Rob Herring <robh@kernel.org>
+The EMI is a sub-module in the DVFSRC? This is the DDR controller or 
+something else?
+
+
+> +			compatible = "mediatek,mt8183-emi";
+> +			#interconnect-cells = <1>;
+> +		};
+>  	};
 
