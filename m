@@ -2,163 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDFC5A4FA5
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 09:22:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C90FA4FD8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 09:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729293AbfIBHW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 03:22:28 -0400
-Received: from mga09.intel.com ([134.134.136.24]:5185 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729262AbfIBHW1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 03:22:27 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:22:27 -0700
-X-IronPort-AV: E=Sophos;i="5.64,457,1559545200"; 
-   d="scan'208";a="184429072"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Sep 2019 00:22:25 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id CB98C20B09; Mon,  2 Sep 2019 10:22:22 +0300 (EEST)
-Date:   Mon, 2 Sep 2019 10:22:22 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 09/10] lib/vsprintf: Add %pfw conversion specifier for
- printing fwnode names
-Message-ID: <20190902072222.GG5475@paasikivi.fi.intel.com>
-References: <20190829101043.24963-1-sakari.ailus@linux.intel.com>
- <20190829101043.24963-10-sakari.ailus@linux.intel.com>
- <20190830130349.GJ2680@smile.fi.intel.com>
+        id S1729715AbfIBH1p convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 2 Sep 2019 03:27:45 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:43203 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729678AbfIBH1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 03:27:44 -0400
+X-Originating-IP: 213.190.86.42
+Received: from localhost (unknown [213.190.86.42])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id D864DC0008;
+        Mon,  2 Sep 2019 07:27:40 +0000 (UTC)
+Date:   Mon, 2 Sep 2019 09:27:35 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Yangtao Li <tiny.windzz@gmail.com>, rui.zhang@intel.com,
+        edubezval@gmail.com, daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, wens@csie.org, mchehab+samsung@kernel.org,
+        davem@davemloft.net, gregkh@linuxfoundation.org,
+        Jonathan.Cameron@huawei.com, nicolas.ferre@microchip.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v5 00/18] add thermal driver for h6
+Message-ID: <20190902072735.zkrueocyz4glc26n@flea>
+References: <20190810052829.6032-1-tiny.windzz@gmail.com>
+ <20190901215214.f4vbxemdd7mf3gun@core.my.home>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190830130349.GJ2680@smile.fi.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20190901215214.f4vbxemdd7mf3gun@core.my.home>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+Hi,
 
-Thanks for the review.
+On Sun, Sep 01, 2019 at 11:52:14PM +0200, Ondřej Jirman wrote:
+> Hello Yangtao,
+>
+> On Sat, Aug 10, 2019 at 05:28:11AM +0000, Yangtao Li wrote:
+> > This patchset add support for A64, H3, H5, H6 and R40 thermal sensor.
+> >
+> > Thx to Icenowy and Vasily.
+> >
+> > BTY, do a cleanup in thermal makfile.
+>
+> I've added support for A83T and also some cleanups, according to my
+> feedback:
+>
+> https://megous.com/git/linux/log/?h=ths-5.3
+>
+> Feel free to pick up whatever you like from that tree.
+>
+> For others, there are also DTS patches in that tree for H3, H5, A83T, and H6, so
+> that shoul make testing of this driver easier.
 
-On Fri, Aug 30, 2019 at 04:03:49PM +0300, Andy Shevchenko wrote:
-> On Thu, Aug 29, 2019 at 01:10:42PM +0300, Sakari Ailus wrote:
-> > Add support for %pfw conversion specifier (with "f" and "P" modifiers) to
-> > support printing full path of the node, including its name ("f") and only
-> > the node's name ("P") in the printk family of functions. The two flags
-> > have equivalent functionality to existing %pOF with the same two modifiers
-> > ("f" and "P") on OF based systems. The ability to do the same on ACPI
-> > based systems is added by this patch.
-> > 
-> > On ACPI based systems the resulting strings look like
-> > 
-> > 	\_SB.PCI0.CIO2.port@1.endpoint@0
-> > 
-> > where the nodes are separated by a dot (".") and the first three are
-> > ACPI device nodes and the latter two ACPI data nodes.
-> 
-> Couple of comments below, FWIW,
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+I'm not convinced that always expanding the number of SoC supported is
+the best strategy to get this merged. Usually, keeping the same
+feature set across version, consolidating that, and then once it's in
+sending the new SoC support works best.
 
-Thanks!
+Maxime
 
-> 
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > ---
-> >  Documentation/core-api/printk-formats.rst | 24 +++++++++++++++
-> >  lib/vsprintf.c                            | 37 +++++++++++++++++++++++
-> >  scripts/checkpatch.pl                     |  3 +-
-> >  3 files changed, 63 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
-> > index 922a29eb70e6c..abba210f67567 100644
-> > --- a/Documentation/core-api/printk-formats.rst
-> > +++ b/Documentation/core-api/printk-formats.rst
-> > @@ -418,6 +418,30 @@ Examples::
-> >  
-> >  Passed by reference.
-> >  
-> > +Fwnode handles
-> > +--------------
-> > +
-> > +::
-> > +
-> > +	%pfw[fP]
-> 
-> I'm not familiar with all flavours of the OF case, the question is do we use
-> same letters for analogues?
-
-Yes. There are some that may be unworkable to be extended, but in general
-this helps folks who are familiar with the OF conversion specifiers.
-
-> 
-> > +
-> > +For printing information on fwnode handles. The default is to print the full
-> > +node name, including the path. The modifiers are functionally equivalent to
-> > +%pOF above.
-> > +
-> > +	- f - full name of the node, including the path
-> > +	- P - the name of the node including an address (if there is one)
-> > +
-> > +Examples (ACPI):
-> > +
-> > +	%pfwf	\_SB.PCI0.CIO2.port@1.endpoint@0	- Full node name
-> > +	%pfwP	endpoint@0				- Node name
-> > +
-> > +Examples (OF):
-> > +
-> > +	%pfwf	/ocp@68000000/i2c@48072000/camera@10/port/endpoint - Full name
-> > +	%pfwP	endpoint				- Node name
-> > +
-> >  Time and date (struct rtc_time)
-> >  -------------------------------
-> >  
-> > diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-> > index 19f9b3f30623e..79dacd0b9e124 100644
-> > --- a/lib/vsprintf.c
-> > +++ b/lib/vsprintf.c
-> > @@ -1978,6 +1978,37 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
-> >  	return widen_string(buf, buf - buf_start, end, spec);
-> >  }
-> >  
-> > +static noinline_for_stack
-> > +char *fwnode_string(char *buf, char *end, struct fwnode_handle *fwnode,
-> > +		    struct printf_spec spec, const char *fmt)
-> > +{
-> > +	struct printf_spec str_spec = spec;
-> > +	char *buf_start = buf;
-> > +
-> > +	str_spec.field_width = -1;
-> > +
-> > +	if (*fmt != 'w')
-> > +		return error_string(buf, end, "(%pfw?)", spec);
-> > +
-> > +	if (check_pointer(&buf, end, fwnode, spec))
-> > +		return buf;
-> > +
-> > +	fmt++;
-> > +
-> > +	switch (*fmt) {
-> > +	case 'f':	/* full_name */
-> > +	default:
-> > +		buf = fwnode_full_name_string(fwnode, buf, end);
-> > +		break;
-> > +	case 'P':	/* name */
-> 
-> > +		buf = string(buf, end, fwnode_get_name(fwnode),
-> > +			     str_spec);
-> 
-> Perfectly one line.
-
-Fixed.
-
--- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
