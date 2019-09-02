@@ -2,104 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B802A535D
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 11:50:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66833A537D
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 11:58:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730537AbfIBJuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 05:50:04 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:38383 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731008AbfIBJuE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 05:50:04 -0400
-Received: by mail-wr1-f68.google.com with SMTP id l11so4502040wrx.5
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 02:50:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=z/iNfh9lERKCL4WNCXIHABmMvr8yzyMTtcia6mN52EQ=;
-        b=F3ev0/94Lp7tRgH5QkOB7GchzXuzea7zDMr/QPIscw1kwGvE47q6u3+dDwu3Iu12WC
-         gbNy68B9TnB61ZUYtjULImN4UGYq4IsfRXjBdyRPJDKodTe+woG/43DGOEka+gy4L8Ks
-         y+zQf9aCd9hE9KlB2Vhl70ew//mw+HIjbwA5bjVMM4hV7ZAAE3u8eKUA/DpLqdDmsnWy
-         LVs1P90/kjUlAnPerYhSn30AYhNIrcJCd0W0+X7eMOV/bANxa67nRPY7BHFSFjUVVMt2
-         VihWvo4ntzvGsFSkTSkWXyxvgRnWflTJTq5QU80FbvrbeeWj1rJBHCB2PgMaYT0oGZa/
-         Lv/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=z/iNfh9lERKCL4WNCXIHABmMvr8yzyMTtcia6mN52EQ=;
-        b=hFqOl/cEYfb89JKRRrZgSXdKrC7tBvqQ6NC8sGogbdVWgDPAnu8iI1D72tAPY6OzKF
-         4Be/Epm8NWYb1QoMKJrJxyQ9E5ymaBCTBmBrVBYoqiVUI5eYAsJdrb29HfhnqTI3ts+6
-         pIKtKv4iuqcEoBhis+5JGv37flr46m1NOOg2nhfrsBsJGfaWBK++zKQXu6lWOgRzIXW6
-         JI93qUIhjUZtfBOLbVh4NFRIpbqzOOV5tjFwmNMjAp4Bo42ubYcQ4E8XuGtcQSUphtOR
-         +SByVGQymjQwym8lsYBM33nNFVt4tqhE2eCDNfw9eG0Q6B3gDQjb0rGCLGLSNo6qIHp6
-         DxSg==
-X-Gm-Message-State: APjAAAU5BPgWGF3PjX8/VADXT004SQiKMTVcEo18sa628Hgdc5lUp5qw
-        qtiRqhgELhy1NWustgAPw2qB/KedxgLaiw==
-X-Google-Smtp-Source: APXvYqzKfwhjRcpSww0X5JvjADuGYoZnJVDaisET7pRsBYvpYFMr7Bmpd+NM8IppVRkyGVrVHrE3rQ==
-X-Received: by 2002:a5d:4f05:: with SMTP id c5mr31271928wru.349.1567417803097;
-        Mon, 02 Sep 2019 02:50:03 -0700 (PDT)
-Received: from dell ([95.147.198.93])
-        by smtp.gmail.com with ESMTPSA id y3sm28567157wmg.2.2019.09.02.02.50.02
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 02 Sep 2019 02:50:02 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 10:50:01 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        "linux-arm-kernel @ lists . infradead . org Alessandro Zummo" 
-        <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Josef Friedl <josef.friedl@speed.at>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Tianping Fang <tianping.fang@mediatek.com>
-Subject: Re: [PATCH v6 10/13] mfd: mt6323: add mt6323 rtc+pwrc
-Message-ID: <20190902095001.GV32232@dell>
-References: <20190818135611.7776-1-frank-w@public-files.de>
- <20190818135611.7776-11-frank-w@public-files.de>
+        id S1730901AbfIBJ6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 05:58:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:51350 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730538AbfIBJ6O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 05:58:14 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B025428;
+        Mon,  2 Sep 2019 02:58:13 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 776463F246;
+        Mon,  2 Sep 2019 02:58:11 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 10:58:06 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     bhelgaas@google.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, andrew.murray@arm.com, dwmw@amazon.co.uk,
+        benh@kernel.crashing.org, alisaidi@amazon.com, ronenk@amazon.com,
+        barakw@amazon.com, talel@amazon.com, hanochu@amazon.com,
+        hhhawa@amazon.com, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 0/7] Amazon's Annapurna Labs DT-based PCIe host
+ controller driver
+Message-ID: <20190902095806.GA14841@e121166-lin.cambridge.arm.com>
+References: <20190821153545.17635-1-jonnyc@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190818135611.7776-11-frank-w@public-files.de>
+In-Reply-To: <20190821153545.17635-1-jonnyc@amazon.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 18 Aug 2019, Frank Wunderlich wrote:
-
-> From: Josef Friedl <josef.friedl@speed.at>
+On Wed, Aug 21, 2019 at 06:35:40PM +0300, Jonathan Chocron wrote:
+> This series adds support for Amazon's Annapurna Labs DT-based PCIe host
+> controller driver.
+> Additionally, it adds 3 quirks (ACS, VPD and MSI-X) and 2 generic DWC patches.
 > 
-> add entry for rtc and power-controller to mt6323
+> Changes since v3:
+> - Removed PATCH 8/8 since the usage of the PCI flags will be discussed
+>   in the upcoming LPC
+> - Align commit subject with the folder convention
+> - Added explanation regarding ECAM "overload" mechanism
+> - Switched to read/write{_relaxed} APIs
+> - Modified a dev_err to dev_dbg
+> - Removed unnecessary variable
+> - Removed driver details from dt-binding description
+> - Changed to SoC specific compatibles
+> - Fixed typo in a commit message
+> - Added comment regarding MSI in the MSI-X quirk
 > 
-> Signed-off-by: Josef Friedl <josef.friedl@speed.at>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> ---
-> changes since v5: none
-> changes since v4: none
-> changes since v3: none
-> changes since v2: only splitting, second part of v2 part 4
-> ---
->  drivers/mfd/mt6397-core.c | 25 +++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
+> Changes since v2:
+> - Added al_pcie_controller_readl/writel() wrappers
+> - Reorganized local vars in several functions according to reverse
+>   tree structure
+> - Removed unnecessary check of ret value
+> - Changed return type of al_pcie_config_prepare() from int to void
+> - Removed check if link is up from probe() [done internally in
+>   dw_pcie_rd/wr_conf()]
+> 
+> Changes since v1:
+> - Added comment regarding 0x0031 being used as a dev_id for non root-port devices as well
+> - Fixed different message/comment/print wordings
+> - Added panic stacktrace to commit message of MSI-x quirk patch
+> - Changed to pci_warn() instead of dev_warn()
+> - Added unit_address after node_name in dt-binding
+> - Updated Kconfig help description
+> - Used GENMASK and FIELD_PREP/GET where appropriate
+> - Removed leftover field from struct al_pcie and moved all ptrs to
+>   the beginning
+> - Re-wrapped function definitions and invocations to use fewer lines
+> - Change %p to %px in dbg prints in rd/wr_conf() functions
+> - Removed validation that the port is configured to RC mode (as this is
+>   added generically in PATCH 7/8)
+> - Removed unnecessary variable initializations
+> - Swtiched to %pR for printing resources
+> 
+> 
+> Ali Saidi (1):
+>   PCI: Add ACS quirk for Amazon Annapurna Labs root ports
+> 
+> Jonathan Chocron (6):
+>   PCI: Add Amazon's Annapurna Labs vendor ID
+>   PCI/VPD: Add VPD release quirk for Amazon's Annapurna Labs Root Port
+>   PCI: Add quirk to disable MSI-X support for Amazon's Annapurna Labs
+>     Root Port
+>   dt-bindings: PCI: Add Amazon's Annapurna Labs PCIe host bridge binding
+>   PCI: dwc: al: Add support for DW based driver type
+>   PCI: dwc: Add validation that PCIe core is set to correct mode
+> 
+>  .../devicetree/bindings/pci/pcie-al.txt       |  46 +++
+>  MAINTAINERS                                   |   3 +-
+>  drivers/pci/controller/dwc/Kconfig            |  12 +
+>  drivers/pci/controller/dwc/pcie-al.c          | 365 ++++++++++++++++++
+>  .../pci/controller/dwc/pcie-designware-ep.c   |   8 +
+>  .../pci/controller/dwc/pcie-designware-host.c |   8 +
+>  drivers/pci/quirks.c                          |  37 ++
+>  drivers/pci/vpd.c                             |  16 +
+>  include/linux/pci_ids.h                       |   2 +
+>  9 files changed, 496 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/pci/pcie-al.txt
 
-Applied, thanks.
+Hi Jonathan,
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+are you going to send a v5 for this series ? If we should consider
+it for v5.4 I expect it to be on the list this week as soon as possible.
+
+Thanks,
+Lorenzo
