@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E975A59DE
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC49A59E8
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 16:56:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731499AbfIBOyJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 10:54:09 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35440 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731106AbfIBOyJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:54:09 -0400
-Received: by mail-wm1-f65.google.com with SMTP id n10so4250822wmj.0;
-        Mon, 02 Sep 2019 07:54:07 -0700 (PDT)
+        id S1730650AbfIBOzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 10:55:05 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:55508 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730559AbfIBOzE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 10:55:04 -0400
+Received: by mail-wm1-f66.google.com with SMTP id g207so10934268wmg.5;
+        Mon, 02 Sep 2019 07:55:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=F6pY8kpCuq7zlHq4xPF57ULoqr+YYfsWTM9u8bPhit4=;
-        b=fEqqcVEJokEicoO5Otdkd/pzPR0gDt2nvJxH5wyIU0G3IgdPiDdvc2RgVFSAecxoJU
-         aI5f+CTrh+uZTwCsa0JEkCNmBJl++wljI4IkcWlMy2UiiTPyDMLm0WCshbl09rHCv+Gz
-         LkWI8B7mQKrkh6piTlynyDwIvZSHKKfc/uzDovLNSxerEy1TKWTJx1RLzXCIZsAB63h9
-         4MJ51tfpBYvdJFi5mdSYhmtrPYhdRhrg/z1d3mUmV04yNYxZAJzhhgQ0hQhHczz9GEmv
-         t+6rJyoo/tQlkdXX7Bs7ajamR1qEZQArQ5JnfsKQGEio9fBwxOS4cHk56ws/wxa/QmJr
-         mTEQ==
-X-Gm-Message-State: APjAAAWbeQa7UBsmYmX7LKeciKU9b2dHf/UpwFWZlJc6JKEF+dX645Fb
-        miR9BE0OpTEkytwqh/ZEgg==
-X-Google-Smtp-Source: APXvYqyxBMZBsZ+aukgd6fwk4huBxHWlwunpvdDu+ChONM81kBs8+TPP0OQ3X3Fa4ohcaeuJotjHDQ==
-X-Received: by 2002:a1c:48d5:: with SMTP id v204mr29808232wma.109.1567436046870;
-        Mon, 02 Sep 2019 07:54:06 -0700 (PDT)
+        bh=KGiL6o2AKBlfCr9GG/2iqSwFT36REWNAhdn8mXDglh4=;
+        b=fai2arHgRaF5W4cTrtjZxuXpg8JZti7inVYehtehHW4KeWkAODsO+UXlNHPpdjZsEX
+         9s7l2yWRGKDaj9Q17N8vGgxNJu3wIDWLuXz0/TaT4fBmU6amBLMkbw8TBiEILrrClZah
+         jq3KJQCCbqBJNbO6ax4DHLrE75qAvy2AMobXlitDVQewUmiBwJOFJwrf6AbLW9rfZpK9
+         5DYfst3ot8sCNZf6nOUCgfzO3fNXru+Y6ftKSIlRDeKEKSXp1XeVMDBRiXLseMV6asET
+         OqdefyWfhoEUawLpA6jindfgH2QOXjWkLLA7T2Nq0KLA2iPYpJX6jLkye0lLKlk9HN5Y
+         ZYuA==
+X-Gm-Message-State: APjAAAUNkuJERn6GHasVi7Nx5Oa1K+yzXElUQOMZBFLvkDi9dqdBVdYY
+        6gFipSOprgkjsF8Q/My4yw==
+X-Google-Smtp-Source: APXvYqz8zGSRcnE4QcIbeQv0H8SeUa+1A57aG/DyjksFCdGkM3lKqZUgAKtC1sPHrHzJdb34+lfGlw==
+X-Received: by 2002:a1c:a851:: with SMTP id r78mr6276054wme.166.1567436102570;
+        Mon, 02 Sep 2019 07:55:02 -0700 (PDT)
 Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id h12sm11612250wrp.51.2019.09.02.07.54.06
+        by smtp.gmail.com with ESMTPSA id a11sm15515964wrx.59.2019.09.02.07.55.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 07:54:06 -0700 (PDT)
-Date:   Mon, 2 Sep 2019 15:54:05 +0100
+        Mon, 02 Sep 2019 07:55:02 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 15:55:01 +0100
 From:   Rob Herring <robh@kernel.org>
 To:     Geert Uytterhoeven <geert+renesas@glider.be>
 Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
@@ -45,28 +45,26 @@ Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
         Sebastian Capella <sebcape@gmail.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH 3/5] dt-bindings: arm: idle-states: Correct "constraint
- guarantees"
-Message-ID: <20190902145405.GA16010@bogus>
+Subject: Re: [PATCH 4/5] dt-bindings: arm: idle-states: Add punctuation to
+ improve readability
+Message-ID: <20190902145501.GA17528@bogus>
 References: <20190830150302.20551-1-geert+renesas@glider.be>
- <20190830150302.20551-4-geert+renesas@glider.be>
+ <20190830150302.20551-5-geert+renesas@glider.be>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190830150302.20551-4-geert+renesas@glider.be>
+In-Reply-To: <20190830150302.20551-5-geert+renesas@glider.be>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Aug 2019 17:03:00 +0200, Geert Uytterhoeven wrote:
-> Correct "constraints guarantees" to "constraint guarantees".
-> 
+On Fri, 30 Aug 2019 17:03:01 +0200, Geert Uytterhoeven wrote:
 > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/arm/idle-states.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/arm/idle-states.txt | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
 
 Applied, thanks.
