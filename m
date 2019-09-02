@@ -2,70 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 257CEA57E7
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:41:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201CCA583E
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 15:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730917AbfIBNir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 09:38:47 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38728 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730662AbfIBNir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:38:47 -0400
-Received: by mail-wm1-f66.google.com with SMTP id o184so14652741wme.3;
-        Mon, 02 Sep 2019 06:38:45 -0700 (PDT)
+        id S1729736AbfIBNkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 09:40:39 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:33714 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730221AbfIBNis (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 09:38:48 -0400
+Received: by mail-wm1-f67.google.com with SMTP id r17so11990513wme.0;
+        Mon, 02 Sep 2019 06:38:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:date:from:subject:references
          :in-reply-to:cc:cc:to;
-        bh=faCPHhQ5rgRAsdKZWiSwQZJyN/jDKt3kIUBJvduHWWk=;
-        b=ZEtChirY8NRZkuyKv1mVzrtINRXYANYLEqIZHR9O3GOb1jXFRUs/DxWxvq1cveB/er
-         jBUe/fQ3GO4MDExaX54kkWHmQoFlBEZ8+DnV6CVuzFT9YJfagpS9OF3lqR03McKh6bir
-         oJ7AvOcyRiToINXtP2tzedq20qfueu6B3GbTf1QBvPzvsoW+43NoRRkADbonRE+Tyswm
-         curtTnz4ZiGe/YuX5509sK84raqMB2VLghHi+0Tiraho2cAeXycLZiigKAPRoVtcjn3b
-         WqHgUOzofxqALwQM1aCvsijlj5yz1s8UQBAmtTPxML5I27yb/Ab3YHlplfPkOIptEsFA
-         6pXw==
-X-Gm-Message-State: APjAAAVgavouDawtUeugVR9+i+gerq2SIYyArTJKUlEHD0L6k3uxA+Mc
-        aMG6Gtgtz99ockCPjyt9ODwv/j+HVg==
-X-Google-Smtp-Source: APXvYqxMiimKi1vQM/BUmHa7fcI+yEotranUAF4+pnmBN5r6CPbw9VKHVDVnILvqSYEeEWJ8vruglw==
-X-Received: by 2002:a1c:8013:: with SMTP id b19mr17152619wmd.81.1567431524887;
-        Mon, 02 Sep 2019 06:38:44 -0700 (PDT)
+        bh=TpRHrWDk+BKtVt16BeWPVl2Sj4S7ymxrqVbVJgDIHmM=;
+        b=F4yhXb0UbAicyQ1qM5Aed/kzyZxzIuLsOS9zrfsvM3g1+YTEvgL1mWWSUWHmfEDT8j
+         h0klIJQmWSGzthSc0iRj2FilHodzh8GG8oeWeV6e29EU4xFl55kFT0rsnQLbFxKOrmrA
+         csEFgTGJljBMwREVJ3XrfEDuLkZYawy1LA/103JzZS5pwX+9/VvHA62yGkn5nYmi/Kmp
+         jaY31gpeYsdh1Z/Qs54C/YtyZbNp247KGrzxsGxyy9wlHGMl9M/M3WaZshHoAW2nkirF
+         bFYDSHA+rTYfRn8jkVrhrIxE1sor83ICWng5HATrFeqOWOeGwk5QZt8bf0XpbVPSz3c0
+         TdAA==
+X-Gm-Message-State: APjAAAWT2DNpgSJIASTqAS2HHyiDGMnN31ch8XPNR1WSzWQ5S1ZrtxZS
+        yeJI330H0O0lyaafdLhjBI+OgBFIlA==
+X-Google-Smtp-Source: APXvYqx0IbfQx421rMxJRsliJiRNSgfS7S13d8uiiggmXY+SbLRC8+XkevIKmxeykpo9JQltTt3UOw==
+X-Received: by 2002:a7b:c216:: with SMTP id x22mr36357141wmi.19.1567431525970;
+        Mon, 02 Sep 2019 06:38:45 -0700 (PDT)
 Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id o129sm25062859wmb.41.2019.09.02.06.38.44
+        by smtp.gmail.com with ESMTPSA id n2sm9271782wro.52.2019.09.02.06.38.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 06:38:44 -0700 (PDT)
-Message-ID: <5d6d1b64.1c69fb81.a5aa4.0864@mx.google.com>
-Date:   Mon, 02 Sep 2019 14:38:43 +0100
+        Mon, 02 Sep 2019 06:38:45 -0700 (PDT)
+Message-ID: <5d6d1b65.1c69fb81.735c8.5363@mx.google.com>
+Date:   Mon, 02 Sep 2019 14:38:44 +0100
 From:   Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/6] dt-bindings: pci: Update iProc PCI binding for INTx support
-References: <1566982488-9673-1-git-send-email-srinath.mannam@broadcom.com> <1566982488-9673-2-git-send-email-srinath.mannam@broadcom.com>
-In-Reply-To: <1566982488-9673-2-git-send-email-srinath.mannam@broadcom.com>
-Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>
-Cc:     bcm-kernel-feedback-list@broadcom.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Ray Jui <ray.jui@broadcom.com>,
-        Srinath Mannam <srinath.mannam@broadcom.com>
-To:     Srinath Mannam <srinath.mannam@broadcom.com>
+Subject: Re: [PATCH] dt-bindings: dmaengine: dma-common: Fix the dma-channel-mask property
+References: <1566988223-14657-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1566988223-14657-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+Cc:     vkoul@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 28 Aug 2019 14:24:43 +0530, Srinath Mannam wrote:
-> From: Ray Jui <ray.jui@broadcom.com>
+On Wed, 28 Aug 2019 19:30:23 +0900, Yoshihiro Shimoda wrote:
+> The commit b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas
+> for the generic DMA bindings") changed the property from
+> dma-channel-mask to dma-channel-masks. So, this patch fixes it.
 > 
-> Update the iProc PCIe binding document for better modeling of the legacy
-> interrupt (INTx) support
-> 
-> Signed-off-by: Ray Jui <ray.jui@broadcom.com>
-> Signed-off-by: Srinath Mannam <srinath.mannam@broadcom.com>
+> Fixes: b37e3534ac42 ("dt-bindings: dmaengine: Add YAML schemas for the generic DMA bindings")
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../devicetree/bindings/pci/brcm,iproc-pcie.txt    | 48 ++++++++++++++++++----
->  1 file changed, 41 insertions(+), 7 deletions(-)
+>  Changes from v1:
+>  - s/Revise/Fix/ in the subject and s/revises/fixes/ the commit log.
+>  https://patchwork.kernel.org/patch/11117885/
+> 
+>  Documentation/devicetree/bindings/dma/dma-common.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
