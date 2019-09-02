@@ -2,171 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40319A52E1
-	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 11:35:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38583A52EB
+	for <lists+devicetree@lfdr.de>; Mon,  2 Sep 2019 11:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731138AbfIBJfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 05:35:20 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:34814 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730424AbfIBJfT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 05:35:19 -0400
-Received: by mail-qk1-f196.google.com with SMTP id q203so2749622qke.1
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 02:35:19 -0700 (PDT)
+        id S1731151AbfIBJfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 05:35:23 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:42802 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729882AbfIBJfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 05:35:22 -0400
+Received: by mail-ed1-f66.google.com with SMTP id y91so3121283ede.9
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 02:35:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=38YIQw9rYXVcXSnz01ylMn1XuQgT2tKgepHXTvRAlmI=;
-        b=MrtEnvsPeKbpdEE6n4t+yRTgqlactOV8g1SI+5jk0ZIyXDWGDbTrfXIz12VxRvYixu
-         SI8Ls/by2Tn0tT31+NYhrzpSyE5Qa9YGGnyhVIPRyvIcUhdZeF3bi3rdJehdc0tDmz98
-         CTP/uleQTCSkAmNWdqVCC0BkzhNBysidHkm9VFiK2EhUzjY3+sHD3BjBFcGIETlSLr27
-         i6Qiijo8rqb36DwmQYlzWbmf2lxeJ2FOYX04K4zDuxcziu8LoskVWRvp4bG8nMy1wfVs
-         bPt6NY0feBStC430sECK7fDZ4b8hOSs4S7Lbxq8HXiYsTdy5BQedyRMgkTk2AqWIjazR
-         8/Vw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=w7i56WxPDdLvrBHbBLcLHv4HjyZRwxFdeVPugCb27dg=;
+        b=Pe3UK9EUl9JgtTwr3khNlkn2sKA/vUyNnwTXuOU1+rIYIt+qdcvXLL3UNcg2EIudd/
+         6lblovuYrRr4a7qu2xJ5+W8xl8dMvD6F8zt4s6JIQUkls/0Q0ILkx9eg67Y8dLJ4b0tg
+         +ZMfX2PqIBr18D4LPMnHQKy4ki1TwuC9AN1tCIrlWbLCxk9nS0TsSvoR2HahbCFxrm/9
+         ZiGuAE3g3wZXnn8ERsbgwq2U2BDEaka4LH5u8YrPDn0SWNVo6apGITxJFad6KepdZy+y
+         sYsOYgSXe2rAUcV1c/F7uEcfDimHUUX5dWW0H/ZfZbWl/+bYZ2IwHT/TGvT/2fOHSqHC
+         gbzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=38YIQw9rYXVcXSnz01ylMn1XuQgT2tKgepHXTvRAlmI=;
-        b=dhE7HuAArtTLbfsnK0nwT18fTiPx5yJOQJ3+A1uyRi7Z428ULGFnzL0HM1DdcC+API
-         eGRb/PfdDwWhxWqBL1b//rQzAx9gKrA1FQ9F1TuNlbT973sdOmILd6bKUZ6vXx2jsb9s
-         7KcRCBB7/0mC3LzLpskUCU3BxUZJR+mf/MpZx2kjqUwqdSY9MFhIl084vaPn/ijiYOl9
-         lGYZkjZ06Cu/1v7VcBHJybv9JRTR825utk6SipCOildAebP9+asVRU9EfhWcC/Tjk7KN
-         6q8ZkbEiHp+HmqyEKnLovXMmQI56PRbe7brVJC29LGw2JlPQi3B6zIZ5KDzDxX3etXsq
-         PY8A==
-X-Gm-Message-State: APjAAAUrHhQNLOld7wimHq0c6IcnGtQoGaJ4r2myfgv56UByddO06qJ6
-        wb6pLLfgJWOACpkpzvbVpYgV0f8gXC7oZ7LZxaNb+Q==
-X-Google-Smtp-Source: APXvYqzstwtUHC+bSs9WdknmyMWA119lZrPIEt6ddRW8DWeESXgG8Thvv6/PsX8pItz2k9fLmDu/VaDOP/UcM6Gga/c=
-X-Received: by 2002:a37:8547:: with SMTP id h68mr6152302qkd.219.1567416918785;
- Mon, 02 Sep 2019 02:35:18 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=w7i56WxPDdLvrBHbBLcLHv4HjyZRwxFdeVPugCb27dg=;
+        b=s79EmY0c6uO7829+74EGVeawqAUEiPf3z0kfOWysg/jliNtOZe88McURn8wfI2+UGn
+         eIIrDdY+dQ+KrfQ8y+wu3H5oBtGRN4G7pRdu7TvL8HH5TwVWwt1ta/Ht8HpZljMAV+JV
+         Xqsqf7jcEf+4wm7RYjrNAF7CtnYYyAbpQVzr+jqkgBWQ7fbadMot9O8XNSRMmuZz2gDZ
+         G8OcTLluI31Zjs6Lar51nVXgqelKMoSLbxaKjbw0J7rktSQvS8YnyLq4/QmWGtRPjNUB
+         XFMorwakNxVJREMOnm81vqEmnQ3taIH/vDzmM4Fbphq73tAsEAM2Xt3W6igBJo9zRAeI
+         ydPg==
+X-Gm-Message-State: APjAAAUfqGF6d6eHxUI1KS6937TCSLsTYRyePmVlbWi61slw4ujTfeWb
+        9UVzxkgyPeyaho/HoJDhATc=
+X-Google-Smtp-Source: APXvYqxvn9tBVEgMv3ZQMzCCT+5vHxqVnifBHtLx6qhrks+0PXPWXrCloxY94Bzte8dthm4hlhpfew==
+X-Received: by 2002:a17:906:3fc7:: with SMTP id k7mr23901084ejj.208.1567416920440;
+        Mon, 02 Sep 2019 02:35:20 -0700 (PDT)
+Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
+        by smtp.gmail.com with ESMTPSA id r19sm2795472edy.52.2019.09.02.02.35.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 02 Sep 2019 02:35:18 -0700 (PDT)
+Date:   Mon, 2 Sep 2019 11:35:17 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] drm/panel: Add DT bindings for Sony ACX424AKP
+Message-ID: <20190902093517.GA12946@ulmo>
+References: <20190902090633.24239-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
-References: <1564757262-6166-1-git-send-email-yannick.fertre@st.com> <ada48bc2-ac6a-8732-9aa6-03ef1c104abf@st.com>
-In-Reply-To: <ada48bc2-ac6a-8732-9aa6-03ef1c104abf@st.com>
-From:   Benjamin Gaignard <benjamin.gaignard@linaro.org>
-Date:   Mon, 2 Sep 2019 11:35:07 +0200
-Message-ID: <CA+M3ks6MurXFitY24Cm9jCVx8h+VxTDFARxKuqg7MmhUk58X7w@mail.gmail.com>
-Subject: Re: [PATCH] drm/stm: ltdc: add pinctrl for DPI encoder mode
-To:     Philippe CORNU <philippe.cornu@st.com>
-Cc:     Yannick FERTRE <yannick.fertre@st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>,
-        Fabrice GASNIER <fabrice.gasnier@st.com>,
-        ML dri-devel <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rwEMma7ioTxnRzrJ"
+Content-Disposition: inline
+In-Reply-To: <20190902090633.24239-1-linus.walleij@linaro.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+dri-devel mailing list
 
-Le lun. 2 sept. 2019 =C3=A0 10:47, Philippe CORNU <philippe.cornu@st.com> a=
- =C3=A9crit :
->
-> Hi Yannick,
->
-> On 8/2/19 4:47 PM, Yannick Fertr=C3=A9 wrote:
-> > The implementation of functions encoder_enable and encoder_disable
-> > make possible to control the pinctrl according to the encoder type.
-> > The pinctrl must be activated only if the encoder type is DPI.
-> > This helps to move the DPI-related pinctrl configuration from
-> > all the panel or bridge to the LTDC dt node.
-> >
-> > Signed-off-by: Yannick Fertr=C3=A9 <yannick.fertre@st.com>
-> > ---
-> >   drivers/gpu/drm/stm/ltdc.c | 35 +++++++++++++++++++++++++++++++++++
-> >   1 file changed, 35 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-> > index 3ab4fbf..1c4fde0 100644
-> > --- a/drivers/gpu/drm/stm/ltdc.c
-> > +++ b/drivers/gpu/drm/stm/ltdc.c
-> > @@ -15,6 +15,7 @@
-> >   #include <linux/module.h>
-> >   #include <linux/of_address.h>
-> >   #include <linux/of_graph.h>
-> > +#include <linux/pinctrl/consumer.h>
-> >   #include <linux/platform_device.h>
-> >   #include <linux/pm_runtime.h>
-> >   #include <linux/reset.h>
-> > @@ -1040,6 +1041,36 @@ static const struct drm_encoder_funcs ltdc_encod=
-er_funcs =3D {
-> >       .destroy =3D drm_encoder_cleanup,
-> >   };
-> >
-> > +static void ltdc_encoder_disable(struct drm_encoder *encoder)
-> > +{
-> > +     struct drm_device *ddev =3D encoder->dev;
-> > +
-> > +     DRM_DEBUG_DRIVER("\n");
-> > +
-> > +     /* Set to sleep state the pinctrl whatever type of encoder */
-> > +     pinctrl_pm_select_sleep_state(ddev->dev);
-> > +}
-> > +
-> > +static void ltdc_encoder_enable(struct drm_encoder *encoder)
-> > +{
-> > +     struct drm_device *ddev =3D encoder->dev;
-> > +
-> > +     DRM_DEBUG_DRIVER("\n");
-> > +
-> > +     /*
-> > +      * Set to default state the pinctrl only with DPI type.
-> > +      * Others types like DSI, don't need pinctrl due to
-> > +      * internal bridge (the signals do not come out of the chipset).
-> > +      */
-> > +     if (encoder->encoder_type =3D=3D DRM_MODE_ENCODER_DPI)
-> > +             pinctrl_pm_select_default_state(ddev->dev);
-> > +}
-> > +
-> > +static const struct drm_encoder_helper_funcs ltdc_encoder_helper_funcs=
- =3D {
-> > +     .disable =3D ltdc_encoder_disable,
-> > +     .enable =3D ltdc_encoder_enable,
-> > +};
-> > +
-> >   static int ltdc_encoder_init(struct drm_device *ddev, struct drm_brid=
-ge *bridge)
-> >   {
-> >       struct drm_encoder *encoder;
-> > @@ -1055,6 +1086,8 @@ static int ltdc_encoder_init(struct drm_device *d=
-dev, struct drm_bridge *bridge)
-> >       drm_encoder_init(ddev, encoder, &ltdc_encoder_funcs,
-> >                        DRM_MODE_ENCODER_DPI, NULL);
-> >
-> > +     drm_encoder_helper_add(encoder, &ltdc_encoder_helper_funcs);
-> > +
-> >       ret =3D drm_bridge_attach(encoder, bridge, NULL);
-> >       if (ret) {
-> >               drm_encoder_cleanup(encoder);
-> > @@ -1280,6 +1313,8 @@ int ltdc_load(struct drm_device *ddev)
-> >
-> >       clk_disable_unprepare(ldev->pixel_clk);
-> >
-> > +     pinctrl_pm_select_sleep_state(ddev->dev);
-> > +
->
-> Reviewed-by: Philippe Cornu <philippe.cornu@st.com>
->
-> Thanks
-> Philippe :)
->
-> >       pm_runtime_enable(ddev->dev);
-> >
-> >       return 0;
-> >
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+--rwEMma7ioTxnRzrJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Sep 02, 2019 at 11:06:32AM +0200, Linus Walleij wrote:
+> This adds device tree bindings for the Sony ACX424AKP panel.
+> Let's use YAML.
+>=20
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  .../display/panel/sony,acx424akp.yaml         | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/sony,=
+acx424akp.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/panel/sony,acx424a=
+kp.yaml b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.ya=
+ml
+> new file mode 100644
+> index 000000000000..29f41fee1b69
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/sony,acx424akp.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/sony,acx424akp.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony ACX424AKP 4" 480x864 AMOLED panel
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,acx424akp
+> +  reg: true
+> +  port: true
+> +  reset-gpios: true
+> +  vddi-supply:
+> +     description: regulator that supplies the vddi voltage
+> +  dsi-command-mode:
+> +     type: boolean
+> +     description:
+> +       If this is specified, the panel will be used in command
+> +       mode instead of video mode.
+
+I'm not sure there's concensus on this one yet. I think so far the
+driver decides which mode to use the panel in. Technically this falls
+into the category of configuration, so it doesn't really belong in the
+DT.
+
+I vaguely recall from discussions I've had on this subject that there's
+usually no reason to do video mode if you can do command mode because
+command mode is more power efficient. This was a long time ago, so I may
+be misremembering. Perhaps you have different information on this?
+
+Thierry
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - port
+> +  - reset-gpios
+> +  - power-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    panel@0 {
+> +        compatible =3D "sony,acx424akp";
+> +        reg =3D <0>;
+> +        vddi-supply =3D <&foo>;
+> +        reset-gpios =3D <&foo_gpio 0 GPIO_ACTIVE_LOW>;
+> +
+> +        port {
+> +            panel_in: endpoint {
+> +                remote-endpoint =3D <&dsi_out>;
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> \ No newline at end of file
+> --=20
+> 2.21.0
+>=20
+
+--rwEMma7ioTxnRzrJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1s4lAACgkQ3SOs138+
+s6FUmRAAssnTFG30GwN6PL97FSCIhD/zIteo1zy1RyqFbFYPWPV/o1y8MhXBG7oQ
+2RXLvB6k2GBjS2sNE1nIutDjTNG42pmnidIpDZxW0Tc7zra9+mE1Itgae4/kiKDw
+pLuk1Qoc4TSvI/G3ScyASZw6rMTSr+JJN9pPWfek5K8+Fq6LXNNnoCkPjnsNpBH3
+YOYsssA1JWNYqME4ve7f0O3NxYkv1XUFVha5XKhVbkJfn/8VJ8ABXyGG/UWFb75s
+7hpLUkjHpO6d57kM9vJExrbXuvuefCj68n2x0CedHCd0NolwDwWfW7tghK3/S94l
+SYNwppctPlx+D2vhBp5NUZO2yQfE4aOGLLezdkKdHaNAsJaMR+1eq5BU5eW8wGvE
+K5Eu6QBnr+XtZ1bFxJdxq9F+cEZTIr3AB74Sd1Z4TAmgEJ8/u+16ppiPalSjCp34
+jqODdxrxqLykN25eAwn96RlU8S/CdrCRnge8tal9iuP90gH1wj+Vn9ipxhMXHCPj
+pV4F11fSei7xrXXt1hRGofXBUsO6dLJtaUHk3hhZa5oC76QWsVpULSxzqmHJyFdF
+KUrh0JANdC4uUKaeSQs4NoVXAnq7AdRRCX771Ipycl0thV6kTSyrUI/Py1ukJajI
+Q8t8xP/SUtklxhd9Tw1/bLJzy4f9+I/vBDbRK3GzkpsbxMkD3es=
+=VxoP
+-----END PGP SIGNATURE-----
+
+--rwEMma7ioTxnRzrJ--
