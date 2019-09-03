@@ -2,118 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6E7EA617F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:32:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0517A618E
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:35:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727078AbfICGcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 02:32:21 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:57901 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725848AbfICGcU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:32:20 -0400
-Received: from soja.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:13da])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <o.rempel@pengutronix.de>)
-        id 1i52MR-0002QC-PT; Tue, 03 Sep 2019 08:32:15 +0200
-Subject: Re: [PATCH V2 1/5] dt-bindings: fsl: scu: add scu power key binding
-To:     Anson Huang <Anson.Huang@nxp.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org, dmitry.torokhov@gmail.com, aisheng.dong@nxp.com,
-        ulf.hansson@linaro.org, fugang.duan@nxp.com, peng.fan@nxp.com,
-        daniel.baluta@nxp.com, leonard.crestez@nxp.com, mripard@kernel.org,
-        olof@lixom.net, arnd@arndb.de, jagan@amarulasolutions.com,
-        bjorn.andersson@linaro.org, dinguyen@kernel.org,
-        marcin.juszkiewicz@linaro.org, stefan@agner.ch,
-        gregkh@linuxfoundation.org, andriy.shevchenko@linux.intel.com,
-        yuehaibing@huawei.com, tglx@linutronix.de, ronald@innovation.ch,
-        m.felsch@pengutronix.de, ping.bai@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-input@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-References: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-Message-ID: <21d2e400-976a-35c3-6875-4cc0c476fdf2@pengutronix.de>
-Date:   Tue, 3 Sep 2019 08:32:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:13da
-X-SA-Exim-Mail-From: o.rempel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726946AbfICGfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 02:35:03 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:19826 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbfICGfC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:35:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1567492500;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=rpoqHO2EPNF4RDRrZEMr4EzlWpw+Y76OHWQL/9f/0RE=;
+        b=T4gCAoHBWzFGKh4+TL6C3Yz5WhZ3eIPQkw4Y2RRpxPDHiYkUaSE6k7uA+YuPf5ronh
+        CFR/qdAOVY08JPALsSHE/gOFLk8hqlmzgj9XcC74nbe7kxsYqez6kOJAur95uJ562fZ3
+        QOAfdbEV2x+75VTDiZOsnDdZ9grb2gUpOUiURTNdDYfd8wTFJCzgpM6Cr6PcpjIeK4CM
+        MnNZ6PRze30hpIxZxE81JIMTKscdmtzUX1XUSBhH73upUhYkBjZODDQsTDAXCRmeNpz2
+        gnGS5WVjAiS/YZisfQiH34Pwuob2JEIL5lSVvZ/N/k2q8r+y+O4GD+1lOxYWkdm9pbEd
+        k2qw==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Qpw97WFDlWfXA4ONfA="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
+        with ESMTPSA id u036f9v836YpUt0
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Tue, 3 Sep 2019 08:34:51 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [RFC 4/5] ARM: dts: omap3-n950-n9: remove opp-v1 table
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20190903062808.p6jkgwylyqxcjs4z@vireshk-i7>
+Date:   Tue, 3 Sep 2019 08:34:50 +0200
+Cc:     =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?Q?Andr=C3=A9_Roth?= <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <98AF4586-C6FF-43A5-99B9-797145F50D07@goldelico.com>
+References: <cover.1567421750.git.hns@goldelico.com> <2f978667c1533e46e3a5df58871e9048f3eb74e9.1567421751.git.hns@goldelico.com> <20190903023635.44yf32jowpm3hgfp@vireshk-i7> <8BC1AEC9-7B24-4C07-8659-16741D018164@goldelico.com> <20190903061403.k3d333f54gj2kuxi@vireshk-i7> <6B7B0EDB-8A60-48A0-AFAB-8A266358300C@goldelico.com> <20190903062808.p6jkgwylyqxcjs4z@vireshk-i7>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+> Am 03.09.2019 um 08:28 schrieb Viresh Kumar <viresh.kumar@linaro.org>:
+>=20
+> On 03-09-19, 08:23, H. Nikolaus Schaller wrote:
+>>=20
+>>> Am 03.09.2019 um 08:14 schrieb Viresh Kumar =
+<viresh.kumar@linaro.org>:
+>>>=20
+>>> On 03-09-19, 08:01, H. Nikolaus Schaller wrote:
+>>>>=20
+>>>>> Am 03.09.2019 um 04:36 schrieb Viresh Kumar =
+<viresh.kumar@linaro.org>:
+>>>>>=20
+>>>>> On 02-09-19, 12:55, H. Nikolaus Schaller wrote:
+>>>>>> With opp-v2 in omap36xx.dtsi and ti-cpufreq driver the
+>>>>>> 1GHz capability is automatically detected.
+>>>>>>=20
+>>>>>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>>>>> ---
+>>>>>> arch/arm/boot/dts/omap3-n950-n9.dtsi | 7 -------
+>>>>>> 1 file changed, 7 deletions(-)
+>>>>>>=20
+>>>>>> diff --git a/arch/arm/boot/dts/omap3-n950-n9.dtsi =
+b/arch/arm/boot/dts/omap3-n950-n9.dtsi
+>>>>>> index 5441e9ffdbb4..e98b0c615f19 100644
+>>>>>> --- a/arch/arm/boot/dts/omap3-n950-n9.dtsi
+>>>>>> +++ b/arch/arm/boot/dts/omap3-n950-n9.dtsi
+>>>>>> @@ -11,13 +11,6 @@
+>>>>>> 	cpus {
+>>>>>> 		cpu@0 {
+>>>>>> 			cpu0-supply =3D <&vcc>;
+>>>>>> -			operating-points =3D <
+>>>>>> -				/* kHz    uV */
+>>>>>> -				300000  1012500
+>>>>>> -				600000  1200000
+>>>>>> -				800000  1325000
+>>>>>> -				1000000	1375000
+>>>>>> -			>;
+>>>>>> 		};
+>>>>>> 	};
+>>>>>=20
+>>>>> This should be merged with 2/5 ?
+>>>>=20
+>>>> Well, it bloats 2/5.
+>>>=20
+>>> It is logically the right place to do this as that's where we are
+>>> adding opp-v2.
+>>=20
+>> Well, sometimes the philosophy of patches is to add something new
+>> first and remove the old in a second separate patch if the system
+>> can live with both. This makes it easier to digest single patches
+>> (because they are smaller) and might also better pinpoint an issue
+>> by bisect.
+>=20
+> Right, but you already removed some of the opp-v1 stuff in patch 2/5.
+> Why leave this one out ?
+>=20
+>>>=20
+>>>> What I hope (I can't test) is that this opp-v1 table
+>>>> is ignored if an opp-v2 table exists. So that it can be
+>>>> removed by a separate follow-up patch.
+>>>=20
+>>> It should work as that's what we are doing in OPP core, but I still
+>>> feel this better get merged with 2/5.
+>>=20
+>> Ok, I see. Noted for RFCv2.
+>>=20
+>> There will also be a big batch of changes for the compatible record
+>> (omap3530->omap35xx, add omap34xx where needed) of ca. 10 board =
+definition
+>> DTS files. Should this then also become part of the new 2/5?
+>=20
+> Compatible thing should be separate patch anyway, I was just talking
+> about replacing opp-v1 with v2.
 
-On 03.09.19 16:03, Anson Huang wrote:
-> NXP i.MX8QXP is an ARMv8 SoC with a Cortex-M4 core inside as
-> system controller, the system controller is in charge of system
-> power, clock and power key event etc. management, Linux kernel
-> has to communicate with system controller via MU (message unit)
-> IPC to get power key event, add binding doc for i.MX system
-> controller power key driver.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> Changes since V1:
-> 	- remove "wakeup-source" property, as it is NOT needed for SCU interrupt;
-> 	- remove "status" in example.
-> ---
->   .../devicetree/bindings/arm/freescale/fsl,scu.txt          | 14 ++++++++++++++
->   1 file changed, 14 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> index c149fad..f93e2e4 100644
-> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
-> @@ -157,6 +157,15 @@ Required properties:
->   Optional properties:
->   - timeout-sec: contains the watchdog timeout in seconds.
->   
-> +Power key bindings based on SCU Message Protocol
-> +------------------------------------------------------------
-> +
-> +Required properties:
-> +- compatible: should be:
-> +              "fsl,imx8qxp-sc-pwrkey"
-> +              followed by "fsl,imx-sc-pwrkey";
-> +- linux,keycodes: See Documentation/devicetree/bindings/input/keys.txt
+Ok, understood.
 
-linux,keycodes is required parameter. So, this kay cab be anything. Why the compatible is 
-called pwrkey? Probably it is better to call it "*-sc-key"
+BR and thanks,
+Nikolaus
 
-> +
->   Example (imx8qxp):
->   -------------
->   aliases {
-> @@ -220,6 +229,11 @@ firmware {
->   			compatible = "fsl,imx8qxp-sc-rtc";
->   		};
->   
-> +		scu_pwrkey: scu-pwrkey {
-> +			compatible = "fsl,imx8qxp-sc-pwrkey", "fsl,imx-sc-pwrkey";
-> +			linux,keycode = <KEY_POWER>;
-> +		};
-> +
->   		watchdog {
->   			compatible = "fsl,imx8qxp-sc-wdt", "fsl,imx-sc-wdt";
->   			timeout-sec = <60>;
-> 
-
-Kind regards,
-Oleksij Rempel
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
