@@ -2,130 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFCEA6579
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:37:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74892A6589
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:38:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728438AbfICJhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 05:37:05 -0400
-Received: from mail-wm1-f47.google.com ([209.85.128.47]:37335 "EHLO
-        mail-wm1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728409AbfICJhF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 05:37:05 -0400
-Received: by mail-wm1-f47.google.com with SMTP id r195so1110574wme.2
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 02:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=flowbird.group; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=qI/msxsXqWRFdL3aN3sjsVskSGThrgClxOqJ+yrbiFg=;
-        b=IClJ3jwzE0/tSlHhR/nSMgACWjFl7gf80AbtmZBxCUHLt/Jcojva+3rM9j+rrDNmZ6
-         LnL2oaZMOHls872SeyCum8/euj+LPM3aKsfWkOJYmKQMLEeAbBu1wVvhImNp0G92PVyC
-         la/HV8FTjwVgupmRNGrmxzC25ZN+cYXk4vKmetNrGxzVjnnxYvzxh5zAd87UNXEDEVTs
-         8aXDBns9TE/og3A1VyIrvgzraaj0SVG9v2nSlkh7w3QOM9m27GCuQ1GtLWs5hBbh0a6e
-         aTn4P54W6Bk4f2g1l0ZAyg3Orv7gPfEhYiBnkNJCdjkDn8uijF6ha1eEWe9LytiiyFfe
-         ntjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=qI/msxsXqWRFdL3aN3sjsVskSGThrgClxOqJ+yrbiFg=;
-        b=ULjUtulm17q6JycxaFXp1iLqjtvBgNb3jXxJyh1SCLHp+0PWJq2DTkDXH441kk48pR
-         0P7COJmYjcaH/Zyuz/hT9fB3lVFfIFe/b12LKu9PVd7bCq1PLgHAtP8CnUyMepgvq/xk
-         U1N3VXTk0sezmNHHXu52/mfosm3TLSPqNSZgSY6dUu/rWk1tO7P/CJhq9e1Pq7/ENCeB
-         IoL3TtIpeBd4FFZl/cMa+lApgtAwFE0Qbm3/nx/nQQ5D9eYJu3EbQ4da2taTUuh5PUlg
-         /+DHTRsGybrXgoRagJl9pfeesVGTjc/ienDJdF6ejBo+MJa5JUSPlPP5o9Ug6tg/x0bC
-         ReyQ==
-X-Gm-Message-State: APjAAAX2x7IyF+DEvQSt+YS6O3QfmOhqjj5Hgnor9A1Ezl+B6cSIH5nV
-        KZV/j/b9iciZbjHCPvc/qDRzHg==
-X-Google-Smtp-Source: APXvYqwKeqWbkYsTbb1bHmCDBrDdZ4xi2S+xJY3fjb1VnljLf2QDsUv581Cs/3vKfnrmdnIVUqLZUg==
-X-Received: by 2002:a1c:658a:: with SMTP id z132mr42363159wmb.98.1567503422825;
-        Tue, 03 Sep 2019 02:37:02 -0700 (PDT)
-Received: from [10.32.50.252] ([185.149.63.251])
-        by smtp.gmail.com with ESMTPSA id v11sm29740643wrv.54.2019.09.03.02.37.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 03 Sep 2019 02:37:02 -0700 (PDT)
-Subject: Re: [v3,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some properties
-To:     Biwen Li <biwen.li@nxp.com>, a.zummo@towertech.it,
-        alexandre.belloni@bootlin.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, leoyang.li@nxp.com
-Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Martin Fuzzey <mfuzzey@parkeon.com>
-References: <20190903061853.19793-1-biwen.li@nxp.com>
-From:   Martin Fuzzey <martin.fuzzey@flowbird.group>
-Message-ID: <2374870a-a728-b046-9ec6-bd7773411f50@flowbird.group>
-Date:   Tue, 3 Sep 2019 11:37:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1728634AbfICJiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 05:38:02 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:11874 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728618AbfICJiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 05:38:01 -0400
+X-UUID: 0f932c9f62d6477390f393006cbe4443-20190903
+X-UUID: 0f932c9f62d6477390f393006cbe4443-20190903
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 175340227; Tue, 03 Sep 2019 17:37:56 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 3 Sep 2019 17:37:55 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 3 Sep 2019 17:37:54 +0800
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>, <anan.sun@mediatek.com>,
+        <cui.zhang@mediatek.com>, <chao.hao@mediatek.com>,
+        <ming-fan.chen@mediatek.com>
+Subject: [PATCH v3 00/14] Clean up "mediatek,larb" after adding device_link
+Date:   Tue, 3 Sep 2019 17:37:22 +0800
+Message-ID: <1567503456-24725-1-git-send-email-yong.wu@mediatek.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-In-Reply-To: <20190903061853.19793-1-biwen.li@nxp.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: fr
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/09/2019 08:18, Biwen Li wrote:
-> diff --git a/Documentation/devicetree/bindings/rtc/pcf85363.txt b/Documentation/devicetree/bindings/rtc/pcf85363.txt
-> index 94adc1cf93d9..588f688b30d1 100644
-> --- a/Documentation/devicetree/bindings/rtc/pcf85363.txt
-> +++ b/Documentation/devicetree/bindings/rtc/pcf85363.txt
-> @@ -8,10 +8,39 @@ Required properties:
->   Optional properties:
->   - interrupts: IRQ line for the RTC (not implemented).
->   
-> +- interrupt-output-pin: The interrupt output pin must be
-> +  "INTA" or "INTB", default value is "INTA"
-> +
+MediaTek IOMMU block diagram always like below:
 
+        M4U
+         |
+    smi-common
+         |
+  -------------
+  |         |  ...
+  |         |
+larb1     larb2
+  |         |
+vdec       venc
 
-The hardware has 2 interrupt pins which can be mapped to various 
-interrupt sources (alarm1, alarm2, periodic, ...)
+All the consumer connect with smi-larb, then connect with smi-common.
 
-Currently the driver only supports alarm1.
+MediaTek IOMMU don't have its power-domain. When the consumer works,
+it should enable the smi-larb's power which also need enable the smi-common's
+power firstly.
 
-It is even possible to use both pins for the same interrupt (eg if INTA 
-were wired to the SoC, INTB to a PMIC and both used for alarm...)
+Thus, Firstly, use the device link connect the consumer and the
+smi-larbs. then add device link between the smi-larb and smi-common.
 
+After adding the device_link, then "mediatek,larb" property can be removed.
+the iommu consumer don't need call the mtk_smi_larb_get/put to enable
+the power and clock of smi-larb and smi-common.
 
-So maybe it would be better to have
+This patchset depends on "MT8183 IOMMU SUPPORT"[1].
 
-alarm1-interrupt-output-pin: The interrupt output pin used for the alarm 
-function. Must be "INTA", "INTB" or "BOTH"
+[1] http://lists.infradead.org/pipermail/linux-mediatek/2019-August/022611.html
 
-Then, if and when other types of interrupts are supported by the driver 
-new properties could be added for them.
+Change notes:
+v3: 1) rebase on v5.3-rc1 and the latest mt8183 patchset.
+    2) Use device_is_bound to check whether the driver is ready from Matthias.    
+    3) Add DL_FLAG_STATELESS flag when calling device_link_add and explain the
+   reason in the commit message[3/14].
+    4) Add a display patch[12/14] into this series. otherwise it may affect
+   display HW fastlogo even though it don't happen in mt8183.
+   
+v2: http://lists.infradead.org/pipermail/linux-mediatek/2019-June/020440.html
+   1) rebase on v5.2-rc1.
+   2) Move adding device_link between the consumer and smi-larb into
+iommu_add_device from Robin.
+   3) add DL_FLAG_AUTOREMOVE_CONSUMER even though the smi is built-in from Evan.
+   4) Remove the shutdown callback in iommu.   
 
+v1: https://lists.linuxfoundation.org/pipermail/iommu/2019-January/032387.html
 
+Yong Wu (13):
+  dt-binding: mediatek: Get rid of mediatek,larb for multimedia HW
+  iommu/mediatek: Add probe_defer for smi-larb
+  iommu/mediatek: Add device_link between the consumer and the larb
+    devices
+  memory: mtk-smi: Add device-link between smi-larb and smi-common
+  media: mtk-jpeg: Get rid of mtk_smi_larb_get/put
+  media: mtk-mdp: Get rid of mtk_smi_larb_get/put
+  media: mtk-vcodec: Get rid of mtk_smi_larb_get/put
+  drm/mediatek: Get rid of mtk_smi_larb_get/put
+  memory: mtk-smi: Get rid of mtk_smi_larb_get/put
+  iommu/mediatek: Use builtin_platform_driver
+  memory: mtk-smi: Use device_is_bound to check if smi-common is ready
+  arm: dts: mediatek: Get rid of mediatek,larb for MM nodes
+  arm64: dts: mediatek: Get rid of mediatek,larb for MM nodes
 
-> +- quartz-load-femtofarads: The internal capacitor to select for the quartz:
-> +	PCF85263_QUARTZCAP_7pF		[0]
-> +	PCF85263_QUARTZCAP_6pF		[1]
-> +	PCF85263_QUARTZCAP_12p5pF	[2] DEFAULT
-> +
+Yongqiang Niu (1):
+  drm/mediatek: Add pm runtime support for ovl and rdma
 
+ .../bindings/display/mediatek/mediatek,disp.txt    |  9 ----
+ .../bindings/media/mediatek-jpeg-decoder.txt       |  4 --
+ .../devicetree/bindings/media/mediatek-mdp.txt     |  8 ----
+ .../devicetree/bindings/media/mediatek-vcodec.txt  |  4 --
+ arch/arm/boot/dts/mt2701.dtsi                      |  1 -
+ arch/arm/boot/dts/mt7623.dtsi                      |  1 -
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi           | 15 ------
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c            |  5 ++
+ drivers/gpu/drm/mediatek/mtk_disp_rdma.c           |  5 ++
+ drivers/gpu/drm/mediatek/mtk_drm_crtc.c            | 20 ++++----
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c        | 31 ++----------
+ drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h        |  2 +-
+ drivers/iommu/mtk_iommu.c                          | 56 ++++++++++------------
+ drivers/iommu/mtk_iommu_v1.c                       | 49 ++++++++++---------
+ drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c    | 22 ---------
+ drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h    |  2 -
+ drivers/media/platform/mtk-mdp/mtk_mdp_comp.c      | 38 ---------------
+ drivers/media/platform/mtk-mdp/mtk_mdp_comp.h      |  2 -
+ drivers/media/platform/mtk-mdp/mtk_mdp_core.c      |  1 -
+ .../media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c  | 22 ---------
+ drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h |  3 --
+ drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c |  1 -
+ .../media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c  | 47 ------------------
+ drivers/memory/mtk-smi.c                           | 41 +++++++---------
+ include/soc/mediatek/smi.h                         | 20 --------
+ 25 files changed, 93 insertions(+), 316 deletions(-)
 
-The standard DT property "quartz-load-femtofarads" takes the real 
-physical value in femto Farads ie values should be 7000, 6000, 12500 
-without defines.
-
-
-> +- nxp,quartz-drive-strength: Drive strength for the quartz:
-> +	PCF85263_QUARTZDRIVE_100ko	[0] DEFAULT
-> +	PCF85263_QUARTZDRIVE_60ko	[1]
-> +	PCF85263_QUARTZDRIVE_500ko	[2]
-> +
-
-
-Not sure about this.
-
-Wouldn't it be better to either use a real impedence value in ohms (like 
-load property above, even though it is a vendor specific value) rather 
-than a define, or defines for "Low, Medium, High"?
-
-
-Martin
-
+-- 
+1.9.1 
 
