@@ -2,59 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A9CA68FE
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 14:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6795FA6941
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 15:06:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729235AbfICMwN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 08:52:13 -0400
-Received: from 8bytes.org ([81.169.241.247]:52958 "EHLO theia.8bytes.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729119AbfICMwN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 08:52:13 -0400
-Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id A4DE0284; Tue,  3 Sep 2019 14:52:11 +0200 (CEST)
-Date:   Tue, 3 Sep 2019 14:52:10 +0200
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de
-Subject: Re: [PATCH v1 1/2] iommu: pass cell_count = -1 to
- of_for_each_phandle with cells_name
-Message-ID: <20190903125210.GB11530@8bytes.org>
-References: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
+        id S1728864AbfICNGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 09:06:10 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50322 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728576AbfICNGJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 09:06:09 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 9C87DB60E;
+        Tue,  3 Sep 2019 13:06:07 +0000 (UTC)
+Date:   Tue, 3 Sep 2019 15:06:07 +0200
+From:   Petr Mladek <pmladek@suse.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v4 10/11] lib/vsprintf: Add %pfw conversion specifier for
+ printing fwnode names
+Message-ID: <20190903130607.cf2qv3s3evobbd5g@pathway.suse.cz>
+References: <20190902083240.20367-1-sakari.ailus@linux.intel.com>
+ <20190902083240.20367-11-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190902083240.20367-11-sakari.ailus@linux.intel.com>
+User-Agent: NeoMutt/20170912 (1.9.0)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 24, 2019 at 03:28:45PM +0200, Uwe Kleine-König wrote:
-> Currently of_for_each_phandle ignores the cell_count parameter when a
-> cells_name is given. I intend to change that and let the iterator fall
-> back to a non-negative cell_count if the cells_name property is missing
-> in the referenced node.
-> 
-> To not change how existing of_for_each_phandle's users iterate, fix them
-> to pass cell_count = -1 when also cells_name is given which yields the
-> expected behaviour with and without my change.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> ---
->  drivers/iommu/arm-smmu.c     | 2 +-
->  drivers/iommu/mtk_iommu_v1.c | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+On Mon 2019-09-02 11:32:39, Sakari Ailus wrote:
+> Add support for %pfw conversion specifier (with "f" and "P" modifiers) to
+> support printing full path of the node, including its name ("f") and only
+> the node's name ("P") in the printk family of functions. The two flags
+> have equivalent functionality to existing %pOF with the same two modifiers
+> ("f" and "P") on OF based systems. The ability to do the same on ACPI
+> based systems is added by this patch.
+> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
+> index 922a29eb70e6c..abba210f67567 100644
+> --- a/Documentation/core-api/printk-formats.rst
+> +++ b/Documentation/core-api/printk-formats.rst
+> @@ -418,6 +418,30 @@ Examples::
+>  
+>  Passed by reference.
+>  
+> +Fwnode handles
+> +--------------
+> +
+> +::
+> +
+> +	%pfw[fP]
+> +
+> +For printing information on fwnode handles. The default is to print the full
+> +node name, including the path. The modifiers are functionally equivalent to
+> +%pOF above.
+> +
+> +	- f - full name of the node, including the path
+> +	- P - the name of the node including an address (if there is one)
+> +
+> +Examples (ACPI):
 
-Acked-by: Joerg Roedel <jroedel@suse.de>
+s/:/::/ for the .rst formar.
+
+> +
+> +	%pfwf	\_SB.PCI0.CIO2.port@1.endpoint@0	- Full node name
+> +	%pfwP	endpoint@0				- Node name
+> +
+> +Examples (OF):
+
+Same here.
+
+> +
+> +	%pfwf	/ocp@68000000/i2c@48072000/camera@10/port/endpoint - Full name
+> +	%pfwP	endpoint				- Node name
+> +
+>  Time and date (struct rtc_time)
+>  -------------------------------
+>  
+> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
+> index 4ad9332d54ba6..b9b4c835db063 100644
+> --- a/lib/vsprintf.c
+> +++ b/lib/vsprintf.c
+> @@ -1981,6 +1981,36 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  	return widen_string(buf, buf - buf_start, end, spec);
+>  }
+>  
+> +static noinline_for_stack
+> +char *fwnode_string(char *buf, char *end, struct fwnode_handle *fwnode,
+> +		    struct printf_spec spec, const char *fmt)
+> +{
+> +	struct printf_spec str_spec = spec;
+> +	char *buf_start = buf;
+> +
+> +	str_spec.field_width = -1;
+> +
+> +	if (*fmt != 'w')
+> +		return error_string(buf, end, "(%pfw?)", spec);
+
+This means that only "%pfw" will dereference the pointer by
+fwnode_full_name_string() or fwnode_get_name(). All the other
+eventual misuses of the obsolete %pf format will result in this
+error message.
+
+OK, it is hard to imagine using "%pf" to get symbol name and always add
+'w' suffix. Therefore it looks that reusing the obsolete %pf format
+modifier is pretty safe after all.
+
+
+> +	if (check_pointer(&buf, end, fwnode, spec))
+> +		return buf;
+> +
+> +	fmt++;
+> +
+> +	switch (*fmt) {
+> +	case 'f':	/* full_name */
+> +	default:
+
+Using default: in the middle of switch might cause a lot of confusion.
+Please, make it the last label.
+
+
+> +		buf = fwnode_full_name_string(fwnode, buf, end);
+> +		break;
+> +	case 'P':	/* name */
+> +		buf = string(buf, end, fwnode_get_name(fwnode), str_spec);
+> +		break;
+> +	}
+> +
+> +	return widen_string(buf, buf - buf_start, end, spec);
+> +}
+> +
+>  /*
+>   * Show a '%p' thing.  A kernel extension is that the '%p' is followed
+>   * by an extra set of alphanumeric characters that are extended format
+> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+> index a60c241112cd4..8df50911ff4e9 100755
+> --- a/scripts/checkpatch.pl
+> +++ b/scripts/checkpatch.pl
+> @@ -5995,7 +5995,8 @@ sub process {
+>  				while ($fmt =~ /(\%[\*\d\.]*p(\w))/g) {
+>  					$specifier = $1;
+>  					$extension = $2;
+> -					if ($extension !~ /[SsBKRraEhMmIiUDdgVCbGNOxt]/) {
+> +					if ($extension !~ /[SsBKRraEhMmIiUDdgVCbGNOxtf]/ ||
+> +					    $extension =~ /^f[^w]/) {
+
+This does not work. $extension seems to have only one character.
+
+Best Regards,
+Petr
 
