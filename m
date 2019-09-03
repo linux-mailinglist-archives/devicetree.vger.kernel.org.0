@@ -2,92 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56E89A6329
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:55:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8F5DA6338
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:58:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbfICHzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 03:55:10 -0400
-Received: from 2.mo177.mail-out.ovh.net ([178.33.109.80]:35471 "EHLO
-        2.mo177.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbfICHzK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:55:10 -0400
-X-Greylist: delayed 1005 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 03:55:09 EDT
-Received: from player756.ha.ovh.net (unknown [10.109.143.72])
-        by mo177.mail-out.ovh.net (Postfix) with ESMTP id 79EA8109701
-        for <devicetree@vger.kernel.org>; Tue,  3 Sep 2019 09:38:22 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player756.ha.ovh.net (Postfix) with ESMTPSA id 4880088D8887;
-        Tue,  3 Sep 2019 07:38:12 +0000 (UTC)
-Subject: Re: [PATCH v2 1/2] ARM: dts: opos6ul/opos6uldev: rework device tree
- to support i.MX6ULL
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190724120623.2385-1-sebastien.szymanski@armadeus.com>
-From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Openpgp: preference=signencrypt
-Message-ID: <194bd606-e4bf-d8fd-ece2-cbec1f5e025f@armadeus.com>
-Date:   Tue, 3 Sep 2019 09:38:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1725888AbfICH6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 03:58:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43714 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725878AbfICH6g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 03:58:36 -0400
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D827321881;
+        Tue,  3 Sep 2019 07:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567497515;
+        bh=UXh12NkSwZ12hWkXETNI+YE3LiuTShuDOHt89Jbh128=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=am7+Xbi2YfzdQSUw6p4YYdjuXFciTPcfw96UlPxdv1inY3pLUnYIUWWTTdp7gOu6j
+         mbOKZWr7h3x4jVZ7l5VuM603tR4gC52GePWzV1gNGQzP/qU2s4yOLmczxTPXfsHYeP
+         bsIivXjLkyEM2heVUy+enefLtMFc34vgtmnSlwbY=
+Received: by mail-lf1-f52.google.com with SMTP id u29so12081415lfk.7;
+        Tue, 03 Sep 2019 00:58:34 -0700 (PDT)
+X-Gm-Message-State: APjAAAV73T5Ovkcgc1rE1XJcip6UUKUltD1FDhRq3L4+IJAmd2gUe7md
+        LN2c3MfXKplbpkNgqz/eWw5MQmh3KOYphcZrHak=
+X-Google-Smtp-Source: APXvYqzrJeKyNEvczFZsfe2tgLAYBl9BS475I7A9xOTHksgZrFCcJ43dEFvCe2Ya4ROGp9gR8nfJe7d+AYReOk1iVIQ=
+X-Received: by 2002:a19:c649:: with SMTP id w70mr20083717lff.33.1567497513112;
+ Tue, 03 Sep 2019 00:58:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190724120623.2385-1-sebastien.szymanski@armadeus.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 1760344505444685052
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrudejuddguddvudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+References: <20190823145356.6341-1-krzk@kernel.org> <20190823145356.6341-5-krzk@kernel.org>
+ <CAL_JsqJybT41cEqiTriLMywUQj1BtAG_9muJ4=84OkF23y53CA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJybT41cEqiTriLMywUQj1BtAG_9muJ4=84OkF23y53CA@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 3 Sep 2019 09:58:21 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPc0SY_8BHMsWLN=1M3VQh41+bdBiH21L4KQPA+iLPYy+A@mail.gmail.com>
+Message-ID: <CAJKOXPc0SY_8BHMsWLN=1M3VQh41+bdBiH21L4KQPA+iLPYy+A@mail.gmail.com>
+Subject: Re: [RFC 5/9] dt-bindings: arm: samsung: Convert Exynos PMU bindings
+ to json-schema
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>, notify@kernel.org,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tomasz.figa@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+On Mon, 26 Aug 2019 at 13:54, Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Fri, Aug 23, 2019 at 9:54 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >
+> > Convert Samsung Exynos Power Management Unit (PMU) bindings to DT schema
+> > format using json-schema.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  .../devicetree/bindings/arm/samsung/pmu.txt   | 72 --------------
+> >  .../devicetree/bindings/arm/samsung/pmu.yaml  | 93 +++++++++++++++++++
+> >  2 files changed, 93 insertions(+), 72 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/arm/samsung/pmu.txt
+> >  create mode 100644 Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+>
+>
+> > diff --git a/Documentation/devicetree/bindings/arm/samsung/pmu.yaml b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> > new file mode 100644
+> > index 000000000000..818c6f3488ef
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/samsung/pmu.yaml
+> > @@ -0,0 +1,93 @@
+> > +# SPDX-License-Identifier: GPL-2.0
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/samsung/pmu.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Samsung Exynos SoC series Power Management Unit (PMU)
+> > +
+> > +maintainers:
+> > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - samsung,exynos3250-pmu
+> > +          - samsung,exynos4210-pmu
+> > +          - samsung,exynos4412-pmu
+> > +          - samsung,exynos5250-pmu
+> > +          - samsung,exynos5260-pmu
+> > +          - samsung,exynos5410-pmu
+> > +          - samsung,exynos5420-pmu
+> > +          - samsung,exynos5433-pmu
+> > +          - samsung,exynos7-pmu
+> > +      - const: syscon
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  '#clock-cells':
+> > +    const: 1
+> > +
+> > +  clock-names:
+> > +    description:
+> > +      list of clock names for particular CLKOUT mux inputs
+> > +    # TODO: what is the maximum number of elements (mux inputs)?
+> > +    minItems: 1
+> > +    maxItems: 32
+> > +    items:
+> > +      - enum:
+>
+> This isn't correct as you are only defining possible names for the
+> first item. Drop the '-' (making items a schema instead of a list) and
+> then it applies to all. However, doing that will cause a meta-schema
+> error which I need to fix to allow. Or if there's a small set of
+> possibilities of number of inputs, you can list them under a 'oneOf'
+> list.
 
-On 7/24/19 2:06 PM, Sébastien Szymanski wrote:
-> Rework the device trees of the OPOS6UL and OPOS6ULDev boards to support
-> the OPOS6UL SoM with an i.MX6ULL SoC.  The device trees are now as
-> following:
-> 
-> - imx6ul-imx6ull-opos6ul.dtsi
->   common for both i.MX6UL and i.MX6ULL OPOS6UL SoM.
-> - imx6ul-opos6ul.dtsi
->   for i.MX6UL OPOS6UL SoM. It includes imx6ul.dtsi and
->   imx6ul-imx6ull-opos6ul.dtsi.
-> - imx6ull-opos6ul.dtsi
->   for i.MX6ULL OPOS6UL SoM. It includes imx6ull.dtsi and
->   imx6ul-imx6ull-opos6ul.dtsi.
-> 
-> - imx6ul-imx6ull-opos6uldev.dtsi
->   OPOS6ULDev base device tree.
-> - imx6ul-opos6uldev.dts
->   OPOS6ULDev board with an i.MX6UL OPOS6UL SoM. It includes
->   imx6ul-opos6ul.dtsi and imx6ul-imx6ull-opos6uldevdtsi.
-> - imx6ull-opos6uldev.dts
->   OPOS6ULDev board with an i.MX6ULL OPOS6UL SoM. It includes
->   imx6ull-opos6ul.dtsi and imx6ul-imx6ull-opos6uldevdtsi.
-> 
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
-> ---
-> 
-> Changes for v2:
-> - explain the file hierarchy in the commit log
-> - use MIT license instead of X11
-> - Change compatible properties to "armadeus,imx6{ul,ull}-opos6ul" and
->   "armadeus,imx6{ul,ull}-opos6uldev" to follow the bindings of the
->   Armadeus boards already supported.
+Mhmm, I cannot test it or I have an error in the schema. if I
+understand correctly, this would be:
 
-gentle ping...
+  clock-names:
+    description:
+      List of clock names for particular CLKOUT mux inputs
+    minItems: 1
+    maxItems: 16
+    items:
+      clkout0
+      clkout1
+      clkout2
+      clkout3
+      clkout4
+      clkout5
+      clkout6
+      clkout7
+      clkout8
+      clkout9
+      clkout10
+      clkout11
+      clkout12
+      clkout13
+      clkout14
+      clkout15
+      clkout16
 
-Regards,
+Now it produces the error "ignoring, error in schema 'items'" but
+maybe it is expected with current meta-schema?
 
-Sébastien
+Best regards,
+Krzysztof
