@@ -2,153 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3063CA6D30
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 17:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D07C2A6E9C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 18:28:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729693AbfICPn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 11:43:59 -0400
-Received: from mx2.suse.de ([195.135.220.15]:59634 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728679AbfICPn5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 11:43:57 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id DF1D8AB91;
-        Tue,  3 Sep 2019 15:43:54 +0000 (UTC)
-Message-ID: <cf743e0a1571c1748588f088cfd9804e8b55c36b.camel@suse.de>
-Subject: PCIe DMA addressing issues on Raspberry Pi 4
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        "robin.murphy" <robin.murphy@arm.com>
-Cc:     Christoph Hellwig <hch@lst.de>, iommu@lists.linux-foundation.org,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Stefan Wahren <stefan.wahren@i2se.com>,
-        mbrugger <mbrugger@suse.com>
-Date:   Tue, 03 Sep 2019 17:43:52 +0200
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-VNc7oUE10RoRira+Huej"
-User-Agent: Evolution 3.32.4 
+        id S1730839AbfICQ1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 12:27:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48686 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730835AbfICQ1V (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 12:27:21 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AB63623431;
+        Tue,  3 Sep 2019 16:27:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567528040;
+        bh=jL960mftVsy4K2E1ETmoVa7GLoiRlSFtBXSAOIO1zaM=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=nZRvBFHJg3rBVs21y87VOcjcF/AVWl9K9aqWSULDUtETkz20eL8K/nhz3oYoE7fCn
+         YucNfy2jDlLY9TThDuHutSQz7AyOC87+moElzAs6YdGhdXanAHWnXqoLt30er1euZH
+         s1S+3jlEZaa/734RKitO+EU/fCbl/RN0hawF7Dzc=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Jonathan Bakker <xc-racer2@live.ca>,
+        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Sasha Levin <sashal@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 067/167] dt-bindings: iio: adc: exynos-adc: Add S5PV210 variant
+Date:   Tue,  3 Sep 2019 12:23:39 -0400
+Message-Id: <20190903162519.7136-67-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190903162519.7136-1-sashal@kernel.org>
+References: <20190903162519.7136-1-sashal@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Jonathan Bakker <xc-racer2@live.ca>
 
---=-VNc7oUE10RoRira+Huej
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+[ Upstream commit a9b0a2a7c19316588421b94946c8e2e5a84ac14e ]
 
-Hi all, sorry for the long read, I kept it as short as possible.
+Add information about new compatible for S5PV210
 
-So, the wrapper around the PCIe block available on the Raspberry Pi 4 has a=
- bug
-preventing it from accessing anything beyond the first 3G of ram [1]. I'm
-trying to figure out the best way to integrate this upstream.
+Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
+Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
+Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ .../devicetree/bindings/iio/adc/samsung,exynos-adc.txt        | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Note that the only thing behind the PCIe bus is an USB3 chip. The bus is no=
-t
-exposed to users directly.
-
-I see two options:
-
-- Isolate the PCIe block on it's own interconnect. IMO this could be accept=
-able
-  as it's arguable that the bug is not really in the PCIe block.  I set the
-  interconnect's dma-range size to 2GB instead of 3GB as dma masks don't pl=
-ay
-  well with non power of two DMA constraints:
-
-  buggy-scb {
-	compatible =3D "simple-bus";
-	dma-ranges =3D <0x0 0x00000000 0x0 0x00000000 0x800000000>;
-
-	pcie {
-		compatible =3D "brcm,bcm2711-pcie";
-		dma-ranges =3D <0x02000000 0x0 0x00000000 0x0 0x00000000
-			      0x1 0x00000000>;
-		[...]
-
-	};
-  };
-
-  scb {
-	compatible =3D "simple-bus";
-	dma-ranges =3D <0x0 0x00000000 0x0 0x00000000 0xfc0000000>;
-
-	eth0 {
-		[...]
-	};
-
-	[...]
-  };
-
-  With this setup the PCIe devices should behave correctly as long as they
-  don't play with their own DMA masks.
-
-- Configure PCIe's inbound view of memory taking into account the buggy
-  interconnect:
-
-  scb {
-	compatible =3D "simple-bus";
-	dma-ranges =3D <0x0 0x00000000 0x0 0x00000000 0xfc000000>;
-
-	pcie {
-		compatible =3D "brcm,bcm2711-pcie";
-		dma-ranges =3D <0x02000000 0x0 0x00000000 0x0 0x00000000
-			      0x0 0x80000000>;
-		[...]
-
-	};
-
-	eth0 {
-		[...]
-	};
-
-	[...]
-  };
-
-  The downside of this is that of_dma_configure() doesn't play well with PC=
-I
-  devices. of_dma_configure() expects a device's OF node, yet the PCI core
-  passes the bridge's OF node, as the device has none. The result is
-  of_dma_configure() ignores PCI's dma-ranges. Solving this is not trivial.
-  IMO the simplest solution would be to create a distinct OF node on PCI
-  bridges, child of the actual PCI root complex.  FYI this was already an i=
-ssue
-  some years ago [2].
-
-  This solution also suffers from devices setting their own DMA masks.
-
-If you're curious abot the downstream kernel, they use their custom buffer
-bouncing code, which AFAIK is something we're trying to get rid of.
-
-Any comments? Alternative solutions?
-
-Thanks,
-Nicolas
-
-[1] https://www.spinics.net/lists/arm-kernel/msg740693.html
-[2] https://patchwork.kernel.org/patch/9650345/#20294961
-
-
---=-VNc7oUE10RoRira+Huej
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1uijgACgkQlfZmHno8
-x/4ncwf/bFv3AD0ndtH89sJxuLuYsOfE/0zdO83AOPyEGnYUEp8yPyov0zO43okd
-oQ2rfzZl8jALpzSy936hXZIIcJmWuOaTApRMaf14Rumq/RKR1zIG5e69ZlTskd5s
-/ar4nASgz8/9ShY6LASonoXaTSSkbsOEWhBJPQjrS4Rf/Q9ggnLuzapHI6pDGdrJ
-9DupdCcl7v1+Mfa+erRSGYrNgPWMnt85PaVQT2I+ICwc0UDWDND2hgIbuHsxnBre
-1JFn0x26TIpqUCqegsZxOJOjNCQS+bTvoYzoi/xAhyuMMt+DFR7Jhk+l1TRrB/qs
-x7bWu1wcIdB+gfhyeOrJUjm2qd5nFw==
-=f55V
------END PGP SIGNATURE-----
-
---=-VNc7oUE10RoRira+Huej--
+diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt
+index 6c49db7f8ad25..a10c1f89037de 100644
+--- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt
+@@ -11,7 +11,7 @@ New driver handles the following
+ 
+ Required properties:
+ - compatible:		Must be "samsung,exynos-adc-v1"
+-				for exynos4412/5250 and s5pv210 controllers.
++				for exynos4412/5250 controllers.
+ 			Must be "samsung,exynos-adc-v2" for
+ 				future controllers.
+ 			Must be "samsung,exynos3250-adc" for
+@@ -28,6 +28,8 @@ Required properties:
+ 				the ADC in s3c2443 and compatibles
+ 			Must be "samsung,s3c6410-adc" for
+ 				the ADC in s3c6410 and compatibles
++			Must be "samsung,s5pv210-adc" for
++				the ADC in s5pv210 and compatibles
+ - reg:			List of ADC register address range
+ 			- The base address and range of ADC register
+ 			- The base address and range of ADC_PHY register (every
+-- 
+2.20.1
 
