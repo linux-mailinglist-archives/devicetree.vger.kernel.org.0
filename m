@@ -2,95 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAB99A5EA2
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 02:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1FB8A5ED2
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 03:29:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725839AbfICAhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 20:37:18 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:33224 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725306AbfICAhS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 2 Sep 2019 20:37:18 -0400
-Received: by mail-pg1-f193.google.com with SMTP id n190so8144624pgn.0;
-        Mon, 02 Sep 2019 17:37:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HYKhqZZp7jnIMlp6HX/xKA8CzksLvNCX8Kw12YKrVSI=;
-        b=GG9uHqY6EzKTp+NmNFXol0x0Yo8b//eg5hirJUjGZbF8Ewi6n3Aqv7g5Qrs0WqwQzn
-         sYwtAwbs8OtQOgUAVDuGRTUtGcLmQMWv4Ut+WcNtxSx4RwlMr+vCoe9uD0ie205jaN8F
-         PfebOKtzphUwJgdQ382wOh2cZLBWxdCmOIP2WpEXo8+gsu09D1A6XomasjFchYmx1nOI
-         XegTHmoC3NxSSC86A053v0JJS56nqb055YMqKnvesE4JSl8QbDQ8Wp1YMn7OM3UVs1IG
-         XUQ/9dOwqVpsSPRIfP77FZdjdz4Yy+YHRU3taDM1pNNGowqahRwQCqlNw3zObX2COMrO
-         E21Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HYKhqZZp7jnIMlp6HX/xKA8CzksLvNCX8Kw12YKrVSI=;
-        b=DBtBTIBzT7Tgl8gWDmNQWYQah3QZwKf+NgdC5IkOlk4YKLq3km33CIhk7oB+oLzLoJ
-         HMyyHMNLRVreXWlgxumd8r42gUvASivdtfWhbtebhLY8dM3aoN6F4yXs9SUQUzDib1ci
-         T698Qx2ORrDdH4TPbEnvCeEWrz9KWuI2Mf4T/uFOGliAzeg+/xorNuhEM4zBPqGhKBJ3
-         agxEWvym/Dxosb+f1EtuwXjGPh+tHsbZK09XcxaZFIZ58tLrq1iSrZ/oZ9AMZptmZQS1
-         /8rET0pf7CuBH6EkHbygs1pRq9+sac6RPWo4sEWGkRC+FKZthNSDUKs6qTKF/aQ2H6pq
-         QfcA==
-X-Gm-Message-State: APjAAAWiV0OP00WgCHuSK2OJVUlCRxYuWLNW92Ans5C2f2U6iNaEhaGJ
-        il+Zapi7eMEdTEP55IhF5uUzpMLY
-X-Google-Smtp-Source: APXvYqyaxD5JaG3LjjtT0YzYZcEzB/up1o1Kca6y0BH2nffXoIjkDxft6i8APuQY3uZc8Dx2gSgPwg==
-X-Received: by 2002:a65:4c4d:: with SMTP id l13mr27017264pgr.156.1567471037707;
-        Mon, 02 Sep 2019 17:37:17 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l7sm15825681pff.35.2019.09.02.17.37.16
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Sep 2019 17:37:17 -0700 (PDT)
-Subject: Re: [PATCH RESEND v2 1/6] dt-bindings: watchdog: Add YAML schemas for
- the generic watchdog bindings
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     wim@linux-watchdog.org, linux-kernel@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org
-References: <20190821143835.7294-1-mripard@kernel.org>
- <20190830164811.GA7911@roeck-us.net> <20190902114650.w65ya7mgfsyu275x@flea>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <a7c5892b-4fd5-9b24-fdd6-f3aa1e6c98e7@roeck-us.net>
-Date:   Mon, 2 Sep 2019 17:37:15 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190902114650.w65ya7mgfsyu275x@flea>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1725955AbfICB3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 21:29:01 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:50022 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725306AbfICB3B (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 21:29:01 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C2EFA1A09E7;
+        Tue,  3 Sep 2019 03:28:59 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C75341A09F3;
+        Tue,  3 Sep 2019 03:28:47 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0401F402B1;
+        Tue,  3 Sep 2019 09:28:39 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com, jacek.anaszewski@gmail.com, pavel@ucw.cz,
+        dmurphy@ti.com
+Subject: [PATCH V2] arm64: dts: imx8mn-ddr4-evk: Enable GPIO LED
+Date:   Tue,  3 Sep 2019 09:27:57 -0400
+Message-Id: <1567517277-30919-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/2/19 4:46 AM, Maxime Ripard wrote:
-> Hi Guenther,
-> 
-> On Fri, Aug 30, 2019 at 09:48:11AM -0700, Guenter Roeck wrote:
->> On Wed, Aug 21, 2019 at 04:38:30PM +0200, Maxime Ripard wrote:
->>> From: Maxime Ripard <maxime.ripard@bootlin.com>
->>>
->>> The watchdogs have a bunch of generic properties that are needed in a
->>> device tree. Add a YAML schemas for those.
->>>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
->>
->> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-> 
-> Thanks for reviewing this, which tree should this go through? Yours or Rob's?
-> 
-I added the watchdog patches to my watchdog-next tree, where Wim
-usually pick them up. I would be ok with Rob picking them up too
-if he wants to.
+i.MX8MN DDR4 EVK board has a GPIO LED to indicate status,
+add support for it.
 
-Guenter
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+Changes since V1:
+	- Mention color in the label.
+---
+ arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+index b698061..bf1c097 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
+@@ -15,6 +15,18 @@
+ 		stdout-path = &uart2;
+ 	};
+ 
++	gpio-leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio_led>;
++
++		status {
++			label = "yellow:status";
++			gpios = <&gpio3 16 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++	};
++
+ 	reg_usdhc2_vmmc: regulator-usdhc2 {
+ 		compatible = "regulator-fixed";
+ 		pinctrl-names = "default";
+@@ -54,6 +66,12 @@
+ 		>;
+ 	};
+ 
++	pinctrl_gpio_led: gpioledgrp {
++		fsl,pins = <
++			MX8MN_IOMUXC_NAND_READY_B_GPIO3_IO16	0x19
++		>;
++	};
++
+ 	pinctrl_i2c1: i2c1grp {
+ 		fsl,pins = <
+ 			MX8MN_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
+-- 
+2.7.4
+
