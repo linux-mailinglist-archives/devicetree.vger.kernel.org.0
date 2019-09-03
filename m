@@ -2,154 +2,279 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4747FA6195
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99CB1A61AD
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:44:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727267AbfICGhF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 02:37:05 -0400
-Received: from mail-eopbgr00081.outbound.protection.outlook.com ([40.107.0.81]:29548
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725878AbfICGhF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 02:37:05 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RtudYmO8v+UPJxMaoAELM7/wwlgcdCh/ioIE2PAYCb9xbpwV/kllD1R0Xl3IG8d9rpyfvv7NnBjiSKhz7QrC7So66yxPyGD2QIC5XiZHDNhX21F8ZQWNCC12SM6JR14MIwj8KQfFM2ssdCdnekEQUCBHwBrjFVc0JoDxV5NyIUqUIG/6A8utfHqi2py0SiOVUR/W4Jk3un/9Us/8jpmbgd2i0/qaspQGWqZT7dD8ynEl4HnznJDg2CXmy7G1YatdzeWumij4PlZ8X/qAEe1/q0qi2ydxpbEBU42QdPlIEWakWfFXoiNduCqOFIRT6IlkvA0XzXrPB028yiDwFxIljA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NZhGOE9OrA4rJkPnM+TFObsmfrNy0UdJMrs+mrHKYBU=;
- b=m46A4SMtK4fYdMlpEM7M0ydKC3yqpoS2TbKOYjF5djGyXIwYMcIrwArCfCqySq4EJR2aN3rNxiZlC4Nv/UcjW4Nw10GPw6GSXnbJWlC1IUcu3sJjithSiTRZffz5sE3o4pnwjQFMmcEyHAfTgSPuM0iyULMQxY2Rnbdh5vzOyaDkU7vrrh3co2c4XhffqZuvDoxzV0owKnBgALCJ7yLU8wAt9PQdcWZBh1kZhBIJsxlJqvE2zbGpkU69TZ8nURlm2CD/bEN+6GzKkRg0x0WAOvhEuXrlHMYoSVLYwqCh5cQLDg1JNqcliBcsULQr605WM6WaW7PReFJZvXUIbq7Suw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NZhGOE9OrA4rJkPnM+TFObsmfrNy0UdJMrs+mrHKYBU=;
- b=H33/MIEgDY41Y1Jk/tE2cwKqlmq6kLKDefuBuJso4+bUTw0sNSi9qk7GmAnA9EpuXHTg9MM4WOBEJYF51rayomhnqU7moeicwgLXXA7MW7s+L7soLo7iNINDkMJrbpHegfwEQOj4LK7Ck4rbHaVlyvlTtz8weuLxHtb5KLtgsUs=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3914.eurprd04.prod.outlook.com (52.134.71.157) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.20; Tue, 3 Sep 2019 06:37:00 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::8958:299c:bc54:2a38]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::8958:299c:bc54:2a38%7]) with mapi id 15.20.2199.021; Tue, 3 Sep 2019
- 06:37:00 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-        Andy Duan <fugang.duan@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>, "arnd@arndb.de" <arnd@arndb.de>,
-        "jagan@amarulasolutions.com" <jagan@amarulasolutions.com>,
-        "bjorn.andersson@linaro.org" <bjorn.andersson@linaro.org>,
-        "dinguyen@kernel.org" <dinguyen@kernel.org>,
-        "marcin.juszkiewicz@linaro.org" <marcin.juszkiewicz@linaro.org>,
-        "stefan@agner.ch" <stefan@agner.ch>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "yuehaibing@huawei.com" <yuehaibing@huawei.com>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "ronald@innovation.ch" <ronald@innovation.ch>,
-        "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        id S1726053AbfICGot (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 02:44:49 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:41959 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725956AbfICGot (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:44:49 -0400
+X-UUID: 3c738cff8e05492494681aa556dc0d83-20190903
+X-UUID: 3c738cff8e05492494681aa556dc0d83-20190903
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <jerry-ch.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 2091148019; Tue, 03 Sep 2019 14:44:42 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 3 Sep 2019 14:44:41 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 3 Sep 2019 14:44:41 +0800
+Message-ID: <1567493081.18318.49.camel@mtksdccf07>
+Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
+From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
+        "zwisler@chromium.org" <zwisler@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH V2 1/5] dt-bindings: fsl: scu: add scu power key binding
-Thread-Topic: [PATCH V2 1/5] dt-bindings: fsl: scu: add scu power key binding
-Thread-Index: AQHVYfv+INaxBRtrokqtKaL9fDhNpqcZfq6AgAAAnFA=
-Date:   Tue, 3 Sep 2019 06:37:00 +0000
-Message-ID: <DB3PR0402MB391656FC3603B30300ADBF27F5B90@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
- <21d2e400-976a-35c3-6875-4cc0c476fdf2@pengutronix.de>
-In-Reply-To: <21d2e400-976a-35c3-6875-4cc0c476fdf2@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c3ca1df6-ca44-429e-a77a-08d730391fed
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3914;
-x-ms-traffictypediagnostic: DB3PR0402MB3914:|DB3PR0402MB3914:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB39140FB68264E1BE4ECAC4F9F5B90@DB3PR0402MB3914.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4714;
-x-forefront-prvs: 01494FA7F7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(346002)(366004)(396003)(136003)(39860400002)(189003)(199004)(478600001)(14454004)(256004)(5660300002)(86362001)(8676002)(33656002)(316002)(446003)(71190400001)(102836004)(186003)(52536014)(2201001)(7416002)(6506007)(26005)(66066001)(2501003)(53546011)(71200400001)(476003)(44832011)(486006)(11346002)(25786009)(55016002)(9686003)(74316002)(99286004)(229853002)(7696005)(76176011)(6116002)(3846002)(76116006)(7736002)(305945005)(66946007)(66556008)(81166006)(110136005)(81156014)(66476007)(66446008)(64756008)(8936002)(6436002)(53936002)(4326008)(6246003)(2906002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3914;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: CZ/dRw4Ot/ZiZP0iRPwX40nfstkCoVd/j/HgATYQsyMZ/9uFTbl06ILwsiBbxQZO8jQtQ1/wQCqt2cbAAuwezHwq8jaR0td5EMcwdN8QMFawA1xtGLVNCbsRMoiBF8VEyx/04WfHt1ehl9qbbvHOkqqpNJM50vvVu7//2mH7PvJmQNSNUCPHe3BZWtWq0FB9N5ltP8OsZnulqvOE643q6OjWe9iIDyC4P2blJbbYGr/zr8twYMgTpyAuOPif0+Y3kYfk59E0EWMOFbH9X8TkJwR9Z4lWDOttgQmSW7zmO+2yNfPrJyM08Bq7Y9k3AF1T5IOAi2d2LtddYkl3lJR0S2vqxEwUnPlq59I/4IOEQRZCwgcylTf32FLpUZEw0dSRLugckcgNXc5KoPLBn8mZGf0amB5Dh+v6+GhGDr6EJMM=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
+        <Sean.Cheng@mediatek.com>,
+        "Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?=" 
+        <sj.huang@mediatek.com>,
+        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
+        <christie.yu@mediatek.com>,
+        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
+        <Frederic.Chen@mediatek.com>,
+        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
+        <jungo.lin@mediatek.com>,
+        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
+        <Rynn.Wu@mediatek.com>,
+        Po-Yang Huang =?UTF-8?Q?=28=E9=BB=83=E6=9F=8F=E9=99=BD=29?= 
+        <po-yang.huang@mediatek.com>,
+        "shik@chromium.org" <shik@chromium.org>,
+        "suleiman@chromium.org" <suleiman@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Date:   Tue, 3 Sep 2019 14:44:41 +0800
+In-Reply-To: <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
+References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
+         <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
+         <20190802082815.GA203993@chromium.org>
+         <1566724680.20680.8.camel@mtksdccf07>
+         <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
+         <1566957625.20680.33.camel@mtksdccf07>
+         <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
+         <1567424859.18318.32.camel@mtksdccf07>
+         <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c3ca1df6-ca44-429e-a77a-08d730391fed
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 06:37:00.2542
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9SNMIp/kyqaD5b7kPCpFrXug03bODGhFklvFuIEtR7NwPWW/4RX80ZrW6HnIGrCwocBiJF2JyQu5+hHOeVQbsA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3914
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIE9sZWtzaWoNCg0KPiBPbiAwMy4wOS4xOSAxNjowMywgQW5zb24gSHVhbmcgd3JvdGU6DQo+
-ID4gTlhQIGkuTVg4UVhQIGlzIGFuIEFSTXY4IFNvQyB3aXRoIGEgQ29ydGV4LU00IGNvcmUgaW5z
-aWRlIGFzIHN5c3RlbQ0KPiA+IGNvbnRyb2xsZXIsIHRoZSBzeXN0ZW0gY29udHJvbGxlciBpcyBp
-biBjaGFyZ2Ugb2Ygc3lzdGVtIHBvd2VyLCBjbG9jaw0KPiA+IGFuZCBwb3dlciBrZXkgZXZlbnQg
-ZXRjLiBtYW5hZ2VtZW50LCBMaW51eCBrZXJuZWwgaGFzIHRvIGNvbW11bmljYXRlDQo+ID4gd2l0
-aCBzeXN0ZW0gY29udHJvbGxlciB2aWEgTVUgKG1lc3NhZ2UgdW5pdCkgSVBDIHRvIGdldCBwb3dl
-ciBrZXkNCj4gPiBldmVudCwgYWRkIGJpbmRpbmcgZG9jIGZvciBpLk1YIHN5c3RlbSBjb250cm9s
-bGVyIHBvd2VyIGtleSBkcml2ZXIuDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNvbiBIdWFu
-ZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiBDaGFuZ2VzIHNpbmNlIFYxOg0K
-PiA+IAktIHJlbW92ZSAid2FrZXVwLXNvdXJjZSIgcHJvcGVydHksIGFzIGl0IGlzIE5PVCBuZWVk
-ZWQgZm9yIFNDVQ0KPiBpbnRlcnJ1cHQ7DQo+ID4gCS0gcmVtb3ZlICJzdGF0dXMiIGluIGV4YW1w
-bGUuDQo+ID4gLS0tDQo+ID4gICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxl
-L2ZzbCxzY3UudHh0ICAgICAgICAgIHwgMTQNCj4gKysrKysrKysrKysrKysNCj4gPiAgIDEgZmls
-ZSBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCspDQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9E
-b2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZyZWVzY2FsZS9mc2wsc2N1LnR4
-dA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUv
-ZnNsLHNjdS50eHQNCj4gPiBpbmRleCBjMTQ5ZmFkLi5mOTNlMmU0IDEwMDY0NA0KPiA+IC0tLSBh
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxlL2ZzbCxzY3Uu
-dHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVl
-c2NhbGUvZnNsLHNjdS50eHQNCj4gPiBAQCAtMTU3LDYgKzE1NywxNSBAQCBSZXF1aXJlZCBwcm9w
-ZXJ0aWVzOg0KPiA+ICAgT3B0aW9uYWwgcHJvcGVydGllczoNCj4gPiAgIC0gdGltZW91dC1zZWM6
-IGNvbnRhaW5zIHRoZSB3YXRjaGRvZyB0aW1lb3V0IGluIHNlY29uZHMuDQo+ID4NCj4gPiArUG93
-ZXIga2V5IGJpbmRpbmdzIGJhc2VkIG9uIFNDVSBNZXNzYWdlIFByb3RvY29sDQo+ID4gKy0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
-PiA+ICsNCj4gPiArUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiArLSBjb21wYXRpYmxlOiBzaG91
-bGQgYmU6DQo+ID4gKyAgICAgICAgICAgICAgImZzbCxpbXg4cXhwLXNjLXB3cmtleSINCj4gPiAr
-ICAgICAgICAgICAgICBmb2xsb3dlZCBieSAiZnNsLGlteC1zYy1wd3JrZXkiOw0KPiA+ICstIGxp
-bnV4LGtleWNvZGVzOiBTZWUNCj4gPiArRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L2lucHV0L2tleXMudHh0DQo+IA0KPiBsaW51eCxrZXljb2RlcyBpcyByZXF1aXJlZCBwYXJhbWV0
-ZXIuIFNvLCB0aGlzIGtheSBjYWIgYmUgYW55dGhpbmcuIFdoeSB0aGUNCj4gY29tcGF0aWJsZSBp
-cyBjYWxsZWQgcHdya2V5PyBQcm9iYWJseSBpdCBpcyBiZXR0ZXIgdG8gY2FsbCBpdCAiKi1zYy1r
-ZXkiDQoNClRoaXMga2V5IGlzIGtpbmQgb2Ygc3BlY2lhbCwgaXQgaXMgT04vT0ZGIGJ1dHRvbiB3
-aGljaCBpcyBkZXNpZ25lZCBmb3IgcG93ZXIga2V5DQpwdXJwb3NlLCBpdCBoYXMgSFcgZnVuY3Rp
-b24gc3VjaCBhcyBsb25nIHByZXNzaW5nIGl0IHdvdWxkIHNodXRkb3duIHRoZSBzeXN0ZW0gcG93
-ZXIsDQpzbyB3ZSBhbHdheXMgdXNlIGl0IGFzIHBvd2VyIGtleSwgTk9UIGdlbmVyYWwga2V5LCBk
-b2VzIGl0IG1ha2Ugc2Vuc2U/DQoNClRoYW5rcywNCkFuc29uLg0K
+On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
+> On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> >
+> > Hi Tomasz,
+> >
+> > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
+> > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
+> > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > >
+> > > > Hi Tomasz,
+> > > >
+> > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
+> > > > > Hi Jerry,
+> > > > >
+> > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
+> > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > >
+> > > > > > Hi Tomasz,
+> > > > > >
+> > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
+> > > > > > > Hi Jerry,
+> > > > > > >
+> > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
+> [snip]
+> > > > static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
+> > > >                                   unsigned int *num_buffers,
+> > > >                                   unsigned int *num_planes,
+> > > >                                   unsigned int sizes[],
+> > > >                                   struct device *alloc_devs[])
+> > > > {
+> > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > >         struct device *dev = ctx->dev;
+> > > >         unsigned int size[2];
+> > > >
+> > > >         switch (vq->type) {
+> > > >         case V4L2_BUF_TYPE_META_CAPTURE:
+> > > >                 size[0] = ctx->dst_fmt.buffersize;
+> > > >                 break;
+> > > >         case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> > > >                 size[0] = ctx->src_fmt.plane_fmt[0].sizeimage;
+> > > >                 if (*num_planes == 2)
+> > > >                         size[1] = ctx->src_fmt.plane_fmt[1].sizeimage;
+> > > >                 break;
+> > > >         }
+> > > >
+> > > >         if (*num_planes == 1) {
+> > > >                 if (sizes[0] < size[0])
+> > > >                         return -EINVAL;
+> > > >         } else if (*num_planes == 2) {
+> > > >                 if ((sizes[0] < size[0]) && (sizes[1] < size[1]))
+> > > >                         return -EINVAL;
+> > >
+> > > Can we just use a loop here and combine the 2 cases above?
+> > >
+> > > Also, we need to fail with -EINVAL if *num_planes is > 2.
+> > >
+> > > >         } else {
+> > > >                 *num_planes = 1;
+> > > >                 sizes[0] = size[0];
+> > >
+> > > This should be the case if *num_planes == 0 and the number of planes
+> > > and sizes should match the currently active format.
+> > >
+> > I appreciate your comments,
+> >
+> > Ok, I will update as following:
+> > static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
+> >                                   unsigned int *num_buffers,
+> >                                   unsigned int *num_planes,
+> >                                   unsigned int sizes[],
+> >                                   struct device *alloc_devs[])
+> > {
+> >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> >         unsigned int size[2];
+> >         unsigned int plane;
+> >
+> >         switch (vq->type) {
+> >         case V4L2_BUF_TYPE_META_CAPTURE:
+> >                 size[0] = ctx->dst_fmt.buffersize;
+> >                 break;
+> >         case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> >                 size[0] = ctx->src_fmt.plane_fmt[0].sizeimage;
+> >                 if (*num_planes == 2)
+> >                         size[1] = ctx->src_fmt.plane_fmt[1].sizeimage;
+> >                 break;
+> >         }
+> >
+> >         if (*num_planes > 2)
+> >                 return -EINVAL;
+> >         if (*num_planes == 0) {
+> >                 if (vq->type == V4L2_BUF_TYPE_META_CAPTURE) {
+> >                         sizes[0] = ctx->dst_fmt.buffersize;
+> >                         *num_planes = 1;
+> >                         return 0;
+> >                 }
+> >
+> >                 *num_planes = ctx->src_fmt.num_planes;
+> >                 for (plane = 0; plane < *num_planes; plane++)
+> >                         sizes[plane] = ctx->src_fmt.plane_fmt[plane].sizeimage;
+> >                 return 0;
+> >         }
+> >
+> >         for (plane = 0; plane < *num_planes; plane++) {
+> >                 if(sizes[plane] < size[plane])
+> >                         return -EINVAL;
+> >         }
+> >         return 0;
+> > }
+> >
+> 
+> Looks good, thanks!
+> 
+> > > >         }
+> > > >
+> > > >         return 0;
+> > > > }
+> > > >
+> > > > > [snip]
+> > > > >
+> > > > > > > > +static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+> > > > > > > > +{
+> > > > > > > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > > > > > > +   struct vb2_buffer *vb;
+> > > > > > >
+> > > > > > > How do we guarantee here that the hardware isn't still accessing the buffers
+> > > > > > > removed below?
+> > > > > > >
+> > > > > > Maybe we can check the driver state flag and aborting the unfinished
+> > > > > > jobs?
+> > > > > > (fd_hw->state == FD_ENQ)
+> > > > > >
+> > > > >
+> > > > > Yes, we need to either cancel or wait for the currently processing
+> > > > > job. It depends on hardware capabilities, but cancelling is generally
+> > > > > preferred for the lower latency.
+> > > > >
+> > > > Ok, it the state is ENQ, then we can disable the FD hw by controlling
+> > > > the registers.
+> > > >
+> > > > for example:
+> > > >         writel(0x0, fd->fd_base + FD_HW_ENABLE);
+> > > >         writel(0x0, fd->fd_base + FD_INT_EN);
+> > > >
+> > >
+> > > What's exactly the effect of writing 0 to FD_HW_ENABLE?
+> > >
+> > Sorry, my last reply didn't solve the question,
+> > we should implement a mtk_fd_job_abort() for v4l2_m2m_ops().
+> >
+> > which is able to readl_poll_timeout_atomic()
+> > and check the HW busy bits in the register FD_INT_EN;
+> >
+> > if they are not cleared until timeout, we could handle the last
+> > processing job.
+> > Otherwise, the FD irq handler should have handled the last processing
+> > job and we could continue the stop_streaming().
+> >
+> > For job_abort():
+> > static void mtk_fd_job_abort(void *priv)
+> > {
+> >         struct mtk_fd_ctx *ctx = priv;
+> >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> >         u32 val;
+> >         u32 ret;
+> >
+> >         ret = readl_poll_timeout_atomic(fd->fd_base + MTK_FD_REG_OFFSET_INT_EN,
+> >                                         val,
+> >                                         (val & MTK_FD_HW_BUSY_MASK) ==
+> >                                         MTK_FD_HW_STATE_IS_BUSY,
+> >                                         USEC_PER_MSEC, MTK_FD_STOP_HW_TIMEOUT);
+> 
+> Hmm, would it be possible to avoid the busy wait by having a
+> completion that could be signalled from the interrupt handler?
+> 
+> Best regards,
+> Tomasz
+
+I suppose that would be wakeup a wait queue in the interrupt handler,
+the the wait_event_interrupt_timeout() will be used in here and system
+suspend e.g. mtk_fd_suspend().
+Or do you suggest to wait_event_interrupt_timeout() every frame in the
+mtk_fd_ipi_handler()?
+I think maybe the readl_poll_timeout_atomic would be good enough.
+
+
+One more thing, for the mtk_fd_video_device_register()
+Sorry that I would need to use intermediate variable here since the 80
+columns check.
+
+	function = MEDIA_ENT_F_PROC_VIDEO_STATISTICS;
+	ret = v4l2_m2m_register_media_controller(m2m_dev, vfd, function);
+	if (ret) {
+		dev_err(dev, "Failed to init mem2mem media controller\n");
+		goto err_unreg_video;
+	}
+
+
+Thanks and Best regards,
+Jerry
+
