@@ -2,98 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D9C1A66A7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 12:36:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F355A6705
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 13:05:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728847AbfICKgP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 06:36:15 -0400
-Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:35616 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728747AbfICKgA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 06:36:00 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 562C2C0416;
-        Tue,  3 Sep 2019 10:35:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1567506960; bh=wcWwratgm8ehYW75XaHQWAIMPGVfnICMKiObM27MCu0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:In-Reply-To:
-         References:From;
-        b=GniHgZu+adDcfTGlIjdjxgpPuaMK3KYAHngpYsl8jlO+u2gWCty2+hLXDbsv5j1fs
-         qFZ5QPKuDJy5vGhQVlHqDcCmleIOkYf4zeEWtA0PWyutbUt0E4k/yOxa9Tu9itLS3n
-         HMx40mPjd84uM+rHlgDeKoj+cJ6avEUoouCB0HafmRJyxobd8Mu1XSDMeP78Uxl49h
-         SZvAZHsaDZ9OfMohgLXOW4pQWoFUpK7JJTmu9tzZWQjDg4o61ZHsMqw5x6571uBAGp
-         MR/HJUoLNRTAltgR0/1WTYtp/KFEqg3UlxXGGsMrRqstY5GPhg7ivV8lfQKgefkvjA
-         3GoaWeBRxqorQ==
-Received: from de02.synopsys.com (germany.internal.synopsys.com [10.225.17.21])
-        by mailhost.synopsys.com (Postfix) with ESMTP id 212D3A006A;
-        Tue,  3 Sep 2019 10:35:57 +0000 (UTC)
-Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
-        by de02.synopsys.com (Postfix) with ESMTP id E55A93C0E4;
-        Tue,  3 Sep 2019 12:35:56 +0200 (CEST)
-From:   Vitor Soares <Vitor.Soares@synopsys.com>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-i3c@lists.infradead.org
-Cc:     bbrezillon@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        pgaj@cadence.com, Joao.Pinto@synopsys.com,
-        Vitor Soares <Vitor.Soares@synopsys.com>
-Subject: [PATCH v2 5/5] i3c: master: dw: reattach device on first available location of address table
-Date:   Tue,  3 Sep 2019 12:35:54 +0200
-Message-Id: <594bce70368177256376fc2f592736db78cf40db.1567437955.git.vitor.soares@synopsys.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1567437955.git.vitor.soares@synopsys.com>
-References: <cover.1567437955.git.vitor.soares@synopsys.com>
-In-Reply-To: <cover.1567437955.git.vitor.soares@synopsys.com>
-References: <cover.1567437955.git.vitor.soares@synopsys.com>
+        id S1727077AbfICLFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 07:05:39 -0400
+Received: from 60-251-196-230.HINET-IP.hinet.net ([60.251.196.230]:36507 "EHLO
+        ironport.ite.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726631AbfICLFj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 07:05:39 -0400
+X-Greylist: delayed 594 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 07:05:39 EDT
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 03 Sep 2019 18:55:44 +0800
+Received: from csbcas.internal.ite.com.tw (csbcas1.internal.ite.com.tw [192.168.65.46])
+        by mse.ite.com.tw with ESMTP id x83AtcHq074927;
+        Tue, 3 Sep 2019 18:55:38 +0800 (GMT-8)
+        (envelope-from allen.chen@ite.com.tw)
+Received: from allen-VirtualBox.internal.ite.com.tw (192.168.70.14) by
+ csbcas1.internal.ite.com.tw (192.168.65.45) with Microsoft SMTP Server (TLS)
+ id 14.3.352.0; Tue, 3 Sep 2019 18:55:39 +0800
+From:   allen <allen.chen@ite.com.tw>
+CC:     Allen Chen <allen.chen@ite.com.tw>,
+        Pi-Hsun Shih <pihsun@chromium.org>,
+        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
+        David Airlie <airlied@linux.ie>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: Add binding for IT6505.
+Date:   Tue, 3 Sep 2019 18:51:53 +0800
+Message-ID: <1567507915-9844-2-git-send-email-allen.chen@ite.com.tw>
+X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1567507915-9844-1-git-send-email-allen.chen@ite.com.tw>
+References: <1567507915-9844-1-git-send-email-allen.chen@ite.com.tw>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [192.168.70.14]
+X-MAIL: mse.ite.com.tw x83AtcHq074927
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For today the reattach function only update the device address on the
-controller.
+From: Allen Chen <allen.chen@ite.com.tw>
 
-Update the location to the first available too, will optimize the
-enumeration process avoiding additional checks to keep the available
-positions on address table consecutive.
+Add a DT binding documentation for IT6505.
 
-Signed-off-by: Vitor Soares <vitor.soares@synopsys.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+
 ---
-Change in v2:
-  - Add Boris rb-tag
+Comments in v1 would be addressed later in v3.
+---
+ .../bindings/display/bridge/ite,it6505.txt         | 30 ++++++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.txt        |  1 +
+ 2 files changed, 31 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
 
- drivers/i3c/master/dw-i3c-master.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index 1d83c97..62261ac 100644
---- a/drivers/i3c/master/dw-i3c-master.c
-+++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -898,6 +898,22 @@ static int dw_i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
- 	struct dw_i3c_i2c_dev_data *data = i3c_dev_get_master_data(dev);
- 	struct i3c_master_controller *m = i3c_dev_get_master(dev);
- 	struct dw_i3c_master *master = to_dw_i3c_master(m);
-+	int pos;
+diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+new file mode 100644
+index 0000000..c3506ac
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
+@@ -0,0 +1,30 @@
++iTE it6505 DP bridge bindings
 +
-+	pos = dw_i3c_master_get_free_pos(master);
++Required properties:
++        - compatible: "ite,it6505"
++        - reg: i2c address of the bridge
++        - ovdd-supply: I/O voltage
++        - pwr18-supply: Core voltage
++        - interrupts: interrupt specifier of INT pin
++        - reset-gpios: gpio specifier of RESET pin
 +
-+	if (data->index > pos && pos > 0) {
-+		writel(0,
-+		       master->regs +
-+		       DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
-+
-+		master->addrs[data->index] = 0;
-+		master->free_pos |= BIT(data->index);
-+
-+		data->index = pos;
-+		master->addrs[pos] = dev->info.dyn_addr;
-+		master->free_pos &= ~BIT(pos);
-+	}
- 
- 	writel(DEV_ADDR_TABLE_DYNAMIC_ADDR(dev->info.dyn_addr),
- 	       master->regs +
++Example:
++	it6505dptx: it6505dptx@5c {
++                compatible = "ite,it6505";
++                status = "okay";
++                interrupt-parent = <&pio>;
++                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
++                reg = <0x5c>;
++                pinctrl-names = "default";
++                pinctrl-0 = <&it6505_pins>;
++                ovdd-supply = <&mt6358_vsim1_reg>;
++                pwr18-supply = <&it6505_pp18_reg>;
++                reset-gpios = <&pio 179 1>;
++                hpd-gpios = <&pio 9 0>;
++                extcon = <&usbc_extcon>;
++                port {
++                        it6505_in: endpoint {
++                                remote-endpoint = <&dpi_out>;
++                        };
++                };
++        };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
+index 2c3fc51..c088646 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.txt
++++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
+@@ -184,6 +184,7 @@ iom	Iomega Corporation
+ isee	ISEE 2007 S.L.
+ isil	Intersil
+ issi	Integrated Silicon Solutions Inc.
++ite	iTE Tech. Inc.
+ itead	ITEAD Intelligent Systems Co.Ltd
+ iwave  iWave Systems Technologies Pvt. Ltd.
+ jdi	Japan Display Inc.
 -- 
-2.7.4
+1.9.1
 
