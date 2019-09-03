@@ -2,162 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67D87A6490
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:00:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B32DA64A9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:06:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbfICJA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 05:00:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40624 "EHLO mail.kernel.org"
+        id S1728188AbfICJGZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 05:06:25 -0400
+Received: from sauhun.de ([88.99.104.3]:51006 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726557AbfICJA0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 05:00:26 -0400
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1C43E21883;
-        Tue,  3 Sep 2019 09:00:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567501225;
-        bh=mVnvcxp+G9Lg09PKVia7IRCacGhHCMYuQLC/geqOJ/4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qAKAWwZEd/yvtlIIDRkP8+OQaZqVZulzqnHj2cQBPUTH2pf3gFRAOlWqqJERYclcg
-         KK9JAzB4eSsgZLU1CVX4TQcLi+BEsciUkTj0Nkw3F4kdhXXFv8LYIC7I96SykPW7p0
-         DCJMjCQbD7+46O1I3nONz923kX6yissO0EN+FPao=
-Received: by mail-qt1-f175.google.com with SMTP id k10so8579311qth.2;
-        Tue, 03 Sep 2019 02:00:25 -0700 (PDT)
-X-Gm-Message-State: APjAAAXOMkvMSvR1xDEiwo7tGUJNJhZQLVBOE0hKuq1+5rlsHoxCcn2V
-        ers9BrEH4VHqnUYD2tgGq5IM046o/hW8I1WNUw==
-X-Google-Smtp-Source: APXvYqxINc1z5+kUGayW8tQqoY1hH7ZohnenT2DMo0cxL15BrooAJ51z08nZ2stlFiJ8pZ/eaBW9rKX+cE1M9Hly+Ug=
-X-Received: by 2002:ac8:44c4:: with SMTP id b4mr32496188qto.224.1567501224313;
- Tue, 03 Sep 2019 02:00:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190902150336.3600-1-krzk@kernel.org> <CAL_JsqK_O+7zQDGxAhAHDW=AkMy+RtyijTXUuRStOgu8CYXe0g@mail.gmail.com>
- <CAJKOXPfO0yBzGFPvF_WwsGGJBZSBGMLsFi2CQ2Eg5RVfyfW3nA@mail.gmail.com>
-In-Reply-To: <CAJKOXPfO0yBzGFPvF_WwsGGJBZSBGMLsFi2CQ2Eg5RVfyfW3nA@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 3 Sep 2019 10:00:12 +0100
-X-Gmail-Original-Message-ID: <CAL_JsqJUfGBRAv=StPyavQU1DiHnFwUseNCvP6Ce_ZMohJXTXQ@mail.gmail.com>
-Message-ID: <CAL_JsqJUfGBRAv=StPyavQU1DiHnFwUseNCvP6Ce_ZMohJXTXQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: syscon-reboot: Convert bindings
- to json-schema
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+        id S1728128AbfICJGZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 05:06:25 -0400
+Received: from localhost (p54B3348D.dip0.t-ipconnect.de [84.179.52.141])
+        by pokefinder.org (Postfix) with ESMTPSA id 574B72C4F2F;
+        Tue,  3 Sep 2019 11:06:22 +0200 (CEST)
+Date:   Tue, 3 Sep 2019 11:06:22 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Peter Rosin <peda@axentia.se>
+Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
+Message-ID: <20190903090621.GB1020@kunai>
+References: <20190723203723.11730-1-luca@lucaceresoli.net>
+ <20190723203723.11730-3-luca@lucaceresoli.net>
+ <20190902204208.GA7253@kunai>
+ <8482d1e2-b1d9-3da5-5b1f-b7e492a87368@lucaceresoli.net>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="v9Ux+11Zm5mwPlX6"
+Content-Disposition: inline
+In-Reply-To: <8482d1e2-b1d9-3da5-5b1f-b7e492a87368@lucaceresoli.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 3, 2019 at 8:47 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On Tue, 3 Sep 2019 at 09:14, Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Mon, Sep 2, 2019 at 4:03 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > >
-> > > Convert the Syscon reboot bindings to DT schema format using
-> > > json-schema.
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > > ---
-> > >  .../bindings/power/reset/syscon-reboot.txt    | 30 --------
-> > >  .../bindings/power/reset/syscon-reboot.yaml   | 68 +++++++++++++++++++
-> > >  2 files changed, 68 insertions(+), 30 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/power/reset/syscon-reboot.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> >
-> > > diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> > > new file mode 100644
-> > > index 000000000000..a583f3dc8ef4
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> > > @@ -0,0 +1,68 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Generic SYSCON mapped register reset driver
-> > > +
-> > > +maintainers:
-> > > +  - Sebastian Reichel <sre@kernel.org>
-> > > +
-> > > +description: |+
-> > > +  This is a generic reset driver using syscon to map the reset register.
-> > > +  The reset is generally performed with a write to the reset register
-> > > +  defined by the register map pointed by syscon reference plus the offset
-> > > +  with the value and mask defined in the reboot node.
-> > > +  Default will be little endian mode, 32 bit access only.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: syscon-reboot
-> > > +
-> > > +  mask:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: Update only the register bits defined by the mask (32 bit).
-> > > +    maxItems: 1
-> >
-> > Drop this as that is already defined for uint32.
-> >
-> > It also doesn't actually work. The $ref has to be under an 'allOf' if
-> > you have additional schemas. A quirk of json-schema...
-> >
-> > > +
-> > > +  offset:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: Offset in the register map for the reboot register (in bytes).
-> > > +    maxItems: 1
-> > > +
-> > > +  regmap:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: Phandle to the register map node.
-> > > +    maxItems: 1
-> > > +
-> > > +  value:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: The reset value written to the reboot register (32 bit access).
-> > > +    maxItems: 1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - regmap
-> > > +  - offset
-> > > +
-> > > +allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        value:
-> > > +          not:
-> > > +            type: array
-> >
-> > I think you could make this a bit more readable with:
-> >
-> > if:
-> >   not:
-> >     required:
-> >       - value
->
-> I do not understand how does it work (value is not mentioned in the
-> required fields so why checking of it?)... but it works fine.
 
-What's under required doesn't have to be listed as a property.
+--v9Ux+11Zm5mwPlX6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > However, if the tree is free of legacy usage, then you could just drop all this.
->
-> One of them - mask or value - has to be provided.
 
-Or both, right?
+> > One huge drawback for me is the attach/detach callbacks. One year ago, I
+> > removed a similar callback from the I2C core ("[PATCH 0/2] i2c: remove
+> > deprecated attach_adapter callback") because some drivers did a lot of
+> > crazy things there. It took years to remove all that.
+>=20
+> Oh dear, I was completely unaware, apologies! :-)
 
-Actually, a better way to express it is probably this:
+Oh, no need to apologize. You don't have to research the whole I2C history
+before implementing something. Keeping the big picture is what I happily
+provide.
 
-oneOf:
-  - required: [ value ]
-  - required: [ mask ]
-  - required: [ value, mask ]
+> > What I could imagine here: the adapter (B and C each in the picture
+> > above) gets a flag like NEEDS_ATR before registering to the core. The
+> > flag means all clients on that bus will have their address translated.
+> > The core will figure out a free alias when a device is registered. We
+> > can then have an ATR specific callback with the original and translated
+> > address as arguments, so one can setup the HW as needed.
+>=20
+> Do you mean moving the alias selection code from i2c-atr.c to the i2c
+> core? And the rest of the ATR core too?
 
-Rob
+I hope for something like this in the I2C core (simplified, naming needs
+to be improved etc.) in i2c_new_device:
+
+	if (client->adapter->flag & NEEDS_ATR) {
+		i2c_atr_get_alias_address();
+		/* probably a wrapper around a callback */
+		i2c_atr_setup_hw();
+	}
+
+with all the i2c_atr_* functions in a seperate file. It would be great
+if that file could be a completely independent module, but if it turns
+out that we need some simple helpers in the core, I am probably OK with
+that, too.
+
+> > Do you think that would work?
+>=20
+> Yes.
+
+Cool!
+
+
+--v9Ux+11Zm5mwPlX6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1uLQkACgkQFA3kzBSg
+KbYlUg//QLHDG326il+ci8KTo6kaFt1uzUDGdfsvBHCrmjnaV9lyCqSbinKTaRrU
+LanYdd7SOTNFpTsuxE3FfWCJwAxdOogPD3Eatfu5EWQmTse6AgqHdAOEzNu2NqFW
+DpRfFpXvzYfbaQ2Y+AWqyvUAjE63ddHw0oi9LwS5XPPV0fSwqBQOU8135a6Qj9zd
+Zdp40L4XDpglDOt5jTUKvqyVCLpHGD6Seciw/4oNhsrdK4ZhhaZtC3hj0fSy5AxV
+2/2pkLxcNrEOnZl1q0+inRBZZOphH1VUwzHxS56O6leTlNo1CxLQ/Y71vURqIgwd
+N3WM5FuTCnBoN5bFbTNGegyUsqsgiYzONmDjxcM7lxmE1XTJDw7L6k5m7hwoxLLd
+BmZJAdCnpbQOixbg+iDKUrMkDklhfjXfmhvhWaedvc+y8iKfeUlvd+YVmJygqDgt
+h2FV5OYQdWipo4TsOM+ORcfFFyFtFSziHxOdsEv0EpdVk8R+ROIp9FJldlQRwQZ/
+iiCpEyXXLt0Yw3iq1gG3GE4WFxGgeUty9pECsXmT3BwRQhroUBeuiXR/j2AzpXkE
+Alr5B6hXmPL0iACDHHK/lMn2svKcRQWG51Nno1VR3KOCGiWj9sjM0H6Y4WHmCQcG
+6gB7hUyzLHI9+VuDBLBMVyLHmEtC5yLsPxrFZTDuNL0xBGPp1jo=
+=5VsA
+-----END PGP SIGNATURE-----
+
+--v9Ux+11Zm5mwPlX6--
