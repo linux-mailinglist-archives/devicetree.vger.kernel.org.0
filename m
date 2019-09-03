@@ -2,457 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98093A5F6E
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 04:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C5DA5F8D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 05:12:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727097AbfICClC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 22:41:02 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:34900 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726450AbfICClB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 22:41:01 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3261F1A099C;
-        Tue,  3 Sep 2019 04:40:58 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 376361A0724;
-        Tue,  3 Sep 2019 04:40:53 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 37002402BE;
-        Tue,  3 Sep 2019 10:40:47 +0800 (SGT)
-From:   Biwen Li <biwen.li@nxp.com>
-To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com
-Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
-        Martin Fuzzey <mfuzzey@parkeon.com>
-Subject: [v2,2/2] rtc: pcf85263/pcf85363: support PM, wakeup device, improve performance
-Date:   Tue,  3 Sep 2019 10:30:38 +0800
-Message-Id: <20190903023038.16921-2-biwen.li@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190903023038.16921-1-biwen.li@nxp.com>
-References: <20190903023038.16921-1-biwen.li@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725844AbfICDMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 23:12:22 -0400
+Received: from mail-eopbgr80085.outbound.protection.outlook.com ([40.107.8.85]:65001
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725821AbfICDMW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 23:12:22 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=al+Sn53UeKQZk9VLzdRnMdye9ZQpiSaTs1lq99uDCyeHMtM4Wot/CTp1DFufmpQEj06vRO82w2/QJU+VJhen9ZY+AA4LoN+5O6Zv33+0C+5BPJpMFe+YigZ19zOwKEtgAmPB+PmEYgcBCvtUiZZmv4sPe07f+6N62TkknwAI72lHg2LonwSB0gyWbFGexgz1jfmTWY6b0NXmwW2kBsoyYjaMjXJbk4l7DNdbZz/hsLTK3mD67fgnVfKXR2W6wA4jq+Dy0LzULfiF6d1VnNHekzGszrvVnjE6RKa6lL2NmpszffJJABh0zFcT3U03tLDnIvHmTFZtc1CrnS58hYbCTg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0Aljlc9VXvbdFHeIbT8N+MLdwfvYLNnBorBRhOCw5sw=;
+ b=aiLC7mnGXnCFfF1eRMdfX9VHZgau8wqQ+3zW9moSqDIOxjlkR9PXmDq5tEq6un34kLIRdvFXsEgxHj0vp8w97+Ab3DbiYWqjwTgo8yo93PkDW4MdS4JrhMokaEiGGvWlSQMEvNm0qXRJGLpn4MWlI5AOlXqCX2EZTiBjufNjP/I9JisAXnWHLF2C2eUBU0ADnUqUQZSnrKq1KuyQ3D9+KJF3r7NvxdWOoyHzCsyXjBTU4tyeDmcKG9CQoRGd6zZk5kGlQYu6q5SZuJGJw/otnZFk6D1fvYY6qs4H/Tw9TWhcYJmBxWHfT01tCzT1pCE48r0ueEv2/aemmT8QQEFPcQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0Aljlc9VXvbdFHeIbT8N+MLdwfvYLNnBorBRhOCw5sw=;
+ b=J5gQ0mfgn6eRQtFgY7OrH/5o/corjocPrueGhtO68d9SlvKxAqBXCuJjQE0JrJMH+bHH6P3p+uMG/YZvcW8ASfZWcdobWMhxFSywkQTFjcNjEWvRtueh8GTf1oFEuRhNWlwKFVH9v3x8mMzZB+rS2wDkVwEY1RMh0rpYVtWgxbU=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3865.eurprd04.prod.outlook.com (52.134.73.19) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2220.18; Tue, 3 Sep 2019 03:11:36 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::8958:299c:bc54:2a38]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::8958:299c:bc54:2a38%7]) with mapi id 15.20.2199.021; Tue, 3 Sep 2019
+ 03:11:36 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Fabio Estevam <festevam@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Andy Duan <fugang.duan@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "mripard@kernel.org" <mripard@kernel.org>,
+        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        "marcin.juszkiewicz@linaro.org" <marcin.juszkiewicz@linaro.org>,
+        Stefan Agner <stefan@agner.ch>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        "yuehaibing@huawei.com" <yuehaibing@huawei.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "ronald@innovation.ch" <ronald@innovation.ch>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Jacky Bai <ping.bai@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V2 2/5] input: keyboard: imx_sc: Add i.MX system
+ controller power key support
+Thread-Topic: [PATCH V2 2/5] input: keyboard: imx_sc: Add i.MX system
+ controller power key support
+Thread-Index: AQHVYfwAkBJd0uw8O0iWCkl8q7ZXAqcZPXwAgAAI/NA=
+Date:   Tue, 3 Sep 2019 03:11:35 +0000
+Message-ID: <DB3PR0402MB391636D31F486639FB8B3BA6F5B90@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
+ <1567519424-32271-2-git-send-email-Anson.Huang@nxp.com>
+ <CAOMZO5CHmvrbVG_h8hOb7hMjXasV_QwtNoXpEw9kqY=4Jj5HAg@mail.gmail.com>
+In-Reply-To: <CAOMZO5CHmvrbVG_h8hOb7hMjXasV_QwtNoXpEw9kqY=4Jj5HAg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c589e467-bde8-4e07-1d6c-08d7301c6e29
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3865;
+x-ms-traffictypediagnostic: DB3PR0402MB3865:|DB3PR0402MB3865:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB3PR0402MB3865AF11E8B7C6BEA3A58049F5B90@DB3PR0402MB3865.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2887;
+x-forefront-prvs: 01494FA7F7
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(199004)(189003)(7736002)(2906002)(7696005)(1411001)(25786009)(33656002)(3846002)(14454004)(6436002)(6116002)(478600001)(8676002)(81166006)(81156014)(5660300002)(99286004)(86362001)(229853002)(8936002)(305945005)(4744005)(316002)(66066001)(6916009)(74316002)(52536014)(54906003)(71190400001)(71200400001)(9686003)(53546011)(6506007)(102836004)(53936002)(66476007)(66556008)(64756008)(66446008)(76176011)(4326008)(55016002)(7416002)(66946007)(476003)(486006)(11346002)(446003)(6246003)(256004)(26005)(76116006)(186003)(44832011);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3865;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: /9Tx6X1ZMceFWHG3soSVtE64xxo3QgRGA7RxOTsR4NXOLB/ZFyuvmf2D4gHynn0Tn2m0v+yiV/iQgUO/yCOl/kyfXPysJRaxBChRVDoS379IWz1n5eTJGpZQCR3AfAv2qaLl/2um2O+tZN1FSarLo/Fj07lDJXRx7J3oZIv+ZpF91WjUMoVGOJbWosN1O5BtL9+tA6WXKzMPQuidSN1MepNShSLoNdl4JmqSg8Upj92NhVxeYMj/LpCEbwSieBBWrhbU4jAfe+RuISBjsDtmLYVI+6RAsbpSqRjCfoXe2wzdUbnDjiIGaC9kZJT9ZT4TQI1uxwvpvxFARMBqWVXGtF4Wpw5hmS2KQ45sxVGd/+7RRVp4cw4giHhjYwubMMlfacCbC1YocIihvY2nBDrVqgmvQ8fdTbGj9gcSqcJh4G0=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c589e467-bde8-4e07-1d6c-08d7301c6e29
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 03:11:35.9531
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: e0igZZ8yYn/zyNgTozA60HccOUDKn28F0gnqb8JTeMkzffh+orPvPGJQ8UugIFgt7pfdJlXlfXQ7cWVSuAbI2g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3865
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add some features as follow:
-    - Set quartz oscillator load capacitance by DT
-      (generate more accuracy frequency)
-    - Set quartz oscillator drive control by DT
-      (reduce/increase the current consumption)
-    - Set low jitter mode by DT
-      (improve jitter performance)
-    - Set wakeup source by DT
-      (wakeup device from suspend
-    - Select interrupt output pin by DT
-      (INTA/TS(INTB))
-    - Add power management
-    - Add ioctl to check rtc status
-      (check whether oscillator of pcf85263/pcf85363 is stopped)
-
-Datasheet url:
-    - https://www.nxp.com/docs/en/data-sheet/PCF85263A.pdf
-    - https://www.nxp.com/docs/en/data-sheet/PCF85363A.pdf
-
-Signed-off-by: Martin Fuzzey <mfuzzey@parkeon.com>
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
----
-Change in v2:
-	- Replace properties name
-	  quartz-load-capacitance -> quartz-load-femtofarads
-	  quartz-drive-strength -> nxp,quartz-drive-strength
-	  quartz-low-jitter -> nxp,quartz-low-jitter
-	- Set default interrupt-output-pin as "INTA"
-
- drivers/rtc/rtc-pcf85363.c | 278 +++++++++++++++++++++++++++++++++++--
- 1 file changed, 265 insertions(+), 13 deletions(-)
-
-diff --git a/drivers/rtc/rtc-pcf85363.c b/drivers/rtc/rtc-pcf85363.c
-index 3450d615974d..030da4e764eb 100644
---- a/drivers/rtc/rtc-pcf85363.c
-+++ b/drivers/rtc/rtc-pcf85363.c
-@@ -18,6 +18,16 @@
- #include <linux/of_device.h>
- #include <linux/regmap.h>
- 
-+/* Quartz capacitance */
-+#define PCF85363_QUARTZCAP_7pF		0
-+#define PCF85363_QUARTZCAP_6pF		1
-+#define PCF85363_QUARTZCAP_12p5pF	2
-+
-+/* Quartz drive strength */
-+#define PCF85363_QUARTZDRIVE_100ko	0
-+#define PCF85363_QUARTZDRIVE_60ko	1
-+#define PCF85363_QUARTZDRIVE_500ko	2
-+
- /*
-  * Date/Time registers
-  */
-@@ -96,10 +106,20 @@
- #define FLAGS_PIF	BIT(7)
- 
- #define PIN_IO_INTAPM	GENMASK(1, 0)
--#define PIN_IO_INTA_CLK	0
--#define PIN_IO_INTA_BAT	1
--#define PIN_IO_INTA_OUT	2
--#define PIN_IO_INTA_HIZ	3
-+#define PIN_IO_INTAPM_SHIFT	0
-+#define PIN_IO_INTA_CLK	(0 << PIN_IO_INTAPM_SHIFT)
-+#define PIN_IO_INTA_BAT	(1 << PIN_IO_INTAPM_SHIFT)
-+#define PIN_IO_INTA_OUT	(2 << PIN_IO_INTAPM_SHIFT)
-+#define PIN_IO_INTA_HIZ	(3 << PIN_IO_INTAPM_SHIFT)
-+
-+#define PIN_IO_TSPM	 GENMASK(3, 2)
-+#define PIN_IO_TSPM_SHIFT	2
-+#define PIN_IO_TS_DISABLE	(0x0 << PIN_IO_TSPM_SHIFT)
-+#define PIN_IO_TS_INTB_OUT	(0x1 << PIN_IO_TSPM_SHIFT)
-+#define PIN_IO_TS_CLK_OUT	(0x2 << PIN_IO_TSPM_SHIFT)
-+#define PIN_IO_TS_IN	(0x3 << PIN_IO_TSPM_SHIFT)
-+
-+#define PIN_IO_CLKPM	BIT(7) /* 0 = enable CLK pin,1 = disable CLK pin */
- 
- #define STOP_EN_STOP	BIT(0)
- 
-@@ -107,9 +127,33 @@
- 
- #define NVRAM_SIZE	0x40
- 
-+#define DT_SECS_OS BIT(7)
-+
-+#define CTRL_OSCILLATOR_CL_MASK	GENMASK(1, 0)
-+#define CTRL_OSCILLATOR_CL_SHIFT	0
-+#define CTRL_OSCILLATOR_OSCD_MASK	GENMASK(3, 2)
-+#define CTRL_OSCILLATOR_OSCD_SHIFT	2
-+#define CTRL_OSCILLATOR_LOWJ		BIT(4)
-+
-+#define CTRL_FUNCTION_COF_OFF	0x7 /* No clock output */
-+
-+enum pcf85363_irqpin {
-+	IRQPIN_INTA,
-+	IRQPIN_INTB
-+};
-+
-+static const char *const pcf85363_irqpin_names[] = {
-+	[IRQPIN_INTA] = "INTA",
-+	[IRQPIN_INTB] = "INTB"
-+};
-+
-+
- struct pcf85363 {
-+	struct device *dev;
- 	struct rtc_device	*rtc;
- 	struct regmap		*regmap;
-+	enum pcf85363_irqpin irq_pin;
-+	int irq;
- };
- 
- struct pcf85x63_config {
-@@ -210,14 +254,26 @@ static int _pcf85363_rtc_alarm_irq_enable(struct pcf85363 *pcf85363, unsigned
- {
- 	unsigned int alarm_flags = ALRM_SEC_A1E | ALRM_MIN_A1E | ALRM_HR_A1E |
- 				   ALRM_DAY_A1E | ALRM_MON_A1E;
--	int ret;
-+	int ret, reg;
- 
- 	ret = regmap_update_bits(pcf85363->regmap, DT_ALARM_EN, alarm_flags,
- 				 enabled ? alarm_flags : 0);
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_update_bits(pcf85363->regmap, CTRL_INTA_EN,
-+	switch (pcf85363->irq_pin) {
-+	case IRQPIN_INTA:
-+		reg = CTRL_INTA_EN;
-+		break;
-+
-+	case IRQPIN_INTB:
-+		reg = CTRL_INTB_EN;
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+	ret = regmap_update_bits(pcf85363->regmap, reg,
- 				 INT_A1IE, enabled ? INT_A1IE : 0);
- 
- 	if (ret || enabled)
-@@ -282,12 +338,55 @@ static irqreturn_t pcf85363_rtc_handle_irq(int irq, void *dev_id)
- 	return IRQ_NONE;
- }
- 
-+static int pcf85363_osc_is_stopped(struct pcf85363 *pcf85363)
-+{
-+	unsigned int regval;
-+	int ret;
-+
-+	ret = regmap_read(pcf85363->regmap, DT_SECS, &regval);
-+	if (ret)
-+		return ret;
-+
-+	ret = regval & DT_SECS_OS ? 1 : 0;
-+	if (ret)
-+		dev_warn(pcf85363->dev, "Oscillator stop detected, date/time is not reliable.\n");
-+
-+	return ret;
-+}
-+
-+static int pcf85363_ioctl(struct device *dev,
-+			  unsigned int cmd, unsigned long arg)
-+{
-+	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
-+	int ret;
-+
-+	switch (cmd) {
-+	case RTC_VL_READ:
-+		ret = pcf85363_osc_is_stopped(pcf85363);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (copy_to_user((void __user *)arg, &ret, sizeof(int)))
-+			return -EFAULT;
-+		return 0;
-+
-+	case RTC_VL_CLR:
-+		return regmap_update_bits(pcf85363->regmap,
-+					  DT_SECS,
-+					  DT_SECS_OS, 0);
-+	default:
-+		return -ENOIOCTLCMD;
-+	}
-+}
-+
- static const struct rtc_class_ops rtc_ops = {
-+	.ioctl = pcf85363_ioctl,
- 	.read_time	= pcf85363_rtc_read_time,
- 	.set_time	= pcf85363_rtc_set_time,
- };
- 
- static const struct rtc_class_ops rtc_ops_alarm = {
-+	.ioctl = pcf85363_ioctl,
- 	.read_time	= pcf85363_rtc_read_time,
- 	.set_time	= pcf85363_rtc_set_time,
- 	.read_alarm	= pcf85363_rtc_read_alarm,
-@@ -355,6 +454,107 @@ static const struct pcf85x63_config pcf_85363_config = {
- 	.num_nvram = 2
- };
- 
-+/*
-+ * On some boards the interrupt line may not be wired to the CPU but only to
-+ * a power supply circuit.
-+ * In that case no interrupt will be specified in the device tree but the
-+ * wakeup-source DT property may be used to enable wakeup programming in
-+ * sysfs
-+ */
-+static bool pcf85363_can_wakeup_machine(struct pcf85363 *pcf85363)
-+{
-+	return pcf85363->irq ||
-+		of_property_read_bool(pcf85363->dev->of_node, "wakeup-source");
-+}
-+
-+static int pcf85363_init_hw(struct pcf85363 *pcf85363)
-+{
-+	struct device_node *np = pcf85363->dev->of_node;
-+	unsigned int regval;
-+	u32 propval;
-+	int ret;
-+
-+	/* Determine if oscilator has been stopped (probably low power) */
-+	ret = pcf85363_osc_is_stopped(pcf85363);
-+	if (ret < 0) {
-+		/* Log here since this is the first hw access on probe */
-+		dev_err(pcf85363->dev, "Unable to read register\n");
-+
-+		return ret;
-+	}
-+
-+	ret = regmap_read(pcf85363->regmap, CTRL_OSCILLATOR, &regval);
-+	if (ret)
-+		return ret;
-+
-+	/* Set oscilator register */
-+	propval = PCF85363_QUARTZCAP_12p5pF;
-+	of_property_read_u32(np, "quartz-load-femtofarads", &propval);
-+	regval |= ((propval << CTRL_OSCILLATOR_CL_SHIFT)
-+		    & CTRL_OSCILLATOR_CL_MASK);
-+
-+	propval = PCF85363_QUARTZDRIVE_NORMAL;
-+	of_property_read_u32(np, "nxp,quartz-drive-strength", &propval);
-+	regval |= ((propval << CTRL_OSCILLATOR_OSCD_SHIFT)
-+		    & CTRL_OSCILLATOR_OSCD_MASK);
-+
-+	if (of_property_read_bool(np, "nxp,quartz-low-jitter"))
-+		regval |= CTRL_OSCILLATOR_LOWJ;
-+
-+	ret = regmap_write(pcf85363->regmap, CTRL_OSCILLATOR, regval);
-+	if (ret)
-+		return ret;
-+
-+	/* Set function register
-+	 * (100th second disabled
-+	 * no periodic interrupt
-+	 * real-time clock mode
-+	 * RTC stop is controlled by STOP bit only
-+	 * no clock output)
-+	 */
-+	ret = regmap_write(pcf85363->regmap, CTRL_FUNCTION,
-+			   CTRL_FUNCTION_COF_OFF);
-+	if (ret)
-+		return ret;
-+
-+	/* Set all interrupts to disabled, level mode */
-+	ret = regmap_write(pcf85363->regmap, CTRL_INTA_EN,
-+			   INT_ILP);
-+	if (ret)
-+		return ret;
-+	ret = regmap_write(pcf85363->regmap, CTRL_INTB_EN,
-+			   INT_ILP);
-+	if (ret)
-+		return ret;
-+
-+	/* Determine which interrupt pin the board uses */
-+	pcf85363->irq_pin = IRQPIN_INTA;
-+	if (pcf85363_can_wakeup_machine(pcf85363)) {
-+		if (of_property_match_string(pcf85363->dev->of_node,
-+					     "interrupt-output-pin",
-+					     "INTB") >= 0)
-+			pcf85363->irq_pin = IRQPIN_INTB;
-+	}
-+
-+	/* Setup IO pin config register */
-+	regval = PIN_IO_CLKPM; /* disable CLK pin*/
-+	switch (pcf85363->irq_pin) {
-+	case IRQPIN_INTA:
-+		regval |= (PIN_IO_INTA_OUT | PIN_IO_TS_DISABLE);
-+		break;
-+	case IRQPIN_INTB:
-+		regval |= (PIN_IO_INTA_HIZ | PIN_IO_TS_INTB_OUT);
-+		break;
-+	default:
-+		dev_err(pcf85363->dev, "Failed to set interrupt out pin\n");
-+		return -EINVAL;
-+	}
-+	ret = regmap_write(pcf85363->regmap, CTRL_PIN_IO, regval);
-+
-+	return ret;
-+}
-+
-+
- static int pcf85363_probe(struct i2c_client *client,
- 			  const struct i2c_device_id *id)
- {
-@@ -394,9 +594,11 @@ static int pcf85363_probe(struct i2c_client *client,
- 		return PTR_ERR(pcf85363->regmap);
- 	}
- 
-+	pcf85363->irq = client->irq;
-+	pcf85363->dev = &client->dev;
- 	i2c_set_clientdata(client, pcf85363);
- 
--	pcf85363->rtc = devm_rtc_allocate_device(&client->dev);
-+	pcf85363->rtc = devm_rtc_allocate_device(pcf85363->dev);
- 	if (IS_ERR(pcf85363->rtc))
- 		return PTR_ERR(pcf85363->rtc);
- 
-@@ -404,20 +606,28 @@ static int pcf85363_probe(struct i2c_client *client,
- 	pcf85363->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
- 	pcf85363->rtc->range_max = RTC_TIMESTAMP_END_2099;
- 
--	if (client->irq > 0) {
-+	ret = pcf85363_init_hw(pcf85363);
-+	if (ret)
-+		return ret;
-+
-+	if (pcf85363->irq > 0) {
- 		regmap_write(pcf85363->regmap, CTRL_FLAGS, 0);
--		regmap_update_bits(pcf85363->regmap, CTRL_PIN_IO,
--				   PIN_IO_INTA_OUT, PIN_IO_INTAPM);
--		ret = devm_request_threaded_irq(&client->dev, client->irq,
-+		ret = devm_request_threaded_irq(pcf85363->dev, pcf85363->irq,
- 						NULL, pcf85363_rtc_handle_irq,
--						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-+						IRQF_TRIGGER_FALLING |
-+						IRQF_ONESHOT,
- 						"pcf85363", client);
--		if (ret)
-+		if (ret) {
- 			dev_warn(&client->dev, "unable to request IRQ, alarms disabled\n");
-+			pcf85363->irq = 0;
-+		}
- 		else
- 			pcf85363->rtc->ops = &rtc_ops_alarm;
- 	}
- 
-+	if (pcf85363_can_wakeup_machine(pcf85363))
-+		device_init_wakeup(pcf85363->dev, true);
-+
- 	ret = rtc_register_device(pcf85363->rtc);
- 
- 	for (i = 0; i < config->num_nvram; i++) {
-@@ -425,6 +635,10 @@ static int pcf85363_probe(struct i2c_client *client,
- 		rtc_nvmem_register(pcf85363->rtc, &nvmem_cfg[i]);
- 	}
- 
-+	/* We cannot support UIE mode if we do not have an IRQ line */
-+	if (!pcf85363->irq)
-+		pcf85363->rtc->uie_unsupported = 1;
-+
- 	return ret;
- }
- 
-@@ -435,12 +649,50 @@ static const struct of_device_id dev_ids[] = {
- };
- MODULE_DEVICE_TABLE(of, dev_ids);
- 
-+static int pcf85363_remove(struct i2c_client *client)
-+{
-+	struct pcf85363 *pcf85363 = i2c_get_clientdata(client);
-+
-+	if (pcf85363_can_wakeup_machine(pcf85363))
-+		device_init_wakeup(pcf85363->dev, false);
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int pcf85363_suspend(struct device *dev)
-+{
-+	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
-+	int ret = 0;
-+
-+	if (device_may_wakeup(dev))
-+		ret = enable_irq_wake(pcf85363->irq);
-+
-+	return ret;
-+}
-+
-+static int pcf85363_resume(struct device *dev)
-+{
-+	struct pcf85363 *pcf85363 = dev_get_drvdata(dev);
-+	int ret = 0;
-+
-+	if (device_may_wakeup(dev))
-+		ret = disable_irq_wake(pcf85363->irq);
-+
-+	return ret;
-+}
-+#endif
-+
-+static SIMPLE_DEV_PM_OPS(pcf85363_pm_ops, pcf85363_suspend,  pcf85363_resume);
-+
- static struct i2c_driver pcf85363_driver = {
- 	.driver	= {
- 		.name	= "pcf85363",
- 		.of_match_table = of_match_ptr(dev_ids),
-+		.pm = &pcf85363_pm_ops,
- 	},
- 	.probe	= pcf85363_probe,
-+	.remove	= pcf85363_remove,
- };
- 
- module_i2c_driver(pcf85363_driver);
--- 
-2.17.1
-
+SGksIEZhYmlvDQoNCj4gT24gTW9uLCBTZXAgMiwgMjAxOSBhdCAxMTowNSBQTSBBbnNvbiBIdWFu
+ZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gd3JvdGU6DQo+IA0KPiA+ICsgICAgICAgcmV0ID0g
+aW5wdXRfcmVnaXN0ZXJfZGV2aWNlKGlucHV0KTsNCj4gPiArICAgICAgIGlmIChyZXQgPCAwKSB7
+DQo+ID4gKyAgICAgICAgICAgICAgIGRldl9lcnIoJnBkZXYtPmRldiwgImZhaWxlZCB0byByZWdp
+c3RlciBpbnB1dCBkZXZpY2VcbiIpOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0K
+PiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAgIHBkYXRhLT5pbnB1dCA9IGlucHV0Ow0K
+PiA+ICsgICAgICAgcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgcGRhdGEpOw0KPiA+ICsNCj4g
+PiArICAgICAgIHJldCA9IGlteF9zY3VfaXJxX2dyb3VwX2VuYWJsZShTQ19JUlFfR1JPVVBfV0FL
+RSwNCj4gU0NfSVJRX0JVVFRPTiwgdHJ1ZSk7DQo+ID4gKyAgICAgICBpZiAocmV0KSB7DQo+ID4g
+KyAgICAgICAgICAgICAgIGRldl93YXJuKCZwZGV2LT5kZXYsICJlbmFibGUgc2N1IGdyb3VwIGly
+cSBmYWlsZWRcbiIpOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiANCj4gQmV0
+dGVyIGRvIGEgJ2dvdG8gaW5wdXRfdW5yZWdpc3RlcicgaGVyZSBpbnN0ZWFkIGFuZCBjYWxsDQo+
+IGlucHV0X3VucmVnaXN0ZXJfZGV2aWNlKCkuDQoNCkFncmVlZCwgd2lsbCBmaXggaW4gVjMgbGF0
+ZXIuDQoNClRoYW5rcywNCkFuc29uLg0K
