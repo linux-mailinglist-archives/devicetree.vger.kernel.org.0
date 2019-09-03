@@ -2,42 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D07C2A6E9C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 18:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD409A6EF0
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 18:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730839AbfICQ1V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 12:27:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48686 "EHLO mail.kernel.org"
+        id S1730645AbfICQ3m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 12:29:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51810 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730835AbfICQ1V (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 12:27:21 -0400
+        id S1731297AbfICQ3K (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 12:29:10 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AB63623431;
-        Tue,  3 Sep 2019 16:27:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4C78A238CF;
+        Tue,  3 Sep 2019 16:29:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567528040;
-        bh=jL960mftVsy4K2E1ETmoVa7GLoiRlSFtBXSAOIO1zaM=;
+        s=default; t=1567528149;
+        bh=KXSNpiQMAJFXBeg9Is2IzCyQCyTFr1hSLsvhqn5Qayo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=nZRvBFHJg3rBVs21y87VOcjcF/AVWl9K9aqWSULDUtETkz20eL8K/nhz3oYoE7fCn
-         YucNfy2jDlLY9TThDuHutSQz7AyOC87+moElzAs6YdGhdXanAHWnXqoLt30er1euZH
-         s1S+3jlEZaa/734RKitO+EU/fCbl/RN0hawF7Dzc=
+        b=lGPmEjNknHENwG7VDcKtvblH8bVJSI8FTyvOXBVf67Hg/hpo+kLCNUXTH1ijF8HbO
+         EUcNgyykSp6p8A1udoYBRij1QA0PMUr9iUwGy9LXTPLQ0wDyLKzwL/saU6NE5mGe8l
+         5C1fRdOL6sAozqrhwhOPMGluMWdW06flT5xBJJqY=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Jonathan Bakker <xc-racer2@live.ca>,
-        =?UTF-8?q?Pawe=C5=82=20Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Sasha Levin <sashal@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 067/167] dt-bindings: iio: adc: exynos-adc: Add S5PV210 variant
-Date:   Tue,  3 Sep 2019 12:23:39 -0400
-Message-Id: <20190903162519.7136-67-sashal@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 138/167] ARM: dts: gemini: Set DIR-685 SPI CS as active low
+Date:   Tue,  3 Sep 2019 12:24:50 -0400
+Message-Id: <20190903162519.7136-138-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190903162519.7136-1-sashal@kernel.org>
 References: <20190903162519.7136-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 X-stable: review
 X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
@@ -46,42 +43,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jonathan Bakker <xc-racer2@live.ca>
+From: Linus Walleij <linus.walleij@linaro.org>
 
-[ Upstream commit a9b0a2a7c19316588421b94946c8e2e5a84ac14e ]
+[ Upstream commit f90b8fda3a9d72a9422ea80ae95843697f94ea4a ]
 
-Add information about new compatible for S5PV210
+The SPI to the display on the DIR-685 is active low, we were
+just saved by the SPI library enforcing active low on everything
+before, so set it as active low to avoid ambiguity.
 
-Signed-off-by: Jonathan Bakker <xc-racer2@live.ca>
-Signed-off-by: Paweł Chmiel <pawel.mikolaj.chmiel@gmail.com>
-Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Link: https://lore.kernel.org/r/20190715202101.16060-1-linus.walleij@linaro.org
+Cc: stable@vger.kernel.org
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+Signed-off-by: Olof Johansson <olof@lixom.net>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../devicetree/bindings/iio/adc/samsung,exynos-adc.txt        | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ arch/arm/boot/dts/gemini-dlink-dir-685.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt
-index 6c49db7f8ad25..a10c1f89037de 100644
---- a/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt
-+++ b/Documentation/devicetree/bindings/iio/adc/samsung,exynos-adc.txt
-@@ -11,7 +11,7 @@ New driver handles the following
+diff --git a/arch/arm/boot/dts/gemini-dlink-dir-685.dts b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+index 502a361d1fe90..15d6157b661db 100644
+--- a/arch/arm/boot/dts/gemini-dlink-dir-685.dts
++++ b/arch/arm/boot/dts/gemini-dlink-dir-685.dts
+@@ -65,7 +65,7 @@
+ 		gpio-miso = <&gpio1 8 GPIO_ACTIVE_HIGH>;
+ 		gpio-mosi = <&gpio1 7 GPIO_ACTIVE_HIGH>;
+ 		/* Collides with pflash CE1, not so cool */
+-		cs-gpios = <&gpio0 20 GPIO_ACTIVE_HIGH>;
++		cs-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
+ 		num-chipselects = <1>;
  
- Required properties:
- - compatible:		Must be "samsung,exynos-adc-v1"
--				for exynos4412/5250 and s5pv210 controllers.
-+				for exynos4412/5250 controllers.
- 			Must be "samsung,exynos-adc-v2" for
- 				future controllers.
- 			Must be "samsung,exynos3250-adc" for
-@@ -28,6 +28,8 @@ Required properties:
- 				the ADC in s3c2443 and compatibles
- 			Must be "samsung,s3c6410-adc" for
- 				the ADC in s3c6410 and compatibles
-+			Must be "samsung,s5pv210-adc" for
-+				the ADC in s5pv210 and compatibles
- - reg:			List of ADC register address range
- 			- The base address and range of ADC register
- 			- The base address and range of ADC_PHY register (every
+ 		panel: display@0 {
 -- 
 2.20.1
 
