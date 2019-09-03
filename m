@@ -2,154 +2,233 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C897A71E9
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 19:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8735A721B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 20:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729919AbfICRst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 13:48:49 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:38456 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728065AbfICRst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 13:48:49 -0400
-Received: by mail-wm1-f67.google.com with SMTP id o184so454609wme.3;
-        Tue, 03 Sep 2019 10:48:47 -0700 (PDT)
+        id S1730252AbfICSAk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 14:00:40 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:50191 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730227AbfICSAj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 14:00:39 -0400
+Received: by mail-wm1-f66.google.com with SMTP id c10so476360wmc.0;
+        Tue, 03 Sep 2019 11:00:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=WxydxVU2CFhWd0QEZ7Dd4XKp/p4c1U4sKS90L0qSlNM=;
-        b=fNo9/JTji/ZWhxc4b/MqAsCMKbFZCAXiK+GboO+RfDmR9hWvzXCMWpt30FYPgUMCBf
-         x5cNSil1QzKGFENXmDFegZFVOjdxNInsb5u5+NTuQpdbdK2vd+vjyft0Al8YbWUQ+EI7
-         H9B1244sWceQSFPZy0O22lhnxudrdhi5g8FyaEgKO472W822uiD1Il3ri8g8Ca6m+ItF
-         kmoUPtsr9yFhXVIg95Lb+vLDm2hJsbNidNadFxkr8hbCpEWEh4bT8uiIbKhxFAuCmUsC
-         s7rX/ULitc+/GlFMUcgACg1BxzaqNzeOPjmU+VWe0OfSCDhrVqz9fYJbJ9SBfCFlERX5
-         N0xA==
-X-Gm-Message-State: APjAAAVduPZ7pxX/vO4cl9fNVkpgOGN22uLq6cDL9+QD+bwTtLe0C1bV
-        ZkvueHEfKweflD4Bmibl/DadtV/BtQ==
-X-Google-Smtp-Source: APXvYqwKKZxGa3P7rOKwJCnEa107FksH8qZoSDy9XKQWNeIR+1mSDDCxud+EJcVbOMGJguXrzvC05Q==
-X-Received: by 2002:a1c:1d8d:: with SMTP id d135mr635821wmd.7.1567532926783;
-        Tue, 03 Sep 2019 10:48:46 -0700 (PDT)
+        bh=34Xcq7thsxhEYgF6NhsqQGQ1Vrog+b37R3Zc1f/8Qhk=;
+        b=X3bWWPO+u3QPOqwAM+hjVlgL3YQRjgWTB78NeB/Ssnw6T6LduJ6pVVdqJ0GH1evOVX
+         l4qsTP/voqKLJbDQBPcOJFyIsIfhDDSeRVheMOyfAC5cOSuN31jTqbrDMyQeFxfv6st1
+         rnPPw0p8on5usSMQb8o8H1bRj6n3QmzSfVg7zz/UiztaPOh7CPc/c9n85QXqmIMsuJPV
+         pFVHuB2QMtaVE+U/Igvk41fJN9E1tJ5d4+dFJfTf6f9hLAf5rH4PUv0RIF2VGuPuO89F
+         uTKZ7167peLawMt3d5H0o+nhi9OsxNFulKDPe+R5nYhLjXf70WuBlFys7uymh8eYonC2
+         4jxg==
+X-Gm-Message-State: APjAAAWviQ3doY3Ye/vfLA1YdErYFwcQGTbAc8outSKxdKEV4SfiiGyN
+        v9XKS2mdZ5cYwHJwwOLFzA==
+X-Google-Smtp-Source: APXvYqw7VYPZePKNY1HbeRCZaXNu5r0VZkMO0MvHuCpUl6v9gVhDq6OOhA5CRy1D32J8fvPktkIHbg==
+X-Received: by 2002:a1c:2546:: with SMTP id l67mr730944wml.10.1567533636754;
+        Tue, 03 Sep 2019 11:00:36 -0700 (PDT)
 Received: from localhost ([176.12.107.132])
-        by smtp.gmail.com with ESMTPSA id n12sm162415wmc.24.2019.09.03.10.48.45
+        by smtp.gmail.com with ESMTPSA id i73sm515711wmg.33.2019.09.03.11.00.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2019 10:48:46 -0700 (PDT)
-Date:   Tue, 3 Sep 2019 18:48:44 +0100
+        Tue, 03 Sep 2019 11:00:36 -0700 (PDT)
+Date:   Tue, 3 Sep 2019 19:00:34 +0100
 From:   Rob Herring <robh@kernel.org>
-To:     allen <allen.chen@ite.com.tw>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        David Airlie <airlied@linux.ie>,
-        Mark Rutland <mark.rutland@arm.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add binding for IT6505.
-Message-ID: <20190903174844.GA4044@bogus>
-References: <1567507915-9844-1-git-send-email-allen.chen@ite.com.tw>
- <1567507915-9844-2-git-send-email-allen.chen@ite.com.tw>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Mboumba Cedric Madianga <cedric.madianga@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/7 v3] mfd: ab8500: augment DT bindings
+Message-ID: <20190903180034.GA20595@bogus>
+References: <20190903150612.12246-1-linus.walleij@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1567507915-9844-2-git-send-email-allen.chen@ite.com.tw>
+In-Reply-To: <20190903150612.12246-1-linus.walleij@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 03, 2019 at 06:51:53PM +0800, allen wrote:
-> From: Allen Chen <allen.chen@ite.com.tw>
+On Tue, Sep 03, 2019 at 05:06:12PM +0200, Linus Walleij wrote:
+> As we migrate the AB8500 GPADC driver to use IIO, we need to augment
+> the bindings to account for defining the ADC channels in the device
+> tree.
 > 
-> Add a DT binding documentation for IT6505.
-> 
-> Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
-> 
+> Cc: devicetree@vger.kernel.org
+> Acked-by: Lee Jones <lee.jones@linaro.org>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> Comments in v1 would be addressed later in v3.
+> ChangeLog v2->v3:
+> - Change "adc-channel@" to "channel@" as per preferred notation.
+> - Add some full stops to the end of sentences.
+> - Reference the new ADC-specific documentation for channel specifier
+>   etc.
+> - Collect Lee's ACK.
+> ChangeLog v1->v2:
+> - Rebased on v5.3-rc5
+
+Must have missed the DT list...
+
 > ---
->  .../bindings/display/bridge/ite,it6505.txt         | 30 ++++++++++++++++++++++
->  .../devicetree/bindings/vendor-prefixes.txt        |  1 +
->  2 files changed, 31 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-
-This won't apply. Base your patches on current (latest -rc) kernels.
-
-We've moved to a DT schema format. Minimally vendor-prefixes.txt will 
-have to change. It's also preferred for display bridges.
-
+>  .../devicetree/bindings/mfd/ab8500.txt        | 119 ++++++++++++++++++
+>  1 file changed, 119 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-> new file mode 100644
-> index 0000000..c3506ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-> @@ -0,0 +1,30 @@
-> +iTE it6505 DP bridge bindings
+> diff --git a/Documentation/devicetree/bindings/mfd/ab8500.txt b/Documentation/devicetree/bindings/mfd/ab8500.txt
+> index cd9e90c5d171..ff517e5d7ee0 100644
+> --- a/Documentation/devicetree/bindings/mfd/ab8500.txt
+> +++ b/Documentation/devicetree/bindings/mfd/ab8500.txt
+> @@ -69,6 +69,18 @@ Required child device properties:
+>  - compatible             : "stericsson,ab8500-[bm|btemp|charger|fg|gpadc|gpio|ponkey|
+>                                                 pwm|regulator|rtc|sysctrl|usb]";
+>  
+> +  A few child devices require ADC channels from the GPADC node. Those follow the
+> +  standard bindings from iio/iio-bindings.txt and iio/adc/adc.txt
 > +
-> +Required properties:
-> +        - compatible: "ite,it6505"
-> +        - reg: i2c address of the bridge
-> +        - ovdd-supply: I/O voltage
-> +        - pwr18-supply: Core voltage
-> +        - interrupts: interrupt specifier of INT pin
-> +        - reset-gpios: gpio specifier of RESET pin
+> +  abx500-temp		 : io-channels "aux1" and "aux2" for measuring external
+> +			   temperatures.
+> +  ab8500_fg		 : io-channel "main_bat_v" for measuring main battery voltage,
+> +  ab8500_btemp		 : io-channels "btemp_ball" and "bat_ctrl" for measuring the
+> +			   battery voltage.
+> +  ab8500_charger	 : io-channels "main_charger_v", "main_charger_c", "vbus_v",
+> +			   "usb_charger_c" for measuring voltage and current of the
+> +			   different charging supplies.
+
+s/_/-/ for node names.
+
 > +
-> +Example:
-> +	it6505dptx: it6505dptx@5c {
+>  Optional child device properties:
+>  - interrupts             : contains the device IRQ(s) using the 2-cell format (see above)
+>  - interrupt-names        : contains names of IRQ resource in the order in which they were
+> @@ -102,8 +114,115 @@ ab8500 {
+>                                39 0x4>;
+>                  interrupt-names = "HW_CONV_END", "SW_CONV_END";
+>                  vddadc-supply = <&ab8500_ldo_tvout_reg>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		#io-channel-cells = <1>;
+> +
+> +		/* GPADC channels */
+> +		bat_ctrl: channel@01 {
 
-dp-bridge@5c
+Drop leading 0s. dtc should give you warnings for this.
 
-> +                compatible = "ite,it6505";
-> +                status = "okay";
+> +			reg = <0x01>;
+> +		};
 
-Don't show status in examples.
+I guess these nodes aren't new, but why do you need them other than 
+defining how many ADC channels.
 
-> +                interrupt-parent = <&pio>;
-
-And interrupt-parent.
-
-> +                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
-> +                reg = <0x5c>;
-> +                pinctrl-names = "default";
-> +                pinctrl-0 = <&it6505_pins>;
-> +                ovdd-supply = <&mt6358_vsim1_reg>;
-> +                pwr18-supply = <&it6505_pp18_reg>;
-> +                reset-gpios = <&pio 179 1>;
-> +                hpd-gpios = <&pio 9 0>;
-
-This goes in a connector node.
-
-> +                extcon = <&usbc_extcon>;
-
-extcon is deprecated. Drop or use the usb-connector binding.
-
-Plus this is not documented above.
-
-> +                port {
-
-Need to list what each port is. You're going to need an output port too 
-for a dp-connector or usb-c connector.
-
-> +                        it6505_in: endpoint {
-> +                                remote-endpoint = <&dpi_out>;
-> +                        };
-> +                };
-> +        };
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-> index 2c3fc51..c088646 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-> @@ -184,6 +184,7 @@ iom	Iomega Corporation
->  isee	ISEE 2007 S.L.
->  isil	Intersil
->  issi	Integrated Silicon Solutions Inc.
-> +ite	iTE Tech. Inc.
->  itead	ITEAD Intelligent Systems Co.Ltd
->  iwave  iWave Systems Technologies Pvt. Ltd.
->  jdi	Japan Display Inc.
+> +		btemp_ball: channel@02 {
+> +			reg = <0x02>;
+> +		};
+> +		main_charger_v: channel@03 {
+> +			reg = <0x03>;
+> +		};
+> +		acc_detect1: channel@04 {
+> +			reg = <0x04>;
+> +		};
+> +		acc_detect2: channel@05 {
+> +			reg = <0x05>;
+> +		};
+> +		adc_aux1: channel@06 {
+> +			reg = <0x06>;
+> +		};
+> +		adc_aux2: channel@07 {
+> +			reg = <0x07>;
+> +		};
+> +		main_batt_v: channel@08 {
+> +			reg = <0x08>;
+> +		};
+> +		vbus_v: channel@09 {
+> +			reg = <0x09>;
+> +		};
+> +		main_charger_c: channel@0a {
+> +			reg = <0x0a>;
+> +		};
+> +		usb_charger_c: channel@0b {
+> +			reg = <0x0b>;
+> +		};
+> +		bk_bat_v: channel@0c {
+> +			reg = <0x0c>;
+> +		};
+> +		die_temp: channel@0d {
+> +			reg = <0x0d>;
+> +		};
+> +		usb_id: channel@0e {
+> +			reg = <0x0e>;
+> +		};
+> +		xtal_temp: channel@12 {
+> +			reg = <0x12>;
+> +		};
+> +		vbat_true_meas: channel@13 {
+> +			reg = <0x13>;
+> +		};
+> +		bat_ctrl_and_ibat: channel@1c {
+> +			reg = <0x1c>;
+> +		};
+> +		vbat_meas_and_ibat: channel@1d {
+> +			reg = <0x1d>;
+> +		};
+> +		vbat_true_meas_and_ibat: channel@1e {
+> +			reg = <0x1e>;
+> +		};
+> +		bat_temp_and_ibat: channel@1f {
+> +			reg = <0x1f>;
+> +		};
+>          };
+>  
+> +	ab8500_temp {
+> +		compatible = "stericsson,abx500-temp";
+> +		io-channels = <&gpadc 0x06>,
+> +			      <&gpadc 0x07>;
+> +		io-channel-name = "aux1", "aux2";
+> +	};
+> +
+> +	ab8500_battery: ab8500_battery {
+> +		stericsson,battery-type = "LIPO";
+> +		thermistor-on-batctrl;
+> +	};
+> +
+> +	ab8500_fg {
+> +		compatible = "stericsson,ab8500-fg";
+> +		battery	   = <&ab8500_battery>;
+> +		io-channels = <&gpadc 0x08>;
+> +		io-channel-name = "main_bat_v";
+> +	};
+> +
+> +	ab8500_btemp {
+> +		compatible = "stericsson,ab8500-btemp";
+> +		battery	   = <&ab8500_battery>;
+> +		io-channels = <&gpadc 0x02>,
+> +			      <&gpadc 0x01>;
+> +		io-channel-name = "btemp_ball",
+> +				"bat_ctrl";
+> +	};
+> +
+> +	ab8500_charger {
+> +		compatible	= "stericsson,ab8500-charger";
+> +		battery		= <&ab8500_battery>;
+> +		vddadc-supply	= <&ab8500_ldo_tvout_reg>;
+> +		io-channels = <&gpadc 0x03>,
+> +			      <&gpadc 0x0a>,
+> +			      <&gpadc 0x09>,
+> +			      <&gpadc 0x0b>;
+> +		io-channel-name = "main_charger_v",
+> +				"main_charger_c",
+> +				"vbus_v",
+> +				"usb_charger_c";
+> +	};
+> +
+>          ab8500-usb {
+>                  compatible = "stericsson,ab8500-usb";
+>                  interrupts = < 90 0x4
 > -- 
-> 1.9.1
+> 2.21.0
 > 
