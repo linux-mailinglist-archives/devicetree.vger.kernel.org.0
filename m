@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F4C8A61FB
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C4BBA6230
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:06:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726740AbfICG4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 02:56:18 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:34861 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725919AbfICG4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:56:18 -0400
-Received: by mail-wr1-f67.google.com with SMTP id g7so16171563wrx.2;
-        Mon, 02 Sep 2019 23:56:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=gPy6fOC9u4A5SyRwQGW1CeXL58GG3z/lyzlsRrRvE20=;
-        b=VKTnUeL1mvffjZp4HF1qYIC2ohPVatfSPDn4E3v26n2MUOIvaL/G15Yj9rrY8sWR9i
-         /lUBGN3u7FxJeklQVJZCh6rpFS9sX5xp6BufHv3a/hRtX+N2tUiQeh0jNh9aJ560A242
-         k1vVgHggrMRgudIZUpH7EWW1ML0e9p0bvVCOgHUKwtmdPrnS2rwxHZHAfzhdfxXYmuhM
-         Uarx0LafsMIWuQYmJ9x6VufTZw6olqgjZlm/dx+vwssVoMGsZ2JXJytXXUQAUzbPXFit
-         iJHoWTckyZ2ONWvdc9X2q3S/Zeb3mYuzKz3dpC3EWX7XFGc7C7/hgZW9Hb5E8mTETx2O
-         2uoA==
-X-Gm-Message-State: APjAAAWFgLr2BkqJ59qqHnlQU8Lo2rjjJcZkQlesW7Gxij6XUE5tFW14
-        BEYKjuPp6KTEdyOSahHwtg==
-X-Google-Smtp-Source: APXvYqxJ37+E2Wt1cMkG1bIYf8QUq1oQul1fNEtgAa89fMSnJ82GfZWC1/Yz60NM8CdkofiMDuBe1Q==
-X-Received: by 2002:adf:f5c5:: with SMTP id k5mr38074077wrp.42.1567493776372;
-        Mon, 02 Sep 2019 23:56:16 -0700 (PDT)
-Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id x15sm10963383wmc.16.2019.09.02.23.56.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 02 Sep 2019 23:56:15 -0700 (PDT)
-Date:   Tue, 3 Sep 2019 07:56:15 +0100
-From:   Rob Herring <robh@kernel.org>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH input-next 1/4] dt-bindings: input: Convert mpr121
- binding to json-schema
-Message-ID: <20190903065615.GA17646@bogus>
-References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
- <1567424417-3914-2-git-send-email-michal.vokac@ysoft.com>
+        id S1726062AbfICHG1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 03:06:27 -0400
+Received: from mail-sh.amlogic.com ([58.32.228.43]:19737 "EHLO
+        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725895AbfICHG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:06:27 -0400
+X-Greylist: delayed 902 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 03:06:26 EDT
+Received: from droid13.amlogic.com (116.236.93.172) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Tue, 3 Sep 2019
+ 14:52:13 +0800
+From:   Jianxin Pan <jianxin.pan@amlogic.com>
+To:     Kevin Hilman <khilman@baylibre.com>,
+        <linux-amlogic@lists.infradead.org>
+CC:     Jianxin Pan <jianxin.pan@amlogic.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Carlo Caione <carlo@caione.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Tao Zeng <tao.zeng@amlogic.com>
+Subject: [PATCH 0/4] arm64: Add basic support for Amlogic A1 SoC Family
+Date:   Tue, 3 Sep 2019 02:51:11 -0400
+Message-ID: <1567493475-75451-1-git-send-email-jianxin.pan@amlogic.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1567424417-3914-2-git-send-email-michal.vokac@ysoft.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [116.236.93.172]
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 01:40:14PM +0200, Michal Vokáč wrote:
-> Convert the mpr121 binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
-> ---
-> Hi Rob,
-> 
-> I will appreciate your help converting this binding. Currently
-> the scheme is not valid and the error output of dt_binding_check
-> is not really helpful.
+A1 is an application processor designed for smart audio and IoT applications,
+with Dual core ARM Cortex-A35 CPU. Unlike the previous GXL and G12 series,
+there is no Cortex-M3 AO CPU in it.
 
-What's the error? I don't see anything obvious.
+This serial add basic support for the Amlogic A1 based Amlogic AD401 board:
+which describe components as follows: Reserve Memory, CPU, GIC, IRQ,
+Timer, UART. It's capable of booting up into the serial console.
 
-> 
-> Also, who shoud be the maintainer of this binding?
-> I put Dmitry in there as he is the input subsystem maintainer but
-> I am not sure it is correct.
+The pclk for uart_AO_B need to be fixed once A1 clock driver is merged.
+In this version, it rely on bootloader to enable the pclk gate
 
-My preference is the author or driver maintainer.
+Jianxin Pan (4):
+  soc: amlogic: meson-gx-socinfo: Add A1 and A113L IDs
+  dt-bindings: arm: amlogic: add A1 bindings
+  dt-bindings: arm: amlogic: add Amlogic AD401 bindings
+  arm64: dts: add support for A1 based Amlogic AD401
 
->  .../bindings/input/fsl,mpr121-touchkey.yaml        | 64 ++++++++++++++++++++++
->  .../devicetree/bindings/input/mpr121-touchkey.txt  | 30 ----------
->  2 files changed, 64 insertions(+), 30 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
->  delete mode 100644 Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   6 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts     |  30 +++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi          | 121 +++++++++++++++++++++
+ drivers/soc/amlogic/meson-gx-socinfo.c             |   2 +
+ 5 files changed, 160 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+
+-- 
+2.7.4
+
