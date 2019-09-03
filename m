@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EAC9A652B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:28:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92C5A655C
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728169AbfICJ2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 05:28:18 -0400
-Received: from mx2.suse.de ([195.135.220.15]:59110 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728128AbfICJ2S (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 05:28:18 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id AA200AEAE;
-        Tue,  3 Sep 2019 09:28:16 +0000 (UTC)
-Date:   Tue, 3 Sep 2019 11:28:16 +0200
-From:   Petr Mladek <pmladek@suse.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v5 09/11] lib/vsprintf: OF nodes are first and foremost,
- struct device_nodes
-Message-ID: <20190903092816.qutqnjba7okcauim@pathway.suse.cz>
-References: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
- <20190902135732.23455-10-sakari.ailus@linux.intel.com>
- <20190903085233.oksjcwqwdxb53eig@pathway.suse.cz>
+        id S1728497AbfICJcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 05:32:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54170 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726840AbfICJcp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 05:32:45 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 480B1230F2;
+        Tue,  3 Sep 2019 09:32:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567503164;
+        bh=N19Rsm2Plowanw5IPDslRmZ/3k2cHzpGI8qCX6YsUV4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=j7LgIpG91QoJCTR9UK0WtxBN/k/aKeRquXF7LSfSR3O5XLSl8nq2FZ0yOvDBL6wGR
+         Y/ccrj0iDNE0zLvaNGaxqIleAtJGvwcVFk5HidpyVJrpa/E2Qe7clq+b1jxOQFQRX/
+         Yq82HJ20DnuKVU2kqfaY50ChXpBwe6gY8SGB6Qrc=
+Received: by mail-qk1-f174.google.com with SMTP id f13so15078059qkm.9;
+        Tue, 03 Sep 2019 02:32:44 -0700 (PDT)
+X-Gm-Message-State: APjAAAXQMWGTJuqB7hL+i69mU3HDqsFafVlTRVUnLa+1GGmzc0GrUhBR
+        uuSL1sRjAZE2UEqcB4n2lQrpESs8y2cJn6+TxA==
+X-Google-Smtp-Source: APXvYqyKDZuIwFDrRc3z4ZslmmdloGpwW7OeQmoAyPuObEV639fe/KLbd1vsGji0BxVufXTxiZj/yfPO078OIFstJWA=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr15623206qke.223.1567503163440;
+ Tue, 03 Sep 2019 02:32:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190903085233.oksjcwqwdxb53eig@pathway.suse.cz>
-User-Agent: NeoMutt/20170912 (1.9.0)
+References: <20190830104502.7128-2-guillaume.gardet@arm.com> <20190903073300.5927-1-guillaume.gardet@arm.com>
+In-Reply-To: <20190903073300.5927-1-guillaume.gardet@arm.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 3 Sep 2019 10:32:32 +0100
+X-Gmail-Original-Message-ID: <CAL_JsqJhgU3qLV5SuqYpktiobYLh0up8eis1G42mpNrqu-kB+w@mail.gmail.com>
+Message-ID: <CAL_JsqJhgU3qLV5SuqYpktiobYLh0up8eis1G42mpNrqu-kB+w@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpu: mali-midgard: Add samsung exynos5250 compatible
+To:     Guillaume Gardet <guillaume.gardet@arm.com>
+Cc:     linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 2019-09-03 10:52:33, Petr Mladek wrote:
-> On Mon 2019-09-02 16:57:30, Sakari Ailus wrote:
-> > Factor out static kobject_string() function that simply calls
-> > device_node_string(), and thus remove references to kobjects (as these are
-> > struct device_node).
-> > 
-> > Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > ---
-> >  lib/vsprintf.c | 16 ++++------------
-> >  1 file changed, 4 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/lib/vsprintf.c b/lib/vsprintf.c
-> > index a04a2167101ef..4ad9332d54ba6 100644
-> > --- a/lib/vsprintf.c
-> > +++ b/lib/vsprintf.c
-> > @@ -1905,6 +1905,9 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
-> >  	struct printf_spec str_spec = spec;
-> >  	str_spec.field_width = -1;
-> >  
-> > +	if (fmt[0] != 'F')
-> > +		return error_string(buf, end, "(%pO?)", spec);
-> > +
-> >  	if (!IS_ENABLED(CONFIG_OF))
-> >  		return error_string(buf, end, "(%pOF?)", spec);
-> >  
-> > @@ -1978,17 +1981,6 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
-> >  	return widen_string(buf, buf - buf_start, end, spec);
-> >  }
-> >  
-> > -static char *kobject_string(char *buf, char *end, void *ptr,
-> > -			    struct printf_spec spec, const char *fmt)
-> > -{
-> > -	switch (fmt[1]) {
-> > -	case 'F':
-> > -		return device_node_string(buf, end, ptr, spec, fmt + 1);
-> > -	}
-> > -
-> > -	return error_string(buf, end, "(%pO?)", spec);
-> > -}
-> > -
-> >  /*
-> >   * Show a '%p' thing.  A kernel extension is that the '%p' is followed
-> >   * by an extra set of alphanumeric characters that are extended format
-> > @@ -2167,7 +2159,7 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
-> >  	case 'G':
-> >  		return flags_string(buf, end, ptr, spec, fmt);
-> >  	case 'O':
-> > -		return kobject_string(buf, end, ptr, spec, fmt);
-> > +		return device_node_string(buf, end, ptr, spec, fmt + 1);
-> 
-> I know that this come from from kobject_string(). But please, modify
-> it to follow the style used by other %p modifiers. I mean to pass
-> "fmt" as is and then use:
-> 
-> 	if (fmt[1] != 'F')
+On Tue, Sep 3, 2019 at 8:33 AM Guillaume Gardet
+<guillaume.gardet@arm.com> wrote:
+>
+> Add "samsung,exynos5250-mali" binding.
+>
+> Signed-off-by: Guillaume Gardet <guillaume.gardet@arm.com>
+>
+> Cc: Kukjin Kim <kgene@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>
+> Cc: Marek Szyprowski <m.szyprowski@samsung.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Mark Rutland <mark.rutland@arm.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> ---
+>  Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 
-Ah, I see that it would need more changes in device_node_string().
-OK, let's leave the patch as is. I am sorry for the noise.
+Applied, thanks.
 
-Best Regards,
-Petr
+Rob
