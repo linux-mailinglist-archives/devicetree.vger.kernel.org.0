@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D322BA636F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:03:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72426A637A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:04:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725888AbfICIDw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 04:03:52 -0400
+        id S1728023AbfICIEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 04:04:06 -0400
 Received: from mail-eopbgr80139.outbound.protection.outlook.com ([40.107.8.139]:43751
         "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725878AbfICIDv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 04:03:51 -0400
+        id S1725878AbfICID4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 04:03:56 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HATWzs65G1a5j8/WyS93znngx3GxOFUYQsP1F96/rtsXlyKT4xVG1eu7XwlG7Sa3dkjJCPGFJJgVvs5hnHGVCqe2JD+pFPI+ZRQ3wdHWbDk9kIeB+4f524dcq78v/gSVRYWPVNFQRNwtnYfevTuaecuVDt9306KZ1yjh34n9wmGc+WyqnvGQGzoIGZsXm7mrrDl3ruQKcAxYfB4ShfdVOPkkI9kOjxHFjqlrjVhAMMzeIBJ7b7w3DvXvWhqJVpM9SgS4lexMNHN0BGOlx3a8ILz35/H39hZ6yedJGtI6bcLzyeks9c5MDR39u0X6bjNr+CkjIZASHg+e0fUJIFgLBg==
+ b=Ktkq4MTcTcmhWLAQk4KIdlFm56mXXrQOximKDx24sO2Km851bAZEk7bjysBsToLAcjPjcBOIlflnWqy31h/bCVA012T468J5/b9o/sbHa3JS6pje1QOFdr3c4KwNEolGv20ZRMdLtNHTLInW0BPct7KpQnM+Ph+Mai5poFKkGcZIyWkma7wOCeO8M6hG5QG9/f0NlfKwCQboUYPQqWpeOLxxb6porGBOreBPjpzi/HpM0zwwWpvSM16vyYjwVERZIVuG1ZBJ6wwikgnzNZ75RS/QpivULeJfiCzjcZgfbRqRXuOr0E7JFboSFoVGNLUP6wC+ZIjqMsPaInCShcSHhQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=11shAEnm54iYqWnxs1WQewo/2M+laZAnVa3TTLn3/cs=;
- b=iRKAfLKLw1o+Mt/5sac+H8iJfrnQqaq44Nu5jRX/C/urmahr8qyZdl4vPMCeeGKCWWL86znlHz4m+CvPl8EhcgtIvorbhwaP9s6ZFJkmc2NDGnBMYcLZtEHzFTXdGsrW2r7Wqrc8wtpnDCp+sUDu6wKvhtErJjEvHxmzWXSATesYY1fhqOM/tNVX4eVhffQqX0DEos+hBqcoY5ZrJgohYbFRwgqRATTHAC55Nw/NpFahDgVvSAi2acbURn8TNvl9w/qGdRucHDzz+FoaL6boJFG6DonRWJg7dg/DP5ZkaXT4OpZJ7Tp2rwO6yooQk6C1b91zS+UX6Zib9xvaX8oiig==
+ bh=bEgRLsbzkLrfeBS5G4W+sYllsyyyYJOWE4eQFNNxvmc=;
+ b=MigaTzJCO6t1w7lk/6oKytfx8hpJqzJGieOpwPB4m01SSge7KKhhy40YqkI0OQWfpgjanS5UFboEL1o8rG2UI3Ch0N3DfpdVFMMttHxeDBb5r8Tl4fLeuT8Ywx94FvwLURIeCI/WzMpgrWUsfTIfQVMiGLO0i+S0BwgtI1DsVCN8EO0FT8QnxSlVtKUHKtaLDdGq6c2wYiB1c9GzvIgTdUlW/cNw+E1xowehxrFvzZZ0HTNwuHFZjd1WpiwfAT7CvlB60IhD495fd3TiwlkUvSWq+Q2gRNK8X/dtb5j/iegCbDT+0GIHtq2o1N+RzFN8Rd0SvO3pKaKJ63cWKMthaQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
  dkim=pass header.d=toradex.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=11shAEnm54iYqWnxs1WQewo/2M+laZAnVa3TTLn3/cs=;
- b=m3BbNl/W9xGPPF41pe4pfo+WM6fqCeWATnyQG+NTQHPnrUGgryn9ZqD0H5MEm3ar6PzUz+rqSCQ8QQ5XpC+L9Q+gTRpppiYtHY9g7OIIXmZSPDVVZUTu/eJovq/gkafiCP8PYrXpxwqyUKnVuaMytnJFETSuUV1vjCXl23s3GAw=
+ bh=bEgRLsbzkLrfeBS5G4W+sYllsyyyYJOWE4eQFNNxvmc=;
+ b=IScayxGl/DbgfJ9BhMXAWEKpd/aQlKpqYF6enrnORFS2DHlGrdXNCHXN1FRCNSSHnBJ33kYOojwI1y4EUvTAV66dRcjc4xBMqHRQCCX9SUq9orXx0HM7Wi6v6e+bNkVWtwXn3ChPQkx5dSXq1II4RAP43eEy8LJZCFWWK4Lzjwk=
 Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
  VI1PR0502MB4014.eurprd05.prod.outlook.com (52.134.18.33) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.19; Tue, 3 Sep 2019 08:03:47 +0000
+ 15.20.2220.19; Tue, 3 Sep 2019 08:03:48 +0000
 Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
  ([fe80::f59f:a307:9c53:63b9]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
  ([fe80::f59f:a307:9c53:63b9%6]) with mapi id 15.20.2220.022; Tue, 3 Sep 2019
- 08:03:47 +0000
+ 08:03:48 +0000
 From:   Philippe Schenker <philippe.schenker@toradex.com>
 To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Mark Brown <broonie@kernel.org>,
@@ -48,12 +48,19 @@ CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Mark Rutland <mark.rutland@arm.com>,
         Luka Pivk <luka.pivk@toradex.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>
-Subject: [PATCH 1/3] regulator: fixed: add possibility to enable by clock
-Thread-Topic: [PATCH 1/3] regulator: fixed: add possibility to enable by clock
-Thread-Index: AQHVYi4cgyK53mdiuEKJwWlDc8lstw==
-Date:   Tue, 3 Sep 2019 08:03:46 +0000
-Message-ID: <20190903080336.32288-2-philippe.schenker@toradex.com>
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: [PATCH 2/3] ARM: dts: imx6ull-colibri: add phy-supply and respective
+ regulator
+Thread-Topic: [PATCH 2/3] ARM: dts: imx6ull-colibri: add phy-supply and
+ respective regulator
+Thread-Index: AQHVYi4dgCofqQaHw0euB7fgm+76EA==
+Date:   Tue, 3 Sep 2019 08:03:48 +0000
+Message-ID: <20190903080336.32288-3-philippe.schenker@toradex.com>
 References: <20190903080336.32288-1-philippe.schenker@toradex.com>
 In-Reply-To: <20190903080336.32288-1-philippe.schenker@toradex.com>
 Accept-Language: en-GB, en-US
@@ -69,180 +76,75 @@ x-ms-exchange-messagesentrepresentingtype: 1
 x-mailer: git-send-email 2.23.0
 x-originating-ip: [46.140.72.82]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d877e1cb-927d-4b96-94d8-08d730453f33
+x-ms-office365-filtering-correlation-id: 25618a1b-46c4-48f8-3152-08d730453feb
 x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB4014;
 x-ms-traffictypediagnostic: VI1PR0502MB4014:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB401456E05849538990E4E18AF4B90@VI1PR0502MB4014.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:478;
+x-microsoft-antispam-prvs: <VI1PR0502MB401433A0AAE959057A37044AF4B90@VI1PR0502MB4014.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1079;
 x-forefront-prvs: 01494FA7F7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(39840400004)(376002)(346002)(136003)(396003)(366004)(199004)(189003)(6436002)(66066001)(81166006)(110136005)(54906003)(5660300002)(71200400001)(305945005)(2501003)(25786009)(476003)(81156014)(2616005)(44832011)(107886003)(6512007)(66446008)(99286004)(66946007)(66556008)(186003)(64756008)(66476007)(26005)(6486002)(71190400001)(4326008)(53936002)(446003)(52116002)(486006)(102836004)(11346002)(1076003)(6116002)(478600001)(86362001)(50226002)(14454004)(2906002)(36756003)(8936002)(76176011)(3846002)(6506007)(386003)(316002)(256004)(8676002)(7736002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB4014;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(39840400004)(376002)(346002)(136003)(396003)(366004)(199004)(189003)(6436002)(66066001)(81166006)(110136005)(54906003)(5660300002)(71200400001)(305945005)(2501003)(25786009)(476003)(81156014)(2616005)(44832011)(6512007)(66446008)(99286004)(66946007)(66556008)(186003)(64756008)(66476007)(26005)(6486002)(71190400001)(4326008)(53936002)(446003)(52116002)(486006)(102836004)(11346002)(1076003)(7416002)(6116002)(478600001)(86362001)(50226002)(14454004)(2906002)(36756003)(8936002)(76176011)(3846002)(6506007)(386003)(316002)(256004)(8676002)(7736002)(32563001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB4014;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
 received-spf: None (protection.outlook.com: toradex.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: mmJ8sopXh3iWVuvyJJzxjaNL1FjIVqc3hLJ7nkWOPvxQPJT7S0Zok+JGxpRZSEGKneGQiHs0PsWEqO1NqnFJW5m2pKfWengoVeQDLn13vCY1QDO+OujCmGRnD+oTH/aj4UnCxcR7pdBQFNjmBDQL+Wue546J/NoE8U9jEsbLHNJkAfgZQ1TDGmANG9wM6VWHDiPtI3JV/kPoDRuI1HB66ryBvYpM1Bk4BewI4fuiPZHyjxEMo16w7dEJt6yBj7026DjJZkcJ7aVN2EWBNhhlDjedRAAIKL2nl8ycm4CjopPFXJtbl9ysD5ySZ1euWyc9y5E3e4Gm3MgS7wubVVc/qKf8IOKAKQabJGG7fufLpYleszeRvjFYymppSjgvH5SBIg9GsBb/YFYjr/Eulczx1sUPZaLonXHVQefsJB/rujE=
+x-microsoft-antispam-message-info: vGDY6ey//ua0XfWuOXEAIwabyuvQsJZ3+tqslkQlcHwPYdOAJ9Hu7NlA+e0jkhgOtObPfMOyWX5WCjjNhqDJC36QIhI2uGdAT4mA4inrsaO33EZAgZXFnNmE3yO3Z38WBRa89RYwVjiwy/BmAg+ncnKcvtsE1Uq0k84w/XKayzShhBLdm0Wlo9COBI/7srQ/0PzHCqc0CZqsxH96VLELZC6uoAVbcrQ8Rh7riGaRC3KF+qUjxmN2u+kFPwn5RNGqoz6AEo79Rnc+rRr41EEV9sNSLlKjf6eMOC8mRHEw4D4VX0WbEq7ecfn/mTAsM4pvFaTg37U6usDBoMOFJ8574pfgkeu/pptSJXSGYlswRWXk80lmWM6bogAsyz84kgAXyCqy4eX4JaPeA9ni3RgbQZbSZod3vz5WYUEvU1tVU9c=
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d877e1cb-927d-4b96-94d8-08d730453f33
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 08:03:46.9644
+X-MS-Exchange-CrossTenant-Network-Message-Id: 25618a1b-46c4-48f8-3152-08d730453feb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 08:03:48.1478
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: to/U//IDPULCOxneSCX3lq2LH0vrLBKhmPjZJ4R3mfewjb9O+YF4bVcr+3PpwcIc42WYmq22JdMYJZbC6HoGrCw73CtMxWjf8SkxG7P52Rk=
+X-MS-Exchange-CrossTenant-userprincipalname: NQ6RxuET5OLB/e5sh5KafK4gln9dnvRvDNP11PjR5rUSho9E5oM74I+CXQ7Au7keCkVkI7ra61dk/jaYOBE5HWEEjbOXw8oTn7/V1JC6nO8=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB4014
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds the possibility to choose the compatible
-"regulator-fixed-clock" in devicetree.
-
-This is a special regulator-fixed that has to have a clock, from which
-the regulator gets switched on and off.
+This adds regulator-fixed-clock, a fixed-regulator that turns on and
+off with a clock and add it to the phy.
 
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
- drivers/regulator/fixed.c | 86 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 83 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/imx6ull-colibri.dtsi | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-diff --git a/drivers/regulator/fixed.c b/drivers/regulator/fixed.c
-index 999547dde99d..eadeca9a1a6c 100644
---- a/drivers/regulator/fixed.c
-+++ b/drivers/regulator/fixed.c
-@@ -23,14 +23,66 @@
- #include <linux/gpio/consumer.h>
- #include <linux/slab.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/regulator/of_regulator.h>
- #include <linux/regulator/machine.h>
-+#include <linux/clk.h>
+diff --git a/arch/arm/boot/dts/imx6ull-colibri.dtsi b/arch/arm/boot/dts/imx=
+6ull-colibri.dtsi
+index d56728f03c35..76021b842a97 100644
+--- a/arch/arm/boot/dts/imx6ull-colibri.dtsi
++++ b/arch/arm/boot/dts/imx6ull-colibri.dtsi
+@@ -47,6 +47,17 @@
+ 		states =3D <1800000 0x1 3300000 0x0>;
+ 		vin-supply =3D <&reg_module_3v3>;
+ 	};
 +
-=20
- struct fixed_voltage_data {
- 	struct regulator_desc desc;
- 	struct regulator_dev *dev;
-+
-+	struct clk *enable_clock;
-+	unsigned int clk_enable_counter;
-+};
-+
-+struct fixed_dev_type {
-+	bool has_enable_clock;
-+};
-+
-+static const struct fixed_dev_type fixed_voltage_data =3D {
-+	.has_enable_clock =3D false,
++	reg_eth_phy: regulator-eth-phy {
++		compatible =3D "regulator-fixed-clock";
++		regulator-boot-on;
++		regulator-name =3D "eth_phy";
++		regulator-min-microvolt =3D <3300000>;
++		regulator-max-microvolt =3D <3300000>;
++		clocks =3D <&clks IMX6UL_CLK_ENET2_REF_125M>;
++		startup-delay-us =3D <150000>;
++		vin-supply =3D <&reg_module_3v3>;
++	};
  };
 =20
-+static const struct fixed_dev_type fixed_clkenable_data =3D {
-+	.has_enable_clock =3D true,
-+};
-+
-+static int reg_clock_enable(struct regulator_dev *rdev)
-+{
-+	struct fixed_voltage_data *priv =3D rdev_get_drvdata(rdev);
-+	int ret =3D 0;
-+
-+	ret =3D clk_prepare_enable(priv->enable_clock);
-+	if (ret)
-+		return ret;
-+
-+	priv->clk_enable_counter++;
-+
-+	return ret;
-+}
-+
-+static int reg_clock_disable(struct regulator_dev *rdev)
-+{
-+	struct fixed_voltage_data *priv =3D rdev_get_drvdata(rdev);
-+
-+	clk_disable_unprepare(priv->enable_clock);
-+	priv->clk_enable_counter--;
-+
-+	return 0;
-+}
-+
-+static int reg_clock_is_enabled(struct regulator_dev *rdev)
-+{
-+	struct fixed_voltage_data *priv =3D rdev_get_drvdata(rdev);
-+
-+	if (priv->clk_enable_counter > 0)
-+		return 1;
-+
-+	return 0;
-+}
-+
+ &adc1 {
+@@ -66,6 +77,7 @@
+ 	pinctrl-0 =3D <&pinctrl_enet2>;
+ 	phy-mode =3D "rmii";
+ 	phy-handle =3D <&ethphy1>;
++	phy-supply =3D <&reg_eth_phy>;
+ 	status =3D "okay";
 =20
- /**
-  * of_get_fixed_voltage_config - extract fixed_voltage_config structure in=
-fo
-@@ -84,10 +136,19 @@ of_get_fixed_voltage_config(struct device *dev,
- static struct regulator_ops fixed_voltage_ops =3D {
- };
-=20
-+static struct regulator_ops fixed_voltage_clkenabled_ops =3D {
-+	.enable =3D reg_clock_enable,
-+	.disable =3D reg_clock_disable,
-+	.is_enabled =3D reg_clock_is_enabled,
-+};
-+
- static int reg_fixed_voltage_probe(struct platform_device *pdev)
- {
-+	struct device *dev =3D &pdev->dev;
- 	struct fixed_voltage_config *config;
- 	struct fixed_voltage_data *drvdata;
-+	const struct fixed_dev_type *drvtype =3D
-+		of_match_device(dev->driver->of_match_table, dev)->data;
- 	struct regulator_config cfg =3D { };
- 	enum gpiod_flags gflags;
- 	int ret;
-@@ -118,7 +179,18 @@ static int reg_fixed_voltage_probe(struct platform_dev=
-ice *pdev)
- 	}
- 	drvdata->desc.type =3D REGULATOR_VOLTAGE;
- 	drvdata->desc.owner =3D THIS_MODULE;
--	drvdata->desc.ops =3D &fixed_voltage_ops;
-+
-+	if (drvtype->has_enable_clock) {
-+		drvdata->desc.ops =3D &fixed_voltage_clkenabled_ops;
-+
-+		drvdata->enable_clock =3D devm_clk_get(dev, NULL);
-+		if (IS_ERR(drvdata->enable_clock)) {
-+			dev_err(dev, "Cant get enable-clock from devicetree\n");
-+			return -ENOENT;
-+		}
-+	} else {
-+		drvdata->desc.ops =3D &fixed_voltage_ops;
-+	}
-=20
- 	drvdata->desc.enable_time =3D config->startup_delay;
-=20
-@@ -191,8 +263,16 @@ static int reg_fixed_voltage_probe(struct platform_dev=
-ice *pdev)
-=20
- #if defined(CONFIG_OF)
- static const struct of_device_id fixed_of_match[] =3D {
--	{ .compatible =3D "regulator-fixed", },
--	{},
-+	{
-+		.compatible =3D "regulator-fixed",
-+		.data =3D &fixed_voltage_data,
-+	},
-+	{
-+		.compatible =3D "regulator-fixed-clock",
-+		.data =3D &fixed_clkenable_data,
-+	},
-+	{
-+	},
- };
- MODULE_DEVICE_TABLE(of, fixed_of_match);
- #endif
+ 	mdio {
 --=20
 2.23.0
 
