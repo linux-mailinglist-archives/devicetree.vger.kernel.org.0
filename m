@@ -2,112 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69215A6B27
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 16:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46810A6B53
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 16:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727667AbfICOUf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 10:20:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57130 "EHLO mail.kernel.org"
+        id S1728854AbfICOY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 10:24:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59174 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727107AbfICOUf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 10:20:35 -0400
-Received: from localhost.localdomain (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        id S1728571AbfICOY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 10:24:26 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8E2BE22D6D;
-        Tue,  3 Sep 2019 14:20:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3E73E23711;
+        Tue,  3 Sep 2019 14:24:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567520434;
-        bh=ygZcufiEa4tPWQUTLwsIpxN5DMwkrJv3yH0ESnqY4bQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=qO+VPZHZBEPdHZs0lMom5N2QPKLnYZHR+43Y+b8JoVwKXDe/uARpF7uubMFjc/1zV
-         W0nmnVF9tczCPEB3PoaGXpuF+4g66gM/IwLC9kQ4O4Q1oufMBr7bE5JQXCsDKDrojN
-         YKD1RvVt8Uv2xoMWNmjE5BR9bH2BB8INavDEF33Y=
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     linux-kernel@vger.kernel.org
-Cc:     dinguyen@kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
-        linux@armlinux.org.uk, frowand.list@gmail.com,
-        keescook@chromium.org, anton@enomsg.org, ccross@android.com,
-        tony.luck@intel.com, daniel.thompson@linaro.org,
-        linus.walleij@linaro.org, manivannan.sadhasivam@linaro.org,
-        linux-arm-kernel@lists.infradead.org, p.zabel@pengutronix.de
-Subject: [PATCHv7] drivers/amba: add reset control to amba bus probe
-Date:   Tue,  3 Sep 2019 09:12:15 -0500
-Message-Id: <20190903141215.18283-1-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.20.0
+        s=default; t=1567520665;
+        bh=8p5CNP6BskSbrJouAkp8CPkNDKbbnxS4GqAgIpkH6xI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=B2R+gSM9rCpwwImgfy85EdsLDtBELWH16KyE5jnVu6rMk/fnE90aUQem6v2XWvhGf
+         k187E2P7dJzAQq21/bxqLFjTfcDwxI4s0zB0DI1KjPrC3bTJke79uRme6/hIbw95Qo
+         Jr37leZG9ug9RjQwyWe1JTR6as0m6fgK8FKGiZcg=
+Received: by mail-qt1-f171.google.com with SMTP id t12so20107545qtp.9;
+        Tue, 03 Sep 2019 07:24:25 -0700 (PDT)
+X-Gm-Message-State: APjAAAXpaUAGUjWpVW0gIbhTWp3YPdGRKivCs7xig8QkINW9tmclfvT0
+        w6RGbqk3WxiPMck4Y4AGLXnAqvLsSAjkftqI+Q==
+X-Google-Smtp-Source: APXvYqyf66U1enOSZroZ3NfqFTeBGuG/63QoHRuWUDZSe6k7+SHykxn/1jfwi/0yDstZK2RJ2ui8y0/4Bnql3UfknIs=
+X-Received: by 2002:a05:6214:1042:: with SMTP id l2mr4516540qvr.39.1567520664326;
+ Tue, 03 Sep 2019 07:24:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1567321765-3738-1-git-send-email-pragnesh.patel@sifive.com>
+ <5d6d1b81.1c69fb81.7eabb.cabd@mx.google.com> <CAN8ut8KMjo4KVcgLp6AhZOpuLwWMJ8HeiecH70RgYnLQQ05M9w@mail.gmail.com>
+In-Reply-To: <CAN8ut8KMjo4KVcgLp6AhZOpuLwWMJ8HeiecH70RgYnLQQ05M9w@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 3 Sep 2019 15:24:12 +0100
+X-Gmail-Original-Message-ID: <CAL_Jsq+Y3=xXuaqO=UoAShw5OxJA4wDBZVUE3=OT_DL9kw9t-Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+Y3=xXuaqO=UoAShw5OxJA4wDBZVUE3=OT_DL9kw9t-Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: Convert riscv,sifive-serial to json-schema
+To:     Pragnesh Patel <pragnesh.patel@sifive.com>
+Cc:     Palmer Dabbelt <palmer@sifive.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-default. Until recently, the DMA controller was brought out of reset by the
-bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals
-that are not used are held in reset and are left to Linux to bring them
-out of reset.
+On Tue, Sep 3, 2019 at 7:52 AM Pragnesh Patel <pragnesh.patel@sifive.com> wrote:
+>
+> On Mon, Sep 2, 2019 at 7:09 PM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Sun, Sep 01, 2019 at 12:39:21PM +0530, Pragnesh Patel wrote:
+> > > Convert the riscv,sifive-serial binding to DT schema using json-schema.
+> > >
+> > > Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
+> > > ---
+> > >  .../devicetree/bindings/serial/sifive-serial.txt   | 33 ------------
+> > >  .../devicetree/bindings/serial/sifive-serial.yaml  | 62 ++++++++++++++++++++++
+> > >  2 files changed, 62 insertions(+), 33 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/serial/sifive-serial.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/serial/sifive-serial.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.txt b/Documentation/devicetree/bindings/serial/sifive-serial.txt
+> > > deleted file mode 100644
+> > > index c86b1e5..0000000
+> > > --- a/Documentation/devicetree/bindings/serial/sifive-serial.txt
+> > > +++ /dev/null
+> > > @@ -1,33 +0,0 @@
+> > > -SiFive asynchronous serial interface (UART)
+> > > -
+> > > -Required properties:
+> > > -
+> > > -- compatible: should be something similar to
+> > > -           "sifive,<chip>-uart" for the UART as integrated
+> > > -           on a particular chip, and "sifive,uart<version>" for the
+> > > -           general UART IP block programming model.  Supported
+> > > -           compatible strings as of the date of this writing are:
+> > > -           "sifive,fu540-c000-uart" for the SiFive UART v0 as
+> > > -           integrated onto the SiFive FU540 chip, or "sifive,uart0"
+> > > -           for the SiFive UART v0 IP block with no chip integration
+> > > -           tweaks (if any)
+> > > -- reg: address and length of the register space
+> > > -- interrupts: Should contain the UART interrupt identifier
+> > > -- clocks: Should contain a clock identifier for the UART's parent clock
+> > > -
+> > > -
+> > > -UART HDL that corresponds to the IP block version numbers can be found
+> > > -here:
+> > > -
+> > > -https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/uart
+> > > -
+> > > -
+> > > -Example:
+> > > -
+> > > -uart0: serial@10010000 {
+> > > -     compatible = "sifive,fu540-c000-uart", "sifive,uart0";
+> > > -     interrupt-parent = <&plic0>;
+> > > -     interrupts = <80>;
+> > > -     reg = <0x0 0x10010000 0x0 0x1000>;
+> > > -     clocks = <&prci PRCI_CLK_TLCLK>;
+> > > -};
+> > > diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.yaml b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
+> > > new file mode 100644
+> > > index 0000000..56fa935
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
+> > > @@ -0,0 +1,62 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/serial/sifive-serial.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: SiFive asynchronous serial interface (UART)
+> > > +
+> > > +maintainers:
+> > > +  - Pragnesh Patel <pragnesh.patel@sifive.com>
+> > > +  - Paul Walmsley  <paul.walmsley@sifive.com>
+> > > +  - Palmer Dabbelt <palmer@sifive.com>
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/serial.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - sifive,fu540-c000-uart
+> > > +      - sifive,uart0
+> >
+> > This is wrong and should have warned if you tested this on 5.3.
+> >
+> > items:
+> >   - const: sifive,fu540-c000-uart
+> >   - const: sifive,uart0
+> >
+>
+> Thanks for the correction, i will update this in v2 patch.
+>
+> I haven't got any warnings due to my patch.
+> For your reference, following is the list of warnings when i did "make
+> dtbs_check" (kernel version - 5.3.0-rc7)
 
-Add a mechanism for getting the reset property and de-assert the primecell
-module from reset if found. This is a not a hard fail if the reset properti
-is not present in the device tree node, so the driver will continue to
-probe.
+Thanks for the confirmation. I've now fixed it to correctly catch
+that. Update your dtschema to the latest.
 
-Because there are different variants of the controller that may have
-multiple reset signals, the code will find all reset(s) specified and
-de-assert them.
-
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
----
-v7: added Philipp Zabel's Reviewed-by:
-v6: remove the need to reset_control_get_count as
-    of_reset_control_array_get_optional_shared is already doing that
-v5: use of_reset_control_array_get_optional_shared()
-v4: cleaned up indentation in loop
-    fix up a few checkpatch warnings
-    add Reviewed-by:
-v3: add a reset_control_put()
-    add error handling
-v2: move reset control to bus code
-    find all reset properties and de-assert them
----
- drivers/amba/bus.c | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
-index 100e798a5c82..f39f075abff9 100644
---- a/drivers/amba/bus.c
-+++ b/drivers/amba/bus.c
-@@ -18,6 +18,7 @@
- #include <linux/limits.h>
- #include <linux/clk/clk-conf.h>
- #include <linux/platform_device.h>
-+#include <linux/reset.h>
- 
- #include <asm/irq.h>
- 
-@@ -401,6 +402,19 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
- 	ret = amba_get_enable_pclk(dev);
- 	if (ret == 0) {
- 		u32 pid, cid;
-+		struct reset_control *rstc;
-+
-+		/*
-+		 * Find reset control(s) of the amba bus and de-assert them.
-+		 */
-+		rstc = of_reset_control_array_get_optional_shared(dev->dev.of_node);
-+		if (IS_ERR(rstc)) {
-+			if (PTR_ERR(rstc) != -EPROBE_DEFER)
-+				dev_err(&dev->dev, "Can't get amba reset!\n");
-+			return PTR_ERR(rstc);
-+		}
-+		reset_control_deassert(rstc);
-+		reset_control_put(rstc);
- 
- 		/*
- 		 * Read pid and cid based on size of resource
--- 
-2.20.0
-
+Rob
