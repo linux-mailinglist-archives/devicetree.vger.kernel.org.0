@@ -2,109 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CC26A6147
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:22:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E035A6156
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725895AbfICGWE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 02:22:04 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:40236 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726579AbfICGV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:21:57 -0400
-Received: by mail-wm1-f65.google.com with SMTP id t9so16674174wmi.5
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 23:21:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=yGyIrrLARg5qwoC8MjSZ4CSFbPrX3vElTlOaYxFgRnQ=;
-        b=WECgJvE2QdLRhFj3i4AxCxgR1vpUfhF1VNqwGZrLdkOacFB3XcpZNKbAF3NPedfZ/9
-         NBL/hguADRwjl3TUHJEJH0iVlHeLIR4wEQwX2cSmF6t8kcuSlI4rmHAOymYXKvv3tYY2
-         w0Wt4JwGqayHRUygZM/OOR7JTKFcpDZ745eZFw2fInD7Z0RvyY0IqhSWczFLRF3LEOyq
-         6QKJzl3cJs5W83haW4N35dmVvoJWgr0cK4u5ldys+zILBsGfeAIJS5o7Yg70dH+Mw/eH
-         tHzP7IJmd7dBNszmnvjZvVfwOEWtD9w0hV2ZrcLP2P/xH2smB/BG3P1QGDaGfyLNV0vB
-         hUQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=yGyIrrLARg5qwoC8MjSZ4CSFbPrX3vElTlOaYxFgRnQ=;
-        b=Py6ceOopK3kvWaOFc9IS9OVCgC9jkOkbpwZCMyxju4JZP6oZtiEje84eIP5VjY2NHE
-         3AqzrB0jRtfZtmSJB6MOVTyOP3SRYV6BeSrjWSPlm0a3uBgesXoHana2tWE7LtsmTB73
-         gLhXmBQAo2jUBQufeKZHbB5FL10/uopRINUow7FFo+VTeclO2Uqo3zri1nGyzxiHdF9L
-         nRWBypbKwIPbyeUZDwrxpd4WprNmOBsbRWRLN7cSywgt+Nc4tU1JXkT5itBIpmKYL5Td
-         p+IXz3J/GUcsnw/9c5c+MFTD//L5UxpYanzCMgHdm2utffWOB5aqzbvNU/ijWEmHRXK2
-         XjXQ==
-X-Gm-Message-State: APjAAAUr1FYHMf2wtpN+DH3zdaUtDZMLMLHaLY4NYSNqrUGZScss9Ojg
-        pfVrpkuPDP/+Rk3S7H/NqZ3Dqw==
-X-Google-Smtp-Source: APXvYqzO8/MDChhFJYV9n2Mdiniy4ia5sEDZAcYL4Cu8Zn76jxIlVNCV1TBkQZbX2z2LJb8KuGs6CQ==
-X-Received: by 2002:a7b:c5d6:: with SMTP id n22mr23766517wmk.65.1567491715654;
-        Mon, 02 Sep 2019 23:21:55 -0700 (PDT)
-Received: from dell ([95.147.198.93])
-        by smtp.gmail.com with ESMTPSA id c132sm21978999wme.27.2019.09.02.23.21.54
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 02 Sep 2019 23:21:55 -0700 (PDT)
-Date:   Tue, 3 Sep 2019 07:21:53 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
-Message-ID: <20190903062153.GD26880@dell>
-References: <20190902132400.14084-1-lee.jones@linaro.org>
- <20190903054451.GV6167@minitux>
- <20190903062040.GC26880@dell>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190903062040.GC26880@dell>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1726481AbfICGYE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 02:24:04 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:10245 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbfICGYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:24:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1567491842;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=i2z0P/ZmQl7508HzfoAgu+obqBy87SZaXGkASqxOCg0=;
+        b=OVuL3E59RSHGtK/bRGqP/YqLcTDtpvtoix1fUIMsax6jSs9QyELXKvwanFdb8M3/GT
+        PRGJdJ4ChJuEnwJnn02gjuxKXrgogedhjR0knS8erTCSToO+1CwDzRqq/Kq7SYxx9ZTR
+        UWgzFuWVx+BVhtSIBQzE68jfu5+e1tZcxwQDe9qZhgHZWUaJJeZDN/nED2DpARVs0Ios
+        p51MPvhG+pkDcYFmh+9U0kUA8tsAjc9gLTcpg9MUzYrk3TxJQIa8eDLsHBxVDHs+aynz
+        SvwD7DLDbq/X6L11PCVCSXfn1w4XARkUYJUdt+/LTP50fgO6E+gdwQBI+eXtQcCdHbqa
+        FHtQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Qpw97WFDlWfXA4ONfA="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
+        with ESMTPSA id u036f9v836NqUod
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Tue, 3 Sep 2019 08:23:52 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [RFC 4/5] ARM: dts: omap3-n950-n9: remove opp-v1 table
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20190903061403.k3d333f54gj2kuxi@vireshk-i7>
+Date:   Tue, 3 Sep 2019 08:23:51 +0200
+Cc:     =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?Q?Andr=C3=A9_Roth?= <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6B7B0EDB-8A60-48A0-AFAB-8A266358300C@goldelico.com>
+References: <cover.1567421750.git.hns@goldelico.com> <2f978667c1533e46e3a5df58871e9048f3eb74e9.1567421751.git.hns@goldelico.com> <20190903023635.44yf32jowpm3hgfp@vireshk-i7> <8BC1AEC9-7B24-4C07-8659-16741D018164@goldelico.com> <20190903061403.k3d333f54gj2kuxi@vireshk-i7>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 03 Sep 2019, Lee Jones wrote:
 
-> On Mon, 02 Sep 2019, Bjorn Andersson wrote:
-> 
-> > On Mon 02 Sep 06:24 PDT 2019, Lee Jones wrote:
-> > 
-> > > From: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > 
-> > > The Lenovo Yoga C630 is built on the SDM850 from Qualcomm, but this seem
-> > > to be similar enough to the SDM845 that we can reuse the sdm845.dtsi.
-> > > 
-> > > Supported by this patch is: keyboard, battery monitoring, UFS storage,
-> > > USB host and Bluetooth.
-> > 
-> > Applied this to next-20190829 and booted it, got a little bit of EFI FB,
-> > then the screen goes blank and after a while I'm back in GRUB.
-> > 
-> > I've not been able to figure out what's causing this though.
-> 
-> Probably DMA.  There is still an issue in the COM GENI Serial Engine
-> Driver which reboots the system when a DMA transaction is initiated.
-> 
-> However, with a workaround patch applied to the Serial Engine driver
-> (drivers/soc/qcom/qcom-geni-se.c) this DTS has no issue booting the
-> system.
-> 
-> We have ~12 weeks to either fix or elegantly work around the Serial
-> Engine issue.  IMHO is makes no sense to hold back this enablement
-> patch (which cannot go in via the -rcs) for something which is likely
-> to be fixed and applied during v3.4-rcX.
+> Am 03.09.2019 um 08:14 schrieb Viresh Kumar <viresh.kumar@linaro.org>:
+>=20
+> On 03-09-19, 08:01, H. Nikolaus Schaller wrote:
+>>=20
+>>> Am 03.09.2019 um 04:36 schrieb Viresh Kumar =
+<viresh.kumar@linaro.org>:
+>>>=20
+>>> On 02-09-19, 12:55, H. Nikolaus Schaller wrote:
+>>>> With opp-v2 in omap36xx.dtsi and ti-cpufreq driver the
+>>>> 1GHz capability is automatically detected.
+>>>>=20
+>>>> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+>>>> ---
+>>>> arch/arm/boot/dts/omap3-n950-n9.dtsi | 7 -------
+>>>> 1 file changed, 7 deletions(-)
+>>>>=20
+>>>> diff --git a/arch/arm/boot/dts/omap3-n950-n9.dtsi =
+b/arch/arm/boot/dts/omap3-n950-n9.dtsi
+>>>> index 5441e9ffdbb4..e98b0c615f19 100644
+>>>> --- a/arch/arm/boot/dts/omap3-n950-n9.dtsi
+>>>> +++ b/arch/arm/boot/dts/omap3-n950-n9.dtsi
+>>>> @@ -11,13 +11,6 @@
+>>>> 	cpus {
+>>>> 		cpu@0 {
+>>>> 			cpu0-supply =3D <&vcc>;
+>>>> -			operating-points =3D <
+>>>> -				/* kHz    uV */
+>>>> -				300000  1012500
+>>>> -				600000  1200000
+>>>> -				800000  1325000
+>>>> -				1000000	1375000
+>>>> -			>;
+>>>> 		};
+>>>> 	};
+>>>=20
+>>> This should be merged with 2/5 ?
+>>=20
+>> Well, it bloats 2/5.
+>=20
+> It is logically the right place to do this as that's where we are
+> adding opp-v2.
 
-NB: If you're worried about other entities thinking the platform boots
-fault free due to this DTS patch being applied, I would suggest we
-place a little "NB:" note in the changelog to explain the situation.
+Well, sometimes the philosophy of patches is to add something new
+first and remove the old in a second separate patch if the system
+can live with both. This makes it easier to digest single patches
+(because they are smaller) and might also better pinpoint an issue
+by bisect.
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>=20
+>> What I hope (I can't test) is that this opp-v1 table
+>> is ignored if an opp-v2 table exists. So that it can be
+>> removed by a separate follow-up patch.
+>=20
+> It should work as that's what we are doing in OPP core, but I still
+> feel this better get merged with 2/5.
+
+Ok, I see. Noted for RFCv2.
+
+There will also be a big batch of changes for the compatible record
+(omap3530->omap35xx, add omap34xx where needed) of ca. 10 board =
+definition
+DTS files. Should this then also become part of the new 2/5?
+
+BR and thanks,
+Nikolaus
+
