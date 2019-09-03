@@ -2,125 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 859C6A64B1
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88853A64BB
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727077AbfICJH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 05:07:56 -0400
-Received: from mail-eopbgr790104.outbound.protection.outlook.com ([40.107.79.104]:28992
-        "EHLO NAM03-CO1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726740AbfICJH4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 05:07:56 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g5jjyyjPVUkVgrbX6I1Cm2p7gnymOdTg/T5+Q8xMo+RAFbxAUJRea6aTcN8srMponY+y+sRjBe2MCPMJky/5DvHjIxtfTIfDIHWV83USv/sMRVTQEi1D76qsdpMy3b8SLOe8/5PrDtGboIOM/B1kuyLp8fRefAsvmx34FCRBuxf12IaGt+dNVxdLSwTr8pTLYQMw16A5b611NOy1GVLeXPCl7cZtGjalKfd66UsqgC/wZmm/FWi/zZHhkO0liFayijX+mavej9XKWOGlMuCMflNdcjmJY9rrv7Y/GkyQuTuoNPShgR6l+YbsiiJ5BLjaiRTV3QCTJFvx8mrgwxLo6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QqwS6lpQ1GdpPZRbqawQB9uruaGPGNMIgzEEOw2mVIo=;
- b=b+5B8ewE7RlG9aEZq8q640PbsTTk5I3thlR9SeNr2et4vAKx8vsCECOos/++lGo61yWoFcVopJrSgm0gWx1L/w5UT1YiPsU3KVctmk4BDZiI1Q1EyRgSKOCQHT+pfk5Vb6kEgYsltb87woQ1ME1FJbxalMLSEs4RF78j6IkxCtet7OcG2AJ4YijQVwe0fyt2HTsfSjeDwFetAldKr4/2MhhquCPxPjlV6lyjx8ayB4b74znVsVOdbovm+mxharQb5bcfoQjtjUJNG0J6Vwi0k8Bp10pPNFcMuIpcNdUywG2CDj6wgKbxPlfzlj+v93bmX8h+8ys20ZoGvDBeWl4bhQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wavecomp.com; dmarc=pass action=none header.from=mips.com;
- dkim=pass header.d=mips.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QqwS6lpQ1GdpPZRbqawQB9uruaGPGNMIgzEEOw2mVIo=;
- b=Cym2eQyo41tBkDETBlUQLb38cJcPGoJCMrPOXdd7ypoHJMsz2yTvUZyEfuK8uNm8rBW85094LqrBvcHzWzanQMjywaT23iGHwTvVBY3ZmkIq1KpmYL5ZvhbwGpAa9qc5ld4tUxc4PqzKN1rUYfEJ26FlZwrtKTXNkHWn20L0ySI=
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
- MWHPR2201MB1311.namprd22.prod.outlook.com (10.172.62.20) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.18; Tue, 3 Sep 2019 09:07:51 +0000
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::f9e8:5e8c:7194:fad3]) by MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::f9e8:5e8c:7194:fad3%11]) with mapi id 15.20.2220.021; Tue, 3 Sep 2019
- 09:07:51 +0000
-From:   Paul Burton <paul.burton@mips.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-CC:     "open list:MIPS" <linux-mips@vger.kernel.org>,
-        Huacai Chen <chenhc@lemote.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.co>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
-Thread-Topic: [PATCH 11/13] dt-bindings: mips: Add loongson cpus & boards
-Thread-Index: AQHVYjcQZOaz4gEz0kSE1jLx3WD3zQ==
-Date:   Tue, 3 Sep 2019 09:07:51 +0000
-Message-ID: <20190903085904.bwmm4knaodopvzvd@pburton-laptop>
-References: <20190827085302.5197-1-jiaxun.yang@flygoat.com>
- <20190827085302.5197-12-jiaxun.yang@flygoat.com>
- <CAL_JsqL6htVye-LSBWw1WwRy9xH=zwuH6gurscwoCWj9Te_hAg@mail.gmail.com>
- <d94eff2b-76ec-5cd2-512d-5ee0406a1bb9@flygoat.com>
- <20190827204105.7nyt4pi7lvxse5ij@pburton-laptop>
- <CAL_Jsq+VmFi6r1-WOa9RJ4vfqsZLqcn5HMbv1oyQjhtJ8Qd8Lw@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+VmFi6r1-WOa9RJ4vfqsZLqcn5HMbv1oyQjhtJ8Qd8Lw@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: LNXP265CA0005.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:5e::17) To MWHPR2201MB1277.namprd22.prod.outlook.com
- (2603:10b6:301:18::12)
-user-agent: NeoMutt/20180716
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pburton@wavecomp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [94.196.173.241]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: e335bbbb-1f6d-4010-5552-08d7304e32b4
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(7168020)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1311;
-x-ms-traffictypediagnostic: MWHPR2201MB1311:
-x-microsoft-antispam-prvs: <MWHPR2201MB1311C5AD7E0793CFF9050BBFC1B90@MWHPR2201MB1311.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4125;
-x-forefront-prvs: 01494FA7F7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(136003)(366004)(376002)(346002)(39840400004)(396003)(199004)(189003)(58126008)(110136005)(478600001)(53936002)(6436002)(99286004)(8676002)(8936002)(256004)(66066001)(6116002)(81156014)(316002)(9686003)(6512007)(54906003)(3846002)(81166006)(6486002)(7736002)(229853002)(33716001)(25786009)(305945005)(14444005)(7416002)(42882007)(102836004)(386003)(55236004)(6506007)(4326008)(14454004)(44832011)(486006)(476003)(186003)(52116002)(26005)(66946007)(66556008)(64756008)(6246003)(71190400001)(66446008)(71200400001)(5660300002)(66476007)(4744005)(2906002)(1076003)(76176011)(11346002)(446003);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1311;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: wavecomp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: FMgbT5lCQyiUFFcnF3VEIF4iOkEOIqwVzqKERx20ZzrEhkzDy3C+O53Isa8444XZ6S9x3PSLB0cSxAubmoGS/3civOzjrQb8F3PCGBC6+/GnUNoavnDX9Ou8HgSOKAc8ZvnWFk8qFenhyXXuUPvTIVcZI5y6trtcCCY7N4bs/xDgq5G+i5HEIer77tF20+fBfxfBMDAUEm5RjTOGckrkJ9fJutxpIuflpFoWTTcJIDE5DDJuRowvc5oUsgju1qNsPuV1/Oor0CUoaj0U9ABTzxSgApPsHiYQaHGTSG4TqbMOcHR2+Nhuw9EVyu4MhpOU6rF8NctUlld6wxoEdOE3MMgsTLZQqsZ58igzz70eBn9gIHvcApjBPm3u/gS0+t6Dw6zwPDa4yzJbM3w0NAC7zgwZ0vVljrXK1LhpTQKO750=
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <4A796A79D38DD0458284E8705F3EA529@namprd22.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726840AbfICJJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 05:09:59 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:43345 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726631AbfICJJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 05:09:59 -0400
+Received: from [109.168.11.45] (port=41976 helo=[192.168.101.73])
+        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1i54p2-002t5L-6Q; Tue, 03 Sep 2019 11:09:56 +0200
+Subject: Re: [RFC,v2 3/6] media: dt-bindings: add DS90UB954-Q1 video
+ deserializer
+To:     Wolfram Sang <wsa@the-dreams.de>
+Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Peter Rosin <peda@axentia.se>
+References: <20190723203723.11730-1-luca@lucaceresoli.net>
+ <20190723203723.11730-4-luca@lucaceresoli.net> <20190902204841.GB7253@kunai>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <63d99d6d-ecdd-7dd8-0dcb-126bfd89b258@lucaceresoli.net>
+Date:   Tue, 3 Sep 2019 11:09:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: mips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e335bbbb-1f6d-4010-5552-08d7304e32b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 09:07:51.4205
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Q8YaicAwwaE35hEeAzQ5L3BwgCiPX4ilvOlsYK6lF+1MnngbCys7MG3wHyU/WBgXWyx9yrGahD0ClJTy68QaPA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1311
+In-Reply-To: <20190902204841.GB7253@kunai>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Wolfram,
 
-On Mon, Sep 02, 2019 at 03:50:47PM +0100, Rob Herring wrote:
-> > In general on MIPS we detect CPU properties at runtime from coprocessor
-> > 0 registers & similar sources of information, so there's not really a
-> > need to specify anything about the CPU in devicetree.
->=20
-> We thought the same thing initially for Arm... Mostly what is in DT is
-> not what is discoverable. Are clock speeds, power domains, low power
-> states, etc. all discoverable?
+On 02/09/19 22:48, Wolfram Sang wrote:
+> 
+>> + - i2c-alias-pool: list of I2C addresses that are known to be available on the
+>> +                   "local" (SoC-to-deser) I2C bus; they will be picked at
+>> +		   runtime and used as aliases to reach remove I2C chips
+> 
+> After some internal discussion, I have been kinda convinced that it may
+> be better to assume all non-described addresses are free to use and
+> enter the pool.
+> 
+> The problem with the binding above is that you may run out of aliases
+> depending on how many aliases one to-be-attached module needs or how
+> many modules will be attached.
 
-No, that's a good point - clocks etc may need to be specified in DT. I
-just don't see any of that in this patchset - it appears all that is
-specified is cache sizes which we already detect. So in this case I
-don't see a need for including CPUs in DT at all.
+Not if you define enough addresses in the pool. E.g. the DS90UB954
+hardware can have 8 aliases per port, so if you have (n_ports * 8)
+addresses in the pool the problem is solved.
 
-Jiaxun - did you add all this information to DT to avoid the "cacheinfo:
-Unable to detect cache hierarchy for CPU" messages during boot? If so
-that should be fixed by commit b8bea8a5e5d9 ("mips: fix cacheinfo"). If
-not, could you describe why the CPU nodes are needed here?
+> And another add-on module with
+> non-repogrammable devices may occupy addresses from the defined pool
+> above.
+
+You mean a new device on the local (SoC-to-ATR) bus? Well, it could as
+well occupy a non-described address that the ATR has already picked as
+an alias.
+
+> I am not perfectly happy with the assumption that all undescribed
+> addresses are automatically free. That also might need DTS updates to
+> describe all clients properly. But this change only needs to be done
+> once, and it will improve the description of the hardware.
+
+Right, but I still suspect some users won't do their homework and
+discover address conflicts at runtime, maybe months later, in a painful
+way. Also a chip might be undocumented on a given board, so they could
+do their homework and still have problems.
+
+Despite my comments, I'm not strongly against your proposal. To me it
+doesn't seem to solve any problem, while it does introduce some degree
+of risk. Could you elaborate more on but what benefit it introduces?
 
 Thanks,
-    Paul
+-- 
+Luca
