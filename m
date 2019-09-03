@@ -2,93 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66064A684C
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 14:11:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76955A68A4
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 14:37:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728587AbfICMKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 08:10:47 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:33308 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727077AbfICMKr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 08:10:47 -0400
-Received: by mail-oi1-f194.google.com with SMTP id l2so12592375oil.0;
-        Tue, 03 Sep 2019 05:10:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NnWycdpPV9wEb5pbBdWv59BfIu5ikMwIJmgO/R0Olww=;
-        b=ptF1HjJMYWTgGGbLNIL5eOHnWkz1rp0/bjnYPX0lQnBd3zHTfmnySrl0dEXAQKX2wO
-         rljm1SiRZhO5eXn1tYr2MeHkI9+/Rc/kLxDecravvrqnyn8odkUpFExjIXe/vkcltzFx
-         bSmfkEif+x8/XQWNRJijX1cZvuz1PVqVxYNBblznX3xk0L6b91HcetYj/ErGS4tH7Y9K
-         Z6s0kTE5Hx2aNgjhrUoPNsFH1FovK8mj92E/yT6lUgrQ2GFni5UmTLo1CPLrpNjQpZ1x
-         +M5YFUM/tJPWpdJY5uzab+jm1//U58FnYXpfBLwPEXPZWyc8ekZ3v+rPHNr6VydNbtfO
-         z5kQ==
-X-Gm-Message-State: APjAAAVunyudxMBkwidQDxn3Vmo0uPMmy8+WjazrAQMQ33s0w8v6SfBA
-        kTdXPi7fxO0eerJRWqjgrQ6cZ4F0IoV/a2if/4U=
-X-Google-Smtp-Source: APXvYqxB5KVSRRROkrCKyWIsunmCl/xzLdaafYQEN9wenFIdvdmUwcoiz7//vS6AmVBbz6QriNfp8nZTBOEneDZXuFw=
-X-Received: by 2002:aca:ea82:: with SMTP id i124mr21664779oih.153.1567512645854;
- Tue, 03 Sep 2019 05:10:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <1560258401-9517-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1560258401-9517-6-git-send-email-fabrizio.castro@bp.renesas.com>
- <TY1PR01MB1770BF952221F50BBCDF3765C0BD0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190902083224.mn5agbxf5akhhoqg@verge.net.au> <CAMuHMdVuj1w_bQVPySpspk4OJPN1cNSF-JW6XKExTEdZbtALgw@mail.gmail.com>
- <244ca7ac-54d1-d07d-762f-e832b0e2a267@linaro.org>
-In-Reply-To: <244ca7ac-54d1-d07d-762f-e832b0e2a267@linaro.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 3 Sep 2019 14:10:34 +0200
-Message-ID: <CAMuHMdWQaieUpLFDiWXTywXXi+QQfsjC+VacFMrqkw=O_ridxQ@mail.gmail.com>
-Subject: Re: [PATCH 5/6] dt-bindings: timer: renesas: tmu: Document r8a774a1 bindings
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
+        id S1728122AbfICMhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 08:37:00 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:58599 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727667AbfICMg7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 08:36:59 -0400
+X-UUID: 7669e14dbab141eca1b31623064821ed-20190903
+X-UUID: 7669e14dbab141eca1b31623064821ed-20190903
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <henryc.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1725135840; Tue, 03 Sep 2019 20:36:52 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 3 Sep 2019 20:36:51 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 3 Sep 2019 20:36:51 +0800
+Message-ID: <1567514210.31403.8.camel@mtksdaap41>
+Subject: Re: [PATCH V3 08/10] dt-bindings: interconnect: add MT8183
+ interconnect dt-bindings
+From:   Henry Chen <henryc.chen@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Weiyi Lu <weiyi.lu@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Tue, 3 Sep 2019 20:36:50 +0800
+In-Reply-To: <20190902033045.GA10734@bogus>
+References: <1566995328-15158-1-git-send-email-henryc.chen@mediatek.com>
+         <1566995328-15158-9-git-send-email-henryc.chen@mediatek.com>
+         <20190902033045.GA10734@bogus>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+On Mon, 2019-09-02 at 14:38 +0100, Rob Herring wrote:
+Hi Rob,
+> On Wed, Aug 28, 2019 at 08:28:46PM +0800, Henry Chen wrote:
+> > Add interconnect provider dt-bindings for MT8183.
+> > 
+> > Signed-off-by: Henry Chen <henryc.chen@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/soc/mediatek/dvfsrc.txt        |  9 +++++++++
+> >  include/dt-bindings/interconnect/mtk,mt8183-emi.h      | 18 ++++++++++++++++++
+> >  2 files changed, 27 insertions(+)
+> >  create mode 100644 include/dt-bindings/interconnect/mtk,mt8183-emi.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt b/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+> > index 7f43499..da98ec9 100644
+> > --- a/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+> > +++ b/Documentation/devicetree/bindings/soc/mediatek/dvfsrc.txt
+> > @@ -12,6 +12,11 @@ Required Properties:
+> >  - clock-names: Must include the following entries:
+> >  	"dvfsrc": DVFSRC module clock
+> >  - clocks: Must contain an entry for each entry in clock-names.
+> > +- #interconnect-cells : should contain 1
+> > +- interconnect : interconnect providers support dram bandwidth requirements.
+> > +	The provider is able to communicate with the DVFSRC and send the dram
+> > +	bandwidth to it. shall contain only one of the following:
+> > +	"mediatek,mt8183-emi"
+> >  
+> >  Example:
+> >  
+> > @@ -20,4 +25,8 @@ Example:
+> >  		reg = <0 0x10012000 0 0x1000>;
+> >  		clocks = <&infracfg CLK_INFRA_DVFSRC>;
+> >  		clock-names = "dvfsrc";
+> > +		ddr_emi: interconnect {
+> 
+> The EMI is a sub-module in the DVFSRC? This is the DDR controller or 
+> something else?
+Yes, EMI is a sub-module in the DVFSRC, the EMI through interconnect
+framework to collect DRAM bandwidth from other device drivers and will
+send the bandwidth result to DVFSRC driver.
+> 
+> 
+> > +			compatible = "mediatek,mt8183-emi";
+> > +			#interconnect-cells = <1>;
+> > +		};
+> >  	};
+> 
 
-On Mon, Sep 2, 2019 at 10:42 AM Daniel Lezcano
-<daniel.lezcano@linaro.org> wrote:
-> On 02/09/2019 10:39, Geert Uytterhoeven wrote:
-> > On Mon, Sep 2, 2019 at 10:32 AM Simon Horman <horms@verge.net.au> wrote:
-> >> On Fri, Aug 30, 2019 at 10:37:54AM +0000, Fabrizio Castro wrote:
-> >>> This patch has been reviewed by Geert, Simon, and Rob, so I think it's ok to apply.
-> >>> Is anybody willing to take this patch?
-> >>
-> >> <2c> I think Geert can take this </2c>
-> >
-> > If the timer people won't take it for v5.4, I can queue it in renesas-devel
-> > for v5.5, in my branch for DT binding updates for subsystems that are
-> > less DT-centric.
->
-> Please do, thanks
->
-> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
 
-Thanks, queued.
-
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
