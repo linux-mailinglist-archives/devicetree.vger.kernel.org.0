@@ -2,121 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9B80A611B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:14:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4CECA616A
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:29:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727005AbfICGOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 02:14:06 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:39760 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725848AbfICGOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:14:06 -0400
-Received: by mail-pl1-f194.google.com with SMTP id bd8so1097234plb.6
-        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 23:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=X56IDYGgH848OXVqS7siup3yiE3wR0xEVNMSreTqgdo=;
-        b=y3AMEKKLSVUNqigZFRl6vqbivo8ONu2wWnALKLMDMc58mKXv8dt1WPoc5s1l7AoJkd
-         bEd1/DYAizZBXBqpKoDvl0EwvbqFaBz5xRhAGLQZ7xmctZRSQ1LnS/PPfEZMDqiYjrOz
-         J5oppKWr7CODmyaxen0zqJKrJYVK40EJM1RvSaQwkVQ0z3SBy6X41YZKS2wrAxRKC0gd
-         B7bcAj3+Z9+/j+VwkhNq/gdzmyT5fuCFtrXdI1sANy1IuHwIolvMPMl9caZ6GZdzsGUf
-         C4ByUzzvg9vWkZfp3cCL+GDvvMtxUe0f603Gm4VlXnGPwkXyFph0x0XaNn3I3vyu1b4Y
-         uyrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=X56IDYGgH848OXVqS7siup3yiE3wR0xEVNMSreTqgdo=;
-        b=V1nIXwWXFPM4yR88jusvtZzsA/fxp4UzQd8pS0UuLRyjYMRVcFuJjyD2+chiXBBnng
-         G+fxrlz2gjiAt+BnNRvIQZwSOzWrc2ALPdcTn+nmbC6/6yYnByoTuMQhLqkmpRacXqBW
-         2eGTfUnuh6tnwFJXjfjdD4hwJ8CnMxXbrE1Kfh6/IdgN38xZOvpApJK1OOutBI+M4SEk
-         9vSXDkM8xwnbCLzR2MsTPEqfPih/aRotNjkwJOFXKVtjqkB5wfVLHyWZRukvPuiQJdNP
-         WW2K/Q7Rl+0fmkx/F2EZ+OOxq9Z2ciRLv5Q5Zo2CktbWVwGmsx9DhVPZfdb9lErIipIK
-         IfRA==
-X-Gm-Message-State: APjAAAV4oX+LoRK7fN5LgTPKIesnrQAUxnvlxhLUGFzZbKqG5Lta9Inn
-        0PGYjKC2iLYy4nPw6dus2av7ZA==
-X-Google-Smtp-Source: APXvYqy2jgf96BPa+1HJhxpna1B7VYdeAxyhRykT9911XHflctDbHWllU730nibd82llGhzGl3E/gQ==
-X-Received: by 2002:a17:902:1122:: with SMTP id d31mr34104469pla.254.1567491245848;
-        Mon, 02 Sep 2019 23:14:05 -0700 (PDT)
-Received: from localhost ([122.167.132.221])
-        by smtp.gmail.com with ESMTPSA id p10sm18500683pff.132.2019.09.02.23.14.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Sep 2019 23:14:05 -0700 (PDT)
-Date:   Tue, 3 Sep 2019 11:44:03 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        =?utf-8?B?QW5kcsOp?= Roth <neolynx@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Subject: Re: [RFC 4/5] ARM: dts: omap3-n950-n9: remove opp-v1 table
-Message-ID: <20190903061403.k3d333f54gj2kuxi@vireshk-i7>
-References: <cover.1567421750.git.hns@goldelico.com>
- <2f978667c1533e46e3a5df58871e9048f3eb74e9.1567421751.git.hns@goldelico.com>
- <20190903023635.44yf32jowpm3hgfp@vireshk-i7>
- <8BC1AEC9-7B24-4C07-8659-16741D018164@goldelico.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8BC1AEC9-7B24-4C07-8659-16741D018164@goldelico.com>
-User-Agent: NeoMutt/20180716-391-311a52
+        id S1726923AbfICG3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 02:29:07 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:46958 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726053AbfICG3H (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 02:29:07 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0FC0B1A02B3;
+        Tue,  3 Sep 2019 08:29:04 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 764581A0050;
+        Tue,  3 Sep 2019 08:28:59 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8A3D9402B7;
+        Tue,  3 Sep 2019 14:28:53 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        Martin Fuzzey <mfuzzey@parkeon.com>
+Subject: [v3,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some properties
+Date:   Tue,  3 Sep 2019 14:18:52 +0800
+Message-Id: <20190903061853.19793-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03-09-19, 08:01, H. Nikolaus Schaller wrote:
-> 
-> > Am 03.09.2019 um 04:36 schrieb Viresh Kumar <viresh.kumar@linaro.org>:
-> > 
-> > On 02-09-19, 12:55, H. Nikolaus Schaller wrote:
-> >> With opp-v2 in omap36xx.dtsi and ti-cpufreq driver the
-> >> 1GHz capability is automatically detected.
-> >> 
-> >> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
-> >> ---
-> >> arch/arm/boot/dts/omap3-n950-n9.dtsi | 7 -------
-> >> 1 file changed, 7 deletions(-)
-> >> 
-> >> diff --git a/arch/arm/boot/dts/omap3-n950-n9.dtsi b/arch/arm/boot/dts/omap3-n950-n9.dtsi
-> >> index 5441e9ffdbb4..e98b0c615f19 100644
-> >> --- a/arch/arm/boot/dts/omap3-n950-n9.dtsi
-> >> +++ b/arch/arm/boot/dts/omap3-n950-n9.dtsi
-> >> @@ -11,13 +11,6 @@
-> >> 	cpus {
-> >> 		cpu@0 {
-> >> 			cpu0-supply = <&vcc>;
-> >> -			operating-points = <
-> >> -				/* kHz    uV */
-> >> -				300000  1012500
-> >> -				600000  1200000
-> >> -				800000  1325000
-> >> -				1000000	1375000
-> >> -			>;
-> >> 		};
-> >> 	};
-> > 
-> > This should be merged with 2/5 ?
-> 
-> Well, it bloats 2/5.
+Add some properties for pcf85263/pcf85363 as follows:
+  - interrupt-output-pin: string type
+  - quartz-load-femtofarads: integer type
+  - nxp,quartz-drive-strength: integer type
+  - nxp,quartz-low-jitter: bool type
+  - wakeup-source: bool type
 
-It is logically the right place to do this as that's where we are
-adding opp-v2.
+Signed-off-by: Martin Fuzzey <mfuzzey@parkeon.com>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+---
+Change in v3:
+	- None
 
-> What I hope (I can't test) is that this opp-v1 table
-> is ignored if an opp-v2 table exists. So that it can be
-> removed by a separate follow-up patch.
+Change in v2:
+	- Replace properties name
+	  quartz-load-capacitance -> quartz-load-femtofarads
+	  quartz-drive-strength -> nxp,quartz-drive-strength
+	  quartz-low-jitter -> nxp,quartz-low-jitter
+	- Replace drive strength name
+	  PCF85263_QUARTZDRIVE_NORMAL -> PCF85263_QUARTZDRIVE_100ko
+	  PCF85263_QUARTZDRIVE_LOW -> PCF85263_QUARTZDRIVE_60ko
+	  PCF85263_QUARTZDRIVE_HIGH -> PCF85263_QUARTZDRIVE_500ko
+	- Set default interrupt-output-pin as "INTA"
 
-It should work as that's what we are doing in OPP core, but I still
-feel this better get merged with 2/5.
+ .../devicetree/bindings/rtc/pcf85363.txt      | 29 +++++++++++++++++++
+ include/dt-bindings/rtc/pcf85363.h            | 15 ++++++++++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 include/dt-bindings/rtc/pcf85363.h
 
+diff --git a/Documentation/devicetree/bindings/rtc/pcf85363.txt b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+index 94adc1cf93d9..588f688b30d1 100644
+--- a/Documentation/devicetree/bindings/rtc/pcf85363.txt
++++ b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+@@ -8,10 +8,39 @@ Required properties:
+ Optional properties:
+ - interrupts: IRQ line for the RTC (not implemented).
+ 
++- interrupt-output-pin: The interrupt output pin must be
++  "INTA" or "INTB", default value is "INTA"
++
++- quartz-load-femtofarads: The internal capacitor to select for the quartz:
++	PCF85263_QUARTZCAP_7pF		[0]
++	PCF85263_QUARTZCAP_6pF		[1]
++	PCF85263_QUARTZCAP_12p5pF	[2] DEFAULT
++
++- nxp,quartz-drive-strength: Drive strength for the quartz:
++	PCF85263_QUARTZDRIVE_100ko	[0] DEFAULT
++	PCF85263_QUARTZDRIVE_60ko	[1]
++	PCF85263_QUARTZDRIVE_500ko	[2]
++
++- nxp,quartz-low-jitter: Boolean property, if present enables low jitter mode
++  which reduces jitter at the cost of increased power consumption.
++
++- wakeup-source: Boolean property, Please refer to
++  Documentation/devicetree/bindings/power/wakeup-source.txt
++
+ Example:
+ 
+ pcf85363: pcf85363@51 {
+ 	compatible = "nxp,pcf85363";
+ 	reg = <0x51>;
++
++	interrupt-parent = <&gpio1>;
++	interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
++
++	#include <dt-bindings/rtc/pcf85363.h>
++	wakeup-source;
++	interrupt-output-pin = "INTA";
++	quartz-load-femtofarads = <PCF85363_QUARTZCAP_12p5pF>;
++	nxp,quartz-drive-strength = <PCF85363_QUARTZDRIVE_60ko>;
++	nxp,quartz-low-jitter;
+ };
+ 
+diff --git a/include/dt-bindings/rtc/pcf85363.h b/include/dt-bindings/rtc/pcf85363.h
+new file mode 100644
+index 000000000000..f71b151bc481
+--- /dev/null
++++ b/include/dt-bindings/rtc/pcf85363.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef _DT_BINDINGS_RTC_PCF85363_H
++#define _DT_BINDINGS_RTC_PCF85363_H
++
++/* Quartz capacitance */
++#define PCF85363_QUARTZCAP_7pF		0
++#define PCF85363_QUARTZCAP_6pF		1
++#define PCF85363_QUARTZCAP_12p5pF	2
++
++/* Quartz drive strength */
++#define PCF85363_QUARTZDRIVE_100ko	0
++#define PCF85363_QUARTZDRIVE_60ko	1
++#define PCF85363_QUARTZDRIVE_500ko	2
++
++#endif /* _DT_BINDINGS_RTC_PCF85363_H */
 -- 
-viresh
+2.17.1
+
