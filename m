@@ -2,154 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46810A6B53
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 16:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BF79A6C09
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 16:59:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728854AbfICOY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 10:24:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59174 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728571AbfICOY0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 10:24:26 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3E73E23711;
-        Tue,  3 Sep 2019 14:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567520665;
-        bh=8p5CNP6BskSbrJouAkp8CPkNDKbbnxS4GqAgIpkH6xI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=B2R+gSM9rCpwwImgfy85EdsLDtBELWH16KyE5jnVu6rMk/fnE90aUQem6v2XWvhGf
-         k187E2P7dJzAQq21/bxqLFjTfcDwxI4s0zB0DI1KjPrC3bTJke79uRme6/hIbw95Qo
-         Jr37leZG9ug9RjQwyWe1JTR6as0m6fgK8FKGiZcg=
-Received: by mail-qt1-f171.google.com with SMTP id t12so20107545qtp.9;
-        Tue, 03 Sep 2019 07:24:25 -0700 (PDT)
-X-Gm-Message-State: APjAAAXpaUAGUjWpVW0gIbhTWp3YPdGRKivCs7xig8QkINW9tmclfvT0
-        w6RGbqk3WxiPMck4Y4AGLXnAqvLsSAjkftqI+Q==
-X-Google-Smtp-Source: APXvYqyf66U1enOSZroZ3NfqFTeBGuG/63QoHRuWUDZSe6k7+SHykxn/1jfwi/0yDstZK2RJ2ui8y0/4Bnql3UfknIs=
-X-Received: by 2002:a05:6214:1042:: with SMTP id l2mr4516540qvr.39.1567520664326;
- Tue, 03 Sep 2019 07:24:24 -0700 (PDT)
+        id S1729277AbfICO7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 10:59:49 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:33303 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728576AbfICO7t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 10:59:49 -0400
+Received: by mail-wm1-f65.google.com with SMTP id r17so243335wme.0
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 07:59:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CqMvdMuRx1qQHVU6PsmLAtqbm2AbeFoogKgqN4O+tSA=;
+        b=f5zi/b698/9ce0EI/0V5aE6hF/KZbZrznmm772xUFPscWQ5AbEAsN04/9GLV4caC6C
+         OU3jz7W+RqTX4V2EjDf//x+SAmuaXx/xoqARkHje20dPb6HeUlkBmuKNug4qdILB+w2w
+         fKu7QYfe1O7EGsARq8M2/eZzbkcECKULQOllc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CqMvdMuRx1qQHVU6PsmLAtqbm2AbeFoogKgqN4O+tSA=;
+        b=OOWEvgdqZhMI1oH2R02RVNCqh/Rm/cqRfPa64jHK8L5E6fMF79+115oyundcXQKqQI
+         YLMYS2ZhlI6VdrXLWvzXY9Mm7B90V3ixqBp8Ea8TAxyO0UdhFY3hRp7x0Kvl7inGW3Ib
+         +SzXTeS8bm6V7Ai40hhifUuoNPObe2YK1CPucIQaFBdfbj4yiv8X72shjuGG+lshbsdt
+         v+hxY41Rm2e8QLHLKq7yQfwndtx/T2rU7KRG66WQdwcuEFWmbXWLv8klT9MFUUi3Tf/o
+         NYdxcyXn1JvwStzCvYDKnjblZA8vqsOmNkE50QkHdBmySlAeOK45Y+hVFA9SfOdPfdQ5
+         ztPg==
+X-Gm-Message-State: APjAAAU04AKo72CZNF6wKC6IamnnGmjqFtAneBAhlfZfvD2GMbuYguG0
+        Gf0+e0n3W4hqonhqXgHx75PJIwjdFYukHLeTGPHcOQ==
+X-Google-Smtp-Source: APXvYqyMDrC72Rn8SGS9zV3V1JTPQD8z+XJgk2vmjSjqKrUk9al9ywXNHTlnAeCv+NEEzalejtMsFou6QtPU8/C8cNY=
+X-Received: by 2002:a1c:eb0c:: with SMTP id j12mr565277wmh.132.1567522786724;
+ Tue, 03 Sep 2019 07:59:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <1567321765-3738-1-git-send-email-pragnesh.patel@sifive.com>
- <5d6d1b81.1c69fb81.7eabb.cabd@mx.google.com> <CAN8ut8KMjo4KVcgLp6AhZOpuLwWMJ8HeiecH70RgYnLQQ05M9w@mail.gmail.com>
-In-Reply-To: <CAN8ut8KMjo4KVcgLp6AhZOpuLwWMJ8HeiecH70RgYnLQQ05M9w@mail.gmail.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 3 Sep 2019 15:24:12 +0100
-X-Gmail-Original-Message-ID: <CAL_Jsq+Y3=xXuaqO=UoAShw5OxJA4wDBZVUE3=OT_DL9kw9t-Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+Y3=xXuaqO=UoAShw5OxJA4wDBZVUE3=OT_DL9kw9t-Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: Convert riscv,sifive-serial to json-schema
-To:     Pragnesh Patel <pragnesh.patel@sifive.com>
-Cc:     Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <1564568395-9980-1-git-send-email-srinath.mannam@broadcom.com>
+In-Reply-To: <1564568395-9980-1-git-send-email-srinath.mannam@broadcom.com>
+From:   Srinath Mannam <srinath.mannam@broadcom.com>
+Date:   Tue, 3 Sep 2019 20:29:35 +0530
+Message-ID: <CABe79T7=Kat6DjUDmOvfA79Ex0tzuU7ov4aoZodbeB=UO8DOZg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/4] Reset xHCI port PHY on disconnect
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        BCM Kernel Feedback <bcm-kernel-feedback-list@broadcom.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 3, 2019 at 7:52 AM Pragnesh Patel <pragnesh.patel@sifive.com> wrote:
->
-> On Mon, Sep 2, 2019 at 7:09 PM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Sun, Sep 01, 2019 at 12:39:21PM +0530, Pragnesh Patel wrote:
-> > > Convert the riscv,sifive-serial binding to DT schema using json-schema.
-> > >
-> > > Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
-> > > ---
-> > >  .../devicetree/bindings/serial/sifive-serial.txt   | 33 ------------
-> > >  .../devicetree/bindings/serial/sifive-serial.yaml  | 62 ++++++++++++++++++++++
-> > >  2 files changed, 62 insertions(+), 33 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/serial/sifive-serial.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/serial/sifive-serial.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.txt b/Documentation/devicetree/bindings/serial/sifive-serial.txt
-> > > deleted file mode 100644
-> > > index c86b1e5..0000000
-> > > --- a/Documentation/devicetree/bindings/serial/sifive-serial.txt
-> > > +++ /dev/null
-> > > @@ -1,33 +0,0 @@
-> > > -SiFive asynchronous serial interface (UART)
-> > > -
-> > > -Required properties:
-> > > -
-> > > -- compatible: should be something similar to
-> > > -           "sifive,<chip>-uart" for the UART as integrated
-> > > -           on a particular chip, and "sifive,uart<version>" for the
-> > > -           general UART IP block programming model.  Supported
-> > > -           compatible strings as of the date of this writing are:
-> > > -           "sifive,fu540-c000-uart" for the SiFive UART v0 as
-> > > -           integrated onto the SiFive FU540 chip, or "sifive,uart0"
-> > > -           for the SiFive UART v0 IP block with no chip integration
-> > > -           tweaks (if any)
-> > > -- reg: address and length of the register space
-> > > -- interrupts: Should contain the UART interrupt identifier
-> > > -- clocks: Should contain a clock identifier for the UART's parent clock
-> > > -
-> > > -
-> > > -UART HDL that corresponds to the IP block version numbers can be found
-> > > -here:
-> > > -
-> > > -https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/uart
-> > > -
-> > > -
-> > > -Example:
-> > > -
-> > > -uart0: serial@10010000 {
-> > > -     compatible = "sifive,fu540-c000-uart", "sifive,uart0";
-> > > -     interrupt-parent = <&plic0>;
-> > > -     interrupts = <80>;
-> > > -     reg = <0x0 0x10010000 0x0 0x1000>;
-> > > -     clocks = <&prci PRCI_CLK_TLCLK>;
-> > > -};
-> > > diff --git a/Documentation/devicetree/bindings/serial/sifive-serial.yaml b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
-> > > new file mode 100644
-> > > index 0000000..56fa935
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/serial/sifive-serial.yaml
-> > > @@ -0,0 +1,62 @@
-> > > +# SPDX-License-Identifier: GPL-2.0
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/serial/sifive-serial.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: SiFive asynchronous serial interface (UART)
-> > > +
-> > > +maintainers:
-> > > +  - Pragnesh Patel <pragnesh.patel@sifive.com>
-> > > +  - Paul Walmsley  <paul.walmsley@sifive.com>
-> > > +  - Palmer Dabbelt <palmer@sifive.com>
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/serial.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - sifive,fu540-c000-uart
-> > > +      - sifive,uart0
-> >
-> > This is wrong and should have warned if you tested this on 5.3.
-> >
-> > items:
-> >   - const: sifive,fu540-c000-uart
-> >   - const: sifive,uart0
-> >
->
-> Thanks for the correction, i will update this in v2 patch.
->
-> I haven't got any warnings due to my patch.
-> For your reference, following is the list of warnings when i did "make
-> dtbs_check" (kernel version - 5.3.0-rc7)
+Hi Mathias,
 
-Thanks for the confirmation. I've now fixed it to correctly catch
-that. Update your dtschema to the latest.
+Could you please help to review this patch series?
 
-Rob
+Regards,
+Srinath.
+
+On Wed, Jul 31, 2019 at 3:50 PM Srinath Mannam
+<srinath.mannam@broadcom.com> wrote:
+>
+> This patch set adds a quirk in xHCI driver to reset PHY of xHCI port on
+> its disconnect event.
+>
+> This patch set is based on Linux-5.2-rc4.
+>
+> Changes from v1:
+>   - Addressed Mathias's comments
+>     - Modified mapping of HC ports and their corresponding PHYs
+>   - Addressed Rob's comments
+>     - Removed usb-phy-port-reset DT property.
+>     - Added quirk in platform data using HCI compatible string.
+>   - Add phy ports in phy attr structure to have enabled ports bitmask.
+>   - Modified #phy-cells of sr-phy to pass phy ports bitmask.
+>
+> Srinath Mannam (4):
+>   phy: Add phy ports in attrs
+>   dt-bindings: phy: Modify Stingray USB PHY #phy-cells
+>   phy: sr-usb: Set phy ports
+>   dt-bindings: usb-xhci: Add platform specific compatible for Stingray
+>     xHCI
+>   drivers: xhci: Add quirk to reset xHCI port PHY
+>
+>  .../devicetree/bindings/phy/brcm,stingray-usb-phy.txt | 14 ++++++++------
+>  Documentation/devicetree/bindings/usb/usb-xhci.txt    |  1 +
+>  drivers/phy/broadcom/phy-bcm-sr-usb.c                 |  9 ++++++++-
+>  drivers/usb/core/hcd.c                                |  6 ++++++
+>  drivers/usb/core/phy.c                                | 19 +++++++++++++++++++
+>  drivers/usb/core/phy.h                                |  1 +
+>  drivers/usb/host/xhci-plat.c                          | 10 ++++++++++
+>  drivers/usb/host/xhci-plat.h                          |  1 +
+>  drivers/usb/host/xhci-ring.c                          |  9 ++++++---
+>  drivers/usb/host/xhci.h                               |  1 +
+>  include/linux/phy/phy.h                               | 10 ++++++++++
+>  include/linux/usb/hcd.h                               |  1 +
+>  12 files changed, 72 insertions(+), 10 deletions(-)
+>
+> --
+> 2.7.4
+>
