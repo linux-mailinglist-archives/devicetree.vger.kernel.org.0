@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8DB9AA730A
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 21:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50595A732D
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 21:07:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726441AbfICTDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 15:03:16 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:43817 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725882AbfICTDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 15:03:15 -0400
-Received: by mail-oi1-f193.google.com with SMTP id t84so3899629oih.10;
-        Tue, 03 Sep 2019 12:03:15 -0700 (PDT)
+        id S1726063AbfICTHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 15:07:54 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:33445 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725883AbfICTHy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 15:07:54 -0400
+Received: by mail-ot1-f65.google.com with SMTP id p23so17949023oto.0;
+        Tue, 03 Sep 2019 12:07:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=y+QuqQ5++lkMqKXAYS/qi7zuU0EGpIbrM4hWDE1pS1I=;
-        b=HzRKecXRQc4ExW+83ZEnLKUXuhrCgR06x+QKiDNatgm0jYlBQc+fPxZhAdJJ2fbjDi
-         Z1rKhL4a3zU7OAJEaiAlBLfDYxb1jd+sEqab69iiJ9hJJm27ERx8N+o5cZn6qnoej8MS
-         AMvP9/ELOTmp3KfjXISKJF0L1R9C+GKMxP2G3Q6XPv35Jchy303oNe/fmRIum69ZaEPm
-         CBO9fKUKGDkpU/xju9GsKxst5O489aKBQK/V63U+vT2N3fRd8mO0kOhUylXQttBJw7wk
-         +jRbcG921YoSp4VgLI4JCx9iyLomJZ0NfXJHOIx1wkJ87vs6l63nXZG/sXXQsHMGMXnf
-         bZzw==
+        bh=p3aev7x2FcRIqe6J3Q1VipxXTWXY2gzdFLeKEuyXyxo=;
+        b=RWHc3SRbRf5QRAyWscodVJW+0S24fkLuby1zUP0KJ2evYT4MuYyJVvDvhtCv94QE1E
+         /Uz1SOL5M/Cdqpk0ecIJA5VaRb8gHQCeGBJXFsmftSOdIoOpoGUdvDljHcNNWIh2jhYQ
+         SSE9+TR+lnXwuf3HClCbH7pRSsO/eZrPWRfrE54N/rTfKOLMBc4JInagPEAmuJJcBktJ
+         0/aRZMIhe+kp+C8v/nWZHMSJwcG+f4pPpdsJq+HO0x+vkHZmQE+cFhi4srB4KE+K/jLg
+         LdtyrfqDRa5afybHrxgE+emhUsLuambMWuxdaJX3YbvEwnqlDf8gaLRh9p9EWbxLHUp+
+         2/Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=y+QuqQ5++lkMqKXAYS/qi7zuU0EGpIbrM4hWDE1pS1I=;
-        b=fnphn21QPok3PvOixvfpr5RIvZN9GSeax68yoYBftbxq70xxaW5cFQXaEbxxFYB5B9
-         V6PGfJ9xA4fhnjWptnyulgrIu+fvagrci6PjjSX2k7eeNNxEmbFguyQw9JWYtGSw5JJt
-         X6vQaokBWGscdT01zoPu1vgyN5KBuFslq6oT1iMccAkaPR+wXi/gUOOSb7/fiLF3kG+q
-         jBwb5MbwG6t27YGkRzSt2fA+/2osWuKrCA1gzlDoPP7lTIH7XoelHfINALcHPQQUC7eC
-         yazvDq7e3FkL5qeA2mge28GrkTDl+sZd9erUKRHSFfBzNIOa0LSNZ/7+6SqzqO3ypT3q
-         XpRw==
-X-Gm-Message-State: APjAAAU4rKV4yNmjOqJwE9C3qbhLryjnOwadZ4NVeCmzZvN5pYT9Xpo2
-        RWGOvvzRutQpRBI1tMBHp9wbbEUHahwY5Eki18c=
-X-Google-Smtp-Source: APXvYqwwUFNlfZebjM0zqVSX8dnNMtHXyb2ra3QenhJNz0G1ArgBXYzzOe9IIQBqxw3GDmpjOcvMWXXUIO6FHm0Clv4=
-X-Received: by 2002:aca:574c:: with SMTP id l73mr615459oib.47.1567537394795;
- Tue, 03 Sep 2019 12:03:14 -0700 (PDT)
+        bh=p3aev7x2FcRIqe6J3Q1VipxXTWXY2gzdFLeKEuyXyxo=;
+        b=Lh9tYrpa/H/CbR0QSajks69p+86u4Uyze83hsi1Tx9gvGlwDRRChM+aEaHu17ZMFfR
+         RqvWUezM0uIw05B9pVL3zrvt/g2xiyqS7kMbMuT6oeFmVRmG2b/vj2H8ID8i79oLWEqN
+         0wnX3TujEkPUmjnFtSfhEgLkZQyx5g03Frt3NYxNu7TS0hG8ttDaH5dAY98SbAn8yO57
+         3BnaJM1miZJDsMROD3zHb7RCJ8EAD4xhVitZQk1+sMtYl/Xt6/PRwK9tazqx7R7NBaeQ
+         plvnHn0+A4ohgN0HjyT0ODEmOu0ilNGnEPmp5I3GC1tj4oRgrm/ljGl0y4O4X6FYGxk3
+         2R8A==
+X-Gm-Message-State: APjAAAVQ0fwogOFyTX23WX9qmH2saiRPdJbDk0H6UDzgbmH0BBFGmCKD
+        PJkL7YNBE10X3p3LOJ0UhlUNkW1AAlLlJlo3fi8=
+X-Google-Smtp-Source: APXvYqx4cEcKC4Pu7goYArzcWb/HJXhNTrOtWlDYALGS5Yz4pLIh9S3YA3UNWoxmkLOmC9OR33nyeXRzwkdcKmC+A3k=
+X-Received: by 2002:a9d:1d5:: with SMTP id e79mr621031ote.98.1567537673321;
+ Tue, 03 Sep 2019 12:07:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190902085821.1263-1-linux.amoon@gmail.com> <20190902085821.1263-2-linux.amoon@gmail.com>
-In-Reply-To: <20190902085821.1263-2-linux.amoon@gmail.com>
+References: <20190828202723.1145-1-linux.amoon@gmail.com> <8c40f334-c723-b524-857c-73734b7d0827@baylibre.com>
+ <CANAwSgShr-K-44UzdxFC7pvpTye_pbEMdS6ug1eWwYhnsVNGdQ@mail.gmail.com>
+ <101a12ac-1464-8864-4f8c-56bb46034a08@baylibre.com> <CANAwSgQwZg_AXAnAY4KwDzHpwcSA9up7SrR6jyv5Bem24wtaJg@mail.gmail.com>
+In-Reply-To: <CANAwSgQwZg_AXAnAY4KwDzHpwcSA9up7SrR6jyv5Bem24wtaJg@mail.gmail.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 3 Sep 2019 21:03:03 +0200
-Message-ID: <CAFBinCDSbWedtH6mtdyw2Oy3ZxHU160-NUMa3nBXn4B9BJ--pg@mail.gmail.com>
-Subject: Re: [PATCHv2-next 1/3] arm64: dts: meson: odroid-c2: Add missing
- regulator linked to P5V0 regulator
+Date:   Tue, 3 Sep 2019 21:07:42 +0200
+Message-ID: <CAFBinCBY9SJKOaVYCV2HzDOrjngtcreM4Ftvk+hgr8KAGV_V+Q@mail.gmail.com>
+Subject: Re: [PATCHv1 0/3] Odroid c2 missing regulator linking
 To:     Anand Moon <linux.amoon@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org,
+        Linux Kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -63,25 +66,30 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Anand,
 
-On Mon, Sep 2, 2019 at 10:58 AM Anand Moon <linux.amoon@gmail.com> wrote:
->
-> As per schematics VDDIO_AO18, VDDIO_AO3V3/VDD3V3 DDR3_1V5/DDR_VDDC:
-> fixed regulator output which is supplied by P5V0.
->
-> Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Cc: Jerome Brunet <jbrunet@baylibre.com>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-one comment below, but overall this looks good:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-
+On Fri, Aug 30, 2019 at 11:34 AM Anand Moon <linux.amoon@gmail.com> wrote:
 [...]
-> +       vddc_ddr: regulator-vddc-ddr {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "DDR3_1V5";
-I prefer if the node name matches the regulator name, so in this case
-I would write above:
-  ddr3_1v5: regulator-ddr-1v5 {
+> > SCPI works fine on all tested devices, except Odroid-C2, because Hardkernel left
+> > the > 1.5GHz freq in the initial SCPI tables loaded by the BL2, i.e. packed with U-Boot.
+> > Nowadays they have removed the bad frequencies, but still some devices uses the old
+> > bootloader.
+> >
+> > But in the SCPI case we trust the table returned by the firmware and use it as-in,
+> > and there is no (simple ?) way to override the table and set a max frequency.
+> >
+> > This is why we disabled SCPI.
+> >
+> > See https://patchwork.kernel.org/patch/9500175/
+>
+> I have quickly enable this on my board and here the cpufreq info
+[...]
+> Almost all the test case pass with this one as off now.
+I suggest to send an RFC patch to (re-)enable DVFS on Odroid-C2
+I find it easy to miss a DVFS discussion inside a "missing regulator" series
+
+with a separate patch you can also get feedback from other Odroid-C2
+owners who can help testing
+coincidence or not: on Friday someone asked in the #linux-amlogic IRC
+channel why Odroid-C2 didn't have DVFS enabled and what to do about it
 
 
 Martin
