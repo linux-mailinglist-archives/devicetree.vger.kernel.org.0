@@ -2,106 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3982CA63D7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E822A6421
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:44:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbfICI26 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 04:28:58 -0400
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:22125 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725888AbfICI26 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 04:28:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1567499336; x=1599035336;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=P6z13MI1ARt5SXT8pi9jJIecTNyGVKt5gyr5rY/6iws=;
-  b=bz+mTsoFUChshbRTg7pjlPidR+ZfOrJTTmT6pSJKo3vaMVX/zu8w3LxZ
-   a/l9qNgjX1nVNQtx5b9PT2TmieWrFO5CbXyys091ZbYJ57eGNN6UK9IU+
-   Y9dVPqDypoi3smv0c7uLAAMSBDr2c4bcOmUvjpXqBEWEzF+Q2od+ewuac
-   0=;
-X-IronPort-AV: E=Sophos;i="5.64,462,1559520000"; 
-   d="scan'208";a="419144230"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1d-474bcd9f.us-east-1.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 03 Sep 2019 08:28:55 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1d-474bcd9f.us-east-1.amazon.com (Postfix) with ESMTPS id F1608A1D4E;
-        Tue,  3 Sep 2019 08:28:50 +0000 (UTC)
-Received: from EX13D13UWA004.ant.amazon.com (10.43.160.251) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Tue, 3 Sep 2019 08:28:50 +0000
-Received: from EX13MTAUWC001.ant.amazon.com (10.43.162.135) by
- EX13D13UWA004.ant.amazon.com (10.43.160.251) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Tue, 3 Sep 2019 08:28:50 +0000
-Received: from [10.85.97.90] (10.85.97.90) by mail-relay.amazon.com
- (10.43.162.232) with Microsoft SMTP Server (TLS) id 15.0.1367.3 via Frontend
- Transport; Tue, 3 Sep 2019 08:28:43 +0000
-Subject: Re: [PATCH v3 4/4] edac: Add support for Amazon's Annapurna Labs L2
- EDAC
-To:     Robert Richter <rrichter@marvell.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "bp@alien8.de" <bp@alien8.de>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "james.morse@arm.com" <james.morse@arm.com>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "dwmw@amazon.co.uk" <dwmw@amazon.co.uk>,
-        "benh@amazon.com" <benh@amazon.com>,
-        "ronenk@amazon.com" <ronenk@amazon.com>,
-        "talel@amazon.com" <talel@amazon.com>,
-        "jonnyc@amazon.com" <jonnyc@amazon.com>,
-        "hanochu@amazon.com" <hanochu@amazon.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>
-References: <1563197049-12679-1-git-send-email-hhhawa@amazon.com>
- <1563197049-12679-5-git-send-email-hhhawa@amazon.com>
- <20190903072655.kz5x7n3477dg4yap@rric.localdomain>
-From:   "Hawa, Hanna" <hhhawa@amazon.com>
-Message-ID: <2bce020a-bf7e-1d54-48c3-0aa6d23c84d8@amazon.com>
-Date:   Tue, 3 Sep 2019 11:28:41 +0300
+        id S1727667AbfICIo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 04:44:27 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:44142 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726062AbfICIo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 04:44:26 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 9A52B6058E; Tue,  3 Sep 2019 08:44:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567500265;
+        bh=YuiLybM31Bk+gmnr2VNTbTZAla9U4l2MPe4lZBv0EOo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=AMxBdtL3ra39gRR94d0b9/rv9Fd13SSD6hzlIr2M5Udg+hZ7/DFxZ/nlX4yRy2Zwi
+         WOxvB/ZHXGE0gwg10orF6k4zAxgAzzqIc6/4qlrp+2Lh2IAjWnl0lBuiri8DT1ufkY
+         HDLi/OxVHkWwiJmfiauXEsw4mtVljUEEZW0IJxYg=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.206.13.37] (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkshah@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 63DB5602FC;
+        Tue,  3 Sep 2019 08:44:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567500264;
+        bh=YuiLybM31Bk+gmnr2VNTbTZAla9U4l2MPe4lZBv0EOo=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=KYyFDWkN5rhhNRASYJ7GoKb52HX+KWkf9sGodOd5H5GF2GggZzBCUzsmEobUg5FQA
+         NIigv4wM/lzYF5pHVN1bXThpfW7W7fgfdVNfzKWzjzlYXmMekUlMKyclQQ6y/B6uTi
+         csOVLws36jhUuGOpNY22YLmOFEwwrfL4mASTvmwU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 63DB5602FC
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
+Subject: Re: [PATCH v2 3/6] dt-bindings: soc: qcom: Add RSC power domain
+ specifier
+To:     Rob Herring <robh@kernel.org>
+Cc:     swboyd@chromium.org, agross@kernel.org, david.brown@linaro.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, dianders@chromium.org, rnayak@codeaurora.org,
+        ilina@codeaurora.org, lsrao@codeaurora.org, ulf.hansson@linaro.org,
+        devicetree@vger.kernel.org
+References: <20190823081703.17325-1-mkshah@codeaurora.org>
+ <20190823081703.17325-4-mkshah@codeaurora.org> <20190827223252.GA26039@bogus>
+From:   Maulik Shah <mkshah@codeaurora.org>
+Message-ID: <6002b812-b575-85c7-41a4-2b9a200b4ff3@codeaurora.org>
+Date:   Tue, 3 Sep 2019 14:14:17 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190903072655.kz5x7n3477dg4yap@rric.localdomain>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+In-Reply-To: <20190827223252.GA26039@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-
-On 9/3/2019 10:27 AM, Robert Richter wrote:
-> On 15.07.19 16:24:09, Hanna Hawa wrote:
->> Adds support for Amazon's Annapurna Labs L2 EDAC driver to detect and
->> report L2 errors.
+On 8/28/2019 4:02 AM, Rob Herring wrote:
+> On Fri, Aug 23, 2019 at 01:47:00PM +0530, Maulik Shah wrote:
+>> In addition to transmitting resource state requests to the remote
+>> processor, the RSC is responsible for powering off/lowering the
+>> requirements from CPUs subsystem for the associated hardware like
+>> buses, clocks, and regulators when all CPUs and cluster is powered down.
 >>
->> Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
+>> The power domain is configured to a low power state and when all the
+>> CPUs are powered down, the RSC can lower resource state requirements
+>> and power down the rails that power the CPUs.
+>>
+>> Add PM domain specifier property for RSC controller.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+>> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 >> ---
->>   MAINTAINERS               |   6 ++
->>   drivers/edac/Kconfig      |   8 ++
->>   drivers/edac/Makefile     |   1 +
->>   drivers/edac/al_l2_edac.c | 187 ++++++++++++++++++++++++++++++++++++++++++++++
->>   4 files changed, 202 insertions(+)
->>   create mode 100644 drivers/edac/al_l2_edac.c
-> 
->  From a brief look at it, it seems some of my comments from 2/4 apply
-> here too. Please look through it.
+>>   Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt | 8 ++++++++
+>>   1 file changed, 8 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
+>> index 9b86d1eff219..d0ab6e9b6745 100644
+>> --- a/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
+>> +++ b/Documentation/devicetree/bindings/soc/qcom/rpmh-rsc.txt
+>> @@ -83,6 +83,13 @@ Properties:
+>>   	Value type: <string>
+>>   	Definition: Name for the RSC. The name would be used in trace logs.
+>>   
+>> +- #power-domain-cells:
+>> +	Usage: optional
+>> +	Value type: <u32>
+>> +	Definition: Number of cells in power domain specifier. Optional for
+>> +		    controllers that may be in 'solver' state where they can
+>> +		    be in autonomous mode executing low power modes.
+> What's the value? It's always 0?
 
-Thanks for your review, will look and fix on top of v5.
+yes. its value is always 0. i will update definition to mention this in 
+next version.
 
-Thanks,
-Hanna
+>> +
+>>   Drivers that want to use the RSC to communicate with RPMH must specify their
+>>   bindings as child nodes of the RSC controllers they wish to communicate with.
+>>   
+>> @@ -112,6 +119,7 @@ TCS-OFFSET: 0xD00
+>>   				  <SLEEP_TCS   3>,
+>>   				  <WAKE_TCS    3>,
+>>   				  <CONTROL_TCS 1>;
+>> +		#power-domain-cells = <0>;
+>>   	};
+>>   
+>>   Example 2:
+>> -- 
+>> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by The Linux Foundation.
+>>
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
 
-> 
-> -Robert
-> 
