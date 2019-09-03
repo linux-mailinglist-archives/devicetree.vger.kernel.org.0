@@ -2,135 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7128A6224
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:01:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF93AA622B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:04:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726864AbfICHB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 03:01:27 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38273 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726740AbfICHB1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:01:27 -0400
-Received: by mail-wr1-f65.google.com with SMTP id l11so7328121wrx.5;
-        Tue, 03 Sep 2019 00:01:25 -0700 (PDT)
+        id S1726200AbfICHEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 03:04:45 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:43380 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbfICHEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:04:45 -0400
+Received: by mail-ed1-f66.google.com with SMTP id c19so3607655edy.10
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 00:04:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=db032M6/zE4omf+cGRilv5nsZk5oRYhR48JuFpDhX0E=;
+        b=K0+YX7VtC8i3mcTjCo3bRNli9qCdtHJx01NQ5bMbRKQAf6oJKzsNLIiknOSlueBKPy
+         ETBBVeyeVTpEEsMEyuRaacy0a65EUnUp7Kc0XA/w6kpcCGhoFe3zG91siutUiHv5iEu8
+         lPt9ap0YWic/FlpxdQLJiHU/hTqmtFQiviOow=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=x1nbu8LDMNKcL3wRyPaoJ6E/qOL+OZWGIE7xa+JmlVM=;
-        b=DZshqXdw6qr/vxh43/Z8XDTOMmhr39W1d1qbhaK7JWyBLbjGOpNvpIayiJF6wCSOhz
-         o7LStLr5oJhoML26ZOI2Zs64PwBIGEVROne/5YkIOnCWQMd6m9Ym5jTXHPi2syEq6t+I
-         o2maCiJLhuVHjtoioMdndFkLT1l/fXVbBBfQb8SnsigQSK3wJfpKiSNzSWkJw4L0wsV4
-         oV7ShwClD7hzIGEOTL6SPxP4PiMuM9PN2o4RVvHAgo/q5Q/u9eoJKpVsmksk/E8emvKU
-         vIFnCBAiufWqakI7qUEOBzZKwtf7w6nijlA4g15eGSdUFJIHYP+m5XbFasaSZoMaHU7G
-         kHrw==
-X-Gm-Message-State: APjAAAVOkO4f1N3WwH4cNnFv22oVjVJNtIAOpWpgDao4jJhefr5aMq+K
-        hUDxgc1X6atHaSBQPXcZFQ==
-X-Google-Smtp-Source: APXvYqx0KeVWDUUvgESpHFrFHI6UucSx3ohlZN4CR7baTIqD8tau/T0Nm42AoaeCSI5Lf5QLqkTnkQ==
-X-Received: by 2002:adf:b1cc:: with SMTP id r12mr15262176wra.250.1567494084729;
-        Tue, 03 Sep 2019 00:01:24 -0700 (PDT)
-Received: from localhost ([212.187.182.166])
-        by smtp.gmail.com with ESMTPSA id j20sm25672716wre.65.2019.09.03.00.01.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2019 00:01:24 -0700 (PDT)
-Date:   Tue, 3 Sep 2019 08:01:23 +0100
-From:   Rob Herring <robh@kernel.org>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH input-next 2/4] dt-bindings: input: mpr121: Add
- poll-interval property
-Message-ID: <20190903070123.GA15981@bogus>
-References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
- <1567424417-3914-3-git-send-email-michal.vokac@ysoft.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=db032M6/zE4omf+cGRilv5nsZk5oRYhR48JuFpDhX0E=;
+        b=dFaPfUalEzx192yDCfTYLfCiBxGrDJJtyWBXyRDqCvylZDA2vsmpg3myPQJLJgB1xm
+         ERVE/2wtJdqN7AfLIMo/mjffk8T9r4aF5mewJFEM6CWq2bBI0NBvxyQOVIrIxBMUAvE+
+         8k1EaqaYw83FhH3YT34Oqry31OqAEggDkUD8j/AG2jEbUcLepmw478jWA/TtlmOgB7gU
+         lAjd4dmF/owWSQAzfnqr2i/KalJlheR6cF7/GTWbYSObCMpFi21qYTD2VHYPMHQX1a/x
+         9LMJEyrdZ7RyO/niVY5Gs74VhmQr7WS3pWpZL1sSC2Y1Dr6jgTYe6RNFa9rkz1Zdp5gT
+         8gdA==
+X-Gm-Message-State: APjAAAXusoomaP133AIIFskhk07aexnbcou3WUYxgfkeladRK/vda0gF
+        Kw0MgFLlTa0MDWpbLacywex3lPuCnTWyFQ==
+X-Google-Smtp-Source: APXvYqzWafT+Dnais1gtgIkfXxtSTnwfjLeSd09ZOIK5/iKpob5i57s2mP3sQVhqb7YApn7Ed4hzhg==
+X-Received: by 2002:aa7:c508:: with SMTP id o8mr34332381edq.123.1567494282424;
+        Tue, 03 Sep 2019 00:04:42 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
+        by smtp.gmail.com with ESMTPSA id a17sm177385edv.66.2019.09.03.00.04.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 03 Sep 2019 00:04:41 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id s18so16202102wrn.1
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 00:04:41 -0700 (PDT)
+X-Received: by 2002:a5d:6585:: with SMTP id q5mr9827920wru.162.1567494281422;
+ Tue, 03 Sep 2019 00:04:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1567424417-3914-3-git-send-email-michal.vokac@ysoft.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
+ <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
+ <20190802082815.GA203993@chromium.org> <1566724680.20680.8.camel@mtksdccf07>
+ <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
+ <1566957625.20680.33.camel@mtksdccf07> <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
+ <1567424859.18318.32.camel@mtksdccf07> <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
+ <1567493081.18318.49.camel@mtksdccf07>
+In-Reply-To: <1567493081.18318.49.camel@mtksdccf07>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Tue, 3 Sep 2019 16:04:29 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
+Message-ID: <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
+Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
+To:     Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
+Cc:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
+        "zwisler@chromium.org" <zwisler@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>,
+        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
+        <Frederic.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
+        =?UTF-8?B?UG8tWWFuZyBIdWFuZyAo6buD5p+P6Zm9KQ==?= 
+        <po-yang.huang@mediatek.com>,
+        "shik@chromium.org" <shik@chromium.org>,
+        "suleiman@chromium.org" <suleiman@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 01:40:15PM +0200, Michal Vokáč wrote:
-> Add an option to periodicaly poll the device to get the buttons states
-> as the interrupt line may not be used on some platforms.
-> 
-> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
-> ---
-> I am not sure how to propperly handle this.
-> Either interrupt or linux,poll-interval is required, but not both.
+On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+>
+> On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
+> > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > >
+> > > Hi Tomasz,
+> > >
+> > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
+> > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
+> > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > >
+> > > > > Hi Tomasz,
+> > > > >
+> > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
+> > > > > > Hi Jerry,
+> > > > > >
+> > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
+> > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > >
+> > > > > > > Hi Tomasz,
+> > > > > > >
+> > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
+> > > > > > > > Hi Jerry,
+> > > > > > > >
+> > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
+> > [snip]
+> > > > > static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
+> > > > >                                   unsigned int *num_buffers,
+> > > > >                                   unsigned int *num_planes,
+> > > > >                                   unsigned int sizes[],
+> > > > >                                   struct device *alloc_devs[])
+> > > > > {
+> > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > > >         struct device *dev = ctx->dev;
+> > > > >         unsigned int size[2];
+> > > > >
+> > > > >         switch (vq->type) {
+> > > > >         case V4L2_BUF_TYPE_META_CAPTURE:
+> > > > >                 size[0] = ctx->dst_fmt.buffersize;
+> > > > >                 break;
+> > > > >         case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> > > > >                 size[0] = ctx->src_fmt.plane_fmt[0].sizeimage;
+> > > > >                 if (*num_planes == 2)
+> > > > >                         size[1] = ctx->src_fmt.plane_fmt[1].sizeimage;
+> > > > >                 break;
+> > > > >         }
+> > > > >
+> > > > >         if (*num_planes == 1) {
+> > > > >                 if (sizes[0] < size[0])
+> > > > >                         return -EINVAL;
+> > > > >         } else if (*num_planes == 2) {
+> > > > >                 if ((sizes[0] < size[0]) && (sizes[1] < size[1]))
+> > > > >                         return -EINVAL;
+> > > >
+> > > > Can we just use a loop here and combine the 2 cases above?
+> > > >
+> > > > Also, we need to fail with -EINVAL if *num_planes is > 2.
+> > > >
+> > > > >         } else {
+> > > > >                 *num_planes = 1;
+> > > > >                 sizes[0] = size[0];
+> > > >
+> > > > This should be the case if *num_planes == 0 and the number of planes
+> > > > and sizes should match the currently active format.
+> > > >
+> > > I appreciate your comments,
+> > >
+> > > Ok, I will update as following:
+> > > static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
+> > >                                   unsigned int *num_buffers,
+> > >                                   unsigned int *num_planes,
+> > >                                   unsigned int sizes[],
+> > >                                   struct device *alloc_devs[])
+> > > {
+> > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > >         unsigned int size[2];
+> > >         unsigned int plane;
+> > >
+> > >         switch (vq->type) {
+> > >         case V4L2_BUF_TYPE_META_CAPTURE:
+> > >                 size[0] = ctx->dst_fmt.buffersize;
+> > >                 break;
+> > >         case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
+> > >                 size[0] = ctx->src_fmt.plane_fmt[0].sizeimage;
+> > >                 if (*num_planes == 2)
+> > >                         size[1] = ctx->src_fmt.plane_fmt[1].sizeimage;
+> > >                 break;
+> > >         }
+> > >
+> > >         if (*num_planes > 2)
+> > >                 return -EINVAL;
+> > >         if (*num_planes == 0) {
+> > >                 if (vq->type == V4L2_BUF_TYPE_META_CAPTURE) {
+> > >                         sizes[0] = ctx->dst_fmt.buffersize;
+> > >                         *num_planes = 1;
+> > >                         return 0;
+> > >                 }
+> > >
+> > >                 *num_planes = ctx->src_fmt.num_planes;
+> > >                 for (plane = 0; plane < *num_planes; plane++)
+> > >                         sizes[plane] = ctx->src_fmt.plane_fmt[plane].sizeimage;
+> > >                 return 0;
+> > >         }
+> > >
+> > >         for (plane = 0; plane < *num_planes; plane++) {
+> > >                 if(sizes[plane] < size[plane])
+> > >                         return -EINVAL;
+> > >         }
+> > >         return 0;
+> > > }
+> > >
+> >
+> > Looks good, thanks!
+> >
+> > > > >         }
+> > > > >
+> > > > >         return 0;
+> > > > > }
+> > > > >
+> > > > > > [snip]
+> > > > > >
+> > > > > > > > > +static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+> > > > > > > > > +{
+> > > > > > > > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > > > > > > > +   struct vb2_buffer *vb;
+> > > > > > > >
+> > > > > > > > How do we guarantee here that the hardware isn't still accessing the buffers
+> > > > > > > > removed below?
+> > > > > > > >
+> > > > > > > Maybe we can check the driver state flag and aborting the unfinished
+> > > > > > > jobs?
+> > > > > > > (fd_hw->state == FD_ENQ)
+> > > > > > >
+> > > > > >
+> > > > > > Yes, we need to either cancel or wait for the currently processing
+> > > > > > job. It depends on hardware capabilities, but cancelling is generally
+> > > > > > preferred for the lower latency.
+> > > > > >
+> > > > > Ok, it the state is ENQ, then we can disable the FD hw by controlling
+> > > > > the registers.
+> > > > >
+> > > > > for example:
+> > > > >         writel(0x0, fd->fd_base + FD_HW_ENABLE);
+> > > > >         writel(0x0, fd->fd_base + FD_INT_EN);
+> > > > >
+> > > >
+> > > > What's exactly the effect of writing 0 to FD_HW_ENABLE?
+> > > >
+> > > Sorry, my last reply didn't solve the question,
+> > > we should implement a mtk_fd_job_abort() for v4l2_m2m_ops().
+> > >
+> > > which is able to readl_poll_timeout_atomic()
+> > > and check the HW busy bits in the register FD_INT_EN;
+> > >
+> > > if they are not cleared until timeout, we could handle the last
+> > > processing job.
+> > > Otherwise, the FD irq handler should have handled the last processing
+> > > job and we could continue the stop_streaming().
+> > >
+> > > For job_abort():
+> > > static void mtk_fd_job_abort(void *priv)
+> > > {
+> > >         struct mtk_fd_ctx *ctx = priv;
+> > >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> > >         u32 val;
+> > >         u32 ret;
+> > >
+> > >         ret = readl_poll_timeout_atomic(fd->fd_base + MTK_FD_REG_OFFSET_INT_EN,
+> > >                                         val,
+> > >                                         (val & MTK_FD_HW_BUSY_MASK) ==
+> > >                                         MTK_FD_HW_STATE_IS_BUSY,
+> > >                                         USEC_PER_MSEC, MTK_FD_STOP_HW_TIMEOUT);
+> >
+> > Hmm, would it be possible to avoid the busy wait by having a
+> > completion that could be signalled from the interrupt handler?
+> >
+> > Best regards,
+> > Tomasz
+>
+> I suppose that would be wakeup a wait queue in the interrupt handler,
+> the the wait_event_interrupt_timeout() will be used in here and system
+> suspend e.g. mtk_fd_suspend().
 
-Add this at the top level:
+Yes, that should work.
 
-oneOf:
-  - required: [ interrupts ]
-  - required: [ linux,poll-interval ]
+> Or do you suggest to wait_event_interrupt_timeout() every frame in the
+> mtk_fd_ipi_handler()?
 
-> 
->  .../bindings/input/fsl,mpr121-touchkey.yaml          | 20 +++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
-> index c463c1c81755..2b3073a3c9f4 100644
-> --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
-> +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
-> @@ -34,6 +34,10 @@ properties:
->      minItems: 1
->      maxItems: 12
->  
-> +  linux,poll-interval:
-> +    description: Poll interval time in milliseconds.
-> +    maxItems: 1
+Nope, we shouldn't need that.
 
-We already have 'poll-interval' in several bindings. Use that.
+> I think maybe the readl_poll_timeout_atomic would be good enough.
+>
 
-This should have a type definition and you don't need maxItems:
+Not really. Busy waiting should be avoided as much as possible. What's
+the point of entering suspend if you end up burning the power by
+spinning the CPU for some milliseconds?
 
-$ref: /schemas/types.yaml#/definitions/uint32
+>
+> One more thing, for the mtk_fd_video_device_register()
+> Sorry that I would need to use intermediate variable here since the 80
+> columns check.
+>
+>         function = MEDIA_ENT_F_PROC_VIDEO_STATISTICS;
+>         ret = v4l2_m2m_register_media_controller(m2m_dev, vfd, function);
 
-Really this should go in a common input schema doc.
-> +
->    wakeup-source: Use any event on keypad as wakeup event.
->      type: boolean
->  
-> @@ -44,12 +48,12 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - interrupts
->    - vdd-supply
->    - linux,keycodes
->  
->  examples:
->    - |
-> +    // Example with interrupts
->      #include "dt-bindings/input/input.h"
->      touchkey: mpr121@5a {
->          compatible = "fsl,mpr121-touchkey";
-> @@ -62,3 +66,17 @@ examples:
->                           <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
->                           <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
->      };
-> +
-> +  - |
-> +    // Example with polling
-> +    #include "dt-bindings/input/input.h"
-> +    touchkey: mpr121@5a {
-> +        compatible = "fsl,mpr121-touchkey";
-> +        reg = <0x5a>;
-> +        linux,poll-interval = <20>;
-> +        autorepeat;
-> +        vdd-supply = <&ldo4_reg>;
-> +        linux,keycodes = <KEY_0>, <KEY_1>, <KEY_2>, <KEY_3>,
-> +                         <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
-> +                         <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
-> +    );
-> -- 
-> 2.1.4
-> 
+Why not just make it like this:
+
+ret = v4l2_m2m_register_media_controller(m2m_dev,
+                MEDIA_ENT_F_PROC_VIDEO_STATISTICS);
+
+The above line is aligned using tabs so that its end is as close to
+the 80 character boundary as possible.
+
+Best regards,
+Tomasz
