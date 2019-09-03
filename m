@@ -2,310 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF93AA622B
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5EA3EA6245
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726200AbfICHEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 03:04:45 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:43380 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbfICHEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:04:45 -0400
-Received: by mail-ed1-f66.google.com with SMTP id c19so3607655edy.10
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 00:04:43 -0700 (PDT)
+        id S1726557AbfICHMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 03:12:34 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:46592 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726200AbfICHMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:12:34 -0400
+Received: by mail-wr1-f68.google.com with SMTP id h7so14849795wrt.13
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 00:12:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=db032M6/zE4omf+cGRilv5nsZk5oRYhR48JuFpDhX0E=;
-        b=K0+YX7VtC8i3mcTjCo3bRNli9qCdtHJx01NQ5bMbRKQAf6oJKzsNLIiknOSlueBKPy
-         ETBBVeyeVTpEEsMEyuRaacy0a65EUnUp7Kc0XA/w6kpcCGhoFe3zG91siutUiHv5iEu8
-         lPt9ap0YWic/FlpxdQLJiHU/hTqmtFQiviOow=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=D7lJtZnGFlgVVj0J7GCvxIgZTRtnqQirGeaOYqoF82s=;
+        b=ROnHYTpFlztguttCE1By1T7kaC6UyC+nf8+NFLQ8JBZmv8xzxxX+T9haUYmba804uq
+         jBEw9uhr8HFSh9DQjxh/DA86R8HU+DWGsuAOJ/0xRXPDYABypGnahJdrBZVWUf5ChYoG
+         ORBK7H3UboZke+60bsfwZIIrFrq9qgfTft4qLb8VxIFqyMQFlPey0k/CZmb64vsIbD7T
+         REtTvkWljlwJz+Z50JG25SCvFXFSX4UUDpaPiCVCyum+m8GCvHOMXxW0T8Av8UC2H5sZ
+         fR8JuERXx/CeGxGgvl6Jv7VNYMNWov2cKHjp9VVQPCJD8Xx7FMLvGKrA56uGJFymJYQ5
+         rhsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=db032M6/zE4omf+cGRilv5nsZk5oRYhR48JuFpDhX0E=;
-        b=dFaPfUalEzx192yDCfTYLfCiBxGrDJJtyWBXyRDqCvylZDA2vsmpg3myPQJLJgB1xm
-         ERVE/2wtJdqN7AfLIMo/mjffk8T9r4aF5mewJFEM6CWq2bBI0NBvxyQOVIrIxBMUAvE+
-         8k1EaqaYw83FhH3YT34Oqry31OqAEggDkUD8j/AG2jEbUcLepmw478jWA/TtlmOgB7gU
-         lAjd4dmF/owWSQAzfnqr2i/KalJlheR6cF7/GTWbYSObCMpFi21qYTD2VHYPMHQX1a/x
-         9LMJEyrdZ7RyO/niVY5Gs74VhmQr7WS3pWpZL1sSC2Y1Dr6jgTYe6RNFa9rkz1Zdp5gT
-         8gdA==
-X-Gm-Message-State: APjAAAXusoomaP133AIIFskhk07aexnbcou3WUYxgfkeladRK/vda0gF
-        Kw0MgFLlTa0MDWpbLacywex3lPuCnTWyFQ==
-X-Google-Smtp-Source: APXvYqzWafT+Dnais1gtgIkfXxtSTnwfjLeSd09ZOIK5/iKpob5i57s2mP3sQVhqb7YApn7Ed4hzhg==
-X-Received: by 2002:aa7:c508:: with SMTP id o8mr34332381edq.123.1567494282424;
-        Tue, 03 Sep 2019 00:04:42 -0700 (PDT)
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
-        by smtp.gmail.com with ESMTPSA id a17sm177385edv.66.2019.09.03.00.04.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Sep 2019 00:04:41 -0700 (PDT)
-Received: by mail-wr1-f48.google.com with SMTP id s18so16202102wrn.1
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 00:04:41 -0700 (PDT)
-X-Received: by 2002:a5d:6585:: with SMTP id q5mr9827920wru.162.1567494281422;
- Tue, 03 Sep 2019 00:04:41 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=D7lJtZnGFlgVVj0J7GCvxIgZTRtnqQirGeaOYqoF82s=;
+        b=rI/hSGTf6v5pVCOwxdf1OFVJd6Clwxw5OZqpo62hfg20k9BPHISZ6afoLrHAbAwCJ2
+         Q7UVnfupyDAP5QMC/QYGcviV+kL8W12MLybVJLSuwC4TGPTdy4pieCryOcii5+OLAtpy
+         cfhcN2baOJWCEZAfsKsZMIePbWlT5rrejnE9j8Z5XYy21StleaFL/D6IZrVDVr5C6aza
+         Q19B/19YEp7YklkRCUjTREUTPAgFTkhT26b6ZmBnQoAJgaRY51x9MYMx1bL7gPZzvbTt
+         YhaVn02ciYOZQPXEjJ3QrGsgs7qB0Z/7PwUEdMQ0QrH9JkGKG8yaBfNgR22xYm7lpTI1
+         8VGQ==
+X-Gm-Message-State: APjAAAXZ3wj+DxjfQh6oVGWOL0nxsT40w/7dKpSPYJcgYW54sxRzwm7/
+        swHhChv8vQCsqD7uo34F0kDWeQ==
+X-Google-Smtp-Source: APXvYqxPYbevJyRhqc6nIXjYrkVP++uE8NI7pvmaPR6OopvfEDvDtiHG6GBCJwLNpi3I+Brm1BYQEg==
+X-Received: by 2002:a5d:680e:: with SMTP id w14mr11537931wru.3.1567494751262;
+        Tue, 03 Sep 2019 00:12:31 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id n8sm25744774wma.7.2019.09.03.00.12.30
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 03 Sep 2019 00:12:30 -0700 (PDT)
+Subject: Re: [PATCH 1/4] soc: amlogic: meson-gx-socinfo: Add A1 and A113L IDs
+To:     Jianxin Pan <jianxin.pan@amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Carlo Caione <carlo@caione.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Tao Zeng <tao.zeng@amlogic.com>
+References: <1567493475-75451-1-git-send-email-jianxin.pan@amlogic.com>
+ <1567493475-75451-2-git-send-email-jianxin.pan@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <42aac458-76ee-d35d-4d24-c0620ad4c00c@baylibre.com>
+Date:   Tue, 3 Sep 2019 09:12:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
- <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
- <20190802082815.GA203993@chromium.org> <1566724680.20680.8.camel@mtksdccf07>
- <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
- <1566957625.20680.33.camel@mtksdccf07> <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
- <1567424859.18318.32.camel@mtksdccf07> <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
- <1567493081.18318.49.camel@mtksdccf07>
-In-Reply-To: <1567493081.18318.49.camel@mtksdccf07>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Tue, 3 Sep 2019 16:04:29 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
-Message-ID: <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
-Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
-To:     Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-Cc:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
-        "zwisler@chromium.org" <zwisler@chromium.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
-        <Sean.Cheng@mediatek.com>,
-        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
-        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
-        <christie.yu@mediatek.com>,
-        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
-        <Frederic.Chen@mediatek.com>,
-        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
-        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
-        =?UTF-8?B?UG8tWWFuZyBIdWFuZyAo6buD5p+P6Zm9KQ==?= 
-        <po-yang.huang@mediatek.com>,
-        "shik@chromium.org" <shik@chromium.org>,
-        "suleiman@chromium.org" <suleiman@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <1567493475-75451-2-git-send-email-jianxin.pan@amlogic.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
->
-> On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
-> > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > >
-> > > Hi Tomasz,
-> > >
-> > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
-> > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
-> > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > >
-> > > > > Hi Tomasz,
-> > > > >
-> > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
-> > > > > > Hi Jerry,
-> > > > > >
-> > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
-> > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > >
-> > > > > > > Hi Tomasz,
-> > > > > > >
-> > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
-> > > > > > > > Hi Jerry,
-> > > > > > > >
-> > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
-> > [snip]
-> > > > > static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
-> > > > >                                   unsigned int *num_buffers,
-> > > > >                                   unsigned int *num_planes,
-> > > > >                                   unsigned int sizes[],
-> > > > >                                   struct device *alloc_devs[])
-> > > > > {
-> > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > >         struct device *dev = ctx->dev;
-> > > > >         unsigned int size[2];
-> > > > >
-> > > > >         switch (vq->type) {
-> > > > >         case V4L2_BUF_TYPE_META_CAPTURE:
-> > > > >                 size[0] = ctx->dst_fmt.buffersize;
-> > > > >                 break;
-> > > > >         case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
-> > > > >                 size[0] = ctx->src_fmt.plane_fmt[0].sizeimage;
-> > > > >                 if (*num_planes == 2)
-> > > > >                         size[1] = ctx->src_fmt.plane_fmt[1].sizeimage;
-> > > > >                 break;
-> > > > >         }
-> > > > >
-> > > > >         if (*num_planes == 1) {
-> > > > >                 if (sizes[0] < size[0])
-> > > > >                         return -EINVAL;
-> > > > >         } else if (*num_planes == 2) {
-> > > > >                 if ((sizes[0] < size[0]) && (sizes[1] < size[1]))
-> > > > >                         return -EINVAL;
-> > > >
-> > > > Can we just use a loop here and combine the 2 cases above?
-> > > >
-> > > > Also, we need to fail with -EINVAL if *num_planes is > 2.
-> > > >
-> > > > >         } else {
-> > > > >                 *num_planes = 1;
-> > > > >                 sizes[0] = size[0];
-> > > >
-> > > > This should be the case if *num_planes == 0 and the number of planes
-> > > > and sizes should match the currently active format.
-> > > >
-> > > I appreciate your comments,
-> > >
-> > > Ok, I will update as following:
-> > > static int mtk_fd_vb2_queue_setup(struct vb2_queue *vq,
-> > >                                   unsigned int *num_buffers,
-> > >                                   unsigned int *num_planes,
-> > >                                   unsigned int sizes[],
-> > >                                   struct device *alloc_devs[])
-> > > {
-> > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > >         unsigned int size[2];
-> > >         unsigned int plane;
-> > >
-> > >         switch (vq->type) {
-> > >         case V4L2_BUF_TYPE_META_CAPTURE:
-> > >                 size[0] = ctx->dst_fmt.buffersize;
-> > >                 break;
-> > >         case V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE:
-> > >                 size[0] = ctx->src_fmt.plane_fmt[0].sizeimage;
-> > >                 if (*num_planes == 2)
-> > >                         size[1] = ctx->src_fmt.plane_fmt[1].sizeimage;
-> > >                 break;
-> > >         }
-> > >
-> > >         if (*num_planes > 2)
-> > >                 return -EINVAL;
-> > >         if (*num_planes == 0) {
-> > >                 if (vq->type == V4L2_BUF_TYPE_META_CAPTURE) {
-> > >                         sizes[0] = ctx->dst_fmt.buffersize;
-> > >                         *num_planes = 1;
-> > >                         return 0;
-> > >                 }
-> > >
-> > >                 *num_planes = ctx->src_fmt.num_planes;
-> > >                 for (plane = 0; plane < *num_planes; plane++)
-> > >                         sizes[plane] = ctx->src_fmt.plane_fmt[plane].sizeimage;
-> > >                 return 0;
-> > >         }
-> > >
-> > >         for (plane = 0; plane < *num_planes; plane++) {
-> > >                 if(sizes[plane] < size[plane])
-> > >                         return -EINVAL;
-> > >         }
-> > >         return 0;
-> > > }
-> > >
-> >
-> > Looks good, thanks!
-> >
-> > > > >         }
-> > > > >
-> > > > >         return 0;
-> > > > > }
-> > > > >
-> > > > > > [snip]
-> > > > > >
-> > > > > > > > > +static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > > > > > > +{
-> > > > > > > > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > > > > > > +   struct vb2_buffer *vb;
-> > > > > > > >
-> > > > > > > > How do we guarantee here that the hardware isn't still accessing the buffers
-> > > > > > > > removed below?
-> > > > > > > >
-> > > > > > > Maybe we can check the driver state flag and aborting the unfinished
-> > > > > > > jobs?
-> > > > > > > (fd_hw->state == FD_ENQ)
-> > > > > > >
-> > > > > >
-> > > > > > Yes, we need to either cancel or wait for the currently processing
-> > > > > > job. It depends on hardware capabilities, but cancelling is generally
-> > > > > > preferred for the lower latency.
-> > > > > >
-> > > > > Ok, it the state is ENQ, then we can disable the FD hw by controlling
-> > > > > the registers.
-> > > > >
-> > > > > for example:
-> > > > >         writel(0x0, fd->fd_base + FD_HW_ENABLE);
-> > > > >         writel(0x0, fd->fd_base + FD_INT_EN);
-> > > > >
-> > > >
-> > > > What's exactly the effect of writing 0 to FD_HW_ENABLE?
-> > > >
-> > > Sorry, my last reply didn't solve the question,
-> > > we should implement a mtk_fd_job_abort() for v4l2_m2m_ops().
-> > >
-> > > which is able to readl_poll_timeout_atomic()
-> > > and check the HW busy bits in the register FD_INT_EN;
-> > >
-> > > if they are not cleared until timeout, we could handle the last
-> > > processing job.
-> > > Otherwise, the FD irq handler should have handled the last processing
-> > > job and we could continue the stop_streaming().
-> > >
-> > > For job_abort():
-> > > static void mtk_fd_job_abort(void *priv)
-> > > {
-> > >         struct mtk_fd_ctx *ctx = priv;
-> > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > >         u32 val;
-> > >         u32 ret;
-> > >
-> > >         ret = readl_poll_timeout_atomic(fd->fd_base + MTK_FD_REG_OFFSET_INT_EN,
-> > >                                         val,
-> > >                                         (val & MTK_FD_HW_BUSY_MASK) ==
-> > >                                         MTK_FD_HW_STATE_IS_BUSY,
-> > >                                         USEC_PER_MSEC, MTK_FD_STOP_HW_TIMEOUT);
-> >
-> > Hmm, would it be possible to avoid the busy wait by having a
-> > completion that could be signalled from the interrupt handler?
-> >
-> > Best regards,
-> > Tomasz
->
-> I suppose that would be wakeup a wait queue in the interrupt handler,
-> the the wait_event_interrupt_timeout() will be used in here and system
-> suspend e.g. mtk_fd_suspend().
+Hi,
 
-Yes, that should work.
+On 03/09/2019 08:51, Jianxin Pan wrote:
+> Add the SoC IDs for the A113L Amlogic A1 SoC.
+> 
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  drivers/soc/amlogic/meson-gx-socinfo.c | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/drivers/soc/amlogic/meson-gx-socinfo.c b/drivers/soc/amlogic/meson-gx-socinfo.c
+> index 6d0d04f..3c86d8d 100644
+> --- a/drivers/soc/amlogic/meson-gx-socinfo.c
+> +++ b/drivers/soc/amlogic/meson-gx-socinfo.c
+> @@ -40,6 +40,7 @@ static const struct meson_gx_soc_id {
+>  	{ "G12A", 0x28 },
+>  	{ "G12B", 0x29 },
+>  	{ "SM1", 0x2b },
+> +	{ "A1", 0x2c },
+>  };
+>  
+>  static const struct meson_gx_package_id {
+> @@ -68,6 +69,7 @@ static const struct meson_gx_package_id {
+>  	{ "S922X", 0x29, 0x40, 0xf0 },
+>  	{ "A311D", 0x29, 0x10, 0xf0 },
+>  	{ "S905X3", 0x2b, 0x5, 0xf },
+> +	{ "A113L", 0x2c, 0x0, 0xf8 },
+>  };
+>  
+>  static inline unsigned int socinfo_to_major(u32 socinfo)
+> 
 
-> Or do you suggest to wait_event_interrupt_timeout() every frame in the
-> mtk_fd_ipi_handler()?
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
 
-Nope, we shouldn't need that.
-
-> I think maybe the readl_poll_timeout_atomic would be good enough.
->
-
-Not really. Busy waiting should be avoided as much as possible. What's
-the point of entering suspend if you end up burning the power by
-spinning the CPU for some milliseconds?
-
->
-> One more thing, for the mtk_fd_video_device_register()
-> Sorry that I would need to use intermediate variable here since the 80
-> columns check.
->
->         function = MEDIA_ENT_F_PROC_VIDEO_STATISTICS;
->         ret = v4l2_m2m_register_media_controller(m2m_dev, vfd, function);
-
-Why not just make it like this:
-
-ret = v4l2_m2m_register_media_controller(m2m_dev,
-                MEDIA_ENT_F_PROC_VIDEO_STATISTICS);
-
-The above line is aligned using tabs so that its end is as close to
-the 80 character boundary as possible.
-
-Best regards,
-Tomasz
+Thanks,
+Neil
