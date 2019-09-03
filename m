@@ -2,71 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8568CA69C3
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 15:25:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EABFFA69D9
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 15:29:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729465AbfICNZh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 09:25:37 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:43049 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729246AbfICNZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 09:25:34 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1i58oM-0005Ht-6s; Tue, 03 Sep 2019 15:25:30 +0200
-Message-ID: <1567517129.5229.9.camel@pengutronix.de>
-Subject: Re: [PATCHv3 01/10] dt-bindings: omap: add new binding for PRM
- instances
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Tony Lindgren <tony@atomide.com>, Tero Kristo <t-kristo@ti.com>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 03 Sep 2019 15:25:29 +0200
-In-Reply-To: <20190903131632.GL52127@atomide.com>
-References: <20190830121816.30034-1-t-kristo@ti.com>
-         <20190830121816.30034-2-t-kristo@ti.com> <20190902042631.GA22055@bogus>
-         <e8d700cd-8f3c-5cea-a022-b20a595fc1e1@ti.com>
-         <CAL_Jsq+AJj1bgOQYG=c86A5HC_g2UZph387oVEKZyP4M18kURw@mail.gmail.com>
-         <7c2c8a4d-d24e-ceec-afc1-04cdc4d5d952@ti.com>
-         <20190903131632.GL52127@atomide.com>
+        id S1727667AbfICN3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 09:29:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32960 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729066AbfICN3d (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 09:29:33 -0400
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 498CA23402;
+        Tue,  3 Sep 2019 13:29:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567517372;
+        bh=NLqCL4CDXLU3XgXKCj95PxujHWeCjp562H7YUcMntWI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qaXN86v6cIyTWdnvtaZOQQfBuuLThLlMRA/EJyQNgmyoLCjT/75zE/M4mRQeArqAE
+         q4YgAkDS6yIyQVA1WxKIVB7rtdCigj9Sz0V6NzXh5PlLXZooECitbVO6sWthzskktB
+         K+ItPCsbY4BLi25J8cwa71OUpyPJxZShfeyXk83Q=
+Received: by mail-lf1-f44.google.com with SMTP id r134so12000449lff.12;
+        Tue, 03 Sep 2019 06:29:32 -0700 (PDT)
+X-Gm-Message-State: APjAAAXceZ1F0VtCGnv9s3brmXuw2bEDDN7WCQ0LhshmWuK9GoK3nIy0
+        07jSwK7TNhywRrFEtPhPHXfCyUK6Y2dMkQXBWdw=
+X-Google-Smtp-Source: APXvYqxqbuDcNwZVBZKdEn/yqco/nPvJHxybzLgeR8t1/wyDoTImujg8oF2KZNPIWeHPuUNFUp5BwgTKED9vOoaznqs=
+X-Received: by 2002:ac2:41c2:: with SMTP id d2mr6978921lfi.24.1567517370489;
+ Tue, 03 Sep 2019 06:29:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190902150336.3600-1-krzk@kernel.org> <CAL_JsqK_O+7zQDGxAhAHDW=AkMy+RtyijTXUuRStOgu8CYXe0g@mail.gmail.com>
+ <CAJKOXPfO0yBzGFPvF_WwsGGJBZSBGMLsFi2CQ2Eg5RVfyfW3nA@mail.gmail.com>
+ <CAL_JsqJUfGBRAv=StPyavQU1DiHnFwUseNCvP6Ce_ZMohJXTXQ@mail.gmail.com>
+ <CAJKOXPcjF9nERQxDdSVBLsfc2V_M1_BPZ6iM6EXvEx4tdr3rDQ@mail.gmail.com> <CAL_Jsq+1NEcmvrKPp9N=07CbxT3ZUsViXk7GGb1v0NzsxvWEdg@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+1NEcmvrKPp9N=07CbxT3ZUsViXk7GGb1v0NzsxvWEdg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 3 Sep 2019 15:29:19 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPcGWuW7HP-_kj_OjpPyHtj9gr36bpVUeT5VF2V9wTZY9Q@mail.gmail.com>
+Message-ID: <CAJKOXPcGWuW7HP-_kj_OjpPyHtj9gr36bpVUeT5VF2V9wTZY9Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: power: syscon-reboot: Convert bindings
+ to json-schema
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
+On Tue, 3 Sep 2019 at 15:12, Rob Herring <robh+dt@kernel.org> wrote:
+> > arch/arm/boot/dts/exynos3250-artik5-eval.dt.yaml: syscon-reboot:
+> > {'regmap': [[9]], 'mask': [[1]], '$nodename': ['syscon-reboot'],
+> > 'value': [[1]], 'offset': [[1024]], 'compatible': ['syscon-reboot']}
+> > is valid under each of {'required': ['mask']}, {'required': ['value',
+> > 'mask']}, {'required': ['value']}
+>
+> Ahh, right. 'anyOf' is what we want:
+>
+> anyOf:
+>   - required: [ value ]
+>   - required: [ mask ]
 
-On Tue, 2019-09-03 at 06:16 -0700, Tony Lindgren wrote:
-> * Tero Kristo <t-kristo@ti.com> [190903 08:15]:
-> > On 03/09/2019 11:10, Rob Herring wrote:
-> > > I prefer that bindings be complete as possible even if driver support
-> > > is not there yet. Adding power domain support may only mean adding
-> > > '#power-domain-cells'.
-> > > 
-> > > The location is fine then.
-> > 
-> > Yeah, I assume just adding power-domain-cells should be enough. I am not too
-> > sure before I start trying this out though so did not want to add it yet.
-> 
-> Should we call the device tree node name power-controller instead of
-> reset controller though? Most of the PRM instances do not have a
-> separate rstctrl reset control functionality.
-> 
-> Anybody got better any better naming in mind?
+This triggers meta-schema error:
 
-power-controller seems fine to me, that is their primary function.
+  SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+Traceback (most recent call last):
+  File "/home/kozik/.local/lib/python3.5/site-packages/dtschema/lib.py",
+line 429, in process_schema
+    DTValidator.check_schema(schema)
+  File "/home/kozik/.local/lib/python3.5/site-packages/dtschema/lib.py",
+line 575, in check_schema
+    raise jsonschema.SchemaError.create_from(error)
+jsonschema.exceptions.SchemaError: Additional properties are not
+allowed ('anyOf' was unexpected)
 
-regards
-Philipp
+Failed validating 'additionalProperties' in metaschema['allOf'][0]:
+    {'$id': 'http://devicetree.org/meta-schemas/base.yaml#',
+     '$schema': 'http://json-schema.org/draft-07/schema#',
+     'additionalProperties': False,
+     'allOf': [{'$ref': 'http://json-schema.org/draft-07/schema#'}],
+     'description': 'Metaschema for devicetree binding documentation',
+     'properties': {'$id': {'pattern':
+'http://devicetree.org/schemas/.*\\.yaml#'},
+                    '$schema': {'enum':
+['http://devicetree.org/meta-schemas/core.yaml#',
+
+'http://devicetree.org/meta-schemas/base.yaml#']},
+                    'additionalProperties': {'type': 'boolean'},
+                    'allOf': {'items': {'propertyNames': {'enum': ['$ref',
+                                                                   'if',
+                                                                   'then',
+                                                                   'else']}}},
+                    'definitions': True,
+                    'dependencies': True,
+                    'description': True,
+                    'else': True,
+                    'examples': {'items': {'type': 'string'},
+                                 'type': 'array'},
+                    'if': True,
+                    'maintainers': {'items': {'format': 'email',
+                                              'type': 'string'},
+                                    'type': 'array'},
+                    'oneOf': True,
+                    'patternProperties': True,
+                    'properties': True,
+                    'required': True,
+                    'select': {'allOf': [{'$ref':
+'http://json-schema.org/draft-07/schema#'},
+                                         {'oneOf': [{'properties':
+{'properties': True,
+
+'required': True},
+                                                     'type': 'object'},
+                                                    {'type': 'boolean'}]}]},
+                    'then': True,
+                    'title': {'maxLength': 100},
+                    'unevaluatedProperties': {'type': 'boolean'}},
+     'required': ['$id', '$schema', 'title', 'maintainers']}
+
+Best regards,
+Krzysztof
