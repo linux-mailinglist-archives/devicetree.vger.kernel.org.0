@@ -2,149 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37566A6302
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56E89A6329
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:55:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727077AbfICHrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 03:47:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39546 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726452AbfICHrD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 3 Sep 2019 03:47:03 -0400
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 034AF2053B;
-        Tue,  3 Sep 2019 07:47:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567496822;
-        bh=RuEU75Q1POSO0w61+q41p+/7Q/GAHx2CK3Fki186RB4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mk468JDy/2IvHvOcaxJbsYuG99xwARgNgtbjcqBHSQu8ZxKWjTpRUKPZ8+6WzKy2u
-         Q5UCQ70neOx98y/LB/vY+qc2WCchR5+SAPzwfTj3sH/YU4RUWfSfr3QWuuYvflnq6R
-         l5VC0HgOWIkh8koGlRSR/S4AZQ9q49Pu/8pfSCa4=
-Received: by mail-lf1-f45.google.com with SMTP id c12so12084783lfh.5;
-        Tue, 03 Sep 2019 00:47:01 -0700 (PDT)
-X-Gm-Message-State: APjAAAUHIHnRdDPtMuB9ylzCp8gLwSTGF5hnJniVGoLsq3eN9uk+v/1v
-        vxqxD0V9GIvKiPf5zQMpzh4z8dphdClfC6ehqO0=
-X-Google-Smtp-Source: APXvYqwWAirMV435z7XIBUx14TCjV1uPxmk+KHbqV+P+MdpQ5RtqlgUoQgdo5mlGH8SMTZRWkobUP09k0obMElzC7EA=
-X-Received: by 2002:a19:c649:: with SMTP id w70mr20043799lff.33.1567496820229;
- Tue, 03 Sep 2019 00:47:00 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190902150336.3600-1-krzk@kernel.org> <CAL_JsqK_O+7zQDGxAhAHDW=AkMy+RtyijTXUuRStOgu8CYXe0g@mail.gmail.com>
-In-Reply-To: <CAL_JsqK_O+7zQDGxAhAHDW=AkMy+RtyijTXUuRStOgu8CYXe0g@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 3 Sep 2019 09:46:49 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfO0yBzGFPvF_WwsGGJBZSBGMLsFi2CQ2Eg5RVfyfW3nA@mail.gmail.com>
-Message-ID: <CAJKOXPfO0yBzGFPvF_WwsGGJBZSBGMLsFi2CQ2Eg5RVfyfW3nA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: power: syscon-reboot: Convert bindings
- to json-schema
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Sebastian Reichel <sre@kernel.org>,
+        id S1726631AbfICHzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 03:55:10 -0400
+Received: from 2.mo177.mail-out.ovh.net ([178.33.109.80]:35471 "EHLO
+        2.mo177.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbfICHzK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:55:10 -0400
+X-Greylist: delayed 1005 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 03:55:09 EDT
+Received: from player756.ha.ovh.net (unknown [10.109.143.72])
+        by mo177.mail-out.ovh.net (Postfix) with ESMTP id 79EA8109701
+        for <devicetree@vger.kernel.org>; Tue,  3 Sep 2019 09:38:22 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player756.ha.ovh.net (Postfix) with ESMTPSA id 4880088D8887;
+        Tue,  3 Sep 2019 07:38:12 +0000 (UTC)
+Subject: Re: [PATCH v2 1/2] ARM: dts: opos6ul/opos6uldev: rework device tree
+ to support i.MX6ULL
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190724120623.2385-1-sebastien.szymanski@armadeus.com>
+From:   =?UTF-8?Q?S=c3=a9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Openpgp: preference=signencrypt
+Message-ID: <194bd606-e4bf-d8fd-ece2-cbec1f5e025f@armadeus.com>
+Date:   Tue, 3 Sep 2019 09:38:11 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190724120623.2385-1-sebastien.szymanski@armadeus.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 1760344505444685052
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrudejuddguddvudcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 3 Sep 2019 at 09:14, Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Mon, Sep 2, 2019 at 4:03 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > Convert the Syscon reboot bindings to DT schema format using
-> > json-schema.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > ---
-> >  .../bindings/power/reset/syscon-reboot.txt    | 30 --------
-> >  .../bindings/power/reset/syscon-reboot.yaml   | 68 +++++++++++++++++++
-> >  2 files changed, 68 insertions(+), 30 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/power/reset/syscon-reboot.txt
-> >  create mode 100644 Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
->
-> > diff --git a/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> > new file mode 100644
-> > index 000000000000..a583f3dc8ef4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/power/reset/syscon-reboot.yaml
-> > @@ -0,0 +1,68 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/power/reset/syscon-reboot.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Generic SYSCON mapped register reset driver
-> > +
-> > +maintainers:
-> > +  - Sebastian Reichel <sre@kernel.org>
-> > +
-> > +description: |+
-> > +  This is a generic reset driver using syscon to map the reset register.
-> > +  The reset is generally performed with a write to the reset register
-> > +  defined by the register map pointed by syscon reference plus the offset
-> > +  with the value and mask defined in the reboot node.
-> > +  Default will be little endian mode, 32 bit access only.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: syscon-reboot
-> > +
-> > +  mask:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Update only the register bits defined by the mask (32 bit).
-> > +    maxItems: 1
->
-> Drop this as that is already defined for uint32.
->
-> It also doesn't actually work. The $ref has to be under an 'allOf' if
-> you have additional schemas. A quirk of json-schema...
->
-> > +
-> > +  offset:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: Offset in the register map for the reboot register (in bytes).
-> > +    maxItems: 1
-> > +
-> > +  regmap:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: Phandle to the register map node.
-> > +    maxItems: 1
-> > +
-> > +  value:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: The reset value written to the reboot register (32 bit access).
-> > +    maxItems: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - regmap
-> > +  - offset
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        value:
-> > +          not:
-> > +            type: array
->
-> I think you could make this a bit more readable with:
->
-> if:
->   not:
->     required:
->       - value
+Hello,
 
-I do not understand how does it work (value is not mentioned in the
-required fields so why checking of it?)... but it works fine.
+On 7/24/19 2:06 PM, Sébastien Szymanski wrote:
+> Rework the device trees of the OPOS6UL and OPOS6ULDev boards to support
+> the OPOS6UL SoM with an i.MX6ULL SoC.  The device trees are now as
+> following:
+> 
+> - imx6ul-imx6ull-opos6ul.dtsi
+>   common for both i.MX6UL and i.MX6ULL OPOS6UL SoM.
+> - imx6ul-opos6ul.dtsi
+>   for i.MX6UL OPOS6UL SoM. It includes imx6ul.dtsi and
+>   imx6ul-imx6ull-opos6ul.dtsi.
+> - imx6ull-opos6ul.dtsi
+>   for i.MX6ULL OPOS6UL SoM. It includes imx6ull.dtsi and
+>   imx6ul-imx6ull-opos6ul.dtsi.
+> 
+> - imx6ul-imx6ull-opos6uldev.dtsi
+>   OPOS6ULDev base device tree.
+> - imx6ul-opos6uldev.dts
+>   OPOS6ULDev board with an i.MX6UL OPOS6UL SoM. It includes
+>   imx6ul-opos6ul.dtsi and imx6ul-imx6ull-opos6uldevdtsi.
+> - imx6ull-opos6uldev.dts
+>   OPOS6ULDev board with an i.MX6ULL OPOS6UL SoM. It includes
+>   imx6ull-opos6ul.dtsi and imx6ul-imx6ull-opos6uldevdtsi.
+> 
+> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+> ---
+> 
+> Changes for v2:
+> - explain the file hierarchy in the commit log
+> - use MIT license instead of X11
+> - Change compatible properties to "armadeus,imx6{ul,ull}-opos6ul" and
+>   "armadeus,imx6{ul,ull}-opos6uldev" to follow the bindings of the
+>   Armadeus boards already supported.
 
-> However, if the tree is free of legacy usage, then you could just drop all this.
+gentle ping...
 
-One of them - mask or value - has to be provided.
+Regards,
 
-Thanks for review,
-Kryzsztof
+Sébastien
