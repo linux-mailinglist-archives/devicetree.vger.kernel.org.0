@@ -2,235 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4FE0A6237
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:06:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7128A6224
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:01:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726946AbfICHGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 03:06:37 -0400
-Received: from mail-sh.amlogic.com ([58.32.228.43]:19737 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727454AbfICHGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:06:37 -0400
-X-Greylist: delayed 902 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 03:06:26 EDT
-Received: from droid13.amlogic.com (116.236.93.172) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server id 15.1.1591.10; Tue, 3 Sep 2019
- 14:52:14 +0800
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-To:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>
-CC:     Jianxin Pan <jianxin.pan@amlogic.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Tao Zeng <tao.zeng@amlogic.com>
-Subject: [PATCH 4/4] arm64: dts: add support for A1 based Amlogic AD401
-Date:   Tue, 3 Sep 2019 02:51:15 -0400
-Message-ID: <1567493475-75451-5-git-send-email-jianxin.pan@amlogic.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1567493475-75451-1-git-send-email-jianxin.pan@amlogic.com>
-References: <1567493475-75451-1-git-send-email-jianxin.pan@amlogic.com>
+        id S1726864AbfICHB1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 03:01:27 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:38273 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726740AbfICHB1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:01:27 -0400
+Received: by mail-wr1-f65.google.com with SMTP id l11so7328121wrx.5;
+        Tue, 03 Sep 2019 00:01:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=x1nbu8LDMNKcL3wRyPaoJ6E/qOL+OZWGIE7xa+JmlVM=;
+        b=DZshqXdw6qr/vxh43/Z8XDTOMmhr39W1d1qbhaK7JWyBLbjGOpNvpIayiJF6wCSOhz
+         o7LStLr5oJhoML26ZOI2Zs64PwBIGEVROne/5YkIOnCWQMd6m9Ym5jTXHPi2syEq6t+I
+         o2maCiJLhuVHjtoioMdndFkLT1l/fXVbBBfQb8SnsigQSK3wJfpKiSNzSWkJw4L0wsV4
+         oV7ShwClD7hzIGEOTL6SPxP4PiMuM9PN2o4RVvHAgo/q5Q/u9eoJKpVsmksk/E8emvKU
+         vIFnCBAiufWqakI7qUEOBzZKwtf7w6nijlA4g15eGSdUFJIHYP+m5XbFasaSZoMaHU7G
+         kHrw==
+X-Gm-Message-State: APjAAAVOkO4f1N3WwH4cNnFv22oVjVJNtIAOpWpgDao4jJhefr5aMq+K
+        hUDxgc1X6atHaSBQPXcZFQ==
+X-Google-Smtp-Source: APXvYqx0KeVWDUUvgESpHFrFHI6UucSx3ohlZN4CR7baTIqD8tau/T0Nm42AoaeCSI5Lf5QLqkTnkQ==
+X-Received: by 2002:adf:b1cc:: with SMTP id r12mr15262176wra.250.1567494084729;
+        Tue, 03 Sep 2019 00:01:24 -0700 (PDT)
+Received: from localhost ([212.187.182.166])
+        by smtp.gmail.com with ESMTPSA id j20sm25672716wre.65.2019.09.03.00.01.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2019 00:01:24 -0700 (PDT)
+Date:   Tue, 3 Sep 2019 08:01:23 +0100
+From:   Rob Herring <robh@kernel.org>
+To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH input-next 2/4] dt-bindings: input: mpr121: Add
+ poll-interval property
+Message-ID: <20190903070123.GA15981@bogus>
+References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
+ <1567424417-3914-3-git-send-email-michal.vokac@ysoft.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [116.236.93.172]
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1567424417-3914-3-git-send-email-michal.vokac@ysoft.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic support for the Amlogic A1 based Amlogic AD401 board:
-which describe components as follows: Reserve Memory, CPU, GIC, IRQ,
-Timer, UART. It's capable of booting up into the serial console.
+On Mon, Sep 02, 2019 at 01:40:15PM +0200, Michal Vokáč wrote:
+> Add an option to periodicaly poll the device to get the buttons states
+> as the interrupt line may not be used on some platforms.
+> 
+> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> ---
+> I am not sure how to propperly handle this.
+> Either interrupt or linux,poll-interval is required, but not both.
 
-Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/Makefile           |   1 +
- arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts |  30 ++++++
- arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 121 +++++++++++++++++++++++++
- 3 files changed, 152 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+Add this at the top level:
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index edbf128..1720c45 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -36,3 +36,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
-new file mode 100644
-index 00000000..3c05cc0
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-a1.dtsi"
-+
-+/ {
-+	compatible = "amlogic,ad401", "amlogic,a1";
-+	model = "Amlogic Meson A1 AD401 Development Board";
-+
-+	aliases {
-+		serial0 = &uart_AO_B;
-+	};
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+	memory@0 {
-+		device_type = "memory";
-+		linux,usable-memory = <0x0 0x0 0x0 0x8000000>;
-+	};
-+};
-+
-+&uart_AO_B {
-+	status = "okay";
-+	/*pinctrl-0 = <&uart_ao_a_pins>;*/
-+	/*pinctrl-names = "default";*/
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-new file mode 100644
-index 00000000..b98d648
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-@@ -0,0 +1,121 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	compatible = "amlogic,a1";
-+
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <0x2>;
-+		#size-cells = <0x0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a35";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+			next-level-cache = <&l2>;
-+		};
-+
-+		l2: l2-cache0 {
-+			compatible = "cache";
-+		};
-+	};
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		linux,cma {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x0 0x800000>;
-+			alignment = <0x0 0x400000>;
-+			linux,cma-default;
-+		};
-+	};
-+
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		uart_AO: serial@fe001c00 {
-+			compatible = "amlogic,meson-gx-uart",
-+				     "amlogic,meson-ao-uart";
-+			reg = <0x0 0xfe001c00 0x0 0x18>;
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&xtal>, <&xtal>, <&xtal>;
-+			clock-names = "xtal", "pclk", "baud";
-+			status = "disabled";
-+		};
-+
-+		uart_AO_B: serial@fe002000 {
-+			compatible = "amlogic,meson-gx-uart",
-+				     "amlogic,meson-ao-uart";
-+				     reg = <0x0 0xfe002000 0x0 0x18>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&xtal>, <&xtal>, <&xtal>;
-+			clock-names = "xtal", "pclk", "baud";
-+			status = "disabled";
-+		};
-+
-+		gic: interrupt-controller@ff901000 {
-+			compatible = "arm,gic-400";
-+			reg = <0x0 0xff901000 0x0 0x1000>,
-+			      <0x0 0xff902000 0x0 0x2000>,
-+			      <0x0 0xff904000 0x0 0x2000>,
-+			      <0x0 0xff906000 0x0 0x2000>;
-+			interrupt-controller;
-+			interrupts = <GIC_PPI 9
-+				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10
-+			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+};
--- 
-2.7.4
+oneOf:
+  - required: [ interrupts ]
+  - required: [ linux,poll-interval ]
 
+> 
+>  .../bindings/input/fsl,mpr121-touchkey.yaml          | 20 +++++++++++++++++++-
+>  1 file changed, 19 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> index c463c1c81755..2b3073a3c9f4 100644
+> --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+> @@ -34,6 +34,10 @@ properties:
+>      minItems: 1
+>      maxItems: 12
+>  
+> +  linux,poll-interval:
+> +    description: Poll interval time in milliseconds.
+> +    maxItems: 1
+
+We already have 'poll-interval' in several bindings. Use that.
+
+This should have a type definition and you don't need maxItems:
+
+$ref: /schemas/types.yaml#/definitions/uint32
+
+Really this should go in a common input schema doc.
+> +
+>    wakeup-source: Use any event on keypad as wakeup event.
+>      type: boolean
+>  
+> @@ -44,12 +48,12 @@ properties:
+>  required:
+>    - compatible
+>    - reg
+> -  - interrupts
+>    - vdd-supply
+>    - linux,keycodes
+>  
+>  examples:
+>    - |
+> +    // Example with interrupts
+>      #include "dt-bindings/input/input.h"
+>      touchkey: mpr121@5a {
+>          compatible = "fsl,mpr121-touchkey";
+> @@ -62,3 +66,17 @@ examples:
+>                           <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
+>                           <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
+>      };
+> +
+> +  - |
+> +    // Example with polling
+> +    #include "dt-bindings/input/input.h"
+> +    touchkey: mpr121@5a {
+> +        compatible = "fsl,mpr121-touchkey";
+> +        reg = <0x5a>;
+> +        linux,poll-interval = <20>;
+> +        autorepeat;
+> +        vdd-supply = <&ldo4_reg>;
+> +        linux,keycodes = <KEY_0>, <KEY_1>, <KEY_2>, <KEY_3>,
+> +                         <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
+> +                         <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
+> +    );
+> -- 
+> 2.1.4
+> 
