@@ -2,134 +2,329 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C5DA5F8D
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 05:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE258A5FD6
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 05:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725844AbfICDMW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 2 Sep 2019 23:12:22 -0400
-Received: from mail-eopbgr80085.outbound.protection.outlook.com ([40.107.8.85]:65001
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725821AbfICDMW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 2 Sep 2019 23:12:22 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=al+Sn53UeKQZk9VLzdRnMdye9ZQpiSaTs1lq99uDCyeHMtM4Wot/CTp1DFufmpQEj06vRO82w2/QJU+VJhen9ZY+AA4LoN+5O6Zv33+0C+5BPJpMFe+YigZ19zOwKEtgAmPB+PmEYgcBCvtUiZZmv4sPe07f+6N62TkknwAI72lHg2LonwSB0gyWbFGexgz1jfmTWY6b0NXmwW2kBsoyYjaMjXJbk4l7DNdbZz/hsLTK3mD67fgnVfKXR2W6wA4jq+Dy0LzULfiF6d1VnNHekzGszrvVnjE6RKa6lL2NmpszffJJABh0zFcT3U03tLDnIvHmTFZtc1CrnS58hYbCTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0Aljlc9VXvbdFHeIbT8N+MLdwfvYLNnBorBRhOCw5sw=;
- b=aiLC7mnGXnCFfF1eRMdfX9VHZgau8wqQ+3zW9moSqDIOxjlkR9PXmDq5tEq6un34kLIRdvFXsEgxHj0vp8w97+Ab3DbiYWqjwTgo8yo93PkDW4MdS4JrhMokaEiGGvWlSQMEvNm0qXRJGLpn4MWlI5AOlXqCX2EZTiBjufNjP/I9JisAXnWHLF2C2eUBU0ADnUqUQZSnrKq1KuyQ3D9+KJF3r7NvxdWOoyHzCsyXjBTU4tyeDmcKG9CQoRGd6zZk5kGlQYu6q5SZuJGJw/otnZFk6D1fvYY6qs4H/Tw9TWhcYJmBxWHfT01tCzT1pCE48r0ueEv2/aemmT8QQEFPcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0Aljlc9VXvbdFHeIbT8N+MLdwfvYLNnBorBRhOCw5sw=;
- b=J5gQ0mfgn6eRQtFgY7OrH/5o/corjocPrueGhtO68d9SlvKxAqBXCuJjQE0JrJMH+bHH6P3p+uMG/YZvcW8ASfZWcdobWMhxFSywkQTFjcNjEWvRtueh8GTf1oFEuRhNWlwKFVH9v3x8mMzZB+rS2wDkVwEY1RMh0rpYVtWgxbU=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3865.eurprd04.prod.outlook.com (52.134.73.19) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2220.18; Tue, 3 Sep 2019 03:11:36 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::8958:299c:bc54:2a38]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::8958:299c:bc54:2a38%7]) with mapi id 15.20.2199.021; Tue, 3 Sep 2019
- 03:11:36 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Fabio Estevam <festevam@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Duan <fugang.duan@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        "marcin.juszkiewicz@linaro.org" <marcin.juszkiewicz@linaro.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "yuehaibing@huawei.com" <yuehaibing@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "ronald@innovation.ch" <ronald@innovation.ch>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH V2 2/5] input: keyboard: imx_sc: Add i.MX system
- controller power key support
-Thread-Topic: [PATCH V2 2/5] input: keyboard: imx_sc: Add i.MX system
- controller power key support
-Thread-Index: AQHVYfwAkBJd0uw8O0iWCkl8q7ZXAqcZPXwAgAAI/NA=
-Date:   Tue, 3 Sep 2019 03:11:35 +0000
-Message-ID: <DB3PR0402MB391636D31F486639FB8B3BA6F5B90@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
- <1567519424-32271-2-git-send-email-Anson.Huang@nxp.com>
- <CAOMZO5CHmvrbVG_h8hOb7hMjXasV_QwtNoXpEw9kqY=4Jj5HAg@mail.gmail.com>
-In-Reply-To: <CAOMZO5CHmvrbVG_h8hOb7hMjXasV_QwtNoXpEw9kqY=4Jj5HAg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c589e467-bde8-4e07-1d6c-08d7301c6e29
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3865;
-x-ms-traffictypediagnostic: DB3PR0402MB3865:|DB3PR0402MB3865:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB3865AF11E8B7C6BEA3A58049F5B90@DB3PR0402MB3865.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2887;
-x-forefront-prvs: 01494FA7F7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(199004)(189003)(7736002)(2906002)(7696005)(1411001)(25786009)(33656002)(3846002)(14454004)(6436002)(6116002)(478600001)(8676002)(81166006)(81156014)(5660300002)(99286004)(86362001)(229853002)(8936002)(305945005)(4744005)(316002)(66066001)(6916009)(74316002)(52536014)(54906003)(71190400001)(71200400001)(9686003)(53546011)(6506007)(102836004)(53936002)(66476007)(66556008)(64756008)(66446008)(76176011)(4326008)(55016002)(7416002)(66946007)(476003)(486006)(11346002)(446003)(6246003)(256004)(26005)(76116006)(186003)(44832011);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3865;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: /9Tx6X1ZMceFWHG3soSVtE64xxo3QgRGA7RxOTsR4NXOLB/ZFyuvmf2D4gHynn0Tn2m0v+yiV/iQgUO/yCOl/kyfXPysJRaxBChRVDoS379IWz1n5eTJGpZQCR3AfAv2qaLl/2um2O+tZN1FSarLo/Fj07lDJXRx7J3oZIv+ZpF91WjUMoVGOJbWosN1O5BtL9+tA6WXKzMPQuidSN1MepNShSLoNdl4JmqSg8Upj92NhVxeYMj/LpCEbwSieBBWrhbU4jAfe+RuISBjsDtmLYVI+6RAsbpSqRjCfoXe2wzdUbnDjiIGaC9kZJT9ZT4TQI1uxwvpvxFARMBqWVXGtF4Wpw5hmS2KQ45sxVGd/+7RRVp4cw4giHhjYwubMMlfacCbC1YocIihvY2nBDrVqgmvQ8fdTbGj9gcSqcJh4G0=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c589e467-bde8-4e07-1d6c-08d7301c6e29
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 03:11:35.9531
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: e0igZZ8yYn/zyNgTozA60HccOUDKn28F0gnqb8JTeMkzffh+orPvPGJQ8UugIFgt7pfdJlXlfXQ7cWVSuAbI2g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3865
+        id S1725895AbfICDln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 2 Sep 2019 23:41:43 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:54184 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725870AbfICDlm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 2 Sep 2019 23:41:42 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id ACC60200231;
+        Tue,  3 Sep 2019 05:41:40 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A7E5C200264;
+        Tue,  3 Sep 2019 05:41:36 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A9DA6402B1;
+        Tue,  3 Sep 2019 11:41:31 +0800 (SGT)
+From:   Yuantian Tang <andy.tang@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Yuantian Tang <andy.tang@nxp.com>
+Subject: [PATCH] arm64: dts: lx2160a: add tmu device node
+Date:   Tue,  3 Sep 2019 11:31:32 +0800
+Message-Id: <20190903033132.17661-1-andy.tang@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIEZhYmlvDQoNCj4gT24gTW9uLCBTZXAgMiwgMjAxOSBhdCAxMTowNSBQTSBBbnNvbiBIdWFu
-ZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gd3JvdGU6DQo+IA0KPiA+ICsgICAgICAgcmV0ID0g
-aW5wdXRfcmVnaXN0ZXJfZGV2aWNlKGlucHV0KTsNCj4gPiArICAgICAgIGlmIChyZXQgPCAwKSB7
-DQo+ID4gKyAgICAgICAgICAgICAgIGRldl9lcnIoJnBkZXYtPmRldiwgImZhaWxlZCB0byByZWdp
-c3RlciBpbnB1dCBkZXZpY2VcbiIpOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0K
-PiA+ICsgICAgICAgfQ0KPiA+ICsNCj4gPiArICAgICAgIHBkYXRhLT5pbnB1dCA9IGlucHV0Ow0K
-PiA+ICsgICAgICAgcGxhdGZvcm1fc2V0X2RydmRhdGEocGRldiwgcGRhdGEpOw0KPiA+ICsNCj4g
-PiArICAgICAgIHJldCA9IGlteF9zY3VfaXJxX2dyb3VwX2VuYWJsZShTQ19JUlFfR1JPVVBfV0FL
-RSwNCj4gU0NfSVJRX0JVVFRPTiwgdHJ1ZSk7DQo+ID4gKyAgICAgICBpZiAocmV0KSB7DQo+ID4g
-KyAgICAgICAgICAgICAgIGRldl93YXJuKCZwZGV2LT5kZXYsICJlbmFibGUgc2N1IGdyb3VwIGly
-cSBmYWlsZWRcbiIpOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiANCj4gQmV0
-dGVyIGRvIGEgJ2dvdG8gaW5wdXRfdW5yZWdpc3RlcicgaGVyZSBpbnN0ZWFkIGFuZCBjYWxsDQo+
-IGlucHV0X3VucmVnaXN0ZXJfZGV2aWNlKCkuDQoNCkFncmVlZCwgd2lsbCBmaXggaW4gVjMgbGF0
-ZXIuDQoNClRoYW5rcywNCkFuc29uLg0K
+Add the TMU (Thermal Monitoring Unit) device node to enable
+TMU feature.
+
+Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+---
+ .../arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 108 +++++++++++++++---
+ 1 file changed, 92 insertions(+), 16 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index 39d497df769e..e70ddd01cd84 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -6,6 +6,7 @@
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/thermal/thermal.h>
+ 
+ /memreserve/ 0x80000000 0x00010000;
+ 
+@@ -24,7 +25,7 @@
+ 		#size-cells = <0>;
+ 
+ 		// 8 clusters having 2 Cortex-A72 cores each
+-		cpu@0 {
++		cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -38,9 +39,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster0_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@1 {
++		cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -54,9 +56,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster0_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@100 {
++		cpu100: cpu@100 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -70,9 +73,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster1_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@101 {
++		cpu101: cpu@101 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -86,9 +90,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster1_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@200 {
++		cpu200: cpu@200 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -102,9 +107,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster2_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@201 {
++		cpu201: cpu@201 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -118,9 +124,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster2_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@300 {
++		cpu300: cpu@300 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -134,9 +141,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster3_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@301 {
++		cpu301: cpu@301 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -150,9 +158,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster3_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@400 {
++		cpu400: cpu@400 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -166,9 +175,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster4_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@401 {
++		cpu401: cpu@401 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -182,9 +192,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster4_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@500 {
++		cpu500: cpu@500 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -198,9 +209,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster5_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@501 {
++		cpu501: cpu@501 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -214,9 +226,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster5_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@600 {
++		cpu600: cpu@600 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -230,9 +243,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster6_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@601 {
++		cpu601: cpu@601 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -246,9 +260,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster6_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@700 {
++		cpu700: cpu@700 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -262,9 +277,10 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster7_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+-		cpu@701 {
++		cpu701: cpu@701 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a72";
+ 			enable-method = "psci";
+@@ -278,6 +294,7 @@
+ 			i-cache-sets = <192>;
+ 			next-level-cache = <&cluster7_l2>;
+ 			cpu-idle-states = <&cpu_pw20>;
++			#cooling-cells = <2>;
+ 		};
+ 
+ 		cluster0_l2: l2-cache0 {
+@@ -422,6 +439,51 @@
+ 		clock-output-names = "sysclk";
+ 	};
+ 
++	thermal-zones {
++		core_thermal1: core-thermal1 {
++			polling-delay-passive = <1000>;
++			polling-delay = <5000>;
++			thermal-sensors = <&tmu 0>;
++
++			trips {
++				core_cluster_alert: core-cluster-alert {
++					temperature = <85000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
++
++				core_cluster_crit: core-cluster-crit {
++					temperature = <95000>;
++					hysteresis = <2000>;
++					type = "critical";
++				};
++			};
++
++			cooling-maps {
++				map0 {
++					trip = <&core_cluster_alert>;
++					cooling-device =
++						<&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu200 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu201 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu300 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu301 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu400 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu401 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu500 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu501 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu600 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu601 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu700 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++						<&cpu701 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++			};
++		};
++	};
++
+ 	soc {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+@@ -689,6 +751,20 @@
+ 			status = "disabled";
+ 		};
+ 
++		tmu: tmu@1f80000 {
++			compatible = "fsl,qoriq-tmu";
++			reg = <0x0 0x1f80000 0x0 0x10000>;
++			interrupts = <0 23 0x4>;
++			fsl,tmu-range = <0x800000E6 0x8001017D>;
++			fsl,tmu-calibration =
++				/* Calibration data group 1 */
++				<0x00000000 0x00000035
++				/* Calibration data group 2 */
++				0x00010001 0x00000154>;
++			little-endian;
++			#thermal-sensor-cells = <1>;
++		};
++
+ 		uart0: serial@21c0000 {
+ 			compatible = "arm,sbsa-uart","arm,pl011";
+ 			reg = <0x0 0x21c0000 0x0 0x1000>;
+-- 
+2.17.1
+
