@@ -2,185 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AA1DA65C7
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:40:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C102EA65FA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 11:46:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728936AbfICJkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 05:40:13 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:17687 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727005AbfICJkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 05:40:12 -0400
-X-UUID: a0206e1987914d868c98dba182d76c77-20190903
-X-UUID: a0206e1987914d868c98dba182d76c77-20190903
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1943263720; Tue, 03 Sep 2019 17:40:09 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 3 Sep 2019 17:40:08 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 3 Sep 2019 17:40:07 +0800
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Evan Green <evgreen@chromium.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Tomasz Figa <tfiga@google.com>,
-        Will Deacon <will.deacon@arm.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <iommu@lists.linux-foundation.org>, <yong.wu@mediatek.com>,
-        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>, <anan.sun@mediatek.com>,
-        <cui.zhang@mediatek.com>, <chao.hao@mediatek.com>,
-        <ming-fan.chen@mediatek.com>
-Subject: [PATCH v3 14/14] arm64: dts: mediatek: Get rid of mediatek,larb for MM nodes
-Date:   Tue, 3 Sep 2019 17:37:36 +0800
-Message-ID: <1567503456-24725-15-git-send-email-yong.wu@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1567503456-24725-1-git-send-email-yong.wu@mediatek.com>
-References: <1567503456-24725-1-git-send-email-yong.wu@mediatek.com>
+        id S1728507AbfICJqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 05:46:07 -0400
+Received: from smtprelay0050.hostedemail.com ([216.40.44.50]:51740 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727077AbfICJqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 05:46:06 -0400
+X-Greylist: delayed 433 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 05:46:06 EDT
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
+        by smtpgrave04.hostedemail.com (Postfix) with ESMTP id 9110D1807BE78;
+        Tue,  3 Sep 2019 09:38:53 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay02.hostedemail.com (Postfix) with ESMTP id AEB3E2B347;
+        Tue,  3 Sep 2019 09:38:51 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::,RULES_HIT:41:355:379:599:960:968:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1461:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:1801:2198:2199:2393:2559:2562:2731:2828:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3874:4250:4321:4605:5007:6117:6119:6120:7809:7903:10004:10400:10848:11232:11658:11914:12043:12048:12297:12740:12760:12895:13069:13311:13357:13439:14180:14659:14721:14819:21060:21080:21324:21433:21611:21627:21740:30029:30030:30054:30091,0,RBL:47.151.137.30:@perches.com:.lbl8.mailshell.net-62.14.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:27,LUA_SUMMARY:none
+X-HE-Tag: geese64_4d259d89bf017
+X-Filterd-Recvd-Size: 2574
+Received: from XPS-9350.home (unknown [47.151.137.30])
+        (Authenticated sender: joe@perches.com)
+        by omf11.hostedemail.com (Postfix) with ESMTPA;
+        Tue,  3 Sep 2019 09:38:50 +0000 (UTC)
+Message-ID: <be9cd5d933486de9cf88a1550c2020c56348670d.camel@perches.com>
+Subject: Re: [PATCH v5 00/11] Device property improvements, add %pfw format
+ specifier
+From:   Joe Perches <joe@perches.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date:   Tue, 03 Sep 2019 02:38:48 -0700
+In-Reply-To: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
+References: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After adding device_link between the IOMMU consumer and smi,
-the mediatek,larb is unnecessary now.
+On Mon, 2019-09-02 at 16:57 +0300, Sakari Ailus wrote:
+> Hi all,
+> 
+> This set adds functionality into the device property API (counting a
+> node's parents as well as obtaining its name) in order to support printing
+> fwnode names using a new conversion specifier "%pfw". The names that are
+> produced are equivalent to its OF counterpart "%pOF" on OF systems for the
+> two supported modifiers ("f" and "P").
+> 
+> Printing a node's name is something that's been available on OF for a long
+> time and if something is converted to device property API (such as the
+> V4L2 fwnode framework) it always got removed of a nice feature that was
+> sometimes essential in debugging. With this set, that no longer is the
+> case.
 
-CC: Matthias Brugger <matthias.bgg@gmail.com>
-Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-Reviewed-by: Evan Green <evgreen@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8173.dtsi | 15 ---------------
- 1 file changed, 15 deletions(-)
+Doesn't this still have dependencies on removing all
+existing %p[fF] uses?
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-index 15f1842..06e2c09 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-@@ -921,7 +921,6 @@
- 				 <&mmsys CLK_MM_MUTEX_32K>;
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
--			mediatek,larb = <&larb0>;
- 			mediatek,vpu = <&vpu>;
- 		};
- 
-@@ -932,7 +931,6 @@
- 				 <&mmsys CLK_MM_MUTEX_32K>;
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_RDMA1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		mdp_rsz0: rsz@14003000 {
-@@ -962,7 +960,6 @@
- 			clocks = <&mmsys CLK_MM_MDP_WDMA>;
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_WDMA>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		mdp_wrot0: wrot@14007000 {
-@@ -971,7 +968,6 @@
- 			clocks = <&mmsys CLK_MM_MDP_WROT0>;
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_WROT0>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		mdp_wrot1: wrot@14008000 {
-@@ -980,7 +976,6 @@
- 			clocks = <&mmsys CLK_MM_MDP_WROT1>;
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			iommus = <&iommu M4U_PORT_MDP_WROT1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		ovl0: ovl@1400c000 {
-@@ -990,7 +985,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL0>;
- 			iommus = <&iommu M4U_PORT_DISP_OVL0>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		ovl1: ovl@1400d000 {
-@@ -1000,7 +994,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_OVL1>;
- 			iommus = <&iommu M4U_PORT_DISP_OVL1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		rdma0: rdma@1400e000 {
-@@ -1010,7 +1003,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA0>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA0>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		rdma1: rdma@1400f000 {
-@@ -1020,7 +1012,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA1>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		rdma2: rdma@14010000 {
-@@ -1030,7 +1021,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_RDMA2>;
- 			iommus = <&iommu M4U_PORT_DISP_RDMA2>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		wdma0: wdma@14011000 {
-@@ -1040,7 +1030,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_WDMA0>;
- 			iommus = <&iommu M4U_PORT_DISP_WDMA0>;
--			mediatek,larb = <&larb0>;
- 		};
- 
- 		wdma1: wdma@14012000 {
-@@ -1050,7 +1039,6 @@
- 			power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
- 			clocks = <&mmsys CLK_MM_DISP_WDMA1>;
- 			iommus = <&iommu M4U_PORT_DISP_WDMA1>;
--			mediatek,larb = <&larb4>;
- 		};
- 
- 		color0: color@14013000 {
-@@ -1294,7 +1282,6 @@
- 			      <0 0x16027800 0 0x800>,	/* VDEC_HWB */
- 			      <0 0x16028400 0 0x400>;	/* VDEC_HWG */
- 			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_LOW>;
--			mediatek,larb = <&larb1>;
- 			iommus = <&iommu M4U_PORT_HW_VDEC_MC_EXT>,
- 				 <&iommu M4U_PORT_HW_VDEC_PP_EXT>,
- 				 <&iommu M4U_PORT_HW_VDEC_AVC_MV_EXT>,
-@@ -1364,8 +1351,6 @@
- 			      <0 0x19002000 0 0x1000>;	/* VENC_LT_SYS */
- 			interrupts = <GIC_SPI 198 IRQ_TYPE_LEVEL_LOW>,
- 				     <GIC_SPI 202 IRQ_TYPE_LEVEL_LOW>;
--			mediatek,larb = <&larb3>,
--					<&larb5>;
- 			iommus = <&iommu M4U_PORT_VENC_RCPU>,
- 				 <&iommu M4U_PORT_VENC_REC>,
- 				 <&iommu M4U_PORT_VENC_BSDMA>,
--- 
-1.9.1
+In Linus' tree:
+
+tools/lib/traceevent/Documentation/libtraceevent-func_apis.txt:or events have "%pF" or "%pS" parameter in its format string. It is common to
+tools/lib/traceevent/event-parse.c:             if (asprintf(&format, "%%pf: (NO FORMAT FOUND at %llx)\n", addr) < 0)
+tools/lib/traceevent/event-parse.c:     if (asprintf(&format, "%s: %s", "%pf", printk->printk) < 0)
+
+And these in -next:
+
+drivers/scsi/lpfc/lpfc_hbadisc.c:                                        "3185 FIND node filter %pf DID "
+drivers/scsi/lpfc/lpfc_hbadisc.c:                        "3186 FIND node filter %pf NOT FOUND.\n", filter);
+drivers/scsi/lpfc/lpfc_sli.c:                           "(%d):0307 Mailbox cmd x%x (x%x/x%x) Cmpl %pf "
+
 
