@@ -2,116 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F355A6705
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 13:05:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 587FDA66CA
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 12:52:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727077AbfICLFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 07:05:39 -0400
-Received: from 60-251-196-230.HINET-IP.hinet.net ([60.251.196.230]:36507 "EHLO
-        ironport.ite.com.tw" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726631AbfICLFj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 07:05:39 -0400
-X-Greylist: delayed 594 seconds by postgrey-1.27 at vger.kernel.org; Tue, 03 Sep 2019 07:05:39 EDT
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 03 Sep 2019 18:55:44 +0800
-Received: from csbcas.internal.ite.com.tw (csbcas1.internal.ite.com.tw [192.168.65.46])
-        by mse.ite.com.tw with ESMTP id x83AtcHq074927;
-        Tue, 3 Sep 2019 18:55:38 +0800 (GMT-8)
-        (envelope-from allen.chen@ite.com.tw)
-Received: from allen-VirtualBox.internal.ite.com.tw (192.168.70.14) by
- csbcas1.internal.ite.com.tw (192.168.65.45) with Microsoft SMTP Server (TLS)
- id 14.3.352.0; Tue, 3 Sep 2019 18:55:39 +0800
-From:   allen <allen.chen@ite.com.tw>
-CC:     Allen Chen <allen.chen@ite.com.tw>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Jau-Chih Tseng <Jau-Chih.Tseng@ite.com.tw>,
-        David Airlie <airlied@linux.ie>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        CK Hu <ck.hu@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        "open list:DRM DRIVERS" <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 1/2] dt-bindings: Add binding for IT6505.
-Date:   Tue, 3 Sep 2019 18:51:53 +0800
-Message-ID: <1567507915-9844-2-git-send-email-allen.chen@ite.com.tw>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1567507915-9844-1-git-send-email-allen.chen@ite.com.tw>
-References: <1567507915-9844-1-git-send-email-allen.chen@ite.com.tw>
+        id S1727078AbfICKwZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 06:52:25 -0400
+Received: from mga07.intel.com ([134.134.136.100]:52775 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727005AbfICKwZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 06:52:25 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Sep 2019 03:52:24 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,462,1559545200"; 
+   d="scan'208";a="333800237"
+Received: from linux.intel.com ([10.54.29.200])
+  by orsmga004.jf.intel.com with ESMTP; 03 Sep 2019 03:52:24 -0700
+Received: from [10.226.38.16] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.16])
+        by linux.intel.com (Postfix) with ESMTP id A4FB7580105;
+        Tue,  3 Sep 2019 03:52:22 -0700 (PDT)
+Subject: Re: [PATCH v2 1/2] dt-bindings: phy: intel-sdxc-phy: Add YAML schema
+ for LGM SDXC PHY
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        peter.harliman.liem@intel.com
+References: <20190828124315.48448-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190828124315.48448-2-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190902033716.GA18092@bogus>
+ <9f4d6bdd-072a-ab71-1ef1-1d00c22bd064@linux.intel.com>
+ <CAL_JsqKm=-5F-Ej1mzRaygJnjS2Lec6uJF4J3vfCnqdkQNNbug@mail.gmail.com>
+ <39d6fe60-e9f5-d205-ec6c-4a3143fe1e13@linux.intel.com>
+ <CAL_Jsq+f27t5Wu+qtynDd_O9vBVZFKHCrgCP7WhyGo+W1y-XAA@mail.gmail.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <a7aa3ae0-b8b6-5199-468f-f282fdff15cf@linux.intel.com>
+Date:   Tue, 3 Sep 2019 18:52:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.70.14]
-X-MAIL: mse.ite.com.tw x83AtcHq074927
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <CAL_Jsq+f27t5Wu+qtynDd_O9vBVZFKHCrgCP7WhyGo+W1y-XAA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Allen Chen <allen.chen@ite.com.tw>
+Hi Rob,
 
-Add a DT binding documentation for IT6505.
+    Thank you for your suggestions and clarifications.
 
-Signed-off-by: Allen Chen <allen.chen@ite.com.tw>
+On 3/9/2019 6:34 PM, Rob Herring wrote:
+> On Tue, Sep 3, 2019 at 11:08 AM Ramuthevar, Vadivel MuruganX
+> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+>> Hi Rob,
+>>
+>>    Thank you so much for prompt reply.
+>>
+>> On 3/9/2019 5:19 PM, Rob Herring wrote:
+>>> On Tue, Sep 3, 2019 at 2:57 AM Ramuthevar, Vadivel MuruganX
+>>> <vadivel.muruganx.ramuthevar@linux.intel.com> wrote:
+>>>> Hi Rob,
+>>>>
+>>>> Thank you for review comments.
+>>>>
+>>>> On 2/9/2019 9:38 PM, Rob Herring wrote:
+>>>>> On Wed, Aug 28, 2019 at 08:43:14PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+>>>>>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>>>>>
+>>>>>> Add a YAML schema to use the host controller driver with the
+>>>>>> SDXC PHY on Intel's Lightning Mountain SoC.
+>>>>>>
+>>>>>> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>>>>> ---
+>>>>>>     .../bindings/phy/intel,lgm-sdxc-phy.yaml           | 52 ++++++++++++++++++++++
+>>>>>>     .../devicetree/bindings/phy/intel,syscon.yaml      | 33 ++++++++++++++
+>>>>>>     2 files changed, 85 insertions(+)
+>>>>>>     create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
+>>>>>>     create mode 100644 Documentation/devicetree/bindings/phy/intel,syscon.yaml
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml b/Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..99647207b414
+>>>>>> --- /dev/null
+>>>>>> +++ b/Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
+>>>>>> @@ -0,0 +1,52 @@
+>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>> +%YAML 1.2
+>>>>>> +---
+>>>>>> +$id: http://devicetree.org/schemas/phy/intel,lgm-sdxc-phy.yaml#
+>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>> +
+>>>>>> +title: Intel Lightning Mountain(LGM) SDXC PHY Device Tree Bindings
+>>>>>> +
+>>>>>> +maintainers:
+>>>>>> +  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>>>>> +
+>>>>>> +allOf:
+>>>>>> +  - $ref: "intel,syscon.yaml"
+>>>>> You don't need this. It should be selected and applied by the compatible
+>>>>> string matching.
+>>>> Agreed, fix it in the next patch.
+>>>>>> +
+>>>>>> +description: Binding for SDXC PHY
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    const: intel,lgm-sdxc-phy
+>>>>>> +
+>>>>>> +  intel,syscon:
+>>>>>> +    description: phandle to the sdxc through syscon
+>>>>>> +
+>>>>>> +  clocks:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  clock-names:
+>>>>>> +    maxItems: 1
+>>>>>> +
+>>>>>> +  "#phy-cells":
+>>>>>> +    const: 0
+>>>>>> +
+>>>>>> +required:
+>>>>>> +  - "#phy-cells"
+>>>>>> +  - compatible
+>>>>>> +  - intel,syscon
+>>>>>> +  - clocks
+>>>>>> +  - clock-names
+>>>>>> +
+>>>>>> +additionalProperties: false
+>>>>>> +
+>>>>>> +examples:
+>>>>>> +  - |
+>>>>>> +    sdxc_phy: sdxc_phy {
+>>>>>> +        compatible = "intel,lgm-sdxc-phy";
+>>>>>> +        intel,syscon = <&sysconf>;
+>>>>> Make this a child of the below node and then you don't need this.
+>>>>>
+>>>>> If there's a register address range associated with this, then add a reg
+>>>>> property.
+>>>> Thanks for comments,  I have defined herewith example
+>>>>
+>>>> sysconf: chiptop@e0020000 {
+>>>>                compatible = "intel,syscon";
+>>> Needs to be SoC specific value.
+>> Agreed! it should be "intel, lgm-syscon"
+>>>>                reg = <0xe0020000 0x100>;
+>>>>
+>>>>                emmc_phy: emmc_phy {
+>>>>                    compatible = "intel,lgm-emmc-phy";
+>>>>                    intel,syscon = <&sysconf>;
+>>> This is redundant because you can just get the parent node.
+>>>
+>>> If there's a defined register range within the 'intel,syscon' block
+>>> then define it here with 'reg'.
+>> Agreed!, avoided redundant
+>>
+>> sysconf: chiptop@e0020000 {
+>>               compatible = "intel,lgm-syscon";
+>>               emmc_phy: emmc_phy {
+>>                   compatible = "intel,lgm-emmc-phy";
+>>                   reg = <0xe0020000 0x100>;
+> This is the same addresses you had for the parent, so that doesn't
+> seem right. The parent should have the entire range and then the child
+> nodes only the addresses for their functions. However, if the
+> registers are all interleaved then you can really put 'reg' in the
+> child nodes and just have it only in the parent. We don't want to have
+> overlapping addresses in DT.
+syscon is parent node, which has the base address for all the peripheral 
+registers and used by child nodes.
+child nodes have only offsets, we do not specify in device tree.
 
----
-Comments in v1 would be addressed later in v3.
----
- .../bindings/display/bridge/ite,it6505.txt         | 30 ++++++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.txt        |  1 +
- 2 files changed, 31 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-new file mode 100644
-index 0000000..c3506ac
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/ite,it6505.txt
-@@ -0,0 +1,30 @@
-+iTE it6505 DP bridge bindings
-+
-+Required properties:
-+        - compatible: "ite,it6505"
-+        - reg: i2c address of the bridge
-+        - ovdd-supply: I/O voltage
-+        - pwr18-supply: Core voltage
-+        - interrupts: interrupt specifier of INT pin
-+        - reset-gpios: gpio specifier of RESET pin
-+
-+Example:
-+	it6505dptx: it6505dptx@5c {
-+                compatible = "ite,it6505";
-+                status = "okay";
-+                interrupt-parent = <&pio>;
-+                interrupts = <152 IRQ_TYPE_EDGE_RISING 152 0>;
-+                reg = <0x5c>;
-+                pinctrl-names = "default";
-+                pinctrl-0 = <&it6505_pins>;
-+                ovdd-supply = <&mt6358_vsim1_reg>;
-+                pwr18-supply = <&it6505_pp18_reg>;
-+                reset-gpios = <&pio 179 1>;
-+                hpd-gpios = <&pio 9 0>;
-+                extcon = <&usbc_extcon>;
-+                port {
-+                        it6505_in: endpoint {
-+                                remote-endpoint = <&dpi_out>;
-+                        };
-+                };
-+        };
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.txt b/Documentation/devicetree/bindings/vendor-prefixes.txt
-index 2c3fc51..c088646 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.txt
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.txt
-@@ -184,6 +184,7 @@ iom	Iomega Corporation
- isee	ISEE 2007 S.L.
- isil	Intersil
- issi	Integrated Silicon Solutions Inc.
-+ite	iTE Tech. Inc.
- itead	ITEAD Intelligent Systems Co.Ltd
- iwave  iWave Systems Technologies Pvt. Ltd.
- jdi	Japan Display Inc.
--- 
-1.9.1
-
+Best Regards
+vadivel
+> Rob
