@@ -2,125 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D50FAA6113
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9B80A611B
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 08:14:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726016AbfICGM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 02:12:27 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:43679 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725888AbfICGM1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:12:27 -0400
-Received: by mail-io1-f65.google.com with SMTP id u185so29482191iod.10;
-        Mon, 02 Sep 2019 23:12:26 -0700 (PDT)
+        id S1727005AbfICGOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 02:14:06 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:39760 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725848AbfICGOG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 02:14:06 -0400
+Received: by mail-pl1-f194.google.com with SMTP id bd8so1097234plb.6
+        for <devicetree@vger.kernel.org>; Mon, 02 Sep 2019 23:14:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GZ5aGUxM1e1yAxeiEBXNgI8jjZDu1KoSilHhJTQM1zk=;
-        b=Wep3juTmL73l+HU2tDif3J1tPbmROfBh6z6wBs94tp5cxNJLrGZxFgQlSGpnSSRPPH
-         oTkMvyeCpeMI5ECRFaSvjc9HiQJEfMCTk/lrFOVPmYGQXwyKcc8CUmRCFzIIrhLaKNyD
-         3z2XRvdXF3fItuYEDCvcBCCLPjkFafM2rG2rMtVyUOlLRyLgiYWpW4GYClUyepfweeaz
-         b3+lKyAmSHAcLNppvm3AGZEOMUfXrcl2ixluW/2FhVQ07TRYZoTjzrKw5MojHYEW53lB
-         3DjQQ0aVOgb8yJ7gxDI9GPt5lRBBDtqtJrH5EjLGIn+IEeWGL90mvoGz6Fa4Gxa0xoPo
-         xKSA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=X56IDYGgH848OXVqS7siup3yiE3wR0xEVNMSreTqgdo=;
+        b=y3AMEKKLSVUNqigZFRl6vqbivo8ONu2wWnALKLMDMc58mKXv8dt1WPoc5s1l7AoJkd
+         bEd1/DYAizZBXBqpKoDvl0EwvbqFaBz5xRhAGLQZ7xmctZRSQ1LnS/PPfEZMDqiYjrOz
+         J5oppKWr7CODmyaxen0zqJKrJYVK40EJM1RvSaQwkVQ0z3SBy6X41YZKS2wrAxRKC0gd
+         B7bcAj3+Z9+/j+VwkhNq/gdzmyT5fuCFtrXdI1sANy1IuHwIolvMPMl9caZ6GZdzsGUf
+         C4ByUzzvg9vWkZfp3cCL+GDvvMtxUe0f603Gm4VlXnGPwkXyFph0x0XaNn3I3vyu1b4Y
+         uyrw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GZ5aGUxM1e1yAxeiEBXNgI8jjZDu1KoSilHhJTQM1zk=;
-        b=KmJlZl5H009KsSueieKeqo9izO0IV16u7UhVBzzQUM0y3ZIaB7Y01cDQoyd5cRrYfr
-         8PW+BkZ4/W8IzUknXm33VBHoRbRwNJm2dutv4VBbeX6t3YMKOe4dbmaYD3P2ycF69HT6
-         ldPxBdouu0FuRHv9buZRG0OoeA/4TDuzyCxKD/YP1Z9xKWMkSVUd6fk9N2v3O7YRZg7y
-         v0XGKCjB5GFK4+cuUsxX/gSae5/AYqFwmqHlxgYNuiu46ivnomN82WvfQEhmNy2aFVS7
-         3Ccs/ofTicaf4VxFsz/BRiyxyU1GkqLleQs6e/9qB2eqZygQ3cigCR9w/4tPLodOsXt3
-         iZeg==
-X-Gm-Message-State: APjAAAV0KH86GaeZi3GQy9HAfYez7OkIF/o8/rkysIQ0zkuYcLY9Tmkc
-        LONJZIdYk+A6T4+KSTkCN02O2jsCyzvPm7x6WAo=
-X-Google-Smtp-Source: APXvYqx2QRjbzZ7hc5y/0wPXxc2BOsqW7rYBr5/+9NPVJBc9aypHeg6RUiCGJe8eAjajGn857PgZlmUrG9vDjyGLKMk=
-X-Received: by 2002:a5d:974d:: with SMTP id c13mr11863170ioo.87.1567491145896;
- Mon, 02 Sep 2019 23:12:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <1567519424-32271-1-git-send-email-Anson.Huang@nxp.com>
- <1567519424-32271-2-git-send-email-Anson.Huang@nxp.com> <CAOMZO5CHmvrbVG_h8hOb7hMjXasV_QwtNoXpEw9kqY=4Jj5HAg@mail.gmail.com>
- <DB3PR0402MB391636D31F486639FB8B3BA6F5B90@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-In-Reply-To: <DB3PR0402MB391636D31F486639FB8B3BA6F5B90@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Date:   Mon, 2 Sep 2019 23:12:14 -0700
-Message-ID: <CAKdAkRRX4Cs1m7iwTuM0dpNr+xjp3qAZ1fo1pqreE7rR8KFgQQ@mail.gmail.com>
-Subject: Re: [PATCH V2 2/5] input: keyboard: imx_sc: Add i.MX system
- controller power key support
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     Fabio Estevam <festevam@gmail.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=X56IDYGgH848OXVqS7siup3yiE3wR0xEVNMSreTqgdo=;
+        b=V1nIXwWXFPM4yR88jusvtZzsA/fxp4UzQd8pS0UuLRyjYMRVcFuJjyD2+chiXBBnng
+         G+fxrlz2gjiAt+BnNRvIQZwSOzWrc2ALPdcTn+nmbC6/6yYnByoTuMQhLqkmpRacXqBW
+         2eGTfUnuh6tnwFJXjfjdD4hwJ8CnMxXbrE1Kfh6/IdgN38xZOvpApJK1OOutBI+M4SEk
+         9vSXDkM8xwnbCLzR2MsTPEqfPih/aRotNjkwJOFXKVtjqkB5wfVLHyWZRukvPuiQJdNP
+         WW2K/Q7Rl+0fmkx/F2EZ+OOxq9Z2ciRLv5Q5Zo2CktbWVwGmsx9DhVPZfdb9lErIipIK
+         IfRA==
+X-Gm-Message-State: APjAAAV4oX+LoRK7fN5LgTPKIesnrQAUxnvlxhLUGFzZbKqG5Lta9Inn
+        0PGYjKC2iLYy4nPw6dus2av7ZA==
+X-Google-Smtp-Source: APXvYqy2jgf96BPa+1HJhxpna1B7VYdeAxyhRykT9911XHflctDbHWllU730nibd82llGhzGl3E/gQ==
+X-Received: by 2002:a17:902:1122:: with SMTP id d31mr34104469pla.254.1567491245848;
+        Mon, 02 Sep 2019 23:14:05 -0700 (PDT)
+Received: from localhost ([122.167.132.221])
+        by smtp.gmail.com with ESMTPSA id p10sm18500683pff.132.2019.09.02.23.14.04
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 02 Sep 2019 23:14:05 -0700 (PDT)
+Date:   Tue, 3 Sep 2019 11:44:03 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?B?QW5kcsOp?= Roth <neolynx@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Andy Duan <fugang.duan@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        Olof Johansson <olof@lixom.net>, Arnd Bergmann <arnd@arndb.de>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        "marcin.juszkiewicz@linaro.org" <marcin.juszkiewicz@linaro.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        "yuehaibing@huawei.com" <yuehaibing@huawei.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "ronald@innovation.ch" <ronald@innovation.ch>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Subject: Re: [RFC 4/5] ARM: dts: omap3-n950-n9: remove opp-v1 table
+Message-ID: <20190903061403.k3d333f54gj2kuxi@vireshk-i7>
+References: <cover.1567421750.git.hns@goldelico.com>
+ <2f978667c1533e46e3a5df58871e9048f3eb74e9.1567421751.git.hns@goldelico.com>
+ <20190903023635.44yf32jowpm3hgfp@vireshk-i7>
+ <8BC1AEC9-7B24-4C07-8659-16741D018164@goldelico.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8BC1AEC9-7B24-4C07-8659-16741D018164@goldelico.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 2, 2019 at 8:11 PM Anson Huang <anson.huang@nxp.com> wrote:
->
-> Hi, Fabio
->
-> > On Mon, Sep 2, 2019 at 11:05 PM Anson Huang <Anson.Huang@nxp.com>
-> > wrote:
-> >
-> > > +       ret = input_register_device(input);
-> > > +       if (ret < 0) {
-> > > +               dev_err(&pdev->dev, "failed to register input device\n");
-> > > +               return ret;
-> > > +       }
-> > > +
-> > > +       pdata->input = input;
-> > > +       platform_set_drvdata(pdev, pdata);
-> > > +
-> > > +       ret = imx_scu_irq_group_enable(SC_IRQ_GROUP_WAKE,
-> > SC_IRQ_BUTTON, true);
-> > > +       if (ret) {
-> > > +               dev_warn(&pdev->dev, "enable scu group irq failed\n");
-> > > +               return ret;
-> >
-> > Better do a 'goto input_unregister' here instead and call
-> > input_unregister_device().
->
-> Agreed, will fix in V3 later.
+On 03-09-19, 08:01, H. Nikolaus Schaller wrote:
+> 
+> > Am 03.09.2019 um 04:36 schrieb Viresh Kumar <viresh.kumar@linaro.org>:
+> > 
+> > On 02-09-19, 12:55, H. Nikolaus Schaller wrote:
+> >> With opp-v2 in omap36xx.dtsi and ti-cpufreq driver the
+> >> 1GHz capability is automatically detected.
+> >> 
+> >> Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
+> >> ---
+> >> arch/arm/boot/dts/omap3-n950-n9.dtsi | 7 -------
+> >> 1 file changed, 7 deletions(-)
+> >> 
+> >> diff --git a/arch/arm/boot/dts/omap3-n950-n9.dtsi b/arch/arm/boot/dts/omap3-n950-n9.dtsi
+> >> index 5441e9ffdbb4..e98b0c615f19 100644
+> >> --- a/arch/arm/boot/dts/omap3-n950-n9.dtsi
+> >> +++ b/arch/arm/boot/dts/omap3-n950-n9.dtsi
+> >> @@ -11,13 +11,6 @@
+> >> 	cpus {
+> >> 		cpu@0 {
+> >> 			cpu0-supply = <&vcc>;
+> >> -			operating-points = <
+> >> -				/* kHz    uV */
+> >> -				300000  1012500
+> >> -				600000  1200000
+> >> -				800000  1325000
+> >> -				1000000	1375000
+> >> -			>;
+> >> 		};
+> >> 	};
+> > 
+> > This should be merged with 2/5 ?
+> 
+> Well, it bloats 2/5.
 
-Not needed actually as input device is managed by devm.
+It is logically the right place to do this as that's where we are
+adding opp-v2.
 
-Thanks.
+> What I hope (I can't test) is that this opp-v1 table
+> is ignored if an opp-v2 table exists. So that it can be
+> removed by a separate follow-up patch.
+
+It should work as that's what we are doing in OPP core, but I still
+feel this better get merged with 2/5.
 
 -- 
-Dmitry
+viresh
