@@ -2,105 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF3FDA644F
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A973CA6458
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727005AbfICIsq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 04:48:46 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:46233 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726557AbfICIsq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 04:48:46 -0400
-Received: from [109.168.11.45] (port=41926 helo=[192.168.101.73])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1i54UU-002hxn-8d; Tue, 03 Sep 2019 10:48:42 +0200
-Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
-To:     Wolfram Sang <wsa@the-dreams.de>
-Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Vladimir Zapolskiy <vz@mleia.com>,
-        Peter Rosin <peda@axentia.se>
-References: <20190723203723.11730-1-luca@lucaceresoli.net>
- <20190723203723.11730-3-luca@lucaceresoli.net> <20190902204208.GA7253@kunai>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <8482d1e2-b1d9-3da5-5b1f-b7e492a87368@lucaceresoli.net>
-Date:   Tue, 3 Sep 2019 10:48:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727078AbfICIwg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 04:52:36 -0400
+Received: from mx2.suse.de ([195.135.220.15]:50324 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727077AbfICIwf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 04:52:35 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 6DDD4AC26;
+        Tue,  3 Sep 2019 08:52:34 +0000 (UTC)
+Date:   Tue, 3 Sep 2019 10:52:33 +0200
+From:   Petr Mladek <pmladek@suse.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     rafael@kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        devicetree@vger.kernel.org, linux-acpi@vger.kernel.org
+Subject: Re: [PATCH v5 09/11] lib/vsprintf: OF nodes are first and foremost,
+ struct device_nodes
+Message-ID: <20190903085233.oksjcwqwdxb53eig@pathway.suse.cz>
+References: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
+ <20190902135732.23455-10-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-In-Reply-To: <20190902204208.GA7253@kunai>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca+lucaceresoli.net/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190902135732.23455-10-sakari.ailus@linux.intel.com>
+User-Agent: NeoMutt/20170912 (1.9.0)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
-
-On 02/09/19 22:42, Wolfram Sang wrote:
-> Hi Luca,
+On Mon 2019-09-02 16:57:30, Sakari Ailus wrote:
+> Factor out static kobject_string() function that simply calls
+> device_node_string(), and thus remove references to kobjects (as these are
+> struct device_node).
 > 
->> + * Topology:
->> + *
->> + *                       Slave X @ 0x10
->> + *               .-----.   |
->> + *   .-----.     |     |---+---- B
->> + *   | CPU |--A--| ATR |
->> + *   `-----'     |     |---+---- C
->> + *               `-----'   |
->> + *                       Slave Y @ 0x10
->> + *
->> + * Alias table:
->> + *
->> + *   Client  Alias
->> + *   -------------
->> + *      X    0x20
->> + *      Y    0x30
+> Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  lib/vsprintf.c | 16 ++++------------
+>  1 file changed, 4 insertions(+), 12 deletions(-)
 > 
-> Great that you already provided docs for this driver!
-> 
-> One huge drawback for me is the attach/detach callbacks. One year ago, I
-> removed a similar callback from the I2C core ("[PATCH 0/2] i2c: remove
-> deprecated attach_adapter callback") because some drivers did a lot of
-> crazy things there. It took years to remove all that.
+> diff --git a/lib/vsprintf.c b/lib/vsprintf.c
+> index a04a2167101ef..4ad9332d54ba6 100644
+> --- a/lib/vsprintf.c
+> +++ b/lib/vsprintf.c
+> @@ -1905,6 +1905,9 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  	struct printf_spec str_spec = spec;
+>  	str_spec.field_width = -1;
+>  
+> +	if (fmt[0] != 'F')
+> +		return error_string(buf, end, "(%pO?)", spec);
+> +
+>  	if (!IS_ENABLED(CONFIG_OF))
+>  		return error_string(buf, end, "(%pOF?)", spec);
+>  
+> @@ -1978,17 +1981,6 @@ char *device_node_string(char *buf, char *end, struct device_node *dn,
+>  	return widen_string(buf, buf - buf_start, end, spec);
+>  }
+>  
+> -static char *kobject_string(char *buf, char *end, void *ptr,
+> -			    struct printf_spec spec, const char *fmt)
+> -{
+> -	switch (fmt[1]) {
+> -	case 'F':
+> -		return device_node_string(buf, end, ptr, spec, fmt + 1);
+> -	}
+> -
+> -	return error_string(buf, end, "(%pO?)", spec);
+> -}
+> -
+>  /*
+>   * Show a '%p' thing.  A kernel extension is that the '%p' is followed
+>   * by an extra set of alphanumeric characters that are extended format
+> @@ -2167,7 +2159,7 @@ char *pointer(const char *fmt, char *buf, char *end, void *ptr,
+>  	case 'G':
+>  		return flags_string(buf, end, ptr, spec, fmt);
+>  	case 'O':
+> -		return kobject_string(buf, end, ptr, spec, fmt);
+> +		return device_node_string(buf, end, ptr, spec, fmt + 1);
 
-Oh dear, I was completely unaware, apologies! :-)
+I know that this come from from kobject_string(). But please, modify
+it to follow the style used by other %p modifiers. I mean to pass
+"fmt" as is and then use:
 
-> What I could imagine here: the adapter (B and C each in the picture
-> above) gets a flag like NEEDS_ATR before registering to the core. The
-> flag means all clients on that bus will have their address translated.
-> The core will figure out a free alias when a device is registered. We
-> can then have an ATR specific callback with the original and translated
-> address as arguments, so one can setup the HW as needed.
+	if (fmt[1] != 'F')
 
-Do you mean moving the alias selection code from i2c-atr.c to the i2c
-core? And the rest of the ATR core too?
+With the above change:
 
-> Do you think that would work?
+Reviewed-by: Petr Mladek <pmladek@suse.com>
 
-Yes.
-
--- 
-Luca
+Best Regards,
+Petr
