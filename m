@@ -2,269 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D98A6342
-	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 09:59:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECD70A6373
+	for <lists+devicetree@lfdr.de>; Tue,  3 Sep 2019 10:04:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726557AbfICH7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 03:59:50 -0400
-Received: from mail-sh.amlogic.com ([58.32.228.43]:48872 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726062AbfICH7u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 03:59:50 -0400
-Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 3 Sep
- 2019 16:00:37 +0800
-Subject: Re: [PATCH 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>
-CC:     Rob Herring <robh+dt@kernel.org>, Carlo Caione <carlo@caione.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <devicetree@vger.kernel.org>,
+        id S1727953AbfICIDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 04:03:54 -0400
+Received: from mail-eopbgr80139.outbound.protection.outlook.com ([40.107.8.139]:43751
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726062AbfICIDy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 3 Sep 2019 04:03:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=S3W+57ENYAuaA67/05w1PZZIHm+2hzVHoFnNkugpR1xG92IN7HKdoi3XrLiscmBPtx8Z6pdNYOGkuKx/SFPNZnQrwN0FdKDJbdECOJsFFtL4j7N/V9vdp5rIDsuDh1fmHrTCtOFEfCbMea8IYXh0gjajSauzEv4dRCJhUggxP2SQXmPsNYs4968qcIHO84sAAG4gCPEIDwFxtt+blVfZx9klCB8dZa+qYuo4Qmtea/TaSVHIw/He/O5Ee33snbyhRVQrRpciPERmI8fch7EYXixrLg9f0rG+VUOYsytFjZTJBVo112+sV+b/Pxe7iHwwTWGgmrJAUWRg/KRg4TMNew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nG1Ucz8Xr4Q7OcVvlo1D+dPo6jIOhRVdAT2fr3wp9Ws=;
+ b=HMpbUfUDfyb2jVfe3/0iajgYSi1zG0N7ddPHGaqzxHzD64VZ3t4CQjYPOCBC/ErOPMjO9w5fuFCeHXxi6zXm4YnubffGZIXsjGa0xy9zn2r4pFH/c1x5si3dQzb5kNzt1w6RQYQpzpqbXHf1frcwHuosSeL3i7Zs5AkIQtHDUEuDH6roOh6HZjVGlKINQ2er8qxqA4QwB2WJr4XDDe323JGRNno2ecrXjuQRlAYJBl11nrtuoXyr52fZXBSebu5fFfd8i6E++kf8ZeoSXap34l0nfl6LLYZ7JHvnlW8mUJxy9apjTQvRqkq93ivYdf2wla2a3RpfL2//IuFkNMF/BA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nG1Ucz8Xr4Q7OcVvlo1D+dPo6jIOhRVdAT2fr3wp9Ws=;
+ b=eUdzVphf2TQAEIUtreOLDljNkApucMtkpTQd5YjYX/1mPvsWS/9V2qVHWVI/NiLKiX118cqWgfHOc+LGcBET5vMrrzPFA2DYNoEh7BJqJGHIPCdtrndx+NL354OjUeBSZkgXZKI2+v2uTGRtTiAc2T6Hq/xcS0pDn4lWeJMjbeU=
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
+ VI1PR0502MB4014.eurprd05.prod.outlook.com (52.134.18.33) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2220.19; Tue, 3 Sep 2019 08:03:46 +0000
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::f59f:a307:9c53:63b9]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::f59f:a307:9c53:63b9%6]) with mapi id 15.20.2220.022; Tue, 3 Sep 2019
+ 08:03:46 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Luka Pivk <luka.pivk@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Tao Zeng <tao.zeng@amlogic.com>
-References: <1567493475-75451-1-git-send-email-jianxin.pan@amlogic.com>
- <1567493475-75451-5-git-send-email-jianxin.pan@amlogic.com>
- <1jef0xrg5d.fsf@starbuckisacylon.baylibre.com>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <de374b4a-be2e-0b85-ff3f-f7cdc785c26a@amlogic.com>
-Date:   Tue, 3 Sep 2019 16:00:15 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1jef0xrg5d.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset="windows-1252"
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>
+Subject: [PATCH 0/3] Add new binding regulator-fixed-clock to regulator-fixed
+Thread-Topic: [PATCH 0/3] Add new binding regulator-fixed-clock to
+ regulator-fixed
+Thread-Index: AQHVYi4cbo2B9tBfLEa3D4jnCdy4qA==
+Date:   Tue, 3 Sep 2019 08:03:45 +0000
+Message-ID: <20190903080336.32288-1-philippe.schenker@toradex.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.226]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: VI1PR0802CA0015.eurprd08.prod.outlook.com
+ (2603:10a6:800:aa::25) To VI1PR0502MB3965.eurprd05.prod.outlook.com
+ (2603:10a6:803:23::29)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=philippe.schenker@toradex.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.23.0
+x-originating-ip: [46.140.72.82]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c20d5a36-9ee3-4f78-d0b1-08d730453e84
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB4014;
+x-ms-traffictypediagnostic: VI1PR0502MB4014:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0502MB4014BA4D63ACBE2E2338AEE4F4B90@VI1PR0502MB4014.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01494FA7F7
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(39840400004)(376002)(346002)(136003)(396003)(366004)(199004)(85664002)(189003)(6436002)(66066001)(81166006)(110136005)(54906003)(5660300002)(71200400001)(305945005)(2501003)(25786009)(476003)(6306002)(81156014)(2616005)(44832011)(6512007)(66446008)(99286004)(66946007)(66556008)(186003)(64756008)(66476007)(26005)(6486002)(71190400001)(4326008)(53936002)(52116002)(486006)(102836004)(1076003)(7416002)(6116002)(478600001)(86362001)(966005)(50226002)(14454004)(2906002)(36756003)(8936002)(14444005)(3846002)(6506007)(386003)(316002)(256004)(8676002)(7736002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB4014;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: r281zofcXSOtkHg3Ca5PuqOuDV7THauvNbvjeooMI8u+V2C3hjCEB/6JcV8OYL2f+A3F08mM4d61/nqmgyYaK3avCEBjhGfztjLmbACU7znff1B3pfLcdqBDdoUZfvQyP6kLjC0kiIOKkbRAYG30By355iVDQUxSPTLVD501CHBmsA6H3G76Ojg8BlfhD710A1KfsFzLvHNenilPmaMZJZOvPUS/jYCmQvrxDLgG13Hao5mtN6ibrQNp0CvpJ29Cbg+khTo6Bt8meSFpIQqEVoBv/yAa9BEMcnnwaqgg1obfy86pw6L1fJgAm8zcawdSjD/ltOoy4dWfQq2RoZyC6Ae+ToY5id5gvWGBOrsRUfHGAYqWhvXnmTT8M1OuOdo2jiJhTzjmpui8fDSCyub7OKHUjaGR1Ul6JAEf07Q44S0=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c20d5a36-9ee3-4f78-d0b1-08d730453e84
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Sep 2019 08:03:45.8641
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EyK0fZ1pybILPSRZMA1d01OBKD+5NvCHlS10qFoGIAVX7LMdc7q6ypUUNOqh5avnv+2i1BtNzBC2h4lLGSskaVdk5uquMpyzJrRJTyvxFgI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB4014
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
 
-Thanks for your suggestion.
+Our hardware has a FET that is switching power rail of the ethernet PHY
+on and off. This switching enable signal is a clock from the SoC.
 
-I will fix them in the next version.
+There is no possibility in regulator subsystem to have this hardware
+reflected in software.
+
+I already discussed with Mark Brown about possible solutions and he
+suggested to create at least a new compatible. [1]
+This discussion includes also a better explanation of our circuit as
+well as schematics. So please refer to that link if you have questions
+about that.
+
+In this first attempt I created a new binding "regulator-fixed-clock"
+that can take a clock from devicetree. This is a simple addition to
+regulator-fixed. If the binding regulator-fixed-clock is given, the
+clock is simply enabled on regulator enable and disabled on regulator
+disable.
+To be able to have multiple consumers a counter variable is also given
+that tells how many consumers need power from this regulator.
+
+Best regards,
+Philippe
+
+[1] https://lkml.org/lkml/2019/8/7/78
 
 
-On 2019/9/3 15:30, Jerome Brunet wrote:
-> On Tue 03 Sep 2019 at 02:51, Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> 
->> Add basic support for the Amlogic A1 based Amlogic AD401 board:
->> which describe components as follows: Reserve Memory, CPU, GIC, IRQ,
->> Timer, UART. It's capable of booting up into the serial console.
->>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  arch/arm64/boot/dts/amlogic/Makefile           |   1 +
->>  arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts |  30 ++++++
->>  arch/arm64/boot/dts/amlogic/meson-a1.dtsi      | 121 +++++++++++++++++++++++++
->>  3 files changed, 152 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
->>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index edbf128..1720c45 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -36,3 +36,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-gxm-rbox-pro.dtb
->>  dtb-$(CONFIG_ARCH_MESON) += meson-gxm-vega-s96.dtb
->>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
->>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-khadas-vim3l.dtb
->> +dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
->> new file mode 100644
->> index 00000000..3c05cc0
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/meson-a1-ad401.dts
->> @@ -0,0 +1,30 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "meson-a1.dtsi"
->> +
->> +/ {
->> +	compatible = "amlogic,ad401", "amlogic,a1";
->> +	model = "Amlogic Meson A1 AD401 Development Board";
->> +
->> +	aliases {
->> +		serial0 = &uart_AO_B;
->> +	};
-> 
-> Newline here please
-> 
->> +	chosen {
->> +		stdout-path = "serial0:115200n8";
->> +	};
-> 
-> same
-> 
->> +	memory@0 {
->> +		device_type = "memory";
->> +		linux,usable-memory = <0x0 0x0 0x0 0x8000000>;
->> +	};
->> +};
->> +
->> +&uart_AO_B {
->> +	status = "okay";
->> +	/*pinctrl-0 = <&uart_ao_a_pins>;*/
->> +	/*pinctrl-names = "default";*/
-> 
-> Remove the commented code please
-> 
->> +};
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> new file mode 100644
->> index 00000000..b98d648
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> @@ -0,0 +1,121 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/ {
->> +	compatible = "amlogic,a1";
->> +
->> +	interrupt-parent = <&gic>;
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	cpus {
->> +		#address-cells = <0x2>;
->> +		#size-cells = <0x0>;
->> +
->> +		cpu0: cpu@0 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a35";
->> +			reg = <0x0 0x0>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&l2>;
->> +		};
->> +
->> +		cpu1: cpu@1 {
->> +			device_type = "cpu";
->> +			compatible = "arm,cortex-a35";
->> +			reg = <0x0 0x1>;
->> +			enable-method = "psci";
->> +			next-level-cache = <&l2>;
->> +		};
->> +
->> +		l2: l2-cache0 {
->> +			compatible = "cache";
->> +		};
->> +	};
-> 
-> New line here please
-> 
-> With this minor comments adressed, looks good.
-> 
-> Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-> 
->> +	psci {
->> +		compatible = "arm,psci-1.0";
->> +		method = "smc";
->> +	};
->> +
->> +	reserved-memory {
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		linux,cma {
->> +			compatible = "shared-dma-pool";
->> +			reusable;
->> +			size = <0x0 0x800000>;
->> +			alignment = <0x0 0x400000>;
->> +			linux,cma-default;
->> +		};
->> +	};
->> +
->> +	sm: secure-monitor {
->> +		compatible = "amlogic,meson-gxbb-sm";
->> +	};
->> +
->> +	soc {
->> +		compatible = "simple-bus";
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +
->> +		uart_AO: serial@fe001c00 {
->> +			compatible = "amlogic,meson-gx-uart",
->> +				     "amlogic,meson-ao-uart";
->> +			reg = <0x0 0xfe001c00 0x0 0x18>;
->> +			interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
->> +			clocks = <&xtal>, <&xtal>, <&xtal>;
->> +			clock-names = "xtal", "pclk", "baud";
->> +			status = "disabled";
->> +		};
->> +
->> +		uart_AO_B: serial@fe002000 {
->> +			compatible = "amlogic,meson-gx-uart",
->> +				     "amlogic,meson-ao-uart";
->> +				     reg = <0x0 0xfe002000 0x0 0x18>;
->> +			interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
->> +			clocks = <&xtal>, <&xtal>, <&xtal>;
->> +			clock-names = "xtal", "pclk", "baud";
->> +			status = "disabled";
->> +		};
->> +
->> +		gic: interrupt-controller@ff901000 {
->> +			compatible = "arm,gic-400";
->> +			reg = <0x0 0xff901000 0x0 0x1000>,
->> +			      <0x0 0xff902000 0x0 0x2000>,
->> +			      <0x0 0xff904000 0x0 0x2000>,
->> +			      <0x0 0xff906000 0x0 0x2000>;
->> +			interrupt-controller;
->> +			interrupts = <GIC_PPI 9
->> +				(GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_HIGH)>;
->> +			#interrupt-cells = <3>;
->> +			#address-cells = <0>;
->> +		};
->> +	};
->> +
->> +	timer {
->> +		compatible = "arm,armv8-timer";
->> +		interrupts = <GIC_PPI 13
->> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 14
->> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 11
->> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>,
->> +			     <GIC_PPI 10
->> +			(GIC_CPU_MASK_RAW(0xff) | IRQ_TYPE_LEVEL_LOW)>;
->> +	};
->> +
->> +	xtal: xtal-clk {
->> +		compatible = "fixed-clock";
->> +		clock-frequency = <24000000>;
->> +		clock-output-names = "xtal";
->> +		#clock-cells = <0>;
->> +	};
->> +};
->> -- 
->> 2.7.4
-> 
-> .
-> 
+
+Philippe Schenker (3):
+  regulator: fixed: add possibility to enable by clock
+  ARM: dts: imx6ull-colibri: add phy-supply and respective regulator
+  dt-bindings: regulator: add regulator-fixed-clock binding
+
+ .../bindings/regulator/fixed-regulator.yaml   | 18 +++-
+ arch/arm/boot/dts/imx6ull-colibri.dtsi        | 12 +++
+ drivers/regulator/fixed.c                     | 86 ++++++++++++++++++-
+ 3 files changed, 112 insertions(+), 4 deletions(-)
+
+--=20
+2.23.0
 
