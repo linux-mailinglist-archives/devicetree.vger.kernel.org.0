@@ -2,154 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 75D39A93F0
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 22:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F80CA9491
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 23:11:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730441AbfIDUnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 16:43:06 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:38410 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730405AbfIDUnF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 16:43:05 -0400
-Received: by mail-pf1-f196.google.com with SMTP id h195so33521pfe.5
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 13:43:05 -0700 (PDT)
+        id S1730773AbfIDVLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 17:11:32 -0400
+Received: from mail-pl1-f201.google.com ([209.85.214.201]:41498 "EHLO
+        mail-pl1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730739AbfIDVLc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 17:11:32 -0400
+Received: by mail-pl1-f201.google.com with SMTP id b23so90003pls.8
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 14:11:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/wsxDOtmnb9U/NekdAlLR4oeHJRU38Z5gPTM6QnO4F4=;
-        b=r4bC4okD7CNuq9BuMebOgwrGDybFlvfFhLFBIwlpf42JHRLdahnasXWiz4T5LA99LU
-         2szH87RezwOyOLL9EKUyVa4cjjqAl3XmySbxKqHUVyRPiF3VPP8pbC2fnxjPwEpjPo3z
-         mAP1Bb7s4IzTsQWgfoTAoq0LYVSYizde92oVBaCmSzJ/uMC5MhTyNcm36CPMUESC8SQh
-         CzxQP/cXwFySn9hLysmCRG0wT+4dXwIXoMn6W+H7H0LSiR1YdbUd9xG+wNjXxxzzkJNu
-         2m9P0Mfc6Hxbf08Gg13Ikkma+OvDXYSEQGdrXHpyG26aWe0JoK/8eZGHmzMpZPSKgDQU
-         vy1w==
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=u6P0vTia2RxCdsskGV2Xe3w3VBUYzUpmbJKpNal4IZw=;
+        b=hsXuOq4U7Hvf3+Aw42QvXQCMdUYeVEyK0fec5z9mwWg/bs6Scs6nwXwZNMourwGQVm
+         7MJGzsG1OLHJIXA9pmHevdTrdOK9qq6Hak0h/NnCo3E5lvSi6Ki8Zb/1Wi8K1Sh7qUDF
+         regS6AmwPMqqTDxHYDUX1U34olvb0UwCH88he5VII6X6Ckvietiyas6yicLPJMT06/Nj
+         AVE0f7vV+nd4dQZCuJeKYOB/+wP3ZtdVZWHEqQY80OpZOQigFszsAG1vFOd0ryc02YNF
+         rZvIl2NjmTqIZzJPGHGnaoYZls49JMMfpo37V7SSp8mZemetqwr3DSjnN6PYlOJIlQ6Q
+         PHFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/wsxDOtmnb9U/NekdAlLR4oeHJRU38Z5gPTM6QnO4F4=;
-        b=Fw4iV1wP4ghCVKP2F3T4POTXr+IYYmfid2uyQGF2HV/v2ick/aRJ9uv3dUSe88Q6ce
-         7IJpVymRITIlNdB8wxd7UriqPFLK71jSUrTpBF/relNLEg5Aou42nSEm74FO3CxyD6yb
-         qly4uYHkLdvzOeaBJTB64fiUlwQgWm+9A6WRUp9ZR1cWbLMwTACCiSJbXWulM3++Sz0S
-         woFiR7aOb21hEGFrzkC/TIHbKX8Yu0TgTGf2lBkoUKSNwP/43BuzW5FFX+8k9/slq/ig
-         o6Uhf9XW/Nshfpr/yUAG+ICCL8GQusXeFBUV2jyYydLzGpY8/HGfpXJV/yAjo8axDeEm
-         SIAQ==
-X-Gm-Message-State: APjAAAWH7PObIFZ8w9w2diVF/nBM9Ur7xcOGIApc+8QdeNwdMpIorS8l
-        zjqIgVWHhabzpHL1Od14Vd5pGw==
-X-Google-Smtp-Source: APXvYqz1x8IyyymHXIXgIk+a+BK4sSercU90VrV9KeSyLBl4ibAmtDI9sBm/qrTJHr7/y8s0AMFyaA==
-X-Received: by 2002:a17:90a:fc89:: with SMTP id ci9mr168674pjb.48.1567629785147;
-        Wed, 04 Sep 2019 13:43:05 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id b3sm29860352pfp.65.2019.09.04.13.43.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Sep 2019 13:43:04 -0700 (PDT)
-Date:   Wed, 4 Sep 2019 13:43:02 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Lee Jones <lee.jones@linaro.org>, agross@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
-Message-ID: <20190904204302.GD580@tuxbook-pro>
-References: <20190904113917.15223-1-lee.jones@linaro.org>
- <20190904115234.GV2672@vkoul-mobl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190904115234.GV2672@vkoul-mobl>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=u6P0vTia2RxCdsskGV2Xe3w3VBUYzUpmbJKpNal4IZw=;
+        b=VsQLyDXRFKYE9Kkq8RpWz3UBKx3v2Ufmsrzno5uODu1DQw1UmCfkOsOuByBoYZDUGX
+         MfCpwdprSKPHLckAsGEmtlm9GxjpD7EpQH5dLw7SAS3MXSWQNmJn5nvVljEnV7Qbaa3P
+         H8evhvQJHelq2HpuDoLWhWdhuswQgv2mzAw+6/09SeIYEaZLidDPLTGR+YaXjT63m3Nb
+         wsdZ7I5KIoUqpDAyF1m7+mj3ja7v6eXmQmAsxBUzLLbsz0vm9MsSHXrjxPr5bwffXykJ
+         r7J/RbH4cOGKozW8ViH593e30fz1X6LpJAPgUazElsv1TETG+dIgWXeXtX9zKz1VgaA/
+         1Ayg==
+X-Gm-Message-State: APjAAAUkyuwWbIEhXMgdJOGyAzvhKuC8684hlTsKE9BKZSi7dzmU2zUU
+        AbANFNz5GI5GApYpd0OSq+a5zOR1YQ5O1FU=
+X-Google-Smtp-Source: APXvYqzFJhNEj47Q9YRnGctnszvBFE5bLucB5Efpxvkp2c4kvXSYRccx8tAfNHCR2YaO0Z/cUY/FYqT5HsWndZo=
+X-Received: by 2002:a63:ec03:: with SMTP id j3mr111690pgh.325.1567631490651;
+ Wed, 04 Sep 2019 14:11:30 -0700 (PDT)
+Date:   Wed,  4 Sep 2019 14:11:19 -0700
+Message-Id: <20190904211126.47518-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.187.g17f5b7556c-goog
+Subject: [PATCH v11 0/6] Solve postboot supplier cleanup and optimize probe ordering
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jonathan Corbet <corbet@lwn.net>, Len Brown <lenb@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-acpi@vger.kernel.org, clang-built-linux@googlegroups.com,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 04 Sep 04:52 PDT 2019, Vinod Koul wrote:
+Add device-links to track functional dependencies between devices
+after they are created (but before they are probed) by looking at
+their common DT bindings like clocks, interconnects, etc.
 
-> On 04-09-19, 12:39, Lee Jones wrote:
-> > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > @@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-> > +dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-> 
-> Can we keep this sorted, so before mtp.
-> 
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > new file mode 100644
-> > index 000000000000..ad160c718b33
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > @@ -0,0 +1,454 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> 
-> Are we going to make this dual? or BSD..
-> 
+Having functional dependencies automatically added before the devices
+are probed, provides the following benefits:
 
-Sounds good, Rob wants dual license so lets flag it as such.
+- Optimizes device probe order and avoids the useless work of
+  attempting probes of devices that will not probe successfully
+  (because their suppliers aren't present or haven't probed yet).
 
-> > +&apps_rsc {
-> > +	pm8998-rpmh-regulators {
-> > +		compatible = "qcom,pm8998-rpmh-regulators";
-> > +		qcom,pmic-id = "a";
-> > +
-> > +		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-> > +		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-> > +
-> > +		vreg_s2a_1p125: smps2 {
-> > +		};
-> > +
-> > +		vreg_s3a_1p35: smps3 {
-> > +			regulator-min-microvolt = <1352000>;
-> > +			regulator-max-microvolt = <1352000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s4a_1p8: smps4 {
-> > +			regulator-min-microvolt = <1800000>;
-> > +			regulator-max-microvolt = <1800000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s5a_2p04: smps5 {
-> > +			regulator-min-microvolt = <2040000>;
-> > +			regulator-max-microvolt = <2040000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s7a_1p025: smps7 {
-> 
-> Any reason why we dont specify the mode and min/max voltage for this
-> and few others below..?
-> 
+  For example, in a commonly available mobile SoC, registering just
+  one consumer device's driver at an initcall level earlier than the
+  supplier device's driver causes 11 failed probe attempts before the
+  consumer device probes successfully. This was with a kernel with all
+  the drivers statically compiled in. This problem gets a lot worse if
+  all the drivers are loaded as modules without direct symbol
+  dependencies.
 
-Iirc these values are not known from the tables provided by the
-firmware. Label names are just "borrowed" from the MTP, so we can't
-derive anything from there either.
+- Supplier devices like clock providers, interconnect providers, etc
+  need to keep the resources they provide active and at a particular
+  state(s) during boot up even if their current set of consumers don't
+  request the resource to be active. This is because the rest of the
+  consumers might not have probed yet and turning off the resource
+  before all the consumers have probed could lead to a hang or
+  undesired user experience.
 
-I intended to review and clean this up before it was posted...
+  Some frameworks (Eg: regulator) handle this today by turning off
+  "unused" resources at late_initcall_sync and hoping all the devices
+  have probed by then. This is not a valid assumption for systems with
+  loadable modules. Other frameworks (Eg: clock) just don't handle
+  this due to the lack of a clear signal for when they can turn off
+  resources. This leads to downstream hacks to handle cases like this
+  that can easily be solved in the upstream kernel.
 
-Regards,
-Bjorn
+  By linking devices before they are probed, we give suppliers a clear
+  count of the number of dependent consumers. Once all of the
+  consumers are active, the suppliers can turn off the unused
+  resources without making assumptions about the number of consumers.
 
-> > +&i2c1 {
-> > +	status = "okay";
-> > +	clock-frequency = <400000>;
-> > +	qcom,geni-se-fifo;
-> > +
-> > +	battery@70 {
-> > +		compatible = "some,battery";
-> 
-> some,battery ..?
-> 
-> > +&qup_i2c12_default {
-> 
-> Please move the qup nodes up so that nodes are sorted alphabetically
-> 
-> -- 
-> ~Vinod
+By default we just add device-links to track "driver presence" (probe
+succeeded) of the supplier device. If any other functionality provided
+by device-links are needed, it is left to the consumer/supplier
+devices to change the link when they probe.
+
+v1 -> v2:
+- Drop patch to speed up of_find_device_by_node()
+- Drop depends-on property and use existing bindings
+
+v2 -> v3:
+- Refactor the code to have driver core initiate the linking of devs
+- Have driver core link consumers to supplier before it's probed
+- Add support for drivers to edit the device links before probing
+
+v3 -> v4:
+- Tested edit_links() on system with cyclic dependency. Works.
+- Added some checks to make sure device link isn't attempted from
+  parent device node to child device node.
+- Added way to pause/resume sync_state callbacks across
+  of_platform_populate().
+- Recursively parse DT node to create device links from parent to
+  suppliers of parent and all child nodes.
+
+v4 -> v5:
+- Fixed copy-pasta bugs with linked list handling
+- Walk up the phandle reference till I find an actual device (needed
+  for regulators to work)
+- Added support for linking devices from regulator DT bindings
+- Tested the whole series again to make sure cyclic dependencies are
+  broken with edit_links() and regulator links are created properly.
+
+v5 -> v6:
+- Split, squashed and reordered some of the patches.
+- Refactored the device linking code to follow the same code pattern for
+  any property.
+
+v6 -> v7:
+- No functional changes.
+- Renamed i to index
+- Added comment to clarify not having to check property name for every
+  index
+- Added "matched" variable to clarify code. No functional change.
+- Added comments to include/linux/device.h for add_links()
+
+v7 -> v8:
+- Rebased on top of linux-next to handle device link changes in [1]
+
+v8 -> v9:
+- Fixed kbuild test bot reported errors (docs and const)
+
+v9->v10:
+- Changes made based on reviews on LKML [2] and discussions at ELC [3]
+- Dropped the edit_links() patch
+- Dropped the patch that skips linking for default bus nodes
+- 1/7: Changed from bus.add_links() to fwnode.ops.add_links() 
+- 1/7: Update device link doc
+- 1/7: Lots of comments/fn doc updates
+- 1/7: Renamed device_link_check_waiting_consumers() to
+  device_link_add_missing_supplier_links()
+- 2/7: Moved DT parsing/linking code from of/platform.c to of/property.c
+- 2/7: Lots of comments/fn doc updates
+- 2/7: Returned errors for all error cases in of_link_to_phandle()
+- 2/7: Some minor code refactor to remove "bool done"
+- 2/7: Added debug messages when links not created due permanent errors
+- 3/7: Minor comments update
+- Added 2 new patches 6/7 and 7/7 to handle cyclic dependencies using
+  depends-on
+
+v10->v11:
+- Dropped 6/7 and 7/7 from previous series that tried to handle cycles in DT
+  dependencies. We can solve it later when we actually hit a real world issue
+  in DT.
+- Added a new 1/7 that shifts the numbering for the rest of the patches
+- 1/7 adds a way to look up a device from a fwnode so that this series can work
+  across bus and firmware types
+- 3/7 removed references to platform_device from of/property.c
+- 4/7 Minor variable rename
+- 4/7 Defer sync_state() be default at driver core level and resume at
+  late_initcall_sync(). That way, we don't depend on any specific bus types
+  having to pause/resume sync_state() till late_initcall_sync()
+
+[1] - https://lore.kernel.org/lkml/2305283.AStDPdUUnE@kreacher/
+[2] - https://lore.kernel.org/lkml/20190724001100.133423-2-saravanak@google.com/
+[3] - https://lore.kernel.org/lkml/CAGETcx_pSnC_2D7ufLRyfE3b8uRc814XEf8zu+SpNtT7_Z8NLg@mail.gmail.com/
+
+-Saravana
+
+
+Saravana Kannan (6):
+  driver core: Add fwnode_to_dev() to look up device from fwnode
+  driver core: Add support for linking devices during device addition
+  of: property: Add functional dependency link from DT bindings
+  driver core: Add sync_state driver/bus callback
+  of/platform: Pause/resume sync state during init and
+    of_platform_populate()
+  of: property: Create device links for all child-supplier depencencies
+
+ .../admin-guide/kernel-parameters.rst         |   1 +
+ .../admin-guide/kernel-parameters.txt         |   6 +
+ Documentation/driver-api/device_link.rst      |   3 +-
+ drivers/base/core.c                           | 167 ++++++++++++
+ drivers/of/platform.c                         |  12 +
+ drivers/of/property.c                         | 245 ++++++++++++++++++
+ include/linux/device.h                        |  26 ++
+ include/linux/fwnode.h                        |  19 ++
+ 8 files changed, 478 insertions(+), 1 deletion(-)
+
+-- 
+2.23.0.187.g17f5b7556c-goog
+
