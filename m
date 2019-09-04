@@ -2,108 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2565A823D
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 14:23:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69FBA8319
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 14:52:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729590AbfIDMSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 08:18:12 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:35798 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728878AbfIDMSL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 08:18:11 -0400
-Received: by mail-wm1-f66.google.com with SMTP id n10so3475929wmj.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 05:18:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=ZUNvCNl71LL7bsOV2q3vh455zcpyuXw4iwVhdFBYbko=;
-        b=qWT8T8t8cXk3gJqp5zZ0LNwl++o68vkXUweIMe4C+BVD3OYH5teo1CMvNy5D2/RyyY
-         1fek0ayL+6+lhLrZh5sPHjSmhWZRGC8xrEgsyrz3zMX/Jwmrf+nM01GoUmZiKg1wih+x
-         1RLARPW/5pG83iO/faxDUIegwvDNqu+nhMjJlH2XdnKoOjWJH8hd5WiPX7SacnpYZjbG
-         lYMwjf/o9sXMgGDqoYGqvOkzMqVQJQz9eEe3CLsaeYPHol3m+ZlGCF14PG1MsYs6GyP2
-         qxMkDEB+evV/eJquxuYh8kjTXd+OcpKBmB9/LOlrNG9hXTtYUH8NGu9q5kW8B3Lki7sQ
-         OL6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=ZUNvCNl71LL7bsOV2q3vh455zcpyuXw4iwVhdFBYbko=;
-        b=gPHx0I9hLShRIe2tVA/sGE3FvR8tjtVw1tYYCMCZhKv08NXliqAy/UhYQlx5j6E0xs
-         UBbLpy+BnRckWRKQ0OSUbpzWu0IF4tOI7AjaxNr084KlnvjUwaRz8abqaKTr+l0GbIsP
-         VTbPMj+CAmBF6b2EZTqKfZR07jUTuZrrgsGo14e6UCwq1e8D8vwErtRZ74PQ9RFq7Xqk
-         ZU1/ODsBxCAnCfMS3GeTmAMIrzwgdvmYNK0vUrS1GNgNkETqwGxvvH4cLqiBvhPa18bi
-         zhyaTtULwwwTqENivVorQqTpZDAu0SxXVPhxY5UoC7JGAcQyWw2FwkHxbgJh7mECsYKw
-         zUwg==
-X-Gm-Message-State: APjAAAWO4KK88/XZd/NVDotkRaqQvdIEhDHYV83MgkLucLHDFN92QuR1
-        IrkAr3RU+HIj/MwQFHXDcFuTLrGuJGA=
-X-Google-Smtp-Source: APXvYqy5ydGI/DCwg82bhVMUvfPqZPtc/DZDbnOwai2+G18YLAiMRjy7v6kAEkXBPu3TkQ152a/7sg==
-X-Received: by 2002:a1c:f910:: with SMTP id x16mr3869419wmh.173.1567599489980;
-        Wed, 04 Sep 2019 05:18:09 -0700 (PDT)
-Received: from dell ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id d18sm29560180wra.91.2019.09.04.05.18.09
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 04 Sep 2019 05:18:09 -0700 (PDT)
-Date:   Wed, 4 Sep 2019 13:18:07 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, bjorn.andersson@linaro.org,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] i2c: qcom-geni: Provide an option to select FIFO
- processing
-Message-ID: <20190904121807.GK26880@dell>
-References: <20190904113613.14997-1-lee.jones@linaro.org>
- <20190904115609.GW2672@vkoul-mobl>
+        id S1725911AbfIDMhp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 08:37:45 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:38148 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729872AbfIDMhp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 08:37:45 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190904123743euoutp015159baf73c4563a7007d4e3962ddfe2f~BPH_ADXtz0592705927euoutp01L
+        for <devicetree@vger.kernel.org>; Wed,  4 Sep 2019 12:37:43 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190904123743euoutp015159baf73c4563a7007d4e3962ddfe2f~BPH_ADXtz0592705927euoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1567600663;
+        bh=yZLCbqKVi9Hs06e9qc3/1f9Heb7upU8Fu+6TMyHC/vo=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=dHjeXkVM8Gw2Kk5MqD3+92QtRGeF91rT5l7SZ5aBrmfy3ZFoAx3KlwidQka33jRG5
+         WbsFbXcMpie/O552ErZTanOHDaX3lA9XqqUiY0xJbFbOZsvoHzFvfYzruTVDV+WhVe
+         Q1CUhkTMqGoZq8b+DBJjIK4Ooti6lFw50wc5hqzw=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190904123742eucas1p28bd5e121274d4c892f407674c960308f~BPH9UZ89C0909709097eucas1p2z;
+        Wed,  4 Sep 2019 12:37:42 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id DB.1D.04374.610BF6D5; Wed,  4
+        Sep 2019 13:37:42 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190904123741eucas1p1cdc036f1d841accce579f762d1130c96~BPH8ddrDr0994209942eucas1p1G;
+        Wed,  4 Sep 2019 12:37:41 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190904123741eusmtrp2262ad688f2a83690e15b780748b3bed5~BPH8PVgeT1156311563eusmtrp2j;
+        Wed,  4 Sep 2019 12:37:41 +0000 (GMT)
+X-AuditID: cbfec7f5-92d689c000001116-e2-5d6fb016f89c
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id F4.D1.04166.510BF6D5; Wed,  4
+        Sep 2019 13:37:41 +0100 (BST)
+Received: from [106.120.51.75] (unknown [106.120.51.75]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190904123740eusmtip1c12d0a0433e2d181c1b4ae6b5ae4e5dd~BPH7i7pLO0237302373eusmtip1e;
+        Wed,  4 Sep 2019 12:37:40 +0000 (GMT)
+Subject: Re: [PATCH v2 0/9] Exynos Adaptive Supply Voltage support
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>, krzk@kernel.org,
+        robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, b.zolnierkie@samsung.com
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <4e6379a7-0d4b-8e0d-c225-49976b2587e0@samsung.com>
+Date:   Wed, 4 Sep 2019 14:37:39 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190904115609.GW2672@vkoul-mobl>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190820092113.gojhe3romdnvm7eu@vireshk-i7>
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTURzGO7svu66uHKfpH5OiJYRFlrYPNxKpCBpBYVQQysiVFzPn226z
+        rA+uQst36U0bC0XE5bB8mWnZMpjmssJZkSQaDZ3gS/viHGGG5rxKfvs9z/855/wfOAwh76PC
+        mbTMK7wuU6NV0DKyo29+YE9oS5Z6X7NhO9da3UxxNb0DFFcxPkNwTmeLlGsbH6K4r10mmvOW
+        9SKu2tkt4Z71/pBydS/mpFzBm14p1+pTcVZXH32IVbVZimjV6JCNVlnr81Xl7Rak8rZtTaAS
+        ZXEpvDYtl9ftjU+WXaqfcaPsX/iax2xGBvSBLUYBDGAlWMcKiGIkY+T4KYKKiZFVMYfgo62T
+        EoUXgf2HQ7p2ZKqiTyIOzAiMPVYkCg8C63wp7U8F4yNgW/AtM8OE4F0wNcz7bQJ/k0CXb4Vp
+        HANl78qRn1kcD/emKwk/kzgSuusGV/zN+BzMunooMRME/Y/dpJ8D8AEwOmZp8c4wuDXXSIm8
+        DTo9JkJcdEwKhps5Ih+FWusHWuRgmHa0r5aJgKVXNStlAN9GUPp6RCqKSgQ/HbVITB2EHsdn
+        yl+GwFHQ3LVXtA9DQ9Mo8tuAA+G7J0jcIRDudVQRos3C3UK5mI6EBUuVRORwKHEvkZVIYVzX
+        zLiujXFdG+P/d2sRaUFhvF7ISOWF/Zn81WhBkyHoM1OjL2ZltKHl3/Vx0eF7ibr/XrAjzCDF
+        Jtb1JEstpzS5Ql6GHQFDKELYszatWs6maPKu87qs8zq9lhfsaAtDKsLYGxtcSXKcqrnCp/N8
+        Nq9bm0qYgHAD2l12ejSRJzfPAR3rDl1MmGyQNeME3/AjidQVt3/nn2rTUODxfki+rHyvHdh4
+        wHVCOXWqxjGoL4ltGmedTtPxyZTRabP39EvWE9VYKKnLM5vsN858OmnjnXdytOnH4pT38y8K
+        E0X7nA/0O9S/+zvVg/FfcpPUg89DJx6SEW8VpHBJE7OL0Amafztk4alZAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrJIsWRmVeSWpSXmKPExsVy+t/xu7qiG/JjDVadU7XYOGM9q8X8I+dY
+        Lfofv2a2OH9+A7vFpsfXWC0u75rDZvG59wijxYzz+5gs1h65y26xaOsXdovWvUfYLTZ+9bDY
+        /OAYmwOvx6ZVnWwed67tYfPYvKTeo2/LKkaPz5vkAlij9GyK8ktLUhUy8otLbJWiDS2M9Awt
+        LfSMTCz1DI3NY62MTJX07WxSUnMyy1KL9O0S9DKWvH7CWPBGoOLt8uWMDYyneLsYOTkkBEwk
+        XvYfY+pi5OIQEljKKPH150zWLkYOoISUxPwWJYgaYYk/17rYIGpeM0psODSJCSQhLOAksef3
+        VzaQehEBLYmXN1NBapgFrjJJLN5ziQWioYFV4vK5G+wgDWwChhK9R/sYQWxeATuJSa8mMIPY
+        LAIqEvsWXQCLiwpESBzeMQuqRlDi5MwnLCA2p4ClxKzjn9hAbGYBdYk/8y4xQ9jiEk1fVrJC
+        2PIS29/OYZ7AKDQLSfssJC2zkLTMQtKygJFlFaNIamlxbnpusaFecWJucWleul5yfu4mRmC0
+        bjv2c/MOxksbgw8xCnAwKvHwPpibHyvEmlhWXJl7iFGCg1lJhDd0T06sEG9KYmVValF+fFFp
+        TmrxIUZToOcmMkuJJucDE0leSbyhqaG5haWhubG5sZmFkjhvh8DBGCGB9MSS1OzU1ILUIpg+
+        Jg5OqQZGjsnlN97LNMpl/syrEX79RkMi6aJfVlX2doWpQnPqO91ZHib/nVyivCzpzds3ZuyM
+        82Zt/ftTMf7158h5xz8/97e80BB+o0PlrLeLyb6jZ34xBggUmpk9Fnrb8pBZOvTynsap3x6l
+        7Zc+4isns83oiMn26SprCqtO2XPMLji029Ar/SO/zpnlSizFGYmGWsxFxYkAkCSn4+wCAAA=
+X-CMS-MailID: 20190904123741eucas1p1cdc036f1d841accce579f762d1130c96
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190820092123epcas2p2170ae19467a5fb19fcfc1acdbecf9381
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190820092123epcas2p2170ae19467a5fb19fcfc1acdbecf9381
+References: <20190723020450.z2pqwetkn2tfhacq@vireshk-i7>
+        <5ef302a4-5bbf-483d-dfdf-cf76f6f69cee@samsung.com>
+        <20190725022343.p7lqalrh5svxvtu2@vireshk-i7>
+        <562dd2e7-2b24-8492-d1c1-2dc4973f07be@samsung.com>
+        <20190819090928.pke6cov52n4exlbp@vireshk-i7>
+        <b831d7c5-c830-fd65-20cf-02e209889c28@samsung.com>
+        <20190819112533.bvfyinw7fsebkufr@vireshk-i7>
+        <b7093aaf-ea56-c390-781f-6f9d0780bd8e@samsung.com>
+        <20190820030114.6flnn2omeys3lih3@vireshk-i7>
+        <06ccff05-2152-4bcc-7537-8f24da75f163@samsung.com>
+        <CGME20190820092123epcas2p2170ae19467a5fb19fcfc1acdbecf9381@epcas2p2.samsung.com>
+        <20190820092113.gojhe3romdnvm7eu@vireshk-i7>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Sep 2019, Vinod Koul wrote:
+Hi,
 
-> On 04-09-19, 12:36, Lee Jones wrote:
-> > Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> > ---
-> >  drivers/i2c/busses/i2c-qcom-geni.c | 14 ++++++++++----
-> >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-> > index a89bfce5388e..dfdbce067827 100644
-> > --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> > +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> > @@ -353,13 +353,16 @@ static void geni_i2c_tx_fsm_rst(struct geni_i2c_dev *gi2c)
-> >  static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
-> >  				u32 m_param)
-> >  {
-> > +	struct device_node *np = gi2c->se.dev->of_node;
-> >  	dma_addr_t rx_dma;
-> >  	unsigned long time_left;
-> > -	void *dma_buf;
-> > +	void *dma_buf = NULL;
-> >  	struct geni_se *se = &gi2c->se;
-> >  	size_t len = msg->len;
-> >  
-> > -	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> > +	if (!of_property_read_bool(np, "qcom,geni-se-fifo"))
+On 8/20/19 11:21, Viresh Kumar wrote:
+> On 20-08-19, 11:03, Sylwester Nawrocki wrote:
+>> On 8/20/19 05:01, Viresh Kumar wrote:
+>>> Sorry but I am unable to understand the difficulty you are facing now. So what I
+>>> suggest is something like this.
+>>
+>> The difficulty was about representing data from tables asv_{arm,kfc}_table[][]
+>> added in patch 3/9 of the series in devicetree.  If you have no objections
+>> about keeping those tables in the driver then I can't see any difficulties. 
 > 
-> Where is this property documented, I dont see anything in linux-next for
-> today
+> The problem with keeping such tables in kernel is that they contain too much
+> magic values which very few people understand. And after some amount of time,
+> even they don't remember any of it.
+>
+> What I was expecting was to remove as much of these tables as possible and do
+> the calculations to get them at runtime with some logical code which people can
+> understand later on.
 
-In this set. :)
+It might be indeed far from a good design but this is all what we get from the 
+SoC vendor. AFAIU those tables are generated based on data from the production
+process, likely from some measurements.
+
+I am afraid I will not get more information for that fairly old SoCs in order to 
+replace those tables with some sensible code generating the data programmatically,
+I'm not sure it would be at all possible to do.
+
+I could add some more comments, similar to description as in my previous RFC 
+DT binding (https://patchwork.kernel.org/patch/10886013).
+
+The tables are rather simple, it's mostly all voltage values, only selecting 
+values per each frequency and chip revision might get a bit complex. 
+I'm not sure we could change that now though.
+>> Then IIUC what I would need to change is to modify exynos_asv_update_cpu_opps() 
+>> function in patch 3/9 to use dev_pm_opp_adjust_voltage() rather than 
+>> dev_pm_opp_remove(), dev_pm_opp_add().
+> 
+> That and somehow add code to get those tables if possible.
+
+I have changed the code to use dev_pm_opp_adjust_voltage(). I was wondering 
+though, what did you mean by "triplet" when commenting on this patch
+https://patchwork.kernel.org/patch/11092245 ?
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Regards,
+Sylwester
