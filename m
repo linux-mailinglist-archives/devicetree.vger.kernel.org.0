@@ -2,158 +2,543 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DCF7A8217
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 14:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27B19A8230
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 14:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729806AbfIDMJA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 08:09:00 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:37231 "EHLO
+        id S1729296AbfIDMQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 08:16:15 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:43534 "EHLO
         mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727083AbfIDMJA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 08:09:00 -0400
-Received: by mail-wr1-f65.google.com with SMTP id z11so20981039wrt.4
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 05:08:58 -0700 (PDT)
+        with ESMTP id S1726943AbfIDMQP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 08:16:15 -0400
+Received: by mail-wr1-f65.google.com with SMTP id y8so20987640wrn.10
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 05:16:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=cXNd5NFyo+yXcDkUhbL4DCnkYm1i1knViowjla1FTwE=;
-        b=J7ZfwMvx+pjJ1KtIMg2FP2iKHNJugtUCVhDT0Q9A9FjR6NMHgbC3mf/LmljjuOidey
-         UGqdxc1zMZTpTvw6hwHC1aHs7rOmo6aaccw1sRY2uRZlabi29r5B6lNG+s3zzZaSMH1C
-         Z4tIH6+/totYd97oYlUmHDWy1h6khLfBmvhCz9+UhOpEsL4SaAa/cdlQqBtVm5+jEaqA
-         pmtDQIzmxpohUiucVvUBP3ioD3mO7zvmxsdxwuhe2oZBFcdQjCUZoBHbidQ1ORP4VLq4
-         wOtK4aZ8XgNv6wyaIbNj/9icjZy0TFMaGC6OnEW61BxKyj7/2fRktWn8svHDF0t6B7Db
-         tOlw==
+        h=from:to:cc:subject:date:message-id;
+        bh=j1L0vi/lTdzTHLv3g6fvZdqTeNGWnLIBcndjiDlAU44=;
+        b=VUfQBeit45g9TkGvYQMDIr5oYm5WI/G0Qjg/ez47yiw9303rywbhEdbs3quImuMs3Y
+         ig4H9RZbiez/KTpqZ84UNAZDqTcHMmU1sPxMfikF2If9PA4ijGv3GCE4cXMybzqeyl0L
+         OWG3N7J+T5drmdJF+Oq4iwfWSvjJNk08lDnCvpIlImdweRAa3bQRUgCZfxjUli7b0OZL
+         At3rz2nEpN1RBKRnSML+Ld01SCzFwFpSu+UzgAKicEHqDQWXASGbL8yBy6NV9zs0VG6W
+         TRGld+sdGNdvF+iZUa3qotlaBmt6B98v8vUmFMHsN/5+BPg/iNKJtlA0p7mA5cs3YcBY
+         Jrkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=cXNd5NFyo+yXcDkUhbL4DCnkYm1i1knViowjla1FTwE=;
-        b=DjmyRxu3S6d9c1ZuTdsYol7ky+RpfXnDZWXXx1FdSeZKoYwlzHmFxoGVyzOriwzmaG
-         615WbYiVyGvz6WMRVN3NEmUiK+ERJ5wWok48USGkSDU/3vOCo1eEbWFa8hgcHLFY0z90
-         1MlD40WbETUgKc+52kf6rmCvAb2axxCS7T7T7b0h7gchcrQM4WYsxDqvAjTAzmYjiMA6
-         HW+pFTtf6hUutxSHli7sZnnSpqYLgnvLrvbJyh/B9fSxIZSUqqn/QHg4yKGGZHIYvpNH
-         FNDwhjYpxMbsErnxBYylmCx2U31IL1YK3isl6tCHI0YlJXK+yoamnKjoh4mrN43b1vJp
-         PRfw==
-X-Gm-Message-State: APjAAAVdhTcAzQ05qmzNG7W6Ub04C0vlxTGKh7ZUM1nTo6C8P3DMZi7F
-        n9xGyIp4/QzVB1UC2vtdabv/UA==
-X-Google-Smtp-Source: APXvYqzoDt1j5nXwZfg6kdlNZiEWEaIC+6f7Yyq3ssLHAa5vCsy93S4qA0vTD5oeY0IsGHeo93JgRQ==
-X-Received: by 2002:a5d:4d81:: with SMTP id b1mr50990154wru.27.1567598937914;
-        Wed, 04 Sep 2019 05:08:57 -0700 (PDT)
-Received: from dell ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id j22sm3005688wre.45.2019.09.04.05.08.57
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 04 Sep 2019 05:08:57 -0700 (PDT)
-Date:   Wed, 4 Sep 2019 13:08:55 +0100
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=j1L0vi/lTdzTHLv3g6fvZdqTeNGWnLIBcndjiDlAU44=;
+        b=PxN5Li8vJRvFebyLTAZTLAwzYWzcXpIq3pmS5ubLa44eZC/CjIyijDiaYTy/DCMhTl
+         D+xXr1DjImdn4NO0fKe7xLG2uwPlCLkv5mWt3sl10ZHlHrcJSQGobKnS+2tgF7tcZuIa
+         h82ejEPeeX8Rwrg7KLE3nJ3W9yHZVLmGWDhJYpYFDL5JIcSbehlS9fNcSdhP+joNrBvY
+         kNwavk/KvCFKJ0tUpf2Fh4+UbGrdavtw16ZshDF5HmJxzCwbwsrZtKcJOXNPk5x17EbU
+         Kx/mXtFeMm/uKnO1APFGA+ZgAKs3ykI8D0ydg5+0Lr/9t9Y4pSK2wMf/TriyDk7XdkGR
+         +USg==
+X-Gm-Message-State: APjAAAWb0VoX4qabAEB1FFB511eBpL/3jAeRxvzmwsOzCIaJQhp4jxXN
+        bbo7qGw9HqhxoFG5Jy9SvQPniw==
+X-Google-Smtp-Source: APXvYqwlajL+ng1PxbbjKKB7QQeI/rI3QTcpoDDhlkpd4CH9T+rzRWP4+uIVNhZ6vCnAuLFQNzH85Q==
+X-Received: by 2002:adf:f404:: with SMTP id g4mr46701655wro.290.1567599371852;
+        Wed, 04 Sep 2019 05:16:11 -0700 (PDT)
+Received: from localhost.localdomain ([95.147.198.36])
+        by smtp.gmail.com with ESMTPSA id y186sm4741534wmb.41.2019.09.04.05.16.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Sep 2019 05:16:11 -0700 (PDT)
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        bjorn.andersson@linaro.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
-Message-ID: <20190904120855.GJ26880@dell>
-References: <20190904113917.15223-1-lee.jones@linaro.org>
- <20190904115234.GV2672@vkoul-mobl>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190904115234.GV2672@vkoul-mobl>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+To:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        bjorn.andersson@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>
+Subject: [PATCH v3 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
+Date:   Wed,  4 Sep 2019 13:16:06 +0100
+Message-Id: <20190904121606.17474-1-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 04 Sep 2019, Vinod Koul wrote:
+From: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> On 04-09-19, 12:39, Lee Jones wrote:
-> > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > @@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-> > +dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
-> 
-> Can we keep this sorted, so before mtp.
+The Lenovo Yoga C630 is built on the SDM850 from Qualcomm, but this seem
+to be similar enough to the SDM845 that we can reuse the sdm845.dtsi.
 
-Look closer. :)
+Supported by this patch is: keyboard, battery monitoring, UFS storage,
+USB host and Bluetooth.
 
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
-> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > new file mode 100644
-> > index 000000000000..ad160c718b33
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> > @@ -0,0 +1,454 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> 
-> Are we going to make this dual? or BSD..
+Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 449 ++++++++++++++++++
+ 2 files changed, 450 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
 
-This patches the DTS files already in this directory.
-
-> > +&apps_rsc {
-> > +	pm8998-rpmh-regulators {
-> > +		compatible = "qcom,pm8998-rpmh-regulators";
-> > +		qcom,pmic-id = "a";
-> > +
-> > +		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-> > +		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-> > +
-> > +		vreg_s2a_1p125: smps2 {
-> > +		};
-> > +
-> > +		vreg_s3a_1p35: smps3 {
-> > +			regulator-min-microvolt = <1352000>;
-> > +			regulator-max-microvolt = <1352000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s4a_1p8: smps4 {
-> > +			regulator-min-microvolt = <1800000>;
-> > +			regulator-max-microvolt = <1800000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s5a_2p04: smps5 {
-> > +			regulator-min-microvolt = <2040000>;
-> > +			regulator-max-microvolt = <2040000>;
-> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> > +		};
-> > +
-> > +		vreg_s7a_1p025: smps7 {
-> 
-> Any reason why we dont specify the mode and min/max voltage for this
-> and few others below..?
-
-Might have to ask Bjorn that one.
-
-> > +&i2c1 {
-> > +	status = "okay";
-> > +	clock-frequency = <400000>;
-> > +	qcom,geni-se-fifo;
-> > +
-> > +	battery@70 {
-> > +		compatible = "some,battery";
-> 
-> some,battery ..?
-
-Good spot.  This the battery level/AC detection driver that isn't
-upstream yet.  Will remove.
-
-> > +&qup_i2c12_default {
-> 
-> Please move the qup nodes up so that nodes are sorted alphabetically
-
-Sure.
-
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 0a7e5dfce6f7..670c6c65f9e9 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+new file mode 100644
+index 000000000000..e49a339ad2df
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -0,0 +1,449 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Lenovo Yoga C630
++ *
++ * Copyright (c) 2019, Linaro Ltd.
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
++#include "sdm845.dtsi"
++#include "pm8998.dtsi"
++
++/ {
++	model = "Lenovo Yoga C630";
++	compatible = "lenovo,yoga-c630", "qcom,sdm845";
++
++	aliases {
++		hsuart0 = &uart6;
++	};
++};
++
++&apps_rsc {
++	pm8998-rpmh-regulators {
++		compatible = "qcom,pm8998-rpmh-regulators";
++		qcom,pmic-id = "a";
++
++		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
++		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
++
++		vreg_s2a_1p125: smps2 {
++		};
++
++		vreg_s3a_1p35: smps3 {
++			regulator-min-microvolt = <1352000>;
++			regulator-max-microvolt = <1352000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_s4a_1p8: smps4 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_s5a_2p04: smps5 {
++			regulator-min-microvolt = <2040000>;
++			regulator-max-microvolt = <2040000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_s7a_1p025: smps7 {
++		};
++
++		vdd_qusb_hs0:
++		vdda_hp_pcie_core:
++		vdda_mipi_csi0_0p9:
++		vdda_mipi_csi1_0p9:
++		vdda_mipi_csi2_0p9:
++		vdda_mipi_dsi0_pll:
++		vdda_mipi_dsi1_pll:
++		vdda_qlink_lv:
++		vdda_qlink_lv_ck:
++		vdda_qrefs_0p875:
++		vdda_pcie_core:
++		vdda_pll_cc_ebi01:
++		vdda_pll_cc_ebi23:
++		vdda_sp_sensor:
++		vdda_ufs1_core:
++		vdda_ufs2_core:
++		vdda_usb1_ss_core:
++		vdda_usb2_ss_core:
++		vreg_l1a_0p875: ldo1 {
++			regulator-min-microvolt = <880000>;
++			regulator-max-microvolt = <880000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vddpx_10:
++		vreg_l2a_1p2: ldo2 {
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1200000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++			regulator-always-on;
++		};
++
++		vreg_l3a_1p0: ldo3 {
++		};
++
++		vdd_wcss_cx:
++		vdd_wcss_mx:
++		vdda_wcss_pll:
++		vreg_l5a_0p8: ldo5 {
++			regulator-min-microvolt = <800000>;
++			regulator-max-microvolt = <800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vddpx_13:
++		vreg_l6a_1p8: ldo6 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l7a_1p8: ldo7 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l8a_1p2: ldo8 {
++		};
++
++		vreg_l9a_1p8: ldo9 {
++		};
++
++		vreg_l10a_1p8: ldo10 {
++		};
++
++		vreg_l11a_1p0: ldo11 {
++		};
++
++		vdd_qfprom:
++		vdd_qfprom_sp:
++		vdda_apc1_cs_1p8:
++		vdda_gfx_cs_1p8:
++		vdda_qrefs_1p8:
++		vdda_qusb_hs0_1p8:
++		vddpx_11:
++		vreg_l12a_1p8: ldo12 {
++			regulator-min-microvolt = <1800000>;
++			regulator-max-microvolt = <1800000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vddpx_2:
++		vreg_l13a_2p95: ldo13 {
++		};
++
++		vreg_l14a_1p88: ldo14 {
++			regulator-min-microvolt = <1880000>;
++			regulator-max-microvolt = <1880000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l15a_1p8: ldo15 {
++		};
++
++		vreg_l16a_2p7: ldo16 {
++		};
++
++		vreg_l17a_1p3: ldo17 {
++			regulator-min-microvolt = <1304000>;
++			regulator-max-microvolt = <1304000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l18a_2p7: ldo18 {
++		};
++
++		vreg_l19a_3p0: ldo19 {
++			regulator-min-microvolt = <3100000>;
++			regulator-max-microvolt = <3108000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l20a_2p95: ldo20 {
++			regulator-min-microvolt = <2960000>;
++			regulator-max-microvolt = <2960000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l21a_2p95: ldo21 {
++		};
++
++		vreg_l22a_2p85: ldo22 {
++		};
++
++		vreg_l23a_3p3: ldo23 {
++		};
++
++		vdda_qusb_hs0_3p1:
++		vreg_l24a_3p075: ldo24 {
++			regulator-min-microvolt = <3075000>;
++			regulator-max-microvolt = <3083000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l25a_3p3: ldo25 {
++			regulator-min-microvolt = <3104000>;
++			regulator-max-microvolt = <3112000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vdda_hp_pcie_1p2:
++		vdda_hv_ebi0:
++		vdda_hv_ebi1:
++		vdda_hv_ebi2:
++		vdda_hv_ebi3:
++		vdda_mipi_csi_1p25:
++		vdda_mipi_dsi0_1p2:
++		vdda_mipi_dsi1_1p2:
++		vdda_pcie_1p2:
++		vdda_ufs1_1p2:
++		vdda_ufs2_1p2:
++		vdda_usb1_ss_1p2:
++		vdda_usb2_ss_1p2:
++		vreg_l26a_1p2: ldo26 {
++			regulator-min-microvolt = <1200000>;
++			regulator-max-microvolt = <1208000>;
++			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
++		};
++
++		vreg_l28a_3p0: ldo28 {
++		};
++
++		vreg_lvs1a_1p8: lvs1 {
++		};
++
++		vreg_lvs2a_1p8: lvs2 {
++		};
++	};
++};
++
++&apps_smmu {
++	/* TODO: Figure out how to survive booting with this enabled */
++	status = "disabled";
++};
++
++&gcc {
++	protected-clocks = <GCC_QSPI_CORE_CLK>,
++			   <GCC_QSPI_CORE_CLK_SRC>,
++			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
++};
++
++&i2c1 {
++	status = "okay";
++	clock-frequency = <400000>;
++	qcom,geni-se-fifo;
++};
++
++&i2c3 {
++	status = "okay";
++	clock-frequency = <400000>;
++	qcom,geni-se-fifo;
++
++	hid@15 {
++		compatible = "hid-over-i2c";
++		reg = <0x15>;
++		hid-descr-addr = <0x1>;
++
++		interrupts-extended = <&tlmm 37 IRQ_TYPE_EDGE_RISING>;
++	};
++
++	hid@2c {
++		compatible = "hid-over-i2c";
++		reg = <0x2c>;
++		hid-descr-addr = <0x20>;
++
++		interrupts-extended = <&tlmm 37 IRQ_TYPE_EDGE_RISING>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&i2c2_hid_active>;
++	};
++};
++
++&i2c5 {
++	status = "okay";
++	clock-frequency = <400000>;
++	qcom,geni-se-fifo;
++
++	hid@10 {
++		compatible = "hid-over-i2c";
++		reg = <0x10>;
++		hid-descr-addr = <0x1>;
++
++		interrupts-extended = <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&i2c6_hid_active>;
++	};
++};
++
++&i2c11 {
++	status = "okay";
++	clock-frequency = <400000>;
++	qcom,geni-se-fifo;
++
++	hid@5c {
++		compatible = "hid-over-i2c";
++		reg = <0x5c>;
++		hid-descr-addr = <0x1>;
++
++		interrupts-extended = <&tlmm 92 IRQ_TYPE_LEVEL_LOW>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&i2c12_hid_active>;
++	};
++};
++
++&qup_i2c12_default {
++	drive-strength = <2>;
++	bias-disable;
++};
++
++&qup_uart6_default {
++	pinmux {
++		 pins = "gpio45", "gpio46", "gpio47", "gpio48";
++		 function = "qup6";
++	};
++
++	cts {
++		pins = "gpio45";
++		bias-pull-down;
++	};
++
++	rts-tx {
++		pins = "gpio46", "gpio47";
++		drive-strength = <2>;
++		bias-disable;
++	};
++
++	rx {
++		pins = "gpio48";
++		bias-pull-up;
++	};
++};
++
++&qupv3_id_0 {
++	status = "okay";
++};
++
++&qupv3_id_1 {
++	status = "okay";
++};
++
++&tlmm {
++	gpio-reserved-ranges = <0 4>, <81 4>;
++
++	i2c2_hid_active: i2c2-hid-active {
++		pins = <37>;
++		function = "gpio";
++
++		input-enable;
++		bias-pull-up;
++		drive-strength = <2>;
++	};
++
++	i2c6_hid_active: i2c6-hid-active {
++		pins = <125>;
++		function = "gpio";
++
++		input-enable;
++		bias-pull-up;
++		drive-strength = <2>;
++	};
++
++	i2c12_hid_active: i2c12-hid-active {
++		pins = <92>;
++		function = "gpio";
++
++		input-enable;
++		bias-pull-up;
++		drive-strength = <2>;
++	};
++};
++
++&uart6 {
++	status = "okay";
++
++	bluetooth {
++		compatible = "qcom,wcn3990-bt";
++
++		vddio-supply = <&vreg_s4a_1p8>;
++		vddxo-supply = <&vreg_l7a_1p8>;
++		vddrf-supply = <&vreg_l17a_1p3>;
++		vddch0-supply = <&vreg_l25a_3p3>;
++		max-speed = <3200000>;
++	};
++};
++
++&ufs_mem_hc {
++	status = "okay";
++
++	vcc-supply = <&vreg_l20a_2p95>;
++	vcc-max-microamp = <600000>;
++};
++
++&ufs_mem_phy {
++	status = "okay";
++
++	vdda-phy-supply = <&vdda_ufs1_core>;
++	vdda-pll-supply = <&vdda_ufs1_1p2>;
++};
++
++&usb_1 {
++	status = "okay";
++};
++
++&usb_1_dwc3 {
++	dr_mode = "host";
++};
++
++&usb_1_hsphy {
++	status = "okay";
++
++	vdd-supply = <&vdda_usb1_ss_core>;
++	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
++	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
++
++	qcom,imp-res-offset-value = <8>;
++	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
++	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
++	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
++};
++
++&usb_1_qmpphy {
++	status = "okay";
++
++	vdda-phy-supply = <&vdda_usb1_ss_1p2>;
++	vdda-pll-supply = <&vdda_usb1_ss_core>;
++};
++
++&usb_2 {
++	status = "okay";
++};
++
++&usb_2_dwc3 {
++	dr_mode = "host";
++};
++
++&usb_2_hsphy {
++	status = "okay";
++
++	vdd-supply = <&vdda_usb2_ss_core>;
++	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
++	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
++
++	qcom,imp-res-offset-value = <8>;
++	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_22_8_MA>;
++};
++
++&usb_2_qmpphy {
++	status = "okay";
++
++	vdda-phy-supply = <&vdda_usb2_ss_1p2>;
++	vdda-pll-supply = <&vdda_usb2_ss_core>;
++};
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.17.1
+
