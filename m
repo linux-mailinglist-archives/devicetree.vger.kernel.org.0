@@ -2,117 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B380AA7FAC
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 11:47:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F327A7FC7
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 11:51:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728843AbfIDJrZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 05:47:25 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:47229 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725840AbfIDJrZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 05:47:25 -0400
-X-UUID: 20d97f0ab7ab4b9487fb870f7a985cba-20190904
-X-UUID: 20d97f0ab7ab4b9487fb870f7a985cba-20190904
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 782800987; Wed, 04 Sep 2019 17:47:18 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N1.mediatek.inc
- (172.27.4.75) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 4 Sep
- 2019 17:47:15 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 4 Sep 2019 17:47:15 +0800
-Message-ID: <1567590435.7317.55.camel@mhfsdcap03>
-Subject: Re: [Patch V8 6/8] arm64: tegra: Enable xudc on Jetson TX1
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Nagarjuna Kristam <nkristam@nvidia.com>
-CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>, <kishon@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Date:   Wed, 4 Sep 2019 17:47:15 +0800
-In-Reply-To: <1567585440-13751-7-git-send-email-nkristam@nvidia.com>
-References: <1567585440-13751-1-git-send-email-nkristam@nvidia.com>
-         <1567585440-13751-7-git-send-email-nkristam@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1729768AbfIDJvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 05:51:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34022 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725840AbfIDJvF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Sep 2019 05:51:05 -0400
+Received: from localhost (unknown [122.182.201.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3ACF22CF7;
+        Wed,  4 Sep 2019 09:51:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567590664;
+        bh=cWumTrUCWby2RFMQQ87i5+/dEWefDyNawluwiyL0n3s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Gq05tX4MsH75NEnfoomECduDUpW2wgJt/to/w0nCfJX3GyJx2fdZxyrIs6XDUmTRO
+         bVrzmOsP03hofoZ+aKx8Ta7FWzNVpvjjjj//h1N2YrnyBho2cog9/jYfuefO4489kL
+         TESY896jfACtG/BoceM+AOuwziakfG1yMbHS1yGI=
+Date:   Wed, 4 Sep 2019 15:19:56 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     robh+dt@kernel.org, dan.j.williams@intel.com,
+        dmaengine@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org
+Subject: Re: [PATCH 0/5] dmaengine: ti: edma: Multicore usage related fixes
+Message-ID: <20190904094956.GT2672@vkoul-mobl>
+References: <20190823125618.8133-1-peter.ujfalusi@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: D87928C5A73737F4FDAFFCF7D19F9B4E08A5B9C99695FB703669287E41A94F292000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190823125618.8133-1-peter.ujfalusi@ti.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-09-04 at 13:53 +0530, Nagarjuna Kristam wrote:
-> Enable XUSB device mode driver for USB0 slot on Jetson TX1.
+On 23-08-19, 15:56, Peter Ujfalusi wrote:
+> Hi,
 > 
-> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> Reviewed-by: JC Kuo <jckuo@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi | 31 +++++++++++++++++++++++++-
->  1 file changed, 30 insertions(+), 1 deletion(-)
+> When other cores want to use EDMA for their use cases Linux was not playing
+> nicely.
+> By design EDMA is supporting shared use with shadow regions. Linux is using
+> region0, others can be used by other cores.
 > 
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> index a7dc319..6aba1ba 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210-p2597.dtsi
-> @@ -1362,7 +1362,7 @@
->  				status = "okay";
->  
->  				lanes {
-> -					usb2-0 {
-> +					micro_b: usb2-0 {
->  						nvidia,function = "xusb";
->  						status = "okay";
->  					};
-> @@ -1483,6 +1483,21 @@
->  		vmmc-supply = <&vdd_3v3_sd>;
->  	};
->  
-> +	usb@700d0000 {
-> +		status = "okay";
-> +		phys = <&micro_b>;
-> +		phy-names = "usb2";
-> +		avddio-usb-supply = <&vdd_3v3_sys>;
-> +		hvdd-usb-supply = <&vdd_1v8>;
-> +		usb-role-switch;
-> +
-> +		port {
-> +			usb_role_switch: endpoint {
-> +				remote-endpoint = <&usb_b_conn_ep>;
-> +			};
-> +		};
-> +	};
-> +
->  	regulators {
->  		compatible = "simple-bus";
->  		#address-cells = <1>;
-> @@ -1641,4 +1656,18 @@
->  			linux,code = <KEY_VOLUMEUP>;
->  		};
->  	};
-> +
-> +	usb_type_b: connector {
-> +		compatible = "linux,usb-conn-gpio", "gpio-usb-b-connector";
-please use "gpio-usb-b-connector" and "usb-b-connector", due to
-"linux,usb-conn-gpio" is not supported now
+> In order to not break multicore shared usage of EDMA:
+> - do not reset paRAM slots which is not allocated for Linux (reserved paRAM
+>   slots)
+> - Only reset region0 access registers, do not touch other regions
+> - Add option for reserved channels which should not be used by Linux in a similar
+>   fashion as we already have for reserved paRAM slots.
 
+Applied 1 to 3, thanks
 
-> +		label = "micro-USB";
-> +		type = "micro";
-> +		vbus-gpio = <&gpio TEGRA_GPIO(Z, 0) GPIO_ACTIVE_LOW>;
-> +
-> +		port {
-> +			usb_b_conn_ep: endpoint {
-> +				remote-endpoint = <&usb_role_switch>;
-> +			};
-> +		};
-> +	};
-> +
->  };
-
-
+-- 
+~Vinod
