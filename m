@@ -2,162 +2,360 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E85A4A7D4A
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 10:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55ED2A7D55
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 10:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728936AbfIDIHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 04:07:55 -0400
-Received: from mail-eopbgr60100.outbound.protection.outlook.com ([40.107.6.100]:10980
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728698AbfIDIHy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Sep 2019 04:07:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MGfgILCw9rOcXuK9DFMbfpYzqXUOfA2aM3vasJXrpeJO6ABGF1KNQ4P6QWKxZ1QFrMu1qHRsqwwNftB29xUK8DOCsRwo7N5AsTpjRXulIwBm4RiPSB54OA3m5T2NtLVkP0vp6BHnLAYCKT+HZ+9TqHVnSpzxisJxPsaYjp2lj406Km1pV617MKCKpFWHgy2YWc5RhpBXWY/4bG5UtcpHjFkcFFBdjCAa8Tn5c+6Vp/n+CeXQV9BWtVIq0x+cK05iodi9xHaL9GWOUwsw5+1EaaLOftzPkIe53s7uGqSy1FwfOFlqUOAF+xTsLdnqqUUuEIrY0PJFIgGxyA2u2nFcHw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A63fIizQuAoBE6Vfps4D4T5hv6kLRCDSoaUZ44rsJVI=;
- b=gAWaRypuvVhch/IuS0x/6Vzib1H6jWH1dQfajA0qIvWgX8ZEnU8Bl5mP+x6A+uJ8Yw/4L1ruoITwh9dRjcde1P7kNPaZ2FYM4Ko29vXzZn/PD0BxTJ1jSJIfTxOm4grxHApxmHUrkjMDc+kTYD+UDE7sYl/ZHNMIBTJXswBvtEVmoTEJwMOmSGnj5ZVYtKtfzhH8nZJWUqGTb1DPXtuFrt1ZWtHOa+ZGZg/RR5dgulFk238XhZ4geaUiraeqEN96RBso14hrIngb7/q2SbQhmVIBoxpVGvh9jSzO9mVQ/KpKK0sdu6nZYoGcgfsDdK7IfEEdBoFKKUTUzN59PG0iEg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=A63fIizQuAoBE6Vfps4D4T5hv6kLRCDSoaUZ44rsJVI=;
- b=EiMCZvKWm6CAlbQR44aK5Q4S/xcqYSvXV54B4mNBEarUU7v+wFFYJBQHyh6LoBHfhi4//Js/PTbWkW0TxGpKw8RnKCIDRP7bzpFTzOWy7aipc9frXcHx9wbzo44sdwhs/Bv8kY0k9OqUqgrPLlRAzYdjoH9PcYe+X77qHjxSifI=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3936.eurprd05.prod.outlook.com (52.134.8.10) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2241.14; Wed, 4 Sep 2019 08:07:48 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f59f:a307:9c53:63b9]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f59f:a307:9c53:63b9%6]) with mapi id 15.20.2220.022; Wed, 4 Sep 2019
- 08:07:48 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Luka Pivk <luka.pivk@toradex.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "broonie@kernel.org" <broonie@kernel.org>,
+        id S1729122AbfIDIJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 04:09:46 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:15141 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728745AbfIDIJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 04:09:46 -0400
+X-UUID: 5a9651fd1534455d93b8a7c81a7714c2-20190904
+X-UUID: 5a9651fd1534455d93b8a7c81a7714c2-20190904
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <jerry-ch.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1354548930; Wed, 04 Sep 2019 16:09:38 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 4 Sep 2019 16:09:36 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 4 Sep 2019 16:09:36 +0800
+Message-ID: <1567584577.22453.11.camel@mtksdccf07>
+Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
+From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
+        "zwisler@chromium.org" <zwisler@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
+        <Sean.Cheng@mediatek.com>,
+        "Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?=" 
+        <sj.huang@mediatek.com>,
+        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
+        <christie.yu@mediatek.com>,
+        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
+        <Frederic.Chen@mediatek.com>,
+        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
+        <jungo.lin@mediatek.com>,
+        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
+        <Rynn.Wu@mediatek.com>,
+        Po-Yang Huang =?UTF-8?Q?=28=E9=BB=83=E6=9F=8F=E9=99=BD=29?= 
+        <po-yang.huang@mediatek.com>,
+        "shik@chromium.org" <shik@chromium.org>,
+        "suleiman@chromium.org" <suleiman@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>
-Subject: Re: [PATCH 3/3] dt-bindings: regulator: add regulator-fixed-clock
- binding
-Thread-Topic: [PATCH 3/3] dt-bindings: regulator: add regulator-fixed-clock
- binding
-Thread-Index: AQHVYi4eVTMHP4rOrkKfHmYdMpCNbKcZo3GAgAGH34A=
-Date:   Wed, 4 Sep 2019 08:07:47 +0000
-Message-ID: <e64429ba4b86411da1741ab54176fb5b4b7a36de.camel@toradex.com>
-References: <20190903080336.32288-1-philippe.schenker@toradex.com>
-         <20190903080336.32288-4-philippe.schenker@toradex.com>
-         <CAL_JsqLnqZ80soGVMvZjAMZvu+K=ebDUz2bM_ZodPp7YRvUnDw@mail.gmail.com>
-In-Reply-To: <CAL_JsqLnqZ80soGVMvZjAMZvu+K=ebDUz2bM_ZodPp7YRvUnDw@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7860de5c-6be2-4345-27b8-08d7310ef97e
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3936;
-x-ms-traffictypediagnostic: VI1PR0502MB3936:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB39366F7860E521BCABBFDAADF4B80@VI1PR0502MB3936.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:843;
-x-forefront-prvs: 0150F3F97D
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(376002)(39840400004)(396003)(346002)(136003)(366004)(199004)(189003)(71200400001)(71190400001)(118296001)(476003)(6246003)(44832011)(486006)(25786009)(256004)(14444005)(36756003)(14454004)(8676002)(53936002)(7736002)(305945005)(6512007)(99286004)(4326008)(6486002)(229853002)(6436002)(446003)(2616005)(11346002)(66946007)(66476007)(66556008)(64756008)(66446008)(66066001)(26005)(91956017)(76116006)(6506007)(186003)(2906002)(5660300002)(8936002)(86362001)(54906003)(102836004)(478600001)(76176011)(53546011)(6116002)(81156014)(3846002)(316002)(81166006);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3936;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: of/Xk0+TnPZyuGcyyiBhuq8DjiObqB9Z1WiuWjOzTNozCUlTbbIjuEfPhtND3p04/74SvfWA2xdnvl1JpkHkcVBrH1eFDVrElMUqs85tmvHHcJiCCZNdVRQ2CmsXfHCDXbvdTRFJRrjDDmBJoajzI/hRV0krBrw3KHrLwNhBdvfGK4py70tnFmgyYGUFK6mGheFigjeOB0PteNyNQzLChNzsFNM4yL+RkjmtGK6+WMJOavKN8ZNahhEjtKey93e7exO3oJg4uaXw+LFykngeyoHvaxUb3aZkA4lmqesdRfsHbGUhwzWQYv8AUqNWod0x5y5tVV1ASdxYeGTK7dzRcGv4qEBYBXtzI9XprqWWOAgXpjKfzNPM/VNYvzM7z/fQNRgPomvZMVvKVgWgcNUmJ67fQTSQjci1dNghSR1EPnQ=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6F6969123F304048AF083CD716008E7C@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Date:   Wed, 4 Sep 2019 16:09:37 +0800
+In-Reply-To: <CAAFQd5AxTQPD+nP9CJs45QTzGHKssjv3vRtMqHONABfp12afYw@mail.gmail.com>
+References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
+         <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
+         <20190802082815.GA203993@chromium.org>
+         <1566724680.20680.8.camel@mtksdccf07>
+         <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
+         <1566957625.20680.33.camel@mtksdccf07>
+         <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
+         <1567424859.18318.32.camel@mtksdccf07>
+         <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
+         <1567493081.18318.49.camel@mtksdccf07>
+         <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
+         <1567511169.18318.65.camel@mtksdccf07>
+         <CAAFQd5DiPcUxd+R-v_-BdRx+QqZ35Riii_jpgbqr5mc3BnQvDw@mail.gmail.com>
+         <1567568281.18318.80.camel@mtksdccf07>
+         <CAAFQd5CRC2cyV30B4Qv59HdrJ7Cpe_yK5aY-BecQQ3J3i0PtCQ@mail.gmail.com>
+         <1567577389.18318.100.camel@mtksdccf07>
+         <CAAFQd5AxTQPD+nP9CJs45QTzGHKssjv3vRtMqHONABfp12afYw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7860de5c-6be2-4345-27b8-08d7310ef97e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Sep 2019 08:07:47.9553
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jNyYxIUUC3Xbzg6povI7IMoZNNAUu32sN3PW9kHClF6uS3vYjfyDd/yE1thSrx/w0JKch3fW1gSwhir8CpMXgEn+9kclFxLaOvp9ch6vN+E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3936
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDE5LTA5LTAzIGF0IDA5OjQ1ICswMTAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVHVlLCBTZXAgMywgMjAxOSBhdCA5OjAzIEFNIFBoaWxpcHBlIFNjaGVua2VyDQo+IDxwaGls
-aXBwZS5zY2hlbmtlckB0b3JhZGV4LmNvbT4gd3JvdGU6DQo+ID4gVGhpcyBhZGRzIHRoZSBkb2N1
-bWVudGF0aW9uIHRvIHRoZSBjb21wYXRpYmxlIHJlZ3VsYXRvci1maXhlZC1jbG9jaw0KPiANCj4g
-UGxlYXNlIGV4cGxhaW4gd2hhdCB0aGF0IGlzIGluIHRoaXMgcGF0Y2guDQoNCkhpIFJvYiBhbmQg
-dGhhbmtzIGZvciB5b3VyIGNvbW1lbnRzLiBJIHdpbGwgY2hhbmdlIHRoaXMgY29tbWl0IG1lc3Nh
-Z2UNCmZvciBhIHBvc3NpYmxlIHYyIGludG8gdGhpczoNCg0KVGhpcyBhZGRzIHRoZSBkb2N1bWVu
-dGF0aW9uIHRvIHRoZSBjb21wYXRpYmxlIHJlZ3VsYXRvci1maXhlZC1jbG9jay4NClRoaXMgYmlu
-ZGluZyBpcyBhIHNwZWNpYWwgYmluZGluZyBvZiByZWd1bGF0b3ItZml4ZWQgYW5kIGFkZHMgdGhl
-DQphYmlsaXR5IHRvIGFkZCBhIGNsb2NrIHRvIHJlZ3VsYXRvci1maXhlZCwgc28gdGhlIHJlZ3Vs
-YXRvciBjYW4gYmUNCmVuYWJsZWQgYW5kIGRpc2FibGVkIHdpdGggdGhhdCBjbG9jay4NCklmIHRo
-ZSBzcGVjaWFsIGNvbXBhdGlibGUgcmVndWxhdG9yLWZpeGVkLWNsb2NrIGlzIHVzZWQgaXQgaXMg
-bWFuZGF0b3J5DQp0byBzdXBwbHkgYSBjbG9jay4NCg0KPiA+IA0KPiANCj4gPiBTaWduZWQtb2Zm
-LWJ5OiBQaGlsaXBwZSBTY2hlbmtlciA8cGhpbGlwcGUuc2NoZW5rZXJAdG9yYWRleC5jb20+DQo+
-ID4gDQo+ID4gLS0tDQo+ID4gDQo+ID4gIC4uLi9iaW5kaW5ncy9yZWd1bGF0b3IvZml4ZWQtcmVn
-dWxhdG9yLnlhbWwgICAgfCAxOA0KPiA+ICsrKysrKysrKysrKysrKysrLQ0KPiA+ICAxIGZpbGUg
-Y2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+IA0KPiA+IGRpZmYg
-LS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVndWxhdG9yL2ZpeGVk
-LQ0KPiA+IHJlZ3VsYXRvci55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L3JlZ3VsYXRvci9maXhlZC0NCj4gPiByZWd1bGF0b3IueWFtbA0KPiA+IGluZGV4IGE2NTBiNDU3
-MDg1ZC4uNWZkMDgxZTgwYjQzIDEwMDY0NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvZml4ZWQtDQo+ID4gcmVndWxhdG9yLnlhbWwNCj4gPiAr
-KysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVndWxhdG9yL2ZpeGVkLQ0K
-PiA+IHJlZ3VsYXRvci55YW1sDQo+ID4gQEAgLTE5LDkgKzE5LDE5IEBAIGRlc2NyaXB0aW9uOg0K
-PiA+ICBhbGxPZjoNCj4gPiAgICAtICRyZWY6ICJyZWd1bGF0b3IueWFtbCMiDQo+ID4gDQo+ID4g
-K3NlbGVjdDoNCj4gPiArICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgY29tcGF0aWJsZToNCj4gPiAr
-ICAgICAgY29udGFpbnM6DQo+ID4gKyAgICAgICAgY29uc3Q6IHJlZ3VsYXRvci1maXhlZC1jbG9j
-aw0KPiA+ICsgIHJlcXVpcmVkOg0KPiA+ICsgICAgLSBjbG9ja3MNCj4gDQo+IFlvdSBkb24ndCBu
-ZWVkIHRoaXMuDQo+IA0KPiBJZiB5b3UgYWRkIGEgbmV3IGNvbXBhdGlibGUsIHRoZW4gdGhpcyBz
-aG91bGQgcHJvYmFibHkgYmUgYSBuZXcgc2NoZW1hDQo+IGRvYy4gSXMgdGhlICdncGlvJyBwcm9w
-ZXJ0eSB2YWxpZCBpbiB0aGlzIGNhc2UgYXMgaWYgYSBjbG9jayBpcyB0aGUNCj4gZW5hYmxlLCBj
-YW4geW91IGFsc28gaGF2ZSBhIGdwaW8gZW5hYmxlPyBUaGF0IHNhaWQsIGl0IHNlZW1zIGxpa2Ug
-dGhlDQo+IG5ldyBjb21wYXRpYmxlIGlzIG9ubHkgZm9yIHZhbGlkYXRpbmcgdGhlIERUIGluIHRo
-ZSBkcml2ZXIuIFlvdSBjb3VsZA0KPiBqdXN0IHVzZSBhIGNsb2NrIGlmIHByZXNlbnQgYW5kIGRl
-ZmF1bHQgdG8gY3VycmVudCBiZWhhdmlvciBpZiBub3QuDQo+IEl0J3Mgbm90IHRoZSBrZXJuZWwn
-cyBqb2IgdG8gdmFsaWRhdGUgRFRzLg0KDQpUaGUgZ3BpbyBwcm9wZXJ0eSBpcyB2YWxpZCB3aXRo
-IHRoaXMgY29tcGF0aWJsZS4gSSBhZGRlZCByZWd1bGF0b3ItDQpmaXhlZC1jbG9jayB0byByZWd1
-bGF0b3ItZml4ZWQgaGVuY2UgSSBhbHNvIGRvbid0IHdhbnQgdG8gY3JlYXRlIGEgbmV3DQpzY2hl
-bWEgZmlsZS4NCg0KV2l0aCB0aGUgYWJvdmUgc2VsZWN0IHN0YXRlbWVudCBJIHdhbnRlZCB0byBz
-dGF0ZSBjbG9ja3MgYXMgcmVxdWlyZWQNCndoZW4gdGhlIGNvbXBhdGlibGUgcmVndWxhdG9yLWZp
-eGVkLWNsb2NrIGlzIGdpdmVuLg0KDQo+IA0KPiA+ICBwcm9wZXJ0aWVzOg0KPiA+ICAgIGNvbXBh
-dGlibGU6DQo+ID4gLSAgICBjb25zdDogcmVndWxhdG9yLWZpeGVkDQo+ID4gKyAgICBpdGVtczoN
-Cj4gPiArICAgICAgLSBjb25zdDogcmVndWxhdG9yLWZpeGVkDQo+ID4gKyAgICAgIC0gY29uc3Q6
-IHJlZ3VsYXRvci1maXhlZC1jbG9jaw0KPiANCj4gVGhpcyBzYXlzIHlvdSBtdXN0IGhhdmUgJ2Nv
-bXBhdGlibGUgPSAicmVndWxhdG9yLWZpeGVkIiwNCj4gInJlZ3VsYXRvci1maXhlZC1jbG9jayI7
-Jy4NCj4gDQo+IFdoYXQgeW91IHdhbnQgaXM6DQo+IA0KPiBlbnVtOg0KPiAgIC0gcmVndWxhdG9y
-LWZpeGVkDQo+ICAgLSByZWd1bGF0b3ItZml4ZWQtY2xvY2sNCg0KVGhhbmtzLCB0aGlzIHdhcyBl
-eGFjdGx5IHdoYXQgSSB3YW50ZWQgdG8gZG8uDQoNCj4gDQo+ID4gICAgcmVndWxhdG9yLW5hbWU6
-IHRydWUNCj4gPiANCj4gPiBAQCAtMjksNiArMzksMTIgQEAgcHJvcGVydGllczoNCj4gPiAgICAg
-IGRlc2NyaXB0aW9uOiBncGlvIHRvIHVzZSBmb3IgZW5hYmxlIGNvbnRyb2wNCj4gPiAgICAgIG1h
-eEl0ZW1zOiAxDQo+ID4gDQo+ID4gKyAgY2xvY2tzOg0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+
-ID4gKyAgICAgIGNsb2NrIHRvIHVzZSBmb3IgZW5hYmxlIGNvbnRyb2wuIFRoaXMgYmluZGluZyBp
-cyBvbmx5DQo+ID4gYXZhaWxhYmxlIGlmDQo+ID4gKyAgICAgIHRoZSBjb21wYXRpYmxlIGlzIGNo
-b3NlbiB0byByZWd1bGF0b3ItZml4ZWQtY2xvY2suIFRoZSBjbG9jaw0KPiA+IGJpbmRpbmcNCj4g
-PiArICAgICAgaXMgbWFuZGF0b3J5IGlmIGNvbXBhdGlibGUgaXMgY2hvc2VuIHRvIHJlZ3VsYXRv
-ci1maXhlZC0NCj4gPiBjbG9jay4NCj4gDQo+IE5lZWQgdG8gZGVmaW5lIGhvdyBtYW55IGNsb2Nr
-cyAobWF4SXRlbXM6IDEpLg0KDQpXaWxsIGRvIGZvciBhIHBvc3NpYmxlIHYyLiBJIHdhbnQgdG8g
-d2FpdCB3aGF0IE1hcmsgQnJvd24gc2F5cyBhYm91dCB0aGUNCmFkZGl0aW9uIGluIGdlbmVyYWws
-IG1heWJlIEkgaGF2ZSB0byBjaGFuZ2UgYWxsIG92ZXIgaG93IHRoaXMgc3BlY2lhbGl0eQ0KaXMg
-YWRkZWQgaW50byByZWd1bGF0b3Igc3Vic3lzdGVtIGFuZCB0aGVyZWZvcmUgYWxzbyB0aGUgYmlu
-ZGluZyB3aWxsDQpjaGFuZ2UuDQoNClBoaWxpcHBlDQo+IA0KPiA+ICsNCj4gPiAgICBzdGFydHVw
-LWRlbGF5LXVzOg0KPiA+ICAgICAgZGVzY3JpcHRpb246IHN0YXJ0dXAgdGltZSBpbiBtaWNyb3Nl
-Y29uZHMNCj4gPiAgICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3Vp
-bnQzMg0KPiA+IC0tDQo+ID4gMi4yMy4wDQo+ID4gDQo=
+Hi Tomasz,
+
+On Wed, 2019-09-04 at 14:34 +0800, Tomasz Figa wrote:
+> On Wed, Sep 4, 2019 at 3:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> >
+> > Hi Tomasz,
+> >
+> > On Wed, 2019-09-04 at 12:15 +0800, Tomasz Figa wrote:
+> > > On Wed, Sep 4, 2019 at 12:38 PM Jerry-ch Chen
+> > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > >
+> > > > Hi Tomasz,
+> > > >
+> > > > On Tue, 2019-09-03 at 20:05 +0800, Tomasz Figa wrote:
+> > > > > On Tue, Sep 3, 2019 at 8:46 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > >
+> > > > > > Hi Tomasz,
+> > > > > >
+> > > > > > On Tue, 2019-09-03 at 15:04 +0800, Tomasz Figa wrote:
+> > > > > > > On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > >
+> > > > > > > > On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
+> > > > > > > > > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > >
+> > > > > > > > > > Hi Tomasz,
+> > > > > > > > > >
+> > > > > > > > > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
+> > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > >
+> > > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > > >
+> > > > > > > > > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > Hi Jerry,
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
+> > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > > > Hi Jerry,
+> > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
+> > > > [snip]
+> > > > > > > > > > > > > [snip]
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > +static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+> > > > > > > > > > > > > > > > +{
+> > > > > > > > > > > > > > > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > > > > > > > > > > > > > > +   struct vb2_buffer *vb;
+> > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > How do we guarantee here that the hardware isn't still accessing the buffers
+> > > > > > > > > > > > > > > removed below?
+> > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > Maybe we can check the driver state flag and aborting the unfinished
+> > > > > > > > > > > > > > jobs?
+> > > > > > > > > > > > > > (fd_hw->state == FD_ENQ)
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Yes, we need to either cancel or wait for the currently processing
+> > > > > > > > > > > > > job. It depends on hardware capabilities, but cancelling is generally
+> > > > > > > > > > > > > preferred for the lower latency.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > Ok, it the state is ENQ, then we can disable the FD hw by controlling
+> > > > > > > > > > > > the registers.
+> > > > > > > > > > > >
+> > > > > > > > > > > > for example:
+> > > > > > > > > > > >         writel(0x0, fd->fd_base + FD_HW_ENABLE);
+> > > > > > > > > > > >         writel(0x0, fd->fd_base + FD_INT_EN);
+> > > > > > > > > > > >
+> > > > > > > > > > >
+> > > > > > > > > > > What's exactly the effect of writing 0 to FD_HW_ENABLE?
+> > > > > > > > > > >
+> > > > > > > > > > Sorry, my last reply didn't solve the question,
+> > > > > > > > > > we should implement a mtk_fd_job_abort() for v4l2_m2m_ops().
+> > > > > > > > > >
+> > > > > > > > > > which is able to readl_poll_timeout_atomic()
+> > > > > > > > > > and check the HW busy bits in the register FD_INT_EN;
+> > > > > > > > > >
+> > > > > > > > > > if they are not cleared until timeout, we could handle the last
+> > > > > > > > > > processing job.
+> > > > > > > > > > Otherwise, the FD irq handler should have handled the last processing
+> > > > > > > > > > job and we could continue the stop_streaming().
+> > > > > > > > > >
+> > > > > > > > > > For job_abort():
+> > > > > > > > > > static void mtk_fd_job_abort(void *priv)
+> > > > > > > > > > {
+> > > > > > > > > >         struct mtk_fd_ctx *ctx = priv;
+> > > > > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> > > > > > > > > >         u32 val;
+> > > > > > > > > >         u32 ret;
+> > > > > > > > > >
+> > > > > > > > > >         ret = readl_poll_timeout_atomic(fd->fd_base + MTK_FD_REG_OFFSET_INT_EN,
+> > > > > > > > > >                                         val,
+> > > > > > > > > >                                         (val & MTK_FD_HW_BUSY_MASK) ==
+> > > > > > > > > >                                         MTK_FD_HW_STATE_IS_BUSY,
+> > > > > > > > > >                                         USEC_PER_MSEC, MTK_FD_STOP_HW_TIMEOUT);
+> > > > > > > > >
+> > > > > > > > > Hmm, would it be possible to avoid the busy wait by having a
+> > > > > > > > > completion that could be signalled from the interrupt handler?
+> > > > > > > > >
+> > > > > > > > > Best regards,
+> > > > > > > > > Tomasz
+> > > > > > > >
+> > > > > > > > I suppose that would be wakeup a wait queue in the interrupt handler,
+> > > > > > > > the the wait_event_interrupt_timeout() will be used in here and system
+> > > > > > > > suspend e.g. mtk_fd_suspend().
+> > > > > > >
+> > > > > > > Yes, that should work.
+> > > > > > >
+> > > > > > > > Or do you suggest to wait_event_interrupt_timeout() every frame in the
+> > > > > > > > mtk_fd_ipi_handler()?
+> > > > > > >
+> > > > > > > Nope, we shouldn't need that.
+> > > > > > >
+> > > > > > > > I think maybe the readl_poll_timeout_atomic would be good enough.
+> > > > > > > >
+> > > > > > >
+> > > > > > > Not really. Busy waiting should be avoided as much as possible. What's
+> > > > > > > the point of entering suspend if you end up burning the power by
+> > > > > > > spinning the CPU for some milliseconds?
+> > > > > > >
+> > > > > > Ok, I see, busy waiting is not a good idea, I will use the wait queue
+> > > > > > instead. the job abort will refine as following:
+> > > > > >
+> > > > > > static void mtk_fd_job_abort(void *priv)
+> > > > > > {
+> > > > > >         struct mtk_fd_ctx *ctx = priv;
+> > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> > > > > >         u32 ret;
+> > > > > >
+> > > > > >         ret = wait_event_interruptible_timeout
+> > > > > >                 (fd->wq, (fd->fd_irq_result & MTK_FD_HW_IRQ_MASK),
+> > > > > >                  usecs_to_jiffies(50000));
+> > > > > >         if (ret)
+> > > > > >                 mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_ERROR);
+> > > > > >         dev_dbg(fd->dev, "%s, ret:%d\n", __func__, ret);
+> > > > > >
+> > > > > >         fd->fd_irq_result = 0;
+> > > > > > }
+> > > > > >
+> > > > > > static struct v4l2_m2m_ops fd_m2m_ops = {
+> > > > > >         .device_run = mtk_fd_device_run,
+> > > > > >         .job_abort = mtk_fd_job_abort,
+> > > > >
+> > > > > I'm not sure we should be using the functon above as the .job_abort
+> > > > > callback. It's expected to abort the job, but we're just waiting for
+> > > > > it to finish. I think we should just call mtk_fd_job_abort() manually
+> > > > > from .stop_streaming.
+> > > > >
+> > > >
+> > > > Ok, I will fix it.
+> > > >
+> > > > > > };
+> > > > > >
+> > > > > > and we could use it in suspend.
+> > > > > > static int mtk_fd_suspend(struct device *dev)
+> > > > > > {
+> > > > > >         struct mtk_fd_dev *fd = dev_get_drvdata(dev);
+> > > > > >
+> > > > > >         if (pm_runtime_suspended(dev))
+> > > > > >                 return 0;
+> > > > > >
+> > > > > >         if (fd->fd_stream_count)
+> > > > > >                 mtk_fd_job_abort(fd->ctx);
+> > > > > >
+> > > > > >         /* suspend FD HW */
+> > > > > >         writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_INT_EN);
+> > > > > >         writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_HW_ENABLE);
+> > > > > >         clk_disable_unprepare(fd->fd_clk);
+> > > > > >         dev_dbg(dev, "%s:disable clock\n", __func__);
+> > > > > >
+> > > > > >         return 0;
+> > > > > > }
+> > > > > >
+> > > > > > static irqreturn_t mtk_fd_irq(int irq, void *data)
+> > > > > > {
+> > > > > >         struct mtk_fd_dev *fd = (struct mtk_fd_dev *)data;
+> > > > > >
+> > > > > >         fd->fd_irq_result = readl(fd->fd_base + MTK_FD_REG_OFFSET_INT_VAL);
+> > > > > >         wake_up_interruptible(&fd->wq);
+> > > > >
+> > > > > The wake up should be done at the very end of this function. Otherwise
+> > > > > we end up with m2m framework racing with the mtk_fd_hw_job_finish()
+> > > > > below.
+> > > > >
+> > > > > Also, I'd use a completion here rather than an open coded wait and
+> > > > > wake-up. The driver could reinit_completion() before queuing a job to
+> > > > > the hardware and the IRQ handler would complete(). There would be no
+> > > > > need to store the IRQ flags in driver data anymore.
+> > > > Ok, It will be refined as following:
+> > > >
+> > > > suspend and stop streaming will call mtk_fd_job_abort()
+> > > >
+> > > > static void mtk_fd_job_abort(struct mtk_fd_dev *fd)
+> > > > {
+> > > >         u32 ret;
+> > > >
+> > > >         ret = wait_for_completion_timeout(&fd->fd_irq_done,
+> > > >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
+> > > >         if (ret)
+> > >
+> > > For the _timeout variants, !ret means the timeout and ret > 0 means
+> > > that the wait ended successfully before.
+> > >
+> > Thanks, fixed.
+> >
+> > > Also please make sure that the timeout is big enough not to happen
+> > > normally on a heavily loaded system. Something like 1 second should be
+> > > good.
+> > >
+> > Ok, I will make it 1 second
+> > #define MTK_FD_HW_TIMEOUT 1000
+> >
+> > Also, I will add a condition in mtk_fd_vb2_stop_streaming(), since it
+> > would be called twice, now it works fine whether I reuse the condition
+> > with mtk_fd_hw_disconnect or not, however, I think do it before buffer
+> > remove looks more reasonable.
+> >
+> > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+> > {
+> >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> >         struct vb2_v4l2_buffer *vb;
+> >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
+> >         struct v4l2_m2m_queue_ctx *queue_ctx;
+> >
+> >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+> >                 mtk_fd_job_abort(fd);
+> 
+> We need to do it regardless of the queue type, otherwise we could
+> still free CAPTURE buffers before the hardware releases them.
+> 
+
+I think we may read the fd->fd_irq_done.done and do wait for completion
+if it's not being done.
+How do you think?
+
+static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+{
+	struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+	struct mtk_fd_dev *fd = ctx->fd_dev;
+	struct vb2_v4l2_buffer *vb;
+	struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
+	struct v4l2_m2m_queue_ctx *queue_ctx;
+	u32 ret;
+
+	if (!fd->fd_irq_done.done)
+		ret = wait_for_completion_timeout(&fd->fd_irq_done,
+					  	  msecs_to_jiffies(
+					  	  	MTK_FD_HW_TIMEOUT));
+	queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
+					&m2m_ctx->out_q_ctx :
+					&m2m_ctx->cap_q_ctx;
+	while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
+		v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
+
+	if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+		mtk_fd_hw_disconnect(fd);
+}
+
+I've also tried to wait completion unconditionally for both queues and
+the second time will wait until timeout, as a result, it takes longer to
+swap the camera every time and close the camera app.
+
+Thanks and best regards,
+Jerry
+
+> Best regards,
+> Tomasz
+
+
