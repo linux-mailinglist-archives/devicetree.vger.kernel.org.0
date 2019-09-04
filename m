@@ -2,348 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C83C6A79A6
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 06:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94AE9A79A1
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 06:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726770AbfIDEXF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 00:23:05 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:44849 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbfIDEXF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 00:23:05 -0400
-Received: by mail-ed1-f67.google.com with SMTP id a21so21013544edt.11
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 21:23:03 -0700 (PDT)
+        id S1725975AbfIDEWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 00:22:08 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:43753 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725829AbfIDEWH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 00:22:07 -0400
+Received: by mail-pf1-f193.google.com with SMTP id d15so2866091pfo.10
+        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 21:22:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=q5y8opnX2BroSXjeQvIIpMYdtoQXE/i3qwOw+SgBMWc=;
-        b=iYDRBf8+vO0Fifjo9hD461k+SooWnhbGjeBijRzwO6XmFh5LjRuA5meKxXnqc3+lPO
-         2bnXk3QfBL1s04WFgseoqXQzmYznzmlEnHDCV9l3HsYfJkOdIlfLSjj6Pga09gXpv1PK
-         73U8I3amxAhgx96sNaNy/UuCZIabceJbnVo+U=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=mp9OFto0GZk4OjRyXFJjH2s7yGAsAoKG/MS1RCQlOQQ=;
+        b=WTaHHGrvlniplupbKSJNlsKOyzptXQwVRIDf/qjEm017VJXU41Gqqe7UGNTMvw+xr1
+         X/Exx7zSW6qtWV0hqB/b1rm6eB8sFQZF3IEyfn4muy2wof4P7S9FI4Ih2W+phAM/mB6v
+         MH0YehfS5rswTZLZ5xuvJWwKp3LhQyQci8S6k0ayZhWecsjSeTTGyImkQ8hKFty96iAv
+         XqIF2NlBPKrvRq4n2tvwHudYolOwY3909VFrEpPhf4MO0gDSYIbyABo1OrcRUEisCNY+
+         Y04TNkzvmezmQ08TLjm54UkOF6PngEAWlWs/gFJAjfXrpUS/OKhkbgDaibCdA7illKDe
+         0s0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=q5y8opnX2BroSXjeQvIIpMYdtoQXE/i3qwOw+SgBMWc=;
-        b=tW6r2jGVisHENwUANv1MLs7JzaEy9j316vUe5Q8AJhucmPS7mCeKZXKYi1+BG3aS1D
-         HrmkQ2hiE8SMZRTtubv5cKu32+M6hZ/4YQf5FYqxirSuU+ekMM4PISeP6orUDSxawUYs
-         AhEQ/cGn4RWQcnzrpX6SpZZgMObpY0yIMuBFhBp+MwTRBxPzNUpEBv++xs50/CdOfp68
-         NxgQdsnYUJVtITvvd7dZW3rnOLrv9zBDf4n7ZQDVUBUJ3FF+C0gMcMzITpRiZswyJfMZ
-         7SDxeTFwyeDp7xdUC9R5vvHPwPxkEwpwwFen/BP+9H8GXPxyu/9iesxfu8AnkvWDfHRt
-         2oTw==
-X-Gm-Message-State: APjAAAWmJPx4HVgXQ7BsjiMbfVU9J3ZFGxm5oQ4D6v/7iQ+lUVTZ8c6W
-        LEckCwYF5bgWgP0kENBGv7GiQeKrdhJIrg==
-X-Google-Smtp-Source: APXvYqwOfbnhrJVzfsPR82b/IaxE5HHn2yALxomAMs7T8pZiUHoLroollJ5hoh4yiJ+ExE60oJ9SoQ==
-X-Received: by 2002:a17:906:b35a:: with SMTP id cd26mr30832140ejb.243.1567570982755;
-        Tue, 03 Sep 2019 21:23:02 -0700 (PDT)
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com. [209.85.221.47])
-        by smtp.gmail.com with ESMTPSA id r10sm3813798edp.25.2019.09.03.21.23.02
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 03 Sep 2019 21:23:02 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id q14so250978wrm.9
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 21:23:02 -0700 (PDT)
-X-Received: by 2002:a5d:6585:: with SMTP id q5mr14990028wru.162.1567570518232;
- Tue, 03 Sep 2019 21:15:18 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=mp9OFto0GZk4OjRyXFJjH2s7yGAsAoKG/MS1RCQlOQQ=;
+        b=momu1Z0bTb8s5+KBDaJE67VJajA4TdqDC157QrcmzQmH5tUewNmuDEPXM/cHxqYwiT
+         vWuxChjoBbhjp+jzNtu/5aBP1XAyo1g2eqk0ptkEHZA7uAq1a0UU38vAN+4b/QNLFZ93
+         v3EWTtZTIt5DKyfT5nR3ejJ5Mo59REvE8lnQ2SSLgK48cA1ebvzAZD60xFG4CMeeTDL7
+         AOhd/JNJKefq6RVg3RIEicC42oMbQ+uUfjz6Pz2DgwEIDThlppfjj0J0TYFZsj2UAUNK
+         Z+lAA965gk5GSKl4aq6jTmFPkLRtfbhai1AOTWgREaGfh7lGLaQ1+Iky90EqpRr7gcxV
+         Qj6Q==
+X-Gm-Message-State: APjAAAXF6RMfF39JOxeb0rW7StjbJXGgs7V52u6kbjKMLrYqQDziSiDn
+        sxfkLkZj6PJmvwvDfEv4f7e0gw==
+X-Google-Smtp-Source: APXvYqy5gQpkWB1S0s/wrl3Q+cVrKMEMuWNE1UjfGFaNKX5PQ/qnJ8QVZhQCfwLSEncF+vh+M6lJhA==
+X-Received: by 2002:aa7:8a98:: with SMTP id a24mr40799576pfc.101.1567570927082;
+        Tue, 03 Sep 2019 21:22:07 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id j7sm10505053pfi.96.2019.09.03.21.22.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 03 Sep 2019 21:22:06 -0700 (PDT)
+Date:   Tue, 3 Sep 2019 21:22:03 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
+        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Vikash Garodia <vgarodia@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Aniket Masule <amasule@codeaurora.org>,
+        Linux PM list <linux-pm@vger.kernel.org>
+Subject: Re: [PATCH 1/2] venus: use on-chip interconnect API
+Message-ID: <20190904042203.GC3081@tuxbook-pro>
+References: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
+ <20190814084701.25455-2-stanimir.varbanov@linaro.org>
+ <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
 MIME-Version: 1.0
-References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
- <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
- <20190802082815.GA203993@chromium.org> <1566724680.20680.8.camel@mtksdccf07>
- <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
- <1566957625.20680.33.camel@mtksdccf07> <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
- <1567424859.18318.32.camel@mtksdccf07> <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
- <1567493081.18318.49.camel@mtksdccf07> <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
- <1567511169.18318.65.camel@mtksdccf07> <CAAFQd5DiPcUxd+R-v_-BdRx+QqZ35Riii_jpgbqr5mc3BnQvDw@mail.gmail.com>
- <1567568281.18318.80.camel@mtksdccf07>
-In-Reply-To: <1567568281.18318.80.camel@mtksdccf07>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Wed, 4 Sep 2019 13:15:06 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5CRC2cyV30B4Qv59HdrJ7Cpe_yK5aY-BecQQ3J3i0PtCQ@mail.gmail.com>
-Message-ID: <CAAFQd5CRC2cyV30B4Qv59HdrJ7Cpe_yK5aY-BecQQ3J3i0PtCQ@mail.gmail.com>
-Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
-To:     Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-Cc:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
-        "zwisler@chromium.org" <zwisler@chromium.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
-        <Sean.Cheng@mediatek.com>,
-        =?UTF-8?B?U2ogSHVhbmcgKOm7g+S/oeeSiyk=?= <sj.huang@mediatek.com>,
-        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
-        <christie.yu@mediatek.com>,
-        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
-        <Frederic.Chen@mediatek.com>,
-        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
-        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
-        =?UTF-8?B?UG8tWWFuZyBIdWFuZyAo6buD5p+P6Zm9KQ==?= 
-        <po-yang.huang@mediatek.com>,
-        "shik@chromium.org" <shik@chromium.org>,
-        "suleiman@chromium.org" <suleiman@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 4, 2019 at 12:38 PM Jerry-ch Chen
-<Jerry-ch.Chen@mediatek.com> wrote:
->
-> Hi Tomasz,
->
-> On Tue, 2019-09-03 at 20:05 +0800, Tomasz Figa wrote:
-> > On Tue, Sep 3, 2019 at 8:46 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > >
-> > > Hi Tomasz,
-> > >
-> > > On Tue, 2019-09-03 at 15:04 +0800, Tomasz Figa wrote:
-> > > > On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > >
-> > > > > On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
-> > > > > > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > >
-> > > > > > > Hi Tomasz,
-> > > > > > >
-> > > > > > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
-> > > > > > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
-> > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > >
-> > > > > > > > > Hi Tomasz,
-> > > > > > > > >
-> > > > > > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
-> > > > > > > > > > Hi Jerry,
-> > > > > > > > > >
-> > > > > > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
-> > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > >
-> > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > >
-> > > > > > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > Hi Jerry,
-> > > > > > > > > > > >
-> > > > > > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
-> [snip]
-> > > > > > > > > > [snip]
-> > > > > > > > > >
-> > > > > > > > > > > > > +static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > > > > > > > > > > +{
-> > > > > > > > > > > > > +   struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > > > > > > > > > > +   struct vb2_buffer *vb;
-> > > > > > > > > > > >
-> > > > > > > > > > > > How do we guarantee here that the hardware isn't still accessing the buffers
-> > > > > > > > > > > > removed below?
-> > > > > > > > > > > >
-> > > > > > > > > > > Maybe we can check the driver state flag and aborting the unfinished
-> > > > > > > > > > > jobs?
-> > > > > > > > > > > (fd_hw->state == FD_ENQ)
-> > > > > > > > > > >
-> > > > > > > > > >
-> > > > > > > > > > Yes, we need to either cancel or wait for the currently processing
-> > > > > > > > > > job. It depends on hardware capabilities, but cancelling is generally
-> > > > > > > > > > preferred for the lower latency.
-> > > > > > > > > >
-> > > > > > > > > Ok, it the state is ENQ, then we can disable the FD hw by controlling
-> > > > > > > > > the registers.
-> > > > > > > > >
-> > > > > > > > > for example:
-> > > > > > > > >         writel(0x0, fd->fd_base + FD_HW_ENABLE);
-> > > > > > > > >         writel(0x0, fd->fd_base + FD_INT_EN);
-> > > > > > > > >
-> > > > > > > >
-> > > > > > > > What's exactly the effect of writing 0 to FD_HW_ENABLE?
-> > > > > > > >
-> > > > > > > Sorry, my last reply didn't solve the question,
-> > > > > > > we should implement a mtk_fd_job_abort() for v4l2_m2m_ops().
-> > > > > > >
-> > > > > > > which is able to readl_poll_timeout_atomic()
-> > > > > > > and check the HW busy bits in the register FD_INT_EN;
-> > > > > > >
-> > > > > > > if they are not cleared until timeout, we could handle the last
-> > > > > > > processing job.
-> > > > > > > Otherwise, the FD irq handler should have handled the last processing
-> > > > > > > job and we could continue the stop_streaming().
-> > > > > > >
-> > > > > > > For job_abort():
-> > > > > > > static void mtk_fd_job_abort(void *priv)
-> > > > > > > {
-> > > > > > >         struct mtk_fd_ctx *ctx = priv;
-> > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > > > > > >         u32 val;
-> > > > > > >         u32 ret;
-> > > > > > >
-> > > > > > >         ret = readl_poll_timeout_atomic(fd->fd_base + MTK_FD_REG_OFFSET_INT_EN,
-> > > > > > >                                         val,
-> > > > > > >                                         (val & MTK_FD_HW_BUSY_MASK) ==
-> > > > > > >                                         MTK_FD_HW_STATE_IS_BUSY,
-> > > > > > >                                         USEC_PER_MSEC, MTK_FD_STOP_HW_TIMEOUT);
-> > > > > >
-> > > > > > Hmm, would it be possible to avoid the busy wait by having a
-> > > > > > completion that could be signalled from the interrupt handler?
-> > > > > >
-> > > > > > Best regards,
-> > > > > > Tomasz
-> > > > >
-> > > > > I suppose that would be wakeup a wait queue in the interrupt handler,
-> > > > > the the wait_event_interrupt_timeout() will be used in here and system
-> > > > > suspend e.g. mtk_fd_suspend().
-> > > >
-> > > > Yes, that should work.
-> > > >
-> > > > > Or do you suggest to wait_event_interrupt_timeout() every frame in the
-> > > > > mtk_fd_ipi_handler()?
-> > > >
-> > > > Nope, we shouldn't need that.
-> > > >
-> > > > > I think maybe the readl_poll_timeout_atomic would be good enough.
-> > > > >
-> > > >
-> > > > Not really. Busy waiting should be avoided as much as possible. What's
-> > > > the point of entering suspend if you end up burning the power by
-> > > > spinning the CPU for some milliseconds?
-> > > >
-> > > Ok, I see, busy waiting is not a good idea, I will use the wait queue
-> > > instead. the job abort will refine as following:
-> > >
-> > > static void mtk_fd_job_abort(void *priv)
-> > > {
-> > >         struct mtk_fd_ctx *ctx = priv;
-> > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > >         u32 ret;
-> > >
-> > >         ret = wait_event_interruptible_timeout
-> > >                 (fd->wq, (fd->fd_irq_result & MTK_FD_HW_IRQ_MASK),
-> > >                  usecs_to_jiffies(50000));
-> > >         if (ret)
-> > >                 mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_ERROR);
-> > >         dev_dbg(fd->dev, "%s, ret:%d\n", __func__, ret);
-> > >
-> > >         fd->fd_irq_result = 0;
-> > > }
-> > >
-> > > static struct v4l2_m2m_ops fd_m2m_ops = {
-> > >         .device_run = mtk_fd_device_run,
-> > >         .job_abort = mtk_fd_job_abort,
-> >
-> > I'm not sure we should be using the functon above as the .job_abort
-> > callback. It's expected to abort the job, but we're just waiting for
-> > it to finish. I think we should just call mtk_fd_job_abort() manually
-> > from .stop_streaming.
-> >
->
-> Ok, I will fix it.
->
-> > > };
-> > >
-> > > and we could use it in suspend.
-> > > static int mtk_fd_suspend(struct device *dev)
-> > > {
-> > >         struct mtk_fd_dev *fd = dev_get_drvdata(dev);
-> > >
-> > >         if (pm_runtime_suspended(dev))
-> > >                 return 0;
-> > >
-> > >         if (fd->fd_stream_count)
-> > >                 mtk_fd_job_abort(fd->ctx);
-> > >
-> > >         /* suspend FD HW */
-> > >         writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_INT_EN);
-> > >         writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_HW_ENABLE);
-> > >         clk_disable_unprepare(fd->fd_clk);
-> > >         dev_dbg(dev, "%s:disable clock\n", __func__);
-> > >
-> > >         return 0;
-> > > }
-> > >
-> > > static irqreturn_t mtk_fd_irq(int irq, void *data)
-> > > {
-> > >         struct mtk_fd_dev *fd = (struct mtk_fd_dev *)data;
-> > >
-> > >         fd->fd_irq_result = readl(fd->fd_base + MTK_FD_REG_OFFSET_INT_VAL);
-> > >         wake_up_interruptible(&fd->wq);
-> >
-> > The wake up should be done at the very end of this function. Otherwise
-> > we end up with m2m framework racing with the mtk_fd_hw_job_finish()
-> > below.
-> >
-> > Also, I'd use a completion here rather than an open coded wait and
-> > wake-up. The driver could reinit_completion() before queuing a job to
-> > the hardware and the IRQ handler would complete(). There would be no
-> > need to store the IRQ flags in driver data anymore.
-> Ok, It will be refined as following:
->
-> suspend and stop streaming will call mtk_fd_job_abort()
->
-> static void mtk_fd_job_abort(struct mtk_fd_dev *fd)
-> {
->         u32 ret;
->
->         ret = wait_for_completion_timeout(&fd->fd_irq_done,
->                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
->         if (ret)
+On Tue 20 Aug 02:34 PDT 2019, Georgi Djakov wrote:
 
-For the _timeout variants, !ret means the timeout and ret > 0 means
-that the wait ended successfully before.
+> Hi Stan,
+> 
+> On 8/14/19 11:47, Stanimir Varbanov wrote:
+> > This aims to add a requests for bandwidth scaling depending
+> > on the resolution and framerate (macroblocks per second). The
+> > exact value ff the requested bandwidth is get from a
+> 
+> s/ff/of/
+> 
+> > pre-calculated tables for encoder and decoder.
+> > 
+> > Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> > ---
+> >  drivers/media/platform/qcom/venus/core.c    | 34 +++++++++++
+> >  drivers/media/platform/qcom/venus/core.h    | 14 +++++
+> >  drivers/media/platform/qcom/venus/helpers.c | 67 ++++++++++++++++++++-
+> >  3 files changed, 114 insertions(+), 1 deletion(-)
+> 
+> It looks like venus can be built-in, so how about the case when venus is
+> built-in and the interconnect provider is a module? Maybe add a dependency in
+> Kconfig to depend on INTERCONNECT || !INTERCONNECT?
+> 
 
-Also please make sure that the timeout is big enough not to happen
-normally on a heavily loaded system. Something like 1 second should be
-good.
+I've been struggling down this road for remoteproc et al for a long
+time, I strongly suggest that you make the INTERCONNECT config bool, to
+ensure that we don't see this problem for every client.
 
->                 mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_ERROR);
-> }
->
-> complete at irq handler
->
-> static irqreturn_t mtk_fd_irq(int irq, void *data)
-> {
->         struct mtk_fd_dev *fd = (struct mtk_fd_dev *)data;
->
->         /* must read this register otherwise HW will keep sending irq */
->         readl(fd->fd_base + MTK_FD_REG_OFFSET_INT_VAL);
->         fd->output->number = readl(fd->fd_base + MTK_FD_REG_OFFSET_RESULT);
->         dev_dbg(fd->dev, "mtk_fd_face_num:%d\n", fd->output->number);
->
->         pm_runtime_put((fd->dev));
->         mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_DONE);
->         complete(&fd->fd_irq_done);
->         return IRQ_HANDLED;
-> }
->
-> and reinit_completion before time before sending a job to HW
->
-> static int mtk_fd_hw_job_exec(struct mtk_fd_dev *fd,
->                               struct fd_enq_param *fd_param)
-> {
->         struct ipi_message fd_ipi_msg;
->         int ret;
->
->         pm_runtime_get_sync((fd->dev));
->
->         reinit_completion(&fd->fd_irq_done);
->         fd_ipi_msg.cmd_id = MTK_FD_IPI_CMD_ENQUEUE;
->         memcpy(&fd_ipi_msg.fd_enq_param, fd_param, sizeof(struct
-> fd_enq_param));
->         ret = scp_ipi_send(fd->scp_pdev, SCP_IPI_FD_CMD, &fd_ipi_msg,
->                            sizeof(fd_ipi_msg), MTK_FD_IPI_SEND_TIMEOUT);
->         if (ret) {
->                 pm_runtime_put((fd->dev));
->                 mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_ERROR);
->                 return ret;
->         }
->         return 0;
-> }
+The interconnect framework should hide the fact that the provider is
+module.
 
-Looks good, thanks. Please also don't forget about init_completion()
-in driver probe.
 
-Best regards,
-Tomasz
+But with this in place is there actually a dependency? Won't the include
+file provide stubs in the case of !INTERCONNECT?
+
+Regards,
+Bjorn
+
+> > 
+> > diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> > index 0acc7576cc58..19cbe9d5d028 100644
+> > --- a/drivers/media/platform/qcom/venus/core.c
+> > +++ b/drivers/media/platform/qcom/venus/core.c
+> > @@ -5,6 +5,7 @@
+> >   */
+> >  #include <linux/clk.h>
+> >  #include <linux/init.h>
+> > +#include <linux/interconnect.h>
+> >  #include <linux/ioctl.h>
+> >  #include <linux/list.h>
+> >  #include <linux/module.h>
+> > @@ -239,6 +240,14 @@ static int venus_probe(struct platform_device *pdev)
+> >  	if (IS_ERR(core->base))
+> >  		return PTR_ERR(core->base);
+> >  
+> > +	core->video_path = of_icc_get(dev, "video-mem");
+> > +	if (IS_ERR(core->video_path))
+> > +		return PTR_ERR(core->video_path);
+> > +
+> > +	core->cpucfg_path = of_icc_get(dev, "cpu-cfg");
+> > +	if (IS_ERR(core->cpucfg_path))
+> > +		return PTR_ERR(core->cpucfg_path);
+> > +
+> >  	core->irq = platform_get_irq(pdev, 0);
+> >  	if (core->irq < 0)
+> >  		return core->irq;
+> > @@ -273,6 +282,10 @@ static int venus_probe(struct platform_device *pdev)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > +	ret = icc_set_bw(core->cpucfg_path, 0, kbps_to_icc(1000));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> >  	ret = hfi_create(core, &venus_core_ops);
+> >  	if (ret)
+> >  		return ret;
+> > @@ -355,6 +368,9 @@ static int venus_remove(struct platform_device *pdev)
+> >  	pm_runtime_put_sync(dev);
+> >  	pm_runtime_disable(dev);
+> >  
+> > +	icc_put(core->video_path);
+> > +	icc_put(core->cpucfg_path);
+> > +
+> 
+> Do you have any plans to scale the bandwidth on suspend/resume too?
+> 
+> Thanks,
+> Georgi
