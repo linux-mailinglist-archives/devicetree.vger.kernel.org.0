@@ -2,130 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80659A93CD
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 22:35:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75D39A93F0
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 22:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729907AbfIDUfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 16:35:53 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:33492 "EHLO
+        id S1730441AbfIDUnG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 16:43:06 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:38410 "EHLO
         mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729398AbfIDUfw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 16:35:52 -0400
-Received: by mail-pf1-f196.google.com with SMTP id q10so38599pfl.0
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 13:35:52 -0700 (PDT)
+        with ESMTP id S1730405AbfIDUnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 16:43:05 -0400
+Received: by mail-pf1-f196.google.com with SMTP id h195so33521pfe.5
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 13:43:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=Y9dPfxiGVl9B5eQCHDgsbYOLG2ykYyi/7SM+jtLAnog=;
-        b=IoH/DtjsZSHeuM5ZH1ZL9Fy+rFnrY2sGhJTxYoxekXhLlmUNBAwbZWtGkaZWeLkrWB
-         p/OHUOdc3ZVgXUSWEXgPCdOxzHj6ou+8a/ZlebDKFUrcBI8Zk36WiZ7RUbG2Hn1T5Xy6
-         q4NVyGK9q203NBKeABXcjGCfEhXMgChZweccIQ+Inc7zwHL8h+V9H4Eoo0tWROMxKNck
-         zeuF2Fq/ec/RE8H+zHbNtYl55DYiCg2BVdGE41d25DtwtA1Bl1qs11JMSGCNhXZoNW7G
-         GszHlkzz1S81UpO64iP8lHJFTqcYhkcuFgvYXx6J8GUw8BLi/FgP2ITaAvZ2KhBllLib
-         M6nw==
+        bh=/wsxDOtmnb9U/NekdAlLR4oeHJRU38Z5gPTM6QnO4F4=;
+        b=r4bC4okD7CNuq9BuMebOgwrGDybFlvfFhLFBIwlpf42JHRLdahnasXWiz4T5LA99LU
+         2szH87RezwOyOLL9EKUyVa4cjjqAl3XmySbxKqHUVyRPiF3VPP8pbC2fnxjPwEpjPo3z
+         mAP1Bb7s4IzTsQWgfoTAoq0LYVSYizde92oVBaCmSzJ/uMC5MhTyNcm36CPMUESC8SQh
+         CzxQP/cXwFySn9hLysmCRG0wT+4dXwIXoMn6W+H7H0LSiR1YdbUd9xG+wNjXxxzzkJNu
+         2m9P0Mfc6Hxbf08Gg13Ikkma+OvDXYSEQGdrXHpyG26aWe0JoK/8eZGHmzMpZPSKgDQU
+         vy1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Y9dPfxiGVl9B5eQCHDgsbYOLG2ykYyi/7SM+jtLAnog=;
-        b=mCaGiejKYFY37hSspEFuhD1q4tMBdpyy+Xv2jURgU+vPhez7pIFexjHexZgfpIwMU7
-         Lzsnhn+lK1rtZKC7+jpg0PNNI6B+k1d29vSrwoDCAY+HPJ1qb+E//uzgJDaF/+mp498x
-         G65AP2XQ7IGrUXOMIlZRelt2zM/Jyo6YihNxfmAY1pjiy/Z4ID/TzEpD+MXMpxyF/uYt
-         0qs1xevvxLpUls8kMSU8SyGDkGMcDZYgJ3ZmTeqxG9ZcC8lRXIGPQcVmJm58UcwfTwrR
-         yiMbXh1YZnr8zacAY8oVeMk0KXQFQX+oPhwWBXN1cGZkBkuvLa+eYbMwvBYJqWSiy9R/
-         Viww==
-X-Gm-Message-State: APjAAAXbDAZzTgQYPRgf/o3/WRwoQQLRaAQpKbqtTW6AUGuwcg2esdEU
-        j0mKJrFsF1gu+OFUSBZYPZaySw==
-X-Google-Smtp-Source: APXvYqyNUCdVh4CrjvfM5UYakm4eAZf3UXsz8CmJ1f360GpgwL9mGAfC1CL0i304toSE0+cTRHBGxA==
-X-Received: by 2002:a63:6a81:: with SMTP id f123mr38808pgc.348.1567629351901;
-        Wed, 04 Sep 2019 13:35:51 -0700 (PDT)
+        bh=/wsxDOtmnb9U/NekdAlLR4oeHJRU38Z5gPTM6QnO4F4=;
+        b=Fw4iV1wP4ghCVKP2F3T4POTXr+IYYmfid2uyQGF2HV/v2ick/aRJ9uv3dUSe88Q6ce
+         7IJpVymRITIlNdB8wxd7UriqPFLK71jSUrTpBF/relNLEg5Aou42nSEm74FO3CxyD6yb
+         qly4uYHkLdvzOeaBJTB64fiUlwQgWm+9A6WRUp9ZR1cWbLMwTACCiSJbXWulM3++Sz0S
+         woFiR7aOb21hEGFrzkC/TIHbKX8Yu0TgTGf2lBkoUKSNwP/43BuzW5FFX+8k9/slq/ig
+         o6Uhf9XW/Nshfpr/yUAG+ICCL8GQusXeFBUV2jyYydLzGpY8/HGfpXJV/yAjo8axDeEm
+         SIAQ==
+X-Gm-Message-State: APjAAAWH7PObIFZ8w9w2diVF/nBM9Ur7xcOGIApc+8QdeNwdMpIorS8l
+        zjqIgVWHhabzpHL1Od14Vd5pGw==
+X-Google-Smtp-Source: APXvYqz1x8IyyymHXIXgIk+a+BK4sSercU90VrV9KeSyLBl4ibAmtDI9sBm/qrTJHr7/y8s0AMFyaA==
+X-Received: by 2002:a17:90a:fc89:: with SMTP id ci9mr168674pjb.48.1567629785147;
+        Wed, 04 Sep 2019 13:43:05 -0700 (PDT)
 Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id h70sm14724pgc.36.2019.09.04.13.35.50
+        by smtp.gmail.com with ESMTPSA id b3sm29860352pfp.65.2019.09.04.13.43.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Sep 2019 13:35:51 -0700 (PDT)
-Date:   Wed, 4 Sep 2019 13:35:48 -0700
+        Wed, 04 Sep 2019 13:43:04 -0700 (PDT)
+Date:   Wed, 4 Sep 2019 13:43:02 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-i2c@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] i2c: qcom-geni: Provide an option to select FIFO
- processing
-Message-ID: <20190904203548.GC580@tuxbook-pro>
-References: <20190904113613.14997-1-lee.jones@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Lee Jones <lee.jones@linaro.org>, agross@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
+Message-ID: <20190904204302.GD580@tuxbook-pro>
+References: <20190904113917.15223-1-lee.jones@linaro.org>
+ <20190904115234.GV2672@vkoul-mobl>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190904113613.14997-1-lee.jones@linaro.org>
+In-Reply-To: <20190904115234.GV2672@vkoul-mobl>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 04 Sep 04:36 PDT 2019, Lee Jones wrote:
+On Wed 04 Sep 04:52 PDT 2019, Vinod Koul wrote:
 
-The subject implies that we select FIFO mode instead of DMA, but that's
-not really true, because with DMA enabled we still fall back to FIFO for
-messages below 32 bytes. 
+> On 04-09-19, 12:39, Lee Jones wrote:
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
+> 
+> Can we keep this sorted, so before mtp.
+> 
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > new file mode 100644
+> > index 000000000000..ad160c718b33
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > @@ -0,0 +1,454 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> 
+> Are we going to make this dual? or BSD..
+> 
 
-So what this does it to disable DMA, which neither the subject or the DT
-property describes.
+Sounds good, Rob wants dual license so lets flag it as such.
 
-Also missing is a description of why this is needed.
+> > +&apps_rsc {
+> > +	pm8998-rpmh-regulators {
+> > +		compatible = "qcom,pm8998-rpmh-regulators";
+> > +		qcom,pmic-id = "a";
+> > +
+> > +		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
+> > +		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
+> > +
+> > +		vreg_s2a_1p125: smps2 {
+> > +		};
+> > +
+> > +		vreg_s3a_1p35: smps3 {
+> > +			regulator-min-microvolt = <1352000>;
+> > +			regulator-max-microvolt = <1352000>;
+> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +		};
+> > +
+> > +		vreg_s4a_1p8: smps4 {
+> > +			regulator-min-microvolt = <1800000>;
+> > +			regulator-max-microvolt = <1800000>;
+> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +		};
+> > +
+> > +		vreg_s5a_2p04: smps5 {
+> > +			regulator-min-microvolt = <2040000>;
+> > +			regulator-max-microvolt = <2040000>;
+> > +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+> > +		};
+> > +
+> > +		vreg_s7a_1p025: smps7 {
+> 
+> Any reason why we dont specify the mode and min/max voltage for this
+> and few others below..?
+> 
+
+Iirc these values are not known from the tables provided by the
+firmware. Label names are just "borrowed" from the MTP, so we can't
+derive anything from there either.
+
+I intended to review and clean this up before it was posted...
 
 Regards,
 Bjorn
 
-> Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> ---
->  drivers/i2c/busses/i2c-qcom-geni.c | 14 ++++++++++----
->  1 file changed, 10 insertions(+), 4 deletions(-)
+> > +&i2c1 {
+> > +	status = "okay";
+> > +	clock-frequency = <400000>;
+> > +	qcom,geni-se-fifo;
+> > +
+> > +	battery@70 {
+> > +		compatible = "some,battery";
 > 
-> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-> index a89bfce5388e..dfdbce067827 100644
-> --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> @@ -353,13 +353,16 @@ static void geni_i2c_tx_fsm_rst(struct geni_i2c_dev *gi2c)
->  static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
->  				u32 m_param)
->  {
-> +	struct device_node *np = gi2c->se.dev->of_node;
->  	dma_addr_t rx_dma;
->  	unsigned long time_left;
-> -	void *dma_buf;
-> +	void *dma_buf = NULL;
->  	struct geni_se *se = &gi2c->se;
->  	size_t len = msg->len;
->  
-> -	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> +	if (!of_property_read_bool(np, "qcom,geni-se-fifo"))
-> +		dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> +
->  	if (dma_buf)
->  		geni_se_select_mode(se, GENI_SE_DMA);
->  	else
-> @@ -392,13 +395,16 @@ static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
->  static int geni_i2c_tx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
->  				u32 m_param)
->  {
-> +	struct device_node *np = gi2c->se.dev->of_node;
->  	dma_addr_t tx_dma;
->  	unsigned long time_left;
-> -	void *dma_buf;
-> +	void *dma_buf = NULL;
->  	struct geni_se *se = &gi2c->se;
->  	size_t len = msg->len;
->  
-> -	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> +	if (!of_property_read_bool(np, "qcom,geni-se-fifo"))
-> +		dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> +
->  	if (dma_buf)
->  		geni_se_select_mode(se, GENI_SE_DMA);
->  	else
+> some,battery ..?
+> 
+> > +&qup_i2c12_default {
+> 
+> Please move the qup nodes up so that nodes are sorted alphabetically
+> 
 > -- 
-> 2.17.1
-> 
+> ~Vinod
