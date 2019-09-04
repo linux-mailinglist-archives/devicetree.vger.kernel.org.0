@@ -2,144 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5966A7B7C
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 08:17:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09751A7B88
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 08:19:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728986AbfIDGRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 02:17:17 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:45146 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728949AbfIDGRQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 02:17:16 -0400
-Received: by mail-pl1-f194.google.com with SMTP id x3so3947771plr.12
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 23:17:16 -0700 (PDT)
+        id S1726087AbfIDGTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 02:19:00 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:46846 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725267AbfIDGTA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 02:19:00 -0400
+Received: by mail-io1-f67.google.com with SMTP id x4so41578470iog.13;
+        Tue, 03 Sep 2019 23:19:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=oal3IaO/tErsls7uIk50scCx56FqEWZJT9dcXkh2oYs=;
-        b=hwQ0ejc7gawIBUqdMX1cbLVlApO4fA4Mriygvn96fnvODntwLTrFDhyto/By1coVfL
-         rKsVdgKTo7+0OCayATD3gwspix/ktFDP/Ut/HGTin9J74PdE4wCQqx5wNFFQ7nrAeAZl
-         cMYTk8cN20mzzMHGRVDsRphub4z4ZeDAISZO0=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QsBF1dQsIvTEdVXFaueG4wdJlmUypORqD6GvIQNikE0=;
+        b=g4HZH/NS+4MfDVTP4D/xX0doMFNKP1flWdbGufYwEDn3zHRdCxceO5cGBjPs9ifQI6
+         qJG/K7b1CI3NwaWZkAkeBbKZkoxKGEVfCvFHC2IjtbBEvxESd+px28MwpK45dMxhoUDI
+         2sToxJZhS6h682DFVE9YfR6xwpROPJly2bvFQ7CRQ1H8PYFnVAX83FHxY8sBUqCSSTOF
+         o9/X5JE5YPboEKk2o8YFlhJySlCS0Gy/zH2gT6zT8f0epOdBcmH/HyA80N2IgS/W6sNu
+         RHbz+k+HWTTQZQHkGJwOx8PJ+zstdtbl0MmNm7TfV5oi0kR3SubVDXwnDBtW4ws7yOP/
+         RB+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=oal3IaO/tErsls7uIk50scCx56FqEWZJT9dcXkh2oYs=;
-        b=NaN7JRNZBUDy57Bo5HcuaNoTqQw7INGgGKRMNJX9SuWe2dtTUUEos2suNZjUl0b497
-         jBhjJg2VFVhljIigpI30mjFi1SgoMG5z+zM+tZAfv1MRnpRwM+Mxmce9myPJ9/vPhFIM
-         +SHeiFxPzOuJTqcfbKSU6xVW3QLQdqijB3I7WdGy9nUslsCKgxCZ9YjHeuKx5KBKPZDx
-         R7gFmEETahNQKcWLZp9QRu23ldumIf8dO/P85TVX+niSvppq6DblxntJXmh84Iewo5+5
-         AWPGI2iB7LwYWO+d2mirmbDwK9FdwlDSOr7slksd1YsuMu5whzNIglFMcWaQl9rh/RSB
-         wptA==
-X-Gm-Message-State: APjAAAWEDfbuKn9jNPxSaR0TxZR/R//iDHO/z1PM8oGqzYjSpCwyjwtr
-        pRIMEzKmp+N2hrP7jkDP0SDByw==
-X-Google-Smtp-Source: APXvYqxrOY+4WKbKVfDkYMJaSzR20/rot1ZjReA7xzONnTysPAGS6CaTgjER2YlWbqyDmzQvGoq6Pw==
-X-Received: by 2002:a17:902:e407:: with SMTP id ci7mr39693277plb.326.1567577835907;
-        Tue, 03 Sep 2019 23:17:15 -0700 (PDT)
-Received: from pihsun-z840.tpe.corp.google.com ([2401:fa00:1:10:7889:7a43:f899:134c])
-        by smtp.googlemail.com with ESMTPSA id r2sm27248750pfq.60.2019.09.03.23.17.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2019 23:17:15 -0700 (PDT)
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v17 5/5] arm64: dts: mt8183: add scp node
-Date:   Wed,  4 Sep 2019 14:16:43 +0800
-Message-Id: <20190904061649.69099-6-pihsun@chromium.org>
-X-Mailer: git-send-email 2.23.0.187.g17f5b7556c-goog
-In-Reply-To: <20190904061649.69099-1-pihsun@chromium.org>
-References: <20190904061649.69099-1-pihsun@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QsBF1dQsIvTEdVXFaueG4wdJlmUypORqD6GvIQNikE0=;
+        b=A3BBG5PUTSr4AOsrPDQqSwFmUx+SY6BSLJt8q04zYOdssL+tb/iQ/9KpCAipRwjOyh
+         MDIu63yByZCKja5FX1/rr15H+/QtqNNOLN1fwurUKr1CHjUnrSDif0J4V+9ZKVLQ6trG
+         wDagCoPK7UJ62u1E+pPvWdonTQJhWhCNG9xX6YUr7/DHBVzu5O3m0itLlpXScFaq/ooz
+         2WnMnHP5Lpae5eCLqxcui8s4Yh9oqn3p272kO2l3W9YKXN4WE94Tl4D3Vr/SMFidZAV7
+         NM8MPQ/6u/XsLZtBGz740BWHCxY6k5/hosldxkHdxrBMK5Gtemj50DadxahroY7I0v25
+         AGXQ==
+X-Gm-Message-State: APjAAAUxvPpJosA5QRcgY5epBz5hSRaMfYZUgoHC3YPbgmAwTO6mepo/
+        SoQPHMYIviwWbHjLZ2ZXe/bWMU8ZZeIwKRJXkhQ=
+X-Google-Smtp-Source: APXvYqxBHegpJH9h6BKXc+D5BhjsNhQ1QdtP62zH71vPMmQKuZz6qskjwLZSVJ790/0C762HDrly44uC5h+c2qit/5Y=
+X-Received: by 2002:a5d:9591:: with SMTP id a17mr18209960ioo.303.1567577939643;
+ Tue, 03 Sep 2019 23:18:59 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+References: <20190818051647.17475-1-jassisinghbrar@gmail.com>
+ <20190818051754.17548-1-jassisinghbrar@gmail.com> <20190904055037.GC2672@vkoul-mobl>
+In-Reply-To: <20190904055037.GC2672@vkoul-mobl>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 4 Sep 2019 01:18:48 -0500
+Message-ID: <CABb+yY1RT2TuUyuU2C+m6w=AOVzXkuG7cOwbWsccywxU7HwkQg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: milbeaut-m10v-hdmac: Add Socionext
+ Milbeaut HDMAC bindings
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     dmaengine@vger.kernel.org,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eddie Huang <eddie.huang@mediatek.com>
+On Wed, Sep 4, 2019 at 12:51 AM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> On 18-08-19, 00:17, jassisinghbrar@gmail.com wrote:
+> > From: Jassi Brar <jaswinder.singh@linaro.org>
+> >
+> > Document the devicetree bindings for Socionext Milbeaut HDMAC
+> > controller. Controller has upto 8 floating channels, that need
+> > a predefined slave-id to work from a set of slaves.
+> >
+> > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
+> > ---
+> >  .../bindings/dma/milbeaut-m10v-hdmac.txt      | 32 +++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
+> >
+> > diff --git a/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt b/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
+> > new file mode 100644
+> > index 000000000000..f0960724f1c7
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
+> > @@ -0,0 +1,32 @@
+> > +* Milbeaut AHB DMA Controller
+> > +
+> > +Milbeaut AHB DMA controller has transfer capability bellow.
+>
+> s/bellow/below:
+>
+> > + - device to memory transfer
+> > + - memory to device transfer
+> > +
+> > +Required property:
+> > +- compatible:       Should be  "socionext,milbeaut-m10v-hdmac"
+> > +- reg:              Should contain DMA registers location and length.
+> > +- interrupts:       Should contain all of the per-channel DMA interrupts.
+> > +                     Number of channels is configurable - 2, 4 or 8, so
+> > +                     the number of interrupts specfied should be {2,4,8}.
+>
+> s/specfied/specified
+>
+Hi Vinod,
+  Do you want me to spin yet another revision for the two types in text?
 
-Add scp node to mt8183 and mt8183-evb
-
-Signed-off-by: Erin Lo <erin.lo@mediatek.com>
-Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
----
-Changes from v16, v15, v14:
- - No change.
-
-Changes from v13:
- - Change the size of the cfg register region.
-
-Changes from v12, v11, v10:
- - No change.
-
-Changes from v9:
- - Remove extra reserve-memory-vpu_share node.
-
-Changes from v8:
- - New patch.
----
- arch/arm64/boot/dts/mediatek/mt8183-evb.dts | 11 +++++++++++
- arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 12 ++++++++++++
- 2 files changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-index 1fb195c683c3..ddb7a7ac9655 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-@@ -24,6 +24,17 @@
- 	chosen {
- 		stdout-path = "serial0:921600n8";
- 	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+		scp_mem_reserved: scp_mem_region {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x50000000 0 0x2900000>;
-+			no-map;
-+		};
-+	};
- };
- 
- &auxadc {
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 97f84aa9fc6e..3dd1b76bbaf5 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -269,6 +269,18 @@
- 			clock-names = "spi", "wrap";
- 		};
- 
-+		scp: scp@10500000 {
-+			compatible = "mediatek,mt8183-scp";
-+			reg = <0 0x10500000 0 0x80000>,
-+			      <0 0x105c0000 0 0x19080>;
-+			reg-names = "sram", "cfg";
-+			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&infracfg CLK_INFRA_SCPSYS>;
-+			clock-names = "main";
-+			memory-region = <&scp_mem_reserved>;
-+			status = "disabled";
-+		};
-+
- 		auxadc: auxadc@11001000 {
- 			compatible = "mediatek,mt8183-auxadc",
- 				     "mediatek,mt8173-auxadc";
--- 
-2.23.0.187.g17f5b7556c-goog
-
+thnx
