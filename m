@@ -2,90 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE951A8C39
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 21:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EDB6A8C5F
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 21:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732941AbfIDQK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 12:10:59 -0400
-Received: from mga14.intel.com ([192.55.52.115]:62815 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732057AbfIDQK6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Sep 2019 12:10:58 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Sep 2019 09:10:56 -0700
-X-IronPort-AV: E=Sophos;i="5.64,467,1559545200"; 
-   d="scan'208";a="183951504"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Sep 2019 09:10:54 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 07921204A6; Wed,  4 Sep 2019 19:10:52 +0300 (EEST)
-Date:   Wed, 4 Sep 2019 19:10:51 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org, linux-acpi@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Subject: Re: [PATCH v5 11/11] lib/test_printf: Add tests for %pfw printk
- modifier
-Message-ID: <20190904161051.GX5475@paasikivi.fi.intel.com>
-References: <20190902135732.23455-1-sakari.ailus@linux.intel.com>
- <20190902135732.23455-12-sakari.ailus@linux.intel.com>
- <20190902161352.GS2680@smile.fi.intel.com>
+        id S1732939AbfIDQMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 12:12:52 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:34481 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732714AbfIDQMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 12:12:51 -0400
+Received: by mail-wr1-f66.google.com with SMTP id s18so21968614wrn.1
+        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 09:12:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=q8pUvpVjKp1g5Qr8w2IVnrREUirRn/vuVmUWXmSYL4Q=;
+        b=LTfKPX0N8u61M2wJ5sy42uTQ+BoMX6ermJhYqKH/Q9DtGM30IwZRVjEk1iEvZtxsFg
+         jQGWkdRoBDp2evmwXeNcR4Jf89nZto3VO5zeJr9dneojF1ouo9VkWbE2ima2ckTz/TcK
+         HUhJSSX0ZdT69PvDgc9MqPoNpwJNAMOvdEDZ8rgfjX8b6w+KYSLYv6oexA5UhJ9bgwjk
+         xdzh+p3SgAql537WzCRStiL10eKM0SWalzasmaxAMDujB9HZfdyPziW4Os3qGGG5zIEj
+         0qayE9Hgo+ALfLW3FOs/S7GpC4nmNRQVGtWL0kMqrLWlSOjpmVJQLLFEeObL1ztJmEU4
+         3jtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=q8pUvpVjKp1g5Qr8w2IVnrREUirRn/vuVmUWXmSYL4Q=;
+        b=Y7G3ulH5urSsC64loB32i9LNrs6qy5lzIIQU0chNkaT+bY2AC4Dz1O2CDEaBslQbah
+         QqBNHK/8cSS4oPI1tAWFjsol9wmckK/u9zDuwKHqCpN/tqfw1CFxeMeud8qSCivBkMM0
+         Ey0TfJ6WD0R2gEmmFIcPhvHmWlF96Wt7jiXOf5QqAXbefT3NtOIHq/yFBHes/R2kGliV
+         VNg8+ILcPKFGjJAsOacHKs7Rgso0ybEsUTy9L9MZn6V1jzk+9Qf+j2cBDlN1qBNv8EPo
+         Dg8TclaGieLTNV9xBjTVUGgihm5Q9mHGkhD7WWTiE/jfkUw1c4jQy40K+pHPzlJJPvO2
+         virQ==
+X-Gm-Message-State: APjAAAW1NXRxJ01v68Dn5LTiZJunfhcvDQX0/9562pw6bolDCwCauo9r
+        HrLMaE7z06ttTlRl09IEu2ZuQg==
+X-Google-Smtp-Source: APXvYqwdxIz1SPASSWDxK72taN7umX8eaGJ50gyjNa1JHwg+UjQz1fdTJ6rPguOhSqf3vQ64uuDm7w==
+X-Received: by 2002:adf:f48e:: with SMTP id l14mr32359282wro.234.1567613569826;
+        Wed, 04 Sep 2019 09:12:49 -0700 (PDT)
+Received: from dell ([95.147.198.36])
+        by smtp.gmail.com with ESMTPSA id e6sm19269452wrr.14.2019.09.04.09.12.48
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 04 Sep 2019 09:12:49 -0700 (PDT)
+Date:   Wed, 4 Sep 2019 17:12:47 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        bjorn.andersson@linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
+Message-ID: <20190904161247.GP26880@dell>
+References: <20190904121606.17474-1-lee.jones@linaro.org>
+ <20190904141257.GB6144@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190902161352.GS2680@smile.fi.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190904141257.GB6144@bogus>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On Wed, 04 Sep 2019, Sudeep Holla wrote:
 
-On Mon, Sep 02, 2019 at 07:13:52PM +0300, Andy Shevchenko wrote:
-> On Mon, Sep 02, 2019 at 04:57:32PM +0300, Sakari Ailus wrote:
-> > Add a test for the %pfw printk modifier using software nodes.
+> On Wed, Sep 04, 2019 at 01:16:06PM +0100, Lee Jones wrote:
+> > From: Bjorn Andersson <bjorn.andersson@linaro.org>
+> >
+> > The Lenovo Yoga C630 is built on the SDM850 from Qualcomm, but this seem
+> > to be similar enough to the SDM845 that we can reuse the sdm845.dtsi.
+> >
+> > Supported by this patch is: keyboard, battery monitoring, UFS storage,
+> > USB host and Bluetooth.
+> >
 > 
-> > +static void __init fwnode_pointer(void)
-> > +{
-> > +	const struct software_node softnodes[] = {
-> > +		{ .name = "first", },
-> > +		{ .name = "second", .parent = &softnodes[0], },
-> > +		{ .name = "third", .parent = &softnodes[1], },
-> > +		{ NULL /* Guardian */ },
-> 
-> Comma is still here :-)
+> Just curious to know if the idea of booting using ACPI is completely
+> dropped as it's extremely difficult(because the firmware is so hacked
+> up and may violate spec, just my opinion) for whatever reasons.
 
-Oops. I ended up removing the comma in a wrong patch which wasn't submitted
-to the list. Will fix for v6.
+Once [0] is applied, we can boot Mainline using ACPI.
 
-> 
-> > +	};
-> 
-> > +	test(full_name_second, "%pfw",
-> > +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
-> > +	test(full_name, "%pfw",
-> > +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-> > +	test(full_name, "%pfwf",
-> > +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-> > +	test(second_name, "%pfwP",
-> > +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 3]));
-> > +	test(third_name, "%pfwP",
-> > +	     software_node_fwnode(&softnodes[ARRAY_SIZE(softnodes) - 2]));
-> 
-> I have another thought about these. The test cases will fail in either of
-> adding, inserting or removing items in softnodes array. So, using the above
-> "protective" scheme doesn't bring any value except making readability worse.
+> We just made ACPI table version checking more lenient for this platform
+> and would be good to know if we continue to run ACPI on that or will
+> abandon and just use DT.
 
-Agreed, to be addressed in v6.
+Which patch are you referring to?  If you mean the ACPI v5.0 vs v5.1
+patch authored by Ard, then yes I know, I instigated it's existence
+due to these devices.
+
+DT will *always* be more enabled than ACPI, so it's advised that you
+use DT for anything useful.  ACPI booting is ideal for things like
+installing distros however, since they do not tend to provide DTBs in
+their installers.
+
+[0] https://lkml.org/lkml/2019/9/3/580
 
 -- 
-Regards,
-
-Sakari Ailus
-sakari.ailus@linux.intel.com
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
