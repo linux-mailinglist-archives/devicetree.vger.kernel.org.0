@@ -2,160 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94AE9A79A1
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 06:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 836FBA7A24
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 06:43:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725975AbfIDEWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 00:22:08 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43753 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725829AbfIDEWH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 00:22:07 -0400
-Received: by mail-pf1-f193.google.com with SMTP id d15so2866091pfo.10
-        for <devicetree@vger.kernel.org>; Tue, 03 Sep 2019 21:22:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mp9OFto0GZk4OjRyXFJjH2s7yGAsAoKG/MS1RCQlOQQ=;
-        b=WTaHHGrvlniplupbKSJNlsKOyzptXQwVRIDf/qjEm017VJXU41Gqqe7UGNTMvw+xr1
-         X/Exx7zSW6qtWV0hqB/b1rm6eB8sFQZF3IEyfn4muy2wof4P7S9FI4Ih2W+phAM/mB6v
-         MH0YehfS5rswTZLZ5xuvJWwKp3LhQyQci8S6k0ayZhWecsjSeTTGyImkQ8hKFty96iAv
-         XqIF2NlBPKrvRq4n2tvwHudYolOwY3909VFrEpPhf4MO0gDSYIbyABo1OrcRUEisCNY+
-         Y04TNkzvmezmQ08TLjm54UkOF6PngEAWlWs/gFJAjfXrpUS/OKhkbgDaibCdA7illKDe
-         0s0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mp9OFto0GZk4OjRyXFJjH2s7yGAsAoKG/MS1RCQlOQQ=;
-        b=momu1Z0bTb8s5+KBDaJE67VJajA4TdqDC157QrcmzQmH5tUewNmuDEPXM/cHxqYwiT
-         vWuxChjoBbhjp+jzNtu/5aBP1XAyo1g2eqk0ptkEHZA7uAq1a0UU38vAN+4b/QNLFZ93
-         v3EWTtZTIt5DKyfT5nR3ejJ5Mo59REvE8lnQ2SSLgK48cA1ebvzAZD60xFG4CMeeTDL7
-         AOhd/JNJKefq6RVg3RIEicC42oMbQ+uUfjz6Pz2DgwEIDThlppfjj0J0TYFZsj2UAUNK
-         Z+lAA965gk5GSKl4aq6jTmFPkLRtfbhai1AOTWgREaGfh7lGLaQ1+Iky90EqpRr7gcxV
-         Qj6Q==
-X-Gm-Message-State: APjAAAXF6RMfF39JOxeb0rW7StjbJXGgs7V52u6kbjKMLrYqQDziSiDn
-        sxfkLkZj6PJmvwvDfEv4f7e0gw==
-X-Google-Smtp-Source: APXvYqy5gQpkWB1S0s/wrl3Q+cVrKMEMuWNE1UjfGFaNKX5PQ/qnJ8QVZhQCfwLSEncF+vh+M6lJhA==
-X-Received: by 2002:aa7:8a98:: with SMTP id a24mr40799576pfc.101.1567570927082;
-        Tue, 03 Sep 2019 21:22:07 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id j7sm10505053pfi.96.2019.09.03.21.22.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Sep 2019 21:22:06 -0700 (PDT)
-Date:   Tue, 3 Sep 2019 21:22:03 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vikash Garodia <vgarodia@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Aniket Masule <amasule@codeaurora.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 1/2] venus: use on-chip interconnect API
-Message-ID: <20190904042203.GC3081@tuxbook-pro>
-References: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
- <20190814084701.25455-2-stanimir.varbanov@linaro.org>
- <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
+        id S1728044AbfIDEnR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 00:43:17 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:6717 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725963AbfIDEnR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 00:43:17 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d6f40e70000>; Tue, 03 Sep 2019 21:43:19 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Tue, 03 Sep 2019 21:43:16 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Tue, 03 Sep 2019 21:43:16 -0700
+Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 4 Sep
+ 2019 04:43:16 +0000
+Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL109.nvidia.com
+ (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 4 Sep 2019 04:43:16 +0000
+Received: from kyarlagadda-linux.nvidia.com (Not Verified[10.19.64.169]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d6f40e10000>; Tue, 03 Sep 2019 21:43:15 -0700
+From:   Krishna Yarlagadda <kyarlagadda@nvidia.com>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <jslaby@suse.com>
+CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Krishna Yarlagadda <kyarlagadda@nvidia.com>
+Subject: [PATCH V2 00/12] serial: tegra: Tegra186 support and fixes
+Date:   Wed, 4 Sep 2019 10:12:55 +0530
+Message-ID: <1567572187-29820-1-git-send-email-kyarlagadda@nvidia.com>
+X-Mailer: git-send-email 2.7.4
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1567572199; bh=vXVb3IqOb8IeCePcjBDApMcMqHad1mRF64AQp6H9w1w=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=R9iz+KFHZowI9sOkuAHOfm5OwwReCTNrB8/sYlpsogXPRMPCvwgueusEM1koTAOtp
+         M5uQN1KQJn6Aw0pa+a+VgCYNX3yrBXolX10XqsZ//71K4Q1XP2GkwsQYZ0CysB4niP
+         B3FkPxh95rhhmyC7QDvkD1c+VygRt/av9n3sjN00BFlxPUwQgs+S80XXoqm9OYuZRL
+         CyOOPq4mMxd/ws3wtQWhbr4/t/SfSbfnS12+bpwPcf1WlCycGCNS/8aSQNMFA3pPer
+         WeRFTDaIPGlkdMjtmBmvABH13+cS9o+C0A5vX6ff4ZMh0owPPnnlH/Dwxvs+edhDLm
+         DbIw0VGRO2SnA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 20 Aug 02:34 PDT 2019, Georgi Djakov wrote:
+Series of patches adding enhancements to exising UART driver and adding
+support for new chip Tegra186 and Tegra194.
+Tegra186 uses GPCDMA for dma transfers which is still not available in
+mainstream. However, it can work in PIO/FIFO mode and support added for it.
+Also Tegra186 has a hardware issue where it does not meet tolernace +/-4% and
+to work around it, device tree entries provided to adjust baud rate for a
+particular range.
 
-> Hi Stan,
-> 
-> On 8/14/19 11:47, Stanimir Varbanov wrote:
-> > This aims to add a requests for bandwidth scaling depending
-> > on the resolution and framerate (macroblocks per second). The
-> > exact value ff the requested bandwidth is get from a
-> 
-> s/ff/of/
-> 
-> > pre-calculated tables for encoder and decoder.
-> > 
-> > Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
-> > ---
-> >  drivers/media/platform/qcom/venus/core.c    | 34 +++++++++++
-> >  drivers/media/platform/qcom/venus/core.h    | 14 +++++
-> >  drivers/media/platform/qcom/venus/helpers.c | 67 ++++++++++++++++++++-
-> >  3 files changed, 114 insertions(+), 1 deletion(-)
-> 
-> It looks like venus can be built-in, so how about the case when venus is
-> built-in and the interconnect provider is a module? Maybe add a dependency in
-> Kconfig to depend on INTERCONNECT || !INTERCONNECT?
-> 
-
-I've been struggling down this road for remoteproc et al for a long
-time, I strongly suggest that you make the INTERCONNECT config bool, to
-ensure that we don't see this problem for every client.
-
-The interconnect framework should hide the fact that the provider is
-module.
+Changes from V1:
+Consistent spellings and few other cosmetic changes.
+Do not ignore sysrq request when ignoring reads.
+Remove WARN_ON for errors that are user triggered.
+Fix max ports for Tegra186 and Tegra194
+Register uart driver in init by reading max ports from dt.
+Rename burst size and wait api for FIFO enable.
 
 
-But with this in place is there actually a dependency? Won't the include
-file provide stubs in the case of !INTERCONNECT?
+Ahung Cheng (1):
+  serial: tegra: avoid reg access when clk disabled
 
-Regards,
-Bjorn
+Krishna Yarlagadda (9):
+  serial: tegra: report error to upper tty layer
+  dt-binding: serial: tegra: add new chips
+  serial: tegra: check for FIFO mode enabled status
+  serial: tegra: set maximum num of uart ports to 8
+  serial: tegra: add support to use 8 bytes trigger
+  serial: tegra: DT for Adjusted baud rates
+  serial: tegra: add support to adjust baud rate
+  serial: tegra: report clk rate errors
+  serial: tegra: Add PIO mode support
 
-> > 
-> > diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
-> > index 0acc7576cc58..19cbe9d5d028 100644
-> > --- a/drivers/media/platform/qcom/venus/core.c
-> > +++ b/drivers/media/platform/qcom/venus/core.c
-> > @@ -5,6 +5,7 @@
-> >   */
-> >  #include <linux/clk.h>
-> >  #include <linux/init.h>
-> > +#include <linux/interconnect.h>
-> >  #include <linux/ioctl.h>
-> >  #include <linux/list.h>
-> >  #include <linux/module.h>
-> > @@ -239,6 +240,14 @@ static int venus_probe(struct platform_device *pdev)
-> >  	if (IS_ERR(core->base))
-> >  		return PTR_ERR(core->base);
-> >  
-> > +	core->video_path = of_icc_get(dev, "video-mem");
-> > +	if (IS_ERR(core->video_path))
-> > +		return PTR_ERR(core->video_path);
-> > +
-> > +	core->cpucfg_path = of_icc_get(dev, "cpu-cfg");
-> > +	if (IS_ERR(core->cpucfg_path))
-> > +		return PTR_ERR(core->cpucfg_path);
-> > +
-> >  	core->irq = platform_get_irq(pdev, 0);
-> >  	if (core->irq < 0)
-> >  		return core->irq;
-> > @@ -273,6 +282,10 @@ static int venus_probe(struct platform_device *pdev)
-> >  	if (ret)
-> >  		return ret;
-> >  
-> > +	ret = icc_set_bw(core->cpucfg_path, 0, kbps_to_icc(1000));
-> > +	if (ret)
-> > +		return ret;
-> > +
-> >  	ret = hfi_create(core, &venus_core_ops);
-> >  	if (ret)
-> >  		return ret;
-> > @@ -355,6 +368,9 @@ static int venus_remove(struct platform_device *pdev)
-> >  	pm_runtime_put_sync(dev);
-> >  	pm_runtime_disable(dev);
-> >  
-> > +	icc_put(core->video_path);
-> > +	icc_put(core->cpucfg_path);
-> > +
-> 
-> Do you have any plans to scale the bandwidth on suspend/resume too?
-> 
-> Thanks,
-> Georgi
+Shardar Shariff Md (2):
+  serial: tegra: add support to ignore read
+  serial: tegra: flush the RX fifo on frame error
+
+ .../bindings/serial/nvidia,tegra20-hsuart.txt      |  39 ++-
+ drivers/tty/serial/serial-tegra.c                  | 374 ++++++++++++++++++---
+ 2 files changed, 368 insertions(+), 45 deletions(-)
+
+-- 
+2.7.4
+
