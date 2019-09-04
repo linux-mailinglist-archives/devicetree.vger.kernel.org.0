@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 038E2A8C4B
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 21:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30EFBA8B02
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 21:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732230AbfIDQMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 12:12:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35050 "EHLO mail.kernel.org"
+        id S1732952AbfIDQB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 12:01:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36858 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732619AbfIDQAR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Sep 2019 12:00:17 -0400
+        id S1733000AbfIDQB2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Sep 2019 12:01:28 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2F1D122DBF;
-        Wed,  4 Sep 2019 16:00:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8B79523402;
+        Wed,  4 Sep 2019 16:01:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567612815;
+        s=default; t=1567612887;
         bh=vXaRYenn3fpJc/5HchT0ZUQjlU+0iYGXGNJoMVlceuc=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=RplBNdqwv6PmrDMUcldU/yE6kyMbDN1+41SDpxpVYObMrFhtpUWx2xVQY69YvK1wn
-         AHSnrQ6wzkADVrqqv/NPPb97dHqlSZoYfM1jTWJoKlFvasU+GgJ+3hk2N8pPYgfRJM
-         BcXTneRx6E/iONcc9Fidqi6DeLnff50f6nvvy5wQ=
+        b=XiG42G0OTzEeiW3O/eRBV2sCSu3m8KfdpYqilH9YgzRyZ3hHAgvzdX3mUMUky/CWf
+         jY38EPifdZMEc193QcMywJ7QHZoWuZU96i8NpvJA7/lKdJM1tzyQU67ZLJscc5EfzJ
+         vDRw4foAfOTmUlki6lhrveim+05I52qZLS5mMv7A=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Faiz Abbas <faiz_abbas@ti.com>, Tony Lindgren <tony@atomide.com>,
         Sasha Levin <sashal@kernel.org>, linux-omap@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.19 08/52] ARM: dts: dra74x: Fix iodelay configuration for mmc3
-Date:   Wed,  4 Sep 2019 11:59:20 -0400
-Message-Id: <20190904160004.3671-8-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 04/36] ARM: dts: dra74x: Fix iodelay configuration for mmc3
+Date:   Wed,  4 Sep 2019 12:00:50 -0400
+Message-Id: <20190904160122.4179-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190904160004.3671-1-sashal@kernel.org>
-References: <20190904160004.3671-1-sashal@kernel.org>
+In-Reply-To: <20190904160122.4179-1-sashal@kernel.org>
+References: <20190904160122.4179-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
