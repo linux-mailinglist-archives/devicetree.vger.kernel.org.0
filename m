@@ -2,60 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 215D6A7C46
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 09:06:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8509EA7D12
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 09:53:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728601AbfIDHGU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 03:06:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59408 "EHLO mail.kernel.org"
+        id S1729045AbfIDHxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 03:53:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47424 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725840AbfIDHGU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 4 Sep 2019 03:06:20 -0400
+        id S1727787AbfIDHxC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 4 Sep 2019 03:53:02 -0400
 Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 925A522CED;
-        Wed,  4 Sep 2019 07:06:18 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 27200206BB;
+        Wed,  4 Sep 2019 07:53:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567580779;
-        bh=I9K0yVNmIk+nMrBPinuHZHyseMt4wDZjOkz5NPzTJv4=;
+        s=default; t=1567583581;
+        bh=tmMIKkRHa6g2/BLlTkNjkjnAHIGhAGpY/C/sVcBFQJc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bqbkUEYehaSrXbrA77i42/6XFJo9F+Dqfm/CQnrDDYaD2gGZzyzUnJfRcN6URz0Co
-         YGZQ1WWRXiph8QDsFxN1ZC5FV8yq3qxSm8w4oh4JDYDVdg5842W7zk2nXE+dk0+W2t
-         6kNAYre3X3PEGz3+sZHv1MRneJ5lokv0sRkJS3x4=
-Date:   Wed, 4 Sep 2019 09:06:16 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/7]  add support USB for MT8183
-Message-ID: <20190904070616.GC18791@kroah.com>
-References: <1567150854-30033-1-git-send-email-chunfeng.yun@mediatek.com>
- <1567562067.7317.52.camel@mhfsdcap03>
+        b=Ywyxb1m63X/hIBsYMEgeSYZNR3U/vzO1YwXTorX6LJyKRdYGw5x0lLxby0UDevtE9
+         SuA3eihix0P54Tu+s7uKLyhFHkjVxEZIt+PYQ3dTHxMMn4oviPvEe+do/dfqdqNzFJ
+         FyJNNYIS5i6pTQhosKEdSKj6Zp+gpaIxerpBFXps=
+Date:   Wed, 4 Sep 2019 09:52:59 +0200
+From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+Cc:     "corbet@lwn.net" <corbet@lwn.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will@kernel.org" <will@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "jslaby@suse.com" <jslaby@suse.com>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 4/7] serial: fsl_linflexuart: Be consistent with the
+ name
+Message-ID: <20190904075259.GA10983@kroah.com>
+References: <20190823191115.18490-1-stefan-gabriel.mirea@nxp.com>
+ <20190823191115.18490-5-stefan-gabriel.mirea@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1567562067.7317.52.camel@mhfsdcap03>
+In-Reply-To: <20190823191115.18490-5-stefan-gabriel.mirea@nxp.com>
 User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 04, 2019 at 09:54:27AM +0800, Chunfeng Yun wrote:
-> Hi Greg,
+On Fri, Aug 23, 2019 at 07:11:37PM +0000, Stefan-gabriel Mirea wrote:
+> For consistency reasons, spell the controller name as "LINFlexD" in
+> comments and documentation.
 > 
-> 
->   Please don't try to pick up this series, the dependent ones are still
-> under public review, I'll fix build warning and send out new version
-> after the dependent ones are applied
->   Sorry for inconvenience
+> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> ---
+>  Documentation/admin-guide/kernel-parameters.txt | 2 +-
+>  drivers/tty/serial/Kconfig                      | 8 ++++----
+>  drivers/tty/serial/fsl_linflexuart.c            | 4 ++--
+>  include/uapi/linux/serial_core.h                | 4 ++--
+>  4 files changed, 9 insertions(+), 9 deletions(-)
 
-No problem, now dropped from my review queue.
-
-greg k-h
+Doesn't apply to my tty-next tree :(
