@@ -2,88 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AB9AA782F
-	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 03:45:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35E69A7840
+	for <lists+devicetree@lfdr.de>; Wed,  4 Sep 2019 03:54:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726589AbfIDBpe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 3 Sep 2019 21:45:34 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:2184 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726009AbfIDBpe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 21:45:34 -0400
-X-UUID: 5c38dde2fada4ebe8a8d115cecb95beb-20190904
-X-UUID: 5c38dde2fada4ebe8a8d115cecb95beb-20190904
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
+        id S1726925AbfIDByg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 3 Sep 2019 21:54:36 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:31393 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726589AbfIDByg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 3 Sep 2019 21:54:36 -0400
+X-UUID: b7c85c9247304d0b96b55c12cabe3981-20190904
+X-UUID: b7c85c9247304d0b96b55c12cabe3981-20190904
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <chunfeng.yun@mediatek.com>)
         (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 2020941060; Wed, 04 Sep 2019 09:45:25 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- MTKMBS31N1.mediatek.inc (172.27.4.69) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 4 Sep 2019 09:45:23 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 4 Sep 2019 09:45:23 +0800
-Message-ID: <1567561524.6949.3.camel@mtksdaap41>
-Subject: Re: [PATCH v5, 05/32] dt-bindings: mediatek: add mutex description
- for mt8183 display
-From:   CK Hu <ck.hu@mediatek.com>
-To:     <yongqiang.niu@mediatek.com>
-CC:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id 1282712295; Wed, 04 Sep 2019 09:54:29 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N2.mediatek.inc
+ (172.27.4.72) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 4 Sep
+ 2019 09:54:27 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 4 Sep 2019 09:54:26 +0800
+Message-ID: <1567562067.7317.52.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 0/7]  add support USB for MT8183
+From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 4 Sep 2019 09:45:24 +0800
-In-Reply-To: <1567090254-15566-6-git-send-email-yongqiang.niu@mediatek.com>
-References: <1567090254-15566-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1567090254-15566-6-git-send-email-yongqiang.niu@mediatek.com>
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Date:   Wed, 4 Sep 2019 09:54:27 +0800
+In-Reply-To: <1567150854-30033-1-git-send-email-chunfeng.yun@mediatek.com>
+References: <1567150854-30033-1-git-send-email-chunfeng.yun@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 2B43CD65603ED4AB08CC18D9A82E694F69EA0ED0FA128A915F2107D73C7920E12000:8
+X-TM-SNTS-SMTP: F991245A4BC6770D93164A2C1C559180A8AF081783FD3FC646A068AD51059FF02000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Yongqiang:
+Hi Greg,
 
-On Thu, 2019-08-29 at 22:50 +0800, yongqiang.niu@mediatek.com wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+
+  Please don't try to pick up this series, the dependent ones are still
+under public review, I'll fix build warning and send out new version
+after the dependent ones are applied
+  Sorry for inconvenience
+
+Thanks
+
+On Fri, 2019-08-30 at 15:40 +0800, Chunfeng Yun wrote:
+> This series support USB DRD controller and enable it's remote
+> wakeup functoin for MT8183, they depend on the following
+> series patches:
 > 
-> This patch add mutex description for mt8183 display
-
-Applied to mediatek-drm-next-5.5 [1], thanks.
-
-[1]
-https://github.com/ckhu-mediatek/linux.git-tags/commits/mediatek-drm-next-5.5
-
-Regards,
-CK
-
+> 1. this series add support MT6358 PMIC
+>   [v5,01/10] mfd: mt6397: clean up code
+>   https://patchwork.kernel.org/patch/11110487/
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 1 +
->  1 file changed, 1 insertion(+)
+> 2. this series add support pericfg syscon
+>   [v2,1/2] dt-bindings: clock: mediatek: add pericfg for MT8183
+>   https://patchwork.kernel.org/patch/11118183/
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> index afd3c90..c7e2eb8 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> @@ -52,6 +52,7 @@ Required properties (all function blocks):
->    For most function blocks this is just a single clock input. Only the DSI and
->    DPI controller nodes have multiple clock inputs. These are documented in
->    mediatek,dsi.txt and mediatek,dpi.txt, respectively.
-> +  An exception is that the mt8183 mutex is always free running with no clocks property.
->  
->  Required properties (DMA function blocks):
->  - compatible: Should be one of
+> 3. add property mediatek,discth for tphy
+>   [06/11] phy: phy-mtk-tphy: add a property for disconnect threshold
+>   https://patchwork.kernel.org/patch/11110695/
+> 
+> v3 changes:
+>   1. changes micros define
+>   2. remove #reset-cell
+>   3. update dependent series
+> 
+> v2 changes:
+>   add patch [7/7]
+> 
+> Chunfeng Yun (7):
+>   dt-bindings: usb: mtu3: support USB wakeup for MT8183
+>   dt-bindings: usb: mtk-xhci: support USB wakeup for MT8183
+>   usb: mtu3: support ip-sleep wakeup for MT8183
+>   usb: mtk-xhci: support ip-sleep wakeup for MT8183
+>   arm64: dts: mt8183: add usb and phy nodes
+>   arm64: dts: mt8183: enable USB remote wakeup
+>   arm64: dts: mt8183: tune disconnect threshold of u2phy
+> 
+>  .../bindings/usb/mediatek,mtk-xhci.txt        |  1 +
+>  .../devicetree/bindings/usb/mediatek,mtu3.txt |  1 +
+>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   | 23 +++++++
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 63 +++++++++++++++++++
+>  drivers/usb/host/xhci-mtk.c                   | 14 ++++-
+>  drivers/usb/mtu3/mtu3_host.c                  | 14 ++++-
+>  6 files changed, 114 insertions(+), 2 deletions(-)
+> 
 
 
