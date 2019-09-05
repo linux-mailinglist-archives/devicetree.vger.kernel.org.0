@@ -2,74 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5AAFA9F73
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C508A9F7F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:21:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730718AbfIEKTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 06:19:16 -0400
-Received: from mga02.intel.com ([134.134.136.20]:38542 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726175AbfIEKTP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 06:19:15 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:19:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
-   d="scan'208";a="173896023"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga007.jf.intel.com with ESMTP; 05 Sep 2019 03:19:10 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1i5or6-0006NR-H4; Thu, 05 Sep 2019 13:19:08 +0300
-Date:   Thu, 5 Sep 2019 13:19:08 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Javier Martinez Canillas <javierm@redhat.com>
-Cc:     dongchun.zhu@mediatek.com, mchehab@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, drinkcat@chromium.org, tfiga@chromium.org,
-        matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        sam.hung@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V2, 2/2] media: i2c: Add DW9768 VCM driver
-Message-ID: <20190905101908.GB2680@smile.fi.intel.com>
-References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
- <20190905072142.14606-3-dongchun.zhu@mediatek.com>
- <20190905082134.GY5475@paasikivi.fi.intel.com>
+        id S1727900AbfIEKVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 06:21:14 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:44194 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726175AbfIEKVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 06:21:13 -0400
+Received: by mail-qt1-f193.google.com with SMTP id u40so2089482qth.11;
+        Thu, 05 Sep 2019 03:21:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=W9ASHhPKpQsIU9mZBi7LyeVQlq2CQJ2Nfa0cGg2cxjU=;
+        b=gqfY4PmwVDxruCWQzhbyPxIwP/7yT85hzCcnRhXJc4Cwlw2UGO3c+PpUqxkV91858F
+         jznwKHR3baPoA5Ybq0KpWV8bGVFH/sS72nGK0EvwxxaD6RVgz9eb/AZpKKGMLnB1lCZd
+         /hMYiwps1WJLujsUMGNJlxe4SozjmbqKea1IDKuyLlp0cu17G6ahhF2ElwhOnamutE5k
+         r+s0Nh+Z1ikv35v50oRuWhLlgUBSJV6IHshQRbfxOEBYrZHg4aohLzcNqloDacm4EBsa
+         kZhwBeBozcXudXmX6AqYOswh696bLcpeIMO5sxon7/JKinIjRTKBb2uaoOU/bEZe7h6J
+         QmaQ==
+X-Gm-Message-State: APjAAAXX4xUqtWO/CfGA6QUsIe0agIcNfLounfjyDhqsWNdnNh8zLO3d
+        4tUrZvCESQQGw0Kmo4huXFkO4NUZeMOz0Z4tTkY=
+X-Google-Smtp-Source: APXvYqw66BDokdBxyKl2ZBebLXBdM0Uc+EDEJXEwWO/OOdpU9zSB4XfPNlLYUumfYtGYq8zDk75S62/byvrXBZWShig=
+X-Received: by 2002:ac8:32ec:: with SMTP id a41mr2625217qtb.18.1567678872786;
+ Thu, 05 Sep 2019 03:21:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190905082134.GY5475@paasikivi.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190830220743.439670-14-lkundrak@v3.sk> <201909021510.0g4L7Wva%lkp@intel.com>
+In-Reply-To: <201909021510.0g4L7Wva%lkp@intel.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 5 Sep 2019 12:20:56 +0200
+Message-ID: <CAK8P3a1kpRcmTW0hH7-9vd4SiJjEuTMRPb6Kb06LSiRj0AGd8A@mail.gmail.com>
+Subject: Re: [PATCH v3 13/16] ARM: mmp: move cputype.h to include/linux/soc/
+To:     kbuild test robot <lkp@intel.com>
+Cc:     Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "Cc : Rob Herring" <robh+dt@kernel.org>, kbuild-all@01.org,
+        "To : Olof Johansson" <olof@lixom.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 11:21:34AM +0300, Sakari Ailus wrote:
-> On Thu, Sep 05, 2019 at 03:21:42PM +0800, dongchun.zhu@mediatek.com wrote:
-> > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+On Mon, Sep 2, 2019 at 10:16 AM kbuild test robot <lkp@intel.com> wrote:
 
-> > +static const struct i2c_device_id dw9768_id_table[] = {
-> > +	{ DW9768_NAME, 0 },
-> > +	{ },
-> 
-> Could you drop the I²C ID table?
+>
+> vim +5 include/linux/soc/mmp/cputype.h
+>
+> 49cbe78637eb05 arch/arm/mach-mmp/include/mach/cputype.h Eric Miao 2009-01-20  4
+> 49cbe78637eb05 arch/arm/mach-mmp/include/mach/cputype.h Eric Miao 2009-01-20 @5  #include <asm/cputype.h>
+> 49cbe78637eb05 arch/arm/mach-mmp/include/mach/cputype.h Eric Miao 2009-01-20  6
+>
 
-But why?
-It will allow you to instanciate the device from user space.
+You can probably do something like
 
-+Cc: Javier.
+#ifdef CONFIG_ARM
+#include <asm/cputype.h>
+#else
+static inline read_cpuid_id(void) { return 0; }
+#endif
 
-Javier, is it needed in new code?
+Then again, ideally drivers don't even have to know about this,
+but would distinguish between devices based on the
+compatible string for the particular device.
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+       Arnd
