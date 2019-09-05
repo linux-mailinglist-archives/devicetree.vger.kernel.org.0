@@ -2,283 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9AADA9EC3
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A4DFA9F1D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:01:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731857AbfIEJtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 05:49:33 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:34627 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731806AbfIEJtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 05:49:32 -0400
-Received: by mail-qt1-f193.google.com with SMTP id a13so2079784qtj.1
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 02:49:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BLTsSGkAS20nKvSmDJ8nD9cteiUsmNrKqKIdwSgw/JU=;
-        b=aXg0BCP9Sek1lvZeMuLX3m0T7YqT3J7+y48L+cuVdvR8ljEDdiPEof2dLMZGMrNQqf
-         frfpxxqdq4i1ZSuneYWogqaVVwUXhpWbAAr50DK5fwnz7E0gTyF774wGR5nyj0EYsHkU
-         O58lSwPmNLnkiy7PLIyxy6NJBfLmKRlhrMQ/s=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BLTsSGkAS20nKvSmDJ8nD9cteiUsmNrKqKIdwSgw/JU=;
-        b=kqlTEVJkYPMjkimvfOkPV3DVVXxc40VYG/tOYAuAMxwC4zIojYfHZPKsH2L96mgZna
-         C7e400RBchmrGcjcM5xt/IZmir6QGHfbjTVpkT9/Nxcd7l8mJwqZwAPdDEsLafcFR6Pl
-         E+FoZyIP03EuWOVW4c1Z7Vd5jkfsQbaTxcAwE2vjyxA8bi3IBE6Pt15hB67PGK/Pz7hd
-         Z6X+bA4KCilU2umoRHKG7+BpLF4vQJYueW42sjJ8U8M1fAduDs+SemYmujy/poK3RS8h
-         ZQfLe5KOIL1h8Jqmbr2HclS2Lpt5bAlUoYWnAIxGezGJ/GpzLLaomR5on6X/F8rI/D3a
-         OluQ==
-X-Gm-Message-State: APjAAAUFttTmCMrHmc2d2lfru94FqvFnryssX77evXyoO6co7/YORv9H
-        I0UC/L9vVoQuLZfuKyJfXEtQZpLUzS954lZIRZNzCg==
-X-Google-Smtp-Source: APXvYqyXj8KKk6gL7JNHTjmBpk7/3LqhzsyiSDFP08Dv/c/7DWQvOJacLN7yrqb3hzTQyDsYjO9u9/Zn/1y3KylZCaY=
-X-Received: by 2002:a0c:efcc:: with SMTP id a12mr1032204qvt.59.1567676970643;
- Thu, 05 Sep 2019 02:49:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190905081546.42716-1-drinkcat@chromium.org> <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
-In-Reply-To: <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Thu, 5 Sep 2019 17:49:19 +0800
-Message-ID: <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt8183: Add node for the Mali GPU
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Nick Fan <nick.fan@mediatek.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S2387702AbfIEKAw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 06:00:52 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.47.102]:44194 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731397AbfIEKAv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 06:00:51 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id E90BFC0DD1;
+        Thu,  5 Sep 2019 10:00:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1567677651; bh=Ws+N6vdFI0+AOibwXemxt/naJeO+djtgi6jeEObd+2k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KmzLGi69zmkUE97UqDPhuZHHS3CZ2VqB/5GKMcVxz5uniySvAu2h5ckXlQ5n1MrNI
+         9Y7kNaQ2YjS0bv/V1eC37BI9F9EEiZvY92IV9+9iRr7DZmNPOp4hQ8fLEKWhYlfqme
+         KXT/abrF2Fav3g/f0nkoO51JDh7GXa5HINIzf2PFlErhOBicsfKrWfF9nS2HA9hOIK
+         G4rrYXYUOhSRqNpcVO+teO6JN0lunqaqPrsm3x6zl1ZwTv+GHpi3uxofzNKnEBiTUs
+         ZAQ1Qu9PW0EdMiBicdHGlmnjUEY9KoWzdHJNb9OUjuthEDghO0aIw4MUcTOPvsZagh
+         BhD9zzO/QjNwQ==
+Received: from de02.synopsys.com (germany.internal.synopsys.com [10.225.17.21])
+        by mailhost.synopsys.com (Postfix) with ESMTP id 56C51A005F;
+        Thu,  5 Sep 2019 10:00:49 +0000 (UTC)
+Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
+        by de02.synopsys.com (Postfix) with ESMTP id 33B6F3F3AF;
+        Thu,  5 Sep 2019 12:00:49 +0200 (CEST)
+From:   Vitor Soares <Vitor.Soares@synopsys.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-i3c@lists.infradead.org
+Cc:     bbrezillon@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        pgaj@cadence.com, Joao.Pinto@synopsys.com,
+        Vitor Soares <Vitor.Soares@synopsys.com>
+Subject: [PATCH v3 0/5] i3c: detach/free device fail pre_assign_dyn_addr()
+Date:   Thu,  5 Sep 2019 12:00:33 +0200
+Message-Id: <cover.1567608245.git.vitor.soares@synopsys.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the quick review!
+As for today, the I3C framework is keeping in memory and master->bus.devs
+list the devices that fail during pre_assign_dyn_addr() and send them on
+DEFSLVS command.
 
-On Thu, Sep 5, 2019 at 5:09 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Thu, Sep 5, 2019 at 9:16 AM Nicolas Boichat <drinkcat@chromium.org> wrote:
-> >
-> > Add a basic GPU node and opp table for mt8183.
-> >
-> > The binding we use with out-of-tree Mali drivers includes more
-> > clocks, I assume this would be required eventually if we have an
-> > in-tree driver:
->
-> We have an in-tree driver...
+According to MIPI I3C Bus spec the DEFSLVS command is used to inform any
+Secondary Master about the Dynamic Addresses that were assigned to I3C
+devices and the I2C devices present on the bus.
 
-Right but AFAICT it does not support Bifrost GPU (yet?).
+This issue could be fixed by changing i3c_master_defslvs_locked() to
+ignore unaddressed i3c devices but the i3c_dev_desc would be allocated and
+attached to HC unnecessarily. This can cause that some HC aren't able to
+do DAA for HJ capable devices due of lack of space.
 
->
-> > clocks =
-> >         <&topckgen CLK_TOP_MFGPLL_CK>,
-> >         <&topckgen CLK_TOP_MUX_MFG>,
-> >         <&clk26m>,
-> >         <&mfgcfg CLK_MFG_BG3D>;
-> > clock-names =
-> >         "clk_main_parent",
-> >         "clk_mux",
-> >         "clk_sub_parent",
-> >         "subsys_mfg_cg";
+This patch-series propose to detach/free devices that are failing during
+pre_assign_dyn_addr() and to propagate i3c_boardinfo, if available, to
+i3c_dev_desc during i3c_master_add_i3c_dev_locked(). Besides the fix for
+the problem mention above, this change will permit to describe devices
+with a preferable dynamic address (important due to priority reason) but
+without a static address in DT.
 
-Do you think we should add those to the binding document? May not be
-easy to match what the amlogic binding does (I'm not sure to
-understand the details of this device, but I can dig further/ask).
+In addition, I'm improving the management of the Data Address Table in
+DW I3C Master by keeping the free slots consecutive.
 
-> >
-> > Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-> >
-> > ---
-> > Upstreaming what matches existing bindings from our Chromium OS tree:
-> > https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.19/arch/arm64/boot/dts/mediatek/mt8183.dtsi#1348
-> >
-> > The evb part of this change depends on this patch to add PMIC dtsi:
-> > https://patchwork.kernel.org/patch/10928161/
-> >
-> >  arch/arm64/boot/dts/mediatek/mt8183-evb.dts |   7 ++
-> >  arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 103 ++++++++++++++++++++
-> >  2 files changed, 110 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > index 1fb195c683c3d01..200d8e65a6368a1 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > @@ -7,6 +7,7 @@
-> >
-> >  /dts-v1/;
-> >  #include "mt8183.dtsi"
-> > +#include "mt6358.dtsi"
-> >
-> >  / {
-> >         model = "MediaTek MT8183 evaluation board";
-> > @@ -30,6 +31,12 @@
-> >         status = "okay";
-> >  };
-> >
-> > +&gpu {
-> > +       supply-names = "mali", "mali_sram";
-> > +       mali-supply = <&mt6358_vgpu_reg>;
-> > +       mali_sram-supply = <&mt6358_vsram_gpu_reg>;
->
-> Not documented. Just 'sram-supply' is enough.
+Change in v3:
+  - Change cover letter
+  - Change commit message for patch 1
+  - Add Rob rb-tags
 
-Will fix.
+Change in v2:
+  - Move out detach/free the i3c_dev_desc from pre_assign_dyn_addr()
+  - Change i3c_master_search_i3c_boardinfo(newdev) to
+  i3c_master_init_i3c_dev_boardinfo(newdev)
+  - Add fixes, stable tags on patch 2
+  - Add a note for no guarantee of 'assigned-address' use
 
-> Note that the binding doc queued up for 5.4 has been converted to DT schema.
+Vitor Soares (5):
+  i3c: master: detach and free device if pre_assign_dyn_addr() fails
+  i3c: master: make sure ->boardinfo is initialized in
+    add_i3c_dev_locked()
+  dt-bindings: i3c: Make 'assigned-address' valid if static address == 0
+  dt-bindings: i3c: add a note for no guarantee of 'assigned-address'
+    use
+  i3c: master: dw: reattach device on first available location of
+    address table
 
-Yep I see that in linux-next.
+ Documentation/devicetree/bindings/i3c/i3c.txt | 15 ++++++--
+ drivers/i3c/master.c                          | 49 ++++++++++++++++++++++-----
+ drivers/i3c/master/dw-i3c-master.c            | 16 +++++++++
+ 3 files changed, 68 insertions(+), 12 deletions(-)
 
->
-> > +};
-> > +
-> >  &i2c0 {
-> >         pinctrl-names = "default";
-> >         pinctrl-0 = <&i2c_pins_0>;
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > index 97f84aa9fc6e1c1..8ea548a762ea252 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > @@ -579,6 +579,109 @@
-> >                         #clock-cells = <1>;
-> >                 };
-> >
-> > +               gpu: mali@13040000 {
->
-> gpu@...
->
-> > +                       compatible = "mediatek,mt8183-mali", "arm,mali-bifrost";
->
-> You need to add this compatible string too.
+-- 
+2.7.4
 
-Will do.
-
->
-> > +                       reg = <0 0x13040000 0 0x4000>;
-> > +                       interrupts =
-> > +                               <GIC_SPI 280 IRQ_TYPE_LEVEL_LOW>,
-> > +                               <GIC_SPI 279 IRQ_TYPE_LEVEL_LOW>,
-> > +                               <GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
-> > +                       interrupt-names = "job", "mmu", "gpu";
-> > +
-> > +                       clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
-> > +                       power-domains =
-> > +                               <&scpsys MT8183_POWER_DOMAIN_MFG_CORE0>,
-> > +                               <&scpsys MT8183_POWER_DOMAIN_MFG_CORE1>,
-> > +                               <&scpsys MT8183_POWER_DOMAIN_MFG_2D>;
->
-> This needs to be documented too.
-
-I see that Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
-has power-domains in the example both not in the yaml, is that
-expected?
-
-
->
-> > +
-> > +                       operating-points-v2 = <&gpu_opp_table>;
-> > +               };
-> > +
-> > +               gpu_opp_table: opp_table0 {
-> > +                       compatible = "operating-points-v2";
-> > +                       opp-shared;
-> > +
-> > +                       opp-300000000 {
-> > +                               opp-hz = /bits/ 64 <300000000>;
-> > +                               opp-microvolt = <625000>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-320000000 {
-> > +                               opp-hz = /bits/ 64 <320000000>;
-> > +                               opp-microvolt = <631250>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-340000000 {
-> > +                               opp-hz = /bits/ 64 <340000000>;
-> > +                               opp-microvolt = <637500>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-360000000 {
-> > +                               opp-hz = /bits/ 64 <360000000>;
-> > +                               opp-microvolt = <643750>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-380000000 {
-> > +                               opp-hz = /bits/ 64 <380000000>;
-> > +                               opp-microvolt = <650000>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-400000000 {
-> > +                               opp-hz = /bits/ 64 <400000000>;
-> > +                               opp-microvolt = <656250>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-420000000 {
-> > +                               opp-hz = /bits/ 64 <420000000>;
-> > +                               opp-microvolt = <662500>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-460000000 {
-> > +                               opp-hz = /bits/ 64 <460000000>;
-> > +                               opp-microvolt = <675000>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-500000000 {
-> > +                               opp-hz = /bits/ 64 <500000000>;
-> > +                               opp-microvolt = <687500>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-540000000 {
-> > +                               opp-hz = /bits/ 64 <540000000>;
-> > +                               opp-microvolt = <700000>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-580000000 {
-> > +                               opp-hz = /bits/ 64 <580000000>;
-> > +                               opp-microvolt = <712500>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-620000000 {
-> > +                               opp-hz = /bits/ 64 <620000000>;
-> > +                               opp-microvolt = <725000>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-653000000 {
-> > +                               opp-hz = /bits/ 64 <653000000>;
-> > +                               opp-microvolt = <743750>, <850000>;
-> > +                       };
-> > +
-> > +                       opp-698000000 {
-> > +                               opp-hz = /bits/ 64 <698000000>;
-> > +                               opp-microvolt = <768750>, <868750>;
-> > +                       };
-> > +
-> > +                       opp-743000000 {
-> > +                               opp-hz = /bits/ 64 <743000000>;
-> > +                               opp-microvolt = <793750>, <893750>;
-> > +                       };
-> > +
-> > +                       opp-800000000 {
-> > +                               opp-hz = /bits/ 64 <800000000>;
-> > +                               opp-microvolt = <825000>, <925000>;
-> > +                       };
->
-> Okay, but I seriously doubt the OPP selection logic is sophisticated
-> enough or will ever be to use all these levels...
->
-> > +               };
-> > +
-> >                 mmsys: syscon@14000000 {
-> >                         compatible = "mediatek,mt8183-mmsys", "syscon";
-> >                         reg = <0 0x14000000 0 0x1000>;
-> > --
-> > 2.23.0.187.g17f5b7556c-goog
-> >
