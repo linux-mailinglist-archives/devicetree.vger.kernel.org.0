@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A793BA9CD1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 10:19:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFD98A9CE4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 10:22:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732503AbfIEIT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 04:19:26 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:36634 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726175AbfIEIT0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 04:19:26 -0400
-Received: by mail-pf1-f193.google.com with SMTP id y22so1247636pfr.3;
-        Thu, 05 Sep 2019 01:19:26 -0700 (PDT)
+        id S1732133AbfIEIWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 04:22:48 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:43659 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732065AbfIEIWs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 04:22:48 -0400
+Received: by mail-pf1-f196.google.com with SMTP id d15so1231740pfo.10;
+        Thu, 05 Sep 2019 01:22:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=9/BdIi9v9vT+sjdaqY5A0ECHD5U3qpWLnzpWXvofxDY=;
-        b=r1nLUBGcm0bfuZZ9Lr7GSA62KRvGRugvYiQ3s1TSi2oyWNKhdrBXHjTf2ZtGebVm1N
-         sh7wZ2uUUHgw84Q64gm7NOKnM0JGC/frypk5e84p9I93pn5Id8i2RviYRI88bsveSHDY
-         ceTGu6jIfXr9Le2TXdJ+7MVGNwyPmLaPPkUmHclpGnhzdzhdqP5K7uzohK6MqPjmYfoN
-         cSif/IsIjUZQxbdq+gMqUnq0Fel1F2/dwk5Bg2aKRRTkuEgPUD0hhrEZmFnxelU/97z/
-         tbLkUGImiJljqmi2Vnf1sUR9WIOiAuluSIlPrsiRQWDY+2lgmJqYpeo+dU8x/kpG06Lx
-         Q2qg==
+        bh=OR+2oUf84ahdL/gVaL83KcJgug8/1OAXHF+oo7QgYic=;
+        b=bwtpstSAkOACZBbe+Nv57N21Dz2M9GUhBRRV05iZb1fTtxh6mrFXkz2SCEV8dZcWtp
+         DAwfvDgENT4ySZBGNChnQAx7D7jxtcqPgkLsxbTF9s2e2vJ6K4CdIbATHDCc0lSAFsvJ
+         Qn8cZ7Tq8nzmPNw8Z4iFyf44omZi4lbePC8iJRa4iZLTTfjylBova4mnoNQW4ZAnLH0J
+         E87DTxqATv5fvHEqWfJ1lbSbKzcvU6oXwP3c9EK0U7f8ZkPhOqlHHdKJdH7dH2tQFy2b
+         cpg2xi+sRX3QQ3UJUKz2dMF3AoshIsYC0fnudFqtdnq2vZxwHAxk/QMrYNMyFCQNi1Cm
+         WXPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=9/BdIi9v9vT+sjdaqY5A0ECHD5U3qpWLnzpWXvofxDY=;
-        b=KfALPtawcr0CiiVOCKYdYLNrVT7+VNXwDrk2PKpvWAn8pCv7wLgPBaBZoxay0vuy0i
-         8kk29AY4KU8THN1SOuTxCw3OqbteTMrxh5bat19+6jpCytvjnSZJ1FWCyyXLGRF9aiKZ
-         qHz69xX0CAAJs3uPkGVjlxzg7d9bqIJId4F+NCJMd3Ouj9ebVLZxSFoyzD/OK+GEuPZg
-         MifxJUQPs0GRnj/gD09zp7doQiHPmwopi2b7kfMBHxdbyxv4Sdt6R0YWQ5bm6hhQ51tH
-         y9l/UU3uMQnTBJoWsYKPEkFjLD9zF0EpyUAWYYnuZ9gGtAt1pQZ7clKO37SI+6lEhrsl
-         aPmA==
-X-Gm-Message-State: APjAAAW8J+Bp25pJjf27bHjE8oYY+UklzriABO28CmzQmXGjH6cevqD4
-        ZZd4dupuDXXorJJjNvLBlJ/pAzG2
-X-Google-Smtp-Source: APXvYqxe1QnHt/X7OsIxUjVUHyE38n/yrBYayr07GhF9bIM7Bs1edEmFMoAIFICZevF1sqQC3j1bCw==
-X-Received: by 2002:a63:e148:: with SMTP id h8mr2013798pgk.275.1567671565558;
-        Thu, 05 Sep 2019 01:19:25 -0700 (PDT)
+        bh=OR+2oUf84ahdL/gVaL83KcJgug8/1OAXHF+oo7QgYic=;
+        b=X2t5NUAgogEQD0VEoP9tj957rh8oCtt4xQK58z9MnujuI27kXQiMC2rZUZBMNYef5b
+         o4nXP5F230LCZXfUZUgACwhvtJ8J8ELp+TUrxWttRmDTnO2RYGBeqYPG1q+YpCYVtipj
+         p4+Q+2LIBjxl6KtYKKjwj99wUCYIHxZnyLknGoNjw2+MrQjcg1yNlnmLAuVECp037n8q
+         VCEiK4oa+QPY5PHp1VfkVRlwcRnfbRDUZlsJ8LUaFhNea9vOX1n06Irr+ResDp8TWkn/
+         dJ8OP1zAP8bl5dhMQyrA2gKFmeJ2DTHRZG2mqZmv9QrqN36p0ZX/B2a5I+UtPDSVfRDK
+         FLZA==
+X-Gm-Message-State: APjAAAXaliEM+Rt8Zzo+A0GJIu3qodv7fvNhlICv4U9R4Gty8KX1/aww
+        9P54UP7pXGoXDb8nHKV8OXt2548I
+X-Google-Smtp-Source: APXvYqzHdSq7YdOvWnTnvzsz0Rhi1kScrNnkmtPlpLjJnsTgvZv6ahcq/gOI1BQ9DW9Fu+eOPqPkDg==
+X-Received: by 2002:a63:ec48:: with SMTP id r8mr1939805pgj.387.1567671767306;
+        Thu, 05 Sep 2019 01:22:47 -0700 (PDT)
 Received: from localhost.localdomain ([49.216.8.243])
-        by smtp.gmail.com with ESMTPSA id h9sm1170401pgh.51.2019.09.05.01.19.22
+        by smtp.gmail.com with ESMTPSA id o35sm1178608pgm.29.2019.09.05.01.22.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 01:19:24 -0700 (PDT)
+        Thu, 05 Sep 2019 01:22:46 -0700 (PDT)
 From:   jamestai.sky@gmail.com
 X-Google-Original-From: james.tai@realtek.com
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         CY_Huang <cy.huang@realtek.com>,
         Phinex Hung <phinex@realtek.com>,
         "james.tai" <james.tai@realtek.com>
-Subject: [PATCH] dt-bindings: arm: Convert Realtek board/soc bindings to json-schema
-Date:   Thu,  5 Sep 2019 16:17:21 +0800
-Message-Id: <20190905081721.1548-1-james.tai@realtek.com>
+Subject: [PATCH] dt-bindings: arm: Add bindings for Realtek RTD16XX SoC
+Date:   Thu,  5 Sep 2019 16:20:42 +0800
+Message-Id: <20190905082042.1601-1-james.tai@realtek.com>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -63,67 +61,23 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: "james.tai" <james.tai@realtek.com>
 
-Convert Realtek SoC bindings to DT schema format using json-schema.
+This patch adds dt-binding documentation for Realtek RTD16XX platform.
 
 Signed-off-by: james.tai <james.tai@realtek.com>
 ---
- .../devicetree/bindings/arm/realtek.txt       | 22 -------------------
- .../devicetree/bindings/arm/realtek.yaml      | 17 ++++++++++++++
- 2 files changed, 17 insertions(+), 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/realtek.txt
- create mode 100644 Documentation/devicetree/bindings/arm/realtek.yaml
+ Documentation/devicetree/bindings/arm/realtek.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/arm/realtek.txt b/Documentation/devicetree/bindings/arm/realtek.txt
-deleted file mode 100644
-index 95839e19ae92..000000000000
---- a/Documentation/devicetree/bindings/arm/realtek.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--Realtek platforms device tree bindings
----------------------------------------
--
--
--RTD1295 SoC
--===========
--
--Required root node properties:
--
-- - compatible :  must contain "realtek,rtd1295"
--
--
--Root node property compatible must contain, depending on board:
--
-- - MeLE V9: "mele,v9"
-- - ProBox2 AVA: "probox2,ava"
-- - Zidoo X9S: "zidoo,x9s"
--
--
--Example:
--
--    compatible = "zidoo,x9s", "realtek,rtd1295";
 diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml b/Documentation/devicetree/bindings/arm/realtek.yaml
-new file mode 100644
-index 000000000000..ad9b13bc42f0
---- /dev/null
+index ad9b13bc42f0..4d4ac23acab0 100644
+--- a/Documentation/devicetree/bindings/arm/realtek.yaml
 +++ b/Documentation/devicetree/bindings/arm/realtek.yaml
-@@ -0,0 +1,17 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/realtek.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Realtek platforms device tree bindings
-+
-+properties:
-+  compatible:
-+    oneOf:
+@@ -15,3 +15,5 @@ properties:
+               - probox2,ava
+               - zidoo,x9s
+           - const: realtek,rtd1295
 +        items:
-+          - enum:
-+              - mele,v9
-+              - probox2,ava
-+              - zidoo,x9s
-+          - const: realtek,rtd1295
++          - const: realtek,rtd1619
 -- 
 2.17.1
 
