@@ -2,348 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C0C48A9CBD
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 10:17:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A793BA9CD1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 10:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730937AbfIEIRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 04:17:09 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:41823 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730849AbfIEIRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 04:17:09 -0400
-X-UUID: b3a063292a5e4e409ffa3a30e3fd13b5-20190905
-X-UUID: b3a063292a5e4e409ffa3a30e3fd13b5-20190905
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <jerry-ch.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1310437670; Thu, 05 Sep 2019 16:17:00 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 5 Sep 2019 16:16:56 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 5 Sep 2019 16:16:56 +0800
-Message-ID: <1567671418.22453.41.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
-From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
-        "zwisler@chromium.org" <zwisler@chromium.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
-        <Sean.Cheng@mediatek.com>,
-        "Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?=" 
-        <sj.huang@mediatek.com>,
-        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
-        <christie.yu@mediatek.com>,
-        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
-        <Frederic.Chen@mediatek.com>,
-        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
-        <jungo.lin@mediatek.com>,
-        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
-        <Rynn.Wu@mediatek.com>,
-        Po-Yang Huang =?UTF-8?Q?=28=E9=BB=83=E6=9F=8F=E9=99=BD=29?= 
-        <po-yang.huang@mediatek.com>,
-        "shik@chromium.org" <shik@chromium.org>,
-        "suleiman@chromium.org" <suleiman@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Date:   Thu, 5 Sep 2019 16:16:58 +0800
-In-Reply-To: <CAAFQd5A=D33nUWTyYjt3acV43r3fqjSEkLbt3_Sr1YG1PzQgqQ@mail.gmail.com>
-References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
-         <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
-         <20190802082815.GA203993@chromium.org>
-         <1566724680.20680.8.camel@mtksdccf07>
-         <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
-         <1566957625.20680.33.camel@mtksdccf07>
-         <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
-         <1567424859.18318.32.camel@mtksdccf07>
-         <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
-         <1567493081.18318.49.camel@mtksdccf07>
-         <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
-         <1567511169.18318.65.camel@mtksdccf07>
-         <CAAFQd5DiPcUxd+R-v_-BdRx+QqZ35Riii_jpgbqr5mc3BnQvDw@mail.gmail.com>
-         <1567568281.18318.80.camel@mtksdccf07>
-         <CAAFQd5CRC2cyV30B4Qv59HdrJ7Cpe_yK5aY-BecQQ3J3i0PtCQ@mail.gmail.com>
-         <1567577389.18318.100.camel@mtksdccf07>
-         <CAAFQd5AxTQPD+nP9CJs45QTzGHKssjv3vRtMqHONABfp12afYw@mail.gmail.com>
-         <1567584577.22453.11.camel@mtksdccf07>
-         <CAAFQd5Dzxy10g-MKHMnNbVO6kp9_L_jm1m+gtN+p=YF2LyBiag@mail.gmail.com>
-         <1567587708.22453.15.camel@mtksdccf07>
-         <CAAFQd5DWfEEiGthPi=qoxD-mpAWa68GOCi55mqpmagS-tsGYkA@mail.gmail.com>
-         <1567589188.22453.24.camel@mtksdccf07>
-         <CAAFQd5Ckz9qH7AnLNM4HRTM2gJQP1HXRS09+o6Prf++D1PQhng@mail.gmail.com>
-         <1567603143.22453.27.camel@mtksdccf07>
-         <1567666940.22453.31.camel@mtksdccf07>
-         <CAAFQd5A=D33nUWTyYjt3acV43r3fqjSEkLbt3_Sr1YG1PzQgqQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: B4F7B40E2029BA7CE2A4584363431432513F6F4AE98333EE70BFEFA13EF7A8482000:8
-X-MTK:  N
+        id S1732503AbfIEIT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 04:19:26 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:36634 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726175AbfIEIT0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 04:19:26 -0400
+Received: by mail-pf1-f193.google.com with SMTP id y22so1247636pfr.3;
+        Thu, 05 Sep 2019 01:19:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=9/BdIi9v9vT+sjdaqY5A0ECHD5U3qpWLnzpWXvofxDY=;
+        b=r1nLUBGcm0bfuZZ9Lr7GSA62KRvGRugvYiQ3s1TSi2oyWNKhdrBXHjTf2ZtGebVm1N
+         sh7wZ2uUUHgw84Q64gm7NOKnM0JGC/frypk5e84p9I93pn5Id8i2RviYRI88bsveSHDY
+         ceTGu6jIfXr9Le2TXdJ+7MVGNwyPmLaPPkUmHclpGnhzdzhdqP5K7uzohK6MqPjmYfoN
+         cSif/IsIjUZQxbdq+gMqUnq0Fel1F2/dwk5Bg2aKRRTkuEgPUD0hhrEZmFnxelU/97z/
+         tbLkUGImiJljqmi2Vnf1sUR9WIOiAuluSIlPrsiRQWDY+2lgmJqYpeo+dU8x/kpG06Lx
+         Q2qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=9/BdIi9v9vT+sjdaqY5A0ECHD5U3qpWLnzpWXvofxDY=;
+        b=KfALPtawcr0CiiVOCKYdYLNrVT7+VNXwDrk2PKpvWAn8pCv7wLgPBaBZoxay0vuy0i
+         8kk29AY4KU8THN1SOuTxCw3OqbteTMrxh5bat19+6jpCytvjnSZJ1FWCyyXLGRF9aiKZ
+         qHz69xX0CAAJs3uPkGVjlxzg7d9bqIJId4F+NCJMd3Ouj9ebVLZxSFoyzD/OK+GEuPZg
+         MifxJUQPs0GRnj/gD09zp7doQiHPmwopi2b7kfMBHxdbyxv4Sdt6R0YWQ5bm6hhQ51tH
+         y9l/UU3uMQnTBJoWsYKPEkFjLD9zF0EpyUAWYYnuZ9gGtAt1pQZ7clKO37SI+6lEhrsl
+         aPmA==
+X-Gm-Message-State: APjAAAW8J+Bp25pJjf27bHjE8oYY+UklzriABO28CmzQmXGjH6cevqD4
+        ZZd4dupuDXXorJJjNvLBlJ/pAzG2
+X-Google-Smtp-Source: APXvYqxe1QnHt/X7OsIxUjVUHyE38n/yrBYayr07GhF9bIM7Bs1edEmFMoAIFICZevF1sqQC3j1bCw==
+X-Received: by 2002:a63:e148:: with SMTP id h8mr2013798pgk.275.1567671565558;
+        Thu, 05 Sep 2019 01:19:25 -0700 (PDT)
+Received: from localhost.localdomain ([49.216.8.243])
+        by smtp.gmail.com with ESMTPSA id h9sm1170401pgh.51.2019.09.05.01.19.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 01:19:24 -0700 (PDT)
+From:   jamestai.sky@gmail.com
+X-Google-Original-From: james.tai@realtek.com
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        CY_Huang <cy.huang@realtek.com>,
+        Phinex Hung <phinex@realtek.com>,
+        "james.tai" <james.tai@realtek.com>
+Subject: [PATCH] dt-bindings: arm: Convert Realtek board/soc bindings to json-schema
+Date:   Thu,  5 Sep 2019 16:17:21 +0800
+Message-Id: <20190905081721.1548-1-james.tai@realtek.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomasz,
+From: "james.tai" <james.tai@realtek.com>
 
-On Thu, 2019-09-05 at 15:13 +0800, Tomasz Figa wrote:
-> On Thu, Sep 5, 2019 at 4:02 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> >
-> > Hi Tomasz,
-> >
-> > On Wed, 2019-09-04 at 21:19 +0800, Jerry-ch Chen wrote:
-> > > On Wed, 2019-09-04 at 21:12 +0800, Tomasz Figa wrote:
-> > > > On Wed, Sep 4, 2019 at 6:26 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > >
-> > > > > Hi Tomasz,
-> > > > >
-> > > > > On Wed, 2019-09-04 at 17:03 +0800, Tomasz Figa wrote:
-> > > > > > On Wed, Sep 4, 2019 at 6:02 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > >
-> > > > > > > Hi Tomasz,
-> > > > > > >
-> > > > > > > On Wed, 2019-09-04 at 16:25 +0800, Tomasz Figa wrote:
-> > > > > > > > On Wed, Sep 4, 2019 at 5:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > >
-> > > > > > > > > Hi Tomasz,
-> > > > > > > > >
-> > > > > > > > > On Wed, 2019-09-04 at 14:34 +0800, Tomasz Figa wrote:
-> > > > > > > > > > On Wed, Sep 4, 2019 at 3:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > >
-> > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > >
-> > > > > > > > > > > On Wed, 2019-09-04 at 12:15 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > On Wed, Sep 4, 2019 at 12:38 PM Jerry-ch Chen
-> > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > On Tue, 2019-09-03 at 20:05 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > On Tue, Sep 3, 2019 at 8:46 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > On Tue, 2019-09-03 at 15:04 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
-> > > > > > > > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > > > Hi Jerry,
-> > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
-> > > > > > > > > > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > > > > > Hi Jerry,
-> > > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
-> > > > > [snip]
-> > > > > > > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > > > > > > {
-> > > > > > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > > > > > > > >         struct vb2_v4l2_buffer *vb;
-> > > > > > > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> > > > > > > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> > > > > > > > >         u32 ret;
-> > > > > > > > >
-> > > > > > > > >         if (!fd->fd_irq_done.done)
-> > > > > > > >
-> > > > > > > > We shouldn't access internal fields of completion.
-> > > > > > > >
-> > > > > > > > >                 ret = wait_for_completion_timeout(&fd->fd_irq_done,
-> > > > > > > > >                                                   msecs_to_jiffies(
-> > > > > > > > >                                                         MTK_FD_HW_TIMEOUT));
-> > > > > > > > >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
-> > > > > > > > >                                         &m2m_ctx->out_q_ctx :
-> > > > > > > > >                                         &m2m_ctx->cap_q_ctx;
-> > > > > > > > >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
-> > > > > > > > >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-> > > > > > > > >
-> > > > > > > > >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
-> > > > > > > > >                 mtk_fd_hw_disconnect(fd);
-> > > > > > > > > }
-> > > > > > > > >
-> > > > > > > > > I've also tried to wait completion unconditionally for both queues and
-> > > > > > > > > the second time will wait until timeout, as a result, it takes longer to
-> > > > > > > > > swap the camera every time and close the camera app.
-> > > > > > > >
-> > > > > > > > I think it should work better if we call complete_all() instead of complete().
-> > > > > > > >
-> > > > > > > Thanks,
-> > > > > > >
-> > > > > > > I use complete_all(), and it works fine now.
-> > > > > > >
-> > > > > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > > > > {
-> > > > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > > > > > >         struct vb2_v4l2_buffer *vb;
-> > > > > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> > > > > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> > > > > > >
-> > > > > > >         wait_for_completion_timeout(&fd->fd_irq_done,
-> > > > > > >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
-> > > > > >
-> > > > > > Shouldn't we still send some command to the hardware to stop? Like a
-> > > > > > reset. Otherwise we don't know if it isn't still accessing the memory.
-> > > > > >
-> > > > > I thought no more jobs will be enqueued here when stop_streaming so we
-> > > > > don't need it.
-> > > >
-> > > > That's true for the case when the wait completed successfully, but we
-> > > > also need to ensure the hardware is stopped even if a timeout happens.
-> > > >
-> > > > > We still could send an ipi command to reset the HW, and wait for it's
-> > > > > callback or we could set the register MTK_FD_REG_OFFSET_HW_ENABLE to
-> > > > > zero to disable the HW.
-> > > >
-> > > > Since it's for handling a timeout, a reset should be more likely to
-> > > > bring the hardware back to a reasonable state.
-> > > >
-> > >
-> > > Ok, I will send the ipi command to reset the HW.
-> > >
-> > > Thanks and best regards,
-> > > Jerry
-> > I've tested and will refine as following:
-> >
-> > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > {
-> >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> >         struct vb2_v4l2_buffer *vb;
-> >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> >         u32 ret;
-> >
-> >         ret = wait_for_completion_timeout(&fd->fd_irq_done,
-> >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
-> >         /* Disable FD HW */
-> >         if(!ret) {
-> >                 struct ipi_message fd_ipi_msg;
-> >
-> >                 fd_ipi_msg.cmd_id = MTK_FD_IPI_CMD_RESET;
-> >                 ret = scp_ipi_send(fd->scp_pdev, SCP_IPI_FD_CMD, &fd_ipi_msg,
-> >                                    sizeof(fd_ipi_msg), MTK_FD_IPI_SEND_TIMEOUT);
-> >                 if (ret)
-> >                         dev_err(fd->dev, "FD Reset HW error\n");
-> >         }
-> 
-> Would you also put the same code in suspend handler? If so, perhaps
-> it's better to keep this in a helper function (mtk_fd_job_abort()) as
-> we had before?
-> 
+Convert Realtek SoC bindings to DT schema format using json-schema.
 
-Ok, done, It will reset the HW and return ETIMEOUT if the last job is
-timeout, the return value will be used in suspend for further action.
+Signed-off-by: james.tai <james.tai@realtek.com>
+---
+ .../devicetree/bindings/arm/realtek.txt       | 22 -------------------
+ .../devicetree/bindings/arm/realtek.yaml      | 17 ++++++++++++++
+ 2 files changed, 17 insertions(+), 22 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/realtek.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/realtek.yaml
 
-static int mtk_fd_job_abort(struct mtk_fd_dev *fd)
-{
-	u32 ret;
-
-	ret = wait_for_completion_timeout(&fd->fd_irq_done,
-					  msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
-	/* Reset FD HW */
-	if (!ret) {
-		struct ipi_message fd_ipi_msg;
-
-		fd_ipi_msg.cmd_id = MTK_FD_IPI_CMD_RESET;
-		if (scp_ipi_send(fd->scp_pdev, SCP_IPI_FD_CMD, &fd_ipi_msg,
-				 sizeof(fd_ipi_msg), MTK_FD_IPI_SEND_TIMEOUT))
-			dev_err(fd->dev, "FD Reset HW error\n");
-		return -ETIMEDOUT;
-	}
-	return 0;
-}
-
-static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-{
-	struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-	struct mtk_fd_dev *fd = ctx->fd_dev;
-	struct vb2_v4l2_buffer *vb;
-	struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-	struct v4l2_m2m_queue_ctx *queue_ctx;
-
-	mtk_fd_job_abort(fd);
-	queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
-					&m2m_ctx->out_q_ctx :
-					&m2m_ctx->cap_q_ctx;
-	while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
-		v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-
-	if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
-		mtk_fd_hw_disconnect(fd);
-}
-
-static int mtk_fd_suspend(struct device *dev)
-{
-	struct mtk_fd_dev *fd = dev_get_drvdata(dev);
-
-	if (pm_runtime_suspended(dev))
-		return 0;
-
-	if (fd->fd_stream_count)
-		if (mtk_fd_job_abort(fd))
-			mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_ERROR);
-
-	/* suspend FD HW */
-	writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_INT_EN);
-	writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_HW_ENABLE);
-	clk_disable_unprepare(fd->fd_clk);
-	dev_dbg(dev, "%s:disable clock\n", __func__);
-
-	return 0;
-}
-
-> >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
-> >                                         &m2m_ctx->out_q_ctx :
-> >                                         &m2m_ctx->cap_q_ctx;
-> >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
-> >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-> >
-> >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
-> >                 mtk_fd_hw_disconnect(fd);
-> > }
-> >
-> > If there is no other concern, may I send the RFC v3 patch for review?
-> 
-> Thanks, technically it looks good now. Just one comment about avoiding
-> code duplication above.
-> 
-
-Thanks, 
-
-I will send the v3 if the above fix-up is accepted,
-
-Best regards,
-Jerry
-
-> Best regards,
-> Tomasz
-
+diff --git a/Documentation/devicetree/bindings/arm/realtek.txt b/Documentation/devicetree/bindings/arm/realtek.txt
+deleted file mode 100644
+index 95839e19ae92..000000000000
+--- a/Documentation/devicetree/bindings/arm/realtek.txt
++++ /dev/null
+@@ -1,22 +0,0 @@
+-Realtek platforms device tree bindings
+---------------------------------------
+-
+-
+-RTD1295 SoC
+-===========
+-
+-Required root node properties:
+-
+- - compatible :  must contain "realtek,rtd1295"
+-
+-
+-Root node property compatible must contain, depending on board:
+-
+- - MeLE V9: "mele,v9"
+- - ProBox2 AVA: "probox2,ava"
+- - Zidoo X9S: "zidoo,x9s"
+-
+-
+-Example:
+-
+-    compatible = "zidoo,x9s", "realtek,rtd1295";
+diff --git a/Documentation/devicetree/bindings/arm/realtek.yaml b/Documentation/devicetree/bindings/arm/realtek.yaml
+new file mode 100644
+index 000000000000..ad9b13bc42f0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/realtek.yaml
+@@ -0,0 +1,17 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/realtek.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Realtek platforms device tree bindings
++
++properties:
++  compatible:
++    oneOf:
++        items:
++          - enum:
++              - mele,v9
++              - probox2,ava
++              - zidoo,x9s
++          - const: realtek,rtd1295
+-- 
+2.17.1
 
