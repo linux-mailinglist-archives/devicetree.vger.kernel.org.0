@@ -2,111 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4C2CAABE9
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 21:24:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EAE2AAC0E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 21:33:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725975AbfIETYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 15:24:18 -0400
-Received: from mail-wr1-f51.google.com ([209.85.221.51]:45243 "EHLO
-        mail-wr1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbfIETYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 15:24:18 -0400
-Received: by mail-wr1-f51.google.com with SMTP id l16so4021831wrv.12
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 12:24:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=19vbMBbLeKgWt8VsEseKuJu+9+rmeS/Lh0ZhXOFWQYc=;
-        b=j/6kUy9psCaV+YLvz8j0kAZ3/WrmOU3xyh5rDOj0TwK0TnwjLtaLil9Q+C9KpFvvVG
-         h4R8p4cZFB0U4b/PAfc9Xt4p4xJNkAIpTzL4QRjM+nkXdDcYyiwUGkr9BRJnJmO0lyZB
-         zmylqwjRd1oOrTQ1tPvwqUV3OUR5u6WA+rDyhn+A516vskkns0bEICMG787HdDEwjigd
-         +3SR4L9u7swSDpNhqxtfPsn9UFP36sehUfgx32xUcjUhX3ls4RtX+6HCZU+rkeQuILt5
-         0qlmqliIuKXWkQe+ii/gtrK+ulFQ7lEl76YfDJyqXVo4Z357rIhVFAz+mooVn5qpscmU
-         E+xA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=19vbMBbLeKgWt8VsEseKuJu+9+rmeS/Lh0ZhXOFWQYc=;
-        b=UKURi5Gdgzj/6kbeeTVgqleuZx3ljate4gin/4d4IGNEb5+sI++hbGRf1SqbdltYer
-         lx5DtjBAN4vsFct1rbuJyuOyZpL4LmsYLht130LiTH7AIOCxJXeHBmzXgTmwFiI2Ac+0
-         +bb0kIFXO/IzJkyBCwbBjF6C5zH9/+BPfGqhdeqyG8lo9zP6EB7QJHDojZKlnVsaiIZ8
-         FVVA93QWBnjE5QD5kAKBPTPD2iUEHYrxaJwey6yL1vXEaDgf/FfBgUf5fvZuyzGj4tp/
-         KISkwZeC+SFtspusHHPO7GDPYB0S0b8IcyNkiEVbGrop4rrqlS0NDQbAVb1ZQLJnm4a9
-         ol6Q==
-X-Gm-Message-State: APjAAAWW9ojinY7yNXSAZtEIhjlzVNQjki7eXrEoT4EXmzrxqfpNAkaf
-        CbSPzdCqbqYe8U6JN6trMKqd7A==
-X-Google-Smtp-Source: APXvYqyThx0kWliMdrjc7dedZ/+AhabFi7TIc04exnxhWAEkAOh7foRP8Cz8ZjjhxGJCvUyUPA4lFg==
-X-Received: by 2002:adf:ea0c:: with SMTP id q12mr4172788wrm.172.1567711455933;
-        Thu, 05 Sep 2019 12:24:15 -0700 (PDT)
-Received: from localhost.localdomain ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id q24sm7942378wmc.3.2019.09.05.12.24.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 12:24:14 -0700 (PDT)
-From:   Lee Jones <lee.jones@linaro.org>
-To:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, bjorn.andersson@linaro.org, vkoul@kernel.org,
-        wsa@the-dreams.de
-Cc:     linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the Lenovo Yoga C630
-Date:   Thu,  5 Sep 2019 20:24:12 +0100
-Message-Id: <20190905192412.23116-1-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        id S1731251AbfIETdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 15:33:39 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:38226 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729806AbfIETdj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 15:33:39 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x85JXVf1013274;
+        Thu, 5 Sep 2019 14:33:31 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1567712012;
+        bh=kkAMWtH2lSDWQdmzGtIiji4XCoqJUTR6qG2fZ+Vzpqc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=BFSW/p+jNL5LX1/ko200OssuvJytWR4GBiX5gGhcP6SgNOs8u+6qORlPMLg51rKtj
+         0vCvmEn+3EbUhSaOjeBRWK76TR3XuFDIlJTQRe9Ojl2DmYFTOYeaEQB81AIuiGulUl
+         SBSi6TnBnrlfsND5HFXVJUcEI8XhXfPFptAFxl7k=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x85JXVeO012448
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 5 Sep 2019 14:33:31 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 5 Sep
+ 2019 14:33:31 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 5 Sep 2019 14:33:31 -0500
+Received: from [10.250.98.116] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x85JXSQZ069292;
+        Thu, 5 Sep 2019 14:33:29 -0500
+Subject: Re: [RESEND PATCH next v2 0/6] ARM: keystone: update dt and enable
+ cpts support
+To:     <santosh.shilimkar@oracle.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190705151247.30422-1-grygorii.strashko@ti.com>
+ <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <323c1835-e6b0-9153-8d1e-06200d5e2201@ti.com>
+Date:   Thu, 5 Sep 2019 22:33:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-We have a production-level laptop (Lenovo Yoga C630) which is exhibiting
-a rather horrific bug.  When I2C HID devices are being scanned for at
-boot-time the QCom Geni based I2C (Serial Engine) attempts to use DMA.
-When it does, the laptop reboots and the user never sees the OS.
+Hi Santosh,
 
-Attempts are being made to debug the reason for the spontaneous reboot.
-No luck so far, hence the requirement for this hot-fix.  This workaround
-will be removed once we have a viable fix.
+On 06/07/2019 02:48, santosh.shilimkar@oracle.com wrote:
+> On 7/5/19 8:12 AM, Grygorii Strashko wrote:
+>> Hi Santosh,
+>>
+>> This series is set of platform changes required to enable NETCP CPTS reference
+>> clock selection and final patch to enable CPTS for Keystone 66AK2E/L/HK SoCs.
+>>
+>> Those patches were posted already [1] together with driver's changes, so this
+>> is re-send of DT/platform specific changes only, as driver's changes have
+>> been merged already.
+>>
+>> Patches 1-5: CPTS DT nodes update for TI Keystone 2 66AK2HK/E/L SoCs.
+>> Patch 6: enables CPTS for TI Keystone 2 66AK2HK/E/L SoCs.
+>>
+>> [1] https://patchwork.kernel.org/cover/10980037/
+>>
+>> Grygorii Strashko (6):
+>>    ARM: dts: keystone-clocks: add input fixed clocks
+>>    ARM: dts: k2e-clocks: add input ext. fixed clocks tsipclka/b
+>>    ARM: dts: k2e-netcp: add cpts refclk_mux node
+>>    ARM: dts: k2hk-netcp: add cpts refclk_mux node
+>>    ARM: dts: k2l-netcp: add cpts refclk_mux node
+>>    ARM: configs: keystone: enable cpts
+>>
+> Will add these for 5.4 queue. Thanks !!
 
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
- drivers/i2c/busses/i2c-qcom-geni.c | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+Sry, that I'm disturbing you, but I do not see those patches applied?
 
-diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-index a89bfce5388e..17abf60c94ae 100644
---- a/drivers/i2c/busses/i2c-qcom-geni.c
-+++ b/drivers/i2c/busses/i2c-qcom-geni.c
-@@ -355,11 +355,13 @@ static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
- {
- 	dma_addr_t rx_dma;
- 	unsigned long time_left;
--	void *dma_buf;
-+	void *dma_buf = NULL;
- 	struct geni_se *se = &gi2c->se;
- 	size_t len = msg->len;
- 
--	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-+	if (!of_machine_is_compatible("lenovo,yoga-c630"))
-+		dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-+
- 	if (dma_buf)
- 		geni_se_select_mode(se, GENI_SE_DMA);
- 	else
-@@ -394,11 +396,13 @@ static int geni_i2c_tx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
- {
- 	dma_addr_t tx_dma;
- 	unsigned long time_left;
--	void *dma_buf;
-+	void *dma_buf = NULL;
- 	struct geni_se *se = &gi2c->se;
- 	size_t len = msg->len;
- 
--	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-+	if (!of_machine_is_compatible("lenovo,yoga-c630"))
-+		dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-+
- 	if (dma_buf)
- 		geni_se_select_mode(se, GENI_SE_DMA);
- 	else
+
+
 -- 
-2.17.1
-
+Best regards,
+grygorii
