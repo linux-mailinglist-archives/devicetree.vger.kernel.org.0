@@ -2,134 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B0E1A98DE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 05:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AA99A9916
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 05:59:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730042AbfIED1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 4 Sep 2019 23:27:37 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:54351 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729907AbfIED1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 23:27:37 -0400
-X-UUID: f6ab314cbd2349c7972528ade85c3875-20190905
-X-UUID: f6ab314cbd2349c7972528ade85c3875-20190905
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 852391426; Thu, 05 Sep 2019 11:27:32 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 5 Sep 2019 11:27:30 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 5 Sep 2019 11:27:28 +0800
-Message-ID: <1567654050.23074.38.camel@mtksdccf07>
-Subject: Re: [PATCH v5 07/13] dt-bindings: pwm: add a property "num-pwms"
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        "Ryder Lee" <ryder.lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 5 Sep 2019 11:27:30 +0800
-In-Reply-To: <20190902160445.fitoa65t4ndzjq6v@pengutronix.de>
-References: <1566457123-20791-1-git-send-email-sam.shih@mediatek.com>
-         <1566457123-20791-8-git-send-email-sam.shih@mediatek.com>
-         <20190827183924.GA24178@bogus>
-         <20190902160445.fitoa65t4ndzjq6v@pengutronix.de>
-Content-Type: text/plain; charset="ISO-8859-15"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-X-TM-SNTS-SMTP: F4EEF144BCC51E8C6B7272CD2260074CD95FDFA362855DF08FFFF6DA4DBF7AF12000:8
-X-MTK:  N
+        id S1728072AbfIED7F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 4 Sep 2019 23:59:05 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:47789 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727562AbfIED7E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 4 Sep 2019 23:59:04 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E36DC399A;
+        Wed,  4 Sep 2019 23:59:03 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 04 Sep 2019 23:59:03 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=bsxI63SDV53IBgVMw9ODo8bNo53LTDF
+        tLsvuYgDTumc=; b=cxi0lxLMshDNFApXwHb+YnUgaXybAEJD4RXHoK45E5SVzBo
+        jwmlEP9AamppX+wLLstsGJrBCfPKqKxYTMOiHYBvNOtYR4BHt0qAMn/6nvtu023i
+        oMz1+L2EopbHYaibpSYOnjKxAhVvo5SUX8K3Qa+3iN/LCYg3YTy43UJAMOni17wS
+        isZJzyTCpSunnQGn8kUtTNSfo247l0wubez2B7LoDLQGWwZHpYtjlpDMdX58fOOv
+        T33ukMTx5ZzovB0jlb61CseEJQECpU+CIQwN7aWfrCZihc3fGTANoan9eiMlbSAV
+        AAEnEw94LbDxVSanAo6cUFTVRs3r9RHWLiouxOA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=bsxI63
+        SDV53IBgVMw9ODo8bNo53LTDFtLsvuYgDTumc=; b=XdIJZOQmJhKJ1LqYXYYS4h
+        IuDgZApzHMLe2yXEYn0Jtah0T1STxbmaFDguklzz9+FQxNcd7MQ2ZROl4q2YpepQ
+        Z50PtQvsk9GWP6cRgkknPJjFbp2qtfbwKGBQ0TFC8aqEidJT2EgF16qVkSUgBXzi
+        cSJ4phSg7BAjkAOu9lkYR7zNYzrhZTAZotpvpRHZ7uGr3DZsYzCGwro4nVos4uOc
+        G7wyG0OLNiVC2N28x9rXNrNAC9FehG6IsnPTl7t0FyXaMCvjYuEpG7bRQGh3MFfB
+        WTr7pByxoFMtdEwVfr0IWC4UBM//mL8o48rTXsI5/RVMVxALWsHX2XogHIR84WGw
+        ==
+X-ME-Sender: <xms:B4hwXayjsygOYaj8l4PbulBAuT8qWTh1NBH6NzyMdJkaY2VTz--qaA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudejiedgjeeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:B4hwXfGnLBul3l6Udc_i_53IEol2R6CjpoL9MJLEZQo750pyaTOnGA>
+    <xmx:B4hwXTTC5oI7XVX6BT1Jm-kZAOwa8B4ZmTbvqP9BsUX7oP_Vjkmo_A>
+    <xmx:B4hwXaGdHvnq3xcZ3ahDizMlAjxwfEdCU6WlswcVpTDnExbf4FfDZQ>
+    <xmx:B4hwXeyGK36-A7d6lMJZBk4iEBP9mmUowTbonVUncqdCVaq0n2Trwg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 933F9E00A3; Wed,  4 Sep 2019 23:59:03 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.7-186-gf4cb3c3-fmstable-20190904v1
+Mime-Version: 1.0
+Message-Id: <3f9d48eb-79ed-42e9-a346-761871e74c98@www.fastmail.com>
+In-Reply-To: <20190905011800.16156-1-rashmica.g@gmail.com>
+References: <20190905011800.16156-1-rashmica.g@gmail.com>
+Date:   Thu, 05 Sep 2019 13:29:29 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Rashmica Gupta" <rashmica.g@gmail.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>
+Cc:     "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: =?UTF-8?Q?Re:_[PATCH_v2_4/4]_gpio:_dt-bindings:_Update_documentation_wit?=
+ =?UTF-8?Q?h_ast2600_controllers?=
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-09-02 at 18:04 +0200, Uwe Kleine-König wrote:
-> On Tue, Aug 27, 2019 at 01:39:24PM -0500, Rob Herring wrote:
-> > On Thu, Aug 22, 2019 at 02:58:37PM +0800, Sam Shih wrote:
-> > > From: Ryder Lee <ryder.lee@mediatek.com>
-> > 
-> > The subject should indicate this is for Mediatek.
-> > 
-> > > 
-> > > This adds a property "num-pwms" in example so that we could
-> > > specify the number of PWM channels via device tree.
-> > > 
-> > > Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
-> > > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> > > Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> > > Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > > ---
-> > > Changes since v5:
-> > > - Add an Acked-by tag
-> > > - This file is original v4 patch 5/10
-> > > (https://patchwork.kernel.org/patch/11102577/)
-> > > 
-> > > Change-Id: I429048afeffa96f3f14533910efe242f88776043
-> > > ---
-> > >  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 7 ++++---
-> > >  1 file changed, 4 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> > > index 991728cb46cb..ea95b490a913 100644
-> > > --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> > > +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> > > @@ -14,12 +14,12 @@ Required properties:
-> > >                  has no clocks
-> > >     - "top": the top clock generator
-> > >     - "main": clock used by the PWM core
-> > > -   - "pwm1-8": the eight per PWM clocks for mt2712
-> > > -   - "pwm1-6": the six per PWM clocks for mt7622
-> > > -   - "pwm1-5": the five per PWM clocks for mt7623
-> > > +   - "pwm1-N": the PWM clocks for each channel
-> > > +   where N starting from 1 to the maximum number of PWM channels
-> > 
-> > Once converted to schema, you are going to be back to listing them out.
-> > 
-> > >   - pinctrl-names: Must contain a "default" entry.
-> > >   - pinctrl-0: One property must exist for each entry in pinctrl-names.
-> > >     See pinctrl/pinctrl-bindings.txt for details of the property values.
-> > > + - num-pwms: the number of PWM channels.
-> > 
-> > You can't add new required properties without breaking compatibility. 
-> > 
-> > You already have to imply the number of channels from the compatible (or 
-> > number of clocks) and you have to keep doing so to maintain 
-> > compatibility, so why not just keep doing that for new chips?
+
+
+On Thu, 5 Sep 2019, at 10:48, Rashmica Gupta wrote:
+> The ast2600 is a new generation of SoC from ASPEED. Similarly to the
+> ast2400 and ast2500, it has a GPIO controller for it's 3.6V GPIO pins.
+> Additionally, it has a GPIO controller for 36 1.8V GPIO pins. These
+> voltages are fixed and cannot be configured via pinconf, so we have two
+> separate drivers for them.
+
+See 3/4 for discussion about the commit message.
+
 > 
-> This was a suggestion by me. The driver still handles compatibility
-> (i.e. falls back to the number of PWMs that was implied by the
-> compatible before). Given that there are various drivers that all solve
-> the same problem (i.e. different variants with different number of PWMs)
-> I thought it would be a good idea to introduce a property in the device
-> tree that specifies this number.
-> Only for newly introduced compatibles the num-pwms property is really
-> required. Differentiating the ones that need it and the ones that don't
-> seems over-engineered to me.
+> Signed-off-by: Rashmica Gupta <rashmica.g@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/gpio/gpio-aspeed.txt | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt 
+> b/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
+> index 7e9b586770b0..cd388797e07c 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
+> @@ -2,7 +2,8 @@ Aspeed GPIO controller Device Tree Bindings
+>  -------------------------------------------
+>  
+>  Required properties:
+> -- compatible		: Either "aspeed,ast2400-gpio" or "aspeed,ast2500-gpio"
+> +- compatible		: Either "aspeed,ast2400-gpio", "aspeed,ast2500-gpio",
+> +					  "aspeed,ast2600-gpio", or "aspeed,ast2600-1-8v-gpio"
 
-I'm fine with both.
+See the discussion on patch 3/4 about how we might eliminate the
+aspeed,ast2600-1-8v-gpio compatible string.
 
-num-pwms and pwm1-N is required properties for new chip, but it still
-have backward compatibility for old dt without num-pwms properties.
+Also, this patch should be the first in the series and start the subject with
+"dt-bindings: gpio: aspeed: ..."
 
+Cheers,
 
-> (BTW, using the number of clks doesn't really work because there are
-> also some variants without clocks. It is still under discussion if in
-> this case dummy-clocks should be provided IIRC.)
-
-Yes, the dummy-clocks of "top", "main" is needed in old MIPS dt.
-We also need fixed-clock for period calculation.
-
-
-
-Best Regards,
-Sam
-
+Andrew
