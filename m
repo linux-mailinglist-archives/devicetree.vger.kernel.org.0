@@ -2,141 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9043A9E5C
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5573EA9E8B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387430AbfIEJ2V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 05:28:21 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:41142 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727900AbfIEJ2U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 05:28:20 -0400
-Received: by mail-wr1-f66.google.com with SMTP id h7so855459wrw.8
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 02:28:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=ZSFUJO3Cl5xfTH0Oz2n3wB3n0rI8IaAXjOBMneGW988=;
-        b=pfkV95Bv0UZfPijf04Lw+S5gWyPrZBf6nMW16xOvbNgBkOqbuTXKqhjFYAv9E+FprC
-         642QNfMlNoxFq2F0pUWRVLDLWtQL7aLFtrD6IJKWfeyGn3AkKPJwPOFVJ8qunlmtFhMp
-         GKKYEIOvFTsJKHXCODaxCEyFcLgMBLlDjFYCqomKC9NKxAyn9Q72U1ovQrgfqEmTUG8o
-         cYVriYNXSKLlGpnAn4pKQiheoN5zetXQ5lk4piehoTmcslfppIi5ZIQJdodEIIMRMZTE
-         uvjWfyt0nD1xjB3h3EBMWIFAJvJyWlLFfsoGRS4tTUQzwhypCN4lrWEl8Ms7o4ipyBNB
-         Yn4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=ZSFUJO3Cl5xfTH0Oz2n3wB3n0rI8IaAXjOBMneGW988=;
-        b=cM9eNm6DtX53/36alpadAc+fBBpayeeVcNHyDSIGFfzVtyYOK7Lh/0lv6hAQjA9RNd
-         Z4mN/yBU+2oxwrwhwOIgWWv2oMcf9Lf7LGCY5sd9Iv8R23/oNoXE1XHbmSOcytdF8CUk
-         nmwCdB54xdHlBoAp5NsVdzrnkwkqgJX/IOQclJ3bWzijbOynPVA83TMXu2x/iIBgMxP9
-         nSHXOW5F+36u+NrLByQCyxHNq9v6pieYuw90qWYrhndxmFVK2dTtjcDo67rO8hSF2sKv
-         fd1KAn7wn8zeM76HqA0z0U6j5DVsg3EYZTLMiArbGB+3i8mgpXaREF/4VC+AOHPOBfNU
-         Vxfw==
-X-Gm-Message-State: APjAAAVFnosI62zVzC7h6S9mHZesEG8sxyKcXiuRo/rv7o0z9Ufmvq3K
-        mfPYPwqD4TuHewKhTSI8Hdmzvw==
-X-Google-Smtp-Source: APXvYqzXqv86R+TXN5EBeFSzsw4TbvqcdMpFUJoJuOdwhoetcsejRn2RxvT5UuPS+bGgwEyO0gPGzw==
-X-Received: by 2002:adf:e7cc:: with SMTP id e12mr1706018wrn.299.1567675698218;
-        Thu, 05 Sep 2019 02:28:18 -0700 (PDT)
-Received: from dell ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id t7sm1796620wrr.37.2019.09.05.02.28.17
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 05 Sep 2019 02:28:17 -0700 (PDT)
-Date:   Thu, 5 Sep 2019 10:28:16 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Wolfram Sang <wsa@the-dreams.de>
-Cc:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, bjorn.andersson@linaro.org,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, vkoul@kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] i2c: qcom-geni: Provide an option to disable DMA
- processing
-Message-ID: <20190905092816.GD26880@dell>
-References: <20190905075213.13260-1-lee.jones@linaro.org>
- <20190905075213.13260-2-lee.jones@linaro.org>
- <20190905091800.GD1157@kunai>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190905091800.GD1157@kunai>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1731233AbfIEJhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 05:37:24 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:49465 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730872AbfIEJhY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 05:37:24 -0400
+X-IronPort-AV: E=Sophos;i="5.64,470,1559487600"; 
+   d="scan'208";a="25819792"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Sep 2019 18:37:22 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id BDEC4400C0A5;
+        Thu,  5 Sep 2019 18:37:19 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH 0/3] RZ/G2N SoC identification support
+Date:   Thu,  5 Sep 2019 10:30:40 +0100
+Message-Id: <1567675844-19247-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 05 Sep 2019, Wolfram Sang wrote:
+This patch series aims to add SoC identification support
+for RZ/G2N SoC. RZ/G2N SoC is similar to R-Car Gen3 M3-N SoC.
 
-> 
-> > Fixes: 8bc529b25354 ("soc: qcom: geni: Add support for ACPI")
-> 
-> Are you sure? From visual inspection, I don't see a correlation between
-> this commit and the fix here.
+Biju Das (3):
+  dt-bindings: arm: Document RZ/G2N SoC DT bindings
+  soc: renesas: Identify RZ/G2N
+  arm64: Add Renesas R8A774B1 support
 
-This patch should have been part of the commit, or at the very least,
-part of the set, alluded to above.  Unfortunately, I was carrying
-Bjorn's hack which simply returned early from geni_se_rx_dma_prep()
-with an error, so it masked the issue.
-
-> > Signed-off-by: Lee Jones <lee.jones@linaro.org>
-> > Reviewed-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  drivers/i2c/busses/i2c-qcom-geni.c | 14 ++++++++++----
-> >  1 file changed, 10 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
-> > index a89bfce5388e..8822dea82980 100644
-> > --- a/drivers/i2c/busses/i2c-qcom-geni.c
-> > +++ b/drivers/i2c/busses/i2c-qcom-geni.c
-> > @@ -353,13 +353,16 @@ static void geni_i2c_tx_fsm_rst(struct geni_i2c_dev *gi2c)
-> >  static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
-> >  				u32 m_param)
-> >  {
-> > +	struct device_node *np = gi2c->se.dev->of_node;
-> >  	dma_addr_t rx_dma;
-> >  	unsigned long time_left;
-> > -	void *dma_buf;
-> > +	void *dma_buf = NULL;
-> >  	struct geni_se *se = &gi2c->se;
-> >  	size_t len = msg->len;
-> >  
-> > -	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> > +	if (!of_property_read_bool(np, "qcom,geni-se-no-dma"))
-> > +		dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> > +
-> >  	if (dma_buf)
-> >  		geni_se_select_mode(se, GENI_SE_DMA);
-> >  	else
-> > @@ -392,13 +395,16 @@ static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
-> >  static int geni_i2c_tx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
-> >  				u32 m_param)
-> >  {
-> > +	struct device_node *np = gi2c->se.dev->of_node;
-> >  	dma_addr_t tx_dma;
-> >  	unsigned long time_left;
-> > -	void *dma_buf;
-> > +	void *dma_buf = NULL;
-> >  	struct geni_se *se = &gi2c->se;
-> >  	size_t len = msg->len;
-> >  
-> > -	dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> > +	if (!of_property_read_bool(np, "qcom,geni-se-no-dma"))
-> > +		dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
-> > +
-> >  	if (dma_buf)
-> >  		geni_se_select_mode(se, GENI_SE_DMA);
-> >  	else
-
-
+ Documentation/devicetree/bindings/arm/renesas.yaml | 4 ++++
+ drivers/soc/renesas/Kconfig                        | 6 ++++++
+ drivers/soc/renesas/renesas-soc.c                  | 8 ++++++++
+ 3 files changed, 18 insertions(+)
 
 -- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+2.7.4
+
