@@ -2,114 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1D6A9DB8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11EC6A9DCE
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:09:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732331AbfIEJDn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 05:03:43 -0400
-Received: from wout4-smtp.messagingengine.com ([64.147.123.20]:44917 "EHLO
-        wout4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731660AbfIEJDn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 05:03:43 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.west.internal (Postfix) with ESMTP id 817F068C;
-        Thu,  5 Sep 2019 05:03:39 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute6.internal (MEProxy); Thu, 05 Sep 2019 05:03:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kroah.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm1; bh=H
-        C9eg9snVfiloyfXDdAH6KobugN4wqDmlyk9BxglEuU=; b=Fi1NuvnZZT5YDlmi7
-        SqQOc6IxK3PoFZmKP0GgIeX1gmEyxFSxG9ODPsp/i4G6u9pPGihm40wrV7IZBZ/G
-        M3GfNmpOfrB5TBTuqQwpZXpYqhzpPtNuB5IXTPUxLx9kUWq71pL8xYrCbSjn0G+i
-        N2fXhvPuEYLiqPSo9xjoE+n3mHtMJys4xV3z0hFbRRpJTXk2Tsqjygr/jgr31FpS
-        eHncLLG2/APdyNII8FIc1FrO+MZTxamcTBGeMysrbBwUCuWMkUQ0/bCg9YsIY12Y
-        STVtV+tlf5UrlDpw8ILAPX+zmnbm7Vl/XZIyAKnNFmTIMPFvsI9pR4wUndMN7ACI
-        YAFUg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=HC9eg9snVfiloyfXDdAH6KobugN4wqDmlyk9BxglE
-        uU=; b=AjxgRNI59JEhqgVHho8N/+Sw94ZaRpBtVHFAoyaoniN3hn16EgqoSHEoh
-        hzCFUaj5gODsfp8Ay5FeZYAhwjymehVHs5Fjty7tBa0MOsg7jtyG1iz7i+RZgQHb
-        RZEMyWE61YHCdEuJ6yZffpPIWxQORsm55HPScUUfkNnrou626DJ7saZrX8zJUG0c
-        f1/zAgSZlx1l6vZgSUcjuJoJhgTils+cAPqUR4npolT9Xox9Wjz/0BkWqDw5tt4j
-        SzbzcQFHGnF3zXMlgOfROEg/618LKeScLMuGPYAAbYIdgaMkM7NoP/pRhI4P6pgT
-        8JdDjlwl54BW6d3edMuiIYCM7/KiQ==
-X-ME-Sender: <xms:as9wXdZVJ28oIMBKMmH6H42UWu5GB4HH5TjZtLzWvcXt7mn6BkTNVg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudejjedguddtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtugfgjggfsehtkeertddtredunecuhfhrohhmpefirhgv
-    ghcumffjuceoghhrvghgsehkrhhorghhrdgtohhmqeenucffohhmrghinhepfhhrvggvug
-    gvshhkthhophdrohhrghenucfkphepkeefrdekiedrkeelrddutdejnecurfgrrhgrmhep
-    mhgrihhlfhhrohhmpehgrhgvgheskhhrohgrhhdrtghomhenucevlhhushhtvghrufhiii
-    gvpedt
-X-ME-Proxy: <xmx:as9wXU2Xknu5tcRdzFhoUE0LYM5oxQMFcjnmYzl2kgDR1PBKnPBrYg>
-    <xmx:as9wXVbdE2fg4jQvNrTs7RIYBMUPTv9wdBXgSi7cZ11rqNJX2KhRtQ>
-    <xmx:as9wXZnY0HHUkEh7GA7TVKtHVZo45BFzZUSAJzb47fpGXp_OwGUJfw>
-    <xmx:a89wXSHBolyaNyxOrhNO46JMbDvBDjaCQlPZk8encT_3K8Zw0XIGYA>
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 5DF7FD6005A;
-        Thu,  5 Sep 2019 05:03:38 -0400 (EDT)
-Date:   Thu, 5 Sep 2019 11:03:36 +0200
-From:   Greg KH <greg@kroah.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sasha Levin <sashal@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH AUTOSEL 4.19 147/167] drm/panel: Add support for Armadeus
- ST0700 Adapt
-Message-ID: <20190905090336.GA29020@kroah.com>
-References: <20190903162519.7136-1-sashal@kernel.org>
- <20190903162519.7136-147-sashal@kernel.org>
- <CAL_JsqJrwwsp1wjCBnNmx45ZiLTXVY_nCfN6OrJ5o9dLbc+_2w@mail.gmail.com>
+        id S1732068AbfIEJJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 05:09:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60548 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731421AbfIEJJc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 05:09:32 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 850DD22DD3;
+        Thu,  5 Sep 2019 09:09:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567674570;
+        bh=2y9QrdwzmfA0llHSctFl2m6ifgKdca76hgM46s40Jqo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=A7jbPfgz7iDbyfAh7FRh4lNexG/TXF3ScTCKO8nMsMseEaD3FIekJ4V75JBPjnXPE
+         KmGQfiJzMgv3dMSkoJYtCd6C2HlnVFXxuIfvlr5/IStZ6CYCzDY//Pu4c5uPuYVn4N
+         gUsQAoZ4hc0w2Kyrr7B4+iz9yJaMProOHVGOIhS0=
+Received: by mail-qk1-f170.google.com with SMTP id i78so1361685qke.11;
+        Thu, 05 Sep 2019 02:09:30 -0700 (PDT)
+X-Gm-Message-State: APjAAAUORPLO6NRoX0/WTFWWcA0FKoogAcgrG8SUJY0lfmlUTxmKnnTP
+        Pa8jwq4aVVEq340KNTLHng9tczSr+B5dZcZeVg==
+X-Google-Smtp-Source: APXvYqyCZ1JFPrFdkdY4EtQAOam5zWRzs7tCzxtp5nMv/9gUEkXp5uEHLWxNb2B7T4bytKsL8PG/Xdv5F/1FvYv7IIE=
+X-Received: by 2002:a05:620a:1356:: with SMTP id c22mr1583635qkl.119.1567674569634;
+ Thu, 05 Sep 2019 02:09:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJrwwsp1wjCBnNmx45ZiLTXVY_nCfN6OrJ5o9dLbc+_2w@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190905081546.42716-1-drinkcat@chromium.org>
+In-Reply-To: <20190905081546.42716-1-drinkcat@chromium.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 5 Sep 2019 10:09:18 +0100
+X-Gmail-Original-Message-ID: <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
+Message-ID: <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mt8183: Add node for the Mali GPU
+To:     Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nick Fan <nick.fan@mediatek.com>,
+        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 09:55:58AM +0100, Rob Herring wrote:
-> On Tue, Sep 3, 2019 at 5:31 PM Sasha Levin <sashal@kernel.org> wrote:
-> >
-> > From: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
-> >
-> > [ Upstream commit c479450f61c7f1f248c9a54aedacd2a6ca521ff8 ]
-> >
-> > This patch adds support for the Armadeus ST0700 Adapt. It comes with a
-> > Santek ST0700I5Y-RBSLW 7.0" WVGA (800x480) TFT and an adapter board so
-> > that it can be connected on the TFT header of Armadeus Dev boards.
-> >
-> > Cc: stable@vger.kernel.org # v4.19
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
-> > Signed-off-by: Sam Ravnborg <sam@ravnborg.org>
-> > Link: https://patchwork.freedesktop.org/patch/msgid/20190507152713.27494-1-sebastien.szymanski@armadeus.com
-> > Signed-off-by: Sasha Levin <sashal@kernel.org>
-> > ---
-> >  .../display/panel/armadeus,st0700-adapt.txt   |  9 ++++++
-> >  drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++++++++++
-> >  2 files changed, 38 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/armadeus,st0700-adapt.txt
-> 
-> Looks like a new feature, not stable material. Not sure why it got
-> tagged for stable.
+On Thu, Sep 5, 2019 at 9:16 AM Nicolas Boichat <drinkcat@chromium.org> wrote:
+>
+> Add a basic GPU node and opp table for mt8183.
+>
+> The binding we use with out-of-tree Mali drivers includes more
+> clocks, I assume this would be required eventually if we have an
+> in-tree driver:
 
-New device ids/tables are able to be added to stable kernels, since,
-well, forever :)
+We have an in-tree driver...
 
-thanks,
+> clocks =
+>         <&topckgen CLK_TOP_MFGPLL_CK>,
+>         <&topckgen CLK_TOP_MUX_MFG>,
+>         <&clk26m>,
+>         <&mfgcfg CLK_MFG_BG3D>;
+> clock-names =
+>         "clk_main_parent",
+>         "clk_mux",
+>         "clk_sub_parent",
+>         "subsys_mfg_cg";
+>
+> Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+>
+> ---
+> Upstreaming what matches existing bindings from our Chromium OS tree:
+> https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.19/arch/arm64/boot/dts/mediatek/mt8183.dtsi#1348
+>
+> The evb part of this change depends on this patch to add PMIC dtsi:
+> https://patchwork.kernel.org/patch/10928161/
+>
+>  arch/arm64/boot/dts/mediatek/mt8183-evb.dts |   7 ++
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 103 ++++++++++++++++++++
+>  2 files changed, 110 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> index 1fb195c683c3d01..200d8e65a6368a1 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
+> @@ -7,6 +7,7 @@
+>
+>  /dts-v1/;
+>  #include "mt8183.dtsi"
+> +#include "mt6358.dtsi"
+>
+>  / {
+>         model = "MediaTek MT8183 evaluation board";
+> @@ -30,6 +31,12 @@
+>         status = "okay";
+>  };
+>
+> +&gpu {
+> +       supply-names = "mali", "mali_sram";
+> +       mali-supply = <&mt6358_vgpu_reg>;
+> +       mali_sram-supply = <&mt6358_vsram_gpu_reg>;
 
-greg k-h
+Not documented. Just 'sram-supply' is enough.
+
+Note that the binding doc queued up for 5.4 has been converted to DT schema.
+
+> +};
+> +
+>  &i2c0 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&i2c_pins_0>;
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> index 97f84aa9fc6e1c1..8ea548a762ea252 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+> @@ -579,6 +579,109 @@
+>                         #clock-cells = <1>;
+>                 };
+>
+> +               gpu: mali@13040000 {
+
+gpu@...
+
+> +                       compatible = "mediatek,mt8183-mali", "arm,mali-bifrost";
+
+You need to add this compatible string too.
+
+> +                       reg = <0 0x13040000 0 0x4000>;
+> +                       interrupts =
+> +                               <GIC_SPI 280 IRQ_TYPE_LEVEL_LOW>,
+> +                               <GIC_SPI 279 IRQ_TYPE_LEVEL_LOW>,
+> +                               <GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupt-names = "job", "mmu", "gpu";
+> +
+> +                       clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
+> +                       power-domains =
+> +                               <&scpsys MT8183_POWER_DOMAIN_MFG_CORE0>,
+> +                               <&scpsys MT8183_POWER_DOMAIN_MFG_CORE1>,
+> +                               <&scpsys MT8183_POWER_DOMAIN_MFG_2D>;
+
+This needs to be documented too.
+
+> +
+> +                       operating-points-v2 = <&gpu_opp_table>;
+> +               };
+> +
+> +               gpu_opp_table: opp_table0 {
+> +                       compatible = "operating-points-v2";
+> +                       opp-shared;
+> +
+> +                       opp-300000000 {
+> +                               opp-hz = /bits/ 64 <300000000>;
+> +                               opp-microvolt = <625000>, <850000>;
+> +                       };
+> +
+> +                       opp-320000000 {
+> +                               opp-hz = /bits/ 64 <320000000>;
+> +                               opp-microvolt = <631250>, <850000>;
+> +                       };
+> +
+> +                       opp-340000000 {
+> +                               opp-hz = /bits/ 64 <340000000>;
+> +                               opp-microvolt = <637500>, <850000>;
+> +                       };
+> +
+> +                       opp-360000000 {
+> +                               opp-hz = /bits/ 64 <360000000>;
+> +                               opp-microvolt = <643750>, <850000>;
+> +                       };
+> +
+> +                       opp-380000000 {
+> +                               opp-hz = /bits/ 64 <380000000>;
+> +                               opp-microvolt = <650000>, <850000>;
+> +                       };
+> +
+> +                       opp-400000000 {
+> +                               opp-hz = /bits/ 64 <400000000>;
+> +                               opp-microvolt = <656250>, <850000>;
+> +                       };
+> +
+> +                       opp-420000000 {
+> +                               opp-hz = /bits/ 64 <420000000>;
+> +                               opp-microvolt = <662500>, <850000>;
+> +                       };
+> +
+> +                       opp-460000000 {
+> +                               opp-hz = /bits/ 64 <460000000>;
+> +                               opp-microvolt = <675000>, <850000>;
+> +                       };
+> +
+> +                       opp-500000000 {
+> +                               opp-hz = /bits/ 64 <500000000>;
+> +                               opp-microvolt = <687500>, <850000>;
+> +                       };
+> +
+> +                       opp-540000000 {
+> +                               opp-hz = /bits/ 64 <540000000>;
+> +                               opp-microvolt = <700000>, <850000>;
+> +                       };
+> +
+> +                       opp-580000000 {
+> +                               opp-hz = /bits/ 64 <580000000>;
+> +                               opp-microvolt = <712500>, <850000>;
+> +                       };
+> +
+> +                       opp-620000000 {
+> +                               opp-hz = /bits/ 64 <620000000>;
+> +                               opp-microvolt = <725000>, <850000>;
+> +                       };
+> +
+> +                       opp-653000000 {
+> +                               opp-hz = /bits/ 64 <653000000>;
+> +                               opp-microvolt = <743750>, <850000>;
+> +                       };
+> +
+> +                       opp-698000000 {
+> +                               opp-hz = /bits/ 64 <698000000>;
+> +                               opp-microvolt = <768750>, <868750>;
+> +                       };
+> +
+> +                       opp-743000000 {
+> +                               opp-hz = /bits/ 64 <743000000>;
+> +                               opp-microvolt = <793750>, <893750>;
+> +                       };
+> +
+> +                       opp-800000000 {
+> +                               opp-hz = /bits/ 64 <800000000>;
+> +                               opp-microvolt = <825000>, <925000>;
+> +                       };
+
+Okay, but I seriously doubt the OPP selection logic is sophisticated
+enough or will ever be to use all these levels...
+
+> +               };
+> +
+>                 mmsys: syscon@14000000 {
+>                         compatible = "mediatek,mt8183-mmsys", "syscon";
+>                         reg = <0 0x14000000 0 0x1000>;
+> --
+> 2.23.0.187.g17f5b7556c-goog
+>
