@@ -2,71 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C101AA9F53
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89AEBA9F6B
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:18:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732169AbfIEKOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 06:14:12 -0400
-Received: from mga17.intel.com ([192.55.52.151]:65141 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726137AbfIEKOM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 06:14:12 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:14:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
-   d="scan'208";a="207823254"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga004.fm.intel.com with ESMTP; 05 Sep 2019 03:14:07 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1i5omE-0006KH-Di; Thu, 05 Sep 2019 13:14:06 +0300
-Date:   Thu, 5 Sep 2019 13:14:06 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     dongchun.zhu@mediatek.com
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        sam.hung@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V2, 1/2] media: i2c: dw9768: Add DT support and MAINTAINERS
- entry
-Message-ID: <20190905101406.GA2680@smile.fi.intel.com>
-References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
- <20190905072142.14606-2-dongchun.zhu@mediatek.com>
+        id S1731359AbfIEKRx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 06:17:53 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:40718 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726175AbfIEKRx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 06:17:53 -0400
+Received: by mail-qt1-f194.google.com with SMTP id g4so2109353qtq.7;
+        Thu, 05 Sep 2019 03:17:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=RffJ7InQL31j5GA0tk88FRNmNw9DfUtPHCAY7O517yY=;
+        b=b8XbRLWCAXrLgkKAA616QdR+QSFLo+jmrxfrCrIIxmKxBMLIJcrsWlnTn49rukInuS
+         URNGnMtDMRzw6r5QpPjvfJBXCzMBQoUo+q62Gif75X1aoBf1Yfe86rcsre7RcLmPD4C4
+         8Slc2/3kVNXmN9Wgep5qzMzMf37PIFbBsH5TxmtAv8KhFGLhlhRZH94rVscGixV1u2Mm
+         IXZ2nmAPiChSMNLowHZC3X5GPUiDxop60oSUuhWj7S6lG4zY2jBoh2P6tD/W7VaBauN7
+         vfxdDuEkQ5aAE34Z1eXg657QDPEQLwQwd4g7taybsfhHKtYcPeJ3S34aeFtOaq9xD8J2
+         +AvQ==
+X-Gm-Message-State: APjAAAV+YIZdyLElQc1yYObgDe9xIPyEoA/wbupGnaAoVJeejfafpa2/
+        WmE0NCNh1ITjlVkPtgN8ozQhNZBwQP6e8fJNK3c=
+X-Google-Smtp-Source: APXvYqwuebU2u/F2gHA1bDb+BAE+/VJQoganY1fAoMnsD+auDbyJLIa9btOXgvoh8se4YaEzjBq01+7ONjYkz7KCiJ4=
+X-Received: by 2002:ac8:342a:: with SMTP id u39mr2699225qtb.7.1567678672404;
+ Thu, 05 Sep 2019 03:17:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190905072142.14606-2-dongchun.zhu@mediatek.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190830220743.439670-1-lkundrak@v3.sk> <20190830220743.439670-17-lkundrak@v3.sk>
+In-Reply-To: <20190830220743.439670-17-lkundrak@v3.sk>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Thu, 5 Sep 2019 12:17:36 +0200
+Message-ID: <CAK8P3a1oqj5wXFgf+99=H4=hNrpnrwa05c+YctN64tHLvmoz5g@mail.gmail.com>
+Subject: Re: [PATCH v3 16/16] ARM: dts: mmp3: Add MMP3 SoC dts file
+To:     Lubomir Rintel <lkundrak@v3.sk>
+Cc:     "To : Olof Johansson" <olof@lixom.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        "Cc : Rob Herring" <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 03:21:41PM +0800, dongchun.zhu@mediatek.com wrote:
-> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> 
-> This patch is to add the Devicetree binding documentation and
-> MAINTAINERS entry for dw9768 actuator.
-> 
-> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> ---
->  Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt | 9 +++++++++
->  MAINTAINERS                                                     | 7 +++++++
+On Sat, Aug 31, 2019 at 12:12 AM Lubomir Rintel <lkundrak@v3.sk> wrote:
 
-This should be:
-1) two separate patches
-2) binding in YAML
+> +/ {
+> +       #address-cells = <1>;
+> +       #size-cells = <1>;
+> +
+> +       aliases {
+> +               serial0 = &uart1;
+> +               serial1 = &uart2;
+> +               serial2 = &uart3;
+> +               serial3 = &uart4;
+> +       };
 
--- 
-With Best Regards,
-Andy Shevchenko
+Better move the aliases into the per-board file, not every board
+would have all four uarts connected, or labeled in that particular
+order.
 
-
+        Arnd
