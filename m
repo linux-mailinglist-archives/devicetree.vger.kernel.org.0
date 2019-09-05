@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D14CAA264
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ACCCAA26F
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:02:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388937AbfIEMBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:01:33 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:40154 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388921AbfIEMBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:33 -0400
-Received: by mail-wr1-f66.google.com with SMTP id w13so2447690wru.7
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 05:01:32 -0700 (PDT)
+        id S2389022AbfIEMBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 08:01:54 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37152 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388933AbfIEMBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:34 -0400
+Received: by mail-wr1-f65.google.com with SMTP id i1so1872765wro.4
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 05:01:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=cj+xRSKwyNiG3WxbYk3EzxKZy6mBMzhtFu6vqSlSsIE=;
-        b=hEH6ZzULAcBUkR1Q6yIgBkAgn6572zSGLcHJzNX9o8GjeGom1qFmNHgIUE+FCVzH6m
-         elgPgQsnkhGo7fWdGYHoiHnZtTDhBEVKxW722L5mrvmRjc73MzbyGD9yxrlHw7um4D0w
-         WQqZ3yZk2Y0t8lg3+G1WHbyiXLfkYvCI5LMVHIuYQkIIojDtzaQML0pvjI+xGoe01mXg
-         WgXNYc6VkUeNuo7wsCPWuH0wlvt1OZfepRl3qLGy1TO2nEkkumLhYUqr+NIHmiBRoZAV
-         bINPVS81H26mFy0xV/bkolv4SWJdI7dbTkf5d1xOqwojLzDUdNDSH+NSvE3Oq5uF3Zxl
-         KMIA==
+        bh=xyfe6twDn91vPCbiXX1zqgwt25Jhxxgzdbixh4MbER0=;
+        b=DzwniM7S9e2dHldU3F+1DNyQh1GbrFBvALKFQRdXceZd7xAI6n3jUPUCOzCJ39+RDi
+         J/h6MRpzGNtTE/lw14UHMVnmNAGdOEzU7cyD99NofWKpkbPsQOTE1+MDFwj25NmQc3aO
+         W9KH3c2WRcRShGvbDNapGZ8QQDL4sFg+qd7j7Nzc514rBwmGbz2zA1L8LG/nLsogy/fA
+         gbsccH4/iSxF0MbRsw1lImO1xy42xcxgf1z3Y5NcIUrEEWHcKDNlznQroP7+78TwZyWg
+         d0nS6Jm0A0bQ3uda/ZmbM2ajPTylIKrRF9tkaXSX06wgn/nRJlzvISC8J8q1DNDX01Wb
+         8kfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=cj+xRSKwyNiG3WxbYk3EzxKZy6mBMzhtFu6vqSlSsIE=;
-        b=I42WeVwyD3r7ybe1vKnSH2h5/spl5ihxzXZlIVPpnbcP6dzVturcOwmsTButaC9ZVK
-         b3c0M+6v7HBKnrGaMOqz0I+bGBwfEDMk5EMZugZDjAiyF/NoO6g/rF/lN53Wga2LetF0
-         FVrhW9xNnnBVbzWZEDvtIoXkuvBO6cF/Ntlsia98wYmWgtqGMdD7ilBSgKJjGwUzrqSZ
-         I5WC1EhtYDCbtKqK5HD5ZhwQNtUpd6ecU+usl0egL5Dbp6Olzt7TeJbAX0PChzcxyRKw
-         wuczJo1JiRtdTkY+MEQjVhiOERE7vQF5oYza9ueclNB6OkOmUbc5BmN9Tfy++r8uvsMC
-         CgFQ==
-X-Gm-Message-State: APjAAAWvRc3vvt6pYyC8EqkXzsQ+gVWiYhwnyCTHP+ZWgjOM6Ko+YsS3
-        pUNiMLbNC1WSye1TUFj7xRL8bA==
-X-Google-Smtp-Source: APXvYqziOr8Gaxr0aNjdG/0c+A5ueIJxf7uLcnCfDDYrzhPawEingY+F6Xn70XqHUHjwCEKumyPZiA==
-X-Received: by 2002:adf:f7c7:: with SMTP id a7mr2255564wrq.273.1567684891412;
-        Thu, 05 Sep 2019 05:01:31 -0700 (PDT)
+        bh=xyfe6twDn91vPCbiXX1zqgwt25Jhxxgzdbixh4MbER0=;
+        b=LwsihV3g0HGFX0QkjOn7QB5mbUd078TuYhz2w5Qm1fs5BWUV3Le9c9be29eRkuZIb6
+         S1RI+yGiWED/bXN/6DUyd4toO5ky8uUmr8GAkNfDJlRbmuOfMBsNbfg5PZ8wk2/jBJdO
+         1ewhxXJMaQN57SE92eRTRNjPM6JYbHs7XDtB/z4CemMpmRua41uvUAN2mangySD+93pN
+         JxwDrXwCrHI6+9yYAoEs+GjAt8GZpHZTd9QUr67485m6FYZXxEmLrJClhmF4j2eNsWE8
+         8ItaDb/pC6e9tRWWOLdpoxvsI/vVFZr4B5R3QJj3JE6qTKkjYMWq+7NdKNagXClNN6br
+         gKFg==
+X-Gm-Message-State: APjAAAVe819VVKVRJb4LxbEVa7z+E+lYfO4gurGlHYiG8Oe30+ufdrvO
+        d+WpZwQfoT7tmfANRzkv5jfp7DuHO0K9ow==
+X-Google-Smtp-Source: APXvYqwctgVu4tqOBuDPlYOZXUwUpykru62hEl6KkwzhkUaceLyj2F4nPnNTNrghrllnO/9ig8jY8A==
+X-Received: by 2002:a5d:4b41:: with SMTP id w1mr2142326wrs.23.1567684892350;
+        Thu, 05 Sep 2019 05:01:32 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id a18sm3436311wrh.25.2019.09.05.05.01.30
+        by smtp.googlemail.com with ESMTPSA id a18sm3436311wrh.25.2019.09.05.05.01.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 05:01:30 -0700 (PDT)
+        Thu, 05 Sep 2019 05:01:31 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>
@@ -51,9 +51,9 @@ Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org,
         Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 3/8] ASoC: meson: axg-frddr: expose all 8 outputs
-Date:   Thu,  5 Sep 2019 14:01:15 +0200
-Message-Id: <20190905120120.31752-4-jbrunet@baylibre.com>
+Subject: [PATCH 4/8] ASoC: meson: axg-toddr: expose all 8 inputs
+Date:   Thu,  5 Sep 2019 14:01:16 +0200
+Message-Id: <20190905120120.31752-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190905120120.31752-1-jbrunet@baylibre.com>
 References: <20190905120120.31752-1-jbrunet@baylibre.com>
@@ -65,108 +65,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The FRDDR component, as it, has a maximum of 8 outputs. Depending on
-the SoC, these may not all be connected.
+The TODDR component, as it, has a maximum of 8 input. Depending on
+the SoC, these may not all be connected or some input components may
+not be supported
 
-Instead of decribing only the connected outputs of each SoC, describe
-them all and let ASoC routing do the rest.
+Instead of decribing only the connected inputs, describe them all
+and let ASoC routing do the rest.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- sound/soc/meson/axg-frddr.c | 32 ++++++++++++++++++++++++--------
- 1 file changed, 24 insertions(+), 8 deletions(-)
+ sound/soc/meson/axg-toddr.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
-diff --git a/sound/soc/meson/axg-frddr.c b/sound/soc/meson/axg-frddr.c
-index 2b8807737b2b..0968e8375000 100644
---- a/sound/soc/meson/axg-frddr.c
-+++ b/sound/soc/meson/axg-frddr.c
-@@ -104,7 +104,7 @@ static struct snd_soc_dai_driver axg_frddr_dai_drv = {
+diff --git a/sound/soc/meson/axg-toddr.c b/sound/soc/meson/axg-toddr.c
+index 4f63e434fad4..2e9a2e5862ce 100644
+--- a/sound/soc/meson/axg-toddr.c
++++ b/sound/soc/meson/axg-toddr.c
+@@ -142,16 +142,11 @@ static struct snd_soc_dai_driver axg_toddr_dai_drv = {
  };
  
- static const char * const axg_frddr_sel_texts[] = {
--	"OUT 0", "OUT 1", "OUT 2", "OUT 3"
-+	"OUT 0", "OUT 1", "OUT 2", "OUT 3", "OUT 4", "OUT 5", "OUT 6", "OUT 7",
+ static const char * const axg_toddr_sel_texts[] = {
+-	"IN 0", "IN 1", "IN 2", "IN 3", "IN 4", "IN 6"
++	"IN 0", "IN 1", "IN 2", "IN 3", "IN 4", "IN 5", "IN 6", "IN 7"
  };
  
- static SOC_ENUM_SINGLE_DECL(axg_frddr_sel_enum, FIFO_CTRL0, CTRL0_SEL_SHIFT,
-@@ -120,6 +120,10 @@ static const struct snd_soc_dapm_widget axg_frddr_dapm_widgets[] = {
- 	SND_SOC_DAPM_AIF_OUT("OUT 1", NULL, 0, SND_SOC_NOPM, 0, 0),
- 	SND_SOC_DAPM_AIF_OUT("OUT 2", NULL, 0, SND_SOC_NOPM, 0, 0),
- 	SND_SOC_DAPM_AIF_OUT("OUT 3", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 4", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 5", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 6", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 7", NULL, 0, SND_SOC_NOPM, 0, 0),
- };
- 
- static const struct snd_soc_dapm_route axg_frddr_dapm_routes[] = {
-@@ -128,6 +132,10 @@ static const struct snd_soc_dapm_route axg_frddr_dapm_routes[] = {
- 	{ "OUT 1", "OUT 1",  "SINK SEL" },
- 	{ "OUT 2", "OUT 2",  "SINK SEL" },
- 	{ "OUT 3", "OUT 3",  "SINK SEL" },
-+	{ "OUT 4", "OUT 4",  "SINK SEL" },
-+	{ "OUT 5", "OUT 5",  "SINK SEL" },
-+	{ "OUT 6", "OUT 6",  "SINK SEL" },
-+	{ "OUT 7", "OUT 7",  "SINK SEL" },
- };
- 
- static const struct snd_soc_component_driver axg_frddr_component_drv = {
-@@ -162,16 +170,12 @@ static struct snd_soc_dai_driver g12a_frddr_dai_drv = {
- 	.pcm_new	= axg_frddr_pcm_new,
- };
- 
--static const char * const g12a_frddr_sel_texts[] = {
--	"OUT 0", "OUT 1", "OUT 2", "OUT 3", "OUT 4",
+-static const unsigned int axg_toddr_sel_values[] = {
+-	0, 1, 2, 3, 4, 6
 -};
 -
- static SOC_ENUM_SINGLE_DECL(g12a_frddr_sel1_enum, FIFO_CTRL0, CTRL0_SEL_SHIFT,
--			    g12a_frddr_sel_texts);
-+			    axg_frddr_sel_texts);
- static SOC_ENUM_SINGLE_DECL(g12a_frddr_sel2_enum, FIFO_CTRL0, CTRL0_SEL2_SHIFT,
--			    g12a_frddr_sel_texts);
-+			    axg_frddr_sel_texts);
- static SOC_ENUM_SINGLE_DECL(g12a_frddr_sel3_enum, FIFO_CTRL0, CTRL0_SEL3_SHIFT,
--			    g12a_frddr_sel_texts);
-+			    axg_frddr_sel_texts);
+-static SOC_VALUE_ENUM_SINGLE_DECL(axg_toddr_sel_enum, FIFO_CTRL0,
+-				  CTRL0_SEL_SHIFT, CTRL0_SEL_MASK,
+-				  axg_toddr_sel_texts, axg_toddr_sel_values);
++static SOC_ENUM_SINGLE_DECL(axg_toddr_sel_enum, FIFO_CTRL0, CTRL0_SEL_SHIFT,
++			    axg_toddr_sel_texts);
  
- static const struct snd_kcontrol_new g12a_frddr_out1_demux =
- 	SOC_DAPM_ENUM("Output Src 1", g12a_frddr_sel1_enum);
-@@ -211,6 +215,9 @@ static const struct snd_soc_dapm_widget g12a_frddr_dapm_widgets[] = {
- 	SND_SOC_DAPM_AIF_OUT("OUT 2", NULL, 0, SND_SOC_NOPM, 0, 0),
- 	SND_SOC_DAPM_AIF_OUT("OUT 3", NULL, 0, SND_SOC_NOPM, 0, 0),
- 	SND_SOC_DAPM_AIF_OUT("OUT 4", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 5", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 6", NULL, 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("OUT 7", NULL, 0, SND_SOC_NOPM, 0, 0),
+ static const struct snd_kcontrol_new axg_toddr_in_mux =
+ 	SOC_DAPM_ENUM("Input Source", axg_toddr_sel_enum);
+@@ -163,7 +158,9 @@ static const struct snd_soc_dapm_widget axg_toddr_dapm_widgets[] = {
+ 	SND_SOC_DAPM_AIF_IN("IN 2", NULL, 0, SND_SOC_NOPM, 0, 0),
+ 	SND_SOC_DAPM_AIF_IN("IN 3", NULL, 0, SND_SOC_NOPM, 0, 0),
+ 	SND_SOC_DAPM_AIF_IN("IN 4", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 5", NULL, 0, SND_SOC_NOPM, 0, 0),
+ 	SND_SOC_DAPM_AIF_IN("IN 6", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 7", NULL, 0, SND_SOC_NOPM, 0, 0),
  };
  
- static const struct snd_soc_dapm_route g12a_frddr_dapm_routes[] = {
-@@ -228,16 +235,25 @@ static const struct snd_soc_dapm_route g12a_frddr_dapm_routes[] = {
- 	{ "OUT 2", "OUT 2", "SINK 1 SEL" },
- 	{ "OUT 3", "OUT 3", "SINK 1 SEL" },
- 	{ "OUT 4", "OUT 4", "SINK 1 SEL" },
-+	{ "OUT 5", "OUT 5", "SINK 1 SEL" },
-+	{ "OUT 6", "OUT 6", "SINK 1 SEL" },
-+	{ "OUT 7", "OUT 7", "SINK 1 SEL" },
- 	{ "OUT 0", "OUT 0", "SINK 2 SEL" },
- 	{ "OUT 1", "OUT 1", "SINK 2 SEL" },
- 	{ "OUT 2", "OUT 2", "SINK 2 SEL" },
- 	{ "OUT 3", "OUT 3", "SINK 2 SEL" },
- 	{ "OUT 4", "OUT 4", "SINK 2 SEL" },
-+	{ "OUT 5", "OUT 5", "SINK 2 SEL" },
-+	{ "OUT 6", "OUT 6", "SINK 2 SEL" },
-+	{ "OUT 7", "OUT 7", "SINK 2 SEL" },
- 	{ "OUT 0", "OUT 0", "SINK 3 SEL" },
- 	{ "OUT 1", "OUT 1", "SINK 3 SEL" },
- 	{ "OUT 2", "OUT 2", "SINK 3 SEL" },
- 	{ "OUT 3", "OUT 3", "SINK 3 SEL" },
- 	{ "OUT 4", "OUT 4", "SINK 3 SEL" },
-+	{ "OUT 5", "OUT 5", "SINK 3 SEL" },
-+	{ "OUT 6", "OUT 6", "SINK 3 SEL" },
-+	{ "OUT 7", "OUT 7", "SINK 3 SEL" },
+ static const struct snd_soc_dapm_route axg_toddr_dapm_routes[] = {
+@@ -173,7 +170,9 @@ static const struct snd_soc_dapm_route axg_toddr_dapm_routes[] = {
+ 	{ "SRC SEL", "IN 2", "IN 2" },
+ 	{ "SRC SEL", "IN 3", "IN 3" },
+ 	{ "SRC SEL", "IN 4", "IN 4" },
++	{ "SRC SEL", "IN 5", "IN 5" },
+ 	{ "SRC SEL", "IN 6", "IN 6" },
++	{ "SRC SEL", "IN 7", "IN 7" },
  };
  
- static const struct snd_soc_component_driver g12a_frddr_component_drv = {
+ static const struct snd_soc_component_driver axg_toddr_component_drv = {
 -- 
 2.21.0
 
