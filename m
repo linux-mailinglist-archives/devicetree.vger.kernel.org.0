@@ -2,107 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D717BAA331
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:29:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AAADAA337
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388589AbfIEM3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:29:46 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46044 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388457AbfIEM3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:29:45 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 0BAC761156; Thu,  5 Sep 2019 12:29:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567686585;
-        bh=w28KEsOScY0eiDy8iwTbqHacHS1x80YGi2SWuFeJWgU=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=eko1zFENroTN9NzY/YjIQHB/9daem2+xOnPMEmPNtpIm+eOQHkz1/ykMIGrs3u54T
-         Yz7mKjttsOWCANtkzVJeWLnMBnRuaf0/BEGb5GbvdFJVvcKY4dreqz+JFYsdu6CgQv
-         Lcx3J3bFFZN6TRdXSTnwJ233db69GEceTTzhlVxQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 179CC601D4;
-        Thu,  5 Sep 2019 12:29:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567686584;
-        bh=w28KEsOScY0eiDy8iwTbqHacHS1x80YGi2SWuFeJWgU=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=jXJiqHaKSQ7rOb9wXwPlsxaJuWeigwU7+8o0J/jQGY7LtDV+JCMsOPGg5/pR0myPc
-         wNzNUwCb8nOjdv0eVPgz1cOLXlYgOjlxwpx24sMnT6DqnrV1GDplaVgFj2vuL694gF
-         bKYrJNBFdSyPrUyQLE2GZESs1QMjds73xYkEUPoQ=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 179CC601D4
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Cc:     devicetree@vger.kernel.org,
-        Johannes Berg <johannes@sipsolutions.net>,
-        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-        <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
-        <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
-        <ee38dc5e80097d0ebc186f81b2f11d37@codeaurora.org>
-        <878sr3nfz8.fsf@kamboji.qca.qualcomm.com>
-        <8e90a557c1659995d117c6dc8b728d7f@codeaurora.org>
-Date:   Thu, 05 Sep 2019 15:29:40 +0300
-In-Reply-To: <8e90a557c1659995d117c6dc8b728d7f@codeaurora.org> (Vasanthakumar
-        Thiagarajan's message of "Thu, 05 Sep 2019 17:28:53 +0530")
-Message-ID: <87woenkjt7.fsf@kamboji.qca.qualcomm.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S2388457AbfIEMbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 08:31:04 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54746 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387432AbfIEMbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:31:04 -0400
+Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C344ECC;
+        Thu,  5 Sep 2019 14:31:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1567686661;
+        bh=xcSubn/iQCGjwJ8OJH7HDlSa5Fjf8PeWVmKESKQ8p40=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lzOsnyIrOPL6NFMqF9UISBuYcxDt79qCl/uAKMc6YZIGIIRtLO4Uhm1U2r/qc4x3n
+         WyIvsjFuGJyhKkMwwQv5vKC4/2Hw8GWFs3k7FAiC4eSD3+RDmgIdGnSmYOprlu+fmT
+         IClX+wGvXOHjv4bm62vgi5T45SoZHznzXCpO7JeE=
+Date:   Thu, 5 Sep 2019 15:30:54 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jerry-ch Chen <Jerry-Ch.chen@mediatek.com>
+Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
+        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
+        sj.huang@mediatek.com, christie.yu@mediatek.com,
+        frederic.chen@mediatek.com, jungo.lin@mediatek.com,
+        Rynn.Wu@mediatek.com, po-yang.huang@mediatek.com,
+        shik@chromium.org, suleiman@chromium.org,
+        linux-media@vger.kernel.org, srv_heupstream@mediatek.com,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH V2 3/4] media: platform: Add Mediatek FD driver
+ KConfig
+Message-ID: <20190905123054.GL5035@pendragon.ideasonboard.com>
+References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
+ <1562661672-22439-4-git-send-email-Jerry-Ch.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1562661672-22439-4-git-send-email-Jerry-Ch.chen@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
+Hi Jerry,
 
-> On 2019-09-05 16:54, Kalle Valo wrote:
->> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
->>
->>> On 2019-08-21 02:16, Johannes Berg wrote:
->>>> On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
->>>>
->>>>> +static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32
->>>>> changed)
->>>>> +{
->>>>> +	struct ath11k *ar = hw->priv;
->>>>> +	int ret = 0;
->>>>> +
->>>>> +	/* mac80211 requires this op to be present and that's why
->>>>> +	 * there's an empty function, this can be extended when
->>>>> +	 * required.
->>>>> +	 */
->>>>
->>>> Well, oops. Maybe it shouldn't be required?
->>>
->>> I think we require this for some configuration handling. The comment
->>> is to be updated with proper information. We'll address that.
->>
->> The way I'm understanding Johannes' comment is that maybe we should
->> change mac80211 to require this op to be present. Should be easy to fix
->> in mac80211, right?
->
-> Ok. So make this callback optional in mac80211? should be a simple
-> code change.
+Thank you for the patch.
 
-Yeah, I was supposed to write:
+On Tue, Jul 09, 2019 at 04:41:11PM +0800, Jerry-ch Chen wrote:
+> From: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
+> 
+> This patch adds KConfig for Mediatek Face Detection driver (FD).
+> FD is embedded in Mediatek SoCs. It can provide hardware
+> accelerated face detection function.
+> 
+> Signed-off-by: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
 
-"maybe we should change mac80211 to not require this op to be present"
+You can squash this patch with 4/4, there's no need to keep it separate.
 
-But of course I could have just misunderstood, let's see what Johannes
-says :)
+> ---
+>  drivers/media/platform/Kconfig            |  2 ++
+>  drivers/media/platform/mtk-isp/fd/Kconfig | 17 +++++++++++++++++
+>  2 files changed, 19 insertions(+)
+>  create mode 100644 drivers/media/platform/mtk-isp/fd/Kconfig
+> 
+> diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
+> index a505e9f..ae99258e 100644
+> --- a/drivers/media/platform/Kconfig
+> +++ b/drivers/media/platform/Kconfig
+> @@ -32,6 +32,8 @@ source "drivers/media/platform/davinci/Kconfig"
+>  
+>  source "drivers/media/platform/omap/Kconfig"
+>  
+> +source "drivers/media/platform/mtk-isp/fd/Kconfig"
+> +
+>  config VIDEO_ASPEED
+>  	tristate "Aspeed AST2400 and AST2500 Video Engine driver"
+>  	depends on VIDEO_V4L2
+> diff --git a/drivers/media/platform/mtk-isp/fd/Kconfig b/drivers/media/platform/mtk-isp/fd/Kconfig
+> new file mode 100644
+> index 0000000..0c5eaf0
+> --- /dev/null
+> +++ b/drivers/media/platform/mtk-isp/fd/Kconfig
+> @@ -0,0 +1,17 @@
+> +config VIDEO_MEDIATEK_FD
+> +	bool "Mediatek face detection processing function"
+> +	select DMA_SHARED_BUFFER
+> +	select VIDEOBUF2_DMA_CONTIG
+> +	select VIDEOBUF2_CORE
+> +	select VIDEOBUF2_V4L2
+> +	select VIDEOBUF2_MEMOPS
+> +	select VIDEOBUF2_VMALLOC
+
+Do you need both VIDEOBUF2_DMA_CONTIG and VIDEOBUF2_VMALLOC ? The driver
+doesn't seem to make use of VIDEOBUF2_VMALLOC.
+
+> +	select MEDIA_CONTROLLER
+> +
+> +	default n
+> +	help
+> +		Support the Face Detectioin (FD) feature.
+
+s/Detectioin/Detection/
+
+Maybe "... feature found in the Mediatek <list of SoCs> SoCs." ?
+
+> +
+> +		FD driver is a V4L2 memory-to-memory device driver which
+> +		provides hardware accelerated face detection function,
+> +		it can detect different sizes of faces in a raw image.
 
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Regards,
+
+Laurent Pinchart
