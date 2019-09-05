@@ -2,105 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A35BBAA246
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:00:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74670AA260
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:02:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731779AbfIEMAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:00:21 -0400
-Received: from mga04.intel.com ([192.55.52.120]:60292 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725290AbfIEMAV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 08:00:21 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 05:00:20 -0700
-X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
-   d="scan'208";a="187955306"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga006-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 05:00:15 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id DC18520584; Thu,  5 Sep 2019 15:00:12 +0300 (EEST)
-Date:   Thu, 5 Sep 2019 15:00:12 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Javier Martinez Canillas <javier@dowhile0.org>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        dongchun.zhu@mediatek.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, drinkcat@chromium.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, sam.hung@mediatek.com,
-        shengnan.wang@mediatek.com
-Subject: Re: [V2, 1/2] media: i2c: dw9768: Add DT support and MAINTAINERS
- entry
-Message-ID: <20190905120012.GD5475@paasikivi.fi.intel.com>
-References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
- <20190905072142.14606-2-dongchun.zhu@mediatek.com>
- <20190905101406.GA2680@smile.fi.intel.com>
- <20190905104829.GB5475@paasikivi.fi.intel.com>
- <20190905113509.GD2680@smile.fi.intel.com>
- <CABxcv=knP+-x0O-Ga-Dy8WTNovHk6GfX4ZEv0vVjnQvwchuVzg@mail.gmail.com>
+        id S2388502AbfIEMBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 08:01:30 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:51246 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731259AbfIEMBa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:30 -0400
+Received: by mail-wm1-f65.google.com with SMTP id k1so2491498wmi.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 05:01:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yFK6X2V6i39GcNDQWpzEpnOVpoV1Dx+VySBb8i2GX/I=;
+        b=stvEzN4tUS8oK1tZu/EaUIi2TPABQfmjiU4mPlGJpIy9qIoGskfwsPYca0Dq0e4oPl
+         DuwEICzFSm8kaAm51AaPy9tOzbXLDJifxZjw4c8+ZPPOrZm8/E6ECYeVwnZxC+XiUvjp
+         949UTxAT6G0O23iPXgjV+Wdf6ES/zchaFfEK3pbnJVhU/VhlNBLdYpUFhhwZyEhE6vsb
+         2PejIUevv+7DNzmPNZPNwnpVDYBmE3CDCi0TZ4lHHEq63JrW1Pa3NgH9AUBRJHkGT/eZ
+         jfbufeoQpcZCnDjTh5FgfFfKIrhUCSvsSE5L6Bk3uw0/fkIOsb2YUIubWIWWuRXiJ0B4
+         PWow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yFK6X2V6i39GcNDQWpzEpnOVpoV1Dx+VySBb8i2GX/I=;
+        b=h0z5eDQrp0CX72Eb13zw7spTcNJxPW8e+J1S2zTCksqtBtBtMuGlF/AN5CaoHcOdih
+         VenVl78fUjfs3ZrBzTd2tN9fxk8E54iD6WrYPQ9OSD4JdZybcbrIASqBQuA7w87avyYM
+         FGdgZwoOgrlfLKxNJa+Hjyhntt5KA1VJaU24kBtC1FEQSjkDlqxxw5TsQ3ERPCOWoRf/
+         DRFKnMZyB6S52QDZeUssGTNr5JRJ96nWruUfO6+PCsFDuDHWTEyos7bZNj3SSdgx6Az4
+         6WxRRxADwTP95z8aRZgk2Zjqv9g7l1d6LRPDxxQ4846p47onUj4vQXw5SCrOqrRUoCW9
+         DWTQ==
+X-Gm-Message-State: APjAAAVVgtELXj3/sozuhfzP0EVhiO7nAY4hw/bZysrtP22oopnj/swl
+        o5yJIDIumKdAWYwyrK/1zzf4Cw==
+X-Google-Smtp-Source: APXvYqx0FuZccTavmCfh5UKk59D68gUWa1P+Lko4JSyqzHolIXwrXQ2h9DNNhEMWzPwh8vmYnLQyAw==
+X-Received: by 2002:a7b:c059:: with SMTP id u25mr2593849wmc.140.1567684888491;
+        Thu, 05 Sep 2019 05:01:28 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id a18sm3436311wrh.25.2019.09.05.05.01.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 05:01:27 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 0/8] ASoC: meson: add sm1 support
+Date:   Thu,  5 Sep 2019 14:01:12 +0200
+Message-Id: <20190905120120.31752-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABxcv=knP+-x0O-Ga-Dy8WTNovHk6GfX4ZEv0vVjnQvwchuVzg@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 01:49:28PM +0200, Javier Martinez Canillas wrote:
-> On Thu, Sep 5, 2019 at 1:35 PM Andy Shevchenko
-> <andriy.shevchenko@linux.intel.com> wrote:
-> >
-> > On Thu, Sep 05, 2019 at 01:48:30PM +0300, Sakari Ailus wrote:
-> > > On Thu, Sep 05, 2019 at 01:14:06PM +0300, Andy Shevchenko wrote:
-> > > > On Thu, Sep 05, 2019 at 03:21:41PM +0800, dongchun.zhu@mediatek.com wrote:
-> > > > > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > > >
-> > > > > This patch is to add the Devicetree binding documentation and
-> > > > > MAINTAINERS entry for dw9768 actuator.
-> > > > >
-> > > > > Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt | 9 +++++++++
-> > > > >  MAINTAINERS                                                     | 7 +++++++
-> > > >
-> > > > This should be:
-> > > > 1) two separate patches
-> > >
-> > > Why? The MAINTAINERS entry is usually added in the first patch needing it,
-> > > isn't it?
-> >
-> > Bindings are required to be a separate patch.
-> > Rob, is it still the case or am I mistaken?
-> >
-> 
-> According to the rule 0 in [1] it should be a separate patch indeed
-> and also use as subject "dt-bindings: <binding dir>: ..." which this
-> patch also doesn't follow.
-> So if I'm reading that document correctly, then I think the
-> maintainers entry should be added in patch 2/2 along with the driver.
+This patchset prepare then add the audio support on the amlogic sm1
+SoC family in ASoC.
 
-I understand [1] discussing the need for the bindings to be a "separate
-patch" means a separate patch from the _driver_ for the device, not the
-MAINTAINERS change.
+This has been tested on sei610 platform. Since this platform does
+not have spdif, this patchset does not include the change necessary
+to support spdif input or output on the sm1.
 
-Bindings come before the driver, and MAINTAINERS entry needs to be there no
-later than the files. And I see no reason to add a separate patch just for
-MAINTAINERS change.
+Jerome Brunet (8):
+  ASoC: meson: add sm1 compatibles
+  ASoC: meson: add reset binding
+  ASoC: meson: axg-frddr: expose all 8 outputs
+  ASoC: meson: axg-toddr: expose all 8 inputs
+  ASoC: meson: tdmin: expose all 16 inputs
+  ASoC: meson: axg-frddr: add sm1 support
+  ASoC: meson: axg-toddr: add sm1 support
+  ASoC: meson: tdmout: add sm1 support
 
-> 
-> [1]: https://www.kernel.org/doc/Documentation/devicetree/bindings/submitting-patches.txt
+ .../bindings/sound/amlogic,axg-fifo.txt       |   9 +-
+ .../bindings/sound/amlogic,axg-pdm.txt        |   6 +-
+ .../bindings/sound/amlogic,axg-spdifin.txt    |   6 +-
+ .../bindings/sound/amlogic,axg-spdifout.txt   |   6 +-
+ .../sound/amlogic,axg-tdm-formatters.txt      |   4 +-
+ .../bindings/sound/amlogic,g12a-tohdmitx.txt  |   5 +-
+ sound/soc/meson/axg-fifo.c                    |   2 +-
+ sound/soc/meson/axg-fifo.h                    |   1 +
+ sound/soc/meson/axg-frddr.c                   | 105 ++++++++++++++++--
+ sound/soc/meson/axg-tdmin.c                   |  47 +++++---
+ sound/soc/meson/axg-tdmout.c                  | 103 +++++++++++++----
+ sound/soc/meson/axg-toddr.c                   |  83 ++++++++++++--
+ 12 files changed, 321 insertions(+), 56 deletions(-)
 
 -- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+2.21.0
+
