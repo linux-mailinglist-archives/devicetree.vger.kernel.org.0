@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44267AA273
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:02:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0E65AA263
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732451AbfIEMCG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:02:06 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33053 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387766AbfIEMBc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:32 -0400
-Received: by mail-wm1-f67.google.com with SMTP id r17so4835225wme.0
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 05:01:30 -0700 (PDT)
+        id S2388942AbfIEMBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 08:01:33 -0400
+Received: from mail-wr1-f46.google.com ([209.85.221.46]:40070 "EHLO
+        mail-wr1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729809AbfIEMBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:33 -0400
+Received: by mail-wr1-f46.google.com with SMTP id w13so2447642wru.7
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 05:01:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=frXECa7oB40w9WZ9n2ecYzcH89/QDSFs1zSP6u+7Qvk=;
-        b=i4HxGKUMtgFYoZ5e+oi5v+JhlTAUa42yN4QdLJHfvLUZyZvd+x6GDzYM8VAmo50xRn
-         NRMPhKfVV9dJhhrhUxM7Hvq7YhR7+HCGoqV4SpkB/isItxpnJHFjtG0ttT1tIS8JU9MJ
-         I9/XLbDxxTLI2rNtvYwbXmiYZUqfHX6W0Jef+ZURbKfOnjNzZ3Hyhz84kw7aOrlv5Fiu
-         Q0EseEc5xuJHTwMboJ5tDsZhWWE7ASGCU83RjCI5yHIGLO6CUFH9ofQTFDij2KaSdHUl
-         sVwcbhWVPWSyyZWejd9g2GuqseEp2/FRfl17WRUgI3ZwWeQtFupyorp5d1hIoBQaRfVv
-         hm1A==
+        bh=JtJp8hwFJlC+ElDAvP+29EWq9+aj8xhCfyxpFjJGuMU=;
+        b=KvoyxWVLk27MSxWet5eXVTEvqpz7OZQMYgLSKMOIRVRN8rsctD7bnPqdMwnLL3zfea
+         F9a+I+VnlL2sjNeccOjyir/GffR3nHzT5+vvnS40miEitiIwqkwWFePtCCIQQe+6pGKS
+         phg09gOPaLHtB62WhhzohCzkg6ZYAahehhGLmE1UqmkLWSecAcgvcHOUZ2AeMgEUfg7h
+         pSxePwVlV20zeOmm+F3v5RlPjQSSF0OaJlZWhTzoptuJ27kovmuiQ9MFH+B98IzX6gWH
+         Dp/KxNn2aUJZMh96iRGVoPVvSRBn1dVIRDwacVjbTBbNBKoodXk4z/k0x7sTcek7lcjl
+         pgyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=frXECa7oB40w9WZ9n2ecYzcH89/QDSFs1zSP6u+7Qvk=;
-        b=FtkCoNj5jv6CoY9oh9auUEPMJw9MZEWkOrUfy3X5VobO+yq3hmFiufngny+tihqY9L
-         XBQUE45p5xFsEpJGOuUwDlAMZQJEyhb58I8d02y1oE8eyDYyl4cpJo+DdgPSwOuSdtu7
-         D17raHR3Is1JOltNEZudXIlSOd/E146uVhfwbeD+bKG9EHEk/8TMjHmWMWzIHOE1za7T
-         gxL/DWVfdSZOu9zTupcaFCMKeehY2AXXCnpYIVUUTlmG0pqYWKj9L2ADNzjM8sP+kcax
-         WhWyDcd1wSHOVoCLvUcOjxn5t9CuWfwEYG5hijpzDgnxUehs1DxOx3v3WAqY7zK6lYS9
-         l/OQ==
-X-Gm-Message-State: APjAAAVlg8ellhyBR5ZImDkEBmdELy5Q2hhlh9K6239ecAJEkpNlrrwn
-        7JV6yMEqDAw3OJSfGZ8GPr1kUw==
-X-Google-Smtp-Source: APXvYqxA/Q9whlszOMfcSkbW9Mrtlo0RubDAdo+i8gx27YCkWw9SpbgHeHqvHsmJM0vvSdovJDDBnA==
-X-Received: by 2002:a7b:cd97:: with SMTP id y23mr2422292wmj.74.1567684889405;
-        Thu, 05 Sep 2019 05:01:29 -0700 (PDT)
+        bh=JtJp8hwFJlC+ElDAvP+29EWq9+aj8xhCfyxpFjJGuMU=;
+        b=ATk7YI0TcV5jhite9s1P047od5lQ/nDxCOi96DeL5TPkAwRXC+6ZBD5IlxUmxVdmnJ
+         QNUXODeZdNvgkskxegS5bA6Ewr54yLdIQMDihG1T88+umvutE4Jj4uit9gKX/yJk3HUT
+         OcwECmnCp1vv8MpuQZgE1t85vem0Lz87AfbyRTxOe0TgizoCGbkBesF8OcC3TcD5fyiE
+         TAfsuQYMjazMecSdTPvizCn6ETfO+v0fijK5zZTtLXWYVOAlXc3ieZmALdKcLO/rtY2T
+         gMeKPDkMOKsSKs+zDx2wU6OSXKwwalhFQ3WZSR01Ip7bVkQb9dbWrAYrCSRcZWTrBAxI
+         4+6A==
+X-Gm-Message-State: APjAAAW1NzhADNUYV6lG2encGZgdVuwoM4OXLDFmgUFf8xQf9vg5rZMn
+        gnLnrG4wRgQfO0meVz+Q5sutaw==
+X-Google-Smtp-Source: APXvYqww5BSzZzo/x/XBRxOD6dQ2QeJpWjyU0lTTUfZ8RlpNitNFN1NvIC/CeZ7zZgHLX/5AzWLHbQ==
+X-Received: by 2002:adf:f543:: with SMTP id j3mr2444374wrp.243.1567684890446;
+        Thu, 05 Sep 2019 05:01:30 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id a18sm3436311wrh.25.2019.09.05.05.01.28
+        by smtp.googlemail.com with ESMTPSA id a18sm3436311wrh.25.2019.09.05.05.01.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 05:01:28 -0700 (PDT)
+        Thu, 05 Sep 2019 05:01:29 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>
@@ -51,9 +51,9 @@ Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org,
         Kevin Hilman <khilman@baylibre.com>
-Subject: [PATCH 1/8] ASoC: meson: add sm1 compatibles
-Date:   Thu,  5 Sep 2019 14:01:13 +0200
-Message-Id: <20190905120120.31752-2-jbrunet@baylibre.com>
+Subject: [PATCH 2/8] ASoC: meson: add reset binding
+Date:   Thu,  5 Sep 2019 14:01:14 +0200
+Message-Id: <20190905120120.31752-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190905120120.31752-1-jbrunet@baylibre.com>
 References: <20190905120120.31752-1-jbrunet@baylibre.com>
@@ -65,105 +65,102 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the compatible strings of the audio devices of the sm1 SoC
-family
+The g12a audio subsystem, which is a derivative of the axg subsystem,
+provides a dedicated reset line for each of the audio components.
+
+The axg did not provide that and it is unclear if/when these reset are
+required. The reset already helped solve a channel mapping issue on the
+tdm formatter devices. Let's add the reset binding for the other
+components, so we can describe this in DT. We'll use it later on
+in the driver when/if needed.
 
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt  | 4 +++-
- Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt   | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-spdifin.txt         | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-spdifout.txt        | 3 ++-
- .../devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt  | 4 +++-
- .../devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt       | 3 ++-
- 6 files changed, 14 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt | 5 ++++-
+ Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt  | 3 +++
+ .../devicetree/bindings/sound/amlogic,axg-spdifin.txt        | 3 +++
+ .../devicetree/bindings/sound/amlogic,axg-spdifout.txt       | 3 +++
+ .../devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt      | 2 ++
+ 5 files changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-index 4330fc9dca6d..4b17073c8f8c 100644
+index 4b17073c8f8c..3080979350a0 100644
 --- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
 +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-@@ -4,7 +4,9 @@ Required properties:
- - compatible: 'amlogic,axg-toddr' or
- 	      'amlogic,axg-toddr' or
- 	      'amlogic,g12a-frddr' or
--	      'amlogic,g12a-toddr'
-+	      'amlogic,g12a-toddr' or
-+	      'amlogic,sm1-frddr' or
-+	      'amlogic,sm1-toddr'
- - reg: physical base address of the controller and length of memory
-        mapped region.
+@@ -12,7 +12,10 @@ Required properties:
  - interrupts: interrupt specifier for the fifo.
+ - clocks: phandle to the fifo peripheral clock provided by the audio
+ 	  clock controller.
+-- resets: phandle to memory ARB line provided by the arb reset controller.
++- resets: list of reset phandle, one for each entry reset-names.
++- reset-names: should contain the following:
++  * "arb" : memory ARB line (required)
++  * "rst" : dedicated device reset line (optional)
+ - #sound-dai-cells: must be 0.
+ 
+ Example of FRDDR A on the A113 SoC:
 diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-index 73f473a9365f..b3f097976e6b 100644
+index b3f097976e6b..716878107a24 100644
 --- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
 +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-@@ -2,7 +2,8 @@
+@@ -13,6 +13,9 @@ Required properties:
+   * "sysclk" : dsp system clock
+ - #sound-dai-cells: must be 0.
  
- Required properties:
- - compatible: 'amlogic,axg-pdm' or
--	      'amlogic,g12a-pdm'
-+	      'amlogic,g12a-pdm' or
-+	      'amlogic,sm1-pdm'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: list of clock phandle, one for each entry clock-names.
++Optional property:
++- resets: phandle to the dedicated reset line of the pdm input.
++
+ Example of PDM on the A113 SoC:
+ 
+ pdm: audio-controller@ff632000 {
 diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-index 0b82504fa419..62e5bca71664 100644
+index 62e5bca71664..df92a4ecf288 100644
 --- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
 +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-@@ -2,7 +2,8 @@
+@@ -11,6 +11,9 @@ Required properties:
+   * "refclk" : spdif input reference clock
+ - #sound-dai-cells: must be 0.
  
- Required properties:
- - compatible: 'amlogic,axg-spdifin' or
--	      'amlogic,g12a-spdifin'
-+	      'amlogic,g12a-spdifin' or
-+	      'amlogic,sm1-spdifin'
- - interrupts: interrupt specifier for the spdif input.
- - clocks: list of clock phandle, one for each entry clock-names.
- - clock-names: should contain the following:
++Optional property:
++- resets: phandle to the dedicated reset line of the spdif input.
++
+ Example on the A113 SoC:
+ 
+ spdifin: audio-controller@400 {
 diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-index 826152730508..d38aa35ec630 100644
+index d38aa35ec630..28381dd1f633 100644
 --- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
 +++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-@@ -2,7 +2,8 @@
+@@ -10,6 +10,9 @@ Required properties:
+   * "mclk" : master clock
+ - #sound-dai-cells: must be 0.
  
- Required properties:
- - compatible: 'amlogic,axg-spdifout' or
--	      'amlogic,g12a-spdifout'
-+	      'amlogic,g12a-spdifout' or
-+	      'amlogic,sm1-spdifout'
- - clocks: list of clock phandle, one for each entry clock-names.
- - clock-names: should contain the following:
-   * "pclk" : peripheral clock.
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-index 8835a43edfbb..5996c0cd89c2 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
-@@ -4,7 +4,9 @@ Required properties:
- - compatible: 'amlogic,axg-tdmin' or
- 	      'amlogic,axg-tdmout' or
- 	      'amlogic,g12a-tdmin' or
--	      'amlogic,g12a-tdmout'
-+	      'amlogic,g12a-tdmout' or
-+	      'amlogic,sm1-tdmin' or
-+	      'amlogic,sm1-tdmout
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: list of clock phandle, one for each entry clock-names.
++Optional property:
++- resets: phandle to the dedicated reset line of the spdif output.
++
+ Example on the A113 SoC:
+ 
+ spdifout: audio-controller@480 {
 diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-index aa6c35570d31..173a95045540 100644
+index 173a95045540..4e8cd7eb7cec 100644
 --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
 +++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-@@ -1,7 +1,8 @@
- * Amlogic HDMI Tx control glue
- 
- Required properties:
--- compatible: "amlogic,g12a-tohdmitx"
-+- compatible: "amlogic,g12a-tohdmitx" or
-+	      "amlogic,sm1-tohdmitx"
+@@ -6,6 +6,7 @@ Required properties:
  - reg: physical base address of the controller and length of memory
         mapped region.
  - #sound-dai-cells: should be 1.
++- resets: phandle to the dedicated reset line of the hdmitx glue.
+ 
+ Example on the S905X2 SoC:
+ 
+@@ -13,6 +14,7 @@ tohdmitx: audio-controller@744 {
+ 	compatible = "amlogic,g12a-tohdmitx";
+ 	reg = <0x0 0x744 0x0 0x4>;
+ 	#sound-dai-cells = <1>;
++	resets = <&clkc_audio AUD_RESET_TOHDMITX>;
+ };
+ 
+ Example of an 'amlogic,axg-sound-card':
 -- 
 2.21.0
 
