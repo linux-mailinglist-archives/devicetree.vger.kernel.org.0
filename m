@@ -2,110 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2C71A9C58
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 09:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E401A9C34
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 09:52:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730914AbfIEHyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 03:54:46 -0400
-Received: from sender4-pp-o94.zoho.com ([136.143.188.94]:25491 "EHLO
-        sender4-pp-o94.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726073AbfIEHyq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 03:54:46 -0400
-X-Greylist: delayed 949 seconds by postgrey-1.27 at vger.kernel.org; Thu, 05 Sep 2019 03:54:46 EDT
-ARC-Seal: i=1; a=rsa-sha256; t=1567669124; cv=none; 
-        d=zoho.com; s=zohoarc; 
-        b=mXDWIQQF0GBmUYjIgzV6AOoV/41THvi5CQbX3LvhjXiKWOqouDQpEaSuTzW2h+tyXe550aPfJNJbjTNKQT9xSInKOEje78IBjElzTS3+1PsbgUMBzWE2SN2BCMDT1Lhwsxa+HbAMVSCTBif0a3+pMv977pBjj6oeD7MxaSpGuAA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
-        t=1567669124; h=Cc:Date:From:In-Reply-To:Message-ID:References:Subject:To:ARC-Authentication-Results; 
-        bh=egFOrDQp87JufeuaATPLZS9Nk9CVn431TNKVdr5uG9c=; 
-        b=mZ6KtAqlk9QrrhQ8RX4LrG2xZPUMF2CX9414cpcGJS7Q+t11nSmzmEoGvypyQxM+4i3V7OfHXnz6O90dO0KO5Sb2UKQExrLiAdP/oIRNkoL3n6frTchT06HmGVzThFuy+IgDQ12XRGlH97X6zCbCIlpFFdqDew86xCsPLVQ6CWY=
-ARC-Authentication-Results: i=1; mx.zoho.com;
-        dkim=pass  header.i=zoho.com;
-        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
-        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
-  s=zapps768; d=zoho.com; 
-  h=from:to:cc:subject:date:message-id:in-reply-to:references; 
-  b=alkAaLA/LsC7OTHjGHQlx5pvPuth9fOvuM4HaxQ8hmNQ74Am2u0mO4wgagW1a/vEkieJiIUIgnxb
-    UFu6XR11bqRIJIH7iCN6bUTQNPRIqRK25wabrBickIp7lZn9l3YN  
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1567669124;
-        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
-        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References;
-        l=1598; bh=egFOrDQp87JufeuaATPLZS9Nk9CVn431TNKVdr5uG9c=;
-        b=naYOwA+xzhDJnHqp0YPeAbCyWc82FkXn2Hv1PAZ2VqEtKv9ux9rYU7zvk153p9bD
-        47e81ajkIYFfKCimcCcFf+Rb8sneCXk84KYtckvkvetHwxUv6GXQNKHu3yFxQ7B3jZ/
-        Ewcggk5JpVAByXsXLqCpc7IgnTtd357cOb2HaJgQ=
-Received: from zhouyanjie-virtual-machine.localdomain (125.71.5.36 [125.71.5.36]) by mx.zohomail.com
-        with SMTPS id 1567669122100996.8820523312266; Thu, 5 Sep 2019 00:38:42 -0700 (PDT)
-From:   Zhou Yanjie <zhouyanjie@zoho.com>
-To:     linux-mips@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
-        paul.burton@mips.com, linus.walleij@linaro.org,
-        paul@crapouillou.net, malat@debian.org, yuehaibing@huawei.com,
-        ezequiel@collabora.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        syq@debian.org, jiaxun.yang@flygoat.com
-Subject: [PATCH 2/4] MMC: Ingenic: Add 8bit mode support.
-Date:   Thu,  5 Sep 2019 15:38:07 +0800
-Message-Id: <1567669089-88693-3-git-send-email-zhouyanjie@zoho.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1567669089-88693-1-git-send-email-zhouyanjie@zoho.com>
-References: <1567669089-88693-1-git-send-email-zhouyanjie@zoho.com>
-X-ZohoMailClient: External
+        id S1731760AbfIEHwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 03:52:19 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:36462 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731589AbfIEHwT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 03:52:19 -0400
+Received: by mail-wm1-f68.google.com with SMTP id p13so1662535wmh.1
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 00:52:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=8QTtt8+sGnSqf2GZqqr6eKF9qx6336YqhCVxZTe4hN4=;
+        b=P3M2iaYypKmONmySetZUFaEg2hS2Zw4ANUaBhR6r5Ydm74kgAH+IhORp1ZlSO3+SvG
+         bPCT3dkX2yVgIb96qqnsLFsYvscdlxnkL5q7N2vsbXFwuzu0KFsjgL2cm4cVMQIVCiHg
+         E3HyFv/qZeAvK2dR5fvXAwdJ6ohLBAUxXUlpSrnwZygHBjnfzUXN7K/XTGA3fFhhPMLp
+         aef7z4TL+zPCwYLGdxAx8P883nSG9rZIhxXDy0ApUIjVYUWVdz2yX3BC0F3ldwajVhor
+         yFM9sHNlHvSqgAqu2mpD6gLSQXdhjL2FV5gmXWXcKoqfAWr8dBPfgBb+lndVXZwEXGIy
+         zv9g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=8QTtt8+sGnSqf2GZqqr6eKF9qx6336YqhCVxZTe4hN4=;
+        b=K2htwkkfIOhlLqPVj1PQ+Gw/lV2lsCxmjiKcqGZNhMtLlrjysEc/BMoXNrp5h2CoHe
+         Bcw75v5N3WXtutYORdRn2T4mLbn4S85YZU5j/uP2+zKtarQAoQzlw1ROy+k6cEWBoQNw
+         5NeKFqurmKCXhrUo7/WPvNlhhd2Hs5DpZJSo/4iuvxzCi21fBWnjo39G72K4DtgEsJUu
+         dKtQ0yxieRRY5CsyRkesp40buPtcqR7ffw4RxFGpoVse1EkxJl+y8B0n5aTNAnaruvJb
+         HJsZ22p3eiXWhJ5wJ4o5R/nnf9hKzAYYGS8sk6ynyvQGYPzQT9pElatJDR+XD3HQlCyU
+         UJKg==
+X-Gm-Message-State: APjAAAXu50YhsfP9+68v3X6+JbmkfML+2KdV2V5A8oNUNNZ/4Nzff6OK
+        G6VMe/+obIlr3J781xYd88N2Co0P05s=
+X-Google-Smtp-Source: APXvYqwzQVlp8PCbFWrdVBA5xmrr3ZHShk2IdYXuGYRwilcld1G0FXOEOyA9G0LVuEDXC8E5xXtsSg==
+X-Received: by 2002:a1c:7919:: with SMTP id l25mr1454666wme.23.1567669937202;
+        Thu, 05 Sep 2019 00:52:17 -0700 (PDT)
+Received: from localhost.localdomain ([95.147.198.36])
+        by smtp.gmail.com with ESMTPSA id a13sm3418784wrf.73.2019.09.05.00.52.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 00:52:16 -0700 (PDT)
+From:   Lee Jones <lee.jones@linaro.org>
+To:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, bjorn.andersson@linaro.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, wsa@the-dreams.de, vkoul@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Lee Jones <lee.jones@linaro.org>
+Subject: [PATCH 1/2] dt-bindings: soc: qcom: Provide option to disable DMA
+Date:   Thu,  5 Sep 2019 08:52:12 +0100
+Message-Id: <20190905075213.13260-1-lee.jones@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for 8bit mode, now supports 1bit/4bit/8bit modes.
+Used when DMA is not available or the best option.
 
-Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
+Signed-off-by: Lee Jones <lee.jones@linaro.org>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 ---
- drivers/mmc/host/jz4740_mmc.c | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+ Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/mmc/host/jz4740_mmc.c b/drivers/mmc/host/jz4740_mmc.c
-index 1b1fcb7..d6811a7 100644
---- a/drivers/mmc/host/jz4740_mmc.c
-+++ b/drivers/mmc/host/jz4740_mmc.c
-@@ -79,6 +79,8 @@
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.txt b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.txt
+index dab7ca9f250c..a14889ee76b0 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.txt
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom,geni-se.txt
+@@ -40,6 +40,7 @@ Required properties:
+ Optional property:
+ - clock-frequency:	Desired I2C bus clock frequency in Hz.
+ 			When missing default to 100000Hz.
++- qcom,geni-se-no-dma:	Prevents the use of DMA in the Geni SE.
  
- #define JZ_MMC_CMDAT_IO_ABORT BIT(11)
- #define JZ_MMC_CMDAT_BUS_WIDTH_4BIT BIT(10)
-+#define JZ_MMC_CMDAT_BUS_WIDTH_8BIT (BIT(10) | BIT(9))
-+#define	JZ_MMC_CMDAT_BUS_WIDTH_MASK (BIT(10) | BIT(9))
- #define JZ_MMC_CMDAT_DMA_EN BIT(8)
- #define JZ_MMC_CMDAT_INIT BIT(7)
- #define JZ_MMC_CMDAT_BUSY BIT(6)
-@@ -899,11 +901,16 @@ static void jz4740_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
- 
- 	switch (ios->bus_width) {
- 	case MMC_BUS_WIDTH_1:
--		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_4BIT;
-+		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_MASK;
- 		break;
- 	case MMC_BUS_WIDTH_4:
-+		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_MASK;
- 		host->cmdat |= JZ_MMC_CMDAT_BUS_WIDTH_4BIT;
- 		break;
-+	case MMC_BUS_WIDTH_8:
-+		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_MASK;
-+		host->cmdat |= JZ_MMC_CMDAT_BUS_WIDTH_8BIT;
-+		break;
- 	default:
- 		break;
- 	}
-@@ -1034,7 +1041,8 @@ static int jz4740_mmc_probe(struct platform_device* pdev)
- 
- 	dev_info(&pdev->dev, "Using %s, %d-bit mode\n",
- 		 host->use_dma ? "DMA" : "PIO",
--		 (mmc->caps & MMC_CAP_4_BIT_DATA) ? 4 : 1);
-+		 (mmc->caps & MMC_CAP_8_BIT_DATA) ? 8 :
-+		 ((mmc->caps & MMC_CAP_4_BIT_DATA) ? 4 : 1));
- 
- 	return 0;
+ Child nodes should conform to I2C bus binding as described in i2c.txt.
  
 -- 
-2.7.4
-
+2.17.1
 
