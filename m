@@ -2,194 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FD79A9FB6
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:32:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D034FA9FFD
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:40:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732583AbfIEKcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 06:32:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34836 "EHLO mail.kernel.org"
+        id S2387903AbfIEKkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 06:40:09 -0400
+Received: from mga14.intel.com ([192.55.52.115]:21688 "EHLO mga14.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731952AbfIEKcn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 06:32:43 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3EB1222DD3;
-        Thu,  5 Sep 2019 10:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567679561;
-        bh=NQujPZaifvocqXBm599tGClyU1aW6kjLF6eo/z6uOaA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W9Tn7qVrlMY1fcBtiJ06AOYQViFIU1snLQymJvqz/C/R0E6lNN6BZiflc+uA6jcGD
-         hWPgq0KYVqZW0NCdqUKPil1w9T0z0Nnoe5mlNDf3Helte4q3i+3+6iL52doqp04O5/
-         7pu6mXzqcaTvDHa+ohcsMqBCseKADvQF0n7/vB+0=
-Received: by mail-qt1-f171.google.com with SMTP id g4so2151306qtq.7;
-        Thu, 05 Sep 2019 03:32:41 -0700 (PDT)
-X-Gm-Message-State: APjAAAXBa8QsPXluYGgNN16NPmExea60ik1hgjJa9FI2J60TmnkyZbqL
-        gtN0CJWixi0WR8RXo8B7gAic7RB5iDktebcIhQ==
-X-Google-Smtp-Source: APXvYqz7/ulBAvR7x3VrV/jxmMu9as/2Hzs9+dy1OH+geYhotKlOQxVVZj0kapvCvcSo3AeWsbYX9GZHNBzrJ0ONyGQ=
-X-Received: by 2002:a0c:f70c:: with SMTP id w12mr470851qvn.200.1567679560330;
- Thu, 05 Sep 2019 03:32:40 -0700 (PDT)
+        id S1731981AbfIEKkI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 06:40:08 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:40:08 -0700
+X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
+   d="scan'208";a="173900646"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga007-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:40:03 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 8A12D20584; Thu,  5 Sep 2019 13:40:01 +0300 (EEST)
+Date:   Thu, 5 Sep 2019 13:40:01 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     Javier Martinez Canillas <javierm@redhat.com>,
+        dongchun.zhu@mediatek.com, mchehab@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, drinkcat@chromium.org, tfiga@chromium.org,
+        matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        sam.hung@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [V2, 2/2] media: i2c: Add DW9768 VCM driver
+Message-ID: <20190905104001.GZ5475@paasikivi.fi.intel.com>
+References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
+ <20190905072142.14606-3-dongchun.zhu@mediatek.com>
+ <20190905082134.GY5475@paasikivi.fi.intel.com>
+ <20190905101908.GB2680@smile.fi.intel.com>
 MIME-Version: 1.0
-References: <20190905081546.42716-1-drinkcat@chromium.org> <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
- <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
-In-Reply-To: <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 5 Sep 2019 11:32:29 +0100
-X-Gmail-Original-Message-ID: <CAL_JsqLAEe1qYkTWCw7VPau9WnXTMUqtHR5XWGuk7ynZBiuLQA@mail.gmail.com>
-Message-ID: <CAL_JsqLAEe1qYkTWCw7VPau9WnXTMUqtHR5XWGuk7ynZBiuLQA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mt8183: Add node for the Mali GPU
-To:     Nicolas Boichat <drinkcat@chromium.org>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Nick Fan <nick.fan@mediatek.com>,
-        Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>,
-        Boris Brezillon <boris.brezillon@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190905101908.GB2680@smile.fi.intel.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 5, 2019 at 10:49 AM Nicolas Boichat <drinkcat@chromium.org> wrote:
->
-> Thanks for the quick review!
->
-> On Thu, Sep 5, 2019 at 5:09 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > On Thu, Sep 5, 2019 at 9:16 AM Nicolas Boichat <drinkcat@chromium.org> wrote:
-> > >
-> > > Add a basic GPU node and opp table for mt8183.
-> > >
-> > > The binding we use with out-of-tree Mali drivers includes more
-> > > clocks, I assume this would be required eventually if we have an
-> > > in-tree driver:
-> >
-> > We have an in-tree driver...
->
-> Right but AFAICT it does not support Bifrost GPU (yet?).
+On Thu, Sep 05, 2019 at 01:19:08PM +0300, Andy Shevchenko wrote:
+> On Thu, Sep 05, 2019 at 11:21:34AM +0300, Sakari Ailus wrote:
+> > On Thu, Sep 05, 2019 at 03:21:42PM +0800, dongchun.zhu@mediatek.com wrote:
+> > > From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> 
+> > > +static const struct i2c_device_id dw9768_id_table[] = {
+> > > +	{ DW9768_NAME, 0 },
+> > > +	{ },
+> > 
+> > Could you drop the I²C ID table?
+> 
+> But why?
+> It will allow you to instanciate the device from user space.
 
-It's mostly the mesa userspace side that's missing. The kernel driver
-needs the compatible string and page table support[1]. The former
-should be enough to access the registers which is typically enough to
-sort out an platform specific clock, reset, power issues.
+The device is supposed to be present in DT (or ACPI tables) already.
 
-> > > clocks =
-> > >         <&topckgen CLK_TOP_MFGPLL_CK>,
-> > >         <&topckgen CLK_TOP_MUX_MFG>,
-> > >         <&clk26m>,
-> > >         <&mfgcfg CLK_MFG_BG3D>;
-> > > clock-names =
-> > >         "clk_main_parent",
-> > >         "clk_mux",
-> > >         "clk_sub_parent",
-> > >         "subsys_mfg_cg";
->
-> Do you think we should add those to the binding document? May not be
-> easy to match what the amlogic binding does (I'm not sure to
-> understand the details of this device, but I can dig further/ask).
+> 
+> +Cc: Javier.
+> 
+> Javier, is it needed in new code?
 
-I somewhat expect this needs more investigation. I'm doubtful that
-there's a 26MHz clock going to Mali. Ideally, the clocks are what are
-actually connected to the h/w, not just a list of all the clocks
-needed on some platform because we fail to manage them elsewhere (like
-an interconnect driver). Otherwise we end up with a different list for
-every platform.
-
-> > > Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
-> > >
-> > > ---
-> > > Upstreaming what matches existing bindings from our Chromium OS tree:
-> > > https://chromium.googlesource.com/chromiumos/third_party/kernel/+/chromeos-4.19/arch/arm64/boot/dts/mediatek/mt8183.dtsi#1348
-> > >
-> > > The evb part of this change depends on this patch to add PMIC dtsi:
-> > > https://patchwork.kernel.org/patch/10928161/
-> > >
-> > >  arch/arm64/boot/dts/mediatek/mt8183-evb.dts |   7 ++
-> > >  arch/arm64/boot/dts/mediatek/mt8183.dtsi    | 103 ++++++++++++++++++++
-> > >  2 files changed, 110 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > > index 1fb195c683c3d01..200d8e65a6368a1 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8183-evb.dts
-> > > @@ -7,6 +7,7 @@
-> > >
-> > >  /dts-v1/;
-> > >  #include "mt8183.dtsi"
-> > > +#include "mt6358.dtsi"
-> > >
-> > >  / {
-> > >         model = "MediaTek MT8183 evaluation board";
-> > > @@ -30,6 +31,12 @@
-> > >         status = "okay";
-> > >  };
-> > >
-> > > +&gpu {
-> > > +       supply-names = "mali", "mali_sram";
-> > > +       mali-supply = <&mt6358_vgpu_reg>;
-> > > +       mali_sram-supply = <&mt6358_vsram_gpu_reg>;
-> >
-> > Not documented. Just 'sram-supply' is enough.
->
-> Will fix.
->
-> > Note that the binding doc queued up for 5.4 has been converted to DT schema.
->
-> Yep I see that in linux-next.
->
-> >
-> > > +};
-> > > +
-> > >  &i2c0 {
-> > >         pinctrl-names = "default";
-> > >         pinctrl-0 = <&i2c_pins_0>;
-> > > diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > index 97f84aa9fc6e1c1..8ea548a762ea252 100644
-> > > --- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > +++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-> > > @@ -579,6 +579,109 @@
-> > >                         #clock-cells = <1>;
-> > >                 };
-> > >
-> > > +               gpu: mali@13040000 {
-> >
-> > gpu@...
-> >
-> > > +                       compatible = "mediatek,mt8183-mali", "arm,mali-bifrost";
-> >
-> > You need to add this compatible string too.
->
-> Will do.
->
-> >
-> > > +                       reg = <0 0x13040000 0 0x4000>;
-> > > +                       interrupts =
-> > > +                               <GIC_SPI 280 IRQ_TYPE_LEVEL_LOW>,
-> > > +                               <GIC_SPI 279 IRQ_TYPE_LEVEL_LOW>,
-> > > +                               <GIC_SPI 278 IRQ_TYPE_LEVEL_LOW>;
-> > > +                       interrupt-names = "job", "mmu", "gpu";
-> > > +
-> > > +                       clocks = <&topckgen CLK_TOP_MFGPLL_CK>;
-> > > +                       power-domains =
-> > > +                               <&scpsys MT8183_POWER_DOMAIN_MFG_CORE0>,
-> > > +                               <&scpsys MT8183_POWER_DOMAIN_MFG_CORE1>,
-> > > +                               <&scpsys MT8183_POWER_DOMAIN_MFG_2D>;
-> >
-> > This needs to be documented too.
->
-> I see that Documentation/devicetree/bindings/gpu/arm,mali-midgard.yaml
-> has power-domains in the example both not in the yaml, is that
-> expected?
-
-Err, no. Probably some copy-n-paste from utgard.
-
-Rob
-
-[1] https://patchwork.freedesktop.org/patch/304731/
+-- 
+Sakari Ailus
+sakari.ailus@linux.intel.com
