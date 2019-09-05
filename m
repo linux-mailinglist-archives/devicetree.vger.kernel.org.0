@@ -2,363 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB4FBAA4A2
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED6B6AA4A4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:37:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729918AbfIENgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 09:36:31 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:48642 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727992AbfIENg3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:36:29 -0400
-X-UUID: 7bec2e13779549d986cb50d9409402b2-20190905
-X-UUID: 7bec2e13779549d986cb50d9409402b2-20190905
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
-        (envelope-from <jerry-ch.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1048815547; Thu, 05 Sep 2019 21:36:19 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 5 Sep 2019 21:36:15 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 5 Sep 2019 21:36:15 +0800
-Message-ID: <1567690577.22453.45.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
-From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
-        "zwisler@chromium.org" <zwisler@chromium.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
-        <Sean.Cheng@mediatek.com>,
-        "Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?=" 
-        <sj.huang@mediatek.com>,
-        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
-        <christie.yu@mediatek.com>,
-        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
-        <Frederic.Chen@mediatek.com>,
-        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
-        <jungo.lin@mediatek.com>,
-        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
-        <Rynn.Wu@mediatek.com>,
-        Po-Yang Huang =?UTF-8?Q?=28=E9=BB=83=E6=9F=8F=E9=99=BD=29?= 
-        <po-yang.huang@mediatek.com>,
-        "shik@chromium.org" <shik@chromium.org>,
-        "suleiman@chromium.org" <suleiman@chromium.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "laurent.pinchart+renesas@ideasonboard.com" 
-        <laurent.pinchart+renesas@ideasonboard.com>,
-        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Date:   Thu, 5 Sep 2019 21:36:17 +0800
-In-Reply-To: <CAAFQd5D2ketE19RPr20BVYGhqg2Lh2ZNTtAr5J2GoWU9RiSAsA@mail.gmail.com>
-References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
-         <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
-         <20190802082815.GA203993@chromium.org>
-         <1566724680.20680.8.camel@mtksdccf07>
-         <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
-         <1566957625.20680.33.camel@mtksdccf07>
-         <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
-         <1567424859.18318.32.camel@mtksdccf07>
-         <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
-         <1567493081.18318.49.camel@mtksdccf07>
-         <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
-         <1567511169.18318.65.camel@mtksdccf07>
-         <CAAFQd5DiPcUxd+R-v_-BdRx+QqZ35Riii_jpgbqr5mc3BnQvDw@mail.gmail.com>
-         <1567568281.18318.80.camel@mtksdccf07>
-         <CAAFQd5CRC2cyV30B4Qv59HdrJ7Cpe_yK5aY-BecQQ3J3i0PtCQ@mail.gmail.com>
-         <1567577389.18318.100.camel@mtksdccf07>
-         <CAAFQd5AxTQPD+nP9CJs45QTzGHKssjv3vRtMqHONABfp12afYw@mail.gmail.com>
-         <1567584577.22453.11.camel@mtksdccf07>
-         <CAAFQd5Dzxy10g-MKHMnNbVO6kp9_L_jm1m+gtN+p=YF2LyBiag@mail.gmail.com>
-         <1567587708.22453.15.camel@mtksdccf07>
-         <CAAFQd5DWfEEiGthPi=qoxD-mpAWa68GOCi55mqpmagS-tsGYkA@mail.gmail.com>
-         <1567589188.22453.24.camel@mtksdccf07>
-         <CAAFQd5Ckz9qH7AnLNM4HRTM2gJQP1HXRS09+o6Prf++D1PQhng@mail.gmail.com>
-         <1567603143.22453.27.camel@mtksdccf07>
-         <1567666940.22453.31.camel@mtksdccf07>
-         <CAAFQd5A=D33nUWTyYjt3acV43r3fqjSEkLbt3_Sr1YG1PzQgqQ@mail.gmail.com>
-         <1567671418.22453.41.camel@mtksdccf07>
-         <CAAFQd5D2ketE19RPr20BVYGhqg2Lh2ZNTtAr5J2GoWU9RiSAsA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1727171AbfIENho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 09:37:44 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:47014 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727143AbfIENhn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:37:43 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q5so1754156pfg.13;
+        Thu, 05 Sep 2019 06:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=fi++776ImZEZT48n1qE4d0SlhAt4GD7N11zpq7SBZhM=;
+        b=iZ32udt5Ao+f4A8AcqWMD0UzwlSrvD4qFci1gCSpLs167HXqVYUYi0+M1A9Is/tjrD
+         dSLyGCd0tUG5IE29UZfmw1UIVLGaf3DaSHlaScDW+EX8J6bW6VlfZHdTVtslVlwEPW55
+         AbBtVYL4O7SmjSiyKhKSQ/6e4c3GcOgOm7iYlNwysHhdZs+JeO3YnSH//pWzjkFYoq+Y
+         Wo927FE786DNSu9sHlPoCEaLHphRMla1OzN01QiESJNg9tnViF3DHGe20a0yKaRE9NuT
+         EthsXjvgs5JZK1C99hc4SjQtyBoLqXW1eItvh+J+VIWJxI3QYY9qjmdBMPcXdh1XDjuD
+         gd/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=fi++776ImZEZT48n1qE4d0SlhAt4GD7N11zpq7SBZhM=;
+        b=qxNgG7sY8E4672rhqwam/wjRA9bmeYp0SqKI8i4TLq7Zu4TNilK0yQfkcCYTIE17KA
+         O7hJ8wppVlI2au+UX+lSSAcgL2intL7ap/PXa5N87Tclb7Ev/c/7Qe751MRkRW+gTEvH
+         6dlkFlnrEH1EuEs6LCFwZXTsdQgrDxPTF/l4cyZoD61W4252fP74OvNjG2tRjevd6C/m
+         EFPD/tWhMV1r7AfgtGEajKAbM5z39xlsi/M9CrocaOBnDKrM+3C7qcaKzBIPAGQZwFcG
+         HJslk+sltcqe4GT2KoSX+RJC6qUBuMCDs9eyYFbu5nAOHUdx6oVl+x+fcECrcgIcm10c
+         OeLg==
+X-Gm-Message-State: APjAAAUl6Soyq3HG7wh5e3VOxciTxulW2QoquCEn78jwv/65xMWyYSsP
+        kxh5DR7DRgzCzAU2yh9XVP0=
+X-Google-Smtp-Source: APXvYqwfariauCzmmaTcCfPD/BTxjV8KxWhNia0IPgs/fMJkiUKEcxPoLnijDvxLMAc8xd3e4YgaWg==
+X-Received: by 2002:a17:90a:32c8:: with SMTP id l66mr3979785pjb.44.1567690662640;
+        Thu, 05 Sep 2019 06:37:42 -0700 (PDT)
+Received: from icarus ([2001:268:c145:7cce:aed2:6823:62ef:c22d])
+        by smtp.gmail.com with ESMTPSA id f188sm2268221pfa.170.2019.09.05.06.37.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 06:37:41 -0700 (PDT)
+Date:   Thu, 5 Sep 2019 22:37:21 +0900
+From:   William Breathitt Gray <vilhelm.gray@gmail.com>
+To:     David Lechner <david@lechnology.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] counter: new TI eQEP driver
+Message-ID: <20190905133721.GA728346@icarus>
+References: <20190901225827.12301-1-david@lechnology.com>
 MIME-Version: 1.0
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190901225827.12301-1-david@lechnology.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-09-05 at 16:52 +0800, Tomasz Figa wrote:
-> On Thu, Sep 5, 2019 at 5:17 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> >
-> > Hi Tomasz,
-> >
-> > On Thu, 2019-09-05 at 15:13 +0800, Tomasz Figa wrote:
-> > > On Thu, Sep 5, 2019 at 4:02 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > >
-> > > > Hi Tomasz,
-> > > >
-> > > > On Wed, 2019-09-04 at 21:19 +0800, Jerry-ch Chen wrote:
-> > > > > On Wed, 2019-09-04 at 21:12 +0800, Tomasz Figa wrote:
-> > > > > > On Wed, Sep 4, 2019 at 6:26 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > >
-> > > > > > > Hi Tomasz,
-> > > > > > >
-> > > > > > > On Wed, 2019-09-04 at 17:03 +0800, Tomasz Figa wrote:
-> > > > > > > > On Wed, Sep 4, 2019 at 6:02 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > >
-> > > > > > > > > Hi Tomasz,
-> > > > > > > > >
-> > > > > > > > > On Wed, 2019-09-04 at 16:25 +0800, Tomasz Figa wrote:
-> > > > > > > > > > On Wed, Sep 4, 2019 at 5:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > >
-> > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > >
-> > > > > > > > > > > On Wed, 2019-09-04 at 14:34 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > On Wed, Sep 4, 2019 at 3:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > >
-> > > > > > > > > > > > > On Wed, 2019-09-04 at 12:15 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > On Wed, Sep 4, 2019 at 12:38 PM Jerry-ch Chen
-> > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > On Tue, 2019-09-03 at 20:05 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > On Tue, Sep 3, 2019 at 8:46 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > On Tue, 2019-09-03 at 15:04 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
-> > > > > > > > > > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > > > > > Hi Jerry,
-> > > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
-> > > > > > > > > > > > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
-> > > > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > > > Hi Tomasz,
-> > > > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
-> > > > > > > > > > > > > > > > > > > > > > > > > > Hi Jerry,
-> > > > > > > > > > > > > > > > > > > > > > > > > >
-> > > > > > > > > > > > > > > > > > > > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
-> > > > > > > [snip]
-> > > > > > > > > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > > > > > > > > {
-> > > > > > > > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > > > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > > > > > > > > > >         struct vb2_v4l2_buffer *vb;
-> > > > > > > > > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> > > > > > > > > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> > > > > > > > > > >         u32 ret;
-> > > > > > > > > > >
-> > > > > > > > > > >         if (!fd->fd_irq_done.done)
-> > > > > > > > > >
-> > > > > > > > > > We shouldn't access internal fields of completion.
-> > > > > > > > > >
-> > > > > > > > > > >                 ret = wait_for_completion_timeout(&fd->fd_irq_done,
-> > > > > > > > > > >                                                   msecs_to_jiffies(
-> > > > > > > > > > >                                                         MTK_FD_HW_TIMEOUT));
-> > > > > > > > > > >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
-> > > > > > > > > > >                                         &m2m_ctx->out_q_ctx :
-> > > > > > > > > > >                                         &m2m_ctx->cap_q_ctx;
-> > > > > > > > > > >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
-> > > > > > > > > > >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-> > > > > > > > > > >
-> > > > > > > > > > >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
-> > > > > > > > > > >                 mtk_fd_hw_disconnect(fd);
-> > > > > > > > > > > }
-> > > > > > > > > > >
-> > > > > > > > > > > I've also tried to wait completion unconditionally for both queues and
-> > > > > > > > > > > the second time will wait until timeout, as a result, it takes longer to
-> > > > > > > > > > > swap the camera every time and close the camera app.
-> > > > > > > > > >
-> > > > > > > > > > I think it should work better if we call complete_all() instead of complete().
-> > > > > > > > > >
-> > > > > > > > > Thanks,
-> > > > > > > > >
-> > > > > > > > > I use complete_all(), and it works fine now.
-> > > > > > > > >
-> > > > > > > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > > > > > > {
-> > > > > > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > > > > > > > >         struct vb2_v4l2_buffer *vb;
-> > > > > > > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> > > > > > > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> > > > > > > > >
-> > > > > > > > >         wait_for_completion_timeout(&fd->fd_irq_done,
-> > > > > > > > >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
-> > > > > > > >
-> > > > > > > > Shouldn't we still send some command to the hardware to stop? Like a
-> > > > > > > > reset. Otherwise we don't know if it isn't still accessing the memory.
-> > > > > > > >
-> > > > > > > I thought no more jobs will be enqueued here when stop_streaming so we
-> > > > > > > don't need it.
-> > > > > >
-> > > > > > That's true for the case when the wait completed successfully, but we
-> > > > > > also need to ensure the hardware is stopped even if a timeout happens.
-> > > > > >
-> > > > > > > We still could send an ipi command to reset the HW, and wait for it's
-> > > > > > > callback or we could set the register MTK_FD_REG_OFFSET_HW_ENABLE to
-> > > > > > > zero to disable the HW.
-> > > > > >
-> > > > > > Since it's for handling a timeout, a reset should be more likely to
-> > > > > > bring the hardware back to a reasonable state.
-> > > > > >
-> > > > >
-> > > > > Ok, I will send the ipi command to reset the HW.
-> > > > >
-> > > > > Thanks and best regards,
-> > > > > Jerry
-> > > > I've tested and will refine as following:
-> > > >
-> > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > > > {
-> > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> > > >         struct vb2_v4l2_buffer *vb;
-> > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> > > >         u32 ret;
-> > > >
-> > > >         ret = wait_for_completion_timeout(&fd->fd_irq_done,
-> > > >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
-> > > >         /* Disable FD HW */
-> > > >         if(!ret) {
-> > > >                 struct ipi_message fd_ipi_msg;
-> > > >
-> > > >                 fd_ipi_msg.cmd_id = MTK_FD_IPI_CMD_RESET;
-> > > >                 ret = scp_ipi_send(fd->scp_pdev, SCP_IPI_FD_CMD, &fd_ipi_msg,
-> > > >                                    sizeof(fd_ipi_msg), MTK_FD_IPI_SEND_TIMEOUT);
-> > > >                 if (ret)
-> > > >                         dev_err(fd->dev, "FD Reset HW error\n");
-> > > >         }
-> > >
-> > > Would you also put the same code in suspend handler? If so, perhaps
-> > > it's better to keep this in a helper function (mtk_fd_job_abort()) as
-> > > we had before?
-> > >
-> >
-> > Ok, done, It will reset the HW and return ETIMEOUT if the last job is
-> > timeout, the return value will be used in suspend for further action.
-> >
-> > static int mtk_fd_job_abort(struct mtk_fd_dev *fd)
-> > {
-> >         u32 ret;
-> >
-> >         ret = wait_for_completion_timeout(&fd->fd_irq_done,
-> >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
-> >         /* Reset FD HW */
-> >         if (!ret) {
-> >                 struct ipi_message fd_ipi_msg;
-> >
-> >                 fd_ipi_msg.cmd_id = MTK_FD_IPI_CMD_RESET;
-> >                 if (scp_ipi_send(fd->scp_pdev, SCP_IPI_FD_CMD, &fd_ipi_msg,
-> >                                  sizeof(fd_ipi_msg), MTK_FD_IPI_SEND_TIMEOUT))
-> >                         dev_err(fd->dev, "FD Reset HW error\n");
-> >                 return -ETIMEDOUT;
-> >         }
-> >         return 0;
-> > }
-> >
-> > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
-> > {
-> >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
-> >         struct mtk_fd_dev *fd = ctx->fd_dev;
-> >         struct vb2_v4l2_buffer *vb;
-> >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
-> >         struct v4l2_m2m_queue_ctx *queue_ctx;
-> >
-> >         mtk_fd_job_abort(fd);
-> >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
-> >                                         &m2m_ctx->out_q_ctx :
-> >                                         &m2m_ctx->cap_q_ctx;
-> >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
-> >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-> >
-> >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
-> >                 mtk_fd_hw_disconnect(fd);
-> > }
-> >
-> > static int mtk_fd_suspend(struct device *dev)
-> > {
-> >         struct mtk_fd_dev *fd = dev_get_drvdata(dev);
-> >
-> >         if (pm_runtime_suspended(dev))
-> >                 return 0;
-> >
-> >         if (fd->fd_stream_count)
-> >                 if (mtk_fd_job_abort(fd))
-> >                         mtk_fd_hw_job_finish(fd, VB2_BUF_STATE_ERROR);
+On Sun, Sep 01, 2019 at 05:58:21PM -0500, David Lechner wrote:
+> This series adds device tree bindings and a new counter driver for the Texas
+> Instruments Enhanced Quadrature Encoder Pulse (eQEP).
 > 
-> Wouldn't this cause the next job to be run?
+> As mentioned in one of the commit messages, to start with, the driver only
+> supports reading the current counter value and setting the min/max values.
+> Other features can be added as the counter subsystem gains support for them.
 > 
-> >
-> >         /* suspend FD HW */
-> >         writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_INT_EN);
-> >         writel(0x0, fd->fd_base + MTK_FD_REG_OFFSET_HW_ENABLE);
-> >         clk_disable_unprepare(fd->fd_clk);
-> >         dev_dbg(dev, "%s:disable clock\n", __func__);
-> >
-> >         return 0;
-> > }
-> >
-> > > >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
-> > > >                                         &m2m_ctx->out_q_ctx :
-> > > >                                         &m2m_ctx->cap_q_ctx;
-> > > >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
-> > > >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
-> > > >
-> > > >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
-> > > >                 mtk_fd_hw_disconnect(fd);
-> > > > }
-> > > >
-> > > > If there is no other concern, may I send the RFC v3 patch for review?
-> > >
-> > > Thanks, technically it looks good now. Just one comment about avoiding
-> > > code duplication above.
-> > >
-> >
-> > Thanks,
-> >
-> > I will send the v3 if the above fix-up is accepted,
+> v3 changes:
+> - Minor changes to device tree bindings (style and generic node name)
+> - Drop action in initializer
+> - Fix ordering of pm runtime disable
+> v2 changes:
+> - New patch to move TI PWMSS driver from drivers/pwm/ to drivers/bus/
+> - Device tree bindings converted to .yaml format
+> - Device tree clock renamed from "fck" to "sysclkout"
+> - Dropped unused index and strobe signals from counter driver
+> - Added synapses and actions to counter driver
+> - Fixed base in of kstrtouint()
+> - Clarifications in commit messages
 > 
-> I think there is a bigger issue here actually, related to how the m2m
-> helpers work. Let's just keep the code as you proposed and post v3.
+> This series has been tested on a BeagleBone Blue with the following script:
 > 
-> We can continue the discussion there.
+> #!/usr/bin/env python3
 > 
+> from os import path
+> from time import sleep
+> 
+> COUNTER_PATH = '/sys/bus/counter/devices'
+> COUNTERS = ['counter0', 'counter1', 'counter2']
+> COUNT0 = 'count0'
+> COUNT = 'count'
+> FUNCTION = 'function'
+> CEILING = 'ceiling'
+> FLOOR = 'floor'
+> ENABLE = 'enable'
+> 
+> cnts = []
+> 
+> for c in COUNTERS:
+>     function_path = path.join(COUNTER_PATH, c, COUNT0, FUNCTION)
+>     with open(function_path, 'w') as f:
+>         f.write('quadrature x4')
+>     floor_path = path.join(COUNTER_PATH, c, COUNT0, FLOOR)
+>     with open(floor_path, 'w') as f:
+>         f.write(str(0))
+>     ceiling_path = path.join(COUNTER_PATH, c, COUNT0, CEILING)
+>     with open(ceiling_path, 'w') as f:
+>         f.write(str(0xffffffff))
+>     enable_path = path.join(COUNTER_PATH, c, COUNT0, ENABLE)
+>     with open(enable_path, 'w') as f:
+>         f.write('1')
+> 
+>     cnt_path = path.join(COUNTER_PATH, c, COUNT0, COUNT)
+>     cnts.append(open(cnt_path, 'r'))
+> 
+> while True:
+>     for c in cnts:
+>         c.seek(0)
+>         val = int(c.read())
+>         if val >= 0x80000000:
+>             val -= 0x100000000
+>         print(val, end=' ')
+>     print()
+>     sleep(1)
+> 
+> David Lechner (6):
+>   bus/ti-pwmss: move TI PWMSS driver from PWM to bus subsystem
+>   dt-bindings: counter: new bindings for TI eQEP
+>   counter: new TI eQEP driver
+>   ARM: dts: am33xx: Add nodes for eQEP
+>   ARM: dts: am335x-boneblue: Enable eQEP
+>   ARM: dts: am335x-boneblue: Use of am335x-osd335x-common.dtsi
+> 
+>  .../devicetree/bindings/counter/ti-eqep.yaml  |  50 ++
+>  MAINTAINERS                                   |   6 +
+>  arch/arm/boot/dts/am335x-boneblue.dts         | 146 +++---
+>  arch/arm/boot/dts/am33xx-l4.dtsi              |  27 +
+>  drivers/bus/Kconfig                           |   9 +
+>  drivers/bus/Makefile                          |   1 +
+>  drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} |   0
+>  drivers/counter/Kconfig                       |  11 +
+>  drivers/counter/Makefile                      |   1 +
+>  drivers/counter/ti-eqep.c                     | 473 ++++++++++++++++++
+>  drivers/pwm/Kconfig                           |   9 -
+>  drivers/pwm/Makefile                          |   1 -
+>  12 files changed, 634 insertions(+), 100 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/counter/ti-eqep.yaml
+>  rename drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} (100%)
+>  create mode 100644 drivers/counter/ti-eqep.c
+> 
+> -- 
+> 2.17.1
 
-Ok, I will send v3 soon.
+I'm satisfied with this version of the patchset.
 
-Thanks and best regards,
-Jerry
+Signed-off-by: William Breathitt Gray <vilhelm.gray@gmail.com>
 
-> Best regards,
-> Tomasz
+Jonathan, if you have no objections please pick up this up so that it
+can make it to the 5.4 merge window coming in soon. Alternatively, I can
+merge it into my repository instead and hold it for a while longer
+there, if you prefer that route.
 
+Thank you,
 
+William Breathitt Gray
