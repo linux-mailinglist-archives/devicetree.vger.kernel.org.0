@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A84CDAA127
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 13:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D51CAA13A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 13:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388313AbfIELVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 07:21:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:42458 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388200AbfIELVA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 07:21:00 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 2BA6E28;
-        Thu,  5 Sep 2019 04:21:00 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E627A3F718;
-        Thu,  5 Sep 2019 04:20:57 -0700 (PDT)
-Date:   Thu, 5 Sep 2019 12:20:55 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, andrew.murray@arm.com, kishon@ti.com,
-        gustavo.pimentel@synopsys.com, digetx@gmail.com,
-        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V4 0/6] PCI: tegra: Enable PCIe C5 controller of Tegra194
- in p2972-0000 platform
-Message-ID: <20190905112055.GB16642@e121166-lin.cambridge.arm.com>
-References: <20190905104553.2884-1-vidyas@nvidia.com>
+        id S1731814AbfIELYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 07:24:17 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:52194 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726162AbfIELYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 07:24:17 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 2887660863; Thu,  5 Sep 2019 11:24:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567682656;
+        bh=bXBc7zdddhaTSlMEPK7QbTKYtRiz+go4+nkLx5X8eGo=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=Dw3p9VD1EiFBn6m05v01IAd5hewDHO58IUpHPFnO2+rgUyPHaFDb0rdx+7ViYa4Ug
+         YMOsCKCCt5LMz9SsoklOHWK7Ym9JIxBoXC4hP3dBJbOaFLUh92hR2eHskKng4h1/Bg
+         M8qZ4CwSGqzmak/7BFcQzMt8lNcbWWK1V8U9Y2wo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 516EA605A0;
+        Thu,  5 Sep 2019 11:24:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567682655;
+        bh=bXBc7zdddhaTSlMEPK7QbTKYtRiz+go4+nkLx5X8eGo=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=o/c+5rO6ZLjyJfeUGgc/+kRxkSAcMHI3IJE3C8bn7dMzRII5cWU2CjHiLPPBOSItU
+         HNzme+I89qUyXfoBqFANzjJsJYRONvawJrY8k0WgyQWZaSXeabEwmKMz4jrLd8Sqfd
+         yudt+xTC+p2XFrgNg5RQ+wywwlYm4gP7yG//kJGY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 516EA605A0
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc:     Johannes Berg <johannes@sipsolutions.net>,
+        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+        <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+        <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
+        <ee38dc5e80097d0ebc186f81b2f11d37@codeaurora.org>
+Date:   Thu, 05 Sep 2019 14:24:11 +0300
+In-Reply-To: <ee38dc5e80097d0ebc186f81b2f11d37@codeaurora.org> (Vasanthakumar
+        Thiagarajan's message of "Fri, 23 Aug 2019 17:45:41 +0530")
+Message-ID: <878sr3nfz8.fsf@kamboji.qca.qualcomm.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190905104553.2884-1-vidyas@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 04:15:47PM +0530, Vidya Sagar wrote:
-> This patch series enables Tegra194's C5 controller which owns x16 slot in
-> p2972-0000 platform. C5 controller's PERST# and CLKREQ# are not configured as
-> output and bi-directional signals by default and hence they need to be
-> configured explicitly. Also, x16 slot's 3.3V and 12V supplies are controlled
-> through GPIOs and hence they need to be enabled through regulator framework.
-> This patch series adds required infrastructural support to address both the
-> aforementioned requirements.
-> Testing done on p2972-0000 platform
-> - Able to enumerate devices connected to x16 slot (owned by C5 controller)
-> - Enumerated device's functionality verified
-> - Suspend-Resume sequence is verified with device connected to x16 slot
-> 
-> V4:
-> * Rebased (Patch-4/6 particularly) on top of Lorenzo's pci/tegra branch
-> 
-> V3:
-> * Addressed some more review comments from Andrew Murray and Thierry Reding
-> 
-> V2:
-> * Changed the order of patches in the series for easy merging
-> * Addressed review comments from Thierry Reding and Andrew Murray
-> 
-> Vidya Sagar (6):
->   dt-bindings: PCI: tegra: Add sideband pins configuration entries
->   dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
->   PCI: tegra: Add support to configure sideband pins
->   PCI: tegra: Add support to enable slot regulators
->   arm64: tegra: Add configuration for PCIe C5 sideband signals
->   arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
-> 
->  .../bindings/pci/nvidia,tegra194-pcie.txt     | 16 ++++
->  .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 24 +++++
->  .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  4 +-
->  arch/arm64/boot/dts/nvidia/tegra194.dtsi      | 38 +++++++-
->  drivers/pci/controller/dwc/pcie-tegra194.c    | 94 ++++++++++++++++++-
->  5 files changed, 172 insertions(+), 4 deletions(-)
+Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
 
-Applied to pci/tegra for v5.4, thanks.
+> On 2019-08-21 02:16, Johannes Berg wrote:
+>> On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
+>>
+>>> +static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32 changed)
+>>> +{
+>>> +	struct ath11k *ar = hw->priv;
+>>> +	int ret = 0;
+>>> +
+>>> +	/* mac80211 requires this op to be present and that's why
+>>> +	 * there's an empty function, this can be extended when
+>>> +	 * required.
+>>> +	 */
+>>
+>> Well, oops. Maybe it shouldn't be required?
+>
+> I think we require this for some configuration handling. The comment
+> is to be updated with proper information. We'll address that.
 
-Lorenzo
+The way I'm understanding Johannes' comment is that maybe we should
+change mac80211 to require this op to be present. Should be easy to fix
+in mac80211, right?
+
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
