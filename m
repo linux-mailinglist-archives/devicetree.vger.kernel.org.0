@@ -2,550 +2,261 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E397AA67D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 16:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D67F9AA6B0
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 17:03:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390029AbfIEOvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 10:51:19 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:36968 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728590AbfIEOvT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 10:51:19 -0400
-Received: by mail-wm1-f66.google.com with SMTP id r195so3439829wme.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 07:51:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=hP6dTKrGhmI4Li1vYBwvA5G00RWYLdiehRQLahBt/08=;
-        b=UUIx2S2a1OTzLYcxsOGi8vjYvnpXjIXXfjjInQmQhJrOoLVMUI4bMk0pP8K4hv5+v1
-         bC+ahF3FezFlzFIlypiny7EYPPxM79sdZHZnnpe6qgrTfl/6guRvEmNJy8vpPadhocR8
-         IW0JAJGxuc7RH4bWScdjpjBLvTYEo3MLTNDGuJOCB05O5AH8D6gSDZPqwaUWbITmdboy
-         JTOLJ37XUMxPF83r7F6BQwynpfcnLc9Ytv9w1tMp0R82MmO52QP457mar3d7PWPJu/Rw
-         YJb6IDjcjSjZJrr3aGvnJVnETp/zGeRsmeTgNtJe37OYQ5blm4tzTlx1dRxuMiRRs6DS
-         rUaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=hP6dTKrGhmI4Li1vYBwvA5G00RWYLdiehRQLahBt/08=;
-        b=F+72LTAAzFCJdqQBkjLAxiXunrh75bpPaJYhYmYO9ui97Q2ffdfWe/fFbQqNWPFF5j
-         hCrUALimggPb6gqkVpnbociQXRWz43g1+IYL4C00HZ8C63BTZv723QqdcpB/V1S018Z5
-         J/UvMzZVQkMHNfRqmOZK7wmoFbmrDibidQmRrsDQ/BQuWR0yR0CayjHCo9XaBDXbYOyR
-         v40Y6kYZEzVwGU6EjE3sjXXDMz8bthlel0VUbxspPSMLINBkE/ckkwju1EET51nc5nqJ
-         53RusLgXBi1Gt601oRnWAq6vpdWE2a2cfxSbcIh4+LfhV67MzWF6UT78vnpjxBQd62mQ
-         cHFg==
-X-Gm-Message-State: APjAAAVZb2hcZQzI+ntHjh0XHu1HRBUtHeV9y1aIdd0zg5ueioU3wE2E
-        pGvSYwAE9Oa1rS7QucscoMOX5w==
-X-Google-Smtp-Source: APXvYqybUDyw7bzKyC0JJlkse2i6lXau2tHY0+7iUxCwZcbyfwIDTqmYWXxNn26wfhgBAKudt68zBQ==
-X-Received: by 2002:a1c:a404:: with SMTP id n4mr3206745wme.137.1567695075383;
-        Thu, 05 Sep 2019 07:51:15 -0700 (PDT)
-Received: from localhost.localdomain ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id g201sm4376858wmg.34.2019.09.05.07.51.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 07:51:14 -0700 (PDT)
-From:   Lee Jones <lee.jones@linaro.org>
-To:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        bjorn.andersson@linaro.org, arnd@arndb.de
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        soc@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH v4 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
-Date:   Thu,  5 Sep 2019 15:51:12 +0100
-Message-Id: <20190905145112.7366-1-lee.jones@linaro.org>
-X-Mailer: git-send-email 2.17.1
+        id S2390184AbfIEPDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 11:03:54 -0400
+Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.52]:20588 "EHLO
+        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390151AbfIEPDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 11:03:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1567695828;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=sjTmZbBx00G24DCuo44NeyGu9houwWQ9Ef7hhYGN/jo=;
+        b=QzUwvWF74/5jk93Bp/ZSLE94vgqJO91sPx70A2YMkFk/gbSxcwOif9+344aeFC18GF
+        weK9qlIM0hpUQBeA0mSgVT+3bzP7/Afwdzeih4j8uv2U9p6rpohhLPTcREzLzADmVgls
+        OhWdu86n90ZjQ6oznhyHx/l74lnkMgasycpu2dthP9n9jO7E4h+qY2jNb/NRHhxkFeJ5
+        6ArUOrZAcIljtAIP2iljQTI+Ddko22GRxYyVUQzeEOA8xkxemvvqnqVWRlHFD38txqFO
+        QVTD86KOCIhrQjU4AbOSoKklt/ipXfsg1nKyaGDnx+1TK0TxWc5aSIt5KvZnNTQmegBy
+        DAHQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NIGH+To3jrG"
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
+        with ESMTPSA id u036f9v85F3SkI4
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Thu, 5 Sep 2019 17:03:28 +0200 (CEST)
+Content-Type: text/plain; charset=utf-8
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [PATCH 4/6] ARM: dts: Configure sgx for omap5
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20190826145530.GT52127@atomide.com>
+Date:   Thu, 5 Sep 2019 17:03:28 +0200
+Cc:     Stephen Boyd <sboyd@kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?Q?Filip_Matijevi=C4=87?= <filip.matijevic.pz@gmail.com>,
+        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
+        moaz korena <moaz@korena.xyz>,
+        Merlijn Wajer <merlijn@wizzup.org>,
+        =?utf-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
+        Philipp Rossak <embed3d@gmail.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Tero Kristo <t-kristo@ti.com>, linux-clk@vger.kernel.org,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, kernel@pyra-handheld.com
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <4BC961D4-1D6E-457B-944A-7137414BC163@goldelico.com>
+References: <20190814131408.57162-1-tony@atomide.com> <20190814131408.57162-5-tony@atomide.com> <20190815182348.8A1BA2063F@mail.kernel.org> <20190817065615.GI52127@atomide.com> <20190826145530.GT52127@atomide.com>
+To:     Tony Lindgren <tony@atomide.com>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+Hi Tony,
+I found some time to update my drivers/stating/pvr/1.14.369993 tree to =
+make
+use of the new sgx soc integration code and it works on omap5!
 
-The Lenovo Yoga C630 is built on the SDM850 from Qualcomm, but this seem
-to be similar enough to the SDM845 that we can reuse the sdm845.dtsi.
+> root@letux:~# modprobe pvrsrvkm_omap_omap5_sgx544_116
+> [  106.478254] pvrsrvkm_omap_omap5_sgx544_116: module is from the =
+staging directory, the quality is unknown, you have been warned.
+> [  106.526201] [drm] Initialized pvr 1.14.3699939 20110701 for =
+5600fe00.sgx on minor 1
+> root@letux:~# pvrsrvctl --no-module --start
+> [  261.091978] PVR_K: UM DDK-(3699939) and KM DDK-(3699939) match. [ =
+OK ]
+> root@letux:~# gles1test1 0
+> ^C
+> root@letux:~#=20
 
-Supported by this patch is: keyboard, battery monitoring, UFS storage,
-USB host and Bluetooth.
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Acked-by: Sudeep Holla <sudeep.holla@arm.com>
-[Lee] Reorder, change licence, remove non-upstream device node
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
----
+To make it work, I have added a child node to the target-module@56000000
+that describes the img,sgx5xx. Here are the work-in-progress patches if
+you want to take a look inside:
 
-Changelog:
- * Reorder nodes alphabetically
- * Remove superfluous node for driver not yet upstream
- * Add (then remove) 'no-dma' property
- * Change licence to BSD
+	=
+https://github.com/openpvrsgx-devgroup/linux_openpvrsgx/commits/letux/omap=
+-pvr-soc-glue-v2
 
-arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 446 ++++++++++++++++++
- 2 files changed, 447 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+On omap3630 the driver module loads but pvrsrvinit fails:
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 0a7e5dfce6f7..670c6c65f9e9 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-new file mode 100644
-index 000000000000..ded120d3aef5
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -0,0 +1,446 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Lenovo Yoga C630
-+ *
-+ * Copyright (c) 2019, Linaro Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include "sdm845.dtsi"
-+#include "pm8998.dtsi"
-+
-+/ {
-+	model = "Lenovo Yoga C630";
-+	compatible = "lenovo,yoga-c630", "qcom,sdm845";
-+
-+	aliases {
-+		hsuart0 = &uart6;
-+	};
-+};
-+
-+&apps_rsc {
-+	pm8998-rpmh-regulators {
-+		compatible = "qcom,pm8998-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-+
-+		vreg_s2a_1p125: smps2 {
-+		};
-+
-+		vreg_s3a_1p35: smps3 {
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s4a_1p8: smps4 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5a_2p04: smps5 {
-+			regulator-min-microvolt = <2040000>;
-+			regulator-max-microvolt = <2040000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s7a_1p025: smps7 {
-+		};
-+
-+		vdd_qusb_hs0:
-+		vdda_hp_pcie_core:
-+		vdda_mipi_csi0_0p9:
-+		vdda_mipi_csi1_0p9:
-+		vdda_mipi_csi2_0p9:
-+		vdda_mipi_dsi0_pll:
-+		vdda_mipi_dsi1_pll:
-+		vdda_qlink_lv:
-+		vdda_qlink_lv_ck:
-+		vdda_qrefs_0p875:
-+		vdda_pcie_core:
-+		vdda_pll_cc_ebi01:
-+		vdda_pll_cc_ebi23:
-+		vdda_sp_sensor:
-+		vdda_ufs1_core:
-+		vdda_ufs2_core:
-+		vdda_usb1_ss_core:
-+		vdda_usb2_ss_core:
-+		vreg_l1a_0p875: ldo1 {
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_10:
-+		vreg_l2a_1p2: ldo2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l3a_1p0: ldo3 {
-+		};
-+
-+		vdd_wcss_cx:
-+		vdd_wcss_mx:
-+		vdda_wcss_pll:
-+		vreg_l5a_0p8: ldo5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_13:
-+		vreg_l6a_1p8: ldo6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a_1p8: ldo7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a_1p2: ldo8 {
-+		};
-+
-+		vreg_l9a_1p8: ldo9 {
-+		};
-+
-+		vreg_l10a_1p8: ldo10 {
-+		};
-+
-+		vreg_l11a_1p0: ldo11 {
-+		};
-+
-+		vdd_qfprom:
-+		vdd_qfprom_sp:
-+		vdda_apc1_cs_1p8:
-+		vdda_gfx_cs_1p8:
-+		vdda_qrefs_1p8:
-+		vdda_qusb_hs0_1p8:
-+		vddpx_11:
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_2:
-+		vreg_l13a_2p95: ldo13 {
-+		};
-+
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-min-microvolt = <1880000>;
-+			regulator-max-microvolt = <1880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l15a_1p8: ldo15 {
-+		};
-+
-+		vreg_l16a_2p7: ldo16 {
-+		};
-+
-+		vreg_l17a_1p3: ldo17 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_2p7: ldo18 {
-+		};
-+
-+		vreg_l19a_3p0: ldo19 {
-+			regulator-min-microvolt = <3100000>;
-+			regulator-max-microvolt = <3108000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20a_2p95: ldo20 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21a_2p95: ldo21 {
-+		};
-+
-+		vreg_l22a_2p85: ldo22 {
-+		};
-+
-+		vreg_l23a_3p3: ldo23 {
-+		};
-+
-+		vdda_qusb_hs0_3p1:
-+		vreg_l24a_3p075: ldo24 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3083000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l25a_3p3: ldo25 {
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3112000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdda_hp_pcie_1p2:
-+		vdda_hv_ebi0:
-+		vdda_hv_ebi1:
-+		vdda_hv_ebi2:
-+		vdda_hv_ebi3:
-+		vdda_mipi_csi_1p25:
-+		vdda_mipi_dsi0_1p2:
-+		vdda_mipi_dsi1_1p2:
-+		vdda_pcie_1p2:
-+		vdda_ufs1_1p2:
-+		vdda_ufs2_1p2:
-+		vdda_usb1_ss_1p2:
-+		vdda_usb2_ss_1p2:
-+		vreg_l26a_1p2: ldo26 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l28a_3p0: ldo28 {
-+		};
-+
-+		vreg_lvs1a_1p8: lvs1 {
-+		};
-+
-+		vreg_lvs2a_1p8: lvs2 {
-+		};
-+	};
-+};
-+
-+&apps_smmu {
-+	/* TODO: Figure out how to survive booting with this enabled */
-+	status = "disabled";
-+};
-+
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CORE_CLK>,
-+			   <GCC_QSPI_CORE_CLK_SRC>,
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	hid@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 37 IRQ_TYPE_EDGE_RISING>;
-+	};
-+
-+	hid@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+
-+		interrupts-extended = <&tlmm 37 IRQ_TYPE_EDGE_RISING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2c2_hid_active>;
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	hid@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2c6_hid_active>;
-+	};
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+
-+	hid@5c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x5c>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 92 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2c12_hid_active>;
-+	};
-+};
-+
-+&qup_i2c12_default {
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
-+&qup_uart6_default {
-+	pinmux {
-+		 pins = "gpio45", "gpio46", "gpio47", "gpio48";
-+		 function = "qup6";
-+	};
-+
-+	cts {
-+		pins = "gpio45";
-+		bias-pull-down;
-+	};
-+
-+	rts-tx {
-+		pins = "gpio46", "gpio47";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	rx {
-+		pins = "gpio48";
-+		bias-pull-up;
-+	};
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <81 4>;
-+
-+	i2c2_hid_active: i2c2-hid-active {
-+		pins = <37>;
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-pull-up;
-+		drive-strength = <2>;
-+	};
-+
-+	i2c6_hid_active: i2c6-hid-active {
-+		pins = <125>;
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-pull-up;
-+		drive-strength = <2>;
-+	};
-+
-+	i2c12_hid_active: i2c12-hid-active {
-+		pins = <92>;
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-pull-up;
-+		drive-strength = <2>;
-+	};
-+};
-+
-+&uart6 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	vcc-supply = <&vreg_l20a_2p95>;
-+	vcc-max-microamp = <600000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_ufs1_core>;
-+	vdda-pll-supply = <&vdda_ufs1_1p2>;
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vdda_usb1_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_usb1_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb1_ss_core>;
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_2_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vdda_usb2_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_22_8_MA>;
-+};
-+
-+&usb_2_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_usb2_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb2_ss_core>;
-+};
--- 
-2.17.1
+> root@letux:~# modprobe pvrsrvkm_omap_omap3630_sgx530_125
+> [  390.429260] pvrsrvkm_omap_omap3630_sgx530_125: module is from the =
+staging directory, the quality is unknown, you have been warned.
+> [  390.474304] [drm] Initialized pvr 1.14.3699939 20110701 for =
+50000000.sgx on minor 1
+> root@letux:~# pvrsrvctl --start --no-module
+> [  402.200439] PVR_K: UM DDK-(3699939) and KM DDK-(3699939) match. [ =
+OK ]
+> [  402.219604] PVR_K:(Error): BridgedDispatchKM: Initialisation =
+failed.  Driver unusable.
+> PVR:(Error): LoaduKernelProgram : SGX ukernel program Device Addr: =
+0xe400000 invalid alignment [0, ]
+> PVR:(Error): SetupuKernel : Failed to load uKernel programs [0, ]
+> PVR:(Error): SrvInit: Initialisation for device of class 0, type 7, =
+index 0, failed (1) [0, ]
+> PVR:(Error): PVRSRVBridgeCall: Failed to access device.  Function =
+ID:3223086862 (strerror returns no value.). [0, ]
+> pvrsrvctl: SrvInit failed (already initialized?) =
+(err=3DPVRSRV_ERROR_OUT_OF_MEMORY - Unable to allocate required memory)
+> root@letux:~#=20
+
+Maybe I do not have done the address range translation properly. Or I am =
+missing
+some of your PRM rstctrl patches since I am working on top of =
+linus/master.
+Because of that I had to comment out prm_gfx in am33xx.dtsi to get it =
+compile and could
+not test yet on Beagle Bone.
+
+A little unclear is how to properly handle omap4. omap4430/4440 and 4460 =
+have the sgx540
+while only omap4470 has an sgx544 inside. But omap4420/30 share one =
+.dtsi and omap4460/70
+the other. So we might have to define a new omap4470.dtsi and #include =
+in the real omap4470
+boards.
+
+And am3517 and am43/am57/am65/... support is missing. But that can be =
+added later if we
+have it running on omap3 and am33xx.
+
+Anyways, we again have made a big step forwards. Let's hope that we can =
+get
+the FLOSS part of the sgx drivers to staging in some not too far future.
+
+BR and thanks,
+Nikolaus
+
+
+> Am 26.08.2019 um 16:55 schrieb Tony Lindgren <tony@atomide.com>:
+>=20
+> * Tony Lindgren <tony@atomide.com> [190817 06:56]:
+>> * Stephen Boyd <sboyd@kernel.org> [190815 18:24]:
+>>> Quoting Tony Lindgren (2019-08-14 06:14:06)
+>>>> diff --git a/arch/arm/boot/dts/omap54xx-clocks.dtsi =
+b/arch/arm/boot/dts/omap54xx-clocks.dtsi
+>>>> --- a/arch/arm/boot/dts/omap54xx-clocks.dtsi
+>>>> +++ b/arch/arm/boot/dts/omap54xx-clocks.dtsi
+>>>> @@ -1146,6 +1146,20 @@
+>>>>                };
+>>>>        };
+>>>>=20
+>>>> +       gpu_cm: gpu_cm@1500 {
+>>>=20
+>>> Node names shouldn't have underscores. Maybe clock-controller?
+>>=20
+>> OK yeah clock-controller sounds good to me.
+>=20
+> Below is this one updated to use clock-controller naming.
+>=20
+> Regards,
+>=20
+> Tony
+>=20
+> 8< ---------------------------
+> =46rom tony Mon Sep 17 00:00:00 2001
+> From: Tony Lindgren <tony@atomide.com>
+> Date: Wed, 14 Aug 2019 05:18:16 -0700
+> Subject: [PATCH] ARM: dts: Configure sgx for omap5
+> MIME-Version: 1.0
+> Content-Type: text/plain; charset=3DUTF-8
+> Content-Transfer-Encoding: 8bit
+>=20
+> I've tested that the interconnect target module enables and idles
+> just fine when probed with ti-sysc with PM runtime control via sys:
+>=20
+> # echo on > $(find /sys -name control | grep \/5600)
+> # rwmem 0x5600fe00	# OCP Revision
+> 0x5600fe00 =3D 0x40000000
+> # echo auto > $(find /sys -name control | grep \/5600)
+> # rwmem 0x5600fe10
+> # rwmem 0x56000024
+>=20
+> Cc: Adam Ford <aford173@gmail.com>
+> Cc: Filip Matijevi=C4=87 <filip.matijevic.pz@gmail.com>
+> Cc: "H. Nikolaus Schaller" <hns@goldelico.com>
+> Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
+> Cc: moaz korena <moaz@korena.xyz>
+> Cc: Merlijn Wajer <merlijn@wizzup.org>
+> Cc: Pawe=C5=82 Chmiel <pawel.mikolaj.chmiel@gmail.com>
+> Cc: Philipp Rossak <embed3d@gmail.com>
+> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Signed-off-by: Tony Lindgren <tony@atomide.com>
+> ---
+> arch/arm/boot/dts/omap5.dtsi           | 23 +++++++++++++++++++++++
+> arch/arm/boot/dts/omap54xx-clocks.dtsi | 14 ++++++++++++++
+> 2 files changed, 37 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/omap5.dtsi =
+b/arch/arm/boot/dts/omap5.dtsi
+> --- a/arch/arm/boot/dts/omap5.dtsi
+> +++ b/arch/arm/boot/dts/omap5.dtsi
+> @@ -257,6 +257,29 @@
+> 			ports-implemented =3D <0x1>;
+> 		};
+>=20
+> +		target-module@56000000 {
+> +			compatible =3D "ti,sysc-omap4", "ti,sysc";
+> +			reg =3D <0x5600fe00 0x4>,
+> +			      <0x5600fe10 0x4>;
+> +			reg-names =3D "rev", "sysc";
+> +			ti,sysc-midle =3D <SYSC_IDLE_FORCE>,
+> +					<SYSC_IDLE_NO>,
+> +					<SYSC_IDLE_SMART>;
+> +			ti,sysc-sidle =3D <SYSC_IDLE_FORCE>,
+> +					<SYSC_IDLE_NO>,
+> +					<SYSC_IDLE_SMART>;
+> +			clocks =3D <&gpu_clkctrl OMAP5_GPU_CLKCTRL 0>;
+> +			clock-names =3D "fck";
+> +			#address-cells =3D <1>;
+> +			#size-cells =3D <1>;
+> +			ranges =3D <0 0x56000000 0x2000000>;
+> +
+> +			/*
+> +			 * Closed source PowerVR driver, no child device
+> +			 * binding or driver in mainline
+> +			 */
+> +		};
+> +
+> 		dss: dss@58000000 {
+> 			compatible =3D "ti,omap5-dss";
+> 			reg =3D <0x58000000 0x80>;
+> diff --git a/arch/arm/boot/dts/omap54xx-clocks.dtsi =
+b/arch/arm/boot/dts/omap54xx-clocks.dtsi
+> --- a/arch/arm/boot/dts/omap54xx-clocks.dtsi
+> +++ b/arch/arm/boot/dts/omap54xx-clocks.dtsi
+> @@ -1146,6 +1146,20 @@
+> 		};
+> 	};
+>=20
+> +	gpu_cm: clock-controller@1500 {
+> +		compatible =3D "ti,omap4-cm";
+> +		reg =3D <0x1500 0x100>;
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <1>;
+> +		ranges =3D <0 0x1500 0x100>;
+> +
+> +		gpu_clkctrl: clk@20 {
+> +			compatible =3D "ti,clkctrl";
+> +			reg =3D <0x20 0x4>;
+> +			#clock-cells =3D <2>;
+> +		};
+> +	};
+> +
+> 	l3init_cm: l3init_cm@1600 {
+> 		compatible =3D "ti,omap4-cm";
+> 		reg =3D <0x1600 0x100>;
+> --=20
+> 2.23.0
 
