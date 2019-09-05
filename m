@@ -2,63 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5DDDAA5BE
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 16:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB243AA5CB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 16:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388817AbfIEO1A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 10:27:00 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:47757 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729053AbfIEO1A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 10:27:00 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1i5six-0007P5-3B; Thu, 05 Sep 2019 16:26:59 +0200
-Message-ID: <1567693618.3958.4.camel@pengutronix.de>
-Subject: Re: [PATCH v2 0/2] reset: meson-audio-arb: add sm1 support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Thu, 05 Sep 2019 16:26:58 +0200
-In-Reply-To: <20190905135040.6635-1-jbrunet@baylibre.com>
-References: <20190905135040.6635-1-jbrunet@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S2389062AbfIEO12 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 10:27:28 -0400
+Received: from foss.arm.com ([217.140.110.172]:46096 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389049AbfIEO12 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 10:27:28 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 90DBB28;
+        Thu,  5 Sep 2019 07:27:27 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D2D973F67D;
+        Thu,  5 Sep 2019 07:27:26 -0700 (PDT)
+Date:   Thu, 5 Sep 2019 15:27:25 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     lorenzo.pieralisi@arm.com, bhelgaas@google.com,
+        jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, dwmw@amazon.co.uk,
+        benh@kernel.crashing.org, alisaidi@amazon.com, ronenk@amazon.com,
+        barakw@amazon.com, talel@amazon.com, hanochu@amazon.com,
+        hhhawa@amazon.com, linux-pci@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 7/7] PCI: dwc: Add validation that PCIe core is set to
+ correct mode
+Message-ID: <20190905142723.GC9720@e119886-lin.cambridge.arm.com>
+References: <20190905140018.5139-1-jonnyc@amazon.com>
+ <20190905140144.7933-3-jonnyc@amazon.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190905140144.7933-3-jonnyc@amazon.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jerome,
+On Thu, Sep 05, 2019 at 05:01:44PM +0300, Jonathan Chocron wrote:
+> Some PCIe controllers can be set to either Host or EP according to some
+> early boot FW. To make sure there is no discrepancy (e.g. FW configured
+> the port to EP mode while the DT specifies it as a host bridge or vice
+> versa), a check has been added for each mode.
+> 
+> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> Acked-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-ep.c  |  8 ++++++++
+>  .../pci/controller/dwc/pcie-designware-host.c    | 16 ++++++++++++++++
+>  2 files changed, 24 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> index 65f479250087..3dd2e2697294 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+> @@ -498,6 +498,7 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  	int ret;
+>  	u32 reg;
+>  	void *addr;
+> +	u8 hdr_type;
+>  	unsigned int nbars;
+>  	unsigned int offset;
+>  	struct pci_epc *epc;
+> @@ -562,6 +563,13 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
+>  	if (ep->ops->ep_init)
+>  		ep->ops->ep_init(ep);
+>  
+> +	hdr_type = dw_pcie_readb_dbi(pci, PCI_HEADER_TYPE);
+> +	if (hdr_type != PCI_HEADER_TYPE_NORMAL) {
+> +		dev_err(pci->dev, "PCIe controller is not set to EP mode (hdr_type:0x%x)!\n",
+> +			hdr_type);
+> +		return -EIO;
+> +	}
+> +
+>  	ret = of_property_read_u8(np, "max-functions", &epc->max_functions);
+>  	if (ret < 0)
+>  		epc->max_functions = 1;
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index d3156446ff27..0f36a926059a 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -323,6 +323,7 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  	struct pci_bus *child;
+>  	struct pci_host_bridge *bridge;
+>  	struct resource *cfg_res;
+> +	u32 hdr_type;
+>  	int ret;
+>  
+>  	raw_spin_lock_init(&pci->pp.lock);
+> @@ -464,6 +465,21 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  			goto err_free_msi;
+>  	}
+>  
+> +	ret = dw_pcie_rd_own_conf(pp, PCI_HEADER_TYPE, 1, &hdr_type);
+> +	if (ret != PCIBIOS_SUCCESSFUL) {
+> +		dev_err(pci->dev, "Failed reading PCI_HEADER_TYPE cfg space reg (ret: 0x%x)\n",
+> +			ret);
+> +		ret = pcibios_err_to_errno(ret);
+> +		goto err_free_msi;
+> +	}
+> +	if (hdr_type != PCI_HEADER_TYPE_BRIDGE) {
+> +		dev_err(pci->dev,
+> +			"PCIe controller is not set to bridge type (hdr_type: 0x%x)!\n",
+> +			hdr_type);
+> +		ret = -EIO;
+> +		goto err_free_msi;
+> +	}
+> +
 
-On Thu, 2019-09-05 at 15:50 +0200, Jerome Brunet wrote:
-> This patchset adds the new arb reset lines for the sm1 SoC family
-> It has been tested on the sei610 platform.
-> 
-> Changes since v1 [0]:
-> * Fix the mistake on the number of reset as reported by Phililpp (thx)
-> 
-> [0]:  https://lkml.kernel.org/r/20190820094625.13455-1-jbrunet@baylibre.com
-> 
-> Jerome Brunet (2):
->   reset: dt-bindings: meson: update arb bindings for sm1
->   reset: meson-audio-arb: add sm1 support
-> 
->  .../reset/amlogic,meson-axg-audio-arb.txt     |  3 +-
->  drivers/reset/reset-meson-audio-arb.c         | 43 +++++++++++++++++--
->  .../reset/amlogic,meson-axg-audio-arb.h       |  2 +
->  3 files changed, 44 insertions(+), 4 deletions(-)
+Reviewed-by: Andrew Murray <andrew.murray@arm.com>
 
-Thank you, both applied to reset/next.
-
-regards
-Philipp
+>  	pp->root_bus_nr = pp->busn->start;
+>  
+>  	bridge->dev.parent = dev;
+> -- 
+> 2.17.1
+> 
