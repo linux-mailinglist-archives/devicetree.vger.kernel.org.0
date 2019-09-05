@@ -2,765 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D64AA3AF
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:00:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43E9CAA42D
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:18:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389660AbfIENAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 09:00:21 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37281 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389632AbfIENAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:00:13 -0400
-Received: by mail-wm1-f68.google.com with SMTP id r195so2928026wme.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 06:00:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tg72AFDU3yC+NJbASKmdxgrvf6ZY3trkfmLrWIR27V8=;
-        b=J68FFBG3xtdSsAANLDUzsD8pmZ39OZwDjBn4N19X9eo8RLiWVdwqflkeuiOd1L5TD0
-         DUIJBzTZJbjQG18PLrfcY2DWBNwwriao93+I2b7FLiH6vVy4d/erGabZ8iDYQS+9CGew
-         1lYE5FeWEj3s0rDQRmxBvSD6C3YN1IfZK3HB8Lp2onuVRn55TFb85+w98Ru2oxwOvvzO
-         /U5Ga83Sm5HKS8nYw4ceW27hHQbeyW5u+RlkVlghT7r61Q5mlf2+jp0zMzdtI6w+2/Dj
-         Y0uN45K9j6W3SrciJP3OvbyFyl/PwacmmvDqywBfUtkKgbHFxUkq5BKRSnxNEjfPfYAA
-         vwRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tg72AFDU3yC+NJbASKmdxgrvf6ZY3trkfmLrWIR27V8=;
-        b=jO8mxjxnqKzeA7niSNDh0I8CbjSLWyZ+4nj6nveQEmG0Q8/w2k3Na/Ma2NYiMwEYWA
-         fbfl6lge76Fi3Lf1hWHgZFzlwah5z4fUccIYk1AgAmYMbIuysvK+KpGH0gFa8P+Tc5f9
-         OZ8Tne46LI3E/LNCkCa0CwnxgUQeSehu0bGy7boYvZR/+2YcQrNDioHbWJnMeoDQEKMA
-         z2pVQ59UKIQgsg37ua0KYa+7pBwu5esU8VuoLLZzchWV220KGW8b36B5EDrVaCWuiPht
-         18ckwEenfqr9a0Fmgau5Dl8Pw1aam2bm7ESMN7xsXSTIVK2f6/dgHwPXoGdPNP56I0zf
-         f7Vw==
-X-Gm-Message-State: APjAAAU3wDl1d9o2Ib3GFeaTEu4NCOWGcagwVOi+rZpM6OzlTI0tyH5c
-        GY+wD9UWJoLFOEUfuZ/0VLna5/O+7FpzLg==
-X-Google-Smtp-Source: APXvYqyzXnhfpuEMfaEKET08J54DUJhO9QjVCL9Ltg2/OrabtUG2aT61TWiGw04H/emfRgJuJhFyNQ==
-X-Received: by 2002:a1c:9a94:: with SMTP id c142mr2827918wme.172.1567688407897;
-        Thu, 05 Sep 2019 06:00:07 -0700 (PDT)
-Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id z189sm3727903wmc.25.2019.09.05.06.00.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 06:00:07 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] arm64: dts: meson: g12: move audio bus out of g12-common
-Date:   Thu,  5 Sep 2019 14:59:56 +0200
-Message-Id: <20190905125956.4384-6-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190905125956.4384-1-jbrunet@baylibre.com>
-References: <20190905125956.4384-1-jbrunet@baylibre.com>
+        id S1730809AbfIENSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 09:18:13 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:40284 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730780AbfIENSN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:18:13 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 75AA060710; Thu,  5 Sep 2019 13:18:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567689492;
+        bh=aUuPqj9wb/JmSVV1hNFjJjdcQfTmN3Eohmt0r8g+oJ4=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=B0HZE85kueSI3pQ/FfFcLvFa3KTZftrFsNAtUNg7F1aCS1LzagU1K/Nqhfa6e4fJD
+         Vvyl2kC8/Shu1zRok9OM7zro3dqtRtInBHPxxLB8yFA++k+obILM+8QUMO3OTbSmiJ
+         c5KoezylnQhfQbmUTnz97GuWPfO2Orf08+b3w/qs=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id D849E6025A;
+        Thu,  5 Sep 2019 13:18:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567689492;
+        bh=aUuPqj9wb/JmSVV1hNFjJjdcQfTmN3Eohmt0r8g+oJ4=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=B0HZE85kueSI3pQ/FfFcLvFa3KTZftrFsNAtUNg7F1aCS1LzagU1K/Nqhfa6e4fJD
+         Vvyl2kC8/Shu1zRok9OM7zro3dqtRtInBHPxxLB8yFA++k+obILM+8QUMO3OTbSmiJ
+         c5KoezylnQhfQbmUTnz97GuWPfO2Orf08+b3w/qs=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D849E6025A
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH 01/49] dt: bindings: net: add qcom,ath11k.txt
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+        <1566316095-27507-2-git-send-email-kvalo@codeaurora.org>
+        <20190827171307.GA23128@bogus>
+Date:   Thu, 05 Sep 2019 16:18:08 +0300
+In-Reply-To: <20190827171307.GA23128@bogus> (Rob Herring's message of "Tue, 27
+        Aug 2019 12:13:07 -0500")
+Message-ID: <87o8zylw4v.fsf@kamboji.qca.qualcomm.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The base address of the audio bus and pdm device are different
-between the g12 and sm1 SoC families. Overwriting the reg property
-only would leave with confusing node names on the sm1.
+Rob Herring <robh@kernel.org> writes:
 
-Move the audio related devices to the g12 dtsi. The appropriate nodes
-will be created for the sm1 later on.
+> On Tue, Aug 20, 2019 at 06:47:27PM +0300, Kalle Valo wrote:
+>
+> Missing commit message and Sob (and on the other patches).
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- .../boot/dts/amlogic/meson-g12-common.dtsi    | 320 -----------------
- arch/arm64/boot/dts/amlogic/meson-g12.dtsi    | 324 ++++++++++++++++++
- 2 files changed, 324 insertions(+), 320 deletions(-)
+My original plan was to commit all this in one commit and use the cover
+letter as my commit. But based on your comment I realised we should have
+three commits:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-index 0ee8a369c547..95e9cf405fe9 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
-@@ -5,13 +5,10 @@
- 
- #include <dt-bindings/phy/phy.h>
- #include <dt-bindings/gpio/gpio.h>
--#include <dt-bindings/clock/axg-audio-clkc.h>
- #include <dt-bindings/clock/g12a-clkc.h>
- #include <dt-bindings/clock/g12a-aoclkc.h>
- #include <dt-bindings/interrupt-controller/irq.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
--#include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
--#include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
- #include <dt-bindings/reset/amlogic,meson-g12a-reset.h>
- 
- / {
-@@ -19,39 +16,6 @@
- 	#address-cells = <2>;
- 	#size-cells = <2>;
- 
--	tdmif_a: audio-controller-0 {
--		compatible = "amlogic,axg-tdm-iface";
--		#sound-dai-cells = <0>;
--		sound-name-prefix = "TDM_A";
--		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
--		status = "disabled";
--	};
--
--	tdmif_b: audio-controller-1 {
--		compatible = "amlogic,axg-tdm-iface";
--		#sound-dai-cells = <0>;
--		sound-name-prefix = "TDM_B";
--		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
--		status = "disabled";
--	};
--
--	tdmif_c: audio-controller-2 {
--		compatible = "amlogic,axg-tdm-iface";
--		#sound-dai-cells = <0>;
--		sound-name-prefix = "TDM_C";
--		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
--			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
--			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
--		clock-names = "mclk", "sclk", "lrclk";
--		status = "disabled";
--	};
--
- 	efuse: efuse {
- 		compatible = "amlogic,meson-gxbb-efuse";
- 		clocks = <&clkc CLKID_EFUSE>;
-@@ -1457,290 +1421,6 @@
- 				};
- 			};
- 
--			pdm: audio-controller@40000 {
--				compatible = "amlogic,g12a-pdm",
--					     "amlogic,axg-pdm";
--				reg = <0x0 0x40000 0x0 0x34>;
--				#sound-dai-cells = <0>;
--				sound-name-prefix = "PDM";
--				clocks = <&clkc_audio AUD_CLKID_PDM>,
--					 <&clkc_audio AUD_CLKID_PDM_DCLK>,
--					 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
--				clock-names = "pclk", "dclk", "sysclk";
--				status = "disabled";
--			};
--
--			audio: bus@42000 {
--				compatible = "simple-bus";
--				reg = <0x0 0x42000 0x0 0x2000>;
--				#address-cells = <2>;
--				#size-cells = <2>;
--				ranges = <0x0 0x0 0x0 0x42000 0x0 0x2000>;
--
--				clkc_audio: clock-controller@0 {
--					status = "disabled";
--					compatible = "amlogic,g12a-audio-clkc";
--					reg = <0x0 0x0 0x0 0xb4>;
--					#clock-cells = <1>;
--					#reset-cells = <1>;
--
--					clocks = <&clkc CLKID_AUDIO>,
--						 <&clkc CLKID_MPLL0>,
--						 <&clkc CLKID_MPLL1>,
--						 <&clkc CLKID_MPLL2>,
--						 <&clkc CLKID_MPLL3>,
--						 <&clkc CLKID_HIFI_PLL>,
--						 <&clkc CLKID_FCLK_DIV3>,
--						 <&clkc CLKID_FCLK_DIV4>,
--						 <&clkc CLKID_GP0_PLL>;
--					clock-names = "pclk",
--						      "mst_in0",
--						      "mst_in1",
--						      "mst_in2",
--						      "mst_in3",
--						      "mst_in4",
--						      "mst_in5",
--						      "mst_in6",
--						      "mst_in7";
--
--					resets = <&reset RESET_AUDIO>;
--				};
--
--				toddr_a: audio-controller@100 {
--					compatible = "amlogic,g12a-toddr",
--						     "amlogic,axg-toddr";
--					reg = <0x0 0x100 0x0 0x2c>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "TODDR_A";
--					interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
--					resets = <&arb AXG_ARB_TODDR_A>;
--					status = "disabled";
--				};
--
--				toddr_b: audio-controller@140 {
--					compatible = "amlogic,g12a-toddr",
--						     "amlogic,axg-toddr";
--					reg = <0x0 0x140 0x0 0x2c>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "TODDR_B";
--					interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
--					resets = <&arb AXG_ARB_TODDR_B>;
--					status = "disabled";
--				};
--
--				toddr_c: audio-controller@180 {
--					compatible = "amlogic,g12a-toddr",
--						     "amlogic,axg-toddr";
--					reg = <0x0 0x180 0x0 0x2c>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "TODDR_C";
--					interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
--					resets = <&arb AXG_ARB_TODDR_C>;
--					status = "disabled";
--				};
--
--				frddr_a: audio-controller@1c0 {
--					compatible = "amlogic,g12a-frddr",
--						     "amlogic,axg-frddr";
--					reg = <0x0 0x1c0 0x0 0x2c>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "FRDDR_A";
--					interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
--					resets = <&arb AXG_ARB_FRDDR_A>;
--					status = "disabled";
--				};
--
--				frddr_b: audio-controller@200 {
--					compatible = "amlogic,g12a-frddr",
--						     "amlogic,axg-frddr";
--					reg = <0x0 0x200 0x0 0x2c>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "FRDDR_B";
--					interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
--					resets = <&arb AXG_ARB_FRDDR_B>;
--					status = "disabled";
--				};
--
--				frddr_c: audio-controller@240 {
--					compatible = "amlogic,g12a-frddr",
--						     "amlogic,axg-frddr";
--					reg = <0x0 0x240 0x0 0x2c>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "FRDDR_C";
--					interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
--					resets = <&arb AXG_ARB_FRDDR_C>;
--					status = "disabled";
--				};
--
--				arb: reset-controller@280 {
--					status = "disabled";
--					compatible = "amlogic,meson-axg-audio-arb";
--					reg = <0x0 0x280 0x0 0x4>;
--					#reset-cells = <1>;
--					clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
--				};
--
--				tdmin_a: audio-controller@300 {
--					compatible = "amlogic,g12a-tdmin",
--						     "amlogic,axg-tdmin";
--					reg = <0x0 0x300 0x0 0x40>;
--					sound-name-prefix = "TDMIN_A";
--					resets = <&clkc_audio AUD_RESET_TDMIN_A>;
--					clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
--						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				tdmin_b: audio-controller@340 {
--					compatible = "amlogic,g12a-tdmin",
--						     "amlogic,axg-tdmin";
--					reg = <0x0 0x340 0x0 0x40>;
--					sound-name-prefix = "TDMIN_B";
--					resets = <&clkc_audio AUD_RESET_TDMIN_B>;
--					clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
--						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				tdmin_c: audio-controller@380 {
--					compatible = "amlogic,g12a-tdmin",
--						     "amlogic,axg-tdmin";
--					reg = <0x0 0x380 0x0 0x40>;
--					sound-name-prefix = "TDMIN_C";
--					resets = <&clkc_audio AUD_RESET_TDMIN_C>;
--					clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
--						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				tdmin_lb: audio-controller@3c0 {
--					compatible = "amlogic,g12a-tdmin",
--						     "amlogic,axg-tdmin";
--					reg = <0x0 0x3c0 0x0 0x40>;
--					sound-name-prefix = "TDMIN_LB";
--					resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
--					clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
--						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				spdifin: audio-controller@400 {
--					compatible = "amlogic,g12a-spdifin",
--						     "amlogic,axg-spdifin";
--					reg = <0x0 0x400 0x0 0x30>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "SPDIFIN";
--					interrupts = <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>;
--					clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
--						 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
--					clock-names = "pclk", "refclk";
--					status = "disabled";
--				};
--
--				spdifout: audio-controller@480 {
--					compatible = "amlogic,g12a-spdifout",
--						     "amlogic,axg-spdifout";
--					reg = <0x0 0x480 0x0 0x50>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "SPDIFOUT";
--					clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
--						 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
--					clock-names = "pclk", "mclk";
--					status = "disabled";
--				};
--
--				tdmout_a: audio-controller@500 {
--					compatible = "amlogic,g12a-tdmout";
--					reg = <0x0 0x500 0x0 0x40>;
--					sound-name-prefix = "TDMOUT_A";
--					resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
--					clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				tdmout_b: audio-controller@540 {
--					compatible = "amlogic,g12a-tdmout";
--					reg = <0x0 0x540 0x0 0x40>;
--					sound-name-prefix = "TDMOUT_B";
--					resets = <&clkc_audio AUD_RESET_TDMOUT_B>;
--					clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				tdmout_c: audio-controller@580 {
--					compatible = "amlogic,g12a-tdmout";
--					reg = <0x0 0x580 0x0 0x40>;
--					sound-name-prefix = "TDMOUT_C";
--					resets = <&clkc_audio AUD_RESET_TDMOUT_C>;
--					clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>,
--						 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>;
--					clock-names = "pclk", "sclk", "sclk_sel",
--						      "lrclk", "lrclk_sel";
--					status = "disabled";
--				};
--
--				spdifout_b: audio-controller@680 {
--					compatible = "amlogic,g12a-spdifout",
--						     "amlogic,axg-spdifout";
--					reg = <0x0 0x680 0x0 0x50>;
--					#sound-dai-cells = <0>;
--					sound-name-prefix = "SPDIFOUT_B";
--					clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
--						 <&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
--					clock-names = "pclk", "mclk";
--					status = "disabled";
--				};
--
--				tohdmitx: audio-controller@744 {
--					compatible = "amlogic,g12a-tohdmitx";
--					reg = <0x0 0x744 0x0 0x4>;
--					#sound-dai-cells = <1>;
--					sound-name-prefix = "TOHDMITX";
--					status = "disabled";
--				};
--			};
--
- 			usb3_pcie_phy: phy@46000 {
- 				compatible = "amlogic,g12a-usb3-pcie-phy";
- 				reg = <0x0 0x46000 0x0 0x2000>;
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-index ac5833781611..0d9df29994f3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-@@ -5,7 +5,331 @@
-  */
- 
- #include "meson-g12-common.dtsi"
-+#include <dt-bindings/clock/axg-audio-clkc.h>
- #include <dt-bindings/power/meson-g12a-power.h>
-+#include <dt-bindings/reset/amlogic,meson-axg-audio-arb.h>
-+#include <dt-bindings/reset/amlogic,meson-g12a-audio-reset.h>
-+
-+/ {
-+	tdmif_a: audio-controller-0 {
-+		compatible = "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_A";
-+		clocks = <&clkc_audio AUD_CLKID_MST_A_MCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_A_LRCLK>;
-+		clock-names = "mclk", "sclk", "lrclk";
-+		status = "disabled";
-+	};
-+
-+	tdmif_b: audio-controller-1 {
-+		compatible = "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_B";
-+		clocks = <&clkc_audio AUD_CLKID_MST_B_MCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_B_LRCLK>;
-+		clock-names = "mclk", "sclk", "lrclk";
-+		status = "disabled";
-+	};
-+
-+	tdmif_c: audio-controller-2 {
-+		compatible = "amlogic,axg-tdm-iface";
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "TDM_C";
-+		clocks = <&clkc_audio AUD_CLKID_MST_C_MCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_SCLK>,
-+			 <&clkc_audio AUD_CLKID_MST_C_LRCLK>;
-+		clock-names = "mclk", "sclk", "lrclk";
-+		status = "disabled";
-+	};
-+};
-+
-+&apb {
-+	pdm: audio-controller@40000 {
-+		compatible = "amlogic,g12a-pdm",
-+			     "amlogic,axg-pdm";
-+		reg = <0x0 0x40000 0x0 0x34>;
-+		#sound-dai-cells = <0>;
-+		sound-name-prefix = "PDM";
-+		clocks = <&clkc_audio AUD_CLKID_PDM>,
-+			 <&clkc_audio AUD_CLKID_PDM_DCLK>,
-+			 <&clkc_audio AUD_CLKID_PDM_SYSCLK>;
-+		clock-names = "pclk", "dclk", "sysclk";
-+		status = "disabled";
-+	};
-+
-+	audio: bus@42000 {
-+		compatible = "simple-bus";
-+		reg = <0x0 0x42000 0x0 0x2000>;
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x0 0x0 0x0 0x42000 0x0 0x2000>;
-+
-+		clkc_audio: clock-controller@0 {
-+			status = "disabled";
-+			compatible = "amlogic,g12a-audio-clkc";
-+			reg = <0x0 0x0 0x0 0xb4>;
-+			#clock-cells = <1>;
-+			#reset-cells = <1>;
-+
-+			clocks = <&clkc CLKID_AUDIO>,
-+				 <&clkc CLKID_MPLL0>,
-+				 <&clkc CLKID_MPLL1>,
-+				 <&clkc CLKID_MPLL2>,
-+				 <&clkc CLKID_MPLL3>,
-+				 <&clkc CLKID_HIFI_PLL>,
-+				 <&clkc CLKID_FCLK_DIV3>,
-+				 <&clkc CLKID_FCLK_DIV4>,
-+				 <&clkc CLKID_GP0_PLL>;
-+			clock-names = "pclk",
-+				      "mst_in0",
-+				      "mst_in1",
-+				      "mst_in2",
-+				      "mst_in3",
-+				      "mst_in4",
-+				      "mst_in5",
-+				      "mst_in6",
-+				      "mst_in7";
-+
-+			resets = <&reset RESET_AUDIO>;
-+		};
-+
-+		toddr_a: audio-controller@100 {
-+			compatible = "amlogic,g12a-toddr",
-+				     "amlogic,axg-toddr";
-+			reg = <0x0 0x100 0x0 0x2c>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "TODDR_A";
-+			interrupts = <GIC_SPI 148 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_TODDR_A>;
-+			resets = <&arb AXG_ARB_TODDR_A>;
-+			status = "disabled";
-+		};
-+
-+		toddr_b: audio-controller@140 {
-+			compatible = "amlogic,g12a-toddr",
-+				     "amlogic,axg-toddr";
-+			reg = <0x0 0x140 0x0 0x2c>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "TODDR_B";
-+			interrupts = <GIC_SPI 149 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_TODDR_B>;
-+			resets = <&arb AXG_ARB_TODDR_B>;
-+			status = "disabled";
-+		};
-+
-+		toddr_c: audio-controller@180 {
-+			compatible = "amlogic,g12a-toddr",
-+				     "amlogic,axg-toddr";
-+			reg = <0x0 0x180 0x0 0x2c>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "TODDR_C";
-+			interrupts = <GIC_SPI 150 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_TODDR_C>;
-+			resets = <&arb AXG_ARB_TODDR_C>;
-+			status = "disabled";
-+		};
-+
-+		frddr_a: audio-controller@1c0 {
-+			compatible = "amlogic,g12a-frddr",
-+				     "amlogic,axg-frddr";
-+			reg = <0x0 0x1c0 0x0 0x2c>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "FRDDR_A";
-+			interrupts = <GIC_SPI 152 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_FRDDR_A>;
-+			resets = <&arb AXG_ARB_FRDDR_A>;
-+			status = "disabled";
-+		};
-+
-+		frddr_b: audio-controller@200 {
-+			compatible = "amlogic,g12a-frddr",
-+				     "amlogic,axg-frddr";
-+			reg = <0x0 0x200 0x0 0x2c>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "FRDDR_B";
-+			interrupts = <GIC_SPI 153 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_FRDDR_B>;
-+			resets = <&arb AXG_ARB_FRDDR_B>;
-+			status = "disabled";
-+		};
-+
-+		frddr_c: audio-controller@240 {
-+			compatible = "amlogic,g12a-frddr",
-+				     "amlogic,axg-frddr";
-+			reg = <0x0 0x240 0x0 0x2c>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "FRDDR_C";
-+			interrupts = <GIC_SPI 154 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_FRDDR_C>;
-+			resets = <&arb AXG_ARB_FRDDR_C>;
-+			status = "disabled";
-+		};
-+
-+		arb: reset-controller@280 {
-+			status = "disabled";
-+			compatible = "amlogic,meson-axg-audio-arb";
-+			reg = <0x0 0x280 0x0 0x4>;
-+			#reset-cells = <1>;
-+			clocks = <&clkc_audio AUD_CLKID_DDR_ARB>;
-+		};
-+
-+		tdmin_a: audio-controller@300 {
-+			compatible = "amlogic,g12a-tdmin",
-+				     "amlogic,axg-tdmin";
-+			reg = <0x0 0x300 0x0 0x40>;
-+			sound-name-prefix = "TDMIN_A";
-+			resets = <&clkc_audio AUD_RESET_TDMIN_A>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMIN_A>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_A_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_A_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		tdmin_b: audio-controller@340 {
-+			compatible = "amlogic,g12a-tdmin",
-+				     "amlogic,axg-tdmin";
-+			reg = <0x0 0x340 0x0 0x40>;
-+			sound-name-prefix = "TDMIN_B";
-+			resets = <&clkc_audio AUD_RESET_TDMIN_B>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMIN_B>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_B_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_B_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		tdmin_c: audio-controller@380 {
-+			compatible = "amlogic,g12a-tdmin",
-+				     "amlogic,axg-tdmin";
-+			reg = <0x0 0x380 0x0 0x40>;
-+			sound-name-prefix = "TDMIN_C";
-+			resets = <&clkc_audio AUD_RESET_TDMIN_C>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMIN_C>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_C_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_C_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		tdmin_lb: audio-controller@3c0 {
-+			compatible = "amlogic,g12a-tdmin",
-+				     "amlogic,axg-tdmin";
-+			reg = <0x0 0x3c0 0x0 0x40>;
-+			sound-name-prefix = "TDMIN_LB";
-+			resets = <&clkc_audio AUD_RESET_TDMIN_LB>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMIN_LB>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_LB_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMIN_LB_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		spdifin: audio-controller@400 {
-+			compatible = "amlogic,g12a-spdifin",
-+				     "amlogic,axg-spdifin";
-+			reg = <0x0 0x400 0x0 0x30>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "SPDIFIN";
-+			interrupts = <GIC_SPI 151 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&clkc_audio AUD_CLKID_SPDIFIN>,
-+				 <&clkc_audio AUD_CLKID_SPDIFIN_CLK>;
-+			clock-names = "pclk", "refclk";
-+			status = "disabled";
-+		};
-+
-+		spdifout: audio-controller@480 {
-+			compatible = "amlogic,g12a-spdifout",
-+				     "amlogic,axg-spdifout";
-+			reg = <0x0 0x480 0x0 0x50>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "SPDIFOUT";
-+			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT>,
-+				 <&clkc_audio AUD_CLKID_SPDIFOUT_CLK>;
-+			clock-names = "pclk", "mclk";
-+			status = "disabled";
-+		};
-+
-+		tdmout_a: audio-controller@500 {
-+			compatible = "amlogic,g12a-tdmout";
-+			reg = <0x0 0x500 0x0 0x40>;
-+			sound-name-prefix = "TDMOUT_A";
-+			resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_A_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		tdmout_b: audio-controller@540 {
-+			compatible = "amlogic,g12a-tdmout";
-+			reg = <0x0 0x540 0x0 0x40>;
-+			sound-name-prefix = "TDMOUT_B";
-+			resets = <&clkc_audio AUD_RESET_TDMOUT_B>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMOUT_B>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_B_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_B_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		tdmout_c: audio-controller@580 {
-+			compatible = "amlogic,g12a-tdmout";
-+			reg = <0x0 0x580 0x0 0x40>;
-+			sound-name-prefix = "TDMOUT_C";
-+			resets = <&clkc_audio AUD_RESET_TDMOUT_C>;
-+			clocks = <&clkc_audio AUD_CLKID_TDMOUT_C>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_C_SCLK_SEL>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>,
-+				 <&clkc_audio AUD_CLKID_TDMOUT_C_LRCLK>;
-+			clock-names = "pclk", "sclk", "sclk_sel",
-+				      "lrclk", "lrclk_sel";
-+			status = "disabled";
-+		};
-+
-+		spdifout_b: audio-controller@680 {
-+			compatible = "amlogic,g12a-spdifout",
-+				     "amlogic,axg-spdifout";
-+			reg = <0x0 0x680 0x0 0x50>;
-+			#sound-dai-cells = <0>;
-+			sound-name-prefix = "SPDIFOUT_B";
-+			clocks = <&clkc_audio AUD_CLKID_SPDIFOUT_B>,
-+				 <&clkc_audio AUD_CLKID_SPDIFOUT_B_CLK>;
-+			clock-names = "pclk", "mclk";
-+			status = "disabled";
-+		};
-+
-+		tohdmitx: audio-controller@744 {
-+			compatible = "amlogic,g12a-tohdmitx";
-+			reg = <0x0 0x744 0x0 0x4>;
-+			#sound-dai-cells = <1>;
-+			sound-name-prefix = "TOHDMITX";
-+			status = "disabled";
-+		};
-+	};
-+};
- 
- &ethmac {
- 	power-domains = <&pwrc PWRC_G12A_ETH_ID>;
+1. devicetree bindings doc
+2. ath11k itself
+3. add entry to MAINTAINERS file
+
+>> ---
+>>  .../bindings/net/wireless/qcom,ath11k.txt          | 127 +++++++++++++++++++++
+>>  1 file changed, 127 insertions(+)
+>
+> Please use the DT schema format (YAML). See writing-schema.md.
+
+Oh, I didn't know about the new format. We'll use that.
+
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
+>> @@ -0,0 +1,127 @@
+>> +* Qualcomm Technologies ath11k wireless devices
+>> +
+>> +Required properties:
+>> +- compatible: Should be "qcom,ipq8074-wifi"
+>> +
+>> +AHB based ipq8074 uses most of the properties defined in this doc.
+>> +
+>> +Optional properties:
+>> +- reg: Address and length of the register set for the device.
+>> +- interrupts: List of interrupt lines. Must contain an entry
+>> +	      for each entry in the interrupt-names property.
+>
+> Need to be explicit as to how many interrupts and what they are.
+
+Ok, we'll add that.
+
 -- 
-2.21.0
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
