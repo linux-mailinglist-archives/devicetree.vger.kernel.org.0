@@ -2,113 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 326F0A9AFC
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 08:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 322FEA9B02
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 09:02:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727900AbfIEG7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 02:59:21 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:20428 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726047AbfIEG7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 02:59:20 -0400
-X-IronPort-AV: E=Sophos;i="5.64,469,1559487600"; 
-   d="scan'208";a="25803740"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Sep 2019 15:59:18 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0AE2541C7F9E;
-        Thu,  5 Sep 2019 15:59:15 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] clk: renesas: Add r8a774b1 CPG Core Clock Definitions
-Date:   Thu,  5 Sep 2019 07:52:40 +0100
-Message-Id: <1567666360-28035-1-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1731686AbfIEHC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 03:02:28 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:41057 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730778AbfIEHC2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 03:02:28 -0400
+X-UUID: 6d4111b22e3e4ab7bffde98adba73e8e-20190905
+X-UUID: 6d4111b22e3e4ab7bffde98adba73e8e-20190905
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
+        (envelope-from <jerry-ch.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1366152137; Thu, 05 Sep 2019 15:02:21 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 5 Sep 2019 15:02:18 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 5 Sep 2019 15:02:18 +0800
+Message-ID: <1567666940.22453.31.camel@mtksdccf07>
+Subject: Re: [RFC PATCH V2 4/4] platform: mtk-isp: Add Mediatek FD driver
+From:   Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     "yuzhao@chromium.org" <yuzhao@chromium.org>,
+        "zwisler@chromium.org" <zwisler@chromium.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
+        <Sean.Cheng@mediatek.com>,
+        "Sj Huang =?UTF-8?Q?=28=E9=BB=83=E4=BF=A1=E7=92=8B=29?=" 
+        <sj.huang@mediatek.com>,
+        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
+        <christie.yu@mediatek.com>,
+        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
+        <Frederic.Chen@mediatek.com>,
+        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
+        <jungo.lin@mediatek.com>,
+        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
+        <Rynn.Wu@mediatek.com>,
+        Po-Yang Huang =?UTF-8?Q?=28=E9=BB=83=E6=9F=8F=E9=99=BD=29?= 
+        <po-yang.huang@mediatek.com>,
+        "shik@chromium.org" <shik@chromium.org>,
+        "suleiman@chromium.org" <suleiman@chromium.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "laurent.pinchart+renesas@ideasonboard.com" 
+        <laurent.pinchart+renesas@ideasonboard.com>,
+        "hans.verkuil@cisco.com" <hans.verkuil@cisco.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+Date:   Thu, 5 Sep 2019 15:02:20 +0800
+In-Reply-To: <1567603143.22453.27.camel@mtksdccf07>
+References: <1562661672-22439-1-git-send-email-Jerry-Ch.chen@mediatek.com>
+         <1562661672-22439-5-git-send-email-Jerry-Ch.chen@mediatek.com>
+         <20190802082815.GA203993@chromium.org>
+         <1566724680.20680.8.camel@mtksdccf07>
+         <CAAFQd5Dw+jaT-+LAUEVeB8W1zdnOgPw7u+aCfDWhYW1SfbzO8g@mail.gmail.com>
+         <1566957625.20680.33.camel@mtksdccf07>
+         <CAAFQd5D-Yg1FjUE_rwmqfS1gvfE0=MZ=r-ziueU_37-uo9QTbw@mail.gmail.com>
+         <1567424859.18318.32.camel@mtksdccf07>
+         <CAAFQd5AGgeFbto6V1KkL0dp1QPziOKV3pWQDU2OJ+S1QKvnBdg@mail.gmail.com>
+         <1567493081.18318.49.camel@mtksdccf07>
+         <CAAFQd5DWM=R7sFHYGhhR_rXrzgRnc4xtH_t8Pig-4tcP9KTSYg@mail.gmail.com>
+         <1567511169.18318.65.camel@mtksdccf07>
+         <CAAFQd5DiPcUxd+R-v_-BdRx+QqZ35Riii_jpgbqr5mc3BnQvDw@mail.gmail.com>
+         <1567568281.18318.80.camel@mtksdccf07>
+         <CAAFQd5CRC2cyV30B4Qv59HdrJ7Cpe_yK5aY-BecQQ3J3i0PtCQ@mail.gmail.com>
+         <1567577389.18318.100.camel@mtksdccf07>
+         <CAAFQd5AxTQPD+nP9CJs45QTzGHKssjv3vRtMqHONABfp12afYw@mail.gmail.com>
+         <1567584577.22453.11.camel@mtksdccf07>
+         <CAAFQd5Dzxy10g-MKHMnNbVO6kp9_L_jm1m+gtN+p=YF2LyBiag@mail.gmail.com>
+         <1567587708.22453.15.camel@mtksdccf07>
+         <CAAFQd5DWfEEiGthPi=qoxD-mpAWa68GOCi55mqpmagS-tsGYkA@mail.gmail.com>
+         <1567589188.22453.24.camel@mtksdccf07>
+         <CAAFQd5Ckz9qH7AnLNM4HRTM2gJQP1HXRS09+o6Prf++D1PQhng@mail.gmail.com>
+         <1567603143.22453.27.camel@mtksdccf07>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add all RZ/G2N Clock Pulse Generator Core Clock Outputs, as listed in
-Table 8.2d ("List of Clocks [RZ/G2N]") of the RZ/G2N Hardware User's
-Manual.
+Hi Tomasz,
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- include/dt-bindings/clock/r8a774b1-cpg-mssr.h | 57 +++++++++++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 include/dt-bindings/clock/r8a774b1-cpg-mssr.h
+On Wed, 2019-09-04 at 21:19 +0800, Jerry-ch Chen wrote:
+> On Wed, 2019-09-04 at 21:12 +0800, Tomasz Figa wrote:
+> > On Wed, Sep 4, 2019 at 6:26 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > >
+> > > Hi Tomasz,
+> > >
+> > > On Wed, 2019-09-04 at 17:03 +0800, Tomasz Figa wrote:
+> > > > On Wed, Sep 4, 2019 at 6:02 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > >
+> > > > > Hi Tomasz,
+> > > > >
+> > > > > On Wed, 2019-09-04 at 16:25 +0800, Tomasz Figa wrote:
+> > > > > > On Wed, Sep 4, 2019 at 5:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > >
+> > > > > > > Hi Tomasz,
+> > > > > > >
+> > > > > > > On Wed, 2019-09-04 at 14:34 +0800, Tomasz Figa wrote:
+> > > > > > > > On Wed, Sep 4, 2019 at 3:09 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > >
+> > > > > > > > > Hi Tomasz,
+> > > > > > > > >
+> > > > > > > > > On Wed, 2019-09-04 at 12:15 +0800, Tomasz Figa wrote:
+> > > > > > > > > > On Wed, Sep 4, 2019 at 12:38 PM Jerry-ch Chen
+> > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > >
+> > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > >
+> > > > > > > > > > > On Tue, 2019-09-03 at 20:05 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > On Tue, Sep 3, 2019 at 8:46 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > On Tue, 2019-09-03 at 15:04 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > > On Tue, Sep 3, 2019 at 3:44 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > On Tue, 2019-09-03 at 13:19 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > > > > On Mon, Sep 2, 2019 at 8:47 PM Jerry-ch Chen <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > On Fri, 2019-08-30 at 16:33 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > > > > > > On Wed, Aug 28, 2019 at 11:00 AM Jerry-ch Chen
+> > > > > > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > > > On Mon, 2019-08-26 at 14:36 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > > > > > > > > Hi Jerry,
+> > > > > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > > > > On Sun, Aug 25, 2019 at 6:18 PM Jerry-ch Chen
+> > > > > > > > > > > > > > > > > > > > <Jerry-ch.Chen@mediatek.com> wrote:
+> > > > > > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > > > > > Hi Tomasz,
+> > > > > > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > > > > > On Fri, 2019-08-02 at 16:28 +0800, Tomasz Figa wrote:
+> > > > > > > > > > > > > > > > > > > > > > Hi Jerry,
+> > > > > > > > > > > > > > > > > > > > > >
+> > > > > > > > > > > > > > > > > > > > > > On Tue, Jul 09, 2019 at 04:41:12PM +0800, Jerry-ch Chen wrote:
+> > > [snip]
+> > > > > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+> > > > > > > {
+> > > > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> > > > > > >         struct vb2_v4l2_buffer *vb;
+> > > > > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
+> > > > > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
+> > > > > > >         u32 ret;
+> > > > > > >
+> > > > > > >         if (!fd->fd_irq_done.done)
+> > > > > >
+> > > > > > We shouldn't access internal fields of completion.
+> > > > > >
+> > > > > > >                 ret = wait_for_completion_timeout(&fd->fd_irq_done,
+> > > > > > >                                                   msecs_to_jiffies(
+> > > > > > >                                                         MTK_FD_HW_TIMEOUT));
+> > > > > > >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
+> > > > > > >                                         &m2m_ctx->out_q_ctx :
+> > > > > > >                                         &m2m_ctx->cap_q_ctx;
+> > > > > > >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
+> > > > > > >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
+> > > > > > >
+> > > > > > >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+> > > > > > >                 mtk_fd_hw_disconnect(fd);
+> > > > > > > }
+> > > > > > >
+> > > > > > > I've also tried to wait completion unconditionally for both queues and
+> > > > > > > the second time will wait until timeout, as a result, it takes longer to
+> > > > > > > swap the camera every time and close the camera app.
+> > > > > >
+> > > > > > I think it should work better if we call complete_all() instead of complete().
+> > > > > >
+> > > > > Thanks,
+> > > > >
+> > > > > I use complete_all(), and it works fine now.
+> > > > >
+> > > > > static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+> > > > > {
+> > > > >         struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+> > > > >         struct mtk_fd_dev *fd = ctx->fd_dev;
+> > > > >         struct vb2_v4l2_buffer *vb;
+> > > > >         struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
+> > > > >         struct v4l2_m2m_queue_ctx *queue_ctx;
+> > > > >
+> > > > >         wait_for_completion_timeout(&fd->fd_irq_done,
+> > > > >                                           msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
+> > > >
+> > > > Shouldn't we still send some command to the hardware to stop? Like a
+> > > > reset. Otherwise we don't know if it isn't still accessing the memory.
+> > > >
+> > > I thought no more jobs will be enqueued here when stop_streaming so we
+> > > don't need it.
+> > 
+> > That's true for the case when the wait completed successfully, but we
+> > also need to ensure the hardware is stopped even if a timeout happens.
+> > 
+> > > We still could send an ipi command to reset the HW, and wait for it's
+> > > callback or we could set the register MTK_FD_REG_OFFSET_HW_ENABLE to
+> > > zero to disable the HW.
+> > 
+> > Since it's for handling a timeout, a reset should be more likely to
+> > bring the hardware back to a reasonable state.
+> > 
+> 
+> Ok, I will send the ipi command to reset the HW.
+> 
+> Thanks and best regards,
+> Jerry
+I've tested and will refine as following:
 
-diff --git a/include/dt-bindings/clock/r8a774b1-cpg-mssr.h b/include/dt-bindings/clock/r8a774b1-cpg-mssr.h
-new file mode 100644
-index 0000000..1355451
---- /dev/null
-+++ b/include/dt-bindings/clock/r8a774b1-cpg-mssr.h
-@@ -0,0 +1,57 @@
-+/* SPDX-License-Identifier: GPL-2.0
-+ *
-+ * Copyright (C) 2019 Renesas Electronics Corp.
-+ */
-+#ifndef __DT_BINDINGS_CLOCK_R8A774B1_CPG_MSSR_H__
-+#define __DT_BINDINGS_CLOCK_R8A774B1_CPG_MSSR_H__
-+
-+#include <dt-bindings/clock/renesas-cpg-mssr.h>
-+
-+/* r8a774b1 CPG Core Clocks */
-+#define R8A774B1_CLK_Z			0
-+#define R8A774B1_CLK_ZG			1
-+#define R8A774B1_CLK_ZTR		2
-+#define R8A774B1_CLK_ZTRD2		3
-+#define R8A774B1_CLK_ZT			4
-+#define R8A774B1_CLK_ZX			5
-+#define R8A774B1_CLK_S0D1		6
-+#define R8A774B1_CLK_S0D2		7
-+#define R8A774B1_CLK_S0D3		8
-+#define R8A774B1_CLK_S0D4		9
-+#define R8A774B1_CLK_S0D6		10
-+#define R8A774B1_CLK_S0D8		11
-+#define R8A774B1_CLK_S0D12		12
-+#define R8A774B1_CLK_S1D2		13
-+#define R8A774B1_CLK_S1D4		14
-+#define R8A774B1_CLK_S2D1		15
-+#define R8A774B1_CLK_S2D2		16
-+#define R8A774B1_CLK_S2D4		17
-+#define R8A774B1_CLK_S3D1		18
-+#define R8A774B1_CLK_S3D2		19
-+#define R8A774B1_CLK_S3D4		20
-+#define R8A774B1_CLK_LB			21
-+#define R8A774B1_CLK_CL			22
-+#define R8A774B1_CLK_ZB3		23
-+#define R8A774B1_CLK_ZB3D2		24
-+#define R8A774B1_CLK_CR			25
-+#define R8A774B1_CLK_DDR		26
-+#define R8A774B1_CLK_SD0H		27
-+#define R8A774B1_CLK_SD0		28
-+#define R8A774B1_CLK_SD1H		29
-+#define R8A774B1_CLK_SD1		30
-+#define R8A774B1_CLK_SD2H		31
-+#define R8A774B1_CLK_SD2		32
-+#define R8A774B1_CLK_SD3H		33
-+#define R8A774B1_CLK_SD3		34
-+#define R8A774B1_CLK_RPC		35
-+#define R8A774B1_CLK_RPCD2		36
-+#define R8A774B1_CLK_MSO		37
-+#define R8A774B1_CLK_HDMI		38
-+#define R8A774B1_CLK_CSI0		39
-+#define R8A774B1_CLK_CP			40
-+#define R8A774B1_CLK_CPEX		41
-+#define R8A774B1_CLK_R			42
-+#define R8A774B1_CLK_OSC		43
-+#define R8A774B1_CLK_CANFD		44
-+
-+#endif /* __DT_BINDINGS_CLOCK_R8A774B1_CPG_MSSR_H__ */
--- 
-2.7.4
+static void mtk_fd_vb2_stop_streaming(struct vb2_queue *vq)
+{
+	struct mtk_fd_ctx *ctx = vb2_get_drv_priv(vq);
+	struct mtk_fd_dev *fd = ctx->fd_dev;
+	struct vb2_v4l2_buffer *vb;
+	struct v4l2_m2m_ctx *m2m_ctx = ctx->fh.m2m_ctx;
+	struct v4l2_m2m_queue_ctx *queue_ctx;
+	u32 ret;
+
+	ret = wait_for_completion_timeout(&fd->fd_irq_done,
+					  msecs_to_jiffies(MTK_FD_HW_TIMEOUT));
+	/* Disable FD HW */
+	if(!ret) {
+		struct ipi_message fd_ipi_msg;
+
+		fd_ipi_msg.cmd_id = MTK_FD_IPI_CMD_RESET;
+		ret = scp_ipi_send(fd->scp_pdev, SCP_IPI_FD_CMD, &fd_ipi_msg,
+				   sizeof(fd_ipi_msg), MTK_FD_IPI_SEND_TIMEOUT);
+		if (ret)
+			dev_err(fd->dev, "FD Reset HW error\n");
+	}
+	queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
+					&m2m_ctx->out_q_ctx :
+					&m2m_ctx->cap_q_ctx;
+	while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
+		v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
+
+	if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+		mtk_fd_hw_disconnect(fd);
+}
+
+If there is no other concern, may I send the RFC v3 patch for review?
+
+Thanks and best regards,
+Jerry
+> > >
+> > > Best regards,
+> > > Jerry
+> > >
+> > > > >         queue_ctx = V4L2_TYPE_IS_OUTPUT(vq->type) ?
+> > > > >                                         &m2m_ctx->out_q_ctx :
+> > > > >                                         &m2m_ctx->cap_q_ctx;
+> > > > >         while ((vb = v4l2_m2m_buf_remove(queue_ctx)))
+> > > > >                 v4l2_m2m_buf_done(vb, VB2_BUF_STATE_ERROR);
+> > > > >
+> > > > >         if (vq->type == V4L2_BUF_TYPE_VIDEO_OUTPUT_MPLANE)
+> > > > >                 mtk_fd_hw_disconnect(fd);
+> > > > > }
+> > > > >
+> > > > > Best regards,
+> > > > > Jerry
+> > > > >
+> > > > > > Best regards,
+> > > > > > Tomasz
+> > > > >
+> > > > >
+> > >
+> > >
+> 
+
 
