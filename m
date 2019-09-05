@@ -2,137 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F50FA99E8
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 07:03:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C30E7A9A48
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 07:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726208AbfIEFDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 01:03:05 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:36202 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725942AbfIEFDF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 01:03:05 -0400
-Received: by mail-pl1-f193.google.com with SMTP id f19so699227plr.3
-        for <devicetree@vger.kernel.org>; Wed, 04 Sep 2019 22:03:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4kF3e1zsFRcXZceVWYoKwvOb0B8jkCH1xLzvA0xA6lE=;
-        b=KizyhipGjkEgmtMTKybiHzm6jb3VM2fPNbn/ucG6Zjg04C6K6+tpxoJhQSYsUz0f+l
-         DgO2hmSz+dsjpN5r1fg2pFWZPto71JAv5pGRYUru6vOiP2h2DaSFsqGcnaBVA94fru2J
-         7T/ssB1SdbYipqOrsDHMY9TxljHSCKi+zsMKUmj7E7Vkf8nnB0WrFyQDRXFwMtojk0FN
-         yUnMeqIc3feZ5vuuoVYAcVjUAKHqnjiuIfmQddQ6GMdnR/Z7+jHPxU9VfTuFOiz6LBlN
-         UQEhe2S3skIdfY8seiu15fWsgR3JDrquku6DFAbjM8YiF4XWnuVtDTXJVdK8QF1lC28u
-         6aYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4kF3e1zsFRcXZceVWYoKwvOb0B8jkCH1xLzvA0xA6lE=;
-        b=LwdRVtdWUuGqMjVq9VyTWoFz67lmyWigJqkkRVvnPNN23KjRu3Ld3S+W7LKw3MwvH9
-         OE4CN/7PMj1UfJn3617dxtZOq3SMR6+emeBlmu/omxPplZBvhQH30bH40u1MLP3uiALk
-         COQ21jnBUxuCwvQf2T7D1K1cWGsI2dF0FLfXZwxLnGMILIhNI84yQwdcsYakHgCmdRnu
-         sQWttg9ug9IE3Varjjz4Gui464p5/kbfERz56To8wYbCkOANzciviDBgqp1TFkK2ohdu
-         iTIoXqc7Tz6Qqt3sggBDKVWTGBF8nHtUCLcsPTTQDZQIq5c26+E5UlRnopSrpOy9OvEf
-         4kPg==
-X-Gm-Message-State: APjAAAVMR561cSbat5HchYO2cmaHOOhEVEhc3XY+Gq+oX68YhYcHHMFy
-        GxdV9p1VSL6jl9rXfOuM32OCtA==
-X-Google-Smtp-Source: APXvYqyT6Wj0CVdxSGtdOLntILebZr38S2rX5CcajMvuY6Vi2Qck71OpHBK+DDdImEW/4d/3+ViFEg==
-X-Received: by 2002:a17:902:ba16:: with SMTP id j22mr1275680pls.253.1567659784719;
-        Wed, 04 Sep 2019 22:03:04 -0700 (PDT)
-Received: from localhost ([122.167.132.221])
-        by smtp.gmail.com with ESMTPSA id k14sm677205pgi.20.2019.09.04.22.03.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 04 Sep 2019 22:03:03 -0700 (PDT)
-Date:   Thu, 5 Sep 2019 10:33:02 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        id S1726286AbfIEF4y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 01:56:54 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:14802 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726088AbfIEF4y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 01:56:54 -0400
+X-UUID: b315badb3ec945b792741a96f66d657f-20190905
+X-UUID: b315badb3ec945b792741a96f66d657f-20190905
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 273631663; Thu, 05 Sep 2019 13:56:45 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 5 Sep
+ 2019 13:56:38 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 5 Sep 2019 13:56:37 +0800
+Message-ID: <1567662999.18702.28.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 06/14] media: mtk-mdp: Get rid of mtk_smi_larb_get/put
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     houlong wei <houlong.wei@mediatek.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        =?utf-8?B?QW5kcsOp?= Roth <neolynx@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
-Subject: Re: [RFC v2 0/3] OMAP3: convert opp-v1 to opp-v2 and read speed
- binned / 720MHz grade bits
-Message-ID: <20190905050302.t7dsmyl7xa25umjg@vireshk-i7>
-References: <cover.1567587220.git.hns@goldelico.com>
+        Evan Green <evgreen@chromium.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Tomasz Figa <tfiga@google.com>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "Matthias Kaehlcke" <mka@chromium.org>, <anan.sun@mediatek.com>,
+        <cui.zhang@mediatek.com>, <chao.hao@mediatek.com>,
+        <ming-fan.chen@mediatek.com>, <minghsiu.tsai@mediatek.com>
+Date:   Thu, 5 Sep 2019 13:56:39 +0800
+In-Reply-To: <1567570074.31301.19.camel@mhfsdcap03>
+References: <mailman.21807.1567503573.19300.linux-mediatek@lists.infradead.org>
+         <1567570074.31301.19.camel@mhfsdcap03>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1567587220.git.hns@goldelico.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: B5594BCA8B000D0387E321BE740558961162944E3E3D0781D08371B12D3EAA0E2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-09-19, 10:53, H. Nikolaus Schaller wrote:
-> Changes V2:
-> * merge separate patch to remove opp-v1 table from n950-n9 into
->   the general omap3xxx.dtsi patch
-> * add legacy compatibility to ti,omap3430 and ti,omap3630 for
->   the ti-cpufreq driver
-> * make driver and omap3xxx.dtsi patches pass checkpatch
-> * add bulk patch to explicitly define compatibility to ti,omap3430
->   and ti,omap36xx in addition to ti,omap3 of all in-tree boards
->   where it was missing
+On Wed, 2019-09-04 at 12:07 +0800, houlong wei wrote:
+> Hi, Yong,
 > 
-> RFC V1 2019-09-02 12:55:55:
-> 
-> This patch set converts the opp tables to opp-v2 format
-> and extends the ti-cpufreq to support omap3.
-> 
-> It adds 720 MHz (omap34xx) and 1 GHz (omap36xx) OPPs but
-> tells the ti-cpufreq driver to disable them if the speed
-> binned / 720MHz grade eFuse bits indicate that the chip
-> is not rated for that speed. 
-> 
-> It has been tested (for chip variant detection, not reliability
-> of the high speed OPPs) on:
-> 
-> * BeagleBoard C2 (omap3430 600MHz)
-> * BeagleBoard XM B (dm3730 800MHz)
-> * GTA04A4 (dm3730 800MHz)
-> * GTA04A5 (dm3730 1GHz)
-> 
-> 
-> H. Nikolaus Schaller (3):
->   cpufreq: ti-cpufreq: add support for omap34xx and omap36xx
->   ARM: dts: replace opp-v1 tables by opp-v2 for omap34xx and omap36xx
->   ARM: dts: omap3: bulk convert compatible to be explicitly ti,omap3430
->     or ti,omap36xx
-> 
->  arch/arm/boot/dts/am3517_mt_ventoux.dts       |  2 +-
->  .../boot/dts/logicpd-som-lv-35xx-devkit.dts   |  2 +-
->  .../boot/dts/logicpd-som-lv-37xx-devkit.dts   |  2 +-
->  .../boot/dts/logicpd-torpedo-35xx-devkit.dts  |  2 +-
->  .../boot/dts/logicpd-torpedo-37xx-devkit.dts  |  2 +-
->  arch/arm/boot/dts/omap3-beagle.dts            |  2 +-
->  arch/arm/boot/dts/omap3-cm-t3530.dts          |  2 +-
->  arch/arm/boot/dts/omap3-devkit8000-lcd43.dts  |  2 +-
->  arch/arm/boot/dts/omap3-devkit8000-lcd70.dts  |  2 +-
->  arch/arm/boot/dts/omap3-devkit8000.dts        |  2 +-
->  arch/arm/boot/dts/omap3-evm-37xx.dts          |  2 +-
->  arch/arm/boot/dts/omap3-ha-lcd.dts            |  2 +-
->  arch/arm/boot/dts/omap3-ha.dts                |  2 +-
->  arch/arm/boot/dts/omap3-ldp.dts               |  2 +-
->  arch/arm/boot/dts/omap3-n950-n9.dtsi          |  7 --
->  arch/arm/boot/dts/omap3-sbc-t3530.dts         |  2 +-
->  arch/arm/boot/dts/omap3-thunder.dts           |  2 +-
->  arch/arm/boot/dts/omap3430-sdp.dts            |  2 +-
->  arch/arm/boot/dts/omap34xx.dtsi               | 65 ++++++++++++--
->  arch/arm/boot/dts/omap36xx.dtsi               | 53 +++++++++--
->  drivers/cpufreq/cpufreq-dt-platdev.c          |  2 +-
->  drivers/cpufreq/ti-cpufreq.c                  | 87 ++++++++++++++++++-
->  22 files changed, 204 insertions(+), 44 deletions(-)
+> I have inline comment below.
 
-Most of the stuff looks fine to me here. I will pick the patches when
-the SoC maintainers provide an Ack.
+Thanks for your review.
 
--- 
-viresh
+> 
+> > MediaTek IOMMU has already added the device_link between the consumer
+> > and smi-larb device. If the mdp device call the pm_runtime_get_sync,
+> > the smi-larb's pm_runtime_get_sync also be called automatically.
+> > 
+> > CC: Minghsiu Tsai <minghsiu.tsai@mediatek.com>
+> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > Reviewed-by: Evan Green <evgreen@chromium.org>
+> > ---
+> >  drivers/media/platform/mtk-mdp/mtk_mdp_comp.c | 38 ---------------------------
+> >  drivers/media/platform/mtk-mdp/mtk_mdp_comp.h |  2 --
+> >  drivers/media/platform/mtk-mdp/mtk_mdp_core.c |  1 -
+> >  3 files changed, 41 deletions(-)
+> > 
+> > diff --git a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+> > index 9afe816..5985a9b 100644
+> > --- a/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+> > +++ b/drivers/media/platform/mtk-mdp/mtk_mdp_comp.c
+> > @@ -9,7 +9,6 @@
+> >  #include <linux/of.h>
+> >  #include <linux/of_address.h>
+> >  #include <linux/of_platform.h>
+> > -#include <soc/mediatek/smi.h>
+> >  
+> >  #include "mtk_mdp_comp.h"
+> >  
+> > @@ -58,14 +57,6 @@ void mtk_mdp_comp_clock_on(struct device *dev, struct mtk_mdp_comp *comp)
+> >  {
+> >  	int i, err;
+> >  
+> > -	if (comp->larb_dev) {
+> > -		err = mtk_smi_larb_get(comp->larb_dev);
+> > -		if (err)
+> > -			dev_err(dev,
+> > -				"failed to get larb, err %d. type:%d id:%d\n",
+> > -				err, comp->type, comp->id);
+> > -	}
+> 
+> In previous design,mtk_mdp_comp_clock_on() is called by each MDP
+> hardware component, and mtk_smi_larb_get() is also called for each MDP
+> hardware component which accesses DRAM via SMI larb.
+> 
+> Since mdp device only contains mdp_rdma component, so
+> pm_runtime_get_sync() will ignore other smi-larb clock. We need consider
+> how to enable clocks of other smi-larb associated with other mdp
+> component, e.g. mdp_wdma, mdp_wrot.
+> 
+
+Sorry, I'm not so familiar with mdp, thus, for MDP part, the test and
+reviewing from Minghsiu or you is expected.
+
+This patch only delete the smi interface literally. In my understanding,
+mdp should call pm_runtime_get with the corresponding device, no matter
+mdp_wdma or mdp_wrot device.
+
+Of course I am not sure the mdp flow, If this patch affect its function,
+please tell me. Also, If mdp driver need change correspondingly, I will
+put it into this series like [12/14] of this patchset which is from
+display.
+
+[snip]
+
+
