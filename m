@@ -2,137 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C4C5A9C24
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 09:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2C71A9C58
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 09:54:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731421AbfIEHoW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 03:44:22 -0400
-Received: from mail-eopbgr50062.outbound.protection.outlook.com ([40.107.5.62]:7142
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726083AbfIEHoV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 03:44:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NGtaoM44sQKhLBjsWyfqRVJUdxRX5jjl4Zuqc/bOAvaCp8IyT6vGpyLUrf6t3E2OoZ6Xu6NwU9QrnSDlNfz/PlRrIzZAyG7pVEa0WFzH9jbV3l6Mvz2gixpCnr571rczHzemKpa/l6iUD4/N9TtZwBssEVu05lCujWd/+ireHztPe1oulQf5+spsvtIovkYrEkavuhYG5aodYInsA4WEy3qCQJ0wLJ9OAt7Tx4ynkg8aeCCsiECrtuoJqMt0lJ1zRWdR9TWGEG4IExCoylY/8Xdtu/gExaFpZnOrEAykI8DhH7ir71BDfaBaRJ53N6KOFPERfGtc7QiEfWWRksNdVg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=35EC2rNch4cGtwQmHdVq/iy8qqwQiZBkdxEuwngRDEA=;
- b=KCgfrr1wRMwaIoTJO8ywiE55LEP3XgUEPHEQMxdbpCk0jm/DFaG2uxxUKWab+tL/e4mKJdX11sIS9R+3H3pYXGr3TQ4LPZ3B8EiDMKxyGESzMCFhGtto9r+XaQ/La93nucbTJdSCpPwWTuroZLte4+2ITQm7K9y9V4euN9/e6Ewm9liDvoleaelOFeLbSDSPfZh2UU35EOfCVdxXaZGuXXieWgpnHjS9MSy6EZ0j4imyOihpgKw5HVVlr/xf13NMZEgYcAWSFSoxZFhv73vzF6d4DropkGapMVqwyygmOlXLKjN9H8qN9cZbweBdcFh381KI4fOUGhPQ4nbM0XZvug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=kococonnector.com; dmarc=pass action=none
- header.from=kococonnector.com; dkim=pass header.d=kococonnector.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=KoCoConnector.onmicrosoft.com; s=selector2-KoCoConnector-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=35EC2rNch4cGtwQmHdVq/iy8qqwQiZBkdxEuwngRDEA=;
- b=lTeDPAQgctjyb+3i3kLcX0tO/7Z3hhwZVkFj8D6JoDBH2am0Xfnn8GBPzFOoPCK+cbqru+98PITU1uqTkCveREotoYKaKryc39+J0Zz9TvEZjevzT5myTQFCB6CAVCVv7ZFGeoSLJI6as+rilFF4i5MpUkdul0pByOZytnqNg84=
-Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com (10.170.212.23) by
- DB6PR0902MB2038.eurprd09.prod.outlook.com (10.170.213.147) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2199.20; Thu, 5 Sep 2019 07:44:17 +0000
-Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com
- ([fe80::19cd:2f16:89cd:67cb]) by DB6PR0902MB2072.eurprd09.prod.outlook.com
- ([fe80::19cd:2f16:89cd:67cb%3]) with mapi id 15.20.2220.022; Thu, 5 Sep 2019
- 07:44:16 +0000
-From:   Oliver Graute <oliver.graute@kococonnector.com>
-To:     "oliver.graute@gmail.com" <oliver.graute@gmail.com>
-CC:     Oliver Graute <oliver.graute@kococonnector.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
-Subject: [PATCH v1] watchdog: imx_sc: this patch just fixes whitespaces
-Thread-Topic: [PATCH v1] watchdog: imx_sc: this patch just fixes whitespaces
-Thread-Index: AQHVY724fLk0KIY3y0CpQBQtW0JX3w==
-Date:   Thu, 5 Sep 2019 07:44:16 +0000
-Message-ID: <20190905073730.22258-1-oliver.graute@kococonnector.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1PR0302CA0012.eurprd03.prod.outlook.com
- (2603:10a6:800:e9::22) To DB6PR0902MB2072.eurprd09.prod.outlook.com
- (2603:10a6:6:8::23)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=oliver.graute@kococonnector.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [193.47.161.132]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9c0ea7dc-3d9c-4233-8061-08d731d4daa7
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DB6PR0902MB2038;
-x-ms-traffictypediagnostic: DB6PR0902MB2038:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB6PR0902MB2038B11A0C1D4AE6F9E80CD8EBBB0@DB6PR0902MB2038.eurprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1332;
-x-forefront-prvs: 015114592F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(39830400003)(376002)(396003)(366004)(346002)(136003)(189003)(199004)(5660300002)(186003)(26005)(99286004)(2906002)(305945005)(102836004)(1361003)(6486002)(44832011)(4744005)(6506007)(6512007)(476003)(2616005)(386003)(6436002)(36756003)(5640700003)(6916009)(3846002)(6116002)(53936002)(4326008)(486006)(52116002)(7416002)(2501003)(66946007)(2351001)(8936002)(66556008)(1076003)(316002)(66066001)(81156014)(81166006)(50226002)(54906003)(66476007)(508600001)(25786009)(14454004)(86362001)(256004)(71190400001)(71200400001)(7736002)(66446008)(64756008)(8676002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB6PR0902MB2038;H:DB6PR0902MB2072.eurprd09.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: kococonnector.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: ntNlBlEZfG/uXW/uO4cpC3TIa8bkk0tFpPQSTLtD6FaOnpcAvc8O/NrIYe4JV0lliooGIxpfvhenB0zeauY8fhj/+SmnGj+6DNHmtNaBlFVjeCTxVa3B/6w8hFbMjaDEhm6D7wRlk8vKJtQvjAadxhG5GnF20sY14zH7nhTTLE/kpt4mFPG+Q6qjtDzxtQwOGhjKOfx8UeUcNiNbjSb56SDTzI+4m8I3Ff4K9WFs9S2+wCofTCtUgrwXTqka81rwz3wXIHRvwue+sdH0MwwWxmEHT7RceIMEe1ROHdYi4MF8jUADA0Nh3rYmO8z2jNMTjRES2YrqTuJlzShXahMaLrT9EcnAf54fP/msYN63BC0oR6dfBmkYsb2cozCmu+pUR9ULH5mkGNiOfvZbzqonoAd6yNRjAafNWhgEcq3aA60=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: kococonnector.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9c0ea7dc-3d9c-4233-8061-08d731d4daa7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2019 07:44:16.8342
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 59845429-0644-4099-bd7e-17fba65a2f2b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ZF3/9cMZLOEQJyq9eTffXhps3WWJ6oSxpE+p22f3xtMXkr9mK+o7o11BH0ZXbqsJcqe0JZxa43FAxZ/gpyDCqbJoR3LZ/6ZdRW1SAwrBIY8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0902MB2038
+        id S1730914AbfIEHyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 03:54:46 -0400
+Received: from sender4-pp-o94.zoho.com ([136.143.188.94]:25491 "EHLO
+        sender4-pp-o94.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726073AbfIEHyq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 03:54:46 -0400
+X-Greylist: delayed 949 seconds by postgrey-1.27 at vger.kernel.org; Thu, 05 Sep 2019 03:54:46 EDT
+ARC-Seal: i=1; a=rsa-sha256; t=1567669124; cv=none; 
+        d=zoho.com; s=zohoarc; 
+        b=mXDWIQQF0GBmUYjIgzV6AOoV/41THvi5CQbX3LvhjXiKWOqouDQpEaSuTzW2h+tyXe550aPfJNJbjTNKQT9xSInKOEje78IBjElzTS3+1PsbgUMBzWE2SN2BCMDT1Lhwsxa+HbAMVSCTBif0a3+pMv977pBjj6oeD7MxaSpGuAA=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
+        t=1567669124; h=Cc:Date:From:In-Reply-To:Message-ID:References:Subject:To:ARC-Authentication-Results; 
+        bh=egFOrDQp87JufeuaATPLZS9Nk9CVn431TNKVdr5uG9c=; 
+        b=mZ6KtAqlk9QrrhQ8RX4LrG2xZPUMF2CX9414cpcGJS7Q+t11nSmzmEoGvypyQxM+4i3V7OfHXnz6O90dO0KO5Sb2UKQExrLiAdP/oIRNkoL3n6frTchT06HmGVzThFuy+IgDQ12XRGlH97X6zCbCIlpFFdqDew86xCsPLVQ6CWY=
+ARC-Authentication-Results: i=1; mx.zoho.com;
+        dkim=pass  header.i=zoho.com;
+        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
+        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
+  s=zapps768; d=zoho.com; 
+  h=from:to:cc:subject:date:message-id:in-reply-to:references; 
+  b=alkAaLA/LsC7OTHjGHQlx5pvPuth9fOvuM4HaxQ8hmNQ74Am2u0mO4wgagW1a/vEkieJiIUIgnxb
+    UFu6XR11bqRIJIH7iCN6bUTQNPRIqRK25wabrBickIp7lZn9l3YN  
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1567669124;
+        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References;
+        l=1598; bh=egFOrDQp87JufeuaATPLZS9Nk9CVn431TNKVdr5uG9c=;
+        b=naYOwA+xzhDJnHqp0YPeAbCyWc82FkXn2Hv1PAZ2VqEtKv9ux9rYU7zvk153p9bD
+        47e81ajkIYFfKCimcCcFf+Rb8sneCXk84KYtckvkvetHwxUv6GXQNKHu3yFxQ7B3jZ/
+        Ewcggk5JpVAByXsXLqCpc7IgnTtd357cOb2HaJgQ=
+Received: from zhouyanjie-virtual-machine.localdomain (125.71.5.36 [125.71.5.36]) by mx.zohomail.com
+        with SMTPS id 1567669122100996.8820523312266; Thu, 5 Sep 2019 00:38:42 -0700 (PDT)
+From:   Zhou Yanjie <zhouyanjie@zoho.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
+        paul.burton@mips.com, linus.walleij@linaro.org,
+        paul@crapouillou.net, malat@debian.org, yuehaibing@huawei.com,
+        ezequiel@collabora.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        syq@debian.org, jiaxun.yang@flygoat.com
+Subject: [PATCH 2/4] MMC: Ingenic: Add 8bit mode support.
+Date:   Thu,  5 Sep 2019 15:38:07 +0800
+Message-Id: <1567669089-88693-3-git-send-email-zhouyanjie@zoho.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1567669089-88693-1-git-send-email-zhouyanjie@zoho.com>
+References: <1567669089-88693-1-git-send-email-zhouyanjie@zoho.com>
+X-ZohoMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix only whitespace errors in imx_sc_wdt_probe()
+Add support for 8bit mode, now supports 1bit/4bit/8bit modes.
 
-Signed-off-by: Oliver Graute <oliver.graute@kococonnector.com>
+Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
 ---
- drivers/watchdog/imx_sc_wdt.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/mmc/host/jz4740_mmc.c | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/watchdog/imx_sc_wdt.c b/drivers/watchdog/imx_sc_wdt.c
-index 78eaaf75a263..94db949042c9 100644
---- a/drivers/watchdog/imx_sc_wdt.c
-+++ b/drivers/watchdog/imx_sc_wdt.c
-@@ -175,12 +175,12 @@ static int imx_sc_wdt_probe(struct platform_device *p=
-dev)
- 	watchdog_stop_on_unregister(wdog);
-=20
- 	ret =3D devm_watchdog_register_device(dev, wdog);
--=20
-- 	if (ret) {
-- 		dev_err(dev, "Failed to register watchdog device\n");
-- 		return ret;
-- 	}
--=20
-+
-+	if (ret) {
-+		dev_err(dev, "Failed to register watchdog device\n");
-+		return ret;
-+	}
-+
- 	ret =3D imx_scu_irq_group_enable(SC_IRQ_GROUP_WDOG,
- 				       SC_IRQ_WDOG,
- 				       true);
---=20
-2.17.1
+diff --git a/drivers/mmc/host/jz4740_mmc.c b/drivers/mmc/host/jz4740_mmc.c
+index 1b1fcb7..d6811a7 100644
+--- a/drivers/mmc/host/jz4740_mmc.c
++++ b/drivers/mmc/host/jz4740_mmc.c
+@@ -79,6 +79,8 @@
+ 
+ #define JZ_MMC_CMDAT_IO_ABORT BIT(11)
+ #define JZ_MMC_CMDAT_BUS_WIDTH_4BIT BIT(10)
++#define JZ_MMC_CMDAT_BUS_WIDTH_8BIT (BIT(10) | BIT(9))
++#define	JZ_MMC_CMDAT_BUS_WIDTH_MASK (BIT(10) | BIT(9))
+ #define JZ_MMC_CMDAT_DMA_EN BIT(8)
+ #define JZ_MMC_CMDAT_INIT BIT(7)
+ #define JZ_MMC_CMDAT_BUSY BIT(6)
+@@ -899,11 +901,16 @@ static void jz4740_mmc_set_ios(struct mmc_host *mmc, struct mmc_ios *ios)
+ 
+ 	switch (ios->bus_width) {
+ 	case MMC_BUS_WIDTH_1:
+-		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_4BIT;
++		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_MASK;
+ 		break;
+ 	case MMC_BUS_WIDTH_4:
++		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_MASK;
+ 		host->cmdat |= JZ_MMC_CMDAT_BUS_WIDTH_4BIT;
+ 		break;
++	case MMC_BUS_WIDTH_8:
++		host->cmdat &= ~JZ_MMC_CMDAT_BUS_WIDTH_MASK;
++		host->cmdat |= JZ_MMC_CMDAT_BUS_WIDTH_8BIT;
++		break;
+ 	default:
+ 		break;
+ 	}
+@@ -1034,7 +1041,8 @@ static int jz4740_mmc_probe(struct platform_device* pdev)
+ 
+ 	dev_info(&pdev->dev, "Using %s, %d-bit mode\n",
+ 		 host->use_dma ? "DMA" : "PIO",
+-		 (mmc->caps & MMC_CAP_4_BIT_DATA) ? 4 : 1);
++		 (mmc->caps & MMC_CAP_8_BIT_DATA) ? 8 :
++		 ((mmc->caps & MMC_CAP_4_BIT_DATA) ? 4 : 1));
+ 
+ 	return 0;
+ 
+-- 
+2.7.4
+
 
