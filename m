@@ -2,68 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10029AA250
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D97AAA26A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:02:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732924AbfIEMBY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:01:24 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:46207 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729809AbfIEMBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:23 -0400
-X-Originating-IP: 82.195.192.6
-Received: from localhost (unknown [82.195.192.6])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 0FD27FF814;
-        Thu,  5 Sep 2019 12:01:20 +0000 (UTC)
-Date:   Thu, 5 Sep 2019 15:01:19 +0300
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jan Kotas <jank@cadence.com>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        rafalc@cadence.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/3] media: Add support for Cadence CSI2RX version 2.1
-Message-ID: <20190905120119.q4u6iyc555simdqa@flea>
-References: <20190905105601.27034-1-jank@cadence.com>
+        id S2388947AbfIEMBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 08:01:38 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:52803 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388978AbfIEMBh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:01:37 -0400
+Received: by mail-wm1-f66.google.com with SMTP id t17so2480004wmi.2
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 05:01:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=klSkJhbs0NB+xI0c1ebxNosV7pVJl7beazxfFo4LBZg=;
+        b=qVswcN+PucNQH6v4EQigxCZdHKTEzMwj6G2zSXUlL9Q3vyaySUauYMtEwxR5tBfkTX
+         Vl/wABaSlML2K61iULZEg9ci45M0aAYXwsUTPRKD55tXQk4EtDd41q/6q033f5nkHvfJ
+         +qHF+b/8Kowqxp9iuzSOMwteKYzNFPmUoAVTW0FBnhdvtWeVvCGHIFLNS+b55o5njqS4
+         2EVfcQ5qtdUqtDgwR9T7GbXyUujllGe+DCGRPCI9M5s0RC35d/GTQ9b+eHNo/BPRTHAs
+         109aM4zFeYs3qeABFt6PzFK8FWOj5EyNdbvW3NeM23Ykr/vHc2xeAA3Q5sFRzOaJ6WV9
+         yi3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=klSkJhbs0NB+xI0c1ebxNosV7pVJl7beazxfFo4LBZg=;
+        b=DV1NmzyY6tIhEkHbx6oP/wNtLHwTeitbyfnJAyWNS9+bAVYHIq0F2L23nENUCArzh8
+         zJ/MH+xETc82tcCvd5RE7mhY1P77lwAL/gEr4H1IrTzj1vz2AednGBcIGyY/sLNJnUdx
+         PF7YXq2Xh0DxDEMhyTNXT0Mv8VsYgxIkAMweJp5IIy7S6ET7QKt4RRzdwq4PTmAdSRTT
+         f8ILzI2WBmuEbaYR/xmCbes6xiZZU8ppnpZ5wcuTHDgU2SI9WHUAZ1KmFtRoNuVrkvux
+         /R8E/zCYjWk58PVO6O/huxkP1oGu9OGcabSQb//v00lhFqgjP7o1BhXH1rTqb4qa4j6Q
+         JdfQ==
+X-Gm-Message-State: APjAAAXtrkAYFrBhpcHb5hYvH0UIXs5BH9lrd0Ll71P7VEIA6rAZRl2S
+        BWElOTcPbZmovSg2TlDTQqQwfw==
+X-Google-Smtp-Source: APXvYqzMpRsgyQhdaXkYR6VhupFXcKpJSMlYFG0Sb+nF3uP8ydsPZns1A+Qc1CimphV2UL/tqKaqyQ==
+X-Received: by 2002:a1c:2b85:: with SMTP id r127mr2607200wmr.30.1567684896038;
+        Thu, 05 Sep 2019 05:01:36 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id a18sm3436311wrh.25.2019.09.05.05.01.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 05:01:35 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        Kevin Hilman <khilman@baylibre.com>
+Subject: [PATCH 8/8] ASoC: meson: tdmout: add sm1 support
+Date:   Thu,  5 Sep 2019 14:01:20 +0200
+Message-Id: <20190905120120.31752-9-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190905120120.31752-1-jbrunet@baylibre.com>
+References: <20190905120120.31752-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="b24bcaatzpnvmlil"
-Content-Disposition: inline
-In-Reply-To: <20190905105601.27034-1-jank@cadence.com>
-User-Agent: NeoMutt/20180716
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On the sm1, the TDMOUT number of input is extended and the
+the gain enable bit moved to accommodate this extension
 
---b24bcaatzpnvmlil
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/meson/axg-tdmout.c | 103 ++++++++++++++++++++++++++++-------
+ 1 file changed, 84 insertions(+), 19 deletions(-)
 
-On Thu, Sep 05, 2019 at 11:55:58AM +0100, Jan Kotas wrote:
-> This patchset adds support for Cadence CSI2RX controller version 2.1.
-> It currently limits maximum amount of data lanes to 4.
-> Existing compatibility with v1.3 is maintained.
+diff --git a/sound/soc/meson/axg-tdmout.c b/sound/soc/meson/axg-tdmout.c
+index 86537fc0ecb5..418ec314b37d 100644
+--- a/sound/soc/meson/axg-tdmout.c
++++ b/sound/soc/meson/axg-tdmout.c
+@@ -24,6 +24,7 @@
+ #define TDMOUT_CTRL1			0x04
+ #define  TDMOUT_CTRL1_TYPE_MASK		GENMASK(6, 4)
+ #define  TDMOUT_CTRL1_TYPE(x)		((x) << 4)
++#define  SM1_TDMOUT_CTRL1_GAIN_EN	7
+ #define  TDMOUT_CTRL1_MSB_POS_MASK	GENMASK(12, 8)
+ #define  TDMOUT_CTRL1_MSB_POS(x)	((x) << 8)
+ #define  TDMOUT_CTRL1_SEL_SHIFT		24
+@@ -51,25 +52,6 @@ static const struct regmap_config axg_tdmout_regmap_cfg = {
+ 	.max_register	= TDMOUT_MASK_VAL,
+ };
+ 
+-static const struct snd_kcontrol_new axg_tdmout_controls[] = {
+-	SOC_DOUBLE("Lane 0 Volume", TDMOUT_GAIN0,  0,  8, 255, 0),
+-	SOC_DOUBLE("Lane 1 Volume", TDMOUT_GAIN0, 16, 24, 255, 0),
+-	SOC_DOUBLE("Lane 2 Volume", TDMOUT_GAIN1,  0,  8, 255, 0),
+-	SOC_DOUBLE("Lane 3 Volume", TDMOUT_GAIN1, 16, 24, 255, 0),
+-	SOC_SINGLE("Gain Enable Switch", TDMOUT_CTRL1,
+-		   TDMOUT_CTRL1_GAIN_EN, 1, 0),
+-};
+-
+-static const char * const tdmout_sel_texts[] = {
+-	"IN 0", "IN 1", "IN 2",
+-};
+-
+-static SOC_ENUM_SINGLE_DECL(axg_tdmout_sel_enum, TDMOUT_CTRL1,
+-			    TDMOUT_CTRL1_SEL_SHIFT, tdmout_sel_texts);
+-
+-static const struct snd_kcontrol_new axg_tdmout_in_mux =
+-	SOC_DAPM_ENUM("Input Source", axg_tdmout_sel_enum);
+-
+ static struct snd_soc_dai *
+ axg_tdmout_get_be(struct snd_soc_dapm_widget *w)
+ {
+@@ -197,6 +179,25 @@ static int axg_tdmout_prepare(struct regmap *map,
+ 	return axg_tdm_formatter_set_channel_masks(map, ts, TDMOUT_MASK0);
+ }
+ 
++static const struct snd_kcontrol_new axg_tdmout_controls[] = {
++	SOC_DOUBLE("Lane 0 Volume", TDMOUT_GAIN0,  0,  8, 255, 0),
++	SOC_DOUBLE("Lane 1 Volume", TDMOUT_GAIN0, 16, 24, 255, 0),
++	SOC_DOUBLE("Lane 2 Volume", TDMOUT_GAIN1,  0,  8, 255, 0),
++	SOC_DOUBLE("Lane 3 Volume", TDMOUT_GAIN1, 16, 24, 255, 0),
++	SOC_SINGLE("Gain Enable Switch", TDMOUT_CTRL1,
++		   TDMOUT_CTRL1_GAIN_EN, 1, 0),
++};
++
++static const char * const axg_tdmout_sel_texts[] = {
++	"IN 0", "IN 1", "IN 2",
++};
++
++static SOC_ENUM_SINGLE_DECL(axg_tdmout_sel_enum, TDMOUT_CTRL1,
++			    TDMOUT_CTRL1_SEL_SHIFT, axg_tdmout_sel_texts);
++
++static const struct snd_kcontrol_new axg_tdmout_in_mux =
++	SOC_DAPM_ENUM("Input Source", axg_tdmout_sel_enum);
++
+ static const struct snd_soc_dapm_widget axg_tdmout_dapm_widgets[] = {
+ 	SND_SOC_DAPM_AIF_IN("IN 0", NULL, 0, SND_SOC_NOPM, 0, 0),
+ 	SND_SOC_DAPM_AIF_IN("IN 1", NULL, 0, SND_SOC_NOPM, 0, 0),
+@@ -252,6 +253,67 @@ static const struct axg_tdm_formatter_driver g12a_tdmout_drv = {
+ 	},
+ };
+ 
++static const struct snd_kcontrol_new sm1_tdmout_controls[] = {
++	SOC_DOUBLE("Lane 0 Volume", TDMOUT_GAIN0,  0,  8, 255, 0),
++	SOC_DOUBLE("Lane 1 Volume", TDMOUT_GAIN0, 16, 24, 255, 0),
++	SOC_DOUBLE("Lane 2 Volume", TDMOUT_GAIN1,  0,  8, 255, 0),
++	SOC_DOUBLE("Lane 3 Volume", TDMOUT_GAIN1, 16, 24, 255, 0),
++	SOC_SINGLE("Gain Enable Switch", TDMOUT_CTRL1,
++		   SM1_TDMOUT_CTRL1_GAIN_EN, 1, 0),
++};
++
++static const char * const sm1_tdmout_sel_texts[] = {
++	"IN 0", "IN 1", "IN 2", "IN 3", "IN 4",
++};
++
++static SOC_ENUM_SINGLE_DECL(sm1_tdmout_sel_enum, TDMOUT_CTRL1,
++			    TDMOUT_CTRL1_SEL_SHIFT, sm1_tdmout_sel_texts);
++
++static const struct snd_kcontrol_new sm1_tdmout_in_mux =
++	SOC_DAPM_ENUM("Input Source", sm1_tdmout_sel_enum);
++
++static const struct snd_soc_dapm_widget sm1_tdmout_dapm_widgets[] = {
++	SND_SOC_DAPM_AIF_IN("IN 0", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 1", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 2", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 3", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_AIF_IN("IN 4", NULL, 0, SND_SOC_NOPM, 0, 0),
++	SND_SOC_DAPM_MUX("SRC SEL", SND_SOC_NOPM, 0, 0, &sm1_tdmout_in_mux),
++	SND_SOC_DAPM_PGA_E("ENC", SND_SOC_NOPM, 0, 0, NULL, 0,
++			   axg_tdm_formatter_event,
++			   (SND_SOC_DAPM_PRE_PMU | SND_SOC_DAPM_PRE_PMD)),
++	SND_SOC_DAPM_AIF_OUT("OUT", NULL, 0, SND_SOC_NOPM, 0, 0),
++};
++
++static const struct snd_soc_dapm_route sm1_tdmout_dapm_routes[] = {
++	{ "SRC SEL", "IN 0", "IN 0" },
++	{ "SRC SEL", "IN 1", "IN 1" },
++	{ "SRC SEL", "IN 2", "IN 2" },
++	{ "SRC SEL", "IN 3", "IN 3" },
++	{ "SRC SEL", "IN 4", "IN 4" },
++	{ "ENC", NULL, "SRC SEL" },
++	{ "OUT", NULL, "ENC" },
++};
++
++static const struct snd_soc_component_driver sm1_tdmout_component_drv = {
++	.controls		= sm1_tdmout_controls,
++	.num_controls		= ARRAY_SIZE(sm1_tdmout_controls),
++	.dapm_widgets		= sm1_tdmout_dapm_widgets,
++	.num_dapm_widgets	= ARRAY_SIZE(sm1_tdmout_dapm_widgets),
++	.dapm_routes		= sm1_tdmout_dapm_routes,
++	.num_dapm_routes	= ARRAY_SIZE(sm1_tdmout_dapm_routes),
++};
++
++static const struct axg_tdm_formatter_driver sm1_tdmout_drv = {
++	.component_drv	= &sm1_tdmout_component_drv,
++	.regmap_cfg	= &axg_tdmout_regmap_cfg,
++	.ops		= &axg_tdmout_ops,
++	.quirks		= &(const struct axg_tdm_formatter_hw) {
++		.invert_sclk = true,
++		.skew_offset = 2,
++	},
++};
++
+ static const struct of_device_id axg_tdmout_of_match[] = {
+ 	{
+ 		.compatible = "amlogic,axg-tdmout",
+@@ -259,6 +321,9 @@ static const struct of_device_id axg_tdmout_of_match[] = {
+ 	}, {
+ 		.compatible = "amlogic,g12a-tdmout",
+ 		.data = &g12a_tdmout_drv,
++	}, {
++		.compatible = "amlogic,sm1-tdmout",
++		.data = &sm1_tdmout_drv,
+ 	}, {}
+ };
+ MODULE_DEVICE_TABLE(of, axg_tdmout_of_match);
+-- 
+2.21.0
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---b24bcaatzpnvmlil
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXXD5DwAKCRDj7w1vZxhR
-xQJ2AP4vHOC198ms6cJrZMAAchsCkPuTHioJxT9R8iNtLc4xLQEAzBQGZPtWmbHN
-kN+/tPIFPPcrCzburPlR7qQWBzj8iw0=
-=BN76
------END PGP SIGNATURE-----
-
---b24bcaatzpnvmlil--
