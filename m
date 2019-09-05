@@ -2,55 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D71AAA8A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 20:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB8CCAAAC2
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 20:21:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391209AbfIESGX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 14:06:23 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:47228 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388822AbfIESGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 14:06:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=bjhBgn/hu4sBX3UF8vmjwc0zdzuNyTJ7pUGOwliYdOc=; b=p7jUDGlXDe3A/y79FGALT/xcU
-        iN849LCtT7DwcUsiVXQT7PP9H7NoBfRhvNSCN5UbGsGNM4XCvgMMOU41EwbYBOsGZRUdXGW7Bbryh
-        Tapwa2dMrSWw1IR+Pt5MVCXzZGfOp3/TQb5S6/d7p+jiMBN76391ukY6EV/uh8jDQQ0Ck=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i5w9A-0005Tm-H8; Thu, 05 Sep 2019 18:06:16 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 90F1D2742D07; Thu,  5 Sep 2019 19:06:15 +0100 (BST)
-Date:   Thu, 5 Sep 2019 19:06:15 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Luka Pivk <luka.pivk@toradex.com>
-Subject: Re: [PATCH 1/3] regulator: fixed: add possibility to enable by clock
-Message-ID: <20190905180615.GG4053@sirena.co.uk>
-References: <20190903080336.32288-1-philippe.schenker@toradex.com>
- <20190903080336.32288-2-philippe.schenker@toradex.com>
+        id S2391242AbfIESVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 14:21:03 -0400
+Received: from sauhun.de ([88.99.104.3]:59730 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730926AbfIESVC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 14:21:02 -0400
+Received: from localhost (p54B335F6.dip0.t-ipconnect.de [84.179.53.246])
+        by pokefinder.org (Postfix) with ESMTPSA id 73A6F2C00C0;
+        Thu,  5 Sep 2019 20:20:59 +0200 (CEST)
+Date:   Thu, 5 Sep 2019 20:20:59 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     alokc@codeaurora.org, agross@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, bjorn.andersson@linaro.org, vkoul@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Provide an option to disable DMA
+ processing
+Message-ID: <20190905182058.GA5281@kunai>
+References: <20190905144122.5689-1-lee.jones@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MiFvc8Vo6wRSORdP"
+        protocol="application/pgp-signature"; boundary="zhXaljGHf11kAtnf"
 Content-Disposition: inline
-In-Reply-To: <20190903080336.32288-2-philippe.schenker@toradex.com>
-X-Cookie: You humans are all alike.
+In-Reply-To: <20190905144122.5689-1-lee.jones@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -58,47 +38,88 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---MiFvc8Vo6wRSORdP
+--zhXaljGHf11kAtnf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 03, 2019 at 08:03:46AM +0000, Philippe Schenker wrote:
-> This commit adds the possibility to choose the compatible
-> "regulator-fixed-clock" in devicetree.
+On Thu, Sep 05, 2019 at 03:41:22PM +0100, Lee Jones wrote:
+> We have a production-level laptop (Lenovo Yoga C630) which is exhibiting
+> a rather horrific bug.  When I2C HID devices are being scanned for at
+> boot-time the QCom Geni based I2C (Serial Engine) attempts to use DMA.
+> When it does, the laptop reboots and the user never sees the OS.
+
+$subject is still wrong. And a paragraph that you are/were debugging the
+root cause but to no avail so DMA gets disabled for now would be good for a
+hotfix this late in the cycle.
+
 >=20
-> This is a special regulator-fixed that has to have a clock, from which
-> the regulator gets switched on and off.
-
-This seems conceptually fine.  Minor issues though:
-
-> +static int reg_clock_is_enabled(struct regulator_dev *rdev)
-> +{
-> +	struct fixed_voltage_data *priv =3D rdev_get_drvdata(rdev);
+> Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> ---
+>  drivers/i2c/busses/i2c-qcom-geni.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+>=20
+> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-=
+qcom-geni.c
+> index a89bfce5388e..17abf60c94ae 100644
+> --- a/drivers/i2c/busses/i2c-qcom-geni.c
+> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
+> @@ -355,11 +355,13 @@ static int geni_i2c_rx_one_msg(struct geni_i2c_dev =
+*gi2c, struct i2c_msg *msg,
+>  {
+>  	dma_addr_t rx_dma;
+>  	unsigned long time_left;
+> -	void *dma_buf;
+> +	void *dma_buf =3D NULL;
+>  	struct geni_se *se =3D &gi2c->se;
+>  	size_t len =3D msg->len;
+> =20
+> -	dma_buf =3D i2c_get_dma_safe_msg_buf(msg, 32);
+> +	if (!of_machine_is_compatible("lenovo,yoga-c630"))
+> +		dma_buf =3D i2c_get_dma_safe_msg_buf(msg, 32);
 > +
-> +	if (priv->clk_enable_counter > 0)
-> +		return 1;
+>  	if (dma_buf)
+>  		geni_se_select_mode(se, GENI_SE_DMA);
+>  	else
+> @@ -394,11 +396,13 @@ static int geni_i2c_tx_one_msg(struct geni_i2c_dev =
+*gi2c, struct i2c_msg *msg,
+>  {
+>  	dma_addr_t tx_dma;
+>  	unsigned long time_left;
+> -	void *dma_buf;
+> +	void *dma_buf =3D NULL;
+>  	struct geni_se *se =3D &gi2c->se;
+>  	size_t len =3D msg->len;
+> =20
+> -	dma_buf =3D i2c_get_dma_safe_msg_buf(msg, 32);
+> +	if (!of_machine_is_compatible("lenovo,yoga-c630"))
+> +		dma_buf =3D i2c_get_dma_safe_msg_buf(msg, 32);
 > +
-> +	return 0;
-> +}
+>  	if (dma_buf)
+>  		geni_se_select_mode(se, GENI_SE_DMA);
+>  	else
+> --=20
+> 2.17.1
+>=20
 
-This could just be return priv->clk_enable_counter > 0 - ideally the
-clock API would let us query if the clock is enabled but that might be a
-bit confused anyway given that it's possibly shared.
-
---MiFvc8Vo6wRSORdP
+--zhXaljGHf11kAtnf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1xTpYACgkQJNaLcl1U
-h9AsqAf/caqc82p8eTjLhI9qV1ov43qSU0Lx+x0l1/34fodrmhwX+985ieiCqPdK
-YcQ+SBMd4NxLjLcIW7g6JNEhl7jK9Rf/JCdFqzTfLwH5PtuU9N7/NSkDVnHJT+Il
-7vZxg1enEl9P7kopxqGJeWD9TIdwrLbLTrHeT+k65BfrXkYZqdCFwgRySuA2bJv1
-ReQyGwWgKs9dHDKvFOcMUuFN8NII62VgdZ3v5nhNVtzsBqDjDpId9rk/2HhTUB6O
-Cxandr5b4mTQ2E2XZ4zNY++IFnMACM+Jk82jFpbaBX6faVMdJnb2TobZt2C+pGOp
-xTpfGM2727C2Yx2TU0BTn9qgDEHuNg==
-=FHl0
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1xUgcACgkQFA3kzBSg
+KbYXzA/+LjS2mPdsksvarWH8VQNQdqsoNEIn5YCxhi5qXxi0KAdEp5Z3N04ZEOk3
+goSeO/4g2HCWM9myuZ9wunwRgK8ucOiSfkatKYPEKHg8buN9f3QfSlLfENIhtwKc
+yeNOJyakRyJnfzXpFVRmrrTWjJoLTS0ZhNgHFMPbR8cXu1sAW2tnvzYfUVLUBGP4
+w+3ldwl6wzRUvg49x4K4yGmsTJ5NQFPKJnTUUYUJ0IgetTRyGD/3HoEY6k3W12oo
+QenoRNh3MEd/HjG+sQYH1w01/86Oz5L0N5OFQoQtFwCR5fITMP4sjy30dB1/cvyr
+UzXWWfzzRV5Gbz1EodWPOS2dzPj4e8f5TRzKJa86GkPYcm6Fys4ifFWTCD6yxuTe
+A3o2ruGJwaIZ6ALxUAzLfSjbyb3ZKsCJ+JLUeMP7hnTrOI7umYHQKxiAXkC4gL1E
+CzAg3CA0BefETQ0vutbyGemZfq8ThJpFktldowciXZrxo55JoPIW2PNMn9YuLE+h
+7yxkc0NQB2Y1Pzzqyk8dcQrwDOS+4sEiGD2QEgAe7FdMqv181MA7XIH8C05Y/uqV
+gwBYxFuKCc7/dUfKBzHDi5EpWlwGIY7wGTvNzzOwn25+wmUOEidSa3SPuM6ozEnR
+Kc9uu4xw4ZB/1cne5zTkL0BDa14aJt4/lkcWV4TWrs7E6voy05k=
+=Z3pm
 -----END PGP SIGNATURE-----
 
---MiFvc8Vo6wRSORdP--
+--zhXaljGHf11kAtnf--
