@@ -2,101 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E0EEA9F21
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C101AA9F53
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732722AbfIEKBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 06:01:11 -0400
-Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:49716 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S2387698AbfIEKAw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 06:00:52 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost2.synopsys.com [10.225.0.210])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 53ACFC29A4;
-        Thu,  5 Sep 2019 10:00:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1567677651; bh=jpITmRkSQ88mmTqXmv0bcx69vjIs1qPZ/IAyeZ+eQaE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:In-Reply-To:
-         References:From;
-        b=alkwKZZbijz8D15wvpQoRDEUHSvPmmf4FLJlRs5Ui0rBfAr1TTmU/P9T/Ji9qqv+m
-         EusdrrFJtRD0CyyrcVlRpNYnsc7F1TudS2mU37F9pYirZcBoXBJoAOkXfmlZci7n0w
-         YmldJqxB9bCUsG1zVOuHmpaKbHp4BB72PYT1KqnuEqNuHGGdOHphnoNamdiq7RGKZ8
-         yBD+mCvvGk0yxtNe8lXXsPZxzSfhN6MySVUdOzTZtvQS7uT5wXlyCYON60CjrJ+/GF
-         UChPioNmcFtjHCf4QeeWZxFSSdQaqLurzB7XWhbVgtbyg361q2W7UcKDysOLg2ZS09
-         4hPOw9ftUsYuA==
-Received: from de02.synopsys.com (germany.internal.synopsys.com [10.225.17.21])
-        by mailhost.synopsys.com (Postfix) with ESMTP id B2110A0064;
-        Thu,  5 Sep 2019 10:00:49 +0000 (UTC)
-Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
-        by de02.synopsys.com (Postfix) with ESMTP id 9374F3F3BF;
-        Thu,  5 Sep 2019 12:00:49 +0200 (CEST)
-From:   Vitor Soares <Vitor.Soares@synopsys.com>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-i3c@lists.infradead.org
-Cc:     bbrezillon@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        pgaj@cadence.com, Joao.Pinto@synopsys.com,
-        Vitor Soares <Vitor.Soares@synopsys.com>
-Subject: [PATCH v3 5/5] i3c: master: dw: reattach device on first available location of address table
-Date:   Thu,  5 Sep 2019 12:00:38 +0200
-Message-Id: <245de28c177b3169ce5b8c26d807f5fd46c2921c.1567608245.git.vitor.soares@synopsys.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1567608245.git.vitor.soares@synopsys.com>
-References: <cover.1567608245.git.vitor.soares@synopsys.com>
-In-Reply-To: <cover.1567608245.git.vitor.soares@synopsys.com>
-References: <cover.1567608245.git.vitor.soares@synopsys.com>
+        id S1732169AbfIEKOM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 06:14:12 -0400
+Received: from mga17.intel.com ([192.55.52.151]:65141 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726137AbfIEKOM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 06:14:12 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:14:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
+   d="scan'208";a="207823254"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga004.fm.intel.com with ESMTP; 05 Sep 2019 03:14:07 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i5omE-0006KH-Di; Thu, 05 Sep 2019 13:14:06 +0300
+Date:   Thu, 5 Sep 2019 13:14:06 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     dongchun.zhu@mediatek.com
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        sam.hung@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [V2, 1/2] media: i2c: dw9768: Add DT support and MAINTAINERS
+ entry
+Message-ID: <20190905101406.GA2680@smile.fi.intel.com>
+References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
+ <20190905072142.14606-2-dongchun.zhu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190905072142.14606-2-dongchun.zhu@mediatek.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For today the reattach function only update the device address on the
-controller.
+On Thu, Sep 05, 2019 at 03:21:41PM +0800, dongchun.zhu@mediatek.com wrote:
+> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> 
+> This patch is to add the Devicetree binding documentation and
+> MAINTAINERS entry for dw9768 actuator.
+> 
+> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt | 9 +++++++++
+>  MAINTAINERS                                                     | 7 +++++++
 
-Update the location to the first available too, will optimize the
-enumeration process avoiding additional checks to keep the available
-positions on address table consecutive.
+This should be:
+1) two separate patches
+2) binding in YAML
 
-Signed-off-by: Vitor Soares <vitor.soares@synopsys.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
----
-Change in v3:
-  - None
-
-Change in v2:
-  - Add Boris rb-tag
-
- drivers/i3c/master/dw-i3c-master.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/i3c/master/dw-i3c-master.c b/drivers/i3c/master/dw-i3c-master.c
-index 1d83c97..62261ac 100644
---- a/drivers/i3c/master/dw-i3c-master.c
-+++ b/drivers/i3c/master/dw-i3c-master.c
-@@ -898,6 +898,22 @@ static int dw_i3c_master_reattach_i3c_dev(struct i3c_dev_desc *dev,
- 	struct dw_i3c_i2c_dev_data *data = i3c_dev_get_master_data(dev);
- 	struct i3c_master_controller *m = i3c_dev_get_master(dev);
- 	struct dw_i3c_master *master = to_dw_i3c_master(m);
-+	int pos;
-+
-+	pos = dw_i3c_master_get_free_pos(master);
-+
-+	if (data->index > pos && pos > 0) {
-+		writel(0,
-+		       master->regs +
-+		       DEV_ADDR_TABLE_LOC(master->datstartaddr, data->index));
-+
-+		master->addrs[data->index] = 0;
-+		master->free_pos |= BIT(data->index);
-+
-+		data->index = pos;
-+		master->addrs[pos] = dev->info.dyn_addr;
-+		master->free_pos &= ~BIT(pos);
-+	}
- 
- 	writel(DEV_ADDR_TABLE_DYNAMIC_ADDR(dev->info.dyn_addr),
- 	       master->regs +
 -- 
-2.7.4
+With Best Regards,
+Andy Shevchenko
+
 
