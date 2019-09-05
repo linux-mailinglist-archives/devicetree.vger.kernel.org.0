@@ -2,106 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E9CAA42D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:18:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4660BAA454
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:24:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730809AbfIENSN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 09:18:13 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:40284 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730780AbfIENSN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:18:13 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 75AA060710; Thu,  5 Sep 2019 13:18:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567689492;
-        bh=aUuPqj9wb/JmSVV1hNFjJjdcQfTmN3Eohmt0r8g+oJ4=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=B0HZE85kueSI3pQ/FfFcLvFa3KTZftrFsNAtUNg7F1aCS1LzagU1K/Nqhfa6e4fJD
-         Vvyl2kC8/Shu1zRok9OM7zro3dqtRtInBHPxxLB8yFA++k+obILM+8QUMO3OTbSmiJ
-         c5KoezylnQhfQbmUTnz97GuWPfO2Orf08+b3w/qs=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D849E6025A;
-        Thu,  5 Sep 2019 13:18:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567689492;
-        bh=aUuPqj9wb/JmSVV1hNFjJjdcQfTmN3Eohmt0r8g+oJ4=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=B0HZE85kueSI3pQ/FfFcLvFa3KTZftrFsNAtUNg7F1aCS1LzagU1K/Nqhfa6e4fJD
-         Vvyl2kC8/Shu1zRok9OM7zro3dqtRtInBHPxxLB8yFA++k+obILM+8QUMO3OTbSmiJ
-         c5KoezylnQhfQbmUTnz97GuWPfO2Orf08+b3w/qs=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D849E6025A
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Subject: Re: [PATCH 01/49] dt: bindings: net: add qcom,ath11k.txt
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-        <1566316095-27507-2-git-send-email-kvalo@codeaurora.org>
-        <20190827171307.GA23128@bogus>
-Date:   Thu, 05 Sep 2019 16:18:08 +0300
-In-Reply-To: <20190827171307.GA23128@bogus> (Rob Herring's message of "Tue, 27
-        Aug 2019 12:13:07 -0500")
-Message-ID: <87o8zylw4v.fsf@kamboji.qca.qualcomm.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1731733AbfIENY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 09:24:27 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:36559 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730867AbfIENY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:24:26 -0400
+Received: by mail-pf1-f196.google.com with SMTP id y22so1763343pfr.3;
+        Thu, 05 Sep 2019 06:24:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=NwpAVuykxjo28VFm7bl/dVDMbsAXCwnrZvHXpATq9OE=;
+        b=T1vY/qS1bDi1uE03rHJZQcoDpjn1iYskFjqL+aQxBZeWtakrknmqQOc+9wmI2fQVNf
+         H0LVRd2s/IKVyXeYtP3EpHj5zjD8WIIbJRa83+EyY9rKrEUoepgoLH+ErA5V+Itt4WWr
+         4IgoORSsJHgK5K4Fe8+J8n5hr6WBKDa2eoDFNBLAQ2n/uz1z63Xrbi/zpfASfBpMhokf
+         FXFjMeG/Mrs54fFEO+rYUP/hZAs3lIamTiVRJAqOllbvgami7nl+eRvEBOfBqNLhTinb
+         pc/wyEnw6b1aLJ3C//iJDiQji+KvsIc0h2ixioahZNYqImO6ErQQUDOU8JvONiYDMusd
+         0omQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=NwpAVuykxjo28VFm7bl/dVDMbsAXCwnrZvHXpATq9OE=;
+        b=ZBCG0X9G3UU6om5UGj0iBcUHq7raqUKNd26GMaSFz/sm4Bxp6glWSz+wPjxwIRSdNV
+         Cu8ZG9GVOyHqwaO6p1UlK9a8DtWfVreOoOs353hdKO8YU9Pua+Rm26+uTvM+f5fxXDKq
+         e39qpgJ/IGnn5dR/WXhj4G4oS7v7GngeBJUhOhU7zV+2JuQzbq1Z1auHvT3fcv+P7rJv
+         n5n6MqQ8zp7NeLBAHCzedOOx4r8nOvysKttdTJQ5xBzzdnfAX6wnLzDhCPQiKt8q6o6s
+         AzLkBu2mSHVIhmV2/oYkK7MJjyLk82Z+AKlaUYAqD01ySK7mQpj2bC72/STB+DeR8cCc
+         cwbQ==
+X-Gm-Message-State: APjAAAW2igbzrHVXx6rUetPEZXNi5KL8wwSq7Ia79C9prV5Y7CSdO3vE
+        ST2n1gSDQ4ueNi1DrCLLJI9Fp1yd
+X-Google-Smtp-Source: APXvYqyZMNX+LR6+bDqYiL9tl/43eqS0vtZYSSIV9plmqE/sbu9KgsxiJHkiMbIlroF/7vM/czeA3g==
+X-Received: by 2002:a62:5cc2:: with SMTP id q185mr3605694pfb.221.1567689865910;
+        Thu, 05 Sep 2019 06:24:25 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z25sm2633514pfa.91.2019.09.05.06.24.23
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 05 Sep 2019 06:24:24 -0700 (PDT)
+Subject: Re: [PATCH v1] watchdog: imx_sc: this patch just fixes whitespaces
+To:     Oliver Graute <oliver.graute@kococonnector.com>,
+        "oliver.graute@gmail.com" <oliver.graute@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>
+References: <20190905073730.22258-1-oliver.graute@kococonnector.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Message-ID: <016e268c-f289-4127-a47e-3d8faa790ded@roeck-us.net>
+Date:   Thu, 5 Sep 2019 06:24:23 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20190905073730.22258-1-oliver.graute@kococonnector.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> writes:
+On 9/5/19 12:44 AM, Oliver Graute wrote:
+> Fix only whitespace errors in imx_sc_wdt_probe()
+> 
+> Signed-off-by: Oliver Graute <oliver.graute@kococonnector.com>
 
-> On Tue, Aug 20, 2019 at 06:47:27PM +0300, Kalle Valo wrote:
->
-> Missing commit message and Sob (and on the other patches).
+This patch no longer applies due to commit "watchdog: imx_sc: Remove
+unnecessary error log".
 
-My original plan was to commit all this in one commit and use the cover
-letter as my commit. But based on your comment I realised we should have
-three commits:
+Guenter
 
-1. devicetree bindings doc
-2. ath11k itself
-3. add entry to MAINTAINERS file
+> ---
+>   drivers/watchdog/imx_sc_wdt.c | 12 ++++++------
+>   1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/watchdog/imx_sc_wdt.c b/drivers/watchdog/imx_sc_wdt.c
+> index 78eaaf75a263..94db949042c9 100644
+> --- a/drivers/watchdog/imx_sc_wdt.c
+> +++ b/drivers/watchdog/imx_sc_wdt.c
+> @@ -175,12 +175,12 @@ static int imx_sc_wdt_probe(struct platform_device *pdev)
+>   	watchdog_stop_on_unregister(wdog);
+>   
+>   	ret = devm_watchdog_register_device(dev, wdog);
+> -
+> - 	if (ret) {
+> - 		dev_err(dev, "Failed to register watchdog device\n");
+> - 		return ret;
+> - 	}
+> -
+> +
+> +	if (ret) {
+> +		dev_err(dev, "Failed to register watchdog device\n");
+> +		return ret;
+> +	}
+> +
+>   	ret = imx_scu_irq_group_enable(SC_IRQ_GROUP_WDOG,
+>   				       SC_IRQ_WDOG,
+>   				       true);
+> 
 
->> ---
->>  .../bindings/net/wireless/qcom,ath11k.txt          | 127 +++++++++++++++++++++
->>  1 file changed, 127 insertions(+)
->
-> Please use the DT schema format (YAML). See writing-schema.md.
-
-Oh, I didn't know about the new format. We'll use that.
-
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath11k.txt
->> @@ -0,0 +1,127 @@
->> +* Qualcomm Technologies ath11k wireless devices
->> +
->> +Required properties:
->> +- compatible: Should be "qcom,ipq8074-wifi"
->> +
->> +AHB based ipq8074 uses most of the properties defined in this doc.
->> +
->> +Optional properties:
->> +- reg: Address and length of the register set for the device.
->> +- interrupts: List of interrupt lines. Must contain an entry
->> +	      for each entry in the interrupt-names property.
->
-> Need to be explicit as to how many interrupts and what they are.
-
-Ok, we'll add that.
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
