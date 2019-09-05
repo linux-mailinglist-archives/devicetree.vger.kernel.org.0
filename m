@@ -2,179 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D387AAA1E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 19:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBC58AAA70
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 19:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388532AbfIERjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 13:39:01 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:57502 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729017AbfIERi7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 13:38:59 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=DwBokQZNNtRg9EVjpvNf70nDH91xn3+otVOKWRMwdXc=; b=wuY8kl0AYbf/
-        rK3iK07pefHy6TlZiqwwBdBDJeWbDCWsR6Gc5gG1qUhhWk5uQ6Fpr+wUgecS4dAoLyyIduAutXULf
-        XYwhfM6yzy8mSgXQaiQldp/FS3OFjIqMqiX4OMRhYi2wX+DcV5vzp56dQBA/EMyn6JLAemXS+tXfH
-        cYAXs=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1i5vih-0005HK-6Z; Thu, 05 Sep 2019 17:38:55 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 9BF082742D17; Thu,  5 Sep 2019 18:38:54 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: meson: add reset binding" to the asoc tree
-In-Reply-To: <20190905120120.31752-3-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190905173854.9BF082742D17@ypsilon.sirena.org.uk>
-Date:   Thu,  5 Sep 2019 18:38:54 +0100 (BST)
+        id S1727053AbfIER6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 13:58:10 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:55552 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726837AbfIER6K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 13:58:10 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 0F534602EE; Thu,  5 Sep 2019 17:58:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567706289;
+        bh=nFWYzMin0X86XFTxfBQkZ2g+xZj2gnwJ+osEMBqkGZU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=FsaSvgx2rDCQBAhofHKJipypjSWuP4UJBf/hWGAL2CkGE1E2aHGCCJYIBBAGlvmWK
+         ZIk6utDAsL3XS+/PqeJFAbZHF8XE4XEK6XwI7AF0MUSJrWLhDFPt0cV6sFsJYGrewE
+         iUrDBXfMUsfYlYeJN7/8iF7e5IJJlRAdqtDSlZnM=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from jackp-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: jackp@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 980E7602EE;
+        Thu,  5 Sep 2019 17:58:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567706287;
+        bh=nFWYzMin0X86XFTxfBQkZ2g+xZj2gnwJ+osEMBqkGZU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BNXk2vyH0V0FYTxlPkk4085980/XQYJ9ebz2q0rsVvyjfCZr95boNa6EXs2tlC+0p
+         KEqiC8BNx7d6iHpNnLzzwolJ1Q5KrNhBrFLCcU0p2tbA7TuQuLqRF9SgVKRdC5IaB9
+         V+CgS9Et8DWbBQpN4I40R6gO+5yHVhNqkOHSGkRw=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 980E7602EE
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=jackp@codeaurora.org
+Date:   Thu, 5 Sep 2019 10:58:02 -0700
+From:   Jack Pham <jackp@codeaurora.org>
+To:     Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>, robh@kernel.org,
+        andy.gross@linaro.org, shawn.guo@linaro.org,
+        gregkh@linuxfoundation.org, mark.rutland@arm.com, kishon@ti.com,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, khasim.mohammed@linaro.org
+Subject: Re: [PATCH v4 3/4] dt-bindings: Add Qualcomm USB SuperSpeed PHY
+ bindings
+Message-ID: <20190905175802.GA19599@jackp-linux.qualcomm.com>
+References: <20190223165218.GB572@tuxbook-pro>
+ <6dc0957d-5806-7643-4454-966015865d38@linaro.org>
+ <5d694878.1c69fb81.5f13b.ec4f@mx.google.com>
+ <20190830164520.GK26807@tuxbook-pro>
+ <5d696ad2.1c69fb81.977ea.39e5@mx.google.com>
+ <f3584f38-dabc-7e7a-d1cb-84c80ed26215@linaro.org>
+ <20190903173924.GB9754@jackp-linux.qualcomm.com>
+ <5d6edee5.1c69fb81.a3896.1d05@mx.google.com>
+ <20190903233410.GQ26807@tuxbook-pro>
+ <c9481b7d-4805-25c6-f40f-9cbfc40afc93@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c9481b7d-4805-25c6-f40f-9cbfc40afc93@linaro.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Hi Jorge, Bjorn,
 
-   ASoC: meson: add reset binding
+On Thu, Sep 05, 2019 at 09:18:57AM +0200, Jorge Ramirez wrote:
+> On 9/4/19 01:34, Bjorn Andersson wrote:
+> > On Tue 03 Sep 14:45 PDT 2019, Stephen Boyd wrote:
+> > 
+> >> Quoting Jack Pham (2019-09-03 10:39:24)
+> >>> On Mon, Sep 02, 2019 at 08:23:04AM +0200, Jorge Ramirez wrote:
+> >>>> On 8/30/19 20:28, Stephen Boyd wrote:
+> >>>>> Quoting Bjorn Andersson (2019-08-30 09:45:20)
+> >>>>>> On Fri 30 Aug 09:01 PDT 2019, Stephen Boyd wrote:
+> >>>>>>
+> >>>>>>>>>
+> >>>>>>>>> The USB-C connector is attached both to the HS and SS PHYs, so I think
+> >>>>>>>>> you should represent this external to this node and use of_graph to
+> >>>>>>>>> query it.
+> >>>>>>>>
+> >>>>>>>> but AFAICS we wont be able to retrieve the vbux-supply from an external
+> >>>>>>>> node (that interface does not exist).
+> >>>>>>>>
+> >>>>>>>> rob, do you have a suggestion?
+> >>>>>>>
+> >>>>>>> Shouldn't the vbus supply be in the phy? Or is this a situation where
+> >>>>>>> the phy itself doesn't have the vbus supply going to it because the PMIC
+> >>>>>>> gets in the way and handles the vbus for the connector by having the SoC
+> >>>>>>> communicate with the PMIC about when to turn the vbus on and off, etc?
+> >>>>>>>
+> >>>>>>
+> >>>>>> That's correct, the VBUS comes out of the PMIC and goes directly to the
+> >>>>>> connector.
+> >>>>>>
+> >>>>>> The additional complicating factor here is that the connector is wired
+> >>>>>> to a USB2 phy as well, so we need to wire up detection and vbus control
+> >>>>>> to both of them - but I think this will be fine, if we can only figure
+> >>>>>> out a sane way of getting hold of the vbus-supply.
+> >>>>>>
+> >>>>>
+> >>>>> Does it really matter to describe this situation though? Maybe it's
+> >>>>> simpler to throw the vbus supply into the phy and control it from the
+> >>>>> phy driver, even if it never really goes there. Or put it into the
+> >>>>> toplevel usb controller?
+> >>>>>
+> >>>> that would work for me - the connector definition seemed a better way to
+> >>>> explain the connectivity but since we cant retrieve the supply from the
+> >>>> external node is not of much functional use.
+> >>>>
+> >>>> but please let me know how to proceed. shall I add the supply back to
+> >>>> the phy?
+> >>
+> >> So does the vbus actually go to the phy? I thought it never went there
+> >> and the power for the phy was different (and possibly lower in voltage).
+> >>
+> > 
+> > No, the PHYs use different - lower voltage - supplies to operate. VBUS
+> > is coming from a 5V supply straight to the connector and plug-detect
+> > logic (which is passive in this design).
+> > 
+> >>>
+> >>> Putting it in the toplevel usb node makes sense to me, since that's
+> >>> usually the driver that knows when it's switching into host mode and
+> >>> needs to turn on VBUS. The dwc3-qcom driver & bindings currently don't 
+> >>> do this but there's precedent in a couple of the other dwc3 "glues"--see
+> >>> Documentation/devicetree/bindings/usb/{amlogic\,dwc3,omap-usb}.txt
+> >>>
+> >>> One exception is if the PMIC is also USB-PD capable and can do power
+> >>> role swap, in which case the VBUS control needs to be done by the TCPM,
+> >>> so that'd be a case where having vbus-supply in the connector node might
+> >>> make more sense.
+> >>>
+> >>
+> >> The other way is to implement the code to get the vbus supply out of a
+> >> connector. Then any driver can do the work if it knows it needs to and
+> >> we don't have to care that the vbus isn't going somewhere. I suppose
+> >> that would need an of_regulator_get() sort of API that can get the
+> >> regulator out of there? Or to make the connector into a struct device
+> >> that can get the regulator out per some generic connector driver and
+> >> then pass it through to the USB controller when it asks for it. Maybe
+> >> try to prototype that out?
+> >>
+> > 
+> > The examples given in the DT bindings describes the connector as a child
+> > of a PMIC, with of_graph somehow tying it to the various inputs. But in
+> > these examples vbus is handled by implicitly inside the MFD, where
+> > extcon is informed about the plug event they toggle vbus as well.
+> > 
+> > In our case we have a extcon-usb-gpio to detect mode, which per Jorge's
+> > proposal will trickle down to the PHY and become a regulator calls on
+> > either some external regulator or more typically one of the chargers in
+> > the system.
 
-has been applied to the asoc tree at
+Interesting you mention extcon-usb-gpio. I thought extcon at least from
+bindings perspective is passé now. Maybe this is what you need (just
+landed in usb-next):
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+usb: common: add USB GPIO based connection detection driver
+https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=4602f3bff2669012c1147eecfe74c121765f5c56
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+dt-bindings: usb: add binding for USB GPIO based connection detection driver
+https://git.kernel.org/pub/scm/linux/kernel/git/gregkh/usb.git/commit/?h=usb-next&id=f651c73e71f53f65e9846677d79d8e120452b59f
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Fortunately this new driver might check the right boxes for you:
+- usb connector binding
+- ID detect GPIO
+- vbus-supply regulator
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+With that, I think you can also keep the connector subnode out of the
+SSPHY node well, and similarly get rid of the vbus toggle handling from
+the PHY driver.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+The big thing missing now is that this driver replaces extcon
+completely, so we'll need handling in dwc3/dwc3-qcom to retrieve the
+role switch state to know when host mode is entered. I saw this a while
+back but don't think it got picked up:
 
-Thanks,
-Mark
+https://patchwork.kernel.org/patch/10909981/
 
-From 6b59b8f8222146fc1912e0b783c81e4122e240ac Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 5 Sep 2019 14:01:14 +0200
-Subject: [PATCH] ASoC: meson: add reset binding
+> > So if we come up with a struct device for the connector and some API for
+> > toggling the vbus we're going to have to fairly abstract entities
+> > representing pretty much the same thing - and in a design with a mux we
+> > would have a different setup.
+> 
+> I am a bit unclear - not sure if we have gone full circle on this
+> subject. what is then the direction to get this merged?
+> 
+> I did have look last week and the level of effort to support regulators
+> on external nodes is not neglectable meaning that I might not have the
+> time to deliver that feature (perhaps someone else wishes to take over?)
+> 
+> > 
+> > Regards,
+> > Bjorn
+> > 
+> 
 
-The g12a audio subsystem, which is a derivative of the axg subsystem,
-provides a dedicated reset line for each of the audio components.
-
-The axg did not provide that and it is unclear if/when these reset are
-required. The reset already helped solve a channel mapping issue on the
-tdm formatter devices. Let's add the reset binding for the other
-components, so we can describe this in DT. We'll use it later on
-in the driver when/if needed.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190905120120.31752-3-jbrunet@baylibre.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt | 5 ++++-
- Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt  | 3 +++
- .../devicetree/bindings/sound/amlogic,axg-spdifin.txt        | 3 +++
- .../devicetree/bindings/sound/amlogic,axg-spdifout.txt       | 3 +++
- .../devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt      | 2 ++
- 5 files changed, 15 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-index 4b17073c8f8c..3080979350a0 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-fifo.txt
-@@ -12,7 +12,10 @@ Required properties:
- - interrupts: interrupt specifier for the fifo.
- - clocks: phandle to the fifo peripheral clock provided by the audio
- 	  clock controller.
--- resets: phandle to memory ARB line provided by the arb reset controller.
-+- resets: list of reset phandle, one for each entry reset-names.
-+- reset-names: should contain the following:
-+  * "arb" : memory ARB line (required)
-+  * "rst" : dedicated device reset line (optional)
- - #sound-dai-cells: must be 0.
- 
- Example of FRDDR A on the A113 SoC:
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-index b3f097976e6b..716878107a24 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-pdm.txt
-@@ -13,6 +13,9 @@ Required properties:
-   * "sysclk" : dsp system clock
- - #sound-dai-cells: must be 0.
- 
-+Optional property:
-+- resets: phandle to the dedicated reset line of the pdm input.
-+
- Example of PDM on the A113 SoC:
- 
- pdm: audio-controller@ff632000 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-index 62e5bca71664..df92a4ecf288 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifin.txt
-@@ -11,6 +11,9 @@ Required properties:
-   * "refclk" : spdif input reference clock
- - #sound-dai-cells: must be 0.
- 
-+Optional property:
-+- resets: phandle to the dedicated reset line of the spdif input.
-+
- Example on the A113 SoC:
- 
- spdifin: audio-controller@400 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-index d38aa35ec630..28381dd1f633 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,axg-spdifout.txt
-@@ -10,6 +10,9 @@ Required properties:
-   * "mclk" : master clock
- - #sound-dai-cells: must be 0.
- 
-+Optional property:
-+- resets: phandle to the dedicated reset line of the spdif output.
-+
- Example on the A113 SoC:
- 
- spdifout: audio-controller@480 {
-diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-index 173a95045540..4e8cd7eb7cec 100644
---- a/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-+++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-tohdmitx.txt
-@@ -6,6 +6,7 @@ Required properties:
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - #sound-dai-cells: should be 1.
-+- resets: phandle to the dedicated reset line of the hdmitx glue.
- 
- Example on the S905X2 SoC:
- 
-@@ -13,6 +14,7 @@ tohdmitx: audio-controller@744 {
- 	compatible = "amlogic,g12a-tohdmitx";
- 	reg = <0x0 0x744 0x0 0x4>;
- 	#sound-dai-cells = <1>;
-+	resets = <&clkc_audio AUD_RESET_TOHDMITX>;
- };
- 
- Example of an 'amlogic,axg-sound-card':
+Jack
 -- 
-2.20.1
-
+The Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
