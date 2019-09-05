@@ -2,83 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2510EAA19E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 13:37:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76BC5AA1AB
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 13:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732207AbfIELhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 07:37:15 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:60940 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731633AbfIELhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 07:37:15 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id E6B446115B; Thu,  5 Sep 2019 11:37:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567683434;
-        bh=En7H/vjEfdCHenDTzylmtXEv8eSxVc80QkgW02+ubgw=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=Lj75MEpf9aLo/MVe56iZj+pBq2UEJgxQgW79/SjFSaB6DZSUlkvwV0UuZ6pwfHHzD
-         53p244Br1hXJrbNLh5hwwt7h8UZIXiCSMlagfeV1zk5ZC3TFpWijTXBkExerrMaEQ8
-         e3+Q4qzWNrhSBC1ZjOWW0lwi+VPhWUgxh1sbYHn4=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C7E34602EE;
-        Thu,  5 Sep 2019 11:37:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1567683433;
-        bh=En7H/vjEfdCHenDTzylmtXEv8eSxVc80QkgW02+ubgw=;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-        b=ChhsYj4Vyft9WWdWnRFTxhovyfGx0bP0BuX5BCJTVS5DsYfx3EcD/u74vj9SDsS/s
-         Kr5l2kcJc3wb6YhfgMmWZjFE0BPcTpnRAUBUgQFDI0K8i6rKAiaUVbtG/yuOi8ka1F
-         Vm2oTw3oy3v8jLXGGHzc3LIJYAsCPaYFDJsyRMzI=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C7E34602EE
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Johannes Berg <johannes@sipsolutions.net>
-Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
-        ath11k@lists.infradead.org
-Subject: Re: [PATCH 08/49] ath11k: add core.c
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-        <1566316095-27507-9-git-send-email-kvalo@codeaurora.org>
-        <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
-Date:   Thu, 05 Sep 2019 14:37:09 +0300
-In-Reply-To: <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
-        (Johannes Berg's message of "Tue, 20 Aug 2019 22:32:45 +0200")
-Message-ID: <874l1rnfdm.fsf@kamboji.qca.qualcomm.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S2388603AbfIELkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 07:40:22 -0400
+Received: from mga05.intel.com ([192.55.52.43]:7598 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730753AbfIELkW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 07:40:22 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 04:40:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
+   d="scan'208";a="187951270"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga006.jf.intel.com with ESMTP; 05 Sep 2019 04:40:17 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i5q7c-0007GF-5F; Thu, 05 Sep 2019 14:40:16 +0300
+Date:   Thu, 5 Sep 2019 14:40:16 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Andrew Murray <andrew.murray@arm.com>
+Cc:     Dilip Kota <eswara.kota@linux.intel.com>, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
+        robh@kernel.org, martin.blumenstingl@googlemail.com,
+        linux-pci@vger.kernel.org, hch@infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
+        qi-ming.wu@intel.com
+Subject: Re: [PATCH v3 2/2] dwc: PCI: intel: Intel PCIe RC controller driver
+Message-ID: <20190905114016.GF2680@smile.fi.intel.com>
+References: <cover.1567585181.git.eswara.kota@linux.intel.com>
+ <35316bac59d3bc681e76d33e0345f4ef950c4414.1567585181.git.eswara.kota@linux.intel.com>
+ <20190905104517.GX9720@e119886-lin.cambridge.arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190905104517.GX9720@e119886-lin.cambridge.arm.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Johannes Berg <johannes@sipsolutions.net> writes:
+On Thu, Sep 05, 2019 at 11:45:18AM +0100, Andrew Murray wrote:
+> On Wed, Sep 04, 2019 at 06:10:31PM +0800, Dilip Kota wrote:
+> > Add support to PCIe RC controller on Intel Universal
+> > Gateway SoC. PCIe controller is based of Synopsys
+> > Designware pci core.
 
->> +module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
->> +
->> +MODULE_PARM_DESC(debug_mask, "Debugging mask");
->> +
->> +static const struct ath11k_hw_params ath11k_hw_params = {
->> +			.name = "ipq8074",
->
-> indentation here seems a bit too much
->
->> +MODULE_LICENSE("Dual BSD/GPL");
->
-> All your files state "ISC", shouldn't that be reflected here?
+> > +config PCIE_INTEL_AXI
 
-The MODULE_LICENSE() macro doesn't accept anything else. AFAIK all ISC
-drivers use this.
+I think that name here is too generic. Classical x86 seems not using this.
+
+> > +        bool "Intel AHB/AXI PCIe host controller support"
+> > +        depends on PCI_MSI
+> > +        depends on PCI
+> > +        depends on OF
+> > +        select PCIE_DW_HOST
+> > +        help
+> > +          Say 'Y' here to enable support for Intel AHB/AXI PCIe Host
+> > +	  controller driver.
+> > +	  The Intel PCIe controller is based on the Synopsys Designware
+> > +	  pcie core and therefore uses the Designware core functions to
+> > +	  implement the driver.
 
 -- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+With Best Regards,
+Andy Shevchenko
+
+
