@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 26F55AA61A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 16:41:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49DC9AA61C
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 16:41:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730671AbfIEOln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 10:41:43 -0400
-Received: from mail-qk1-f202.google.com ([209.85.222.202]:39512 "EHLO
-        mail-qk1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730867AbfIEOln (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 10:41:43 -0400
-Received: by mail-qk1-f202.google.com with SMTP id p6so2648570qkk.6
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 07:41:42 -0700 (PDT)
+        id S2389530AbfIEOlo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 10:41:44 -0400
+Received: from mail-qk1-f201.google.com ([209.85.222.201]:47914 "EHLO
+        mail-qk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389528AbfIEOlo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 10:41:44 -0400
+Received: by mail-qk1-f201.google.com with SMTP id y67so2631393qkc.14
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 07:41:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=RaOdMEdHWabRyA48tWifREdKC/PQMtkOlsK8xXnOLlg=;
-        b=BtnXfkFFib9LY2N7CLMrbVvS73v4Eq6wm+VbGidSpNhFCD42EtMTDvVL8+G02UX2lJ
-         6hfjWa8pXNEsKJfxRxDoiJ6Js2le/D2knnMzOom9h3YZXu6WCmWpYxSPqhxIf8XvjDqK
-         4mY6MhLeCLz8/uWepBTNX4NevsjTbdtjpmk3VvfemuGiEPKEMVJGs1z5NKuM2TNKIIoy
-         rU9+aiGOOrDooEWyk2m/Kjd8XrbaMEzSWl/SESdIm9GPtZki1ifsqtx7xqM3Ww2w7UL0
-         9GgqgjK2Efr4Fibow4GjVnEev3fd78/76t9xWzithNMZm/vJerJGWBfYf/js6NCc21jt
-         WkqA==
+        bh=DBIgduCaugj8tqfaD9C0q1cOrYEMjHp+EVVP9xE+eQU=;
+        b=kFQCO+ILTxycGD0xPpwoQ2n/kJ3/gIMamkdeAtF5gZONEcygdv6B8viIrHbUn7pAn1
+         jsPrQfi+A5AUgpFzxVSBgYJY+wfn8U1b00aSKG/0puFKN9MDOdDuM3TRK06qBA8pViHf
+         S3SVzRuVjVk+odURthKdo7VMqFnql4/SSn7EuZJhMyOedA76sMhZuNiTvFoQ5UOBXjTT
+         dciBZ4RasmNWXIUULCEW+v9XFRolhBz3ew/8kAyesPCTnhxFhST6joqcANAAr6gi7w25
+         aWy9TL/ETCspFPHhrreos5OCONl4Om8cu9vActrASMUIPHSt/+I4NnxIm7a/CUywGlAI
+         Mf0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=RaOdMEdHWabRyA48tWifREdKC/PQMtkOlsK8xXnOLlg=;
-        b=R3K86mTd7hycWPdb56oWeI3T3gKBFdZ85aaEajDJ5KANV7pFcIxvwFff9bfQk//1Km
-         n1Xyz+d0qYGgz4y37L5uZAiyNF4h/MgHwa8Hp1ogFYsN0LPlyxppZra0SwamN5fI/G4Y
-         oOKBiH839J/VKG7H4GQ4KHTGguLgrYDfJChVFINiLuvHyysOnjUpzn0eJdWr03UuBL8z
-         5/+Ky4XdUSwHVdlmI/Kb1wwhFyZNTE5Y/yVP6uFzE89hK3WPAEjlbYUMoLmAkNc0CJK7
-         lenHDPAytIF7NaDJs/5qK58ziBiDNDt2QjvBzencd8FS0mOg1XzgkN6EYSksN9/9gGtz
-         9NnA==
-X-Gm-Message-State: APjAAAV4MCsyOZGYuLjUxkkWO8N9gIWeqL+A8BugJAKTiitifB/XygPY
-        c4W8SepRPEkRWw+zZYpZTCry770=
-X-Google-Smtp-Source: APXvYqzkDOBp79PXpEAipYZadtwGS7ZnIH63SZDea9FHuBgDn4feswfOL5kDKxXMwh4xwbR5YKHd0wE=
-X-Received: by 2002:a37:9d3:: with SMTP id 202mr3162654qkj.391.1567694501708;
- Thu, 05 Sep 2019 07:41:41 -0700 (PDT)
-Date:   Thu,  5 Sep 2019 10:41:29 -0400
+        bh=DBIgduCaugj8tqfaD9C0q1cOrYEMjHp+EVVP9xE+eQU=;
+        b=bZ7JDsKpK+l57Xj989ijb/LTthx/U/+EeOachIoubeJTibYyC+w9VR283pWv04KJua
+         cJuUx5OujBxuoz32gcvwm37SLck/lqL+ZlV2PJiWzdmAFVM3KitemxqjvYmWv3FZwyII
+         z/EoG8laDd1vE5BJRR5QyKI+pEv8ZHEMiC5QHP6+MR+UtYXH11D3afjE4/wkev2nGVQB
+         VGfZcSInCwaTXBhyOAxq6T3BWHmvOABE71U7ru+R+DeJ99DHLcFWMhP7B9aE9buSHdTF
+         hZoBeLn/6hTTnYDknzwQyWxS7x5+XOeMSP8YmsZorCItdqY2QlWKX4jwYM/M4nyGopwJ
+         wZWA==
+X-Gm-Message-State: APjAAAWSa7aAxWZ4xB2ItxQiSQZTFdvDKC1e+7ZWZPA2s602h+Dm4wAY
+        jcaLSxL+d3sH/3+DS7thyJ176ow=
+X-Google-Smtp-Source: APXvYqyNSVOy6oyG9DD0QBvBuTaufZmFloO9JVWmWZHMU1JZn5mMUAwUE7z3OJooXuAyecAHfFp7wjQ=
+X-Received: by 2002:ac8:130d:: with SMTP id e13mr2670110qtj.287.1567694502968;
+ Thu, 05 Sep 2019 07:41:42 -0700 (PDT)
+Date:   Thu,  5 Sep 2019 10:41:30 -0400
 In-Reply-To: <20190905144130.220713-1-osk@google.com>
-Message-Id: <20190905144130.220713-2-osk@google.com>
+Message-Id: <20190905144130.220713-3-osk@google.com>
 Mime-Version: 1.0
 References: <20190905144130.220713-1-osk@google.com>
 X-Mailer: git-send-email 2.23.0.187.g17f5b7556c-goog
-Subject: [PATCH v3 2/3] dt-bindings: serial: 8250: Add aspeed,sirq-polarity-sense.
+Subject: [PATCH v3 3/3] arm: dts: aspeed: Add vuart aspeed,sirq-polarity-sense
+ to aspeed-g5.dtsi
 From:   Oskar Senft <osk@google.com>
 To:     joel@jms.id.au, andrew@aj.id.au, robh+dt@kernel.org,
         gregkh@linuxfoundation.org, jk@ozlabs.org
@@ -59,30 +60,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add documentation for 8250_aspeed_vuart's aspeed,sirq-polarity-sense
-property that enables to auto-configure the VUART's SIRQ polarity.
+Enable auto-configuration of VUART SIRQ polarity on AST2500.
 
 Signed-off-by: Oskar Senft <osk@google.com>
 ---
- Documentation/devicetree/bindings/serial/8250.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm/boot/dts/aspeed-g5.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/serial/8250.txt b/Documentation/devicetree/bindings/serial/8250.txt
-index 20d351f268ef..55700f20f6ee 100644
---- a/Documentation/devicetree/bindings/serial/8250.txt
-+++ b/Documentation/devicetree/bindings/serial/8250.txt
-@@ -56,6 +56,11 @@ Optional properties:
- - {rts,cts,dtr,dsr,rng,dcd}-gpios: specify a GPIO for RTS/CTS/DTR/DSR/RI/DCD
-   line respectively. It will use specified GPIO instead of the peripheral
-   function pin for the UART feature. If unsure, don't specify this property.
-+- aspeed,sirq-polarity-sense: Only applicable to aspeed,ast2500-vuart.
-+  phandle to aspeed,ast2500-scu compatible syscon alongside register offset
-+  and bit number to identify how the SIRQ polarity should be configured.
-+  One possible data source is the LPC/eSPI mode bit.
-+  Example: aspeed,sirq-polarity-sense = <&syscon 0x70 25>
+diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+index 5b1ca265c2ce..06e489c1d0cb 100644
+--- a/arch/arm/boot/dts/aspeed-g5.dtsi
++++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+@@ -351,6 +351,7 @@
+ 				interrupts = <8>;
+ 				clocks = <&syscon ASPEED_CLK_APB>;
+ 				no-loopback-test;
++				aspeed,sirq-polarity-sense = <&syscon 0x70 25>;
+ 				status = "disabled";
+ 			};
  
- Note:
- * fsl,ns16550:
 -- 
 2.23.0.187.g17f5b7556c-goog
 
