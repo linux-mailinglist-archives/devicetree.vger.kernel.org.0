@@ -2,73 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A027AA02D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82352AA034
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 12:46:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388067AbfIEKpx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 06:45:53 -0400
-Received: from mga06.intel.com ([134.134.136.31]:61875 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727900AbfIEKpx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 06:45:53 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:45:52 -0700
-X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
-   d="scan'208";a="334516783"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 03:45:48 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 9A6A620584; Thu,  5 Sep 2019 13:45:46 +0300 (EEST)
-Date:   Thu, 5 Sep 2019 13:45:46 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Dongchun Zhu <dongchun.zhu@mediatek.com>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        drinkcat@chromium.org, tfiga@chromium.org, matthias.bgg@gmail.com,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V3, 2/2] media: i2c: Add Omnivision OV02A10 camera sensor driver
-Message-ID: <20190905104546.GA5475@paasikivi.fi.intel.com>
-References: <20190819034331.13098-1-dongchun.zhu@mediatek.com>
- <20190819034331.13098-3-dongchun.zhu@mediatek.com>
- <20190819083009.GC6133@paasikivi.fi.intel.com>
- <1567676465.21623.100.camel@mhfsdcap03>
+        id S1732098AbfIEKqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 06:46:07 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:9996 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727900AbfIEKqG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 06:46:06 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d70e770000a>; Thu, 05 Sep 2019 03:46:08 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 05 Sep 2019 03:46:06 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 05 Sep 2019 03:46:06 -0700
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 5 Sep
+ 2019 10:46:01 +0000
+Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Thu, 5 Sep 2019 10:46:01 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d70e7630002>; Thu, 05 Sep 2019 03:46:00 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <andrew.murray@arm.com>
+CC:     <kishon@ti.com>, <gustavo.pimentel@synopsys.com>,
+        <digetx@gmail.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V4 0/6] PCI: tegra: Enable PCIe C5 controller of Tegra194 in p2972-0000 platform
+Date:   Thu, 5 Sep 2019 16:15:47 +0530
+Message-ID: <20190905104553.2884-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567676465.21623.100.camel@mhfsdcap03>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1567680368; bh=YC2A14ccqRxtxcn75mXI1dozxpBOosnoSmsvsyfnYmk=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=h7w1/lHCXzCaLLHTK+O6GLMLqzoa0L15XNlxklPoeAIAYlTPo9qnb/TgA8+RA6/NK
+         LwSSZLM2y+oVs2bqt/8rIsiBUuUJbb+YoQHJNEkRTMvI6jvX9M6+LGLXg/H+N8s1p1
+         kg/uW2AvO2Q/c3BW9k/cRB+IzuptrKaSxvtLoA2LvKzh4B8gqeTozPht2ap29Zgz35
+         PYtYAAX+yOqcHKI5WXHr90tO30NgWCvbVZus/+PHd6KZwyz3Ye2Ml3VjFDD6h99R6n
+         G2g2gMD9fNjx27Wce/pUOCbhWV2SManYwaj5TScqus+Uw3v9IyIbmI9aJte9qfA3eu
+         vUkmUjfg7BEOQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dongchun,
+This patch series enables Tegra194's C5 controller which owns x16 slot in
+p2972-0000 platform. C5 controller's PERST# and CLKREQ# are not configured as
+output and bi-directional signals by default and hence they need to be
+configured explicitly. Also, x16 slot's 3.3V and 12V supplies are controlled
+through GPIOs and hence they need to be enabled through regulator framework.
+This patch series adds required infrastructural support to address both the
+aforementioned requirements.
+Testing done on p2972-0000 platform
+- Able to enumerate devices connected to x16 slot (owned by C5 controller)
+- Enumerated device's functionality verified
+- Suspend-Resume sequence is verified with device connected to x16 slot
 
-On Thu, Sep 05, 2019 at 05:41:05PM +0800, Dongchun Zhu wrote:
+V4:
+* Rebased (Patch-4/6 particularly) on top of Lorenzo's pci/tegra branch
 
-...
+V3:
+* Addressed some more review comments from Andrew Murray and Thierry Reding
 
-> > > +	ret = regulator_bulk_enable(OV02A10_NUM_SUPPLIES, ov02a10->supplies);
-> > > +	if (ret < 0) {
-> > > +		dev_err(dev, "Failed to enable regulators\n");
-> > > +		goto disable_clk;
-> > > +	}
-> > > +	msleep_range(7);
-> > 
-> > This has some potential of clashing with more generic functions in the
-> > future. Please use usleep_range directly, or msleep.
-> > 
-> 
-> Did you mean using usleep_range(7*1000, 8*1000), as used in patch v1?
-> https://patchwork.kernel.org/patch/10957225/
+V2:
+* Changed the order of patches in the series for easy merging
+* Addressed review comments from Thierry Reding and Andrew Murray
 
-Yes, please.
+Vidya Sagar (6):
+  dt-bindings: PCI: tegra: Add sideband pins configuration entries
+  dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
+  PCI: tegra: Add support to configure sideband pins
+  PCI: tegra: Add support to enable slot regulators
+  arm64: tegra: Add configuration for PCIe C5 sideband signals
+  arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
+
+ .../bindings/pci/nvidia,tegra194-pcie.txt     | 16 ++++
+ .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 24 +++++
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  4 +-
+ arch/arm64/boot/dts/nvidia/tegra194.dtsi      | 38 +++++++-
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 94 ++++++++++++++++++-
+ 5 files changed, 172 insertions(+), 4 deletions(-)
 
 -- 
-Sakari Ailus
-sakari.ailus@linux.intel.com
+2.17.1
+
