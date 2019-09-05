@@ -2,73 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6270FAA308
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D717BAA331
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731659AbfIEMY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:24:56 -0400
-Received: from mga03.intel.com ([134.134.136.65]:55570 "EHLO mga03.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731294AbfIEMYz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 08:24:55 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 05:24:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
-   d="scan'208";a="199270720"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001.fm.intel.com with ESMTP; 05 Sep 2019 05:24:49 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1i5qoj-00083O-A7; Thu, 05 Sep 2019 15:24:49 +0300
-Date:   Thu, 5 Sep 2019 15:24:49 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Javier Martinez Canillas <javier@dowhile0.org>,
-        dongchun.zhu@mediatek.com,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, drinkcat@chromium.org,
-        Tomasz Figa <tfiga@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org, sam.hung@mediatek.com,
-        shengnan.wang@mediatek.com
-Subject: Re: [V2, 1/2] media: i2c: dw9768: Add DT support and MAINTAINERS
- entry
-Message-ID: <20190905122449.GG2680@smile.fi.intel.com>
-References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
- <20190905072142.14606-2-dongchun.zhu@mediatek.com>
- <20190905101406.GA2680@smile.fi.intel.com>
- <20190905104829.GB5475@paasikivi.fi.intel.com>
- <20190905113509.GD2680@smile.fi.intel.com>
- <CABxcv=knP+-x0O-Ga-Dy8WTNovHk6GfX4ZEv0vVjnQvwchuVzg@mail.gmail.com>
- <20190905120012.GD5475@paasikivi.fi.intel.com>
+        id S2388589AbfIEM3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 08:29:46 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:46044 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388457AbfIEM3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:29:45 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 0BAC761156; Thu,  5 Sep 2019 12:29:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567686585;
+        bh=w28KEsOScY0eiDy8iwTbqHacHS1x80YGi2SWuFeJWgU=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=eko1zFENroTN9NzY/YjIQHB/9daem2+xOnPMEmPNtpIm+eOQHkz1/ykMIGrs3u54T
+         Yz7mKjttsOWCANtkzVJeWLnMBnRuaf0/BEGb5GbvdFJVvcKY4dreqz+JFYsdu6CgQv
+         Lcx3J3bFFZN6TRdXSTnwJ233db69GEceTTzhlVxQ=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 179CC601D4;
+        Thu,  5 Sep 2019 12:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567686584;
+        bh=w28KEsOScY0eiDy8iwTbqHacHS1x80YGi2SWuFeJWgU=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=jXJiqHaKSQ7rOb9wXwPlsxaJuWeigwU7+8o0J/jQGY7LtDV+JCMsOPGg5/pR0myPc
+         wNzNUwCb8nOjdv0eVPgz1cOLXlYgOjlxwpx24sMnT6DqnrV1GDplaVgFj2vuL694gF
+         bKYrJNBFdSyPrUyQLE2GZESs1QMjds73xYkEUPoQ=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 179CC601D4
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
+Cc:     devicetree@vger.kernel.org,
+        Johannes Berg <johannes@sipsolutions.net>,
+        linux-wireless@vger.kernel.org, ath11k@lists.infradead.org
+Subject: Re: [PATCH 31/49] ath11k: add mac.c
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+        <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
+        <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
+        <ee38dc5e80097d0ebc186f81b2f11d37@codeaurora.org>
+        <878sr3nfz8.fsf@kamboji.qca.qualcomm.com>
+        <8e90a557c1659995d117c6dc8b728d7f@codeaurora.org>
+Date:   Thu, 05 Sep 2019 15:29:40 +0300
+In-Reply-To: <8e90a557c1659995d117c6dc8b728d7f@codeaurora.org> (Vasanthakumar
+        Thiagarajan's message of "Thu, 05 Sep 2019 17:28:53 +0530")
+Message-ID: <87woenkjt7.fsf@kamboji.qca.qualcomm.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190905120012.GD5475@paasikivi.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 03:00:12PM +0300, Sakari Ailus wrote:
+Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
 
-> And I see no reason to add a separate patch just for
-> MAINTAINERS change.
+> On 2019-09-05 16:54, Kalle Valo wrote:
+>> Vasanthakumar Thiagarajan <vthiagar@codeaurora.org> writes:
+>>
+>>> On 2019-08-21 02:16, Johannes Berg wrote:
+>>>> On Tue, 2019-08-20 at 18:47 +0300, Kalle Valo wrote:
+>>>>
+>>>>> +static int ath11k_mac_op_config(struct ieee80211_hw *hw, u32
+>>>>> changed)
+>>>>> +{
+>>>>> +	struct ath11k *ar = hw->priv;
+>>>>> +	int ret = 0;
+>>>>> +
+>>>>> +	/* mac80211 requires this op to be present and that's why
+>>>>> +	 * there's an empty function, this can be extended when
+>>>>> +	 * required.
+>>>>> +	 */
+>>>>
+>>>> Well, oops. Maybe it shouldn't be required?
+>>>
+>>> I think we require this for some configuration handling. The comment
+>>> is to be updated with proper information. We'll address that.
+>>
+>> The way I'm understanding Johannes' comment is that maybe we should
+>> change mac80211 to require this op to be present. Should be easy to fix
+>> in mac80211, right?
+>
+> Ok. So make this callback optional in mac80211? should be a simple
+> code change.
 
-It's up to maintainers of the subsystem.
+Yeah, I was supposed to write:
+
+"maybe we should change mac80211 to not require this op to be present"
+
+But of course I could have just misunderstood, let's see what Johannes
+says :)
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
