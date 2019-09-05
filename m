@@ -2,76 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D6BA9AEA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 08:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34A72A9AF8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 08:58:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731095AbfIEGu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 02:50:27 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:38637 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728267AbfIEGu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 02:50:27 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i5lan-0002ZF-Lq; Thu, 05 Sep 2019 08:50:05 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i5laZ-0001pD-N3; Thu, 05 Sep 2019 08:49:51 +0200
-Date:   Thu, 5 Sep 2019 08:49:51 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Sascha Hauer <kernel@pengutronix.de>,
-        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
-        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
-        ck.hu@mediatek.com, stonea168@163.com
-Subject: Re: [PATCH v6 0/7] Support dsi for mt8183
-Message-ID: <20190905064951.mttzwrg7muhfimdw@pengutronix.de>
-References: <20190811104008.53372-1-jitao.shi@mediatek.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190811104008.53372-1-jitao.shi@mediatek.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1730848AbfIEG6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 02:58:47 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:28751 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730778AbfIEG6q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 02:58:46 -0400
+X-IronPort-AV: E=Sophos;i="5.64,469,1559487600"; 
+   d="scan'208";a="25584386"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 05 Sep 2019 15:58:44 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 62B2A400B9F5;
+        Thu,  5 Sep 2019 15:58:42 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>, devicetree@vger.kernel.org,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] dt-bindings: power: Add r8a774b1 SYSC power domain definitions
+Date:   Thu,  5 Sep 2019 07:52:06 +0100
+Message-Id: <1567666326-27373-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+This patch adds power domain indices for RZ/G2N(a.k.a r8a774b1) SoC.
 
-I somehow fail to see how this is relevant for the linux-pwm list. Did
-you add this list to the recipents by accident, or is there something I
-missed?
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+---
+ include/dt-bindings/power/r8a774b1-sysc.h | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+ create mode 100644 include/dt-bindings/power/r8a774b1-sysc.h
 
-Best regards
-Uwe
-
+diff --git a/include/dt-bindings/power/r8a774b1-sysc.h b/include/dt-bindings/power/r8a774b1-sysc.h
+new file mode 100644
+index 0000000..3737364
+--- /dev/null
++++ b/include/dt-bindings/power/r8a774b1-sysc.h
+@@ -0,0 +1,26 @@
++/* SPDX-License-Identifier: GPL-2.0
++ *
++ * Copyright (C) 2019 Renesas Electronics Corp.
++ */
++#ifndef __DT_BINDINGS_POWER_R8A774B1_SYSC_H__
++#define __DT_BINDINGS_POWER_R8A774B1_SYSC_H__
++
++/*
++ * These power domain indices match the numbers of the interrupt bits
++ * representing the power areas in the various Interrupt Registers
++ * (e.g. SYSCISR, Interrupt Status Register)
++ */
++
++#define R8A774B1_PD_CA57_CPU0		 0
++#define R8A774B1_PD_CA57_CPU1		 1
++#define R8A774B1_PD_A3VP		 9
++#define R8A774B1_PD_CA57_SCU		12
++#define R8A774B1_PD_A3VC		14
++#define R8A774B1_PD_3DG_A		17
++#define R8A774B1_PD_3DG_B		18
++#define R8A774B1_PD_A2VC1		26
++
++/* Always-on power area */
++#define R8A774B1_PD_ALWAYS_ON		32
++
++#endif /* __DT_BINDINGS_POWER_R8A774B1_SYSC_H__ */
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+2.7.4
+
