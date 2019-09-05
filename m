@@ -2,91 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAA8BA9AAA
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 08:27:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35D6BA9AEA
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 08:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731541AbfIEG1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 02:27:03 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:17907 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731461AbfIEG1D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 02:27:03 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d70aab70000>; Wed, 04 Sep 2019 23:27:03 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Wed, 04 Sep 2019 23:27:02 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Wed, 04 Sep 2019 23:27:02 -0700
-Received: from [10.19.108.121] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 5 Sep
- 2019 06:27:00 +0000
-Subject: Re: [PATCH 1/8] clk: tegra: Add PLLE HW power sequencer control
-To:     Jon Hunter <jonathanh@nvidia.com>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <pdeschrijver@nvidia.com>,
-        <afrid@nvidia.com>
-CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>,
-        <skomatineni@nvidia.com>
-References: <20190614074652.21960-1-jckuo@nvidia.com>
- <20190614074652.21960-2-jckuo@nvidia.com>
- <1d215b49-73f7-8f5c-c8cb-81bf73553b19@nvidia.com>
-X-Nvconfidentiality: public
-From:   JC Kuo <jckuo@nvidia.com>
-Message-ID: <fb9517e8-e7db-613b-6922-b640c95f2a1a@nvidia.com>
-Date:   Thu, 5 Sep 2019 14:26:58 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1731095AbfIEGu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 02:50:27 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:38637 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728267AbfIEGu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 02:50:27 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1i5lan-0002ZF-Lq; Thu, 05 Sep 2019 08:50:05 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1i5laZ-0001pD-N3; Thu, 05 Sep 2019 08:49:51 +0200
+Date:   Thu, 5 Sep 2019 08:49:51 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Jitao Shi <jitao.shi@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Sascha Hauer <kernel@pengutronix.de>,
+        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
+        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
+        ck.hu@mediatek.com, stonea168@163.com
+Subject: Re: [PATCH v6 0/7] Support dsi for mt8183
+Message-ID: <20190905064951.mttzwrg7muhfimdw@pengutronix.de>
+References: <20190811104008.53372-1-jitao.shi@mediatek.com>
 MIME-Version: 1.0
-In-Reply-To: <1d215b49-73f7-8f5c-c8cb-81bf73553b19@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1567664823; bh=x5cnuyRHQdEEcbA8md+H1Rut458iUH61JVC0i8TXuSs=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:Content-Language:
-         Content-Transfer-Encoding;
-        b=SkVviJxOqC8LyRKrzg9GH+z6A45IIoy7FSH864kecC6jP3BDZrqRMAAts86V5uVYf
-         2rQ0oK9IzAH793aOJBWeTYQLGHpxJ/da491W+0/4cCrFl4tC/L9//N5xNyfBQG07Sj
-         M8lqw33lgQnpuqcRAkY1YH0Lq2kJDXOYMU9lULVQ/Xtk8X20KzzmtY2AxtW5an8sLe
-         +j16/wwjPUbHJKhapruyS+pyjlATU+DIJLwXXp/+Hot0G964D5oMXr8NSQk4TkaOj8
-         CACDG1KOF+eLYUP3YHLJZbsIdP+0+rSD6U3dkw7y+uQtsN4HkiJ6pXysrOMCaZrLxr
-         rpYqgqMRFZcGQ==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190811104008.53372-1-jitao.shi@mediatek.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/4/19 8:16 PM, Jon Hunter wrote:
-> 
-> On 14/06/2019 08:46, JC Kuo wrote:
->> PLLE hardware power sequencer has to be enabled after PEX/SATA
->> UPHY PLL's sequencers are enabled.
->>
->> tegra210_plle_hw_sequence_start() for XUSB PADCTL driver to enable
->> PLLE hardware sequencer at proper time.
->>
->> tegra210_plle_hw_sequence_is_enabled() for XUSB PADCTL driver to
->> check whether PLLE hardware sequencer has been enabled or not.
-> 
-> I think that here to be clear about what is going on you should state
-> that you are "adding the function tegra210_plle_hw_sequence_start() ..."
-Thanks. I will amend the commit message accordingly.
-> 
-> Are these functions dependent upon clk_plle_tegra210_enable() already
-> being called? I assume that there must be some dependency between the
-> above functions and the existing plle enable function. If there is a
-> dependency, how do you ensure the existing enable is already called?
-Yes, tegra210_plle_hw_sequence_start() has to be invoked after PLLE is
-enabled/locked. Caller is in charge of calling with correct sequence.
-I will add a check in tegra210_plle_hw_sequence_start() to ensure that
-PLLE HW sequencer will not be accidentally enabled when PLLE is not
-enabled/locked yet.
+Hello,
 
-Thanks,
-JC
+I somehow fail to see how this is relevant for the linux-pwm list. Did
+you add this list to the recipents by accident, or is there something I
+missed?
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
