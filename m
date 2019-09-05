@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78844AA510
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64E07AA512
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732143AbfIENus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 09:50:48 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:36682 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732048AbfIENur (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:50:47 -0400
-Received: by mail-wr1-f67.google.com with SMTP id y19so2899582wrd.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 06:50:46 -0700 (PDT)
+        id S1732264AbfIENut (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 09:50:49 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:40925 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732139AbfIENus (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:50:48 -0400
+Received: by mail-wr1-f65.google.com with SMTP id w13so2884418wru.7
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 06:50:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yOkiOZt6tUh2pBf+83UJHLS8/NEBh0SpKX8xW2sR6I8=;
-        b=fH4pEpeaPpTrxdIDkiSAP9OKTD2gnJKXmbAKpvvII9xS2Nznc3fU+YM20p41PUEYe+
-         lnHBqLCAEhGhMATXsFlBg68FRwmErAG45oEy23pNXPGEWUx+mgi7Ou1S9W6umUQXRsVP
-         giArIRM9aRIjcnaYMi/ySdVB7dqtiCv4ynxgef4mMlDOhXK7bzHjaX/FxSo7Jw/ys1Ri
-         QopSpJoTrn1RJa56eHCOBNb+cYWC+h1vo/ld+kUUXS+rDz4n+79vK2suGos3OR76s850
-         xLi7W+kGTLNeqkEYDuoxqwBCeyLNrgvckStdj8N4dXiayVeg8uDYpCBByUME7dca5tAz
-         /Zbg==
+        bh=7lkoesH5emPCZ1WO3WioUS9Ej0K8oiEzZCArs+vDclk=;
+        b=GuL5k8VK7SEUa+eInzXIJKoFOrY5XaFAmFl23toxiV9qAxemzM16AiY5hfan5632fD
+         Ar2eIp2Upvmf7AHmPSJnRaZz7ftMWRdjsHuOXlZrLHn/Qu/j9XNJnng7FoZ3hChfhFK3
+         hOaBNN7s5cqT3FS0T/Qmw5WNPAh2PbxyadZqHbHVd91S1FULPPx0wFL5+ba2EbHP8+28
+         XpsvjJbsCOEYKO8eVcJGQ9o8ZpZHE9zUHsf9YGglvLcMsAhy4UgdcbhLxIHkMB5H/afR
+         U2zqGMb3SeB8Xb02JsPQcHc4AkdUsVpcdyzi5EJO5VaPLwmy69xBAhSsIOJRB16JPT8T
+         Wu9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yOkiOZt6tUh2pBf+83UJHLS8/NEBh0SpKX8xW2sR6I8=;
-        b=ffMDmR9ScZlsodVZFcjU7WgoEJe63RX9b8q+lqv6DG9wiFnDuKXxYA7G5yfwUo0m4q
-         gOJp5sZzeo0aiO7zix2+4L00BjwNNJOfZDK5ziVdmQ3b2lP5tHSzlGoxUweqpWw+gn63
-         4NE8XjgHVQ7xdEAlbGYhpqc0hCjn4Pj99woMqllopNdMNbri+RxhS9w3sMAA/mcMuqs+
-         ee9jhxul+pxgojllLS1b2Ds0rJBfJJDwft0HfQzUOIlT2fit8Zf/kNqVd+uX0X/JQBo3
-         Bb80xGU+py0Z3a/VFl5gXHxD6/Q4F0Yt8M8QSII1MNNJj27YP1nDrNqvVZJdOMSyQPyG
-         Evsw==
-X-Gm-Message-State: APjAAAXfPeX9A6a0ErLGQ5z1WS5UjH9dRrWg8xamEkQBrdNsZhZ/NpEw
-        +/iE7TCeZ7pGqhSCX7KxWApbzw==
-X-Google-Smtp-Source: APXvYqxrzLFfHy7t4aRY1w5WOQmGxxUE0GDjUhQx/bqFaMS+KA7w/b2UxEzoERkiezkzLsGar0DCNg==
-X-Received: by 2002:a5d:504d:: with SMTP id h13mr2746749wrt.342.1567691445811;
-        Thu, 05 Sep 2019 06:50:45 -0700 (PDT)
+        bh=7lkoesH5emPCZ1WO3WioUS9Ej0K8oiEzZCArs+vDclk=;
+        b=gN172yFlD+2n1wmpQf/r5GCZxF2YPFAQp7GYkd/GzX/xVRCtndhzRq0T9LCEZ1FuCP
+         AUaD5/a5R5MEzKYFykp4weqxH6AL6R/2+6PIa1iTvQlu5CFywDbbWF6UAZS/cYt/cT0K
+         Maf/cmqzpIo25s4bGqSRpck6JmlnmRhmiga5LES50LEeRuQMJlDtrp0Xwr0h8bkoL+eM
+         0BDxo0fKu4+5wsz5+oY81h06kNci85rb/KJsakJrqCyEdIsY3+xjRucXD32ZiZ3sAmHH
+         D/OQhb2dibmQSwyM9zwHnKX9qMjs37t5RViaI+M8i9h7zg/f+Tjk96PtuXHYi6udMD0J
+         DaEg==
+X-Gm-Message-State: APjAAAVRTAYZR8BL//kBsLNUXR+fxQcCjD1HcegxtSnl5qRz5vC+fuez
+        5pgHCR1/TCyVRjdwqLy3LUQQ1g==
+X-Google-Smtp-Source: APXvYqyKxa95xgFb51AsXEWgQity6G8T5bn82NLaGUMSLyirFtOPoyCtT+sjuAmBC+yu4d78xYsgOg==
+X-Received: by 2002:a5d:4985:: with SMTP id r5mr2618861wrq.71.1567691446803;
+        Thu, 05 Sep 2019 06:50:46 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id y3sm3324893wra.88.2019.09.05.06.50.44
+        by smtp.googlemail.com with ESMTPSA id y3sm3324893wra.88.2019.09.05.06.50.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 06:50:44 -0700 (PDT)
+        Thu, 05 Sep 2019 06:50:46 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Philipp Zabel <p.zabel@pengutronix.de>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         Kevin Hilman <khilman@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 1/2] reset: dt-bindings: meson: update arb bindings for sm1
-Date:   Thu,  5 Sep 2019 15:50:39 +0200
-Message-Id: <20190905135040.6635-2-jbrunet@baylibre.com>
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 2/2] reset: meson-audio-arb: add sm1 support
+Date:   Thu,  5 Sep 2019 15:50:40 +0200
+Message-Id: <20190905135040.6635-3-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190905135040.6635-1-jbrunet@baylibre.com>
 References: <20190905135040.6635-1-jbrunet@baylibre.com>
@@ -64,41 +64,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM1 SoC family adds two new audio FIFOs with the related arb reset lines
+Add the new arb reset lines of the SM1 SoC family
 
-Reviewed-by: Rob Herring <robh@kernel.org>
 Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
 ---
- .../devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt  | 3 ++-
- include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h        | 2 ++
- 2 files changed, 4 insertions(+), 1 deletion(-)
+ drivers/reset/reset-meson-audio-arb.c | 43 +++++++++++++++++++++++++--
+ 1 file changed, 40 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
-index 26e542eb96df..43e580ef64ba 100644
---- a/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
-+++ b/Documentation/devicetree/bindings/reset/amlogic,meson-axg-audio-arb.txt
-@@ -4,7 +4,8 @@ The Amlogic Audio ARB is a simple device which enables or
- disables the access of Audio FIFOs to DDR on AXG based SoC.
+diff --git a/drivers/reset/reset-meson-audio-arb.c b/drivers/reset/reset-meson-audio-arb.c
+index c53a2185a039..1dc06e08a8da 100644
+--- a/drivers/reset/reset-meson-audio-arb.c
++++ b/drivers/reset/reset-meson-audio-arb.c
+@@ -19,6 +19,11 @@ struct meson_audio_arb_data {
+ 	spinlock_t lock;
+ };
  
- Required properties:
--- compatible: 'amlogic,meson-axg-audio-arb'
-+- compatible: 'amlogic,meson-axg-audio-arb' or
-+	      'amlogic,meson-sm1-audio-arb'
- - reg: physical base address of the controller and length of memory
-        mapped region.
- - clocks: phandle to the fifo peripheral clock provided by the audio
-diff --git a/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h b/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
-index 05c36367875c..1ef807856cb8 100644
---- a/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
-+++ b/include/dt-bindings/reset/amlogic,meson-axg-audio-arb.h
-@@ -13,5 +13,7 @@
- #define AXG_ARB_FRDDR_A	3
- #define AXG_ARB_FRDDR_B	4
- #define AXG_ARB_FRDDR_C	5
-+#define AXG_ARB_TODDR_D	6
-+#define AXG_ARB_FRDDR_D	7
++struct meson_audio_arb_match_data {
++	const unsigned int *reset_bits;
++	unsigned int reset_num;
++};
++
+ #define ARB_GENERAL_BIT	31
  
- #endif /* _DT_BINDINGS_AMLOGIC_MESON_AXG_AUDIO_ARB_H */
+ static const unsigned int axg_audio_arb_reset_bits[] = {
+@@ -30,6 +35,27 @@ static const unsigned int axg_audio_arb_reset_bits[] = {
+ 	[AXG_ARB_FRDDR_C]	= 6,
+ };
+ 
++static const struct meson_audio_arb_match_data axg_audio_arb_match = {
++	.reset_bits = axg_audio_arb_reset_bits,
++	.reset_num = ARRAY_SIZE(axg_audio_arb_reset_bits),
++};
++
++static const unsigned int sm1_audio_arb_reset_bits[] = {
++	[AXG_ARB_TODDR_A]	= 0,
++	[AXG_ARB_TODDR_B]	= 1,
++	[AXG_ARB_TODDR_C]	= 2,
++	[AXG_ARB_FRDDR_A]	= 4,
++	[AXG_ARB_FRDDR_B]	= 5,
++	[AXG_ARB_FRDDR_C]	= 6,
++	[AXG_ARB_TODDR_D]	= 3,
++	[AXG_ARB_FRDDR_D]	= 7,
++};
++
++static const struct meson_audio_arb_match_data sm1_audio_arb_match = {
++	.reset_bits = sm1_audio_arb_reset_bits,
++	.reset_num = ARRAY_SIZE(sm1_audio_arb_reset_bits),
++};
++
+ static int meson_audio_arb_update(struct reset_controller_dev *rcdev,
+ 				  unsigned long id, bool assert)
+ {
+@@ -82,7 +108,13 @@ static const struct reset_control_ops meson_audio_arb_rstc_ops = {
+ };
+ 
+ static const struct of_device_id meson_audio_arb_of_match[] = {
+-	{ .compatible = "amlogic,meson-axg-audio-arb", },
++	{
++		.compatible = "amlogic,meson-axg-audio-arb",
++		.data = &axg_audio_arb_match,
++	}, {
++		.compatible = "amlogic,meson-sm1-audio-arb",
++		.data = &sm1_audio_arb_match,
++	},
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(of, meson_audio_arb_of_match);
+@@ -104,10 +136,15 @@ static int meson_audio_arb_remove(struct platform_device *pdev)
+ static int meson_audio_arb_probe(struct platform_device *pdev)
+ {
+ 	struct device *dev = &pdev->dev;
++	const struct meson_audio_arb_match_data *data;
+ 	struct meson_audio_arb_data *arb;
+ 	struct resource *res;
+ 	int ret;
+ 
++	data = of_device_get_match_data(dev);
++	if (!data)
++		return -EINVAL;
++
+ 	arb = devm_kzalloc(dev, sizeof(*arb), GFP_KERNEL);
+ 	if (!arb)
+ 		return -ENOMEM;
+@@ -126,8 +163,8 @@ static int meson_audio_arb_probe(struct platform_device *pdev)
+ 		return PTR_ERR(arb->regs);
+ 
+ 	spin_lock_init(&arb->lock);
+-	arb->reset_bits = axg_audio_arb_reset_bits;
+-	arb->rstc.nr_resets = ARRAY_SIZE(axg_audio_arb_reset_bits);
++	arb->reset_bits = data->reset_bits;
++	arb->rstc.nr_resets = data->reset_num;
+ 	arb->rstc.ops = &meson_audio_arb_rstc_ops;
+ 	arb->rstc.of_node = dev->of_node;
+ 	arb->rstc.owner = THIS_MODULE;
 -- 
 2.21.0
 
