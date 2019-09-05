@@ -2,57 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A0FAA3A1
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1099EAA3A4
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:00:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389599AbfIENAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 09:00:05 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:53266 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388100AbfIENAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:00:05 -0400
-Received: by mail-wm1-f66.google.com with SMTP id q19so2689376wmc.3
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 06:00:04 -0700 (PDT)
+        id S2389629AbfIENAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 09:00:09 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:41384 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389622AbfIENAI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:00:08 -0400
+Received: by mail-wr1-f67.google.com with SMTP id h7so1667270wrw.8
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 06:00:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=d5v0Dy23bszDikjahnfR50/JyqF0JMw3pYibReU0maQ=;
-        b=ssbfMIbUr7q1MBCXJtcNYU5Zqq2x2YbEn6f2TIT7lyHcFFxlKU+8ADEwzx8bzJEb7D
-         PmwjjhQRmOC6USAlOkBj0jll64frnU14pbOsMRquXNYt7uTQjSZs3g7cejUtFI1CUXS+
-         7LkylxpucT/6N12qSu1uwK9QvFgG+Hi1mwRzaQlPQf764Q8fvn6ymvrIuhOMEiUrQiPR
-         lt1pOl/xLCiVPZApcw0iFrEE+EDMWHfe/YDUTBtIeFtYhl7aK7vOmaylNiZURMOa1kHh
-         uZITr3iTK532vd+ITf2HJwsULPvriuet+8+c3DhjhfFa8Wi0zH3RKtsJXrxIBCDmHSfq
-         Pbsw==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ItMEpDF/ETBC68Y7AhaUHvdMI96KH343D0YWB3ja2rE=;
+        b=VegfV2GWqvxCgtKh2Ptv65EU7va3mIh2cL4VnsBiVf6HgkbmXczGqy6XmSLL8OiGCm
+         fsYuOIXoYsOKnLu8H/jc1Avip/zhnIj/tSgsj+DTOI7Zj0HRUhunQ+7CbtVgQp8aDYyQ
+         kx2wYunEd2LnRthR76r9s6m8nFGMXJbK8ktb66zZ+GxCFK8sb9+3QGoBXwHGUKQFen3/
+         F8TAHj6SrpyQFaqO4I0nGuv296Ay3FuoKbf4ELAXBw9JVXHKEVYyWTbma9+FhRXXnldk
+         SFXDoPoVlZyp7mv5R1skyRCeqagUj2HUMbdFz8xBXkuo4pA0Q9zNi/au+F5G/WGpi5CL
+         lIkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=d5v0Dy23bszDikjahnfR50/JyqF0JMw3pYibReU0maQ=;
-        b=XAHNzyTO0eHtlQvsA846D8oGvJ2fx0OBUxE9u8Uwp9fZUqlbI6NHpPh0PqS1S1U/06
-         Fu8PMSjWfKfAj5pnzMIIU5cAnolyoBYZUSg2Xtp5QGaCl1SM+i//FQrysjfR/fQCyxVV
-         Sz4cKCmUzLNYX6MHjH+2Z2hMHrDKPSrFymJOrmWcdHxtla2pcsv3z4r0VNGJSx43EgNd
-         kcCk8jvLvlh3WqhwH57jGgtR9dh8MioXWOZkRA+lhxyoEAYnJPugInaikGxn2bzOtxmD
-         PUm2754POz2fpWyfEEl747Mev+h40dn497RlNWTXO/Qp5yELOPFYd0FRzxrwIhfZGKZX
-         l33A==
-X-Gm-Message-State: APjAAAVcgYrFUhJtuWmq2uml/J80qptonP93uWSSs2ZH5cWG5kiU2Sst
-        0/FtAQwOxZVUpYxjlID1o4chvw==
-X-Google-Smtp-Source: APXvYqyJ5a4GKbnNy6ifNCJ/h3sAEQrmaDMw8nRKCghJv8Y44i3udTkVE2loifhIC9yyK/Y6ScVf5A==
-X-Received: by 2002:a1c:7215:: with SMTP id n21mr2872266wmc.152.1567688403371;
-        Thu, 05 Sep 2019 06:00:03 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ItMEpDF/ETBC68Y7AhaUHvdMI96KH343D0YWB3ja2rE=;
+        b=AQo+el+4bxEA4G/qgA2cmpq85PRBmUru0cs8E6nFZNs8NkBINKKd6UvfwNeY1n4cPV
+         3IlXDqpvf11DqU2dZEx0/L7FO05k60BCofo76GgU8eEx+aYriKRVYKqyEvpjckgyCwbK
+         FcwisCd/kCjRMzDmgVKIhq2pCaRxhOO9BGbjfs4I1AlPRr4nQQ40FIPq6X0h3UQB+cbN
+         Ri1LNpfRjm7Vo5F5G0hxYjOyKVdGUqURuwG5z8uAcRiOt9zLIvb8gYTIVTjzcCN14Fij
+         UnsV2ypm9z6z9iA6Wir3SiL+eY+XUGaBm1aLJHqRpxIfCHNe9P+h4KF30FSdVMk+ZvYv
+         dT/A==
+X-Gm-Message-State: APjAAAWjsk4Imp1eby7nSLXEFgA9l0LJk/hhWtlIiA2gQq/VDNucXOTQ
+        o2r7tukdeAjEtxBRCSNYD2bpVg==
+X-Google-Smtp-Source: APXvYqwp+SuTEV+a4KTcSrYQENWCJMbhMJDAtYIjIi8jQWshU64TGTVKI1REbj9eA4A5SGa/Yz7QEw==
+X-Received: by 2002:a5d:4a81:: with SMTP id o1mr2364545wrq.328.1567688407008;
+        Thu, 05 Sep 2019 06:00:07 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id z189sm3727903wmc.25.2019.09.05.06.00.02
+        by smtp.googlemail.com with ESMTPSA id z189sm3727903wmc.25.2019.09.05.06.00.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 06:00:02 -0700 (PDT)
+        Thu, 05 Sep 2019 06:00:06 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Kevin Hilman <khilman@baylibre.com>
 Cc:     Jerome Brunet <jbrunet@baylibre.com>,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH 0/5] arm64: dts: meson: audio updates
-Date:   Thu,  5 Sep 2019 14:59:51 +0200
-Message-Id: <20190905125956.4384-1-jbrunet@baylibre.com>
+Subject: [PATCH 4/5] arm64: dts: meson: g12: factor the power domain.
+Date:   Thu,  5 Sep 2019 14:59:55 +0200
+Message-Id: <20190905125956.4384-5-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190905125956.4384-1-jbrunet@baylibre.com>
+References: <20190905125956.4384-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
@@ -61,31 +63,92 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patchset features a few updates to prepare the addition of the audio
-on sm1. It fixes the register range of audio fifo which was incorrect.
+The power domain declared in the g12a and g12b dtsi are the same.
+Move the declaration of these power domains in the g12 common dtsi.
 
-It also create another layer of dtsi, common to g12a and g12b but not sm1.
-The audio related device are moved to this file.
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi  | 13 +++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 13 -------------
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 12 ------------
+ 3 files changed, 13 insertions(+), 25 deletions(-)
 
-This was done because the audio bus, which was at 0xff642000 on g12, has
-moved 0xff660000 on sm1. Overwriting the reg property was option but it
-would have left confusing node names on the sm1.
-
-Jerome Brunet (5):
-  arm64: dts: meson: axg: fix audio fifo reg size
-  arm64: dts: meson: g12: fix audio fifo reg size
-  arm64: dts: meson: g12: add a g12 layer
-  arm64: dts: meson: g12: factor the power domain.
-  arm64: dts: meson: g12: move audio bus out of g12-common
-
- arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  12 +-
- .../boot/dts/amlogic/meson-g12-common.dtsi    | 320 ----------------
- arch/arm64/boot/dts/amlogic/meson-g12.dtsi    | 344 ++++++++++++++++++
- arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  15 +-
- arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  14 +-
- 5 files changed, 352 insertions(+), 353 deletions(-)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12.dtsi
-
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+index 1e30061fb2a7..ac5833781611 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+@@ -5,3 +5,16 @@
+  */
+ 
+ #include "meson-g12-common.dtsi"
++#include <dt-bindings/power/meson-g12a-power.h>
++
++&ethmac {
++	power-domains = <&pwrc PWRC_G12A_ETH_ID>;
++};
++
++&vpu {
++	power-domains = <&pwrc PWRC_G12A_VPU_ID>;
++};
++
++&sd_emmc_a {
++	amlogic,dram-access-quirk;
++};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+index 69339d69dfd4..07450c4babfc 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12a.dtsi
+@@ -4,7 +4,6 @@
+  */
+ 
+ #include "meson-g12.dtsi"
+-#include <dt-bindings/power/meson-g12a-power.h>
+ 
+ / {
+ 	compatible = "amlogic,g12a";
+@@ -110,15 +109,3 @@
+ 		};
+ 	};
+ };
+-
+-&ethmac {
+-	power-domains = <&pwrc PWRC_G12A_ETH_ID>;
+-};
+-
+-&vpu {
+-	power-domains = <&pwrc PWRC_G12A_VPU_ID>;
+-};
+-
+-&sd_emmc_a {
+-	amlogic,dram-access-quirk;
+-};
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+index eefac0ef092b..a9e1db0f1158 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+@@ -5,7 +5,6 @@
+  */
+ 
+ #include "meson-g12.dtsi"
+-#include <dt-bindings/power/meson-g12a-power.h>
+ 
+ / {
+ 	compatible = "amlogic,g12b";
+@@ -102,14 +101,3 @@
+ 	compatible = "amlogic,g12b-clkc";
+ };
+ 
+-&ethmac {
+-	power-domains = <&pwrc PWRC_G12A_ETH_ID>;
+-};
+-
+-&vpu {
+-	power-domains = <&pwrc PWRC_G12A_VPU_ID>;
+-};
+-
+-&sd_emmc_a {
+-	amlogic,dram-access-quirk;
+-};
 -- 
 2.21.0
 
