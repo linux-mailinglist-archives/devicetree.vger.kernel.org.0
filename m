@@ -2,65 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FE6EA9E8D
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:37:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F63EA9E7A
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 11:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387514AbfIEJh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 05:37:26 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:49465 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730872AbfIEJh0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 05:37:26 -0400
-X-IronPort-AV: E=Sophos;i="5.64,470,1559487600"; 
-   d="scan'208";a="25819797"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Sep 2019 18:37:25 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 92CAA400C0A5;
-        Thu,  5 Sep 2019 18:37:22 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: [PATCH 1/3] dt-bindings: arm: Document RZ/G2N SoC DT bindings
-Date:   Thu,  5 Sep 2019 10:30:41 +0100
-Message-Id: <1567675844-19247-2-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1567675844-19247-1-git-send-email-biju.das@bp.renesas.com>
-References: <1567675844-19247-1-git-send-email-biju.das@bp.renesas.com>
+        id S2387485AbfIEJew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 05:34:52 -0400
+Received: from foss.arm.com ([217.140.110.172]:40346 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731084AbfIEJew (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 5 Sep 2019 05:34:52 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 366941576;
+        Thu,  5 Sep 2019 02:34:51 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F0E9E3F67D;
+        Thu,  5 Sep 2019 02:34:48 -0700 (PDT)
+Date:   Thu, 5 Sep 2019 10:34:44 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Vidya Sagar <vidyas@nvidia.com>
+Cc:     bhelgaas@google.com, robh+dt@kernel.org, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, andrew.murray@arm.com, kishon@ti.com,
+        gustavo.pimentel@synopsys.com, digetx@gmail.com,
+        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V3 0/6] PCI: tegra: Enable PCIe C5 controller of Tegra194
+ in p2972-0000 platform
+Message-ID: <20190905093444.GA16642@e121166-lin.cambridge.arm.com>
+References: <20190828172850.19871-1-vidyas@nvidia.com>
+ <7751a77d-5812-49b7-0c6b-00e6740e209b@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7751a77d-5812-49b7-0c6b-00e6740e209b@nvidia.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings documentation for Renesas RZ/G2N (r8a774b1) SoC.
+On Thu, Sep 05, 2019 at 01:44:46PM +0530, Vidya Sagar wrote:
+> Hi Lorenzo / Bjorn,
+> Can you please review this series?
+> I have Reviewed-by and Acked-by from Rob, Thierry and Andrew already.
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- Documentation/devicetree/bindings/arm/renesas.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+Rebase it on top of my pci/tegra branch (it does not apply),
+resend it and I will merge it.
 
-diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-index 28eb458..9ad31f1 100644
---- a/Documentation/devicetree/bindings/arm/renesas.yaml
-+++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-@@ -116,6 +116,10 @@ properties:
-           - const: hoperun,hihope-rzg2m
-           - const: renesas,r8a774a1
- 
-+      - description: RZ/G2N (R8A774B1)
-+        items:
-+          - const: renesas,r8a774b1
-+
-       - description: RZ/G2E (R8A774C0)
-         items:
-           - enum:
--- 
-2.7.4
+Thanks,
+Lorenzo
 
+> Thanks,
+> Vidya Sagar
+> 
+> On 8/28/2019 10:58 PM, Vidya Sagar wrote:
+> > This patch series enables Tegra194's C5 controller which owns x16 slot in
+> > p2972-0000 platform. C5 controller's PERST# and CLKREQ# are not configured as
+> > output and bi-directional signals by default and hence they need to be
+> > configured explicitly. Also, x16 slot's 3.3V and 12V supplies are controlled
+> > through GPIOs and hence they need to be enabled through regulator framework.
+> > This patch series adds required infrastructural support to address both the
+> > aforementioned requirements.
+> > Testing done on p2972-0000 platform
+> > - Able to enumerate devices connected to x16 slot (owned by C5 controller)
+> > - Enumerated device's functionality verified
+> > - Suspend-Resume sequence is verified with device connected to x16 slot
+> > 
+> > V3:
+> > * Addressed some more review comments from Andrew Murray and Thierry Reding
+> > 
+> > V2:
+> > * Changed the order of patches in the series for easy merging
+> > * Addressed review comments from Thierry Reding and Andrew Murray
+> > 
+> > Vidya Sagar (6):
+> >    dt-bindings: PCI: tegra: Add sideband pins configuration entries
+> >    dt-bindings: PCI: tegra: Add PCIe slot supplies regulator entries
+> >    PCI: tegra: Add support to configure sideband pins
+> >    PCI: tegra: Add support to enable slot regulators
+> >    arm64: tegra: Add configuration for PCIe C5 sideband signals
+> >    arm64: tegra: Add PCIe slot supply information in p2972-0000 platform
+> > 
+> >   .../bindings/pci/nvidia,tegra194-pcie.txt     | 16 ++++
+> >   .../arm64/boot/dts/nvidia/tegra194-p2888.dtsi | 24 +++++
+> >   .../boot/dts/nvidia/tegra194-p2972-0000.dts   |  4 +-
+> >   arch/arm64/boot/dts/nvidia/tegra194.dtsi      | 38 +++++++-
+> >   drivers/pci/controller/dwc/pcie-tegra194.c    | 94 ++++++++++++++++++-
+> >   5 files changed, 172 insertions(+), 4 deletions(-)
+> > 
+> 
