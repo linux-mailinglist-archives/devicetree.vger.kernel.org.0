@@ -2,56 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C0A3AA37E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 14:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76A0FAA3A1
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 15:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731552AbfIEMu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 08:50:27 -0400
-Received: from s3.sipsolutions.net ([144.76.43.62]:36754 "EHLO
-        sipsolutions.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730864AbfIEMu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 08:50:27 -0400
-Received: by sipsolutions.net with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.92.1)
-        (envelope-from <johannes@sipsolutions.net>)
-        id 1i5rDV-0001I3-B8; Thu, 05 Sep 2019 14:50:25 +0200
-Message-ID: <45e530c7066090878470e65a0e74738b98aacef0.camel@sipsolutions.net>
-Subject: Re: [PATCH 31/49] ath11k: add mac.c
-From:   Johannes Berg <johannes@sipsolutions.net>
-To:     Kalle Valo <kvalo@codeaurora.org>,
-        Vasanthakumar Thiagarajan <vthiagar@codeaurora.org>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath11k@lists.infradead.org
-Date:   Thu, 05 Sep 2019 14:50:24 +0200
-In-Reply-To: <87woenkjt7.fsf@kamboji.qca.qualcomm.com>
-References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
-         <1566316095-27507-32-git-send-email-kvalo@codeaurora.org>
-         <4076919b34cad119eb4146025f587285ef40e37c.camel@sipsolutions.net>
-         <ee38dc5e80097d0ebc186f81b2f11d37@codeaurora.org>
-         <878sr3nfz8.fsf@kamboji.qca.qualcomm.com>
-         <8e90a557c1659995d117c6dc8b728d7f@codeaurora.org>
-         <87woenkjt7.fsf@kamboji.qca.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
+        id S2389599AbfIENAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 09:00:05 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:53266 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388100AbfIENAF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 09:00:05 -0400
+Received: by mail-wm1-f66.google.com with SMTP id q19so2689376wmc.3
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 06:00:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5v0Dy23bszDikjahnfR50/JyqF0JMw3pYibReU0maQ=;
+        b=ssbfMIbUr7q1MBCXJtcNYU5Zqq2x2YbEn6f2TIT7lyHcFFxlKU+8ADEwzx8bzJEb7D
+         PmwjjhQRmOC6USAlOkBj0jll64frnU14pbOsMRquXNYt7uTQjSZs3g7cejUtFI1CUXS+
+         7LkylxpucT/6N12qSu1uwK9QvFgG+Hi1mwRzaQlPQf764Q8fvn6ymvrIuhOMEiUrQiPR
+         lt1pOl/xLCiVPZApcw0iFrEE+EDMWHfe/YDUTBtIeFtYhl7aK7vOmaylNiZURMOa1kHh
+         uZITr3iTK532vd+ITf2HJwsULPvriuet+8+c3DhjhfFa8Wi0zH3RKtsJXrxIBCDmHSfq
+         Pbsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=d5v0Dy23bszDikjahnfR50/JyqF0JMw3pYibReU0maQ=;
+        b=XAHNzyTO0eHtlQvsA846D8oGvJ2fx0OBUxE9u8Uwp9fZUqlbI6NHpPh0PqS1S1U/06
+         Fu8PMSjWfKfAj5pnzMIIU5cAnolyoBYZUSg2Xtp5QGaCl1SM+i//FQrysjfR/fQCyxVV
+         Sz4cKCmUzLNYX6MHjH+2Z2hMHrDKPSrFymJOrmWcdHxtla2pcsv3z4r0VNGJSx43EgNd
+         kcCk8jvLvlh3WqhwH57jGgtR9dh8MioXWOZkRA+lhxyoEAYnJPugInaikGxn2bzOtxmD
+         PUm2754POz2fpWyfEEl747Mev+h40dn497RlNWTXO/Qp5yELOPFYd0FRzxrwIhfZGKZX
+         l33A==
+X-Gm-Message-State: APjAAAVcgYrFUhJtuWmq2uml/J80qptonP93uWSSs2ZH5cWG5kiU2Sst
+        0/FtAQwOxZVUpYxjlID1o4chvw==
+X-Google-Smtp-Source: APXvYqyJ5a4GKbnNy6ifNCJ/h3sAEQrmaDMw8nRKCghJv8Y44i3udTkVE2loifhIC9yyK/Y6ScVf5A==
+X-Received: by 2002:a1c:7215:: with SMTP id n21mr2872266wmc.152.1567688403371;
+        Thu, 05 Sep 2019 06:00:03 -0700 (PDT)
+Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.googlemail.com with ESMTPSA id z189sm3727903wmc.25.2019.09.05.06.00.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 06:00:02 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH 0/5] arm64: dts: meson: audio updates
+Date:   Thu,  5 Sep 2019 14:59:51 +0200
+Message-Id: <20190905125956.4384-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-09-05 at 15:29 +0300, Kalle Valo wrote:
-> 
-> Yeah, I was supposed to write:
-> 
-> "maybe we should change mac80211 to not require this op to be present"
-> 
-> But of course I could have just misunderstood, let's see what Johannes
-> says :)
+The patchset features a few updates to prepare the addition of the audio
+on sm1. It fixes the register range of audio fifo which was incorrect.
 
-:-)
+It also create another layer of dtsi, common to g12a and g12b but not sm1.
+The audio related device are moved to this file.
 
-Yes, that's what I meant.
+This was done because the audio bus, which was at 0xff642000 on g12, has
+moved 0xff660000 on sm1. Overwriting the reg property was option but it
+would have left confusing node names on the sm1.
 
-johannes
+Jerome Brunet (5):
+  arm64: dts: meson: axg: fix audio fifo reg size
+  arm64: dts: meson: g12: fix audio fifo reg size
+  arm64: dts: meson: g12: add a g12 layer
+  arm64: dts: meson: g12: factor the power domain.
+  arm64: dts: meson: g12: move audio bus out of g12-common
+
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  12 +-
+ .../boot/dts/amlogic/meson-g12-common.dtsi    | 320 ----------------
+ arch/arm64/boot/dts/amlogic/meson-g12.dtsi    | 344 ++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  15 +-
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi   |  14 +-
+ 5 files changed, 352 insertions(+), 353 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-g12.dtsi
+
+-- 
+2.21.0
 
