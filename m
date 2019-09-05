@@ -2,98 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EAE2AAC0E
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 21:33:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DEB9AACD9
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 22:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731251AbfIETdj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 15:33:39 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:38226 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729806AbfIETdj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 15:33:39 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x85JXVf1013274;
-        Thu, 5 Sep 2019 14:33:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567712012;
-        bh=kkAMWtH2lSDWQdmzGtIiji4XCoqJUTR6qG2fZ+Vzpqc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=BFSW/p+jNL5LX1/ko200OssuvJytWR4GBiX5gGhcP6SgNOs8u+6qORlPMLg51rKtj
-         0vCvmEn+3EbUhSaOjeBRWK76TR3XuFDIlJTQRe9Ojl2DmYFTOYeaEQB81AIuiGulUl
-         SBSi6TnBnrlfsND5HFXVJUcEI8XhXfPFptAFxl7k=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x85JXVeO012448
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 5 Sep 2019 14:33:31 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 5 Sep
- 2019 14:33:31 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 5 Sep 2019 14:33:31 -0500
-Received: from [10.250.98.116] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x85JXSQZ069292;
-        Thu, 5 Sep 2019 14:33:29 -0500
-Subject: Re: [RESEND PATCH next v2 0/6] ARM: keystone: update dt and enable
- cpts support
-To:     <santosh.shilimkar@oracle.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20190705151247.30422-1-grygorii.strashko@ti.com>
- <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <323c1835-e6b0-9153-8d1e-06200d5e2201@ti.com>
-Date:   Thu, 5 Sep 2019 22:33:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2388943AbfIEUPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 16:15:46 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:35122 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731390AbfIEUPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 16:15:46 -0400
+Received: by mail-oi1-f194.google.com with SMTP id a127so3044660oii.2;
+        Thu, 05 Sep 2019 13:15:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=f4Km6SD866R0K00m5TcRPMaTtKdzrbq/4ljlsuFwyq4=;
+        b=t3et7p6L0/whLJE/CMRrP2K3uNDjk8pWYu6Z+iHJ/66Y1V1Y6L0cwifYXlDTXXLZU3
+         3MBi7QwdaNrwDJDSiIIvPoke8D4qYmR5KifsoiZvryw5rCskksgTXJIgtTdbkyJgh8qV
+         MJtYVr3BW9cjCbQ41WAa98hOnuGLeq4iDZN56LFw/ekt4nC8vTPzq264Qt5ezYI9sCTJ
+         +c4RKH3NC5pp7zQoE+JvgkdxisarX3FPxmxyzSpxbX7RfbIIJzrBHCmsifjnzFTn+wL+
+         HLYJB/guTPodagOyMZiPuYILX1K2IHMxDbuYFdTogyBfGFbE2z+fgHbQK52gQmjRpO/4
+         8WXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f4Km6SD866R0K00m5TcRPMaTtKdzrbq/4ljlsuFwyq4=;
+        b=fkXZ1IDOaJtcW861V3DME/qmh7874GbQ1H7KFgh2NwhLp9NCTh6luCk3FAPrKEf1gh
+         8RnbZSdSpNIWiSc4Qk5KwVlSqlero9g9BK41xWfVn+C6/+N/A/5uwc34xJQ/ZxMFh/sH
+         MZi7r/QbUs0/1Px6wpAPwnWxTbTkDiXYi4vxqVxbdZP7PKf7RBIUN32w4zmn00HnCn7R
+         9JzGb9JXRK43beXFJOwL1fj/+QGJ8c9BGnOq3r6CvdOjv6gEYdhCDNpq3w4nX1HSTIJ5
+         kd3RP3yhopJIBv1VmBuA3yEe0OIEPxk54EUZ5pTdtiChivmzreFZzuNjuEhDh3DPCrA5
+         1FPw==
+X-Gm-Message-State: APjAAAWwZyW4xL4nnqOTtF5D6RPOJgXhkrsrAWqywiAKVzt3+cDOPvh8
+        ukW4DoZghc4Z7H5VHbnxUQqiYLvfaICRwxV34eo=
+X-Google-Smtp-Source: APXvYqz10+RYiYCkiOZQNb4X6pwZA8FC8OaEWNeVGyU1oIcgk9EjqHMgE+OjmcTpYIwU9qrIKMWD+qXHhX6pFCO82+I=
+X-Received: by 2002:a05:6808:b14:: with SMTP id s20mr4202379oij.15.1567714545391;
+ Thu, 05 Sep 2019 13:15:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com> <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
+In-Reply-To: <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Thu, 5 Sep 2019 22:15:34 +0200
+Message-ID: <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
+To:     Jianxin Pan <jianxin.pan@amlogic.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Carlo Caione <carlo@caione.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Tao Zeng <tao.zeng@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Santosh,
+Hi Jianxin,
 
-On 06/07/2019 02:48, santosh.shilimkar@oracle.com wrote:
-> On 7/5/19 8:12 AM, Grygorii Strashko wrote:
->> Hi Santosh,
->>
->> This series is set of platform changes required to enable NETCP CPTS reference
->> clock selection and final patch to enable CPTS for Keystone 66AK2E/L/HK SoCs.
->>
->> Those patches were posted already [1] together with driver's changes, so this
->> is re-send of DT/platform specific changes only, as driver's changes have
->> been merged already.
->>
->> Patches 1-5: CPTS DT nodes update for TI Keystone 2 66AK2HK/E/L SoCs.
->> Patch 6: enables CPTS for TI Keystone 2 66AK2HK/E/L SoCs.
->>
->> [1] https://patchwork.kernel.org/cover/10980037/
->>
->> Grygorii Strashko (6):
->>    ARM: dts: keystone-clocks: add input fixed clocks
->>    ARM: dts: k2e-clocks: add input ext. fixed clocks tsipclka/b
->>    ARM: dts: k2e-netcp: add cpts refclk_mux node
->>    ARM: dts: k2hk-netcp: add cpts refclk_mux node
->>    ARM: dts: k2l-netcp: add cpts refclk_mux node
->>    ARM: configs: keystone: enable cpts
->>
-> Will add these for 5.4 queue. Thanks !!
+(it's great to see that you and your team are upstreaming this early)
 
-Sry, that I'm disturbing you, but I do not see those patches applied?
+On Thu, Sep 5, 2019 at 9:08 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+[...]
+> +       memory@0 {
+> +               device_type = "memory";
+> +               reg = <0x0 0x0 0x0 0x8000000>;
+> +               /*linux,usable-memory = <0x0 0x0 0x0 0x8000000>;*/
+why do we need that comment here (I don't understand it - why doesn't
+the "reg" property cover this)?
+
+> +       };
+> +};
+> +
+> +&uart_AO_B {
+> +       status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> new file mode 100644
+> index 00000000..4d476ac
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -0,0 +1,122 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +       compatible = "amlogic,a1";
+> +
+> +       interrupt-parent = <&gic>;
+> +       #address-cells = <2>;
+> +       #size-cells = <2>;
+> +
+> +       cpus {
+> +               #address-cells = <0x2>;
+> +               #size-cells = <0x0>;
+only now I notice that all our other .dtsi also use hex values
+(instead of decimal as just a few lines above) here
+do you know if there is a particular reason for this?
+
+[...]
+> +               uart_AO_B: serial@fe002000 {
+> +                       compatible = "amlogic,meson-gx-uart",
+> +                                    "amlogic,meson-ao-uart";
+> +                                    reg = <0x0 0xfe002000 0x0 0x18>;
+the indentation of the "reg" property is off here
+
+also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
+aren't there any busses defined in the A1 SoC implementation or are
+were you planning to add them later?
 
 
-
--- 
-Best regards,
-grygorii
+Martin
