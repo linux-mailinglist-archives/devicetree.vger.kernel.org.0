@@ -2,544 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09988A9CA5
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 10:11:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB2EA9CB8
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 10:16:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725290AbfIEILP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 04:11:15 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:37221 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732425AbfIEILO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 04:11:14 -0400
-Received: by mail-wm1-f66.google.com with SMTP id r195so1730824wme.2
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 01:11:12 -0700 (PDT)
+        id S1731584AbfIEIQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 04:16:41 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:40335 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730849AbfIEIQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 04:16:40 -0400
+Received: by mail-pg1-f195.google.com with SMTP id w10so988755pgj.7;
+        Thu, 05 Sep 2019 01:16:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
-        bh=yJCirWApZZ0ivNXXO3nQfAsBcjkVZc9NIdUCRQkGEAQ=;
-        b=kQXtbg46qf6mJfOb6CpCcdKzbDkV8IoZH+0ywbkhzK1+g3X2MxEaaL7S23ji8OiRJG
-         0AgQWPHbgYtrqFMiGkehSdRaIXfsJRIzJcvLiUQ6f/vx4qAKstAxG9JMpqz5QQ/ZOCNC
-         FDTvd0oeOddeNjRIcl0KX9N4TcnWR+vtzXDF5Ti9XItEPoZoEpZ/meeGk1jtWriInOHN
-         3zqXAdeG35U/jdsB5Fbxmkadv141nELdBvAfV4lhof7hlvle3PQFC0qaxdJcV1LHSp7k
-         piSgHKfjclT4D3Pkqz5xsYs21FLynso4mjQkuMXYE6/7ALLwyYoi2wNAA5Vcn9dMyia/
-         7xEw==
+        bh=8sJIwjC+uTMQQ+j3BpVe6IaoEgx2I750V29nK1aOgcw=;
+        b=EwqSn6HdrjkflUwwwTPz+oNB7PSPSe1vzzqd8PzgpQ/x4PVHPQhQTuJmL1GtfuNYCG
+         WG9pEel7UOok2H1UdGT8TNmDuS+4WPW0U5f3Udewev1VWDGKB70vF/N1tMk6VcDCiFLE
+         e5mnQaIVqBmWxrH9zL2Jd1kSOzbKTK9oO4sfABX7VcZ2KTXFhKZll11ir2LHIW2aKr+q
+         mOpjOA2gVj8KLBOIUq4S4Q5/m6Lgu9pRAPq0NXrsnQf7yGvOiRsI7x22zpTFxuOTdQ8O
+         t4sEB6JUmZjJ3rzT7E1ZqL1CG6EqADbK5eM7uJDe64PgDmWEQ9nZFI/2EXJgiuDLU4mc
+         nt5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=yJCirWApZZ0ivNXXO3nQfAsBcjkVZc9NIdUCRQkGEAQ=;
-        b=OEKUX/bJJwz5NixxGBPK2XBrlxs9GY67yCfI7j7pROb1eIZMJZool+QUrhmhHRNwZH
-         qwPwL3FbnEpaXaRDV5J4p50uLyzz6D+TCSMuUSOgZNuQAeul0ioS0Ataq8BeG+JRTI1g
-         +79hNdDXlY+QkJbvLC1BsxuzZeK6udxboCtPnttdbSUz2Y+9TQAqNy0JGAfGNYTW7K90
-         HtgJOJ6d0nM6SIe59+rasYu8cSlf6RfKWGrQenZXudFJC8jQe63Rc7Nt1eFrdKrdcn+d
-         8Sc7FwjLh+nRRYCeok9i1EQvzhM4vtCwyIyMNb9JGA65F/JTQWIJd2Yoc5bW4CphG0Uq
-         N9LQ==
-X-Gm-Message-State: APjAAAWUNaryu7CpRvoC9OF3CIEre1qdQ4Mncs7zNHbtMKRlDgmhdwCq
-        7MYgb5nGUnTsZY7LhHS9W3M4mA==
-X-Google-Smtp-Source: APXvYqzwdkvNxUKuT+40JMzc1W7OmvEqV4Rh40Quj3BW+9WHE3ya/eqxFX2khvazoyEs8pMmhAbT/g==
-X-Received: by 2002:a1c:ca02:: with SMTP id a2mr1959554wmg.127.1567671070986;
-        Thu, 05 Sep 2019 01:11:10 -0700 (PDT)
-Received: from localhost.localdomain ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id e4sm1658442wro.21.2019.09.05.01.11.09
+        bh=8sJIwjC+uTMQQ+j3BpVe6IaoEgx2I750V29nK1aOgcw=;
+        b=GB/srr46ucUzcx2ZCsHqg4LDRm2TuD20Jt8boAUkhFo1ZB0M73X3/KWxQjm2kOnOGN
+         JmJV90yAuCghl0yZFCwoCuyrtjv15sRYs9Iw32dx8Dj/PizHaI2OeM1ZkhG49GZS9XTx
+         c8Lhv1kt+/E/kvRvMeq0vIPgRWLTr1TfwDEFxLmGdbrnDoV3RLYplKGFFOmo1WZbDGu+
+         RjpfJLCFK8BODlb1rSczVhCYDw2uLvkvXbu7joFk9ZAvTc1RUKuX8nkaSRsfH9JGFzt1
+         E7pBm996hO4LOn79cnQdmzNz9YuYq1EMSfa0TxTqKX5DCCOnunesl+SCgmPYuYimD7pW
+         hvMA==
+X-Gm-Message-State: APjAAAWM6IO2S9BmUyYPeKMxk4kcCgPYvIhrQvv2CZwRwhf+1ZULqJyk
+        WI6HRs3cleF266YSCvTwFV+iKIzj
+X-Google-Smtp-Source: APXvYqyymixaC/4ZmoAYVHw421NBXUFa1C+1zeteo7JioReZqYjJQ9yGnohHAF0A+fKrMjxJZR5TfQ==
+X-Received: by 2002:aa7:8dc9:: with SMTP id j9mr2305645pfr.233.1567671400065;
+        Thu, 05 Sep 2019 01:16:40 -0700 (PDT)
+Received: from localhost.localdomain ([49.216.8.243])
+        by smtp.gmail.com with ESMTPSA id g26sm1621121pfi.103.2019.09.05.01.16.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 01:11:10 -0700 (PDT)
-From:   Lee Jones <lee.jones@linaro.org>
-To:     agross@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        bjorn.andersson@linaro.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        vkoul@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, Lee Jones <lee.jones@linaro.org>
-Subject: [PATCH v4 1/1] arm64: dts: qcom: Add Lenovo Yoga C630
-Date:   Thu,  5 Sep 2019 09:11:08 +0100
-Message-Id: <20190905081108.14485-1-lee.jones@linaro.org>
+        Thu, 05 Sep 2019 01:16:39 -0700 (PDT)
+From:   jamestai.sky@gmail.com
+X-Google-Original-From: james.tai@realtek.com
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sugaya Taichi <sugaya.taichi@socionext.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Olof Johansson <olof@lixom.net>,
+        CY_Huang <cy.huang@realtek.com>,
+        Phinex Hung <phinex@realtek.com>,
+        "james.tai" <james.tai@realtek.com>
+Subject: [PATCH] dt-bindings: cpu: Add a support cpu type for cortex-a55
+Date:   Thu,  5 Sep 2019 16:14:35 +0800
+Message-Id: <20190905081435.1492-1-james.tai@realtek.com>
 X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bjorn Andersson <bjorn.andersson@linaro.org>
+From: "james.tai" <james.tai@realtek.com>
 
-The Lenovo Yoga C630 is built on the SDM850 from Qualcomm, but this seem
-to be similar enough to the SDM845 that we can reuse the sdm845.dtsi.
+Add arm cpu type cortex-a55.
 
-Supported by this patch is: keyboard, battery monitoring, UFS storage,
-USB host and Bluetooth.
-
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
-Signed-off-by: Lee Jones <lee.jones@linaro.org>
+Signed-off-by: james.tai <james.tai@realtek.com>
 ---
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 449 ++++++++++++++++++
- 2 files changed, 450 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+ Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 0a7e5dfce6f7..670c6c65f9e9 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -12,5 +12,6 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r2.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-cheza-r3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-new file mode 100644
-index 000000000000..3f2ccb4f032e
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -0,0 +1,449 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Lenovo Yoga C630
-+ *
-+ * Copyright (c) 2019, Linaro Ltd.
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include "sdm845.dtsi"
-+#include "pm8998.dtsi"
-+
-+/ {
-+	model = "Lenovo Yoga C630";
-+	compatible = "lenovo,yoga-c630", "qcom,sdm845";
-+
-+	aliases {
-+		hsuart0 = &uart6;
-+	};
-+};
-+
-+&apps_rsc {
-+	pm8998-rpmh-regulators {
-+		compatible = "qcom,pm8998-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-+
-+		vreg_s2a_1p125: smps2 {
-+		};
-+
-+		vreg_s3a_1p35: smps3 {
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s4a_1p8: smps4 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5a_2p04: smps5 {
-+			regulator-min-microvolt = <2040000>;
-+			regulator-max-microvolt = <2040000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s7a_1p025: smps7 {
-+		};
-+
-+		vdd_qusb_hs0:
-+		vdda_hp_pcie_core:
-+		vdda_mipi_csi0_0p9:
-+		vdda_mipi_csi1_0p9:
-+		vdda_mipi_csi2_0p9:
-+		vdda_mipi_dsi0_pll:
-+		vdda_mipi_dsi1_pll:
-+		vdda_qlink_lv:
-+		vdda_qlink_lv_ck:
-+		vdda_qrefs_0p875:
-+		vdda_pcie_core:
-+		vdda_pll_cc_ebi01:
-+		vdda_pll_cc_ebi23:
-+		vdda_sp_sensor:
-+		vdda_ufs1_core:
-+		vdda_ufs2_core:
-+		vdda_usb1_ss_core:
-+		vdda_usb2_ss_core:
-+		vreg_l1a_0p875: ldo1 {
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_10:
-+		vreg_l2a_1p2: ldo2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l3a_1p0: ldo3 {
-+		};
-+
-+		vdd_wcss_cx:
-+		vdd_wcss_mx:
-+		vdda_wcss_pll:
-+		vreg_l5a_0p8: ldo5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_13:
-+		vreg_l6a_1p8: ldo6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a_1p8: ldo7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a_1p2: ldo8 {
-+		};
-+
-+		vreg_l9a_1p8: ldo9 {
-+		};
-+
-+		vreg_l10a_1p8: ldo10 {
-+		};
-+
-+		vreg_l11a_1p0: ldo11 {
-+		};
-+
-+		vdd_qfprom:
-+		vdd_qfprom_sp:
-+		vdda_apc1_cs_1p8:
-+		vdda_gfx_cs_1p8:
-+		vdda_qrefs_1p8:
-+		vdda_qusb_hs0_1p8:
-+		vddpx_11:
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_2:
-+		vreg_l13a_2p95: ldo13 {
-+		};
-+
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-min-microvolt = <1880000>;
-+			regulator-max-microvolt = <1880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l15a_1p8: ldo15 {
-+		};
-+
-+		vreg_l16a_2p7: ldo16 {
-+		};
-+
-+		vreg_l17a_1p3: ldo17 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_2p7: ldo18 {
-+		};
-+
-+		vreg_l19a_3p0: ldo19 {
-+			regulator-min-microvolt = <3100000>;
-+			regulator-max-microvolt = <3108000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20a_2p95: ldo20 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21a_2p95: ldo21 {
-+		};
-+
-+		vreg_l22a_2p85: ldo22 {
-+		};
-+
-+		vreg_l23a_3p3: ldo23 {
-+		};
-+
-+		vdda_qusb_hs0_3p1:
-+		vreg_l24a_3p075: ldo24 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3083000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l25a_3p3: ldo25 {
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3112000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdda_hp_pcie_1p2:
-+		vdda_hv_ebi0:
-+		vdda_hv_ebi1:
-+		vdda_hv_ebi2:
-+		vdda_hv_ebi3:
-+		vdda_mipi_csi_1p25:
-+		vdda_mipi_dsi0_1p2:
-+		vdda_mipi_dsi1_1p2:
-+		vdda_pcie_1p2:
-+		vdda_ufs1_1p2:
-+		vdda_ufs2_1p2:
-+		vdda_usb1_ss_1p2:
-+		vdda_usb2_ss_1p2:
-+		vreg_l26a_1p2: ldo26 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1208000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l28a_3p0: ldo28 {
-+		};
-+
-+		vreg_lvs1a_1p8: lvs1 {
-+		};
-+
-+		vreg_lvs2a_1p8: lvs2 {
-+		};
-+	};
-+};
-+
-+&apps_smmu {
-+	/* TODO: Figure out how to survive booting with this enabled */
-+	status = "disabled";
-+};
-+
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CORE_CLK>,
-+			   <GCC_QSPI_CORE_CLK_SRC>,
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>;
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+	qcom,geni-se-no-dma;
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+	qcom,geni-se-no-dma;
-+
-+	hid@15 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x15>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 37 IRQ_TYPE_EDGE_RISING>;
-+	};
-+
-+	hid@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+		hid-descr-addr = <0x20>;
-+
-+		interrupts-extended = <&tlmm 37 IRQ_TYPE_EDGE_RISING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2c2_hid_active>;
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+	qcom,geni-se-no-dma;
-+
-+	hid@10 {
-+		compatible = "hid-over-i2c";
-+		reg = <0x10>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 125 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2c6_hid_active>;
-+	};
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+	clock-frequency = <400000>;
-+	qcom,geni-se-no-dma;
-+
-+	hid@5c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x5c>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 92 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&i2c12_hid_active>;
-+	};
-+};
-+
-+&qup_i2c12_default {
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
-+&qup_uart6_default {
-+	pinmux {
-+		 pins = "gpio45", "gpio46", "gpio47", "gpio48";
-+		 function = "qup6";
-+	};
-+
-+	cts {
-+		pins = "gpio45";
-+		bias-pull-down;
-+	};
-+
-+	rts-tx {
-+		pins = "gpio46", "gpio47";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	rx {
-+		pins = "gpio48";
-+		bias-pull-up;
-+	};
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <81 4>;
-+
-+	i2c2_hid_active: i2c2-hid-active {
-+		pins = <37>;
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-pull-up;
-+		drive-strength = <2>;
-+	};
-+
-+	i2c6_hid_active: i2c6-hid-active {
-+		pins = <125>;
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-pull-up;
-+		drive-strength = <2>;
-+	};
-+
-+	i2c12_hid_active: i2c12-hid-active {
-+		pins = <92>;
-+		function = "gpio";
-+
-+		input-enable;
-+		bias-pull-up;
-+		drive-strength = <2>;
-+	};
-+};
-+
-+&uart6 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&ufs_mem_hc {
-+	status = "okay";
-+
-+	vcc-supply = <&vreg_l20a_2p95>;
-+	vcc-max-microamp = <600000>;
-+};
-+
-+&ufs_mem_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_ufs1_core>;
-+	vdda-pll-supply = <&vdda_ufs1_1p2>;
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_1_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vdda_usb1_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+};
-+
-+&usb_1_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_usb1_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb1_ss_core>;
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_2_hsphy {
-+	status = "okay";
-+
-+	vdd-supply = <&vdda_usb2_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_22_8_MA>;
-+};
-+
-+&usb_2_qmpphy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vdda_usb2_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb2_ss_core>;
-+};
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index aa40b074b864..1fc7c8effd25 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -124,6 +124,7 @@ properties:
+       - arm,cortex-a15
+       - arm,cortex-a17
+       - arm,cortex-a53
++      - arm,cortex-a55
+       - arm,cortex-a57
+       - arm,cortex-a72
+       - arm,cortex-a73
 -- 
 2.17.1
 
