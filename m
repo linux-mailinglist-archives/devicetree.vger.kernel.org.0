@@ -2,105 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD93AAA19A
-	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 13:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2510EAA19E
+	for <lists+devicetree@lfdr.de>; Thu,  5 Sep 2019 13:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388592AbfIELgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 07:36:47 -0400
-Received: from mga18.intel.com ([134.134.136.126]:54537 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732712AbfIELgr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 5 Sep 2019 07:36:47 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Sep 2019 04:36:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,470,1559545200"; 
-   d="scan'208";a="207841709"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga004.fm.intel.com with ESMTP; 05 Sep 2019 04:36:40 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1i5q46-0007Dt-Tq; Thu, 05 Sep 2019 14:36:38 +0300
-Date:   Thu, 5 Sep 2019 14:36:38 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Javier Martinez Canillas <javierm@redhat.com>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        dongchun.zhu@mediatek.com, mchehab@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, drinkcat@chromium.org, tfiga@chromium.org,
-        matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        sam.hung@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [V2, 2/2] media: i2c: Add DW9768 VCM driver
-Message-ID: <20190905113638.GE2680@smile.fi.intel.com>
-References: <20190905072142.14606-1-dongchun.zhu@mediatek.com>
- <20190905072142.14606-3-dongchun.zhu@mediatek.com>
- <20190905082134.GY5475@paasikivi.fi.intel.com>
- <20190905101908.GB2680@smile.fi.intel.com>
- <20190905104001.GZ5475@paasikivi.fi.intel.com>
- <ad357e27-3e51-6922-1924-5d2c2daf1934@redhat.com>
+        id S1732207AbfIELhP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 07:37:15 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:60940 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731633AbfIELhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 07:37:15 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id E6B446115B; Thu,  5 Sep 2019 11:37:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567683434;
+        bh=En7H/vjEfdCHenDTzylmtXEv8eSxVc80QkgW02+ubgw=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=Lj75MEpf9aLo/MVe56iZj+pBq2UEJgxQgW79/SjFSaB6DZSUlkvwV0UuZ6pwfHHzD
+         53p244Br1hXJrbNLh5hwwt7h8UZIXiCSMlagfeV1zk5ZC3TFpWijTXBkExerrMaEQ8
+         e3+Q4qzWNrhSBC1ZjOWW0lwi+VPhWUgxh1sbYHn4=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: kvalo@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id C7E34602EE;
+        Thu,  5 Sep 2019 11:37:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1567683433;
+        bh=En7H/vjEfdCHenDTzylmtXEv8eSxVc80QkgW02+ubgw=;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+        b=ChhsYj4Vyft9WWdWnRFTxhovyfGx0bP0BuX5BCJTVS5DsYfx3EcD/u74vj9SDsS/s
+         Kr5l2kcJc3wb6YhfgMmWZjFE0BPcTpnRAUBUgQFDI0K8i6rKAiaUVbtG/yuOi8ka1F
+         Vm2oTw3oy3v8jLXGGHzc3LIJYAsCPaYFDJsyRMzI=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C7E34602EE
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Johannes Berg <johannes@sipsolutions.net>
+Cc:     linux-wireless@vger.kernel.org, devicetree@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH 08/49] ath11k: add core.c
+References: <1566316095-27507-1-git-send-email-kvalo@codeaurora.org>
+        <1566316095-27507-9-git-send-email-kvalo@codeaurora.org>
+        <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
+Date:   Thu, 05 Sep 2019 14:37:09 +0300
+In-Reply-To: <0c526ce00e6e1c7731c990515e7438230efb55af.camel@sipsolutions.net>
+        (Johannes Berg's message of "Tue, 20 Aug 2019 22:32:45 +0200")
+Message-ID: <874l1rnfdm.fsf@kamboji.qca.qualcomm.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ad357e27-3e51-6922-1924-5d2c2daf1934@redhat.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 12:57:34PM +0200, Javier Martinez Canillas wrote:
-> On 9/5/19 12:40 PM, Sakari Ailus wrote:
-> > On Thu, Sep 05, 2019 at 01:19:08PM +0300, Andy Shevchenko wrote:
-> >> On Thu, Sep 05, 2019 at 11:21:34AM +0300, Sakari Ailus wrote:
-> >>> On Thu, Sep 05, 2019 at 03:21:42PM +0800, dongchun.zhu@mediatek.com wrote:
-> >>>> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
-> >>
-> >>>> +static const struct i2c_device_id dw9768_id_table[] = {
-> >>>> +	{ DW9768_NAME, 0 },
-> >>>> +	{ },
-> >>>
-> >>> Could you drop the I²C ID table?
-> >>
-> >> But why?
-> >> It will allow you to instanciate the device from user space.
-> 
-> Yes, the I2C device table is still needed if the device can be instantiated
-> from user-space using the sysfs interface, or otherwise the module won't be
-> automatically loaded.
-> 
-> Kieran posted a "[PATCH RFC] modpost: Support I2C Aliases from OF tables"
-> patch that adds a MODULE_DEVICE_TABLE(i2c_of, ..) macro so modpost could
-> add legacy I2C modalias using the information in the OF device ID tables:
-> 
-> https://patchwork.kernel.org/patch/11038861/
-> 
-> If that lands, then we could get rid of the I2C device tables altogether
-> for non-legacy I2C drivers.
-> 
-> > 
-> > The device is supposed to be present in DT (or ACPI tables) already.
-> >
-> 
-> Agreed. Also by looking at the driver's probe function I see that the
-> device lookups a 'vin' and 'vdd' regulators supplies and it fails if
-> aren't defined, so it can't be instantiated from user-space anyways.
+Johannes Berg <johannes@sipsolutions.net> writes:
 
-Thank you for clarifications!
+>> +module_param_named(debug_mask, ath11k_debug_mask, uint, 0644);
+>> +
+>> +MODULE_PARM_DESC(debug_mask, "Debugging mask");
+>> +
+>> +static const struct ath11k_hw_params ath11k_hw_params = {
+>> +			.name = "ipq8074",
+>
+> indentation here seems a bit too much
+>
+>> +MODULE_LICENSE("Dual BSD/GPL");
+>
+> All your files state "ISC", shouldn't that be reflected here?
 
-So, it can use ->probe_new() in that case.
-
-> 
-> BTW, these two regulators supplies should be listed as 'vin-supply'
-> and 'vdd-supply' as required properties in the DT binding document.
+The MODULE_LICENSE() macro doesn't accept anything else. AFAIK all ISC
+drivers use this.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
