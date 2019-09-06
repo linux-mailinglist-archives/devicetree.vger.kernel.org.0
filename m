@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBF38AC172
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:31:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18C13AC18A
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:40:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391971AbfIFUbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 16:31:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46836 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389915AbfIFUbc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 16:31:32 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 936A22070C;
-        Fri,  6 Sep 2019 20:31:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567801891;
-        bh=20grs7Gqqchzro5nWBOpPISHzAksfuflzl2AEwFrb5k=;
-        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
-        b=eAKiu8m3HYdMJroSvMHGlkhEyU2OKcPdwxWQw4Jd+KimsSqXP1LxCkgYIkMx7ydY5
-         jv8AhiQjyaZNQf1sjsldTv+eGQcDR7xdJ6H9/+bXP8xuyPMhE/MaqCjK7tvBSQ3BpT
-         BE5j6/8OR/86cd7QooJ4JK7CXm5hGo2S9HyVx2Y8=
+        id S2388142AbfIFUk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 16:40:27 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:33765 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1733186AbfIFUk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 16:40:27 -0400
+Received: by mail-pf1-f193.google.com with SMTP id q10so5368128pfl.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2019 13:40:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:to:from:cc:subject:user-agent:date;
+        bh=swYhYhOrQirWfGuJUy4F9KFt5Sj0aaeo1T8GuTEGiz4=;
+        b=XNQZCDL1t7yoNNof+dtO6sm/fp+82jF9Dd+D/rQFYDJcBz/L2D1KGp8OUyEU0c8k6x
+         zUnkoplE8fEg02iv67iCnBKbzlwLAmDwz94XsxzsIa6ZQJY3xQWrtMdBLejK8GkIowW/
+         32OdRNGIdjSw6kW2kVX9y36xYaVXLtm9SM/yc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:to:from:cc:subject
+         :user-agent:date;
+        bh=swYhYhOrQirWfGuJUy4F9KFt5Sj0aaeo1T8GuTEGiz4=;
+        b=C8TRKM4zjCdVXwY8KCkLw70lNKlubNG48zm7vPecaENdYSfLx4wwYKa18nqoRZnMVK
+         X9ab1YEloCOzWdaaoxMXL1Wfcsn1ugNurXueW8DvHQcNcExNLJkrbhENzICOp47A6aLT
+         Wp2DqJg9vHX8RL7EDeA2nqjSvtKYJul6pgJ4JDWXTmg8dxLnc29Uiz4mQFC6RByLmidq
+         iJOp4CZEiYU4WNj2olcDWFgt78EG7AeXmfYjmsRAttDKG9rrur4Qn5189Z+LFoTIsfWU
+         075W0Qlh6MTQpZCY7p7mvzcN/H70FNWCbYY2AsihKrA5R/AoeSaxLaVD04BfLciSDS4R
+         i/mA==
+X-Gm-Message-State: APjAAAUC4O2edoHgbGgG6ufWHBjDtMTCU3RqukJJZDhWM2ykggX0yObR
+        SqsecHZ/cenUUfPHIxwvHW55vg==
+X-Google-Smtp-Source: APXvYqw1lGijoxS5N/LyWFNhxa8KAKbm6+WK8DHVTDzRzO5NwdkiAeKIWg805Ebt+vzKg3H6r2nBUQ==
+X-Received: by 2002:a17:90a:b383:: with SMTP id e3mr11866956pjr.85.1567802426141;
+        Fri, 06 Sep 2019 13:40:26 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id 2sm13930134pfa.43.2019.09.06.13.40.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 06 Sep 2019 13:40:25 -0700 (PDT)
+Message-ID: <5d72c439.1c69fb81.484c6.fe28@mx.google.com>
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAL_JsqLpVDJBh5qZwudncB8sggb85f3efqs1z9EA+zbVPWX++g@mail.gmail.com>
-References: <20190823131401.4011-1-govinds@codeaurora.org> <20190823131401.4011-2-govinds@codeaurora.org> <CAL_JsqLpVDJBh5qZwudncB8sggb85f3efqs1z9EA+zbVPWX++g@mail.gmail.com>
-To:     Govind Singh <govinds@codeaurora.org>,
-        Rob Herring <robh@kernel.org>
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
-        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
-        <linux-remoteproc@vger.kernel.org>
-Subject: Re: [PATCH_v3 1/2] dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock controller bindings
+In-Reply-To: <20190906182530.GD11938@tuxbook-pro>
+References: <5d694878.1c69fb81.5f13b.ec4f@mx.google.com> <5d696ad2.1c69fb81.977ea.39e5@mx.google.com> <f3584f38-dabc-7e7a-d1cb-84c80ed26215@linaro.org> <20190903173924.GB9754@jackp-linux.qualcomm.com> <5d6edee5.1c69fb81.a3896.1d05@mx.google.com> <20190903233410.GQ26807@tuxbook-pro> <c9481b7d-4805-25c6-f40f-9cbfc40afc93@linaro.org> <20190905175802.GA19599@jackp-linux.qualcomm.com> <5d71edf5.1c69fb81.1f307.fdd6@mx.google.com> <20190906182530.GD11938@tuxbook-pro>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Jack Pham <jackp@codeaurora.org>,
+        Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>,
+        robh@kernel.org, andy.gross@linaro.org, shawn.guo@linaro.org,
+        gregkh@linuxfoundation.org, mark.rutland@arm.com, kishon@ti.com,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, khasim.mohammed@linaro.org
+Subject: Re: [PATCH v4 3/4] dt-bindings: Add Qualcomm USB SuperSpeed PHY bindings
 User-Agent: alot/0.8.1
-Date:   Fri, 06 Sep 2019 13:31:30 -0700
-Message-Id: <20190906203131.936A22070C@mail.kernel.org>
+Date:   Fri, 06 Sep 2019 13:40:24 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2019-08-27 05:27:19)
-> On Fri, Aug 23, 2019 at 8:14 AM Govind Singh <govinds@codeaurora.org> wro=
-te:
-> >
-> > Add devicetree binding for the Q6SSTOP clock controller found in QCS404.
-> >
-> > Signed-off-by: Govind Singh <govinds@codeaurora.org>
-> > ---
-> >  .../bindings/clock/qcom,q6sstopcc.yaml        | 47 +++++++++++++++++++
-> >  1 file changed, 47 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,q6ssto=
-pcc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yam=
-l b/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
-> > new file mode 100644
-> > index 000000000000..39621e2e2f4e
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
-> > @@ -0,0 +1,47 @@
-> > +# SPDX-License-Identifier: BSD-2-Clause
+Quoting Bjorn Andersson (2019-09-06 11:25:30)
+> On Thu 05 Sep 22:26 PDT 2019, Stephen Boyd wrote:
 >=20
-> Dual license please.
+> >=20
+> > Yes this looks like the approach that should be taken. One question
+> > though, is this a micro-b connector or a type-c connector on the board?
+> > I thought it was a type-c, so then this USB gpio based connection driver
+> > isn't an exact fit?
+> >=20
+>=20
+> For this particular case it's a type c connector, but the port
+> controller is operated completely passively (and there's no PD or DP
+> involved), so the GPIO based approach seems like a good fit.
 >=20
 
-Yes, please fix the binding.
+OK. Perhaps the binding needs an update then to have another compatible
+string indicating type-c connector that's not able to support PD or DP?
 
