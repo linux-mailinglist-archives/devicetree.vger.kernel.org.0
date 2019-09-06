@@ -2,105 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF05AAB04D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 03:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59518AB0CB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 05:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732173AbfIFBnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 21:43:21 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:64711 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727411AbfIFBnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 21:43:21 -0400
-X-UUID: 416b913ac2624eb89f6c6c896ecff1b3-20190906
-X-UUID: 416b913ac2624eb89f6c6c896ecff1b3-20190906
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 589645460; Fri, 06 Sep 2019 09:43:13 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 6 Sep
- 2019 09:43:13 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 6 Sep 2019 09:43:09 +0800
-Message-ID: <1567734192.7317.68.camel@mhfsdcap03>
-Subject: Re: [Patch V8 7/8] usb: gadget: Add UDC driver for tegra XUSB
- device mode controller
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Nagarjuna Kristam <nkristam@nvidia.com>
-CC:     <balbi@kernel.org>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>, <kishon@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Date:   Fri, 6 Sep 2019 09:43:12 +0800
-In-Reply-To: <36447248-1ddb-ff1d-a731-de6afb445a9d@nvidia.com>
-References: <1567585440-13751-1-git-send-email-nkristam@nvidia.com>
-         <1567585440-13751-8-git-send-email-nkristam@nvidia.com>
-         <1567593053.7317.64.camel@mhfsdcap03>
-         <36447248-1ddb-ff1d-a731-de6afb445a9d@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S2392096AbfIFDCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 23:02:03 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:46108 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392095AbfIFDCD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 23:02:03 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q5so3293374pfg.13
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 20:02:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Fy2sCHO6ksC6gfm/SNdH9QAmaHYMAPiTKwgACIfMK3E=;
+        b=XYV34W7Gld+84er7G3MqlpUVPw+yXk9mEYDM09dIIZfYiOCl+/jtyAr/sOGtS1R2+B
+         JY6SBfz4uZA5ORR/Qe9Acz/QsUN2aPRDHc/AX9QSNIqSXMsg6rfHlezvfkRwb83KrRYw
+         dbTwTWkdVJPFa9BA2aZAwWQz69Y6rBJKYj3pchzlmNOVQvzyg5ixprltJ1pK9LuLHN/7
+         3Th3DERsudBcXWB2KHPfSfyuxo1TDnYKgwhvjCbP+oi6hgqynCPPulXjkRV948l6mP7t
+         YByt+lDQlhRHqHVw7sJFyndtQjYrgpxQp2rywpVoVhQX/KeRhFhWyE5g0X8Mkbdyds0O
+         3gKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Fy2sCHO6ksC6gfm/SNdH9QAmaHYMAPiTKwgACIfMK3E=;
+        b=TiRlzuBAf8Ly7LJSAx8inhAAngKlFqsLTgFl8MLcidYw5Uqs7fvwVkd7PJ2hbkqHm9
+         NGI+7r0Uc49KcKiaO3EU1gRDxmkdqBHdjmPkBN3MKcG5qhm98sfnkZ9ZQ7yp/3fjEM74
+         ZiAJzT575Ligi7RmIvvwR6LuXdhqsUDFmr2v3a5az7F5iYu7d3rm/nJ1SEJSVcp3wvi5
+         DUZHCs3SIdskzCuMo4q3DiC10Y4xRDgyFFrjpCV8NmoX9p4gaoTa6BwaSqtc7vHaCxDS
+         LPB+bTucst5H+QsqCl/NjiMYWX5DO4T+yAZhmhCPohuS/fugTdZwPdltJnvjaRmIMIFT
+         l2VA==
+X-Gm-Message-State: APjAAAWcM6rJ1jjMrrhmxoZ32T0agq0O8RwTEE93lcfEXWlsKDqRS1F2
+        SnwqTgGpUKkTeG1RDfVsfyLUJQ==
+X-Google-Smtp-Source: APXvYqwh1UMtnkLX6kIDmHA80lT5q6jkelT/w00gGqU1+nd+XIYlLSyB0Z5bUQxb1Vwm1xMB3MOHSQ==
+X-Received: by 2002:a63:c17:: with SMTP id b23mr6048375pgl.224.1567738922281;
+        Thu, 05 Sep 2019 20:02:02 -0700 (PDT)
+Received: from localhost ([122.167.132.221])
+        by smtp.gmail.com with ESMTPSA id x22sm6714546pfo.180.2019.09.05.20.02.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 05 Sep 2019 20:02:00 -0700 (PDT)
+Date:   Fri, 6 Sep 2019 08:31:58 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?B?QW5kcsOp?= Roth <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com
+Subject: Re: [RFC v2 1/3] cpufreq: ti-cpufreq: add support for omap34xx and
+ omap36xx
+Message-ID: <20190906030158.leuumg7rwsvowwfx@vireshk-i7>
+References: <cover.1567587220.git.hns@goldelico.com>
+ <a889b10386bebfbfd6cdb5491367235290d53247.1567587220.git.hns@goldelico.com>
+ <20190905143226.GW52127@atomide.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 74304609C9695D046C28449A67793BF212AAF7C3B9AC8A92D4992BCB9FBBF8632000:8
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190905143226.GW52127@atomide.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-09-05 at 09:57 +0530, Nagarjuna Kristam wrote:
-> 
-> On 04-09-2019 16:00, Chunfeng Yun wrote:
-> > On Wed, 2019-09-04 at 13:53 +0530, Nagarjuna Kristam wrote:
-> >> This patch adds UDC driver for tegra XUSB 3.0 device mode controller.
-> >> XUSB device mode controller supports SS, HS and FS modes
-> >>
-> >> Based on work by:
-> >>   Mark Kuo <mkuo@nvidia.com>
-> >>   Hui Fu <hfu@nvidia.com>
-> >>   Andrew Bresticker <abrestic@chromium.org>
-> >>
-> >> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> >> Acked-by: Thierry Reding <treding@nvidia.com>
-> >> ---
-> >>  drivers/usb/gadget/udc/Kconfig      |   12 +
-> >>  drivers/usb/gadget/udc/Makefile     |    1 +
-> >>  drivers/usb/gadget/udc/tegra-xudc.c | 3791 +++++++++++++++++++++++++++++++++++
-> >>  3 files changed, 3804 insertions(+)
-> >>  create mode 100644 drivers/usb/gadget/udc/tegra-xudc.c
-> >>
-> >> diff --git a/drivers/usb/gadget/udc/Kconfig b/drivers/usb/gadget/udc/Kconfig
-> >> index d354036..0fe7577 100644
-> >> --- a/drivers/usb/gadget/udc/Kconfig
-> >> +++ b/drivers/usb/gadget/udc/Kconfig
-> >> @@ -441,6 +441,18 @@ config USB_GADGET_XILINX
-> >>  	  dynamically linked module called "udc-xilinx" and force all
-> >>  	  gadget drivers to also be dynamically linked.
-> >>  
-> >> +config USB_TEGRA_XUDC
-> >> +	tristate "NVIDIA Tegra Superspeed USB 3.0 Device Controller"
-> >> +	depends on ARCH_TEGRA || COMPILE_TEST
-> >> +	depends on PHY_TEGRA_XUSB
-> >> +	select USB_CONN_GPIO
-> > To me, needn't select this driver, without it, the driver still build
-> > pass
+On 05-09-19, 07:32, Tony Lindgren wrote:
+> * H. Nikolaus Schaller <hns@goldelico.com> [190904 08:54]:
+> > This adds code and tables to read the silicon revision and
+> > eFuse (speed binned / 720 MHz grade) bits for selecting
+> > opp-v2 table entries.
 > > 
-> Yes compilation passes with out this. Added select for getting USB_CONN_GPIO
-> driver functionality.
-We can enable it in defconfig, think about one day use type-c to do
-dual-role switch, or other ways, will needn't select it then.
-
+> > Since these bits are not always part of the syscon register
+> > range (like for am33xx, am43, dra7), we add code to directly
+> > read the register values using ioremap() if syscon access fails.
 > 
-> >> +	help
-> >> +	 Enables NVIDIA Tegra USB 3.0 device mode controller driver.
-> >> +
-> >> +	 Say "y" to link the driver statically, or "m" to build a
-> >> +	 dynamically linked module called "tegra_xudc" and force all
-> >> +	 gadget drivers to also be dynamically linked.
-> >> +
-> >>  source "drivers/usb/gadget/udc/aspeed-vhub/Kconfig"
-> >>  
+> This is nice :) Seems to work for me based on a quick test
+> on at least omap36xx.
+> 
+> Looks like n900 produces the following though:
+> 
+> core: _opp_supported_by_regulators: OPP minuV: 1270000 maxuV: 1270000, not supported by regulator
+> cpu cpu0: _opp_add: OPP not supported by regulators (550000000)
 
+That's a DT thing I believe where the voltage doesn't fit what the
+regulator can support.
 
+> But presumably that can be further patched. So for this
+> patch:
+> 
+> Acked-by: Tony Lindgren <tony@atomide.com>
+
+Thanks.
+
+-- 
+viresh
