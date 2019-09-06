@@ -2,139 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7429EAC229
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 23:47:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA18EAC35F
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 01:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404600AbfIFVrJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 17:47:09 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:46830 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404449AbfIFVrJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 17:47:09 -0400
-Received: by mail-ot1-f68.google.com with SMTP id g19so7114098otg.13;
-        Fri, 06 Sep 2019 14:47:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AxdmH4Las6LxoPzUkRRDSuUEuP8kEFd6s6/nV6yfxfg=;
-        b=kJ8V6SKUgTMBpZVLUgCBoDhLUAbrxohNBnGKYz5ADglBM8cRRC1XNgOxTfO09Ao0wV
-         8BQczCd7yaJz8hbUKtmym+hsPhNtnOH6VfJeyhMLJf02rJj5kcMcbVCoYJgL7w8JymdV
-         a6sIuJJnXC+WYQdwJkTwB6KlZCMRFOWZypKUDrlCRYHXJoLcgWFawqoYD0FEll+HRcQv
-         lkATQM/e/CxseNcd8hAOhXPWzrxqvEV0H7/8NRqkwJypKjzjRzJqRcBjmMkcJFX3W1b/
-         C/0/IwQcNBLmREJ6IoFqK1nu6D1qlhUj5yGseVzABJBooBmDdzzhqbXnPPEcsP1Hp0uL
-         X+MQ==
-X-Gm-Message-State: APjAAAWgjKQBs5F/JE9VoVTCxiSHM7wQu1Ja2vZUveWaudQtNON2ZItc
-        4GvN8WaC3vXjWsrTRisWOlj07Tds
-X-Google-Smtp-Source: APXvYqyKdkJy2UYmQBEftN3cVDKDxGk7OkLkrI9pGAnrPLPlQPtaJfgj/TAw7lpHUajBdykqy4i+wg==
-X-Received: by 2002:a9d:127:: with SMTP id 36mr3127123otu.64.1567806427609;
-        Fri, 06 Sep 2019 14:47:07 -0700 (PDT)
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com. [209.85.167.182])
-        by smtp.gmail.com with ESMTPSA id b21sm2544627otl.12.2019.09.06.14.47.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 06 Sep 2019 14:47:06 -0700 (PDT)
-Received: by mail-oi1-f182.google.com with SMTP id t84so6244575oih.10;
-        Fri, 06 Sep 2019 14:47:06 -0700 (PDT)
-X-Received: by 2002:a54:4492:: with SMTP id v18mr25801oiv.175.1567806426189;
- Fri, 06 Sep 2019 14:47:06 -0700 (PDT)
+        id S2406177AbfIFXsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 19:48:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42622 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405441AbfIFXsT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 19:48:19 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EC0DA20842;
+        Fri,  6 Sep 2019 23:48:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567813699;
+        bh=NSLywlCOcgcWPM52MbfyuhWTAOW2/4du9FX0KFp7RSI=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=KwtHGJhGEM4BfLeqXjbsZT07sFB7biEeHKuQ9ohRGYNIP+wMSmwfyp48kbdV4SUug
+         9M91UWABZNoGL2ftCmjs/VA0iuLyajB//EFiauZlmyBqMSnWqUAU5XYGAqo9yY+2fj
+         yelyGsFZ9lWHC9sKK4riqUF9SI/AwZEQtDSQvrHU=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20190906115614.5645-1-hui.song_1@nxp.com>
-In-Reply-To: <20190906115614.5645-1-hui.song_1@nxp.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Fri, 6 Sep 2019 16:46:54 -0500
-X-Gmail-Original-Message-ID: <CADRPPNSjOV4RvJiFU2krj_-0gwcvw07x27Ku9t7h+VKNd=BStQ@mail.gmail.com>
-Message-ID: <CADRPPNSjOV4RvJiFU2krj_-0gwcvw07x27Ku9t7h+VKNd=BStQ@mail.gmail.com>
-Subject: Re: [PATCH] gpio/mpc8xxx: change irq handler from chained to normal
-To:     Hui Song <hui.song_1@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190830220743.439670-12-lkundrak@v3.sk>
+References: <20190830220743.439670-1-lkundrak@v3.sk> <20190830220743.439670-12-lkundrak@v3.sk>
+Cc:     "Cc : Rob Herring" <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Lubomir Rintel <lkundrak@v3.sk>
+To:     "To : Olof Johansson" <olof@lixom.net>,
+        Lubomir Rintel <lkundrak@v3.sk>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 11/16] ARM: mmp: add support for MMP3 SoC
+User-Agent: alot/0.8.1
+Date:   Fri, 06 Sep 2019 16:48:18 -0700
+Message-Id: <20190906234818.EC0DA20842@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 6, 2019 at 10:20 AM Hui Song <hui.song_1@nxp.com> wrote:
->
-> From: Song Hui <hui.song_1@nxp.com>
->
+Quoting Lubomir Rintel (2019-08-30 15:07:38)
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 801fa1cd03217..8bb2ac83a1fcc 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -301,6 +301,11 @@ config COMMON_CLK_STM32H7
+>         ---help---
+>           Support for stm32h7 SoC family clocks
+> =20
+> +config COMMON_CLK_MMP2
+> +       def_bool COMMON_CLK && (MACH_MMP2_DT || MACH_MMP3_DT)
 
-The English below need to be fixed.
+Does it need to depend on COMMON_CLK? I thought that by being part of
+the menuconfig (even if it's a hidden symbol) mean that it wouldn't be
+evaulated unless the COMMON_CLK define is =3DY.
 
-> more one gpio controller use share one interrupt,
-> make request interrupt to be shared.
-
-More than one gpio controllers can share one interrupt, change the
-driver to request shared irq.
-
->
-> Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
-> Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-> Signed-off-by: Song Hui <hui.song_1@nxp.com>
-> ---
->  drivers/gpio/gpio-mpc8xxx.c | 20 +++++++++++++-------
->  1 file changed, 13 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
-> index 16a47de..4006250 100644
-> --- a/drivers/gpio/gpio-mpc8xxx.c
-> +++ b/drivers/gpio/gpio-mpc8xxx.c
-> @@ -22,6 +22,7 @@
->  #include <linux/irq.h>
->  #include <linux/gpio/driver.h>
->  #include <linux/bitops.h>
-> +#include <linux/interrupt.h>
->
->  #define MPC8XXX_GPIO_PINS      32
->
-> @@ -127,10 +128,9 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc, unsigned offset)
->                 return -ENXIO;
->  }
->
-> -static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
-> +static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
->  {
-> -       struct mpc8xxx_gpio_chip *mpc8xxx_gc = irq_desc_get_handler_data(desc);
-> -       struct irq_chip *chip = irq_desc_get_chip(desc);
-> +       struct mpc8xxx_gpio_chip *mpc8xxx_gc = (struct mpc8xxx_gpio_chip *)data;
->         struct gpio_chip *gc = &mpc8xxx_gc->gc;
->         unsigned int mask;
->
-> @@ -139,8 +139,8 @@ static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
->         if (mask)
->                 generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
->                                                      32 - ffs(mask)));
-> -       if (chip->irq_eoi)
-> -               chip->irq_eoi(&desc->irq_data);
+> +       help
+> +         Support for Marvell MMP2 and MMP3 SoC clocks
 > +
-> +       return IRQ_HANDLED;
->  }
->
->  static void mpc8xxx_irq_unmask(struct irq_data *d)
-> @@ -409,8 +409,14 @@ static int mpc8xxx_probe(struct platform_device *pdev)
->         if (devtype->gpio_dir_in_init)
->                 devtype->gpio_dir_in_init(gc);
->
-> -       irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
-> -                                        mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
-> +       ret = request_irq(mpc8xxx_gc->irqn, mpc8xxx_gpio_irq_cascade,
-> +               IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade", mpc8xxx_gc);
-> +       if (ret) {
-> +               pr_err("%s: failed to request_irq(%d), ret = %d\n",
-> +                               np->full_name, mpc8xxx_gc->irqn, ret);
-> +               goto err;
-> +       }
-> +
->         return 0;
->  err:
->         iounmap(mpc8xxx_gc->regs);
-> --
-> 2.9.5
->
+>  config COMMON_CLK_BD718XX
+>         tristate "Clock driver for ROHM BD718x7 PMIC"
+>         depends on MFD_ROHM_BD718XX || MFD_ROHM_BD70528
