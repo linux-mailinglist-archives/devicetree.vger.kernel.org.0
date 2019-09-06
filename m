@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A2CFEAB807
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 14:20:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D16B8AB830
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 14:33:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404127AbfIFMUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 08:20:53 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:41379 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732863AbfIFMUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 08:20:53 -0400
-Received: by mail-pl1-f194.google.com with SMTP id m9so3073269pls.8;
-        Fri, 06 Sep 2019 05:20:53 -0700 (PDT)
+        id S2404688AbfIFMdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 08:33:09 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:43180 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404687AbfIFMdJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 08:33:09 -0400
+Received: by mail-pg1-f194.google.com with SMTP id u72so3415674pgb.10;
+        Fri, 06 Sep 2019 05:33:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=Yz8E2Km3qb90hXAs0IYE6gU7l6QgyfYQZCSLqivyf6E=;
-        b=sBi5fWpLkJxLG+1JbIBpFxU2wYFj0Rs9t7FdUjuEGTXEdUskawkWs7bKLQTbSiRpG7
-         qjhl0dF9LHFwxei4SsNWyHZYsRyITHY1813nt5Qmhl+ekqxXelwFqEcADBaOHIKXX/0V
-         khF8myUbLbxdgH2l8IGeznwGAlWmeOPqKraFv7lW4jPV1UHxMzEYrAaMxmgXfRKklht8
-         3KZpkKg8mfU/uXRHZ13pYQo24TfaYwGj180ya/4o/m81xAdpJ+HDpQ6GOZWyXCRx2kaO
-         jSNd6NlTTHccjWA3MrzpQdVAtKPzijDLC9pUugAWmkipIibe5KE6wbEzDvoq8MnF4xcE
-         D9zA==
+        b=Ey2hqfA7IQvWIjwaZRXLK1MJoLAYZ3w+rNkhCSb2zOJvC3mTkVwW4A3QD/q7u9b5Ru
+         84ARDBD6Hxgad++SUaJVDTD20qNcP3oTvxITLv8nkFhFFP562ePZK8saL8OE/oHb10jj
+         R32kFFJSqkH2XltA6GO5F1ZEdhkERcUULQytBhvCx/v/iPAmL0qxt9szZqHHL02NhrxH
+         uBj1NDFBL2ZljD9+V9/98u7l7lNX5aHrqko49U5yXC80L9KOHHde2J07RPH91rEwmshU
+         zKHMvFFtYRNeWaydN/C3775jUprLyNNwkOtEjrp/x02h2+YjbyRQJek7qsulMR8724Vc
+         uvOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
         bh=Yz8E2Km3qb90hXAs0IYE6gU7l6QgyfYQZCSLqivyf6E=;
-        b=DBz4hIRqss+K7Y6iT+rZVDHhir2morblWnyC883APYuaKmMv334XQfnClGv/ynLhF/
-         XfBtH6yu06r7BUQWR97S/6920e58m4EhxqjAn38Jeo7sKle7CF/5bfLkcLHFY/tx3Fui
-         1GROnAQH0Pcep0+acyy6xSC2ZTqxGP5uSw2akQjuzKmiARDixhAG8WcfYN9HhgCVajZD
-         lWLt2R1V4dml7EapMT38ztL+7QpkQxdv7qnaDU1TKsMc1vqtnAd2ZmvZLDQ24S456P6T
-         RcJmxDbpUW/jSsYUhNK6Y/RZm6jRfkBwqeQyHWgGwE77+CyyeU6sV9VO0g286v2iS2Te
-         +4hg==
-X-Gm-Message-State: APjAAAVEsrITwYMWpteREfH1qDjq5YsMj8GNtEQVeSXl55vckbkNgMW/
-        nK46hvvEbbE1RZehRqoJays=
-X-Google-Smtp-Source: APXvYqytNc4583TyUBAV/uTzWtXmL7i+BG+xiP2y5wuQOBP1Lr6CNp2zeZDS6Vji8zuvtspD30AQow==
-X-Received: by 2002:a17:902:7b8c:: with SMTP id w12mr8244462pll.276.1567772452654;
-        Fri, 06 Sep 2019 05:20:52 -0700 (PDT)
+        b=Dy566/+Oy5cGzLcYm6ixW/7ew9a7tFhBJrGdapk9AoagNpqTdakPpeBw7PA8fLpHIZ
+         TOecVfigRejrvnen9I3tXmuqsjNpyxl0ktjtd4RQ3iXNi7lsMVY9FVL3zk8+pVQu4z3D
+         zoKXODSLjtZW29k17onc/U2SVxKP5m0gkDk+2CNLskCiuK7cNNiDAS2sI/RHxIev3soM
+         FvUjfxacFyQvGgJzzuGP2dpI5usAJLvBou8yH91GQ16Q2MfN83i2/nGkqvRgsfIKZiu+
+         PpphVUkrc707c+oT4/oSTd1Qtvg5ExUh5unFREP25nXrIHTvpmXmpFsRPxpiq1kLmVTy
+         D9ew==
+X-Gm-Message-State: APjAAAXozbdr4eF/wkkQXGTFa5uFnaVM7hVWnPHzmzXxswBCsWxF5e7+
+        v3LWuok/v1TDsvJbvEfEWdA=
+X-Google-Smtp-Source: APXvYqyyFCOHTFvEoDeCLFQhX/mZ4AJ7iNpCfpGLKwFKukF531c5Ct9E3LFVHRm7nIXjQiD0S/lk7Q==
+X-Received: by 2002:aa7:8592:: with SMTP id w18mr10425002pfn.237.1567773188389;
+        Fri, 06 Sep 2019 05:33:08 -0700 (PDT)
 Received: from localhost.localdomain ([45.114.62.203])
-        by smtp.gmail.com with ESMTPSA id c23sm4944218pgj.62.2019.09.06.05.20.49
+        by smtp.gmail.com with ESMTPSA id h70sm4752933pgc.36.2019.09.06.05.33.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Sep 2019 05:20:52 -0700 (PDT)
+        Fri, 06 Sep 2019 05:33:07 -0700 (PDT)
 From:   Anand Moon <linux.amoon@gmail.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
@@ -53,8 +53,8 @@ To:     Rob Herring <robh+dt@kernel.org>,
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
 Subject: [PATCHv3-next 0/3] Odroid c2 missing regulator linking
-Date:   Fri,  6 Sep 2019 12:20:41 +0000
-Message-Id: <20190906122044.372-1-linux.amoon@gmail.com>
+Date:   Fri,  6 Sep 2019 12:32:56 +0000
+Message-Id: <20190906123259.351-1-linux.amoon@gmail.com>
 X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
