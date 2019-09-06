@@ -2,98 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11D5CAB1F3
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 07:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8013BAB1FB
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 07:15:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390307AbfIFFNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 01:13:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48036 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732560AbfIFFNa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 01:13:30 -0400
-Received: from localhost (unknown [223.226.32.145])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A4C802070C;
-        Fri,  6 Sep 2019 05:13:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567746809;
-        bh=R65YdSxknHDvQl7aHI+aK+SqlQFUfgHww7JUZmPjoTE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2IIidAqriAyaF57J4ZosnZDlZFadGIx6JOWHmwcTOue7kHaxCuCUOywEwgcftLJ0N
-         C6l9/rmyyMW33ltPrPpHIdA92V+PcT0wAKZQ8todpOPz7sev7ZnqAacqhng2LFHr1a
-         aQHoKmC9FEGM8hFQ7Vcn8OJEZ3q/8YRt8OyidXf8=
-Date:   Fri, 6 Sep 2019 10:42:21 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     dmaengine@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: milbeaut-m10v-hdmac: Add Socionext
- Milbeaut HDMAC bindings
-Message-ID: <20190906051221.GF2672@vkoul-mobl>
-References: <20190818051647.17475-1-jassisinghbrar@gmail.com>
- <20190818051754.17548-1-jassisinghbrar@gmail.com>
- <20190904055037.GC2672@vkoul-mobl>
- <CABb+yY1RT2TuUyuU2C+m6w=AOVzXkuG7cOwbWsccywxU7HwkQg@mail.gmail.com>
+        id S2392321AbfIFFPl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 01:15:41 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:46986 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2392320AbfIFFPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 01:15:41 -0400
+Received: by mail-pg1-f193.google.com with SMTP id m3so2774516pgv.13
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 22:15:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:to:from:cc:subject:user-agent:date;
+        bh=Rs6lYDg7rzHFfE3fqBqCgcoh261QPFbPy/MlhwtPv/U=;
+        b=fPAXHDWJg386CI0xnSxIs7N4XyMud3Qu1upV8CwvN0t006GE8zZl1VTWKnkG3pjSut
+         Rp8P0hmrX4NZmEdBnSbNQQl1HFNKKaBEXDAhpUCCzImWycsUm1CoKqsZb8z4sT9oz4Jd
+         4Zbdn4yUOwedFUpjglAdI2RkGsgid8eRl2+i4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:to:from:cc:subject
+         :user-agent:date;
+        bh=Rs6lYDg7rzHFfE3fqBqCgcoh261QPFbPy/MlhwtPv/U=;
+        b=b7J0QUyqI42505HpcqVhxsKA0ImWlYrAMQkQ7A5gaUJur9e02NiJ88agpou+Wd6RDT
+         hAW5T7MMg/RN3pAGq00nube08TJTc4Z9LYIObnORvY+Ex0OI/fP/y2nrbK5Yu/rUX7Ov
+         kKK6hthlnFkQLJLplXUSsaly0hlwPlw4/8CRrJXwiF46svYzTAvJQEU9nWBM8sCsypmq
+         dSXLb1+qGAmJypacYYz/uo7+C/xGErw0hVMlMoXs3hhvp5zTFCmIggQQ+FpAx0/aCwh9
+         sy6tzV/cIdrEnCA34HbK2cSOAAKSVZbKkwrm3cGu0pvAWB9N+TtUnfEfUELJaYQM4Vd6
+         /EGQ==
+X-Gm-Message-State: APjAAAXEsHzDdD7f1qI+abRz8+2sUvwZyvxxBwxOO4/sCaRl1mytct+L
+        AtNrrR+3E83yCTV39Sf3UiP4UA==
+X-Google-Smtp-Source: APXvYqzKV0mW9EELTg/94+NbXxWwYL0t9q7G5Qaisah+2L76fd6xkGvV+lbfx9rsLHkj3RyagSU2cQ==
+X-Received: by 2002:a65:6284:: with SMTP id f4mr6618359pgv.416.1567746940523;
+        Thu, 05 Sep 2019 22:15:40 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id m19sm7637011pff.108.2019.09.05.22.15.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 05 Sep 2019 22:15:40 -0700 (PDT)
+Message-ID: <5d71eb7c.1c69fb81.7bdfb.3205@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABb+yY1RT2TuUyuU2C+m6w=AOVzXkuG7cOwbWsccywxU7HwkQg@mail.gmail.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190906051017.26846-4-vkoul@kernel.org>
+References: <20190906051017.26846-1-vkoul@kernel.org> <20190906051017.26846-4-vkoul@kernel.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] phy: qcom-qmp: Add SM8150 QMP UFS PHY support
+User-Agent: alot/0.8.1
+Date:   Thu, 05 Sep 2019 22:15:39 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04-09-19, 01:18, Jassi Brar wrote:
-> On Wed, Sep 4, 2019 at 12:51 AM Vinod Koul <vkoul@kernel.org> wrote:
-> >
-> > On 18-08-19, 00:17, jassisinghbrar@gmail.com wrote:
-> > > From: Jassi Brar <jaswinder.singh@linaro.org>
-> > >
-> > > Document the devicetree bindings for Socionext Milbeaut HDMAC
-> > > controller. Controller has upto 8 floating channels, that need
-> > > a predefined slave-id to work from a set of slaves.
-> > >
-> > > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
-> > > ---
-> > >  .../bindings/dma/milbeaut-m10v-hdmac.txt      | 32 +++++++++++++++++++
-> > >  1 file changed, 32 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt b/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
-> > > new file mode 100644
-> > > index 000000000000..f0960724f1c7
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
-> > > @@ -0,0 +1,32 @@
-> > > +* Milbeaut AHB DMA Controller
-> > > +
-> > > +Milbeaut AHB DMA controller has transfer capability bellow.
-> >
-> > s/bellow/below:
-> >
-> > > + - device to memory transfer
-> > > + - memory to device transfer
-> > > +
-> > > +Required property:
-> > > +- compatible:       Should be  "socionext,milbeaut-m10v-hdmac"
-> > > +- reg:              Should contain DMA registers location and length.
-> > > +- interrupts:       Should contain all of the per-channel DMA interrupts.
-> > > +                     Number of channels is configurable - 2, 4 or 8, so
-> > > +                     the number of interrupts specfied should be {2,4,8}.
-> >
-> > s/specfied/specified
-> >
-> Hi Vinod,
->   Do you want me to spin yet another revision for the two types in text?
+Quoting Vinod Koul (2019-09-05 22:10:17)
+> SM8150 UFS PHY is v4 of QMP phy. Add support for V4 QMP phy register
+> defines and support for SM8150 QMP UFS PHY.
+>=20
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> ---
 
-Yes that would be easier for me
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Thanks
-
--- 
-~Vinod
