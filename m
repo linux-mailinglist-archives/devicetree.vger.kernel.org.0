@@ -2,126 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8D0AB22E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 07:58:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21072AB246
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 08:14:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732699AbfIFF6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 01:58:17 -0400
-Received: from mail-sh.amlogic.com ([58.32.228.43]:6635 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732510AbfIFF6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 01:58:17 -0400
-Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Fri, 6 Sep
- 2019 13:59:06 +0800
-Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Tao Zeng <tao.zeng@amlogic.com>
-References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
- <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com>
-Date:   Fri, 6 Sep 2019 13:59:05 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2390603AbfIFGOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 02:14:53 -0400
+Received: from mail-wm1-f47.google.com ([209.85.128.47]:40490 "EHLO
+        mail-wm1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390478AbfIFGOx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 02:14:53 -0400
+Received: by mail-wm1-f47.google.com with SMTP id t9so5582975wmi.5
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 23:14:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=4VW5EActjzSTk7AYag6d/MGY6ejEC/or1qENLxgPsyo=;
+        b=dbGyOsmTmsCCCGJqsQ9PHpGnPjtiP1wYVM9ZmJTwOpSipipviNJwWI5jSOjcyjtKlb
+         +vd0ttjwEgGlnO+bshgFaXBNtdbM3oZ5jdWemCeAXmcVaYbcw7Ak3hjl3BM6LNE/04HS
+         RTadtn3VoULTi2KksjJzX07o5DmBvjHD0ko5zWB/aNK22Gk09zu3a9etVLxULrGWzY6a
+         BcIG16PLsjS8FpBGFMrUdWkrYEpoJLnBlr/oKNGglZCmlknyjPgIjOcIbq4uZ6DoILSh
+         EXcffEDqjaoAphVDx2omAkCfBtu83rNGEnaUn+kN3/4Ks/6JElBOYBQiuy1UAN3SSgVV
+         QYqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=4VW5EActjzSTk7AYag6d/MGY6ejEC/or1qENLxgPsyo=;
+        b=PtF/oNlganLe9PU87rk6T2MRWcIND9DRcqkOYHFCuggzsnr2eXdDvraDrZefOHBAbO
+         eFklLxnH7x9FgtpwvrQu0wOXH9QPQjcryHXkY2M+1K6GrO3FMyb6KJ/6LiB+b0NRfjiy
+         eqCCREWRNkzbZmDzVaPJ+jOxTzYs7X6IxmYZIi5z28I7tcOU95f4VBJaZh7WDk3YJTFy
+         F7/A217cP3noz+CIE7hpAhSdK7hGQRLbEH3jIZU+2YiPyBR+yuLXT7aZxNTNgjwSpQWf
+         ym/Q8xEX6Bhn6Q4iQVuExN2d+IbzgMs5DewNS58Tkeb5dI8mh0K4sH2AIMomU8FBGzWi
+         AzbA==
+X-Gm-Message-State: APjAAAWL+dsCr09dziP+T+PpJPjARL2sIWeAIrBwApNCV1fHPIEqWrEE
+        g4VQkh3Nml83c3md0E1Vh8o8HnyuDfc=
+X-Google-Smtp-Source: APXvYqxsDA0NAwr7Py5LVAnyB4jY1o506l6wGEbznUrXFWtr/7djvZYfv7kP9rEOlBaVYGI3sA6blA==
+X-Received: by 2002:a05:600c:2181:: with SMTP id e1mr5748634wme.117.1567750490764;
+        Thu, 05 Sep 2019 23:14:50 -0700 (PDT)
+Received: from dell ([95.147.198.36])
+        by smtp.gmail.com with ESMTPSA id c10sm955648wrf.58.2019.09.05.23.14.49
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 05 Sep 2019 23:14:49 -0700 (PDT)
+Date:   Fri, 6 Sep 2019 07:14:48 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Stephen Boyd <swboyd@chromium.org>
+Cc:     agross@kernel.org, alokc@codeaurora.org,
+        bjorn.andersson@linaro.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, vkoul@kernel.org, wsa@the-dreams.de,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+Message-ID: <20190906061448.GJ26880@dell>
+References: <20190905192412.23116-1-lee.jones@linaro.org>
+ <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.226]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On Thu, 05 Sep 2019, Stephen Boyd wrote:
 
-Thanks for the review, we really appreciate your time.
-Please see my comments below.
+> Quoting Lee Jones (2019-09-05 12:24:12)
+> > We have a production-level laptop (Lenovo Yoga C630) which is exhibiting
+> > a rather horrific bug.  When I2C HID devices are being scanned for at
+> > boot-time the QCom Geni based I2C (Serial Engine) attempts to use DMA.
+> > When it does, the laptop reboots and the user never sees the OS.
+> > 
+> > Attempts are being made to debug the reason for the spontaneous reboot.
+> > No luck so far, hence the requirement for this hot-fix.  This workaround
+> > will be removed once we have a viable fix.
+> > 
+> > Signed-off-by: Lee Jones <lee.jones@linaro.org>
+> > ---
+> >  drivers/i2c/busses/i2c-qcom-geni.c | 12 ++++++++----
+> >  1 file changed, 8 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+> > index a89bfce5388e..17abf60c94ae 100644
+> > --- a/drivers/i2c/busses/i2c-qcom-geni.c
+> > +++ b/drivers/i2c/busses/i2c-qcom-geni.c
+> > @@ -355,11 +355,13 @@ static int geni_i2c_rx_one_msg(struct geni_i2c_dev *gi2c, struct i2c_msg *msg,
+> >  {
+> >         dma_addr_t rx_dma;
+> >         unsigned long time_left;
+> > -       void *dma_buf;
+> > +       void *dma_buf = NULL;
+> >         struct geni_se *se = &gi2c->se;
+> >         size_t len = msg->len;
+> >  
+> > -       dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
+> > +       if (!of_machine_is_compatible("lenovo,yoga-c630"))
+> 
+> This compatible isn't in the 5.3 rc series nor is it in linux-next yet.
+> Is this "hot-fix" for the next merge window? Or is this compatible
+> string being generated by firmware somewhere and thus isn't part of the
+> kernel?
 
-On 2019/9/6 4:15, Martin Blumenstingl wrote:
-> Hi Jianxin,
-> 
-> (it's great to see that you and your team are upstreaming this early)
-> 
-> On Thu, Sep 5, 2019 at 9:08 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> [...]
->> +       memory@0 {
->> +               device_type = "memory";
->> +               reg = <0x0 0x0 0x0 0x8000000>;
->> +               /*linux,usable-memory = <0x0 0x0 0x0 0x8000000>;*/
-> why do we need that comment here (I don't understand it - why doesn't
-> the "reg" property cover this)?
-> I replaced "linux,usable-memory" with reg, but forgot to remove this comment line. 
-I will remove this line in the next version. Thank you.
->> +       };
->> +};
->> +
->> +&uart_AO_B {
->> +       status = "okay";
->> +};
->> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> new file mode 100644
->> index 00000000..4d476ac
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
->> @@ -0,0 +1,122 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +
->> +/ {
->> +       compatible = "amlogic,a1";
->> +
->> +       interrupt-parent = <&gic>;
->> +       #address-cells = <2>;
->> +       #size-cells = <2>;
->> +
->> +       cpus {
->> +               #address-cells = <0x2>;
->> +               #size-cells = <0x0>;
-> only now I notice that all our other .dtsi also use hex values
-> (instead of decimal as just a few lines above) here
-> do you know if there is a particular reason for this?
-> 
-I just copied from the previous series, and didn't notice the difference before.> [...]
->> +               uart_AO_B: serial@fe002000 {
->> +                       compatible = "amlogic,meson-gx-uart",
->> +                                    "amlogic,meson-ao-uart";
->> +                                    reg = <0x0 0xfe002000 0x0 0x18>;
-> the indentation of the "reg" property is off here
-OK, I will fix it.
-> 
-> also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
-> aren't there any busses defined in the A1 SoC implementation or are
-> were you planning to add them later?
->Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
-Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
-> 
-> Martin
-> 
-> .
-> 
+It's on the list and will be in all of the distro v5.3 release kernels.
 
+https://lkml.org/lkml/2019/9/5/695
+
+> > +               dma_buf = i2c_get_dma_safe_msg_buf(msg, 32);
+> > +
+> >         if (dma_buf)
+> >                 geni_se_select_mode(se, GENI_SE_DMA);
+> >         else
+
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
