@@ -2,109 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2790AAB268
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 08:26:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A3DEAB29C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 08:50:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391807AbfIFGZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 02:25:59 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:38130 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727970AbfIFGZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 02:25:58 -0400
-Received: by mail-pl1-f196.google.com with SMTP id w11so2636362plp.5;
-        Thu, 05 Sep 2019 23:25:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nRxcumHCoieD4YHhJDBwA9IBTCoCwLTVhc9o3nRRDkI=;
-        b=ADimNP2ND3VOH2ln0p+yNfF/DGU2qkBipN72ljAr/PczQvTfbrKsX07vY8Zdwngoar
-         LhdZEUosmuWvZxdURnHwN7oYANLXkw1O7D6cD5OJp5+/tCkczEX/nk5v6+w2CXfSDCk9
-         L8eHl7xI6P/RcTjbsUVJuQNkq6YLcLN6H3OV6ApvAePbpWSpsOyYEqqqvMNYFtcxKvQR
-         cbG2R/hIbwiZcQaSbzwjgw2yVtC0T4zgOKxeF049FwRTUIo7ETmaEAstIajleYpZtZKM
-         C42BxBvR8hUAH8v2LxsxzjNdxPxoxqeK2II8PyPVrsFPJubqbesfhTTe9RIflLXv6b83
-         6QLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=nRxcumHCoieD4YHhJDBwA9IBTCoCwLTVhc9o3nRRDkI=;
-        b=MuW1ggQqkU0Wkossy8PGyQMQQyKS0Ee8dYjwcZeyh15DipREOpoBdZnzUL+cLD/vCR
-         5aoWbUR0bPcGGbuDePqda/bvHZMNb4Wq+QdkGW3Saxsg80+FVhNC7lnkog783Dp0uCqq
-         0RAPQvwsN7P7RbDJXE4mnH+EsFOp8Y/lK3io2LLNd0ZM5uafd/5vcc6/59929hRbYaub
-         eLCTX3Zr8g0nT2TR9Y2VNmkl1AZi042cF8VAuPFxEjV5AzMbX+lBUZ1TU+aehuM1V3RG
-         7Y1Tjdt3G6Z0xFkatiIsHS30s3+50yoaUOeOAKbXr5sFCTk8nKa+4pn3oED7yfH/LZCR
-         WZGw==
-X-Gm-Message-State: APjAAAWCRiOD6wv5iqU3+dLiYa80cYYHB7+tUpRX+wh5dq8JeWXdZeL7
-        Yt80/Avzgcep1RmrAMYnt8oBHwknFqU=
-X-Google-Smtp-Source: APXvYqxAHm7TEMjvZZG+IKwNgVMQW4iXvRHQ3UYm4fIeZ5CGft2zoBZMr3vCIp78S9acysQdbufG3A==
-X-Received: by 2002:a17:902:748b:: with SMTP id h11mr7587383pll.269.1567751158029;
-        Thu, 05 Sep 2019 23:25:58 -0700 (PDT)
-Received: from rashmica.ozlabs.ibm.com ([122.99.82.10])
-        by smtp.gmail.com with ESMTPSA id y192sm6244998pfg.141.2019.09.05.23.25.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 05 Sep 2019 23:25:57 -0700 (PDT)
-From:   Rashmica Gupta <rashmica.g@gmail.com>
-To:     linus.walleij@linaro.org
-Cc:     Rashmica Gupta <rashmica.g@gmail.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-gpio@vger.kernel.org (open list:GPIO SUBSYSTEM),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/ASPEED MACHINE
-        SUPPORT),
-        linux-aspeed@lists.ozlabs.org (moderated list:ARM/ASPEED MACHINE
-        SUPPORT), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 1/5] dt-bindings: gpio: aspeed: Update documentation with ast2600 controllers
-Date:   Fri,  6 Sep 2019 16:25:47 +1000
-Message-Id: <20190906062547.13264-1-rashmica.g@gmail.com>
-X-Mailer: git-send-email 2.20.1
+        id S1727970AbfIFGuV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 02:50:21 -0400
+Received: from sauhun.de ([88.99.104.3]:38628 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731817AbfIFGuV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 02:50:21 -0400
+Received: from localhost (p54B3379C.dip0.t-ipconnect.de [84.179.55.156])
+        by pokefinder.org (Postfix) with ESMTPSA id A148D2C0091;
+        Fri,  6 Sep 2019 08:50:18 +0200 (CEST)
+Date:   Fri, 6 Sep 2019 08:50:18 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alokc@codeaurora.org, bjorn.andersson@linaro.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, vkoul@kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+Message-ID: <20190906065018.GA1019@kunai>
+References: <20190905192412.23116-1-lee.jones@linaro.org>
+ <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
+ <20190906061448.GJ26880@dell>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OXfL5xGRrasGEqWY"
+Content-Disposition: inline
+In-Reply-To: <20190906061448.GJ26880@dell>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ast2600 is a new generation of SoC from ASPEED. Similarly to the
-ast2400 and ast2500, it has a GPIO controller for it's 3.3V GPIO pins.
-Additionally, it has a GPIO controller for 36 1.8V GPIO pins.  We use
-the ngpio property to differentiate between these controllers.
 
-Signed-off-by: Rashmica Gupta <rashmica.g@gmail.com>
----
- Documentation/devicetree/bindings/gpio/gpio-aspeed.txt | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+--OXfL5xGRrasGEqWY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt b/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
-index 7e9b586770b0..b2033fc3a71a 100644
---- a/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
-+++ b/Documentation/devicetree/bindings/gpio/gpio-aspeed.txt
-@@ -2,7 +2,8 @@ Aspeed GPIO controller Device Tree Bindings
- -------------------------------------------
- 
- Required properties:
--- compatible		: Either "aspeed,ast2400-gpio" or "aspeed,ast2500-gpio"
-+- compatible		: Either "aspeed,ast2400-gpio", "aspeed,ast2500-gpio",
-+					or "aspeed,ast2600-gpio".
- 
- - #gpio-cells 		: Should be two
- 			  - First cell is the GPIO line number
-@@ -17,7 +18,9 @@ Required properties:
- 
- Optional properties:
- 
--- clocks                : A phandle to the clock to use for debounce timings
-+- clocks		: A phandle to the clock to use for debounce timings
-+- ngpios		: Number of GPIOs controlled by this controller. Should	be set
-+				  when there are multiple GPIO controllers on a SoC (ast2600).
- 
- The gpio and interrupt properties are further described in their respective
- bindings documentation:
--- 
-2.20.1
 
+> > This compatible isn't in the 5.3 rc series nor is it in linux-next yet.
+> > Is this "hot-fix" for the next merge window? Or is this compatible
+> > string being generated by firmware somewhere and thus isn't part of the
+> > kernel?
+>=20
+> It's on the list and will be in all of the distro v5.3 release kernels.
+>=20
+> https://lkml.org/lkml/2019/9/5/695
+
+And why don't the distro kernels simply pick up this patch, too?
+
+
+--OXfL5xGRrasGEqWY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1yAaYACgkQFA3kzBSg
+KbYUqQ/+NB0w8AFxRraXzV0XL9DhIx/dWlMZlE/S12rWhKjlNge8QzlwDA5Y2Apy
+VfOk9bFRaGD+bifp90XNU+asm9ez79dQ6W9D0qqIAhXqrUkB8DrAOaV89xfOhUZk
+E2xcUUOpGjAZWl7tZ0iX2zCUrK0aVZYJdz3lS2oqTYYgGTdsYQ32G7v4hcs6QQvL
+QC0Dui5qUasxWjYcMOZPtyOS+hddSwShNskbbAs49Z7Etsb6l2YrgBJIcOwLhn3E
+UW5IuhCWSl8uGgI354AnuDyHsm9r1xiPK7Yg4PMEB7XlynHdovntIYjsOzBhwsy6
+nGRly6xN3KtMJmVqbzJLzj8yB2E9JQxMoC59efLv1l6X7giS6Vv1OPbqP4iGcdQ3
+cLR30F5M6rmISK5W8DkGph+Gx94TIwpVN963Sxf6JN1RlIhH2x2GkfmTpNcszF3S
+QqQWw8NXH+nGLeUkTaEQorIwVUPogyM72V/L0nVrpfhsnn/F4MFUCnsmkLZfYkHP
+BrPAwTfGwPXpuWwyZQSm/pUCBquBREF+w/HqA018qfwAoTy6mKkzLbVIvOHMYIka
+y1DzL5hq4hBXG9yWgzjcuas+uYljyd83QoVuQ58Asx1/JCOWG2/pOyElkxtOxDdb
+V60/UXyHqdZWG1XRCzhJ1xy0ZslA5CXG/dh8MZeWXS7E2IWycUQ=
+=v65+
+-----END PGP SIGNATURE-----
+
+--OXfL5xGRrasGEqWY--
