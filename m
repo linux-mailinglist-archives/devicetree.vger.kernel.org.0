@@ -2,102 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE949AB385
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 09:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48401AB38D
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 09:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731008AbfIFHy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 03:54:29 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:54912 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725290AbfIFHy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 03:54:29 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id C6EAA634C87;
-        Fri,  6 Sep 2019 10:54:13 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1i694P-0000kT-Pu; Fri, 06 Sep 2019 10:54:13 +0300
-Date:   Fri, 6 Sep 2019 10:54:13 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Jan Kotas <jank@cadence.com>
-Cc:     maxime.ripard@bootlin.com, mchehab@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, rafalc@cadence.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] media: Add lane checks for Cadence CSI2RX
-Message-ID: <20190906075413.GE1586@valkosipuli.retiisi.org.uk>
-References: <20190905105601.27034-1-jank@cadence.com>
- <20190905105601.27034-3-jank@cadence.com>
+        id S1726323AbfIFH4F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 03:56:05 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:35498 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388264AbfIFH4F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 03:56:05 -0400
+Received: by mail-wm1-f67.google.com with SMTP id n10so5921352wmj.0
+        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2019 00:56:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=GBSrVEv3FkA0u4Qz9b1PZ+GS0dImegg5i95tX5f08MA=;
+        b=oKBgcUVIqRGIe6MsD6iEyRnhdfCSvJ62wOyc+MP5ddCrBgohfCdwPFagkkWDicHj4i
+         Ud1G+VeKhR8y6Wq/5LRbbg2/UUznVsmWshevk1+H7eoRnHHXfcqpNuqJ9NlDsZLjTdRb
+         gdn8P5OBAq8oQST2/ZymJi+xyaaL26S2nJKPkP8GiJyCPY7eiKoFDj+HR9913Zpb42wx
+         iS2b0BXmSL6HfdHw09F9bft8QpipihTBWssdptwgy170jL/kdJgNHtOVlYROX1cesSEm
+         SJBMrHrloiEBix4LSie54M48PIolVSvt0gbRSlXfc/iB91xpJsq9ucBwlg5oNZNOYNfm
+         N2gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=GBSrVEv3FkA0u4Qz9b1PZ+GS0dImegg5i95tX5f08MA=;
+        b=LNXusSDLlkbhWJEtj0eTScN51Tx/z/iZpjg2nUFT8cZ9W7vB0Cwcf1N8JWN73mwryJ
+         vqGwFPDThvdv8aIiQ2PH4MxnJnhr91VxxYnSUPNpZ9+uHoAUf+KILTdX2GVCK7HcrLtJ
+         uAQ78CqbpaDxECLXo8GR41Om9gdvD/6dGGmDGyKzuTzyXqhHoDwMFgSbp2QlRKeBNWhS
+         +X9FJcrl11N5eagwFf4VuPnRVO2bfLAlCO+yk1eG+U64pa4RBEnzHs5IT5bJZ+n5+57r
+         CbNMkWlK6uHo+LjfpQwwMBJtZ54tk77IcSaeKtMvAlCTYI27XzUhniWuOsQEuryxtNzl
+         uWyg==
+X-Gm-Message-State: APjAAAUB8yQU+y7vBT6fTAnAVBg3FfjgfuDyDQaMXDn1+3lnNhoy0TJR
+        6GfXWHFAWvR16NussKZlFLmCPQ==
+X-Google-Smtp-Source: APXvYqzOqdeiqIcPjAkHBg783CUd8gkiIobQAXdzTjznanYqW8tv8J/XJ85sWC0yGMWk8V6mwHuXRg==
+X-Received: by 2002:a7b:cd05:: with SMTP id f5mr5949466wmj.12.1567756562847;
+        Fri, 06 Sep 2019 00:56:02 -0700 (PDT)
+Received: from dell ([95.147.198.36])
+        by smtp.gmail.com with ESMTPSA id y186sm6636374wmd.26.2019.09.06.00.56.01
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 06 Sep 2019 00:56:01 -0700 (PDT)
+Date:   Fri, 6 Sep 2019 08:56:00 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Wolfram Sang <wsa@the-dreams.de>
+Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alokc@codeaurora.org, bjorn.andersson@linaro.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, vkoul@kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+Message-ID: <20190906075600.GL26880@dell>
+References: <20190905192412.23116-1-lee.jones@linaro.org>
+ <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
+ <20190906061448.GJ26880@dell>
+ <20190906065018.GA1019@kunai>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190905105601.27034-3-jank@cadence.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190906065018.GA1019@kunai>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jan,
-
-Thanks for the patchset.
-
-On Thu, Sep 05, 2019 at 11:56:00AM +0100, Jan Kotas wrote:
-> This patch adds lane checks for CSI2RX, to prevent clock lane
-> being used as a data lane.
+On Fri, 06 Sep 2019, Wolfram Sang wrote:
+> > > This compatible isn't in the 5.3 rc series nor is it in linux-next yet.
+> > > Is this "hot-fix" for the next merge window? Or is this compatible
+> > > string being generated by firmware somewhere and thus isn't part of the
+> > > kernel?
+> > 
+> > It's on the list and will be in all of the distro v5.3 release kernels.
+> > 
+> > https://lkml.org/lkml/2019/9/5/695
 > 
-> Signed-off-by: Jan Kotas <jank@cadence.com>
-> ---
->  drivers/media/platform/cadence/cdns-csi2rx.c | 13 +++++++++++--
->  1 file changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/media/platform/cadence/cdns-csi2rx.c b/drivers/media/platform/cadence/cdns-csi2rx.c
-> index 31ace114e..97ec09e72 100644
-> --- a/drivers/media/platform/cadence/cdns-csi2rx.c
-> +++ b/drivers/media/platform/cadence/cdns-csi2rx.c
-> @@ -2,7 +2,7 @@
->  /*
->   * Driver for Cadence MIPI-CSI2 RX Controller v1.3
->   *
-> - * Copyright (C) 2017 Cadence Design Systems Inc.
-> + * Copyright (C) 2017-2019 Cadence Design Systems Inc.
->   */
->  
->  #include <linux/clk.h>
-> @@ -364,7 +364,7 @@ static int csi2rx_parse_dt(struct csi2rx_priv *csi2rx)
->  	struct v4l2_fwnode_endpoint v4l2_ep = { .bus_type = 0 };
->  	struct fwnode_handle *fwh;
->  	struct device_node *ep;
-> -	int ret;
-> +	int ret, i;
->  
->  	ep = of_graph_get_endpoint_by_regs(csi2rx->dev->of_node, 0, 0);
->  	if (!ep)
-> @@ -395,6 +395,15 @@ static int csi2rx_parse_dt(struct csi2rx_priv *csi2rx)
->  		return -EINVAL;
->  	}
->  
-> +	for (i = 0; i < csi2rx->num_lanes; i++) {
-> +		if (csi2rx->lanes[i] < 1) {
+> And why don't the distro kernels simply pick up this patch, too?
 
-Do you need this? v4l2_fwnode_parse_endpoint() already has a more thorough
-check for the lane numbers.
-
-> +			dev_err(csi2rx->dev, "Invalid lane[%d] number: %u\n",
-> +				i, csi2rx->lanes[i]);
-> +			of_node_put(ep);
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
->  	csi2rx->asd.match.fwnode = fwnode_graph_get_remote_port_parent(fwh);
->  	csi2rx->asd.match_type = V4L2_ASYNC_MATCH_FWNODE;
->  	of_node_put(ep);
+I could send it to them and find out.  They are on kernel-freeze now,
+on the lead-up to the release date (next month), but I think they're
+still taking bug fixes.
 
 -- 
-Regards,
-
-Sakari Ailus
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
