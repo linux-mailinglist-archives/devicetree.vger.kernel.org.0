@@ -2,105 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C561AB66D
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 12:54:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A209DAB67E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 12:56:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725946AbfIFKyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 06:54:50 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35884 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728218AbfIFKyt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 06:54:49 -0400
-Received: by mail-wr1-f67.google.com with SMTP id y19so6103033wrd.3
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2019 03:54:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=rET0iaiiuCDKjoQBx43XIsBD5MxIh4jXYYHw1kxz16U=;
-        b=uCExWhLWEQIF1yDJTjsDcdxJkJrKiEzQCAHSpMf564Io00a2Ec8+QhrJDXyjvuq2W6
-         01cYYGmMt8kn9mRNcXKddYJiqaT/BJi7ZKiWGGVHageWf3L5V1By5PTgfdOj/ZKbPR80
-         FIMIrXYM4HApJW8EoBRw8KxJobOHN4rieikuP5j2ZJIHSuYCkgdZo8GBPhiqfcjfwVnW
-         mnZSbaPpA4wRPvU3orZXbiapeTkLrTWVXN48ESa4MuKtlg6DqWGcCieIDha/jR0bmCcr
-         ZzaimmShZJr01SOe/ScuiGfxsfnoUzUqMfZYXZ7mBZrD/DOsBgAgy0n3Ds6BWecXjxg7
-         FHLQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=rET0iaiiuCDKjoQBx43XIsBD5MxIh4jXYYHw1kxz16U=;
-        b=MmCaxKftfYFGefXt7cBEIyPiDg+8zPQlXgbkcmxOuexFop0WR2AfGHRaIpxLE1swaF
-         5rC7xJCIXxZg1SneodRiOnvJa9/qWk3lqB85xcX/YhXb7yKH42+zF8nkwuHkY7fZSJM/
-         FPMWY7eM66XMrYDUxX7D/VLXY6PcgpjNPWgzYCkgYIbyL4KsSEma66irv6qR6glxDGEP
-         7bPmxzEevqU7Gp8Z3PP8hTMjenSSPR0hKjss220i4FqY3xgmogXihodm5WZPRLpTEbUM
-         8bd9gSUgrjvRc+9PeFH3aDuQ9cYSH+I2WhbarXZliEwncw58FhRlhgQ4LAb53zney9tT
-         L9RQ==
-X-Gm-Message-State: APjAAAV3YMm5wZHLZp3Lsh0g2UviuT/XKfvD/y6/3CkVu/d/QIN9bDiM
-        zqmLqxYfMEvVaP37aGvrpUGD9A==
-X-Google-Smtp-Source: APXvYqyLPZ5O/UcCSTZ62ObBfvcGeMFb1YL7I6ZwwZnW/Zxpf5t0wWMYBFO8ZZVeNF60uHezHfoBQA==
-X-Received: by 2002:a05:6000:2:: with SMTP id h2mr5865424wrx.309.1567767287888;
-        Fri, 06 Sep 2019 03:54:47 -0700 (PDT)
-Received: from dell ([95.147.198.36])
-        by smtp.gmail.com with ESMTPSA id s26sm9141058wrs.63.2019.09.06.03.54.47
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 06 Sep 2019 03:54:47 -0700 (PDT)
-Date:   Fri, 6 Sep 2019 11:54:45 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Wolfram Sang <wsa@the-dreams.de>
-Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
-        alokc@codeaurora.org, bjorn.andersson@linaro.org,
-        mark.rutland@arm.com, robh+dt@kernel.org, vkoul@kernel.org,
-        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
- Lenovo Yoga C630
-Message-ID: <20190906105445.GO26880@dell>
-References: <20190905192412.23116-1-lee.jones@linaro.org>
- <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
- <20190906061448.GJ26880@dell>
- <20190906065018.GA1019@kunai>
- <20190906075600.GL26880@dell>
- <20190906102355.GA3146@kunai>
+        id S2391744AbfIFK45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 06:56:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45266 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388816AbfIFK45 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 06:56:57 -0400
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7B505208C3;
+        Fri,  6 Sep 2019 10:56:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567767415;
+        bh=eKqQLsZ1CqXLPChoayXDfV/yXKBUa6ki7SK6YURr7JQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=iwe7A6POO/AXJafBwclGZTdDimAL7JL/4tkeyQ2Hmmn/p1RAKgcK1OXWpNcost0c6
+         vb6M7H3Hkn2NmTAYYE4TKKuMQBsOeTRnrzB3CLFIS0u69fCfWWPHZAnzndjTpfAjSt
+         FTUs49YdlcffPsxSnWGKYkGzC9ON7Sqxu9LEJ72k=
+Received: by mail-lf1-f46.google.com with SMTP id w67so4643365lff.4;
+        Fri, 06 Sep 2019 03:56:55 -0700 (PDT)
+X-Gm-Message-State: APjAAAX7QwOnVMGx9VyFBlAipKtctxddwMZyP5E2ngKc3f/PStM44rI4
+        BADpwCTBLEpKc+BXgcabB9zaf+m39yPd8ELcLtk=
+X-Google-Smtp-Source: APXvYqyuyvNE+DfCX2EXl+GcF9M9zNqpthnU+rCpM/ZylcfvRmscK9OYLhqRaqB/x8T/f9Qsn/DW81HgYTXkDGfiTR4=
+X-Received: by 2002:a19:c649:: with SMTP id w70mr5991002lff.33.1567767413630;
+ Fri, 06 Sep 2019 03:56:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190906102355.GA3146@kunai>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <CGME20190906101407eucas1p15eb0df53374b27497b4793eab24becf6@eucas1p1.samsung.com>
+ <20190906101344.3535-1-l.luba@partner.samsung.com> <20190906101344.3535-4-l.luba@partner.samsung.com>
+In-Reply-To: <20190906101344.3535-4-l.luba@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 6 Sep 2019 12:56:42 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPfoYxTVvt_bMQOs1=BkHzUuW_WvL9zn0jTGS6LLpv=fhQ@mail.gmail.com>
+Message-ID: <CAJKOXPfoYxTVvt_bMQOs1=BkHzUuW_WvL9zn0jTGS6LLpv=fhQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: ddr: Add bindings for Samsung LPDDR3 memories
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
+        willy.mh.wolff.ml@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 06 Sep 2019, Wolfram Sang wrote:
+On Fri, 6 Sep 2019 at 12:14, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>
+> Add description of bindings for Samsung k3qf2f20db LPDDR3 memory.
+> Minor fixes in the old documentation.
+>
+> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+> ---
+>  .../devicetree/bindings/ddr/lpddr3.txt        | 29 +++++++++++++++++--
+>  1 file changed, 27 insertions(+), 2 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/ddr/lpddr3.txt b/Documentation/devicetree/bindings/ddr/lpddr3.txt
+> index 3b2485b84b3f..de0905239767 100644
+> --- a/Documentation/devicetree/bindings/ddr/lpddr3.txt
+> +++ b/Documentation/devicetree/bindings/ddr/lpddr3.txt
+> @@ -40,10 +40,34 @@ Child nodes:
+>    a given speed-bin. Please see Documentation/devicetree/
+>    bindings/ddr/lpddr3-timings.txt for more information on "lpddr3-timings"
+>
+> +Samsung K3QF2F20DB LPDDR3 memory
+> +------------------------------------------------------------
+> +
+> +This binding uses the LPDDR3 binding (described above)
+> +
+> +Required properties:
+> +- compatible:  Should be:
+> +               "samsung,K3QF2F20DB"
+> +               followed by "jedec,lpddr3"
+> +- density  : <u32> representing density in Mb (Mega bits)
+> +- io-width : <u32> representing bus width. Possible value 32
+> +- #address-cells: Must be set to 1
+> +- #size-cells: Must be set to 0
 
-> On Fri, Sep 06, 2019 at 08:56:00AM +0100, Lee Jones wrote:
-> > On Fri, 06 Sep 2019, Wolfram Sang wrote:
-> > > > > This compatible isn't in the 5.3 rc series nor is it in linux-next yet.
-> > > > > Is this "hot-fix" for the next merge window? Or is this compatible
-> > > > > string being generated by firmware somewhere and thus isn't part of the
-> > > > > kernel?
-> > > > 
-> > > > It's on the list and will be in all of the distro v5.3 release kernels.
-> > > > 
-> > > > https://lkml.org/lkml/2019/9/5/695
-> > > 
-> > > And why don't the distro kernels simply pick up this patch, too?
-> > 
-> > I could send it to them and find out.  They are on kernel-freeze now,
-> > on the lead-up to the release date (next month), but I think they're
-> > still taking bug fixes.
-> 
-> Please do.
+If you decided to repeat all properties again, then it deserves its
+own bindings file. However I though about simpler solution - just
+document compatible. Exactly the same as AT24 or AT25 EEPROM bindings.
+There is not much benefit from copying all these properties.
 
-Submitted.
-
-Does this mean you plan to have this merged for v5.4?
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Best regards,
+Krzysztof
