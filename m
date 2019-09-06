@@ -2,102 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27FFFAC131
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:02:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBF38AC172
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:31:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729088AbfIFUCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 16:02:44 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:59172 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726008AbfIFUCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 16:02:44 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x86K2Xel029433;
-        Fri, 6 Sep 2019 15:02:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567800153;
-        bh=10xvcQ++kK8vjq26QxAoqES7mAlIWPQnmIIF8zI5Vpk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=e08jr+zRuuFY02gyAUTOdMfhNxS4qFUivbE2kp/hbOeacg5gMDr0g/U4G8ZlClpVw
-         Lbleby8yDxxoWN/YAjMQsMMk1lwuS/7OmNsI17+/WcpIaPeCJ7uEsiSNqX5ruaxUE6
-         25UxtZwfy5pVDGoNo8RqUjG6Er0tUnBRJuX4kDb0=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x86K2XFd119951
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 6 Sep 2019 15:02:33 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 6 Sep
- 2019 15:02:32 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 6 Sep 2019 15:02:32 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86K2Tjo091944;
-        Fri, 6 Sep 2019 15:02:30 -0500
-Subject: Re: [PATCHv4 01/10] dt-bindings: omap: add new binding for PRM
- instances
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>
-CC:     Santosh Shilimkar <ssantosh@kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        Suman Anna <s-anna@ti.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20190830121816.30034-2-t-kristo@ti.com>
- <20190906103558.17694-1-t-kristo@ti.com>
- <CAL_JsqLHTsEz6RJSi3rZ9AKyTBc00abyAxqwG8B9zAqL6cnv+w@mail.gmail.com>
- <20190906153658.GB52127@atomide.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <e2b75368-df70-b6c9-e019-61610859f146@ti.com>
-Date:   Fri, 6 Sep 2019 23:02:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2391971AbfIFUbc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 16:31:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46836 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389915AbfIFUbc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 16:31:32 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 936A22070C;
+        Fri,  6 Sep 2019 20:31:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567801891;
+        bh=20grs7Gqqchzro5nWBOpPISHzAksfuflzl2AEwFrb5k=;
+        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
+        b=eAKiu8m3HYdMJroSvMHGlkhEyU2OKcPdwxWQw4Jd+KimsSqXP1LxCkgYIkMx7ydY5
+         jv8AhiQjyaZNQf1sjsldTv+eGQcDR7xdJ6H9/+bXP8xuyPMhE/MaqCjK7tvBSQ3BpT
+         BE5j6/8OR/86cd7QooJ4JK7CXm5hGo2S9HyVx2Y8=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190906153658.GB52127@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAL_JsqLpVDJBh5qZwudncB8sggb85f3efqs1z9EA+zbVPWX++g@mail.gmail.com>
+References: <20190823131401.4011-1-govinds@codeaurora.org> <20190823131401.4011-2-govinds@codeaurora.org> <CAL_JsqLpVDJBh5qZwudncB8sggb85f3efqs1z9EA+zbVPWX++g@mail.gmail.com>
+To:     Govind Singh <govinds@codeaurora.org>,
+        Rob Herring <robh@kernel.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:ARM/QUALCOMM SUPPORT" <linux-soc@vger.kernel.org>,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>
+Subject: Re: [PATCH_v3 1/2] dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock controller bindings
+User-Agent: alot/0.8.1
+Date:   Fri, 06 Sep 2019 13:31:30 -0700
+Message-Id: <20190906203131.936A22070C@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/09/2019 18:36, Tony Lindgren wrote:
-> * Rob Herring <robh+dt@kernel.org> [190906 12:57]:
->> On Fri, Sep 6, 2019 at 11:36 AM Tero Kristo <t-kristo@ti.com> wrote:
->>>
->>> Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
->>> of these will act as a power domain controller and potentially as a reset
->>> provider.
->>>
->>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
->>> ---
->>> v4:
->>> - renamed nodes as power-controller
->>> - added documentation about hierarchy
->>>
->>>   .../devicetree/bindings/arm/omap/prm-inst.txt | 31 +++++++++++++++++++
->>>   1 file changed, 31 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/arm/omap/prm-inst.txt
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> Looks good to me too:
-> 
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
-> 
+Quoting Rob Herring (2019-08-27 05:27:19)
+> On Fri, Aug 23, 2019 at 8:14 AM Govind Singh <govinds@codeaurora.org> wro=
+te:
+> >
+> > Add devicetree binding for the Q6SSTOP clock controller found in QCS404.
+> >
+> > Signed-off-by: Govind Singh <govinds@codeaurora.org>
+> > ---
+> >  .../bindings/clock/qcom,q6sstopcc.yaml        | 47 +++++++++++++++++++
+> >  1 file changed, 47 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/clock/qcom,q6ssto=
+pcc.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yam=
+l b/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+> > new file mode 100644
+> > index 000000000000..39621e2e2f4e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/clock/qcom,q6sstopcc.yaml
+> > @@ -0,0 +1,47 @@
+> > +# SPDX-License-Identifier: BSD-2-Clause
+>=20
+> Dual license please.
+>=20
 
-I may need to re-spin slightly new version of this. Stephen has some 
-comments on the clock driver side I am depending on, he does not like 
-the hard link between reset + clocks, so I may need to ditch the 
-"clocks" property from this one also.
+Yes, please fix the binding.
 
-I'll see next week which direction I need to go.
-
--Tero
---
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
