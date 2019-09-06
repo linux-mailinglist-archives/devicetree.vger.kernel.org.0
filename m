@@ -2,51 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CAE81ABECB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 19:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9515ABEF6
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 19:48:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391097AbfIFRcI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 13:32:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38598 "EHLO mail.kernel.org"
+        id S2391187AbfIFRsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 13:48:22 -0400
+Received: from mga09.intel.com ([134.134.136.24]:53543 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727381AbfIFRcH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 13:32:07 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 50491206A1;
-        Fri,  6 Sep 2019 17:32:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567791127;
-        bh=nnQz2sGlwFSIgIh2/tAaiNcTw64H4mNgTYudw8L484o=;
-        h=In-Reply-To:References:To:From:Subject:Date:From;
-        b=l1AP+M+RJCMrytb9ugR2J0kVzGiZwwalJENtQCPN63S/m8eK2fb6ZRGNtHZl74Fi3
-         YZjOWolqlZg7BKpKh27kucFBydDoFkH+t6l9hxX+Q+e2PyUOzSndd1c4VF+hU/9YxX
-         fz+gmHzEo8EDAQM56hbYv8dNmcGa3EslqvPckIGs=
-Content-Type: text/plain; charset="utf-8"
+        id S1730957AbfIFRsV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 13:48:21 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Sep 2019 10:48:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,473,1559545200"; 
+   d="scan'208";a="334957784"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga004.jf.intel.com with ESMTP; 06 Sep 2019 10:48:17 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i6ILH-00035H-Ss; Fri, 06 Sep 2019 20:48:15 +0300
+Date:   Fri, 6 Sep 2019 20:48:15 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Ivan Gorinov <ivan.gorinov@intel.com>
+Cc:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
+        Dilip Kota <eswara.kota@linux.intel.com>, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
+        robh@kernel.org, linux-pci@vger.kernel.org, hch@infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: intel: Add YAML schemas for the
+ PCIe RC controller
+Message-ID: <20190906174815.GZ2680@smile.fi.intel.com>
+References: <cover.1567585181.git.eswara.kota@linux.intel.com>
+ <fe9549470bc06ea0d0dfc80f46a579baa49b911a.1567585181.git.eswara.kota@linux.intel.com>
+ <CAFBinCC5SH5OSUqOkLQhE2o7g5OhSuB_PBjsv93U2P=FNS5oPw@mail.gmail.com>
+ <ce4e04ee-9a8f-fbe1-0133-4a18c92dc136@linux.intel.com>
+ <CAFBinCABoe89Z9CiG=3Bz6+JoRCYcpxWJ6jzEqMo16SCCoXPmQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1561691950-42154-3-git-send-email-preid@electromag.com.au>
-References: <1561691950-42154-1-git-send-email-preid@electromag.com.au> <1561691950-42154-3-git-send-email-preid@electromag.com.au>
-To:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        mark.rutland@arm.com, mturquette@baylibre.com,
-        preid@electromag.com.au, robh+dt@kernel.org
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 2/2] clk: clk-cdce925: Add regulator support
-User-Agent: alot/0.8.1
-Date:   Fri, 06 Sep 2019 10:32:06 -0700
-Message-Id: <20190906173207.50491206A1@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFBinCABoe89Z9CiG=3Bz6+JoRCYcpxWJ6jzEqMo16SCCoXPmQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Phil Reid (2019-06-27 20:19:10)
-> The cdce925 power supplies could be controllable on some platforms.
-> Enable them before communicating with the cdce925.
->=20
-> Signed-off-by: Phil Reid <preid@electromag.com.au>
-> ---
+On Fri, Sep 06, 2019 at 07:17:11PM +0200, Martin Blumenstingl wrote:
+> On Fri, Sep 6, 2019 at 5:22 AM Chuan Hua, Lei
+> <chuanhua.lei@linux.intel.com> wrote:
 
-Applied to clk-next
+> >      type_index = fwspec->param[1]; // index.
+> >      if (type_index >= ARRAY_SIZE(of_ioapic_type))
+> >          return -EINVAL;
+> >
+> > I would not see this definition is user-friendly. But it is how x86
+> > handles at the moment.
+> thank you for explaining this - I had no idea x86 is different from
+> all other platforms I know
+> the only upstream x86 .dts I could find
+> (arch/x86/platform/ce4100/falconfalls.dts) also uses the magic x86
+> numbers
+> so I'm fine with this until someone else knows a better solution
+
+Ivan, Cc'ed, had done few amendments to x86 DT support. Perhaps he may add
+something to the discussion.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
