@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59518AB0CB
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 05:02:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DD4EAB0D1
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 05:04:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392096AbfIFDCD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 5 Sep 2019 23:02:03 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:46108 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2392095AbfIFDCD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 23:02:03 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q5so3293374pfg.13
-        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 20:02:02 -0700 (PDT)
+        id S2390114AbfIFDEr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 5 Sep 2019 23:04:47 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44799 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726810AbfIFDEr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 5 Sep 2019 23:04:47 -0400
+Received: by mail-pg1-f193.google.com with SMTP id i18so2599247pgl.11
+        for <devicetree@vger.kernel.org>; Thu, 05 Sep 2019 20:04:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=Fy2sCHO6ksC6gfm/SNdH9QAmaHYMAPiTKwgACIfMK3E=;
-        b=XYV34W7Gld+84er7G3MqlpUVPw+yXk9mEYDM09dIIZfYiOCl+/jtyAr/sOGtS1R2+B
-         JY6SBfz4uZA5ORR/Qe9Acz/QsUN2aPRDHc/AX9QSNIqSXMsg6rfHlezvfkRwb83KrRYw
-         dbTwTWkdVJPFa9BA2aZAwWQz69Y6rBJKYj3pchzlmNOVQvzyg5ixprltJ1pK9LuLHN/7
-         3Th3DERsudBcXWB2KHPfSfyuxo1TDnYKgwhvjCbP+oi6hgqynCPPulXjkRV948l6mP7t
-         YByt+lDQlhRHqHVw7sJFyndtQjYrgpxQp2rywpVoVhQX/KeRhFhWyE5g0X8Mkbdyds0O
-         3gKg==
+        bh=3PTG9G99Umh/O+x7zai5y5HPdUR0mgJht59Vfjck7XQ=;
+        b=JlDu4etbqmzw9wXT6FGlXJk4Kybmbh1/HwtZgLtvcc8JacahcRVrky+j2sG5rrZxqY
+         ZuWEB7PpdtHHvjpRMr9Hpl8sE7EzzL40ASpLyvsnzjPjtGh9HtWndBXBMMuumMHcmkrj
+         y0KB+73vEvTTP5yitiPrGNYRZ60cWlRbfyRqtgeV+0z91OL/2fNXYQCJC3JQpljqLY8T
+         oRH7HWg5t/sLhnSxhen5EAdICh6nkloegeVwQg5oNeNOAmzqH9Mug+z3YdIUyu6ad2/f
+         5CY1Fjq+vCZAP0hF0/29kPAvJgzAfXzscrMSgkKJo7qZK8vvAqDL5FuHlDH1/wHA8kp2
+         EPOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Fy2sCHO6ksC6gfm/SNdH9QAmaHYMAPiTKwgACIfMK3E=;
-        b=TiRlzuBAf8Ly7LJSAx8inhAAngKlFqsLTgFl8MLcidYw5Uqs7fvwVkd7PJ2hbkqHm9
-         NGI+7r0Uc49KcKiaO3EU1gRDxmkdqBHdjmPkBN3MKcG5qhm98sfnkZ9ZQ7yp/3fjEM74
-         ZiAJzT575Ligi7RmIvvwR6LuXdhqsUDFmr2v3a5az7F5iYu7d3rm/nJ1SEJSVcp3wvi5
-         DUZHCs3SIdskzCuMo4q3DiC10Y4xRDgyFFrjpCV8NmoX9p4gaoTa6BwaSqtc7vHaCxDS
-         LPB+bTucst5H+QsqCl/NjiMYWX5DO4T+yAZhmhCPohuS/fugTdZwPdltJnvjaRmIMIFT
-         l2VA==
-X-Gm-Message-State: APjAAAWcM6rJ1jjMrrhmxoZ32T0agq0O8RwTEE93lcfEXWlsKDqRS1F2
-        SnwqTgGpUKkTeG1RDfVsfyLUJQ==
-X-Google-Smtp-Source: APXvYqwh1UMtnkLX6kIDmHA80lT5q6jkelT/w00gGqU1+nd+XIYlLSyB0Z5bUQxb1Vwm1xMB3MOHSQ==
-X-Received: by 2002:a63:c17:: with SMTP id b23mr6048375pgl.224.1567738922281;
-        Thu, 05 Sep 2019 20:02:02 -0700 (PDT)
+        bh=3PTG9G99Umh/O+x7zai5y5HPdUR0mgJht59Vfjck7XQ=;
+        b=AALBXY7oLH/Hl2TQ/JjOSKc73kzJwi8WVGAk9doN8y8Lox6SZ8VPbug999ByxKrEg8
+         QHkdik4x7ZgXxAop9AGCKKdkOAoKKOs1kxnDyAF/49fT8CDbqcMkPlbgyNWZ1xrsWuuR
+         gMZ40TF3jOwUqz8DDj6CN3IR5Wq2+VV6U9z2iObvasUag8l2wgMNnmyeLnw/pnHUE5aj
+         uiNcTmngQToYfsUFXOv6937A55UmhTAaRP0spM+DOmgNnyBGIcjqUjjw8mt6Gi4DCRUJ
+         Ri9JHdk0Ml+MWMulVldNrP8iORAxg7JD1K4+HXnS5U19ZwapOUfs9pr/Z4GPntSuhmbW
+         NT1Q==
+X-Gm-Message-State: APjAAAUHU+ON7scz+uLwCIONNHPeZcp6BSroz5IrrJOgo7OYUlF3Rvx6
+        C1GB7cJOmpbK1jmWB8W39wUqdQ==
+X-Google-Smtp-Source: APXvYqwcU7P4KYdNJHTHBUa+PS5plDHub2NwjRt0YWUkZiqMjDWKH6/fIdJ8dd+tt9qVDv5mRdVbYw==
+X-Received: by 2002:a65:5cca:: with SMTP id b10mr6247565pgt.365.1567739086676;
+        Thu, 05 Sep 2019 20:04:46 -0700 (PDT)
 Received: from localhost ([122.167.132.221])
-        by smtp.gmail.com with ESMTPSA id x22sm6714546pfo.180.2019.09.05.20.02.00
+        by smtp.gmail.com with ESMTPSA id e10sm4578936pfh.77.2019.09.05.20.04.45
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 05 Sep 2019 20:02:00 -0700 (PDT)
-Date:   Fri, 6 Sep 2019 08:31:58 +0530
+        Thu, 05 Sep 2019 20:04:46 -0700 (PDT)
+Date:   Fri, 6 Sep 2019 08:34:44 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
 To:     Tony Lindgren <tony@atomide.com>
 Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
@@ -59,7 +59,7 @@ Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
         letux-kernel@openphoenux.org, kernel@pyra-handheld.com
 Subject: Re: [RFC v2 1/3] cpufreq: ti-cpufreq: add support for omap34xx and
  omap36xx
-Message-ID: <20190906030158.leuumg7rwsvowwfx@vireshk-i7>
+Message-ID: <20190906030444.lklvvpbdqesatohb@vireshk-i7>
 References: <cover.1567587220.git.hns@goldelico.com>
  <a889b10386bebfbfd6cdb5491367235290d53247.1567587220.git.hns@goldelico.com>
  <20190905143226.GW52127@atomide.com>
@@ -74,32 +74,10 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05-09-19, 07:32, Tony Lindgren wrote:
-> * H. Nikolaus Schaller <hns@goldelico.com> [190904 08:54]:
-> > This adds code and tables to read the silicon revision and
-> > eFuse (speed binned / 720 MHz grade) bits for selecting
-> > opp-v2 table entries.
-> > 
-> > Since these bits are not always part of the syscon register
-> > range (like for am33xx, am43, dra7), we add code to directly
-> > read the register values using ioremap() if syscon access fails.
-> 
-> This is nice :) Seems to work for me based on a quick test
-> on at least omap36xx.
-> 
-> Looks like n900 produces the following though:
-> 
-> core: _opp_supported_by_regulators: OPP minuV: 1270000 maxuV: 1270000, not supported by regulator
-> cpu cpu0: _opp_add: OPP not supported by regulators (550000000)
-
-That's a DT thing I believe where the voltage doesn't fit what the
-regulator can support.
-
-> But presumably that can be further patched. So for this
-> patch:
-> 
 > Acked-by: Tony Lindgren <tony@atomide.com>
 
-Thanks.
+Do you want to pick the series instead as this has lots of DT changes
+?
 
 -- 
 viresh
