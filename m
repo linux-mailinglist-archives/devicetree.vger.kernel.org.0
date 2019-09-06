@@ -2,87 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA2BBABFA8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 20:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3EFBAC08E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 21:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403994AbfIFSqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 14:46:22 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:42901 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436555AbfIFSqS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 14:46:18 -0400
-Received: by mail-wr1-f67.google.com with SMTP id q14so7580052wrm.9;
-        Fri, 06 Sep 2019 11:46:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mk9iiyM0WHriMjrKTK53bNyVyznn052YfKhoDOFj8+M=;
-        b=ltWL/0NIoHGYNechlthfrItQ9BFEmloFHpTqEw3/M6HvdjFLXytt74OL7kTCA8j1Kt
-         JHn+D+sUBJdHoDRjaVU1YaoFRb38IdxLNfKvEm3kAEKssc+XeChc/duhYWZT1SkRCORu
-         m6U4l5HOC43ynNqIsNp6530iR3Pi9dAh4p9ZOTGjrk1YQE9D8dUsgEtiI3KiZ6wKdd4C
-         M+uwyEpQ3Ouyt6jEaZwpOcoyqgAFr2rRSsungYDLbMAR5Zqe6lCfqZI7g4ZFDcCMhT5H
-         JDNDLv/I8/CbVz6ePJWjHZDgJI6aVkrb2fJoz/1gnqpoLuKUNmpLfIpzNurmi1mCzdC/
-         vR9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=mk9iiyM0WHriMjrKTK53bNyVyznn052YfKhoDOFj8+M=;
-        b=mKlcAwernL6r051jN/nR40NP5PaisRxy7rxbiI0cOkNykzHVRrLLzRGiASlqyfM6gi
-         IGPADMwG+4HICJ11wpzA14LjiFVjLx+MI7sMc+J5t4Rtjj/CYGjXDfktSCtF4HSxnf+g
-         Dtn6U8kZs30L4EqDopAgJjQqUJ6eWwxhCi6uQeLT/LjcVMt/YfF6w4NPXJBlXn6htsHH
-         YJYpAType+c+8jhf7RJRNe1NmLNfrC0kCYwYF/2RMCHN+/sgJ1P5ErqEomjt8cRC3/8u
-         bES+RNY+p5JNIeM7th4WzbHqomcuYl1ZGPnBbdEbH6+xCdmue/unVpaMbOG3tkexVH6Q
-         8cYA==
-X-Gm-Message-State: APjAAAW5Va3n+V/KXJXInQOhOOxu8e1fQpAR9ZIApaFnr5AYS0cKK7OS
-        nCIcF1Y027j8baG4IGRoWD0=
-X-Google-Smtp-Source: APXvYqz0nobviNLqKZBy3ZK1oFqnw7zZh1G8l7RuxSpcJpXKnUegVQyaWqWl8zGGBhx++hogOT/Jdw==
-X-Received: by 2002:adf:e392:: with SMTP id e18mr9008949wrm.87.1567795576314;
-        Fri, 06 Sep 2019 11:46:16 -0700 (PDT)
-Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id j1sm8677577wrg.24.2019.09.06.11.46.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 06 Sep 2019 11:46:15 -0700 (PDT)
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        linux@armlinux.org.uk, mark.rutland@arm.com, mripard@kernel.org,
-        robh+dt@kernel.org, wens@csie.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        Corentin Labbe <clabbe.montjoie@gmail.com>
-Subject: [PATCH 9/9] sunxi_defconfig: add new crypto options
-Date:   Fri,  6 Sep 2019 20:45:51 +0200
-Message-Id: <20190906184551.17858-10-clabbe.montjoie@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190906184551.17858-1-clabbe.montjoie@gmail.com>
-References: <20190906184551.17858-1-clabbe.montjoie@gmail.com>
+        id S1730881AbfIFT3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 15:29:31 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:60430 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727768AbfIFT3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 15:29:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=VKuOCqb0qokrqyrI79Z2Qe4eyujHBZLejEMxpAlk8kY=; b=oeQci1hBJlwILpkSPpSFnE/4W1
+        /E2bxMrjj4JU/oGw3rkg6DXroxyrGNdCNvhXuAWsDVvZ3j4pQ8wNHkh//Q93D8KAECrrWqcl+94aa
+        YcKfZfCueFCWXEmbtldg4OqboanUAcvzrmlHb7H1ORjcn28P2n2bPLb+BElpFmJ/CWbE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1i6Jv5-0000mP-9Q; Fri, 06 Sep 2019 21:29:19 +0200
+Date:   Fri, 6 Sep 2019 21:29:19 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+Cc:     davem@davemloft.net, robh+dt@kernel.org, f.fainelli@gmail.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        Trent Piepho <tpiepho@impinj.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] net: phy: dp83867: Add documentation for SGMII mode
+ type
+Message-ID: <20190906192919.GA2339@lunn.ch>
+References: <1567700761-14195-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
+ <1567700761-14195-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1567700761-14195-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the new allwinner crypto configs to sunxi_defconfig
+On Thu, Sep 05, 2019 at 07:26:00PM +0300, Vitaly Gaiduk wrote:
+> Add documentation of ti,sgmii-type which can be used to select
+> SGMII mode type (4 or 6-wire).
 
-Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
----
- arch/arm/configs/sunxi_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
+Hi Vitaly
 
-diff --git a/arch/arm/configs/sunxi_defconfig b/arch/arm/configs/sunxi_defconfig
-index df433abfcb02..d0ab8ba7710a 100644
---- a/arch/arm/configs/sunxi_defconfig
-+++ b/arch/arm/configs/sunxi_defconfig
-@@ -150,4 +150,6 @@ CONFIG_NLS_CODEPAGE_437=y
- CONFIG_NLS_ISO8859_1=y
- CONFIG_PRINTK_TIME=y
- CONFIG_DEBUG_FS=y
-+CONFIG_CRYPTO_DEV_ALLWINNER=y
-+CONFIG_CRYPTO_DEV_SUN8I_CE=y
- CONFIG_CRYPTO_DEV_SUN4I_SS=y
--- 
-2.21.0
+Is 4 vs 6-wire a generic SGMII property? Or is it proprietary to TI?
 
+I did a quick search and i could not find any other PHYs supporting
+it.
+
+	Andrew
