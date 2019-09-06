@@ -2,148 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E993ABE89
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 19:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B016ABEAC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 19:24:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406004AbfIFRRX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 13:17:23 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45570 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391459AbfIFRRX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 13:17:23 -0400
-Received: by mail-ot1-f65.google.com with SMTP id 41so2602948oti.12;
-        Fri, 06 Sep 2019 10:17:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9evHry1UrtWiGWxeLaRDwMC+G1/K0C5Wqdz0SlRBtRA=;
-        b=S03AX30pGa/riu4c+Jmvw31thlqCJ6/58BYW5EDstl8tut2pIX6DS+XKqBIPly98j0
-         arM5bAlXCV9be8gl83690pSpmR1J9dMDi2ACleKB3PCN5J9KZL6g5iAoRmxWbMiqvNF3
-         qC3itT8bwqPnQpFTXFxeLKOfYW+dUY5c8Ct8IOQFoscT2ROpSB17Myo1f6++Q3q3E9fp
-         YGPB3qdZDIGk5096953Vhf6t3BQbyOG0UHoqwucW8WvoqVupxW0PUzT6nbVdjrekix1i
-         O6TPhnexuV9aJm6HkgAJNlwlltU27I7emzs4SGZ34QBV1oyDhJrvrzc/OMHGJmk+Mg+o
-         HEvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9evHry1UrtWiGWxeLaRDwMC+G1/K0C5Wqdz0SlRBtRA=;
-        b=GZ/IPlsfDs05a2d9jg5rDFN55JR6lH7JbywClAN6a64YkubQBRsq1DQM8V+gkputfR
-         6SDxjto03hnwz4cZNWHLlXpUk4FOD5BL/xJVBujqLkODhkJDaZdVZRzzmaYQRmVELy46
-         L8wrDLlD/oBlLWJ8sw6Vudl2fzdx40yGv8la22g80Mv4CSuD5516p2+ssOkx1cLxhc2s
-         OReOy0E3Rxzm3NhJ4xNi+pHRJELNLAsMnQm1KAE6CwhEIo4By6RFbGmo3pAIL0nRvEgh
-         +hyYRMfrboso/yr1jSP09xXR/VGGt7VSwS0e/5tQRlbOcokRnJMMH1vkoNCu2/RJjmb/
-         7JaQ==
-X-Gm-Message-State: APjAAAWfhXc4VhLY8S/XZlS+R07PTRTn2MD/rZCCCBhcTaRmUpRKzh0J
-        5xHBOG35rKQh9KdPdVIeYMIzCQ3LUBS+gBYvvtA=
-X-Google-Smtp-Source: APXvYqzV1urVgS9fUf9+vvQ7IvYRo7AJa7S38jSC4wqoAIa6jp3rnZyJDk83rUwj6UtOcAdQvzQUeXid+CeNTa1O5po=
-X-Received: by 2002:a05:6830:1e5a:: with SMTP id e26mr7852824otj.96.1567790242296;
- Fri, 06 Sep 2019 10:17:22 -0700 (PDT)
+        id S2391593AbfIFRYI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 13:24:08 -0400
+Received: from muru.com ([72.249.23.125]:60044 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729928AbfIFRYI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 13:24:08 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 560A580CC;
+        Fri,  6 Sep 2019 17:24:36 +0000 (UTC)
+Date:   Fri, 6 Sep 2019 10:24:03 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?utf-8?B?QW5kcsOp?= Roth <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-pm@vger.kernel.org,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, kernel@pyra-handheld.com
+Subject: Re: [RFC v2 3/3] ARM: dts: omap3: bulk convert compatible to be
+ explicitly ti,omap3430 or ti,omap36xx
+Message-ID: <20190906172403.GG52127@atomide.com>
+References: <cover.1567587220.git.hns@goldelico.com>
+ <a2b56edcada7b9000a6e906387a02c0ee42681db.1567587220.git.hns@goldelico.com>
+ <20190905142734.GV52127@atomide.com>
+ <4BC39938-D63E-4BDC-BA28-5132F77F602D@goldelico.com>
+ <20190906154732.GC52127@atomide.com>
+ <8C8644AC-FA12-4D26-B96A-76B78798612A@goldelico.com>
 MIME-Version: 1.0
-References: <cover.1567585181.git.eswara.kota@linux.intel.com>
- <fe9549470bc06ea0d0dfc80f46a579baa49b911a.1567585181.git.eswara.kota@linux.intel.com>
- <CAFBinCC5SH5OSUqOkLQhE2o7g5OhSuB_PBjsv93U2P=FNS5oPw@mail.gmail.com> <ce4e04ee-9a8f-fbe1-0133-4a18c92dc136@linux.intel.com>
-In-Reply-To: <ce4e04ee-9a8f-fbe1-0133-4a18c92dc136@linux.intel.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 6 Sep 2019 19:17:11 +0200
-Message-ID: <CAFBinCABoe89Z9CiG=3Bz6+JoRCYcpxWJ6jzEqMo16SCCoXPmQ@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: intel: Add YAML schemas for the
- PCIe RC controller
-To:     "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>
-Cc:     Dilip Kota <eswara.kota@linux.intel.com>, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
-        robh@kernel.org, linux-pci@vger.kernel.org, hch@infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8C8644AC-FA12-4D26-B96A-76B78798612A@goldelico.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 6, 2019 at 5:22 AM Chuan Hua, Lei
-<chuanhua.lei@linux.intel.com> wrote:
-[...]
-> >> +examples:
-> >> +  - |
-> >> +    pcie10:pcie@d0e00000 {
-> >> +      compatible = "intel,lgm-pcie";
-> >> +      device_type = "pci";
-> >> +      #address-cells = <3>;
-> >> +      #size-cells = <2>;
-> >> +      reg = <
-> >> +            0xd0e00000 0x1000
-> >> +            0xd2000000 0x800000
-> >> +            0xd0a41000 0x1000
-> >> +            >;
-> >> +      reg-names = "dbi", "config", "app";
-> >> +      linux,pci-domain = <0>;
-> >> +      max-link-speed = <4>;
-> >> +      bus-range = <0x00 0x08>;
-> >> +      interrupt-parent = <&ioapic1>;
-> >> +      interrupts = <67 1>;
-> >> +      #interrupt-cells = <1>;
-> >> +      interrupt-map-mask = <0 0 0 0x7>;
-> >> +      interrupt-map = <0 0 0 1 &ioapic1 27 1>,
-> >> +                      <0 0 0 2 &ioapic1 28 1>,
-> >> +                      <0 0 0 3 &ioapic1 29 1>,
-> >> +                      <0 0 0 4 &ioapic1 30 1>;
-> > is the "1" in the interrupts and interrupt-map properties IRQ_TYPE_EDGE_RISING?
-> > you can use these macros in this example as well, see
-> > Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml for
-> > example
->
-> No. 1 here means index from arch/x86/devicetree.c
->
-> static struct of_ioapic_type of_ioapic_type[] =
-> {
->      {
->          .out_type    = IRQ_TYPE_EDGE_RISING,
->          .trigger    = IOAPIC_EDGE,
->          .polarity    = 1,
->      },
->      {
->          .out_type    = IRQ_TYPE_LEVEL_LOW,
->          .trigger    = IOAPIC_LEVEL,
->          .polarity    = 0,
->      },
->      {
->          .out_type    = IRQ_TYPE_LEVEL_HIGH,
->          .trigger    = IOAPIC_LEVEL,
->          .polarity    = 1,
->      },
->      {
->          .out_type    = IRQ_TYPE_EDGE_FALLING,
->          .trigger    = IOAPIC_EDGE,
->          .polarity    = 0,
->      },
-> };
->
-> static int dt_irqdomain_alloc(struct irq_domain *domain, unsigned int virq,
->                    unsigned int nr_irqs, void *arg)
-> {
->      struct irq_fwspec *fwspec = (struct irq_fwspec *)arg;
->      struct of_ioapic_type *it;
->      struct irq_alloc_info tmp;
->      int type_index;
->
->      if (WARN_ON(fwspec->param_count < 2))
->          return -EINVAL;
->
->      type_index = fwspec->param[1]; // index.
->      if (type_index >= ARRAY_SIZE(of_ioapic_type))
->          return -EINVAL;
->
-> I would not see this definition is user-friendly. But it is how x86
-> handles at the moment.
-thank you for explaining this - I had no idea x86 is different from
-all other platforms I know
-the only upstream x86 .dts I could find
-(arch/x86/platform/ce4100/falconfalls.dts) also uses the magic x86
-numbers
-so I'm fine with this until someone else knows a better solution
+* H. Nikolaus Schaller <hns@goldelico.com> [190906 17:09]:
+> for i in 3430 34xx 3630 36xx; do echo $i $(fgrep '"'ti,omap$i'"' arch/arm/boot/dts/*.dts* | wc -l); done
+> 
+> 3430 12
+> 34xx 28
+> 3630 3
+> 36xx 23
+> 
+> which would indicate that 34xx and 36xx are more common.
 
+Right, but the xx variants are against the device tree naming and
+that's why we should get rid of them in the dts. The compatible
+should be named after the first instance like "ti,omap3430" and
+similar devices can just use that.
 
-Martin
+> BTW there is also some code that does special SoC detection based on
+> soc_device_match(), mainly in omapdrm/dss.
+> 
+> If we were to use this mechanism in the ti-cpufreq driver we could
+> match it to ti,omap3 and could avoid all these changes.
+> 
+> But make it less maintainable and code more complex.
+
+Hmm right, yeah using soc_device_match() would remove this issue.
+It might be worth doing as these SoC variants do not change
+much and the code should not need updating. Up to you to
+decide.
+
+> I'll also take a look at omap.txt bindings since that likely needs
+> an update as well to better describe what the official ones are
+> and which are legacy.
+
+OK. Just limit the compatible changes to the ones that
+need to be modified for this series, the rest can be
+done with a separate patches.
+
+Regards,
+
+Tony
