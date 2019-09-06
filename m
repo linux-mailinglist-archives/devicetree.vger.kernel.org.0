@@ -2,88 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C8275AB5A4
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 12:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC22AB5BC
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 12:24:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731742AbfIFKQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 06:16:06 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:53105 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726931AbfIFKQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 06:16:06 -0400
-X-UUID: 35be169ede134e03bb7c75bec3103570-20190906
-X-UUID: 35be169ede134e03bb7c75bec3103570-20190906
-Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 524014696; Fri, 06 Sep 2019 18:16:00 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 6 Sep 2019 18:15:50 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 6 Sep 2019 18:15:50 +0800
-Message-ID: <1567764953.472.2.camel@mtksdaap41>
-Subject: Re: [PATCH v5 0/3] PM / AVS: SVS: Introduce SVS engine
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Kevin Hilman <khilman@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Fan Chen <fan.chen@mediatek.com>,
-        "HenryC Chen" <HenryC.Chen@mediatek.com>, <yt.lee@mediatek.com>,
-        Angus Lin <Angus.Lin@mediatek.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>,
-        Nishanth Menon <nm@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-Date:   Fri, 6 Sep 2019 18:15:53 +0800
-In-Reply-To: <20190906100514.30803-1-roger.lu@mediatek.com>
-References: <20190906100514.30803-1-roger.lu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1732899AbfIFKX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 06:23:58 -0400
+Received: from sauhun.de ([88.99.104.3]:40886 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728485AbfIFKX6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 06:23:58 -0400
+Received: from localhost (p54B3379C.dip0.t-ipconnect.de [84.179.55.156])
+        by pokefinder.org (Postfix) with ESMTPSA id 320352C0091;
+        Fri,  6 Sep 2019 12:23:56 +0200 (CEST)
+Date:   Fri, 6 Sep 2019 12:23:55 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>, agross@kernel.org,
+        alokc@codeaurora.org, bjorn.andersson@linaro.org,
+        mark.rutland@arm.com, robh+dt@kernel.org, vkoul@kernel.org,
+        linux-i2c@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+Message-ID: <20190906102355.GA3146@kunai>
+References: <20190905192412.23116-1-lee.jones@linaro.org>
+ <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
+ <20190906061448.GJ26880@dell>
+ <20190906065018.GA1019@kunai>
+ <20190906075600.GL26880@dell>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: BC4C79346B1AD8DE4D01B67A379430A73C2A7576C913D66AAA878836F8AEDA7A2000:8
-X-MTK:  N
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OgqxwSJOaUobr8KG"
+Content-Disposition: inline
+In-Reply-To: <20190906075600.GL26880@dell>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Excuse me, I forgot to add "changes since" below. Add it back now.
 
-On Fri, 2019-09-06 at 18:05 +0800, Roger Lu wrote:
-> 1. SVS driver use OPP adjust event in [1] to update OPP table voltage part.
-> 2. SVS dts node refers to CPU opp table [2] and GPU opp table [3].
-> 3. SVS dts node refers to thermal efuse [4] and PMIC regulator [5].
-> 
-> [1] https://patchwork.kernel.org/patch/11092245/
-> [2] https://patchwork.kernel.org/patch/10934123/
-> [3] https://patchwork.kernel.org/patch/11132381/
-> [4] https://patchwork.kernel.org/patch/11093655/
-> [5] https://patchwork.kernel.org/patch/11110493/
+--OgqxwSJOaUobr8KG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-changes since v4:
-- Add SVS dts node patch in SVS patch series.
+On Fri, Sep 06, 2019 at 08:56:00AM +0100, Lee Jones wrote:
+> On Fri, 06 Sep 2019, Wolfram Sang wrote:
+> > > > This compatible isn't in the 5.3 rc series nor is it in linux-next =
+yet.
+> > > > Is this "hot-fix" for the next merge window? Or is this compatible
+> > > > string being generated by firmware somewhere and thus isn't part of=
+ the
+> > > > kernel?
+> > >=20
+> > > It's on the list and will be in all of the distro v5.3 release kernel=
+s.
+> > >=20
+> > > https://lkml.org/lkml/2019/9/5/695
+> >=20
+> > And why don't the distro kernels simply pick up this patch, too?
+>=20
+> I could send it to them and find out.  They are on kernel-freeze now,
+> on the lead-up to the release date (next month), but I think they're
+> still taking bug fixes.
 
-> Roger Lu (3):
->   dt-bindings: soc: add mtk svs dt-bindings
->   arm64: dts: mt8183: add svs device information
->   PM / AVS: SVS: Introduce SVS engine
-> 
->  .../devicetree/bindings/power/mtk-svs.txt     |   88 +
->  arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   16 +
->  arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   38 +
->  drivers/power/avs/Kconfig                     |   10 +
->  drivers/power/avs/Makefile                    |    1 +
->  drivers/power/avs/mtk_svs.c                   | 2075 +++++++++++++++++
->  include/linux/power/mtk_svs.h                 |   23 +
->  7 files changed, 2251 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/mtk-svs.txt
->  create mode 100644 drivers/power/avs/mtk_svs.c
->  create mode 100644 include/linux/power/mtk_svs.h
+Please do.
 
 
+--OgqxwSJOaUobr8KG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1yM7cACgkQFA3kzBSg
+KbbOpA/+JmzFz9QSrewrsJhcmou/pr1nKrYpIQKY/T/MceuejGCMo86CEMGZXAG+
+n3um8sjtDtaMb8NRCj7gddzhV3hfIjkExzVSeDDj3o9xGRjv5R5fdWXUgR/hoSnp
+i/jpFfs+wKMgMeJ8M0STEVgWAPMTVBkXoOyWoMpnnRIVKS601A4E+o8yGu9zwkmY
+26DVVF49lK8g0eNUssGvrwZeVHkzzdkboW9Z0sZ1E5MW2q24U92dp99h9Yqi8oyq
+H41PujJxR6ZOjbX3fP4jXkmQbuksyfO2P41cagfQkfmFVYGeMRkEbXnhItO9AvTo
+VThqoUrItedREsVzambW1c9Cd1aH5iXq9GWERN+JWL+SV8GU9RYgvBXHkwS0XquM
+gw4RR5AcoCP6uWbbU6e/lY/ACxHFKWq1IkMtMi1MyvOyzsLMq9Vn40kq5HVucOfm
+BjM1Yin+ZissDg+3y7l4W1Kmlyyqi/7RQnN77pffADhRp0EycyFza188wtEAaEHp
+juX/dBzoskWTjRw4K8xnzy109tzuxIre5RHyF845fv1694blyo2v2nBfMzUv/UUx
+s5AqwIlnmrfZOm6+RKFqnAxmWEvYMDG34aGRmI93NamBbHkNe4ZfaHTX5FXgkrGh
+daX/c6XL6BMYt5I6otQIW/GP98tYf0nqZrC9dit/gGFfIcq4i1M=
+=l7c3
+-----END PGP SIGNATURE-----
+
+--OgqxwSJOaUobr8KG--
