@@ -2,67 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3EA1AB4C2
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 11:19:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D6C9AB553
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 12:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388293AbfIFJT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 05:19:56 -0400
-Received: from mga04.intel.com ([192.55.52.120]:56094 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730995AbfIFJT4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 05:19:56 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Sep 2019 02:19:55 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,472,1559545200"; 
-   d="scan'208";a="177584702"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 06 Sep 2019 02:19:51 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1i6APG-0004As-6Q; Fri, 06 Sep 2019 12:19:50 +0300
-Date:   Fri, 6 Sep 2019 12:19:50 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     Dilip Kota <eswara.kota@linux.intel.com>, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
-        robh@kernel.org, linux-pci@vger.kernel.org, hch@infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: intel: Add YAML schemas for the
- PCIe RC controller
-Message-ID: <20190906091950.GJ2680@smile.fi.intel.com>
-References: <cover.1567585181.git.eswara.kota@linux.intel.com>
- <fe9549470bc06ea0d0dfc80f46a579baa49b911a.1567585181.git.eswara.kota@linux.intel.com>
- <CAFBinCC5SH5OSUqOkLQhE2o7g5OhSuB_PBjsv93U2P=FNS5oPw@mail.gmail.com>
+        id S2389683AbfIFKFq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 06:05:46 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:11213 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728254AbfIFKFq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 06:05:46 -0400
+X-UUID: b3a6b3957d3e4cfe992546802938b40c-20190906
+X-UUID: b3a6b3957d3e4cfe992546802938b40c-20190906
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <roger.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 627805015; Fri, 06 Sep 2019 18:05:37 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 6 Sep 2019 18:05:33 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 6 Sep 2019 18:05:33 +0800
+From:   Roger Lu <roger.lu@mediatek.com>
+To:     Kevin Hilman <khilman@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Stephen Boyd <sboyd@kernel.org>
+CC:     Fan Chen <fan.chen@mediatek.com>,
+        HenryC Chen <HenryC.Chen@mediatek.com>, <yt.lee@mediatek.com>,
+        Angus Lin <Angus.Lin@mediatek.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nishanth Menon <nm@ti.com>, Roger Lu <roger.lu@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
+Subject: [PATCH v5 0/3] PM / AVS: SVS: Introduce SVS engine
+Date:   Fri, 6 Sep 2019 18:05:12 +0800
+Message-ID: <20190906100514.30803-1-roger.lu@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFBinCC5SH5OSUqOkLQhE2o7g5OhSuB_PBjsv93U2P=FNS5oPw@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 10:31:29PM +0200, Martin Blumenstingl wrote:
-> On Wed, Sep 4, 2019 at 12:11 PM Dilip Kota <eswara.kota@linux.intel.com> wrote:
+1. SVS driver use OPP adjust event in [1] to update OPP table voltage part.
+2. SVS dts node refers to CPU opp table [2] and GPU opp table [3].
+3. SVS dts node refers to thermal efuse [4] and PMIC regulator [5].
 
-> > +  phy-names:
-> > +    const: pciephy
-> the most popular choice in Documentation/devicetree/bindings/pci/ is "pcie-phy"
-> if Rob is happy with "pciephy" (which is already part of two other
-> bindings) then I'm happy with "pciephy" as well
+[1] https://patchwork.kernel.org/patch/11092245/
+[2] https://patchwork.kernel.org/patch/10934123/
+[3] https://patchwork.kernel.org/patch/11132381/
+[4] https://patchwork.kernel.org/patch/11093655/
+[5] https://patchwork.kernel.org/patch/11110493/
 
-I'm not Rob, though I consider more practical to have a hyphenated variant.
+Roger Lu (3):
+  dt-bindings: soc: add mtk svs dt-bindings
+  arm64: dts: mt8183: add svs device information
+  PM / AVS: SVS: Introduce SVS engine
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+ .../devicetree/bindings/power/mtk-svs.txt     |   88 +
+ arch/arm64/boot/dts/mediatek/mt8183-evb.dts   |   16 +
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |   38 +
+ drivers/power/avs/Kconfig                     |   10 +
+ drivers/power/avs/Makefile                    |    1 +
+ drivers/power/avs/mtk_svs.c                   | 2075 +++++++++++++++++
+ include/linux/power/mtk_svs.h                 |   23 +
+ 7 files changed, 2251 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/mtk-svs.txt
+ create mode 100644 drivers/power/avs/mtk_svs.c
+ create mode 100644 include/linux/power/mtk_svs.h
