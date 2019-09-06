@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D10E3ABDB8
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 18:29:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3472ABE1E
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 18:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389295AbfIFQ3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 12:29:05 -0400
-Received: from foss.arm.com ([217.140.110.172]:59034 "EHLO foss.arm.com"
+        id S1728356AbfIFQ4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 12:56:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56896 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389180AbfIFQ3F (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 12:29:05 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AA2701570;
-        Fri,  6 Sep 2019 09:29:04 -0700 (PDT)
-Received: from [10.1.196.105] (unknown [10.1.196.105])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1B94C3F59C;
-        Fri,  6 Sep 2019 09:29:01 -0700 (PDT)
-Subject: Re: [PATCH v5 1/4] dt-bindings: EDAC: Add Amazon's Annapurna Labs L1
- EDAC
-To:     Rob Herring <robh@kernel.org>
-Cc:     "Hawa, Hanna" <hhhawa@amazon.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Borislav Petkov <bp@alien8.de>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>, benh@amazon.com,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        Talel Shenhar <talel@amazon.com>,
-        Jonathan Chocron <jonnyc@amazon.com>,
-        "Hanoch, Uri" <hanochu@amazon.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>
-References: <20190805143911.12185-1-hhhawa@amazon.com>
- <20190805143911.12185-2-hhhawa@amazon.com> <20190821191704.GA32425@bogus>
- <1d23d7c5-cd7b-1512-5300-d43e82ba6dc1@amazon.com>
- <CAL_Jsq+8jGbR4u7FA8r0gP5i2H+nSgOkGU_5mfiL=i=c0sOW8A@mail.gmail.com>
- <d46ac081-1867-2997-e2a3-bcfea42b74f3@arm.com>
- <CAL_Jsq+95qZyHWT_A-=L+SSbR0vmMqQDq8N2XcxwFJVG2HCthA@mail.gmail.com>
-From:   James Morse <james.morse@arm.com>
-Message-ID: <21050550-7629-e8f7-2d30-16c1858cf3cc@arm.com>
-Date:   Fri, 6 Sep 2019 17:28:59 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1727521AbfIFQ4q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 12:56:46 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9253120838;
+        Fri,  6 Sep 2019 16:56:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567789005;
+        bh=XLiSshmmIvhKSn19Y5Ycy0IjYyEkcV7i/Om32f9YTCs=;
+        h=In-Reply-To:References:To:From:Cc:Subject:Date:From;
+        b=zab+L7xreeoQiYiiP1PW139DUm9DwlukkoY/+5QLWhdMORo5KV9IbxytCew+5sS1y
+         3J39cU8ilrpAsoG7vxXWjbWlRIKvwErYmsgk2RO+QlbRv5/x4OZrBSMNDOG6fKPaGA
+         4KFkzBj2W8KmU/BpNetXaq2JRhioVGdDhaeKolB0=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+95qZyHWT_A-=L+SSbR0vmMqQDq8N2XcxwFJVG2HCthA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1566299605-15641-2-git-send-email-aisheng.dong@nxp.com>
+References: <1566299605-15641-1-git-send-email-aisheng.dong@nxp.com> <1566299605-15641-2-git-send-email-aisheng.dong@nxp.com>
+To:     Dong Aisheng <aisheng.dong@nxp.com>, linux-clk@vger.kernel.org
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, mturquette@baylibre.com,
+        shawnguo@kernel.org, fabio.estevam@nxp.com, linux-imx@nxp.com,
+        kernel@pengutronix.de, Dong Aisheng <aisheng.dong@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH V4 01/11] dt-bindings: firmware: imx-scu: new binding to parse clocks from device tree
+User-Agent: alot/0.8.1
+Date:   Fri, 06 Sep 2019 09:56:44 -0700
+Message-Id: <20190906165645.9253120838@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Quoting Dong Aisheng (2019-08-20 04:13:15)
+> There's a few limitations on the original one cell clock binding
+> (#clock-cells =3D <1>) that we have to define some SW clock IDs for device
+> tree to reference. This may cause troubles if we want to use common
+> clock IDs for multi platforms support when the clock of those platforms
+> are mostly the same.
+> e.g. Current clock IDs name are defined with SS prefix.
+>=20
+> However the device may reside in different SS across CPUs, that means the
+> SS prefix may not valid anymore for a new SoC. Furthermore, the device
+> availability of those clocks may also vary a bit.
+>=20
+> For such situation, we want to eliminate the using of SW Clock IDs and
+> change to use a more close to HW one instead.
+> For SCU clocks usage, only two params required: Resource id + Clock Type.
+> Both parameters are platform independent. So we could use two cells bindi=
+ng
+> to pass those parameters,
+>=20
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <kernel@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> ---
 
-On 30/08/2019 22:50, Rob Herring wrote:
-> So KVM provides a semi-CortexA57? Code that runs on real h/w won't as a guest.
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
 
-KVM provides the architectural bits of Cortex-A57's EL1, when running on A57.
-
-Code that depends on EL2, won't run as a guest. Code that depends on some
-non-architectural behaviour of A57 won't work in a guest, (e.g. the PMU)
-Features the hypervisor doesn't completely support may get hidden. The aim is to provide
-an virtual CPU, it might not be exactly the same as the one you're running on.
-
-Hypervisors have to disable access to the imp-def registers as they may allow the guest to
-break its confinement. (e.g. messing with the L2 timing)
-
-Code using imp-def instructions at EL1 needs to know they aren't trapped/disabled by a
-higher exception level. If someone wants to emulate these, something would need a model of
-what those imp-def instructions do.
-
-
-Thanks,
-
-James
