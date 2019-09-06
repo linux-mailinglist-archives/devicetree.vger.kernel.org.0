@@ -2,58 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3EFBAC08E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 21:29:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27FFFAC131
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730881AbfIFT3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 15:29:31 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:60430 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727768AbfIFT3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 15:29:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=VKuOCqb0qokrqyrI79Z2Qe4eyujHBZLejEMxpAlk8kY=; b=oeQci1hBJlwILpkSPpSFnE/4W1
-        /E2bxMrjj4JU/oGw3rkg6DXroxyrGNdCNvhXuAWsDVvZ3j4pQ8wNHkh//Q93D8KAECrrWqcl+94aa
-        YcKfZfCueFCWXEmbtldg4OqboanUAcvzrmlHb7H1ORjcn28P2n2bPLb+BElpFmJ/CWbE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1i6Jv5-0000mP-9Q; Fri, 06 Sep 2019 21:29:19 +0200
-Date:   Fri, 6 Sep 2019 21:29:19 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
-Cc:     davem@davemloft.net, robh+dt@kernel.org, f.fainelli@gmail.com,
-        Mark Rutland <mark.rutland@arm.com>,
-        Trent Piepho <tpiepho@impinj.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] net: phy: dp83867: Add documentation for SGMII mode
- type
-Message-ID: <20190906192919.GA2339@lunn.ch>
-References: <1567700761-14195-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
- <1567700761-14195-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
+        id S1729088AbfIFUCo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 16:02:44 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:59172 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726008AbfIFUCo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 16:02:44 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x86K2Xel029433;
+        Fri, 6 Sep 2019 15:02:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1567800153;
+        bh=10xvcQ++kK8vjq26QxAoqES7mAlIWPQnmIIF8zI5Vpk=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=e08jr+zRuuFY02gyAUTOdMfhNxS4qFUivbE2kp/hbOeacg5gMDr0g/U4G8ZlClpVw
+         Lbleby8yDxxoWN/YAjMQsMMk1lwuS/7OmNsI17+/WcpIaPeCJ7uEsiSNqX5ruaxUE6
+         25UxtZwfy5pVDGoNo8RqUjG6Er0tUnBRJuX4kDb0=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x86K2XFd119951
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 6 Sep 2019 15:02:33 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 6 Sep
+ 2019 15:02:32 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 6 Sep 2019 15:02:32 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86K2Tjo091944;
+        Fri, 6 Sep 2019 15:02:30 -0500
+Subject: Re: [PATCHv4 01/10] dt-bindings: omap: add new binding for PRM
+ instances
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Santosh Shilimkar <ssantosh@kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        Suman Anna <s-anna@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20190830121816.30034-2-t-kristo@ti.com>
+ <20190906103558.17694-1-t-kristo@ti.com>
+ <CAL_JsqLHTsEz6RJSi3rZ9AKyTBc00abyAxqwG8B9zAqL6cnv+w@mail.gmail.com>
+ <20190906153658.GB52127@atomide.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <e2b75368-df70-b6c9-e019-61610859f146@ti.com>
+Date:   Fri, 6 Sep 2019 23:02:28 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567700761-14195-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20190906153658.GB52127@atomide.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 05, 2019 at 07:26:00PM +0300, Vitaly Gaiduk wrote:
-> Add documentation of ti,sgmii-type which can be used to select
-> SGMII mode type (4 or 6-wire).
+On 06/09/2019 18:36, Tony Lindgren wrote:
+> * Rob Herring <robh+dt@kernel.org> [190906 12:57]:
+>> On Fri, Sep 6, 2019 at 11:36 AM Tero Kristo <t-kristo@ti.com> wrote:
+>>>
+>>> Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
+>>> of these will act as a power domain controller and potentially as a reset
+>>> provider.
+>>>
+>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>>> ---
+>>> v4:
+>>> - renamed nodes as power-controller
+>>> - added documentation about hierarchy
+>>>
+>>>   .../devicetree/bindings/arm/omap/prm-inst.txt | 31 +++++++++++++++++++
+>>>   1 file changed, 31 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/arm/omap/prm-inst.txt
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> Looks good to me too:
+> 
+> Reviewed-by: Tony Lindgren <tony@atomide.com>
+> 
 
-Hi Vitaly
+I may need to re-spin slightly new version of this. Stephen has some 
+comments on the clock driver side I am depending on, he does not like 
+the hard link between reset + clocks, so I may need to ditch the 
+"clocks" property from this one also.
 
-Is 4 vs 6-wire a generic SGMII property? Or is it proprietary to TI?
+I'll see next week which direction I need to go.
 
-I did a quick search and i could not find any other PHYs supporting
-it.
-
-	Andrew
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
