@@ -2,115 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F8FAB83E
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 14:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41BD4AB873
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 14:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404687AbfIFMdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 08:33:31 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43165 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404725AbfIFMdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 08:33:31 -0400
-Received: by mail-pf1-f193.google.com with SMTP id d15so4366140pfo.10;
-        Fri, 06 Sep 2019 05:33:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XL1ecQdL6XPXwXmH0af6w6z5EAVN9fbcG5PWEOAOqeY=;
-        b=O12Uv9X9eemdfbjlXdCH2RTvg+MPXjGz7vY/Gqhp9Vj6RUSWZ07sdHYmuQR8ZvgWFs
-         VyKcVO1orqcRK9nyqvKzbZq5RGYpAxNtMgJbLa6CM1Ilx+S0oAEyvnSr3zJSaH+i96pu
-         VOB4HBsJA+fXKbKhjPwRisv4UQFwFhd20dFfyEdwminLOg5nMmvQMsDOXDa7Wm7+dMf1
-         Oz89BWwmy1YqxRSz034Wn8dVYdLSPFdh5djemm0EzoFNpsJ+rHMDQSejhkgCbKw7HZdj
-         KpAeKb0mbfxTdUwKa0xjxkIy0ovq1u0rY+2gGwEgT6awyEb27GFDTn7F2Dq5IgBZZpBY
-         L8iA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XL1ecQdL6XPXwXmH0af6w6z5EAVN9fbcG5PWEOAOqeY=;
-        b=bbKcN+dSkPnCPyA2ihZ2y9aEUCQl7wdP/Fz+NcKM68OoamvPrFnjPj1xY73eaXVsMe
-         koAV0bLbwMcqcEzry8V9fRAwAYl2Zs6SvodggLiIFJ+GY/fAX5bWlIe+cmeJ0WDx2ilf
-         Miv+VCCJxgLfr8BXmeNcqqR48PqpaXwy8DCTh+/epnbKKdOnZCD1/ff/vu61VvAGCyNd
-         cbyo3wvbwHj1JOFQ64JORt7EoGYp6qiejTjTnHWy9H2dppZwiVAgwFIiZ2DPGK3GsCQd
-         LjGi+bxGdaQN8yDKJKjAc9QS79ArXSldxdIOSO/beImD8+kQyxWHkz2+atBethii/3TX
-         CSoQ==
-X-Gm-Message-State: APjAAAWIlWBppxTOvSg9Nawl8ysTLWF6WT4O4eJnOqc8F92UeByNCes6
-        VvBPWbZSAakcOR5IpSqsDlw=
-X-Google-Smtp-Source: APXvYqxYnVrJx8RQe8BwVimz0PHJn0+JCbOvLTf90TebAgJeKUBRjRR9eIXxqaR93YpHo+orEUkpSg==
-X-Received: by 2002:a63:534d:: with SMTP id t13mr7774981pgl.313.1567773210032;
-        Fri, 06 Sep 2019 05:33:30 -0700 (PDT)
-Received: from localhost.localdomain ([45.114.62.203])
-        by smtp.gmail.com with ESMTPSA id h70sm4752933pgc.36.2019.09.06.05.33.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Sep 2019 05:33:29 -0700 (PDT)
-From:   Anand Moon <linux.amoon@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCHv3-next 3/3] arm64: dts: meson: odroid-c2: Add missing regulator linked to HDMI supply
-Date:   Fri,  6 Sep 2019 12:32:59 +0000
-Message-Id: <20190906123259.351-4-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190906123259.351-1-linux.amoon@gmail.com>
-References: <20190906123259.351-1-linux.amoon@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2404430AbfIFMyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 08:54:03 -0400
+Received: from alexa-out-blr-02.qualcomm.com ([103.229.18.198]:32287 "EHLO
+        alexa-out-blr.qualcomm.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1732774AbfIFMyC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 08:54:02 -0400
+X-Greylist: delayed 368 seconds by postgrey-1.27 at vger.kernel.org; Fri, 06 Sep 2019 08:54:00 EDT
+Received: from ironmsg02-blr.qualcomm.com ([10.86.208.131])
+  by alexa-out-blr.qualcomm.com with ESMTP/TLS/AES256-SHA; 06 Sep 2019 18:17:50 +0530
+Received: from c-ppvk-linux.qualcomm.com ([10.206.24.34])
+  by ironmsg02-blr.qualcomm.com with ESMTP; 06 Sep 2019 18:17:28 +0530
+Received: by c-ppvk-linux.qualcomm.com (Postfix, from userid 2304101)
+        id C1811473A; Fri,  6 Sep 2019 18:17:27 +0530 (IST)
+From:   Pradeep P V K <ppvk@codeaurora.org>
+To:     adrian.hunter@intel.com, ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     asutoshd@codeaurora.org, vbadigan@codeaurora.org,
+        stummala@codeaurora.org, sayalil@codeaurora.org,
+        rampraka@codeaurora.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Pradeep P V K <ppvk@codeaurora.org>
+Subject: [RFC 0/2] Add Support for SDHC bus bandwidth voting
+Date:   Fri,  6 Sep 2019 18:17:15 +0530
+Message-Id: <1567774037-2344-1-git-send-email-ppvk@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per schematics HDMI_P5V0 is supplied by P5V0 so add missing link.
+Vote for the MSM bus bandwidth required by SDHC driver
+based on the clock speed and bus width of the card. Otherwise,
+the system clocks may run at minimum clock speed and
+thus affecting the performance.
 
-Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
-Changes from previous
-Patchv1
-- As per Martin's suggestion added the HDMI_P5V0 fix regulator node.
-Patchv2
-- Added Matrin's and Neil's Reviewed-by.
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Adapt to the new ICB framework for bus bandwidth voting.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 5624ff034659..6ae9fafe4244 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -66,6 +66,15 @@
- 		regulator-always-on;
- 	};
- 
-+	hdmi_p5v0: regulator-hdmi_p5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "HDMI_P5V0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		/* AP2331SA-7 */
-+		vin-supply = <&p5v0>;
-+	};
-+
- 	tflash_vdd: regulator-tflash_vdd {
- 		compatible = "regulator-fixed";
- 
-@@ -220,6 +229,7 @@
- 	status = "okay";
- 	pinctrl-0 = <&hdmi_hpd_pins>, <&hdmi_i2c_pins>;
- 	pinctrl-names = "default";
-+	hdmi-supply = <&hdmi_p5v0>;
- };
- 
- &hdmi_tx_tmds_port {
+This requires the source/destination port ids.
+Also this requires a tuple of values.
+
+The tuple is for two different paths - from SDHC master
+to BIMC slave. The other is from CPU master to SDHC slave.
+This tuple consists of the average and peak bandwidth.
+
+This change is based on Georgi Djakov [RFC]
+(https://lkml.org/lkml/2018/10/11/499)
+
+Pradeep P V K (2):
+  mmc: sdhci-msm: Add support for bus bandwidth voting
+  dt-bindings: mmc: sdhci-msm: Add Bus BW vote supported strings
+
+ .../devicetree/bindings/mmc/sdhci-msm.txt          |  32 ++
+ drivers/mmc/host/sdhci-msm.c                       | 393 ++++++++++++++++++++-
+ 2 files changed, 422 insertions(+), 3 deletions(-)
+
 -- 
-2.23.0
+1.9.1
 
