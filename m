@@ -2,84 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 18C13AC18A
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 560DBAC192
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 22:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388142AbfIFUk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 16:40:27 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:33765 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733186AbfIFUk1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 16:40:27 -0400
-Received: by mail-pf1-f193.google.com with SMTP id q10so5368128pfl.0
-        for <devicetree@vger.kernel.org>; Fri, 06 Sep 2019 13:40:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:to:from:cc:subject:user-agent:date;
-        bh=swYhYhOrQirWfGuJUy4F9KFt5Sj0aaeo1T8GuTEGiz4=;
-        b=XNQZCDL1t7yoNNof+dtO6sm/fp+82jF9Dd+D/rQFYDJcBz/L2D1KGp8OUyEU0c8k6x
-         zUnkoplE8fEg02iv67iCnBKbzlwLAmDwz94XsxzsIa6ZQJY3xQWrtMdBLejK8GkIowW/
-         32OdRNGIdjSw6kW2kVX9y36xYaVXLtm9SM/yc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:to:from:cc:subject
-         :user-agent:date;
-        bh=swYhYhOrQirWfGuJUy4F9KFt5Sj0aaeo1T8GuTEGiz4=;
-        b=C8TRKM4zjCdVXwY8KCkLw70lNKlubNG48zm7vPecaENdYSfLx4wwYKa18nqoRZnMVK
-         X9ab1YEloCOzWdaaoxMXL1Wfcsn1ugNurXueW8DvHQcNcExNLJkrbhENzICOp47A6aLT
-         Wp2DqJg9vHX8RL7EDeA2nqjSvtKYJul6pgJ4JDWXTmg8dxLnc29Uiz4mQFC6RByLmidq
-         iJOp4CZEiYU4WNj2olcDWFgt78EG7AeXmfYjmsRAttDKG9rrur4Qn5189Z+LFoTIsfWU
-         075W0Qlh6MTQpZCY7p7mvzcN/H70FNWCbYY2AsihKrA5R/AoeSaxLaVD04BfLciSDS4R
-         i/mA==
-X-Gm-Message-State: APjAAAUC4O2edoHgbGgG6ufWHBjDtMTCU3RqukJJZDhWM2ykggX0yObR
-        SqsecHZ/cenUUfPHIxwvHW55vg==
-X-Google-Smtp-Source: APXvYqw1lGijoxS5N/LyWFNhxa8KAKbm6+WK8DHVTDzRzO5NwdkiAeKIWg805Ebt+vzKg3H6r2nBUQ==
-X-Received: by 2002:a17:90a:b383:: with SMTP id e3mr11866956pjr.85.1567802426141;
-        Fri, 06 Sep 2019 13:40:26 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id 2sm13930134pfa.43.2019.09.06.13.40.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Sep 2019 13:40:25 -0700 (PDT)
-Message-ID: <5d72c439.1c69fb81.484c6.fe28@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        id S2392098AbfIFUqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 16:46:07 -0400
+Received: from forward103p.mail.yandex.net ([77.88.28.106]:39010 "EHLO
+        forward103p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2392054AbfIFUqH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 16:46:07 -0400
+Received: from mxback17g.mail.yandex.net (mxback17g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:317])
+        by forward103p.mail.yandex.net (Yandex) with ESMTP id 9737B18C02F6;
+        Fri,  6 Sep 2019 23:46:04 +0300 (MSK)
+Received: from smtp1p.mail.yandex.net (smtp1p.mail.yandex.net [2a02:6b8:0:1472:2741:0:8b6:6])
+        by mxback17g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id 6grgB9ORQa-k3aeCSwI;
+        Fri, 06 Sep 2019 23:46:04 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cloudbear.ru; s=mail; t=1567802764;
+        bh=QX99Iwf1KlBdQ7cEwNw6HW39hp9YBOZaqqwXCeA5hBs=;
+        h=In-Reply-To:From:To:Subject:Cc:Date:References:Message-ID;
+        b=xHnF1vVH7OpnDfxv3nHX9bqZ1xwt5PZLN143I+I2/Hh9S1fTzhc1LbsR/SLHt07Ok
+         ytYluzaLnM+lton5QMiBO+eUjVokyiI/piFLbzPvKd3QAF1AoAaeLOVHfSDiaLJXRb
+         hMk2ZKAfy5tB0LgRWwZ6lepFZXrZGFKwqFMLxtcs=
+Authentication-Results: mxback17g.mail.yandex.net; dkim=pass header.i=@cloudbear.ru
+Received: by smtp1p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id Gm3J5T2Tcf-k240dJfn;
+        Fri, 06 Sep 2019 23:46:02 +0300
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client certificate not present)
+Subject: Re: [PATCH 1/2] net: phy: dp83867: Add documentation for SGMII mode
+ type
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     davem@davemloft.net, robh+dt@kernel.org, f.fainelli@gmail.com,
+        Mark Rutland <mark.rutland@arm.com>,
+        Trent Piepho <tpiepho@impinj.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1567700761-14195-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
+ <1567700761-14195-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
+ <20190906192919.GA2339@lunn.ch>
+From:   Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+Message-ID: <23dc47ea-209f-9f51-d4a5-161e62e2a69e@cloudbear.ru>
+Date:   Fri, 6 Sep 2019 23:45:56 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190906182530.GD11938@tuxbook-pro>
-References: <5d694878.1c69fb81.5f13b.ec4f@mx.google.com> <5d696ad2.1c69fb81.977ea.39e5@mx.google.com> <f3584f38-dabc-7e7a-d1cb-84c80ed26215@linaro.org> <20190903173924.GB9754@jackp-linux.qualcomm.com> <5d6edee5.1c69fb81.a3896.1d05@mx.google.com> <20190903233410.GQ26807@tuxbook-pro> <c9481b7d-4805-25c6-f40f-9cbfc40afc93@linaro.org> <20190905175802.GA19599@jackp-linux.qualcomm.com> <5d71edf5.1c69fb81.1f307.fdd6@mx.google.com> <20190906182530.GD11938@tuxbook-pro>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Jack Pham <jackp@codeaurora.org>,
-        Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>,
-        robh@kernel.org, andy.gross@linaro.org, shawn.guo@linaro.org,
-        gregkh@linuxfoundation.org, mark.rutland@arm.com, kishon@ti.com,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, khasim.mohammed@linaro.org
-Subject: Re: [PATCH v4 3/4] dt-bindings: Add Qualcomm USB SuperSpeed PHY bindings
-User-Agent: alot/0.8.1
-Date:   Fri, 06 Sep 2019 13:40:24 -0700
+In-Reply-To: <20190906192919.GA2339@lunn.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: ru
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Bjorn Andersson (2019-09-06 11:25:30)
-> On Thu 05 Sep 22:26 PDT 2019, Stephen Boyd wrote:
->=20
-> >=20
-> > Yes this looks like the approach that should be taken. One question
-> > though, is this a micro-b connector or a type-c connector on the board?
-> > I thought it was a type-c, so then this USB gpio based connection driver
-> > isn't an exact fit?
-> >=20
->=20
-> For this particular case it's a type c connector, but the port
-> controller is operated completely passively (and there's no PD or DP
-> involved), so the GPIO based approach seems like a good fit.
->=20
+Hi, Andrew.
 
-OK. Perhaps the binding needs an update then to have another compatible
-string indicating type-c connector that's not able to support PD or DP?
+I'm not familiar with generic PHY HW archs but suppose that it is 
+proprietary to TI.
 
+I'v never seen such feature so moved it in TI dts field.
+
+Vitaly.
+
+06.09.2019 22:29, Andrew Lunn wrote:
+> On Thu, Sep 05, 2019 at 07:26:00PM +0300, Vitaly Gaiduk wrote:
+>> Add documentation of ti,sgmii-type which can be used to select
+>> SGMII mode type (4 or 6-wire).
+> Hi Vitaly
+>
+> Is 4 vs 6-wire a generic SGMII property? Or is it proprietary to TI?
+>
+> I did a quick search and i could not find any other PHYs supporting
+> it.
+>
+> 	Andrew
