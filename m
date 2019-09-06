@@ -2,162 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A14CABA85
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 16:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 121ACABA9C
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 16:18:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729017AbfIFORC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 10:17:02 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:54202 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2394120AbfIFORC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 10:17:02 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x86EGv2l021991;
-        Fri, 6 Sep 2019 09:16:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1567779417;
-        bh=bZLbfyDYIbQSM/yox3v/jl434Vis5vyrJc6A2BOuhBo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=I3hUmqTWTT2+3Lcq+H5M1u5aluKQ3nndK2yTjytWxqAFPZk/uapYGeo/HeBQ3/Ir+
-         VMa8Nn9Mm3CrN6ZppvJM8Zwr+3NSeTuo4jpBH2qPiGjn4GXSr1hGFkXRKStJO5O19g
-         Y+aPtXFaOqYQW2nB3kVLYiOWlecwavFePZczCX2A=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86EGvZa127784;
-        Fri, 6 Sep 2019 09:16:57 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 6 Sep
- 2019 09:16:57 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 6 Sep 2019 09:16:57 -0500
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x86EGmaf042400;
-        Fri, 6 Sep 2019 09:16:55 -0500
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <vinod.koul@intel.com>, <robh+dt@kernel.org>
-CC:     <dmaengine@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <dan.j.williams@intel.com>, <devicetree@vger.kernel.org>
-Subject: [RFC 3/3] dmaengine: Support for requesting channels preferring DMA domain controller
-Date:   Fri, 6 Sep 2019 17:17:17 +0300
-Message-ID: <20190906141717.23859-4-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.23.0
-In-Reply-To: <20190906141717.23859-1-peter.ujfalusi@ti.com>
-References: <20190906141717.23859-1-peter.ujfalusi@ti.com>
+        id S2394311AbfIFORz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 10:17:55 -0400
+Received: from foss.arm.com ([217.140.110.172]:56966 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2392868AbfIFORy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 10:17:54 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BA26E28;
+        Fri,  6 Sep 2019 07:17:53 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7E5F33F718;
+        Fri,  6 Sep 2019 07:17:53 -0700 (PDT)
+Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
+        id 33851682951; Fri,  6 Sep 2019 15:17:52 +0100 (BST)
+Date:   Fri, 6 Sep 2019 15:17:52 +0100
+From:   Liviu Dudau <liviu.dudau@arm.com>
+To:     Wen He <wen.he_1@nxp.com>
+Cc:     linux-devel@linux.nxdi.nxp.com,
+        Brian Starkey <brian.starkey@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, leoyang.li@nxp.com
+Subject: Re: [v4 2/2] drm/arm/mali-dp: Add display QoS interface
+ configuration for Mali DP500
+Message-ID: <20190906141751.unabowxoglygg4kp@e110455-lin.cambridge.arm.com>
+References: <20190822021135.10288-1-wen.he_1@nxp.com>
+ <20190822021135.10288-2-wen.he_1@nxp.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20190822021135.10288-2-wen.he_1@nxp.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In case the channel is not requested via the slave API, use the
-of_find_dma_domain() to see if a system default DMA controller is
-specified.
+Hi Wen,
 
-Add new function which can be used by clients to request channels by mask
-from their DMA domain controller if specified.
+On Thu, Aug 22, 2019 at 10:11:35AM +0800, Wen He wrote:
+> Configure the display Quality of service (QoS) levels priority if the
+> optional property node "arm,malidp-aqros-value" is defined in DTS file.
+> 
+> QoS signaling using AQROS and AWQOS AXI interface signals, the AQROS is
+> driven from the "RQOS" register, so needed to program the RQOS register
+> to avoid the high resolutions flicker issue on the LS1028A platform.
+> 
+> Signed-off-by: Wen He <wen.he_1@nxp.com>
+> ---
+>  drivers/gpu/drm/arm/malidp_drv.c  |  6 ++++++
+>  drivers/gpu/drm/arm/malidp_hw.c   | 13 +++++++++++++
+>  drivers/gpu/drm/arm/malidp_hw.h   |  3 +++
+>  drivers/gpu/drm/arm/malidp_regs.h | 10 ++++++++++
+>  4 files changed, 32 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
+> index c27ff456eddc..80e8d15760ac 100644
+> --- a/drivers/gpu/drm/arm/malidp_drv.c
+> +++ b/drivers/gpu/drm/arm/malidp_drv.c
+> @@ -815,6 +815,12 @@ static int malidp_bind(struct device *dev)
+>  
+>  	malidp->core_id = version;
+>  
+> +	ret = of_property_read_u32(dev->of_node,
+> +					"arm,malidp-arqos-value",
+> +					&hwdev->arqos_value);
+> +	if (ret)
+> +		hwdev->arqos_value = 0x0;
+> +
+>  	/* set the number of lines used for output of RGB data */
+>  	ret = of_property_read_u8_array(dev->of_node,
+>  					"arm,malidp-output-port-lines",
+> diff --git a/drivers/gpu/drm/arm/malidp_hw.c b/drivers/gpu/drm/arm/malidp_hw.c
+> index 380be66d4c6e..f90a367a5bc9 100644
+> --- a/drivers/gpu/drm/arm/malidp_hw.c
+> +++ b/drivers/gpu/drm/arm/malidp_hw.c
+> @@ -374,6 +374,19 @@ static void malidp500_modeset(struct malidp_hw_device *hwdev, struct videomode *
+>  		malidp_hw_setbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
+>  	else
+>  		malidp_hw_clearbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
+> +
+> +	/*
+> +	 * Program the RQoS register to avoid high resolutions flicker
+> +	 * issue on the LS1028A.
+> +	 */
+> +	if (hwdev->arqos_value) {
+> +		val = hwdev->arqos_value;
+> +
+> +		if (mode->pixelclock > 148500000)
+> +			malidp_hw_setbits(hwdev, val, MALIDP500_RQOS_QUALITY);
+> +		else
+> +			malidp_hw_clearbits(hwdev, val, MALIDP500_RQOS_QUALITY);
+> +	}
 
-Client drivers can take advantage of the domain support by moving from
-dma_request_chan_by_mask() to dma_domain_request_chan_by_mask()
+This application of the arqos_value based on a pixel clock value bothers me,
+because it has two problems:
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
----
- drivers/dma/dmaengine.c   | 17 ++++++++++++-----
- include/linux/dmaengine.h |  9 ++++++---
- 2 files changed, 18 insertions(+), 8 deletions(-)
+1. Some other user of the Mali DP driver can't apply a system QoS value that they can
+now specify in the DT, unless the requested pixel clock is bigger than 145MHz. :(
 
-diff --git a/drivers/dma/dmaengine.c b/drivers/dma/dmaengine.c
-index 6baddf7dcbfd..087450eed68c 100644
---- a/drivers/dma/dmaengine.c
-+++ b/drivers/dma/dmaengine.c
-@@ -640,6 +640,10 @@ struct dma_chan *__dma_request_channel(const dma_cap_mask_t *mask,
- 	struct dma_device *device, *_d;
- 	struct dma_chan *chan = NULL;
- 
-+	/* If np is not specified, get the default DMA domain controller */
-+	if (!np)
-+		np = of_find_dma_domain(NULL);
+2. (A guess) The flickering issue shows up on a combination of pixelclock and
+resolution (i.e. it is a bandwidth problem), but you only address one of the
+variables. Haven't tested on the LS1028A yet, but do you know if (theoretically) it
+would have a flicker problem doing 640x480@200MHz without the QoS value?
+
+How about this instead?
+
+--8<---------------------------------------------------------------------
+diff --git a/drivers/gpu/drm/arm/malidp_hw.c b/drivers/gpu/drm/arm/malidp_hw.c
+index 380be66d4c6eb..e2f96dce13850 100644
+--- a/drivers/gpu/drm/arm/malidp_hw.c
++++ b/drivers/gpu/drm/arm/malidp_hw.c
+@@ -374,6 +374,22 @@ static void malidp500_modeset(struct malidp_hw_device *hwdev, struct videomode *
+ 		malidp_hw_setbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
+ 	else
+ 		malidp_hw_clearbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
 +
- 	/* Find a channel */
- 	mutex_lock(&dma_list_mutex);
- 	list_for_each_entry_safe(device, _d, &dma_device_list, global_node) {
-@@ -751,19 +755,22 @@ struct dma_chan *dma_request_slave_channel(struct device *dev,
- EXPORT_SYMBOL_GPL(dma_request_slave_channel);
- 
- /**
-- * dma_request_chan_by_mask - allocate a channel satisfying certain capabilities
-- * @mask: capabilities that the channel must satisfy
-+ * dma_domain_request_chan_by_mask - allocate a channel by mask from DMA domain
-+ * @dev:	pointer to client device structure
-+ * @mask:	capabilities that the channel must satisfy
-  *
-  * Returns pointer to appropriate DMA channel on success or an error pointer.
-  */
--struct dma_chan *dma_request_chan_by_mask(const dma_cap_mask_t *mask)
-+struct dma_chan *dma_domain_request_chan_by_mask(struct device *dev,
-+						 const dma_cap_mask_t *mask)
- {
- 	struct dma_chan *chan;
- 
- 	if (!mask)
- 		return ERR_PTR(-ENODEV);
- 
--	chan = __dma_request_channel(mask, NULL, NULL, NULL);
-+	chan = __dma_request_channel(mask, NULL, NULL,
-+				     of_find_dma_domain(dev->of_node));
- 	if (!chan) {
- 		mutex_lock(&dma_list_mutex);
- 		if (list_empty(&dma_device_list))
-@@ -775,7 +782,7 @@ struct dma_chan *dma_request_chan_by_mask(const dma_cap_mask_t *mask)
- 
- 	return chan;
++	/*
++	 * Program the RQoS register. LS1028A has an issue where screen will
++	 * flicker on pixelclocks higher than 148.5MHz but otherwise doesn't
++	 * want an RQoS value, so special case it for them.
++	 */
++	if (hwdev->arqos_value) {
++		val = hwdev->arqos_value;
++
++#ifdef MALIDP_LS1028A
++		if (mode->pixelclock <= 148500000)
++			malidp_hw_clearbits(hwdev, val, MALIDP500_RQOS_QUALITY);
++		else
++#endif
++			malidp_hw_setbits(hwdev, val, MALIDP500_RQOS_QUALITY);
++	}
  }
--EXPORT_SYMBOL_GPL(dma_request_chan_by_mask);
-+EXPORT_SYMBOL_GPL(dma_domain_request_chan_by_mask);
  
- void dma_release_channel(struct dma_chan *chan)
- {
-diff --git a/include/linux/dmaengine.h b/include/linux/dmaengine.h
-index 3b2e8e302f6c..9f94df81e83f 100644
---- a/include/linux/dmaengine.h
-+++ b/include/linux/dmaengine.h
-@@ -1438,7 +1438,8 @@ struct dma_chan *__dma_request_channel(const dma_cap_mask_t *mask,
- struct dma_chan *dma_request_slave_channel(struct device *dev, const char *name);
- 
- struct dma_chan *dma_request_chan(struct device *dev, const char *name);
--struct dma_chan *dma_request_chan_by_mask(const dma_cap_mask_t *mask);
-+struct dma_chan *dma_domain_request_chan_by_mask(struct device *dev,
-+						 const dma_cap_mask_t *mask);
- 
- void dma_release_channel(struct dma_chan *chan);
- int dma_get_slave_caps(struct dma_chan *chan, struct dma_slave_caps *caps);
-@@ -1475,8 +1476,8 @@ static inline struct dma_chan *dma_request_chan(struct device *dev,
- {
- 	return ERR_PTR(-ENODEV);
- }
--static inline struct dma_chan *dma_request_chan_by_mask(
--						const dma_cap_mask_t *mask)
-+static inline struct dma_chan *dma_domain_request_chan_by_mask(struct device *dev,
-+			const dma_cap_mask_t *mask)
- {
- 	return ERR_PTR(-ENODEV);
- }
-@@ -1537,6 +1538,8 @@ struct dma_chan *dma_get_any_slave_channel(struct dma_device *device);
- 	__dma_request_channel(&(mask), x, y, NULL)
- #define dma_request_slave_channel_compat(mask, x, y, dev, name) \
- 	__dma_request_slave_channel_compat(&(mask), x, y, dev, name)
-+#define dma_request_chan_by_mask(mask) \
-+	dma_domain_request_chan_by_mask(NULL, mask)
- 
- static inline struct dma_chan
- *__dma_request_slave_channel_compat(const dma_cap_mask_t *mask,
+ int malidp_format_get_bpp(u32 fmt)
+--8<---------------------------------------------------------------------
+
+And then you need to define a MALIDP_LS1028A in a vendor patch on top of the kernel
+source code.
+
+Best regards,
+Liviu
+
+
+>  }
+>  
+>  int malidp_format_get_bpp(u32 fmt)
+> diff --git a/drivers/gpu/drm/arm/malidp_hw.h b/drivers/gpu/drm/arm/malidp_hw.h
+> index 968a65eed371..e4c36bc90bda 100644
+> --- a/drivers/gpu/drm/arm/malidp_hw.h
+> +++ b/drivers/gpu/drm/arm/malidp_hw.h
+> @@ -251,6 +251,9 @@ struct malidp_hw_device {
+>  
+>  	/* size of memory used for rotating layers, up to two banks available */
+>  	u32 rotation_memory[2];
+> +
+> +	/* priority level of RQOS register used for driven the ARQOS signal */
+> +	u32 arqos_value;
+>  };
+>  
+>  static inline u32 malidp_hw_read(struct malidp_hw_device *hwdev, u32 reg)
+> diff --git a/drivers/gpu/drm/arm/malidp_regs.h b/drivers/gpu/drm/arm/malidp_regs.h
+> index 993031542fa1..514c50dcb74d 100644
+> --- a/drivers/gpu/drm/arm/malidp_regs.h
+> +++ b/drivers/gpu/drm/arm/malidp_regs.h
+> @@ -210,6 +210,16 @@
+>  #define MALIDP500_CONFIG_VALID		0x00f00
+>  #define MALIDP500_CONFIG_ID		0x00fd4
+>  
+> +/*
+> + * The quality of service (QoS) register on the DP500. RQOS register values
+> + * are driven by the ARQOS signal, using AXI transacations, dependent on the
+> + * FIFO input level.
+> + * The RQOS register can also set QoS levels for:
+> + *    - RED_ARQOS   @ A 4-bit signal value for close to underflow conditions
+> + *    - GREEN_ARQOS @ A 4-bit signal value for normal conditions
+> + */
+> +#define MALIDP500_RQOS_QUALITY          0x00500
+> +
+>  /* register offsets and bits specific to DP550/DP650 */
+>  #define MALIDP550_ADDR_SPACE_SIZE	0x10000
+>  #define MALIDP550_DE_CONTROL		0x00010
+> -- 
+> 2.17.1
+> 
+
 -- 
-Peter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
