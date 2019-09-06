@@ -2,72 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5055AB952
-	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 15:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 471A7AB97F
+	for <lists+devicetree@lfdr.de>; Fri,  6 Sep 2019 15:42:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405139AbfIFNeh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 09:34:37 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:45158 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405138AbfIFNeh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 09:34:37 -0400
-Received: by mail-wr1-f65.google.com with SMTP id l16so6570829wrv.12;
-        Fri, 06 Sep 2019 06:34:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=o+3PJsjCXNDOqrcoh72izbEswidXP+TmFzzy5ZV1VQY=;
-        b=IC7ehVCV7D7FEifGRfAf5mdGasd6YA8Zur/6SWPWfT+JgDmf5V23z6pfOhYMfotZZ/
-         K1dO5Vh66pauhjm7J7w+1ADVcxkCdZr7mJAZJ/PHNxB2Nf/dT/WPbfwPQ3j/BQJfEe8+
-         B/1Myb9ozH4Qnw3dzNZpEQYhoAA3ykZ+rKXgjsI35bBd+MhFVl6Wg0yBN9eMvPh2uqFe
-         MT4dUH3+uNkyIXiczuqVCVexDmR7d9Xl9pu0LG3D9GRoUmjV/gYrTQGB0j1UkSKLcYQ2
-         lNRcgO8Py6vNsJTYUcpZO0jNHjFthENB66aeygDOkyRXK6BNA/ax3gTtjsM3mmGpLSUv
-         CYBg==
-X-Gm-Message-State: APjAAAUlrnrqoyCLJz6hUjMXeqFZ4L+kRFT8ZleSBDMo/vAl1sRm0Dxc
-        BSzg64Of/tFVDFeKNmTfS8kpV1xgrA==
-X-Google-Smtp-Source: APXvYqxo3CRRMOOb/pXKjiUP/AwCwS3zo+BXCHzRBhu63dJyJ5P8p6QXvaweU7/OgZXu/lRKNT+2SQ==
-X-Received: by 2002:adf:e605:: with SMTP id p5mr7067657wrm.105.1567776875251;
-        Fri, 06 Sep 2019 06:34:35 -0700 (PDT)
-Received: from localhost ([212.187.182.162])
-        by smtp.gmail.com with ESMTPSA id n8sm8986763wma.7.2019.09.06.06.34.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 06 Sep 2019 06:34:34 -0700 (PDT)
-Date:   Fri, 6 Sep 2019 14:34:34 +0100
-From:   Rob Herring <robh@kernel.org>
-To:     jamestai.sky@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sugaya Taichi <sugaya.taichi@socionext.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Olof Johansson <olof@lixom.net>,
-        CY_Huang <cy.huang@realtek.com>,
-        Phinex Hung <phinex@realtek.com>,
-        "james.tai" <james.tai@realtek.com>
-Subject: Re: [PATCH] dt-bindings: cpu: Add a support cpu type for cortex-a55
-Message-ID: <20190906133434.GA3272@bogus>
-References: <20190905081435.1492-1-james.tai@realtek.com>
+        id S2388784AbfIFNmj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 09:42:39 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:33195 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2393354AbfIFNmj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 6 Sep 2019 09:42:39 -0400
+X-Originating-IP: 2.224.242.101
+Received: from uno.lan (2-224-242-101.ip172.fastwebnet.it [2.224.242.101])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 1650E40009;
+        Fri,  6 Sep 2019 13:42:35 +0000 (UTC)
+From:   Jacopo Mondi <jacopo+renesas@jmondi.org>
+To:     laurent.pinchart@ideasonboard.com,
+        kieran.bingham+renesas@ideasonboard.com, geert@linux-m68k.org,
+        horms@verge.net.au, uli@fpond.eu,
+        VenkataRajesh.Kalakodima@in.bosch.com
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Subject: [PATCH v4 1/9] dt-bindings: display: renesas,cmm: Add R-Car CMM documentation
+Date:   Fri,  6 Sep 2019 15:43:33 +0200
+Message-Id: <20190906134341.9879-2-jacopo+renesas@jmondi.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20190906134341.9879-1-jacopo+renesas@jmondi.org>
+References: <20190906134341.9879-1-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190905081435.1492-1-james.tai@realtek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  5 Sep 2019 16:14:35 +0800, jamestai.sky@gmail.com wrote:
-> From: "james.tai" <james.tai@realtek.com>
-> 
-> Add arm cpu type cortex-a55.
-> 
-> Signed-off-by: james.tai <james.tai@realtek.com>
-> ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+Add device tree bindings documentation for the Renesas R-Car Display
+Unit Color Management Module.
 
-Applied, thanks.
+CMM is the image enhancement module available on each R-Car DU video
+channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
 
-Rob
+Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+---
+ .../bindings/display/renesas,cmm.yaml         | 64 +++++++++++++++++++
+ 1 file changed, 64 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/renesas,cmm.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/renesas,cmm.yaml b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
+new file mode 100644
+index 000000000000..9e5922689cd7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
+@@ -0,0 +1,64 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/renesas,cmm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas R-Car Color Management Module (CMM)
++
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
++  - Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
++  - Jacopo Mondi <jacopo+renesas@jmondi.org>
++
++description: |+
++  Renesas R-Car color management module connected to R-Car DU video channels.
++  It provides image enhancement functions such as 1-D look-up tables (LUT),
++  3-D look-up tables (CMU), 1D-histogram generation (HGO), and color
++  space conversion (CSC).
++
++properties:
++  compatible:
++    items:
++      - enum:
++        - renesas,r8a7795-cmm
++        - renesas,r8a7796-cmm
++        - renesas,r8a77965-cmm
++        - renesas,r8a77990-cmm
++        - renesas,r8a77995-cmm
++      - enum:
++        - renesas,rcar-gen3-cmm
++        - renesas,rcar-gen2-cmm
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - resets
++  - power-domains
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
++    #include <dt-bindings/power/r8a7796-sysc.h>
++
++    cmm0: cmm@fea40000 {
++         compatible = "renesas,r8a7796-cmm";
++         reg = <0 0xfea40000 0 0x1000>;
++         power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
++         clocks = <&cpg CPG_MOD 711>;
++         resets = <&cpg 711>;
++    };
+--
+2.23.0
+
