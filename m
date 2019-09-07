@@ -2,93 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C129EAC937
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 22:37:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 711CEAC948
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 22:48:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390111AbfIGUhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Sep 2019 16:37:43 -0400
-Received: from userp2120.oracle.com ([156.151.31.85]:52896 "EHLO
-        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727309AbfIGUhn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Sep 2019 16:37:43 -0400
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-        by userp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x87KZchF144523;
-        Sat, 7 Sep 2019 20:37:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=to : cc : subject :
- from : references : date : in-reply-to : message-id : mime-version :
- content-type; s=corp-2019-08-05;
- bh=YjoYw3aQzOWr1pqzH2/6HQy6mfi6IVme6e+omNqyU9o=;
- b=AncImTwiwXWZjexz9fR5bTtFlcO7TtfBrY88sPYHoQr9g5MrUMUrbB8E6fCFVU4dMXGa
- ViSD/TLp2DGr6QGRKnY/ff/gpI1so8Use74WTo6fTXlMoG0gqqlgZtd6DdzNVy6nceYh
- VtpZr5SAefZTGsKOmRT5nTLmtfyJHvmlPZ3o/hhvK2Rb3vqs1+8TFISeq0c8jALN7vEZ
- /Puxw7egmyjeHvgXAbohxrjwaNLA4uTPw5cvMZcl0njqcThzXk1GhDhdHUQ6vG73hlsl
- aBtqKKCneqH3yE93V7bgvDqGXdYlSsnTksx6J5H4zA5Blo9GEfsitVMK6jDLmsIYdqQ4 ow== 
-Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
-        by userp2120.oracle.com with ESMTP id 2uvkp3r07n-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Sat, 07 Sep 2019 20:37:27 +0000
-Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
-        by userp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x87KXdk0136776;
-        Sat, 7 Sep 2019 20:37:27 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by userp3020.oracle.com with ESMTP id 2uv3wjmjra-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Sat, 07 Sep 2019 20:37:27 +0000
-Received: from abhmp0007.oracle.com (abhmp0007.oracle.com [141.146.116.13])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x87KbPb9011835;
-        Sat, 7 Sep 2019 20:37:25 GMT
-Received: from ca-mkp.ca.oracle.com (/10.159.214.123)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Sat, 07 Sep 2019 13:37:24 -0700
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S2404588AbfIGUsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Sep 2019 16:48:00 -0400
+Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:58511 "EHLO
+        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727309AbfIGUsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Sep 2019 16:48:00 -0400
+Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
+        id 5D3F9802B9; Sat,  7 Sep 2019 22:47:39 +0200 (CEST)
+Date:   Sat, 7 Sep 2019 22:47:52 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Lubomir Rintel <lkundrak@v3.sk>, Olof Johansson <olof@lixom.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andy Gross <agross@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Bean Huo <beanhuo@micron.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-scsi@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v4 0/3] Qualcomm UFS device reset support
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-Organization: Oracle Corporation
-References: <20190828191756.24312-1-bjorn.andersson@linaro.org>
-Date:   Sat, 07 Sep 2019 16:37:21 -0400
-In-Reply-To: <20190828191756.24312-1-bjorn.andersson@linaro.org> (Bjorn
-        Andersson's message of "Wed, 28 Aug 2019 12:17:53 -0700")
-Message-ID: <yq1d0gbkflq.fsf@oracle.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1.92 (gnu/linux)
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 0/6] ARM: dts: mmp2: devicetree updates
+Message-ID: <20190907204752.GA7919@amd>
+References: <20190828072629.285760-1-lkundrak@v3.sk>
+ <20190907194040.GB25459@amd>
+ <CAK8P3a0nNEoy31oxFL11Y2VHw-O=m8e8JuuQk+FjiPh94GikoA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9373 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=872
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1909070224
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9373 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=934 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1906280000
- definitions=main-1909070224
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="a8Wt8u1KmwUX3Y2C"
+Content-Disposition: inline
+In-Reply-To: <CAK8P3a0nNEoy31oxFL11Y2VHw-O=m8e8JuuQk+FjiPh94GikoA@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Bjorn,
+--a8Wt8u1KmwUX3Y2C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> This series adds a new ufs vops to allow platform specific methods for
-> resetting an attached UFS device, then implements this for the
-> Qualcomm driver.  This reset seems to be necessary for the majority of
-> Dragonboard845c devices.
+On Sat 2019-09-07 21:57:42, Arnd Bergmann wrote:
+> On Sat, Sep 7, 2019 at 9:40 PM Pavel Machek <pavel@ucw.cz> wrote:
+> >
+> >
+> > > Here's a couple of updates for the MMP2 SoC devicetree files.
+> > > I'm wondering if they could be applied to the armsoc tree?
+> > >
+> > > Compared to previous submission, the only change is the addition of
+> > > Acks from Pavel.
+> >
+> > Any news here? Having up-to-date dts is kind-of useful....
+>=20
+> Thanks for adding me to Cc on your reply. I'm doing the merged for 5.4
+> and had not noticed this series earlier (I found the mmp3 series by
+> accident, but that one looked like it was not meant as a submission
+> for inclusion yet).
+>=20
+> I've added the six patches to the arm/late branch in the soc tree
+> now, they will be in 5.4.
 
-Applied to 5.4/scsi-queue, thanks!
+That was quick, thank you!
+								Pavel
+							=09
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
 
--- 
-Martin K. Petersen	Oracle Linux Engineering
+--a8Wt8u1KmwUX3Y2C
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl10F3gACgkQMOfwapXb+vL0iwCeKnLVYDl45xCxTQmr6GfIec3S
+/nMAoLneu6hLNmE6/QadQfhQkaNlwULX
+=8gHX
+-----END PGP SIGNATURE-----
+
+--a8Wt8u1KmwUX3Y2C--
