@@ -2,89 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C423AAC5CF
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 11:22:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46D80AC5DF
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 11:27:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729022AbfIGJWR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 7 Sep 2019 05:22:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60834 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727884AbfIGJWR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 7 Sep 2019 05:22:17 -0400
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C0C8421BE5;
-        Sat,  7 Sep 2019 09:22:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567848137;
-        bh=fBxqwyXRgG0wRFfx6cCxY4NmxXwIILcA5XjIypH7uu0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=zlt5xhpjzApIWNI0gaW5dXnJE36f4x6ZxAlNBjEMz8N0zlqPrJsWJNfiU3dVG7nzu
-         9SfXcDgvJMKWRPH5MJCJQGIakV8asCCscRsV7JOKfUpMlTXiIel38w92mwwilaeagH
-         WA17Qenz/0v1sTheTNRpTvsItNdVbT5GsnEeSsV8=
-Received: by mail-lf1-f48.google.com with SMTP id u29so6928258lfk.7;
-        Sat, 07 Sep 2019 02:22:16 -0700 (PDT)
-X-Gm-Message-State: APjAAAWpij9d2Nastt7bu93WMRRO4PUrdsYQzpXYOdyCLmztJfpxTVT0
-        uegrLfZUueoAav5Y4+IGw4MpHZ3ZwJ+G0+dx4Zs=
-X-Google-Smtp-Source: APXvYqzmcslfK41HV4+HPxQdPrd5x829CWIRSwqYXaJYvVNobPvFr0tb37FSkJUy6tzZ75dlNx+LflPaZcO8QXTsVY4=
-X-Received: by 2002:a19:7d55:: with SMTP id y82mr9373225lfc.106.1567848134943;
- Sat, 07 Sep 2019 02:22:14 -0700 (PDT)
+        id S1727171AbfIGJ1p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 7 Sep 2019 05:27:45 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39590 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726295AbfIGJ1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 7 Sep 2019 05:27:44 -0400
+X-UUID: 03ba12ee221e4c589f9d6aef36644b1d-20190907
+X-UUID: 03ba12ee221e4c589f9d6aef36644b1d-20190907
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1797095194; Sat, 07 Sep 2019 17:27:33 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Sat, 7 Sep 2019 17:27:27 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 7 Sep 2019 17:27:26 +0800
+From:   <dongchun.zhu@mediatek.com>
+To:     <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [V4, 0/2] media: i2c: Add support for OV02A10 sensor
+Date:   Sat, 7 Sep 2019 17:27:26 +0800
+Message-ID: <20190907092728.23897-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
 MIME-Version: 1.0
-References: <20190823145356.6341-1-krzk@kernel.org> <20190823145356.6341-5-krzk@kernel.org>
- <CAL_JsqJybT41cEqiTriLMywUQj1BtAG_9muJ4=84OkF23y53CA@mail.gmail.com>
- <CAJKOXPc0SY_8BHMsWLN=1M3VQh41+bdBiH21L4KQPA+iLPYy+A@mail.gmail.com>
- <CAL_JsqKdsABWK9Og_f38T9zf3SCFFdhU8WOJ4uJjREantoYvYQ@mail.gmail.com>
- <CAJKOXPfnvu=c5f6AcOSiQ_9E-C2fMf9qbEpy1Tr3QvH8LgAtpQ@mail.gmail.com> <CAL_JsqKyj3s-Mn3q_Lna0w38K3DJzvKN5d72WHzqt4CUVf5X4Q@mail.gmail.com>
-In-Reply-To: <CAL_JsqKyj3s-Mn3q_Lna0w38K3DJzvKN5d72WHzqt4CUVf5X4Q@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Sat, 7 Sep 2019 11:22:03 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfg4p1CAbXeF1++b7+OaR99RdeJGrkbusisNKNywoNHHg@mail.gmail.com>
-Message-ID: <CAJKOXPfg4p1CAbXeF1++b7+OaR99RdeJGrkbusisNKNywoNHHg@mail.gmail.com>
-Subject: Re: [RFC 5/9] dt-bindings: arm: samsung: Convert Exynos PMU bindings
- to json-schema
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        =?UTF-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>, notify@kernel.org,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Tomasz Figa <tomasz.figa@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 6 Sep 2019 at 17:49, Rob Herring <robh+dt@kernel.org> wrote:
-> >
-> > The bindings never required any specific ordering. Also the driver
-> > just go through all indices and parses them.
-> >
-> > Your second syntax fails:
-> > Documentation/devicetree/bindings/arm/samsung/pmu.yaml:
-> > properties:clock-names:items: {'enum': ['clkout0', 'clkout1',
-> > 'clkout2', 'clkout3', 'clkout4', 'clkout5', 'clkout6', 'clkout7',
-> > 'clkout8', 'clkout9', 'clkout10', 'clkout11', 'clkout12', 'clkout13',
-> > 'clkout14', 'clkout15', 'clkout16']} is not of type 'array'
->
-> Update dt-schema and try again. It should be allowed now. You'll also
-> need to define minItems and maxItems though.
+From: Dongchun Zhu <dongchun.zhu@mediatek.com>
 
-Thanks, works!
+Hello,
 
-Best regards,
-Krzysztof
+This patch adds driver and bindings for Omnivision's OV02A10 2 megapixel CMOS 1/5" sensor,
+which has a single MIPI lane interface and output format of 10-bit Raw.
+
+The driver is implemented wth V4L2 framework.
+1. Async registered as a V4L2 I2C sub-device.
+2. A media entity that can provide several source pads and sink pads to link with other device like Seninf, ISP one after another
+   to create a default overall camera topology, image frame or meta-data from sensor can flow through particular path to output
+   preview or capture image or 3A info.
+
+Changes of v4 mainly address the comments from Sakari, Rob, Tomasz.
+ - Remove data-lanes property in DT
+ - Add link frequencies in DT to match the expect value that driver requires
+ - Omit open callback as int_cfg is implemented
+ - Use i2c_smbus_write_byte_data/i2c_smbus_read_byte_data instead of customed APIs
+ - Use do_div to calculate pixel rate
+ - Use usleep_range directly for shoter sleep case
+ - Re-adjust sensor power up/off sequence
+ - Re-set pd/rst GPIO inverter property according to the datasheet
+ - Refine set_exposure/set_gain/set_vblanking/set_test_pattern functions
+ - Fix other reviewed issues in v3
+
+Changes of v3 are mainly addressing comments from Rob, Sakari, Bingbu.
+ - Fix coding style errors in dt-bindings
+ - Use macro flag to describle basic line 1224 when updating v-blanking
+ - Remove unnecessary debug log in driver
+
+Mainly changes of v2 are addressing the comments from Nicolas, Bingbu, Sakari, Rob,
+including,
+ - Put dt binding before driver in series
+ - Add MAINTAINERS entries
+ - Squash the MAINTAINERS entry and Kconfig to driver patch
+ - Add rotation support for driver
+ - Fix other reviewed issues in v1
+
+Dongchun Zhu (2):
+  media: dt-bindings: media: i2c: Add bindings for OV02A10
+  media: i2c: Add Omnivision OV02A10 camera sensor driver
+
+ .../devicetree/bindings/media/i2c/ov02a10.txt      |   54 +
+ MAINTAINERS                                        |    8 +
+ drivers/media/i2c/Kconfig                          |   11 +
+ drivers/media/i2c/Makefile                         |    1 +
+ drivers/media/i2c/ov02a10.c                        | 1062 ++++++++++++++++++++
+ 5 files changed, 1136 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov02a10.txt
+ create mode 100644 drivers/media/i2c/ov02a10.c
+
+-- 
+2.9.2
+
