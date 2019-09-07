@@ -2,73 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA18EAC35F
-	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 01:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40C47AC3FF
+	for <lists+devicetree@lfdr.de>; Sat,  7 Sep 2019 03:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406177AbfIFXsT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 6 Sep 2019 19:48:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42622 "EHLO mail.kernel.org"
+        id S2406418AbfIGBwT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 6 Sep 2019 21:52:19 -0400
+Received: from mga18.intel.com ([134.134.136.126]:31367 "EHLO mga18.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405441AbfIFXsT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 6 Sep 2019 19:48:19 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EC0DA20842;
-        Fri,  6 Sep 2019 23:48:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567813699;
-        bh=NSLywlCOcgcWPM52MbfyuhWTAOW2/4du9FX0KFp7RSI=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=KwtHGJhGEM4BfLeqXjbsZT07sFB7biEeHKuQ9ohRGYNIP+wMSmwfyp48kbdV4SUug
-         9M91UWABZNoGL2ftCmjs/VA0iuLyajB//EFiauZlmyBqMSnWqUAU5XYGAqo9yY+2fj
-         yelyGsFZ9lWHC9sKK4riqUF9SI/AwZEQtDSQvrHU=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190830220743.439670-12-lkundrak@v3.sk>
-References: <20190830220743.439670-1-lkundrak@v3.sk> <20190830220743.439670-12-lkundrak@v3.sk>
-Cc:     "Cc : Rob Herring" <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S2406415AbfIGBwT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 6 Sep 2019 21:52:19 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 06 Sep 2019 18:52:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,474,1559545200"; 
+   d="scan'208";a="213345264"
+Received: from dph9ls1.fm.intel.com (HELO dph9ls1) ([10.80.209.174])
+  by fmsmga002.fm.intel.com with ESMTP; 06 Sep 2019 18:52:18 -0700
+Date:   Fri, 6 Sep 2019 18:48:40 -0700
+From:   Ivan Gorinov <ivan.gorinov@intel.com>
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "Chuan Hua, Lei" <chuanhua.lei@linux.intel.com>,
+        Dilip Kota <eswara.kota@linux.intel.com>, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
+        robh@kernel.org, linux-pci@vger.kernel.org, hch@infradead.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        Lubomir Rintel <lkundrak@v3.sk>
-To:     "To : Olof Johansson" <olof@lixom.net>,
-        Lubomir Rintel <lkundrak@v3.sk>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v3 11/16] ARM: mmp: add support for MMP3 SoC
-User-Agent: alot/0.8.1
-Date:   Fri, 06 Sep 2019 16:48:18 -0700
-Message-Id: <20190906234818.EC0DA20842@mail.kernel.org>
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: intel: Add YAML schemas for the
+ PCIe RC controller
+Message-ID: <20190907014840.GA45371@dph9ls1>
+References: <cover.1567585181.git.eswara.kota@linux.intel.com>
+ <fe9549470bc06ea0d0dfc80f46a579baa49b911a.1567585181.git.eswara.kota@linux.intel.com>
+ <CAFBinCC5SH5OSUqOkLQhE2o7g5OhSuB_PBjsv93U2P=FNS5oPw@mail.gmail.com>
+ <ce4e04ee-9a8f-fbe1-0133-4a18c92dc136@linux.intel.com>
+ <CAFBinCABoe89Z9CiG=3Bz6+JoRCYcpxWJ6jzEqMo16SCCoXPmQ@mail.gmail.com>
+ <20190906174815.GZ2680@smile.fi.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190906174815.GZ2680@smile.fi.intel.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Lubomir Rintel (2019-08-30 15:07:38)
-> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-> index 801fa1cd03217..8bb2ac83a1fcc 100644
-> --- a/drivers/clk/Kconfig
-> +++ b/drivers/clk/Kconfig
-> @@ -301,6 +301,11 @@ config COMMON_CLK_STM32H7
->         ---help---
->           Support for stm32h7 SoC family clocks
-> =20
-> +config COMMON_CLK_MMP2
-> +       def_bool COMMON_CLK && (MACH_MMP2_DT || MACH_MMP3_DT)
+On Fri, Sep 06, 2019 at 08:48:15PM +0300, Andy Shevchenko wrote:
+> On Fri, Sep 06, 2019 at 07:17:11PM +0200, Martin Blumenstingl wrote:
+> > On Fri, Sep 6, 2019 at 5:22 AM Chuan Hua, Lei
+> > <chuanhua.lei@linux.intel.com> wrote:
+> 
+> > >      type_index = fwspec->param[1]; // index.
+> > >      if (type_index >= ARRAY_SIZE(of_ioapic_type))
+> > >          return -EINVAL;
+> > >
+> > > I would not see this definition is user-friendly. But it is how x86
+> > > handles at the moment.
+> > thank you for explaining this - I had no idea x86 is different from
+> > all other platforms I know
+> > the only upstream x86 .dts I could find
+> > (arch/x86/platform/ce4100/falconfalls.dts) also uses the magic x86
+> > numbers
+> > so I'm fine with this until someone else knows a better solution
+> 
+> Ivan, Cc'ed, had done few amendments to x86 DT support. Perhaps he may add
+> something to the discussion.
 
-Does it need to depend on COMMON_CLK? I thought that by being part of
-the menuconfig (even if it's a hidden symbol) mean that it wouldn't be
-evaulated unless the COMMON_CLK define is =3DY.
+I just fixed broken interrupt support in x86-specific DT implementation.
 
-> +       help
-> +         Support for Marvell MMP2 and MMP3 SoC clocks
-> +
->  config COMMON_CLK_BD718XX
->         tristate "Clock driver for ROHM BD718x7 PMIC"
->         depends on MFD_ROHM_BD718XX || MFD_ROHM_BD70528
+In CE4100, PCI devices are directly connected to I/O APIC input lines.
+Conventional PCI devices other than bridges don't need to be described in
+Device Tree or if they use standard PCI routing.
+Mapping INTA .. INTD pins to inputs of the bridge's interrupt parent depends
+on device number on the bus. In Device Tree, this mapping is described by
+"interrupt-map-mask" and "interrupt-map" properties of the bridge device node.
+
+Possible interrupt types described by Open Firmware Recomended Practice:
+
+    0 - Rising Edge
+    1 - Level triggered, active low
+
