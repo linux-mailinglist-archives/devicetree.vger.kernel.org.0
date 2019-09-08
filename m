@@ -2,217 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62C42AD07D
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 21:41:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FF01AD07F
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 21:42:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728197AbfIHTlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Sep 2019 15:41:09 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:42452 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726080AbfIHTlJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Sep 2019 15:41:09 -0400
-Received: from [37.161.91.50] (port=52536 helo=[192.168.42.162])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1i733V-006HQN-QX; Sun, 08 Sep 2019 21:41:02 +0200
-Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
-To:     Peter Rosin <peda@axentia.se>, jacopo mondi <jacopo@jmondi.org>
-Cc:     "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Vladimir Zapolskiy <vz@mleia.com>
-References: <20190723203723.11730-1-luca@lucaceresoli.net>
- <20190723203723.11730-3-luca@lucaceresoli.net>
- <20190901143101.humomdehy5ee73sk@vino>
- <20bac324-c4d3-270c-5175-0a7f261fd760@lucaceresoli.net>
- <51dede3c-545b-b66a-5e89-9e889d784eb9@axentia.se>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <2d770b36-9521-820d-726a-bc9b52048ef8@lucaceresoli.net>
-Date:   Sun, 8 Sep 2019 21:40:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728810AbfIHTmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Sep 2019 15:42:46 -0400
+Received: from muru.com ([72.249.23.125]:60308 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728743AbfIHTmq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Sep 2019 15:42:46 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 07E4C809B;
+        Sun,  8 Sep 2019 19:43:14 +0000 (UTC)
+Date:   Sun, 8 Sep 2019 12:42:41 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-omap@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] clk: ti: clkctrl: Fix hidden dependency to node name
+ with reg-names
+Message-ID: <20190908194241.GL52127@atomide.com>
+References: <20190905215532.8357-1-tony@atomide.com>
+ <20190907035518.EB40C208C3@mail.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <51dede3c-545b-b66a-5e89-9e889d784eb9@axentia.se>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190907035518.EB40C208C3@mail.kernel.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+* Stephen Boyd <sboyd@kernel.org> [190907 03:55]:
+> Quoting Tony Lindgren (2019-09-05 14:55:32)
+> > We currently have a hidden dependency to the device tree node name for
+> > the clkctrl clocks. Instead of using standard node name like "clock", we
+> > must use "l4-per-clkctrl" naming so the clock driver can find the
+> 
+> The node name is "clk" though.
 
-On 04/09/19 10:09, Peter Rosin wrote:> Hi!
->
-> [ Sorry about my absence. I've been meaning to comment on this series
->   for a long time, but work and family keep interfering... ]
+Yes for some it's "clk" and for some it's "l4-per-clkctrl".
 
-No problem, thanks for your comments. See below my reply.
+In general, the clock node name should be "clock@foo", rather than
+"clk@foo", right?
 
->
-> On 2019-09-03 09:31, Luca Ceresoli wrote:
->> Hi Jacopo,
->>
->> thanks for your feedback.
->>
->> On 01/09/19 16:31, jacopo mondi wrote:
->>> Hi Luca,
->>>    thanks for keep pushing this series! I hope we can use part of this
->>> for the (long time) on-going GMSL work...
->>>
->>> I hope you will be patient enough to provide (another :) overview
->>> of this work during the BoF Wolfram has organized at LPC for the next
->>> week.
->>
->> Sure!
->>
->>> In the meantime I would have some comments after having a read at the
->>> series and trying to apply its concept to GMSL
->>>
->>> On Tue, Jul 23, 2019 at 10:37:19PM +0200, Luca Ceresoli wrote:
->>>> An ATR is a device that looks similar to an i2c-mux: it has an I2C
->>>> slave "upstream" port and N master "downstream" ports, and forwards
->>>> transactions from upstream to the appropriate downstream port. But is
->>>> is different in that the forwarded transaction has a different slave
->>>> address. The address used on the upstream bus is called the "alias"
->>>> and is (potentially) different from the physical slave address of the
->>>> downstream chip.
->>>>
->>>> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
->>>> implementing ATR features in a device driver. The helper takes care or
->>>> adapter creation/destruction and translates addresses at each
-transaction.
->>>>
->>>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->>>>
->>>> ---
->>>>
->>>> Changes RFCv1 -> RFCv2:
->>>>
->>>>  RFCv1 was implemented inside i2c-mux.c and added yet more complexity
->>>>  there. RFCv2 creates a new file on its own, i2c-atr.c. Since many ATR
->>>>  features are not in a MUX and vice versa, the overlapping is low.
-This was
->>>>  almost a complete rewrite, but for the records here are the main
->>>>  differences from the old implementation:
->>>
->>> I'm not an i2c expert, but this looks very similar to me to an
->>> augmented i2c-mux with the following additional features:
->>> - automatic selection of the i2c address to use for the children
->>>   behind the mux
->>> - automatic translation of the addresses the logical aliases to
->>>   the actual physical addresses of the slaves (with the help of the
->>>   deserializer address translation feature in this case).
->>
->> A notable difference in the hardware is that a mux needs an explicit
->> procedure to select a port. That's why the select() op is mandatory for
->> muxes. The ATR, at least in the DS90UB9xx case, selects the port
->> automatically based on the slave address. So I added an optional
->> select() op in the atr, but I suspect it's useless for "real" ATRs.
->>
->> More differences derive from how Linux implements muxes. The i2c-mux
->> code has several flags for different locking schemes, and it has a
->
-> It's two locking schemes if you count them carefully, so several is
-> a bit of an exaggeration. But agreed, two is more than I prefer.
+> > associated clock domain. Further, if "clk" is specified for a clock node
+> > name, the driver sets TI_CLK_CLKCTRL_COMPAT flag that uses different
+> > logic with earlier naming for the clock node name.
+> > 
+> > If the clock node naming dependency is not understood, the related
+> > clockdomain is not found, or a wrong one can get used if a clock manager
+> > instance has multiple domains.
+> > 
+> > As each clkctrl instance represents a single clock domain with it's
+> > reg property describing the clocks available in that clock domain,
+> > we can simply use "reg-names" property for the clock domain.
+> > 
+> > This simplifies things and removes the hidden dependency to the node
+> > name. And then later on, we should be able to drop the related code
+> > for parsing the node names.
+> > 
+> > Let's also update the binding to use standard "clock" node naming
+> > instead of "clk".
+> > 
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Signed-off-by: Tony Lindgren <tony@atomide.com>
+> > ---
+> >  Documentation/devicetree/bindings/clock/ti-clkctrl.txt |  6 +++++-
+> >  drivers/clk/ti/clkctrl.c                               | 10 ++++++++--
+> >  2 files changed, 13 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/ti-clkctrl.txt b/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+> > --- a/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+> > +++ b/Documentation/devicetree/bindings/clock/ti-clkctrl.txt
+> > @@ -20,15 +20,19 @@ Required properties :
+> >  - #clock-cells : shall contain 2 with the first entry being the instance
+> >                  offset from the clock domain base and the second being the
+> >                  clock index
+> > +- reg : clock registers
+> > +- reg-names : clock register names for the clock, should be same as the
+> > +             domain name
+> 
+> Is this necessary? I'd rather see that the names of the clks don't
+> actually matter by means of connecting the clk tree through the "clocks"
+> property when the parent clks are provided by external nodes and through
+> direct pointers when they're within a controller. If that works then it
+> should be possible to ignore this name in general?
 
-Right, sorry for the exaggeration. Actually the most annoying part of
-the mux code to me was not quite the two locking schemes, but rather the
-DT parsing, which had some backward-compatibility to maintain.
+This is not for names of the clocks :) This is to name the clock
+provider register range. The name of the register range is the
+same as the clockdomain that this range of clocks belongs to.
+This property is used by the clock provider on init to initialize the
+clock provider, not when a clock is requested.
 
->> fairly complex DT parsing scheme. These are mostly a historical burden.
->> Adding the ATR features to i2c-mux.c was very tricky and error-prone due
->> to all of this code, that's why I have moved ATR to its own file in
-RFCv2.
->
-> Anyway, the locking in i2c-mux may be complex, but it does solve real
-> problems. The way I read this series, these problems are not dealt with
-> and therefore the ATR code will not function in all surroundings.
->
-> Some things to think about:
-> - What happens when you put a mux behind an ATR?
-> - What happens when you put an ATR behind a mux?
-> - What happens when you put an ATR between two muxes?
-> - Does it make a difference if the mux is parent-locked or mux-locked?
-> - What happens if client drivers lock the adapter in order to silence the
->   bus for some reason or to keep two xfers together or something, and
->   then do unlocked xfers?
-> - Can you put an ATR behind another ATR?
-> etc
+In this case a clkctrl clock provider instance has one to some tens
+clocks where they all belong to the same domain. If some similar clock
+would have multiple domains, then it would simply just have multiple
+reg ranges and multiple reg-names properties.
 
-I still have to examine in depth all of the problems in the i2c-mux
-documented in Documentation/i2c/i2c-topology (thanks for having written
-those docs!), but at first sight it looks like the ATR is not going to
-introduce big problems because of how it works.
+Or do you have some better ideas on how to name a clock controller
+in the device tree?
 
-An I2C mux works by electrically connecting the parent bus to one of the
-child busses. But this implies any transactions happening on the parent
-bus can leak through the mux and cause the problems you documented. The
-Maxim GMSL serdes chips work de facto in the same way, even though there
-is no simple electrical connection between the busses.
+Regards,
 
-An ATR, at least the one in the TI serdes chips, uses a store-and-forward
-technique:
+Tony
 
- 1. when a transaction starts on the parent bus, it waits for the first
-    8 bits
- 2. it checks if the slave address matches one of the aliases assigned
-    to the remote chips; if it doesn't, it does not drive the child bus
-    wires at all and ignores the rest of the transaction
- 3. if there's a match it stretches the parent bus SCL and issues a
-    {start + chip address + R/W} on the child bus, but replacing the
-    alias with the physical chip address
- 4. it then waits for an the ack on the child bus, then issues an ack on
-    the parent bus
- 5. for write transactions, it repeats until a stop condition or an
-    error is seen: wait for an entire byte on parent bus, clock
-    stretching on the parent bus, send the byte on the child bus, wait
-    for ack on the child bus, send ack on the parent bus
- 6. for read transactions it does the same as point 5 but with "parent
-    bus" and "child bus" swapped
-
-This technique does not leak any transaction to a child bus unless it's
-directed to it. So it should have many less problems than the muxes, if any.
-
-> I'm not saying that these things must be handled, and maybe they are
-> handled already, and maybe some of the combinations are not valid at
-> all. But the possibilities and limitations should be understood. And
-> preferably documented.
->
-> My gut feeling (without spending much time on it) is that ATR as
-> implemented in this series behave approximately like mux-locked muxes,
-> meaning that it is not obviously safe to put a parent-locked mux behind
-> an ATR and making it impossible for client devices behind an ATR to force
-> xfers to happen back-to-back from the root adapter.
-
-For what I described above I don't expect the ATR + parent-locked mux
-would have the same problems as the mux-locked mux + parent-locked mux.
-The ATR will not let transaction on the root adapter leak through and
-reach the mux, unless they are targeted at the child bus where the mux is.
-
-Do you think this is correct? As I said, I still have to analyse all the
-possible combinations.
-
--- 
-Luca
+> >  Example: Clock controller node on omap 4430:
+> >  
+> >  &cm2 {
+> >         l4per: cm@1400 {
+> >                 cm_l4per@0 {
+> > -                       cm_l4per_clkctrl: clk@20 {
+> > +                       cm_l4per_clkctrl: clock@20 {
+> >                                 compatible = "ti,clkctrl";
+> >                                 reg = <0x20 0x1b0>;
+> > +                               reg-names = "l4_per";
+> >                                 #clock-cells = <2>;
+> >                         };
+> >                 };
