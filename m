@@ -2,40 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1435ACC9F
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 14:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C5EFACCA3
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 14:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729045AbfIHMRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Sep 2019 08:17:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44018 "EHLO mail.kernel.org"
+        id S1729004AbfIHMXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Sep 2019 08:23:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49910 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726073AbfIHMRP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Sep 2019 08:17:15 -0400
+        id S1728818AbfIHMXc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Sep 2019 08:23:32 -0400
 Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 889F8214D9;
-        Sun,  8 Sep 2019 12:17:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9ADF0214D9;
+        Sun,  8 Sep 2019 12:23:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1567945034;
-        bh=7ehaco2qzcBECkdVLE2Bi7N2WkovW0gj5P42IUx3Jtw=;
+        s=default; t=1567945411;
+        bh=FFTPH1hK521flPp+HMa0C8RHLbAzeRkBtWuGqrpCCds=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=JabEnJUuErW6vZATsqdg5uUeR37WLWxsIttn0aW3AyoK/+2OCFkKln9WeMqFHaw69
-         6FBEh0rqsff1I5pU44mTS9yOzEqX5rSJB9xBOHL5kbxabHaT++RvvxnelM7iCuLh9x
-         fBy6Hca+lCNyxtzLUnGCdKa8PVNrBnwm2kb4WD7o=
-Date:   Sun, 8 Sep 2019 13:17:08 +0100
+        b=krovOf2JrLy1vbGCYbmK0DXP76Wo+0vDt6LFOvNDQ51gJPQj0Rx4MG00wTjlp9DNf
+         +5TptjDvBSpXkT1T/raY0vigf4wDWSGEzV3LdEGQfueGHzSHzIAIKLbI+tum++4VRm
+         f9rpQ+l/wA7+Akm39xOkPnvoN565FPfZyuvQUpoI=
+Date:   Sun, 8 Sep 2019 13:23:24 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Phil Reid <preid@electromag.com.au>
-Cc:     knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
-        robh+dt@kernel.org, mark.rutland@arm.com,
+To:     Artur Rojek <contact@artur-rojek.eu>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Paul Cercueil <paul@crapouillou.net>,
         linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        michal.simek@xilinx.com
-Subject: Re: [PATCH 2/2] iio: core: Add optional symbolic label to device
- attributes
-Message-ID: <20190908131708.79bfbc60@archlinux>
-In-Reply-To: <1566876924-63608-3-git-send-email-preid@electromag.com.au>
-References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
-        <1566876924-63608-3-git-send-email-preid@electromag.com.au>
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio/adc: Add a compatible string
+ for JZ4770 SoC ADC
+Message-ID: <20190908132324.787d1005@archlinux>
+In-Reply-To: <5dd8172ff664fa1795a10ef40960ba54@artur-rojek.eu>
+References: <20190727195940.14010-1-contact@artur-rojek.eu>
+        <20190728094523.2a161231@archlinux>
+        <5dd8172ff664fa1795a10ef40960ba54@artur-rojek.eu>
 X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -45,92 +47,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Aug 2019 11:35:24 +0800
-Phil Reid <preid@electromag.com.au> wrote:
+On Tue, 03 Sep 2019 21:09:24 +0200
+Artur Rojek <contact@artur-rojek.eu> wrote:
 
-> If a label is defined in the device tree for this device add that
-> to the device specific attributes. This is useful for userspace to
-> be able to identify an individual device when multiple identical
-> chips are present in the system.
+> Hi Jonathan,
 > 
-> Signed-off-by: Phil Reid <preid@electromag.com.au>
+> Just reminding you of this patch set.
+> 
+> Artur
 
-Looks good to me.  I like this as it finally gets us around some
-perhaps slightly dubious decisions I made about the name attribute
-a long time ago and the bunch of uses that don't actually conform
-even to what I had in mind back then.
+Hi Artur,
 
-I'll pick it up for the 5.5 cycle once you've respun to give
-more example friendly names in patch 1 and Rob is happy with it.
+Thanks for the reminder.  As you'd no doubt concluded, I'd
+dropped it down the back of the sofa.
+
+Unfortunately it's now just missed my last pull for 5.4 (probably)
+so I've queued it up for the 5.5 cycle.
+
+Applied to the togreg branch of iio.git and pushed out as testing
+for the autobuilders to play with it.
 
 Thanks,
 
 Jonathan
 
-> ---
->  drivers/iio/industrialio-core.c | 17 +++++++++++++++++
->  include/linux/iio/iio.h         |  1 +
->  2 files changed, 18 insertions(+)
 > 
-> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-> index 8303639963d7..2d7fb7629095 100644
-> --- a/drivers/iio/industrialio-core.c
-> +++ b/drivers/iio/industrialio-core.c
-> @@ -1300,6 +1300,16 @@ static ssize_t iio_show_dev_name(struct device *dev,
->  
->  static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
->  
-> +static ssize_t iio_show_dev_label(struct device *dev,
-> +				 struct device_attribute *attr,
-> +				 char *buf)
-> +{
-> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
-> +	return snprintf(buf, PAGE_SIZE, "%s\n", indio_dev->label);
-> +}
-> +
-> +static DEVICE_ATTR(label, S_IRUGO, iio_show_dev_label, NULL);
-> +
->  static ssize_t iio_show_timestamp_clock(struct device *dev,
->  					struct device_attribute *attr,
->  					char *buf)
-> @@ -1416,6 +1426,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
->  
->  	if (indio_dev->name)
->  		attrcount++;
-> +	if (indio_dev->label)
-> +		attrcount++;
->  	if (clk)
->  		attrcount++;
->  
-> @@ -1438,6 +1450,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
->  		indio_dev->chan_attr_group.attrs[attrn++] = &p->dev_attr.attr;
->  	if (indio_dev->name)
->  		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_name.attr;
-> +	if (indio_dev->label)
-> +		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_label.attr;
->  	if (clk)
->  		indio_dev->chan_attr_group.attrs[attrn++] = clk;
->  
-> @@ -1709,6 +1723,9 @@ int __iio_device_register(struct iio_dev *indio_dev, struct module *this_mod)
->  	if (!indio_dev->dev.of_node && indio_dev->dev.parent)
->  		indio_dev->dev.of_node = indio_dev->dev.parent->of_node;
->  
-> +	indio_dev->label = of_get_property(indio_dev->dev.of_node, "label",
-> +					   NULL);
-> +
->  	ret = iio_check_unique_scan_index(indio_dev);
->  	if (ret < 0)
->  		return ret;
-> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
-> index a74cb177dc6f..3f89db50d3f6 100644
-> --- a/include/linux/iio/iio.h
-> +++ b/include/linux/iio/iio.h
-> @@ -556,6 +556,7 @@ struct iio_dev {
->  	struct list_head		channel_attr_list;
->  	struct attribute_group		chan_attr_group;
->  	const char			*name;
-> +	const char			*label;
->  	const struct iio_info		*info;
->  	clockid_t			clock_id;
->  	struct mutex			info_exist_lock;
+> On 2019-07-28 10:45, Jonathan Cameron wrote:
+> > On Sat, 27 Jul 2019 21:59:38 +0200
+> > Artur Rojek <contact@artur-rojek.eu> wrote:
+> >   
+> >> Add a compatible string for the ADC controller present on
+> >> Ingenic JZ4770 SoC.
+> >> 
+> >> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>  
+> > 
+> > Hi Artur,
+> > 
+> > I'll have to hold this series for a few weeks as the fix for the
+> > clock rate divider isn't in my upstream for the togreg branch yet
+> > (as I haven't sent a pull request since the merge window).
+> > 
+> > Give me a poke if I seem to have forgotten these in a few weeks
+> > time.
+> > 
+> > Thanks,
+> > 
+> > Jonathan
+> >   
+> >> ---
+> >> 
+> >> Changes:
+> >> 
+> >> v2: no change
+> >> 
+> >>  Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt | 1 +
+> >>  1 file changed, 1 insertion(+)
+> >> 
+> >> diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt 
+> >> b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+> >> index f01159f20d87..cd9048cf9dcf 100644
+> >> --- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+> >> +++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+> >> @@ -5,6 +5,7 @@ Required properties:
+> >>  - compatible: Should be one of:
+> >>    * ingenic,jz4725b-adc
+> >>    * ingenic,jz4740-adc
+> >> +  * ingenic,jz4770-adc
+> >>  - reg: ADC controller registers location and length.
+> >>  - clocks: phandle to the SoC's ADC clock.
+> >>  - clock-names: Must be set to "adc".  
 
