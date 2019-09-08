@@ -2,135 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A55AD0F5
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 00:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A2CAD0F4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 00:14:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731001AbfIHWOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Sep 2019 18:14:34 -0400
+        id S1730994AbfIHWOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Sep 2019 18:14:32 -0400
 Received: from kirsty.vergenet.net ([202.4.237.240]:50548 "EHLO
         kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbfIHWOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Sep 2019 18:14:34 -0400
+        with ESMTP id S1726626AbfIHWOc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Sep 2019 18:14:32 -0400
 Received: from penelope.horms.nl (195-23-252-147.net.novis.pt [195.23.252.147])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id AF4D325B80B;
+        by kirsty.vergenet.net (Postfix) with ESMTPA id A8DC425B705;
         Mon,  9 Sep 2019 08:14:27 +1000 (AEST)
 Received: by penelope.horms.nl (Postfix, from userid 7100)
-        id 838EBE210A9; Sun,  8 Sep 2019 13:58:48 +0200 (CEST)
-Date:   Sun, 8 Sep 2019 13:58:48 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     laurent.pinchart@ideasonboard.com,
-        kieran.bingham+renesas@ideasonboard.com, geert@linux-m68k.org,
-        uli@fpond.eu, VenkataRajesh.Kalakodima@in.bosch.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Subject: Re: [PATCH v4 1/9] dt-bindings: display: renesas,cmm: Add R-Car CMM
- documentation
-Message-ID: <20190908115844.5dmli3ur73er6rhi@verge.net.au>
-References: <20190906134341.9879-1-jacopo+renesas@jmondi.org>
- <20190906134341.9879-2-jacopo+renesas@jmondi.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190906134341.9879-2-jacopo+renesas@jmondi.org>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+        id ED21AE210B7; Sun,  8 Sep 2019 14:05:34 +0200 (CEST)
+From:   Simon Horman <horms+renesas@verge.net.au>
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] dt-bindings: arm: renesas: Convert 'renesas,prr' to json-schema
+Date:   Sun,  8 Sep 2019 13:05:28 +0100
+Message-Id: <20190908120528.9392-1-horms+renesas@verge.net.au>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 06, 2019 at 03:43:33PM +0200, Jacopo Mondi wrote:
-> Add device tree bindings documentation for the Renesas R-Car Display
-> Unit Color Management Module.
-> 
-> CMM is the image enhancement module available on each R-Car DU video
-> channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
-> 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> ---
->  .../bindings/display/renesas,cmm.yaml         | 64 +++++++++++++++++++
->  1 file changed, 64 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/renesas,cmm.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,cmm.yaml b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
-> new file mode 100644
-> index 000000000000..9e5922689cd7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
-> @@ -0,0 +1,64 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/renesas,cmm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas R-Car Color Management Module (CMM)
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> +  - Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> +  - Jacopo Mondi <jacopo+renesas@jmondi.org>
-> +
-> +description: |+
-> +  Renesas R-Car color management module connected to R-Car DU video channels.
-> +  It provides image enhancement functions such as 1-D look-up tables (LUT),
-> +  3-D look-up tables (CMU), 1D-histogram generation (HGO), and color
-> +  space conversion (CSC).
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - renesas,r8a7795-cmm
-> +        - renesas,r8a7796-cmm
-> +        - renesas,r8a77965-cmm
-> +        - renesas,r8a77990-cmm
-> +        - renesas,r8a77995-cmm
-> +      - enum:
-> +        - renesas,rcar-gen3-cmm
-> +        - renesas,rcar-gen2-cmm
+Convert Renesas Product Register bindings documentation to json-schema.
 
-Should we continue the long standing practice in .txt bindings
-for Renesas IP blocks to document briefly the purpose of each compat string?
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+---
+Based on v5.3-rc1
+Tested using:
+  make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/renesas,prr.yaml
 
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
-> +    #include <dt-bindings/power/r8a7796-sysc.h>
-> +
-> +    cmm0: cmm@fea40000 {
-> +         compatible = "renesas,r8a7796-cmm";
+v2
+* Use simple enum for compat values
+* Drop "" from compat values
+* Only supply 'maxItems' property to 'reg'
+---
+ .../devicetree/bindings/arm/renesas,prr.txt        | 20 -------------
+ .../devicetree/bindings/arm/renesas,prr.yaml       | 35 ++++++++++++++++++++++
+ 2 files changed, 35 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/renesas,prr.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/renesas,prr.yaml
 
-Should "renesas,rcar-gen3-cmm" be listed as the secondary compat string
-here?
+diff --git a/Documentation/devicetree/bindings/arm/renesas,prr.txt b/Documentation/devicetree/bindings/arm/renesas,prr.txt
+deleted file mode 100644
+index 08e482e953ca..000000000000
+--- a/Documentation/devicetree/bindings/arm/renesas,prr.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-Renesas Product Register
+-
+-Most Renesas ARM SoCs have a Product Register or Boundary Scan ID Register that
+-allows to retrieve SoC product and revision information.  If present, a device
+-node for this register should be added.
+-
+-Required properties:
+-  - compatible: Must be one of:
+-    "renesas,prr"
+-    "renesas,bsid"
+-  - reg: Base address and length of the register block.
+-
+-
+-Examples
+---------
+-
+-	prr: chipid@ff000044 {
+-		compatible = "renesas,prr";
+-		reg = <0 0xff000044 0 4>;
+-	};
+diff --git a/Documentation/devicetree/bindings/arm/renesas,prr.yaml b/Documentation/devicetree/bindings/arm/renesas,prr.yaml
+new file mode 100644
+index 000000000000..7f8d17f33983
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/renesas,prr.yaml
+@@ -0,0 +1,35 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/renesas,prr.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Renesas Product Register
++
++maintainers:
++  - Geert Uytterhoeven <geert+renesas@glider.be>
++  - Magnus Damm <magnus.damm@gmail.com>
++
++description: |
++  Most Renesas ARM SoCs have a Product Register or Boundary Scan ID
++  Register that allows to retrieve SoC product and revision information.
++  If present, a device node for this register should be added.
++
++properties:
++  compatible:
++    enum:
++      - renesas,prr
++      - renesas,bsid
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    prr: chipid@ff000044 {
++        compatible = "renesas,prr";
++        reg = <0 0xff000044 0 4>;
++    };
+-- 
+2.11.0
 
-> +         reg = <0 0xfea40000 0 0x1000>;
-> +         power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
-> +         clocks = <&cpg CPG_MOD 711>;
-> +         resets = <&cpg 711>;
-> +    };
-> --
-> 2.23.0
-> 
