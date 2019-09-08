@@ -2,80 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCF58ACF13
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 15:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C652ACF31
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 16:13:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727171AbfIHNsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Sep 2019 09:48:40 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:46962 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726462AbfIHNsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Sep 2019 09:48:40 -0400
-Received: by mail-io1-f68.google.com with SMTP id d17so977280ios.13;
-        Sun, 08 Sep 2019 06:48:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=oFn65Gx0LceV9UpwBpRBxIJy0Sy+f8hyn5shhbHZwGY=;
-        b=fZ1C77cALrVsEVNsgCc8SoP1kDV2VcjQckKG2yXKeZxbSTAOiSGATXDS0TkMDpYooW
-         C6PjdLTYnZh0qPgKG647RSGa6U7/tDP9IhwUopPKNatbWgGl2hT5QuhSxDsh+FcrBHfJ
-         dKipTfEorZhVcxWmdwmFFw5AzqTPUXdawvg+8ga81oOcH58ZxnXBmWQPrkeEn91pKJS7
-         YhI3Sid3dpmiVXz8p1RNqkcpqxGoVVffGuko9jAm9UrA2h2vq3/RsEmN9LXIaRlI/isv
-         pFb6DLQL9HK0z90Z1P+dkquY8wAa/RcIrv4CNwS3Q8nLoGUunkM9eibAy/789iBaDANr
-         JHhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=oFn65Gx0LceV9UpwBpRBxIJy0Sy+f8hyn5shhbHZwGY=;
-        b=b1hXA5NJGyG0tO+uA109YWas76Bm0fijfQSxoWCcFqVkJeOkpftp2OUwJCuIRmRRfd
-         XXhl3YR17DKTJ8dLBq2HG8h0OSgpWZucdOpXBGLLzDKgPDtIVIyPOBhdEM6pjtcYZMCQ
-         l4l85PK90OaUnOj/Ff+Jp/3V6GQ3mV3RVOe/9rcuHbJbeXh2l+IohjtpleCf0w39ZPB9
-         XEnSCqFJsV5Iuickzngkb5fz7JOfk05FVuNPtzcK7kC7Fd9009Htbw0QinQaJmZTYJu0
-         g93FT6ckbCjt/0/hvwRl8miUyj7Cwc5Fr7V/s2QZ7M938MRUW/GHvGjqCJYuA6ElU/ak
-         jOog==
-X-Gm-Message-State: APjAAAU9pV7EA6wbT3lXNj5REfFG+Vh8aQlNgy4pKpg620jOz6+TtP7w
-        cv3l4u1oW+CPDvf03WwZjok=
-X-Google-Smtp-Source: APXvYqymoIbipF+QFyqKIvFQS+3h+eR47zlB0UY9E1dU6IsNMCa2eT2KiNA0h+tsaaSp48HbhI0HUQ==
-X-Received: by 2002:a5d:9746:: with SMTP id c6mr15520437ioo.235.1567950517595;
-        Sun, 08 Sep 2019 06:48:37 -0700 (PDT)
-Received: from localhost.localdomain ([198.52.185.227])
-        by smtp.gmail.com with ESMTPSA id k11sm2813251ioa.20.2019.09.08.06.48.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 08 Sep 2019 06:48:37 -0700 (PDT)
-From:   thesven73@gmail.com
-X-Google-Original-From: TheSven73@gmail.com
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devel@driverdev.osuosl.org,
-        Sven Van Asbroeck <TheSven73@gmail.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH] dt-bindings: anybus-controller: move to staging/ tree
-Date:   Sun,  8 Sep 2019 09:48:05 -0400
-Message-Id: <20190908134805.30957-1-TheSven73@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        id S1728935AbfIHON0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Sep 2019 10:13:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46488 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725921AbfIHON0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Sep 2019 10:13:26 -0400
+Received: from localhost (unknown [122.182.221.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 69EE0214DB;
+        Sun,  8 Sep 2019 14:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1567952005;
+        bh=g9RxzkYEfVpKOAJwV3oEn7y/61ZfPHD/mrK3hZzuHnQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WoBiJ481LdXQmZDqTPxZwAiFcq3EBZGBJ46sim865WlLmOJowtKJuxb6YLB6trmmn
+         zupdUdIULJ2hiBhVxS4HtyhqHAfXPBEt2D6AHChVbR25Mt0yfNoLZNBc5SbMXXl8we
+         3HmSm+7QUehQ2Xx+PdHsAyJNKOTu76to2aq2y9F4=
+Date:   Sun, 8 Sep 2019 19:42:07 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     robh+dt@kernel.org, nm@ti.com, ssantosh@kernel.org,
+        dan.j.williams@intel.com, dmaengine@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, grygorii.strashko@ti.com,
+        lokeshvutla@ti.com, t-kristo@ti.com, tony@atomide.com,
+        j-keerthy@ti.com
+Subject: Re: [PATCH v2 04/14] dmaengine: Add metadata_ops for
+ dma_async_tx_descriptor
+Message-ID: <20190908141207.GO2672@vkoul-mobl>
+References: <20190730093450.12664-1-peter.ujfalusi@ti.com>
+ <20190730093450.12664-5-peter.ujfalusi@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190730093450.12664-5-peter.ujfalusi@ti.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sven Van Asbroeck <TheSven73@gmail.com>
+On 30-07-19, 12:34, Peter Ujfalusi wrote:
+> The metadata is best described as side band data or parameters traveling
+> alongside the data DMAd by the DMA engine. It is data
+> which is understood by the peripheral and the peripheral driver only, the
+> DMA engine see it only as data block and it is not interpreting it in any
+> way.
+> 
+> The metadata can be different per descriptor as it is a parameter for the
+> data being transferred.
+> 
+> If the DMA supports per descriptor metadata it can implement the attach,
+> get_ptr/set_len callbacks.
+> 
+> Client drivers must only use either attach or get_ptr/set_len to avoid
+> misconfiguration.
+> 
+> Client driver can check if a given metadata mode is supported by the
+> channel during probe time with
+> dmaengine_is_metadata_mode_supported(chan, DESC_METADATA_CLIENT);
+> dmaengine_is_metadata_mode_supported(chan, DESC_METADATA_ENGINE);
+> 
+> and based on this information can use either mode.
+> 
+> Wrappers are also added for the metadata_ops.
+> 
+> To be used in DESC_METADATA_CLIENT mode:
+> dmaengine_desc_attach_metadata()
+> 
+> To be used in DESC_METADATA_ENGINE mode:
+> dmaengine_desc_get_metadata_ptr()
+> dmaengine_desc_set_metadata_len()
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  drivers/dma/dmaengine.c   |  73 ++++++++++++++++++++++++++
+>  include/linux/dmaengine.h | 108 ++++++++++++++++++++++++++++++++++++++
+>  2 files changed, 181 insertions(+)
+> 
+> diff --git a/drivers/dma/dmaengine.c b/drivers/dma/dmaengine.c
+> index 03ac4b96117c..6baddf7dcbfd 100644
+> --- a/drivers/dma/dmaengine.c
+> +++ b/drivers/dma/dmaengine.c
+> @@ -1302,6 +1302,79 @@ void dma_async_tx_descriptor_init(struct dma_async_tx_descriptor *tx,
+>  }
+>  EXPORT_SYMBOL(dma_async_tx_descriptor_init);
+>  
+> +static inline int desc_check_and_set_metadata_mode(
+> +	struct dma_async_tx_descriptor *desc, enum dma_desc_metadata_mode mode)
+> +{
+> +	/* Make sure that the metadata mode is not mixed */
+> +	if (!desc->desc_metadata_mode) {
+> +		if (dmaengine_is_metadata_mode_supported(desc->chan, mode))
+> +			desc->desc_metadata_mode = mode;
 
-The devicetree bindings for anybus-controller were mistakenly
-merged into the main Linux tree. Its driver resides in
-staging/, so the bindings belong in staging/ too.
+So do we have different descriptors supporting different modes or is it
+controlled based? For latter we can do this check at controller
+registration!
 
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Fixes: 20a980e957bf ("dt-bindings: anybus-controller: document devicetree binding")
-Signed-off-by: Sven Van Asbroeck <TheSven73@gmail.com>
----
- .../devicetree/bindings/fieldbus/arcx,anybus-controller.txt       | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename {Documentation => drivers/staging/fieldbus/Documentation}/devicetree/bindings/fieldbus/arcx,anybus-controller.txt (100%)
-
-diff --git a/Documentation/devicetree/bindings/fieldbus/arcx,anybus-controller.txt b/drivers/staging/fieldbus/Documentation/devicetree/bindings/fieldbus/arcx,anybus-controller.txt
-similarity index 100%
-rename from Documentation/devicetree/bindings/fieldbus/arcx,anybus-controller.txt
-rename to drivers/staging/fieldbus/Documentation/devicetree/bindings/fieldbus/arcx,anybus-controller.txt
 -- 
-2.17.1
-
+~Vinod
