@@ -2,84 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 269A4AD081
-	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 21:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 766A4AD09C
+	for <lists+devicetree@lfdr.de>; Sun,  8 Sep 2019 22:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728853AbfIHTow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Sep 2019 15:44:52 -0400
-Received: from muru.com ([72.249.23.125]:60324 "EHLO muru.com"
+        id S1729274AbfIHUhV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Sep 2019 16:37:21 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:33304 "EHLO mail.andi.de1.cc"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728817AbfIHTow (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 8 Sep 2019 15:44:52 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 824B5809B;
-        Sun,  8 Sep 2019 19:45:21 +0000 (UTC)
-Date:   Sun, 8 Sep 2019 12:44:48 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Lechner <david@lechnology.com>,
-        linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] bus/ti-pwmss: move TI PWMSS driver from PWM to
- bus subsystem
-Message-ID: <20190908194447.GM52127@atomide.com>
-References: <20190901225827.12301-1-david@lechnology.com>
- <20190901225827.12301-2-david@lechnology.com>
- <20190902150245.GE1445@ulmo>
- <20190908121524.49b4874d@archlinux>
+        id S1729263AbfIHUhV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Sep 2019 16:37:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
+        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=WLNvj34w1pMydEMVCJGWGNCq90dYkz0edkv/6Infxco=; b=gWNUGaQHNjgOqY5zrZ+BPjNJ/t
+        nXKXYK8g5xv+b4o4OJ7PoWuZ4TdtVR+ADL8078ghBlGq5JIn7GX3YYYNPdBCd8dnAgS+fOnizKSk0
+        HOxJnNH3asiCrxW4OycyeZrRHWupr6FrA8586BBGINUZMWm25lwruT06eEB7eCFMQRMY=;
+Received: from p200300ccff4729001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff47:2900:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1i73vn-0000wL-Aw; Sun, 08 Sep 2019 22:37:07 +0200
+Received: from andi by aktux with local (Exim 4.92)
+        (envelope-from <andreas@kemnade.info>)
+        id 1i73vm-0007rN-W2; Sun, 08 Sep 2019 22:37:07 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     lee.jones@linaro.org, daniel.thompson@linaro.org,
+        jingoohan1@gmail.com, jacek.anaszewski@gmail.com, pavel@ucw.cz,
+        dmurphy@ti.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     Andreas Kemnade <andreas@kemnade.info>
+Subject: [PATCH 0/2] backlight_lm3630a: add enable_gpios property
+Date:   Sun,  8 Sep 2019 22:37:02 +0200
+Message-Id: <20190908203704.30147-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190908121524.49b4874d@archlinux>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Transfer-Encoding: 8bit
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Jonathan Cameron <jic23@jic23.retrosnub.co.uk> [190908 11:16]:
-> On Mon, 2 Sep 2019 17:02:45 +0200
-> Thierry Reding <thierry.reding@gmail.com> wrote:
-> 
-> > On Sun, Sep 01, 2019 at 05:58:22PM -0500, David Lechner wrote:
-> > > The TI PWMSS driver is a simple bus driver for providing power
-> > > power management for the PWM peripherals on TI AM33xx SoCs, namely
-> > > eCAP, eHRPWM and eQEP. The eQEP is a counter rather than a PWM, so
-> > > it does not make sense to have the bus driver in the PWM subsystem
-> > > since the PWMSS is not exclusive to PWM devices.
-> > > 
-> > > Signed-off-by: David Lechner <david@lechnology.com>
-> > > ---
-> > > 
-> > > v3 changes:
-> > > - none
-> > > v2 changes:
-> > > - new patch
-> > > 
-> > >  drivers/bus/Kconfig                           | 9 +++++++++
-> > >  drivers/bus/Makefile                          | 1 +
-> > >  drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} | 0
-> > >  drivers/pwm/Kconfig                           | 9 ---------
-> > >  drivers/pwm/Makefile                          | 1 -
-> > >  5 files changed, 10 insertions(+), 10 deletions(-)
-> > >  rename drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} (100%)  
-> > 
-> > Acked-by: Thierry Reding <thierry.reding@gmail.com>
-> 
-> Do we need an immutable branch for these precursor patches to the
-> driver addition? It's not going to make 5.4 via my tree as cutting it
-> too fine so we'll be in the position of holding these in a non obvious
-> tree for a whole cycle. 
+To be able to handle the HWEN pin of the lm3630a, add
+an enable gpio to the driver and a property.
 
-Sure an immutable branch would be nice in case of unlikely
-dts file conflicts. And yeah no need to try to rush to v5.4.
+Tested on Kobo Clara HD
 
-Regards,
+Andreas Kemnade (2):
+  backlight: lm3630a: add an enable gpio for the HWEN pin
+  dt-bindings: backlight: lm3630a: add enable_gpios
 
-Tony
+ .../leds/backlight/lm3630a-backlight.yaml      |  4 ++++
+ drivers/video/backlight/lm3630a_bl.c           | 18 ++++++++++++++++++
+ 2 files changed, 22 insertions(+)
+
+-- 
+2.20.1
+
