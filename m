@@ -2,112 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6447ADF50
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 21:23:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA59CADFD6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 22:14:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732524AbfIITXO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 15:23:14 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:5210 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729699AbfIITXN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 15:23:13 -0400
-X-UUID: 9a45947d1da04b758e75888dfd57531f-20190910
-X-UUID: 9a45947d1da04b758e75888dfd57531f-20190910
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <frederic.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 994838095; Tue, 10 Sep 2019 03:23:08 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 10 Sep 2019 03:23:05 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 10 Sep 2019 03:23:05 +0800
-From:   <frederic.chen@mediatek.com>
-To:     <hans.verkuil@cisco.com>,
-        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
-        <matthias.bgg@gmail.com>, <mchehab@kernel.org>
-CC:     <yuzhao@chromium.org>, <zwisler@chromium.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <Sean.Cheng@mediatek.com>,
-        <sj.huang@mediatek.com>, <christie.yu@mediatek.com>,
-        <holmes.chiou@mediatek.com>, <frederic.chen@mediatek.com>,
-        <Jerry-ch.Chen@mediatek.com>, <jungo.lin@mediatek.com>,
-        <Rynn.Wu@mediatek.com>, <linux-media@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        <shik@chromium.org>, <suleiman@chromium.org>,
-        <Allan.Yang@mediatek.com>
-Subject: [RFC PATCH V3 5/5] media: platform: mtk-mdp3: Add struct tuning_addr and img_sw_buffer
-Date:   Tue, 10 Sep 2019 03:22:44 +0800
-Message-ID: <20190909192244.9367-6-frederic.chen@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190909192244.9367-1-frederic.chen@mediatek.com>
-References: <20190909192244.9367-1-frederic.chen@mediatek.com>
+        id S1733094AbfIIUOG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 16:14:06 -0400
+Received: from mail.andi.de1.cc ([85.214.55.253]:57140 "EHLO mail.andi.de1.cc"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732733AbfIIUOG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 16:14:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=7S0iKdrC5W7P3u4rFYo6R5dKDWVHbSKL0UCfO8ayAEY=; b=Ca1HsyzD/Rzmy3F/wPAzVKV0jH
+        1JibeJWfqCLlaa8vb+7Jrrt7+HIBdqRX4faZ8Lkt+wJBgrSOWjW6uYFJuoF9EnR8uTQR68+4ijb5c
+        Nlt25Zh1DQU+BJTX2e7j+hslmzL8KrclN5IqlwazEZ9G0V9ZEH8F0PPTcFMJQ6MBEQDc=;
+Received: from p200300ccff0a27001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0a:2700:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1i7Q2o-0005Fh-OY; Mon, 09 Sep 2019 22:13:51 +0200
+Date:   Mon, 9 Sep 2019 22:13:49 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+Cc:     lee.jones@linaro.org, jingoohan1@gmail.com,
+        jacek.anaszewski@gmail.com, pavel@ucw.cz, dmurphy@ti.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, b.zolnierkie@samsung.com,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-fbdev@vger.kernel.org,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Subject: Re: [PATCH 1/2] backlight: lm3630a: add an enable gpio for the HWEN
+ pin
+Message-ID: <20190909221349.46ca5a1f@aktux>
+In-Reply-To: <20190909105729.w5552rtop7rhghy2@holly.lan>
+References: <20190908203704.30147-1-andreas@kemnade.info>
+        <20190908203704.30147-2-andreas@kemnade.info>
+        <20190909105729.w5552rtop7rhghy2@holly.lan>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 074492E904B74088ADA67159AC5190E930A3C333F23B371DA799ACABE71B13B22000:8
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Score: -1.0 (-)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Frederic Chen <frederic.chen@mediatek.com>
+On Mon, 9 Sep 2019 11:57:29 +0100
+Daniel Thompson <daniel.thompson@linaro.org> wrote:
 
-We added a struct tuning_addr which contains a field "present"
-so that the driver can tell the firmware if we have user tuning
-dataor not.
+> On Sun, Sep 08, 2019 at 10:37:03PM +0200, Andreas Kemnade wrote:
+> > For now just enable it in the probe function to allow i2c
+> > access and disable it on remove. Disabling also means resetting
+> > the register values to default.
+> > 
+> > Tested on Kobo Clara HD.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  drivers/video/backlight/lm3630a_bl.c | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> > 
+> > diff --git a/drivers/video/backlight/lm3630a_bl.c b/drivers/video/backlight/lm3630a_bl.c
+> > index b04b35d007a2..3b45a1733198 100644
+> > --- a/drivers/video/backlight/lm3630a_bl.c
+> > +++ b/drivers/video/backlight/lm3630a_bl.c
+> > @@ -12,6 +12,8 @@
+> >  #include <linux/uaccess.h>
+> >  #include <linux/interrupt.h>
+> >  #include <linux/regmap.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/gpio.h>
+> >  #include <linux/pwm.h>
+> >  #include <linux/platform_data/lm3630a_bl.h>
+> >  
+> > @@ -48,6 +50,7 @@ struct lm3630a_chip {
+> >  	struct lm3630a_platform_data *pdata;
+> >  	struct backlight_device *bleda;
+> >  	struct backlight_device *bledb;
+> > +	struct gpio_desc *enable_gpio;
+> >  	struct regmap *regmap;
+> >  	struct pwm_device *pwmd;
+> >  };
+> > @@ -506,6 +509,14 @@ static int lm3630a_probe(struct i2c_client *client,
+> >  		return -ENOMEM;
+> >  	pchip->dev = &client->dev;
+> >  
+> > +	pchip->enable_gpio = devm_gpiod_get_optional(&client->dev, "enable",
+> > +						GPIOD_ASIS);  
+> 
+> Initializing GPIOD_ASIS doesn't look right to me.
+> 
+> If you initialize ASIS then the driver must configure the pin as an
+> output... far easier just to set GPIOD_OUT_HIGH during the get.
+> 
+> Note also that the call to this function should also be moved *below*
+> the calls parse the DT.
+> 
+oops, must have forgotten that, and had good luck here.
+> 
+> > +	if (IS_ERR(pchip->enable_gpio)) {
+> > +		rval = PTR_ERR(pchip->enable_gpio);
+> > +		return rval;
+> > +	}
+> > +
+> > +
+> >  	pchip->regmap = devm_regmap_init_i2c(client, &lm3630a_regmap);
+> >  	if (IS_ERR(pchip->regmap)) {
+> >  		rval = PTR_ERR(pchip->regmap);
+> > @@ -535,6 +546,10 @@ static int lm3630a_probe(struct i2c_client *client,
+> >  	}
+> >  	pchip->pdata = pdata;
+> >  
+> > +	if (pchip->enable_gpio) {
+> > +		gpiod_set_value_cansleep(pchip->enable_gpio, 1);  
+> 
+> Not needed, use GPIOD_OUT_HIGH instead.
+> 
+> 
+> > +		usleep_range(1000, 2000);  
+> 
+> Not needed, this sleep is already part of lm3630a_chip_init().
+> 
+you are right.
+> 
+> > +	}
+> >  	/* chip initialize */
+> >  	rval = lm3630a_chip_init(pchip);
+> >  	if (rval < 0) {
+> > @@ -586,6 +601,9 @@ static int lm3630a_remove(struct i2c_client *client)
+> >  	if (rval < 0)
+> >  		dev_err(pchip->dev, "i2c failed to access register\n");
+> >  
+> > +	if (pchip->enable_gpio)
+> > +		gpiod_set_value_cansleep(pchip->enable_gpio, 0);
+> > +  
+> 
+> Is this needed?
+> 
+> This is a remove path, not a power management path, and we have no idea
+> what the original status of the pin was anyway?
+> 
 
-The strcut img_sw_buffer is also added. This struct has no cpu address
-field and uses a handle instead so that we don't pass a cpu address
-to co-processor.
+Looking at Ishdn on page 5 of the datasheet, switching it off everytime
+possible seems not needed. We would need to call chip_init() everytime
+we enable the gpio or live with default values.
+Therefore I did decide to not put it into any power management path. But
+switching it on and not switching it off feels so unbalanced. 
 
-Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
----
- drivers/media/platform/mtk-mdp3/mtk-img-ipi.h | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/media/platform/mtk-mdp3/mtk-img-ipi.h b/drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
-index 9fabe7e8b71d..f61e61faf636 100644
---- a/drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
-+++ b/drivers/media/platform/mtk-mdp3/mtk-img-ipi.h
-@@ -38,6 +38,12 @@ struct img_addr {
- 	u32	iova;	/* Used by IOMMU HW access */
- } __attribute__ ((__packed__));
- 
-+struct tuning_addr {
-+	u32	present;
-+	u32	pa;	/* Used by CM4 access */
-+	u32	iova;	/* Used by IOMMU HW access */
-+} __attribute__ ((__packed__));
-+
- struct img_sw_addr {
- 	u64	va;	/* Used by APMCU access */
- 	u32	pa;	/* Used by CM4 access */
-@@ -105,16 +111,21 @@ struct img_ipi_frameparam {
- 	u64		drv_data;
- 	struct img_input	inputs[IMG_MAX_HW_INPUTS];
- 	struct img_output	outputs[IMG_MAX_HW_OUTPUTS];
--	struct img_addr		tuning_data;
-+	struct tuning_addr	tuning_data;
- 	struct img_addr		subfrm_data;
- 	struct img_sw_addr	config_data;
- 	struct img_sw_addr  self_data;
- 	/* u8		pq_data[]; */
- } __attribute__ ((__packed__));
- 
-+struct img_sw_buffer {
-+	u64	handle;		/* Used by APMCU access */
-+	u32	scp_addr;	/* Used by CM4 access */
-+} __attribute__ ((__packed__));
-+
- struct img_ipi_param {
- 	u8	usage;
--	struct	img_sw_addr frm_param;
-+	struct img_sw_buffer frm_param;
- } __attribute__ ((__packed__));
- 
- struct img_frameparam {
--- 
-2.18.0
-
+Regards,
+Andreas
