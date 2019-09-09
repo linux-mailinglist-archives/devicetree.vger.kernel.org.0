@@ -2,122 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C20BADF2C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 20:56:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D583ADF41
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 21:19:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727862AbfIIS4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 14:56:43 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:38217 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727164AbfIIS4m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 14:56:42 -0400
-Received: by mail-pl1-f195.google.com with SMTP id p9so2235662plk.5
-        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2019 11:56:42 -0700 (PDT)
+        id S1730770AbfIITTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 15:19:25 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:44419 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726814AbfIITTZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 15:19:25 -0400
+Received: by mail-io1-f65.google.com with SMTP id j4so31448148iog.11;
+        Mon, 09 Sep 2019 12:19:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=9PpVHKOkn7AvbOWw4B8dKfxzmxwCcW0yqGrQBUq0hN8=;
-        b=DhYg+foHMBNgIp8ZI6L0UbWWMEHpLnOxeSdowJUQ0hVIusLXPBuzB5YrlNfmFeh+K6
-         Xm1rdE3/IBzPQjUatOMjcobzfLiFnLZihws9zc6ra29d7Wwo8P3N3LBSRVlys2Nug1v3
-         s+0LaXu2s4EWSkKyG4IEoUsd5ohWbInVKmiAM=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=itY8GiF4v2ICnk3w7fmpHKt0Jrf4g4tgby4BDHrpXnA=;
+        b=UmDHiRpalMxsNVmUuJrpSU7F/aXt3LVtEpUq0X4urb7xXw2TAWHTdi8ok31DEKB/xu
+         5bcHIDJ6ApFP9vzR7o66a4fCG3jIS2SIhH174WknxHSftO/ErTgWVUBL2R9puCaU4ZGq
+         z9ec/kPpCbkFXV4h71gcgyx4bcbQERUKt6ixJa07MakYsZNE9JxUpXvyW/3GHJFUSJJh
+         Y5DXf7zi++e3hASYrkCIz4JrIHNZwRH4OHYITGdC2n6yz7jwSpuMRQMDGIimLybfYK15
+         5fN/FFI5fadPsQK/fyOdRJ/FKV141VzFJe/2wBluDkF8pqvI8V5Xbeim0n1moyMio8AW
+         5hsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9PpVHKOkn7AvbOWw4B8dKfxzmxwCcW0yqGrQBUq0hN8=;
-        b=FnG8jQCKyRHbCj1+VEGDa3hkwRqxP06/KFaZK/ecX5hH3fq0yS62hfVkyer7ZC1G2Y
-         km89QYVYaIrWQt7O0tuYzqUFvcZC0oqerC128iMYEbPuEo7xuu2Mj+SR+y4ZYfaH6SZ+
-         UqLmnydnfNd/qoB3W1kk0oJo7ny8a3buF8+45tL1Jy9Y7W878A7FqH9Iaqs3qjEgTq7f
-         sqUaoNbVbYsAehUZo8ctH82YQGvtGm3iiykGyWQ0h3KnoqJ1/aDIwPxaPNQWxt28LzTw
-         qh2IHd5r+NKYC/A2G9nqUi30OYOYyPZl/RPIN/r6kgG0VUD8xy/tEez4uLtRYJYWpMtO
-         nwFA==
-X-Gm-Message-State: APjAAAUHByyNrRpDFPRwUYq4LWx2kQSbjWgeOxG2N7co5DkGOzkOEwY+
-        K1AjlOdTtDwNVKo+ZG04G4zXEQ==
-X-Google-Smtp-Source: APXvYqxHAEqC9e+AAStf9IM6pukGCQTPomG2dj8gqDOX6pR5nm98F+0IcF0DggiI0chSTzXXODrb7A==
-X-Received: by 2002:a17:902:166:: with SMTP id 93mr26449506plb.320.1568055401720;
-        Mon, 09 Sep 2019 11:56:41 -0700 (PDT)
-Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
-        by smtp.gmail.com with ESMTPSA id l72sm270722pjb.7.2019.09.09.11.56.39
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Sep 2019 11:56:40 -0700 (PDT)
-Subject: Re: [PATCH v1 1/1] arm64: dts: Fix gpio to pinmux mapping
-To:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=itY8GiF4v2ICnk3w7fmpHKt0Jrf4g4tgby4BDHrpXnA=;
+        b=CwSrjFSPbhiVswBRdLlUBn7B/2GYesL4krcywLMl5a18y6p//xUNbO0SvyryQEqGdV
+         y29tBAQi6/chQr72JKnhjFTmW9gttjOTgyoRPBK/tDBO4Dqz3wNPsVos2On4XiHYbxCW
+         ZSHphDyjS8JQzt1LOzzPZS0DtQfnDy2cjZ87CxguHqYYoN5iIEtJRlQb1A8esXVH7PFY
+         TI1VC95GHIXdDbxXWb6RfV8uPhP4EyPwmnBa24n7eaOHBNvdxkC6mIxly/KKXa3eVzSF
+         WTg5mMwT/cmWckLvDjCelhSclXnBFl6Th6sRoXh+qKcyV+82gzPfheFUqXlWCKBZ00XI
+         o4SA==
+X-Gm-Message-State: APjAAAXHRguYbpKH/zmV7aoGVQDZmUBCuy5H0r2jPd2RhoxAwzOwD56G
+        WAjmoIOPsJcNDd9IXCSGfG6D7Eg4puXmx9zS/VA=
+X-Google-Smtp-Source: APXvYqxT9Ew0lOrb9R8fk94nzjDz8DT5vh9012Iq9slXFuwohedopVo8D4BVhibQba0Usn8X8gpTxix7KzsPRpHRXdY=
+X-Received: by 2002:a02:b395:: with SMTP id p21mr28626183jan.52.1568056762576;
+ Mon, 09 Sep 2019 12:19:22 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190828150037.2640-1-aford173@gmail.com> <20190905230443.GA52127@atomide.com>
+ <CAHCN7xL0fbr=Sv+b=0AuGB1PPhAAFdAFLEd_iBM+ZMTkUw5sHQ@mail.gmail.com>
+ <CAHCN7xL-Gfxe0qF5w7BUsHnyhcNNpmCnchdKErnmiqggXfsLWw@mail.gmail.com>
+ <20190909134033.s26eiurpat3iekse@pali> <20190909163543.GQ52127@atomide.com>
+In-Reply-To: <20190909163543.GQ52127@atomide.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 9 Sep 2019 14:19:10 -0500
+Message-ID: <CAHCN7x+7aafrZTtDFqbYJFtrozi8jCmiFE8SyFSmEhyd_Xh6tQ@mail.gmail.com>
+Subject: Re: [RFC] ARM: omap3: Enable HWMODS for HW Random Number Generator
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali.rohar@gmail.com>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Tero Kristo <t-kristo@ti.com>,
+        Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Adam Ford <adam.ford@logicpd.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1568018127-26730-1-git-send-email-rayagonda.kokatanur@broadcom.com>
-From:   Ray Jui <ray.jui@broadcom.com>
-Message-ID: <664091a5-7cc0-eeb9-425a-ce39c31b1dfc@broadcom.com>
-Date:   Mon, 9 Sep 2019 11:56:37 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <1568018127-26730-1-git-send-email-rayagonda.kokatanur@broadcom.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Russell King <linux@armlinux.org.uk>,
+        Paul Walmsley <paul@pwsan.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 9, 2019 at 11:35 AM Tony Lindgren <tony@atomide.com> wrote:
+>
+> * Pali Roh=C3=A1r <pali.rohar@gmail.com> [190909 13:41]:
+> > On Monday 09 September 2019 08:37:09 Adam Ford wrote:
+> > > I applied this on 5.3 and it is working.  I assume the same is true i=
+n for-next.
+>
+> Hmm I noticed I stopped getting RNG data after several rmmod modprobe
+> cycles, or several hd /dev/random reads. Anybody else seeing that?
 
+On the Logic PD Torpedo, I was able to read from /dev/hwrng and
+/dev/random 10x without issue
+I have installed rng-tools and I have sshd running and some other
+stuff that might get in the way if I do an rmmod too much, but I
+removed and modprobed the omap-rng 3x and never saw an issue reading
+either /dev/hwrng or /dev/random.
 
-On 9/9/19 1:35 AM, Rayagonda Kokatanur wrote:
-> There are total of 151 non-secure gpio (0-150) and four
-> pins of pinmux (91, 92, 93 and 94) are not mapped to any
-> gpio pin, hence update same in DT.
-> 
-> Fixes: 8aa428cc1e2e ("arm64: dts: Add pinctrl DT nodes for Stingray SOC")
-> Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
-> ---
->   arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi | 5 +++--
->   arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi         | 3 +--
->   2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-> index 8a3a770..56789cc 100644
-> --- a/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/stingray/stingray-pinctrl.dtsi
-> @@ -42,13 +42,14 @@
->   
->   		pinmux: pinmux@14029c {
->   			compatible = "pinctrl-single";
-> -			reg = <0x0014029c 0x250>;
-> +			reg = <0x0014029c 0x26c>;
->   			#address-cells = <1>;
->   			#size-cells = <1>;
->   			pinctrl-single,register-width = <32>;
->   			pinctrl-single,function-mask = <0xf>;
->   			pinctrl-single,gpio-range = <
-> -				&range 0 154 MODE_GPIO
-> +				&range 0  91 MODE_GPIO
-> +				&range 95 60 MODE_GPIO
->   				>;
->   			range: gpio-range {
->   				#pinctrl-single,gpio-range-cells = <3>;
-> diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-> index 71e2e34..0098dfd 100644
-> --- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-> +++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-> @@ -464,8 +464,7 @@
->   					<&pinmux 108 16 27>,
->   					<&pinmux 135 77 6>,
->   					<&pinmux 141 67 4>,
-> -					<&pinmux 145 149 6>,
-> -					<&pinmux 151 91 4>;
-> +					<&pinmux 145 149 6>;
->   		};
->   
->   		i2c1: i2c@e0000 {
-> 
+I have been meaning to test this on the AM3517 and haven't gotten to
+it yet, but I assume you've only tested omap3630, is that true?
 
-Thanks for the fix. Looks good to me!
-
-Reviewed-by: Ray Jui <ray.jui@broadcom.com>
+adam
+>
+> > > Do you want to submit a formal patch?  I  can mark it as 'tested-by'
+> > > This really helps speed up the startup sequence on boards with sshd
+> > > because it delays for nearly 80 seconds waiting for entropy without
+> > > the hwrng.
+> >
+> > Hi! When applying a patch, could you please disable this rng for n900?
+> >
+> > In omap3-n900.dts for rng should be status =3D "disabled" (as Tony alre=
+ady
+> > wrote), similarly like for aes.
+>
+> Yeah I'll post a proper patch after -rc1.
+>
+> Regards,
+>
+> Tony
