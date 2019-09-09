@@ -2,93 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BDB5ADD68
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 18:39:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99206ADD84
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 18:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729752AbfIIQjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 12:39:43 -0400
-Received: from smtprelay0165.hostedemail.com ([216.40.44.165]:54836 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1729421AbfIIQjn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 12:39:43 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay07.hostedemail.com (Postfix) with ESMTP id 35AB5181D341F;
-        Mon,  9 Sep 2019 16:39:41 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::,RULES_HIT:41:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2194:2199:2393:2559:2562:2828:3138:3139:3140:3141:3142:3353:3622:3865:3866:3867:3868:3870:3872:3874:4321:5007:6119:7903:10004:10400:10848:11026:11232:11473:11657:11658:11914:12043:12296:12297:12438:12679:12740:12760:12895:13069:13311:13357:13439:14181:14659:14721:21080:21433:21451:21627:30012:30054:30070:30091,0,RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:25,LUA_SUMMARY:none
-X-HE-Tag: tent99_1a341b076e050
-X-Filterd-Recvd-Size: 2865
-Received: from XPS-9350.home (unknown [47.151.152.152])
-        (Authenticated sender: joe@perches.com)
-        by omf20.hostedemail.com (Postfix) with ESMTPA;
-        Mon,  9 Sep 2019 16:39:39 +0000 (UTC)
-Message-ID: <7d870b0119afa378dc68c710670b9b550ef5bdd4.camel@perches.com>
-Subject: Re: [Patch 10/13] media: am437x-vpfe: Remove print_fourcc helper
-From:   Joe Perches <joe@perches.com>
-To:     Benoit Parrot <bparrot@ti.com>, Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Date:   Mon, 09 Sep 2019 09:39:37 -0700
-In-Reply-To: <20190909162743.30114-11-bparrot@ti.com>
-References: <20190909162743.30114-1-bparrot@ti.com>
-         <20190909162743.30114-11-bparrot@ti.com>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.32.1-2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+        id S2388181AbfIIQwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 12:52:34 -0400
+Received: from forward104p.mail.yandex.net ([77.88.28.107]:58375 "EHLO
+        forward104p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727080AbfIIQwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 12:52:33 -0400
+Received: from mxback4g.mail.yandex.net (mxback4g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:165])
+        by forward104p.mail.yandex.net (Yandex) with ESMTP id 1C5174B015F8;
+        Mon,  9 Sep 2019 19:52:31 +0300 (MSK)
+Received: from smtp2o.mail.yandex.net (smtp2o.mail.yandex.net [2a02:6b8:0:1a2d::26])
+        by mxback4g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id oM1oYNrmyg-qU5u3J0b;
+        Mon, 09 Sep 2019 19:52:31 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cloudbear.ru; s=mail; t=1568047951;
+        bh=KyooAfPzqTmxKJgNA2NBDyBr061KuY9gP3JsRYaq9xw=;
+        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
+        b=bcUcTNhLskbI+fEHw7gZP/ZYznY2pRgrR8Z8AsHlCDPMDb8R7b13Ih/ls0AAz9g2h
+         ukZfh64a6bbaXPSRyrmk6AKjVFYwm5Cc5xCnby5vY1f08HB6JAZ1XtH1i+ItMe1/ln
+         Cq264VZUo7QHz3HtvXvmqyd/UpP2xjv5M3Yx7h4s=
+Authentication-Results: mxback4g.mail.yandex.net; dkim=pass header.i=@cloudbear.ru
+Received: by smtp2o.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id aUn2Pn2Gxb-qTtCYulI;
+        Mon, 09 Sep 2019 19:52:29 +0300
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (Client certificate not present)
+From:   Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+To:     davem@davemloft.net, robh+dt@kernel.org, f.fainelli@gmail.com
+Cc:     Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Trent Piepho <tpiepho@impinj.com>,
+        Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 1/2] net: phy: dp83867: Add documentation for SGMII mode type
+Date:   Mon,  9 Sep 2019 19:52:19 +0300
+Message-Id: <1568047940-14490-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1568047940-14490-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
+References: <1568026945-3857-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
+ <1568047940-14490-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-09-09 at 11:27 -0500, Benoit Parrot wrote:
-> print_fourcc helper function was used for debug log the
-> convert a pixel format code into its readable form for display
-> purposes. But since it used a single static buffer to perform
-> the conversion this might lead to display format issue when more
-> than one instance was invoked simultaneously.
-> 
-> It turns out that print_fourcc can be safely replace by using
-> "%4.4s" instead and casting the pointer to the fourcc code
-> into a (char *).
-[]
-> diff --git a/drivers/media/platform/am437x/am437x-vpfe.c b/drivers/media/platform/am437x/am437x-vpfe.c
-[]
-> @@ -221,20 +221,6 @@ static void pix_to_mbus(struct vpfe_device *vpfe,
-[]
-> @@ -700,8 +686,8 @@ static int vpfe_ccdc_set_pixel_format(struct vpfe_ccdc *ccdc, u32 pixfmt)
->  {
->  	struct vpfe_device *vpfe = container_of(ccdc, struct vpfe_device, ccdc);
->  
-> -	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%s\n",
-> -		 __func__, ccdc->ccdc_cfg.if_type, print_fourcc(pixfmt));
-> +	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%4.4s\n",
-> +		 __func__, ccdc->ccdc_cfg.if_type, (char *)&pixfmt);
+Add documentation of ti,sgmii-ref-clock-output-enable
+which can be used to select SGMII mode type (4 or 6-wire).
 
+Signed-off-by: Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+---
+ Documentation/devicetree/bindings/net/ti,dp83867.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-To avoid any possible defect in the content of pixfmt, it's
-probably better to use vsprintf extension "%4pE", &pixfmt
-see: Documentation/core-api/printk-formats.rst
-
-	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%4pE\n",
-		 __func__, ccdc->ccdc_cfg.if_type, &pixfmt);
-
->  
->  	if (ccdc->ccdc_cfg.if_type == VPFE_RAW_BAYER) {
->  		ccdc->ccdc_cfg.bayer.pix_fmt = CCDC_PIXFMT_RAW;
-> @@ -989,8 +975,8 @@ static int vpfe_config_ccdc_image_format(struct vpfe_device *vpfe)
->  
->  	vpfe_dbg(2, vpfe, "%s:\n", __func__);
->  
-> -	vpfe_dbg(1, vpfe, "pixelformat: %s\n",
-> -		print_fourcc(vpfe->v_fmt.fmt.pix.pixelformat));
-> +	vpfe_dbg(1, vpfe, "pixelformat: %4.4s\n",
-> +		 (char *)&vpfe->v_fmt.fmt.pix.pixelformat);
-
-	vpfe_dbg(1, vpfe, "pixelformat: %4pE\n",
-		 &vpfe->v_fmt.fmt.pix.pixelformat);
-
-etc...
-
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83867.txt b/Documentation/devicetree/bindings/net/ti,dp83867.txt
+index db6aa3f..c98c682 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83867.txt
++++ b/Documentation/devicetree/bindings/net/ti,dp83867.txt
+@@ -37,6 +37,10 @@ Optional property:
+ 			      for applicable values.  The CLK_OUT pin can also
+ 			      be disabled by this property.  When omitted, the
+ 			      PHY's default will be left as is.
++	- ti,sgmii-ref-clock-output-enable - This denotes the fact which
++				    SGMII configuration is used (4 or 6-wire modes).
++				    Some MACs work with differential SGMII clock.
++				    See data manual for details.
+ 
+ Note: ti,min-output-impedance and ti,max-output-impedance are mutually
+       exclusive. When both properties are present ti,max-output-impedance
+-- 
+2.7.4
 
