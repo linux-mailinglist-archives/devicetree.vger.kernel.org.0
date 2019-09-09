@@ -2,92 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C81DEAD532
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 31CCFAD53E
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726891AbfIIJBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 05:01:05 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:32804 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726847AbfIIJBF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 05:01:05 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id DC9E31A026E;
-        Mon,  9 Sep 2019 11:01:03 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E22451A000C;
-        Mon,  9 Sep 2019 11:00:58 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 82D10402CF;
-        Mon,  9 Sep 2019 17:00:52 +0800 (SGT)
-From:   Yinbo Zhu <yinbo.zhu@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     yinbo.zhu@nxp.com, xiaobo.xie@nxp.com, jiafei.pan@nxp.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH v1] usb: dwc3: enable otg mode for dwc3 usb ip on layerscape
-Date:   Mon,  9 Sep 2019 17:02:44 +0800
-Message-Id: <20190909090244.42543-1-yinbo.zhu@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727257AbfIIJFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 05:05:50 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:42558 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726585AbfIIJFu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:05:50 -0400
+Received: by mail-oi1-f193.google.com with SMTP id z6so4370774oix.9;
+        Mon, 09 Sep 2019 02:05:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=GuwxdIYgERe00cJb48+oERWi4smpDUo6ysgjSjR75xc=;
+        b=NF/M4QL2emELHwh+n1AZMg8E8STWG4JDG/2qH1USUKoxz9pI9kaOYCeZpq8lCBq9y7
+         tosKZXttngIMSTwSvwONOgEUKpRjujwurh+GXThxWGz8HtZ5XjQmgse7xiYnDgJ0hVwv
+         L295mzFe5erUoCtSGThZeXXKmKZIByrqWiRsN4ZkQvLEO/o/0mtQaH4/z8CWxYDcFFTp
+         Ksnr9NLOe5VMWLJ43QyvXSadC5B3Y3SYnkirQTnLrPAoTIra8HTGhFbzSBicPvglI+yQ
+         UB8+eZCZvVwkdz/ItjypbxaaSmF6N2bA3EFyoPd2Md4bOUmBq89mwnLiviWPYJyHDWCu
+         pyDA==
+X-Gm-Message-State: APjAAAXKa4FxE9ZHks7LZLB/Ov6tZR6BgR1da4T4bPdkVcRuyZ6yqEED
+        uy9bzgoZ/4SBTZ+AOredSSC+2J3P4HlpAnZI460=
+X-Google-Smtp-Source: APXvYqyNqjzQQ48P9vJ/ZJmagIY4iC68pr4EOSaw/ZLwaKDTWfXGs1XIUNNEOvWHY+Iws6/fIu4G/9cn5YzoHZsm8s8=
+X-Received: by 2002:aca:f305:: with SMTP id r5mr15871653oih.131.1568019947623;
+ Mon, 09 Sep 2019 02:05:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190907161634.27378-1-marek.vasut@gmail.com> <CAMuHMdXkExZXeXnxuKkMC0J4m56cZUmJpcq2JCXuMv3PBzA0Dg@mail.gmail.com>
+ <b77e6a66-be14-4f94-c116-788b8fa18b31@gmail.com>
+In-Reply-To: <b77e6a66-be14-4f94-c116-788b8fa18b31@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 9 Sep 2019 11:05:36 +0200
+Message-ID: <CAMuHMdUWezNDVv+U=VeryssmSFm79zU-ptuKmMechcWBboV1=w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
+To:     Marek Vasut <marek.vasut@gmail.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-layerscape otg function should be supported HNP SRP and ADP protocol
-accroing to rm doc, but dwc3 code not realize it and use id pin to
-detect who is host or device(0 is host 1 is device) this patch is to
-enable OTG mode on ls1028ardb ls1088ardb and ls1046ardb in dts
+Hi Marek,
 
-Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 2 +-
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+On Mon, Sep 9, 2019 at 10:42 AM Marek Vasut <marek.vasut@gmail.com> wrote:
+> On 9/9/19 10:19 AM, Geert Uytterhoeven wrote:
+> > On Sat, Sep 7, 2019 at 6:16 PM <marek.vasut@gmail.com> wrote:
+> >> From: Marek Vasut <marek.vasut+renesas@gmail.com>
+> >>
+> >> Add dma-ranges property into /soc node to describe the DMA capabilities
+> >> of the bus. This is currently needed to translate PCI DMA ranges, which
+> >> are limited to 32bit addresses.
+> >>
+> >> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+> >
+> > Thanks for your patch!
+> >
+> >> NOTE: This is needed for the following patches to work correctly:
+> >>       https://patchwork.ozlabs.org/patch/1144870/
+> >>       https://patchwork.ozlabs.org/patch/1144871/
+> >
+> > What happens with the above patches applied, and without this one?
+>
+> It triggers https://patchwork.kernel.org/patch/11087391/#22811745
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 7975519b4f56..5810d0400dbc 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -320,7 +320,7 @@
- 			compatible = "fsl,ls1028a-dwc3", "snps,dwc3";
- 			reg = <0x0 0x3110000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
--			dr_mode = "host";
-+			dr_mode = "otg";
- 			snps,dis_rxdet_inp3_quirk;
- 			snps,quirk-frame-length-adjustment = <0x20>;
- 			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-index b0ef08b090dd..ecce6151b9b0 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -582,7 +582,7 @@
- 			compatible = "snps,dwc3";
- 			reg = <0x0 0x3000000 0x0 0x10000>;
- 			interrupts = <GIC_SPI 61 IRQ_TYPE_LEVEL_HIGH>;
--			dr_mode = "host";
-+			dr_mode = "otg";
- 			snps,quirk-frame-length-adjustment = <0x20>;
- 			snps,dis_rxdet_inp3_quirk;
- 			snps,incr-burst-type-adjustment = <1>, <4>, <8>, <16>;
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index dacd8cf03a7f..4b5413f7c90c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -385,7 +385,7 @@
- 			compatible = "snps,dwc3";
- 			reg = <0x0 0x3110000 0x0 0x10000>;
- 			interrupts = <0 81 IRQ_TYPE_LEVEL_HIGH>;
--			dr_mode = "host";
-+			dr_mode = "otg";
- 			snps,quirk-frame-length-adjustment = <0x20>;
- 			snps,dis_rxdet_inp3_quirk;
- 			status = "disabled";
+Sure. But what does that mean?
+PCI devices just not working?
+Random memory corruption?
+System lockup?
+Anything else?
+
+> > As PCI/OF driver patches go in through different trees, is it safe to apply
+> > this patch now?
+> > Should they go in together?
+>
+> I didn't get any feedback on the other two patches, but this one here is
+> safe to go in either way.
+>
+> >>  arch/arm64/boot/dts/renesas/r8a7795.dtsi  | 1 +
+> >>  arch/arm64/boot/dts/renesas/r8a7796.dtsi  | 1 +
+> >>  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 1 +
+> >
+> > Do we need similar patches for the other R-Car Gen3 and RZ/G2 DTS files?
+> > What about R-Car Gen2 and RZ/G1?
+> I suspect we need such patches for any ARM64 machine with PCIe with this
+> 32bit limitation.
+
+What about R-Car Gen2 and RZ/G1, which are ARM32, with LPAE?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
