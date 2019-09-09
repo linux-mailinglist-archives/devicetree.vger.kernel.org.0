@@ -2,136 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B97FDAD40C
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 09:41:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E997AD417
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 09:46:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730939AbfIIHll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 03:41:41 -0400
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:10692 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726026AbfIIHll (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 03:41:41 -0400
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x897arVo027026;
-        Mon, 9 Sep 2019 00:41:24 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-id : content-transfer-encoding : mime-version; s=proofpoint;
- bh=MHVhCcjXdi+cD242GqEqgEjKWaUkWkROl8jSDeGEu00=;
- b=YF76NykadJD3f43eU6wXz118c8VCQNTY98ebvzco6yGnjZWRhgM58qaINGkwB7V5+LDj
- s2JvZyFTRyjnjCb2yiR9eUxOoza2COaVfTPta1dQNOdb3ims3fDbAh6F7ZUF5WGy70ea
- CCGzzZYzceEEktf3iRyj+RB+v8CJfjD8DrnMBfVDceONmYGE4uMOqAgqWdUqnzR9Xe7O
- FVUFRCKoELoA7g/JzWqwxoHGezTlqqTQU0SOJjaSxUf7xj0ydulT+5bF3IlLMyLgrjTk
- tjsWe103Tqvg42+elTGUjvCU9NUTspGmhRXaHlXiUDqu4iW+m6V/QdR3zIjvfarSM5BH WA== 
-Authentication-Results: cadence.com;
-        spf=pass smtp.mailfrom=jank@cadence.com
-Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2053.outbound.protection.outlook.com [104.47.37.53])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 2uv93y68wb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 09 Sep 2019 00:41:24 -0700
+        id S2388285AbfIIHqM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 03:46:12 -0400
+Received: from mail-eopbgr710079.outbound.protection.outlook.com ([40.107.71.79]:4416
+        "EHLO NAM05-BY2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2388281AbfIIHqL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 03:46:11 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RVvn3BqdEdWpieXHd0wNl0B9pT9wWeHv0UlkkoiSqakPC2L9+/zQCW+hQ332geYeXJ4FLrVeALSw/UYPg8PC0e4U0V0bq5VV8qPYsx/Ezzk4njkTjx+iIVyspdWCCMGPHa18rhUNfMj9KpbiOpN1RRaiK1NfD+iGo0hKujfu+L6zArNmvNYmiSATqkVz14aqev6nXh0ivhM9NHiAfuDnRxshWZD5245VsneUGQqfJhGpgEX26nsf4Q9D39u5gy2DBtXXMoZxxu8arD4f848EM+WN0NM7fa4PJ1lTNbsyPEOBA9J5BW1V8h8twj7RmgHPFTPEgGNnFhBEHxDoglwO4g==
+ b=jWSlHe+bN+AjmScG25PKHbk1SuxO4pn5wYGNWtUkbxOmvgeQUfyXAkD12ttzI7SijEExG4vIXQVyM5Fhtl4DYAXmIPx0IKSs9Z6wxC/qh787zw5irIkb3Pu2v5VObtzHXNx91LDDxGKs3lFNkA374wjiq1oGHmWPNqaoK4XhXUqJsDg9+h12AYHHQqYeGNyRW0jtbCwEO6Ma7JJ0i+lW05o0+DBb2PKlytat2fCqCjzRQRNjdsLQynIdYJInXB719fJ2xO6w0rxJrmUPRgVqGOe/CHrJT9x2TxFSmoh0doZHiz7EF359sqgcQKuOjIs/rJWd4po7HcXVV2/BrvXULw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MHVhCcjXdi+cD242GqEqgEjKWaUkWkROl8jSDeGEu00=;
- b=ZWm3JGEMfC0bFiWBUk7lMaIu+LHcUok+Q4jKBRQEwonABO19254jyCzcQ+KDgd9sOVtazonFW+z2ZQ5zbvRd1WskfzTEBzFXnYNuOab/YpXcC/Y0xoV5AHqjJKM+9PvW2oTzibkMXYUXPtBG1yxcKxvdkhEHYJc5WxGRtiTPXghJBidR8bbOV+M055yIpQOvdaI+VKfbs+MQUNauq2CAKkgGoRl9/UvjVVigs0UcoW5C3j0j8xhSzJ7rIiyRHl/lV00xMcVHH3hvL1/IueoaLlTU/acD7visXAsCuJYXkDPBKJact4OfIckLITzrh99gRElVpbhicRlTY2l3A0182g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cadence.com; dmarc=pass action=none header.from=cadence.com;
- dkim=pass header.d=cadence.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
+ bh=/U3cxxzrUB/TDO4lsMgRvqdfxxuYQC14kXEUui2R/mQ=;
+ b=GKefvikmOjGga1g11x0plR1F03pWNi8keueqclG6qGzKzFhWrmRxYveDaWozo+qwvCszwopakXIxZpIttAlpKyeMCMOfcRcZB/wOUsEciZR2GbxvWla+0MsCx+xxDZfk1TN40fRSntXattfjSz8oFlA5v9ieYVm1RHDtbwioojQFstpICN+9wj8EY+eoVJ6o2FNmiMDidb6wyf+bwx2BAr0IcdnJM1Whc1R9gpRTBOfMnbi/boLpp2bbjBOKff4ftQEU7AhDBN9Ckmw+PPzzqSPP10UHsPm/jjhbxmlNjsSwTCoQdfSfkm12SXJX4fCzZGNEze6llhsh17KqBjyXqg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.100) smtp.rcpttodomain=electromag.com.au smtp.mailfrom=xilinx.com;
+ dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
+ not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MHVhCcjXdi+cD242GqEqgEjKWaUkWkROl8jSDeGEu00=;
- b=e1giV9G7RzJFv/n9oQEOsY/NzlQO6UoOwekJNlSg0DAmCoHpWMadt5VPBXn0HjLulH043B6E9Z73CasmO8V6aQ2heqg+7hSNDIKcvH8pBsa0oAr8XZVgwSenWo3xf4eLPiqaO1PTrOlziHao9FYibCaTpkBLaSnOkoCjpK9aHno=
-Received: from CY1PR07MB2521.namprd07.prod.outlook.com (10.167.16.12) by
- CY1PR07MB2490.namprd07.prod.outlook.com (10.167.18.11) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2241.18; Mon, 9 Sep 2019 07:41:22 +0000
-Received: from CY1PR07MB2521.namprd07.prod.outlook.com
- ([fe80::1927:7325:2156:bd59]) by CY1PR07MB2521.namprd07.prod.outlook.com
- ([fe80::1927:7325:2156:bd59%10]) with mapi id 15.20.2241.018; Mon, 9 Sep 2019
- 07:41:22 +0000
-From:   Jan Kotas <jank@cadence.com>
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-CC:     Jan Kotas <jank@cadence.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rafal Ciepiela <rafalc@cadence.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/3] media: Add lane checks for Cadence CSI2RX
-Thread-Topic: [PATCH v2 2/3] media: Add lane checks for Cadence CSI2RX
-Thread-Index: AQHVY9iTRWpCeBlM0kmgbmtOhXyfuaceSNqAgASzZ4A=
-Date:   Mon, 9 Sep 2019 07:41:21 +0000
-Message-ID: <1D1666FD-CFC6-4DE1-8A2E-1809D1BDEAAB@global.cadence.com>
-References: <20190905105601.27034-1-jank@cadence.com>
- <20190905105601.27034-3-jank@cadence.com>
- <20190906075413.GE1586@valkosipuli.retiisi.org.uk>
-In-Reply-To: <20190906075413.GE1586@valkosipuli.retiisi.org.uk>
-Accept-Language: en-US, pl-PL
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [185.217.253.59]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7bb61386-e205-40af-304e-08d734f91c38
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:CY1PR07MB2490;
-x-ms-traffictypediagnostic: CY1PR07MB2490:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY1PR07MB2490A3C0B87DE8551179E886D0B70@CY1PR07MB2490.namprd07.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
-x-forefront-prvs: 01559F388D
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(396003)(346002)(39860400002)(376002)(366004)(36092001)(199004)(189003)(51914003)(99286004)(6246003)(14454004)(6116002)(3846002)(4744005)(2906002)(486006)(6916009)(6486002)(6436002)(71200400001)(66066001)(5660300002)(229853002)(446003)(76116006)(91956017)(11346002)(476003)(316002)(54906003)(25786009)(6506007)(53936002)(102836004)(53546011)(186003)(71190400001)(478600001)(76176011)(26005)(33656002)(8936002)(256004)(66946007)(66556008)(64756008)(66446008)(66476007)(8676002)(305945005)(86362001)(6512007)(4326008)(7736002)(81156014)(81166006);DIR:OUT;SFP:1101;SCL:1;SRVR:CY1PR07MB2490;H:CY1PR07MB2521.namprd07.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: cadence.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: GyywWoCbdP1W2VsY44S/YoncVNmNfYwPCzFx6odIgEI6zAGLFJj7rJwKibfzcZLSTXWU5IrFmTE/iz7duxi+y6YgSvuNSQaH6wz2uASelA7qf/7b1wVanCugzKArOiKlEZ2RFOhLA5OUzGSv8RWZe02j+l6fbruoq88ayYusH5evnYuODy2yuJ4jHuN+QnGU0//oFrxrifzHHoHZ+bDFkVTY1nSOh2V05HmMZsFf0SG87ZQi84vZlSZP1pY/UygGBascBgyE6gdnTIsbnQEMNmxJJAyzFIKPMuZ09IFm57lNykQVWm1z75x+Sf3CM5GoAEkHsz5dgZw81PX00hVgy45S/6H5fQYsgDef3zHpnlfLSD9KPWwO/dwH2D2+19HIR0dcbDP8Oyubb7O7C5psfaaftF4CSSHo4rUaFB4/YoQ=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <92F0E0B42750394CB426E0B76CE653F7@namprd07.prod.outlook.com>
-Content-Transfer-Encoding: base64
+ bh=/U3cxxzrUB/TDO4lsMgRvqdfxxuYQC14kXEUui2R/mQ=;
+ b=K0aMbSajDAZuNmnGDvqSirNEL0LBs52eh8ZgfmVQ+qfjnAAEkIcOOmOjzSauZJrFcM4UzFlun04Ofw0g0QdxEBiw5PIRd3vPboHIXkjL7asiFMBv8aRigyJTiSrpOKy7KhyWiFBKc/VOLDsjZHrecsnIytKRiPTDqClTDSPvk7I=
+Received: from MWHPR0201CA0096.namprd02.prod.outlook.com
+ (2603:10b6:301:75::37) by DM6PR02MB5260.namprd02.prod.outlook.com
+ (2603:10b6:5:51::30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2241.18; Mon, 9 Sep
+ 2019 07:46:06 +0000
+Received: from SN1NAM02FT049.eop-nam02.prod.protection.outlook.com
+ (2a01:111:f400:7e44::201) by MWHPR0201CA0096.outlook.office365.com
+ (2603:10b6:301:75::37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2241.15 via Frontend
+ Transport; Mon, 9 Sep 2019 07:46:05 +0000
+Authentication-Results: spf=pass (sender IP is 149.199.60.100)
+ smtp.mailfrom=xilinx.com; electromag.com.au; dkim=none (message not signed)
+ header.d=none;electromag.com.au; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.100 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.100; helo=xsj-pvapsmtpgw02;
+Received: from xsj-pvapsmtpgw02 (149.199.60.100) by
+ SN1NAM02FT049.mail.protection.outlook.com (10.152.72.166) with Microsoft SMTP
+ Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2241.14
+ via Frontend Transport; Mon, 9 Sep 2019 07:46:03 +0000
+Received: from unknown-38-66.xilinx.com ([149.199.38.66]:58627 helo=xsj-pvapsmtp01)
+        by xsj-pvapsmtpgw02 with esmtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1i7EN9-0007Ha-6I; Mon, 09 Sep 2019 00:46:03 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by xsj-pvapsmtp01 with smtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1i7EN4-0006xG-26; Mon, 09 Sep 2019 00:45:58 -0700
+Received: from xsj-pvapsmtp01 (xsj-mail.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id x897jpeD001909;
+        Mon, 9 Sep 2019 00:45:51 -0700
+Received: from [172.30.17.116]
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <michals@xilinx.com>)
+        id 1i7EMx-0006wb-8D; Mon, 09 Sep 2019 00:45:51 -0700
+Subject: Re: [PATCH 2/2] iio: core: Add optional symbolic label to device
+ attributes
+To:     Phil Reid <preid@electromag.com.au>, jic23@kernel.org,
+        knaack.h@gmx.de, lars@metafoo.de, pmeerw@pmeerw.net,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        michal.simek@xilinx.com
+References: <1566876924-63608-1-git-send-email-preid@electromag.com.au>
+ <1566876924-63608-3-git-send-email-preid@electromag.com.au>
+From:   Michal Simek <michal.simek@xilinx.com>
+Message-ID: <349d8473-7892-cf1d-519c-231cb91085d2@xilinx.com>
+Date:   Mon, 9 Sep 2019 09:45:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7bb61386-e205-40af-304e-08d734f91c38
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2019 07:41:21.9590
+In-Reply-To: <1566876924-63608-3-git-send-email-preid@electromag.com.au>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-Forefront-Antispam-Report: CIP:149.199.60.100;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(136003)(376002)(396003)(346002)(2980300002)(199004)(189003)(31686004)(58126008)(316002)(230700001)(36386004)(52146003)(14444005)(23676004)(478600001)(31696002)(65806001)(65956001)(81156014)(5660300002)(8936002)(81166006)(8676002)(106002)(356004)(2906002)(9786002)(2486003)(6666004)(426003)(2616005)(44832011)(476003)(486006)(126002)(336012)(6246003)(11346002)(446003)(26005)(47776003)(229853002)(50466002)(70206006)(70586007)(186003)(305945005)(36756003)(76176011)(921003)(1121003)(5001870100001);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR02MB5260;H:xsj-pvapsmtpgw02;FPR:;SPF:Pass;LANG:en;PTR:xapps1.xilinx.com,unknown-60-100.xilinx.com;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 6753ab7e-8a14-4820-04b3-08d734f9c444
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(4709080)(1401327)(4618075)(2017052603328);SRVR:DM6PR02MB5260;
+X-MS-TrafficTypeDiagnostic: DM6PR02MB5260:
+X-Microsoft-Antispam-PRVS: <DM6PR02MB5260DC536A5F5D5654C89D94C6B70@DM6PR02MB5260.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
+X-Forefront-PRVS: 01559F388D
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: xVk58YSSNvqVE+KcmnW6r/SAj4A4ypE1PRChCuPKyV8ybTQ2C9b13oo6JLzl6ZVWoyiuFa5yYM8/hyG0lUAHCcXnMR4ejsLQfnE1SvGQA9ArWmjzEsbWDsf6DaI4FakHVDKMMcHWRYYpFQnDH/eZjxotiY8b7vh0uHKOisDkFyl1GtUclfUdO84vaiUf8jbDizjgNzpy+HB6Hwe/HatIGlwKaVOJ/fxw4SK/IeWi0qcBB+Agry5yMb0PiAX7SSrnbiAz5znsOS9022NkLgf/SV2Q5rKOWazZ//O73ER2xoxBd21F8xZi4jCOUrBzIJAgBBLa6mV+7kwwR839MilX5Nof+f/dcQ3qkLc+2V29hWN3RkHxgWIgKJ0vVcoWBnM3eL9Y2b72kL/re11XMTjgYmpzEP5BdG7GyjRE02CX5mg=
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2019 07:46:03.6193
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BJ3M/jIEhsx+ZVA/hiKv+UBugWY7NZs3TLh+hRq2eD41HNRN4ANSr7jSJ1FgHgAUt9EFM0FCycPmitfSdXS70w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR07MB2490
-X-Proofpoint-SPF-Result: pass
-X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
- include:mktomail.com include:spf-0014ca01.pphosted.com
- include:spf.protection.outlook.com include:auth.msgapp.com
- include:spf.mandrillapp.com ~all
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
- definitions=2019-09-09_04:2019-09-08,2019-09-09 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 clxscore=1011
- phishscore=0 suspectscore=0 bulkscore=0 impostorscore=0 spamscore=0
- malwarescore=0 mlxlogscore=640 priorityscore=1501 mlxscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1906280000 definitions=main-1909090084
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6753ab7e-8a14-4820-04b3-08d734f9c444
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.100];Helo=[xsj-pvapsmtpgw02]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR02MB5260
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQoNCkhlbGxvIFNha2FyaSwNCg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5Lg0KPiBPbiA2IFNlcCAy
-MDE5LCBhdCAwOTo1NCwgU2FrYXJpIEFpbHVzIDxzYWthcmkuYWlsdXNAaWtpLmZpPiB3cm90ZToN
-Cj4gDQo+IEhpIEphbiwNCj4gDQo+IFRoYW5rcyBmb3IgdGhlIHBhdGNoc2V0Lg0KPiANCj4gT24g
-VGh1LCBTZXAgMDUsIDIwMTkgYXQgMTE6NTY6MDBBTSArMDEwMCwgSmFuIEtvdGFzIHdyb3RlOg0K
-Pj4gLyoNCj4+ICAqIERyaXZlciBmb3IgQ2FkZW5jZSBNSVBJLUNTSTIgUlggQ29udHJvbGxlciB2
-MS4zDQo+PiAgKg0KPj4gLSAqIENvcHlyaWdodCAoQykgMjAxNyBDYWRlbmNlIERlc2lnbiBTeXN0
-ZW1zIEluYy4NCj4+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMTctMjAxOSBDYWRlbmNlIERlc2lnbiBT
-eXN0ZW1zIEluYy4NCj4+ICAqLw0KPj4gDQo+PiArCWZvciAoaSA9IDA7IGkgPCBjc2kycngtPm51
-bV9sYW5lczsgaSsrKSB7DQo+PiArCQlpZiAoY3NpMnJ4LT5sYW5lc1tpXSA8IDEpIHsNCj4gDQo+
-IERvIHlvdSBuZWVkIHRoaXM/IHY0bDJfZndub2RlX3BhcnNlX2VuZHBvaW50KCkgYWxyZWFkeSBo
-YXMgYSBtb3JlIHRob3JvdWdoDQo+IGNoZWNrIGZvciB0aGUgbGFuZSBudW1iZXJzLg0KDQpJIGxv
-b2tlZCBhdCB0aGUgc291cmNlIGNvZGUgb2YgdjRsMl9md25vZGVfZW5kcG9pbnRfcGFyc2VfY3Np
-Ml9idXMNCmFuZCB0aGlzIHBhcnRpY3VsYXIgY2FzZSBkb2VzbuKAmXQgc2VlbSB0byBiZSBjaGVj
-a2VkLg0KDQo+IA0KPiAtLSANCj4gUmVnYXJkcywNCj4gDQo+IFNha2FyaSBBaWx1cw0KDQpSZWdh
-cmRzLA0KSmFuDQoNCg==
+On 27. 08. 19 5:35, Phil Reid wrote:
+> If a label is defined in the device tree for this device add that
+> to the device specific attributes. This is useful for userspace to
+> be able to identify an individual device when multiple identical
+> chips are present in the system.
+> 
+> Signed-off-by: Phil Reid <preid@electromag.com.au>
+> ---
+>  drivers/iio/industrialio-core.c | 17 +++++++++++++++++
+>  include/linux/iio/iio.h         |  1 +
+>  2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+> index 8303639963d7..2d7fb7629095 100644
+> --- a/drivers/iio/industrialio-core.c
+> +++ b/drivers/iio/industrialio-core.c
+> @@ -1300,6 +1300,16 @@ static ssize_t iio_show_dev_name(struct device *dev,
+>  
+>  static DEVICE_ATTR(name, S_IRUGO, iio_show_dev_name, NULL);
+>  
+> +static ssize_t iio_show_dev_label(struct device *dev,
+> +				 struct device_attribute *attr,
+> +				 char *buf)
+> +{
+> +	struct iio_dev *indio_dev = dev_to_iio_dev(dev);
+> +	return snprintf(buf, PAGE_SIZE, "%s\n", indio_dev->label);
+> +}
+> +
+> +static DEVICE_ATTR(label, S_IRUGO, iio_show_dev_label, NULL);
+> +
+>  static ssize_t iio_show_timestamp_clock(struct device *dev,
+>  					struct device_attribute *attr,
+>  					char *buf)
+> @@ -1416,6 +1426,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
+>  
+>  	if (indio_dev->name)
+>  		attrcount++;
+> +	if (indio_dev->label)
+> +		attrcount++;
+>  	if (clk)
+>  		attrcount++;
+>  
+> @@ -1438,6 +1450,8 @@ static int iio_device_register_sysfs(struct iio_dev *indio_dev)
+>  		indio_dev->chan_attr_group.attrs[attrn++] = &p->dev_attr.attr;
+>  	if (indio_dev->name)
+>  		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_name.attr;
+> +	if (indio_dev->label)
+> +		indio_dev->chan_attr_group.attrs[attrn++] = &dev_attr_label.attr;
+>  	if (clk)
+>  		indio_dev->chan_attr_group.attrs[attrn++] = clk;
+>  
+> @@ -1709,6 +1723,9 @@ int __iio_device_register(struct iio_dev *indio_dev, struct module *this_mod)
+>  	if (!indio_dev->dev.of_node && indio_dev->dev.parent)
+>  		indio_dev->dev.of_node = indio_dev->dev.parent->of_node;
+>  
+> +	indio_dev->label = of_get_property(indio_dev->dev.of_node, "label",
+> +					   NULL);
+> +
+>  	ret = iio_check_unique_scan_index(indio_dev);
+>  	if (ret < 0)
+>  		return ret;
+> diff --git a/include/linux/iio/iio.h b/include/linux/iio/iio.h
+> index a74cb177dc6f..3f89db50d3f6 100644
+> --- a/include/linux/iio/iio.h
+> +++ b/include/linux/iio/iio.h
+> @@ -556,6 +556,7 @@ struct iio_dev {
+>  	struct list_head		channel_attr_list;
+>  	struct attribute_group		chan_attr_group;
+>  	const char			*name;
+> +	const char			*label;
+>  	const struct iio_info		*info;
+>  	clockid_t			clock_id;
+>  	struct mutex			info_exist_lock;
+> 
+
+Tested-by: Michal Simek <michal.simek@xilinx.com>
+
+Thanks,
+Michal
+
