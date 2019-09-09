@@ -2,56 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B83A4ADE5E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 20:06:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D043BADE8F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 20:13:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729887AbfIISGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 14:06:10 -0400
-Received: from cyberdimension.org ([80.67.179.20]:40442 "EHLO
-        gnutoo.cyberdimension.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727772AbfIISGK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 14:06:10 -0400
-X-Greylist: delayed 393 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Sep 2019 14:06:06 EDT
-Received: from gnutoo.cyberdimension.org (localhost [127.0.0.1])
-        by cyberdimension.org (OpenSMTPD) with ESMTP id 35b5cadb;
-        Mon, 9 Sep 2019 17:56:33 +0000 (UTC)
-Received: from primarylaptop.localdomain (localhost.localdomain [IPv6:::1])
-        by gnutoo.cyberdimension.org (OpenSMTPD) with ESMTP id 76691a14;
-        Mon, 9 Sep 2019 17:56:33 +0000 (UTC)
-From:   Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
-Subject: [PATCH 1/2] dt-bindings: arm: fsl: Add the Kobo Aura H2O Edition 2
-Date:   Mon,  9 Sep 2019 19:59:30 +0200
-Message-Id: <20190909175930.5026-1-GNUtoo@cyberdimension.org>
-X-Mailer: git-send-email 2.23.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S2405664AbfIISNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 14:13:33 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:32946 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405643AbfIISNc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 14:13:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568052807;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=tV029y11XWsg52niiYVuB13LG4WzStnlH9YsdMIy1yQ=;
+        b=X3lqSL2rJsYo520/1Y/VUa5nIZVZcMIz2hS/jP62Bvc+gOk366S6tyg6ngIUOuUh/B
+        fr3XVHXW0AlJTEVGwMpwsDm4V+2V9nbLJbhCL0QWXAy6F0V7N6pF7aWNolqHHv7QtEVT
+        nZpW0iA2xavwMBoijqXlFAQHPUonMC/fsYgvFS9O5YwdjlzxkgVeFGTEH2b2P8CLUYsj
+        Q8Rw7lT/scuy/9OU1UrfO25QRgexfQaoUxx/aWjpL6mCmJ0hx8y2fJtRhNx8wZspXhpF
+        0Div8RsZMMiJzWsm1FbxCmOe7zk9n3ZN9z3VaHo+Y3l/K6Umzc0Xgh6+ZpAM1tsL50QB
+        Js0A==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj4Qpw9iZeHmMnw4vkig=="
+X-RZG-CLASS-ID: mo00
+Received: from imac.fritz.box
+        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
+        with ESMTPSA id u036f9v89ID3y5R
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Mon, 9 Sep 2019 20:13:03 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+Subject: Re: [PATCH 1/2] cpufreq: ti-cpufreq: Add support for AM3517
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+In-Reply-To: <20190909154502.19804-1-aford173@gmail.com>
+Date:   Mon, 9 Sep 2019 20:13:03 +0200
+Cc:     linux-omap@vger.kernel.org, neolynx@gmail.com,
+        letux-kernel@openphoenux.org, andreas@kemnade.info,
+        tony@atomide.com, adam.ford@logicpd.com,
+        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <6081134F-AACD-412C-B36A-BF9463C9712B@goldelico.com>
+References: <20190909154502.19804-1-aford173@gmail.com>
+To:     Adam Ford <aford173@gmail.com>
+X-Mailer: Apple Mail (2.3124)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Aura H2O Edition 2 is an e-reader made by Kobo.
+Hi Adam,
 
-Signed-off-by: Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+> Am 09.09.2019 um 17:45 schrieb Adam Ford <aford173@gmail.com>:
+>=20
+> The AM3517 only lists 600MHz @ 1.2V, but the revister values for
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 7294ac36f4c0..8029e8a14f63 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -148,6 +148,7 @@ properties:
-         items:
-           - enum:
-               - fsl,imx6sll-evk
-+              - kobo,aura-h2o-2
-           - const: fsl,imx6sll
- 
-       - description: i.MX6SX based Boards
--- 
-2.23.0
+a small typo...
+
+s/revister/register/
+
+> 0x4830A204 =3D 1b86 802f, it seems like am3517 might be a derivative
+> of the omap36 which has OPPs would be OPP50 (300 MHz) and OPP100
+> (600 MHz).
+>=20
+> This patch simply enable adds the am3517 to the compatible table
+> using the omap3630 structure instead of the 3430.
+>=20
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+>=20
+> diff --git a/drivers/cpufreq/ti-cpufreq.c =
+b/drivers/cpufreq/ti-cpufreq.c
+> index f2f58d689320..6b69fb1d6bdf 100644
+> --- a/drivers/cpufreq/ti-cpufreq.c
+> +++ b/drivers/cpufreq/ti-cpufreq.c
+> @@ -270,6 +270,7 @@ static int ti_cpufreq_setup_syscon_register(struct =
+ti_cpufreq_data *opp_data)
+>=20
+> static const struct of_device_id ti_cpufreq_of_match[] =3D {
+> 	{ .compatible =3D "ti,am33xx", .data =3D &am3x_soc_data, },
+> +	{ .compatible =3D "ti,am3517", .data =3D &omap36xx_soc_data, },
+> 	{ .compatible =3D "ti,am43", .data =3D &am4x_soc_data, },
+> 	{ .compatible =3D "ti,dra7", .data =3D &dra7_soc_data },
+> 	{ .compatible =3D "ti,omap34xx", .data =3D &omap34xx_soc_data, =
+},
+> --=20
+> 2.17.1
+>=20
+
+Looks good to me.
+
+Should I include your two patches to my patch set (and resend)?
+Or should we keep them separated?
+
+BR and thanks,
+Nikolaus
 
