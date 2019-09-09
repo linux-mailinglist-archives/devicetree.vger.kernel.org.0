@@ -2,110 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31CCFAD53E
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A3FCAD563
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:10:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727257AbfIIJFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 05:05:50 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:42558 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726585AbfIIJFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:05:50 -0400
-Received: by mail-oi1-f193.google.com with SMTP id z6so4370774oix.9;
-        Mon, 09 Sep 2019 02:05:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GuwxdIYgERe00cJb48+oERWi4smpDUo6ysgjSjR75xc=;
-        b=NF/M4QL2emELHwh+n1AZMg8E8STWG4JDG/2qH1USUKoxz9pI9kaOYCeZpq8lCBq9y7
-         tosKZXttngIMSTwSvwONOgEUKpRjujwurh+GXThxWGz8HtZ5XjQmgse7xiYnDgJ0hVwv
-         L295mzFe5erUoCtSGThZeXXKmKZIByrqWiRsN4ZkQvLEO/o/0mtQaH4/z8CWxYDcFFTp
-         Ksnr9NLOe5VMWLJ43QyvXSadC5B3Y3SYnkirQTnLrPAoTIra8HTGhFbzSBicPvglI+yQ
-         UB8+eZCZvVwkdz/ItjypbxaaSmF6N2bA3EFyoPd2Md4bOUmBq89mwnLiviWPYJyHDWCu
-         pyDA==
-X-Gm-Message-State: APjAAAXKa4FxE9ZHks7LZLB/Ov6tZR6BgR1da4T4bPdkVcRuyZ6yqEED
-        uy9bzgoZ/4SBTZ+AOredSSC+2J3P4HlpAnZI460=
-X-Google-Smtp-Source: APXvYqyNqjzQQ48P9vJ/ZJmagIY4iC68pr4EOSaw/ZLwaKDTWfXGs1XIUNNEOvWHY+Iws6/fIu4G/9cn5YzoHZsm8s8=
-X-Received: by 2002:aca:f305:: with SMTP id r5mr15871653oih.131.1568019947623;
- Mon, 09 Sep 2019 02:05:47 -0700 (PDT)
+        id S1727049AbfIIJK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 05:10:56 -0400
+Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:28288 "EHLO
+        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726496AbfIIJK4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:10:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1568020255; x=1599556255;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=ey40doxX0rG3pVBsPnyWR0CfVV2FkV/uoAA9DcuSCtw=;
+  b=efBvLZog0TBHxq86JvIpJl+8ECtshWWRp88im5svuaxWdSUy7NHYl8YL
+   fGYFmUaQjxZhuwiyRncArfnZvFrv3whAxcz7QU5H3edmWBrS6EbmEi8If
+   ttnscbXQErNjBfSeZ9coOI0cg/eb8gylAPJCK/a+xCOtpYMrVy1Lqbj1Y
+   0=;
+X-IronPort-AV: E=Sophos;i="5.64,484,1559520000"; 
+   d="scan'208";a="783971868"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2c-4e7c8266.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 09 Sep 2019 09:10:50 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan2.pdx.amazon.com [10.170.41.162])
+        by email-inbound-relay-2c-4e7c8266.us-west-2.amazon.com (Postfix) with ESMTPS id 7832DA1D01;
+        Mon,  9 Sep 2019 09:10:48 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 9 Sep 2019 09:10:47 +0000
+Received: from udc4a3e82dbc15a031435.hfa15.amazon.com (10.43.161.176) by
+ EX13D01EUB001.ant.amazon.com (10.43.166.194) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 9 Sep 2019 09:10:36 +0000
+From:   Talel Shenhar <talel@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <mchehab+samsung@kernel.org>, <davem@davemloft.net>,
+        <gregkh@linuxfoundation.org>, <nicolas.ferre@microchip.com>,
+        <tglx@linutronix.de>, <arnd@arndb.de>, <venture@google.com>,
+        <linus.walleij@linaro.org>, <olof@lixom.net>, <mripard@kernel.org>,
+        <ssantosh@kernel.org>, <paul.kocialkowski@bootlin.com>,
+        <mjourdan@baylibre.com>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <talel@amazon.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
+        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
+        <hanochu@amazon.com>, <barakw@amazon.com>
+Subject: [PATCH 0/3] Amazon's Annapurna Labs POS Driver
+Date:   Mon, 9 Sep 2019 12:10:17 +0300
+Message-ID: <1568020220-7758-1-git-send-email-talel@amazon.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <20190907161634.27378-1-marek.vasut@gmail.com> <CAMuHMdXkExZXeXnxuKkMC0J4m56cZUmJpcq2JCXuMv3PBzA0Dg@mail.gmail.com>
- <b77e6a66-be14-4f94-c116-788b8fa18b31@gmail.com>
-In-Reply-To: <b77e6a66-be14-4f94-c116-788b8fa18b31@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 9 Sep 2019 11:05:36 +0200
-Message-ID: <CAMuHMdUWezNDVv+U=VeryssmSFm79zU-ptuKmMechcWBboV1=w@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
-To:     Marek Vasut <marek.vasut@gmail.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-Originating-IP: [10.43.161.176]
+X-ClientProxiedBy: EX13D23UWA001.ant.amazon.com (10.43.160.68) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+The Amazon's Annapurna Labs SoCs includes Point Of Serialization error
+logging unit that reports an error in case of write error (e.g. attempt to
+write to a read only register).
 
-On Mon, Sep 9, 2019 at 10:42 AM Marek Vasut <marek.vasut@gmail.com> wrote:
-> On 9/9/19 10:19 AM, Geert Uytterhoeven wrote:
-> > On Sat, Sep 7, 2019 at 6:16 PM <marek.vasut@gmail.com> wrote:
-> >> From: Marek Vasut <marek.vasut+renesas@gmail.com>
-> >>
-> >> Add dma-ranges property into /soc node to describe the DMA capabilities
-> >> of the bus. This is currently needed to translate PCI DMA ranges, which
-> >> are limited to 32bit addresses.
-> >>
-> >> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
-> >
-> > Thanks for your patch!
-> >
-> >> NOTE: This is needed for the following patches to work correctly:
-> >>       https://patchwork.ozlabs.org/patch/1144870/
-> >>       https://patchwork.ozlabs.org/patch/1144871/
-> >
-> > What happens with the above patches applied, and without this one?
->
-> It triggers https://patchwork.kernel.org/patch/11087391/#22811745
+This patch series introduces the support for this unit.
 
-Sure. But what does that mean?
-PCI devices just not working?
-Random memory corruption?
-System lockup?
-Anything else?
 
-> > As PCI/OF driver patches go in through different trees, is it safe to apply
-> > this patch now?
-> > Should they go in together?
->
-> I didn't get any feedback on the other two patches, but this one here is
-> safe to go in either way.
->
-> >>  arch/arm64/boot/dts/renesas/r8a7795.dtsi  | 1 +
-> >>  arch/arm64/boot/dts/renesas/r8a7796.dtsi  | 1 +
-> >>  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 1 +
-> >
-> > Do we need similar patches for the other R-Car Gen3 and RZ/G2 DTS files?
-> > What about R-Car Gen2 and RZ/G1?
-> I suspect we need such patches for any ARM64 machine with PCIe with this
-> 32bit limitation.
+Talel Shenhar (3):
+  dt-bindings: soc: al-pos: Amazon's Annapurna Labs POS
+  soc: amazon: al-pos: Introduce Amazon's Annapurna Labs POS driver
+  arm64: alpine: select AL_POS
 
-What about R-Car Gen2 and RZ/G1, which are ARM32, with LPAE?
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/soc/amazon/amazon,al-pos.txt          |  18 +++
+ MAINTAINERS                                        |   6 +
+ arch/arm64/Kconfig.platforms                       |   1 +
+ drivers/soc/Kconfig                                |   1 +
+ drivers/soc/Makefile                               |   1 +
+ drivers/soc/amazon/Kconfig                         |   5 +
+ drivers/soc/amazon/Makefile                        |   1 +
+ drivers/soc/amazon/al_pos.c                        | 129 +++++++++++++++++++++
+ 8 files changed, 162 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/amazon/amazon,al-pos.txt
+ create mode 100644 drivers/soc/amazon/Kconfig
+ create mode 100644 drivers/soc/amazon/Makefile
+ create mode 100644 drivers/soc/amazon/al_pos.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.7.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
