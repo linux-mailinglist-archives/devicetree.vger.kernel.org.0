@@ -2,111 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F48AAD2C2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 06:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8031DAD2E4
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 07:56:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726758AbfIIE41 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 00:56:27 -0400
-Received: from mleia.com ([178.79.152.223]:40066 "EHLO mail.mleia.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725926AbfIIE40 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 00:56:26 -0400
-Received: from mail.mleia.com (localhost [127.0.0.1])
-        by mail.mleia.com (Postfix) with ESMTP id CBC1639C7AA;
-        Mon,  9 Sep 2019 04:56:23 +0000 (UTC)
-Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
-From:   Vladimir Zapolskiy <vz@mleia.com>
-To:     jacopo mondi <jacopo@jmondi.org>,
-        Luca Ceresoli <luca@lucaceresoli.net>,
-        Wolfram Sang <wsa@the-dreams.de>, Peter Rosin <peda@axentia.se>
-Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>
-References: <20190723203723.11730-1-luca@lucaceresoli.net>
- <20190723203723.11730-3-luca@lucaceresoli.net>
- <20190901143101.humomdehy5ee73sk@vino>
- <aedad45b-16d6-d189-b045-329727440ca5@mleia.com>
-Message-ID: <1fb71437-eaa2-99a7-885f-63ee769969aa@mleia.com>
-Date:   Mon, 9 Sep 2019 07:56:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.6.0
+        id S1727254AbfIIF4Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 01:56:25 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:39754 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727076AbfIIF4Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 01:56:25 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x895uLCs008703;
+        Mon, 9 Sep 2019 00:56:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568008581;
+        bh=2Bbb3tDAMJ9BxWKHx1geE957uzg9mJ+ZC0U5GDiSY3k=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=m1EZ5Vq1ZPJz9OE7eQAEVOmlORQmpY7fLibYXbHR5dvyr74H3agnzO+EOBbnq0dmz
+         wwAoadDzqYCLZSPWyyjATROcIXbA6BP5NMAljdzB3RXNIhn0z1ro/Ze/xkAXoLi/Wj
+         L081ZbJKatb/KQoySjJSKdO6ctxLQKYAfSQeAm2Q=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x895uLq4123510;
+        Mon, 9 Sep 2019 00:56:21 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 9 Sep
+ 2019 00:56:20 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 9 Sep 2019 00:56:20 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x895uIMK055091;
+        Mon, 9 Sep 2019 00:56:19 -0500
+Subject: Re: [RFC 3/3] dmaengine: Support for requesting channels preferring
+ DMA domain controller
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <robh+dt@kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dan.j.williams@intel.com>,
+        <devicetree@vger.kernel.org>
+References: <20190906141816.24095-1-peter.ujfalusi@ti.com>
+ <20190906141816.24095-4-peter.ujfalusi@ti.com>
+ <20190908121507.GN2672@vkoul-mobl>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <0bd4d678-31be-bead-7591-0452b6fed5f2@ti.com>
+Date:   Mon, 9 Sep 2019 08:56:50 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <aedad45b-16d6-d189-b045-329727440ca5@mleia.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190908121507.GN2672@vkoul-mobl>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CRM114-Version: 20100106-BlameMichelson ( TRE 0.8.0 (BSD) ) MR-49551924 
-X-CRM114-CacheID: sfid-20190909_045623_861624_81A29212 
-X-CRM114-Status: GOOD (  22.75  )
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luca, Jacopo, Wolfram, Peter,
 
-On 09/08/2019 11:45 PM, Vladimir Zapolskiy wrote:
-> Hi Luca, Jacopo, Wolfram, Peter,
-> 
-> On 09/01/2019 05:31 PM, jacopo mondi wrote:
->> Hi Luca,
->>    thanks for keep pushing this series! I hope we can use part of this
->> for the (long time) on-going GMSL work...
+
+On 08/09/2019 15.15, Vinod Koul wrote:
+> On 06-09-19, 17:18, Peter Ujfalusi wrote:
+>> In case the channel is not requested via the slave API, use the
+>> of_find_dma_domain() to see if a system default DMA controller is
+>> specified.
 >>
->> I hope you will be patient enough to provide (another :) overview
->> of this work during the BoF Wolfram has organized at LPC for the next
->> week.
+>> Add new function which can be used by clients to request channels by mask
+>> from their DMA domain controller if specified.
 >>
->> In the meantime I would have some comments after having a read at the
->> series and trying to apply its concept to GMSL
+>> Client drivers can take advantage of the domain support by moving from
+>> dma_request_chan_by_mask() to dma_domain_request_chan_by_mask()
 >>
+>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>> ---
+>>  drivers/dma/dmaengine.c   | 17 ++++++++++++-----
+>>  include/linux/dmaengine.h |  9 ++++++---
+>>  2 files changed, 18 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/dma/dmaengine.c b/drivers/dma/dmaengine.c
+>> index 6baddf7dcbfd..087450eed68c 100644
+>> --- a/drivers/dma/dmaengine.c
+>> +++ b/drivers/dma/dmaengine.c
+>> @@ -640,6 +640,10 @@ struct dma_chan *__dma_request_channel(const dma_cap_mask_t *mask,
+>>  	struct dma_device *device, *_d;
+>>  	struct dma_chan *chan = NULL;
+>>  
+>> +	/* If np is not specified, get the default DMA domain controller */
+>> +	if (!np)
+>> +		np = of_find_dma_domain(NULL);
+>> +
+>>  	/* Find a channel */
+>>  	mutex_lock(&dma_list_mutex);
+>>  	list_for_each_entry_safe(device, _d, &dma_device_list, global_node) {
+>> @@ -751,19 +755,22 @@ struct dma_chan *dma_request_slave_channel(struct device *dev,
+>>  EXPORT_SYMBOL_GPL(dma_request_slave_channel);
+>>  
+>>  /**
+>> - * dma_request_chan_by_mask - allocate a channel satisfying certain capabilities
+>> - * @mask: capabilities that the channel must satisfy
+>> + * dma_domain_request_chan_by_mask - allocate a channel by mask from DMA domain
+>> + * @dev:	pointer to client device structure
+>> + * @mask:	capabilities that the channel must satisfy
+>>   *
+>>   * Returns pointer to appropriate DMA channel on success or an error pointer.
+>>   */
+>> -struct dma_chan *dma_request_chan_by_mask(const dma_cap_mask_t *mask)
+>> +struct dma_chan *dma_domain_request_chan_by_mask(struct device *dev,
+>> +						 const dma_cap_mask_t *mask)
 > 
-> I won't attend the LPC, however I would appreciate if you book some
-> time to review my original / alternative implementation of the TI
-> DS90Ux9xx I2C bridge device driver.
-> 
-> For your convenience the links to the driver are given below:
-> * dt bindings: https://lore.kernel.org/lkml/20181012060314.GU4939@dell/T/#mead5ea226550b
-> * driver code: https://lore.kernel.org/lkml/20181012060314.GU4939@dell/T/#m2fe3664c5f884
-> * usage example: https://lore.kernel.org/lkml/20181012060314.GU4939@dell/T/#m56c146f5decdc
-> 
-> The reasons why my driver is better/more flexible/more functional are
-> discussed earlier, please let me know, if you expect anything else
-> from me to add, also I would be happy to get a summary of your offline
-> discussion.
+> should we really use dma_request_chan_by_mask() why not create a new api
+> dma_request_chan_by_domain() and use that, it falls back to
+> dma_request_chan_by_mask() if it doesnt find a valid domain!
 
-I forgot to repeat my main objection against Luca's approach, the TI
-DS90Ux9xx I2C bridge driver does not require to call i2c_add_adapter()
-or register a new mux/bus and then do run select/deselect in runtime to
-overcome the created handicap.
+So:
+struct dma_chan *dma_request_chan_by_domain(struct device *dev,
+					    const dma_cap_mask_t *mask);
 
-> The undeniable fact is that the device tree bindings in my I2C bridge
-> implementation can be improved further, thanks to Luca for the comments.
-> 
->> On Tue, Jul 23, 2019 at 10:37:19PM +0200, Luca Ceresoli wrote:
->>> An ATR is a device that looks similar to an i2c-mux: it has an I2C
->>> slave "upstream" port and N master "downstream" ports, and forwards
->>> transactions from upstream to the appropriate downstream port. But is
->>> is different in that the forwarded transaction has a different slave
->>> address. The address used on the upstream bus is called the "alias"
->>> and is (potentially) different from the physical slave address of the
->>> downstream chip.
->>>
->>> Add a helper file (just like i2c-mux.c for a mux or switch) to allow
->>> implementing ATR features in a device driver. The helper takes care or
->>> adapter creation/destruction and translates addresses at each transaction.
->>>
->>> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
->>>
-> 
+?
 
---
-Best wishes,
-Vladimir
+- Péter
 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
