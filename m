@@ -2,148 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4ED7AD0F2
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 00:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61D4DAD1D1
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 04:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730989AbfIHWOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 8 Sep 2019 18:14:30 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:50510 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbfIHWOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 8 Sep 2019 18:14:30 -0400
-Received: from penelope.horms.nl (195-23-252-147.net.novis.pt [195.23.252.147])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id A723525AF0E;
-        Mon,  9 Sep 2019 08:14:27 +1000 (AEST)
-Received: by penelope.horms.nl (Postfix, from userid 7100)
-        id 27864E21127; Sun,  8 Sep 2019 14:06:17 +0200 (CEST)
-Date:   Sun, 8 Sep 2019 13:06:17 +0100
-From:   Simon Horman <horms@verge.net.au>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+        id S1732770AbfIICWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 8 Sep 2019 22:22:34 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:58806 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732582AbfIICWe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 8 Sep 2019 22:22:34 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9868E2003A5;
+        Mon,  9 Sep 2019 04:22:31 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 99F2E20038A;
+        Mon,  9 Sep 2019 04:22:26 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 96418402AE;
+        Mon,  9 Sep 2019 10:22:20 +0800 (SGT)
+From:   Hui Song <hui.song_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] dt-bindings: arm: renesas: Convert 'renesas,prr' to
- json-schema
-Message-ID: <20190908120616.3gnmhhpxhxfxpayp@verge.net.au>
-References: <20190906111435.5706-1-horms+renesas@verge.net.au>
- <CAL_JsqLvU4=kaQ-nSwMuh4VXX67U5URZAPvVJohfKzQsQdFTrA@mail.gmail.com>
- <20190906114857.4mgunm4feehakc4u@verge.net.au>
- <CAL_Jsq+yp6vw=RoUb+-C3rX2322Y=8xD=wr8OYWxmbvq2SOuKg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+yp6vw=RoUb+-C3rX2322Y=8xD=wr8OYWxmbvq2SOuKg@mail.gmail.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Song Hui <hui.song_1@nxp.com>
+Subject: [PATCH v3] gpio/mpc8xxx: change irq handler from chained to normal
+Date:   Mon,  9 Sep 2019 10:12:14 +0800
+Message-Id: <20190909021214.25646-1-hui.song_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 06, 2019 at 01:54:26PM +0100, Rob Herring wrote:
-> On Fri, Sep 6, 2019 at 12:49 PM Simon Horman <horms@verge.net.au> wrote:
-> >
-> > On Fri, Sep 06, 2019 at 12:21:58PM +0100, Rob Herring wrote:
-> > > On Fri, Sep 6, 2019 at 12:14 PM Simon Horman <horms+renesas@verge.net.au> wrote:
-> > > >
-> > > > Convert Renesas Product Register bindings documentation to json-schema.
-> > > >
-> > > > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> > > > ---
-> > > > Based on v5.3-rc1
-> > > > Tested using:
-> > > >   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> > > > ---
-> > > >  .../devicetree/bindings/arm/renesas,prr.txt        | 20 ------------
-> > > >  .../devicetree/bindings/arm/renesas,prr.yaml       | 36 ++++++++++++++++++++++
-> > > >  2 files changed, 36 insertions(+), 20 deletions(-)
-> > > >  delete mode 100644 Documentation/devicetree/bindings/arm/renesas,prr.txt
-> > > >  create mode 100644 Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/arm/renesas,prr.txt b/Documentation/devicetree/bindings/arm/renesas,prr.txt
-> > > > deleted file mode 100644
-> > > > index 08e482e953ca..000000000000
-> > > > --- a/Documentation/devicetree/bindings/arm/renesas,prr.txt
-> > > > +++ /dev/null
-> > > > @@ -1,20 +0,0 @@
-> > > > -Renesas Product Register
-> > > > -
-> > > > -Most Renesas ARM SoCs have a Product Register or Boundary Scan ID Register that
-> > > > -allows to retrieve SoC product and revision information.  If present, a device
-> > > > -node for this register should be added.
-> > > > -
-> > > > -Required properties:
-> > > > -  - compatible: Must be one of:
-> > > > -    "renesas,prr"
-> > > > -    "renesas,bsid"
-> > > > -  - reg: Base address and length of the register block.
-> > > > -
-> > > > -
-> > > > -Examples
-> > > > ---------
-> > > > -
-> > > > -       prr: chipid@ff000044 {
-> > > > -               compatible = "renesas,prr";
-> > > > -               reg = <0 0xff000044 0 4>;
-> > > > -       };
-> > > > diff --git a/Documentation/devicetree/bindings/arm/renesas,prr.yaml b/Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..9df003041456
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> > > > @@ -0,0 +1,36 @@
-> > > > +# SPDX-License-Identifier: GPL-2.0
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/arm/renesas,prr.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Renesas Product Register
-> > > > +
-> > > > +maintainers:
-> > > > +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> > > > +  - Magnus Damm <magnus.damm@gmail.com>
-> > > > +
-> > > > +description: |
-> > > > +  Most Renesas ARM SoCs have a Product Register or Boundary Scan ID
-> > > > +  Register that allows to retrieve SoC product and revision information.
-> > > > +  If present, a device node for this register should be added.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    oneOf:
-> > > > +        - const: "renesas,prr"
-> > > > +        - const: "renesas,bsid"
-> > >
-> > > enum is better than oneOf+const and drop the quotes. oneOf/allOf/anyOf
-> > > result in terrible error messages.
-> >
-> > Thanks Rob,
-> >
-> > Like this?
-> >
-> >   compatible:
-> >     enum:
-> >       - renesas,prr
-> >       - renesas,bsid
-> >
-> > > > +  reg:
-> > > > +    items:
-> > > > +      - description: Base address and length of the register block.
-> > >
-> > > That's what 'reg' *always* is... Just 'maxItems: 1' is sufficient when
-> > > there is" only 1 entry.
-> >
-> > And this?
-> >
-> >   reg:
-> >     maxItems: 1
-> 
-> Yes, for both.
+From: Song Hui <hui.song_1@nxp.com>
 
-Thanks, I have posted v2 with the changes you suggested.
+More than one gpio controllers can share one interrupt, change the
+driver to request shared irq.
+
+Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
+Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
+Signed-off-by: Song Hui <hui.song_1@nxp.com>
+---
+Changes in v3:
+	- update the patch description.
+Changes in v2:
+	- delete the compatible of ls1088a.
+ drivers/gpio/gpio-mpc8xxx.c | 20 +++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
+
+diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+index 16a47de..4006250 100644
+--- a/drivers/gpio/gpio-mpc8xxx.c
++++ b/drivers/gpio/gpio-mpc8xxx.c
+@@ -22,6 +22,7 @@
+ #include <linux/irq.h>
+ #include <linux/gpio/driver.h>
+ #include <linux/bitops.h>
++#include <linux/interrupt.h>
+ 
+ #define MPC8XXX_GPIO_PINS	32
+ 
+@@ -127,10 +128,9 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc, unsigned offset)
+ 		return -ENXIO;
+ }
+ 
+-static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
++static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
+ {
+-	struct mpc8xxx_gpio_chip *mpc8xxx_gc = irq_desc_get_handler_data(desc);
+-	struct irq_chip *chip = irq_desc_get_chip(desc);
++	struct mpc8xxx_gpio_chip *mpc8xxx_gc = (struct mpc8xxx_gpio_chip *)data;
+ 	struct gpio_chip *gc = &mpc8xxx_gc->gc;
+ 	unsigned int mask;
+ 
+@@ -139,8 +139,8 @@ static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
+ 	if (mask)
+ 		generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
+ 						     32 - ffs(mask)));
+-	if (chip->irq_eoi)
+-		chip->irq_eoi(&desc->irq_data);
++
++	return IRQ_HANDLED;
+ }
+ 
+ static void mpc8xxx_irq_unmask(struct irq_data *d)
+@@ -409,8 +409,14 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+ 	if (devtype->gpio_dir_in_init)
+ 		devtype->gpio_dir_in_init(gc);
+ 
+-	irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
+-					 mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
++	ret = request_irq(mpc8xxx_gc->irqn, mpc8xxx_gpio_irq_cascade,
++		IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade", mpc8xxx_gc);
++	if (ret) {
++		pr_err("%s: failed to request_irq(%d), ret = %d\n",
++				np->full_name, mpc8xxx_gc->irqn, ret);
++		goto err;
++	}
++
+ 	return 0;
+ err:
+ 	iounmap(mpc8xxx_gc->regs);
+-- 
+2.9.5
+
