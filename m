@@ -2,122 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5EC6ADDB9
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 19:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5817ADDD0
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 19:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391336AbfIIRBe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 13:01:34 -0400
-Received: from forward103o.mail.yandex.net ([37.140.190.177]:52994 "EHLO
-        forward103o.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728529AbfIIRBe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 13:01:34 -0400
-X-Greylist: delayed 543 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Sep 2019 13:01:31 EDT
-Received: from mxback28g.mail.yandex.net (mxback28g.mail.yandex.net [IPv6:2a02:6b8:0:1472:2741:0:8b7:328])
-        by forward103o.mail.yandex.net (Yandex) with ESMTP id D2C785F815FC;
-        Mon,  9 Sep 2019 19:52:26 +0300 (MSK)
-Received: from smtp2o.mail.yandex.net (smtp2o.mail.yandex.net [2a02:6b8:0:1a2d::26])
-        by mxback28g.mail.yandex.net (nwsmtp/Yandex) with ESMTP id XWZQwjux5k-qQKiwCRN;
-        Mon, 09 Sep 2019 19:52:26 +0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cloudbear.ru; s=mail; t=1568047946;
-        bh=k8swhfH/56jurkc7C5cLy1ftu0/fKHmRA39ehTChfM8=;
-        h=In-Reply-To:Subject:To:From:Cc:References:Date:Message-Id;
-        b=qvXsmizEqwj4U4oAE1Etz1OuSoxNXcRKg9VaSl1/zJkXw8FGHddDyywR6lQ6pV8tP
-         Gv6iPeWL8bk+eMSLDi4r92Vsaxo8WgKmj1vNVUkNu9ty0P4AUr4xGURUYH1gZjIC25
-         bmT0JFU7LTIFF52BO2fR64xefQLXsvBY4Hh1IgKI=
-Authentication-Results: mxback28g.mail.yandex.net; dkim=pass header.i=@cloudbear.ru
-Received: by smtp2o.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id aUn2Pn2Gxb-qPtC6UCe;
-        Mon, 09 Sep 2019 19:52:25 +0300
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (Client certificate not present)
-From:   Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
-To:     davem@davemloft.net, robh+dt@kernel.org, f.fainelli@gmail.com
-Cc:     Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Trent Piepho <tpiepho@impinj.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/2] net: phy: dp83867: Add SGMII mode type switching
-Date:   Mon,  9 Sep 2019 19:52:18 +0300
-Message-Id: <1568047940-14490-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568026945-3857-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
-References: <1568026945-3857-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
+        id S1726883AbfIIRKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 13:10:16 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:59168 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726538AbfIIRKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 13:10:15 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x89HACwf045302;
+        Mon, 9 Sep 2019 12:10:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568049012;
+        bh=jaOPtnrJZSC4bXQdecoO/P4/6xRau5GoMuR2a3wmutM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=P1CsGmmmU7qjx21v7EhdOv/aOMOUWSBcXkY6WIBGovaKHu+0L/14dG2KR37gwEMN5
+         4Qt6UjcsIkEUgNWHaYzSzqR+sVjB//J0RYt/sTQtdGpMHWHVMQiNoM4Lu8WdKLyKxO
+         Gh3XIghJ4uIneq5dYrHwDpM2fEa8AccdHZ45DWfs=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id x89HACuH043637;
+        Mon, 9 Sep 2019 12:10:12 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 9 Sep
+ 2019 12:10:12 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 9 Sep 2019 12:10:12 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with SMTP id x89HACNZ030302;
+        Mon, 9 Sep 2019 12:10:12 -0500
+Date:   Mon, 9 Sep 2019 12:12:15 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Joe Perches <joe@perches.com>
+CC:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Prabhakar Lad <prabhakar.csengg@gmail.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [Patch 10/13] media: am437x-vpfe: Remove print_fourcc helper
+Message-ID: <20190909171215.2cyiulubzxcjqmf7@ti.com>
+References: <20190909162743.30114-1-bparrot@ti.com>
+ <20190909162743.30114-11-bparrot@ti.com>
+ <7d870b0119afa378dc68c710670b9b550ef5bdd4.camel@perches.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <7d870b0119afa378dc68c710670b9b550ef5bdd4.camel@perches.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds ability to switch beetween two PHY SGMII modes.
-Some hardware, for example, FPGA IP designs may use 6-wire mode
-which enables differential SGMII clock to MAC.
+Joe Perches <joe@perches.com> wrote on Mon [2019-Sep-09 09:39:37 -0700]:
+> On Mon, 2019-09-09 at 11:27 -0500, Benoit Parrot wrote:
+> > print_fourcc helper function was used for debug log the
+> > convert a pixel format code into its readable form for display
+> > purposes. But since it used a single static buffer to perform
+> > the conversion this might lead to display format issue when more
+> > than one instance was invoked simultaneously.
+> > 
+> > It turns out that print_fourcc can be safely replace by using
+> > "%4.4s" instead and casting the pointer to the fourcc code
+> > into a (char *).
+> []
+> > diff --git a/drivers/media/platform/am437x/am437x-vpfe.c b/drivers/media/platform/am437x/am437x-vpfe.c
+> []
+> > @@ -221,20 +221,6 @@ static void pix_to_mbus(struct vpfe_device *vpfe,
+> []
+> > @@ -700,8 +686,8 @@ static int vpfe_ccdc_set_pixel_format(struct vpfe_ccdc *ccdc, u32 pixfmt)
+> >  {
+> >  	struct vpfe_device *vpfe = container_of(ccdc, struct vpfe_device, ccdc);
+> >  
+> > -	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%s\n",
+> > -		 __func__, ccdc->ccdc_cfg.if_type, print_fourcc(pixfmt));
+> > +	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%4.4s\n",
+> > +		 __func__, ccdc->ccdc_cfg.if_type, (char *)&pixfmt);
+> 
+> 
+> To avoid any possible defect in the content of pixfmt, it's
+> probably better to use vsprintf extension "%4pE", &pixfmt
+> see: Documentation/core-api/printk-formats.rst
+> 
+> 	vpfe_dbg(1, vpfe, "%s: if_type: %d, pixfmt:%4pE\n",
+> 		 __func__, ccdc->ccdc_cfg.if_type, &pixfmt);
+> 
 
-Signed-off-by: Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
----
-Changes in v3:
-- Fixed retaining DP83867_SGMII_TYPE bit
+Thanks Joe, I was not aware of this feature.
+I'll update this patch.
 
- drivers/net/phy/dp83867.c | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Benoit
 
-diff --git a/drivers/net/phy/dp83867.c b/drivers/net/phy/dp83867.c
-index 1f1ecee..37fceaf 100644
---- a/drivers/net/phy/dp83867.c
-+++ b/drivers/net/phy/dp83867.c
-@@ -37,6 +37,7 @@
- #define DP83867_STRAP_STS2	0x006f
- #define DP83867_RGMIIDCTL	0x0086
- #define DP83867_IO_MUX_CFG	0x0170
-+#define DP83867_SGMIICTL	0x00D3
- #define DP83867_10M_SGMII_CFG   0x016F
- #define DP83867_10M_SGMII_RATE_ADAPT_MASK BIT(7)
-
-@@ -61,6 +62,9 @@
- #define DP83867_RGMII_TX_CLK_DELAY_EN		BIT(1)
- #define DP83867_RGMII_RX_CLK_DELAY_EN		BIT(0)
-
-+/* SGMIICTL bits */
-+#define DP83867_SGMII_TYPE		BIT(14)
-+
- /* STRAP_STS1 bits */
- #define DP83867_STRAP_STS1_RESERVED		BIT(11)
-
-@@ -109,6 +113,7 @@ struct dp83867_private {
- 	bool rxctrl_strap_quirk;
- 	bool set_clk_output;
- 	u32 clk_output_sel;
-+	bool sgmii_ref_clk_en;
- };
-
- static int dp83867_ack_interrupt(struct phy_device *phydev)
-@@ -197,6 +202,9 @@ static int dp83867_of_init(struct phy_device *phydev)
- 	dp83867->rxctrl_strap_quirk = of_property_read_bool(of_node,
- 					"ti,dp83867-rxctrl-strap-quirk");
-
-+	dp83867->sgmii_ref_clk_en = of_property_read_bool(of_node,
-+					"ti,sgmii-ref-clock-output-enable");
-+
- 	/* Existing behavior was to use default pin strapping delay in rgmii
- 	 * mode, but rgmii should have meant no delay.  Warn existing users.
- 	 */
-@@ -389,6 +397,17 @@ static int dp83867_config_init(struct phy_device *phydev)
-
- 		if (ret)
- 			return ret;
-+
-+		val = phy_read_mmd(phydev, DP83867_DEVADDR, DP83867_SGMIICTL);
-+		/* SGMII type is set to 4-wire mode by default.
-+		 * If we place appropriate property in dts (see above)
-+		 * switch on 6-wire mode.
-+		 */
-+		if (dp83867->sgmii_ref_clk_en)
-+			val |= DP83867_SGMII_TYPE;
-+		else
-+			val &= ~DP83867_SGMII_TYPE;
-+		phy_write_mmd(phydev, DP83867_DEVADDR, DP83867_SGMIICTL, val);
- 	}
-
- 	/* Enable Interrupt output INT_OE in CFG3 register */
---
-2.7.4
-
+> >  
+> >  	if (ccdc->ccdc_cfg.if_type == VPFE_RAW_BAYER) {
+> >  		ccdc->ccdc_cfg.bayer.pix_fmt = CCDC_PIXFMT_RAW;
+> > @@ -989,8 +975,8 @@ static int vpfe_config_ccdc_image_format(struct vpfe_device *vpfe)
+> >  
+> >  	vpfe_dbg(2, vpfe, "%s:\n", __func__);
+> >  
+> > -	vpfe_dbg(1, vpfe, "pixelformat: %s\n",
+> > -		print_fourcc(vpfe->v_fmt.fmt.pix.pixelformat));
+> > +	vpfe_dbg(1, vpfe, "pixelformat: %4.4s\n",
+> > +		 (char *)&vpfe->v_fmt.fmt.pix.pixelformat);
+> 
+> 	vpfe_dbg(1, vpfe, "pixelformat: %4pE\n",
+> 		 &vpfe->v_fmt.fmt.pix.pixelformat);
+> 
+> etc...
+> 
+> 
