@@ -2,109 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C909EADDF6
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 19:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7D32ADE00
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 19:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727154AbfIIRYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 13:24:33 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36455 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726864AbfIIRYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 13:24:32 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 67so13328917oto.3;
-        Mon, 09 Sep 2019 10:24:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6Wt1hD/MRsQkqqV33+GUQZHencJLKuHpXLwImoJRYqM=;
-        b=YHy1qrMkczFFQ67ktlriXxOyE29+Bp3XIJ4JoIRyg3btuchKYh3OUMaKdFI2UjMXQD
-         RrRefDltC3kmYcSXFqCYXX8o/i3xwLUGhJKwxrsdjspUD65Ya7wHxSH6XKvx5U4vSRBa
-         R+hO9dTTrFgUaQ+8YXuQHV1dOLkj8osB0WquDFeaCIDRWie5SvRJz1hmUQWSbHQpxDvZ
-         A16PEZ+me5Sa+F/aHm8nFPxB7n76Bj7m6w4LF8oG92BkZSQ/xLXI8oovo5IF8eUcl5z7
-         3QVyGjBIJpEK3RoUqlvuJqdp4nosMcmKI4FVpRdJSOYNH5QgZSq9OSHNmvPBLS/uFN0G
-         HJaA==
+        id S2390530AbfIIRZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 13:25:53 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:40650 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726864AbfIIRZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 13:25:53 -0400
+Received: by mail-oi1-f193.google.com with SMTP id b80so11081247oii.7;
+        Mon, 09 Sep 2019 10:25:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=6Wt1hD/MRsQkqqV33+GUQZHencJLKuHpXLwImoJRYqM=;
-        b=MgmG8LdnN4madcniVDKBUxE/QDYCjBXhDB1R4OPhKLr8t8D4VNGBEkGkLzGw32fu0L
-         9FYrbWhHjUF7YfBKWFXyWRIbHxuV2zSkDcvUC5EArzD2z4K30eED67FZr098BDHUu2Eh
-         dNO6mfl3W1Z6L79g6qjQia3UPf93f10gsq8Xqh0ffaNT8OBcujMKhQirPejxQSbZhgQy
-         vigqaRbBZkKfVAvsHEVnvYA+EoUM+hpx1RnqLIJrBA+SfUC+KxEgiI8F4x3YfD+BWdOg
-         Zd+0/gG1dps1WNFDJY9VrTtXpEUlFgABoB/fOiEuzd5fSoh04Ef/jn6XrKF2rehyMgiL
-         dPeQ==
-X-Gm-Message-State: APjAAAXWoWxyteql+WHtkFeM4lwaN9Gkbw37xQdtunYsFsK1CGeUFmsG
-        8rjTkaVZh5rLqofr28uZQXizXwa9JUxAtQUwUqLnpw==
-X-Google-Smtp-Source: APXvYqx/wYKZsFCWHqjgcQBulyAf2hyBig9egcPMosBzQP1ky90Mmva1Ji9X/RYvJZ4uQspim2j2H9duJRW0qz6v1a8=
-X-Received: by 2002:a9d:5c0f:: with SMTP id o15mr21270768otk.81.1568049870233;
- Mon, 09 Sep 2019 10:24:30 -0700 (PDT)
+        bh=e52SKLW/Sl4f1MnEIC+MlR9Sb/TPtpS7uSq2+ORx3Dc=;
+        b=CNMNIxk+IYza7l9Bujx2tIr7dyMfq6XbUEzRVgUkrX6TG2Q2CK/UqWeFjSwqlT2iH8
+         P8GJHLjI8HnM6xFyUbX82fXh1wXiCCZZdDFbpGLfwIW/2zuRjTRaKv39NZOYG8vjCThm
+         U8UXkxc7CFfBQFh9JFKFGumd/ynNjOaS+qJlmlIg9VqFgFHGYd0Wq7oNSTk29wjbinZY
+         xoguBSTRlNrVXYz9L9w2oS8e9f8rEtoFOBA7NBB9WwhDoEf7IH61jQylAxsGvkmA3EjX
+         q9jB239KMCaLDVBsR/46vNxuSD1eZuhryjNTSOZb4ZhkqU9d+6ftCn6C4oebzCeqHiyY
+         Bw5A==
+X-Gm-Message-State: APjAAAVkfIhj7w33m0rsqyhhhbm8ah97kMExfuPoTHF1PgoiRD4eO/l4
+        3VeFJ/qwrxxRDYODThRs2VGrFTujCo/H3kOV8Fg=
+X-Google-Smtp-Source: APXvYqx1x4kSfhfO7UiR45Bhzr81Bp0gEDKbZbkXEAat2E1VjTNsrCCfY7wAAtLqId6KUAvYFvffKgv5mTgml5+ewxI=
+X-Received: by 2002:a05:6808:98a:: with SMTP id a10mr201030oic.54.1568049951163;
+ Mon, 09 Sep 2019 10:25:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
- <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
- <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com> <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
- <a82336e2-44df-5682-1c86-daf8a8448d30@amlogic.com>
-In-Reply-To: <a82336e2-44df-5682-1c86-daf8a8448d30@amlogic.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 9 Sep 2019 19:24:19 +0200
-Message-ID: <CAFBinCAJG4=M3BSXfREGU+iadMPkc7=yt3AdcqA1KAhQx6Wh9w@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To:     Jianxin Pan <jianxin.pan@amlogic.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Tao Zeng <tao.zeng@amlogic.com>
+References: <1567666360-28035-1-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1567666360-28035-1-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 9 Sep 2019 19:25:40 +0200
+Message-ID: <CAMuHMdU=-CGPw4FF3o7YwEZzd7EA07RNKLSP0gmty8bTQzm6DA@mail.gmail.com>
+Subject: Re: [PATCH] clk: renesas: Add r8a774b1 CPG Core Clock Definitions
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Simon Horman <horms@verge.net.au>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianxin,
+Hi Biju,
 
-On Mon, Sep 9, 2019 at 2:03 PM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+On Thu, Sep 5, 2019 at 9:00 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add all RZ/G2N Clock Pulse Generator Core Clock Outputs, as listed in
+> Table 8.2d ("List of Clocks [RZ/G2N]") of the RZ/G2N Hardware User's
+> Manual.
 >
-> Hi Martin,
->
-> On 2019/9/7 23:02, Martin Blumenstingl wrote:
-> > Hi Jianxin,
-> >
-> > On Fri, Sep 6, 2019 at 7:58 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> > [...]
-> >>> also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
-> >>> aren't there any busses defined in the A1 SoC implementation or are
-> >>> were you planning to add them later?
-> >> Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
-> >> Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
-> > OK, thank you for the explanation
-> > since you're going to re-send the patch anyways: can you please
-> > include the apb_32b bus?
-> > all other upstream Amlogic .dts are using the bus definitions, so that
-> > will make A1 consistent with the other SoCs
-> In A1 (and the later C1), BUS is not mentioned in the memmap and register spec.
-> Registers are organized and grouped by functions, and we can not find information about buses from the SoC document.
-do you know why the busses are not part of the documentation?
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-> Maybe it's better to remove bus definitions for these chips.
-my understanding is that devicetree describes the hardware
-so if there's a bus in hardware (that we know about) then we should
-describe it in devicetree
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+One comment below...
 
-personally I think busses also make the .dts easier to read:
-instead of a huge .dts with all nodes on one level it's split into
-multiple smaller sub-nodes - thus making it easier to keep track of
-"where am I in this file".
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/r8a774b1-cpg-mssr.h
+> @@ -0,0 +1,57 @@
+> +/* SPDX-License-Identifier: GPL-2.0
+> + *
+> + * Copyright (C) 2019 Renesas Electronics Corp.
+> + */
+> +#ifndef __DT_BINDINGS_CLOCK_R8A774B1_CPG_MSSR_H__
+> +#define __DT_BINDINGS_CLOCK_R8A774B1_CPG_MSSR_H__
+> +
+> +#include <dt-bindings/clock/renesas-cpg-mssr.h>
+> +
+> +/* r8a774b1 CPG Core Clocks */
+> +#define R8A774B1_CLK_Z                 0
+> +#define R8A774B1_CLK_ZG                        1
+> +#define R8A774B1_CLK_ZTR               2
+> +#define R8A774B1_CLK_ZTRD2             3
+> +#define R8A774B1_CLK_ZT                        4
+> +#define R8A774B1_CLK_ZX                        5
+> +#define R8A774B1_CLK_S0D1              6
+> +#define R8A774B1_CLK_S0D2              7
+> +#define R8A774B1_CLK_S0D3              8
+> +#define R8A774B1_CLK_S0D4              9
+> +#define R8A774B1_CLK_S0D6              10
+> +#define R8A774B1_CLK_S0D8              11
+> +#define R8A774B1_CLK_S0D12             12
+> +#define R8A774B1_CLK_S1D2              13
+> +#define R8A774B1_CLK_S1D4              14
+> +#define R8A774B1_CLK_S2D1              15
+> +#define R8A774B1_CLK_S2D2              16
+> +#define R8A774B1_CLK_S2D4              17
+> +#define R8A774B1_CLK_S3D1              18
+> +#define R8A774B1_CLK_S3D2              19
+> +#define R8A774B1_CLK_S3D4              20
+> +#define R8A774B1_CLK_LB                        21
+> +#define R8A774B1_CLK_CL                        22
+> +#define R8A774B1_CLK_ZB3               23
+> +#define R8A774B1_CLK_ZB3D2             24
+> +#define R8A774B1_CLK_CR                        25
+> +#define R8A774B1_CLK_DDR               26
+> +#define R8A774B1_CLK_SD0H              27
+> +#define R8A774B1_CLK_SD0               28
+> +#define R8A774B1_CLK_SD1H              29
+> +#define R8A774B1_CLK_SD1               30
+> +#define R8A774B1_CLK_SD2H              31
+> +#define R8A774B1_CLK_SD2               32
+> +#define R8A774B1_CLK_SD3H              33
+> +#define R8A774B1_CLK_SD3               34
+> +#define R8A774B1_CLK_RPC               35
+> +#define R8A774B1_CLK_RPCD2             36
+> +#define R8A774B1_CLK_MSO               37
+> +#define R8A774B1_CLK_HDMI              38
+> +#define R8A774B1_CLK_CSI0              39
+> +#define R8A774B1_CLK_CP                        40
+> +#define R8A774B1_CLK_CPEX              41
+> +#define R8A774B1_CLK_R                 42
+> +#define R8A774B1_CLK_OSC               43
+> +#define R8A774B1_CLK_CANFD             44
 
+The only thing I can comment on is the location of the CANFD clock.
+For RZ/G2M and RZ/G2E, the clock was added to the end of the list,
+as it wasn't listed in the Hardware User's Manual.
+In the mean time, Rev. 0.80 of the Hardware User's Manual was released,
+which does include the CANFD clock.
 
-Martin
+If no one objects against this location, for consistency with other
+RZ/G2 SoCs, i.e. will queue it in renesas-devel for v5.5, on a branch to
+be shared by the clock driver and the DTS user.
+
+> +
+> +#endif /* __DT_BINDINGS_CLOCK_R8A774B1_CPG_MSSR_H__ */
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
