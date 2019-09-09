@@ -2,178 +2,328 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7A59ADE34
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 19:49:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 15F3CADE5C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 20:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729123AbfIIRtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 13:49:03 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:37195 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727514AbfIIRtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 13:49:02 -0400
-Received: from [148.69.85.38] (port=24775 helo=[192.168.5.132])
-        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1i7Nmb-006VAY-QJ; Mon, 09 Sep 2019 19:48:57 +0200
-Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
-To:     Vladimir Zapolskiy <vz@mleia.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        jacopo mondi <jacopo@jmondi.org>, Peter Rosin <peda@axentia.se>
-Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>
-References: <20190723203723.11730-1-luca@lucaceresoli.net>
- <20190723203723.11730-3-luca@lucaceresoli.net>
- <20190901143101.humomdehy5ee73sk@vino>
- <aedad45b-16d6-d189-b045-329727440ca5@mleia.com> <20190909072232.GA990@kunai>
- <8af9a049-06b9-dbe8-827b-5134d20e9435@mleia.com>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <152384b8-c0a8-e6fe-9a1f-52caf00533de@lucaceresoli.net>
-Date:   Mon, 9 Sep 2019 18:48:56 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1729620AbfIISGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 14:06:07 -0400
+Received: from cyberdimension.org ([80.67.179.20]:40442 "EHLO
+        gnutoo.cyberdimension.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727739AbfIISGH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 14:06:07 -0400
+X-Greylist: delayed 393 seconds by postgrey-1.27 at vger.kernel.org; Mon, 09 Sep 2019 14:06:06 EDT
+Received: from gnutoo.cyberdimension.org (localhost [127.0.0.1])
+        by cyberdimension.org (OpenSMTPD) with ESMTP id c4c3e747;
+        Mon, 9 Sep 2019 17:56:30 +0000 (UTC)
+Received: from primarylaptop.localdomain (localhost.localdomain [IPv6:::1])
+        by gnutoo.cyberdimension.org (OpenSMTPD) with ESMTP id 5c05efbf;
+        Mon, 9 Sep 2019 17:56:30 +0000 (UTC)
+From:   Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+Subject: [PATCH 2/2] ARM: dts: imx6sll: Add the Kobo Aura H2O Edition 2
+Date:   Mon,  9 Sep 2019 19:59:27 +0200
+Message-Id: <20190909175927.4980-1-GNUtoo@cyberdimension.org>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-In-Reply-To: <8af9a049-06b9-dbe8-827b-5134d20e9435@mleia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vladimir,
+This work is based on the devicetree that can be found
+in the source code published by the device vendor[1],
+and on testing on the hardware as not all the parts
+described in the vendor's imx6sll-e60qm2.dts are populated
+on the PCB.
 
-On 09/09/19 16:10, Vladimir Zapolskiy wrote:
-> Hi Wolfram,
-> 
-> On 09/09/2019 10:22 AM, Wolfram Sang wrote:
->> Hi Vladimir,
->>
->>> I won't attend the LPC, however I would appreciate if you book some
->>
->> A pity. I would have liked to have you in the room. Let's see if we can
->> get enough input from you via mail here.
->>
-> 
-> if it might help, I'll attend the Embedded Recipes and ELCE conferences
-> this year.
-> 
->>> time to review my original / alternative implementation of the TI
->>> DS90Ux9xx I2C bridge device driver.
->>
->> We have only 45 minutes, this will not allow to review specific
->> implementations. I want to give an overview of existing implementations
->> with pros/cons...
->>
-> 
-> Sure! Any shared summary/opinions are greatly welcome.
-> 
->>> The reasons why my driver is better/more flexible/more functional are
->>> discussed earlier, please let me know, if you expect anything else
->>> from me to add, also I would be happy to get a summary of your offline
->>> discussion.
->>
->> ... and I'd appreciate support here from you, like your summary of the
->> back then discussion (from where I can dive deeper if needed).
->>
->> Also, with Luca's new series we discussed some scenarios which can
->> happen WRT to I2C address conflicts. Maybe you could comment on them,
->> too?
-> 
-> I do remember I've commented on the Luca's suggestion of using dynamic
-> I2C addresses from a pool (the introduced "i2c-alias-pool" property).
-> 
-> I have to scrutinize it in Luca's v2, but then it might happen that the
-> userspace won't know to which IC on the remote side it communicates to.
+[1]: https://github.com/kobolabs/Kobo-Reader/blob/master/hw/imx6sll-aurah2o2-aura/kernel.tar.bz2
 
-I think you suspect this because the assigned alias is
-non-deterministic, so you might end up in writing to the wrong alias.
-Well, this is not possible because the user is not supposed to know the
-alias at all. Let's say you have two identical eeproms on remote port 0,
-with physical addresses 0x50 and 0x51. Then, with my RFCv2 code, you'll
-access them with physical numbers, not the alias:
+Signed-off-by: Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+---
+ arch/arm/boot/dts/Makefile               |   1 +
+ arch/arm/boot/dts/imx6sll-aura-h2o-2.dts | 258 +++++++++++++++++++++++
+ 2 files changed, 259 insertions(+)
+ create mode 100644 arch/arm/boot/dts/imx6sll-aura-h2o-2.dts
 
-# i2cdetect -l
-i2c-0	i2c   	amba:camera-i2c@0      I2C adapter
-i2c-4	i2c   	i2c-0-atr-0            I2C adapter
-i2c-5	i2c   	i2c-0-atr-1            I2C adapter
-# hexdump /sys/bus/i2c/devices/4-0050/eeprom
-0000000 ffff ffff ffff ffff ffff ffff ffff ffff
-*
-0000100
-# hexdump /sys/bus/i2c/devices/4-0051/eeprom
-0000000 0001 0203 0405 0607 0809 0a0b 0c0d 0e0f
-*
-0000100
-#
-
-Here i2c-0 is the "local" bus, i2c-4 and i2c-5 are the remote busses on
-ports 0 and 1. As you can see the eeproms are accessed using a name like
-"4-0050", meaning physical slave address 0x50 on bus 4. No alias is needed.
-
-Should you want to know the alias, perhaps for debugging (it's the
-address you'll see on your logic analyzer), they are shown in the kernel
-log.
-
-Does this reply to your concern?
-
->> As I read the old thread, you have a hardcoded aliases using
->> "ti,i2c-bridge-maps". This means you can't have own DTSI files for e.g.
->> add-on modules, do I get this correctly?
->>
-> 
-> Basically hardcoding of aliases completely resolves the highlighted
-> above problem. Still it is possible to have own DTSI files for the FPD
-> link detachable PCBs, and this is an exceptionally important scenario,
-> however some limitations shall be applied:
-> * dt overlays for "local" derializer/deserializer ICs, it's a generic
->   and universal solution, it is successfully used in the field,
-> * only "compatible" PCBs are supposed to be connected (same set of I2C
->   devices/addresses on every such PCB), this is imperfect for sure,
-> * "ti,i2c-bridge-maps" list is excessive to cover "almost compatible"
->   (in the sense from above) PCBs, some of the missed alias matches
->   just won't instantiate a driver, this is of course also imperfect.
-> 
-> In general nothing critical should happen, if some I2C device on the
-> remote side is simply not probed in runtime, in opposite you can imagine
-> that writing for instance to another EEPROM of two on the remote side
-> could be harmful.
-> 
-> Any technically better solution to the two given approaches (from Luca
-> and from me) is more than appreciated. For non-dynamic/fixed local and
-> remote PCBs the fixed mapping is better, the dynamic case is covered
-> by the dt overlays, why not?
-> 
-> As a side note please do remember that the I2C bridging on Maxim GMSL
-> and TI DS90Ux9xx are different, the former one is a real mux, and the
-> latter one is not, I'm uncertain if it's reasonable to think of a
-> generalized solution which covers both IC series, so likely we
-> have to review the developed solutions for them separately instead
-> of trying to work out a combined one.
-> 
-> --
-> Best wishes,
-> Vladimir
-> 
-
-
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 9159fa2cea90..67a568a66e49 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -551,6 +551,7 @@ dtb-$(CONFIG_SOC_IMX6SL) += \
+ 	imx6sl-evk.dtb \
+ 	imx6sl-warp.dtb
+ dtb-$(CONFIG_SOC_IMX6SLL) += \
++	imx6sll-aura-h2o-2 \
+ 	imx6sll-evk.dtb
+ dtb-$(CONFIG_SOC_IMX6SX) += \
+ 	imx6sx-nitrogen6sx.dtb \
+diff --git a/arch/arm/boot/dts/imx6sll-aura-h2o-2.dts b/arch/arm/boot/dts/imx6sll-aura-h2o-2.dts
+new file mode 100644
+index 000000000000..5989866bb043
+--- /dev/null
++++ b/arch/arm/boot/dts/imx6sll-aura-h2o-2.dts
+@@ -0,0 +1,258 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (C) 2016 Freescale Semiconductor, Inc.
++ * Copyright (C) 2019 Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include "imx6sll.dtsi"
++
++/ {
++	model = "Kobo Aura H2O Edition 2";
++	compatible = "kobo,aura-h2o-2", "fsl,imx6sll";
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x20000000>;
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_led>;
++
++		user {
++			label = "GLED";
++			gpios = <&gpio4 22 GPIO_ACTIVE_LOW>;
++			linux,default-trigger = "timer";
++		};
++	};
++};
++
++&cpu0 {
++	arm-supply = <&reg_dcdc3>;
++	soc-supply = <&reg_dcdc1>;
++};
++
++&gpc {
++	fsl,ldo-bypass = <1>;
++};
++
++&i2c3 {
++	clock-frequency = <100000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	status = "okay";
++
++	ricoh_rc5t619@32 {
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_ricoh_rc5t619>;
++		compatible = "ricoh,rc5t619";
++		reg = <0x32>;
++		system-power-controller;
++
++		regulators {
++			reg_dcdc1: DCDC1 {
++				regulator-min-microvolt = <300000>;
++				regulator-max-microvolt = <1875000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <900000>;
++				};
++			};
++
++			DCDC2 {
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			reg_dcdc3: DCDC3 {
++				regulator-min-microvolt = <300000>;
++				regulator-max-microvolt = <1875000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1140000>;
++				};
++			};
++
++			DCDC4 {
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1140000>;
++				};
++			};
++
++			DCDC5 {
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1700000>;
++				};
++			};
++
++			LDO1 {
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO2 {
++				regulator-boot-on;
++				regulator-always-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++
++			LDO3 {
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO4 {
++				regulator-boot-on;
++			};
++
++			LDO5 {
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO6 {
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO7 {
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO8 {
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-boot-on;
++				regulator-always-on;
++			};
++
++			LDO9 {
++				regulator-boot-on;
++			};
++
++			LDO10 {
++				regulator-boot-on;
++			};
++
++			LDORTC1 {
++				regulator-boot-on;
++			};
++
++			LDORTC2 {
++				regulator-boot-on;
++			};
++		};
++	};
++};
++
++&iomuxc {
++	pinctrl-names = "default";
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins = <
++			MX6SLL_PAD_REF_CLK_24M__I2C3_SCL	0x4001f8b1
++			MX6SLL_PAD_REF_CLK_32K__I2C3_SDA	0x4001f8b1
++		>;
++	};
++
++	pinctrl_led: ledgrp {
++		fsl,pins = <
++			MX6SLL_PAD_GPIO4_IO22__GPIO4_IO22	0x17059
++		>;
++	};
++
++	pinctrl_ricoh_rc5t619: ricoh_rc5t619_grp {
++		fsl,pins = <
++			 /* chg */
++			MX6SLL_PAD_GPIO4_IO20__GPIO4_IO20	0x1b8b1
++			/* irq */
++			MX6SLL_PAD_GPIO4_IO19__GPIO4_IO19	0x1b8b1
++			/* bat_low_int */
++			MX6SLL_PAD_KEY_COL2__GPIO3_IO28	0x1b8b1
++		>;
++	};
++
++	pinctrl_uart1: uart1grp {
++		fsl,pins = <
++			MX6SLL_PAD_UART1_TXD__UART1_DCE_TX	0x1b0b1
++			MX6SLL_PAD_UART1_RXD__UART1_DCE_RX	0x1b0b1
++		>;
++	};
++
++	pinctrl_usdhc1: usdhc1grp {
++		fsl,pins = <
++			MX6SLL_PAD_SD1_CMD__SD1_CMD		0x17059
++			MX6SLL_PAD_SD1_CLK__SD1_CLK		0x17059
++			MX6SLL_PAD_SD1_DATA0__SD1_DATA0	0x17059
++			MX6SLL_PAD_SD1_DATA1__SD1_DATA1	0x17059
++			MX6SLL_PAD_SD1_DATA2__SD1_DATA2	0x17059
++			MX6SLL_PAD_SD1_DATA3__SD1_DATA3	0x17059
++			MX6SLL_PAD_SD1_DATA4__SD1_DATA4	0x17059
++			MX6SLL_PAD_SD1_DATA5__SD1_DATA5	0x17059
++			MX6SLL_PAD_SD1_DATA6__SD1_DATA6	0x17059
++			MX6SLL_PAD_SD1_DATA7__SD1_DATA7	0x17059
++		>;
++	};
++
++	pinctrl_usbotg1: usbotg1grp {
++		fsl,pins = <
++			MX6SLL_PAD_EPDC_PWR_COM__USB_OTG1_ID	0x17059
++		>;
++	};
++};
++
++&snvs_poweroff {
++	status = "disabled";
++};
++
++&snvs_pwrkey {
++	status = "disabled";
++};
++
++&uart1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_uart1>;
++	status = "okay";
++};
++
++
++&usdhc1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usdhc1>;
++	bus-width = <8>;
++	no-1-8-v;
++	non-removable;
++	status = "okay";
++};
++
++&usbotg1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usbotg1>;
++	disable-over-current;
++	status = "okay";
++};
 -- 
-Luca
+2.23.0
+
