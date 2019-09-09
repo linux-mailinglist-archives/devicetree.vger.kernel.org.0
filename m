@@ -2,87 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D276AD575
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:14:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C56DAD56F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:13:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728727AbfIIJOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 05:14:19 -0400
-Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:9552 "EHLO
-        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727131AbfIIJOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:14:19 -0400
+        id S1728256AbfIIJNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 05:13:00 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:41081 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728145AbfIIJNA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:13:00 -0400
+Received: by mail-wr1-f65.google.com with SMTP id h7so11923993wrw.8;
+        Mon, 09 Sep 2019 02:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1568020458; x=1599556458;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=qrlI7m65m72RGINBsWezbT/FD0zwclbAbcVQzgJUkqY=;
-  b=m7lIyqWGhHvnTA5CcaQxYDVNzu16ZtW6D3oTUhuLFvoTrUbHfD8967Ta
-   umI4FcZ7YRrli9jZSFgCArIs6wUyTa7mDuGB+xxfLuHPq1DLZfky3ol9d
-   rA9wlYxhxBicqtSZmvij0bhuROCOeSMwK1R1fWLbPMXOl3uT0kVMODruF
-   c=;
-X-IronPort-AV: E=Sophos;i="5.64,484,1559520000"; 
-   d="scan'208";a="829173412"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-2c-2225282c.us-west-2.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 09 Sep 2019 09:11:24 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
-        by email-inbound-relay-2c-2225282c.us-west-2.amazon.com (Postfix) with ESMTPS id 9920DA1D8D;
-        Mon,  9 Sep 2019 09:11:23 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 9 Sep 2019 09:11:23 +0000
-Received: from udc4a3e82dbc15a031435.hfa15.amazon.com (10.43.161.176) by
- EX13D01EUB001.ant.amazon.com (10.43.166.194) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 9 Sep 2019 09:11:11 +0000
-From:   Talel Shenhar <talel@amazon.com>
-To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <mchehab+samsung@kernel.org>, <davem@davemloft.net>,
-        <gregkh@linuxfoundation.org>, <nicolas.ferre@microchip.com>,
-        <tglx@linutronix.de>, <arnd@arndb.de>, <venture@google.com>,
-        <linus.walleij@linaro.org>, <olof@lixom.net>, <mripard@kernel.org>,
-        <ssantosh@kernel.org>, <paul.kocialkowski@bootlin.com>,
-        <mjourdan@baylibre.com>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <talel@amazon.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
-        <hanochu@amazon.com>, <barakw@amazon.com>
-Subject: [PATCH 3/3] arm64: alpine: select AL_POS
-Date:   Mon, 9 Sep 2019 12:10:20 +0300
-Message-ID: <1568020220-7758-4-git-send-email-talel@amazon.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568020220-7758-1-git-send-email-talel@amazon.com>
-References: <1568020220-7758-1-git-send-email-talel@amazon.com>
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=TOP8rH1TcBHjVsyQobZq5kxXku7IvcnwfDzFzX6ktls=;
+        b=Sv8yMv7xWt1DU0bHbjx4WGaKAEH2FbWTCT1B3GV/rJSUcpK/1GQcFX4FuLgFfsZOKa
+         PLL7yTCayUCymevxbuf6OvYGTm6lIL2f2N38QcVO/SVNbncxw3jlcyMINcongJ+veK/K
+         WKwxxe0w88kA1DR5AEZIs4ut9Ry4fNM4AfKW13ABvzeFi0C7ANmVuXeDWxmJ5DVogeZ0
+         wvLnTJzpEa//JsqQqN+uwvXWaf7z0CjSOsCQ8LybnM7dY3pGDs4SBiyKZrcL7cwpBkF9
+         eGhkWJC3GZOr+0ewc8n9gxQeqeS79JlbeOjnch8PLwDFctTtUkV83rHtbO1PqFVgA5Jr
+         8eqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=TOP8rH1TcBHjVsyQobZq5kxXku7IvcnwfDzFzX6ktls=;
+        b=oN7pyatYgjk08ac1lK5SwkJRJqpFOaAEgSXfOD1R/aqy4dQpp4EfmwEdccSweE9Moc
+         nSpOlOAMbJtawT8Y5xGcUowHH4GnkANMCoDZEyez+RM6wWID3/y1rkTeUjIa0KjORYZu
+         PctGkP3CKR24q7LSwSFznbTMp7ca47bvlEYa2eJ+xnx6C6Z1SvPlBbL3pIggUQ+vexii
+         QlITegC5WODlJe7NCEmADEROJ14CwyEhx0KQRSGS40SpzUI6Zs2Gqb2oTIfAijwr6HWn
+         6RlV2Avyqyuj2sSE4GTpuXGsInM12A69+Fzdab1vmKBBmd1gODWJicWy/bEd5Q0I+BBt
+         SqBA==
+X-Gm-Message-State: APjAAAWDQTFUBtGLCCjc+o8ks3+V80/5asIXZBlFvicw+yDEnQ4EeiWu
+        yungKe2TjtPxVsHsUmY2TItUcJYNZmk=
+X-Google-Smtp-Source: APXvYqzcUrHe6QFnvn3wlKYzRx00vQB3EZSjYjgCfq1vAk3l2W2TkecTuseCX/pslokvp8gon/nXEw==
+X-Received: by 2002:adf:ce81:: with SMTP id r1mr17963489wrn.114.1568020376928;
+        Mon, 09 Sep 2019 02:12:56 -0700 (PDT)
+Received: from [192.168.42.85] (p578adb1c.dip0.t-ipconnect.de. [87.138.219.28])
+        by smtp.gmail.com with ESMTPSA id r17sm13323337wrt.68.2019.09.09.02.12.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Sep 2019 02:12:56 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+References: <20190907161634.27378-1-marek.vasut@gmail.com>
+ <CAMuHMdXkExZXeXnxuKkMC0J4m56cZUmJpcq2JCXuMv3PBzA0Dg@mail.gmail.com>
+ <b77e6a66-be14-4f94-c116-788b8fa18b31@gmail.com>
+ <CAMuHMdUWezNDVv+U=VeryssmSFm79zU-ptuKmMechcWBboV1=w@mail.gmail.com>
+From:   Marek Vasut <marek.vasut@gmail.com>
+Message-ID: <3e7aebea-9394-8e87-2dbd-0b503fc52799@gmail.com>
+Date:   Mon, 9 Sep 2019 11:12:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.161.176]
-X-ClientProxiedBy: EX13D23UWA001.ant.amazon.com (10.43.160.68) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+In-Reply-To: <CAMuHMdUWezNDVv+U=VeryssmSFm79zU-ptuKmMechcWBboV1=w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amazon's Annapurna Labs SoCs uses al-pos driver, enable it.
+On 9/9/19 11:05 AM, Geert Uytterhoeven wrote:
+> Hi Marek,
 
-Signed-off-by: Talel Shenhar <talel@amazon.com>
----
- arch/arm64/Kconfig.platforms | 1 +
- 1 file changed, 1 insertion(+)
+Hi,
 
-diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-index 4778c77..bd86b15 100644
---- a/arch/arm64/Kconfig.platforms
-+++ b/arch/arm64/Kconfig.platforms
-@@ -25,6 +25,7 @@ config ARCH_SUNXI
- config ARCH_ALPINE
- 	bool "Annapurna Labs Alpine platform"
- 	select ALPINE_MSI if PCI
-+	select AL_POS
- 	help
- 	  This enables support for the Annapurna Labs Alpine
- 	  Soc family.
+> On Mon, Sep 9, 2019 at 10:42 AM Marek Vasut <marek.vasut@gmail.com> wrote:
+>> On 9/9/19 10:19 AM, Geert Uytterhoeven wrote:
+>>> On Sat, Sep 7, 2019 at 6:16 PM <marek.vasut@gmail.com> wrote:
+>>>> From: Marek Vasut <marek.vasut+renesas@gmail.com>
+>>>>
+>>>> Add dma-ranges property into /soc node to describe the DMA capabilities
+>>>> of the bus. This is currently needed to translate PCI DMA ranges, which
+>>>> are limited to 32bit addresses.
+>>>>
+>>>> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+>>>
+>>> Thanks for your patch!
+>>>
+>>>> NOTE: This is needed for the following patches to work correctly:
+>>>>       https://patchwork.ozlabs.org/patch/1144870/
+>>>>       https://patchwork.ozlabs.org/patch/1144871/
+>>>
+>>> What happens with the above patches applied, and without this one?
+>>
+>> It triggers https://patchwork.kernel.org/patch/11087391/#22811745
+> 
+> Sure. But what does that mean?
+> PCI devices just not working?
+> Random memory corruption?
+> System lockup?
+> Anything else?
+
+Instead of translating the PCI DMA range to 0x40000000-0xffffffff , the
+PCI code in the aforementioned patches defaults to maximum range, which
+prevents various devices from working correctly, as the buffers get
+allocated above the 32bit boundary.
+
+>>> As PCI/OF driver patches go in through different trees, is it safe to apply
+>>> this patch now?
+>>> Should they go in together?
+>>
+>> I didn't get any feedback on the other two patches, but this one here is
+>> safe to go in either way.
+>>
+>>>>  arch/arm64/boot/dts/renesas/r8a7795.dtsi  | 1 +
+>>>>  arch/arm64/boot/dts/renesas/r8a7796.dtsi  | 1 +
+>>>>  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 1 +
+>>>
+>>> Do we need similar patches for the other R-Car Gen3 and RZ/G2 DTS files?
+>>> What about R-Car Gen2 and RZ/G1?
+>> I suspect we need such patches for any ARM64 machine with PCIe with this
+>> 32bit limitation.
+> 
+> What about R-Car Gen2 and RZ/G1, which are ARM32, with LPAE?
+
+Presumably we need that too ?
+
 -- 
-2.7.4
-
+Best regards,
+Marek Vasut
