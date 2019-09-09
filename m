@@ -2,82 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E5FAD870
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6616AD897
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:13:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404470AbfIIMDi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 08:03:38 -0400
-Received: from mail-sh.amlogic.com ([58.32.228.43]:48752 "EHLO
-        mail-sh.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404215AbfIIMDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:03:38 -0400
-Received: from [10.18.29.226] (10.18.29.226) by mail-sh.amlogic.com
- (10.18.11.5) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 9 Sep
- 2019 20:04:28 +0800
-Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     Kevin Hilman <khilman@baylibre.com>,
-        <linux-amlogic@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Tao Zeng <tao.zeng@amlogic.com>
-References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com>
- <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com>
- <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com>
- <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com>
- <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
-From:   Jianxin Pan <jianxin.pan@amlogic.com>
-Message-ID: <a82336e2-44df-5682-1c86-daf8a8448d30@amlogic.com>
-Date:   Mon, 9 Sep 2019 20:04:27 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2387508AbfIIMNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 08:13:41 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:45134 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387487AbfIIMNl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:13:41 -0400
+Received: by mail-io1-f67.google.com with SMTP id f12so27975087iog.12;
+        Mon, 09 Sep 2019 05:13:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=qg8xC9UxmhKCmV81UpwtW3mMWGVvqlb5I9FtLPwmTUM=;
+        b=pku/NLUh4SJEsiCFuwtfYQi0lc090lQAayDr9JSBcsxNeYnjyOe+SOELeG2a0eqCX1
+         BKT2Q8DKiqV16ITAFeCNmxC0VsSWvASPSTs713atMDmvhrOcitTUKrCuCwQxMBUV8IUp
+         v1Qmpha3KShO+rFXG7/5aqdHM837Fyi+PFFMWRrMSqOHT5uvUtH+ulr9WDzoWVPpTP3s
+         XSfsqM55yMsEGmGYfubsHGOgRtx5SaLmm2XhpYyBwGK4Uu7Ar7vU69MBSm+oJ5I/eDdz
+         DwitdKuz5jdECbTDlC50wefxqE3Djak/O0KQ5npYtgoaqtfcAQ8WRF8ppSinzgPiBORq
+         Yx/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=qg8xC9UxmhKCmV81UpwtW3mMWGVvqlb5I9FtLPwmTUM=;
+        b=Yum2HJrCsuOtF+IYRU2NdPsNPOui228SGnkvX1ZsX/kivg3kzXm6xdpAbykbFggg3o
+         cxkgVHR6NeMEKYWIcMNoFGhNttMgD1is3k49cA3Hg04PenlnobYoU3f/qDWqTWLtTsJK
+         N20JVOMP7F0qfoj4Exx766m5tBWdatQhaI1sv/KgOEHqP/xf+BpV59IhMbi+PRnJ+pXZ
+         Z2o0dATeZRP2g/y0bbIT8uOx+1OqjCzpY8oGTmXPjpJhzcj1JCRNIDT/YweffsXAeMFg
+         HEGwqgw3lXchVmomjivmiLEbFIacs1B3MevV3udze+YFcUUm4XLYMyGtxLbrjU8+FbXZ
+         xqJg==
+X-Gm-Message-State: APjAAAXzZaPIBiS2Houu0ydIkn/ezT+Pq+mWR4Xrna83e761M2pvOxWp
+        NXdfRq+okeL/KQ9Lz88nexgYyNLWS65ECxc7l8I=
+X-Google-Smtp-Source: APXvYqyHw54reih0bwbQtWwZoTsD2HFT73oXHKwpVjtXdOQkOcP6NKzt03ZaIh/tcyxPMtwL33xaVzkLbAhFEKYczz0=
+X-Received: by 2002:a5e:de47:: with SMTP id e7mr15561943ioq.127.1568031220454;
+ Mon, 09 Sep 2019 05:13:40 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.18.29.226]
-X-ClientProxiedBy: mail-sh.amlogic.com (10.18.11.5) To mail-sh.amlogic.com
- (10.18.11.5)
+References: <20190828150037.2640-1-aford173@gmail.com> <20190905230443.GA52127@atomide.com>
+In-Reply-To: <20190905230443.GA52127@atomide.com>
+From:   Adam Ford <aford173@gmail.com>
+Date:   Mon, 9 Sep 2019 07:13:29 -0500
+Message-ID: <CAHCN7xL0fbr=Sv+b=0AuGB1PPhAAFdAFLEd_iBM+ZMTkUw5sHQ@mail.gmail.com>
+Subject: Re: [RFC] ARM: omap3: Enable HWMODS for HW Random Number Generator
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
+        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali.rohar@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Adam Ford <adam.ford@logicpd.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Paul Walmsley <paul@pwsan.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Martin,
+On Thu, Sep 5, 2019 at 6:04 PM Tony Lindgren <tony@atomide.com> wrote:
+>
+> Hi,
+>
+> * Adam Ford <aford173@gmail.com> [190828 15:01]:
+> > The datasheet for the AM3517 shows the RNG is connected to L4.
+> > It shows the module address for the RNG is 0x480A0000, and it
+> > matches the omap2.dtsi description.  Since the driver can support
+> > omap2 and omap4, it seems reasonable to assume the omap3 would
+> > use the same core for the RNG.
+> >
+> > This RFC, mimics much of the omap2 hwmods on the OMAP3. It
+> > also adds the necessary clock for driving the RNG.  Unfortunately,
+> > it appears non-functional.  If anyone has any suggestions on how
+> > to finish the hwmod (or port it to the newer l4 device tree
+> > format), feedback is requested.
+>
+> Yup I'll take the bait :) The patch below seems to do the trick
+> for me on dm3730 based on translating your patch to probe with
+> ti-sysc.
+>
+> Not sure about 34xx, it seems we're missing rng_clk? Care
+> to give it a try and attempt simlar patches for 34xx and
+> 3517?
+>
+> At least I'm not needing the "ti,no-reset-on-init" property
+> that your patch has a comment for. Maybe that's needed on
+> some other omap3.
+>
+> Oh and this needs to default to status = "disabled" for
+> HS devices like n900 as it needs to use the omap3-rom-rng.
+>
+> Regards,
+>
+> Tony
+>
+> 8< -----------------------
+> diff --git a/arch/arm/boot/dts/omap36xx.dtsi b/arch/arm/boot/dts/omap36xx.dtsi
+> --- a/arch/arm/boot/dts/omap36xx.dtsi
+> +++ b/arch/arm/boot/dts/omap36xx.dtsi
+> @@ -140,6 +140,29 @@
+>                         };
+>                 };
+>
+> +               rng_target: target-module@480a0000 {
+> +                       compatible = "ti,sysc-omap2", "ti,sysc";
+> +                       reg = <0x480a003c 0x4>,
+> +                             <0x480a0040 0x4>,
+> +                             <0x480a0044 0x4>;
+> +                       reg-names = "rev", "sysc", "syss";
+> +                       ti,sysc-mask = <(SYSC_OMAP2_AUTOIDLE)>;
+> +                       ti,sysc-sidle = <SYSC_IDLE_FORCE>,
+> +                                       <SYSC_IDLE_NO>;
+> +                       ti,syss-mask = <1>;
+> +                       clocks = <&rng_ick>;
+> +                       clock-names = "ick";
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       ranges = <0 0x480a0000 0x2000>;
+> +
+> +                       rng: rng@0 {
+> +                               compatible = "ti,omap2-rng";
+> +                               reg = <0x0 0x2000>;
+> +                               interrupts = <52>;
+> +                       };
+> +               };
+> +
 
-On 2019/9/7 23:02, Martin Blumenstingl wrote:
-> Hi Jianxin,
-> 
-> On Fri, Sep 6, 2019 at 7:58 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
-> [...]
->>> also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
->>> aren't there any busses defined in the A1 SoC implementation or are
->>> were you planning to add them later?
->> Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
->> Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
-> OK, thank you for the explanation
-> since you're going to re-send the patch anyways: can you please
-> include the apb_32b bus?
-> all other upstream Amlogic .dts are using the bus definitions, so that
-> will make A1 consistent with the other SoCs
-In A1 (and the later C1), BUS is not mentioned in the memmap and register spec.
-Registers are organized and grouped by functions, and we can not find information about buses from the SoC document.
-Maybe it's better to remove bus definitions for these chips.
-> 
-> 
-> Martin
-> 
-> .
-> 
+Tony,
 
+Can you tell me what branch you're using?  I am not seeing the note
+below, so I am not exactly sure what version to base my testing.
+
+ada,
+>                 /*
+>                  * Note that the sysconfig register layout is a subset of the
+>                  * "ti,sysc-omap4" type register with just sidle and midle bits
