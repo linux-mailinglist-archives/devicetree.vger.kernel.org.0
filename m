@@ -2,111 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 38C26AD68B
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 12:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BC79AD72A
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 12:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729851AbfIIKRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 06:17:08 -0400
-Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:62390 "EHLO
-        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728358AbfIIKRI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 06:17:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1568024227; x=1599560227;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=vMrY2p1PfXK9Uv4R55TgvSNS84UEi4ukNsLZIYc1Eds=;
-  b=gY8q6stD5DT5q5MxxUstpURmNR6JCyaSqChYpd/FR8nurX2DtHwydRIx
-   ecIgLaDrHQ5rnN8/kJ8eoSo0o3rdUbdG5AqOR9ygmQqDVZ+sZCZHqYPki
-   /357O1FDlU7m8nXj5qEaZ9PQ7+8L2PLYv893xQ+vuRCa1AkFFvYcs5LWx
-   A=;
-X-IronPort-AV: E=Sophos;i="5.64,484,1559520000"; 
-   d="scan'208";a="829217047"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-2c-397e131e.us-west-2.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 09 Sep 2019 10:17:05 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
-        by email-inbound-relay-2c-397e131e.us-west-2.amazon.com (Postfix) with ESMTPS id B6210A226E;
-        Mon,  9 Sep 2019 10:17:04 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 9 Sep 2019 10:17:03 +0000
-Received: from [10.125.238.52] (10.43.161.176) by EX13D01EUB001.ant.amazon.com
- (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Mon, 9 Sep
- 2019 10:16:52 +0000
-Subject: Re: [PATCH 3/3] arm64: alpine: select AL_POS
-To:     Arnd Bergmann <arnd@arndb.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Patrick Venture" <venture@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "Olof Johansson" <olof@lixom.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        "Santosh Shilimkar" <ssantosh@kernel.org>,
-        <paul.kocialkowski@bootlin.com>, <mjourdan@baylibre.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>, DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        David Woodhouse <dwmw@amazon.co.uk>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
-        <hanochu@amazon.com>, <barakw@amazon.com>
-References: <1568020220-7758-1-git-send-email-talel@amazon.com>
- <1568020220-7758-4-git-send-email-talel@amazon.com>
- <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
-From:   "Shenhar, Talel" <talel@amazon.com>
-Message-ID: <ab512ced-d989-5c10-a550-2a4723d38e7e@amazon.com>
-Date:   Mon, 9 Sep 2019 13:16:47 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
- Thunderbird/68.0
-MIME-Version: 1.0
-In-Reply-To: <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.43.161.176]
-X-ClientProxiedBy: EX13D21UWB001.ant.amazon.com (10.43.161.108) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+        id S1726937AbfIIKrl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 06:47:41 -0400
+Received: from mga09.intel.com ([134.134.136.24]:9251 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726509AbfIIKrk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 06:47:40 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Sep 2019 03:47:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,484,1559545200"; 
+   d="scan'208";a="191477758"
+Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
+  by FMSMGA003.fm.intel.com with ESMTP; 09 Sep 2019 03:47:36 -0700
+From:   "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     linux-mtd@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, computersforpeace@gmail.com, richard@nod.at,
+        jwboyer@gmail.com, boris.brezillon@free-electrons.com,
+        cyrille.pitchen@atmel.com, david.oberhollenzer@sigma-star.at,
+        miquel.raynal@bootlin.com, tudor.ambarus@gmail.com,
+        vigneshr@ti.com, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Subject: [PATCH v3 0/3] mtd: cadence-qspi:add support for Intel lgm-qspi
+Date:   Mon,  9 Sep 2019 18:47:30 +0800
+Message-Id: <20190909104733.14273-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thank you Vignesh for the valuable review comments.
 
-On 9/9/2019 12:40 PM, Arnd Bergmann wrote:
-> On Mon, Sep 9, 2019 at 11:14 AM Talel Shenhar <talel@amazon.com> wrote:
->> Amazon's Annapurna Labs SoCs uses al-pos driver, enable it.
->>
->> Signed-off-by: Talel Shenhar <talel@amazon.com>
->> ---
->>   arch/arm64/Kconfig.platforms | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
->> index 4778c77..bd86b15 100644
->> --- a/arch/arm64/Kconfig.platforms
->> +++ b/arch/arm64/Kconfig.platforms
->> @@ -25,6 +25,7 @@ config ARCH_SUNXI
->>   config ARCH_ALPINE
->>          bool "Annapurna Labs Alpine platform"
->>          select ALPINE_MSI if PCI
->> +       select AL_POS
->>          help
->>            This enables support for the Annapurna Labs Alpine
->>            Soc family.
-> Generally I think this kind of thing should go into the defconfig
-> rather than being hard-selected. There might be users that
-> want to not enable the driver.
->
->         Arnd
+changes from v2:
+The following review comments are addressed.
+ 1. implemented quirks for intel lgm soc.
+ 2. removed the DT entry based checks.
+ 3. removed the trigger_address in unneccessary places.
+ 4. qspi string removed instead add NULL(originally)
+ 5. removed CQSPI_REG_CONFIG_DMA_MASK   
+ 6. changed the commit message.
 
-The reason for selecting it is because this is a driver that we will 
-always want for ARCH_ALPINE.
+Ramuthevar Vadivel Murugan (3):
+  dt-bindings: mtd: cadence-qspi:add support for Intel lgm-qspi
+  mtd: spi-nor: cadence-quadspi: Disable the DAC for Intel LGM SoC
+  mtd: spi-nor: cadence-quadspi: disable the auto-poll for Intel LGM
 
+ .../devicetree/bindings/mtd/cadence-quadspi.txt    |  1 +
+ drivers/mtd/spi-nor/Kconfig                        |  2 +-
+ drivers/mtd/spi-nor/cadence-quadspi.c              | 45 ++++++++++++++++++++++
+ 3 files changed, 47 insertions(+), 1 deletion(-)
+
+-- 
+2.11.0
 
