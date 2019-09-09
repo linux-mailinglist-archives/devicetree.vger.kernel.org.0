@@ -2,234 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD60AD3EF
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 09:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B97FDAD40C
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 09:41:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731749AbfIIHdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 03:33:03 -0400
-Received: from mga17.intel.com ([192.55.52.151]:1681 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726988AbfIIHdD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 03:33:03 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Sep 2019 00:33:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,484,1559545200"; 
-   d="scan'208";a="183731697"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga008.fm.intel.com with ESMTP; 09 Sep 2019 00:33:00 -0700
-Received: from [10.226.38.10] (vramuthx-mobl1.gar.corp.intel.com [10.226.38.10])
-        by linux.intel.com (Postfix) with ESMTP id 0F12F5807FF;
-        Mon,  9 Sep 2019 00:32:53 -0700 (PDT)
-Subject: Re: [PATCH v2 2/3] mtd: spi-nor: cadence-quadspi: disable DMA and DAC
- for Intel LGM
-To:     Vignesh Raghavendra <vigneshr@ti.com>,
-        linux-mtd@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, computersforpeace@gmail.com, richard@nod.at,
-        jwboyer@gmail.com, boris.brezillon@free-electrons.com,
-        cyrille.pitchen@atmel.com, david.oberhollenzer@sigma-star.at,
-        miquel.raynal@bootlin.com, tudor.ambarus@gmail.com,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com
-References: <20190827035827.21024-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20190827035827.21024-3-vadivel.muruganx.ramuthevar@linux.intel.com>
- <2596ecd4-4ba6-ff7d-472f-1f6e664b4a97@ti.com>
-From:   "Ramuthevar, Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Message-ID: <3bff7de7-71a8-599b-c9e4-17f7f7c04981@linux.intel.com>
-Date:   Mon, 9 Sep 2019 15:32:53 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <2596ecd4-4ba6-ff7d-472f-1f6e664b4a97@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1730939AbfIIHll (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 03:41:41 -0400
+Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:10692 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726026AbfIIHll (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 03:41:41 -0400
+Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
+        by mx0a-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x897arVo027026;
+        Mon, 9 Sep 2019 00:41:24 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-id : content-transfer-encoding : mime-version; s=proofpoint;
+ bh=MHVhCcjXdi+cD242GqEqgEjKWaUkWkROl8jSDeGEu00=;
+ b=YF76NykadJD3f43eU6wXz118c8VCQNTY98ebvzco6yGnjZWRhgM58qaINGkwB7V5+LDj
+ s2JvZyFTRyjnjCb2yiR9eUxOoza2COaVfTPta1dQNOdb3ims3fDbAh6F7ZUF5WGy70ea
+ CCGzzZYzceEEktf3iRyj+RB+v8CJfjD8DrnMBfVDceONmYGE4uMOqAgqWdUqnzR9Xe7O
+ FVUFRCKoELoA7g/JzWqwxoHGezTlqqTQU0SOJjaSxUf7xj0ydulT+5bF3IlLMyLgrjTk
+ tjsWe103Tqvg42+elTGUjvCU9NUTspGmhRXaHlXiUDqu4iW+m6V/QdR3zIjvfarSM5BH WA== 
+Authentication-Results: cadence.com;
+        spf=pass smtp.mailfrom=jank@cadence.com
+Received: from nam02-cy1-obe.outbound.protection.outlook.com (mail-cys01nam02lp2053.outbound.protection.outlook.com [104.47.37.53])
+        by mx0a-0014ca01.pphosted.com with ESMTP id 2uv93y68wb-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 09 Sep 2019 00:41:24 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RVvn3BqdEdWpieXHd0wNl0B9pT9wWeHv0UlkkoiSqakPC2L9+/zQCW+hQ332geYeXJ4FLrVeALSw/UYPg8PC0e4U0V0bq5VV8qPYsx/Ezzk4njkTjx+iIVyspdWCCMGPHa18rhUNfMj9KpbiOpN1RRaiK1NfD+iGo0hKujfu+L6zArNmvNYmiSATqkVz14aqev6nXh0ivhM9NHiAfuDnRxshWZD5245VsneUGQqfJhGpgEX26nsf4Q9D39u5gy2DBtXXMoZxxu8arD4f848EM+WN0NM7fa4PJ1lTNbsyPEOBA9J5BW1V8h8twj7RmgHPFTPEgGNnFhBEHxDoglwO4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MHVhCcjXdi+cD242GqEqgEjKWaUkWkROl8jSDeGEu00=;
+ b=ZWm3JGEMfC0bFiWBUk7lMaIu+LHcUok+Q4jKBRQEwonABO19254jyCzcQ+KDgd9sOVtazonFW+z2ZQ5zbvRd1WskfzTEBzFXnYNuOab/YpXcC/Y0xoV5AHqjJKM+9PvW2oTzibkMXYUXPtBG1yxcKxvdkhEHYJc5WxGRtiTPXghJBidR8bbOV+M055yIpQOvdaI+VKfbs+MQUNauq2CAKkgGoRl9/UvjVVigs0UcoW5C3j0j8xhSzJ7rIiyRHl/lV00xMcVHH3hvL1/IueoaLlTU/acD7visXAsCuJYXkDPBKJact4OfIckLITzrh99gRElVpbhicRlTY2l3A0182g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cadence.com; dmarc=pass action=none header.from=cadence.com;
+ dkim=pass header.d=cadence.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MHVhCcjXdi+cD242GqEqgEjKWaUkWkROl8jSDeGEu00=;
+ b=e1giV9G7RzJFv/n9oQEOsY/NzlQO6UoOwekJNlSg0DAmCoHpWMadt5VPBXn0HjLulH043B6E9Z73CasmO8V6aQ2heqg+7hSNDIKcvH8pBsa0oAr8XZVgwSenWo3xf4eLPiqaO1PTrOlziHao9FYibCaTpkBLaSnOkoCjpK9aHno=
+Received: from CY1PR07MB2521.namprd07.prod.outlook.com (10.167.16.12) by
+ CY1PR07MB2490.namprd07.prod.outlook.com (10.167.18.11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2241.18; Mon, 9 Sep 2019 07:41:22 +0000
+Received: from CY1PR07MB2521.namprd07.prod.outlook.com
+ ([fe80::1927:7325:2156:bd59]) by CY1PR07MB2521.namprd07.prod.outlook.com
+ ([fe80::1927:7325:2156:bd59%10]) with mapi id 15.20.2241.018; Mon, 9 Sep 2019
+ 07:41:22 +0000
+From:   Jan Kotas <jank@cadence.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+CC:     Jan Kotas <jank@cadence.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rafal Ciepiela <rafalc@cadence.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] media: Add lane checks for Cadence CSI2RX
+Thread-Topic: [PATCH v2 2/3] media: Add lane checks for Cadence CSI2RX
+Thread-Index: AQHVY9iTRWpCeBlM0kmgbmtOhXyfuaceSNqAgASzZ4A=
+Date:   Mon, 9 Sep 2019 07:41:21 +0000
+Message-ID: <1D1666FD-CFC6-4DE1-8A2E-1809D1BDEAAB@global.cadence.com>
+References: <20190905105601.27034-1-jank@cadence.com>
+ <20190905105601.27034-3-jank@cadence.com>
+ <20190906075413.GE1586@valkosipuli.retiisi.org.uk>
+In-Reply-To: <20190906075413.GE1586@valkosipuli.retiisi.org.uk>
+Accept-Language: en-US, pl-PL
 Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [185.217.253.59]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7bb61386-e205-40af-304e-08d734f91c38
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:CY1PR07MB2490;
+x-ms-traffictypediagnostic: CY1PR07MB2490:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY1PR07MB2490A3C0B87DE8551179E886D0B70@CY1PR07MB2490.namprd07.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3173;
+x-forefront-prvs: 01559F388D
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(396003)(346002)(39860400002)(376002)(366004)(36092001)(199004)(189003)(51914003)(99286004)(6246003)(14454004)(6116002)(3846002)(4744005)(2906002)(486006)(6916009)(6486002)(6436002)(71200400001)(66066001)(5660300002)(229853002)(446003)(76116006)(91956017)(11346002)(476003)(316002)(54906003)(25786009)(6506007)(53936002)(102836004)(53546011)(186003)(71190400001)(478600001)(76176011)(26005)(33656002)(8936002)(256004)(66946007)(66556008)(64756008)(66446008)(66476007)(8676002)(305945005)(86362001)(6512007)(4326008)(7736002)(81156014)(81166006);DIR:OUT;SFP:1101;SCL:1;SRVR:CY1PR07MB2490;H:CY1PR07MB2521.namprd07.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: cadence.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: GyywWoCbdP1W2VsY44S/YoncVNmNfYwPCzFx6odIgEI6zAGLFJj7rJwKibfzcZLSTXWU5IrFmTE/iz7duxi+y6YgSvuNSQaH6wz2uASelA7qf/7b1wVanCugzKArOiKlEZ2RFOhLA5OUzGSv8RWZe02j+l6fbruoq88ayYusH5evnYuODy2yuJ4jHuN+QnGU0//oFrxrifzHHoHZ+bDFkVTY1nSOh2V05HmMZsFf0SG87ZQi84vZlSZP1pY/UygGBascBgyE6gdnTIsbnQEMNmxJJAyzFIKPMuZ09IFm57lNykQVWm1z75x+Sf3CM5GoAEkHsz5dgZw81PX00hVgy45S/6H5fQYsgDef3zHpnlfLSD9KPWwO/dwH2D2+19HIR0dcbDP8Oyubb7O7C5psfaaftF4CSSHo4rUaFB4/YoQ=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <92F0E0B42750394CB426E0B76CE653F7@namprd07.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7bb61386-e205-40af-304e-08d734f91c38
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2019 07:41:21.9590
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: BJ3M/jIEhsx+ZVA/hiKv+UBugWY7NZs3TLh+hRq2eD41HNRN4ANSr7jSJ1FgHgAUt9EFM0FCycPmitfSdXS70w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY1PR07MB2490
+X-Proofpoint-SPF-Result: pass
+X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
+ include:mktomail.com include:spf-0014ca01.pphosted.com
+ include:spf.protection.outlook.com include:auth.msgapp.com
+ include:spf.mandrillapp.com ~all
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
+ definitions=2019-09-09_04:2019-09-08,2019-09-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 clxscore=1011
+ phishscore=0 suspectscore=0 bulkscore=0 impostorscore=0 spamscore=0
+ malwarescore=0 mlxlogscore=640 priorityscore=1501 mlxscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1906280000 definitions=main-1909090084
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Vignesh,
-
-Thank you so much for the review comments and your time.
-
-On 9/9/2019 2:05 PM, Vignesh Raghavendra wrote:
-> Hi,
->
-> On 27/08/19 9:28 AM, Ramuthevar,Vadivel MuruganX wrote:
->> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->>
->> on Intel's Lightning Mountain(LGM) SoCs QSPI controller do not use
->> Direct Memory Access(DMA) and Direct Access Controller(DAC).
->>
->> This patch introduces to properly disable the DMA and DAC
->> for data transfer instead it uses indirect data transfer.
->>
->> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
->> ---
->>   drivers/mtd/spi-nor/Kconfig           |  2 +-
->>   drivers/mtd/spi-nor/cadence-quadspi.c | 21 ++++++++++++++++++---
->>   2 files changed, 19 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/mtd/spi-nor/Kconfig b/drivers/mtd/spi-nor/Kconfig
->> index 6de83277ce8b..ba2e372ae514 100644
->> --- a/drivers/mtd/spi-nor/Kconfig
->> +++ b/drivers/mtd/spi-nor/Kconfig
->> @@ -34,7 +34,7 @@ config SPI_ASPEED_SMC
->>   
->>   config SPI_CADENCE_QUADSPI
->>   	tristate "Cadence Quad SPI controller"
->> -	depends on OF && (ARM || ARM64 || COMPILE_TEST)
->> +	depends on OF && (ARM || ARM64 || COMPILE_TEST || X86)
->>   	help
->>   	  Enable support for the Cadence Quad SPI Flash controller.
->>   
->> diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
->> index 67f15a1f16fd..69fa13e95110 100644
->> --- a/drivers/mtd/spi-nor/cadence-quadspi.c
->> +++ b/drivers/mtd/spi-nor/cadence-quadspi.c
->> @@ -517,12 +517,16 @@ static int cqspi_indirect_read_execute(struct spi_nor *nor, u8 *rxbuf,
->>   	struct cqspi_st *cqspi = f_pdata->cqspi;
->>   	void __iomem *reg_base = cqspi->iobase;
->>   	void __iomem *ahb_base = cqspi->ahb_base;
->> +	u32 trigger_address = cqspi->trigger_address;
->>   	unsigned int remaining = n_rx;
->>   	unsigned int mod_bytes = n_rx % 4;
->>   	unsigned int bytes_to_read = 0;
->>   	u8 *rxbuf_end = rxbuf + n_rx;
->>   	int ret = 0;
->>   
->> +	if (!f_pdata->use_direct_mode)
->> +		writel(trigger_address, reg_base + CQSPI_REG_INDIRECTTRIGGER);
->> +
-> Again, as I pointed out previously, this should not be needed.
-> cqspi_controller_init() already does above configuration and no need to
-> touch this register on every read.
-Agreed!, drop this one.
->>   	writel(from_addr, reg_base + CQSPI_REG_INDIRECTRDSTARTADDR);
->>   	writel(remaining, reg_base + CQSPI_REG_INDIRECTRDBYTES);
->>   
->> @@ -609,6 +613,14 @@ static int cqspi_write_setup(struct spi_nor *nor)
->>   	struct cqspi_st *cqspi = f_pdata->cqspi;
->>   	void __iomem *reg_base = cqspi->iobase;
->>   
->> +	/* Disable the DMA and direct access controller */
->> +	if (!f_pdata->use_direct_mode) {
->> +		reg = readl(reg_base + CQSPI_REG_CONFIG);
->> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
->> +		reg &= ~CQSPI_REG_CONFIG_DMA_MASK;
->> +		writel(reg, reg_base + CQSPI_REG_CONFIG);
->> +	}
->> +
-> You did not respond to my previous comment. Why would you need to clear
-> CQSPI_REG_CONFIG_DMA_MASK field, if reset default is 0 anyway?
-while testing on the real setup it is not working for me, double confirm 
-and drop it.
->>   	/* Set opcode. */
->>   	reg = nor->program_opcode << CQSPI_REG_WR_INSTR_OPCODE_LSB;
->>   	writel(reg, reg_base + CQSPI_REG_WR_INSTR);
->> @@ -1171,7 +1183,8 @@ static int cqspi_of_get_pdata(struct platform_device *pdev)
->>   		return -ENXIO;
->>   	}
->>   
->> -	cqspi->rclk_en = of_property_read_bool(np, "cdns,rclk-en");
->> +	if (!of_device_is_compatible(np, "intel,lgm-qspi"))
->> +		cqspi->rclk_en = of_property_read_bool(np, "cdns,rclk-en");
->>   
-> If you don't want to use this property, then just drop it from your DT.
-> Don't override it in the driver based on compatible.
-Sure.
->>   	return 0;
->>   }
->> @@ -1301,7 +1314,8 @@ static int cqspi_setup_flash(struct cqspi_st *cqspi, struct device_node *np)
->>   		f_pdata->registered = true;
->>   
->>   		if (mtd->size <= cqspi->ahb_size) {
->> -			f_pdata->use_direct_mode = true;
->> +			f_pdata->use_direct_mode =
->> +				!(of_device_is_compatible(np, "intel,lgm-qspi"));
-> Looks like, you haven't followed any of my advice. Please add a quirk
-> flag to disable DAC mode. Something like:
-
-Sorry,  on real setup kernel got crash if we add quirks, so that is the 
-reason I started using DT compatible to
-
-avoid crashing and also don't want disturb the existing functionalities.
-
-Let me check once again.
-
-Thank you so much for your valuable comments.
-
-> #define CQSPI_DISABLE_DAC_MODE BIT(1)
->
-> static const struct cqspi_driver_platdata intel_lgm_qspi = {
->          .hwcaps_mask = CQSPI_BASE_HWCAPS_MASK,
->          .quirks = CQSPI_DISABLE_DAC_MODE,
-> };
->
-> static const struct of_device_id cqspi_dt_ids[] = {
->
-> 	...
->
->          {
->                  .compatible = "intel,lgm-qspi",
->                  .data = &intel_lgm_qspi,
->          },
->
-> 	...
-> };
->
->
-> Then in cqspi_setup_flash(),
->
-> 	if (mtd->size <= cqspi->ahb_size &&
-> 		!ddata->quirks & CQSPI_DISABLE_DAC_MODE) {
-> 		f_pdata->use_direct_mode = true;
-> 		...
-> 	}	
->
->
->>   			dev_dbg(nor->dev, "using direct mode for %s\n",
->>   				mtd->name);
->>   
->> @@ -1347,7 +1361,7 @@ static int cqspi_probe(struct platform_device *pdev)
->>   	}
->>   
->>   	/* Obtain QSPI clock. */
->> -	cqspi->clk = devm_clk_get(dev, NULL);
->> +	cqspi->clk = devm_clk_get(dev, "qspi");
-> This will break DT backward compatibility. Existing DTs don't have
-> clock-names = "qspi". Hence, this code will error out.
-> What I meant in the previous mail was: if device does not have multiple
-> clk inputs then there is no need for clock-names and there is no need to
-> touch this part of code.
->
-> 	cqspi->clk = devm_clk_get(dev, NULL);
->
-> This should just work fine even on your board. So drop this hunk.
-Sure, I will drop it.
->>   	if (IS_ERR(cqspi->clk)) {
->>   		dev_err(dev, "Cannot claim QSPI clock.\n");
->>   		return PTR_ERR(cqspi->clk);
->> @@ -1369,6 +1383,7 @@ static int cqspi_probe(struct platform_device *pdev)
->>   		return PTR_ERR(cqspi->ahb_base);
->>   	}
->>   	cqspi->mmap_phys_base = (dma_addr_t)res_ahb->start;
->> +	cqspi->trigger_address = res_ahb->start;
-> Nope, this is not needed. See:
-> https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/mtd/spi-nor/cadence-quadspi.c#L1168
->
-> Populate the trigger-address using cdns,trigger-address property in DT
-
-Agreed!,  fix it in the next version.
-
-Best Regards
-vadivel
->>   	cqspi->ahb_size = resource_size(res_ahb);
->>   
->>   	init_completion(&cqspi->transfer_complete);
->>
+DQoNCkhlbGxvIFNha2FyaSwNCg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5Lg0KPiBPbiA2IFNlcCAy
+MDE5LCBhdCAwOTo1NCwgU2FrYXJpIEFpbHVzIDxzYWthcmkuYWlsdXNAaWtpLmZpPiB3cm90ZToN
+Cj4gDQo+IEhpIEphbiwNCj4gDQo+IFRoYW5rcyBmb3IgdGhlIHBhdGNoc2V0Lg0KPiANCj4gT24g
+VGh1LCBTZXAgMDUsIDIwMTkgYXQgMTE6NTY6MDBBTSArMDEwMCwgSmFuIEtvdGFzIHdyb3RlOg0K
+Pj4gLyoNCj4+ICAqIERyaXZlciBmb3IgQ2FkZW5jZSBNSVBJLUNTSTIgUlggQ29udHJvbGxlciB2
+MS4zDQo+PiAgKg0KPj4gLSAqIENvcHlyaWdodCAoQykgMjAxNyBDYWRlbmNlIERlc2lnbiBTeXN0
+ZW1zIEluYy4NCj4+ICsgKiBDb3B5cmlnaHQgKEMpIDIwMTctMjAxOSBDYWRlbmNlIERlc2lnbiBT
+eXN0ZW1zIEluYy4NCj4+ICAqLw0KPj4gDQo+PiArCWZvciAoaSA9IDA7IGkgPCBjc2kycngtPm51
+bV9sYW5lczsgaSsrKSB7DQo+PiArCQlpZiAoY3NpMnJ4LT5sYW5lc1tpXSA8IDEpIHsNCj4gDQo+
+IERvIHlvdSBuZWVkIHRoaXM/IHY0bDJfZndub2RlX3BhcnNlX2VuZHBvaW50KCkgYWxyZWFkeSBo
+YXMgYSBtb3JlIHRob3JvdWdoDQo+IGNoZWNrIGZvciB0aGUgbGFuZSBudW1iZXJzLg0KDQpJIGxv
+b2tlZCBhdCB0aGUgc291cmNlIGNvZGUgb2YgdjRsMl9md25vZGVfZW5kcG9pbnRfcGFyc2VfY3Np
+Ml9idXMNCmFuZCB0aGlzIHBhcnRpY3VsYXIgY2FzZSBkb2VzbuKAmXQgc2VlbSB0byBiZSBjaGVj
+a2VkLg0KDQo+IA0KPiAtLSANCj4gUmVnYXJkcywNCj4gDQo+IFNha2FyaSBBaWx1cw0KDQpSZWdh
+cmRzLA0KSmFuDQoNCg==
