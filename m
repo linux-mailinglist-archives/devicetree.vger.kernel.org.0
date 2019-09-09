@@ -2,72 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52F3AAD8CE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3C54AD917
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:36:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726805AbfIIMTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 08:19:55 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:44426 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725897AbfIIMTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:19:55 -0400
-Received: by mail-ot1-f67.google.com with SMTP id 21so12163122otj.11;
-        Mon, 09 Sep 2019 05:19:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=vAs+I/TUWNnuZxjBLkhMPEU/aB/qK/a1ubupalPvRNM=;
-        b=kvARhY7gMlC+QDG8ssfjOtovz7uqNALBJXUNhYyrUGeRtWtLErquyjWBBly8X9MNx6
-         43MsdwSppV2akqLOSzcJ2r7cEURUqE2F30VUyl+SRe8ooHjPmuhmrndJm0oS3N2K4j7D
-         lbKY3wPVUawd8DdbLpg/galjVEoIO/9vjfhrJ4qebFFTzaUf0vUCePTIMXDxhHo3mAjS
-         scGc17D4HwjyNXxqupKDL3sQ6bmHClyUWSzVvh0AyNlCuCdNbSn+0EQOTJ+FKhUcshNR
-         WuMIl9mARedT9waqPVori8qnJXU8CkQYm923b5G6YglqBChhGn9x/U/oDSPIyPS/QfCs
-         mLpw==
-X-Gm-Message-State: APjAAAXs4L/8onEmjVfw5XtXGVpxyt75UA0m0iJJVBRdeZIwct0WsEAr
-        XIzGaRVkBaz3dEAS/70HyHNlBWTytZQ0ibofUB4=
-X-Google-Smtp-Source: APXvYqyptPd5sOFScdZMIqoXjAUOP6zRtrFpMikBU6vLhMblwgtk1ROqKyFlh+vtR10XFif0HbP/vbM1Kbvhs9zwboA=
-X-Received: by 2002:a9d:6c12:: with SMTP id f18mr19752837otq.297.1568031594332;
- Mon, 09 Sep 2019 05:19:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <1567675844-19247-1-git-send-email-biju.das@bp.renesas.com> <1567675844-19247-2-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1567675844-19247-2-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 9 Sep 2019 14:19:43 +0200
-Message-ID: <CAMuHMdUTMi4R3Qno+QvpxVMP64_ScV+uF0A13XXpOGCCR0c0zQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: arm: Document RZ/G2N SoC DT bindings
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1727494AbfIIMgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 08:36:10 -0400
+Received: from vps.xff.cz ([195.181.215.36]:37556 "EHLO vps.xff.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727428AbfIIMgK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 08:36:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1568032567; bh=uTm+MnC373y5QNcajftT9i4MZQ4QqvnPoh06Z6jmTyU=;
+        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
+        b=f8TSLfG0FgnnsVDqQHUDpPwvjBM30WhHeeNdeMT6ybxKyqMt8/zLjAyZPRRoB4qEA
+         49EeMmF3ZolOe1v3gnza8o59B+1sH9f2zigNcPhry7l4Zn+Pes6wcvQ3BMBl0khMW0
+         Ii/WXL4ece+wdMOu7f12J1Ipr0rR+rVAGaieX45E=
+Date:   Mon, 9 Sep 2019 14:36:06 +0200
+From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v4 00/10] Allwinner sunxi message box support
+Message-ID: <20190909123606.ezsjisxpj7747h6b@core.my.home>
+Mail-Followup-To: Samuel Holland <samuel@sholland.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Vasily Khoruzhick <anarsoul@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190820032311.6506-1-samuel@sholland.org>
+ <20190909032208.rlorx2ppytymtyej@core.my.home>
+ <bb6eab9a-f9cc-81ca-5e8c-9fb867c61ec2@sholland.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <bb6eab9a-f9cc-81ca-5e8c-9fb867c61ec2@sholland.org>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 5, 2019 at 11:37 AM Biju Das <biju.das@bp.renesas.com> wrote:
-> Add device tree bindings documentation for Renesas RZ/G2N (r8a774b1) SoC.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.5.
+On Sun, Sep 08, 2019 at 10:54:17PM -0500, Samuel Holland wrote:
+> On 9/8/19 10:22 PM, Ondřej Jirman wrote:
+> > Hello Samuel,
+> > 
+> > On Mon, Aug 19, 2019 at 10:23:01PM -0500, Samuel Holland wrote:
+> >> This series adds support for the "hardware message box" in sun8i, sun9i,
+> >> and sun50i SoCs, used for communication with the ARISC management
+> >> processor (the platform's equivalent of the ARM SCP). The end goal is to
+> >> use the arm_scpi driver as a client, communicating with firmware running
+> >> on the AR100 CPU, or to use the mailbox to forward NMIs that the
+> >> firmware picks up from R_INTC.
+> >>
+> >> Unfortunately, the ARM SCPI client no longer works with this driver
+> >> since it now exposes all 8 hardware FIFOs individually. The SCPI client
+> >> could be made to work (and I posted proof-of-concept code to that effect
+> >> with v1 of this series), but that is a low priority, as Linux does not
+> >> directly use SCPI with the current firmware version; all SCPI use goes
+> >> through ATF via PSCI.
+> >>
+> >> As requested in the comments to v3 of this patchset, a demo client is
+> >> provided in the final patch. This demo goes along with a toy firmware
+> >> which shows that the driver does indeed work for two-way communication
+> >> on all channels. To build the firmware component, run:
+> > 
+> > I've tried using this driver with mainline arm_scpi driver (which is probably
+> > an expected future use, since crust provides SCPI interface).
+> 
+> If you've verified in some way that this driver works on A83T, I'd appreciate
+> your Tested-by, so I can send a patch for the A83T device tree node.
 
-Gr{oetje,eeting}s,
+Tested-by: Ondrej Jirman <megous@megous.com>
 
-                        Geert
+(on A83T)
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> > The problem I've found is that arm_scpi expects message box to be
+> > bi-directional, but this driver provides uni-directional interface.
+> > 
+> > What do you think about making this driver provide bi-directional interface?
+> > We could halve the number of channels to 4 and mandate TX/RX configuration
+> > (from main CPU's PoV) as ABI.
+> 
+> Funny you mention that. That's what I did originally for v1, but it got NAKed by
+> Maxime, Andre, and Jassi:
+> 
+> https://lkml.org/lkml/2018/2/28/125
+> https://lkml.org/lkml/2018/2/28/944
+> 
+> > Otherwise it's impossible to use it with the arm_scpi driver.
+> > 
+> > Or do you have any other ideas? I guess arm_scpi can be fixed to add a
+> > property that would make it possible to use single shmem with two
+> > mailboxes, one for rx and one for tx, but making sun6i mailbox have
+> > bi-directional interface sounds easier.
+> 
+> Yes, you can use the existence of the mbox-names property to determine if the
+> driver needs one mailbox or two, as I did in this driver:
+> 
+> https://lkml.org/lkml/2019/3/1/789
+> 
+> I'll have a patch available soon that implements this for arm_scpi.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yeah, I've patched arm_scpi too. :)
+
+https://megous.com/git/linux/commit/?h=tbs-5.3&id=69a0cd0093a63039ace2f763e8d82009c50ff03c
+
+(but that's just for the test, because it breaks the existing interface for
+other uses)
+
+Anyway, using mbox-names looks like a nice solution! Thanks! Though,
+arm_scpi driver has a bit more complicated existing interface, where it can use
+multiple mailboxes and rotates through them after every message.
+
+BTW, I'm slowly laboring through understanding how to get suspend to ram working
+on one A83T tablet. https://xnux.eu/tablet-hacking/ Which is how I tested this
+driver.
+
+regards,
+	o.
+
+> Cheers,
+> Samuel
+> 
+> > regards,
+> > 	o.
+> > 
+> >>   git clone https://github.com/crust-firmware/meta meta
+> >>   git clone -b mailbox-demo https://github.com/crust-firmware/crust meta/crust
+> >>   cd meta
+> >>   make
+> >>
+> >> That will by default produce a U-Boot + ATF + SCP firmware image in
+> >> [meta/]build/pinebook/u-boot-sunxi-with-spl.bin. See the top-level
+> >> README.md for more information, such as cross-compiler setup.
+> >>
+> >> I've now used this driver with three separate clients over the past two
+> >> years, and they all work. If there are no remaining concerns with the
+> >> driver, I'd like it to get merged.
+> >>
+> >> Even without the driver, the clock patches (1-2) can go in at any time.
+> >>
+> >> Changes from v3:
+> >>   - Rebased on sunxi-next
+> >>   - Added Rob's Reviewed-by for patch 3
+> >>   - Fixed a crash when receiving a message on a disabled channel
+> >>   - Cleaned up some comments/formatting in the driver
+> >>   - Fixed #mbox-cells in sunxi-h3-h5.dtsi (patch 7)
+> >>   - Removed the irqchip example (no longer relevant to the fw design)
+> >>   - Added a demo/example client that uses the driver and a toy firmware
+> >>
+> >> Changes from v2:
+> >>   - Merge patches 1-3
+> >>   - Add a comment in the code explaining the CLK_IS_CRITICAL usage
+> >>   - Add a patch to mark the AR100 clocks as critical
+> >>   - Use YAML for the device tree binding
+> >>   - Include a not-for-merge example usage of the mailbox
+> >>
+> >> Changes from v1:
+> >>   - Marked message box clocks as critical instead of hacks in the driver
+> >>   - 8 unidirectional channels instead of 4 bidirectional pairs
+> >>   - Use per-SoC compatible strings and an A31 fallback compatible
+> >>   - Dropped the mailbox framework patch
+> >>   - Include DT patches for SoCs that document the message box
+> >>
+> >> Samuel Holland (10):
+> >>   clk: sunxi-ng: Mark msgbox clocks as critical
+> >>   clk: sunxi-ng: Mark AR100 clocks as critical
+> >>   dt-bindings: mailbox: Add a sunxi message box binding
+> >>   mailbox: sunxi-msgbox: Add a new mailbox driver
+> >>   ARM: dts: sunxi: a80: Add msgbox node
+> >>   ARM: dts: sunxi: a83t: Add msgbox node
+> >>   ARM: dts: sunxi: h3/h5: Add msgbox node
+> >>   arm64: dts: allwinner: a64: Add msgbox node
+> >>   arm64: dts: allwinner: h6: Add msgbox node
+> >>   [DO NOT MERGE] drivers: firmware: msgbox demo
+> >>
+> >>  .../mailbox/allwinner,sunxi-msgbox.yaml       |  79 +++++
+> >>  arch/arm/boot/dts/sun8i-a83t.dtsi             |  10 +
+> >>  arch/arm/boot/dts/sun9i-a80.dtsi              |  10 +
+> >>  arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  10 +
+> >>  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  34 ++
+> >>  arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  |  24 ++
+> >>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  10 +
+> >>  drivers/clk/sunxi-ng/ccu-sun50i-a64.c         |   3 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun50i-h6-r.c        |   2 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun50i-h6.c          |   3 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun8i-a23.c          |   3 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun8i-a33.c          |   3 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun8i-a83t.c         |   3 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun8i-h3.c           |   3 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun8i-r.c            |   2 +-
+> >>  drivers/clk/sunxi-ng/ccu-sun9i-a80.c          |   3 +-
+> >>  drivers/firmware/Kconfig                      |   6 +
+> >>  drivers/firmware/Makefile                     |   1 +
+> >>  drivers/firmware/sunxi_msgbox_demo.c          | 307 +++++++++++++++++
+> >>  drivers/mailbox/Kconfig                       |  10 +
+> >>  drivers/mailbox/Makefile                      |   2 +
+> >>  drivers/mailbox/sunxi-msgbox.c                | 323 ++++++++++++++++++
+> >>  22 files changed, 842 insertions(+), 9 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/mailbox/allwinner,sunxi-msgbox.yaml
+> >>  create mode 100644 drivers/firmware/sunxi_msgbox_demo.c
+> >>  create mode 100644 drivers/mailbox/sunxi-msgbox.c
+> >>
+> >> -- 
+> >> 2.21.0
+> >>
+> >> _______________________________________________
+> >> linux-arm-kernel mailing list
+> >> linux-arm-kernel@lists.infradead.org
+> >> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
