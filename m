@@ -2,104 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A78B5AD5F3
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0DC8AD5F6
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:45:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729002AbfIIJoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 05:44:30 -0400
-Received: from mail-qk1-f196.google.com ([209.85.222.196]:38147 "EHLO
-        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729082AbfIIJoa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:44:30 -0400
-Received: by mail-qk1-f196.google.com with SMTP id x5so12394675qkh.5;
-        Mon, 09 Sep 2019 02:44:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eq2XuOQub5LXmNdZQdl0dNhC7+edIsPrDvzkz2RrzVA=;
-        b=Xf8pct8uX5HJymD1dspMXEeG5CjYPNxBUYQKgXaH1Hx2+PaaQvIfSSuB7QCKY2BvJC
-         zrcogVeS/CsBxWi4hCg5w2hHMM5dNjp8d1lHsCr3p8nr9g5Nn1/2j8YovgTp8z0/dJWc
-         iL0GZziutJSg9c6ipP/06GiRjtUKF9yc3e1yHSvjQOKPTH/sNADbVjKGQEqvCJmmFXzO
-         BpJFQyHxWqpod2oEvuozL+XCyJEJcsj2rKnjsISMWymqXvC6S4qdJPd9wr/kAvdsDxm8
-         ePZIRZQGXMu4p0xTcj1Q9eHqaleiHr0qvms3nwu3FlN2QkefR61pEYawU+/UWe6qmxi6
-         C11g==
-X-Gm-Message-State: APjAAAVOdMXKjjqsUkts8u9eHUEybVDWi3UsBQEr8QjzPjXr2k/tZVNz
-        IhEM9zltH+Sm9054t0LHa0kCetnu9OTuQXm4M70=
-X-Google-Smtp-Source: APXvYqyP9aDV8ZsrfhZ0CKBAlFvxBvCyNUWYRtQ+3kZ7PzdPLrpPHD/Bz780Tvcj7KaHZ5XR85/SF7oeG/38AAgDTQw=
-X-Received: by 2002:ae9:ee06:: with SMTP id i6mr1781989qkg.3.1568022269523;
- Mon, 09 Sep 2019 02:44:29 -0700 (PDT)
+        id S1729152AbfIIJpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 05:45:07 -0400
+Received: from mga18.intel.com ([134.134.136.126]:11054 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729091AbfIIJpH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 05:45:07 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Sep 2019 02:45:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,484,1559545200"; 
+   d="scan'208";a="359436656"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga005.jf.intel.com with ESMTP; 09 Sep 2019 02:45:03 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i7GEH-0006Df-JO; Mon, 09 Sep 2019 12:45:01 +0300
+Date:   Mon, 9 Sep 2019 12:45:01 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     dongchun.zhu@mediatek.com
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [V4, 1/2] media: dt-bindings: media: i2c: Add bindings for
+ OV02A10
+Message-ID: <20190909094501.GO2680@smile.fi.intel.com>
+References: <20190907092728.23897-1-dongchun.zhu@mediatek.com>
+ <20190907092728.23897-2-dongchun.zhu@mediatek.com>
 MIME-Version: 1.0
-References: <1568020220-7758-1-git-send-email-talel@amazon.com> <1568020220-7758-3-git-send-email-talel@amazon.com>
-In-Reply-To: <1568020220-7758-3-git-send-email-talel@amazon.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 9 Sep 2019 11:44:13 +0200
-Message-ID: <CAK8P3a3UF7xPV1U3eW6Jdu754P1bzG208UxD9KUxEm1JjZudww@mail.gmail.com>
-Subject: Re: [PATCH 2/3] soc: amazon: al-pos: Introduce Amazon's Annapurna
- Labs POS driver
-To:     Talel Shenhar <talel@amazon.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Patrick Venture <venture@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        paul.kocialkowski@bootlin.com, mjourdan@baylibre.com,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        David Woodhouse <dwmw@amazon.co.uk>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        hhhawa@amazon.com, ronenk@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, barakw@amazon.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190907092728.23897-2-dongchun.zhu@mediatek.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 9, 2019 at 11:14 AM Talel Shenhar <talel@amazon.com> wrote:
->
-> The Amazon's Annapurna Labs SoCs includes Point Of Serialization error
-> logging unit that reports an error in case write error (e.g. attempt to
-> write to a read only register).
-> This patch introduces the support for this unit.
->
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
+On Sat, Sep 07, 2019 at 05:27:27PM +0800, dongchun.zhu@mediatek.com wrote:
+> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> 
+> This patch adds device tree bindings documentation for OV02A10 camera sensor.
+> 
+> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> ---
+>  .../devicetree/bindings/media/i2c/ov02a10.txt      | 54 ++++++++++++++++++++++
 
-Looks ok overall, juts a few minor comments:
+>  MAINTAINERS                                        |  7 +++
 
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_AUTHOR("Talel Shenhar");
-> +MODULE_DESCRIPTION("Amazon's Annapurna Labs POS driver");
+This doesn't belong to dt-bindings.
 
-These usually go to the end of the file.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> +       log1 = readl_relaxed(pos->mmio_base + AL_POS_ERROR_LOG_1);
-> +       if (!FIELD_GET(AL_POS_ERROR_LOG_1_VALID, log1))
-> +               return IRQ_NONE;
-> +
-> +       log0 = readl_relaxed(pos->mmio_base + AL_POS_ERROR_LOG_0);
-> +       writel_relaxed(0, pos->mmio_base + AL_POS_ERROR_LOG_1);
 
-Why do you require _relaxed() accessors here? Please add a comment
-explaining that, or use the regular readl()/writel().
-
-> +       resource = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +       pos->mmio_base = devm_ioremap_resource(&pdev->dev, resource);
-
-This can be simplified to devm_platform_ioremap_resource().
-
-> +       pos->irq = irq_of_parse_and_map(pdev->dev.of_node, 0);
-
-And this is usually written as platform_get_irq()
-
-       Arnd
