@@ -2,145 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6616AD897
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:13:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F3AAD8CE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387508AbfIIMNl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 08:13:41 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:45134 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387487AbfIIMNl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:13:41 -0400
-Received: by mail-io1-f67.google.com with SMTP id f12so27975087iog.12;
-        Mon, 09 Sep 2019 05:13:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=qg8xC9UxmhKCmV81UpwtW3mMWGVvqlb5I9FtLPwmTUM=;
-        b=pku/NLUh4SJEsiCFuwtfYQi0lc090lQAayDr9JSBcsxNeYnjyOe+SOELeG2a0eqCX1
-         BKT2Q8DKiqV16ITAFeCNmxC0VsSWvASPSTs713atMDmvhrOcitTUKrCuCwQxMBUV8IUp
-         v1Qmpha3KShO+rFXG7/5aqdHM837Fyi+PFFMWRrMSqOHT5uvUtH+ulr9WDzoWVPpTP3s
-         XSfsqM55yMsEGmGYfubsHGOgRtx5SaLmm2XhpYyBwGK4Uu7Ar7vU69MBSm+oJ5I/eDdz
-         DwitdKuz5jdECbTDlC50wefxqE3Djak/O0KQ5npYtgoaqtfcAQ8WRF8ppSinzgPiBORq
-         Yx/w==
+        id S1726805AbfIIMTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 08:19:55 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:44426 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725897AbfIIMTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:19:55 -0400
+Received: by mail-ot1-f67.google.com with SMTP id 21so12163122otj.11;
+        Mon, 09 Sep 2019 05:19:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=qg8xC9UxmhKCmV81UpwtW3mMWGVvqlb5I9FtLPwmTUM=;
-        b=Yum2HJrCsuOtF+IYRU2NdPsNPOui228SGnkvX1ZsX/kivg3kzXm6xdpAbykbFggg3o
-         cxkgVHR6NeMEKYWIcMNoFGhNttMgD1is3k49cA3Hg04PenlnobYoU3f/qDWqTWLtTsJK
-         N20JVOMP7F0qfoj4Exx766m5tBWdatQhaI1sv/KgOEHqP/xf+BpV59IhMbi+PRnJ+pXZ
-         Z2o0dATeZRP2g/y0bbIT8uOx+1OqjCzpY8oGTmXPjpJhzcj1JCRNIDT/YweffsXAeMFg
-         HEGwqgw3lXchVmomjivmiLEbFIacs1B3MevV3udze+YFcUUm4XLYMyGtxLbrjU8+FbXZ
-         xqJg==
-X-Gm-Message-State: APjAAAXzZaPIBiS2Houu0ydIkn/ezT+Pq+mWR4Xrna83e761M2pvOxWp
-        NXdfRq+okeL/KQ9Lz88nexgYyNLWS65ECxc7l8I=
-X-Google-Smtp-Source: APXvYqyHw54reih0bwbQtWwZoTsD2HFT73oXHKwpVjtXdOQkOcP6NKzt03ZaIh/tcyxPMtwL33xaVzkLbAhFEKYczz0=
-X-Received: by 2002:a5e:de47:: with SMTP id e7mr15561943ioq.127.1568031220454;
- Mon, 09 Sep 2019 05:13:40 -0700 (PDT)
+        bh=vAs+I/TUWNnuZxjBLkhMPEU/aB/qK/a1ubupalPvRNM=;
+        b=kvARhY7gMlC+QDG8ssfjOtovz7uqNALBJXUNhYyrUGeRtWtLErquyjWBBly8X9MNx6
+         43MsdwSppV2akqLOSzcJ2r7cEURUqE2F30VUyl+SRe8ooHjPmuhmrndJm0oS3N2K4j7D
+         lbKY3wPVUawd8DdbLpg/galjVEoIO/9vjfhrJ4qebFFTzaUf0vUCePTIMXDxhHo3mAjS
+         scGc17D4HwjyNXxqupKDL3sQ6bmHClyUWSzVvh0AyNlCuCdNbSn+0EQOTJ+FKhUcshNR
+         WuMIl9mARedT9waqPVori8qnJXU8CkQYm923b5G6YglqBChhGn9x/U/oDSPIyPS/QfCs
+         mLpw==
+X-Gm-Message-State: APjAAAXs4L/8onEmjVfw5XtXGVpxyt75UA0m0iJJVBRdeZIwct0WsEAr
+        XIzGaRVkBaz3dEAS/70HyHNlBWTytZQ0ibofUB4=
+X-Google-Smtp-Source: APXvYqyptPd5sOFScdZMIqoXjAUOP6zRtrFpMikBU6vLhMblwgtk1ROqKyFlh+vtR10XFif0HbP/vbM1Kbvhs9zwboA=
+X-Received: by 2002:a9d:6c12:: with SMTP id f18mr19752837otq.297.1568031594332;
+ Mon, 09 Sep 2019 05:19:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190828150037.2640-1-aford173@gmail.com> <20190905230443.GA52127@atomide.com>
-In-Reply-To: <20190905230443.GA52127@atomide.com>
-From:   Adam Ford <aford173@gmail.com>
-Date:   Mon, 9 Sep 2019 07:13:29 -0500
-Message-ID: <CAHCN7xL0fbr=Sv+b=0AuGB1PPhAAFdAFLEd_iBM+ZMTkUw5sHQ@mail.gmail.com>
-Subject: Re: [RFC] ARM: omap3: Enable HWMODS for HW Random Number Generator
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
-        =?UTF-8?Q?Pali_Roh=C3=A1r?= <pali.rohar@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Adam Ford <adam.ford@logicpd.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <1567675844-19247-1-git-send-email-biju.das@bp.renesas.com> <1567675844-19247-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1567675844-19247-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 9 Sep 2019 14:19:43 +0200
+Message-ID: <CAMuHMdUTMi4R3Qno+QvpxVMP64_ScV+uF0A13XXpOGCCR0c0zQ@mail.gmail.com>
+Subject: Re: [PATCH 1/3] dt-bindings: arm: Document RZ/G2N SoC DT bindings
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Paul Walmsley <paul@pwsan.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 5, 2019 at 6:04 PM Tony Lindgren <tony@atomide.com> wrote:
+On Thu, Sep 5, 2019 at 11:37 AM Biju Das <biju.das@bp.renesas.com> wrote:
+> Add device tree bindings documentation for Renesas RZ/G2N (r8a774b1) SoC.
 >
-> Hi,
->
-> * Adam Ford <aford173@gmail.com> [190828 15:01]:
-> > The datasheet for the AM3517 shows the RNG is connected to L4.
-> > It shows the module address for the RNG is 0x480A0000, and it
-> > matches the omap2.dtsi description.  Since the driver can support
-> > omap2 and omap4, it seems reasonable to assume the omap3 would
-> > use the same core for the RNG.
-> >
-> > This RFC, mimics much of the omap2 hwmods on the OMAP3. It
-> > also adds the necessary clock for driving the RNG.  Unfortunately,
-> > it appears non-functional.  If anyone has any suggestions on how
-> > to finish the hwmod (or port it to the newer l4 device tree
-> > format), feedback is requested.
->
-> Yup I'll take the bait :) The patch below seems to do the trick
-> for me on dm3730 based on translating your patch to probe with
-> ti-sysc.
->
-> Not sure about 34xx, it seems we're missing rng_clk? Care
-> to give it a try and attempt simlar patches for 34xx and
-> 3517?
->
-> At least I'm not needing the "ti,no-reset-on-init" property
-> that your patch has a comment for. Maybe that's needed on
-> some other omap3.
->
-> Oh and this needs to default to status = "disabled" for
-> HS devices like n900 as it needs to use the omap3-rom-rng.
->
-> Regards,
->
-> Tony
->
-> 8< -----------------------
-> diff --git a/arch/arm/boot/dts/omap36xx.dtsi b/arch/arm/boot/dts/omap36xx.dtsi
-> --- a/arch/arm/boot/dts/omap36xx.dtsi
-> +++ b/arch/arm/boot/dts/omap36xx.dtsi
-> @@ -140,6 +140,29 @@
->                         };
->                 };
->
-> +               rng_target: target-module@480a0000 {
-> +                       compatible = "ti,sysc-omap2", "ti,sysc";
-> +                       reg = <0x480a003c 0x4>,
-> +                             <0x480a0040 0x4>,
-> +                             <0x480a0044 0x4>;
-> +                       reg-names = "rev", "sysc", "syss";
-> +                       ti,sysc-mask = <(SYSC_OMAP2_AUTOIDLE)>;
-> +                       ti,sysc-sidle = <SYSC_IDLE_FORCE>,
-> +                                       <SYSC_IDLE_NO>;
-> +                       ti,syss-mask = <1>;
-> +                       clocks = <&rng_ick>;
-> +                       clock-names = "ick";
-> +                       #address-cells = <1>;
-> +                       #size-cells = <1>;
-> +                       ranges = <0 0x480a0000 0x2000>;
-> +
-> +                       rng: rng@0 {
-> +                               compatible = "ti,omap2-rng";
-> +                               reg = <0x0 0x2000>;
-> +                               interrupts = <52>;
-> +                       };
-> +               };
-> +
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-Tony,
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.5.
 
-Can you tell me what branch you're using?  I am not seeing the note
-below, so I am not exactly sure what version to base my testing.
+Gr{oetje,eeting}s,
 
-ada,
->                 /*
->                  * Note that the sysconfig register layout is a subset of the
->                  * "ti,sysc-omap4" type register with just sidle and midle bits
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
