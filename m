@@ -2,83 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5EA9AD7CA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 13:18:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D051AD7DE
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 13:26:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391043AbfIILSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 07:18:22 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:42633 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731115AbfIILSW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 07:18:22 -0400
-Received: by mail-ot1-f65.google.com with SMTP id c10so12017613otd.9;
-        Mon, 09 Sep 2019 04:18:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zh4V8eaNqjPb0Ic/4Yf7AfafCdOdwH/svi7VuLX2orY=;
-        b=lLN11C23xfAH7i8bFQztnzIUJN81i90GGniVnzsT2bmlyFYCLNrQGkWJob05jaN5Tc
-         1+AK6jUxUmy+WuYw7ruNK11Ua85dawghegS6qiFg85Unr4yqzA7ar2vr3qf/DXW6KPp9
-         KVp2ZL96vMi/niRA20+Zrbk8bfuq7BSsP5NhpGIQJlpQUrApK1PRRwTT+5KceYW7q6v5
-         DgZuGyr5myrXrko2UYb1g5rrEuQ01tQWUYyV1s99xjGpl4pZg8ylnkiHUP2869R5WO5G
-         wS7NWD6eKWAmDOFFJzEnQsEogmxFg62zFdpuF8EAGlLoFeOeOteCQ5wqluIM3G51rHV+
-         BD/A==
-X-Gm-Message-State: APjAAAVbDR8NDNeUcE/mvg7XAZroA0fhM/l2EWgBGwRfO0TR+evpDvxi
-        Ys+Bh9rs/QEwzaJMaTHtPoZ6NLXgBHx9pJRMzBQ=
-X-Google-Smtp-Source: APXvYqxoJ5YE9dczWZW9yBoBQ0LHRTHR+SjV1aqmUHb5bh9Jk8Mb4XXtlEmXIZODlEij2FTkD0l0LwW/9wgClhVgq6E=
-X-Received: by 2002:a9d:5a06:: with SMTP id v6mr18090742oth.250.1568027900747;
- Mon, 09 Sep 2019 04:18:20 -0700 (PDT)
+        id S2404007AbfIIL0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 07:26:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35832 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2404056AbfIIL0p (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 07:26:45 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4F45221920;
+        Mon,  9 Sep 2019 11:26:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568028404;
+        bh=CzvWQDxQFxAcoWDb+NO6txjLfQDdjFSb8XYgqiljobM=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=kvzX7qLSplsgsgUWn4yyHhNROmcTc5k6WN1dv59DBIULtGwy2meVArtgl0m/8lmRr
+         TyR3gK+kLnZ8DnlXrsEjbphw6VwVxegB8AYDEqKP2D93g6JX68ePhkopSBkD9megyO
+         Na5BZLtRvJAGUjH1BrymBbixAZM6azhebrFKr3/w=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20190907161634.27378-1-marek.vasut@gmail.com>
-In-Reply-To: <20190907161634.27378-1-marek.vasut@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 9 Sep 2019 13:18:07 +0200
-Message-ID: <CAMuHMdXVhtE5Jmpu8QYv+P8pGtegr4MGhNGRwy4Y1wRQYmL2_Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
-To:     Marek Vasut <marek.vasut@gmail.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190826062127.GH2672@vkoul-mobl>
+References: <20190822170140.7615-1-vkoul@kernel.org> <20190822170140.7615-3-vkoul@kernel.org> <20190824063115.GW26807@tuxbook-pro> <20190826062127.GH2672@vkoul-mobl>
+Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v3 2/4] clk: qcom: clk-rpmh: Convert to parent data scheme
+User-Agent: alot/0.8.1
+Date:   Mon, 09 Sep 2019 04:26:43 -0700
+Message-Id: <20190909112644.4F45221920@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Quoting Vinod Koul (2019-08-25 23:21:27)
+> On 23-08-19, 23:31, Bjorn Andersson wrote:
+> > On Thu 22 Aug 10:01 PDT 2019, Vinod Koul wrote:
+> >=20
+> > > Convert the rpmh clock driver to use the new parent data scheme by
+> > > specifying the parent data for board clock.
+> > >=20
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  drivers/clk/qcom/clk-rpmh.c | 10 ++++++++--
+> > >  1 file changed, 8 insertions(+), 2 deletions(-)
+> > >=20
+> > > diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
+> > > index c3fd632af119..0bced7326a20 100644
+> > > --- a/drivers/clk/qcom/clk-rpmh.c
+> > > +++ b/drivers/clk/qcom/clk-rpmh.c
+> > > @@ -95,7 +95,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
+> > >             .hw.init =3D &(struct clk_init_data){                    =
+ \
+> > >                     .ops =3D &clk_rpmh_ops,                          =
+ \
+> > >                     .name =3D #_name,                                =
+ \
+> > > -                   .parent_names =3D (const char *[]){ "xo_board" },=
+ \
+> > > +                   .parent_data =3D  &(const struct clk_parent_data)=
+{ \
+> > > +                                   .fw_name =3D "xo_board",         =
+ \
+> > > +                                   .name =3D "xo_board",            =
+ \
+> >=20
+> > Iiuc .name here refers to the global clock namespace and .fw_name refers
+> > to the device_node local name space. As such I really prefer this to be:
+> >=20
+> >   .fw_name =3D "xo",
+> >   .name =3D "xo_board",
+> >=20
+> > This ensures the backwards compatibility (when using global lookup),
+> > without complicating the node-local naming.
+>=20
+> Sure, while thinking more on this, should we finalize the name as xo or
+> cxo, I see latter being also used at few places. It would be great to
+> get a name and stick to it for longer time :)
+> --=20
 
-On Sat, Sep 7, 2019 at 6:16 PM <marek.vasut@gmail.com> wrote:
-> From: Marek Vasut <marek.vasut+renesas@gmail.com>
->
-> Add dma-ranges property into /soc node to describe the DMA capabilities
-> of the bus. This is currently needed to translate PCI DMA ranges, which
-> are limited to 32bit addresses.
->
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+I would name it 'cxo' because that's the pin name on this platform.
 
-> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
-> @@ -330,6 +330,7 @@
->                 #address-cells = <2>;
->                 #size-cells = <2>;
->                 ranges;
-> +               dma-ranges = <0 0x40000000 0 0x40000000 0 0xc0000000>;
-
-Shouldn't the length be 0x80000000 (for all SoCs)?
-Or should we allow DMA to internal System RAM, too?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
