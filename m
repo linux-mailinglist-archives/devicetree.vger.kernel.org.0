@@ -2,294 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9024CAD934
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:40:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E24DAD944
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 14:42:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728402AbfIIMkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 08:40:12 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:42625 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727828AbfIIMkM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:40:12 -0400
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id x89CcfEp029014;
-        Mon, 9 Sep 2019 15:38:41 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id CB24462CAA; Mon,  9 Sep 2019 15:38:41 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     mpm@selenic.com, herbert@gondor.apana.org.au, arnd@arndb.de,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, avifishman70@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, sumit.garg@linaro.org,
-        jens.wiklander@linaro.org, vkoul@kernel.org, tglx@linutronix.de,
-        joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, openbmc@lists.ozlabs.org,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH v2 2/2] hwrng: npcm: add NPCM RNG driver
-Date:   Mon,  9 Sep 2019 15:38:40 +0300
-Message-Id: <20190909123840.154745-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190909123840.154745-1-tmaimon77@gmail.com>
-References: <20190909123840.154745-1-tmaimon77@gmail.com>
+        id S1728364AbfIIMmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 08:42:10 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:47056 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727810AbfIIMmJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 08:42:09 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190909124207euoutp02a3df80851665f7250b78766525819b80~CxaPdcorx3217432174euoutp02J
+        for <devicetree@vger.kernel.org>; Mon,  9 Sep 2019 12:42:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190909124207euoutp02a3df80851665f7250b78766525819b80~CxaPdcorx3217432174euoutp02J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1568032927;
+        bh=GQfp0KfghI3ZFpEMs3T7THOxuMfa9A+8AFLGOs78JFs=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=Dj/5EjTIoozbFyKg18tXjO6Oq+fvmvL6QAmIOQpH2417N2ZZ2uWBxvxrZYEro2Xtt
+         WPnRRA9LOzUV7Ark+mJHnnvjsWhl0tgO/J4mnOMNDdVP2gH7Yfc1aMmFC0eJMfZwoT
+         mrscmzZTafdga/tmYCsohRvIuJ7e72E3FpVE2WG0=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190909124207eucas1p2971d0a54c6221a33cb5ea060c8d7e6d4~CxaO4vuzv0605306053eucas1p2q;
+        Mon,  9 Sep 2019 12:42:07 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 1D.34.04309.E98467D5; Mon,  9
+        Sep 2019 13:42:06 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190909124206eucas1p13e4ffd50a3bbc6f390cb63f11034c34c~CxaOFuQg_0915909159eucas1p15;
+        Mon,  9 Sep 2019 12:42:06 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190909124206eusmtrp1cf57e34114dc588b256456042e77cdc6~CxaN3WCvi0603806038eusmtrp1v;
+        Mon,  9 Sep 2019 12:42:06 +0000 (GMT)
+X-AuditID: cbfec7f4-ae1ff700000010d5-04-5d76489e01cf
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 34.AD.04166.E98467D5; Mon,  9
+        Sep 2019 13:42:06 +0100 (BST)
+Received: from AMDC2459.DIGITAL.local (unknown [106.120.51.95]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190909124205eusmtip117e7a08607f65ff739475e7d54211a86~CxaNWmbf60611406114eusmtip1K;
+        Mon,  9 Sep 2019 12:42:05 +0000 (GMT)
+From:   Maciej Falkowski <m.falkowski@samsung.com>
+To:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     krzk@kernel.org, robh+dt@kernel.org, m.falkowski@samsung.com,
+        mark.rutland@arm.com, m.szyprowski@samsung.com, a.hajda@samsung.com
+Subject: [PATCH] dt-bindings: arm: samsung: Convert Samsung Exynos IOMMU
+ H/W, System MMU to dt-schema
+Date:   Mon,  9 Sep 2019 14:41:47 +0200
+Message-Id: <20190909124147.17510-1-m.falkowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrAIsWRmVeSWpSXmKPExsWy7djPc7rzPcpiDXgtbq07x2ox/wiQOH9+
+        A7vF5V1z2CxmnN/HZPGgeR2bxdojd9ktll6/yGTRuvcIuwOnx5p5axg9Nq3qZPPo27KK0ePz
+        JrkAligum5TUnMyy1CJ9uwSujK0LdrEX7LKt2LT4FVMD4zuDLkZODgkBE4k713+xdzFycQgJ
+        rGCU2DHjDSuE84VR4m3LDSYI5zOjxNHzhxhhWiZ//Q7VspxRYlHLaUa4lu4jf9hAqtgEDCT6
+        3+xlAbFFBBIlbv/uB+tgFmhnlDh74A4zSEJYIF3iz6l/rCA2i4CqxJzePWA2r4CNxKzOpewQ
+        6+QlVm84wAzSLCFwn03i4435LBAJF4l3U2GKhCVeHd8CZctInJ7cA1TDAWRXS1z7JgvR28Io
+        cX3aWzaIGmuJP6smsoHUMAtoSqzfpQ9R7ihxrDcYwuSTuPFWEKSYGcictG06M0SYV6KjTQjC
+        VJV4MyEWYpy0ROua/dDg8ZCY9LwB7EQhgViJd9PvME5glJuFsGkBI+MqRvHU0uLc9NRio7zU
+        cr3ixNzi0rx0veT83E2MwHRw+t/xLzsYd/1JOsQowMGoxMO7w7wsVog1say4MvcQowQHs5II
+        7/W+0lgh3pTEyqrUovz4otKc1OJDjNIcLErivNUMD6KFBNITS1KzU1MLUotgskwcnFINjIu2
+        KO1/9HBd5Z3bE76mOSiE95X0eR/M/jJx2cqbuvUaT0X27pC5VHlD+sodWdPXj8xKNxdv8g62
+        f5H5I9bvdvyN2wenZfzsMJM9/2ZjkkTyqdsak4+6H+T9PSNNhJvxyIrYA4Gfnk4qXXSefY1i
+        YSB76oOQmQ5/vd6rhP5WnrHT0krGo5S/QUuJpTgj0VCLuag4EQCdy8IsAwMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFLMWRmVeSWpSXmKPExsVy+t/xu7rzPMpiDVofsFrcWneO1WL+ESBx
+        /vwGdovLu+awWcw4v4/J4kHzOjaLtUfuslssvX6RyaJ17xF2B06PNfPWMHpsWtXJ5tG3ZRWj
+        x+dNcgEsUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2
+        CXoZWxfsYi/YZVuxafErpgbGdwZdjJwcEgImEpO/fmcHsYUEljJKdP9OgIhLS+y/9pEdwhaW
+        +HOti62LkQuo5hOjxI7Hz1hBEmwCBhL9b/aygNgiAskSiw/vZAQpYhboZ5SY9HYtWEJYIFVi
+        9YUWJhCbRUBVYk7vHrBmXgEbiVmdS6E2yEus3nCAeQIjzwJGhlWMIqmlxbnpucWGesWJucWl
+        eel6yfm5mxiB4bjt2M/NOxgvbQw+xCjAwajEw7vDvCxWiDWxrLgy9xCjBAezkgjv9b7SWCHe
+        lMTKqtSi/Pii0pzU4kOMpkDLJzJLiSbnA2MlryTe0NTQ3MLS0NzY3NjMQkmct0PgYIyQQHpi
+        SWp2ampBahFMHxMHp1QDY3ba13CXKQvvif+ffPhyV2ldzZIzf8pKS4JLJCOdZ4c8zzkhfets
+        hv76RUUJugG3t6Q3PJEQXfbTwc91td+y5/ONuzx6Vxw5/Vph2q0Z73+XfvryZ9m6w5/1rmyS
+        +l2+OvvPVOuc6p8JvebbKzWiDl+T3yJ3J8elpaT/A2fM3hsrk7rXKFVXVSmxFGckGmoxFxUn
+        AgBkNKptXQIAAA==
+X-CMS-MailID: 20190909124206eucas1p13e4ffd50a3bbc6f390cb63f11034c34c
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190909124206eucas1p13e4ffd50a3bbc6f390cb63f11034c34c
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190909124206eucas1p13e4ffd50a3bbc6f390cb63f11034c34c
+References: <CGME20190909124206eucas1p13e4ffd50a3bbc6f390cb63f11034c34c@eucas1p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Nuvoton NPCM BMC Random Number Generator(RNG) driver.
+Convert Samsung Exynos IOMMU H/W, System Memory Management Unit
+to newer dt-schema format.
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Andrzej Hajda <a.hajda@samsung.com>
 ---
- drivers/char/hw_random/Kconfig    |  13 ++
- drivers/char/hw_random/Makefile   |   1 +
- drivers/char/hw_random/npcm-rng.c | 203 ++++++++++++++++++++++++++++++
- 3 files changed, 217 insertions(+)
- create mode 100644 drivers/char/hw_random/npcm-rng.c
+ .../bindings/iommu/samsung,sysmmu.txt         |  67 ------------
+ .../bindings/iommu/samsung,sysmmu.yaml        | 102 ++++++++++++++++++
+ 2 files changed, 102 insertions(+), 67 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iommu/samsung,sysmmu.txt
+ create mode 100644 Documentation/devicetree/bindings/iommu/samsung,sysmmu.yaml
 
-diff --git a/drivers/char/hw_random/Kconfig b/drivers/char/hw_random/Kconfig
-index 59f25286befe..87a1c30e7958 100644
---- a/drivers/char/hw_random/Kconfig
-+++ b/drivers/char/hw_random/Kconfig
-@@ -440,6 +440,19 @@ config HW_RANDOM_OPTEE
- 
- 	  If unsure, say Y.
- 
-+config HW_RANDOM_NPCM
-+	tristate "NPCM Random Number Generator support"
-+	depends on ARCH_NPCM || COMPILE_TEST
-+	default HW_RANDOM
-+	help
-+ 	  This driver provides support for the Random Number
-+	  Generator hardware available in Nuvoton NPCM SoCs.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called npcm-rng.
-+
-+ 	  If unsure, say Y.
-+
- endif # HW_RANDOM
- 
- config UML_RANDOM
-diff --git a/drivers/char/hw_random/Makefile b/drivers/char/hw_random/Makefile
-index 7c9ef4a7667f..17b6d4e6d591 100644
---- a/drivers/char/hw_random/Makefile
-+++ b/drivers/char/hw_random/Makefile
-@@ -39,3 +39,4 @@ obj-$(CONFIG_HW_RANDOM_MTK)	+= mtk-rng.o
- obj-$(CONFIG_HW_RANDOM_S390) += s390-trng.o
- obj-$(CONFIG_HW_RANDOM_KEYSTONE) += ks-sa-rng.o
- obj-$(CONFIG_HW_RANDOM_OPTEE) += optee-rng.o
-+obj-$(CONFIG_HW_RANDOM_NPCM) += npcm-rng.o
-diff --git a/drivers/char/hw_random/npcm-rng.c b/drivers/char/hw_random/npcm-rng.c
+diff --git a/Documentation/devicetree/bindings/iommu/samsung,sysmmu.txt b/Documentation/devicetree/bindings/iommu/samsung,sysmmu.txt
+deleted file mode 100644
+index 525ec82615a6..000000000000
+--- a/Documentation/devicetree/bindings/iommu/samsung,sysmmu.txt
++++ /dev/null
+@@ -1,67 +0,0 @@
+-Samsung Exynos IOMMU H/W, System MMU (System Memory Management Unit)
+-
+-Samsung's Exynos architecture contains System MMUs that enables scattered
+-physical memory chunks visible as a contiguous region to DMA-capable peripheral
+-devices like MFC, FIMC, FIMD, GScaler, FIMC-IS and so forth.
+-
+-System MMU is an IOMMU and supports identical translation table format to
+-ARMv7 translation tables with minimum set of page properties including access
+-permissions, shareability and security protection. In addition, System MMU has
+-another capabilities like L2 TLB or block-fetch buffers to minimize translation
+-latency.
+-
+-System MMUs are in many to one relation with peripheral devices, i.e. single
+-peripheral device might have multiple System MMUs (usually one for each bus
+-master), but one System MMU can handle transactions from only one peripheral
+-device. The relation between a System MMU and the peripheral device needs to be
+-defined in device node of the peripheral device.
+-
+-MFC in all Exynos SoCs and FIMD, M2M Scalers and G2D in Exynos5420 has 2 System
+-MMUs.
+-* MFC has one System MMU on its left and right bus.
+-* FIMD in Exynos5420 has one System MMU for window 0 and 4, the other system MMU
+-  for window 1, 2 and 3.
+-* M2M Scalers and G2D in Exynos5420 has one System MMU on the read channel and
+-  the other System MMU on the write channel.
+-
+-For information on assigning System MMU controller to its peripheral devices,
+-see generic IOMMU bindings.
+-
+-Required properties:
+-- compatible: Should be "samsung,exynos-sysmmu"
+-- reg: A tuple of base address and size of System MMU registers.
+-- #iommu-cells: Should be <0>.
+-- interrupts: An interrupt specifier for interrupt signal of System MMU,
+-	      according to the format defined by a particular interrupt
+-	      controller.
+-- clock-names: Should be "sysmmu" or a pair of "aclk" and "pclk" to gate
+-	       SYSMMU core clocks.
+-	       Optional "master" if the clock to the System MMU is gated by
+-	       another gate clock other core  (usually main gate clock
+-	       of peripheral device this SYSMMU belongs to).
+-- clocks: Phandles for respective clocks described by clock-names.
+-- power-domains: Required if the System MMU is needed to gate its power.
+-	  Please refer to the following document:
+-	  Documentation/devicetree/bindings/power/pd-samsung.txt
+-
+-Examples:
+-	gsc_0: gsc@13e00000 {
+-		compatible = "samsung,exynos5-gsc";
+-		reg = <0x13e00000 0x1000>;
+-		interrupts = <0 85 0>;
+-		power-domains = <&pd_gsc>;
+-		clocks = <&clock CLK_GSCL0>;
+-		clock-names = "gscl";
+-		iommus = <&sysmmu_gsc0>;
+-	};
+-
+-	sysmmu_gsc0: sysmmu@13e80000 {
+-		compatible = "samsung,exynos-sysmmu";
+-		reg = <0x13E80000 0x1000>;
+-		interrupt-parent = <&combiner>;
+-		interrupts = <2 0>;
+-		clock-names = "sysmmu", "master";
+-		clocks = <&clock CLK_SMMU_GSCL0>, <&clock CLK_GSCL0>;
+-		power-domains = <&pd_gsc>;
+-		#iommu-cells = <0>;
+-	};
+diff --git a/Documentation/devicetree/bindings/iommu/samsung,sysmmu.yaml b/Documentation/devicetree/bindings/iommu/samsung,sysmmu.yaml
 new file mode 100644
-index 000000000000..3ed396474563
+index 000000000000..6c40dfb86899
 --- /dev/null
-+++ b/drivers/char/hw_random/npcm-rng.c
-@@ -0,0 +1,203 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Nuvoton Technology corporation.
++++ b/Documentation/devicetree/bindings/iommu/samsung,sysmmu.yaml
+@@ -0,0 +1,102 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iommu/samsung,sysmmu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/io.h>
-+#include <linux/iopoll.h>
-+#include <linux/init.h>
-+#include <linux/random.h>
-+#include <linux/err.h>
-+#include <linux/platform_device.h>
-+#include <linux/hw_random.h>
-+#include <linux/delay.h>
-+#include <linux/of_irq.h>
-+#include <linux/pm_runtime.h>
++title: Samsung Exynos IOMMU H/W, System MMU (System Memory Management Unit)
 +
-+#define NPCM_RNGCS_REG		0x00	/* Control and status register */
-+#define NPCM_RNGD_REG		0x04	/* Data register */
-+#define NPCM_RNGMODE_REG	0x08	/* Mode register */
++maintainers:
++  - Marek Szyprowski <m.szyprowski@samsung.com>
 +
-+#define NPCM_RNG_CLK_SET_25MHZ	GENMASK(4, 3) /* 20-25 MHz */
-+#define NPCM_RNG_DATA_VALID	BIT(1)
-+#define NPCM_RNG_ENABLE		BIT(0)
-+#define NPCM_RNG_M1ROSEL	BIT(1)
++description: |+
++  Samsung's Exynos architecture contains System MMUs that enables scattered
++  physical memory chunks visible as a contiguous region to DMA-capable peripheral
++  devices like MFC, FIMC, FIMD, GScaler, FIMC-IS and so forth.
 +
-+#define NPCM_RNG_TIMEOUT_USEC	20000
-+#define NPCM_RNG_POLL_USEC	1000
++  System MMU is an IOMMU and supports identical translation table format to
++  ARMv7 translation tables with minimum set of page properties including access
++  permissions, shareability and security protection. In addition, System MMU has
++  another capabilities like L2 TLB or block-fetch buffers to minimize translation
++  latency.
 +
-+#define to_npcm_rng(p)	container_of(p, struct npcm_rng, rng)
++  System MMUs are in many to one relation with peripheral devices, i.e. single
++  peripheral device might have multiple System MMUs (usually one for each bus
++  master), but one System MMU can handle transactions from only one peripheral
++  device. The relation between a System MMU and the peripheral device needs to be
++  defined in device node of the peripheral device.
 +
-+struct npcm_rng {
-+	void __iomem *base;
-+	struct hwrng rng;
-+};
++  MFC in all Exynos SoCs and FIMD, M2M Scalers and G2D in Exynos5420 has 2 System
++  MMUs.
++  * MFC has one System MMU on its left and right bus.
++  * FIMD in Exynos5420 has one System MMU for window 0 and 4, the other system MMU
++    for window 1, 2 and 3.
++  * M2M Scalers and G2D in Exynos5420 has one System MMU on the read channel and
++    the other System MMU on the write channel.
 +
-+static int npcm_rng_init(struct hwrng *rng)
-+{
-+	struct npcm_rng *priv = to_npcm_rng(rng);
-+	u32 val;
++  For information on assigning System MMU controller to its peripheral devices,
++  see generic IOMMU bindings.
 +
-+	val = readl(priv->base + NPCM_RNGCS_REG);
-+	val |= NPCM_RNG_ENABLE;
-+	writel(val, priv->base + NPCM_RNGCS_REG);
++properties:
++  compatible:
++    const: samsung,exynos-sysmmu
++  reg:
++    description: A tuple of base address and size of System MMU registers.
++    maxItems: 1
++  interrupts:
++    description: |
++      An interrupt specifier for interrupt signal of System MMU,
++      according to the format defined by a particular interrupt
++      controller.
++  clocks:
++    description: Phandles for respective clocks described by clock-names.
++  clock-names:
++    description: |
++      Should be "sysmmu" or a pair of "aclk" and "pclk" to gate
++      SYSMMU core clocks.
++      Optional "master" if the clock to the System MMU is gated by
++      another gate clock other core  (usually main gate clock
++      of peripheral device this SYSMMU belongs to).
++    minItems: 1
++    maxItems: 2
++  "#iommu-cells":
++    const: 0
++    description: Should be <0>.
++  power-domains:
++    description: |
++      Required if the System MMU is needed to gate its power.
++      Please refer to the following document:
++      Documentation/devicetree/bindings/power/pd-samsung.txt
 +
-+	return 0;
-+}
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - "#iommu-cells"
 +
-+static void npcm_rng_cleanup(struct hwrng *rng)
-+{
-+	struct npcm_rng *priv = to_npcm_rng(rng);
-+	u32 val;
++examples:
++  - |
++    gsc_0: gsc@13e00000 {
++      compatible = "samsung,exynos5-gsc";
++      reg = <0x13e00000 0x1000>;
++      interrupts = <0 85 0>;
++      power-domains = <&pd_gsc>;
++      clocks = <&clock 0>; //CLK_GSCL0
++      clock-names = "gscl";
++      iommus = <&sysmmu_gsc0>;
++    };
++  - |
++    sysmmu_gsc0: sysmmu@13e80000 {
++      compatible = "samsung,exynos-sysmmu";
++      reg = <0x13E80000 0x1000>;
++      interrupt-parent = <&combiner>;
++      interrupts = <2 0>;
++      clock-names = "sysmmu", "master";
++      clocks = <&clock 0>, // CLK_SMMU_GSCL0
++               <&clock 0>; // CLK_GSCL0
++      power-domains = <&pd_gsc>;
++      #iommu-cells = <0>;
++    };
 +
-+	val = readl(priv->base + NPCM_RNGCS_REG);
-+	val &= ~NPCM_RNG_ENABLE;
-+	writel(val, priv->base + NPCM_RNGCS_REG);
-+}
-+
-+static int npcm_rng_read(struct hwrng *rng, void *buf, size_t max, bool wait)
-+{
-+	struct npcm_rng *priv = to_npcm_rng(rng);
-+	int retval = 0;
-+	int ready;
-+
-+	pm_runtime_get_sync((struct device *)priv->rng.priv);
-+
-+	while (max >= sizeof(u32)) {
-+		ready = readl(priv->base + NPCM_RNGCS_REG) &
-+			NPCM_RNG_DATA_VALID;
-+		if (!ready) {
-+			if (wait) {
-+				if (readl_poll_timeout(priv->base + NPCM_RNGCS_REG,
-+						       ready,
-+						       ready & NPCM_RNG_DATA_VALID,
-+						       NPCM_RNG_POLL_USEC,
-+						       NPCM_RNG_TIMEOUT_USEC))
-+					break;
-+			} else {
-+				break;
-+			}
-+		}
-+
-+		*(u32 *)buf = readl(priv->base + NPCM_RNGD_REG);
-+		retval += sizeof(u32);
-+		buf += sizeof(u32);
-+		max -= sizeof(u32);
-+	}
-+
-+	pm_runtime_mark_last_busy((struct device *)priv->rng.priv);
-+	pm_runtime_put_sync_autosuspend((struct device *)priv->rng.priv);
-+
-+	return retval || !wait ? retval : -EIO;
-+}
-+
-+static int npcm_rng_probe(struct platform_device *pdev)
-+{
-+	struct npcm_rng *priv;
-+	struct resource *res;
-+	bool pm_dis = false;
-+	u32 quality;
-+	int ret;
-+
-+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	priv->base = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	priv->rng.name = pdev->name;
-+#ifndef CONFIG_PM
-+	pm_dis = true;
-+	priv->rng.init = npcm_rng_init;
-+	priv->rng.cleanup = npcm_rng_cleanup;
-+#endif
-+	priv->rng.read = npcm_rng_read;
-+	priv->rng.priv = (unsigned long)&pdev->dev;
-+	if (of_property_read_u32(pdev->dev.of_node, "quality", &quality))
-+		priv->rng.quality = 1000;
-+	else
-+		priv->rng.quality = quality;
-+
-+	writel(NPCM_RNG_M1ROSEL, priv->base + NPCM_RNGMODE_REG);
-+	if (pm_dis)
-+		writel(NPCM_RNG_CLK_SET_25MHZ, priv->base + NPCM_RNGCS_REG);
-+	else
-+		writel(NPCM_RNG_CLK_SET_25MHZ | NPCM_RNG_ENABLE,
-+		       priv->base + NPCM_RNGCS_REG);
-+
-+	ret = devm_hwrng_register(&pdev->dev, &priv->rng);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Failed to register rng device: %d\n",
-+			ret);
-+		return ret;
-+	}
-+
-+	dev_set_drvdata(&pdev->dev, priv);
-+	pm_runtime_set_autosuspend_delay(&pdev->dev, 100);
-+	pm_runtime_use_autosuspend(&pdev->dev);
-+	pm_runtime_enable(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+static int npcm_rng_remove(struct platform_device *pdev)
-+{
-+	struct npcm_rng *priv = platform_get_drvdata(pdev);
-+
-+	hwrng_unregister(&priv->rng);
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+
-+	return 0;
-+}
-+
-+#ifdef CONFIG_PM
-+static int npcm_rng_runtime_suspend(struct device *dev)
-+{
-+	struct npcm_rng *priv = dev_get_drvdata(dev);
-+
-+	npcm_rng_cleanup(&priv->rng);
-+
-+	return 0;
-+}
-+
-+static int npcm_rng_runtime_resume(struct device *dev)
-+{
-+	struct npcm_rng *priv = dev_get_drvdata(dev);
-+
-+	return npcm_rng_init(&priv->rng);
-+}
-+#endif
-+
-+static const struct dev_pm_ops npcm_rng_pm_ops = {
-+	SET_RUNTIME_PM_OPS(npcm_rng_runtime_suspend,
-+			   npcm_rng_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
-+				pm_runtime_force_resume)
-+};
-+
-+static const struct of_device_id rng_dt_id[] = {
-+	{ .compatible = "nuvoton,npcm750-rng",  },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, rng_dt_id);
-+
-+static struct platform_driver npcm_rng_driver = {
-+	.driver = {
-+		.name		= "npcm-rng",
-+		.pm		= &npcm_rng_pm_ops,
-+		.owner		= THIS_MODULE,
-+		.of_match_table = of_match_ptr(rng_dt_id),
-+	},
-+	.probe		= npcm_rng_probe,
-+	.remove		= npcm_rng_remove,
-+};
-+
-+module_platform_driver(npcm_rng_driver);
-+
-+MODULE_DESCRIPTION("Nuvoton NPCM Random Number Generator Driver");
-+MODULE_AUTHOR("Tomer Maimon <tomer.maimon@nuvoton.com>");
-+MODULE_LICENSE("GPL v2");
 -- 
-2.18.0
+2.17.1
 
