@@ -2,111 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC271ADA95
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 15:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA793ADAAF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 16:04:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405103AbfIIN7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 09:59:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40922 "EHLO mail.kernel.org"
+        id S2405065AbfIIOEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 10:04:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43200 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405085AbfIIN7Q (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 09:59:16 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        id S2404997AbfIIOEV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 10:04:21 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7759E2086D;
-        Mon,  9 Sep 2019 13:59:14 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7BA0121924;
+        Mon,  9 Sep 2019 14:04:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568037554;
-        bh=1LOeIrNaojbFutO/35pibYdicy6zk1C9NEftmHLgaYE=;
+        s=default; t=1568037861;
+        bh=BceXqHBVAXO0SzdF8rTWqk9w5ctjbmxf4pw3jTBHQxw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UieH1zXYFmI9ZQoBmDFp/Caccsfb8zgAwWbjMjeDAAsY7nOdDGw25MsSl3XEWM/eK
-         aCMGsGuAWbMv29jYF4cNJLtde8dflId6l4spy1NhpVNiZk1DIBghKpAI9y5BFNAJ5s
-         Vr1SD9rR+VQpQwiMsnxecPLCM1nyBKQ6YwApwNbI=
-Date:   Mon, 9 Sep 2019 15:59:10 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Corentin Labbe <clabbe.montjoie@gmail.com>
-Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        linux@armlinux.org.uk, mark.rutland@arm.com, robh+dt@kernel.org,
-        wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 2/9] crypto: Add Allwinner sun8i-ce Crypto Engine
-Message-ID: <20190909135908.vkvcuykrplhxxwtd@flea>
-References: <20190906184551.17858-1-clabbe.montjoie@gmail.com>
- <20190906184551.17858-3-clabbe.montjoie@gmail.com>
- <20190907081951.v2huvhm44jfprfop@flea>
- <20190907190408.GE2628@Red>
- <20190909113837.vrnqdfgzhsiymfpm@flea>
- <20190909131906.GA12882@Red>
+        b=y6wNq/EwRmggE4exMTqn9Sn14AIYiMuQxdJQ+5B6cgNVIHbomUOBQUwlo4hA6w6P5
+         0uWyZboY2zCJ2Wq9XFAJLtSe2oyqHuAlwOLNa0ijdygIdPHq61SI0fHQ+bfttjJbIt
+         f/neASzyNQKDqnEkxbmK8L67avoAN5oqG+YLMUeY=
+Date:   Mon, 9 Sep 2019 15:04:16 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] iommu: Implement of_iommu_get_resv_regions()
+Message-ID: <20190909140415.axszldhakgqifibg@willie-the-truck>
+References: <20190829111407.17191-1-thierry.reding@gmail.com>
+ <20190829111407.17191-2-thierry.reding@gmail.com>
+ <0b7e050a-cec6-6ce7-9ed6-2146eabb2fe8@arm.com>
+ <20190902150056.GD1445@ulmo>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190909131906.GA12882@Red>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190902150056.GD1445@ulmo>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 09, 2019 at 03:19:06PM +0200, Corentin Labbe wrote:
-> On Mon, Sep 09, 2019 at 01:38:37PM +0200, Maxime Ripard wrote:
-> > On Sat, Sep 07, 2019 at 09:04:08PM +0200, Corentin Labbe wrote:
-> > > > Also, I'm not sure what is the point of having the clocks names be
-> > > > parameters there as well. It's constant across all the compatibles,
-> > > > the only thing that isn't is the number of clocks and the module clock
-> > > > rate. It's what you should have in there.
-> > >
-> > > Since the datasheet give some max frequency, I think I will add a
-> > > max_freq and add a check to verify if the clock is in the right
-> > > range
-> >
-> > It's a bit pointless. What are you going to do if it's not correct?
-> > What are you trying to fix / report with this?
->
-> I thinked to print a warning.  If someone want to play with
-> overclocking for example, the driver should said that probably some
-> result could be invalid.
+On Mon, Sep 02, 2019 at 05:00:56PM +0200, Thierry Reding wrote:
+> On Mon, Sep 02, 2019 at 02:54:23PM +0100, Robin Murphy wrote:
+> > On 29/08/2019 12:14, Thierry Reding wrote:
+> > > From: Thierry Reding <treding@nvidia.com>
+> > > 
+> > > This is an implementation that IOMMU drivers can use to obtain reserved
+> > > memory regions from a device tree node. It uses the reserved-memory DT
+> > > bindings to find the regions associated with a given device. These
+> > > regions will be used to create 1:1 mappings in the IOMMU domain that
+> > > the devices will be attached to.
+> > > 
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: Frank Rowand <frowand.list@gmail.com>
+> > > Cc: devicetree@vger.kernel.org
+> > > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > > ---
+> > >   drivers/iommu/of_iommu.c | 39 +++++++++++++++++++++++++++++++++++++++
+> > >   include/linux/of_iommu.h |  8 ++++++++
+> > >   2 files changed, 47 insertions(+)
+> > > 
+> > > diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+> > > index 614a93aa5305..0d47f626b854 100644
+> > > --- a/drivers/iommu/of_iommu.c
+> > > +++ b/drivers/iommu/of_iommu.c
+> > > @@ -9,6 +9,7 @@
+> > >   #include <linux/iommu.h>
+> > >   #include <linux/limits.h>
+> > >   #include <linux/of.h>
+> > > +#include <linux/of_address.h>
+> > >   #include <linux/of_iommu.h>
+> > >   #include <linux/of_pci.h>
+> > >   #include <linux/slab.h>
+> > > @@ -225,3 +226,41 @@ const struct iommu_ops *of_iommu_configure(struct device *dev,
+> > >   	return ops;
+> > >   }
+> > > +
+> > > +/**
+> > > + * of_iommu_get_resv_regions - reserved region driver helper for device tree
+> > > + * @dev: device for which to get reserved regions
+> > > + * @list: reserved region list
+> > > + *
+> > > + * IOMMU drivers can use this to implement their .get_resv_regions() callback
+> > > + * for memory regions attached to a device tree node. See the reserved-memory
+> > > + * device tree bindings on how to use these:
+> > > + *
+> > > + *   Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> > > + */
+> > > +void of_iommu_get_resv_regions(struct device *dev, struct list_head *list)
+> > > +{
+> > > +	struct of_phandle_iterator it;
+> > > +	int err;
+> > > +
+> > > +	of_for_each_phandle(&it, err, dev->of_node, "memory-region", NULL, 0) {
+> > > +		struct iommu_resv_region *region;
+> > > +		struct resource res;
+> > > +
+> > > +		err = of_address_to_resource(it.node, 0, &res);
+> > > +		if (err < 0) {
+> > > +			dev_err(dev, "failed to parse memory region %pOF: %d\n",
+> > > +				it.node, err);
+> > > +			continue;
+> > > +		}
+> > 
+> > What if the device node has memory regions for other purposes, like private
+> > CMA carveouts? We wouldn't want to force mappings of those (and in the very
+> > worst case doing so could even render them unusable).
+> 
+> I suppose we could come up with additional properties to mark such
+> memory regions and skip them here.
 
-If someone wants to play with overclocking, the crypto engine is going
-to be the least of their concern.
+I think we need /something/ like that, both so that we can identify these
+memory regions as requiring an identity mapping in the SMMU but also so
+that we can place additional requirements on them, such as being 64k-aligned
+and mandating properties of the mapping, such as cacheability based on the
+device coherency.
 
-> > > > > +int sun8i_ce_get_engine_number(struct sun8i_ce_dev *ce)
-> > > > > +{
-> > > > > +	return atomic_inc_return(&ce->flow) % ce->variant->maxflow;
-> > > > > +}
-> > > >
-> > > > I'm not sure what this is supposed to be doing, but that mod there
-> > > > seems pretty dangerous.
-> > > >
-> > > > ...
-> > >
-> > > This mod do a round robin on each channel.
-> > > I dont see why it is dangerous.
-> >
-> > Well, you're using the atomic API here which is most commonly used for
-> > refcounting, while you're using a mod.
-> >
-> > Plus, while the increment is atomic, the modulo isn't, so you can end
-> > up in a case where you would be preempted between the
-> > atomic_inc_return and the mod, which is dangerous.
-> >
-> > Again, I'm not sure what this function is doing (which is also a
-> > problem in itself). I guess you should just make it clearer what it
-> > does, and then we can discuss it properly.
->
-> Each request need to be assigned to a channel.
-> Each channel are identified by a number from 1 to 4.
->
-> So this function return the channel to use, 1 then 2 then 3 then 4 then 1...
->
-> Note that this is uncritical. If, due to anything, two request are
-> assigned to the same channel, nothing will break.
+I defer to the devicetree folks as to whether this should be an additional
+property, or a phandle or whatever.
 
-I'm not sure why you're using the atomic API then?
-
-Also, I guess a bitfield and find_first_bit (and a different function
-name) would be more obvious to the reader.
-
-Thanks!
-Maxime
+Will
