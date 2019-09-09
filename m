@@ -2,93 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A73D7AD5E0
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88FC3AD5E5
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 11:41:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728200AbfIIJkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 05:40:36 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:41560 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725818AbfIIJkg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:40:36 -0400
-Received: by mail-qt1-f193.google.com with SMTP id j10so15367478qtp.8;
-        Mon, 09 Sep 2019 02:40:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OSsOhHBNA6WtbtbcXdsydd62P7AL/2R8zBg5KGvl2fg=;
-        b=PvPY02hUfe3iKw2FKJK+9my/KR5YHWL39pdOOUWtpgfHHPaqIldTkM16Pq98WCUKvU
-         xOBIXY4BColuhJFkPbDEM1t56yGDqIJFBOehoSTrrEFGdjvKSA4X/1kTo/MaSOCMHZHt
-         YKQJ5Zdxe3/D01BeJnvG8lqi84h5Yur7+dSVc1ueuUveiHFC154xvvicr4S5RDkKBMtz
-         NoiCvffyQxSf5YfGq6PAF1PLdqg/5bseSKIQO3fPEAO6RYTRbzqds9RXCqdHuygpUtf7
-         zhdj+ErG6PBRVzogrZ/qhqNal9z9+RjRYjfRBD5FvXIYDwfOOcBt8kfREDmhLfwYo8qu
-         en4w==
-X-Gm-Message-State: APjAAAXhGQ99zzN584yVfHejUvrSoWF9FAGM6QumZoxjaTBu9g+US1pk
-        g7jOCk8ul9E6Y9lCbCj13APuIyrMPwGj86i+0cI=
-X-Google-Smtp-Source: APXvYqwGHNSlvuqRvmxQq/EGJBTJRlR/BM2K59/TY6zrahtKUOrOlSXx0rXk+OXZ1vtblalawqRd5ou4Jyx8XeSegu8=
-X-Received: by 2002:ac8:6b1a:: with SMTP id w26mr21971357qts.304.1568022035326;
- Mon, 09 Sep 2019 02:40:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <1568020220-7758-1-git-send-email-talel@amazon.com> <1568020220-7758-4-git-send-email-talel@amazon.com>
-In-Reply-To: <1568020220-7758-4-git-send-email-talel@amazon.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 9 Sep 2019 11:40:19 +0200
-Message-ID: <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: alpine: select AL_POS
-To:     Talel Shenhar <talel@amazon.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S2388206AbfIIJkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 05:40:53 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:41274 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725818AbfIIJkx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 05:40:53 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 6984C634C88;
+        Mon,  9 Sep 2019 12:40:48 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1i7GAD-0000IP-8Q; Mon, 09 Sep 2019 12:40:49 +0300
+Date:   Mon, 9 Sep 2019 12:40:49 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Jan Kotas <jank@cadence.com>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        David Miller <davem@davemloft.net>,
-        gregkh <gregkh@linuxfoundation.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Patrick Venture <venture@google.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
-        Maxime Ripard <mripard@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        paul.kocialkowski@bootlin.com, mjourdan@baylibre.com,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        David Woodhouse <dwmw@amazon.co.uk>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        hhhawa@amazon.com, ronenk@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, barakw@amazon.com
-Content-Type: text/plain; charset="UTF-8"
+        Rafal Ciepiela <rafalc@cadence.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 2/3] media: Add lane checks for Cadence CSI2RX
+Message-ID: <20190909094049.GB843@valkosipuli.retiisi.org.uk>
+References: <20190905105601.27034-1-jank@cadence.com>
+ <20190905105601.27034-3-jank@cadence.com>
+ <20190906075413.GE1586@valkosipuli.retiisi.org.uk>
+ <1D1666FD-CFC6-4DE1-8A2E-1809D1BDEAAB@global.cadence.com>
+ <20190909075153.GA843@valkosipuli.retiisi.org.uk>
+ <6F0DAE9B-BD7F-44D6-8D5B-92B3B3099CF2@global.cadence.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6F0DAE9B-BD7F-44D6-8D5B-92B3B3099CF2@global.cadence.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 9, 2019 at 11:14 AM Talel Shenhar <talel@amazon.com> wrote:
->
-> Amazon's Annapurna Labs SoCs uses al-pos driver, enable it.
->
-> Signed-off-by: Talel Shenhar <talel@amazon.com>
-> ---
->  arch/arm64/Kconfig.platforms | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> index 4778c77..bd86b15 100644
-> --- a/arch/arm64/Kconfig.platforms
-> +++ b/arch/arm64/Kconfig.platforms
-> @@ -25,6 +25,7 @@ config ARCH_SUNXI
->  config ARCH_ALPINE
->         bool "Annapurna Labs Alpine platform"
->         select ALPINE_MSI if PCI
-> +       select AL_POS
->         help
->           This enables support for the Annapurna Labs Alpine
->           Soc family.
+On Mon, Sep 09, 2019 at 08:12:54AM +0000, Jan Kotas wrote:
+> 
+> 
+> > On 9 Sep 2019, at 09:51, Sakari Ailus <sakari.ailus@iki.fi> wrote:
+> > 
+> > 
+> > On Mon, Sep 09, 2019 at 07:41:21AM +0000, Jan Kotas wrote:
+> >> 
+> >> 
+> >> Hello Sakari,
+> >> 
+> >> Thanks for your reply.
+> >>> On 6 Sep 2019, at 09:54, Sakari Ailus <sakari.ailus@iki.fi> wrote:
+> >>> 
+> >>> Hi Jan,
+> >>> 
+> >>> Thanks for the patchset.
+> >>> 
+> >>> On Thu, Sep 05, 2019 at 11:56:00AM +0100, Jan Kotas wrote:
+> >>>> /*
+> >>>> * Driver for Cadence MIPI-CSI2 RX Controller v1.3
+> >>>> *
+> >>>> - * Copyright (C) 2017 Cadence Design Systems Inc.
+> >>>> + * Copyright (C) 2017-2019 Cadence Design Systems Inc.
+> >>>> */
+> >>>> 
+> >>>> +	for (i = 0; i < csi2rx->num_lanes; i++) {
+> >>>> +		if (csi2rx->lanes[i] < 1) {
+> >>> 
+> >>> Do you need this? v4l2_fwnode_parse_endpoint() already has a more thorough
+> >>> check for the lane numbers.
+> >> 
+> >> I looked at the source code of v4l2_fwnode_endpoint_parse_csi2_bus
+> >> and this particular case doesn’t seem to be checked.
+> > 
+> > Not specifically, since 0 is a valid lane number.
+> > 
+> > However, the driver only appears to be using the information on how many
+> > lanes there are. If the hardware doesn't support lane routing, then this is
+> > all you need. Otherwise additional checks should be added in case there are
+> > limitations how the lanes can be routed.
+> 
+> The CSI2RX v1.3 does support that (CSI2RX_STATIC_CFG_REG)
+> and assumes the first data lane has number 1.
 
-Generally I think this kind of thing should go into the defconfig
-rather than being hard-selected. There might be users that
-want to not enable the driver.
+Oh. I missed this. Thanks for pointing it out.
 
-       Arnd
+If the first data lane must be 1, then your check is still different: it
+requires all the data lanes are greater than 1. Are there requireents for
+the clock lane position? Looking at the driver, it seems it does not care
+about the clock lane, and an educated guess gives 0 for the clock lane.
+
+The DT binding documentation actually omits documenting the data-lanes
+altogether. Please add it in a separate patch. I don't think "clock-lanes"
+is needed _if_ zero is all you need, so please remove it also from the
+examples.
+
+It's actually nice to have more users for this feature. :-)
+
+-- 
+Kind regards,
+
+Sakari Ailus
