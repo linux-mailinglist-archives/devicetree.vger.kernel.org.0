@@ -2,176 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47F29AD2EA
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 08:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBBE5AD2EF
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 08:05:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727458AbfIIGAM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 02:00:12 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40686 "EHLO
+        id S1727070AbfIIGFk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 02:05:40 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:41384 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726823AbfIIGAL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 02:00:11 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x896037P018182;
-        Mon, 9 Sep 2019 01:00:03 -0500
+        with ESMTP id S1726884AbfIIGFk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 02:05:40 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8964wHK019358;
+        Mon, 9 Sep 2019 01:04:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568008803;
-        bh=pnXFM66Qh5N+U8iCAu7F+S6mhz0Xw9FlLW/1OOH/KqA=;
+        s=ti-com-17Q1; t=1568009098;
+        bh=NvIniZd7CzVPU0n1hR9ibj1hyMdPPpPDMXsdbCt6EVA=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=T4LyxrSNjZr1Ub1b8n0itm1xg7t6MGXisYTFMXwfdt6RGEddUfQvsGqHbFT1vZbdD
-         zlan87HDVIrS9oWl0PInuP7bs9VL1x7q85siOIaaUOrexYW33nf8xZjZ+K+22TNJ9G
-         16mR1jNIcV60O4BC3q68VR/DNtdaBrR2youe0mrc=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x89602fj074302
+        b=Ky7c9maZH4tiK1Odu0zOsoUzJ0T5KwJGMmn0Y6vO532sR8KLDMYEdyWV6aQ0GhfJS
+         cLusHceyJ6+7W8kYE+8IhR5m0rlPy97/1Hp5RP+gs4G81btYn8MM9d6+PafWOI7UI6
+         WF3MLZaMdifHSfztGD98rWYv0lkelA6e0ASVc66M=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8964wPL077235
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 9 Sep 2019 01:00:03 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 9 Sep 2019 01:04:58 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 9 Sep
- 2019 01:00:00 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ 2019 01:04:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 9 Sep 2019 01:00:00 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x895xwnh059683;
-        Mon, 9 Sep 2019 00:59:58 -0500
-Subject: Re: [RFC 1/3] dt-bindings: dma: Add documentation for DMA domains
-To:     Vinod Koul <vkoul@kernel.org>
-CC:     <robh+dt@kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dan.j.williams@intel.com>,
-        <devicetree@vger.kernel.org>
-References: <20190906141816.24095-1-peter.ujfalusi@ti.com>
- <20190906141816.24095-2-peter.ujfalusi@ti.com>
- <20190908120642.GK2672@vkoul-mobl>
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-Message-ID: <26072f6f-e099-9cd6-6cca-0175870c0c30@ti.com>
-Date:   Mon, 9 Sep 2019 09:00:29 +0300
+ Frontend Transport; Mon, 9 Sep 2019 01:04:58 -0500
+Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8964pSs092782;
+        Mon, 9 Sep 2019 01:04:52 -0500
+Subject: Re: [PATCH v2 2/3] mtd: spi-nor: cadence-quadspi: disable DMA and DAC
+ for Intel LGM
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>,
+        <linux-mtd@lists.infradead.org>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dwmw2@infradead.org>, <computersforpeace@gmail.com>,
+        <richard@nod.at>, <jwboyer@gmail.com>,
+        <boris.brezillon@free-electrons.com>, <cyrille.pitchen@atmel.com>,
+        <david.oberhollenzer@sigma-star.at>, <miquel.raynal@bootlin.com>,
+        <tudor.ambarus@gmail.com>, <andriy.shevchenko@intel.com>,
+        <cheol.yong.kim@intel.com>, <qi-ming.wu@intel.com>
+References: <20190827035827.21024-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20190827035827.21024-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <2596ecd4-4ba6-ff7d-472f-1f6e664b4a97@ti.com>
+Date:   Mon, 9 Sep 2019 11:35:26 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190908120642.GK2672@vkoul-mobl>
+In-Reply-To: <20190827035827.21024-3-vadivel.muruganx.ramuthevar@linux.intel.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-
-On 08/09/2019 15.06, Vinod Koul wrote:
-> On 06-09-19, 17:18, Peter Ujfalusi wrote:
->> On systems where multiple DMA controllers available, none Slave (for example
+On 27/08/19 9:28 AM, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > 
-> On systems with multiple DMA controllers, non Slave...
-
-Sure.
-
->> memcpy operation) users can not be described in DT as there is no device
->> involved from the DMA controller's point of view, DMA binding is not usable.
->> However in these systems still a peripheral might need to be serviced by or
->> it is better to serviced by specific DMA controller.
->> When a memcpy is used to/from a memory mapped region for example a DMA in the
->> same domain can perform better.
->> For generic software modules doing mem 2 mem operations it also matter that
->> they will get a channel from a controller which is faster in DDR to DDR mode
->> rather then from the first controller happen to be loaded.
->>
->> This property is inherited, so it may be specified in a device node or in any
->> of its parent nodes.
->>
->> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
->> ---
->>  .../devicetree/bindings/dma/dma-domain.yaml   | 59 +++++++++++++++++++
->>  1 file changed, 59 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/dma/dma-domain.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/dma/dma-domain.yaml b/Documentation/devicetree/bindings/dma/dma-domain.yaml
->> new file mode 100644
->> index 000000000000..c2f182f30081
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/dma/dma-domain.yaml
->> @@ -0,0 +1,59 @@
->> +# SPDX-License-Identifier: GPL-2.0
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/dma/dma-controller.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: DMA Domain Controller Definition
->> +
->> +maintainers:
->> +  - Vinod Koul <vkoul@kernel.org>
->> +
->> +allOf:
->> +  - $ref: "dma-controller.yaml#"
->> +
->> +description:
->> +  On systems where multiple DMA controllers available, none Slave (for example
->> +  memcpy operation) users can not be described in DT as there is no device
->> +  involved from the DMA controller's point of view, DMA binding is not usable.
->> +  However in these systems still a peripheral might need to be serviced by or
->> +  it is better to serviced by specific DMA controller.
->> +  When a memcpy is used to/from a memory mapped region for example a DMA in the
->> +  same domain can perform better.
->> +  For generic software modules doing mem 2 mem operations it also matter that
->> +  they will get a channel from a controller which is faster in DDR to DDR mode
->> +  rather then from the first controller happen to be loaded.
->> +
->> +  This property is inherited, so it may be specified in a device node or in any
->> +  of its parent nodes.
->> +
->> +properties:
->> +  $dma-domain-controller:
->> +    $ref: /schemas/types.yaml#definitions/phandle
->> +    description:
->> +      phande to the DMA controller node which should be used for the device or
->> +      domain.
->> +
->> +examples:
->> +  - |
->> +    / {
->> +        model = "Texas Instruments K3 AM654 SoC";
->> +        compatible = "ti,am654";
->> +        interrupt-parent = <&gic500>;
->> +        /* For modules without device, DDR to DDR is faster on main UDMAP */
->> +        dma-domain-controller = <&main_udmap>;
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +        ...
->> +    };
->> +
->> +    &cbass_main {
->> +        /* For modules within MAIN domain, use main UDMAP */
->> +        dma-domain-controller = <&main_udmap>;
->> +    };
->> +
->> +    &cbass_mcu {
->> +        /* For modules within MCU domain, use mcu UDMAP */
->> +        dma-domain-controller = <&mcu_udmap>;
+> on Intel's Lightning Mountain(LGM) SoCs QSPI controller do not use
+> Direct Memory Access(DMA) and Direct Access Controller(DAC).
 > 
-> perhaps add the example of main_udmap and mcu_udmap as well
-
-I can populate the tree with the main/mcu_udmap and on MCU I can also
-add the OSPI node.
-The idea is to specify the dma controller to be used for non slave
-channels on every device on MAIN/MCU domain.
-UDMAPs do not need this property specified, it is needed for clients.
-
+> This patch introduces to properly disable the DMA and DAC
+> for data transfer instead it uses indirect data transfer.
 > 
->> +    };
->> +...
->> -- 
->> Peter
->>
->> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
->> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> ---
+>  drivers/mtd/spi-nor/Kconfig           |  2 +-
+>  drivers/mtd/spi-nor/cadence-quadspi.c | 21 ++++++++++++++++++---
+>  2 files changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/mtd/spi-nor/Kconfig b/drivers/mtd/spi-nor/Kconfig
+> index 6de83277ce8b..ba2e372ae514 100644
+> --- a/drivers/mtd/spi-nor/Kconfig
+> +++ b/drivers/mtd/spi-nor/Kconfig
+> @@ -34,7 +34,7 @@ config SPI_ASPEED_SMC
+>  
+>  config SPI_CADENCE_QUADSPI
+>  	tristate "Cadence Quad SPI controller"
+> -	depends on OF && (ARM || ARM64 || COMPILE_TEST)
+> +	depends on OF && (ARM || ARM64 || COMPILE_TEST || X86)
+>  	help
+>  	  Enable support for the Cadence Quad SPI Flash controller.
+>  
+> diff --git a/drivers/mtd/spi-nor/cadence-quadspi.c b/drivers/mtd/spi-nor/cadence-quadspi.c
+> index 67f15a1f16fd..69fa13e95110 100644
+> --- a/drivers/mtd/spi-nor/cadence-quadspi.c
+> +++ b/drivers/mtd/spi-nor/cadence-quadspi.c
+> @@ -517,12 +517,16 @@ static int cqspi_indirect_read_execute(struct spi_nor *nor, u8 *rxbuf,
+>  	struct cqspi_st *cqspi = f_pdata->cqspi;
+>  	void __iomem *reg_base = cqspi->iobase;
+>  	void __iomem *ahb_base = cqspi->ahb_base;
+> +	u32 trigger_address = cqspi->trigger_address;
+>  	unsigned int remaining = n_rx;
+>  	unsigned int mod_bytes = n_rx % 4;
+>  	unsigned int bytes_to_read = 0;
+>  	u8 *rxbuf_end = rxbuf + n_rx;
+>  	int ret = 0;
+>  
+> +	if (!f_pdata->use_direct_mode)
+> +		writel(trigger_address, reg_base + CQSPI_REG_INDIRECTTRIGGER);
+> +
+
+Again, as I pointed out previously, this should not be needed.
+cqspi_controller_init() already does above configuration and no need to
+touch this register on every read.
+
+>  	writel(from_addr, reg_base + CQSPI_REG_INDIRECTRDSTARTADDR);
+>  	writel(remaining, reg_base + CQSPI_REG_INDIRECTRDBYTES);
+>  
+> @@ -609,6 +613,14 @@ static int cqspi_write_setup(struct spi_nor *nor)
+>  	struct cqspi_st *cqspi = f_pdata->cqspi;
+>  	void __iomem *reg_base = cqspi->iobase;
+>  
+> +	/* Disable the DMA and direct access controller */
+> +	if (!f_pdata->use_direct_mode) {
+> +		reg = readl(reg_base + CQSPI_REG_CONFIG);
+> +		reg &= ~CQSPI_REG_CONFIG_ENB_DIR_ACC_CTRL;
+> +		reg &= ~CQSPI_REG_CONFIG_DMA_MASK;
+> +		writel(reg, reg_base + CQSPI_REG_CONFIG);
+> +	}
+> +
+
+You did not respond to my previous comment. Why would you need to clear
+CQSPI_REG_CONFIG_DMA_MASK field, if reset default is 0 anyway?
+
+>  	/* Set opcode. */
+>  	reg = nor->program_opcode << CQSPI_REG_WR_INSTR_OPCODE_LSB;
+>  	writel(reg, reg_base + CQSPI_REG_WR_INSTR);
+> @@ -1171,7 +1183,8 @@ static int cqspi_of_get_pdata(struct platform_device *pdev)
+>  		return -ENXIO;
+>  	}
+>  
+> -	cqspi->rclk_en = of_property_read_bool(np, "cdns,rclk-en");
+> +	if (!of_device_is_compatible(np, "intel,lgm-qspi"))
+> +		cqspi->rclk_en = of_property_read_bool(np, "cdns,rclk-en");
+>  
+
+If you don't want to use this property, then just drop it from your DT.
+Don't override it in the driver based on compatible.
+
+>  	return 0;
+>  }
+> @@ -1301,7 +1314,8 @@ static int cqspi_setup_flash(struct cqspi_st *cqspi, struct device_node *np)
+>  		f_pdata->registered = true;
+>  
+>  		if (mtd->size <= cqspi->ahb_size) {
+> -			f_pdata->use_direct_mode = true;
+> +			f_pdata->use_direct_mode =
+> +				!(of_device_is_compatible(np, "intel,lgm-qspi"));
+
+Looks like, you haven't followed any of my advice. Please add a quirk
+flag to disable DAC mode. Something like:
+
+#define CQSPI_DISABLE_DAC_MODE BIT(1)
+
+static const struct cqspi_driver_platdata intel_lgm_qspi = {
+        .hwcaps_mask = CQSPI_BASE_HWCAPS_MASK,
+        .quirks = CQSPI_DISABLE_DAC_MODE,
+};
+
+static const struct of_device_id cqspi_dt_ids[] = {
+
+	...
+
+        {
+                .compatible = "intel,lgm-qspi",
+                .data = &intel_lgm_qspi,
+        },
+
+	...
+};
+
+
+Then in cqspi_setup_flash(),
+
+	if (mtd->size <= cqspi->ahb_size &&
+		!ddata->quirks & CQSPI_DISABLE_DAC_MODE) {
+		f_pdata->use_direct_mode = true;
+		...
+	}	
+
+
+>  			dev_dbg(nor->dev, "using direct mode for %s\n",
+>  				mtd->name);
+>  
+> @@ -1347,7 +1361,7 @@ static int cqspi_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	/* Obtain QSPI clock. */
+> -	cqspi->clk = devm_clk_get(dev, NULL);
+> +	cqspi->clk = devm_clk_get(dev, "qspi");
+
+This will break DT backward compatibility. Existing DTs don't have
+clock-names = "qspi". Hence, this code will error out.
+What I meant in the previous mail was: if device does not have multiple
+clk inputs then there is no need for clock-names and there is no need to
+touch this part of code.
+
+	cqspi->clk = devm_clk_get(dev, NULL);
+
+This should just work fine even on your board. So drop this hunk.
+
+>  	if (IS_ERR(cqspi->clk)) {
+>  		dev_err(dev, "Cannot claim QSPI clock.\n");
+>  		return PTR_ERR(cqspi->clk);
+> @@ -1369,6 +1383,7 @@ static int cqspi_probe(struct platform_device *pdev)
+>  		return PTR_ERR(cqspi->ahb_base);
+>  	}
+>  	cqspi->mmap_phys_base = (dma_addr_t)res_ahb->start;
+> +	cqspi->trigger_address = res_ahb->start;
+
+Nope, this is not needed. See:
+https://elixir.bootlin.com/linux/v5.3-rc6/source/drivers/mtd/spi-nor/cadence-quadspi.c#L1168
+
+Populate the trigger-address using cdns,trigger-address property in DT
+
+>  	cqspi->ahb_size = resource_size(res_ahb);
+>  
+>  	init_completion(&cqspi->transfer_complete);
 > 
 
-- Péter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+-- 
+Regards
+Vignesh
