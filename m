@@ -2,94 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D051AD7DE
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 13:26:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B9A6AD804
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 13:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404007AbfIIL0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 07:26:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35832 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2404056AbfIIL0p (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 07:26:45 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4F45221920;
-        Mon,  9 Sep 2019 11:26:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568028404;
-        bh=CzvWQDxQFxAcoWDb+NO6txjLfQDdjFSb8XYgqiljobM=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=kvzX7qLSplsgsgUWn4yyHhNROmcTc5k6WN1dv59DBIULtGwy2meVArtgl0m/8lmRr
-         TyR3gK+kLnZ8DnlXrsEjbphw6VwVxegB8AYDEqKP2D93g6JX68ePhkopSBkD9megyO
-         Na5BZLtRvJAGUjH1BrymBbixAZM6azhebrFKr3/w=
-Content-Type: text/plain; charset="utf-8"
+        id S1729036AbfIILhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 07:37:04 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:38027 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730738AbfIILhE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 07:37:04 -0400
+Received: by mail-wm1-f67.google.com with SMTP id o184so14230865wme.3
+        for <devicetree@vger.kernel.org>; Mon, 09 Sep 2019 04:37:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:references:user-agent:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=kZoKalqZhhWKQ6GSRTA3V3x0JaPlgytes3e0+INLRaE=;
+        b=x5hZJxs3ph0hf3O+XGKV6xBLU0N2rUiRCdn8ru54+LH6HncjkMPO21ZUiZRvZ+1i5x
+         iQqmdXYCwvp9mRdj0ZOHvDON2id86CARAXZuw5S6B5MT9/aWelV6Zf3G+q/peM+AnZb2
+         tFP5jlieJSsMcjfRlr0PgevczJM83dePs6LXk89UuQNeXsawQIHoIH5jbIG852/LSAZi
+         /2Q+djzKrVvz0yyQ/eFy4UqHPjiITn6kuXKfheMpMTu0jw8GUAy1AIynlCstKd2fcN4h
+         txz1c2apTYXSVxwLa3dS2xhLaI31jOElfOl0+oG+kphjJsHBcgmcHOs49nMo9nOUTxaX
+         1asg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:references:user-agent:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=kZoKalqZhhWKQ6GSRTA3V3x0JaPlgytes3e0+INLRaE=;
+        b=Pz3V/Z73ajkFwp2pgybDn2cyg+Ape9nJ4gBpedGtuHjUAfuutDSsrangXG8Fb51gkP
+         4AS4717U5vRqGmOZwceq5BUtfL4WxuK/nfccMgDN8/0wjPB8fZq6N7+exPYyCRascQXQ
+         xwnItcJDt200r/387s4shC7XNxwohnwiLAGOnS4ZLBrJvIRRCkHJyWM65X5knPqVHZd3
+         vWO5lXaesiMLC2FE714sedIkwFviVdQaFSOLwosNaM/pJr0Y+sbysDnqu3yxDGQsj04a
+         TwycFinMb0ssnUysCSH6hl5U3CtwjspjBdmr7vSBjetjkS5k8F330DI2OGmdkC3rITBa
+         9K7Q==
+X-Gm-Message-State: APjAAAWiMfbo5J1N+ArmrES6wno6hxuWMHq8Y7UuAi8lcMUAQG02vOye
+        4DxKjQMTnT2qxn97sgvQpl8j2g==
+X-Google-Smtp-Source: APXvYqxtjd0hUrVCW+o450nTVfK83QWVgMXod2fEY5tWx4EKzD3PxuBAlvts9NPWeGtD+mt4Pidq+w==
+X-Received: by 2002:a1c:2ec6:: with SMTP id u189mr17945437wmu.67.1568029021609;
+        Mon, 09 Sep 2019 04:37:01 -0700 (PDT)
+Received: from localhost ([148.69.85.38])
+        by smtp.gmail.com with ESMTPSA id g185sm27003700wme.10.2019.09.09.04.37.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Sep 2019 04:37:01 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+X-Google-Original-From: Jerome Brunet <jbrunet@starbuckisacylon.baylibre.com>
+References: <1567667251-33466-1-git-send-email-jianxin.pan@amlogic.com> <1567667251-33466-5-git-send-email-jianxin.pan@amlogic.com> <CAFBinCBSmW4y-Dz7EkJMV8HOU4k6Z0G-K6T77XnVrHyubaSsdg@mail.gmail.com> <be032a85-b60d-f7f0-8404-b27784d809df@amlogic.com> <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
+User-agent: mu4e 1.3.1; emacs 26.2
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Tao Zeng <tao.zeng@amlogic.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: add support for A1 based Amlogic AD401
+In-reply-to: <CAFBinCD7gFzOsmZCB8T1KJKVsgL7WMhoEkj3dRzyqwAnjC0CNA@mail.gmail.com>
+Date:   Mon, 09 Sep 2019 13:36:59 +0200
+Message-ID: <1jv9u1ya3o.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190826062127.GH2672@vkoul-mobl>
-References: <20190822170140.7615-1-vkoul@kernel.org> <20190822170140.7615-3-vkoul@kernel.org> <20190824063115.GW26807@tuxbook-pro> <20190826062127.GH2672@vkoul-mobl>
-Cc:     linux-arm-msm@vger.kernel.org, Andy Gross <agross@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v3 2/4] clk: qcom: clk-rpmh: Convert to parent data scheme
-User-Agent: alot/0.8.1
-Date:   Mon, 09 Sep 2019 04:26:43 -0700
-Message-Id: <20190909112644.4F45221920@mail.kernel.org>
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Vinod Koul (2019-08-25 23:21:27)
-> On 23-08-19, 23:31, Bjorn Andersson wrote:
-> > On Thu 22 Aug 10:01 PDT 2019, Vinod Koul wrote:
-> >=20
-> > > Convert the rpmh clock driver to use the new parent data scheme by
-> > > specifying the parent data for board clock.
-> > >=20
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > ---
-> > >  drivers/clk/qcom/clk-rpmh.c | 10 ++++++++--
-> > >  1 file changed, 8 insertions(+), 2 deletions(-)
-> > >=20
-> > > diff --git a/drivers/clk/qcom/clk-rpmh.c b/drivers/clk/qcom/clk-rpmh.c
-> > > index c3fd632af119..0bced7326a20 100644
-> > > --- a/drivers/clk/qcom/clk-rpmh.c
-> > > +++ b/drivers/clk/qcom/clk-rpmh.c
-> > > @@ -95,7 +95,10 @@ static DEFINE_MUTEX(rpmh_clk_lock);
-> > >             .hw.init =3D &(struct clk_init_data){                    =
- \
-> > >                     .ops =3D &clk_rpmh_ops,                          =
- \
-> > >                     .name =3D #_name,                                =
- \
-> > > -                   .parent_names =3D (const char *[]){ "xo_board" },=
- \
-> > > +                   .parent_data =3D  &(const struct clk_parent_data)=
-{ \
-> > > +                                   .fw_name =3D "xo_board",         =
- \
-> > > +                                   .name =3D "xo_board",            =
- \
-> >=20
-> > Iiuc .name here refers to the global clock namespace and .fw_name refers
-> > to the device_node local name space. As such I really prefer this to be:
-> >=20
-> >   .fw_name =3D "xo",
-> >   .name =3D "xo_board",
-> >=20
-> > This ensures the backwards compatibility (when using global lookup),
-> > without complicating the node-local naming.
->=20
-> Sure, while thinking more on this, should we finalize the name as xo or
-> cxo, I see latter being also used at few places. It would be great to
-> get a name and stick to it for longer time :)
-> --=20
 
-I would name it 'cxo' because that's the pin name on this platform.
+On Sat 07 Sep 2019 at 17:02, Martin Blumenstingl wrote:
+
+> Hi Jianxin,
+>
+> On Fri, Sep 6, 2019 at 7:58 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+> [...]
+>> > also I'm a bit surprised to see no busses (like aobus, cbus, periphs, ...) here
+>> > aren't there any busses defined in the A1 SoC implementation or are
+>> > were you planning to add them later?
+>> Unlike previous series,there is no Cortex-M3 AO CPU in A1, and there is no AO/EE power domain.
+>> Most of the registers are on the apb_32b bus.  aobus, cbus and periphs are not used in A1.
+> OK, thank you for the explanation
+> since you're going to re-send the patch anyways: can you please
+> include the apb_32b bus?
+
+unless there is an 64 bits apb bus as well, I suppose 'apb' would be enough ?
+
+> all other upstream Amlogic .dts are using the bus definitions, so that
+> will make A1 consistent with the other SoCs
+>
+>
+> Martin
 
