@@ -2,95 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6742ADA35
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 15:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D120ADA9F
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 16:00:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730610AbfIINpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 09:45:36 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:35066 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729438AbfIINpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 09:45:36 -0400
-Received: by mail-qt1-f193.google.com with SMTP id k10so16220459qth.2;
-        Mon, 09 Sep 2019 06:45:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xDjWmrpelBMsV8acnAMsSy3b05LWkf2FcGFKigsCXs8=;
-        b=ZTF/tDzG62yB4FDhhFASUr7EB/XKctjUYY2chJU4IwpVsoFEdUoqzgCyrnQemvdEi2
-         0Ejs1D0UDYwA7WyS24DNSNILzZep0CH/UGo2MnNRE3Gak7bZSP/rio5GkJddswe1Pa/k
-         0dbjNPA6tTk1wlUaEltvo6BYFNlx7+8INsx+fLCY09CtJlLVtAbRoWlzvLRW0JTwfbqw
-         iEP0QzLxeBPGIbNg6AaC/N99q0hdXyNFLQQd4m/2AjjhOwkufVBI2e0v4kavdv1Q4Y23
-         +o6+iGvnkjXhiLyQiSKa/M0w93e3TE3m373oboCMdibPwBeWtcgrdk89MIZA1mvPKM5l
-         nNrg==
-X-Gm-Message-State: APjAAAXMJ4AybhpJab1vaUY33sxnIl2MyQNNZWu8kYCc52T8MOgxGfIx
-        rbkEEwEHmKjwNzvS+8jRXKD6Bqj2SNm2vkvoGyk=
-X-Google-Smtp-Source: APXvYqy6uMINd7bjqrBIpL+FlSlRZCnr6jDIP9BcfsScpej8dgHINCuOakM78zZlQ2S5h2RBKY29EifUZf3k9t5zUQM=
-X-Received: by 2002:ac8:6b1a:: with SMTP id w26mr22956448qts.304.1568036734738;
- Mon, 09 Sep 2019 06:45:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <1568020220-7758-1-git-send-email-talel@amazon.com>
- <1568020220-7758-4-git-send-email-talel@amazon.com> <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
- <ab512ced-d989-5c10-a550-2a4723d38e7e@amazon.com>
-In-Reply-To: <ab512ced-d989-5c10-a550-2a4723d38e7e@amazon.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Mon, 9 Sep 2019 15:45:18 +0200
-Message-ID: <CAK8P3a34eKFXoAPOfkFN5+H4kxOhRjXgws_0wy+d-186LFxcTw@mail.gmail.com>
+        id S1726698AbfIIN7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 09:59:42 -0400
+Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:63751 "EHLO
+        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405137AbfIIN7m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 09:59:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1568037581; x=1599573581;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=K42g/AFNMDx/RgjzKJBTKWAce5pXZj/ROym93HlBV/I=;
+  b=iThLrsB7pkHCwAmSPl2JFKAjReiQpTcVs4GslPOukjdC1ZlQolkkH/xN
+   GC5nBTT2WFDl/oMVgNEcDhqOLtkewFS4ru5q5xCq4LTK4Fyve4Yb2MLO0
+   4YACa25Pz9wgmhI+zccrkrJxl6/YN1ljnX4cf8BLQr4hc876TWhkmrhuO
+   Y=;
+X-IronPort-AV: E=Sophos;i="5.64,484,1559520000"; 
+   d="scan'208";a="829304744"
+Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-2a-90c42d1d.us-west-2.amazon.com) ([10.47.22.34])
+  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 09 Sep 2019 13:59:14 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
+        by email-inbound-relay-2a-90c42d1d.us-west-2.amazon.com (Postfix) with ESMTPS id 0CCB1A1E19;
+        Mon,  9 Sep 2019 13:59:12 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 9 Sep 2019 13:59:12 +0000
+Received: from [10.125.238.52] (10.43.160.27) by EX13D01EUB001.ant.amazon.com
+ (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Mon, 9 Sep
+ 2019 13:59:01 +0000
 Subject: Re: [PATCH 3/3] arm64: alpine: select AL_POS
-To:     "Shenhar, Talel" <talel@amazon.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
         David Miller <davem@davemloft.net>,
         gregkh <gregkh@linuxfoundation.org>,
         Nicolas Ferre <nicolas.ferre@microchip.com>,
         Thomas Gleixner <tglx@linutronix.de>,
-        Patrick Venture <venture@google.com>,
+        "Patrick Venture" <venture@google.com>,
         Linus Walleij <linus.walleij@linaro.org>,
-        Olof Johansson <olof@lixom.net>,
+        "Olof Johansson" <olof@lixom.net>,
         Maxime Ripard <mripard@kernel.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        paul.kocialkowski@bootlin.com, mjourdan@baylibre.com,
+        "Santosh Shilimkar" <ssantosh@kernel.org>,
+        <paul.kocialkowski@bootlin.com>, <mjourdan@baylibre.com>,
         Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
+        "Will Deacon" <will@kernel.org>, DTML <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         David Woodhouse <dwmw@amazon.co.uk>,
         Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        hhhawa@amazon.com, ronenk@amazon.com, jonnyc@amazon.com,
-        hanochu@amazon.com, barakw@amazon.com
-Content-Type: text/plain; charset="UTF-8"
+        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
+        <hanochu@amazon.com>, <barakw@amazon.com>
+References: <1568020220-7758-1-git-send-email-talel@amazon.com>
+ <1568020220-7758-4-git-send-email-talel@amazon.com>
+ <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
+ <ab512ced-d989-5c10-a550-2a4723d38e7e@amazon.com>
+ <CAK8P3a34eKFXoAPOfkFN5+H4kxOhRjXgws_0wy+d-186LFxcTw@mail.gmail.com>
+From:   "Shenhar, Talel" <talel@amazon.com>
+Message-ID: <0d36f94d-596f-0ec7-6951-b097b5ee0d2d@amazon.com>
+Date:   Mon, 9 Sep 2019 16:58:56 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.0
+MIME-Version: 1.0
+In-Reply-To: <CAK8P3a34eKFXoAPOfkFN5+H4kxOhRjXgws_0wy+d-186LFxcTw@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.43.160.27]
+X-ClientProxiedBy: EX13D23UWA002.ant.amazon.com (10.43.160.40) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 9, 2019 at 12:17 PM Shenhar, Talel <talel@amazon.com> wrote:
-> On 9/9/2019 12:40 PM, Arnd Bergmann wrote:
-> > On Mon, Sep 9, 2019 at 11:14 AM Talel Shenhar <talel@amazon.com> wrote:
-> >> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> >> index 4778c77..bd86b15 100644
-> >> --- a/arch/arm64/Kconfig.platforms
-> >> +++ b/arch/arm64/Kconfig.platforms
-> >> @@ -25,6 +25,7 @@ config ARCH_SUNXI
-> >>   config ARCH_ALPINE
-> >>          bool "Annapurna Labs Alpine platform"
-> >>          select ALPINE_MSI if PCI
-> >> +       select AL_POS
-> >>          help
-> >>            This enables support for the Annapurna Labs Alpine
-> >>            Soc family.
-> > Generally I think this kind of thing should go into the defconfig
-> > rather than being hard-selected. There might be users that
-> > want to not enable the driver.
+
+On 9/9/2019 4:45 PM, Arnd Bergmann wrote:
+> On Mon, Sep 9, 2019 at 12:17 PM Shenhar, Talel <talel@amazon.com> wrote:
+>> On 9/9/2019 12:40 PM, Arnd Bergmann wrote:
+>>> On Mon, Sep 9, 2019 at 11:14 AM Talel Shenhar <talel@amazon.com> wrote:
+>>>> diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
+>>>> index 4778c77..bd86b15 100644
+>>>> --- a/arch/arm64/Kconfig.platforms
+>>>> +++ b/arch/arm64/Kconfig.platforms
+>>>> @@ -25,6 +25,7 @@ config ARCH_SUNXI
+>>>>    config ARCH_ALPINE
+>>>>           bool "Annapurna Labs Alpine platform"
+>>>>           select ALPINE_MSI if PCI
+>>>> +       select AL_POS
+>>>>           help
+>>>>             This enables support for the Annapurna Labs Alpine
+>>>>             Soc family.
+>>> Generally I think this kind of thing should go into the defconfig
+>>> rather than being hard-selected. There might be users that
+>>> want to not enable the driver.
+>> The reason for selecting it is because this is a driver that we will
+>> always want for ARCH_ALPINE.
+> Can you put the exact requirement (other than "we want this")
+> in the changelog text then? It's still not clear to me what breaks
+> without this driver.
 >
-> The reason for selecting it is because this is a driver that we will
-> always want for ARCH_ALPINE.
+>          Arnd
 
-Can you put the exact requirement (other than "we want this")
-in the changelog text then? It's still not clear to me what breaks
-without this driver.
+Its not that something will get broken. its error event detector for POS 
+events which allows seeing bad accesses to registers.
 
-        Arnd
+What is the general rule of which configs to put under select and which 
+under defconfig?
+
+I was thinking that "general" SoC support is good under select - those 
+things that we always want.
+
+And specific features, e.g. RAID support or features that supported only 
+on specific HW shall go under defconfig.
+
+
+Similar, I see ARCH_LAYERSCAPE selecting EDAC_SUPPORT.
+
+
+Will love to hear the general rule for select vs defconfig.
+
