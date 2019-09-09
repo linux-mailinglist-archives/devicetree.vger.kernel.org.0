@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CC32ADBAC
-	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 17:03:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52312ADBCA
+	for <lists+devicetree@lfdr.de>; Mon,  9 Sep 2019 17:09:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbfIIPCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 11:02:34 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:33331 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733140AbfIIPCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 11:02:34 -0400
-Received: by mail-wr1-f68.google.com with SMTP id u16so14266953wrr.0;
-        Mon, 09 Sep 2019 08:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=PZPdLQeLOEyJtkoSAS2YhSEAdoTAaUvZCMb2Qa3U3f4=;
-        b=QFAKdO2+MqvIwbO2LZ8+o2T69rCPUwEqSgPmIkPR9J08dm02Y84WAZidtVqsBtLIxd
-         /fIKRGSbKAkpWXv3JMLBUGprFPFZVhI1aSVS/VCa8IVxMWoET8/5PaZZF3p97MMWn3lZ
-         2sw+5tlyHn7fv1pH7nGrj5e0luBJtq4a3x3QHsp0xXiomSEKj7LVJ4+PC8KwAyHMLTAA
-         hMF/eo+znis+fYXcM/HkLLbLCe7CMqKiAs5t7r5Pg03rJuulmXXGEs9qPLuTzOssKN1F
-         yl9jpIzXnl/soAYoonErCvjQfwHRQlegZgQHo6nuCUyQlnGH3MhCjzFaPf8yc5TLevc/
-         /KeQ==
+        id S1727831AbfIIPJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 11:09:08 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:39789 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727772AbfIIPJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 9 Sep 2019 11:09:07 -0400
+Received: by mail-qk1-f196.google.com with SMTP id 4so13380260qki.6;
+        Mon, 09 Sep 2019 08:09:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=PZPdLQeLOEyJtkoSAS2YhSEAdoTAaUvZCMb2Qa3U3f4=;
-        b=TrcpmAVQMER9shCEgASg8OECup81Q+klhnGvgu0dWWT5U0bWsNcVXmmP94lEE38gyA
-         KT2QrC6q5TRdiq/y1Iz7YQxs+/KaPh3u9WjQrIxTkUySbucZy1VtQPT3BXdNpM/6KgNb
-         VBT41mYXcLLXly46Pt0xKokkXJTYJFuMoYL4UB48SiFsx/flWUfOAansdb3BvfO2ie8E
-         zc4jhi83R8w4CgFEKWo5WZiaczTzKKB/uGw6lJLWSc7U6fbifyTjCMuMA5YKpCiQw8HI
-         2/xGT0WBTOKfNExmt8ZA+/a3+B9soI8CVQcbWTujn8bnXOuUoJgrE3uyjLXIs602AbmB
-         np3A==
-X-Gm-Message-State: APjAAAVxvrM68jkwC1H7o1x7cPXB3cCIJm2dZsqm4BpkLXrRbb+kP3PX
-        uqw4BH4oXdeJqsPMxb27s68=
-X-Google-Smtp-Source: APXvYqwkXa05gD+0n/Wm1U/GTv1nqjlBkf/38URHAZzWapXaKegLzhdiBoCJMBhOXltgJda6pNiYzA==
-X-Received: by 2002:adf:f3c8:: with SMTP id g8mr10269237wrp.58.1568041352095;
-        Mon, 09 Sep 2019 08:02:32 -0700 (PDT)
-Received: from localhost.localdomain ([94.204.252.234])
-        by smtp.gmail.com with ESMTPSA id s26sm27755397wrs.63.2019.09.09.08.02.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 09 Sep 2019 08:02:31 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BRd75HfAMA/RM+2IUVcveN8rNVBoGEbq4cpvizDx7NM=;
+        b=b43IxwCOSugVQGiMNJ1lDuBpsyM6wNPt+oC0fXNLqhUzBc3syZRR2dy47FKLc6uzTG
+         2jKst0dekoCrDj4nYjYrMoR+GjImMPjNgUQv7uaT7optxKeGs3SK4BekV65Il44d+V+V
+         niTPDMFIgtX+QEq4B7NVW6zhQbQrpTFaEwHaq35ATmsAcXAaPe7BlXdEvhR2jda+4xiM
+         dbnG6e7ts8awB9VCFR67PG4id+QZIvm/WqZPivGpB5lT0apXGBjMtYAS9gOc1alwXxKX
+         DjLsDH5uH5xGNxBt41fFhF/VT1EQKidpajFdZ2ADnaZEth4K5zHhrUrVa28nsJwZizP0
+         16mQ==
+X-Gm-Message-State: APjAAAV9N2qg+HITI1b9x0FI/rZeIj0tmMZiX8A0sxAXReVNkUpMD5si
+        fR0CZ+U/VFCfcvei/N1G+HhFUgCQUjPKhK8erVM=
+X-Google-Smtp-Source: APXvYqyixTPG+CFUK1hDkQTl3ReqfwNBD/A6zafQDgbntwdHXHwkh+RNO8Na4ISyGRsSqSCfU/vXAgp7FItNdTdN170=
+X-Received: by 2002:ae9:ee06:: with SMTP id i6mr3208112qkg.3.1568041746371;
+ Mon, 09 Sep 2019 08:09:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <1568020220-7758-1-git-send-email-talel@amazon.com>
+ <1568020220-7758-4-git-send-email-talel@amazon.com> <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
+ <ab512ced-d989-5c10-a550-2a4723d38e7e@amazon.com> <CAK8P3a34eKFXoAPOfkFN5+H4kxOhRjXgws_0wy+d-186LFxcTw@mail.gmail.com>
+ <0d36f94d-596f-0ec7-6951-b097b5ee0d2d@amazon.com>
+In-Reply-To: <0d36f94d-596f-0ec7-6951-b097b5ee0d2d@amazon.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Mon, 9 Sep 2019 17:08:50 +0200
+Message-ID: <CAK8P3a0RUHxcpyUJU5bpd8nqpm0Sqhy4aJaoh7K9jVn8zJC6aQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: alpine: select AL_POS
+To:     "Shenhar, Talel" <talel@amazon.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Chrisitian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH 6/6] arm64: dts: meson: libretech-cc: update model and compatible
-Date:   Mon,  9 Sep 2019 19:01:27 +0400
-Message-Id: <1568041287-7805-7-git-send-email-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568041287-7805-1-git-send-email-christianshewitt@gmail.com>
-References: <1568041287-7805-1-git-send-email-christianshewitt@gmail.com>
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Patrick Venture <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Olof Johansson <olof@lixom.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        paul.kocialkowski@bootlin.com, mjourdan@baylibre.com,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        David Woodhouse <dwmw@amazon.co.uk>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        hhhawa@amazon.com, ronenk@amazon.com, jonnyc@amazon.com,
+        hanochu@amazon.com, barakw@amazon.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Shorten the model description to improve readability in some app GUIs
-that show the string. Update compatible to be more descriptive, using
-the format of the LaFrite board in meson-gxl-s805x-libretech-ac.dts.
+On Mon, Sep 9, 2019 at 3:59 PM Shenhar, Talel <talel@amazon.com> wrote:
+> On 9/9/2019 4:45 PM, Arnd Bergmann wrote:
+>
+> Its not that something will get broken. its error event detector for POS
+> events which allows seeing bad accesses to registers.
+>
+> What is the general rule of which configs to put under select and which
+> under defconfig?
+>
+> I was thinking that "general" SoC support is good under select - those
+> things that we always want.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+I generally want as little as possible to be selected, basically only
+things that are required for linking the kernel and booting it without
+potentially destroying the hardware.
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-index 4b8ce73..e8348b2 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxl-s905x-libretech-cc.dts
-@@ -12,8 +12,9 @@
- #include "meson-gxl-s905x.dtsi"
- 
- / {
--	compatible = "libretech,cc", "amlogic,s905x", "amlogic,meson-gxl";
--	model = "Libre Computer Board AML-S905X-CC";
-+	compatible = "libretech,aml-s905x-cc", "amlogic,s905x",
-+		     "amlogic,meson-gxl";
-+	model = "Libre Computer AML-S905X-CC";
- 
- 	aliases {
- 		serial0 = &uart_AO;
--- 
-2.7.4
+In particular, I want most drivers to be enabled as loadable modules
+if possible. When you have general-purpose distributions support
+your platform, there is no need to have this module built-in while
+running on a different chip, even if you always want to load the
+module when it's running on yours.
 
+> And specific features, e.g. RAID support or features that supported only
+> on specific HW shall go under defconfig.
+>
+> Similar, I see ARCH_LAYERSCAPE selecting EDAC_SUPPORT.
+
+I think this was done to avoid a link failure. It's also possible that this
+is a mistake and just did not get caught in review.
+
+       Arnd
