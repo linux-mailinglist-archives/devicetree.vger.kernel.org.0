@@ -2,119 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E5147AE38C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 08:14:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 842ACAE397
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 08:18:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388670AbfIJGOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 02:14:40 -0400
-Received: from mail-eopbgr20108.outbound.protection.outlook.com ([40.107.2.108]:35552
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726229AbfIJGOk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 02:14:40 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HIiF5svL6kNoA7vMcaIGfSaMQM4PNAoYsBlhWDuPAmwnFzmLTri+A5e8pqZQZ+NYQ7j2VBhWYRqlgGpjmZzJg/o9Ca6HW6d38IEnsUbLWLispuYqG+gs380AbYf224BLQFsQbtRYE1u0rdddzJ0HowobNoy2wBHdNUktXp0+Pf6fExYTPc8bGpOFJy7GmEoXK7UBQ+kVoihvZOl/TIGJmcJ2m3csSaJtdnT7VXRiGVLo+Dm7jd/6j12TaUbDz6vqsxK99tYK8bj5bjP7adEBNPxFdLAPuh8NbWH9vNVfGRusels/oRkGHtRxFUnNTiUxk42e5FCzfoMgJXDtWrSbKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lb3/Ci37umcxR/akK46NuZXvT/O1CRVMTKs1mlhRsC8=;
- b=PWtA90pwNQLQy43IO/su9ouThrgTbOmYOb6q8lrUVXWCFAQeQIx/f/HNN/bfCMtPwKJoNgz1yGf6G/S7fRH8BbKwvQ2FPa15mPpoFR6A56/UsfFxQbxgrsT/xzy4JWUOQuGB0GfZ1Xt+n8SgH6XlbdXBYJ/OUhT4nGQ/3iQ856X3nWA2nVapSAiQc48Z/h7exMQhuFkcgrRQVkj01kt6R11GlegiIj21hjPAOP3IylaAIpxVERrz8J8KRLlur/BNiTqWz56gR9iJq6lwxZ8/2V46n9TXIRId9u9wPzkSxq0AT+cPFtzmU87DATF4ogbHexXCMUvfubENuMuc7/IE8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
- dkim=pass header.d=toradex.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lb3/Ci37umcxR/akK46NuZXvT/O1CRVMTKs1mlhRsC8=;
- b=kZww++RorQl9VImqOrQnk+86XbtCdkyQ/CbO0irPMjthfqqyH0GgOHB3jUKIxyIh2vgp6DTJisHOtD5yBaNykwJj3AoI+Amtg+jQqDMPDx9v5uMnTTAZZTlADVPSP83cAhWJ8Qm9ggRUiLJY+T4PskZCqrWJOMlm7pSQPCrIjBs=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3711.eurprd05.prod.outlook.com (52.134.8.146) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2241.20; Tue, 10 Sep 2019 06:14:36 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f59f:a307:9c53:63b9]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::f59f:a307:9c53:63b9%6]) with mapi id 15.20.2241.018; Tue, 10 Sep 2019
- 06:14:36 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "broonie@kernel.org" <broonie@kernel.org>
-CC:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Luka Pivk <luka.pivk@toradex.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        id S1730580AbfIJGSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 02:18:25 -0400
+Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:29660 "EHLO
+        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730336AbfIJGSZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 02:18:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1568096304; x=1599632304;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=NUby1e5z8ZmZZG/r8xjMa7/ADWenJfdiJrb9sSaJJJI=;
+  b=bQvc3MUJ5s/JTaKRQOCHqdJgS4wK5znTY/wujDnOWfMBwqfAuUaUnHTA
+   MPa3I7cBCEoeYlhsz+SCpkX6g3K/Noib0oP1sK8eH7NJ9eqbZsLm6i/9e
+   3he7IEKymrEaf5B8nSCiKYOmbPUa+fmX7xHUNxKAbuDojZ/W/CZQnP4ge
+   U=;
+X-IronPort-AV: E=Sophos;i="5.64,487,1559520000"; 
+   d="scan'208";a="701737185"
+Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1a-16acd5e0.us-east-1.amazon.com) ([10.47.22.38])
+  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 10 Sep 2019 06:17:38 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
+        by email-inbound-relay-1a-16acd5e0.us-east-1.amazon.com (Postfix) with ESMTPS id 374E0A226A;
+        Tue, 10 Sep 2019 06:17:28 +0000 (UTC)
+Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Tue, 10 Sep 2019 06:17:28 +0000
+Received: from [10.125.238.52] (10.43.161.82) by EX13D01EUB001.ant.amazon.com
+ (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Tue, 10 Sep
+ 2019 06:17:17 +0000
+Subject: Re: [PATCH 3/3] arm64: alpine: select AL_POS
+To:     Arnd Bergmann <arnd@arndb.de>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        gregkh <gregkh@linuxfoundation.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Patrick Venture" <venture@google.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "Olof Johansson" <olof@lixom.net>,
+        Maxime Ripard <mripard@kernel.org>,
+        "Santosh Shilimkar" <ssantosh@kernel.org>,
+        <paul.kocialkowski@bootlin.com>, <mjourdan@baylibre.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>, DTML <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/3] regulator: fixed: add possibility to enable by clock
-Thread-Topic: [PATCH 1/3] regulator: fixed: add possibility to enable by clock
-Thread-Index: AQHVYi4cgyK53mdiuEKJwWlDc8lst6cdZNqAgAcTQoCAAAGQgA==
-Date:   Tue, 10 Sep 2019 06:14:36 +0000
-Message-ID: <8304353c288dd924d31e5ddb5e0368b2c436b2fb.camel@toradex.com>
-References: <20190903080336.32288-1-philippe.schenker@toradex.com>
-         <20190903080336.32288-2-philippe.schenker@toradex.com>
-         <20190905180615.GG4053@sirena.co.uk>
-         <c44f33e7396c87afecec234975652c1445d7be9d.camel@toradex.com>
-In-Reply-To: <c44f33e7396c87afecec234975652c1445d7be9d.camel@toradex.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0ee813b0-2c6c-4a76-5f24-08d735b627ee
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3711;
-x-ms-traffictypediagnostic: VI1PR0502MB3711:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR0502MB37113599B41D1BCDAD8A518DF4B60@VI1PR0502MB3711.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 01565FED4C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(376002)(366004)(136003)(39850400004)(396003)(189003)(199004)(11346002)(446003)(478600001)(305945005)(2616005)(44832011)(486006)(5660300002)(53936002)(102836004)(6506007)(66066001)(14454004)(99286004)(316002)(54906003)(26005)(3846002)(6116002)(256004)(25786009)(2906002)(71190400001)(118296001)(2351001)(4326008)(36756003)(2501003)(5640700003)(8936002)(76176011)(476003)(81156014)(1730700003)(76116006)(91956017)(8676002)(6512007)(186003)(6916009)(229853002)(6436002)(66946007)(6246003)(66446008)(64756008)(66556008)(66476007)(6486002)(7736002)(86362001)(71200400001)(81166006);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3711;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: KdIZfnuQK8G5CieQbbrxRjTVFHJ9V4OK01Jcjo+0KqsF2LOhoDPu2/TvG/AgCCn/O6woSplvzQXaHeMkdS+IMt16RhIhd3fbryfOt/tIM2CdyFFJ+uDTp6iqrKtv7eYSOA55C/HKwHeJbRqAy38NtCJdLum69B5JgybVmh20Yfac0E4Wk7FiNu1dpW1P9f11ACni0i4dhL7E/HUyAjgNkazdZBOlCbrmZOKQr9iBmfXvzEbeZYKmxSi06ijooJ7Pkdt278R0Ig7yz0wk9EwMx5Z7r+IRsemqHADNjP+x43jd1xpmMLhGPKV/tKsHDD+bCGXHIh0xN/5gbpOxH7L4fPtAGQ7vqSvUMpwOql+/BOGD2L91xUISOa1FIMm9rmOKRxToeD1tmqp38QKBwdX1wAwjM8V02L8QzzehQ7Mp0Xs=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <4FC123D6148AD84E861B8D513AC51C44@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        David Woodhouse <dwmw@amazon.co.uk>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        <hhhawa@amazon.com>, <ronenk@amazon.com>, <jonnyc@amazon.com>,
+        <hanochu@amazon.com>, <barakw@amazon.com>
+References: <1568020220-7758-1-git-send-email-talel@amazon.com>
+ <1568020220-7758-4-git-send-email-talel@amazon.com>
+ <CAK8P3a0DEMeFWK+RuAdSLyDYduWWwj9DxP_Beipays-d_6ixnA@mail.gmail.com>
+ <ab512ced-d989-5c10-a550-2a4723d38e7e@amazon.com>
+ <CAK8P3a34eKFXoAPOfkFN5+H4kxOhRjXgws_0wy+d-186LFxcTw@mail.gmail.com>
+ <0d36f94d-596f-0ec7-6951-b097b5ee0d2d@amazon.com>
+ <CAK8P3a0RUHxcpyUJU5bpd8nqpm0Sqhy4aJaoh7K9jVn8zJC6aQ@mail.gmail.com>
+From:   "Shenhar, Talel" <talel@amazon.com>
+Message-ID: <a616c903-6d3e-cf84-8afb-ade48d5ca68f@amazon.com>
+Date:   Tue, 10 Sep 2019 09:17:11 +0300
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:68.0) Gecko/20100101
+ Thunderbird/68.0
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ee813b0-2c6c-4a76-5f24-08d735b627ee
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2019 06:14:36.5278
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4YnlJ2idbaYluL82I2r98F8Zcy+Ws/Uwt0G8sDCbp5A9Zv40r53PGBlTgG8EuGCOEPJ8domIlGYHhnzBHpXzOYx4LvkZ9GbZ3Viyaxkv+70=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3711
+In-Reply-To: <CAK8P3a0RUHxcpyUJU5bpd8nqpm0Sqhy4aJaoh7K9jVn8zJC6aQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [10.43.161.82]
+X-ClientProxiedBy: EX13D08UWC002.ant.amazon.com (10.43.162.168) To
+ EX13D01EUB001.ant.amazon.com (10.43.166.194)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDE5LTA5LTEwIGF0IDA2OjA4ICswMDAwLCBQaGlsaXBwZSBTY2hlbmtlciB3cm90
-ZToNCj4gT24gVGh1LCAyMDE5LTA5LTA1IGF0IDE5OjA2ICswMTAwLCBNYXJrIEJyb3duIHdyb3Rl
-Og0KPiA+IE9uIFR1ZSwgU2VwIDAzLCAyMDE5IGF0IDA4OjAzOjQ2QU0gKzAwMDAsIFBoaWxpcHBl
-IFNjaGVua2VyIHdyb3RlOg0KPiA+ID4gVGhpcyBjb21taXQgYWRkcyB0aGUgcG9zc2liaWxpdHkg
-dG8gY2hvb3NlIHRoZSBjb21wYXRpYmxlDQo+ID4gPiAicmVndWxhdG9yLWZpeGVkLWNsb2NrIiBp
-biBkZXZpY2V0cmVlLg0KPiA+ID4gDQo+ID4gPiBUaGlzIGlzIGEgc3BlY2lhbCByZWd1bGF0b3It
-Zml4ZWQgdGhhdCBoYXMgdG8gaGF2ZSBhIGNsb2NrLCBmcm9tDQo+ID4gPiB3aGljaA0KPiA+ID4g
-dGhlIHJlZ3VsYXRvciBnZXRzIHN3aXRjaGVkIG9uIGFuZCBvZmYuDQo+ID4gDQo+ID4gVGhpcyBz
-ZWVtcyBjb25jZXB0dWFsbHkgZmluZS4gIE1pbm9yIGlzc3VlcyB0aG91Z2g6DQo+IA0KPiBUaGFu
-a3MgZm9yIHlvdXIgY29tbWVudHMgYW5kIEknbSBnbGFkIHlvdSBsaWtlIGl0ISBJIHdpbGwgc2Vu
-ZCBhIHYyDQo+IHNob3J0bHksIGFsc28gd2l0aCBSb2IncyBmaXhlcyBpbi4gQ2FuIEkgZXhwZWN0
-IGl0IHRvIGJlIHB1bGxlZCBmb3INCj4gNS40Pw0KDQpJIG1lYW50IDUuNSBvZiBjb3Vyc2UuDQoN
-Cj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gUGhpbGlwcGUNCj4gDQo+ID4gPiArc3RhdGljIGludCBy
-ZWdfY2xvY2tfaXNfZW5hYmxlZChzdHJ1Y3QgcmVndWxhdG9yX2RldiAqcmRldikNCj4gPiA+ICt7
-DQo+ID4gPiArCXN0cnVjdCBmaXhlZF92b2x0YWdlX2RhdGEgKnByaXYgPSByZGV2X2dldF9kcnZk
-YXRhKHJkZXYpOw0KPiA+ID4gKw0KPiA+ID4gKwlpZiAocHJpdi0+Y2xrX2VuYWJsZV9jb3VudGVy
-ID4gMCkNCj4gPiA+ICsJCXJldHVybiAxOw0KPiA+ID4gKw0KPiA+ID4gKwlyZXR1cm4gMDsNCj4g
-PiA+ICt9DQo+ID4gDQo+ID4gVGhpcyBjb3VsZCBqdXN0IGJlIHJldHVybiBwcml2LT5jbGtfZW5h
-YmxlX2NvdW50ZXIgPiAwIC0gaWRlYWxseSB0aGUNCj4gPiBjbG9jayBBUEkgd291bGQgbGV0IHVz
-IHF1ZXJ5IGlmIHRoZSBjbG9jayBpcyBlbmFibGVkIGJ1dCB0aGF0IG1pZ2h0DQo+ID4gYmUNCj4g
-PiBhDQo+ID4gYml0IGNvbmZ1c2VkIGFueXdheSBnaXZlbiB0aGF0IGl0J3MgcG9zc2libHkgc2hh
-cmVkLg0K
+
+On 9/9/2019 6:08 PM, Arnd Bergmann wrote:
+> On Mon, Sep 9, 2019 at 3:59 PM Shenhar, Talel <talel@amazon.com> wrote:
+>> On 9/9/2019 4:45 PM, Arnd Bergmann wrote:
+>>
+>> Its not that something will get broken. its error event detector for POS
+>> events which allows seeing bad accesses to registers.
+>>
+>> What is the general rule of which configs to put under select and which
+>> under defconfig?
+>>
+>> I was thinking that "general" SoC support is good under select - those
+>> things that we always want.
+> I generally want as little as possible to be selected, basically only
+> things that are required for linking the kernel and booting it without
+> potentially destroying the hardware.
+>
+> In particular, I want most drivers to be enabled as loadable modules
+> if possible. When you have general-purpose distributions support
+> your platform, there is no need to have this module built-in while
+> running on a different chip, even if you always want to load the
+> module when it's running on yours.
+>
+>> And specific features, e.g. RAID support or features that supported only
+>> on specific HW shall go under defconfig.
+>>
+>> Similar, I see ARCH_LAYERSCAPE selecting EDAC_SUPPORT.
+> I think this was done to avoid a link failure. It's also possible that this
+> is a mistake and just did not get caught in review.
+>
+>         Arnd
+
+
+I see.
+
+Will remove this from v2.
+
