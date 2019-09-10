@@ -2,24 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40DF2AE261
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 04:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29769AE288
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 05:26:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389281AbfIJCkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 22:40:37 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:51750 "EHLO inva021.nxp.com"
+        id S1728654AbfIJD0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 23:26:36 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:46438 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727298AbfIJCkh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 22:40:37 -0400
+        id S1726892AbfIJD0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 23:26:36 -0400
 Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4874C200008;
-        Tue, 10 Sep 2019 04:40:35 +0200 (CEST)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7A848200071;
+        Tue, 10 Sep 2019 05:26:34 +0200 (CEST)
 Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E1211200056;
-        Tue, 10 Sep 2019 04:40:29 +0200 (CEST)
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 20851200056;
+        Tue, 10 Sep 2019 05:26:29 +0200 (CEST)
 Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id C0024402CF;
-        Tue, 10 Sep 2019 10:40:22 +0800 (SGT)
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 41B7E402A5;
+        Tue, 10 Sep 2019 11:26:22 +0800 (SGT)
 From:   Anson Huang <Anson.Huang@nxp.com>
 To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
         s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
@@ -27,9 +27,9 @@ To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
 Cc:     Linux-imx@nxp.com
-Subject: [PATCH] arm64: dts: imx8mn: Add "fsl,imx8mq-src" as src's fallback compatible
-Date:   Tue, 10 Sep 2019 10:39:19 -0400
-Message-Id: <1568126359-2887-1-git-send-email-Anson.Huang@nxp.com>
+Subject: [PATCH 1/2] arm64: dts: imx8mn: Add system counter node
+Date:   Tue, 10 Sep 2019 11:25:17 -0400
+Message-Id: <1568129118-31114-1-git-send-email-Anson.Huang@nxp.com>
 X-Mailer: git-send-email 2.7.4
 X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
@@ -37,27 +37,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX8MN can reuse i.MX8MQ's src driver, add "fsl,imx8mq-src" as
-src's fallback compatible to enable it.
+Add i.MX8MN system counter node to enable timer-imx-sysctr
+broadcast timer driver.
 
 Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 ---
- arch/arm64/boot/dts/freescale/imx8mn.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/arm64/boot/dts/freescale/imx8mn.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-index 785f4c4..d94db95 100644
+index d94db95..0166f8c 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
 +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-@@ -371,7 +371,7 @@
+@@ -428,6 +428,14 @@
+ 				#pwm-cells = <2>;
+ 				status = "disabled";
  			};
++
++			system_counter: timer@306a0000 {
++				compatible = "nxp,sysctr-timer";
++				reg = <0x306a0000 0x20000>;
++				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&osc_24m>;
++				clock-names = "per";
++			};
+ 		};
  
- 			src: reset-controller@30390000 {
--				compatible = "fsl,imx8mn-src", "syscon";
-+				compatible = "fsl,imx8mn-src", "fsl,imx8mq-src", "syscon";
- 				reg = <0x30390000 0x10000>;
- 				interrupts = <GIC_SPI 89 IRQ_TYPE_LEVEL_HIGH>;
- 				#reset-cells = <1>;
+ 		aips3: bus@30800000 {
 -- 
 2.7.4
 
