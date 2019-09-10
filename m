@@ -2,86 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04AA0AE88D
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:43:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62C99AE8AE
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729678AbfIJKm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 06:42:57 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:39259 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729308AbfIJKm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 06:42:57 -0400
-Received: from [IPv6:2001:420:44c1:2577:9dde:3063:4dc7:2a88] ([IPv6:2001:420:44c1:2577:9dde:3063:4dc7:2a88])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id 7dbniVrTy9b7T7dbrii3hs; Tue, 10 Sep 2019 12:42:55 +0200
-Subject: Re: [Patch 00/13] media: am437x-vpfe: overdue maintenance
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190909162743.30114-1-bparrot@ti.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <5b73285c-5d05-1799-06fc-f4ab84cb9a1d@xs4all.nl>
-Date:   Tue, 10 Sep 2019 12:42:51 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190909162743.30114-1-bparrot@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfDgLUEHVN+RKov8OWXK1F7XNGT12EkJNiYeymJivzCZcZuFob/plBzrX/mPgK47XVhOZy64hbgWTJSXRZXg53bsDL2o24RyqG6Yk5/bKNtsBxMPfo7lf
- 6Y+6E9PCVDB74klKgCifSzdihMf4RSAKZuVrvrpZyZ6M5enTvN1rpiivxHtqdvR4HbGZfUJSozQGB0h6r/fqV4wpFbb8IMFmENSV9czometSb2ird2gjTPN8
- ULjQA2TVpldqO/OaNYq37mUO7HXKqfxx49Xe3hASQEYcPyc/pr1qS6rc6+D/0c3Exh0ZoHGwcsXffW9RzuglCcXXvhexe5ywDmOySNcx67yXuWUr6RUgGNMX
- dDYcgO1NXn9hwaUqDoNOc9FZ3McMA4pjti1dCJjC70VflsSdpSEPUHPpDE9R4MLLInQji2HJB5H/1BYnGEhc+78FZjjdWA==
+        id S1732641AbfIJKxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 06:53:33 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:60090 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730054AbfIJKxd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 06:53:33 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7F74C1A049D;
+        Tue, 10 Sep 2019 12:53:30 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id A76B51A01CA;
+        Tue, 10 Sep 2019 12:53:25 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BD762402A5;
+        Tue, 10 Sep 2019 18:53:19 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com
+Cc:     linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        Martin Fuzzey <mfuzzey@parkeon.com>
+Subject: [v4,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some properties
+Date:   Tue, 10 Sep 2019 18:42:46 +0800
+Message-Id: <20190910104247.13142-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benoit,
+Add some properties for pcf85263/pcf85363 as follows:
+  - nxp,rtc-interrupt-type: integer type
+  - nxp,rtc-interrupt-output-pin: string type
+  - quartz-load-femtofarads: integer type
+  - nxp,quartz-drive-strength: integer type
+  - nxp,quartz-low-jitter: bool type
+  - wakeup-source: bool type
 
-On 9/9/19 6:27 PM, Benoit Parrot wrote:
-> This patch series is a collection of patches we have been carrying for a
-> while.
-> 
-> A few patches do fix actual bug and v4l2-compliance errors/warnings.
-> Other are drivers re-work to simplify/clarify the code for easier
-> maintenance.
+Signed-off-by: Martin Fuzzey <mfuzzey@parkeon.com>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+---
+Change in v4:
+	- Drop robust defines in include/dt-bindings/rtc/pcf85363.h
+	- Add nxp,rtc-interrupt-type property
+	- Replace interrupt-output-pin with nxp,rtc-interrupt-output-pin
 
-Can you post the output of the latest version of v4l2-compliance? Use
-the '-s' option so streaming is tested as well.
+Change in v3:
+	- None
 
-Thanks!
+Change in v2:
+	- Replace properties name
+	  quartz-load-capacitance -> quartz-load-femtofarads
+	  quartz-drive-strength -> nxp,quartz-drive-strength
+	  quartz-low-jitter -> nxp,quartz-low-jitter
+	- Replace drive strength name
+	  PCF85263_QUARTZDRIVE_NORMAL -> PCF85263_QUARTZDRIVE_100ko
+	  PCF85263_QUARTZDRIVE_LOW -> PCF85263_QUARTZDRIVE_60ko
+	  PCF85263_QUARTZDRIVE_HIGH -> PCF85263_QUARTZDRIVE_500ko
+	- Set default interrupt-output-pin as "INTA"
 
-	Hans
+ .../devicetree/bindings/rtc/pcf85363.txt      | 44 ++++++++++++++++++-
+ include/dt-bindings/rtc/pcf85363.h            | 14 ++++++
+ 2 files changed, 57 insertions(+), 1 deletion(-)
+ create mode 100644 include/dt-bindings/rtc/pcf85363.h
 
-> 
-> We also include the SPDX Licensing update which seemed to have been
-> missed by the global script thus far.
-> 
-> Benoit Parrot (12):
->   media: am437x-vpfe: Fix missing first line
->   media: am437x-vpfe: Rework ISR routine for clarity
->   media: am437x-vpfe: Wait for end of frame before tear-down
->   media: am437x-vpfe: Streamlined vb2 buffer cleanup
->   media: am437x-vpfe: Setting STD to current value is not an error
->   media: am437x-vpfe: Use a per instance format array instead of a
->     static one
->   media: am437x-vpfe: Maintain a reference to the current vpfe_fmt
->   media: am437x-vpfe: fix function trace debug log
->   media: am437x-vpfe: Remove print_fourcc helper
->   media: am437x-vpfe: TRY_FMT ioctl is not really trying anything
->   media: am437x-vpfe: Remove per bus width static data
->   media: am437x-vpfe: Switch to SPDX Licensing
-> 
-> Dave Gerlach (1):
->   media: am437x-vpfe: Fix suspend path to always handle pinctrl config
-> 
->  drivers/media/platform/am437x/am437x-vpfe.c   | 906 ++++++++----------
->  drivers/media/platform/am437x/am437x-vpfe.h   |  44 +-
->  .../media/platform/am437x/am437x-vpfe_regs.h  |  10 +-
->  3 files changed, 438 insertions(+), 522 deletions(-)
-> 
+diff --git a/Documentation/devicetree/bindings/rtc/pcf85363.txt b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+index 94adc1cf93d9..fc1579463657 100644
+--- a/Documentation/devicetree/bindings/rtc/pcf85363.txt
++++ b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+@@ -8,10 +8,52 @@ Required properties:
+ Optional properties:
+ - interrupts: IRQ line for the RTC (not implemented).
+ 
++- nxp,rtc-interrupt-type: integer property, represent the interrupt's
++  type. Valid values are
++  INT_PIE(periodic interrupt enable),
++  INT_OIE(offset correction interrupt enable),
++  INT_A1IE(alarm1 interrupt enable),
++  INT_A2IE(alarm2 interrupt enable),
++  INT_TSRIE(timestamp register interrupt enable)
++  INT_BSIE(battery switch interrupt enable),
++  INT_WDIE(WatchDog interrupt enable,and
++  compose these values such as: INT_A1IE | INT_A2IE,
++  but currently only support INT_A1IE, default value is INT_A1IE.
++  The property and property nxp,rtc-interrupt-output-pin
++  work together to generate some interrupts on some pins.
++
++- nxp,rtc-interrupt-output-pin: The interrupt output pin must be
++  "INTA" or "INTB", default value is "INTA". The property and property
++  nxp,rtc-interrupt-type work together to generate some interrupts on
++  some pins.
++
++- quartz-load-femtofarads: The internal capacitor to select for the quartz,
++  expressed in femto Farad (fF). Valid values are 6000, 7000 and 12500.
++  Default value is 12500fF.
++
++- nxp,quartz-drive-strength: Drive strength for the quartz,
++  expressed in kilo ohms (kOhm) Valid values are 60, 100 and 500.
++  Default value is 100kOhm.
++
++- nxp,quartz-low-jitter: Boolean property, if present enables low jitter mode
++  which reduces jitter at the cost of increased power consumption.
++
++- wakeup-source: Boolean property, Please refer to
++  Documentation/devicetree/bindings/power/wakeup-source.txt
++
+ Example:
+ 
+ pcf85363: pcf85363@51 {
+ 	compatible = "nxp,pcf85363";
+ 	reg = <0x51>;
+-};
+ 
++	interrupt-parent = <&gpio1>;
++	interrupts = <18 IRQ_TYPE_EDGE_FALLING>;
++
++	wakeup-source;
++	nxp,rtc-interrupt-output-pin = "INTA";
++	nxp,rtc-interrupt-type = <INT_A1IE>;
++	quartz-load-femtofarads = <12500>;
++	nxp,quartz-drive-strength = <60>;
++	nxp,quartz-low-jitter;
++};
+diff --git a/include/dt-bindings/rtc/pcf85363.h b/include/dt-bindings/rtc/pcf85363.h
+new file mode 100644
+index 000000000000..6340bf2da8f5
+--- /dev/null
++++ b/include/dt-bindings/rtc/pcf85363.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef _DT_BINDINGS_RTC_PCF85363_H
++#define _DT_BINDINGS_RTC_PCF85363_H
++
++/* Interrupt type */
++#define INT_WDIE	(1 << 0)
++#define INT_BSIE	(1 << 1)
++#define INT_TSRIE	(1 << 2)
++#define INT_A2IE	(1 << 3)
++#define INT_A1IE	(1 << 4)
++#define INT_OIE		(1 << 5)
++#define INT_PIE		(1 << 6)
++
++#endif /* _DT_BINDINGS_RTC_PCF85363_H */
+-- 
+2.17.1
 
