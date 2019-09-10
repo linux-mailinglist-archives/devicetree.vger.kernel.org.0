@@ -2,89 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3C7FAF1FD
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 21:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0EECAF25D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 22:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725876AbfIJToJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 15:44:09 -0400
-Received: from smtprelay0155.hostedemail.com ([216.40.44.155]:44947 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725856AbfIJToJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 15:44:09 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay07.hostedemail.com (Postfix) with ESMTP id 7B7AF181D3368;
-        Tue, 10 Sep 2019 19:44:07 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2393:2553:2559:2562:2828:2892:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3873:3874:4321:5007:6117:6742:10004:10400:10848:10903:10967:11232:11658:11914:12297:12740:12760:12895:13069:13255:13311:13357:13439:14096:14097:14659:14819:21080:21627:21740:21939:30054:30070:30075:30090:30091,0,RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:25,LUA_SUMMARY:none
-X-HE-Tag: week84_5de298bb30418
-X-Filterd-Recvd-Size: 2519
-Received: from XPS-9350.home (unknown [47.151.152.152])
-        (Authenticated sender: joe@perches.com)
-        by omf07.hostedemail.com (Postfix) with ESMTPA;
-        Tue, 10 Sep 2019 19:44:05 +0000 (UTC)
-Message-ID: <c90c33b421c0fa0db5182d0f58c6ba6e86cf1622.camel@perches.com>
-Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
- users to %p[sS]
-From:   Joe Perches <joe@perches.com>
-To:     Steven Rostedt <rostedt@goodmis.org>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Arnaldo Carvalho de Melo <acme@redhat.com>,
-        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
-        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>
-Date:   Tue, 10 Sep 2019 12:44:03 -0700
-In-Reply-To: <20190910150303.5a0d3904@oasis.local.home>
-References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
-         <20190910084707.18380-2-sakari.ailus@linux.intel.com>
-         <20190910071837.2e9110f8@oasis.local.home>
-         <61a2b2ab4693535850306f396aac2a328e1d5a21.camel@perches.com>
-         <20190910142621.0bec208d@oasis.local.home>
-         <c458e734f5777561138b87228384808398547762.camel@perches.com>
-         <20190910150303.5a0d3904@oasis.local.home>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.32.1-2 
+        id S1725932AbfIJUqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 16:46:37 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:39936 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725263AbfIJUqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 16:46:36 -0400
+Received: by mail-ed1-f65.google.com with SMTP id v38so18555892edm.7;
+        Tue, 10 Sep 2019 13:46:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=FHzCSzk/2F4WEi0ssp/MuqreT3AyNbr4d9w+cOv5C0k=;
+        b=m5SjcWhY8h3raUlGZ99t3qeAQ2t3krAD/KbeRc7KFZzaT6ZkR6Q4vibZkyxYyZ7wUV
+         bOitVTAnQRH3AgZYZLTe9eoHcaBrekaHnP2vBpb0IdghoHaXypKQ5OUs8P1ZCSRKESmC
+         LN8Hb0Qc5USujWtlvPA/KyyeKv7sIoHgwmp5sEa0jXHyW//slKNd5jTu2uKxGX09ZQzE
+         /i1999i7kZPoNkpyWcm8UBEl6U7LlBQtZfdyP0ukPfxsC7esw9NhuDPb48dsvRfU0Haa
+         YmsAuP+lPFhoHzoystGMIeyAfdRDRvyaJbvZNRHjrZi2m0aSrBvW7Vq8coDoptkK11zq
+         IElw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=FHzCSzk/2F4WEi0ssp/MuqreT3AyNbr4d9w+cOv5C0k=;
+        b=lGFJ0odsG7Ht0HXy/PQ8cz9lJj1LLikLPu3AjVrN46/1bAru6wz2BMMfmCM8S0eTzk
+         v3uXs1H7TRbBhkUAsZq0WcfggZxB3GIvq406I+H3KAwmSjMYq7BhgfM9tf/OlA5VczDE
+         BdW+BKOY7zzQkpMgJV4ruk/XhRnZljM70mO+KiadFFUBnorQ8kE1FhZlVXuyXB+O6sOM
+         nFCW2Cd7JUMnvluWLMzgLweuCgg1g729ZMbQXlsMqRImimoYHxHUESkcrPOT0ebmUHKc
+         mG+B+tr1nZ1UTWhPGAchIrmT/Dfgg/1jiQWJyTyStxhLZtuyISdcovosSAHXsPJZB/6u
+         LQ6A==
+X-Gm-Message-State: APjAAAVJxizP+Y5DwpyHNwN5bYo6ycQGgp2OfXbUuM7pBX9por3evIJV
+        ZySyJ2bxqAkPPNOTZzCur7cfWbz+RUC4NWQ+rws=
+X-Google-Smtp-Source: APXvYqzj9/FbOE2ReaUBgrcXgifimtd8vb9VA9oTV2k7jlzGpqC2PVqmgSgGuJqgcGPNhcGQsCPCX6Z1uHCoVZ5IKa0=
+X-Received: by 2002:a17:906:400c:: with SMTP id v12mr26284439ejj.15.1568148394995;
+ Tue, 10 Sep 2019 13:46:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Received: by 2002:a17:906:e258:0:0:0:0 with HTTP; Tue, 10 Sep 2019 13:46:34
+ -0700 (PDT)
+In-Reply-To: <20190910124952.GG32337@t480s.localdomain>
+References: <20190910154238.9155-1-bob.beckett@collabora.com>
+ <20190910154238.9155-4-bob.beckett@collabora.com> <23101286-4da2-2a53-e7cd-71ead263bbaa@gmail.com>
+ <20190910124952.GG32337@t480s.localdomain>
+From:   Vladimir Oltean <olteanv@gmail.com>
+Date:   Tue, 10 Sep 2019 21:46:34 +0100
+Message-ID: <CA+h21hpS9YYDwv0JzmA5BBSanV+w2jvyZdtFqYt=GL+hEc=ufA@mail.gmail.com>
+Subject: Re: [PATCH 3/7] dt-bindings: mv88e6xxx: add ability to set default
+ queue priorities per port
+To:     Vivien Didelot <vivien.didelot@gmail.com>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        Robert Beckett <bob.beckett@collabora.com>,
+        netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Jiri Pirko <jiri@resnulli.us>,
+        Ido Schimmel <idosch@mellanox.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-09-10 at 15:03 -0400, Steven Rostedt wrote:
-> On Tue, 10 Sep 2019 11:42:06 -0700
-[]
-> > btw:
-> > 
-> > Is there kernel version information available in
-> > trace output files?
-> 
-> Not really. This is just a library that parses the trace event formats,
-> there's not kernel versions passed in, but we do use variations in
-> formats and such to determine what is supported.
-> 
-> > If so, it might be reasonable to change the tooling
-> > there instead.
-> > 
-> 
-> Actually, I think we could just look to see if "%pfw" is used and fall
-> to that, otherwise consider it an older kernel and do it the original
-> way.
+Hi guys,
 
-Well, if you think that works, OK great.
+On 10/09/2019, Vivien Didelot <vivien.didelot@gmail.com> wrote:
+> Hi Robert,
+>
+> On Tue, 10 Sep 2019 09:42:24 -0700, Florian Fainelli <f.fainelli@gmail.com>
+> wrote:
+>> This is a vendor specific driver/property,
+>> marvell,default-queue-priority (which be cheapskate on words) would be
+>> more readable. But still, I have some more fundamental issues with the
+>> general approach, see my response in the cover letter.
+>
+> As Florian said, the DT is unlikely to welcome vendor specific nodes for
+> configuration which may be generic through standard network userspace
+> tools.
+>
+>
+> Thanks,
+>
+> 	Vivien
+>
 
-But could that work?
-How would an individual trace record know if
-another trace record used %pfw?
+While I do agree that the DT bindings are a big no-no for QoS
+settings, the topic is interesting.
+What is the user space knob for configuring port-default priority (say
+RX queue)?
+Something like this maybe? (a very forced "matchall" with rxnfc)
+ethtool --config-nfc eth0 flow-type ether src 00:00:00:00:00:00 m
+00:00:00:00:00:00 action 5
 
-Perhaps not reusing %pf, marking it reserved
-for a period of years, and using another unused
-prefix %p<type> like %pnfw may be simpler.
-
-
+Regards,
+-Vladimir
