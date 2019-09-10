@@ -2,165 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74D5CAEAC4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 14:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 880AAAEB0F
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 15:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392346AbfIJMmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 08:42:54 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:42952 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388017AbfIJMmy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 08:42:54 -0400
-Received: by mail-wr1-f66.google.com with SMTP id q14so19914222wrm.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 05:42:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Ub4SnTSb6gIhX0nmNU7ISH0G8O7vugmWfe28Zf8iviI=;
-        b=pEwdeA+6eJ8v3UkA9Jzqd5hUweTKn/5vjQBsphWKp3lGezCEmdxB0gkbJnCOEKhGrz
-         od2fxEWrNAXGFXdzA33ye3zBGBOj/TLNpu8qryAqCl36Q8YrMxPchxUjjH/s6iaAskST
-         nG14v8Olaqg4c72biCSQvDGbqyDto7+ftndjhrijahjXqLbo57GqwAN8Tu7vSi6kOGXL
-         dv6Mz5F+83dIbK/Fc3+of/C+73aiioDMEJ/03ccEPHtQpdIUlIxBolLpu6aWQe/SbT09
-         lz7f3H58FD/0HQqJttinWByYSGkebP5i289Jmv9hiLHi+8LDCuWuizCnIIOfEnizaqIK
-         tEyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ub4SnTSb6gIhX0nmNU7ISH0G8O7vugmWfe28Zf8iviI=;
-        b=TynuKdYPZ7pfUE3KTBMMpUo4DIJF4F5EnCOznVZ+7RNk/aE4wXXdQJ0vafWwCq7L5r
-         TQzvi/tYhxRFE7/CP6RjYkH0dTTzqocMr3FurhB8/HufAQwwrKvto9EU+nUxEU4Q/ZhJ
-         APgYcyPOwTR1QOZmgnjX2NyPCDneB6Ahr5+BdF5f7BAb8YkG0pqSnj43BrY8GLG141v6
-         EQSlNNi2ykzDDHuafu9uUWEkHsIz9EJ4prpuxJnBnB2iiWbm6ejyfxNP19pe2kbKqebd
-         ijUOChUOktl6Sc+Uoe3wmNDl8+UA9y/5bvDtB4nY1te/JENuu+n2k8/be52tN/UxRvzU
-         ysLg==
-X-Gm-Message-State: APjAAAWHh4hGExQTZBUU+zeay5NB322fUL09L9pxQXR9dPZeSaZllwnT
-        6DuR2Kl5IlcUv0qSwlNNOh5NuQ==
-X-Google-Smtp-Source: APXvYqxFgL8FIlOMUuSCgraQ22g8Zjq1m1xa+tcRMBGgUky84S5wpONFoqDvxPucL2VbgiLpgWRkng==
-X-Received: by 2002:a05:6000:12d1:: with SMTP id l17mr25805559wrx.91.1568119372913;
-        Tue, 10 Sep 2019 05:42:52 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id h5sm13118486wrr.10.2019.09.10.05.42.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2019 05:42:52 -0700 (PDT)
-Date:   Tue, 10 Sep 2019 13:42:50 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     mpm@selenic.com, herbert@gondor.apana.org.au,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>, sumit.garg@linaro.org,
-        jens.wiklander@linaro.org, vkoul@kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Joel Stanley <joel@jms.id.au>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-crypto@vger.kernel.org,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Subject: Re: [PATCH v2 1/2] dt-binding: hwrng: add NPCM RNG documentation
-Message-ID: <20190910124250.2i5muqjt5c35kvgb@holly.lan>
-References: <20190909123840.154745-1-tmaimon77@gmail.com>
- <20190909123840.154745-2-tmaimon77@gmail.com>
- <20190910102505.vgyomi575ldrk2lq@holly.lan>
- <CAP6Zq1igPJ5PvaA2YaC-=ngQOnatt4PFJj-QzaJCueDf6KA19A@mail.gmail.com>
+        id S2393396AbfIJNFD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 09:05:03 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:56189 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726654AbfIJNFD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 09:05:03 -0400
+X-UUID: 0e25170f0be44bab883995e496cc179f-20190910
+X-UUID: 0e25170f0be44bab883995e496cc179f-20190910
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <dongchun.zhu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 248699618; Tue, 10 Sep 2019 21:04:57 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 10 Sep 2019 21:04:48 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 10 Sep 2019 21:04:47 +0800
+From:   <dongchun.zhu@mediatek.com>
+To:     <mchehab@kernel.org>, <andriy.shevchenko@linux.intel.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <sakari.ailus@linux.intel.com>, <drinkcat@chromium.org>,
+        <tfiga@chromium.org>, <matthias.bgg@gmail.com>,
+        <bingbu.cao@intel.com>
+CC:     <srv_heupstream@mediatek.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <sj.huang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <louis.kuo@mediatek.com>, <shengnan.wang@mediatek.com>,
+        <dongchun.zhu@mediatek.com>
+Subject: [V2, 0/2] media: ov8856: DT bindings and sensor mode improvements
+Date:   Tue, 10 Sep 2019 21:04:44 +0800
+Message-ID: <20190910130446.26413-1-dongchun.zhu@mediatek.com>
+X-Mailer: git-send-email 2.9.2
+In-Reply-To: <media: ov8856: DT bindings and sensor mode improvements>
+References: <media: ov8856: DT bindings and sensor mode improvements>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAP6Zq1igPJ5PvaA2YaC-=ngQOnatt4PFJj-QzaJCueDf6KA19A@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 10, 2019 at 02:55:44PM +0300, Tomer Maimon wrote:
-> Hi Daniel,
-> 
-> Sorry but I have probably miss it, thanks a lot for your comment
-> 
-> On Tue, 10 Sep 2019 at 13:25, Daniel Thompson <daniel.thompson@linaro.org>
-> wrote:
-> 
-> > On Mon, Sep 09, 2019 at 03:38:39PM +0300, Tomer Maimon wrote:
-> > > Added device tree binding documentation for Nuvoton BMC
-> > > NPCM Random Number Generator (RNG).
-> > >
-> > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> > > ---
-> > >  .../bindings/rng/nuvoton,npcm-rng.txt           | 17 +++++++++++++++++
-> > >  1 file changed, 17 insertions(+)
-> > >  create mode 100644
-> > Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> > b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> > > new file mode 100644
-> > > index 000000000000..a697b4425fb3
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> > > @@ -0,0 +1,17 @@
-> > > +NPCM SoC Random Number Generator
-> > > +
-> > > +Required properties:
-> > > +- compatible  : "nuvoton,npcm750-rng" for the NPCM7XX BMC.
-> > > +- reg         : Specifies physical base address and size of the
-> > registers.
-> > > +
-> > > +Optional property:
-> > > +- quality : estimated number of bits of true entropy per 1024 bits
-> > > +                     read from the rng.
-> > > +                     If this property is not defined, it defaults to
-> > 1000.
-> >
-> > There are pending unreplied review comments about this property (my own
-> > as it happens):
-> > https://patchwork.kernel.org/patch/11119371/
-> >
-> > No, there isn't different SoCs.
-> we had checked the quality of the hwrng and the results we got are set as
-> default.
-> we been asked from one of our client to have a dynamic quality, they will
-> like to be more strict when using the hwrng.
-> is it problematic to add it?
+From: Dongchun Zhu <dongchun.zhu@mediatek.com>
 
-It's a slightly grey area but in general the role of devicetree is to
-describe the hardware. This parameter is not doing that.
+Hello,
 
-If you view the quality assessment of this RNG to be a user preference
-it is better set the quality to zero which is what the vast majority of
-hwrng devices do. When the driver sets the quality to zero then the
-kernel does not stir the entropy pool automatically... instead it
-relies on the userspace rngd to do that. If the user wants the kernel
-to stir the pool automatically then the quality can be set using the
-default_quality kernel parameter.
+This series adds DT bindings and some more sensor modes for users to use.
 
+From the latest ov8856 datasheet, it is proposed to adopt the resolution
+of 1632*1224 and 3264*2448, together with Bayer Order of BGGR.
+Thus here we try to provide two more scenarios.
 
-Daniel.
+In addition, the hardware revision of ov8856 is checked from one OTP SRAM register R700F.
+PLL register R3614 requires to be correspondingly updated.
+For instance, 0x20 is preferred for 1B module revision.
 
-> 
-> Having a controllable quality implies that the numeric quality of the
-> peripheral changes when it is stamped out on different SoCs (otherwise
-> the driver can confidently set the quality without needing any hint
-> from the DT). Is that really true here?
-> 
-> 
-> > Daniel.
-> >
-> > > +
-> > > +Example:
-> > > +
-> > > +rng: rng@f000b000 {
-> > > +     compatible = "nuvoton,npcm750-rng";
-> > > +     reg = <0xf000b000 0x8>;
-> > > +};
-> > > --
-> > > 2.18.0
-> > >
-> >
+Mainly changes of v2 are addressing the comments from Sakari, Tomasz,
+including,
+ - Add clock-frequency and link-frequencies in DT
+ - Re-define some macros like R3614, R3d84, n_shutdn
+ - Rename OV8856_MCLK to OV8856_XVCLK per datasheet
+ - Refine ov8856_update_otp_reg, ov8856_configure_regulators and ov8856_cal_delay
+ - Set the bayer order in the mode struct, and directly links to register R3808, R3809
+ - Remove or refine redundant log print
+ - Fix other reviewed issues in v1
+
+Dongchun Zhu (2):
+  media: dt-bindings: media: i2c: Add bindings for ov8856
+  media: i2c: Add more sensor modes for ov8856 camera sensor
+
+ .../devicetree/bindings/media/i2c/ov8856.txt       |  51 ++
+ MAINTAINERS                                        |   1 +
+ drivers/media/i2c/ov8856.c                         | 654 ++++++++++++++++++++-
+ 3 files changed, 691 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ov8856.txt
+
+-- 
+2.9.2
+
