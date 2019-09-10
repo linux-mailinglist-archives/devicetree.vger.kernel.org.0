@@ -2,133 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96684AEAA4
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 14:39:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D5CAEAC4
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 14:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404650AbfIJMgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 08:36:51 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:47048 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404426AbfIJMgt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 08:36:49 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190910123648euoutp02429358e707626df0135c7ed571ab40cd~DE_4Vb2Z52679026790euoutp02m
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 12:36:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190910123648euoutp02429358e707626df0135c7ed571ab40cd~DE_4Vb2Z52679026790euoutp02m
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568119008;
-        bh=RSuWB2xKQuhROQTDhZij7BzEdzlLgFlLbdhuBzwZOp4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=hB0X5E2jPHBVUw8U8g1VnUNZye/kYUNyAijWlrom4v4kecxlHYgoqYgDkxX7EwjA7
-         HvMONdPMeWannMasAXmq3yAd5kJcRLQJaIywUYcTTPX6zn3QTErcFYSvpQ4Bs9isIh
-         pY05c9sFCIn7xBqbR1PyucSrQXaggj4KVh/EHTG0=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190910123647eucas1p20b5977a2fa4ebd7c1eb0d84e3ea6f8ad~DE_3y2sp91358413584eucas1p2F;
-        Tue, 10 Sep 2019 12:36:47 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 17.F6.04309.FD8977D5; Tue, 10
-        Sep 2019 13:36:47 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190910123647eucas1p176bc817bbdae813e5aa9ab4745f9c285~DE_27XTxx1067210672eucas1p1l;
-        Tue, 10 Sep 2019 12:36:47 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190910123646eusmtrp1adf092844cf47c08a81772e54a8efac2~DE_2tHPgi2381323813eusmtrp1f;
-        Tue, 10 Sep 2019 12:36:46 +0000 (GMT)
-X-AuditID: cbfec7f4-ae1ff700000010d5-e1-5d7798dfcb8d
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 16.88.04166.ED8977D5; Tue, 10
-        Sep 2019 13:36:46 +0100 (BST)
-Received: from AMDC3061.DIGITAL.local (unknown [106.120.51.75]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190910123646eusmtip198c8b1c4f53d6d2961b8c402bdebf128~DE_2HdSg90745507455eusmtip1S;
-        Tue, 10 Sep 2019 12:36:46 +0000 (GMT)
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-To:     krzk@kernel.org, vireshk@kernel.org
-Cc:     robh+dt@kernel.org, kgene@kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: [PATCH v4 6/6] ARM: dts: Add samsung,asv-bin property for
- odroidxu3-lite
-Date:   Tue, 10 Sep 2019 14:36:18 +0200
-Message-Id: <20190910123618.27985-7-s.nawrocki@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190910123618.27985-1-s.nawrocki@samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupnleLIzCtJLcpLzFFi42LZduznOd37M8pjDb4t0bDYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vFpsfXWC0u75rDZvG59wijxYzz+5gs1h65y27RuvcIu8XhN+2sFpsfHGNz
-        4PHYtKqTzWPzknqPvi2rGD0+b5ILYInisklJzcksSy3St0vgyrj+rJOp4Atbxc7eG4wNjDdY
-        uxg5OSQETCROd78Asrk4hARWMEo0/XgC5XxhlFhzcz4jhPOZUWL54k3sXYwcYC3Pe1gg4ssZ
-        JXYsaWaD6+j+/40dZC6bgKFE79E+RhBbREBd4tWp/8wgRcwC65gkls1aBpYQFgiWaHj7HayB
-        RUBVYmHPfjYQm1fAWuLwnL1sEAfKS6zecIAZxOYUsJE4tXsXE8ggCYF+dokVG/awQxS5SMzp
-        PQr1kbDEq+NboOIyEqcnQ9wqIdDMKNGz+zY7hDOBUeL+8QWMEFVA645fZAV5jllAU2L9Ln2I
-        sKPEpDMvGSF+5pO48VYQJMwMZE7aNp0ZIswr0dEmBFGtIvF71XQmCFtKovvJfxaIEg+JPX3Q
-        AOpnlHg6bQ3LBEb5WQi7FjAyrmIUTy0tzk1PLTbKSy3XK07MLS7NS9dLzs/dxAhMJqf/Hf+y
-        g3HXn6RDjAIcjEo8vA/aymOFWBPLiitzDzFKcDArifBe7yuNFeJNSaysSi3Kjy8qzUktPsQo
-        zcGiJM5bzfAgWkggPbEkNTs1tSC1CCbLxMEp1cAYZLHm+IPD9clnqw0XHzC8/f3/K6n9zi7N
-        oeFiAVsfPMvYXcnCH3o/7CvfPaOCf3f8V7P3vRda+rH75uSbqk83C+ptFnzupaAqMsX14sfw
-        yBWn8k59sKw0f88dOM1g/0Rt1x4he1XveXGrVRi/xgR825qdPm+HekFnmumXFV4rLFmkQ7t4
-        Kp8osRRnJBpqMRcVJwIA2vQ1wyIDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHLMWRmVeSWpSXmKPExsVy+t/xu7r3ZpTHGjz8om2xccZ6Vov5R86x
-        WvQ/fs1scf78BnaLTY+vsVpc3jWHzeJz7xFGixnn9zFZrD1yl92ide8RdovDb9pZLTY/OMbm
-        wOOxaVUnm8fmJfUefVtWMXp83iQXwBKlZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwe
-        a2VkqqRvZ5OSmpNZllqkb5egl3H9WSdTwRe2ip29NxgbGG+wdjFycEgImEg872HpYuTiEBJY
-        yigx4/sydoi4lMT8FqUuRk4gU1jiz7UuNoiaT4wSf6/fYAZJsAkYSvQe7WMEqRcR0JTYuw6s
-        hllgB5PE3md/2UBqhAUCJdqPvWQBsVkEVCUW9uwHi/MKWEscnrOXDWKBvMTqDQfAZnIK2Eic
-        2r2LCcQWAqp5/XEK6wRGvgWMDKsYRVJLi3PTc4sN9YoTc4tL89L1kvNzNzECw3rbsZ+bdzBe
-        2hh8iFGAg1GJh/dBW3msEGtiWXFl7iFGCQ5mJRHe632lsUK8KYmVValF+fFFpTmpxYcYTYGO
-        msgsJZqcD4y5vJJ4Q1NDcwtLQ3Njc2MzCyVx3g6BgzFCAumJJanZqakFqUUwfUwcnFINjDaa
-        EfExV/5/8xCeclx+OeMfJan1wod5Jgc+F/N4Ji2a4V127Sxj1ZUZu/n7JwYWFx55YcMY+Pbe
-        lNdXPaK/Hb11ll/6a+OO6nVnn56IcRU9fNrxhbH5RJ4Gl3OCG5U4/33SiFoUk39wia/ajp4U
-        K6HavYU/956adfHfeuGS8M7nZmUrnwcG3ldiKc5INNRiLipOBACk+bOigQIAAA==
-X-CMS-MailID: 20190910123647eucas1p176bc817bbdae813e5aa9ab4745f9c285
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190910123647eucas1p176bc817bbdae813e5aa9ab4745f9c285
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190910123647eucas1p176bc817bbdae813e5aa9ab4745f9c285
-References: <20190910123618.27985-1-s.nawrocki@samsung.com>
-        <CGME20190910123647eucas1p176bc817bbdae813e5aa9ab4745f9c285@eucas1p1.samsung.com>
+        id S2392346AbfIJMmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 08:42:54 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:42952 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388017AbfIJMmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 08:42:54 -0400
+Received: by mail-wr1-f66.google.com with SMTP id q14so19914222wrm.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 05:42:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Ub4SnTSb6gIhX0nmNU7ISH0G8O7vugmWfe28Zf8iviI=;
+        b=pEwdeA+6eJ8v3UkA9Jzqd5hUweTKn/5vjQBsphWKp3lGezCEmdxB0gkbJnCOEKhGrz
+         od2fxEWrNAXGFXdzA33ye3zBGBOj/TLNpu8qryAqCl36Q8YrMxPchxUjjH/s6iaAskST
+         nG14v8Olaqg4c72biCSQvDGbqyDto7+ftndjhrijahjXqLbo57GqwAN8Tu7vSi6kOGXL
+         dv6Mz5F+83dIbK/Fc3+of/C+73aiioDMEJ/03ccEPHtQpdIUlIxBolLpu6aWQe/SbT09
+         lz7f3H58FD/0HQqJttinWByYSGkebP5i289Jmv9hiLHi+8LDCuWuizCnIIOfEnizaqIK
+         tEyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Ub4SnTSb6gIhX0nmNU7ISH0G8O7vugmWfe28Zf8iviI=;
+        b=TynuKdYPZ7pfUE3KTBMMpUo4DIJF4F5EnCOznVZ+7RNk/aE4wXXdQJ0vafWwCq7L5r
+         TQzvi/tYhxRFE7/CP6RjYkH0dTTzqocMr3FurhB8/HufAQwwrKvto9EU+nUxEU4Q/ZhJ
+         APgYcyPOwTR1QOZmgnjX2NyPCDneB6Ahr5+BdF5f7BAb8YkG0pqSnj43BrY8GLG141v6
+         EQSlNNi2ykzDDHuafu9uUWEkHsIz9EJ4prpuxJnBnB2iiWbm6ejyfxNP19pe2kbKqebd
+         ijUOChUOktl6Sc+Uoe3wmNDl8+UA9y/5bvDtB4nY1te/JENuu+n2k8/be52tN/UxRvzU
+         ysLg==
+X-Gm-Message-State: APjAAAWHh4hGExQTZBUU+zeay5NB322fUL09L9pxQXR9dPZeSaZllwnT
+        6DuR2Kl5IlcUv0qSwlNNOh5NuQ==
+X-Google-Smtp-Source: APXvYqxFgL8FIlOMUuSCgraQ22g8Zjq1m1xa+tcRMBGgUky84S5wpONFoqDvxPucL2VbgiLpgWRkng==
+X-Received: by 2002:a05:6000:12d1:: with SMTP id l17mr25805559wrx.91.1568119372913;
+        Tue, 10 Sep 2019 05:42:52 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id h5sm13118486wrr.10.2019.09.10.05.42.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2019 05:42:52 -0700 (PDT)
+Date:   Tue, 10 Sep 2019 13:42:50 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     mpm@selenic.com, herbert@gondor.apana.org.au,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>, sumit.garg@linaro.org,
+        jens.wiklander@linaro.org, vkoul@kernel.org,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Joel Stanley <joel@jms.id.au>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-crypto@vger.kernel.org,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Subject: Re: [PATCH v2 1/2] dt-binding: hwrng: add NPCM RNG documentation
+Message-ID: <20190910124250.2i5muqjt5c35kvgb@holly.lan>
+References: <20190909123840.154745-1-tmaimon77@gmail.com>
+ <20190909123840.154745-2-tmaimon77@gmail.com>
+ <20190910102505.vgyomi575ldrk2lq@holly.lan>
+ <CAP6Zq1igPJ5PvaA2YaC-=ngQOnatt4PFJj-QzaJCueDf6KA19A@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAP6Zq1igPJ5PvaA2YaC-=ngQOnatt4PFJj-QzaJCueDf6KA19A@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Exynos5422 SoC used on Odroid XU3 Lite boards belongs to
-a special ASV bin but this information cannot be read from the
-CHIPID block registers. Add samsung,asv-bin property for XU3
-Lite to ensure the ASV bin is properly determined.
+On Tue, Sep 10, 2019 at 02:55:44PM +0300, Tomer Maimon wrote:
+> Hi Daniel,
+> 
+> Sorry but I have probably miss it, thanks a lot for your comment
+> 
+> On Tue, 10 Sep 2019 at 13:25, Daniel Thompson <daniel.thompson@linaro.org>
+> wrote:
+> 
+> > On Mon, Sep 09, 2019 at 03:38:39PM +0300, Tomer Maimon wrote:
+> > > Added device tree binding documentation for Nuvoton BMC
+> > > NPCM Random Number Generator (RNG).
+> > >
+> > > Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> > > ---
+> > >  .../bindings/rng/nuvoton,npcm-rng.txt           | 17 +++++++++++++++++
+> > >  1 file changed, 17 insertions(+)
+> > >  create mode 100644
+> > Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> > b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> > > new file mode 100644
+> > > index 000000000000..a697b4425fb3
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> > > @@ -0,0 +1,17 @@
+> > > +NPCM SoC Random Number Generator
+> > > +
+> > > +Required properties:
+> > > +- compatible  : "nuvoton,npcm750-rng" for the NPCM7XX BMC.
+> > > +- reg         : Specifies physical base address and size of the
+> > registers.
+> > > +
+> > > +Optional property:
+> > > +- quality : estimated number of bits of true entropy per 1024 bits
+> > > +                     read from the rng.
+> > > +                     If this property is not defined, it defaults to
+> > 1000.
+> >
+> > There are pending unreplied review comments about this property (my own
+> > as it happens):
+> > https://patchwork.kernel.org/patch/11119371/
+> >
+> > No, there isn't different SoCs.
+> we had checked the quality of the hwrng and the results we got are set as
+> default.
+> we been asked from one of our client to have a dynamic quality, they will
+> like to be more strict when using the hwrng.
+> is it problematic to add it?
 
-Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
----
-Changes since v2:
- - none
+It's a slightly grey area but in general the role of devicetree is to
+describe the hardware. This parameter is not doing that.
 
-Changes since v1 (RFC):
- - new patch
----
- arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+If you view the quality assessment of this RNG to be a user preference
+it is better set the quality to zero which is what the vast majority of
+hwrng devices do. When the driver sets the quality to zero then the
+kernel does not stir the entropy pool automatically... instead it
+relies on the userspace rngd to do that. If the user wants the kernel
+to stir the pool automatically then the quality can be set using the
+default_quality kernel parameter.
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts b/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts
-index c19b5a51ca44..a31ca2ef750f 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3-lite.dts
-@@ -26,6 +26,10 @@
- 	status = "disabled";
- };
 
-+&chipid {
-+	samsung,asv-bin = <2>;
-+};
-+
- &pwm {
- 	/*
- 	 * PWM 0 -- fan
---
-2.17.1
+Daniel.
 
+> 
+> Having a controllable quality implies that the numeric quality of the
+> peripheral changes when it is stamped out on different SoCs (otherwise
+> the driver can confidently set the quality without needing any hint
+> from the DT). Is that really true here?
+> 
+> 
+> > Daniel.
+> >
+> > > +
+> > > +Example:
+> > > +
+> > > +rng: rng@f000b000 {
+> > > +     compatible = "nuvoton,npcm750-rng";
+> > > +     reg = <0xf000b000 0x8>;
+> > > +};
+> > > --
+> > > 2.18.0
+> > >
+> >
