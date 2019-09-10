@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6812DAEEC0
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 17:44:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AC07AEEC5
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 17:45:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731756AbfIJPoq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 11:44:46 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:43820 "EHLO
+        id S1729077AbfIJPpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 11:45:09 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:43836 "EHLO
         bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726664AbfIJPoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 11:44:46 -0400
+        with ESMTP id S1726664AbfIJPpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 11:45:08 -0400
 Received: from [127.0.0.1] (localhost [127.0.0.1])
         (Authenticated sender: bbeckett)
-        with ESMTPSA id AA5C528DA1D
+        with ESMTPSA id 0AF8F28DA1D
 From:   Robert Beckett <bob.beckett@collabora.com>
 To:     netdev@vger.kernel.org
 Cc:     Robert Beckett <bob.beckett@collabora.com>,
@@ -23,9 +23,9 @@ Cc:     Robert Beckett <bob.beckett@collabora.com>,
         "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Subject: [PATCH 5/7] dt-bindings: mv88e6xxx: add ability to set queue scheduling
-Date:   Tue, 10 Sep 2019 16:41:51 +0100
-Message-Id: <20190910154238.9155-6-bob.beckett@collabora.com>
+Subject: [PATCH 7/7] dt-bindings: mv88e6xxx: add egress rate limiting
+Date:   Tue, 10 Sep 2019 16:41:53 +0100
+Message-Id: <20190910154238.9155-8-bob.beckett@collabora.com>
 X-Mailer: git-send-email 2.18.0
 In-Reply-To: <20190910154238.9155-1-bob.beckett@collabora.com>
 References: <20190910154238.9155-1-bob.beckett@collabora.com>
@@ -34,62 +34,64 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document port queue scheduling settings.
-Add definitions for specific valid values.
+Document port egress rate limiting settings.
+Add defines for specifying egress rate limiting mode.
 
 Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
 ---
- .../devicetree/bindings/net/dsa/marvell.txt     | 12 ++++++++++++
- include/dt-bindings/net/dsa-mv88e6xxx.h         | 17 +++++++++++++++++
- 2 files changed, 29 insertions(+)
- create mode 100644 include/dt-bindings/net/dsa-mv88e6xxx.h
+ .../devicetree/bindings/net/dsa/marvell.txt   | 22 +++++++++++++++++++
+ include/dt-bindings/net/dsa-mv88e6xxx.h       |  5 +++++
+ 2 files changed, 27 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/net/dsa/marvell.txt b/Documentation/devicetree/bindings/net/dsa/marvell.txt
-index e097c3c52eac..7de90929c3c9 100644
+index 7de90929c3c9..d33c1958f420 100644
 --- a/Documentation/devicetree/bindings/net/dsa/marvell.txt
 +++ b/Documentation/devicetree/bindings/net/dsa/marvell.txt
-@@ -50,6 +50,18 @@ Optional properties:
- Optional properties for ports:
- - defqpri=<n>		: Enforced default queue priority for the given port.
- 			  Valid range is 0..3
-+- schedule=<n>		: Set ports scheduling mode. Valid values are:
-+			  MV88E6XXX_PORT_SCHED_ROUND_ROBIN - All output queues
-+			  use a weighter round robin scheme.
-+			  MV88E6XXX_PORT_SCHED_STRICT_3 - Output queue 3 uses
-+			  a strict scheme, where any packets in queue 3 will be
-+			  egressed first, followed by weighted round robin for
-+			  the other ports.
-+			  MV88E6XXX_PORT_SCHED_STRICT_3_2 - Output queue's 2
-+			  and 3 use strict, other use weighted round robin.
-+			  MV88E6XXX_PORT_SCHED_STRICT_ALL - All queues use
-+			  strict priority, where queues drain in descending
-+			  queue number order.
+@@ -62,6 +62,28 @@ Optional properties for ports:
+ 			  MV88E6XXX_PORT_SCHED_STRICT_ALL - All queues use
+ 			  strict priority, where queues drain in descending
+ 			  queue number order.
++- egress-limit-mode=<n>	: Set port egress rate limiting mode. Valid values are:
++			  MV88E6XXX_PORT_EGRESS_COUNT_MODE_FRAMES - Count layer
++			  2 frames (assumed to be 64kb).
++			  MV88E6XXX_PORT_EGRESS_COUNT_MODE_L1 - Count all layer
++			  1 bits
++			  MV88E6XXX_PORT_EGRESS_COUNT_MODE_L2 - Count all layer
++			  2 bits
++			  MV88E6XXX_PORT_EGRESS_COUNT_MODE_L3 - Count all layer
++			  3 bits
++			  Must also specify egress-limit-count.
++- egress-limit-count=<n>: Set port egress rate limiting count. If
++			  egress-limit-mode is FRAMES, this specifies the
++			  maximum number of ethernet frames to allow to egress
++			  from this port per second, otherwise it is number of
++			  bits as counted based on the mode allowed to egress
++			  from this port per second.
++			  The HW has limitations which the driver adheres to:
++			  between 64 Kbps to 1 Mbps in 16 Kbps increments
++			  between 1 Mbps to 100 Mbps in 1Mbps increments
++			  between 100 Mbps to 1 Gbps in 10 Mbps increments.
++			  Other values will be rounded down the previous
++			  increment.
  
  Example:
  
 diff --git a/include/dt-bindings/net/dsa-mv88e6xxx.h b/include/dt-bindings/net/dsa-mv88e6xxx.h
-new file mode 100644
-index 000000000000..3f62003841ce
---- /dev/null
+index 3f62003841ce..33ecd94f5e22 100644
+--- a/include/dt-bindings/net/dsa-mv88e6xxx.h
 +++ b/include/dt-bindings/net/dsa-mv88e6xxx.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Device Tree constants for Marvell 88E6xxx Switch Port Registers
-+ *
-+ * Copyright (c) 2019, Collabora Ltd.
-+ * Copyright (c) 2019, General Electric Company
-+ */
+@@ -9,6 +9,11 @@
+ #ifndef _DT_BINDINGS_MV88E6XXX_H
+ #define _DT_BINDINGS_MV88E6XXX_H
+ 
++#define MV88E6XXX_PORT_EGRESS_COUNT_MODE_FRAMES	0
++#define MV88E6XXX_PORT_EGRESS_COUNT_MODE_L1	1
++#define MV88E6XXX_PORT_EGRESS_COUNT_MODE_L2	2
++#define MV88E6XXX_PORT_EGRESS_COUNT_MODE_L3	3
 +
-+#ifndef _DT_BINDINGS_MV88E6XXX_H
-+#define _DT_BINDINGS_MV88E6XXX_H
-+
-+#define MV88E6XXX_PORT_SCHED_ROUND_ROBIN	0
-+#define MV88E6XXX_PORT_SCHED_STRICT_3		1
-+#define MV88E6XXX_PORT_SCHED_STRICT_3_2		2
-+#define MV88E6XXX_PORT_SCHED_STRICT_ALL		3
-+
-+#endif /* _DT_BINDINGS_MV88E6XXX_H */
+ #define MV88E6XXX_PORT_SCHED_ROUND_ROBIN	0
+ #define MV88E6XXX_PORT_SCHED_STRICT_3		1
+ #define MV88E6XXX_PORT_SCHED_STRICT_3_2		2
 -- 
 2.18.0
 
