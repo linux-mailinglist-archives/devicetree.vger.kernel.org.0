@@ -2,138 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A901AAEF07
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 17:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F01DAEF39
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727934AbfIJPze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 11:55:34 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:37661 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727457AbfIJPze (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 11:55:34 -0400
-Received: by mail-wm1-f65.google.com with SMTP id r195so163293wme.2;
-        Tue, 10 Sep 2019 08:55:30 -0700 (PDT)
+        id S2436672AbfIJQJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 12:09:07 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:44165 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436575AbfIJQJG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:09:06 -0400
+Received: by mail-pf1-f194.google.com with SMTP id q21so11780325pfn.11
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 09:09:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=YJ/xSRj04hb+Vjp0G8v57BGzk2RHL40NPxcaQuTTxb0=;
-        b=NopmjHDf1N0d3pOf0ECTnZpkWbC5PPwUogiwZsUwDTIwgEgQ47sCN/WtEU/LQLlPSv
-         fZ9X9O89kZTEP6e7o3p9jm+rLnGIDG4++Rxp/zhxPi8gUhsz3x1lbkfKW3RtvUOKYtb/
-         Q53V94Qyzox2PxZnj6wzk0UiwSuCBZT1oQJ8M/mIyqnarV1hZuegeQj8J9SUyIV48f09
-         yVnsIrEGiUAWTJb81dWQdA9Y541KxvANRRMTlpY5vX1yHTjkB2/7v8ZvBXwQLqOXq7u9
-         uqboVrDdxLwGW1pquRt+1L+t0qtJ0+3ugritCgb7zcDdqRYZJTTFcaGyvz5stIAtXU/S
-         J4KA==
+        bh=TUvxJ7wlmXdEjdS8Ji+2ki9BT3REdqo3NpskuD2RAZE=;
+        b=YJDh2YLeoTKo99EIHf/GbAcGlRVVjeHebFXD80CmOEXk6TDGBbj/Uh5lPLn3Z2Y21x
+         gTixE7rHSZVLLXSJ6GbQCyzq9QYepRhuOnus3wPSwsY1vxwywof4CRlDE9o5bB6kFdRh
+         L0aDQx9uJi6dcUYgOueyyIdi7vxhQ8v6gGLkc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=YJ/xSRj04hb+Vjp0G8v57BGzk2RHL40NPxcaQuTTxb0=;
-        b=kBwxLO9hEZVGswYPgvkRDae9JR139ZzRRdKln2dik7IX0/ks8gNe0I0vp06yZIjsG5
-         /cFds0QtSIjhiDL7ARb+Gt7LjBmsRUVXR7/WWd7mb2uztAp2DQlFPVF38PqwTrD4U8/p
-         b2wf2nbZfnnO0HohrgiEdn6P2R7Bc1755QEgzQJx7FSQvNJdrrvKEdAzcuU8k/Ampf19
-         PjojXvCOTpYXWjl+LwKrpGsy8FPM+uuvPd9r5SrUoHFtE0hzEc19DQaIGNWs6BVf0wyZ
-         QwxRoWidobP1TQHN23F9L76SwxL3PJ2F62u37/qW7AqP2TaCdV3VnxHcdF2XIo2ZPyRD
-         6npA==
-X-Gm-Message-State: APjAAAUsHnUemcjWzSRDey0wycsKw6GH4VgtsfsE9UkGfWHElxRhddcU
-        MBzXvsiq+eTomsWzhEwdzxSjD8r5Uy8=
-X-Google-Smtp-Source: APXvYqwRgrZHxJJlCCWWTIdvJK1X8hVtJn4cq1fyPIBd0nfF2LAchwsIZdzc9hsmxdjosHFLCGuzAw==
-X-Received: by 2002:a7b:c094:: with SMTP id r20mr143261wmh.134.1568130930147;
-        Tue, 10 Sep 2019 08:55:30 -0700 (PDT)
-Received: from arch-dsk-01.twb ([77.126.41.65])
-        by smtp.gmail.com with ESMTPSA id y3sm17167133wrw.83.2019.09.10.08.55.28
+        bh=TUvxJ7wlmXdEjdS8Ji+2ki9BT3REdqo3NpskuD2RAZE=;
+        b=G4WWGGa74z8a9q/lbWBo9y6bVyFvWFbp+qgBbsMnifmrqAP7E01U1ggSqwFAOLnIUc
+         63fWYuKpOnz2fbp6K4fmpAN2tXAtmWBq6xnKnV+xO8C3KQMrYt4zj413v0VJpViJcOEp
+         TF2zWdtzlUG3QGPeRHcRX5whiyt6o+ktY9t4cGoE27Nr8ziQFQ5BMDE0Sc1/zYEDYo+R
+         MQuNNSrOGF5N01//YUtB9ayL/90iucenmZ8UvMIaqfTYHo+A5XHjNnPuNS2Xgnnv75AV
+         fmJcGL4JkIZxWWJE6lj4Ar7IK1gbl6WR+iyNW5clq2M4CscQayjADX8prSRqwzPHiZpv
+         rF0g==
+X-Gm-Message-State: APjAAAWdwej53H51DT8F19x7xISgAzAlF/5at9A2GvpY/YncXd88jMXG
+        blOZV5+e3C7wHFzIY3pYY0wFYw==
+X-Google-Smtp-Source: APXvYqwv8qruQZ4KH/LAzFeFB5Fw6fLmcphoP8mGiPT4myBOZsUnw+zQpjwu6W6Ar30JnBYs9mBOxQ==
+X-Received: by 2002:a62:64c9:: with SMTP id y192mr37931196pfb.6.1568131744630;
+        Tue, 10 Sep 2019 09:09:04 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id em21sm106088pjb.31.2019.09.10.09.09.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2019 08:55:29 -0700 (PDT)
-From:   tinywrkb <tinywrkb@gmail.com>
-Cc:     tinywrkb@gmail.com, Russell King <linux@armlinux.org.uk>,
+        Tue, 10 Sep 2019 09:09:04 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Dan Williams <dan.j.williams@intel.com>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Evan Green <evgreen@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX
-        / MXC ARM ARCHITECTURE), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s max-speed
-Date:   Tue, 10 Sep 2019 18:55:07 +0300
-Message-Id: <20190910155507.491230-1-tinywrkb@gmail.com>
-X-Mailer: git-send-email 2.23.0
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        Catalin Marinas <catalin.marinas@arm.com>
+Subject: [PATCH v3 0/5] Read-only memremap()
+Date:   Tue, 10 Sep 2019 09:08:58 -0700
+Message-Id: <20190910160903.65694-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.23.0.162.g0b9fbb3734-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Cubox-i Solo/DualLite carrier board has 100Mb/s magnetics while the
-Atheros AR8035 PHY on the MicroSoM v1.3 CPU module is a 1GbE PHY device.
+This patch series implements a read-only version of memremap() via
+a new MEMREMAP_RO flag. If this is passed in the mapping call, we'll
+try to map the memory region as read-only if it doesn't intersect
+with an existing mapping. Otherwise, we'll try to fallback to other
+flags to try to map the memory that way.
 
-Since commit 5502b218e001 ("net: phy: use phy_resolve_aneg_linkmode in
-genphy_read_status") ethernet is broken on Cubox-i Solo/DualLite devices.
+The main use case I have is to map the command-db memory region on
+Qualcomm devices with a read-only mapping. It's already a const marked
+pointer and the API returns const pointers as well, so this series makes
+sure that even stray writes can't modify the memory. To get there we
+introduce a devm version of memremap() for a reserved memory region, add
+a memremap() flag, and implement support for that flag on arm64.
 
-This adds a phy node to the MicroSoM DTS and a 100Mb/s max-speed limit
-to the Cubox-i Solo/DualLite carrier DTS.
+Changes from v2 (https://lkml.kernel.org/r/20190614203717.75479-1-swboyd@chromium.org):
+ * Added a comment to kerneldoc for the new MEMREMAP_RO flag
+ * Rebased to v5.3-rc1
 
-Signed-off-by: tinywrkb <tinywrkb@gmail.com>
----
-This patch fixes ethernet on my Cubox-i2-300-D which is limited to 100Mb/s,
-afaik due to the carrier board  magnetics, and was since commit 5502b218e001
-("net: phy: use phy_resolve_aneg_linkmode in genphy_read_status")
+Changes from v1:
+ * Picked up tags and rebased to v5.2-rc3
 
-The AR8035 PHY on the CPU module reports to the driver as 1GbE capable
-via MII_BSMR's BMSR_ESTATEN status bit, the auto-negotiation sets the
-speed at 1GbE while the carrier board can't support it.
-Same behavior with the generic phy_device and the at803x drivers.
+Stephen Boyd (5):
+  reserved_mem: Add a devm_memremap_reserved_mem() API
+  soc: qcom: cmd-db: Migrate to devm_memremap_reserved_mem()
+  memremap: Add support for read-only memory mappings
+  arm64: Add support for arch_memremap_ro()
+  soc: qcom: cmd-db: Map with read-only mappings
 
-While the PHY is on the CPU module board I added the max-speed limit to
-the cubox-i carrier DTS as I suspect that if the Solo or DualLite v1.3
-MicroSoM will be connected to a 1GbE capable carrier board then it would
-work correctly with 1GbE.
+Cc: Evan Green <evgreen@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Andy Gross <agross@kernel.org>
+Cc: Will Deacon <will.deacon@arm.com>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
 
-I can confirm that this commit doesn't break networking on the my
-Cubox-i4Pro Quad (i4P-300-D) with it's 1GbE capable carrier board, and
-was tested separately with the generic phy_device and at803x drivers.
+ arch/arm64/include/asm/io.h     |  1 +
+ drivers/of/of_reserved_mem.c    | 45 +++++++++++++++++++++++++++++++++
+ drivers/soc/qcom/cmd-db.c       | 14 +++-------
+ include/linux/io.h              |  1 +
+ include/linux/of_reserved_mem.h |  6 +++++
+ kernel/iomem.c                  | 20 ++++++++++++---
+ 6 files changed, 74 insertions(+), 13 deletions(-)
 
- arch/arm/boot/dts/imx6dl-cubox-i.dts  | 4 ++++
- arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 9 +++++++++
- 2 files changed, 13 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx6dl-cubox-i.dts b/arch/arm/boot/dts/imx6dl-cubox-i.dts
-index 2b1b3e193f53..cfc82513c78c 100644
---- a/arch/arm/boot/dts/imx6dl-cubox-i.dts
-+++ b/arch/arm/boot/dts/imx6dl-cubox-i.dts
-@@ -49,3 +49,7 @@
- 	model = "SolidRun Cubox-i Solo/DualLite";
- 	compatible = "solidrun,cubox-i/dl", "fsl,imx6dl";
- };
-+
-+&ethphy {
-+	max-speed = <100>;
-+};
-diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-index 6d7f6b9035bc..969bc96c3f99 100644
---- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-@@ -57,6 +57,15 @@
- 	phy-reset-duration = <2>;
- 	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
- 	status = "okay";
-+	phy-handle = <&ethphy>;
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		ethphy: ethernet-phy@0 {
-+			compatible = "ethernet-phy-ieee802.3-c22";
-+			reg = <0>;
-+		};
-+	};
- };
- 
- &iomuxc {
+base-commit: 5f9e832c137075045d15cd6899ab0505cfb2ca4b
 -- 
-2.23.0
+Sent by a computer through tubes
 
