@@ -2,71 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09357AE835
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:33:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04AA0AE88D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:43:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2393817AbfIJKdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 06:33:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55350 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726869AbfIJKdG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 06:33:06 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B4E1B20872;
-        Tue, 10 Sep 2019 10:33:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568111585;
-        bh=LJtBmi1tzU6euOWenIIUw2u/xvJ895RqpElZGcqoEFA=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=OAZJ7pZnOmv9TWBnrIlLZYkgxdz9nE3yZkkswcGMUvEz1dDtQQtUpjisOcxQVWi8m
-         pSr+mBZWVY9wjfPqJncBp2lPnBzesriGkO0xQ7zUSzOnyAUjNCPwVhecpHQPreRFHS
-         JoMAZd14rknZjzD54lrSggDKmIYLet8VngkurqyI=
-Content-Type: text/plain; charset="utf-8"
+        id S1729678AbfIJKm5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 06:42:57 -0400
+Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:39259 "EHLO
+        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729308AbfIJKm5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 06:42:57 -0400
+Received: from [IPv6:2001:420:44c1:2577:9dde:3063:4dc7:2a88] ([IPv6:2001:420:44c1:2577:9dde:3063:4dc7:2a88])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id 7dbniVrTy9b7T7dbrii3hs; Tue, 10 Sep 2019 12:42:55 +0200
+Subject: Re: [Patch 00/13] media: am437x-vpfe: overdue maintenance
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190909162743.30114-1-bparrot@ti.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <5b73285c-5d05-1799-06fc-f4ab84cb9a1d@xs4all.nl>
+Date:   Tue, 10 Sep 2019 12:42:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190811210043.20122-2-digetx@gmail.com>
-References: <20190811210043.20122-1-digetx@gmail.com> <20190811210043.20122-2-digetx@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v10 01/15] clk: tegra20/30: Add custom EMC clock implementation
-User-Agent: alot/0.8.1
-Date:   Tue, 10 Sep 2019 03:33:04 -0700
-Message-Id: <20190910103305.B4E1B20872@mail.kernel.org>
+In-Reply-To: <20190909162743.30114-1-bparrot@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfDgLUEHVN+RKov8OWXK1F7XNGT12EkJNiYeymJivzCZcZuFob/plBzrX/mPgK47XVhOZy64hbgWTJSXRZXg53bsDL2o24RyqG6Yk5/bKNtsBxMPfo7lf
+ 6Y+6E9PCVDB74klKgCifSzdihMf4RSAKZuVrvrpZyZ6M5enTvN1rpiivxHtqdvR4HbGZfUJSozQGB0h6r/fqV4wpFbb8IMFmENSV9czometSb2ird2gjTPN8
+ ULjQA2TVpldqO/OaNYq37mUO7HXKqfxx49Xe3hASQEYcPyc/pr1qS6rc6+D/0c3Exh0ZoHGwcsXffW9RzuglCcXXvhexe5ywDmOySNcx67yXuWUr6RUgGNMX
+ dDYcgO1NXn9hwaUqDoNOc9FZ3McMA4pjti1dCJjC70VflsSdpSEPUHPpDE9R4MLLInQji2HJB5H/1BYnGEhc+78FZjjdWA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Dmitry Osipenko (2019-08-11 14:00:29)
-> A proper External Memory Controller clock rounding and parent selection
-> functionality is required by the EMC drivers, it is not available using
-> the generic clock implementation because only the Memory Controller driver
-> is aware of what clock rates are actually available for a particular
-> device. EMC drivers will have to register a Tegra-specific CLK-API
-> callback which will perform rounding of a requested rate. EMC clock users
-> won't be able to request EMC clock by getting -EPROBE_DEFER until EMC
-> driver is probed and the callback is set up.
->=20
-> The functionality is somewhat similar to the clk-emc.c which serves
-> Tegra124+ SoCs. The later HW generations support more parent clock sources
-> and the HW configuration / integration with the EMC drivers differs a tad
-> from the older gens, hence it's not really worth to try to squash
-> everything into a single source file.
->=20
-> Acked-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
+Hi Benoit,
 
-Acked-by: Stephen Boyd <sboyd@kernel.org>
+On 9/9/19 6:27 PM, Benoit Parrot wrote:
+> This patch series is a collection of patches we have been carrying for a
+> while.
+> 
+> A few patches do fix actual bug and v4l2-compliance errors/warnings.
+> Other are drivers re-work to simplify/clarify the code for easier
+> maintenance.
+
+Can you post the output of the latest version of v4l2-compliance? Use
+the '-s' option so streaming is tested as well.
+
+Thanks!
+
+	Hans
+
+> 
+> We also include the SPDX Licensing update which seemed to have been
+> missed by the global script thus far.
+> 
+> Benoit Parrot (12):
+>   media: am437x-vpfe: Fix missing first line
+>   media: am437x-vpfe: Rework ISR routine for clarity
+>   media: am437x-vpfe: Wait for end of frame before tear-down
+>   media: am437x-vpfe: Streamlined vb2 buffer cleanup
+>   media: am437x-vpfe: Setting STD to current value is not an error
+>   media: am437x-vpfe: Use a per instance format array instead of a
+>     static one
+>   media: am437x-vpfe: Maintain a reference to the current vpfe_fmt
+>   media: am437x-vpfe: fix function trace debug log
+>   media: am437x-vpfe: Remove print_fourcc helper
+>   media: am437x-vpfe: TRY_FMT ioctl is not really trying anything
+>   media: am437x-vpfe: Remove per bus width static data
+>   media: am437x-vpfe: Switch to SPDX Licensing
+> 
+> Dave Gerlach (1):
+>   media: am437x-vpfe: Fix suspend path to always handle pinctrl config
+> 
+>  drivers/media/platform/am437x/am437x-vpfe.c   | 906 ++++++++----------
+>  drivers/media/platform/am437x/am437x-vpfe.h   |  44 +-
+>  .../media/platform/am437x/am437x-vpfe_regs.h  |  10 +-
+>  3 files changed, 438 insertions(+), 522 deletions(-)
+> 
 
