@@ -2,60 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C24EBAEDD5
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 16:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56069AEE0B
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 17:02:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731630AbfIJOx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 10:53:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35302 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2393693AbfIJOx1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 10:53:27 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 946A621479;
-        Tue, 10 Sep 2019 14:53:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568127206;
-        bh=pUryn9WqGUSNogBctTeoXa0sx1NkQRLY6uysdLw32VE=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=IlqPaKo38YOb2bnVgeiWP3n/6PBesSjcaF3Ce3yIjfRwyOS7TENRbKaIcHPgVcXYY
-         PtXdZb8ZfSNUjQteNvvXvH941h5CcXAK+feuiNSlBOmVbzrxmxop0lPnVaHDtCQw9j
-         3CoQO6FteCUAU+89CWR1bJcwP916ja1Nx1pCdyo4=
-Content-Type: text/plain; charset="utf-8"
+        id S2388546AbfIJPCu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 11:02:50 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:55027 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730222AbfIJPCt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 11:02:49 -0400
+Received: from [148.69.85.38] (port=20650 helo=[192.168.5.132])
+        by hostingweb31.netsons.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1i7hfI-005t84-5V; Tue, 10 Sep 2019 17:02:44 +0200
+Subject: Re: [RFC,v2 3/6] media: dt-bindings: add DS90UB954-Q1 video
+ deserializer
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Vladimir Zapolskiy <vz@mleia.com>,
+        Peter Rosin <peda@axentia.se>
+References: <20190723203723.11730-1-luca@lucaceresoli.net>
+ <20190723203723.11730-4-luca@lucaceresoli.net>
+ <20190910094327.GG5781@paasikivi.fi.intel.com>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <c977123c-3f4d-a3b1-f329-fa69dbc20040@lucaceresoli.net>
+Date:   Tue, 10 Sep 2019 16:02:43 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1566206502-4347-11-git-send-email-mars.cheng@mediatek.com>
-References: <1566206502-4347-1-git-send-email-mars.cheng@mediatek.com> <1566206502-4347-11-git-send-email-mars.cheng@mediatek.com>
-Cc:     CC Hwang <cc.hwang@mediatek.com>,
-        Loda Chou <loda.chou@mediatek.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
-        mtk01761 <wendell.lin@mediatek.com>, linux-clk@vger.kernel.org
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Mars Cheng <mars.cheng@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh@kernel.org>, Sean Wang <sean.wang@kernel.org>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2 10/11] clk: mediatek: Add MT6779 clock support
-User-Agent: alot/0.8.1
-Date:   Tue, 10 Sep 2019 07:53:25 -0700
-Message-Id: <20190910145326.946A621479@mail.kernel.org>
+In-Reply-To: <20190910094327.GG5781@paasikivi.fi.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Mars Cheng (2019-08-19 02:21:41)
-> From: mtk01761 <wendell.lin@mediatek.com>
->=20
-> Add MT6779 clock support, include topckgen, apmixedsys,
-> infracfg, and subsystem clocks.
->=20
-> Signed-off-by: mtk01761 <wendell.lin@mediatek.com>
-> ---
+Hi Sakari,
 
-Applied to clk-next
+On 10/09/19 10:43, Sakari Ailus wrote:
+> Hi Luca,
+> 
+> On Tue, Jul 23, 2019 at 10:37:20PM +0200, Luca Ceresoli wrote:
+> 
+> ...
+> 
+>> +Device node example
+>> +-------------------
+>> +
+>> +&i2c0 {
+>> +	deser: deser@3d {
+>> +		compatible = "ti,ds90ub954-q1";
+>> +		reg-names = "main", "rxport0", "rxport1", "ser0", "ser1";
+>> +		reg       = <0x3d>,  <0x40>,    <0x41>,   <0x44>, <0x45>;
+>> +		clocks = <&clk_25M>;
+>> +		interrupt-parent = <&gic>;
+>> +		interrupts = <3 1 IRQ_TYPE_LEVEL_HIGH>;
+>> +		reset-gpios = <&gpio_ctl 4 GPIO_ACTIVE_LOW>;
+>> +
+>> +		i2c-alias-pool = /bits/ 16 <0x4a 0x4b 0x4c 0x4d 0x4e 0x4f>;
+>> +
+>> +		gpio-controller;
+>> +		#gpio-cells = <3>; /* rxport, remote gpio num, flags */
+>> +
+>> +		ports {
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +
+>> +			port@0 {
+>> +				reg = <0>;
+>> +				ds90ub954_fpd3_in0: endpoint {
+>> +					remote-endpoint = <&sensor_0_out>;
+>> +				};
+>> +			};
+>> +
+>> +			port@1 {
+>> +				reg = <1>;
+>> +				ds90ub954_fpd3_in1: endpoint {
+>> +					remote-endpoint = <&sensor_1_out>;
+>> +				};
+>> +			};
+>> +
+>> +			port@2 {
+>> +				reg = <2>;
+>> +				ds90ub954_mipi_out0: endpoint {
+>> +					data-lanes = <1 2 3 4>;
+>> +					/* Actually a REFCLK multiplier */
+>> +					data-rate = <1600000000>;
+> 
+> What is data-rate used for? Is it documented somewhere? Could you use
+> link-frequencies property instead? It's defined in video-interfaces.txt.
 
+Right, it should be link-frequencies. Thanks for pointing out.
+
+-- 
+Luca
