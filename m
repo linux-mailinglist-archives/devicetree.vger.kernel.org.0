@@ -2,119 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B923AF1AA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 21:07:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3C7FAF1FD
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 21:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727519AbfIJTHZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 15:07:25 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:48152 "EHLO mail.andi.de1.cc"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725797AbfIJTHZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 15:07:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Type:MIME-Version:References:
-        In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=AEDjfrYYUhQdX6HMeGMCyoTKE7nAS03kl1QMQ2bdVZE=; b=mEBIfoi68woBxE9Faku/eplgd
-        yOUOAxJqNJN1rFDopEdy7+rMcT4NKo9TvRp0UmRFxgvBNCepCYwBeT1NJzCJ2a/Tlu9JkowFA4dJ3
-        fyppG3GcpF4QxkNpHXt/P1ezPOI5ZDiw8Q//YQWapU0YdIvOKcIeDdlVHCfZseQ3AbZpA=;
-Received: from p200300ccff17ef007ee9d3fffe1fa246.dip0.t-ipconnect.de ([2003:cc:ff17:ef00:7ee9:d3ff:fe1f:a246] helo=eeepc)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1i7lTt-0006RZ-5m; Tue, 10 Sep 2019 21:07:13 +0200
-Received: from [::1] (helo=localhost)
-        by eeepc with esmtp (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1i7lTs-0001Px-6x; Tue, 10 Sep 2019 21:07:12 +0200
-Date:   Tue, 10 Sep 2019 21:06:48 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Daniel Thompson <daniel.thompson@linaro.org>
-Cc:     lee.jones@linaro.org, jingoohan1@gmail.com,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz, dmurphy@ti.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, b.zolnierkie@samsung.com,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: Re: [PATCH 1/2] backlight: lm3630a: add an enable gpio for the HWEN
- pin
-Message-ID: <20190910210648.3594912d@kemnade.info>
-In-Reply-To: <20190910102156.vmprsjebmlphkv34@holly.lan>
-References: <20190908203704.30147-1-andreas@kemnade.info>
-        <20190908203704.30147-2-andreas@kemnade.info>
-        <20190909105729.w5552rtop7rhghy2@holly.lan>
-        <20190909221349.46ca5a1f@aktux>
-        <20190910102156.vmprsjebmlphkv34@holly.lan>
-X-Mailer: Claws Mail 3.14.1 (GTK+ 2.24.31; i686-pc-linux-gnu)
+        id S1725876AbfIJToJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 15:44:09 -0400
+Received: from smtprelay0155.hostedemail.com ([216.40.44.155]:44947 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725856AbfIJToJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 15:44:09 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay07.hostedemail.com (Postfix) with ESMTP id 7B7AF181D3368;
+        Tue, 10 Sep 2019 19:44:07 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:960:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1540:1593:1594:1711:1730:1747:1777:1792:2393:2553:2559:2562:2828:2892:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3873:3874:4321:5007:6117:6742:10004:10400:10848:10903:10967:11232:11658:11914:12297:12740:12760:12895:13069:13255:13311:13357:13439:14096:14097:14659:14819:21080:21627:21740:21939:30054:30070:30075:30090:30091,0,RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:25,LUA_SUMMARY:none
+X-HE-Tag: week84_5de298bb30418
+X-Filterd-Recvd-Size: 2519
+Received: from XPS-9350.home (unknown [47.151.152.152])
+        (Authenticated sender: joe@perches.com)
+        by omf07.hostedemail.com (Postfix) with ESMTPA;
+        Tue, 10 Sep 2019 19:44:05 +0000 (UTC)
+Message-ID: <c90c33b421c0fa0db5182d0f58c6ba6e86cf1622.camel@perches.com>
+Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
+ users to %p[sS]
+From:   Joe Perches <joe@perches.com>
+To:     Steven Rostedt <rostedt@goodmis.org>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Arnaldo Carvalho de Melo <acme@redhat.com>,
+        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
+        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>
+Date:   Tue, 10 Sep 2019 12:44:03 -0700
+In-Reply-To: <20190910150303.5a0d3904@oasis.local.home>
+References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
+         <20190910084707.18380-2-sakari.ailus@linux.intel.com>
+         <20190910071837.2e9110f8@oasis.local.home>
+         <61a2b2ab4693535850306f396aac2a328e1d5a21.camel@perches.com>
+         <20190910142621.0bec208d@oasis.local.home>
+         <c458e734f5777561138b87228384808398547762.camel@perches.com>
+         <20190910150303.5a0d3904@oasis.local.home>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/d51yUFk84RybqHzz4cluJyL"; protocol="application/pgp-signature"
-X-Spam-Score: -1.0 (-)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/d51yUFk84RybqHzz4cluJyL
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+On Tue, 2019-09-10 at 15:03 -0400, Steven Rostedt wrote:
+> On Tue, 10 Sep 2019 11:42:06 -0700
+[]
+> > btw:
+> > 
+> > Is there kernel version information available in
+> > trace output files?
+> 
+> Not really. This is just a library that parses the trace event formats,
+> there's not kernel versions passed in, but we do use variations in
+> formats and such to determine what is supported.
+> 
+> > If so, it might be reasonable to change the tooling
+> > there instead.
+> > 
+> 
+> Actually, I think we could just look to see if "%pfw" is used and fall
+> to that, otherwise consider it an older kernel and do it the original
+> way.
 
-On Tue, 10 Sep 2019 11:21:56 +0100
-Daniel Thompson <daniel.thompson@linaro.org> wrote:
+Well, if you think that works, OK great.
 
-[...]
-> > > Is this needed?
-> > >=20
-> > > This is a remove path, not a power management path, and we have no id=
-ea
-> > > what the original status of the pin was anyway?
-> > >  =20
-> >=20
-> > Looking at Ishdn on page 5 of the datasheet, switching it off everytime
-> > possible seems not needed. We would need to call chip_init() everytime
-> > we enable the gpio or live with default values.
-> > Therefore I did decide to not put it into any power management path.
-> > But switching it on and not switching it off feels so unbalanced.  =20
->=20
-> Either the power consumed by the controller when strings aren't lit up
-> matters, in which case the driver should implement proper power
-> management or it doesn't matter and changing the pin state isn't needed.
->=20
-> I'm happy with either of the above but this looks like a third way,
-> where eager users could hack in a bit of extra power management by
-> forcing drivers to unbind.=20
->=20
-I think I will take the simple way. I am quite sure that the power
-consumption with HWEN on and leds off does not matter. If someone
-later comes up and finds out that I misread the datasheet, things
-are prepared to be improved.
-At least the hardware can be properly described in the devicetree.
+But could that work?
+How would an individual trace record know if
+another trace record used %pfw?
 
-Regards,
-Andreas
+Perhaps not reusing %pf, marking it reserved
+for a period of years, and using another unused
+prefix %p<type> like %pnfw may be simpler.
 
---Sig_/d51yUFk84RybqHzz4cluJyL
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEPIWxmAFyOaBcwCpFl4jFM1s/ye8FAl139EoACgkQl4jFM1s/
-ye+ZZA//WKkB+xioM4V6ShKpqapJ3LzkVD0RhoEhoiY/5NgLwkF1m/w/6Z0LmHB/
-8nvWJXJpxmTtIUzFqn265zYZWJwsYCV5EmlEHKy/Bv/XKENCeqGubixw4POqkbgw
-APKbSabSXoGtlhuhQjFXOc6FbBBB5ynt6f7nliuY9xYbN+rUTBWEgRrdJ4ktdQn8
-4sGtQv7jy41ogrZho1aUgpe7HAfuixlEUJlW9v2/i3a2n25uWCKMAt49nTns0xXv
-r4psgXQZs9pommPsaR799afcnFnWoHP7qW7kKsm9rSI5tq4hvJjEwbYCagpA9Rf8
-fXOn2PIGMAg0L2Grxmggp6HC5qaKMnntUBiIj26yljvce0F8bH4xyb5rRTrOEasP
-PSR1Y/FxzC6AyD8ZbeEIZEjqRcpz7Y5+c5cnrgROBpfxHv3rjOXYR9bZkkKQ7unV
-HnHdPFHESb/p0jvj2cOFyoUFQkeTtbpIfeCoX11T2rPBmIq1RJUD6UsLTe2DRlC6
-ex4vqW3RvQqTv5XIcUezPHUMVvmlUMyrx0XQyAVUGcnGYwxVBSLm1hMElaivuAM8
-gzbfNAwuTgl1xNseaGH7nu/UoUAKk4vEYEncT4YHWLoFJ9HjlyKmZNuM/4j1z+sd
-R2t/co/S1lpJCYvEOChmcwtxSa8pVn14iysG+32Pk++AX7CoqCM=
-=SLZS
------END PGP SIGNATURE-----
-
---Sig_/d51yUFk84RybqHzz4cluJyL--
