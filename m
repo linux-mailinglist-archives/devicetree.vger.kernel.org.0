@@ -2,106 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D1D5AE69A
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 11:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DF45AE6BF
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 11:22:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728837AbfIJJTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 05:19:35 -0400
-Received: from smtp3.goneo.de ([85.220.129.37]:33404 "EHLO smtp3.goneo.de"
+        id S1727149AbfIJJWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 05:22:39 -0400
+Received: from mga09.intel.com ([134.134.136.24]:33526 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729439AbfIJJTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 05:19:35 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by smtp3.goneo.de (Postfix) with ESMTP id 0247F23FDF8;
-        Tue, 10 Sep 2019 11:19:32 +0200 (CEST)
-X-Virus-Scanned: by goneo
-X-Spam-Flag: NO
-X-Spam-Score: -3.035
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.035 tagged_above=-999 tests=[ALL_TRUSTED=-1,
-        AWL=-0.135, BAYES_00=-1.9] autolearn=ham
-Received: from smtp3.goneo.de ([127.0.0.1])
-        by localhost (smtp3.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id dffO01LN1ocM; Tue, 10 Sep 2019 11:19:31 +0200 (CEST)
-Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
-        by smtp3.goneo.de (Postfix) with ESMTPA id 671F923FA02;
-        Tue, 10 Sep 2019 11:19:31 +0200 (CEST)
-From:   Lars Poeschel <poeschel@lemonage.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "GitAuthor: Lars Poeschel" <poeschel@lemonage.de>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Cc:     Johan Hovold <johan@kernel.org>
-Subject: [PATCH v7 2/7] nfc: pn532_uart: Add NXP PN532 to devicetree docs
-Date:   Tue, 10 Sep 2019 11:32:53 +0200
-Message-Id: <20190910093256.1920-1-poeschel@lemonage.de>
-X-Mailer: git-send-email 2.23.0
+        id S1726674AbfIJJWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 05:22:39 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Sep 2019 02:22:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; 
+   d="scan'208";a="178620145"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 10 Sep 2019 02:22:34 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1i7cM5-0004w5-9k; Tue, 10 Sep 2019 12:22:33 +0300
+Date:   Tue, 10 Sep 2019 12:22:33 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org, linux-acpi@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Joe Perches <joe@perches.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Arnaldo Carvalho de Melo <acme@redhat.com>,
+        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
+        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>
+Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
+ users to %p[sS]
+Message-ID: <20190910092233.GY2680@smile.fi.intel.com>
+References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
+ <20190910084707.18380-2-sakari.ailus@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190910084707.18380-2-sakari.ailus@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a simple binding doc for the pn532.
+On Tue, Sep 10, 2019 at 11:46:56AM +0300, Sakari Ailus wrote:
+> There are no in-kernel %p[fF] users left. Convert the traceevent tool,
+> too, to align with the kernel.
 
-Cc: Johan Hovold <johan@kernel.org>
-Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
----
-Changes in v6:
-- Rebased the patch series on v5.3-rc5
-- Picked up Rob's Reviewed-By
+>  function. The _tep_ argument is the trace event parser context. The _name_ is
+> -the name of the function, the string is copied internally. The _addr_ is
+> -the start address of the function. The _mod_ is the kernel module
+> -the function may be in (NULL for none).
+> +the name of the function, the string is copied internally. The _addr_ is the
+> +start address of the function. The _mod_ is the kernel module the function may
+> +be in (NULL for none).
 
-Changes in v4:
-- Add documentation about reg property in case of i2c
+This seems a churn of reformatting.
 
-Changes in v3:
-- seperate binding doc instead of entry in trivial-devices.txt
+> -		if (asprintf(&format, "%%pf: (NO FORMAT FOUND at %llx)\n", addr) < 0)
+> +		if (asprintf(&format, "%%ps: (NO FORMAT FOUND at %llx)\n",
+> +			     addr) < 0)
 
- .../devicetree/bindings/nfc/pn532.txt         | 33 +++++++++++++++++++
- 1 file changed, 33 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nfc/pn532.txt
+Splitting line also seems a churn to me. But this one is up to maintainers.
 
-diff --git a/Documentation/devicetree/bindings/nfc/pn532.txt b/Documentation/devicetree/bindings/nfc/pn532.txt
-new file mode 100644
-index 000000000000..d5aaa588073d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nfc/pn532.txt
-@@ -0,0 +1,33 @@
-+NXP PN532 NFC Chip
-+
-+Required properties:
-+- compatible: Should be
-+    - "nxp,pn532" Place a node with this inside the devicetree node of the bus
-+                  where the NFC chip is connected to.
-+                  Currently the kernel has phy bindings for uart and i2c.
-+    - "nxp,pn532-i2c" (DEPRECATED) only works for the i2c binding.
-+    - "nxp,pn533-i2c" (DEPRECATED) only works for the i2c binding.
-+
-+Required properties if connected on i2c:
-+- reg: for the i2c bus address. This is fixed at 0x48 for the PN532.
-+
-+Example uart:
-+
-+uart4: serial@49042000 {
-+        compatible = "ti,omap3-uart";
-+
-+        pn532: nfc {
-+                compatible = "nxp,pn532";
-+        };
-+};
-+
-+Example i2c:
-+
-+i2c1: i2c@0 {
-+        compatible = "ti,omap3-i2c";
-+
-+        pn532: nfc {
-+                compatible = "nxp,pn532";
-+                reg = <0x48>;
-+        };
-+};
+
+Other than above, looks good to me, thanks!
+
 -- 
-2.23.0
+With Best Regards,
+Andy Shevchenko
+
 
