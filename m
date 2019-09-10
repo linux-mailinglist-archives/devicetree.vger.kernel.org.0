@@ -2,208 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13DE4AE431
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 09:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F0EAE441
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 09:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729701AbfIJHDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 03:03:39 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:39764 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729270AbfIJHDi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 03:03:38 -0400
-Received: by mail-pl1-f195.google.com with SMTP id bd8so8081524plb.6
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 00:03:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=x8676vaAMOMU0xS9ZBzOGK+O3nkLRs05V8sfia4T0io=;
-        b=E1yMmjSYYd3SJOl+n5kBSPDt6WFLc78WrSf3sphfdotTh1RZBV7Wc2tjPZQ8px9Lig
-         HIziAgXnNgmbIGwEZTBIwWFVvZyQHTmvuM5p5CxbaRm5SowE78u3iYJ/VsbfSugaN8jf
-         NnlXJpbwcuB2cssMweuqo0+B1jpuvP2nzsTqzmKMtrl8C7M85iNm/k7zRCX4y7EdEqf3
-         zFlfzHcT4mMotiXCMV6H4wM1ZqRLhS9zy8PV7yFjQZPpFgvdpOWnMx0T6R5N5kIMCVPa
-         7F2JORo1xbDQps6U/RVRm7iIU80SWnXDaFWzFmmPz8v9wdKankZFOVw9XTCgudVlGMT4
-         nClg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=x8676vaAMOMU0xS9ZBzOGK+O3nkLRs05V8sfia4T0io=;
-        b=lxKoO2dYlS2xHK0ZZtJQCDlggYgyqV3k3tQSbEzsWz3B8spJJ/Nf+WFR1A73/LvJaI
-         LPltH/F7ioL2/JDkabyu3z30Htn78ip7GHBGafnkTitY12w3HBJU6ApU2M8O3BIgE4n7
-         rBoQQiLtSeTMROokS2IkkS0dMtKc4ElYdUN7rWLj+jc0ah65EjenGnFtoEtF+yVtU9NX
-         0s3O0MCEnc1BJfENjA2bHMwk5gd0kFijUAjMf959Q/YHZ+6hLuA3Nplkllq7/FDHWEql
-         YvnbGXp4GzibKU6H7MtBphQ7x7TdA4fXPle6TUTQkxbOIMR3Vn94gsIPkadBHok78IFr
-         QZhg==
-X-Gm-Message-State: APjAAAUk70/YCmTgToRb7PHJy8wBjbxGUITxuGMnsDQX+4qhytUcz2P2
-        W2U+K+6CjdovpKYAtphAnMUcSg==
-X-Google-Smtp-Source: APXvYqzf295XBYzMkJ2GP3vZ3dUOjLqYHN6ex68DBrUFlhgOofOjYtZwSxq9PB4LXBeat1GxDUDaAw==
-X-Received: by 2002:a17:902:8a88:: with SMTP id p8mr29467918plo.152.1568099017311;
-        Tue, 10 Sep 2019 00:03:37 -0700 (PDT)
-Received: from pragneshp.open-silicon.com ([114.143.65.226])
-        by smtp.gmail.com with ESMTPSA id q30sm1387383pja.18.2019.09.10.00.03.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 10 Sep 2019 00:03:36 -0700 (PDT)
-From:   Pragnesh Patel <pragnesh.patel@sifive.com>
-To:     palmer@sifive.com, paul.walmsley@sifive.com
-Cc:     Pragnesh Patel <pragnesh.patel@sifive.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] spi: dt-bindings: Convert spi-sifive binding to json-schema
-Date:   Tue, 10 Sep 2019 12:32:51 +0530
-Message-Id: <1568098996-4180-1-git-send-email-pragnesh.patel@sifive.com>
-X-Mailer: git-send-email 2.7.4
+        id S1731132AbfIJHHP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 03:07:15 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:39466 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729518AbfIJHHP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 03:07:15 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8A773kY063473;
+        Tue, 10 Sep 2019 02:07:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568099223;
+        bh=qhrJHNazfc5CMwtBCfE9AmHbBpmQjdMCtB10M++D6ZI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=aV5MsxeyOwzwuZre588rIVKEGGzYc0ka2baZHICXVKLIOPQ85G4qlEBnlMU9/6aq/
+         QWLgTsFdP5pvBhU4DDK+fl1lFQb/bNpW77FzDyhCS66xccgugv/apXAeh1XkKaeRA6
+         5L+806zvG7l2Kb7IKCSvyZDZbZTvjv6TKV9eZRD4=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8A7735E059383
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 10 Sep 2019 02:07:03 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 10
+ Sep 2019 02:07:03 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 10 Sep 2019 02:07:03 -0500
+Received: from [10.250.98.116] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8A76xLj100346;
+        Tue, 10 Sep 2019 02:07:00 -0500
+Subject: Re: [PATCH v2 06/14] dmaengine: ti: Add cppi5 header for UDMA
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Vinod Koul <vkoul@kernel.org>
+CC:     <robh+dt@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
+        <dan.j.williams@intel.com>, <dmaengine@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lokeshvutla@ti.com>, <t-kristo@ti.com>, <tony@atomide.com>,
+        <j-keerthy@ti.com>
+References: <20190730093450.12664-1-peter.ujfalusi@ti.com>
+ <20190730093450.12664-7-peter.ujfalusi@ti.com>
+ <20190908142528.GP2672@vkoul-mobl>
+ <8699f999-7834-a083-2c7b-3ea909b1e011@ti.com>
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+Message-ID: <8486fbb1-9d2c-9230-6205-85d58b93697c@ti.com>
+Date:   Tue, 10 Sep 2019 10:06:58 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <8699f999-7834-a083-2c7b-3ea909b1e011@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the spi-sifive binding to DT schema format.
 
-Signed-off-by: Pragnesh Patel <pragnesh.patel@sifive.com>
----
- .../devicetree/bindings/spi/spi-sifive.txt         | 37 ----------
- .../devicetree/bindings/spi/spi-sifive.yaml        | 86 ++++++++++++++++++++++
- 2 files changed, 86 insertions(+), 37 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/spi-sifive.txt
- create mode 100644 Documentation/devicetree/bindings/spi/spi-sifive.yaml
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-sifive.txt b/Documentation/devicetree/bindings/spi/spi-sifive.txt
-deleted file mode 100644
-index 3f5c6e4..0000000
---- a/Documentation/devicetree/bindings/spi/spi-sifive.txt
-+++ /dev/null
-@@ -1,37 +0,0 @@
--SiFive SPI controller Device Tree Bindings
--------------------------------------------
--
--Required properties:
--- compatible		: Should be "sifive,<chip>-spi" and "sifive,spi<version>".
--			  Supported compatible strings are:
--			  "sifive,fu540-c000-spi" for the SiFive SPI v0 as integrated
--			  onto the SiFive FU540 chip, and "sifive,spi0" for the SiFive
--			  SPI v0 IP block with no chip integration tweaks.
--			  Please refer to sifive-blocks-ip-versioning.txt for details
--- reg			: Physical base address and size of SPI registers map
--			  A second (optional) range can indicate memory mapped flash
--- interrupts		: Must contain one entry
--- interrupt-parent	: Must be core interrupt controller
--- clocks		: Must reference the frequency given to the controller
--- #address-cells	: Must be '1', indicating which CS to use
--- #size-cells		: Must be '0'
--
--Optional properties:
--- sifive,fifo-depth		: Depth of hardware queues; defaults to 8
--- sifive,max-bits-per-word	: Maximum bits per word; defaults to 8
--
--SPI RTL that corresponds to the IP block version numbers can be found here:
--https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/spi
--
--Example:
--	spi: spi@10040000 {
--		compatible = "sifive,fu540-c000-spi", "sifive,spi0";
--		reg = <0x0 0x10040000 0x0 0x1000 0x0 0x20000000 0x0 0x10000000>;
--		interrupt-parent = <&plic>;
--		interrupts = <51>;
--		clocks = <&tlclk>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--		sifive,fifo-depth = <8>;
--		sifive,max-bits-per-word = <8>;
--	};
-diff --git a/Documentation/devicetree/bindings/spi/spi-sifive.yaml b/Documentation/devicetree/bindings/spi/spi-sifive.yaml
-new file mode 100644
-index 0000000..368f5d5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/spi-sifive.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/spi-sifive.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive SPI controller
-+
-+maintainers:
-+  - Pragnesh Patel <pragnesh.patel@sifive.com>
-+  - Paul Walmsley  <paul.walmsley@sifive.com>
-+  - Palmer Dabbelt <palmer@sifive.com>
-+
-+allOf:
-+  - $ref: "spi-controller.yaml#"
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: sifive,fu540-c000-spi
-+      - const: sifive,spi0
-+
-+    description:
-+      Should be "sifive,<chip>-spi" and "sifive,spi<version>".
-+      Supported compatible strings are -
-+      "sifive,fu540-c000-spi" for the SiFive SPI v0 as integrated
-+      onto the SiFive FU540 chip, and "sifive,spi0" for the SiFive
-+      SPI v0 IP block with no chip integration tweaks.
-+      Please refer to sifive-blocks-ip-versioning.txt for details
-+
-+      SPI RTL that corresponds to the IP block version numbers can be found here -
-+      https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/spi
-+
-+  reg:
-+    maxItems: 1
-+
-+    description:
-+      Physical base address and size of SPI registers map
-+      A second (optional) range can indicate memory mapped flash
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+    description:
-+      Must reference the frequency given to the controller
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  sifive,fifo-depth:
-+    description:
-+      Depth of hardware queues; defaults to 8
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+
-+  sifive,max-bits-per-word:
-+    description:
-+      Maximum bits per word; defaults to 8
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+examples:
-+  - |
-+    spi: spi@10040000 {
-+      compatible = "sifive,fu540-c000-spi", "sifive,spi0";
-+      reg = <0x0 0x10040000 0x0 0x1000 0x0 0x20000000 0x0 0x10000000>;
-+      interrupt-parent = <&plic>;
-+      interrupts = <51>;
-+      clocks = <&tlclk>;
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      sifive,fifo-depth = <8>;
-+      sifive,max-bits-per-word = <8>;
-+    };
-+
-+...
+On 09/09/2019 13:59, Peter Ujfalusi wrote:
+> 
+> 
+> On 08/09/2019 17.25, Vinod Koul wrote:
+>> On 30-07-19, 12:34, Peter Ujfalusi wrote:
+>>
+>>> +/**
+>>> + * Descriptor header, present in all types of descriptors
+>>> + */
+>>> +struct cppi5_desc_hdr_t {
+>>> +	u32 pkt_info0;	/* Packet info word 0 (n/a in Buffer desc) */
+>>> +	u32 pkt_info1;	/* Packet info word 1 (n/a in Buffer desc) */
+>>> +	u32 pkt_info2;	/* Packet info word 2 Buffer reclamation info */
+>>> +	u32 src_dst_tag; /* Packet info word 3 (n/a in Buffer desc) */
+>>
+>> Can we move these comments to kernel-doc style please
+> 
+> Sure, I'll move all struct and enums.
+> 
+>>> +/**
+>>> + * cppi5_desc_get_type - get descriptor type
+>>> + * @desc_hdr: packet descriptor/TR header
+>>> + *
+>>> + * Returns descriptor type:
+>>> + * CPPI5_INFO0_DESC_TYPE_VAL_HOST
+>>> + * CPPI5_INFO0_DESC_TYPE_VAL_MONO
+>>> + * CPPI5_INFO0_DESC_TYPE_VAL_TR
+>>> + */
+>>> +static inline u32 cppi5_desc_get_type(struct cppi5_desc_hdr_t *desc_hdr)
+>>> +{
+>>> +	WARN_ON(!desc_hdr);
+>>
+>> why WARN_ON and not return error!
+> 
+> these helpers were intended to be as simple as possible.
+> I can go through with all of the WARN_ONs and replace them with if()
+> pr_warn() and either just return or return with 0.
+> 
+> Would that be acceptable?
+> 
+
+This should never happens in working system unless there is buggy code.
+I think It can be just removed
+
 -- 
-2.7.4
-
+Best regards,
+grygorii
