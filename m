@@ -2,546 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC7E7AE200
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 03:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E521AE204
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 03:41:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2392465AbfIJBkW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 21:40:22 -0400
-Received: from mx.socionext.com ([202.248.49.38]:11413 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2392463AbfIJBkV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 21:40:21 -0400
-Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 10 Sep 2019 10:40:17 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 47A39180079;
-        Tue, 10 Sep 2019 10:40:17 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 10 Sep 2019 10:40:17 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
-        by kinkan.css.socionext.com (Postfix) with ESMTP id 2856C1A04FB;
-        Tue, 10 Sep 2019 10:40:17 +0900 (JST)
-Received: from user-VB.e01.socionext.com (unknown [10.213.119.151])
-        by yuzu.css.socionext.com (Postfix) with ESMTP id 1451C1204B3;
-        Tue, 10 Sep 2019 10:40:17 +0900 (JST)
-From:   Takao Orito <orito.takao@socionext.com>
-To:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        adrian.hunter@intel.com
-Cc:     linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, masami.hiramatsu@linaro.org,
-        jaswinder.singh@linaro.org, sugaya.taichi@socionext.com,
-        kasai.kazuhiro@socionext.com, kanematsu.shinji@socionext.com,
-        orito.takao@socionext.com
-Subject: [PATCH v3 2/2] mmc: sdhci-milbeaut: add Milbeaut SD controller driver
-Date:   Tue, 10 Sep 2019 10:41:06 +0900
-Message-Id: <1568079666-28890-1-git-send-email-orito.takao@socionext.com>
-X-Mailer: git-send-email 1.9.1
+        id S2388804AbfIJBlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 21:41:45 -0400
+Received: from mail-eopbgr130051.outbound.protection.outlook.com ([40.107.13.51]:35056
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726482AbfIJBlp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 21:41:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AzccH3tx1iSUC6rqC7nTv14mGh2IEieuQTgeQaQZ+izPq44QKkwVFQi607vfReSm/OUl92QDqfSPDqgAT2BehDfJ5VbtR93dSd/G7/W+rV4zI3PO7co7RTU+9p6BNGg8jT7urhXM82I0SD+FAvsRpOnGDwllVb5xyuUopeEYNVpjw7yrziiBiW+DSPKTSVUvBExyScE0gSmJ9t6p8ftqhrPAeoYQI7HZowmLj2BNlDygaKc0Of2oRMypK2uINOyORf9tzaTlJV23vkG7waw099sP2MQqkgRVaSGckN5UUdBJKIP4/FAVbWBDzysBimQgq1FzXeidZNiQv2DEx9BojA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ooo5znk0qFssS3wXHpbr/wkpPKNZEyPUlnuoRuzeKbI=;
+ b=VVmfoRhIeffdCXzDUWAA60+4Q7ZGrWERUJZHbfbrrefH0ky1Un4fH7bBI6YfM+j8bZZrV58LyfNmprUDoRp/O32gTU+97+LQRF5Y0X7YNSLgISfS2efNL4xuAjFo1xqXhAZR2/Gp5GTkCwoo90TY7sUq37x4dj8E7pHwBQiffJD31X85D2iCF34GdTvo1PY4G5AI5aeTh8ffgDo7uAzsUtmF9Y5B8j0C2NfrtCgFeRZ8ltMMTM3SCadFIERcC8It1qODfZb9GQg0ZqWoQhr8mjezAR7qd+EDNXXzS0Bpc6piVEOE0tdeXRRqDlZgXUCtf4CZU6xQYz+tOqnWOeyxjQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ooo5znk0qFssS3wXHpbr/wkpPKNZEyPUlnuoRuzeKbI=;
+ b=q21twCwSAo17Ku2P9dtZR8kzna+thd6c41HXtplGF+JOtb6NqLoWVOmgZQebgyraY7moQqkE1dEbKpKIzJF4fAvRf1Ip7kcixqYVA/5jTtImhyeAhEYRzunsTXxxe9dKjcUvBfLIL7mAMOdF8esteT+6V/9PAxzBSXdGSUQ+9pg=
+Received: from DB7PR04MB4490.eurprd04.prod.outlook.com (52.135.138.150) by
+ DB7PR04MB4153.eurprd04.prod.outlook.com (52.134.111.144) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2241.18; Tue, 10 Sep 2019 01:41:40 +0000
+Received: from DB7PR04MB4490.eurprd04.prod.outlook.com
+ ([fe80::4427:96f2:f651:6dfa]) by DB7PR04MB4490.eurprd04.prod.outlook.com
+ ([fe80::4427:96f2:f651:6dfa%5]) with mapi id 15.20.2241.018; Tue, 10 Sep 2019
+ 01:41:40 +0000
+From:   Biwen Li <biwen.li@nxp.com>
+To:     'Martin Fuzzey' <martin.fuzzey@flowbird.group>,
+        "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Leo Li <leoyang.li@nxp.com>
+CC:     "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Martin Fuzzey <mfuzzey@parkeon.com>
+Subject: RE: [EXT] Re: [v3,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some
+ properties
+Thread-Topic: [EXT] Re: [v3,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some
+ properties
+Thread-Index: AQHVYiDislXlKba5R0W8Eh4TiH+l96cZsgSAgASsY5A=
+Date:   Tue, 10 Sep 2019 01:41:39 +0000
+Message-ID: <DB7PR04MB4490B81B55B223555181D1808FB60@DB7PR04MB4490.eurprd04.prod.outlook.com>
+References: <20190903061853.19793-1-biwen.li@nxp.com>
+ <2374870a-a728-b046-9ec6-bd7773411f50@flowbird.group>
+In-Reply-To: <2374870a-a728-b046-9ec6-bd7773411f50@flowbird.group>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=biwen.li@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: cd75802d-5310-44ac-401b-08d7359006cc
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4153;
+x-ms-traffictypediagnostic: DB7PR04MB4153:|DB7PR04MB4153:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB7PR04MB415313A1D029EED048C9F22A8FB60@DB7PR04MB4153.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01565FED4C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(39860400002)(136003)(376002)(396003)(366004)(199004)(189003)(8676002)(102836004)(54906003)(11346002)(478600001)(446003)(55016002)(76116006)(5660300002)(7696005)(6636002)(6246003)(76176011)(52536014)(53936002)(229853002)(9686003)(110136005)(2501003)(6436002)(99286004)(4326008)(186003)(33656002)(316002)(14454004)(66556008)(71190400001)(71200400001)(66446008)(64756008)(6116002)(66476007)(3846002)(2906002)(7736002)(8936002)(476003)(25786009)(53546011)(86362001)(66066001)(26005)(81166006)(81156014)(66946007)(256004)(486006)(305945005)(74316002)(44832011)(6506007);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4153;H:DB7PR04MB4490.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: M2ZmFBvBqSlev1A7Cx7V08ju1wIqbGTC7wz0U9eL47jNXUT+4OMi7AZeiAKCknrnFv1Mktw+Xr/exKKJ37PX2nIUX/RdudlcyJQUXA69L34dYRNh+JMGlJyCGs6fJ5B/fQ1GuA5/x4Gb9Gb46nOvh6d5LHIaYj/6I8K7nILR9LSi0mSoDocvuMpLueA0pkhcUOPkeG5O5IIxbRcTpsAqH3hw0dRSlbH++MRODbPJ6rKusWPsPl8uzVLApYhzmkQvA1B6j+ChYfce5xxJNRTAp39iAiQXYx/PSL1G8+MG9zh0wE3PU2DOoWB7PK4nQiOaqQcUV6dSNVAFMyHpq3e8+6TRNL993Lk09N7F3v2wuo9SgJpL9/e0olb1T5TOyHFs32CJr6Vq/sirmFFMkbCHKI9O0FhvpdCiKyY8WDlVRlI=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd75802d-5310-44ac-401b-08d7359006cc
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2019 01:41:40.0207
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: z4ihDpBRgN/cePUMo48/+3kqgXKe2eNBz+lqbgyP5vGtpi45drLWL9NKWyGSReOkthLSiI2UBqV2oAMxyMM3IQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4153
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SD Host controller on Milbeaut consists of two controller parts.
-One is core controller F_SDH30, this is similar to sdhci-fujitsu
-controller.
-Another is bridge controller.
-This bridge controller is not compatible with sdhci-fujitsu controller.
-This is special for Milbeaut series. This has some functions.
-For example, reset control, clock enable/select for SDR50/25/12, set
-property of SD physical pins, retuning control, set capabilityies.
-
-This bridge controller requires special procedures at reset or clock
-enablement or change for further tuning of clock.
-
-Signed-off-by: Takao Orito <orito.takao@socionext.com>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
----
- drivers/mmc/host/Kconfig          |  11 ++
- drivers/mmc/host/Makefile         |   1 +
- drivers/mmc/host/sdhci-milbeaut.c | 362 ++++++++++++++++++++++++++++++++++++++
- drivers/mmc/host/sdhci_f_sdh30.c  |  26 +--
- drivers/mmc/host/sdhci_f_sdh30.h  |  32 ++++
- 5 files changed, 407 insertions(+), 25 deletions(-)
- create mode 100644 drivers/mmc/host/sdhci-milbeaut.c
- create mode 100644 drivers/mmc/host/sdhci_f_sdh30.h
-
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 28fcd8f..9b39111 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -353,6 +353,17 @@ config MMC_SDHCI_F_SDH30
- 
- 	  If unsure, say N.
- 
-+config MMC_SDHCI_MILBEAUT
-+	tristate "SDHCI support for Socionext Milbeaut Serieas using F_SDH30"
-+	depends on MMC_SDHCI_PLTFM
-+	depends on OF
-+	help
-+	  This selects the Secure Digital Host Controller Interface (SDHCI)
-+	  Needed by Milbeaut SoC for MMC / SD / SDIO support.
-+	  If you have a controller with this interface, say Y or M here.
-+
-+	  If unsure, say N.
-+
- config MMC_SDHCI_IPROC
- 	tristate "SDHCI support for the BCM2835 & iProc SD/MMC Controller"
- 	depends on ARCH_BCM2835 || ARCH_BCM_IPROC || COMPILE_TEST
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index 7357871..db98e8a 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -21,6 +21,7 @@ obj-$(CONFIG_MMC_SDHCI_PXAV2)	+= sdhci-pxav2.o
- obj-$(CONFIG_MMC_SDHCI_S3C)	+= sdhci-s3c.o
- obj-$(CONFIG_MMC_SDHCI_SIRF)   	+= sdhci-sirf.o
- obj-$(CONFIG_MMC_SDHCI_F_SDH30)	+= sdhci_f_sdh30.o
-+obj-$(CONFIG_MMC_SDHCI_MILBEAUT)	+= sdhci-milbeaut.o
- obj-$(CONFIG_MMC_SDHCI_SPEAR)	+= sdhci-spear.o
- obj-$(CONFIG_MMC_SDHCI_AM654)	+= sdhci_am654.o
- obj-$(CONFIG_MMC_WBSD)		+= wbsd.o
-diff --git a/drivers/mmc/host/sdhci-milbeaut.c b/drivers/mmc/host/sdhci-milbeaut.c
-new file mode 100644
-index 0000000..a1aa21b
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-milbeaut.c
-@@ -0,0 +1,362 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2013 - 2015 Fujitsu Semiconductor, Ltd
-+ *              Vincent Yang <vincent.yang@tw.fujitsu.com>
-+ * Copyright (C) 2015 Linaro Ltd  Andy Green <andy.green@linaro.org>
-+ * Copyright (C) 2019 Socionext Inc.
-+ *              Takao Orito <orito.takao@socionext.com>
-+ */
-+
-+#include <linux/bits.h>
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/property.h>
-+
-+#include "sdhci-pltfm.h"
-+#include "sdhci_f_sdh30.h"
-+
-+/* milbeaut bridge controller register */
-+#define MLB_SOFT_RESET		0x0200
-+#define  MLB_SOFT_RESET_RSTX		BIT(0)
-+
-+#define MLB_WP_CD_LED_SET	0x0210
-+#define  MLB_WP_CD_LED_SET_LED_INV  BIT(2)
-+
-+#define MLB_CR_SET			0x0220
-+#define  MLB_CR_SET_CR_TOCLKUNIT       BIT(24)
-+#define  MLB_CR_SET_CR_TOCLKFREQ_SFT   (16)
-+#define  MLB_CR_SET_CR_TOCLKFREQ_MASK  (0x3F << MLB_CR_SET_CR_TOCLKFREQ_SFT)
-+#define  MLB_CR_SET_CR_BCLKFREQ_SFT    (8)
-+#define  MLB_CR_SET_CR_BCLKFREQ_MASK   (0xFF << MLB_CR_SET_CR_BCLKFREQ_SFT)
-+#define  MLB_CR_SET_CR_RTUNTIMER_SFT   (4)
-+#define  MLB_CR_SET_CR_RTUNTIMER_MASK  (0xF << MLB_CR_SET_CR_RTUNTIMER_SFT)
-+
-+#define MLB_SD_TOCLK_I_DIV  16
-+#define MLB_TOCLKFREQ_UNIT_THRES    16000000
-+#define MLB_CAL_TOCLKFREQ_MHZ(rate) (rate / MLB_SD_TOCLK_I_DIV / 1000000)
-+#define MLB_CAL_TOCLKFREQ_KHZ(rate) (rate / MLB_SD_TOCLK_I_DIV / 1000)
-+#define MLB_TOCLKFREQ_MAX   63
-+#define MLB_TOCLKFREQ_MIN    1
-+
-+#define MLB_SD_BCLK_I_DIV   4
-+#define MLB_CAL_BCLKFREQ(rate)  (rate / MLB_SD_BCLK_I_DIV / 1000000)
-+#define MLB_BCLKFREQ_MAX        255
-+#define MLB_BCLKFREQ_MIN          1
-+
-+#define MLB_CDR_SET			0x0230
-+#define MLB_CDR_SET_CLK2POW16	3
-+
-+struct f_sdhost_priv {
-+	struct clk *clk_iface;
-+	struct clk *clk;
-+	struct device *dev;
-+	bool enable_cmd_dat_delay;
-+};
-+
-+static void sdhci_milbeaut_soft_voltage_switch(struct sdhci_host *host)
-+{
-+	u32 ctrl = 0;
-+
-+	usleep_range(2500, 3000);
-+	ctrl = sdhci_readl(host, F_SDH30_IO_CONTROL2);
-+	ctrl |= F_SDH30_CRES_O_DN;
-+	sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
-+	ctrl |= F_SDH30_MSEL_O_1_8;
-+	sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
-+
-+	ctrl &= ~F_SDH30_CRES_O_DN;
-+	sdhci_writel(host, ctrl, F_SDH30_IO_CONTROL2);
-+	usleep_range(2500, 3000);
-+
-+	ctrl = sdhci_readl(host, F_SDH30_TUNING_SETTING);
-+	ctrl |= F_SDH30_CMD_CHK_DIS;
-+	sdhci_writel(host, ctrl, F_SDH30_TUNING_SETTING);
-+}
-+
-+static unsigned int sdhci_milbeaut_get_min_clock(struct sdhci_host *host)
-+{
-+	return F_SDH30_MIN_CLOCK;
-+}
-+
-+static void sdhci_milbeaut_reset(struct sdhci_host *host, u8 mask)
-+{
-+	struct f_sdhost_priv *priv = sdhci_priv(host);
-+	u16 clk;
-+	u32 ctl;
-+	ktime_t timeout;
-+
-+	clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	clk = (clk & ~SDHCI_CLOCK_CARD_EN) | SDHCI_CLOCK_INT_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	sdhci_reset(host, mask);
-+
-+	clk |= SDHCI_CLOCK_CARD_EN;
-+	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
-+
-+	timeout = ktime_add_ms(ktime_get(), 10);
-+	while (1) {
-+		bool timedout = ktime_after(ktime_get(), timeout);
-+
-+		clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+		if (clk & SDHCI_CLOCK_INT_STABLE)
-+			break;
-+		if (timedout) {
-+			pr_err("%s: Internal clock never stabilised.\n",
-+				mmc_hostname(host->mmc));
-+			sdhci_dumpregs(host);
-+			return;
-+		}
-+		udelay(10);
-+	}
-+
-+	if (priv->enable_cmd_dat_delay) {
-+		ctl = sdhci_readl(host, F_SDH30_ESD_CONTROL);
-+		ctl |= F_SDH30_CMD_DAT_DELAY;
-+		sdhci_writel(host, ctl, F_SDH30_ESD_CONTROL);
-+	}
-+}
-+
-+static void sdhci_milbeaut_set_power(struct sdhci_host *host,
-+			unsigned char mode, unsigned short vdd)
-+{
-+	if (!IS_ERR(host->mmc->supply.vmmc)) {
-+		struct mmc_host *mmc = host->mmc;
-+
-+		mmc_regulator_set_ocr(mmc, mmc->supply.vmmc, vdd);
-+	}
-+	sdhci_set_power_noreg(host, mode, vdd);
-+}
-+
-+static const struct sdhci_ops sdhci_milbeaut_ops = {
-+	.voltage_switch = sdhci_milbeaut_soft_voltage_switch,
-+	.get_min_clock = sdhci_milbeaut_get_min_clock,
-+	.reset = sdhci_milbeaut_reset,
-+	.set_clock = sdhci_set_clock,
-+	.set_bus_width = sdhci_set_bus_width,
-+	.set_uhs_signaling = sdhci_set_uhs_signaling,
-+	.set_power = sdhci_milbeaut_set_power,
-+};
-+
-+static void sdhci_milbeaut_bridge_reset(struct sdhci_host *host,
-+						int reset_flag)
-+{
-+	if (reset_flag)
-+		sdhci_writel(host, 0, MLB_SOFT_RESET);
-+	else
-+		sdhci_writel(host, MLB_SOFT_RESET_RSTX, MLB_SOFT_RESET);
-+}
-+
-+static void sdhci_milbeaut_bridge_init(struct sdhci_host *host,
-+						int rate)
-+{
-+	u32 val, clk;
-+
-+	/* IO_SDIO_CR_SET should be set while reset */
-+	val = sdhci_readl(host, MLB_CR_SET);
-+	val &= ~(MLB_CR_SET_CR_TOCLKFREQ_MASK | MLB_CR_SET_CR_TOCLKUNIT |
-+			MLB_CR_SET_CR_BCLKFREQ_MASK);
-+	if (rate >= MLB_TOCLKFREQ_UNIT_THRES) {
-+		clk = MLB_CAL_TOCLKFREQ_MHZ(rate);
-+		clk = min_t(u32, MLB_TOCLKFREQ_MAX, clk);
-+		val |= MLB_CR_SET_CR_TOCLKUNIT |
-+			(clk << MLB_CR_SET_CR_TOCLKFREQ_SFT);
-+	} else {
-+		clk = MLB_CAL_TOCLKFREQ_KHZ(rate);
-+		clk = min_t(u32, MLB_TOCLKFREQ_MAX, clk);
-+		clk = max_t(u32, MLB_TOCLKFREQ_MIN, clk);
-+		val |= clk << MLB_CR_SET_CR_TOCLKFREQ_SFT;
-+	}
-+
-+	clk = MLB_CAL_BCLKFREQ(rate);
-+	clk = min_t(u32, MLB_BCLKFREQ_MAX, clk);
-+	clk = max_t(u32, MLB_BCLKFREQ_MIN, clk);
-+	val |=  clk << MLB_CR_SET_CR_BCLKFREQ_SFT;
-+	val &= ~MLB_CR_SET_CR_RTUNTIMER_MASK;
-+	sdhci_writel(host, val, MLB_CR_SET);
-+
-+	sdhci_writel(host, MLB_CDR_SET_CLK2POW16, MLB_CDR_SET);
-+
-+	sdhci_writel(host, MLB_WP_CD_LED_SET_LED_INV, MLB_WP_CD_LED_SET);
-+}
-+
-+static void sdhci_milbeaut_vendor_init(struct sdhci_host *host)
-+{
-+	struct f_sdhost_priv *priv = sdhci_priv(host);
-+	u32 ctl;
-+
-+	ctl = sdhci_readl(host, F_SDH30_IO_CONTROL2);
-+	ctl |= F_SDH30_CRES_O_DN;
-+	sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
-+	ctl &= ~F_SDH30_MSEL_O_1_8;
-+	sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
-+	ctl &= ~F_SDH30_CRES_O_DN;
-+	sdhci_writel(host, ctl, F_SDH30_IO_CONTROL2);
-+
-+	ctl = sdhci_readw(host, F_SDH30_AHB_CONFIG);
-+	ctl |= F_SDH30_SIN | F_SDH30_AHB_INCR_16 | F_SDH30_AHB_INCR_8 |
-+	       F_SDH30_AHB_INCR_4;
-+	ctl &= ~(F_SDH30_AHB_BIGED | F_SDH30_BUSLOCK_EN);
-+	sdhci_writew(host, ctl, F_SDH30_AHB_CONFIG);
-+
-+	if (priv->enable_cmd_dat_delay) {
-+		ctl = sdhci_readl(host, F_SDH30_ESD_CONTROL);
-+		ctl |= F_SDH30_CMD_DAT_DELAY;
-+		sdhci_writel(host, ctl, F_SDH30_ESD_CONTROL);
-+	}
-+}
-+
-+static const struct of_device_id mlb_dt_ids[] = {
-+	{
-+		.compatible = "socionext,milbeaut-m10v-sdhci-3.0",
-+	},
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mlb_dt_ids);
-+
-+static void sdhci_milbeaut_init(struct sdhci_host *host)
-+{
-+	struct f_sdhost_priv *priv = sdhci_priv(host);
-+	int rate = clk_get_rate(priv->clk);
-+	u16 ctl;
-+
-+	sdhci_milbeaut_bridge_reset(host, 0);
-+
-+	ctl = sdhci_readw(host, SDHCI_CLOCK_CONTROL);
-+	ctl &= ~(SDHCI_CLOCK_CARD_EN | SDHCI_CLOCK_INT_EN);
-+	sdhci_writew(host, ctl, SDHCI_CLOCK_CONTROL);
-+
-+	sdhci_milbeaut_bridge_reset(host, 1);
-+
-+	sdhci_milbeaut_bridge_init(host, rate);
-+	sdhci_milbeaut_bridge_reset(host, 0);
-+
-+	sdhci_milbeaut_vendor_init(host);
-+}
-+
-+static int sdhci_milbeaut_probe(struct platform_device *pdev)
-+{
-+	struct sdhci_host *host;
-+	struct device *dev = &pdev->dev;
-+	struct resource *res;
-+	int irq, ret = 0;
-+	struct f_sdhost_priv *priv;
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0) {
-+		dev_err(dev, "%s: no irq specified\n", __func__);
-+		return irq;
-+	}
-+
-+	host = sdhci_alloc_host(dev, sizeof(struct f_sdhost_priv));
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	priv = sdhci_priv(host);
-+	priv->dev = dev;
-+
-+	host->quirks = SDHCI_QUIRK_NO_ENDATTR_IN_NOPDESC |
-+			   SDHCI_QUIRK_INVERTED_WRITE_PROTECT |
-+			   SDHCI_QUIRK_CLOCK_BEFORE_RESET |
-+			   SDHCI_QUIRK_DELAY_AFTER_POWER;
-+	host->quirks2 = SDHCI_QUIRK2_SUPPORT_SINGLE |
-+			SDHCI_QUIRK2_TUNING_WORK_AROUND |
-+			SDHCI_QUIRK2_PRESET_VALUE_BROKEN;
-+
-+	priv->enable_cmd_dat_delay = device_property_read_bool(dev,
-+						"fujitsu,cmd-dat-delay-select");
-+
-+	ret = mmc_of_parse(host->mmc);
-+	if (ret)
-+		goto err;
-+
-+	platform_set_drvdata(pdev, host);
-+
-+	host->hw_name = "f_sdh30";
-+	host->ops = &sdhci_milbeaut_ops;
-+	host->irq = irq;
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	host->ioaddr = devm_ioremap_resource(&pdev->dev, res);
-+	if (IS_ERR(host->ioaddr)) {
-+		ret = PTR_ERR(host->ioaddr);
-+		goto err;
-+	}
-+
-+	if (dev_of_node(dev)) {
-+		sdhci_get_of_property(pdev);
-+
-+		priv->clk_iface = devm_clk_get(&pdev->dev, "iface");
-+		if (IS_ERR(priv->clk_iface)) {
-+			ret = PTR_ERR(priv->clk_iface);
-+			goto err;
-+		}
-+
-+		ret = clk_prepare_enable(priv->clk_iface);
-+		if (ret)
-+			goto err;
-+
-+		priv->clk = devm_clk_get(&pdev->dev, "core");
-+		if (IS_ERR(priv->clk)) {
-+			ret = PTR_ERR(priv->clk);
-+			goto err_clk;
-+		}
-+
-+		ret = clk_prepare_enable(priv->clk);
-+		if (ret)
-+			goto err_clk;
-+	}
-+
-+	sdhci_milbeaut_init(host);
-+
-+	ret = sdhci_add_host(host);
-+	if (ret)
-+		goto err_add_host;
-+
-+	return 0;
-+
-+err_add_host:
-+	clk_disable_unprepare(priv->clk);
-+err_clk:
-+	clk_disable_unprepare(priv->clk_iface);
-+err:
-+	sdhci_free_host(host);
-+	return ret;
-+}
-+
-+static int sdhci_milbeaut_remove(struct platform_device *pdev)
-+{
-+	struct sdhci_host *host = platform_get_drvdata(pdev);
-+	struct f_sdhost_priv *priv = sdhci_priv(host);
-+
-+	sdhci_remove_host(host, readl(host->ioaddr + SDHCI_INT_STATUS) ==
-+			  0xffffffff);
-+
-+	clk_disable_unprepare(priv->clk_iface);
-+	clk_disable_unprepare(priv->clk);
-+
-+	sdhci_free_host(host);
-+	platform_set_drvdata(pdev, NULL);
-+
-+	return 0;
-+}
-+
-+static struct platform_driver sdhci_milbeaut_driver = {
-+	.driver = {
-+		.name = "sdhci-milbeaut",
-+		.of_match_table = of_match_ptr(mlb_dt_ids),
-+	},
-+	.probe	= sdhci_milbeaut_probe,
-+	.remove	= sdhci_milbeaut_remove,
-+};
-+
-+module_platform_driver(sdhci_milbeaut_driver);
-+
-+MODULE_DESCRIPTION("MILBEAUT SD Card Controller driver");
-+MODULE_AUTHOR("Takao Orito <orito.takao@socionext.com>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("platform:sdhci-milbeaut");
-diff --git a/drivers/mmc/host/sdhci_f_sdh30.c b/drivers/mmc/host/sdhci_f_sdh30.c
-index 485f759..ca4c99a 100644
---- a/drivers/mmc/host/sdhci_f_sdh30.c
-+++ b/drivers/mmc/host/sdhci_f_sdh30.c
-@@ -19,31 +19,7 @@
- #include <linux/clk.h>
- 
- #include "sdhci-pltfm.h"
--
--/* F_SDH30 extended Controller registers */
--#define F_SDH30_AHB_CONFIG		0x100
--#define  F_SDH30_AHB_BIGED		0x00000040
--#define  F_SDH30_BUSLOCK_DMA		0x00000020
--#define  F_SDH30_BUSLOCK_EN		0x00000010
--#define  F_SDH30_SIN			0x00000008
--#define  F_SDH30_AHB_INCR_16		0x00000004
--#define  F_SDH30_AHB_INCR_8		0x00000002
--#define  F_SDH30_AHB_INCR_4		0x00000001
--
--#define F_SDH30_TUNING_SETTING		0x108
--#define  F_SDH30_CMD_CHK_DIS		0x00010000
--
--#define F_SDH30_IO_CONTROL2		0x114
--#define  F_SDH30_CRES_O_DN		0x00080000
--#define  F_SDH30_MSEL_O_1_8		0x00040000
--
--#define F_SDH30_ESD_CONTROL		0x124
--#define  F_SDH30_EMMC_RST		0x00000002
--#define  F_SDH30_EMMC_HS200		0x01000000
--
--#define F_SDH30_CMD_DAT_DELAY		0x200
--
--#define F_SDH30_MIN_CLOCK		400000
-+#include "sdhci_f_sdh30.h"
- 
- struct f_sdhost_priv {
- 	struct clk *clk_iface;
-diff --git a/drivers/mmc/host/sdhci_f_sdh30.h b/drivers/mmc/host/sdhci_f_sdh30.h
-new file mode 100644
-index 0000000..fc1ad28
---- /dev/null
-+++ b/drivers/mmc/host/sdhci_f_sdh30.h
-@@ -0,0 +1,32 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (C) 2013 - 2015 Fujitsu Semiconductor, Ltd
-+ *              Vincent Yang <vincent.yang@tw.fujitsu.com>
-+ * Copyright (C) 2015 Linaro Ltd  Andy Green <andy.green@linaro.org>
-+ * Copyright (C) 2019 Socionext Inc.
-+ *
-+ */
-+
-+/* F_SDH30 extended Controller registers */
-+#define F_SDH30_AHB_CONFIG      0x100
-+#define  F_SDH30_AHB_BIGED      BIT(6)
-+#define  F_SDH30_BUSLOCK_DMA    BIT(5)
-+#define  F_SDH30_BUSLOCK_EN     BIT(4)
-+#define  F_SDH30_SIN            BIT(3)
-+#define  F_SDH30_AHB_INCR_16    BIT(2)
-+#define  F_SDH30_AHB_INCR_8     BIT(1)
-+#define  F_SDH30_AHB_INCR_4     BIT(0)
-+
-+#define F_SDH30_TUNING_SETTING  0x108
-+#define  F_SDH30_CMD_CHK_DIS    BIT(16)
-+
-+#define F_SDH30_IO_CONTROL2     0x114
-+#define  F_SDH30_CRES_O_DN      BIT(19)
-+#define  F_SDH30_MSEL_O_1_8     BIT(18)
-+
-+#define F_SDH30_ESD_CONTROL     0x124
-+#define	 F_SDH30_EMMC_RST		BIT(1)
-+#define  F_SDH30_CMD_DAT_DELAY	BIT(9)
-+#define	 F_SDH30_EMMC_HS200		BIT(24)
-+
-+#define F_SDH30_MIN_CLOCK		400000
--- 
-1.9.1
-
-
+PiANCj4gT24gMDMvMDkvMjAxOSAwODoxOCwgQml3ZW4gTGkgd3JvdGU6DQo+ID4gZGlmZiAtLWdp
+dCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvcGNmODUzNjMudHh0DQo+
+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcnRjL3BjZjg1MzYzLnR4dA0K
+PiA+IGluZGV4IDk0YWRjMWNmOTNkOS4uNTg4ZjY4OGIzMGQxIDEwMDY0NA0KPiA+IC0tLSBhL0Rv
+Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvcGNmODUzNjMudHh0DQo+ID4gKysr
+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3J0Yy9wY2Y4NTM2My50eHQNCj4g
+PiBAQCAtOCwxMCArOCwzOSBAQCBSZXF1aXJlZCBwcm9wZXJ0aWVzOg0KPiA+ICAgT3B0aW9uYWwg
+cHJvcGVydGllczoNCj4gPiAgIC0gaW50ZXJydXB0czogSVJRIGxpbmUgZm9yIHRoZSBSVEMgKG5v
+dCBpbXBsZW1lbnRlZCkuDQo+ID4NCj4gPiArLSBpbnRlcnJ1cHQtb3V0cHV0LXBpbjogVGhlIGlu
+dGVycnVwdCBvdXRwdXQgcGluIG11c3QgYmUNCj4gPiArICAiSU5UQSIgb3IgIklOVEIiLCBkZWZh
+dWx0IHZhbHVlIGlzICJJTlRBIg0KPiA+ICsNCj4gDQo+IA0KPiBUaGUgaGFyZHdhcmUgaGFzIDIg
+aW50ZXJydXB0IHBpbnMgd2hpY2ggY2FuIGJlIG1hcHBlZCB0byB2YXJpb3VzIGludGVycnVwdA0K
+PiBzb3VyY2VzIChhbGFybTEsIGFsYXJtMiwgcGVyaW9kaWMsIC4uLikNCj4gDQo+IEN1cnJlbnRs
+eSB0aGUgZHJpdmVyIG9ubHkgc3VwcG9ydHMgYWxhcm0xLg0KPiANCj4gSXQgaXMgZXZlbiBwb3Nz
+aWJsZSB0byB1c2UgYm90aCBwaW5zIGZvciB0aGUgc2FtZSBpbnRlcnJ1cHQgKGVnIGlmIElOVEEg
+d2VyZQ0KPiB3aXJlZCB0byB0aGUgU29DLCBJTlRCIHRvIGEgUE1JQyBhbmQgYm90aCB1c2VkIGZv
+ciBhbGFybS4uLikNCj4gDQo+IA0KPiBTbyBtYXliZSBpdCB3b3VsZCBiZSBiZXR0ZXIgdG8gaGF2
+ZQ0KPiANCj4gYWxhcm0xLWludGVycnVwdC1vdXRwdXQtcGluOiBUaGUgaW50ZXJydXB0IG91dHB1
+dCBwaW4gdXNlZCBmb3IgdGhlIGFsYXJtDQo+IGZ1bmN0aW9uLiBNdXN0IGJlICJJTlRBIiwgIklO
+VEIiIG9yICJCT1RIIg0KSSB3aWxsIGZpeCBpdCBpbiB2NC4NCj4gDQo+IFRoZW4sIGlmIGFuZCB3
+aGVuIG90aGVyIHR5cGVzIG9mIGludGVycnVwdHMgYXJlIHN1cHBvcnRlZCBieSB0aGUgZHJpdmVy
+IG5ldw0KPiBwcm9wZXJ0aWVzIGNvdWxkIGJlIGFkZGVkIGZvciB0aGVtLg0KPiANCj4gDQo+IA0K
+PiA+ICstIHF1YXJ0ei1sb2FkLWZlbXRvZmFyYWRzOiBUaGUgaW50ZXJuYWwgY2FwYWNpdG9yIHRv
+IHNlbGVjdCBmb3IgdGhlIHF1YXJ0ejoNCj4gPiArICAgICBQQ0Y4NTI2M19RVUFSVFpDQVBfN3BG
+ICAgICAgICAgIFswXQ0KPiA+ICsgICAgIFBDRjg1MjYzX1FVQVJUWkNBUF82cEYgICAgICAgICAg
+WzFdDQo+ID4gKyAgICAgUENGODUyNjNfUVVBUlRaQ0FQXzEycDVwRiAgICAgICBbMl0gREVGQVVM
+VA0KPiA+ICsNCj4gDQo+IA0KPiBUaGUgc3RhbmRhcmQgRFQgcHJvcGVydHkgInF1YXJ0ei1sb2Fk
+LWZlbXRvZmFyYWRzIiB0YWtlcyB0aGUgcmVhbCBwaHlzaWNhbA0KPiB2YWx1ZSBpbiBmZW10byBG
+YXJhZHMgaWUgdmFsdWVzIHNob3VsZCBiZSA3MDAwLCA2MDAwLCAxMjUwMCB3aXRob3V0DQo+IGRl
+ZmluZXMuDQoNCk9rLCBJIHdpbGwgcmVtb3ZlIHRoZXNlIGRlZmluZXMgaW4gdjQuDQo+IA0KPiAN
+Cj4gPiArLSBueHAscXVhcnR6LWRyaXZlLXN0cmVuZ3RoOiBEcml2ZSBzdHJlbmd0aCBmb3IgdGhl
+IHF1YXJ0ejoNCj4gPiArICAgICBQQ0Y4NTI2M19RVUFSVFpEUklWRV8xMDBrbyAgICAgIFswXSBE
+RUZBVUxUDQo+ID4gKyAgICAgUENGODUyNjNfUVVBUlRaRFJJVkVfNjBrbyAgICAgICBbMV0NCj4g
+PiArICAgICBQQ0Y4NTI2M19RVUFSVFpEUklWRV81MDBrbyAgICAgIFsyXQ0KPiA+ICsNCj4gDQo+
+IA0KPiBOb3Qgc3VyZSBhYm91dCB0aGlzLg0KPiANCj4gV291bGRuJ3QgaXQgYmUgYmV0dGVyIHRv
+IGVpdGhlciB1c2UgYSByZWFsIGltcGVkZW5jZSB2YWx1ZSBpbiBvaG1zIChsaWtlIGxvYWQNCj4g
+cHJvcGVydHkgYWJvdmUsIGV2ZW4gdGhvdWdoIGl0IGlzIGEgdmVuZG9yIHNwZWNpZmljIHZhbHVl
+KSByYXRoZXIgdGhhbiBhDQo+IGRlZmluZSwgb3IgZGVmaW5lcyBmb3IgIkxvdywgTWVkaXVtLCBI
+aWdoIj8NCk9rLCBJIHdpbGwgcmVwbGFjZSBkZWZpbmVzIHdpdGggYSByZWFsIGltcGVkZW5jZSB2
+YWx1ZSBpbiB2NC4NCj4gDQo+IA0KPiBNYXJ0aW4NCj4gDQoNCg==
