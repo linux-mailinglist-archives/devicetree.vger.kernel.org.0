@@ -2,105 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DD8CAE467
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 09:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52B56AE4A9
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 09:29:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406626AbfIJHOd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 03:14:33 -0400
-Received: from mxwww.masterlogin.de ([95.129.51.220]:43542 "EHLO
-        mxwww.masterlogin.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406597AbfIJHOc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 03:14:32 -0400
-Received: from mxout2.routing.net (unknown [192.168.10.82])
-        by new.mxwww.masterlogin.de (Postfix) with ESMTPS id 52516963C5;
-        Tue, 10 Sep 2019 07:05:20 +0000 (UTC)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.253])
-        by mxout2.routing.net (Postfix) with ESMTP id ADB286208B;
-        Tue, 10 Sep 2019 07:05:20 +0000 (UTC)
-Received: from localhost.localdomain (fttx-pool-185.75.73.135.bambit.de [185.75.73.135])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id B4CAE1002EF;
-        Tue, 10 Sep 2019 07:05:19 +0000 (UTC)
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     linux-mediatek@lists.infradead.org
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Josef Friedl <josef.friedl@speed.at>,
-        Lee Jones <lee.jones@linaro.org>, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        "Tianping Fang" <tianping.fang@mediatek.com>
-Subject: [PATCH v7 7/7] arm: dts: mt6323: add keys, power-controller, rtc and codec
-Date:   Tue, 10 Sep 2019 09:04:46 +0200
-Message-Id: <20190910070446.639-8-frank-w@public-files.de>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190910070446.639-1-frank-w@public-files.de>
-References: <20190910070446.639-1-frank-w@public-files.de>
+        id S1727730AbfIJH3O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 03:29:14 -0400
+Received: from srv1.deutnet.info ([116.203.153.70]:41230 "EHLO
+        srv1.deutnet.info" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726317AbfIJH3O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 03:29:14 -0400
+X-Greylist: delayed 2537 seconds by postgrey-1.27 at vger.kernel.org; Tue, 10 Sep 2019 03:29:12 EDT
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=deutnet.info; s=default; h=Message-ID:Subject:Cc:To:From:Date:in-reply-to;
+         bh=QXUe3+3nzq15jatpRDKHw4LMVFNX7Jji04dG2mMWZNE=; b=oeAHHM5JcJiB9J+TKZ3FERW6s
+        7007dX+mSOYoJ3YCrylOQ6BAUKuDymofE4R6i7kFrbOnJGuLYXXmqlX8e5Ma0DKNXJzMxAeMejrBE
+        0mFJp2kmIE1VHwoSn8nh4mdhash/Yj73xKglrQBsWtiph7zB4LyBKLSXOAwkzEGJKXgRPCQj8SVGn
+        C3oF74vmkUCJZD+8Gsb1BBEhByQSRTue89tMReudkBC0Oa6Q/l+bNzaAmLReXE+HUVa1gDmDspood
+        ykxE8P+b5j4N0Eha8TpOHfE2B3sxW/lxHp3fE05XbA8gZ3wOgK0+Wt2QObXrkElmzC+feKitAMC3J
+        yB+pHDkxQ==;
+Received: from [2001:bc8:3dc9::1] (helo=localhost)
+        by srv1.deutnet.info with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <agriveaux@deutnet.info>)
+        id 1i7ZvQ-0001RS-Qy; Tue, 10 Sep 2019 08:46:52 +0200
+Received: from agriveaux by localhost with local (Exim 4.92)
+        (envelope-from <agriveaux@deutnet.info>)
+        id 1i7ZvQ-000ZKW-G2; Tue, 10 Sep 2019 08:46:52 +0200
+Date:   Tue, 10 Sep 2019 08:46:52 +0200
+From:   Alexandre GRIVEAUX <agriveaux@deutnet.info>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, ralf@linux-mips.org,
+        paul.burton@mips.com, jhogan@kernel.org, agriveaux@deutnet.info
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCHv4] MIPS: JZ4780: DTS: Add I2C nodes
+Message-ID: <20190910064652.GA135775@deutnet.info>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Josef Friedl <josef.friedl@speed.at>
+Add the devicetree nodes for the I2C core of the JZ4780 SoC, disabled
+by default.
 
-support poweroff and power-related keys on bpi-r2
-
-Suggested-by: Frank Wunderlich <frank-w@public-files.de>
-Signed-off-by: Josef Friedl <josef.friedl@speed.at>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
 ---
-changes since v6: none
-changes since v5: none
-changes since v4: none
-changes since v3: none
-changes since v2: none (=v2 part 7)
----
- arch/arm/boot/dts/mt6323.dtsi | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+ arch/mips/boot/dts/ingenic/jz4780.dtsi | 86 ++++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
-diff --git a/arch/arm/boot/dts/mt6323.dtsi b/arch/arm/boot/dts/mt6323.dtsi
-index ba397407c1dd..7fda40ab5fe8 100644
---- a/arch/arm/boot/dts/mt6323.dtsi
-+++ b/arch/arm/boot/dts/mt6323.dtsi
-@@ -238,5 +238,32 @@
- 				regulator-enable-ramp-delay = <216>;
- 			};
- 		};
-+
-+		mt6323keys: mt6323keys {
-+			compatible = "mediatek,mt6323-keys";
-+			mediatek,long-press-mode = <1>;
-+			power-off-time-sec = <0>;
-+
-+			power {
-+				linux,keycodes = <116>;
-+				wakeup-source;
-+			};
-+
-+			home {
-+				linux,keycodes = <114>;
-+			};
-+		};
-+
-+		codec: mt6397codec {
-+			compatible = "mediatek,mt6397-codec";
-+		};
-+
-+		power-controller {
-+			compatible = "mediatek,mt6323-pwrc";
-+		};
-+
-+		rtc {
-+			compatible = "mediatek,mt6323-rtc";
-+		};
+diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+index b03cdec56de9..a76ecd69bfd0 100644
+--- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
++++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+@@ -239,6 +239,92 @@
+ 		status = "disabled";
  	};
- };
+ 
++	i2c0: i2c@10050000 {
++		compatible = "ingenic,jz4780-i2c";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		reg = <0x10050000 0x1000>;
++
++		interrupt-parent = <&intc>;
++		interrupts = <60>;
++
++		clocks = <&cgu JZ4780_CLK_SMB0>;
++		clock-frequency = <100000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pins_i2c0_data>;
++
++		status = "disabled";
++	};
++
++	i2c1: i2c@10051000 {
++		compatible = "ingenic,jz4780-i2c";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x10051000 0x1000>;
++
++		interrupt-parent = <&intc>;
++		interrupts = <59>;
++
++		clocks = <&cgu JZ4780_CLK_SMB1>;
++		clock-frequency = <100000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pins_i2c1_data>;
++
++		status = "disabled";
++	};
++
++	i2c2: i2c@10052000 {
++		compatible = "ingenic,jz4780-i2c";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x10052000 0x1000>;
++
++		interrupt-parent = <&intc>;
++		interrupts = <58>;
++
++		clocks = <&cgu JZ4780_CLK_SMB2>;
++		clock-frequency = <100000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pins_i2c2_data>;
++
++		status = "disabled";
++	};
++
++	i2c3: i2c@10053000 {
++		compatible = "ingenic,jz4780-i2c";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x10053000 0x1000>;
++
++		interrupt-parent = <&intc>;
++		interrupts = <57>;
++
++		clocks = <&cgu JZ4780_CLK_SMB3>;
++		clock-frequency = <100000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pins_i2c3_data>;
++
++		status = "disabled";
++	};
++
++	i2c4: i2c@10054000 {
++		compatible = "ingenic,jz4780-i2c";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x10054000 0x1000>;
++
++		interrupt-parent = <&intc>;
++		interrupts = <56>;
++
++		clocks = <&cgu JZ4780_CLK_SMB4>;
++		clock-frequency = <100000>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pins_i2c4_data>;
++
++		status = "disabled";
++	};
++
+ 	watchdog: watchdog@10002000 {
+ 		compatible = "ingenic,jz4780-watchdog";
+ 		reg = <0x10002000 0x10>;
 -- 
-2.17.1
+2.20.1
 
