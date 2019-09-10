@@ -2,92 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A768AF057
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 19:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B39D3AF05D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 19:18:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2394162AbfIJRQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 13:16:34 -0400
-Received: from sauhun.de ([88.99.104.3]:50016 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387433AbfIJRQe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 13:16:34 -0400
-Received: from localhost (234.77.63.94.rev.vodafone.pt [94.63.77.234])
-        by pokefinder.org (Postfix) with ESMTPSA id 1A4A42C0095;
-        Tue, 10 Sep 2019 19:16:31 +0200 (CEST)
-Date:   Tue, 10 Sep 2019 18:16:30 +0100
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Vladimir Zapolskiy <vz@mleia.com>,
-        jacopo mondi <jacopo@jmondi.org>,
-        Peter Rosin <peda@axentia.se>, linux-media@vger.kernel.org,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>
-Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
-Message-ID: <20190910171629.GA5581@kunai>
-References: <20190723203723.11730-1-luca@lucaceresoli.net>
- <20190723203723.11730-3-luca@lucaceresoli.net>
- <20190901143101.humomdehy5ee73sk@vino>
- <aedad45b-16d6-d189-b045-329727440ca5@mleia.com>
- <20190909072232.GA990@kunai>
- <8af9a049-06b9-dbe8-827b-5134d20e9435@mleia.com>
- <152384b8-c0a8-e6fe-9a1f-52caf00533de@lucaceresoli.net>
+        id S2437034AbfIJRSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 13:18:49 -0400
+Received: from smtprelay0028.hostedemail.com ([216.40.44.28]:45751 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2387907AbfIJRSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 13:18:49 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay08.hostedemail.com (Postfix) with ESMTP id BB5D9182CED34;
+        Tue, 10 Sep 2019 17:18:47 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:960:968:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2553:2559:2562:2828:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3874:4321:5007:6742:8603:10004:10400:10848:10967:11026:11232:11658:11914:12043:12297:12740:12760:12895:13019:13069:13255:13311:13357:13439:14181:14659:14721:21080:21433:21627:30029:30034:30054:30090:30091,0,RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.14.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:36,LUA_SUMMARY:none
+X-HE-Tag: force61_86aba8a95f343
+X-Filterd-Recvd-Size: 2385
+Received: from XPS-9350.home (unknown [47.151.152.152])
+        (Authenticated sender: joe@perches.com)
+        by omf12.hostedemail.com (Postfix) with ESMTPA;
+        Tue, 10 Sep 2019 17:18:45 +0000 (UTC)
+Message-ID: <61a2b2ab4693535850306f396aac2a328e1d5a21.camel@perches.com>
+Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
+ users to %p[sS]
+From:   Joe Perches <joe@perches.com>
+To:     Steven Rostedt <rostedt@goodmis.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Arnaldo Carvalho de Melo <acme@redhat.com>,
+        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
+        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>
+Date:   Tue, 10 Sep 2019 10:18:44 -0700
+In-Reply-To: <20190910071837.2e9110f8@oasis.local.home>
+References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
+         <20190910084707.18380-2-sakari.ailus@linux.intel.com>
+         <20190910071837.2e9110f8@oasis.local.home>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="GvXjxJ+pjyke8COw"
-Content-Disposition: inline
-In-Reply-To: <152384b8-c0a8-e6fe-9a1f-52caf00533de@lucaceresoli.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 2019-09-10 at 07:18 -0400, Steven Rostedt wrote:
+> On Tue, 10 Sep 2019 11:46:56 +0300
+> Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
+> 
+> > There are no in-kernel %p[fF] users left. Convert the traceevent tool,
+> > too, to align with the kernel.
+[]
+> > diff --git a/tools/lib/traceevent/event-parse.c b/tools/lib/traceevent/event-parse.c
+[]
+> > @@ -4335,8 +4335,6 @@ static struct tep_print_arg *make_bprint_args(char *fmt, void *data, int size, s
+> >  					switch (*ptr) {
+> >  					case 's':
+> >  					case 'S':
+> > -					case 'f':
+> > -					case 'F':
+> 
+> This file is used to parse output from older kernels, so remove this hunk.
+> 
+> It's not just for the lastest kernel. We must maintain backward
+> compatibility here too. If there use to be a usage of this, then we
+> must keep it until the kernels are no longer used (perhaps 7 years?)
 
---GvXjxJ+pjyke8COw
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That argues for not using "%pfw" at all for some number of years.
+
+Perhaps the '%pfw' should be '%pnfw' for 'name' and 'fwnode'
 
 
-> Here i2c-0 is the "local" bus, i2c-4 and i2c-5 are the remote busses on
-> ports 0 and 1. As you can see the eeproms are accessed using a name like
-> "4-0050", meaning physical slave address 0x50 on bus 4. No alias is neede=
-d.
->=20
-> Should you want to know the alias, perhaps for debugging (it's the
-> address you'll see on your logic analyzer), they are shown in the kernel
-> log.
 
-And to add to that: The aliases on i2c-0 will be marked busy and show up
-as used if you run i2cdetect. So, you'd need a force-flag if you'd want
-to access them from userspace.
-
-
---GvXjxJ+pjyke8COw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl132mkACgkQFA3kzBSg
-KbY7KA//dTGgRdQZxIRRuFmdxhZR6aCLbnLiEuCcMagiQ2aa/EP1vhN8qPrUaucL
-Jf+XXPeFbx9q1ycOa/tOuI7CZbK9jXKDfMPQtP/gTx3MuHzv4MlHgTIWpEm8YMfr
-CgblrDzIKZqaeR3PGdu7AD6gSWDorwh/Rq4tt8hxqVi+KMiXgQBjiQFb2F5h2g5z
-nKjONcRnItlAnieSUnnzYzEs5jtLTHfaioMpAyrVXVRBr1uvRsQAxqUvN7bV+ThA
-mwmJfUOCrNf6gk596ug3SrHow7rgZxaNds6kEqiSY7Kib9MEfvkUj8q9yfBz8wCk
-YB052AdefuREt64vShJtmgbSjj+wRvBNkTB+/fdZptFL6CxORGhw+GKgkQnssqyQ
-W0Arjte++VEG3jGMtCx7I4GxDOdp2FqjSnBHDW9u1piPYBZOaxMeknBLhrrxiyfa
-Vrr3ZRgKTdz+70h1lQsQ5udADUxq6DhhGfoouGDlvk1JP6aLMXUr7PSNpjpYpZ0V
-N4qx2eJMRLkYrcNbbyDe+GWwFp3b1j859nk0jmi5M2zDTkqVji11DBkb0p1zrT1j
-7pvW9Us/V2i1jCLBHED2CSSQIaBs8StDnkPFvbeezoCUDxDeBz7ePDXO2asDYu9+
-jWDqFrb/qOTkZZdhvcurGUF3lL1SEgLR6gvWutjx1B5hQTHTE8g=
-=vLj2
------END PGP SIGNATURE-----
-
---GvXjxJ+pjyke8COw--
