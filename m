@@ -2,139 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96464AEFDF
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF398AEFEA
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:49:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436888AbfIJQrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 12:47:04 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:45254 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436758AbfIJQrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:47:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=3N//E0zcW7kRGKgSwYJTLOJfeK8dM1KlFJHe42qIo4U=; b=wiqoJdzGZHQ7dsTr38TSaB5P+
-        cta9fRgOiJ/ZTzQP/DDDoMC/vEtYnu6PAXEwTVwDa0gstcCWZJls1EwitVBVZLNv+hhssniiGNquj
-        70BDI3avTTV851UwbBZq7ch010410u0p2YJqBTSZ/PM6yzP0CTnoSCvGCI4qkeS0TsELT+DsINR1k
-        MewdfyvFEfv0PUNRhZc7Hyv8GCVmPBE/lXRvAHHqmgFyRiyrpwZ5A2SF45JDW0eLdnH2GvJ4spaEn
-        VejQayvONza3cFDRvB7aI3TEUfMtMCM9pJ1jXOKSwj3iBUY/knwaP8JL8RqnGoyUnGZLj6t5tsrEk
-        JDPec4SgA==;
-Received: from shell.armlinux.org.uk ([2001:4d48:ad52:3201:5054:ff:fe00:4ec]:58608)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1i7jI5-0001Dm-W7; Tue, 10 Sep 2019 17:46:54 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1i7jI2-00038s-NO; Tue, 10 Sep 2019 17:46:50 +0100
-Date:   Tue, 10 Sep 2019 17:46:50 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     tinywrkb <tinywrkb@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S2436785AbfIJQt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 12:49:56 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:41209 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436758AbfIJQtz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:49:55 -0400
+Received: by mail-qk1-f194.google.com with SMTP id o11so17727019qkg.8;
+        Tue, 10 Sep 2019 09:49:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:message-id:from:to:cc:subject:in-reply-to:references
+         :mime-version:content-disposition:content-transfer-encoding;
+        bh=NEflpFjybs9sPNMB0ibGRgHf21J+8Rj9DdyKXzTD934=;
+        b=ra3AuEt08YMBm+5erwcLDFIHiwIf0gaK0F1Ie8DH8OrtluyQcxWFdDOUEGdRSRyXhk
+         y6WeZS029xFXawPTU4oQHxwumys8aFvQiAm4RpuevhAM3kVynvFCiNI04W6pa/uGwC8s
+         OJmExOj8sRH1PP+ThN8nTsyTpIa+06WVgBXmvBG0mkxsc5d0XVwcwu47PLYXCr4BgXWk
+         49K5mSXF16w1NVDqLswkoNsAR+fzTcCGwAKpsLjFrYUNZnTj4B6e1eYuLbpmNfEqf34Z
+         K0tntP4qGhO5ZLeJGu1POZq36nSHWZWts6MsxjRIoYGNoORZ3TPKAXsyMnto0+FcDWMM
+         5qrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:from:to:cc:subject:in-reply-to
+         :references:mime-version:content-disposition
+         :content-transfer-encoding;
+        bh=NEflpFjybs9sPNMB0ibGRgHf21J+8Rj9DdyKXzTD934=;
+        b=KZfv8ZdlGvLkk6JvVh+Ebd7jF5i3jNyrkRDX01TyK4wP16n2hTBTMA6Cb3qIgunwKA
+         cWfHrXshRyP8F0YW/liD1CFgLzzuH8iPTOdtK/C/wFmGDFjjI4GgYwEfkMzKCEqg9/H6
+         J0dWYlZCQkzkN2dlSFYGeT/sIAygkWx11Z6CBlf/IrpkNI3Qn/1Ecvcp5jTmZF9P09Xp
+         zIf6gMiChtwo9vj2RfZnuBYLDyMK8yKix3hV69BvbWAzJuNKiKEW2+8C27S4NVS0laVr
+         d076/oGCiTbVTbHbIcp7It2brn8vy71CXQXC6x3ENft+aQp2KRuTd/HAVWVY5pJJg2TT
+         GUmA==
+X-Gm-Message-State: APjAAAXxr8mZJ8YLUzCto1/oBVZv2S9paoOjh5844MlxBrgGN6vFhxyt
+        v88IM3Q8T5l7JqiRhvsMsoU=
+X-Google-Smtp-Source: APXvYqxEL4jke6sa+R32vylpppkMKeL4MxKYBKn7ZK3Iw/1GGQH63Ht5dvbmCLXjhoCue2nKlmHmJQ==
+X-Received: by 2002:ae9:f10d:: with SMTP id k13mr29705870qkg.68.1568134193503;
+        Tue, 10 Sep 2019 09:49:53 -0700 (PDT)
+Received: from localhost (modemcable249.105-163-184.mc.videotron.ca. [184.163.105.249])
+        by smtp.gmail.com with ESMTPSA id p27sm7998341qkm.92.2019.09.10.09.49.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2019 09:49:52 -0700 (PDT)
+Date:   Tue, 10 Sep 2019 12:49:52 -0400
+Message-ID: <20190910124952.GG32337@t480s.localdomain>
+From:   Vivien Didelot <vivien.didelot@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Robert Beckett <bob.beckett@collabora.com>, netdev@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
- max-speed
-Message-ID: <20190910164650.GS13294@shell.armlinux.org.uk>
-References: <20190910155507.491230-1-tinywrkb@gmail.com>
+        devicetree@vger.kernel.org, Jiri Pirko <jiri@resnulli.us>,
+        Ido Schimmel <idosch@mellanox.com>
+Subject: Re: [PATCH 3/7] dt-bindings: mv88e6xxx: add ability to set default
+ queue priorities per port
+In-Reply-To: <23101286-4da2-2a53-e7cd-71ead263bbaa@gmail.com>
+References: <20190910154238.9155-1-bob.beckett@collabora.com>
+ <20190910154238.9155-4-bob.beckett@collabora.com>
+ <23101286-4da2-2a53-e7cd-71ead263bbaa@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190910155507.491230-1-tinywrkb@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 10, 2019 at 06:55:07PM +0300, tinywrkb wrote:
-> Cubox-i Solo/DualLite carrier board has 100Mb/s magnetics while the
+Hi Robert,
 
-That statement is false, sorry.  All boards support 1G.
+On Tue, 10 Sep 2019 09:42:24 -0700, Florian Fainelli <f.fainelli@gmail.com> wrote:
+> This is a vendor specific driver/property,
+> marvell,default-queue-priority (which be cheapskate on words) would be
+> more readable. But still, I have some more fundamental issues with the
+> general approach, see my response in the cover letter.
 
-> Atheros AR8035 PHY on the MicroSoM v1.3 CPU module is a 1GbE PHY device.
-> 
-> Since commit 5502b218e001 ("net: phy: use phy_resolve_aneg_linkmode in
-> genphy_read_status") ethernet is broken on Cubox-i Solo/DualLite devices.
-> 
-> This adds a phy node to the MicroSoM DTS and a 100Mb/s max-speed limit
-> to the Cubox-i Solo/DualLite carrier DTS.
-> 
-> Signed-off-by: tinywrkb <tinywrkb@gmail.com>
-> ---
-> This patch fixes ethernet on my Cubox-i2-300-D which is limited to 100Mb/s,
-> afaik due to the carrier board  magnetics, and was since commit 5502b218e001
-> ("net: phy: use phy_resolve_aneg_linkmode in genphy_read_status")
-> 
-> The AR8035 PHY on the CPU module reports to the driver as 1GbE capable
-> via MII_BSMR's BMSR_ESTATEN status bit, the auto-negotiation sets the
-> speed at 1GbE while the carrier board can't support it.
-> Same behavior with the generic phy_device and the at803x drivers.
-> 
-> While the PHY is on the CPU module board I added the max-speed limit to
-> the cubox-i carrier DTS as I suspect that if the Solo or DualLite v1.3
-> MicroSoM will be connected to a 1GbE capable carrier board then it would
-> work correctly with 1GbE.
-> 
-> I can confirm that this commit doesn't break networking on the my
-> Cubox-i4Pro Quad (i4P-300-D) with it's 1GbE capable carrier board, and
-> was tested separately with the generic phy_device and at803x drivers.
-> 
->  arch/arm/boot/dts/imx6dl-cubox-i.dts  | 4 ++++
->  arch/arm/boot/dts/imx6qdl-sr-som.dtsi | 9 +++++++++
->  2 files changed, 13 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/imx6dl-cubox-i.dts b/arch/arm/boot/dts/imx6dl-cubox-i.dts
-> index 2b1b3e193f53..cfc82513c78c 100644
-> --- a/arch/arm/boot/dts/imx6dl-cubox-i.dts
-> +++ b/arch/arm/boot/dts/imx6dl-cubox-i.dts
-> @@ -49,3 +49,7 @@
->  	model = "SolidRun Cubox-i Solo/DualLite";
->  	compatible = "solidrun,cubox-i/dl", "fsl,imx6dl";
->  };
-> +
-> +&ethphy {
-> +	max-speed = <100>;
-> +};
-> diff --git a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> index 6d7f6b9035bc..969bc96c3f99 100644
-> --- a/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-sr-som.dtsi
-> @@ -57,6 +57,15 @@
->  	phy-reset-duration = <2>;
->  	phy-reset-gpios = <&gpio4 15 GPIO_ACTIVE_LOW>;
->  	status = "okay";
-> +	phy-handle = <&ethphy>;
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		ethphy: ethernet-phy@0 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <0>;
-> +		};
-> +	};
->  };
->  
->  &iomuxc {
-> -- 
-> 2.23.0
-> 
-> 
+As Florian said, the DT is unlikely to welcome vendor specific nodes for
+configuration which may be generic through standard network userspace tools.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+
+Thanks,
+
+	Vivien
