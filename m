@@ -2,87 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF398AEFEA
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84790AF039
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 19:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436785AbfIJQt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 12:49:56 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:41209 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436758AbfIJQtz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:49:55 -0400
-Received: by mail-qk1-f194.google.com with SMTP id o11so17727019qkg.8;
-        Tue, 10 Sep 2019 09:49:53 -0700 (PDT)
+        id S2394240AbfIJROj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 13:14:39 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:39360 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731510AbfIJROj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 13:14:39 -0400
+Received: by mail-qt1-f194.google.com with SMTP id n7so21654695qtb.6
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 10:14:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:message-id:from:to:cc:subject:in-reply-to:references
-         :mime-version:content-disposition:content-transfer-encoding;
-        bh=NEflpFjybs9sPNMB0ibGRgHf21J+8Rj9DdyKXzTD934=;
-        b=ra3AuEt08YMBm+5erwcLDFIHiwIf0gaK0F1Ie8DH8OrtluyQcxWFdDOUEGdRSRyXhk
-         y6WeZS029xFXawPTU4oQHxwumys8aFvQiAm4RpuevhAM3kVynvFCiNI04W6pa/uGwC8s
-         OJmExOj8sRH1PP+ThN8nTsyTpIa+06WVgBXmvBG0mkxsc5d0XVwcwu47PLYXCr4BgXWk
-         49K5mSXF16w1NVDqLswkoNsAR+fzTcCGwAKpsLjFrYUNZnTj4B6e1eYuLbpmNfEqf34Z
-         K0tntP4qGhO5ZLeJGu1POZq36nSHWZWts6MsxjRIoYGNoORZ3TPKAXsyMnto0+FcDWMM
-         5qrg==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=HbUIStHt9W/VIVERFYwcoKZrgnGZv23yOnmmJWnfWUc=;
+        b=FjmYkULyMuJcFn7OokF8bYWgJVx6OD7aYCYCSC4Dqpj2ITrv4r5yGTCwjVijbaDYUu
+         We/YcdS0ku60UXpQrNszmQVVnDD79Ay70tiYuCT3+S4VSUQV3DmyKfeifQHF4HU8S03J
+         GD0OaCoNlipM/xrnjeL1Cqxx490vIOr1y3FICsO/9bPIeazxhgb8bRjQOD1SPoNBX2Yc
+         WvY8JpScsb04OvYCiw0AxSgJLN0hPOOVYQuykM1XIBmppbJUdl7xKJs0QlqX2n+pK2xP
+         S1ec721gVt9+qSGz+RiuI42Jjz41w8LxB+2VxEVYOVhytvSgi+CywF8UpAjALOYAZae2
+         GDMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:message-id:from:to:cc:subject:in-reply-to
-         :references:mime-version:content-disposition
-         :content-transfer-encoding;
-        bh=NEflpFjybs9sPNMB0ibGRgHf21J+8Rj9DdyKXzTD934=;
-        b=KZfv8ZdlGvLkk6JvVh+Ebd7jF5i3jNyrkRDX01TyK4wP16n2hTBTMA6Cb3qIgunwKA
-         cWfHrXshRyP8F0YW/liD1CFgLzzuH8iPTOdtK/C/wFmGDFjjI4GgYwEfkMzKCEqg9/H6
-         J0dWYlZCQkzkN2dlSFYGeT/sIAygkWx11Z6CBlf/IrpkNI3Qn/1Ecvcp5jTmZF9P09Xp
-         zIf6gMiChtwo9vj2RfZnuBYLDyMK8yKix3hV69BvbWAzJuNKiKEW2+8C27S4NVS0laVr
-         d076/oGCiTbVTbHbIcp7It2brn8vy71CXQXC6x3ENft+aQp2KRuTd/HAVWVY5pJJg2TT
-         GUmA==
-X-Gm-Message-State: APjAAAXxr8mZJ8YLUzCto1/oBVZv2S9paoOjh5844MlxBrgGN6vFhxyt
-        v88IM3Q8T5l7JqiRhvsMsoU=
-X-Google-Smtp-Source: APXvYqxEL4jke6sa+R32vylpppkMKeL4MxKYBKn7ZK3Iw/1GGQH63Ht5dvbmCLXjhoCue2nKlmHmJQ==
-X-Received: by 2002:ae9:f10d:: with SMTP id k13mr29705870qkg.68.1568134193503;
-        Tue, 10 Sep 2019 09:49:53 -0700 (PDT)
-Received: from localhost (modemcable249.105-163-184.mc.videotron.ca. [184.163.105.249])
-        by smtp.gmail.com with ESMTPSA id p27sm7998341qkm.92.2019.09.10.09.49.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2019 09:49:52 -0700 (PDT)
-Date:   Tue, 10 Sep 2019 12:49:52 -0400
-Message-ID: <20190910124952.GG32337@t480s.localdomain>
-From:   Vivien Didelot <vivien.didelot@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Robert Beckett <bob.beckett@collabora.com>, netdev@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Jiri Pirko <jiri@resnulli.us>,
-        Ido Schimmel <idosch@mellanox.com>
-Subject: Re: [PATCH 3/7] dt-bindings: mv88e6xxx: add ability to set default
- queue priorities per port
-In-Reply-To: <23101286-4da2-2a53-e7cd-71ead263bbaa@gmail.com>
-References: <20190910154238.9155-1-bob.beckett@collabora.com>
- <20190910154238.9155-4-bob.beckett@collabora.com>
- <23101286-4da2-2a53-e7cd-71ead263bbaa@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=HbUIStHt9W/VIVERFYwcoKZrgnGZv23yOnmmJWnfWUc=;
+        b=LZZutk+aSJU4T0nsSL2iRfxVQA2l+dgFKSZ6XBaYy4DZEZJA5T1EFwuMnjS+OhhvnM
+         OZIOENbMufuiSnzmfpn20vp0mVMKxiqmTsnJCymsfqxTx6MUFJwYQG7BA9x46PvbO+17
+         qxNc1ijbpvzhMBCtsSjWA2+DOK5oTpylZ8gccyQCwyt5DMYvx6/PoTDpwsQMDzqJdwuH
+         fn9vjsOGTOlygXsrMeD3NV7O0Fwj66PhlRzFZPFHiwPWPsKVyrmfQuBxOVqeRBT5FduS
+         klVOwOFwAJHzFOvA0dHlTxUIQyUzzvnTj+pCbko4j8MGHdrUSNMAidP0t5lvFxCcv7te
+         ATMg==
+X-Gm-Message-State: APjAAAXC/VBE7wuFXHC45L8EP2fbQouFPJ8EwPgR0Ri2GmAPzQiAv5AD
+        CGXJIl/GQOLzsDbBlESzFl2p/A==
+X-Google-Smtp-Source: APXvYqygj73ABNv7vOyOOorsAJk5oGGfIsSa/ouC8yqhBl2cKmgH+hBRVUAQ4JHsBlgT4pb76Bt4fg==
+X-Received: by 2002:ac8:647:: with SMTP id e7mr9928642qth.78.1568135678393;
+        Tue, 10 Sep 2019 10:14:38 -0700 (PDT)
+Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-246-27.washdc.fios.verizon.net. [71.255.246.27])
+        by smtp.googlemail.com with ESMTPSA id g45sm3400713qtc.9.2019.09.10.10.14.37
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 10 Sep 2019 10:14:37 -0700 (PDT)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     edubezval@gmail.com, rui.zhang@intel.com, ulf.hansson@linaro.org,
+        daniel.lezcano@linaro.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org, agross@kernel.org
+Cc:     amit.kucheria@verdurent.com, mark.rutland@arm.com,
+        rjw@rjwysocki.net, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/5] Introduce Power domain based warming device driver
+Date:   Tue, 10 Sep 2019 13:14:31 -0400
+Message-Id: <1568135676-9328-1-git-send-email-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.1.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robert,
+Certain resources modeled as a generic power domain in linux kernel 
+can be used to warm up the SoC (mx power domain on sdm845)
+if the temperature falls below certain threshold. These power domains
+can be considered as thermal warming devices.
+(opposite of thermal cooling devices).
 
-On Tue, 10 Sep 2019 09:42:24 -0700, Florian Fainelli <f.fainelli@gmail.com> wrote:
-> This is a vendor specific driver/property,
-> marvell,default-queue-priority (which be cheapskate on words) would be
-> more readable. But still, I have some more fundamental issues with the
-> general approach, see my response in the cover letter.
+In kernel, these warming devices can be modeled as a 
+thermal cooling device. In fact, since linux kernel today has
+no instance of a resource modeled as a power domain acting as a
+thermal warming device, a generic power domain based thermal warming device
+driver that can be used pan-Socs is the approach taken in this
+patch series. Since thermal warming devices can be thought of as the
+mirror opposite of thermal cooling devices, this patch series re-uses
+thermal cooling device framework. To use these power domains as warming
+devices require further tweaks in the thermal framework which are out of
+scope of this patch series.
 
-As Florian said, the DT is unlikely to welcome vendor specific nodes for
-configuration which may be generic through standard network userspace tools.
+The first patch in this series extends the genpd framework to export out
+the performance states of a power domain so that when a power
+domain is modeled as a cooling device, the number of possible states and
+current state of the cooling device can be retrieved from the genpd
+framework.
 
+The second patch implements the newly added genpd callback for Qualcomm
+RPMH power domain driver which hosts the mx power domain.
 
-Thanks,
+The third patch describes the dt binding required for a generic
+power domain based warming device
 
-	Vivien
+The fourth patch introduces the generic power domain warming device driver
+
+The fifth patch introduces the DT entreis for sdm845 to register mx power
+domain as a thermal warming device
+
+v1->v2:
+	- Rename the patch series from
+	"qcom: Model RPMH power domains as thermal cooling devices" to
+	"Introduce Power domain based thermal warming devices" as it is
+	more appropriate.
+	- Introduce a new patch(patch 3) describing the dt-bindings for generic power
+	domain warming device.
+	- Patch specific changes mentioned in respective patches.
+
+Thara Gopinath (5):
+  PM/Domains: Add support for retrieving genpd performance states
+    information
+  soc: qcom: rpmhpd: Introduce function to retrieve power domain
+    performance state count
+  dt-bindings: thermal: Add generic power domain warming device binding
+  thermal: Add generic power domain warming device driver.
+  arm64: dts: qcom: Add node for RPMH power domain warming device on
+    sdm845.
+
+ .../bindings/thermal/pwr-domain-warming.txt        |  32 ++++
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               |   7 +
+ drivers/base/power/domain.c                        |  37 +++++
+ drivers/soc/qcom/rpmhpd.c                          |   9 ++
+ drivers/thermal/Kconfig                            |  11 ++
+ drivers/thermal/Makefile                           |   2 +
+ drivers/thermal/pwr_domain_warming.c               | 174 +++++++++++++++++++++
+ include/linux/pm_domain.h                          |  13 ++
+ 8 files changed, 285 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/pwr-domain-warming.txt
+ create mode 100644 drivers/thermal/pwr_domain_warming.c
+
+-- 
+2.1.4
+
