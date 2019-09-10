@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F01DAEF39
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:09:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 945F9AEF2D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:09:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436672AbfIJQJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 12:09:07 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:44165 "EHLO
+        id S2436578AbfIJQJG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 12:09:06 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:43519 "EHLO
         mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436575AbfIJQJG (ORCPT
+        with ESMTP id S2436544AbfIJQJG (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:09:06 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q21so11780325pfn.11
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 09:09:05 -0700 (PDT)
+Received: by mail-pf1-f194.google.com with SMTP id d15so11776718pfo.10
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 09:09:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TUvxJ7wlmXdEjdS8Ji+2ki9BT3REdqo3NpskuD2RAZE=;
-        b=YJDh2YLeoTKo99EIHf/GbAcGlRVVjeHebFXD80CmOEXk6TDGBbj/Uh5lPLn3Z2Y21x
-         gTixE7rHSZVLLXSJ6GbQCyzq9QYepRhuOnus3wPSwsY1vxwywof4CRlDE9o5bB6kFdRh
-         L0aDQx9uJi6dcUYgOueyyIdi7vxhQ8v6gGLkc=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=HUiGHkQMIXTru33NEpbepH3aRpqrcccJiliaWHN/NLg=;
+        b=WgGiFGhC0+fEZ7JT0OjNHDyPLtBG3IXaHE9JpZEtRV2XqVoXUnKBH4yKD0ALDyd9ck
+         2OM4E+GQhSWHovAAda2EVwo5DBAambJGR6Ru/sygZR/+5MmXPszT57QDh4A2TkuPw88h
+         HrfbDrERmKljT3OSSYd7McTkRH1e1rZdAj67s=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=TUvxJ7wlmXdEjdS8Ji+2ki9BT3REdqo3NpskuD2RAZE=;
-        b=G4WWGGa74z8a9q/lbWBo9y6bVyFvWFbp+qgBbsMnifmrqAP7E01U1ggSqwFAOLnIUc
-         63fWYuKpOnz2fbp6K4fmpAN2tXAtmWBq6xnKnV+xO8C3KQMrYt4zj413v0VJpViJcOEp
-         TF2zWdtzlUG3QGPeRHcRX5whiyt6o+ktY9t4cGoE27Nr8ziQFQ5BMDE0Sc1/zYEDYo+R
-         MQuNNSrOGF5N01//YUtB9ayL/90iucenmZ8UvMIaqfTYHo+A5XHjNnPuNS2Xgnnv75AV
-         fmJcGL4JkIZxWWJE6lj4Ar7IK1gbl6WR+iyNW5clq2M4CscQayjADX8prSRqwzPHiZpv
-         rF0g==
-X-Gm-Message-State: APjAAAWdwej53H51DT8F19x7xISgAzAlF/5at9A2GvpY/YncXd88jMXG
-        blOZV5+e3C7wHFzIY3pYY0wFYw==
-X-Google-Smtp-Source: APXvYqwv8qruQZ4KH/LAzFeFB5Fw6fLmcphoP8mGiPT4myBOZsUnw+zQpjwu6W6Ar30JnBYs9mBOxQ==
-X-Received: by 2002:a62:64c9:: with SMTP id y192mr37931196pfb.6.1568131744630;
-        Tue, 10 Sep 2019 09:09:04 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=HUiGHkQMIXTru33NEpbepH3aRpqrcccJiliaWHN/NLg=;
+        b=VLTZHOCcCGJFHEkVvIgmmfb178q2pdwxp8qXqWEfQQhlCK0tgaTimyAxuIv3qLm7yp
+         2S53u2YUeQGd/FTSkX0WWFObrBf2bRMsTufzII1PRkNnZP0DEywfGLUs0mdn1QAXHvGZ
+         gV1giin0Umm9m2RNmeVZeijmAj1YUy2SlJ9NWOs5m41vW+o3+ZPYU7lnrwe57XT1t6cG
+         5VDBZ4Lcpd4nFRY8t/a9Y2+DoQcGCr515Mzq+4gLMiQm6CzCnqOtSaK48NZnQNSUBpIW
+         zdCaBq0RhkJepppWSUjRTbc62QsIW+GOPZqK9sYmWmX5cO5A3yn+DUnwxl1D94daUPkN
+         WkTw==
+X-Gm-Message-State: APjAAAWMEOV8+CEXWDFd7/0AIReu/Pjk9Abd4IK+JggGm8KaEQIr2J9i
+        sjLj+o0UObJqJpvfsIXUYukZXw==
+X-Google-Smtp-Source: APXvYqwEeEfNXla76FaGP5TGBYBOatyT898AHWyJZN2OgmIQpcAR1+y4Xp5qzzvgO8bXi6iPgi7SEA==
+X-Received: by 2002:a63:f04:: with SMTP id e4mr27801248pgl.38.1568131745594;
+        Tue, 10 Sep 2019 09:09:05 -0700 (PDT)
 Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id em21sm106088pjb.31.2019.09.10.09.09.03
+        by smtp.gmail.com with ESMTPSA id em21sm106088pjb.31.2019.09.10.09.09.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2019 09:09:04 -0700 (PDT)
+        Tue, 10 Sep 2019 09:09:05 -0700 (PDT)
 From:   Stephen Boyd <swboyd@chromium.org>
 To:     Dan Williams <dan.j.williams@intel.com>
 Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
@@ -50,11 +50,14 @@ Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Andy Gross <agross@kernel.org>,
         Will Deacon <will.deacon@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>
-Subject: [PATCH v3 0/5] Read-only memremap()
-Date:   Tue, 10 Sep 2019 09:08:58 -0700
-Message-Id: <20190910160903.65694-1-swboyd@chromium.org>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/5] reserved_mem: Add a devm_memremap_reserved_mem() API
+Date:   Tue, 10 Sep 2019 09:08:59 -0700
+Message-Id: <20190910160903.65694-2-swboyd@chromium.org>
 X-Mailer: git-send-email 2.23.0.162.g0b9fbb3734-goog
+In-Reply-To: <20190910160903.65694-1-swboyd@chromium.org>
+References: <20190910160903.65694-1-swboyd@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -62,32 +65,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series implements a read-only version of memremap() via
-a new MEMREMAP_RO flag. If this is passed in the mapping call, we'll
-try to map the memory region as read-only if it doesn't intersect
-with an existing mapping. Otherwise, we'll try to fallback to other
-flags to try to map the memory that way.
-
-The main use case I have is to map the command-db memory region on
-Qualcomm devices with a read-only mapping. It's already a const marked
-pointer and the API returns const pointers as well, so this series makes
-sure that even stray writes can't modify the memory. To get there we
-introduce a devm version of memremap() for a reserved memory region, add
-a memremap() flag, and implement support for that flag on arm64.
-
-Changes from v2 (https://lkml.kernel.org/r/20190614203717.75479-1-swboyd@chromium.org):
- * Added a comment to kerneldoc for the new MEMREMAP_RO flag
- * Rebased to v5.3-rc1
-
-Changes from v1:
- * Picked up tags and rebased to v5.2-rc3
-
-Stephen Boyd (5):
-  reserved_mem: Add a devm_memremap_reserved_mem() API
-  soc: qcom: cmd-db: Migrate to devm_memremap_reserved_mem()
-  memremap: Add support for read-only memory mappings
-  arm64: Add support for arch_memremap_ro()
-  soc: qcom: cmd-db: Map with read-only mappings
+We have a few drivers that need to get a reserved memory region, request
+the region, and map the reserved memory with memremap(). Add an API to
+do this all in one function call.
 
 Cc: Evan Green <evgreen@chromium.org>
 Cc: Rob Herring <robh+dt@kernel.org>
@@ -95,17 +75,99 @@ Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 Cc: Andy Gross <agross@kernel.org>
 Cc: Will Deacon <will.deacon@arm.com>
 Cc: Catalin Marinas <catalin.marinas@arm.com>
-
- arch/arm64/include/asm/io.h     |  1 +
+Cc: Dan Williams <dan.j.williams@intel.com>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
  drivers/of/of_reserved_mem.c    | 45 +++++++++++++++++++++++++++++++++
- drivers/soc/qcom/cmd-db.c       | 14 +++-------
- include/linux/io.h              |  1 +
  include/linux/of_reserved_mem.h |  6 +++++
- kernel/iomem.c                  | 20 ++++++++++++---
- 6 files changed, 74 insertions(+), 13 deletions(-)
+ 2 files changed, 51 insertions(+)
 
-
-base-commit: 5f9e832c137075045d15cd6899ab0505cfb2ca4b
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 7989703b883c..b3899a2c74c4 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -12,6 +12,7 @@
+ #define pr_fmt(fmt)	"OF: reserved mem: " fmt
+ 
+ #include <linux/err.h>
++#include <linux/io.h>
+ #include <linux/of.h>
+ #include <linux/of_fdt.h>
+ #include <linux/of_platform.h>
+@@ -410,3 +411,47 @@ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np)
+ 	return NULL;
+ }
+ EXPORT_SYMBOL_GPL(of_reserved_mem_lookup);
++
++/**
++ * devm_memremap_reserved_mem() - acquire reserved_mem from a device node,
++ *                                request and memremap it
++ * @dev: device with node pointer of the desired reserved-memory region
++ * @flags: flags to pass to memremap()
++ *
++ * This function allows drivers to acquire a reference to the reserved_mem
++ * struct based on the device's device_node handle, request it and then
++ * memremap() it.
++ *
++ * Returns: A remapped reserved memory region, or an error pointer on failure.
++ */
++void *devm_memremap_reserved_mem(struct device *dev, unsigned long flags)
++{
++	void *dest_ptr;
++	struct reserved_mem *rmem;
++	struct resource *res;
++	const char *name;
++
++	rmem = of_reserved_mem_lookup(dev->of_node);
++	if (!rmem) {
++		dev_err(dev, "failed to acquire memory region\n");
++		return ERR_PTR(-ENODEV);
++	}
++
++	name = rmem->name ? : dev_name(dev);
++
++	res = devm_request_mem_region(dev, rmem->base, rmem->size, name);
++	if (!res) {
++		dev_err(dev, "can't request region for reserved memory\n");
++		return ERR_PTR(-EBUSY);
++	}
++
++	dest_ptr = devm_memremap(dev, rmem->base, rmem->size, flags);
++	if (!dest_ptr) {
++		dev_err(dev, "memremap failed for reserved memory\n");
++		devm_release_mem_region(dev, rmem->base, rmem->size);
++		dest_ptr = ERR_PTR(-ENOMEM);
++	}
++
++	return dest_ptr;
++}
++EXPORT_SYMBOL_GPL(devm_memremap_reserved_mem);
+diff --git a/include/linux/of_reserved_mem.h b/include/linux/of_reserved_mem.h
+index 60f541912ccf..a36be60ef67c 100644
+--- a/include/linux/of_reserved_mem.h
++++ b/include/linux/of_reserved_mem.h
+@@ -39,6 +39,7 @@ void fdt_init_reserved_mem(void);
+ void fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ 			       phys_addr_t base, phys_addr_t size);
+ struct reserved_mem *of_reserved_mem_lookup(struct device_node *np);
++void *devm_memremap_reserved_mem(struct device *dev, unsigned long flags);
+ #else
+ static inline int of_reserved_mem_device_init_by_idx(struct device *dev,
+ 					struct device_node *np, int idx)
+@@ -54,6 +55,11 @@ static inline struct reserved_mem *of_reserved_mem_lookup(struct device_node *np
+ {
+ 	return NULL;
+ }
++static inline void *devm_memremap_reserved_mem(struct device *dev,
++					       unsigned long flags)
++{
++	return NULL;
++}
+ #endif
+ 
+ /**
 -- 
 Sent by a computer through tubes
 
