@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37763AEF36
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D45FFAEF33
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 18:09:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436534AbfIJQJI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 12:09:08 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:39298 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436678AbfIJQJH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:09:07 -0400
-Received: by mail-pg1-f193.google.com with SMTP id u17so9977620pgi.6
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 09:09:07 -0700 (PDT)
+        id S1726664AbfIJQJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 12:09:14 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:41588 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436697AbfIJQJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 12:09:09 -0400
+Received: by mail-pg1-f195.google.com with SMTP id x15so9976766pgg.8
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 09:09:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=YIkLTnrkWt/EuuPaM/5KgusucJyV+/pu2XQTD6+l1B4=;
-        b=foUXLvfXEBZ8ItH2km73P/GyOobcyj/2AlkrAl5hS06ssjzVy3VMEdus9dZJ3XfRko
-         n3d1oj1yZXYkG2g88eBnSetaXilib5WWGGyXSHK7SjUDXQXeIo8DFzlrCmNLoyCGk1MI
-         BMHL2SWL8Fvoc+XCOlcilC9vuG29PN8KWwjVs=
+        bh=BXles0cH5YGr7OfqkOJ72KVG5DkMe0UjZVzH2kBE6hs=;
+        b=T2zSyHcEiyCtbS8xoj/ECUACFJexd7ZGxA/Cwu1Ed2uaIIhPjEgfE8/61M2nZVJLBm
+         naR6pG28QpnVsTp2W51i+6ULyNWT6kVyhO8VoOvzKVTHc5F2cwDTufQa4OF3FyYP04dk
+         APV2Ac6LXoj1jxXRVHsGEBPoEuvTGMNcF+7Lc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=YIkLTnrkWt/EuuPaM/5KgusucJyV+/pu2XQTD6+l1B4=;
-        b=dZrtXNYDzA65G73g1l+Sci96D8ZqxNX6rt9nUVbbQFWl1s/J9XQBfguf2OLBGID42G
-         P3SuBZatQWAk7oExM33DufcRf7JDPSFnWy+N5Ls+rX/SB7M71iNSAT4T01CgiaRXiAyY
-         Ll1Cuz0cEHhMpLXDczUPtBkvd3QP9eUhzsSz4iOB60VC+lv6ITvBc9eEq1fdwDQW5agT
-         CjoNaEmaTbQxfCgpXa5qbcCNsDoduzEvb3jO5HihoRvI1wqFr70R1nD+x4B8xqU/4xD5
-         6Nsi4Bq6QtuK8fk4+KzPjtCdvOQ+8D9vgLERGmlyByv2U4qOPwKg1JGYvSIL+oCSom2A
-         H4qA==
-X-Gm-Message-State: APjAAAVK28vKgEBCMk5gNddU+x8IaMeEvzJWY/dtZGC1tRVPlqCidSjp
-        aaRngqM4pPS1DcrXpRZKWUwP5w==
-X-Google-Smtp-Source: APXvYqxx4DKXHSRmc5pwbVIhiOSXS9FCZbm2hSlKbDrWsuFklc4KYT0VzXEO62KHo4IIpzzRXcJKAg==
-X-Received: by 2002:aa7:81d1:: with SMTP id c17mr35893243pfn.219.1568131747300;
-        Tue, 10 Sep 2019 09:09:07 -0700 (PDT)
+        bh=BXles0cH5YGr7OfqkOJ72KVG5DkMe0UjZVzH2kBE6hs=;
+        b=cXkv6DdCLDIAtUsqjR9ljvMCHfPrxy0OK4SEPWdnB5ejhjluW0QVmA0zRv5XapjHli
+         mjmKXPoykk4cHex5riI8mYYJJPNdecIH2lPD5XynbfMEwl7j72HlBgakvfkqnTTVrgwd
+         C1tb6zW0zL3P9Dl9XlJnqIuM8NXz6NRdct4B0gyVesYH9EbC7X6U9LcTgPd8qYWNwuhd
+         zUhiOxei2hKj9dy7xNk0rNfFHsRvcztKJStFmuxAOF8XZexQzGTY4J5sHpuCPC/1MfeJ
+         Qftzmmk0PbvHNEueXw8wWF6m1WjftTRfQzIOlqsi5TRZfvyd8QqVCXOiVH2DYoLcGUH1
+         7qOw==
+X-Gm-Message-State: APjAAAXMKk7eMa7QHBjdt5CcBlYpBm5ZfNTpN0/VGX9FsZz9IaAOR5Bs
+        pQq+MilsF4Q5gJE266MlAJvkHg==
+X-Google-Smtp-Source: APXvYqwdWlZubSWHnT9D8yZ1LDDemTMKo+tmMy94vJ9+/SnQHMWaD5lO6RzbXotNH1LnwMd6vahwOA==
+X-Received: by 2002:a65:4b89:: with SMTP id t9mr28326267pgq.55.1568131748161;
+        Tue, 10 Sep 2019 09:09:08 -0700 (PDT)
 Received: from smtp.gmail.com ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id em21sm106088pjb.31.2019.09.10.09.09.06
+        by smtp.gmail.com with ESMTPSA id em21sm106088pjb.31.2019.09.10.09.09.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2019 09:09:06 -0700 (PDT)
+        Tue, 10 Sep 2019 09:09:07 -0700 (PDT)
 From:   Stephen Boyd <swboyd@chromium.org>
 To:     Dan Williams <dan.j.williams@intel.com>
 Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
@@ -51,9 +51,9 @@ Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Andy Gross <agross@kernel.org>,
         Will Deacon <will.deacon@arm.com>,
         Catalin Marinas <catalin.marinas@arm.com>
-Subject: [PATCH v3 3/5] memremap: Add support for read-only memory mappings
-Date:   Tue, 10 Sep 2019 09:09:01 -0700
-Message-Id: <20190910160903.65694-4-swboyd@chromium.org>
+Subject: [PATCH v3 4/5] arm64: Add support for arch_memremap_ro()
+Date:   Tue, 10 Sep 2019 09:09:02 -0700
+Message-Id: <20190910160903.65694-5-swboyd@chromium.org>
 X-Mailer: git-send-email 2.23.0.162.g0b9fbb3734-goog
 In-Reply-To: <20190910160903.65694-1-swboyd@chromium.org>
 References: <20190910160903.65694-1-swboyd@chromium.org>
@@ -64,12 +64,9 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sometimes we have memories that are supposed to be read-only, but when
-we map these regions the best we can do is map them as write-back with
-MEMREMAP_WB. Introduce a read-only memory mapping (MEMREMAP_RO) that
-allows us to map reserved memory regions as read-only. This way, we're
-less likely to see these special memory regions become corrupted by
-stray writes to them.
+Pass in PAGE_KERNEL_RO to the underlying IO mapping mechanism to get a
+read-only mapping for the MEMREMAP_RO type of memory mappings that
+memremap() supports.
 
 Cc: Evan Green <evgreen@chromium.org>
 Cc: Rob Herring <robh+dt@kernel.org>
@@ -79,83 +76,24 @@ Cc: Will Deacon <will.deacon@arm.com>
 Cc: Catalin Marinas <catalin.marinas@arm.com>
 Cc: Dan Williams <dan.j.williams@intel.com>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Acked-by: Catalin Marinas <catalin.marinas@arm.com>
 Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 ---
- include/linux/io.h |  1 +
- kernel/iomem.c     | 20 +++++++++++++++++---
- 2 files changed, 18 insertions(+), 3 deletions(-)
+ arch/arm64/include/asm/io.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/include/linux/io.h b/include/linux/io.h
-index accac822336a..15a63efcd153 100644
---- a/include/linux/io.h
-+++ b/include/linux/io.h
-@@ -148,6 +148,7 @@ enum {
- 	MEMREMAP_WC = 1 << 2,
- 	MEMREMAP_ENC = 1 << 3,
- 	MEMREMAP_DEC = 1 << 4,
-+	MEMREMAP_RO = 1 << 5,
- };
+diff --git a/arch/arm64/include/asm/io.h b/arch/arm64/include/asm/io.h
+index 7ed92626949d..c623e75d9152 100644
+--- a/arch/arm64/include/asm/io.h
++++ b/arch/arm64/include/asm/io.h
+@@ -172,6 +172,7 @@ extern void __iomem *ioremap_cache(phys_addr_t phys_addr, size_t size);
+ #define ioremap_nocache(addr, size)	__ioremap((addr), (size), __pgprot(PROT_DEVICE_nGnRE))
+ #define ioremap_wc(addr, size)		__ioremap((addr), (size), __pgprot(PROT_NORMAL_NC))
+ #define ioremap_wt(addr, size)		__ioremap((addr), (size), __pgprot(PROT_DEVICE_nGnRE))
++#define arch_memremap_ro(addr, size)	__ioremap((addr), (size), PAGE_KERNEL_RO)
+ #define iounmap				__iounmap
  
- void *memremap(resource_size_t offset, size_t size, unsigned long flags);
-diff --git a/kernel/iomem.c b/kernel/iomem.c
-index 62c92e43aa0d..6d76b7398714 100644
---- a/kernel/iomem.c
-+++ b/kernel/iomem.c
-@@ -19,6 +19,13 @@ static void *arch_memremap_wb(resource_size_t offset, unsigned long size)
- }
- #endif
- 
-+#ifndef arch_memremap_ro
-+static void *arch_memremap_ro(resource_size_t offset, unsigned long size)
-+{
-+	return NULL;
-+}
-+#endif
-+
- #ifndef arch_memremap_can_ram_remap
- static bool arch_memremap_can_ram_remap(resource_size_t offset, size_t size,
- 					unsigned long flags)
-@@ -45,7 +52,7 @@ static void *try_ram_remap(resource_size_t offset, size_t size,
-  * @offset: iomem resource start address
-  * @size: size of remap
-  * @flags: any of MEMREMAP_WB, MEMREMAP_WT, MEMREMAP_WC,
-- *		  MEMREMAP_ENC, MEMREMAP_DEC
-+ *		  MEMREMAP_ENC, MEMREMAP_DEC, MEMREMAP_RO
-  *
-  * memremap() is "ioremap" for cases where it is known that the resource
-  * being mapped does not have i/o side effects and the __iomem
-@@ -53,6 +60,9 @@ static void *try_ram_remap(resource_size_t offset, size_t size,
-  * mapping types will be attempted in the order listed below until one of
-  * them succeeds.
-  *
-+ * MEMREMAP_RO - establish a mapping whereby writes are ignored/rejected.
-+ * Attempts to map System RAM with this mapping type will fail.
-+ *
-  * MEMREMAP_WB - matches the default mapping for System RAM on
-  * the architecture.  This is usually a read-allocate write-back cache.
-  * Moreover, if MEMREMAP_WB is specified and the requested remap region is RAM
-@@ -84,7 +94,10 @@ void *memremap(resource_size_t offset, size_t size, unsigned long flags)
- 	}
- 
- 	/* Try all mapping types requested until one returns non-NULL */
--	if (flags & MEMREMAP_WB) {
-+	if ((flags & MEMREMAP_RO) && is_ram != REGION_INTERSECTS)
-+		addr = arch_memremap_ro(offset, size);
-+
-+	if (!addr && (flags & MEMREMAP_WB)) {
- 		/*
- 		 * MEMREMAP_WB is special in that it can be satisfied
- 		 * from the direct map.  Some archs depend on the
-@@ -103,7 +116,8 @@ void *memremap(resource_size_t offset, size_t size, unsigned long flags)
- 	 * address mapping.  Enforce that this mapping is not aliasing
- 	 * System RAM.
- 	 */
--	if (!addr && is_ram == REGION_INTERSECTS && flags != MEMREMAP_WB) {
-+	if (!addr && is_ram == REGION_INTERSECTS &&
-+	    (flags != MEMREMAP_WB || flags != MEMREMAP_RO)) {
- 		WARN_ONCE(1, "memremap attempted on ram %pa size: %#lx\n",
- 				&offset, (unsigned long) size);
- 		return NULL;
+ /*
 -- 
 Sent by a computer through tubes
 
