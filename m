@@ -2,115 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96A25AE5F7
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 10:47:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBDF2AE60D
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 10:51:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387715AbfIJIrn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 04:47:43 -0400
-Received: from mga02.intel.com ([134.134.136.20]:21856 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387696AbfIJIrO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 04:47:14 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Sep 2019 01:47:14 -0700
-X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; 
-   d="scan'208";a="335852655"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 10 Sep 2019 01:47:12 -0700
-Received: from punajuuri.localdomain (punajuuri.localdomain [192.168.240.130])
-        by paasikivi.fi.intel.com (Postfix) with ESMTP id ECC0D20CE5;
-        Tue, 10 Sep 2019 11:47:05 +0300 (EEST)
-Received: from sailus by punajuuri.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@linux.intel.com>)
-        id 1i7bnn-0004nu-Kt; Tue, 10 Sep 2019 11:47:07 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Joe Perches <joe@perches.com>
-Subject: [PATCH v6 12/12] lib/test_printf: Add tests for %pfw printk modifier
-Date:   Tue, 10 Sep 2019 11:47:07 +0300
-Message-Id: <20190910084707.18380-13-sakari.ailus@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
-References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
+        id S1725957AbfIJIvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 04:51:08 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45757 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727003AbfIJIvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 04:51:08 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 41so13492593oti.12
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 01:51:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=TORtZiXw+gviBY1uqojNwtzUG5Du45WnPV4wu8nw43A=;
+        b=FP63dxnYbqidnXC5M+glimtjNBKD/siLT23X23yuuOER2/9MRjpqdmr17EYxW/s6p0
+         E+BlJ699H7VMsfwq2N1wqcggLYV4SabdWzY7R+9yPxtI/5t3nmNf5ca2zAEhu1LnVkuB
+         djYTbLY1JIMnBRApHzAxKwnWqjP+nN1qESTU3SbZUvPgE9If19AaeeYRC/e77mGKGlHs
+         Z8ZBwXsPYqqQJgcLf6S0grCdZJQsRslVL3vSrRDO2qTE8+rlRH1udar3q0c+ncpOXXIv
+         4GVPY8w0RyJ4klXWtdtrKObo3MRhX8E73WYW7kEYXbu2xbXOjxHEltwsAL090sa9hSiJ
+         ROuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=TORtZiXw+gviBY1uqojNwtzUG5Du45WnPV4wu8nw43A=;
+        b=DQH8hU7E93kRvR7qd1Ii4Wi7bsENVhQmV6ipJHvTx7fmdozeT/dAbggY/4CmvlRzyV
+         lQtRfeuUGqSmTRojoNXC3XUcOmO6hsXlVxV/1WraQs9JZJBDR7SgDq115yHAvOSJ7FNP
+         JHAyXj5I8SIP9DvtbY7OxBNyC8xd1jR9aqS++fhJjKheUHLktKDWVYBNaeUk+r2a08f5
+         dW2QrnbMR44IAeCS/w3QJ/5CGPnLz83uAP943pl2zDObtC1yCv6fBBTJgx29NyhOfgLR
+         V5GkfqbaDr2JzsrkWU5ok9VbNXQDKvOS3MGZoUJsIdzTkqsMqs0lkOgVK++2dydre4j+
+         taow==
+X-Gm-Message-State: APjAAAUl3UNjkJnZXyqtgg7IUDV7wKBzYHYmK1o4A+7c9inuMWD5K2aM
+        vcQXdgV/4GFzMH40LiUknnkDX2OUhN2EeyW8INKQxA==
+X-Google-Smtp-Source: APXvYqxAsq9CF/Si2rdwo5vSZgIzEMUPMsKHEsRblYndhdS59/hlsoR7x+5MiowCWiAhLmrRORnRA4H2pVT8BZGTtxI=
+X-Received: by 2002:a05:6830:1d4e:: with SMTP id p14mr1451146oth.292.1568105466197;
+ Tue, 10 Sep 2019 01:51:06 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190906084539.21838-1-geert+renesas@glider.be>
+In-Reply-To: <20190906084539.21838-1-geert+renesas@glider.be>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Tue, 10 Sep 2019 10:50:55 +0200
+Message-ID: <CAMpxmJVrQ92+ULRrzyN52LwEcdPTuK7OZssZjUcRPRSTBQ=fwg@mail.gmail.com>
+Subject: Re: [PATCH 0/4] gpio: API boundary cleanups
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        arm-soc <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a test for the %pfw printk modifier using software nodes.
+pt., 6 wrz 2019 o 10:45 Geert Uytterhoeven <geert+renesas@glider.be> napisa=
+=C5=82(a):
+>
+>         Hi Linus, Bartosz,
+>
+> This patch series contains various API boundary cleanups for gpiolib:
+>   - The first two patches make two functions private,
+>   - The last two patches switch the remaining gpiolib exported functions
+>     from EXPORT_SYMBOL() to EXPORT_SYMBOL_GPL().
+>
+> After this there is only a single GPIO driver function exported with
+> EXPORT_SYMBOL();
+>
+>     drivers/gpio/gpio-htc-egpio.c:EXPORT_SYMBOL(htc_egpio_get_wakeup_irq)=
+;
+>
+> I believe this symbol was never used upstream, and may be a relic of the
+> original out-of-tree code the htc-egpio was based on.  I don't know if
+> there (still) exist out-of-tree users of the symbol.
+>
+> Thanks for your comments!
 
-Signed-off-by: Sakari Ailus <sakari.ailus@linux.intel.com>
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
----
- lib/test_printf.c | 32 ++++++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+All looks good to me. Are you fine with this being picked up after the
+v5.4 merge window?
 
-diff --git a/lib/test_printf.c b/lib/test_printf.c
-index 944eb50f38625..bb6a7d334084b 100644
---- a/lib/test_printf.c
-+++ b/lib/test_printf.c
-@@ -22,6 +22,8 @@
- #include <linux/gfp.h>
- #include <linux/mm.h>
- 
-+#include <linux/property.h>
-+
- #include "../tools/testing/selftests/kselftest_module.h"
- 
- #define BUF_SIZE 256
-@@ -588,6 +590,35 @@ flags(void)
- 	kfree(cmp_buffer);
- }
- 
-+static void __init fwnode_pointer(void)
-+{
-+	const struct software_node softnodes[] = {
-+		{ .name = "first", },
-+		{ .name = "second", .parent = &softnodes[0], },
-+		{ .name = "third", .parent = &softnodes[1], },
-+		{ NULL /* Guardian */ }
-+	};
-+	const char * const full_name = "first/second/third";
-+	const char * const full_name_second = "first/second";
-+	const char * const second_name = "second";
-+	const char * const third_name = "third";
-+	int rval;
-+
-+	rval = software_node_register_nodes(softnodes);
-+	if (rval) {
-+		pr_warn("cannot register softnodes; rval %d\n", rval);
-+		return;
-+	}
-+
-+	test(full_name_second, "%pfw", software_node_fwnode(&softnodes[1]));
-+	test(full_name, "%pfw", software_node_fwnode(&softnodes[2]));
-+	test(full_name, "%pfwf", software_node_fwnode(&softnodes[2]));
-+	test(second_name, "%pfwP", software_node_fwnode(&softnodes[1]));
-+	test(third_name, "%pfwP", software_node_fwnode(&softnodes[2]));
-+
-+	software_node_unregister_nodes(softnodes);
-+}
-+
- static void __init
- test_pointer(void)
- {
-@@ -610,6 +641,7 @@ test_pointer(void)
- 	bitmap();
- 	netdev_features();
- 	flags();
-+	fwnode_pointer();
- }
- 
- static void __init selftest(void)
--- 
-2.20.1
+Bart
 
+>
+> Geert Uytterhoeven (4):
+>   gpio: of: Make of_get_named_gpiod_flags() private
+>   gpio: of: Make of_gpio_simple_xlate() private
+>   gpio: of: Switch to EXPORT_SYMBOL_GPL()
+>   gpio: devres: Switch to EXPORT_SYMBOL_GPL()
+>
+>  drivers/gpio/gpiolib-devres.c | 28 ++++++++++++++--------------
+>  drivers/gpio/gpiolib-of.c     | 16 ++++++++--------
+>  drivers/gpio/gpiolib-of.h     |  7 -------
+>  include/linux/of_gpio.h       | 11 -----------
+>  4 files changed, 22 insertions(+), 40 deletions(-)
+>
+> --
+> 2.17.1
+>
+> Gr{oetje,eeting}s,
+>
+>                                                 Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                                             -- Linus Torv=
+alds
