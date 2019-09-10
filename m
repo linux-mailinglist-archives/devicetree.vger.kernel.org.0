@@ -2,97 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 689D3AE62E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 11:00:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D1D5AE69A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 11:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727930AbfIJJAE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 10 Sep 2019 05:00:04 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:33270 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbfIJJAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 05:00:04 -0400
-Received: by mail-ot1-f65.google.com with SMTP id g25so16094045otl.0;
-        Tue, 10 Sep 2019 02:00:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=tDTK3OLpchCjCRU8TOfjhGkxmXXLcL73wfiJk/3qy3k=;
-        b=rG4hCQ4KSKKUbjmtgEOyUvwZommEuCu2CTjo/TtvMcTdfiJT9A2Iq6JPNDK1IHKmDR
-         svoqw71zy5N1Zx1QFQ7OZQWfHL9xD+oUi0F5u7GFor1rd/E9edZlNWrUgX+yv5col899
-         XF/dv7DSTTc52cP96tJGvONAiGcV6SBL+4AsA2HGtEvj7QS7wtpcEKWnbQ4SP2RKZOb4
-         5ZJvdUYE6GTrp0DcIualJvV0ByeIsW9HADnX/tSj8+wjmSz0EREHRL26FUsgzCwmO0ks
-         G0vJgAWgWVdEcPrYLoOhIyOS4djBHsSAGMypouJefqnkBNaJR5Peupci6jO0NZl/TWT/
-         zGpA==
-X-Gm-Message-State: APjAAAVD6l9QjS2sETo3/63uPgGYii9X1W1U7jNRYqSalc6mqi93fJtm
-        uSrffj6J6EMsLscOA9QElgbDEcC997VmhdGjUXn8Sw==
-X-Google-Smtp-Source: APXvYqw1/V7JJZY7iU4ASdisuWl7yMwdrDM7D32UeSrm/lIre9DoD2PTYCLldEyJ3F30z/x0IGm9trL79jz0Nifw45k=
-X-Received: by 2002:a9d:2cc:: with SMTP id 70mr24743844otl.145.1568106003005;
- Tue, 10 Sep 2019 02:00:03 -0700 (PDT)
+        id S1728837AbfIJJTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 05:19:35 -0400
+Received: from smtp3.goneo.de ([85.220.129.37]:33404 "EHLO smtp3.goneo.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729439AbfIJJTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 05:19:35 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by smtp3.goneo.de (Postfix) with ESMTP id 0247F23FDF8;
+        Tue, 10 Sep 2019 11:19:32 +0200 (CEST)
+X-Virus-Scanned: by goneo
+X-Spam-Flag: NO
+X-Spam-Score: -3.035
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.035 tagged_above=-999 tests=[ALL_TRUSTED=-1,
+        AWL=-0.135, BAYES_00=-1.9] autolearn=ham
+Received: from smtp3.goneo.de ([127.0.0.1])
+        by localhost (smtp3.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id dffO01LN1ocM; Tue, 10 Sep 2019 11:19:31 +0200 (CEST)
+Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
+        by smtp3.goneo.de (Postfix) with ESMTPA id 671F923FA02;
+        Tue, 10 Sep 2019 11:19:31 +0200 (CEST)
+From:   Lars Poeschel <poeschel@lemonage.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "GitAuthor: Lars Poeschel" <poeschel@lemonage.de>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Cc:     Johan Hovold <johan@kernel.org>
+Subject: [PATCH v7 2/7] nfc: pn532_uart: Add NXP PN532 to devicetree docs
+Date:   Tue, 10 Sep 2019 11:32:53 +0200
+Message-Id: <20190910093256.1920-1-poeschel@lemonage.de>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <20190906084539.21838-1-geert+renesas@glider.be> <CAMpxmJVrQ92+ULRrzyN52LwEcdPTuK7OZssZjUcRPRSTBQ=fwg@mail.gmail.com>
-In-Reply-To: <CAMpxmJVrQ92+ULRrzyN52LwEcdPTuK7OZssZjUcRPRSTBQ=fwg@mail.gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 10 Sep 2019 10:59:51 +0200
-Message-ID: <CAMuHMdWpDOSpz3Mak7Vd=CY7r_kxPUx3A0CMqC-VY6TXtD9cqg@mail.gmail.com>
-Subject: Re: [PATCH 0/4] gpio: API boundary cleanups
-To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        arm-soc <linux-arm-kernel@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bartosz,
+Add a simple binding doc for the pn532.
 
-On Tue, Sep 10, 2019 at 10:51 AM Bartosz Golaszewski
-<bgolaszewski@baylibre.com> wrote:
-> pt., 6 wrz 2019 o 10:45 Geert Uytterhoeven <geert+renesas@glider.be> napisał(a):
-> > This patch series contains various API boundary cleanups for gpiolib:
-> >   - The first two patches make two functions private,
-> >   - The last two patches switch the remaining gpiolib exported functions
-> >     from EXPORT_SYMBOL() to EXPORT_SYMBOL_GPL().
-> >
-> > After this there is only a single GPIO driver function exported with
-> > EXPORT_SYMBOL();
-> >
-> >     drivers/gpio/gpio-htc-egpio.c:EXPORT_SYMBOL(htc_egpio_get_wakeup_irq);
-> >
-> > I believe this symbol was never used upstream, and may be a relic of the
-> > original out-of-tree code the htc-egpio was based on.  I don't know if
-> > there (still) exist out-of-tree users of the symbol.
-> >
-> > Thanks for your comments!
->
-> All looks good to me. Are you fine with this being picked up after the
-> v5.4 merge window?
+Cc: Johan Hovold <johan@kernel.org>
+Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
+---
+Changes in v6:
+- Rebased the patch series on v5.3-rc5
+- Picked up Rob's Reviewed-By
 
-Sure, whatever suits you best.
+Changes in v4:
+- Add documentation about reg property in case of i2c
 
-Thanks!
+Changes in v3:
+- seperate binding doc instead of entry in trivial-devices.txt
 
-> > Geert Uytterhoeven (4):
-> >   gpio: of: Make of_get_named_gpiod_flags() private
-> >   gpio: of: Make of_gpio_simple_xlate() private
-> >   gpio: of: Switch to EXPORT_SYMBOL_GPL()
-> >   gpio: devres: Switch to EXPORT_SYMBOL_GPL()
+ .../devicetree/bindings/nfc/pn532.txt         | 33 +++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nfc/pn532.txt
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/nfc/pn532.txt b/Documentation/devicetree/bindings/nfc/pn532.txt
+new file mode 100644
+index 000000000000..d5aaa588073d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nfc/pn532.txt
+@@ -0,0 +1,33 @@
++NXP PN532 NFC Chip
++
++Required properties:
++- compatible: Should be
++    - "nxp,pn532" Place a node with this inside the devicetree node of the bus
++                  where the NFC chip is connected to.
++                  Currently the kernel has phy bindings for uart and i2c.
++    - "nxp,pn532-i2c" (DEPRECATED) only works for the i2c binding.
++    - "nxp,pn533-i2c" (DEPRECATED) only works for the i2c binding.
++
++Required properties if connected on i2c:
++- reg: for the i2c bus address. This is fixed at 0x48 for the PN532.
++
++Example uart:
++
++uart4: serial@49042000 {
++        compatible = "ti,omap3-uart";
++
++        pn532: nfc {
++                compatible = "nxp,pn532";
++        };
++};
++
++Example i2c:
++
++i2c1: i2c@0 {
++        compatible = "ti,omap3-i2c";
++
++        pn532: nfc {
++                compatible = "nxp,pn532";
++                reg = <0x48>;
++        };
++};
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.23.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
