@@ -2,138 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 564F5AE79B
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75F3AAE7E3
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388027AbfIJKHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 06:07:08 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:47664 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391992AbfIJKHI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 06:07:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=TAVHKaWXI4BEycgQJrIFHO035PWGPpF60zavVSn6Qw4=; b=FX3kfwpO8H3z
-        ZvMWbvzSvmJAITPgXUsPv4uK/PJ6gKEYzSGHIKKbESt7CQU5s/bVTeUfjdOy+NZBRkBm+iW1CZUJo
-        2AFcAKECVnzGaonfq2Xe03dY3JAg96AlcWIaBkcf+2d0OIvy55fEAVx88CVrS3fQl+LQe/t8B159Y
-        twKpA=;
-Received: from [148.69.85.38] (helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1i7d36-0006j7-Io; Tue, 10 Sep 2019 10:07:00 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id E825CD02D5A; Tue, 10 Sep 2019 11:06:59 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     devicetree@vger.kernel.org,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Applied "regulator: uniphier: Add Pro5 USB3 VBUS support" to the regulator tree
-In-Reply-To: <1568080304-1572-1-git-send-email-hayashi.kunihiko@socionext.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190910100659.E825CD02D5A@fitzroy.sirena.org.uk>
-Date:   Tue, 10 Sep 2019 11:06:59 +0100 (BST)
+        id S1728945AbfIJKVb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 06:21:31 -0400
+Received: from smtprelay0089.hostedemail.com ([216.40.44.89]:57175 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726231AbfIJKVb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 06:21:31 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay04.hostedemail.com (Postfix) with ESMTP id 735C1180A8123;
+        Tue, 10 Sep 2019 10:21:29 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 30,2,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::,RULES_HIT:41:69:355:379:599:960:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1542:1593:1594:1711:1730:1747:1777:1792:1981:2194:2197:2198:2199:2200:2201:2393:2553:2559:2562:2828:2892:3138:3139:3140:3141:3142:3355:3622:3653:3865:3866:3867:3868:3870:3871:3872:4250:4321:4605:5007:6117:6119:6120:7875:7903:7904:8957:10004:10400:10848:11026:11232:11473:11658:11914:12043:12048:12295:12297:12438:12555:12740:12760:12895:12986:13019:13149:13161:13229:13230:13255:13439:14181:14659:14721:21080:21221:21433:21505:21627:21774:30003:30012:30029:30030:30054:30056:30070:30075:30090:30091,0,RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:28,LUA_SUMMARY:none
+X-HE-Tag: quilt67_8134ff3330428
+X-Filterd-Recvd-Size: 3861
+Received: from XPS-9350.home (unknown [47.151.152.152])
+        (Authenticated sender: joe@perches.com)
+        by omf08.hostedemail.com (Postfix) with ESMTPA;
+        Tue, 10 Sep 2019 10:21:27 +0000 (UTC)
+Message-ID: <ef57a3fc72b548b7daf9257aacc596d57004199d.camel@perches.com>
+Subject: Re: [PATCH v6 11/12] lib/vsprintf: Add %pfw conversion specifier
+ for printing fwnode names
+From:   Joe Perches <joe@perches.com>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org
+Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Date:   Tue, 10 Sep 2019 03:21:26 -0700
+In-Reply-To: <20190910084707.18380-12-sakari.ailus@linux.intel.com>
+References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
+         <20190910084707.18380-12-sakari.ailus@linux.intel.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.32.1-2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Tue, 2019-09-10 at 11:47 +0300, Sakari Ailus wrote:
+> Add support for %pfw conversion specifier (with "f" and "P" modifiers) to
+> support printing full path of the node, including its name ("f") and only
+> the node's name ("P") in the printk family of functions. The two flags
+> have equivalent functionality to existing %pOF with the same two modifiers
+> ("f" and "P") on OF based systems. The ability to do the same on ACPI
+> based systems is added by this patch.
 
-   regulator: uniphier: Add Pro5 USB3 VBUS support
+checkpatch comment below:
+   A. 
+> diff --git a/Documentation/core-api/printk-formats.rst b/Documentation/core-api/printk-formats.rst
+[]
+> @@ -418,6 +418,30 @@ Examples::
+>  
+>  Passed by reference.
+>  
+> +Fwnode handles
+> +--------------
+> +
+> +::
+> +
+> +	%pfw[fP]
+> +
+> +For printing information on fwnode handles. The default is to print the full
+> +node name, including the path. The modifiers are functionally equivalent to
+> +%pOF above.
+> +
+> +	- f - full name of the node, including the path
+> +	- P - the name of the node including an address (if there is one)
+> +
+> +Examples (ACPI)::
+> +
+> +	%pfwf	\_SB.PCI0.CIO2.port@1.endpoint@0	- Full node name
+> +	%pfwP	endpoint@0				- Node name
+> +
+> +Examples (OF)::
+> +
+> +	%pfwf	/ocp@68000000/i2c@48072000/camera@10/port/endpoint - Full name
+> +	%pfwP	endpoint				- Node name
+[]
+> diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
+[]
+> @@ -5988,14 +5988,17 @@ sub process {
+>  		        for (my $count = $linenr; $count <= $lc; $count++) {
+>  				my $specifier;
+>  				my $extension;
+> +				my $qualifier;
+>  				my $bad_specifier = "";
+>  				my $fmt = get_quoted_string($lines[$count - 1], raw_line($count, 0));
+>  				$fmt =~ s/%%//g;
+>  
+> -				while ($fmt =~ /(\%[\*\d\.]*p(\w))/g) {
+> +				while ($fmt =~ /(\%[\*\d\.]*p(\w)(\w?))/g) {
 
-has been applied to the regulator tree at
+This is not generic enough to allow all possible qualifiers
+to be captured.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-5.4
+This should be something like:
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+			while ($fmt =~ /(\%[\*\d\.]*p(\w)(\w*))/g) {
+	
+>  					$specifier = $1;
+>  					$extension = $2;
+> -					if ($extension !~ /[SsBKRraEhMmIiUDdgVCbGNOxt]/) {
+> +					$qualifier = $3;
+> +					if ($extension !~ /[SsBKRraEhMmIiUDdgVCbGNOxtf]/ ||
+> +					    ($extension eq "f" && $qualifier ne "w")) {
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+And this should likely test
+					    (defined $qualifier &&
+					     $extension eq 'f' && $qualifier =~ /^w/))
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+>  						$bad_specifier = $specifier;
+>  						last;
+>  					}
 
-Thanks,
-Mark
+And here the 'f' isn't really a bad $specifier,
+it does not have the correct 'w' $extension.
 
-From 3ba5368dc4e5947cb70287754960776c471eb23d Mon Sep 17 00:00:00 2001
-From: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Date: Tue, 10 Sep 2019 10:51:44 +0900
-Subject: [PATCH] regulator: uniphier: Add Pro5 USB3 VBUS support
+The valid extensions may change in the future and
+this code isn't particularly manageable, so I
+think the $specifier/$extension pair should likely
+have some additional testing after validating
+the $specifier.
 
-Pro5 SoC has same scheme of USB3 VBUS as Pro4, so the data for Pro5 is
-equivalent to Pro4.
 
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Link: https://lore.kernel.org/r/1568080304-1572-1-git-send-email-hayashi.kunihiko@socionext.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- .../devicetree/bindings/regulator/uniphier-regulator.txt     | 5 +++--
- drivers/regulator/uniphier-regulator.c                       | 4 ++++
- 2 files changed, 7 insertions(+), 2 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt b/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt
-index c9919f4b92d2..94fd38b0d163 100644
---- a/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt
-+++ b/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt
-@@ -13,6 +13,7 @@ this layer. These clocks and resets should be described in each property.
- Required properties:
- - compatible: Should be
-     "socionext,uniphier-pro4-usb3-regulator" - for Pro4 SoC
-+    "socionext,uniphier-pro5-usb3-regulator" - for Pro5 SoC
-     "socionext,uniphier-pxs2-usb3-regulator" - for PXs2 SoC
-     "socionext,uniphier-ld20-usb3-regulator" - for LD20 SoC
-     "socionext,uniphier-pxs3-usb3-regulator" - for PXs3 SoC
-@@ -20,12 +21,12 @@ Required properties:
- - clocks: A list of phandles to the clock gate for USB3 glue layer.
- 	According to the clock-names, appropriate clocks are required.
- - clock-names: Should contain
--    "gio", "link" - for Pro4 SoC
-+    "gio", "link" - for Pro4 and Pro5 SoCs
-     "link"        - for others
- - resets: A list of phandles to the reset control for USB3 glue layer.
- 	According to the reset-names, appropriate resets are required.
- - reset-names: Should contain
--    "gio", "link" - for Pro4 SoC
-+    "gio", "link" - for Pro4 and Pro5 SoCs
-     "link"        - for others
- 
- See Documentation/devicetree/bindings/regulator/regulator.txt
-diff --git a/drivers/regulator/uniphier-regulator.c b/drivers/regulator/uniphier-regulator.c
-index 9026d5a3e964..2311924c3103 100644
---- a/drivers/regulator/uniphier-regulator.c
-+++ b/drivers/regulator/uniphier-regulator.c
-@@ -185,6 +185,10 @@ static const struct of_device_id uniphier_regulator_match[] = {
- 		.compatible = "socionext,uniphier-pro4-usb3-regulator",
- 		.data = &uniphier_pro4_usb3_data,
- 	},
-+	{
-+		.compatible = "socionext,uniphier-pro5-usb3-regulator",
-+		.data = &uniphier_pro4_usb3_data,
-+	},
- 	{
- 		.compatible = "socionext,uniphier-pxs2-usb3-regulator",
- 		.data = &uniphier_pxs2_usb3_data,
--- 
-2.20.1
 
