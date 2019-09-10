@@ -2,124 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5CECDA0E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 03:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B6FDCDA12
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2019 03:12:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726744AbfJGBIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 6 Oct 2019 21:08:32 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:34508 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726266AbfJGBIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 21:08:31 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9718R9q040661;
-        Sun, 6 Oct 2019 20:08:27 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1570410507;
-        bh=1/fpTrsGpZ3Bwnu1ecGMORsUGRgRwd7RTb3TGOpICG8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=SCZR724tufS742O0322i/jjcUs0ViavNDGN2/oaE5jk2voAAR5q2NV88bsR0jO4PJ
-         LAgXhLDSypthP+Cvu9t8Njd2wgI5sjQ54SMC/RPm/7rUu3yGbdKZqqIYZoiCrdZtMs
-         O8trZa+IT9WvhUUBSFWnUbgfCvJNuMuIL956KbHQ=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9718RR5094154
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 6 Oct 2019 20:08:27 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Sun, 6 Oct
- 2019 20:08:25 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Sun, 6 Oct 2019 20:08:25 -0500
-Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9718O1v049370;
-        Sun, 6 Oct 2019 20:08:25 -0500
-Subject: Re: [PATCH] ARM: OMAP2+: Add missing LCDC midlemode for am335x
-To:     Tony Lindgren <tony@atomide.com>, <linux-omap@vger.kernel.org>
-CC:     =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        <devicetree@vger.kernel.org>, Jyri Sarha <jsarha@ti.com>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Suman Anna <s-anna@ti.com>
-References: <20190924171543.345-1-tony@atomide.com>
-From:   Keerthy <j-keerthy@ti.com>
-Message-ID: <f19f559d-6c7e-9db9-4fa7-84a8abd5558f@ti.com>
-Date:   Mon, 7 Oct 2019 06:38:58 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726739AbfJGBMI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 6 Oct 2019 21:12:08 -0400
+Received: from smtprelay0037.hostedemail.com ([216.40.44.37]:33720 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726605AbfJGBMI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 6 Oct 2019 21:12:08 -0400
+X-Greylist: delayed 377 seconds by postgrey-1.27 at vger.kernel.org; Sun, 06 Oct 2019 21:12:07 EDT
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
+        by smtpgrave05.hostedemail.com (Postfix) with ESMTP id 53DE81828A454;
+        Mon,  7 Oct 2019 01:05:51 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay01.hostedemail.com (Postfix) with ESMTP id 4AF3A100E86C8;
+        Mon,  7 Oct 2019 01:05:49 +0000 (UTC)
+X-Session-Marker: 726F737465647440676F6F646D69732E6F7267
+X-Spam-Summary: 86,0,0,,d41d8cd98f00b204,rostedt@goodmis.org,:::::::::::::::::::::::::::::,RULES_HIT:41:355:379:541:599:800:960:967:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2525:2553:2559:2564:2682:2685:2692:2859:2892:2902:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3354:3622:3865:3866:3867:3868:3870:3871:3872:3873:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:4362:5007:6261:6742:7875:9025:10004:10400:10903:10967:11232:11658:11914:12043:12297:12555:12740:12760:12895:12986:13069:13161:13229:13255:13311:13357:13439:14096:14097:14181:14659:14721:14819:21080:21627:21811:21939:30029:30034:30054:30070:30075:30090:30091,0,RBL:66.24.58.225:@goodmis.org:.lbl8.mailshell.net-62.8.0.186 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:172,LUA_SUMMARY:none
+X-HE-Tag: swim51_328f856470b47
+X-Filterd-Recvd-Size: 3389
+Received: from grimm.local.home (cpe-66-24-58-225.stny.res.rr.com [66.24.58.225])
+        (Authenticated sender: rostedt@goodmis.org)
+        by omf14.hostedemail.com (Postfix) with ESMTPA;
+        Mon,  7 Oct 2019 01:05:47 +0000 (UTC)
+Date:   Tue, 10 Sep 2019 15:03:03 -0400
+From:   Steven Rostedt <rostedt@goodmis.org>
+To:     Joe Perches <joe@perches.com>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
+        rafael@kernel.org,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Arnaldo Carvalho de Melo <acme@redhat.com>,
+        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
+        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>
+Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
+ users to %p[sS]
+Message-ID: <20190910150303.5a0d3904@oasis.local.home>
+In-Reply-To: <c458e734f5777561138b87228384808398547762.camel@perches.com>
+References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
+        <20190910084707.18380-2-sakari.ailus@linux.intel.com>
+        <20190910071837.2e9110f8@oasis.local.home>
+        <61a2b2ab4693535850306f396aac2a328e1d5a21.camel@perches.com>
+        <20190910142621.0bec208d@oasis.local.home>
+        <c458e734f5777561138b87228384808398547762.camel@perches.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20190924171543.345-1-tony@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 10 Sep 2019 11:42:06 -0700
+Joe Perches <joe@perches.com> wrote:
 
+> On Tue, 2019-09-10 at 14:26 -0400, Steven Rostedt wrote:
+> > On Tue, 10 Sep 2019 10:18:44 -0700
+> > Joe Perches <joe@perches.com> wrote:
+> >   
+> > > > It's not just for the lastest kernel. We must maintain backward
+> > > > compatibility here too. If there use to be a usage of this, then we
+> > > > must keep it until the kernels are no longer used (perhaps 7 years?)    
+> > > 
+> > > That argues for not using "%pfw" at all for some number of years.
+> > > 
+> > > Perhaps the '%pfw' should be '%pnfw' for 'name' and 'fwnode'  
+> >
+> >   -ENOCOMPREHENSION  
+> 
+> Perhaps you were not copied on the whole series.
+> 
+> https://lore.kernel.org/lkml/20190910084707.18380-1-sakari.ailus@linux.intel.com/
 
-On 24/09/19 10:45 PM, Tony Lindgren wrote:
-> TRM "Table 13-34. SYSCONFIG Register Field Descriptions" lists both
-> standbymode and idlemode that should be just the sidle and midle
-> registers where midle is currently unconfigured for lcdc_sysc. As
-> the dts data has been generated based on lcdc_sysc, we now have an
-> empty "ti,sysc-midle" property.
-> 
-> And so we currently get a warning for lcdc because of a difference
-> with dts provided configuration compared to the legacy platform
-> data. This is because lcdc has SYSC_HAS_MIDLEMODE configured in
-> the platform data without configuring the modes.
-> 
-> Let's fix the issue by adding the missing midlemode to lcdc_sysc,
-> and configuring the "ti,sysc-midle" property based on the TRM
-> values.
-
-Tested for DS0 and rtc+ddr modes on am43 and ds0 on am33.
-
-Tested-by: Keerthy <j-keerthy@ti.com>
+Thanks for the link.
 
 > 
-> Fixes: f711c575cfec ("ARM: dts: am335x: Add l4 interconnect hierarchy and ti-sysc data")
-> Cc: Jyri Sarha <jsarha@ti.com>
-> Cc: Keerthy <j-keerthy@ti.com>
-> Cc: Robert Nelson <robertcnelson@gmail.com>
-> Cc: Suman Anna <s-anna@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
->   arch/arm/boot/dts/am33xx-l4.dtsi           | 4 +++-
->   arch/arm/mach-omap2/omap_hwmod_33xx_data.c | 5 +++--
->   2 files changed, 6 insertions(+), 3 deletions(-)
+> As I understand it, Sakair Ailus is proposing to
+> obsolete the current vsprintf "%p[Ff]" extension
+> and replace the usage with a new "%pfw" extension
+> which would emit the name of a pointer to "struct fwnode {}".
 > 
-> diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
-> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-> @@ -2038,7 +2038,9 @@
->   			reg = <0xe000 0x4>,
->   			      <0xe054 0x4>;
->   			reg-names = "rev", "sysc";
-> -			ti,sysc-midle ;
-> +			ti,sysc-midle = <SYSC_IDLE_FORCE>,
-> +					<SYSC_IDLE_NO>,
-> +					<SYSC_IDLE_SMART>;
->   			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
->   					<SYSC_IDLE_NO>,
->   					<SYSC_IDLE_SMART>;
-> diff --git a/arch/arm/mach-omap2/omap_hwmod_33xx_data.c b/arch/arm/mach-omap2/omap_hwmod_33xx_data.c
-> --- a/arch/arm/mach-omap2/omap_hwmod_33xx_data.c
-> +++ b/arch/arm/mach-omap2/omap_hwmod_33xx_data.c
-> @@ -231,8 +231,9 @@ static struct omap_hwmod am33xx_control_hwmod = {
->   static struct omap_hwmod_class_sysconfig lcdc_sysc = {
->   	.rev_offs	= 0x0,
->   	.sysc_offs	= 0x54,
-> -	.sysc_flags	= (SYSC_HAS_SIDLEMODE | SYSC_HAS_MIDLEMODE),
-> -	.idlemodes	= (SIDLE_FORCE | SIDLE_NO | SIDLE_SMART),
-> +	.sysc_flags	= SYSC_HAS_SIDLEMODE | SYSC_HAS_MIDLEMODE,
-> +	.idlemodes	= SIDLE_FORCE | SIDLE_NO | SIDLE_SMART |
-> +			  MSTANDBY_FORCE | MSTANDBY_NO | MSTANDBY_SMART,
->   	.sysc_fields	= &omap_hwmod_sysc_type2,
->   };
->   
+> https://lore.kernel.org/lkml/20190910084707.18380-10-sakari.ailus@linux.intel.com/
 > 
+> If reusing "%pf<foo>" is a problem, then instead
+> it might be reasonable to have a new "%pn<foo>" for
+> that use instead.
+> 
+> btw:
+> 
+> Is there kernel version information available in
+> trace output files?
+
+Not really. This is just a library that parses the trace event formats,
+there's not kernel versions passed in, but we do use variations in
+formats and such to determine what is supported.
+
+> 
+> If so, it might be reasonable to change the tooling
+> there instead.
+> 
+
+Actually, I think we could just look to see if "%pfw" is used and fall
+to that, otherwise consider it an older kernel and do it the original
+way.
+
+-- Steve
+
