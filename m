@@ -2,85 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AFC9DAE7F2
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14F3AAE803
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729132AbfIJKWl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 06:22:41 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:37637 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728965AbfIJKWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 06:22:41 -0400
-Received: by mail-lj1-f193.google.com with SMTP id y5so5032929lji.4
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 03:22:39 -0700 (PDT)
+        id S1726960AbfIJKZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 06:25:11 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:42158 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388883AbfIJKZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 06:25:10 -0400
+Received: by mail-wr1-f65.google.com with SMTP id q14so19024430wrm.9
+        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 03:25:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/RnO7aDpzX5C5EyL4y2IfgyW41OmQo4u8v7lMN7YHKQ=;
-        b=vK1D15dW6aK1jvV0nmXA12AyrRJ4vLk03n2a23yq0lZRGq48xLdY0RhJGf/oVx3ddU
-         BUAjXvFBI/R3XlUEEH3n9JnN/c8UDxlRqcZ0ljT/0fp2iSi9QNFMbGUQ1uNvvf/pHRBf
-         yY68Kq2lxaiYmbOSRv4PDu75QITFpvy/hmgAYMpzQ4dWeFI7almhAIwEc7t5+FspOqdW
-         RCKI6Rw+pO36dveGJhF4K3kXhysgPyGbM8rk1Ptjz4PRpFBDezeBWpCpFOHSXJjUnNaQ
-         CgVPB0tp5Gh/UsxejI6EgLuWO/WSB1of8qF1yn/BDTBwMYqJmaoxG9DlUKZtw5/EGyMd
-         dnPg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vEAz+Y7APZfz1l8Dh96l5dI6vRULTuCJ/MZX/t986yo=;
+        b=aEbCPCQi0wcPkmxmCDIuGnHOPhylUfSgnlSVwIZ6W2w5o7qQhdLkBb5lz7h87Kf4+0
+         uh8Z0WnKWZYkh593TZ9xl2Y+bhFfehBF2Qa4IN6vOJypJN+F2gKkJKTTp3UmT9m3ZW58
+         SGIQcXSQjx5L5RAfIBBtFOkIfOXgQkQzD+xiLjRO7Zii80i8bCMpGPnz1kL9f5lkpZOe
+         7F6xVFBVBmZqKsnAALHkc8z6Db7ua5cAOQe3bll5o5Yjad1JMTg1DF9GVB8+3MpiLbCu
+         yXBh/wYj4RZ6I5CtCoswqeNKEDdlJ16163CLEfR5vxdM7PW53MDiHKWGehXR/a2dbZe5
+         lWxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/RnO7aDpzX5C5EyL4y2IfgyW41OmQo4u8v7lMN7YHKQ=;
-        b=ubXfQQgh+MhI3QXOvShJUGBCcE4ALSBzxes+IhOkyQKvKeYYSsUcgTVL/9lP6hmFeP
-         Dtc2aX4SvWPKz55FyiHi8lkqTGTnHzwqVARrBBAtr1DCeykS5KzSBASks14gAMhEUVDJ
-         XMT0tIi0jjNOh+Kdh7LHqv4hlbs3RSxWzDIORVXmH82yqB7k/qUXs6Tq1wBRawGKLs+j
-         OABQ5SugQ5j89+Z+dNNhgQb+bJVeD+XSV05/VEr3EOyDWb7CepyuSLYfJMWPQXuwYODh
-         VnHivfxdKvzbykKgMHEu6qfZKVoqosPwW0YmHEO7op1t3W0yGwf6TmChOJ5jjkyZZb5S
-         bDeA==
-X-Gm-Message-State: APjAAAUQnKMb6ccDEReMlDDvaI6HiXjsJG5at2iNFLZvEmDqVHOzomql
-        G/eqBTOEYr+EdXFKIK/OCuBJ2yC7KOR1d4nI72i/xA==
-X-Google-Smtp-Source: APXvYqxTmNO1MGnu8vYhnE2IUmvw4ev8RpQUmIyLWCAtSHO9mqRjl78UFY8OZp8Ndh+gq+efvNad6aAMm/6X66YLAJ8=
-X-Received: by 2002:a2e:8056:: with SMTP id p22mr14060234ljg.69.1568110959123;
- Tue, 10 Sep 2019 03:22:39 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vEAz+Y7APZfz1l8Dh96l5dI6vRULTuCJ/MZX/t986yo=;
+        b=Fi2R7Z7+62DSZkLfOhCpgbzOrpLaMHMGF2ZAihfutwYGZTbShfL3DJKwWimalbef82
+         H9PGeNfiVlPenll9YkDV/VecACFz20FmyXS+0UH33Ig5pkrmtkzatu05V4UT4WFq8xWs
+         p8kmzxeYNdtgRRpHF2WKJLpFINS76ENZSwfxVb1UG5Q3dRyGK1VN2uL2scUMixk3TP+W
+         njvEYAVoAIvcPFHV2+G9yF2cA521xWjfnGyyjiu3omDAch3wznxKhGEWBuBKomjOw3Vb
+         qC+xA7xH7S+dyezZ1qkZB3J+GaHXK1ur6/VUk+QoA/ExoMgE2xnrznQx72QL0Vd5IVNv
+         DXog==
+X-Gm-Message-State: APjAAAUBDC8vrabnDVazqf0dbHNnBjnxU5RlMp82O5g6dh8u5eImfRxj
+        ljClBeGLJW5m7QY5N4SCJIVoYw==
+X-Google-Smtp-Source: APXvYqwcFh+5AHaeQ32JwyB8p5MAuUpAL0phC2yYPGlCXsZIhaa4ZKBqf85xJnZPvtb1eRPGpd2mqA==
+X-Received: by 2002:a5d:500f:: with SMTP id e15mr10799631wrt.300.1568111108330;
+        Tue, 10 Sep 2019 03:25:08 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id a144sm4235807wme.13.2019.09.10.03.25.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Sep 2019 03:25:07 -0700 (PDT)
+Date:   Tue, 10 Sep 2019 11:25:05 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     mpm@selenic.com, herbert@gondor.apana.org.au, arnd@arndb.de,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, sumit.garg@linaro.org,
+        jens.wiklander@linaro.org, vkoul@kernel.org, tglx@linutronix.de,
+        joel@jms.id.au, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH v2 1/2] dt-binding: hwrng: add NPCM RNG documentation
+Message-ID: <20190910102505.vgyomi575ldrk2lq@holly.lan>
+References: <20190909123840.154745-1-tmaimon77@gmail.com>
+ <20190909123840.154745-2-tmaimon77@gmail.com>
 MIME-Version: 1.0
-References: <20190906084539.21838-1-geert+renesas@glider.be>
-In-Reply-To: <20190906084539.21838-1-geert+renesas@glider.be>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 10 Sep 2019 11:22:27 +0100
-Message-ID: <CACRpkdax+KYuB9Gs4V-9wnFu=DPu0MNCmOupeNkUEa-pNdSZig@mail.gmail.com>
-Subject: Re: [PATCH 0/4] gpio: API boundary cleanups
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190909123840.154745-2-tmaimon77@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 6, 2019 at 9:45 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+On Mon, Sep 09, 2019 at 03:38:39PM +0300, Tomer Maimon wrote:
+> Added device tree binding documentation for Nuvoton BMC
+> NPCM Random Number Generator (RNG).
+> 
+> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+> ---
+>  .../bindings/rng/nuvoton,npcm-rng.txt           | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> new file mode 100644
+> index 000000000000..a697b4425fb3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
+> @@ -0,0 +1,17 @@
+> +NPCM SoC Random Number Generator
+> +
+> +Required properties:
+> +- compatible  : "nuvoton,npcm750-rng" for the NPCM7XX BMC.
+> +- reg         : Specifies physical base address and size of the registers.
+> +
+> +Optional property:
+> +- quality : estimated number of bits of true entropy per 1024 bits
+> +			read from the rng.
+> +			If this property is not defined, it defaults to 1000.
 
-> This patch series contains various API boundary cleanups for gpiolib:
->   - The first two patches make two functions private,
->   - The last two patches switch the remaining gpiolib exported functions
->     from EXPORT_SYMBOL() to EXPORT_SYMBOL_GPL().
+There are pending unreplied review comments about this property (my own
+as it happens):
+https://patchwork.kernel.org/patch/11119371/
 
-Good stuff, let's merge for early v5.4 (possibly rebasing if necessary).
 
-> After this there is only a single GPIO driver function exported with
-> EXPORT_SYMBOL();
->
->     drivers/gpio/gpio-htc-egpio.c:EXPORT_SYMBOL(htc_egpio_get_wakeup_irq);
+Daniel.
 
-Kill it. People using this platform should step up if they need it.
-The outoftree code was at handhelds.org and that web site is
-even down. There is a copy of their git tree on github
-somewhere but it is definately not maintained.
-
-Yours,
-Linus Walleij
+> +
+> +Example:
+> +
+> +rng: rng@f000b000 {
+> +	compatible = "nuvoton,npcm750-rng";
+> +	reg = <0xf000b000 0x8>;
+> +};
+> -- 
+> 2.18.0
+> 
