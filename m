@@ -2,94 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E238BAE21E
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 03:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D5DFAE22A
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 03:55:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389304AbfIJBvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 9 Sep 2019 21:51:54 -0400
-Received: from mx.socionext.com ([202.248.49.38]:11572 "EHLO mx.socionext.com"
+        id S1727106AbfIJBzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 9 Sep 2019 21:55:32 -0400
+Received: from mx.socionext.com ([202.248.49.38]:11630 "EHLO mx.socionext.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726903AbfIJBvx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 9 Sep 2019 21:51:53 -0400
-Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 10 Sep 2019 10:51:51 +0900
+        id S1726903AbfIJBzc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 9 Sep 2019 21:55:32 -0400
+Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
+  by mx.socionext.com with ESMTP; 10 Sep 2019 10:55:30 +0900
 Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id DDFBC605F8;
-        Tue, 10 Sep 2019 10:51:51 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 10 Sep 2019 10:51:51 +0900
+        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id 90375180079;
+        Tue, 10 Sep 2019 10:55:30 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Tue, 10 Sep 2019 10:55:30 +0900
 Received: from plum.e01.socionext.com (unknown [10.213.132.32])
-        by kinkan.css.socionext.com (Postfix) with ESMTP id 5EFEF1A04FB;
-        Tue, 10 Sep 2019 10:51:51 +0900 (JST)
+        by kinkan.css.socionext.com (Postfix) with ESMTP id 062BB1A04FB;
+        Tue, 10 Sep 2019 10:55:30 +0900 (JST)
 From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
         Masami Hiramatsu <masami.hiramatsu@linaro.org>,
         Jassi Brar <jaswinder.singh@linaro.org>,
         Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH] regulator: uniphier: Add Pro5 USB3 VBUS support
-Date:   Tue, 10 Sep 2019 10:51:44 +0900
-Message-Id: <1568080304-1572-1-git-send-email-hayashi.kunihiko@socionext.com>
+Subject: [PATCH] reset: uniphier-glue: Add Pro5 USB3 support
+Date:   Tue, 10 Sep 2019 10:55:27 +0900
+Message-Id: <1568080527-1767-1-git-send-email-hayashi.kunihiko@socionext.com>
 X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pro5 SoC has same scheme of USB3 VBUS as Pro4, so the data for Pro5 is
+Pro5 SoC has same scheme of USB3 reset as Pro4, so the data for Pro5 is
 equivalent to Pro4.
 
 Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
 ---
- Documentation/devicetree/bindings/regulator/uniphier-regulator.txt | 5 +++--
- drivers/regulator/uniphier-regulator.c                             | 4 ++++
+ Documentation/devicetree/bindings/reset/uniphier-reset.txt | 5 +++--
+ drivers/reset/reset-uniphier-glue.c                        | 4 ++++
  2 files changed, 7 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt b/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt
-index c9919f4..94fd38b 100644
---- a/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt
-+++ b/Documentation/devicetree/bindings/regulator/uniphier-regulator.txt
-@@ -13,6 +13,7 @@ this layer. These clocks and resets should be described in each property.
+diff --git a/Documentation/devicetree/bindings/reset/uniphier-reset.txt b/Documentation/devicetree/bindings/reset/uniphier-reset.txt
+index ea00517..e320a8c 100644
+--- a/Documentation/devicetree/bindings/reset/uniphier-reset.txt
++++ b/Documentation/devicetree/bindings/reset/uniphier-reset.txt
+@@ -130,6 +130,7 @@ this layer. These clocks and resets should be described in each property.
  Required properties:
  - compatible: Should be
-     "socionext,uniphier-pro4-usb3-regulator" - for Pro4 SoC
-+    "socionext,uniphier-pro5-usb3-regulator" - for Pro5 SoC
-     "socionext,uniphier-pxs2-usb3-regulator" - for PXs2 SoC
-     "socionext,uniphier-ld20-usb3-regulator" - for LD20 SoC
-     "socionext,uniphier-pxs3-usb3-regulator" - for PXs3 SoC
-@@ -20,12 +21,12 @@ Required properties:
- - clocks: A list of phandles to the clock gate for USB3 glue layer.
+     "socionext,uniphier-pro4-usb3-reset" - for Pro4 SoC USB3
++    "socionext,uniphier-pro5-usb3-reset" - for Pro5 SoC USB3
+     "socionext,uniphier-pxs2-usb3-reset" - for PXs2 SoC USB3
+     "socionext,uniphier-ld20-usb3-reset" - for LD20 SoC USB3
+     "socionext,uniphier-pxs3-usb3-reset" - for PXs3 SoC USB3
+@@ -141,12 +142,12 @@ Required properties:
+ - clocks: A list of phandles to the clock gate for the glue layer.
  	According to the clock-names, appropriate clocks are required.
  - clock-names: Should contain
 -    "gio", "link" - for Pro4 SoC
 +    "gio", "link" - for Pro4 and Pro5 SoCs
      "link"        - for others
- - resets: A list of phandles to the reset control for USB3 glue layer.
+ - resets: A list of phandles to the reset control for the glue layer.
  	According to the reset-names, appropriate resets are required.
  - reset-names: Should contain
 -    "gio", "link" - for Pro4 SoC
 +    "gio", "link" - for Pro4 and Pro5 SoCs
      "link"        - for others
  
- See Documentation/devicetree/bindings/regulator/regulator.txt
-diff --git a/drivers/regulator/uniphier-regulator.c b/drivers/regulator/uniphier-regulator.c
-index 9026d5a..2311924 100644
---- a/drivers/regulator/uniphier-regulator.c
-+++ b/drivers/regulator/uniphier-regulator.c
-@@ -186,6 +186,10 @@ static const struct of_device_id uniphier_regulator_match[] = {
- 		.data = &uniphier_pro4_usb3_data,
+ Example:
+diff --git a/drivers/reset/reset-uniphier-glue.c b/drivers/reset/reset-uniphier-glue.c
+index a45923f..2b188b3bb 100644
+--- a/drivers/reset/reset-uniphier-glue.c
++++ b/drivers/reset/reset-uniphier-glue.c
+@@ -141,6 +141,10 @@ static const struct of_device_id uniphier_glue_reset_match[] = {
+ 		.data = &uniphier_pro4_data,
  	},
  	{
-+		.compatible = "socionext,uniphier-pro5-usb3-regulator",
-+		.data = &uniphier_pro4_usb3_data,
++		.compatible = "socionext,uniphier-pro5-usb3-reset",
++		.data = &uniphier_pro4_data,
 +	},
 +	{
- 		.compatible = "socionext,uniphier-pxs2-usb3-regulator",
- 		.data = &uniphier_pxs2_usb3_data,
+ 		.compatible = "socionext,uniphier-pxs2-usb3-reset",
+ 		.data = &uniphier_pxs2_data,
  	},
 -- 
 2.7.4
