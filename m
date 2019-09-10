@@ -2,115 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F3AAE803
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:25:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09357AE835
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 12:33:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726960AbfIJKZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 06:25:11 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:42158 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388883AbfIJKZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 10 Sep 2019 06:25:10 -0400
-Received: by mail-wr1-f65.google.com with SMTP id q14so19024430wrm.9
-        for <devicetree@vger.kernel.org>; Tue, 10 Sep 2019 03:25:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=vEAz+Y7APZfz1l8Dh96l5dI6vRULTuCJ/MZX/t986yo=;
-        b=aEbCPCQi0wcPkmxmCDIuGnHOPhylUfSgnlSVwIZ6W2w5o7qQhdLkBb5lz7h87Kf4+0
-         uh8Z0WnKWZYkh593TZ9xl2Y+bhFfehBF2Qa4IN6vOJypJN+F2gKkJKTTp3UmT9m3ZW58
-         SGIQcXSQjx5L5RAfIBBtFOkIfOXgQkQzD+xiLjRO7Zii80i8bCMpGPnz1kL9f5lkpZOe
-         7F6xVFBVBmZqKsnAALHkc8z6Db7ua5cAOQe3bll5o5Yjad1JMTg1DF9GVB8+3MpiLbCu
-         yXBh/wYj4RZ6I5CtCoswqeNKEDdlJ16163CLEfR5vxdM7PW53MDiHKWGehXR/a2dbZe5
-         lWxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vEAz+Y7APZfz1l8Dh96l5dI6vRULTuCJ/MZX/t986yo=;
-        b=Fi2R7Z7+62DSZkLfOhCpgbzOrpLaMHMGF2ZAihfutwYGZTbShfL3DJKwWimalbef82
-         H9PGeNfiVlPenll9YkDV/VecACFz20FmyXS+0UH33Ig5pkrmtkzatu05V4UT4WFq8xWs
-         p8kmzxeYNdtgRRpHF2WKJLpFINS76ENZSwfxVb1UG5Q3dRyGK1VN2uL2scUMixk3TP+W
-         njvEYAVoAIvcPFHV2+G9yF2cA521xWjfnGyyjiu3omDAch3wznxKhGEWBuBKomjOw3Vb
-         qC+xA7xH7S+dyezZ1qkZB3J+GaHXK1ur6/VUk+QoA/ExoMgE2xnrznQx72QL0Vd5IVNv
-         DXog==
-X-Gm-Message-State: APjAAAUBDC8vrabnDVazqf0dbHNnBjnxU5RlMp82O5g6dh8u5eImfRxj
-        ljClBeGLJW5m7QY5N4SCJIVoYw==
-X-Google-Smtp-Source: APXvYqwcFh+5AHaeQ32JwyB8p5MAuUpAL0phC2yYPGlCXsZIhaa4ZKBqf85xJnZPvtb1eRPGpd2mqA==
-X-Received: by 2002:a5d:500f:: with SMTP id e15mr10799631wrt.300.1568111108330;
-        Tue, 10 Sep 2019 03:25:08 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id a144sm4235807wme.13.2019.09.10.03.25.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 10 Sep 2019 03:25:07 -0700 (PDT)
-Date:   Tue, 10 Sep 2019 11:25:05 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     mpm@selenic.com, herbert@gondor.apana.org.au, arnd@arndb.de,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, avifishman70@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, sumit.garg@linaro.org,
-        jens.wiklander@linaro.org, vkoul@kernel.org, tglx@linutronix.de,
-        joel@jms.id.au, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v2 1/2] dt-binding: hwrng: add NPCM RNG documentation
-Message-ID: <20190910102505.vgyomi575ldrk2lq@holly.lan>
-References: <20190909123840.154745-1-tmaimon77@gmail.com>
- <20190909123840.154745-2-tmaimon77@gmail.com>
+        id S2393817AbfIJKdG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 06:33:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55350 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726869AbfIJKdG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 06:33:06 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B4E1B20872;
+        Tue, 10 Sep 2019 10:33:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568111585;
+        bh=LJtBmi1tzU6euOWenIIUw2u/xvJ895RqpElZGcqoEFA=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=OAZJ7pZnOmv9TWBnrIlLZYkgxdz9nE3yZkkswcGMUvEz1dDtQQtUpjisOcxQVWi8m
+         pSr+mBZWVY9wjfPqJncBp2lPnBzesriGkO0xQ7zUSzOnyAUjNCPwVhecpHQPreRFHS
+         JoMAZd14rknZjzD54lrSggDKmIYLet8VngkurqyI=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190909123840.154745-2-tmaimon77@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190811210043.20122-2-digetx@gmail.com>
+References: <20190811210043.20122-1-digetx@gmail.com> <20190811210043.20122-2-digetx@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v10 01/15] clk: tegra20/30: Add custom EMC clock implementation
+User-Agent: alot/0.8.1
+Date:   Tue, 10 Sep 2019 03:33:04 -0700
+Message-Id: <20190910103305.B4E1B20872@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 09, 2019 at 03:38:39PM +0300, Tomer Maimon wrote:
-> Added device tree binding documentation for Nuvoton BMC
-> NPCM Random Number Generator (RNG).
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
+Quoting Dmitry Osipenko (2019-08-11 14:00:29)
+> A proper External Memory Controller clock rounding and parent selection
+> functionality is required by the EMC drivers, it is not available using
+> the generic clock implementation because only the Memory Controller driver
+> is aware of what clock rates are actually available for a particular
+> device. EMC drivers will have to register a Tegra-specific CLK-API
+> callback which will perform rounding of a requested rate. EMC clock users
+> won't be able to request EMC clock by getting -EPROBE_DEFER until EMC
+> driver is probed and the callback is set up.
+>=20
+> The functionality is somewhat similar to the clk-emc.c which serves
+> Tegra124+ SoCs. The later HW generations support more parent clock sources
+> and the HW configuration / integration with the EMC drivers differs a tad
+> from the older gens, hence it's not really worth to try to squash
+> everything into a single source file.
+>=20
+> Acked-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 > ---
->  .../bindings/rng/nuvoton,npcm-rng.txt           | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> new file mode 100644
-> index 000000000000..a697b4425fb3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> @@ -0,0 +1,17 @@
-> +NPCM SoC Random Number Generator
-> +
-> +Required properties:
-> +- compatible  : "nuvoton,npcm750-rng" for the NPCM7XX BMC.
-> +- reg         : Specifies physical base address and size of the registers.
-> +
-> +Optional property:
-> +- quality : estimated number of bits of true entropy per 1024 bits
-> +			read from the rng.
-> +			If this property is not defined, it defaults to 1000.
 
-There are pending unreplied review comments about this property (my own
-as it happens):
-https://patchwork.kernel.org/patch/11119371/
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
-
-Daniel.
-
-> +
-> +Example:
-> +
-> +rng: rng@f000b000 {
-> +	compatible = "nuvoton,npcm750-rng";
-> +	reg = <0xf000b000 0x8>;
-> +};
-> -- 
-> 2.18.0
-> 
