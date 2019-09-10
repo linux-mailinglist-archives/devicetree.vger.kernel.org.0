@@ -2,94 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF17AF12C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 20:42:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CBC5AF134
+	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 20:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727435AbfIJSmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 14:42:12 -0400
-Received: from smtprelay0184.hostedemail.com ([216.40.44.184]:50425 "EHLO
-        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726710AbfIJSmL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 14:42:11 -0400
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-        by smtprelay03.hostedemail.com (Postfix) with ESMTP id 27EFD801568E;
-        Tue, 10 Sep 2019 18:42:10 +0000 (UTC)
-X-Session-Marker: 6A6F6540706572636865732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:800:960:967:973:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2198:2199:2393:2525:2553:2559:2564:2682:2685:2692:2828:2859:2892:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3352:3622:3865:3866:3867:3868:3870:3871:3872:3873:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:5007:6742:8784:8985:9025:10004:10400:10848:10967:11232:11658:11914:12043:12297:12555:12679:12740:12760:12895:12986:13069:13161:13229:13255:13311:13357:13439:14181:14659:14721:14819:21080:21627:21811:30029:30034:30054:30070:30075:30090:30091,0,RBL:47.151.152.152:@perches.com:.lbl8.mailshell.net-62.8.0.100 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:26,LUA_SUMMARY:none
-X-HE-Tag: word69_8703812b2da21
-X-Filterd-Recvd-Size: 2733
-Received: from XPS-9350.home (unknown [47.151.152.152])
-        (Authenticated sender: joe@perches.com)
-        by omf06.hostedemail.com (Postfix) with ESMTPA;
-        Tue, 10 Sep 2019 18:42:07 +0000 (UTC)
-Message-ID: <c458e734f5777561138b87228384808398547762.camel@perches.com>
-Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
- users to %p[sS]
-From:   Joe Perches <joe@perches.com>
-To:     Steven Rostedt <rostedt@goodmis.org>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Arnaldo Carvalho de Melo <acme@redhat.com>,
-        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
-        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>
-Date:   Tue, 10 Sep 2019 11:42:06 -0700
-In-Reply-To: <20190910142621.0bec208d@oasis.local.home>
-References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
-         <20190910084707.18380-2-sakari.ailus@linux.intel.com>
-         <20190910071837.2e9110f8@oasis.local.home>
-         <61a2b2ab4693535850306f396aac2a328e1d5a21.camel@perches.com>
-         <20190910142621.0bec208d@oasis.local.home>
-Content-Type: text/plain; charset="ISO-8859-1"
-User-Agent: Evolution 3.32.1-2 
+        id S1726470AbfIJSq4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 14:46:56 -0400
+Received: from sauhun.de ([88.99.104.3]:50760 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725875AbfIJSq4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 14:46:56 -0400
+Received: from localhost (234.77.63.94.rev.vodafone.pt [94.63.77.234])
+        by pokefinder.org (Postfix) with ESMTPSA id 19EC92C0095;
+        Tue, 10 Sep 2019 20:46:54 +0200 (CEST)
+Date:   Tue, 10 Sep 2019 19:46:53 +0100
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Luca Ceresoli <luca@lucaceresoli.net>
+Cc:     Peter Rosin <peda@axentia.se>, jacopo mondi <jacopo@jmondi.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Vladimir Zapolskiy <vz@mleia.com>
+Subject: Re: [RFC,v2 2/6] i2c: add I2C Address Translator (ATR) support
+Message-ID: <20190910184653.GB5581@kunai>
+References: <20190723203723.11730-1-luca@lucaceresoli.net>
+ <20190723203723.11730-3-luca@lucaceresoli.net>
+ <20190901143101.humomdehy5ee73sk@vino>
+ <20bac324-c4d3-270c-5175-0a7f261fd760@lucaceresoli.net>
+ <51dede3c-545b-b66a-5e89-9e889d784eb9@axentia.se>
+ <2d770b36-9521-820d-726a-bc9b52048ef8@lucaceresoli.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8P1HSweYDcXXzwPJ"
+Content-Disposition: inline
+In-Reply-To: <2d770b36-9521-820d-726a-bc9b52048ef8@lucaceresoli.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-09-10 at 14:26 -0400, Steven Rostedt wrote:
-> On Tue, 10 Sep 2019 10:18:44 -0700
-> Joe Perches <joe@perches.com> wrote:
-> 
-> > > It's not just for the lastest kernel. We must maintain backward
-> > > compatibility here too. If there use to be a usage of this, then we
-> > > must keep it until the kernels are no longer used (perhaps 7 years?)  
-> > 
-> > That argues for not using "%pfw" at all for some number of years.
-> > 
-> > Perhaps the '%pfw' should be '%pnfw' for 'name' and 'fwnode'
->
->   -ENOCOMPREHENSION
 
-Perhaps you were not copied on the whole series.
-
-https://lore.kernel.org/lkml/20190910084707.18380-1-sakari.ailus@linux.intel.com/
-
-As I understand it, Sakair Ailus is proposing to
-obsolete the current vsprintf "%p[Ff]" extension
-and replace the usage with a new "%pfw" extension
-which would emit the name of a pointer to "struct fwnode {}".
-
-https://lore.kernel.org/lkml/20190910084707.18380-10-sakari.ailus@linux.intel.com/
-
-If reusing "%pf<foo>" is a problem, then instead
-it might be reasonable to have a new "%pn<foo>" for
-that use instead.
-
-btw:
-
-Is there kernel version information available in
-trace output files?
-
-If so, it might be reasonable to change the tooling
-there instead.
+--8P1HSweYDcXXzwPJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
 
+> I still have to examine in depth all of the problems in the i2c-mux
+> documented in Documentation/i2c/i2c-topology (thanks for having written
+> those docs!), but at first sight it looks like the ATR is not going to
+> introduce big problems because of how it works.
+
+Assuming we are using the previously discussed NEEDS_ATR flag for the adapter
+instead of the attach/detach callbacks:
+
+Can't we then simply understand an ATR as a generic 1:1 mapping device
+which can be setup when registering an adapter?
+
+When we add an adapter using i2c_add_adapter, we have:
+
+
+              .-----.  Slave X @ 0x10
+  .-----.     |     |   |
+  | CPU |--A--| ATR |---+---- B
+  `-----'     |     |
+              `-----'
+
+When we use i2c_add_mux_adapter, we have:
+
+
+                                Slave X @ 0x10
+              .-----.   .-----.   |
+  .-----.     |     |---| ATR |---+---- B
+  | CPU |--A--| MUX |   '-----'
+  `-----'     |     |   .-----.
+              |     |---| ATR |---+---- C
+              `-----'   '-----'   |
+                                 Slave Y @ 0x10
+
+
+That way we could keep the topology handling solely to the mux-core.
+
+Am I overlooking something?
+
+
+--8P1HSweYDcXXzwPJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1375gACgkQFA3kzBSg
+KbYJow/+JCThTpeS2XICmf9Q3MrO1dOKBMlUgPruJRw4irTMMkrMProjr3EhIYCw
+7LuYkhW8Pessu8F9PbIJ9iU6IDb2UC5+Ao16IdbWYauY/Ij3ayhXsUd3ECl19lo4
+SjbUynLbxbch6xzw4nitl1Vg8pxH1eVHA+3wi60O2eGBr2WHTouAMHa5YI6a6fw6
+5MkxCxS4A08Ss0TUKZhJvl+7WttM5uigTmTsaI8FQLS0T+Z5rlxQIQR0CMP3ZyOR
+1Fc/sndLvWOK5lRk/+v76LC7lFYEXa9ePLqql9IqP00u0qTO+wE+l3t51R5oTjpj
+poXtKqLcjtfyue7efqfYm+rQDu39I9lEguZsp8OivuYQlCkWzRu/IRYSxQSsBmbd
+37XvMAHedHMQy4PIhzRSq9MtprK6RcMgFvUxf3fr/05WW+P2udby4gluEI3ba4lo
+MydbdFgf3rJfLkJ0TjC3GplUjDbffGmQ/uLvcwyxC1i3FCsQrK10NsUScZPg/oM9
+KJjwa06l9ua0MrwDMq1s/3eqcWXCV9kyaIu1bE9CT6hLmJd7yacadcFRo5WqgVK1
+qGBofVZbgsIrerqrYcKdXGS9vFCbsEZP6NQ2JpKHbiEITBy9Cqi1g2Jjo82byCqE
+BtyGllOLEvVIpm8938c9epfklbGk+ZIlWVJciamn1gG89j3bI/4=
+=3L8E
+-----END PGP SIGNATURE-----
+
+--8P1HSweYDcXXzwPJ--
