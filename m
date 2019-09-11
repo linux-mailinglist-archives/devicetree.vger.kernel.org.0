@@ -2,106 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B96F3AF29C
-	for <lists+devicetree@lfdr.de>; Tue, 10 Sep 2019 23:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B84AF429
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 04:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726317AbfIJV3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 10 Sep 2019 17:29:53 -0400
-Received: from mail.andi.de1.cc ([85.214.55.253]:52728 "EHLO mail.andi.de1.cc"
+        id S1726562AbfIKCLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 10 Sep 2019 22:11:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58308 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725876AbfIJV3x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 10 Sep 2019 17:29:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=EuNSm48CMbzA/IOyJAJF78zX5ZK+bFhFwE66o29+ttQ=; b=kPrtb/y95jmQGogILCuqeK/ieR
-        szk3ONSSsy88GSFSCb/u1L0EBiBo///bR+zB4zcHHdUzijuNRFLsBOsQWHgJLQiATAE4eBpcu2dcz
-        v0TC140uevcbTCzFAdbQL25J/1W4mnF20l0W/61WItA4upYj2dTUpV4HLNlIrWgirCQw=;
-Received: from p200300ccff17ef001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff17:ef00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1i7nho-0001iz-W6; Tue, 10 Sep 2019 23:29:45 +0200
-Received: from andi by aktux with local (Exim 4.92)
-        (envelope-from <andreas@kemnade.info>)
-        id 1i7nho-0004in-Nd; Tue, 10 Sep 2019 23:29:44 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     lee.jones@linaro.org, daniel.thompson@linaro.org,
-        jingoohan1@gmail.com, jacek.anaszewski@gmail.com, pavel@ucw.cz,
-        dmurphy@ti.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        b.zolnierkie@samsung.com, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v2 2/2] backlight: lm3630a: add an enable gpio for the HWEN pin
-Date:   Tue, 10 Sep 2019 23:29:09 +0200
-Message-Id: <20190910212909.18095-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190910212909.18095-1-andreas@kemnade.info>
-References: <20190910212909.18095-1-andreas@kemnade.info>
+        id S1726510AbfIKCLi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 10 Sep 2019 22:11:38 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CCB02208E4;
+        Wed, 11 Sep 2019 02:11:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568167897;
+        bh=wN3entfb3NTWY+gXs7eCj7SlJ951/P0907ehl1l0cQo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uMxX+qvcw3H6p8YdCZDxFK4zg90W6w9CFWEv3AsyB9FSy+jsttj76wYvNuwJtuGwu
+         oFS75MP9I7x5JS9i2mY4mZU3gEb75kigykTqeEi65MjbccWghLolug1hiCgIn0MqgC
+         yrkRth2KTAFup4lK2vlNzVpY2BE+hWDz7DLPLkW8=
+Date:   Wed, 11 Sep 2019 10:11:29 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     =?iso-8859-1?Q?S=E9bastien?= Szymanski 
+        <sebastien.szymanski@armadeus.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] ARM: dts: opos6ul/opos6uldev: rework device tree
+ to support i.MX6ULL
+Message-ID: <20190911021127.GB13923@dragon>
+References: <20190724120623.2385-1-sebastien.szymanski@armadeus.com>
+ <194bd606-e4bf-d8fd-ece2-cbec1f5e025f@armadeus.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Score: -1.0 (-)
+In-Reply-To: <194bd606-e4bf-d8fd-ece2-cbec1f5e025f@armadeus.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For now just enable it in the probe function to allow i2c
-access. Disabling also means resetting the register values
-to default and according to the datasheet does not give
-power savings
+On Tue, Sep 03, 2019 at 09:38:11AM +0200, Sébastien Szymanski wrote:
+> Hello,
+> 
+> On 7/24/19 2:06 PM, Sébastien Szymanski wrote:
+> > Rework the device trees of the OPOS6UL and OPOS6ULDev boards to support
+> > the OPOS6UL SoM with an i.MX6ULL SoC.  The device trees are now as
+> > following:
+> > 
+> > - imx6ul-imx6ull-opos6ul.dtsi
+> >   common for both i.MX6UL and i.MX6ULL OPOS6UL SoM.
+> > - imx6ul-opos6ul.dtsi
+> >   for i.MX6UL OPOS6UL SoM. It includes imx6ul.dtsi and
+> >   imx6ul-imx6ull-opos6ul.dtsi.
+> > - imx6ull-opos6ul.dtsi
+> >   for i.MX6ULL OPOS6UL SoM. It includes imx6ull.dtsi and
+> >   imx6ul-imx6ull-opos6ul.dtsi.
+> > 
+> > - imx6ul-imx6ull-opos6uldev.dtsi
+> >   OPOS6ULDev base device tree.
+> > - imx6ul-opos6uldev.dts
+> >   OPOS6ULDev board with an i.MX6UL OPOS6UL SoM. It includes
+> >   imx6ul-opos6ul.dtsi and imx6ul-imx6ull-opos6uldevdtsi.
+> > - imx6ull-opos6uldev.dts
+> >   OPOS6ULDev board with an i.MX6ULL OPOS6UL SoM. It includes
+> >   imx6ull-opos6ul.dtsi and imx6ul-imx6ull-opos6uldevdtsi.
+> > 
+> > Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+> > ---
+> > 
+> > Changes for v2:
+> > - explain the file hierarchy in the commit log
+> > - use MIT license instead of X11
+> > - Change compatible properties to "armadeus,imx6{ul,ull}-opos6ul" and
+> >   "armadeus,imx6{ul,ull}-opos6uldev" to follow the bindings of the
+> >   Armadeus boards already supported.
+> 
+> gentle ping...
 
-Tested on Kobo Clara HD.
+I missed the patches.  Sorry about that.  Just applied both.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
-changes in v2:
-- simplification
-- correct gpio direction initialisation
-
- drivers/video/backlight/lm3630a_bl.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/drivers/video/backlight/lm3630a_bl.c b/drivers/video/backlight/lm3630a_bl.c
-index 8f84f3684f04..9d0639d4202d 100644
---- a/drivers/video/backlight/lm3630a_bl.c
-+++ b/drivers/video/backlight/lm3630a_bl.c
-@@ -12,6 +12,8 @@
- #include <linux/uaccess.h>
- #include <linux/interrupt.h>
- #include <linux/regmap.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/gpio.h>
- #include <linux/pwm.h>
- #include <linux/platform_data/lm3630a_bl.h>
- 
-@@ -48,6 +50,7 @@ struct lm3630a_chip {
- 	struct lm3630a_platform_data *pdata;
- 	struct backlight_device *bleda;
- 	struct backlight_device *bledb;
-+	struct gpio_desc *enable_gpio;
- 	struct regmap *regmap;
- 	struct pwm_device *pwmd;
- };
-@@ -535,6 +538,13 @@ static int lm3630a_probe(struct i2c_client *client,
- 	}
- 	pchip->pdata = pdata;
- 
-+	pchip->enable_gpio = devm_gpiod_get_optional(&client->dev, "enable",
-+						GPIOD_OUT_HIGH);
-+	if (IS_ERR(pchip->enable_gpio)) {
-+		rval = PTR_ERR(pchip->enable_gpio);
-+		return rval;
-+	}
-+
- 	/* chip initialize */
- 	rval = lm3630a_chip_init(pchip);
- 	if (rval < 0) {
--- 
-2.20.1
-
+Shawn
