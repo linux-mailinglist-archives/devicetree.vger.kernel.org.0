@@ -2,103 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D50AFC71
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 14:23:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9BEFAFC88
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 14:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727121AbfIKMWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 08:22:54 -0400
-Received: from foss.arm.com ([217.140.110.172]:46656 "EHLO foss.arm.com"
+        id S1727933AbfIKM0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 08:26:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33132 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726198AbfIKMWy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Sep 2019 08:22:54 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3CAD91000;
-        Wed, 11 Sep 2019 05:22:53 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A78693F59C;
-        Wed, 11 Sep 2019 05:22:52 -0700 (PDT)
-Date:   Wed, 11 Sep 2019 13:22:50 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, yue.wang@Amlogic.com, kishon@ti.com,
-        devicetree@vger.kernel.org, repk@triplefau.lt, maz@kernel.org,
-        linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: pci: amlogic,meson-pcie: Add G12A
- bindings
-Message-ID: <20190911122250.GT9720@e119886-lin.cambridge.arm.com>
-References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
- <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
+        id S1726911AbfIKM0D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Sep 2019 08:26:03 -0400
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A9C6D20872;
+        Wed, 11 Sep 2019 12:26:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568204763;
+        bh=2pPMn/FVFbCJXIco4hndCy4yU4apLjVYE56Muit6qTY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=btzmfK97dcowxxq/8O16K0PTIHFX9tbMeTa4kmm/4lheEz68VruqQERLYbjUHM7pT
+         UQuI7VeW+2AwHOtw1j1+hzWgSQZUCqL1FzHNEviy7J4EEGFE/Q6uZpmOIjk/HmSi+A
+         nvQJ+0cyNIOUl0sZ8SvdEO6tyrB/Dxykx+hTJkDY=
+Received: by mail-lj1-f178.google.com with SMTP id y23so19453563ljn.5;
+        Wed, 11 Sep 2019 05:26:02 -0700 (PDT)
+X-Gm-Message-State: APjAAAWeURmGifab4o3ALSzzcE0gRRftC/AlKNN+3E9Huz4aGCo7Hx01
+        ZL7rpbeH+LueER2NNNmXJJJPnuuCGjtipjV6xvA=
+X-Google-Smtp-Source: APXvYqw8gd+xprNyWbgdYgqyXgDC15vF70jPsWIWsn6xVgL8eKxH8DV9rxOR9uhU6qghey5K9nKVIBQo3AdRVaPcC8k=
+X-Received: by 2002:a2e:b4e3:: with SMTP id s3mr23885542ljm.143.1568204760929;
+ Wed, 11 Sep 2019 05:26:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+References: <CGME20190911110500eucas1p2e1304a19e2e75ee43d80fcdc3b871237@eucas1p2.samsung.com>
+ <CAJKOXPeojuk1UrYo9Wakaaq4VJt3Ts22Vi-V5xzwAXoFU5+tcA@mail.gmail.com>
+ <20190911110446.32058-1-m.falkowski@samsung.com> <CAJKOXPeZ2usT+bx23n-hXxsLsbZqr-0JEtyagK8sfsLaFiaH5w@mail.gmail.com>
+ <d7e938e8-d42e-be22-ce76-561159064180@samsung.com>
+In-Reply-To: <d7e938e8-d42e-be22-ce76-561159064180@samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 11 Sep 2019 14:25:49 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdM_A5Enmv_GOJuKLvfBBwi-z3qWiW4WG9L-dmuW9T5Wg@mail.gmail.com>
+Message-ID: <CAJKOXPdM_A5Enmv_GOJuKLvfBBwi-z3qWiW4WG9L-dmuW9T5Wg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: arm: samsung: Convert Samsung Exynos
+ IOMMU H/W, System MMU to dt-schema
+To:     Marek Szyprowski <m.szyprowski@samsung.com>
+Cc:     Maciej Falkowski <m.falkowski@samsung.com>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        Andrzej Hajda <a.hajda@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 08, 2019 at 01:42:53PM +0000, Neil Armstrong wrote:
-> Add PCIE bindings for the Amlogic G12A SoC, the support is the same
-> but the PHY is shared with USB3 to control the differential lines.
-> 
-> Thus this adds a phy phandle to control the PHY, and sets invalid
-> MIPI clock as optional for G12A.
+On Wed, 11 Sep 2019 at 13:57, Marek Szyprowski <m.szyprowski@samsung.com> wrote:
+>
+> Hi Krzyszotf,
+>
+> On 2019-09-11 13:36, Krzysztof Kozlowski wrote:
+> > On Wed, 11 Sep 2019 at 13:05, Maciej Falkowski <m.falkowski@samsung.com> wrote:
+> >> Convert Samsung Exynos IOMMU H/W, System Memory Management Unit
+> >> to newer dt-schema format.
+> >>
+> >> Update clock description.
+> >>
+> >> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> >> Signed-off-by: Andrzej Hajda <a.hajda@samsung.com>
+> >> ---
+> >> Hi Krzysztof,
+> >>
+> >> Thank you for feedback.
+> >>
+> >> v3:
+> >>
+> >> - remove obsolete interrupts description and
+> >> set its maxItems to one. There are some incompatible
+> >> files which will be fixed with another patch.
+> > Driver stopped supporting two IRQ lines in commit
+> > 7222e8db2d506197ee183de0f9b76b3ad97e8c18 (iommu/exynos: Fix build
+> > errors). The second IRQ line in Exynos3250 DTS seems to be ignored.
+> >
+> > The patch now looks good to me:
+> > Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >
+> > However for some reasons you did not CC the IOMMU maintainers. Please
+> > use scripts/get_maintainer.pl to get the list of folks to CC.
+>
+> Frankly I don't see any reason to spam IOMMU ml or maintainer with this
+> discussion about dt-binding conversion. This patch will be merged via dt
+> tree if I got it right.
 
-Perhaps reword to "Thus this adds a phy phandle to control the PHY,
-and only requires a MIPI clock for AXG SoC Family".
+Indeed usually subsystem maintainers are not interested in DT schema
+conversion although they are mentioned as maintainers for this file so
+it is nice to CC them... I would not call spamming when there is
+explicit pattern for CCing.
 
-Thanks,
-
-Andrew Murray
-
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../devicetree/bindings/pci/amlogic,meson-pcie.txt   | 12 ++++++++----
->  1 file changed, 8 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> index efa2c8b9b85a..84fdc422792e 100644
-> --- a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-> @@ -9,13 +9,16 @@ Additional properties are described here:
->  
->  Required properties:
->  - compatible:
-> -	should contain "amlogic,axg-pcie" to identify the core.
-> +	should contain :
-> +	- "amlogic,axg-pcie" for AXG SoC Family
-> +	- "amlogic,g12a-pcie" for G12A SoC Family
-> +	to identify the core.
->  - reg:
->  	should contain the configuration address space.
->  - reg-names: Must be
->  	- "elbi"	External local bus interface registers
->  	- "cfg"		Meson specific registers
-> -	- "phy"		Meson PCIE PHY registers
-> +	- "phy"		Meson PCIE PHY registers for AXG SoC Family
->  	- "config"	PCIe configuration space
->  - reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
->  - clocks: Must contain an entry for each entry in clock-names.
-> @@ -23,12 +26,13 @@ Required properties:
->  	- "pclk"       PCIe GEN 100M PLL clock
->  	- "port"       PCIe_x(A or B) RC clock gate
->  	- "general"    PCIe Phy clock
-> -	- "mipi"       PCIe_x(A or B) 100M ref clock gate
-> +	- "mipi"       PCIe_x(A or B) 100M ref clock gate for AXG SoC Family
->  - resets: phandle to the reset lines.
->  - reset-names: must contain "phy" "port" and "apb"
-> -       - "phy"         Share PHY reset
-> +       - "phy"         Share PHY reset for AXG SoC Family
->         - "port"        Port A or B reset
->         - "apb"         Share APB reset
-> +- phys: should contain a phandle to the shared phy for G12A SoC Family
->  - device_type:
->  	should be "pci". As specified in designware-pcie.txt
->  
-> -- 
-> 2.17.1
-> 
+Best regards,
+Krzysztof
