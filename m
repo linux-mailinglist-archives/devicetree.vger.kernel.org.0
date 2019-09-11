@@ -2,153 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CF25AF7CF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 10:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5C14AF7EF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 10:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727482AbfIKIYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 04:24:51 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:10202 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727447AbfIKIYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 04:24:42 -0400
-Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
-  Eugen.Hristev@microchip.com designates 198.175.253.82 as
-  permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Eugen.Hristev@microchip.com";
-  x-sender="Eugen.Hristev@microchip.com";
-  x-conformance=spf_only; x-record-type="v=spf1";
-  x-record-text="v=spf1 mx a:ushub1.microchip.com
-  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
-  a:mx2.microchip.iphmx.com include:servers.mcsv.net
-  include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa5.microchip.iphmx.com: no sender
-  authenticity information available from domain of
-  postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
-  envelope-from="Eugen.Hristev@microchip.com";
-  x-sender="postmaster@email.microchip.com";
-  x-conformance=spf_only
-Authentication-Results: esa5.microchip.iphmx.com; spf=Pass smtp.mailfrom=Eugen.Hristev@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: q2Gppv3dqs3WCUC709Dg+CTshs5FcXOTjjOSug1UmeRylzI4kFIWgvlEGkKhqyldD78UhrlIaz
- 4mCp228YhV4obFxF1o+kMfQ7dRVO6afA7fLwq7MsFx1kn4eXc0wGCZL2fwK8kvuNpk1scoJJSZ
- xsGKDqk7+mfDnnpiUmYBQHrfnVIxj6CB5O8r1DnL14yTwfGJqzjl/vWvsEJwhb2XNJIYKmgWYj
- h1q4bTyMVgBiVOTHtjKI868tuuAgh53hkqDkCfwVLlx6HW5epvn6euV61nhlIV4NgjgMVycuuB
- 174=
-X-IronPort-AV: E=Sophos;i="5.64,492,1559545200"; 
-   d="scan'208";a="47036050"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 11 Sep 2019 01:24:43 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 11 Sep 2019 01:24:41 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5 via Frontend
- Transport; Wed, 11 Sep 2019 01:24:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FAUjLigdsYYIxiG2PRgHmgktd/xUA0N5lZsgztjJmjE/K+4Qp9nW32BdQucAIqSIaJS+Jqdqyj0VDbzB3kL3h7TQY1BN7bQ/DBZipNVZUQrxKR40ejJLTIm0HCRKN6HiRJz0evH7zOUtSXwLNWJb/8JvZqoecUz96tZEYz0MW5/c9QxbLXmQFoirjiSSodUZmgW1OlaX3vZiali47M2SxJh9sSIh7Pd+ziCnwjAZ7xWrZOV4DdrGpbrrw9MPIk6q5C+LkK3s+jZGiNFBdsSTAJgXqilXWxaXAVnimShL1srG0V1Vjmv+hsKGFUDClUdBlB15Pct4NO/nlkgbEk9ezw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d9IBcdoZOiF2OFUwwq5xd7VoCpgH+rEzEOB0u5csHOE=;
- b=ZExvQXNZ1qz1Lot0v3ZLbmt/Qf6LckmajFyozga9E9yUGpUBExJTxUgKg9rnitAuYk1cKscnNnPYffdGPkOBk841j1JVcrm9PrUGPCnsBglg5BjCsme1pGpstbIACk7c+t40JIQpCOI9V3L9HjDnY+Dl+a5kHp+aQY9Fn8OYpeOLjjl6MLnDSj7GMB7Jvt7smugNdmsNrVUu5xIC7T3o5jIZiCl4DdCe0Xc0IhgMd36+jzZ9UFvbzMgvR1gEm77UrOqtaQr3SMHXYcOHqHWqhassNNo/7OL36+u5QlEYl3L24xqp42YervhNTzKUf12FfXkcmjpw+NCkL63IRFx3Dw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+        id S1727289AbfIKI30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 04:29:26 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38666 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727273AbfIKI30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 04:29:26 -0400
+Received: by mail-wr1-f66.google.com with SMTP id l11so23443308wrx.5
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 01:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=d9IBcdoZOiF2OFUwwq5xd7VoCpgH+rEzEOB0u5csHOE=;
- b=NFo5ONto6j5NFrY7OlgR8e9w34//sMQp1gTyuZd7JaDdrY0XF1f29ODOtymoZI2xSg2rJfmh4y2Lie4d5l3rSDVb6TdV/40yovasAty855boWVToKFnyS6Lv8JPiceJmQ0sMt8HHt49QBzpNJisMfHNkzG91+0S6wT2DtSWOfPU=
-Received: from DM5PR11MB1242.namprd11.prod.outlook.com (10.168.108.8) by
- DM5PR11MB1452.namprd11.prod.outlook.com (10.172.36.135) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2241.18; Wed, 11 Sep 2019 08:24:40 +0000
-Received: from DM5PR11MB1242.namprd11.prod.outlook.com
- ([fe80::a141:1974:9668:fbe2]) by DM5PR11MB1242.namprd11.prod.outlook.com
- ([fe80::a141:1974:9668:fbe2%12]) with mapi id 15.20.2241.018; Wed, 11 Sep
- 2019 08:24:40 +0000
-From:   <Eugen.Hristev@microchip.com>
-To:     <wsa@the-dreams.de>, <peda@axentia.se>, <mark.rutland@arm.com>,
-        <Ludovic.Desroches@microchip.com>, <linux-i2c@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <alexandre.belloni@bootlin.com>,
-        <robh+dt@kernel.org>
-CC:     <Eugen.Hristev@microchip.com>, <Nicolas.Ferre@microchip.com>
-Subject: [PATCH v5 9/9] ARM: dts: at91: sama5d4_xplained: add digital filter
- for i2c
-Thread-Topic: [PATCH v5 9/9] ARM: dts: at91: sama5d4_xplained: add digital
- filter for i2c
-Thread-Index: AQHVaHpbUSFTGa51BEiMWzE14UyEHg==
-Date:   Wed, 11 Sep 2019 08:24:40 +0000
-Message-ID: <1568189911-31641-10-git-send-email-eugen.hristev@microchip.com>
-References: <1568189911-31641-1-git-send-email-eugen.hristev@microchip.com>
-In-Reply-To: <1568189911-31641-1-git-send-email-eugen.hristev@microchip.com>
-Accept-Language: en-US, ro-RO
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: VI1P189CA0008.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:802:2a::21) To DM5PR11MB1242.namprd11.prod.outlook.com
- (2603:10b6:3:14::8)
-x-mailer: git-send-email 2.7.4
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [94.177.32.156]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0a4e80a8-2c6d-4e0d-242b-08d736917d6d
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DM5PR11MB1452;
-x-ms-traffictypediagnostic: DM5PR11MB1452:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM5PR11MB1452D8A3E76E88E95533EB85E8B10@DM5PR11MB1452.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1079;
-x-forefront-prvs: 0157DEB61B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(346002)(376002)(39860400002)(396003)(366004)(136003)(189003)(199004)(52116002)(3846002)(2501003)(66556008)(66476007)(66946007)(54906003)(110136005)(478600001)(25786009)(316002)(6436002)(6116002)(76176011)(66066001)(386003)(14454004)(2906002)(102836004)(486006)(476003)(2616005)(11346002)(446003)(6506007)(186003)(26005)(4326008)(8936002)(81166006)(81156014)(7736002)(66446008)(8676002)(5660300002)(50226002)(64756008)(86362001)(2201001)(99286004)(71190400001)(4744005)(71200400001)(53936002)(36756003)(256004)(107886003)(6512007)(305945005)(6486002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR11MB1452;H:DM5PR11MB1242.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: microchip.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: eZmxleknuklWIuX4FdodjGdK/sbk2atl/Bas6/Ig38Kb+VV6F9cxamPeUj/pRqptGNnUHLgZEVUwF+DGooTmnUNpXEXxiLbKOr209jagV/dE6LgaINGSeq3bfqsjnejrVOPZSMVEOlYJcNIjePNyusDik5Z9VtgrKJBvUyKozWxjHEJnqMDZvUCH7ih+UHuwCjmuAa4cHp6K8QzheqyWPU0Db8v8O5v7DgsoT2NBiGRBcN+J2R6+mJfumm4RbEA4Imp45ZF2vf9vI9OjWdxt0frx9vc4tRChw+4P5M6w44ZKo6ZlVzUvs2CGa+T7ofFb9QBmCZ54XQLbcALiF0/CmIALunw9dDYMY35fQrd2rn4YXyzdzRC+s/HkGDJUAfBYeXAyH1qOqYPXijiOWAQsy5Ps5f0NQ1zdxkxc/LPXXy0=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Zw/nRHbA6gamXFMmZttwtsUXOgGchhd99CivFz+b1ms=;
+        b=u0pbm4YkiCRxVqqTlQ17p+Il0Iq7bPi7W8wjju8PlHbUVeulbXKRqd9omxqw5yeMVe
+         /4ZRs6QTvbxt6r3tPNXanJbHRqH8t2HYKXN8n5Yf3Y/bfPCgSFYzjmwJejNbVJVzZEtl
+         GsfTsXrQ9kKT/+4AjWaDBEWjJYJALxmMyhFSQ6V7Lu3IeeR5l7yGBrGdeLSAX5E/dVyD
+         0sqhmY1l0mg7KjOVKiw6XfTWzvAFqWDg9tuaAINSjscPW8bxXY+3NdNAAp/EdsvGoDAP
+         Et1IKxclqpqnG4r/ju0lJkqb2EstcCx0tsWb+mLBtc2E5x0IlxUnHhlxfw/wtyKMIb/M
+         BueQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Zw/nRHbA6gamXFMmZttwtsUXOgGchhd99CivFz+b1ms=;
+        b=INvII7hOE/2PqTX0DA5xFqnQmq668QGiR3fGHH2vFECu5RsViQt2g2FY3PSpGB0hAT
+         WY9Lxja7cNIzUUgd71sTsekFBWpZET55eTKlXbEmtYwT6oaggTdefdlRT70mBxZxoV8O
+         BcVxowfOMhBFrJe6lOI2e5MqE/RFtsaturaZ4N8DfYe7JAH14RObMMuwACI+Ve06KZzy
+         RwU3HNnv3DAhipnEAI7RIFzKVgxwxVyktjQ5npXwnBPyWYJj5BsXQwRse0CQu1pkmL/p
+         TLOfzbKGe+YBfDi6O4CP6XEUHOOBoBjpJv7n0LD3szjrCtIlvH9e/3v2CACmjLN1CeFP
+         gSdw==
+X-Gm-Message-State: APjAAAVXMUOOPD2KlByBe4gZ11am+2/zv7/PDORIgxazTSckZ4AUXUab
+        I9PElhRjktRcISd+mtobI3sTNA==
+X-Google-Smtp-Source: APXvYqzitrYD1GNdHxRYy6bTZs5uxP1EO8paIe/T9nQnXD2+EkqWuheIGfM1+1JX7yJBlp5XGl+wLA==
+X-Received: by 2002:a5d:43cc:: with SMTP id v12mr2981046wrr.75.1568190563862;
+        Wed, 11 Sep 2019 01:29:23 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id a13sm36205561wrf.73.2019.09.11.01.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Sep 2019 01:29:22 -0700 (PDT)
+Date:   Wed, 11 Sep 2019 09:29:20 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Milton Miller II <miltonm@us.ibm.com>
+Cc:     Tomer Maimon <tmaimon77@gmail.com>, mpm@selenic.com,
+        herbert@gondor.apana.org.au, arnd@arndb.de,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, sumit.garg@linaro.org,
+        jens.wiklander@linaro.org, vkoul@kernel.org, tglx@linutronix.de,
+        joel@jms.id.au, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] hwrng: npcm: add NPCM RNG driver
+Message-ID: <20190911082920.4vxw7om5aqcfrxmy@holly.lan>
+References: <20190909123840.154745-3-tmaimon77@gmail.com>
+ <20190909123840.154745-1-tmaimon77@gmail.com>
+ <OFDC101E51.54765CB8-ON00258471.006F34B7-00258471.0072BCA7@notes.na.collabserv.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a4e80a8-2c6d-4e0d-242b-08d736917d6d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2019 08:24:40.1985
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: KTxLvU4064K3svVvyjFDcebvW4DlLyzuT/VLRcJCyOxMg7h6T4q9+TIUBJOE0RJ/v0OQF6LYf4tssu0Y+3/eIipne4JcHQk0JugQ2Yl/6N0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB1452
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <OFDC101E51.54765CB8-ON00258471.006F34B7-00258471.0072BCA7@notes.na.collabserv.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Eugen Hristev <eugen.hristev@microchip.com>
+On Tue, Sep 10, 2019 at 08:53:13PM +0000, Milton Miller II wrote:
+> On September 9, 2019 around 7:40AM in somet timezone, Tomer Maimon wrote:
+> >+#define NPCM_RNG_TIMEOUT_USEC	20000
+> >+#define NPCM_RNG_POLL_USEC	1000
+> 
+> ...
+> 
+> >+static int npcm_rng_init(struct hwrng *rng)
+> >+{
+> >+	struct npcm_rng *priv = to_npcm_rng(rng);
+> >+	u32 val;
+> >+
+> >+	val = readl(priv->base + NPCM_RNGCS_REG);
+> >+	val |= NPCM_RNG_ENABLE;
+> >+	writel(val, priv->base + NPCM_RNGCS_REG);
+> >+
+> >+	return 0;
+> >+}
+> >+
+> >+static void npcm_rng_cleanup(struct hwrng *rng)
+> >+{
+> >+	struct npcm_rng *priv = to_npcm_rng(rng);
+> >+	u32 val;
+> >+
+> >+	val = readl(priv->base + NPCM_RNGCS_REG);
+> >+	val &= ~NPCM_RNG_ENABLE;
+> >+	writel(val, priv->base + NPCM_RNGCS_REG);
+> >+}
+> >+
+> >+static int npcm_rng_read(struct hwrng *rng, void *buf, size_t max,
+> >bool wait)
+> >+{
+> >+	struct npcm_rng *priv = to_npcm_rng(rng);
+> >+	int retval = 0;
+> >+	int ready;
+> >+
+> >+	pm_runtime_get_sync((struct device *)priv->rng.priv);
+> >+
+> >+	while (max >= sizeof(u32)) {
+> >+		ready = readl(priv->base + NPCM_RNGCS_REG) &
+> >+			NPCM_RNG_DATA_VALID;
+> >+		if (!ready) {
+> >+			if (wait) {
+> >+				if (readl_poll_timeout(priv->base + NPCM_RNGCS_REG,
+> >+						       ready,
+> >+						       ready & NPCM_RNG_DATA_VALID,
+> >+						       NPCM_RNG_POLL_USEC,
+> >+						       NPCM_RNG_TIMEOUT_USEC))
+> >+					break;
+> >+			} else {
+> >+				break;
+> 
+> This break is too far from the condition and deeply nested to follow.
+> 
+> And looking further, readl_poll_timeout will read and check the condition before
+> calling usleep, so the the initial readl and check is redundant
+> 
+> Rearrange to make wait determine if you call readl_poll_timeout or 
+> readl / compare / break.
+> 
+> >+			}
+> >+		}
+> >+
+> >+		*(u32 *)buf = readl(priv->base + NPCM_RNGD_REG);
+> >+		retval += sizeof(u32);
+> >+		buf += sizeof(u32);
+> >+		max -= sizeof(u32);
+> >+	}
+> >+
+> >+	pm_runtime_mark_last_busy((struct device *)priv->rng.priv);
+> >+	pm_runtime_put_sync_autosuspend((struct device *)priv->rng.priv);
+> >+
+> >+	return retval || !wait ? retval : -EIO;
+> >+}
+> >+
+> >+static int npcm_rng_probe(struct platform_device *pdev)
+> >+{
+> >+	struct npcm_rng *priv;
+> >+	struct resource *res;
+> >+	bool pm_dis = false;
+> >+	u32 quality;
+> >+	int ret;
+> >+
+> >+	priv = devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
+> >+	if (!priv)
+> >+		return -ENOMEM;
+> >+
+> >+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >+	priv->base = devm_ioremap_resource(&pdev->dev, res);
+> >+	if (IS_ERR(priv->base))
+> >+		return PTR_ERR(priv->base);
+> >+
+> >+	priv->rng.name = pdev->name;
+> >+#ifndef CONFIG_PM
+> >+	pm_dis = true;
+> >+	priv->rng.init = npcm_rng_init;
+> >+	priv->rng.cleanup = npcm_rng_cleanup;
+> >+#endif
+> 
+> if you move this down you can use one if (ENABLED_CONFIG_PM) {}
+> 
+> >+	priv->rng.read = npcm_rng_read;
+> >+	priv->rng.priv = (unsigned long)&pdev->dev;
+> >+	if (of_property_read_u32(pdev->dev.of_node, "quality", &quality))
+> >+		priv->rng.quality = 1000;
+> >+	else
+> >+		priv->rng.quality = quality;
+> >+
+> >+	writel(NPCM_RNG_M1ROSEL, priv->base + NPCM_RNGMODE_REG);
+> >+	if (pm_dis)
+> >+		writel(NPCM_RNG_CLK_SET_25MHZ, priv->base + NPCM_RNGCS_REG);
+> >+	else
+> >+		writel(NPCM_RNG_CLK_SET_25MHZ | NPCM_RNG_ENABLE,
+> >+		       priv->base + NPCM_RNGCS_REG);
+> 
+> wait ... if we know the whole value here, why read/modify/write the value
+> in the init and cleanup hook?   Save the io read and write the known value
+>  ... define the value to be written for clarity between enable/disable if
+> needed
+> 
+> 
+> 
+> >+
+> >+	ret = devm_hwrng_register(&pdev->dev, &priv->rng);
+> >+	if (ret) {
+> >+		dev_err(&pdev->dev, "Failed to register rng device: %d\n",
+> >+			ret);
+> 
+> need to disable if CONFIG_PM ?
+> 
+> >+		return ret;
+> >+	}
+> >+
+> >+	dev_set_drvdata(&pdev->dev, priv);
+> 
+> This should probably be before the register.
+> 
+> >+	pm_runtime_set_autosuspend_delay(&pdev->dev, 100);
+> 
+> So every 100ms power off, and if userspace does a read we
+> will poll every 1ms for upto 20ms.
+> 
+> If userspace says try once a second with -ENODELAY so no wait,
+> it never gets data.
 
-Add property for digital filter for i2c0 node sama5d4_xplained
+I didn't follow this.
 
-Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
----
- arch/arm/boot/dts/at91-sama5d4_xplained.dts | 1 +
- 1 file changed, 1 insertion(+)
+In the time before the device is suspended it should have generated
+data and this can be sent to the userspace. Providing the suspend delay
+is longer than the buffer size of the hardware then there won't
+necessarily be performance problems because the device is "full" when
+it is suspended.
 
-diff --git a/arch/arm/boot/dts/at91-sama5d4_xplained.dts b/arch/arm/boot/dt=
-s/at91-sama5d4_xplained.dts
-index fdfc37d..924d949 100644
---- a/arch/arm/boot/dts/at91-sama5d4_xplained.dts
-+++ b/arch/arm/boot/dts/at91-sama5d4_xplained.dts
-@@ -49,6 +49,7 @@
- 			};
-=20
- 			i2c0: i2c@f8014000 {
-+				i2c-digital-filter;
- 				status =3D "okay";
- 			};
-=20
---=20
-2.7.4
+Of course if the hardware loses state when it is suspended then the
+driver would need extra code on the PM paths to preserve the data...
 
+
+Daniel.
