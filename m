@@ -2,241 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2999AFF80
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 17:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F65AFFCF
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 17:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728181AbfIKPFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 11:05:10 -0400
-Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:47720 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727873AbfIKPFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Sep 2019 11:05:09 -0400
-Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
-        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8BExB6M010648;
-        Wed, 11 Sep 2019 08:04:41 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=proofpoint;
- bh=XKF/hQK9j2HSFIXn4AJeiDIdzr6FQZRV7grdxzwssss=;
- b=r9EpZ81+9T6Prpj76YShOaALWGUSF5CUGFW1PcnBJqR+s6Cq6BBHlBslMDT1MSBDj2oX
- j8n9bm81MVadxbWC3hVe5l1jTSUoIM4p04p+AYyGZnNf503PM9FAjsHfnytatCJysPZG
- bup7g5c2g3JcNYHS5vtZHkL/UxmwTfz3TkHayDK9p3ZLJR+yvUYIHundESiw38SHRvS0
- 7lxl/uwHZhGGkwTzt8Ms8Q1olVzya7syFVZe+E1fEf+NDicyxCy1/MJOimd7F1ciTGYl
- U+y1SCiqgdlqnoc+kzZWN1+tm2ia9Xg6StfT8SSUQ+rLpJ/x8bNmYAyNpED0I+QeAOeV LA== 
-Received: from nam01-bn3-obe.outbound.protection.outlook.com (mail-bn3nam01lp2059.outbound.protection.outlook.com [104.47.33.59])
-        by mx0b-0014ca01.pphosted.com with ESMTP id 2uxhm7v069-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 11 Sep 2019 08:04:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IgmBWaZPuBH1oVtGidromc9snSGhppqmaMFUBfEIxjrLB/HDgiJLnAhv+V/hHCA5YpDOES4WrfmNh1OZkqr1J/bL8aUqa7BsgvKq71LPJlNNQLARBm0TICX+HayQGgomcSto/ZOpC9PIAO5vy5O3EO6lk6YNTPN5RDH+5tT+5f44iTXrsrhOLEWFdcS5q3DK/7bJ+eob93qW2pkOrn6dZ0mpwBFzjScRC6OtKlgEgxynxv2OhCNjz9y76imEVD9Bkb9mGFK+v632E04lWMvC5eUmgw60TtT8PVC447H/aAIg+1YM5eGffcjQnlFYK9WxfYNlB5/WwJvZJ3Z69myEKg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XKF/hQK9j2HSFIXn4AJeiDIdzr6FQZRV7grdxzwssss=;
- b=C155skpN0wKtL2mYLT2Dv4HsksaoPVWcMmEVIxXuB27pe87Mw5qLzdnAJnziGk5uEEFJ2a79cscfE9UhaqY1lg26n5ELggN8+7soCVJyCyBWkROBucB+QQkQYxGLbKFnFWprlCrSVIzb3+j1c1PRe0bkvnHwlz93c11RmNmxgv+Ye11Z2qn5908ddxRrROBScnTKnm0jvH6OMTWqtrIIAQ/04asOIjgWFhbhwmATd0BHwh0UPTnHx6q17EmSzDTmUmnwU4bpkbIQOizvYBIU/YHA81cp3TqXRSuVMKOzBMTI/K+bZh8ElAyAhvri07qVncvvYIwXYaTsiYGH71b+RA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 158.140.1.28) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=cadence.com;
- dmarc=fail (p=none sp=none pct=100) action=none header.from=cadence.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=XKF/hQK9j2HSFIXn4AJeiDIdzr6FQZRV7grdxzwssss=;
- b=6pu4hbsJJavOK/sCA1gOm21wqCFDPZS/Zm0OqbG7pBbSOYycMaO84T5BrrgaD8yebIkBhvWc/p1EXxfMsR8DgBozBw0hMuIUe3WUb6zW4TpN/5Jt/L/NlW/XK3gqlVu77pTY9+PiRJq1/O5JiYhQan2g9U9k++tTXA/qr7xRNlU=
-Received: from SN4PR0701CA0018.namprd07.prod.outlook.com
- (2603:10b6:803:28::28) by MWHPR07MB3437.namprd07.prod.outlook.com
- (2603:10b6:301:63::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.13; Wed, 11 Sep
- 2019 15:04:37 +0000
-Received: from DM3NAM05FT040.eop-nam05.prod.protection.outlook.com
- (2a01:111:f400:7e51::202) by SN4PR0701CA0018.outlook.office365.com
- (2603:10b6:803:28::28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2263.15 via Frontend
- Transport; Wed, 11 Sep 2019 15:04:37 +0000
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- cadence.com discourages use of 158.140.1.28 as permitted sender)
-Received: from sjmaillnx2.cadence.com (158.140.1.28) by
- DM3NAM05FT040.mail.protection.outlook.com (10.152.98.154) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.6 via Frontend Transport; Wed, 11 Sep 2019 15:04:36 +0000
-Received: from mailsj6.global.cadence.com (mailsj6.cadence.com [158.140.32.112])
-        by sjmaillnx2.cadence.com (8.14.4/8.14.4) with ESMTP id x8BF4XRf006971
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Wed, 11 Sep 2019 08:04:33 -0700
-X-CrossPremisesHeadersFilteredBySendConnector: mailsj6.global.cadence.com
-Received: from global.cadence.com (158.140.32.37) by
- mailsj6.global.cadence.com (158.140.32.112) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 11 Sep 2019 08:04:31 -0700
-Date:   Wed, 11 Sep 2019 16:04:24 +0100
-From:   Piotr Sroka <piotrs@cadence.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Richard Weinberger <richard@nod.at>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        <linux-mtd@lists.infradead.org>,
-        BrianNorris <computersforpeace@gmail.com>,
-        David Woodhouse <dwmw2@infradead.org>,
-        Kazuhiro Kasai <kasai.kazuhiro@socionext.com>
-Subject: Re: [v5 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
-Message-ID: <20190911150422.GA4973@global.cadence.com>
-References: <20190725145804.8886-1-piotrs@cadence.com>
- <20190725145955.13951-1-piotrs@cadence.com>
- <20190830114638.33dc4eb2@xps13>
+        id S1728395AbfIKPTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 11:19:53 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:35104 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726510AbfIKPTx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 11:19:53 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 41E16611FD; Wed, 11 Sep 2019 15:19:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568215192;
+        bh=BxzymE4Du8iospVx8lQ4+Kl7Ik1hqE+DIRt/RDx1/Rc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=N9C6sFzmyVoxXSQ2a5Bh6l2EhIogpS9MZ17s4ubhaJUSetY/ZjqyJuUFZIXJpIQic
+         ys1Kek/nFox28fW0nbyJ6Dc5VHe8cvChmP9bi+IIzSm+PPEKj0NO4GL6ZBnHIHkNp0
+         R3WAiZOKxZ5rV78caB7izlphscnuQUzNhQ8ZDIlY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from localhost (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: ilina@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 77F4161197;
+        Wed, 11 Sep 2019 15:19:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568215190;
+        bh=BxzymE4Du8iospVx8lQ4+Kl7Ik1hqE+DIRt/RDx1/Rc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DCCUrRDdd9ILFg7hBJRAudHEHOuY9bUsakEeYLhzirL7B39j3iGakjSuxQhBDatnG
+         zBVDxQ5LTW1znyRCWQdh9SdrcKRAaUvnGtxdv/D1MKA4s6KANF7nK2kMAueCRa2kLA
+         MwJjILN3Hm2jZ+Vc3Qtiycg6069SKKTHWbGEo3c0=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 77F4161197
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
+Date:   Wed, 11 Sep 2019 09:19:48 -0600
+From:   Lina Iyer <ilina@codeaurora.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Evan Green <evgreen@chromium.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        mkshah@codeaurora.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RFC 05/14] dt-bindings/interrupt-controller: pdc: add SPI
+ config register
+Message-ID: <20190911151847.GA30053@codeaurora.org>
+References: <20190829181203.2660-1-ilina@codeaurora.org>
+ <20190829181203.2660-6-ilina@codeaurora.org>
+ <CACRpkdaReFzjb_hcDbQwqMX+whzscLpeZpJPHKqOo+9tANzemA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190830114638.33dc4eb2@xps13>
-User-Agent: Mutt/1.5.20 (2009-12-10)
-X-Originating-IP: [158.140.32.37]
-X-ClientProxiedBy: mailsj7.global.cadence.com (158.140.32.114) To
- mailsj6.global.cadence.com (158.140.32.112)
-X-OrganizationHeadersPreserved: mailsj6.global.cadence.com
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(136003)(396003)(39860400002)(376002)(346002)(36092001)(199004)(189003)(356004)(336012)(478600001)(55016002)(4326008)(26005)(386003)(6286002)(6246003)(186003)(16526019)(8676002)(8936002)(6666004)(66066001)(53416004)(2870700001)(33656002)(26826003)(426003)(11346002)(446003)(47776003)(956004)(14444005)(3846002)(70586007)(126002)(476003)(2906002)(486006)(70206006)(7416002)(7696005)(2486003)(6916009)(54906003)(23676004)(305945005)(6116002)(76130400001)(86362001)(229853002)(50466002)(246002)(5660300002)(58126008)(1076003)(66574012)(7736002)(76176011)(7636002)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR07MB3437;H:sjmaillnx2.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:corp.cadence.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: a1b9373c-36fe-4885-dc63-08d736c95ce4
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR07MB3437;
-X-MS-TrafficTypeDiagnostic: MWHPR07MB3437:
-X-Microsoft-Antispam-PRVS: <MWHPR07MB3437DF50C0423A4A80AEFA42DDB10@MWHPR07MB3437.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
-X-Forefront-PRVS: 0157DEB61B
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: /9O4EWH9vS9NCZ08hdFLHHV4H1PdkEOg82JC5prpSFSNHQC6omZYeilwqNXh/JLiQAdDw7i7s/g4dovjWV/UKU1w8wf0zd7j+sScb6Y1ndMdV8Ca0F0XVCt9N2hRFIApg3Mc8lh3guYEvDgQJ3fox6RLqra2B3QSt7cRNxBKoYbMcNc/dKqIDFcTf6rLUDCl86TXLzK2nGIXlbeYumOBF9CZZwHhH1dSTgu+rQpUigK05R7O27SOUtgDnwgYFnZzfV55Y7P33YYjoHbcgmoaFQljtFBoiPl94BX0UCWZ3Y+tCZaMxBnVMgMAttSEXKB9tfMrR72rcBPQB0p6n4F85UnnH3CAgOAorv+HixzuAiOOdSQZ3SoTt8kPg+M2YdVqw9p4yMJ73kyDlwphjbbjs/2CAPJRZt5113/QytRD5AM=
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2019 15:04:36.5008
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1b9373c-36fe-4885-dc63-08d736c95ce4
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx2.cadence.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR07MB3437
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
- definitions=2019-09-11_08:2019-09-11,2019-09-11 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 spamscore=0
- impostorscore=0 bulkscore=0 adultscore=0 malwarescore=0 suspectscore=0
- mlxlogscore=999 clxscore=1011 phishscore=0 mlxscore=0 priorityscore=1501
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-1906280000 definitions=main-1909110139
+In-Reply-To: <CACRpkdaReFzjb_hcDbQwqMX+whzscLpeZpJPHKqOo+9tANzemA@mail.gmail.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel
-
-The 08/30/2019 11:46, Miquel Raynal wrote:
->EXTERNAL MAIL
+On Wed, Sep 11 2019 at 04:05 -0600, Linus Walleij wrote:
+>On Thu, Aug 29, 2019 at 8:47 PM Lina Iyer <ilina@codeaurora.org> wrote:
 >
->
->Hi Piotr,
->
->Piotr Sroka <piotrs@cadence.com> wrote on Thu, 25 Jul 2019 15:59:55
->+0100:
->
->> Document the bindings used by Cadence NAND controller driver
+>> +- qcom,scm-spi-cfg:
+>> +       Usage: optional
+>> +       Value type: <bool>
+>> +       Definition: Specifies if the SPI configuration registers have to be
+>> +                   written from the firmware.
+>> +
+>>  Example:
 >>
->> Signed-off-by: Piotr Sroka <piotrs@cadence.com>
->> ---
->> Changes for v5:
->> - replace "_" by "-" in all properties
->> - change compatible name from cdns,hpnfc to cdns,hp-nfc
->> Changes for v4:
->> - add commit message
->> Changes for v3:
->> - add unit suffix for board_delay
->> - move child description to proper place
->> - remove prefix cadence_ for reg and sdma fields
->> Changes for v2:
->> - remove chip dependends parameters from dts bindings
->> - add names for register ranges in dts bindings
->> - add generic bindings to describe NAND chip representation
->> ---
->>  .../bindings/mtd/cadence-nand-controller.txt       | 50 ++++++++++++++++++++++
->>  1 file changed, 50 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
->> new file mode 100644
->> index 000000000000..423547a3f993
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
->> @@ -0,0 +1,50 @@
->> +* Cadence NAND controller
->> +
->> +Required properties:
->> +  - compatible : "cdns,hp-nfc"
->> +  - reg : Contains two entries, each of which is a tuple consisting of a
->> +	  physical address and length. The first entry is the address and
->> +	  length of the controller register set. The second entry is the
->> +	  address and length of the Slave DMA data port.
->> +  - reg-names: should contain "reg" and "sdma"
->> +  - interrupts : The interrupt number.
->> +  - clocks: phandle of the controller core clock (nf_clk).
->> +
->> +Optional properties:
->> +  - dmas: shall reference DMA channel associated to the NAND controller
->> +  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
->> +    round trip delay for the signals and is used for deciding on values
->> +    associated with data read capture. The example formula for SDR mode is
->> +    the following:
->> +    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
->> +    + DQ PAD delay
->> +
->> +Child nodes represent the available NAND chips.
->> +
->> +Required properties of NAND chips:
->> +  - reg: shall contain the native Chip Select ids from 0 to max supported by
->> +    the cadence nand flash controller
->> +
->> +
->> +See Documentation/devicetree/bindings/mtd/nand.txt for more details on
->> +generic bindings.
->> +
->> +Example:
->> +
->> +nand_controller: nand-controller @60000000 {
->> +	  compatible = "cdns,hp-nfc";
->> +	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
->> +	  reg-names = "reg", "sdma";
->> +	  clocks = <&nf_clk>;
->> +	  cdns,board-delay-ps = <4830>;
+>>         pdc: interrupt-controller@b220000 {
+>>                 compatible = "qcom,sdm845-pdc";
+>> -               reg = <0xb220000 0x30000>;
+>> +               reg = <0xb220000 0x30000>, <0x179900f0 0x60>;
+>>                 qcom,pdc-ranges = <0 512 94>, <94 641 15>, <115 662 7>;
+>>                 #interrupt-cells = <2>;
+>>                 interrupt-parent = <&intc>;
+>>                 interrupt-controller;
+>> +               qcom,scm-spi-cfg;
 >
->Are you sure you want to export this to the user? Not sure it is easily
->understandable and tunable... I'm not against but I would have troubles
->tuning it myself, unless using the documented value. Maybe you should
->explain more how to derive it?
-I need to export this parameter somehow. The default value may not be
-valid for other platforms. 
-This value depends on platform, and may be different on different SoCs. 
-So I think the DTS is the best place to put such configuration
-parameter.
+>You can probably drop this bool if you just give names to the registers.
+>
+>Like
+>reg = <0xb220000 0x30000>, <0x179900f0 0x60>;
+>reg-names = "gic", "pdc";
+>
+>Then jus check explicitly for a "pdc" register and in that case
+>initialize the PDC.
+>
+Well the address remains the same. The bool defines how to access that
+register address - from linux or from the firmware using SCM calls. But
+I get your point, I could have different register namess - pdc-linux or
+pdc-scm and request by name. I can then use that to determine the mode
+for accessing the register.
 
->
->The rest looks fine, let's see if Rob agrees. Maybe he will request a
->yaml schema; in this case you can check sunxi NAND bindings which
->already have been converted.
->
->> +	  interrupts = <2 0>;
->> +	  nand@0 {
->> +	      reg = <0>;
->> +	      label = "nand-1";
->> +	  };
->> +	  nand@1 {
->> +	      reg = <1>;
->> +	      label = "nand-2";
->> +	  };
->> +
->> +};
->
->Thanks,
->Miquèl
+Thanks,
+Lina
 
-
-Thanks
-Piotr 
