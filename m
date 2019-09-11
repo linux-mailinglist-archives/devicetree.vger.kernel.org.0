@@ -2,76 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 044A0AFE03
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 15:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0178AFE75
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 16:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728032AbfIKNsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 09:48:14 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:39388 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727373AbfIKNsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 09:48:13 -0400
-Received: by mail-lf1-f66.google.com with SMTP id l11so16502773lfk.6
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 06:48:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=S2FkzxTJQZdA1aRgr3g7IfWgwqRJ3678xnPBx6m4Fms=;
-        b=CruhKYJ8uhTQJdaRfo2tyzYvg9E6mmNU5ANaIq7eKbkALix6+pkrNYYb1t3wDveFEB
-         7lc7oEHFw+3quiJbkIMPHjxdfP+5NMe5SIouivEfceOJali8i759pEUADxaZrIH0RDh9
-         PWzvmsrz2Zbaohm3XHRPoRPP6GboKe4XAB0Ipqq32wcAZae7kjrolvThM3ssdlJIjSGk
-         CuZprMrpqDPpOtirA3qmQSmWA2KsVTt4QHIH5X9hW25QmI1PFj1bVBDDAcspjg8csjsj
-         I7/FmmPZscKqLnfldovfwi22iVbGPTejdTnukUMmzIJiys02XHfOT2ufgycq4yvtJdXo
-         +OTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=S2FkzxTJQZdA1aRgr3g7IfWgwqRJ3678xnPBx6m4Fms=;
-        b=Ddr0K7bOrmQYKMo7Q72Ag9Sdcj4i4PBrtgSJXPcfMs39NoRgkvgm+FjCnnmNTsSGKh
-         vMjkd9lS6BjVXGnmGhccTvAx3Ma/p3ZyLBtOoy00s/WaBPlLLhRD/uzLJWmrgky4/Zbs
-         0+c+oO9jGyEgYntV1CjdCEX7QevVZrtfi/6LM8vd5oHhao5AImDCwsaLMz3uljYGiyH+
-         GqMnJuaZFFSSMZakodBhOOPTTQjUF3ZOfqCvvexuBu2SEPeeDmbNzxalFt/hG8dfJyxS
-         /DknPKiCsWQcXzJwyew3CTe1aIJHGX9Yuej9z9oG0NfKGqBBZ4XGV5A/Azw4aFcsy7AA
-         tqLQ==
-X-Gm-Message-State: APjAAAWiVFpYNo3ZFgVdNcV29sjRNQ+jTzbJDKifPKrgDHFZtyGr8ccy
-        XlCc2m133qFCj5g5yiu6KIIp5HhfUeMzVT37OUq7Zw==
-X-Google-Smtp-Source: APXvYqxx39JIRa1vOCzPEEklvsJZB8Fu3qWvJg8QQa1U8FjndIfq7kjWGZ3O2VEZhadsF1jneYjTpoIdzWzLSyG3Bfk=
-X-Received: by 2002:ac2:5c11:: with SMTP id r17mr24617653lfp.61.1568209691759;
- Wed, 11 Sep 2019 06:48:11 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190906084539.21838-1-geert+renesas@glider.be> <20190906084539.21838-5-geert+renesas@glider.be>
-In-Reply-To: <20190906084539.21838-5-geert+renesas@glider.be>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 11 Sep 2019 14:48:00 +0100
-Message-ID: <CACRpkdan2XJZBCJHykhEQXipNK0x5F9ssg3TJPZKrwTGsDzkSA@mail.gmail.com>
-Subject: Re: [PATCH 4/4] gpio: devres: Switch to EXPORT_SYMBOL_GPL()
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727020AbfIKOPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 10:15:35 -0400
+Received: from foss.arm.com ([217.140.110.172]:48302 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726058AbfIKOPf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Sep 2019 10:15:35 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BFEE31000;
+        Wed, 11 Sep 2019 07:15:34 -0700 (PDT)
+Received: from big-swifty.misterjones.org (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 78FC73F67D;
+        Wed, 11 Sep 2019 07:15:31 -0700 (PDT)
+Date:   Wed, 11 Sep 2019 15:15:21 +0100
+Message-ID: <86d0g6syva.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     Talel Shenhar <talel@amazon.com>
+Cc:     <robh+dt@kernel.org>, <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <mark.rutland@arm.com>, <nicolas.ferre@microchip.com>,
+        <mchehab+samsung@kernel.org>, <shawn.lin@rock-chips.com>,
+        <gregkh@linuxfoundation.org>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, James Morse <james.morse@arm.com>
+Subject: Re: [PATCH v2 2/3] soc: amazon: al-pos: Introduce Amazon's Annapurna Labs POS driver
+In-Reply-To: <1568142310-17622-3-git-send-email-talel@amazon.com>
+References: <1568142310-17622-1-git-send-email-talel@amazon.com>
+        <1568142310-17622-3-git-send-email-talel@amazon.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 6, 2019 at 9:45 AM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+[+James]
 
-> Change all exported symbols for managed GPIO functions from
-> EXPORT_SYMBOL() to EXPORT_SYMBOL_GPL(), like is used for their
-> non-managed counterparts.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Hi Talel,
 
-Patch applied.
+On Tue, 10 Sep 2019 20:05:09 +0100,
+Talel Shenhar <talel@amazon.com> wrote:
+> 
+> The Amazon's Annapurna Labs SoCs includes Point Of Serialization error
+> logging unit that reports an error in case write error (e.g. attempt to
+> write to a read only register).
+> This patch introduces the support for this unit.
+> 
+> Signed-off-by: Talel Shenhar <talel@amazon.com>
+> ---
+>  MAINTAINERS                 |   7 +++
+>  drivers/soc/Kconfig         |   1 +
+>  drivers/soc/Makefile        |   1 +
+>  drivers/soc/amazon/Kconfig  |   5 ++
+>  drivers/soc/amazon/Makefile |   1 +
+>  drivers/soc/amazon/al_pos.c | 127 ++++++++++++++++++++++++++++++++++++++++++++
+>  6 files changed, 142 insertions(+)
+>  create mode 100644 drivers/soc/amazon/Kconfig
+>  create mode 100644 drivers/soc/amazon/Makefile
+>  create mode 100644 drivers/soc/amazon/al_pos.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e7a47b5..8c3a070 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -751,6 +751,13 @@ F:	drivers/tty/serial/altera_jtaguart.c
+>  F:	include/linux/altera_uart.h
+>  F:	include/linux/altera_jtaguart.h
+>  
+> +AMAZON ANNAPURNA LABS POS
+> +M:	Talel Shenhar <talel@amazon.com>
+> +M:	Talel Shenhar <talelshenhar@gmail.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/soc/amazon/amazon,al-pos.txt
+> +F:	drivers/soc/amazon/al_pos.c
+> +
+>  AMAZON ANNAPURNA LABS THERMAL MMIO DRIVER
+>  M:	Talel Shenhar <talel@amazon.com>
+>  S:	Maintained
+> diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
+> index 833e04a..913a6b1 100644
+> --- a/drivers/soc/Kconfig
+> +++ b/drivers/soc/Kconfig
+> @@ -2,6 +2,7 @@
+>  menu "SOC (System On Chip) specific Drivers"
+>  
+>  source "drivers/soc/actions/Kconfig"
+> +source "drivers/soc/amazon/Kconfig"
+>  source "drivers/soc/amlogic/Kconfig"
+>  source "drivers/soc/aspeed/Kconfig"
+>  source "drivers/soc/atmel/Kconfig"
+> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
+> index 2ec3550..c1c5c64 100644
+> --- a/drivers/soc/Makefile
+> +++ b/drivers/soc/Makefile
+> @@ -6,6 +6,7 @@
+>  obj-$(CONFIG_ARCH_ACTIONS)	+= actions/
+>  obj-$(CONFIG_SOC_ASPEED)	+= aspeed/
+>  obj-$(CONFIG_ARCH_AT91)		+= atmel/
+> +obj-y				+= amazon/
+>  obj-y				+= bcm/
+>  obj-$(CONFIG_ARCH_DOVE)		+= dove/
+>  obj-$(CONFIG_MACH_DOVE)		+= dove/
+> diff --git a/drivers/soc/amazon/Kconfig b/drivers/soc/amazon/Kconfig
+> new file mode 100644
+> index 00000000..fdd4cdd
+> --- /dev/null
+> +++ b/drivers/soc/amazon/Kconfig
+> @@ -0,0 +1,5 @@
+> +config AL_POS
+> +	bool "Amazon's Annapurna Labs POS driver"
 
-Yours,
-Linus Walleij
+Some would say that the name is ever slightly unfortunate...
+
+> +	depends on ARCH_ALPINE || COMPILE_TEST
+> +	help
+> +	  Include support for the SoC POS error capability.
+> diff --git a/drivers/soc/amazon/Makefile b/drivers/soc/amazon/Makefile
+> new file mode 100644
+> index 00000000..a31441a
+> --- /dev/null
+> +++ b/drivers/soc/amazon/Makefile
+> @@ -0,0 +1 @@
+> +obj-$(CONFIG_AL_POS) += al_pos.o
+> diff --git a/drivers/soc/amazon/al_pos.c b/drivers/soc/amazon/al_pos.c
+> new file mode 100644
+> index 00000000..a865111
+> --- /dev/null
+> +++ b/drivers/soc/amazon/al_pos.c
+> @@ -0,0 +1,127 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+> + */
+> +#include <linux/bitfield.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/of_platform.h>
+> +
+> +/* Registers Offset */
+> +#define AL_POS_ERROR_LOG_1	0x0
+> +#define AL_POS_ERROR_LOG_0	0x4
+> +
+> +/* Registers Fields */
+> +#define AL_POS_ERROR_LOG_1_VALID	GENMASK(31, 31)
+> +#define AL_POS_ERROR_LOG_1_BRESP	GENMASK(18, 17)
+> +#define AL_POS_ERROR_LOG_1_REQUEST_ID	GENMASK(16, 8)
+> +#define AL_POS_ERROR_LOG_1_ADDR_HIGH	GENMASK(7, 0)
+> +
+> +#define AL_POS_ERROR_LOG_0_ADDR_LOW	GENMASK(31, 0)
+> +
+> +static int al_pos_panic;
+> +module_param(al_pos_panic, int, 0);
+> +MODULE_PARM_DESC(al_pos_panic, "Defines if POS error is causing panic()");
+> +
+> +struct al_pos {
+> +	struct platform_device *pdev;
+> +	void __iomem *mmio_base;
+> +	int irq;
+> +};
+> +
+> +static irqreturn_t al_pos_irq_handler(int irq, void *info)
+> +{
+> +	struct platform_device *pdev = info;
+> +	struct al_pos *pos = platform_get_drvdata(pdev);
+> +	u32 log1;
+> +	u32 log0;
+> +	u64 addr;
+> +	u16 request_id;
+> +	u8 bresp;
+> +
+> +	log1 = readl(pos->mmio_base + AL_POS_ERROR_LOG_1);
+
+Do you actually need the implied barriers? I'd expect that relaxed
+accesses should be enough.
+
+> +	if (!FIELD_GET(AL_POS_ERROR_LOG_1_VALID, log1))
+> +		return IRQ_NONE;
+> +
+> +	log0 = readl(pos->mmio_base + AL_POS_ERROR_LOG_0);
+> +	writel(0, pos->mmio_base + AL_POS_ERROR_LOG_1);
+> +
+> +	addr = FIELD_GET(AL_POS_ERROR_LOG_0_ADDR_LOW, log0);
+> +	addr |= (FIELD_GET(AL_POS_ERROR_LOG_1_ADDR_HIGH, log1) << 32);
+> +	request_id = FIELD_GET(AL_POS_ERROR_LOG_1_REQUEST_ID, log1);
+> +	bresp = FIELD_GET(AL_POS_ERROR_LOG_1_BRESP, log1);
+> +
+> +	dev_err(&pdev->dev, "addr=0x%llx request_id=0x%x bresp=0x%x\n",
+> +		addr, request_id, bresp);
+
+What is this information? How do we make use of it? Given that this is
+asynchronous, how do we correlate it to the offending software?
+
+> +
+> +	if (al_pos_panic)
+> +		panic("POS");
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int al_pos_probe(struct platform_device *pdev)
+> +{
+> +	struct al_pos *pos;
+> +	int ret;
+> +
+> +	pos = devm_kzalloc(&pdev->dev, sizeof(*pos), GFP_KERNEL);
+> +	if (!pos)
+> +		return -ENOMEM;
+> +
+> +	platform_set_drvdata(pdev, pos);
+> +	pos->pdev = pdev;
+> +
+> +	pos->mmio_base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(pos->mmio_base)) {
+> +		dev_err(&pdev->dev, "failed to ioremap memory (%ld)\n",
+> +			PTR_ERR(pos->mmio_base));
+> +		return PTR_ERR(pos->mmio_base);
+> +	}
+> +
+> +	pos->irq = platform_get_irq(pdev, 0);
+> +	if (pos->irq <= 0) {
+> +		dev_err(&pdev->dev, "fail to parse and map irq\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = devm_request_irq(&pdev->dev,
+> +			       pos->irq,
+> +			       al_pos_irq_handler,
+> +			       0,
+> +			       pdev->name,
+> +			       pdev);
+> +	if (ret != 0) {
+> +		dev_err(&pdev->dev,
+> +			"failed to register to irq %d (%d)\n",
+> +			pos->irq, ret);
+> +		return ret;
+> +	}
+> +
+> +	dev_info(&pdev->dev, "successfully loaded\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id al_pos_of_match[] = {
+> +	{ .compatible = "amazon,al-pos", },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, al_pos_of_match);
+> +
+> +static struct platform_driver al_pos_driver = {
+> +	.probe = al_pos_probe,
+> +	.driver = {
+> +		.name = "al-pos",
+> +		.of_match_table = al_pos_of_match,
+> +	},
+> +};
+> +
+> +module_platform_driver(al_pos_driver);
+> +
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_AUTHOR("Talel Shenhar");
+> +MODULE_DESCRIPTION("Amazon's Annapurna Labs POS driver");
+> -- 
+> 2.7.4
+> 
+
+The whole think looks to me like a poor man's EDAC handling, and I'd
+expect to be plugged in that subsystem instead. Any reason why this
+isn't the case? It would certainly make the handling uniform for the
+user.
+
+Thanks,
+
+	M.
+
+-- 
+Jazz is not dead, it just smells funny.
