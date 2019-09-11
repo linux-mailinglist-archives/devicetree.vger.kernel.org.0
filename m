@@ -2,23 +2,23 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C0178AFE75
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 16:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAA02AFE8E
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 16:18:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727020AbfIKOPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 10:15:35 -0400
-Received: from foss.arm.com ([217.140.110.172]:48302 "EHLO foss.arm.com"
+        id S1727656AbfIKOSh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 10:18:37 -0400
+Received: from foss.arm.com ([217.140.110.172]:48390 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726058AbfIKOPf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Sep 2019 10:15:35 -0400
+        id S1725981AbfIKOSh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Sep 2019 10:18:37 -0400
 Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id BFEE31000;
-        Wed, 11 Sep 2019 07:15:34 -0700 (PDT)
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3FE671000;
+        Wed, 11 Sep 2019 07:18:37 -0700 (PDT)
 Received: from big-swifty.misterjones.org (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 78FC73F67D;
-        Wed, 11 Sep 2019 07:15:31 -0700 (PDT)
-Date:   Wed, 11 Sep 2019 15:15:21 +0100
-Message-ID: <86d0g6syva.wl-maz@kernel.org>
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1EFAE3F67D;
+        Wed, 11 Sep 2019 07:18:33 -0700 (PDT)
+Date:   Wed, 11 Sep 2019 15:18:31 +0100
+Message-ID: <86blvqsyq0.wl-maz@kernel.org>
 From:   Marc Zyngier <maz@kernel.org>
 To:     Talel Shenhar <talel@amazon.com>
 Cc:     <robh+dt@kernel.org>, <tglx@linutronix.de>, <jason@lakedaemon.net>,
@@ -26,11 +26,11 @@ Cc:     <robh+dt@kernel.org>, <tglx@linutronix.de>, <jason@lakedaemon.net>,
         <mchehab+samsung@kernel.org>, <shawn.lin@rock-chips.com>,
         <gregkh@linuxfoundation.org>, <dwmw@amazon.co.uk>,
         <benh@kernel.crashing.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, James Morse <james.morse@arm.com>
-Subject: Re: [PATCH v2 2/3] soc: amazon: al-pos: Introduce Amazon's Annapurna Labs POS driver
-In-Reply-To: <1568142310-17622-3-git-send-email-talel@amazon.com>
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] soc: amazon: al-pos: cast to u64 before left shifting
+In-Reply-To: <1568142310-17622-4-git-send-email-talel@amazon.com>
 References: <1568142310-17622-1-git-send-email-talel@amazon.com>
-        <1568142310-17622-3-git-send-email-talel@amazon.com>
+        <1568142310-17622-4-git-send-email-talel@amazon.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
  (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -41,243 +41,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[+James]
-
-Hi Talel,
-
-On Tue, 10 Sep 2019 20:05:09 +0100,
+On Tue, 10 Sep 2019 20:05:10 +0100,
 Talel Shenhar <talel@amazon.com> wrote:
 > 
-> The Amazon's Annapurna Labs SoCs includes Point Of Serialization error
-> logging unit that reports an error in case write error (e.g. attempt to
-> write to a read only register).
-> This patch introduces the support for this unit.
+> Fix wrap around for pos errors on addresses above 32 bit.
 > 
+> Reported-by: kbuild test robot <lkp@intel.com>
 > Signed-off-by: Talel Shenhar <talel@amazon.com>
 > ---
->  MAINTAINERS                 |   7 +++
->  drivers/soc/Kconfig         |   1 +
->  drivers/soc/Makefile        |   1 +
->  drivers/soc/amazon/Kconfig  |   5 ++
->  drivers/soc/amazon/Makefile |   1 +
->  drivers/soc/amazon/al_pos.c | 127 ++++++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 142 insertions(+)
->  create mode 100644 drivers/soc/amazon/Kconfig
->  create mode 100644 drivers/soc/amazon/Makefile
->  create mode 100644 drivers/soc/amazon/al_pos.c
+>  drivers/soc/amazon/al_pos.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e7a47b5..8c3a070 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -751,6 +751,13 @@ F:	drivers/tty/serial/altera_jtaguart.c
->  F:	include/linux/altera_uart.h
->  F:	include/linux/altera_jtaguart.h
->  
-> +AMAZON ANNAPURNA LABS POS
-> +M:	Talel Shenhar <talel@amazon.com>
-> +M:	Talel Shenhar <talelshenhar@gmail.com>
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/soc/amazon/amazon,al-pos.txt
-> +F:	drivers/soc/amazon/al_pos.c
-> +
->  AMAZON ANNAPURNA LABS THERMAL MMIO DRIVER
->  M:	Talel Shenhar <talel@amazon.com>
->  S:	Maintained
-> diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
-> index 833e04a..913a6b1 100644
-> --- a/drivers/soc/Kconfig
-> +++ b/drivers/soc/Kconfig
-> @@ -2,6 +2,7 @@
->  menu "SOC (System On Chip) specific Drivers"
->  
->  source "drivers/soc/actions/Kconfig"
-> +source "drivers/soc/amazon/Kconfig"
->  source "drivers/soc/amlogic/Kconfig"
->  source "drivers/soc/aspeed/Kconfig"
->  source "drivers/soc/atmel/Kconfig"
-> diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
-> index 2ec3550..c1c5c64 100644
-> --- a/drivers/soc/Makefile
-> +++ b/drivers/soc/Makefile
-> @@ -6,6 +6,7 @@
->  obj-$(CONFIG_ARCH_ACTIONS)	+= actions/
->  obj-$(CONFIG_SOC_ASPEED)	+= aspeed/
->  obj-$(CONFIG_ARCH_AT91)		+= atmel/
-> +obj-y				+= amazon/
->  obj-y				+= bcm/
->  obj-$(CONFIG_ARCH_DOVE)		+= dove/
->  obj-$(CONFIG_MACH_DOVE)		+= dove/
-> diff --git a/drivers/soc/amazon/Kconfig b/drivers/soc/amazon/Kconfig
-> new file mode 100644
-> index 00000000..fdd4cdd
-> --- /dev/null
-> +++ b/drivers/soc/amazon/Kconfig
-> @@ -0,0 +1,5 @@
-> +config AL_POS
-> +	bool "Amazon's Annapurna Labs POS driver"
-
-Some would say that the name is ever slightly unfortunate...
-
-> +	depends on ARCH_ALPINE || COMPILE_TEST
-> +	help
-> +	  Include support for the SoC POS error capability.
-> diff --git a/drivers/soc/amazon/Makefile b/drivers/soc/amazon/Makefile
-> new file mode 100644
-> index 00000000..a31441a
-> --- /dev/null
-> +++ b/drivers/soc/amazon/Makefile
-> @@ -0,0 +1 @@
-> +obj-$(CONFIG_AL_POS) += al_pos.o
 > diff --git a/drivers/soc/amazon/al_pos.c b/drivers/soc/amazon/al_pos.c
-> new file mode 100644
-> index 00000000..a865111
-> --- /dev/null
+> index a865111..e95e1fc 100644
+> --- a/drivers/soc/amazon/al_pos.c
 > +++ b/drivers/soc/amazon/al_pos.c
-> @@ -0,0 +1,127 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/module.h>
-> +#include <linux/of_address.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/of_platform.h>
-> +
-> +/* Registers Offset */
-> +#define AL_POS_ERROR_LOG_1	0x0
-> +#define AL_POS_ERROR_LOG_0	0x4
-> +
-> +/* Registers Fields */
-> +#define AL_POS_ERROR_LOG_1_VALID	GENMASK(31, 31)
-> +#define AL_POS_ERROR_LOG_1_BRESP	GENMASK(18, 17)
-> +#define AL_POS_ERROR_LOG_1_REQUEST_ID	GENMASK(16, 8)
-> +#define AL_POS_ERROR_LOG_1_ADDR_HIGH	GENMASK(7, 0)
-> +
-> +#define AL_POS_ERROR_LOG_0_ADDR_LOW	GENMASK(31, 0)
-> +
-> +static int al_pos_panic;
-> +module_param(al_pos_panic, int, 0);
-> +MODULE_PARM_DESC(al_pos_panic, "Defines if POS error is causing panic()");
-> +
-> +struct al_pos {
-> +	struct platform_device *pdev;
-> +	void __iomem *mmio_base;
-> +	int irq;
-> +};
-> +
-> +static irqreturn_t al_pos_irq_handler(int irq, void *info)
-> +{
-> +	struct platform_device *pdev = info;
-> +	struct al_pos *pos = platform_get_drvdata(pdev);
-> +	u32 log1;
-> +	u32 log0;
-> +	u64 addr;
-> +	u16 request_id;
-> +	u8 bresp;
-> +
-> +	log1 = readl(pos->mmio_base + AL_POS_ERROR_LOG_1);
-
-Do you actually need the implied barriers? I'd expect that relaxed
-accesses should be enough.
-
-> +	if (!FIELD_GET(AL_POS_ERROR_LOG_1_VALID, log1))
-> +		return IRQ_NONE;
-> +
-> +	log0 = readl(pos->mmio_base + AL_POS_ERROR_LOG_0);
-> +	writel(0, pos->mmio_base + AL_POS_ERROR_LOG_1);
-> +
-> +	addr = FIELD_GET(AL_POS_ERROR_LOG_0_ADDR_LOW, log0);
-> +	addr |= (FIELD_GET(AL_POS_ERROR_LOG_1_ADDR_HIGH, log1) << 32);
-> +	request_id = FIELD_GET(AL_POS_ERROR_LOG_1_REQUEST_ID, log1);
-> +	bresp = FIELD_GET(AL_POS_ERROR_LOG_1_BRESP, log1);
-> +
-> +	dev_err(&pdev->dev, "addr=0x%llx request_id=0x%x bresp=0x%x\n",
-> +		addr, request_id, bresp);
-
-What is this information? How do we make use of it? Given that this is
-asynchronous, how do we correlate it to the offending software?
-
-> +
-> +	if (al_pos_panic)
-> +		panic("POS");
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static int al_pos_probe(struct platform_device *pdev)
-> +{
-> +	struct al_pos *pos;
-> +	int ret;
-> +
-> +	pos = devm_kzalloc(&pdev->dev, sizeof(*pos), GFP_KERNEL);
-> +	if (!pos)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, pos);
-> +	pos->pdev = pdev;
-> +
-> +	pos->mmio_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(pos->mmio_base)) {
-> +		dev_err(&pdev->dev, "failed to ioremap memory (%ld)\n",
-> +			PTR_ERR(pos->mmio_base));
-> +		return PTR_ERR(pos->mmio_base);
-> +	}
-> +
-> +	pos->irq = platform_get_irq(pdev, 0);
-> +	if (pos->irq <= 0) {
-> +		dev_err(&pdev->dev, "fail to parse and map irq\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = devm_request_irq(&pdev->dev,
-> +			       pos->irq,
-> +			       al_pos_irq_handler,
-> +			       0,
-> +			       pdev->name,
-> +			       pdev);
-> +	if (ret != 0) {
-> +		dev_err(&pdev->dev,
-> +			"failed to register to irq %d (%d)\n",
-> +			pos->irq, ret);
-> +		return ret;
-> +	}
-> +
-> +	dev_info(&pdev->dev, "successfully loaded\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id al_pos_of_match[] = {
-> +	{ .compatible = "amazon,al-pos", },
-> +	{},
-> +};
-> +
-> +MODULE_DEVICE_TABLE(of, al_pos_of_match);
-> +
-> +static struct platform_driver al_pos_driver = {
-> +	.probe = al_pos_probe,
-> +	.driver = {
-> +		.name = "al-pos",
-> +		.of_match_table = al_pos_of_match,
-> +	},
-> +};
-> +
-> +module_platform_driver(al_pos_driver);
-> +
-> +MODULE_LICENSE("GPL v2");
-> +MODULE_AUTHOR("Talel Shenhar");
-> +MODULE_DESCRIPTION("Amazon's Annapurna Labs POS driver");
+> @@ -49,7 +49,7 @@ static irqreturn_t al_pos_irq_handler(int irq, void *info)
+>  	writel(0, pos->mmio_base + AL_POS_ERROR_LOG_1);
+>  
+>  	addr = FIELD_GET(AL_POS_ERROR_LOG_0_ADDR_LOW, log0);
+> -	addr |= (FIELD_GET(AL_POS_ERROR_LOG_1_ADDR_HIGH, log1) << 32);
+> +	addr |= (((u64)FIELD_GET(AL_POS_ERROR_LOG_1_ADDR_HIGH, log1)) << 32);
+>  	request_id = FIELD_GET(AL_POS_ERROR_LOG_1_REQUEST_ID, log1);
+>  	bresp = FIELD_GET(AL_POS_ERROR_LOG_1_BRESP, log1);
+>  
 > -- 
 > 2.7.4
 > 
 
-The whole think looks to me like a poor man's EDAC handling, and I'd
-expect to be plugged in that subsystem instead. Any reason why this
-isn't the case? It would certainly make the handling uniform for the
-user.
+This fix should be squashed into the previous patch.
 
 Thanks,
 
