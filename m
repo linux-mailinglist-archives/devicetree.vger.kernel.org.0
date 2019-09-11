@@ -2,228 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE69AFD22
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 14:52:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49464AFDC2
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 15:33:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727882AbfIKMwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 08:52:47 -0400
-Received: from esa3.mentor.iphmx.com ([68.232.137.180]:9671 "EHLO
-        esa3.mentor.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727826AbfIKMwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 08:52:47 -0400
-IronPort-SDR: 4OEmRmoipa+KxMxHUcfVEBLECW+GdQYUrnuS42DgESA8SybEDUhm02dHMKpDXxkAgtYR/zm0l0
- BQp+D1J+y9mU1LCZUFX0PXCLae5nfFKWjP5GwA5s2XUtBLJGz0pCgJmFAtVSMnFdYULjw39aMi
- rllU8qFIpQ1Lmek0YN4Ni4w88YfVDQQ9YTORCVyfMxsFgl3JGY/+fgXf/aO8RsQfNxsp7h0CXI
- RdiAR+NcY6VVdWq0T20X3gKQVnODlFPwY7EwwxEL89LmdJTrrfMEFzJJc2wwFFw1p7vIUfasA0
- aR0=
-X-IronPort-AV: E=Sophos;i="5.64,493,1559548800"; 
-   d="scan'208";a="41246354"
-Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
-  by esa3.mentor.iphmx.com with ESMTP; 11 Sep 2019 04:52:34 -0800
-IronPort-SDR: Sr3hKW4+EhsjX1OYhf9aGUCTAAH3zQKGwYd585M4LXKHkV1XZlFthuq/zonkZma4QlO+/cb/44
- NfgDJaILTKQOkDK6axbBUlVjJiyY/1t+1E+JVhZzwJENPEyrpv1sldm2lRKnzj83Ni2/pcxTg6
- VHVg1lRaQ7kMEvjTDEhulHhAmmPJBNiNkhBK2ctq+V0KM0JiRQPzvuNe8G9jDvKt1+RM5XgLTn
- wy9iaiMuEpTuA4p4IIElLGDMYh0a5GGR360gg1R9Vy4JlBCO09BZDGypkTPU8imznYPBAdqyCi
- I5s=
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
- <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
- <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
- <f1616784-4dbf-d0fa-b33e-c85fd569383a@mentor.com>
- <CACRpkdZ+vXG-mGjn0Tt5gyGowAuxiCSQNdjEPGTP9qj23CwkSw@mail.gmail.com>
- <CAL_JsqLp___2O-naU+2PPQy0QmJX6+aN3hByz-OB9+qFvWgN9Q@mail.gmail.com>
- <CACRpkdbmyc9LsJ2xiX=zAQR9FZ9dmwu-nPrNbt1Tgud9+rBGpw@mail.gmail.com>
- <978af20e-12aa-a8e9-5da9-9af6d6b8f553@mentor.com>
- <f47588d5-226a-6a7a-6c74-c0caaafaf572@mentor.com>
- <6673873d-3ed2-ba98-8448-8047eccc994f@mentor.com>
- <fbc51f91-75ac-ef57-137b-0d8231cccc34@mentor.com>
- <CAL_JsqKsAHDN=Sp=TsvqjB0CvV+UT4ZwcX6xMk552id69FJAmQ@mail.gmail.com>
-From:   Harish Jenny K N <harish_kandiga@mentor.com>
-Message-ID: <dde73334-a26d-b53f-6b97-4101c1cdc185@mentor.com>
-Date:   Wed, 11 Sep 2019 18:22:18 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKsAHDN=Sp=TsvqjB0CvV+UT4ZwcX6xMk552id69FJAmQ@mail.gmail.com>
+        id S1728086AbfIKNdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 09:33:20 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:40088 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726781AbfIKNdU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 09:33:20 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190911133319euoutp02e1dc0a80ba0c9a4b8704e37e08d9b4df~DZZgQBuUv2236122361euoutp028
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 13:33:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190911133319euoutp02e1dc0a80ba0c9a4b8704e37e08d9b4df~DZZgQBuUv2236122361euoutp028
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1568208799;
+        bh=co6RF11yq8100UIrcxY4BgpZxzf0jr/xApaYPzpjXj4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=B/fFUHFFCYGIAUxEePgmipoCELzoxeHJtURXhkG02Xb4QP/WOfWKkH0j20qxost/B
+         be6tCu0gS+wq6Lto6RiLQtRr+U34RAtQTAira8cO0ZgHGmuKqUSllRhTPt6GxpIlZw
+         iRneRZnIk1KRfV6P94QGqFZ7Xu9Ji3FaZgTQOi7E=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190911133318eucas1p203adc11958f5a111ea768c58373c26af~DZZfdq9qg1131711317eucas1p2A;
+        Wed, 11 Sep 2019 13:33:18 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 92.A4.04309.D97F87D5; Wed, 11
+        Sep 2019 14:33:17 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190911133317eucas1p27f0312f5cd3e3c988399f65b07150e42~DZZee_wb60334603346eucas1p2u;
+        Wed, 11 Sep 2019 13:33:17 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190911133317eusmtrp16d06eb6cd636152b43008dcf96aaac30~DZZed_uHi1197011970eusmtrp1K;
+        Wed, 11 Sep 2019 13:33:17 +0000 (GMT)
+X-AuditID: cbfec7f4-ae1ff700000010d5-51-5d78f79d455a
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 62.AF.04117.C97F87D5; Wed, 11
+        Sep 2019 14:33:17 +0100 (BST)
+Received: from AMDC2459.DIGITAL.local (unknown [106.120.51.95]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190911133316eusmtip1cf4aa385197592a22dbf51db67b6f041~DZZd6rE7o1961519615eusmtip12;
+        Wed, 11 Sep 2019 13:33:16 +0000 (GMT)
+From:   Maciej Falkowski <m.falkowski@samsung.com>
+To:     linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     krzk@kernel.org, robh+dt@kernel.org, m.falkowski@samsung.com,
+        mark.rutland@arm.com, joro@8bytes.org, m.szyprowski@samsung.com,
+        a.hajda@samsung.com
+Subject: [PATCH] dt-bindings: arm: samsung: Exynos 3250: iommu: remove
+ obsolete IRQ lines
+Date:   Wed, 11 Sep 2019 15:33:10 +0200
+Message-Id: <20190911133310.8365-1-m.falkowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <CAJKOXPeojuk1UrYo9Wakaaq4VJt3Ts22Vi-V5xzwAXoFU5+tcA@mail.gmail.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupileLIzCtJLcpLzFFi42LZduzned253ytiDWZssLC4te4cq8X8I0Ci
+        c/YGdovz54HE5V1z2CxmnN/HZPGgeR2bxdojd9ktll6/yGTRuvcIuwOXx5OD85g81sxbw+ix
+        aVUnm0ffllWMHp83yQWwRnHZpKTmZJalFunbJXBlvH09h7XgNF/F6ntHmRoYP3B3MXJySAiY
+        SLz+/5Cti5GLQ0hgBaPErwldjBDOF0aJF/v2MEM4nxklJl7bwQbT8nvTeXaIxHJGie1fV7LB
+        tRy5upkZpIpNwECi/81eFhBbRCBR4vbvfrAOZoFZjBK3r7WBJYQFoiVu3msDG8sioCrRNmka
+        O4jNK2At8f7iOkaIdfISqzccABvKKRAo0bbnFBPIIAmBZnaJO+euMkMUuUi0TF8OdZ+wxKvj
+        W9ghbBmJ05N7gJZxANnVEte+yUL0tjBKXJ/2FqreWuLPqolsIDXMApoS63fpQ4QdJS4tm80E
+        0conceOtIEiYGcictG06M0SYV6KjTQjCVJV4MyEWolFaonXNfqjjPSRmHjwCDdEljBKvlv5j
+        ncAoPwth1wJGxlWM4qmlxbnpqcVGeanlesWJucWleel6yfm5mxiBKeT0v+NfdjDu+pN0iFGA
+        g1GJh1fgbkWsEGtiWXFl7iFGCQ5mJRHeBy1AId6UxMqq1KL8+KLSnNTiQ4zSHCxK4rzVDA+i
+        hQTSE0tSs1NTC1KLYLJMHJxSDYwbWc1PzG+PF5nxou4Qo1rR47evJrJ+Yoj/JRcW2eefm35C
+        tuV4pOgOg/j02+4sP5tvhXyYI1R8wfNCf9qEx/tPPvstz55iev/djcnJIueWyjTO4Yl5fHHf
+        nYg47bgTQW4nag38tjV8qeRRX+90W+Hei3l9hsYet0ut72ZOsL76jvOdpIKRxg0lluKMREMt
+        5qLiRADE6uzUHQMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLLMWRmVeSWpSXmKPExsVy+t/xu7pzv1fEGrScZbK4te4cq8X8I0Ci
+        c/YGdovz54HE5V1z2CxmnN/HZPGgeR2bxdojd9ktll6/yGTRuvcIuwOXx5OD85g81sxbw+ix
+        aVUnm0ffllWMHp83yQWwRunZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZ
+        pKTmZJalFunbJehlvH09h7XgNF/F6ntHmRoYP3B3MXJySAiYSPzedJ69i5GLQ0hgKaPEgqXf
+        WCES0hL7r31kh7CFJf5c62KDKPrEKDF97UKwIjYBA4n+N3tZQGwRgWSJxYd3MoIUMQssYpS4
+        /nU2WEJYIFJi/pOtTCA2i4CqRNukaWBTeQWsJd5fXMcIsUFeYvWGA8wgNqdAoETbnlNg9UIC
+        ARJnjt5kncDIt4CRYRWjSGppcW56brGRXnFibnFpXrpecn7uJkZgUG879nPLDsaud8GHGAU4
+        GJV4eDPuV8QKsSaWFVfmHmKU4GBWEuF90AIU4k1JrKxKLcqPLyrNSS0+xGgKdNREZinR5Hxg
+        xOWVxBuaGppbWBqaG5sbm1koifN2CByMERJITyxJzU5NLUgtgulj4uCUamBU2mi75GH8yW5L
+        ec08jrlzmpdMaWxw4xUs2bG1j5P5iYbw1WdVzUZfpaXnLVcuN63O664/m1TRNL/M71xYR4+k
+        t7rzX5E9FVe+HPxm8j9j78rMqr16TFm5L76L5H/kuv05z+3xxQ1tCte+3ys63nDlMFfq6s2K
+        P5hknzlPPGd5UfPJkRtW37KUWIozEg21mIuKEwH5pNJ9gAIAAA==
+X-CMS-MailID: 20190911133317eucas1p27f0312f5cd3e3c988399f65b07150e42
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: SVR-IES-MBX-07.mgc.mentorg.com (139.181.222.7) To
- svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
+X-RootMTR: 20190911133317eucas1p27f0312f5cd3e3c988399f65b07150e42
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190911133317eucas1p27f0312f5cd3e3c988399f65b07150e42
+References: <CAJKOXPeojuk1UrYo9Wakaaq4VJt3Ts22Vi-V5xzwAXoFU5+tcA@mail.gmail.com>
+        <CGME20190911133317eucas1p27f0312f5cd3e3c988399f65b07150e42@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+In commit 7222e8db2d506197ee183de0f9b76b3ad97e8c18 (iommu/exynos: Fix build
+errors) Exynos3250 iommu driver stopped supporting two IRQ lines.
+The second IRQ line in DTS is ignored and is not needed.
 
-On 10/09/19 1:17 PM, Rob Herring wrote:
-> On Wed, Sep 4, 2019 at 5:58 AM Harish Jenny K N
-> <harish_kandiga@mentor.com> wrote:
->> Hi Rob, Hi Linus,
->>
->>
->> On 30/08/19 10:51 AM, Harish Jenny K N wrote:
->>> Hi Rob,
->>>
->>>
->>> On 27/08/19 1:17 PM, Harish Jenny K N wrote:
->>>> Hi Rob,
->>>>
->>>>
->>>> On 19/08/19 3:06 PM, Harish Jenny K N wrote:
->>>>> Hi Rob,
->>>>>
->>>>>
->>>>> On 10/08/19 2:21 PM, Linus Walleij wrote:
->>>>>> On Fri, Aug 9, 2019 at 4:08 PM Rob Herring <robh+dt@kernel.org> wrote:
->>>>>>> On Mon, Aug 5, 2019 at 5:15 AM Linus Walleij <linus.walleij@linaro.org> wrote:
->>>>>>>> There is some level of ambition here which is inherently a bit fuzzy
->>>>>>>> around the edges. ("How long is the coast of Britain?" comes to mind.)
->>>>>>>>
->>>>>>>> Surely the intention of device tree is not to recreate the schematic
->>>>>>>> in all detail. What we want is a model of the hardware that will
->>>>>>>> suffice for the operating system usecases.
->>>>>>>>
->>>>>>>> But sometimes the DTS files will become confusing: why is this
->>>>>>>> component using GPIO_ACTIVE_LOW when another system
->>>>>>>> doesn't have that flag? If there is an explicit inverter, the
->>>>>>>> DTS gets more readable for a human.
->>>>>>>>
->>>>>>>> But arguable that is case for adding inverters as syntactic
->>>>>>>> sugar in the DTS compiler instead...
->>>>>>> If you really want something more explicit, then add a new GPIO
->>>>>>> 'inverted' flag. Then a device can always have the same HIGH/LOW flag.
->>>>>>> That also solves the abstract it for userspace problem.
->>>>>> I think there are some intricate ontologies at work here.
->>>>>>
->>>>>> Consider this example: a GPIO is controlling a chip select
->>>>>> regulator, say Acme Foo. The chip select
->>>>>> has a pin named CSN. We know from convention that the
->>>>>> "N" at the end of that pin name means "negative" i.e. active
->>>>>> low, and that is how the electronics engineers think about
->>>>>> that chip select line: it activates the IC when
->>>>>> the line goes low.
->>>>>>
->>>>>> The regulator subsystem and I think all subsystems in the
->>>>>> Linux kernel say the consumer pin should be named and
->>>>>> tagged after the datsheet of the regulator.
->>>>>>
->>>>>> So it has for example:
->>>>>>
->>>>>> foo {
->>>>>>     compatible = "acme,foo";
->>>>>>     cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
->>>>>> };
->>>>>>
->>>>>> (It would be inappropriate to name it "csn-gpios" since
->>>>>> we have an established flag for active low. But it is another
->>>>>> of these syntactic choices where people likely do mistakes.)
->>>>>>
->>>>>> I think it would be appropriate for the DT binding to say
->>>>>> that this flag must always be GPIO_ACTIVE_LOW since
->>>>>> the bindings are seen from the component point of view,
->>>>>> and thus this is always active low.
->>>>>>
->>>>>> It would even be reasonable for a yaml schema to enfore
->>>>>> this, if it could. It is defined as active low after all.
->>>>>>
->>>>>> Now if someone adds an inverter on that line between
->>>>>> gpio0 and Acme Foo it looks like this:
->>>>>>
->>>>>> foo {
->>>>>>     compatible = "acme,foo";
->>>>>>     cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
->>>>>> };
->>>>>>
->>>>>> And now we get cognitive dissonance or whatever I should
->>>>>> call it: someone reading this DTS sheet and the data
->>>>>> sheet for the component Acme Foo to troubleshoot
->>>>>> this will be confused: this component has CS active
->>>>>> low and still it is specified as active high? Unless they
->>>>>> also look at the schematic or the board and find the
->>>>>> inverter things are pretty muddy and they will likely curse
->>>>>> and solve the situation with the usual trial-and-error,
->>>>>> inserting some random cursewords as a comment.
->>>>>>
->>>>>> With an intermediate inverter node, the cs-gpios
->>>>>> can go back to GPIO_ACTIVE_LOW and follow
->>>>>> the bindings:
->>>>>>
->>>>>> inv0: inverter {
->>>>>>     compatible = "gpio-inverter";
->>>>>>     gpio-controller;
->>>>>>     #gpio-cells = <1>;
->>>>>>     inverted-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
->>>>>> };
->>>>>>
->>>>>> foo {
->>>>>>     compatible = "acme,foo";
->>>>>>     cs-gpios = <&inv0 0 GPIO_ACTIVE_LOW>;
->>>>>> };
->>>>>>
->>>>>> And now Acme Foo bindings can keep enforcing cs-gpios
->>>>>> to always be tagged GPIO_ACTIVE_LOW.
->>>>> Can you please review/let us know your opinion on this ? I think the idea here is to also isolate the changes to a separate consumer driver and avoid getting inversions inside gpiolib.
->>>>>
->>>>>
->>>>> Thanks.
->>>>>
->>>>>
->>>>> Regards,
->>>>>
->>>>> Harish Jenny K N
->>>>>
->>>> Can you please comment on this ?
->>>>
->>>>
->>>> Thanks,
->>>>
->>>> Harish Jenny K N
->>>>
->>> Friendly Reminder.
->>>
->>> can we please finalize this ?
-> I think I have made my position clear and don't really have more to
-> add. I'm simply not convinced of the need for this. An inverter is not
-> a GPIO controller. You can't set/get or do any control. It is already
-> possible to invert GPIO lines in DT by changing the flags and it has
-> been this way for decades.
->
-> Rob
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+ arch/arm/boot/dts/exynos3250.dtsi | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-
-If Rob is fine with adding "inverted" flag in the device tree, can we just go back the initial approach of
-
-defining the polarity on the producer side?
-
-With this we would need something like this in the device tree for any gpiochip controller.
-
-inverted = /bits/ 8 <0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0>;
-
-
-RFC patch sent earlier can be found here. https://www.spinics.net/lists/linux-gpio/msg38815.html ( Note: various terms would need change)
-
-I can send another patchset if you agree.
-
-
-Please let us know your suggestion.
-
-
-Thanks,
-
-Harish Jenny K N
-
-
+diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
+index 784818490376..190d9160a5d1 100644
+--- a/arch/arm/boot/dts/exynos3250.dtsi
++++ b/arch/arm/boot/dts/exynos3250.dtsi
+@@ -314,8 +314,7 @@
+ 		sysmmu_jpeg: sysmmu@11a60000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x11a60000 0x1000>;
+-			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUJPEG>, <&cmu CLK_JPEG>;
+ 			power-domains = <&pd_cam>;
+@@ -355,8 +354,7 @@
+ 		sysmmu_fimd0: sysmmu@11e20000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x11e20000 0x1000>;
+-			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUFIMD0>, <&cmu CLK_FIMD0>;
+ 			power-domains = <&pd_lcd0>;
+@@ -507,8 +505,7 @@
+ 		sysmmu_mfc: sysmmu@13620000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x13620000 0x1000>;
+-			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUMFC_L>, <&cmu CLK_MFC>;
+ 			power-domains = <&pd_mfc>;
+-- 
+2.17.1
 
