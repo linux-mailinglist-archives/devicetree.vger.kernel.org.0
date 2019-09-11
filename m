@@ -2,140 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 656CAB03D1
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 20:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D00C3B03E9
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 20:49:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730064AbfIKSo5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 14:44:57 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:36269 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729994AbfIKSo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 14:44:56 -0400
-Received: by mail-pf1-f194.google.com with SMTP id y22so14282341pfr.3;
-        Wed, 11 Sep 2019 11:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=TqRe5lHOX4M4V547/WzO3Xh0zpwoYhwfsfhLh4/QmNw=;
-        b=cnMbF78zIN2X9zEOosJXsLy6lBLW8nW1rFohkwPEIwEa6uF/WOsmr2xAEaCVe9SAaN
-         i7+2cu7+E+HD86A9dgw7KnHv3DgSkf6MbdVO6kYHFHGtBoMfaXxiHoGeuuUYZoXnYMZY
-         Ekg3XH3c4rxVxhQhmfQv/GmEOMWlbMfF3zq/YKsRPvNNmuh+7DmnXbZDJakCr3JItly7
-         E/L6ZmHXOf49bDukg+osrL8HBIaUPKtSIS4xFCHloTkspkUpLF4eXYWTwugwaG0JCCW0
-         hiovc2vqED7iGDoHu2Ad6HClqB4Wpnka75/Wpcf8D3WPpKG4j8ii4SVkKr6u3WFJeoyc
-         0Vmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to:user-agent;
-        bh=TqRe5lHOX4M4V547/WzO3Xh0zpwoYhwfsfhLh4/QmNw=;
-        b=MnMGdjcDifEe/3XJJvLL22t94wfRVYEu9C9reGnG+P5OetVVt8TycdUPSikygzkZHe
-         4mclQpCsiWaxAutzBIixigRuwgLN2LA7YqlTcsIJAep1pVxsDJi5tiotLi0U8WEWGfFh
-         Xzo6QUCot01JP5SxL0EnXHuM71UIf/jDoczTAk4l81WFsDhS9CxXoBdK9ZAWttL/F3OU
-         uekx72wtdG7cbYG9BxQ5kN25jfDxzG7YWSxYzPy9HRXt6snvy6YoURWPS8BzqwZerqUR
-         Xa3aIPSe3GScootZhVvf1fjEh7FxSvlB+Cm52Q1F2RD5mzslZaVeh8G4ju9ofCcp4VIa
-         w7+w==
-X-Gm-Message-State: APjAAAU8MDrTFetIw22BKHOh8mx58wECuOUo7k7M0XpMMtPyUeYsJjTG
-        veSAl13H0i8tlgWjaM07RtI=
-X-Google-Smtp-Source: APXvYqywaaDO+l8UX/soexCNWT1d0rN20NelYgx+BVxfqR8t062U5VDK59Nz1VPcLeOY/YWISW81Sg==
-X-Received: by 2002:a62:cb:: with SMTP id 194mr46108963pfa.130.1568227496001;
-        Wed, 11 Sep 2019 11:44:56 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id g26sm23692017pfi.103.2019.09.11.11.44.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Sep 2019 11:44:54 -0700 (PDT)
-Date:   Wed, 11 Sep 2019 11:44:53 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 3/7] usb: mtu3: support ip-sleep wakeup for MT8183
-Message-ID: <20190911184453.GA2628@roeck-us.net>
-References: <1567150854-30033-1-git-send-email-chunfeng.yun@mediatek.com>
- <1567150854-30033-4-git-send-email-chunfeng.yun@mediatek.com>
+        id S1730099AbfIKStG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 14:49:06 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:41896 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730069AbfIKStF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 14:49:05 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8BImcY7051732;
+        Wed, 11 Sep 2019 13:48:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568227718;
+        bh=1xSERSqIkAtP/bLDu3RUnmyzW6/XzR17kn4wt0JSzQE=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=LdwUSNv6ZbXANbfxNoJYEDv5rETOOMt04lMlvG8RYbaxYrQHBgvNg3m/RdnpG5lq2
+         Yjj10rCiVfbF39DafaKdYQ1v6fluk0Bw4dMFmGqNwMCLhe7HBe0KyxPFnkmi3pGYvI
+         6TMFbQLtFu+VsK3BApMVojHliBROeOnBpSjZJAI4=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8BImbgv068137
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Sep 2019 13:48:37 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 11
+ Sep 2019 13:48:37 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 11 Sep 2019 13:48:37 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8BImaxV119829;
+        Wed, 11 Sep 2019 13:48:36 -0500
+Subject: Re: [PATCH v2 2/2] backlight: lm3630a: add an enable gpio for the
+ HWEN pin
+To:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Andreas Kemnade <andreas@kemnade.info>
+CC:     <lee.jones@linaro.org>, <jingoohan1@gmail.com>,
+        <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <b.zolnierkie@samsung.com>,
+        <dri-devel@lists.freedesktop.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-fbdev@vger.kernel.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+References: <20190910212909.18095-1-andreas@kemnade.info>
+ <20190910212909.18095-3-andreas@kemnade.info>
+ <20190911102533.not4ta3xwgm6bhjo@holly.lan>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <a3f10318-11f4-3b78-47e5-d9add8a46791@ti.com>
+Date:   Wed, 11 Sep 2019 13:48:36 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1567150854-30033-4-git-send-email-chunfeng.yun@mediatek.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190911102533.not4ta3xwgm6bhjo@holly.lan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 30, 2019 at 03:40:50PM +0800, Chunfeng Yun wrote:
-> Support USB wakeup by ip-sleep mode for MT8183, it's similar to
-> MT8173
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v3: changes micros define
-> 
-> v2: no changes
-> ---
->  drivers/usb/mtu3/mtu3_host.c | 14 +++++++++++++-
->  1 file changed, 13 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/usb/mtu3/mtu3_host.c b/drivers/usb/mtu3/mtu3_host.c
-> index c871b94f3e6f..4f8208885ebd 100644
-> --- a/drivers/usb/mtu3/mtu3_host.c
-> +++ b/drivers/usb/mtu3/mtu3_host.c
-> @@ -18,6 +18,12 @@
->  #include "mtu3.h"
->  #include "mtu3_dr.h"
->  
-> +/* mt8183 etc */
-> +#define PERI_WK_CTRL0	0x20
-> +#define WC0_IS_C(x)	(((x) & 0xf) << 28)  /* cycle debounce */
-> +#define WC0_IS_P	BIT(12)	/* polarity */
-> +#define WC0_IS_EN	BIT(6)
-> +
 
-For 64-bit builds, this results in:
+On 9/11/19 5:25 AM, Daniel Thompson wrote:
+> On Tue, Sep 10, 2019 at 11:29:09PM +0200, Andreas Kemnade wrote:
+>> For now just enable it in the probe function to allow i2c
+>> access. Disabling also means resetting the register values
+>> to default and according to the datasheet does not give
+>> power savings
+>>
+>> Tested on Kobo Clara HD.
+>>
+>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>> ---
+>> changes in v2:
+>> - simplification
+>> - correct gpio direction initialisation
+>>
+>>   drivers/video/backlight/lm3630a_bl.c | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+>> diff --git a/drivers/video/backlight/lm3630a_bl.c b/drivers/video/backlight/lm3630a_bl.c
+>> index 8f84f3684f04..9d0639d4202d 100644
+>> --- a/drivers/video/backlight/lm3630a_bl.c
+>> +++ b/drivers/video/backlight/lm3630a_bl.c
+>> @@ -12,6 +12,8 @@
+>>   #include <linux/uaccess.h>
+>>   #include <linux/interrupt.h>
+>>   #include <linux/regmap.h>
+>> +#include <linux/gpio/consumer.h>
+>> +#include <linux/gpio.h>
+> Nitpicking... but I don't think linux/gpio.h is used anymore.
+>
+>
+>>   #include <linux/pwm.h>
+>>   #include <linux/platform_data/lm3630a_bl.h>
+>>   
+>> @@ -48,6 +50,7 @@ struct lm3630a_chip {
+>>   	struct lm3630a_platform_data *pdata;
+>>   	struct backlight_device *bleda;
+>>   	struct backlight_device *bledb;
+>> +	struct gpio_desc *enable_gpio;
+>>   	struct regmap *regmap;
+>>   	struct pwm_device *pwmd;
+>>   };
+>> @@ -535,6 +538,13 @@ static int lm3630a_probe(struct i2c_client *client,
+>>   	}
+>>   	pchip->pdata = pdata;
+>>   
+>> +	pchip->enable_gpio = devm_gpiod_get_optional(&client->dev, "enable",
+>> +						GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(pchip->enable_gpio)) {
+>> +		rval = PTR_ERR(pchip->enable_gpio);
+>> +		return rval;
 
-drivers/usb/mtu3/mtu3_host.c: In function ‘ssusb_wakeup_ip_sleep_set’:
-./include/linux/bits.h:6:19: warning:
-	conversion from ‘long unsigned int’ to ‘u32’ {aka ‘unsigned int’}
-	changes value from ‘18446744073441120320’ to ‘4026536000’ [-Woverflow]
+the enable gpio is optional so if it fails you log the error and move on
 
-since WC0_IS_C() is sign extended to 64 bit and then truncated.
+Also on driver removal did you want to set the GPIO to low to disable 
+the device to save power?
 
-Observed with gcc 7.4.0 and 8.3.0.
+Dan
 
-Guenter
 
->  /* mt8173 etc */
->  #define PERI_WK_CTRL1	0x4
->  #define WC1_IS_C(x)	(((x) & 0xf) << 26)  /* cycle debounce */
-> @@ -30,7 +36,8 @@
->  #define SSC_SPM_INT_EN		BIT(1)
->  
->  enum ssusb_uwk_vers {
-> -	SSUSB_UWK_V1 = 1,
-> +	SSUSB_UWK_V0 = 0,
-> +	SSUSB_UWK_V1,
->  	SSUSB_UWK_V2,
->  };
->  
-> @@ -43,6 +50,11 @@ static void ssusb_wakeup_ip_sleep_set(struct ssusb_mtk *ssusb, bool enable)
->  	u32 reg, msk, val;
->  
->  	switch (ssusb->uwk_vers) {
-> +	case SSUSB_UWK_V0:
-> +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL0;
-> +		msk = WC0_IS_EN | WC0_IS_C(0xf) | WC0_IS_P;
-> +		val = enable ? (WC0_IS_EN | WC0_IS_C(0x8)) : 0;
-> +		break;
->  	case SSUSB_UWK_V1:
->  		reg = ssusb->uwk_reg_base + PERI_WK_CTRL1;
->  		msk = WC1_IS_EN | WC1_IS_C(0xf) | WC1_IS_P;
+>> +	}
+>> +
+>>   	/* chip initialize */
+>>   	rval = lm3630a_chip_init(pchip);
+>>   	if (rval < 0) {
+>> -- 
+>> 2.20.1
+>>
