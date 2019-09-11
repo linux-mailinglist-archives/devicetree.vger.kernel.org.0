@@ -2,151 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3AFBB03A9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 20:32:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 087D3B03D0
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 20:44:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730008AbfIKScD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 14:32:03 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:54628 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729867AbfIKScD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 14:32:03 -0400
-Received: by mail-wm1-f67.google.com with SMTP id p7so4647875wmp.4;
-        Wed, 11 Sep 2019 11:32:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6Te7QE2Q2g9STJbNhhZtv5SiHSyMZyM+FEre3Dz6O8Y=;
-        b=jmgDd6/90ZK/KSjOdrNqJAxGaDbwNjQJv5BWKzzKlM6LwUpEtBrZ4S/M6pY1Y2zwVV
-         SYnUdgL2vXoRYvJP69g7kRU8ygDsin0HwQX37zUefUMQVvvH3BAdctndGQ6ajD6V9/p7
-         B1LcD9Q7jXCDeUw1PxdEbcIiApu7ZJyDqkv7hu7B4b4A8tl+7W7n43Ja8y2XVNmsXXPi
-         2JPPtO9FTxf2qhFuv126oXjMVF1OO2LnELKexrwxJc+me24+3CWUCeR0oF52zerphQst
-         zBF8s+lLPpx4Eftb2S04xTlTUUEcd1SSmuWlDD040Yc/OoyaxfqGL0I2+/RiA08WTukU
-         7idQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6Te7QE2Q2g9STJbNhhZtv5SiHSyMZyM+FEre3Dz6O8Y=;
-        b=AvqMrVhdS+y4k2C+F5j8z4JWxoLuQ63V3BSHwamMbVV7UasN7S4lm5KuwJZ5+NEGDW
-         4jeTheYzQGcQXWOKsuc0Km+2I5hwTU8Qg+gkCpLC0uJ8NUmujgWs3E5ErSslV0jLAT67
-         sec5ORsNSD0vOMPDkSmhqizV6yP492n3zhXErfanD94eENa/tj4LLdqRGSzS7vdymQKE
-         GXFh7JGCmdaRjyoxmyDXccC7l5iHa+UTgqdtNHaaqt9DyjujOU6KkudIMUQJ1OWb7Hn5
-         JxF4a24WXo3wOCoFc0jYIddhZDcu4C5AOSrhn1Pc9rYRdFLzJ/+Lbug7710/xZjWgF02
-         Ri4w==
-X-Gm-Message-State: APjAAAX1U2UPwYUFt3Gyx0A8KRZVZtkDqNouNaLI/VJs2nwBXlpSEQPi
-        zz7IU+ylV2yYPQybjEDJKiI=
-X-Google-Smtp-Source: APXvYqxLgk2nQMwVb7p2dfq9uG3VnutIy2nbjXTYamMxfezNSLjPILVR6BBa3EVv43hysi/02tOp5Q==
-X-Received: by 2002:a1c:5451:: with SMTP id p17mr5092099wmi.103.1568226721265;
-        Wed, 11 Sep 2019 11:32:01 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id i9sm5162622wmf.14.2019.09.11.11.31.59
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Sep 2019 11:32:00 -0700 (PDT)
-Date:   Wed, 11 Sep 2019 20:31:58 +0200
-From:   Corentin Labbe <clabbe.montjoie@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        linux@armlinux.org.uk, mark.rutland@arm.com, robh+dt@kernel.org,
-        wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 3/9] dt-bindings: crypto: Add DT bindings documentation
- for sun8i-ce Crypto Engine
-Message-ID: <20190911183158.GA8264@Red>
-References: <20190906184551.17858-1-clabbe.montjoie@gmail.com>
- <20190906184551.17858-4-clabbe.montjoie@gmail.com>
- <20190907040116.lib532o2eqt4qnvv@flea>
+        id S1729975AbfIKSoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 14:44:37 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:32794 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729994AbfIKSoh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 14:44:37 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8BIi2Jl011385;
+        Wed, 11 Sep 2019 13:44:02 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568227442;
+        bh=BOqEWOsrdu0X1JsJVt3OgXpcdPXFlSvGPSUfjNqw9dQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Wi/twvAL12qufysWGszW8BVjS4jU82o51dv3hlho8PnLShrKplFUNbYT/EXiAW50k
+         a1Q0Yt7t2W+AjUk18Prrg9uauG41/3RuiVXzWUkDbB/Yc97d74rbeh7n1j63COuFrG
+         H7Fcc6i61XTuU7SMyMK9YqtOu8Ba/FO/X3HFlfQ8=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8BIi2uo096292
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 11 Sep 2019 13:44:02 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 11
+ Sep 2019 13:44:02 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 11 Sep 2019 13:44:02 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8BIi15j122843;
+        Wed, 11 Sep 2019 13:44:01 -0500
+Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: lm3630a: add enable_gpios
+To:     Daniel Thompson <daniel.thompson@linaro.org>,
+        Andreas Kemnade <andreas@kemnade.info>
+CC:     <lee.jones@linaro.org>, <jingoohan1@gmail.com>,
+        <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <b.zolnierkie@samsung.com>,
+        <dri-devel@lists.freedesktop.org>, <linux-leds@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-fbdev@vger.kernel.org>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+References: <20190910212909.18095-1-andreas@kemnade.info>
+ <20190910212909.18095-2-andreas@kemnade.info>
+ <20190911100851.f4rnldghtmly26oo@holly.lan>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <3d8237d0-4e36-3787-6050-b0e75f2fa8c3@ti.com>
+Date:   Wed, 11 Sep 2019 13:44:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190907040116.lib532o2eqt4qnvv@flea>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190911100851.f4rnldghtmly26oo@holly.lan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 07, 2019 at 07:01:16AM +0300, Maxime Ripard wrote:
-> On Fri, Sep 06, 2019 at 08:45:45PM +0200, Corentin Labbe wrote:
-> > This patch adds documentation for Device-Tree bindings for the
-> > Crypto Engine cryptographic accelerator driver.
-> >
-> > Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> > ---
-> >  .../bindings/crypto/allwinner,sun8i-ce.yaml   | 84 +++++++++++++++++++
-> >  1 file changed, 84 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun8i-ce.yaml
-[...]
-> > +else:
-> > +  clocks:
-> > +    items:
-> > +      - description: Bus clock
-> > +      - description: Module clock
-> > +
-> > +  clock-names:
-> > +    items:
-> > +      - const: ahb
-> > +      - const: mod
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> > +  reset-names:
-> > +    const: ahb
-> 
-> This prevents the usage of the additionalProperties property, which
-> you should really use.
-> 
-> What you can do instead is moving the clocks and clock-names
-> description under properties, with a minItems of 2 and a maxItems of
-> 3. Then you can restrict the length of that property to either 2 or 3
-> depending on the case here.
-> 
+Andreas
 
-Hello
+On 9/11/19 5:08 AM, Daniel Thompson wrote:
+> On Tue, Sep 10, 2019 at 11:29:08PM +0200, Andreas Kemnade wrote:
+>> add enable-gpios to describe HWEN pin
+>>
+>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+>
+>> ---
+>> changes in v2: add example
+>>   .../bindings/leds/backlight/lm3630a-backlight.yaml           | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+>> index dc129d9a329e..1fa83feffe16 100644
+>> --- a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+>> +++ b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+>> @@ -29,6 +29,10 @@ properties:
+>>     '#size-cells':
+>>       const: 0
+>>   
+>> +  enable-gpios:
+>> +    description: GPIO to use to enable/disable the backlight (HWEN pin).
+>> +    maxItems: 1
+>> +
+>>   required:
+>>     - compatible
+>>     - reg
+>> @@ -92,6 +96,7 @@ examples:
+>>       i2c {
+>>           #address-cells = <1>;
+>>           #size-cells = <0>;
+>> +        enable-gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>;
 
-I fail to do this.
-I do the following (keeped only clock stuff)
-properties:
+This is in the wrong place.  This is implying that the gpio is for the 
+i2c parent
 
-  clocks:
-    items:
-      - description: Bus clock
-      - description: Module clock
-      - description: MBus clock
+This needs to go under the led-controller node below
 
-  clock-names:
-    items:
-      - const: ahb
-      - const: mod
-      - const: mbus
+Dan
 
-if:
-  properties:
-    compatible:
-      items:
-        const: allwinner,sun50i-h6-crypto
-then:
-  properties:
-      clocks:
-        minItems: 3
-        maxItems: 3
-      clock-names:
-        minItems: 3
-        maxItems: 3
-else:
-  properties:
-      clocks:
-        minItems: 2
-        maxItems: 2
-      clock-names:
-        minItems: 2
-        maxItems: 2
-
-With this, the dtb_check keep complain that a64 have two short clocks.
-
-Regards
+>>   
+>>           led-controller@38 {
+>>                   compatible = "ti,lm3630a";
+>> -- 
+>> 2.20.1
+>>
