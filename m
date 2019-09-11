@@ -2,102 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF9F2AF63F
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 09:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5378AF68B
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 09:16:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726696AbfIKHAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 03:00:17 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:37937 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725747AbfIKHAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 03:00:17 -0400
-Received: by mail-ot1-f67.google.com with SMTP id h17so17717188otn.5;
-        Wed, 11 Sep 2019 00:00:15 -0700 (PDT)
+        id S1726781AbfIKHQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 03:16:41 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:37629 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbfIKHQl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 03:16:41 -0400
+Received: by mail-pg1-f193.google.com with SMTP id c17so3302784pgg.4
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 00:16:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=qUxVco5+9ktkoNCi0Mi64R9yup9qLyKawGp7kQ7ed2w=;
+        b=HFGSzct6wcdfRhoSXr4x1ifFQAt+kMTqekWwXS6k2NfgZj9w5KBMQZYa/T2W7mmK28
+         yLrVs/h+VFNkNcx6TtF4LZmHNRuniUy4MX6M0sSCq13mL8WWNlbuBDv3kvKJTm97XvV0
+         zCbE9oQDQfUoC7ezO3TgjdW+MOcv4QsdbIbEjb2ziUMCJDgg9zQmZJ5ImnisNzk9sSVY
+         WiLZAwnvmjbeXimxHb6q7s+bKsDO+MhGyR/TW7A61HtD2qTGgNdQCtndZXgk1MxfZGbJ
+         UFNxJfeRZdgmvBZ00BnmAVgYpKjjHa2rNtCMYmeEWSv1KWKpm59y8cCRwFyoJY0FtnKi
+         Vx7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9dr69d7D9AZxG4ptlvv1ouodNVo3Kf2fAKXXlCgtDP4=;
-        b=BHbwToTOy7gV+Sqb0XdCfOWHFyMJhmRslvW20JdZHukCG9CZIbRgbKr+froKoeNk/q
-         O9QzPQKRgFMNPb6QanP9hz2se6oqURScWVOIsHh6sJ6HKupeLggZvXqdW6VhEhDi4ugW
-         79tOCiZpgJPz5TZFlYGVv1//3YgpPu6+CVDX5Lz0fuXQREu2Dg1eSHZ99jl6NuoNSdUH
-         CewR+rngrkWwPZ8+EHQZPhqsmkfEg6IGZ29wsaKqWoHPbDUfDs6ED2DyHwEyf7R2AHDL
-         1MB5cOUZoWjUJn/HaYeN16p/ye54shNwdcU4P8D7xFY3Tnl2lKterZcrOVBoRci7vmud
-         tGAA==
-X-Gm-Message-State: APjAAAXaukwcNuOE8SU3EttZwyJ+XdscYWOC9iz25+R9CuILV5facJ7e
-        5ykAMaH0Be7h/vlbp1ZtoBSdGbaivnmp9+mP+vE2BQ==
-X-Google-Smtp-Source: APXvYqy4nHbGq/yzYGyyJzdHSy/BGAXMkUJgPZNy7UvGhLOxuZGHxNeZq+CTxvohtCCs/uICkjnYAnt9e3O/5m5p1Vo=
-X-Received: by 2002:a9d:32a1:: with SMTP id u30mr24883499otb.107.1568185215069;
- Wed, 11 Sep 2019 00:00:15 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190822211514.19288-1-olteanv@gmail.com> <20190822211514.19288-6-olteanv@gmail.com>
- <CA+h21hqWGDCfTg813W1WaXFnRsMdE30WnaXw5TJvpkSp0-w5JA@mail.gmail.com>
- <20190827180502.GF23391@sirena.co.uk> <CA+h21hr3qmTG1LyWsEp+hZZW2NJFtg9Dh1k6SXVDd+A_YSQjjw@mail.gmail.com>
- <20190827181318.GG23391@sirena.co.uk> <CA+h21hqMVdsUjBdtiHKtKGpyvuaOf25tc4h-GdDEBQqa3EB7tw@mail.gmail.com>
- <20190911063350.GB17142@dragon>
-In-Reply-To: <20190911063350.GB17142@dragon>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 11 Sep 2019 09:00:03 +0200
-Message-ID: <CAMuHMdU0nu2z9o-McSw0tXNsJDX-1rk2fvnqW37M6OeEpL770w@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] ARM: dts: ls1021a-tsn: Use the DSPI controller in
- poll mode
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Vladimir Oltean <olteanv@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, netdev <netdev@vger.kernel.org>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=qUxVco5+9ktkoNCi0Mi64R9yup9qLyKawGp7kQ7ed2w=;
+        b=e96IJQzWMoCgHJ3hnRIwJCh70fwFsf1Pn1VvYmBa+3rIkS2fwM16M6o/eRFp6fxhI3
+         iX1+AYzDERMl2liXOqHfC2JSy80EplGVIfwY6i5jbxTgf9noVh+U7vqwxX2cw/6gAt2p
+         txUf515kEtObN4YW7/Di3fQfiM9fvij9t3sipLF3C7ohshoc4EZA/1Veu/ezXUYtxcZQ
+         OlAQZqR+gK1YTIBbRHFN7TBKXwUiZGwL+AZ7XmUcVw5/fi/uLfF55M9Q4BBIrndZVDCZ
+         Nx6S4IyANeCyPZ3TMmMoKwtxegZQuoTCQ6cQew5skNnqQttHYkRTE156Cf76PTMdw4Cn
+         76ow==
+X-Gm-Message-State: APjAAAW59AfLIR/t0QZVkZwDodTGmSNQZqDAeuwW8tc8dUehcEQURzwi
+        WA19OD0I0CaIY91SYlDhhydbjw==
+X-Google-Smtp-Source: APXvYqwIwlbCdDcjnWBcmrrRCBki67IYc6HmBfZIKB+VpmUNhcS8cnxox+j8Ctb9q2YUlHKloGPOFw==
+X-Received: by 2002:a17:90a:8509:: with SMTP id l9mr3834867pjn.10.1568186200477;
+        Wed, 11 Sep 2019 00:16:40 -0700 (PDT)
+Received: from localhost ([49.248.201.118])
+        by smtp.gmail.com with ESMTPSA id c2sm21933784pfd.66.2019.09.11.00.16.39
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 11 Sep 2019 00:16:39 -0700 (PDT)
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        bjorn.andersson@linaro.org, edubezval@gmail.com, agross@kernel.org,
+        masneyb@onstation.org, swboyd@chromium.org,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: [PATCH v3 00/15] thermal: qcom: tsens: Add interrupt support
+Date:   Wed, 11 Sep 2019 12:46:17 +0530
+Message-Id: <cover.1568185732.git.amit.kucheria@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 11, 2019 at 8:34 AM Shawn Guo <shawnguo@kernel.org> wrote:
-> On Tue, Aug 27, 2019 at 09:16:39PM +0300, Vladimir Oltean wrote:
-> > On Tue, 27 Aug 2019 at 21:13, Mark Brown <broonie@kernel.org> wrote:
-> > > On Tue, Aug 27, 2019 at 09:06:14PM +0300, Vladimir Oltean wrote:
-> > > > On Tue, 27 Aug 2019 at 21:05, Mark Brown <broonie@kernel.org> wrote:
-> > > > > On Mon, Aug 26, 2019 at 04:10:51PM +0300, Vladimir Oltean wrote:
-> > >
-> > > > > > I noticed you skipped applying this patch, and I'm not sure that Shawn
-> > > > > > will review it/take it.
-> > > > > > Do you have a better suggestion how I can achieve putting the DSPI
-> > > > > > driver in poll mode for this board? A Kconfig option maybe?
-> > >
-> > > > > DT changes go through the relevant platform trees, not the
-> > > > > subsystem trees, so it's not something I'd expect to apply.
-> > >
-> > > > But at least is it something that you expect to see done through a
-> > > > device tree change?
-> > >
-> > > Well, it's not ideal - if it performs better all the time the
-> > > driver should probably just do it unconditionally.  If there's
-> > > some threashold where it tends to perform better then the driver
-> > > should check for that but IIRC it sounds like the interrupt just
-> > > isn't at all helpful here.
-> >
-> > I can't seem to find any situation where it performs worse. Hence my
-> > question on whether it's a better idea to condition this behavior on a
-> > Kconfig option rather than a DT blob which may or may not be in sync.
->
-> DT is a description of hardware not condition for software behavior,
-> where module parameter is usually used for.
+Changes since v2:
+- Addressed Stephen's review comment
+- Moved the dt-bindings to yaml (This throws up some new warnings in various QCOM
+devicetrees. I'll send out a separate series to fix them up)
+- Collected reviews and acks
+- Added the dt-bindings to MAINTAINERS
 
-+1
+Changes since v1:
+- Collected reviews and acks
+- Addressed Stephen's review comments (hopefully I got them all).
+- Completely removed critical interrupt infrastructure from this series.
+  Will post that separately.
+- Fixed a bug in sign-extension of temperature.
+- Fixed DT bindings to use the name of the interrupt e.g. "uplow" and use
+  platform_get_irq_byname().
 
-DT says the interrupt line is wired.
-The driver should know if it should make use of the interrupt, or not.
+Add interrupt support to TSENS. The first 6 patches are general fixes and
+cleanups to the driver before interrupt support is introduced.
 
-Gr{oetje,eeting}s,
+This series has been developed against qcs404 and sdm845 and then tested on
+msm8916 and msm8974 (Thanks Brian). Testing on msm8998 would be appreciated since I don't
+have hardware handy.
 
-                        Geert
+Amit Kucheria (15):
+  drivers: thermal: tsens: Get rid of id field in tsens_sensor
+  drivers: thermal: tsens: Simplify code flow in tsens_probe
+  drivers: thermal: tsens: Add __func__ identifier to debug statements
+  drivers: thermal: tsens: Add debugfs support
+  arm: dts: msm8974: thermal: Add thermal zones for each sensor
+  arm64: dts: msm8916: thermal: Fixup HW ids for cpu sensors
+  dt-bindings: thermal: tsens: Convert over to a yaml schema
+  arm64: dts: sdm845: thermal: Add interrupt support
+  arm64: dts: msm8996: thermal: Add interrupt support
+  arm64: dts: msm8998: thermal: Add interrupt support
+  arm64: dts: qcs404: thermal: Add interrupt support
+  arm: dts: msm8974: thermal: Add interrupt support
+  arm64: dts: msm8916: thermal: Add interrupt support
+  drivers: thermal: tsens: Create function to return sign-extended
+    temperature
+  drivers: thermal: tsens: Add interrupt support
+
+ .../bindings/thermal/qcom-tsens.txt           |  55 --
+ .../bindings/thermal/qcom-tsens.yaml          | 174 ++++++
+ MAINTAINERS                                   |   1 +
+ arch/arm/boot/dts/qcom-msm8974.dtsi           | 108 +++-
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  26 +-
+ arch/arm64/boot/dts/qcom/msm8996.dtsi         |  60 +-
+ arch/arm64/boot/dts/qcom/msm8998.dtsi         |  82 +--
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  42 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  88 +--
+ drivers/thermal/qcom/tsens-8960.c             |   4 +-
+ drivers/thermal/qcom/tsens-common.c           | 529 ++++++++++++++++--
+ drivers/thermal/qcom/tsens-v0_1.c             |  11 +
+ drivers/thermal/qcom/tsens-v1.c               |  29 +
+ drivers/thermal/qcom/tsens-v2.c               |  13 +
+ drivers/thermal/qcom/tsens.c                  |  58 +-
+ drivers/thermal/qcom/tsens.h                  | 286 ++++++++--
+ 16 files changed, 1254 insertions(+), 312 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsens.txt
+ create mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
