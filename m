@@ -2,59 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93B0EAF9A9
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 11:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F999AF9B6
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 11:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727307AbfIKJ67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 05:58:59 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51334 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727093AbfIKJ67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 05:58:59 -0400
-X-UUID: 11a683efec1448528c5135f870771c37-20190911
-X-UUID: 11a683efec1448528c5135f870771c37-20190911
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
-        (envelope-from <luhua.xu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1367689443; Wed, 11 Sep 2019 17:58:52 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 11 Sep 2019 17:58:51 +0800
-Received: from localhost.localdomain (10.15.20.246) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 11 Sep 2019 17:58:50 +0800
-From:   Luhua Xu <luhua.xu@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
-Subject: [PATCH 0/3] MT6765 spi support 
-Date:   Wed, 11 Sep 2019 05:55:28 -0400
-Message-ID: <1568195731-3239-1-git-send-email-luhua.xu@mediatek.com>
-X-Mailer: git-send-email 2.6.4
+        id S1727592AbfIKJ7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 05:59:30 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:35242 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727590AbfIKJ73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 05:59:29 -0400
+Received: by mail-lj1-f194.google.com with SMTP id q22so14804345ljj.2
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 02:59:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9HXuMTVfcpW37UjviTlGUeNHddiNVnJw+Pnhmp5IW9U=;
+        b=vqdRVbY3xkC8To+y63JXG0n3y8xeMP0cnqAh5gPos11TPx2MJ5YjNkuJkgPa80BtcF
+         4JiZ4Xx8a7uw9Sz5tkqQGh+2m6Nz9+2vV/eI5yr843rVuAxXNoQohYhlWMnodprm0bcL
+         5mCehv9pHsqGcrw1VDwaO9mzO4mDNVRhL+666OGE2jOYg6gdJaWopbdX5Zbcj0ZBra6T
+         dYYWFHT4Y+ZSRGrLD3fdTJOXp6uxQ8LDzR17KwG3hJmcJvFECjC256VuIiJ6Y9q8XhrX
+         afoPOGfqqiuy++3LDu/tUkWFuC7huA2fPV5Qkxe4M7wov2clbWPSOuYDVhLY+7mTrAXE
+         hB3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9HXuMTVfcpW37UjviTlGUeNHddiNVnJw+Pnhmp5IW9U=;
+        b=bTJXXJFYCAtn6hAMe8aVmvWqF3Wu50wc5PKhbONxW8Mf9BXo31HZIjkuUzgGMISsVb
+         gYT4X6uATSqUpabxlfNvOhcUXX/Kg3zKcQTE10tbpFPV9XN4PIWx1DLfBkRGlNQxbdWT
+         1NlT+/uM8QuGrELokhbfWSyrnY9CGBKjVMmzmhGkxoVR81pvGeKRQEKilO1m4EEi5WpU
+         Y41bYlk5ZoIGRFz1EwAuTEHwL8EJiOVS1vZ2Kf0zImf0fm7DLsUK6jDbu+6fp50PO352
+         40FYDMChd8fk7UauvNBvhDOX5I95sJFC7skPlswxL90mwifsIPejTr8CnI+FnbsPOenY
+         2MDw==
+X-Gm-Message-State: APjAAAWO5EHg2BeG55ADzM335BByOLctnHyx00SthMiW//lq4TP13oMO
+        vkms5anDwVQd0Bqa6I51q3CiL88Fl8i1T26L5TsA5HPHgxRiYg==
+X-Google-Smtp-Source: APXvYqxT1aoNXvUwL/ESu+QKh3xMgy/YTSB/t3k/OGav9Yicg3DARxKZrCRl4SpCBRaX/EF9sONVO8FgCZf9RKQtZBU=
+X-Received: by 2002:a2e:7d15:: with SMTP id y21mr15616211ljc.28.1568195968059;
+ Wed, 11 Sep 2019 02:59:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20190829181203.2660-1-ilina@codeaurora.org> <20190829181203.2660-6-ilina@codeaurora.org>
+In-Reply-To: <20190829181203.2660-6-ilina@codeaurora.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 11 Sep 2019 10:59:16 +0100
+Message-ID: <CACRpkdaReFzjb_hcDbQwqMX+whzscLpeZpJPHKqOo+9tANzemA@mail.gmail.com>
+Subject: Re: [PATCH RFC 05/14] dt-bindings/interrupt-controller: pdc: add SPI
+ config register
+To:     Lina Iyer <ilina@codeaurora.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        Evan Green <evgreen@chromium.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        mkshah@codeaurora.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These patch series add Mediatek mt6765 spi support, and add spi DMA
-large PA support on some platforms. 
+On Thu, Aug 29, 2019 at 8:47 PM Lina Iyer <ilina@codeaurora.org> wrote:
 
+> +- qcom,scm-spi-cfg:
+> +       Usage: optional
+> +       Value type: <bool>
+> +       Definition: Specifies if the SPI configuration registers have to be
+> +                   written from the firmware.
+> +
+>  Example:
+>
+>         pdc: interrupt-controller@b220000 {
+>                 compatible = "qcom,sdm845-pdc";
+> -               reg = <0xb220000 0x30000>;
+> +               reg = <0xb220000 0x30000>, <0x179900f0 0x60>;
+>                 qcom,pdc-ranges = <0 512 94>, <94 641 15>, <115 662 7>;
+>                 #interrupt-cells = <2>;
+>                 interrupt-parent = <&intc>;
+>                 interrupt-controller;
+> +               qcom,scm-spi-cfg;
 
-luhua.xu (3):
-  dt-bindings: spi: update bindings for MT6765 SoC
-  spi: mediatek: add spi support for mt6765 IC
-  spi: mediatek: support large PA
+You can probably drop this bool if you just give names to the registers.
 
- .../devicetree/bindings/spi/spi-mt65xx.txt    |  1 +
- drivers/spi/spi-mt65xx.c                      | 53 +++++++++++++++++--
- 2 files changed, 49 insertions(+), 5 deletions(-)
+Like
+reg = <0xb220000 0x30000>, <0x179900f0 0x60>;
+reg-names = "gic", "pdc";
 
---
-2.18.0
+Then jus check explicitly for a "pdc" register and in that case
+initialize the PDC.
+
+Yours,
+Linus Walleij
