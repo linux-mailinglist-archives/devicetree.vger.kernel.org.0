@@ -2,101 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36E99B00E6
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 18:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF48FB00EB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 18:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728861AbfIKQGk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 12:06:40 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:36712 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728703AbfIKQGj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 12:06:39 -0400
-Received: from [192.168.0.20] (cpc89242-aztw30-2-0-cust488.18-1.cable.virginm.net [86.31.129.233])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AF88C33A;
-        Wed, 11 Sep 2019 18:06:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1568217997;
-        bh=F2dlj/MFhkCIb/9CSt/w8Fw5jSo4ioGNSYWJmqdIqPY=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=qdsaUQYM6hhd68U1apolZTzXB9co1nILTU0yuAVKimxwB0wlDzP++mspv/miVEfr+
-         An2oEmr6fbOzXHdV1hL2ArT97vQ9oQH32eOL8jyob6Pmp8r24Q37cG3PkZrB4R6ECs
-         BwWHzNIl91Psdsne5U5s8D+NNwhFBw7ylnvXCuGE=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v4 2/9] dt-bindings: display, renesas,du: Document cmms
- property
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        laurent.pinchart@ideasonboard.com, geert@linux-m68k.org,
-        horms@verge.net.au, uli+renesas@fpond.eu,
-        VenkataRajesh.Kalakodima@in.bosch.com
-Cc:     airlied@linux.ie, daniel@ffwll.ch, koji.matsuoka.xm@renesas.com,
-        muroya@ksk.co.jp, Harsha.ManjulaMallikarjun@in.bosch.com,
-        linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com
-References: <20190906135436.10622-1-jacopo+renesas@jmondi.org>
- <20190906135436.10622-3-jacopo+renesas@jmondi.org>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <2bcbb30c-db36-38a1-dcff-4f4269c11ad6@ideasonboard.com>
-Date:   Wed, 11 Sep 2019 17:06:33 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728923AbfIKQGt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 12:06:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56524 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728921AbfIKQGt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Sep 2019 12:06:49 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6F88D2075C;
+        Wed, 11 Sep 2019 16:06:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568218008;
+        bh=0JKyzgRWDAVfhj+Rbx+NnAMPX+l8CSgMDc04vXyE5bQ=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=sXKGdCyh4WhyF7veHQuc6U2T2rCx3t5K1Qqy6gewGeUjK0ywl2v7bsN7VXpXOO1EP
+         41pg/jq1NtfXy0pZV4kDqBLMcny74NX33xccjvArhN8zuoLaF6fm1gyKxvTzciCM8U
+         eahHK7f35XmBY0SS/eWDlnS+6YNVbiWw0YsHeyyw=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190906135436.10622-3-jacopo+renesas@jmondi.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190823100315.2148-1-ada@thorsis.com>
+References: <20190823100315.2148-1-ada@thorsis.com>
+Cc:     <u.kleine-koenig@pengutronix.de>, kernel@pengutronix.de,
+        linux-clk@vger.kernel.org, <devicetree@vger.kernel.org>
+To:     Alexander Dahl <ada@thorsis.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v2] dt-bindings: clk: Make example a bit clearer
+User-Agent: alot/0.8.1
+Date:   Wed, 11 Sep 2019 09:06:47 -0700
+Message-Id: <20190911160648.6F88D2075C@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-On 06/09/2019 14:54, Jacopo Mondi wrote:
-> Document the newly added 'cmms' property which accepts a list of phandle
-> and channel index pairs that point to the CMM units available for each
-> Display Unit output video channel.
-> 
-> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Quoting Alexander Dahl (2019-08-23 03:03:15)
+> Signed-off-by: Alexander Dahl <ada@thorsis.com>
 > ---
->  Documentation/devicetree/bindings/display/renesas,du.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,du.txt b/Documentation/devicetree/bindings/display/renesas,du.txt
-> index c97dfacad281..1773b0a2f54f 100644
-> --- a/Documentation/devicetree/bindings/display/renesas,du.txt
-> +++ b/Documentation/devicetree/bindings/display/renesas,du.txt
-> @@ -45,6 +45,10 @@ Required Properties:
->      instance that serves the DU channel, and the channel index identifies the
->      LIF instance in that VSP.
-> 
-> +  - renesas,cmms: A list of phandles to the CMM instances present in the SoC,
-> +    one for each available DU channel. The property shall not be specified for
-> +    SoCs that do not provide any CMM (such as V3M and V3H).
-> +
->  Required nodes:
-> 
->  The connections to the DU output video ports are modeled using the OF graph
-> @@ -91,6 +95,7 @@ Example: R8A7795 (R-Car H3) ES2.0 DU
->  			 <&cpg CPG_MOD 721>;
->  		clock-names = "du.0", "du.1", "du.2", "du.3";
->  		vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>, <&vspd0 1>;
-> +		renesas,cmms = <&cmm0 &cmm1 &cmm2 &cmm3>;
 
-Should these be comma separated in the same fashion as the vsps are
-separated?
+You need to Cc Rob and devicetree list on binding changes.
 
-I don't really mind either way though ...
+>=20
+> Notes:
+>     v2:
+>         Add additional explaining text to following paragraph and strip m=
+ail
+>         headers from commit message.
+>=20
+>  .../devicetree/bindings/clock/clock-bindings.txt     | 12 +++++++-----
+>  1 file changed, 7 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.txt b=
+/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> index b646bbcf7f92..1d4942380918 100644
+> --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
+> @@ -150,16 +150,18 @@ set to 0, or can be omitted if it is not followed b=
+y any non-zero entry.
+>          compatible =3D "fsl,imx-uart";
+>          reg =3D <0xa000 0x1000>;
+>          ...
+> -        clocks =3D <&osc 0>, <&pll 1>;
+> -        clock-names =3D "baud", "register";
+> +        clocks =3D ...
+> +        clock-names =3D ...
 
-Reviewed-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+I don't see the need for this change.
 
+> =20
+>          assigned-clocks =3D <&clkcon 0>, <&pll 2>;
+> -        assigned-clock-parents =3D <&pll 2>;
+> +        assigned-clock-parents =3D <&pll 1>;
+>          assigned-clock-rates =3D <0>, <460800>;
+>      };
+> =20
+> -In this example the <&pll 2> clock is set as parent of clock <&clkcon 0>=
+ and
+> -the <&pll 2> clock is assigned a frequency value of 460800 Hz.
+> +In this example the <&pll 1> clock is set as parent of clock <&clkcon 0>=
+ and
+> +the <&pll 2> clock is assigned a frequency value of 460800 Hz.  A parent
+> +setting for <&pll 2> is omitted (end of list) and rate setting for <&clk=
+con 0>
+> +is skipped because set to <0>.
 
-> 
->  		ports {
->  			#address-cells = <1>;
-> --
-> 2.23.0
-> 
+Maybe you can comment that the "clocks" and "clock-names" properties
+don't matter for assigned clk rates and parents.
 
