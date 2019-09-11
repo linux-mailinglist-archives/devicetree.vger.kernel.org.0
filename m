@@ -2,147 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EF82AFBFA
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 13:57:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D50AFC71
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 14:23:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727627AbfIKL5H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 07:57:07 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:59337 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726928AbfIKL5H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 07:57:07 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190911115705euoutp02cdff263f3c733c33c23773832e0a729f~DYFfDtjRb3120731207euoutp027
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 11:57:05 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190911115705euoutp02cdff263f3c733c33c23773832e0a729f~DYFfDtjRb3120731207euoutp027
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568203025;
-        bh=OH6rMiShoRkq4pzXu23aOxDbiKTdcWya1YQCabiUZWo=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=qNiz9DHlRsY7Q743TJAxz3IFOV06tcGoX80bFUb0P7JPXaC5cc5VPjLBo/4Fz/7CU
-         ueN8Qpje0RaSrW0Xy34luJClKZKxEBRRN9Hsnp4K4xPZDl1HoG5+7nrkHensmZFz28
-         28JCmOmkOFPYiI0ei9uMbN5h9YQa1NAFRH/OM+H8=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190911115704eucas1p2e4913ba6e16036352d5396bfcd6e1b60~DYFem1vTH0661106611eucas1p2X;
-        Wed, 11 Sep 2019 11:57:04 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id FE.C9.04469.011E87D5; Wed, 11
-        Sep 2019 12:57:04 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190911115703eucas1p1e3119c400c601a80d2c88d25ab744b38~DYFdtxlQQ2705827058eucas1p1N;
-        Wed, 11 Sep 2019 11:57:03 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190911115703eusmtrp1ae7557e36298b60adb553e64820d7327~DYFdfXUa71503915039eusmtrp1O;
-        Wed, 11 Sep 2019 11:57:03 +0000 (GMT)
-X-AuditID: cbfec7f2-994db9c000001175-e1-5d78e110d6a5
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 08.5D.04166.F01E87D5; Wed, 11
-        Sep 2019 12:57:03 +0100 (BST)
-Received: from [106.120.50.63] (unknown [106.120.50.63]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190911115703eusmtip13d3ffffe11e3b882ad3b095bb5f75059~DYFdFgB1f2440924409eusmtip1b;
-        Wed, 11 Sep 2019 11:57:03 +0000 (GMT)
-Subject: Re: [PATCH v3] dt-bindings: arm: samsung: Convert Samsung Exynos
- IOMMU H/W, System MMU to dt-schema
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        Andrzej Hajda <a.hajda@samsung.com>
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-Message-ID: <d7e938e8-d42e-be22-ce76-561159064180@samsung.com>
-Date:   Wed, 11 Sep 2019 13:57:00 +0200
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
-        Thunderbird/60.9.0
+        id S1727121AbfIKMWy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 08:22:54 -0400
+Received: from foss.arm.com ([217.140.110.172]:46656 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726198AbfIKMWy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Sep 2019 08:22:54 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3CAD91000;
+        Wed, 11 Sep 2019 05:22:53 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A78693F59C;
+        Wed, 11 Sep 2019 05:22:52 -0700 (PDT)
+Date:   Wed, 11 Sep 2019 13:22:50 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     khilman@baylibre.com, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, yue.wang@Amlogic.com, kishon@ti.com,
+        devicetree@vger.kernel.org, repk@triplefau.lt, maz@kernel.org,
+        linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/6] dt-bindings: pci: amlogic,meson-pcie: Add G12A
+ bindings
+Message-ID: <20190911122250.GT9720@e119886-lin.cambridge.arm.com>
+References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
+ <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPeZ2usT+bx23n-hXxsLsbZqr-0JEtyagK8sfsLaFiaH5w@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFKsWRmVeSWpSXmKPExsWy7djPc7oCDytiDe5MV7K4te4cq8X8I0Di
-        /PkN7BaXd81hs5hxfh+TxYPmdWwWS69fZLJo3XuE3YHDY828NYwem1Z1snn0bVnF6PF5k1wA
-        SxSXTUpqTmZZapG+XQJXxve2k+wF87kqHt4+xNTAuJKji5GTQ0LAROJx4yOWLkYuDiGBFYwS
-        r57OZAJJCAl8YZRY86cMIvGZUeLitsesXYwcYB1H+uwg4ssZJbpWnmWGcN4CNTy6xArSLSyQ
-        J/GrfQMbiC0iEC6x6OQRsCJmgd+MEhceb2EHSbAJGEp0ve0CK+IVsJPYfP0emM0ioCox7Wcj
-        C4gtKhAjsfzNAxaIGkGJkzOfgNmcAoES+18cBpvDLCAvsf3tHGYIW1zi1pP5TBC/rWOXOLQx
-        H8J2kZjdf5QNwhaWeHUc4gYJARmJ05N7wP6XEGhmlHh4bi07hNPDKHG5aQYjRJW1xOHjF8H+
-        ZxbQlFi/Sx8i7Cjx5s59Nkiw8EnceCsIcQOfxKRt05khwrwSHW1CENVqErOOr4Nbe/DCJeYJ
-        jEqzkHw2C8k3s5B8Mwth7wJGllWM4qmlxbnpqcWGeanlesWJucWleel6yfm5mxiBKej0v+Of
-        djB+vZR0iFGAg1GJh1fgbkWsEGtiWXFl7iFGCQ5mJRHeBy1AId6UxMqq1KL8+KLSnNTiQ4zS
-        HCxK4rzVDA+ihQTSE0tSs1NTC1KLYLJMHJxSDYy2H49MWsCTdVTv6tu5ae/jHjJVGSSErJ43
-        MzVk/+fbG42fsbw+V9bT2LhXLVV5+t2tD49qe3eWv752MPq2Y0bJQRk9P46WhzEv/1TulheZ
-        OCtMIN07Ytmp+rN3vG+qhkxKEa9czq1z89R69qVXpZ/kNsz5oWyyg0PEwYRT5tW2Rbfmqoqm
-        fuZWYinOSDTUYi4qTgQA/+tsNz0DAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsVy+t/xu7r8DytiDT4vVbW4te4cq8X8I0Di
-        /PkN7BaXd81hs5hxfh+TxYPmdWwWS69fZLJo3XuE3YHDY828NYwem1Z1snn0bVnF6PF5k1wA
-        S5SeTVF+aUmqQkZ+cYmtUrShhZGeoaWFnpGJpZ6hsXmslZGpkr6dTUpqTmZZapG+XYJexve2
-        k+wF87kqHt4+xNTAuJKji5GDQ0LAROJIn10XIyeHkMBSRokbt9hAbAkBGYmT0xpYIWxhiT/X
-        uoDiXEA1rxkl9r58wQ6SEBbIk/jVvgGsQUQgXOLKgvvMIEXMAr8ZJT4/3wrVMY9JYu/0N2BV
-        bAKGEl1vu8BsXgE7ic3X74HZLAKqEtN+NrKA2KICMRLbpk5ihagRlDg58wlYnFMgUGL/i8Ng
-        m5kFzCTmbX7IDGHLS2x/OwfKFpe49WQ+0wRGoVlI2mchaZmFpGUWkpYFjCyrGEVSS4tz03OL
-        DfWKE3OLS/PS9ZLzczcxAqNu27Gfm3cwXtoYfIhRgINRiYdX4G5FrBBrYllxZe4hRgkOZiUR
-        3gctQCHelMTKqtSi/Pii0pzU4kOMpkDPTWSWEk3OByaEvJJ4Q1NDcwtLQ3Njc2MzCyVx3g6B
-        gzFCAumJJanZqakFqUUwfUwcnFINjPV+vxW0J+23CH7ypH/OSX6/p/0dk8NveljM+x4Z9Jdf
-        WXThLqbrJVP0+HgXRvy4vX2GiOXxzYzznvfKm/256xp78tf1DSUmB+ec0/feWyS1PI3latGx
-        oENOM5c/LJo/TVKx14SnU0XgSbXekaXmjqGf+8V/1Z8OdE2fW9zKZu3tY89rk5vrpcRSnJFo
-        qMVcVJwIAO6aOKfQAgAA
-X-CMS-MailID: 20190911115703eucas1p1e3119c400c601a80d2c88d25ab744b38
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190911110500eucas1p2e1304a19e2e75ee43d80fcdc3b871237
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190911110500eucas1p2e1304a19e2e75ee43d80fcdc3b871237
-References: <CGME20190911110500eucas1p2e1304a19e2e75ee43d80fcdc3b871237@eucas1p2.samsung.com>
-        <CAJKOXPeojuk1UrYo9Wakaaq4VJt3Ts22Vi-V5xzwAXoFU5+tcA@mail.gmail.com>
-        <20190911110446.32058-1-m.falkowski@samsung.com>
-        <CAJKOXPeZ2usT+bx23n-hXxsLsbZqr-0JEtyagK8sfsLaFiaH5w@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzyszotf,
+On Sun, Sep 08, 2019 at 01:42:53PM +0000, Neil Armstrong wrote:
+> Add PCIE bindings for the Amlogic G12A SoC, the support is the same
+> but the PHY is shared with USB3 to control the differential lines.
+> 
+> Thus this adds a phy phandle to control the PHY, and sets invalid
+> MIPI clock as optional for G12A.
 
-On 2019-09-11 13:36, Krzysztof Kozlowski wrote:
-> On Wed, 11 Sep 2019 at 13:05, Maciej Falkowski <m.falkowski@samsung.com> wrote:
->> Convert Samsung Exynos IOMMU H/W, System Memory Management Unit
->> to newer dt-schema format.
->>
->> Update clock description.
->>
->> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
->> Signed-off-by: Andrzej Hajda <a.hajda@samsung.com>
->> ---
->> Hi Krzysztof,
->>
->> Thank you for feedback.
->>
->> v3:
->>
->> - remove obsolete interrupts description and
->> set its maxItems to one. There are some incompatible
->> files which will be fixed with another patch.
-> Driver stopped supporting two IRQ lines in commit
-> 7222e8db2d506197ee183de0f9b76b3ad97e8c18 (iommu/exynos: Fix build
-> errors). The second IRQ line in Exynos3250 DTS seems to be ignored.
->
-> The patch now looks good to me:
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> However for some reasons you did not CC the IOMMU maintainers. Please
-> use scripts/get_maintainer.pl to get the list of folks to CC.
+Perhaps reword to "Thus this adds a phy phandle to control the PHY,
+and only requires a MIPI clock for AXG SoC Family".
 
-Frankly I don't see any reason to spam IOMMU ml or maintainer with this 
-discussion about dt-binding conversion. This patch will be merged via dt 
-tree if I got it right.
+Thanks,
 
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+Andrew Murray
 
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../devicetree/bindings/pci/amlogic,meson-pcie.txt   | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+> index efa2c8b9b85a..84fdc422792e 100644
+> --- a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
+> @@ -9,13 +9,16 @@ Additional properties are described here:
+>  
+>  Required properties:
+>  - compatible:
+> -	should contain "amlogic,axg-pcie" to identify the core.
+> +	should contain :
+> +	- "amlogic,axg-pcie" for AXG SoC Family
+> +	- "amlogic,g12a-pcie" for G12A SoC Family
+> +	to identify the core.
+>  - reg:
+>  	should contain the configuration address space.
+>  - reg-names: Must be
+>  	- "elbi"	External local bus interface registers
+>  	- "cfg"		Meson specific registers
+> -	- "phy"		Meson PCIE PHY registers
+> +	- "phy"		Meson PCIE PHY registers for AXG SoC Family
+>  	- "config"	PCIe configuration space
+>  - reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
+>  - clocks: Must contain an entry for each entry in clock-names.
+> @@ -23,12 +26,13 @@ Required properties:
+>  	- "pclk"       PCIe GEN 100M PLL clock
+>  	- "port"       PCIe_x(A or B) RC clock gate
+>  	- "general"    PCIe Phy clock
+> -	- "mipi"       PCIe_x(A or B) 100M ref clock gate
+> +	- "mipi"       PCIe_x(A or B) 100M ref clock gate for AXG SoC Family
+>  - resets: phandle to the reset lines.
+>  - reset-names: must contain "phy" "port" and "apb"
+> -       - "phy"         Share PHY reset
+> +       - "phy"         Share PHY reset for AXG SoC Family
+>         - "port"        Port A or B reset
+>         - "apb"         Share APB reset
+> +- phys: should contain a phandle to the shared phy for G12A SoC Family
+>  - device_type:
+>  	should be "pci". As specified in designware-pcie.txt
+>  
+> -- 
+> 2.17.1
+> 
