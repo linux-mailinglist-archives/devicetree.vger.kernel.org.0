@@ -2,126 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39920AF8B4
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 11:17:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1996CAF910
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 11:37:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727373AbfIKJRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 05:17:35 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:33391 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726579AbfIKJRd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 05:17:33 -0400
-Received: by mail-wr1-f65.google.com with SMTP id u16so23672211wrr.0
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 02:17:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=CvSWNGsfSG1sshb9s1EDdJReSoxTISoAGD+1pfVDxyc=;
-        b=F7q/rlCVfShEWRlTFaXZoWsn7ac1oQJJyQuElIuIsdCUY73256m3uxItJ4dxeLme/e
-         btftQ3Yxe1a2Z8qIWTg50DgpkXymF/RAKCfeQrPFunaUhp6aOzxr8GIPSMCeguLIv5Yy
-         QT8K1ALdIXrZyAyYM3dX55uiMzgNVBSUQ1shR4mFLfYqMZAPbSlIoKAj3IrYhtpinEvx
-         MHzGfx5nf/mmLUYWEkXAmd3hHcFD5mO6TVantjHMklWNizc8xI12U3bZpkMyWNgu2hbm
-         k9DqNqVfJutzS8OG2XbE4aRAGB7IR7eKLql3rojiURJHcXngyvzrs8qN0OWpboBS6vcd
-         9g5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=CvSWNGsfSG1sshb9s1EDdJReSoxTISoAGD+1pfVDxyc=;
-        b=kAGlyaefF2KZDdN4eTlIIauQOowj1X8SfQwij9463vTFTt4AYm0zoZSea61uaNhjCg
-         4G6O7gDpaVhYV9OB0kO0UJvve+xhr823E0GB5iw+r5Qaue1d4S2MVnLwRJmvgoW3OIG4
-         ADx4R4MuG+eYNP0oQbJQp+Vip330L2Srg0DpKea/e/jpfdHIBPzHWzO0qI64kHgRInGT
-         ap5YEsh/lv4hJH0lnulqzWJZUHWy7Elsr9HGJyjJoJZGbV0g9mbXNBhWQOxa1gVMBWCb
-         uLDAqgvZKTJvUCsZK32c9N8NezvF59jKQZB8xRnkL/OnMCI3TyERQRzVH6Wg7YSSwkuW
-         Jyxg==
-X-Gm-Message-State: APjAAAV6zItU4slrJAngfn2E/wDqA58827N5kI4ekenBL6uXdVpOMcNC
-        5OQ3CBZ3FIWs7MrjgG9WChhn4A==
-X-Google-Smtp-Source: APXvYqxRMwsayDYeAxgwWdYFhf0lJ7v5s5sqVxMyGnluLJElV52fQ9ESHXB/Xyu87A+TkMV/wNA4KQ==
-X-Received: by 2002:adf:e388:: with SMTP id e8mr1342609wrm.306.1568193451950;
-        Wed, 11 Sep 2019 02:17:31 -0700 (PDT)
-Received: from linaro.org ([148.69.85.38])
-        by smtp.gmail.com with ESMTPSA id v7sm17985808wru.87.2019.09.11.02.17.30
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 11 Sep 2019 02:17:31 -0700 (PDT)
-Date:   Wed, 11 Sep 2019 11:17:28 +0200
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>, Jun Li <jun.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mm: Remove incorrect fallback
- compatible for ocotp
-Message-ID: <20190911091728.GA10331@linaro.org>
-References: <1568211887-19318-1-git-send-email-Anson.Huang@nxp.com>
- <749f8dc6-dbf9-127c-9924-33432b8af00a@linaro.org>
- <DB3PR0402MB3916E0F566E35DD30275A8E9F5B10@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+        id S1727528AbfIKJhB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 05:37:01 -0400
+Received: from host15-232-177-94.static.arubacloud.fr ([94.177.232.15]:45020
+        "EHLO mail.qeaudio.ml" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
+        with ESMTP id S1727329AbfIKJhB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 05:37:01 -0400
+X-Greylist: delayed 3527 seconds by postgrey-1.27 at vger.kernel.org; Wed, 11 Sep 2019 05:37:01 EDT
+Received: by mail.qeaudio.ml (Postfix, from userid 48)
+        id 2C871624B9; Wed, 11 Sep 2019 05:22:35 -0400 (EDT)
+To:     devicetree@vger.kernel.org
+Subject: September Inquiry 2019
+X-PHP-Originating-Script: 0:amuualer.php
+From:   Julian Smith <juliansmith@126.com>
+Reply-To: julian.smith@list.ru
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <DB3PR0402MB3916E0F566E35DD30275A8E9F5B10@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type:   text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7BIT
+Message-Id: <20190911092235.2C871624B9@mail.qeaudio.ml>
+Date:   Wed, 11 Sep 2019 05:22:35 -0400 (EDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 11, 2019 at 09:05:49AM +0000, Anson Huang wrote:
-> Hi, Daniel
-> 
-> > On 11/09/2019 16:24, Anson Huang wrote:
-> > > Compared to i.MX7D, i.MX8MM has different ocotp layout, so it should
-> > > NOT use "fsl,imx7d-ocotp" as ocotp's fallback compatible, remove it.
-> > >
-> > > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> > > ---
-> > >  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > index 5f9d0da..7c4dcce 100644
-> > > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-> > > @@ -426,7 +426,7 @@
-> > >  			};
-> > >
-> > >  			ocotp: ocotp-ctrl@30350000 {
-> > > -				compatible = "fsl,imx8mm-ocotp", "fsl,imx7d-
-> > ocotp", "syscon";
-> > > +				compatible = "fsl,imx8mm-ocotp", "syscon";
-> > >  				reg = <0x30350000 0x10000>;
-> > >  				clocks = <&clk IMX8MM_CLK_OCOTP_ROOT>;
-> > >  				/* For nvmem subnodes */
-> > 
-> > Why not fold the two patches?
-> 
-> For i.MX8MM, it just removes the incorrect fallback compatible, for i.MX8MN, it needs
-> to replace the incorrect fallback compatible in order to support SoC UID read, so I think
-> this should be 2 separate patch?
+Hi,friend,
 
-Oh, yes, there is a subtle difference in the file name :) m|n. I understand
-now why you splitted it.
+This is Julian Smith and i am purchasing manager from E-cloth Co.,LTD in the UK.
+We are glad to know about your company from the web and we are interested in your products.
+Could you kindly send us your Latest catalog and price list for our trial order.
+
+Thanks and Best Regards,
+
+Ms Julian Smith
+Purchasing Manager
+E-cloth Co.,LTD
 
 
--- 
-
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
