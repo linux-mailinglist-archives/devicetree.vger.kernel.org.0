@@ -2,194 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAD7EAFCCF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 14:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FE69AFD22
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 14:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727911AbfIKMas (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 08:30:48 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:39270 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727912AbfIKMas (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 08:30:48 -0400
-Received: by mail-wr1-f67.google.com with SMTP id t16so24343974wra.6
-        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 05:30:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=fUOH2AuBp89861Obcu3EouaC9zAbyMHL1Ch3LrCv81k=;
-        b=hpI0SkleDvQmTxx08b5CXBFf11w7qUlvLLv7yGsweA+eX1Lj6Vr7hXzP8qCKL9bdbl
-         E51jiLv7rN8D7gVBpJ8vXZu88bOfUCgwhL7TMMdAMFhJv6xds1KsWKohTKCgPRVafyVb
-         ElKE+E1SUL7QIf6Ox/2aCaDBdxPxZ3bxMtMOMK7Y8YhijDOMYKqIC4DRig4/J00Ak9RG
-         JMEpQZPjX7jKreBo9Ciu8RCSxqy9TY/mfZZ19WQ6yOp0gxPorl76d6o0Eki4ZAo7LplR
-         +dtyRFSXj4T/v2MZ9yxaDTDpjv9CqkbDwuNWTQN94H/8isyRJR3OpUq5atOGCyj4bOlb
-         9Jrw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=fUOH2AuBp89861Obcu3EouaC9zAbyMHL1Ch3LrCv81k=;
-        b=XB6K9vJT3Yb6dyzXNaQc/E0SXRoN9/DkHUFKbVmX+TNhzWj74YIatJW06BsyrR/HqP
-         ah4myFq//Er/74DHy+qLleQoAsxyiQ/t88y+fCC/ouEt26ZT32dmQmHnFvQEcpXpPL65
-         K+VgF26mYvWhjOVqin/0SB9f7xjCTaNF1IEToGttSMnEJAw/SHsMLZMixErAnpegJKFm
-         Mw6ofB8SuIPnxTfwJLUP7Fs6CspRbE6NPC1j1T1fZBizNCl27MhASuJ1IEIiMrK9zsh5
-         tk4wkfYMthUjiDVEGquNiC3qh4t+uR2j21LluOlY4SyRYwcKjK+uCVt2MhO1fGHrvgB3
-         8Nvw==
-X-Gm-Message-State: APjAAAVcDqcR99hY3c/rjQvssvo1ImhpMsIanYq1ti0PR6HbOS44rMPt
-        VUbYobJK0KFCZSbjVRed7T5YAg==
-X-Google-Smtp-Source: APXvYqxVStqpL7Sm3IQPJZJ86JZM9xDCsszzqSVhkyTXj8EMRGljXkLEgwBwVWQb9YSsuGnCvRpfyg==
-X-Received: by 2002:adf:fc05:: with SMTP id i5mr25279247wrr.134.1568205045140;
-        Wed, 11 Sep 2019 05:30:45 -0700 (PDT)
-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id s19sm32026440wrb.14.2019.09.11.05.30.43
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Sep 2019 05:30:44 -0700 (PDT)
-Subject: Re: [PATCH 1/6] dt-bindings: pci: amlogic,meson-pcie: Add G12A
- bindings
-To:     Andrew Murray <andrew.murray@arm.com>
-Cc:     khilman@baylibre.com, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, yue.wang@Amlogic.com, kishon@ti.com,
-        devicetree@vger.kernel.org, repk@triplefau.lt, maz@kernel.org,
-        linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1567950178-4466-1-git-send-email-narmstrong@baylibre.com>
- <1567950178-4466-2-git-send-email-narmstrong@baylibre.com>
- <20190911122250.GT9720@e119886-lin.cambridge.arm.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <62994535-1617-9f71-4059-b8c4da8ecbd1@baylibre.com>
-Date:   Wed, 11 Sep 2019 14:30:43 +0200
+        id S1727882AbfIKMwr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 08:52:47 -0400
+Received: from esa3.mentor.iphmx.com ([68.232.137.180]:9671 "EHLO
+        esa3.mentor.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727826AbfIKMwr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 08:52:47 -0400
+IronPort-SDR: 4OEmRmoipa+KxMxHUcfVEBLECW+GdQYUrnuS42DgESA8SybEDUhm02dHMKpDXxkAgtYR/zm0l0
+ BQp+D1J+y9mU1LCZUFX0PXCLae5nfFKWjP5GwA5s2XUtBLJGz0pCgJmFAtVSMnFdYULjw39aMi
+ rllU8qFIpQ1Lmek0YN4Ni4w88YfVDQQ9YTORCVyfMxsFgl3JGY/+fgXf/aO8RsQfNxsp7h0CXI
+ RdiAR+NcY6VVdWq0T20X3gKQVnODlFPwY7EwwxEL89LmdJTrrfMEFzJJc2wwFFw1p7vIUfasA0
+ aR0=
+X-IronPort-AV: E=Sophos;i="5.64,493,1559548800"; 
+   d="scan'208";a="41246354"
+Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
+  by esa3.mentor.iphmx.com with ESMTP; 11 Sep 2019 04:52:34 -0800
+IronPort-SDR: Sr3hKW4+EhsjX1OYhf9aGUCTAAH3zQKGwYd585M4LXKHkV1XZlFthuq/zonkZma4QlO+/cb/44
+ NfgDJaILTKQOkDK6axbBUlVjJiyY/1t+1E+JVhZzwJENPEyrpv1sldm2lRKnzj83Ni2/pcxTg6
+ VHVg1lRaQ7kMEvjTDEhulHhAmmPJBNiNkhBK2ctq+V0KM0JiRQPzvuNe8G9jDvKt1+RM5XgLTn
+ wy9iaiMuEpTuA4p4IIElLGDMYh0a5GGR360gg1R9Vy4JlBCO09BZDGypkTPU8imznYPBAdqyCi
+ I5s=
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
+ <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
+ <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
+ <f1616784-4dbf-d0fa-b33e-c85fd569383a@mentor.com>
+ <CACRpkdZ+vXG-mGjn0Tt5gyGowAuxiCSQNdjEPGTP9qj23CwkSw@mail.gmail.com>
+ <CAL_JsqLp___2O-naU+2PPQy0QmJX6+aN3hByz-OB9+qFvWgN9Q@mail.gmail.com>
+ <CACRpkdbmyc9LsJ2xiX=zAQR9FZ9dmwu-nPrNbt1Tgud9+rBGpw@mail.gmail.com>
+ <978af20e-12aa-a8e9-5da9-9af6d6b8f553@mentor.com>
+ <f47588d5-226a-6a7a-6c74-c0caaafaf572@mentor.com>
+ <6673873d-3ed2-ba98-8448-8047eccc994f@mentor.com>
+ <fbc51f91-75ac-ef57-137b-0d8231cccc34@mentor.com>
+ <CAL_JsqKsAHDN=Sp=TsvqjB0CvV+UT4ZwcX6xMk552id69FJAmQ@mail.gmail.com>
+From:   Harish Jenny K N <harish_kandiga@mentor.com>
+Message-ID: <dde73334-a26d-b53f-6b97-4101c1cdc185@mentor.com>
+Date:   Wed, 11 Sep 2019 18:22:18 +0530
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190911122250.GT9720@e119886-lin.cambridge.arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <CAL_JsqKsAHDN=Sp=TsvqjB0CvV+UT4ZwcX6xMk552id69FJAmQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [137.202.0.90]
+X-ClientProxiedBy: SVR-IES-MBX-07.mgc.mentorg.com (139.181.222.7) To
+ svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+Hi Linus,
 
-On 11/09/2019 14:22, Andrew Murray wrote:
-> On Sun, Sep 08, 2019 at 01:42:53PM +0000, Neil Armstrong wrote:
->> Add PCIE bindings for the Amlogic G12A SoC, the support is the same
->> but the PHY is shared with USB3 to control the differential lines.
+On 10/09/19 1:17 PM, Rob Herring wrote:
+> On Wed, Sep 4, 2019 at 5:58 AM Harish Jenny K N
+> <harish_kandiga@mentor.com> wrote:
+>> Hi Rob, Hi Linus,
 >>
->> Thus this adds a phy phandle to control the PHY, and sets invalid
->> MIPI clock as optional for G12A.
-> 
-> Perhaps reword to "Thus this adds a phy phandle to control the PHY,
-> and only requires a MIPI clock for AXG SoC Family".
+>>
+>> On 30/08/19 10:51 AM, Harish Jenny K N wrote:
+>>> Hi Rob,
+>>>
+>>>
+>>> On 27/08/19 1:17 PM, Harish Jenny K N wrote:
+>>>> Hi Rob,
+>>>>
+>>>>
+>>>> On 19/08/19 3:06 PM, Harish Jenny K N wrote:
+>>>>> Hi Rob,
+>>>>>
+>>>>>
+>>>>> On 10/08/19 2:21 PM, Linus Walleij wrote:
+>>>>>> On Fri, Aug 9, 2019 at 4:08 PM Rob Herring <robh+dt@kernel.org> wrote:
+>>>>>>> On Mon, Aug 5, 2019 at 5:15 AM Linus Walleij <linus.walleij@linaro.org> wrote:
+>>>>>>>> There is some level of ambition here which is inherently a bit fuzzy
+>>>>>>>> around the edges. ("How long is the coast of Britain?" comes to mind.)
+>>>>>>>>
+>>>>>>>> Surely the intention of device tree is not to recreate the schematic
+>>>>>>>> in all detail. What we want is a model of the hardware that will
+>>>>>>>> suffice for the operating system usecases.
+>>>>>>>>
+>>>>>>>> But sometimes the DTS files will become confusing: why is this
+>>>>>>>> component using GPIO_ACTIVE_LOW when another system
+>>>>>>>> doesn't have that flag? If there is an explicit inverter, the
+>>>>>>>> DTS gets more readable for a human.
+>>>>>>>>
+>>>>>>>> But arguable that is case for adding inverters as syntactic
+>>>>>>>> sugar in the DTS compiler instead...
+>>>>>>> If you really want something more explicit, then add a new GPIO
+>>>>>>> 'inverted' flag. Then a device can always have the same HIGH/LOW flag.
+>>>>>>> That also solves the abstract it for userspace problem.
+>>>>>> I think there are some intricate ontologies at work here.
+>>>>>>
+>>>>>> Consider this example: a GPIO is controlling a chip select
+>>>>>> regulator, say Acme Foo. The chip select
+>>>>>> has a pin named CSN. We know from convention that the
+>>>>>> "N" at the end of that pin name means "negative" i.e. active
+>>>>>> low, and that is how the electronics engineers think about
+>>>>>> that chip select line: it activates the IC when
+>>>>>> the line goes low.
+>>>>>>
+>>>>>> The regulator subsystem and I think all subsystems in the
+>>>>>> Linux kernel say the consumer pin should be named and
+>>>>>> tagged after the datsheet of the regulator.
+>>>>>>
+>>>>>> So it has for example:
+>>>>>>
+>>>>>> foo {
+>>>>>>     compatible = "acme,foo";
+>>>>>>     cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+>>>>>> };
+>>>>>>
+>>>>>> (It would be inappropriate to name it "csn-gpios" since
+>>>>>> we have an established flag for active low. But it is another
+>>>>>> of these syntactic choices where people likely do mistakes.)
+>>>>>>
+>>>>>> I think it would be appropriate for the DT binding to say
+>>>>>> that this flag must always be GPIO_ACTIVE_LOW since
+>>>>>> the bindings are seen from the component point of view,
+>>>>>> and thus this is always active low.
+>>>>>>
+>>>>>> It would even be reasonable for a yaml schema to enfore
+>>>>>> this, if it could. It is defined as active low after all.
+>>>>>>
+>>>>>> Now if someone adds an inverter on that line between
+>>>>>> gpio0 and Acme Foo it looks like this:
+>>>>>>
+>>>>>> foo {
+>>>>>>     compatible = "acme,foo";
+>>>>>>     cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+>>>>>> };
+>>>>>>
+>>>>>> And now we get cognitive dissonance or whatever I should
+>>>>>> call it: someone reading this DTS sheet and the data
+>>>>>> sheet for the component Acme Foo to troubleshoot
+>>>>>> this will be confused: this component has CS active
+>>>>>> low and still it is specified as active high? Unless they
+>>>>>> also look at the schematic or the board and find the
+>>>>>> inverter things are pretty muddy and they will likely curse
+>>>>>> and solve the situation with the usual trial-and-error,
+>>>>>> inserting some random cursewords as a comment.
+>>>>>>
+>>>>>> With an intermediate inverter node, the cs-gpios
+>>>>>> can go back to GPIO_ACTIVE_LOW and follow
+>>>>>> the bindings:
+>>>>>>
+>>>>>> inv0: inverter {
+>>>>>>     compatible = "gpio-inverter";
+>>>>>>     gpio-controller;
+>>>>>>     #gpio-cells = <1>;
+>>>>>>     inverted-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+>>>>>> };
+>>>>>>
+>>>>>> foo {
+>>>>>>     compatible = "acme,foo";
+>>>>>>     cs-gpios = <&inv0 0 GPIO_ACTIVE_LOW>;
+>>>>>> };
+>>>>>>
+>>>>>> And now Acme Foo bindings can keep enforcing cs-gpios
+>>>>>> to always be tagged GPIO_ACTIVE_LOW.
+>>>>> Can you please review/let us know your opinion on this ? I think the idea here is to also isolate the changes to a separate consumer driver and avoid getting inversions inside gpiolib.
+>>>>>
+>>>>>
+>>>>> Thanks.
+>>>>>
+>>>>>
+>>>>> Regards,
+>>>>>
+>>>>> Harish Jenny K N
+>>>>>
+>>>> Can you please comment on this ?
+>>>>
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Harish Jenny K N
+>>>>
+>>> Friendly Reminder.
+>>>
+>>> can we please finalize this ?
+> I think I have made my position clear and don't really have more to
+> add. I'm simply not convinced of the need for this. An inverter is not
+> a GPIO controller. You can't set/get or do any control. It is already
+> possible to invert GPIO lines in DT by changing the flags and it has
+> been this way for decades.
+>
+> Rob
 
-Sure, thanks,
-Neil
 
-> 
-> Thanks,
-> 
-> Andrew Murray
-> 
->>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
->> ---
->>  .../devicetree/bindings/pci/amlogic,meson-pcie.txt   | 12 ++++++++----
->>  1 file changed, 8 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
->> index efa2c8b9b85a..84fdc422792e 100644
->> --- a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
->> +++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
->> @@ -9,13 +9,16 @@ Additional properties are described here:
->>  
->>  Required properties:
->>  - compatible:
->> -	should contain "amlogic,axg-pcie" to identify the core.
->> +	should contain :
->> +	- "amlogic,axg-pcie" for AXG SoC Family
->> +	- "amlogic,g12a-pcie" for G12A SoC Family
->> +	to identify the core.
->>  - reg:
->>  	should contain the configuration address space.
->>  - reg-names: Must be
->>  	- "elbi"	External local bus interface registers
->>  	- "cfg"		Meson specific registers
->> -	- "phy"		Meson PCIE PHY registers
->> +	- "phy"		Meson PCIE PHY registers for AXG SoC Family
->>  	- "config"	PCIe configuration space
->>  - reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
->>  - clocks: Must contain an entry for each entry in clock-names.
->> @@ -23,12 +26,13 @@ Required properties:
->>  	- "pclk"       PCIe GEN 100M PLL clock
->>  	- "port"       PCIe_x(A or B) RC clock gate
->>  	- "general"    PCIe Phy clock
->> -	- "mipi"       PCIe_x(A or B) 100M ref clock gate
->> +	- "mipi"       PCIe_x(A or B) 100M ref clock gate for AXG SoC Family
->>  - resets: phandle to the reset lines.
->>  - reset-names: must contain "phy" "port" and "apb"
->> -       - "phy"         Share PHY reset
->> +       - "phy"         Share PHY reset for AXG SoC Family
->>         - "port"        Port A or B reset
->>         - "apb"         Share APB reset
->> +- phys: should contain a phandle to the shared phy for G12A SoC Family
->>  - device_type:
->>  	should be "pci". As specified in designware-pcie.txt
->>  
->> -- 
->> 2.17.1
->>
+If Rob is fine with adding "inverted" flag in the device tree, can we just go back the initial approach of
+
+defining the polarity on the producer side?
+
+With this we would need something like this in the device tree for any gpiochip controller.
+
+inverted = /bits/ 8 <0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0>;
+
+
+RFC patch sent earlier can be found here. https://www.spinics.net/lists/linux-gpio/msg38815.html ( Note: various terms would need change)
+
+I can send another patchset if you agree.
+
+
+Please let us know your suggestion.
+
+
+Thanks,
+
+Harish Jenny K N
+
+
 
