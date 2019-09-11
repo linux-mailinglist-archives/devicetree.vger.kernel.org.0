@@ -2,221 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7005B02CF
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 19:41:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03A1EB02EB
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 19:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729678AbfIKRlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 13:41:21 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:20483 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729673AbfIKRlU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 13:41:20 -0400
-X-UUID: 8319c006b2aa43f78874bd5b957ce057-20190912
-X-UUID: 8319c006b2aa43f78874bd5b957ce057-20190912
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
-        (envelope-from <frederic.chen@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 74296011; Thu, 12 Sep 2019 01:41:13 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs02n2.mediatek.inc (172.21.101.101) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 12 Sep 2019 01:41:11 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 12 Sep 2019 01:41:11 +0800
-Message-ID: <1568223671.19171.12.camel@mtksdccf07>
-Subject: Re: [RFC PATCH V3 4/5] platform: mtk-isp: Add Mediatek DIP driver
-From:   Frederic Chen <frederic.chen@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     Hans Verkuil <hans.verkuil@cisco.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        <yuzhao@chromium.org>, <zwisler@chromium.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg 
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
-        <Sean.Cheng@mediatek.com>, "Sj Huang" <sj.huang@mediatek.com>,
-        Christie Yu =?UTF-8?Q?=28=E6=B8=B8=E9=9B=85=E6=83=A0=29?= 
-        <christie.yu@mediatek.com>,
-        Holmes Chiou =?UTF-8?Q?=28=E9=82=B1=E6=8C=BA=29?= 
-        <holmes.chiou@mediatek.com>,
-        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
-        Jungo Lin =?UTF-8?Q?=28=E6=9E=97=E6=98=8E=E4=BF=8A=29?= 
-        <jungo.lin@mediatek.com>,
-        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
-        <Rynn.Wu@mediatek.com>,
-        "Linux Media Mailing List" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        <devicetree@vger.kernel.org>, Shik Chen <shik@chromium.org>,
-        <suleiman@chromium.org>,
-        Allan Yang =?UTF-8?Q?=28=E6=A5=8A=E6=99=BA=E9=88=9E=29?= 
-        <Allan.Yang@mediatek.com>
-Date:   Thu, 12 Sep 2019 01:41:11 +0800
-In-Reply-To: <CAAFQd5DEn_N26M7B4X7fKHVA=XBtWJN=Y4VF7D9B=TkgXf_i+Q@mail.gmail.com>
-References: <20190909192244.9367-1-frederic.chen@mediatek.com>
-         <20190909192244.9367-5-frederic.chen@mediatek.com>
-         <CAAFQd5DEn_N26M7B4X7fKHVA=XBtWJN=Y4VF7D9B=TkgXf_i+Q@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1729785AbfIKRrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 13:47:35 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.171]:10652 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729776AbfIKRrf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 13:47:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568224051;
+        s=strato-dkim-0002; d=goldelico.com;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=OlzypCaQKSjZuhd91T1qjCuJ5hWzxdmcL55w16GN85E=;
+        b=kKYsaa68PUXJPRJW9158ahvxAaOdrNrUvH7MU8uVRAnZHwkAU7pCIxD6eBHIn9HqtI
+        34osH5nvkr9gnoOm5lh+BwdQZ1VV5bKPtd1OzyJsyNiAsAf2ve4jLSJzhQ1y8QxJ5f9L
+        2BQdTF8WStmjJrq3RTLA4NyNmJCLQAbAV6ZZHvFjQ7zRGOU9T0I7L1o91Np2p2GQJ9tz
+        HJ0TwzepXwyEAThCKeSKQgaIo491I7EK6wa9ivf4RtXnuaxkx4qL10tq6iVusyjlRmdd
+        ajGt4h3EdVXmpRhrkSguaCatP6mMGV406wXqpos330BwNp4SfGaIHEQjvQSQ8IJxpYpM
+        5dlQ==
+X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UNf2M7Nk1d2C6Y"
+X-RZG-CLASS-ID: mo00
+Received: from iMac.fritz.box
+        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
+        with ESMTPSA id u036f9v8BHlE8nq
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
+        (Client did not present a certificate);
+        Wed, 11 Sep 2019 19:47:14 +0200 (CEST)
+From:   "H. Nikolaus Schaller" <hns@goldelico.com>
+To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Andr=C3=A9=20Roth?= <neolynx@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Enric Balletbo i Serra <eballetbo@gmail.com>,
+        Javier Martinez Canillas <javier@dowhile0.org>,
+        Roger Quadros <rogerq@ti.com>,
+        Teresa Remmet <t.remmet@phytec.de>,
+        "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        letux-kernel@openphoenux.org, kernel@pyra-handheld.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/8] OMAP3: convert opp-v1 to opp-v2 and read speed binned / 720MHz grade bits
+Date:   Wed, 11 Sep 2019 19:47:06 +0200
+Message-Id: <cover.1568224032.git.hns@goldelico.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: A2C721204C7EA2526CEB263D8C24F5D25EA7E624C5D86C9285E1282A19E0CC4C2000:8
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomasz,
+CHANGES V3:
+* make omap36xx control the abb-ldo and properly switch mode
+  (suggested by Adam Ford <aford173@gmail.com>)
+* add a note about enabling the turbo-mode OPPs
 
-I appreciate your helpful comments.
+PATCH V2 2019-09-07 19:46:58:
+* fix ti-cpufreq to properly describe which compatible string is legacy
+* add some reviewed-by and acked-by Tony Lindgren <tony@atomide.com>
+* include am3517 patches by Adam Ford <aford173@gmail.com>
+* review opp-suspend; and add turbo-mode; opp properties
+* add a note how to disable an OPP in a board.dts file
 
+PATCH V1 2019-09-07 08:56:19:
+* fix typo in omap3-ldp.dts
+  (reported by Tony Lindgren <tony@atomide.com>)
+* extend commit message to describe the bit patterns needed
+  for opp-supported-hw
+* add error check to ioremap()
+  (suggested by Christ van Willegen <cvwillegen@gmail.com>)
+* update Documentation/devicetree/bindings/arm/omap/omap.txt
+* change bulk update to use "ti,omap3430" and "ti,omap3630"
+* update OPP4 of omap3430 to 1275 mV since it was not a valid
+  voltage for the twl4030 driver (reported by Tony Lindgren
+  <tony@atomide.com>)
 
-On Tue, 2019-09-10 at 13:04 +0900, Tomasz Figa wrote:
-> Hi Frederic,
-> 
-> On Tue, Sep 10, 2019 at 4:23 AM <frederic.chen@mediatek.com> wrote:
-> >
-> > From: Frederic Chen <frederic.chen@mediatek.com>
-> >
-> > This patch adds the driver of Digital Image Processing (DIP)
-> > unit in Mediatek ISP system, providing image format
-> > conversion, resizing, and rotation features.
-> >
-> > The mtk-isp directory will contain drivers for multiple IP
-> > blocks found in Mediatek ISP system. It will include ISP
-> > Pass 1 driver(CAM), sensor interface driver, DIP driver and
-> > face detection driver.
-> >
-> > Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-> > ---
-> >  drivers/media/platform/mtk-isp/Makefile       |    7 +
-> >  .../media/platform/mtk-isp/isp_50/Makefile    |    7 +
-> >  .../platform/mtk-isp/isp_50/dip/Makefile      |   18 +
-> >  .../platform/mtk-isp/isp_50/dip/mtk_dip-dev.c |  650 +++++
-> >  .../platform/mtk-isp/isp_50/dip/mtk_dip-dev.h |  566 +++++
-> >  .../platform/mtk-isp/isp_50/dip/mtk_dip-hw.h  |  156 ++
-> >  .../platform/mtk-isp/isp_50/dip/mtk_dip-sys.c |  521 ++++
-> >  .../mtk-isp/isp_50/dip/mtk_dip-v4l2.c         | 2255 +++++++++++++++++
-> >  8 files changed, 4180 insertions(+)
-> >  create mode 100644 drivers/media/platform/mtk-isp/Makefile
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/Makefile
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/Makefile
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-dev.c
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-dev.h
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-hw.h
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
-> >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-v4l2.c
-> >
-> 
-> Thanks for sending v3!
-> 
-> I'm going to do a full review a bit later, but please check one
-> comment about power handling below.
-> 
-> Other than that one comment, from a quick look, I think we only have a
-> number of style issues left. Thanks for the hard work!
-> 
-> [snip]
-> > +static void dip_runner_func(struct work_struct *work)
-> > +{
-> > +       struct mtk_dip_request *req = mtk_dip_hw_mdp_work_to_req(work);
-> > +       struct mtk_dip_dev *dip_dev = req->dip_pipe->dip_dev;
-> > +       struct img_config *config_data =
-> > +               (struct img_config *)req->working_buf->config_data.vaddr;
-> > +
-> > +       /*
-> > +        * Call MDP/GCE API to do HW excecution
-> > +        * Pass the framejob to MDP driver
-> > +        */
-> > +       pm_runtime_get_sync(dip_dev->dev);
-> > +       mdp_cmdq_sendtask(dip_dev->mdp_pdev, config_data,
-> > +                         &req->img_fparam.frameparam, NULL, false,
-> > +                         dip_mdp_cb_func, req);
-> > +}
-> [snip]
-> > +static void dip_composer_workfunc(struct work_struct *work)
-> > +{
-> > +       struct mtk_dip_request *req = mtk_dip_hw_fw_work_to_req(work);
-> > +       struct mtk_dip_dev *dip_dev = req->dip_pipe->dip_dev;
-> > +       struct img_ipi_param ipi_param;
-> > +       struct mtk_dip_hw_subframe *buf;
-> > +       int ret;
-> > +
-> > +       down(&dip_dev->sem);
-> > +
-> > +       buf = mtk_dip_hw_working_buf_alloc(req->dip_pipe->dip_dev);
-> > +       if (!buf) {
-> > +               dev_err(req->dip_pipe->dip_dev->dev,
-> > +                       "%s:%s:req(%p): no free working buffer available\n",
-> > +                       __func__, req->dip_pipe->desc->name, req);
-> > +       }
-> > +
-> > +       req->working_buf = buf;
-> > +       mtk_dip_wbuf_to_ipi_img_addr(&req->img_fparam.frameparam.subfrm_data,
-> > +                                    &buf->buffer);
-> > +       memset(buf->buffer.vaddr, 0, DIP_SUB_FRM_SZ);
-> > +       mtk_dip_wbuf_to_ipi_img_sw_addr(&req->img_fparam.frameparam.config_data,
-> > +                                       &buf->config_data);
-> > +       memset(buf->config_data.vaddr, 0, DIP_COMP_SZ);
-> > +
-> > +       if (!req->img_fparam.frameparam.tuning_data.present) {
-> > +               /*
-> > +                * When user enqueued without tuning buffer,
-> > +                * it would use driver internal buffer.
-> > +                */
-> > +               dev_dbg(dip_dev->dev,
-> > +                       "%s: frame_no(%d) has no tuning_data\n",
-> > +                       __func__, req->img_fparam.frameparam.frame_no);
-> > +
-> > +               mtk_dip_wbuf_to_ipi_tuning_addr
-> > +                               (&req->img_fparam.frameparam.tuning_data,
-> > +                                &buf->tuning_buf);
-> > +               memset(buf->tuning_buf.vaddr, 0, DIP_TUNING_SZ);
-> > +       }
-> > +
-> > +       mtk_dip_wbuf_to_ipi_img_sw_addr(&req->img_fparam.frameparam.self_data,
-> > +                                       &buf->frameparam);
-> > +       memcpy(buf->frameparam.vaddr, &req->img_fparam.frameparam,
-> > +              sizeof(req->img_fparam.frameparam));
-> > +       ipi_param.usage = IMG_IPI_FRAME;
-> > +       ipi_param.frm_param.handle = req->id;
-> > +       ipi_param.frm_param.scp_addr = (u32)buf->frameparam.scp_daddr;
-> > +
-> > +       mutex_lock(&dip_dev->hw_op_lock);
-> > +       atomic_inc(&dip_dev->num_composing);
-> > +       ret = scp_ipi_send(dip_dev->scp_pdev, SCP_IPI_DIP, &ipi_param,
-> > +                          sizeof(ipi_param), 0);
-> 
-> We're not holding the pm_runtime enable count here
-> (pm_runtime_get_sync() wasn't called), so rproc_shutdown() might have
-> been called. Wouldn't that affect the ability for this IPI to run?
-> 
-> We had a related discussion with Jerry on the FD series and I think
-> the conclusion is:
-> a) if there is any state that needs to be preserved between jobs, that
-> would be cleared by rproc_shutdown() then we need to call
-> rproc_boot/shutdown() when we start/stop streaming.
-> b) it there is no such state, we can keep them inside runtime PM
-> callbacks, but we need to call pm_runtime_get_sync() before sending an
-> IPI and pm_runtime_mark_last_busy() + pm_runtime_put_autosuspend()
-> after the SCP signals completion. In this case the runtime PM
-> autosuspend delay should be set to around 2-3 times the delay needed
-> for rproc_shutdown() + rproc_boot() to complete.
+RFC V2 2019-09-04 10:53:43:
+* merge separate patch to remove opp-v1 table from n950-n9 into
+  the general omap3xxx.dtsi patch
+  (suggested by Viresh Kumar <viresh.kumar@linaro.org>)
+* add legacy compatibility to ti,omap3430 and ti,omap3630 for
+  the ti-cpufreq driver
+* make driver and omap3xxx.dtsi patches pass checkpatch
+* add bulk patch to explicitly define compatibility to ti,omap3430
+  and ti,omap36xx in addition to ti,omap3 of all in-tree boards
+  where it was missing
 
-Since each IMG_IPI_FRAME command is stateless, I would like to
-use pm_runtime_get_sync()/ pm_runtime_mark_last_busy()/
-pm_runtime_put_autosuspend() to fix this issue (solution b).
+RFC V1 2019-09-02 12:55:55:
 
-> 
-> Best regards,
-> Tomasz
+This patch set converts the omap3 opp tables to opp-v2 format
+and extends the ti-cpufreq to support omap3.
+
+It adds 720 MHz (omap34xx) and 1 GHz (omap36xx) OPPs but
+tells the ti-cpufreq driver to disable them if the speed
+binned / 720MHz grade eFuse bits indicate that the chip
+is not rated for that speed. 
+
+It has been tested (for chip variant detection, not reliability
+of the high speed OPPs) on:
+
+* BeagleBoard C2 (omap3530 600MHz)
+* BeagleBoard XM B (dm3730 800MHz)
+* GTA04A4 (dm3730 800MHz)
+* GTA04A5 (dm3730 1GHz)
 
 
-Sincerely,
+Adam Ford (2):
+  cpufreq: ti-cpufreq: Add support for AM3517
+  ARM: dts: Add OPP-V2 table for AM3517
 
-Frederic Chen
+H. Nikolaus Schaller (6):
+  cpufreq: ti-cpufreq: add support for omap34xx and omap36xx
+  ARM: dts: omap34xx & omap36xx: replace opp-v1 tables by opp-v2 for
+  DTS: bindings: omap: update bindings documentation
+  ARM: dts: omap3: bulk convert compatible to be explicitly ti,omap3430
+    or ti,omap3630 or ti,am3517
+  cpufreq: ti-cpufreq: omap36xx use "cpu0","vbb" if run in
+    multi_regulator mode
+  ARM: dts: omap36xx: using OPP1G needs to control the abb_ldo
 
+ .../devicetree/bindings/arm/omap/omap.txt     |  30 +++--
+ .../bindings/cpufreq/ti-cpufreq.txt           |   6 +-
+ arch/arm/boot/dts/am3517.dtsi                 |  31 +++++
+ arch/arm/boot/dts/am3517_mt_ventoux.dts       |   2 +-
+ .../boot/dts/logicpd-som-lv-35xx-devkit.dts   |   2 +-
+ .../boot/dts/logicpd-torpedo-35xx-devkit.dts  |   2 +-
+ arch/arm/boot/dts/omap3-beagle-xm.dts         |   2 +-
+ arch/arm/boot/dts/omap3-beagle.dts            |   2 +-
+ arch/arm/boot/dts/omap3-cm-t3530.dts          |   2 +-
+ arch/arm/boot/dts/omap3-cm-t3730.dts          |   2 +-
+ arch/arm/boot/dts/omap3-devkit8000-lcd43.dts  |   2 +-
+ arch/arm/boot/dts/omap3-devkit8000-lcd70.dts  |   2 +-
+ arch/arm/boot/dts/omap3-devkit8000.dts        |   2 +-
+ arch/arm/boot/dts/omap3-gta04.dtsi            |   2 +-
+ arch/arm/boot/dts/omap3-ha-lcd.dts            |   2 +-
+ arch/arm/boot/dts/omap3-ha.dts                |   2 +-
+ arch/arm/boot/dts/omap3-igep0020-rev-f.dts    |   2 +-
+ arch/arm/boot/dts/omap3-igep0020.dts          |   2 +-
+ arch/arm/boot/dts/omap3-igep0030-rev-g.dts    |   2 +-
+ arch/arm/boot/dts/omap3-igep0030.dts          |   2 +-
+ arch/arm/boot/dts/omap3-ldp.dts               |   2 +-
+ arch/arm/boot/dts/omap3-lilly-a83x.dtsi       |   2 +-
+ arch/arm/boot/dts/omap3-lilly-dbb056.dts      |   2 +-
+ arch/arm/boot/dts/omap3-n9.dts                |   2 +-
+ arch/arm/boot/dts/omap3-n950-n9.dtsi          |   7 --
+ arch/arm/boot/dts/omap3-n950.dts              |   2 +-
+ .../arm/boot/dts/omap3-overo-storm-alto35.dts |   2 +-
+ .../boot/dts/omap3-overo-storm-chestnut43.dts |   2 +-
+ .../boot/dts/omap3-overo-storm-gallop43.dts   |   2 +-
+ .../arm/boot/dts/omap3-overo-storm-palo35.dts |   2 +-
+ .../arm/boot/dts/omap3-overo-storm-palo43.dts |   2 +-
+ .../arm/boot/dts/omap3-overo-storm-summit.dts |   2 +-
+ arch/arm/boot/dts/omap3-overo-storm-tobi.dts  |   2 +-
+ .../boot/dts/omap3-overo-storm-tobiduo.dts    |   2 +-
+ arch/arm/boot/dts/omap3-pandora-1ghz.dts      |   2 +-
+ arch/arm/boot/dts/omap3-sbc-t3530.dts         |   2 +-
+ arch/arm/boot/dts/omap3-sbc-t3730.dts         |   2 +-
+ arch/arm/boot/dts/omap3-sniper.dts            |   2 +-
+ arch/arm/boot/dts/omap3-thunder.dts           |   2 +-
+ arch/arm/boot/dts/omap3-zoom3.dts             |   2 +-
+ arch/arm/boot/dts/omap3430-sdp.dts            |   2 +-
+ arch/arm/boot/dts/omap34xx.dtsi               |  66 ++++++++--
+ arch/arm/boot/dts/omap36xx.dtsi               |  65 ++++++++--
+ drivers/cpufreq/cpufreq-dt-platdev.c          |   2 +-
+ drivers/cpufreq/ti-cpufreq.c                  | 119 +++++++++++++++++-
+ 45 files changed, 320 insertions(+), 80 deletions(-)
+
+-- 
+2.19.1
 
