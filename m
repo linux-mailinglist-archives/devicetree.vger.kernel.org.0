@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D617AF9D3
-	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 12:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D7FCAF9D5
+	for <lists+devicetree@lfdr.de>; Wed, 11 Sep 2019 12:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727528AbfIKKEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 06:04:11 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35350 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725616AbfIKKEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 06:04:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=Jfmz88C6lrhs31cRlnO49TRqP1LMaWlkChTQG4q+Yew=; b=SyVqUXDTdYWAInG1jgsHwaWdH
-        tFuY19DeE6XUnOA8U1ciXF7ZiKrzizIVnnPTY6a92MPIuOvWPmsjgqyQtrNbBWMkLEq0JsiR9WWN1
-        cQeZAgZYhaSoiYcVYR/4luC1DZDJWUAVMCNaegctmk9+yh50ZCeqva6nVQmNIi4/WDrOQ=;
-Received: from [148.69.85.38] (helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1i7zTd-0007XI-4R; Wed, 11 Sep 2019 10:03:53 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id 87284D02D76; Wed, 11 Sep 2019 11:03:52 +0100 (BST)
-Date:   Wed, 11 Sep 2019 11:03:52 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Shengjiu Wang <shengjiu.wang@nxp.com>
-Cc:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, lgirdwood@gmail.com, perex@perex.cz,
-        tiwai@suse.com, alsa-devel@alsa-project.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] ASoC: fsl_mqs: add DT binding documentation
-Message-ID: <20190911100352.GS2036@sirena.org.uk>
-References: <cff8bff1e8d3334fa308ddfcec266a5284e3c858.1568169346.git.shengjiu.wang@nxp.com>
+        id S1725616AbfIKKEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 06:04:12 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:39885 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727513AbfIKKEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 06:04:12 -0400
+Received: by mail-lf1-f66.google.com with SMTP id l11so15948088lfk.6
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 03:04:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hUrALqLYIp3tenV9WPlX+wrIGiFW2sjaAtprRGLAeEM=;
+        b=p2jaID0PK0kDp5GpJDQQkIXhcRDJG0tyKs3M8dW00A0nTmYl4XPzPDxiiXVVHMrvt+
+         3r7lWYb3E1VbxJKjCFl4T/s7r/GjKdCpMsYFGhPYq40CrLVtcwphRVLlOz4Mi1abAmc6
+         gb7WEzvYMYxI1T0Yv1JJQMukj1kqEswd1th8aKqcRAHTLbfy8nsrMproykhpVp2apyq1
+         YZAJxHMjH/FKf0pJw40wEhiG4GATCpQy1rgKrv+b1JNb++7VFgOOXTCNwIkKecduNXL3
+         gwOiiQuJzd/9zYidBIhoUcbKtFgICCtV1yeLL8Sdtn6e6RFujjx3Wf2pnscLkru96m90
+         vHEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hUrALqLYIp3tenV9WPlX+wrIGiFW2sjaAtprRGLAeEM=;
+        b=GYmWVaVRH6Tt3B+ju++vnu+KDf0hcuFG+/SQJ+BFHPYFfQnrbeakRdbQV4SHP+HSVl
+         LEi4wGbWYAAQnE22j/FX+LX8PxISWHkar0hsjegjqtMQUQVY6b2BAkVUegrTFglXlktl
+         yLWnmDxXn9rWCkzfqQtwdSxrD+XdyBOFszXQFy5zg0pKsx/tuczt9dalF8N4m/cqfo0R
+         Y4Fkbjl/8LKBJwZrkdHcA+i0wgk+FcOuIZVA2UgucHBoSENo0x1peXwUa2xA+S/SPNF8
+         fzcFxXreB8diB7lIHynUo0EP6r8JNCzj3MFtK0xdXzeMc3ITy2qLN2gMDyiYLD4mQpnl
+         Abew==
+X-Gm-Message-State: APjAAAUxbHOeHKXA8uuxwEtRCiS0cTGxHuzR6TMViMQYKPXUmVLQmlGz
+        JlrTr9sr6OHwtGCWn8zAzZEvrm3I3dXblKGWWAlF71k2yYXQZg==
+X-Google-Smtp-Source: APXvYqzngoeZ/r34ebfHnHn3MkbXp29HvsnciD2vYxTBkFVS7UiQq+i0mLCv1JJKPJCI91Pa7RHozJe5TicykUeAq+0=
+X-Received: by 2002:a19:14f:: with SMTP id 76mr22938921lfb.92.1568196250647;
+ Wed, 11 Sep 2019 03:04:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="//h4sZKAxcnndsN6"
-Content-Disposition: inline
-In-Reply-To: <cff8bff1e8d3334fa308ddfcec266a5284e3c858.1568169346.git.shengjiu.wang@nxp.com>
-X-Cookie: Be careful!  UGLY strikes 9 out of 10!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190906062547.13264-1-rashmica.g@gmail.com>
+In-Reply-To: <20190906062547.13264-1-rashmica.g@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 11 Sep 2019 11:03:59 +0100
+Message-ID: <CACRpkdY1Rk6vPihZkpKC9hya9ixQcqg9PG9rEpM3kSY0kxwsjg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] dt-bindings: gpio: aspeed: Update documentation
+ with ast2600 controllers
+To:     Rashmica Gupta <rashmica.g@gmail.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/ASPEED MACHINE SUPPORT" 
+        <linux-aspeed@lists.ozlabs.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Sep 6, 2019 at 7:25 AM Rashmica Gupta <rashmica.g@gmail.com> wrote:
 
---//h4sZKAxcnndsN6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> The ast2600 is a new generation of SoC from ASPEED. Similarly to the
+> ast2400 and ast2500, it has a GPIO controller for it's 3.3V GPIO pins.
+> Additionally, it has a GPIO controller for 36 1.8V GPIO pins.  We use
+> the ngpio property to differentiate between these controllers.
+>
+> Signed-off-by: Rashmica Gupta <rashmica.g@gmail.com>
 
-On Wed, Sep 11, 2019 at 10:42:38AM -0400, Shengjiu Wang wrote:
+The changes are uncontroversial (uses just standard GPIO
+ngpios and adds a compatible) so patch applied.
 
-> +  - gpr : The gpr node.
-
-What is a gpr node?
-
---//h4sZKAxcnndsN6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl14xocACgkQJNaLcl1U
-h9DCkQf/boGjyVueB4AhrIMUugvRHAK7g8btFd64V3bz8anjolHMklTWGGeE9FGv
-Z0dIvqYu+GNy8SdEDagnH4ZqeiGhgDyeNLCPCSg++HgsJLsw2PadGfxpIagEPm1X
-5MXKVBiRW31EKo8d58xRsNVbWdWpkNsMW/4JiTRQR6IZ4op8DxAqGmpWpvjuAcPZ
-KBNo78YpmO3x+stm5dC9zAXWro0NzcMu2G98bLWAHieY5yT8v7aQDFZtPvNRjxNr
-2IyRhZDcE1NU+Kbi8QGKYtmTYICdgJtt4wsx2k4GZ9/+SXx+d+HL6UHu67imQm6N
-/0diiJmTf9MkEXh05p1whRrAXYKiyA==
-=XX1U
------END PGP SIGNATURE-----
-
---//h4sZKAxcnndsN6--
+Yours,
+Linus Walleij
