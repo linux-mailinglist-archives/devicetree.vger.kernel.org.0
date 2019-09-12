@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFBEBB1573
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B18DCB157A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727494AbfILUeb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 16:34:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58014 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727387AbfILUea (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 16:34:30 -0400
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 822EE2081B;
-        Thu, 12 Sep 2019 20:34:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568320470;
-        bh=9zsVAQszxukXWrSERDHPeEK1oIeDsPHZ+92NCDWFApk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eKmeCfGU2SI0KmRPr2IfM8VLEvVDZaEpn6MMiadOLQg3013o1tXlxC2LpDeWpQV0h
-         +7equ1jM/7hcEU3Zg0xrtDUXTWQFB08nas8ttZcLnFAyfr0YOKGQ3hzyUxxREnfDYp
-         80endAJMkSLfewUaf4DV8NTpm8rVsMvuYlnGavmY=
-Date:   Thu, 12 Sep 2019 22:34:27 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 3/6] ARM: dts: sunxi: h3/h5: Add MBUS controller node
-Message-ID: <20190912203427.ajbmtm5djctpkz6p@localhost.localdomain>
-References: <20190912175132.411-1-jernej.skrabec@siol.net>
- <20190912175132.411-4-jernej.skrabec@siol.net>
- <20190912202057.czb6nzgssg442isi@localhost.localdomain>
- <1679881.yZ8pMUtPNZ@jernej-laptop>
+        id S1727504AbfILUhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 16:37:32 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:36380 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727487AbfILUhc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 16:37:32 -0400
+Received: by mail-ed1-f68.google.com with SMTP id f2so18785653edw.3;
+        Thu, 12 Sep 2019 13:37:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pbP4i7DzdLdyPu+ieiqhNKpjgH4J8e/evjCuf6/AIwk=;
+        b=mo/2XukZxATvTrfvCSUwzZeVQ8hxBESzGn8ekcLi0NaAw9GCryX3wt270WEWRWNhPx
+         bpy30uYM2yOrfK176RbbMVKTwTWRemgN9kl24ttvObCVgt2XYjnUs74wsAr/6mUxstTP
+         rr7LCm7LDp6fwmmFc7jGsoK2m8gxge4/eZDwGS00KW56R4tAVAeZHrt4u8t6eRDQIQ+w
+         okHDbwZyOONEFOpzwsk97ZgQXUNtlRXXsKY8R4mu4lCsoQYkcwVB5vib9+akNNV/Pdxb
+         ybwWL81E88U8MmUCC9fDeTT5r16EJf9mOfoYyj7TQRJ7GPpEgKbiW2y5TrMqSQxrr2ai
+         5tgw==
+X-Gm-Message-State: APjAAAUjz7MbkD+1i+TjZsAnLmcLYS0FyTxodUwESgceTxoCDbyy1hFA
+        nTxngz3TzR8It0+T4p81yuzHgomZM5Q=
+X-Google-Smtp-Source: APXvYqzb3g+N0wE6Q3z5iPkdPtUq5pAoaIrjZ1ltbL2kXLRNHt2KdJy7pNq/nbc2ArwI1SUfCywKRQ==
+X-Received: by 2002:a17:906:80cd:: with SMTP id a13mr36904639ejx.155.1568320650545;
+        Thu, 12 Sep 2019 13:37:30 -0700 (PDT)
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com. [209.85.221.54])
+        by smtp.gmail.com with ESMTPSA id r23sm4975774edx.1.2019.09.12.13.37.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Sep 2019 13:37:30 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id a11so20081428wrx.1;
+        Thu, 12 Sep 2019 13:37:30 -0700 (PDT)
+X-Received: by 2002:adf:c613:: with SMTP id n19mr37053716wrg.109.1568320649865;
+ Thu, 12 Sep 2019 13:37:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1679881.yZ8pMUtPNZ@jernej-laptop>
-User-Agent: NeoMutt/20180716
+References: <20190906184551.17858-1-clabbe.montjoie@gmail.com>
+ <20190906184551.17858-4-clabbe.montjoie@gmail.com> <20190907040116.lib532o2eqt4qnvv@flea>
+ <20190911183158.GA8264@Red> <20190912093737.s6iu63sdncij2qib@localhost.localdomain>
+ <CAGb2v678WGQm5PNy8GhOTpz+fYeLP3k0dnR0F00yyZpSRcA4yA@mail.gmail.com> <20190912203301.is4ubixhk64dl5t7@localhost.localdomain>
+In-Reply-To: <20190912203301.is4ubixhk64dl5t7@localhost.localdomain>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Thu, 12 Sep 2019 21:37:17 +0100
+X-Gmail-Original-Message-ID: <CAGb2v646YkM93BAo=hrpL+tgDU-JJ49-uMCMGECUbouoJrpg=w@mail.gmail.com>
+Message-ID: <CAGb2v646YkM93BAo=hrpL+tgDU-JJ49-uMCMGECUbouoJrpg=w@mail.gmail.com>
+Subject: Re: [PATCH 3/9] dt-bindings: crypto: Add DT bindings documentation
+ for sun8i-ce Crypto Engine
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        David Miller <davem@davemloft.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Russell King <linux@armlinux.org.uk>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-crypto@vger.kernel.org,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 12, 2019 at 10:28:37PM +0200, Jernej =C5=A0krabec wrote:
-> Dne =C4=8Detrtek, 12. september 2019 ob 22:20:57 CEST je Maxime Ripard na=
-pisal(a):
-> > Hi,
-> >=20
-> > On Thu, Sep 12, 2019 at 07:51:29PM +0200, Jernej Skrabec wrote:
-> > > Both, H3 and H5, contain MBUS, which is the bus used by DMA devices to
-> > > access system memory.
-> > >=20
-> > > MBUS controller is responsible for arbitration between channels based
-> > > on set priority and can do some other things as well, like report
-> > > bandwidth used. It also maps RAM region to different address than CPU.
-> > >=20
-> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > ---
-> > >=20
-> > >  arch/arm/boot/dts/sunxi-h3-h5.dtsi | 9 +++++++++
-> > >  1 file changed, 9 insertions(+)
-> > >=20
-> > > diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> > > b/arch/arm/boot/dts/sunxi-h3-h5.dtsi index eba190b3f9de..ef1d03812636
-> > > 100644
-> > > --- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> > > +++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-> > > @@ -109,6 +109,7 @@
-> > >=20
-> > >  		compatible =3D "simple-bus";
-> > >  		#address-cells =3D <1>;
-> > >  		#size-cells =3D <1>;
-> > >=20
-> > > +		dma-ranges;
-> > >=20
-> > >  		ranges;
-> > >  	=09
-> > >  		display_clocks: clock@1000000 {
-> > >=20
-> > > @@ -538,6 +539,14 @@
-> > >=20
-> > >  			};
-> > >  	=09
-> > >  		};
-> > >=20
-> > > +		mbus: dram-controller@1c62000 {
-> > > +			compatible =3D "allwinner,sun8i-h3-mbus";
-> > > +			reg =3D <0x01c62000 0x1000>;
-> > > +			clocks =3D <&ccu 113>;
-> > > +			dma-ranges =3D <0x00000000 0x40000000=20
-> 0xc0000000>;
-> > > +			#interconnect-cells =3D <1>;
-> > > +		};
-> > > +
-> >=20
-> > If that's easy enough to access, can you also add the references in
-> > the devices that are already there? (CSI and DE comes to my mind, but
-> > there might be others).
->=20
-> Strangely, DE2 doesn't use this offset. That was tested on OrangePi Plus2=
-E,=20
-> which has 2 GiB of RAM and subtracting this offset causes corrupted image.
+On Thu, Sep 12, 2019 at 9:33 PM Maxime Ripard <mripard@kernel.org> wrote:
+>
+> On Thu, Sep 12, 2019 at 09:26:27PM +0100, Chen-Yu Tsai wrote:
+> > > >
+> > > >   clock-names:
+> > > >     items:
+> > > >       - const: ahb
+> > > >       - const: mod
+> > > >       - const: mbus
+> > >
+> > > And here as well
+> > >
+> > > Something I missed earlier though was that we've tried to unify as
+> > > much as possible the ahb / apb / axi clocks around the bus name, it
+> > > would be great if you could do it.
+> >
+> > I think we also want to standardize "mbus" as "dram"?
+>
+> Do we? The only user so far seems to be sun9i-de, while mbus has more
+> users. I don't really care though, both mbus and dram are pretty
+> generic to me. What makes you prefer dram over mbus?
 
-Ok, weird. But if it was tested then fine by me :)
+Argh... it's actually "ram" we use the most. Both "dram" and "mbus"
+have only one instance each.
 
-> But I can add this properties to CSI too. However, wouldn't that need CSI=
- DT=20
-> binding expansion with those properties? othetwise DT check will fail.
-
-Oh right, we definitely need to update the binding indeed. The code
-should be able to cope with both cases already.
-
-Maxime
+ChenYu
