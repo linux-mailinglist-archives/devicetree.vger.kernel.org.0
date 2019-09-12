@@ -2,488 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B28B162F
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 00:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51F92B16D0
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 01:57:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727354AbfILWL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 18:11:29 -0400
-Received: from smtp.220.in.ua ([89.184.67.205]:57440 "EHLO smtp.220.in.ua"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727069AbfILWL3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 18:11:29 -0400
-Received: from oleh-pc.lan (unknown [95.67.115.55])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp.220.in.ua (Postfix) with ESMTPSA id 94E211A24450;
-        Fri, 13 Sep 2019 01:11:23 +0300 (EEST)
-From:   Oleh Kravchenko <oleg@kaa.org.ua>
-To:     devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-        jacek.anaszewski@gmail.com, pavel@ucw.cz
-Cc:     Oleh Kravchenko <oleg@kaa.org.ua>
-Subject: [PATCH v8 2/2] leds: add LED driver for EL15203000 board
-Date:   Fri, 13 Sep 2019 01:11:15 +0300
-Message-Id: <20190912221115.23595-3-oleg@kaa.org.ua>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190912221115.23595-1-oleg@kaa.org.ua>
-References: <20190912221115.23595-1-oleg@kaa.org.ua>
+        id S1726586AbfILX5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 19:57:20 -0400
+Received: from mail-eopbgr1360094.outbound.protection.outlook.com ([40.107.136.94]:46485
+        "EHLO AUS01-ME1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726074AbfILX5U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 19:57:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZAcnHkV0cnvqehcRcGAWxYSKrXrbMeHO1tzNdyPtNfCwYDTjXnnYcmK8mx8g2YUZxrnNvmu5GxsokGavrf/Gg3PM4dfGQ5rEWyIPRahVyRIWZyOMnlc6tTP+CRMJHP2mWKaO0RYJkEvyFbZd7IKcRXLXhB2hG5tSujc2m/SGqtDV+mS3H8s6cRiMfgtBmyaG1d1AqFO6LI+gFgMEnGMJm3J1Io0MazDVoJqHI0GK/82CUjMOK2uQ5zccmUU58dP+2V0SMPjSsd9DVzdBMF6FO3lBdIPjy6ZDn+08/v7vDKs09KEAsxdwgaG4v2/iQoDfKTMK2NyqCFzIyBUO+lbwbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mN2+e6RJmQZYkuCSZQRHkR4EeASnLnc+wice7S+5BmM=;
+ b=bXzYTR2b1gtfIy72bgv6oULWzs84U0LfutYqf2OVu/obB1IjuLC95QT5ZKRfL/ApF9j2N59+CblHcChEierGb04hvRD/TxYV1bvwK+R5ik+5Kv7cn0/ql2nfewi5KdnwR0JejFHtPszcp5H+7J6+406Q3DT5zpNeEhB0MbZWko1Z2KE07Yp4JGvF8xnZ3F45MHIbGGopPs7/GXtI3FrBb6ufZZGxuW+271TE1LIEaC7ad91/z1pD3proncU4eh6o5abfSpI28f8CPdmNzh7AtTGswzZA82ul3ErRKSUpgwYb3goT5Rs+cN/BvTG/NzyFGW4o/tAYkOY5kHjQfqFXSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=gallagher.com; dmarc=pass action=none
+ header.from=gallagher.com; dkim=pass header.d=gallagher.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gallagher.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=mN2+e6RJmQZYkuCSZQRHkR4EeASnLnc+wice7S+5BmM=;
+ b=bZ6A8XjCZ/8Jy4ElQpl4RZoDKna/oEXES90jpjs42s+tn8AhlGUuAHL29rBoXRzrqloqS1ID5G1zjz6/x8hzRTpllNaMuVQresEk9HY1hIX2+/4NBaujBaaqwJ8rFVdwBXmmLghZdZ+A+92+On2HUvYyDLCHg1o7r9QORVmjjYY=
+Received: from ME2PR01MB4738.ausprd01.prod.outlook.com (20.178.183.211) by
+ ME2PR01MB4562.ausprd01.prod.outlook.com (20.178.181.82) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2241.18; Thu, 12 Sep 2019 23:57:16 +0000
+Received: from ME2PR01MB4738.ausprd01.prod.outlook.com
+ ([fe80::6de7:80f:8c28:c734]) by ME2PR01MB4738.ausprd01.prod.outlook.com
+ ([fe80::6de7:80f:8c28:c734%7]) with mapi id 15.20.2263.016; Thu, 12 Sep 2019
+ 23:57:16 +0000
+From:   Ankur Tyagi <Ankur.Tyagi@gallagher.com>
+To:     Tero Kristo <t-kristo@ti.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/2] dt-bindings: clock: am33xx: Update GPIO number as per
+ datasheet
+Thread-Topic: [PATCH 1/2] dt-bindings: clock: am33xx: Update GPIO number as
+ per datasheet
+Thread-Index: AQHVaQxAti0+2uzlekmTiSTmBg+gUKcnp0KAgAEPnTA=
+Date:   Thu, 12 Sep 2019 23:57:16 +0000
+Message-ID: <ME2PR01MB47387F92060371418B59429DE5B00@ME2PR01MB4738.ausprd01.prod.outlook.com>
+References: <20190912014849.10684-1-ankur.tyagi@gallagher.com>
+ <f3dae7f3-58ab-c55c-86c9-8633bd7a7d85@ti.com>
+In-Reply-To: <f3dae7f3-58ab-c55c-86c9-8633bd7a7d85@ti.com>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Ankur.Tyagi@gallagher.com; 
+x-originating-ip: [203.167.229.98]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 71c71fbb-632d-48eb-4fc3-08d737dcf05b
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600166)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:ME2PR01MB4562;
+x-ms-traffictypediagnostic: ME2PR01MB4562:
+x-microsoft-antispam-prvs: <ME2PR01MB45628A99C6928309292AEE14E5B00@ME2PR01MB4562.ausprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01583E185C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(136003)(346002)(396003)(376002)(39850400004)(13464003)(199004)(189003)(476003)(486006)(11346002)(4326008)(110136005)(446003)(8936002)(15650500001)(2906002)(76176011)(186003)(26005)(25786009)(7696005)(53546011)(86362001)(102836004)(6506007)(478600001)(14454004)(9686003)(74316002)(55016002)(5024004)(14444005)(229853002)(8676002)(81156014)(81166006)(6436002)(2501003)(256004)(71200400001)(71190400001)(52536014)(76116006)(316002)(66066001)(99286004)(5660300002)(66446008)(64756008)(66556008)(66476007)(66946007)(33656002)(6246003)(53936002)(305945005)(7736002)(6116002)(3846002);DIR:OUT;SFP:1102;SCL:1;SRVR:ME2PR01MB4562;H:ME2PR01MB4738.ausprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: gallagher.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 9o0w75gTyB7bMacOwi2nS6CyVjXZk0DEptZgmvrPtTSEkmxD5Yf4pmta3x2TsjPOWwBdKp0iRaeBLdDUp7gZW5Erp6LOV6jo48A9CldW9wKfEN+gYo3UFfJD00RN2ICnsVHR5LNJCaq+cfJSpuj9X0UtIZOKBxn9UodtvPRp5MHrjEAht9oBE7OWa0R/NdZ6Z0diln5IzkdZMtTBe0Wj0p/S4/t57iwJP4Tqf5cwD7XXsN2QZW1n4UhymCZ22PaiWDNcBVFolDpmX8CM7Bn//FY4wFj7CRKZvcx0x16Jc0f+UynkfkUcQcYnKu4lFZYgMlNIzYZ1bJBHaR66+B/yqf9uEw8ZwWSxxw3rnBZ3ziyCuinpY2u7N+vprrXa0wfVDhCNwm3HlpcdYA6SjRizq0rPZnacweqkiysAuMQ0PiI=
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: gallagher.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 71c71fbb-632d-48eb-4fc3-08d737dcf05b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2019 23:57:16.0463
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 2156b869-431f-4815-b2ce-b4893b5c9aaa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ZLKUHW79NZSZR4/FPjkb1wh8DrkyxZ6uBQdzQPYodbeuYLK0lbj4uxI2DeygcoE6yaibBLiQ90AB+BNK9Sv43YZYp+dG6qhv1CdA/ZXbA/Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: ME2PR01MB4562
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds a LED class driver for the LEDs found on
-the Crane Merchandising System EL15203000 LEDs board
-(aka RED LEDs board).
-
-Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
----
- .../testing/sysfs-class-led-driver-el15203000 |  32 ++
- drivers/leds/Kconfig                          |  13 +
- drivers/leds/Makefile                         |   1 +
- drivers/leds/leds-el15203000.c                | 357 ++++++++++++++++++
- 4 files changed, 403 insertions(+)
- create mode 100644 Documentation/ABI/testing/sysfs-class-led-driver-el15203000
- create mode 100644 drivers/leds/leds-el15203000.c
-
-diff --git a/Documentation/ABI/testing/sysfs-class-led-driver-el15203000 b/Documentation/ABI/testing/sysfs-class-led-driver-el15203000
-new file mode 100644
-index 000000000000..5e9cbf49da59
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-led-driver-el15203000
-@@ -0,0 +1,32 @@
-+What:		/sys/class/leds/<led>/hw_pattern
-+Date:		September 2019
-+KernelVersion:	5.5
-+Description:
-+		Specify a hardware pattern for the EL15203000 LED.
-+		The LEDs board supports only predefined patterns by firmware
-+		for specific LEDs.
-+
-+		Breathing mode for Screen frame light tube:
-+		"0 4000 1 4000"
-+
-+		Cascade mode for Pipe LED:
-+		"1 800 2 800 4 800 8 800 16 800"
-+
-+		Inverted cascade mode for Pipe LED:
-+		"30 800 29 800 27 800 23 800 15 800"
-+
-+		Bounce mode for Pipe LED:
-+		"1 800 2 800 4 800 8 800 16 800 16 800 8 800 4 800 2 800 1 800"
-+
-+		Inverted bounce mode for Pipe LED:
-+		"30 800 29 800 27 800 23 800 15 800 15 800 23 800 27 800 29 800 30 800"
-+
-+What:		/sys/class/leds/<led>/repeat
-+Date:		September 2019
-+KernelVersion:	5.5
-+Description:
-+		EL15203000 supports only indefinitely patterns,
-+		so this file should always store -1.
-+
-+		For more info, please see:
-+		Documentation/ABI/testing/sysfs-class-led-trigger-pattern
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 1988de1d64c0..6e7703fd03d0 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -132,6 +132,19 @@ config LEDS_CR0014114
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called leds-cr0014114.
- 
-+config LEDS_EL15203000
-+	tristate "LED Support for Crane EL15203000"
-+	depends on LEDS_CLASS
-+	depends on SPI
-+	depends on OF
-+	help
-+	  This option enables support for EL15203000 LED Board
-+	  (aka RED LED board) which is widely used in coffee vending
-+	  machines produced by Crane Merchandising Systems.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-el15203000.
-+
- config LEDS_LM3530
- 	tristate "LCD Backlight driver for LM3530"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index 41fb073a39c1..2da39e896ce8 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -89,6 +89,7 @@ obj-$(CONFIG_LEDS_LM36274)		+= leds-lm36274.o
- # LED SPI Drivers
- obj-$(CONFIG_LEDS_CR0014114)		+= leds-cr0014114.o
- obj-$(CONFIG_LEDS_DAC124S085)		+= leds-dac124s085.o
-+obj-$(CONFIG_LEDS_EL15203000)		+= leds-el15203000.o
- 
- # LED Userspace Drivers
- obj-$(CONFIG_LEDS_USER)			+= uleds.o
-diff --git a/drivers/leds/leds-el15203000.c b/drivers/leds/leds-el15203000.c
-new file mode 100644
-index 000000000000..298b13e4807a
---- /dev/null
-+++ b/drivers/leds/leds-el15203000.c
-@@ -0,0 +1,357 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright (c) 2019 Crane Merchandising Systems. All rights reserved.
-+// Copyright (C) 2019 Oleh Kravchenko <oleg@kaa.org.ua>
-+
-+#include <linux/delay.h>
-+#include <linux/leds.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi.h>
-+
-+/*
-+ * EL15203000 SPI protocol description:
-+ * +-----+---------+
-+ * | LED | COMMAND |
-+ * +-----+---------+
-+ * |  1  |    1    |
-+ * +-----+---------+
-+ * (*) LEDs MCU board expects 20 msec delay per byte.
-+ *
-+ * LEDs:
-+ * +----------+--------------+-------------------------------------------+
-+ * |    ID    |     NAME     |         DESCRIPTION                       |
-+ * +----------+--------------+-------------------------------------------+
-+ * | 'P' 0x50 |     Pipe     | Consists from 5 LEDs, controlled by board |
-+ * +----------+--------------+-------------------------------------------+
-+ * | 'S' 0x53 | Screen frame | Light tube around the screen              |
-+ * +----------+--------------+-------------------------------------------+
-+ * | 'V' 0x56 | Vending area | Highlights a cup of coffee                |
-+ * +----------+--------------+-------------------------------------------+
-+ *
-+ * COMMAND:
-+ * +----------+-----------------+--------------+--------------+
-+ * |  VALUES  |       PIPE      | SCREEN FRAME | VENDING AREA |
-+ * +----------+-----------------+--------------+--------------+
-+ * | '0' 0x30 |                      Off                      |
-+ * +----------+-----------------------------------------------+
-+ * | '1' 0x31 |                      On                       |
-+ * +----------+-----------------+--------------+--------------+
-+ * | '2' 0x32 |     Cascade     |   Breathing  |
-+ * +----------+-----------------+--------------+
-+ * | '3' 0x33 | Inverse cascade |
-+ * +----------+-----------------+
-+ * | '4' 0x34 |     Bounce      |
-+ * +----------+-----------------+
-+ * | '5' 0x35 | Inverse bounce  |
-+ * +----------+-----------------+
-+ */
-+
-+/* EL15203000 default settings */
-+#define EL_FW_DELAY_USEC	20000ul
-+#define EL_PATTERN_DELAY_MSEC	800u
-+#define EL_PATTERN_LEN		10u
-+#define EL_PATTERN_HALF_LEN	(EL_PATTERN_LEN / 2)
-+
-+enum el15203000_command {
-+	/* for all LEDs */
-+	EL_OFF			= '0',
-+	EL_ON			= '1',
-+
-+	/* for Screen LED */
-+	EL_SCREEN_BREATHING	= '2',
-+
-+	/* for Pipe LED */
-+	EL_PIPE_CASCADE		= '2',
-+	EL_PIPE_INV_CASCADE	= '3',
-+	EL_PIPE_BOUNCE		= '4',
-+	EL_PIPE_INV_BOUNCE	= '5',
-+};
-+
-+struct el15203000_led {
-+	struct el15203000	*priv;
-+	struct led_classdev	ldev;
-+	u32			reg;
-+};
-+
-+struct el15203000 {
-+	struct device		*dev;
-+	struct mutex		lock;
-+	struct spi_device	*spi;
-+	unsigned long		delay;
-+	size_t			count;
-+	struct el15203000_led	leds[];
-+};
-+
-+static int el15203000_cmd(struct el15203000_led *led, u8 brightness)
-+{
-+	int		ret;
-+	u8		cmd[2];
-+	size_t		i;
-+
-+	mutex_lock(&led->priv->lock);
-+
-+	dev_dbg(led->priv->dev, "Set brightness of 0x%02x(%c) to 0x%02x(%c)",
-+		led->reg, led->reg, brightness, brightness);
-+
-+	/* to avoid SPI mistiming with firmware we should wait some time */
-+	if (time_after(led->priv->delay, jiffies)) {
-+		dev_dbg(led->priv->dev, "Wait %luus to sync",
-+			EL_FW_DELAY_USEC);
-+
-+		usleep_range(EL_FW_DELAY_USEC,
-+			     EL_FW_DELAY_USEC + 1);
-+	}
-+
-+	cmd[0] = led->reg;
-+	cmd[1] = brightness;
-+
-+	for (i = 0; i < ARRAY_SIZE(cmd); i++) {
-+		if (i)
-+			usleep_range(EL_FW_DELAY_USEC,
-+				     EL_FW_DELAY_USEC + 1);
-+
-+		ret = spi_write(led->priv->spi, &cmd[i], sizeof(cmd[i]));
-+		if (ret) {
-+			dev_err(led->priv->dev,
-+				"spi_write() error %d", ret);
-+			break;
-+		}
-+	}
-+
-+	led->priv->delay = jiffies + usecs_to_jiffies(EL_FW_DELAY_USEC);
-+
-+	mutex_unlock(&led->priv->lock);
-+
-+	return ret;
-+}
-+
-+static int el15203000_set_blocking(struct led_classdev *ldev,
-+				   enum led_brightness brightness)
-+{
-+	struct el15203000_led *led = container_of(ldev,
-+						  struct el15203000_led,
-+						  ldev);
-+
-+	return el15203000_cmd(led, brightness == LED_OFF ? EL_OFF : EL_ON);
-+}
-+
-+static int el15203000_pattern_set_S(struct led_classdev *ldev,
-+				    struct led_pattern *pattern,
-+				    u32 len, int repeat)
-+{
-+	struct el15203000_led *led = container_of(ldev,
-+						  struct el15203000_led,
-+						  ldev);
-+
-+	if (repeat > 0 || len != 2 ||
-+	    pattern[0].delta_t != 4000 || pattern[0].brightness != 0 ||
-+	    pattern[1].delta_t != 4000 || pattern[1].brightness != 1)
-+		return -EINVAL;
-+
-+	dev_dbg(led->priv->dev, "Breathing mode for 0x%02x(%c)",
-+		led->reg, led->reg);
-+
-+	return el15203000_cmd(led, EL_SCREEN_BREATHING);
-+}
-+
-+static bool is_cascade(const struct led_pattern *pattern, u32 len,
-+		       bool inv, bool right)
-+{
-+	int val, t;
-+	u32 i;
-+
-+	if (len != EL_PATTERN_HALF_LEN)
-+		return false;
-+
-+	val = right ? BIT(4) : BIT(0);
-+
-+	for (i = 0; i < len; i++) {
-+		t = inv ? ~val & GENMASK(4, 0) : val;
-+
-+		if (pattern[i].delta_t != EL_PATTERN_DELAY_MSEC ||
-+		    pattern[i].brightness != t)
-+			return false;
-+
-+		val = right ? val >> 1 : val << 1;
-+	}
-+
-+	return true;
-+}
-+
-+static bool is_bounce(const struct led_pattern *pattern, u32 len, bool inv)
-+{
-+	if (len != EL_PATTERN_LEN)
-+		return false;
-+
-+	return is_cascade(pattern, EL_PATTERN_HALF_LEN, inv, false) &&
-+	       is_cascade(pattern + EL_PATTERN_HALF_LEN,
-+			  EL_PATTERN_HALF_LEN, inv, true);
-+}
-+
-+static int el15203000_pattern_set_P(struct led_classdev *ldev,
-+				    struct led_pattern *pattern,
-+				    u32 len, int repeat)
-+{
-+	u8			cmd;
-+	struct el15203000_led	*led = container_of(ldev,
-+						    struct el15203000_led,
-+						    ldev);
-+
-+	if (repeat > 0)
-+		return -EINVAL;
-+
-+	if (is_cascade(pattern, len, false, false)) {
-+		dev_dbg(led->priv->dev, "Cascade mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_CASCADE;
-+	} else if (is_cascade(pattern, len, true, false)) {
-+		dev_dbg(led->priv->dev, "Inverse cascade mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_INV_CASCADE;
-+	} else if (is_bounce(pattern, len, false)) {
-+		dev_dbg(led->priv->dev, "Bounce mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_BOUNCE;
-+	} else if (is_bounce(pattern, len, true)) {
-+		dev_dbg(led->priv->dev, "Inverse bounce mode for 0x%02x(%c)",
-+			led->reg, led->reg);
-+
-+		cmd = EL_PIPE_INV_BOUNCE;
-+	} else {
-+		dev_err(led->priv->dev, "Invalid hw_pattern for 0x%02x(%c)!",
-+			led->reg, led->reg);
-+
-+		return -EINVAL;
-+	}
-+
-+	return el15203000_cmd(led, cmd);
-+}
-+
-+static int el15203000_pattern_clear(struct led_classdev *ldev)
-+{
-+	struct el15203000_led	*led = container_of(ldev,
-+						    struct el15203000_led,
-+						    ldev);
-+
-+	return el15203000_cmd(led, EL_OFF);
-+}
-+
-+static int el15203000_probe_dt(struct el15203000 *priv)
-+{
-+	struct el15203000_led	*led = priv->leds;
-+	struct fwnode_handle	*child;
-+	int			ret;
-+
-+	device_for_each_child_node(priv->dev, child) {
-+		struct led_init_data init_data = {};
-+
-+		ret = fwnode_property_read_u32(child, "reg", &led->reg);
-+		if (ret) {
-+			dev_err(priv->dev, "LED without ID number");
-+			fwnode_handle_put(child);
-+
-+			break;
-+		}
-+
-+		if (led->reg > U8_MAX) {
-+			dev_err(priv->dev, "LED value %d is invalid", led->reg);
-+			fwnode_handle_put(child);
-+
-+			return -EINVAL;
-+		}
-+
-+		fwnode_property_read_string(child, "linux,default-trigger",
-+					    &led->ldev.default_trigger);
-+
-+		led->priv			  = priv;
-+		led->ldev.max_brightness	  = LED_ON;
-+		led->ldev.brightness_set_blocking = el15203000_set_blocking;
-+
-+		if (led->reg == 'S') {
-+			led->ldev.pattern_set	= el15203000_pattern_set_S;
-+			led->ldev.pattern_clear	= el15203000_pattern_clear;
-+		} else if (led->reg == 'P') {
-+			led->ldev.pattern_set	= el15203000_pattern_set_P;
-+			led->ldev.pattern_clear	= el15203000_pattern_clear;
-+		}
-+
-+		init_data.fwnode = child;
-+		ret = devm_led_classdev_register_ext(priv->dev, &led->ldev,
-+						     &init_data);
-+		if (ret) {
-+			dev_err(priv->dev,
-+				"failed to register LED device %s, err %d",
-+				led->ldev.name, ret);
-+			fwnode_handle_put(child);
-+
-+			break;
-+		}
-+
-+		led++;
-+	}
-+
-+	return ret;
-+}
-+
-+static int el15203000_probe(struct spi_device *spi)
-+{
-+	struct el15203000	*priv;
-+	size_t			count;
-+
-+	count = device_get_child_node_count(&spi->dev);
-+	if (!count) {
-+		dev_err(&spi->dev, "LEDs are not defined in device tree!");
-+		return -ENODEV;
-+	}
-+
-+	priv = devm_kzalloc(&spi->dev, struct_size(priv, leds, count),
-+			    GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	mutex_init(&priv->lock);
-+	priv->count	= count;
-+	priv->dev	= &spi->dev;
-+	priv->spi	= spi;
-+	priv->delay	= jiffies -
-+			  usecs_to_jiffies(EL_FW_DELAY_USEC);
-+
-+	spi_set_drvdata(spi, priv);
-+
-+	return el15203000_probe_dt(priv);
-+}
-+
-+static int el15203000_remove(struct spi_device *spi)
-+{
-+	struct el15203000 *priv = spi_get_drvdata(spi);
-+
-+	mutex_destroy(&priv->lock);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id el15203000_dt_ids[] = {
-+	{ .compatible = "crane,el15203000", },
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, el15203000_dt_ids);
-+
-+static struct spi_driver el15203000_driver = {
-+	.probe		= el15203000_probe,
-+	.remove		= el15203000_remove,
-+	.driver = {
-+		.name		= KBUILD_MODNAME,
-+		.of_match_table	= el15203000_dt_ids,
-+	},
-+};
-+
-+module_spi_driver(el15203000_driver);
-+
-+MODULE_AUTHOR("Oleh Kravchenko <oleg@kaa.org.ua>");
-+MODULE_DESCRIPTION("el15203000 LED driver");
-+MODULE_LICENSE("GPL v2");
-+MODULE_ALIAS("spi:el15203000");
--- 
-2.21.0
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBUZXJvIEtyaXN0byA8dC1rcmlz
+dG9AdGkuY29tPg0KPiBTZW50OiBUaHVyc2RheSwgMTIgU2VwdGVtYmVyIDIwMTkgNzozNiBQTQ0K
+PiBUbzogQW5rdXIgVHlhZ2kgPEFua3VyLlR5YWdpQGdhbGxhZ2hlci5jb20+OyBtYXJrLnJ1dGxh
+bmRAYXJtLmNvbTsNCj4gcm9iaCtkdEBrZXJuZWwub3JnDQo+IENjOiBkZXZpY2V0cmVlQHZnZXIu
+a2VybmVsLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDEvMl0gZHQtYmluZGluZ3M6IGNsb2Nr
+OiBhbTMzeHg6IFVwZGF0ZSBHUElPIG51bWJlciBhcw0KPiBwZXIgZGF0YXNoZWV0DQo+DQo+IE9u
+IDEyLzA5LzIwMTkgMDQ6NDgsIEFua3VyIFR5YWdpIHdyb3RlOg0KPiA+IFNpdGFyYSB0ZWNobmlj
+YWwgcmVmZXJlbmNlIG1hbnVhbCBudW1iZXJzIEdQSU8gZnJvbSAwLTMgd2hlcmVhcw0KPiA+IGlu
+IGNvZGUgR1BJTyBhcmUgbnVtYmVyZWQgZnJvbSAxLTQuDQo+ID4NCj4NCj4gWW91IGFyZSByaWdo
+dCB0aGF0IFRSTSBzdGF0ZXMgdGhlc2UgYXJlIDAtMywgYnV0IGp1c3QgdG8gY2hhbmdlIHRoZQ0K
+PiBudW1iZXJpbmcgYXQgdGhpcyBwb2ludCBzZWVtcyB1bm5lY2Vzc2FyeSBjaHVybiBmb3IgdGhl
+IG1pbm9yDQo+IGluY29udmVuaWVuY2UgaXQgY2F1c2VzLiBBbHNvLCBJIHRoaW5rIHdlIGhhdmUg
+c2ltaWxhciBpbmRleGluZyBpc3N1ZXMNCj4gYWxsIG92ZXIgdGhlIHBsYWNlLCBzaG91bGQgd2Ug
+Zml4IHRoZW0gYWxsPyBBdCBsZWFzdCBhbTQgaGFzIGV4YWN0IHNhbWUNCj4gaW5kZXhpbmcgaXNz
+dWUgZm9yIGdwaW9zLiBUaGV5IGhhdmUgYmVlbiBoaXN0b3JpY2FsbHkgY2FsbGVkIDEtNCBzaW5j
+ZQ0KPiBpbnRyb2R1Y3Rpb24gdG8gbGludXgga2VybmVsIHNvbWUgNiB5ZWFycyBhbHJlYWR5IChh
+cyBod21vZCBkYXRhKS4gOikNCg0KSSBrbm93IGl0IGlzIGEgbWlub3IgaW5jb252ZW5pZW5jZSBv
+bmNlIHlvdSBmaWd1cmUgaXQgb3V0IPCfmIoNCk9uZSBvZiBvdXIgcHJvZHVjdCBpcyBiYXNlZCB1
+cG9uIGFtMzM1eCBhbmQgSSB3YXMgd3JpdGluZyBhIGRyaXZlcg0Kd2hpY2ggbmVlZGVkIHRvIHJl
+YWQgR1BJTzIgbWVtb3J5IGFuZCB3YXMgY2F1c2luZyBrZXJuZWwgcGFuaWMgYXMgR1BJTzIgT0NQ
+IGNsb2NrDQphbmQgZmNsayBpcyBub3QgZW5hYmxlZCBieSBkZWZhdWx0LiBJIGxvb2tlZCBpbnNp
+ZGUgYW0zM3h4LWNsb2Nrcy5kdHNpIGFuZCBmb3VuZA0KImdwaW8wX2RiY2xrX211eF9jayIgYW5k
+IG15IGJyYWluIHdpcmVkIGl0c2VsZiBmb3IgbnVtYmVyaW5nIDAtMyBhbmQgZ3JhYmJlZA0KQU0z
+X0dQSU8yX0NMS0NUUkwgYnV0IGNsb2NrIHdhcyBub3QgZ2V0dGluZyBlbmFibGVkLiBUaGVuIGFm
+dGVyIHNvbWUgZGVidWdnaW5nIGZvdW5kDQpvdXQgbnVtYmVyaW5nIGlzc3VlLiBBbmQgdGhpcyBj
+YW4gaGFwcGVuIHdpdGggYW55b25lIHRoYXQncyB3aHkgdGhvdWdodCBvZiBmaXhpbmcgaXQg8J+Y
+ig0KDQo+IEFsc28sIHlvdXIgcGF0Y2hlcyBjYXVzZSBiaXNlY3QgYnJlYWsgcG9pbnRzLCB0cnkg
+dG8gYXBwbHkgdGhpcyBwYXRjaA0KPiBvbmx5IHRvIGtlcm5lbCBhbmQgdHJ5IHRvIGNvbXBpbGUg
+YW5kIHNlZSB3aGF0IGhhcHBlbnMuLi4uIGFuZCB5b3UgZG9uJ3QNCj4gdG91Y2ggdGhlIERUIHNp
+ZGUgZm9yIHRoZXNlIGVpdGhlciB3aGljaCBjYXVzZXMgYW5vdGhlciBjb21waWxlIGJyZWFrYWdl
+Lg0KDQpJIGFjdHVhbGx5IHNlbnQgRFQgZml4IGluIHNlcGFyYXRlIG1haWxpbmcgbGlzdCwgd2ls
+bCByZXNlbmQgZXZlcnl0aGluZyBpbiBzYW1lIGxpc3QNCnRvIGtlZXAgdGhpbmdzIHNpbXBsZS4g
+SSB3aWxsIHJlY2hlY2sgdGhlIGNvbXBpbGF0aW9uIGlzc3VlLCBpdCB3b3JrZWQgaW4gbXkgc2V0
+dXANCg0KPiBTbywgZnJvbSBteSBzaWRlLCBOQUsgZm9yIGJvdGggcGF0Y2hlcywgSSBjYW4ndCBz
+ZWUgd2h5IHdlIHNob3VsZCBkbw0KPiBzdWNoIGEgc21hbGwgY2hhbmdlIGFuZCBjYXVzZSBzbyBt
+YW55IHByb2JsZW1zLi4uIG5vdCB0byBtZW50aW9uIHRoZQ0KPiBjb21waWxlIGlzc3Vlcy4NCj4N
+Cj4gRG8geW91IGhhdmUgc29tZSBzcGVjaWZpYyByZWFzb24gd2h5IHlvdSB3YW50IHRoZXNlIGNo
+YW5nZWQ/DQo+DQo+IC1UZXJvDQoNClJlZ2FyZHMNCkFua3VyDQo+DQo+ID4gU2lnbmVkLW9mZi1i
+eTogQW5rdXIgVHlhZ2kgPGFua3VyLnR5YWdpQGdhbGxhZ2hlci5jb20+DQo+ID4gLS0tDQo+ID4g
+ICBpbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2FtMy5oIHwgMTYgKysrKysrKystLS0tLS0tLQ0K
+PiA+ICAgMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgOCBkZWxldGlvbnMoLSkNCj4g
+Pg0KPiA+IGRpZmYgLS1naXQgYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2FtMy5oIGIvaW5j
+bHVkZS9kdC0NCj4gYmluZGluZ3MvY2xvY2svYW0zLmgNCj4gPiBpbmRleCA4OTQ5NTE1NDEyNzYu
+Ljk4MGZkYzA1YzNkMCAxMDA2NDQNCj4gPiAtLS0gYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2Nr
+L2FtMy5oDQo+ID4gKysrIGIvaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9hbTMuaA0KPiA+IEBA
+IC00MSw5ICs0MSw5IEBADQo+ID4gICAjZGVmaW5lIEFNM19STkdfQ0xLQ1RSTEFNM19MNF9QRVJf
+Q0xLQ1RSTF9JTkRFWCgweDkwKQ0KPiA+ICAgI2RlZmluZSBBTTNfQUVTX0NMS0NUUkxBTTNfTDRf
+UEVSX0NMS0NUUkxfSU5ERVgoMHg5NCkNCj4gPiAgICNkZWZpbmUgQU0zX1NIQU1fQ0xLQ1RSTEFN
+M19MNF9QRVJfQ0xLQ1RSTF9JTkRFWCgweGEwKQ0KPiA+IC0jZGVmaW5lIEFNM19HUElPMl9DTEtD
+VFJMQU0zX0w0X1BFUl9DTEtDVFJMX0lOREVYKDB4YWMpDQo+ID4gLSNkZWZpbmUgQU0zX0dQSU8z
+X0NMS0NUUkxBTTNfTDRfUEVSX0NMS0NUUkxfSU5ERVgoMHhiMCkNCj4gPiAtI2RlZmluZSBBTTNf
+R1BJTzRfQ0xLQ1RSTEFNM19MNF9QRVJfQ0xLQ1RSTF9JTkRFWCgweGI0KQ0KPiA+ICsjZGVmaW5l
+IEFNM19HUElPMV9DTEtDVFJMQU0zX0w0X1BFUl9DTEtDVFJMX0lOREVYKDB4YWMpDQo+ID4gKyNk
+ZWZpbmUgQU0zX0dQSU8yX0NMS0NUUkxBTTNfTDRfUEVSX0NMS0NUUkxfSU5ERVgoMHhiMCkNCj4g
+PiArI2RlZmluZSBBTTNfR1BJTzNfQ0xLQ1RSTEFNM19MNF9QRVJfQ0xLQ1RSTF9JTkRFWCgweGI0
+KQ0KPiA+ICAgI2RlZmluZSBBTTNfVFBDQ19DTEtDVFJMQU0zX0w0X1BFUl9DTEtDVFJMX0lOREVY
+KDB4YmMpDQo+ID4gICAjZGVmaW5lIEFNM19EX0NBTjBfQ0xLQ1RSTEFNM19MNF9QRVJfQ0xLQ1RS
+TF9JTkRFWCgweGMwKQ0KPiA+ICAgI2RlZmluZSBBTTNfRF9DQU4xX0NMS0NUUkxBTTNfTDRfUEVS
+X0NMS0NUUkxfSU5ERVgoMHhjNCkNCj4gPiBAQCAtNjksNyArNjksNyBAQA0KPiA+ICAgI2RlZmlu
+ZSBBTTNfTDRfV0tVUF9DTEtDVFJMX09GRlNFVDB4NA0KPiA+ICAgI2RlZmluZSBBTTNfTDRfV0tV
+UF9DTEtDVFJMX0lOREVYKG9mZnNldCkoKG9mZnNldCkgLQ0KPiBBTTNfTDRfV0tVUF9DTEtDVFJM
+X09GRlNFVCkNCj4gPiAgICNkZWZpbmUgQU0zX0NPTlRST0xfQ0xLQ1RSTA0KPiBBTTNfTDRfV0tV
+UF9DTEtDVFJMX0lOREVYKDB4NCkNCj4gPiAtI2RlZmluZSBBTTNfR1BJTzFfQ0xLQ1RSTA0KPiBB
+TTNfTDRfV0tVUF9DTEtDVFJMX0lOREVYKDB4OCkNCj4gPiArI2RlZmluZSBBTTNfR1BJTzBfQ0xL
+Q1RSTA0KPiBBTTNfTDRfV0tVUF9DTEtDVFJMX0lOREVYKDB4OCkNCj4gPiAgICNkZWZpbmUgQU0z
+X0w0X1dLVVBfQ0xLQ1RSTA0KPiBBTTNfTDRfV0tVUF9DTEtDVFJMX0lOREVYKDB4YykNCj4gPiAg
+ICNkZWZpbmUgQU0zX0RFQlVHU1NfQ0xLQ1RSTA0KPiBBTTNfTDRfV0tVUF9DTEtDVFJMX0lOREVY
+KDB4MTQpDQo+ID4gICAjZGVmaW5lIEFNM19XS1VQX00zX0NMS0NUUkwNCj4gQU0zX0w0X1dLVVBf
+Q0xLQ1RSTF9JTkRFWCgweGIwKQ0KPiA+IEBAIC0xMjEsOSArMTIxLDkgQEANCj4gPiAgICNkZWZp
+bmUgQU0zX0w0TFNfVElNRVIzX0NMS0NUUkwNCj4gQU0zX0w0TFNfQ0xLQ1RSTF9JTkRFWCgweDg0
+KQ0KPiA+ICAgI2RlZmluZSBBTTNfTDRMU19USU1FUjRfQ0xLQ1RSTA0KPiBBTTNfTDRMU19DTEtD
+VFJMX0lOREVYKDB4ODgpDQo+ID4gICAjZGVmaW5lIEFNM19MNExTX1JOR19DTEtDVFJMQU0zX0w0
+TFNfQ0xLQ1RSTF9JTkRFWCgweDkwKQ0KPiA+IC0jZGVmaW5lIEFNM19MNExTX0dQSU8yX0NMS0NU
+UkxBTTNfTDRMU19DTEtDVFJMX0lOREVYKDB4YWMpDQo+ID4gLSNkZWZpbmUgQU0zX0w0TFNfR1BJ
+TzNfQ0xLQ1RSTEFNM19MNExTX0NMS0NUUkxfSU5ERVgoMHhiMCkNCj4gPiAtI2RlZmluZSBBTTNf
+TDRMU19HUElPNF9DTEtDVFJMQU0zX0w0TFNfQ0xLQ1RSTF9JTkRFWCgweGI0KQ0KPiA+ICsjZGVm
+aW5lIEFNM19MNExTX0dQSU8xX0NMS0NUUkwNCj4gQU0zX0w0TFNfQ0xLQ1RSTF9JTkRFWCgweGFj
+KQ0KPiA+ICsjZGVmaW5lIEFNM19MNExTX0dQSU8yX0NMS0NUUkwNCj4gQU0zX0w0TFNfQ0xLQ1RS
+TF9JTkRFWCgweGIwKQ0KPiA+ICsjZGVmaW5lIEFNM19MNExTX0dQSU8zX0NMS0NUUkwNCj4gQU0z
+X0w0TFNfQ0xLQ1RSTF9JTkRFWCgweGI0KQ0KPiA+ICAgI2RlZmluZSBBTTNfTDRMU19EX0NBTjBf
+Q0xLQ1RSTA0KPiBBTTNfTDRMU19DTEtDVFJMX0lOREVYKDB4YzApDQo+ID4gICAjZGVmaW5lIEFN
+M19MNExTX0RfQ0FOMV9DTEtDVFJMDQo+IEFNM19MNExTX0NMS0NUUkxfSU5ERVgoMHhjNCkNCj4g
+PiAgICNkZWZpbmUgQU0zX0w0TFNfRVBXTVNTMV9DTEtDVFJMDQo+IEFNM19MNExTX0NMS0NUUkxf
+SU5ERVgoMHhjYykNCj4gPiBAQCAtMTg0LDcgKzE4NCw3IEBADQo+ID4NCj4gPiAgIC8qIGw0X3dr
+dXAgY2xvY2tzICovDQo+ID4gICAjZGVmaW5lIEFNM19MNF9XS1VQX0NPTlRST0xfQ0xLQ1RSTA0K
+PiBBTTNfQ0xLQ1RSTF9JTkRFWCgweDQpDQo+ID4gLSNkZWZpbmUgQU0zX0w0X1dLVVBfR1BJTzFf
+Q0xLQ1RSTEFNM19DTEtDVFJMX0lOREVYKDB4OCkNCj4gPiArI2RlZmluZSBBTTNfTDRfV0tVUF9H
+UElPMF9DTEtDVFJMQU0zX0NMS0NUUkxfSU5ERVgoMHg4KQ0KPiA+ICAgI2RlZmluZSBBTTNfTDRf
+V0tVUF9MNF9XS1VQX0NMS0NUUkwNCj4gQU0zX0NMS0NUUkxfSU5ERVgoMHhjKQ0KPiA+ICAgI2Rl
+ZmluZSBBTTNfTDRfV0tVUF9VQVJUMV9DTEtDVFJMQU0zX0NMS0NUUkxfSU5ERVgoMHhiNCkNCj4g
+PiAgICNkZWZpbmUgQU0zX0w0X1dLVVBfSTJDMV9DTEtDVFJMQU0zX0NMS0NUUkxfSU5ERVgoMHhi
+OCkNCj4gPg0KPg0KPiAtLQ0KPiBUZXhhcyBJbnN0cnVtZW50cyBGaW5sYW5kIE95LCBQb3Jra2Fs
+YW5rYXR1IDIyLCAwMDE4MCBIZWxzaW5raS4gWS0NCj4gdHVubnVzL0J1c2luZXNzIElEOiAwNjE1
+NTIxLTQuIEtvdGlwYWlra2EvRG9taWNpbGU6IEhlbHNpbmtpDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KIFRoaXMgZW1haWwgaXMgY29uZmlkZW50aWFsIGFuZCBtYXkgY29udGFp
+biBpbmZvcm1hdGlvbiBzdWJqZWN0IHRvIGxlZ2FsIHByaXZpbGVnZS4gSWYgeW91IGFyZSBub3Qg
+dGhlIGludGVuZGVkIHJlY2lwaWVudCBwbGVhc2UgYWR2aXNlIHVzIG9mIG91ciBlcnJvciBieSBy
+ZXR1cm4gZS1tYWlsIHRoZW4gZGVsZXRlIHRoaXMgZW1haWwgYW5kIGFueSBhdHRhY2hlZCBmaWxl
+cy4gWW91IG1heSBub3QgY29weSwgZGlzY2xvc2Ugb3IgdXNlIHRoZSBjb250ZW50cyBpbiBhbnkg
+d2F5LiBUaGUgdmlld3MgZXhwcmVzc2VkIGluIHRoaXMgZW1haWwgbWF5IG5vdCBiZSB0aG9zZSBv
+ZiBHYWxsYWdoZXIgR3JvdXAgTHRkIG9yIHN1YnNpZGlhcnkgY29tcGFuaWVzIHRoZXJlb2YuDQpf
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0K
