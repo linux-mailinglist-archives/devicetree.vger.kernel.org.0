@@ -2,88 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCD0B1328
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 19:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADD5DB1343
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 19:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731069AbfILREU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 13:04:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36470 "EHLO mail.kernel.org"
+        id S1730156AbfILRKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 13:10:00 -0400
+Received: from muru.com ([72.249.23.125]:60600 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731067AbfILREU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 13:04:20 -0400
-Received: from localhost (unknown [117.99.85.83])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6CD0D2081B;
-        Thu, 12 Sep 2019 17:04:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568307859;
-        bh=WfnIOTHHePxhKxrFtGHlrl53zHUSmfXSu0kmiCkwyOA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=mXNE/u6UvfnaDeSnwEVQ4IHgTnhUlCvp2ShHPoTKL+IFA3nrvHlOT5jYZlU/OfQll
-         cS7hs8yK1pXOu+T2/iq5boJhLu95IfWeoTDi3dprf2uKYotdUHrxeYCoBLkTYTmbYO
-         f0l06M5DZ+MY3A5TO2K3t2kPJ7CRwBLpeOBljp8o=
-Date:   Thu, 12 Sep 2019 22:33:12 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     robh+dt@kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC 1/3] dt-bindings: dma: Add documentation for DMA domains
-Message-ID: <20190912170312.GD4392@vkoul-mobl>
-References: <20190906141816.24095-1-peter.ujfalusi@ti.com>
- <20190906141816.24095-2-peter.ujfalusi@ti.com>
- <961d30ea-d707-1120-7ecf-f51c11c41891@ti.com>
- <20190908121058.GL2672@vkoul-mobl>
- <a452cd06-79ca-424d-b259-c8d60fc59772@ti.com>
+        id S1728598AbfILRKA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 13:10:00 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id E523880B6;
+        Thu, 12 Sep 2019 17:10:27 +0000 (UTC)
+Date:   Thu, 12 Sep 2019 10:09:53 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     Tero Kristo <t-kristo@ti.com>
+Cc:     linux-omap@vger.kernel.org, ssantosh@kernel.org,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, s-anna@ti.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCHv5 10/10] ARM: OMAP2+: pdata-quirks: add PRM data for
+ reset support
+Message-ID: <20190912170953.GT52127@atomide.com>
+References: <20190912113916.20093-1-t-kristo@ti.com>
+ <20190912113916.20093-11-t-kristo@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <a452cd06-79ca-424d-b259-c8d60fc59772@ti.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190912113916.20093-11-t-kristo@ti.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-09-19, 09:30, Peter Ujfalusi wrote:
+* Tero Kristo <t-kristo@ti.com> [190912 11:40]:
+> @@ -565,6 +566,12 @@ void omap_pcs_legacy_init(int irq, void (*rearm)(void))
+>  	pcs_pdata.rearm = rearm;
+>  }
+>  
+> +static struct ti_prm_platform_data ti_prm_pdata = {
+> +	.clkdm_deny_idle = clkdm_deny_idle,
+> +	.clkdm_allow_idle = clkdm_allow_idle,
+> +	.clkdm_lookup = clkdm_lookup,
+> +};
+> +
+>  /*
+>   * GPIOs for TWL are initialized by the I2C bus and need custom
+>   * handing until DSS has device tree bindings.
+> @@ -664,6 +671,11 @@ static struct of_dev_auxdata omap_auxdata_lookup[] = {
+>  	/* Common auxdata */
+>  	OF_DEV_AUXDATA("ti,sysc", 0, NULL, &ti_sysc_pdata),
+>  	OF_DEV_AUXDATA("pinctrl-single", 0, NULL, &pcs_pdata),
+> +	OF_DEV_AUXDATA("ti,omap4-prm-inst", 0, NULL, &ti_prm_pdata),
+> +	OF_DEV_AUXDATA("ti,omap5-prm-inst", 0, NULL, &ti_prm_pdata),
+> +	OF_DEV_AUXDATA("ti,dra7-prm-inst", 0, NULL, &ti_prm_pdata),
+> +	OF_DEV_AUXDATA("ti,am3-prm-inst", 0, NULL, &ti_prm_pdata),
+> +	OF_DEV_AUXDATA("ti,am4-prm-inst", 0, NULL, &ti_prm_pdata),
+>  	{ /* sentinel */ },
+>  };
 
-> >> or domain-dma-controller?
-> > 
-> > I feel dma-domain-controller sounds fine as we are defining domains for
-> > dmaengine. Another thought which comes here is that why not extend this to
-> > slave as well and define dma-domain-controller for them as use that for
-> > filtering, that is what we really need along with slave id in case a
-> > specific channel is to be used by a peripheral
-> > 
-> > Thoughts..?
-> 
-> I have thought about this, we should be able to drop the phandle to the
-> dma controller from the slave binding just fine.
-> 
-> However we have the dma routers for the slave channels and there is no
-> clear way to handle them.
-> They are not needed for non slave channels as there is no trigger to
-> route. In DRA7 for example we have an event router for EDMA and another
-> one for sDMA. If a slave device is to be serviced by EDMA, the EDMA
-> event router needs to be specified, for sDMA clients should use the sDMA
-> event router.
+Hmm I think I already commented on this.. Just one entry please:
 
-So you have dma, xbar and client? And you need to use a specfic xbar,
-did i get that right?
+	OF_DEV_AUXDATA("ti,omap-prm-inst", 0, NULL, &ti_prm_pdata),
 
-> In DRA7 case we don't really have DMA controllers for domains, but we
-> use the DMA which can service the peripheral better (sDMA is better to
-> be used for UART, but can not be used for McASP for example)
-> 
-> Then we have the other type of DMA router for daVinci/am33xx/am43xx
-> where the crossbar is not for the whole EDMA controller like in DRA7,
-> but we have small crossbars for some channels.
-> 
-> Other vendors have their own dma router topology..
-> 
-> Too many variables to handle the cases without gotchas, which would need
-> heavy churn in the core or in drivers.
+As the auxdata is the same for all of them. Note that all the
+dts files need to have also the generic compatible
+"ti,omap-prm-inst" after the SoC specific one.
 
--- 
-~Vinod
+Regards,
+
+Tony
