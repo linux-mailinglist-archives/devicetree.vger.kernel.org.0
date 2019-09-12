@@ -2,88 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35AE3B0C54
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 12:11:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47CFEB0C57
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 12:12:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730458AbfILKLr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 06:11:47 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44274 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730982AbfILKLq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 06:11:46 -0400
-Received: by mail-lj1-f193.google.com with SMTP id u14so22998299ljj.11
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 03:11:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=4vEs9WeFlLNAO6DjHLn6Vtkhi8L0t325kmZ0jO3y+Wc=;
-        b=NcYAwdsi28+vjx08eTFDNGKCd5XONjCjq2/QkOSeDBdhC+w3nD8DC27b+UvFvDLbLs
-         /z8u3u9qYsBnfd/QOEG4/BwX4MI6VRxCCQculwd/WF1kd4hjYUzRY9lWo/6/He2OjzMD
-         7VDz+b/xKsW/eAU/rIlfF5tzuV83nBGL/q63zj74cWBCppYPveJO3ntCM4Tg3VcvkQdj
-         bs4Swi+W0EMkGOLnHmvc5u/fdozNpS/BPIg1qWJTeYPiuDre5tJ23HeewG5fTbolLIl4
-         r9wq5vjgg9LgD+IBWnz6yzJYHf39aHZjSdZTlFbw7i1mT6ljfGyyhfEGSMXl6jWH8wEP
-         GVrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4vEs9WeFlLNAO6DjHLn6Vtkhi8L0t325kmZ0jO3y+Wc=;
-        b=qRlhChpbw7IY/VIbcCHBHDOk/Qro82oy8pFZD7mKkwA4P3VZNUEPy2S0WbIURVgAgR
-         mgCGdBBSMfAoIyiF8WwGQeR5L7vXduDN1M8WFBuxnUVXk0jQFeQzYc0q98hVoWMLwo1Q
-         q+usWGccLXXRGM0LqeAFXXYSA7/HVu9dVCQ1l2crwGpNTDCJr4dNIbFTvhSKuzrt8v4F
-         teMDOzDIOcgWIAzwBpNLzGOeQqMrGv83WMm9phZcc1kJ5NJjKtR8ChhZfr61JoNamG7P
-         yR4RlvQwwPf/ajhOT8AnqH+3PqIo+by0pEnpm9udd5Esg0Q1DKV6H4jYfCCz1E+UvzuT
-         D+zw==
-X-Gm-Message-State: APjAAAUKMnzlNRUkq2JpYFPaWfgMb6InLWT416lr4QJWjltkhmyN07KM
-        VTTdJRK3HgGLwILbz82iNTMGeTiDCxQwPTVcIQEIIg==
-X-Google-Smtp-Source: APXvYqxb3KEOIkMavy8eX3cExL/IC+pSzxilfnvqDLs4HTLm858UzgLR2nTJiHu9gy8/sLKtJYCibJo1y8MYZwIb0sI=
-X-Received: by 2002:a2e:9dc3:: with SMTP id x3mr22449421ljj.108.1568283104833;
- Thu, 12 Sep 2019 03:11:44 -0700 (PDT)
+        id S1730581AbfILKMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 06:12:43 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:43087 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730386AbfILKMn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 06:12:43 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i8M5h-0001Ib-VH; Thu, 12 Sep 2019 12:12:41 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1i8M5g-0007GA-TS; Thu, 12 Sep 2019 12:12:40 +0200
+Date:   Thu, 12 Sep 2019 12:12:40 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Gilles Doffe <gilles.doffe@savoirfairelinux.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        mark rutland <mark.rutland@arm.com>,
+        festevam <festevam@gmail.com>, s hauer <s.hauer@pengutronix.de>,
+        rennes <rennes@savoirfairelinux.com>,
+        robh+dt <robh+dt@kernel.org>, linux-imx <linux-imx@nxp.com>,
+        kernel <kernel@pengutronix.de>,
+        =?iso-8859-1?Q?J=E9rome?= Oufella 
+        <jerome.oufella@savoirfairelinux.com>,
+        shawnguo <shawnguo@kernel.org>
+Subject: Re: [PATCH v2] arm: dts: imx6qdl: add gpio expander pca9535
+Message-ID: <20190912101240.ml5jmdei5rvzesap@pengutronix.de>
+References: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com>
+ <20190722075341.e4ve45rneusiogtk@pengutronix.de>
+ <978100557.7721358.1568282514403.JavaMail.zimbra@savoirfairelinux.com>
 MIME-Version: 1.0
-References: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
-In-Reply-To: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 12 Sep 2019 11:11:32 +0100
-Message-ID: <CACRpkdb7bPo7oH9w5OhAsOoQXx=MWjJELd5JvBt3R1sPdMjnpw@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] pinctrl: Add new pinctrl/GPIO driver
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        Andriy Shevchenko <andriy.shevchenko@intel.com>,
-        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
-        cheol.yong.kim@intel.com,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <978100557.7721358.1568282514403.JavaMail.zimbra@savoirfairelinux.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 12:08:06 up 117 days, 16:26, 67 users,  load average: 0.19, 0.17,
+ 0.09
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rahul,
+Hi Gilles,
 
-thanks for your patches!
+On 19-09-12 06:01, Gilles Doffe wrote:
+> Hi Marco,
+> 
+> Thanks for your reply and sorry about the delay.
 
-On Thu, Sep 12, 2019 at 8:59 AM Rahul Tanwar
-<rahul.tanwar@linux.intel.com> wrote:
+No worries ;)
 
-> This series is to add pinctrl & GPIO controller driver for a new SoC.
-> Patch 1 adds pinmux & GPIO controller driver.
-> Patch 2 adds the dt bindings document & include file.
->
-> Patches are against Linux 5.3-rc5 at below Git tree:
-> git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git
+> ----- Le 22 Juil 19, à 9:53, Marco Felsch m.felsch@pengutronix.de a écrit :
+> 
+> > Hi Gilles,
+> > 
+> > can you adapt the patch title, I assumed that the base dtsi is adding a
+> > gpio-expander which makes no sense.
+> 
+> My first intent was to add the gpio-expander pca9535 into the imx6q-rex-pro.dts and in a future imx6qp-rex-ultra.dts
+> However I noticed that the sgtl5000 was already in the dtsi.
+> It is maybe due to the fact that like the pca9535, the sgtl5000 is present on the baseboard not on the SOM.
+> Thus I guess that baseboard stuff common to all rex SOM should be in imx6qdl-rex.dtsi and not in the dts.
+> Does-it seem correct to you ?
 
-OK nice, I think you need to include Mika Westerberg on this review
-as well, because I think he likes to stay on top of all things intel
-in pin control. (Also included two other Intel folks in Finland who usually
-take an interest in these things.)
+Yes this is correct what Shawn and I mean is that you should adapt the
+commit title. Shawn already give you an example.
 
-Yours,
-Linus Walleij
+> > 
+> > On 19-07-19 12:46, Gilles DOFFE wrote:
+> >> The pca9535 gpio expander is present on the Rex baseboard, but missing
+> >> from the dtsi.
+> >> 
+> >> Add the new gpio controller and the associated interrupt line
+> >> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
+> >> 
+> >> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+> >> ---
+> > 
+> > Having a changelog would be nice too.
+> > 
+> >>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
+> >>  1 file changed, 19 insertions(+)
+> >> 
+> >> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> >> b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> >> index 97f1659144ea..b517efb22fcb 100644
+> >> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> >> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> >> @@ -136,6 +136,19 @@
+> >>  		compatible = "atmel,24c02";
+> >>  		reg = <0x57>;
+> >>  	};
+> >> +
+> >> +	pca9535: gpio8@27 {
+> >> +		compatible = "nxp,pca9535";
+> >> +		reg = <0x27>;
+> > 
+> > The i2c devices are orderd by their i2c-addresses starting from the
+> > lowest.
+> >
+> 
+> Ack.
+> 
+> >> +		gpio-controller;
+> >> +		#gpio-cells = <2>;
+> >> +		pinctrl-names = "default";
+> >> +		pinctrl-0 = <&pinctrl_pca9535>;
+> >> +		interrupt-parent = <&gpio6>;
+> >> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> >> +		interrupt-controller;
+> >> +		#interrupt-cells = <2>;
+
+As you pointed out above this device isn't available on the
+imx6dl-rex-basic? You should add: 'status = "disabled";' if this is the
+case.
+
+Regards,
+  Marco
+
+> >> +	};
+> >>  };
+> >>  
+> >>  &i2c3 {
+> >> @@ -237,6 +250,12 @@
+> >>  			>;
+> >>  		};
+> >>  
+> >> +		pinctrl_pca9535: pca9535 {
+> >> +			fsl,pins = <
+> >> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
+> > 
+> > The pinmux below don't use the leading zero's if you are the first I
+> > would drop that.
+> > 
+> > Regards,
+> >  Marco
+> >
+> 
+> Ack.
+> 
+> Regards,
+> Gilles
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
