@@ -2,80 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D07B09A5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 09:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2522B09C6
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 09:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729061AbfILHoF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 03:44:05 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:35733 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726965AbfILHoF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 03:44:05 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i8Jlr-0001qk-0T; Thu, 12 Sep 2019 09:44:03 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i8Jlh-00023h-Ee; Thu, 12 Sep 2019 09:43:53 +0200
-Date:   Thu, 12 Sep 2019 09:43:53 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Joerg Roedel <joro@8bytes.org>
-Cc:     devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-kernel@vger.kernel.org, iommu@lists.linux-foundation.org,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-mediatek@lists.infradead.org, kernel@pengutronix.de,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v1 1/2] iommu: pass cell_count = -1 to
- of_for_each_phandle with cells_name
-Message-ID: <20190912074353.wqohpfydjxueqade@pengutronix.de>
-References: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
- <20190903125210.GB11530@8bytes.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190903125210.GB11530@8bytes.org>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726308AbfILH7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 03:59:19 -0400
+Received: from mga01.intel.com ([192.55.52.88]:35408 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725765AbfILH7T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 03:59:19 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Sep 2019 00:59:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,492,1559545200"; 
+   d="scan'208";a="179287310"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by orsmga008.jf.intel.com with ESMTP; 12 Sep 2019 00:59:13 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     linus.walleij@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        andriy.shevchenko@intel.com, qi-ming.wu@intel.com,
+        yixin.zhu@linux.intel.com, cheol.yong.kim@intel.com,
+        Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v1 0/2] pinctrl: Add new pinctrl/GPIO driver
+Date:   Thu, 12 Sep 2019 15:59:09 +0800
+Message-Id: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 03, 2019 at 02:52:10PM +0200, Joerg Roedel wrote:
-> On Sat, Aug 24, 2019 at 03:28:45PM +0200, Uwe Kleine-König wrote:
-> > Currently of_for_each_phandle ignores the cell_count parameter when a
-> > cells_name is given. I intend to change that and let the iterator fall
-> > back to a non-negative cell_count if the cells_name property is missing
-> > in the referenced node.
-> > 
-> > To not change how existing of_for_each_phandle's users iterate, fix them
-> > to pass cell_count = -1 when also cells_name is given which yields the
-> > expected behaviour with and without my change.
-> > 
-> > Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > ---
-> >  drivers/iommu/arm-smmu.c     | 2 +-
-> >  drivers/iommu/mtk_iommu_v1.c | 2 +-
-> >  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> Acked-by: Joerg Roedel <jroedel@suse.de>
+Hi,
 
-Does this ack mean that Rob is expected to apply this together with
-patch 2?
+This series is to add pinctrl & GPIO controller driver for a new SoC.
+Patch 1 adds pinmux & GPIO controller driver.
+Patch 2 adds the dt bindings document & include file.
 
-Best regards
-Uwe
+Patches are against Linux 5.3-rc5 at below Git tree:
+git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git
+
+
+Rahul Tanwar (2):
+  pinctrl: Add pinmux & GPIO controller driver for new SoC
+  dt-bindings: pinctrl: intel: Add for new SoC
+
+ .../bindings/pinctrl/intel,lgm-pinctrl.yaml        |  131 ++
+ drivers/pinctrl/Kconfig                            |   13 +
+ drivers/pinctrl/Makefile                           |    1 +
+ drivers/pinctrl/pinctrl-equilibrium.c              | 1377 ++++++++++++++++++++
+ drivers/pinctrl/pinctrl-equilibrium.h              |  194 +++
+ include/dt-bindings/pinctrl/intel,equilibrium.h    |   23 +
+ 6 files changed, 1739 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/intel,lgm-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/pinctrl-equilibrium.c
+ create mode 100644 drivers/pinctrl/pinctrl-equilibrium.h
+ create mode 100644 include/dt-bindings/pinctrl/intel,equilibrium.h
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+2.11.0
+
