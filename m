@@ -2,104 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00508B152B
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA91FB1526
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:09:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727764AbfILUJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 16:09:48 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:45368 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727752AbfILUJr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 16:09:47 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8CK9PoF109697;
-        Thu, 12 Sep 2019 15:09:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568318965;
-        bh=16OqD2YMbnKdC6QRUB/lstU38e2Kzn/xLVzjMK9d4Fk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=A01AIhVgDkqOT4Mu/kRkM4untpi8TLC/eI7KZniejEmoiN5TrobB0F/cE81XdVCpc
-         MhH/nqk+5kxCLQxhdIz6unn/IcpMyrTIMv3d8OUx9JOC6A2a81HGUrra8EpNbqKZ/u
-         Rlu/aICwUh8uMNE/WE673u+LFj83m2LbKI1uKrdY=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8CK9P7e027699
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 12 Sep 2019 15:09:25 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 12
- Sep 2019 15:09:25 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 12 Sep 2019 15:09:25 -0500
-Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8CK9MQv004968;
-        Thu, 12 Sep 2019 15:09:23 -0500
-Subject: Re: [PATCHv5 10/10] ARM: OMAP2+: pdata-quirks: add PRM data for reset
- support
-To:     Tony Lindgren <tony@atomide.com>
-CC:     <linux-omap@vger.kernel.org>, <ssantosh@kernel.org>,
-        <p.zabel@pengutronix.de>, <robh+dt@kernel.org>, <s-anna@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20190912113916.20093-1-t-kristo@ti.com>
- <20190912113916.20093-11-t-kristo@ti.com>
- <20190912170953.GT52127@atomide.com>
-From:   Tero Kristo <t-kristo@ti.com>
-Message-ID: <4103d986-20fa-0dce-df6b-b0955ceabd74@ti.com>
-Date:   Thu, 12 Sep 2019 23:09:21 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726203AbfILUJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 16:09:40 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:47151 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726529AbfILUJk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 16:09:40 -0400
+X-Originating-IP: 85.243.204.24
+Received: from uno.lan (bl10-204-24.dsl.telepac.pt [85.243.204.24])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id B043B20002;
+        Thu, 12 Sep 2019 20:09:36 +0000 (UTC)
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        tfiga@google.com, pavel@ucw.cz, Rob Herring <robh+dt@kernel.org>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
+        (V4L/DVB)), devicetree@vger.kernel.org
+Subject: [PATCH v3 01/11] dt-bindings: video-interfaces: Document 'location' property
+Date:   Thu, 12 Sep 2019 22:10:45 +0200
+Message-Id: <20190912201055.13964-2-jacopo@jmondi.org>
+X-Mailer: git-send-email 2.23.0
+In-Reply-To: <20190912201055.13964-1-jacopo@jmondi.org>
+References: <20190912201055.13964-1-jacopo@jmondi.org>
 MIME-Version: 1.0
-In-Reply-To: <20190912170953.GT52127@atomide.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/2019 20:09, Tony Lindgren wrote:
-> * Tero Kristo <t-kristo@ti.com> [190912 11:40]:
->> @@ -565,6 +566,12 @@ void omap_pcs_legacy_init(int irq, void (*rearm)(void))
->>   	pcs_pdata.rearm = rearm;
->>   }
->>   
->> +static struct ti_prm_platform_data ti_prm_pdata = {
->> +	.clkdm_deny_idle = clkdm_deny_idle,
->> +	.clkdm_allow_idle = clkdm_allow_idle,
->> +	.clkdm_lookup = clkdm_lookup,
->> +};
->> +
->>   /*
->>    * GPIOs for TWL are initialized by the I2C bus and need custom
->>    * handing until DSS has device tree bindings.
->> @@ -664,6 +671,11 @@ static struct of_dev_auxdata omap_auxdata_lookup[] = {
->>   	/* Common auxdata */
->>   	OF_DEV_AUXDATA("ti,sysc", 0, NULL, &ti_sysc_pdata),
->>   	OF_DEV_AUXDATA("pinctrl-single", 0, NULL, &pcs_pdata),
->> +	OF_DEV_AUXDATA("ti,omap4-prm-inst", 0, NULL, &ti_prm_pdata),
->> +	OF_DEV_AUXDATA("ti,omap5-prm-inst", 0, NULL, &ti_prm_pdata),
->> +	OF_DEV_AUXDATA("ti,dra7-prm-inst", 0, NULL, &ti_prm_pdata),
->> +	OF_DEV_AUXDATA("ti,am3-prm-inst", 0, NULL, &ti_prm_pdata),
->> +	OF_DEV_AUXDATA("ti,am4-prm-inst", 0, NULL, &ti_prm_pdata),
->>   	{ /* sentinel */ },
->>   };
-> 
-> Hmm I think I already commented on this.. Just one entry please:
-> 
-> 	OF_DEV_AUXDATA("ti,omap-prm-inst", 0, NULL, &ti_prm_pdata),
-> 
-> As the auxdata is the same for all of them. Note that all the
-> dts files need to have also the generic compatible
-> "ti,omap-prm-inst" after the SoC specific one.
+Add the 'location' device property, used to specify a device mounting
+position. The property is particularly meaningful for mobile devices
+with a well defined usage orientation.
 
-Ok that should be fine, sorry for missing it out. I can update this in 
-the next rev, just need to update the dt binding also.
+Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+---
+ .../devicetree/bindings/media/video-interfaces.txt    | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
--Tero
+diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+index f884ada0bffc..e71b90a29d7a 100644
+--- a/Documentation/devicetree/bindings/media/video-interfaces.txt
++++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+@@ -89,6 +89,17 @@ Optional properties
+   but a number of degrees counter clockwise. Typical values are 0 and 180
+   (upside down).
+
++- location: The device, typically an image sensor or a flash LED, mounting
++  location expressed as a position relative to the usage orientation of the
++  system where the device is installed on.
++  Possible values are:
++  0 - Front. The device is mounted on the front facing side of the system For
++  mobile devices such as smartphones, tablets and laptops the front side is the
++  user facing side.
++  1 - Back. The device is mounted on the back side of the system, which is
++  defined as the opposite side of the front facing one.
++  2 - External. The device is not attached directly to the system, or is
++  attached in a way that allows it to move freely.
+
+ Optional endpoint properties
+ ----------------------------
 --
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.23.0
+
