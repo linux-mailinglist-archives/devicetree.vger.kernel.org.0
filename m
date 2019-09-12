@@ -2,134 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31F2DB0687
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 03:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 737DDB06AD
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 04:04:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727329AbfILBdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 21:33:38 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:46517 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726157AbfILBdi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 21:33:38 -0400
-X-UUID: 78297ba1371f445b84693c296f71f482-20190912
-X-UUID: 78297ba1371f445b84693c296f71f482-20190912
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <sam.shih@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
-        with ESMTP id 1472135931; Thu, 12 Sep 2019 09:33:34 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 12 Sep 2019 09:33:32 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 12 Sep 2019 09:33:32 +0800
-Message-ID: <1568252013.4102.1.camel@mtksdccf07>
-Subject: Re: [PATCH v5 07/13] dt-bindings: pwm: add a property "num-pwms"
-From:   Sam Shih <sam.shih@mediatek.com>
-To:     Rob Herring <robh@kernel.org>,
-        Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        "Ryder Lee" <ryder.lee@mediatek.com>,
-        John Crispin <john@phrozen.org>, <linux-pwm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 12 Sep 2019 09:33:33 +0800
-In-Reply-To: <20190902160445.fitoa65t4ndzjq6v@pengutronix.de>
-References: <1566457123-20791-1-git-send-email-sam.shih@mediatek.com>
-         <1566457123-20791-8-git-send-email-sam.shih@mediatek.com>
-         <20190827183924.GA24178@bogus>
-         <20190902160445.fitoa65t4ndzjq6v@pengutronix.de>
-Content-Type: text/plain; charset="ISO-8859-15"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-X-MTK:  N
+        id S1727576AbfILCED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 22:04:03 -0400
+Received: from mail.gallagher.co.nz ([203.167.229.98]:20690 "EHLO
+        mail.gallagher.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726793AbfILCED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 11 Sep 2019 22:04:03 -0400
+X-Greylist: delayed 901 seconds by postgrey-1.27 at vger.kernel.org; Wed, 11 Sep 2019 22:04:01 EDT
+Received: from gglnzdom1.gallagher.local (Not Verified[172.16.0.58]) by mail.gallagher.co.nz  (using TLS: TLSv1.2, AES256-GCM-SHA384)
+        id <B5d79a4090000>; Thu, 12 Sep 2019 13:48:57 +1200
+Received: from ubuntu.localdomain ([10.60.3.76])
+          by gglnzdom1.gallagher.local
+          with ESMTP id 2019091213485724-285913 ;
+          Thu, 12 Sep 2019 13:48:57 +1200 
+From:   Ankur Tyagi <ankur.tyagi@gallagher.com>
+To:     t-kristo@ti.com, mark.rutland@arm.com, robh+dt@kernel.org
+Cc:     ankur.tyagi@gallagher.com, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: clock: am33xx: Update GPIO number as per datasheet
+Date:   Wed, 11 Sep 2019 18:48:49 -0700
+Message-Id: <20190912014849.10684-1-ankur.tyagi@gallagher.com>
+X-TNEFEvaluated: 1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2019-09-02 at 18:04 +0200, Uwe Kleine-König wrote:
-> On Tue, Aug 27, 2019 at 01:39:24PM -0500, Rob Herring wrote:
-> > On Thu, Aug 22, 2019 at 02:58:37PM +0800, Sam Shih wrote:
-> > > From: Ryder Lee <ryder.lee@mediatek.com>
-> > 
-> > The subject should indicate this is for Mediatek.
-> > 
-> > > 
-> > > This adds a property "num-pwms" in example so that we could
-> > > specify the number of PWM channels via device tree.
-> > > 
-> > > Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
-> > > Signed-off-by: Sam Shih <sam.shih@mediatek.com>
-> > > Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
-> > > Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > > ---
-> > > Changes since v5:
-> > > - Add an Acked-by tag
-> > > - This file is original v4 patch 5/10
-> > > (https://patchwork.kernel.org/patch/11102577/)
-> > > 
-> > > Change-Id: I429048afeffa96f3f14533910efe242f88776043
-> > > ---
-> > >  Documentation/devicetree/bindings/pwm/pwm-mediatek.txt | 7 ++++---
-> > >  1 file changed, 4 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> > > index 991728cb46cb..ea95b490a913 100644
-> > > --- a/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> > > +++ b/Documentation/devicetree/bindings/pwm/pwm-mediatek.txt
-> > > @@ -14,12 +14,12 @@ Required properties:
-> > >                  has no clocks
-> > >     - "top": the top clock generator
-> > >     - "main": clock used by the PWM core
-> > > -   - "pwm1-8": the eight per PWM clocks for mt2712
-> > > -   - "pwm1-6": the six per PWM clocks for mt7622
-> > > -   - "pwm1-5": the five per PWM clocks for mt7623
-> > > +   - "pwm1-N": the PWM clocks for each channel
-> > > +   where N starting from 1 to the maximum number of PWM channels
-> > 
-> > Once converted to schema, you are going to be back to listing them out.
-> > 
-> > >   - pinctrl-names: Must contain a "default" entry.
-> > >   - pinctrl-0: One property must exist for each entry in pinctrl-names.
-> > >     See pinctrl/pinctrl-bindings.txt for details of the property values.
-> > > + - num-pwms: the number of PWM channels.
-> > 
-> > You can't add new required properties without breaking compatibility. 
-> > 
-> > You already have to imply the number of channels from the compatible (or 
-> > number of clocks) and you have to keep doing so to maintain 
-> > compatibility, so why not just keep doing that for new chips?
-> 
-> This was a suggestion by me. The driver still handles compatibility
-> (i.e. falls back to the number of PWMs that was implied by the
-> compatible before). Given that there are various drivers that all solve
-> the same problem (i.e. different variants with different number of PWMs)
-> I thought it would be a good idea to introduce a property in the device
-> tree that specifies this number.
-> 
-> Only for newly introduced compatibles the num-pwms property is really
-> required. Differentiating the ones that need it and the ones that don't
-> seems over-engineered to me.
-> 
-> (BTW, using the number of clks doesn't really work because there are
-> also some variants without clocks. It is still under discussion if in
-> this case dummy-clocks should be provided IIRC.)
-> 
-> Best regards
-> Uwe
-> 
+Sitara technical reference manual numbers GPIO from 0-3 whereas
+in code GPIO are numbered from 1-4.
+
+Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
+---
+ include/dt-bindings/clock/am3.h | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/include/dt-bindings/clock/am3.h b/include/dt-bindings/clock/am3.h
+index 894951541276..980fdc05c3d0 100644
+--- a/include/dt-bindings/clock/am3.h
++++ b/include/dt-bindings/clock/am3.h
+@@ -41,9 +41,9 @@
+ #define AM3_RNG_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0x90)
+ #define AM3_AES_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0x94)
+ #define AM3_SHAM_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xa0)
+-#define AM3_GPIO2_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xac)
+-#define AM3_GPIO3_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb0)
+-#define AM3_GPIO4_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb4)
++#define AM3_GPIO1_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xac)
++#define AM3_GPIO2_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb0)
++#define AM3_GPIO3_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb4)
+ #define AM3_TPCC_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xbc)
+ #define AM3_D_CAN0_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xc0)
+ #define AM3_D_CAN1_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xc4)
+@@ -69,7 +69,7 @@
+ #define AM3_L4_WKUP_CLKCTRL_OFFSET	0x4
+ #define AM3_L4_WKUP_CLKCTRL_INDEX(offset)	((offset) - AM3_L4_WKUP_CLKCTRL_OFFSET)
+ #define AM3_CONTROL_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x4)
+-#define AM3_GPIO1_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x8)
++#define AM3_GPIO0_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x8)
+ #define AM3_L4_WKUP_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0xc)
+ #define AM3_DEBUGSS_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x14)
+ #define AM3_WKUP_M3_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0xb0)
+@@ -121,9 +121,9 @@
+ #define AM3_L4LS_TIMER3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x84)
+ #define AM3_L4LS_TIMER4_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x88)
+ #define AM3_L4LS_RNG_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x90)
+-#define AM3_L4LS_GPIO2_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xac)
+-#define AM3_L4LS_GPIO3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb0)
+-#define AM3_L4LS_GPIO4_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb4)
++#define AM3_L4LS_GPIO1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xac)
++#define AM3_L4LS_GPIO2_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb0)
++#define AM3_L4LS_GPIO3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb4)
+ #define AM3_L4LS_D_CAN0_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xc0)
+ #define AM3_L4LS_D_CAN1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xc4)
+ #define AM3_L4LS_EPWMSS1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xcc)
+@@ -184,7 +184,7 @@
+ 
+ /* l4_wkup clocks */
+ #define AM3_L4_WKUP_CONTROL_CLKCTRL	AM3_CLKCTRL_INDEX(0x4)
+-#define AM3_L4_WKUP_GPIO1_CLKCTRL	AM3_CLKCTRL_INDEX(0x8)
++#define AM3_L4_WKUP_GPIO0_CLKCTRL	AM3_CLKCTRL_INDEX(0x8)
+ #define AM3_L4_WKUP_L4_WKUP_CLKCTRL	AM3_CLKCTRL_INDEX(0xc)
+ #define AM3_L4_WKUP_UART1_CLKCTRL	AM3_CLKCTRL_INDEX(0xb4)
+ #define AM3_L4_WKUP_I2C1_CLKCTRL	AM3_CLKCTRL_INDEX(0xb8)
+-- 
+2.17.1
 
 
-Any conclusions ? 
+###########################################################################
+This email is confidential and may contain information subject to legal 
+privilege.  If you are not the intended recipient please advise us of our
+error by return e-mail then delete this email and any attached files.  
+You may not copy, disclose or use the contents in any way.  
 
-just a friendly reminder :)
-
-
-regards Sam
-
-
+The views expressed in this email may not be those of Gallagher Group 
+Ltd or subsidiary companies thereof.
+###########################################################################
