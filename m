@@ -2,86 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 521E7B0A5A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 10:30:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 137ACB0AA7
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 10:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730368AbfILIaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 04:30:14 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35630 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728582AbfILIaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 04:30:13 -0400
-Received: by mail-wm1-f65.google.com with SMTP id n10so6529410wmj.0
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 01:30:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=G0a6gblQbbIzUwDe3eeqwGYgG4v78FyPDrriBQXOIMg=;
-        b=tJMDrj6f2iMOjPqxETkZTNFQt3wxOi25KfpL8VfuTphKT3MsMVg96UL1KShQ5pTS8+
-         q3mP3dBQ9h3eFZ3/2yLU1vRznguNjf8aMxVssv6wBYKmXRGyUXOUc/tujufkl1n0RuiX
-         mW8d34Eq1lfVt6EVEKNadBFBmRhDrOBbkgYCCE6oCi3u9RqBwJxxtJPR1LACJeCalPgg
-         wSUxyqqnVxqlVaVjtspdKw2kYp0VdKZYNL1lh2/GTYxcTh2LN4ELZjOBQFzDPT455N7O
-         n0AM5TdKAokqzdVNKQWf3qcZXh4Jf0e/qE3goSfD+Moke/v69hdaVJOpupMc5mdLYoZO
-         /WgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=G0a6gblQbbIzUwDe3eeqwGYgG4v78FyPDrriBQXOIMg=;
-        b=jnJI8HFENZKH32VvRXI/hy4YOW1Cjr03BOxQJ0vCytZSJGZtwwGWDwefsxNGqYNowQ
-         pjV3Y7NB6DEVT8sMpEZkNErhFqIQC+bGYWxV6y5nL4qVNGU/OSRLcwtHl4tIgagArq2E
-         5q/yz26lxnAaoS5DSOCdJo5jmSFsHvo8bRpJ3KgzFO90wDuFLqpD+kowYXX1KAl0IYOb
-         V6PAGKcUkCLoRDAQzKD36DA27DczC04jiFLEVYFNtNYu38q2irgjkwR5jDUxcJpMOLYy
-         EY+Flp+gk9F5VQzQ4qILBtRjCS6qK/ckzmnIl111eY87d/j4OByqeWWFIL3p84reDfMR
-         +rAw==
-X-Gm-Message-State: APjAAAVG0esHYs3GtYDc4V4bhWxmGi/nWfUOR6X5z4qYrvgdYphYnLtL
-        l+cAW7pb4MY47FwGS25dAJ6Hpg==
-X-Google-Smtp-Source: APXvYqzb8A6UO67zAzYjMyYvpUXZjEFSjFv61OtlUPan0vt5nW+c8PXOHLOTVfucxaiLVGANwjXyQQ==
-X-Received: by 2002:a1c:9988:: with SMTP id b130mr7735411wme.164.1568277010827;
-        Thu, 12 Sep 2019 01:30:10 -0700 (PDT)
-Received: from mms-0440.qualcomm.mm-sol.com ([37.157.136.206])
-        by smtp.gmail.com with ESMTPSA id 189sm7100877wmz.19.2019.09.12.01.30.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2019 01:30:10 -0700 (PDT)
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-To:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Vikash Garodia <vgarodia@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Subject: [PATCH v2 2/2] arm64: dts: sdm845: Add interconnect properties for Venus
-Date:   Thu, 12 Sep 2019 11:29:48 +0300
-Message-Id: <20190912082948.22836-3-stanimir.varbanov@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190912082948.22836-1-stanimir.varbanov@linaro.org>
-References: <20190912082948.22836-1-stanimir.varbanov@linaro.org>
+        id S1730470AbfILIu2 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 12 Sep 2019 04:50:28 -0400
+Received: from foss.arm.com ([217.140.110.172]:59200 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726159AbfILIu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 04:50:28 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 266951000;
+        Thu, 12 Sep 2019 01:50:27 -0700 (PDT)
+Received: from big-swifty.misterjones.org (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 04DE63F71F;
+        Thu, 12 Sep 2019 01:50:23 -0700 (PDT)
+Date:   Thu, 12 Sep 2019 09:50:22 +0100
+Message-ID: <865zlxsxtd.wl-maz@kernel.org>
+From:   Marc Zyngier <maz@kernel.org>
+To:     "Shenhar, Talel" <talel@amazon.com>
+Cc:     <robh+dt@kernel.org>, <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <mark.rutland@arm.com>, <nicolas.ferre@microchip.com>,
+        <mchehab+samsung@kernel.org>, <shawn.lin@rock-chips.com>,
+        <gregkh@linuxfoundation.org>, <dwmw@amazon.co.uk>,
+        <benh@kernel.crashing.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, James Morse <james.morse@arm.com>
+Subject: Re: [UNVERIFIED SENDER] Re: [PATCH v2 2/3] soc: amazon: al-pos: Introduce Amazon's Annapurna Labs POS driver
+In-Reply-To: <3205f7ae-5568-c064-23ac-ea726246173b@amazon.com>
+References: <1568142310-17622-1-git-send-email-talel@amazon.com>
+        <1568142310-17622-3-git-send-email-talel@amazon.com>
+        <86d0g6syva.wl-maz@kernel.org>
+        <3205f7ae-5568-c064-23ac-ea726246173b@amazon.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Populate Venus DT node with interconnect properties.
+On Thu, 12 Sep 2019 07:50:03 +0100,
+"Shenhar, Talel" <talel@amazon.com> wrote:
+> 
+> Hi Marc,
+> 
+> 
+> On 9/11/2019 5:15 PM, Marc Zyngier wrote:
+> > [+James]
+> > 
+> > Hi Talel,
+> > 
+> > On Tue, 10 Sep 2019 20:05:09 +0100,
+> > Talel Shenhar <talel@amazon.com> wrote:
+> > 
+> >> +	log1 = readl(pos->mmio_base + AL_POS_ERROR_LOG_1);
+> > Do you actually need the implied barriers? I'd expect that relaxed
+> > accesses should be enough.
+> 
+> You are correct. Barriers are not needed, In v1 this driver indeed
+> used _relaxed versions.
+> 
+> Due to request coming from Arnd in v1 patch series I removed it. As
+> this is not data path I had no strong objection for removing it.
 
-Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+Independently from whether this has any material impact on performance
+(this obviously isn't a hot path, unless it can be directly generated
+by userspace or a guest), I believe it is important to use the right
+type of accessor, if only because code gets copied around... Others
+would probably argue that this is the very reason why we should always
+use the "safe" option...
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 0323e3da190a..567bfc89bd77 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2039,6 +2039,9 @@
- 			iommus = <&apps_smmu 0x10a0 0x8>,
- 				 <&apps_smmu 0x10b0 0x0>;
- 			memory-region = <&venus_mem>;
-+			interconnects = <&rsc_hlos MASTER_VIDEO_P0 &rsc_hlos SLAVE_EBI1>,
-+					<&rsc_hlos MASTER_APPSS_PROC &rsc_hlos SLAVE_VENUS_CFG>;
-+			interconnect-names = "video-mem", "cpu-cfg";
- 
- 			video-core0 {
- 				compatible = "venus-decoder";
+> 
+> > 
+> >> +	if (!FIELD_GET(AL_POS_ERROR_LOG_1_VALID, log1))
+> >> +		return IRQ_NONE;
+> >> +
+> >> +	log0 = readl(pos->mmio_base + AL_POS_ERROR_LOG_0);
+> >> +	writel(0, pos->mmio_base + AL_POS_ERROR_LOG_1);
+> >> +
+> >> +	addr = FIELD_GET(AL_POS_ERROR_LOG_0_ADDR_LOW, log0);
+> >> +	addr |= (FIELD_GET(AL_POS_ERROR_LOG_1_ADDR_HIGH, log1) << 32);
+> >> +	request_id = FIELD_GET(AL_POS_ERROR_LOG_1_REQUEST_ID, log1);
+> >> +	bresp = FIELD_GET(AL_POS_ERROR_LOG_1_BRESP, log1);
+> >> +
+> >> +	dev_err(&pdev->dev, "addr=0x%llx request_id=0x%x bresp=0x%x\n",
+> >> +		addr, request_id, bresp);
+> > What is this information? How do we make use of it? Given that this is
+> > asynchronous, how do we correlate it to the offending software?
+> 
+> Indeed this information arriving from the HW is asynchronous.
+> 
+> There is no direct method to get the offending software.
+> 
+> There are all kinds of hacks we do to find the offending software once
+> we find this error. most of the time its a new patch introduced but
+> some of the time is just digging.
+
+OK, so that the moment, this is more of a debug tool than anything
+else, right?
+
+> > The whole think looks to me like a poor man's EDAC handling, and I'd
+> > expect to be plugged in that subsystem instead. Any reason why this
+> > isn't the case? It would certainly make the handling uniform for the
+> > user.
+> 
+> This logic was not plugged into EDAC as there is no "Correctable"
+> error here. its just error event. Not all errors are EDAC in the sense
+> of Error Detection And *Correction*. There are no correctable errors
+> for this driver.
+
+I'd argue the opposite! Because you obviously don't let a read-only
+register being written to, the error has been corrected, and you
+signal the correction status.
+
+> So plugging it  under EDAC seems like abusing the EDAC system.
+> 
+> Now that I've emphasize the reason for not putting this under EDAC,
+> what do you think? should this "only uncorrectable event" driver
+> should be part of EDAC?
+
+My choice would be to plug it into the EDAC subsystem, and report all
+interrupts as "Corrected" events. Optionally, and only if you are
+debugging something that requires it, report the error as
+"Uncorrectable", in which case the EDAC subsystem should trigger a
+panic.
+
+At least you'd get the infrastructure, logging and tooling that the
+EDAC subsystem offers (parsing the kernel log doesn't really count).
+
+Thanks,
+
+	M.
+
 -- 
-2.17.1
-
+Jazz is not dead, it just smells funny.
