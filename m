@@ -2,251 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04DDAB0F15
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C51B0F1F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:52:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731703AbfILMtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 08:49:50 -0400
-Received: from foss.arm.com ([217.140.110.172]:33712 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731685AbfILMtu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 08:49:50 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ED01A28;
-        Thu, 12 Sep 2019 05:49:48 -0700 (PDT)
-Received: from localhost (unknown [10.37.6.20])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B34A3F71F;
-        Thu, 12 Sep 2019 05:49:48 -0700 (PDT)
-Date:   Thu, 12 Sep 2019 13:49:46 +0100
-From:   Andrew Murray <andrew.murray@arm.com>
-To:     Xiaowei Bao <xiaowei.bao@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Subject: Re: [PATCH v3 09/11] PCI: layerscape: Add EP mode support for
- ls1088a and ls2088a
-Message-ID: <20190912124943.GD9720@e119886-lin.cambridge.arm.com>
-References: <20190902031716.43195-1-xiaowei.bao@nxp.com>
- <20190902031716.43195-10-xiaowei.bao@nxp.com>
- <20190902124603.GJ9720@e119886-lin.cambridge.arm.com>
- <AM5PR04MB329970AE2C1812E88B9DE5A2F5B90@AM5PR04MB3299.eurprd04.prod.outlook.com>
+        id S1731724AbfILMwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 08:52:05 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:56324 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731635AbfILMwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 08:52:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+        From:Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=kght0b+/jFbvVUWoTghKwS4NUz1nLDzVraODRJdmu40=; b=YuHcfHpbhPBewfxZpfcydTIch
+        LvRSwCK0iANhTS+gpyHMVN0rOe3WAZnneMWN+SV/o10NPISCub9wPRO8RYt0zQEMplDjYJHS90M0b
+        4Ys+ZU0KDEJXbmNVsfHW70qztZs86l0AsxdjvX1st+9l1Y29nGpn3POcFh73OiJVIRr7T0/+z4sxu
+        BDR+ld1N8bkbaLr9VUDdAqNAHEOFECOwEI32Ps7iTVPqrqT4hwA/66XrlESvGzsnrD5/g7V4KRlmc
+        0rm7L4qzTEHzSpIBidC8WLaLiS+LIr8VGJr+bBGz6jwRt/pVPxIbiUa+MFz6RndX7fXpC6SC/s5hW
+        zwJyIRXEA==;
+Received: from 179.186.109.23.dynamic.adsl.gvt.net.br ([179.186.109.23] helo=coco.lan)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92.2 #3 (Red Hat Linux))
+        id 1i8OZj-00006E-Fk; Thu, 12 Sep 2019 12:51:51 +0000
+Date:   Thu, 12 Sep 2019 09:51:47 -0300
+From:   Mauro Carvalho Chehab <mchehab@kernel.org>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Jacopo Mondi <jacopo@jmondi.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>, tfiga@google.com,
+        Rob Herring <robh+dt@kernel.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 01/10] media: dt-bindings: Document 'location'
+ property
+Message-ID: <20190912095120.4a592631@coco.lan>
+In-Reply-To: <20190827122126.GQ5054@pendragon.ideasonboard.com>
+References: <20190827092339.8858-1-jacopo@jmondi.org>
+        <20190827092339.8858-2-jacopo@jmondi.org>
+        <20190827122126.GQ5054@pendragon.ideasonboard.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AM5PR04MB329970AE2C1812E88B9DE5A2F5B90@AM5PR04MB3299.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 03, 2019 at 01:47:36AM +0000, Xiaowei Bao wrote:
+Em Tue, 27 Aug 2019 15:21:26 +0300
+Laurent Pinchart <laurent.pinchart@ideasonboard.com> escreveu:
+
+> Hi Jacopo,
 > 
+> Thank you for the patch.
 > 
-> > -----Original Message-----
-> > From: Andrew Murray <andrew.murray@arm.com>
-> > Sent: 2019年9月2日 20:46
-> > To: Xiaowei Bao <xiaowei.bao@nxp.com>
-> > Cc: robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo
-> > Li <leoyang.li@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com; M.h.
-> > Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>; Roy
-> > Zang <roy.zang@nxp.com>; jingoohan1@gmail.com;
-> > gustavo.pimentel@synopsys.com; linux-pci@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org;
-> > arnd@arndb.de; gregkh@linuxfoundation.org; Z.q. Hou
-> > <zhiqiang.hou@nxp.com>
-> > Subject: Re: [PATCH v3 09/11] PCI: layerscape: Add EP mode support for
-> > ls1088a and ls2088a
+> On Tue, Aug 27, 2019 at 11:23:27AM +0200, Jacopo Mondi wrote:
+> > Add the 'location' device property, used to specify the camera device
+> > mounting position. The property is particularly meaningful for mobile
+> > devices with a well defined usage orientation.
 > > 
-> > On Mon, Sep 02, 2019 at 11:17:14AM +0800, Xiaowei Bao wrote:
-> > > Add PCIe EP mode support for ls1088a and ls2088a, there are some
-> > > difference between LS1 and LS2 platform, so refactor the code of the
-> > > EP driver.
-> > >
-> > > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> > > ---
-> > > v2:
-> > >  - This is a new patch for supporting the ls1088a and ls2088a platform.
-> > > v3:
-> > >  - Adjust the some struct assignment order in probe function.
-> > >
-> > >  drivers/pci/controller/dwc/pci-layerscape-ep.c | 72
-> > > +++++++++++++++++++-------
-> > >  1 file changed, 53 insertions(+), 19 deletions(-)
-> > >
-> > > diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> > > b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> > > index 5f0cb99..723bbe5 100644
-> > > --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> > > +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
-> > > @@ -20,27 +20,29 @@
-> > >
-> > >  #define PCIE_DBI2_OFFSET		0x1000	/* DBI2 base address*/
-> > >
-> > > -struct ls_pcie_ep {
-> > > -	struct dw_pcie		*pci;
-> > > -	struct pci_epc_features	*ls_epc;
-> > > +#define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
-> > > +
-> > > +struct ls_pcie_ep_drvdata {
-> > > +	u32				func_offset;
-> > > +	const struct dw_pcie_ep_ops	*ops;
-> > > +	const struct dw_pcie_ops	*dw_pcie_ops;
-> > >  };
-> > >
-> > > -#define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
-> > > +struct ls_pcie_ep {
-> > > +	struct dw_pcie			*pci;
-> > > +	struct pci_epc_features		*ls_epc;
-> > > +	const struct ls_pcie_ep_drvdata *drvdata; };
-> > >
-> > >  static int ls_pcie_establish_link(struct dw_pcie *pci)  {
-> > >  	return 0;
-> > >  }
-> > >
-> > > -static const struct dw_pcie_ops ls_pcie_ep_ops = {
-> > > +static const struct dw_pcie_ops dw_ls_pcie_ep_ops = {
-> > >  	.start_link = ls_pcie_establish_link,  };
-> > >
-> > > -static const struct of_device_id ls_pcie_ep_of_match[] = {
-> > > -	{ .compatible = "fsl,ls-pcie-ep",},
-> > > -	{ },
-> > > -};
-> > > -
-> > >  static const struct pci_epc_features*  ls_pcie_ep_get_features(struct
-> > > dw_pcie_ep *ep)  { @@ -87,10 +89,39 @@ static int
-> > > ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
-> > >  	}
-> > >  }
-> > >
-> > > -static const struct dw_pcie_ep_ops pcie_ep_ops = {
-> > > +static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
-> > > +						u8 func_no)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> > > +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
-> > > +
-> > > +	WARN_ON(func_no && !pcie->drvdata->func_offset);
-> > > +	return pcie->drvdata->func_offset * func_no; }
-> > > +
-> > > +static const struct dw_pcie_ep_ops ls_pcie_ep_ops = {
-> > >  	.ep_init = ls_pcie_ep_init,
-> > >  	.raise_irq = ls_pcie_ep_raise_irq,
-> > >  	.get_features = ls_pcie_ep_get_features,
-> > > +	.func_conf_select = ls_pcie_ep_func_conf_select, };
-> > > +
-> > > +static const struct ls_pcie_ep_drvdata ls1_ep_drvdata = {
-> > > +	.ops = &ls_pcie_ep_ops,
-> > > +	.dw_pcie_ops = &dw_ls_pcie_ep_ops,
-> > > +};
-> > > +
-> > > +static const struct ls_pcie_ep_drvdata ls2_ep_drvdata = {
-> > > +	.func_offset = 0x20000,
-> > > +	.ops = &ls_pcie_ep_ops,
-> > > +	.dw_pcie_ops = &dw_ls_pcie_ep_ops,
-> > > +};
-> > > +
-> > > +static const struct of_device_id ls_pcie_ep_of_match[] = {
-> > > +	{ .compatible = "fsl,ls1046a-pcie-ep", .data = &ls1_ep_drvdata },
-> > > +	{ .compatible = "fsl,ls1088a-pcie-ep", .data = &ls2_ep_drvdata },
-> > > +	{ .compatible = "fsl,ls2088a-pcie-ep", .data = &ls2_ep_drvdata },
-> > > +	{ },
+> > Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
+> > ---
+> >  .../devicetree/bindings/media/video-interfaces.txt     | 10 ++++++++++
+> >  1 file changed, 10 insertions(+)
 > > 
-> > This removes support for "fsl,ls-pcie-ep" - was that intentional? If you do plan
-> > to drop it please make sure you explain why in the commit message. See also
-> > my comments in your dt-binding patch.
+> > diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > index f884ada0bffc..865f4142f432 100644
+> > --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
+> > @@ -89,6 +89,16 @@ Optional properties
+> >    but a number of degrees counter clockwise. Typical values are 0 and 180
+> >    (upside down).
+> > 
+> > +- location: The camera sensor mounting location, expressed as a position
+> > +  relative to the usage orientation of the device the sensor is installed on.  
 > 
-> In fact, the u-boot will fixup the status property to 'status = enabled' in PCI node of 
-> the DTS base on "fsl,ls-pcie-ep" compatible, so "fsl,ls-pcie-ep" is used, I used this
-> compatible before, because the driver only support the LS1046a, but this time, I add
-> the LS1088a and LS2088a support, and these two boards have some difference form
-> LS1046a, so I changed the compatible. I am not sure whether need to add "fsl,ls-pcie-ep"
-> in there, could you give some advice, thanks a lot.
+> DT bindings being ABIs, we need to be precise and thorough there. One
+> particular point that bothers me is that the property is named location,
+> and its description refers to camera sensor mounting location.
 
-It sounds like "fsl,ls-pcie-ep" can be a fallback for "fsl,ls1046a-pcie-ep".
+Yeah, "location" doesn't sound a good name for me neither.
+ 
+> 
+> I see two options to fix this. One of them is to rename the property to
+> camera-location, but that would limit its future usage for other types
+> of devices. The other one is to document the property as applying to a
+> "device" instead of a "camera sensor", and add one sentence stating that
+> this property is valid for camera sensors only.
+> 
+> This will require finding another name for the device that the device is
+> mounted on though, as using device twice would be very confusing.
+> 
+> > +  Possible values are:
+> > +  0 - Front. The image sensor is mounted on the front facing side of the device.
+> > +  For mobile devices such as smartphones, tablets and laptops the front side is
+> > +  the user facing side of the device.
+> > +  1 - Back. The image sensor is mounted on the back side of the device, which is
+> > +  defined as the opposite side of the front facing one.
+> > +  2 - External. The image sensor is connected to the device by extension cables,
+> > +  and can be freely moved, regardless of the device position. 
 
-I'm assuming that if someone used "fsl,ls1046a-pcie-ep" on ls1088a or ls2088a
-hardware it would still work, but without the multiple PF support.
+Hmm...
 
-I.e. if "fsl,ls-pcie-ep" is given, treat it as ls1046a.
+Besides the point that Laurent and Rob already commented, just those 3 options 
+doesn't seem good enough. I was reading a public article yesterday about a new
+device (Samsung Galaxy Fold[1]) with comes with 6 cameras, being 3 at back, 
+1 at front, when the device is opened, and 1 camera that could be either at the
+back or at the front, depending if the device is opened or not. 
+
+Btw, on a device with multiple cameras at the same side, it would
+make sense to also be able to uniquely identify the location of each
+sensor somehow.
+
+There are also some other new devices with a front motorized slider camera
+that sits hidden inside the phone, until when someone uses it.
 
 Thanks,
-
-Andrew Murray
-
-> 
-> Thanks 
-> Xiaowei
->  
-> > 
-> > Thanks,
-> > 
-> > Andrew Murray
-> > 
-> > >  };
-> > >
-> > >  static int __init ls_add_pcie_ep(struct ls_pcie_ep *pcie, @@ -103,7
-> > > +134,7 @@ static int __init ls_add_pcie_ep(struct ls_pcie_ep *pcie,
-> > >  	int ret;
-> > >
-> > >  	ep = &pci->ep;
-> > > -	ep->ops = &pcie_ep_ops;
-> > > +	ep->ops = pcie->drvdata->ops;
-> > >
-> > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > "addr_space");
-> > >  	if (!res)
-> > > @@ -142,20 +173,23 @@ static int __init ls_pcie_ep_probe(struct
-> > platform_device *pdev)
-> > >  	if (!ls_epc)
-> > >  		return -ENOMEM;
-> > >
-> > > -	dbi_base = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > "regs");
-> > > -	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
-> > > -	if (IS_ERR(pci->dbi_base))
-> > > -		return PTR_ERR(pci->dbi_base);
-> > > +	pcie->drvdata = of_device_get_match_data(dev);
-> > >
-> > > -	pci->dbi_base2 = pci->dbi_base + PCIE_DBI2_OFFSET;
-> > >  	pci->dev = dev;
-> > > -	pci->ops = &ls_pcie_ep_ops;
-> > > -	pcie->pci = pci;
-> > > +	pci->ops = pcie->drvdata->dw_pcie_ops;
-> > >
-> > >  	ls_epc->bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
-> > >
-> > > +	pcie->pci = pci;
-> > >  	pcie->ls_epc = ls_epc;
-> > >
-> > > +	dbi_base = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > "regs");
-> > > +	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
-> > > +	if (IS_ERR(pci->dbi_base))
-> > > +		return PTR_ERR(pci->dbi_base);
-> > > +
-> > > +	pci->dbi_base2 = pci->dbi_base + PCIE_DBI2_OFFSET;
-> > > +
-> > >  	platform_set_drvdata(pdev, pcie);
-> > >
-> > >  	ret = ls_add_pcie_ep(pcie, pdev);
-> > > --
-> > > 2.9.5
-> > >
+Mauro
