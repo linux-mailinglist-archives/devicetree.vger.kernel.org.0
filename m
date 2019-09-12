@@ -2,128 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94293B0F33
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:55:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2B46B0F36
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:56:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731794AbfILMzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 08:55:22 -0400
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:8077 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731788AbfILMzV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 08:55:21 -0400
+        id S1731823AbfILM4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 08:56:13 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:42808 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731792AbfILM4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 08:56:13 -0400
+Received: by mail-wr1-f67.google.com with SMTP id q14so28306274wrm.9
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 05:56:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1568292920; x=1599828920;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=JaTc1chxleSvN0x3nLvZo/SABEUOWMYq1A/rnNqsaT4=;
-  b=YeGFHRYBi45tZnZ60d3PV/lsoNjBzQLhV1oMLlPSQ1Dryg356CXU/POa
-   wyTEmDdJT61Nca8cfJirhtiiW7F64w5n3iXjcXNH6bEKVSKkHBGCBJU3V
-   EzL+H84cESac8/S2iB8EXrWxPB/y8qF/aJpQrfAsKz+eRkGyNF0u8rR4g
-   0=;
-X-IronPort-AV: E=Sophos;i="5.64,497,1559520000"; 
-   d="scan'208";a="420817483"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1a-e34f1ddc.us-east-1.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 12 Sep 2019 12:55:09 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1a-e34f1ddc.us-east-1.amazon.com (Postfix) with ESMTPS id D7F13A2041;
-        Thu, 12 Sep 2019 12:55:05 +0000 (UTC)
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 12 Sep 2019 12:55:04 +0000
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 12 Sep 2019 12:55:04 +0000
-Received: from EX13D13UWA001.ant.amazon.com ([10.43.160.136]) by
- EX13D13UWA001.ant.amazon.com ([10.43.160.136]) with mapi id 15.00.1367.000;
- Thu, 12 Sep 2019 12:55:04 +0000
-From:   "Chocron, Jonathan" <jonnyc@amazon.com>
-To:     "helgaas@kernel.org" <helgaas@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "Hanoch, Uri" <hanochu@amazon.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "Wasserstrom, Barak" <barakw@amazon.com>,
-        "Saidi, Ali" <alisaidi@amazon.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>
-Subject: Re: [PATCH v5 6/7] PCI: dwc: al: Add support for DW based driver type
-Thread-Topic: [PATCH v5 6/7] PCI: dwc: al: Add support for DW based driver
- type
-Thread-Index: AQHVY/KBlxXPHSUOKEWpD0aDO6n+D6cgcleAgAeYWQA=
-Date:   Thu, 12 Sep 2019 12:55:04 +0000
-Message-ID: <a8903f853cd37c23d3325e69b25e9e86942f5322.camel@amazon.com>
-References: <20190905140018.5139-1-jonnyc@amazon.com>
-         <20190905140144.7933-2-jonnyc@amazon.com>
-         <20190907165557.GO103977@google.com>
-In-Reply-To: <20190907165557.GO103977@google.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.43.162.218]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <67282EFB11D78B4C8D3EA9391B0AB75F@amazon.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=LIiygEvzutjtW1si6WKIgeNvg7MT4ajN4iVo80ldc1Q=;
+        b=j0a8kymMb2fHobAfK33p+ACzNNo6EG5ulWX2OU1LGrrjG3bOvoCUXt2qN+Tpgj08Mx
+         GatBIOyy9GraevzMeayZkHEe4v8ct/NFDC2MumTzT4/AKvKVirQYiPw/LlicxdJ0o5V0
+         xBQ1a3KipMJTnZF0GFaetvGjamkaJru/BpcOij3qOmXIO9S7RpTMCJ2Z6F/glMfR+RRQ
+         KMNP8Oh4v2kmUVd4wgPw2i9nRZU3ffdPJbgYhosY8QjrJc6ptSrjJUSQxC5uOIfb1er6
+         NEB3V5OWb1JNBMf6eMUiBLGhKOEaAVxsEXk0gFZ/VOFk1wR09rfu0DOPZOesFa6p9Ioa
+         BBYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=LIiygEvzutjtW1si6WKIgeNvg7MT4ajN4iVo80ldc1Q=;
+        b=BIz0MCgoqwwdDc2OyuRi+LwIrtC6j2LRRD2tyDPN7TAkPlKaPC1Sr+pLfk+1xUtL8e
+         Ard7JOC+Iovn30GyD3Y1EF5Qdz201algahh4y2X/GsEJiwtVHsDmMKdO+GNKoFkulwYg
+         D92nUweZ/hdrZEYTL8oQ9oxx4I7dh2I5bdF+t3FWU4mESv7zUITnVGel9BBC5EXJjxgq
+         +oIn+Aih7IQTQhIlsdntrPmfwZmgIVWotqWq1WcDNLSHqlUfIDL7STQjxa1mPWwbCMec
+         ui8XNvq+ic6bXYiRI/Ryk/BoxsAzDRCgEm0qWzHMubioD/HNzBQaSwroeQJ4VwuhVTop
+         xNKg==
+X-Gm-Message-State: APjAAAUljPt43wLvT+C+wxM1/hj3C7bIeXZlllBd8kzMZ3/ERFD5Zx3u
+        D5ZsyJ4GTwBRc6mTKK6czPCUvw==
+X-Google-Smtp-Source: APXvYqziy1sdunIFpOFHmyt6HFWzb5kxEZ14YKp1WYNvq/GQE/xYTLGtNI7rvxqrSsx6692zmK8YJg==
+X-Received: by 2002:a5d:574c:: with SMTP id q12mr35229204wrw.69.1568292970350;
+        Thu, 12 Sep 2019 05:56:10 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id r16sm28738115wrc.81.2019.09.12.05.56.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 12 Sep 2019 05:56:09 -0700 (PDT)
+Subject: Re: [RFC 1/2] mmc: sdhci-msm: Add support for bus bandwidth voting
+To:     Pradeep P V K <ppvk@codeaurora.org>, adrian.hunter@intel.com,
+        ulf.hansson@linaro.org, robh+dt@kernel.org
+Cc:     asutoshd@codeaurora.org, vbadigan@codeaurora.org,
+        stummala@codeaurora.org, sayalil@codeaurora.org,
+        rampraka@codeaurora.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Subhash Jadavani <subhashj@codeaurora.org>,
+        Andy Gross <agross@kernel.org>
+References: <1567774037-2344-1-git-send-email-ppvk@codeaurora.org>
+ <1567774037-2344-2-git-send-email-ppvk@codeaurora.org>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <616c7a8c-a1cf-2043-4ea4-f452ee90f083@linaro.org>
+Date:   Thu, 12 Sep 2019 15:56:08 +0300
 MIME-Version: 1.0
+In-Reply-To: <1567774037-2344-2-git-send-email-ppvk@codeaurora.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gU2F0LCAyMDE5LTA5LTA3IGF0IDExOjU1IC0wNTAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
-PiBzL0FkZCBzdXBwb3J0IGZvciBEVyBiYXNlZCBkcml2ZXIgdHlwZS9BZGQgQW1hem9uIEFubmFw
-dXJuYSBMYWJzIFBDSWUNCj4gY29udHJvbGxlciBkcml2ZXIvDQo+IA0KQWNrLg0KDQo+IE9uIFRo
-dSwgU2VwIDA1LCAyMDE5IGF0IDA1OjAxOjQzUE0gKzAzMDAsIEpvbmF0aGFuIENob2Nyb24gd3Jv
-dGU6DQo+ID4gVGhpcyBkcml2ZXIgaXMgRFQgYmFzZWQgYW5kIHV0aWxpemVzIHRoZSBEZXNpZ25X
-YXJlIEFQSXMuDQo+ID4gDQo+ID4gSXQgYWxsb3dzIHVzaW5nIGEgc21hbGxlciBFQ0FNIHJhbmdl
-IGZvciBhIGxhcmdlciBidXMgcmFuZ2UgLQ0KPiA+IHVzdWFsbHkgYW4gZW50aXJlIGJ1cyB1c2Vz
-IDFNQiBvZiBhZGRyZXNzIHNwYWNlLCBidXQgdGhlIGRyaXZlcg0KPiA+IGNhbiB1c2UgaXQgZm9y
-IGEgbGFyZ2VyIG51bWJlciBvZiBidXNlcy4gVGhpcyBpcyBhY2hpZXZlZCBieSB1c2luZw0KPiA+
-IGEgSFcNCj4gPiBtZWNoYW5pc20gd2hpY2ggYWxsb3dzIGNoYW5naW5nIHRoZSBCVVMgcGFydCBv
-ZiB0aGUgImZpbmFsIg0KPiA+IG91dGdvaW5nDQo+ID4gY29uZmlnIHRyYW5zYWN0aW9uLiBUaGVy
-ZSBhcmUgMiBIVyByZWdzLCBvbmUgd2hpY2ggaXMgYmFzaWNhbGx5IGENCj4gPiBiaXRtYXNrIGRl
-dGVybWluaW5nIHdoaWNoIGJpdHMgdG8gdGFrZSBmcm9tIHRoZSBBWEkgdHJhbnNhY3Rpb24NCj4g
-PiBpdHNlbGYNCj4gPiBhbmQgYW5vdGhlciB3aGljaCBob2xkcyB0aGUgY29tcGxlbWVudGFyeSBw
-YXJ0IHByb2dyYW1tZWQgYnkgdGhlDQo+ID4gZHJpdmVyLg0KPiA+IA0KPiA+IEFsbCBsaW5rIGlu
-aXRpYWxpemF0aW9ucyBhcmUgaGFuZGxlZCBieSB0aGUgYm9vdCBGVy4NCj4gPiANCj4gPiBTaWdu
-ZWQtb2ZmLWJ5OiBKb25hdGhhbiBDaG9jcm9uIDxqb25ueWNAYW1hem9uLmNvbT4NCj4gPiBSZXZp
-ZXdlZC1ieTogR3VzdGF2byBQaW1lbnRlbCA8Z3VzdGF2by5waW1lbnRlbEBzeW5vcHN5cy5jb20+
-DQo+ID4gUmV2aWV3ZWQtYnk6IEFuZHJldyBNdXJyYXkgPGFuZHJldy5tdXJyYXlAYXJtLmNvbT4N
-Cj4gPiAtLS0NCj4gPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvS2NvbmZpZyAgIHwgIDEy
-ICsNCj4gPiAgZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1hbC5jIHwgMzY1DQo+ID4g
-KysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMzc3IGlu
-c2VydGlvbnMoKykNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxl
-ci9kd2MvS2NvbmZpZw0KPiA+IGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvS2NvbmZpZw0K
-PiA+IGluZGV4IDRmYWRhMmU5MzI4NS4uMGJhOTg4YjViNWJjIDEwMDY0NA0KPiA+IC0tLSBhL2Ry
-aXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL0tjb25maWcNCj4gPiArKysgYi9kcml2ZXJzL3BjaS9j
-b250cm9sbGVyL2R3Yy9LY29uZmlnDQo+ID4gQEAgLTI1Niw0ICsyNTYsMTYgQEAgY29uZmlnIFBD
-SUVfVU5JUEhJRVINCj4gPiAgCSAgU2F5IFkgaGVyZSBpZiB5b3Ugd2FudCBQQ0llIGNvbnRyb2xs
-ZXIgc3VwcG9ydCBvbiBVbmlQaGllcg0KPiA+IFNvQ3MuDQo+ID4gIAkgIFRoaXMgZHJpdmVyIHN1
-cHBvcnRzIExEMjAgYW5kIFBYczMgU29Dcy4NCj4gPiAgDQo+ID4gK2NvbmZpZyBQQ0lFX0FMDQo+
-ID4gKwlib29sICJBbWF6b24gQW5uYXB1cm5hIExhYnMgUENJZSBjb250cm9sbGVyIg0KPiA+ICsJ
-ZGVwZW5kcyBvbiBPRiAmJiAoQVJNNjQgfHwgQ09NUElMRV9URVNUKQ0KPiA+ICsJZGVwZW5kcyBv
-biBQQ0lfTVNJX0lSUV9ET01BSU4NCj4gPiArCXNlbGVjdCBQQ0lFX0RXX0hPU1QNCj4gPiArCWhl
-bHANCj4gPiArCSAgU2F5IFkgaGVyZSB0byBlbmFibGUgc3VwcG9ydCBvZiB0aGUgQW1hem9uJ3Mg
-QW5uYXB1cm5hIExhYnMNCj4gPiBQQ0llDQo+ID4gKwkgIGNvbnRyb2xsZXIgSVAgb24gQW1hem9u
-IFNvQ3MuIFRoZSBQQ0llIGNvbnRyb2xsZXIgdXNlcyB0aGUNCj4gPiBEZXNpZ25XYXJlDQo+ID4g
-KwkgIGNvcmUgcGx1cyBBbm5hcHVybmEgTGFicyBwcm9wcmlldGFyeSBoYXJkd2FyZSB3cmFwcGVy
-cy4gVGhpcw0KPiA+IGlzDQo+ID4gKwkgIHJlcXVpcmVkIG9ubHkgZm9yIERULWJhc2VkIHBsYXRm
-b3Jtcy4gQUNQSSBwbGF0Zm9ybXMgd2l0aCB0aGUNCj4gPiArCSAgQW5uYXB1cm5hIExhYnMgUENJ
-ZSBjb250cm9sbGVyIGRvbid0IG5lZWQgdG8gZW5hYmxlIHRoaXMuDQo+IA0KPiBJbnRlcmVzdGlu
-Zy4gIEhvdyBkbyB5b3UgZGVhbCB3aXRoIHRoZSBmdW5reSBFQ0FNIHNwYWNlIG9uIEFDUEkNCj4g
-cGxhdGZvcm1zPyAgT2gsIG5ldmVyIG1pbmQsIEkgc2VlLCBpdCdzIHRoZSBwY2llLWFsLmMgRUNB
-TSBvcHMgcXVpcmsNCj4gdGhhdCdzIGFscmVhZHkgaW4gdGhlIHRyZWUuDQo+IA0KPiBCam9ybg0K
+Hi Pradeep,
+
+Thanks for the patch!
+
+On 9/6/19 15:47, Pradeep P V K wrote:
+> Vote for the MSM bus bandwidth required by SDHC driver
+> based on the clock frequency and bus width of the card.
+> Otherwise,the system clocks may run at minimum clock speed
+> and thus affecting the performance.
+> 
+> This change is based on Georgi Djakov [RFC]
+> (https://lkml.org/lkml/2018/10/11/499)
+
+I am just wondering whether do we really need to predefine the bandwidth values
+in DT? Can't we use the computations from the above patch or is there any
+problem with that approach?
+
+Thanks,
+Georgi
