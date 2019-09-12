@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA91FB1526
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:09:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20DF1B1529
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:09:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726203AbfILUJk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 16:09:40 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:47151 "EHLO
+        id S1726667AbfILUJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 16:09:45 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:56645 "EHLO
         relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726529AbfILUJk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 16:09:40 -0400
+        with ESMTP id S1726529AbfILUJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 16:09:45 -0400
 X-Originating-IP: 85.243.204.24
 Received: from uno.lan (bl10-204-24.dsl.telepac.pt [85.243.204.24])
         (Authenticated sender: jacopo@jmondi.org)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id B043B20002;
-        Thu, 12 Sep 2019 20:09:36 +0000 (UTC)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id C8A532000A;
+        Thu, 12 Sep 2019 20:09:41 +0000 (UTC)
 From:   Jacopo Mondi <jacopo@jmondi.org>
 To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Hans Verkuil <hverkuil-cisco@xs4all.nl>,
@@ -25,9 +25,9 @@ To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
 Cc:     Jacopo Mondi <jacopo@jmondi.org>,
         linux-media@vger.kernel.org (open list:MEDIA INPUT INFRASTRUCTURE
         (V4L/DVB)), devicetree@vger.kernel.org
-Subject: [PATCH v3 01/11] dt-bindings: video-interfaces: Document 'location' property
-Date:   Thu, 12 Sep 2019 22:10:45 +0200
-Message-Id: <20190912201055.13964-2-jacopo@jmondi.org>
+Subject: [PATCH v3 03/11] dt-bindings: video-interfaces: Expand rotation description
+Date:   Thu, 12 Sep 2019 22:10:47 +0200
+Message-Id: <20190912201055.13964-4-jacopo@jmondi.org>
 X-Mailer: git-send-email 2.23.0
 In-Reply-To: <20190912201055.13964-1-jacopo@jmondi.org>
 References: <20190912201055.13964-1-jacopo@jmondi.org>
@@ -38,37 +38,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the 'location' device property, used to specify a device mounting
-position. The property is particularly meaningful for mobile devices
-with a well defined usage orientation.
+Expand the 'rotation' property description to define the direction and
+orientation of the axis around which the device mounting rotation is
+expressed.
 
 Signed-off-by: Jacopo Mondi <jacopo@jmondi.org>
 ---
- .../devicetree/bindings/media/video-interfaces.txt    | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+ .../devicetree/bindings/media/video-interfaces.txt        | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/media/video-interfaces.txt b/Documentation/devicetree/bindings/media/video-interfaces.txt
-index f884ada0bffc..e71b90a29d7a 100644
+index e71b90a29d7a..8ab51e0bb63e 100644
 --- a/Documentation/devicetree/bindings/media/video-interfaces.txt
 +++ b/Documentation/devicetree/bindings/media/video-interfaces.txt
-@@ -89,6 +89,17 @@ Optional properties
-   but a number of degrees counter clockwise. Typical values are 0 and 180
-   (upside down).
+@@ -85,9 +85,11 @@ Optional properties
 
-+- location: The device, typically an image sensor or a flash LED, mounting
-+  location expressed as a position relative to the usage orientation of the
-+  system where the device is installed on.
-+  Possible values are:
-+  0 - Front. The device is mounted on the front facing side of the system For
-+  mobile devices such as smartphones, tablets and laptops the front side is the
-+  user facing side.
-+  1 - Back. The device is mounted on the back side of the system, which is
-+  defined as the opposite side of the front facing one.
-+  2 - External. The device is not attached directly to the system, or is
-+  attached in a way that allows it to move freely.
+ - lens-focus: A phandle to the node of the focus lens controller.
 
- Optional endpoint properties
- ----------------------------
+-- rotation: The device, typically an image sensor, is not mounted upright,
+-  but a number of degrees counter clockwise. Typical values are 0 and 180
+-  (upside down).
++- rotation: The device, typically an image sensor, mounting rotation expressed
++  as counterclockwise rotation degrees along the axis perpendicular to
++  the device mounting surface directed away from it. Typical values are
++  0 degrees for upright mounted devices and 180 degrees for devices mounted
++  upside down.
+
+ - location: The device, typically an image sensor or a flash LED, mounting
+   location expressed as a position relative to the usage orientation of the
 --
 2.23.0
 
