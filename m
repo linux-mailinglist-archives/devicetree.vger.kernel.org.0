@@ -2,29 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E362BB0E7C
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:03:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06ED2B0E85
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:05:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730680AbfILMDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 08:03:17 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:54488 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730454AbfILMDR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 08:03:17 -0400
-Received: from [192.168.0.20] (cpc89242-aztw30-2-0-cust488.18-1.cable.virginm.net [86.31.129.233])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0AA6F33A;
-        Thu, 12 Sep 2019 14:03:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1568289794;
-        bh=C+RrWY0EIzI5LrQTiBgIBlgI6Dg0MAQvhea9e5EBEPE=;
-        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Ak6vkLhQupZNcO+qkxcIatxD/iSDy2C70/jLhCsqnseiK4SHFoC45tx6aA3nfx7YR
-         U18eXzZ1tde21tv9s5JxH0o/H465yLB8BFO7s1blMXM9gzMoUpzbTCBXn2PGsxjd7O
-         2kmPb67OFwvQjG9OSeysvhO6JPAiySXo56x55K4w=
-Reply-To: kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH] arm: dts: renesas: r8a77980: Remove r8a77970 DU
- compatible
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
+        id S1731503AbfILMFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 08:05:05 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45619 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731490AbfILMFF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 08:05:05 -0400
+Received: by mail-ot1-f65.google.com with SMTP id 41so22003146oti.12;
+        Thu, 12 Sep 2019 05:05:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hN1AvbGPXaWbn8gk23eshDsOWcHJnwOgLbpQ5ihMGXs=;
+        b=gWj9E+Lf4C2ZHQ7ks1N491l5s9V3cZtFmpKgNDB7QMX5DJ7xA/sFdu04DIywdTx3bA
+         1rJT5U76r8e0tcKA46WJZUqrya5lY2cdZK6ZfPK8ybj7OMUR+9S/QFUKDe6EHHBheN05
+         2WfgLtwfjcDAvJ+MhpTWrGwF4rvwbjyPLcbREu95RaKTHAyYExPSMILImKlH+K5dx7JF
+         Dl+VGuf1ZlD8cDkPKKvbXpYT/D9CV7PbTzCYf6h5OYh4m60yLKvJ6syf3dKGrXvmQoGH
+         DTRBWt9FzIV97TtmASzXAYJVN7+FXkZOeWI0oS2iYnuYFZVzdnrfUa+7o57MmMwQR1vl
+         czVg==
+X-Gm-Message-State: APjAAAUYiIMZUh7VoGKJQ8K8FaVrsxTHXnegschyCtKHZHCyDYWCTqZF
+        O1DLpyrUDZ6QxhdyXjRG+4dtbpHFOK0+Sup52xg=
+X-Google-Smtp-Source: APXvYqzub8+qs+xgzCbQJpYWFnKI2oSAA0kckOHsYIO6Erlwm5BT8b7v37rtZmItWvQxpcnjguhILA4+/s8K0/A5o6Y=
+X-Received: by 2002:a9d:6c12:: with SMTP id f18mr12361otq.297.1568289904224;
+ Thu, 12 Sep 2019 05:05:04 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190912103734.1879-1-kieran.bingham+renesas@ideasonboard.com>
+ <CAMuHMdWb9qBDZqOs072u_pCRTaGGArAdUBLWbA5kGoU=KM4Y3A@mail.gmail.com> <4ecb7e77-45e7-cf91-c8e3-0670d7ae25a7@ideasonboard.com>
+In-Reply-To: <4ecb7e77-45e7-cf91-c8e3-0670d7ae25a7@ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 12 Sep 2019 14:04:53 +0200
+Message-ID: <CAMuHMdVqyEHuYKPXb2S5KRp+qHQP-qb+QKDZj_PdnC6__FDJ_Q@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: renesas: r8a77980: Remove r8a77970 DU compatible
+To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
 Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
         Simon Horman <horms@verge.net.au>,
@@ -35,58 +48,36 @@ Cc:     Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         open list <linux-kernel@vger.kernel.org>
-References: <20190912103734.1879-1-kieran.bingham+renesas@ideasonboard.com>
- <CAMuHMdWb9qBDZqOs072u_pCRTaGGArAdUBLWbA5kGoU=KM4Y3A@mail.gmail.com>
-From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-Organization: Ideas on Board
-Message-ID: <4ecb7e77-45e7-cf91-c8e3-0670d7ae25a7@ideasonboard.com>
-Date:   Thu, 12 Sep 2019 13:03:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAMuHMdWb9qBDZqOs072u_pCRTaGGArAdUBLWbA5kGoU=KM4Y3A@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+Hi Kieran,
 
-On 12/09/2019 12:56, Geert Uytterhoeven wrote:
-> On Thu, Sep 12, 2019 at 12:38 PM Kieran Bingham
-> <kieran.bingham+renesas@ideasonboard.com> wrote:
->> The r8a77970 was added with an compatible string for a differnet device
-> 
-> different
+On Thu, Sep 12, 2019 at 2:03 PM Kieran Bingham
+<kieran.bingham+renesas@ideasonboard.com> wrote:
+> On 12/09/2019 12:56, Geert Uytterhoeven wrote:
+> > On Thu, Sep 12, 2019 at 12:38 PM Kieran Bingham
+> > <kieran.bingham+renesas@ideasonboard.com> wrote:
+> >> The r8a77970 was added with an compatible string for a differnet device
+> >
+> > different
+>
+> Also s/an/a/ ... Perhaps I should just step away from the keyboard
+> today, I can't seem to type ! hehe
 
-Also s/an/a/ ... Perhaps I should just step away from the keyboard
-today, I can't seem to type ! hehe
+Doh, finding a first typo increased my adrenaline level, masking the ability
+to see a second ;-)
 
+Gr{oetje,eeting}s,
 
->> rather than adding the correct compatible to the driver.
->>
->> Remove the unnecessary compatible which is for a different platform.
->>
->> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
-> 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
->> Please note, this patch should not be integrated until the renesas,du-r8a77980
->> compatible string makes it into the DU [0].
-> 
-> Hence postponed.
+                        Geert
 
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Thanks.
---
-KB
-
-
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
