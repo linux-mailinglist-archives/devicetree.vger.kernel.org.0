@@ -2,114 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2F2B06D5
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 04:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30FB8B0702
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 04:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728268AbfILCmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 11 Sep 2019 22:42:15 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:55116 "EHLO honk.sigxcpu.org"
+        id S1728265AbfILC5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 11 Sep 2019 22:57:35 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:35030 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727986AbfILCmP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 11 Sep 2019 22:42:15 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id ACF3CFB03;
-        Thu, 12 Sep 2019 04:42:13 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id z-y1afFhBSMJ; Thu, 12 Sep 2019 04:42:12 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id D371D46CC1; Wed, 11 Sep 2019 19:42:10 -0700 (PDT)
-Date:   Wed, 11 Sep 2019 19:42:10 -0700
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        id S1728069AbfILC5f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 11 Sep 2019 22:57:35 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 48D5F2000C7;
+        Thu, 12 Sep 2019 04:57:33 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9B5432000FF;
+        Thu, 12 Sep 2019 04:57:28 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 96547402AD;
+        Thu, 12 Sep 2019 10:57:22 +0800 (SGT)
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dts: arm64: imx8mq: Enable gpu passive throttling
-Message-ID: <20190912024210.GA13270@bogon.m.sigxcpu.org>
-References: <cf1b114bcc6ef26e032c352b8c885aaf5f3594d0.1568254197.git.agx@sigxcpu.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cf1b114bcc6ef26e032c352b8c885aaf5f3594d0.1568254197.git.agx@sigxcpu.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH 1/2] ARM: dts: imx7d: Correct speed grading fuse settings
+Date:   Thu, 12 Sep 2019 10:56:31 +0800
+Message-Id: <1568256992-31707-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Wed, Sep 11, 2019 at 07:14:25PM -0700, Guido Günther wrote:
-> Temperature and hysteresis were picked after the CPU.
+The 800MHz opp speed grading fuse mask should be 0xd instead
+of 0xf according to fuse map definition:
 
-I pulled that one from the wrong branch so please disregard. I've
-sent out a v2.
-Cheers,
- -- Guido
+SPEED_GRADING[1:0]	MHz
+	00		800
+	01		500
+	10		1000
+	11		1200
 
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 564045927485..fda636085bb3 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -235,12 +235,26 @@
->  			thermal-sensors = <&tmu 1>;
->  
->  			trips {
-> +				gpu-alert {
-> +					temperature = <80000>;
-> +					hysteresis = <2000>;
-> +					type = "passive";
-> +				};
-> +
->  				gpu-crit {
->  					temperature = <90000>;
->  					hysteresis = <2000>;
->  					type = "critical";
->  				};
->  			};
-> +
-> +			cooling-maps {
-> +				map0 {
-> +					trip = <&gpu_alert>;
-> +					cooling-device =
-> +						<&gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
-> +				};
-> +			};
->  		};
->  
->  		vpu-thermal {
-> @@ -1006,6 +1020,7 @@
->  			         <&clk IMX8MQ_CLK_GPU_AXI>,
->  			         <&clk IMX8MQ_CLK_GPU_AHB>;
->  			clock-names = "core", "shader", "bus", "reg";
-> +			#cooling-cells = <2>;
->  			assigned-clocks = <&clk IMX8MQ_CLK_GPU_CORE_SRC>,
->  			                  <&clk IMX8MQ_CLK_GPU_SHADER_SRC>,
->  			                  <&clk IMX8MQ_CLK_GPU_AXI>,
-> -- 
-> 2.23.0.rc1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm/boot/dts/imx7d.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/imx7d.dtsi b/arch/arm/boot/dts/imx7d.dtsi
+index 9c8dd32..0083272 100644
+--- a/arch/arm/boot/dts/imx7d.dtsi
++++ b/arch/arm/boot/dts/imx7d.dtsi
+@@ -43,7 +43,7 @@
+ 			opp-hz = /bits/ 64 <792000000>;
+ 			opp-microvolt = <1000000>;
+ 			clock-latency-ns = <150000>;
+-			opp-supported-hw = <0xf>, <0xf>;
++			opp-supported-hw = <0xd>, <0xf>;
+ 		};
+ 
+ 		opp-996000000 {
+-- 
+2.7.4
+
