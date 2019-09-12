@@ -2,80 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 191B8B0916
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 09:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018C0B0990
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 09:35:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726952AbfILHBX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 03:01:23 -0400
-Received: from mga02.intel.com ([134.134.136.20]:40181 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725765AbfILHBX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 03:01:23 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Sep 2019 00:01:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,489,1559545200"; 
-   d="scan'208";a="385948639"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga006.fm.intel.com with ESMTP; 12 Sep 2019 00:01:21 -0700
-Received: from [10.226.39.17] (ekotax-mobl.gar.corp.intel.com [10.226.39.17])
-        by linux.intel.com (Postfix) with ESMTP id C69F9580887;
-        Thu, 12 Sep 2019 00:01:17 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] dwc: PCI: intel: Intel PCIe RC controller driver
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Andrew Murray <andrew.murray@arm.com>
-Cc:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lorenzo.pieralisi@arm.com, robh@kernel.org,
-        martin.blumenstingl@googlemail.com, linux-pci@vger.kernel.org,
-        hch@infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, cheol.yong.kim@intel.com,
-        chuanhua.lei@linux.intel.com, qi-ming.wu@intel.com
-References: <cover.1567585181.git.eswara.kota@linux.intel.com>
- <35316bac59d3bc681e76d33e0345f4ef950c4414.1567585181.git.eswara.kota@linux.intel.com>
- <20190905104517.GX9720@e119886-lin.cambridge.arm.com>
- <20190905114016.GF2680@smile.fi.intel.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <fb258f36-1733-da02-bae3-6062163ba607@linux.intel.com>
-Date:   Thu, 12 Sep 2019 15:01:16 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
+        id S1726922AbfILHfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 03:35:54 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:56572 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725995AbfILHfy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 03:35:54 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8C7Ziel064317;
+        Thu, 12 Sep 2019 02:35:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568273744;
+        bh=UtRNQSOei870F1UMz+x4cIwhqM/N6k8wrjwGlx8UD8M=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=m5LJjrDeASCM6f2+RZE01c72Ff48HRTCXGlDjT8UXrrVZ5o+pYbEZez53lbYNkxb3
+         e1SACDeG8dhymfNaCyP9wntN98hGXgPo33gmInma6oCSmRtn6VaqBxqtg89gj6jCAy
+         eeARejbA0/Y6IA75F2Q4XrrcvCBeYd8VTWmrFYH0=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8C7Zise005630
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 12 Sep 2019 02:35:44 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 12
+ Sep 2019 02:35:43 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 12 Sep 2019 02:35:43 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8C7ZfLR027068;
+        Thu, 12 Sep 2019 02:35:42 -0500
+Subject: Re: [PATCH 1/2] dt-bindings: clock: am33xx: Update GPIO number as per
+ datasheet
+To:     Ankur Tyagi <ankur.tyagi@gallagher.com>, <mark.rutland@arm.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>
+References: <20190912014849.10684-1-ankur.tyagi@gallagher.com>
+From:   Tero Kristo <t-kristo@ti.com>
+Message-ID: <f3dae7f3-58ab-c55c-86c9-8633bd7a7d85@ti.com>
+Date:   Thu, 12 Sep 2019 10:35:41 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190905114016.GF2680@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20190912014849.10684-1-ankur.tyagi@gallagher.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
+On 12/09/2019 04:48, Ankur Tyagi wrote:
+> Sitara technical reference manual numbers GPIO from 0-3 whereas
+> in code GPIO are numbered from 1-4.
+> 
 
-On 9/5/2019 7:40 PM, Andy Shevchenko wrote:
-> On Thu, Sep 05, 2019 at 11:45:18AM +0100, Andrew Murray wrote:
->> On Wed, Sep 04, 2019 at 06:10:31PM +0800, Dilip Kota wrote:
->>> Add support to PCIe RC controller on Intel Universal
->>> Gateway SoC. PCIe controller is based of Synopsys
->>> Designware pci core.
->>> +config PCIE_INTEL_AXI
-> I think that name here is too generic. Classical x86 seems not using this.
+You are right that TRM states these are 0-3, but just to change the 
+numbering at this point seems unnecessary churn for the minor 
+inconvenience it causes. Also, I think we have similar indexing issues 
+all over the place, should we fix them all? At least am4 has exact same 
+indexing issue for gpios. They have been historically called 1-4 since 
+introduction to linux kernel some 6 years already (as hwmod data). :)
 
-This PCIe driver is for the Intel Gateway SoCs. So how about naming it is as
-"pcie-intel-gw"; pcie-intel-gw.c and Kconfig as PCIE_INTEL_GW.
+Also, your patches cause bisect break points, try to apply this patch 
+only to kernel and try to compile and see what happens.... and you don't 
+touch the DT side for these either which causes another compile breakage.
 
-Andrew Murray is ok with this naming, please let me know your view.
+So, from my side, NAK for both patches, I can't see why we should do 
+such a small change and cause so many problems... not to mention the 
+compile issues.
 
->
->>> +        bool "Intel AHB/AXI PCIe host controller support"
->>> +        depends on PCI_MSI
->>> +        depends on PCI
->>> +        depends on OF
->>> +        select PCIE_DW_HOST
->>> +        help
->>> +          Say 'Y' here to enable support for Intel AHB/AXI PCIe Host
->>> +	  controller driver.
->>> +	  The Intel PCIe controller is based on the Synopsys Designware
->>> +	  pcie core and therefore uses the Designware core functions to
->>> +	  implement the driver.
+Do you have some specific reason why you want these changed?
+
+-Tero
+
+> Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
+> ---
+>   include/dt-bindings/clock/am3.h | 16 ++++++++--------
+>   1 file changed, 8 insertions(+), 8 deletions(-)
+> 
+> diff --git a/include/dt-bindings/clock/am3.h b/include/dt-bindings/clock/am3.h
+> index 894951541276..980fdc05c3d0 100644
+> --- a/include/dt-bindings/clock/am3.h
+> +++ b/include/dt-bindings/clock/am3.h
+> @@ -41,9 +41,9 @@
+>   #define AM3_RNG_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0x90)
+>   #define AM3_AES_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0x94)
+>   #define AM3_SHAM_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xa0)
+> -#define AM3_GPIO2_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xac)
+> -#define AM3_GPIO3_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb0)
+> -#define AM3_GPIO4_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb4)
+> +#define AM3_GPIO1_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xac)
+> +#define AM3_GPIO2_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb0)
+> +#define AM3_GPIO3_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb4)
+>   #define AM3_TPCC_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xbc)
+>   #define AM3_D_CAN0_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xc0)
+>   #define AM3_D_CAN1_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xc4)
+> @@ -69,7 +69,7 @@
+>   #define AM3_L4_WKUP_CLKCTRL_OFFSET	0x4
+>   #define AM3_L4_WKUP_CLKCTRL_INDEX(offset)	((offset) - AM3_L4_WKUP_CLKCTRL_OFFSET)
+>   #define AM3_CONTROL_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x4)
+> -#define AM3_GPIO1_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x8)
+> +#define AM3_GPIO0_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x8)
+>   #define AM3_L4_WKUP_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0xc)
+>   #define AM3_DEBUGSS_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x14)
+>   #define AM3_WKUP_M3_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0xb0)
+> @@ -121,9 +121,9 @@
+>   #define AM3_L4LS_TIMER3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x84)
+>   #define AM3_L4LS_TIMER4_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x88)
+>   #define AM3_L4LS_RNG_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x90)
+> -#define AM3_L4LS_GPIO2_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xac)
+> -#define AM3_L4LS_GPIO3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb0)
+> -#define AM3_L4LS_GPIO4_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb4)
+> +#define AM3_L4LS_GPIO1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xac)
+> +#define AM3_L4LS_GPIO2_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb0)
+> +#define AM3_L4LS_GPIO3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb4)
+>   #define AM3_L4LS_D_CAN0_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xc0)
+>   #define AM3_L4LS_D_CAN1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xc4)
+>   #define AM3_L4LS_EPWMSS1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xcc)
+> @@ -184,7 +184,7 @@
+>   
+>   /* l4_wkup clocks */
+>   #define AM3_L4_WKUP_CONTROL_CLKCTRL	AM3_CLKCTRL_INDEX(0x4)
+> -#define AM3_L4_WKUP_GPIO1_CLKCTRL	AM3_CLKCTRL_INDEX(0x8)
+> +#define AM3_L4_WKUP_GPIO0_CLKCTRL	AM3_CLKCTRL_INDEX(0x8)
+>   #define AM3_L4_WKUP_L4_WKUP_CLKCTRL	AM3_CLKCTRL_INDEX(0xc)
+>   #define AM3_L4_WKUP_UART1_CLKCTRL	AM3_CLKCTRL_INDEX(0xb4)
+>   #define AM3_L4_WKUP_I2C1_CLKCTRL	AM3_CLKCTRL_INDEX(0xb8)
+> 
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
