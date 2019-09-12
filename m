@@ -2,169 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 221ACB11DA
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 17:12:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F411B11F5
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 17:18:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732966AbfILPMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 11:12:02 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:36383 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732809AbfILPMC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 11:12:02 -0400
-Received: by mail-lf1-f67.google.com with SMTP id x80so19694977lff.3
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 08:12:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=BQvYwrynlYgeY28xmsYzLa0ffbneFj8mnp+haD7bRLA=;
-        b=ENsfZJkMjORBKTzN9InS4Qq1+hPIy+FobNBG+Ena5keYaBEmvUrWZLfaRNYw8xkoen
-         vVD+WOL0YCJIHyOZ+HpaVkoH/yqZnpTyzqEc7sbx8cmySujTVU5Qz+pv0EOQfGMMBoJb
-         rHY6Mrg4y8J3vt5SQ+dK7ypPBH357L0u9516DNKc9sRbrg7WrDms1KpXOBIBg7dztdcj
-         /37jjIEvvmMFYdPmhu7pCzs8FHazLx0byDnvY+tvxnflZntSlCKhTzm1HX2EvTx1986u
-         Y6FdFxq0W5PgYn84RwCDNJrNdX2YftrIMngO4VVCh93UgMLzrdv9m36RF3XmLVupwjCz
-         RXig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=BQvYwrynlYgeY28xmsYzLa0ffbneFj8mnp+haD7bRLA=;
-        b=bl7zvEGojoNV9jLYcfXqXRc1qZ9E+sOil08CC3BWkHaZ7Dl7ovQH84ilYUaglSa31u
-         4+4aHsKvJAsfiTOjasT2vam7ZnqmjK209P/WIkVLBOcQh+4DRZjDv/u0CbYok5h4BMd/
-         2VOUfUiKlG7Qu0AVQ5uRk51SK1aWoRYt+rlNFuDozUGlmK2H92k2wZr87c2fsuaY4ELv
-         GEaceRe7njWmFogua+m0Sthuok2e3xiIyrbUCH0WCDskOEk3KnotpOE4QW47ZOsdijT+
-         zC6o75BEwfO5mSZzuDFyvDTG4nXg5cZ+mV+RbjKILALTuAN2bxgI3jjRthkOWth9U8nL
-         p7WQ==
-X-Gm-Message-State: APjAAAWF42p9hr1KOnG/V1j1NxT1h4KTEoqrRbBTCOP6W4yhA582MQxb
-        RXOlZ2CQK7+dJ5yKe60OfizHwg==
-X-Google-Smtp-Source: APXvYqwWSdyMu492oXhyvP8A2cmtRd5oVCP054vpKaFphiupoFECabgdvNUNKEscV0ryJoBjzBFGHA==
-X-Received: by 2002:a19:428f:: with SMTP id p137mr28616130lfa.149.1568301119743;
-        Thu, 12 Sep 2019 08:11:59 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id k13sm5764857ljc.96.2019.09.12.08.11.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 12 Sep 2019 08:11:58 -0700 (PDT)
-Subject: Re: [PATCH 1/2] venus: use on-chip interconnect API
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Stanimir Varbanov <stanimir.varbanov@linaro.org>,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Vikash Garodia <vgarodia@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Aniket Masule <amasule@codeaurora.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-References: <20190814084701.25455-1-stanimir.varbanov@linaro.org>
- <20190814084701.25455-2-stanimir.varbanov@linaro.org>
- <cc85f55c-3d21-c3b2-6848-e48513263e39@linaro.org>
- <20190904042203.GC3081@tuxbook-pro>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <345e7450-b3af-92c5-4e83-bccaf0a98a0b@linaro.org>
-Date:   Thu, 12 Sep 2019 18:11:55 +0300
-MIME-Version: 1.0
-In-Reply-To: <20190904042203.GC3081@tuxbook-pro>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1732817AbfILPSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 11:18:33 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:58092 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732836AbfILPSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 11:18:33 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190912151831euoutp0149fab59582de5232be673a4235358405~DuepWaHx32497424974euoutp014
+        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 15:18:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190912151831euoutp0149fab59582de5232be673a4235358405~DuepWaHx32497424974euoutp014
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1568301511;
+        bh=9fiqiegTet1HHXeKGZMH21sovxq29bLed8hpjvy2DWY=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Cz2njkpf5UHhyYyb0bge+M0bvJ8WJob7P1FUaq5/929DZQ8+RAZFjxwjoAyh+i1Hi
+         3RSX1YlVSNdeAOuwotcp5jvhpwoJHzbFIiRnh46+dZuQy1I5O+UKPDxmHSCLdaceXv
+         d1OTqmUYaCuhqUIuENMCh4fM+FfwrZiycfB5sM/M=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190912151830eucas1p1e5abb5620ef151f7f68ed3a2d7b4ce4d~DueowiADe3012930129eucas1p1b;
+        Thu, 12 Sep 2019 15:18:30 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id D5.B3.04309.6C16A7D5; Thu, 12
+        Sep 2019 16:18:30 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190912151829eucas1p216ca28e56f62e7f484c46ce30581200a~DueoAr4eY2540325403eucas1p2J;
+        Thu, 12 Sep 2019 15:18:29 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190912151829eusmtrp12be9a8f85efd569bd033c9500bb244a8~DuenyN4CJ2459924599eusmtrp1q;
+        Thu, 12 Sep 2019 15:18:29 +0000 (GMT)
+X-AuditID: cbfec7f4-afbff700000010d5-d8-5d7a61c6c61a
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 91.ED.04166.5C16A7D5; Thu, 12
+        Sep 2019 16:18:29 +0100 (BST)
+Received: from AMDC2459.DIGITAL.local (unknown [106.120.51.95]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190912151829eusmtip2630c7a0d799b3bd16a7a226060870c26~DuenSC6Ei1425614256eusmtip2n;
+        Thu, 12 Sep 2019 15:18:29 +0000 (GMT)
+From:   Maciej Falkowski <m.falkowski@samsung.com>
+To:     devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, kgene@kernel.org,
+        krzk@kernel.org, a.hajda@samsung.com, m.szyprowski@samsung.com,
+        m.falkowski@samsung.com
+Subject: [PATCH v2] ARM: dts: exynos: remove obsolete IRQ lines
+Date:   Thu, 12 Sep 2019 17:17:56 +0200
+Message-Id: <20190912151756.27173-1-m.falkowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190911133310.8365-1-m.falkowski@samsung.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpmleLIzCtJLcpLzFFi42LZduzned1jiVWxBp9OSVvcWneO1WL+ESDR
+        //g1s8X58xvYLS7vmsNmMeP8PiaLB83r2CzWHrnLbrH0+kUmi9a9R9gduDzWzFvD6LFpVSeb
+        R9+WVYwenzfJBbBEcdmkpOZklqUW6dslcGVM+7OBqWAWf8WKI8vZGhjX8nQxcnBICJhI7NyQ
+        18XIxSEksIJRonvyREYI5wujxJe385kgnM+MEj1b+9m6GDnBOlac64RKLGeUWLHmNztcy6Ld
+        e5hAqtgEDCT63+xlAbFFBBIl3q77yQpSxCwwm1FizYLtrCAJYQF7iTOvdoHZLAKqEvc69zCC
+        2LwCNhKdv86yQKyTl1i94QAzyLGcQPHD/x1B5kgI/GeT+Ng3mRWixkVi//3pjBC2sMSr41vY
+        IWwZidOTe1ggHq2WuPZNFqK3hVHi+rS3UO9YS/xZNZENpIZZQFNi/S59iLCjxJ9JlxkhWvkk
+        brwVBAkzA5mTtk1nhgjzSnS0CUGYqhJvJsRCNEpLtK7ZD3WLh8S0cyuZIaHTzyjR3H+AdQKj
+        /CyEXQsYGVcxiqeWFuempxYb5aWW6xUn5haX5qXrJefnbmIEJo3T/45/2cG460/SIUYBDkYl
+        Hl4LnapYIdbEsuLK3EOMEhzMSiK8Pm8qY4V4UxIrq1KL8uOLSnNSiw8xSnOwKInzVjM8iBYS
+        SE8sSc1OTS1ILYLJMnFwSjUwls/h17EuqFnA9nPDlK6t/kr5Msmdr8q6PmRnztB/G77344qb
+        TGVGC2R7D55MlL3+3ueqzILXzc/1k9mOeB1qlGzhEVPgMmTjTk1OzXpkaFjWKjn15B/1LYcj
+        /WZ2/PncOj+FyVkwIytB7pLIt5SUuaaBYTJfl1osF/idOCmtKCTu7WtJpzglluKMREMt5qLi
+        RAAi6P9oFgMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrGLMWRmVeSWpSXmKPExsVy+t/xe7pHE6tiDV50alrcWneO1WL+ESDR
+        //g1s8X58xvYLS7vmsNmMeP8PiaLB83r2CzWHrnLbrH0+kUmi9a9R9gduDzWzFvD6LFpVSeb
+        R9+WVYwenzfJBbBE6dkU5ZeWpCpk5BeX2CpFG1oY6RlaWugZmVjqGRqbx1oZmSrp29mkpOZk
+        lqUW6dsl6GVM+7OBqWAWf8WKI8vZGhjX8nQxcnJICJhIrDjXydTFyMUhJLCUUeLZ2YesEAlp
+        if3XPrJD2MISf651sYHYQgKfGCWu/LQFsdkEDCT63+xlAbFFBJIlvj3rZAEZxCywmFFi+94P
+        YA3CAvYSZ17tAhvKIqAqca9zDyOIzStgI9H56ywLxAJ5idUbDjB3MXJwcALFD/93hNhlLfF7
+        zSamCYx8CxgZVjGKpJYW56bnFhvqFSfmFpfmpesl5+duYgSG8bZjPzfvYLy0MfgQowAHoxIP
+        r4VOVawQa2JZcWXuIUYJDmYlEV6fN5WxQrwpiZVVqUX58UWlOanFhxhNgW6ayCwlmpwPjLG8
+        knhDU0NzC0tDc2NzYzMLJXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2MEq3sNbxOnGf60l1C
+        06wX9bk8faRnp7y+4sL7zry/S/d78R6+rrvutoBR1I7HNWorYlOqXjf2u3VbOE5994VHYVeA
+        xdupr5zbD3x9fe7fkdVbGd+4z91n9XvyRvPc5qfqxqEWPCs/c/hfZ+y5blqtH3L0wFu59UvK
+        DRnn7F75a3f3KbU1J9UylViKMxINtZiLihMB6G1QwHkCAAA=
+X-CMS-MailID: 20190912151829eucas1p216ca28e56f62e7f484c46ce30581200a
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190912151829eucas1p216ca28e56f62e7f484c46ce30581200a
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190912151829eucas1p216ca28e56f62e7f484c46ce30581200a
+References: <20190911133310.8365-1-m.falkowski@samsung.com>
+        <CGME20190912151829eucas1p216ca28e56f62e7f484c46ce30581200a@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+In commit 7222e8db2d506197ee183de0f9b76b3ad97e8c18 (iommu/exynos: Fix build
+errors) Exynos3250 iommu driver stopped supporting two IRQ lines.
+The second IRQ line in DTS is ignored and is not needed.
 
-On 9/4/19 07:22, Bjorn Andersson wrote:
-> On Tue 20 Aug 02:34 PDT 2019, Georgi Djakov wrote:
-> 
->> Hi Stan,
->>
->> On 8/14/19 11:47, Stanimir Varbanov wrote:
->>> This aims to add a requests for bandwidth scaling depending
->>> on the resolution and framerate (macroblocks per second). The
->>> exact value ff the requested bandwidth is get from a
->>
->> s/ff/of/
->>
->>> pre-calculated tables for encoder and decoder.
->>>
->>> Signed-off-by: Stanimir Varbanov <stanimir.varbanov@linaro.org>
->>> ---
->>>  drivers/media/platform/qcom/venus/core.c    | 34 +++++++++++
->>>  drivers/media/platform/qcom/venus/core.h    | 14 +++++
->>>  drivers/media/platform/qcom/venus/helpers.c | 67 ++++++++++++++++++++-
->>>  3 files changed, 114 insertions(+), 1 deletion(-)
->>
->> It looks like venus can be built-in, so how about the case when venus is
->> built-in and the interconnect provider is a module? Maybe add a dependency in
->> Kconfig to depend on INTERCONNECT || !INTERCONNECT?
->>
-> 
-> I've been struggling down this road for remoteproc et al for a long
-> time, I strongly suggest that you make the INTERCONNECT config bool, to
-> ensure that we don't see this problem for every client.
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+---
+v2: 
+- change commit message to proper version
+- add proper recipients
+---
+ arch/arm/boot/dts/exynos3250.dtsi | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-Thanks for the comment. Well, i was expecting that we will have to make it bool
-one day. Viresh actually already sent a patch [1]. Maybe you can add an Ack?
+diff --git a/arch/arm/boot/dts/exynos3250.dtsi b/arch/arm/boot/dts/exynos3250.dtsi
+index 784818490376..190d9160a5d1 100644
+--- a/arch/arm/boot/dts/exynos3250.dtsi
++++ b/arch/arm/boot/dts/exynos3250.dtsi
+@@ -314,8 +314,7 @@
+ 		sysmmu_jpeg: sysmmu@11a60000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x11a60000 0x1000>;
+-			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 161 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUJPEG>, <&cmu CLK_JPEG>;
+ 			power-domains = <&pd_cam>;
+@@ -355,8 +354,7 @@
+ 		sysmmu_fimd0: sysmmu@11e20000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x11e20000 0x1000>;
+-			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUFIMD0>, <&cmu CLK_FIMD0>;
+ 			power-domains = <&pd_lcd0>;
+@@ -507,8 +505,7 @@
+ 		sysmmu_mfc: sysmmu@13620000 {
+ 			compatible = "samsung,exynos-sysmmu";
+ 			reg = <0x13620000 0x1000>;
+-			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>,
+-				     <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
+ 			clock-names = "sysmmu", "master";
+ 			clocks = <&cmu CLK_SMMUMFC_L>, <&cmu CLK_MFC>;
+ 			power-domains = <&pd_mfc>;
+-- 
+2.17.1
 
-> 
-> The interconnect framework should hide the fact that the provider is
-> module.
-> 
-
-Correct.
-
-> 
-> But with this in place is there actually a dependency? Won't the include
-> file provide stubs in the case of !INTERCONNECT?
-
-There are stubs, so we are fine.
-
-Thanks,
-Georgi
-
-[1]
-https://lore.kernel.org/linux-pm/b789cce388dd1f2906492f307dea6780c398bc6a.1567065991.git.viresh.kumar@linaro.org/
