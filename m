@@ -2,154 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83532B1498
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 20:52:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C196B151C
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 22:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727454AbfILSwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 14:52:55 -0400
-Received: from anholt.net ([50.246.234.109]:42692 "EHLO anholt.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727452AbfILSwz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 14:52:55 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by anholt.net (Postfix) with ESMTP id 46F5910A37AE;
-        Thu, 12 Sep 2019 11:52:54 -0700 (PDT)
-X-Virus-Scanned: Debian amavisd-new at anholt.net
-Received: from anholt.net ([127.0.0.1])
-        by localhost (kingsolver.anholt.net [127.0.0.1]) (amavisd-new, port 10024)
-        with LMTP id Fw3lQsD2bIYU; Thu, 12 Sep 2019 11:52:50 -0700 (PDT)
-Received: from eliezer.anholt.net (localhost [127.0.0.1])
-        by anholt.net (Postfix) with ESMTP id 8B4EC10A37B3;
-        Thu, 12 Sep 2019 11:52:50 -0700 (PDT)
-Received: by eliezer.anholt.net (Postfix, from userid 1000)
-        id E6AB12FE2E27; Thu, 12 Sep 2019 11:52:50 -0700 (PDT)
-From:   Eric Anholt <eric@anholt.net>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Stefan Wahren <wahrenst@gmx.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH V2 05/13] clk: bcm2835: Add BCM2711_CLOCK_EMMC2 support
-In-Reply-To: <d89bbc4b-b6bc-0d4e-86d1-6be11876ce00@gmail.com>
-References: <1565713248-4906-1-git-send-email-wahrenst@gmx.net> <1565713248-4906-6-git-send-email-wahrenst@gmx.net> <d89bbc4b-b6bc-0d4e-86d1-6be11876ce00@gmail.com>
-User-Agent: Notmuch/0.22.2+1~gb0bcfaa (http://notmuchmail.org) Emacs/26.1 (x86_64-pc-linux-gnu)
-Date:   Thu, 12 Sep 2019 11:52:49 -0700
-Message-ID: <87o8zp1h4u.fsf@anholt.net>
+        id S1726754AbfILUJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 16:09:28 -0400
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:22175 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726329AbfILUJ2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 16:09:28 -0400
+Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
+  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="Ludovic.Desroches@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa5.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa5.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: GNDS3s3JLom+rZWyh4asQBjdgjybdJ0dcQ2hqdbq+vyBSvzIzNWxxxEAF4k8wOmiy69Y1T4wFM
+ Icg+maMwEfwBJz4AmKAGEODNWM6ady0L8oH4dTjP2Nb1P+V4K80SRBwe9vbq9LToyj4obuNTHT
+ Vknd8HlloevCm0da1nN5v5a9X1FVo6fzd0DnPBz5CLTd22lctO6VBFgbauUSdrFyyo/69HRP6F
+ sZvmlxkNMMmMZqLmDomdzkTO+VojPt96Hz1RDLwLMTvvFRfTCnGeaNHOMu56urR3aMusoO+A9M
+ rXw=
+X-IronPort-AV: E=Sophos;i="5.64,498,1559545200"; 
+   d="scan'208";a="47283694"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Sep 2019 13:09:27 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 12 Sep 2019 13:09:25 -0700
+Received: from sekiro.microchip.com (10.10.85.251) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server id
+ 15.1.1713.5 via Frontend Transport; Thu, 12 Sep 2019 13:09:24 -0700
+From:   Ludovic Desroches <ludovic.desroches@microchip.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-mmc@vger.kernel.org>
+CC:     <ulf.hansson@linaro.org>, <nicolas.ferre@microchip.com>,
+        <ludovic.desroches@microchip.com>, <adrian.hunter@intel.com>,
+        <linux-kernel@vger.kernel.org>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <claudiu.beznea@microchip.com>
+Subject: [PATCH 1/3] dt-bindings: sdhci-of-at91: new compatible string and update properties
+Date:   Thu, 12 Sep 2019 22:09:06 +0200
+Message-ID: <20190912200908.31318-1-ludovic.desroches@microchip.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha512; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+There is a new compatible string for the SAM9X60 sdhci device. It involves
+an update of the properties about the clocks stuff.
 
-Matthias Brugger <matthias.bgg@gmail.com> writes:
+Signed-off-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+---
+ .../devicetree/bindings/mmc/sdhci-atmel.txt   | 25 ++++++++++++++++---
+ 1 file changed, 22 insertions(+), 3 deletions(-)
 
-> On 13/08/2019 18:20, Stefan Wahren wrote:
->> The new BCM2711 supports an additional clock for the emmc2 block.
->> So add a new compatible and register this clock only for BCM2711.
->>=20
->> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
->> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
->> Acked-by: Eric Anholt <eric@anholt.net>
->> ---
->>  drivers/clk/bcm/clk-bcm2835.c | 20 +++++++++++++++++++-
->>  1 file changed, 19 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/clk/bcm/clk-bcm2835.c b/drivers/clk/bcm/clk-bcm2835=
-.c
->> index 21cd952..fdf672a 100644
->> --- a/drivers/clk/bcm/clk-bcm2835.c
->> +++ b/drivers/clk/bcm/clk-bcm2835.c
->> @@ -114,6 +114,8 @@
->>  #define CM_AVEODIV		0x1bc
->>  #define CM_EMMCCTL		0x1c0
->>  #define CM_EMMCDIV		0x1c4
->> +#define CM_EMMC2CTL		0x1d0
->> +#define CM_EMMC2DIV		0x1d4
->>=20
->>  /* General bits for the CM_*CTL regs */
->>  # define CM_ENABLE			BIT(4)
->> @@ -290,7 +292,8 @@
->>  #define BCM2835_MAX_FB_RATE	1750000000u
->>=20
->>  #define SOC_BCM2835		BIT(0)
->> -#define SOC_ALL			(SOC_BCM2835)
->> +#define SOC_BCM2711		BIT(1)
->> +#define SOC_ALL			(SOC_BCM2835 | SOC_BCM2711)
->>=20
->>  /*
->>   * Names of clocks used within the driver that need to be replaced
->> @@ -2003,6 +2006,16 @@ static const struct bcm2835_clk_desc clk_desc_arr=
-ay[] =3D {
->>  		.frac_bits =3D 8,
->>  		.tcnt_mux =3D 39),
->>=20
->> +	/* EMMC2 clock (only available for BCM2711) */
->> +	[BCM2711_CLOCK_EMMC2]	=3D REGISTER_PER_CLK(
->> +		SOC_BCM2711,
->> +		.name =3D "emmc2",
->> +		.ctl_reg =3D CM_EMMC2CTL,
->> +		.div_reg =3D CM_EMMC2DIV,
->> +		.int_bits =3D 4,
->> +		.frac_bits =3D 8,
->> +		.tcnt_mux =3D 42),
->> +
->>  	/* General purpose (GPIO) clocks */
->>  	[BCM2835_CLOCK_GP0]	=3D REGISTER_PER_CLK(
->>  		SOC_ALL,
->> @@ -2238,8 +2251,13 @@ static const struct cprman_plat_data cprman_bcm28=
-35_plat_data =3D {
->>  	.soc =3D SOC_BCM2835,
->>  };
->>=20
->> +static const struct cprman_plat_data cprman_bcm2711_plat_data =3D {
->> +	.soc =3D SOC_BCM2711,
->> +};
->> +
->>  static const struct of_device_id bcm2835_clk_of_match[] =3D {
->>  	{ .compatible =3D "brcm,bcm2835-cprman", .data =3D &cprman_bcm2835_pla=
-t_data },
->> +	{ .compatible =3D "brcm,bcm2711-cprman", .data =3D &cprman_bcm2711_pla=
-t_data },
->
-> Because the RPi4 FW uses bcm2838-cprman as compatible, we will need to ad=
-d this
-> here as well.
+diff --git a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+index 1b662d7171a0..364ceea330b6 100644
+--- a/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
++++ b/Documentation/devicetree/bindings/mmc/sdhci-atmel.txt
+@@ -5,12 +5,19 @@ Documentation/devicetree/bindings/mmc/mmc.txt and the properties used by the
+ sdhci-of-at91 driver.
+ 
+ Required properties:
+-- compatible:		Must be "atmel,sama5d2-sdhci".
++- compatible:		Must be "atmel,sama5d2-sdhci" or "microchip,sam9x60-sdhci".
+ - clocks:		Phandlers to the clocks.
+-- clock-names:		Must be "hclock", "multclk", "baseclk";
++- clock-names:		Must be "hclock", "multclk", "baseclk" for
++			"atmel,sama5d2-sdhci".
++			Must be "hclock", "multclk" for "microchip,sam9x60-sdhci".
+ 
++Optional properties:
++- assigned-clocks:	The same with "multclk".
++- assigned-clock-rates	The rate of "multclk" in order to not rely on the
++			gck configuration set by previous components.
+ 
+-Example:
++
++Examples:
+ 
+ sdmmc0: sdio-host@a0000000 {
+ 	compatible = "atmel,sama5d2-sdhci";
+@@ -18,4 +25,16 @@ sdmmc0: sdio-host@a0000000 {
+ 	interrupts = <31 IRQ_TYPE_LEVEL_HIGH 0>;
+ 	clocks = <&sdmmc0_hclk>, <&sdmmc0_gclk>, <&main>;
+ 	clock-names = "hclock", "multclk", "baseclk";
++	assigned-clocks = <&sdmmc0_gclk>;
++	assigned-clock-rates = <480000000>;
++};
++
++sdmmc0: sdio-host@80000000 {
++	compatible = "microchip,sam9x60-sdhci";
++	reg = <0x80000000 0x300>;
++	interrupts = <12 IRQ_TYPE_LEVEL_HIGH 0>;
++	clocks = <&pmc PMC_TYPE_PERIPHERAL 12>, <&pmc PMC_TYPE_GCK 12>;
++	clock-names = "hclock", "multclk";
++	assigned-clocks = <&pmc PMC_TYPE_GCK 12>;
++	assigned-clock-rates = <100000000>;
+ };
+-- 
+2.23.0
 
-Upstream has not committed to backwards compat with Pi's firmware.  That
-makes the ABI requirement we get held to for upstream's DT absurd, but
-that's the state of things.
-
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEE/JuuFDWp9/ZkuCBXtdYpNtH8nugFAl16lAEACgkQtdYpNtH8
-nuiquBAAqGE/S+glO2WG6bRp748JssNBNyGIYDyPnsgqZMjtxUBeyHT4VXejcHqE
-cPsjlLNfppLDxUnHPoPvo7C/gUgcgSG+SyMubALDNdYyOIftGV5VSLK6d6LrhIGf
-1yvohK4q5cn5S3I2E1xotOLOAvoZxdX7EA9EpMYrF8BttpkxfX62gftV3wgWf0Yk
-3t1JkR9uZKwM623xJzrAom0MmkmuZDqPBmrQAuR4r4rftx4BAYuYIoRIJ6kiOS2w
-Lfn9nQ1i8u2l3tBrwSnHTN6yhPsYg0+blqqRmI6MTheILyC1HLFzI7KA2iOfJ/Ea
-zsnJ4QCbFbKQvsSVCsAYZRF4ulPtziMhkGNFLvLytSQYpmBGyf7gCTLI6Evca5rS
-7CSaB/K1TL9p2DKE2yqZEkn5c0EYugXDXefyzN8HIQpHh4IUL+6DPiGWAUljXdU/
-eyRYH5HUYgWON0yScodM/Laa9DI7xfK5RA4Ij0fOgcdCfj6S/NaT0HwVIGxLxabA
-u0YMiuVr6q70mUIo0T6fPr7O8WPNCa0PYJkxLis+YshCPcUKNkSCVgq5eFMi8/Xy
-7sdsgp31OkxCoqHAT4G87gtrnLkv7iQRFsz59dQe5YenbdCXLxh91BEvzP3Bn+Mj
-LWtlPr6KVBlwfx0Tq+uf5xCJ13+sBRnGteamwsrbp/IvBdPH71o=
-=qgc8
------END PGP SIGNATURE-----
---=-=-=--
