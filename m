@@ -2,100 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BA63B0F08
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:46:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04DDAB0F15
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 14:49:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731638AbfILMqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 08:46:19 -0400
-Received: from mail-eopbgr20041.outbound.protection.outlook.com ([40.107.2.41]:57038
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1731633AbfILMqT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 08:46:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jn5glkBeDbuyvbmtX2vQIhN8ey8mFlDNC/aVUZfRSGL7KoBYHmGG9aWudFXeTLERmYPCHiWL78P6Salb7T/6lpfMPWWHy8Ajs1SGGS7gBL1Ynx8RzrLFb1eEudNXrr846N2JwTKSG4RW7ZCCYge9chMDkENfF4uaDpVvFIQFlj7J00acVgJO9OAx7EMIlNyP74WDUTO0mSpzrmgFPxWF23VbRFL/1vjHyTrTWeVi0/0YfirxrjbpQl85a5jLiDw65wrA0tfV7wXElt7HVOCeTYbpoVlSw/QvRFtNoRawYL/tUXOTW3XZ0o46Va2kdNzTP5zafFrA23Wo2+aOzFz6+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vJWze+9tCqrC28wk4avEOYXhbUn8wLLw2Y++F/oknrg=;
- b=YhPQVB1burmJ77cao6cgT8mhQEeS6xiB3G9SUgBKQ0s/e1HLoXvRA6PvB+hdTdllCoy+RENxXhbxv6ZxtJOSKboqmYgnigkkBj4GAapgp8hNv32YGKnijaVQdxG3Nah9ks0purdhqHx2ABNSSivODgBijVE2uXFtOChyN5cC4x8WecjpdywpKJIetX49I4Rm3A1WGAuyZWrId61kJ1gFlwwD+0QjdS8EAV8mBLl4t3iu1oQosGxx1hYXAdbiJBTfG4JSvNX5k1QmSiCS1Xj0c2qFWmwW2YgRv25XKHKB98EyWQ2JaPEIZbnYXtFtUa87ruEgbN1NQZWk5X2yGNmg6Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vJWze+9tCqrC28wk4avEOYXhbUn8wLLw2Y++F/oknrg=;
- b=s8kTrRkxQJSBmNWUri2TZZ5xL87vP4F+zRG1PXd3+g6YcZA3TvkD4tHDdWJXmzSP8I2BktHnB0OKgFcvKqob4e4+l6mVhVfjwROqqxcYzl/9CXOL25GRevdvob8aYq9Vdrlq8hc7OTuSypvL7VL7p7qa+mIZcfCt7E7kJvxDWY8=
-Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
- VI1PR04MB5998.eurprd04.prod.outlook.com (20.178.123.213) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.15; Thu, 12 Sep 2019 12:46:15 +0000
-Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
- ([fe80::c5e8:90f8:da97:947e]) by VI1PR04MB7023.eurprd04.prod.outlook.com
- ([fe80::c5e8:90f8:da97:947e%3]) with mapi id 15.20.2263.016; Thu, 12 Sep 2019
- 12:46:15 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Anson Huang <anson.huang@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        id S1731703AbfILMtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 08:49:50 -0400
+Received: from foss.arm.com ([217.140.110.172]:33712 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731685AbfILMtu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 08:49:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ED01A28;
+        Thu, 12 Sep 2019 05:49:48 -0700 (PDT)
+Received: from localhost (unknown [10.37.6.20])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3B34A3F71F;
+        Thu, 12 Sep 2019 05:49:48 -0700 (PDT)
+Date:   Thu, 12 Sep 2019 13:49:46 +0100
+From:   Andrew Murray <andrew.murray@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 2/2] ARM: dts: imx7d: Add opp-suspend property
-Thread-Topic: [PATCH 2/2] ARM: dts: imx7d: Add opp-suspend property
-Thread-Index: AQHVaRXUkInrsknOFUCFtb/GlZ/txA==
-Date:   Thu, 12 Sep 2019 12:46:15 +0000
-Message-ID: <VI1PR04MB7023B9F5AE6CF965BA76F5C8EEB00@VI1PR04MB7023.eurprd04.prod.outlook.com>
-References: <1568256992-31707-1-git-send-email-Anson.Huang@nxp.com>
- <1568256992-31707-2-git-send-email-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [82.144.34.2]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 657424dd-f635-4240-2b9d-08d7377f3331
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB5998;
-x-ms-traffictypediagnostic: VI1PR04MB5998:|VI1PR04MB5998:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB5998E75B1BF0B413295C955AEEB00@VI1PR04MB5998.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:473;
-x-forefront-prvs: 01583E185C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(346002)(376002)(366004)(136003)(39860400002)(189003)(199004)(81166006)(478600001)(6506007)(33656002)(8936002)(558084003)(53546011)(102836004)(186003)(5660300002)(486006)(25786009)(55016002)(476003)(9686003)(26005)(44832011)(6246003)(76176011)(305945005)(7736002)(74316002)(52536014)(64756008)(66446008)(14444005)(76116006)(256004)(2501003)(66946007)(6116002)(54906003)(316002)(110136005)(3846002)(71190400001)(86362001)(91956017)(66556008)(66476007)(7696005)(229853002)(99286004)(71200400001)(14454004)(15650500001)(8676002)(66066001)(53936002)(81156014)(4326008)(446003)(2906002)(6436002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5998;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: /Y/zpzrMddS4ZxkWFAIixitL55MPIiKMiMwaeh0yTljBSj9beXHrih2R8IhhRxvzixOOKawgzjHafbv1DoLOlNpKDW9Dx/ESF45BoFTIHHzDZ+Bq5uuvZSG8GjC2CMa4pR3O0t3pWwajK5WTgTGi7vCJSWsJcI8C9wBgNpOBXYzb8vAFMPdVK1TTaRswohHRBUyOpmn9GbZ9lYTpyP0iiNMwimkPTyId49WJcrQrObvUm6UrmlKQe4J7yaye57Bfk+QWlaUy6Ab/iJ1EEVEHeRA7rsoEIfNOXKc9SUg2Tp0pEdigKx/eCwiLopOJY1G3x1hwwmGwn8pVLSdiiR8h5Uca1aA1dq9jk2x3rARVHV8KNZx+fPa8iMyk/WUt/5ALOLzEZtOqOPeisJY/skrNS6kZWJkjfhL7Q2Uc5r7hqNc=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Subject: Re: [PATCH v3 09/11] PCI: layerscape: Add EP mode support for
+ ls1088a and ls2088a
+Message-ID: <20190912124943.GD9720@e119886-lin.cambridge.arm.com>
+References: <20190902031716.43195-1-xiaowei.bao@nxp.com>
+ <20190902031716.43195-10-xiaowei.bao@nxp.com>
+ <20190902124603.GJ9720@e119886-lin.cambridge.arm.com>
+ <AM5PR04MB329970AE2C1812E88B9DE5A2F5B90@AM5PR04MB3299.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 657424dd-f635-4240-2b9d-08d7377f3331
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2019 12:46:15.4168
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: gkqK57hDNBpepVhm3uwyo2FamIrWP/JHzzDflcJ2F9uSQwpHPIWfmM9pzokVYeVeJdkvXy98WntzbZrNxFDv8w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5998
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM5PR04MB329970AE2C1812E88B9DE5A2F5B90@AM5PR04MB3299.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.10.1+81 (426a6c1) (2018-08-26)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-09-12 5:57 AM, Anson Huang wrote:=0A=
-> Add "opp-suspend" property for i.MX7D to make sure system=0A=
-> suspend with max available opp.=0A=
-> =0A=
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>=0A=
-=0A=
-Reviewed-by: Leonard Crestez <leonard.crestez@nxp.com>=0A=
+On Tue, Sep 03, 2019 at 01:47:36AM +0000, Xiaowei Bao wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Andrew Murray <andrew.murray@arm.com>
+> > Sent: 2019年9月2日 20:46
+> > To: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > Cc: robh+dt@kernel.org; mark.rutland@arm.com; shawnguo@kernel.org; Leo
+> > Li <leoyang.li@nxp.com>; kishon@ti.com; lorenzo.pieralisi@arm.com; M.h.
+> > Lian <minghuan.lian@nxp.com>; Mingkai Hu <mingkai.hu@nxp.com>; Roy
+> > Zang <roy.zang@nxp.com>; jingoohan1@gmail.com;
+> > gustavo.pimentel@synopsys.com; linux-pci@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org;
+> > arnd@arndb.de; gregkh@linuxfoundation.org; Z.q. Hou
+> > <zhiqiang.hou@nxp.com>
+> > Subject: Re: [PATCH v3 09/11] PCI: layerscape: Add EP mode support for
+> > ls1088a and ls2088a
+> > 
+> > On Mon, Sep 02, 2019 at 11:17:14AM +0800, Xiaowei Bao wrote:
+> > > Add PCIe EP mode support for ls1088a and ls2088a, there are some
+> > > difference between LS1 and LS2 platform, so refactor the code of the
+> > > EP driver.
+> > >
+> > > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > > ---
+> > > v2:
+> > >  - This is a new patch for supporting the ls1088a and ls2088a platform.
+> > > v3:
+> > >  - Adjust the some struct assignment order in probe function.
+> > >
+> > >  drivers/pci/controller/dwc/pci-layerscape-ep.c | 72
+> > > +++++++++++++++++++-------
+> > >  1 file changed, 53 insertions(+), 19 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > index 5f0cb99..723bbe5 100644
+> > > --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > @@ -20,27 +20,29 @@
+> > >
+> > >  #define PCIE_DBI2_OFFSET		0x1000	/* DBI2 base address*/
+> > >
+> > > -struct ls_pcie_ep {
+> > > -	struct dw_pcie		*pci;
+> > > -	struct pci_epc_features	*ls_epc;
+> > > +#define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
+> > > +
+> > > +struct ls_pcie_ep_drvdata {
+> > > +	u32				func_offset;
+> > > +	const struct dw_pcie_ep_ops	*ops;
+> > > +	const struct dw_pcie_ops	*dw_pcie_ops;
+> > >  };
+> > >
+> > > -#define to_ls_pcie_ep(x)	dev_get_drvdata((x)->dev)
+> > > +struct ls_pcie_ep {
+> > > +	struct dw_pcie			*pci;
+> > > +	struct pci_epc_features		*ls_epc;
+> > > +	const struct ls_pcie_ep_drvdata *drvdata; };
+> > >
+> > >  static int ls_pcie_establish_link(struct dw_pcie *pci)  {
+> > >  	return 0;
+> > >  }
+> > >
+> > > -static const struct dw_pcie_ops ls_pcie_ep_ops = {
+> > > +static const struct dw_pcie_ops dw_ls_pcie_ep_ops = {
+> > >  	.start_link = ls_pcie_establish_link,  };
+> > >
+> > > -static const struct of_device_id ls_pcie_ep_of_match[] = {
+> > > -	{ .compatible = "fsl,ls-pcie-ep",},
+> > > -	{ },
+> > > -};
+> > > -
+> > >  static const struct pci_epc_features*  ls_pcie_ep_get_features(struct
+> > > dw_pcie_ep *ep)  { @@ -87,10 +89,39 @@ static int
+> > > ls_pcie_ep_raise_irq(struct dw_pcie_ep *ep, u8 func_no,
+> > >  	}
+> > >  }
+> > >
+> > > -static const struct dw_pcie_ep_ops pcie_ep_ops = {
+> > > +static unsigned int ls_pcie_ep_func_conf_select(struct dw_pcie_ep *ep,
+> > > +						u8 func_no)
+> > > +{
+> > > +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
+> > > +	struct ls_pcie_ep *pcie = to_ls_pcie_ep(pci);
+> > > +
+> > > +	WARN_ON(func_no && !pcie->drvdata->func_offset);
+> > > +	return pcie->drvdata->func_offset * func_no; }
+> > > +
+> > > +static const struct dw_pcie_ep_ops ls_pcie_ep_ops = {
+> > >  	.ep_init = ls_pcie_ep_init,
+> > >  	.raise_irq = ls_pcie_ep_raise_irq,
+> > >  	.get_features = ls_pcie_ep_get_features,
+> > > +	.func_conf_select = ls_pcie_ep_func_conf_select, };
+> > > +
+> > > +static const struct ls_pcie_ep_drvdata ls1_ep_drvdata = {
+> > > +	.ops = &ls_pcie_ep_ops,
+> > > +	.dw_pcie_ops = &dw_ls_pcie_ep_ops,
+> > > +};
+> > > +
+> > > +static const struct ls_pcie_ep_drvdata ls2_ep_drvdata = {
+> > > +	.func_offset = 0x20000,
+> > > +	.ops = &ls_pcie_ep_ops,
+> > > +	.dw_pcie_ops = &dw_ls_pcie_ep_ops,
+> > > +};
+> > > +
+> > > +static const struct of_device_id ls_pcie_ep_of_match[] = {
+> > > +	{ .compatible = "fsl,ls1046a-pcie-ep", .data = &ls1_ep_drvdata },
+> > > +	{ .compatible = "fsl,ls1088a-pcie-ep", .data = &ls2_ep_drvdata },
+> > > +	{ .compatible = "fsl,ls2088a-pcie-ep", .data = &ls2_ep_drvdata },
+> > > +	{ },
+> > 
+> > This removes support for "fsl,ls-pcie-ep" - was that intentional? If you do plan
+> > to drop it please make sure you explain why in the commit message. See also
+> > my comments in your dt-binding patch.
+> 
+> In fact, the u-boot will fixup the status property to 'status = enabled' in PCI node of 
+> the DTS base on "fsl,ls-pcie-ep" compatible, so "fsl,ls-pcie-ep" is used, I used this
+> compatible before, because the driver only support the LS1046a, but this time, I add
+> the LS1088a and LS2088a support, and these two boards have some difference form
+> LS1046a, so I changed the compatible. I am not sure whether need to add "fsl,ls-pcie-ep"
+> in there, could you give some advice, thanks a lot.
+
+It sounds like "fsl,ls-pcie-ep" can be a fallback for "fsl,ls1046a-pcie-ep".
+
+I'm assuming that if someone used "fsl,ls1046a-pcie-ep" on ls1088a or ls2088a
+hardware it would still work, but without the multiple PF support.
+
+I.e. if "fsl,ls-pcie-ep" is given, treat it as ls1046a.
+
+Thanks,
+
+Andrew Murray
+
+> 
+> Thanks 
+> Xiaowei
+>  
+> > 
+> > Thanks,
+> > 
+> > Andrew Murray
+> > 
+> > >  };
+> > >
+> > >  static int __init ls_add_pcie_ep(struct ls_pcie_ep *pcie, @@ -103,7
+> > > +134,7 @@ static int __init ls_add_pcie_ep(struct ls_pcie_ep *pcie,
+> > >  	int ret;
+> > >
+> > >  	ep = &pci->ep;
+> > > -	ep->ops = &pcie_ep_ops;
+> > > +	ep->ops = pcie->drvdata->ops;
+> > >
+> > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > "addr_space");
+> > >  	if (!res)
+> > > @@ -142,20 +173,23 @@ static int __init ls_pcie_ep_probe(struct
+> > platform_device *pdev)
+> > >  	if (!ls_epc)
+> > >  		return -ENOMEM;
+> > >
+> > > -	dbi_base = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > "regs");
+> > > -	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
+> > > -	if (IS_ERR(pci->dbi_base))
+> > > -		return PTR_ERR(pci->dbi_base);
+> > > +	pcie->drvdata = of_device_get_match_data(dev);
+> > >
+> > > -	pci->dbi_base2 = pci->dbi_base + PCIE_DBI2_OFFSET;
+> > >  	pci->dev = dev;
+> > > -	pci->ops = &ls_pcie_ep_ops;
+> > > -	pcie->pci = pci;
+> > > +	pci->ops = pcie->drvdata->dw_pcie_ops;
+> > >
+> > >  	ls_epc->bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
+> > >
+> > > +	pcie->pci = pci;
+> > >  	pcie->ls_epc = ls_epc;
+> > >
+> > > +	dbi_base = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> > "regs");
+> > > +	pci->dbi_base = devm_pci_remap_cfg_resource(dev, dbi_base);
+> > > +	if (IS_ERR(pci->dbi_base))
+> > > +		return PTR_ERR(pci->dbi_base);
+> > > +
+> > > +	pci->dbi_base2 = pci->dbi_base + PCIE_DBI2_OFFSET;
+> > > +
+> > >  	platform_set_drvdata(pdev, pcie);
+> > >
+> > >  	ret = ls_add_pcie_ep(pcie, pdev);
+> > > --
+> > > 2.9.5
+> > >
