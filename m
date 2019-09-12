@@ -2,147 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D257CB0C42
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 12:07:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4104B0C4F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 12:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731007AbfILKHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 06:07:04 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:56455 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730450AbfILKHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 06:07:03 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i8M08-0000kf-G0; Thu, 12 Sep 2019 12:06:56 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1i8M07-00077t-7R; Thu, 12 Sep 2019 12:06:55 +0200
-Date:   Thu, 12 Sep 2019 12:06:55 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        Kumar Gala <galak@codeaurora.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH RFC] gpio: define gpio-init nodes to initialize pins
- similar to hogs
-Message-ID: <20190912100655.jucqrh2jaf6vgwm2@pengutronix.de>
-References: <20190909105919.30418-1-u.kleine-koenig@pengutronix.de>
- <CACRpkdZTzYtxjmiEnbvSn0-WQtxADLrxJGb_Q83gtRFhcShRiQ@mail.gmail.com>
+        id S1730863AbfILKL3 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 12 Sep 2019 06:11:29 -0400
+Received: from mail.savoirfairelinux.com ([208.88.110.44]:44012 "EHLO
+        mail.savoirfairelinux.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730831AbfILKL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 06:11:29 -0400
+X-Greylist: delayed 573 seconds by postgrey-1.27 at vger.kernel.org; Thu, 12 Sep 2019 06:11:29 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id C08D39C01E4;
+        Thu, 12 Sep 2019 06:01:55 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id LbxnRGPrx1J3; Thu, 12 Sep 2019 06:01:54 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id CD51C9C0202;
+        Thu, 12 Sep 2019 06:01:54 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id Q4heQjoc48wB; Thu, 12 Sep 2019 06:01:54 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id 768E99C01E4;
+        Thu, 12 Sep 2019 06:01:54 -0400 (EDT)
+Date:   Thu, 12 Sep 2019 06:01:54 -0400 (EDT)
+From:   Gilles Doffe <gilles.doffe@savoirfairelinux.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        mark rutland <mark.rutland@arm.com>,
+        festevam <festevam@gmail.com>, s hauer <s.hauer@pengutronix.de>,
+        rennes <rennes@savoirfairelinux.com>,
+        robh+dt <robh+dt@kernel.org>, linux-imx <linux-imx@nxp.com>,
+        kernel <kernel@pengutronix.de>,
+        =?utf-8?Q?J=C3=A9rome?= Oufella 
+        <jerome.oufella@savoirfairelinux.com>,
+        shawnguo <shawnguo@kernel.org>
+Message-ID: <978100557.7721358.1568282514403.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <20190722075341.e4ve45rneusiogtk@pengutronix.de>
+References: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com> <20190722075341.e4ve45rneusiogtk@pengutronix.de>
+Subject: Re: [PATCH v2] arm: dts: imx6qdl: add gpio expander pca9535
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdZTzYtxjmiEnbvSn0-WQtxADLrxJGb_Q83gtRFhcShRiQ@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Mailer: Zimbra 8.8.11_GA_3737 (ZimbraWebClient - GC76 (Linux)/8.8.11_GA_3737)
+Thread-Topic: imx6qdl: add gpio expander pca9535
+Thread-Index: X3FtlLOdQwdk2SX5U0uhcvyPGHIXGw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 12, 2019 at 10:05:23AM +0100, Linus Walleij wrote:
-> On Mon, Sep 9, 2019 at 11:59 AM Uwe Kleine-König
-> <u.kleine-koenig@pengutronix.de> wrote:
+Hi Marco,
+
+Thanks for your reply and sorry about the delay.
+
+----- Le 22 Juil 19, Ã  9:53, Marco Felsch m.felsch@pengutronix.de a Ã©crit :
+
+> Hi Gilles,
 > 
-> > Sometimes it is handy to be able to easily define a "safe" state for a
-> > GPIO. This might for example be used to ensure that an ethernet phy is
-> > properly reset during startup or just that all pins have a defined state
-> > to minimize leakage current. As such a pin must be requestable (and
-> > changable) by a device driver, a gpio-hog cannot be used.
-> >
-> > So define a GPIO initializer with a syntax identical to a GPIO hog just
-> > using "gpio-init" as identifier instead of "gpio-hog".
-> >
-> > The usage I have in mind (and also implemented in a custom patch stack
-> > on top of barebox already) is targeting the bootloader and not
-> > necessarily Linux as such an boot-up initialisation should be done as
-> > early as possible.
-> >
-> > Not-yet-signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > ---
-> > Hello,
-> >
-> > maybe it also makes sense to use "gpio-safe"? Maybe it (then) makes
-> > sense to reset the gpio in the indicated state after it is released?
-> >
-> > Also it might be beneficial to make the wording more explicit in the
-> > description and for example tell that only one of gpio-hog and gpio-init
-> > must be provided.
+> can you adapt the patch title, I assumed that the base dtsi is adding a
+> gpio-expander which makes no sense.
+
+My first intent was to add the gpio-expander pca9535 into the imx6q-rex-pro.dts and in a future imx6qp-rex-ultra.dts
+However I noticed that the sgtl5000 was already in the dtsi.
+It is maybe due to the fact that like the pca9535, the sgtl5000 is present on the baseboard not on the SOM.
+Thus I guess that baseboard stuff common to all rex SOM should be in imx6qdl-rex.dtsi and not in the dts.
+Does-it seem correct to you ?
+
 > 
-> It's no secret that I am in favor of this approach, as I like consistency
-> with the hogs.
+> On 19-07-19 12:46, Gilles DOFFE wrote:
+>> The pca9535 gpio expander is present on the Rex baseboard, but missing
+>> from the dtsi.
+>> 
+>> Add the new gpio controller and the associated interrupt line
+>> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
+>> 
+>> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+>> ---
 > 
-> The DT people have been against, as they prefer something like an
-> initial array of values akin to gpio-names IIRC. But this is a good
-> time for them to speak up.
-
-To be fair, I added them to Cc:. For the new readers: The diff I
-suggested looks as follows (probably whitespace broken as I cut-n-pasted):
-
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio.txt b/Documentation/devicetree/bindings/gpio/gpio.txt
-> index a8895d339bfe..5b7883f5520f 100644
-> --- a/Documentation/devicetree/bindings/gpio/gpio.txt
-> +++ b/Documentation/devicetree/bindings/gpio/gpio.txt
-> @@ -182,13 +182,16 @@ gpio-controller@00000000 {
->                 "poweroff", "reset";
->  }
+> Having a changelog would be nice too.
 > 
-> -The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
-> -providing automatic GPIO request and configuration as part of the
-> -gpio-controller's driver probe function.
-> +The GPIO chip may contain GPIO hog and init definitions. GPIO hogging is a
-> +mechanism providing automatic GPIO request and configuration as part of the
-> +gpio-controller's driver probe function. An GPIO initializer is similar but
-> +doesn't prevent later requesting and reconfiguration.
+>>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
+>>  1 file changed, 19 insertions(+)
+>> 
+>> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> index 97f1659144ea..b517efb22fcb 100644
+>> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+>> @@ -136,6 +136,19 @@
+>>  		compatible = "atmel,24c02";
+>>  		reg = <0x57>;
+>>  	};
+>> +
+>> +	pca9535: gpio8@27 {
+>> +		compatible = "nxp,pca9535";
+>> +		reg = <0x27>;
 > 
->  Each GPIO hog definition is represented as a child node of the GPIO controller.
->  Required properties:
->  - gpio-hog:   A property specifying that this child node represents a GPIO hog.
-> +- gpio-init:  A property specifying that this child node represents a GPIO
-> +              initializer.
->  - gpios:      Store the GPIO information (id, flags, ...) for each GPIO to
->                affect. Shall contain an integer multiple of the number of cells
->                specified in its parent node (GPIO controller node).
+> The i2c devices are orderd by their i2c-addresses starting from the
+> lowest.
+>
 
-How would this alternate approach look like? Something like:
+Ack.
 
-	gpio-controler@123450 {
-		compatible = "..";
-		gpio-controller;
-		#gpio-cells = <2>;
+>> +		gpio-controller;
+>> +		#gpio-cells = <2>;
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&pinctrl_pca9535>;
+>> +		interrupt-parent = <&gpio6>;
+>> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <2>;
+>> +	};
+>>  };
+>>  
+>>  &i2c3 {
+>> @@ -237,6 +250,12 @@
+>>  			>;
+>>  		};
+>>  
+>> +		pinctrl_pca9535: pca9535 {
+>> +			fsl,pins = <
+>> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
+> 
+> The pinmux below don't use the leading zero's if you are the first I
+> would drop that.
+> 
+> Regards,
+>  Marco
+>
 
-		init = "", "output-high", "", "input", "", "", "output-low";
-	};
+Ack.
 
-? Compared to the solution I suggested (and hogs) this differs as you cannot
-pass flags like GPIO_ACTIVE_LOW.
-
-(Sidenode: As
-
-	mygpio {
-		gpio-hog;
-		gpios = <5 GPIO_ACTIVE_LOW>;
-		output-low;
-	};
-
-makes AFAIK the output high it would be less surprising if the binding
-supported "output-active" and "output-inactive".)
-
-Best regards
-Uwe
-
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Regards,
+Gilles
