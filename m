@@ -2,243 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE18FB0840
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 07:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19212B087A
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 07:58:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728359AbfILFYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 01:24:23 -0400
-Received: from wout1-smtp.messagingengine.com ([64.147.123.24]:33047 "EHLO
-        wout1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725922AbfILFYX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 01:24:23 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 0574245A;
-        Thu, 12 Sep 2019 01:24:20 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Thu, 12 Sep 2019 01:24:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=YqIItF7+rTZqrxpReTwaFBiMZzmfFKq
-        6p2/0awERfQI=; b=cJ0I601jQAJg3Jd2w8Oa/rowHgRwLGGuROAJoRIi/ZZtsOh
-        CTnkeqQdIb9nNQSQ6h0+9aU1hMqsNG/5C2HtNv+U1muVn68fw6Oi0r1HCx7Eidig
-        oUJ0XhO/FlqP8g+Gnzi69F7A3Us9P1lE9jW0B9K0qbJkk4hTmvUH6wmtuzrDo5Wi
-        Q9/x+FurqXNKnZ9nehMi336ecsK6p4beVa/z8XFAvXg0ZI4Z0EBatRdBf6WnPTAN
-        87kdK1ZLIOjm8xjHSCuCykeFAdJiJv9Owa74aQlnH/VDOJA1cKylC4660xVf1uF2
-        2SySKSfKgVaVLJ++9aI3mJnO65JTgBDjl0a3KAg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=YqIItF
-        7+rTZqrxpReTwaFBiMZzmfFKq6p2/0awERfQI=; b=p8pTvV6KtjB/y7F/OEEZoe
-        5tZckJXCVujqNr8NwpuxXCOLhszFtcQvXUM2grF7wv15StGEtJzrMVhzV2VyR/dH
-        KSn9GEG7oDffhqSJKPiOk3Q42madD0DIXroOQpGvNSEvp4d+ByVFqeCCiTaveJKI
-        MGBDXfKV+utSAkqprXlAXi6bFIQIypDXqr+aELVLdMXXxR0ryXq1E5blvecfQ6Px
-        MVOHMkT5fX0VxXR+2eOTDAbgNF3ZgswdHWiTybBWeqJiV6MsMRv7dLq/YJlBZRCk
-        ZoOloOVK+mwvBCkvc3H4/ISw6JxcrRxFrcuqhE/u4KR6UReY3E/wknzozjTE/kNA
-        ==
-X-ME-Sender: <xms:g9Z5XUdKZdy9hfpKrc1dOXYZ-auwW9Fn7sdHw6uHImgqmGBjqhQAJA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrtdeggdelhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderreejnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
-    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
-    ufhiiigvpedt
-X-ME-Proxy: <xmx:g9Z5XU1eAFQMfc0hhfN3xY298WiFyw-N14byqyTjY7XeEhh9EDs-ag>
-    <xmx:g9Z5XVLklxKFvk_Uv3cdoj2pgbfJHVhVXHlkNx_UW1OfWWUBLZCc6A>
-    <xmx:g9Z5XQJE73njcMoXynhJUr93paapF972iCtGtlWEHwS8aCmkht2a3w>
-    <xmx:hNZ5Xefge8GuwgDNwueVRisuTH6bA_RrusxiPz6PmDdsbK4ZgIQvlg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 0FC43E00A9; Thu, 12 Sep 2019 01:24:19 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.7-237-gf35468d-fmstable-20190912v1
-Mime-Version: 1.0
-Message-Id: <1c9552b6-1640-483f-8977-9601e9383d2a@www.fastmail.com>
-In-Reply-To: <20190905144130.220713-1-osk@google.com>
-References: <20190905144130.220713-1-osk@google.com>
-Date:   Thu, 12 Sep 2019 14:54:47 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Oskar Senft" <osk@google.com>, "Joel Stanley" <joel@jms.id.au>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Jeremy Kerr" <jk@ozlabs.org>
-Cc:     openbmc@lists.ozlabs.org, linux-aspeed@lists.ozlabs.org,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org
-Subject: =?UTF-8?Q?Re:_[PATCH_v3_1/3]_drivers/tty/serial/8250:_Make_Aspeed_VUART_?=
- =?UTF-8?Q?SIRQ_polarity_configurable?=
-Content-Type: text/plain
+        id S1726222AbfILF6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 01:58:21 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:34597 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725775AbfILF6U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 01:58:20 -0400
+Received: by mail-ed1-f67.google.com with SMTP id c20so13807932eds.1
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 22:58:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LjfYgHrvdyzdbJpnHRyIqrQrXL2lINOVqcLX3oIlaCA=;
+        b=lkpp3OLLxsJt6BJd9FydWcE47w5MQsJS0CgcGvyto3A+ZTBhX9yHJXy35kJKMmztr8
+         mmtG+W5yWb5Xm9uFOY4sPakw9xfa4dvT+PcfVCMn3cUCpCMnSqA1oyfkcKIZYKe9Q6Md
+         ky6Uy00Is2RTb8FrnjPyktCVLhAl+XizQFHCQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LjfYgHrvdyzdbJpnHRyIqrQrXL2lINOVqcLX3oIlaCA=;
+        b=K03ETHoPH7zURFm+G+5RkorOHtLQ6nDfjNz2k0h93PMzBxyGfYayjN+SXzrISoZque
+         cXPYjxBFWIgnr33+RVDj9G0h1+VEmOeJDkfYAT2dRgwrtXJLY/pX2taSmtm4Qc4O1Zv9
+         U/+Qv19Lv01enpkokVM6nRkxheNi+bOgMO7rH5G+gn11M5G6v1oe0uO9QAAzZ2jlazLv
+         znfjIjTajEtSwg6w0Be+Uv+aWvRicTDaX31/GF8vxqSJS67tQXlxbomn+R1Pbm1VXVz6
+         QqJGo/f7M5HPheF5ZrAACE9Socs6+0PBQ3zW6MY+log/+FUFKMSgncdGtHQuMcCrTgsP
+         QGng==
+X-Gm-Message-State: APjAAAUUF/AeSTpR9fTaM5cWN+k0gW8ryo/GTbxaNgwghzHKUBdQoRcy
+        P39kpjYE8hYulW6rf5chXl6c/C+UARnEqw==
+X-Google-Smtp-Source: APXvYqzAWF9P0Z0s7vY6hic8TFTSmotUCapbagKaewmSZIm3KClAN9Q1lj9yqRNk3/ZNyC3tEJljeQ==
+X-Received: by 2002:aa7:c50b:: with SMTP id o11mr41709222edq.55.1568267898457;
+        Wed, 11 Sep 2019 22:58:18 -0700 (PDT)
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com. [209.85.221.48])
+        by smtp.gmail.com with ESMTPSA id w21sm896116eda.90.2019.09.11.22.58.17
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Sep 2019 22:58:17 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id l11so26968542wrx.5
+        for <devicetree@vger.kernel.org>; Wed, 11 Sep 2019 22:58:17 -0700 (PDT)
+X-Received: by 2002:adf:dec2:: with SMTP id i2mr17316890wrn.92.1568267896913;
+ Wed, 11 Sep 2019 22:58:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190909192244.9367-1-frederic.chen@mediatek.com>
+ <20190909192244.9367-5-frederic.chen@mediatek.com> <CAAFQd5DEn_N26M7B4X7fKHVA=XBtWJN=Y4VF7D9B=TkgXf_i+Q@mail.gmail.com>
+ <1568223671.19171.12.camel@mtksdccf07>
+In-Reply-To: <1568223671.19171.12.camel@mtksdccf07>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 12 Sep 2019 14:58:05 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5Cd2-dyQnMEy0LBwaajn7UfzEbHiJp7AkDy=T8Zy6t_=A@mail.gmail.com>
+Message-ID: <CAAFQd5Cd2-dyQnMEy0LBwaajn7UfzEbHiJp7AkDy=T8Zy6t_=A@mail.gmail.com>
+Subject: Re: [RFC PATCH V3 4/5] platform: mtk-isp: Add Mediatek DIP driver
+To:     Frederic Chen <frederic.chen@mediatek.com>
+Cc:     Hans Verkuil <hans.verkuil@cisco.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <Sean.Cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
+        =?UTF-8?B?Q2hyaXN0aWUgWXUgKOa4uOmbheaDoCk=?= 
+        <christie.yu@mediatek.com>,
+        =?UTF-8?B?SG9sbWVzIENoaW91ICjpgrHmjLop?= 
+        <holmes.chiou@mediatek.com>,
+        Jerry-ch Chen <Jerry-ch.Chen@mediatek.com>,
+        =?UTF-8?B?SnVuZ28gTGluICjmnpfmmI7kv4op?= <jungo.lin@mediatek.com>,
+        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <Rynn.Wu@mediatek.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        devicetree@vger.kernel.org, Shik Chen <shik@chromium.org>,
+        suleiman@chromium.org,
+        =?UTF-8?B?QWxsYW4gWWFuZyAo5qWK5pm66YieKQ==?= 
+        <Allan.Yang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 12, 2019 at 2:41 AM Frederic Chen
+<frederic.chen@mediatek.com> wrote:
+>
+> Hi Tomasz,
+>
+> I appreciate your helpful comments.
+>
+>
+> On Tue, 2019-09-10 at 13:04 +0900, Tomasz Figa wrote:
+> > Hi Frederic,
+> >
+> > On Tue, Sep 10, 2019 at 4:23 AM <frederic.chen@mediatek.com> wrote:
+> > >
+> > > From: Frederic Chen <frederic.chen@mediatek.com>
+> > >
+> > > This patch adds the driver of Digital Image Processing (DIP)
+> > > unit in Mediatek ISP system, providing image format
+> > > conversion, resizing, and rotation features.
+> > >
+> > > The mtk-isp directory will contain drivers for multiple IP
+> > > blocks found in Mediatek ISP system. It will include ISP
+> > > Pass 1 driver(CAM), sensor interface driver, DIP driver and
+> > > face detection driver.
+> > >
+> > > Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
+> > > ---
+> > >  drivers/media/platform/mtk-isp/Makefile       |    7 +
+> > >  .../media/platform/mtk-isp/isp_50/Makefile    |    7 +
+> > >  .../platform/mtk-isp/isp_50/dip/Makefile      |   18 +
+> > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-dev.c |  650 +++++
+> > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-dev.h |  566 +++++
+> > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-hw.h  |  156 ++
+> > >  .../platform/mtk-isp/isp_50/dip/mtk_dip-sys.c |  521 ++++
+> > >  .../mtk-isp/isp_50/dip/mtk_dip-v4l2.c         | 2255 +++++++++++++++++
+> > >  8 files changed, 4180 insertions(+)
+> > >  create mode 100644 drivers/media/platform/mtk-isp/Makefile
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/Makefile
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/Makefile
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-dev.c
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-dev.h
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-hw.h
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-sys.c
+> > >  create mode 100644 drivers/media/platform/mtk-isp/isp_50/dip/mtk_dip-v4l2.c
+> > >
+> >
+> > Thanks for sending v3!
+> >
+> > I'm going to do a full review a bit later, but please check one
+> > comment about power handling below.
+> >
+> > Other than that one comment, from a quick look, I think we only have a
+> > number of style issues left. Thanks for the hard work!
+> >
+> > [snip]
+> > > +static void dip_runner_func(struct work_struct *work)
+> > > +{
+> > > +       struct mtk_dip_request *req = mtk_dip_hw_mdp_work_to_req(work);
+> > > +       struct mtk_dip_dev *dip_dev = req->dip_pipe->dip_dev;
+> > > +       struct img_config *config_data =
+> > > +               (struct img_config *)req->working_buf->config_data.vaddr;
+> > > +
+> > > +       /*
+> > > +        * Call MDP/GCE API to do HW excecution
+> > > +        * Pass the framejob to MDP driver
+> > > +        */
+> > > +       pm_runtime_get_sync(dip_dev->dev);
+> > > +       mdp_cmdq_sendtask(dip_dev->mdp_pdev, config_data,
+> > > +                         &req->img_fparam.frameparam, NULL, false,
+> > > +                         dip_mdp_cb_func, req);
+> > > +}
+> > [snip]
+> > > +static void dip_composer_workfunc(struct work_struct *work)
+> > > +{
+> > > +       struct mtk_dip_request *req = mtk_dip_hw_fw_work_to_req(work);
+> > > +       struct mtk_dip_dev *dip_dev = req->dip_pipe->dip_dev;
+> > > +       struct img_ipi_param ipi_param;
+> > > +       struct mtk_dip_hw_subframe *buf;
+> > > +       int ret;
+> > > +
+> > > +       down(&dip_dev->sem);
+> > > +
+> > > +       buf = mtk_dip_hw_working_buf_alloc(req->dip_pipe->dip_dev);
+> > > +       if (!buf) {
+> > > +               dev_err(req->dip_pipe->dip_dev->dev,
+> > > +                       "%s:%s:req(%p): no free working buffer available\n",
+> > > +                       __func__, req->dip_pipe->desc->name, req);
+> > > +       }
+> > > +
+> > > +       req->working_buf = buf;
+> > > +       mtk_dip_wbuf_to_ipi_img_addr(&req->img_fparam.frameparam.subfrm_data,
+> > > +                                    &buf->buffer);
+> > > +       memset(buf->buffer.vaddr, 0, DIP_SUB_FRM_SZ);
+> > > +       mtk_dip_wbuf_to_ipi_img_sw_addr(&req->img_fparam.frameparam.config_data,
+> > > +                                       &buf->config_data);
+> > > +       memset(buf->config_data.vaddr, 0, DIP_COMP_SZ);
+> > > +
+> > > +       if (!req->img_fparam.frameparam.tuning_data.present) {
+> > > +               /*
+> > > +                * When user enqueued without tuning buffer,
+> > > +                * it would use driver internal buffer.
+> > > +                */
+> > > +               dev_dbg(dip_dev->dev,
+> > > +                       "%s: frame_no(%d) has no tuning_data\n",
+> > > +                       __func__, req->img_fparam.frameparam.frame_no);
+> > > +
+> > > +               mtk_dip_wbuf_to_ipi_tuning_addr
+> > > +                               (&req->img_fparam.frameparam.tuning_data,
+> > > +                                &buf->tuning_buf);
+> > > +               memset(buf->tuning_buf.vaddr, 0, DIP_TUNING_SZ);
+> > > +       }
+> > > +
+> > > +       mtk_dip_wbuf_to_ipi_img_sw_addr(&req->img_fparam.frameparam.self_data,
+> > > +                                       &buf->frameparam);
+> > > +       memcpy(buf->frameparam.vaddr, &req->img_fparam.frameparam,
+> > > +              sizeof(req->img_fparam.frameparam));
+> > > +       ipi_param.usage = IMG_IPI_FRAME;
+> > > +       ipi_param.frm_param.handle = req->id;
+> > > +       ipi_param.frm_param.scp_addr = (u32)buf->frameparam.scp_daddr;
+> > > +
+> > > +       mutex_lock(&dip_dev->hw_op_lock);
+> > > +       atomic_inc(&dip_dev->num_composing);
+> > > +       ret = scp_ipi_send(dip_dev->scp_pdev, SCP_IPI_DIP, &ipi_param,
+> > > +                          sizeof(ipi_param), 0);
+> >
+> > We're not holding the pm_runtime enable count here
+> > (pm_runtime_get_sync() wasn't called), so rproc_shutdown() might have
+> > been called. Wouldn't that affect the ability for this IPI to run?
+> >
+> > We had a related discussion with Jerry on the FD series and I think
+> > the conclusion is:
+> > a) if there is any state that needs to be preserved between jobs, that
+> > would be cleared by rproc_shutdown() then we need to call
+> > rproc_boot/shutdown() when we start/stop streaming.
+> > b) it there is no such state, we can keep them inside runtime PM
+> > callbacks, but we need to call pm_runtime_get_sync() before sending an
+> > IPI and pm_runtime_mark_last_busy() + pm_runtime_put_autosuspend()
+> > after the SCP signals completion. In this case the runtime PM
+> > autosuspend delay should be set to around 2-3 times the delay needed
+> > for rproc_shutdown() + rproc_boot() to complete.
+>
+> Since each IMG_IPI_FRAME command is stateless, I would like to
+> use pm_runtime_get_sync()/ pm_runtime_mark_last_busy()/
+> pm_runtime_put_autosuspend() to fix this issue (solution b).
 
+What does IMG_IPI_INIT do then? Do we need it at all?
 
-On Fri, 6 Sep 2019, at 00:11, Oskar Senft wrote:
-> Make the SIRQ polarity for Aspeed AST24xx/25xx VUART configurable via
-> sysfs. This setting need to be changed on specific host platforms
-> depending on the selected host interface (LPC / eSPI).
-> 
-> The setting is configurable via sysfs rather than device-tree to stay in
-> line with other related configurable settings.
-> 
-> On AST2500 the VUART SIRQ polarity can be auto-configured by reading a
-> bit from a configuration register, e.g. the LPC/eSPI interface
-> configuration bit.
-> 
-> Tested: Verified on TYAN S7106 mainboard.
-> Signed-off-by: Oskar Senft <osk@google.com>
-> ---
->  .../ABI/stable/sysfs-driver-aspeed-vuart      | 11 ++-
->  drivers/tty/serial/8250/8250_aspeed_vuart.c   | 84 +++++++++++++++++++
->  drivers/tty/serial/8250/Kconfig               |  1 +
->  3 files changed, 95 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/ABI/stable/sysfs-driver-aspeed-vuart 
-> b/Documentation/ABI/stable/sysfs-driver-aspeed-vuart
-> index 8062953ce77b..950cafc9443a 100644
-> --- a/Documentation/ABI/stable/sysfs-driver-aspeed-vuart
-> +++ b/Documentation/ABI/stable/sysfs-driver-aspeed-vuart
-> @@ -6,10 +6,19 @@ Description:	Configures which IO port the host side 
-> of the UART
->  Users:		OpenBMC.  Proposed changes should be mailed to
->  		openbmc@lists.ozlabs.org
->  
-> -What:		/sys/bus/platform/drivers/aspeed-vuart*/sirq
-> +What:		/sys/bus/platform/drivers/aspeed-vuart/*/sirq
+I'm worried about the fact that we call rproc_boot(), IMG_IPI_INIT and
+then rproc_shutdown(). The latter can completely shutdown the SCP and
+clear any state there. How would the effects of IMG_IPI_INIT be
+preserved until IMG_IPI_FRAME is called?
 
-Bit of a nit, but this is unrelated
-
->  Date:		April 2017
->  Contact:	Jeremy Kerr <jk@ozlabs.org>
->  Description:	Configures which interrupt number the host side of
->  		the UART will appear on the host <-> BMC LPC bus.
->  Users:		OpenBMC.  Proposed changes should be mailed to
->  		openbmc@lists.ozlabs.org
-> +
-> +What:		/sys/bus/platform/drivers/aspeed-vuart/*/sirq_polarity
-> +Date:		July 2019
-> +Contact:	Oskar Senft <osk@google.com>
-> +Description:	Configures the polarity of the serial interrupt to the
-> +		host via the BMC LPC bus.
-> +		Set to 0 for active-low or 1 for active-high.
-> +Users:		OpenBMC.  Proposed changes should be mailed to
-> +		openbmc@lists.ozlabs.org
-> diff --git a/drivers/tty/serial/8250/8250_aspeed_vuart.c 
-> b/drivers/tty/serial/8250/8250_aspeed_vuart.c
-> index 0438d9a905ce..6e67fd89445a 100644
-> --- a/drivers/tty/serial/8250/8250_aspeed_vuart.c
-> +++ b/drivers/tty/serial/8250/8250_aspeed_vuart.c
-> @@ -14,6 +14,8 @@
->  #include <linux/of_address.h>
->  #include <linux/of_irq.h>
->  #include <linux/of_platform.h>
-> +#include <linux/regmap.h>
-> +#include <linux/mfd/syscon.h>
->  #include <linux/tty.h>
->  #include <linux/tty_flip.h>
->  #include <linux/clk.h>
-> @@ -22,6 +24,7 @@
->  
->  #define ASPEED_VUART_GCRA		0x20
->  #define ASPEED_VUART_GCRA_VUART_EN		BIT(0)
-> +#define ASPEED_VUART_GCRA_HOST_SIRQ_POLARITY	BIT(1)
->  #define ASPEED_VUART_GCRA_DISABLE_HOST_TX_DISCARD BIT(5)
->  #define ASPEED_VUART_GCRB		0x24
->  #define ASPEED_VUART_GCRB_HOST_SIRQ_MASK	GENMASK(7, 4)
-> @@ -131,8 +134,53 @@ static ssize_t sirq_store(struct device *dev, 
-> struct device_attribute *attr,
->  
->  static DEVICE_ATTR_RW(sirq);
->  
-> +static ssize_t sirq_polarity_show(struct device *dev,
-> +				  struct device_attribute *attr, char *buf)
-> +{
-> +	struct aspeed_vuart *vuart = dev_get_drvdata(dev);
-> +	u8 reg;
-> +
-> +	reg = readb(vuart->regs + ASPEED_VUART_GCRA);
-> +	reg &= ASPEED_VUART_GCRA_HOST_SIRQ_POLARITY;
-> +
-> +	return snprintf(buf, PAGE_SIZE - 1, "%u\n", reg ? 1 : 0);
-> +}
-> +
-> +static void aspeed_vuart_set_sirq_polarity(struct aspeed_vuart *vuart,
-> +					   bool polarity)
-> +{
-> +	u8 reg = readb(vuart->regs + ASPEED_VUART_GCRA);
-> +
-> +	if (polarity)
-> +		reg |= ASPEED_VUART_GCRA_HOST_SIRQ_POLARITY;
-> +	else
-> +		reg &= ~ASPEED_VUART_GCRA_HOST_SIRQ_POLARITY;
-> +
-> +	writeb(reg, vuart->regs + ASPEED_VUART_GCRA);
-> +}
-> +
-> +static ssize_t sirq_polarity_store(struct device *dev,
-> +				   struct device_attribute *attr,
-> +				   const char *buf, size_t count)
-> +{
-> +	struct aspeed_vuart *vuart = dev_get_drvdata(dev);
-> +	unsigned long val;
-> +	int err;
-> +
-> +	err = kstrtoul(buf, 0, &val);
-> +	if (err)
-> +		return err;
-> +
-> +	aspeed_vuart_set_sirq_polarity(vuart, val != 0);
-> +
-> +	return count;
-> +}
-> +
-> +static DEVICE_ATTR_RW(sirq_polarity);
-> +
->  static struct attribute *aspeed_vuart_attrs[] = {
->  	&dev_attr_sirq.attr,
-> +	&dev_attr_sirq_polarity.attr,
->  	&dev_attr_lpc_address.attr,
->  	NULL,
->  };
-> @@ -302,8 +350,30 @@ static int aspeed_vuart_handle_irq(struct uart_port *port)
->  	return 1;
->  }
->  
-> +static void aspeed_vuart_auto_configure_sirq_polarity(
-> +	struct aspeed_vuart *vuart, struct device_node *syscon_np,
-> +	u32 reg_offset, u32 reg_mask)
-> +{
-> +	struct regmap *regmap;
-> +	u32 value;
-> +
-> +	regmap = syscon_node_to_regmap(syscon_np);
-> +	if (IS_ERR(regmap)) {
-> +		dev_warn(vuart->dev,
-> +			 "could not get regmap for aspeed,sirq-polarity-sense\n");
-> +		return;
-> +	}
-> +	if (regmap_read(regmap, reg_offset, &value)) {
-> +		dev_warn(vuart->dev, "could not read hw strap table\n");
-> +		return;
-> +	}
-
-So in the couple of cases above we may have tried to auto-configure the IRQ
-polarity but failed. We print the messages, but there's no mention of the
-impact of the failure as it doesn't stop the driver from probing (void return).
-
-I'm thinking it might be useful briefly describe the potential impact, and,
-given we have the sysfs interface suggest what might need to be done to
-configure the hardware so it works? Maybe something like:
-
-dev_warn(vuart->dev, "SIRQ polarity auto-configuration failed, host console may misbehave\n");
-dev_info(vuart->dev, "Configure SIRQ polarity via %s\n", sysfs_path); // If we have access to the path?
-
-However, both are unlikely corner-cases as they imply either MMIO regmap
-failed or that the devicetree description was present but broken in some
-fashion (should be caught in testing), so I'm not hung up about this.
-
-Aside from those nits it looks reasonable to me.
-
-Andrew
+Best regards,
+Tomasz
