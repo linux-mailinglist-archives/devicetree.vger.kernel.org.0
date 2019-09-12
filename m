@@ -2,157 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF108B1073
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 15:54:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73F39B107F
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 15:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731801AbfILNyx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 09:54:53 -0400
-Received: from mx1.redhat.com ([209.132.183.28]:36308 "EHLO mx1.redhat.com"
+        id S1732286AbfILN6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 09:58:11 -0400
+Received: from mga04.intel.com ([192.55.52.120]:45955 "EHLO mga04.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732233AbfILNyw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 12 Sep 2019 09:54:52 -0400
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com [209.85.128.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mx1.redhat.com (Postfix) with ESMTPS id E1E03811DE
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 13:54:51 +0000 (UTC)
-Received: by mail-wm1-f71.google.com with SMTP id e7so47537wme.1
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 06:54:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=jtKVnysH6a6/Zp0gjCWWRZszcxjtja0HC7zaeIzDlNA=;
-        b=LB8ZoBGUHW3Bsi2CqRoDCmZLZ+4DI3Mo0Q9eWzMK7TBlZupJFn9n3N9/FJX+LqTgDV
-         j1MMNJ1VJzFbpZFbTsanlSpX2ce49ppm9XHSyhueDd1KND+i4va6ERYD30IRogbXNFAF
-         WUWAz1TrvWbgMahxdiShQfM9kE/374kNgNIMaZAtLvCkJ24oem3Bo/tHht1LglSTe3/v
-         iWJhCqAa5n+CwK8SA+zlcZ6cM+yZYcUxw6yDNIgKPkt5HxpQ3fF1qUAVF0Nk1LTbazB8
-         BXkZMzZd0SuYSgi73Ya+5JCIjCC6hByREz6s1do7DiYy86mMnoILOVuIyRSd+3XdkJ7K
-         q9yw==
-X-Gm-Message-State: APjAAAXvwLhkTfIHuftBmPqCnNM1QKlwVJZQHn28TE/wf0GWPEZDOqAk
-        cCSWJYH9rDHJsaV7IQs+4ax5xU5zXbTFV25GfB9lgSL+wdOYGwV9gA+WhJli46MhXQ+BO1OwCq8
-        skYqhwWg3dBnbuXN3Z9+2iw==
-X-Received: by 2002:adf:f606:: with SMTP id t6mr2185637wrp.197.1568296490383;
-        Thu, 12 Sep 2019 06:54:50 -0700 (PDT)
-X-Google-Smtp-Source: APXvYqwC3kNPUcOsh7Bb73QPWu//fbO1BgsdzUDsLIP9vFsm5R0Jt3bi1WcmYSjZOjhd6eyKj5g78A==
-X-Received: by 2002:adf:f606:: with SMTP id t6mr2185611wrp.197.1568296490120;
-        Thu, 12 Sep 2019 06:54:50 -0700 (PDT)
-Received: from vitty.brq.redhat.com (nat-pool-brq-t.redhat.com. [213.175.37.10])
-        by smtp.gmail.com with ESMTPSA id g16sm5160325wrx.21.2019.09.12.06.54.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 12 Sep 2019 06:54:49 -0700 (PDT)
-From:   Vitaly Kuznetsov <vkuznets@redhat.com>
-To:     kvm@vger.kernel.org
-Cc:     bp@alien8.de, carlo@caione.org, catalin.marinas@arm.com,
-        devicetree@vger.kernel.org, hpa@zytor.com, jmattson@google.com,
-        joro@8bytes.org, khilman@baylibre.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        mark.rutland@arm.com, mingo@redhat.com, narmstrong@baylibre.com,
-        pbonzini@redhat.com, rkrcmar@redhat.com, robh+dt@kernel.org,
-        sean.j.christopherson@intel.com, syzkaller-bugs@googlegroups.com,
-        tglx@linutronix.de, wanpengli@tencent.com, will.deacon@arm.com,
-        x86@kernel.org,
-        syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>
-Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
-In-Reply-To: <000000000000a9d4f705924cff7a@google.com>
-References: <000000000000a9d4f705924cff7a@google.com>
-Date:   Thu, 12 Sep 2019 15:54:48 +0200
-Message-ID: <87lfutei1j.fsf@vitty.brq.redhat.com>
+        id S1731474AbfILN6L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 09:58:11 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 12 Sep 2019 06:58:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,497,1559545200"; 
+   d="scan'208";a="210032661"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga004.fm.intel.com with ESMTP; 12 Sep 2019 06:58:08 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i8Pbq-0005t1-Rj; Thu, 12 Sep 2019 16:58:06 +0300
+Date:   Thu, 12 Sep 2019 16:58:06 +0300
+From:   Andriy Shevchenko <andriy.shevchenko@intel.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
+        cheol.yong.kim@intel.com,
+        Mathias Nyman <mathias.nyman@linux.intel.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Subject: Re: [PATCH v1 0/2] pinctrl: Add new pinctrl/GPIO driver
+Message-ID: <20190912135806.GA2680@smile.fi.intel.com>
+References: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
+ <CACRpkdb7bPo7oH9w5OhAsOoQXx=MWjJELd5JvBt3R1sPdMjnpw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdb7bPo7oH9w5OhAsOoQXx=MWjJELd5JvBt3R1sPdMjnpw@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com> writes:
+On Thu, Sep 12, 2019 at 11:11:32AM +0100, Linus Walleij wrote:
+> Hi Rahul,
+> 
+> thanks for your patches!
+> 
+> On Thu, Sep 12, 2019 at 8:59 AM Rahul Tanwar
+> <rahul.tanwar@linux.intel.com> wrote:
+> 
+> > This series is to add pinctrl & GPIO controller driver for a new SoC.
+> > Patch 1 adds pinmux & GPIO controller driver.
+> > Patch 2 adds the dt bindings document & include file.
+> >
+> > Patches are against Linux 5.3-rc5 at below Git tree:
+> > git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git
+> 
+> OK nice, I think you need to include Mika Westerberg on this review
+> as well, because I think he likes to stay on top of all things intel
+> in pin control. (Also included two other Intel folks in Finland who usually
+> take an interest in these things.)
 
-> Hello,
->
-> syzbot found the following crash on:
->
-> HEAD commit:    1e3778cb Merge tag 'scsi-fixes' of git://git.kernel.org/pu..
-> git tree:       upstream
-> console output: https://syzkaller.appspot.com/x/log.txt?x=15bdfc5e600000
-> kernel config:  https://syzkaller.appspot.com/x/.config?x=b89bb446a3faaba4
-> dashboard link: https://syzkaller.appspot.com/bug?extid=46f1dd7dbbe2bfb98b10
-> compiler:       gcc (GCC) 9.0.0 20181231 (experimental)
-> syz repro:      https://syzkaller.appspot.com/x/repro.syz?x=1709421a600000
-> C reproducer:   https://syzkaller.appspot.com/x/repro.c?x=168fc4b2600000
->
-> The bug was bisected to:
->
-> commit a87f854ddcf7ff7e044d72db0aa6da82f26d69a6
-> Author: Neil Armstrong <narmstrong@baylibre.com>
-> Date:   Wed Oct 11 15:39:40 2017 +0000
->
->      ARM64: dts: meson-gx: remove unnecessary uart compatible
->
-> bisection log:  https://syzkaller.appspot.com/x/bisect.txt?x=17e78a6e600000
-> final crash:    https://syzkaller.appspot.com/x/report.txt?x=14178a6e600000
-> console output: https://syzkaller.appspot.com/x/log.txt?x=10178a6e600000
->
-> IMPORTANT: if you fix the bug, please add the following tag to the commit:
-> Reported-by: syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com
-> Fixes: a87f854ddcf7 ("ARM64: dts: meson-gx: remove unnecessary uart  
-> compatible")
->
-> L1TF CPU bug present and SMT on, data leak possible. See CVE-2018-3646 and  
-> https://www.kernel.org/doc/html/latest/admin-guide/hw-vuln/l1tf.html for  
-> details.
-> ==================================================================
-> BUG: KASAN: slab-out-of-bounds in handle_vmptrld  
-> arch/x86/kvm/vmx/nested.c:4789 [inline]
-> BUG: KASAN: slab-out-of-bounds in handle_vmptrld+0x777/0x800  
-> arch/x86/kvm/vmx/nested.c:4749
-> Read of size 4 at addr ffff888091e10000 by task syz-executor758/10006
->
-> CPU: 1 PID: 10006 Comm: syz-executor758 Not tainted 5.3.0-rc7+ #0
-> Hardware name: Google Google Compute Engine/Google Compute Engine, BIOS  
-> Google 01/01/2011
-> Call Trace:
->   __dump_stack lib/dump_stack.c:77 [inline]
->   dump_stack+0x172/0x1f0 lib/dump_stack.c:113
->   print_address_description.cold+0xd4/0x306 mm/kasan/report.c:351
->   __kasan_report.cold+0x1b/0x36 mm/kasan/report.c:482
->   kasan_report+0x12/0x17 mm/kasan/common.c:618
->   __asan_report_load_n_noabort+0xf/0x20 mm/kasan/generic_report.c:142
->   handle_vmptrld arch/x86/kvm/vmx/nested.c:4789 [inline]
->   handle_vmptrld+0x777/0x800 arch/x86/kvm/vmx/nested.c:4749
->   vmx_handle_exit+0x299/0x15e0 arch/x86/kvm/vmx/vmx.c:5886
->   vcpu_enter_guest+0x1087/0x5e90 arch/x86/kvm/x86.c:8088
->   vcpu_run arch/x86/kvm/x86.c:8152 [inline]
->   kvm_arch_vcpu_ioctl_run+0x464/0x1750 arch/x86/kvm/x86.c:8360
->   kvm_vcpu_ioctl+0x4dc/0xfd0 arch/x86/kvm/../../../virt/kvm/kvm_main.c:2765
->   vfs_ioctl fs/ioctl.c:46 [inline]
->   file_ioctl fs/ioctl.c:509 [inline]
->   do_vfs_ioctl+0xdb6/0x13e0 fs/ioctl.c:696
->   ksys_ioctl+0xab/0xd0 fs/ioctl.c:713
->   __do_sys_ioctl fs/ioctl.c:720 [inline]
->   __se_sys_ioctl fs/ioctl.c:718 [inline]
->   __x64_sys_ioctl+0x73/0xb0 fs/ioctl.c:718
->   do_syscall_64+0xfd/0x6a0 arch/x86/entry/common.c:296
->   entry_SYSCALL_64_after_hwframe+0x49/0xbe
-
-Hm, the bisection seems bogus but the stack points us to the following
-piece of code:
-
- 4776)              if (kvm_vcpu_map(vcpu, gpa_to_gfn(vmptr), &map)) {
-<skip>
- 4783)                      return nested_vmx_failValid(vcpu,
- 4784)                              VMXERR_VMPTRLD_INCORRECT_VMCS_REVISION_ID);
- 4785)              }
- 4786) 
- 4787)              new_vmcs12 = map.hva;
- 4788) 
-*4789)              if (new_vmcs12->hdr.revision_id != VMCS12_REVISION ||
- 4790)                  (new_vmcs12->hdr.shadow_vmcs &&
- 4791)                   !nested_cpu_has_vmx_shadow_vmcs(vcpu))) {
-
-the reported problem seems to be on VMCS12 region access but it's part
-of guest memory and we successfuly managed to map it. We're definitely
-within 1-page range. Maybe KASAN is just wrong here?
+Linus,
+nevertheless I guess you may give your comments WRT device tree use
+(bindings, helpers, etc) along with some basics, (like devm_*()
+[ab]use I just noticed).
 
 -- 
-Vitaly
+With Best Regards,
+Andy Shevchenko
+
+
