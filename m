@@ -2,101 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9A5CB112A
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 16:31:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D9BB1166
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 16:47:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732566AbfILObK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 10:31:10 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:37618 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732579AbfILObH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 10:31:07 -0400
-Received: by mail-lf1-f65.google.com with SMTP id w67so19528706lff.4
-        for <devicetree@vger.kernel.org>; Thu, 12 Sep 2019 07:31:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GGFnevdB6/W3Bn08vXZUmYabxaeEv2/WytcSluM4/qA=;
-        b=ncaEmNwJoGN+h9j/w2zBIKBQZsgZQT2H68ZJRafK8UQg1HqUSTqLYVkpITITzG6hYp
-         8kNSTxCfdTHB8SlHaOYh+ZtMRu8pMEDN3T6x22PO3AiC3vRwRw+JrMqlP/Jk74y6t3mX
-         ywWS24EkuibJ2tShu+SqULfWeNSIMKPpr5wJREZX7Tc1cL+bYwQCkSoznpU7aTReSWjF
-         jyH9hbh2kpExgjM79iT+iG6bEqijxuIXLbmtAyZikQrSeR0MiiA079g1SNBe9hFsvZwK
-         C1lQqzudFaoE/DZcKU/0HVRJdxc8hXy5dcBdFy2kIB3D3tvU/DZJjJo/WTKqNQBI+1qo
-         0Y+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=GGFnevdB6/W3Bn08vXZUmYabxaeEv2/WytcSluM4/qA=;
-        b=s6ADYdihE3/SZveqtj5XZjUXvQ7hwAPf8O5EfUxpaKIsMIBXuVWQv/EA+eSKN6UWvz
-         kcSiON1end5a9cDlnWQdtxF4w4bYReA9n8EsGX9odbVC4Y9TbnX8F9WMcg/mDS90rsbd
-         5Joh7LqJgo4NUulX6JubzxWC4278Wyj4Os1V8qhYRcBr6cgngpTI2PMyn+gpknn8kdTg
-         oiBfm8CALC9CTFW2L48X8NBLJd7cvJWIy8SOsYtyxSGaWPGibF35634kr7iwzhxiIsNX
-         LS0v0oOKaFG5qdpOMX3ryc/zFf7b+rTRN0VnSUkdALicNH5hPDeu5rwIlN2O67uxdcjD
-         48eA==
-X-Gm-Message-State: APjAAAXqQBWwGnI2JU+scm3RjQc6bcul/7DSw4JGh37dEjC4zuZ1LfSM
-        u3llP0PYuck46/hhfeYiJPA8M/JnrwqL2CJWmBzCdQ==
-X-Google-Smtp-Source: APXvYqxO9Z8c7OrTKavPMGL2/MV6p57Y1bzJgt/HX0TZHAPCfiKQUMd+9yPlAdhhtCF+f1UbeWI7+mA8oZoL7ARgpjY=
-X-Received: by 2002:ac2:530e:: with SMTP id c14mr1286884lfh.165.1568298665420;
- Thu, 12 Sep 2019 07:31:05 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1568274587.git.rahul.tanwar@linux.intel.com>
- <CACRpkdb7bPo7oH9w5OhAsOoQXx=MWjJELd5JvBt3R1sPdMjnpw@mail.gmail.com> <20190912135806.GA2680@smile.fi.intel.com>
-In-Reply-To: <20190912135806.GA2680@smile.fi.intel.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 12 Sep 2019 15:30:52 +0100
-Message-ID: <CACRpkdYcdaoA_D6YyKJuT5bfJ5QE4LWfXF8+R1y01xaWJaJZuQ@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] pinctrl: Add new pinctrl/GPIO driver
-To:     Andriy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
-        Mika Westerberg <mika.westerberg@linux.intel.com>,
+        id S1732592AbfILOrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 10:47:08 -0400
+Received: from foss.arm.com ([217.140.110.172]:34840 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732582AbfILOrI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 10:47:08 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 116BD28;
+        Thu, 12 Sep 2019 07:47:07 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C15373F71F;
+        Thu, 12 Sep 2019 07:47:06 -0700 (PDT)
+Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
+        id 822A06801D6; Thu, 12 Sep 2019 15:47:05 +0100 (BST)
+Date:   Thu, 12 Sep 2019 15:47:05 +0100
+From:   Liviu Dudau <liviu.dudau@arm.com>
+To:     Wen He <wen.he_1@nxp.com>
+Cc:     linux-devel@linux.nxdi.nxp.com,
+        Brian Starkey <brian.starkey@arm.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh@kernel.org>,
-        qi-ming.wu@intel.com, yixin.zhu@linux.intel.com,
-        cheol.yong.kim@intel.com,
-        Mathias Nyman <mathias.nyman@linux.intel.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, leoyang.li@nxp.com
+Subject: Re: [v5 2/2] drm/arm/mali-dp: Add display QoS interface
+ configuration for Mali DP500
+Message-ID: <20190912144705.h2qmyobpayxmu2zd@e110455-lin.cambridge.arm.com>
+References: <20190910075913.17650-1-wen.he_1@nxp.com>
+ <20190910075913.17650-2-wen.he_1@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190910075913.17650-2-wen.he_1@nxp.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 12, 2019 at 2:58 PM Andriy Shevchenko
-<andriy.shevchenko@intel.com> wrote:
-> On Thu, Sep 12, 2019 at 11:11:32AM +0100, Linus Walleij wrote:
-> > Hi Rahul,
-> >
-> > thanks for your patches!
-> >
-> > On Thu, Sep 12, 2019 at 8:59 AM Rahul Tanwar
-> > <rahul.tanwar@linux.intel.com> wrote:
-> >
-> > > This series is to add pinctrl & GPIO controller driver for a new SoC.
-> > > Patch 1 adds pinmux & GPIO controller driver.
-> > > Patch 2 adds the dt bindings document & include file.
-> > >
-> > > Patches are against Linux 5.3-rc5 at below Git tree:
-> > > git://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git
-> >
-> > OK nice, I think you need to include Mika Westerberg on this review
-> > as well, because I think he likes to stay on top of all things intel
-> > in pin control. (Also included two other Intel folks in Finland who usually
-> > take an interest in these things.)
->
-> Linus,
-> nevertheless I guess you may give your comments WRT device tree use
-> (bindings, helpers, etc) along with some basics, (like devm_*()
-> [ab]use I just noticed).
+On Tue, Sep 10, 2019 at 03:59:13PM +0800, Wen He wrote:
+> Configure the display Quality of service (QoS) levels priority if the
+> optional property node "arm,malidp-aqros-value" is defined in DTS file.
+> 
+> QoS signaling using AQROS and AWQOS AXI interface signals, the AQROS is
+> driven from the "RQOS" register, so needed to program the RQOS register
+> to avoid the high resolutions flicker issue on the LS1028A platform.
+> 
+> Signed-off-by: Wen He <wen.he_1@nxp.com>
 
-I plan to look at the patches per se but right now I don't have much
-time because soon there is merge window and kernel summit,
-the patches just need to age a little bit like a good wine ;)
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
 
-Yours,
-Linus Walleij
+Thanks for the patch! I will pull this into the malidp code and push it to
+drm-misc-next in the following days.
+
+Best regards,
+Liviu
+
+> ---
+>  drivers/gpu/drm/arm/malidp_drv.c  |  6 ++++++
+>  drivers/gpu/drm/arm/malidp_hw.c   |  9 +++++++++
+>  drivers/gpu/drm/arm/malidp_hw.h   |  3 +++
+>  drivers/gpu/drm/arm/malidp_regs.h | 10 ++++++++++
+>  4 files changed, 28 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/arm/malidp_drv.c b/drivers/gpu/drm/arm/malidp_drv.c
+> index 333b88a5efb0..8a76315aaa0f 100644
+> --- a/drivers/gpu/drm/arm/malidp_drv.c
+> +++ b/drivers/gpu/drm/arm/malidp_drv.c
+> @@ -817,6 +817,12 @@ static int malidp_bind(struct device *dev)
+>  
+>  	malidp->core_id = version;
+>  
+> +	ret = of_property_read_u32(dev->of_node,
+> +					"arm,malidp-arqos-value",
+> +					&hwdev->arqos_value);
+> +	if (ret)
+> +		hwdev->arqos_value = 0x0;
+> +
+>  	/* set the number of lines used for output of RGB data */
+>  	ret = of_property_read_u8_array(dev->of_node,
+>  					"arm,malidp-output-port-lines",
+> diff --git a/drivers/gpu/drm/arm/malidp_hw.c b/drivers/gpu/drm/arm/malidp_hw.c
+> index bd8265f02e0b..ca570b135478 100644
+> --- a/drivers/gpu/drm/arm/malidp_hw.c
+> +++ b/drivers/gpu/drm/arm/malidp_hw.c
+> @@ -379,6 +379,15 @@ static void malidp500_modeset(struct malidp_hw_device *hwdev, struct videomode *
+>  		malidp_hw_setbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
+>  	else
+>  		malidp_hw_clearbits(hwdev, MALIDP_DISP_FUNC_ILACED, MALIDP_DE_DISPLAY_FUNC);
+> +
+> +	/*
+> +	 * Program the RQoS register to avoid high resolutions flicker
+> +	 * issue on the LS1028A.
+> +	 */
+> +	if (hwdev->arqos_value) {
+> +		val = hwdev->arqos_value;
+> +		malidp_hw_setbits(hwdev, val, MALIDP500_RQOS_QUALITY);
+> +	}
+>  }
+>  
+>  int malidp_format_get_bpp(u32 fmt)
+> diff --git a/drivers/gpu/drm/arm/malidp_hw.h b/drivers/gpu/drm/arm/malidp_hw.h
+> index 968a65eed371..e4c36bc90bda 100644
+> --- a/drivers/gpu/drm/arm/malidp_hw.h
+> +++ b/drivers/gpu/drm/arm/malidp_hw.h
+> @@ -251,6 +251,9 @@ struct malidp_hw_device {
+>  
+>  	/* size of memory used for rotating layers, up to two banks available */
+>  	u32 rotation_memory[2];
+> +
+> +	/* priority level of RQOS register used for driven the ARQOS signal */
+> +	u32 arqos_value;
+>  };
+>  
+>  static inline u32 malidp_hw_read(struct malidp_hw_device *hwdev, u32 reg)
+> diff --git a/drivers/gpu/drm/arm/malidp_regs.h b/drivers/gpu/drm/arm/malidp_regs.h
+> index 993031542fa1..514c50dcb74d 100644
+> --- a/drivers/gpu/drm/arm/malidp_regs.h
+> +++ b/drivers/gpu/drm/arm/malidp_regs.h
+> @@ -210,6 +210,16 @@
+>  #define MALIDP500_CONFIG_VALID		0x00f00
+>  #define MALIDP500_CONFIG_ID		0x00fd4
+>  
+> +/*
+> + * The quality of service (QoS) register on the DP500. RQOS register values
+> + * are driven by the ARQOS signal, using AXI transacations, dependent on the
+> + * FIFO input level.
+> + * The RQOS register can also set QoS levels for:
+> + *    - RED_ARQOS   @ A 4-bit signal value for close to underflow conditions
+> + *    - GREEN_ARQOS @ A 4-bit signal value for normal conditions
+> + */
+> +#define MALIDP500_RQOS_QUALITY          0x00500
+> +
+>  /* register offsets and bits specific to DP550/DP650 */
+>  #define MALIDP550_ADDR_SPACE_SIZE	0x10000
+>  #define MALIDP550_DE_CONTROL		0x00010
+> -- 
+> 2.17.1
+> 
+
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
