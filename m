@@ -2,168 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47CFEB0C57
-	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 12:12:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F2CB0C75
+	for <lists+devicetree@lfdr.de>; Thu, 12 Sep 2019 12:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730581AbfILKMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 12 Sep 2019 06:12:43 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:43087 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730386AbfILKMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 12 Sep 2019 06:12:43 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i8M5h-0001Ib-VH; Thu, 12 Sep 2019 12:12:41 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i8M5g-0007GA-TS; Thu, 12 Sep 2019 12:12:40 +0200
-Date:   Thu, 12 Sep 2019 12:12:40 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Gilles Doffe <gilles.doffe@savoirfairelinux.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        mark rutland <mark.rutland@arm.com>,
-        festevam <festevam@gmail.com>, s hauer <s.hauer@pengutronix.de>,
-        rennes <rennes@savoirfairelinux.com>,
-        robh+dt <robh+dt@kernel.org>, linux-imx <linux-imx@nxp.com>,
-        kernel <kernel@pengutronix.de>,
-        =?iso-8859-1?Q?J=E9rome?= Oufella 
-        <jerome.oufella@savoirfairelinux.com>,
-        shawnguo <shawnguo@kernel.org>
-Subject: Re: [PATCH v2] arm: dts: imx6qdl: add gpio expander pca9535
-Message-ID: <20190912101240.ml5jmdei5rvzesap@pengutronix.de>
-References: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com>
- <20190722075341.e4ve45rneusiogtk@pengutronix.de>
- <978100557.7721358.1568282514403.JavaMail.zimbra@savoirfairelinux.com>
+        id S1731000AbfILKRq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 12 Sep 2019 06:17:46 -0400
+Received: from forward104p.mail.yandex.net ([77.88.28.107]:36603 "EHLO
+        forward104p.mail.yandex.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730454AbfILKRq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 12 Sep 2019 06:17:46 -0400
+Received: from mxback19o.mail.yandex.net (mxback19o.mail.yandex.net [IPv6:2a02:6b8:0:1a2d::70])
+        by forward104p.mail.yandex.net (Yandex) with ESMTP id 768E04B00F54;
+        Thu, 12 Sep 2019 13:17:43 +0300 (MSK)
+Received: from smtp3p.mail.yandex.net (smtp3p.mail.yandex.net [2a02:6b8:0:1472:2741:0:8b6:8])
+        by mxback19o.mail.yandex.net (nwsmtp/Yandex) with ESMTP id nBsZZiBuAK-HfFKLkII;
+        Thu, 12 Sep 2019 13:17:43 +0300
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cloudbear.ru; s=mail; t=1568283463;
+        bh=1OrWmgCBOEcc7Ob5Zgorn88c1jPz+PwVD3IBo54AYgc=;
+        h=In-Reply-To:From:To:Subject:Cc:Date:References:Message-ID;
+        b=MMRA9c9icxUyWn9Fv/3Ad8vTg6eIql0R3zktqLLa681Spq/IYqTW+YXqppvkvn4/a
+         U8vrCwz/9F9o1yNmOkreaNMUWsC6vCQ85T6QZxr7rQ4WAYsQHQez67zjMp/1XdTtid
+         hkvQIjOTNtrCnzrYDC3aEVgHFnBrsLrtWBM2glzs=
+Authentication-Results: mxback19o.mail.yandex.net; dkim=pass header.i=@cloudbear.ru
+Received: by smtp3p.mail.yandex.net (nwsmtp/Yandex) with ESMTPSA id FCyoj03qUM-Hel4FVqS;
+        Thu, 12 Sep 2019 13:17:40 +0300
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client certificate not present)
+Subject: Re: [PATCH v4 2/2] net: phy: dp83867: Add SGMII mode type switching
+To:     David Miller <davem@davemloft.net>
+Cc:     robh+dt@kernel.org, f.fainelli@gmail.com, mark.rutland@arm.com,
+        andrew@lunn.ch, hkallweit1@gmail.com, tpiepho@impinj.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <1568047940-14490-2-git-send-email-vitaly.gaiduk@cloudbear.ru>
+ <1568049566-16708-1-git-send-email-vitaly.gaiduk@cloudbear.ru>
+ <20190912.003754.663480494374990855.davem@davemloft.net>
+From:   Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+Message-ID: <83c63a9c-53f4-8f3e-38da-1f230cfca186@cloudbear.ru>
+Date:   Thu, 12 Sep 2019 13:17:40 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <978100557.7721358.1568282514403.JavaMail.zimbra@savoirfairelinux.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:08:06 up 117 days, 16:26, 67 users,  load average: 0.19, 0.17,
- 0.09
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20190912.003754.663480494374990855.davem@davemloft.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Gilles,
+Hello, David.
 
-On 19-09-12 06:01, Gilles Doffe wrote:
-> Hi Marco,
-> 
-> Thanks for your reply and sorry about the delay.
+Should I patch commit as Trent Piepho suggested? He wrote about using 
+phy_modify_mmd() instead.
 
-No worries ;)
+Vitaly.
 
-> ----- Le 22 Juil 19, à 9:53, Marco Felsch m.felsch@pengutronix.de a écrit :
-> 
-> > Hi Gilles,
-> > 
-> > can you adapt the patch title, I assumed that the base dtsi is adding a
-> > gpio-expander which makes no sense.
-> 
-> My first intent was to add the gpio-expander pca9535 into the imx6q-rex-pro.dts and in a future imx6qp-rex-ultra.dts
-> However I noticed that the sgtl5000 was already in the dtsi.
-> It is maybe due to the fact that like the pca9535, the sgtl5000 is present on the baseboard not on the SOM.
-> Thus I guess that baseboard stuff common to all rex SOM should be in imx6qdl-rex.dtsi and not in the dts.
-> Does-it seem correct to you ?
-
-Yes this is correct what Shawn and I mean is that you should adapt the
-commit title. Shawn already give you an example.
-
-> > 
-> > On 19-07-19 12:46, Gilles DOFFE wrote:
-> >> The pca9535 gpio expander is present on the Rex baseboard, but missing
-> >> from the dtsi.
-> >> 
-> >> Add the new gpio controller and the associated interrupt line
-> >> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
-> >> 
-> >> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
-> >> ---
-> > 
-> > Having a changelog would be nice too.
-> > 
-> >>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
-> >>  1 file changed, 19 insertions(+)
-> >> 
-> >> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> >> b/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> >> index 97f1659144ea..b517efb22fcb 100644
-> >> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> >> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> >> @@ -136,6 +136,19 @@
-> >>  		compatible = "atmel,24c02";
-> >>  		reg = <0x57>;
-> >>  	};
-> >> +
-> >> +	pca9535: gpio8@27 {
-> >> +		compatible = "nxp,pca9535";
-> >> +		reg = <0x27>;
-> > 
-> > The i2c devices are orderd by their i2c-addresses starting from the
-> > lowest.
-> >
-> 
-> Ack.
-> 
-> >> +		gpio-controller;
-> >> +		#gpio-cells = <2>;
-> >> +		pinctrl-names = "default";
-> >> +		pinctrl-0 = <&pinctrl_pca9535>;
-> >> +		interrupt-parent = <&gpio6>;
-> >> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-> >> +		interrupt-controller;
-> >> +		#interrupt-cells = <2>;
-
-As you pointed out above this device isn't available on the
-imx6dl-rex-basic? You should add: 'status = "disabled";' if this is the
-case.
-
-Regards,
-  Marco
-
-> >> +	};
-> >>  };
-> >>  
-> >>  &i2c3 {
-> >> @@ -237,6 +250,12 @@
-> >>  			>;
-> >>  		};
-> >>  
-> >> +		pinctrl_pca9535: pca9535 {
-> >> +			fsl,pins = <
-> >> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
-> > 
-> > The pinmux below don't use the leading zero's if you are the first I
-> > would drop that.
-> > 
-> > Regards,
-> >  Marco
-> >
-> 
-> Ack.
-> 
-> Regards,
-> Gilles
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+On 12.09.2019 1:37, David Miller wrote:
+> From: Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+> Date: Mon,  9 Sep 2019 20:19:24 +0300
+>
+>> This patch adds ability to switch beetween two PHY SGMII modes.
+>> Some hardware, for example, FPGA IP designs may use 6-wire mode
+>> which enables differential SGMII clock to MAC.
+>>
+>> Signed-off-by: Vitaly Gaiduk <vitaly.gaiduk@cloudbear.ru>
+> Applied.
