@@ -2,97 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4853EB21EF
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 16:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1ECAB2206
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 16:35:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730554AbfIMO2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 10:28:23 -0400
-Received: from sauhun.de ([88.99.104.3]:36100 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726558AbfIMO2X (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Sep 2019 10:28:23 -0400
-Received: from localhost (234.77.63.94.rev.vodafone.pt [94.63.77.234])
-        by pokefinder.org (Postfix) with ESMTPSA id 1ED402C3115;
-        Fri, 13 Sep 2019 16:28:22 +0200 (CEST)
-Date:   Fri, 13 Sep 2019 15:28:21 +0100
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Rob Clark <robdclark@gmail.com>
-Cc:     Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, alokc@codeaurora.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, vkoul@kernel.org,
-        linux-i2c@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
- Lenovo Yoga C630
-Message-ID: <20190913142821.GD1022@kunai>
-References: <20190905192412.23116-1-lee.jones@linaro.org>
- <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
- <20190906061448.GJ26880@dell>
- <20190906065018.GA1019@kunai>
- <20190906075600.GL26880@dell>
- <20190906102355.GA3146@kunai>
- <20190906105445.GO26880@dell>
- <20190906183139.GB19123@kunai>
- <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
+        id S2389296AbfIMOfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 10:35:13 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:13306 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2388414AbfIMOfN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 10:35:13 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8DEV1EQ017893;
+        Fri, 13 Sep 2019 16:35:01 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=WcH/XeLRXrchzGM2oayh6FpZp9ixOv6Rjd72cfZUEDM=;
+ b=dEdNnG1PFncizfoScByurpL+4XLDP78kKGX2VXj5XAwHuJItlL96iVQhZhLXsannVizP
+ tyFEJpueQyblheGUGcSM8Xr7yB85XlCUlg0uoJJAH05Cprzm2aOZ3fy2ENaR7uNxtzx9
+ sbxpyCI0T0CMVizoc1HWiw0SqH/yvCGXukCoFA/PgrZbxZNm0v32vUEU9HidLEhHLryD
+ Ur3ghBBLiZCPpay1hXWNRI26JRn/GmWqqvsBWGRLzmUO0Bs0jt/nA1/5iF5+MKdQhBYx
+ INkWAyqKg11YTeFrkP4ux+w/Mvpzg2/dIjAIY65SGCQq0HjT/3aUm+D9efC8t0neqqF3 pg== 
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2uytdx5n81-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 13 Sep 2019 16:35:01 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 2581F4B;
+        Fri, 13 Sep 2019 14:34:57 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3853E2C86AE;
+        Fri, 13 Sep 2019 16:34:57 +0200 (CEST)
+Received: from SAFEX1HUBCAS22.st.com (10.75.90.92) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 13 Sep
+ 2019 16:34:57 +0200
+Received: from localhost (10.48.1.232) by Webmail-ga.st.com (10.75.90.48) with
+ Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 13 Sep 2019 16:34:56 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <alexandre.torgue@st.com>
+CC:     <robh+dt@kernel.org>, <mcoquelin.stm32@gmail.com>,
+        <mark.rutland@arm.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@st.com>
+Subject: [PATCH 0/3] Add support for ADC on stm32mp157a-dk1
+Date:   Fri, 13 Sep 2019 16:34:37 +0200
+Message-ID: <1568385280-2633-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5gxpn/Q6ypwruk0T"
-Content-Disposition: inline
-In-Reply-To: <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-Originating-IP: [10.48.1.232]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
+ definitions=2019-09-13_07:2019-09-11,2019-09-13 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for ADC on stm32mp157a-dk1 board:
+- enable vrefbuf regulator used as reference voltage
+- define ADC pins for AIN connector and USB Type-C CC pins
+- configure ADC1 and ADC2 to use these
 
---5gxpn/Q6ypwruk0T
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Fabrice Gasnier (3):
+  ARM: dts: stm32: Enable VREFBUF on stm32mp157a-dk1
+  ARM: dts: stm32: add ADC pins used on stm32mp157a-dk1
+  ARM: dts: stm32: enable ADC support on stm32mp157a-dk1
 
-On Sat, Sep 07, 2019 at 10:56:34AM -0700, Rob Clark wrote:
-> On Sat, Sep 7, 2019 at 9:17 AM Wolfram Sang <wsa@the-dreams.de> wrote:
-> >
-> >
-> > > Does this mean you plan to have this merged for v5.4?
-> >
-> > Only if the machine DTS is expected to land in 5.4. But Stephen said it
-> > is not in liunx-next yet?
-> >
->=20
-> It appears to be in arm-soc for-next:
->=20
-> https://git.kernel.org/pub/scm/linux/kernel/git/arm/arm-soc.git/log/?h=3D=
-for-next
+ arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 16 +++++++++++++++
+ arch/arm/boot/dts/stm32mp157a-dk1.dts     | 34 +++++++++++++++++++++++++++++++
+ 2 files changed, 50 insertions(+)
 
-Still not in linux-next. Please ping me or resend this patch once it
-hits linux-next.
+-- 
+2.7.4
 
-
---5gxpn/Q6ypwruk0T
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl17p4UACgkQFA3kzBSg
-KbYW9BAAmbuD7qUfL9wWm1m0gAjG2VvKTbyG22SMQKbxK1tBv+lIn7Bam5Q/j6zm
-FnceT8ZkX4guUKWODkVOJoqrgU8AYuMOHqacTP08myUU3D9AfdmHZ7i3Hw9thNXl
-evtohMN5ncbd8Pq6Rny7UqZZ/LV/IHOnEFvSNgtAFWCl91d6ID3kBi0sdmqbgUj7
-/3HNJmFtHqdeC61yMcpsbGmCh4vaZ4tv+MwIKOF7goLCubzvsUaicvCF4yVFlqls
-5xYSNBUuGvDbAra/q6IB6i754p8+4SVV7hzCpz3wquHZRaVV7PE8+gbLtTrulgpc
-A20gW2KOdpS6vsAN3+NqxCx1yMFgBw4Yh5MYxKw7HQS37Z6/fM3mtDTxTGGYHAol
-3ywiNokvKi+sDDWnqk4qUhJnIc4/CSeAktlbp7GgE1hK6IeJB3vFpLWql8lCXqxs
-KbK71ULKAgFKfvQuj7U9j9gaydVMmLXwDmFLKzHJSrEhMq9Z8zpldXK3LNHpUMTT
-KCTp++JE+tYRqpYY8n4RTiEa11l0OHTp7G+e0SdTF+7FijkaHjLYWdoH0us6vZgu
-VKbn2y1JnprMW3Awwiwy/2FgFJtMOq4/kJrv/JozlDJeLhxVDtHSi0/l3LdR9KS/
-NZockGBMx40MlBpM5eOtgjLZlFEQkdCSMdB60rG0kPL6a+SCpPM=
-=AHNK
------END PGP SIGNATURE-----
-
---5gxpn/Q6ypwruk0T--
