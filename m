@@ -2,68 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A34B27D5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 00:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD1A5B2808
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 00:11:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390350AbfIMWBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 18:01:41 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:43726 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389815AbfIMWBl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 18:01:41 -0400
-Received: by mail-oi1-f194.google.com with SMTP id t84so3884624oih.10;
-        Fri, 13 Sep 2019 15:01:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NhX4q4VvHbxL/YFwtYgsj7GHy+7WGzMk/sM+hDn3XjY=;
-        b=e0MMXgN3HjOjicjL8rm5PX7wMyau6lGtrmqX+QRoBElImog6eDpDaKlWKl1+R/Ml50
-         NjDqLoZvH/V7pvZJqEYOxIRx5Zr2/45gLsr2EzOANw6gcI8XUoDFEaq7VTUFHCaMNRXY
-         HFYdI3USEak15CEIgDuCwezyLyG0mjZ6oovXFP+p4n1GiUZxx1bdhkwSYCZpPWW2MOjL
-         5pdew7IqfF1rKW0T2hu4tncR0kbcKatObIGgyD4n9zYfKu+kaXEk0M7JTaLWUUNwxtiV
-         LRW29mc5wJYwVWcAKI51qtBg15ZAZOw7QfvjPmN7Q0xTmii/2TmYSTDIZbGusnsK3oIv
-         vzyg==
-X-Gm-Message-State: APjAAAWOVl8jCzVRR3rfavegNf/gfbS24Xy4157TStngu8JtOeyQKuWy
-        N2EKZSBmJUjqrcDQYrKuTQ==
-X-Google-Smtp-Source: APXvYqyMN6cGhqQElJmPF0IJsDj8JgHPGW102AuveDAChh2mS8gBIHVvwPO4qeAYrkFmDMbX3MGMWg==
-X-Received: by 2002:aca:3ed7:: with SMTP id l206mr5582343oia.25.1568412100159;
-        Fri, 13 Sep 2019 15:01:40 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n23sm620772oie.24.2019.09.13.15.01.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 15:01:39 -0700 (PDT)
-Date:   Fri, 13 Sep 2019 17:01:38 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Colin King <colin.king@canonical.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] bus: qcom: fix spelling mistake "ambigous" -> "ambiguous"
-Message-ID: <20190913220138.GA17592@bogus>
-References: <20190911153947.10203-1-colin.king@canonical.com>
+        id S2389849AbfIMWJ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 18:09:27 -0400
+Received: from muru.com ([72.249.23.125]:60686 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725747AbfIMWJ1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 18:09:27 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 67AF88043;
+        Fri, 13 Sep 2019 22:09:57 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
+Cc:     linux-crypto@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
+        Adam Ford <aford173@gmail.com>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali.rohar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org
+Subject: [PATCH 0/6] Non-urgent fixes and improvments for omap3-rom-rng
+Date:   Fri, 13 Sep 2019 15:09:16 -0700
+Message-Id: <20190913220922.29501-1-tony@atomide.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190911153947.10203-1-colin.king@canonical.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 11 Sep 2019 16:39:47 +0100, Colin King wrote:
-> From: Colin Ian King <colin.king@canonical.com>
-> 
-> There is a spelling mistake on the documentation. Fix it.
-> 
-> Signed-off-by: Colin Ian King <colin.king@canonical.com>
-> ---
->  Documentation/devicetree/bindings/bus/qcom,ebi2.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Hi all,
 
-Applied, thanks.
+Here are fixes and improvments for omap3-rom-rng that's been broken for
+a while.
 
-Rob
+The first four patches get it working, and then the last two patches add
+support for runtime PM.
+
+Regards,
+
+Tony
+
+
+Tony Lindgren (6):
+  ARM: OMAP2+: Check omap3-rom-rng for GP device instead of HS device
+  hwrng: omap3-rom - Fix missing clock by probing with device tree
+  hwrng: omap3-rom - Call clk_prepare() on init and exit only
+  hwrng: omap3-rom - Initialize default quality to get data
+  hwrng: omap3-rom - Update to use standard driver data
+  hwrng: omap3-rom - Use runtime PM instead of custom functions
+
+ .../devicetree/bindings/rng/omap3_rom_rng.txt |  27 +++
+ arch/arm/boot/dts/omap3-n900.dts              |   6 +
+ arch/arm/mach-omap2/pdata-quirks.c            |  14 +-
+ drivers/char/hw_random/omap3-rom-rng.c        | 186 ++++++++++++------
+ 4 files changed, 162 insertions(+), 71 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/rng/omap3_rom_rng.txt
+
+-- 
+2.23.0
