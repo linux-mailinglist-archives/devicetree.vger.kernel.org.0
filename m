@@ -2,110 +2,269 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC803B1D5A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 14:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1014B1D82
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 14:21:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388175AbfIMMSZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 08:18:25 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:33724 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388141AbfIMMSY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 08:18:24 -0400
-Received: by mail-wm1-f68.google.com with SMTP id r17so1750235wme.0
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 05:18:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=L2Cakw64Ur8nPCw1uUR/WlbNeQH+sAcuv7OY6j+C6MA=;
-        b=YVvMeOhDewiCpmZozcwGl4ejAK+9WK/9Z+J7H9sDgMudKaYbPEB5ff4hPlFam6HtG7
-         SKq47C2uL/08Gx8QHB0TYCtI4xqOneLcbwhi7VzlUUQCw9oJghWbJ7ZIRh2hIMMlfcg5
-         rPmMDfxt7UqaefTshjYFNJZUpgl24TlzeLDsgNgpmAzRNbDcsOpR3SfGmDMGGS6TS7xT
-         DI9zuLWyL9aADGPPthbbWgyZpRLLDUjYk7Ey8y8iti1YFh7AcMNEFGQbfEnGi3oZ4azQ
-         /iJ472WSAhndN+55EK1kMnAOEvwD9t767WUbB0OSWv7n2c81rPeN1nPh0hStPXtJOugn
-         M3tA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=L2Cakw64Ur8nPCw1uUR/WlbNeQH+sAcuv7OY6j+C6MA=;
-        b=OhDv/kRYpfuzmBP73Qojn7NzKiPbt6t4d+35UlBt+QmRJW9GJVMQ4gGQq5SgkkTJpw
-         kA0a0s2RxX0rGKZK5UBsoUhysoXrUI0Tva/d/S5cYwlB0VLpE3NkWbxKEcfAW7T8929W
-         dQ1tI0JHrN0GBwpYqn6SsYphnlXav+jl0lJq8TB8kCWhIF6c3nTY1OKSVd9bl38OKrbq
-         KVxkjpKSdFDo3qsY84AH7pIp0A/Km6NXiCe9qEb2e+MVBxeiaAWh59rtyVlt6StByGEk
-         n58BKg87cBtWKef7FUrK67Vy1k0hNu88FDn51E8ep99zWlqUbeQsPQAgbqZKlAs3KVRN
-         dhvQ==
-X-Gm-Message-State: APjAAAWJLS0L/DZv5zBD9Y4Oq718IP1Ogz0Z74hqhcmnM9rcZAZv9dKX
-        63NnA7hbXOvlzxu/gpZkYss=
-X-Google-Smtp-Source: APXvYqzCo3gG3+eVr790S6I7T0wbEvLoOdwHeYlzsyGjVmOJug5XAhqAn64Ep5+tD9TX3lLN5L+S1g==
-X-Received: by 2002:a1c:2302:: with SMTP id j2mr3071322wmj.174.1568377101707;
-        Fri, 13 Sep 2019 05:18:21 -0700 (PDT)
-Received: from localhost ([193.47.161.132])
-        by smtp.gmail.com with ESMTPSA id a11sm2283446wmj.21.2019.09.13.05.18.20
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 13 Sep 2019 05:18:20 -0700 (PDT)
-Date:   Fri, 13 Sep 2019 14:16:08 +0200
-From:   Oliver Graute <oliver.graute@gmail.com>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, dongas86@gmail.com,
-        kernel@pengutronix.de, shawnguo@kernel.org, fabio.estevam@nxp.com,
-        robh+dt@kernel.org, catalin.marinas@arm.com, will.deacon@arm.com,
-        devicetree@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH V3 00/15] arm64: dts: imx8: architecture improvement and
- adding imx8qm support
-Message-ID: <20190913121608.GD16292@optiplex>
-References: <1568302252-28066-1-git-send-email-aisheng.dong@nxp.com>
+        id S2388323AbfIMMTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 08:19:33 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:40182 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388317AbfIMMTc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 08:19:32 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8DCJSfr030974;
+        Fri, 13 Sep 2019 07:19:28 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568377168;
+        bh=dpFGMm+i4Q/XNLpCLmprRJVVJLyjRFGXq1ONFfGsX5c=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=d7NKWpKdBjaikFODQypm4iaEg+cZRfyjJFwh78TBaWyS3UuTwwrfMkaJTaw9/XuKW
+         I9YCmVbZZIA6+HmoCpUioUG5ASI3+nMm1OUFo+GncyV/IMhp0sZqXX5f1dijY13fFb
+         BSE1yVRRqt31XlMa5W/BaZXxrcwO4Y9Gp3ANh138=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8DCJSBW046322
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Sep 2019 07:19:28 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 13
+ Sep 2019 07:19:25 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 13 Sep 2019 07:19:26 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8DCJOGJ003752;
+        Fri, 13 Sep 2019 07:19:24 -0500
+Subject: Re: [RFC 1/3] dt-bindings: dma: Add documentation for DMA domains
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <robh+dt@kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dan.j.williams@intel.com>,
+        <devicetree@vger.kernel.org>
+References: <20190906141816.24095-1-peter.ujfalusi@ti.com>
+ <20190906141816.24095-2-peter.ujfalusi@ti.com>
+ <961d30ea-d707-1120-7ecf-f51c11c41891@ti.com>
+ <20190908121058.GL2672@vkoul-mobl>
+ <a452cd06-79ca-424d-b259-c8d60fc59772@ti.com>
+ <20190912170312.GD4392@vkoul-mobl>
+ <1992ccdd-78b3-f248-3d4d-76b5e6d4cb37@ti.com>
+ <20190913103654.GE4392@vkoul-mobl>
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Message-ID: <12accd8e-a8ad-1ac6-d394-6f4d90011c9f@ti.com>
+Date:   Fri, 13 Sep 2019 15:19:57 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1568302252-28066-1-git-send-email-aisheng.dong@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190913103654.GE4392@vkoul-mobl>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12/09/19, Dong Aisheng wrote:
-> IMX SCU based platforms (e.g. MX8QM/MX8QXP) are comprised of a number of SS
-> (Subsystems), those SS may be shared between different SoCs while most of them
-> can be reused like Devices Resources, Clocks, Power domains and etc.
+Vinod,
+
+On 13/09/2019 13.36, Vinod Koul wrote:
+>>> So you have dma, xbar and client? And you need to use a specfic xbar,
+>>> did i get that right?
+>>
+>> At the end yes.
 > 
-> This patch series aims to improve the MX8 architecture to comply with the HW
-> design to save a lot of duplicated codes and benefits us a better
-> maintainability and scalability in the future.
+> :)
 > 
-> This patch series depends on another clk new binding series:
-> https://patchwork.kernel.org/cover/11046287/
+>> EDMA have dedicated crossbar
+>> sDMA have dedicated crossbar
+> 
+> So the domain mapping should point to crossbar.
+> 
+>> Slave devices must use the crossbar to request channel from the DMA
+>> controllers. Non slave request are directed to the controllers directly
+>> (no DT binding).
+> 
+> The clients for these are different right, if so slave clients will
+> point to domain xbar and non slave will point to domain controller (to
+> make everyone use domains). Non domain get any channel ... (fallback as
+> well)
+> 
+> 
+>> At minimum we would need a new property for DMA routers.
+>> dma-domain-router perhaps which is pointing to the xbar.
+> 
+> Precisely!
 
-Thx for your update of this patch series. I'am running into the issue
-that my linux next-20190904 unfortunately is not booting with it on my
-imx8QM board. Kernel is just stuck during boot see below.
+After some thinking at the end we have two main type of DMA channels:
+slave channels: Hw triggered channels
+non-slave channels: SW triggered channels w/o DMA request lines
 
-I applied your v5 of your clock binding patches series and applied this
-series in v3. Your former two patch series worked well with next-20190716.
+right?
 
-The last messages from the kernel are:
+Slave channels must be described in DT as we need to specify the DMA
+request number/line/trigger, whatever it is called on different platforms.
 
-[    1.019208] imx-scu scu: mbox_request_channel_byname() could not locate channel named "gip3"
-[    1.027316] imx-scu scu: failed to request mbox chan gip3, ret -22
-[    1.033480] imx-scu scu: failed to enable general irq channel: -22
-[    1.039646] imx-scu scu: NXP i.MX SCU Initialized
-[    1.047414] a35_clk: failed to get clock rate -22
-[    1.058682]  lcd0-pwm0: failed to power up resource 188 ret -22
-[    1.064314] imx-scu-clk: probe of pwm_clk failed with error -22
-[    1.070538]  lcd0: failed to power up resource 187 ret -22
-[    1.075690] imx-scu-clk: probe of lcd_clk failed with error -22
-[    1.085965] mipi_csi0_core_clk: failed to attached the power domain -2
-[    1.092359] mipi_csi0_esc_clk: failed to attached the power domain -2
-[    1.098777] mipi_csi0_i2c0_clk: failed to attached the power domain -2
-[    1.105278] mipi_csi0_pwm0_clk: failed to attached the power domain -2
-[    1.115744] imx8qm-pinctrl scu:pinctrl: initialized IMX pinctrl driver
-[    1.123923] gpio-mxc 5d080000.gpio: IRQ index 1 not found
-[    1.130276] gpio-mxc 5d090000.gpio: IRQ index 1 not found
+non-slave channels on the other hand can be requested from any
+controllers which can execute it. Or in the scope of this series, from
+the controller which is best suited to service the device or module.
 
-I see similar messages also with your older working patches, only the
-last two lines are new errors.
+If we really want to move to similar binding structure as interrupts
+opposed to what we have atm (gpio, pwm, leds, etc uses the same
+principle), then
 
-Best regards,
+dma-slave-controller: can point to a dma controller or dma router which
+should be used from the node it is presented inherited by it's child
+nodes for slave channels.
 
-Oliver
+dma-nonslave-controller: can point to a dma controller which should be
+used from the node it is presented inherited by it's child nodes for non
+slave channels.
+
+DMA routers have the phandle for the dma controller they are attached
+to, so this should be fine, I guess.
+
+Based on the topology of the SoC, these can be added in higher level in
+the tree to divert from the higher level controller selection.
+
+>> A slave channel request would first look for dma-domain-router, if it is
+>> there, the request goes via that.
+>> If not then look for dma-domain-controller and use it for the request.
+>> The DMA binding can drop the phandle to the xbar/dma.
+>> Request for not slave channel would only look for dma-domain-controller.
+>>
+>>
+>> But...
+>>
+>> - If we have one dedicated memcpy DMA and one for slave usage.
+>> In top we declare dma-domain-controller = <&m2m_dma>;
+>>
+>> Then you have  a slave client somewhere
+>> client1: peripheral@42 {
+>> 	dma-domain-controller = <&slave_dma>;
+>> 	dmas = <6>, <7>;
+>> 	dma-names = "tx", "rx";
+>> };
+>>
+>> This is fine I guess. But what would we do if the driver for client1
+>> needs additional memcpy channel? By the definition of the binding the
+>> non slave channel should be taken from the closest dma-domain-controller
+>> which is not what we want. We want the channel from m2m_dma.
+> 
+> I would not envision same controller needs both memcpy or slave
+> channels. If so, that should be represented as something like dma-names
+> and represent two sets of dmas one for domain1 and another for domain2.
+> 
+> I would generalize it and not call it memcpy/slave but just domains and
+> have a controller use multiple domains (if we have a super controller
+> which can do that :D)
+> 
+> client1: peripheral@42 {
+>         dma-domain-names = "memcpy", "slave";
+>         dma-domains = <&mem_dma>, <&slave_dma>;
+>         ...
+> };
+
+Right, similar thing should work, I guess.
+
+/ {
+	/* DDR to DDR is used in main_udmap */
+	dma-domain-names = "memcpy";
+	dma-domains = <&main_udmap>;
+
+	cbass_main {
+		/* memcpy is from main_udmap and slaves also */
+		dma-domain-names = "slave";
+		dma-domains = <&main_udmap>;
+
+		cbass_mcu {
+			/* memcpy is from mcu_udmap and slaves also */
+			dma-domain-names = "memcpy", "slave";
+			dma-domains = <&mcu_udmap>, <&mcu_udmap>;
+
+		};
+	};
+};
+
+or
+
+/ {
+	/* memcpy is from edma and slaves also */
+	dma-domain-names = "memcpy", "slave";
+	dma-domains = <&edma>, <&edma>;
+
+	edma_xbar1 xbar@0 {
+		/*
+		 * DMA router on front of edma,
+		 * optionally can be explicitly tell the DMA controller
+		 * to be used with the router if needed.
+		 */
+
+		dma-domain-names = "slave";
+		dma-domains = <&main_udmap>;
+	};
+
+	mcbsp muxed_dma@0 {
+		/* memcpy is from edma and slaves from edma_xbar1 */
+		dma-domain-names = "slave";
+		dma-domains = <&edma_xbar1>;
+	};
+
+	voice muxed_dma@1 {
+		/* memcpy is from edma and slaves from edma_xbar1 */
+		dma-domain-names = "slave";
+		dma-domains = <&edma_xbar1>;
+	};
+
+	something not_muxed@0 {
+		/* memcpy is from edma and slaves also */
+	};
+};
+
+Even the DMA router binding can be changed to look for the "slave"
+domain it belongs to?
+
+The the dmas can drop the phandle to the controller/router
+
+Internal API wise, things could use
+dmaengine_get_slave_domain(struct device *client_dev);
+if we get a domain, we know the the binding does not include the phandle
+for the controller.
+
+and
+dmaengine_get_nonslave_domain(struct device *client_dev);
+
+The DMA routers and drivers might need to be changed, not sure if they
+would notice the drop of the first phandle from the binding...
+
+>>
+>> And no, we can not start looking for the dma-domain-controller starting
+>> from the root as in most cases the dma-domain-controller closer to the
+>> client is what we really want and not the globally best controller.
+>>
+>> - How to handle the transition?
+>>
+>> If neither dma-domain-controller/router is found, assume that the first
+>> argument in the binding is a phandle to the dma/router?
+>> We need to carry the support for what we have today for a long time. The
+>> kernel must boot with old DT blob.
+>>
+>> - Will it make things cleaner? Atm it is pretty easy to see which
+>> controller/router is used for which device.
+
+Is this big change worth to push for?
+
+
+>> - Also to note that the EDMA and sDMA bindings are different, so we can
+>> not just swap dma-domain-controller/router underneath, we also need to
+>> modify the client's dmas line as well.
+>>
+>> - Péter
+>>
+>> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+>> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> 
+
+- Péter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
