@@ -2,111 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AEE31B23E4
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 18:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2CCB23E9
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 18:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730627AbfIMQNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 12:13:50 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:35011 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730622AbfIMQNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 12:13:50 -0400
-Received: by mail-pg1-f193.google.com with SMTP id n4so15514665pgv.2
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 09:13:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=jAupNqyyc/z6Ou3QEiGyvPGV4p/HHkcLNmIbS16XZ48=;
-        b=YOhRrP610r2OT+dYPZmA28h12Ce+GFpEohCI1QCqwdmpKzJQnt14AcqKXjlg4P4rjP
-         3KoF5+/69OtqEJ/12tgfPL2HWciCx8V8C90OHXde4c1KiAB8pkUW13cIJo7mQvTvDiEf
-         H+rNlC5X4uJWfBnvBpoHZd3FEXNkaR9T0LsE04PTXjBUW16JaHPRDfgL2Gqjo/qgBD6f
-         x3cq+WA7VwvzNOc5LmW0pX0JCzwyQdL6YqMQMc7TPqx9oiSrFk18Au+ue2LTxPEtIlSO
-         Z3FQWoIsZhk6lKtzOhHPO4jcU+ul3MWPSuirq/0koG2oiIAXn8t7U+b4rvJQ87G1phK+
-         7EqQ==
+        id S1730668AbfIMQOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 12:14:31 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:38234 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730646AbfIMQOb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 12:14:31 -0400
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com [209.85.221.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id 710C47FDEE
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 16:14:30 +0000 (UTC)
+Received: by mail-wr1-f71.google.com with SMTP id u10so4320631wrn.21
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 09:14:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=jAupNqyyc/z6Ou3QEiGyvPGV4p/HHkcLNmIbS16XZ48=;
-        b=mvcbLjPGhKu86YjL7pnZMngzX1g/DIiEGPJamQXD9/tvyvoKwYFBn9Y1k+F802AVVS
-         qNJLLLUez2CGayEJWAVl45GAQTbqWkZhmxPw/HgLZs4KzQdQL3T7DZy+ex/KvkYI50O+
-         2uhDBqbAGrYXlxL1USUSUAUYDfcW+KRSZTfmVPjNGqEnPXBgVGBPun6PS7b1XJu8y8SS
-         iiq5nmCOT1QbSbYZn/X0bnX64PwN/2v7Y+Cnbk1OQzjRyPffny8wyiGJcI8KJCEaN5hL
-         qBJ3/4Mj/QlRwnR2jwRH7zSpsRHIIz3e+A3znIc2oad0UUqNFYUOmGsutZUpc67MDFqn
-         22XQ==
-X-Gm-Message-State: APjAAAU7IZHS5m/fdH7wYgkb/kuvF9DxTZqcfMRz+PZf2IdVsSXp8/s5
-        qGwJk9Z7Hx/AoMIpr5do+SGTRw==
-X-Google-Smtp-Source: APXvYqy8WJqbEp5Mme/EdrroxU+nLTxdO6eyhgl5X1B50zCun7w0ARHrR5xAzJjBGnxYzpft+Gourw==
-X-Received: by 2002:a17:90a:6586:: with SMTP id k6mr6151408pjj.20.1568391229012;
-        Fri, 13 Sep 2019 09:13:49 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id g8sm23036322pgk.1.2019.09.13.09.13.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 09:13:48 -0700 (PDT)
-Date:   Fri, 13 Sep 2019 09:13:45 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Wolfram Sang <wsa@the-dreams.de>, Arnd Bergmann <arnd@arndb.de>
-Cc:     Rob Clark <robdclark@gmail.com>, Lee Jones <lee.jones@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andy Gross <agross@kernel.org>, alokc@codeaurora.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, vkoul@kernel.org,
-        linux-i2c@vger.kernel.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
- Lenovo Yoga C630
-Message-ID: <20190913161345.GB8466@tuxbook-pro>
-References: <20190905192412.23116-1-lee.jones@linaro.org>
- <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
- <20190906061448.GJ26880@dell>
- <20190906065018.GA1019@kunai>
- <20190906075600.GL26880@dell>
- <20190906102355.GA3146@kunai>
- <20190906105445.GO26880@dell>
- <20190906183139.GB19123@kunai>
- <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
- <20190913142821.GD1022@kunai>
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=7nSN9wvhoKYdWon6QDIGqpWH+96lV7NFl/5Fkxot28g=;
+        b=DmwXvzXyVfu52lzWe6BnMK9Llj6WXLjG+DTNoPwYmDwu7Q2AFoUnKlFmRhwiO9/y6a
+         GLf5bbJqjWKOobDinc5x/j1QmAsOsufbU/z855Jq2lUxcqxKWLzKN5cCtzNZRc/1uCvL
+         E/TOYwdTMMy4qzra4XR2GZ7Gr0W2Biso6CZXft78nSR6/rt7/ZzXXhi+u0HmET4uHq5G
+         HMArorwuqZCHjLAtftarGL81YB9HT9WELiS9w0ecQWAc2w3Qhe3f8md6lodqPKLO3/8q
+         mKP0RJ0/bZOMtW/YVxYm15UnFFfBQdg1JSsVofv9GON6qeT1oBSk0ZIg5II5zBdf3XPh
+         T64Q==
+X-Gm-Message-State: APjAAAXv4zB1P+wHwH/1p8tPJOIEl1GPwTNyyg0L5C4CyAB5STJAj5Tu
+        ubj0u0WIopLcEvHVsGwUIJ1XeH/wbQAzJzwVI/R0TRVopztbABHhqAFGgzqRWx9+9HEf1Nh2L6w
+        8U9bCrUJdfMSKi37IY2wSLQ==
+X-Received: by 2002:adf:f607:: with SMTP id t7mr38318040wrp.60.1568391268768;
+        Fri, 13 Sep 2019 09:14:28 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqxQUnRDc3RyOrEaNGz0pukUMwipBT5o437e/Usb18JWbopoR0i0Q27Or8p94AssM2/2oIzM8A==
+X-Received: by 2002:adf:f607:: with SMTP id t7mr38317997wrp.60.1568391268522;
+        Fri, 13 Sep 2019 09:14:28 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:c5d2:4bb2:a923:3a9a? ([2001:b07:6468:f312:c5d2:4bb2:a923:3a9a])
+        by smtp.gmail.com with ESMTPSA id v6sm4816939wma.24.2019.09.13.09.14.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Sep 2019 09:14:28 -0700 (PDT)
+Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vitaly Kuznetsov <vkuznets@redhat.com>, kvm@vger.kernel.org,
+        bp@alien8.de, carlo@caione.org, catalin.marinas@arm.com,
+        devicetree@vger.kernel.org, hpa@zytor.com, jmattson@google.com,
+        joro@8bytes.org, khilman@baylibre.com,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mark.rutland@arm.com, mingo@redhat.com, narmstrong@baylibre.com,
+        rkrcmar@redhat.com, robh+dt@kernel.org,
+        sean.j.christopherson@intel.com, syzkaller-bugs@googlegroups.com,
+        tglx@linutronix.de, wanpengli@tencent.com, will.deacon@arm.com,
+        x86@kernel.org,
+        syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>,
+        Dmitry Vyukov <dvyukov@google.com>,
+        USB list <linux-usb@vger.kernel.org>
+References: <Pine.LNX.4.44L0.1909131129390.1466-100000@iolanthe.rowland.org>
+From:   Paolo Bonzini <pbonzini@redhat.com>
+Openpgp: preference=signencrypt
+Message-ID: <1a8a6449-2740-b0a3-805a-47466e0d71c6@redhat.com>
+Date:   Fri, 13 Sep 2019 18:14:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190913142821.GD1022@kunai>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <Pine.LNX.4.44L0.1909131129390.1466-100000@iolanthe.rowland.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 13 Sep 07:28 PDT 2019, Wolfram Sang wrote:
-
-> On Sat, Sep 07, 2019 at 10:56:34AM -0700, Rob Clark wrote:
-> > On Sat, Sep 7, 2019 at 9:17 AM Wolfram Sang <wsa@the-dreams.de> wrote:
-> > >
-> > >
-> > > > Does this mean you plan to have this merged for v5.4?
-> > >
-> > > Only if the machine DTS is expected to land in 5.4. But Stephen said it
-> > > is not in liunx-next yet?
-> > >
-> > 
-> > It appears to be in arm-soc for-next:
-> > 
-> > https://git.kernel.org/pub/scm/linux/kernel/git/arm/arm-soc.git/log/?h=for-next
+On 13/09/19 17:36, Alan Stern wrote:
+> On Fri, 13 Sep 2019, Paolo Bonzini wrote:
 > 
-> Still not in linux-next. Please ping me or resend this patch once it
-> hits linux-next.
+>> On 13/09/19 15:02, Greg Kroah-Hartman wrote:
+>>> Look at linux-next, we "should" have fixed up hcd_buffer_alloc() now to
+>>> not need this type of thing.  If we got it wrong, please let us know and
+>>> then yes, a fix like this would be most appreciated :)
+>>
+>> I still see
+>>
+>> 	/* some USB hosts just use PIO */
+>> 	if (!hcd_uses_dma(hcd)) {
+>> 		*dma = ~(dma_addr_t) 0;
+>> 		return kmalloc(size, mem_flags);
+>> 	}
+>>
+>> in linux-next's hcd_buffer_alloc and also in usb.git's usb-next branch.
+>>  I also see the same
+>>
+>> 	if (remap_pfn_range(vma, vma->vm_start,
+>> 			virt_to_phys(usbm->mem) >> PAGE_SHIFT,
+>> 			size, vma->vm_page_prot) < 0) {
+>> 		...
+>> 	}
+>>
+>> in usbdev_mmap.  Of course it's possible that I'm looking at the wrong
+>> branch, or just being dense.
 > 
+> Have you seen
+> 
+> 	https://marc.info/?l=linux-usb&m=156758511218419&w=2
+> 
+> ?  It certainly is relevant, although Greg hasn't replied to it.
 
-It seems linux-next is now pulling from the soc.git, rather than
-arm-soc.git, but Arnd is still pushing patches to arm-soc.git.
+It helps but it's not a full fix, since the address would fail
+is_vmalloc_addr.  On top of that, hcd_buffer_alloc and hcd_buffer_free
+need to switch from kmalloc to vmalloc.
 
-Arnd says that the patch will be in v5.4 and I merged Arnd's tree and
-gave it a spin here and this patch makes it boot. So please merge this
-patch for v5.4 as well.
+> Also, just warning about a non-page-aligned allocation doesn't really 
+> help.  It would be better to fix the misbehaving allocator.
 
-Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Of course.  The above patch does not fix the issue, it should just allow
+for an easier reproduction not involving KVM.  More long term, it points
+out where the contracts mismatch (i.e. between hcd_buffer_alloc and
+usb_alloc_coherent), and more selfishly whose bug it is when syzkaller
+complains. :)
 
-Thanks,
-Bjorn
+Paolo
