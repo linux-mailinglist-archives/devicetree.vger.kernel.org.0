@@ -2,184 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFA0B19B2
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 10:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB6FAB1A4E
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 10:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387554AbfIMIil convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Sep 2019 04:38:41 -0400
-Received: from mail.savoirfairelinux.com ([208.88.110.44]:44378 "EHLO
-        mail.savoirfairelinux.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387424AbfIMIil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 04:38:41 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id 468379C01CF;
-        Fri, 13 Sep 2019 04:38:40 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
-        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id 0tdnGDu6uDPD; Fri, 13 Sep 2019 04:38:39 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id 5428B9C02B2;
-        Fri, 13 Sep 2019 04:38:39 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
-        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id 1nWHepbN-k1n; Fri, 13 Sep 2019 04:38:39 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id 13DF59C01CF;
-        Fri, 13 Sep 2019 04:38:39 -0400 (EDT)
-Date:   Fri, 13 Sep 2019 04:38:39 -0400 (EDT)
-From:   Gilles Doffe <gilles.doffe@savoirfairelinux.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        mark rutland <mark.rutland@arm.com>,
-        festevam <festevam@gmail.com>, s hauer <s.hauer@pengutronix.de>,
-        rennes <rennes@savoirfairelinux.com>,
-        robh+dt <robh+dt@kernel.org>, linux-imx <linux-imx@nxp.com>,
-        kernel <kernel@pengutronix.de>,
-        =?utf-8?Q?J=C3=A9rome?= Oufella 
-        <jerome.oufella@savoirfairelinux.com>,
-        shawnguo <shawnguo@kernel.org>
-Message-ID: <415531537.7768114.1568363919015.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20190912101240.ml5jmdei5rvzesap@pengutronix.de>
-References: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com> <20190722075341.e4ve45rneusiogtk@pengutronix.de> <978100557.7721358.1568282514403.JavaMail.zimbra@savoirfairelinux.com> <20190912101240.ml5jmdei5rvzesap@pengutronix.de>
-Subject: Re: [PATCH v2] arm: dts: imx6qdl: add gpio expander pca9535
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Mailer: Zimbra 8.8.11_GA_3737 (ZimbraWebClient - GC76 (Linux)/8.8.11_GA_3737)
-Thread-Topic: imx6qdl: add gpio expander pca9535
-Thread-Index: Zvv68XcE8nddO8z0uGME4oRHp/yuRA==
+        id S2387835AbfIMI5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 04:57:00 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:62960 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S2387765AbfIMI5A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 04:57:00 -0400
+X-IronPort-AV: E=Sophos;i="5.64,500,1559487600"; 
+   d="scan'208";a="26296602"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 13 Sep 2019 17:56:57 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B661C41D99BD;
+        Fri, 13 Sep 2019 17:56:54 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH 1/2] arm64: dts: renesas: r8a774c0: Create thermal zone to support IPA
+Date:   Fri, 13 Sep 2019 09:50:07 +0100
+Message-Id: <1568364608-46548-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
+Setup a thermal zone driven by SoC temperature sensor.
+Create passive trip points and bind them to CPUFreq cooling
+device that supports power extension.
 
-Ack for all, v3 incoming.
+Based on the work done by Dien Pham <dien.pham.ry@renesas.com>
+and others for r8a77990 SoC.
 
-Thank you,
-Gilles
+Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 
------ Le 12 Sep 19, à 12:12, Marco Felsch m.felsch@pengutronix.de a écrit :
-
-> Hi Gilles,
-> 
-> On 19-09-12 06:01, Gilles Doffe wrote:
->> Hi Marco,
->> 
->> Thanks for your reply and sorry about the delay.
-> 
-> No worries ;)
-> 
->> ----- Le 22 Juil 19, à 9:53, Marco Felsch m.felsch@pengutronix.de a écrit :
->> 
->> > Hi Gilles,
->> > 
->> > can you adapt the patch title, I assumed that the base dtsi is adding a
->> > gpio-expander which makes no sense.
->> 
->> My first intent was to add the gpio-expander pca9535 into the imx6q-rex-pro.dts
->> and in a future imx6qp-rex-ultra.dts
->> However I noticed that the sgtl5000 was already in the dtsi.
->> It is maybe due to the fact that like the pca9535, the sgtl5000 is present on
->> the baseboard not on the SOM.
->> Thus I guess that baseboard stuff common to all rex SOM should be in
->> imx6qdl-rex.dtsi and not in the dts.
->> Does-it seem correct to you ?
-> 
-> Yes this is correct what Shawn and I mean is that you should adapt the
-> commit title. Shawn already give you an example.
-> 
->> > 
->> > On 19-07-19 12:46, Gilles DOFFE wrote:
->> >> The pca9535 gpio expander is present on the Rex baseboard, but missing
->> >> from the dtsi.
->> >> 
->> >> Add the new gpio controller and the associated interrupt line
->> >> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
->> >> 
->> >> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
->> >> ---
->> > 
->> > Having a changelog would be nice too.
->> > 
->> >>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
->> >>  1 file changed, 19 insertions(+)
->> >> 
->> >> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> >> b/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> >> index 97f1659144ea..b517efb22fcb 100644
->> >> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> >> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
->> >> @@ -136,6 +136,19 @@
->> >>  		compatible = "atmel,24c02";
->> >>  		reg = <0x57>;
->> >>  	};
->> >> +
->> >> +	pca9535: gpio8@27 {
->> >> +		compatible = "nxp,pca9535";
->> >> +		reg = <0x27>;
->> > 
->> > The i2c devices are orderd by their i2c-addresses starting from the
->> > lowest.
->> >
->> 
->> Ack.
->> 
->> >> +		gpio-controller;
->> >> +		#gpio-cells = <2>;
->> >> +		pinctrl-names = "default";
->> >> +		pinctrl-0 = <&pinctrl_pca9535>;
->> >> +		interrupt-parent = <&gpio6>;
->> >> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
->> >> +		interrupt-controller;
->> >> +		#interrupt-cells = <2>;
-> 
-> As you pointed out above this device isn't available on the
-> imx6dl-rex-basic? You should add: 'status = "disabled";' if this is the
-> case.
-> 
-> Regards,
->  Marco
-> 
->> >> +	};
->> >>  };
->> >>  
->> >>  &i2c3 {
->> >> @@ -237,6 +250,12 @@
->> >>  			>;
->> >>  		};
->> >>  
->> >> +		pinctrl_pca9535: pca9535 {
->> >> +			fsl,pins = <
->> >> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
->> > 
->> > The pinmux below don't use the leading zero's if you are the first I
->> > would drop that.
->> > 
->> > Regards,
->> >  Marco
->> >
->> 
->> Ack.
->> 
->> Regards,
->> Gilles
->> 
-> 
-> --
-> Pengutronix e.K.                           |                             |
-> Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+index a1c2de9..764df4c 100644
+--- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+@@ -73,6 +73,7 @@
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0>;
+ 			device_type = "cpu";
++			#cooling-cells = <2>;
+ 			power-domains = <&sysc R8A774C0_PD_CA53_CPU0>;
+ 			next-level-cache = <&L2_CA53>;
+ 			enable-method = "psci";
+@@ -1905,18 +1906,30 @@
+ 	thermal-zones {
+ 		cpu-thermal {
+ 			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
+-			thermal-sensors = <&thermal>;
++			polling-delay = <0>;
++			thermal-sensors = <&thermal 0>;
++			sustainable-power = <717>;
+ 
+ 			cooling-maps {
++				map0 {
++					trip = <&target>;
++					cooling-device = <&a53_0 0 2>;
++					contribution = <1024>;
++				};
+ 			};
+ 
+ 			trips {
+-				cpu-crit {
++				sensor1_crit: sensor1-crit {
+ 					temperature = <120000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
++
++				target: trip-point1 {
++					temperature = <100000>;
++					hysteresis = <2000>;
++					type = "passive";
++				};
+ 			};
+ 		};
+ 	};
 -- 
-Gilles DOFFE 
-Senior Product Engineering Consultant | Rennes, Fr 
-Bureau 
-[ tel:+33972468980 | (+33) 9 72 46 89 80 ] p. : 601 
-Cellulaire 
-[ tel:+33660025866 | (+33) 6 60 02 58 66 ]
+2.7.4
+
