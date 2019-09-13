@@ -2,207 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93904B20EB
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 15:49:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFC45B207C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 15:48:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391501AbfIMN3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 09:29:20 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:33885 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2390444AbfIMNT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Sep 2019 09:19:58 -0400
-Received: from [IPv6:2001:420:44c1:2577:888a:538c:8dda:557b] ([IPv6:2001:420:44c1:2577:888a:538c:8dda:557b])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id 8lUOiWodCV17O8lURi2q7R; Fri, 13 Sep 2019 15:19:55 +0200
-Subject: Re: [Patch 12/13] media: am437x-vpfe: Remove per bus width static
- data
-To:     Benoit Parrot <bparrot@ti.com>
-Cc:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        id S2391006AbfIMNWW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 09:22:22 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:47002 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390403AbfIMNWV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 09:22:21 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8DDMJcm046056;
+        Fri, 13 Sep 2019 08:22:19 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1568380939;
+        bh=rsDldiqxI+qAKB253v0WE/WupzEMG3LHNxO/kOjG69k=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=i/ZEF9ECC8GNViOjIGkN+nKyX6Q6q3KwxPMjrAHem/iK0MlDBSGvj8WjM658PpIgt
+         ag2qMJkbjicTR4cntq06Aq13/pFUQBWH4xZPjrvwv9ixohQ/bsofsSMbWtH4mPBlMY
+         zqcM4qP7wmutSYPkhHyzhkq/pLj9xk1isGzJpBYc=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8DDMJ8b115800
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 13 Sep 2019 08:22:19 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 13
+ Sep 2019 08:22:19 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 13 Sep 2019 08:22:19 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with SMTP id x8DDMJLQ094986;
+        Fri, 13 Sep 2019 08:22:19 -0500
+Date:   Fri, 13 Sep 2019 08:24:24 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Dave Gerlach <d-gerlach@ti.com>
+Subject: Re: [Patch 01/13] media: am437x-vpfe: Fix suspend path to always
+ handle pinctrl config
+Message-ID: <20190913132424.abjlxpu7f7rtx7rc@ti.com>
 References: <20190909162743.30114-1-bparrot@ti.com>
- <20190909162743.30114-13-bparrot@ti.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <add3cb62-1391-f8e3-15f3-f1345e18da47@xs4all.nl>
-Date:   Fri, 13 Sep 2019 15:19:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ <20190909162743.30114-2-bparrot@ti.com>
+ <9250638e-52a4-c7bc-e969-763d45528780@xs4all.nl>
 MIME-Version: 1.0
-In-Reply-To: <20190909162743.30114-13-bparrot@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfDPD79xpkAXnqWG0IqlGd95oDOl6bT+t+OMAuRgFfzmSo+y5satYA0w6avFYMQClcPT72By7btbxBlcfIXJSYFPmzapLt0p05YQz0Ot3cIej0Rrjv4rD
- TKGUjwt56ya8Kk68vFVAt6s0E8gulCm1cc+HpK1IMy8v+ScJy7+KSr7sSe9EneEp6fgS1+OyQ84o9VQBbAa+ePjkH2/hsogZjV+3lAtajqplQ7d6Zfk3drHT
- Fb0mX1fXJmHUFDdc4fsSWJ1Ex4z7/OOTkLfNU70O3a3x+vnAe7yNOIxlzqQQZnuNUTb4KnPYY/bUrtZweAkj0NinkPrpt0O2Pj9yPiKbxdWq3wmYBueBtsYO
- SuyWNIAajdqqtnl1BvkyjHMFrXIlbtnhaLlh0oXT71i5JixTJfK12uwvqfweIBHva2PL4usEX/Ij6hmDt1IVHFyRcEJCaw==
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <9250638e-52a4-c7bc-e969-763d45528780@xs4all.nl>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/9/19 6:27 PM, Benoit Parrot wrote:
-> The bus related static data include in the vpfe_fmt
-> static table can be derived dynamically instead.
-> This simplify the table and it's use.
+Thanks for the reviews.
 
-simplify -> simplifies
-it's -> its
+Hans Verkuil <hverkuil@xs4all.nl> wrote on Fri [2019-Sep-13 14:59:28 +0200]:
+> On 9/9/19 6:27 PM, Benoit Parrot wrote:
+> > From: Dave Gerlach <d-gerlach@ti.com>
+> > 
+> > Currently if vpfe is not active then it returns immediately in the
+> > suspend and resume handlers. Change this so that it always performs the
+> > pinctrl config so that we can still get proper sleep state configuration
+> > on the pins even if we do not need to worry about fully saving and
+> > restoring context.
+> > 
+> > Signed-off-by: Dave Gerlach <d-gerlach@ti.com>
+> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
+> > ---
+> >  drivers/media/platform/am437x/am437x-vpfe.c | 44 ++++++++++-----------
+> >  1 file changed, 22 insertions(+), 22 deletions(-)
+> > 
+> > diff --git a/drivers/media/platform/am437x/am437x-vpfe.c b/drivers/media/platform/am437x/am437x-vpfe.c
+> > index 2b42ba1f5949..ab959d61f9c9 100644
+> > --- a/drivers/media/platform/am437x/am437x-vpfe.c
+> > +++ b/drivers/media/platform/am437x/am437x-vpfe.c
+> > @@ -2653,22 +2653,22 @@ static int vpfe_suspend(struct device *dev)
+> >  	struct vpfe_device *vpfe = dev_get_drvdata(dev);
+> >  	struct vpfe_ccdc *ccdc = &vpfe->ccdc;
+> >  
+> > -	/* if streaming has not started we don't care */
+> > -	if (!vb2_start_streaming_called(&vpfe->buffer_queue))
+> > -		return 0;
+> > +	/* only do full suspend if streaming has started */
+> > +	if (vb2_start_streaming_called(&vpfe->buffer_queue)) {
+> >  
+> 
+> It's a bit ugly to start a block with an empty line. Can you remove it?
+
+Yep no problem.
 
 > 
-> We instead replace the per bus data info with just
-> the usual bit per pixel value for each supported
-
-bit -> bits
-
-> pixel format.
+> > -	pm_runtime_get_sync(dev);
+> > -	vpfe_config_enable(ccdc, 1);
+> > +		pm_runtime_get_sync(dev);
+> > +		vpfe_config_enable(ccdc, 1);
+> >  
+> > -	/* Save VPFE context */
+> > -	vpfe_save_context(ccdc);
+> > +		/* Save VPFE context */
+> > +		vpfe_save_context(ccdc);
+> >  
+> > -	/* Disable CCDC */
+> > -	vpfe_pcr_enable(ccdc, 0);
+> > -	vpfe_config_enable(ccdc, 0);
+> > +		/* Disable CCDC */
+> > +		vpfe_pcr_enable(ccdc, 0);
+> > +		vpfe_config_enable(ccdc, 0);
+> >  
+> > -	/* Disable both master and slave clock */
+> > -	pm_runtime_put_sync(dev);
+> > +		/* Disable both master and slave clock */
+> > +		pm_runtime_put_sync(dev);
+> > +	}
+> >  
+> >  	/* Select sleep pin state */
+> >  	pinctrl_pm_select_sleep_state(dev);
+> > @@ -2710,19 +2710,19 @@ static int vpfe_resume(struct device *dev)
+> >  	struct vpfe_device *vpfe = dev_get_drvdata(dev);
+> >  	struct vpfe_ccdc *ccdc = &vpfe->ccdc;
+> >  
+> > -	/* if streaming has not started we don't care */
+> > -	if (!vb2_start_streaming_called(&vpfe->buffer_queue))
+> > -		return 0;
+> > +	/* only do full resume if streaming has started */
+> > +	if (vb2_start_streaming_called(&vpfe->buffer_queue)) {
+> >  
 > 
-> Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> ---
->  drivers/media/platform/am437x/am437x-vpfe.c | 56 ++++++---------------
->  drivers/media/platform/am437x/am437x-vpfe.h | 16 +-----
->  2 files changed, 16 insertions(+), 56 deletions(-)
-> 
-> diff --git a/drivers/media/platform/am437x/am437x-vpfe.c b/drivers/media/platform/am437x/am437x-vpfe.c
-> index 9759ed398943..9855d4cb1d13 100644
-> --- a/drivers/media/platform/am437x/am437x-vpfe.c
-> +++ b/drivers/media/platform/am437x/am437x-vpfe.c
-> @@ -73,73 +73,43 @@ static struct vpfe_fmt formats[] = {
->  	{
->  		.fourcc		= V4L2_PIX_FMT_YUYV,
->  		.code		= MEDIA_BUS_FMT_YUYV8_2X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 4,
-> -		.s.width	= 8,
-> -		.s.bpp		= 2,
-> +		.bitsperpixel	= 16,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_UYVY,
->  		.code		= MEDIA_BUS_FMT_UYVY8_2X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 4,
-> -		.s.width	= 8,
-> -		.s.bpp		= 2,
-> +		.bitsperpixel	= 16,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_YVYU,
->  		.code		= MEDIA_BUS_FMT_YVYU8_2X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 4,
-> -		.s.width	= 8,
-> -		.s.bpp		= 2,
-> +		.bitsperpixel	= 16,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_VYUY,
->  		.code		= MEDIA_BUS_FMT_VYUY8_2X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 4,
-> -		.s.width	= 8,
-> -		.s.bpp		= 2,
-> +		.bitsperpixel	= 16,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_SBGGR8,
->  		.code		= MEDIA_BUS_FMT_SBGGR8_1X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 2,
-> -		.s.width	= 8,
-> -		.s.bpp		= 1,
-> +		.bitsperpixel	= 8,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_SGBRG8,
->  		.code		= MEDIA_BUS_FMT_SGBRG8_1X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 2,
-> -		.s.width	= 8,
-> -		.s.bpp		= 1,
-> +		.bitsperpixel	= 8,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_SGRBG8,
->  		.code		= MEDIA_BUS_FMT_SGRBG8_1X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 2,
-> -		.s.width	= 8,
-> -		.s.bpp		= 1,
-> +		.bitsperpixel	= 8,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_SRGGB8,
->  		.code		= MEDIA_BUS_FMT_SRGGB8_1X8,
-> -		.l.width	= 10,
-> -		.l.bpp		= 2,
-> -		.s.width	= 8,
-> -		.s.bpp		= 1,
-> +		.bitsperpixel	= 8,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_RGB565,
->  		.code		= MEDIA_BUS_FMT_RGB565_2X8_LE,
-> -		.l.width	= 10,
-> -		.l.bpp		= 4,
-> -		.s.width	= 8,
-> -		.s.bpp		= 2,
-> +		.bitsperpixel	= 16,
->  	}, {
->  		.fourcc		= V4L2_PIX_FMT_RGB565X,
->  		.code		= MEDIA_BUS_FMT_RGB565_2X8_BE,
-> -		.l.width	= 10,
-> -		.l.bpp		= 4,
-> -		.s.width	= 8,
-> -		.s.bpp		= 2,
-> +		.bitsperpixel	= 16,
->  	},
->  };
->  
-> @@ -184,9 +154,11 @@ static unsigned int __get_bytesperpixel(struct vpfe_device *vpfe,
->  {
->  	struct vpfe_subdev_info *sdinfo = vpfe->current_subdev;
->  	unsigned int bus_width = sdinfo->vpfe_param.bus_width;
-> -	u32 bpp;
-> +	u32 bpp, bus_width_bytes, clocksperpixel;
->  
-> -	bpp = (bus_width == 10) ? fmt->l.bpp : fmt->s.bpp;
-> +	bus_width_bytes = ALIGN(bus_width, 8) >> 3;
-> +	clocksperpixel = DIV_ROUND_UP(fmt->bitsperpixel, bus_width);
-> +	bpp = clocksperpixel * bus_width_bytes;
->  
->  	return bpp;
->  }
-> diff --git a/drivers/media/platform/am437x/am437x-vpfe.h b/drivers/media/platform/am437x/am437x-vpfe.h
-> index 0d10d2b4d7a2..2c9e89395bea 100644
-> --- a/drivers/media/platform/am437x/am437x-vpfe.h
-> +++ b/drivers/media/platform/am437x/am437x-vpfe.h
-> @@ -215,28 +215,16 @@ struct vpfe_ccdc {
->  	u32 ccdc_ctx[VPFE_REG_END / sizeof(u32)];
->  };
->  
-> -/*
-> - * struct bus_format - VPFE bus format information
-> - * @width: Bits per pixel (when transferred over a bus)
-> - * @bpp: Bytes per pixel (when stored in memory)
-> - */
-> -struct bus_format {
-> -	unsigned int width;
-> -	unsigned int bpp;
-> -};
-> -
->  /*
->   * struct vpfe_fmt - VPFE media bus format information
->   * @fourcc: V4L2 pixel format code
->   * @code: V4L2 media bus format code
-> - * @l: 10 bit bus format info
-> - * @s: 8 bit bus format info
-> + * @bitsperpixel: Bits per pixel over the bus
->   */
->  struct vpfe_fmt {
->  	u32 fourcc;
->  	u32 code;
-> -	struct bus_format l;
-> -	struct bus_format s;
-> +	u32 bitsperpixel;
->  };
->  
->  /*
-> 
+> Ditto.
 
-Regards,
+Yep no problem.
 
-	Hans
+> 
+> > -	/* Enable both master and slave clock */
+> > -	pm_runtime_get_sync(dev);
+> > -	vpfe_config_enable(ccdc, 1);
+> > +		/* Enable both master and slave clock */
+> > +		pm_runtime_get_sync(dev);
+> > +		vpfe_config_enable(ccdc, 1);
+> >  
+> > -	/* Restore VPFE context */
+> > -	vpfe_restore_context(ccdc);
+> > +		/* Restore VPFE context */
+> > +		vpfe_restore_context(ccdc);
+> >  
+> > -	vpfe_config_enable(ccdc, 0);
+> > -	pm_runtime_put_sync(dev);
+> > +		vpfe_config_enable(ccdc, 0);
+> > +		pm_runtime_put_sync(dev);
+> > +	}
+> >  
+> >  	/* Select default pin state */
+> >  	pinctrl_pm_select_default_state(dev);
+> > 
+> 
+> Regards,
+> 
+> 	Hans
