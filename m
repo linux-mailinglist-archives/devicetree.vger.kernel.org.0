@@ -2,149 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F399B1B17
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 11:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B3C3B1B64
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 12:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728740AbfIMJuN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 05:50:13 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.54]:12312 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728324AbfIMJuN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 05:50:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568368210;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=m1JrhGpcoTf3A/XkU+y96y/gCdsNYiZ/R+ndcPfLz80=;
-        b=spFOUST2sispVGc8/0sI2FM6Ov/UvTcoAxBvQQ9RhOkfSC84CvDilILmbb7I+44FZk
-        UbVJRr2qCD2j561LCicCLaCA2iMFgQntT/MRhyqccEWw6QSkWPA0bT3UCTrb7DTfs10K
-        VheRRLD6GeUjXdXFgQIxNCXbMU4zrWJg9rl8A+eV9/pnXobPdM9dJiyhvRB9zN1tpasW
-        jRUmvQj/0NwRr4FO5PeTe2IPFtiKC5fCgNDiLRcCQBcd20sUPfmErWkZlXpY6TrGHY3O
-        2RQEARGlh6GAlrt8Ff7i4TGEfIhZJWhr4+ElWLIigEI3BZmfkJdehPvsTYOU/JKO+1zb
-        HHmw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj5Qpw97WFDlSVXA4OAWU="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
-        with ESMTPSA id u036f9v8D9nvH9I
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Fri, 13 Sep 2019 11:49:57 +0200 (CEST)
-Content-Type: text/plain; charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [PATCH 6/6] ARM: dts: Configure rstctrl reset for SGX
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20190814131408.57162-7-tony@atomide.com>
-Date:   Fri, 13 Sep 2019 11:49:56 +0200
-Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        =?utf-8?Q?Filip_Matijevi=C4=87?= <filip.matijevic.pz@gmail.com>,
-        Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>,
-        moaz korena <moaz@korena.xyz>,
-        Merlijn Wajer <merlijn@wizzup.org>,
-        =?utf-8?Q?Pawe=C5=82_Chmiel?= <pawel.mikolaj.chmiel@gmail.com>,
-        Philipp Rossak <embed3d@gmail.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        linux-clk <linux-clk@vger.kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <92652315-A763-485F-A4FA-CB868016E045@goldelico.com>
-References: <20190814131408.57162-1-tony@atomide.com> <20190814131408.57162-7-tony@atomide.com>
-To:     Tony Lindgren <tony@atomide.com>
-X-Mailer: Apple Mail (2.3124)
+        id S2388048AbfIMKMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 06:12:09 -0400
+Received: from mga04.intel.com ([192.55.52.120]:15743 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387435AbfIMKMJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 06:12:09 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 13 Sep 2019 03:12:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,500,1559545200"; 
+   d="scan'208";a="200935341"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga001.fm.intel.com with ESMTP; 13 Sep 2019 03:12:05 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1i8iYd-0001cQ-Nw; Fri, 13 Sep 2019 13:12:03 +0300
+Date:   Fri, 13 Sep 2019 13:12:03 +0300
+From:   "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>
+To:     Dilip Kota <eswara.kota@linux.intel.com>
+Cc:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "hch@infradead.org" <hch@infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "cheol.yong.kim@intel.com" <cheol.yong.kim@intel.com>,
+        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
+        "qi-ming.wu@intel.com" <qi-ming.wu@intel.com>
+Subject: Re: [PATCH v3 2/2] dwc: PCI: intel: Intel PCIe RC controller driver
+Message-ID: <20190913101203.GE2680@smile.fi.intel.com>
+References: <20190906112044.GF9720@e119886-lin.cambridge.arm.com>
+ <959a5f9b-2646-96e3-6a0f-0af1051ae1cb@linux.intel.com>
+ <20190909083117.GH9720@e119886-lin.cambridge.arm.com>
+ <22857835-1f98-b251-c94b-16b4b0a6dba2@linux.intel.com>
+ <20190911103058.GP9720@e119886-lin.cambridge.arm.com>
+ <aefd143c-66d2-b303-d992-a55f75a91b2e@linux.intel.com>
+ <20190912082517.GA9720@e119886-lin.cambridge.arm.com>
+ <cd73e351-5633-bfa8-a4dc-77357d917a0b@linux.intel.com>
+ <DM6PR12MB4010AEA876F20E25FFFE06BDDAB00@DM6PR12MB4010.namprd12.prod.outlook.com>
+ <b7a1b955-4c3e-6ffe-ec6a-04afe33e70cd@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b7a1b955-4c3e-6ffe-ec6a-04afe33e70cd@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tony,
+On Fri, Sep 13, 2019 at 05:20:26PM +0800, Dilip Kota wrote:
+> On 9/12/2019 6:49 PM, Gustavo Pimentel wrote:
+> > On Thu, Sep 12, 2019 at 10:23:31, Dilip Kota
+> > <eswara.kota@linux.intel.com> wrote:
 
-> Am 14.08.2019 um 15:14 schrieb Tony Lindgren <tony@atomide.com>:
->=20
-> The following can be tested via sysfs with the following to ensure the =
-SGX
-> module gets enabled and disabled properly:
->=20
-> # echo on > =
-/sys/bus/platform/devices/5600fe00.target-module/power/control
-> # rwmem 0x5600fe00		# revision register
-> 0x5600fe00 =3D 0x40000000
-> # echo auto > =
-/sys/bus/platform/devices/5600fe00.target-module/power/control
-> # rwmem 0x5000fe00
-> Bus error
->=20
-> Note that this patch depends on the PRM rstctrl driver that has
-> been recently posted.
+> > Hi, I just return from parental leave, therefore I still trying to get
+> > the pace in mailing list discussion.
+> > 
+> > However your suggestion looks good, I agree that can go into DesignWare
+> > driver to be available to all.
+> Thanks Gustavo for the confirmation, i will add it in the next patch version
+> > 
+> > Just a small request, please do in general:
+> > s/designware/DesignWare
+> 
+> Sorry, i didnt understand this.
 
-Do you have a list of these patches or a git for pulling the complete =
-set
-of changes? Does it depend on mainline or linux-next?
+It means the reviewer asks you to name DesignWare in this form,
+i.o.w. designware -> DesignWare.
 
-I tried to find the correct patches but it does not seem to work for
-me on beaglebone.
+`man 1 sed` gives you more about it :-)
 
-> If the child device driver(s) need to prevent
-> rstctrl reset on PM runtime suspend, the drivers need to increase
-> the usecount for the shared rstctrl reset that can be mapped also
-> for the child device(s) or accessed via dev->parent.
->=20
-> Cc: Adam Ford <aford173@gmail.com>
-> Cc: Filip Matijevi=C4=87 <filip.matijevic.pz@gmail.com>
-> Cc: "H. Nikolaus Schaller" <hns@goldelico.com>
-> Cc: Ivaylo Dimitrov <ivo.g.dimitrov.75@gmail.com>
-> Cc: moaz korena <moaz@korena.xyz>
-> Cc: Merlijn Wajer <merlijn@wizzup.org>
-> Cc: Pawe=C5=82 Chmiel <pawel.mikolaj.chmiel@gmail.com>
-> Cc: Philipp Rossak <embed3d@gmail.com>
-> Cc: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Signed-off-by: Tony Lindgren <tony@atomide.com>
-> ---
-> arch/arm/boot/dts/am33xx.dtsi | 25 +++++++++++++++++++++++++
-> 1 file changed, 25 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/am33xx.dtsi =
-b/arch/arm/boot/dts/am33xx.dtsi
-> --- a/arch/arm/boot/dts/am33xx.dtsi
-> +++ b/arch/arm/boot/dts/am33xx.dtsi
-> @@ -460,6 +460,31 @@
-> 			       <&edma 5 0>;
-> 			dma-names =3D "tx", "rx";
-> 		};
-> +
-> +		target-module@56000000 {
-> +			compatible =3D "ti,sysc-omap4", "ti,sysc";
-> +			reg =3D <0x5600fe00 0x4>,
-> +			      <0x5600fe10 0x4>;
-> +			reg-names =3D "rev", "sysc";
-> +			ti,sysc-midle =3D <SYSC_IDLE_FORCE>,
-> +					<SYSC_IDLE_NO>,
-> +					<SYSC_IDLE_SMART>;
-> +			ti,sysc-sidle =3D <SYSC_IDLE_FORCE>,
-> +					<SYSC_IDLE_NO>,
-> +					<SYSC_IDLE_SMART>;
-> +			clocks =3D <&gfx_l3_clkctrl =
-AM3_GFX_L3_GFX_CLKCTRL 0>;
-> +			clock-names =3D "fck";
-> +			resets =3D <&prm_gfx 0>;
-> +			reset-names =3D "rstctrl";
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <1>;
-> +			ranges =3D <0 0x56000000 0x1000000>;
-> +
-> +			/*
-> +			 * Closed source PowerVR driver, no child device
-> +			 * binding or driver in mainline
-> +			 */
-> +		};
-> 	};
-> };
->=20
-> --=20
-> 2.21.0
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-BR and thanks,
