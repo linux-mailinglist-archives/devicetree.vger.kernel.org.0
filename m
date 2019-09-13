@@ -2,169 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D58C8B1B9B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 12:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EEEDB1BA7
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 12:41:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727540AbfIMKiD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 06:38:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38240 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726266AbfIMKiD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Sep 2019 06:38:03 -0400
-Received: from localhost (unknown [117.99.85.83])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C1FB2208C0;
-        Fri, 13 Sep 2019 10:38:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568371081;
-        bh=oU3a12NfiJIjFSxgc9/S51/UO/lBe7aSHfdp9MwruCc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PrfDIWI0vMkjyCoUzAs7y/Epi9QYxrZm5xewcu7xyMYQ6L8vW4yyTbgfC8vj8P46w
-         ZEdi3urijZJlSaO/OqSIuZrgnjlEajtQTqgvtz2YhJxwMiCXD6Tl6cVRQBhO6AAWkN
-         SFADjoVPuqQopGJ5dtvjMZe7yNqyN3aHNdayYbd8=
-Date:   Fri, 13 Sep 2019 16:06:54 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     robh+dt@kernel.org, dmaengine@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dan.j.williams@intel.com,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC 1/3] dt-bindings: dma: Add documentation for DMA domains
-Message-ID: <20190913103654.GE4392@vkoul-mobl>
-References: <20190906141816.24095-1-peter.ujfalusi@ti.com>
- <20190906141816.24095-2-peter.ujfalusi@ti.com>
- <961d30ea-d707-1120-7ecf-f51c11c41891@ti.com>
- <20190908121058.GL2672@vkoul-mobl>
- <a452cd06-79ca-424d-b259-c8d60fc59772@ti.com>
- <20190912170312.GD4392@vkoul-mobl>
- <1992ccdd-78b3-f248-3d4d-76b5e6d4cb37@ti.com>
+        id S2387538AbfIMKly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 06:41:54 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:41578 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387512AbfIMKly (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 06:41:54 -0400
+Received: by mail-vk1-f196.google.com with SMTP id 70so4922025vkz.8
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 03:41:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VzFtOukORn6BTxSSinbhVvnit+eXevFHlnBe06UcHUA=;
+        b=f3NLr6fbzNYDtDc9NetNG83qATddX3ST7qNfOKiC7D5A26Lz2W6t+TDvpUxWeoYtT3
+         M4aApAZGloRKGHMgH5L8irTiEYBLKD3B/TRtWOrBOlsAjjACHoc4sHORYAgqvS0mL4E7
+         t30zdO7NhhgWVnNDKr0/2Bh3D/lnBW2Kv3e4DwIMIDa17R97vTDrnH1O2Okzk0a4Kq+o
+         kQ7BLoiH1T9lNsHm2mbS7J+LamF28uuFHwj5hA7c0oM0csUOHIolCIFZAva9Njfv3iIH
+         Dtn3ozGFbppAKM4KDwUz8SJW1Z+2yZo2q6DQ2w3yD6hcXQSIQMiQ8gv7iN/j0A0ewzRo
+         yIgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VzFtOukORn6BTxSSinbhVvnit+eXevFHlnBe06UcHUA=;
+        b=AQ3SBbTocGHAUYmFuMvvcelXj1/m2V4ALnyI3hRmFWJmfhEapmBn2SYtdAGZ8Dv5Fz
+         7PQtiSq4t5JAhMzsX/hUljMd6tf/pfISPsYwItsiTUrLkRIbqWRzAxY6UF7H5TlBh6M9
+         ltQtIZmM8ScB48UDEP+1oFUXJFYrcAeMrdnp4f/Nsjr7utRI8VfZPk++aOVTNfL00408
+         blDwvOYwKSBemNXbKk13z+RbTIxNz8tslzDs0i8SsHi8a9dIbS6RtD1jXUu5QCJVgHev
+         wmcME2woYSQPA5ekR/5TA6kj3xHvZfTUb7Z/RjtZ+xZnGWn4EmrGCPtc8kCeUPC/OlLZ
+         cHzw==
+X-Gm-Message-State: APjAAAXWwx+HS7kul7eq35BCGnJRaqz1VBWksuJnqNLpdofUpq7o3epe
+        NQupIQ87DVn+v1pBfX391D2nJ6KJoD+M7LmNtdDHDA==
+X-Google-Smtp-Source: APXvYqxu3cBj6Axf6oFZHBU9kgVq97krzKOT0Ts3wNrOj22Hb1h0mDeMG74eyOdiEpKHd1mAbLgszYVEJZSRRFRkBo8=
+X-Received: by 2002:a1f:410f:: with SMTP id o15mr19922615vka.82.1568371312972;
+ Fri, 13 Sep 2019 03:41:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1992ccdd-78b3-f248-3d4d-76b5e6d4cb37@ti.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190821222421.30242-1-glaroque@baylibre.com> <20190821222421.30242-2-glaroque@baylibre.com>
+In-Reply-To: <20190821222421.30242-2-glaroque@baylibre.com>
+From:   Amit Kucheria <amit.kucheria@verdurent.com>
+Date:   Fri, 13 Sep 2019 16:11:41 +0530
+Message-ID: <CAHLCerONjCa4Az7+d_0Qn8X36oOxXEMps++5MnBRdH5QE+aS=g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: thermal: Add DT bindings
+ documentation for Amlogic Thermal
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        lakml <linux-arm-kernel@lists.infradead.org>,
+        linux-amlogic@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13-09-19, 10:21, Peter Ujfalusi wrote:
-> 
-> 
-> On 12/09/2019 20.03, Vinod Koul wrote:
-> > On 09-09-19, 09:30, Peter Ujfalusi wrote:
-> > 
-> >>>> or domain-dma-controller?
-> >>>
-> >>> I feel dma-domain-controller sounds fine as we are defining domains for
-> >>> dmaengine. Another thought which comes here is that why not extend this to
-> >>> slave as well and define dma-domain-controller for them as use that for
-> >>> filtering, that is what we really need along with slave id in case a
-> >>> specific channel is to be used by a peripheral
-> >>>
-> >>> Thoughts..?
-> >>
-> >> I have thought about this, we should be able to drop the phandle to the
-> >> dma controller from the slave binding just fine.
-> >>
-> >> However we have the dma routers for the slave channels and there is no
-> >> clear way to handle them.
-> >> They are not needed for non slave channels as there is no trigger to
-> >> route. In DRA7 for example we have an event router for EDMA and another
-> >> one for sDMA. If a slave device is to be serviced by EDMA, the EDMA
-> >> event router needs to be specified, for sDMA clients should use the sDMA
-> >> event router.
-> > 
-> > So you have dma, xbar and client? And you need to use a specfic xbar,
-> > did i get that right?
-> 
-> At the end yes.
-
-:)
-
-> EDMA have dedicated crossbar
-> sDMA have dedicated crossbar
-
-So the domain mapping should point to crossbar.
-
-> Slave devices must use the crossbar to request channel from the DMA
-> controllers. Non slave request are directed to the controllers directly
-> (no DT binding).
-
-The clients for these are different right, if so slave clients will
-point to domain xbar and non slave will point to domain controller (to
-make everyone use domains). Non domain get any channel ... (fallback as
-well)
-
-
-> At minimum we would need a new property for DMA routers.
-> dma-domain-router perhaps which is pointing to the xbar.
-
-Precisely!
-
-> A slave channel request would first look for dma-domain-router, if it is
-> there, the request goes via that.
-> If not then look for dma-domain-controller and use it for the request.
-> The DMA binding can drop the phandle to the xbar/dma.
-> Request for not slave channel would only look for dma-domain-controller.
+On Thu, Aug 22, 2019 at 3:54 AM Guillaume La Roque
+<glaroque@baylibre.com> wrote:
 >
-> 
-> But...
-> 
-> - If we have one dedicated memcpy DMA and one for slave usage.
-> In top we declare dma-domain-controller = <&m2m_dma>;
-> 
-> Then you have  a slave client somewhere
-> client1: peripheral@42 {
-> 	dma-domain-controller = <&slave_dma>;
-> 	dmas = <6>, <7>;
-> 	dma-names = "tx", "rx";
-> };
-> 
-> This is fine I guess. But what would we do if the driver for client1
-> needs additional memcpy channel? By the definition of the binding the
-> non slave channel should be taken from the closest dma-domain-controller
-> which is not what we want. We want the channel from m2m_dma.
+> Adding the devicetree binding documentation for the Amlogic temperature
+> sensor found in the Amlogic Meson G12 SoCs.
+> the G12A  and G12B SoCs are supported.
 
-I would not envision same controller needs both memcpy or slave
-channels. If so, that should be represented as something like dma-names
-and represent two sets of dmas one for domain1 and another for domain2.
+Merge the two sentences into a single one?
 
-I would generalize it and not call it memcpy/slave but just domains and
-have a controller use multiple domains (if we have a super controller
-which can do that :D)
-
-client1: peripheral@42 {
-        dma-domain-names = "memcpy", "slave";
-        dma-domains = <&mem_dma>, <&slave_dma>;
-        ...
-};
-
-
-> 
-> And no, we can not start looking for the dma-domain-controller starting
-> from the root as in most cases the dma-domain-controller closer to the
-> client is what we really want and not the globally best controller.
-> 
-> - How to handle the transition?
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/thermal/amlogic,thermal.yaml     | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
 >
-> If neither dma-domain-controller/router is found, assume that the first
-> argument in the binding is a phandle to the dma/router?
-> We need to carry the support for what we have today for a long time. The
-> kernel must boot with old DT blob.
-> 
-> - Will it make things cleaner? Atm it is pretty easy to see which
-> controller/router is used for which device.
-> 
-> - Also to note that the EDMA and sDMA bindings are different, so we can
-> not just swap dma-domain-controller/router underneath, we also need to
-> modify the client's dmas line as well.
-> 
-> - Péter
-> 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
--- 
-~Vinod
+> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> new file mode 100644
+> index 000000000000..f761681e4c0d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> @@ -0,0 +1,54 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/amlogic,thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Thermal
+> +
+> +maintainers:
+> +  - Guillaume La Roque <glaroque@baylibre.com>
+> +
+> +description: Binding for Amlogic Thermal
+> +
+> +properties:
+> +  compatible:
+> +      items:
+> +        - enum:
+> +            - amlogic,g12a-cpu-thermal
+> +            - amlogic,g12a-ddr-thermal
+> +        - const: amlogic,g12a-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  amlogic,ao-secure:
+> +    description: phandle to the ao-secure syscon
+> +    $ref: '/schemas/types.yaml#/definitions/phandle'
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - amlogic,ao-secure
+> +
+> +examples:
+> +  - |
+> +        cpu_temp: temperature-sensor@ff634800 {
+> +                compatible = "amlogic,g12a-cpu-thermal",
+> +                             "amlogic,g12a-thermal";
+> +                reg = <0xff634800 0x50>;
+> +                interrupts = <0x0 0x24 0x0>;
+> +                clocks = <&clk 164>;
+> +                #thermal-sensor-cells = <0>;
+> +                amlogic,ao-secure = <&sec_AO>;
+> +        };
+> +...
+> --
+> 2.17.1
+>
