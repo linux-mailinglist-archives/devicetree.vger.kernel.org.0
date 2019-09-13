@@ -2,127 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A5EFB2724
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 23:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 948C8B2761
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 23:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731274AbfIMVUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 17:20:55 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:36211 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731114AbfIMVUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 17:20:55 -0400
-Received: by mail-pg1-f196.google.com with SMTP id j191so5354732pgd.3
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 14:20:55 -0700 (PDT)
+        id S2389975AbfIMVjJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 17:39:09 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:53680 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389718AbfIMVjJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 17:39:09 -0400
+Received: from mail-wr1-f70.google.com (mail-wr1-f70.google.com [209.85.221.70])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id F04B6796E0
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 21:39:08 +0000 (UTC)
+Received: by mail-wr1-f70.google.com with SMTP id a4so12807839wrg.8
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 14:39:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=9P/XjVbI97/jTRRG3gmFq66lGI4E5K6bWBMtKJXZDto=;
-        b=m4t1U5RH22bpo7eU8KRcVF4ahy+CIlRHl9eLFHe7glHMc2S/gUsduo3zJHZtODmRzU
-         NrbnsKMm3X6W91DxLLrONTsiOcnUMtaLuIsXhV0JPozZlPAXAaldzNaatnOOenelo6AB
-         SyXwD8hWsH10jBBuWjrdbqOsCCaY8/pV1khQFzWHygzoOegad8tutfPyJGq1j2lxL2/a
-         ntcB+IxFY6jwPugIR08EqaNW0PYtwrdNaRASArWG5AF6oUSvmuH74yNUkKMsRcj3f4wF
-         18CBFoHGW24xn6Mf+dMfSKDL+Sx8srxq5NyPFtrwuZ5FkUvU/wOUSIR1TZ8sWLtTwydX
-         5K4w==
-X-Gm-Message-State: APjAAAWEDX4JJWCWCnouxdyt4eLYFJfUle+XbFS/Vow+hdfz7KfL3iFK
-        nJgLwkfLZQXobS4eAJYYsKwiaA==
-X-Google-Smtp-Source: APXvYqxGX38OpJukmSdJgfGgVppHv0oE3pZZWx0OtjxeuAEjhQlb/mU/6Zxreniznz8l4dOfPg2gHQ==
-X-Received: by 2002:a17:90a:37d1:: with SMTP id v75mr7640029pjb.33.1568409654241;
-        Fri, 13 Sep 2019 14:20:54 -0700 (PDT)
-Received: from localhost (amx-tls3.starhub.net.sg. [203.116.164.13])
-        by smtp.gmail.com with ESMTPSA id s73sm2940942pjb.15.2019.09.13.14.20.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 14:20:53 -0700 (PDT)
-Date:   Fri, 13 Sep 2019 14:20:53 -0700 (PDT)
-X-Google-Original-Date: Fri, 13 Sep 2019 14:18:36 PDT (-0700)
-Subject:     Re: [PATCH] riscv: dts: Add DT support for SiFive FU540 PWM driver
-In-Reply-To: <CAJ2_jOGO-isv52rnwRusV7jtyCY_JWYWAj9opN3Zg6ZbZr-8-w@mail.gmail.com>
-CC:     robh+dt@kernel.org, mark.rutland@arm.com,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, bmeng.cn@gmail.com, sagar.kadam@sifive.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org,
-        Sachin Ghadi <sachin.ghadi@sifive.com>
-From:   Palmer Dabbelt <palmer@sifive.com>
-To:     yash.shah@sifive.com
-Message-ID: <mhng-c8b87e96-987e-4577-acc2-1e22c9b81b10@palmer-si-x1e>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=H/HgiF+ormPJec9ucKfvq3B1GbgLkHD6NvKq1m15REE=;
+        b=GX9oHXQj/M00kbkxbZEdoLvruZWZcHX2NncvSSrtWwYGNN15HTm6VoOqhYIUqyzqhy
+         GNS6U7v1UlY0Ogq92/zIzOPgrKWUG2OMrHbBqxXIG8M2mHeeoNlG1a+9JwDf8ngCGl9e
+         UlvnKHobb247czS6BghJWKrVlqa7eexbXfSr/nk2/T7o/eVokljbzOG67u9wQfaHAapj
+         T9PUkdEFiv84wuQCDzDVyhKs6H9MPYxTGzrXf1KFJ9mxISoRry9YCEbmSmciLdkHxaaL
+         YE5okUeobNnZZigd7lF+NSjzvntc2vmZ75fldYAPSz/VKu56ZriNjjWsOzKZUtZwx4q+
+         Xp8w==
+X-Gm-Message-State: APjAAAWeJR4mXW5dE4GNy2Vik8ycDqm10fhmndYRTfN4f058M+p8gvK2
+        lC2vvXy1/4pkhDkdVWROaWeD406fOvIjtdhuqDy3uCsE/D1KwLb4GI2XPhIJxjVyyM+Ci4ecw1d
+        Oaa7k+k/DYxBFqA+f9kMaog==
+X-Received: by 2002:a1c:a54a:: with SMTP id o71mr5188554wme.51.1568410747390;
+        Fri, 13 Sep 2019 14:39:07 -0700 (PDT)
+X-Google-Smtp-Source: APXvYqx8xng5YAyNbwPHIzedIu8ZCTqFN32yL3gtxtyPP/chrRkzUD4Hr9V7c5rHI5vdwgEV7dIuVQ==
+X-Received: by 2002:a1c:a54a:: with SMTP id o71mr5188535wme.51.1568410747142;
+        Fri, 13 Sep 2019 14:39:07 -0700 (PDT)
+Received: from ?IPv6:2001:b07:6468:f312:3166:d768:e1a7:aab8? ([2001:b07:6468:f312:3166:d768:e1a7:aab8])
+        by smtp.gmail.com with ESMTPSA id n2sm2788701wmc.1.2019.09.13.14.39.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 13 Sep 2019 14:39:06 -0700 (PDT)
+Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     mark.rutland@arm.com, x86@kernel.org, wanpengli@tencent.com,
+        kvm@vger.kernel.org, narmstrong@baylibre.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, hpa@zytor.com,
+        khilman@baylibre.com, joro@8bytes.org, rkrcmar@redhat.com,
+        mingo@redhat.com, Dmitry Vyukov <dvyukov@google.com>,
+        syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>,
+        devicetree@vger.kernel.org, syzkaller-bugs@googlegroups.com,
+        robh+dt@kernel.org, bp@alien8.de,
+        linux-amlogic@lists.infradead.org, tglx@linutronix.de,
+        linux-arm-kernel@lists.infradead.org, jmattson@google.com,
+        USB list <linux-usb@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, sean.j.christopherson@intel.com,
+        carlo@caione.org, Vitaly Kuznetsov <vkuznets@redhat.com>
+References: <000000000000a9d4f705924cff7a@google.com>
+ <87lfutei1j.fsf@vitty.brq.redhat.com>
+ <5218e70e-8a80-7c5f-277b-01d9ab70692a@redhat.com>
+ <20190913044614.GA120223@kroah.com>
+ <db02a285-ad1d-6094-6359-ba80e6d3f2e0@redhat.com>
+ <20190913130226.GB403359@kroah.com>
+ <6a0ec3a2-2a52-f67a-6140-e0a60874538a@redhat.com>
+ <462660f4-1537-cece-b55f-0ceba0269eb8@arm.com>
+From:   Paolo Bonzini <pbonzini@redhat.com>
+Openpgp: preference=signencrypt
+Message-ID: <a85cee75-99f9-7de3-6e5c-86f9bb41bca5@redhat.com>
+Date:   Fri, 13 Sep 2019 23:39:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <462660f4-1537-cece-b55f-0ceba0269eb8@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Sep 2019 02:52:07 PDT (-0700), yash.shah@sifive.com wrote:
-> Hi,
->
-> Any comments on this patch?
+On 13/09/19 17:32, Robin Murphy wrote:
+> Oh, that bit of usbdev_mmap() is already known to be pretty much totally
+> bogus for various reasons - there have been a few threads about it, of
+> which I think [1] is both the most recent and the most informative.
+> There was another patch[2], but that might have stalled (and might need
+> reworking with additional hcd_uses_dma() checks anyway).
 
-I don't see "sifive,pwm0" in the DT bindings documentation, and it doesn't 
-match our standard way of doing these things (which would have at least 
-"sifive,fu540-c000-pwm").
+Neither is enough, see my reply to Alan.  Memory from kmalloc just
+*cannot* be passed down to remap_pfn_range, dma_mmap_coherent or
+anything like that.  It's a simple alignment issue.
 
->
-> - Yash
->
-> On Wed, Aug 21, 2019 at 2:53 PM Yash Shah <yash.shah@sifive.com> wrote:
->>
->> Add the PWM DT node in SiFive FU540 soc-specific DT file.
->> Enable the PWM nodes in HiFive Unleashed board-specific DT file.
->>
->> Signed-off-by: Yash Shah <yash.shah@sifive.com>
->> ---
->>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 19 +++++++++++++++++++
->>  arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  8 ++++++++
->>  2 files changed, 27 insertions(+)
->>
->> diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->> index 42b5ec2..bb422db 100644
->> --- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->> +++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
->> @@ -230,6 +230,25 @@
->>                         #size-cells = <0>;
->>                         status = "disabled";
->>                 };
->> +               pwm0: pwm@10020000 {
->> +                       compatible = "sifive,pwm0";
->> +                       reg = <0x0 0x10020000 0x0 0x1000>;
->> +                       interrupt-parent = <&plic0>;
->> +                       interrupts = <42 43 44 45>;
->> +                       clocks = <&prci PRCI_CLK_TLCLK>;
->> +                       #pwm-cells = <3>;
->> +                       status = "disabled";
->> +               };
->> +               pwm1: pwm@10021000 {
->> +                       compatible = "sifive,pwm0";
->> +                       reg = <0x0 0x10021000 0x0 0x1000>;
->> +                       interrupt-parent = <&plic0>;
->> +                       interrupts = <46 47 48 49>;
->> +                       reg-names = "control";
->> +                       clocks = <&prci PRCI_CLK_TLCLK>;
->> +                       #pwm-cells = <3>;
->> +                       status = "disabled";
->> +               };
->>
->>         };
->>  };
->> diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
->> index 93d68cb..104d334 100644
->> --- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
->> +++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
->> @@ -85,3 +85,11 @@
->>                 reg = <0>;
->>         };
->>  };
->> +
->> +&pwm0 {
->> +       status = "okay";
->> +};
->> +
->> +&pwm1 {
->> +       status = "okay";
->> +};
->> --
->> 1.9.1
->>
+Paolo
