@@ -2,152 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD4C6B1D98
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 14:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 617D9B1DDA
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 14:49:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728618AbfIMMWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 08:22:02 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:53332 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726771AbfIMMWC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 08:22:02 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id CBE5625AED5;
-        Fri, 13 Sep 2019 22:21:59 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id BEC26940513; Fri, 13 Sep 2019 14:21:57 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1729760AbfIMMtK convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 13 Sep 2019 08:49:10 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:58073 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729686AbfIMMtK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 08:49:10 -0400
+Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id D2E30240016;
+        Fri, 13 Sep 2019 12:49:04 +0000 (UTC)
+Date:   Fri, 13 Sep 2019 14:49:03 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Piotr Sroka <piotrs@cadence.com>
+Cc:     <linux-kernel@vger.kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH] dt-bindings: hspi: Convert bindings to json-schema
-Date:   Fri, 13 Sep 2019 14:21:51 +0200
-Message-Id: <20190913122151.20264-1-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
+        <devicetree@vger.kernel.org>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Richard Weinberger <richard@nod.at>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-mtd@lists.infradead.org>,
+        BrianNorris <computersforpeace@gmail.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Kazuhiro Kasai <kasai.kazuhiro@socionext.com>
+Subject: Re: [v5 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
+Message-ID: <20190913144903.0323a23a@xps13>
+In-Reply-To: <20190911150422.GA4973@global.cadence.com>
+References: <20190725145804.8886-1-piotrs@cadence.com>
+        <20190725145955.13951-1-piotrs@cadence.com>
+        <20190830114638.33dc4eb2@xps13>
+        <20190911150422.GA4973@global.cadence.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas HSPI bindings documentation to json-schema.
-Also name bindings documentation file according to the compat string
-being documented.
+Hi Piotr,
 
-As a side effect of this change all currently supported/used compat
-strings are listed while no while card compat string is documented.
-This, in my opinion, is desirable as only supported hardware should
-be documented.
+Piotr Sroka <piotrs@cadence.com> wrote on Wed, 11 Sep 2019 16:04:24
++0100:
 
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
----
-Based on v5.3-rc1
-Tested using:
-  make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/renesas,hspi.yaml
----
- .../devicetree/bindings/spi/renesas,hspi.yaml      | 54 ++++++++++++++++++++++
- Documentation/devicetree/bindings/spi/sh-hspi.txt  | 26 -----------
- 2 files changed, 54 insertions(+), 26 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/spi/renesas,hspi.yaml
- delete mode 100644 Documentation/devicetree/bindings/spi/sh-hspi.txt
+> Hi Miquel
+> 
+> The 08/30/2019 11:46, Miquel Raynal wrote:
+> >EXTERNAL MAIL
+> >
+> >
+> >Hi Piotr,
+> >
+> >Piotr Sroka <piotrs@cadence.com> wrote on Thu, 25 Jul 2019 15:59:55
+> >+0100:
+> >  
+> >> Document the bindings used by Cadence NAND controller driver
+> >>
+> >> Signed-off-by: Piotr Sroka <piotrs@cadence.com>
+> >> ---
+> >> Changes for v5:
+> >> - replace "_" by "-" in all properties
+> >> - change compatible name from cdns,hpnfc to cdns,hp-nfc
+> >> Changes for v4:
+> >> - add commit message
+> >> Changes for v3:
+> >> - add unit suffix for board_delay
+> >> - move child description to proper place
+> >> - remove prefix cadence_ for reg and sdma fields
+> >> Changes for v2:
+> >> - remove chip dependends parameters from dts bindings
+> >> - add names for register ranges in dts bindings
+> >> - add generic bindings to describe NAND chip representation
+> >> ---
+> >>  .../bindings/mtd/cadence-nand-controller.txt       | 50 ++++++++++++++++++++++
+> >>  1 file changed, 50 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> >> new file mode 100644
+> >> index 000000000000..423547a3f993
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> >> @@ -0,0 +1,50 @@
+> >> +* Cadence NAND controller
+> >> +
+> >> +Required properties:
+> >> +  - compatible : "cdns,hp-nfc"
+> >> +  - reg : Contains two entries, each of which is a tuple consisting of a
+> >> +	  physical address and length. The first entry is the address and
+> >> +	  length of the controller register set. The second entry is the
+> >> +	  address and length of the Slave DMA data port.
+> >> +  - reg-names: should contain "reg" and "sdma"
+> >> +  - interrupts : The interrupt number.
+> >> +  - clocks: phandle of the controller core clock (nf_clk).
+> >> +
+> >> +Optional properties:
+> >> +  - dmas: shall reference DMA channel associated to the NAND controller
+> >> +  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
+> >> +    round trip delay for the signals and is used for deciding on values
+> >> +    associated with data read capture. The example formula for SDR mode is
+> >> +    the following:
+> >> +    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
+> >> +    + DQ PAD delay
+> >> +
+> >> +Child nodes represent the available NAND chips.
+> >> +
+> >> +Required properties of NAND chips:
+> >> +  - reg: shall contain the native Chip Select ids from 0 to max supported by
+> >> +    the cadence nand flash controller
+> >> +
+> >> +
+> >> +See Documentation/devicetree/bindings/mtd/nand.txt for more details on
+> >> +generic bindings.
+> >> +
+> >> +Example:
+> >> +
+> >> +nand_controller: nand-controller @60000000 {
+> >> +	  compatible = "cdns,hp-nfc";
+> >> +	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
+> >> +	  reg-names = "reg", "sdma";
+> >> +	  clocks = <&nf_clk>;
+> >> +	  cdns,board-delay-ps = <4830>;  
+> >
+> >Are you sure you want to export this to the user? Not sure it is easily
+> >understandable and tunable... I'm not against but I would have troubles
+> >tuning it myself, unless using the documented value. Maybe you should
+> >explain more how to derive it?  
+> I need to export this parameter somehow. The default value may not be
+> valid for other platforms. This value depends on platform, and may be different on different SoCs. So I think the DTS is the best place to put such configuration
+> parameter.
 
-diff --git a/Documentation/devicetree/bindings/spi/renesas,hspi.yaml b/Documentation/devicetree/bindings/spi/renesas,hspi.yaml
-new file mode 100644
-index 000000000000..94a64a33daf4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/renesas,hspi.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/renesas,hspi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas HSPI
-+
-+maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+        - renesas,hspi-r8a7778 # R-Car M1A
-+        - renesas,hspi-r8a7779 # R-Car H1
-+      - const: renesas,hspi
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+  # Pinctrl properties might be needed, too.
-+  # See Documentation/devicetree/bindings/pinctrl/renesas,*.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    hspi0: spi@fffc7000 {
-+        compatible = "renesas,hspi-r8a7778", "renesas,hspi";
-+        reg = <0xfffc7000 0x18>;
-+        interrupt-parent = <&gic>;
-+        interrupts = <0 63 IRQ_TYPE_LEVEL_HIGH>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/spi/sh-hspi.txt b/Documentation/devicetree/bindings/spi/sh-hspi.txt
-deleted file mode 100644
-index b9d1e4d11a77..000000000000
---- a/Documentation/devicetree/bindings/spi/sh-hspi.txt
-+++ /dev/null
-@@ -1,26 +0,0 @@
--Renesas HSPI.
--
--Required properties:
--- compatible       : "renesas,hspi-<soctype>", "renesas,hspi" as fallback.
--		     Examples with soctypes are:
--		       - "renesas,hspi-r8a7778" (R-Car M1)
--		       - "renesas,hspi-r8a7779" (R-Car H1)
--- reg              : Offset and length of the register set for the device
--- interrupts       : Interrupt specifier
--- #address-cells   : Must be <1>
--- #size-cells      : Must be <0>
--
--Pinctrl properties might be needed, too.  See
--Documentation/devicetree/bindings/pinctrl/renesas,*.
--
--Example:
--
--	hspi0: spi@fffc7000 {
--		compatible = "renesas,hspi-r8a7778", "renesas,hspi";
--		reg = <0xfffc7000 0x18>;
--		interrupt-parent = <&gic>;
--		interrupts = <0 63 IRQ_TYPE_LEVEL_HIGH>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--	};
--
--- 
-2.11.0
+What about a different compatible if it depends on the SoC?
 
+This way you can retrieve a different driver data structure and avoid
+the pain for the user.
+
+
+Thanks,
+Miquèl
