@@ -2,557 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CEA2B224A
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 16:39:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82BB0B2235
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 16:39:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388388AbfIMOgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 10:36:48 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:35514 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730648AbfIMOgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 10:36:25 -0400
-Received: by mail-oi1-f194.google.com with SMTP id a127so2830937oii.2;
-        Fri, 13 Sep 2019 07:36:23 -0700 (PDT)
+        id S1730770AbfIMOg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 10:36:26 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:42982 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730794AbfIMOg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 10:36:26 -0400
+Received: by mail-oi1-f196.google.com with SMTP id z6so2787212oix.9;
+        Fri, 13 Sep 2019 07:36:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=gtIOueh3Qj+tvoj/XY90gI6jrWfVT6lRfdJ7RNwaLbs=;
-        b=Yh1o5xSOyHd9bQtxVqLWzmYd1Q0ha7A4lMjQZie5s+WJS+TGtjHTqyOdqntiQzWbQK
-         +mmyoDs8PhqDK4Yl7nA4o4hZkLbuF15Unbu6AO6nQARxidGO1QVK1RECv9IHWv/EAxlh
-         N39CWQ6lqQUKk1BLgNPXGtNppCAuwFevDgxSbmzFuzY8EhdUssc0f4ORu6bf/kw6PYMZ
-         JHW6uBewwV/8INeiSNpqwq5vODKRACuwyXmEhYdtbVEbQAxwUH3cRD+cZzxvXfnJY9FL
-         haGRYqQtynn9e50gC24/gN2DE/+pivP0Qk9J+NOlaOqb697Q0ie4Lc+6hEMtAprhKyzR
-         RpIw==
-X-Gm-Message-State: APjAAAUgpv9EZglamfQ1CBPhc5K/K4vdjtpFMA+h4zWgLjQTtGF82Adg
-        5IYimeLNq2MzJmc5VqQIHOBys64=
-X-Google-Smtp-Source: APXvYqxyM58CFhGdX5XjjSAkoSYu8bWd8GY4McJ17MTJhwSwoMG/Ioe1GXqoWUurQmeheDGc61rpZA==
-X-Received: by 2002:a05:6808:3b2:: with SMTP id n18mr3419237oie.134.1568385383115;
-        Fri, 13 Sep 2019 07:36:23 -0700 (PDT)
+        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=C5lxB1SkamjYiGhernIFi0Hwph/keSNWsiTigjVm9FM=;
+        b=m3F4kbNtTKUumlC46gEj7w7P5pe9BK/+Xr+p4HPsxkCXce4MMi6DEzoFWrSbhiieGB
+         5qDX6J+QnBqrdxjBXd66TBd59K9Kne9fVshOGT/NRTt6S3GoojplcSGoflUkvVyjFGBo
+         fZWQLt1zV8WyfewLnjwLe/d4GS0/+oTLKF/9A/FfFgdRo8k7hRx84/W9SHK5DGQHjL9h
+         FYOtkq9LjX3gBhR6QORI+sULK2DTYn2Mstl5RuCJYSJ92Hnjl6qbQtKxwQI/E/HH1VIs
+         CcqID5qwh6LG82vt679zBHRf/AFTMZ+TujSuSzE0IDDxV1/P9CA/NzUXspZrpNmgFcz3
+         5Sng==
+X-Gm-Message-State: APjAAAWL+OMGXScrbyk4+hrFD3F3PzwVO46nqfJBGKpthbr7XMgANWfr
+        1T/TYbg/ONVnlHntr2Nx0Q==
+X-Google-Smtp-Source: APXvYqzvDKYvYkB5ScZXsHQdE+uCr/W7Tj0azlbY+saF/1MssVoS4TV7Xd9yW33r1voWLmoeCea3dA==
+X-Received: by 2002:aca:4c54:: with SMTP id z81mr3487645oia.0.1568385384572;
+        Fri, 13 Sep 2019 07:36:24 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l47sm9612616ota.56.2019.09.13.07.36.21
+        by smtp.gmail.com with ESMTPSA id d38sm10985849otb.7.2019.09.13.07.36.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 07:36:22 -0700 (PDT)
-Date:   Fri, 13 Sep 2019 15:36:21 +0100
+        Fri, 13 Sep 2019 07:36:23 -0700 (PDT)
+Message-ID: <5d7ba967.1c69fb81.64b1c.ab06@mx.google.com>
+Date:   Fri, 13 Sep 2019 15:36:23 +0100
 From:   Rob Herring <robh@kernel.org>
-To:     Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        jic23@kernel.org, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, mark.rutland@arm.com
-Subject: Re: [PATCH 2/2] dt-bindings: iio: Add ltc2983 documentation
-Message-ID: <20190912173046.GA22533@bogus>
-References: <20190909144550.164488-1-nuno.sa@analog.com>
- <20190909144550.164488-2-nuno.sa@analog.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kukjin Kim <kgene@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: Convert Exynos MCT bindings to
+ json-schema
+References: <20190909162537.27635-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190909144550.164488-2-nuno.sa@analog.com>
-X-Mutt-References: <20190909144550.164488-2-nuno.sa@analog.com>
+In-Reply-To: <20190909162537.27635-1-krzk@kernel.org>
+X-Mutt-References: <20190909162537.27635-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 09, 2019 at 04:45:50PM +0200, Nuno Sá wrote:
-> Document the LTC2983 temperature sensor devicetree bindings.
+On Mon, Sep 09, 2019 at 06:25:37PM +0200, Krzysztof Kozlowski wrote:
+> Convert Samsung Exynos Soc Multi Core Timer bindings to DT schema format
+> using json-schema.
 > 
-> Signed-off-by: Nuno Sá <nuno.sa@analog.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  .../bindings/iio/temperature/adi,ltc2983.yaml | 442 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 443 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
+>  .../bindings/timer/samsung,exynos4210-mct.txt |  88 --------------
+>  .../timer/samsung,exynos4210-mct.yaml         | 115 ++++++++++++++++++
+>  2 files changed, 115 insertions(+), 88 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.txt
+>  create mode 100644 Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+
+
+> diff --git a/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
 > new file mode 100644
-> index 000000000000..2b468b3ed177
+> index 000000000000..b96d2877955f
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
-> @@ -0,0 +1,442 @@
+> +++ b/Documentation/devicetree/bindings/timer/samsung,exynos4210-mct.yaml
+> @@ -0,0 +1,115 @@
 > +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/iio/temperature/adi,ltc2983.yaml#
+> +$id: http://devicetree.org/schemas/timer/samsung,exynos4210-mct.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Analog Devices LTC2983 Multi-sensor Temperature system
+> +title: Samsung Exynos SoC Multi Core Timer (MCT)
 > +
 > +maintainers:
-> +  - Nuno Sá <nuno.sa@analog.com>
+> +  - Krzysztof Kozlowski <krzk@kernel.org>
 > +
-> +description: |
-> +  Analog Devices LTC2983 Multi-Sensor Digital Temperature Measurement System
-> +  https://www.analog.com/media/en/technical-documentation/data-sheets/2983fc.pdf
+> +description: |+
+> +  The Samsung's Multi Core Timer (MCT) module includes two main blocks, the
+> +  global timer and CPU local timers. The global timer is a 64-bit free running
+> +  up-counter and can generate 4 interrupts when the counter reaches one of the
+> +  four preset counter values. The CPU local timers are 32-bit free running
+> +  down-counters and generate an interrupt when the counter expires. There is
+> +  one CPU local timer instantiated in MCT for every CPU in the system.
 > +
 > +properties:
 > +  compatible:
 > +    enum:
-> +      - adi,ltc2983
+> +      - samsung,exynos4210-mct
+> +      - samsung,exynos4412-mct
 > +
 > +  reg:
 > +    maxItems: 1
 > +
 > +  interrupts:
-> +    maxItems: 1
-> +
-> +  adi,temperature-celcius:
-> +    description:
-> +      If this property is present, the temperature is reported in Celsius.
-> +    type: boolean
-> +    maxItems: 1
-
-It's a boolean, not an array so 'maxItems' doesn't make sense.
-
-Running 'make dt_binding_check' should tell you this. You may need to 
-update dt-schema install though.
-
-> +
-> +  adi,mux-delay-config:
-> +    description:
-> +      The LTC2983 performs 2 or 3 internal conversion cycles per temperature result.
-> +      Each conversion cycle is performed with different excitation and input multiplexer
-> +      configurations. Prior to each conversion, these excitation circuits and input
-> +      switch configurations are changed and an internal 1ms delay ensures settling prior
-> +      to the conversion cycle in most cases. An extra delay can be configured using this
-> +      property. The value written here is multiplied by 100us.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - maximum: 255
-> +        maxItems: 1
-
-Drop this.
-
-> +
-> +  adi,filter-notch-freq:
-> +    description:
-> +      Set's the default setting of the digital filter. The default is simultaneous
-> +      50/60Hz rejection.
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - enum: [0, 1, 2]
-> +    maxItems: 1
-
-Drop this.
-
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^thermocouple@([1-9]|1[0-9]|20)$":
-> +    type: object
-> +    description: Represents a thermocouple sensor which is connected to one of the device channels.
-
-Wrap lines at 80 char.
-
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can be connected to one of the 20 channels of the device.
-> +          Note that, for differential thermocouples, the minimum is 2.
-> +        minimum: 1
-> +        maximum: 20
-> +        maxItems: 1
-
-Drop this and pretty much everywhere else that is never an array.
-
-> +
-> +      adi,sensor-type:
-> +        description: |
-> +           Identifies the type of thermocouple connected to the device.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [1 2 3 4 5 6 7 8]
-
-Missing commas which may not even parse. Maybe be consistent with 
-elsewhere and use minimum and maximum.
-
-> +        maxItems: 1
-> +
-> +      adi,sensor-config:
-> +        description: |
-> +          Raw value which set's the sensor configuration. Look at table 14 of the
-> +          datasheet for how to set this value for thermocouples.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - minimum: 1
-> +          - maximun: 15
-> +        maxItems: 1
-> +
-> +      adi,cold-junction-handle:
-> +        description: |
-> +          Phandle which points to a sensor object responsible for measuring the
-> +          thermocouple cold junction temperature.
-> +        $ref: "/schemas/types.yaml#/definitions/phandle"
-> +        maxItems: 1
-> +
-> +      adi,custom-sensor:
-> +        description: |
-> +          This is a table, where each entry should be a pair of voltage(mv)-temperature(K).
-> +          The entries must be given in nv and uK so that, the original values must be
-> +          multiplied by 1000000. For more details look at table 69 and 70.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/int64-array
-> +        minItems: 6
-> +        maxItems: 128
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +
-> +patternProperties:
-> +  "^diode@([1-9]|1[0-9]|20)$":
-> +    type: object
-> +    description: Represents a diode sensor which is connected to one of the device channels.
-> +
-> +    properties:
-> +      reg:
-> +        description:
-> +          The channel number. It can be connected to one of the 20 channels of the device.
-> +          Note that, for differential diodes, the minimum is 2.
-> +        minimum: 1
-> +        maximum: 20
-> +        maxItems: 1
-> +
-> +      adi,sensor-type:
-> +        description: |
-> +          Identifies the sensor as a diode.
-> +        const: 28
-> +        maxItems: 1
-> +
-> +      adi,sensor-config:
-> +        description: |
-> +          Raw value which set's the sensor configuration. Look at table 17 of the
-> +          datasheet for how to set this value for diodes.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [0 1 2 3 4 5 6 7]
-> +        maxItems: 1
-> +
-> +      adi,excitation-current:
-> +        description: |
-> +          This property controls the magnitude of the excitation current applied
-> +          to the diode. Look at table 19 of the datasheet for more info.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [0 1 2 3]
-> +        maxItems: 1
-> +
-> +      adi,ideal-factor-value:
-> +        description: |
-> +          This property sets the diode ideality factor. The real value must be
-> +          multiplied by 1000000 to remove the fractional part. For more information
-> +          look at table 20 of the datasheet.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +        maxItems: 1
-> +
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +
-> +patternProperties:
-> +  "^rtd@([2-9]|1[0-9]|20)$":
-> +    type: object
-> +    description: Represents a rtd sensor which is connected to one of the device channels.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can be connected to one of the 20 channels of the device.
-> +        minimum: 2
-> +        maximum: 20
-> +        maxItems: 1
-
-As this is pretty much the same for all child nodes, make a pattern that 
-matches all child nodes and put this there rather than duplicating it. 
-Then you only need 'minimum: 2' in the cases needing that.
-
-> +
-> +      adi,sensor-type:
-> +        description: |
-> +          Identifies the type of RTD connected to the device.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [10 11 12 13 14 15 16 17]
-> +        maxItems: 1
-> +
-> +      adi,rsense-handle:
-> +        description: |
-> +          Phandle pointing to a rsense object associated with this RTD.
-> +        $ref: "/schemas/types.yaml#/definitions/phandle"
-> +        maxItems: 1
-> +
-> +      adi,sensor-config:
-> +        description: |
-> +          Raw value which set's the sensor configuration. Look at table 28 of the
-> +          datasheet for how to set this value for RTD's.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [0 1 4 5 8 9 10 12 13 14]
-> +        maxItems: 1
-> +
-> +      adi,excitation-current:
-> +        description: |
-> +          This property controls the magnitude of the excitation current applied
-> +          to the RTD. Look at table 29 of the datasheet for more info.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [1 2 3 4 5 6 7 8]
-> +        maxItems: 1
-> +
-> +      adi,rtd-curve:
-> +        description: |
-> +          This property set the RTD curve used and the corresponding Callendar-Van
-> +          Dusen constants. Look at table 30 of the datasheet.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [0 1 2 3]
-> +        maxItems: 1
-> +
-> +      adi,custom-sensor:
-> +        description: |
-> +          This is a table, where each entry should be a pair of resistance(ohm)-temperature(K).
-> +          The entries added here are in uohm and uK. For more details values look at table 74 and 75.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint64-array
-> +        minItems: 6
-> +        maxItems: 128
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +      - adi,rsense-handle
-> +
-> +patternProperties:
-> +  "^thermistor@([1-9]|1[0-9]|20)$":
-> +    type: object
-> +    description: Represents a thermistor sensor which is connected to one of the device channels.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can be connected to one of the 20 channels of the device.
-> +          Note that, for differential thermistors, the minimum is 2.
-> +        minimum: 1
-> +        maximum: 20
-> +        maxItems: 1
-> +
-> +      adi,sensor-type:
-> +        description: |
-> +          Identifies the type of thermistor connected to the device.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [19 20 21 22 23 24 25]
-> +        maxItems: 1
-> +
-> +      adi,rsense-handle:
-> +        description: |
-> +          Phandle pointing to a rsense object associated with this thermistor.
-> +        $ref: "/schemas/types.yaml#/definitions/phandle"
-> +        maxItems: 1
-> +
-> +      adi,sensor-config:
-> +        description: |
-> +          Raw value which set's the sensor configuration. Look at table 52 of the
-> +          datasheet for how to set this value for thermistors.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [0 1 2 4]
-> +        maxItems: 1
-> +
-> +      adi,excitation-current:
-> +        description: |
-> +          This property controls the magnitude of the excitation current applied
-> +          to the thermistor. Look at table 53 of the datasheet for more info.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32-array
-> +          - enum: [1 2 3 4 5 6 7 8 9 10 11 12]
-> +        maxItems: 1
-> +
-> +      adi,custom-sensor:
-> +        description: |
-> +          This is a table, where each entry should be a pair of resistance(ohm)-temperature(K).
-> +          The entries added here are in uohm and uK only for custom thermistors.
-> +          For more details look at table 78 and 79.
-> +          Steinhart-Hart coefficients are also supported and can be programmed into the
-> +          device memory using this property. For Steinhart sensors, this table has a constant
-> +          size of 6 entries (defining the coefficients) and the values are given in the raw format.
-> +          Look at table 82 for more information.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint64-array
-> +        minItems: 6
-> +        maxItems: 128
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +      - adi,rsense-handle
-> +
-> +patternProperties:
-> +  "^adc@([1-9]|1[0-9]|20)$":
-> +    type: object
-> +    description: Represents a channel which is being used as a direct adc.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can be connected to one of the 20 channels of the device.
-> +          Note that, for differential adc's, the minimum is 2.
-> +        minimum: 1
-> +        maximum: 20
-> +        maxItems: 1
-> +
-> +      adi,sensor-type:
-> +        description: |
-> +          Identifies the sensor as a direct adc.
-> +        const: 30
-> +        maxItems: 1
-> +
-> +      adi,single-ended:
-> +        description: |
-> +          Boolean property which set's the adc as single-ended.
-> +        type: boolean
-> +
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +
-> +patternProperties:
-> +  "^rsense@([2-9]|1[0-9]|20)$":
-> +    type: object
 > +    description: |
-> +      Represents a rsense which is connected to one of the device channels.
-> +      Rsense are used by thermistors and RTD's.
-> +
-> +    properties:
-> +      reg:
-> +        description: |
-> +          The channel number. It can be connected to one of the 20 channels of the device.
-> +        minimum: 2
-> +        maximum: 20
-> +        maxItems: 1
-> +
-> +      adi,sensor-type:
-> +        description: |
-> +          Identifies the sensor as a rsense.
-> +        const: 29
-> +        maxItems: 1
-> +
-> +      adi,rsense-val-micro-ohms:
-> +        description: |
-> +          Sets the value of the sense resistor. Look at table 20 of the datasheet
-> +          for information.
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint64
-> +        maxItems: 1
-> +
-> +    required:
-> +      - reg
-> +      - adi,sensor-type
-> +      - adi, rsense-val
+> +      Interrupts should be put in specific order. This is, the local timer
+> +      interrupts should be specified after the four global timer interrupts
+> +      have been specified:
+> +      0: Global Timer Interrupt 0
+> +      1: Global Timer Interrupt 1
+> +      2: Global Timer Interrupt 2
+> +      3: Global Timer Interrupt 3
+> +      4: Local Timer Interrupt 0
+> +      5: Local Timer Interrupt 1
+> +      6: ..
+> +      7: ..
+> +      i: Local Timer Interrupt n
+> +      For MCT block that uses a per-processor interrupt for local timers, such
+> +      as ones compatible with "samsung,exynos4412-mct", only one local timer
+> +      interrupt might be specified, meaning that all local timers use the same
+> +      per processor interrupt.
+> +    minItems: 5               # 4 Global + 1 local
+> +    maxItems: 20              # 4 Global + 16 local
 > +
 > +required:
 > +  - compatible
-> +  - reg
 > +  - interrupts
+> +  - reg
 > +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    spi0 {
-> +        #address-cells = <1>;
+> +    // In this example, the IP contains two local timers, using separate
+> +    // interrupts, so two local timer interrupts have been specified,
+> +    // in addition to four global timer interrupts.
+> +      mct@10050000 {
+
+Can we clean this up and use 'timer' here.
+
+> +        compatible = "samsung,exynos4210-mct";
+> +        reg = <0x10050000 0x800>;
+> +        interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> +                     <0 42 0>, <0 48 0>;
+> +      };
+> +
+> +  - |
+> +    // In this example, the timer interrupts are connected to two separate
+> +    // interrupt controllers. Hence, an interrupt-map is created to map
+> +    // the interrupts to the respective interrupt controllers.
+> +
+> +    mct@101c0000 {
+> +      compatible = "samsung,exynos4210-mct";
+> +      reg = <0x101C0000 0x800>;
+> +      interrupt-parent = <&mct_map>;
+> +      interrupts = <0>, <1>, <2>, <3>, <4>, <5>;
+> +
+> +      mct_map: mct-map {
+
+This needs to be documented.
+
+Note, I don't really see any reason this needs to be a child node.
+
+> +        #interrupt-cells = <1>;
+> +        #address-cells = <0>;
 > +        #size-cells = <0>;
-> +
-> +        sensor_ltc2983: ltc2983@0 {
-> +                compatible = "adi,ltc2983";
-> +                reg = <0>;
-> +
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                adi,temperature-celcius;
-> +                interrupts = <20 IRQ_TYPE_EDGE_RISING>;
-> +                interrupt-parent = <&gpio>;
-> +
-> +                thermocouple@18 {
-> +                        reg = <18>;
-> +                        adi,sensor-type = <8>; //Type B
-> +                        adi,sensor-config = <1>; //Differential, open-circuit current
-> +                        adi,cold-junction-handle = <&diode5>;
-> +                };
-> +
-> +                diode5: diode@5 {
-> +                        reg = <5>;
-> +                        adi,sensor-type = <28>;
-> +                };
-> +
-> +                rsense2: rsense@2 {
-> +                        reg = <2>;
-> +                        adi,sensor-type = <29>;
-> +                        adi,rsense-val-micro-ohms = /bits/ 64 <1200000000>; //1.2Kohms
-> +                };
-> +
-> +                rtd@14 {
-> +                        reg = <14>;
-> +                        adi,sensor-type = <15>; //PT1000
-> +                        /*2-wire, internal gnd, no current rotation*/
-> +                        adi,sensor-config = <1>;
-> +                        adi,excitation-current = <7>; //500uA
-> +                        adi,rsense-handle = <&rsense2>;
-> +                };
-> +
-> +                adc@10 {
-> +                        reg = <10>;
-> +                        adi,sensor-type = <30>;
-> +                        adi,single-ended;
-> +                };
-> +
-> +                thermistor@12 {
-> +                        reg = <12>;
-> +                        adi,sensor-type = <26>; //Steinhart
-> +                        adi,rsense-handle = <&rsense2>;
-> +                        adi,custom-sensor = /bits/ 64 <0x00F371EC 0x12345678
-> +                                        0x2C0F8733 0x10018C66 0xA0FEACCD
-> +                                        0x90021D99>; //6 entries
-> +                };
-> +
-> +                thermocouple@20 {
-> +                        reg = <20>;
-> +                        adi,sensor-type = <9>; //custom thermocouple
-> +                        adi,sensor-config = <8>; //single-ended
-> +                        adi,custom-sensor = /bits/ 64
-> +                                 <(-50220000) 0
-> +                                  (-30200000) 99100000
-> +                                  (-5300000) 135400000
-> +                                  0 273150000
-> +                                  40200000 361200000
-> +                                  55300000 522100000
-> +                                  88300000 720300000
-> +                                  132200000 811200000
-> +                                  188700000 922500000
-> +                                  460400000 1000000000>; //10 pairs
-> +               };
-> +
-> +        };
+> +        interrupt-map = <0 &gic 0 57 0>,
+> +                        <1 &gic 0 69 0>,
+> +                        <2 &combiner 12 6>,
+> +                        <3 &combiner 12 7>,
+> +                        <4 &gic 0 42 0>,
+> +                        <5 &gic 0 48 0>;
+> +      };
 > +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 14a256e785ca..f747a9dc27f5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9497,6 +9497,7 @@ W:	http://ez.analog.com/community/linux-device-drivers
->  L:	linux-iio@vger.kernel.org
->  S:	Supported
->  F:	drivers/iio/temperature/ltc2983.c
-> +F:	Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yaml
->  
->  LTC4261 HARDWARE MONITOR DRIVER
->  M:	Guenter Roeck <linux@roeck-us.net>
+> +
+> +  - |
+> +    // In this example, the IP contains four local timers, but using
+> +    // a per-processor interrupt to handle them. Only one first local
+> +    // interrupt is specified.
+> +
+> +    mct@10050000 {
+> +      compatible = "samsung,exynos4412-mct";
+> +      reg = <0x10050000 0x800>;
+> +
+> +      interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> +                   <0 42 0>;
+> +    };
+> +
+> +  - |
+> +    // In this example, the IP contains four local timers, but using
+> +    // a per-processor interrupt to handle them. All the local timer
+> +    // interrupts are specified.
+> +
+> +    mct@10050000 {
+> +      compatible = "samsung,exynos4412-mct";
+> +      reg = <0x10050000 0x800>;
+> +
+> +      interrupts = <0 57 0>, <0 69 0>, <0 70 0>, <0 71 0>,
+> +                   <0 42 0>, <0 42 0>, <0 42 0>, <0 42 0>;
+> +    };
 > -- 
-> 2.23.0
+> 2.17.1
 > 
 
