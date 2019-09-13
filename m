@@ -2,101 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D071B2461
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 18:49:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3C0B24F1
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 20:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730378AbfIMQte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 12:49:34 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45658 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729293AbfIMQte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 12:49:34 -0400
-Received: by mail-io1-f68.google.com with SMTP id f12so63941884iog.12;
-        Fri, 13 Sep 2019 09:49:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=P/0+gdjpplcC13gJqGlr19O2NEwJcpegNILvvw0PWSI=;
-        b=hvAK0gk9/rsGf1DZtkSiqnWGDR7A2QJf2jrTq2owenTp5ZPxSGNIueBPldEXz/hRIQ
-         sXlLgmr7WsCjqsec4IcHQBPWS1Q9Oz2m50eh7ex6a0zDRZLyoNV9ltpPhdf65YgSA4Xz
-         m6IjToc2hi/9hTtDOXksQBbqNMQ2iCVf6jz1I7ODQlKFg+NlgoXO7TND3IZHVC+uBBj3
-         dHttUaP07K5kHi9V8muG5i6CWR2yXSPRyf/DUPIoUDAzPny//YpWKvBpobLXkCIfxYFw
-         KyFpXm+WPS25yj0g287w44o1RAKtMDzk/Hya89wZxdgecqUVcx4C16oBpVHC6n09pHeX
-         B5Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=P/0+gdjpplcC13gJqGlr19O2NEwJcpegNILvvw0PWSI=;
-        b=H22Dvr9h94DnWA6D+3zJbOryphgZIDiF5suEHXbQ6zWxPzT2fmlqNYPktEREu9XShF
-         ZQJObJz+6oFJXD7tbCTAtT8rvuauORy5r/vqEAnvdqnSnU7KiI3CfufihXNN84+I0d9D
-         YpL/wX9g7m/WS8EE1utaNzEorOTNq9RHo1BZWHCMBubtXwJaZ6/4NENX7ohOolgbfkjF
-         IUj7UQETazj/JgcNnXz5W7NNuR0Q1Zjt3Ai8sGqeupoRI8zVx9lmzEO0qvG/XjU78k7E
-         D8o68sta129Is2QL6LbWPlhte/qCIrtkwmka1uFEICQO6pdlDGVvKc78LpV0HdFOwyM4
-         zohw==
-X-Gm-Message-State: APjAAAVsusLVdfe8V3HtGeQ+84p1+lfVQHnA18qhenE69TMo7egoa05M
-        Xkh3whFiYMw8alY+PVnLQMFkl21t2yM=
-X-Google-Smtp-Source: APXvYqwQx/NLDa1Er/iMTPGAPeXawmGOw4E621+bliLv5p9UywKvec+7Ct+VllG/pQZTKrQeNwmZ3A==
-X-Received: by 2002:a6b:b445:: with SMTP id d66mr885791iof.269.1568393372754;
-        Fri, 13 Sep 2019 09:49:32 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id y17sm22487252ioa.52.2019.09.13.09.49.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 09:49:32 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-omap@vger.kernel.org
-Cc:     neolynx@gmail.com, letux-kernel@openphoenux.org,
-        andreas@kemnade.info, tony@atomide.com, adam.ford@logicpd.com,
-        hns@goldelico.com, Adam Ford <aford173@gmail.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2389196AbfIMSRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 14:17:37 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:58856 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389005AbfIMSRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 14:17:37 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: alyssa)
+        with ESMTPSA id ED22D289F25
+Date:   Fri, 13 Sep 2019 14:17:29 -0400
+From:   Alyssa Rosenzweig <alyssa.rosenzweig@collabora.com>
+To:     Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC v2] ARM: dts: omap36xx: Enable thermal throttling
-Date:   Fri, 13 Sep 2019 11:49:19 -0500
-Message-Id: <20190913164919.4565-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Nick Fan <nick.fan@mediatek.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>
+Subject: Re: [PATCH] arm64: dts: mt8183: Add node for the Mali GPU
+Message-ID: <20190913181729.GB3115@kevin>
+References: <20190905081546.42716-1-drinkcat@chromium.org>
+ <CAL_JsqJCO2G90TTT9Mpy4kjVKQyXWw4aXEEnbRp_SE8X=EGc5g@mail.gmail.com>
+ <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2B/JsCI69OhZNC5r"
+Content-Disposition: inline
+In-Reply-To: <CANMq1KCTPdFhJG1SLf-i+-557Yx-1WLzWCHu3tT_5Q2BF+JgdQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The thermal sensor in the omap3 family isn't accurate, but it's
-better than nothing.  The various OPP's enabled for the omap3630
-support up to OPP1G, however the datasheet for the DM3730 states
-that OPP130 and OPP1G are not available above TJ of 90C.
 
-This patch configures the thermal throttling to limit the
-operating points of the omap3630 to Only OPP50 and OPP100 if
-the thermal sensor reads a value above 90C.
+--2B/JsCI69OhZNC5r
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-When forcing the high-temperature state, the scaling_max_freq
-returns a value that corresponds to OPP100 showing that
-OPP130 and OPP1G are not available.
+> > > The binding we use with out-of-tree Mali drivers includes more
+> > > clocks, I assume this would be required eventually if we have an
+> > > in-tree driver:
+> >
+> > We have an in-tree driver...
+>=20
+> Right but AFAICT it does not support Bifrost GPU (yet?).
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+By the time MT8183 shows up in more concrete devices, it will, certainly
+in kernel-space and likely in userspace as well. At present, the DDK can
+be modified to run on top of the in-tree Mali drivers, i.e. "Bifrost on
+mainline linux-next (+ page table/compatible patches), with blob
+userspace".
+
+While the open userspace isn't ready here quite yet, I would definitely
+encourage upstream kernel for ChromeOS, since then there's no need to
+maintain the out-of-tree GPU driver.
+
 ---
-V2:  Rebase after moving thermal info into a common omap3.
-     This now only changes the cooling-device reference to remove the fastest
-     two OPP's
-     
-diff --git a/arch/arm/boot/dts/omap36xx.dtsi b/arch/arm/boot/dts/omap36xx.dtsi
-index 77e9fcf60ba7..d8ba513f3deb 100644
---- a/arch/arm/boot/dts/omap36xx.dtsi
-+++ b/arch/arm/boot/dts/omap36xx.dtsi
-@@ -219,6 +219,13 @@
- 	};
- };
- 
-+&cpu_cooling_maps {
-+	map0 {
-+		/* OPP130 and OPP1G are not available above 90C */
-+		cooling-device = <&cpu 1 2>;
-+	};
-+};
-+
- /* OMAP3630 needs dss_96m_fck for VENC */
- &venc {
- 	clocks = <&dss_tv_fck>, <&dss_96m_fck>;
--- 
-2.17.1
 
+More immediately, per Rob's review, it's important that the bindings
+accepted upstream work with the in-tree Bifrost driver. Conceptually,
+once Mesa supports Bifrost, if I install Debian on a MT8183 board,
+everything should just work. I shouldn't need MT-specific changes / need
+to change names for the DT. Regardless of which kernel driver you end up
+using, minimally sharing the DT is good for everyone :-)
+
+-Alyssa
+
+--2B/JsCI69OhZNC5r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEQ17gm7CvANAdqvY4/v5QWgr1WA0FAl173TQACgkQ/v5QWgr1
+WA2KFBAAnQIHm2aIeWt2mYq9onM7XNfSCCxZzYCsLXaE1LiylCZdcDanV4VaF+B3
+f+jIbfoeoHcnqlhNYRNiI93L0dl3YdmKHBJsPkxNg+ziQu/alZQbsYFNB07LBsuk
+2dxKissYufkSfdcc4UFEBDYq6LQlLF0XmXr5G7oNazC29e73h6Jpn8lrIlKrKo+v
+5SE/KJs7ua1sfKkj6As8LOh2VFqCv+NZ7XPjI+qUQDoSfXgoO2DTsLu79lhInxRr
+pdC8YKeypMlEGRuDgXt9Ee1zi0lk0OroJ+9uELf1G67V/JlpSOOI1go00HhC4Tll
+I8LeczfwD2ujVnJ1kpENyQAmqEY/b6lNPIQJm0MvLFh59Hk9hjl8j1WlH9+yKMNH
+rcZK1/SYeo97URXmKbfYFiwnRLXsX3p7wXjC6vtiw0xa7AcgdsfU+su4uUp8uq3V
+6xCVdnowzNVjYBt8OZbOV5QWXTp0peb9VRIdCjHnrtgb55eYoQDV7Mh69Q5oG8MB
+GZoD72p8ks3LI9BrTJ2QFjEsbWYj9XpvXI7AGL7YcR99QyF9hmgQF0h8Xnwz4nwD
+8oYGMbECAYUT7gVNHCU9lbFkmvsgMCSTvLfMNO5nwarwgF5y8LsQITo9Bf2tLyQ/
+nu3S6fy0qmIcLnwbiMG7urG8a81EtGUNJb8JBd4SLmKQAkA4NWo=
+=H0a9
+-----END PGP SIGNATURE-----
+
+--2B/JsCI69OhZNC5r--
