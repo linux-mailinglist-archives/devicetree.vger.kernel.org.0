@@ -2,136 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4684B1A55
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 10:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 815D1B1A81
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 11:11:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387628AbfIMI7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 04:59:20 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:44340 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387499AbfIMI7U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 04:59:20 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 5B55625AEB1;
-        Fri, 13 Sep 2019 18:59:18 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 545EF940513; Fri, 13 Sep 2019 10:59:16 +0200 (CEST)
-Date:   Fri, 13 Sep 2019 10:59:16 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2] dt-bindings: arm: renesas: Convert 'renesas,prr' to
- json-schema
-Message-ID: <20190913085915.jlsvhgmkmunsjxsy@verge.net.au>
-References: <20190908120528.9392-1-horms+renesas@verge.net.au>
+        id S2387810AbfIMJLu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 05:11:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55592 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387785AbfIMJLu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 05:11:50 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B3F320717;
+        Fri, 13 Sep 2019 09:11:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568365910;
+        bh=p8ElB8Aq/U3hjyZXMGOgnjC0h/U5HmudSOrfDOExeHQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EzPOzQImqLu7IKPdWDOO5mwe1aks2dtIVoOmsrQIUoCpiDCzu+d6we1r+52KzTPpB
+         vTcoXiq8naAAUDFDVIgLfkGkP8GuRYfZQ6Vo98NuYWTGVOB1fc9lUWkbcUeOKif66j
+         rfgduUXVR2Od3qSE4P4sZplhFxQ/tujy/R9c5bQg=
+Date:   Fri, 13 Sep 2019 11:11:47 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
+Cc:     wens@csie.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        mchehab@kernel.org, hverkuil@xs4all.nl, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 5/6] media: sun4i: Add H3 deinterlace driver
+Message-ID: <20190913091147.42nsldzxwzfjoiak@localhost.localdomain>
+References: <20190912175132.411-1-jernej.skrabec@siol.net>
+ <20190912175132.411-6-jernej.skrabec@siol.net>
+ <20190912202647.wfcjur7yxhlelvd6@localhost.localdomain>
+ <4613446.95M5L3lKvs@jernej-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="42vjgwlldb7pcwy6"
 Content-Disposition: inline
-In-Reply-To: <20190908120528.9392-1-horms+renesas@verge.net.au>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <4613446.95M5L3lKvs@jernej-laptop>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 08, 2019 at 01:05:28PM +0100, Simon Horman wrote:
-> Convert Renesas Product Register bindings documentation to json-schema.
-> 
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 
-Apologies Geert,
+--42vjgwlldb7pcwy6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-this patch was supposed to be addressed to you rather than myself.
+Hi,
 
-> ---
-> Based on v5.3-rc1
-> Tested using:
->   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> 
-> v2
-> * Use simple enum for compat values
-> * Drop "" from compat values
-> * Only supply 'maxItems' property to 'reg'
-> ---
->  .../devicetree/bindings/arm/renesas,prr.txt        | 20 -------------
->  .../devicetree/bindings/arm/renesas,prr.yaml       | 35 ++++++++++++++++++++++
->  2 files changed, 35 insertions(+), 20 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/renesas,prr.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/renesas,prr.txt b/Documentation/devicetree/bindings/arm/renesas,prr.txt
-> deleted file mode 100644
-> index 08e482e953ca..000000000000
-> --- a/Documentation/devicetree/bindings/arm/renesas,prr.txt
-> +++ /dev/null
-> @@ -1,20 +0,0 @@
-> -Renesas Product Register
-> -
-> -Most Renesas ARM SoCs have a Product Register or Boundary Scan ID Register that
-> -allows to retrieve SoC product and revision information.  If present, a device
-> -node for this register should be added.
-> -
-> -Required properties:
-> -  - compatible: Must be one of:
-> -    "renesas,prr"
-> -    "renesas,bsid"
-> -  - reg: Base address and length of the register block.
-> -
-> -
-> -Examples
-> ---------
-> -
-> -	prr: chipid@ff000044 {
-> -		compatible = "renesas,prr";
-> -		reg = <0 0xff000044 0 4>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/arm/renesas,prr.yaml b/Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> new file mode 100644
-> index 000000000000..7f8d17f33983
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/renesas,prr.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/renesas,prr.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas Product Register
-> +
-> +maintainers:
-> +  - Geert Uytterhoeven <geert+renesas@glider.be>
-> +  - Magnus Damm <magnus.damm@gmail.com>
-> +
-> +description: |
-> +  Most Renesas ARM SoCs have a Product Register or Boundary Scan ID
-> +  Register that allows to retrieve SoC product and revision information.
-> +  If present, a device node for this register should be added.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,prr
-> +      - renesas,bsid
-> +  reg:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    prr: chipid@ff000044 {
-> +        compatible = "renesas,prr";
-> +        reg = <0 0xff000044 0 4>;
-> +    };
-> -- 
-> 2.11.0
-> 
+On Thu, Sep 12, 2019 at 10:43:28PM +0200, Jernej =C5=A0krabec wrote:
+> Dne =C4=8Detrtek, 12. september 2019 ob 22:26:47 CEST je Maxime Ripard na=
+pisal(a):
+> > > +	clk_set_rate(dev->mod_clk, 300000000);
+
+I just realized I missed this too. If you really need the rate to be
+fixed, and if the controller cannot operate properly at any other
+frequency, you probably want to use clk_set_rate_exclusive there.
+
+Maxime
+--42vjgwlldb7pcwy6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXXtdUwAKCRDj7w1vZxhR
+xZY3AQDJluLkTUto07z1kgxJ+9CJnbEOdksi1vAG8DSbW/o52wEAyBtJ8MHD4t8T
+GgYWgCtcAKeCFH1IT/6EICEM21kyTQw=
+=aoHD
+-----END PGP SIGNATURE-----
+
+--42vjgwlldb7pcwy6--
