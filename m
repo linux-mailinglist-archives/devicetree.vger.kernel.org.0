@@ -2,184 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12095B23C3
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 18:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEE31B23E4
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 18:13:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728890AbfIMP77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 11:59:59 -0400
-Received: from sender4-pp-o94.zoho.com ([136.143.188.94]:25459 "EHLO
-        sender4-pp-o94.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728811AbfIMP76 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 11:59:58 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1568390366; cv=none; 
-        d=zoho.com; s=zohoarc; 
-        b=SLLlGc9nv+SD9CgdET16ANDVpnhBzDuR2sh4VVT9nLaLPzoBudiYAhT1wKIEs5rF5bTsBEMP5ZJCapcyYmZFaBe50oLlIrNIoytj9gLi+coZZli4u0jSS4gxQuJLCbcthLFsGz1HJiqRwgIx8QLbbBrX5+m5TjCX4brSjrrYomw=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
-        t=1568390366; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To:ARC-Authentication-Results; 
-        bh=IL7XvFCTAWRH0WfapoAjEN/ppfvJmC4N1IUgD1yn/nU=; 
-        b=bkuCYM/LLnwobDGxQSHTD/9ebvQ7AH273OiDlL6Yule0LqCB2khIbjrk4fiyc1ZxrcIt9IRT+8g6aM00ORZC6D+3EVnZS4DnLF3aUa34zgva8Tm0dHBWmHVpEo4CXg8ymHym/XVwOP14Lj5jqpXHqC5RVusP7st5AfsgnV0obcA=
-ARC-Authentication-Results: i=1; mx.zoho.com;
-        dkim=pass  header.i=zoho.com;
-        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
-        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
-  s=zapps768; d=zoho.com; 
-  h=subject:to:references:cc:from:message-id:date:user-agent:mime-version:in-reply-to:content-type; 
-  b=gb2yf8aMBgQQUV+YAfFw71i28sSXMDTY2vr+r1YrSH+AEoExjUOno+AksLgMbDhT768pTbTHGEV4
-    ugNpIPh23j5oJ3YpvA7DPIIjVilRFvERq7gvH3Cuzmx7QWfO+P2a  
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1568390366;
-        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
-        h=Subject:To:References:Cc:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        l=4148; bh=IL7XvFCTAWRH0WfapoAjEN/ppfvJmC4N1IUgD1yn/nU=;
-        b=i+EsRJLFX8bCwgiMZZeDMqINI/z9o2D5LXEBhGLDNMap+c4D1iRReuwfwxdLbvo/
-        EjPwPLeA9GjlcSQaUlYZV+cfxOMMQDBnoJWhRFGxlh6iNtaVuMiuyxbkpCzAjIsC/Gy
-        FrkzMTx+ZSBjWzg+pczu35ELjAUnxuSyPNBW0XDQ=
-Received: from [192.168.88.140] (171.221.112.87 [171.221.112.87]) by mx.zohomail.com
-        with SMTPS id 1568390363342552.6980296947244; Fri, 13 Sep 2019 08:59:23 -0700 (PDT)
-Subject: Re: [PATCH 1/4] MMC: Ingenic: Adjust the macro definition name.
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-mips@vger.kernel.org
-References: <1567669089-88693-1-git-send-email-zhouyanjie@zoho.com>
- <1567669089-88693-2-git-send-email-zhouyanjie@zoho.com>
- <e9ef3a9093e8572eb3be2aa654dd30069c493a4b.camel@collabora.com>
-Cc:     linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, ulf.hansson@linaro.org,
-        paul.burton@mips.com, linus.walleij@linaro.org,
-        paul@crapouillou.net, malat@debian.org, yuehaibing@huawei.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, syq@debian.org,
-        jiaxun.yang@flygoat.com
-From:   Zhou Yanjie <zhouyanjie@zoho.com>
-Message-ID: <5D7BBCCF.2010600@zoho.com>
-Date:   Fri, 13 Sep 2019 23:59:11 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
- Thunderbird/38.8.0
+        id S1730627AbfIMQNu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 12:13:50 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:35011 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730622AbfIMQNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 12:13:50 -0400
+Received: by mail-pg1-f193.google.com with SMTP id n4so15514665pgv.2
+        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 09:13:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=jAupNqyyc/z6Ou3QEiGyvPGV4p/HHkcLNmIbS16XZ48=;
+        b=YOhRrP610r2OT+dYPZmA28h12Ce+GFpEohCI1QCqwdmpKzJQnt14AcqKXjlg4P4rjP
+         3KoF5+/69OtqEJ/12tgfPL2HWciCx8V8C90OHXde4c1KiAB8pkUW13cIJo7mQvTvDiEf
+         H+rNlC5X4uJWfBnvBpoHZd3FEXNkaR9T0LsE04PTXjBUW16JaHPRDfgL2Gqjo/qgBD6f
+         x3cq+WA7VwvzNOc5LmW0pX0JCzwyQdL6YqMQMc7TPqx9oiSrFk18Au+ue2LTxPEtIlSO
+         Z3FQWoIsZhk6lKtzOhHPO4jcU+ul3MWPSuirq/0koG2oiIAXn8t7U+b4rvJQ87G1phK+
+         7EqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=jAupNqyyc/z6Ou3QEiGyvPGV4p/HHkcLNmIbS16XZ48=;
+        b=mvcbLjPGhKu86YjL7pnZMngzX1g/DIiEGPJamQXD9/tvyvoKwYFBn9Y1k+F802AVVS
+         qNJLLLUez2CGayEJWAVl45GAQTbqWkZhmxPw/HgLZs4KzQdQL3T7DZy+ex/KvkYI50O+
+         2uhDBqbAGrYXlxL1USUSUAUYDfcW+KRSZTfmVPjNGqEnPXBgVGBPun6PS7b1XJu8y8SS
+         iiq5nmCOT1QbSbYZn/X0bnX64PwN/2v7Y+Cnbk1OQzjRyPffny8wyiGJcI8KJCEaN5hL
+         qBJ3/4Mj/QlRwnR2jwRH7zSpsRHIIz3e+A3znIc2oad0UUqNFYUOmGsutZUpc67MDFqn
+         22XQ==
+X-Gm-Message-State: APjAAAU7IZHS5m/fdH7wYgkb/kuvF9DxTZqcfMRz+PZf2IdVsSXp8/s5
+        qGwJk9Z7Hx/AoMIpr5do+SGTRw==
+X-Google-Smtp-Source: APXvYqy8WJqbEp5Mme/EdrroxU+nLTxdO6eyhgl5X1B50zCun7w0ARHrR5xAzJjBGnxYzpft+Gourw==
+X-Received: by 2002:a17:90a:6586:: with SMTP id k6mr6151408pjj.20.1568391229012;
+        Fri, 13 Sep 2019 09:13:49 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id g8sm23036322pgk.1.2019.09.13.09.13.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Sep 2019 09:13:48 -0700 (PDT)
+Date:   Fri, 13 Sep 2019 09:13:45 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Wolfram Sang <wsa@the-dreams.de>, Arnd Bergmann <arnd@arndb.de>
+Cc:     Rob Clark <robdclark@gmail.com>, Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, alokc@codeaurora.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, vkoul@kernel.org,
+        linux-i2c@vger.kernel.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+Message-ID: <20190913161345.GB8466@tuxbook-pro>
+References: <20190905192412.23116-1-lee.jones@linaro.org>
+ <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
+ <20190906061448.GJ26880@dell>
+ <20190906065018.GA1019@kunai>
+ <20190906075600.GL26880@dell>
+ <20190906102355.GA3146@kunai>
+ <20190906105445.GO26880@dell>
+ <20190906183139.GB19123@kunai>
+ <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
+ <20190913142821.GD1022@kunai>
 MIME-Version: 1.0
-In-Reply-To: <e9ef3a9093e8572eb3be2aa654dd30069c493a4b.camel@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190913142821.GD1022@kunai>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ezequiel,
+On Fri 13 Sep 07:28 PDT 2019, Wolfram Sang wrote:
 
-On 2019=E5=B9=B409=E6=9C=8813=E6=97=A5 23:32, Ezequiel Garcia wrote:
-> Hi Zhou,
->
-> Thanks for your interest in this driver, I'm glad
-> so see it's more used.
->
-> On Thu, 2019-09-05 at 15:38 +0800, Zhou Yanjie wrote:
->> Adjust the macro definition name to match the corresponding
->> register name in the datasheet.
->>
-> It's not really an issue to have slighlt different
-> names on the macros. They are currently sufficiently
-> descriptive, and I don't think it's deserves a patch.
-Thanks for your advice, I'll drop this in v2. Do you have any suggestions
-for the other three patches?
+> On Sat, Sep 07, 2019 at 10:56:34AM -0700, Rob Clark wrote:
+> > On Sat, Sep 7, 2019 at 9:17 AM Wolfram Sang <wsa@the-dreams.de> wrote:
+> > >
+> > >
+> > > > Does this mean you plan to have this merged for v5.4?
+> > >
+> > > Only if the machine DTS is expected to land in 5.4. But Stephen said it
+> > > is not in liunx-next yet?
+> > >
+> > 
+> > It appears to be in arm-soc for-next:
+> > 
+> > https://git.kernel.org/pub/scm/linux/kernel/git/arm/arm-soc.git/log/?h=for-next
+> 
+> Still not in linux-next. Please ping me or resend this patch once it
+> hits linux-next.
+> 
 
-Best regards!
->
-> Thanks,
-> Ezequiel
->
->> Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
->> ---
->>   drivers/mmc/host/jz4740_mmc.c | 18 +++++++++---------
->>   1 file changed, 9 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/mmc/host/jz4740_mmc.c b/drivers/mmc/host/jz4740_mmc=
-.c
->> index ffdbfaa..1b1fcb7 100644
->> --- a/drivers/mmc/host/jz4740_mmc.c
->> +++ b/drivers/mmc/host/jz4740_mmc.c
->> @@ -28,7 +28,7 @@
->>   #include <asm/mach-jz4740/dma.h>
->>  =20
->>   #define JZ_REG_MMC_STRPCL=090x00
->> -#define JZ_REG_MMC_STATUS=090x04
->> +#define JZ_REG_MMC_STAT=09=090x04
->>   #define JZ_REG_MMC_CLKRT=090x08
->>   #define JZ_REG_MMC_CMDAT=090x0C
->>   #define JZ_REG_MMC_RESTO=090x10
->> @@ -40,7 +40,7 @@
->>   #define JZ_REG_MMC_IREG=09=090x28
->>   #define JZ_REG_MMC_CMD=09=090x2C
->>   #define JZ_REG_MMC_ARG=09=090x30
->> -#define JZ_REG_MMC_RESP_FIFO=090x34
->> +#define JZ_REG_MMC_RES=09=090x34
->>   #define JZ_REG_MMC_RXFIFO=090x38
->>   #define JZ_REG_MMC_TXFIFO=090x3C
->>   #define JZ_REG_MMC_DMAC=09=090x44
->> @@ -391,7 +391,7 @@ static void jz4740_mmc_clock_disable(struct jz4740_m=
-mc_host *host)
->>  =20
->>   =09writew(JZ_MMC_STRPCL_CLOCK_STOP, host->base + JZ_REG_MMC_STRPCL);
->>   =09do {
->> -=09=09status =3D readl(host->base + JZ_REG_MMC_STATUS);
->> +=09=09status =3D readl(host->base + JZ_REG_MMC_STAT);
->>   =09} while (status & JZ_MMC_STATUS_CLK_EN && --timeout);
->>   }
->>  =20
->> @@ -403,7 +403,7 @@ static void jz4740_mmc_reset(struct jz4740_mmc_host =
-*host)
->>   =09writew(JZ_MMC_STRPCL_RESET, host->base + JZ_REG_MMC_STRPCL);
->>   =09udelay(10);
->>   =09do {
->> -=09=09status =3D readl(host->base + JZ_REG_MMC_STATUS);
->> +=09=09status =3D readl(host->base + JZ_REG_MMC_STAT);
->>   =09} while (status & JZ_MMC_STATUS_IS_RESETTING && --timeout);
->>   }
->>  =20
->> @@ -446,7 +446,7 @@ static void jz4740_mmc_transfer_check_state(struct j=
-z4740_mmc_host *host,
->>   {
->>   =09int status;
->>  =20
->> -=09status =3D readl(host->base + JZ_REG_MMC_STATUS);
->> +=09status =3D readl(host->base + JZ_REG_MMC_STAT);
->>   =09if (status & JZ_MMC_STATUS_WRITE_ERROR_MASK) {
->>   =09=09if (status & (JZ_MMC_STATUS_TIMEOUT_WRITE)) {
->>   =09=09=09host->req->cmd->error =3D -ETIMEDOUT;
->> @@ -580,10 +580,10 @@ static bool jz4740_mmc_read_data(struct jz4740_mmc=
-_host *host,
->>   =09/* For whatever reason there is sometime one word more in the fifo =
-then
->>   =09 * requested */
->>   =09timeout =3D 1000;
->> -=09status =3D readl(host->base + JZ_REG_MMC_STATUS);
->> +=09status =3D readl(host->base + JZ_REG_MMC_STAT);
->>   =09while (!(status & JZ_MMC_STATUS_DATA_FIFO_EMPTY) && --timeout) {
->>   =09=09d =3D readl(fifo_addr);
->> -=09=09status =3D readl(host->base + JZ_REG_MMC_STATUS);
->> +=09=09status =3D readl(host->base + JZ_REG_MMC_STAT);
->>   =09}
->>  =20
->>   =09return false;
->> @@ -614,7 +614,7 @@ static void jz4740_mmc_read_response(struct jz4740_m=
-mc_host *host,
->>   {
->>   =09int i;
->>   =09uint16_t tmp;
->> -=09void __iomem *fifo_addr =3D host->base + JZ_REG_MMC_RESP_FIFO;
->> +=09void __iomem *fifo_addr =3D host->base + JZ_REG_MMC_RES;
->>  =20
->>   =09if (cmd->flags & MMC_RSP_136) {
->>   =09=09tmp =3D readw(fifo_addr);
->> @@ -797,7 +797,7 @@ static irqreturn_t jz_mmc_irq(int irq, void *devid)
->>   =09struct mmc_command *cmd =3D host->cmd;
->>   =09uint32_t irq_reg, status, tmp;
->>  =20
->> -=09status =3D readl(host->base + JZ_REG_MMC_STATUS);
->> +=09status =3D readl(host->base + JZ_REG_MMC_STAT);
->>   =09irq_reg =3D jz4740_mmc_read_irq_reg(host);
->>  =20
->>   =09tmp =3D irq_reg;
->
->
+It seems linux-next is now pulling from the soc.git, rather than
+arm-soc.git, but Arnd is still pushing patches to arm-soc.git.
 
+Arnd says that the patch will be in v5.4 and I merged Arnd's tree and
+gave it a spin here and this patch makes it boot. So please merge this
+patch for v5.4 as well.
 
+Tested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
+Thanks,
+Bjorn
