@@ -2,122 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16827B22F0
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 17:05:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C41FB2326
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 17:14:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390813AbfIMPEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 11:04:42 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:33703 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390776AbfIMPEl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 11:04:41 -0400
-Received: by mail-io1-f66.google.com with SMTP id m11so63232807ioo.0;
-        Fri, 13 Sep 2019 08:04:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=9ZP/Cjz5nuXxOg1voLEZxP2+QDCNebXAWsZl8UUvuq4=;
-        b=AfilKKGA48bLBjgGL6hLXwP8zdvJamJtbYFPFD7Zk4/S4aPKwslFF6KPQZJ/MXDF4A
-         YTK+g90ufqv2o8ZvAfAZ1HYJp8Um9fl1EMoZFTbcStI3mKFYQNanTs5TLnJRnCV52yls
-         69432gv/VwZfHcDVAWIcWGEsybpNXGdDirWZ7Tr5YeV4dPblQeCGLYvnMdudP6mxedE1
-         0Q2TD6RavpUCzHqdAL5QyCuLFSORiWxjA6I7bcMUgJ39epmk0pkixwSslXEVmbP5kI1V
-         dBh5NDnmIKjyt9i0qNmfmryt5IaZvd23up9Lh0fBpRXP+fBjuSeoRLIfrTJlXZpR35uk
-         zEUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=9ZP/Cjz5nuXxOg1voLEZxP2+QDCNebXAWsZl8UUvuq4=;
-        b=THCLpI21ewb94PRECciMyeznOR2XxlrfxgGFJj8oCqlVQRz3HnJzCUqbagJgMAcqmB
-         eChQhJcGjOkRDVXacRMEINTD2Q/tte9SciwVwuWk/IeOhMOATjvjEr+rlPvcvFXp4ZB3
-         RzPOzQki0SdnlhRBVt0jfzB1FLeeGres+aiTPS1AsoQ+lv51gTq31+I8oj6DcpEwULaF
-         Wrr2LSYV4gCr2itH6NEpUfG0ScEfW90bFyoBZKrFuTuuq/34mqjySQMwedilIwRE2S2D
-         TmSS9xfGWOhKTpubWsJsR9CPM3K6YjK9WV/18SYrNYpiHDcg5j1ngk2T6lj4cJlyVE13
-         492Q==
-X-Gm-Message-State: APjAAAVF+j+ZdASXruq4fFzbz6NLQ2SQT6ICagf4F/2jwxkQrQRiVjV7
-        lY7UBcr0NrPufvSBZL8lI0v6B0yA
-X-Google-Smtp-Source: APXvYqy8J968bNlINj+k8YEhHWGW+EfTEOM4VvtYx9iZxuxBczTobmD2/pDShQeU2ujiC9gOZrX2/g==
-X-Received: by 2002:a6b:e501:: with SMTP id y1mr284295ioc.127.1568387080238;
-        Fri, 13 Sep 2019 08:04:40 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id q8sm19169414ion.82.2019.09.13.08.04.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 08:04:39 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-omap@vger.kernel.org
-Cc:     adam.ford@logicpd.com, nm@ti.com, hns@goldelico.com,
-        Adam Ford <aford173@gmail.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RFC 2/2] ARM: omap3: Consolidate thermal references to common omap3
-Date:   Fri, 13 Sep 2019 10:04:09 -0500
-Message-Id: <20190913150410.27391-2-aford173@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190913150410.27391-1-aford173@gmail.com>
-References: <20190913150410.27391-1-aford173@gmail.com>
+        id S2390753AbfIMPOi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 11:14:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45654 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2390291AbfIMPOi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 11:14:38 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 47AC521479;
+        Fri, 13 Sep 2019 15:14:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568387677;
+        bh=3T9Q9sUaLhrkbNUz9itiLI8hNw/bZ4OSEdwwqFawRBk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p0JUzxOljyx5MU0pfObXCYvb4fB/+btO7ZimxmuTiSC5u4FLEd0ktKE1HWv3dgDfF
+         h675iqNGcxZuh1zzO7Qv1DhqItQskQR4IqT9dW5qWj21n29dI+BY50NscSiyPLaZ2y
+         OX5aS0/xsUo/GXuC2Kjodr2Z3qgnfebHz0RYlt0s=
+Received: by mail-qk1-f182.google.com with SMTP id z67so28407579qkb.12;
+        Fri, 13 Sep 2019 08:14:37 -0700 (PDT)
+X-Gm-Message-State: APjAAAU0SVg2Ssrnzy+MUo/5VuqKEKJJCxpCnTnb+rDmQtZ3GmTOvtc0
+        ocISw7MajHWuiTvssz7hz1xeQ9DAuZWAEf7tNQ==
+X-Google-Smtp-Source: APXvYqzq8j/xc7fUp5Hvbk5M34W55dIuuG8GxWSVX3oTzDuxMHC/PvPV6Jj9KhzLVxJdP7bE8uK9xylKTHLsAA7XJUg=
+X-Received: by 2002:a37:682:: with SMTP id 124mr46613503qkg.393.1568387676426;
+ Fri, 13 Sep 2019 08:14:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190907161634.27378-1-marek.vasut@gmail.com>
+In-Reply-To: <20190907161634.27378-1-marek.vasut@gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 13 Sep 2019 16:14:24 +0100
+X-Gmail-Original-Message-ID: <CAL_JsqL47dQT-P78j4Ph61fsgA45Ha0AJjDajiMk52yFj++s+g@mail.gmail.com>
+Message-ID: <CAL_JsqL47dQT-P78j4Ph61fsgA45Ha0AJjDajiMk52yFj++s+g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
+To:     =?UTF-8?B?TWFyZWsgVmHFoXV0?= <marek.vasut@gmail.com>
+Cc:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfram Sang <wsa@the-dreams.de>, devicetree@vger.kernel.org,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Because the omap34xx, omap36xx and am3517 SoC's have the same
-thermal junction limits, there is no need to duplicate the entry
-multiple times.
+On Sat, Sep 7, 2019 at 5:16 PM <marek.vasut@gmail.com> wrote:
+>
+> From: Marek Vasut <marek.vasut+renesas@gmail.com>
+>
+> Add dma-ranges property into /soc node to describe the DMA capabilities
+> of the bus. This is currently needed to translate PCI DMA ranges, which
+> are limited to 32bit addresses.
 
-This patch removes the thermal references from omap36xx and
-omap34xx and pushes it into the common omap3.dtsi file with
-the added benefit of enabling the thermal info on the AM3517.
+FYI, I've started working on this problem and issues around
+dma-ranges/dma_mask. Hopefully I'll get some patches out next week.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Wolfram Sang <wsa@the-dreams.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> To: linux-arm-kernel@lists.infradead.org
+> ---
+> NOTE: This is needed for the following patches to work correctly:
+>       https://patchwork.ozlabs.org/patch/1144870/
+>       https://patchwork.ozlabs.org/patch/1144871/
 
-diff --git a/arch/arm/boot/dts/omap3.dtsi b/arch/arm/boot/dts/omap3.dtsi
-index 4043ecb38016..db9cafddbe69 100644
---- a/arch/arm/boot/dts/omap3.dtsi
-+++ b/arch/arm/boot/dts/omap3.dtsi
-@@ -44,6 +44,10 @@
- 		};
- 	};
- 
-+	thermal_zones: thermal-zones {
-+		#include "omap3-cpu-thermal.dtsi"
-+	};
-+
- 	pmu@54000000 {
- 		compatible = "arm,cortex-a8-pmu";
- 		reg = <0x54000000 0x800000>;
-diff --git a/arch/arm/boot/dts/omap34xx.dtsi b/arch/arm/boot/dts/omap34xx.dtsi
-index f572a477f74c..b80378d6e5c1 100644
---- a/arch/arm/boot/dts/omap34xx.dtsi
-+++ b/arch/arm/boot/dts/omap34xx.dtsi
-@@ -101,10 +101,6 @@
- 			};
- 		};
- 	};
--
--	thermal_zones: thermal-zones {
--		#include "omap3-cpu-thermal.dtsi"
--	};
- };
- 
- &ssi {
-diff --git a/arch/arm/boot/dts/omap36xx.dtsi b/arch/arm/boot/dts/omap36xx.dtsi
-index 6fb23ada1f64..ff2dca63a04e 100644
---- a/arch/arm/boot/dts/omap36xx.dtsi
-+++ b/arch/arm/boot/dts/omap36xx.dtsi
-@@ -140,10 +140,6 @@
- 			};
- 		};
- 	};
--
--	thermal_zones: thermal-zones {
--		#include "omap3-cpu-thermal.dtsi"
--	};
- };
- 
- /* OMAP3630 needs dss_96m_fck for VENC */
--- 
-2.17.1
+First I'm seeing those... Well, I do have v7 from 2+ years ago...
 
+Not sure if these take into account the new dma_bus_mask, but that
+should simplify solving the issue.
+
+> ---
+>  arch/arm64/boot/dts/renesas/r8a7795.dtsi  | 1 +
+>  arch/arm64/boot/dts/renesas/r8a7796.dtsi  | 1 +
+>  arch/arm64/boot/dts/renesas/r8a77965.dtsi | 1 +
+>  3 files changed, 3 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/renesas/r8a7795.dtsi b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> index 95deff66eeb6..2102140a6723 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> @@ -330,6 +330,7 @@
+>                 #address-cells = <2>;
+>                 #size-cells = <2>;
+>                 ranges;
+> +               dma-ranges = <0 0x40000000 0 0x40000000 0 0xc0000000>;
+
+Is the limitation in the bus or the PCI bridge or both? The commit
+message sounds like it's the PCI bridge in which case this is wrong
+(or incomplete). 'dma-ranges' should be on the bus node where the
+restriction/translation exists. For PCI devices, that's the PCI bridge
+node. So a 32-bit only PCI bridge should have a dma-ranges size of
+4GB. If the SoC bus has more restrictions, then that should be in the
+PCI bridge parent assuming that restriction also applies to other
+devices.
+
+Rob
