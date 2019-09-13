@@ -2,143 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EEEDB1BA7
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 12:41:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D505BB1BBC
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 12:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387538AbfIMKly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 06:41:54 -0400
-Received: from mail-vk1-f196.google.com ([209.85.221.196]:41578 "EHLO
-        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387512AbfIMKly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 06:41:54 -0400
-Received: by mail-vk1-f196.google.com with SMTP id 70so4922025vkz.8
-        for <devicetree@vger.kernel.org>; Fri, 13 Sep 2019 03:41:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VzFtOukORn6BTxSSinbhVvnit+eXevFHlnBe06UcHUA=;
-        b=f3NLr6fbzNYDtDc9NetNG83qATddX3ST7qNfOKiC7D5A26Lz2W6t+TDvpUxWeoYtT3
-         M4aApAZGloRKGHMgH5L8irTiEYBLKD3B/TRtWOrBOlsAjjACHoc4sHORYAgqvS0mL4E7
-         t30zdO7NhhgWVnNDKr0/2Bh3D/lnBW2Kv3e4DwIMIDa17R97vTDrnH1O2Okzk0a4Kq+o
-         kQ7BLoiH1T9lNsHm2mbS7J+LamF28uuFHwj5hA7c0oM0csUOHIolCIFZAva9Njfv3iIH
-         Dtn3ozGFbppAKM4KDwUz8SJW1Z+2yZo2q6DQ2w3yD6hcXQSIQMiQ8gv7iN/j0A0ewzRo
-         yIgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VzFtOukORn6BTxSSinbhVvnit+eXevFHlnBe06UcHUA=;
-        b=AQ3SBbTocGHAUYmFuMvvcelXj1/m2V4ALnyI3hRmFWJmfhEapmBn2SYtdAGZ8Dv5Fz
-         7PQtiSq4t5JAhMzsX/hUljMd6tf/pfISPsYwItsiTUrLkRIbqWRzAxY6UF7H5TlBh6M9
-         ltQtIZmM8ScB48UDEP+1oFUXJFYrcAeMrdnp4f/Nsjr7utRI8VfZPk++aOVTNfL00408
-         blDwvOYwKSBemNXbKk13z+RbTIxNz8tslzDs0i8SsHi8a9dIbS6RtD1jXUu5QCJVgHev
-         wmcME2woYSQPA5ekR/5TA6kj3xHvZfTUb7Z/RjtZ+xZnGWn4EmrGCPtc8kCeUPC/OlLZ
-         cHzw==
-X-Gm-Message-State: APjAAAXWwx+HS7kul7eq35BCGnJRaqz1VBWksuJnqNLpdofUpq7o3epe
-        NQupIQ87DVn+v1pBfX391D2nJ6KJoD+M7LmNtdDHDA==
-X-Google-Smtp-Source: APXvYqxu3cBj6Axf6oFZHBU9kgVq97krzKOT0Ts3wNrOj22Hb1h0mDeMG74eyOdiEpKHd1mAbLgszYVEJZSRRFRkBo8=
-X-Received: by 2002:a1f:410f:: with SMTP id o15mr19922615vka.82.1568371312972;
- Fri, 13 Sep 2019 03:41:52 -0700 (PDT)
+        id S2387536AbfIMKtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 06:49:13 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:49034 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387424AbfIMKtN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 06:49:13 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 8B99C25AEB1;
+        Fri, 13 Sep 2019 20:49:11 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 79498940513; Fri, 13 Sep 2019 12:49:09 +0200 (CEST)
+Date:   Fri, 13 Sep 2019 12:49:09 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: Re: [PATCH 1/2] arm64: dts: renesas: r8a774c0: Create thermal zone
+ to support IPA
+Message-ID: <20190913104909.toczyywsofv4s577@verge.net.au>
+References: <1568364608-46548-1-git-send-email-biju.das@bp.renesas.com>
 MIME-Version: 1.0
-References: <20190821222421.30242-1-glaroque@baylibre.com> <20190821222421.30242-2-glaroque@baylibre.com>
-In-Reply-To: <20190821222421.30242-2-glaroque@baylibre.com>
-From:   Amit Kucheria <amit.kucheria@verdurent.com>
-Date:   Fri, 13 Sep 2019 16:11:41 +0530
-Message-ID: <CAHLCerONjCa4Az7+d_0Qn8X36oOxXEMps++5MnBRdH5QE+aS=g@mail.gmail.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: thermal: Add DT bindings
- documentation for Amlogic Thermal
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        lakml <linux-arm-kernel@lists.infradead.org>,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1568364608-46548-1-git-send-email-biju.das@bp.renesas.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 22, 2019 at 3:54 AM Guillaume La Roque
-<glaroque@baylibre.com> wrote:
->
-> Adding the devicetree binding documentation for the Amlogic temperature
-> sensor found in the Amlogic Meson G12 SoCs.
-> the G12A  and G12B SoCs are supported.
+On Fri, Sep 13, 2019 at 09:50:07AM +0100, Biju Das wrote:
+> Setup a thermal zone driven by SoC temperature sensor.
+> Create passive trip points and bind them to CPUFreq cooling
+> device that supports power extension.
+> 
+> Based on the work done by Dien Pham <dien.pham.ry@renesas.com>
+> and others for r8a77990 SoC.
+> 
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-Merge the two sentences into a single one?
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
 
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/thermal/amlogic,thermal.yaml     | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
->
-> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> new file mode 100644
-> index 000000000000..f761681e4c0d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/amlogic,thermal.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 19 ++++++++++++++++---
+>  1 file changed, 16 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+> index a1c2de9..764df4c 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a774c0.dtsi
+> @@ -73,6 +73,7 @@
+>  			compatible = "arm,cortex-a53";
+>  			reg = <0>;
+>  			device_type = "cpu";
+> +			#cooling-cells = <2>;
+>  			power-domains = <&sysc R8A774C0_PD_CA53_CPU0>;
+>  			next-level-cache = <&L2_CA53>;
+>  			enable-method = "psci";
+> @@ -1905,18 +1906,30 @@
+>  	thermal-zones {
+>  		cpu-thermal {
+>  			polling-delay-passive = <250>;
+> -			polling-delay = <1000>;
+> -			thermal-sensors = <&thermal>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&thermal 0>;
+> +			sustainable-power = <717>;
+>  
+>  			cooling-maps {
+> +				map0 {
+> +					trip = <&target>;
+> +					cooling-device = <&a53_0 0 2>;
+> +					contribution = <1024>;
+> +				};
+>  			};
+>  
+>  			trips {
+> -				cpu-crit {
+> +				sensor1_crit: sensor1-crit {
+>  					temperature = <120000>;
+>  					hysteresis = <2000>;
+>  					type = "critical";
+>  				};
 > +
-> +title: Amlogic Thermal
-> +
-> +maintainers:
-> +  - Guillaume La Roque <glaroque@baylibre.com>
-> +
-> +description: Binding for Amlogic Thermal
-> +
-> +properties:
-> +  compatible:
-> +      items:
-> +        - enum:
-> +            - amlogic,g12a-cpu-thermal
-> +            - amlogic,g12a-ddr-thermal
-> +        - const: amlogic,g12a-thermal
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  amlogic,ao-secure:
-> +    description: phandle to the ao-secure syscon
-> +    $ref: '/schemas/types.yaml#/definitions/phandle'
-> +
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - amlogic,ao-secure
-> +
-> +examples:
-> +  - |
-> +        cpu_temp: temperature-sensor@ff634800 {
-> +                compatible = "amlogic,g12a-cpu-thermal",
-> +                             "amlogic,g12a-thermal";
-> +                reg = <0xff634800 0x50>;
-> +                interrupts = <0x0 0x24 0x0>;
-> +                clocks = <&clk 164>;
-> +                #thermal-sensor-cells = <0>;
-> +                amlogic,ao-secure = <&sec_AO>;
-> +        };
-> +...
-> --
-> 2.17.1
->
+> +				target: trip-point1 {
+> +					temperature = <100000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+>  			};
+>  		};
+>  	};
+> -- 
+> 2.7.4
+> 
