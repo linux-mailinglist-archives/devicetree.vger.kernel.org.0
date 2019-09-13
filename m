@@ -2,117 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D24A5B27B5
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 00:03:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A34B27D5
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 00:03:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390461AbfIMV7t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 17:59:49 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:59796 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390350AbfIMV7t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 17:59:49 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 13FEA61213; Fri, 13 Sep 2019 21:59:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1568411988;
-        bh=DGRUcZkX4E9MP9Et/d3SKghyE5Vp0MuEkL3EhOi3LeA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Imn5MV4F/B/4jek4DtGuiAOwq9WprEWOogJfWQ6hbbMfoMTGRuz8/UeAKIavy2kBM
-         Xg38QsptXuOi1xAMPXwOjEBq4zxDkY/QjmH6HoZmD16/YDqOSVNA8phAQdGHG5cR1A
-         6YWMOT6zPxkCO/Ond3eSERxOLLsNRjU2bOLDO9IA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from codeaurora.org (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: ilina@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 82031611C5;
-        Fri, 13 Sep 2019 21:59:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1568411987;
-        bh=DGRUcZkX4E9MP9Et/d3SKghyE5Vp0MuEkL3EhOi3LeA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WdDYeuyc+ms22wHWnXHHwjHmZGuIFJNkoSaXiQTsX5hBFF6Xz2RXoRdLCi4jago4x
-         XBK1S1lcto54FMBwApzioCMjfRQL8Flx3/VXqPqYJ+H0wlyd8qmD0EZISF4dgSsR+c
-         Jm6qmB2gwLQRWRSfOjjkKmEnr7OHsJLHYYXgqRGg=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 82031611C5
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=ilina@codeaurora.org
-From:   Lina Iyer <ilina@codeaurora.org>
-To:     swboyd@chromium.org, evgreen@chromium.org, maz@kernel.org,
-        linus.walleij@linaro.org
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, mkshah@codeaurora.org,
-        linux-gpio@vger.kernel.org, Lina Iyer <ilina@codeaurora.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH RFC v2 06/14] dt-bindings/interrupt-controller: pdc: add SPI config register
-Date:   Fri, 13 Sep 2019 15:59:14 -0600
-Message-Id: <1568411962-1022-7-git-send-email-ilina@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568411962-1022-1-git-send-email-ilina@codeaurora.org>
-References: <1568411962-1022-1-git-send-email-ilina@codeaurora.org>
+        id S2390350AbfIMWBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 18:01:41 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:43726 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389815AbfIMWBl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 18:01:41 -0400
+Received: by mail-oi1-f194.google.com with SMTP id t84so3884624oih.10;
+        Fri, 13 Sep 2019 15:01:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NhX4q4VvHbxL/YFwtYgsj7GHy+7WGzMk/sM+hDn3XjY=;
+        b=e0MMXgN3HjOjicjL8rm5PX7wMyau6lGtrmqX+QRoBElImog6eDpDaKlWKl1+R/Ml50
+         NjDqLoZvH/V7pvZJqEYOxIRx5Zr2/45gLsr2EzOANw6gcI8XUoDFEaq7VTUFHCaMNRXY
+         HFYdI3USEak15CEIgDuCwezyLyG0mjZ6oovXFP+p4n1GiUZxx1bdhkwSYCZpPWW2MOjL
+         5pdew7IqfF1rKW0T2hu4tncR0kbcKatObIGgyD4n9zYfKu+kaXEk0M7JTaLWUUNwxtiV
+         LRW29mc5wJYwVWcAKI51qtBg15ZAZOw7QfvjPmN7Q0xTmii/2TmYSTDIZbGusnsK3oIv
+         vzyg==
+X-Gm-Message-State: APjAAAWOVl8jCzVRR3rfavegNf/gfbS24Xy4157TStngu8JtOeyQKuWy
+        N2EKZSBmJUjqrcDQYrKuTQ==
+X-Google-Smtp-Source: APXvYqyMN6cGhqQElJmPF0IJsDj8JgHPGW102AuveDAChh2mS8gBIHVvwPO4qeAYrkFmDMbX3MGMWg==
+X-Received: by 2002:aca:3ed7:: with SMTP id l206mr5582343oia.25.1568412100159;
+        Fri, 13 Sep 2019 15:01:40 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id n23sm620772oie.24.2019.09.13.15.01.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 13 Sep 2019 15:01:39 -0700 (PDT)
+Date:   Fri, 13 Sep 2019 17:01:38 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Colin King <colin.king@canonical.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] bus: qcom: fix spelling mistake "ambigous" -> "ambiguous"
+Message-ID: <20190913220138.GA17592@bogus>
+References: <20190911153947.10203-1-colin.king@canonical.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190911153947.10203-1-colin.king@canonical.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In addition to configuring the PDC, additional registers that interface
-the GIC have to be configured to match the GPIO type. The registers on
-some QCOM SoCs are access restricted, while on other SoCs are not. They
-SoCs with access restriction to these SPI registers need to be written
-from the firmware using the SCM interface. Add a flag to indicate if the
-register is to be written using SCM interface.
+On Wed, 11 Sep 2019 16:39:47 +0100, Colin King wrote:
+> From: Colin Ian King <colin.king@canonical.com>
+> 
+> There is a spelling mistake on the documentation. Fix it.
+> 
+> Signed-off-by: Colin Ian King <colin.king@canonical.com>
+> ---
+>  Documentation/devicetree/bindings/bus/qcom,ebi2.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Lina Iyer <ilina@codeaurora.org>
----
- .../devicetree/bindings/interrupt-controller/qcom,pdc.txt   | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+Applied, thanks.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-index 8e0797c..e329f8d 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/qcom,pdc.txt
-@@ -24,6 +24,9 @@ Properties:
- 	Usage: required
- 	Value type: <prop-encoded-array>
- 	Definition: Specifies the base physical address for PDC hardware.
-+		    Optionally, specify the PDC's GIC interface registers that
-+		    need to be configured for wakeup capable GPIOs routed to
-+		    the PDC.
- 
- - interrupt-cells:
- 	Usage: required
-@@ -50,15 +53,23 @@ Properties:
- 		    The second element is the GIC hwirq number for the PDC port.
- 		    The third element is the number of interrupts in sequence.
- 
-+- qcom,scm-spi-cfg:
-+	Usage: optional
-+	Value type: <bool>
-+	Definition: Specifies if the SPI configuration registers have to be
-+		    written from the firmware. Sometimes the PDC interface
-+		    register to the GIC can only be written from the firmware.
-+
- Example:
- 
- 	pdc: interrupt-controller@b220000 {
- 		compatible = "qcom,sdm845-pdc";
--		reg = <0xb220000 0x30000>;
-+		reg = <0 0x0b220000 0 0x30000>, <0 0x179900f0 0 0x60>;
- 		qcom,pdc-ranges = <0 512 94>, <94 641 15>, <115 662 7>;
- 		#interrupt-cells = <2>;
- 		interrupt-parent = <&intc>;
- 		interrupt-controller;
-+		qcom,scm-spi-cfg;
- 	};
- 
- DT binding of a device that wants to use the GIC SPI 514 as a wakeup
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+Rob
