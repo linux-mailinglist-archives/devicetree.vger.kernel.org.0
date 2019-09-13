@@ -2,130 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF9FB25E9
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 21:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90B72B25F3
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 21:17:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390064AbfIMTPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 15:15:55 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:34891 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389943AbfIMTPy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 15:15:54 -0400
-Received: by mail-pl1-f194.google.com with SMTP id s17so8728237plp.2;
-        Fri, 13 Sep 2019 12:15:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=/Zfca3eBC3FxQ0Lu1bAKtyRgZM7bqDEwWR5lS4SRkXc=;
-        b=oPqAd1bZ9afcNGvYlxRMM4uWGpi0g1bhxAHxvFePweLp2haJiogBCM3WuhEvnYaumy
-         LcFEbcSraSU8NhFsbn6VKL7rSILgsSi2YNvZqF0Lpm426xZr6+/42tzntDowaibwlP7R
-         C/LbHY8971oDmCujauKxw/gGg7xcCHu1pl0/zEGTIZv3TIvn6bTFgcnmvFRqUV0cl/9n
-         ztG8K6TuoGp8Q+qb7zFGEL+9IyAeryBCTnw3jw3nPKOCxSATJM9lzZ5JDWvKTG5o1Dw8
-         pNtI9aa3H29XJcUodQRQ/ePEIbQWMxR66ZsX/ugPHPiFaEgOemMRMoIlmWjHbhruvuUI
-         VkkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=/Zfca3eBC3FxQ0Lu1bAKtyRgZM7bqDEwWR5lS4SRkXc=;
-        b=rXuG+N5Vofh7DhZkWCa9v/iTlt9g4Lq/ntPYKeXbPDCnDK3AvsmKZOJc+hCA3TRXyb
-         I6M4YwzMkmVEPqloKDBTpZRoSTb0JOpTrSSXkzN3Mv+Tr46rYQdIiM8R7u7lH5OK4IW3
-         s3hV/b1wOZTic1r6C8itGNDEd72oEsuLy/jUtjKB9WQ2LQv+IWS+MvvAx2qQtK/xoqMx
-         MKF6+d/LhwZMGk+Qqhhko80QQJoplKGhb0gI+YpQOTA07y3jvL5dmlp4EPHPogp648IZ
-         N42/Nxl+eQ6jLSZXOm6y0MCxBF0/Sj8P7I4crNTxuQJPmb1rzY0rzg6kJvI13c0zVJs4
-         829g==
-X-Gm-Message-State: APjAAAXjvL7bSnwEDgxW/Xle2+Z7iWkRqd8X5VfduoEwCsYltIgkpwU7
-        gKJjePfEvjFPa0IBE6wDhFylyT6Qmh4=
-X-Google-Smtp-Source: APXvYqz+ZgP+flHaC+BWiwysROcvCYvBhri3cq7zXr4ymxgx1DaoHjR89HAO73VBs5LiW2QPqBaAzA==
-X-Received: by 2002:a17:902:8c98:: with SMTP id t24mr27538384plo.230.1568402153383;
-        Fri, 13 Sep 2019 12:15:53 -0700 (PDT)
-Received: from fainelli-desktop.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id m24sm6988149pgj.71.2019.09.13.12.15.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 12:15:52 -0700 (PDT)
-From:   Florian Fainelli <f.fainelli@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2389118AbfIMTQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 15:16:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34024 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729293AbfIMTQm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 15:16:42 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D5C5B208C2;
+        Fri, 13 Sep 2019 19:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568402201;
+        bh=AISYJ3NQvkwQVmNV8frCy190huYrvhaCspckip5zjQU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YDJGu4+c95xOSBSOGAj1+Zh7g8ei4vWKhhRouCm6dX6HVwOgamery8N4yoptpvH4r
+         AeScyZO8AStKVZIKoew8XWSn8jDA7zbJ6RkBajQ/V02tTtD21Iqwji1ZuTd4xTDE8w
+         HoSXvmlgh82FS7MAJmE/FQSYfwjRQsNDX4Q4pHhE=
+Received: by mail-qt1-f178.google.com with SMTP id o12so35281449qtf.3;
+        Fri, 13 Sep 2019 12:16:40 -0700 (PDT)
+X-Gm-Message-State: APjAAAVJ3BcP+TuJfPWJFqL5c6K4Far5Dc+pW9fnzznHZqb/MoBO6K72
+        6OMS/FQvgTU4poVJTmHXXjtnn+KlgONA6UuSeA==
+X-Google-Smtp-Source: APXvYqycYVJ08tWMMNjhro09EbkFdjZhvXMTSuliMWIbrz47QuGbCSu9TM/B1kgrl6h8xWYhrQiM27ufr4c8Ve0MxyM=
+X-Received: by 2002:a0c:8a6d:: with SMTP id 42mr33214017qvu.138.1568402199814;
+ Fri, 13 Sep 2019 12:16:39 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190910153409.111901-1-paul.kocialkowski@bootlin.com>
+ <20190910153409.111901-2-paul.kocialkowski@bootlin.com> <20190913143510.GA9504@bogus>
+ <20190913155815.GA1554@aptenodytes>
+In-Reply-To: <20190913155815.GA1554@aptenodytes>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 13 Sep 2019 20:16:28 +0100
+X-Gmail-Original-Message-ID: <CAL_Jsq+dzT1xrfBy2QQHLx9MUNukWWq5eXyOecVV8h0z5ziC8g@mail.gmail.com>
+Message-ID: <CAL_Jsq+dzT1xrfBy2QQHLx9MUNukWWq5eXyOecVV8h0z5ziC8g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: Add xylon logicvc bindings documentation
+To:     Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        bcm-kernel-feedback-list@broadcom.com (open list:BROADCOM BMIPS MIPS
-        ARCHITECTURE),
-        linux-mips@vger.kernel.org (open list:BROADCOM BMIPS MIPS ARCHITECTURE)
-Subject: [PATCH v2 5/5] irqchip/irq-bcm7038-l1: Support brcm,int-fwd-mask
-Date:   Fri, 13 Sep 2019 12:15:42 -0700
-Message-Id: <20190913191542.9908-6-f.fainelli@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190913191542.9908-1-f.fainelli@gmail.com>
-References: <20190913191542.9908-1-f.fainelli@gmail.com>
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On some specific chips like 7211 we need to leave some interrupts
-untouched/forwarded to the VPU which is another agent in the system
-making use of that interrupt controller hardware (goes to both ARM GIC
-and VPU L1 interrupt controller). Make that possible by using the
-existing brcm,int-fwd-mask property.
+On Fri, Sep 13, 2019 at 4:58 PM Paul Kocialkowski
+<paul.kocialkowski@bootlin.com> wrote:
+>
+> Hi Rob and thanks for the review!
+>
+> On Fri 13 Sep 19, 15:35, Rob Herring wrote:
+> > On Tue, Sep 10, 2019 at 05:34:08PM +0200, Paul Kocialkowski wrote:
+> > > The Xylon LogiCVC is a display controller implemented as programmable
+> > > logic in Xilinx FPGAs.
+> > >
+> > > Signed-off-by: Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+> > > ---
+> > >  .../bindings/display/xylon,logicvc.txt        | 188 ++++++++++++++++++
+> > >  1 file changed, 188 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/display/xylon,logicvc.txt
+> >
+> > Consider converting this to DT schema format. See
+> > Documentation/devicetree/writing-schema.rst (.md in 5.3).
+>
+> Oh right, that would certainly be much more future-proof!
+>
+> > > diff --git a/Documentation/devicetree/bindings/display/xylon,logicvc.txt b/Documentation/devicetree/bindings/display/xylon,logicvc.txt
+> > > new file mode 100644
+> > > index 000000000000..eb4b1553888a
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/display/xylon,logicvc.txt
+> > > @@ -0,0 +1,188 @@
+> > > +Xylon LogiCVC display controller
+> > > +
+> > > +The Xylon LogiCVC is a display controller that supports multiple layers.
+> > > +It is usually implemented as programmable logic and was optimized for use
+> > > +with Xilinx Zynq-7000 SoCs and Xilinx FPGAs.
+> > > +
+> > > +Because the controller is intended for use in a FPGA, most of the configuration
+> > > +of the controller takes place at logic configuration bitstream synthesis time.
+> > > +As a result, many of the device-tree bindings are meant to reflect the
+> > > +synthesis configuration. These do not allow configuring the controller
+> > > +differently than synthesis configuration.
+> > > +
+> > > +Layers are declared in the "layers" sub-node and have dedicated configuration.
+> > > +In version 3 of the controller, each layer has fixed memory offset and address
+> > > +starting from the video memory base address for its framebuffer. With version 4,
+> > > +framebuffers are configured with a direct memory address instead.
+> > > +
+> > > +Matching synthesis parameters are provided when applicable.
+> > > +
+> > > +Required properties:
+> > > +- compatible: Should be one of:
+> > > +  "xylon,logicvc-3.02.a-display"
+> > > +  "xylon,logicvc-4.01.a-display"
+> > > +- reg: Physical base address and size for the controller registers.
+> > > +- clocks: List of phandle and clock-specifier pairs, one for each entry
+> > > +  in 'clock-names'
+> > > +- clock-names: List of clock names that should at least contain:
+> > > +  - "vclk": The VCLK video clock input.
+> > > +- interrupts: The interrupt to use for VBLANK signaling.
+> > > +- xylon,display-interface: Display interface in use, should be one of:
+> > > +  - "lvds-4bits": 4-bit LVDS interface (C_DISPLAY_INTERFACE == 4).
+> > > +- xylon,display-colorspace: Display output colorspace in use, should be one of:
+> > > +  - "rgb": RGB colorspace (C_DISPLAY_COLOR_SPACE == 0).
+> > > +- xylon,display-depth: Display output depth in use (C_PIXEL_DATA_WIDTH).
+> > > +- xylon,row-stride: Fixed number of pixels in a framebuffer row (C_ROW_STRIDE).
+> > > +- xylon,layers-count: The number of available layers (C_NUM_OF_LAYERS).
+> >
+> > Presumably some of this is determined by the display attached. Isn't it
+> > safe to assume the IP was configured correctly for the intended display
+> > and you can just get this from the panel?
+>
+> Layers are what corresponds to DRM planes, which are not actually indicated
+> by the panel but are a charasteristic of the display controller. In our case,
+> this is directly selected at bitstream synthesis time for the controller.
+>
+> So I'm afraid there is no way we can auto-detect this from the driver.
 
-Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
----
- drivers/irqchip/irq-bcm7038-l1.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+Sorry, I referring to the set of properties above. In particular,
+xylon,display-interface and xylon,display-colorspace, though I don't
+know if the latter is talking in memory format or on the wire format.
 
-diff --git a/drivers/irqchip/irq-bcm7038-l1.c b/drivers/irqchip/irq-bcm7038-l1.c
-index 0673a44bbdc2..811a34201dd4 100644
---- a/drivers/irqchip/irq-bcm7038-l1.c
-+++ b/drivers/irqchip/irq-bcm7038-l1.c
-@@ -44,6 +44,7 @@ struct bcm7038_l1_chip {
- 	struct list_head	list;
- 	u32			wake_mask[MAX_WORDS];
- #endif
-+	u32			irq_fwd_mask[MAX_WORDS];
- 	u8			affinity[MAX_WORDS * IRQS_PER_WORD];
- };
- 
-@@ -265,6 +266,7 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
- 	resource_size_t sz;
- 	struct bcm7038_l1_cpu *cpu;
- 	unsigned int i, n_words, parent_irq;
-+	int ret;
- 
- 	if (of_address_to_resource(dn, idx, &res))
- 		return -EINVAL;
-@@ -278,6 +280,14 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
- 	else if (intc->n_words != n_words)
- 		return -EINVAL;
- 
-+	ret = of_property_read_u32_array(dn , "brcm,int-fwd-mask",
-+					 intc->irq_fwd_mask, n_words);
-+	if (ret != 0 && ret != -EINVAL) {
-+		/* property exists but has the wrong number of words */
-+		pr_err("invalid brcm,int-fwd-mask property\n");
-+		return -EINVAL;
-+	}
-+
- 	cpu = intc->cpus[idx] = kzalloc(sizeof(*cpu) + n_words * sizeof(u32),
- 					GFP_KERNEL);
- 	if (!cpu)
-@@ -288,8 +298,9 @@ static int __init bcm7038_l1_init_one(struct device_node *dn,
- 		return -ENOMEM;
- 
- 	for (i = 0; i < n_words; i++) {
--		l1_writel(0xffffffff, cpu->map_base + reg_mask_set(intc, i));
--		cpu->mask_cache[i] = 0xffffffff;
-+		l1_writel(0xffffffff & ~intc->irq_fwd_mask[i],
-+			  cpu->map_base + reg_mask_set(intc, i));
-+		cpu->mask_cache[i] = 0xffffffff & ~intc->irq_fwd_mask[i];
- 	}
- 
- 	parent_irq = irq_of_parse_and_map(dn, idx);
--- 
-2.17.1
+Actually for xylon,layers-count, You should just count the child nodes
+of 'layers'.
 
+> > > +Optional properties:
+> > > +- memory-region: phandle to a node describing memory, as specified in:
+> > > +  Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+> > > +- clock-names: List of clock names that can optionally contain:
+> > > +  - "vclk2": The VCLK2 doubled-rate video clock input.
+> > > +  - "lvdsclk": The LVDS clock.
+> > > +  - "lvdsclkn": The LVDS clock inverted.
+> >
+> > How are these really optional?
+>
+> Well, the controller currently only supports LVDS, but more interfaces may be
+> added later, so the lvdsclk clock will be optional when another interface
+> is used instead. Maybe I'm mistaken about how to categorize them though.
+>
+> My understanding is that the need for vclk2 and lvdsclkn depend on the target
+> FPGA family. I've developped the driver without the need for them, but the
+> datasheet states that they may be needed (but doesn't provide significant
+> details about their role though).
+
+Not sure what to tell you then. You'll see it becomes a bit messy to
+describe in schema. Ideally we define the exact number, order, and
+values possible (or sets of those).
+
+> > > +- xylon,syscon: Syscon phandle representing the logicvc instance.
+> > > +- xylon,dithering: Dithering module is enabled (C_XCOLOR).
+> > > +- xylon,background-layer: The last layer is used to display a black background
+> > > +  (C_USE_BACKGROUND). It must still be registered.
+> > > +- xylon,layers-configurable: Configuration of layers' size, position and offset
+> > > +  is enabled (C_USE_SIZE_POSITION).
+> >
+> > I would think this will effectively have to be enabled to make this
+> > usable with DRM. I'm not sure if a "standard" userspace would use any of
+> > the layers if all this is fixed.
+>
+> I was going with the same assumption, but drm_atomic_helper_check_plane_state
+> has a can_position parameter, which will check that the plane covers the
+> whole CRTC if set to false. So I guess it is somewhat expected that this can
+> be the case and some drivers (e.g. arm/hdlcd_crtc.c) also set this to false.
+
+Certainly atomic can fail on anything not supported. My question is
+more whether userspace has some minimum requirements. A cursor
+couldn't deal with can_position=false for example.
+
+> I guess this falls under a more generic discussion of what should be expected
+> by userspace when it comes to DRM. Since drivers may reject commits because of
+> any hardware-specific limitation, there is definitely a significant grey area
+> there and apparently no common rule.
+>
+> > > +
+> > > +Required sub-nodes:
+> > > +- layers: The description of the display controller layers, containing layer
+> > > +  sub-nodes that each describe a registered layer.
+> > > +- ports: The LogiCVC connection to an encoder input port. The connection
+> > > +  is modeled using the OF graph bindings, as specified in:
+> > > +  Documentation/devicetree/bindings/graph.txt
+> > > +
+> > > +Required layer properties:
+> > > +- reg: Layer index (from front to back, starting at 0).
+> > > +- xylon,layer-depth: Layer depth in use (C_LAYER_0_DATA_WIDTH).
+> > > +- xylon,layer-colorspace: Layer colorspace in use, should be one of:
+> > > + - "rgb": RGB colorspace (C_LAYER_*_TYPE == 0).
+> >
+> > Why is this needed if there's only 1?
+>
+> The hardware supports more but support is no implemented yet, so the binding
+> document may be enriched along with the driver in the future.
+>
+> Should I describe other colorspaces even if they are not currently supported?
+
+Document what the h/w supports to the extent you can. Then we can make
+better decisions.
+
+> > > +- xylon,layer-alpha-mode: Alpha mode for the layer, should be one of:
+> > > + - "layer": Alpha is configured layer-wide (C_LAYER_*_ALPHA_MODE == 0).
+> > > + - "pixel": Alpha is configured per-pixel (C_LAYER_*_ALPHA_MODE == 1).
+> >
+> > Could just be boolean.
+>
+> In this instance too, there are other modes that are not yet implemented but
+> supported by the hardware, so I did not describe them yet but they may be added
+> later.
+>
+> > > +- xylon,layer-base-offset: offset in number of lines (C_LAYER_*_OFFSET) starting
+> > > +  from the video RAM base (C_VMEM_BASEADDR), only for version 3.
+> > > +- xylon,layer-buffer-offset: offset in number of lines (C_BUFFER_*_OFFSET)
+> > > +  starting from the layer base offset for the second buffer used in
+> > > +  double-buffering.
+> >
+> > It might be better to define all this in terms of byte offsets. I'd
+> > guess that is what CPU accesses are going to need.
+>
+> I agree that it is more convenient from a driver's perspective, but the
+> rationale is that this allows copying parameters directly from the synthesis
+> configuration file, where these are expressed as a number of lines.
+>
+> I would like to keep both delcarations as close to eachother as possible, as to
+> facilitate integration work for future users of the driver. But maybe this is a
+> bit too much in that case. What do you think?
+
+Fair enough. I'd feel differently if I thought this would be common,
+but this seems to be a pretty specific usecase. I guess there could be
+other fixed at synthesis h/w.
+
+Rob
