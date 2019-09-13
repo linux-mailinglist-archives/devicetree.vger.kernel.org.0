@@ -2,87 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B089B278B
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 23:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 730BBB2799
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 23:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390193AbfIMVtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 17:49:01 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:36347 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390169AbfIMVtB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 17:49:01 -0400
-Received: by mail-oi1-f194.google.com with SMTP id k20so3898428oih.3;
-        Fri, 13 Sep 2019 14:49:01 -0700 (PDT)
+        id S1731373AbfIMV6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 17:58:11 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:41253 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725747AbfIMV6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 17:58:11 -0400
+Received: by mail-oi1-f196.google.com with SMTP id w17so3898641oiw.8;
+        Fri, 13 Sep 2019 14:58:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:date:from:to:cc:subject:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=3ui0eUxYUk9AGgzSlQ7m/osQuaMVwY1YZdYH8n3luq8=;
-        b=uY+c4JNj55i4u++eKNAMOAGMybqJtgwQXeM0/lmDDOIqxOszzsaOiRODZSecuatL9Q
-         Y7AjcK+Qt4vlUIgKow1USulhIt43BlutFRfgQfLg/lRehZR5vHwD6kTDjHUmMwK/uVCi
-         fNMMJsXnmJavK6jXB/VS7TrhTGJjoS8GkPVzOW78z5+uYuzilM6OT5S/QY+basYwDp9v
-         zNnCE51eCVmPDBJZTuyzmv1rGDzFTJZ4aSY52MXXkELwFO43MoQjC9WYoYZdELE+Wxbo
-         0Qb4iTuA9dcKzeJZs4zuh+GcdNDQXBuXpjLT43W3W4uqrgGrvmD59SrDiT3gUf1bAOwH
-         rRCA==
-X-Gm-Message-State: APjAAAWLVEuj94/GyFk2wcPTqYZfsaVFCGHRoeKT6XQIfh3f7zbiUIqO
-        lKzX2USuHoUvahKKoX25qg==
-X-Google-Smtp-Source: APXvYqwrX78qL+fphXmP83YaXehBjj7lGvQnlNkImVCOv6wfycHSII+8QXVN1ACQV9qwo7LJNutSCA==
-X-Received: by 2002:aca:f3d4:: with SMTP id r203mr5157914oih.164.1568411340561;
-        Fri, 13 Sep 2019 14:49:00 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=AQ3PXKKEYAPpTNJc/PTOp8Ob+kx8WcDFX3XJj1y+xiY=;
+        b=QYNCSThMWO39OjcVuLVPo2qYCSbsZyzXqHd86wEUvmWW3aaFPwgEKaVnh+aTpbnHAe
+         lHjiktVHISddLepOS9ud1QPM3nct+Aqjny9G11MgZhWRcfME+APAuiBKW130IJG36aRh
+         2hHDXZNXvwPqc/gTTFrDwRahz0C7T1GbtFRKyRfT+MVHGQ6KyBzwBardY5QlGJTBDynJ
+         AUbcplBmZE+/LP61OkeaTQZIYxb/NIQlp8zhqsyt61IhO8HTEMbpi0V9TFiOl4/yJVbX
+         GsHMTUf0kY3zdRtiQGJf2Xf7TvWfg+pq9we8WkXdY2Lhg9+tFRXJDN+8l093tWTMsm90
+         KH0g==
+X-Gm-Message-State: APjAAAXVNEmNBPaDkFhCRET6YxN4VFO6OgKyL+ZIGyOveqyR3VCqOm/5
+        zngTwJxp3HbgI9rZZlnSkg==
+X-Google-Smtp-Source: APXvYqwcvObB3Yb/Y4El/uikyKAQB52Tnw3hLnBRUoI7ZLHlgxb3ip7OrKPwaxSV60bB8sfAR8RFlA==
+X-Received: by 2002:a05:6808:b19:: with SMTP id s25mr5498975oij.126.1568411890436;
+        Fri, 13 Sep 2019 14:58:10 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id d17sm10106995otl.25.2019.09.13.14.48.59
+        by smtp.gmail.com with ESMTPSA id 34sm11938701ots.47.2019.09.13.14.58.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 13 Sep 2019 14:49:00 -0700 (PDT)
-Message-ID: <5d7c0ecc.1c69fb81.2f580.64bb@mx.google.com>
-Date:   Fri, 13 Sep 2019 16:48:59 -0500
+        Fri, 13 Sep 2019 14:58:09 -0700 (PDT)
+Date:   Fri, 13 Sep 2019 16:58:09 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     frederic.chen@mediatek.com
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
-        yuzhao@chromium.org, zwisler@chromium.org,
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-kernel@vger.kernel.org,
         linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        holmes.chiou@mediatek.com, frederic.chen@mediatek.com,
-        Jerry-ch.Chen@mediatek.com, jungo.lin@mediatek.com,
-        Rynn.Wu@mediatek.com, linux-media@vger.kernel.org,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        shik@chromium.org, suleiman@chromium.org, Allan.Yang@mediatek.com
-Subject: Re: [RFC PATCH V3 1/5] dt-bindings: mt8183: Added DIP dt-bindings
-References: <20190909192244.9367-1-frederic.chen@mediatek.com>
- <20190909192244.9367-2-frederic.chen@mediatek.com>
+        linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+        Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Subject: Re: [PATCH v1 2/2] of: Let of_for_each_phandle fallback to
+ non-negative cell_count
+Message-ID: <20190913215809.GA11833@bogus>
+References: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
+ <20190824132846.8589-2-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190909192244.9367-2-frederic.chen@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190824132846.8589-2-u.kleine-koenig@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 10 Sep 2019 03:22:40 +0800, <frederic.chen@mediatek.com> wrote:
-> From: Frederic Chen <frederic.chen@mediatek.com>
+On Sat, 24 Aug 2019 15:28:46 +0200, =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?=          wrote:
+> Referencing device tree nodes from a property allows to pass arguments.
+> This is for example used for referencing gpios. This looks as follows:
 > 
-> This patch adds DT binding documentation for the Digital Image
-> Processing (DIP) unit of camera ISP system on Mediatek's SoCs.
+> 	gpio_ctrl: gpio-controller {
+> 		#gpio-cells = <2>
+> 		...
+> 	}
 > 
-> It depends on the SCP and MDP 3 patch as following:
+> 	someothernode {
+> 		gpios = <&gpio_ctrl 5 0 &gpio_ctrl 3 0>;
+> 		...
+> 	}
 > 
-> 1. dt-bindings: Add a binding for Mediatek SCP
->    https://patchwork.kernel.org/patch/11027247/
-> 2. dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
->    https://patchwork.kernel.org/patch/10945603/
+> To know the number of arguments this must be either fixed, or the
+> referenced node is checked for a $cells_name (here: "#gpio-cells")
+> property and with this information the start of the second reference can
+> be determined.
 > 
-> Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
+> Currently regulators are referenced with no additional arguments. To
+> allow some optional arguments without having to change all referenced
+> nodes this change introduces a way to specify a default cell_count. So
+> when a phandle is parsed we check for the $cells_name property and use
+> it as before if present. If it is not present we fall back to
+> cells_count if non-negative and only fail if cells_count is smaller than
+> zero.
+> 
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 > ---
->  .../bindings/media/mediatek,mt8183-dip.txt    | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-dip.txt
+>  drivers/of/base.c | 25 +++++++++++++++++--------
+>  1 file changed, 17 insertions(+), 8 deletions(-)
 > 
 
-Please add Acked-by/Reviewed-by tags when posting new versions. However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for acks received on the version they apply.
+Applied both patches, thanks.
 
-If a tag was not added on purpose, please state why and what changed.
-
+Rob
