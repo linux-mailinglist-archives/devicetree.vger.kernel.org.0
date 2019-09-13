@@ -2,70 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7421B2146
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 15:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 479BDB213D
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 15:49:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390258AbfIMNlz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 09:41:55 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:39828 "EHLO
+        id S2389020AbfIMNlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 09:41:13 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:39778 "EHLO
         lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390169AbfIMNly (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 09:41:54 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8DDfoaf094202;
-        Fri, 13 Sep 2019 08:41:50 -0500
+        with ESMTP id S2388927AbfIMNlN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 09:41:13 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8DDfC2S094105;
+        Fri, 13 Sep 2019 08:41:12 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568382110;
-        bh=z1V+v3q+InJeoYcLZ06aHyRBUiufpJvPRs8v6Mio0c8=;
-        h=Subject:To:References:From:Date:In-Reply-To;
-        b=ZBykWoc9JqVk3Kervj6A7s8CfmqgeF3d6/CP5ARCQAsKjoJa4Vwu7s5Nwy+nIVMer
-         9OUlm8kjyPUuAW8NgEFd34gEjzLk//iY2SXvsm4TZusx3eKz65fhRXVMLW9N9DswNL
-         5f1UE5xVzcsbXk8nqbZwgKfvXsKw9qKBsBQ+UdcE=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8DDfoS7021604
+        s=ti-com-17Q1; t=1568382072;
+        bh=CmbLJ7PpeDku490Wh6BDSiCQHPLlezHiiaAQg2qYXnM=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ykropRZ7yh9+HQIZLNa/QCkM2+GpbxSbalY1PmG3fVmd7eUs8o4RKcb/iLoCDRomv
+         3NSwYybEJKvT31v+qM4Lv/iNDy3Flh6T7Cum0lMY3V6PAwkDtUC5CwzrICmGsHHo1Q
+         E/nBVNc3iwXqOn/8EPCh6FzuoljdW0yj0XmKvUm0=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8DDfCF1054907
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 13 Sep 2019 08:41:50 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+        Fri, 13 Sep 2019 08:41:12 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 13
- Sep 2019 08:41:49 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2019 08:41:11 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 13 Sep 2019 08:41:49 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8DDfnlY014551;
-        Fri, 13 Sep 2019 08:41:49 -0500
-Subject: Re: [PATCH v8 2/2] leds: add LED driver for EL15203000 board
-To:     Oleh Kravchenko <oleg@kaa.org.ua>, <devicetree@vger.kernel.org>,
-        <linux-leds@vger.kernel.org>, <jacek.anaszewski@gmail.com>,
-        <pavel@ucw.cz>
-References: <20190912221115.23595-1-oleg@kaa.org.ua>
- <20190912221115.23595-3-oleg@kaa.org.ua>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <ffae7af2-29f7-0d49-a77d-63c1ad3d27b3@ti.com>
-Date:   Fri, 13 Sep 2019 08:42:15 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ Frontend Transport; Fri, 13 Sep 2019 08:41:11 -0500
+Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with SMTP id x8DDfBKY013552;
+        Fri, 13 Sep 2019 08:41:11 -0500
+Date:   Fri, 13 Sep 2019 08:43:17 -0500
+From:   Benoit Parrot <bparrot@ti.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>
+CC:     Prabhakar Lad <prabhakar.csengg@gmail.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [Patch 08/13] media: am437x-vpfe: Maintain a reference to the
+ current vpfe_fmt
+Message-ID: <20190913134317.afnflvebna3xv35o@ti.com>
+References: <20190909162743.30114-1-bparrot@ti.com>
+ <20190909162743.30114-9-bparrot@ti.com>
+ <8b3d5c23-6784-fb1c-5e14-f3759b10aa0b@xs4all.nl>
+ <20190913133245.6rvajfhlghbocuf4@ti.com>
+ <693c483f-5342-ab0a-7023-222f06bd011e@xs4all.nl>
 MIME-Version: 1.0
-In-Reply-To: <20190912221115.23595-3-oleg@kaa.org.ua>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <693c483f-5342-ab0a-7023-222f06bd011e@xs4all.nl>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Oleh
+Hans Verkuil <hverkuil@xs4all.nl> wrote on Fri [2019-Sep-13 15:34:28 +0200]:
+> On 9/13/19 3:32 PM, Benoit Parrot wrote:
+> > Hans Verkuil <hverkuil@xs4all.nl> wrote on Fri [2019-Sep-13 15:14:45 +0200]:
+> >> On 9/9/19 6:27 PM, Benoit Parrot wrote:
+> >>> Keep a reference to the currently selected struct vpfe_fmt * object.
+> >>> By doing so we rename the current struct v4l2_format * member from
+> >>> fmt to v_fmt.
+> >>> The added struct vpfe_fmt * reference is set to "const" so we also
+> >>> constify all accesses and related helper functions.
+> >>
+> >> This explains what you do, but not why you do it.
+> > 
+> > Hmm ok I'll rework this a bit.
+> > 
+> >>
+> >> And I think fmt vs v_fmt is *very* confusing naming.
+> > 
+> > Well in this case v_fmt stands for "v4l2_fmt" and depending on the function
+> > I was using fmt to either mean a vpfe_fmt pointer or a v4l2_format pointer
+> > so tried (and apparently failed) to make it clearer which was which.
+> 
+> Well, v_fmt could refer to either v4l2_format or vpfe_fmt, so that prefix
+> doesn't help me :-)
+> 
+> Since 'fmt' was already defined in struct vpfe_device as v4l2_format, I'd
+> just keep that rather than causing code churn by changing it. And come up
+> with a better name for when you refer to a vpfe_fmt struct.
 
-On 9/12/19 5:11 PM, Oleh Kravchenko wrote:
-> This patch adds a LED class driver for the LEDs found on
-> the Crane Merchandising System EL15203000 LEDs board
-> (aka RED LEDs board).
->
-> Signed-off-by: Oleh Kravchenko <oleg@kaa.org.ua>
+Fair enough.
 
-Reviewed-by: Dan Murphy <dmurphy@ti.com>
-
+> 
+> Regards,
+> 
+> 	Hans
+> 
+> > 
+> >>
+> >> I'd keep fmt as-is, and come up with a different name for the vpfe_fmt
+> >> pointer. ref_vpfe_fmt?
+> >>
+> >> Regards,
+> >>
+> >> 	Hans
+> >>
