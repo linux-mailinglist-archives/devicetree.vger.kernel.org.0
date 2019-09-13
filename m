@@ -2,74 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E541B2365
-	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 17:30:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2581B236C
+	for <lists+devicetree@lfdr.de>; Fri, 13 Sep 2019 17:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728666AbfIMPaJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 11:30:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52404 "EHLO mail.kernel.org"
+        id S2387857AbfIMPc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 11:32:57 -0400
+Received: from foss.arm.com ([217.140.110.172]:45788 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727452AbfIMPaJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Sep 2019 11:30:09 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5A30F20693;
-        Fri, 13 Sep 2019 15:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568388608;
-        bh=vTXXCERj5EHh2Nw1YV+UWJhkpIE7vv0OgxkEVMaexeE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AZV9yT5JdBBFcOow27l2xFJXweHIlWEyk4bCGozjVrLBfkHt352ZDUUDXJ7MHpLOj
-         DltV2a+IKAV6vtfQV4nYSU0nMkDo+bQ1a+cqpWq8xkSYy4m+Ohj0oiVr7b7FWLt1aa
-         msFFprrNl8mt82L5ocWH87WHfLZTKMVri1kRMmes=
-Received: by mail-qk1-f177.google.com with SMTP id w2so5700368qkf.2;
-        Fri, 13 Sep 2019 08:30:08 -0700 (PDT)
-X-Gm-Message-State: APjAAAUheaHzkwOGwKNPzjFoJBlNflbktdgsoAuzcRWmVHFy8MVy4TfD
-        dz3qPQv3FRUMOr9tF3xaDXgKmfktbv0GjQvI9A==
-X-Google-Smtp-Source: APXvYqyeVvSIFeZmtCG6AT/49KUMwZ0DqrPecx1DbAZNlodqn4Fe5C5DL2ahpfIziIkkBqrKNmLLVlw7a94poZxftB8=
-X-Received: by 2002:a05:620a:549:: with SMTP id o9mr9153341qko.223.1568388607580;
- Fri, 13 Sep 2019 08:30:07 -0700 (PDT)
+        id S1727452AbfIMPc4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 11:32:56 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CB2A21000;
+        Fri, 13 Sep 2019 08:32:55 -0700 (PDT)
+Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A2CC43F67D;
+        Fri, 13 Sep 2019 08:32:50 -0700 (PDT)
+Subject: Re: KASAN: slab-out-of-bounds Read in handle_vmptrld
+To:     Paolo Bonzini <pbonzini@redhat.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     mark.rutland@arm.com, x86@kernel.org, wanpengli@tencent.com,
+        kvm@vger.kernel.org, narmstrong@baylibre.com,
+        catalin.marinas@arm.com, will.deacon@arm.com, hpa@zytor.com,
+        khilman@baylibre.com, joro@8bytes.org, rkrcmar@redhat.com,
+        mingo@redhat.com, Dmitry Vyukov <dvyukov@google.com>,
+        syzbot <syzbot+46f1dd7dbbe2bfb98b10@syzkaller.appspotmail.com>,
+        devicetree@vger.kernel.org, syzkaller-bugs@googlegroups.com,
+        robh+dt@kernel.org, bp@alien8.de,
+        linux-amlogic@lists.infradead.org, tglx@linutronix.de,
+        linux-arm-kernel@lists.infradead.org, jmattson@google.com,
+        USB list <linux-usb@vger.kernel.org>,
+        linux-kernel@vger.kernel.org, sean.j.christopherson@intel.com,
+        carlo@caione.org, Vitaly Kuznetsov <vkuznets@redhat.com>
+References: <000000000000a9d4f705924cff7a@google.com>
+ <87lfutei1j.fsf@vitty.brq.redhat.com>
+ <5218e70e-8a80-7c5f-277b-01d9ab70692a@redhat.com>
+ <20190913044614.GA120223@kroah.com>
+ <db02a285-ad1d-6094-6359-ba80e6d3f2e0@redhat.com>
+ <20190913130226.GB403359@kroah.com>
+ <6a0ec3a2-2a52-f67a-6140-e0a60874538a@redhat.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <462660f4-1537-cece-b55f-0ceba0269eb8@arm.com>
+Date:   Fri, 13 Sep 2019 16:32:48 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190907161537.27258-1-marek.vasut@gmail.com>
-In-Reply-To: <20190907161537.27258-1-marek.vasut@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 13 Sep 2019 16:29:55 +0100
-X-Gmail-Original-Message-ID: <CAL_JsqKSWD5EOGdvGS7Z8pd6OALRsqxv2GmVLd+9ZoOyPgbr-w@mail.gmail.com>
-Message-ID: <CAL_JsqKSWD5EOGdvGS7Z8pd6OALRsqxv2GmVLd+9ZoOyPgbr-w@mail.gmail.com>
-Subject: Re: [PATCH V2] of: Fix of_empty_ranges_quirk()
-To:     =?UTF-8?B?TWFyZWsgVmHFoXV0?= <marek.vasut@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <6a0ec3a2-2a52-f67a-6140-e0a60874538a@redhat.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 7, 2019 at 5:15 PM <marek.vasut@gmail.com> wrote:
->
-> From: Marek Vasut <marek.vasut+renesas@gmail.com>
->
-> The of_empty_ranges_quirk() returns a mix of boolean and signed integer
-> types, which cannot work well. Replace that with boolean only and fix
-> usage logic in of_translate_one() -- the check should trigger when the
-> ranges are NULL and the quirk is applicable on the hardware.
+On 13/09/2019 16:01, Paolo Bonzini wrote:
+> On 13/09/19 15:02, Greg Kroah-Hartman wrote:
+>> Look at linux-next, we "should" have fixed up hcd_buffer_alloc() now to
+>> not need this type of thing.  If we got it wrong, please let us know and
+>> then yes, a fix like this would be most appreciated :)
+> 
+> I still see
+> 
+> 	/* some USB hosts just use PIO */
+> 	if (!hcd_uses_dma(hcd)) {
+> 		*dma = ~(dma_addr_t) 0;
+> 		return kmalloc(size, mem_flags);
+> 	}
+> 
+> in linux-next's hcd_buffer_alloc and also in usb.git's usb-next branch.
+>   I also see the same
+> 
+> 	if (remap_pfn_range(vma, vma->vm_start,
+> 			virt_to_phys(usbm->mem) >> PAGE_SHIFT,
+> 			size, vma->vm_page_prot) < 0) {
+> 		...
+> 	}
+> 
+> in usbdev_mmap.  Of course it's possible that I'm looking at the wrong
+> branch, or just being dense.
 
-Just moving to boolean has seemed like weak justification for this
-churn, but now that I've seen your work on PCI dma-ranges it makes a
-bit more sense.
+Oh, that bit of usbdev_mmap() is already known to be pretty much totally 
+bogus for various reasons - there have been a few threads about it, of 
+which I think [1] is both the most recent and the most informative. 
+There was another patch[2], but that might have stalled (and might need 
+reworking with additional hcd_uses_dma() checks anyway).
 
-We do have a problem that unlike 'ranges', 'dma-ranges' being missing
-probably needs to be treated as 1:1 translation. I can't really
-picture a case where dma-ranges would be used with a non-translatable
-address. Perhaps a module with optional DMA and the DMA is not hooked
-up. That could be expressed with dma-ranges with a 0 size or a
-different compatible. So your v1 patch was perhaps correct change in
-behavior, but only for dma-ranges. (I've written one that works in
-both cases).
+Robin.
 
-Rob
+[1] 
+https://lore.kernel.org/linux-arm-kernel/20190808084636.GB15080@priv-mua.localdomain/
+[2] 
+https://lore.kernel.org/linux-usb/20190801220134.3295-1-gavinli@thegavinli.com/
