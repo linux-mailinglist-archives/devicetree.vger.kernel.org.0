@@ -2,114 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C6ABFB2C44
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 18:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62931B2C67
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 19:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727503AbfINQpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Sep 2019 12:45:12 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:38383 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727496AbfINQpM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 12:45:12 -0400
-Received: by mail-wr1-f66.google.com with SMTP id l11so34831813wrx.5;
-        Sat, 14 Sep 2019 09:45:10 -0700 (PDT)
+        id S1726476AbfINR2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Sep 2019 13:28:50 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:38575 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725943AbfINR2u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 13:28:50 -0400
+Received: by mail-oi1-f194.google.com with SMTP id 7so5206580oip.5;
+        Sat, 14 Sep 2019 10:28:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MuXPCDpMkkALoKXcfqND9O4SRMpZ32Z7jEmYAbDy300=;
-        b=aIOl1BJ2hoJzZmxqYVGbythZ3ySD5dJ8y+rJ4Gj0SIb3SQh5jEAVcy7b4IZoQ7ltql
-         zspo4shSNQLRqeTqQEDcyFHXvGQCmhXapUCTxr6q5zivU6l5+eT/z2NtvS43Wel3k/Ol
-         yoODyhIeuN2d6UqvNyT/XRDTWRkiY6KMzGWXYjdV4MF1gfjwj7RwxFyXYlyEt15tG2V+
-         4qcYiHfMFRlm9MlX9wisdR0dYi5EpviSsyaM5klsGNMkQh8f6gShu+Mmljmgmxq+Dd8r
-         fgjAZWlK3UfQhwsA/xUl49v4zT9W5gN8xw/FywS10nzskxSXsomOhksIQAfs0f+5mufL
-         Zvpg==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mA5mzxsxWnYShGZnGYHnIbq5CGiyFdSMEe2+j4i+v6M=;
+        b=MgUN1SvM7yJm/8hPixwOVkO4Z5JXQs1ePB8BdjNQ9TnYTyLE7jeREeQ2oxDSoLE/Sj
+         YtsTrQ59ePZpJyj/tDDvYwqDNgVLVPwpojBYibvc3+6YpzYvwo0OuMd6CGCc/0raWziV
+         ICiYwQMfHk+9W+a6B5nvz3fwsHFpfpkjHAyxXGlqcfM5vfifm+0p5D01zHucaR12Akcr
+         CDi3/DjNX3u3wekkM0L7ZtNzKRdjj0vphCE2RHFDyvSdbrZHKAuvVE5fAcZY4spJ3jYO
+         0hybFDEoenEbsm1/On+Kq2bAOwBY41fXRCBRUuI0on4CA3x1UurrDfCXRz7dPUKJpmxy
+         Ixmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MuXPCDpMkkALoKXcfqND9O4SRMpZ32Z7jEmYAbDy300=;
-        b=lxbdLC+OTgG65Z5SnxHwRVoCxY1rEm0+DzyP61nC7Hph8xs8gIchlXl4MPddLl5GV3
-         JIrpPsY63k5Vo207su09/PqsPipgUbvVUsFGhpxru1flyQ2ck4TxJtQ8K4qB3/hy42ih
-         UB2FC2Br6vK3wO/ujyrKG82cpYNX2vCDtiurudbpJEKCZluwtmWMKbMtQMTLuitCtjct
-         Laqj7sMFR3U6S/+azaMzeOnPGHLRQYqb8xozwCAOBPmq2m3B0qWxi16GsjsAW8USWToa
-         qKuHc6a8fiU3JLV5ndHfmUFln/O87HEMKxt2rVTfB6Dmsxzn/QK3lRp6y1cMXJjx8kvE
-         lAZw==
-X-Gm-Message-State: APjAAAWz9rGoR5SAm39kPrc8onf/2C9QAh8eGSPIIQP5btJUVbDJc7j/
-        CRxvBitFiE2oqLWPHhrg1I6VGmYZ
-X-Google-Smtp-Source: APXvYqzz2d+VSD5YuU4x2A+q2kqTyFJ0FVrWOwCKpTdt4UBHHJkT400O/LGCk3trq0q4dn7LXTrTUA==
-X-Received: by 2002:adf:e704:: with SMTP id c4mr45710182wrm.283.1568479509643;
-        Sat, 14 Sep 2019 09:45:09 -0700 (PDT)
-Received: from [192.168.1.4] (ip-86-49-35-8.net.upcbroadband.cz. [86.49.35.8])
-        by smtp.gmail.com with ESMTPSA id o188sm5072246wma.14.2019.09.14.09.45.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 14 Sep 2019 09:45:09 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <20190907161634.27378-1-marek.vasut@gmail.com>
- <CAMuHMdXVhtE5Jmpu8QYv+P8pGtegr4MGhNGRwy4Y1wRQYmL2_Q@mail.gmail.com>
- <f1b11b42-99ee-0484-550e-8758ec6fa559@gmail.com>
- <CAMuHMdWz05ALM745tpw=AT2Q30nXvQV39JXTATYTEoTmH1TSRQ@mail.gmail.com>
-From:   Marek Vasut <marek.vasut@gmail.com>
-Message-ID: <ad3f986d-90bb-a47b-aa24-c326fb369202@gmail.com>
-Date:   Sat, 14 Sep 2019 18:45:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mA5mzxsxWnYShGZnGYHnIbq5CGiyFdSMEe2+j4i+v6M=;
+        b=PSvPZFMe2cNkisKXUyl6clH1coVnJke/XnlqRS6x4zYTF/Whf0KjXdu/g3cFg9FUKs
+         U5B1wg5aSkIL+/2tnlBglFcbvjPq3BgPOSKOvi+lJWY3iaY8ULUDNvrjLiLGckM8o1T2
+         8ybBA4VGL4Ed4a5y5FslatygAUS15CkocxSOcRquI+DXUqJlywBqwENqB1ZgYpbBsTXI
+         V1z0BXTvP0P2yZq+XOhNoEm/OPxwTI3lGc6KUZrSpOvn8lh1FiOBnsO4UvVovvRB/hf6
+         clRZl7mkbpsBdIcNnA//Bv9y7QN1gcfnedZrd0QyNh4NCp6Aep5x4/fJoaMe5AooPT0u
+         CbXQ==
+X-Gm-Message-State: APjAAAV6SdFZ+wVr9or7gPmNrfO4TJEVvUaKP1esnc6BbbuTGOVbkg9E
+        MagWBS6wJvli7FXEgCRYXR9sizGJ4Gzj6xBj8Qg=
+X-Google-Smtp-Source: APXvYqyVRQJX+2iGdouQY/84grVpTaJtdKUwyl2adY9/dPWR24A4Xhdw1if4wm/5/CFwY5bCokeMy6dwm9vC0eBwrkw=
+X-Received: by 2002:aca:84e:: with SMTP id 75mr8360168oii.140.1568482129617;
+ Sat, 14 Sep 2019 10:28:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAMuHMdWz05ALM745tpw=AT2Q30nXvQV39JXTATYTEoTmH1TSRQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <1568276370-54181-1-git-send-email-jianxin.pan@amlogic.com>
+In-Reply-To: <1568276370-54181-1-git-send-email-jianxin.pan@amlogic.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 14 Sep 2019 19:28:38 +0200
+Message-ID: <CAFBinCAcZLLtG2pYQ76wE5BjeA1fnARzb0o7aWFBNpQabLBjDw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/4] arm64: Add basic support for Amlogic A1 SoC Family
+To:     Jianxin Pan <jianxin.pan@amlogic.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Carlo Caione <carlo@caione.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Xingyu Chen <xingyu.chen@amlogic.com>,
+        Victor Wan <victor.wan@amlogic.com>,
+        Qiufang Dai <qiufang.dai@amlogic.com>,
+        Tao Zeng <tao.zeng@amlogic.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/14/19 6:33 PM, Geert Uytterhoeven wrote:
-> Hi Marek,
+Hi Jianxin,
 
-Hi,
+On Thu, Sep 12, 2019 at 10:20 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
+>
+> A1 is an application processor designed for smart audio and IoT applications,
+> with Dual core ARM Cortex-A35 CPU. Unlike the previous GXL and G12 series,
+> there is no Cortex-M3 AO CPU in it.
+it will be interesting to see which devices will use this SoC
 
-> On Sat, Sep 14, 2019 at 6:06 PM Marek Vasut wrote:
->> On 9/9/19 1:18 PM, Geert Uytterhoeven wrote:
->>> On Sat, Sep 7, 2019 at 6:16 PM Marek Vasut wrote:
->>>> Add dma-ranges property into /soc node to describe the DMA capabilities
->>>> of the bus. This is currently needed to translate PCI DMA ranges, which
->>>> are limited to 32bit addresses.
->>>
->>>> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
->>>> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
->>>> @@ -330,6 +330,7 @@
->>>>                 #address-cells = <2>;
->>>>                 #size-cells = <2>;
->>>>                 ranges;
->>>> +               dma-ranges = <0 0x40000000 0 0x40000000 0 0xc0000000>;
->>>
->>> Shouldn't the length be 0x80000000 (for all SoCs)?
->>
->> Or should that match the amount of DRAM below 32bit boundary ?
-> 
-> Which is 0x80000000, according to the memory area section for the
-> various R-Car Gen3 SoCs.
-
-What if you have a system with 1 GiB of DRAM ?
-
->>> Or should we allow DMA to internal System RAM, too?
->>
->> I think we should include SRAM, yes.
-> 
-> So that needs a separate range.
-
-Let's see how the discussion pans out about the placement of the
-dma-ranges in the first place.
-
--- 
-Best regards,
-Marek Vasut
+[...]
+> Jianxin Pan (4):
+>   soc: amlogic: meson-gx-socinfo: Add A1 and A113L IDs
+>   dt-bindings: arm: amlogic: add A1 bindings
+>   dt-bindings: arm: amlogic: add Amlogic AD401 bindings
+>   arm64: dts: add support for A1 based Amlogic AD401
+for the whole series:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
