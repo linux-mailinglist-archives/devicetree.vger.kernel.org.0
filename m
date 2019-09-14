@@ -2,162 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DE82B295F
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 04:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD7CEB2964
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 04:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730570AbfINCaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 22:30:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36306 "EHLO mail.kernel.org"
+        id S2389705AbfINCmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 22:42:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40908 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725747AbfINCaO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Sep 2019 22:30:14 -0400
+        id S2389553AbfINCmi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 13 Sep 2019 22:42:38 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 19FD720717;
-        Sat, 14 Sep 2019 02:30:09 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C425520866;
+        Sat, 14 Sep 2019 02:42:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568428213;
-        bh=SmCg3dZf3LJ6WJN5//nawR5IgYMlBzdTkJhmOH6UDe0=;
+        s=default; t=1568428958;
+        bh=u+OoaYDVu8n91ZtMX/DLeBe/J9Gl3SnEOSQ8P8tZZFA=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1Xhco409vITvYR9NuYdOO+zjmi3muTEfUi9ctzCj55lTpeK7zpJ3ZtME23rrIS34Z
-         gPi7JunWRp5q1mfc85VM25m8eZyarwNIn7RjKresSf375POU6ISQWEjvcC138ezy/q
-         CXDAuUNnfkmt/SK5R4O52p5SEW0k92/6q270cgKQ=
-Date:   Sat, 14 Sep 2019 10:30:06 +0800
+        b=VhNxGps99qmf6pdOYjQ66fbo80M4G/RFFUXTN5iSJPpLbDaIkYI0w5cHn508OS5ch
+         DXf/H7BM3JS+G++fycDqeoBbdVsJoPCqqToyZI69vsv5TtxOLmz4UI+CwT+Z1icPGT
+         71+fh86z0dfpNdMtRopip3sqBgGZA+74ummv1BUg=
+Date:   Sat, 14 Sep 2019 10:42:32 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        "stefan @ agner . ch" <stefan@agner.ch>,
-        "devicetree @ vger . kernel . org" <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v5 00/13] Common patches from downstream development
-Message-ID: <20190914023004.GA3425@dragon>
-References: <20190827131806.6816-1-philippe.schenker@toradex.com>
+To:     Yuantian Tang <andy.tang@nxp.com>
+Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: ls1028a: fix a compatible issue
+Message-ID: <20190914024231.GB3425@dragon>
+References: <20190829073439.13069-1-andy.tang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190827131806.6816-1-philippe.schenker@toradex.com>
+In-Reply-To: <20190829073439.13069-1-andy.tang@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 27, 2019 at 01:18:16PM +0000, Philippe Schenker wrote:
-> 
-> This patchset holds some common changes that were never upstreamed.
-> With latest downstream kernel upgrade, I took the aproach to select
-> mainline devicetrees and atomically add missing stuff for downstream.
-> 
-> These patches I send here are separated out with changes that also
-> have a benefit for mainline.
-> 
-> --------------------- Update version 4 and later -----------------------
-> Patches that got pulled in an earlier patchset version got dropped in
-> this patchset.
-> ------------------------------------------------------------------------
-> 
-> Philippe
-> 
-> Changes in v5:
-> - changed legacy gpio-key,wakeup to wakeup-source
-> - Add note in commit message about disabled status
-> - Added Olek's reviewed-by
-> - change group name
-> - Add pinmux to iomuxc
-> - Adjusted commit message
-> - Switched to consistent naming: pinctrl_xxx: xxxgrp
-> - Added Olek's Reviewed-by
-> - Added Olek's Reviewed-by
-> - Added Olek's Reviewed-by
-> - Added Olek's Reviewd-by
-> - Added Olek's Reviewed-by
-> - Add Olek's Reviewed-by
-> - Added note to commit message about disabled status
-> - Add Olek's Reviewed-by
-> 
-> Changes in v4:
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Add Marcel Ziswiler's Ack
-> - Move can nodes to module deviceteree include imx6ull-colibri.dtsi
-> - Add Marcel Ziswiler's Ack
-> 
-> Changes in v3:
-> - Add new commit message from Stefan's proposal on ML
-> - Fix commit message
-> - Fix commit title to "...imx6-apalis:..."
-> 
-> Changes in v2:
-> - Deleted touchrevolution downstream stuff
-> - Use generic node name
-> - Better comment
-> - Changed commit title to '...imx6qdl-apalis:...'
-> - Deleted touchrevolution downstream stuff
-> - Use generic node name
-> - Put a better comment in there
-> - Commit title
-> - Removed f0710a
-> that is downstream only
-> - Changed to generic node name
-> - Better comment
-> 
-> Max Krummenacher (2):
->   ARM: dts: imx6ull-colibri: reduce v_batt current in power off
->   ARM: dts: imx6ull: improve can templates
-> 
-> Philippe Schenker (9):
->   ARM: dts: imx7-colibri: Add touch controllers
->   ARM: dts: imx6qdl-colibri: Add missing pin declaration in iomuxc
->   ARM: dts: imx6qdl-apalis: Add sleep state to can interfaces
->   ARM: dts: imx6-apalis: Add touchscreens used on Toradex eval boards
->   ARM: dts: imx6-colibri: Add missing pinmuxing to Toradex eval board
->   ARM: dts: imx6ull-colibri: Add sleep mode to fec
->   ARM: dts: imx6ull-colibri: Add watchdog
->   ARM: dts: imx6ull-colibri: Add general wakeup key used on Colibri
->   ARM: dts: imx6ull-colibri: Add touchscreen used with Eval Board
+On Thu, Aug 29, 2019 at 03:34:39PM +0800, Yuantian Tang wrote:
+> The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
+> So correct it.
 
-Applied all, but except this one which uses base64
-Content-Transfer-Encoding.
+Can elaborate the fix a little bit, saying what's the issue exactly 
+with using that incorrect compatible?
+
+> 
+> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+
+Do we need a fix tag?
 
 Shawn
 
+> ---
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Stefan Agner (2):
->   ARM: dts: imx7-colibri: add GPIO wakeup key
->   ARM: dts: imx7-colibri: fix 1.8V/UHS support
-> 
->  arch/arm/boot/dts/imx6dl-colibri-eval-v3.dts  | 39 +++++++++++
->  arch/arm/boot/dts/imx6q-apalis-eval.dts       | 13 ++++
->  arch/arm/boot/dts/imx6q-apalis-ixora-v1.1.dts | 13 ++++
->  arch/arm/boot/dts/imx6q-apalis-ixora.dts      | 13 ++++
->  arch/arm/boot/dts/imx6qdl-apalis.dtsi         | 27 ++++++--
->  arch/arm/boot/dts/imx6qdl-colibri.dtsi        | 17 +++++
->  .../arm/boot/dts/imx6ull-colibri-eval-v3.dtsi | 38 +++++++++++
->  .../arm/boot/dts/imx6ull-colibri-nonwifi.dtsi |  2 +-
->  arch/arm/boot/dts/imx6ull-colibri-wifi.dtsi   |  2 +-
->  arch/arm/boot/dts/imx6ull-colibri.dtsi        | 64 +++++++++++++++++--
->  arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi   | 38 +++++++++++
->  arch/arm/boot/dts/imx7-colibri.dtsi           | 30 ++++++++-
->  12 files changed, 280 insertions(+), 16 deletions(-)
-> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> index 5e14e5a19744..f5da9e8b0d9d 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> @@ -107,7 +107,7 @@
+>  	status = "okay";
+>  
+>  	i2c-mux@77 {
+> -		compatible = "nxp,pca9847";
+> +		compatible = "nxp,pca9547";
+>  		reg = <0x77>;
+>  		#address-cells = <1>;
+>  		#size-cells = <0>;
 > -- 
-> 2.23.0
+> 2.17.1
 > 
