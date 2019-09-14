@@ -2,229 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1C8DB2ACE
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 11:20:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 765ADB2AED
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 12:11:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727695AbfINJUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Sep 2019 05:20:49 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.164]:14384 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727551AbfINJUt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 05:20:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568452842;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=4VDI1pj3pQDRgXox/SgYTetHaZq0Xwp2BgUeWSVVTAI=;
-        b=rhTPiUd5fat2JUokjzG/xUHZqx3icGaIKCtm+Fhgpyo2NqNsL5UhLp38tN7ctWMSPK
-        +WwYYyOaaZbo3zkQ4Rk9sGYP2tOFtY3YxOgu7vJkvEvaBe/2XtQ3WYy26Q6MzxjZsZRc
-        bqCKfRYt4OoOKnojzL//NOCNn/1o5OY/M1ojh0MemlnAcTwwBZsiepNaRg2Nz/CMnqyk
-        LbUvbyxbli2DOqSjj9/pMoJ4XCKqHnnoHHMuIbkaWlBXcnPZZh0yVKbHxsqC0p95xvJO
-        Uacy/bH4yYZv1VXMebmVwqmsGmwJaHJb7W77duNHAq57xXUVrYTJgzPTk62Yy82dFtWf
-        T6hA==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBj7wpz8NMGH/PhwDWtpw=="
-X-RZG-CLASS-ID: mo00
-Received: from imac.fritz.box
-        by smtp.strato.de (RZmta 44.27.0 DYNA|AUTH)
-        with ESMTPSA id u036f9v8E9KUKCS
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Sat, 14 Sep 2019 11:20:30 +0200 (CEST)
-Content-Type: text/plain; charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
-Subject: Re: [RFC v2 1/2] ARM: dts: omap3: Add cpu trips and cooling map for omap3 family
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <20190913153714.30980-1-aford173@gmail.com>
-Date:   Sat, 14 Sep 2019 11:20:29 +0200
-Cc:     Linux-OMAP <linux-omap@vger.kernel.org>,
-        Adam Ford <adam.ford@logicpd.com>, Nishanth Menon <nm@ti.com>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Grazvydas Ignotas <notasas@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <B710D701-6311-4344-BF4E-F39157BBF2BD@goldelico.com>
-References: <20190913153714.30980-1-aford173@gmail.com>
-To:     Adam Ford <aford173@gmail.com>
-X-Mailer: Apple Mail (2.3124)
+        id S1727481AbfINKLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Sep 2019 06:11:32 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:45711 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726313AbfINKLb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 06:11:31 -0400
+Received: by mail-oi1-f194.google.com with SMTP id o205so4660355oib.12;
+        Sat, 14 Sep 2019 03:11:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=w98abdyP0iDoOCCgOY4sBXFFg13pO1U0mLK+q84lIdc=;
+        b=FtLnoI9RJ0k/xMfpIdqYXAgC3ZCu/Bv6lepCGCKPHIotHEhV7ANIbzKyLj9KTlb4MK
+         X1ZJ21ih8/ao/VLEk8QsHTzXzTwQzaiOfBkLhGKncFIdjRI1wut81OSfISmL8HjVMEwj
+         ydJf+gn1WxUJPPCRmn3YGjRlXe4o9nDOG0OJkBPWGtwxT2HFENhKjuuW3H+Jt02s5xHC
+         OHOVrEv/AcceOSloky/P0vZUuXYMDSumrkUjY11v7SmR5VoZVlaqODehAH8vpUC4d3pS
+         N7mD2tCgZLS7ocCPOKNBNsd3nE3KDCsibT7oyZAThdTK6AAKI+FK6gUfj9VGTTmz9oY6
+         C7EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=w98abdyP0iDoOCCgOY4sBXFFg13pO1U0mLK+q84lIdc=;
+        b=pz452pXvIfUZmDdVAH/a/KCm42vv2CLOGCww1KxJIqh3QVz/S/5A25Ms6BhzRcZ548
+         YhUw8a2oawWtUbki2Xd6fcuiY0IdL0kroUxdsr3y7VLAev+W9/u9BTpG67FPKG7WTzpN
+         BdDAx1keElRrS9C7hW+R3sUDd+w5SjZNL1U3ZoKca/0IzQ+X8C2cMShg0rGninLkfEP+
+         DDUyJDZ4WO1czzJZ1wvJON/CkcrXFNHoXEqdEBqX0l8iYghKS+lCx7ZaqLqQP8ALxF+s
+         FaO4yIBxOvDJ7QE/O7HGIDw+Lb+RInic4rvt3oW/rONoVzM4mDQ2IDlo5B1hfS9wTrU0
+         tmGQ==
+X-Gm-Message-State: APjAAAVbs5+Defj08TuHhgNaBVHGigIy7r2YDRkZogT7epvPg0/+Pgo+
+        K9DchDR2I9MyAmtLTSRgU8iPE6idpFVyTg7jSs4=
+X-Google-Smtp-Source: APXvYqz/UGyDGZKzufN9AC6O6ku4BxK3yiwQM+DqG/Q/RgT/iOekCCPHgrrAb9plA3SLd/7Guh4tGdv9qiXyXoCZdps=
+X-Received: by 2002:aca:4e87:: with SMTP id c129mr7100340oib.7.1568455889105;
+ Sat, 14 Sep 2019 03:11:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190912130007.4469-1-bparrot@ti.com> <20190912130007.4469-4-bparrot@ti.com>
+In-Reply-To: <20190912130007.4469-4-bparrot@ti.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Sat, 14 Sep 2019 11:11:02 +0100
+Message-ID: <CA+V-a8vo2ddxdDEBefTErsTB43tPAFNy-94xhQN1Yhb64jr_Aw@mail.gmail.com>
+Subject: Re: [Patch 3/6] media: dt-bindings: ov2659: add powerdown-gpios
+ optional property
+To:     Benoit Parrot <bparrot@ti.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        linux-media <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Benoit,
 
-> Am 13.09.2019 um 17:37 schrieb Adam Ford <aford173@gmail.com>:
->=20
-> The OMAP3530, AM3517 and DM3730 all show thresholds of 90C and 105C
-> depending on commercial or industrial temperature ratings.  This
-> patch expands the thermal information to the limits of 90 and 105
-> for alert and critical.
->=20
-> For boards who never use industrial temperatures, these can be
-> changed on their respective device trees with something like:
->=20
-> &cpu_alert0 {
-> 	temperature =3D <85000>; /* millicelsius */
-> };
->=20
-> &cpu_crit {
-> 	temperature =3D <90000>; /* millicelsius */
-> };
->=20
-> Signed-off-by: Adam Ford <aford173@gmail.com>
+Thank you for the patch.
+
+On Thu, Sep 12, 2019 at 1:58 PM Benoit Parrot <bparrot@ti.com> wrote:
+>
+> Add powerdown-gpios to the list of optional properties for the OV2659
+> camera sensor.
+>
+> Signed-off-by: Benoit Parrot <bparrot@ti.com>
 > ---
-> V2:  Change the CPU reference to &cpu instead of &cpu0
->=20
-> diff --git a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi =
-b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-> index 235ecfd61e2d..dfbd0cb0b00b 100644
-> --- a/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-> +++ b/arch/arm/boot/dts/omap3-cpu-thermal.dtsi
-> @@ -17,4 +17,25 @@ cpu_thermal: cpu_thermal {
->=20
-> 			/* sensor       ID */
-> 	thermal-sensors =3D <&bandgap     0>;
+>  Documentation/devicetree/bindings/media/i2c/ov2659.txt | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ov2659.txt b/Documentation/devicetree/bindings/media/i2c/ov2659.txt
+> index cabc7d827dfb..f55204cce0cd 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ov2659.txt
+> +++ b/Documentation/devicetree/bindings/media/i2c/ov2659.txt
+> @@ -12,6 +12,10 @@ Required Properties:
+>  - clock-names: should be "xvclk".
+>  - link-frequencies: target pixel clock frequency.
+>
+> +Optional Properties:
+> +- powerdown-gpios: reference to the GPIO connected to the pwdn pin, if any.
+> +  Active is low.
 > +
-> +	cpu_trips: trips {
-> +		cpu_alert0: cpu_alert {
-> +			temperature =3D <90000>; /* millicelsius */
-> +			hysteresis =3D <2000>; /* millicelsius */
-> +			type =3D "passive";
-> +		};
-> +		cpu_crit: cpu_crit {
-> +			temperature =3D <105000>; /* millicelsius */
-> +			hysteresis =3D <2000>; /* millicelsius */
-> +			type =3D "critical";
-> +		};
-> +	};
-> +
-> +	cpu_cooling_maps: cooling-maps {
-> +		map0 {
-> +			trip =3D <&cpu_alert0>;
-> +			cooling-device =3D
-> +				<&cpu THERMAL_NO_LIMIT =
-THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> };
-> --=20
-> 2.17.1
->=20
+as per the datasheet this should be active high with  pull-down resistor.
 
-Here is my test log (GTA04A5 with DM3730CBP100).
-"high-load" script is driving the NEON to full power
-and would report calculation errors.
-
-There is no noise visible in the bandgap sensor data
-induced by power supply fluctuations (log shows system
-voltage while charging).
-
-root@letux:~# ./high-load -n2
-100% load stress test for 1 cores running ./neon_loop2
-Sat Sep 14 09:05:50 UTC 2019 65=C2=B0 4111mV 1000MHz
-Sat Sep 14 09:05:50 UTC 2019 67=C2=B0 4005mV 1000MHz
-Sat Sep 14 09:05:52 UTC 2019 68=C2=B0 4000mV 1000MHz
-Sat Sep 14 09:05:53 UTC 2019 68=C2=B0 4000mV 1000MHz
-Sat Sep 14 09:05:55 UTC 2019 72=C2=B0 3976mV 1000MHz
-Sat Sep 14 09:05:56 UTC 2019 72=C2=B0 4023mV 1000MHz
-Sat Sep 14 09:05:57 UTC 2019 72=C2=B0 3900mV 1000MHz
-Sat Sep 14 09:05:59 UTC 2019 73=C2=B0 4029mV 1000MHz
-Sat Sep 14 09:06:00 UTC 2019 73=C2=B0 3988mV 1000MHz
-Sat Sep 14 09:06:01 UTC 2019 73=C2=B0 4005mV 1000MHz
-Sat Sep 14 09:06:03 UTC 2019 73=C2=B0 4011mV 1000MHz
-Sat Sep 14 09:06:04 UTC 2019 73=C2=B0 4117mV 1000MHz
-Sat Sep 14 09:06:06 UTC 2019 73=C2=B0 4005mV 1000MHz
-Sat Sep 14 09:06:07 UTC 2019 75=C2=B0 3994mV 1000MHz
-Sat Sep 14 09:06:08 UTC 2019 75=C2=B0 3970mV 1000MHz
-Sat Sep 14 09:06:09 UTC 2019 75=C2=B0 4046mV 1000MHz
-Sat Sep 14 09:06:11 UTC 2019 75=C2=B0 4005mV 1000MHz
-Sat Sep 14 09:06:12 UTC 2019 75=C2=B0 4023mV 1000MHz
-Sat Sep 14 09:06:14 UTC 2019 75=C2=B0 3970mV 1000MHz
-Sat Sep 14 09:06:15 UTC 2019 75=C2=B0 4011mV 1000MHz
-Sat Sep 14 09:06:16 UTC 2019 77=C2=B0 4017mV 1000MHz
-Sat Sep 14 09:06:18 UTC 2019 77=C2=B0 3994mV 1000MHz
-Sat Sep 14 09:06:19 UTC 2019 77=C2=B0 3994mV 1000MHz
-Sat Sep 14 09:06:20 UTC 2019 77=C2=B0 3988mV 1000MHz
-Sat Sep 14 09:06:22 UTC 2019 77=C2=B0 4023mV 1000MHz
-Sat Sep 14 09:06:23 UTC 2019 77=C2=B0 4023mV 1000MHz
-Sat Sep 14 09:06:24 UTC 2019 78=C2=B0 4005mV 1000MHz
-Sat Sep 14 09:06:26 UTC 2019 78=C2=B0 4105mV 1000MHz
-Sat Sep 14 09:06:27 UTC 2019 78=C2=B0 4011mV 1000MHz
-Sat Sep 14 09:06:28 UTC 2019 78=C2=B0 3994mV 1000MHz
-Sat Sep 14 09:06:30 UTC 2019 78=C2=B0 4123mV 1000MHz
-...
-Sat Sep 14 09:09:57 UTC 2019 88=C2=B0 4082mV 1000MHz
-Sat Sep 14 09:09:59 UTC 2019 88=C2=B0 4164mV 1000MHz
-Sat Sep 14 09:10:00 UTC 2019 88=C2=B0 4058mV 1000MHz
-Sat Sep 14 09:10:01 UTC 2019 88=C2=B0 4058mV 1000MHz
-Sat Sep 14 09:10:03 UTC 2019 88=C2=B0 4082mV 1000MHz
-Sat Sep 14 09:10:04 UTC 2019 88=C2=B0 4058mV 1000MHz
-Sat Sep 14 09:10:06 UTC 2019 88=C2=B0 4146mV 1000MHz
-Sat Sep 14 09:10:07 UTC 2019 88=C2=B0 4041mV 1000MHz
-Sat Sep 14 09:10:08 UTC 2019 88=C2=B0 4035mV 1000MHz
-Sat Sep 14 09:10:10 UTC 2019 88=C2=B0 4052mV 1000MHz
-Sat Sep 14 09:10:11 UTC 2019 88=C2=B0 4087mV 1000MHz
-Sat Sep 14 09:10:12 UTC 2019 88=C2=B0 4152mV 1000MHz
-Sat Sep 14 09:10:14 UTC 2019 88=C2=B0 4070mV 1000MHz
-Sat Sep 14 09:10:15 UTC 2019 88=C2=B0 4064mV 1000MHz
-Sat Sep 14 09:10:17 UTC 2019 88=C2=B0 4170mV 1000MHz
-Sat Sep 14 09:10:18 UTC 2019 88=C2=B0 4058mV 1000MHz
-Sat Sep 14 09:10:19 UTC 2019 88=C2=B0 4187mV 1000MHz
-Sat Sep 14 09:10:21 UTC 2019 88=C2=B0 4093mV 1000MHz
-Sat Sep 14 09:10:22 UTC 2019 88=C2=B0 4087mV 1000MHz
-Sat Sep 14 09:10:23 UTC 2019 90=C2=B0 4070mV 1000MHz
-Sat Sep 14 09:10:25 UTC 2019 88=C2=B0 4123mV 800MHz
-Sat Sep 14 09:10:26 UTC 2019 88=C2=B0 4064mV 1000MHz
-Sat Sep 14 09:10:28 UTC 2019 90=C2=B0 4058mV 1000MHz
-Sat Sep 14 09:10:29 UTC 2019 88=C2=B0 4076mV 1000MHz
-Sat Sep 14 09:10:30 UTC 2019 88=C2=B0 4064mV 1000MHz
-Sat Sep 14 09:10:32 UTC 2019 88=C2=B0 4117mV 1000MHz
-Sat Sep 14 09:10:33 UTC 2019 88=C2=B0 4105mV 800MHz
-Sat Sep 14 09:10:34 UTC 2019 88=C2=B0 4070mV 1000MHz
-Sat Sep 14 09:10:36 UTC 2019 88=C2=B0 4076mV 1000MHz
-Sat Sep 14 09:10:37 UTC 2019 88=C2=B0 4087mV 1000MHz
-Sat Sep 14 09:10:39 UTC 2019 88=C2=B0 4017mV 1000MHz
-Sat Sep 14 09:10:40 UTC 2019 88=C2=B0 4093mV 1000MHz
-Sat Sep 14 09:10:41 UTC 2019 88=C2=B0 4058mV 800MHz
-Sat Sep 14 09:10:42 UTC 2019 88=C2=B0 4035mV 1000MHz
-Sat Sep 14 09:10:44 UTC 2019 90=C2=B0 4058mV 1000MHz
-Sat Sep 14 09:10:45 UTC 2019 88=C2=B0 4064mV 1000MHz
-Sat Sep 14 09:10:47 UTC 2019 88=C2=B0 4064mV 1000MHz
-Sat Sep 14 09:10:48 UTC 2019 88=C2=B0 4029mV 1000MHz
-Sat Sep 14 09:10:50 UTC 2019 90=C2=B0 4046mV 1000MHz
-^Ckill 4680
-root@letux:~# cpufreq-info=20
-cpufrequtils 008: cpufreq-info (C) Dominik Brodowski 2004-2009
-Report errors and bugs to cpufreq@vger.kernel.org, please.
-analyzing CPU 0:
-  driver: cpufreq-dt
-  CPUs which run at the same hardware frequency: 0
-  CPUs which need to have their frequency coordinated by software: 0
-  maximum transition latency: 300 us.
-  hardware limits: 300 MHz - 1000 MHz
-  available frequency steps: 300 MHz, 600 MHz, 800 MHz, 1000 MHz
-  available cpufreq governors: conservative, userspace, powersave, =
-ondemand, performance
-  current policy: frequency should be within 300 MHz and 1000 MHz.
-                  The governor "ondemand" may decide which speed to use
-                  within this range.
-  current CPU frequency is 600 MHz (asserted by call to hardware).
-  cpufreq stats: 300 MHz:22.81%, 600 MHz:2.50%, 800 MHz:2.10%, 1000 =
-MHz:72.59%  (1563)
-root@letux:~#=20
-
-So OPP is reduced if bandgap sensor reports >=3D 90=C2=B0C
-which almost immediately makes the temperature
-go down.
-
-No operational hickups were observed.
-
-Surface temperature of the PoP chip did rise to
-approx. 53=C2=B0C during this test.
-
-Tested-by: H. Nikolaus Schaller <hns@goldelico.com> # on GTA04A5 with =
-dm3730cbp100
-
+Cheers,
+--Prabhakar Lad
