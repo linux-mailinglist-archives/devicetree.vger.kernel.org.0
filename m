@@ -2,85 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62931B2C67
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 19:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18074B2C72
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 19:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726476AbfINR2u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Sep 2019 13:28:50 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:38575 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725943AbfINR2u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 13:28:50 -0400
-Received: by mail-oi1-f194.google.com with SMTP id 7so5206580oip.5;
-        Sat, 14 Sep 2019 10:28:50 -0700 (PDT)
+        id S1726628AbfINRk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Sep 2019 13:40:56 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:32884 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725943AbfINRkz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 13:40:55 -0400
+Received: by mail-oi1-f193.google.com with SMTP id e18so977020oii.0;
+        Sat, 14 Sep 2019 10:40:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=mA5mzxsxWnYShGZnGYHnIbq5CGiyFdSMEe2+j4i+v6M=;
-        b=MgUN1SvM7yJm/8hPixwOVkO4Z5JXQs1ePB8BdjNQ9TnYTyLE7jeREeQ2oxDSoLE/Sj
-         YtsTrQ59ePZpJyj/tDDvYwqDNgVLVPwpojBYibvc3+6YpzYvwo0OuMd6CGCc/0raWziV
-         ICiYwQMfHk+9W+a6B5nvz3fwsHFpfpkjHAyxXGlqcfM5vfifm+0p5D01zHucaR12Akcr
-         CDi3/DjNX3u3wekkM0L7ZtNzKRdjj0vphCE2RHFDyvSdbrZHKAuvVE5fAcZY4spJ3jYO
-         0hybFDEoenEbsm1/On+Kq2bAOwBY41fXRCBRUuI0on4CA3x1UurrDfCXRz7dPUKJpmxy
-         Ixmg==
+        bh=ScwrZFTGOc+kbhhZsRu5GL1IOvADxSoY4roa9r4rvrc=;
+        b=oR/DGMfb/9sZrS1uWjRRtNMdrY5WzzoMndCtZaKV+gw+KnCyNqnAKD24aJKKHJdhxu
+         i7amzSzK25ME7g67a28AVFajVTK1cxb+fmXDMU3GS565nM7NXjVzmCa0GD3MOJ6wO5Pp
+         sgODIbPNcyMnunPtbLm0F3kOFWFeMMfYJp/Jlt/maGebgXr3vcTwhEgPwASNRV+50Pjg
+         N620uvQjpgRfC54Yg71xZ7CQbDchDgFgsYw186toIk3YCFIMqHkiTH4G8cDjv1uhtv6k
+         6CgYOUzRHIF14PfBznVGZmQpHsEl3KPgCzFYkK98WoRPBqoSUhB8ZvFYFQK2WLEceNUq
+         m55g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=mA5mzxsxWnYShGZnGYHnIbq5CGiyFdSMEe2+j4i+v6M=;
-        b=PSvPZFMe2cNkisKXUyl6clH1coVnJke/XnlqRS6x4zYTF/Whf0KjXdu/g3cFg9FUKs
-         U5B1wg5aSkIL+/2tnlBglFcbvjPq3BgPOSKOvi+lJWY3iaY8ULUDNvrjLiLGckM8o1T2
-         8ybBA4VGL4Ed4a5y5FslatygAUS15CkocxSOcRquI+DXUqJlywBqwENqB1ZgYpbBsTXI
-         V1z0BXTvP0P2yZq+XOhNoEm/OPxwTI3lGc6KUZrSpOvn8lh1FiOBnsO4UvVovvRB/hf6
-         clRZl7mkbpsBdIcNnA//Bv9y7QN1gcfnedZrd0QyNh4NCp6Aep5x4/fJoaMe5AooPT0u
-         CbXQ==
-X-Gm-Message-State: APjAAAV6SdFZ+wVr9or7gPmNrfO4TJEVvUaKP1esnc6BbbuTGOVbkg9E
-        MagWBS6wJvli7FXEgCRYXR9sizGJ4Gzj6xBj8Qg=
-X-Google-Smtp-Source: APXvYqyVRQJX+2iGdouQY/84grVpTaJtdKUwyl2adY9/dPWR24A4Xhdw1if4wm/5/CFwY5bCokeMy6dwm9vC0eBwrkw=
-X-Received: by 2002:aca:84e:: with SMTP id 75mr8360168oii.140.1568482129617;
- Sat, 14 Sep 2019 10:28:49 -0700 (PDT)
+        bh=ScwrZFTGOc+kbhhZsRu5GL1IOvADxSoY4roa9r4rvrc=;
+        b=YpbNn5SYuRII7pb2GVHhMbl5jBkY/CH3zzMb32c/RXAzIv4Q47QR+2Rif3GUNdBoP1
+         MUKHdMknyz8/qQgE9Dk0ZIXelpqEDjoR2n4cNEz2IZLT612B5PRp73cp2jdelFWGolvU
+         RAffO0MjI5NsK8UNAzCrx9MEyUZGEZs1/GHWAZZVXxdwCA2z6ZohxS3aA1NzpD8E03nd
+         ujY91JMT8WR+EdHgB7E2FaKzfO0gCKSsmXFQmDqan/ckvCqg8wb8pTt7YiX9Ln7PvH/n
+         5F7vLVLi+o+5Ps3gs7h+0zRuPqKftFV3hQ2Bkzwg8AgQNolnXStOnL/OnBHRKmj4aJMB
+         tIyw==
+X-Gm-Message-State: APjAAAWDXpKySxZuloJsmJT3hJnxM4V6AUyn803H2q2O8FORr6pWVpxd
+        IkDc0JPfGxk34t45S0D5d1AwWsTR8xqbpJw4yHM=
+X-Google-Smtp-Source: APXvYqxzDSV60TGVXBUNUlUYl4UV7zv7qNNLwQJ0PfQSVLqrKQObbcGram3Yy+w0QN7EAUgIusf4gu4nw3EU9eIuIxE=
+X-Received: by 2002:aca:4d08:: with SMTP id a8mr8328954oib.39.1568482854580;
+ Sat, 14 Sep 2019 10:40:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <1568276370-54181-1-git-send-email-jianxin.pan@amlogic.com>
-In-Reply-To: <1568276370-54181-1-git-send-email-jianxin.pan@amlogic.com>
+References: <1567780354-59472-1-git-send-email-christianshewitt@gmail.com> <1567780354-59472-4-git-send-email-christianshewitt@gmail.com>
+In-Reply-To: <1567780354-59472-4-git-send-email-christianshewitt@gmail.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 14 Sep 2019 19:28:38 +0200
-Message-ID: <CAFBinCAcZLLtG2pYQ76wE5BjeA1fnARzb0o7aWFBNpQabLBjDw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/4] arm64: Add basic support for Amlogic A1 SoC Family
-To:     Jianxin Pan <jianxin.pan@amlogic.com>
-Cc:     Kevin Hilman <khilman@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Carlo Caione <carlo@caione.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
+Date:   Sat, 14 Sep 2019 19:40:42 +0200
+Message-ID: <CAFBinCANaKMHRuwaFwubZcDjZaGYcLcVuHjJsakR0uJkmZxRMw@mail.gmail.com>
+Subject: Re: [RESEND PATCH v3 3/3] arm64: dts: meson-g12b-ugoos-am6: add
+ initial device-tree
+To:     Christian Hewitt <christianshewitt@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Jian Hu <jian.hu@amlogic.com>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
-        Xingyu Chen <xingyu.chen@amlogic.com>,
-        Victor Wan <victor.wan@amlogic.com>,
-        Qiufang Dai <qiufang.dai@amlogic.com>,
-        Tao Zeng <tao.zeng@amlogic.com>
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Oleg Ivanov <balbes-150@yandex.ru>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianxin,
+Hi Christian,
 
-On Thu, Sep 12, 2019 at 10:20 AM Jianxin Pan <jianxin.pan@amlogic.com> wrote:
->
-> A1 is an application processor designed for smart audio and IoT applications,
-> with Dual core ARM Cortex-A35 CPU. Unlike the previous GXL and G12 series,
-> there is no Cortex-M3 AO CPU in it.
-it will be interesting to see which devices will use this SoC
+my nit-picks below
+
+On Fri, Sep 6, 2019 at 4:34 PM Christian Hewitt
+<christianshewitt@gmail.com> wrote:
+[...]
+> +       spdif_dit: audio-codec-1 {
+> +               #sound-dai-cells = <0>;
+> +               compatible = "linux,spdif-dit";
+> +               status = "okay";
+> +               sound-name-prefix = "DIT";
+> +       };
+please move it below sdio_pwrseq (or at least somewhere below the memory node)
 
 [...]
-> Jianxin Pan (4):
->   soc: amlogic: meson-gx-socinfo: Add A1 and A113L IDs
->   dt-bindings: arm: amlogic: add A1 bindings
->   dt-bindings: arm: amlogic: add Amlogic AD401 bindings
->   arm64: dts: add support for A1 based Amlogic AD401
-for the whole series:
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> +       vcc_3v3: regulator-vcc_3v3 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "VCC_3V3";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               vin-supply = <&vddao_3v3>;
+> +               regulator-always-on;
+> +               /* FIXME: actually controlled by VDDCPU_B_EN */
+can we add the enable GPIO here now that we know how to describe the
+VDDCPU_B regulator?
+
+[...]
+> +       usb1_pow: regulator-usb1_pow {
+for consistency with the regulators above: regulator-usb1-pow
+
+[...]
+> +       usb_pwr_en: regulator-usb_pwr_en {
+for consistency with the regulators above: regulator-usb-pwr-en
+
+[...]
+> +       vddao_1v8: regulator-vddao_1v8 {
+for consistency with the regulators above: regulator-vddao-1v8
+
+[...
+> +       vddao_3v3: regulator-vddao_3v3 {
+for consistency with the regulators above: regulator-vddao-3v3
+
+[...]
+> +&cpu0 {
+> +       cpu-supply = <&vddcpu_b>;
+> +       operating-points-v2 = <&cpu_opp_table_0>;
+> +       clocks = <&clkc CLKID_CPU_CLK>;
+> +       clock-latency = <50000>;
+> +};
+> +
+> +&cpu1 {
+> +       cpu-supply = <&vddcpu_b>;
+> +       operating-points-v2 = <&cpu_opp_table_0>;
+> +       clocks = <&clkc CLKID_CPU_CLK>;
+> +       clock-latency = <50000>;
+> +};
+> +
+> +&cpu100 {
+> +       cpu-supply = <&vddcpu_a>;
+> +       operating-points-v2 = <&cpub_opp_table_1>;
+> +       clocks = <&clkc CLKID_CPUB_CLK>;
+> +       clock-latency = <50000>;
+> +};
+> +
+> +&cpu101 {
+> +       cpu-supply = <&vddcpu_a>;
+> +       operating-points-v2 = <&cpub_opp_table_1>;
+> +       clocks = <&clkc CLKID_CPUB_CLK>;
+> +       clock-latency = <50000>;
+> +};
+> +
+> +&cpu102 {
+> +       cpu-supply = <&vddcpu_a>;
+> +       operating-points-v2 = <&cpub_opp_table_1>;
+> +       clocks = <&clkc CLKID_CPUB_CLK>;
+> +       clock-latency = <50000>;
+> +};
+> +
+> +&cpu103 {
+> +       cpu-supply = <&vddcpu_a>;
+> +       operating-points-v2 = <&cpub_opp_table_1>;
+> +       clocks = <&clkc CLKID_CPUB_CLK>;
+> +       clock-latency = <50000>;
+> +};
+(not limited to this patch: there's a lot of redundancy with the CPU
+nodes across the G12B .dts)
+
+[...]
+> +&sd_emmc_a {
+all nodes starting here should use alphabetical sorting
+
+
+Martin
