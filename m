@@ -2,67 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 678ECB2C83
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 19:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48DFCB2CA4
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 21:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731049AbfINR7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 14 Sep 2019 13:59:17 -0400
-Received: from muru.com ([72.249.23.125]:32854 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731038AbfINR7R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 14 Sep 2019 13:59:17 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 31E978105;
-        Sat, 14 Sep 2019 17:59:47 +0000 (UTC)
-Date:   Sat, 14 Sep 2019 10:59:13 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-crypto@vger.kernel.org, Aaro Koskinen <aaro.koskinen@iki.fi>,
-        Adam Ford <aford173@gmail.com>,
-        Pali =?utf-8?B?Um9ow6Fy?= <pali.rohar@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/6] Non-urgent fixes and improvments for omap3-rom-rng
-Message-ID: <20190914175913.GW52127@atomide.com>
-References: <20190913220922.29501-1-tony@atomide.com>
- <20190914130540.jvtxaame7pat7jph@earth.universe>
+        id S1728546AbfINTNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 14 Sep 2019 15:13:45 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:34129 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726426AbfINTNp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 14 Sep 2019 15:13:45 -0400
+Received: by mail-qt1-f196.google.com with SMTP id j1so25408500qth.1;
+        Sat, 14 Sep 2019 12:13:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IAgjPYgxJuywqHP8wcgTqQvaYuKAXpQd8Aaaa0T5GSM=;
+        b=FTociWALlazvY5q8JzHdwBEFo2ntDifG4bQVaLT5d23ziz7zTa0TAs8VDt4b73jl7J
+         3Cmyp50CfNSM+QbiqhQebH4tEnBo2zHSVHiwdtZ+6xPzBbbwpZ23uHi9Czat/j33KZLc
+         FGFsWdnpRZ0+4TrBz9oDiYH9gVOIktUo171lsF9Z8oMgIZgN4Dpmyz7LY3c92d6QRyXE
+         /Er6iXO/kB84lPCJok3sicDcfe2nthKGnJvJN9u5tdgvYB8q+E9KVTCbdWxUIlTlV2HR
+         5L665OPIJsyzODWGZkD6Z3HefFw4rdJidxo450oUcpaaa1u9DqaXEN1SPH5kX6eZGmqh
+         eA+g==
+X-Gm-Message-State: APjAAAUYdfsX8WffbxlRrai7H3bis3U4SapEnniNG25rd6qUtQFGdcN6
+        wQ6eV4vLjalqdwcODfs6vGbUcbjkjOJPN1DtymM=
+X-Google-Smtp-Source: APXvYqw7nKOIle6xbMusZICSNTO1mMvxG94oyioy5LP+FZetL8wQseG51/MDb9ooROfqPa+L+ao5QFEYMvit9qVM8rM=
+X-Received: by 2002:a0c:e74b:: with SMTP id g11mr30779948qvn.62.1568488424396;
+ Sat, 14 Sep 2019 12:13:44 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190914130540.jvtxaame7pat7jph@earth.universe>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <20190905192412.23116-1-lee.jones@linaro.org> <5d71ef95.1c69fb81.6d090.085d@mx.google.com>
+ <20190906061448.GJ26880@dell> <20190906065018.GA1019@kunai>
+ <20190906075600.GL26880@dell> <20190906102355.GA3146@kunai>
+ <20190906105445.GO26880@dell> <20190906183139.GB19123@kunai>
+ <CAF6AEGsHOaR1dRf8xGH5sRa38=S+Y3NvNiAJ9DpMkddWoLBw8g@mail.gmail.com>
+ <20190913142821.GD1022@kunai> <20190913161345.GB8466@tuxbook-pro>
+In-Reply-To: <20190913161345.GB8466@tuxbook-pro>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Sat, 14 Sep 2019 21:13:28 +0200
+Message-ID: <CAK8P3a2+Foj4gxxetFQ5y1jUjc+HZDT1B3Utj9y2fJQMq83NrQ@mail.gmail.com>
+Subject: Re: [RESEND v3 1/1] i2c: qcom-geni: Disable DMA processing on the
+ Lenovo Yoga C630
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Wolfram Sang <wsa@the-dreams.de>, Rob Clark <robdclark@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Andy Gross <agross@kernel.org>, alokc@codeaurora.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Sebastian Reichel <sre@kernel.org> [190914 13:06]:
-> Hi,
-> 
-> On Fri, Sep 13, 2019 at 03:09:16PM -0700, Tony Lindgren wrote:
-> > Here are fixes and improvments for omap3-rom-rng that's been broken for
-> > a while.
-> > 
-> > The first four patches get it working, and then the last two patches add
-> > support for runtime PM.
-> 
-> Nice cleanups, the series is
-> 
-> Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> 
-> Assuming you use clk_prepare_enable() in the runtime PM handler, I
-> suggest to add another patch and go all the way to managed resources:
-> devm_add_action() can be used for disabling runtime PM and
-> devm_hwrng_register() can be used to register the hwrng device.
+On Fri, Sep 13, 2019 at 6:13 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Fri 13 Sep 07:28 PDT 2019, Wolfram Sang wrote:
+>
+> > On Sat, Sep 07, 2019 at 10:56:34AM -0700, Rob Clark wrote:
+> > > On Sat, Sep 7, 2019 at 9:17 AM Wolfram Sang <wsa@the-dreams.de> wrote:
+> > > >
+> > > >
+> > > > > Does this mean you plan to have this merged for v5.4?
+> > > >
+> > > > Only if the machine DTS is expected to land in 5.4. But Stephen said it
+> > > > is not in liunx-next yet?
+> > > >
+> > >
+> > > It appears to be in arm-soc for-next:
+> > >
+> > > https://git.kernel.org/pub/scm/linux/kernel/git/arm/arm-soc.git/log/?h=for-next
+> >
+> > Still not in linux-next. Please ping me or resend this patch once it
+> > hits linux-next.
+> >
+>
+> It seems linux-next is now pulling from the soc.git, rather than
+> arm-soc.git, but Arnd is still pushing patches to arm-soc.git.
 
-Sure good idea. I'll post a patch for that when I post v2 of
-this set.
+I'm still pushing identical contents to both, but plan to remove the old
+tree after the merge window.
 
-Regards,
-
-Tony
-
-
+      Arnd
