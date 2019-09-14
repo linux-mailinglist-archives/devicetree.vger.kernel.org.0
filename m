@@ -2,76 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD7CEB2964
-	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 04:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28961B2969
+	for <lists+devicetree@lfdr.de>; Sat, 14 Sep 2019 04:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389705AbfINCmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 13 Sep 2019 22:42:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40908 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389553AbfINCmi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 13 Sep 2019 22:42:38 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C425520866;
-        Sat, 14 Sep 2019 02:42:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568428958;
-        bh=u+OoaYDVu8n91ZtMX/DLeBe/J9Gl3SnEOSQ8P8tZZFA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VhNxGps99qmf6pdOYjQ66fbo80M4G/RFFUXTN5iSJPpLbDaIkYI0w5cHn508OS5ch
-         DXf/H7BM3JS+G++fycDqeoBbdVsJoPCqqToyZI69vsv5TtxOLmz4UI+CwT+Z1icPGT
-         71+fh86z0dfpNdMtRopip3sqBgGZA+74ummv1BUg=
-Date:   Sat, 14 Sep 2019 10:42:32 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Yuantian Tang <andy.tang@nxp.com>
-Cc:     leoyang.li@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: ls1028a: fix a compatible issue
-Message-ID: <20190914024231.GB3425@dragon>
-References: <20190829073439.13069-1-andy.tang@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190829073439.13069-1-andy.tang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+        id S2389553AbfINCue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 13 Sep 2019 22:50:34 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:54711 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388221AbfINCud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 13 Sep 2019 22:50:33 -0400
+Received: by mail-wm1-f66.google.com with SMTP id p7so4520760wmp.4;
+        Fri, 13 Sep 2019 19:50:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=GS7w/y6KJAb3XTE0KF7ABnXR9mrrpjuRKRosNLWca4k=;
+        b=R6bdzcJT8EwKY5tWap4/olAlQ7hs1E4s+GBJLbiuDt4EwM8gP7LvCkx6jEPrtlhJye
+         DaakYeAmQT6pj9+gFqb596LidBMo+Ee6hnZEyYARU7XpnYjMco3qws+rJQ9W0DA4qgGR
+         08+eGs9wqW1Hl2JuQ9mA9tGvRc8ctkDkVGTFKcsokJ81rXbmqzy8xhlB14gzs0gzG9uv
+         jfly2I6yezhVPIUGOnBJhVPUEZXiixmz5Vga/aRnXsebEN+OSgXyIhebmjvH8QssVXlQ
+         y6e5DxPcZBirYV7sC1Azs3dvoKVCOEOlDsJDViV0SlFz7G0Uu0s7ulr8awdJ8Lu5kBPv
+         bWiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=GS7w/y6KJAb3XTE0KF7ABnXR9mrrpjuRKRosNLWca4k=;
+        b=Gg0a/3/63ro/+AXNiO8xKplzzvWQFab6GtejVnP/irNXCV4gRJSUUDuGx711jbltwj
+         V/OaHPhZGZlU/v1hk611BEzquf521YMxcbPCrAX7jVWcX8WVdbz+m0a/nQ9BCtKiE5p6
+         239W+jU2+Af9LLHIBbHhOtMHc33i/YcCxPitZ3lkbXkNqp382xlaC8kNTRjWloV+zhIJ
+         ff55uWkkCLcuZGj1cxpaUg3taaZeIWmJ6uIHhY0sY2sw0Uvjxyen2wingpse7uzzNE+E
+         1p4ufMT5rUgunhiebBxfxGTPXBDQwQq1Ws7SACEKVWAsjLI4Dgrl8tkO/dwX0+sQDriZ
+         kRXw==
+X-Gm-Message-State: APjAAAXYpG+aVqkeuUBCYW+S+B6B/nb+6FxwdY5YKlYoWlGWpiM/38AV
+        ByNgNcAz7btfJxMuYv9+F/4=
+X-Google-Smtp-Source: APXvYqwB05poL5fOL99ZeWfMh78cUbx0D7bxu+a2Q3PAAqYMlYAVR+BCMsAYJWeMmExJeouvuihnEA==
+X-Received: by 2002:a7b:c045:: with SMTP id u5mr5588396wmc.139.1568429431295;
+        Fri, 13 Sep 2019 19:50:31 -0700 (PDT)
+Received: from localhost.localdomain ([94.204.252.234])
+        by smtp.gmail.com with ESMTPSA id h26sm2345320wrc.13.2019.09.13.19.50.28
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 13 Sep 2019 19:50:30 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Frank Hartung <supervisedthinking@gmail.com>,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: Add capacity-dmips-mhz attributes to G12B
+Date:   Sat, 14 Sep 2019 06:49:40 +0400
+Message-Id: <1568429380-3231-1-git-send-email-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 29, 2019 at 03:34:39PM +0800, Yuantian Tang wrote:
-> The I2C multiplexer used on ls1028aqds is PCA9547, not PCA9847.
-> So correct it.
+From: Frank Hartung <supervisedthinking@gmail.com>
 
-Can elaborate the fix a little bit, saying what's the issue exactly 
-with using that incorrect compatible?
+From: Frank Hartung <supervisedthinking@gmail.com>
 
-> 
-> Signed-off-by: Yuantian Tang <andy.tang@nxp.com>
+Meson G12B SoCs (S922X and A311D) are a big-little design where not all CPUs
+are equal; the A53s cores are weaker than the A72s.
 
-Do we need a fix tag?
+Include capacity-dmips-mhz properties to tell the OS there is a difference
+in processing capacity. The dmips values are based on similar submissions for
+other A53/A72 SoCs: HiSilicon 3660 [1] and Rockchip RK3399 [2].
 
-Shawn
+This change is particularly beneficial for use-cases like retro gaming where
+emulators often run on a single core. The OS now chooses an A72 core instead
+of an A53 core.
 
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> index 5e14e5a19744..f5da9e8b0d9d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-> @@ -107,7 +107,7 @@
->  	status = "okay";
->  
->  	i2c-mux@77 {
-> -		compatible = "nxp,pca9847";
-> +		compatible = "nxp,pca9547";
->  		reg = <0x77>;
->  		#address-cells = <1>;
->  		#size-cells = <0>;
-> -- 
-> 2.17.1
-> 
+[1] https://lore.kernel.org/patchwork/patch/862742/
+[2] https://patchwork.kernel.org/patch/10836577/
+
+Signed-off-by: Frank Hartung <supervisedthinking@gmail.com>
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+index 5628ccd..7f78d88 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b.dtsi
+@@ -49,6 +49,7 @@
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x0>;
+ 			enable-method = "psci";
++			capacity-dmips-mhz = <592>;
+ 			next-level-cache = <&l2>;
+ 		};
+ 
+@@ -57,6 +58,7 @@
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x1>;
+ 			enable-method = "psci";
++			capacity-dmips-mhz = <592>;
+ 			next-level-cache = <&l2>;
+ 		};
+ 
+@@ -65,6 +67,7 @@
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x0 0x100>;
+ 			enable-method = "psci";
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&l2>;
+ 		};
+ 
+@@ -73,6 +76,7 @@
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x0 0x101>;
+ 			enable-method = "psci";
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&l2>;
+ 		};
+ 
+@@ -81,6 +85,7 @@
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x0 0x102>;
+ 			enable-method = "psci";
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&l2>;
+ 		};
+ 
+@@ -89,6 +94,7 @@
+ 			compatible = "arm,cortex-a73";
+ 			reg = <0x0 0x103>;
+ 			enable-method = "psci";
++			capacity-dmips-mhz = <1024>;
+ 			next-level-cache = <&l2>;
+ 		};
+ 
+-- 
+2.7.4
+
