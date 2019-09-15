@@ -2,136 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3FFDB3095
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 16:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2D5DB309E
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 17:08:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726364AbfIOO7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 10:59:01 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:38382 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726278AbfIOO7B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 10:59:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=T41zXqwFTZnFv5jJR7KFp66Sn49JT2O0ng3vIKC9TcM=; b=jrUraqf0BunV/bVTalwUfGsXl
-        kQN3xs2aAa4h3ASgd5vPy4H9TqN0u4LkJD7be6oTxYi7FHmBXvzxVNO8tuS7XegMnK458PkR57bCS
-        oKl26FkLNQTwUHL6UaNFWL9PNPQvmEIEzj7dQUvillQflEVPPzvebPUi7UjEG1WTW49laJEfjZ0oN
-        iDRmfmbNvvNPw65dblbxRAwApS3ln7KCJeF3PTKvwVgpqBZOg+ONJre5AZzY8Q1Nqyd/7HHefXAFl
-        zGkufuh+fR/7WgKO4mjErl31rw1c5GVJ9vza6nnm26tryeIc97eV+x1A9QZaEMPduVhakP79Ztcr0
-        Xl7MeFkbg==;
-Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:39856)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1i9VzI-0006t2-Fj; Sun, 15 Sep 2019 15:58:56 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1i9VzA-0007rp-Gw; Sun, 15 Sep 2019 15:58:44 +0100
-Date:   Sun, 15 Sep 2019 15:58:44 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Baruch Siach <baruch@tkos.co.il>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        tinywrkb <tinywrkb@gmail.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
- max-speed
-Message-ID: <20190915145844.GE25745@shell.armlinux.org.uk>
-References: <20190910155507.491230-1-tinywrkb@gmail.com>
- <20190910185033.GD9761@lunn.ch>
- <87muf6oyvr.fsf@tarshish>
- <20190915135652.GC3427@lunn.ch>
- <20190915140639.GC25745@shell.armlinux.org.uk>
- <20190915141552.GD25745@shell.armlinux.org.uk>
- <20190915144252.GA17261@lunn.ch>
+        id S1728557AbfIOPIv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Sep 2019 11:08:51 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:39797 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726246AbfIOPIv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 11:08:51 -0400
+Received: by mail-ot1-f66.google.com with SMTP id n7so33472682otk.6;
+        Sun, 15 Sep 2019 08:08:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=C6EkUSBGxn1R7oOH+qnMGCqOv8DTwH83uwm3gCMUPek=;
+        b=QYQT3Yfoiek3WOafMrUzEHG9mCwIXDfsSsvNHrmuA7pRI5NxstrJtjyARcui1TKN3U
+         3CkBFFXJt3QEgsZK8jpUC7jpwSusZCNYjbVw4gV/Av3mJuB6k7o+n2b1mETBOu2ahkF5
+         hOnDDMwyp5fTabqleQ56+lpvr8JyWwnCTraAb7sRbtkbw6M36qfZTQde3/QbzQbMXDov
+         kIRUS0qsuFzLJ+9TNdC8AakgoMLMijAmNmXLkwnQzaB+PVC+8eZYD79gdr2MQ1f0VqQv
+         sgHUo4fcO63fFkubiOPeYe844nmU+fs3ZNVJlaXNmrqT11hOhccymXyeQhrCLYb8WQxG
+         JEEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=C6EkUSBGxn1R7oOH+qnMGCqOv8DTwH83uwm3gCMUPek=;
+        b=QESUxS+DCfk4c4eZ0GSZQUD/u6L0UIwYnuB7wPxffOetfcj6vKWCv54HoBfAlB5UKr
+         THvem/DP4A6QSlF2XC/Clb6G7Y9T72V4Hug2OMquheVIbcWFOWATulYLbgXuBkyqLpj9
+         LKkVPIhRBM0ZFsDWkecuY5JSXNciK33oAcXnAjaoPEiITPnzdnM3zuNZENU4WmIzH+ah
+         LUcRipvRK212R+HyvXu0MTFOqKzPm9jAhlbYNgdPn/bmRtGLPAerKUADOb7Z/B8+us+6
+         R+1hfNMM6TBQIEYdP4dnJZpmqGiL+QxsblHCXVlGIT0ahQ66X4/yzLxPvuHM8pkuBxIH
+         5bzQ==
+X-Gm-Message-State: APjAAAUCQ6jrVcl/QzvAegddocVBKPGcA1E8EbuZD2jpNM454Ia6C+ik
+        52xdJdf6z820EQolM6xmnpKHvg+PsDY=
+X-Google-Smtp-Source: APXvYqxNK/G4wvb1N6PsJVqrzZkYqUcIz0TOc2yzecmrjXP879iKpc385XO5a5BBPTYV/DRkMMbWgg==
+X-Received: by 2002:a9d:5e07:: with SMTP id d7mr5434316oti.88.1568560130295;
+        Sun, 15 Sep 2019 08:08:50 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id y137sm3073723oie.53.2019.09.15.08.08.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 15 Sep 2019 08:08:49 -0700 (PDT)
+Subject: Re: [PATCH v4 1/2] ethtool: implement Energy Detect Powerdown support
+ via phy-tunable
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        hkallweit1@gmail.com, andrew@lunn.ch, mkubecek@suse.cz
+References: <20190912162812.402-1-alexandru.ardelean@analog.com>
+ <20190912162812.402-2-alexandru.ardelean@analog.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Openpgp: preference=signencrypt
+Message-ID: <3d8855e9-4ca5-d17e-0a66-6c2e0f20fedb@gmail.com>
+Date:   Sun, 15 Sep 2019 08:08:48 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190915144252.GA17261@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190912162812.402-2-alexandru.ardelean@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 15, 2019 at 04:42:52PM +0200, Andrew Lunn wrote:
-> > > OF: fdt: Machine model: SolidRun HummingBoard Solo/DualLite
-> > > ...
-> > > # ethtool eth0
-> > > Settings for eth0:
-> > >         Supported ports: [ TP MII ]
-> > >         Supported link modes:   10baseT/Half 10baseT/Full
-> > >                                 100baseT/Half 100baseT/Full
-> > >                                 1000baseT/Full
-> > >         Supported pause frame use: Symmetric
-> > >         Supports auto-negotiation: Yes
-> > >         Supported FEC modes: Not reported
-> > >         Advertised link modes:  10baseT/Half 10baseT/Full
-> > >                                 100baseT/Half 100baseT/Full
-> > >                                 1000baseT/Full
-> > >         Advertised pause frame use: Symmetric
-> > >         Advertised auto-negotiation: Yes
-> > >         Advertised FEC modes: Not reported
-> > >         Link partner advertised link modes:  10baseT/Half 10baseT/Full
-> > >                                              100baseT/Half 100baseT/Full
-> > >                                              1000baseT/Full
-> > >         Link partner advertised pause frame use: Symmetric
-> > >         Link partner advertised auto-negotiation: Yes
-> > >         Link partner advertised FEC modes: Not reported
-> > >         Speed: 1000Mb/s
-> > >         Duplex: Full
-> > >         Port: MII
-> > >         PHYAD: 0
-> > >         Transceiver: internal
-> > >         Auto-negotiation: on
-> > >         Supports Wake-on: d
-> > >         Wake-on: d
-> > >         Link detected: yes
+
+
+On 9/12/2019 9:28 AM, Alexandru Ardelean wrote:
+> The `phy_tunable_id` has been named `ETHTOOL_PHY_EDPD` since it looks like
+> this feature is common across other PHYs (like EEE), and defining
+> `ETHTOOL_PHY_ENERGY_DETECT_POWER_DOWN` seems too long.
 > 
-> > Note that the FEC does *not* support 1000baseT/Half.
+> The way EDPD works, is that the RX block is put to a lower power mode,
+> except for link-pulse detection circuits. The TX block is also put to low
+> power mode, but the PHY wakes-up periodically to send link pulses, to avoid
+> lock-ups in case the other side is also in EDPD mode.
 > 
-> Hi Russell
+> Currently, there are 2 PHY drivers that look like they could use this new
+> PHY tunable feature: the `adin` && `micrel` PHYs.
 > 
-> fec_main.c has code to mask it out. And it is not listed in the modes
-> you have above. So as you say, this all looks to be working.
+> The ADIN's datasheet mentions that TX pulses are at intervals of 1 second
+> default each, and they can be disabled. For the Micrel KSZ9031 PHY, the
+> datasheet does not mention whether they can be disabled, but mentions that
+> they can modified.
 > 
-> I'm wondering if there is an older variant of the hardware with
-> 100Mbps magnetics, and the boot loader is setting something in the
-> PHY? It could be we are now stomping over that?
+> The way this change is structured, is similar to the PHY tunable downshift
+> control:
+> * a `ETHTOOL_PHY_EDPD_DFLT_TX_MSECS` value is exposed to cover a default
+>   TX interval; some PHYs could specify a certain value that makes sense
+> * `ETHTOOL_PHY_EDPD_NO_TX` would disable TX when EDPD is enabled
+> * `ETHTOOL_PHY_EDPD_DISABLE` will disable EDPD
+> 
+> As noted by the `ETHTOOL_PHY_EDPD_DFLT_TX_MSECS` the interval unit is 1
+> millisecond, which should cover a reasonable range of intervals:
+>  - from 1 millisecond, which does not sound like much of a power-saver
+>  - to ~65 seconds which is quite a lot to wait for a link to come up when
+>    plugging a cable
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
 
-Not according to Rabeeh, the SolidRun CTO:
-
-< rabeeh> all i.MX6 based machines from SolidRun are 1Gbps phys
-< rabeeh> i thought that we fixed that information, documentation wise;
-          but seems not
-
-Even the Carrier1 board that pre-dates Hummingboards had the AR8035
-with 1G magnetics.
-
-The schematics I have for the Cubox-i state that the RJ45 jack (which
-contains the magnetics) is to be "Gigabit".
-
-There was a 10/100M option for the microsom, which is selected by where
-a resistor pack is fitted, having the effect of configuring the AR8035
-differently.  I seem to recall the 10/100M option in the early days was
-to use a different Atheros PHY.
-
-However, I'm not aware of 10/100M option making it into production, and
-Rabeeh's comment (who was involved in the design) confirms that.
-
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+Florian
