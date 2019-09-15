@@ -2,35 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D0861B3062
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 15:57:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74B2BB306F
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 16:06:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730034AbfION5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 09:57:00 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46870 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726024AbfION5A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Sep 2019 09:57:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=F/ACcRyL2qqmFkbHAyxSdbuql7B7in2MrinBX2qvBxs=; b=m8lcSqN39XKDCaoSXtT/ep6hvQ
-        zG+zDQd2sib/sfKOdyzMm1VPlL+733lMcjy9gerQHKb0uW8svgvATD7m4WdKKPNGC/UmQ/KPx/26V
-        WJH8tDuuKbHJ+M7rNzH1kFFE04eyRPtWk5NhF3Pm8KofqeI2BERnFRiXTc36nNlzcuNQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1i9V1I-0004By-Ad; Sun, 15 Sep 2019 15:56:52 +0200
-Date:   Sun, 15 Sep 2019 15:56:52 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     tinywrkb <tinywrkb@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
+        id S1731501AbfIOOGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Sep 2019 10:06:51 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:37778 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726146AbfIOOGv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 10:06:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=hGS+lhOgPJnFEP8Eku3cUNc1o/oZGlqgKaWZvxkmu84=; b=sPvvu7SIPnh3Yvh47PPfBt4ep
+        I9cluTBvreRGOl8vpeeBEBtIykj/C+v/msy8MQ8vi2RFGWX2xOAfjbySlhs9GYRqvOZ7Ju4+n14GQ
+        Ux4fTd6oRBDDaCYOZq9MzPzdREYgpEa4Kwx1DIs7qZnC3nHKGIeRRY9q/fq/Dd0eo1RBxrxG0TtLA
+        NMrI7F4EUPj0bmApOlN4ZBW2HLMaVstwgd9jwwqI+331F3MqX65vtAtRi94qjuFT4BdlMLumOdWxU
+        9kg2GxdKd3K+Cl8cYdroQnrpUEIJJqCpLFo7g7M1Sx9peQ6x1sFS2VrXsvGNq7We6JQW5cFitNHck
+        yp0lJtg1w==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43976)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1i9VAp-0006fi-DA; Sun, 15 Sep 2019 15:06:43 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1i9VAl-0007oU-PN; Sun, 15 Sep 2019 15:06:39 +0100
+Date:   Sun, 15 Sep 2019 15:06:39 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Baruch Siach <baruch@tkos.co.il>, tinywrkb <tinywrkb@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
         open list <linux-kernel@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         NXP Linux Team <linux-imx@nxp.com>,
@@ -39,37 +47,81 @@ Cc:     tinywrkb <tinywrkb@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
         linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
  max-speed
-Message-ID: <20190915135652.GC3427@lunn.ch>
+Message-ID: <20190915140639.GC25745@shell.armlinux.org.uk>
 References: <20190910155507.491230-1-tinywrkb@gmail.com>
  <20190910185033.GD9761@lunn.ch>
  <87muf6oyvr.fsf@tarshish>
+ <20190915135652.GC3427@lunn.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <87muf6oyvr.fsf@tarshish>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20190915135652.GC3427@lunn.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Tinywrkb confirmed to me in private communication that revert of
-> 5502b218e001 fixes Ethernet for him on effected system.
+On Sun, Sep 15, 2019 at 03:56:52PM +0200, Andrew Lunn wrote:
+> > Tinywrkb confirmed to me in private communication that revert of
+> > 5502b218e001 fixes Ethernet for him on effected system.
+> > 
+> > He also referred me to an old Cubox-i spec that lists 10/100 Ethernet
+> > only for i.MX6 Solo/DualLite variants of Cubox-i. It turns out that
+> > there was a plan to use a different 10/100 PHY for Solo/DualLite
+> > SOMs. This plan never materialized. All SolidRun i.MX6 SOMs use the same
+> > AR8035 PHY that supports 1Gb.
+> > 
+> > Commit 5502b218e001 might be triggering a hardware issue on the affected
+> > Cubox-i. I could not reproduce the issue here with Cubox-i and a Dual
+> > SOM variant running v5.3-rc8. I have no Solo/DualLite variant handy at
+> > the moment.
 > 
-> He also referred me to an old Cubox-i spec that lists 10/100 Ethernet
-> only for i.MX6 Solo/DualLite variants of Cubox-i. It turns out that
-> there was a plan to use a different 10/100 PHY for Solo/DualLite
-> SOMs. This plan never materialized. All SolidRun i.MX6 SOMs use the same
-> AR8035 PHY that supports 1Gb.
-> 
-> Commit 5502b218e001 might be triggering a hardware issue on the affected
-> Cubox-i. I could not reproduce the issue here with Cubox-i and a Dual
-> SOM variant running v5.3-rc8. I have no Solo/DualLite variant handy at
-> the moment.
+> Could somebody with an affected device show us the output of ethtool
+> with and without 5502b218e001. Does one show 1G has been negotiated,
+> and the other 100Mbps? If this is true, how does it get 100Mbps
+> without that patch? We are missing a piece of the puzzle.
 
-Could somebody with an affected device show us the output of ethtool
-with and without 5502b218e001. Does one show 1G has been negotiated,
-and the other 100Mbps? If this is true, how does it get 100Mbps
-without that patch? We are missing a piece of the puzzle.
+Hang on.  5502b218e001 is in 5.2 already - it was merged as part of the
+v5.1 merge window.  That means my imx6 Solo Hummingboard is already
+running it with the AR8035 PHY, and it works fine.
 
-	Andrew
+# dmesg
+...
+OF: fdt: Machine model: SolidRun HummingBoard Solo/DualLite
+...
+# ethtool eth0
+Settings for eth0:
+        Supported ports: [ TP MII ]
+        Supported link modes:   10baseT/Half 10baseT/Full
+                                100baseT/Half 100baseT/Full
+                                1000baseT/Full
+        Supported pause frame use: Symmetric
+        Supports auto-negotiation: Yes
+        Supported FEC modes: Not reported
+        Advertised link modes:  10baseT/Half 10baseT/Full
+                                100baseT/Half 100baseT/Full
+                                1000baseT/Full
+        Advertised pause frame use: Symmetric
+        Advertised auto-negotiation: Yes
+        Advertised FEC modes: Not reported
+        Link partner advertised link modes:  10baseT/Half 10baseT/Full
+                                             100baseT/Half 100baseT/Full
+                                             1000baseT/Full
+        Link partner advertised pause frame use: Symmetric
+        Link partner advertised auto-negotiation: Yes
+        Link partner advertised FEC modes: Not reported
+        Speed: 1000Mb/s
+        Duplex: Full
+        Port: MII
+        PHYAD: 0
+        Transceiver: internal
+        Auto-negotiation: on
+        Supports Wake-on: d
+        Wake-on: d
+        Link detected: yes
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
