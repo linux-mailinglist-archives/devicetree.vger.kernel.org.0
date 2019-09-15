@@ -2,115 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3290CB3013
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 15:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0861B3062
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 15:57:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727846AbfIONME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 09:12:04 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:44582 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725845AbfIONME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 09:12:04 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w6so6191266oie.11;
-        Sun, 15 Sep 2019 06:12:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=i3u29SeGHvdZitmrch7/6LZvlwvJCCsWv82WXuHbckE=;
-        b=PGfrNvbA5HZvBqABIGmTNKjDyxyiLsCItt9Lg7S3cyeXEVIS1jzrPfH/+9zwbKnnlQ
-         YfgOupfIrFuSbeoL5i9X9Vaqx+rDK5M4Uj950BoQxoGSqwUnoeqy1qs9Ha4EYc7cEiu2
-         U7CBH1yIAuRishpLIshLtNFpzk5ZR8wvO90XiaXLFhN6GQxCLK59UWmFIInNSY5Reut7
-         RCAjvsV60SJd98JqjCwPkK0JSVS2IQT/a3P5YYVCSB+JpAJjsahZ5qpS9TZQtH46tbC6
-         WFPVfUH1guQXyhUZ62reyH2VwKT5W7r8+uBvObHseFPhVxZDZV+3rtceYGQw0vvjExWI
-         63hQ==
-X-Gm-Message-State: APjAAAVSfNnQBpUoWVz5CbiuwuyXcPu96UkQao3Io/8d4amaDXJwTRFM
-        0nwLTfwpMp3tvKWMkyJS15s2tn3NvY8DgPelwRE=
-X-Google-Smtp-Source: APXvYqyH1tZgw0dURv72ynHTguuYbsXxif+YFejEfvL6ItL1Na4kjn0bIQwVKP60oJEqBx9b2ouCjP1Qjj9HFVDdr84=
-X-Received: by 2002:aca:cdc7:: with SMTP id d190mr10016570oig.148.1568553122964;
- Sun, 15 Sep 2019 06:12:02 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190907161634.27378-1-marek.vasut@gmail.com> <CAMuHMdXVhtE5Jmpu8QYv+P8pGtegr4MGhNGRwy4Y1wRQYmL2_Q@mail.gmail.com>
- <f1b11b42-99ee-0484-550e-8758ec6fa559@gmail.com> <CAMuHMdWz05ALM745tpw=AT2Q30nXvQV39JXTATYTEoTmH1TSRQ@mail.gmail.com>
- <ad3f986d-90bb-a47b-aa24-c326fb369202@gmail.com>
-In-Reply-To: <ad3f986d-90bb-a47b-aa24-c326fb369202@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Sun, 15 Sep 2019 15:11:51 +0200
-Message-ID: <CAMuHMdWohfCtb8sK73ehfSssu-q7mObqxV8Tvn0V4qHt8gOsvg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
-To:     Marek Vasut <marek.vasut@gmail.com>
-Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Wolfram Sang <wsa@the-dreams.de>,
+        id S1730034AbfION5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Sep 2019 09:57:00 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:46870 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726024AbfION5A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Sep 2019 09:57:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=F/ACcRyL2qqmFkbHAyxSdbuql7B7in2MrinBX2qvBxs=; b=m8lcSqN39XKDCaoSXtT/ep6hvQ
+        zG+zDQd2sib/sfKOdyzMm1VPlL+733lMcjy9gerQHKb0uW8svgvATD7m4WdKKPNGC/UmQ/KPx/26V
+        WJH8tDuuKbHJ+M7rNzH1kFFE04eyRPtWk5NhF3Pm8KofqeI2BERnFRiXTc36nNlzcuNQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1i9V1I-0004By-Ad; Sun, 15 Sep 2019 15:56:52 +0200
+Date:   Sun, 15 Sep 2019 15:56:52 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Baruch Siach <baruch@tkos.co.il>
+Cc:     tinywrkb <tinywrkb@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
+ max-speed
+Message-ID: <20190915135652.GC3427@lunn.ch>
+References: <20190910155507.491230-1-tinywrkb@gmail.com>
+ <20190910185033.GD9761@lunn.ch>
+ <87muf6oyvr.fsf@tarshish>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87muf6oyvr.fsf@tarshish>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+> Tinywrkb confirmed to me in private communication that revert of
+> 5502b218e001 fixes Ethernet for him on effected system.
+> 
+> He also referred me to an old Cubox-i spec that lists 10/100 Ethernet
+> only for i.MX6 Solo/DualLite variants of Cubox-i. It turns out that
+> there was a plan to use a different 10/100 PHY for Solo/DualLite
+> SOMs. This plan never materialized. All SolidRun i.MX6 SOMs use the same
+> AR8035 PHY that supports 1Gb.
+> 
+> Commit 5502b218e001 might be triggering a hardware issue on the affected
+> Cubox-i. I could not reproduce the issue here with Cubox-i and a Dual
+> SOM variant running v5.3-rc8. I have no Solo/DualLite variant handy at
+> the moment.
 
-On Sat, Sep 14, 2019 at 6:45 PM Marek Vasut <marek.vasut@gmail.com> wrote:
-> On 9/14/19 6:33 PM, Geert Uytterhoeven wrote:
-> > On Sat, Sep 14, 2019 at 6:06 PM Marek Vasut wrote:
-> >> On 9/9/19 1:18 PM, Geert Uytterhoeven wrote:
-> >>> On Sat, Sep 7, 2019 at 6:16 PM Marek Vasut wrote:
-> >>>> Add dma-ranges property into /soc node to describe the DMA capabilities
-> >>>> of the bus. This is currently needed to translate PCI DMA ranges, which
-> >>>> are limited to 32bit addresses.
-> >>>
-> >>>> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
-> >>>> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
-> >>>> @@ -330,6 +330,7 @@
-> >>>>                 #address-cells = <2>;
-> >>>>                 #size-cells = <2>;
-> >>>>                 ranges;
-> >>>> +               dma-ranges = <0 0x40000000 0 0x40000000 0 0xc0000000>;
-> >>>
-> >>> Shouldn't the length be 0x80000000 (for all SoCs)?
-> >>
-> >> Or should that match the amount of DRAM below 32bit boundary ?
-> >
-> > Which is 0x80000000, according to the memory area section for the
-> > various R-Car Gen3 SoCs.
->
-> What if you have a system with 1 GiB of DRAM ?
+Could somebody with an affected device show us the output of ethtool
+with and without 5502b218e001. Does one show 1G has been negotiated,
+and the other 100Mbps? If this is true, how does it get 100Mbps
+without that patch? We are missing a piece of the puzzle.
 
-Should be covered by 0x80000000, no?
-Linux will never ask a PCI device to do bus mastering to an area not
-backed by populated memory, will it?
-
-However, you ask a good question: does this property specify the limits
-of the bridge, or the limits of the bridge combined with the actual
-populated or available memory?
-
-In the former case, offset and length should be "0 0x0" resp. "1 0x00000000".
-In the latter case, it depends on the actual board (SiP is board, too)
-configuration.
-Which means U-Boot may need to update this ("AND" mask the value we
-specify here?), based on what it writes into the memory node?
-
-> >>> Or should we allow DMA to internal System RAM, too?
-> >>
-> >> I think we should include SRAM, yes.
-> >
-> > So that needs a separate range.
->
-> Let's see how the discussion pans out about the placement of the
-> dma-ranges in the first place.
-
-Yep.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+	Andrew
