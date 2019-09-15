@@ -2,118 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A157B2FDD
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 14:29:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3290CB3013
+	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 15:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730453AbfIOM3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 08:29:51 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:36718 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730448AbfIOM3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 08:29:51 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=9p2NJ7BXbD4NZDyoxVh3Cv5cepB8PS65/rD5Ce0NUf8=; b=KrX8c7JGi47gemy02Slr+/J2I
-        Gp+EfycmlV+P7bdYQMrEWbtqcLDuOzSbj1JGG17tjfAGeax2abW9RwMmsOagJKPiLZoCzWCS0yLO/
-        skHja8Lhgeaz1ZO7mxNfWnlmX5ZdLaoZkB1e0BnNk0wYZgeIHdz5QRmH4/qONolqj2QjjGKwfQJ+H
-        pxUsvux0tRGxGMJ1d2fMSqU3COP6SYBs6TpSs1ClB2d565FL9lt/wcy9rafohvBMje86YF//3iaH/
-        2+2d1MZzquM+XAyGnAdLPs/a2Zqwiuo6jbQrv5qspFU/G3wAkzzG/YbvT0cxL61VoL+eFf+xNuOB1
-        53tmQ+uKw==;
-Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:39810)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1i9Tes-0006Iq-Jp; Sun, 15 Sep 2019 13:29:38 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1i9Tej-0007lP-9q; Sun, 15 Sep 2019 13:29:29 +0100
-Date:   Sun, 15 Sep 2019 13:29:29 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     Baruch Siach <baruch@tkos.co.il>
-Cc:     Andrew Lunn <andrew@lunn.ch>, tinywrkb <tinywrkb@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
- max-speed
-Message-ID: <20190915122929.GB25745@shell.armlinux.org.uk>
-References: <20190910155507.491230-1-tinywrkb@gmail.com>
- <20190910185033.GD9761@lunn.ch>
- <87muf6oyvr.fsf@tarshish>
+        id S1727846AbfIONME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Sep 2019 09:12:04 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:44582 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725845AbfIONME (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 09:12:04 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w6so6191266oie.11;
+        Sun, 15 Sep 2019 06:12:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=i3u29SeGHvdZitmrch7/6LZvlwvJCCsWv82WXuHbckE=;
+        b=PGfrNvbA5HZvBqABIGmTNKjDyxyiLsCItt9Lg7S3cyeXEVIS1jzrPfH/+9zwbKnnlQ
+         YfgOupfIrFuSbeoL5i9X9Vaqx+rDK5M4Uj950BoQxoGSqwUnoeqy1qs9Ha4EYc7cEiu2
+         U7CBH1yIAuRishpLIshLtNFpzk5ZR8wvO90XiaXLFhN6GQxCLK59UWmFIInNSY5Reut7
+         RCAjvsV60SJd98JqjCwPkK0JSVS2IQT/a3P5YYVCSB+JpAJjsahZ5qpS9TZQtH46tbC6
+         WFPVfUH1guQXyhUZ62reyH2VwKT5W7r8+uBvObHseFPhVxZDZV+3rtceYGQw0vvjExWI
+         63hQ==
+X-Gm-Message-State: APjAAAVSfNnQBpUoWVz5CbiuwuyXcPu96UkQao3Io/8d4amaDXJwTRFM
+        0nwLTfwpMp3tvKWMkyJS15s2tn3NvY8DgPelwRE=
+X-Google-Smtp-Source: APXvYqyH1tZgw0dURv72ynHTguuYbsXxif+YFejEfvL6ItL1Na4kjn0bIQwVKP60oJEqBx9b2ouCjP1Qjj9HFVDdr84=
+X-Received: by 2002:aca:cdc7:: with SMTP id d190mr10016570oig.148.1568553122964;
+ Sun, 15 Sep 2019 06:12:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87muf6oyvr.fsf@tarshish>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190907161634.27378-1-marek.vasut@gmail.com> <CAMuHMdXVhtE5Jmpu8QYv+P8pGtegr4MGhNGRwy4Y1wRQYmL2_Q@mail.gmail.com>
+ <f1b11b42-99ee-0484-550e-8758ec6fa559@gmail.com> <CAMuHMdWz05ALM745tpw=AT2Q30nXvQV39JXTATYTEoTmH1TSRQ@mail.gmail.com>
+ <ad3f986d-90bb-a47b-aa24-c326fb369202@gmail.com>
+In-Reply-To: <ad3f986d-90bb-a47b-aa24-c326fb369202@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sun, 15 Sep 2019 15:11:51 +0200
+Message-ID: <CAMuHMdWohfCtb8sK73ehfSssu-q7mObqxV8Tvn0V4qHt8gOsvg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: Add /soc dma-ranges
+To:     Marek Vasut <marek.vasut@gmail.com>
+Cc:     Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 15, 2019 at 09:30:00AM +0300, Baruch Siach wrote:
-> Hi Andrew,
-> 
-> On Tue, Sep 10 2019, Andrew Lunn wrote:
-> > On Tue, Sep 10, 2019 at 06:55:07PM +0300, tinywrkb wrote:
-> >> Cubox-i Solo/DualLite carrier board has 100Mb/s magnetics while the
-> >> Atheros AR8035 PHY on the MicroSoM v1.3 CPU module is a 1GbE PHY device.
+Hi Marek,
+
+On Sat, Sep 14, 2019 at 6:45 PM Marek Vasut <marek.vasut@gmail.com> wrote:
+> On 9/14/19 6:33 PM, Geert Uytterhoeven wrote:
+> > On Sat, Sep 14, 2019 at 6:06 PM Marek Vasut wrote:
+> >> On 9/9/19 1:18 PM, Geert Uytterhoeven wrote:
+> >>> On Sat, Sep 7, 2019 at 6:16 PM Marek Vasut wrote:
+> >>>> Add dma-ranges property into /soc node to describe the DMA capabilities
+> >>>> of the bus. This is currently needed to translate PCI DMA ranges, which
+> >>>> are limited to 32bit addresses.
+> >>>
+> >>>> --- a/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> >>>> +++ b/arch/arm64/boot/dts/renesas/r8a7795.dtsi
+> >>>> @@ -330,6 +330,7 @@
+> >>>>                 #address-cells = <2>;
+> >>>>                 #size-cells = <2>;
+> >>>>                 ranges;
+> >>>> +               dma-ranges = <0 0x40000000 0 0x40000000 0 0xc0000000>;
+> >>>
+> >>> Shouldn't the length be 0x80000000 (for all SoCs)?
 > >>
-> >> Since commit 5502b218e001 ("net: phy: use phy_resolve_aneg_linkmode in
-> >> genphy_read_status") ethernet is broken on Cubox-i Solo/DualLite devices.
+> >> Or should that match the amount of DRAM below 32bit boundary ?
 > >
-> > Hi Tinywrkb
+> > Which is 0x80000000, according to the memory area section for the
+> > various R-Car Gen3 SoCs.
+>
+> What if you have a system with 1 GiB of DRAM ?
+
+Should be covered by 0x80000000, no?
+Linux will never ask a PCI device to do bus mastering to an area not
+backed by populated memory, will it?
+
+However, you ask a good question: does this property specify the limits
+of the bridge, or the limits of the bridge combined with the actual
+populated or available memory?
+
+In the former case, offset and length should be "0 0x0" resp. "1 0x00000000".
+In the latter case, it depends on the actual board (SiP is board, too)
+configuration.
+Which means U-Boot may need to update this ("AND" mask the value we
+specify here?), based on what it writes into the memory node?
+
+> >>> Or should we allow DMA to internal System RAM, too?
+> >>
+> >> I think we should include SRAM, yes.
 > >
-> > You emailed lots of people, but missed the PHY maintainers :-(
-> >
-> > Are you sure this is the patch which broken it? Did you do a git
-> > bisect.
-> 
-> Tinywrkb confirmed to me in private communication that revert of
-> 5502b218e001 fixes Ethernet for him on effected system.
-> 
-> He also referred me to an old Cubox-i spec that lists 10/100 Ethernet
-> only for i.MX6 Solo/DualLite variants of Cubox-i. It turns out that
-> there was a plan to use a different 10/100 PHY for Solo/DualLite
-> SOMs. This plan never materialized. All SolidRun i.MX6 SOMs use the same
-> AR8035 PHY that supports 1Gb.
-> 
-> Commit 5502b218e001 might be triggering a hardware issue on the affected
-> Cubox-i. I could not reproduce the issue here with Cubox-i and a Dual
-> SOM variant running v5.3-rc8. I have no Solo/DualLite variant handy at
-> the moment.
+> > So that needs a separate range.
+>
+> Let's see how the discussion pans out about the placement of the
+> dma-ranges in the first place.
 
-With 5.3 due out today, I'll be updating my systems to that, which will
-include quite a few variants of the Hummingboard.
+Yep.
 
-It looks like one of my Solo Hummingboards (running a fully up to date
-Fedora 28) has encountered a problem, so needs a reboot...
+Gr{oetje,eeting}s,
 
-systemd-journald[436]: Failed to retrieve credentials for PID 17906, ignoring: Cannot allocate memory
-systemd-journald[436]: Failed to open runtime journal: Cannot allocate memory
-
-# ps aux
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-...
-root       436  0.0  5.2 3128140 26392 ?       Ss   Aug03   1:20 /usr/lib/systemd/systemd-journald
-# uptime
- 13:28:41 up 42 days, 19:13,  1 user,  load average: 0.00, 0.03, 0.00
-
-Looks like systemd-journald has a rather bad memory leak...
-
-#include <std-complaints-about-systemd>
+                        Geert
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
