@@ -2,53 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D053DB3C4D
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 16:14:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3543AB3C98
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 16:33:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728059AbfIPOO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 10:14:59 -0400
-Received: from shards.monkeyblade.net ([23.128.96.9]:47624 "EHLO
-        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727989AbfIPOO6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 10:14:58 -0400
-Received: from localhost (80-167-222-154-cable.dk.customer.tdc.net [80.167.222.154])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 1D6D8153CA71C;
-        Mon, 16 Sep 2019 07:14:56 -0700 (PDT)
-Date:   Mon, 16 Sep 2019 16:14:55 +0200 (CEST)
-Message-Id: <20190916.161455.1015414751228915954.davem@davemloft.net>
-To:     james.byrne@origamienergy.com
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: net: Correct the documentation of KSZ9021
- skew values
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <0102016d2b84f180-bd396cb9-16cf-4472-b718-7a4d2d8d8017-000000@eu-west-1.amazonses.com>
-References: <0102016d2b84f180-bd396cb9-16cf-4472-b718-7a4d2d8d8017-000000@eu-west-1.amazonses.com>
-X-Mailer: Mew version 6.8 on Emacs 26.2
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 16 Sep 2019 07:14:58 -0700 (PDT)
+        id S2388689AbfIPOdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 10:33:14 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:41783 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727934AbfIPOdO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 10:33:14 -0400
+Received: from kresse.hi.pengutronix.de ([2001:67c:670:100:1d::2a])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1i9s3n-0003ys-1f; Mon, 16 Sep 2019 16:32:59 +0200
+Message-ID: <caf166f465465c61b70ad69d88f0634f1ca2ae64.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] dt-bindings: etnaviv: Add #cooling-cells
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Carlo Caione <ccaione@baylibre.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        etnaviv@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Date:   Mon, 16 Sep 2019 16:32:55 +0200
+In-Reply-To: <6e9d761598b2361532146f43161fd05f3eee6545.1568255903.git.agx@sigxcpu.org>
+References: <cover.1568255903.git.agx@sigxcpu.org>
+         <6e9d761598b2361532146f43161fd05f3eee6545.1568255903.git.agx@sigxcpu.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::2a
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: James Byrne <james.byrne@origamienergy.com>
-Date: Fri, 13 Sep 2019 16:46:35 +0000
-
-> The documentation of skew values for the KSZ9021 PHY was misleading
-> because the driver implementation followed the erroneous information
-> given in the original KSZ9021 datasheet before it was corrected in
-> revision 1.2 (Feb 2014). It is probably too late to correct the driver
-> now because of the many existing device trees, so instead this just
-> corrects the documentation to explain that what you actually get is not
-> what you might think when looking at the device tree.
+On Mi, 2019-09-11 at 19:40 -0700, Guido Günther wrote:
+> Add #cooling-cells for when the gpu acts as a cooling device.
 > 
-> Signed-off-by: James Byrne <james.byrne@origamienergy.com>
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
 
-What tree should this go into?
+Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
+
+> ---
+>  .../devicetree/bindings/display/etnaviv/etnaviv-drm.txt          | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt b/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
+> index 8def11b16a24..640592e8ab2e 100644
+> --- a/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
+> +++ b/Documentation/devicetree/bindings/display/etnaviv/etnaviv-drm.txt
+> @@ -21,6 +21,7 @@ Required properties:
+>  Optional properties:
+>  - power-domains: a power domain consumer specifier according to
+>    Documentation/devicetree/bindings/power/power_domain.txt
+> +- #cooling-cells: : If used as a cooling device, must be <2>
+>  
+>  example:
+>  
 
