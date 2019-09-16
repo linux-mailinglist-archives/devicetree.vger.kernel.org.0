@@ -2,129 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07091B4060
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 20:32:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A815FB40B8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 21:01:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729331AbfIPScy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 14:32:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45426 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728985AbfIPScx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Sep 2019 14:32:53 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E360720830;
-        Mon, 16 Sep 2019 18:32:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568658773;
-        bh=tGbgQXC0MLIMph9i8iPtfJHaRUqvcrZYiWDIfiq9yPg=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=Evmir6osXsKDL0nl+tpO2zp5kvCCW0B6ipAsu9ekOEBw1bL4nZHHVh2107KHj/IO+
-         N4dxjoCCW+6/sFLDp4Uk68KgYI5pLSnQcAkF6IUlAxT2bszMtvIwtHgFdUGdNOmTdk
-         DN6En7/q67Kg+LQJFc4E4rDMkhZ2PhbGr/zk+kOQ=
-Content-Type: text/plain; charset="utf-8"
+        id S1732939AbfIPTBG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 15:01:06 -0400
+Received: from mail-lj1-f173.google.com ([209.85.208.173]:33873 "EHLO
+        mail-lj1-f173.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725912AbfIPTBG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 15:01:06 -0400
+Received: by mail-lj1-f173.google.com with SMTP id h2so1018977ljk.1;
+        Mon, 16 Sep 2019 12:01:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6CqMFQfPPzik6PBJ5QbPlwlrkMAtMbIFqzUMAsYQhzE=;
+        b=QRTDgkj/POnK8eFxO3R6Py0sADJBTC9U6j+eab0KHaDz3Gapsqc0sFSNF17m723GFc
+         F6SVrFxvXaL2ryKbe4Jh3kVCISQxmllpiTxhQ7Q8gempqIOa3M5UNpTaxs6c2sJ8Q/6e
+         wZW2Lsf3mQOfDU7y70Fdn+84QCPsiW7y7X4U3TrbVS5eE5lJpb+L0uQglF+UvLcTOGn2
+         oAQTIlcsJBE2QIYmDLq7IV220wwFZAl+jPbwKUSgdcD9CxPTPCHLPYe1hYG3CObEwTCu
+         KL7/GWV4K6CieMbXNyRmnYJmz8San+auJF/mVXMswrchL+PrBKAH+4qGqkEDo6K2F3Di
+         xjMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6CqMFQfPPzik6PBJ5QbPlwlrkMAtMbIFqzUMAsYQhzE=;
+        b=AGf/xi1fB37euohL14KpAUBcsJ0JMeIn8MircT3X77obd2R1GMSIL4bK19dvR+giH2
+         m9t0JIAN52jHyWjsRyAkiuwyvQ/FMpwriKQGnAkhMaBs2bISJA90YT6MvxS1+AvEWaTj
+         yEdpwtb2ng+Om5m9IW5i3yABqo9WqldFb3refAhTXfBNXyIlc++G4QUCY/TRTtDNY+J2
+         cKAjAgd9eNyACj1mBivT4F7cIBBcZIvHRYsn6kGN8WaYiol0oNVPViBVj2WaZ4KxBTvQ
+         VTaXvnEqotaMhGMDQb+pBNljv+ZmTCRPzn0o0LK/+NDYdOopHAxB1M/gshCfEWB5MSzU
+         5bFg==
+X-Gm-Message-State: APjAAAXVzWt99wuSQN5BbechhtDJs9d5DL7cc7VeYiFVcdi3FiwDSznm
+        3vkLXyKCvY+ORcMp+jpxsHamaIT4U4A=
+X-Google-Smtp-Source: APXvYqxO/r0hIUkSsLV5ZzgWYqmxDxOQ8w0ApXGJNx1us6E0OUNEpi3F9kZXQsToyP+Doq4/6jnf5w==
+X-Received: by 2002:a2e:958c:: with SMTP id w12mr590771ljh.98.1568660462791;
+        Mon, 16 Sep 2019 12:01:02 -0700 (PDT)
+Received: from arch.lan (89-70-31-203.dynamic.chello.pl. [89.70.31.203])
+        by smtp.gmail.com with ESMTPSA id z9sm8414053ljn.78.2019.09.16.12.01.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2019 12:01:01 -0700 (PDT)
+From:   Tomasz Duszynski <tduszyns@gmail.com>
+To:     linux-iio@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        jic23@kernel.org, robh+dt@kernel.org,
+        Tomasz Duszynski <tduszyns@gmail.com>
+Subject: [PATCH 0/2] iio: light: bh1750: convert bindings to yaml
+Date:   Mon, 16 Sep 2019 21:00:22 +0200
+Message-Id: <20190916190024.9955-1-tduszyns@gmail.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <DB7PR04MB519563FED2146F6D1327668AE2AB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-References: <20190815101613.22872-1-wen.he_1@nxp.com> <20190815101613.22872-2-wen.he_1@nxp.com> <20190816174624.115FC205F4@mail.kernel.org> <DB7PR04MB51952DF4E1EE7FF10A947347E2A80@DB7PR04MB5195.eurprd04.prod.outlook.com> <20190819182944.4AEAB22CF5@mail.kernel.org> <DB7PR04MB519563FED2146F6D1327668AE2AB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
-Cc:     Leo Li <leoyang.li@nxp.com>,
-        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
-To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: RE: [EXT] Re: [v2 2/3] clk: ls1028a: Add clock driver for Display output interface
-User-Agent: alot/0.8.1
-Date:   Mon, 16 Sep 2019 11:32:52 -0700
-Message-Id: <20190916183252.E360720830@mail.kernel.org>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Wen He (2019-08-19 19:24:25)
->=20
-> >=20
-> > > > > +
-> > > > > +static int plldig_clk_probe(struct platform_device *pdev) {
-> > > > > +       struct clk_plldig *data;
-> > > > > +       struct resource *mem;
-> > > > > +       const char *parent_name;
-> > > > > +       struct clk_init_data init =3D {};
-> > > > > +       struct device *dev =3D &pdev->dev;
-> > > > > +       int ret;
-> > > > > +
-> > > > > +       data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> > > > > +       if (!data)
-> > > > > +               return -ENOMEM;
-> > > > > +
-> > > > > +       mem =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> > > > > +       data->regs =3D devm_ioremap_resource(dev, mem);
-> > > > > +       if (IS_ERR(data->regs))
-> > > > > +               return PTR_ERR(data->regs);
-> > > > > +
-> > > > > +       init.name =3D dev->of_node->name;
-> > > > > +       init.ops =3D &plldig_clk_ops;
-> > > > > +       parent_name =3D of_clk_get_parent_name(dev->of_node, 0);
-> > > > > +       init.parent_names =3D &parent_name;
-> > > >
-> > > > Can you use the new way of specifying clk parents with the
-> > > > parent_data member of clk_init?
-> > >
-> > > Of course, but I don't understand why need recommend to use this memb=
-er?
-> > > Is that the member parent_names will be discard in future?
-> > >
-> > > Here are definition of the clk-provider.h
-> > > /* Only one of the following three should be assigned */
-> > > const char              * const *parent_names;
-> > > const struct clk_parent_data    *parent_data;
-> > > const struct clk_hw             **parent_hws;
-> > >
-> > > For PLLDIG, it only has one parent.
-> >=20
-> > Yes. Can you use clk_parent_data array and specify a DT index of 0 and =
-some
-> > name that would go into "clock-names" in the .fw_name member?
->=20
-> OK, but .fw_name used for to registering clk, current it registered with =
-fixed clk in dts .
-> I think should be specify a DT index of 0 and specify the unique name for=
- .name member.
->=20
-> I found have two ways to specify:
-> 1. declare clk_parent_data variable parent_data, and initialization with =
-clk_init_data, like this:
-> =20
-> parent_data.name =3D of_clk_get_parent_name(dev->of_node, 0);=20
+Convert ROHM BH1750 ambient light sensor bindings to yaml
+format and while at it add myself as a driver maintainer.
 
-This isn't preferred because of_clk_get_parent_name() is DT specific and
-relies on the parent clk being registered before calling the function so
-that we can figure out the globally unique name.
+Tomasz Duszynski (2):
+  dt-bindings: iio: light: bh1750: convert bindings to yaml
+  MAINTAINERS: add entry for ROHM BH1750 driver
 
-> parent_data.index =3D 0;
->=20
-> init.name =3D dev->of_node->name;
-> init.ops =3D &plldig_clk_ops;
-> init.parent_data =3D &parent_data;
-> init.num_parents =3D 1;
->=20
-> 2. Or use a static const array for here? And put the unique name and inde=
-x like this.
-> static const struct clk_parent_data parent_data[] =3D {
->         {.name =3D "phy_27m", .index =3D 0},
-> };
->=20
-> After then initialization with macro CLK_HW_INIT_PARENTS_DATA?
+ .../devicetree/bindings/iio/light/bh1750.txt  | 18 --------
+ .../devicetree/bindings/iio/light/bh1750.yaml | 43 +++++++++++++++++++
+ MAINTAINERS                                   |  6 +++
+ 3 files changed, 49 insertions(+), 18 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/light/bh1750.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/light/bh1750.yaml
 
-Yes use option #2. But, don't even specify a .name if this is new code
-because .name is a fallback mechanism that is supposed to be used if
-you're migrating code from an older DT to a newer DT. I don't think
-that's happening here.
+--
+2.23.0
 
