@@ -2,108 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DFD2B3F40
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 18:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CD3EB3FAA
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 19:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390208AbfIPQuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 12:50:25 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44384 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728113AbfIPQuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 12:50:25 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8GGoD3u102130;
-        Mon, 16 Sep 2019 11:50:13 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568652613;
-        bh=2b+w9YQph1a1K5kZUWKsHKuOd7pfACGRDbksa+TkdRA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Vcs6M85/gkrahpmIhP8LXX5RRffBwcmVWBNDm/YyoHWEFwOxImOtxAX3sJVVTcFtX
-         MirJnkKSzhTO7feL4Yc3NN917rGaDcSco+It5/pMKFX+NDOzu0xoPCaoxVHXXa5X0V
-         jltRnOf/nMpsl9kWvHBIZRB29tnqUXyhkxAndAj8=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8GGoDwl039666
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 16 Sep 2019 11:50:13 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 16
- Sep 2019 11:50:11 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 16 Sep 2019 11:50:13 -0500
-Received: from [172.24.145.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x8GGo9Cv058421;
-        Mon, 16 Sep 2019 11:50:10 -0500
-Subject: Re: [PATCH v1 0/2] spi: cadence-qspi: Add cadence-qspi support for
- Intel LGM SoC
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>, <broonie@kernel.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <cheol.yong.kim@intel.com>,
-        <qi-ming.wu@intel.com>
-References: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <c4555df5-89d5-e8a6-bed4-887c23ac4f0f@ti.com>
-Date:   Mon, 16 Sep 2019 22:20:47 +0530
+        id S1726857AbfIPRki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 13:40:38 -0400
+Received: from a6-195.smtp-out.eu-west-1.amazonses.com ([54.240.6.195]:60580
+        "EHLO a6-195.smtp-out.eu-west-1.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732173AbfIPRki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 13:40:38 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=awgt3ic55kqhwizgro5hhdlz56bi7lbf; d=origamienergy.com;
+        t=1568655635;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
+        bh=GrvEXTmiY/Gfi5MF+9iwIL+fbGjhdyuMrvV+oMG4KZs=;
+        b=RPn3QRXMj1MrNNESOGC6uwarzj3mr3jK0mV7/VWrxzE2UZCVTUGBPzs/ivTsK+ks
+        blSxHjBEA9yyp1Tj+/ahzjqsYaXKgZt6qiTWlL0trvsjBvbuuU39gxzSVKEC0h/7xXm
+        49armJ44uKiAJrA+g9e/bB3SasNavM72fx7GM4b4=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1568655635;
+        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
+        bh=GrvEXTmiY/Gfi5MF+9iwIL+fbGjhdyuMrvV+oMG4KZs=;
+        b=csROk06bIMVv5gn79rp/6gppI0PKR1qdMvnOomWzxpTLbZPdLmp/erBkFgOEkXrj
+        6GZ19XGnbPFBmXcGJhcrO60JzgM8uJ9CHVewbTSnqYCJShPKA4GK3Y6mDpnZU2FRf7/
+        pt6xD25UOuchhQo6hkDqAtvvhUGc4HI5G5dL+n7g=
+Subject: Re: [PATCH] dt-bindings: net: Correct the documentation of KSZ9021
+ skew values
+To:     David Miller <davem@davemloft.net>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <0102016d2b84f180-bd396cb9-16cf-4472-b718-7a4d2d8d8017-000000@eu-west-1.amazonses.com>
+ <20190916.161455.1015414751228915954.davem@davemloft.net>
+From:   James Byrne <james.byrne@origamienergy.com>
+Message-ID: <0102016d3b297538-fcca5199-6ad1-4625-b11c-3ad3919a0c48-000000@eu-west-1.amazonses.com>
+Date:   Mon, 16 Sep 2019 17:40:35 +0000
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190916073843.39618-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20190916.161455.1015414751228915954.davem@davemloft.net>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-SES-Outgoing: 2019.09.16-54.240.6.195
+Feedback-ID: 1.eu-west-1.sQ65CuNSNkrvjFrT7j7oeWmhxZgivYoP5c3BHSC7Qc8=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 16/09/19 1:08 PM, Ramuthevar,Vadivel MuruganX wrote:
-> patch 1: Add YAML for cadence-qspi devicetree cdocumentation.
-> patch 2: cadence-qspi controller driver to support QSPI-NAND flash
-> using existing spi-nand framework with legacy spi protocol.
-
-Nope, you cannot have two drivers for the same IP (i.e Cadence QSPI)
-just to support to different types of SPI memories. This is the reason
-why spi_mem_ops was introduced.
-
-Please rewrite this driver over to use spi_mem_ops (instead of using
-generic SPI xfers) so that same driver supports both SPI-NOR and
-SPI-NAND flashes. Once that's done drivers/mtd/spi-nor/cadence-quadspi.c
-can be deleted.
-
-There are few existing examples of spi_mem_ops users in drivers/spi/
-(git grep spi_mem_ops) and materials here on how to write such a driver:
-
-[1]
-https://bootlin.com/blog/spi-mem-bringing-some-consistency-to-the-spi-memory-ecosystem/
-[2] https://www.youtube.com/watch?v=PkWbuLM_gmU
-
+On 16/09/2019 15:14, David Miller wrote:
+> From: James Byrne <james.byrne@origamienergy.com>
+> Date: Fri, 13 Sep 2019 16:46:35 +0000
 > 
-> Ramuthevar Vadivel Murugan (2):
->   dt-bindings: spi: Add support for cadence-qspi IP Intel LGM SoC
->   spi: cadence-qspi: Add QSPI support for Intel LGM SoC
+>> The documentation of skew values for the KSZ9021 PHY was misleading
+>> because the driver implementation followed the erroneous information
+>> given in the original KSZ9021 datasheet before it was corrected in
+>> revision 1.2 (Feb 2014). It is probably too late to correct the driver
+>> now because of the many existing device trees, so instead this just
+>> corrects the documentation to explain that what you actually get is not
+>> what you might think when looking at the device tree.
+>>
+>> Signed-off-by: James Byrne <james.byrne@origamienergy.com>
 > 
->  .../devicetree/bindings/spi/cadence,qspi-nand.yaml |  84 +++
->  drivers/spi/Kconfig                                |   9 +
->  drivers/spi/Makefile                               |   1 +
->  drivers/spi/spi-cadence-qspi-apb.c                 | 644 +++++++++++++++++++++
->  drivers/spi/spi-cadence-qspi-apb.h                 | 174 ++++++
->  drivers/spi/spi-cadence-qspi.c                     | 461 +++++++++++++++
->  drivers/spi/spi-cadence-qspi.h                     |  73 +++
->  7 files changed, 1446 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/cadence,qspi-nand.yaml
->  create mode 100644 drivers/spi/spi-cadence-qspi-apb.c
->  create mode 100644 drivers/spi/spi-cadence-qspi-apb.h
->  create mode 100644 drivers/spi/spi-cadence-qspi.c
->  create mode 100644 drivers/spi/spi-cadence-qspi.h
-> 
+> What tree should this go into?
 
--- 
-Regards
-Vignesh
+I believe this should go into the 'net' tree, but please let me know if 
+I have submitted this patch incorrectly in some way.
+
+James
