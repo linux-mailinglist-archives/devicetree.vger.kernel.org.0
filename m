@@ -2,74 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CD3EB3FAA
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 19:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB4EB3FE3
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 20:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726857AbfIPRki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 13:40:38 -0400
-Received: from a6-195.smtp-out.eu-west-1.amazonses.com ([54.240.6.195]:60580
-        "EHLO a6-195.smtp-out.eu-west-1.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1732173AbfIPRki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Sep 2019 13:40:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=awgt3ic55kqhwizgro5hhdlz56bi7lbf; d=origamienergy.com;
-        t=1568655635;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        bh=GrvEXTmiY/Gfi5MF+9iwIL+fbGjhdyuMrvV+oMG4KZs=;
-        b=RPn3QRXMj1MrNNESOGC6uwarzj3mr3jK0mV7/VWrxzE2UZCVTUGBPzs/ivTsK+ks
-        blSxHjBEA9yyp1Tj+/ahzjqsYaXKgZt6qiTWlL0trvsjBvbuuU39gxzSVKEC0h/7xXm
-        49armJ44uKiAJrA+g9e/bB3SasNavM72fx7GM4b4=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1568655635;
-        h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:Feedback-ID;
-        bh=GrvEXTmiY/Gfi5MF+9iwIL+fbGjhdyuMrvV+oMG4KZs=;
-        b=csROk06bIMVv5gn79rp/6gppI0PKR1qdMvnOomWzxpTLbZPdLmp/erBkFgOEkXrj
-        6GZ19XGnbPFBmXcGJhcrO60JzgM8uJ9CHVewbTSnqYCJShPKA4GK3Y6mDpnZU2FRf7/
-        pt6xD25UOuchhQo6hkDqAtvvhUGc4HI5G5dL+n7g=
-Subject: Re: [PATCH] dt-bindings: net: Correct the documentation of KSZ9021
- skew values
-To:     David Miller <davem@davemloft.net>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <0102016d2b84f180-bd396cb9-16cf-4472-b718-7a4d2d8d8017-000000@eu-west-1.amazonses.com>
- <20190916.161455.1015414751228915954.davem@davemloft.net>
-From:   James Byrne <james.byrne@origamienergy.com>
-Message-ID: <0102016d3b297538-fcca5199-6ad1-4625-b11c-3ad3919a0c48-000000@eu-west-1.amazonses.com>
-Date:   Mon, 16 Sep 2019 17:40:35 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2388968AbfIPSAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 14:00:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34552 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727039AbfIPSAw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 14:00:52 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A967B21852;
+        Mon, 16 Sep 2019 18:00:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568656851;
+        bh=dMVZGCnsh4fILPwk9WjxtUMiqu6/4VUD7cpn/PynxBU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dA+WUt4bl+6RjbJXd6HF1hu64FfIcM9QX9YW4t2hzTazyLV/Iaoca7f3s5hvMGRfX
+         dUkMCuyYjsg7LbTHbUT4NtHLI1jntNf386bm+W+Sn/j/D/cwc/e5hXg3YRgLTnilsp
+         ekJXXM1ZL9uIJUpxuj4/0YcEw835CHNKr6fffgxY=
+Received: by mail-qt1-f171.google.com with SMTP id j31so931613qta.5;
+        Mon, 16 Sep 2019 11:00:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAVsDqTzLINh9ipHMcOIavKoReorSFevySVF7khyAZPMXSyS1ElA
+        ALHHzDV/7sA+cWyqzxLHH1/zHIzsBDFmmTUaGA==
+X-Google-Smtp-Source: APXvYqyf350ByfqcVlNXWlnTIksw+7j/6O4GUGxPPUMBxsS6Jl38vpunqWIRMsPX1zJ/s4uT+gn50ziIwq/u9H4MMs4=
+X-Received: by 2002:ac8:444f:: with SMTP id m15mr938733qtn.110.1568656850832;
+ Mon, 16 Sep 2019 11:00:50 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190916.161455.1015414751228915954.davem@davemloft.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SES-Outgoing: 2019.09.16-54.240.6.195
-Feedback-ID: 1.eu-west-1.sQ65CuNSNkrvjFrT7j7oeWmhxZgivYoP5c3BHSC7Qc8=:AmazonSES
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org> <20190916154546.24982-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190916154546.24982-3-manivannan.sadhasivam@linaro.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 16 Sep 2019 13:00:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJP6JiZTV=DwuSQLLEv9dMST82Xkrb5AnqREjR5hk5=7Q@mail.gmail.com>
+Message-ID: <CAL_JsqJP6JiZTV=DwuSQLLEv9dMST82Xkrb5AnqREjR5hk5=7Q@mail.gmail.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO
+ controller binding
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Liau <thomas.liau@actions-semi.com>,
+        linux-actions@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/09/2019 15:14, David Miller wrote:
-> From: James Byrne <james.byrne@origamienergy.com>
-> Date: Fri, 13 Sep 2019 16:46:35 +0000
-> 
->> The documentation of skew values for the KSZ9021 PHY was misleading
->> because the driver implementation followed the erroneous information
->> given in the original KSZ9021 datasheet before it was corrected in
->> revision 1.2 (Feb 2014). It is probably too late to correct the driver
->> now because of the many existing device trees, so instead this just
->> corrects the documentation to explain that what you actually get is not
->> what you might think when looking at the device tree.
->>
->> Signed-off-by: James Byrne <james.byrne@origamienergy.com>
-> 
-> What tree should this go into?
+On Mon, Sep 16, 2019 at 10:46 AM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> Add devicetree YAML binding for Actions Semi Owl SoC's SD/MMC/SDIO
+> controller.
+>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../devicetree/bindings/mmc/owl-mmc.yaml      | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/owl-mmc.yaml
 
-I believe this should go into the 'net' tree, but please let me know if 
-I have submitted this patch incorrectly in some way.
-
-James
+Reviewed-by: Rob Herring <robh@kernel.org>
