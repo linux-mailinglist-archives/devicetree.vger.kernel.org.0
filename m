@@ -2,108 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 668C2B33A6
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 05:03:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 657D9B346C
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 07:33:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725912AbfIPDDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 23:03:45 -0400
-Received: from mga01.intel.com ([192.55.52.88]:1061 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725907AbfIPDDp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Sep 2019 23:03:45 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Sep 2019 20:03:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,510,1559545200"; 
-   d="scan'208";a="201512321"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga001.fm.intel.com with ESMTP; 15 Sep 2019 20:03:44 -0700
-Received: from [10.226.39.42] (ekotax-mobl.gar.corp.intel.com [10.226.39.42])
-        by linux.intel.com (Postfix) with ESMTP id EE50A580258;
-        Sun, 15 Sep 2019 20:03:40 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] dwc: PCI: intel: Intel PCIe RC controller driver
-To:     "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>
-Cc:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
-        Andrew Murray <andrew.murray@arm.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "martin.blumenstingl@googlemail.com" 
-        <martin.blumenstingl@googlemail.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "hch@infradead.org" <hch@infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "cheol.yong.kim@intel.com" <cheol.yong.kim@intel.com>,
-        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
-        "qi-ming.wu@intel.com" <qi-ming.wu@intel.com>
-References: <20190906112044.GF9720@e119886-lin.cambridge.arm.com>
- <959a5f9b-2646-96e3-6a0f-0af1051ae1cb@linux.intel.com>
- <20190909083117.GH9720@e119886-lin.cambridge.arm.com>
- <22857835-1f98-b251-c94b-16b4b0a6dba2@linux.intel.com>
- <20190911103058.GP9720@e119886-lin.cambridge.arm.com>
- <aefd143c-66d2-b303-d992-a55f75a91b2e@linux.intel.com>
- <20190912082517.GA9720@e119886-lin.cambridge.arm.com>
- <cd73e351-5633-bfa8-a4dc-77357d917a0b@linux.intel.com>
- <DM6PR12MB4010AEA876F20E25FFFE06BDDAB00@DM6PR12MB4010.namprd12.prod.outlook.com>
- <b7a1b955-4c3e-6ffe-ec6a-04afe33e70cd@linux.intel.com>
- <20190913101203.GE2680@smile.fi.intel.com>
-From:   Dilip Kota <eswara.kota@linux.intel.com>
-Message-ID: <52ef93fd-d705-4163-d194-a1b749b2e7df@linux.intel.com>
-Date:   Mon, 16 Sep 2019 11:03:39 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.0
+        id S1729110AbfIPFdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 01:33:31 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:58486 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725826AbfIPFdb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 01:33:31 -0400
+X-UUID: be81d0a7727d42c4844085990551010f-20190916
+X-UUID: be81d0a7727d42c4844085990551010f-20190916
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <yingjoe.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1726329568; Mon, 16 Sep 2019 13:33:23 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 16 Sep 2019 13:33:22 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 16 Sep 2019 13:33:22 +0800
+Message-ID: <1568612002.14078.1.camel@mtksdaap41>
+Subject: Re: [RFC PATCH V4 3/4] dt-bindings: mt8183: Add sensor interface
+ dt-bindings
+From:   Yingjoe Chen <yingjoe.chen@mediatek.com>
+To:     Louis Kuo <louis.kuo@mediatek.com>
+CC:     <hans.verkuil@cisco.com>,
+        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
+        <keiichiw@chromium.org>, <matthias.bgg@gmail.com>,
+        <mchehab@kernel.org>, <devicetree@vger.kernel.org>,
+        <Sean.Cheng@mediatek.com>, <Rynn.Wu@mediatek.com>,
+        <srv_heupstream@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
+        <jungo.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <yuzhao@chromium.org>, <linux-mediatek@lists.infradead.org>,
+        <zwisler@chromium.org>, <christie.yu@mediatek.com>,
+        <frederic.chen@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>
+Date:   Mon, 16 Sep 2019 13:33:22 +0800
+In-Reply-To: <20190915065004.20257-4-louis.kuo@mediatek.com>
+References: <20190915065004.20257-1-louis.kuo@mediatek.com>
+         <20190915065004.20257-4-louis.kuo@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <20190913101203.GE2680@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 2019-09-15 at 14:50 +0800, Louis Kuo wrote:
+> This patch adds the DT binding documentation for the sensor interface
+> module in Mediatek SoCs.
+> 
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> ---
+>  .../bindings/media/mediatek-seninf.txt        | 30 +++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek-seninf.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek-seninf.txt b/Documentation/devicetree/bindings/media/mediatek-seninf.txt
+> new file mode 100644
+> index 000000000000..bf2eb801cb47
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek-seninf.txt
+> @@ -0,0 +1,30 @@
+> +* Mediatek seninf MIPI-CSI2 host driver
+> +
+> +Seninf MIPI-CSI2 host driver is a HW camera interface controller. It support a widely adopted,
+> +simple, high-speed protocol primarily intended for point-to-point image and video
+> +transmission between cameras and host devices.
+> +
+> +Required properties:
+> +  - compatible: "mediatek,mt8183-seninf"
+> +  - reg: Must contain an entry for each entry in reg-names.
+> +  - reg-names: Must include the following entries:
+> +    "base_reg": seninf registers base
+> +    "rx_reg": Rx analog registers base
 
-On 9/13/2019 6:12 PM, andriy.shevchenko@intel.com wrote:
-> On Fri, Sep 13, 2019 at 05:20:26PM +0800, Dilip Kota wrote:
->> On 9/12/2019 6:49 PM, Gustavo Pimentel wrote:
->>> On Thu, Sep 12, 2019 at 10:23:31, Dilip Kota
->>> <eswara.kota@linux.intel.com> wrote:
->>> Hi, I just return from parental leave, therefore I still trying to get
->>> the pace in mailing list discussion.
->>>
->>> However your suggestion looks good, I agree that can go into DesignWare
->>> driver to be available to all.
->> Thanks Gustavo for the confirmation, i will add it in the next patch version
->>> Just a small request, please do in general:
->>> s/designware/DesignWare
->> Sorry, i didnt understand this.
-> It means the reviewer asks you to name DesignWare in this form,
-> i.o.w. designware -> DesignWare.
->
-> `man 1 sed` gives you more about it :-)
-Thanks Andy for clarifying it.
-Could you please also comment let me know your opinion on the driver 
-naming. Below is the mail snippet.
+Everyone here is a reg. Adding _reg prefix for everyone looks redundant.
+Same for clock-names.
 
-======
- >>> Add support to PCIe RC controller on Intel Universal
- >>> Gateway SoC. PCIe controller is based of Synopsys
- >>> Designware pci core.
- >>> +config PCIE_INTEL_AXI
- > [Andy]: I think that name here is too generic. Classical x86 seems 
-not using this.
 
-[Dilip Kota]:
-This PCIe driver is for the Intel Gateway SoCs. So how about naming it is as
-"pcie-intel-gw"; pcie-intel-gw.c and Kconfig as PCIE_INTEL_GW.
+> +  - interrupts: interrupt number to the cpu.
+> +  - clocks : clock name from clock manager
+> +  - clock-names: must be CLK_CAM_SENINF and CLK_TOP_MUX_SENINF.
+> +    It is the clocks of seninf
+> +
 
-Andrew Murray is ok with this naming, please let me know your view.
-=======
 
-Regards,
-Dilip
+Joe.C
 
->
