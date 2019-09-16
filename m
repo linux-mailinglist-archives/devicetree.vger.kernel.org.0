@@ -2,108 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35E55B39A0
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 13:42:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A58BB39BD
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 13:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732350AbfIPLmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 07:42:07 -0400
-Received: from mga01.intel.com ([192.55.52.88]:63849 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbfIPLmG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Sep 2019 07:42:06 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 16 Sep 2019 04:42:06 -0700
-X-IronPort-AV: E=Sophos;i="5.64,492,1559545200"; 
-   d="scan'208";a="270166463"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 16 Sep 2019 04:42:01 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 1D41020B70; Mon, 16 Sep 2019 14:41:59 +0300 (EEST)
-Date:   Mon, 16 Sep 2019 14:41:59 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Joe Perches <joe@perches.com>
-Cc:     Steven Rostedt <rostedt@goodmis.org>,
-        Petr Mladek <pmladek@suse.com>, linux-kernel@vger.kernel.org,
-        rafael@kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Arnaldo Carvalho de Melo <acme@redhat.com>,
-        Tzvetomir Stoyanov <tstoyanov@vmware.com>,
-        linux-trace-devel@vger.kernel.org, Jiri Olsa <jolsa@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>
-Subject: Re: [PATCH v6 01/12] tools lib traceevent: Convert remaining %p[fF]
- users to %p[sS]
-Message-ID: <20190916114158.GN5781@paasikivi.fi.intel.com>
-References: <20190910084707.18380-1-sakari.ailus@linux.intel.com>
- <20190910084707.18380-2-sakari.ailus@linux.intel.com>
- <20190910071837.2e9110f8@oasis.local.home>
- <61a2b2ab4693535850306f396aac2a328e1d5a21.camel@perches.com>
- <20190910142621.0bec208d@oasis.local.home>
- <c458e734f5777561138b87228384808398547762.camel@perches.com>
- <20190910150303.5a0d3904@oasis.local.home>
- <c90c33b421c0fa0db5182d0f58c6ba6e86cf1622.camel@perches.com>
+        id S1730853AbfIPLta (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 07:49:30 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:54640 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730110AbfIPLta (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 07:49:30 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 51C5D607F1; Mon, 16 Sep 2019 11:49:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568634569;
+        bh=362FvmbOrDpv/n8GWlP8x1OdK6qMzvVMHzmjiK5OHYA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=EQFRiXK5Xh3oXD1JJ3Cjvr1XqC8YszkWJFYfACreReQNRUo19Z5Ep2YTSrcl/4Eqh
+         JVhB7sNWt2PjgVfyGgjwo5QqZyibhqzWFRWcay4AC5J+8HITnmZG6h+FNXA6kXGfZu
+         kvE/rywlj+2aU7rKF9ygLI8w8CoWysFWPkn0saRY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id D165D6119F;
+        Mon, 16 Sep 2019 11:49:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568634568;
+        bh=362FvmbOrDpv/n8GWlP8x1OdK6qMzvVMHzmjiK5OHYA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=jj93yY6D5y/BCAmhPK7eYpz/yHoqMKRWU4ybsfs1zNwY/3duo7DD9lxcHCo62J/vs
+         8cHHI6WIinIhxeyNJjsn2ErUYwemOF1fmYKF4b8PcQ909z/8EtTu3FwUqOx34HLWcO
+         Jf6NFDlsN/ElFQNEpO0NXfvgZhpmqqAvkNTB8EjM=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c90c33b421c0fa0db5182d0f58c6ba6e86cf1622.camel@perches.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 16 Sep 2019 17:19:28 +0530
+From:   gokulsri@codeaurora.org
+To:     Rob Herring <robh@kernel.org>
+Cc:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        david.brown@linaro.org, devicetree@vger.kernel.org,
+        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
+        mturquette@baylibre.com, ohad@wizery.com, robh+dt@kernel.org,
+        sricharan@codeaurora.org, nprakash@codeaurora.org
+Subject: Re: [PATCH V2 06/12] dt-bindings: clock: qcom: Add reset for WCSSAON
+In-Reply-To: <5d7c0ec8.1c69fb81.e5ca8.949d@mx.google.com>
+References: <1568375771-22933-1-git-send-email-gokulsri@codeaurora.org>
+ <1568375771-22933-7-git-send-email-gokulsri@codeaurora.org>
+ <5d7c0ec8.1c69fb81.e5ca8.949d@mx.google.com>
+Message-ID: <2648db96dbddadfce7c915a4877930ab@codeaurora.org>
+X-Sender: gokulsri@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joe, Steven,
+Hi Rob,
 
-On Tue, Sep 10, 2019 at 12:44:03PM -0700, Joe Perches wrote:
-> On Tue, 2019-09-10 at 15:03 -0400, Steven Rostedt wrote:
-> > On Tue, 10 Sep 2019 11:42:06 -0700
-> []
-> > > btw:
-> > > 
-> > > Is there kernel version information available in
-> > > trace output files?
-> > 
-> > Not really. This is just a library that parses the trace event formats,
-> > there's not kernel versions passed in, but we do use variations in
-> > formats and such to determine what is supported.
-> > 
-> > > If so, it might be reasonable to change the tooling
-> > > there instead.
-> > > 
-> > 
-> > Actually, I think we could just look to see if "%pfw" is used and fall
-> > to that, otherwise consider it an older kernel and do it the original
-> > way.
+On 2019-09-14 03:18, Rob Herring wrote:
+> On Fri, 13 Sep 2019 17:26:05 +0530, Gokul Sriram Palanisamy wrote:
+>> Add binding for WCSSAON reset required for Q6v5 reset on IPQ8074 SoC.
+>> 
+>> Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+>> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+>> Signed-off-by: Nikhil Prakash V <nprakash@codeaurora.org>
+>> ---
+>>  include/dt-bindings/clock/qcom,gcc-ipq8074.h | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
 > 
-> Well, if you think that works, OK great.
+> Please add Acked-by/Reviewed-by tags when posting new versions. 
+> However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
 > 
-> But could that work?
-> How would an individual trace record know if
-> another trace record used %pfw?
-> 
-> Perhaps not reusing %pf, marking it reserved
-> for a period of years, and using another unused
-> prefix %p<type> like %pnfw may be simpler.
+> If a tag was not added on purpose, please state why and what changed.
 
-%p[Ff]w does not exist (I grepped for it) in older kernels since v3.0. So
-kernel support for %p[fF] and %pfw are mutually exclusive. If you're ok
-with that, I could change the patch to check %pf isn't followed by 'w',
-in order to support %pf on older kernels.
+  Sorry, missed it. Will add it.
 
-Although that still does not address using older tooling on newer kernels
-with support for %pfw.
-
-If you think that's an issue, I'll opt for another extension than %pfw,
-which I chose originally since it's memorable --- fw for fwnode (names,
-paths, and probably more in the future).
-
--- 
 Regards,
-
-Sakari Ailus
-sakari.ailus@linux.intel.com
+  Gokul
