@@ -2,109 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78CF5B4038
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 20:21:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07091B4060
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 20:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728361AbfIPSV3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 14:21:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41290 "EHLO mail.kernel.org"
+        id S1729331AbfIPScy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 14:32:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45426 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726084AbfIPSV3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Sep 2019 14:21:29 -0400
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1728985AbfIPScx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 14:32:53 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D4CA20830;
-        Mon, 16 Sep 2019 18:21:28 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E360720830;
+        Mon, 16 Sep 2019 18:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568658088;
-        bh=8IyPUfCRN/QLC5pcpdeVTQ48MP1WLchF2ec6UBzCt1Y=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TIFA9D+0FY7r47PzK+20boiwVZ3AsPu9RZyWYl9xUq+SDaTnMswc/v0vBV6AYKfBx
-         uNLNgcCwB7n9cJg2nOF4wy2tcqYYpxl4XSqBYe4PVV7Wk0F+GVcO0tUb9v2g4FbuRl
-         FrOshidfBdXSZ+mkzaXB/FT1WthzFBW94E9OGWmM=
-Received: by mail-qk1-f179.google.com with SMTP id x134so1016647qkb.0;
-        Mon, 16 Sep 2019 11:21:28 -0700 (PDT)
-X-Gm-Message-State: APjAAAXGCxBFoegekEMh5JGv8M/aLmh3BQka9sc8RSNM4andek6/mvP5
-        qE2xKbZbc1toABkpb7T1AxaSt9Tr54tuMeHd8g==
-X-Google-Smtp-Source: APXvYqzs9IGqn8hIX6ITeZga7sN+t8uA+PMI17ufxR1sFoU4gv0s8pTjgW3cGVj5k0D2DS8yCwqPomq44hh9Pbzz2u8=
-X-Received: by 2002:a37:8905:: with SMTP id l5mr1426930qkd.152.1568658087304;
- Mon, 16 Sep 2019 11:21:27 -0700 (PDT)
+        s=default; t=1568658773;
+        bh=tGbgQXC0MLIMph9i8iPtfJHaRUqvcrZYiWDIfiq9yPg=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=Evmir6osXsKDL0nl+tpO2zp5kvCCW0B6ipAsu9ekOEBw1bL4nZHHVh2107KHj/IO+
+         N4dxjoCCW+6/sFLDp4Uk68KgYI5pLSnQcAkF6IUlAxT2bszMtvIwtHgFdUGdNOmTdk
+         DN6En7/q67Kg+LQJFc4E4rDMkhZ2PhbGr/zk+kOQ=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20190913211349.28245-1-robh@kernel.org> <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
-In-Reply-To: <713b2e5bbab16ddf850245ae1d92be66d9730e02.camel@perches.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 16 Sep 2019 13:21:16 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+vZp_C7c4fxwA138D-b=aRmGn=CqCwTQ-biwwahq8K6Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+vZp_C7c4fxwA138D-b=aRmGn=CqCwTQ-biwwahq8K6Q@mail.gmail.com>
-Subject: Re: [PATCH] checkpatch: Warn if DT bindings are not in schema format
-To:     Joe Perches <joe@perches.com>
-Cc:     devicetree@vger.kernel.org,
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <DB7PR04MB519563FED2146F6D1327668AE2AB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
+References: <20190815101613.22872-1-wen.he_1@nxp.com> <20190815101613.22872-2-wen.he_1@nxp.com> <20190816174624.115FC205F4@mail.kernel.org> <DB7PR04MB51952DF4E1EE7FF10A947347E2A80@DB7PR04MB5195.eurprd04.prod.outlook.com> <20190819182944.4AEAB22CF5@mail.kernel.org> <DB7PR04MB519563FED2146F6D1327668AE2AB0@DB7PR04MB5195.eurprd04.prod.outlook.com>
+Cc:     Leo Li <leoyang.li@nxp.com>,
+        "liviu.dudau@arm.com" <liviu.dudau@arm.com>
+To:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-devel@linux.nxdi.nxp.com" <linux-devel@linux.nxdi.nxp.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Andy Whitcroft <apw@canonical.com>
-Content-Type: text/plain; charset="UTF-8"
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>, Wen He <wen.he_1@nxp.com>
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: RE: [EXT] Re: [v2 2/3] clk: ls1028a: Add clock driver for Display output interface
+User-Agent: alot/0.8.1
+Date:   Mon, 16 Sep 2019 11:32:52 -0700
+Message-Id: <20190916183252.E360720830@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 13, 2019 at 4:48 PM Joe Perches <joe@perches.com> wrote:
->
-> On Fri, 2019-09-13 at 16:13 -0500, Rob Herring wrote:
-> > DT bindings are moving to using a json-schema based schema format
-> > instead of freeform text. Add a checkpatch.pl check to encourage using
-> > the schema for new bindings. It's not yet a requirement, but is
-> > progressively being required by some maintainers.
-> []
-> > diff --git a/scripts/checkpatch.pl b/scripts/checkpatch.pl
-> []
-> > @@ -2822,6 +2822,14 @@ sub process {
-> >                            "added, moved or deleted file(s), does MAINTAINERS need updating?\n" . $herecurr);
-> >               }
-> >
-> > +# Check for adding new DT bindings not in schema format
-> > +             if (!$in_commit_log &&
-> > +                 ($line =~ /^new file mode\s*\d+\s*$/) &&
-> > +                 ($realfile =~ m@^Documentation/devicetree/bindings/.*\.txt$@)) {
-> > +                     WARN("DT_SCHEMA_BINDING_PATCH",
-> > +                          "DT bindings should be in DT schema format. See: Documentation/devicetree/writing-schema.rst\n");
-> > +             }
-> > +
->
-> As this already seems to be git dependent, perhaps
-> it's easier to read with a single line test like:
->
->                 if ($line =~ m{^\s*create mode\s*\d+\s*Documentation/devicetree/bindings/.*\.txt$}) {
->                         etc...
->                 }
+Quoting Wen He (2019-08-19 19:24:25)
+>=20
+> >=20
+> > > > > +
+> > > > > +static int plldig_clk_probe(struct platform_device *pdev) {
+> > > > > +       struct clk_plldig *data;
+> > > > > +       struct resource *mem;
+> > > > > +       const char *parent_name;
+> > > > > +       struct clk_init_data init =3D {};
+> > > > > +       struct device *dev =3D &pdev->dev;
+> > > > > +       int ret;
+> > > > > +
+> > > > > +       data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> > > > > +       if (!data)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       mem =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > > > > +       data->regs =3D devm_ioremap_resource(dev, mem);
+> > > > > +       if (IS_ERR(data->regs))
+> > > > > +               return PTR_ERR(data->regs);
+> > > > > +
+> > > > > +       init.name =3D dev->of_node->name;
+> > > > > +       init.ops =3D &plldig_clk_ops;
+> > > > > +       parent_name =3D of_clk_get_parent_name(dev->of_node, 0);
+> > > > > +       init.parent_names =3D &parent_name;
+> > > >
+> > > > Can you use the new way of specifying clk parents with the
+> > > > parent_data member of clk_init?
+> > >
+> > > Of course, but I don't understand why need recommend to use this memb=
+er?
+> > > Is that the member parent_names will be discard in future?
+> > >
+> > > Here are definition of the clk-provider.h
+> > > /* Only one of the following three should be assigned */
+> > > const char              * const *parent_names;
+> > > const struct clk_parent_data    *parent_data;
+> > > const struct clk_hw             **parent_hws;
+> > >
+> > > For PLLDIG, it only has one parent.
+> >=20
+> > Yes. Can you use clk_parent_data array and specify a DT index of 0 and =
+some
+> > name that would go into "clock-names" in the .fw_name member?
+>=20
+> OK, but .fw_name used for to registering clk, current it registered with =
+fixed clk in dts .
+> I think should be specify a DT index of 0 and specify the unique name for=
+ .name member.
+>=20
+> I found have two ways to specify:
+> 1. declare clk_parent_data variable parent_data, and initialization with =
+clk_init_data, like this:
+> =20
+> parent_data.name =3D of_clk_get_parent_name(dev->of_node, 0);=20
 
-Okay. I wasn't too concerned about non-git diffs as I rarely see those anymore.
+This isn't preferred because of_clk_get_parent_name() is DT specific and
+relies on the parent clk being registered before calling the function so
+that we can figure out the globally unique name.
 
->
-> There are ~3500 existing .txt files:
->
-> $ git ls-files -- 'Documentation/devicetree/bindings/*.txt' | wc -l
-> 3476
->
-> Are these going to be converted somehow?
+> parent_data.index =3D 0;
+>=20
+> init.name =3D dev->of_node->name;
+> init.ops =3D &plldig_clk_ops;
+> init.parent_data =3D &parent_data;
+> init.num_parents =3D 1;
+>=20
+> 2. Or use a static const array for here? And put the unique name and inde=
+x like this.
+> static const struct clk_parent_data parent_data[] =3D {
+>         {.name =3D "phy_27m", .index =3D 0},
+> };
+>=20
+> After then initialization with macro CLK_HW_INIT_PARENTS_DATA?
 
-Patches welcome! We're working on it.
+Yes use option #2. But, don't even specify a .name if this is new code
+because .name is a fallback mechanism that is supposed to be used if
+you're migrating code from an older DT to a newer DT. I don't think
+that's happening here.
 
->
-> What about files like these? (not .txt)
->
-> Documentation/devicetree/bindings/timer/st,stih407-lpc
-> Documentation/devicetree/bindings/nds32/andestech-boards
-> Documentation/devicetree/bindings/media/nokia,n900-ir
-> Documentation/devicetree/bindings/interrupt-controller/ti,omap4-wugen-mpu
-> Documentation/devicetree/bindings/arm/cpu-enable-method/nuvoton,npcm750-smp
-> Documentation/devicetree/bindings/arm/cpu-enable-method/marvell,berlin-smp
-> Documentation/devicetree/bindings/arm/cpu-enable-method/al,alpine-smp
-> Documentation/devicetree/bindings/arm/arm-boards
-
-What about them? This check is only for new files and no one runs
-checkpatch.pl on binding txt files. If someone submits something
-without an extension, then I'll catch that in review. I'm not too
-worried about 8 out of 3500 cases.
-
-Rob
