@@ -2,111 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D40B4195
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 22:13:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86EF8B41A2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 22:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732965AbfIPUNS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 16:13:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732909AbfIPUNS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Sep 2019 16:13:18 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ED7EB20665;
-        Mon, 16 Sep 2019 20:13:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568664797;
-        bh=VqTApZB+W2BAABhT/1pGOKJALF3Ws1MQqDPBAxpRMYc=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=r3dTk6P8zjAg6TkEa80bWORIo8VXLlBjcQtZrmcNitoDS84MFu36aaRSXI9RqoNjR
-         bBoX3MYs/3q3LKOx6YmuCmwoMQ09u4V7C3NFPt4o/MsefWqLNsFmAaDIpDI6I0JwT3
-         xC0mSdRIUff+GJLyK0YsC0iSHbmYAA+kUKeQGssA=
-Content-Type: text/plain; charset="utf-8"
+        id S1733244AbfIPURz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 16:17:55 -0400
+Received: from emh07.mail.saunalahti.fi ([62.142.5.117]:44260 "EHLO
+        emh07.mail.saunalahti.fi" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728003AbfIPURz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 16:17:55 -0400
+Received: from darkstar.musicnaut.iki.fi (85-76-81-183-nat.elisa-mobile.fi [85.76.81.183])
+        by emh07.mail.saunalahti.fi (Postfix) with ESMTP id C0897B008C;
+        Mon, 16 Sep 2019 23:17:50 +0300 (EEST)
+Date:   Mon, 16 Sep 2019 23:17:50 +0300
+From:   Aaro Koskinen <aaro.koskinen@iki.fi>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-crypto@vger.kernel.org, Adam Ford <aford173@gmail.com>,
+        Pali =?iso-8859-1?Q?Roh=E1r?= <pali.rohar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Tero Kristo <t-kristo@ti.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCHv2 0/7] Non-urgent fixes and improvments for omap3-rom-rng
+Message-ID: <20190916201750.GF8201@darkstar.musicnaut.iki.fi>
+References: <20190914210300.15836-1-tony@atomide.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190911174948.sblu4qn44sfh3cyy@pengutronix.de>
-References: <20190823100315.2148-1-ada@thorsis.com> <20190911160648.6F88D2075C@mail.kernel.org> <20190911174948.sblu4qn44sfh3cyy@pengutronix.de>
-Cc:     Alexander Dahl <ada@thorsis.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, kernel@pengutronix.de
-To:     <u.kleine-koenig@pengutronix.de>
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: clk: Make example a bit clearer
-User-Agent: alot/0.8.1
-Date:   Mon, 16 Sep 2019 13:13:16 -0700
-Message-Id: <20190916201316.ED7EB20665@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190914210300.15836-1-tony@atomide.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-(Sorry my MUA fails at utf8 encoding emails)
+Hi,
 
-> On Wed, Sep 11, 2019 at 09:06:47AM -0700, Stephen Boyd wrote:
-> > > diff --git a/Documentation/devicetree/bindings/clock/clock-bindings.t=
-xt b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > index b646bbcf7f92..1d4942380918 100644
-> > > --- a/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > +++ b/Documentation/devicetree/bindings/clock/clock-bindings.txt
-> > > @@ -150,16 +150,18 @@ set to 0, or can be omitted if it is not follow=
-ed by any non-zero entry.
-> > >          compatible =3D "fsl,imx-uart";
-> > >          reg =3D <0xa000 0x1000>;
-> > >          ...
-> > > -        clocks =3D <&osc 0>, <&pll 1>;
-> > > -        clock-names =3D "baud", "register";
-> > > +        clocks =3D ...
-> > > +        clock-names =3D ...
-> >=20
-> > I don't see the need for this change.
->=20
-> <&pll 1> is mentioned below. But it is not this instance that is
-> relevant. So I suggested to get rid of it to not be a source of
-> confusion. (But I guess you understood that.)
+On Sat, Sep 14, 2019 at 02:02:53PM -0700, Tony Lindgren wrote:
+> Here are fixes and improvments for omap3-rom-rng that's been broken for
+> a while.
 
-Yes.
+Thanks, for the whole series:
 
->=20
-> > >          assigned-clocks =3D <&clkcon 0>, <&pll 2>;
-> > > -        assigned-clock-parents =3D <&pll 2>;
-> > > +        assigned-clock-parents =3D <&pll 1>;
-> > >          assigned-clock-rates =3D <0>, <460800>;
-> > >      };
-> > > =20
-> > > -In this example the <&pll 2> clock is set as parent of clock <&clkco=
-n 0> and
-> > > -the <&pll 2> clock is assigned a frequency value of 460800 Hz.
-> > > +In this example the <&pll 1> clock is set as parent of clock <&clkco=
-n 0> and
-> > > +the <&pll 2> clock is assigned a frequency value of 460800 Hz.  A pa=
-rent
-> > > +setting for <&pll 2> is omitted (end of list) and rate setting for <=
-&clkcon 0>
-> > > +is skipped because set to <0>.
-> >=20
-> > Maybe you can comment that the "clocks" and "clock-names" properties
-> > don't matter for assigned clk rates and parents.
->=20
-> Sure, a long text can explain this, but a maximal simple example is
-> very beneficial, too.
->=20
+Tested-by: Aaro Koskinen <aaro.koskinen@iki.fi>
 
-The paragraph at the start of "Assigned clock parents and rates" already
-explains how these properties work. This patch isn't going to help if
-the reader hasn't read that paragraph, so reordering things isn't
-providing more clarity. If anything, I would clarify the description of
-the example by indicating what parts of the example we're talking about
-when explaining, i.e.
-
-	In this example the <&pll 2> clock is set as parent of the
-	<&clkcon 0> clock because the first clock specifier in the
-	assigned-clocks property is <&clkcon 0> and that matches the
-	first clock specifier in the assigned-clock-parents property.
-	Similarly the <&pll 2> clock is assigned a frequency value of
-	460800 Hz because the second frequency in the
-	assigned-clock-rates property is 460800 Hz and that matches the
-	second clock specifier in the assigned-clocks property <&pll 2>.
-
+A.
