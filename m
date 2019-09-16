@@ -2,121 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71185B3A9F
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 14:50:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E278B3AF2
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 15:06:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732825AbfIPMu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 08:50:28 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:34959 "EHLO
+        id S1732867AbfIPNGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 09:06:09 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:36244 "EHLO
         mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732742AbfIPMu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 08:50:27 -0400
-Received: by mail-wm1-f65.google.com with SMTP id y21so5987248wmi.0
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2019 05:50:26 -0700 (PDT)
+        with ESMTP id S1732852AbfIPNGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 09:06:09 -0400
+Received: by mail-wm1-f65.google.com with SMTP id t3so10295975wmj.1;
+        Mon, 16 Sep 2019 06:06:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=XUfEPcm9zIxhFldZrxhkkyEwszDIg8DVmTXvmpvcNks=;
-        b=hGzPVFic9jJ7l+dNqFEPZDAs17LUMFemybtUi2RQyKw4lNI31vG7ESwuhjCNfAhchl
-         XL+JaCuTHmaduj2rp+jzvbG91jeWWFl1S9rh+MWdyOgDafQ3dHPu6spLWfinKamEXsYu
-         k7J6v10E1nloeG+cbZ/Flvr4V7zrS9/24ysmPwpsMtcwmsC6Z6s2dyXzqyPMKgBDTPXE
-         DbPgewVsW58oXs4phbQA2y/j4zIEN0faYeqmg0zyBS5BTYeL59yvrlEaFGFlFzr5IEwm
-         l9RMFVTn1uiwphZ5Tf7dAoaD0AhtQYQ8F+B91Hhfkaknc14B0KVq7faVT4m9nScuyOuZ
-         9+gA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=sIVQ04sXbtRDPC23vD1rE8CSxbsV5Z0Y5ojuZ/wNZpk=;
+        b=m3YqvSe/4vcHzepLoMnqpXvXP8e+8ov4gmJ49ZFmzEPmlzYsHf3Vi5uvPV/wwRvibD
+         kHPd5LJdYK2ioRVNyLF467TZkr2oe7rQl62hhxI4KEGsrTez/dYPLM+x6QlKQi+ypqHq
+         UP+fnpx44zAB8cg7PKpYbCOms6voKoKhkfO5jLrX9ZgR8fTQ7UJjEmudWjP+voDGlm3k
+         6IGUZSTl8IMqMw8BWQPbZkbgImR8GUETuOvlUGtl3Hx4u78NdPZvbW+QbTQuT0nz67Ek
+         aVlN+DONJpIlMxZAZslpVW2HBh3oMEniCp8PKsmLFn2sZ3rXopig/AlWPObAKaTSwekg
+         Splg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=XUfEPcm9zIxhFldZrxhkkyEwszDIg8DVmTXvmpvcNks=;
-        b=n5l0VuXzKy+XGRKq/wGNbjPHLEOrfiC5czf577mVBYMFYoJO5690tLpqGLUqiA2LGt
-         gy1pl6UoWeQbSPqNY+Pz2UNHnWsXa8FSSp9zKL1WKKNox63BBc7B3zTBVwGCqxEYqF+N
-         /n3a6K43pgCCoR8YSa/4cn3U1uv4qgU/SgbVxH/m/l2tFQah+P5qotDIoJjx+G23+vRS
-         T63UHpRAL0iBgDoZetauSfTu9RiXUiBGGh5vf1Jd9KJ3BCuXWyWl8fd3t9HwaisUH2xX
-         fOITLiqsnIQsp7+3lXXrsSv+Bo7njDgPirIG0WX2zWpYjYQEiLdKGQd2vDJ7UfrZWvpt
-         +SuQ==
-X-Gm-Message-State: APjAAAXhj2VsBX60tytQWyRyvyrJ0USFniAvOnxk2hLhN/jCnsTxArpJ
-        eFlaPRx8Vkdxu/0aSWN4RCdwNA==
-X-Google-Smtp-Source: APXvYqzlEUxhl3f79IATgDynHyFjQHa279fyhuqpYRKAX5RH9mVOwoSkz7D6xHrly5Fbd8jfpRx2NQ==
-X-Received: by 2002:a1c:7fcc:: with SMTP id a195mr14283145wmd.27.1568638225511;
-        Mon, 16 Sep 2019 05:50:25 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id o12sm15109960wrm.23.2019.09.16.05.50.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Sep 2019 05:50:24 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, lorenzo.pieralisi@arm.com, kishon@ti.com,
-        bhelgaas@google.com, andrew.murray@arm.com,
-        devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        yue.wang@Amlogic.com, maz@kernel.org, repk@triplefau.lt,
-        nick@khadas.com, gouwa@khadas.com, Rob Herring <robh@kernel.org>
-Subject: [PATCH v2 1/6] dt-bindings: pci: amlogic,meson-pcie: Add G12A bindings
-Date:   Mon, 16 Sep 2019 14:50:17 +0200
-Message-Id: <20190916125022.10754-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190916125022.10754-1-narmstrong@baylibre.com>
-References: <20190916125022.10754-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=sIVQ04sXbtRDPC23vD1rE8CSxbsV5Z0Y5ojuZ/wNZpk=;
+        b=DaN3ijHaG9nCQnQSyuL4p2JpD51LC+proUAktRgYUfNtu/cMgr9MAKwUWu19uOd0X9
+         EghChPxGM1FJXor5d4pdKZNjbTr106YSTbPCmry5C9ea4pkHHBICLXwWOLFu911IQsmD
+         x2Xpa6YnugBLnq7DSIoqAAUbdRnH9787z24JzNV9YtnuUv8fNjySON7fQXhYTCgezWUR
+         ViwYjoFI/cCwsvzjcw1brI5iUnz4vbyDr/oSbkTleNFjdcfrElPeXTGLmsjhLmCNVLUg
+         J+2Jrlv+By8CB1SQfneH4fuxrUfd7C4Edlsc9EotaUtsuNDZUvu3JGzlBKUS9Xt1ruK+
+         6PiQ==
+X-Gm-Message-State: APjAAAUj++8R8WqjumNxdwfKmWJ0ci9ClVC6CuAf69+qxd77+mH5EnmC
+        GkDPoRK4wg/w4fZLv85RMbA=
+X-Google-Smtp-Source: APXvYqwtxlI1qOa2qQlAR2X0AyFfrrLHbOVlnn4CIXRAYrvyhOOilm8R+aJgzIXbhKbm9YwamftRfg==
+X-Received: by 2002:a05:600c:248a:: with SMTP id 10mr1127779wms.97.1568639167343;
+        Mon, 16 Sep 2019 06:06:07 -0700 (PDT)
+Received: from ubuntu-buildhost (ipb21b6e0b.dynamic.kabel-deutschland.de. [178.27.110.11])
+        by smtp.gmail.com with ESMTPSA id e30sm71943733wra.48.2019.09.16.06.06.05
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 16 Sep 2019 06:06:06 -0700 (PDT)
+Date:   Mon, 16 Sep 2019 13:06:04 +0000
+From:   Markus Kueffner <kueffner.markus@gmail.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: imx6qdl-udoo: Add Pincfgs for OTG
+Message-ID: <20190916130604.GA3140@ubuntu-buildhost>
+References: <20190411065440.GB26817@dragon>
+ <1555161577-1533-1-git-send-email-kueffner.markus@gmail.com>
+ <20190415091150.GB18917@X250.skyworth_vap>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190415091150.GB18917@X250.skyworth_vap>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PCIE bindings for the Amlogic G12A SoC, the support is the same
-but the PHY is shared with USB3 to control the differential lines.
+On Mon, Apr 15, 2019 at 05:11:51PM +0800, Shawn Guo wrote:
+> On Sat, Apr 13, 2019 at 03:19:36PM +0200, Markus Kueffner wrote:
+> > Add Pincfgs to enable the i.MX6's OTG feature for UDOO
+> > 
+> > Signed-off-by: Markus Kueffner <kueffner.markus@gmail.com>
+> 
+> Applied, thanks.
 
-Thus this adds a phy phandle to control the PHY, and only requires the
-MIPI clock for the Amlogic AXG SoC Family.
+Hello, 
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/pci/amlogic,meson-pcie.txt   | 12 ++++++++----
- 1 file changed, 8 insertions(+), 4 deletions(-)
+I was wondering when this might get merged into a release. 
+Is there anything else I need to fix?
 
-diff --git a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-index efa2c8b9b85a..84fdc422792e 100644
---- a/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-+++ b/Documentation/devicetree/bindings/pci/amlogic,meson-pcie.txt
-@@ -9,13 +9,16 @@ Additional properties are described here:
- 
- Required properties:
- - compatible:
--	should contain "amlogic,axg-pcie" to identify the core.
-+	should contain :
-+	- "amlogic,axg-pcie" for AXG SoC Family
-+	- "amlogic,g12a-pcie" for G12A SoC Family
-+	to identify the core.
- - reg:
- 	should contain the configuration address space.
- - reg-names: Must be
- 	- "elbi"	External local bus interface registers
- 	- "cfg"		Meson specific registers
--	- "phy"		Meson PCIE PHY registers
-+	- "phy"		Meson PCIE PHY registers for AXG SoC Family
- 	- "config"	PCIe configuration space
- - reset-gpios: The GPIO to generate PCIe PERST# assert and deassert signal.
- - clocks: Must contain an entry for each entry in clock-names.
-@@ -23,12 +26,13 @@ Required properties:
- 	- "pclk"       PCIe GEN 100M PLL clock
- 	- "port"       PCIe_x(A or B) RC clock gate
- 	- "general"    PCIe Phy clock
--	- "mipi"       PCIe_x(A or B) 100M ref clock gate
-+	- "mipi"       PCIe_x(A or B) 100M ref clock gate for AXG SoC Family
- - resets: phandle to the reset lines.
- - reset-names: must contain "phy" "port" and "apb"
--       - "phy"         Share PHY reset
-+       - "phy"         Share PHY reset for AXG SoC Family
-        - "port"        Port A or B reset
-        - "apb"         Share APB reset
-+- phys: should contain a phandle to the shared phy for G12A SoC Family
- - device_type:
- 	should be "pci". As specified in designware-pcie.txt
- 
--- 
-2.22.0
-
+Best Regards, 
+Markus
