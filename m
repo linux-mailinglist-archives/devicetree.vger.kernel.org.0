@@ -2,266 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78B5BB37CF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 12:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E528BB383F
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 12:36:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726645AbfIPKI0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 06:08:26 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:55558 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725865AbfIPKI0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 06:08:26 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 6B73325B705;
-        Mon, 16 Sep 2019 20:08:22 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 60F19944602; Mon, 16 Sep 2019 12:08:20 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Zhang Rui <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH] dt-bindings: thermal: rcar-thermal: convert bindings to json-schema
-Date:   Mon, 16 Sep 2019 12:07:17 +0200
-Message-Id: <20190916100717.31472-1-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1731108AbfIPKgX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 06:36:23 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:47284 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726604AbfIPKgX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 06:36:23 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6520C1A0572;
+        Mon, 16 Sep 2019 12:36:21 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 22DBD1A0207;
+        Mon, 16 Sep 2019 12:36:17 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 92EDF402BF;
+        Mon, 16 Sep 2019 18:36:11 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     leoyang.li@nxp.com, shawnguo@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>
+Subject: [1/3] soc: fsl: fix that flextimer cannot wakeup system in deep sleep on LS1021A
+Date:   Mon, 16 Sep 2019 18:25:54 +0800
+Message-Id: <20190916102556.16655-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas R-Car Thermal bindings documentation to json-schema.
-Also name bindings documentation file according to the compat string
-being documented.
+Why:
+    - Cannot write register RCPM_IPPDEXPCR1 on LS1021A,
+      Register RCPM_IPPDEXPCR1's default value is zero.
+      So the register value that reading from register
+      RCPM_IPPDEXPCR1 is always zero.
 
-As a side effect of this change all currently supported/used compat
-strings are listed while no while card compat string is documented.
-This, in my opinion, is desirable as only supported hardware should
-be documented.
+How:
+    - Save register RCPM_IPPDEXPCR1's value to
+      register SCFG_SPARECR8.(uboot's psci also
+      need reading value from the register SCFG_SPARECR8
+      to set register RCPM_IPPDEXPCR1)
 
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
 ---
-Based on v5.3-rc1
-Tested using:
-  ARCH=arm make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/thermal/renesas,rcar-thermal.yaml
----
- .../devicetree/bindings/thermal/rcar-thermal.txt   |  78 ---------------
- .../bindings/thermal/renesas,rcar-thermal.yaml     | 110 +++++++++++++++++++++
- 2 files changed, 110 insertions(+), 78 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/thermal/rcar-thermal.txt
- create mode 100644 Documentation/devicetree/bindings/thermal/renesas,rcar-thermal.yaml
+ drivers/soc/fsl/rcpm.c | 29 +++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/rcar-thermal.txt b/Documentation/devicetree/bindings/thermal/rcar-thermal.txt
-deleted file mode 100644
-index 196112d23b1e..000000000000
---- a/Documentation/devicetree/bindings/thermal/rcar-thermal.txt
-+++ /dev/null
-@@ -1,78 +0,0 @@
--* Renesas R-Car Thermal
--
--Required properties:
--- compatible		: "renesas,thermal-<soctype>",
--			   "renesas,rcar-gen2-thermal" (with thermal-zone) or
--			   "renesas,rcar-thermal" (without thermal-zone) as
--                           fallback except R-Car V3M/E3/D3 and RZ/G2E.
--			  Examples with soctypes are:
--			    - "renesas,thermal-r8a73a4" (R-Mobile APE6)
--			    - "renesas,thermal-r8a7743" (RZ/G1M)
--			    - "renesas,thermal-r8a7744" (RZ/G1N)
--			    - "renesas,thermal-r8a774c0" (RZ/G2E)
--			    - "renesas,thermal-r8a7779" (R-Car H1)
--			    - "renesas,thermal-r8a7790" (R-Car H2)
--			    - "renesas,thermal-r8a7791" (R-Car M2-W)
--			    - "renesas,thermal-r8a7792" (R-Car V2H)
--			    - "renesas,thermal-r8a7793" (R-Car M2-N)
--			    - "renesas,thermal-r8a77970" (R-Car V3M)
--			    - "renesas,thermal-r8a77990" (R-Car E3)
--			    - "renesas,thermal-r8a77995" (R-Car D3)
--- reg			: Address range of the thermal registers.
--			  The 1st reg will be recognized as common register
--			  if it has "interrupts".
--
--Option properties:
--
--- interrupts		: If present should contain 3 interrupts for
--                          R-Car V3M/E3/D3 and RZ/G2E or 1 interrupt otherwise.
--
--Example (non interrupt support):
--
--thermal@ffc48000 {
--	compatible = "renesas,thermal-r8a7779", "renesas,rcar-thermal";
--	reg = <0xffc48000 0x38>;
--};
--
--Example (interrupt support):
--
--thermal@e61f0000 {
--	compatible = "renesas,thermal-r8a73a4", "renesas,rcar-thermal";
--	reg = <0xe61f0000 0x14
--		0xe61f0100 0x38
--		0xe61f0200 0x38
--		0xe61f0300 0x38>;
--	interrupts = <0 69 IRQ_TYPE_LEVEL_HIGH>;
--};
--
--Example (with thermal-zone):
--
--thermal-zones {
--	cpu_thermal: cpu-thermal {
--		polling-delay-passive	= <1000>;
--		polling-delay		= <5000>;
--
--		thermal-sensors = <&thermal>;
--
--		trips {
--			cpu-crit {
--				temperature	= <115000>;
--				hysteresis	= <0>;
--				type		= "critical";
--			};
--		};
--		cooling-maps {
--		};
--	};
--};
--
--thermal: thermal@e61f0000 {
--	compatible =	"renesas,thermal-r8a7790",
--			"renesas,rcar-gen2-thermal",
--			"renesas,rcar-thermal";
--	reg = <0 0xe61f0000 0 0x14>, <0 0xe61f0100 0 0x38>;
--	interrupts = <0 69 IRQ_TYPE_LEVEL_HIGH>;
--	clocks = <&mstp5_clks R8A7790_CLK_THERMAL>;
--	power-domains = <&cpg_clocks>;
--	#thermal-sensor-cells = <0>;
--};
-diff --git a/Documentation/devicetree/bindings/thermal/renesas,rcar-thermal.yaml b/Documentation/devicetree/bindings/thermal/renesas,rcar-thermal.yaml
-new file mode 100644
-index 000000000000..ab4cc3c35410
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/renesas,rcar-thermal.yaml
-@@ -0,0 +1,110 @@
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/renesas,rcar-thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/soc/fsl/rcpm.c b/drivers/soc/fsl/rcpm.c
+index 82c0ad5e663e..2bf37d38efe5 100644
+--- a/drivers/soc/fsl/rcpm.c
++++ b/drivers/soc/fsl/rcpm.c
+@@ -13,6 +13,8 @@
+ #include <linux/slab.h>
+ #include <linux/suspend.h>
+ #include <linux/kernel.h>
++#include <linux/regmap.h>
++#include <linux/mfd/syscon.h>
+ 
+ #define RCPM_WAKEUP_CELL_MAX_SIZE	7
+ 
+@@ -63,6 +65,33 @@ static int rcpm_pm_prepare(struct device *dev)
+ 					tmp |= value[i + 1];
+ 					iowrite32be(tmp, rcpm->ippdexpcr_base + i * 4);
+ 				}
++				#ifdef CONFIG_SOC_LS1021A
++				/* Workaround: There is a bug of register ippdexpcr1,
++				 * cannot write it but can read it.Tt's default value is zero,
++				 * then read it will always returns zero.
++				 * So save ippdexpcr1's value to register SCFG_SPARECR8.
++				 * And the value of ippdexpcr1 will be read from SCFG_SPARECR8.
++				 */
++				{
++					struct regmap * rcpm_scfg_regmap = NULL;
++					u32 reg_offset[RCPM_WAKEUP_CELL_MAX_SIZE + 1];
++					u32 reg_value = 0;
 +
-+title: Renesas R-Car Thermal
++					rcpm_scfg_regmap = syscon_regmap_lookup_by_phandle(np, "fsl,rcpm-scfg");
++					if (rcpm_scfg_regmap) {
++						if (of_property_read_u32_array(dev->of_node,
++						    "fsl,rcpm-scfg", reg_offset, rcpm->wakeup_cells + 1)) {
++							rcpm_scfg_regmap = NULL;
++							continue;
++						}
++						regmap_read(rcpm_scfg_regmap, reg_offset[i + 1], &reg_value);
++						/* Write value to register SCFG_SPARECR8 */
++						regmap_write(rcpm_scfg_regmap, reg_offset[i + 1], tmp | reg_value);
++					}
++				}
++				#endif
 +
-+maintainers:
-+  - Niklas Söderlund <niklas.soderlund@ragnatech.se>
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,thermal-r8a73a4       # R-Mobile APE6
-+              - renesas,thermal-r8a7743       # RZ/G1M
-+              - renesas,thermal-r8a7744       # RZ/G1N
-+              - renesas,thermal-r8a7779       # R-Car H1
-+              - renesas,thermal-r8a774c0      # RZ/G2E
-+              - renesas,thermal-r8a77970      # R-Car V3M
-+              - renesas,thermal-r8a77990      # R-Car E3
-+              - renesas,thermal-r8a77995      # R-Car D3
-+          - const: renesas,rcar-thermal       # Without thermal-zone
-+
-+      - items:
-+          - enum:
-+              - renesas,thermal-r8a7790       # R-Car H2
-+              - renesas,thermal-r8a7791       # R-Car M2-W
-+              - renesas,thermal-r8a7792       # R-Car V2H
-+              - renesas,thermal-r8a7793       # R-Car M2-N
-+          - const: renesas,rcar-gen2-thermal  # With thermal-zone
-+          - const: renesas,rcar-thermal       # Without thermal-zone
-+
-+  reg:
-+    # Address range of the thermal registers.
-+    # The 1st reg will be recognized as common register if it has "interrupts".
-+    minItems: 1
-+
-+  interrupts:
-+    # If present should contain 3 interrupts for R-Car V3M/E3/D3 and RZ/G2E,
-+    # otherwise 1 interrupt.
-+    minItems: 1
-+    maxItems: 3
-+
-+  clocks:
-+    maxItems: 1
-+
-+  power-domains:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples :
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/r8a7790-clock.h>
-+
-+ # Example (non interrupt support):
-+  - |
-+    thermal@ffc48000 {
-+        compatible = "renesas,thermal-r8a7779", "renesas,rcar-thermal";
-+        reg = <0xffc48000 0x38>;
-+    };
-+
-+  # Example (interrupt support):
-+  - |
-+    thermal@e61f0000 {
-+        compatible = "renesas,thermal-r8a73a4", "renesas,rcar-thermal";
-+        reg = <0xe61f0000 0x14
-+               0xe61f0100 0x38
-+               0xe61f0200 0x38
-+               0xe61f0300 0x38>;
-+        interrupts = <0 69 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-+
-+  # Example (with thermal-zone):
-+  - |
-+    thermal-zones {
-+        cpu_thermal: cpu-thermal {
-+            polling-delay-passive = <1000>;
-+            polling-delay = <5000>;
-+
-+            thermal-sensors = <&thermal>;
-+
-+            trips {
-+                cpu-crit {
-+                    temperature = <115000>;
-+                    hysteresis = <0>;
-+                    type = "critical";
-+                };
-+            };
-+            cooling-maps {
-+            };
-+        };
-+    };
-+
-+    thermal: thermal@e61f0000 {
-+        compatible = "renesas,thermal-r8a7790",
-+                     "renesas,rcar-gen2-thermal",
-+                     "renesas,rcar-thermal";
-+        reg = <0 0xe61f0000 0 0x14>, <0 0xe61f0100 0 0x38>;
-+        interrupts = <0 69 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&mstp5_clks R8A7790_CLK_THERMAL>;
-+        power-domains = <&cpg_clocks>;
-+        #thermal-sensor-cells = <0>;
-+    };
+ 			}
+ 		}
+ 	} while (ws = wakeup_source_get_next(ws));
 -- 
-2.11.0
+2.17.1
 
