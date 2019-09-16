@@ -2,159 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B48EB3204
-	for <lists+devicetree@lfdr.de>; Sun, 15 Sep 2019 22:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A97B32E1
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 03:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728060AbfIOUZT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 16:25:19 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:36154 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725980AbfIOUZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 16:25:18 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x8FKPFxX079402;
-        Sun, 15 Sep 2019 15:25:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1568579115;
-        bh=0rptD92equBw98T8Sc+eiyWQzCHT0BO9if74fByfdOQ=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=UYfD8YoEiGBb9T+JfNuv+rosreY/huYtUqrdqpUxdpwqIrJhVhHkh8Uf5rKWcs6ek
-         TBg4SP/fDGM/TXvdBnys64I/u64nw7y+Wb8tVgqLwG1etQbcLSnEix1o6f1kTbC5r1
-         3sd6FSrrPiz3LA40eFa8yQgOcKuPtrCmEMXAey00=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x8FKPFE2092151
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sun, 15 Sep 2019 15:25:15 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Sun, 15
- Sep 2019 15:25:15 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Sun, 15 Sep 2019 15:25:14 -0500
-Received: from ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with SMTP id x8FKPEbq097374;
-        Sun, 15 Sep 2019 15:25:14 -0500
-Date:   Sun, 15 Sep 2019 15:27:20 -0500
-From:   Benoit Parrot <bparrot@ti.com>
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-CC:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [Patch 4/6] media: i2c: ov2659: Add optional powerdown gpio
- handling
-Message-ID: <20190915202720.63saxa7fbifn3qf3@ti.com>
-References: <20190912130007.4469-1-bparrot@ti.com>
- <20190912130007.4469-5-bparrot@ti.com>
- <CA+V-a8stmX2WmJEQRvvdOfHiFNgmEbtPTWtn+Fuq2h8SW4N3Hw@mail.gmail.com>
+        id S1728981AbfIPBSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Sep 2019 21:18:20 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:50868 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726472AbfIPBST (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 15 Sep 2019 21:18:19 -0400
+X-UUID: 9fd79929a08c40069bd8474fccda773a-20190916
+X-UUID: 9fd79929a08c40069bd8474fccda773a-20190916
+Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw02.mediatek.com
+        (envelope-from <yingjoe.chen@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1504289671; Mon, 16 Sep 2019 09:18:12 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 16 Sep 2019 09:18:11 +0800
+Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 16 Sep 2019 09:18:11 +0800
+Message-ID: <1568596691.26177.1.camel@mtksdaap41>
+Subject: Re: [RFC PATCH V4 2/4] media: platform: Add Mediatek sensor
+ interface driver KConfig
+From:   Yingjoe Chen <yingjoe.chen@mediatek.com>
+To:     Louis Kuo <louis.kuo@mediatek.com>
+CC:     <hans.verkuil@cisco.com>,
+        <laurent.pinchart+renesas@ideasonboard.com>, <tfiga@chromium.org>,
+        <keiichiw@chromium.org>, <matthias.bgg@gmail.com>,
+        <mchehab@kernel.org>, <devicetree@vger.kernel.org>,
+        <Sean.Cheng@mediatek.com>, <Rynn.Wu@mediatek.com>,
+        <srv_heupstream@mediatek.com>, <Jerry-ch.Chen@mediatek.com>,
+        <jungo.lin@mediatek.com>, <sj.huang@mediatek.com>,
+        <yuzhao@chromium.org>, <linux-mediatek@lists.infradead.org>,
+        <zwisler@chromium.org>, <christie.yu@mediatek.com>,
+        <frederic.chen@mediatek.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-media@vger.kernel.org>
+Date:   Mon, 16 Sep 2019 09:18:11 +0800
+In-Reply-To: <20190915065004.20257-3-louis.kuo@mediatek.com>
+References: <20190915065004.20257-1-louis.kuo@mediatek.com>
+         <20190915065004.20257-3-louis.kuo@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <CA+V-a8stmX2WmJEQRvvdOfHiFNgmEbtPTWtn+Fuq2h8SW4N3Hw@mail.gmail.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lad, Prabhakar <prabhakar.csengg@gmail.com> wrote on Sat [2019-Sep-14 11:33:42 +0100]:
-> Hi Benoit,
+On Sun, 2019-09-15 at 14:50 +0800, Louis Kuo wrote:
+> This patch adds KConfig for sensor interface driver. Sensor interface
+> driver
+> is a MIPI-CSI2 host driver, namely, a HW camera interface controller.
+> It support a widely adopted, simple, high-speed protocol primarily
+> intended
+> for point-to-point image and video transmission between cameras and host
+> devices.
 > 
-> On Thu, Sep 12, 2019 at 1:58 PM Benoit Parrot <bparrot@ti.com> wrote:
-> >
-> > On some board it is possible that the sensor 'powerdown'
-> > pin might be controlled with a gpio instead of being
-> > tied to always powered.
-> >
-> > This patch add support to specify an optional gpio
-> > which will be set at probe time and remained on.
-> >
-> > Signed-off-by: Benoit Parrot <bparrot@ti.com>
-> > ---
-> >  drivers/media/i2c/Kconfig  |  2 +-
-> >  drivers/media/i2c/ov2659.c | 13 +++++++++++++
-> >  2 files changed, 14 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> > index 7eee1812bba3..315c1d8bdb7b 100644
-> > --- a/drivers/media/i2c/Kconfig
-> > +++ b/drivers/media/i2c/Kconfig
-> > @@ -634,7 +634,7 @@ config VIDEO_OV2640
-> >  config VIDEO_OV2659
-> >         tristate "OmniVision OV2659 sensor support"
-> >         depends on VIDEO_V4L2 && I2C
-> > -       depends on MEDIA_CAMERA_SUPPORT
-> > +       depends on MEDIA_CAMERA_SUPPORT && GPIOLIB
-> >         select V4L2_FWNODE
-> >         help
-> >           This is a Video4Linux2 sensor driver for the OmniVision
-> > diff --git a/drivers/media/i2c/ov2659.c b/drivers/media/i2c/ov2659.c
-> > index efbe6dc720e2..c64f73bef336 100644
-> > --- a/drivers/media/i2c/ov2659.c
-> > +++ b/drivers/media/i2c/ov2659.c
-> > @@ -32,6 +32,8 @@
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/of_graph.h>
-> > +#include <linux/of_gpio.h>
-> > +#include <linux/gpio/consumer.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/uaccess.h>
-> >  #include <linux/videodev2.h>
-> > @@ -232,6 +234,8 @@ struct ov2659 {
-> >         struct sensor_register *format_ctrl_regs;
-> >         struct ov2659_pll_ctrl pll;
-> >         int streaming;
-> > +       /* used to control the sensor powerdownN pin */
-> > +       struct gpio_desc *pwrdn_gpio;
-> >  };
-> >
-> >  static const struct sensor_register ov2659_init_regs[] = {
-> > @@ -1391,6 +1395,7 @@ static int ov2659_probe(struct i2c_client *client)
-> >         struct v4l2_subdev *sd;
-> >         struct ov2659 *ov2659;
-> >         struct clk *clk;
-> > +       struct gpio_desc *gpio;
-> 
-> you don't need the local var here you can just assign it directly to pwrdn_gpio.
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> ---
+>  drivers/media/platform/mtk-isp/Kconfig | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+>  create mode 100644 drivers/media/platform/mtk-isp/Kconfig
 
-Ok.
+Please squash this into driver patch.
 
-> 
-> >         int ret;
-> >
-> >         if (!pdata) {
-> > @@ -1414,6 +1419,14 @@ static int ov2659_probe(struct i2c_client *client)
-> >             ov2659->xvclk_frequency > 27000000)
-> >                 return -EINVAL;
-> >
-> > +       /* Optional gpio don't fail if not present */
-> > +       gpio = devm_gpiod_get_optional(&client->dev, "powerdown",
-> > +                                      GPIOD_OUT_HIGH);
-> > +       if (IS_ERR(gpio))
-> > +               return PTR_ERR(gpio);
-> > +
-> > +       ov2659->pwrdn_gpio = gpio;
-> > +
-> apart from assigning it you don't actually use it.
-> 
-> you will also have to read the reset gpio pin and implement
-> ov2659_set_power() and
-> call it in appropriate places/ s_power ?
 
-Well I am not sure I want to go that far.
-On most board I have the sensor is always powered as soon as the board gets
-powered. Which is why we go through a S/W reset before starting a stream.
+> diff --git a/drivers/media/platform/mtk-isp/Kconfig b/drivers/media/platform/mtk-isp/Kconfig
+> new file mode 100644
+> index 000000000000..bc7fd01808b3
+> --- /dev/null
+> +++ b/drivers/media/platform/mtk-isp/Kconfig
+> @@ -0,0 +1,17 @@
+> +config MTK_SENINF
+> +	bool "Mediatek mipi csi2 driver"
 
-I didn't want to change the logic here too much.
+MediaTek
 
-I'll check this out a little more.
+> +	depends on VIDEO_V4L2 && VIDEO_V4L2_SUBDEV_API
+> +	depends on MEDIA_CAMERA_SUPPORT
+> +	select V4L2_FWNODE
+> +
+> +	default n
 
-Benoit
+Do not add 'default n'
+Remove the extra blank line.
 
-> 
-> Cheers,
-> --Prabhakar Lad
+> +	help
+> +	    This driver provides a mipi-csi2 host driver used as a
+> +	    interface to connect camera with Mediatek's
+
+MediaTek
+
+> +	    MT8183 SOCs. It is able to handle multiple cameras
+> +	    at the same time.
+> +
+> +	    Choose y if you want to use Mediatek SoCs to create image
+
+MediaTek
+
+> +	    capture application such as video recording and still image
+> +	    capture.
+> +
+
+
