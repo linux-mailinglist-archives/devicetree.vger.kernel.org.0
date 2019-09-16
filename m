@@ -2,153 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B173B3600
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 09:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 052C4B3602
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 09:55:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727329AbfIPHy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 03:54:59 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:51770 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726312AbfIPHy7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 03:54:59 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 5549D25B705;
-        Mon, 16 Sep 2019 17:54:56 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 4E17B944602; Mon, 16 Sep 2019 09:54:54 +0200 (CEST)
-Date:   Mon, 16 Sep 2019 09:54:54 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: hspi: Convert bindings to json-schema
-Message-ID: <20190916075454.ab7cg5icp72sa6qx@verge.net.au>
-References: <20190913122151.20264-1-horms+renesas@verge.net.au>
- <CAL_JsqKEym4i74AuTFvawBaB0_zBeh5KcBOY_OFheUV1oF4yEg@mail.gmail.com>
+        id S1730361AbfIPHzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 03:55:47 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:16670 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726074AbfIPHzq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 03:55:46 -0400
+X-UUID: cdd2059cd0e84fb58249955718d5a645-20190916
+X-UUID: cdd2059cd0e84fb58249955718d5a645-20190916
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw01.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0809 with TLS)
+        with ESMTP id 1205137553; Mon, 16 Sep 2019 15:55:42 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 16 Sep 2019 15:55:40 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 16 Sep 2019 15:55:40 +0800
+Message-ID: <1568620540.7280.1.camel@mtksdaap41>
+Subject: Re: [PATCH v3 12/14] drm/mediatek: Add pm runtime support for ovl
+ and rdma
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Yong Wu <yong.wu@mediatek.com>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Joerg Roedel <joro@8bytes.org>,
+        Rob Herring <robh+dt@kernel.org>, <youlin.pei@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <cui.zhang@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <chao.hao@mediatek.com>, Will Deacon <will.deacon@arm.com>,
+        <linux-kernel@vger.kernel.org>, Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        <iommu@lists.linux-foundation.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Yongqiang Niu <yongqiang.niu@mediatek.com>,
+        <ming-fan.chen@mediatek.com>, <anan.sun@mediatek.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 16 Sep 2019 15:55:40 +0800
+In-Reply-To: <1567503456-24725-13-git-send-email-yong.wu@mediatek.com>
+References: <1567503456-24725-1-git-send-email-yong.wu@mediatek.com>
+         <1567503456-24725-13-git-send-email-yong.wu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqKEym4i74AuTFvawBaB0_zBeh5KcBOY_OFheUV1oF4yEg@mail.gmail.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 13, 2019 at 03:22:10PM -0500, Rob Herring wrote:
-> On Fri, Sep 13, 2019 at 7:22 AM Simon Horman <horms+renesas@verge.net.au> wrote:
-> >
-> > Convert Renesas HSPI bindings documentation to json-schema.
-> > Also name bindings documentation file according to the compat string
-> > being documented.
-> >
-> > As a side effect of this change all currently supported/used compat
-> > strings are listed while no while card compat string is documented.
-> > This, in my opinion, is desirable as only supported hardware should
-> > be documented.
-> >
-> > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 
-Hi Rob,
+Hi, Yong:
 
-thanks for your review. I have sent v2 which I believe addresses
-the issues you have raised.
+On Tue, 2019-09-03 at 17:37 +0800, Yong Wu wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> Display use the dispsys device to call pm_rumtime_get_sync before.
+> This patch add pm_runtime_xx with ovl and rdma device which has linked
+> with larb0, then it will enable the correpsonding larb0 clock
+> automatically by the device link.
 
-> > ---
-> > Based on v5.3-rc1
-> > Tested using:
-> >   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/spi/renesas,hspi.yaml
-> > ---
-> >  .../devicetree/bindings/spi/renesas,hspi.yaml      | 54 ++++++++++++++++++++++
-> >  Documentation/devicetree/bindings/spi/sh-hspi.txt  | 26 -----------
-> >  2 files changed, 54 insertions(+), 26 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/spi/renesas,hspi.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/spi/sh-hspi.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/spi/renesas,hspi.yaml b/Documentation/devicetree/bindings/spi/renesas,hspi.yaml
-> > new file mode 100644
-> > index 000000000000..94a64a33daf4
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/spi/renesas,hspi.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/spi/renesas,hspi.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Renesas HSPI
-> > +
-> > +maintainers:
-> > +  - Geert Uytterhoeven <geert+renesas@glider.be>
+This patch should be applied before "drm/mediatek: Get rid of
+mtk_smi_larb_get/put". If before that patch, this patch is a preparation
+of that patch. If after that patch, this patch is a bug fix of that
+patch. Why let bug happen?
+
 > 
-> Add:
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c     |  5 +++++
+>  drivers/gpu/drm/mediatek/mtk_disp_rdma.c    |  5 +++++
+>  drivers/gpu/drm/mediatek/mtk_drm_crtc.c     | 18 ++++++++++++++++--
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c |  9 +++++++++
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h |  1 +
+>  5 files changed, 36 insertions(+), 2 deletions(-)
 > 
-> allOf:
->   - $ref: spi-controller.yaml#
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +        - renesas,hspi-r8a7778 # R-Car M1A
-> > +        - renesas,hspi-r8a7779 # R-Car H1
-> > +      - const: renesas,hspi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> 
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> 
-> And then these 2 can be dropped.
-> 
-> > +
-> > +  # Pinctrl properties might be needed, too.
-> > +  # See Documentation/devicetree/bindings/pinctrl/renesas,*.
-> 
-> If only a single state, you don't. For multiple states, we need to
-> document the names.
-> 
-> If not present, then they get added automagically so that
-> 'additionalProperties: false' works. But you can't use that here as
-> you'll have child nodes.
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - '#address-cells'
-> > +  - '#size-cells'
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +
-> > +    hspi0: spi@fffc7000 {
-> > +        compatible = "renesas,hspi-r8a7778", "renesas,hspi";
-> > +        reg = <0xfffc7000 0x18>;
-> > +        interrupt-parent = <&gic>;
-> > +        interrupts = <0 63 IRQ_TYPE_LEVEL_HIGH>;
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +    };
-> > +
-> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> index c4f07c2..51958cf 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+>  
+>  #include "mtk_drm_crtc.h"
+>  #include "mtk_drm_ddp_comp.h"
+> @@ -300,6 +301,8 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> +	pm_runtime_enable(dev);
+> +
+>  	ret = component_add(dev, &mtk_disp_ovl_component_ops);
+>  	if (ret)
+>  		dev_err(dev, "Failed to add component: %d\n", ret);
+
+This error should do some error handling to undo pm_runtime_enable().
+
+> @@ -311,6 +314,8 @@ static int mtk_disp_ovl_remove(struct platform_device *pdev)
+>  {
+>  	component_del(&pdev->dev, &mtk_disp_ovl_component_ops);
+>  
+> +	pm_runtime_disable(&pdev->dev);
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> index 9a6f0a2..15e5c3a 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_rdma.c
+> @@ -9,6 +9,7 @@
+>  #include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+>  
+>  #include "mtk_drm_crtc.h"
+>  #include "mtk_drm_ddp_comp.h"
+> @@ -306,6 +307,8 @@ static int mtk_disp_rdma_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, priv);
+>  
+> +	pm_runtime_enable(dev);
+> +
+>  	ret = component_add(dev, &mtk_disp_rdma_component_ops);
+>  	if (ret)
+>  		dev_err(dev, "Failed to add component: %d\n", ret);
+
+Ditto.
+
+> @@ -317,6 +320,8 @@ static int mtk_disp_rdma_remove(struct platform_device *pdev)
+>  {
+>  	component_del(&pdev->dev, &mtk_disp_rdma_component_ops);
+>  
+> +	pm_runtime_disable(&pdev->dev);
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> index c1e891e..daf002e 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_crtc.c
+> @@ -358,13 +358,21 @@ static void mtk_drm_crtc_atomic_enable(struct drm_crtc *crtc,
+>  				       struct drm_crtc_state *old_state)
+>  {
+>  	struct mtk_drm_crtc *mtk_crtc = to_mtk_crtc(crtc);
+> +	struct mtk_ddp_comp *comp = mtk_crtc->ddp_comp[0];
+>  	int ret;
+>  
+>  	DRM_DEBUG_DRIVER("%s %d\n", __func__, crtc->base.id);
+>  
+> +	ret = pm_runtime_get_sync(comp->dev);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(comp->dev, "Failed to enable power domain: %d\n",
+> +			      ret);
+> +
+>  	ret = mtk_crtc_ddp_hw_init(mtk_crtc);
+> -	if (ret)
+> +	if (ret) {
+> +		pm_runtime_put(comp->dev);
+>  		return;
+> +	}
+>  
+>  	drm_crtc_vblank_on(crtc);
+>  	mtk_crtc->enabled = true;
+> @@ -374,7 +382,8 @@ static void mtk_drm_crtc_atomic_disable(struct drm_crtc *crtc,
+>  					struct drm_crtc_state *old_state)
+>  {
+>  	struct mtk_drm_crtc *mtk_crtc = to_mtk_crtc(crtc);
+> -	int i;
+> +	struct mtk_ddp_comp *comp = mtk_crtc->ddp_comp[0];
+> +	int i, ret;
+>  
+>  	DRM_DEBUG_DRIVER("%s %d\n", __func__, crtc->base.id);
+>  	if (!mtk_crtc->enabled)
+> @@ -398,6 +407,11 @@ static void mtk_drm_crtc_atomic_disable(struct drm_crtc *crtc,
+>  	mtk_crtc_ddp_hw_fini(mtk_crtc);
+>  
+>  	mtk_crtc->enabled = false;
+> +
+> +	ret = pm_runtime_put(comp->dev);
+> +	if (ret < 0)
+> +		DRM_DEV_ERROR(comp->dev, "Failed to disable power domain: %d\n",
+> +			      ret);
+>  }
+>  
+>  static void mtk_drm_crtc_atomic_begin(struct drm_crtc *crtc,
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> index 7dc8496..c45e1f0 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c
+> @@ -256,6 +256,8 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
+>  		      struct mtk_ddp_comp *comp, enum mtk_ddp_comp_id comp_id,
+>  		      const struct mtk_ddp_comp_funcs *funcs)
+>  {
+> +	struct platform_device *comp_pdev;
+> +
+>  	if (comp_id < 0 || comp_id >= DDP_COMPONENT_ID_MAX)
+>  		return -EINVAL;
+>  
+> @@ -282,6 +284,13 @@ int mtk_ddp_comp_init(struct device *dev, struct device_node *node,
+>  	if (IS_ERR(comp->clk))
+>  		return PTR_ERR(comp->clk);
+>  
+> +	comp_pdev = of_find_device_by_node(node);
+> +	if (!comp_pdev) {
+> +		dev_err(dev, "Waiting for device %s\n", node->full_name);
+> +		return -EPROBE_DEFER;
+> +	}
+> +	comp->dev = &comp_pdev->dev;
+
+This should be
+
+	comp->dev = dev;
+
+Regards,
+CK
+
+> +
+>  	return 0;
+>  }
+>  
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> index 108de60..d1838a8 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h
+> @@ -83,6 +83,7 @@ struct mtk_ddp_comp {
+>  	struct clk *clk;
+>  	void __iomem *regs;
+>  	int irq;
+> +	struct device *dev;
+>  	enum mtk_ddp_comp_id id;
+>  	const struct mtk_ddp_comp_funcs *funcs;
+>  };
+
+
+
