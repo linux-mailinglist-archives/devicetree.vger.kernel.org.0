@@ -2,233 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C673B3A4A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 14:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35648B3A6A
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 14:35:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732657AbfIPMZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 08:25:59 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:44380 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732502AbfIPMZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 08:25:58 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190916122556euoutp024f017016066d5193b34ebcd572c698dc~E6tHGbtfp2830028300euoutp02R
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2019 12:25:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190916122556euoutp024f017016066d5193b34ebcd572c698dc~E6tHGbtfp2830028300euoutp02R
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568636756;
-        bh=pd4LFeq8Hf58x/uaWkVtzZwd7F67Yro/hz+c01DyRcI=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=DcOGAFncEUFXIdBgwinf/2dim/Bv4mXH5gmKVthlJ5nWI32w9waFYKPKsLHN/b1Tm
-         FYiXqhXf6WxCWvHsgakZFJTVHvgY51wTbUld+hBiTafHCeN5aVrJAZLc6TBA1oqtv+
-         2bJPVKNiUQcBcPKRcWIPSkWFnNL5YeJw1UQxx0wQ=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190916122555eucas1p1b403dcd9a69c421eec08dea14a4aabf7~E6tGKH_RG0799707997eucas1p1N;
-        Mon, 16 Sep 2019 12:25:55 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 35.93.04469.35F7F7D5; Mon, 16
-        Sep 2019 13:25:55 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190916122555eucas1p100b7f2c9c7c63a585a8b96aafb931c01~E6tFWzA1e0775607756eucas1p1P;
-        Mon, 16 Sep 2019 12:25:55 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190916122554eusmtrp29217d31fe51b7619dabfd1be6c2cf541~E6tFIeilQ1085610856eusmtrp2y;
-        Mon, 16 Sep 2019 12:25:54 +0000 (GMT)
-X-AuditID: cbfec7f2-569ff70000001175-c7-5d7f7f536494
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 47.D6.04166.25F7F7D5; Mon, 16
-        Sep 2019 13:25:54 +0100 (BST)
-Received: from [106.120.51.74] (unknown [106.120.51.74]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190916122553eusmtip281778247ca06eec9d1ec906ab34edca4~E6tETXae41817718177eusmtip2D;
-        Mon, 16 Sep 2019 12:25:53 +0000 (GMT)
-Subject: Re: [PATCH 05/11] drm/bridge: analogix-anx78xx: correct value of
- TX_P0
-To:     Brian Masney <masneyb@onstation.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        bjorn.andersson@linaro.org, robh+dt@kernel.org, agross@kernel.org,
-        narmstrong@baylibre.com, robdclark@gmail.com, sean@poorly.run,
-        airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
-        jonas@kwiboo.se, jernej.skrabec@siol.net, linus.walleij@linaro.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        freedreno@lists.freedesktop.org
-From:   Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <d729f4cd-1d00-fc8b-1688-78c9f325eeac@samsung.com>
-Date:   Mon, 16 Sep 2019 14:25:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190916120228.GA3045@onstation.org>
-Content-Transfer-Encoding: 8bit
+        id S1727981AbfIPMf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 08:35:29 -0400
+Received: from mail-eopbgr20053.outbound.protection.outlook.com ([40.107.2.53]:18055
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726696AbfIPMf3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 08:35:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=medvI1zpWPUrIsPH4uoDBwjY5l+6UaRc4VjTIwIxMqawRYNpb67ImWMLgv5+AHcGmwI0Fj/b7HWLk7ywkzvBkKLKVP+EU3Jqf+LOQVytN1UVFy6/3Ap0VWaoyEj1OTHKIV2o4iaFmEGE0SbUlE/FIjVQ2/rA1Qkp9PlDomfBAthy/nFQvZYW+7CVO2UseAixx3tBTwOI976fKVjSobh06v3Sz94uE/CVK5843n4ihWScQlknoIVdrrMmr9d+waxMw6G2Xj9Zcj9fLiSxqJdKH9OfpI68xJPjC3zEI8B+hxpqeit2DNhWN0qghwWIk+SkptRjWh8f/GWdKLgJo4SDgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ml3YPGsLpUOIkgTIous3KeFaFrHR8fYhTHyUTHQBDvk=;
+ b=OsqCm5K1Ls2JCtopimvLl5yw7Jv+wO9ppElouZnVqT/3dn4iwE/rS0G4FYGhlGRoHdVTKLsRdRiIZPMR8SL5zIxsmvq0roH6qqQyFFrDGqnH+fGV3m0vKlLUaZOBV/DSLG4mLeTC68OsY+wUvxIJxb48tkwaRIufuy4fel+boCnY12gOWFekGrWbRt5xsCt7NGbl1ZApd6cpG+r8ToXz8BIrlCWwSNGtWwnjqdH6/GOl2hAotzXNFO+5Zf89KJHfOvfaDr8n3SGwOrtDNMX88tSl+ScXeI/5fZBBp/hsTvs7ApSVxNR0hD6zcrKEAOgIQH95k6NkEl8/vUSMcs4T4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ml3YPGsLpUOIkgTIous3KeFaFrHR8fYhTHyUTHQBDvk=;
+ b=DQD0lSihdWhpEFFa6i9KeLWap9Bzz/jHy5gXF8D3bI3zFJAat2MAMGe5bksg6ymr4RArj+FMFJQ0Gs+et9tjGyXa3l8zDlpjJ776iow1ZI/NuW0hpa9GQHxnXBDq/AQVSxtr2JKBNP7LWzg0cDUf5x9T//SF2B96P6DVXOpMEuM=
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
+ VI1PR04MB3280.eurprd04.prod.outlook.com (10.170.231.145) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2263.23; Mon, 16 Sep 2019 12:34:45 +0000
+Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e]) by VI1PR04MB7023.eurprd04.prod.outlook.com
+ ([fe80::c5e8:90f8:da97:947e%3]) with mapi id 15.20.2263.023; Mon, 16 Sep 2019
+ 12:34:45 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     =?iso-8859-2?Q?Artur_=A6wigo=F1?= <a.swigon@partner.samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [RFCv4 0/7] interconnect: Add imx support via devfreq
+Thread-Topic: [RFCv4 0/7] interconnect: Add imx support via devfreq
+Thread-Index: AQHVWcA7xPiNhLrdqkSG10Lu7U9EhQ==
+Date:   Mon, 16 Sep 2019 12:34:45 +0000
+Message-ID: <VI1PR04MB702373BE28E4404C7F2CE75FEE8C0@VI1PR04MB7023.eurprd04.prod.outlook.com>
+References: <cover.1566570260.git.leonard.crestez@nxp.com>
+Accept-Language: en-US
 Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTcRTut/tUWtxN04NJ0SAio9QM+kUPCvrjBv2hVNADq1vdluWW7Gbv
-        nJXWMrTZ2y0tS5nKophpOlJrSstso/Uws2QLpXf2tHea2y3yv++c833nOx8cllCfp2PYNP1m
-        0aAX0jV0OFl747t30kKjMTXhq3089nb/JHG+t1WB25p6STxQW0jgMy1eCt/ve0dj+2MXwqef
-        exB+8PUlgVvfPCDxwcIyBh/7ZVNgR3c7hQubPAy+5zxN4/KHPgU+bH1NYVfBcvy89BuBcxta
-        GNx1tAXNGcnbS+yIf9eRy/B1XWWIb/hyluTrLV0MbzUVUbyj6iDN3zTfVfBP2q/S/JUvAYr3
-        H3Ir+OoyI1/eEcG7nZ0Mfy3/KMl/coxO5paFz1wrpqdtEQ3xs1eFr6+22+iMCxO22Y4VM9mo
-        RpOHwljgpsKzwHEmiNVcBYJDPfPzUPgg/owg+1YpKRefENhO5FH/FFZHCZIHNgTvrWW0XLxF
-        sLf3R4gVwaXAbYuXDuJIToDuxjchBcHtJ6Hw3JGQIc1NgN/Vj0IkJTcbDjjNITHJjYOGtuIQ
-        HsktgY+BZkrmqKC1qGfwJpYN46aAf1+oTXBjYF+NlZBxNHT2nFEEvYALsFBQ+pQI8oGbB3mV
-        s+QEEfDKfZmRcSwM1Af5QWwEf0UOIWtNCGou1RPyYAY0u31UcA8xePNFZ7zcngvmNh8prx8B
-        HW9V8gkj4Ejtyb+uSjDtV8vsseD31PxdGA3ld/poM9JYhuSyDAljGRLG8t/3LCKrULSYKem0
-        opSoF7dOlgSdlKnXTl6zSedAg6/b1u/+WIf67q52IY5FmuHK7NysVDUlbJG261wIWEITqUze
-        bUxVK9cK23eIhk0rDZnpouRCo1hSE63cOSywXM1phc3iRlHMEA3/pgo2LCYbqdQ7vH3C0vxR
-        Rb0rLvdfq2pOemluqa9OOEVHNZK5A4v0ppR1CbaLCZEHYozD2p1RGZ6xSa7G1/7jYlblLt/E
-        F/eTdu+pTI7SLjF4xcSNOaYuV4pwc4G2WPLVfZje9AS/UJmy4hsW57R6ptWlXY+d8/hUf6cr
-        dn6P6lVcwYbfP3UaUlovJMYRBkn4A6FlcQK2AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Sf0yMcRzH931+3XPN6XGV+8qGnTWyeXJX6Zvphg2PYcL8WGl5lmdF3V27
-        52p+TEVCWZT84yn9oNMkTXerrmjlpNyukiiJxLKh/BoqJj+qY+u/1/Z+vf74bB8aV9pJX3q/
-        wSyYDHyCmvIgXL9bXyzdlpoatcxSwqKOwZ8Eyu5wYsjV+JFAf2pycVTU3EGixyOfKFTxzAFQ
-        wZt2gLrH3uHI+b6bQJm5pTJ0YbwMQ9bBHhLlNrbL0KP6AgpZnjzE0Ln8YRI5zkaiNyXfcZTR
-        0CxD/XnNYJUPV1FYAbhPvRkyzt5fCriG0WKCq5P6ZVz+6YskZy3PpLj7OV0Y97znNsXVjr4k
-        uYEzrRhnK03lLL1eXGt9n4xrys4juK/WeeFMBLvSZEwyCwvijKI5TB2pQVpWE4pYbVAoqwkM
-        iVqhDVYH6FbuExL2JwumAN1eNs5WUUYl3vA/WHbhkiwNVKuzgJyGTBDMtxaCLOBBKxkLgJcz
-        h3D3oIK3ij78Yy843pNFuaVhAI9/LMMmBy9mK2yTOqhJ9mZ46Pp5dUrCmZMErKtsIN3FTRx2
-        j1QRkxbF+MNftqdThYLRwVP1OeQkE4wfbHBdmmIfZje8a5eA25kFnRdfT7Q0LWe0cCB9SsGZ
-        RXC8sAt383yYXp3/j1Ww73URlgOU0rRampZI0xJpWlIMiHLgLSSJ+li9qGFFXi8mGWLZGKPe
-        Cia+pqblh80Ouqq2OwBDA/UMRVpGSpSS5JPFQ3oHgDSu9laEH02NUir28YcOCyZjtCkpQRAd
-        IHjitlzc1yfGOPGDBnO0JlgTgkI1IYEhgcuRWqU4zdzZo2RiebMQLwiJgul/h9Fy3zTgufna
-        jrH2yuqIY9ROc+PcLRsMHtfPh9Oe8xds6o75su6UIX5XdvTcxctLZvr0dGqji2e/WP3AhS17
-        q+NH158bGWgfbdPJ4x+eOGLPs6UHduosCz3jmmrXql45zZ6Sk51DyTePkfdK04Kl4gMpfnXf
-        Oq9s5NdEbmj5XFU51KoKYzzUhBjHa5bgJpH/C4U8smxLAwAA
-X-CMS-MailID: 20190916122555eucas1p100b7f2c9c7c63a585a8b96aafb931c01
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190815004918epcas3p135042bc52c7e3c8b1aca7624d121af97
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190815004918epcas3p135042bc52c7e3c8b1aca7624d121af97
-References: <20190815004854.19860-1-masneyb@onstation.org>
-        <CGME20190815004918epcas3p135042bc52c7e3c8b1aca7624d121af97@epcas3p1.samsung.com>
-        <20190815004854.19860-6-masneyb@onstation.org>
-        <dc10dd84-72e2-553e-669b-271b77b4a21a@samsung.com>
-        <20190916103614.GA1644@onstation.org>
-        <20190916104907.GB4734@pendragon.ideasonboard.com>
-        <3ec4f0bc-f3c5-aebf-8213-bc4f80915902@collabora.com>
-        <20190916120228.GA3045@onstation.org>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 566f74f1-8beb-4b4f-7e67-08d73aa241c7
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB3280;
+x-ms-traffictypediagnostic: VI1PR04MB3280:|VI1PR04MB3280:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB328079E81EFC1924AE45127AEE8C0@VI1PR04MB3280.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0162ACCC24
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(376002)(346002)(396003)(39860400002)(136003)(199004)(189003)(33656002)(486006)(44832011)(7696005)(9686003)(8936002)(81156014)(8676002)(99286004)(86362001)(55016002)(2501003)(66066001)(54906003)(110136005)(316002)(25786009)(476003)(14454004)(76116006)(91956017)(186003)(66446008)(66556008)(66476007)(66946007)(4326008)(64756008)(26005)(53546011)(76176011)(478600001)(102836004)(6506007)(3846002)(7416002)(6116002)(71190400001)(71200400001)(52536014)(81166006)(446003)(256004)(229853002)(6436002)(305945005)(53936002)(5660300002)(2906002)(74316002)(7736002)(6246003)(14444005);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3280;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: cIcb1sLISs6WjBDIovfGIeSHBXeZ9HrV/DNCBq26iQPPSL8chDkPbElHx/Y93thtdeEJtjNkfv5VeouaHbdtztcTPgmMXKhdERJPog6CNu5vdC8vLjLCly0ImDQ0fRy9hg4n7q97SExCfFZwaD0UYWH4AamMJq3E9+cNhRLelMLwclsn4oK4vQ1zNflpqO4oKkEZ4tZf8LbqHNvGhoGFaG3JsfHSyosckfCQ9DWCa2355cDFPc/a/WULhTxLEQTv6aQekdrCmUVQ0k4wps7OgY3oIeaXb6+DssvflSVNbAbq8YKQHUjfIorC4FUeCl1eCSDW0ucd62x31Y7eeF4TdbcZCyAL2w3nQ4kZ2IjXCl5PmJ60+qKbngbCgps1lPRvOB8Fqa+PE0sTyX7WrBp2MLW3BPmJOqOEhE9Dw6+VNpI=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 566f74f1-8beb-4b4f-7e67-08d73aa241c7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2019 12:34:45.4176
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CWaEHDDjLQDsP/13KOQHx/1aut7vKDMooUcJRCvOQoKjmBYNjfNXIJnzxRgOvi057LKJoUQRd88fFhkrsOphQw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3280
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.09.2019 14:02, Brian Masney wrote:
-> On Mon, Sep 16, 2019 at 01:32:58PM +0200, Enric Balletbo i Serra wrote:
->> Hi,
->>
->> On 16/9/19 12:49, Laurent Pinchart wrote:
->>> Hi Brian,
->>>
->>> On Mon, Sep 16, 2019 at 06:36:14AM -0400, Brian Masney wrote:
->>>> On Mon, Sep 16, 2019 at 12:02:09PM +0200, Andrzej Hajda wrote:
->>>>> On 15.08.2019 02:48, Brian Masney wrote:
->>>>>> When attempting to configure this driver on a Nexus 5 phone (msm8974),
->>>>>> setting up the dummy i2c bus for TX_P0 would fail due to an -EBUSY
->>>>>> error. The downstream MSM kernel sources [1] shows that the proper value
->>>>>> for TX_P0 is 0x78, not 0x70, so correct the value to allow device
->>>>>> probing to succeed.
->>>>>>
->>>>>> [1] https://github.com/AICP/kernel_lge_hammerhead/blob/n7.1/drivers/video/slimport/slimport_tx_reg.h
->>>>>>
->>>>>> Signed-off-by: Brian Masney <masneyb@onstation.org>
->>>>>> ---
->>>>>>  drivers/gpu/drm/bridge/analogix-anx78xx.h | 2 +-
->>>>>>  1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/bridge/analogix-anx78xx.h b/drivers/gpu/drm/bridge/analogix-anx78xx.h
->>>>>> index 25e063bcecbc..bc511fc605c9 100644
->>>>>> --- a/drivers/gpu/drm/bridge/analogix-anx78xx.h
->>>>>> +++ b/drivers/gpu/drm/bridge/analogix-anx78xx.h
->>>>>> @@ -6,7 +6,7 @@
->>>>>>  #ifndef __ANX78xx_H
->>>>>>  #define __ANX78xx_H
->>>>>>  
->>>>>> -#define TX_P0				0x70
->>>>>> +#define TX_P0				0x78
->>>>>
->>>>> This bothers me little. There are no upstream users, grepping android
->>>>> sources suggests that both values can be used [1][2]  (grep for "#define
->>>>> TX_P0"), moreover there is code suggesting both values can be valid [3].
->>>>>
->>>>> Could you verify datasheet which i2c slave addresses are valid for this
->>>>> chip, if both I guess this patch should be reworked.
->>>>>
->>>>>
->>>>> [1]:
->>>>> https://android.googlesource.com/kernel/msm/+/android-msm-flo-3.4-jb-mr2/drivers/misc/slimport_anx7808/slimport_tx_reg.h
->>>>>
->>>>> [2]:
->>>>> https://github.com/AndroidGX/SimpleGX-MM-6.0_H815_20d/blob/master/drivers/video/slimport/anx7812/slimport7812_tx_reg.h
->>>>>
->>>>> [3]:
->>>>> https://github.com/commaai/android_kernel_leeco_msm8996/blob/master/drivers/video/msm/mdss/dp/slimport_custom_declare.h#L73
->>>> This address is 0x78 on my Nexus 5. Given [3] above it looks like we
->>>> need to support both addresses. What do you think about moving these
->>>> addresses into device tree?
->>> Assuming that the device supports different addresses (I can't validate
->>> that as I don't have access to the datasheet), and different addresses
->>> need to be used on different systems, then the address to be used needs
->>> to be provided by the firmware (DT in this case). Two options are
->>> possible, either specifying the address explicitly in the device's DT
->>> node, or specifying free addresses (in the form of a white list or black
->>> list) and allocating an address from that pool. The latter has been
->>> discussed in a BoF at the Linux Plumbers Conference last week,
->>> https://linuxplumbersconf.org/event/4/contributions/542/.
->>>
->>>> The downstream and upstream kernel sources divide these addresses by two
->>>> to get the i2c address. Here's the code in upstream:
->>>>
->>>> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/bridge/analogix-anx78xx.c#L1353
->>>> https://elixir.bootlin.com/linux/latest/source/drivers/gpu/drm/bridge/analogix-anx78xx.c#L41
->>>>
->>>> I'm not sure why the actual i2c address isn't used in this code.
->> The ANX7802/12/14/16 has a slave I2C bus that provides the interface to access
->> or control the chip from the AP. The I2C slave addresses used to control the
->> ANX7802/12/14/16 are 70h, 72h, 7Ah, 7Eh and 80h. Every address allows you to
->> access to different registers of the chip and AFAICS is not configurable.
->>
->> I don't think these addresses should be configured via DT but for the driver itself.
->>
->> My wild guess is that the ANX7808 has different addresses, but I don't have the
->> datasheet of this version.
-> I'm able to communicate with the 7808 on my Nexus 5 using the 0x78
-> address. Given that the addresses appear to be fixed per model, maybe it
-> makes sense to drop the address #defines and add the addresses to the
-> data pointer in the driver's of_match_table like so:
->
-> static const struct of_device_id anx78xx_match_table[] = {
->         { .compatible = "analogix,anx7808", .data = PTR_TO_7808_ADDRS },
->         { .compatible = "analogix,anx7812", .data = PTR_TO_781X_ADDRS },
->         { .compatible = "analogix,anx7814", .data = PTR_TO_781X_ADDRS },
->         { .compatible = "analogix,anx7818", .data = PTR_TO_781X_ADDRS },
->         { /* sentinel */ },
-> };
->
-> Brian
->
->
-
-I have spotted following comment on chromium's ML[1]:
-
-> The locations are hard coded in the register spec.  Furthermore, each
-> one can be changed independently--for example the Android driver puts
-> 0x38 at 0x3c but leaves the rest alone.
-
-It is not entirely clear, but IMO it suggests these addresses are
-hardware configurable.
-
-
-[1]:
-https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/44601/2/drivers/auxdisplay/slimport.c#331
-
-
-Regards
-
-Andrzej
-
+On 23.08.2019 17:37, Leonard Crestez wrote:=0A=
+> This series add imx support for interconnect via devfreq: the ICC=0A=
+> framework is used to aggregate requests from devices and then those are=
+=0A=
+> converted to DEV_PM_QOS_MIN_FREQUENCY requests for devfreq.=0A=
+>  =0A=
+> Since there is no single devicetree node that can represent the "intercon=
+nect"=0A=
+> new API is added to allow individual devfreq nodes to act as parsing prox=
+ies=0A=
+> all mapping to a single soc-level icc provider. This is still RFC=0A=
+> because of this=0A=
+=0A=
+Any comments? I made a lot of changes relative to previous versions, =0A=
+most of them solely to avoid adding a virtual node in DT bindings.=0A=
+=0A=
+The only current interconnect provider implementation is for qcom and it =
+=0A=
+uses a firmware node as the provider node (with #interconnect-cells). =0A=
+However there is no obvious equivalent of that for imx and many other SOCs.=
+=0A=
+=0A=
+On imx there are multiple pieces of scalable fabric which can be defined =
+=0A=
+in DT as devfreq devices and it sort of makes sense to add =0A=
+#interconnect-cells to those. However when it comes to describing the =0A=
+SOC interconnect graph it's much more convenient to have a single =0A=
+per-SOC platform driver.=0A=
+=0A=
+My solution is to add an "icc_proxy" API so that a single platform-level =
+=0A=
+interconnect provider can be referenced through multiple DT nodes. Does =0A=
+this make sense?=0A=
+=0A=
+The implementation is not very pretty, the interconnect platform devices =
+=0A=
+ends up enumerating the entire devicetree in order to find proxies.=0A=
+=0A=
+Right now the interconnect API use a relatively standard split between =0A=
+consumer and "provider" but I think it might make sense to have a =0A=
+separate abstractions for "graph" and "midnode". A "midnode" could act =0A=
+as a DT proxy if there is no single representation of the "interconnect" =
+=0A=
+and it could support custom scaling for itself (with the default being =0A=
+scaling kbps into MIN_FREQ).=0A=
+=0A=
+There are also other options:=0A=
+  * Pick one "main" bus and bless it as the "interconnect provider". I =0A=
+want to represent buses as devfreq devices so I would have to call from =0A=
+devfreq to ICC for registration somehow.=0A=
+  * Maybe the "no virtual device" rule could be relaxed for the =0A=
+interconnect subsystem?=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
