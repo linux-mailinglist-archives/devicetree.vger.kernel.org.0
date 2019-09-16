@@ -2,72 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4D66B3C20
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 16:04:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D053DB3C4D
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 16:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388405AbfIPOEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 10:04:06 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:35339 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388416AbfIPOEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 10:04:06 -0400
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i9rbk-0000tF-Fg; Mon, 16 Sep 2019 16:04:00 +0200
-Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1i9rbj-0008GG-Sq; Mon, 16 Sep 2019 16:03:59 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     support.opensource@diasemi.com, stwiss.opensource@diasemi.com,
-        dmitry.torokhov@gmail.com, robh+dt@kernel.org
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: [PATCH 4/4] Input: da9063 - fix capability and drop KEY_SLEEP
-Date:   Mon, 16 Sep 2019 16:03:58 +0200
-Message-Id: <20190916140358.30036-5-m.felsch@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190916140358.30036-1-m.felsch@pengutronix.de>
-References: <20190916140358.30036-1-m.felsch@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1728059AbfIPOO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 10:14:59 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:47624 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727989AbfIPOO6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 10:14:58 -0400
+Received: from localhost (80-167-222-154-cable.dk.customer.tdc.net [80.167.222.154])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 1D6D8153CA71C;
+        Mon, 16 Sep 2019 07:14:56 -0700 (PDT)
+Date:   Mon, 16 Sep 2019 16:14:55 +0200 (CEST)
+Message-Id: <20190916.161455.1015414751228915954.davem@davemloft.net>
+To:     james.byrne@origamienergy.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: net: Correct the documentation of KSZ9021
+ skew values
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <0102016d2b84f180-bd396cb9-16cf-4472-b718-7a4d2d8d8017-000000@eu-west-1.amazonses.com>
+References: <0102016d2b84f180-bd396cb9-16cf-4472-b718-7a4d2d8d8017-000000@eu-west-1.amazonses.com>
+X-Mailer: Mew version 6.8 on Emacs 26.2
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Mon, 16 Sep 2019 07:14:58 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since commit f889beaaab1c ("Input: da9063 - report KEY_POWER instead of
-KEY_SLEEP during power key-press") KEY_SLEEP isn't supported anymore.
-So the input device don't report a key event if "dlg,disable-key-power"
-is set.
+From: James Byrne <james.byrne@origamienergy.com>
+Date: Fri, 13 Sep 2019 16:46:35 +0000
 
-Fixes: f889beaaab1c ("Input: da9063 - report KEY_POWER instead of KEY_SLEEP during power key-press")
-Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
----
- drivers/input/misc/da9063_onkey.c | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+> The documentation of skew values for the KSZ9021 PHY was misleading
+> because the driver implementation followed the erroneous information
+> given in the original KSZ9021 datasheet before it was corrected in
+> revision 1.2 (Feb 2014). It is probably too late to correct the driver
+> now because of the many existing device trees, so instead this just
+> corrects the documentation to explain that what you actually get is not
+> what you might think when looking at the device tree.
+> 
+> Signed-off-by: James Byrne <james.byrne@origamienergy.com>
 
-diff --git a/drivers/input/misc/da9063_onkey.c b/drivers/input/misc/da9063_onkey.c
-index bc982fcc87eb..2362b1360a41 100644
---- a/drivers/input/misc/da9063_onkey.c
-+++ b/drivers/input/misc/da9063_onkey.c
-@@ -242,10 +242,7 @@ static int da9063_onkey_probe(struct platform_device *pdev)
- 	onkey->input->phys = onkey->phys;
- 	onkey->input->dev.parent = &pdev->dev;
- 
--	if (onkey->key_power)
--		input_set_capability(onkey->input, EV_KEY, KEY_POWER);
--
--	input_set_capability(onkey->input, EV_KEY, KEY_SLEEP);
-+	input_set_capability(onkey->input, EV_KEY, KEY_POWER);
- 
- 	INIT_DELAYED_WORK(&onkey->work, da9063_poll_on);
- 
--- 
-2.20.1
+What tree should this go into?
 
