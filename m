@@ -2,169 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1111B3DBF
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 17:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35C3AB3DE8
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 17:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389254AbfIPPfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 11:35:08 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:40012 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389249AbfIPPfI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 11:35:08 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 6A85125AF18;
-        Tue, 17 Sep 2019 01:35:02 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 471FD944496; Mon, 16 Sep 2019 17:35:00 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH 2/2] dt-bindings: bus: renesas-bsc: convert bindings to json-schema
-Date:   Mon, 16 Sep 2019 17:33:57 +0200
-Message-Id: <20190916153357.3880-3-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190916153357.3880-1-horms+renesas@verge.net.au>
-References: <20190916153357.3880-1-horms+renesas@verge.net.au>
+        id S2389342AbfIPPqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 11:46:18 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:45275 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731014AbfIPPqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 11:46:18 -0400
+Received: by mail-pl1-f194.google.com with SMTP id x3so45330plr.12
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2019 08:46:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=A4sU7UOqqLDDD2RT3o3Y/vMwQW6JnCqfyCA4YeqCaoI=;
+        b=IKvxlx+nu16eSsm9sL3A0k2aBI/C2r1rf9Yqhm/YfngGL8GNi2G8ltF+JPoKuYITmp
+         vi8iMMiBXxItKSE3SjVowtWhTsQPzemF1+I4gAkg+yXKiaMymxzivYM1Ydm0esiqOMKo
+         16loTJNenDz//rlIfBkCLd/BMUUdQcuJ4R8sCFuZ5y/mdNH1qSFoGXdgjh2CJcjoApXA
+         DR88nhw1vYmi4+AICxXge47mAfJ0gYakuefwxcwhZfCF4duNZB6pJ7tNTnSHcsB7fmzL
+         JoO0qvrD3wcL03dRDDNPUtmBr3J+MWWavDyPENpFGjWtjdaSDI53JzErfSAFzKlMBVEF
+         aQDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=A4sU7UOqqLDDD2RT3o3Y/vMwQW6JnCqfyCA4YeqCaoI=;
+        b=YobFkbhZ/RDSdIKlymiE+0IXhZGQ1jVASlGeaWEAhrfsg8Cy3uMJeoctRfg2ABCKXm
+         yEukNEceV0YfE7UKGpGHjc/Y9HTfQKiVAN/zVfW4PRND42Jp8LxNeh8i9vJRlzMOSWDN
+         4/cUwOfsZt4nZscFQFKSFBXYY7ZokH4TZDRuw2TPFJnFpSoKXx5g159StuHRpgzrik2r
+         22qER7I+W5GKUFeiCoMJtidj3FMtxUA++4GLS7ZdKpmUJpgvakiZS/ynk0G1UlAOdalt
+         Szp51tnBo1SnvYKQwNow+syTrpyPi8Kxz+OsTnd658HAvweZxAe3p+MBGaLZNhmlc+lE
+         NNrw==
+X-Gm-Message-State: APjAAAUHvOQK7rqLGuh1yHJquBICe/3cd14Oj2RHpQnxmWY0/30c1hwf
+        egYcnXQxkBewbqH5+H0ZJAQs/rqJWg==
+X-Google-Smtp-Source: APXvYqxk5VLgwP3lklFM2rG/C+bvxjlT6Hptimo7FwML/QOQvdmeKrrB7LDz5ASrq59+SjzqZJfjqA==
+X-Received: by 2002:a17:902:8e84:: with SMTP id bg4mr445925plb.43.1568648777356;
+        Mon, 16 Sep 2019 08:46:17 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4072:90b:91ce:94c2:ef93:5bd:cfe8])
+        by smtp.gmail.com with ESMTPSA id s5sm36227670pfe.52.2019.09.16.08.46.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Sep 2019 08:46:16 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     ulf.hansson@linaro.org, afaerber@suse.de, robh+dt@kernel.org,
+        sboyd@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v4 0/7] Add SD/MMC driver for Actions Semi S900 SoC
+Date:   Mon, 16 Sep 2019 21:15:39 +0530
+Message-Id: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas Bus State Controller (BSC) bindings documentation to
-json-schema.
+Hello,
 
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
----
-* Tested using:
-  # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
-  # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
----
- .../devicetree/bindings/bus/renesas,bsc.txt        | 46 -----------------
- .../devicetree/bindings/bus/renesas,bsc.yaml       | 57 ++++++++++++++++++++++
- 2 files changed, 57 insertions(+), 46 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/bus/renesas,bsc.txt
- create mode 100644 Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+This patchset adds SD/MMC driver for Actions Semi S900 SoC from Owl
+family SoCs. There are 4 SD/MMC controller present in this SoC but
+only 2 are enabled currently for Bubblegum96 board to access uSD and
+onboard eMMC. SDIO support for this driver is not currently implemented.
 
-diff --git a/Documentation/devicetree/bindings/bus/renesas,bsc.txt b/Documentation/devicetree/bindings/bus/renesas,bsc.txt
-deleted file mode 100644
-index 90e947269437..000000000000
---- a/Documentation/devicetree/bindings/bus/renesas,bsc.txt
-+++ /dev/null
-@@ -1,46 +0,0 @@
--Renesas Bus State Controller (BSC)
--==================================
--
--The Renesas Bus State Controller (BSC, sometimes called "LBSC within Bus
--Bridge", or "External Bus Interface") can be found in several Renesas ARM SoCs.
--It provides an external bus for connecting multiple external devices to the
--SoC, driving several chip select lines, for e.g. NOR FLASH, Ethernet and USB.
--
--While the BSC is a fairly simple memory-mapped bus, it may be part of a PM
--domain, and may have a gateable functional clock.
--Before a device connected to the BSC can be accessed, the PM domain
--containing the BSC must be powered on, and the functional clock
--driving the BSC must be enabled.
--
--The bindings for the BSC extend the bindings for "simple-pm-bus".
--
--
--Required properties
--  - compatible: Must contain an SoC-specific value, and "renesas,bsc" and
--		"simple-pm-bus" as fallbacks.
--                SoC-specific values can be:
--		"renesas,bsc-r8a73a4" for R-Mobile APE6 (r8a73a4)
--		"renesas,bsc-sh73a0" for SH-Mobile AG5 (sh73a0)
--  - #address-cells, #size-cells, ranges: Must describe the mapping between
--		parent address and child address spaces.
--  - reg: Must contain the base address and length to access the bus controller.
--
--Optional properties:
--  - interrupts: Must contain a reference to the BSC interrupt, if available.
--  - clocks: Must contain a reference to the functional clock, if available.
--  - power-domains: Must contain a reference to the PM domain, if available.
--
--
--Example:
--
--	bsc: bus@fec10000 {
--		compatible = "renesas,bsc-sh73a0", "renesas,bsc",
--			     "simple-pm-bus";
--		#address-cells = <1>;
--		#size-cells = <1>;
--		ranges = <0 0 0x20000000>;
--		reg = <0xfec10000 0x400>;
--		interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&zb_clk>;
--		power-domains = <&pd_a4s>;
--	};
-diff --git a/Documentation/devicetree/bindings/bus/renesas,bsc.yaml b/Documentation/devicetree/bindings/bus/renesas,bsc.yaml
-new file mode 100644
-index 000000000000..0231a15cac47
---- /dev/null
-+++ b/Documentation/devicetree/bindings/bus/renesas,bsc.yaml
-@@ -0,0 +1,57 @@
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/bus/renesas,bsc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas Bus State Controller (BSC)
-+
-+maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+description: |
-+  The Renesas Bus State Controller (BSC, sometimes called "LBSC within Bus
-+  Bridge", or "External Bus Interface") can be found in several Renesas ARM
-+  SoCs.  It provides an external bus for connecting multiple external
-+  devices to the SoC, driving several chip select lines, for e.g. NOR
-+  FLASH, Ethernet and USB.
-+
-+  While the BSC is a fairly simple memory-mapped bus, it may be part of a
-+  PM domain, and may have a gateable functional clock.  Before a device
-+  connected to the BSC can be accessed, the PM domain containing the BSC
-+  must be powered on, and the functional clock driving the BSC must be
-+  enabled.
-+
-+  The bindings for the BSC extend the bindings for "simple-pm-bus".
-+
-+allOf:
-+  - $ref: simple-pm-bus.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - renesas,bsc-r8a73a4  # R-Mobile APE6 (r8a73a4)
-+          - renesas,bsc-sh73a0   # SH-Mobile AG5 (sh73a0)
-+      - const: renesas,bsc
-+      - const: simple-pm-bus
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    bsc: bus@fec10000 {
-+        compatible = "renesas,bsc-sh73a0", "renesas,bsc", "simple-pm-bus";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0 0 0x20000000>;
-+        reg = <0xfec10000 0x400>;
-+        interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&zb_clk>;
-+        power-domains = <&pd_a4s>;
-+    };
+Note: Currently, driver uses 2 completion mechanisms for maintaining
+the coherency between SDC and DMA interrupts and I know that it is not
+efficient. Hence, I'd like to hear any suggestions for reimplementing
+the logic if anyone has.
+
+With this driver, this patchset also fixes one clk driver issue and enables
+the Actions Semi platform in ARM64 defconfig.
+
+Thanks,
+Mani
+
+Changes in v4:
+
+* Incorporated review comments from Rob on dt binding
+
+Changes in v3:
+
+* Incorporated a review comment from Andreas on board dts patch
+* Modified the MAINTAINERS entry for devicetree YAML binding
+
+Changes in v2:
+
+* Converted the devicetree bindings to YAML
+* Misc changes to bubblegum devicetree as per the review from Andreas
+* Dropped the read/write wrappers and renamed all functions to use owl-
+  prefix as per the review from Ulf
+* Renamed clk_val_best to owl_clk_val_best and added Reviewed-by tag
+  from Stephen
+
+Manivannan Sadhasivam (7):
+  clk: actions: Fix factor clk struct member access
+  dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO controller binding
+  arm64: dts: actions: Add MMC controller support for S900
+  arm64: dts: actions: Add uSD and eMMC support for Bubblegum96
+  mmc: Add Actions Semi Owl SoCs SD/MMC driver
+  MAINTAINERS: Add entry for Actions Semi SD/MMC driver and binding
+  arm64: configs: Enable Actions Semi platform in defconfig
+
+ .../devicetree/bindings/mmc/owl-mmc.yaml      |  59 ++
+ MAINTAINERS                                   |   2 +
+ .../boot/dts/actions/s900-bubblegum-96.dts    |  62 ++
+ arch/arm64/boot/dts/actions/s900.dtsi         |  45 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/clk/actions/owl-factor.c              |   7 +-
+ drivers/mmc/host/Kconfig                      |   8 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/owl-mmc.c                    | 696 ++++++++++++++++++
+ 9 files changed, 877 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mmc/owl-mmc.yaml
+ create mode 100644 drivers/mmc/host/owl-mmc.c
+
 -- 
-2.11.0
+2.17.1
 
