@@ -2,158 +2,239 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35648B3A6A
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 14:35:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58F47B3A99
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 14:48:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727981AbfIPMf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 08:35:29 -0400
-Received: from mail-eopbgr20053.outbound.protection.outlook.com ([40.107.2.53]:18055
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726696AbfIPMf3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 16 Sep 2019 08:35:29 -0400
+        id S1732780AbfIPMsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 08:48:07 -0400
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:52538 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1732712AbfIPMsH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 08:48:07 -0400
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x8GChtwU021285;
+        Mon, 16 Sep 2019 05:47:37 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-type; s=proofpoint;
+ bh=3d0JMMmUS7DD1SZs/Zm4jluSGkzEG8H+xRUjWofeyuk=;
+ b=igKFr9f9ZUGTVSox2rwjutKU96bIYdxl9LUOkfTF3pw0FNveJgpXHKrYjORhrFQLtZVy
+ iNUy2Ai/TDDAfv00Mztb0+vXhvUEOjH7SxvUNphBnUBOmCKYTkhciPylV5ltLxypCnti
+ zvIBKBC6oUfZkQ4BPKTOpi//fZW0I/XvVwfvGw50ZlYQp1bOLLfb4y4cP9ApVVEeTUAY
+ +WFR+CdtanfEVCp/JLYgSZYx6YxbsQHSXpTiPngonxf79G73jPqFOhUj1MFPNSG0P6dy
+ /S8+Fy3nyQFihVDB2+dukr3srOIT6NbOT8v3casWtZtTYch/4eFKjJrgJQPbMe3G1rrf nw== 
+Received: from nam01-sn1-obe.outbound.protection.outlook.com (mail-sn1nam01lp2053.outbound.protection.outlook.com [104.47.32.53])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 2v0usvq5ed-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+        Mon, 16 Sep 2019 05:47:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=medvI1zpWPUrIsPH4uoDBwjY5l+6UaRc4VjTIwIxMqawRYNpb67ImWMLgv5+AHcGmwI0Fj/b7HWLk7ywkzvBkKLKVP+EU3Jqf+LOQVytN1UVFy6/3Ap0VWaoyEj1OTHKIV2o4iaFmEGE0SbUlE/FIjVQ2/rA1Qkp9PlDomfBAthy/nFQvZYW+7CVO2UseAixx3tBTwOI976fKVjSobh06v3Sz94uE/CVK5843n4ihWScQlknoIVdrrMmr9d+waxMw6G2Xj9Zcj9fLiSxqJdKH9OfpI68xJPjC3zEI8B+hxpqeit2DNhWN0qghwWIk+SkptRjWh8f/GWdKLgJo4SDgQ==
+ b=Yf1H0v5sCHvx4xJHHPy1UOGW6x/44zQeZc/zaX/V/p5h/lrxmpZP/6s/bTeH4sxz192C7wWk1i9aWjvpJfQIgcMBFGseChTbWct2CueEjE4aAuDfvJfHDFtau9IrJHAs6+2AcBJYSjuza4Qfx2XZt2QMghi2jhvgLW8HLPl8W1zH1dtLcibQGrZW9S1YeAnT4SSLyr9AYRFERMXDnPZsI1pHGlDt8tNirjGFTvYfbH2luO4ONKnL01kgOaq7pXjVt9R4Wpep3gLGsRw+gcq3TyBb6ADuys2MMPYCGpaqpTiDBLaVzSuxqSEJI6ewNIlMJfE7yNFPi4UK3f7O0JBRMA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ml3YPGsLpUOIkgTIous3KeFaFrHR8fYhTHyUTHQBDvk=;
- b=OsqCm5K1Ls2JCtopimvLl5yw7Jv+wO9ppElouZnVqT/3dn4iwE/rS0G4FYGhlGRoHdVTKLsRdRiIZPMR8SL5zIxsmvq0roH6qqQyFFrDGqnH+fGV3m0vKlLUaZOBV/DSLG4mLeTC68OsY+wUvxIJxb48tkwaRIufuy4fel+boCnY12gOWFekGrWbRt5xsCt7NGbl1ZApd6cpG+r8ToXz8BIrlCWwSNGtWwnjqdH6/GOl2hAotzXNFO+5Zf89KJHfOvfaDr8n3SGwOrtDNMX88tSl+ScXeI/5fZBBp/hsTvs7ApSVxNR0hD6zcrKEAOgIQH95k6NkEl8/vUSMcs4T4g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=3d0JMMmUS7DD1SZs/Zm4jluSGkzEG8H+xRUjWofeyuk=;
+ b=Q1JeWpJ7UzRnTrOBxDyit0ieIL9pQDl6RcVkAemJ35otJO/XLItqFmF9Kl4z5ZODjA45yuv5KfKDQB0WPlkSwfNc2xQmnKaDwYVKgtA+knF00xd1rbfCXo+/2hPouzCkg9EX3qwhzSRG5zHYtIa5fY0uzodQTxJafim9yOtAkNlwGjZDXk95HbNLMNQIo0eWIp+MP5w+sxMwEsahBVx1DLj/P/OT9n5FxCP+NcD3CZXwDWkF3ABRBXNbTkUYFdw6nKC1UwXyWf76J8cFpSXkHySZ+1OVx4Xww1Tk6M/GWFrGBwbAY0p2DFTNW1CG4V8LPtbfzOHM3qmJpa29h4pyuQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 158.140.1.28) smtp.rcpttodomain=ti.com smtp.mailfrom=cadence.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=cadence.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ml3YPGsLpUOIkgTIous3KeFaFrHR8fYhTHyUTHQBDvk=;
- b=DQD0lSihdWhpEFFa6i9KeLWap9Bzz/jHy5gXF8D3bI3zFJAat2MAMGe5bksg6ymr4RArj+FMFJQ0Gs+et9tjGyXa3l8zDlpjJ776iow1ZI/NuW0hpa9GQHxnXBDq/AQVSxtr2JKBNP7LWzg0cDUf5x9T//SF2B96P6DVXOpMEuM=
-Received: from VI1PR04MB7023.eurprd04.prod.outlook.com (10.186.159.144) by
- VI1PR04MB3280.eurprd04.prod.outlook.com (10.170.231.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.23; Mon, 16 Sep 2019 12:34:45 +0000
-Received: from VI1PR04MB7023.eurprd04.prod.outlook.com
- ([fe80::c5e8:90f8:da97:947e]) by VI1PR04MB7023.eurprd04.prod.outlook.com
- ([fe80::c5e8:90f8:da97:947e%3]) with mapi id 15.20.2263.023; Mon, 16 Sep 2019
- 12:34:45 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
+ bh=3d0JMMmUS7DD1SZs/Zm4jluSGkzEG8H+xRUjWofeyuk=;
+ b=cdaR1mpoKEg+EVX8tauF6GS5R2nR3XkHXMcdg1B3bCQ/f5q/DHGgi+DPLCSclOyelaVZ90PKGmOtDrOGca7fogRolAg5EnZOiTBKCyUCtOI61Q7k5Adm1Ch6+iyMokFNQwoPRk5d9QEVQXgiejKLzMJIBOyIoghd8DaXUTCwlzQ=
+Received: from DM5PR07CA0078.namprd07.prod.outlook.com (2603:10b6:4:ad::43) by
+ MWHPR07MB3008.namprd07.prod.outlook.com (2603:10b6:300:e1::16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2263.21; Mon, 16 Sep 2019 12:47:33 +0000
+Received: from BY2NAM05FT018.eop-nam05.prod.protection.outlook.com
+ (2a01:111:f400:7e52::201) by DM5PR07CA0078.outlook.office365.com
+ (2603:10b6:4:ad::43) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2157.16 via Frontend
+ Transport; Mon, 16 Sep 2019 12:47:33 +0000
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ cadence.com discourages use of 158.140.1.28 as permitted sender)
+Received: from sjmaillnx2.cadence.com (158.140.1.28) by
+ BY2NAM05FT018.mail.protection.outlook.com (10.152.100.155) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2284.10 via Frontend Transport; Mon, 16 Sep 2019 12:47:32 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by sjmaillnx2.cadence.com (8.14.4/8.14.4) with ESMTP id x8GClTYZ025245
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Mon, 16 Sep 2019 05:47:30 -0700
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Mon, 16 Sep 2019 14:47:29 +0200
+Received: from lvlogina.cadence.com (10.165.176.102) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Mon, 16 Sep 2019 14:47:29 +0200
+Received: from lvlogina.cadence.com (localhost.localdomain [127.0.0.1])
+        by lvlogina.cadence.com (8.14.4/8.14.4) with ESMTP id x8GClSHt030821;
+        Mon, 16 Sep 2019 13:47:28 +0100
+Received: (from piotrs@localhost)
+        by lvlogina.cadence.com (8.14.4/8.14.4/Submit) id x8GClSqO030814;
+        Mon, 16 Sep 2019 13:47:28 +0100
+From:   Piotr Sroka <piotrs@cadence.com>
+CC:     Kazuhiro Kasai <kasai.kazuhiro@socionext.com>,
+        Piotr Sroka <piotrs@cadence.com>,
+        David Woodhouse <dwmw2@infradead.org>,
+        Brian Norris <computersforpeace@gmail.com>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-CC:     =?iso-8859-2?Q?Artur_=A6wigo=F1?= <a.swigon@partner.samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [RFCv4 0/7] interconnect: Add imx support via devfreq
-Thread-Topic: [RFCv4 0/7] interconnect: Add imx support via devfreq
-Thread-Index: AQHVWcA7xPiNhLrdqkSG10Lu7U9EhQ==
-Date:   Mon, 16 Sep 2019 12:34:45 +0000
-Message-ID: <VI1PR04MB702373BE28E4404C7F2CE75FEE8C0@VI1PR04MB7023.eurprd04.prod.outlook.com>
-References: <cover.1566570260.git.leonard.crestez@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 566f74f1-8beb-4b4f-7e67-08d73aa241c7
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB3280;
-x-ms-traffictypediagnostic: VI1PR04MB3280:|VI1PR04MB3280:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB328079E81EFC1924AE45127AEE8C0@VI1PR04MB3280.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0162ACCC24
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(376002)(346002)(396003)(39860400002)(136003)(199004)(189003)(33656002)(486006)(44832011)(7696005)(9686003)(8936002)(81156014)(8676002)(99286004)(86362001)(55016002)(2501003)(66066001)(54906003)(110136005)(316002)(25786009)(476003)(14454004)(76116006)(91956017)(186003)(66446008)(66556008)(66476007)(66946007)(4326008)(64756008)(26005)(53546011)(76176011)(478600001)(102836004)(6506007)(3846002)(7416002)(6116002)(71190400001)(71200400001)(52536014)(81166006)(446003)(256004)(229853002)(6436002)(305945005)(53936002)(5660300002)(2906002)(74316002)(7736002)(6246003)(14444005);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB3280;H:VI1PR04MB7023.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: cIcb1sLISs6WjBDIovfGIeSHBXeZ9HrV/DNCBq26iQPPSL8chDkPbElHx/Y93thtdeEJtjNkfv5VeouaHbdtztcTPgmMXKhdERJPog6CNu5vdC8vLjLCly0ImDQ0fRy9hg4n7q97SExCfFZwaD0UYWH4AamMJq3E9+cNhRLelMLwclsn4oK4vQ1zNflpqO4oKkEZ4tZf8LbqHNvGhoGFaG3JsfHSyosckfCQ9DWCa2355cDFPc/a/WULhTxLEQTv6aQekdrCmUVQ0k4wps7OgY3oIeaXb6+DssvflSVNbAbq8YKQHUjfIorC4FUeCl1eCSDW0ucd62x31Y7eeF4TdbcZCyAL2w3nQ4kZ2IjXCl5PmJ60+qKbngbCgps1lPRvOB8Fqa+PE0sTyX7WrBp2MLW3BPmJOqOEhE9Dw6+VNpI=
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [v6 2/2] dt-bindings: mtd: Add Cadence NAND controller driver
+Date:   Mon, 16 Sep 2019 13:46:34 +0100
+Message-ID: <20190916124715.29941-1-piotrs@cadence.com>
+X-Mailer: git-send-email 2.15.0
+In-Reply-To: <20190916124342.24114-1-piotrs@cadence.com>
+References: <20190916124342.24114-1-piotrs@cadence.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 566f74f1-8beb-4b4f-7e67-08d73aa241c7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2019 12:34:45.4176
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:158.140.1.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(39860400002)(376002)(136003)(36092001)(199004)(189003)(36756003)(109986005)(186003)(42186006)(26005)(426003)(246002)(87636003)(336012)(51416003)(76176011)(316002)(478600001)(26826003)(47776003)(8676002)(50226002)(48376002)(8936002)(1671002)(50466002)(2906002)(16586007)(54906003)(356004)(6666004)(126002)(7416002)(4326008)(305945005)(7636002)(86362001)(76130400001)(2616005)(476003)(446003)(11346002)(70206006)(70586007)(1076003)(5660300002)(486006)(266003);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR07MB3008;H:sjmaillnx2.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:corp.Cadence.COM;A:1;MX:1;
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 56320689-a7fc-4b2a-068d-08d73aa40afd
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328);SRVR:MWHPR07MB3008;
+X-MS-TrafficTypeDiagnostic: MWHPR07MB3008:
+X-Microsoft-Antispam-PRVS: <MWHPR07MB30081B3C4EA5CEC0E9FFFC60DD8C0@MWHPR07MB3008.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:525;
+X-Forefront-PRVS: 0162ACCC24
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Message-Info: vlLhaKu3ndUJISGjWpxNRjV26S5Mejgf+HDfho0BbNKhbPqwIo4U2cWFQPyLXwW15wnTX2x7j2CRtuQqimy4+4AN1JLsVmHB+PbJ2Mfqykinuez3LVvqW/E3/gcR/lt8WkJ5CzkivKJi8HTLqNYvtH2mefyx6L7M0wM1q74hUX7BUuBaeEskXP49g0+cQ+7iI6o3xKuQSdf+Rb/cZG7FzvH5fvTUxoxhkomy/eDiSklVtTPkPb+tguZIAqWZPVzDh8cxTiZqoOkA5gKSp2C+aLkdepqSi2ZCJElnlS80VWx3yohwYPmgY+r2etlhXHCnXs5zGBsPF+WXRBwqd1c5JHyhDQuX4+mrVcT1KUQM9w4ryiS39Mn9wQBwnlAP2t8SOp9EZzN0aaxjJ8o+dcvv4/hdKCctzBUrisfgbZa5BJo=
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2019 12:47:32.9146
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: CWaEHDDjLQDsP/13KOQHx/1aut7vKDMooUcJRCvOQoKjmBYNjfNXIJnzxRgOvi057LKJoUQRd88fFhkrsOphQw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB3280
+X-MS-Exchange-CrossTenant-Network-Message-Id: 56320689-a7fc-4b2a-068d-08d73aa40afd
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.28];Helo=[sjmaillnx2.cadence.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR07MB3008
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.70,1.0.8
+ definitions=2019-09-16_06:2019-09-11,2019-09-16 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 malwarescore=0
+ priorityscore=1501 adultscore=0 impostorscore=0 suspectscore=0 spamscore=0
+ mlxscore=0 mlxlogscore=999 bulkscore=0 phishscore=0 lowpriorityscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-1908290000 definitions=main-1909160136
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.08.2019 17:37, Leonard Crestez wrote:=0A=
-> This series add imx support for interconnect via devfreq: the ICC=0A=
-> framework is used to aggregate requests from devices and then those are=
-=0A=
-> converted to DEV_PM_QOS_MIN_FREQUENCY requests for devfreq.=0A=
->  =0A=
-> Since there is no single devicetree node that can represent the "intercon=
-nect"=0A=
-> new API is added to allow individual devfreq nodes to act as parsing prox=
-ies=0A=
-> all mapping to a single soc-level icc provider. This is still RFC=0A=
-> because of this=0A=
-=0A=
-Any comments? I made a lot of changes relative to previous versions, =0A=
-most of them solely to avoid adding a virtual node in DT bindings.=0A=
-=0A=
-The only current interconnect provider implementation is for qcom and it =
-=0A=
-uses a firmware node as the provider node (with #interconnect-cells). =0A=
-However there is no obvious equivalent of that for imx and many other SOCs.=
-=0A=
-=0A=
-On imx there are multiple pieces of scalable fabric which can be defined =
-=0A=
-in DT as devfreq devices and it sort of makes sense to add =0A=
-#interconnect-cells to those. However when it comes to describing the =0A=
-SOC interconnect graph it's much more convenient to have a single =0A=
-per-SOC platform driver.=0A=
-=0A=
-My solution is to add an "icc_proxy" API so that a single platform-level =
-=0A=
-interconnect provider can be referenced through multiple DT nodes. Does =0A=
-this make sense?=0A=
-=0A=
-The implementation is not very pretty, the interconnect platform devices =
-=0A=
-ends up enumerating the entire devicetree in order to find proxies.=0A=
-=0A=
-Right now the interconnect API use a relatively standard split between =0A=
-consumer and "provider" but I think it might make sense to have a =0A=
-separate abstractions for "graph" and "midnode". A "midnode" could act =0A=
-as a DT proxy if there is no single representation of the "interconnect" =
-=0A=
-and it could support custom scaling for itself (with the default being =0A=
-scaling kbps into MIN_FREQ).=0A=
-=0A=
-There are also other options:=0A=
-  * Pick one "main" bus and bless it as the "interconnect provider". I =0A=
-want to represent buses as devfreq devices so I would have to call from =0A=
-devfreq to ICC for registration somehow.=0A=
-  * Maybe the "no virtual device" rule could be relaxed for the =0A=
-interconnect subsystem?=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+Document the bindings used by Cadence NAND controller driver
+
+Signed-off-by: Piotr Sroka <piotrs@cadence.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+Changes for v6:
+- add documentation for address-cells and size-cells
+- remove not needed space
+- put myself as maintainer of the Cadence nand driver bindings
+Changes for v5:
+- replace "_" by "-" in all properties
+- change compatible name from cdns,hpnfc to cdns,hp-nfc
+Changes for v4:
+- add commit message
+Changes for v3:
+- add unit suffix for board_delay 
+- move child description to proper place
+- remove prefix cadence_ for reg and sdma fields
+Changes for v2:
+- remove chip dependends parameters from dts bindings
+- add names for register ranges in dts bindings
+- add generic bindings to describe NAND chip representation
+---
+ .../bindings/mtd/cadence-nand-controller.txt       | 53 ++++++++++++++++++++++
+ MAINTAINERS                                        |  1 +
+ 2 files changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+
+diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+new file mode 100644
+index 000000000000..f3893c4d3c6a
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+@@ -0,0 +1,53 @@
++* Cadence NAND controller
++
++Required properties:
++  - compatible : "cdns,hp-nfc"
++  - reg : Contains two entries, each of which is a tuple consisting of a
++	  physical address and length. The first entry is the address and
++	  length of the controller register set. The second entry is the
++	  address and length of the Slave DMA data port.
++  - reg-names: should contain "reg" and "sdma"
++  - #address-cells: should be 1. The cell encodes the chip select connection.
++  - #size-cells : should be 0.
++  - interrupts : The interrupt number.
++  - clocks: phandle of the controller core clock (nf_clk).
++
++Optional properties:
++  - dmas: shall reference DMA channel associated to the NAND controller
++  - cdns,board-delay-ps : Estimated Board delay. The value includes the total
++    round trip delay for the signals and is used for deciding on values
++    associated with data read capture. The example formula for SDR mode is
++    the following:
++    board delay = RE#PAD delay + PCB trace to device + PCB trace from device
++    + DQ PAD delay
++
++Child nodes represent the available NAND chips.
++
++Required properties of NAND chips:
++  - reg: shall contain the native Chip Select ids from 0 to max supported by
++    the cadence nand flash controller
++
++See Documentation/devicetree/bindings/mtd/nand.txt for more details on
++generic bindings.
++
++Example:
++
++nand_controller: nand-controller@60000000 {
++	  compatible = "cdns,hp-nfc";
++	  #address-cells = <1>;
++	  #size-cells = <0>;
++	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
++	  reg-names = "reg", "sdma";
++	  clocks = <&nf_clk>;
++	  cdns,board-delay-ps = <4830>;
++	  interrupts = <2 0>;
++	  nand@0 {
++	      reg = <0>;
++	      label = "nand-1";
++	  };
++	  nand@1 {
++	      reg = <1>;
++	      label = "nand-2";
++	  };
++
++};
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 16e16445b88b..94d78f4e29ba 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3584,6 +3584,7 @@ M:	Piotr Sroka <piotrs@cadence.com>
+ L:	linux-mtd@lists.infradead.org
+ S:	Maintained
+ F:	drivers/mtd/nand/raw/cadence-nand-controller.c
++F:	Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+ 
+ CADET FM/AM RADIO RECEIVER DRIVER
+ M:	Hans Verkuil <hverkuil@xs4all.nl>
+-- 
+2.15.0
+
