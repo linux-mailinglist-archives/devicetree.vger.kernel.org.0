@@ -2,98 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6802B4444
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 00:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1357BB4454
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 00:57:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387986AbfIPWwx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 18:52:53 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:46431 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387721AbfIPWwx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 18:52:53 -0400
-Received: by mail-lj1-f196.google.com with SMTP id e17so1449919ljf.13
-        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2019 15:52:52 -0700 (PDT)
+        id S2387862AbfIPW5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 18:57:55 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:33722 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729352AbfIPW5z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 18:57:55 -0400
+Received: by mail-lf1-f67.google.com with SMTP id y127so1304265lfc.0
+        for <devicetree@vger.kernel.org>; Mon, 16 Sep 2019 15:57:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Fuxh4/69TfsTp5kSLr3NAf2vwLbcB5bz5amxQOn1DxM=;
-        b=y8A6Nuff18GQV+xvjwLdz9AvCVqtQy5IPTny0ZtqqHYIdkKI5Wr8ffhqzbd8bgAK0Y
-         J9MIMX9qBS3CGC9qBSSDHaUUuuOhXGb/SOV/2mFlunMk1MykHuVtfHwDoxZ/tlap09HY
-         yAdvM/Fo3CDALnMerWbV+3rkfvH9jR9mMVVw0diVZ0mSkavK21mUkzMmOp7J9JMHdXM3
-         hABwxVG/IuITEQ6oT8dJOE0U4ey7NPuepCgO6fvYVp1/JhbETivFobOd3yST8138UNan
-         Gjjw6mR8a99UGU4/hIFZ1Oi2STte3eaVIPA7TQeGsOLF/QR3UIQBDdtifPCShAM4OBEo
-         SEkQ==
+        bh=laPzJt3OJIMvrVA37EX/dFU7vRHt+cwZVws62wvSA/w=;
+        b=znJp3nwhbqMBu2QAKp9RYV3SDs8zPy5m34NCexeUJEAQoLYKVghX2NFQ2jnPfGIU40
+         m0AAW+8gNWSBtJKDa77UnZ8Je04DN1fvW9oL4xItbaQXGhJRvk73Yq9doB5D7vjqxEzF
+         ePeBLRHPCA0eIzIWaloUSAiJHybpqSrsp2y6sRMVo2xbHspDrz8ML0SMKAxR1f8Z5KNQ
+         7JZV9Tr9X+pvJULaVf7lAPwmoJJ0VTkArH0vxrPdVudyqY6uCayF2nGuZO56OMZEFqOu
+         e1aGq9wrtO0/xNZ8RiheEcPzTQC86IICadwUtZww0F0M8S0WQx2dWHSzwFsJWb+KQUG6
+         2uTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Fuxh4/69TfsTp5kSLr3NAf2vwLbcB5bz5amxQOn1DxM=;
-        b=Wyqy9KcFr6TO+eRzA65yGedsy9CBMZ2KJSpxfErxxkMK/7Z9f5lizw9dR2m9Gkw4Eb
-         YtuBX0gHjG8OmP+nWsfT/P0Roe9RA1tPgZWyUrCh5NHWFvpyVpp1KJGd3x9ruXTl7i/q
-         H0yer+Bx4OYFoU6qlIib6fy4td0jVGwsxiYGji5V7+qMOJv10xjuz2QqoHiXJNAuk+Ik
-         Wczjy+Xal1RkqAOZ8KkXoVcz94N9Yj5oo4RsRlbpHFHoBOIdaoACDoueEjLRva/PD23h
-         5boVXj6BU8I3FH+SgXlB7o1TKLFjzbRRQ4N+VfaFlkVSn+tbvxCPttSwwTAI4rb7aEn0
-         7GxA==
-X-Gm-Message-State: APjAAAXsu59RmbYG7WW483ggMHm4PuzF9K49k6mHjJ0wz/zkTTPYVdwS
-        Kb7IXRwKYjmsGZiEnA/SUB9A/ZBBO0PyL/9lRA2WnyDN0rd7bA==
-X-Google-Smtp-Source: APXvYqwGy1I7yRYUC5GsL9M3sHMHfu2Glv6Iog+56mF0FKxkxRlZ2UB6VhXETbGZxc5XSiHrECt3zOilYIec4xwcGV8=
-X-Received: by 2002:a2e:b4c4:: with SMTP id r4mr133951ljm.69.1568674371572;
- Mon, 16 Sep 2019 15:52:51 -0700 (PDT)
+        bh=laPzJt3OJIMvrVA37EX/dFU7vRHt+cwZVws62wvSA/w=;
+        b=ViS8r04Azqa2JaSy+NoSyjkmvEIE78bJnjkGMr+nABIPaNyqZg2oDiivtaNl9UiP5Q
+         fCe1p7sBn1caaHNk8GZvIBz5gYeCYg/QA51onMmWWYj7h46nVFHqeTIi4QTSUx0t4REl
+         K+ZZcuJbzZZHC78P0IBoyDWWAL3v+oIn1lyG+vS3NtvAxnp3L5OsioR5EGeMlVotT7UQ
+         97eg3ieGuWXeoYApEPzgA5NW9Mzgsjo0sgeX7lJMyI7E2DrPzAe1xg8NATMNvy3eEW9Z
+         F8dQk6dAQmm2bVPo+t+IvsvUZymDrRZ2ywUgVH2knVh5rRYCoxU2WpC8fvBdiyJmsrYD
+         mXUQ==
+X-Gm-Message-State: APjAAAWk5zlmYgF8crzRTHcO+dCvwwXqwc10ztDbpEzFsXC7e7b12Tn8
+        WMS/s9Nkcu5pnojACnK0hgKcd9U+8JZvnvrT+Lb8mw==
+X-Google-Smtp-Source: APXvYqxGugmI/q00XRABn7wo1+xpinSyI8nPcr9dZ0fY7WFEmhoKKmYDwsalRoHPv3m8HXeSHBXbBXgJYckrJpHoqR4=
+X-Received: by 2002:ac2:55ab:: with SMTP id y11mr284333lfg.165.1568674673341;
+ Mon, 16 Sep 2019 15:57:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1562597164.git.hns@goldelico.com> <8ae7cf816b22ef9cecee0d789fcf9e8a06495c39.1562597164.git.hns@goldelico.com>
- <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com>
- <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com>
- <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com>
- <20190831084852.5e726cfa@aktux> <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com>
-In-Reply-To: <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com>
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org> <20190916154546.24982-3-manivannan.sadhasivam@linaro.org>
+In-Reply-To: <20190916154546.24982-3-manivannan.sadhasivam@linaro.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 17 Sep 2019 00:52:39 +0200
-Message-ID: <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com>
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy
- spi-cs-high to make display work again
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
-        Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>
+Date:   Tue, 17 Sep 2019 00:57:41 +0200
+Message-ID: <CACRpkdZC9t-1ZtFzn=4tyWjVteRog6M=VDb5Y+g_3qSfVO_epg@mail.gmail.com>
+Subject: Re: [PATCH v4 2/7] dt-bindings: mmc: Add Actions Semi SD/MMC/SDIO
+ controller binding
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-mmc <linux-mmc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "Thomas C. Liau" <thomas.liau@actions-semi.com>,
+        linux-actions@lists.infradead.org,
+        linux-clk <linux-clk@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 16, 2019 at 12:59 PM H. Nikolaus Schaller <hns@goldelico.com> wrote:
+On Mon, Sep 16, 2019 at 5:46 PM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
 
-> ping.
+> Add devicetree YAML binding for Actions Semi Owl SoC's SD/MMC/SDIO
+> controller.
 >
-> Device omap3-gta04 is neither working with v5.3 nor linux-next quite a while and we need a solution.
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Can't we just apply the last part of the patch in this thread:
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi
-b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 9a9a29fe88ec..47bab8e1040e 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -124,6 +124,7 @@
-                        spi-max-frequency = <100000>;
-                        spi-cpol;
-                        spi-cpha;
-+                       spi-cs-high;
-
-                        backlight= <&backlight>;
-                        label = "lcd";
-
-
-Surely this fixes the problem?
+Neat use of yaml!
 
 Yours,
 Linus Walleij
