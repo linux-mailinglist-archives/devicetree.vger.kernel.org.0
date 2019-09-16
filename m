@@ -2,106 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE779B3397
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 04:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 668C2B33A6
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 05:03:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728009AbfIPCzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 15 Sep 2019 22:55:20 -0400
-Received: from mail-eopbgr30052.outbound.protection.outlook.com ([40.107.3.52]:32363
-        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727510AbfIPCzU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 15 Sep 2019 22:55:20 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WhHoErXWkS//J/ntoGUqN/4ngUvEheLoOoONA3SQecmeEPmhZalGzjVI7oOG7jLxTx7JzT3GCy6dYCZUie7Tsxmh3TzQmoLF8NYnRVRKoOmONH4aBeA+QEnFonfVBI8gC3m/zp7uaylcQGlOs+Vg5TqzT+DgVYBl+jjJYDTnefFnnNePn6Hjn4mivsfA7B6xuy0q5gaR3AVxTo7/ad74USnJYH/7myilDKpFPSOUxFs4cEjJz6SzZt48AypXeujgi6SMJbU7vowSDoOvscEpiY97SgQ2OQ5zOSGNXJT+p2jo1/X9wyLTRe1KfgGQNkxLxBjcavpC6c2CSzeOubxNcw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GK5B1itasO3wZTjuFJ38gLthB/MLSxDEu66tpqd+xxA=;
- b=PjPyvuysTwm9bvg3bAZNnqzqtiFU6phtFZ5Qxqg65lFRrj0k9bRqO6NJYSu+Brt3SB/5LBrrTo/JqsA3piBoXpGrk43aNV/NKhWQwaPkGEVwddIbxyOnUaBXCHr6cK0nvVMSmz2a1NO3k5aVgrBXv+bpyJHY9xg5Vex3+pPTOJnECBPW66HcyNSeTLPL4zmIPC1bu9PpZQ/sS4VuC4BDUmJD4BfCrd+kjeJyRR8aocWQ3tE2j4L2sJN7xjGMTjLAxbRLDnM1klcxIaV2cMW3yj7A6gVrdnEfvffUvU8fK58/sHnbvZ4X0U3NFJ4tbLemKKoahFcF59X3THTzqaUidQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GK5B1itasO3wZTjuFJ38gLthB/MLSxDEu66tpqd+xxA=;
- b=qBKgZVrCt/D7kuTnqxu2Y6pOoBvwyfCOXRXdNjjV+ApIct0V0Lng2k4bsYzrj7xcXnz3TfoIvD6eaqIhMKpoD7LqnxeyvePkZ7lwmS5BJQW/wtknVFFTRiAFHsaMyuBmwTCPsvBsaYFbPUU/3l+hZCxUVLs3r1EuRmVNDBl81Dw=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3931.eurprd04.prod.outlook.com (52.134.65.153) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2263.17; Mon, 16 Sep 2019 02:55:15 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::8958:299c:bc54:2a38]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::8958:299c:bc54:2a38%7]) with mapi id 15.20.2263.023; Mon, 16 Sep 2019
- 02:55:15 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
+        id S1725912AbfIPDDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 15 Sep 2019 23:03:45 -0400
+Received: from mga01.intel.com ([192.55.52.88]:1061 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725907AbfIPDDp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 15 Sep 2019 23:03:45 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 15 Sep 2019 20:03:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,510,1559545200"; 
+   d="scan'208";a="201512321"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga001.fm.intel.com with ESMTP; 15 Sep 2019 20:03:44 -0700
+Received: from [10.226.39.42] (ekotax-mobl.gar.corp.intel.com [10.226.39.42])
+        by linux.intel.com (Postfix) with ESMTP id EE50A580258;
+        Sun, 15 Sep 2019 20:03:40 -0700 (PDT)
+Subject: Re: [PATCH v3 2/2] dwc: PCI: intel: Intel PCIe RC controller driver
+To:     "andriy.shevchenko@intel.com" <andriy.shevchenko@intel.com>
+Cc:     Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>,
+        Andrew Murray <andrew.murray@arm.com>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "martin.blumenstingl@googlemail.com" 
+        <martin.blumenstingl@googlemail.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "hch@infradead.org" <hch@infradead.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 1/2] ARM: dts: imx7d: Correct speed grading fuse settings
-Thread-Topic: [PATCH 1/2] ARM: dts: imx7d: Correct speed grading fuse settings
-Thread-Index: AQHVaRXTS1M3MwR05keYUt7dEQg8Mactob6Q
-Date:   Mon, 16 Sep 2019 02:55:15 +0000
-Message-ID: <DB3PR0402MB3916411027B6F28179010327F58C0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <1568256992-31707-1-git-send-email-Anson.Huang@nxp.com>
- <VI1PR04MB7023E48B04999733859F7158EEB00@VI1PR04MB7023.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB7023E48B04999733859F7158EEB00@VI1PR04MB7023.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: db86a233-5d75-4323-f27b-08d73a514d4c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600167)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3931;
-x-ms-traffictypediagnostic: DB3PR0402MB3931:|DB3PR0402MB3931:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB3PR0402MB3931DDF35F01D82CF41C49FEF58C0@DB3PR0402MB3931.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:534;
-x-forefront-prvs: 0162ACCC24
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(376002)(346002)(366004)(136003)(39860400002)(189003)(199004)(305945005)(74316002)(7736002)(256004)(86362001)(476003)(2906002)(486006)(44832011)(2501003)(446003)(11346002)(4744005)(5660300002)(6116002)(3846002)(99286004)(71200400001)(71190400001)(316002)(26005)(102836004)(186003)(6506007)(53546011)(7696005)(54906003)(76176011)(52536014)(25786009)(6246003)(66066001)(33656002)(6436002)(55016002)(53936002)(229853002)(9686003)(76116006)(66446008)(66946007)(8676002)(64756008)(66556008)(66476007)(4326008)(81166006)(81156014)(478600001)(8936002)(14454004)(110136005);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3931;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 8TP/EOmI9Cn1ryIo2wtGY3yMK7xWIfrrNyOz8MgO8DXE5UQahFGpKZK8ZndXSRIVUUZBhgULacSsOsm3svubSK6slZjACAYPoe+xOtYW6q67uqsS06yQAD232d+zNdMy4ogx4AqJtkVSFABeTW3K6F4PPeHMVlLxseZrY4eKznHFd7JiaarUE5YObLHei0kDvS6GpSWOVN5YC15s+Zo5xFZFNpcGgKHqN0fksFLNd7r353g6pXY9tochhXKxDF4oGXthY49On97/OhJcSWGKR7uDsVBdgI+CzGLOFUIQujhJCVaU8Bs+1ulVbz1SA4LgNpn2mTMt6Bbx+4eFCDbLdDIOUW5aQc3F5Ogyec+gLQNTqUxfSw75KyVxeF/lU7mN7zeoayqUEIX1t3LCaokwtvWZSrMT2XCbcP8JB8ILXHg=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        "cheol.yong.kim@intel.com" <cheol.yong.kim@intel.com>,
+        "chuanhua.lei@linux.intel.com" <chuanhua.lei@linux.intel.com>,
+        "qi-ming.wu@intel.com" <qi-ming.wu@intel.com>
+References: <20190906112044.GF9720@e119886-lin.cambridge.arm.com>
+ <959a5f9b-2646-96e3-6a0f-0af1051ae1cb@linux.intel.com>
+ <20190909083117.GH9720@e119886-lin.cambridge.arm.com>
+ <22857835-1f98-b251-c94b-16b4b0a6dba2@linux.intel.com>
+ <20190911103058.GP9720@e119886-lin.cambridge.arm.com>
+ <aefd143c-66d2-b303-d992-a55f75a91b2e@linux.intel.com>
+ <20190912082517.GA9720@e119886-lin.cambridge.arm.com>
+ <cd73e351-5633-bfa8-a4dc-77357d917a0b@linux.intel.com>
+ <DM6PR12MB4010AEA876F20E25FFFE06BDDAB00@DM6PR12MB4010.namprd12.prod.outlook.com>
+ <b7a1b955-4c3e-6ffe-ec6a-04afe33e70cd@linux.intel.com>
+ <20190913101203.GE2680@smile.fi.intel.com>
+From:   Dilip Kota <eswara.kota@linux.intel.com>
+Message-ID: <52ef93fd-d705-4163-d194-a1b749b2e7df@linux.intel.com>
+Date:   Mon, 16 Sep 2019 11:03:39 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: db86a233-5d75-4323-f27b-08d73a514d4c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Sep 2019 02:55:15.8985
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: W7aBQhsfC3PPvrFxxlpdtpfJyixUrH/l2R9lLzKs/CFn1lZLMFYLyzD891cWJuweEXrPb6sH014QruZG5OX41Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3931
+In-Reply-To: <20190913101203.GE2680@smile.fi.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIExlb25hcmQNCg0KPiBPbiAyMDE5LTA5LTEyIDU6NTcgQU0sIEFuc29uIEh1YW5nIHdyb3Rl
-Og0KPiA+IFRoZSA4MDBNSHogb3BwIHNwZWVkIGdyYWRpbmcgZnVzZSBtYXNrIHNob3VsZCBiZSAw
-eGQgaW5zdGVhZCBvZiAweGYNCj4gPiBhY2NvcmRpbmcgdG8gZnVzZSBtYXAgZGVmaW5pdGlvbjoN
-Cj4gPg0KPiA+IFNQRUVEX0dSQURJTkdbMTowXQlNSHoNCj4gPiAJMDAJCTgwMA0KPiA+IAkwMQkJ
-NTAwDQo+ID4gCTEwCQkxMDAwDQo+ID4gCTExCQkxMjAwDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gDQo+IFJldmlld2VkLWJ5OiBM
-ZW9uYXJkIENyZXN0ZXogPGxlb25hcmQuY3Jlc3RlekBueHAuY29tPg0KPiANCj4gQXJlIHlvdSBn
-b2luZyB0byBhZGQgdGhlIDUwMG1oeiBPUFAgYXMgd2VsbD8NCg0KU28gZmFyIG5vLCBhcyBkYXRh
-c2hlZXQgZG9lcyBOT1QgbGlzdCA1MDBNSHogYXMgT1BQLCB0aGlzIHBhdGNoIGlzIGp1c3QgdG8g
-bWFrZSBzdXJlDQp0aGUgc3BlZWQgZ3JhZGluZyBtYXNrIHNldHRpbmdzIG1hdGNoZXMgdGhlIGZ1
-c2VtYXAgZmlsZSwgTk9UIHN1cmUgaWYgNTAwTUh6IHdpbGwgYmUgc3VwcG9ydGVkDQpvZmZpY2lh
-bGx5Lg0KDQpBbnNvbg0K
+
+On 9/13/2019 6:12 PM, andriy.shevchenko@intel.com wrote:
+> On Fri, Sep 13, 2019 at 05:20:26PM +0800, Dilip Kota wrote:
+>> On 9/12/2019 6:49 PM, Gustavo Pimentel wrote:
+>>> On Thu, Sep 12, 2019 at 10:23:31, Dilip Kota
+>>> <eswara.kota@linux.intel.com> wrote:
+>>> Hi, I just return from parental leave, therefore I still trying to get
+>>> the pace in mailing list discussion.
+>>>
+>>> However your suggestion looks good, I agree that can go into DesignWare
+>>> driver to be available to all.
+>> Thanks Gustavo for the confirmation, i will add it in the next patch version
+>>> Just a small request, please do in general:
+>>> s/designware/DesignWare
+>> Sorry, i didnt understand this.
+> It means the reviewer asks you to name DesignWare in this form,
+> i.o.w. designware -> DesignWare.
+>
+> `man 1 sed` gives you more about it :-)
+Thanks Andy for clarifying it.
+Could you please also comment let me know your opinion on the driver 
+naming. Below is the mail snippet.
+
+======
+ >>> Add support to PCIe RC controller on Intel Universal
+ >>> Gateway SoC. PCIe controller is based of Synopsys
+ >>> Designware pci core.
+ >>> +config PCIE_INTEL_AXI
+ > [Andy]: I think that name here is too generic. Classical x86 seems 
+not using this.
+
+[Dilip Kota]:
+This PCIe driver is for the Intel Gateway SoCs. So how about naming it is as
+"pcie-intel-gw"; pcie-intel-gw.c and Kconfig as PCIE_INTEL_GW.
+
+Andrew Murray is ok with this naming, please let me know your view.
+=======
+
+Regards,
+Dilip
+
+>
