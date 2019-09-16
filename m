@@ -2,135 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C32F3B347B
-	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 07:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F73AB3499
+	for <lists+devicetree@lfdr.de>; Mon, 16 Sep 2019 08:08:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727054AbfIPFqE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 01:46:04 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:2745 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727053AbfIPFqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 01:46:04 -0400
-X-UUID: 1ab7ea77fe4148de9a65027ebe4a1bf6-20190916
-X-UUID: 1ab7ea77fe4148de9a65027ebe4a1bf6-20190916
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 694545173; Mon, 16 Sep 2019 13:45:52 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33DR.mediatek.inc
- (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 16 Sep
- 2019 13:45:48 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 16 Sep 2019 13:45:47 +0800
-Message-ID: <1568612747.7317.72.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 3/7] usb: mtu3: support ip-sleep wakeup for MT8183
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
-To:     Guenter Roeck <linux@roeck-us.net>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        id S1729654AbfIPGIq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 02:08:46 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:53098 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729398AbfIPGIp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 02:08:45 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 384761A053A;
+        Mon, 16 Sep 2019 08:08:43 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 254F11A0532;
+        Mon, 16 Sep 2019 08:08:38 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A02CD402BF;
+        Mon, 16 Sep 2019 14:08:31 +0800 (SGT)
+From:   Hui Song <hui.song_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Mon, 16 Sep 2019 13:45:47 +0800
-In-Reply-To: <20190911184453.GA2628@roeck-us.net>
-References: <1567150854-30033-1-git-send-email-chunfeng.yun@mediatek.com>
-         <1567150854-30033-4-git-send-email-chunfeng.yun@mediatek.com>
-         <20190911184453.GA2628@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-Product-Ver: SMEX-12.5.0.1684-8.5.1010-24914.004
-X-TM-AS-Result: No-8.235300-8.000000-10
-X-TMASE-MatchedRID: csPTYAMX1+HmLzc6AOD8DfHkpkyUphL9dfsypiTqGpue9toQ6h6LE2ng
-        VUDf4c8Y3UJTYve4D89VVkf0bJfBjyxppiUy9o4cA9lly13c/gElWygvtTclwFGLwJXlA4mIwBI
-        zUVtFoCLgRgaCjJFnr+xbYZUuzB/CsWFXqrN3c5D1WO1NzV/CYNi5W7Rf+s6QiiKPXbEds+4eMp
-        1P/J9F6H2dcFgFzv71OLoOGImc4B4M8jMXjBF+sIMbH85DUZXy3QfwsVk0UbtuRXh7bFKB7lAlx
-        8mk+INITqHBTq5IMRMciNlpck9RPvcGG72gNuthWClYJu9r4yY=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--8.235300-8.000000
-X-TMASE-Version: SMEX-12.5.0.1684-8.5.1010-24914.004
-X-TM-SNTS-SMTP: 3242FE149AFF8C962B76284F45FA462CBA199288A603FDB43D5C66F530F60A4F2000:8
-X-MTK:  N
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Song Hui <hui.song_1@nxp.com>
+Subject: [PATCH v5] gpio/mpc8xxx: change irq handler from chained to normal
+Date:   Mon, 16 Sep 2019 13:58:17 +0800
+Message-Id: <20190916055817.43425-1-hui.song_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-09-11 at 11:44 -0700, Guenter Roeck wrote:
-> On Fri, Aug 30, 2019 at 03:40:50PM +0800, Chunfeng Yun wrote:
-> > Support USB wakeup by ip-sleep mode for MT8183, it's similar to
-> > MT8173
-> > 
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> > v3: changes micros define
-> > 
-> > v2: no changes
-> > ---
-> >  drivers/usb/mtu3/mtu3_host.c | 14 +++++++++++++-
-> >  1 file changed, 13 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/usb/mtu3/mtu3_host.c b/drivers/usb/mtu3/mtu3_host.c
-> > index c871b94f3e6f..4f8208885ebd 100644
-> > --- a/drivers/usb/mtu3/mtu3_host.c
-> > +++ b/drivers/usb/mtu3/mtu3_host.c
-> > @@ -18,6 +18,12 @@
-> >  #include "mtu3.h"
-> >  #include "mtu3_dr.h"
-> >  
-> > +/* mt8183 etc */
-> > +#define PERI_WK_CTRL0	0x20
-> > +#define WC0_IS_C(x)	(((x) & 0xf) << 28)  /* cycle debounce */
-> > +#define WC0_IS_P	BIT(12)	/* polarity */
-> > +#define WC0_IS_EN	BIT(6)
-> > +
-> 
-> For 64-bit builds, this results in:
-> 
-> drivers/usb/mtu3/mtu3_host.c: In function ‘ssusb_wakeup_ip_sleep_set’:
-> ./include/linux/bits.h:6:19: warning:
-> 	conversion from ‘long unsigned int’ to ‘u32’ {aka ‘unsigned int’}
-> 	changes value from ‘18446744073441120320’ to ‘4026536000’ [-Woverflow]
-> 
-> since WC0_IS_C() is sign extended to 64 bit and then truncated.
-Got it, thanks a lot
+From: Song Hui <hui.song_1@nxp.com>
 
-> 
-> Observed with gcc 7.4.0 and 8.3.0.
-> 
-> Guenter
-> 
-> >  /* mt8173 etc */
-> >  #define PERI_WK_CTRL1	0x4
-> >  #define WC1_IS_C(x)	(((x) & 0xf) << 26)  /* cycle debounce */
-> > @@ -30,7 +36,8 @@
-> >  #define SSC_SPM_INT_EN		BIT(1)
-> >  
-> >  enum ssusb_uwk_vers {
-> > -	SSUSB_UWK_V1 = 1,
-> > +	SSUSB_UWK_V0 = 0,
-> > +	SSUSB_UWK_V1,
-> >  	SSUSB_UWK_V2,
-> >  };
-> >  
-> > @@ -43,6 +50,11 @@ static void ssusb_wakeup_ip_sleep_set(struct ssusb_mtk *ssusb, bool enable)
-> >  	u32 reg, msk, val;
-> >  
-> >  	switch (ssusb->uwk_vers) {
-> > +	case SSUSB_UWK_V0:
-> > +		reg = ssusb->uwk_reg_base + PERI_WK_CTRL0;
-> > +		msk = WC0_IS_EN | WC0_IS_C(0xf) | WC0_IS_P;
-> > +		val = enable ? (WC0_IS_EN | WC0_IS_C(0x8)) : 0;
-> > +		break;
-> >  	case SSUSB_UWK_V1:
-> >  		reg = ssusb->uwk_reg_base + PERI_WK_CTRL1;
-> >  		msk = WC1_IS_EN | WC1_IS_C(0xf) | WC1_IS_P;
+More than one gpio controllers can share one interrupt, change the
+driver to request shared irq.
 
+Signed-off-by: Laurentiu Tudor <Laurentiu.Tudor@nxp.com>
+Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
+Signed-off-by: Song Hui <hui.song_1@nxp.com>
+---
+Changes in v5:
+	- add traverse every bit function.
+Changes in v4:
+	- convert 'pr_err' to 'dev_err'.
+Changes in v3:
+	- update the patch description.
+Changes in v2:
+	- delete the compatible of ls1088a.
+ drivers/gpio/gpio-mpc8xxx.c | 30 +++++++++++++++++++-----------
+ 1 file changed, 19 insertions(+), 11 deletions(-)
+
+diff --git a/drivers/gpio/gpio-mpc8xxx.c b/drivers/gpio/gpio-mpc8xxx.c
+index 16a47de..3a06ca9 100644
+--- a/drivers/gpio/gpio-mpc8xxx.c
++++ b/drivers/gpio/gpio-mpc8xxx.c
+@@ -22,6 +22,7 @@
+ #include <linux/irq.h>
+ #include <linux/gpio/driver.h>
+ #include <linux/bitops.h>
++#include <linux/interrupt.h>
+ 
+ #define MPC8XXX_GPIO_PINS	32
+ 
+@@ -127,20 +128,20 @@ static int mpc8xxx_gpio_to_irq(struct gpio_chip *gc, unsigned offset)
+ 		return -ENXIO;
+ }
+ 
+-static void mpc8xxx_gpio_irq_cascade(struct irq_desc *desc)
++static irqreturn_t mpc8xxx_gpio_irq_cascade(int irq, void *data)
+ {
+-	struct mpc8xxx_gpio_chip *mpc8xxx_gc = irq_desc_get_handler_data(desc);
+-	struct irq_chip *chip = irq_desc_get_chip(desc);
++	struct mpc8xxx_gpio_chip *mpc8xxx_gc = (struct mpc8xxx_gpio_chip *)data;
+ 	struct gpio_chip *gc = &mpc8xxx_gc->gc;
+ 	unsigned int mask;
++	int i;
+ 
+ 	mask = gc->read_reg(mpc8xxx_gc->regs + GPIO_IER)
+ 		& gc->read_reg(mpc8xxx_gc->regs + GPIO_IMR);
+-	if (mask)
++	for_each_set_bit(i, &mask, 32)
+ 		generic_handle_irq(irq_linear_revmap(mpc8xxx_gc->irq,
+-						     32 - ffs(mask)));
+-	if (chip->irq_eoi)
+-		chip->irq_eoi(&desc->irq_data);
++						     31 - i));
++
++	return IRQ_HANDLED;
+ }
+ 
+ static void mpc8xxx_irq_unmask(struct irq_data *d)
+@@ -388,8 +389,8 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+ 
+ 	ret = gpiochip_add_data(gc, mpc8xxx_gc);
+ 	if (ret) {
+-		pr_err("%pOF: GPIO chip registration failed with status %d\n",
+-		       np, ret);
++		dev_err(&pdev->dev, "%pOF: GPIO chip registration failed with status %d\n",
++			np, ret);
+ 		goto err;
+ 	}
+ 
+@@ -409,8 +410,15 @@ static int mpc8xxx_probe(struct platform_device *pdev)
+ 	if (devtype->gpio_dir_in_init)
+ 		devtype->gpio_dir_in_init(gc);
+ 
+-	irq_set_chained_handler_and_data(mpc8xxx_gc->irqn,
+-					 mpc8xxx_gpio_irq_cascade, mpc8xxx_gc);
++	ret = request_irq(mpc8xxx_gc->irqn, mpc8xxx_gpio_irq_cascade,
++			  IRQF_NO_THREAD | IRQF_SHARED, "gpio-cascade",
++			  mpc8xxx_gc);
++	if (ret) {
++		dev_err(&pdev->dev, "%s: failed to request_irq(%d), ret = %d\n",
++			np->full_name, mpc8xxx_gc->irqn, ret);
++		goto err;
++	}
++
+ 	return 0;
+ err:
+ 	iounmap(mpc8xxx_gc->regs);
+-- 
+2.9.5
 
