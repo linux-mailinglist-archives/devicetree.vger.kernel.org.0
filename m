@@ -2,78 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDF07B56AD
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:08:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D30EB56BA
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728481AbfIQUIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:08:18 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38095 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726806AbfIQUIS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:08:18 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 7so4014345oip.5;
-        Tue, 17 Sep 2019 13:08:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Hogc/92S8/u/DUogFIB6MZH6mO5Gji1BbREYssF21ZI=;
-        b=f8FjVTlDwxI4rxUpP/iT+21WbETKApCKdqaRiR+jSY+phmxh0MXtaYQwEMayynCtMa
-         M3jme15ApErHzXQAwyb0x66jyOmYOm3dCBN/s4EFatgeHGYy/CJ0jymfqBXlUj1Pb8gL
-         XQrgxDhCeO4vaD0P5KJMVMUSBYuZQemrr6IVf+sHW5aPBLaX6YHzN4BbkcPDejWvCKWe
-         GYUSV/cZ23Fe6+f4p9eUFFyeKOJahnCO2i50qSc5an5bNM9WjTQlxKHj/t693RE1fQld
-         BXn4p6rbVrnHBF7yQFeuSzMrsjuX/4A+uRDpbNT09M9oNOemHJ9BVsMpnQubcR09vthO
-         RSRQ==
-X-Gm-Message-State: APjAAAVePGEFZKVXK94lVVXENUuK/O7zfMmA+GvXBIt1RAVthXHawuoE
-        MtSosYM2JuX4dmfCtih6xg==
-X-Google-Smtp-Source: APXvYqzFGTenJyiV9FyX5Dm5tzOndO9FlAzGE1mpSP3LOGeYCu62xyqYJaDeLNgqxRiN0ELUJbqGsQ==
-X-Received: by 2002:a05:6808:302:: with SMTP id i2mr3244340oie.176.1568750897306;
-        Tue, 17 Sep 2019 13:08:17 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id i17sm994400oii.3.2019.09.17.13.08.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 13:08:16 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 15:08:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        mark.rutland@arm.com, krzk@kernel.org, a.hajda@samsung.com,
-        m.szyprowski@samsung.com, m.falkowski@samsung.com
-Subject: Re: [PATCH v3] dt-bindings: gpu: Convert Samsung Image Rotator to
-  dt-schema
-Message-ID: <20190917200816.GA10224@bogus>
-References: <20190913062945.GA10283@pi3>
- <CGME20190917103758eucas1p10793e499209137630681186a10a4b7bd@eucas1p1.samsung.com>
- <20190917103727.14997-1-m.falkowski@samsung.com>
+        id S1727337AbfIQUNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 16:13:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38924 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726025AbfIQUNx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 16:13:53 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 22D15218AC;
+        Tue, 17 Sep 2019 20:13:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568751232;
+        bh=QD2jrpkdpFVtu6RbulHBwnzGJdhalt5ZYR1fRIHqmBo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=GQtzUvF/iUq9O0VBCtpM49FGGmvbDpy3HT3fUXArHiSEwfMIGYiak60u1i5YtvBIN
+         Wnr4Rmhq5/6Pb4Osl6WBs+vKBrBUgcWf52PNPYHL+q4wYSCxju85jOZ9iZUACGClz5
+         HyNR+/GdRUD+tri5AkVDcpTfa8cScwFEh7gpVTMY=
+Received: by mail-qt1-f177.google.com with SMTP id c21so5994535qtj.12;
+        Tue, 17 Sep 2019 13:13:52 -0700 (PDT)
+X-Gm-Message-State: APjAAAWxHPMpbqVcNZd+vcCrHZdhs2M+/BHTQlZSuYpoIho6GwlYsEny
+        tTjKegTRCclqvL+X38VxBRncgGmYbWmI9A48iA==
+X-Google-Smtp-Source: APXvYqwCu+ccCReyAWvySFIlMkLhOSLkP4JIuAvJCOo/l7X0GB8Y4G5qVJE3jnEww9nOwYBA9RPLuGQNrR2JTMtRiiU=
+X-Received: by 2002:ac8:100d:: with SMTP id z13mr700774qti.224.1568751231298;
+ Tue, 17 Sep 2019 13:13:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190917103727.14997-1-m.falkowski@samsung.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190910062103.39641-1-philippe.schenker@toradex.com> <20190910062103.39641-4-philippe.schenker@toradex.com>
+In-Reply-To: <20190910062103.39641-4-philippe.schenker@toradex.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 17 Sep 2019 15:13:39 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLyawEariYuaHJ+Lyt1DhJe9fdAE88ANrhHAokWJhUOdw@mail.gmail.com>
+Message-ID: <CAL_JsqLyawEariYuaHJ+Lyt1DhJe9fdAE88ANrhHAokWJhUOdw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: regulator: add regulator-fixed-clock binding
+To:     Philippe Schenker <philippe.schenker@toradex.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Luka Pivk <luka.pivk@toradex.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 17 Sep 2019 12:37:27 +0200, Maciej Falkowski wrote:
-> Convert Samsung Image Rotator to newer dt-schema format.
-> 
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+On Tue, Sep 10, 2019 at 1:21 AM Philippe Schenker
+<philippe.schenker@toradex.com> wrote:
+>
+> This adds the documentation to the compatible regulator-fixed-clock.
+> This binding is a special binding of regulator-fixed and adds the
+> ability to add a clock to regulator-fixed, so the regulator can be
+> enabled and disabled with that clock. If the special compatible
+> regulator-fixed-clock is used it is mandatory to supply a clock.
+>
+> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+>
 > ---
-> v3:
-> - remove unneded comments and descriptions
-> - remove unneded maxItems field from clock-names property
-> ---
->  .../bindings/gpu/samsung-rotator.txt          | 28 -----------
->  .../bindings/gpu/samsung-rotator.yaml         | 48 +++++++++++++++++++
->  2 files changed, 48 insertions(+), 28 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-rotator.txt
->  create mode 100644 Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
-> 
+>
+> Changes in v2:
+> - Change select: to if:
+> - Change items: to enum:
+> - Defined how many clocks should be given
+>
+>  .../bindings/regulator/fixed-regulator.yaml   | 19 ++++++++++++++++++-
+>  1 file changed, 18 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> index a650b457085d..a78150c47aa2 100644
+> --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+> @@ -19,9 +19,19 @@ description:
+>  allOf:
+>    - $ref: "regulator.yaml#"
+>
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: regulator-fixed-clock
+> +  required:
+> +    - clocks
+> +
+>  properties:
+>    compatible:
+> -    const: regulator-fixed
+> +    enum:
+> +      - const: regulator-fixed
+> +      - const: regulator-fixed-clock
 
-Applied, thanks.
+'make dt_binding_check' is failing. You need to drop 'const: '. Please
+send a patch to fix this.
 
 Rob
