@@ -2,220 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7C9B5443
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:31:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D612BB545E
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:37:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725868AbfIQRb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 13:31:29 -0400
-Received: from foss.arm.com ([217.140.110.172]:59466 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725862AbfIQRb3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 13:31:29 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0F1F41000;
-        Tue, 17 Sep 2019 10:31:28 -0700 (PDT)
-Received: from donnerap.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ADA973F575;
-        Tue, 17 Sep 2019 10:31:26 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 18:31:15 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Peng Fan <peng.fan@nxp.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH V6 1/2] dt-bindings: mailbox: add binding doc for the
- ARM SMC/HVC mailbox
-Message-ID: <20190917183115.3e40180f@donnerap.cambridge.arm.com>
-In-Reply-To: <1568626884-5189-2-git-send-email-peng.fan@nxp.com>
-References: <1568626884-5189-1-git-send-email-peng.fan@nxp.com>
-        <1568626884-5189-2-git-send-email-peng.fan@nxp.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+        id S1731275AbfIQRhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 13:37:40 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:44576 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726188AbfIQRhj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 13:37:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=omsIg2rbbwmNo2zYjbESoX4pKX0DYuCZ/SV7w4KEtXM=; b=jmcYKNMnfrqw4snJOPuurmbry
+        M5Ipeu3Ciu8WoGdLAHoA6AsF6je/AC1WpcMtMjFgFlJsMCxuMO03ros7qr0a/jscdqXmf2PsSufbt
+        gAsOWFS/thqGPbNuCHK8y6lkI32pa6BRGFcpW/mxSppHmsOMQbADhJn7VdceECzxAxNr+8MW+135o
+        udIDoiJfvTFMjmZuIeIGGDjoGWZdp4I5ViHLjjRFfb89jkRFMiXI02BarEPCSbIRMDX9ZF7XN/5nZ
+        tZlJF7Ee0ktZ21l915NuQI2yfEAhCJDE2vIVtUMPxfBd1zAxWF0TmzDP1D9zDP5mLdF3SolqBCTRE
+        gAjzRj6PQ==;
+Received: from shell.armlinux.org.uk ([2002:4e20:1eda:1:5054:ff:fe00:4ec]:40720)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iAHPw-0003Fo-13; Tue, 17 Sep 2019 18:37:32 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iAHPs-0001To-Gj; Tue, 17 Sep 2019 18:37:28 +0100
+Date:   Tue, 17 Sep 2019 18:37:28 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     tinywrkb <tinywrkb@gmail.com>, Mark Rutland <mark.rutland@arm.com>,
+        Baruch Siach <baruch@tkos.co.il>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
+ max-speed
+Message-ID: <20190917173728.GZ25745@shell.armlinux.org.uk>
+References: <20190917124101.GA1200564@arch-dsk-01>
+ <20190917125434.GH20778@lunn.ch>
+ <20190917133253.GA1210141@arch-dsk-01>
+ <20190917133942.GR25745@shell.armlinux.org.uk>
+ <20190917151707.GV25745@shell.armlinux.org.uk>
+ <20190917153027.GW25745@shell.armlinux.org.uk>
+ <20190917163427.GA1475935@arch-dsk-01>
+ <20190917170419.GX25745@shell.armlinux.org.uk>
+ <20190917171913.GY25745@shell.armlinux.org.uk>
+ <20190917172658.GB9591@lunn.ch>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190917172658.GB9591@lunn.ch>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 16 Sep 2019 09:44:37 +0000
-Peng Fan <peng.fan@nxp.com> wrote:
-
-Hi,
-
-> From: Peng Fan <peng.fan@nxp.com>
+On Tue, Sep 17, 2019 at 07:26:58PM +0200, Andrew Lunn wrote:
+> > diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
+> > index b3893347804d..85cf4a4a5e81 100644
+> > --- a/drivers/net/phy/at803x.c
+> > +++ b/drivers/net/phy/at803x.c
 > 
-> The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
-> actions in software layers running in the EL2 or EL3 exception levels.
-> The term "ARM" here relates to the SMC instruction as part of the ARM
-> instruction set, not as a standard endorsed by ARM Ltd.
+> Hi Russell
 > 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/mailbox/arm-smc.yaml       | 96 ++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> This won't work. In the kernel logs, you see 
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> new file mode 100644
-> index 000000000000..bf01bec035fc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
-> @@ -0,0 +1,96 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM SMC Mailbox Interface
-> +
-> +maintainers:
-> +  - Peng Fan <peng.fan@nxp.com>
-> +
-> +description: |
-> +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
+> kernel: Generic PHY 2188000.ethernet-1:00: attached PHY driver [Generic PHY]
+> 
+> The generic PHY driver is being used, not the at803x driver.
 
-I think "or" instead of "and" is less confusing.
+Well, the _correct_ driver needs to be used for the PHY specific
+features to be properly controlled.  Using the generic driver
+in this situation will not be guaranteed to work.
 
-> +  call) instruction to trigger a mailbox-connected activity in firmware,
-> +  executing on the very same core as the caller. The value of r0/w0/x0
-> +  the firmware returns after the smc call is delivered as a received
-> +  message to the mailbox framework, so synchronous communication can be
-> +  established. The exact meaning of the action the mailbox triggers as
-> +  well as the return value is defined by their users and is not subject
-> +  to this binding.
-> +
-> +  One use case of this mailbox is the SCMI interface, which uses shared
-
-     One example use case of this mailbox ...
-(to make it more obvious that it's not restricted to this)
-
-> +  memory to transfer commands and parameters, and a mailbox to trigger a
-> +  function call. This allows SoCs without a separate management processor
-> +  (or when such a processor is not available or used) to use this
-> +  standardized interface anyway.
-> +
-> +  This binding describes no hardware, but establishes a firmware interface.
-> +  Upon receiving an SMC using one of the described SMC function identifiers,
-
-                             ... the described SMC function identifier,
-
-> +  the firmware is expected to trigger some mailbox connected functionality.
-> +  The communication follows the ARM SMC calling convention.
-> +  Firmware expects an SMC function identifier in r0 or w0. The supported
-> +  identifiers are passed from consumers,
-
-     identifier
-
-"passed from consumers": How? Where?
-But I want to repeat: We should not allow this. This is a binding for a mailbox controller driver, not a generic firmware backdoor.
-We should be as strict as possible to avoid any security issues.
-The firmware certainly knows the function ID it implements. The firmware controls the DT. So it is straight-forward to put the ID into the DT. The firmware could even do this at boot time, dynamically, before passing on the DT to the non-secure world (bootloader or kernel).
-
-What would be the use case of this functionality?
-
-> or listed in the the arm,func-ids
-
-                       arm,func-id
-
-> +  properties as described below. The firmware can return one value in
-
-     property
-
-> +  the first SMC result register, it is expected to be an error value,
-> +  which shall be propagated to the mailbox client.
-> +
-> +  Any core which supports the SMC or HVC instruction can be used, as long
-> +  as a firmware component running in EL3 or EL2 is handling these calls.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description:
-> +          For implementations using ARM SMC instruction.
-> +        const: arm,smc-mbox
-> +
-> +      - description:
-> +          For implementations using ARM HVC instruction.
-> +        const: arm,hvc-mbox
-
-I am not particularly happy with this, but well ...
-
-> +
-> +  "#mbox-cells":
-> +    const: 1
-
-Why is this "1"? What is this number used for? It used to be the channel ID, but since you are describing a single channel controller only, this should be 0 now.
-
-> +
-> +  arm,func-id:
-> +    description: |
-> +      An 32-bit value specifying the function ID used by the mailbox.
-
-         A single 32-bit value ...
-
-> +      The function ID follow the ARM SMC calling convention standard [1].
-
-                         follows
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +
-> +required:
-> +  - compatible
-> +  - "#mbox-cells"
-> +
-> +examples:
-> +  - |
-> +    sram@93f000 {
-> +      compatible = "mmio-sram";
-> +      reg = <0x0 0x93f000 0x0 0x1000>;
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      ranges = <0x0 0x93f000 0x1000>;
-> +
-> +      cpu_scp_lpri: scp-shmem@0 {
-> +        compatible = "arm,scmi-shmem";
-> +        reg = <0x0 0x200>;
-> +      };
-> +    };
-> +
-> +    smc_tx_mbox: tx_mbox {
-> +      #mbox-cells = <1>;
-
-As mentioned above, should be 0.
-
-> +      compatible = "arm,smc-mbox";
-> +      /* optional */
-
-First: having "optional" in a specific example is not helpful, just confusing.
-Second: It is actually *not* optional in this case, as there is no other way of propagating the function ID. The SCMI driver as the mailbox client has certainly no clue about this.
-I think I said this previously: Relying on the mailbox client to pass the function ID sounds broken, as this is a property of the mailbox controller driver. The mailbox client does not care about this mailbox communication detail, it just wants to trigger the mailbox.
-
-> +      arm,func-id = <0xc20000fe>;
-> +    };
-> +
-> +    firmware {
-> +      scmi {
-> +        compatible = "arm,scmi";
-> +        mboxes = <&smc_tx_mbox 0>;
-
-... and here just <&smc_tx_mbox>; would suffice.
-
-> +        mbox-names = "tx";
-> +        shmem = <&cpu_scp_lpri>;
-> +      };
-> +    };
-> +
-> +...
-
-Cheers,
-Andre.
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
