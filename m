@@ -2,205 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B8BDB4C12
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:38:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9A17B4C35
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726340AbfIQKiC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 06:38:02 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:52408 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726231AbfIQKiC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 06:38:02 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190917103800euoutp01d22c9d05f60dd4b32c190a7469620031~FM4JiyFvq2681026810euoutp01D
-        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2019 10:38:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190917103800euoutp01d22c9d05f60dd4b32c190a7469620031~FM4JiyFvq2681026810euoutp01D
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1568716680;
-        bh=dMTOUiJXpryj3x6XPv0aEEYIJHqqRS47dekWk1nhjEA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=skeo03LxM7QIw6XrBnswET5VrhR9S/11M60R+7zBUm3K1ZWZjjMj6NmOSgnQjlVbp
-         OAQQxy7Ay0TIafz/HZRCvl0F6MVDqJWkWSfs/aQvkabBEsCoemF0enSkEa1iqAOuE4
-         51NWuEAnhZDjP+U5Ja7i/PJ25Y1Kpvr0Yhx7CNtE=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190917103759eucas1p1f8df25325e4754c12a823f7263e2296a~FM4IrGNUy1434014340eucas1p1G;
-        Tue, 17 Sep 2019 10:37:59 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 48.3B.04309.687B08D5; Tue, 17
-        Sep 2019 11:37:58 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190917103758eucas1p10793e499209137630681186a10a4b7bd~FM4Hoz1pO1434014340eucas1p1D;
-        Tue, 17 Sep 2019 10:37:58 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190917103758eusmtrp2ef805a9a7986ed995556f76690e3f0df~FM4HaqEit1908519085eusmtrp2O;
-        Tue, 17 Sep 2019 10:37:58 +0000 (GMT)
-X-AuditID: cbfec7f4-afbff700000010d5-12-5d80b786928f
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 3A.37.04166.587B08D5; Tue, 17
-        Sep 2019 11:37:57 +0100 (BST)
-Received: from AMDC2459.digital.local (unknown [106.120.51.95]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190917103757eusmtip208717cdb181c927823afc54f28fbf2a5~FM4G1vhY60082800828eusmtip2c;
-        Tue, 17 Sep 2019 10:37:57 +0000 (GMT)
-From:   Maciej Falkowski <m.falkowski@samsung.com>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
-        mark.rutland@arm.com, krzk@kernel.org, a.hajda@samsung.com,
-        m.szyprowski@samsung.com, m.falkowski@samsung.com
-Subject: [PATCH v3] dt-bindings: gpu: Convert Samsung Image Rotator to
- dt-schema
-Date:   Tue, 17 Sep 2019 12:37:27 +0200
-Message-Id: <20190917103727.14997-1-m.falkowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190913062945.GA10283@pi3>
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprDKsWRmVeSWpSXmKPExsWy7djPc7rt2xtiDWa+Z7S4te4cq0XvuZNM
-        Fv+3TWS2mH8EyL3y9T2bxfnzG9gtLu+aw2Yx4/w+JosHzevYLNYeuctusfT6RSaL1r1H2B14
-        PNbMW8PosffbAhaPTas62Ty2f3vA6nG/+ziTR9+WVYwenzfJBbBHcdmkpOZklqUW6dslcGVc
-        u/CarWCmZMX/vRkNjLtFuhg5OSQETCQ+rN/B1sXIxSEksIJRYuOVE4wQzhdGiZ0bGpkhnM+M
-        EpP3HWCCaXl0/QQTRGI5o8TjA5PZQRJgLQsfV4PYbAIGEv1v9rKAFIkINDFKzF91HGwus8Aa
-        RolfM1vBRgkLBEmsXNzPCmKzCKhK3N6ynxHE5hWwkbh3pIMRYp28xOoNB5hBbE4BTYn2S+9Y
-        QQZJCCxil/iy4gILRJGLxLr5d6EahCVeHd/CDmHLSPzfOR9oGQeQXS1x7ZssRG8Lo8T1aW/Z
-        IGqsJf6smsgGUsMMtGD9Ln2IsKPErAmXoFr5JG68FQQJMwOZk7ZNZ4YI80p0tAlBmKoSbybE
-        QjRKS7Su2Q91i4dEe9tnaPDUSEzo3844gVF+FsKqBYyMqxjFU0uLc9NTi43yUsv1ihNzi0vz
-        0vWS83M3MQLTzOl/x7/sYNz1J+kQowAHoxIPr8G2+lgh1sSy4srcQ4wSHMxKIrwBtUAh3pTE
-        yqrUovz4otKc1OJDjNIcLErivNUMD6KFBNITS1KzU1MLUotgskwcnFINjFxK9f2+ivX8Wd25
-        bx/d41igIGR6quqMknJmecsBp/25CaK9mlOrLl2Uj9L0Mpp9cI6vrHexkKLMy3Ppoq8Vc3hX
-        cNwQip/HeSct+PC7KwbhWqdshcQF7XlOzqlS10rUV5cINAiq/7lMYXX9pAu1V1bZ/L4qcH72
-        i6a6PgZx0X7hZeqMfd1KLMUZiYZazEXFiQBgUiSKLwMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpkkeLIzCtJLcpLzFFi42I5/e/4Pd3W7Q2xBu1nLSxurTvHatF77iST
-        xf9tE5kt5h8Bcq98fc9mcf78BnaLy7vmsFnMOL+PyeJB8zo2i7VH7rJbLL1+kcmide8Rdgce
-        jzXz1jB67P22gMVj06pONo/t3x6wetzvPs7k0bdlFaPH501yAexRejZF+aUlqQoZ+cUltkrR
-        hhZGeoaWFnpGJpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehnXLrxmK5gpWfF/b0YD426RLkZO
-        DgkBE4lH108wdTFycQgJLGWUWDf5DyNEQlpi/7WP7BC2sMSfa11sEEWfGCXafkxiBUmwCRhI
-        9L/ZywKSEBFoY5R4euoI2ChmgW2MErvX3mcDqRIWCJDYu+0q2CgWAVWJ21v2g63gFbCRuHek
-        A2qdvMTqDQeYQWxOAU2J9kvvwDYICWhI3N+1gHUCI98CRoZVjCKppcW56bnFhnrFibnFpXnp
-        esn5uZsYgcG/7djPzTsYL20MPsQowMGoxMNrsK0+Vog1say4MvcQowQHs5IIb0AtUIg3JbGy
-        KrUoP76oNCe1+BCjKdBRE5mlRJPzgZGZVxJvaGpobmFpaG5sbmxmoSTO2yFwMEZIID2xJDU7
-        NbUgtQimj4mDU6qBUX/OrpMMOz88tn1Q1q93fYqxtZZBsc7F9ItWb5wCn72tmLXBaeM99qVN
-        F1g9Sm3FN0v4TRK4v/6Zj6ncoYAcv/qHqxLfvbX9csJm9ct892KLFpO/z1tZ44UMde/aTfHl
-        C4h6seSd1fUpHtob5W5wfDmwa8vqJToHnq/Rf114YdZ3lSwdlXrNvUosxRmJhlrMRcWJAB3p
-        4vOUAgAA
-X-CMS-MailID: 20190917103758eucas1p10793e499209137630681186a10a4b7bd
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190917103758eucas1p10793e499209137630681186a10a4b7bd
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190917103758eucas1p10793e499209137630681186a10a4b7bd
-References: <20190913062945.GA10283@pi3>
-        <CGME20190917103758eucas1p10793e499209137630681186a10a4b7bd@eucas1p1.samsung.com>
+        id S1726975AbfIQKtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 06:49:36 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.81]:12135 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726843AbfIQKtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 06:49:36 -0400
+X-Greylist: delayed 365 seconds by postgrey-1.27 at vger.kernel.org; Tue, 17 Sep 2019 06:49:34 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568717373;
+        s=strato-dkim-0002; d=fpond.eu;
+        h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=mV8V/mAA+JoLMbydbnfpeN8Madn3PXV7YO/86RBM9mM=;
+        b=tc4+vKHaiAigobBa9HEX5PN5Dk0JQg3IogCYvrGwrcEJgD4Aq31b3nnE4WC8G5Rh86
+        HiAuVTI/LtvVuO7iI4X/iVlgW0db6nRZMc9czMKk7/pYh0C9SrhCccIR4moefs3OX8E8
+        zhtCYTYpU9UrAwhpss2EpUVe7Nyyl4AYdZLMshEA/Tq8Egf51HnIhworGgTUzUSqSNc0
+        99Gnr/V4ejchEukg1cpoPBR8Caf+d8vFgFK4Ncuxz6KtZv1+sC17r1JeMaF1sBQR2kPe
+        ZXMM4eAZP/g2Yl7dTnfC0Uw/zvfcFvIX1Z5QOZljjFVnhnUCSEow5ylU57co96XZaDOq
+        3aPA==
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73amq+g13rqGzmt2bYDnKIKaws6YXTsc4="
+X-RZG-CLASS-ID: mo00
+Received: from oxapp03-03.back.ox.d0m.de
+        by smtp-ox.front (RZmta 44.27.0 AUTH)
+        with ESMTPSA id j02f91v8HAhRAax
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Tue, 17 Sep 2019 12:43:27 +0200 (CEST)
+Date:   Tue, 17 Sep 2019 12:43:27 +0200 (CEST)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     Simon Horman <horms+renesas@verge.net.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Message-ID: <2123403900.237308.1568717007831@webmail.strato.com>
+In-Reply-To: <20190916153357.3880-2-horms+renesas@verge.net.au>
+References: <20190916153357.3880-1-horms+renesas@verge.net.au>
+ <20190916153357.3880-2-horms+renesas@verge.net.au>
+Subject: Re: [PATCH 1/2] dt-bindings: bus: simple-pm-bus: convert bindings
+ to json-schema
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Normal
+X-Mailer: Open-Xchange Mailer v7.10.1-Rev20
+X-Originating-IP: 85.212.142.246
+X-Originating-Client: open-xchange-appsuite
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Samsung Image Rotator to newer dt-schema format.
 
-Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
-v3:
-- remove unneded comments and descriptions
-- remove unneded maxItems field from clock-names property
----
- .../bindings/gpu/samsung-rotator.txt          | 28 -----------
- .../bindings/gpu/samsung-rotator.yaml         | 48 +++++++++++++++++++
- 2 files changed, 48 insertions(+), 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-rotator.txt
- create mode 100644 Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+> On September 16, 2019 at 5:33 PM Simon Horman <horms+renesas@verge.net.au> wrote:
+> 
+> 
+> Convert Simple Power-Managed Bus bindings documentation to json-schema.
+> 
+> As a side effect of this change only simple-pm-bus is used in example. A
+> follow-up patch will provide an example for the separately documented
+> Renesas Bus State Controller (BSC) that uses "renesas,bsc-sh73a0" and
+> "renesas,bsc" compat strings.
+> 
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> ---
+> * Tested using:
+>   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+>   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> ---
+>  .../devicetree/bindings/bus/simple-pm-bus.txt      | 44 --------------
+>  .../devicetree/bindings/bus/simple-pm-bus.yaml     | 68 ++++++++++++++++++++++
+>  2 files changed, 68 insertions(+), 44 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.txt
+>  create mode 100644 Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.txt b/Documentation/devicetree/bindings/bus/simple-pm-bus.txt
+> deleted file mode 100644
+> index 6f15037131ed..000000000000
+> --- a/Documentation/devicetree/bindings/bus/simple-pm-bus.txt
+> +++ /dev/null
+> @@ -1,44 +0,0 @@
+> -Simple Power-Managed Bus
+> -========================
+> -
+> -A Simple Power-Managed Bus is a transparent bus that doesn't need a real
+> -driver, as it's typically initialized by the boot loader.
+> -
+> -However, its bus controller is part of a PM domain, or under the control of a
+> -functional clock.  Hence, the bus controller's PM domain and/or clock must be
+> -enabled for child devices connected to the bus (either on-SoC or externally)
+> -to function.
+> -
+> -While "simple-pm-bus" follows the "simple-bus" set of properties, as specified
+> -in the Devicetree Specification, it is not an extension of "simple-bus".
+> -
+> -
+> -Required properties:
+> -  - compatible: Must contain at least "simple-pm-bus".
+> -		Must not contain "simple-bus".
+> -		It's recommended to let this be preceded by one or more
+> -		vendor-specific compatible values.
+> -  - #address-cells, #size-cells, ranges: Must describe the mapping between
+> -		parent address and child address spaces.
+> -
+> -Optional platform-specific properties for clock or PM domain control (at least
+> -one of them is required):
+> -  - clocks: Must contain a reference to the functional clock(s),
+> -  - power-domains: Must contain a reference to the PM domain.
+> -Please refer to the binding documentation for the clock and/or PM domain
+> -providers for more details.
+> -
+> -
+> -Example:
+> -
+> -	bsc: bus@fec10000 {
+> -		compatible = "renesas,bsc-sh73a0", "renesas,bsc",
+> -			     "simple-pm-bus";
+> -		#address-cells = <1>;
+> -		#size-cells = <1>;
+> -		ranges = <0 0 0x20000000>;
+> -		reg = <0xfec10000 0x400>;
+> -		interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&zb_clk>;
+> -		power-domains = <&pd_a4s>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> new file mode 100644
+> index 000000000000..72a3644974e3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/bus/simple-pm-bus.yaml
+> @@ -0,0 +1,68 @@
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/bus/simple-pm-bus.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Simple Power-Managed Bus
+> +
+> +maintainers:
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +description: |
+> +  A Simple Power-Managed Bus is a transparent bus that doesn't need a real
+> +  driver, as it's typically initialized by the boot loader.
+> +
+> +  However, its bus controller is part of a PM domain, or under the control
+> +  of a functional clock.  Hence, the bus controller's PM domain and/or
+> +  clock must be enabled for child devices connected to the bus (either
+> +  on-SoC or externally) to function.
+> +
+> +  While "simple-pm-bus" follows the "simple-bus" set of properties, as
+> +  specified in the Devicetree Specification, it is not an extension of
+> +  "simple-bus".
+> +
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +       - const: simple-pm-bus
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 1
+> +
+> +  ranges:
+> +    # Mapping between parent address and child address spaces.
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    # Functional clocks
+> +    # Required if power-domains is absent, optional otherwise
+> +    minItems: 1
+> +
+> +  power-domains:
+> +    # Required if clocks is absent, optional otherwise
+> +    minItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - '#address-cells'
+> +  - '#size-cells'
+> +  - ranges
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    bsc: bus@fec10000 {
+> +        compatible = "simple-pm-bus";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges = <0 0 0x20000000>;
+> +        reg = <0xfec10000 0x400>;
+> +        interrupts = <0 39 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&zb_clk>;
+> +        power-domains = <&pd_a4s>;
+> +    };
+> -- 
+> 2.11.0
 
-diff --git a/Documentation/devicetree/bindings/gpu/samsung-rotator.txt b/Documentation/devicetree/bindings/gpu/samsung-rotator.txt
-deleted file mode 100644
-index 3aca2578da0b..000000000000
---- a/Documentation/devicetree/bindings/gpu/samsung-rotator.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--* Samsung Image Rotator
--
--Required properties:
--  - compatible : value should be one of the following:
--	* "samsung,s5pv210-rotator" for Rotator IP in S5PV210
--	* "samsung,exynos4210-rotator" for Rotator IP in Exynos4210
--	* "samsung,exynos4212-rotator" for Rotator IP in Exynos4212/4412
--	* "samsung,exynos5250-rotator" for Rotator IP in Exynos5250
--
--  - reg : Physical base address of the IP registers and length of memory
--	  mapped region.
--
--  - interrupts : Interrupt specifier for rotator interrupt, according to format
--		 specific to interrupt parent.
--
--  - clocks : Clock specifier for rotator clock, according to generic clock
--	     bindings. (See Documentation/devicetree/bindings/clock/exynos*.txt)
--
--  - clock-names : Names of clocks. For exynos rotator, it should be "rotator".
--
--Example:
--	rotator@12810000 {
--		compatible = "samsung,exynos4210-rotator";
--		reg = <0x12810000 0x1000>;
--		interrupts = <0 83 0>;
--		clocks = <&clock 278>;
--		clock-names = "rotator";
--	};
-diff --git a/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml b/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
-new file mode 100644
-index 000000000000..45ce562435fa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/samsung-rotator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung SoC Image Rotator
-+
-+maintainers:
-+  - Inki Dae <inki.dae@samsung.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - "samsung,s5pv210-rotator"
-+      - "samsung,exynos4210-rotator"
-+      - "samsung,exynos4212-rotator"
-+      - "samsung,exynos5250-rotator"
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+    - const: rotator
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    rotator@12810000 {
-+        compatible = "samsung,exynos4210-rotator";
-+        reg = <0x12810000 0x1000>;
-+        interrupts = <0 83 0>;
-+        clocks = <&clock 278>;
-+        clock-names = "rotator";
-+    };
-+
--- 
-2.17.1
+Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
 
+CU
+Uli
+
+>
