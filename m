@@ -2,166 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D536B49A2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 10:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AA98B49C0
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 10:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388965AbfIQIhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 04:37:03 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:34002 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730213AbfIQIhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 04:37:03 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id DA94F25AD71;
-        Tue, 17 Sep 2019 18:37:00 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id EC01F94055C; Tue, 17 Sep 2019 10:36:58 +0200 (CEST)
-From:   Simon Horman <horms+renesas@verge.net.au>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Simon Horman <horms+renesas@verge.net.au>
-Subject: [PATCH] dt-bindings: rtc: rtc-sh: convert bindings to json-schema
-Date:   Tue, 17 Sep 2019 10:36:34 +0200
-Message-Id: <20190917083634.11510-1-horms+renesas@verge.net.au>
-X-Mailer: git-send-email 2.11.0
+        id S1729817AbfIQIrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 04:47:46 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:47524 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729610AbfIQIrq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 04:47:46 -0400
+Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.fritz.box)
+        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <heiko@sntech.de>)
+        id 1iA8pK-0005ZY-GI; Tue, 17 Sep 2019 10:27:10 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-rockchip@lists.infradead.org,
+        christoph.muellner@theobroma-systems.com,
+        Heiko Stuebner <heiko@sntech.de>
+Subject: [PATCH 11/13] dt-bindings: document PX30 usb2phy General Register Files
+Date:   Tue, 17 Sep 2019 10:26:57 +0200
+Message-Id: <20190917082659.25549-11-heiko@sntech.de>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190917082659.25549-1-heiko@sntech.de>
+References: <20190917082659.25549-1-heiko@sntech.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Real Time Clock for Renesas SH and ARM SoCs bindings documentation
-to json-schema.  Also name bindings documentation file according to the
-compat string being documented.
+One of the separate General Register Files contains the registers for
+controlling the usb2phy, so add the necessary binding compatible for it.
 
-Also correct syntax error in interrupts field in example.
-
-Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 ---
-* Based on v5.3
-* Tested using:
-  # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
-  # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
----
- .../devicetree/bindings/rtc/renesas,sh-rtc.yaml    | 66 ++++++++++++++++++++++
- Documentation/devicetree/bindings/rtc/rtc-sh.txt   | 28 ---------
- 2 files changed, 66 insertions(+), 28 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
- delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-sh.txt
+ Documentation/devicetree/bindings/soc/rockchip/grf.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
-new file mode 100644
-index 000000000000..07dbcd4436ce
---- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/rtc/renesas,sh-rtc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Real Time Clock for Renesas SH and ARM SoCs
-+
-+maintainers:
-+  - Chris Brandt <chris.brandt@renesas.com>
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: renesas,r7s72100-rtc  # RZ/A1H
-+      - const: renesas,sh-rtc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 3
-+
-+  interrupt-names:
-+    items:
-+      - const: alarm
-+      - const: period
-+      - const: carry
-+
-+  clocks:
-+    # The functional clock source for the RTC controller must be listed
-+    # first (if it exists). Additionally, potential clock counting sources
-+    # are to be listed.
-+    true
-+
-+  clock-names:
-+    # The functional clock must be labeled as "fck". Other clocks
-+    # may be named in accordance to the SoC hardware manuals.
-+    true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/r7s72100-clock.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    rtc: rtc@fcff1000 {
-+        compatible = "renesas,r7s72100-rtc", "renesas,sh-rtc";
-+        reg = <0xfcff1000 0x2e>;
-+        interrupts = <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
-+                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>;
-+        interrupt-names = "alarm", "period", "carry";
-+        clocks = <&mstp6_clks R7S72100_CLK_RTC>, <&rtc_x1_clk>,
-+                 <&rtc_x3_clk>, <&extal_clk>;
-+        clock-names = "fck", "rtc_x1", "rtc_x3", "extal";
-+    };
-diff --git a/Documentation/devicetree/bindings/rtc/rtc-sh.txt b/Documentation/devicetree/bindings/rtc/rtc-sh.txt
-deleted file mode 100644
-index 7676c7d28874..000000000000
---- a/Documentation/devicetree/bindings/rtc/rtc-sh.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--* Real Time Clock for Renesas SH and ARM SoCs
--
--Required properties:
--- compatible: Should be "renesas,r7s72100-rtc" and "renesas,sh-rtc" as a
--  fallback.
--- reg: physical base address and length of memory mapped region.
--- interrupts: 3 interrupts for alarm, period, and carry.
--- interrupt-names: The interrupts should be labeled as "alarm", "period", and
--  "carry".
--- clocks: The functional clock source for the RTC controller must be listed
--  first (if exists). Additionally, potential clock counting sources are to be
--  listed.
--- clock-names: The functional clock must be labeled as "fck". Other clocks
--  may be named in accordance to the SoC hardware manuals.
--
--
--Example:
--rtc: rtc@fcff1000 {
--	compatible = "renesas,r7s72100-rtc", "renesas,sh-rtc";
--	reg = <0xfcff1000 0x2e>;
--	interrupts = <GIC_SPI 276 IRQ_TYPE_EDGE_RISING
--		      GIC_SPI 277 IRQ_TYPE_EDGE_RISING
--		      GIC_SPI 278 IRQ_TYPE_EDGE_RISING>;
--	interrupt-names = "alarm", "period", "carry";
--	clocks = <&mstp6_clks R7S72100_CLK_RTC>, <&rtc_x1_clk>,
--		 <&rtc_x3_clk>, <&extal_clk>;
--	clock-names = "fck", "rtc_x1", "rtc_x3", "extal";
--};
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/grf.txt b/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+index 46e27cd69f18..d7debec26ba4 100644
+--- a/Documentation/devicetree/bindings/soc/rockchip/grf.txt
++++ b/Documentation/devicetree/bindings/soc/rockchip/grf.txt
+@@ -30,6 +30,7 @@ Required Properties:
+ - compatible: SGRF should be one of the following
+    - "rockchip,rk3288-sgrf", "syscon": for rk3288
+ - compatible: USB2PHYGRF should be one of the followings
++   - "rockchip,px30-usb2phy-grf", "syscon": for px30
+    - "rockchip,rk3328-usb2phy-grf", "syscon": for rk3328
+ - compatible: USBGRF should be one of the following
+    - "rockchip,rv1108-usbgrf", "syscon": for rv1108
 -- 
-2.11.0
+2.20.1
 
