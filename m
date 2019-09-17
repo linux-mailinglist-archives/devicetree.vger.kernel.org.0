@@ -2,80 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D464B47CC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 08:57:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4C2EB47DC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 09:07:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404397AbfIQG5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 02:57:19 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:16400 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403830AbfIQG5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 02:57:19 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d8083d40000>; Mon, 16 Sep 2019 23:57:24 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Mon, 16 Sep 2019 23:57:19 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Mon, 16 Sep 2019 23:57:19 -0700
-Received: from HQMAIL109.nvidia.com (172.20.187.15) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 17 Sep
- 2019 06:57:19 +0000
-Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL109.nvidia.com
- (172.20.187.15) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Tue, 17 Sep 2019 06:57:18 +0000
-Received: from nkristam-ubuntu.nvidia.com (Not Verified[10.19.65.118]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d8083cd0000>; Mon, 16 Sep 2019 23:57:18 -0700
-From:   Nagarjuna Kristam <nkristam@nvidia.com>
-To:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        Nagarjuna Kristam <nkristam@nvidia.com>
-Subject: [PATCH 3/3] arm64: tegra: Enable USB host on Jetson-TX2
-Date:   Tue, 17 Sep 2019 12:26:45 +0530
-Message-ID: <1568703406-20183-4-git-send-email-nkristam@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1568703406-20183-1-git-send-email-nkristam@nvidia.com>
-References: <1568703406-20183-1-git-send-email-nkristam@nvidia.com>
-X-NVConfidentiality: public
+        id S2391275AbfIQHH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 03:07:58 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:53110 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729435AbfIQHH5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 03:07:57 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 99E5361213; Tue, 17 Sep 2019 07:07:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568704076;
+        bh=XOsx7e6qcaR44pSsilXmTVukrNoyBsfw/6ykaEalazM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=OzN/Gtk3ZoKHZTgZ9fVTPVQjYnhNvVjgGjtX1Fo0ynsHKaifuPJLn8kufAPGIE0TX
+         8vHOpxjusQHFbzSfpBdDlNp6dGOCjsI04vLPvnyM7fgUiCcA1rsBGDuIGHByQnZX0o
+         EjOAtEEhUC91xbaBQgVVk+ay5SWTN+ihK0L6OKHo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id ADD53611FA;
+        Tue, 17 Sep 2019 07:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1568704075;
+        bh=XOsx7e6qcaR44pSsilXmTVukrNoyBsfw/6ykaEalazM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=hhmdmcsilLPeAHhlXWfXw65jWqnkKaLX+R2TlRiLkkxWwOrEo+SbpqwVS/ofH+jv3
+         RPotvR/PIO6/LsG3mOksGG7ZmemEn5lWPStuLLSxvfG6i9B6i4foEOoibLjqtRudhx
+         IeFtfpOeSqMDvo2rcHHCPc4yyKltEyj3GvhBly0U=
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1568703444; bh=AOMX+3luWEiiWvyqly4CZ2QKjkMGeO6glydbEwVi7cw=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=mj7VdwEbR8XgD3z0/XWjbvkc/2aPpB9V5UX1//ihBSKflL3B1GdhSlzeFMoFnbD0e
-         PM/uZfYPK8Qc2VfPtiquvIXF5jj4nzi5C1Ys+M28j1iJtcjosoXNCHuRQ2fIAgBo4K
-         OpWshkcgH1qJx9zDagI7RD0ETtchF48XF12TdhJEp3sw56wP4C7jiaxTp/m8ymVisc
-         5AZfFsgQn5hy1cCbc/vqDLfedMfMEN/40sa4sVyhYfgrydcgxNlz6Igk+7ETj1UMKz
-         Wym5i64OIIkmk29ux1f1Xegc3hAZVS+yDJ+AwcmzJfJBvV4TOgRIXZfr3c2r4s1kFZ
-         J7ruFgGokHStg==
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Tue, 17 Sep 2019 12:37:55 +0530
+From:   gokulsri@codeaurora.org
+To:     Rob Herring <robh@kernel.org>
+Cc:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
+        david.brown@linaro.org, devicetree@vger.kernel.org,
+        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
+        mturquette@baylibre.com, ohad@wizery.com, robh+dt@kernel.org,
+        sricharan@codeaurora.org, nprakash@codeaurora.org
+Subject: Re: [PATCH V2 10/12] dt-bindings: firmware: qcom: Add compatible for
+ IPQ8074 SoC
+In-Reply-To: <5d7c0ecb.1c69fb81.74810.a358@mx.google.com>
+References: <1568375771-22933-1-git-send-email-gokulsri@codeaurora.org>
+ <1568375771-22933-11-git-send-email-gokulsri@codeaurora.org>
+ <5d7c0ecb.1c69fb81.74810.a358@mx.google.com>
+Message-ID: <1472f76e742d576fa5d6c6cad7b40605@codeaurora.org>
+X-Sender: gokulsri@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable USB host driver on Jetson-TX2 platform
+Hi Rob,
 
-Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 2019-09-14 03:18, Rob Herring wrote:
+> On Fri, 13 Sep 2019 17:26:09 +0530, Gokul Sriram Palanisamy wrote:
+>> Add compatible for IPQ8074 support.
+>> This does not need clocks for scm calls.
+>> 
+>> Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
+>> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+>> ---
+>>  Documentation/devicetree/bindings/firmware/qcom,scm.txt | 1 +
+>>  1 file changed, 1 insertion(+)
+>> 
+> 
+> Please add Acked-by/Reviewed-by tags when posting new versions. 
+> However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+> 
+> If a tag was not added on purpose, please state why and what changed.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-index d65caa1..b08eda6 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra186-p2771-0000.dts
-@@ -193,7 +193,7 @@
- 	};
- 
- 	usb@3530000 {
--		status = "disabled";
-+		status = "okay";
- 
- 		phys = <&{/padctl@3520000/pads/usb2/lanes/usb2-0}>,
- 		       <&{/padctl@3520000/pads/usb2/lanes/usb2-1}>,
--- 
-2.7.4
+  Sorry, missed it. Will add it.
 
+Regards,
+  Gokul
