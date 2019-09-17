@@ -2,75 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 80118B56F3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:28:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85A71B570A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:38:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726025AbfIQU2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:28:07 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:43764 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727479AbfIQU2H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:28:07 -0400
-Received: by mail-ot1-f65.google.com with SMTP id b2so4252772otq.10;
-        Tue, 17 Sep 2019 13:28:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OmuRgprkyi1Y3BeLYMvuW7iFWGhTnGC5Ky9VxrWaoyo=;
-        b=gZa1+qwHGJTQ98GRc558+mNH0n9sllWgdK/oy0R3JJyuSYFB5wzmx+KAa6AEL/UOEw
-         KvThji1bLAaQCxLe/MHgOz8NWW1VRv+g6ccKOhvxaGbhY9tsQqkRIetfY3Grbe1ySVo0
-         AWKOB5IepfkJUIbgnVM8ihkPhvAp+PZ3/wruyBto9b/xz38QlS6+O4KaGis/pwMWFYl+
-         YQygHPSwIPEC0rts0bStmcRvK8/VhoUGCMcp8cfUGIy/oc51ftwGno82B5XaoZljNSOu
-         SBiiZauHO9Q7CxepwxQrNB38pB/k039r92/of5LPR7F9ax+t2JAxlLST48ETG5DJWf3L
-         FS2g==
-X-Gm-Message-State: APjAAAU7eKFWcsMk3/Yib3AF5ogGitoA7EBBjpUuYVSGhFWghytSbU73
-        9bnoVcNDSPntQuG6yr5Qw1+O+a169A==
-X-Google-Smtp-Source: APXvYqyDocPQdmogtqeo027e5xyEsYwS3WJPg0YHLQKJqNfJBn/Ya6ZQgcgCgmx8DGlTDSU3zwJlJw==
-X-Received: by 2002:a9d:3647:: with SMTP id w65mr588936otb.70.1568752086445;
-        Tue, 17 Sep 2019 13:28:06 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id n13sm1000400otl.8.2019.09.17.13.28.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 13:28:05 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 15:28:05 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 04/11] dt-bindings: phy-mtk-tphy: add a new reference
- clock
-Message-ID: <20190917202805.GA13405@bogus>
-References: <1567149298-29366-1-git-send-email-chunfeng.yun@mediatek.com>
- <1567149298-29366-4-git-send-email-chunfeng.yun@mediatek.com>
+        id S1728169AbfIQUiz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 16:38:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47348 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725862AbfIQUiz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 16:38:55 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8CF702054F;
+        Tue, 17 Sep 2019 20:38:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568752734;
+        bh=kVUefUbXR0mBH5Ui5KzFtZDJlyTMzgtjcJqAGMFeGQc=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=DqQiSuG8aBiB88+nJ8OiopeOGKmBr7luh2PMR/vvYacQpSyOGMkttJlq/epSiU9ML
+         Z7kCDaXWsgcZ5v+U/SpGFQgKncN1BZ0e1ajvmg3ZtM5x8dWtKKSlFLDUvhEuHrFMSF
+         79UguoiFq3rajxJtBDsAZoxbmPHKwTS9xAB/pQms=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1567149298-29366-4-git-send-email-chunfeng.yun@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190916161447.32715-3-manivannan.sadhasivam@linaro.org>
+References: <20190916161447.32715-1-manivannan.sadhasivam@linaro.org> <20190916161447.32715-3-manivannan.sadhasivam@linaro.org>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
+        fisher.cheng@bitmain.com, alec.lin@bitmain.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mturquette@baylibre.com, robh+dt@kernel.org
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v5 2/8] clk: Warn if clk_init_data is not zero initialized
+User-Agent: alot/0.8.1
+Date:   Tue, 17 Sep 2019 13:38:53 -0700
+Message-Id: <20190917203854.8CF702054F@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Aug 2019 15:14:51 +0800, Chunfeng Yun wrote:
-> Usually the digital and analog phys use the same reference clock,
-> but on some platforms, they are separated, so add another optional
-> clock to support it.
-> In order to keep the clock names consistent with PHY IP's, use
-> the da_ref for analog phy and ref clock for digital phy.
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+Quoting Manivannan Sadhasivam (2019-09-16 09:14:41)
+> The new implementation for determining parent map uses multiple ways
+> to pass parent info. The order in which it gets processed depends on
+> the first available member. Hence, it is necessary to zero init the
+> clk_init_data struct so that the expected member gets processed correctly.
+> So, add a warning if multiple clk_init_data members are available during
+> clk registration.
+>=20
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
-> v2: fix typo of analog and needed
-> ---
->  Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt | 7 +++++--
->  1 file changed, 5 insertions(+), 2 deletions(-)
-> 
+>  drivers/clk/clk.c | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>=20
+> diff --git a/drivers/clk/clk.c b/drivers/clk/clk.c
+> index c0990703ce54..7d6d6984c979 100644
+> --- a/drivers/clk/clk.c
+> +++ b/drivers/clk/clk.c
+> @@ -3497,6 +3497,14 @@ static int clk_core_populate_parent_map(struct clk=
+_core *core)
+>         if (!num_parents)
+>                 return 0;
+> =20
+> +       /*
+> +        * Check for non-zero initialized clk_init_data struct. This is
+> +        * required because, we only require one of the (parent_names/
+> +        * parent_data/parent_hws) to be set at a time. Otherwise, the
+> +        * current code would use first available member.
+> +        */
+> +       WARN_ON((parent_names && parent_data) || (parent_names && parent_=
+hws));
+> +
 
-Acked-by: Rob Herring <robh@kernel.org>
+This will warn for many drivers because they set clk_init_data on the
+stack and assign parent_names but let junk from the stack be assigned to
+parent_data. The code uses parent_names first and then looks for
+parent_data or parent_hws because of this fact of life that we've never
+required clk_init_data to be initialized to all zero.
+
+>         /*
+>          * Avoid unnecessary string look-ups of clk_core's possible paren=
+ts by
+>          * having a cache of names/clk_hw pointers to clk_core pointers.
