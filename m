@@ -2,86 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 23C95B56C8
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E85C6B56DB
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:24:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725865AbfIQUT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:19:59 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:42804 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725862AbfIQUT7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:19:59 -0400
-Received: by mail-ot1-f68.google.com with SMTP id c10so4249465otd.9;
-        Tue, 17 Sep 2019 13:19:58 -0700 (PDT)
+        id S1727270AbfIQUYN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 16:24:13 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:43649 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726285AbfIQUYM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:24:12 -0400
+Received: by mail-oi1-f195.google.com with SMTP id t84so4027035oih.10;
+        Tue, 17 Sep 2019 13:24:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lTap6f5G5pylKGfzicQFeJjtWLtSRnIsWooZSm3rQcI=;
-        b=Eu1kMr8YgyMY5mGrVU8qokWP3eV6gGnmkufQ+xGFfmNvabgxrx5nCp7+Z6m6VbVa/O
-         J0dGi/aZzlhr5BN+0ELOz71pKyGEqR6zLF63SmymgfPrI01W0J3SaIAIMEwCAo15G04I
-         //BrskukBHA/qP72+lhBmt66F6WQD335FnX3emx/Kqdj13MAzfb3HOOYCRqsqfHFZblf
-         sJ6dushsXV9uY65dBisrODu3AJMZ7dlJxg78L2CUdAdRGtLDJbjp5oxtnhj7MCN/fsG6
-         J3KBxFcolw4XLj3gyOkU9ZIdFamSeRicZg1L3cpuu9E6OHkodSY+sEVNJx4ue9BuWro5
-         oyHg==
-X-Gm-Message-State: APjAAAV1a04gUdC1BNkD9YbwdXLNmzXBOR4bmTsWdROefjSoRpzjevCN
-        W7vW6pAJ9lDwYuIvsONVXBixiYp1BQ==
-X-Google-Smtp-Source: APXvYqwWMcToGiqtK7DQ5rkMwWll7z3LWyTHg8U7Vn12++SkQnLN7MxzLClVS2wx0nFJZ0SVJAbvEA==
-X-Received: by 2002:a9d:2043:: with SMTP id n61mr598826ota.17.1568751598063;
-        Tue, 17 Sep 2019 13:19:58 -0700 (PDT)
+        bh=L86DG7FjMIlZ9GjeaW9bo4Zl8CPlfcAwMoJ04R6XmYw=;
+        b=T3vgjOeJiMPaNyWW7kWdkuCjR8gqgdekKk6uPY69iaKxB5NDdJTiTQ+CDdslcZpE84
+         gAAOt0XWapVL/C0Tc1jusXe1ZL6NYIP23HPavJnlvPl95sfY0jTlYN4P/OHsTgYtWVyb
+         MTL4ywSLKnOmy8AVHYXh9gu60LKgPK7d9ARkXfk/AKA51tNSISUaygJtHfVEaiGHlhA9
+         bqrP1BLav5XV7JLM5bEFjL7+F+VSjBsudFOlSniBYrybbIBuD5EgH6LPBu1Wf3A9tsaY
+         76IsSZ5e0+FJde0Ay+uFDBJ5Yl1RlGQE3VBfd6jiu7OuUf3uQbvZJvNyPZ2nlZzlNrAG
+         H3Hg==
+X-Gm-Message-State: APjAAAVA3cn2LMDMxvx7+93FWJJ9MuGFFpVdoBhNCoPHMOMXdn3iSTeO
+        NdUuyRYKt5jKNKG0tlaFzQ==
+X-Google-Smtp-Source: APXvYqwnNKesPon0IV2MJhAJUypSV84Z46WSnp6uH+aDsn/vNtFjO0Wg+O6hPVmcMNwnCMor2mkUtw==
+X-Received: by 2002:aca:4a09:: with SMTP id x9mr5153491oia.32.1568751851936;
+        Tue, 17 Sep 2019 13:24:11 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z10sm1355232ote.54.2019.09.17.13.19.57
+        by smtp.gmail.com with ESMTPSA id o19sm998420oic.26.2019.09.17.13.24.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 13:19:57 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 15:19:56 -0500
+        Tue, 17 Sep 2019 13:24:11 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 15:24:10 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Artur =?utf-8?B?xZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        kernel@pengutronix.de, linux-imx@nxp.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [RFCv4 3/7] dt-bindings: devfreq: imx: Describe interconnect
- properties
-Message-ID: <20190917201956.GA10780@bogus>
-References: <cover.1566570260.git.leonard.crestez@nxp.com>
- <3f27038292c09c8bf07a086eac759132c100aedb.1566570260.git.leonard.crestez@nxp.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     kishon@ti.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        peter.harliman.liem@intel.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: phy: intel-sdxc-phy: Add YAML schema
+ for LGM SDXC PHY
+Message-ID: <20190917202410.GA6574@bogus>
+References: <20190904062719.37462-1-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <3f27038292c09c8bf07a086eac759132c100aedb.1566570260.git.leonard.crestez@nxp.com>
+In-Reply-To: <20190904062719.37462-1-vadivel.muruganx.ramuthevar@linux.intel.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 23, 2019 at 05:36:56PM +0300, Leonard Crestez wrote:
-> The interconnect-node-id property is parsed by the imx interconnect
-> driver to find nodes on which frequencies can be adjusted.
+On Wed, Sep 04, 2019 at 02:27:18PM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > 
-> Add #interconnect-cells so that device drivers can request paths from
-> bus nodes instead of requiring a separate "virtual" node to represent
-> the interconnect itself.
+> Add a YAML schema to use the host controller driver with the
+> SDXC PHY on Intel's Lightning Mountain SoC.
+
+Same issues on this one as emmc phy.
+
 > 
-> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+> Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
 > ---
->  Documentation/devicetree/bindings/devfreq/imx-ddrc.yaml | 5 +++++
->  Documentation/devicetree/bindings/devfreq/imx.yaml      | 5 +++++
->  2 files changed, 10 insertions(+)
-
-Please combine this with the other series for devfreq support.
-
-Rob
+>  changes in v3:
+>    - Rob's review comments addressed and updated the patch
+>    - merged syscon and sdxc yaml file as single file after discussion
+> 
+>  changes in v2:
+>    - As per Rob's review comment syscon node entry added instead of reference
+>    - splitted two patches one for syscon and another for sdxc phy
+> ---
+>  .../bindings/phy/intel,lgm-sdxc-phy.yaml           | 69 ++++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/intel,lgm-sdxc-phy.yaml
