@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1187B52F7
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 18:32:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E61B5307
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 18:34:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728386AbfIQQcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 12:32:20 -0400
-Received: from mga07.intel.com ([134.134.136.100]:3161 "EHLO mga07.intel.com"
+        id S1730382AbfIQQeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 12:34:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59472 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727788AbfIQQcU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 12:32:20 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Sep 2019 09:32:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,517,1559545200"; 
-   d="scan'208";a="201865770"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001.fm.intel.com with ESMTP; 17 Sep 2019 09:32:16 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1iAGOl-0001TI-6P; Tue, 17 Sep 2019 19:32:15 +0300
-Date:   Tue, 17 Sep 2019 19:32:15 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, dmitry.torokhov@gmail.com, bparrot@ti.com,
-        simon.budig@kernelconcepts.de, hdegoede@redhat.com, fcooper@ti.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 3/6] Input: edt-ft5x06 - add support to disable the
- wakeup-source
-Message-ID: <20190917163215.GH2680@smile.fi.intel.com>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-4-m.felsch@pengutronix.de>
+        id S1730379AbfIQQeU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 12:34:20 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4C4DD20665;
+        Tue, 17 Sep 2019 16:34:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568738059;
+        bh=UccYSWgV+EB3bM6XTwr+8sqMg+4V15D2FrObBy4Jqf0=;
+        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
+        b=G8f/QoEfCFyJYP0rMyNO0NsV9zjqmp0Bj9ovh7ZZ6U7yY8iIFa6bU4ij/WD8BbXJ7
+         +TUe+BzFlQgi1X4YY/ELSBUnhpZVqADsnJNyXfSOKpm7wfhkcLo7Acg3dK3cFTv0XH
+         Iq7YZkYoY76xPPAGqy7CiF1QxfHe3UM93dRh/2AY=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190917155808.27818-4-m.felsch@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190916154546.24982-2-manivannan.sadhasivam@linaro.org>
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org> <20190916154546.24982-2-manivannan.sadhasivam@linaro.org>
+Cc:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        afaerber@suse.de, robh+dt@kernel.org, ulf.hansson@linaro.org
+From:   Stephen Boyd <sboyd@kernel.org>
+Subject: Re: [PATCH v4 1/7] clk: actions: Fix factor clk struct member access
+User-Agent: alot/0.8.1
+Date:   Tue, 17 Sep 2019 09:34:18 -0700
+Message-Id: <20190917163419.4C4DD20665@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 05:58:05PM +0200, Marco Felsch wrote:
-> Since day one the touch controller acts as wakeup-source. This seems to
-> be wrong since the device supports deep-sleep mechanism [1] which
-> requires a reset to leave it. Also some designs won't use the
-> touchscreen as wakeup-source.
-> 
-> Add a firmware property to address this. The common 'wakeup-source'
-> property can't be used for that because the driver must be backward
-> compatible with old firmwares which may assume the default on
-> wakeup-source behaviour. So we need to go the other way by explicit
-> disable the wakeup-source capability.
-> 
+Quoting Manivannan Sadhasivam (2019-09-16 08:45:40)
+> Since the helper "owl_factor_helper_round_rate" is shared between factor
+> and composite clocks, using the factor clk specific helper function
+> like "hw_to_owl_factor" to access its members will create issues when
+> called from composite clk specific code. Hence, pass the "factor_hw"
+> struct pointer directly instead of fetching it using factor clk specific
+> helpers.
+>=20
+> This issue has been observed when a composite clock like "sd0_clk" tried
+> to call "owl_factor_helper_round_rate" resulting in pointer dereferencing
+> error.
+>=20
+> While we are at it, let's rename the "clk_val_best" function to
+> "owl_clk_val_best" since this is an owl SoCs specific helper.
+>=20
+> Fixes: 4bb78fc9744a ("clk: actions: Add factor clock support")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> ---
 
-> [1] https://www.newhavendisplay.com/appnotes/datasheets/touchpanel/ \
->     FT5x26.pdf
-
-Please, don't split URLs
-
->  	int error;
->  	char fw_version[EDT_NAME_LEN];
-
-> +	bool en_wakeup;
-
-Perhaps wakeup_en?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+I can apply this to clk-next?
 
