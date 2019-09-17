@@ -2,76 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E9C6AB55D5
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 21:00:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421EAB55E1
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 21:02:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729779AbfIQTAm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 15:00:42 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:37932 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729728AbfIQTAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 15:00:42 -0400
-Received: by mail-oi1-f193.google.com with SMTP id 7so3838209oip.5;
-        Tue, 17 Sep 2019 12:00:41 -0700 (PDT)
+        id S1729728AbfIQTCR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 15:02:17 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41643 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725927AbfIQTCQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 15:02:16 -0400
+Received: by mail-ot1-f68.google.com with SMTP id g13so4040713otp.8
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2019 12:02:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=KMFOJxSDmNk+ep/uvhUIXWKVpfvuQM6FW+WcSok7HNU=;
-        b=e2NwGORjRmUMKPrH6Ucwft/jRwCWqbvGwHZF22FWIIJLwU/3T+EkZFW0jaA/HGfDzW
-         92qhIrhsGIscbJBRt+jGxrdtJ4bQXH2EHu3n/kZ30FgX1GRc0JZs7EhYwD7dTSnRyEFz
-         gQu5XGflB06CMPMEakCZ2+/sqhaUuIB5Xl2J7J4lqxT4D4XW5YktGS8/fLv8u9sjlE3O
-         IkdwVx9Pm+3CgRkoqNbZk4Bp0s81QpuaoPfuDdbniIXRV1VqG26K5Ko5/H3SupHSNXg7
-         w9aSRRSziq+LxwruWslx5yQPTMin+HLISbsqWLOlKYo0DOD2IdKPGY/iftMDtHE0NvM0
-         cuaw==
-X-Gm-Message-State: APjAAAVMSeoPlChgwjpW1jr6h/Fqwe3FFTVWK73th+keZZhSJ1SCloM6
-        bQZkNxzvYeA1o8jpkMo7OA==
-X-Google-Smtp-Source: APXvYqyPBAleJPJJgi/jVRhyloWkqDSvUnLKGRJvMyJRlfhxoL2QGkUKIRHmQ4g6WVCXP1CtVtoeVQ==
-X-Received: by 2002:aca:cd58:: with SMTP id d85mr4702733oig.119.1568746841223;
-        Tue, 17 Sep 2019 12:00:41 -0700 (PDT)
+        bh=QlvUu/7EAfaFx2gMfy9waFqB/50P6PISUPQGJqzue/s=;
+        b=b7Q4AmX995MvX2m58t/sO46AQ6ZNdWQqTmfIqjuzyDc44LOvgX3WMVXE7RutP8nnNV
+         xorO6yfgTB0AWSw6MzX1iYuC+lE37FzToKdfJEPbXdXyQZMWwtAauAOuE5aAtyQ7yysF
+         nxHNkp+VEOp5TDpn3Dt90C0udii5wD7ezBdHZwPCkEKL5Ve0OtprUTKh8vlTGx+xC29j
+         +plHizAkCIPHLxFux/OIHZTgEfpUvnxzvNTx+dtxCzVYNwRJ9gtaFIj5SdEwlNOY8UkD
+         TMHBFMf9OaD/dBCTC27oNFuh5FamLqj9u6xwO+aM8OER8Ens96pop9A8fh93YDWBa7IY
+         Jj1A==
+X-Gm-Message-State: APjAAAX7ShjM/htiUPuim+TElFNbAgwzN3HocVApkCAZ9PS4GfNecvB/
+        /Pi9Ql0pLki2JV2BW4lB7g==
+X-Google-Smtp-Source: APXvYqy2Jk647wLh+T9cbKDUIIqeL8OFFmcgG7XrhimUWJ4jvaqNnTMnSFgdCnH83A+Rsx5xLe87bw==
+X-Received: by 2002:a9d:e92:: with SMTP id 18mr265396otj.321.1568746935862;
+        Tue, 17 Sep 2019 12:02:15 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id t8sm928029oic.46.2019.09.17.12.00.40
+        by smtp.gmail.com with ESMTPSA id k93sm964698otc.30.2019.09.17.12.02.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 12:00:40 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 14:00:39 -0500
+        Tue, 17 Sep 2019 12:02:15 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 14:02:14 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jerry-ch Chen <Jerry-Ch.chen@mediatek.com>
-Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
-        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
-        lkml@metux.net, ck.hu@mediatek.com, yuzhao@chromium.org,
-        zwisler@chromium.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
-        sj.huang@mediatek.com, christie.yu@mediatek.com,
-        frederic.chen@mediatek.com, Jerry-ch.Chen@mediatek.com,
-        jungo.lin@mediatek.com, po-yang.huang@mediatek.com,
-        Rynn.Wu@mediatek.com, linux-media@vger.kernel.org,
-        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
-        Jerry-ch Chen <jerry-ch.chen@mediatek.com>
-Subject: Re: [RFC PATCH V3 1/3] dt-bindings: mt8183: Added FD dt-bindings
-Message-ID: <20190917190039.GA6553@bogus>
-References: <20190906101125.3784-1-Jerry-Ch.chen@mediatek.com>
- <20190906101125.3784-2-Jerry-Ch.chen@mediatek.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        alsa-devel@alsa-project.org, Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] ASoC: dt-bindings: Convert Allwinner A23 analog
+ codec to a schema
+Message-ID: <20190917190214.GA8947@bogus>
+References: <20190906151221.3148-1-mripard@kernel.org>
+ <20190906151221.3148-2-mripard@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190906101125.3784-2-Jerry-Ch.chen@mediatek.com>
+In-Reply-To: <20190906151221.3148-2-mripard@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 6 Sep 2019 18:11:23 +0800, Jerry-ch Chen wrote:
-> From: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
+On Fri,  6 Sep 2019 18:12:21 +0300, Maxime Ripard wrote:
+> From: Maxime Ripard <maxime.ripard@bootlin.com>
 > 
-> This patch adds DT binding documentation for the Face Detection (FD)
-> unit of the Mediatek's mt8183 SoC.
+> The Allwinner A23 SoC and later have an embedded audio codec that uses a
+> separate controller to drive its analog part, which is supported in Linux,
+> with a matching Device Tree binding.
 > 
-> Signed-off-by: Jerry-ch Chen <jerry-ch.chen@mediatek.com>
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for that controller over to a YAML schemas.
+> 
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> 
 > ---
->  .../bindings/media/mediatek,mt8183-fd.txt     | 34 +++++++++++++++++++
->  1 file changed, 34 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-fd.txt
+> 
+> Changes from v2:
+>   - Use an enum instead of a oneOf for the compatibles
+> 
+> Changes from v1:
+>   - Fix subject prefix
+> ---
+>  .../allwinner,sun8i-a23-codec-analog.yaml     | 38 +++++++++++++++++++
+>  .../bindings/sound/sun8i-codec-analog.txt     | 17 ---------
+>  2 files changed, 38 insertions(+), 17 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/allwinner,sun8i-a23-codec-analog.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/sun8i-codec-analog.txt
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
