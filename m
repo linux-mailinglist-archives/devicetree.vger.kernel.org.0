@@ -2,99 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D2DBB5387
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:02:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB273B5390
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:04:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728631AbfIQRCH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 13:02:07 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43078 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726134AbfIQRCH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 13:02:07 -0400
-Received: by mail-pf1-f193.google.com with SMTP id a2so2505040pfo.10;
-        Tue, 17 Sep 2019 10:02:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=yjvgVAX10hQcQOXmjulUL0Ymv6qJVhXERMjZnBg4j9w=;
-        b=scfyELVARGy5wBalIBPt8LnpoigYHnVhVZEiO8VDh9a6rTTFRhvJHktQyrwfZLcM8x
-         WMy2Lw3tTRZXw27paGJBSWKVTbRde9Wezl8e8E0uyhzzizLgGVU2Z1ZdlxFVuDjiqixm
-         9dfaz3iZe9lLBpbgzUFQCW6HZFf8+XymgKHdzGA04dr5oQ+WyNq1Lffr5LMcfzyf3YP+
-         Z/8laRTObqWcswe/p5P5cUl5dQm/f2cNuztS3p2t+jtNVj/HOOSsZZHLBuhVhblTr1Jr
-         AtP4Z1ej6sOtEa+XOcyZ6hLmjmEO31PpXjQHNeTUjUMkOPha5FsEY5LnTwJZkYxW4PhC
-         hahg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=yjvgVAX10hQcQOXmjulUL0Ymv6qJVhXERMjZnBg4j9w=;
-        b=UHOyvD4nG7RtDEOm0dYqqD9Shi8pMFS3b2z0wXmT92mowReJEitqZqo+9aJalfiRsC
-         Ljeu4Zu3nzn/jIiPT48TkzT2OIu2cOjncwzm+cOheiY/cN23d91SeCqqxkUMhvw1vZVf
-         zWngUeDVuhLnK+iU8zaw0C8uEwjUmYUHbMuv9YfiIUCjfkZ+QUTk2B5j6vJB0YMWPACm
-         h5DJKxEoMwqcMqqcI/ntx1qans0g66nXTQBbvxRHZ699Nkyyr4LgpQqhTwJwgML7eW8F
-         o/sNmq7vw+wGHOYH/nsns4hArmP/tqQOH8CQ29ggOlhUq4qQOHBrapjyNe8Vw5tEQuhF
-         NJLA==
-X-Gm-Message-State: APjAAAXvOh8JraYTOL3va8AESKxh1krTZ5FtpKuVyMVZp0pSwAWWIWjv
-        Lc4vBdS7phm1fktWzh3+I4c=
-X-Google-Smtp-Source: APXvYqw73NBG3kowk41SxosYfL+G9OEk80H8tt7WWXPB4Niywp1W2jQUw9ceRRTQwzqEegqZhgZhRA==
-X-Received: by 2002:a17:90a:3301:: with SMTP id m1mr6164310pjb.27.1568739726749;
-        Tue, 17 Sep 2019 10:02:06 -0700 (PDT)
-Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
-        by smtp.gmail.com with ESMTPSA id t13sm2916622pfe.69.2019.09.17.10.02.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 10:02:05 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 10:02:03 -0700
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        robh+dt@kernel.org, bparrot@ti.com, simon.budig@kernelconcepts.de,
-        hdegoede@redhat.com, fcooper@ti.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 3/6] Input: edt-ft5x06 - add support to disable the
- wakeup-source
-Message-ID: <20190917170203.GN237523@dtor-ws>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-4-m.felsch@pengutronix.de>
- <20190917163215.GH2680@smile.fi.intel.com>
- <20190917164639.bsspf3xoqfggpxwj@pengutronix.de>
+        id S1730693AbfIQREd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 13:04:33 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:44108 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730669AbfIQREc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 13:04:32 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=kq0CocEY9i4/5e+2igO8Cik75CQMtIKP4GgD17cUQo4=; b=W3RKu9YPCV8TsiO0pKS6tbgX4
+        6OBHY3CDKjT+9eFudvercZJOcgz3vv584J0P65B9IMswiyIiic+AuoqdJdVqVMkDnmK5gLqlucfLG
+        lW2u5U9nEPUj+VECWwMlbb1+2Wgckt5VeQLKquPObMGA7MBg37Dekn9z5Ulqx8orTsjBwRpSQdy1u
+        ZnuJIvM8C/zOaBB8b2WGypZ0TmrUPvwkOC2xpAp1qCsg52hhGCWpbrDCWHktzULRGnWqXkdN0N1wi
+        j0/cHkDAnPxXs5yeolO/poFT1sSFyHFziscsBI8QquESxddTcJfKPWQxvL3gPLcrW7fwRMFggl3Bf
+        yuUEbrFag==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44848)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iAGtr-00035z-Fx; Tue, 17 Sep 2019 18:04:23 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iAGtn-0001SK-M8; Tue, 17 Sep 2019 18:04:19 +0100
+Date:   Tue, 17 Sep 2019 18:04:19 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     tinywrkb <tinywrkb@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+        Baruch Siach <baruch@tkos.co.il>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
+ max-speed
+Message-ID: <20190917170419.GX25745@shell.armlinux.org.uk>
+References: <20190910185033.GD9761@lunn.ch>
+ <87muf6oyvr.fsf@tarshish>
+ <20190915135652.GC3427@lunn.ch>
+ <20190917124101.GA1200564@arch-dsk-01>
+ <20190917125434.GH20778@lunn.ch>
+ <20190917133253.GA1210141@arch-dsk-01>
+ <20190917133942.GR25745@shell.armlinux.org.uk>
+ <20190917151707.GV25745@shell.armlinux.org.uk>
+ <20190917153027.GW25745@shell.armlinux.org.uk>
+ <20190917163427.GA1475935@arch-dsk-01>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917164639.bsspf3xoqfggpxwj@pengutronix.de>
+In-Reply-To: <20190917163427.GA1475935@arch-dsk-01>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 06:46:39PM +0200, Marco Felsch wrote:
-> On 19-09-17 19:32, Andy Shevchenko wrote:
-> > On Tue, Sep 17, 2019 at 05:58:05PM +0200, Marco Felsch wrote:
-> > > Since day one the touch controller acts as wakeup-source. This seems to
-> > > be wrong since the device supports deep-sleep mechanism [1] which
-> > > requires a reset to leave it. Also some designs won't use the
-> > > touchscreen as wakeup-source.
-> > > 
-> > > Add a firmware property to address this. The common 'wakeup-source'
-> > > property can't be used for that because the driver must be backward
-> > > compatible with old firmwares which may assume the default on
-> > > wakeup-source behaviour. So we need to go the other way by explicit
-> > > disable the wakeup-source capability.
-> > > 
-> > 
-> > > [1] https://www.newhavendisplay.com/appnotes/datasheets/touchpanel/ \
-> > >     FT5x26.pdf
-> > 
-> > Please, don't split URLs
+On Tue, Sep 17, 2019 at 07:34:27PM +0300, tinywrkb wrote:
+> The patch didn't fix the issue.
 > 
-> Hm.. then checkpatch complains.. If you prefer it, I can change it in
-> the v2.
+> # ethtool eth0
+> 
+> Settings for eth0:
+> 	Supported ports: [ TP MII ]
+> 	Supported link modes:   10baseT/Half 10baseT/Full
+> 	                        100baseT/Half 100baseT/Full
+> 	                        1000baseT/Full
+> 	Supported pause frame use: Symmetric
+> 	Supports auto-negotiation: Yes
+> 	Supported FEC modes: Not reported
+> 	Advertised link modes:  10baseT/Half 10baseT/Full
+> 	                        100baseT/Half 100baseT/Full
+> 	                        1000baseT/Full
+> 	Advertised pause frame use: Symmetric
+> 	Advertised auto-negotiation: Yes
+> 	Advertised FEC modes: Not reported
+> 	Link partner advertised link modes:  10baseT/Half 10baseT/Full
+> 	                                     100baseT/Half 100baseT/Full
+> 	                                     1000baseT/Full
+> 	Link partner advertised pause frame use: Symmetric
+> 	Link partner advertised auto-negotiation: Yes
+> 	Link partner advertised FEC modes: Not reported
+> 	Speed: 1000Mb/s
+> 	Duplex: Full
+> 	Port: MII
+> 	PHYAD: 0
+> 	Transceiver: internal
+> 	Auto-negotiation: on
+> 	Supports Wake-on: d
+> 	Wake-on: d
+> 	Link detected: yes
+> 
+> # mii-tool -v -v eth0
+> 
+> Using SIOCGMIIPHY=0x8947
+> eth0: negotiated 100baseTx-FD flow-control, link ok
+>   registers for MII PHY 0:
+>     3100 796d 004d d072 15e1 c5e1 000f 0000
+>     0000 0000 0800 0000 0000 0000 0000 a000
+>     0000 0000 0000 f420 082c 0000 04e8 0000
+>     3200 3000 0000 063d 0000 0000 0000 0000
+>   product info: vendor 00:13:74, model 7 rev 2
+>   basic mode:   autonegotiation enabled
+>   basic status: autonegotiation complete, link ok
+>   capabilities: 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD
+>   advertising:  100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD flow-control
+>   link partner: 1000baseT-FD 100baseTx-FD 100baseTx-HD 10baseT-FD 10baseT-HD flow-control
+> 
+> # journalctl -b | egrep -i 'phy|eth|fec'|grep -v usb
+> 
+> kernel: Booting Linux on physical CPU 0x0
+> kernel: libphy: Fixed MDIO Bus: probed
+> kernel: libphy: fec_enet_mii_bus: probed
+> kernel: fec 2188000.ethernet eth0: registered PHC device 0
+> kernel: dwhdmi-imx 120000.hdmi: Detected HDMI TX controller v1.31a with HDCP (DWC HDMI 3D TX PHY)
+> kernel: Generic PHY 2188000.ethernet-1:00: attached PHY driver [Generic PHY] (mii_bus:phy_addr=2188000.ethernet-1:00, irq=POLL)
+> kernel: fec 2188000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+> kernel: IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+> systemd-networkd[242]: eth0: Gained carrier
 
-Checkpatch complains about valid things and it complains about insane
-things. In this case simply ignore it.
+Okay, so this is getting weird.
 
-Thanks.
+ethtool still shows that 1000baseT/Full is being advertised, yet the
+PHY disagrees:
+
+     3100 796d 004d d072 15e1 c5e1 000f 0000
+     0000 0000 0800 0000 0000 0000 0000 a000
+          ^^^^
+Gigabit control register, bits 9 should be set, but it's clear.
+
+Looking at the following registers, brings up another possibility what
+is going on:
+
+     0000 0000 0000 f420 082c 0000 04e8 0000
+                    ^^^^ ^^^^
+
+These two registers may provide a hint.  Of the first register, which
+is the interrupt status register, bit 5 is set, indicating that a
+"smartspeed downgrade occurred".  The second register is the smartspeed
+configuration, which basically says that the feature is enabled.
+
+Smartspeed is designed to allow the link to come up if two-pair CAT5
+cable is used (are you using a 4-pair or 2-pair cable?) by making the
+link fall back to 100mbit, or with CAT3 cable, 10mbit speeds.  What
+isn't specified is whether it does this by clearing bits in the various
+advertisement registers.
+
+Given what you've said so far, I'd suggest that this is indeed the
+case - when smartspeed is triggered, advertisement bits are cleared by
+the PHY without the kernel's knowledge, leading to the kernel getting
+the speed resolution incorrect after 5502b218e001.
+
+There's another issue here - if smartspeed clears advertisement bits,
+then if you connect a 4-pair cable after having used a 2-pair cable,
+you'd still be limited to 100mbit.  The ethtool output will be just
+as confusing.
+
+The only thing I can think we should do is to read-back the
+advertisement from the PHY whenever we read the rest of the status
+and update the phy->advertising mask, just like we do with the link
+partner advertisement.
 
 -- 
-Dmitry
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
