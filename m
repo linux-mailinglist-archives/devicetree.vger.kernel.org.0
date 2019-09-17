@@ -2,105 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D30EB56BA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23C95B56C8
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727337AbfIQUNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:13:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38924 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726025AbfIQUNx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 16:13:53 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 22D15218AC;
-        Tue, 17 Sep 2019 20:13:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568751232;
-        bh=QD2jrpkdpFVtu6RbulHBwnzGJdhalt5ZYR1fRIHqmBo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=GQtzUvF/iUq9O0VBCtpM49FGGmvbDpy3HT3fUXArHiSEwfMIGYiak60u1i5YtvBIN
-         Wnr4Rmhq5/6Pb4Osl6WBs+vKBrBUgcWf52PNPYHL+q4wYSCxju85jOZ9iZUACGClz5
-         HyNR+/GdRUD+tri5AkVDcpTfa8cScwFEh7gpVTMY=
-Received: by mail-qt1-f177.google.com with SMTP id c21so5994535qtj.12;
-        Tue, 17 Sep 2019 13:13:52 -0700 (PDT)
-X-Gm-Message-State: APjAAAWxHPMpbqVcNZd+vcCrHZdhs2M+/BHTQlZSuYpoIho6GwlYsEny
-        tTjKegTRCclqvL+X38VxBRncgGmYbWmI9A48iA==
-X-Google-Smtp-Source: APXvYqwCu+ccCReyAWvySFIlMkLhOSLkP4JIuAvJCOo/l7X0GB8Y4G5qVJE3jnEww9nOwYBA9RPLuGQNrR2JTMtRiiU=
-X-Received: by 2002:ac8:100d:: with SMTP id z13mr700774qti.224.1568751231298;
- Tue, 17 Sep 2019 13:13:51 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190910062103.39641-1-philippe.schenker@toradex.com> <20190910062103.39641-4-philippe.schenker@toradex.com>
-In-Reply-To: <20190910062103.39641-4-philippe.schenker@toradex.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Sep 2019 15:13:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLyawEariYuaHJ+Lyt1DhJe9fdAE88ANrhHAokWJhUOdw@mail.gmail.com>
-Message-ID: <CAL_JsqLyawEariYuaHJ+Lyt1DhJe9fdAE88ANrhHAokWJhUOdw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] dt-bindings: regulator: add regulator-fixed-clock binding
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        id S1725865AbfIQUT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 16:19:59 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:42804 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725862AbfIQUT7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:19:59 -0400
+Received: by mail-ot1-f68.google.com with SMTP id c10so4249465otd.9;
+        Tue, 17 Sep 2019 13:19:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=lTap6f5G5pylKGfzicQFeJjtWLtSRnIsWooZSm3rQcI=;
+        b=Eu1kMr8YgyMY5mGrVU8qokWP3eV6gGnmkufQ+xGFfmNvabgxrx5nCp7+Z6m6VbVa/O
+         J0dGi/aZzlhr5BN+0ELOz71pKyGEqR6zLF63SmymgfPrI01W0J3SaIAIMEwCAo15G04I
+         //BrskukBHA/qP72+lhBmt66F6WQD335FnX3emx/Kqdj13MAzfb3HOOYCRqsqfHFZblf
+         sJ6dushsXV9uY65dBisrODu3AJMZ7dlJxg78L2CUdAdRGtLDJbjp5oxtnhj7MCN/fsG6
+         J3KBxFcolw4XLj3gyOkU9ZIdFamSeRicZg1L3cpuu9E6OHkodSY+sEVNJx4ue9BuWro5
+         oyHg==
+X-Gm-Message-State: APjAAAV1a04gUdC1BNkD9YbwdXLNmzXBOR4bmTsWdROefjSoRpzjevCN
+        W7vW6pAJ9lDwYuIvsONVXBixiYp1BQ==
+X-Google-Smtp-Source: APXvYqwWMcToGiqtK7DQ5rkMwWll7z3LWyTHg8U7Vn12++SkQnLN7MxzLClVS2wx0nFJZ0SVJAbvEA==
+X-Received: by 2002:a9d:2043:: with SMTP id n61mr598826ota.17.1568751598063;
+        Tue, 17 Sep 2019 13:19:58 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z10sm1355232ote.54.2019.09.17.13.19.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2019 13:19:57 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 15:19:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Leonard Crestez <leonard.crestez@nxp.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Artur =?utf-8?B?xZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Saravana Kannan <saravanak@google.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Luka Pivk <luka.pivk@toradex.com>
-Content-Type: text/plain; charset="UTF-8"
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        kernel@pengutronix.de, linux-imx@nxp.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [RFCv4 3/7] dt-bindings: devfreq: imx: Describe interconnect
+ properties
+Message-ID: <20190917201956.GA10780@bogus>
+References: <cover.1566570260.git.leonard.crestez@nxp.com>
+ <3f27038292c09c8bf07a086eac759132c100aedb.1566570260.git.leonard.crestez@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3f27038292c09c8bf07a086eac759132c100aedb.1566570260.git.leonard.crestez@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 10, 2019 at 1:21 AM Philippe Schenker
-<philippe.schenker@toradex.com> wrote:
->
-> This adds the documentation to the compatible regulator-fixed-clock.
-> This binding is a special binding of regulator-fixed and adds the
-> ability to add a clock to regulator-fixed, so the regulator can be
-> enabled and disabled with that clock. If the special compatible
-> regulator-fixed-clock is used it is mandatory to supply a clock.
->
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
->
+On Fri, Aug 23, 2019 at 05:36:56PM +0300, Leonard Crestez wrote:
+> The interconnect-node-id property is parsed by the imx interconnect
+> driver to find nodes on which frequencies can be adjusted.
+> 
+> Add #interconnect-cells so that device drivers can request paths from
+> bus nodes instead of requiring a separate "virtual" node to represent
+> the interconnect itself.
+> 
+> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
 > ---
->
-> Changes in v2:
-> - Change select: to if:
-> - Change items: to enum:
-> - Defined how many clocks should be given
->
->  .../bindings/regulator/fixed-regulator.yaml   | 19 ++++++++++++++++++-
->  1 file changed, 18 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> index a650b457085d..a78150c47aa2 100644
-> --- a/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> +++ b/Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-> @@ -19,9 +19,19 @@ description:
->  allOf:
->    - $ref: "regulator.yaml#"
->
-> +if:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: regulator-fixed-clock
-> +  required:
-> +    - clocks
-> +
->  properties:
->    compatible:
-> -    const: regulator-fixed
-> +    enum:
-> +      - const: regulator-fixed
-> +      - const: regulator-fixed-clock
+>  Documentation/devicetree/bindings/devfreq/imx-ddrc.yaml | 5 +++++
+>  Documentation/devicetree/bindings/devfreq/imx.yaml      | 5 +++++
+>  2 files changed, 10 insertions(+)
 
-'make dt_binding_check' is failing. You need to drop 'const: '. Please
-send a patch to fix this.
+Please combine this with the other series for devfreq support.
 
 Rob
