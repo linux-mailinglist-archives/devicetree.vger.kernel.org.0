@@ -2,89 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4C2EB47DC
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 09:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01AFBB4821
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 09:18:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391275AbfIQHH6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 03:07:58 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:53110 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729435AbfIQHH5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 03:07:57 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 99E5361213; Tue, 17 Sep 2019 07:07:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1568704076;
-        bh=XOsx7e6qcaR44pSsilXmTVukrNoyBsfw/6ykaEalazM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=OzN/Gtk3ZoKHZTgZ9fVTPVQjYnhNvVjgGjtX1Fo0ynsHKaifuPJLn8kufAPGIE0TX
-         8vHOpxjusQHFbzSfpBdDlNp6dGOCjsI04vLPvnyM7fgUiCcA1rsBGDuIGHByQnZX0o
-         EjOAtEEhUC91xbaBQgVVk+ay5SWTN+ihK0L6OKHo=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id ADD53611FA;
-        Tue, 17 Sep 2019 07:07:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1568704075;
-        bh=XOsx7e6qcaR44pSsilXmTVukrNoyBsfw/6ykaEalazM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=hhmdmcsilLPeAHhlXWfXw65jWqnkKaLX+R2TlRiLkkxWwOrEo+SbpqwVS/ofH+jv3
-         RPotvR/PIO6/LsG3mOksGG7ZmemEn5lWPStuLLSxvfG6i9B6i4foEOoibLjqtRudhx
-         IeFtfpOeSqMDvo2rcHHCPc4yyKltEyj3GvhBly0U=
+        id S2391807AbfIQHSm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 03:18:42 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:37967 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388001AbfIQHSm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 03:18:42 -0400
+Received: by mail-wm1-f65.google.com with SMTP id o184so1771117wme.3
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2019 00:18:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=lZlnCNVI+o/Ym70WrqgDXSsHG8WUlpLxDhw1IYyU3y0=;
+        b=Bpui4gEcpv8XIa/t8sWKZhn1D4Y9a3dj5Lj16Zlj7S+OdcnyILSxClhs0Ubu6p3gaS
+         hkun62sGaD2i6Q657s4tkhZ84XVNjT7DzWn+CDxQYJqNN2PSh1DS3md+9wE3qDRFVd+3
+         O7MknPMmR5RjOWf9DpGY2Yy4XgdT9cbGsGcE3YAslTu0GO6Hgt+E1r0cMFZ8LLXSoLar
+         R7nQPt9hvAVM/EohIPl7yjrpZGRa4/YaKV6IP9GqAk4HE9G4xtVRqLHnhMnCk9phLHOU
+         UqF0CLbv49wegsI76xZiG/enshUVNZPvE05Cip6hRAWYGAIdAHHzJrG1A30cOUlWj3SL
+         Gnqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=lZlnCNVI+o/Ym70WrqgDXSsHG8WUlpLxDhw1IYyU3y0=;
+        b=ZjqIhbYa3iFYhT0Nfww2na96YfzgFrtVzGLUaEWSZBp94ZJdzOiakZsrgHuixC+MYy
+         PfEmPdJ2C2EO422mthXBUCL2JYs+esPmvjXPMGdMouEvgqbYiaQwU7ZF0sQsSyf4555o
+         9exha73tpBIkfsFH1B1CwHVO8NRWBlY17NVWXPwe1Oy7BmhA1Ea3exBlbRYEd2OVG7zW
+         Jtl3/F4tmgyPERFDPBaIlswt0NynvtFj9oKzqyFK8HL9I75RdylrZm88FTPkBeY9+vM8
+         neAUBGYsJzOxbSWaRmRWYP6a4/57YAF/ZS2id4+8chM2cay4T5McRrKJatQxqLKmvovr
+         zDrA==
+X-Gm-Message-State: APjAAAUBu/S8DWbKLjWj+sbZor/FHw1d465ayIY4i8acLy6HB/ySMs3N
+        /sM9ucr8tVaJe8UkqGeWt/kgw6la9Y8wQQ==
+X-Google-Smtp-Source: APXvYqz5TAwyP1uMw6gz83Ndgi3x0Ibgci5qE37AmzXVXxDqoapU0Py9Gzr/6Oc0YbT/0W2hQkdfmA==
+X-Received: by 2002:a05:600c:2386:: with SMTP id m6mr2258168wma.164.1568704719002;
+        Tue, 17 Sep 2019 00:18:39 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id f143sm2021130wme.40.2019.09.17.00.18.37
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 17 Sep 2019 00:18:38 -0700 (PDT)
+Subject: Re: [PATCH 1/3] pinctrl: add compatible for Amlogic Meson A1 pin
+ controller
+To:     Qianggui Song <qianggui.song@amlogic.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org
+Cc:     Xingyu Chen <xingyu.chen@amlogic.com>,
+        Jianxin Pan <jianxin.pan@amlogic.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Carlo Caione <carlo@caione.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Hanjie Lin <hanjie.lin@amlogic.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <1568700442-18540-1-git-send-email-qianggui.song@amlogic.com>
+ <1568700442-18540-2-git-send-email-qianggui.song@amlogic.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <131cf06f-2530-4524-9f86-3c07641bb460@baylibre.com>
+Date:   Tue, 17 Sep 2019 09:18:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+In-Reply-To: <1568700442-18540-2-git-send-email-qianggui.song@amlogic.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-Date:   Tue, 17 Sep 2019 12:37:55 +0530
-From:   gokulsri@codeaurora.org
-To:     Rob Herring <robh@kernel.org>
-Cc:     sboyd@kernel.org, agross@kernel.org, bjorn.andersson@linaro.org,
-        david.brown@linaro.org, devicetree@vger.kernel.org,
-        jassisinghbrar@gmail.com, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, mark.rutland@arm.com,
-        mturquette@baylibre.com, ohad@wizery.com, robh+dt@kernel.org,
-        sricharan@codeaurora.org, nprakash@codeaurora.org
-Subject: Re: [PATCH V2 10/12] dt-bindings: firmware: qcom: Add compatible for
- IPQ8074 SoC
-In-Reply-To: <5d7c0ecb.1c69fb81.74810.a358@mx.google.com>
-References: <1568375771-22933-1-git-send-email-gokulsri@codeaurora.org>
- <1568375771-22933-11-git-send-email-gokulsri@codeaurora.org>
- <5d7c0ecb.1c69fb81.74810.a358@mx.google.com>
-Message-ID: <1472f76e742d576fa5d6c6cad7b40605@codeaurora.org>
-X-Sender: gokulsri@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi,
 
-On 2019-09-14 03:18, Rob Herring wrote:
-> On Fri, 13 Sep 2019 17:26:09 +0530, Gokul Sriram Palanisamy wrote:
->> Add compatible for IPQ8074 support.
->> This does not need clocks for scm calls.
->> 
->> Signed-off-by: Gokul Sriram Palanisamy <gokulsri@codeaurora.org>
->> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
->> ---
->>  Documentation/devicetree/bindings/firmware/qcom,scm.txt | 1 +
->>  1 file changed, 1 insertion(+)
->> 
+On 17/09/2019 08:07, Qianggui Song wrote:
+> Add new compatible name for Amlogic's Meson-A1 pin controller
+> add a dt-binding header file which document the detail pin names.
+
+Please add in the commit log that A1 doesn't need the DS bank reg,
+so when we will convert these bindings to yaml we will be aware of it.
+
 > 
-> Please add Acked-by/Reviewed-by tags when posting new versions. 
-> However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
+> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
+> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
+> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
+> ---
+>  .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |  1 +
+>  include/dt-bindings/gpio/meson-a1-gpio.h           | 73 ++++++++++++++++++++++
+>  2 files changed, 74 insertions(+)
+>  create mode 100644 include/dt-bindings/gpio/meson-a1-gpio.h
 > 
-> If a tag was not added on purpose, please state why and what changed.
+> diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> index 10dc4f7..0aff1f2 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> +++ b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
+> @@ -15,6 +15,7 @@ Required properties for the root node:
+>  		      "amlogic,meson-axg-aobus-pinctrl"
+>  		      "amlogic,meson-g12a-periphs-pinctrl"
+>  		      "amlogic,meson-g12a-aobus-pinctrl"
+> +		      "amlogic,meson-a1-periphs-pinctrl"
+>   - reg: address and size of registers controlling irq functionality
+>  
+>  === GPIO sub-nodes ===
+> diff --git a/include/dt-bindings/gpio/meson-a1-gpio.h b/include/dt-bindings/gpio/meson-a1-gpio.h
+> new file mode 100644
+> index 0000000..40e57a5
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/meson-a1-gpio.h
+> @@ -0,0 +1,73 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + * Author: Qianggui Song <qianggui.song@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_MESON_A1_GPIO_H
+> +#define _DT_BINDINGS_MESON_A1_GPIO_H
+> +
+> +#define GPIOP_0		0
+> +#define GPIOP_1		1
+> +#define GPIOP_2		2
+> +#define GPIOP_3		3
+> +#define GPIOP_4		4
+> +#define GPIOP_5		5
+> +#define GPIOP_6		6
+> +#define GPIOP_7		7
+> +#define GPIOP_8		8
+> +#define GPIOP_9		9
+> +#define GPIOP_10	10
+> +#define GPIOP_11	11
+> +#define GPIOP_12	12
+> +#define GPIOB_0		13
+> +#define GPIOB_1		14
+> +#define GPIOB_2		15
+> +#define GPIOB_3		16
+> +#define GPIOB_4		17
+> +#define GPIOB_5		18
+> +#define GPIOB_6		19
+> +#define GPIOX_0		20
+> +#define GPIOX_1		21
+> +#define GPIOX_2		22
+> +#define GPIOX_3		23
+> +#define GPIOX_4		24
+> +#define GPIOX_5		25
+> +#define GPIOX_6		26
+> +#define GPIOX_7		27
+> +#define GPIOX_8		28
+> +#define GPIOX_9		29
+> +#define GPIOX_10	30
+> +#define GPIOX_11	31
+> +#define GPIOX_12	32
+> +#define GPIOX_13	33
+> +#define GPIOX_14	34
+> +#define GPIOX_15	35
+> +#define GPIOX_16	36
+> +#define GPIOF_0		37
+> +#define GPIOF_1		38
+> +#define GPIOF_2		39
+> +#define GPIOF_3		40
+> +#define GPIOF_4		41
+> +#define GPIOF_5		42
+> +#define GPIOF_6		43
+> +#define GPIOF_7		44
+> +#define GPIOF_8		45
+> +#define GPIOF_9		46
+> +#define GPIOF_10	47
+> +#define GPIOF_11	48
+> +#define GPIOF_12	49
+> +#define GPIOA_0		50
+> +#define GPIOA_1		51
+> +#define GPIOA_2		52
+> +#define GPIOA_3		53
+> +#define GPIOA_4		54
+> +#define GPIOA_5		55
+> +#define GPIOA_6		56
+> +#define GPIOA_7		57
+> +#define GPIOA_8		58
+> +#define GPIOA_9		59
+> +#define GPIOA_10	60
+> +#define GPIOA_11	61
+> +
+> +#endif /* _DT_BINDINGS_MESON_A1_GPIO_H */
+> 
 
-  Sorry, missed it. Will add it.
 
-Regards,
-  Gokul
+With that fixed,
+
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+
+Neil
