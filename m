@@ -2,75 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B40B5057
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43983B5074
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727945AbfIQO2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 10:28:11 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39479 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725922AbfIQO2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 10:28:10 -0400
-Received: by mail-ot1-f66.google.com with SMTP id s22so3223537otr.6;
-        Tue, 17 Sep 2019 07:28:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dq5KSLPgssnZJkXSQ/7XfJ9L3JyQqyDlXS5uQBl4Tyc=;
-        b=qADoi4KGGeekjNr8hgtMqgYOoGHzwHJMzF8P1jd9dsBt1oLQ7HOzkKpIEUuA87zrCW
-         N1VCK1XSwboXXHV02Rg02OeleieoFWqonHWWEOWjPQPCm8gYKvUm5UXhvjm3n2itd+23
-         3DmnTlOvPoNMakBBClXsAk4snphNRDJaRQyR6GXzRWV3c6pkM26iorxB7JB2t19Vx64D
-         2R1bf6kR2X/m8fGy2JSgfDNOkjVu4MX87L0LqLLCB4KvGLCfZ5pzia5MZ5mTSr9Y3pY2
-         2DLIhI3PLjanV8cnzaAiPzx5niP6kSHhAfJtdTsAO3xEswgrYfVz0mtzof7JJzD7KXLq
-         DZxg==
-X-Gm-Message-State: APjAAAX0TyZ/nLmePMje8wYp4uNilREpVw8CKZSRHaCBMhgjN23te30O
-        VlCkDPRwgZE8JU6sNoB13qlCKMY=
-X-Google-Smtp-Source: APXvYqyKeVBb7FDox3duyXtElvoxiAR3ydGskKPrIwTLgPjUgRPdZc4Aekd8EIPkn7mTC8YkHehpsQ==
-X-Received: by 2002:a9d:7b4d:: with SMTP id f13mr2740477oto.365.1568730489731;
-        Tue, 17 Sep 2019 07:28:09 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 94sm718166oty.44.2019.09.17.07.28.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 07:28:08 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 09:28:08 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Eugen.Hristev@microchip.com
-Cc:     wsa@the-dreams.de, peda@axentia.se, mark.rutland@arm.com,
-        Ludovic.Desroches@microchip.com, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
-        Nicolas.Ferre@microchip.com
-Subject: Re: [PATCH v5 2/9] dt-bindings: i2c: add bindings for i2c analog and
- digital filter
-Message-ID: <20190917142808.GA7900@bogus>
-References: <1568189911-31641-1-git-send-email-eugen.hristev@microchip.com>
- <1568189911-31641-3-git-send-email-eugen.hristev@microchip.com>
+        id S1728220AbfIQOfD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 10:35:03 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:47317 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728214AbfIQOfD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 10:35:03 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iAEZG-0004lH-B7; Tue, 17 Sep 2019 16:34:58 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1iAEZF-0003p7-Kp; Tue, 17 Sep 2019 16:34:57 +0200
+Date:   Tue, 17 Sep 2019 16:34:57 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     support.opensource@diasemi.com
+Cc:     support.opensource@diasemi.com, lee.jones@linaro.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        stwiss.opensource@diasemi.com, kernel@pengutronix.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/5] regulator: da9062: add voltage selection gpio support
+Message-ID: <20190917143457.cmnko5wmdozjtoe5@pengutronix.de>
+References: <20190917124246.11732-4-m.felsch@pengutronix.de>
+ <201909172223.Jhc0dAmS%lkp@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1568189911-31641-3-git-send-email-eugen.hristev@microchip.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <201909172223.Jhc0dAmS%lkp@intel.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 16:33:09 up 122 days, 20:51, 70 users,  load average: 0.12, 0.06,
+ 0.04
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 11, 2019 at 08:24:20AM +0000, Eugen.Hristev@microchip.com wrote:
-> From: Eugen Hristev <eugen.hristev@microchip.com>
-> 
-> Some i2c controllers have a built-in digital or analog filter.
-> This is specifically required depending on the hardware PCB/board.
-> Some controllers also allow specifying the maximum width of the
-> spikes that can be filtered for digital filter. The width length can be
-> specified in nanoseconds.
-> Analog filters can be configured to have a cutoff frequency (low-pass filter).
-> This frequency can be specified in Hz.
-> Added an optional property for such types of analog filters.
-> 
-> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c.txt | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+Hi,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+please ignore this error because the kbuild don't apply the dependency I
+noted in the cover-letter.
+
+Regards,
+  Marco
+
+On 19-09-17 22:22, kbuild test robot wrote:
+> Hi Marco,
+> 
+> Thank you for the patch! Yet something to improve:
+> 
+> [auto build test ERROR on linus/master]
+> [cannot apply to v5.3 next-20190916]
+> [if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Marco-Felsch/DA9062-PMIC-fixes-and-features/20190917-205911
+> config: x86_64-randconfig-e004-201937 (attached as .config)
+> compiler: gcc-7 (Debian 7.4.0-11) 7.4.0
+> reproduce:
+>         # save the attached .config to linux build tree
+>         make ARCH=x86_64 
+> 
+> If you fix the issue, kindly add following tag
+> Reported-by: kbuild test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>):
+> 
+> >> drivers/regulator/da9062-regulator.c:19:10: fatal error: linux/mfd/da9062/gpio.h: No such file or directory
+>     #include <linux/mfd/da9062/gpio.h>
+>              ^~~~~~~~~~~~~~~~~~~~~~~~~
+>    compilation terminated.
+> 
+> vim +19 drivers/regulator/da9062-regulator.c
+> 
+>      5	
+>      6	#include <linux/kernel.h>
+>      7	#include <linux/module.h>
+>      8	#include <linux/init.h>
+>      9	#include <linux/err.h>
+>     10	#include <linux/gpio/consumer.h>
+>     11	#include <linux/slab.h>
+>     12	#include <linux/of.h>
+>     13	#include <linux/platform_device.h>
+>     14	#include <linux/regmap.h>
+>     15	#include <linux/regulator/driver.h>
+>     16	#include <linux/regulator/machine.h>
+>     17	#include <linux/regulator/of_regulator.h>
+>     18	#include <linux/mfd/da9062/core.h>
+>   > 19	#include <linux/mfd/da9062/gpio.h>
+>     20	#include <linux/mfd/da9062/registers.h>
+>     21	
+> 
+> ---
+> 0-DAY kernel test infrastructure                Open Source Technology Center
+> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
+
+
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
