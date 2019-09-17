@@ -2,123 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E644B4E8D
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 14:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AB83B4EA6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 15:00:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726308AbfIQMyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 08:54:41 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:50458 "EHLO vps0.lunn.ch"
+        id S1726548AbfIQNAs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 09:00:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49348 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725901AbfIQMyl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 08:54:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=53HEgi+72KwpP9sgsXsDmzVZkyS10sCz71cZFT+AAfk=; b=Hv2zeqGHZl58IobfJJXo7ZMRQ4
-        32JsM7SK/VJ2h1fe0KuOAIZdw2fZ4U8nin5av2mdlNwqSITfVtkzlY5EQJ/4dM4c0hCNrbIGh19J8
-        HclRUpAbE1miLccGX+a0F6uJ996GQ7Yt01oaFVLT61v7hBgxoGDbAfEY6jfkLHxJSiA8=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1iAD06-0000w9-Vu; Tue, 17 Sep 2019 14:54:34 +0200
-Date:   Tue, 17 Sep 2019 14:54:34 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     tinywrkb <tinywrkb@gmail.com>
-Cc:     Baruch Siach <baruch@tkos.co.il>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Russell King <linux@armlinux.org.uk>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
- max-speed
-Message-ID: <20190917125434.GH20778@lunn.ch>
-References: <20190910155507.491230-1-tinywrkb@gmail.com>
- <20190910185033.GD9761@lunn.ch>
- <87muf6oyvr.fsf@tarshish>
- <20190915135652.GC3427@lunn.ch>
- <20190917124101.GA1200564@arch-dsk-01>
+        id S1726523AbfIQNAs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 09:00:48 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 868212171F;
+        Tue, 17 Sep 2019 13:00:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568725246;
+        bh=X4jhLlVfIWPwWC9KTpr/8HXl1E17S2vkdaVA4OMT1kY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=w23Lq/oJU+s6apUIRVuiK+YDX/N1xhNqJQlDdyNSTIIS4llYBBHacGEQ4aqAxGUuj
+         swxkGkjJb55MoIUleuTHruTOzw4PJ6ScUbiB8dK8dThqn73CtcAfz7yYD6OC1CjiEe
+         SgQHfXKUW6kyRCfP9dgas9zlDtsMiCLVoEctYW10=
+Received: by mail-qk1-f182.google.com with SMTP id y144so3853163qkb.7;
+        Tue, 17 Sep 2019 06:00:46 -0700 (PDT)
+X-Gm-Message-State: APjAAAX/xkEYXtg7QKUDjwjEkBtso4SZ9vUr0nHUSxdDBRDcOZFpFkkJ
+        u7abdOBnPiwyP+Uf9sKG1nzUVvD/kV8fww7gZQ==
+X-Google-Smtp-Source: APXvYqwdHDSINgFsGh7pd2VEEZGaLj8zK4i6nJuMiwayyOSSoGvfQtn7Pl9ax/5kobBzpP58bbURF5hI6SMlAzFUqBc=
+X-Received: by 2002:a37:be87:: with SMTP id o129mr3660621qkf.254.1568725245764;
+ Tue, 17 Sep 2019 06:00:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190917124101.GA1200564@arch-dsk-01>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20190917083634.11510-1-horms+renesas@verge.net.au>
+In-Reply-To: <20190917083634.11510-1-horms+renesas@verge.net.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 17 Sep 2019 08:00:34 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLCYp8nmvoHtCNcLDKOKJ1bmL5FxQPwSREBLSy2-fZ=Vg@mail.gmail.com>
+Message-ID: <CAL_JsqLCYp8nmvoHtCNcLDKOKJ1bmL5FxQPwSREBLSy2-fZ=Vg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rtc: rtc-sh: convert bindings to json-schema
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>, devicetree@vger.kernel.org,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 03:41:01PM +0300, tinywrkb wrote:
-> On Sun, Sep 15, 2019 at 03:56:52PM +0200, Andrew Lunn wrote:
-> > > Tinywrkb confirmed to me in private communication that revert of
-> > > 5502b218e001 fixes Ethernet for him on effected system.
-> > > 
-> > > He also referred me to an old Cubox-i spec that lists 10/100 Ethernet
-> > > only for i.MX6 Solo/DualLite variants of Cubox-i. It turns out that
-> > > there was a plan to use a different 10/100 PHY for Solo/DualLite
-> > > SOMs. This plan never materialized. All SolidRun i.MX6 SOMs use the same
-> > > AR8035 PHY that supports 1Gb.
-> > > 
-> > > Commit 5502b218e001 might be triggering a hardware issue on the affected
-> > > Cubox-i. I could not reproduce the issue here with Cubox-i and a Dual
-> > > SOM variant running v5.3-rc8. I have no Solo/DualLite variant handy at
-> > > the moment.
-> > 
-> > Could somebody with an affected device show us the output of ethtool
-> > with and without 5502b218e001. Does one show 1G has been negotiated,
-> > and the other 100Mbps? If this is true, how does it get 100Mbps
-> > without that patch? We are missing a piece of the puzzle.
-> > 
-> > 	Andrew
-> 
-> linux-test-5.1rc1-a2703de70942-without_bad_commit
-> 
-> Settings for eth0:
-> 	Supported ports: [ TP MII ]
-> 	Supported link modes:   10baseT/Half 10baseT/Full
-> 	                        100baseT/Half 100baseT/Full
-> 	                        1000baseT/Full
+On Tue, Sep 17, 2019 at 3:37 AM Simon Horman <horms+renesas@verge.net.au> wrote:
+>
+> Convert Real Time Clock for Renesas SH and ARM SoCs bindings documentation
+> to json-schema.  Also name bindings documentation file according to the
+> compat string being documented.
+>
+> Also correct syntax error in interrupts field in example.
+>
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> ---
+> * Based on v5.3
+> * Tested using:
+>   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+>   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+> ---
+>  .../devicetree/bindings/rtc/renesas,sh-rtc.yaml    | 66 ++++++++++++++++++++++
+>  Documentation/devicetree/bindings/rtc/rtc-sh.txt   | 28 ---------
+>  2 files changed, 66 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-sh.txt
+>
+> diff --git a/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+> new file mode 100644
+> index 000000000000..07dbcd4436ce
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/renesas,sh-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Real Time Clock for Renesas SH and ARM SoCs
+> +
+> +maintainers:
+> +  - Chris Brandt <chris.brandt@renesas.com>
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: renesas,r7s72100-rtc  # RZ/A1H
+> +      - const: renesas,sh-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: alarm
+> +      - const: period
+> +      - const: carry
+> +
+> +  clocks:
+> +    # The functional clock source for the RTC controller must be listed
+> +    # first (if it exists). Additionally, potential clock counting sources
+> +    # are to be listed.
+> +    true
 
-So this means the local device says it can do 1000Mbps.
+Surely you can give some range...
 
+> +
+> +  clock-names:
+> +    # The functional clock must be labeled as "fck". Other clocks
+> +    # may be named in accordance to the SoC hardware manuals.
+> +    true
 
-> 	Supported pause frame use: Symmetric
-> 	Supports auto-negotiation: Yes
-> 	Supported FEC modes: Not reported
-> 	Advertised link modes:  10baseT/Half 10baseT/Full
-> 	                        100baseT/Half 100baseT/Full
-> 	                        1000baseT/Full
+While not ideal, you can do:
 
-The link peer can also do 1000Mbps.
+minItems: 1
+maxItems: 4
+items:
+  enum: [ set, of, possible, clock, names, in, any, order ]
 
+Note 'items' here is a schema, not a list.
 
-> 	Advertised pause frame use: Symmetric
-> 	Advertised auto-negotiation: Yes
-> 	Advertised FEC modes: Not reported
-> 	Link partner advertised link modes:  10baseT/Half 10baseT/Full
-> 	                                     100baseT/Half 100baseT/Full
-> 	                                     1000baseT/Full
-> 	Link partner advertised pause frame use: Symmetric
-> 	Link partner advertised auto-negotiation: Yes
-> 	Link partner advertised FEC modes: Not reported
-> 	Speed: 100Mb/s
+Your dt-schema install may need updating as I only recently adjusted
+the meta-schema to allow this.
 
-Yet they have decided to do 100Mbps. 
-
-We need to understand Why? The generic PHY driver would not do this on
-its own. So i'm thinking something has poked a PHY register with some
-value, and this patch is causing it to be over written.
-
-Please can you use mii-tool -v -v to dump the PHY registers in each
-case.
-
-Thanks
-	Andrew
+Rob
