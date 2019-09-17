@@ -2,286 +2,305 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EFF0B55EF
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 21:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0269B5600
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 21:14:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729855AbfIQTGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 15:06:22 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:35333 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729854AbfIQTGW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 15:06:22 -0400
-Received: by mail-oi1-f193.google.com with SMTP id x3so2384757oig.2;
-        Tue, 17 Sep 2019 12:06:21 -0700 (PDT)
+        id S1729991AbfIQTOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 15:14:05 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:42691 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726523AbfIQTOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 15:14:05 -0400
+Received: by mail-ot1-f66.google.com with SMTP id c10so4073049otd.9;
+        Tue, 17 Sep 2019 12:14:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=1eCFNKmdR9qknMbLVpP77gHix0l96bg6/0uGAd5V+bU=;
-        b=PPqrhn+ff0k5tKE1uZsy7GOJkJ6HEK8klIuBcAyMtuPFuhLCwmIL309GTzLxBI0RGy
-         MFT3btZDoRBpZ+gmHrgLBCR+5Yk5QxjCoPx6VwLH1H5+COfSduHbFb7yD7Gih21JNxqr
-         jYodToHMPZTyUpjOe2bxmPns4omSMIg4Mg0b0/nRQfU9NHWsbBaF5J8gz2wnWbHJwnyo
-         1ikGr0E6OVhpb8p7ba8x/FAdVL5IQwTilxxUh431IrxprpCdsmyj2ZEaGARjDYMLqiX+
-         00esFciBvQtZFzh7UqWJMS5291sjo/ovk8Wgt1kneDQ6W/uW/YLi6zbKZqsNhKAml8Al
-         YNTg==
-X-Gm-Message-State: APjAAAXN4TifmvlAofX6H+qdufkNtUs9eUnSMtGH0D9w8xe7lhABW5HD
-        ZdHnx1JC45ezsO4YFKxRtA==
-X-Google-Smtp-Source: APXvYqztXee9rjqqCwZzhzyN5Fd/D7ApgUPjJu+F+1STc7M7IAqn+O4HcJozmULd50ih0Nq2qcKYug==
-X-Received: by 2002:aca:4705:: with SMTP id u5mr4826363oia.161.1568747180886;
-        Tue, 17 Sep 2019 12:06:20 -0700 (PDT)
+        bh=vSQZSFk1CWWe8pGBSql+pR4ov8kR0GxwEJeb7oCxGJE=;
+        b=iAKbSfH4y99+mCpzyvnbSgMt0CYolscgcxPguheMew+lm2rVGYOJsgtYnhvGHJexkl
+         URfRDm193bujFBfKTF8KPTKLcC8Y/fs6Z+aEFSOD4ZDO/bCNhE7R+OMT5Q9FYwoKJmCA
+         4Lh/Vbbh+t0G3wJVfdqyLayJ3qCdNDUY/DiTnBgWefeuSucAC57k45RuTZhzovWya4nT
+         ADtZJiLEAnRR2tur+9nWGlDuU2tPuNMjDuvCn5/jYH1P2H/IbYluIBulroQhGoi4oujD
+         NdxUD0FJJPgaS9KGTOzpHCRu5dc3+InT5nUnd5dt+lVisMmmHTjFLol9SxRSvuaeFo8V
+         4NMw==
+X-Gm-Message-State: APjAAAWsYU/53RCmrNw+JBo8leNQi74T0q1YKkWrK4Sa3ZJb9b9I9nDC
+        4CNiO2q2W0p5Ck2Y1y808uzGtgE=
+X-Google-Smtp-Source: APXvYqw2Ka3s3MdZlTQRXM+dbk0sA8R/Nmdmvum3Gi3gGsi7RrG/dpRPzOH1+ZFNl9oOfnDAn5n2pg==
+X-Received: by 2002:a9d:3445:: with SMTP id v63mr369780otb.192.1568747643757;
+        Tue, 17 Sep 2019 12:14:03 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v12sm971600oiv.58.2019.09.17.12.06.19
+        by smtp.gmail.com with ESMTPSA id 2sm922465ois.43.2019.09.17.12.14.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 12:06:20 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 14:06:19 -0500
+        Tue, 17 Sep 2019 12:14:03 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 14:14:02 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, edubezval@gmail.com, agross@kernel.org,
-        masneyb@onstation.org, swboyd@chromium.org,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Zhang Rui <rui.zhang@intel.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 07/15] dt-bindings: thermal: tsens: Convert over to a
- yaml schema
-Message-ID: <20190917190619.GA9311@bogus>
-References: <cover.1568185732.git.amit.kucheria@linaro.org>
- <933f033298cbd7726a6c0b4b3b6cc7adc81784ba.1568185732.git.amit.kucheria@linaro.org>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+Cc:     hans.verkuil@cisco.com, laurent.pinchart+renesas@ideasonboard.com,
+        tfiga@chromium.org, matthias.bgg@gmail.com, mchehab@kernel.org,
+        yuzhao@chromium.org, zwisler@chromium.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, Sean.Cheng@mediatek.com,
+        sj.huang@mediatek.com, christie.yu@mediatek.com,
+        holmes.chiou@mediatek.com, frederic.chen@mediatek.com,
+        Jerry-ch.Chen@mediatek.com, jungo.lin@mediatek.com,
+        Rynn.Wu@mediatek.com, linux-media@vger.kernel.org,
+        srv_heupstream@mediatek.com, devicetree@vger.kernel.org,
+        Daoyuan.Huang@mediatek.com,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+Subject: Re: [RFC, v3, 1/4] dt-binding: mt8183: Add Mediatek MDP3 dt-bindings
+Message-ID: <20190917191402.GA15587@bogus>
+References: <20190911093406.5688-1-bibby.hsieh@mediatek.com>
+ <20190911093406.5688-2-bibby.hsieh@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <933f033298cbd7726a6c0b4b3b6cc7adc81784ba.1568185732.git.amit.kucheria@linaro.org>
+In-Reply-To: <20190911093406.5688-2-bibby.hsieh@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 11, 2019 at 12:46:24PM +0530, Amit Kucheria wrote:
-> Document interrupt support in the tsens driver by converting over to a
-> YAML schema.
+On Wed, Sep 11, 2019 at 05:34:03PM +0800, Bibby Hsieh wrote:
+> From: daoyuan huang <daoyuan.huang@mediatek.com>
 > 
-> Suggested-by: Stephen Boyd <swboyd@chromium.org>
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> This patch adds DT binding document for Media Data Path 3 (MDP3)
+> a unit in multimedia system used for scaling and color format convert.
+> 
+> Signed-off-by: Ping-Hsun Wu <ping-hsun.wu@mediatek.com>
+> Signed-off-by: daoyuan huang <daoyuan.huang@mediatek.com>
 > ---
->  .../bindings/thermal/qcom-tsens.txt           |  55 ------
->  .../bindings/thermal/qcom-tsens.yaml          | 174 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  3 files changed, 175 insertions(+), 55 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsens.txt
->  create mode 100644 Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-
-
-> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+>  .../bindings/media/mediatek,mt8183-mdp3.txt   | 201 ++++++++++++++++++
+>  1 file changed, 201 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8183-mdp3.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8183-mdp3.txt b/Documentation/devicetree/bindings/media/mediatek,mt8183-mdp3.txt
 > new file mode 100644
-> index 000000000000..6784766fe58f
+> index 000000000000..0d15326d12c1
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
-> @@ -0,0 +1,174 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +# Copyright 2019 Linaro Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/thermal/qcom-tsens.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8183-mdp3.txt
+> @@ -0,0 +1,201 @@
+> +* Mediatek Media Data Path 3
 > +
-> +title: QCOM SoC Temperature Sensor (TSENS)
+> +Media Data Path 3 (MDP3) is used for scaling and color space conversion.
 > +
-> +maintainers:
-> +  - Amit Kucheria <amit.kucheria@linaro.org>
+> +Required properties (controller node):
+> +- compatible: "mediatek,mt8183-mdp"
+> +- mediatek,scp: the node of system control processor (SCP), using the
+> +  remoteproc & rpmsg framework, see
+> +  Documentation/devicetree/bindings/remoteproc/mtk,scp.txt for details.
+> +- mediatek,mmsys: the node of mux(multiplexer) controller for HW connections.
+> +- mediatek,mm-mutex: the node of sof(start of frame) signal controller.
+> +- mediatek,mailbox-gce: the node of global command engine (GCE), used to
+> +  read/write registers with critical time limitation, see
+> +  Documentation/devicetree/bindings/mailbox/mtk-gce.txt for details.
+> +- mboxes: mailbox number used to communicate with GCE.
+> +- gce-subsys: sub-system id corresponding to the register address.
+> +- gce-event-names: in use event name list, used to correspond to event IDs.
+> +- gce-events: in use event IDs list, all IDs are defined in
+> +  'dt-bindings/gce/mt8183-gce.h'.
 > +
-> +description: |
-> +  QCOM SoCs have TSENS IP to allow temperature measurement. There are currently
-> +  three distinct major versions of the IP that is supported by a single driver.
-> +  The IP versions are named v0.1, v1 and v2 in the driver, where v0.1 captures
-> +  everything before v1 when there was no versioning information.
+> +Required properties (all function blocks, child node):
+> +- compatible: Should be one of
+> +        "mediatek,mt8183-mdp-rdma"  - read DMA
+> +        "mediatek,mt8183-mdp-rsz"   - resizer
+> +        "mediatek,mt8183-mdp-wdma"  - write DMA
+> +        "mediatek,mt8183-mdp-wrot"  - write DMA with rotation
+> +        "mediatek,mt8183-mdp-ccorr" - color correction with 3X3 matrix
+> +- reg: Physical base address and length of the function block register space
+> +- clocks: device clocks, see
+> +  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> +- power-domains: a phandle to the power domain, see
+> +  Documentation/devicetree/bindings/power/power_domain.txt for details.
+> +- mediatek,mdp-id: HW index to distinguish same functionality modules.
 > +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - description: v0.1 of TSENS
-> +        items:
-> +          - enum:
-> +              - qcom,msm8916-tsens
-> +              - qcom,msm8974-tsens
-> +          - const: qcom,tsens-v0_1
+> +Required properties (DMA function blocks, child node):
+> +- compatible: Should be one of
+> +        "mediatek,mt8183-mdp-rdma"
+> +        "mediatek,mt8183-mdp-wdma"
+> +        "mediatek,mt8183-mdp-wrot"
+> +- iommus: should point to the respective IOMMU block with master port as
+> +  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.txt
+> +  for details.
+> +- mediatek,larb: must contain the local arbiters in the current Socs, see
+> +  Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.txt
+> +  for details.
 > +
-> +      - description: v1 of TSENS
-> +        items:
-> +          - enum:
-> +              - qcom,qcs404-tsens
-> +          - const: qcom,tsens-v1
+> +Required properties (input path selection node):
+> +- compatible:
+> +        "mediatek,mt8183-mdp-dl"    - MDP direct link input source selection
+> +- reg: Physical base address and length of the function block register space
+> +- clocks: device clocks, see
+> +  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
+> +- mediatek,mdp-id: HW index to distinguish same functionality modules.
 > +
-> +      - description: v2 of TSENS
-> +        items:
-> +          - enum:
-> +              - qcom,msm8996-tsens
-> +              - qcom,msm8998-tsens
-> +              - qcom,sdm845-tsens
-> +          - const: qcom,tsens-v2
+> +Required properties (ISP PASS2 (DIP) module path selection node):
+> +- compatible:
+> +        "mediatek,mt8183-mdp-imgi"  - input DMA of ISP PASS2 (DIP) module for raw image input
+> +- reg: Physical base address and length of the function block register space
+> +- mediatek,mdp-id: HW index to distinguish same functionality modules.
 > +
-> +  reg:
-> +    maxItems: 2
-> +    items:
-> +      - description: TM registers
-> +      - description: SROT registers
-> +
-> +  nvmem-cells:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description:
-> +      Reference to an nvmem node for the calibration data
-> +
-> +  nvmem-cells-names:
+> +Required properties (SW node):
+> +- compatible: Should be one of
+> +        "mediatek,mt8183-mdp-exto"  - output DMA of ISP PASS2 (DIP) module for yuv image output
+> +        "mediatek,mt8183-mdp-path"  - MDP output path selection
+> +- mediatek,mdp-id: HW index to distinguish same functionality modules.
 
-This is going to require 2 items, so you need an explicit minItems and 
-maxItems.
+These probably need to be split up to separate files in preparation to 
+convert to schema (not required, feel free to convert to schema now).
 
-> +    items:
-> +      - enum:
-> +        - caldata
-> +        - calsel
 > +
-> +  "#qcom,sensors":
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/uint32
-> +      - minimum: 1
-> +      - maximum: 16
-> +    description:
-> +      Number of sensors enabled on this platform
-> +
-> +  "#thermal-sensor-cells":
-> +    const: 1
-> +    description:
-> +      Number of cells required to uniquely identify the thermal sensors. Since
-> +      we have multiple sensors this is set to 1
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8916-tsens
-> +              - qcom,msm8974-tsens
-> +              - qcom,qcs404-tsens
-> +              - qcom,tsens-v0_1
-> +              - qcom,tsens-v1
-> +    then:
-> +      properties:
-> +        interrupts:
+> +Example:
+> +		mdp_camin@14000000 {
 
-> +          minItems: 1
-> +          maxItems: 1
+Don't use '_' in node or property names.
 
-These can be implicit.
+> +			compatible = "mediatek,mt8183-mdp-dl";
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x14000000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_MDP_DL_TXCK>,
+> +				<&mmsys CLK_MM_MDP_DL_RX>;
+> +		};
+> +
+> +		mdp_camin2@14000000 {
+> +			compatible = "mediatek,mt8183-mdp-dl";
+> +			mediatek,mdp-id = <1>;
+> +			reg = <0 0x14000000 0 0x1000>;
 
-> +          items:
-> +            - description: Combined interrupt if upper or lower threshold crossed
-> +        interrupt-names:
-> +          minItems: 1
-> +          maxItems: 1
+Overlapping addresses for these 2 nodes. Don't do that.
 
-ditto.
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0 0x1000>;
+> +			clocks = <&mmsys CLK_MM_IPU_DL_TXCK>,
+> +				<&mmsys CLK_MM_IPU_DL_RX>;
+> +		};
+> +
+> +		mdp_rdma0: mdp_rdma0@14001000 {
+> +			compatible = "mediatek,mt8183-mdp-rdma",
+> +				     "mediatek,mt8183-mdp3";
+> +			mediatek,scp = <&scp>;
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x14001000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x1000 0x1000>;
+> +			power-domains = <&scpsys MT8183_POWER_DOMAIN_DISP>;
+> +			clocks = <&mmsys CLK_MM_MDP_RDMA0>,
+> +				<&mmsys CLK_MM_MDP_RSZ1>;
+> +			iommus = <&iommu M4U_PORT_MDP_RDMA0>;
+> +			mediatek,larb = <&larb0>;
+> +			mediatek,mmsys = <&mmsys>;
+> +			mediatek,mm-mutex = <&mutex>;
+> +			mediatek,mailbox-gce = <&gce>;
+> +			mboxes = <&gce 20 CMDQ_THR_PRIO_LOWEST 0>,
+> +				<&gce 21 CMDQ_THR_PRIO_LOWEST 0>,
+> +				<&gce 22 CMDQ_THR_PRIO_LOWEST 0>,
+> +				<&gce 23 CMDQ_THR_PRIO_LOWEST 0>;
+> +			gce-subsys = <&gce 0x14000000 SUBSYS_1400XXXX>,
+> +				<&gce 0x14010000 SUBSYS_1401XXXX>,
+> +				<&gce 0x14020000 SUBSYS_1402XXXX>,
+> +				<&gce 0x15020000 SUBSYS_1502XXXX>;
+> +			mediatek,gce-events = <CMDQ_EVENT_MDP_RDMA0_SOF>,
+> +				<CMDQ_EVENT_MDP_RDMA0_EOF>,
+> +				<CMDQ_EVENT_MDP_RSZ0_SOF>,
+> +				<CMDQ_EVENT_MDP_RSZ1_SOF>,
+> +				<CMDQ_EVENT_MDP_TDSHP_SOF>,
+> +				<CMDQ_EVENT_MDP_WROT0_SOF>,
+> +				<CMDQ_EVENT_MDP_WROT0_EOF>,
+> +				<CMDQ_EVENT_MDP_WDMA0_SOF>,
+> +				<CMDQ_EVENT_MDP_WDMA0_EOF>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_0>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_1>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_2>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_3>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_4>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_5>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_6>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_7>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_8>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_9>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_10>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_11>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_12>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_13>,
+> +				<CMDQ_EVENT_ISP_FRAME_DONE_P2_14>,
+> +				<CMDQ_EVENT_WPE_A_DONE>,
+> +				<CMDQ_EVENT_SPE_B_DONE>;
+> +		};
+> +
+> +		mdp_imgi@15020000 {
+> +			compatible = "mediatek,mt8183-mdp-imgi";
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x15020000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1502XXXX 0 0x1000>;
+> +		};
+> +
+> +		mdp_img2o@15020000 {
 
-> +          items:
-> +            - const: uplow
-> +
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          minItems: 2
-> +          maxItems: 2
+You need a reg property if you have a unit-address.
 
-ditto.
+> +			compatible = "mediatek,mt8183-mdp-exto";
+> +			mediatek,mdp-id = <1>;
+> +		};
+> +
+> +		mdp_rsz0: mdp_rsz0@14003000 {
+> +			compatible = "mediatek,mt8183-mdp-rsz";
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x14003000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>;
+> +			clocks = <&mmsys CLK_MM_MDP_RSZ0>;
+> +		};
+> +
+> +		mdp_rsz1: mdp_rsz1@14004000 {
+> +			compatible = "mediatek,mt8183-mdp-rsz";
+> +			mediatek,mdp-id = <1>;
+> +			reg = <0 0x14004000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x4000 0x1000>;
+> +			clocks = <&mmsys CLK_MM_MDP_RSZ1>;
+> +		};
+> +
+> +		mdp_wrot0: mdp_wrot0@14005000 {
+> +			compatible = "mediatek,mt8183-mdp-wrot";
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x14005000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x5000 0x1000>;
+> +			clocks = <&mmsys CLK_MM_MDP_WROT0>;
+> +			iommus = <&iommu M4U_PORT_MDP_WROT0>;
+> +			mediatek,larb = <&larb0>;
+> +		};
+> +
+> +		mdp_path0_sout@14005000 {
+> +			compatible = "mediatek,mt8183-mdp-path";
+> +			mediatek,mdp-id = <0>;
 
-> +          items:
-> +            - description: Combined interrupt if upper or lower threshold crossed
-> +            - description: Interrupt if critical threshold crossed
-> +        interrupt-names:
-> +          minItems: 2
-> +          maxItems: 2
+reg?
 
-ditto.
+> +		};
+> +
+> +		mdp_wdma: mdp_wdma@14006000 {
+> +			compatible = "mediatek,mt8183-mdp-wdma";
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x14006000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x6000 0x1000>;
+> +			clocks = <&mmsys CLK_MM_MDP_WDMA0>;
+> +			iommus = <&iommu M4U_PORT_MDP_WDMA0>;
+> +			mediatek,larb = <&larb0>;
+> +		};
+> +
+> +		mdp_path1_sout@14006000 {
+> +			compatible = "mediatek,mt8183-mdp-path";
+> +			mediatek,mdp-id = <1>;
 
-> +          items:
-> +            - const: uplow
-> +            - const: critical
+reg?
+
+> +		};
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#qcom,sensors"
-> +  - interrupts
-> +  - interrupt-names
-> +  - "#thermal-sensor-cells"
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    // Example 1 (legacy: for pre v1 IP):
-> +    tsens1: thermal-sensor@900000 {
-> +           compatible = "qcom,msm8916-tsens", "qcom,tsens-v0_1";
-> +           reg = <0x4a9000 0x1000>, /* TM */
-> +                 <0x4a8000 0x1000>; /* SROT */
-> +
-> +           nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
-> +           nvmem-cell-names = "caldata", "calsel";
-> +
-> +           interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-> +           interrupt-names = "uplow";
-> +
-> +           #qcom,sensors = <5>;
-> +           #thermal-sensor-cells = <1>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    // Example 2 (for any platform containing v1 of the TSENS IP):
-> +    tsens2: thermal-sensor@4a9000 {
-> +          compatible = "qcom,qcs404-tsens", "qcom,tsens-v1";
-> +          reg = <0x004a9000 0x1000>, /* TM */
-> +                <0x004a8000 0x1000>; /* SROT */
-> +
-> +          nvmem-cells = <&tsens_caldata>;
-> +          nvmem-cell-names = "calib";
-> +
-> +          interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
-> +          interrupt-names = "uplow";
-> +
-> +          #qcom,sensors = <10>;
-> +          #thermal-sensor-cells = <1>;
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    // Example 3 (for any platform containing v2 of the TSENS IP):
-> +    tsens3: thermal-sensor@c263000 {
-> +           compatible = "qcom,sdm845-tsens", "qcom,tsens-v2";
-> +           reg = <0xc263000 0x1ff>,
-> +                 <0xc222000 0x1ff>;
-> +
-> +           interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>,
-> +                        <GIC_SPI 508 IRQ_TYPE_LEVEL_HIGH>;
-> +           interrupt-names = "uplow", "critical";
-> +
-> +           #qcom,sensors = <13>;
-> +           #thermal-sensor-cells = <1>;
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e7a47b5210fd..ff757a4a060c 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13360,6 +13360,7 @@ L:	linux-pm@vger.kernel.org
->  L:	linux-arm-msm@vger.kernel.org
->  S:	Maintained
->  F:	drivers/thermal/qcom/
-> +F:	Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
->  
->  QUALCOMM VENUS VIDEO ACCELERATOR DRIVER
->  M:	Stanimir Varbanov <stanimir.varbanov@linaro.org>
+> +		mdp_ccorr: mdp_ccorr@1401c000 {
+> +			compatible = "mediatek,mt8183-mdp-ccorr";
+> +			mediatek,mdp-id = <0>;
+> +			reg = <0 0x1401c000 0 0x1000>;
+> +			mediatek,gce-client-reg = <&gce SUBSYS_1401XXXX 0xc000 0x1000>;
+> +			clocks = <&mmsys CLK_MM_MDP_CCORR>;
+> +		};
 > -- 
-> 2.17.1
+> 2.18.0
 > 
