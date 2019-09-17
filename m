@@ -2,407 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73DAEB4574
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 04:15:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E6AB4585
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 04:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728838AbfIQCP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 16 Sep 2019 22:15:26 -0400
-Received: from mail.gallagher.co.nz ([203.167.229.98]:10602 "EHLO
-        mail.gallagher.co.nz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728639AbfIQCP0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 16 Sep 2019 22:15:26 -0400
-Received: from gglnzdom1.gallagher.local (Not Verified[172.16.0.58]) by mail.gallagher.co.nz  (using TLS: TLSv1.2, AES256-GCM-SHA384)
-        id <B5d8041b90000>; Tue, 17 Sep 2019 14:15:21 +1200
-Received: from ubuntu.localdomain ([10.60.3.76])
-          by gglnzdom1.gallagher.local
-          with ESMTP id 2019091714152148-21601 ;
-          Tue, 17 Sep 2019 14:15:21 +1200 
-From:   Ankur Tyagi <ankur.tyagi@gallagher.com>
-To:     t-kristo@ti.com, mturquette@baylibre.com, sboyd@kernel.org
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2] clk: ti: Update AM3/4 GPIO number as per datasheet
-Date:   Mon, 16 Sep 2019 19:15:21 -0700
-Message-Id: <20190917021521.7012-1-ankur.tyagi@gallagher.com>
-X-TNEFEvaluated: 1
+        id S1728639AbfIQCdq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 16 Sep 2019 22:33:46 -0400
+Received: from mail-eopbgr70080.outbound.protection.outlook.com ([40.107.7.80]:13768
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728470AbfIQCdq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 16 Sep 2019 22:33:46 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Y3wiv+Rbv42z0ME2eQARZ4YFAiL7H+H824WqDZ7JcTJWUM8cZUMNeH4cwhQcVI+bmS20VoFzykdrO0+QwigeLv3v4v3vHDIziMAGrfwRA7qT4dqRiaDm2uehFBBzSvxt2WbJKqokk1p7Lhe7qqH3uHZB+mRTQTdSvrfh0dIj6djf+zjcBK+vw6KE76fUT13N2qagJ3W+T/l9RiV53fxSaPdCiW9hkL3Hcc+OOzXkM5BOss/jR7RqMagRFyfMbo0hJ6t+4D9fpCKZ0ks0hB1nq8p8D0N32noZsJkLHC6K3MHFPyt/TbGhmTdQy2LX9M20BRrt++lS1+ZzB+1kg6bZ8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DOgtOYpr1umvjl2CkcJARc0l8vpI6UR+FN/X9w3FiZM=;
+ b=WqoF4ebSr4wQhq3T0/TeV6muQHS7mTx2rN5KrodJDPz3x6vrhdz6rjxYR1aqoyCrZrRv/sbMOiKhoJsVWqMmyVdvYJpQYiEmmzDqJRjQ1kxa9K8xL2MpOr7NLBZ88zbA057JyKf+aLOrbLlJlN8WC2oPlkM3zokrpNi4+Y1FPV8o0DzgSQE5YyjPliZnA2mUO8MS7hMSaT238OB1acrr6i+9MzOfYuIAOvk8kREYuLre0at+hopHreb2v5xufI0eH5JrXg4q2xOV6XGxetunMATQdNmFT1naGYITFEbDzaYwWfCxy3VFhB4YYg40pc+mjqsDM/0lalAPZZX1Gpp/Lg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DOgtOYpr1umvjl2CkcJARc0l8vpI6UR+FN/X9w3FiZM=;
+ b=V9WUgK+Igjln4eUOyCXMAikwUTVZDOoSXaiehb4PNoE9vJbDWLY6mcIh2TYybfyUdpctzbIwrHB1/qcm5UV2y83tU0mvaoKi1FZXHzbPiiVm7WPKhR+BBSh4BPlAvECk3j713B6IaHiVkCqdVcGM6oqOrH/LMMLGOS/txkxErfg=
+Received: from DB8PR04MB6826.eurprd04.prod.outlook.com (52.133.240.82) by
+ DB8PR04MB6412.eurprd04.prod.outlook.com (20.179.249.79) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2263.23; Tue, 17 Sep 2019 02:33:42 +0000
+Received: from DB8PR04MB6826.eurprd04.prod.outlook.com
+ ([fe80::906f:1414:8cb:f7ee]) by DB8PR04MB6826.eurprd04.prod.outlook.com
+ ([fe80::906f:1414:8cb:f7ee%2]) with mapi id 15.20.2263.023; Tue, 17 Sep 2019
+ 02:33:42 +0000
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     "Rafael J . Wysocki" <rjw@rjwysocki.net>,
+        Leo Li <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Pavel Machek <pavel@ucw.cz>
+CC:     Ran Wang <ran.wang_1@nxp.com>, Biwen Li <biwen.li@nxp.com>,
+        Len Brown <len.brown@intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+Subject: RE: [PATCH v6 1/3] PM: wakeup: Add routine to help fetch wakeup
+ source object.
+Thread-Topic: [PATCH v6 1/3] PM: wakeup: Add routine to help fetch wakeup
+ source object.
+Thread-Index: AQHVV851gkIX3+N2p0ibde/0v+331KcvUDew
+Date:   Tue, 17 Sep 2019 02:33:41 +0000
+Message-ID: <DB8PR04MB682662CA68F9F21F6DB82F72F18F0@DB8PR04MB6826.eurprd04.prod.outlook.com>
+References: <20190821031537.46824-1-ran.wang_1@nxp.com>
+In-Reply-To: <20190821031537.46824-1-ran.wang_1@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ran.wang_1@nxp.com; 
+x-originating-ip: [92.121.36.198]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: fd3fffbb-53ef-491f-5b51-08d73b177477
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB8PR04MB6412;
+x-ms-traffictypediagnostic: DB8PR04MB6412:|DB8PR04MB6412:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB8PR04MB6412E4B10341F14D02F1797CF18F0@DB8PR04MB6412.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 01630974C0
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(346002)(366004)(396003)(39860400002)(376002)(199004)(189003)(7736002)(476003)(305945005)(66446008)(478600001)(5660300002)(14454004)(33656002)(71190400001)(2906002)(6506007)(52536014)(25786009)(102836004)(256004)(316002)(86362001)(53546011)(4744005)(6116002)(4326008)(3846002)(11346002)(74316002)(7416002)(66476007)(66556008)(64756008)(6436002)(229853002)(6246003)(486006)(66946007)(76116006)(26005)(76176011)(71200400001)(66066001)(110136005)(446003)(54906003)(8676002)(81166006)(81156014)(8936002)(9686003)(7696005)(186003)(99286004)(55016002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB6412;H:DB8PR04MB6826.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: ixfzE8EjAN0FHv+fpGonwwcYsmLH7WxyhRUOCgULjZGUOuOla0Z2v1IbciD5onA4bcGawyPKoMYNW1Mq8DjvdZM3GR1somW9+sFtz1OwWp7g4YbPb6a1LD05WnqUESWxA/XgfgTOxyFTIwrkE0lXufQa3js3+oIyKSZQFGAuvu8L+hWP+NmtU4+UR28SCS84vCu/Clak3aYZJT1phnsmZU64pf+NLm/SYkqrsfNyuwuQJtPoEzrIXPGFz75Ldbx8YhW0I1td95FXaPTzIdPbuHzHEsloo6ppD2hmN8kex+2VxrsWOUFdYBcvXuo9Np1wOuV+KynNSWt65VulWbs7QiGJOJ9s2wfVf00EfQ2M+pg32x7rpesUcSO1dNt9/11zBFA1RkiUMuYkKJmU3++rDuOvZonvErDBx4Tqa/kEV/o=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fd3fffbb-53ef-491f-5b51-08d73b177477
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2019 02:33:42.0150
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: B+dgF9pf7IGN/lJPhY8Te8gtaMYyAajwnRhsd2l0yb4OrCkrhd+LkMPqGxNV7dViTGUL49en7+ndCusU4cYK4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6412
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Sitara technical reference manual numbers GPIO from 0 whereas
-in code GPIO are numbered from 1.
+Hi Rafael,
 
-Changes since v1:
-- Combine changes in single patch to avoid compilation failure
-- Update AM4 GPIO numbers as well
+On Wednesday, August 21, 2019 11:16, Ran Wang wrote:
+>=20
+> Some user might want to go through all registered wakeup sources and doin=
+g
+> things accordingly. For example, SoC PM driver might need to do HW
+> programming to prevent powering down specific IP which wakeup source
+> depending on. So add this API to help walk through all registered wakeup =
+source
+> objects on that list and return them one by one.
+>=20
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> ---
+> Change in v6:
+> 	- Add wakeup_source_get_star() and wakeup_source_get_stop() to
+> aligned
+> 	with wakeup_sources_stats_seq_start/nex/stop.
 
-Signed-off-by: Ankur Tyagi <ankur.tyagi@gallagher.com>
----
- drivers/clk/ti/clk-33xx-compat.c | 12 ++++++------
- drivers/clk/ti/clk-33xx.c        | 12 ++++++------
- drivers/clk/ti/clk-43xx-compat.c | 16 ++++++++--------
- drivers/clk/ti/clk-43xx.c        | 16 ++++++++--------
- include/dt-bindings/clock/am3.h  | 16 ++++++++--------
- include/dt-bindings/clock/am4.h  | 24 ++++++++++++------------
- 6 files changed, 48 insertions(+), 48 deletions(-)
+How about this version, could you please give any comment? Thanks.
 
-diff --git a/drivers/clk/ti/clk-33xx-compat.c b/drivers/clk/ti/clk-33xx-compat.c
-index 3e07f127912a..7c80522a577a 100644
---- a/drivers/clk/ti/clk-33xx-compat.c
-+++ b/drivers/clk/ti/clk-33xx-compat.c
-@@ -28,17 +28,17 @@ static const char * const am3_gpio1_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio2_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio1_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio3_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio2_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio4_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio3_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -72,9 +72,9 @@ static const struct omap_clkctrl_reg_data am3_l4_per_clkctrl_regs[] __initconst
- 	{ AM3_RNG_CLKCTRL, NULL, CLKF_SW_SUP, "rng_fck" },
- 	{ AM3_AES_CLKCTRL, NULL, CLKF_SW_SUP, "aes0_fck", "l3_clkdm" },
- 	{ AM3_SHAM_CLKCTRL, NULL, CLKF_SW_SUP, "l3_gclk", "l3_clkdm" },
-+	{ AM3_GPIO1_CLKCTRL, am3_gpio1_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM3_GPIO2_CLKCTRL, am3_gpio2_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM3_GPIO3_CLKCTRL, am3_gpio3_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
--	{ AM3_GPIO4_CLKCTRL, am3_gpio4_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM3_TPCC_CLKCTRL, NULL, CLKF_SW_SUP, "l3_gclk", "l3_clkdm" },
- 	{ AM3_D_CAN0_CLKCTRL, NULL, CLKF_SW_SUP, "dcan0_fck" },
- 	{ AM3_D_CAN1_CLKCTRL, NULL, CLKF_SW_SUP, "dcan1_fck" },
-@@ -103,7 +103,7 @@ static const char * const am3_gpio0_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio1_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio0_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio0_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -156,7 +156,7 @@ static const struct omap_clkctrl_bit_data am3_debugss_bit_data[] __initconst = {
- 
- static const struct omap_clkctrl_reg_data am3_l4_wkup_clkctrl_regs[] __initconst = {
- 	{ AM3_CONTROL_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
--	{ AM3_GPIO1_CLKCTRL, am3_gpio1_bit_data, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
-+	{ AM3_GPIO0_CLKCTRL, am3_gpio0_bit_data, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
- 	{ AM3_L4_WKUP_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
- 	{ AM3_DEBUGSS_CLKCTRL, am3_debugss_bit_data, CLKF_SW_SUP, "l4_wkup_cm:clk:0010:24", "l3_aon_clkdm" },
- 	{ AM3_WKUP_M3_CLKCTRL, NULL, CLKF_NO_IDLEST, "dpll_core_m4_div2_ck", "l4_wkup_aon_clkdm" },
-diff --git a/drivers/clk/ti/clk-33xx.c b/drivers/clk/ti/clk-33xx.c
-index a360d3109555..d67f1f6bbec0 100644
---- a/drivers/clk/ti/clk-33xx.c
-+++ b/drivers/clk/ti/clk-33xx.c
-@@ -28,17 +28,17 @@ static const char * const am3_gpio1_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio2_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio1_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio3_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio2_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio4_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio3_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -61,9 +61,9 @@ static const struct omap_clkctrl_reg_data am3_l4ls_clkctrl_regs[] __initconst =
- 	{ AM3_L4LS_TIMER3_CLKCTRL, NULL, CLKF_SW_SUP, "timer3_fck" },
- 	{ AM3_L4LS_TIMER4_CLKCTRL, NULL, CLKF_SW_SUP, "timer4_fck" },
- 	{ AM3_L4LS_RNG_CLKCTRL, NULL, CLKF_SW_SUP, "rng_fck" },
-+	{ AM3_L4LS_GPIO1_CLKCTRL, am3_gpio1_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM3_L4LS_GPIO2_CLKCTRL, am3_gpio2_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM3_L4LS_GPIO3_CLKCTRL, am3_gpio3_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
--	{ AM3_L4LS_GPIO4_CLKCTRL, am3_gpio4_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM3_L4LS_D_CAN0_CLKCTRL, NULL, CLKF_SW_SUP, "dcan0_fck" },
- 	{ AM3_L4LS_D_CAN1_CLKCTRL, NULL, CLKF_SW_SUP, "dcan1_fck" },
- 	{ AM3_L4LS_EPWMSS1_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
-@@ -131,14 +131,14 @@ static const char * const am3_gpio0_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am3_gpio1_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am3_gpio0_bit_data[] __initconst = {
- 	{ 18, TI_CLK_GATE, am3_gpio0_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
- static const struct omap_clkctrl_reg_data am3_l4_wkup_clkctrl_regs[] __initconst = {
- 	{ AM3_L4_WKUP_CONTROL_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
--	{ AM3_L4_WKUP_GPIO1_CLKCTRL, am3_gpio1_bit_data, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
-+	{ AM3_L4_WKUP_GPIO0_CLKCTRL, am3_gpio0_bit_data, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
- 	{ AM3_L4_WKUP_L4_WKUP_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_core_m4_div2_ck" },
- 	{ AM3_L4_WKUP_UART1_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_per_m2_div4_wkupdm_ck" },
- 	{ AM3_L4_WKUP_I2C1_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_per_m2_div4_wkupdm_ck" },
-diff --git a/drivers/clk/ti/clk-43xx-compat.c b/drivers/clk/ti/clk-43xx-compat.c
-index 513039843392..915b73fa9da4 100644
---- a/drivers/clk/ti/clk-43xx-compat.c
-+++ b/drivers/clk/ti/clk-43xx-compat.c
-@@ -38,7 +38,7 @@ static const char * const am4_gpio0_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio1_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio0_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio0_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -55,7 +55,7 @@ static const struct omap_clkctrl_reg_data am4_l4_wkup_clkctrl_regs[] __initconst
- 	{ AM4_SMARTREFLEX0_CLKCTRL, NULL, CLKF_SW_SUP, "smartreflex0_fck", "l4_wkup_clkdm" },
- 	{ AM4_SMARTREFLEX1_CLKCTRL, NULL, CLKF_SW_SUP, "smartreflex1_fck", "l4_wkup_clkdm" },
- 	{ AM4_CONTROL_CLKCTRL, NULL, CLKF_SW_SUP, "sys_clkin_ck", "l4_wkup_clkdm" },
--	{ AM4_GPIO1_CLKCTRL, am4_gpio1_bit_data, CLKF_SW_SUP, "sys_clkin_ck", "l4_wkup_clkdm" },
-+	{ AM4_GPIO0_CLKCTRL, am4_gpio0_bit_data, CLKF_SW_SUP, "sys_clkin_ck", "l4_wkup_clkdm" },
- 	{ 0 },
- };
- 
-@@ -94,27 +94,27 @@ static const char * const am4_gpio1_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio2_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio1_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio3_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio2_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio4_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio3_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio5_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio4_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio6_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio5_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -151,11 +151,11 @@ static const struct omap_clkctrl_reg_data am4_l4_per_clkctrl_regs[] __initconst
- 	{ AM4_EPWMSS4_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_EPWMSS5_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_ELM_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
-+	{ AM4_GPIO1_CLKCTRL, am4_gpio1_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_GPIO2_CLKCTRL, am4_gpio2_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_GPIO3_CLKCTRL, am4_gpio3_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_GPIO4_CLKCTRL, am4_gpio4_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_GPIO5_CLKCTRL, am4_gpio5_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
--	{ AM4_GPIO6_CLKCTRL, am4_gpio6_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_HDQ1W_CLKCTRL, NULL, CLKF_SW_SUP, "func_12m_clk" },
- 	{ AM4_I2C2_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_per_m2_div4_ck" },
- 	{ AM4_I2C3_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_per_m2_div4_ck" },
-diff --git a/drivers/clk/ti/clk-43xx.c b/drivers/clk/ti/clk-43xx.c
-index 2782d91838ac..d182c4f1f156 100644
---- a/drivers/clk/ti/clk-43xx.c
-+++ b/drivers/clk/ti/clk-43xx.c
-@@ -49,7 +49,7 @@ static const char * const am4_gpio0_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio1_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio0_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio0_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -63,7 +63,7 @@ static const struct omap_clkctrl_reg_data am4_l4_wkup_clkctrl_regs[] __initconst
- 	{ AM4_L4_WKUP_SMARTREFLEX0_CLKCTRL, NULL, CLKF_SW_SUP, "smartreflex0_fck" },
- 	{ AM4_L4_WKUP_SMARTREFLEX1_CLKCTRL, NULL, CLKF_SW_SUP, "smartreflex1_fck" },
- 	{ AM4_L4_WKUP_CONTROL_CLKCTRL, NULL, CLKF_SW_SUP, "sys_clkin_ck" },
--	{ AM4_L4_WKUP_GPIO1_CLKCTRL, am4_gpio1_bit_data, CLKF_SW_SUP, "sys_clkin_ck" },
-+	{ AM4_L4_WKUP_GPIO0_CLKCTRL, am4_gpio0_bit_data, CLKF_SW_SUP, "sys_clkin_ck" },
- 	{ 0 },
- };
- 
-@@ -135,27 +135,27 @@ static const char * const am4_gpio1_dbclk_parents[] __initconst = {
- 	NULL,
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio2_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio1_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio3_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio2_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio4_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio3_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio5_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio4_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
- 
--static const struct omap_clkctrl_bit_data am4_gpio6_bit_data[] __initconst = {
-+static const struct omap_clkctrl_bit_data am4_gpio5_bit_data[] __initconst = {
- 	{ 8, TI_CLK_GATE, am4_gpio1_dbclk_parents, NULL },
- 	{ 0 },
- };
-@@ -171,11 +171,11 @@ static const struct omap_clkctrl_reg_data am4_l4ls_clkctrl_regs[] __initconst =
- 	{ AM4_L4LS_EPWMSS4_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_EPWMSS5_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_ELM_CLKCTRL, NULL, CLKF_SW_SUP, "l4ls_gclk" },
-+	{ AM4_L4LS_GPIO1_CLKCTRL, am4_gpio1_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_GPIO2_CLKCTRL, am4_gpio2_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_GPIO3_CLKCTRL, am4_gpio3_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_GPIO4_CLKCTRL, am4_gpio4_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_GPIO5_CLKCTRL, am4_gpio5_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
--	{ AM4_L4LS_GPIO6_CLKCTRL, am4_gpio6_bit_data, CLKF_SW_SUP, "l4ls_gclk" },
- 	{ AM4_L4LS_HDQ1W_CLKCTRL, NULL, CLKF_SW_SUP, "func_12m_clk" },
- 	{ AM4_L4LS_I2C2_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_per_m2_div4_ck" },
- 	{ AM4_L4LS_I2C3_CLKCTRL, NULL, CLKF_SW_SUP, "dpll_per_m2_div4_ck" },
-diff --git a/include/dt-bindings/clock/am3.h b/include/dt-bindings/clock/am3.h
-index 894951541276..980fdc05c3d0 100644
---- a/include/dt-bindings/clock/am3.h
-+++ b/include/dt-bindings/clock/am3.h
-@@ -41,9 +41,9 @@
- #define AM3_RNG_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0x90)
- #define AM3_AES_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0x94)
- #define AM3_SHAM_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xa0)
--#define AM3_GPIO2_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xac)
--#define AM3_GPIO3_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb0)
--#define AM3_GPIO4_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb4)
-+#define AM3_GPIO1_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xac)
-+#define AM3_GPIO2_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb0)
-+#define AM3_GPIO3_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xb4)
- #define AM3_TPCC_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xbc)
- #define AM3_D_CAN0_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xc0)
- #define AM3_D_CAN1_CLKCTRL	AM3_L4_PER_CLKCTRL_INDEX(0xc4)
-@@ -69,7 +69,7 @@
- #define AM3_L4_WKUP_CLKCTRL_OFFSET	0x4
- #define AM3_L4_WKUP_CLKCTRL_INDEX(offset)	((offset) - AM3_L4_WKUP_CLKCTRL_OFFSET)
- #define AM3_CONTROL_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x4)
--#define AM3_GPIO1_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x8)
-+#define AM3_GPIO0_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x8)
- #define AM3_L4_WKUP_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0xc)
- #define AM3_DEBUGSS_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0x14)
- #define AM3_WKUP_M3_CLKCTRL	AM3_L4_WKUP_CLKCTRL_INDEX(0xb0)
-@@ -121,9 +121,9 @@
- #define AM3_L4LS_TIMER3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x84)
- #define AM3_L4LS_TIMER4_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x88)
- #define AM3_L4LS_RNG_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0x90)
--#define AM3_L4LS_GPIO2_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xac)
--#define AM3_L4LS_GPIO3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb0)
--#define AM3_L4LS_GPIO4_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb4)
-+#define AM3_L4LS_GPIO1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xac)
-+#define AM3_L4LS_GPIO2_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb0)
-+#define AM3_L4LS_GPIO3_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xb4)
- #define AM3_L4LS_D_CAN0_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xc0)
- #define AM3_L4LS_D_CAN1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xc4)
- #define AM3_L4LS_EPWMSS1_CLKCTRL	AM3_L4LS_CLKCTRL_INDEX(0xcc)
-@@ -184,7 +184,7 @@
- 
- /* l4_wkup clocks */
- #define AM3_L4_WKUP_CONTROL_CLKCTRL	AM3_CLKCTRL_INDEX(0x4)
--#define AM3_L4_WKUP_GPIO1_CLKCTRL	AM3_CLKCTRL_INDEX(0x8)
-+#define AM3_L4_WKUP_GPIO0_CLKCTRL	AM3_CLKCTRL_INDEX(0x8)
- #define AM3_L4_WKUP_L4_WKUP_CLKCTRL	AM3_CLKCTRL_INDEX(0xc)
- #define AM3_L4_WKUP_UART1_CLKCTRL	AM3_CLKCTRL_INDEX(0xb4)
- #define AM3_L4_WKUP_I2C1_CLKCTRL	AM3_CLKCTRL_INDEX(0xb8)
-diff --git a/include/dt-bindings/clock/am4.h b/include/dt-bindings/clock/am4.h
-index d961e7cb3682..f33647d730ce 100644
---- a/include/dt-bindings/clock/am4.h
-+++ b/include/dt-bindings/clock/am4.h
-@@ -22,7 +22,7 @@
- #define AM4_SMARTREFLEX0_CLKCTRL	AM4_CLKCTRL_INDEX(0x350)
- #define AM4_SMARTREFLEX1_CLKCTRL	AM4_CLKCTRL_INDEX(0x358)
- #define AM4_CONTROL_CLKCTRL	AM4_CLKCTRL_INDEX(0x360)
--#define AM4_GPIO1_CLKCTRL	AM4_CLKCTRL_INDEX(0x368)
-+#define AM4_GPIO0_CLKCTRL	AM4_CLKCTRL_INDEX(0x368)
- 
- /* mpu clocks */
- #define AM4_MPU_CLKCTRL	AM4_CLKCTRL_INDEX(0x20)
-@@ -65,11 +65,11 @@
- #define AM4_EPWMSS4_CLKCTRL	AM4_CLKCTRL_INDEX(0x458)
- #define AM4_EPWMSS5_CLKCTRL	AM4_CLKCTRL_INDEX(0x460)
- #define AM4_ELM_CLKCTRL	AM4_CLKCTRL_INDEX(0x468)
--#define AM4_GPIO2_CLKCTRL	AM4_CLKCTRL_INDEX(0x478)
--#define AM4_GPIO3_CLKCTRL	AM4_CLKCTRL_INDEX(0x480)
--#define AM4_GPIO4_CLKCTRL	AM4_CLKCTRL_INDEX(0x488)
--#define AM4_GPIO5_CLKCTRL	AM4_CLKCTRL_INDEX(0x490)
--#define AM4_GPIO6_CLKCTRL	AM4_CLKCTRL_INDEX(0x498)
-+#define AM4_GPIO1_CLKCTRL	AM4_CLKCTRL_INDEX(0x478)
-+#define AM4_GPIO2_CLKCTRL	AM4_CLKCTRL_INDEX(0x480)
-+#define AM4_GPIO3_CLKCTRL	AM4_CLKCTRL_INDEX(0x488)
-+#define AM4_GPIO4_CLKCTRL	AM4_CLKCTRL_INDEX(0x490)
-+#define AM4_GPIO5_CLKCTRL	AM4_CLKCTRL_INDEX(0x498)
- #define AM4_HDQ1W_CLKCTRL	AM4_CLKCTRL_INDEX(0x4a0)
- #define AM4_I2C2_CLKCTRL	AM4_CLKCTRL_INDEX(0x4a8)
- #define AM4_I2C3_CLKCTRL	AM4_CLKCTRL_INDEX(0x4b0)
-@@ -128,7 +128,7 @@
- #define AM4_L4_WKUP_SMARTREFLEX0_CLKCTRL	AM4_L4_WKUP_CLKCTRL_INDEX(0x350)
- #define AM4_L4_WKUP_SMARTREFLEX1_CLKCTRL	AM4_L4_WKUP_CLKCTRL_INDEX(0x358)
- #define AM4_L4_WKUP_CONTROL_CLKCTRL	AM4_L4_WKUP_CLKCTRL_INDEX(0x360)
--#define AM4_L4_WKUP_GPIO1_CLKCTRL	AM4_L4_WKUP_CLKCTRL_INDEX(0x368)
-+#define AM4_L4_WKUP_GPIO0_CLKCTRL	AM4_L4_WKUP_CLKCTRL_INDEX(0x368)
- 
- /* mpu clocks */
- #define AM4_MPU_MPU_CLKCTRL	AM4_CLKCTRL_INDEX(0x20)
-@@ -183,11 +183,11 @@
- #define AM4_L4LS_EPWMSS4_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x458)
- #define AM4_L4LS_EPWMSS5_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x460)
- #define AM4_L4LS_ELM_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x468)
--#define AM4_L4LS_GPIO2_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x478)
--#define AM4_L4LS_GPIO3_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x480)
--#define AM4_L4LS_GPIO4_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x488)
--#define AM4_L4LS_GPIO5_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x490)
--#define AM4_L4LS_GPIO6_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x498)
-+#define AM4_L4LS_GPIO1_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x478)
-+#define AM4_L4LS_GPIO2_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x480)
-+#define AM4_L4LS_GPIO3_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x488)
-+#define AM4_L4LS_GPIO4_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x490)
-+#define AM4_L4LS_GPIO5_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x498)
- #define AM4_L4LS_HDQ1W_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x4a0)
- #define AM4_L4LS_I2C2_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x4a8)
- #define AM4_L4LS_I2C3_CLKCTRL	AM4_L4LS_CLKCTRL_INDEX(0x4b0)
--- 
-2.17.1
+Regards,
+Ran=20
 
+<snip>
 
-###########################################################################
-This email is confidential and may contain information subject to legal 
-privilege.  If you are not the intended recipient please advise us of our
-error by return e-mail then delete this email and any attached files.  
-You may not copy, disclose or use the contents in any way.  
-
-The views expressed in this email may not be those of Gallagher Group 
-Ltd or subsidiary companies thereof.
-###########################################################################
