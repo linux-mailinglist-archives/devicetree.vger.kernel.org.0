@@ -2,94 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D8F9B54CA
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90EDFB5504
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 20:13:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727462AbfIQR74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 13:59:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37410 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726118AbfIQR74 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 13:59:56 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 955BB20678;
-        Tue, 17 Sep 2019 17:59:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568743195;
-        bh=hcrS5sWx7CpJDrlf9K3i36bzcfPumr+4M831UKbPHLE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bFP+NyjSQAsNpicI1ptV1P/vs72FENrY36GYDEUn4aCZnZuekPLMsVkPM5KM7HNzq
-         h51bLuQlx6vgTs4lo4bJiaLBBrsM1YElK4CYbmgWcSyFMCtx+ax0fHOjbHSv7S96na
-         1ZnvvGM5k6i7ZtN/IVat9CQ3rMtol5MyEPyHrETw=
-Date:   Tue, 17 Sep 2019 18:59:50 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] iommu: dma: Use of_iommu_get_resv_regions()
-Message-ID: <20190917175950.wrwiqnh5bp62uy3c@willie-the-truck>
-References: <20190829111407.17191-1-thierry.reding@gmail.com>
- <20190829111407.17191-3-thierry.reding@gmail.com>
- <1caeaaa0-c5aa-b630-6d42-055b26764f40@arm.com>
- <20190902145245.GC1445@ulmo>
+        id S1728670AbfIQSN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 14:13:26 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:39812 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728492AbfIQSN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 14:13:26 -0400
+Received: by mail-ot1-f65.google.com with SMTP id s22so3919179otr.6;
+        Tue, 17 Sep 2019 11:13:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=KQ6OBeDuode2twYSlA9ipYN3w4W7GeO3ocNtg3ta1d0=;
+        b=gkng6OzNloX47S9V78qyUaQcmdIMR1mPZtnUt0kQa6Bd6Dr0+VLWee3sUR5hfCMoDZ
+         iswt0Z2WCc8fpm/G01+nzBh7zqAAZzTi9mllZyTK0eD0ogePxhs0w0R9V245ZxKY7pjB
+         jGtf3oSlHA6sW63oag+CUyD51BAdiEtb/l1YRKnms9mH8raNL4JWCuOFmzYBY3b0xzKE
+         K10ywFxNZEaHWO4La+qSvl4ZPug3ZMFDEIkuBL3VQuKhRSUGmiZmZnCXW2vgJb0ZCQNI
+         gLEJrThEDUeVsxn+b4R0UqIMFRPX7YiIGvfRqfKz6JXoa8c74OslyJeJpBRnob0DGG2u
+         o7lQ==
+X-Gm-Message-State: APjAAAX49mniqTkPL/SpnA7NvhBDYvRO+wRqZkUABEbmPxTHG9ndp8W4
+        3m/3HEQJ6e/GO3mQVU/XiA==
+X-Google-Smtp-Source: APXvYqzapDf3fokSpvCVuLAz5B7sSKanwGbCWsfa7ySh7AxQQjSWEWwVf940e/gnVHbg7SCtd6pd/g==
+X-Received: by 2002:a9d:3f26:: with SMTP id m35mr168799otc.66.1568744004009;
+        Tue, 17 Sep 2019 11:13:24 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id e18sm982788oib.57.2019.09.17.11.13.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2019 11:13:22 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 13:13:22 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     krzk@kernel.org, vireshk@kernel.org, robh+dt@kernel.org,
+        kgene@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>
+Subject: Re: [PATCH v4 2/6] dt-bindings: samsung: Update the CHIP ID binding
+  documentation
+Message-ID: <20190917181322.GA683@bogus>
+References: <20190910123618.27985-1-s.nawrocki@samsung.com>
+ <CGME20190910123637eucas1p26d2051f9bdd1bdf4510f1908ea98f641@eucas1p2.samsung.com>
+ <20190910123618.27985-3-s.nawrocki@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190902145245.GC1445@ulmo>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190910123618.27985-3-s.nawrocki@samsung.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 02, 2019 at 04:52:45PM +0200, Thierry Reding wrote:
-> On Mon, Sep 02, 2019 at 03:22:35PM +0100, Robin Murphy wrote:
-> > On 29/08/2019 12:14, Thierry Reding wrote:
-> > > From: Thierry Reding <treding@nvidia.com>
-> > > 
-> > > For device tree nodes, use the standard of_iommu_get_resv_regions()
-> > > implementation to obtain the reserved memory regions associated with a
-> > > device.
-> > 
-> > This covers the window between iommu_probe_device() setting up a default
-> > domain and the device's driver finally probing and taking control, but
-> > iommu_probe_device() represents the point that the IOMMU driver first knows
-> > about this device - there's still a window from whenever the IOMMU driver
-> > itself probed up to here where the "unidentified" traffic may have already
-> > been disrupted. Some IOMMU drivers have no option but to make the necessary
-> > configuration during their own probe routine, at which point a struct device
-> > for the display/etc. endpoint may not even exist yet.
+On Tue, 10 Sep 2019 14:36:14 +0200, Sylwester Nawrocki wrote:
+> This patch adds documentation of a new optional "samsung,asv-bin"
+> property in the chipid device node and documents requirement of
+> "syscon" compatible string.  These additions are needed to support
+> Exynos ASV (Adaptive Supply Voltage) feature.
 > 
-> Yeah, I think I'm actually running into this issue with the ARM SMMU
-> driver. The above works fine with the Tegra SMMU driver, though, because
-> it doesn't touch the SMMU configuration until a device is attached to a
-> domain.
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> ---
+> Changes since v3:
+>  - none
 > 
-> For anything earlier than iommu_probe_device(), I don't see a way of
-> doing this generically. I've been working on a prototype to make these
-> reserved memory regions early on for ARM SMMU but I've been failing so
-> far. I think it would possibly work if we just switched the default for
-> stream IDs to be "bypass" if they have any devices that have reserved
-> memory regions, but again, this isn't quite working (yet).
+> Changes since v2:
+>  - corrected patch summary line prefix, the patch moved in the
+>    sequence
+> 
+> Changes since v1 (RFC):
+>  - new patch
+> ---
+>  .../devicetree/bindings/arm/samsung/exynos-chipid.txt  | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
+> 
 
-I think we should avoid the use of "bypass" outside of the IOMMU probe()
-routine if at all possible, since it leaves the thing wide open if we don't
-subsequently probe the master.
-
-Why can't we initialise a page-table early for StreamIDs with these
-reserved regions, and then join that up later on if we see a device with
-one of those StreamIDs attaching to a DMA domain? I suppose the nasty
-case would be attaching to a domain that already has other masters
-attached to it. Can we forbid that somehow for these devices? Otherwise,
-I think we'd have to transiently switch to bypass whilst switching page
-table.
-
-What problems did you run into trying to implement this?
-
-Will
+Reviewed-by: Rob Herring <robh@kernel.org>
