@@ -2,54 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF4C6B4C58
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:56:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC3C7B4C6C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:59:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726519AbfIQK4I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 06:56:08 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:60953 "EHLO
+        id S1726820AbfIQK7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 06:59:08 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57419 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726516AbfIQK4I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 06:56:08 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        with ESMTP id S1726888AbfIQK7I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 06:59:08 -0400
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.lab.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1iAB9P-0006Ak-Nu; Tue, 17 Sep 2019 12:56:03 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        id 1iABCK-0006HK-Uq; Tue, 17 Sep 2019 12:59:04 +0200
+Received: from mfe by dude02.lab.pengutronix.de with local (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1iAB9P-0004Ih-7G; Tue, 17 Sep 2019 12:56:03 +0200
-Date:   Tue, 17 Sep 2019 12:56:03 +0200
+        id 1iABCK-0000Na-Gu; Tue, 17 Sep 2019 12:59:04 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Adam Thomson <Adam.Thomson.Opensource@diasemi.com>
-Cc:     Support Opensource <Support.Opensource@diasemi.com>,
-        Steve Twiss <stwiss.opensource@diasemi.com>,
-        "dmitry.torokhov@gmail.com" <dmitry.torokhov@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-input@vger.kernel.org" <linux-input@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [PATCH 2/4] input: misc: da9063_onkey: add mode change support
-Message-ID: <20190917105603.6mhiyqnmeiz43dxb@pengutronix.de>
-References: <20190916140358.30036-1-m.felsch@pengutronix.de>
- <20190916140358.30036-3-m.felsch@pengutronix.de>
- <AM5PR1001MB0994427D3D456A68B827CFD8808C0@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
- <20190917101847.h22mtdtqbrlvdpxb@pengutronix.de>
- <AM5PR1001MB0994F5DB42CEADD614FA680F808F0@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
- <AM5PR1001MB099450E2B3AF6D7266FB2344808F0@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
+To:     linus.walleij@linaro.org, bgolaszewski@baylibre.com,
+        robh+dt@kernel.org, support.opensource@diasemi.com,
+        Adam.Thomson.Opensource@diasemi.com
+Cc:     devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH 0/3] Add DA9062 GPIO support
+Date:   Tue, 17 Sep 2019 12:58:59 +0200
+Message-Id: <20190917105902.445-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <AM5PR1001MB099450E2B3AF6D7266FB2344808F0@AM5PR1001MB0994.EURPRD10.PROD.OUTLOOK.COM>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 12:51:53 up 122 days, 17:10, 67 users,  load average: 0.02, 0.02,
- 0.00
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
 X-SA-Exim-Mail-From: mfe@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
@@ -58,139 +40,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-09-17 10:49, Adam Thomson wrote:
-> On 17 September 2019 11:45, Adam Thomson wrote:
-> 
-> > > Hi Adam,
-> > >
-> > > On 19-09-16 15:01, Adam Thomson wrote:
-> > > > On 16 September 2019 15:04, Marco Felsch wrote:
-> > > >
-> > > > > The pmic state machine behaviour upon a 'onkey press' event can be
-> > > > > configured using the ONKEY_PIN bit field. Most the time this is
-> > > > > configured correct by the OTP but sometimes we need to adjust the
-> > > > > behaviour so we need to add the support here.
-> > > > >
-> > > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > > ---
-> > > > >  drivers/input/misc/da9063_onkey.c | 10 ++++++++++
-> > > > >  drivers/mfd/da9062-core.c         |  1 +
-> > > > >  2 files changed, 11 insertions(+)
-> > > > >
-> > > > > diff --git a/drivers/input/misc/da9063_onkey.c
-> > > > > b/drivers/input/misc/da9063_onkey.c
-> > > > > index fd355cf59397..bc982fcc87eb 100644
-> > > > > --- a/drivers/input/misc/da9063_onkey.c
-> > > > > +++ b/drivers/input/misc/da9063_onkey.c
-> > > > > @@ -40,6 +40,7 @@ struct da9063_onkey {
-> > > > >  	const struct da906x_chip_config *config;
-> > > > >  	char phys[32];
-> > > > >  	bool key_power;
-> > > > > +	u8 key_opmode;
-> > > > >  };
-> > > > >
-> > > > >  static const struct da906x_chip_config da9063_regs = {
-> > > > > @@ -193,6 +194,7 @@ static int da9063_onkey_probe(struct
-> > platform_device
-> > > > > *pdev)
-> > > > >  {
-> > > > >  	struct da9063_onkey *onkey;
-> > > > >  	const struct of_device_id *match;
-> > > > > +	unsigned int val;
-> > > > >  	int irq;
-> > > > >  	int error;
-> > > > >
-> > > > > @@ -220,6 +222,14 @@ static int da9063_onkey_probe(struct
-> > > platform_device
-> > > > > *pdev)
-> > > > >  	onkey->key_power = !of_property_read_bool(pdev->dev.of_node,
-> > > > >  						  "dlg,disable-key-power");
-> > > > >
-> > > > > +	if (!of_property_read_u32(pdev->dev.of_node, "dlg,key-opmode",
-> > > > > &val)) {
-> > > > > +		error = regmap_update_bits(onkey->regmap,
-> > > > > DA9062AA_CONFIG_I,
-> > > > > +					   DA9062AA_NONKEY_PIN_MASK,
-> > > > > +					   val << DA9062AA_NONKEY_PIN_SHIFT);
-> > > > > +		if (error)
-> > > > > +			return error;
-> > > > > +	}
-> > > > > +
-> > > >
-> > > > This driver is used to cover DA9061, DA9062 and DA9063. This binding
-> > therefore
-> > > > can apply to any of those as there's no checking of which device is being used.
-> > > > For DA9063 usage, if this option is present then the probe will fail as your
-> > > > regmap range update below only takes care of DA9061/2.
-> > >
-> > > That's right and I only updated the da9061/2 bindings..
-> > 
-> > D'oh! That's what comes from taking a holiday the week before. :|
-> 
-> Actually I was right the first time. There's one binding covering this driver
-> for the 3 devices so my original point was valid although if that register is
-> in the valid regmap_range for DA9063 then it would succeed.
+Hi,
 
-You're right, there is a bit of mixing the naming.. The driver is called
-da9063 and the binding is called da9062-onkey.txt.. Anyway, as you said
-the regmap_range will be valid for both cases :)
-
-> > 
-> > >
-> > > > Ideally I think you should update the da906x_chip_config structure for this to
-> > > > support all devices as I believe the same or similar options are available for
-> > > > DA9063.
-> > >
-> > > After checking the da9062/3 register.h this bitfield is the same for
-> > > da9062/3 devices. What about adding a comment here? The CONFIG_I
-> > > register is already writeable for the da9063 devices.
-> > 
-> > Given the current implementation of this driver only uses tables to access the
-> > correct registers and masks for each device, it would be neater to follow this
-> > approach, although I am aware the register addresses and bit fields are the same.
-
-That's right because they are needed on other places during the value
-evaluation. This register is only set once during probe and shouldn't be
-changed afterwards.
+this series adds the PMIC mfd GPIO support. In addition to the other
+DA90* implementations it adds a small helper function which can be used
+by the other da9062 drivers. Also instead of setting the GPIO input
+logic statically to active-low as the da9052/53 drivers do we extract
+the logic from the device tree.
 
 Regards,
   Marco
 
-> > 
-> > > Regards,
-> > >   Marco
-> > >
-> > > >
-> > > > >  	onkey->input = devm_input_allocate_device(&pdev->dev);
-> > > > >  	if (!onkey->input) {
-> > > > >  		dev_err(&pdev->dev, "Failed to allocated input device.\n");
-> > > > > diff --git a/drivers/mfd/da9062-core.c b/drivers/mfd/da9062-core.c
-> > > > > index e69626867c26..aaa1f1841bc3 100644
-> > > > > --- a/drivers/mfd/da9062-core.c
-> > > > > +++ b/drivers/mfd/da9062-core.c
-> > > > > @@ -510,6 +510,7 @@ static const struct regmap_range
-> > > > > da9062_aa_writeable_ranges[] = {
-> > > > >  	regmap_reg_range(DA9062AA_VLDO1_B, DA9062AA_VLDO4_B),
-> > > > >  	regmap_reg_range(DA9062AA_BBAT_CONT, DA9062AA_BBAT_CONT),
-> > > > >  	regmap_reg_range(DA9062AA_GP_ID_0, DA9062AA_GP_ID_19),
-> > > > > +	regmap_reg_range(DA9062AA_CONFIG_I, DA9062AA_CONFIG_I),
-> > > > >  };
-> > > > >
-> > > > >  static const struct regmap_range da9062_aa_volatile_ranges[] = {
-> > > > > --
-> > > > > 2.20.1
-> > > >
-> > > >
-> > >
-> > > --
-> > > Pengutronix e.K.                           |                             |
-> > > Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-> > > Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-> > > Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-> 
+Marco Felsch (3):
+  dt-bindings: mfd: da9062: add gpio bindings
+  mfd: da9062: add support for the DA9062 GPIOs in the core
+  gpio: da9062: add driver support
+
+ .../devicetree/bindings/gpio/gpio-da9062.txt  |  26 ++
+ .../devicetree/bindings/mfd/da9062.txt        |   3 +
+ drivers/gpio/Kconfig                          |  11 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-da9062.c                    | 265 ++++++++++++++++++
+ drivers/mfd/da9062-core.c                     |  16 +-
+ include/linux/mfd/da9062/gpio.h               |  13 +
+ 7 files changed, 334 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-da9062.txt
+ create mode 100644 drivers/gpio/gpio-da9062.c
+ create mode 100644 include/linux/mfd/da9062/gpio.h
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.20.1
+
