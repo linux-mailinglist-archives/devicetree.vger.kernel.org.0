@@ -2,89 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D13AFB5028
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42831B502A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727252AbfIQOQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 10:16:51 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:39726 "EHLO uho.ysoft.cz"
+        id S1727397AbfIQORC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 10:17:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53680 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726308AbfIQOQv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 10:16:51 -0400
-Received: from [10.1.8.111] (unknown [10.1.8.111])
-        by uho.ysoft.cz (Postfix) with ESMTP id B9B5DA0782;
-        Tue, 17 Sep 2019 16:16:48 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1568729808;
-        bh=26ULHVdLw4mMiJNu6T4YmXbO9stl3BMJSTkuys/RJcY=;
-        h=From:Subject:To:Cc:References:Date:In-Reply-To:From;
-        b=U9Q32iVd/Ip9mYFyMCl9+bH74KqQasMWKgGDuXTuiayojM78GLB2/EdPWU477SkRn
-         +omwwRwkTfdNVLFzSrd8WbKUG3XKG/9GPy/VBUAjFZpI61nJvcSnZS43y304okE9W7
-         3KcuGziwd/ZbTI5PQ/0dsaZAI4+z1Jwl7kGREaNA=
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Subject: Re: [PATCH input-next 1/4] dt-bindings: input: Convert mpr121 binding
- to json-schema
-To:     Rob Herring <robh@kernel.org>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
- <1567424417-3914-2-git-send-email-michal.vokac@ysoft.com>
- <20190903065615.GA17646@bogus>
-Message-ID: <29307819-fcac-cbf8-0439-23c831d87278@ysoft.com>
-Date:   Tue, 17 Sep 2019 16:16:48 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726308AbfIQORC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 10:17:02 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C12AE21881;
+        Tue, 17 Sep 2019 14:17:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568729821;
+        bh=Eg8W+ajEjKC/yv26EKpx0aghgM1YzYkbqgvgzwL6m70=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=L7lqaxOLT5sbCuHbPI4FGhSu/i6bMYZnJblkyL6+O0ELC4RXb0ENmhALA06QYVYY/
+         YC+4vA+gw8No3ATPGpdFOtolAEhYHf602PKGC4G2nVX3JV8i9ug94+3Pp8dLeNTcE6
+         DeqDnX4hNYyZ7cxUrm+4j9FEKtDS+TtJZ2EqEvsc=
+Received: by mail-qk1-f182.google.com with SMTP id s18so4181486qkj.3;
+        Tue, 17 Sep 2019 07:17:01 -0700 (PDT)
+X-Gm-Message-State: APjAAAV7WndghdO0Ee8xoksVufoXFTOIizasmS+VV+gnVRGaLYSfLMB5
+        6xKRDYknEpgcKRrJF3Ux34h0zV8NjrWux2l5mA==
+X-Google-Smtp-Source: APXvYqwA+ubotuCAbjbaEOhJ5K5H7G+033DyzYBBdrIaGwC3kGgavUiXjVBx7mnqkjhKNrrdOhiiMmBJPcgvh8IBMbc=
+X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr3680849qkb.119.1568729820993;
+ Tue, 17 Sep 2019 07:17:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190903065615.GA17646@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190917083453.25744-1-heiko@sntech.de>
+In-Reply-To: <20190917083453.25744-1-heiko@sntech.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 17 Sep 2019 09:16:49 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+OkHMEzx3goQoUt9xvfuGLbu4v7VD5y6wqrNYp96-z7g@mail.gmail.com>
+Message-ID: <CAL_Jsq+OkHMEzx3goQoUt9xvfuGLbu4v7VD5y6wqrNYp96-z7g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: rockchip: fix Theobroma-System board bindings
+To:     Heiko Stuebner <heiko@sntech.de>
+Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Christoph Muellner <christoph.muellner@theobroma-systems.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03. 09. 19 8:56, Rob Herring wrote:
-> On Mon, Sep 02, 2019 at 01:40:14PM +0200, Michal Vokáč wrote:
->> Convert the mpr121 binding to DT schema format using json-schema.
->>
->> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
->> ---
->> Hi Rob,
->>
->> I will appreciate your help converting this binding. Currently
->> the scheme is not valid and the error output of dt_binding_check
->> is not really helpful.
-> 
-> What's the error? I don't see anything obvious.
+On Tue, Sep 17, 2019 at 3:35 AM Heiko Stuebner <heiko@sntech.de> wrote:
+>
+> The naming convention for the existing Theobroma boards is
+> soc-q7module-baseboard, so rk3399-puma-haikou and the in-kernel
+> devicetrees also follow that scheme.
+>
+> For some reason in the binding a wrong or outdated naming slipped
+> in which does not match the used devicetrees and makes the dt-schema
+> complain now.
+>
+> Fix this by using the names used in the wild by actual boards.
 
-After some trial & error attempts I found few issues:
+Perhaps a Fixes tag.
 
-  - Wrong placement of description for wakeup-source. Solved.
-  - Missing coma between <KEY_4>, <KEY_5> values in the example. Solved.
-  - DTC complained about invalid reg property length in the example.
-    Solved by placing the mpr121 subnode into i2c {}; node and adding
-    #address-cells and #size-cells properties.
-  - The linux,keycodes property also requires type definition. Unresolved.
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-    What type should be used? Neither uint32-array nor uint32-matrix work.
-    The linux,keycodes list is not correctly validated against the maxItems
-    value. When I set maxItems less then the number of keycodes, it does not
-    complain.
-
->> Also, who shoud be the maintainer of this binding?
->> I put Dmitry in there as he is the input subsystem maintainer but
->> I am not sure it is correct.
-> 
-> My preference is the author or driver maintainer.
-
-Then Dmitry seems to be the best match here I think.
-
->>   .../bindings/input/fsl,mpr121-touchkey.yaml        | 64 ++++++++++++++++++++++
->>   .../devicetree/bindings/input/mpr121-touchkey.txt  | 30 ----------
->>   2 files changed, 64 insertions(+), 30 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/input/mpr121-touchkey.txt
-
+Reviewed-by: Rob Herring <robh@kernel.org>
