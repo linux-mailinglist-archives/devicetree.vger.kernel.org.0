@@ -2,113 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4632B56E3
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 845EBB56ED
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbfIQU0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:26:08 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38765 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726340AbfIQU0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:26:08 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 7so4057737oip.5;
-        Tue, 17 Sep 2019 13:26:06 -0700 (PDT)
+        id S1726283AbfIQU1K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 16:27:10 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38756 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726025AbfIQU1K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:27:10 -0400
+Received: by mail-ot1-f67.google.com with SMTP id e11so3130292otl.5;
+        Tue, 17 Sep 2019 13:27:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=LE6muq6DF6isoZR/jFwLhHoNo1OQsllS8+mpGqFMlcI=;
-        b=qsWGGK0jpwo2WoUgAUlCYEjWfOU8pLwxRCHLp3P1rk90uCwh+vHu0Q6SvV2lm96PRP
-         Lk3Nc9J7iBKfUBLVmx4uj3e3q0Jfy5TaAxUyMolU8zXDm99JGIIRJP+QGOPWQS54sQdb
-         PlRYrgdEAi4eqN9ORNo8uNm5FRbmZ+7+k01Bp8bC8+OFEdpstvOVEzEQfNLITTUINzj3
-         v4DNZb9qWML0ZVJZSaIiOlYaCgpA3CJYGx5xdN4a8Oasndq9UuqufDOifICak0EIhpZD
-         DX5KrzoOM1B4WlRZ++LCTcb/xt2LC8yTmuhEVDs1GTfQpFDTiraF/KDvGQuqp/F1qJVD
-         EL7A==
-X-Gm-Message-State: APjAAAXLA+3qDEZEyd44Hcwd7tsyyfM/iKCraJujh2h+4/tWGbzGoTwh
-        Nqc3eDZEfDCBXKGJipqQvQ==
-X-Google-Smtp-Source: APXvYqz9R0jVNNt++vA8IX57/Plgke+2Op/5SKkfm76NEAH8w/fGzSLq8DkTcIvLsJPOensO7/vbJg==
-X-Received: by 2002:aca:ba57:: with SMTP id k84mr4970810oif.167.1568751966435;
-        Tue, 17 Sep 2019 13:26:06 -0700 (PDT)
+        bh=s83Wv5uCp+7Qj+4GmDjA5Ca5EmGbCciwbwiS4sYI9qI=;
+        b=gFZS8NE1Es47IPtbTmIi6oe0cVE1jjwhGTWnqsaEYFzPf/H6L+1rUmFaiwVd8NJDgf
+         xntJDmcMw2WkilbCzhV0nQEz385lFhzoylYNLh4lEqUfUT7HmzQXRBFY2fwTt3mkW5d/
+         xhxiPfA9uPqBYDXJt2ghYFoLRaZV5yASWCQeXXOd3pe4JaJFlgMVn9ut56X0RniSUh7H
+         vrr70ndw4Tnk1aLvjhkJzaHtVjnnpTim8BM8GFTe2wKJeFk3ytpO6Jx0HkswFK9wQZsk
+         ceXtEXd2o4QdSjDq/IUnFtE1xDtoRU4dw/L/nJ/emIyQ4kOClB0k4mYo3oXlVrfYOmYk
+         qSmQ==
+X-Gm-Message-State: APjAAAX96p2RmuIgTripemnt6IyEzxjpIEZvYnL9Y2EI9gqP8AxCGKXc
+        yujRIH8JtI1Xu5Jg/E/es3VFo7AUHQ==
+X-Google-Smtp-Source: APXvYqyBsKu4pZeTpW1VfblTNNE7l4+9V7A8vmvIBWG8fqYJX20migoouN+/XxWz8CBFdryNxUXvmA==
+X-Received: by 2002:a05:6830:1047:: with SMTP id b7mr625204otp.68.1568752029207;
+        Tue, 17 Sep 2019 13:27:09 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v132sm1137445oif.34.2019.09.17.13.26.05
+        by smtp.gmail.com with ESMTPSA id k3sm1026619otn.38.2019.09.17.13.27.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 13:26:05 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 15:26:05 -0500
+        Tue, 17 Sep 2019 13:27:08 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 15:27:08 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        linux-input@vger.kernel.org, Denis Carikli <denis@eukrea.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] Input: tsc2007 - use GPIO descriptor
-Message-ID: <20190917202605.GA8121@bogus>
-References: <20190823071021.5598-1-linus.walleij@linaro.org>
- <20190826220022.GA7663@dtor-ws>
+Subject: Re: [PATCH v2 02/11] dt-bindings: phy-mtk-tphy: make the ref clock
+ optional
+Message-ID: <20190917202708.GA11898@bogus>
+References: <1567149298-29366-1-git-send-email-chunfeng.yun@mediatek.com>
+ <1567149298-29366-2-git-send-email-chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190826220022.GA7663@dtor-ws>
+In-Reply-To: <1567149298-29366-2-git-send-email-chunfeng.yun@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 26, 2019 at 03:00:22PM -0700, Dmitry Torokhov wrote:
-> Hi Linus,
+On Fri, 30 Aug 2019 15:14:49 +0800, Chunfeng Yun wrote:
+> Make the ref clock optional, then we no need refer to a fixed-clock
+> in DTS anymore when the clock of USB3 PHY comes from oscillator
+> directly
 > 
-> On Fri, Aug 23, 2019 at 09:10:21AM +0200, Linus Walleij wrote:
-> > This switches the TSC2007 to use a GPIO descriptor to read
-> > the pendown GPIO line.
-> > 
-> > As this will make the gpiolib start to respect polarity
-> > inversion flags on the GPIO lines, drop the inversion when
-> > reading the line with gpio_get_value(), fix two offenders
-> > in the i.MX device trees, and also emphasize the importance
-> > of marking the polarity right in the device tree bindings.
-> > 
-> > Cc: Denis Carikli <denis@eukrea.com>
-> > Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-> > Cc: NXP Linux Team <linux-imx@nxp.com>
-> > Cc: H. Nikolaus Schaller <hns@goldelico.com>
-> > Cc: devicetree@vger.kernel.org
-> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> > ---
-> > ChangeLog v1->v2:
-> > - Drop inversion on the GPIO descriptor value, rely on the
-> >   gpiolib to handle polarity inversion.
-> > - Comb through device trees, identify two offenders, fix
-> >   them as part of the patch for a clean cut.
-> > - Also fix the device tree bindings.
-> > ---
-> >  .../bindings/input/touchscreen/tsc2007.txt         |  5 +++--
-> >  arch/arm/boot/dts/imx35-eukrea-cpuimx35.dtsi       |  3 ++-
-> >  arch/arm/boot/dts/imx51-eukrea-cpuimx51.dtsi       |  3 ++-
-> >  drivers/input/touchscreen/tsc2007.h                |  4 +++-
-> >  drivers/input/touchscreen/tsc2007_core.c           | 14 +++++++-------
-> >  5 files changed, 17 insertions(+), 12 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> > index ed00f61b8c08..b08b54d49699 100644
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/tsc2007.txt
-> > @@ -7,7 +7,8 @@ Required properties:
-> >  
-> >  Optional properties:
-> >  - gpios: the interrupt gpio the chip is connected to (trough the penirq pin).
-> > -  The penirq pin goes to low when the panel is touched.
-> > +  The penirq pin goes to low when the panel is touched, so make sure to tag
-> > +  the GPIO line with GPIO_ACTIVE_LOW.
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v2: no changes
+> ---
+>  .../devicetree/bindings/phy/phy-mtk-tphy.txt        | 13 +++++++------
+>  1 file changed, 7 insertions(+), 6 deletions(-)
 > 
-> I think this is too strong. I am sure that one can come up with a way to
-> connect the attention signal though polarity inverter and then one would
-> have to specify GPIO_ACTIVE_HIGH in the DT.
-> 
-> Can we say:
-> 
-> The penirq pin goes to low when the panel is touched, so GPIO line
-> should normally be tagged with GPIO_ACTIVE_LOW.
 
 Acked-by: Rob Herring <robh@kernel.org>
