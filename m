@@ -2,107 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72BA8B5052
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4B40B5057
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727772AbfIQO0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 10:26:34 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([81.169.146.164]:25713 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725922AbfIQO0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 10:26:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1568730389;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=To:References:Message-Id:Cc:Date:In-Reply-To:From:Subject:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=8Hka5X/r+hzmoKvFtI6p5MPdNGRJa/0fGujvCNAxwys=;
-        b=EjnzOXYHs3M+uQk0XR6CqMf12OLdDlPWur/87/urZNp/L79XTkZT8uqBjvrosN/SDK
-        TAAc9fwlZh9wHwyNCRy5v8EbKAmD3bgIFGGJ3Dw/sYkvB2oXZq+OiIk6u56fpKlxagRc
-        WvLzhuFI/PqGA4l1+kxviWAxkMCKIi7CMk0OBbDmh38md4bXhUfJ132jmMHO8ALzih6f
-        iPtm+qNTugoa69Ht8AqqtdrL9n0SSmdsiZT/k9efP25e2gzmBx9d63u0d7gZDoitmCFX
-        6kTsBs/ER8rV5r2wOVEuXbhAj3DVyhdpPnqBAttTSkq/v7Kw5m267TgiElx0SwP14Onc
-        F9Lw==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMgPgp8VKxflSZ1P34KBp5hRw/qOxWRk4dCyjDPUnsm74p9Jk5n8FSUKszBBBGbD3SfhNo/8="
-X-RZG-CLASS-ID: mo00
-Received: from [IPv6:2001:16b8:266f:d200:a80b:f72:f57a:c422]
-        by smtp.strato.de (RZmta 44.27.0 AUTH)
-        with ESMTPSA id u036f9v8HEQGXMX
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Tue, 17 Sep 2019 16:26:16 +0200 (CEST)
-Subject: Re: [Letux-kernel] [PATCH 2/2] DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again
-Mime-Version: 1.0 (Mac OS X Mail 9.3 \(3124\))
+        id S1727945AbfIQO2L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 10:28:11 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:39479 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725922AbfIQO2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 10:28:10 -0400
+Received: by mail-ot1-f66.google.com with SMTP id s22so3223537otr.6;
+        Tue, 17 Sep 2019 07:28:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=dq5KSLPgssnZJkXSQ/7XfJ9L3JyQqyDlXS5uQBl4Tyc=;
+        b=qADoi4KGGeekjNr8hgtMqgYOoGHzwHJMzF8P1jd9dsBt1oLQ7HOzkKpIEUuA87zrCW
+         N1VCK1XSwboXXHV02Rg02OeleieoFWqonHWWEOWjPQPCm8gYKvUm5UXhvjm3n2itd+23
+         3DmnTlOvPoNMakBBClXsAk4snphNRDJaRQyR6GXzRWV3c6pkM26iorxB7JB2t19Vx64D
+         2R1bf6kR2X/m8fGy2JSgfDNOkjVu4MX87L0LqLLCB4KvGLCfZ5pzia5MZ5mTSr9Y3pY2
+         2DLIhI3PLjanV8cnzaAiPzx5niP6kSHhAfJtdTsAO3xEswgrYfVz0mtzof7JJzD7KXLq
+         DZxg==
+X-Gm-Message-State: APjAAAX0TyZ/nLmePMje8wYp4uNilREpVw8CKZSRHaCBMhgjN23te30O
+        VlCkDPRwgZE8JU6sNoB13qlCKMY=
+X-Google-Smtp-Source: APXvYqyKeVBb7FDox3duyXtElvoxiAR3ydGskKPrIwTLgPjUgRPdZc4Aekd8EIPkn7mTC8YkHehpsQ==
+X-Received: by 2002:a9d:7b4d:: with SMTP id f13mr2740477oto.365.1568730489731;
+        Tue, 17 Sep 2019 07:28:09 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id 94sm718166oty.44.2019.09.17.07.28.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2019 07:28:08 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 09:28:08 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Eugen.Hristev@microchip.com
+Cc:     wsa@the-dreams.de, peda@axentia.se, mark.rutland@arm.com,
+        Ludovic.Desroches@microchip.com, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
+        Nicolas.Ferre@microchip.com
+Subject: Re: [PATCH v5 2/9] dt-bindings: i2c: add bindings for i2c analog and
+ digital filter
+Message-ID: <20190917142808.GA7900@bogus>
+References: <1568189911-31641-1-git-send-email-eugen.hristev@microchip.com>
+ <1568189911-31641-3-git-send-email-eugen.hristev@microchip.com>
+MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-In-Reply-To: <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com>
-Date:   Tue, 17 Sep 2019 16:26:15 +0200
-Cc:     Discussions about the Letux Kernel <letux-kernel@openphoenux.org>,
-        Rob Herring <robh@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        stable <stable@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <1624298A-C51B-418A-96C3-EA09367A010D@goldelico.com>
-References: <cover.1562597164.git.hns@goldelico.com> <8ae7cf816b22ef9cecee0d789fcf9e8a06495c39.1562597164.git.hns@goldelico.com> <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com> <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com> <CACRpkdY0AVnkRa8sV_Z54qfX9SYufvaYYhU0k2+LitXo0sLx2w@mail.gmail.com> <20190831084852.5e726cfa@aktux> <ED6A6797-D1F9-473B-ABFF-B6951A924BC1@goldelico.com> <CACRpkdZQgPVvB=78vOFsHe5n45Vwe4N6JJOcm1_vz5FbAw9CYA@mail.gmail.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: Apple Mail (2.3124)
+Content-Disposition: inline
+In-Reply-To: <1568189911-31641-3-git-send-email-eugen.hristev@microchip.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lunus,
+On Wed, Sep 11, 2019 at 08:24:20AM +0000, Eugen.Hristev@microchip.com wrote:
+> From: Eugen Hristev <eugen.hristev@microchip.com>
+> 
+> Some i2c controllers have a built-in digital or analog filter.
+> This is specifically required depending on the hardware PCB/board.
+> Some controllers also allow specifying the maximum width of the
+> spikes that can be filtered for digital filter. The width length can be
+> specified in nanoseconds.
+> Analog filters can be configured to have a cutoff frequency (low-pass filter).
+> This frequency can be specified in Hz.
+> Added an optional property for such types of analog filters.
+> 
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c.txt | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 
-> Am 17.09.2019 um 00:52 schrieb Linus Walleij =
-<linus.walleij@linaro.org>:
->=20
-> On Mon, Sep 16, 2019 at 12:59 PM H. Nikolaus Schaller =
-<hns@goldelico.com> wrote:
->=20
->> ping.
->>=20
->> Device omap3-gta04 is neither working with v5.3 nor linux-next quite =
-a while and we need a solution.
->=20
-> Can't we just apply the last part of the patch in this thread:
->=20
-> diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi
-> b/arch/arm/boot/dts/omap3-gta04.dtsi
-> index 9a9a29fe88ec..47bab8e1040e 100644
-> --- a/arch/arm/boot/dts/omap3-gta04.dtsi
-> +++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-> @@ -124,6 +124,7 @@
->                        spi-max-frequency =3D <100000>;
->                        spi-cpol;
->                        spi-cpha;
-> +                       spi-cs-high;
->=20
->                        backlight=3D <&backlight>;
->                        label =3D "lcd";
->=20
->=20
-> Surely this fixes the problem?
-
-yes, it is a workaround, but appears to violate some policies.
-E.g. the spi-cs-high; is undocumented but DT bindings maintainer
-seems to be against documenting it as I had proposed in my
-other patch.
-
-Rather he seems to have proposed a white-list in the driver code.
-So that the legacy mode is only becoming active for those systems
-which really need the legacy mode instead of everyone.
-
-Then, we do not need this patch for GTA04.
-
-So its up to you to decide which way to go. We are happy with
-any one that makes mainline work again asap...
-
-BR and thanks,
-Nikolaus
-
+Reviewed-by: Rob Herring <robh@kernel.org>
