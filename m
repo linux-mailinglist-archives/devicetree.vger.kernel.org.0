@@ -2,70 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EC31FB49C6
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 10:48:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40420B49BC
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 10:45:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729610AbfIQIsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 04:48:08 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:47572 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732592AbfIQIsI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 04:48:08 -0400
-Received: from ip5f5a6266.dynamic.kabel-deutschland.de ([95.90.98.102] helo=phil.fritz.box)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1iA8pL-0005ZY-5l; Tue, 17 Sep 2019 10:27:11 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-rockchip@lists.infradead.org,
-        christoph.muellner@theobroma-systems.com,
-        Heiko Stuebner <heiko@sntech.de>
-Subject: [PATCH 13/13] arm64: dts: rockchip: enable usb2phy on px30-evb
-Date:   Tue, 17 Sep 2019 10:26:59 +0200
-Message-Id: <20190917082659.25549-13-heiko@sntech.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190917082659.25549-1-heiko@sntech.de>
-References: <20190917082659.25549-1-heiko@sntech.de>
+        id S1730328AbfIQIpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 04:45:09 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:39495 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726564AbfIQIpJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 04:45:09 -0400
+Received: from localhost (aclermont-ferrand-651-1-259-53.w86-207.abo.wanadoo.fr [86.207.98.53])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 2351324000A;
+        Tue, 17 Sep 2019 08:45:05 +0000 (UTC)
+Date:   Tue, 17 Sep 2019 10:45:04 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Biwen Li <biwen.li@nxp.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org, mark.rutland@arm.com,
+        leoyang.li@nxp.com, linux-rtc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Martin Fuzzey <mfuzzey@parkeon.com>
+Subject: Re: [v4,1/2] dt-bindings: rtc: pcf85263/pcf85363: add some properties
+Message-ID: <20190917084504.GD21254@piout.net>
+References: <20190910104247.13142-1-biwen.li@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190910104247.13142-1-biwen.li@nxp.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the phy node ion the px30 evb board.
+On 10/09/2019 18:42:46+0800, Biwen Li wrote:
+> Add some properties for pcf85263/pcf85363 as follows:
+>   - nxp,rtc-interrupt-type: integer type
+>   - nxp,rtc-interrupt-output-pin: string type
+>   - quartz-load-femtofarads: integer type
+>   - nxp,quartz-drive-strength: integer type
+>   - nxp,quartz-low-jitter: bool type
+>   - wakeup-source: bool type
+> 
+> Signed-off-by: Martin Fuzzey <mfuzzey@parkeon.com>
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> ---
+> Change in v4:
+> 	- Drop robust defines in include/dt-bindings/rtc/pcf85363.h
+> 	- Add nxp,rtc-interrupt-type property
+> 	- Replace interrupt-output-pin with nxp,rtc-interrupt-output-pin
+> 
+> Change in v3:
+> 	- None
+> 
+> Change in v2:
+> 	- Replace properties name
+> 	  quartz-load-capacitance -> quartz-load-femtofarads
+> 	  quartz-drive-strength -> nxp,quartz-drive-strength
+> 	  quartz-low-jitter -> nxp,quartz-low-jitter
+> 	- Replace drive strength name
+> 	  PCF85263_QUARTZDRIVE_NORMAL -> PCF85263_QUARTZDRIVE_100ko
+> 	  PCF85263_QUARTZDRIVE_LOW -> PCF85263_QUARTZDRIVE_60ko
+> 	  PCF85263_QUARTZDRIVE_HIGH -> PCF85263_QUARTZDRIVE_500ko
+> 	- Set default interrupt-output-pin as "INTA"
+> 
+>  .../devicetree/bindings/rtc/pcf85363.txt      | 44 ++++++++++++++++++-
+>  include/dt-bindings/rtc/pcf85363.h            | 14 ++++++
+>  2 files changed, 57 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/rtc/pcf85363.h
+> 
+> diff --git a/Documentation/devicetree/bindings/rtc/pcf85363.txt b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+> index 94adc1cf93d9..fc1579463657 100644
+> --- a/Documentation/devicetree/bindings/rtc/pcf85363.txt
+> +++ b/Documentation/devicetree/bindings/rtc/pcf85363.txt
+> @@ -8,10 +8,52 @@ Required properties:
+>  Optional properties:
+>  - interrupts: IRQ line for the RTC (not implemented).
+>  
+> +- nxp,rtc-interrupt-type: integer property, represent the interrupt's
+> +  type. Valid values are
+> +  INT_PIE(periodic interrupt enable),
+> +  INT_OIE(offset correction interrupt enable),
+> +  INT_A1IE(alarm1 interrupt enable),
+> +  INT_A2IE(alarm2 interrupt enable),
+> +  INT_TSRIE(timestamp register interrupt enable)
+> +  INT_BSIE(battery switch interrupt enable),
+> +  INT_WDIE(WatchDog interrupt enable,and
+> +  compose these values such as: INT_A1IE | INT_A2IE,
+> +  but currently only support INT_A1IE, default value is INT_A1IE.
+> +  The property and property nxp,rtc-interrupt-output-pin
+> +  work together to generate some interrupts on some pins.
+> +
+> +- nxp,rtc-interrupt-output-pin: The interrupt output pin must be
+> +  "INTA" or "INTB", default value is "INTA". The property and property
+> +  nxp,rtc-interrupt-type work together to generate some interrupts on
+> +  some pins.
+> +
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/arm64/boot/dts/rockchip/px30-evb.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+This binding still doesn't work because there may be any combination of
+interrupts on any of the two pins that this binding doesn't allow.
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-index 1185a314ba4a..936ed7d71ffc 100644
---- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-@@ -485,6 +485,18 @@
- 	status = "okay";
- };
- 
-+&u2phy {
-+	status = "okay";
-+
-+	u2phy_host: host-port {
-+		status = "okay";
-+	};
-+
-+	u2phy_otg: otg-port {
-+		status = "okay";
-+	};
-+};
-+
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart1_xfer &uart1_cts>;
+> +- quartz-load-femtofarads: The internal capacitor to select for the quartz,
+> +  expressed in femto Farad (fF). Valid values are 6000, 7000 and 12500.
+> +  Default value is 12500fF.
+> +
+> +- nxp,quartz-drive-strength: Drive strength for the quartz,
+> +  expressed in kilo ohms (kOhm) Valid values are 60, 100 and 500.
+> +  Default value is 100kOhm.
+> +
+
+It makes more sense to have quartz-drive-strength-ohms as a generic
+property.
+
+
 -- 
-2.20.1
-
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
