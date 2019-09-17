@@ -2,70 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42831B502A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:17:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4F56B502C
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:17:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727397AbfIQORC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 10:17:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53680 "EHLO mail.kernel.org"
+        id S1727582AbfIQORF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 10:17:05 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:39762 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726308AbfIQORC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 10:17:02 -0400
-Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C12AE21881;
-        Tue, 17 Sep 2019 14:17:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568729821;
-        bh=Eg8W+ajEjKC/yv26EKpx0aghgM1YzYkbqgvgzwL6m70=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L7lqaxOLT5sbCuHbPI4FGhSu/i6bMYZnJblkyL6+O0ELC4RXb0ENmhALA06QYVYY/
-         YC+4vA+gw8No3ATPGpdFOtolAEhYHf602PKGC4G2nVX3JV8i9ug94+3Pp8dLeNTcE6
-         DeqDnX4hNYyZ7cxUrm+4j9FEKtDS+TtJZ2EqEvsc=
-Received: by mail-qk1-f182.google.com with SMTP id s18so4181486qkj.3;
-        Tue, 17 Sep 2019 07:17:01 -0700 (PDT)
-X-Gm-Message-State: APjAAAV7WndghdO0Ee8xoksVufoXFTOIizasmS+VV+gnVRGaLYSfLMB5
-        6xKRDYknEpgcKRrJF3Ux34h0zV8NjrWux2l5mA==
-X-Google-Smtp-Source: APXvYqwA+ubotuCAbjbaEOhJ5K5H7G+033DyzYBBdrIaGwC3kGgavUiXjVBx7mnqkjhKNrrdOhiiMmBJPcgvh8IBMbc=
-X-Received: by 2002:a05:620a:7da:: with SMTP id 26mr3680849qkb.119.1568729820993;
- Tue, 17 Sep 2019 07:17:00 -0700 (PDT)
+        id S1726439AbfIQORD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 10:17:03 -0400
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id EF81EA0782;
+        Tue, 17 Sep 2019 16:17:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1568729822;
+        bh=c9mbWedV/usEjSrrvP1MD/ArbLL9o/obpMinlNbkgJs=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=F0qtEjn7pofb3hIFoE2OyGkVJD8Tq8Hx43eVBkgOxf/BMzoDi0tcISekGXmhOK80T
+         jVSRYnMDElKQx+mcU8Vd/lelZXkJuiUk7QUY6+kb1bn10gvTciRZHWM7NE5FqngB7U
+         PKnf9+DqyiNsmgCUhG0thaZWf47IJ8QKbmQXNxl0=
+Subject: Re: [PATCH input-next 2/4] dt-bindings: input: mpr121: Add
+ poll-interval property
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
+ <1567424417-3914-3-git-send-email-michal.vokac@ysoft.com>
+ <20190903070123.GA15981@bogus>
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Message-ID: <c8c909e5-1e1f-23a7-dc22-f112fcaeab4c@ysoft.com>
+Date:   Tue, 17 Sep 2019 16:17:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190917083453.25744-1-heiko@sntech.de>
-In-Reply-To: <20190917083453.25744-1-heiko@sntech.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Sep 2019 09:16:49 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+OkHMEzx3goQoUt9xvfuGLbu4v7VD5y6wqrNYp96-z7g@mail.gmail.com>
-Message-ID: <CAL_Jsq+OkHMEzx3goQoUt9xvfuGLbu4v7VD5y6wqrNYp96-z7g@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: rockchip: fix Theobroma-System board bindings
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Christoph Muellner <christoph.muellner@theobroma-systems.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190903070123.GA15981@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 3:35 AM Heiko Stuebner <heiko@sntech.de> wrote:
+On 03. 09. 19 9:01, Rob Herring wrote:
+> On Mon, Sep 02, 2019 at 01:40:15PM +0200, Michal Vokáč wrote:
+>> Add an option to periodicaly poll the device to get the buttons states
+>> as the interrupt line may not be used on some platforms.
+>>
+>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+>> ---
+>> I am not sure how to propperly handle this.
+>> Either interrupt or linux,poll-interval is required, but not both.
+> 
+> Add this at the top level:
+> 
+> oneOf:
+>    - required: [ interrupts ]
+>    - required: [ linux,poll-interval ]
 >
-> The naming convention for the existing Theobroma boards is
-> soc-q7module-baseboard, so rk3399-puma-haikou and the in-kernel
-> devicetrees also follow that scheme.
->
-> For some reason in the binding a wrong or outdated naming slipped
-> in which does not match the used devicetrees and makes the dt-schema
-> complain now.
->
-> Fix this by using the names used in the wild by actual boards.
 
-Perhaps a Fixes tag.
+Nice, works as expected.
+  
+>>
+>>   .../bindings/input/fsl,mpr121-touchkey.yaml          | 20 +++++++++++++++++++-
+>>   1 file changed, 19 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>> index c463c1c81755..2b3073a3c9f4 100644
+>> --- a/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>> +++ b/Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>> @@ -34,6 +34,10 @@ properties:
+>>       minItems: 1
+>>       maxItems: 12
+>>   
+>> +  linux,poll-interval:
+>> +    description: Poll interval time in milliseconds.
+>> +    maxItems: 1
+> 
+> We already have 'poll-interval' in several bindings. Use that.
 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+OK, will do.
+linux,poll-intervall was initially suggested by Dmitry but AFAICT he is OK
+with this.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> This should have a type definition and you don't need maxItems:
+> 
+> $ref: /schemas/types.yaml#/definitions/uint32
+
+OK.
+
+> Really this should go in a common input schema doc.
+
+I am not sure how to deal with this. Do you suggest to create
+
+  Documentation/devicetree/bindings/input/input.yaml
+
+and put all the common input properties there? Something like:
+
+diff --git a/Documentation/devicetree/bindings/input/input.yaml b/Documentation/devicetree/bindings/input/input.yaml
+new file mode 100644
+index 000000000000..5dc10ebdfdf0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/input/input.yaml
+@@ -0,0 +1,24 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/input/input.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Common input schema binding
++
++maintainers:
++  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
++
++properties:
++  linux,keycodes:
++    description:
++      Specifies an array of numeric keycode values to be used for reporting
++      button presses. The array can contain up to 12 entries.
++    minItems: 1
++    maxItems: 12
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++
++  poll-interval:
++    description: Poll interval time in milliseconds.
++    $ref: /schemas/types.yaml#/definitions/uint32
++
+---
+
+Or something else?
+And what is the impact on the fsl,mpr121-touchkey.yaml content/format?
+I could not find any example in any subsystem of such approach.
+
+Thank you,
+Michal
+
+>> +
+>>     wakeup-source: Use any event on keypad as wakeup event.
+>>       type: boolean
+>>   
+>> @@ -44,12 +48,12 @@ properties:
+>>   required:
+>>     - compatible
+>>     - reg
+>> -  - interrupts
+>>     - vdd-supply
+>>     - linux,keycodes
+>>   
+>>   examples:
+>>     - |
+>> +    // Example with interrupts
+>>       #include "dt-bindings/input/input.h"
+>>       touchkey: mpr121@5a {
+>>           compatible = "fsl,mpr121-touchkey";
+>> @@ -62,3 +66,17 @@ examples:
+>>                            <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
+>>                            <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
+>>       };
+>> +
+>> +  - |
+>> +    // Example with polling
+>> +    #include "dt-bindings/input/input.h"
+>> +    touchkey: mpr121@5a {
+>> +        compatible = "fsl,mpr121-touchkey";
+>> +        reg = <0x5a>;
+>> +        linux,poll-interval = <20>;
+>> +        autorepeat;
+>> +        vdd-supply = <&ldo4_reg>;
+>> +        linux,keycodes = <KEY_0>, <KEY_1>, <KEY_2>, <KEY_3>,
+>> +                         <KEY_4> <KEY_5>, <KEY_6>, <KEY_7>,
+>> +                         <KEY_8>, <KEY_9>, <KEY_A>, <KEY_B>;
+>> +    );
+>> -- 
+>> 2.1.4
+>>
+
