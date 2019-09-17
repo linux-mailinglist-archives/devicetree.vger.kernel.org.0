@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44890B5697
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF07B56AD
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:08:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726843AbfIQUBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:01:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726668AbfIQUBm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 16:01:42 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B9313214AF;
-        Tue, 17 Sep 2019 20:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568750501;
-        bh=Che2+9+ePoUuGZV/h3gxyTYSugwlLxiZHrpBbNST7tU=;
-        h=In-Reply-To:References:Cc:To:From:Subject:Date:From;
-        b=NT6KqF8XvAQFJRCWcD/2ejgKGLjoEZN6nYr++HDJeb3ghE3e9ctBtccsz+h7KQGrc
-         ebYzv9TqEbDI80Mq8b4BYzGO2onxdYpkrKQO3nwIA5vaWgK09xdHl6so/l90tYBMK+
-         2m5gtoJYEqfa38QXLidx1ZBBI3oSb25yLAZgVZXo=
-Content-Type: text/plain; charset="utf-8"
+        id S1728481AbfIQUIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 16:08:18 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:38095 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726806AbfIQUIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:08:18 -0400
+Received: by mail-oi1-f195.google.com with SMTP id 7so4014345oip.5;
+        Tue, 17 Sep 2019 13:08:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Hogc/92S8/u/DUogFIB6MZH6mO5Gji1BbREYssF21ZI=;
+        b=f8FjVTlDwxI4rxUpP/iT+21WbETKApCKdqaRiR+jSY+phmxh0MXtaYQwEMayynCtMa
+         M3jme15ApErHzXQAwyb0x66jyOmYOm3dCBN/s4EFatgeHGYy/CJ0jymfqBXlUj1Pb8gL
+         XQrgxDhCeO4vaD0P5KJMVMUSBYuZQemrr6IVf+sHW5aPBLaX6YHzN4BbkcPDejWvCKWe
+         GYUSV/cZ23Fe6+f4p9eUFFyeKOJahnCO2i50qSc5an5bNM9WjTQlxKHj/t693RE1fQld
+         BXn4p6rbVrnHBF7yQFeuSzMrsjuX/4A+uRDpbNT09M9oNOemHJ9BVsMpnQubcR09vthO
+         RSRQ==
+X-Gm-Message-State: APjAAAVePGEFZKVXK94lVVXENUuK/O7zfMmA+GvXBIt1RAVthXHawuoE
+        MtSosYM2JuX4dmfCtih6xg==
+X-Google-Smtp-Source: APXvYqzFGTenJyiV9FyX5Dm5tzOndO9FlAzGE1mpSP3LOGeYCu62xyqYJaDeLNgqxRiN0ELUJbqGsQ==
+X-Received: by 2002:a05:6808:302:: with SMTP id i2mr3244340oie.176.1568750897306;
+        Tue, 17 Sep 2019 13:08:17 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i17sm994400oii.3.2019.09.17.13.08.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2019 13:08:16 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 15:08:16 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Maciej Falkowski <m.falkowski@samsung.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        airlied@linux.ie, daniel@ffwll.ch, robh+dt@kernel.org,
+        mark.rutland@arm.com, krzk@kernel.org, a.hajda@samsung.com,
+        m.szyprowski@samsung.com, m.falkowski@samsung.com
+Subject: Re: [PATCH v3] dt-bindings: gpu: Convert Samsung Image Rotator to
+  dt-schema
+Message-ID: <20190917200816.GA10224@bogus>
+References: <20190913062945.GA10283@pi3>
+ <CGME20190917103758eucas1p10793e499209137630681186a10a4b7bd@eucas1p1.samsung.com>
+ <20190917103727.14997-1-m.falkowski@samsung.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190916154546.24982-2-manivannan.sadhasivam@linaro.org>
-References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org> <20190916154546.24982-2-manivannan.sadhasivam@linaro.org>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
-        linus.walleij@linaro.org, linux-clk@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        afaerber@suse.de, robh+dt@kernel.org, ulf.hansson@linaro.org
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 1/7] clk: actions: Fix factor clk struct member access
-User-Agent: alot/0.8.1
-Date:   Tue, 17 Sep 2019 13:01:40 -0700
-Message-Id: <20190917200141.B9313214AF@mail.kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190917103727.14997-1-m.falkowski@samsung.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Manivannan Sadhasivam (2019-09-16 08:45:40)
-> Since the helper "owl_factor_helper_round_rate" is shared between factor
-> and composite clocks, using the factor clk specific helper function
-> like "hw_to_owl_factor" to access its members will create issues when
-> called from composite clk specific code. Hence, pass the "factor_hw"
-> struct pointer directly instead of fetching it using factor clk specific
-> helpers.
->=20
-> This issue has been observed when a composite clock like "sd0_clk" tried
-> to call "owl_factor_helper_round_rate" resulting in pointer dereferencing
-> error.
->=20
-> While we are at it, let's rename the "clk_val_best" function to
-> "owl_clk_val_best" since this is an owl SoCs specific helper.
->=20
-> Fixes: 4bb78fc9744a ("clk: actions: Add factor clock support")
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+On Tue, 17 Sep 2019 12:37:27 +0200, Maciej Falkowski wrote:
+> Convert Samsung Image Rotator to newer dt-schema format.
+> 
+> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > ---
+> v3:
+> - remove unneded comments and descriptions
+> - remove unneded maxItems field from clock-names property
+> ---
+>  .../bindings/gpu/samsung-rotator.txt          | 28 -----------
+>  .../bindings/gpu/samsung-rotator.yaml         | 48 +++++++++++++++++++
+>  2 files changed, 48 insertions(+), 28 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpu/samsung-rotator.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+> 
 
-Applied to clk-next
+Applied, thanks.
 
+Rob
