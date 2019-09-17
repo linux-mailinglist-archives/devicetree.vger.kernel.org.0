@@ -2,194 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B76B4D6A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 14:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78AB2B4D66
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 14:06:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727113AbfIQMGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 08:06:53 -0400
-Received: from mail-pf1-f181.google.com ([209.85.210.181]:44767 "EHLO
-        mail-pf1-f181.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726763AbfIQMGx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 08:06:53 -0400
-Received: by mail-pf1-f181.google.com with SMTP id q21so2028777pfn.11;
-        Tue, 17 Sep 2019 05:06:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=FmaO2hIKfEbiI+f6oV8Mh0M6shwqo+19QJDyKV05Pnw=;
-        b=OvS4ojQBeoC+/4WbqZFZaUwHBZ1lYe6ooi7JevjECbZZn8D6kRDPSYOQwopFlbpSX4
-         ieDN/xAqntB8jvkaNh++lCNmFRFf7aaa5kOEBaiWYIZbuMFascb7Cy9B/OA3IDAenv2q
-         03JXa2gx/TPNlqUmae2/1tLkyZrs/1OAH232IsCHLjGZjH0tGP8K4C6KL6fNo4bpjdZp
-         MHDGnDR+GwDFZzYZsPnm8ZItSzxX74uuWE1ZJbeDgjlinIHQrIXnnCWG+bQvdqQ5BURp
-         1eQ6hmehdzNcIoDyj8CRZtwbSSRxfsa1L9CDoUQztRRmFTScrLOsio8zxOFOP0uRn5/C
-         5j+g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=FmaO2hIKfEbiI+f6oV8Mh0M6shwqo+19QJDyKV05Pnw=;
-        b=P12C9tVO7UbkAkd68/K7cZqxtZgTPtjuO8xqRoxaGLlHhuQu4yX/Ipzp55QQpLDbmI
-         /FPIVwwvkDqgNAjNtGllF8OY9+JLq0X8fOSzLYjqGljwkfBaSEk9W1uHueO3E/ESopQy
-         15xqQH1V7AMqt2J6MntJKxGz/NuCM+co9olqYWrIL2wa9lhFLGIjZ8nuCrQGMIJs+y9N
-         HlS2YUsDOtZTstU2+TyG4lo6IquAbmq+uddq2AXfKEUbiKpi0W1MNRO2zaN1FHeZkq/b
-         1T4Jgm/5AipNLyj6AzxSm++a2f8CwkyOdxf0nARXhnW7Yk4A1ATO1jGX/Ew97Xjq/mck
-         mcYQ==
-X-Gm-Message-State: APjAAAWXTgFrs6VYFiIJaxOGykij0dcVo74GaihSQAttX17t0G9SUKcs
-        jhezrbJjzeck1uqz2EetxPAP9h85
-X-Google-Smtp-Source: APXvYqxTBZL1mpcWMYnoO/gitpViJQgONQymTcvSiAu7iXlVGtKwTgzG1jJU1jPi74jz9FZOzD12FA==
-X-Received: by 2002:a17:90a:2a4a:: with SMTP id d10mr4596436pjg.72.1568722011592;
-        Tue, 17 Sep 2019 05:06:51 -0700 (PDT)
-Received: from localhost.localdomain (p1607031-ipngn15601marunouchi.tokyo.ocn.ne.jp. [153.204.132.31])
-        by smtp.gmail.com with ESMTPSA id c128sm2494200pfc.166.2019.09.17.05.06.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 17 Sep 2019 05:06:50 -0700 (PDT)
-From:   Yoshihiro Kaneko <ykaneko0929@gmail.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: [PATCH] dt-bindings: irqchip: renesas-irqc: convert bindings to json-schema
-Date:   Tue, 17 Sep 2019 21:06:12 +0900
-Message-Id: <1568721972-24266-1-git-send-email-ykaneko0929@gmail.com>
-X-Mailer: git-send-email 1.9.1
+        id S1727478AbfIQMGh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 08:06:37 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:59947 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726616AbfIQMGh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 08:06:37 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190917120636euoutp01706c5f6cd7a4373c700126f67c17b2f3~FOFgWFbin3097530975euoutp010
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2019 12:06:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190917120636euoutp01706c5f6cd7a4373c700126f67c17b2f3~FOFgWFbin3097530975euoutp010
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1568721996;
+        bh=F+K6DpAwBVxjsgY/t1njI26Ph1Zyasw/JStH2ygMML8=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=JIZSedQMus46TOWPAyFxeBmkeG0jCrJpmjgRBW3NJnxS8fyd6GIdtXMawZKnlRDcg
+         /lrXiqUfjTD/PdDpCqjMwrlR5KsjNmJJOLeRjoSHaE33Tvb04XKQ94ge1z6fYfNGO5
+         Udsjp+gttOK/mxy9VcJAPgMjs2a4MRReJiudAXBg=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190917120635eucas1p2478a3be2e7530954dec8e3ac7401df42~FOFflNBmZ0999409994eucas1p2h;
+        Tue, 17 Sep 2019 12:06:35 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 08.C8.04374.B4CC08D5; Tue, 17
+        Sep 2019 13:06:35 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5~FOFe1FmH-0999409994eucas1p2g;
+        Tue, 17 Sep 2019 12:06:34 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190917120634eusmtrp204d933922ebe17ddc87561189e95aa75~FOFem1hc30498804988eusmtrp2S;
+        Tue, 17 Sep 2019 12:06:34 +0000 (GMT)
+X-AuditID: cbfec7f5-4f7ff70000001116-44-5d80cc4bf6ab
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id D5.14.04166.A4CC08D5; Tue, 17
+        Sep 2019 13:06:34 +0100 (BST)
+Received: from AMDC2459.digital.local (unknown [106.120.51.95]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190917120633eusmtip1d575e4d8348d03e071cb08485b0a87ab~FOFeA4bdY2136821368eusmtip1S;
+        Tue, 17 Sep 2019 12:06:33 +0000 (GMT)
+From:   Maciej Falkowski <m.falkowski@samsung.com>
+To:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     krzk@kernel.org, sbkim73@samsung.com, s.nawrocki@samsung.com,
+        lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, a.hajda@samsung.com,
+        m.szyprowski@samsung.com, m.falkowski@samsung.com
+Subject: [PATCH v2 2/2] dt-bindings: sound: Convert Samsung SMDK audio
+ complex
+Date:   Tue, 17 Sep 2019 14:06:27 +0200
+Message-Id: <20190917120627.28357-1-m.falkowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190917111413.22711-1-m.falkowski@samsung.com>
+X-Brightmail-Tracker: H4sIAAAAAAAAA0WSbUhTYRTHe+69u7uOZtc58EFn0kCiIDVndCGTyqCL9sEvBSqWN72o5Kbt
+        qmlSzkydFqlBmpIvEelac6kT38IlS5IsmuL7WyjtizFDmRnGsna9Rt9+//85/+ccDg+BylpE
+        /kSGJofVaphMJS7Bet5v24/FftIlhc09w6h582cRNTluQ6jHKw6cah72SLu9Q0xtTeoRamLg
+        KU49sVsRarnEjFPtw0ti6sXMOEKVDg6LqXfOchE1bthEznjTHa67OG1qMgG6v2FJTHcZK3D6
+        YbcR0K6ug3F4giQylc3MyGO1oVHJkvTy1lEsu12e3zPkRnTgpU8l8CIgGQHv99qxSiAhZKQB
+        wJ3+70AQmwBa6hZwQbgAtK1Oi/9FDA79XqQNwKpVB8IXdiMlxVKecTIMVjkHMZ7l5B1YU9uE
+        8gGUXAFwcdC1+5IvGQfNLVMinjEyGBaPbuz6UjISrk/UIcK0IPiqYwjl2Ys8DRvnf4sE3yiG
+        nStEJSA8fB46DecE2xd+G+neW1QB//Q3I0JLIZzeCuRXgOQ9AGdq13Ch5xR0G2twvgclj8DX
+        A6GCfRY+mOK35KPecHZt91qoBx/11KGCLYX6MpmAwdBZnSQEA2Cp6S0QmIb1+tK9C1YD6Kof
+        Q6pBUMP/WS0AGIEfm8up01hOpWFvhnCMmsvVpIWkZKm7gOfffNwZ+dEHrO5rNkASQLlfOmsp
+        SpKJmDyuQG0DkECVcmncbY8lTWUKbrHarKva3EyWs4EAAlP6SQv3LSfKyDQmh73Ostms9l8V
+        Ibz8dWAuvyzoV0k3arKqLitKy674mDu/LjwvSVEcms1oOqHVyQryqizWeA23daBYNTGVziXE
+        bhd8MNKNjHzkcGLFyfkv6/Ftvsn4pcDQ8J/hF6Sq6AVanxqjm+4be1OUERFjqeZiWkWNs3aF
+        ZsOB66PcfZaAG9FIb4AfqrjoNbCoxLh05vhRVMsxfwGoNQoJMwMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFmpnkeLIzCtJLcpLzFFi42I5/e/4XV2vMw2xBlfXC1rcWneO1eLKxUNM
+        FlMfPmGzmH8EyD1/fgO7xbcrHUwWl3fNYbOYcX4fk8WD5nVsFmuP3GW3WHr9IpNF694j7BaH
+        37SzWlxc8YXJgc9jw+cmNo8189YweuycdZfdY9OqTjaPvi2rGD0+b5ILYIvSsynKLy1JVcjI
+        Ly6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy2hfdoqlYK1IxbYDf5ga
+        GFcKdjFyckgImEiseNLB0sXIxSEksJRRouPeJkaIhLTE/msf2SFsYYk/17rYIIo+MUr03V/C
+        BpJgEzCQ6H+zF6xbRKCJUWL+zZ9gDrPAW0aJlh2HmECqhAX8JB719YCNYhFQlWg8BTGWV8BG
+        4sPl6UwQK+QlVm84wAxicwrYSsy99ZcVxBYCqln65Az7BEa+BYwMqxhFUkuLc9Nziw31ihNz
+        i0vz0vWS83M3MQIjYduxn5t3MF7aGHyIUYCDUYmH98Cphlgh1sSy4srcQ4wSHMxKIrwBtfWx
+        QrwpiZVVqUX58UWlOanFhxhNgY6ayCwlmpwPjNK8knhDU0NzC0tDc2NzYzMLJXHeDoGDMUIC
+        6YklqdmpqQWpRTB9TBycUg2MeVf/TrVJiJh5qHbKduFA3iWCxinJinPWX241VKxfxvxNwZ8n
+        /9PuktZDDWFTjUzaOErFQ16yff+Y7NDPMZvLKPRn+UY/ySNz1YQPMEfpf0h045GYyHHn5EFT
+        obRJtwprNi/j/iKimLCvZ8b5F7LrNc6Zb0p/Ih2RcPcY56O2xs/y1htuuPMpsRRnJBpqMRcV
+        JwIAt7uxd5oCAAA=
+X-CMS-MailID: 20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5
+References: <20190917111413.22711-1-m.falkowski@samsung.com>
+        <CGME20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Renesas Interrupt Controller bindings documentation to json-schema.
+Convert Samsung SMDK audio complex to newer dt-schema format.
 
-Signed-off-by: Yoshihiro Kaneko <ykaneko0929@gmail.com>
+Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 ---
- .../bindings/interrupt-controller/renesas,irqc.txt | 48 ----------------
- .../interrupt-controller/renesas,irqc.yaml         | 64 ++++++++++++++++++++++
- 2 files changed, 64 insertions(+), 48 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+v2:
+- Added missing Signed-off-by certificate
+---
+ .../bindings/sound/samsung,smdk-wm8994.txt    | 14 -------
+ .../bindings/sound/samsung,smdk-wm8994.yaml   | 38 +++++++++++++++++++
+ 2 files changed, 38 insertions(+), 14 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
+diff --git a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
 deleted file mode 100644
-index f977ea7..0000000
---- a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.txt
+index 4686646fb122..000000000000
+--- a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
 +++ /dev/null
-@@ -1,48 +0,0 @@
--DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
+@@ -1,14 +0,0 @@
+-Samsung SMDK audio complex
 -
 -Required properties:
--
--- compatible: must be "renesas,irqc-<soctype>" or "renesas,intc-ex-<soctype>",
--	      and "renesas,irqc" as fallback.
--  Examples with soctypes are:
--    - "renesas,irqc-r8a73a4" (R-Mobile APE6)
--    - "renesas,irqc-r8a7743" (RZ/G1M)
--    - "renesas,irqc-r8a7744" (RZ/G1N)
--    - "renesas,irqc-r8a7745" (RZ/G1E)
--    - "renesas,irqc-r8a77470" (RZ/G1C)
--    - "renesas,irqc-r8a7790" (R-Car H2)
--    - "renesas,irqc-r8a7791" (R-Car M2-W)
--    - "renesas,irqc-r8a7792" (R-Car V2H)
--    - "renesas,irqc-r8a7793" (R-Car M2-N)
--    - "renesas,irqc-r8a7794" (R-Car E2)
--    - "renesas,intc-ex-r8a774a1" (RZ/G2M)
--    - "renesas,intc-ex-r8a774c0" (RZ/G2E)
--    - "renesas,intc-ex-r8a7795" (R-Car H3)
--    - "renesas,intc-ex-r8a7796" (R-Car M3-W)
--    - "renesas,intc-ex-r8a77965" (R-Car M3-N)
--    - "renesas,intc-ex-r8a77970" (R-Car V3M)
--    - "renesas,intc-ex-r8a77980" (R-Car V3H)
--    - "renesas,intc-ex-r8a77990" (R-Car E3)
--    - "renesas,intc-ex-r8a77995" (R-Car D3)
--- #interrupt-cells: has to be <2>: an interrupt index and flags, as defined in
--  interrupts.txt in this directory
--- clocks: Must contain a reference to the functional clock.
--
--Optional properties:
--
--- any properties, listed in interrupts.txt, and any standard resource allocation
--  properties
--
+-- compatible : "samsung,smdk-wm8994"
+-- samsung,i2s-controller: The phandle of the Samsung I2S0 controller
+-- samsung,audio-codec: The phandle of the WM8994 audio codec
 -Example:
 -
--	irqc0: interrupt-controller@e61c0000 {
--		compatible = "renesas,irqc-r8a7790", "renesas,irqc";
--		#interrupt-cells = <2>;
--		interrupt-controller;
--		reg = <0 0xe61c0000 0 0x200>;
--		interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
--			     <0 1 IRQ_TYPE_LEVEL_HIGH>,
--			     <0 2 IRQ_TYPE_LEVEL_HIGH>,
--			     <0 3 IRQ_TYPE_LEVEL_HIGH>;
--		clocks = <&mstp4_clks R8A7790_CLK_IRQC>;
--	};
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
+-sound {
+-		compatible = "samsung,smdk-wm8994";
+-
+-		samsung,i2s-controller = <&i2s0>;
+-		samsung,audio-codec = <&wm8994>;
+-};
+diff --git a/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
 new file mode 100644
-index 0000000..f08d368
+index 000000000000..a66c0dfdeb57
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/renesas,irqc.yaml
-@@ -0,0 +1,64 @@
++++ b/Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
+@@ -0,0 +1,38 @@
++# SPDX-License-Identifier: GPL-2.0
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/interrupt-controller/renesas,irqc.yaml#
-+$schema: http://devicetree.org/meta-schemas/interrupts.yaml#
++$id: http://devicetree.org/schemas/sound/samsung,smdk-wm8994.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: DT bindings for the R-Mobile/R-Car/RZ/G interrupt controller
++title: Samsung SoC SMDK audio complex
 +
 +maintainers:
-+  - Geert Uytterhoeven <geert+renesas@glider.be>
++  - Krzysztof Kozlowski <krzk@kernel.org>
++  - Sangbeom Kim <sbkim73@samsung.com>
++  - Sylwester Nawrocki <s.nawrocki@samsung.com>
 +
 +properties:
 +  compatible:
-+    items:
-+      - enum:
-+          - renesas,irqc-r8a73a4        # R-Mobile APE6
-+          - renesas,irqc-r8a7743        # RZ/G1M
-+          - renesas,irqc-r8a7744        # RZ/G1N
-+          - renesas,irqc-r8a7745        # RZ/G1E
-+          - renesas,irqc-r8a77470       # RZ/G1C
-+          - renesas,irqc-r8a7790        # R-Car H2
-+          - renesas,irqc-r8a7791        # R-Car M2-W
-+          - renesas,irqc-r8a7792        # R-Car V2H
-+          - renesas,irqc-r8a7793        # R-Car M2-N
-+          - renesas,irqc-r8a7794        # R-Car E2
-+          - renesas,intc-ex-r8a774a1    # RZ/G2M
-+          - renesas,intc-ex-r8a774c0    # RZ/G2E
-+          - renesas,intc-ex-r8a7795     # R-Car H3
-+          - renesas,intc-ex-r8a7796     # R-Car M3-W
-+          - renesas,intc-ex-r8a77965    # R-Car M3-N
-+          - renesas,intc-ex-r8a77970    # R-Car V3M
-+          - renesas,intc-ex-r8a77980    # R-Car V3H
-+          - renesas,intc-ex-r8a77990    # R-Car E3
-+          - renesas,intc-ex-r8a77995    # R-Car D3
-+      - const: renesas,irqc
++    const: "samsung,smdk-wm8994"
 +
-+  '#interrupt-cells':
-+    # an interrupt index and flags, as defined in interrupts.txt in
-+    # this directory
-+    const: 2
++  samsung,i2s-controller:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the Samsung I2S0 controller
 +
-+  clocks:
-+    maxItems: 1
++  samsung,audio-codec:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: The phandle of the WM8994 audio codec
 +
 +required:
 +  - compatible
-+  - '#interrupt-cells'
-+  - clocks
++  - samsung,i2s-controller
++  - samsung,audio-codec
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/r8a7790-clock.h>
-+
-+    irqc0: interrupt-controller@e61c0000 {
-+        compatible = "renesas,irqc-r8a7790", "renesas,irqc";
-+        #interrupt-cells = <2>;
-+        interrupt-controller;
-+        reg = <0 0xe61c0000 0 0x200>;
-+        interrupts = <0 0 IRQ_TYPE_LEVEL_HIGH>,
-+                     <0 1 IRQ_TYPE_LEVEL_HIGH>,
-+                     <0 2 IRQ_TYPE_LEVEL_HIGH>,
-+                     <0 3 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&mstp4_clks R8A7790_CLK_IRQC>;
++    sound {
++        compatible = "samsung,smdk-wm8994";
++        samsung,i2s-controller = <&i2s0>;
++        samsung,audio-codec = <&wm8994>;
 +    };
++
 -- 
-1.9.1
+2.17.1
 
