@@ -2,178 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB85FB4AED
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 11:41:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F648B4B70
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:03:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728793AbfIQJki convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 17 Sep 2019 05:40:38 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38769 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727534AbfIQJki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 05:40:38 -0400
-Received: by mail-oi1-f196.google.com with SMTP id 7so2272331oip.5;
-        Tue, 17 Sep 2019 02:40:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=uCmhvMwVcStuHY/v3SQn/MtQSiOlz7f/42X793jLSYQ=;
-        b=Jo1up/lMJjjxsVJMkPUcYVgcuRIIjgTGYOnx3bODNDys91Dm3+zOhs+JHvdcnFdMWv
-         7jaQkEqGEtgDCQ6AO3VY+HcvY0TIoUh9/4zfk2c9QVLC8anTny/Zdkd4JheCjMO408L4
-         Ac1FD22qk1YARwS57LamqJT7GMSEH7ZbU+pCTs8U350yCcykJemC29Hf2cJBfAuo3lIM
-         fXq7Q3Te3dMyTXQnNDXzu6CVvLUWDNPEFDNh2+WswzX6+Duzx5b36kbeqRbAG1e8EGXo
-         IQZFhiizcilk+MgomYoe3X+ICPDQ7O0qNzCKR+SNN4ezYZaoukVEr8OSZnr7Mvb3Lhlm
-         zEHg==
-X-Gm-Message-State: APjAAAWtvfyzM0zQuwzScHTL+60aVuOc0Aff0UkDktZGKiqzm+NyaSwk
-        KkN3hQUi581aeXVQIuI2jsYQVQ425uy+XBeT1bo=
-X-Google-Smtp-Source: APXvYqy9QAOEl+I70QDj9XZms1oF+JXpX7r5yoYeHsSGg7Usn7nSuv+ezrLNvK9aaeHKMGjyGfXMvQQYURv3Ven7TAk=
-X-Received: by 2002:aca:cdc7:: with SMTP id d190mr2793514oig.148.1568713237546;
- Tue, 17 Sep 2019 02:40:37 -0700 (PDT)
+        id S1726496AbfIQKDU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 06:03:20 -0400
+Received: from dc8-smtprelay2.synopsys.com ([198.182.47.102]:37682 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726482AbfIQKDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 06:03:20 -0400
+Received: from mailhost.synopsys.com (badc-mailhost1.synopsys.com [10.192.0.17])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 7135AC0E0B;
+        Tue, 17 Sep 2019 10:03:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1568714598; bh=surh/H/yvKorjvOXHP4YiDr62kVl/pQn+BviV+7LozU=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=h6VeJ4VCRRSdkGIXTQMlwVauYr+ksU1TFPzC9zkFfeY4HzIj852RrZs8IaxdR/80l
+         mh0dClalmlOmoGOcSh4mRuR9Zragx8cVHaBeK4cjIU7goIVturiYpA0dhO73sV6mRg
+         mlHyDNOPwQLCOXgUU4PtaUvhQcmBYH1skIEY/UcK4Tpml67rnCwp1II8SiTBOTUXL9
+         lP0Hbm1A932XXBhsgYPzbSogylYmbPU3aJot8GfrTKr3yoNYOyCFh2cJk249tCphK/
+         mjfZMY0ULMvW8Qi4zHnvhxJYuIKXZqqA0inIKbNIk8MEgT5zdJqKVtnenA5cm8OxYD
+         XZ5JEKj82TsCw==
+Received: from US01WEHTC3.internal.synopsys.com (us01wehtc3.internal.synopsys.com [10.15.84.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id D566FA005A;
+        Tue, 17 Sep 2019 10:03:08 +0000 (UTC)
+Received: from US01HYBRID2.internal.synopsys.com (10.15.246.24) by
+ US01WEHTC3.internal.synopsys.com (10.15.84.232) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Tue, 17 Sep 2019 03:03:07 -0700
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com (10.13.134.195)
+ by mrs.synopsys.com (10.15.246.24) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Tue, 17 Sep 2019 03:03:07 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hzGahz6A38vRA5ZYh7nhBvTOyEZNMaqTG1R6Cl6z5RF5tavM3XM1Q90y98i0TxB6kWqtLzA14qlrVmIvFYe4yOYL+FRRYDJ5N6/MfED1KfdBwwUuLIQ/j/E/xjM0PI4M595Sn2dqfFEd2Zuuf4VsoM5xVYA317TQl2ts2dYP+tPhg/Yf9AZeUXbKVKVjn2f9VirshMP/SHwrftI3RUSFkpTEKZ9nY7NDU3ykQx5nvWnCsX138GfaBuvLcExqQ+blBDjUxFj8Kf2tBKQrFSNPDfz4ilwTRuZ6GWeHUxsCE8kQ0Zp5QpNNYLwJQJKW36fKphx9RK1zu/V8xCKd68qAMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ogxdiieH+kDtDiHj5HMtKHopzvCzb0h066DZHTOxNSM=;
+ b=S+IuBL7SxCtynj6G+M8yCyUfqdS2ccaHEUL/8ztDOQirG3dFCI1HUAmGDvlX7OV96ZxP6+6QjYBO3hxu84MMmrODvl1gvox9I1zIZ/nL+pLHBLiSS3vtouC1AZACdIvOL8ZS+Mbsrsg5w6LtQo6wJpY5aZ4XUmejQEM9HXcdBVfsII6IIExA0f6yOewAAeXjMxVI2d2gy9NyQ70svPcMgwHVlV+kl9bXg3dc7lhlUru6o0/pqBtgzZfT3+mg24VOdV3Q8ClcG66ydLzgiHBimOb2J6DlQTKb8mIuPtoGtnXaIbmXuiAe8ZM+T1ky3weJzu8B2waDOvGpRCGomgwUkQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
+ dkim=pass header.d=synopsys.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopsys.onmicrosoft.com; s=selector2-synopsys-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ogxdiieH+kDtDiHj5HMtKHopzvCzb0h066DZHTOxNSM=;
+ b=lSpPhTaTzfWs3gz5NsLRlzz59BbVX12VfSge09+QLBa8svqZovAlykQJqhy3fvo0KrKYLepomf0DLdFYGotUx9HANTBbGzJXpPHC/zT40w/6EUjG/X8zl3I4g9RF8e24mJuNNsr8ePdsvMb2DkqmC0CaWbAGUKz+703kRRQR/cg=
+Received: from SN6PR12MB2655.namprd12.prod.outlook.com (52.135.103.20) by
+ SN6PR12MB2816.namprd12.prod.outlook.com (52.135.107.153) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2263.17; Tue, 17 Sep 2019 10:02:35 +0000
+Received: from SN6PR12MB2655.namprd12.prod.outlook.com
+ ([fe80::c4b9:6813:9c58:3fb9]) by SN6PR12MB2655.namprd12.prod.outlook.com
+ ([fe80::c4b9:6813:9c58:3fb9%7]) with mapi id 15.20.2263.023; Tue, 17 Sep 2019
+ 10:02:35 +0000
+From:   Vitor Soares <Vitor.Soares@synopsys.com>
+To:     Vitor Soares <Vitor.Soares@synopsys.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>
+CC:     "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "pgaj@cadence.com" <pgaj@cadence.com>,
+        Joao Pinto <Joao.Pinto@synopsys.com>
+Subject: RE: [PATCH v3 1/5] i3c: master: detach/free devices fail on
+ pre_assign_dyn_addr()
+Thread-Topic: [PATCH v3 1/5] i3c: master: detach/free devices fail on
+ pre_assign_dyn_addr()
+Thread-Index: AQHVY0hlgS4HVQdOUk+p1+/PaaUrZacvt3pg
+Date:   Tue, 17 Sep 2019 10:02:34 +0000
+Message-ID: <SN6PR12MB26553AEDB14A6B6275AA98CCAE8F0@SN6PR12MB2655.namprd12.prod.outlook.com>
+References: <cover.1567608245.git.vitor.soares@synopsys.com>
+ <d16914bbe06cf82cdbf9a0480310bd9cc2e4d8a9.1567608245.git.vitor.soares@synopsys.com>
+In-Reply-To: <d16914bbe06cf82cdbf9a0480310bd9cc2e4d8a9.1567608245.git.vitor.soares@synopsys.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: =?us-ascii?Q?PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcc29hcmVzXGFw?=
+ =?us-ascii?Q?cGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEy?=
+ =?us-ascii?Q?OWUzNWJcbXNnc1xtc2ctNDIzYzMzZWUtZDkzMi0xMWU5LTgyNTktYjgwOGNm?=
+ =?us-ascii?Q?NTlkN2ZjXGFtZS10ZXN0XDQyM2MzM2VmLWQ5MzItMTFlOS04MjU5LWI4MDhj?=
+ =?us-ascii?Q?ZjU5ZDdmY2JvZHkudHh0IiBzej0iMzcxNyIgdD0iMTMyMTMxODgxNTE4ODUw?=
+ =?us-ascii?Q?NjI1IiBoPSJxQ0dnbjNZQTQ1YkdFNlFVT3hyajVLYkdSbnc9IiBpZD0iIiBi?=
+ =?us-ascii?Q?bD0iMCIgYm89IjEiIGNpPSJjQUFBQUVSSFUxUlNSVUZOQ2dVQUFCUUpBQUJC?=
+ =?us-ascii?Q?WW04RlAyM1ZBWnpyYXoyYTFnY1luT3RyUFpyV0J4Z09BQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBSEFBQUFDa0NBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?RUFBUUFCQUFBQVZ6ZGhHZ0FBQUFBQUFBQUFBQUFBQUo0QUFBQm1BR2tBYmdC?=
+ =?us-ascii?Q?aEFHNEFZd0JsQUY4QWNBQnNBR0VBYmdCdUFHa0FiZ0JuQUY4QWR3QmhBSFFB?=
+ =?us-ascii?Q?WlFCeUFHMEFZUUJ5QUdzQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFF?=
+ =?us-ascii?Q?QUFBQUFBQUFBQWdBQUFBQUFuZ0FBQUdZQWJ3QjFBRzRBWkFCeUFIa0FYd0J3?=
+ =?us-ascii?Q?QUdFQWNnQjBBRzRBWlFCeUFITUFYd0JuQUdZQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUFBQUFBQUNBQUFB?=
+ =?us-ascii?Q?QUFDZUFBQUFaZ0J2QUhVQWJnQmtBSElBZVFCZkFIQUFZUUJ5QUhRQWJnQmxB?=
+ =?us-ascii?Q?SElBY3dCZkFITUFZUUJ0QUhNQWRRQnVBR2NBWHdCakFHOEFiZ0JtQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFJQUFBQUFBSjRBQUFCbUFHOEFk?=
+ =?us-ascii?Q?UUJ1QUdRQWNnQjVBRjhBY0FCaEFISUFkQUJ1QUdVQWNnQnpBRjhBY3dCaEFH?=
+ =?us-ascii?Q?MEFjd0IxQUc0QVp3QmZBSElBWlFCekFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBR1lBYndCMUFHNEFaQUJ5QUhrQVh3?=
+ =?us-ascii?Q?QndBR0VBY2dCMEFHNEFaUUJ5QUhNQVh3QnpBRzBBYVFCakFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFBQUFBQ0FB?=
+ =?us-ascii?Q?QUFBQUNlQUFBQVpnQnZBSFVBYmdCa0FISUFlUUJmQUhBQVlRQnlBSFFBYmdC?=
+ =?us-ascii?Q?bEFISUFjd0JmQUhNQWRBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFCQUFBQUFBQUFBQUlBQUFBQUFKNEFBQUJtQUc4?=
+ =?us-ascii?Q?QWRRQnVBR1FBY2dCNUFGOEFjQUJoQUhJQWRBQnVBR1VBY2dCekFGOEFkQUJ6?=
+ =?us-ascii?Q?QUcwQVl3QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBRUFBQUFBQUFBQUFnQUFBQUFBbmdBQUFHWUFid0IxQUc0QVpBQnlBSGtB?=
+ =?us-ascii?Q?WHdCd0FHRUFjZ0IwQUc0QVpRQnlBSE1BWHdCMUFHMEFZd0FBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQVFBQUFBQUFBQUFD?=
+ =?us-ascii?Q?QUFBQUFBQ2VBQUFBWndCMEFITUFYd0J3QUhJQWJ3QmtBSFVBWXdCMEFGOEFk?=
+ =?us-ascii?Q?QUJ5QUdFQWFRQnVBR2tBYmdCbkFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUJBQUFBQUFBQUFBSUFBQUFBQUo0QUFBQnpB?=
+ =?us-ascii?Q?R0VBYkFCbEFITUFYd0JoQUdNQVl3QnZBSFVBYmdCMEFGOEFjQUJzQUdFQWJn?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFFQUFBQUFBQUFBQWdBQUFBQUFuZ0FBQUhNQVlRQnNBR1VBY3dCZkFI?=
+ =?us-ascii?Q?RUFkUUJ2QUhRQVpRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBUUFBQUFBQUFB?=
+ =?us-ascii?Q?QUNBQUFBQUFDZUFBQUFjd0J1QUhBQWN3QmZBR3dBYVFCakFHVUFiZ0J6QUdV?=
+ =?us-ascii?Q?QVh3QjBBR1VBY2dCdEFGOEFNUUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQkFBQUFBQUFBQUFJQUFBQUFBSjRBQUFC?=
+ =?us-ascii?Q?ekFHNEFjQUJ6QUY4QWJBQnBBR01BWlFCdUFITUFaUUJmQUhRQVpRQnlBRzBB?=
+ =?us-ascii?Q?WHdCekFIUUFkUUJrQUdVQWJnQjBBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUVBQUFBQUFBQUFBZ0FBQUFBQW5nQUFBSFlBWndCZkFHc0FaUUI1?=
+ =?us-ascii?Q?QUhjQWJ3QnlBR1FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFB?=
+ =?us-ascii?Q?QUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFRQUFBQUFB?=
+ =?us-ascii?Q?QUFBQ0FBQUFBQUE9Ii8+PC9tZXRhPg=3D=3D?=
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=soares@synopsys.com; 
+x-originating-ip: [83.174.63.141]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 72eadc19-fb1b-4538-1bd0-08d73b5629eb
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:SN6PR12MB2816;
+x-ms-traffictypediagnostic: SN6PR12MB2816:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <SN6PR12MB28167213632A2DF3734C6FA9AE8F0@SN6PR12MB2816.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 01630974C0
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(346002)(39860400002)(366004)(376002)(136003)(396003)(189003)(199004)(7696005)(81156014)(81166006)(8936002)(99286004)(6116002)(6246003)(66946007)(64756008)(52536014)(66446008)(66066001)(66476007)(76116006)(33656002)(2906002)(107886003)(110136005)(229853002)(316002)(9686003)(54906003)(55016002)(6436002)(76176011)(4326008)(2501003)(2201001)(71200400001)(8676002)(256004)(561944003)(3846002)(26005)(186003)(6506007)(86362001)(25786009)(102836004)(71190400001)(14454004)(7736002)(478600001)(476003)(66556008)(74316002)(11346002)(446003)(5660300002)(486006)(305945005)(14444005)(5024004);DIR:OUT;SFP:1102;SCL:1;SRVR:SN6PR12MB2816;H:SN6PR12MB2655.namprd12.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: synopsys.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: TBBLA6j8V8pSXkIKWix1gELwr7wtqBz1pwiXxPoI2kqr+0+FUOYYYtthNzeHVfdt97C5YPK2coGTcKFFjuGnvRxbL7gAMkfIxirLtBIvEKMXQVd4jFVdLCJOAzQ6qlYcKsZu5JoPyTM8C239XVPoKPs9MZVMcJN9C2OrB/Fw659e55xZYLWG5eufcJVXvePRGIXKf2p2NQx5tTN2jFRbHNhiH3ZE9OPfOYfphrCpmvV6H5tBSJMfKTIDGmDkDyvgLUFHrC46xyajBqlvnQcchnOgEcogEE8POdZoJF2NuaVrB26NLim4OAfir95grWvfQvHFWPWP2IUUTJfs1GMy/0emBErkMk4QHRH9CvrEXpgtsLkF2ZLCNeS4z9nou68Xeq6IWDtrDaq16GmEVw2/UCPLj3a5lTFzZtIoC9waFJw=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <20190824132846.8589-1-u.kleine-koenig@pengutronix.de>
- <20190824132846.8589-2-u.kleine-koenig@pengutronix.de> <20190913215809.GA11833@bogus>
-In-Reply-To: <20190913215809.GA11833@bogus>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 17 Sep 2019 11:40:25 +0200
-Message-ID: <CAMuHMdV+pwoAA0zH_vQf2nKqzrgHP8rcMStyJbnuu2qviFC_qg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] of: Let of_for_each_phandle fallback to
- non-negative cell_count
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Will Deacon <will@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-mediatek@lists.infradead.org,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+X-MS-Exchange-CrossTenant-Network-Message-Id: 72eadc19-fb1b-4538-1bd0-08d73b5629eb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2019 10:02:34.9616
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: UGLom1cbalPf8UZ9Fu7151VlzTKgxeTEWKY4SP3DXtviHySxk5DLGCaAYIppR5UR+Rg2Ow/DkDYAborI8XVZKA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR12MB2816
+X-OriginatorOrg: synopsys.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob, Uwe,
+Hi Boris,
 
-On Fri, Sep 13, 2019 at 11:58 PM Rob Herring <robh@kernel.org> wrote:
-> On Sat, 24 Aug 2019 15:28:46 +0200, =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?=          wrote:
-> > Referencing device tree nodes from a property allows to pass arguments.
-> > This is for example used for referencing gpios. This looks as follows:
-> >
-> >       gpio_ctrl: gpio-controller {
-> >               #gpio-cells = <2>
-> >               ...
-> >       }
-> >
-> >       someothernode {
-> >               gpios = <&gpio_ctrl 5 0 &gpio_ctrl 3 0>;
-> >               ...
-> >       }
-> >
-> > To know the number of arguments this must be either fixed, or the
-> > referenced node is checked for a $cells_name (here: "#gpio-cells")
-> > property and with this information the start of the second reference can
-> > be determined.
-> >
-> > Currently regulators are referenced with no additional arguments. To
-> > allow some optional arguments without having to change all referenced
-> > nodes this change introduces a way to specify a default cell_count. So
-> > when a phandle is parsed we check for the $cells_name property and use
-> > it as before if present. If it is not present we fall back to
-> > cells_count if non-negative and only fail if cells_count is smaller than
-> > zero.
-> >
-> > Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+From: Vitor Soares <vitor.soares@synopsys.com>
+Date: Thu, Sep 05, 2019 at 11:00:34
 
-This is now commit e42ee61017f58cd9 ("of: Let of_for_each_phandle fallback
-to non-negative cell_count") in robh/for-next, which causes a lock-up when
-booting a shmobile_defconfig kernel on r8a7791/koelsch:
+> As for today, the I3C framework is keeping in memory and master->bus.devs
+> list the devices that fail during pre_assign_dyn_addr() and send them on
+> DEFSLVS command.
+>=20
+> According to MIPI I3C Bus spec the DEFSLVS command is used to inform any
+> Secondary Master about the Dynamic Addresses that were assigned to I3C
+> devices and the I2C devices present on the bus.
+>=20
+> This issue could be fixed by changing i3c_master_defslvs_locked() to
+> ignore unaddressed i3c devices but the i3c_dev_desc would be allocated an=
+d
+> attached to HC unnecessarily. This can cause that some HC aren't able to
+> do DAA for HJ capable devices due to lack of space in controller.
+>=20
+> Signed-off-by: Vitor Soares <vitor.soares@synopsys.com>
+> ---
+> Changes in v3:
+>   - Change commit message
+>=20
+> Changes in v2:
+>   - Move out detach/free the i3c_dev_desc from pre_assign_dyn_addr()
+>   - Convert i3c_master_pre_assign_dyn_addr() to return an int
+>=20
+>  drivers/i3c/master.c | 22 +++++++++++++++-------
+>  1 file changed, 15 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/i3c/master.c b/drivers/i3c/master.c
+> index 5f4bd52..586e34f 100644
+> --- a/drivers/i3c/master.c
+> +++ b/drivers/i3c/master.c
+> @@ -1426,19 +1426,19 @@ static void i3c_master_detach_i2c_dev(struct i2c_=
+dev_desc *dev)
+>  		master->ops->detach_i2c_dev(dev);
+>  }
+> =20
+> -static void i3c_master_pre_assign_dyn_addr(struct i3c_dev_desc *dev)
+> +static int i3c_master_pre_assign_dyn_addr(struct i3c_dev_desc *dev)
+>  {
+>  	struct i3c_master_controller *master =3D i3c_dev_get_master(dev);
+>  	int ret;
+> =20
+>  	if (!dev->boardinfo || !dev->boardinfo->init_dyn_addr ||
+>  	    !dev->boardinfo->static_addr)
+> -		return;
+> +		return 0;
+> =20
+>  	ret =3D i3c_master_setdasa_locked(master, dev->info.static_addr,
+>  					dev->boardinfo->init_dyn_addr);
+>  	if (ret)
+> -		return;
+> +		return ret;
+> =20
+>  	dev->info.dyn_addr =3D dev->boardinfo->init_dyn_addr;
+>  	ret =3D i3c_master_reattach_i3c_dev(dev, 0);
+> @@ -1449,10 +1449,12 @@ static void i3c_master_pre_assign_dyn_addr(struct=
+ i3c_dev_desc *dev)
+>  	if (ret)
+>  		goto err_rstdaa;
+> =20
+> -	return;
+> +	return 0;
+> =20
+>  err_rstdaa:
+>  	i3c_master_rstdaa_locked(master, dev->boardinfo->init_dyn_addr);
+> +
+> +	return ret;
+>  }
+> =20
+>  static void
+> @@ -1647,7 +1649,7 @@ static int i3c_master_bus_init(struct i3c_master_co=
+ntroller *master)
+>  	enum i3c_addr_slot_status status;
+>  	struct i2c_dev_boardinfo *i2cboardinfo;
+>  	struct i3c_dev_boardinfo *i3cboardinfo;
+> -	struct i3c_dev_desc *i3cdev;
+> +	struct i3c_dev_desc *i3cdev, *i3ctmp;
+>  	struct i2c_dev_desc *i2cdev;
+>  	int ret;
+> =20
+> @@ -1746,8 +1748,14 @@ static int i3c_master_bus_init(struct i3c_master_c=
+ontroller *master)
+>  	 * Pre-assign dynamic address and retrieve device information if
+>  	 * needed.
+>  	 */
+> -	i3c_bus_for_each_i3cdev(&master->bus, i3cdev)
+> -		i3c_master_pre_assign_dyn_addr(i3cdev);
+> +	list_for_each_entry_safe(i3cdev, i3ctmp, &master->bus.devs.i3c,
+> +				 common.node) {
+> +		ret =3D i3c_master_pre_assign_dyn_addr(i3cdev);
+> +		if (ret) {
+> +			i3c_master_detach_i3c_dev(i3cdev);
+> +			i3c_master_free_i3c_dev(i3cdev);
+> +		}
+> +	}
+> =20
+>  	ret =3D i3c_master_do_daa(master);
+>  	if (ret)
+> --=20
+> 2.7.4
 
-rcu: INFO: rcu_sched self-detected stall on CPU
-rcu:     0-....: (2099 ticks this GP) idle=6fe/1/0x40000002
-softirq=29/29 fqs=1050
- (t=2100 jiffies g=-1131 q=0)
-NMI backtrace for cpu 0
-CPU: 0 PID: 1 Comm: swapper/0 Not tainted
-5.3.0-rc2-shmobile-00050-ge42ee61017f58cd9 #376
-Hardware name: Generic R-Car Gen2 (Flattened Device Tree)
-[<c010f8ac>] (unwind_backtrace) from [<c010b620>] (show_stack+0x10/0x14)
-[<c010b620>] (show_stack) from [<c073d038>] (dump_stack+0x7c/0x9c)
-[<c073d038>] (dump_stack) from [<c0742e80>] (nmi_cpu_backtrace+0xa0/0xb8)
-[<c0742e80>] (nmi_cpu_backtrace) from [<c0742f1c>]
-(nmi_trigger_cpumask_backtrace+0x84/0x114)
-[<c0742f1c>] (nmi_trigger_cpumask_backtrace) from [<c017d684>]
-(rcu_dump_cpu_stacks+0xac/0xc8)
-[<c017d684>] (rcu_dump_cpu_stacks) from [<c017a598>]
-(rcu_sched_clock_irq+0x2ac/0x6b4)
-[<c017a598>] (rcu_sched_clock_irq) from [<c0183980>]
-(update_process_times+0x30/0x5c)
-[<c0183980>] (update_process_times) from [<c01941a8>]
-(tick_nohz_handler+0xcc/0x120)
-[<c01941a8>] (tick_nohz_handler) from [<c05b1d40>]
-(arch_timer_handler_virt+0x28/0x30)
-[<c05b1d40>] (arch_timer_handler_virt) from [<c016c9e0>]
-(handle_percpu_devid_irq+0xe8/0x21c)
-[<c016c9e0>] (handle_percpu_devid_irq) from [<c0167a8c>]
-(generic_handle_irq+0x18/0x28)
-[<c0167a8c>] (generic_handle_irq) from [<c0167b3c>]
-(__handle_domain_irq+0xa0/0xb4)
-[<c0167b3c>] (__handle_domain_irq) from [<c03673ec>] (gic_handle_irq+0x58/0x90)
-[<c03673ec>] (gic_handle_irq) from [<c0101a8c>] (__irq_svc+0x6c/0x90)
-Exception stack(0xeb08dd30 to 0xeb08dd78)
-dd20:                                     c0cc7514 20000013 00000005 00003b27
-dd40: eb7c4020 c0cc750c 00000051 00000051 20000013 c0c66b08 eb1cdc00 00000018
-dd60: 00000000 eb08dd80 c05c1a38 c0756c00 20000013 ffffffff
-[<c0101a8c>] (__irq_svc) from [<c0756c00>]
-(_raw_spin_unlock_irqrestore+0x1c/0x20)
-[<c0756c00>] (_raw_spin_unlock_irqrestore) from [<c05c1a38>]
-(of_find_node_by_phandle+0xcc/0xf0)
-[<c05c1a38>] (of_find_node_by_phandle) from [<c05c1bb8>]
-(of_phandle_iterator_next+0x68/0x178)
-[<c05c1bb8>] (of_phandle_iterator_next) from [<c05c22bc>]
-(of_count_phandle_with_args+0x5c/0x7c)
-[<c05c22bc>] (of_count_phandle_with_args) from [<c053fc38>]
-(i2c_demux_pinctrl_probe+0x24/0x1fc)
-[<c053fc38>] (i2c_demux_pinctrl_probe) from [<c04463c4>]
-(platform_drv_probe+0x48/0x94)
-[<c04463c4>] (platform_drv_probe) from [<c0444a20>] (really_probe+0x1f0/0x2b8)
-[<c0444a20>] (really_probe) from [<c0444e68>] (driver_probe_device+0x140/0x158)
-[<c0444e68>] (driver_probe_device) from [<c0444ff0>]
-(device_driver_attach+0x44/0x5c)
-[<c0444ff0>] (device_driver_attach) from [<c04450b4>]
-(__driver_attach+0xac/0xb4)
-[<c04450b4>] (__driver_attach) from [<c0443178>] (bus_for_each_dev+0x64/0xa0)
-[<c0443178>] (bus_for_each_dev) from [<c04438a8>] (bus_add_driver+0x148/0x1a8)
-[<c04438a8>] (bus_add_driver) from [<c0445ad0>] (driver_register+0xac/0xf0)
-[<c0445ad0>] (driver_register) from [<c0b010b0>] (do_one_initcall+0xa8/0x1d4)
-[<c0b010b0>] (do_one_initcall) from [<c0b01448>]
-(kernel_init_freeable+0x26c/0x2c8)
-[<c0b01448>] (kernel_init_freeable) from [<c0751c70>] (kernel_init+0x8/0x10c)
-[<c0751c70>] (kernel_init) from [<c01010e8>] (ret_from_fork+0x14/0x2c)
-Exception stack(0xeb08dfb0 to 0xeb08dff8)
-dfa0:                                     00000000 00000000 00000000 00000000
-dfc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-dfe0: 00000000 00000000 00000000 00000000 00000013 00000000
+I think I clearly explain why the current solution is problematic and my=20
+choices for the proposal solution.
+Please let me know if there is anything else that I can improve in this=20
+patch.
 
-Presumably it loops forever, due to a conversion of -1 to unsigned
-somewhere?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best regards,
+Vitor Soares
