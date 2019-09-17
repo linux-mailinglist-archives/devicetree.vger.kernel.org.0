@@ -2,68 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D79B577A
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 23:26:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 405BAB57B6
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 23:42:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726524AbfIQV0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 17:26:34 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39708 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726332AbfIQV0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 17:26:34 -0400
-Received: by mail-ot1-f68.google.com with SMTP id s22so4437010otr.6;
-        Tue, 17 Sep 2019 14:26:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=M6Vlf3B/Wu+Dqubj8csb+4sXrYeJJ15HwZ4X+qhYifM=;
-        b=OXKEa0H3kPAc9sZAj6Q+R4oNuR7CD1XE+UW7lqp32ifgJBCub1fg0nzKUmTs/BDEug
-         DaaXCMA78eP0S8CsQogbVVkLkornvdshaITa1si08SpAxDAZeNm0ME/kj4RVglSFC6nb
-         OriFt7dyRNlI+yuPQir2Vx/qaFQ0DXXJXoBefQQK1Wzc7+WLmE65t+6uxwvecu3vlp8T
-         I12yox1oqNx7yDxN8CVr8d0xODF6cCZWEHcoR40ahT/CM8cijJcg0YigGSfwvsmUYqls
-         0AgbL1TFww2rylHLzjXppV1HYGSv7AAzuhIlZ/E1/xnLlWqf9LB1YQ4uV7JLb74sYl5v
-         UVLQ==
-X-Gm-Message-State: APjAAAUQXrGtgJhsl1KdjOJatBxk6YG9hGuJHRuCBKZptNbOWW/kDVSL
-        TX53IF8SKpPNJXoD+IZrW9adGZt1DQ==
-X-Google-Smtp-Source: APXvYqxGhnxWSKx8g6RLUigEhllxaFKP/MIFSifQer6Teu1Lkf4ivYiaPqmggq/rJzcRGj1PEAoXGw==
-X-Received: by 2002:a9d:3be3:: with SMTP id k90mr820128otc.180.1568755592864;
-        Tue, 17 Sep 2019 14:26:32 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id 5sm1164594otp.20.2019.09.17.14.26.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 14:26:31 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 16:26:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
-        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
-        maz@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.co, devicetree@vger.kernel.org,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Subject: Re: [PATCH v2 06/19] dt-bindings: interrupt-controller: Add
- Loongson-3 IOINTC
-Message-ID: <20190917212631.GA3313@bogus>
-References: <20190905144316.12527-1-jiaxun.yang@flygoat.com>
- <20190905144316.12527-7-jiaxun.yang@flygoat.com>
+        id S1726353AbfIQVmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 17:42:19 -0400
+Received: from pandora.armlinux.org.uk ([78.32.30.218]:47296 "EHLO
+        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726065AbfIQVmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 17:42:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=Abx4F+jwfMTtLUNyxvhKvVfgeehUhHffQfO59dPVzBw=; b=u1tOKegFJUc9oNAXUMrowBe6t
+        iSId7UHGw8DY7GFuW0EYnNtI5SS6w4mX6cD8gSmefCRb+N824LNIPTzXf1/4YGG0BFfzxQqMoObSZ
+        LfMACLLy+j9oFRNcw+MdfXOYe4T+e3KF4tW7S2fgYgGprjml5pz292h05s+6Jor5vQc4grFhCQwVF
+        ucHSFoeguoJbs1R74HGKDwjPvCG1cB2OavYY7cIsOTxrPlGtd514CzqYPKSPV2tmxkNWh/GarOWB2
+        lCrmanipMghHbtgJk2wvBcoQbKmY5/HFYg9eGdcpOPdGmYGmV9PfYsMjNLowLg2UTeTraZI1use1/
+        55U7FD6hw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:44930)
+        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.90_1)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1iALEb-0004Hs-3X; Tue, 17 Sep 2019 22:42:05 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1iALEX-0001dO-MT; Tue, 17 Sep 2019 22:42:01 +0100
+Date:   Tue, 17 Sep 2019 22:42:01 +0100
+From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
+To:     tinywrkb <tinywrkb@gmail.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>, Andrew Lunn <andrew@lunn.ch>,
+        Baruch Siach <baruch@tkos.co.il>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
+ max-speed
+Message-ID: <20190917214201.GB25745@shell.armlinux.org.uk>
+References: <20190915135652.GC3427@lunn.ch>
+ <20190917124101.GA1200564@arch-dsk-01>
+ <20190917125434.GH20778@lunn.ch>
+ <20190917133253.GA1210141@arch-dsk-01>
+ <20190917133942.GR25745@shell.armlinux.org.uk>
+ <20190917151707.GV25745@shell.armlinux.org.uk>
+ <20190917153027.GW25745@shell.armlinux.org.uk>
+ <20190917163427.GA1475935@arch-dsk-01>
+ <20190917170419.GX25745@shell.armlinux.org.uk>
+ <20190917171913.GY25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190905144316.12527-7-jiaxun.yang@flygoat.com>
+In-Reply-To: <20190917171913.GY25745@shell.armlinux.org.uk>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  5 Sep 2019 22:43:03 +0800, Jiaxun Yang wrote:
-> Document Loongson-3 I/O Interrupt controller.
+On Tue, Sep 17, 2019 at 06:19:13PM +0100, Russell King - ARM Linux admin wrote:
+> whether you can get the link to come up at all.  You might need to see
+> whether wiggling the RJ45 helps (I've had that sort of thing with some
+> cables.)
 > 
-> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
-> ---
->  .../loongson,ls3-iointc.yaml                  | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls3-iointc.yaml
+> You might also need "ethtool -s eth0 advertise ffcf" after trying that
+> if it doesn't work to take the gigabit speeds out of the advertisement.
 > 
+> Thanks.
+> 
+>  drivers/net/phy/at803x.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
+> index b3893347804d..85cf4a4a5e81 100644
+> --- a/drivers/net/phy/at803x.c
+> +++ b/drivers/net/phy/at803x.c
+> @@ -296,6 +296,11 @@ static int at803x_config_init(struct phy_device *phydev)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	/* Disable smartspeed */
+> +	ret = phy_modify(phydev, 0x14, BIT(5), 0);
+> +	if (ret < 0)
+> +		return ret;
+> +
+>  	/* The RX and TX delay default is:
+>  	 *   after HW reset: RX delay enabled and TX delay disabled
+>  	 *   after SW reset: RX delay enabled, while TX delay retains the
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Hi,
+
+Could you try this patch instead - it seems that the PHY needs to be
+soft-reset for the write to take effect, and _even_ for the clearance
+of the bit to become visible in the register.
+
+I'm not expecting this on its own to solve anything, but it should at
+least mean that the at803x doesn't modify the advertisement registers
+itself.  It may mean that the link doesn't even come up without forcing
+the advertisement via the ethtool command I mentioned before.
+
+Thanks.
+
+ drivers/net/phy/at803x.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/drivers/net/phy/at803x.c b/drivers/net/phy/at803x.c
+index b3893347804d..69a58c0e6b42 100644
+--- a/drivers/net/phy/at803x.c
++++ b/drivers/net/phy/at803x.c
+@@ -296,6 +296,16 @@ static int at803x_config_init(struct phy_device *phydev)
+ 	if (ret < 0)
+ 		return ret;
+ 
++	/* Disable smartspeed */
++	ret = phy_modify(phydev, 0x14, BIT(5), 0);
++	if (ret < 0)
++		return ret;
++
++	/* Must soft-reset the PHY for smartspeed disable to take effect */
++	ret = genphy_soft_reset(phydev);
++	if (ret < 0)
++		return ret;
++
+ 	/* The RX and TX delay default is:
+ 	 *   after HW reset: RX delay enabled and TX delay disabled
+ 	 *   after SW reset: RX delay enabled, while TX delay retains the
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
+According to speedtest.net: 11.9Mbps down 500kbps up
