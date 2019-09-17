@@ -2,67 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E84CAB5730
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 22:52:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45D79B577A
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 23:26:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729962AbfIQUwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 16:52:46 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:47039 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbfIQUwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 16:52:44 -0400
-Received: by mail-ot1-f67.google.com with SMTP id f21so1191911otl.13;
-        Tue, 17 Sep 2019 13:52:44 -0700 (PDT)
+        id S1726524AbfIQV0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 17:26:34 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:39708 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726332AbfIQV0e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 17:26:34 -0400
+Received: by mail-ot1-f68.google.com with SMTP id s22so4437010otr.6;
+        Tue, 17 Sep 2019 14:26:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=fMeEne97qv8JgyDBdhgCgz19g4bKacaJieBUVcMpack=;
-        b=mlqpZK9xthaMKikW8riP5E+V89oPda99k4GJuxJSH/yjmdYzJiBP7UsX1e9YS9A5u0
-         h5dwb+pCPNf0mC/pzvVb4pa4tOaA3rcdjcA3s0/6wrAsqiMbWHEinbibT322RDBCJrv1
-         MOMwK/CuCgO+3e18sYI2G/59xO0H9mxuqfoC2N1OCXb273y+GVkidlTQRUH+I/F2aHzA
-         bvnwC9B0NYa5hBvUBBHDIdSTXxKFc57K8NtH6vtqKCDBmZ4qW7ahUM+f8Eknfy4UM2Cp
-         +2IIYJHjD5TBaEbFyPINuW4grvp2/om6CW1XLnGhRf6tykAxVflM7fdocGvqkpQDp+jW
-         OBNw==
-X-Gm-Message-State: APjAAAXW/1I4XRvA8e8qP78NXSTOZcFXnRJH+93oCNL6+Ig/hNoRJq22
-        AALwApcwTZSwpPlghbcoGA==
-X-Google-Smtp-Source: APXvYqzRKAYZIfGsZkV4fCugV4JzQs8fH0BJsUQ19vkI9qCJna0q4Qb3+RlGtktm94O7IeQFbkDXJg==
-X-Received: by 2002:a05:6830:124f:: with SMTP id s15mr611563otp.95.1568753564008;
-        Tue, 17 Sep 2019 13:52:44 -0700 (PDT)
+        bh=M6Vlf3B/Wu+Dqubj8csb+4sXrYeJJ15HwZ4X+qhYifM=;
+        b=OXKEa0H3kPAc9sZAj6Q+R4oNuR7CD1XE+UW7lqp32ifgJBCub1fg0nzKUmTs/BDEug
+         DaaXCMA78eP0S8CsQogbVVkLkornvdshaITa1si08SpAxDAZeNm0ME/kj4RVglSFC6nb
+         OriFt7dyRNlI+yuPQir2Vx/qaFQ0DXXJXoBefQQK1Wzc7+WLmE65t+6uxwvecu3vlp8T
+         I12yox1oqNx7yDxN8CVr8d0xODF6cCZWEHcoR40ahT/CM8cijJcg0YigGSfwvsmUYqls
+         0AgbL1TFww2rylHLzjXppV1HYGSv7AAzuhIlZ/E1/xnLlWqf9LB1YQ4uV7JLb74sYl5v
+         UVLQ==
+X-Gm-Message-State: APjAAAUQXrGtgJhsl1KdjOJatBxk6YG9hGuJHRuCBKZptNbOWW/kDVSL
+        TX53IF8SKpPNJXoD+IZrW9adGZt1DQ==
+X-Google-Smtp-Source: APXvYqxGhnxWSKx8g6RLUigEhllxaFKP/MIFSifQer6Teu1Lkf4ivYiaPqmggq/rJzcRGj1PEAoXGw==
+X-Received: by 2002:a9d:3be3:: with SMTP id k90mr820128otc.180.1568755592864;
+        Tue, 17 Sep 2019 14:26:32 -0700 (PDT)
 Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id v132sm1162365oif.34.2019.09.17.13.52.42
+        by smtp.gmail.com with ESMTPSA id 5sm1164594otp.20.2019.09.17.14.26.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 13:52:43 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 15:52:42 -0500
+        Tue, 17 Sep 2019 14:26:31 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 16:26:31 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jan Kotas <jank@cadence.com>
-Cc:     maxime.ripard@bootlin.com, mchehab@kernel.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, rafalc@cadence.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Jan Kotas <jank@cadence.com>
-Subject: Re: [PATCH v2 1/3] media: dt-bindings: Update bindings for Cadence
- CSI2RX
-Message-ID: <20190917205242.GA15921@bogus>
-References: <20190905105601.27034-1-jank@cadence.com>
- <20190905105601.27034-2-jank@cadence.com>
+To:     Jiaxun Yang <jiaxun.yang@flygoat.com>
+Cc:     linux-mips@vger.kernel.org, chenhc@lemote.com,
+        paul.burton@mips.com, tglx@linutronix.de, jason@lakedaemon.net,
+        maz@kernel.org, linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.co, devicetree@vger.kernel.org,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>
+Subject: Re: [PATCH v2 06/19] dt-bindings: interrupt-controller: Add
+ Loongson-3 IOINTC
+Message-ID: <20190917212631.GA3313@bogus>
+References: <20190905144316.12527-1-jiaxun.yang@flygoat.com>
+ <20190905144316.12527-7-jiaxun.yang@flygoat.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190905105601.27034-2-jank@cadence.com>
+In-Reply-To: <20190905144316.12527-7-jiaxun.yang@flygoat.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 5 Sep 2019 11:55:59 +0100, Jan Kotas wrote:
-> This patch adds a DT bindings documentation for
-> Cadence CSI2RX v1.3 and v2.1 controllers.
+On Thu,  5 Sep 2019 22:43:03 +0800, Jiaxun Yang wrote:
+> Document Loongson-3 I/O Interrupt controller.
 > 
-> Signed-off-by: Jan Kotas <jank@cadence.com>
+> Signed-off-by: Jiaxun Yang <jiaxun.yang@flygoat.com>
 > ---
->  Documentation/devicetree/bindings/media/cdns,csi2rx.txt | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+>  .../loongson,ls3-iointc.yaml                  | 79 +++++++++++++++++++
+>  1 file changed, 79 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/loongson,ls3-iointc.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
