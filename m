@@ -2,97 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA318B4FD2
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:03:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4A75B5021
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726475AbfIQODo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 10:03:44 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:45750 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726467AbfIQODo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 10:03:44 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id D11AF61576; Tue, 17 Sep 2019 14:03:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1568729023;
-        bh=z5NkcZ1ALVg0VMSVQaQZtgQ5NF7xi3wRIZFmstI/iR0=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=lHZdxjg2FqLYr6alImg+/DyYa6PRazOBXVd/8JUhbltu+hxDRZIDzy/L5XXjqo97I
-         ehmzC1bvtwQkd6m6qlTre41CXB2Fa87HR+abQI40+FYNnQMnMUp1ROdsAtqcBnH+Ye
-         uEoHvOjy5PO5xAHcDNrJm38qrDsYnLb/3yHzVIEA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,MISSING_DATE,MISSING_MID,SPF_NONE autolearn=no
-        autolearn_force=no version=3.4.0
-Received: from potku.adurom.net (88-114-240-156.elisa-laajakaista.fi [88.114.240.156])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726467AbfIQOPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 10:15:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52962 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726308AbfIQOP3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 10:15:29 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: kvalo@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1075061544;
-        Tue, 17 Sep 2019 14:03:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1568729020;
-        bh=z5NkcZ1ALVg0VMSVQaQZtgQ5NF7xi3wRIZFmstI/iR0=;
-        h=Subject:From:In-Reply-To:References:To:Cc:From;
-        b=jeJJCXHihlrr3GhJk2NSJZIDcKcDp/aKDu/n/iGSyjRoQBvdz5fOMU5maZZ+Muqdd
-         jwWtd3qtswR3UwRjeSWJaFTM/inXnIsU5ssyiVPHpn3dFcIOi8BBaROieQMr4fPxi6
-         qlI1rSaOgDVs04aGiRmipWdauCiGkPTHZsIYggC8=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1075061544
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=kvalo@codeaurora.org
-Content-Type: text/plain; charset="utf-8"
+        by mail.kernel.org (Postfix) with ESMTPSA id CA2FE218AE;
+        Tue, 17 Sep 2019 14:15:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1568729728;
+        bh=+B3sRZPhkAukMdMBAYVICiPGgK/51bRCH3pDovTUbwo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=w4/ghrVGz+s1Xa8HKjmbSv+EFYoQomNvEU6uW/JCHc+xPgFpAla3Ef1Xc5bXWrW5B
+         jhuTmBt1NGRBsA9acQjl2Py4L2JmtbGWUEhiSdVFNBg8ihClrjcR+9TNLOGfO7bkGE
+         k+2UvRiT6gdfnian3dWHLECSTFJD+KRDO8Ckiw2M=
+Received: by mail-qt1-f178.google.com with SMTP id j1so4638400qth.1;
+        Tue, 17 Sep 2019 07:15:28 -0700 (PDT)
+X-Gm-Message-State: APjAAAUUZ/2DvB1V88mYEGb6tOZw/fMgjmjwZRQLduMS63SAiaLuXnSa
+        ieo3kaS/dqyP08UUeVhn23j3U+bwVrcFxE+ujw==
+X-Google-Smtp-Source: APXvYqzA95YGsDAHuNNPxRimcQ6KIo1Xu3z8j8WHVokwnL8nyFMsfVMoZXe73MnOTmOXNpjhJW2nI4GI0hnrbY/hLoI=
+X-Received: by 2002:ac8:31b3:: with SMTP id h48mr4019256qte.300.1568729727989;
+ Tue, 17 Sep 2019 07:15:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] ath10k: Fix HOST capability QMI incompatibility
-From:   Kalle Valo <kvalo@codeaurora.org>
-In-Reply-To: <20190725063108.15790-1-bjorn.andersson@linaro.org>
-References: <20190725063108.15790-1-bjorn.andersson@linaro.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+References: <CGME20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5@eucas1p2.samsung.com>
+ <20190917111413.22711-1-m.falkowski@samsung.com> <20190917120627.28357-1-m.falkowski@samsung.com>
+In-Reply-To: <20190917120627.28357-1-m.falkowski@samsung.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 17 Sep 2019 09:15:16 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLwkVQ6VFYtUfOErA8vG2qnE+nquo_m5s0zLRqgn+bJLg@mail.gmail.com>
+Message-ID: <CAL_JsqLwkVQ6VFYtUfOErA8vG2qnE+nquo_m5s0zLRqgn+bJLg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: sound: Convert Samsung SMDK audio complex
+To:     Maciej Falkowski <m.falkowski@samsung.com>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Sangbeom Kim <sbkim73@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ath10k@lists.infradead.org, stable@vger.kernel.org
-User-Agent: pwcli/0.0.0-git (https://github.com/kvalo/pwcli/) Python/2.7.12
-Message-Id: <20190917140342.D11AF61576@smtp.codeaurora.org>
-Date:   Tue, 17 Sep 2019 14:03:41 +0000 (UTC)
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Bjorn Andersson <bjorn.andersson@linaro.org> wrote:
+On Tue, Sep 17, 2019 at 7:06 AM Maciej Falkowski
+<m.falkowski@samsung.com> wrote:
+>
+> Convert Samsung SMDK audio complex to newer dt-schema format.
+>
+> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
+> ---
+> v2:
+> - Added missing Signed-off-by certificate
+> ---
+>  .../bindings/sound/samsung,smdk-wm8994.txt    | 14 -------
+>  .../bindings/sound/samsung,smdk-wm8994.yaml   | 38 +++++++++++++++++++
+>  2 files changed, 38 insertions(+), 14 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
 
-> The introduction of 768ec4c012ac ("ath10k: update HOST capability QMI
-> message") served the purpose of supporting the new and extended HOST
-> capability QMI message.
-> 
-> But while the new message adds a slew of optional members it changes the
-> data type of the "daemon_support" member, which means that older
-> versions of the firmware will fail to decode the incoming request
-> message.
-> 
-> There is no way to detect this breakage from Linux and there's no way to
-> recover from sending the wrong message (i.e. we can't just try one
-> format and then fallback to the other), so a quirk is introduced in
-> DeviceTree to indicate to the driver that the firmware requires the 8bit
-> version of this message.
-> 
-> Cc: stable@vger.kernel.org
-> Fixes: 768ec4c012ac ("ath10k: update HOST capability qmi message")
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kalle Valo <kvalo@codeaurora.org>
-
-Patch applied to ath-next branch of ath.git, thanks.
-
-7165ef890a4c ath10k: Fix HOST capability QMI incompatibility
-
--- 
-https://patchwork.kernel.org/patch/11058005/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+Reviewed-by: Rob Herring <robh@kernel.org>
