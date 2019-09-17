@@ -2,180 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC12EB4BF4
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80629B4C00
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 12:31:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726791AbfIQK23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 06:28:29 -0400
-Received: from mail-sz.amlogic.com ([211.162.65.117]:47095 "EHLO
-        mail-sz.amlogic.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726756AbfIQK23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 06:28:29 -0400
-Received: from [10.28.18.45] (10.28.18.45) by mail-sz.amlogic.com (10.28.11.5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 17 Sep
- 2019 18:29:23 +0800
-Subject: Re: [PATCH 1/3] pinctrl: add compatible for Amlogic Meson A1 pin
- controller
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        <linux-gpio@vger.kernel.org>
-CC:     Xingyu Chen <xingyu.chen@amlogic.com>,
-        Jianxin Pan <jianxin.pan@amlogic.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Carlo Caione <carlo@caione.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Hanjie Lin <hanjie.lin@amlogic.com>,
+        id S1726089AbfIQKbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 06:31:11 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:37590 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725801AbfIQKbL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 06:31:11 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 1595A25AD71;
+        Tue, 17 Sep 2019 20:31:08 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 176489407F6; Tue, 17 Sep 2019 12:31:06 +0200 (CEST)
+Date:   Tue, 17 Sep 2019 12:31:06 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <1568700442-18540-1-git-send-email-qianggui.song@amlogic.com>
- <1568700442-18540-2-git-send-email-qianggui.song@amlogic.com>
- <131cf06f-2530-4524-9f86-3c07641bb460@baylibre.com>
-From:   Qianggui Song <qianggui.song@amlogic.com>
-Message-ID: <3a4bdcbf-883a-cf31-6af1-a692a10cb9a5@amlogic.com>
-Date:   Tue, 17 Sep 2019 18:29:23 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Yoshihiro Kaneko <ykaneko0929@gmail.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: rtc-sh: convert bindings to json-schema
+Message-ID: <20190917103105.kh64uop6g4tuanhh@verge.net.au>
+References: <20190917083634.11510-1-horms+renesas@verge.net.au>
 MIME-Version: 1.0
-In-Reply-To: <131cf06f-2530-4524-9f86-3c07641bb460@baylibre.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.28.18.45]
-X-ClientProxiedBy: mail-sz.amlogic.com (10.28.11.5) To mail-sz.amlogic.com
- (10.28.11.5)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190917083634.11510-1-horms+renesas@verge.net.au>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Neil
-	Thanks for your review
+On Tue, Sep 17, 2019 at 10:36:34AM +0200, Simon Horman wrote:
+> Convert Real Time Clock for Renesas SH and ARM SoCs bindings documentation
+> to json-schema.  Also name bindings documentation file according to the
+> compat string being documented.
+> 
+> Also correct syntax error in interrupts field in example.
+> 
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> ---
+> * Based on v5.3
+> * Tested using:
+>   # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
+>   # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/bus/renesas,bsc.yaml
 
-On 2019/9/17 15:18, Neil Armstrong wrote:
-> Hi,
+  The above should read:
+
+  * Tested using:
+    # ARCH=arm64 make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+    # ARCH=arm   make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+
+> ---
+>  .../devicetree/bindings/rtc/renesas,sh-rtc.yaml    | 66 ++++++++++++++++++++++
+>  Documentation/devicetree/bindings/rtc/rtc-sh.txt   | 28 ---------
+>  2 files changed, 66 insertions(+), 28 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/rtc-sh.txt
 > 
-> On 17/09/2019 08:07, Qianggui Song wrote:
->> Add new compatible name for Amlogic's Meson-A1 pin controller
->> add a dt-binding header file which document the detail pin names.
-> 
-> Please add in the commit log that A1 doesn't need the DS bank reg,
-> so when we will convert these bindings to yaml we will be aware of it.
-> 
-OK, will add it in the next patch
->>
->> Signed-off-by: Qianggui Song <qianggui.song@amlogic.com>
->> Signed-off-by: Xingyu Chen <xingyu.chen@amlogic.com>
->> Signed-off-by: Jianxin Pan <jianxin.pan@amlogic.com>
->> ---
->>  .../devicetree/bindings/pinctrl/meson,pinctrl.txt  |  1 +
->>  include/dt-bindings/gpio/meson-a1-gpio.h           | 73 ++++++++++++++++++++++
->>  2 files changed, 74 insertions(+)
->>  create mode 100644 include/dt-bindings/gpio/meson-a1-gpio.h
->>
->> diff --git a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
->> index 10dc4f7..0aff1f2 100644
->> --- a/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
->> +++ b/Documentation/devicetree/bindings/pinctrl/meson,pinctrl.txt
->> @@ -15,6 +15,7 @@ Required properties for the root node:
->>  		      "amlogic,meson-axg-aobus-pinctrl"
->>  		      "amlogic,meson-g12a-periphs-pinctrl"
->>  		      "amlogic,meson-g12a-aobus-pinctrl"
->> +		      "amlogic,meson-a1-periphs-pinctrl"
->>   - reg: address and size of registers controlling irq functionality
->>  
->>  === GPIO sub-nodes ===
->> diff --git a/include/dt-bindings/gpio/meson-a1-gpio.h b/include/dt-bindings/gpio/meson-a1-gpio.h
->> new file mode 100644
->> index 0000000..40e57a5
->> --- /dev/null
->> +++ b/include/dt-bindings/gpio/meson-a1-gpio.h
->> @@ -0,0 +1,73 @@
->> +/* SPDX-License-Identifier: (GPL-2.0+ OR MIT) */
->> +/*
->> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
->> + * Author: Qianggui Song <qianggui.song@amlogic.com>
->> + */
->> +
->> +#ifndef _DT_BINDINGS_MESON_A1_GPIO_H
->> +#define _DT_BINDINGS_MESON_A1_GPIO_H
->> +
->> +#define GPIOP_0		0
->> +#define GPIOP_1		1
->> +#define GPIOP_2		2
->> +#define GPIOP_3		3
->> +#define GPIOP_4		4
->> +#define GPIOP_5		5
->> +#define GPIOP_6		6
->> +#define GPIOP_7		7
->> +#define GPIOP_8		8
->> +#define GPIOP_9		9
->> +#define GPIOP_10	10
->> +#define GPIOP_11	11
->> +#define GPIOP_12	12
->> +#define GPIOB_0		13
->> +#define GPIOB_1		14
->> +#define GPIOB_2		15
->> +#define GPIOB_3		16
->> +#define GPIOB_4		17
->> +#define GPIOB_5		18
->> +#define GPIOB_6		19
->> +#define GPIOX_0		20
->> +#define GPIOX_1		21
->> +#define GPIOX_2		22
->> +#define GPIOX_3		23
->> +#define GPIOX_4		24
->> +#define GPIOX_5		25
->> +#define GPIOX_6		26
->> +#define GPIOX_7		27
->> +#define GPIOX_8		28
->> +#define GPIOX_9		29
->> +#define GPIOX_10	30
->> +#define GPIOX_11	31
->> +#define GPIOX_12	32
->> +#define GPIOX_13	33
->> +#define GPIOX_14	34
->> +#define GPIOX_15	35
->> +#define GPIOX_16	36
->> +#define GPIOF_0		37
->> +#define GPIOF_1		38
->> +#define GPIOF_2		39
->> +#define GPIOF_3		40
->> +#define GPIOF_4		41
->> +#define GPIOF_5		42
->> +#define GPIOF_6		43
->> +#define GPIOF_7		44
->> +#define GPIOF_8		45
->> +#define GPIOF_9		46
->> +#define GPIOF_10	47
->> +#define GPIOF_11	48
->> +#define GPIOF_12	49
->> +#define GPIOA_0		50
->> +#define GPIOA_1		51
->> +#define GPIOA_2		52
->> +#define GPIOA_3		53
->> +#define GPIOA_4		54
->> +#define GPIOA_5		55
->> +#define GPIOA_6		56
->> +#define GPIOA_7		57
->> +#define GPIOA_8		58
->> +#define GPIOA_9		59
->> +#define GPIOA_10	60
->> +#define GPIOA_11	61
->> +
->> +#endif /* _DT_BINDINGS_MESON_A1_GPIO_H */
->>
-> 
-> 
-> With that fixed,
-> 
-> Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
-> 
-> Neil
-> 
-> .
+> diff --git a/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+> new file mode 100644
+> index 000000000000..07dbcd4436ce
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml
+> @@ -0,0 +1,66 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/rtc/renesas,sh-rtc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Real Time Clock for Renesas SH and ARM SoCs
+> +
+> +maintainers:
+> +  - Chris Brandt <chris.brandt@renesas.com>
+> +  - Geert Uytterhoeven <geert+renesas@glider.be>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: renesas,r7s72100-rtc  # RZ/A1H
+> +      - const: renesas,sh-rtc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: alarm
+> +      - const: period
+> +      - const: carry
+> +
+> +  clocks:
+> +    # The functional clock source for the RTC controller must be listed
+> +    # first (if it exists). Additionally, potential clock counting sources
+> +    # are to be listed.
+> +    true
+> +
+> +  clock-names:
+> +    # The functional clock must be labeled as "fck". Other clocks
+> +    # may be named in accordance to the SoC hardware manuals.
+> +    true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - interrupt-names
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r7s72100-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    rtc: rtc@fcff1000 {
+> +        compatible = "renesas,r7s72100-rtc", "renesas,sh-rtc";
+> +        reg = <0xfcff1000 0x2e>;
+> +        interrupts = <GIC_SPI 276 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 277 IRQ_TYPE_EDGE_RISING>,
+> +                     <GIC_SPI 278 IRQ_TYPE_EDGE_RISING>;
+> +        interrupt-names = "alarm", "period", "carry";
+> +        clocks = <&mstp6_clks R7S72100_CLK_RTC>, <&rtc_x1_clk>,
+> +                 <&rtc_x3_clk>, <&extal_clk>;
+> +        clock-names = "fck", "rtc_x1", "rtc_x3", "extal";
+> +    };
+> diff --git a/Documentation/devicetree/bindings/rtc/rtc-sh.txt b/Documentation/devicetree/bindings/rtc/rtc-sh.txt
+> deleted file mode 100644
+> index 7676c7d28874..000000000000
+> --- a/Documentation/devicetree/bindings/rtc/rtc-sh.txt
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -* Real Time Clock for Renesas SH and ARM SoCs
+> -
+> -Required properties:
+> -- compatible: Should be "renesas,r7s72100-rtc" and "renesas,sh-rtc" as a
+> -  fallback.
+> -- reg: physical base address and length of memory mapped region.
+> -- interrupts: 3 interrupts for alarm, period, and carry.
+> -- interrupt-names: The interrupts should be labeled as "alarm", "period", and
+> -  "carry".
+> -- clocks: The functional clock source for the RTC controller must be listed
+> -  first (if exists). Additionally, potential clock counting sources are to be
+> -  listed.
+> -- clock-names: The functional clock must be labeled as "fck". Other clocks
+> -  may be named in accordance to the SoC hardware manuals.
+> -
+> -
+> -Example:
+> -rtc: rtc@fcff1000 {
+> -	compatible = "renesas,r7s72100-rtc", "renesas,sh-rtc";
+> -	reg = <0xfcff1000 0x2e>;
+> -	interrupts = <GIC_SPI 276 IRQ_TYPE_EDGE_RISING
+> -		      GIC_SPI 277 IRQ_TYPE_EDGE_RISING
+> -		      GIC_SPI 278 IRQ_TYPE_EDGE_RISING>;
+> -	interrupt-names = "alarm", "period", "carry";
+> -	clocks = <&mstp6_clks R7S72100_CLK_RTC>, <&rtc_x1_clk>,
+> -		 <&rtc_x3_clk>, <&extal_clk>;
+> -	clock-names = "fck", "rtc_x1", "rtc_x3", "extal";
+> -};
+> -- 
+> 2.11.0
 > 
