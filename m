@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4A75B5021
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13AFB5028
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 16:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbfIQOPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 10:15:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52962 "EHLO mail.kernel.org"
+        id S1727252AbfIQOQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 10:16:51 -0400
+Received: from uho.ysoft.cz ([81.19.3.130]:39726 "EHLO uho.ysoft.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726308AbfIQOP3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 10:15:29 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CA2FE218AE;
-        Tue, 17 Sep 2019 14:15:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1568729728;
-        bh=+B3sRZPhkAukMdMBAYVICiPGgK/51bRCH3pDovTUbwo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=w4/ghrVGz+s1Xa8HKjmbSv+EFYoQomNvEU6uW/JCHc+xPgFpAla3Ef1Xc5bXWrW5B
-         jhuTmBt1NGRBsA9acQjl2Py4L2JmtbGWUEhiSdVFNBg8ihClrjcR+9TNLOGfO7bkGE
-         k+2UvRiT6gdfnian3dWHLECSTFJD+KRDO8Ckiw2M=
-Received: by mail-qt1-f178.google.com with SMTP id j1so4638400qth.1;
-        Tue, 17 Sep 2019 07:15:28 -0700 (PDT)
-X-Gm-Message-State: APjAAAUUZ/2DvB1V88mYEGb6tOZw/fMgjmjwZRQLduMS63SAiaLuXnSa
-        ieo3kaS/dqyP08UUeVhn23j3U+bwVrcFxE+ujw==
-X-Google-Smtp-Source: APXvYqzA95YGsDAHuNNPxRimcQ6KIo1Xu3z8j8WHVokwnL8nyFMsfVMoZXe73MnOTmOXNpjhJW2nI4GI0hnrbY/hLoI=
-X-Received: by 2002:ac8:31b3:: with SMTP id h48mr4019256qte.300.1568729727989;
- Tue, 17 Sep 2019 07:15:27 -0700 (PDT)
+        id S1726308AbfIQOQv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 10:16:51 -0400
+Received: from [10.1.8.111] (unknown [10.1.8.111])
+        by uho.ysoft.cz (Postfix) with ESMTP id B9B5DA0782;
+        Tue, 17 Sep 2019 16:16:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
+        s=20160406-ysoft-com; t=1568729808;
+        bh=26ULHVdLw4mMiJNu6T4YmXbO9stl3BMJSTkuys/RJcY=;
+        h=From:Subject:To:Cc:References:Date:In-Reply-To:From;
+        b=U9Q32iVd/Ip9mYFyMCl9+bH74KqQasMWKgGDuXTuiayojM78GLB2/EdPWU477SkRn
+         +omwwRwkTfdNVLFzSrd8WbKUG3XKG/9GPy/VBUAjFZpI61nJvcSnZS43y304okE9W7
+         3KcuGziwd/ZbTI5PQ/0dsaZAI4+z1Jwl7kGREaNA=
+From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
+Subject: Re: [PATCH input-next 1/4] dt-bindings: input: Convert mpr121 binding
+ to json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+References: <1567424417-3914-1-git-send-email-michal.vokac@ysoft.com>
+ <1567424417-3914-2-git-send-email-michal.vokac@ysoft.com>
+ <20190903065615.GA17646@bogus>
+Message-ID: <29307819-fcac-cbf8-0439-23c831d87278@ysoft.com>
+Date:   Tue, 17 Sep 2019 16:16:48 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <CGME20190917120634eucas1p20addfc4e369468561714f3c44d3d8bf5@eucas1p2.samsung.com>
- <20190917111413.22711-1-m.falkowski@samsung.com> <20190917120627.28357-1-m.falkowski@samsung.com>
-In-Reply-To: <20190917120627.28357-1-m.falkowski@samsung.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 17 Sep 2019 09:15:16 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLwkVQ6VFYtUfOErA8vG2qnE+nquo_m5s0zLRqgn+bJLg@mail.gmail.com>
-Message-ID: <CAL_JsqLwkVQ6VFYtUfOErA8vG2qnE+nquo_m5s0zLRqgn+bJLg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: sound: Convert Samsung SMDK audio complex
-To:     Maciej Falkowski <m.falkowski@samsung.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Sangbeom Kim <sbkim73@samsung.com>,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190903065615.GA17646@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 7:06 AM Maciej Falkowski
-<m.falkowski@samsung.com> wrote:
->
-> Convert Samsung SMDK audio complex to newer dt-schema format.
->
-> Signed-off-by: Maciej Falkowski <m.falkowski@samsung.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
-> v2:
-> - Added missing Signed-off-by certificate
-> ---
->  .../bindings/sound/samsung,smdk-wm8994.txt    | 14 -------
->  .../bindings/sound/samsung,smdk-wm8994.yaml   | 38 +++++++++++++++++++
->  2 files changed, 38 insertions(+), 14 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.txt
->  create mode 100644 Documentation/devicetree/bindings/sound/samsung,smdk-wm8994.yaml
+On 03. 09. 19 8:56, Rob Herring wrote:
+> On Mon, Sep 02, 2019 at 01:40:14PM +0200, Michal Vokáč wrote:
+>> Convert the mpr121 binding to DT schema format using json-schema.
+>>
+>> Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+>> ---
+>> Hi Rob,
+>>
+>> I will appreciate your help converting this binding. Currently
+>> the scheme is not valid and the error output of dt_binding_check
+>> is not really helpful.
+> 
+> What's the error? I don't see anything obvious.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+After some trial & error attempts I found few issues:
+
+  - Wrong placement of description for wakeup-source. Solved.
+  - Missing coma between <KEY_4>, <KEY_5> values in the example. Solved.
+  - DTC complained about invalid reg property length in the example.
+    Solved by placing the mpr121 subnode into i2c {}; node and adding
+    #address-cells and #size-cells properties.
+  - The linux,keycodes property also requires type definition. Unresolved.
+
+    What type should be used? Neither uint32-array nor uint32-matrix work.
+    The linux,keycodes list is not correctly validated against the maxItems
+    value. When I set maxItems less then the number of keycodes, it does not
+    complain.
+
+>> Also, who shoud be the maintainer of this binding?
+>> I put Dmitry in there as he is the input subsystem maintainer but
+>> I am not sure it is correct.
+> 
+> My preference is the author or driver maintainer.
+
+Then Dmitry seems to be the best match here I think.
+
+>>   .../bindings/input/fsl,mpr121-touchkey.yaml        | 64 ++++++++++++++++++++++
+>>   .../devicetree/bindings/input/mpr121-touchkey.txt  | 30 ----------
+>>   2 files changed, 64 insertions(+), 30 deletions(-)
+>>   create mode 100644 Documentation/devicetree/bindings/input/fsl,mpr121-touchkey.yaml
+>>   delete mode 100644 Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+
