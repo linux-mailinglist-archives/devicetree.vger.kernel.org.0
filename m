@@ -2,79 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2446B5318
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 18:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91258B5327
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 18:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730546AbfIQQfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 12:35:40 -0400
-Received: from mga12.intel.com ([192.55.52.136]:10201 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730457AbfIQQfk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 12:35:40 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Sep 2019 09:35:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,517,1559545200"; 
-   d="scan'208";a="216631750"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga002.fm.intel.com with ESMTP; 17 Sep 2019 09:35:37 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1iAGS0-0001VI-0r; Tue, 17 Sep 2019 19:35:36 +0300
-Date:   Tue, 17 Sep 2019 19:35:36 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     robh+dt@kernel.org, dmitry.torokhov@gmail.com, bparrot@ti.com,
-        simon.budig@kernelconcepts.de, hdegoede@redhat.com, fcooper@ti.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH 6/6] Input: edt-ft5x06 - add supply voltage support
-Message-ID: <20190917163536.GI2680@smile.fi.intel.com>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-7-m.felsch@pengutronix.de>
+        id S1730575AbfIQQgi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 12:36:38 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:39153 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727002AbfIQQgi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 12:36:38 -0400
+Received: by mail-pg1-f193.google.com with SMTP id u17so2300241pgi.6
+        for <devicetree@vger.kernel.org>; Tue, 17 Sep 2019 09:36:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=6oL27CCsiCgWC+s9QdRYX453QCLZxLS2++aHbtnJhwo=;
+        b=YA0FtVOqhPZ+x3BfaIoVZIEZexqC9TyNKApW9YBx6UryG5ITeV5G/PcVyovxlcN+mC
+         os44E6Ij+VtAx8kdLvm5CDW3dSDIYirj+oo2lcs2vH01UDW4bGLLNb9WTGyjObDvjKoj
+         fBuR+TQerwfgIFxcGZl8M9n99ztxdoJWyHTr3aKJskQWgCTjdqc3CzWAMMCPIWWV27uk
+         r6QlYUhCtyjRpnvTXR0DG8uzBazHmw40E5sw5yAMAHs41eotxnNZMhM36rvMkaTMxCjz
+         4Q5hfisagPglftlQNRwob/iecOFYUAkervhL5SGw2H57K6310ejYzOFpMM61c3xeiltY
+         gc0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6oL27CCsiCgWC+s9QdRYX453QCLZxLS2++aHbtnJhwo=;
+        b=OkYM42+63v7uESfjXb0N6ED41qtUWQipCz2Rtl3eep4qdHOSWc98KQ7ewGclFpm6Am
+         p6Pd8WYXM9V9JaoE/Qz5dWMJubnwmVW2yB1h+U64tJ+9khrm7DFqRz6on3QFzqfhNVAt
+         7ufnQWaoTKGa+meaA2pSp7M3nUMQTjKgeDhEL6jPKkYLtcGsmj7I8dTS7+DbKupzZ+qL
+         Kkn5YaHsSd9kMMOSSVONtLQXR1V0sWszXFqsFi37IU28pe7pDBu2IdGl0Ixc8Z1yDICp
+         ftPa6vR7sg0f8MvVDHw6Ihcc+Cd3A/MAh6I81qoK0UXZujqUc5AexG5nnpJZ0uVKIObh
+         RRxQ==
+X-Gm-Message-State: APjAAAXDcLshXo5pE9Jwal5cKvG47gqz+anNYTXHiahlMJx9sWyaG0rk
+        90StT3Rcl2P3QgonYMrDOHZ7
+X-Google-Smtp-Source: APXvYqylABHbwwGnTpG+yB/f0dYMRAjI9T2OAHarx7EJA+9sLbutDPD4P64xC24J0U/cyFBf2nmCMw==
+X-Received: by 2002:a17:90a:fa0c:: with SMTP id cm12mr5692720pjb.137.1568738197253;
+        Tue, 17 Sep 2019 09:36:37 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:111:7ed:2c13:36f7:e70f:4a47])
+        by smtp.gmail.com with ESMTPSA id w6sm8080461pfw.84.2019.09.17.09.36.31
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 17 Sep 2019 09:36:36 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 22:06:28 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     afaerber@suse.de, robh+dt@kernel.org, ulf.hansson@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-mmc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        thomas.liau@actions-semi.com, linux-actions@lists.infradead.org,
+        linus.walleij@linaro.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] clk: actions: Fix factor clk struct member access
+Message-ID: <20190917163628.GA2615@Mani-XPS-13-9360>
+References: <20190916154546.24982-1-manivannan.sadhasivam@linaro.org>
+ <20190916154546.24982-2-manivannan.sadhasivam@linaro.org>
+ <20190917163419.4C4DD20665@mail.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917155808.27818-7-m.felsch@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190917163419.4C4DD20665@mail.kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 05:58:08PM +0200, Marco Felsch wrote:
-> Currently the driver do not care about the regulator which supplies the
-> controller. This can lead into problems since we support (deep-)sleep
-> because the regulator can be turned off before we send the (deep-)sleep
-> command to the controller. Using a own regulator improves the power
-> consumption during sleep even more.
+On Tue, Sep 17, 2019 at 09:34:18AM -0700, Stephen Boyd wrote:
+> Quoting Manivannan Sadhasivam (2019-09-16 08:45:40)
+> > Since the helper "owl_factor_helper_round_rate" is shared between factor
+> > and composite clocks, using the factor clk specific helper function
+> > like "hw_to_owl_factor" to access its members will create issues when
+> > called from composite clk specific code. Hence, pass the "factor_hw"
+> > struct pointer directly instead of fetching it using factor clk specific
+> > helpers.
+> > 
+> > This issue has been observed when a composite clock like "sd0_clk" tried
+> > to call "owl_factor_helper_round_rate" resulting in pointer dereferencing
+> > error.
+> > 
+> > While we are at it, let's rename the "clk_val_best" function to
+> > "owl_clk_val_best" since this is an owl SoCs specific helper.
+> > 
+> > Fixes: 4bb78fc9744a ("clk: actions: Add factor clock support")
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> > ---
+> 
+> I can apply this to clk-next?
 
-> +	tsdata->vdd = devm_regulator_get(&client->dev, "vdd");
-> +	if (IS_ERR(tsdata->vdd)) {
-> +		error = PTR_ERR(tsdata->vdd);
-> +		if (error == -EPROBE_DEFER)
-> +			return error;
+Yes, please :-) Rest can go through Ulf's tree.
 
-Before it worked w/o regulator. You have to make it optional.
+Thanks,
+Mani
 
-> +		dev_err(&client->dev,
-> +			"Failed to request vdd-supply, error %d\n", error);
-> +		return error;
-> +	}
-> +
-> +	error = regulator_enable(tsdata->vdd);
-> +	if (error) {
-> +		dev_err(&client->dev,
-> +			"Failed to enable vdd-supply, error %d\n", error);
-> +		return error;
-> +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> 
