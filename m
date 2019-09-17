@@ -2,88 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC10AB5495
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:50:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E17B54A7
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:55:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727297AbfIQRuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 13:50:15 -0400
-Received: from mga17.intel.com ([192.55.52.151]:7311 "EHLO mga17.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727076AbfIQRuP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 17 Sep 2019 13:50:15 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Sep 2019 10:50:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,517,1559545200"; 
-   d="scan'208";a="211572348"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga004.fm.intel.com with ESMTP; 17 Sep 2019 10:50:12 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1iAHcA-0002ba-Vq; Tue, 17 Sep 2019 20:50:10 +0300
-Date:   Tue, 17 Sep 2019 20:50:10 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
-        bparrot@ti.com, simon.budig@kernelconcepts.de, hdegoede@redhat.com,
-        fcooper@ti.com, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH 6/6] Input: edt-ft5x06 - add supply voltage support
-Message-ID: <20190917175010.GM2680@smile.fi.intel.com>
-References: <20190917155808.27818-1-m.felsch@pengutronix.de>
- <20190917155808.27818-7-m.felsch@pengutronix.de>
- <20190917163536.GI2680@smile.fi.intel.com>
- <20190917165245.GM237523@dtor-ws>
- <20190917171246.GL2680@smile.fi.intel.com>
- <20190917172105.GP237523@dtor-ws>
+        id S1727504AbfIQRzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 13:55:08 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:41279 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbfIQRzI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 13:55:08 -0400
+Received: by mail-oi1-f194.google.com with SMTP id w17so3644423oiw.8;
+        Tue, 17 Sep 2019 10:55:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=apP6EuGrN+2ThQnbuaWrR8NOtzPWwQdyNbUGXH4C9kY=;
+        b=eeoIZdWTQQs2G5KkJimNl0/32P8hYJoaCwOtNq/8uo8gh4J+71Ydh0ew+tDCEFoKXB
+         7Et6f1HFsbsVyqqUa1oklkrGd8W0XvaLOekQmnVLiJOrB1dt1XH/enk3ZdUfL/yziPKo
+         5nzJTAN2MZVnXBRb07y7xoutAQV9t6IG1YTHS9IxpJJWgEQJCfjnuqjU3sCS00GftAk0
+         eMSwtrydFMIuDHy18/gDW/704FJ3aeBObniyWHsRv/5LESFmn1H8bYIik2uyWVUUP3/+
+         ipTirvZ5nx3E/7mQefqbGNXXVyUhI7swAikyBb2LtPM6qjAkcSI71GmMo3lMLfb18Z7C
+         KrFw==
+X-Gm-Message-State: APjAAAUmKK1LISBciUrRp2QFWzJcGbt1Dvzr3XzQwbvRGUwsHWW8gRdl
+        3bwJ47FUtCNs4svdlW704Q==
+X-Google-Smtp-Source: APXvYqxroo1YBuMjGZ0BOe2e6ICZ0bADExyq7TNaM4+OK8EjcRVNatn2iNeE5lPJX0K6tHBwPgEUdQ==
+X-Received: by 2002:aca:c7d8:: with SMTP id x207mr4901443oif.99.1568742907207;
+        Tue, 17 Sep 2019 10:55:07 -0700 (PDT)
+Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id b4sm868738oiy.30.2019.09.17.10.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 17 Sep 2019 10:55:06 -0700 (PDT)
+Date:   Tue, 17 Sep 2019 12:55:05 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
+Cc:     laurent.pinchart@ideasonboard.com,
+        kieran.bingham+renesas@ideasonboard.com, geert@linux-m68k.org,
+        horms@verge.net.au, uli+renesas@fpond.eu,
+        VenkataRajesh.Kalakodima@in.bosch.com, airlied@linux.ie,
+        daniel@ffwll.ch, koji.matsuoka.xm@renesas.com, muroya@ksk.co.jp,
+        Harsha.ManjulaMallikarjun@in.bosch.com,
+        linux-renesas-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com
+Subject: Re: [PATCH v4 1/9] dt-bindings: display: renesas,cmm: Add R-Car CMM
+ documentation
+Message-ID: <20190917175505.GA29276@bogus>
+References: <20190906135436.10622-1-jacopo+renesas@jmondi.org>
+ <20190906135436.10622-2-jacopo+renesas@jmondi.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190917172105.GP237523@dtor-ws>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20190906135436.10622-2-jacopo+renesas@jmondi.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 17, 2019 at 10:21:05AM -0700, Dmitry Torokhov wrote:
-> On Tue, Sep 17, 2019 at 08:12:46PM +0300, Andy Shevchenko wrote:
-> > On Tue, Sep 17, 2019 at 09:52:45AM -0700, Dmitry Torokhov wrote:
-> > > On Tue, Sep 17, 2019 at 07:35:36PM +0300, Andy Shevchenko wrote:
-> > > > On Tue, Sep 17, 2019 at 05:58:08PM +0200, Marco Felsch wrote:
-> > > > > Currently the driver do not care about the regulator which supplies the
-> > > > > controller. This can lead into problems since we support (deep-)sleep
-> > > > > because the regulator can be turned off before we send the (deep-)sleep
-> > > > > command to the controller. Using a own regulator improves the power
-> > > > > consumption during sleep even more.
-> > > > 
-> > > > > +	tsdata->vdd = devm_regulator_get(&client->dev, "vdd");
-> > > > > +	if (IS_ERR(tsdata->vdd)) {
-> > > > > +		error = PTR_ERR(tsdata->vdd);
-> > > > > +		if (error == -EPROBE_DEFER)
-> > > > > +			return error;
-> > > > 
-> > > > Before it worked w/o regulator. You have to make it optional.
-> > > 
-> > > No, regulators are funky this way. If there isn't one declared in the
-> > > device tree then a dummy is created automatically. Optional regulators
-> > > are only to be used when parts of an IC can be powered up separately.
-> > 
-> > It depends if platform has full constrains or not.
+On Fri, Sep 06, 2019 at 03:54:28PM +0200, Jacopo Mondi wrote:
+> Add device tree bindings documentation for the Renesas R-Car Display
+> Unit Color Management Module.
 > 
-> Full constraints is the default behavior. Do we even have platforms that
-> are not? ACPI and DT are fully-constrained, so that leaves legacy
-> boards... But there isn't a single one in the tree that uses this
-> driver.
+> CMM is the image enhancement module available on each R-Car DU video
+> channel on R-Car Gen2 and Gen3 SoCs (V3H and V3M excluded).
+> 
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> ---
+>  .../bindings/display/renesas,cmm.yaml         | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/renesas,cmm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,cmm.yaml b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
+> new file mode 100644
+> index 000000000000..9e5922689cd7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/renesas,cmm.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: GPL-2.0
 
-Fine then!
+For new bindings:
 
--- 
-With Best Regards,
-Andy Shevchenko
+GPL-2.0-only OR BSD-2-Clause
 
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/renesas,cmm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas R-Car Color Management Module (CMM)
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +  - Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> +  - Jacopo Mondi <jacopo+renesas@jmondi.org>
+> +
+> +description: |+
+> +  Renesas R-Car color management module connected to R-Car DU video channels.
+> +  It provides image enhancement functions such as 1-D look-up tables (LUT),
+> +  3-D look-up tables (CMU), 1D-histogram generation (HGO), and color
+> +  space conversion (CSC).
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +        - renesas,r8a7795-cmm
+> +        - renesas,r8a7796-cmm
+> +        - renesas,r8a77965-cmm
+> +        - renesas,r8a77990-cmm
+> +        - renesas,r8a77995-cmm
+> +      - enum:
+> +        - renesas,rcar-gen3-cmm
+> +        - renesas,rcar-gen2-cmm
 
+This allows 10 valid cases when I imagine there's only really 5. I'm 
+okay leaving it, but might be better to split into 2 under a 'oneOf'.
+
+I imagine there will be a lot of these for Renesas, so just be 
+consistent.
+
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - resets
+> +  - power-domains
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a7796-cpg-mssr.h>
+> +    #include <dt-bindings/power/r8a7796-sysc.h>
+> +
+> +    cmm0: cmm@fea40000 {
+> +         compatible = "renesas,r8a7796-cmm";
+> +         reg = <0 0xfea40000 0 0x1000>;
+> +         power-domains = <&sysc R8A7796_PD_ALWAYS_ON>;
+> +         clocks = <&cpg CPG_MOD 711>;
+> +         resets = <&cpg 711>;
+> +    };
+> --
+> 2.23.0
+> 
