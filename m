@@ -2,77 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C67EB5560
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 20:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1AD4AB5571
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 20:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfIQSdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 14:33:09 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:36543 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726256AbfIQSdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 14:33:09 -0400
-Received: by mail-oi1-f195.google.com with SMTP id k20so3788613oih.3;
-        Tue, 17 Sep 2019 11:33:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=iReD5mJ0Uir23drUba5qv+wNUfTA9iGbAoW+oBdI4B0=;
-        b=o9/Zc4F2rqwbH6Qfl/Avq/mVRqx5TsVm84vfOXooD1sXd1FunzsupyeZw3se5h/idl
-         zBFPCySl/PI13QxUxPnLVINNrUZTvEyp4vQ5p9AQJk7Xkwl6wDh7wnXLuCZ8MBaXlfAj
-         M9CDHLoqgg5+x7ZuyzHm9Q3WOrpMykK+5FIQOX1hTqW/VOmeV+UXSp2j9PMxciCKTRZA
-         RppJCMe7II8+J601HALIawG3FSHgsLTHhvhDglLNJlbsO0XdrZuyRRyjZVt3K/PJ8Cvr
-         sdHHNcdk1iqsGuTEJLCt6gcRyRSD+AQDK9x4da3LAsLoV0MENjY81acL6LR3bRr7W9Pd
-         KnuA==
-X-Gm-Message-State: APjAAAXyrUkUF2+3X5eaygek5p6+IXdL2KFBqcJPldHAmgpCyvc+NoIg
-        LXxj6gwioRklnkZ21IOjxA==
-X-Google-Smtp-Source: APXvYqxF73vwBXOpDaa7aqGMYHwP4mdbPwabeO3dt9jcjKYG/4N/9T5DLOW9zoNxvRUubgyYhF6OxQ==
-X-Received: by 2002:a54:4392:: with SMTP id u18mr5037847oiv.103.1568745188498;
-        Tue, 17 Sep 2019 11:33:08 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id a4sm959095otp.72.2019.09.17.11.33.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 11:33:07 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 13:33:06 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Dilip Kota <eswara.kota@linux.intel.com>, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, lorenzo.pieralisi@arm.com,
-        linux-pci@vger.kernel.org, hch@infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        cheol.yong.kim@intel.com, chuanhua.lei@linux.intel.com,
-        qi-ming.wu@intel.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: intel: Add YAML schemas for the
- PCIe RC controller
-Message-ID: <20190917183306.GA24684@bogus>
-References: <cover.1567585181.git.eswara.kota@linux.intel.com>
- <fe9549470bc06ea0d0dfc80f46a579baa49b911a.1567585181.git.eswara.kota@linux.intel.com>
- <CAFBinCC5SH5OSUqOkLQhE2o7g5OhSuB_PBjsv93U2P=FNS5oPw@mail.gmail.com>
- <20190906091950.GJ2680@smile.fi.intel.com>
+        id S1726448AbfIQSjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 14:39:42 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:51318 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726044AbfIQSjm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 14:39:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=taIBPGYkIVMe8MiFytbX0T9rZMz92fCysG30eRO4viY=; b=QibepfwKOsVPkP14yx0txbt1gn
+        KhjMQJVLOUuv3pI9UGICUFKsyVRL3QmuUYKQcP+UEkpfd4wmtl/XFU5fajEskaTBC+ix8Wvi3QCOn
+        iKnteiC8KLNymp63/zWS6q1eIwyWQabPp8lFFoDw3NC53fAA3i71/ykme+IW8LTsyl6E=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1iAINy-0002yN-5X; Tue, 17 Sep 2019 20:39:34 +0200
+Date:   Tue, 17 Sep 2019 20:39:34 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Baruch Siach <baruch@tkos.co.il>,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        tinywrkb <tinywrkb@gmail.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] ARM: dts: imx6dl: SolidRun: add phy node with 100Mb/s
+ max-speed
+Message-ID: <20190917183934.GJ20778@lunn.ch>
+References: <20190917133253.GA1210141@arch-dsk-01>
+ <20190917133942.GR25745@shell.armlinux.org.uk>
+ <20190917151707.GV25745@shell.armlinux.org.uk>
+ <20190917153027.GW25745@shell.armlinux.org.uk>
+ <20190917163427.GA1475935@arch-dsk-01>
+ <20190917170419.GX25745@shell.armlinux.org.uk>
+ <20190917171913.GY25745@shell.armlinux.org.uk>
+ <20190917172658.GB9591@lunn.ch>
+ <20190917173728.GZ25745@shell.armlinux.org.uk>
+ <20190917181905.GA25745@shell.armlinux.org.uk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190906091950.GJ2680@smile.fi.intel.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190917181905.GA25745@shell.armlinux.org.uk>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 06, 2019 at 12:19:50PM +0300, Andy Shevchenko wrote:
-> On Thu, Sep 05, 2019 at 10:31:29PM +0200, Martin Blumenstingl wrote:
-> > On Wed, Sep 4, 2019 at 12:11 PM Dilip Kota <eswara.kota@linux.intel.com> wrote:
-> 
-> > > +  phy-names:
-> > > +    const: pciephy
-> > the most popular choice in Documentation/devicetree/bindings/pci/ is "pcie-phy"
-> > if Rob is happy with "pciephy" (which is already part of two other
-> > bindings) then I'm happy with "pciephy" as well
-> 
-> I'm not Rob, though I consider more practical to have a hyphenated variant.
+> > Well, the _correct_ driver needs to be used for the PHY specific
+> > features to be properly controlled.  Using the generic driver
+> > in this situation will not be guaranteed to work.
 
-*-names is kind of pointless when there is only one entry and 'foo' in 
-the values of 'foo-names' is redundant.
+I fully agree about the PHY driver. I'm expect this device is
+violating c22 when it modifies the advertisement register itself. So
+all bets are off for the genphy.
 
-Rob
+> Well, this hasn't worked, but not for the obvious reason.  Register 0x14
+> is documented as read/write.  Bits 15:6 are reserved, bit 5 is the
+> smart speed enable, 4:2 configures the attempts, bit 1 sets the link
+> stable condition, bit 0 is reserved.
+> 
+> Writing 0x80c results in the register reading back 0x82c.  Writing
+> 0x800 results in the same.  Writing 0 reads back 0x2c.  Writing 0xffff
+> seems to prevent packets being passed - and at that point I lost
+> control so I couldn't see what the result was.
+> 
+> There is nothing in the data sheet which suggests that there is any
+> gating of this register.  So it looks like we're stuck with smartspeed
+> enabled.
+> 
+> So, I think there's only two remaining ways forward - to revert commit
+> 5502b218e001 to restore the old behaviour, read back the advertisement
+> from the PHY along with the rest of the status, as I've previously
+> stated.  It means that phylib will modify phydev->advertising at
+> random points, just as it modifies phydev->lp_advertising, so locking
+> may become an issue.  The revert approach is probably best until we
+> have something working along those lines.
+
+We have a couple of other PHYs which support downshift. We should see
+if we can follow what they do. What is i think important is that
+read_status return the correct speed. So we probably cannot use
+genphy_read_status() as is. Maybe we should split genphy_read_status()
+into two, so the register reading bit can be done unconditionally by
+phy drivers for hardware which don't report link down when they
+should?
+
+    Andrew
