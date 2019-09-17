@@ -2,73 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B703B548C
-	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:48:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC10AB5495
+	for <lists+devicetree@lfdr.de>; Tue, 17 Sep 2019 19:50:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726125AbfIQRsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 17 Sep 2019 13:48:20 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:38191 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbfIQRsU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 17 Sep 2019 13:48:20 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 7so3640918oip.5;
-        Tue, 17 Sep 2019 10:48:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OLNPrRxDPRbWhwGlQA4d3JzAWazNN4nV438P8IDTTRw=;
-        b=qUppZ/jUYMWSk6liv8Di9k8s3dqOYhvYOcpmxGDRp2Hi8c4mfQO4JtQwIWJNALtQs+
-         P0T+Fg/TlsjM8i4KOUDl7H0QLDU+PYYqkFpZzCqed7TnK7B3KFw1+WS5DUzziWUbLiiR
-         n+MqZLFYlVHYg1Ra7MGTG5PXXXa1rR/qrRpw7KPtcKnX5ATgICRdLGNunymHhjwLCbaU
-         4apV1PIshSn8jVvtDqIOm3KNQFCeNvLMskedRSDgKstXkMhRZrDEmv8OSq2hgzxGa5Xu
-         2Dd8aJGkWUIblYGle9DnEM6OTiiaELOWekAboYx6ygXHZ0JygMkxfaMP363UUgbcV3IV
-         VARg==
-X-Gm-Message-State: APjAAAW5gq0wNLtrLgZVYiM9DBulH5D8hWXAWSOoklQ6m2fscN3RymJD
-        350JKSLsOUDUBQVxrmqQywVoZJ0=
-X-Google-Smtp-Source: APXvYqxNJazxNhfPpyZsGDNi6/fGR8tESyF7OTgG4GBaUNLvJb1qsI+fGEqf8ccBQ1yOyJ5iAh9d7Q==
-X-Received: by 2002:aca:5dd4:: with SMTP id r203mr4828782oib.67.1568742499482;
-        Tue, 17 Sep 2019 10:48:19 -0700 (PDT)
-Received: from localhost (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e2sm876135otk.6.2019.09.17.10.48.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Sep 2019 10:48:18 -0700 (PDT)
-Date:   Tue, 17 Sep 2019 12:48:17 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Tero Kristo <t-kristo@ti.com>
-Cc:     linux-omap@vger.kernel.org, ssantosh@kernel.org,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, tony@atomide.com,
-        s-anna@ti.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCHv5 01/10] dt-bindings: omap: add new binding for PRM
- instances
-Message-ID: <20190917174817.GA27938@bogus>
-References: <20190912113916.20093-1-t-kristo@ti.com>
- <20190912113916.20093-2-t-kristo@ti.com>
+        id S1727297AbfIQRuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 17 Sep 2019 13:50:15 -0400
+Received: from mga17.intel.com ([192.55.52.151]:7311 "EHLO mga17.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727076AbfIQRuP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 17 Sep 2019 13:50:15 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Sep 2019 10:50:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,517,1559545200"; 
+   d="scan'208";a="211572348"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga004.fm.intel.com with ESMTP; 17 Sep 2019 10:50:12 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1iAHcA-0002ba-Vq; Tue, 17 Sep 2019 20:50:10 +0300
+Date:   Tue, 17 Sep 2019 20:50:10 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
+        bparrot@ti.com, simon.budig@kernelconcepts.de, hdegoede@redhat.com,
+        fcooper@ti.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de
+Subject: Re: [PATCH 6/6] Input: edt-ft5x06 - add supply voltage support
+Message-ID: <20190917175010.GM2680@smile.fi.intel.com>
+References: <20190917155808.27818-1-m.felsch@pengutronix.de>
+ <20190917155808.27818-7-m.felsch@pengutronix.de>
+ <20190917163536.GI2680@smile.fi.intel.com>
+ <20190917165245.GM237523@dtor-ws>
+ <20190917171246.GL2680@smile.fi.intel.com>
+ <20190917172105.GP237523@dtor-ws>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190912113916.20093-2-t-kristo@ti.com>
+In-Reply-To: <20190917172105.GP237523@dtor-ws>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 12 Sep 2019 14:39:07 +0300, Tero Kristo wrote:
-> Add new binding for OMAP PRM (Power and Reset Manager) instances. Each
-> of these will act as a power domain controller and potentially as a reset
-> provider.
+On Tue, Sep 17, 2019 at 10:21:05AM -0700, Dmitry Torokhov wrote:
+> On Tue, Sep 17, 2019 at 08:12:46PM +0300, Andy Shevchenko wrote:
+> > On Tue, Sep 17, 2019 at 09:52:45AM -0700, Dmitry Torokhov wrote:
+> > > On Tue, Sep 17, 2019 at 07:35:36PM +0300, Andy Shevchenko wrote:
+> > > > On Tue, Sep 17, 2019 at 05:58:08PM +0200, Marco Felsch wrote:
+> > > > > Currently the driver do not care about the regulator which supplies the
+> > > > > controller. This can lead into problems since we support (deep-)sleep
+> > > > > because the regulator can be turned off before we send the (deep-)sleep
+> > > > > command to the controller. Using a own regulator improves the power
+> > > > > consumption during sleep even more.
+> > > > 
+> > > > > +	tsdata->vdd = devm_regulator_get(&client->dev, "vdd");
+> > > > > +	if (IS_ERR(tsdata->vdd)) {
+> > > > > +		error = PTR_ERR(tsdata->vdd);
+> > > > > +		if (error == -EPROBE_DEFER)
+> > > > > +			return error;
+> > > > 
+> > > > Before it worked w/o regulator. You have to make it optional.
+> > > 
+> > > No, regulators are funky this way. If there isn't one declared in the
+> > > device tree then a dummy is created automatically. Optional regulators
+> > > are only to be used when parts of an IC can be powered up separately.
+> > 
+> > It depends if platform has full constrains or not.
 > 
-> Signed-off-by: Tero Kristo <t-kristo@ti.com>
-> ---
-> v5: - dropped the clocks property as the dependency towards clocks was
->       removed
->     - changed the name of the node to be power-controller
-> 
->  .../devicetree/bindings/arm/omap/prm-inst.txt | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/omap/prm-inst.txt
-> 
+> Full constraints is the default behavior. Do we even have platforms that
+> are not? ACPI and DT are fully-constrained, so that leaves legacy
+> boards... But there isn't a single one in the tree that uses this
+> driver.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Fine then!
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
